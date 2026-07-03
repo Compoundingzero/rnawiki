@@ -2,11 +2,14 @@
   "name": "pbswiki",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal-bests drug & supplement wiki — static, zero-dependency.",
+  "description": "Personal-bests drug & supplement wiki with community editing & comments.",
   "scripts": {
     "build": "node build/parse.js",
     "prestart": "node build/parse.js",
     "start": "node server.js"
+  },
+  "dependencies": {
+    "pg": "^8.11.5"
   },
   "engines": {
     "node": ">=18"
