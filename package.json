@@ -5,6 +5,7 @@
   "description": "Wants-first drug & supplement wiki — static, zero-dependency.",
   "scripts": {
     "build": "node build/parse.js",
+    "prestart": "node build/parse.js",
     "start": "node server.js"
   },
   "engines": {
