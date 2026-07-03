@@ -200,6 +200,16 @@ a.pd-chip:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,30,50,.
 a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY(-1px)}
 .pd-goal.static{color:var(--muted);background:var(--panel2);border-color:var(--line)}
 
+/* go deeper (compound page) */
+.deeper{margin-top:2.2rem}
+.deeper-h{font-size:1.35rem;border-top:2px solid var(--line);padding-top:1.5rem}
+.deeper-intro{color:var(--muted);font-size:.96rem;line-height:1.6}
+.deeper-block{margin-top:1.3rem}
+.deeper-name{font-size:.95rem;font-weight:700;color:var(--head);margin-bottom:.35rem}
+.deeper-name a{color:var(--purple)}
+.deeper-one{color:var(--muted);font-size:.96rem;margin:.2rem 0 .5rem;line-height:1.55}
+.deeper-link{display:inline-block;margin-top:.5rem;font-weight:600;color:var(--accent2)}
+
 /* target page + parts catalog */
 .target-hero{display:flex;gap:1.2rem;align-items:flex-start;margin-bottom:1rem}
 .tsym{font-family:var(--mono);font-size:1.6rem;font-weight:800;color:#fff;background:var(--accent);padding:.6rem 1rem;border-radius:12px;white-space:nowrap}
