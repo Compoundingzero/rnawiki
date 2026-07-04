@@ -18,6 +18,7 @@ const EDITABLE = ['mechanism', 'target', 'plain', 'protocol', 'watch', 'bottom']
 // Hard domain isolation for stewardship: each expert domain owns exactly one layer.
 const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
 // AI food-photo scanner (opt-in: does nothing until ANTHROPIC_API_KEY is set).
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';   // enables Gmail sign-in when set
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
 const SCAN_CAP = Number(process.env.SCAN_CAP || 25);          // scans/user/day — cost control
 const SCAN_MODEL = process.env.SCAN_MODEL || 'claude-haiku-4-5-20251001'; // cheapest vision tier
@@ -109,11 +110,13 @@ function sameOrigin(req) {
 
 // ---------- API ----------
 async function api(req, res, url) {
-  if (!db.enabled) return json(res, 503, { error: 'Accounts are not available right now.' });
   // url keeps its query string (handlers parse ?goal=/?ids=/?problem= from it);
   // routing uses the path portion only.
   const parts = url.split('?')[0].split('/').filter(Boolean); // ['api', ...]
   const seg = parts.slice(1);
+  // public client config (works even if the DB is down, so the UI can adapt)
+  if (seg[0] === 'config' && req.method === 'GET') return json(res, 200, { googleClientId: GOOGLE_CLIENT_ID || null, dbEnabled: db.enabled });
+  if (!db.enabled) return json(res, 503, { error: 'Accounts are not available right now.' });
   const method = req.method;
 
   if (method !== 'GET' && !sameOrigin(req)) return json(res, 403, { error: 'Bad origin' });
@@ -153,6 +156,42 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'me' && method === 'GET') {
     const u = await currentUser(req); return json(res, 200, { user: u });
+  }
+  if (seg[0] === 'auth' && seg[1] === 'google' && method === 'POST') {
+    if (!GOOGLE_CLIENT_ID) return json(res, 503, { error: 'Google sign-in is not enabled on this server.' });
+    const b = await readBody(req); if (!b || !b.credential) return json(res, 400, { error: 'Missing Google credential' });
+    // Verify the ID token with Google (no crypto lib needed).
+    let p;
+    try {
+      const vr = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(b.credential), { signal: AbortSignal.timeout(10000) });
+      if (!vr.ok) throw new Error('tokeninfo ' + vr.status);
+      p = await vr.json();
+    } catch (e) { return json(res, 401, { error: 'Could not verify Google sign-in' }); }
+    if (p.aud !== GOOGLE_CLIENT_ID) return json(res, 401, { error: 'Google token was issued for a different app' });
+    if (!(p.iss === 'accounts.google.com' || p.iss === 'https://accounts.google.com')) return json(res, 401, { error: 'Bad token issuer' });
+    if (p.email_verified === false || p.email_verified === 'false') return json(res, 401, { error: 'Your Google email is not verified' });
+    const sub = String(p.sub), email = String(p.email || '').toLowerCase();
+    try {
+      let u = (await db.query('SELECT id,username,role,domain,credential,domain_verified FROM users WHERE google_sub=$1 OR (email=$2 AND email IS NOT NULL) LIMIT 1', [sub, email || '\x00'])).rows[0];
+      if (u) {
+        await db.query('UPDATE users SET google_sub=$1 WHERE id=$2 AND google_sub IS NULL', [sub, u.id]);
+      } else {
+        let base = (email.split('@')[0] || String(p.name || 'user')).toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, 20) || 'user';
+        if (base.length < 3) base = base + 'user';
+        let uname = base, tries = 0;
+        while (true) {
+          try {
+            u = (await db.query('INSERT INTO users(username,email,google_sub) VALUES($1,$2,$3) RETURNING id,username,role,domain,credential,domain_verified', [uname, email || null, sub])).rows[0];
+            break;
+          } catch (e) { if (e.code === '23505' && tries < 8) { tries++; uname = base + Math.floor(1000 + Math.random() * 8999); } else throw e; }
+        }
+      }
+      if (ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
+      const token = crypto.randomBytes(24).toString('hex');
+      await db.query('INSERT INTO sessions(token,user_id,expires_at) VALUES($1,$2, now()+interval \'30 days\')', [token, u.id]);
+      setSessionCookie(res, token);
+      return json(res, 200, { user: u });
+    } catch (e) { console.error('[google-auth]', e.message); return json(res, 500, { error: 'Sign-in failed' }); }
   }
 
   // --- comments ---

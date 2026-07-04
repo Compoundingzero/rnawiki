@@ -61,6 +61,9 @@ CREATE INDEX IF NOT EXISTS idx_votes_target ON votes(target_id);
 ALTER TABLE users ADD COLUMN IF NOT EXISTS domain TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS credential TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS domain_verified BOOLEAN NOT NULL DEFAULT false;
+-- Google (Gmail) sign-in: google_sub links the Google account; pass is now optional.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS google_sub TEXT UNIQUE;
+ALTER TABLE users ALTER COLUMN pass DROP NOT NULL;
 
 CREATE TABLE IF NOT EXISTS proposals (
   id SERIAL PRIMARY KEY,
