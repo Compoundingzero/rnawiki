@@ -17,6 +17,42 @@ const TYPES = {
 const EDITABLE = ['mechanism', 'target', 'plain', 'protocol', 'watch', 'bottom'];
 // Hard domain isolation for stewardship: each expert domain owns exactly one layer.
 const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
+// AI food-photo scanner (opt-in: does nothing until ANTHROPIC_API_KEY is set).
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '';
+const SCAN_CAP = Number(process.env.SCAN_CAP || 25);          // scans/user/day — cost control
+const SCAN_MODEL = process.env.SCAN_MODEL || 'claude-haiku-4-5-20251001'; // cheapest vision tier
+
+async function scanFood(imageB64, mediaType) {
+  const prompt = `You are a nutrition estimator. Identify the single food or dish in this photo (include Singapore hawker dishes and packaged foods). Estimate ONE typical serving. Respond with ONLY a JSON object — no prose, no markdown fences:
+{"name": string, "serving": string, "kcal": number, "protein_g": number, "carbs_g": number, "sugar_g": number, "fat_g": number, "fiber_g": number, "sodium_mg": number, "confidence": "low"|"medium"|"high"}
+If there is no identifiable food, return {"name": null}. Values are plain numbers with no units.`;
+  const r = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json', 'x-api-key': ANTHROPIC_API_KEY, 'anthropic-version': '2023-06-01' },
+    body: JSON.stringify({
+      model: SCAN_MODEL, max_tokens: 400,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: mediaType, data: imageB64 } },
+        { type: 'text', text: prompt },
+      ] }],
+    }),
+    signal: AbortSignal.timeout(30000),
+  });
+  if (!r.ok) throw new Error('anthropic ' + r.status);
+  const j = await r.json();
+  let text = ((j.content && j.content[0] && j.content[0].text) || '').trim().replace(/```json|```/g, '');
+  const mm = text.match(/\{[\s\S]*\}/); if (!mm) throw new Error('no json in response');
+  const d = JSON.parse(mm[0]);
+  if (!d.name) return { name: null };
+  const num = (x) => (x === 0 || x) && isFinite(x) ? Number(x) : null;
+  return {
+    name: String(d.name).slice(0, 80), serving: String(d.serving || 'estimated serving').slice(0, 60),
+    scanned: true, sg_local: false, tags: [],
+    kcal: num(d.kcal), protein_g: num(d.protein_g), carbs_g: num(d.carbs_g), sugar_g: num(d.sugar_g),
+    fat_g: num(d.fat_g), fiber_g: num(d.fiber_g), sodium_mg: num(d.sodium_mg),
+    _note: d.confidence ? `${d.confidence} confidence` : null,
+  };
+}
 
 // ---------- helpers ----------
 function hashPassword(pw, salt) {
@@ -36,10 +72,11 @@ function parseCookies(req) {
   c.split(';').forEach(p => { const i = p.indexOf('='); if (i > 0) out[p.slice(0, i).trim()] = decodeURIComponent(p.slice(i + 1).trim()); });
   return out;
 }
-function readBody(req) {
+function readBody(req, maxBytes) {
+  const cap = maxBytes || 1e5;
   return new Promise((resolve) => {
     let data = ''; let tooBig = false;
-    req.on('data', c => { data += c; if (data.length > 1e5) { tooBig = true; req.destroy(); } });
+    req.on('data', c => { data += c; if (data.length > cap) { tooBig = true; req.destroy(); } });
     req.on('end', () => { if (tooBig) return resolve(null); try { resolve(data ? JSON.parse(data) : {}); } catch (e) { resolve(null); } });
     req.on('error', () => resolve(null));
   });
@@ -256,6 +293,23 @@ async function api(req, res, url) {
       ON CONFLICT (proposal_id,user_id,action) DO UPDATE SET note=$3`, [id, u.id, clean(b.note, 500) || null]);
     await db.query(`UPDATE proposals SET status='flagged' WHERE id=$1`, [id]);
     return json(res, 200, { ok: true });
+  }
+
+  // --- AI food-photo scan (logged-in, capped, opt-in) ---
+  if (seg[0] === 'scan' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in to scan food photos.' });
+    if (!ANTHROPIC_API_KEY) return json(res, 503, { error: 'Photo scanning is not switched on yet. Use the barcode scanner or log by name.' });
+    const cnt = await db.query("SELECT COUNT(*)::int AS n FROM scans WHERE user_id=$1 AND created_at > now() - interval '1 day'", [u.id]);
+    if (cnt.rows[0].n >= SCAN_CAP) return json(res, 429, { error: `Daily photo-scan limit reached (${SCAN_CAP}/day). Use the free barcode scanner or log by name.` });
+    const b = await readBody(req, 4e5); if (!b || !b.image) return json(res, 400, { error: 'No image' });
+    const mediaType = /^image\/(jpeg|png|webp|gif)$/.test(b.mediaType || '') ? b.mediaType : 'image/jpeg';
+    try {
+      const food = await scanFood(b.image, mediaType);
+      await db.query('INSERT INTO scans(user_id, kcal) VALUES($1,$2)', [u.id, (food && food.kcal != null) ? Math.round(food.kcal) : null]);
+      if (!food || !food.name) return json(res, 200, { food: null });
+      const note = food._note; delete food._note;
+      return json(res, 200, { food, note });
+    } catch (e) { console.error('[scan]', e.message); return json(res, 502, { error: 'Could not analyse the image right now.' }); }
   }
 
   // --- admin: credential verification for stewardship ---

@@ -534,3 +534,17 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .dv-ok{color:var(--fl)}
 .dv-pending{color:var(--faint);font-style:italic}
 .sr-kind{display:inline-block;min-width:64px}
+
+/* ---- food scanners ---- */
+.scan-row{display:flex;gap:.5rem;margin:-.2rem 0 .7rem}
+.scan-btn{flex:1;border:1px solid var(--line);background:#fff;border-radius:9px;padding:.5rem;cursor:pointer;font-size:.84rem;font-weight:600;color:var(--ink)}
+.scan-btn:hover{border-color:var(--fl)}
+.scan-btn.ai{border-color:#e9d5ff;color:var(--st);background:#faf5ff}
+.scan-tag{background:#faf5ff;color:var(--st);border-radius:5px;padding:0 5px;font-size:.66rem;font-weight:700;vertical-align:middle}
+.scan-facts{list-style:none;padding:0;margin:.6rem 0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.scan-facts li{display:flex;justify-content:space-between;padding:.45rem .8rem;border-bottom:1px solid var(--line);font-size:.9rem}
+.scan-facts li:last-child{border-bottom:none}
+.scan-facts b{font-variant-numeric:tabular-nums}
+.scan-spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--st);border-radius:50%;margin:1.2rem auto;animation:scanspin 1s linear infinite}
+@keyframes scanspin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.scan-spin{animation:none}}

@@ -85,6 +85,15 @@ CREATE TABLE IF NOT EXISTS proposal_actions (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(proposal_id, user_id, action)
 );
+
+-- AI food-photo scans: one row per scan, used for the per-user daily cost cap.
+CREATE TABLE IF NOT EXISTS scans (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  kcal INTEGER,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_scans_user_day ON scans(user_id, created_at);
 `;
 
 async function init() {
