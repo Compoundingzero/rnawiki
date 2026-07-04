@@ -73,7 +73,9 @@ function sameOrigin(req) {
 // ---------- API ----------
 async function api(req, res, url) {
   if (!db.enabled) return json(res, 503, { error: 'Accounts are not available right now.' });
-  const parts = url.split('/').filter(Boolean); // ['api', ...]
+  // url keeps its query string (handlers parse ?goal=/?ids=/?problem= from it);
+  // routing uses the path portion only.
+  const parts = url.split('?')[0].split('/').filter(Boolean); // ['api', ...]
   const seg = parts.slice(1);
   const method = req.method;
 
@@ -278,7 +280,7 @@ function serveStatic(req, res, url) {
 const server = http.createServer((req, res) => {
   const url = req.url;
   if (url.startsWith('/api/')) {
-    api(req, res, url.split('?')[0]).catch(e => { console.error(e); json(res, 500, { error: 'Server error' }); });
+    api(req, res, url).catch(e => { console.error(e); json(res, 500, { error: 'Server error' }); });
     return;
   }
   serveStatic(req, res, url);
