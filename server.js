@@ -15,6 +15,8 @@ const TYPES = {
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.png': 'image/png',
 };
 const EDITABLE = ['mechanism', 'target', 'plain', 'protocol', 'watch', 'bottom'];
+// Hard domain isolation for stewardship: each expert domain owns exactly one layer.
+const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
 
 // ---------- helpers ----------
 function hashPassword(pw, salt) {
@@ -52,7 +54,7 @@ const ADMIN_USER = (process.env.ADMIN_USER || '').toLowerCase();
 async function currentUser(req) {
   const sid = parseCookies(req).sid;
   if (!sid || !db.enabled) return null;
-  const r = await db.query('SELECT u.id, u.username, u.role FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
+  const r = await db.query('SELECT u.id, u.username, u.role, u.domain, u.credential, u.domain_verified FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
   const u = r.rows[0];
   if (u && ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
   return u || null;
@@ -97,13 +99,13 @@ async function api(req, res, url) {
   if (seg[0] === 'login' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const username = clean(b.username, 24), password = String(b.password || '');
-    const r = await db.query('SELECT id,username,role,pass FROM users WHERE username=$1', [username]);
+    const r = await db.query('SELECT id,username,role,pass,domain,credential,domain_verified FROM users WHERE username=$1', [username]);
     const u = r.rows[0];
     if (!u || !verifyPassword(password, u.pass)) return json(res, 401, { error: 'Wrong username or password' });
     const token = crypto.randomBytes(24).toString('hex');
     await db.query('INSERT INTO sessions(token,user_id,expires_at) VALUES($1,$2, now()+interval \'30 days\')', [token, u.id]);
     setSessionCookie(res, token);
-    return json(res, 200, { user: { id: u.id, username: u.username, role: u.role } });
+    return json(res, 200, { user: { id: u.id, username: u.username, role: u.role, domain: u.domain, credential: u.credential, domain_verified: u.domain_verified } });
   }
   if (seg[0] === 'logout' && method === 'POST') {
     const sid = parseCookies(req).sid; if (sid) await db.query('DELETE FROM sessions WHERE token=$1', [sid]);
@@ -161,6 +163,97 @@ async function api(req, res, url) {
     const note = clean(b.note, 200);
     await db.query('INSERT INTO edits(compound_id,compound_name,user_id,fields,note) VALUES($1,$2,$3,$4,$5)', [cid, name, u.id, JSON.stringify(fields), note || null]);
     return json(res, 200, { ok: true, by: u.username });
+  }
+
+  // --- Tier 1: frictionless community votes (no account needed) ---
+  if (seg[0] === 'votes' && method === 'GET') {
+    const ids = clean(new URL('http://x/' + url).searchParams.get('ids'), 500).split(',').map(s => s.trim()).filter(Boolean).slice(0, 30);
+    if (!ids.length) return json(res, 200, { scores: {} });
+    const r = await db.query(
+      `SELECT target_id, SUM(CASE WHEN value>0 THEN 1 ELSE 0 END)::int AS up,
+              SUM(CASE WHEN value<0 THEN 1 ELSE 0 END)::int AS down
+       FROM votes WHERE target_id = ANY($1) GROUP BY target_id`, [ids]);
+    const scores = {}; r.rows.forEach(x => scores[x.target_id] = { up: x.up, down: x.down });
+    return json(res, 200, { scores });
+  }
+  if (seg[0] === 'votes' && method === 'POST') {
+    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    const targetId = clean(b.targetId, 120), voterKey = clean(b.voterKey, 64);
+    const value = b.value > 0 ? 1 : b.value < 0 ? -1 : 0;
+    if (!targetId || !voterKey) return json(res, 400, { error: 'Missing vote' });
+    if (value === 0) { // toggle off
+      await db.query('DELETE FROM votes WHERE target_id=$1 AND voter_key=$2', [targetId, voterKey]);
+    } else {
+      await db.query(`INSERT INTO votes(target_id,voter_key,value) VALUES($1,$2,$3)
+        ON CONFLICT (target_id,voter_key) DO UPDATE SET value=$3, created_at=now()`, [targetId, voterKey, value]);
+    }
+    const r = await db.query(`SELECT SUM(CASE WHEN value>0 THEN 1 ELSE 0 END)::int AS up,
+      SUM(CASE WHEN value<0 THEN 1 ELSE 0 END)::int AS down FROM votes WHERE target_id=$1`, [targetId]);
+    return json(res, 200, { score: { up: r.rows[0].up || 0, down: r.rows[0].down || 0 } });
+  }
+
+  // --- Tier 2: domain-isolated stewardship ---
+  if (seg[0] === 'profile' && seg[1] === 'domain' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    const domain = clean(b.domain, 20), credential = clean(b.credential, 200);
+    if (!DOMAIN_LAYER[domain] && domain !== '') return json(res, 400, { error: 'Unknown domain' });
+    await db.query('UPDATE users SET domain=$1, credential=$2 WHERE id=$3', [domain || null, credential || null, u.id]);
+    return json(res, 200, { ok: true, domain: domain || null, credential: credential || null });
+  }
+  if (seg[0] === 'proposals' && method === 'GET') {
+    const sp = new URL('http://x/' + url).searchParams;
+    const pid = clean(sp.get('problem'), 60), rcid = clean(sp.get('rc'), 60);
+    if (!pid || !rcid) return json(res, 400, { error: 'problem & rc required' });
+    const r = await db.query(
+      `SELECT p.id,p.layer,p.domain,p.change,p.evidence,p.status,p.created_at,u.username,u.credential,u.domain_verified,
+        (SELECT COUNT(*)::int FROM proposal_actions a WHERE a.proposal_id=p.id AND a.action='endorse') AS endorsements,
+        (SELECT COUNT(*)::int FROM proposal_actions a WHERE a.proposal_id=p.id AND a.action='flag') AS flags
+       FROM proposals p JOIN users u ON u.id=p.user_id
+       WHERE p.problem_id=$1 AND p.root_cause_id=$2 ORDER BY p.created_at DESC LIMIT 100`, [pid, rcid]);
+    return json(res, 200, { proposals: r.rows });
+  }
+  if (seg[0] === 'proposals' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    if (!u.domain) return json(res, 403, { error: 'Set your expert domain first (physio / dietitian / pharmacist).' });
+    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60), layer = clean(b.layer, 12);
+    const change = clean(b.change, 4000), evidence = clean(b.evidence, 500);
+    if (!pid || !rcid || !change) return json(res, 400, { error: 'Describe the change' });
+    // HARD domain isolation: you may only propose on the layer your domain owns.
+    if (DOMAIN_LAYER[u.domain] !== layer) return json(res, 403, { error: `A ${u.domain} may only edit the ${DOMAIN_LAYER[u.domain]} layer.` });
+    const r = await db.query(
+      `INSERT INTO proposals(problem_id,root_cause_id,layer,domain,user_id,change,evidence)
+       VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id,created_at`, [pid, rcid, layer, u.domain, u.id, change, evidence || null]);
+    return json(res, 200, { ok: true, id: r.rows[0].id });
+  }
+  if (seg[0] === 'proposals' && seg[1] && seg[2] === 'endorse' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    if (!u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
+    const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
+    const pr = (await db.query('SELECT domain,user_id FROM proposals WHERE id=$1', [id])).rows[0];
+    if (!pr) return json(res, 404, { error: 'Proposal not found' });
+    // STRICT peer review: endorsement must come from the SAME domain, not the author.
+    if (pr.user_id === u.id) return json(res, 403, { error: 'You cannot endorse your own proposal.' });
+    if (pr.domain !== u.domain) return json(res, 403, { error: `Only another ${pr.domain} can endorse this. Cross-domain experts may Flag instead.` });
+    await db.query(`INSERT INTO proposal_actions(proposal_id,user_id,action) VALUES($1,$2,'endorse')
+      ON CONFLICT (proposal_id,user_id,action) DO NOTHING`, [id, u.id]);
+    await db.query(`UPDATE proposals SET status='endorsed' WHERE id=$1 AND status!='flagged'`, [id]);
+    return json(res, 200, { ok: true });
+  }
+  if (seg[0] === 'proposals' && seg[1] && seg[2] === 'flag' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    if (!u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
+    const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
+    const pr = (await db.query('SELECT domain FROM proposals WHERE id=$1', [id])).rows[0];
+    if (!pr) return json(res, 404, { error: 'Proposal not found' });
+    // Cross-domain conflict review: only a DIFFERENT domain can flag.
+    if (pr.domain === u.domain) return json(res, 403, { error: 'Same-domain experts endorse, not flag. Flags are for cross-domain conflicts.' });
+    const b = await readBody(req) || {};
+    await db.query(`INSERT INTO proposal_actions(proposal_id,user_id,action,note) VALUES($1,$2,'flag',$3)
+      ON CONFLICT (proposal_id,user_id,action) DO UPDATE SET note=$3`, [id, u.id, clean(b.note, 500) || null]);
+    await db.query(`UPDATE proposals SET status='flagged' WHERE id=$1`, [id]);
+    return json(res, 200, { ok: true });
   }
 
   return json(res, 404, { error: 'Not found' });
