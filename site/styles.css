@@ -188,6 +188,7 @@ a.pd-chip:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(15,30,50,.
 .pd-flowarrow::after{content:"";position:absolute;right:-1px;top:50%;transform:translateY(-50%);border-left:7px solid var(--accent2);border-top:5px solid transparent;border-bottom:5px solid transparent}
 .pd-flowarrow::before{content:"";position:absolute;top:-2px;left:0;width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 6px rgba(37,99,235,.6);animation:pdflow 2s ease-in-out infinite}
 @keyframes pdflow{0%{left:0;opacity:0}20%{opacity:1}80%{opacity:1}100%{left:31px;opacity:0}}
+@media(prefers-reduced-motion:reduce){.pd-flowarrow::before{animation:none;opacity:0}}
 .pd-hubwrap{flex:none;display:flex;align-items:center;justify-content:center}
 .pd-hub{background:var(--purple);color:#fff;font-weight:800;padding:1rem;border-radius:14px;text-align:center;font-size:1rem;line-height:1.2;box-shadow:0 12px 28px rgba(124,58,237,.32);max-width:170px}
 .pd-eff{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .65rem;border-radius:9px;font-size:.85rem;font-weight:600;background:#fff;border:1px solid var(--line)}
