@@ -216,6 +216,12 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .target-explainer p:first-child{margin-top:0}
 .target-explainer strong{color:var(--head)}
 
+/* glossary tap-to-define */
+.gloss{border-bottom:1px dotted var(--accent2);cursor:help}
+.gloss:hover{background:rgba(37,99,235,.07)}
+.gloss-pop{position:absolute;z-index:300;background:var(--head);color:#fff;padding:.65rem .85rem;border-radius:9px;font-size:.86rem;max-width:270px;line-height:1.5;box-shadow:0 14px 34px rgba(12,21,34,.35)}
+.gloss-pop::before{content:"";position:absolute;top:-6px;left:24px;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:6px solid var(--head)}
+
 /* target page + parts catalog */
 .target-hero{display:flex;gap:1.2rem;align-items:flex-start;margin-bottom:1rem}
 .tsym{font-family:var(--mono);font-size:1.6rem;font-weight:800;color:#fff;background:var(--accent);padding:.6rem 1rem;border-radius:12px;white-space:nowrap}
