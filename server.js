@@ -161,7 +161,7 @@ async function api(req, res, url) {
     return json(res, 200, { comments: r.rows });
   }
   if (seg[0] === 'comments' && method === 'GET') {
-    const goal = clean(new URL('http://x/' + url).searchParams.get('goal'), 40);
+    const goal = clean(new URL('http://x/' + url).searchParams.get('goal'), 80);
     if (!goal) return json(res, 400, { error: 'goal required' });
     const r = await db.query('SELECT c.id,c.goal_id,c.body,c.created_at,u.username,c.user_id FROM comments c JOIN users u ON u.id=c.user_id WHERE c.goal_id=$1 ORDER BY c.created_at DESC LIMIT 200', [goal]);
     return json(res, 200, { comments: r.rows });
@@ -169,7 +169,7 @@ async function api(req, res, url) {
   if (seg[0] === 'comments' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in to comment' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const goalId = clean(b.goalId, 40), body = clean(b.body, 2000);
+    const goalId = clean(b.goalId, 80), body = clean(b.body, 2000);
     if (!goalId || !body) return json(res, 400, { error: 'Write something first' });
     const r = await db.query('INSERT INTO comments(goal_id,user_id,body) VALUES($1,$2,$3) RETURNING id,goal_id,body,created_at', [goalId, u.id, body]);
     return json(res, 200, { comment: Object.assign(r.rows[0], { username: u.username, user_id: u.id }) });
@@ -310,6 +310,21 @@ async function api(req, res, url) {
       const note = food._note; delete food._note;
       return json(res, 200, { food, note });
     } catch (e) { console.error('[scan]', e.message); return json(res, 502, { error: 'Could not analyse the image right now.' }); }
+  }
+
+  // --- public contributor showcase (attribution incentive) ---
+  if (seg[0] === 'contributors' && method === 'GET') {
+    const experts = await db.query("SELECT username, domain, credential FROM users WHERE domain_verified = true ORDER BY username");
+    const board = await db.query(`SELECT u.username,
+        (SELECT COUNT(*)::int FROM edits e WHERE e.user_id=u.id) AS edits,
+        (SELECT COUNT(*)::int FROM comments c WHERE c.user_id=u.id) AS comments,
+        (SELECT COUNT(*)::int FROM proposals p WHERE p.user_id=u.id) AS proposals
+      FROM users u ORDER BY (
+        (SELECT COUNT(*) FROM edits e WHERE e.user_id=u.id) +
+        (SELECT COUNT(*) FROM comments c WHERE c.user_id=u.id) +
+        (SELECT COUNT(*) FROM proposals p WHERE p.user_id=u.id)) DESC LIMIT 25`);
+    const leaderboard = board.rows.filter(r => (r.edits + r.comments + r.proposals) > 0);
+    return json(res, 200, { experts: experts.rows, leaderboard });
   }
 
   // --- admin: credential verification for stewardship ---

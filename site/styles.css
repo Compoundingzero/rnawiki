@@ -548,3 +548,17 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .scan-spin{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--st);border-radius:50%;margin:1.2rem auto;animation:scanspin 1s linear infinite}
 @keyframes scanspin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.scan-spin{animation:none}}
+
+/* ---- contributors + admin + protocol discussion ---- */
+.proto-discussion{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:.6rem}
+.rc-hint{color:var(--faint);font-size:.76rem;font-style:italic}
+.expert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.7rem;margin-bottom:1rem}
+.expert-card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem}
+.expert-card .ex-verified{color:var(--fl);font-weight:700;font-size:.76rem;margin-bottom:.25rem}
+.expert-card small{display:block;color:var(--faint);margin-top:.15rem}
+.board{width:100%;border-collapse:collapse;font-size:.9rem;margin:.4rem 0}
+.board th,.board td{text-align:left;padding:.5rem .7rem;border-bottom:1px solid var(--line)}
+.board th{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:.03em}
+.board td{font-variant-numeric:tabular-nums}
+.admin-btn{border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:7px;padding:.25rem .7rem;cursor:pointer;font-size:.8rem}
+.admin-btn:hover{background:var(--accent);color:#fff}
