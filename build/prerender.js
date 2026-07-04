@@ -13,7 +13,10 @@ const fs = require('fs');
 const path = require('path');
 const ROOT = path.join(__dirname, '..');
 const SITE = path.join(ROOT, 'site');
-const SITE_URL = (process.env.SITE_URL || 'https://doswiki-production.up.railway.app').replace(/\/$/, '');
+const SITE_NAME = process.env.SITE_NAME || 'RNAwiki';
+// Canonical/OG/sitemap origin. Defaults to the target domain; override with SITE_URL env
+// on Railway if serving from a different host (e.g. the *.up.railway.app URL before DNS cutover).
+const SITE_URL = (process.env.SITE_URL || 'https://rnawiki.com').replace(/\/$/, '');
 
 // ---- load data (data.js assigns to window global) ----
 global.window = {};
@@ -75,7 +78,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs }) {
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="geo.region" content="SG"><meta name="geo.placename" content="Singapore">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="PBswiki">
+<meta property="og:site_name" content="${SITE_NAME}">
 <meta property="og:locale" content="en_SG">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
@@ -84,12 +87,12 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs }) {
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="stylesheet" href="/styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
 ${crumbLd}${ld}
 </head>
 <body>
 <header class="topbar">
-  <a href="/" class="brand">🏆 PB<span>swiki</span></a>
+  <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 220+ compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
     <a href="/solve" class="nav-solve">Solve</a><a href="/browse">Browse</a><a href="/learn">Learn</a>
@@ -132,7 +135,7 @@ D.compounds.forEach((c) => {
     about: { '@type': 'Drug', name: c.name }, description: (c.plain || c.bottom || '').slice(0, 300),
     url: SITE_URL + route, inLanguage: 'en-SG',
   };
-  add(route, shell({ route, title: `${c.name} — evidence, mechanism & how it works · PBswiki`, desc: (c.plain || c.bottom || c.mechanism || c.name).slice(0, 155), jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body }));
+  add(route, shell({ route, title: `${c.name} — evidence, mechanism & how it works · RNAwiki`, desc: (c.plain || c.bottom || c.mechanism || c.name).slice(0, 155), jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body }));
 });
 
 // goals
@@ -145,7 +148,7 @@ D.goals.forEach((g) => {
     <p>${list.length} compounds that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, localised for Singapore.</p>
     <ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
     ${protos.length ? `<h2>Full protocols</h2><ul>${protos.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)} — Move, Fuel &amp; Stack</a></li>`).join('')}</ul>` : ''}`;
-  add(route, shell({ route, title: `${g.label} — what actually helps · PBswiki`, desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence. Plain English, honest verdicts, localised for Singapore.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
+  add(route, shell({ route, title: `${g.label} — what actually helps · RNAwiki`, desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence. Plain English, honest verdicts, localised for Singapore.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
 });
 
 // protocols
@@ -167,7 +170,7 @@ GRAPH.problems.forEach((p) => {
       <ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
       <p><a href="${route}">Open the interactive protocol with the Fuel Tracker →</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
-    add(route, shell({ route, title: `${p.name} protocol — Move, Fuel & Stack (Singapore) · PBswiki`, desc: `${p.name} (${rc.name}): the exercises to fix it, Singapore foods to fuel it, and evidence-ranked compounds. A full root-cause protocol. Not medical advice.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body }));
+    add(route, shell({ route, title: `${p.name} protocol — Move, Fuel & Stack (Singapore) · RNAwiki`, desc: `${p.name} (${rc.name}): the exercises to fix it, Singapore foods to fuel it, and evidence-ranked compounds. A full root-cause protocol. Not medical advice.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body }));
   });
 });
 
@@ -179,21 +182,21 @@ GRAPH.problems.forEach((p) => {
     <h1>${esc(t.sym)}</h1><p>${esc(t.name)} — the molecular target that ${list.length} compounds in the wiki act on.</p>
     ${t.explainer ? `<div>${t.explainer.html}</div>` : ''}
     <h2>Compounds acting on ${esc(t.sym)}</h2><ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>`;
-  add(route, shell({ route, title: `${t.sym} — molecular target & the compounds that hit it · PBswiki`, desc: `${t.sym}: ${(t.name || '').slice(0, 130)}. Learn what it does and every compound that acts on it.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
+  add(route, shell({ route, title: `${t.sym} — molecular target & the compounds that hit it · RNAwiki`, desc: `${t.sym}: ${(t.name || '').slice(0, 130)}. Learn what it does and every compound that acts on it.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
 });
 
 // pathways + learn
 D.pathways.forEach((p, i) => {
   const route = '/pathway/' + i;
-  add(route, shell({ route, title: `${p.shortLabel} pathway explained · PBswiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${p.html || ''}</div>` }));
+  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${p.html || ''}</div>` }));
 });
 D.modules.forEach((m, i) => {
   const route = '/learn/' + i;
-  add(route, shell({ route, title: `${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')} · PBswiki Foundations`, desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${m.html || ''}</div>` }));
+  add(route, shell({ route, title: `${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')} · RNAwiki Foundations`, desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${m.html || ''}</div>` }));
 });
 
 // solve hub
-add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · PBswiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds.</p><ul>${GRAPH.problems.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)}</a></li>`).join('')}</ul>` }));
+add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds.</p><ul>${GRAPH.problems.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)}</a></li>`).join('')}</ul>` }));
 
 // ---- crawlable home page (SPA shell has an empty body; this gives Google real content) ----
 // Written to home.html; the server serves it for "/" and falls back to index.html.
@@ -215,14 +218,16 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       <li><b>Execute</b> — get your precision protocol: the movement, evidence-ranked compounds, and biological targets for your recovery.</li>
       <li><b>Fuel</b> — log your local Singaporean meals and watch your nutrient bars fill toward the targets that heal your issue.</li></ol>
     </section>
+    <section class="why-rna"><h2>Why RNA? DNA is the blueprint. RNA is the builder.</h2>
+      <p>Most people idolise DNA — the master code locked in the vault. But DNA does nothing on its own; a blueprint can't pour concrete. RNA is the action: the messenger and builder that reads your code and builds the proteins, tissue, and enzymes that become your physical reality. Every adaptation you force — a heavy lift, recovery from DOMS, a longevity protocol — is a wave of RNA translating your genes into a stronger, longer-lived you. RNAwiki is the messenger: it turns the foundational code of exercise science, biomechanics, and longevity into results you can use today.</p></section>
     <section><h2>Start a protocol</h2>${problemList}</section>
     <section><h2>Or browse by goal</h2><ul class="seo-links">${goalLinks}</ul></section>`;
   // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"
   fs.writeFileSync(path.join(SITE, 'home.html'), shell({
     route: '/',
-    title: 'PBswiki — Stop guessing, start solving. Precision health protocols for Singapore',
+    title: 'RNAwiki — Stop guessing, start solving. Precision health protocols for Singapore',
     desc: 'Fix the root cause, not the symptom. Get a precision Move · Fuel · Stack protocol for pain, metabolic, sleep, hormonal, cognitive, longevity and performance goals — evidence-ranked and localised for Singapore.',
-    jsonld: { '@context': 'https://schema.org', '@type': 'WebSite', name: 'PBswiki', url: SITE_URL + '/', description: 'Precision, root-cause health protocols localised for Singapore.' },
+    jsonld: { '@context': 'https://schema.org', '@type': 'WebSite', name: 'RNAwiki', url: SITE_URL + '/', description: 'Precision, root-cause health protocols localised for Singapore.' },
     breadcrumbs: [{ name: 'Home', route: '/' }],
     body: homeBody,
   }));

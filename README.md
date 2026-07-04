@@ -1,8 +1,8 @@
-# PBswiki — the Personal Bests Wiki
+# RNAwiki — translate the code of human performance into real results
 
-**Chase your personal best, and know exactly what gets you there.** A goal-first wiki of the health, fitness & longevity compound universe — approved and non-approved. Pick what you want to improve, see the compounds that actually help (ranked by human evidence), and get the real mechanism plus the honest catch, in plain English.
+**DNA is the blueprint; RNA is the builder.** A goal-first wiki of the health, fitness & longevity compound universe — approved and non-approved. Pick the problem to fix or goal to reach, get a root-cause Move·Fuel·Stack protocol, see the compounds that actually help (ranked by human evidence), and get the real mechanism plus the honest catch, in plain English.
 
-🌐 **Live site:** https://doswiki-production.up.railway.app
+🌐 **Live site:** https://rnawiki.com
 📚 **~220 compounds · 102 molecular targets · 16 pathways · ~150 gene-target links**
 
 > Educational content only — **not medical advice**. Non-approved and controlled substances are documented for completeness and harm-reduction, not endorsement.

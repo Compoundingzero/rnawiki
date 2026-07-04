@@ -1,8 +1,8 @@
 {
-  "name": "pbswiki",
+  "name": "rnawiki",
   "version": "1.0.0",
   "private": true,
-  "description": "Personal-bests drug & supplement wiki with community editing & comments.",
+  "description": "RNAwiki — translate the code of human performance into real results. Drug, supplement & longevity wiki with root-cause protocols and community editing.",
   "scripts": {
     "build": "node build/parse.js && node build/prerender.js",
     "prestart": "node build/parse.js && (node build/prerender.js || echo '[prestart] prerender skipped (SPA fallback still serves)')",

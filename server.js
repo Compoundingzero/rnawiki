@@ -1,4 +1,4 @@
-// PBswiki server: serves the static site AND a small JSON API for accounts,
+// RNAwiki server: serves the static site AND a small JSON API for accounts,
 // community edits, and comments (Postgres via db.js). Zero web framework.
 const http = require('http');
 const fs = require('fs');
@@ -431,5 +431,5 @@ const server = http.createServer((req, res) => {
 });
 
 db.init().catch(e => console.error('[db] init failed:', e.message)).finally(() => {
-  server.listen(PORT, () => console.log('PBswiki serving on :' + PORT + (db.enabled ? ' (accounts on)' : ' (read-only)')));
+  server.listen(PORT, () => console.log('RNAwiki serving on :' + PORT + (db.enabled ? ' (accounts on)' : ' (read-only)')));
 });

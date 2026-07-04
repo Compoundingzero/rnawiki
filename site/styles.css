@@ -21,7 +21,7 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 /* top bar */
 .topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:1rem;
   padding:.7rem 1.2rem;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.brand{font-weight:800;font-size:1.15rem;color:var(--head);letter-spacing:-.02em}
+.brand{font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.02em}
 .brand span{color:#000}
 .search-wrap{position:relative;flex:1;max-width:520px}
 #search{width:100%;padding:.55rem .9rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:.95rem;outline:none}
@@ -640,4 +640,24 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .funnel-btn{width:100%}
   .steps-3{grid-template-columns:1fr}
   .persona{grid-template-columns:1fr}
+}
+
+/* ================= Why RNA (blueprint vs builder) ================= */
+.why-rna{margin:3rem 0 1rem;text-align:center;background:radial-gradient(900px 300px at 50% 0,#eef7ff 0,transparent 70%);border-radius:20px;padding:2rem 1rem}
+.wr-head{font-size:2rem;letter-spacing:-.02em;color:var(--head);margin:.2rem 0 1.4rem}
+.wr-head .lead{color:var(--accent)}
+.wr-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:stretch;max-width:820px;margin:0 auto;text-align:left}
+.wr-card{border-radius:16px;padding:1.3rem 1.3rem;border:1px solid var(--line)}
+.wr-card .wr-tag{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:800;margin-bottom:.5rem}
+.wr-card p{margin:0;font-size:.95rem;line-height:1.55}
+.wr-card.dna{background:#f1f4f8;color:var(--muted)}
+.wr-card.dna .wr-tag{color:var(--faint)}
+.wr-card.rna{background:linear-gradient(135deg,#0d9488,#0f766e);color:#fff;border-color:transparent;box-shadow:var(--shadow)}
+.wr-card.rna .wr-tag{color:#bff3ea}
+.wr-arrow{display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--accent);font-weight:800}
+.wr-thesis{max-width:760px;margin:1.5rem auto 0;color:var(--ink);font-size:1.02rem;line-height:1.65}
+@media(max-width:720px){
+  .wr-head{font-size:1.5rem}
+  .wr-grid{grid-template-columns:1fr}
+  .wr-arrow{transform:rotate(90deg)}
 }
