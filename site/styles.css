@@ -688,3 +688,46 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .lp-blurb{color:var(--muted);font-size:.82rem;margin-top:.25rem;line-height:1.4}
 .lp-note{color:var(--faint);font-size:.78rem;margin:.7rem 0 0}
 @media(max-width:820px){ .lp-grid{grid-template-columns:1fr} }
+
+/* ================= Scroll reveal + merged-About landing sections ================= */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+.trust{text-align:center;margin:3rem 0 1rem;background:radial-gradient(900px 300px at 50% 0,#f5edff 0,transparent 70%);border-radius:20px;padding:2rem 1rem}
+.trust-lead{max-width:760px;margin:0 auto;color:var(--ink);font-size:1.02rem;line-height:1.65}
+.trust-row{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.4rem}
+.trust-pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:.5rem .95rem;font-size:.85rem;color:var(--muted);box-shadow:var(--shadow)}
+.trust-pill b{color:var(--head)}
+
+.onboard{margin:2.4rem 0 1rem;border-radius:18px;padding:2rem 1.8rem;background:linear-gradient(135deg,#1e293b,#0f172a);color:#fff;text-align:center}
+.onboard .p-tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.85;margin-bottom:.5rem}
+.onboard h2{color:#fff;font-size:1.7rem;margin:.1rem 0 .6rem;letter-spacing:-.02em}
+.onboard p{max-width:640px;margin:0 auto 1.2rem;opacity:.92;line-height:1.6}
+.onboard .cta-primary{background:#fff;color:var(--head)}
+
+/* ================= Micro-bounty board + modal ================= */
+.bnt-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin:1.2rem 0}
+.bnt-tab{border:1px solid var(--line);background:#fff;color:var(--muted);padding:.4rem .95rem;border-radius:999px;cursor:pointer;font-size:.88rem}
+.bnt-tab.on{background:var(--head);color:#fff;border-color:var(--head)}
+.bnt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.bnt-card{display:flex;flex-direction:column;gap:.35rem;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1rem 1.05rem;box-shadow:var(--shadow)}
+.bnt-top{display:flex;justify-content:space-between;align-items:center}
+.bnt-badge{font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;padding:.18rem .5rem;border-radius:999px}
+.bnt-badge.physio{color:#2563eb;background:#eaf1ff}
+.bnt-badge.dietitian{color:#16a34a;background:#e8f9ee}
+.bnt-badge.pharmacist{color:#7c3aed;background:#f5edff}
+.bnt-min{font-size:.72rem;color:var(--faint)}
+.bnt-card>b{color:var(--head);font-size:.92rem}
+.bnt-title{color:var(--ink);font-size:.9rem}
+.bnt-title small{color:var(--faint);font-size:.78rem}
+.bnt-ctx{color:var(--faint);font-size:.78rem}
+.bnt-solve{margin-top:.4rem;border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:9px;padding:.4rem .6rem;font-size:.82rem;font-weight:700;cursor:pointer;transition:.15s}
+.bnt-solve:hover{background:var(--accent);color:#fff}
+.bounty-modal h2{margin:.5rem 0 .2rem;font-size:1.25rem}
+.bounty-modal .bm-target{color:var(--muted);margin:0 0 .8rem;font-weight:600}
+.bounty-modal .bm-l{display:block;font-size:.8rem;font-weight:700;color:var(--head);margin:.7rem 0 .25rem}
+.bounty-modal textarea,.bounty-modal input{width:100%;border:1px solid var(--line);border-radius:9px;padding:.55rem .65rem;font:inherit;font-size:.9rem;box-sizing:border-box}
+.bounty-modal .bm-note{color:var(--faint);font-size:.78rem;margin:.6rem 0 0}
+.bounty-modal .bm-block{background:#fff4f4;border:1px solid #fecaca;color:#b91c1c;border-radius:10px;padding:.8rem .9rem;font-size:.88rem;line-height:1.5}
+@media(max-width:820px){ .bnt-grid{grid-template-columns:1fr} }

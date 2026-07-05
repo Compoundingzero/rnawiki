@@ -103,7 +103,7 @@ ${crumbLd}${ld}
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/stewardship">Bounty board</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/app.js"></script>
 </body>
