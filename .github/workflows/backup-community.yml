@@ -9,7 +9,7 @@ name: Backup community data
 #      PUBLIC connection string (host ends in .proxy.rlwy.net).
 #   2. Add it as a repo secret named DATABASE_URL
 #      (Settings -> Secrets and variables -> Actions -> New repository secret),
-#      or run:  gh secret set DATABASE_URL --repo Compoundingzero/pbswiki
+#      or run:  gh secret set DATABASE_URL --repo Compoundingzero/rnawiki
 # Until the secret exists the job simply no-ops (it will not fail loudly).
 
 on:
