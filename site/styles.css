@@ -863,3 +863,24 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .pro-row:last-child{border-bottom:none}
 .pro-row a{font-weight:600}
 @media(max-width:600px){ .pro-stats{grid-template-columns:1fr 1fr} }
+
+/* ================= Home v2: RNA-led journey, one CTA, staggered reveal ================= */
+.hero-note{margin-top:1rem;font-size:.82rem;color:var(--faint);letter-spacing:.02em}
+.how-cta{text-align:center;margin-top:1.6rem}
+/* staggered reveal: the section stays put; its cards fade up one after another on scroll-in */
+.reveal.stagger{opacity:1;transform:none;transition:none}
+.reveal.stagger .step3{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
+.reveal.stagger.in .step3{opacity:1;transform:none}
+.reveal.stagger.in .step3:nth-child(2){transition-delay:.12s}
+.reveal.stagger.in .step3:nth-child(3){transition-delay:.24s}
+@media(prefers-reduced-motion:reduce){.reveal.stagger .step3{opacity:1;transform:none;transition:none}}
+.pro-strip{display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;background:linear-gradient(135deg,#1e293b,#0f172a);color:#fff;border-radius:18px;padding:1.6rem 1.8rem;margin:2.8rem 0 1rem}
+.pro-strip .ps-copy{flex:1;min-width:260px}
+.pro-strip .p-tag{opacity:.85}
+.pro-strip h2{color:#fff;font-size:1.5rem;margin:.2rem 0 .4rem}
+.pro-strip p{opacity:.9;margin:0;font-size:.92rem;line-height:1.5}
+.pro-strip .cta-ghost{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.35);white-space:nowrap}
+.pro-strip .cta-ghost:hover{background:rgba(255,255,255,.24);text-decoration:none}
+.browse-sec{margin-top:2.6rem}
+.browse-more{text-align:center;color:var(--muted);font-size:.88rem;margin-top:1rem}
+#home-leaderboard:not(:empty){margin-top:1.6rem}

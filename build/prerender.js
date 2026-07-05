@@ -95,15 +95,14 @@ ${crumbLd}${ld}
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 220+ compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
-    <a href="/solve" class="nav-solve">Solve</a><a href="/browse">Browse</a><a href="/learn">Learn</a>
-    <a href="/pathways">Pathways</a><a href="/stack">Stack <span id="stack-badge" class="stack-badge" hidden>0</span></a>
-    <a href="/az">A–Z</a><a href="/about">About</a>
+    <a href="/solve" class="nav-solve">Solve</a><a href="/learn">Learn</a>
+    <a href="/stack">Stack <span id="stack-badge" class="stack-badge" hidden>0</span></a><a href="/pro">For pros</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/stewardship">Bounty board</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/browse">Browse</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/pro">For pros</a> · <a href="/stewardship">Bounty board</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/app.js"></script>
 </body>
@@ -208,10 +207,10 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
   const goalLinks = D.goals.map((g) => `<li><a href="/goal/${g.id}">${esc(g.label)}</a></li>`).join('');
   const homeBody = `
     <section class="hero funnel-hero">
-      <div class="kicker">Precision protocols · localised for Singapore</div>
-      <h1>Stop guessing. <span class="lead">Start solving.</span></h1>
-      <p class="hero-lead">Tired of US-centric supplement lists and generic internet advice? Your body is a system. Don't just treat the symptom — fix the root cause.</p>
-      <p><a class="cta-primary" href="/solve">Find my root cause →</a></p>
+      <div class="kicker">The open protocol engine · Singapore</div>
+      <h1>DNA is the idea that never came to life. RNA is the action.</h1>
+      <p class="hero-lead">DNA is a blueprint locked in a vault. RNA is the messenger, the architect, and the builder — it reads the code and makes it real. RNAwiki is the RNA for your health: name a problem or a goal, and we build the exact movement, food, and supplements that fix its root cause.</p>
+      <p><a class="cta-primary" href="/solve">Build my protocol →</a></p>
     </section>
     <section class="how-3"><h2>How it works</h2>
       <ol><li><b>Diagnose</b> — tell us your pain or goal and answer one clinical question to find the exact root cause.</li>
