@@ -81,6 +81,20 @@ CREATE TABLE IF NOT EXISTS rep_events (
 );
 CREATE INDEX IF NOT EXISTS idx_rep_user ON rep_events(user_id);
 
+-- Protocol stewardship: one verified expert "owns" a protocol (lead-gen). Their clinic + booking
+-- link sits atop that protocol page. Inactive stewards (60d) can be challenged/taken over.
+CREATE TABLE IF NOT EXISTS stewardships (
+  id SERIAL PRIMARY KEY,
+  problem_id TEXT NOT NULL,
+  root_cause_id TEXT NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  domain TEXT,
+  adopted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  last_active_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(problem_id, root_cause_id)
+);
+CREATE INDEX IF NOT EXISTS idx_steward_user ON stewardships(user_id);
+
 CREATE TABLE IF NOT EXISTS proposals (
   id SERIAL PRIMARY KEY,
   problem_id TEXT NOT NULL,

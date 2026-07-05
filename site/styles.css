@@ -772,3 +772,20 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .edit-profile h2{margin:.2rem 0 .3rem}
 .edit-profile label{display:block;font-size:.8rem;font-weight:700;color:var(--head);margin:.7rem 0 .25rem}
 .edit-profile input{width:100%;border:1px solid var(--line);border-radius:9px;padding:.55rem .65rem;font:inherit;font-size:.9rem;box-sizing:border-box}
+
+/* ================= Protocol stewardship banner ================= */
+.steward-banner{display:flex;align-items:center;gap:.9rem;flex-wrap:wrap;border-radius:14px;padding:.8rem 1.1rem;margin:0 0 1.1rem}
+.steward-banner.has{background:linear-gradient(135deg,#ecfdf5,#eff6ff);border:1px solid #bbf7d0}
+.steward-banner.none{background:var(--panel2);border:1px dashed var(--line)}
+.steward-banner .sb-l{flex:1;min-width:220px;font-size:.9rem;color:var(--ink)}
+.sb-tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-right:.35rem}
+.sb-name{font-weight:800;color:var(--head)}
+.sb-name:hover{color:var(--accent)}
+.sb-dom{font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;padding:.12rem .45rem;border-radius:6px;color:#fff;margin-left:.4rem}
+.sb-dom.physio{background:#2563eb}.sb-dom.dietitian{background:#16a34a}.sb-dom.pharmacist{background:#7c3aed}
+.sb-book{padding:.55rem 1.1rem;white-space:nowrap}
+.sb-manage{border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:.4rem .9rem;font-size:.8rem;cursor:pointer}
+.sb-manage:hover{border-color:var(--accent);color:var(--accent)}
+.prof-stewarded{display:flex;flex-wrap:wrap;gap:.5rem}
+.prof-steward{background:#ecfdf5;border:1px solid #bbf7d0;border-radius:999px;padding:.4rem .9rem;font-size:.85rem;font-weight:600;color:#0f766e}
+.prof-steward:hover{text-decoration:none;filter:brightness(.98);border-color:var(--accent)}

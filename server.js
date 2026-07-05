@@ -349,14 +349,54 @@ async function api(req, res, url) {
       (SELECT COUNT(*)::int FROM proposals WHERE user_id=$1 AND status='endorsed') AS accepted,
       (SELECT COUNT(*)::int FROM edits WHERE user_id=$1) AS edits,
       (SELECT COUNT(*)::int FROM comments WHERE user_id=$1) AS comments`, [uu.id])).rows[0];
+    const stewarded = await db.query('SELECT problem_id, root_cause_id, adopted_at FROM stewardships WHERE user_id=$1 ORDER BY adopted_at DESC', [uu.id]);
     return json(res, 200, {
       user: {
         username: uu.username, domain: uu.domain, domain_verified: uu.domain_verified,
         reputation_points: uu.reputation_points, socials: uu.socials || {}, badges: uu.badges || [],
         created_at: uu.created_at,
       },
-      counts, accepted: accepted.rows, stewarded: [],
+      counts, accepted: accepted.rows, stewarded: stewarded.rows,
     });
+  }
+  // --- protocol stewardship (adopt-a-protocol lead-gen) ---
+  if (seg[0] === 'steward' && !seg[1] && method === 'GET') {
+    const q = new URL('http://x/' + url).searchParams;
+    const pid = clean(q.get('problem'), 60), rcid = clean(q.get('rc'), 60);
+    if (!pid || !rcid) return json(res, 400, { error: 'problem & rc required' });
+    const r = await db.query(`SELECT s.adopted_at, s.last_active_at, u.username, u.domain, u.domain_verified, u.socials
+      FROM stewardships s JOIN users u ON u.id=s.user_id WHERE s.problem_id=$1 AND s.root_cause_id=$2`, [pid, rcid]);
+    const s = r.rows[0];
+    const steward = s ? {
+      username: s.username, domain: s.domain, domain_verified: s.domain_verified, socials: s.socials || {},
+      adopted_at: s.adopted_at, stale: (Date.now() - new Date(s.last_active_at).getTime()) > 60 * 86400000,
+    } : null;
+    return json(res, 200, { steward });
+  }
+  if (seg[0] === 'steward' && seg[1] === 'adopt' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    if (!u.domain_verified) return json(res, 403, { error: 'Only verified experts can steward a protocol. Set your domain and get verified first.' });
+    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60);
+    if (!pid || !rcid) return json(res, 400, { error: 'protocol required' });
+    const cur = (await db.query('SELECT user_id, last_active_at FROM stewardships WHERE problem_id=$1 AND root_cause_id=$2', [pid, rcid])).rows[0];
+    if (cur) {
+      if (cur.user_id === u.id) return json(res, 200, { ok: true, already: true });
+      const stale = (Date.now() - new Date(cur.last_active_at).getTime()) > 60 * 86400000;
+      if (!stale) return json(res, 409, { error: 'This protocol already has an active steward. It can only be challenged after 60 days of steward inactivity.' });
+      await db.query('UPDATE stewardships SET user_id=$1, domain=$2, adopted_at=now(), last_active_at=now() WHERE problem_id=$3 AND root_cause_id=$4', [u.id, u.domain, pid, rcid]);
+    } else {
+      await db.query('INSERT INTO stewardships(problem_id,root_cause_id,user_id,domain) VALUES($1,$2,$3,$4) ON CONFLICT (problem_id,root_cause_id) DO NOTHING', [pid, rcid, u.id, u.domain]);
+    }
+    await award(u.id, 'steward', pid + ':' + rcid, 25);
+    return json(res, 200, { ok: true });
+  }
+  if (seg[0] === 'steward' && seg[1] === 'release' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60);
+    await db.query('DELETE FROM stewardships WHERE problem_id=$1 AND root_cause_id=$2 AND user_id=$3', [pid, rcid, u.id]);
+    return json(res, 200, { ok: true });
   }
   if (seg[0] === 'proposals' && method === 'GET') {
     const sp = new URL('http://x/' + url).searchParams;
@@ -402,6 +442,8 @@ async function api(req, res, url) {
       await award(pr.user_id, 'merged', id); await addBadge(pr.user_id, 'verified-expert');
       await award(u.id, 'merged', 'endorse:' + id); await addBadge(u.id, 'verified-expert');
     }
+    // reviewing keeps any protocols this expert stewards "active" (challenge clock resets)
+    await db.query('UPDATE stewardships SET last_active_at=now() WHERE user_id=$1', [u.id]).catch(() => {});
     return json(res, 200, { ok: true });
   }
   if (seg[0] === 'proposals' && seg[1] && seg[2] === 'flag' && method === 'POST') {
