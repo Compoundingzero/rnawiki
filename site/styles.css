@@ -884,3 +884,5 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .browse-sec{margin-top:2.6rem}
 .browse-more{text-align:center;color:var(--muted);font-size:.88rem;margin-top:1rem}
 #home-leaderboard:not(:empty){margin-top:1.6rem}
+
+.page-cta{text-align:center;margin:1.8rem 0}
