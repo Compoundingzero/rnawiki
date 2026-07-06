@@ -77,6 +77,8 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** It's the "calm" molecule in green tea. Paired with caffeine, it removes the jitter and gives you smooth focus instead of a wired buzz.
 **Protocol:** 200 mg theanine : 100 mg caffeine for focus; 200–400 mg alone for sleep.
 **Bottom line:** The most practical no-prescription focus stack.
+**Stacks with:** Caffeine — the classic calm-focus pairing (roughly 1:2 caffeine:theanine); removes the jitters without dulling the alertness.
+**Cost:** Cheap — ~S$15–25/month. iHerb, Guardian, Shopee.
 
 ---
 
@@ -88,6 +90,9 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **Protocol:** 1–3 g combined EPA+DHA/day with a fatty meal. Check label — a 1 g capsule may be only 300 mg EPA+DHA.
 **Watch out:** Blood-thinning >3 g/day; slight AFib signal at 4 g.
 **Bottom line:** Rare supplement with strong evidence across heart, joints, and brain.
+**Stacks with:** Take with a fatty meal for absorption; often paired with vitamin D.
+**Avoid:** High doses (>3 g/day) alongside blood thinners (warfarin, aspirin) — additive bleeding risk. Stop ~1 week before surgery.
+**Cost:** ~S$20–45/month. Buy on total EPA+DHA (read the back), not the “1000 mg fish oil” on the front.
 
 ---
 
@@ -98,6 +103,9 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** A hormone your skin makes from sunlight that switches on hundreds of genes. Indoor life (very common in Singapore) leaves most people deficient, which quietly lowers testosterone, immunity, and mood.
 **Protocol:** 2,000–4,000 IU D3 + 100–200 mcg K2 with fat; test 25-OH-D, target 75–125 nmol/L.
 **Bottom line:** Highest-value fix if you work indoors. Almost everyone benefits.
+**Stacks with:** Magnesium (a cofactor that activates vitamin D) and K2 (directs the calcium to bone, not arteries).
+**Avoid:** Mega-doses without K2 and magnesium; get a blood level rather than guessing.
+**Cost:** Cheap — ~S$10–20/month. Everywhere in SG.
 
 ---
 
@@ -121,6 +129,9 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** A mineral your testosterone factory can't run without. Sweat it out training, and hormones drop. Fixing a deficiency reliably raises testosterone; taking extra when you're already fine does nothing.
 **Protocol:** 15–30 mg with food (not empty stomach). Add 1–2 mg copper if used for months.
 **Bottom line:** Valuable *if deficient*, which many athletes are.
+**Stacks with:** Copper (~1 mg per 15 mg zinc) to prevent depletion.
+**Avoid:** Long-term high-dose zinc depletes copper; don’t take with calcium, iron or coffee (they compete for absorption).
+**Cost:** Cheap — ~S$10–20/month.
 
 ---
 
@@ -161,6 +172,8 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** An amino acid that gently cools you down and quiets the nervous system for sleep, and is the main brick in collagen. Dirt cheap, very safe.
 **Protocol:** 3–5 g before bed; 5–10 g with collagen + vitamin C for tendons.
 **Bottom line:** One of the most undervalued supplements — sleep + connective tissue + longevity.
+**Stacks with:** Magnesium before bed — the two together noticeably deepen sleep.
+**Cost:** Very cheap — ~S$10–20/month; it’s sweet, mixes into water.
 
 ---
 
@@ -171,6 +184,8 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** A spark plug inside your cellular engines. Statin drugs quietly drain it, causing muscle aches — replacing it fixes that. Most valuable for statin users and heart failure.
 **Protocol:** 100–300 mg with fat; ubiquinol if 40+ or on statins.
 **Bottom line:** Effectively mandatory alongside statins.
+**Stacks with:** Take with a fatty meal (fat-soluble); statin users benefit most, since statins deplete CoQ10.
+**Cost:** ~S$25–50/month; ubiquinol absorbs better than plain ubiquinone, especially over 40.
 
 ---
 
@@ -196,6 +211,8 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** It widens your blood vessels so more blood, oxygen, and nutrients reach working muscle — that's the "pump," plus real endurance and lower blood pressure.
 **Protocol:** 6–8 g L-citrulline (or 8–12 g citrulline malate) 60 min pre-workout.
 **Bottom line:** Better-studied than most pre-workout ingredients.
+**Avoid:** Stacking strong blood-flow agents — citrulline + beetroot + ED drugs (PDE-5) + nitrates together can drop blood pressure dangerously.
+**Cost:** ~S$20–35/month; citrulline malate is dosed higher than pure citrulline (check which you have).
 
 ---
 
@@ -237,6 +254,8 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** Concentrated food. Leucine is the "build muscle now" trigger, and whey delivers a big hit of it. Total daily protein matters more than timing.
 **Protocol:** Fill the gap to 1.6–2.2 g protein/kg bodyweight/day.
 **Bottom line:** Convenience, not magic. Hit your daily protein however you like.
+**Stacks with:** Creatine (add it to the same post-workout shake) and carbs.
+**Cost:** ~S$50–80 per tub (~1 month). Whey isolate if lactose-sensitive.
 
 ---
 
@@ -485,6 +504,8 @@ The whole androgen axis and its support drugs. Every anabolic works through the 
 **Protocol:** 200–400 mg standardised (Physta/LJ100).
 **Watch out:** Heavy-metal contamination in poor-quality sources.
 **Bottom line:** The most credible herbal testosterone support.
+**Avoid:** Hormone-sensitive conditions — it can raise testosterone; get advice if you have prostate issues.
+**Cost:** ~S$25–45/month; look for a standardised extract (Physta / ~1.5% eurycomanone), not raw powder.
 
 ---
 
@@ -1000,6 +1021,9 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **Protocol:** 300–600 mg.
 **Watch out:** One observational stroke-risk signal (unconfirmed); fishy odour at high doses.
 **Bottom line:** Most potent OTC cholinergic; useful for low-egg diets.
+**Stacks with:** Caffeine and huperzine A for a pre-workout / focus stack.
+**Avoid:** Too much acetylcholine causes headaches and tension — start low.
+**Cost:** ~S$25–40/month.
 
 ---
 
@@ -1092,6 +1116,9 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** The "it's night" hormone. It re-times your body clock, so it's best for jet lag and late sleep phase, not as a sledgehammer sedative. 0.5 mg works as well as 10 mg with less morning fog.
 **Protocol:** 0.3–1 mg, 30–60 min before target sleep.
 **Bottom line:** Overused at 10–20× the effective dose. Start at 0.5 mg.
+**Stacks with:** Magnesium and glycine for sleep onset.
+**Avoid:** Alcohol and other sedatives (additive drowsiness); don’t drive after. A low dose (0.5–1 mg) works better than the common 3–10 mg.
+**Cost:** Cheap — ~S$10–20/month (note: pharmacist-only/behind-counter in some SG outlets).
 
 ---
 
@@ -1131,6 +1158,8 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** The "energising" adaptogen — cuts mental and physical fatigue under stress. Morning use; too stimulating at night.
 **Protocol:** 200–400 mg (3% rosavins) morning.
 **Bottom line:** Best adaptogen for fatigue and heavy training blocks.
+**Avoid:** Take it early — it can be stimulating and disrupt sleep late in the day; caution with other stimulants and with antidepressants (MAOIs).
+**Cost:** ~S$20–35/month; standardised to ~3% rosavins / 1% salidroside.
 
 ---
 
@@ -1166,6 +1195,8 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** Feeds your tendons and ligaments their raw materials right before you stress them — timing matters, so take it ~45 min *before* training with vitamin C.
 **Protocol:** 15 g + 50 mg vitamin C, 45–60 min pre-exercise.
 **Bottom line:** The most practical connective-tissue supplement; timing is key. Highly relevant to running/Hyrox tendon load.
+**Stacks with:** Vitamin C — required to build collagen, so take them together, ideally 45–60 min before training tendons.
+**Cost:** ~S$25–45/month; unflavoured hydrolysed peptides mix into anything.
 
 ---
 
@@ -1175,6 +1206,8 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** Building blocks and protectors for cartilage. Reduces pain in moderate arthritis over ~8–12 weeks; it's structural, not a painkiller.
 **Protocol:** Glucosamine sulphate 1,500 mg + chondroitin 1,200 mg/day.
 **Bottom line:** Meaningful for moderate OA; give it 3 months.
+**Avoid:** Shellfish allergy (most glucosamine is shellfish-derived); mild interaction with warfarin.
+**Cost:** ~S$20–40/month; give it 6–8 weeks before judging.
 
 ---
 
@@ -1320,6 +1353,8 @@ Added compounds and four new categories to complete the universe (~220 total).
 **Molecular target:** [SLC23A1 vitamin C transporter (NCBI Gene)](https://www.ncbi.nlm.nih.gov/gene/9963) · [Ascorbic acid (PubChem CID 54670067)](https://pubchem.ncbi.nlm.nih.gov/compound/54670067)
 **In plain English:** Your body literally can't build collagen without it, and it mops up free radicals. Take it with collagen for tendons.
 **Protocol:** 200–1,000 mg/day. **Bottom line:** Foundational; deficiency impairs connective tissue and immunity.
+**Stacks with:** Iron (boosts absorption of plant iron) and collagen (it's the cofactor that builds collagen).
+**Cost:** Cheap — ~S$10–20/month; split the dose, large single doses aren't better absorbed.
 
 ### B-Complex / B12 / Methylfolate / B6  🟡 ⭐⭐⭐⭐ (deficiency)
 **Technical mechanism:** Coenzymes in one-carbon metabolism and methylation (**MTHFR** converts folate to active 5-MTHF), homocysteine clearance, energy metabolism, and neurotransmitter synthesis. B12 (methylcobalamin) is depleted by metformin and in vegans.
