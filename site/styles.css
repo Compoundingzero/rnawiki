@@ -1194,3 +1194,7 @@ a.anat-ex b{color:var(--head)}
 .sec-trust-l.ok{color:var(--green,#0a7a48)}
 .sec-trust-l.ok:hover{text-decoration:underline}
 @media(max-width:520px){.sec-trust-l{display:none}}
+
+/* Community analogy / simplify suggestion row */
+.suggest-row{margin:.8rem 0 1.2rem}
+.suggest-row .linkbtn{font-size:.85rem;color:var(--accent);font-weight:600}
