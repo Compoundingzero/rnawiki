@@ -26,7 +26,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** This is the pathway behind stimulants and fat-burners. Caffeine, adrenaline, and clenbuterol all end up raising cAMP, which tells fat cells to release their fuel and the body to burn a little hotter. The GLP-1 weight-loss drugs press a different doorbell in the gut and brain that says "you're full."
 
-**Turn it up:** caffeine, adrenaline-like compounds, GLP-1 drugs. **Turn it down:** things that block these receptors.
+**Turn it up:** [caffeine](/c/caffeine), adrenaline-like compounds, [GLP-1 drugs](/c/semaglutide-ozempic-wegovy-rybelsus). **Turn it down:** things that block these receptors.
 
 **Don't be fooled:** ringing this bell harder burns fuel but also raises heart rate and blood pressure — that's why strong stimulants strain the heart.
 
@@ -52,7 +52,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** Every anabolic steroid and SARM works right here, through the androgen receptor. So do testosterone therapy, vitamin D (which quietly switches on 200+ genes), and thyroid hormone (your metabolic thermostat).
 
-**Turn it up:** testosterone, steroids, SARMs, vitamin D, thyroid hormone. **Turn it down:** drugs that block these receptors (used in some cancers, and to fight hair loss).
+**Turn it up:** testosterone, steroids, SARMs, [vitamin D](/c/vitamin-d3-k2), thyroid hormone. **Turn it down:** drugs that block these receptors (used in some cancers, and to fight hair loss).
 
 **Don't be fooled:** because it rewrites genes, this pathway is powerful but slow to show and slow to reverse — and flooding it (steroids) has body-wide side effects, because the same receptor exists in your heart, prostate, and skin.
 
@@ -226,7 +226,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** Alpha-GPC and citicoline supply choline for sharper memory and focus (and a small pre-workout mind-muscle boost). Huperzine A blocks the breakdown enzyme, keeping levels higher.
 
-**Turn it up:** alpha-GPC, citicoline, huperzine A, nicotine (which directly hits acetylcholine receptors). **Don't be fooled:** more isn't always better — too much acetylcholine causes headaches and tension.
+**Turn it up:** [alpha-GPC](/c/alpha-gpc), [citicoline](/c/citicoline-cdp-choline), [huperzine A](/c/huperzine-a-ginkgo-panax-ginseng-uridine-brief), [nicotine](/c/nicotine-non-combusted) (which directly hits acetylcholine receptors). **Don't be fooled:** more isn't always better — too much acetylcholine causes headaches and tension.
 
 ---
 
@@ -274,7 +274,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** Chronically high cortisol quietly blocks muscle gain, lowers testosterone, and destroys sleep. The adaptogens (ashwagandha, rhodiola) turn the dial back down — which is why they improve sleep, stress, and even testosterone in stressed people.
 
-**Turn it down:** ashwagandha, rhodiola, phosphatidylserine, and above all, better sleep. **Don't be fooled:** cortisol isn't the enemy — you need it. The goal is a dial that rises and falls, not one pinned high.
+**Turn it down:** [ashwagandha](/c/ashwagandha-withania-somnifera), [rhodiola](/c/rhodiola-rosea), phosphatidylserine, and above all, better sleep. **Don't be fooled:** cortisol isn't the enemy — you need it. The goal is a dial that rises and falls, not one pinned high.
 
 ---
 
@@ -296,7 +296,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** More and healthier mitochondria mean more energy and endurance. CoQ10 is a key part of the electron line (statins deplete it, causing muscle aches). PQQ helps build new mitochondria; urolithin A helps recycle damaged ones.
 
-**Turn it up (build/protect):** exercise, CoQ10, PQQ, urolithin A. **The dangerous extreme:** DNP forces the plants to run hot and wasteful — you burn huge energy as heat (dramatic fat loss) but it can literally cook you. People die from it.
+**Turn it up (build/protect):** exercise, [CoQ10](/c/coq10-ubiquinol), [PQQ](/c/pqq-ergothioneine-carnosine-quercetin-brief), [urolithin A](/c/urolithin-a). **The dangerous extreme:** DNP forces the plants to run hot and wasteful — you burn huge energy as heat (dramatic fat loss) but it can literally cook you. People die from it.
 
 **Don't be fooled:** "mitochondrial support" supplements help most when you're older or depleted; a healthy young trainee gets most of the benefit from exercise itself.
 
@@ -369,7 +369,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** PT-141 is an approved libido drug that works in the brain (not the plumbing, like Viagra). Setmelanotide treats a rare genetic obesity by pressing the "fullness" receptor. Melanotan tans skin but carries real safety questions.
 
-**Turn it up:** PT-141 (libido), setmelanotide (appetite), melanotan (tanning). **Don't be fooled:** melanotan also darkens moles and its long-term safety (including melanoma risk) is unknown.
+**Turn it up:** [PT-141](/c/pt-141-bremelanotide-vyleesi) (libido), [setmelanotide](/c/setmelanotide-imcivree) (appetite), [melanotan](/c/melanotan-ii) (tanning). **Don't be fooled:** melanotan also darkens moles and its long-term safety (including melanoma risk) is unknown.
 
 ---
 
@@ -391,7 +391,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** This is the frontier of longevity. Fisetin (taken as a monthly 2-day pulse) clears zombie cells; spermidine and rapamycin boost recycling. Fasting and exercise do both for free.
 
-**Turn it up:** fisetin and quercetin (clear zombies), spermidine and rapamycin (boost recycling), fasting, exercise. **Don't be fooled:** senolytics are pulsed (a couple of days), not taken daily — and the human evidence is still early, however compelling the mechanism.
+**Turn it up:** [fisetin](/c/fisetin) and [quercetin](/c/quercetin-dasatinib-d-q) (clear zombies), [spermidine](/c/spermidine) and [rapamycin](/c/rapamycin-sirolimus) (boost recycling), fasting, exercise. **Don't be fooled:** senolytics are pulsed (a couple of days), not taken daily — and the human evidence is still early, however compelling the mechanism.
 
 ---
 
