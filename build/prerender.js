@@ -39,6 +39,50 @@ const cleanDesc = (s, max = 155) => {
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const tkey = (s) => s.toUpperCase().replace(/[^A-Z0-9]+/g, '-').replace(/^-|-$/g, '');
 const stars = (n) => '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n));
+
+// ---- per-page Open Graph card generator (branded 1200×630 PNG per entity) ----
+// Uses @resvg/resvg-js + a bundled font (works on Railway's minimal container). If either is
+// missing it returns null and the page falls back to the site-wide /og.png — never fails the build.
+let Resvg = null, ogFonts = [];
+try {
+  Resvg = require('@resvg/resvg-js').Resvg;
+  ogFonts = ['Sans-Regular.ttf', 'Sans-Bold.ttf'].map((f) => path.join(ROOT, 'assets', 'fonts', f)).filter((f) => fs.existsSync(f));
+  if (!ogFonts.length) Resvg = null;
+} catch (e) { Resvg = null; }
+const xe = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+function wrapText(str, maxChars, maxLines) {
+  const words = String(str || '').replace(/[*_`]/g, '').split(/\s+/).filter(Boolean); const lines = []; let cur = '';
+  for (const w of words) { if (!cur) { cur = w; continue; } if ((cur + ' ' + w).length <= maxChars) cur += ' ' + w; else { lines.push(cur); cur = w; } }
+  if (cur) lines.push(cur);
+  if (lines.length > maxLines) { lines.length = maxLines; lines[maxLines - 1] = lines[maxLines - 1].replace(/[\s,;:.]+$/, '') + '…'; }
+  return lines;
+}
+function starPolys(n, x, y, size) {
+  let out = '';
+  for (let s = 0; s < 5; s++) { const cx = x + s * (size * 1.18) + size / 2, cy = y; const pts = [];
+    for (let i = 0; i < 10; i++) { const ang = Math.PI / 5 * i - Math.PI / 2; const r = (i % 2 ? size * 0.2 : size * 0.5); pts.push((cx + Math.cos(ang) * r).toFixed(1) + ',' + (cy + Math.sin(ang) * r).toFixed(1)); }
+    out += `<polygon points="${pts.join(' ')}" fill="${s < n ? '#f59e0b' : 'none'}" stroke="#f59e0b" stroke-width="2"/>`; }
+  return out;
+}
+function ogCardSvg({ kind, title, sub, starN, rx }) {
+  const tLines = wrapText(title, 22, 2); const tSize = tLines.length > 1 ? 58 : 70;
+  let ty = 288 - (tLines.length - 1) * 34;
+  const titleSvg = tLines.map((l, i) => `<text x="72" y="${ty + i * (tSize + 8)}" font-family="Roboto" font-weight="700" font-size="${tSize}" fill="#ffffff">${xe(l)}</text>`).join('');
+  let yy = ty + (tLines.length - 1) * (tSize + 8) + 62;
+  let starsSvg = '';
+  if (starN != null) { starsSvg = starPolys(starN, 74, yy, 26) + (rx ? `<rect x="266" y="${yy - 21}" width="210" height="42" rx="8" fill="#fff1f0" stroke="#f5c2bd"/><text x="280" y="${yy + 8}" font-family="Roboto" font-weight="700" font-size="23" fill="#b3261e">Rx · supervision</text>` : ''); yy += 58; }
+  const subSvg = (sub ? wrapText(sub, 62, 2) : []).map((l, i) => `<text x="72" y="${yy + i * 40}" font-family="Roboto" font-size="31" fill="#9fb3c8">${xe(l)}</text>`).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1a2b"/><stop offset="1" stop-color="#0e1420"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#2f7de0"/></linearGradient></defs><rect width="1200" height="630" fill="url(#b)"/><rect width="1200" height="8" fill="url(#a)"/><text x="72" y="112" font-family="Roboto" font-weight="700" font-size="40"><tspan fill="#38bdf8">RNA</tspan><tspan fill="#ffffff">wiki</tspan></text><text x="1128" y="112" text-anchor="end" font-family="Roboto" font-weight="700" font-size="23" fill="#64748b">${xe((kind || '').toUpperCase())}</text>${titleSvg}${starsSvg}${subSvg}<text x="72" y="580" font-family="Roboto" font-weight="700" font-size="28" fill="#38bdf8">rnawiki.com<tspan fill="#64748b" font-weight="400">  ·  Singapore</tspan></text></svg>`;
+}
+let ogCount = 0;
+function renderOgCard(relPath, opts) {
+  if (!Resvg) return null;
+  try {
+    const png = new Resvg(ogCardSvg(opts), { font: { fontFiles: ogFonts, loadSystemFonts: false, defaultFontFamily: 'Roboto' }, background: '#0e1420' }).render().asPng();
+    const out = path.join(SITE, relPath); fs.mkdirSync(path.dirname(out), { recursive: true }); fs.writeFileSync(out, png); ogCount++;
+    return SITE_URL + '/' + relPath.replace(/\\/g, '/');
+  } catch (e) { return null; }
+}
 const goalById = {}; D.goals.forEach((g) => goalById[g.id] = g);
 const cptByName = {}; D.compounds.forEach((c) => cptByName[c.name.toLowerCase()] = c);
 function findCpt(label) {
@@ -67,7 +111,8 @@ function protoMove(rc) {
 }
 
 // ---- page shell ----
-function shell({ route, title, desc, jsonld, body, breadcrumbs }) {
+function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage }) {
+  const img = ogImage || (SITE_URL + '/og.png');
   const url = SITE_URL + route;
   const ld = [].concat(jsonld || []).map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('');
   const crumbLd = breadcrumbs ? `<script type="application/ld+json">${JSON.stringify({
@@ -90,10 +135,10 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${esc(url)}">
-<meta property="og:image" content="${SITE_URL}/og.png">
+<meta property="og:image" content="${esc(img)}">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="${SITE_URL}/og.png">
+<meta name="twitter:image" content="${esc(img)}">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="stylesheet" href="/styles.css">
@@ -157,7 +202,7 @@ D.compounds.forEach((c) => {
     about: { '@type': 'Drug', name: c.name }, description: (c.plain || c.bottom || '').slice(0, 300),
     url: SITE_URL + route, inLanguage: 'en-SG',
   };
-  add(route, shell({ route, title: `${c.name} — evidence, mechanism & how it works · RNAwiki`, desc: cleanDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body }));
+  add(route, shell({ route, title: `${c.name} — evidence, mechanism & how it works · RNAwiki`, desc: cleanDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body }));
 });
 
 // goals
@@ -199,7 +244,7 @@ GRAPH.problems.forEach((p) => {
       audience: { '@type': 'MedicalAudience', geographicArea: { '@type': 'AdministrativeArea', name: 'Singapore' } },
       lastReviewed: '2026-07-06', url: SITE_URL + route,
     };
-    add(route, shell({ route, title: `${p.name} in Singapore — how to fix ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()} (Move · Fuel · Stack) · RNAwiki`, desc: `${p.name} (${rc.name}): the exercises to fix it, Singapore foods to fuel it, and evidence-ranked supplements — a full root-cause protocol for Singapore. Not medical advice.`, jsonld: protoLd, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body }));
+    add(route, shell({ route, title: `${p.name} in Singapore — how to fix ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()} (Move · Fuel · Stack) · RNAwiki`, desc: `${p.name} (${rc.name}): the exercises to fix it, Singapore foods to fuel it, and evidence-ranked supplements — a full root-cause protocol for Singapore. Not medical advice.`, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body }));
   });
 });
 
@@ -217,7 +262,7 @@ GRAPH.problems.forEach((p) => {
 // pathways + learn
 D.pathways.forEach((p, i) => {
   const route = '/pathway/' + i;
-  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${p.html || ''}</div>` }));
+  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${p.html || ''}</div>` }));
 });
 D.modules.forEach((m, i) => {
   const route = '/learn/' + i;
@@ -236,7 +281,7 @@ ANAT.muscles.forEach((m) => {
     <p><b>Fibre-type bias:</b> ${esc(m.fiber_bias)}</p><p><b>Functional role:</b> ${esc(m.functional_role)}</p>
     <h2>Common problems</h2><ul>${(m.common_problems || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <h2>Training & stretching</h2><p>${esc(m.training || '')}</p><p>${esc(m.stretching || '')}</p></div>`;
-  add(route, shell({ route, title: `${m.name} — anatomy, function & training · RNAwiki`, desc: (m.overview || '').slice(0, 155), breadcrumbs: anatCrumb(m.name, route), body }));
+  add(route, shell({ route, title: `${m.name} — anatomy, function & training · RNAwiki`, desc: (m.overview || '').slice(0, 155), ogImage: renderOgCard(`og/muscle/${m.id}.png`, { kind: 'Muscle · ' + (m.region || ''), title: m.name, sub: m.overview }), breadcrumbs: anatCrumb(m.name, route), body }));
 });
 ANAT.energy_systems.forEach((e) => {
   const route = '/energy/' + e.id;
