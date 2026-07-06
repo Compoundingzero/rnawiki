@@ -95,7 +95,7 @@ ${crumbLd}${ld}
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 220+ compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
-    <a href="/solve" class="nav-solve">Solve</a><a href="/learn">Learn</a><a href="/anatomy">Anatomy</a>
+    <a href="/solve" class="nav-solve">Solve</a><a href="/learn">Learn</a><a href="/fuel">Fuel</a>
     <a href="/stack">Stack <span id="stack-badge" class="stack-badge" hidden>0</span></a><a href="/pros">For pros</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
