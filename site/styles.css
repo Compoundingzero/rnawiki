@@ -1441,3 +1441,12 @@ a.dp-name:hover{color:var(--accent)}
 .cmp-table thead th a{color:var(--accent)}
 .cmp-table tbody th{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);white-space:nowrap;width:1%;font-weight:700}
 .cmp-table tr:last-child td,.cmp-table tr:last-child th{border-bottom:0}
+
+/* ---- Exercise YouTube tutorial link ---- */
+.ex-yt{display:inline-flex;align-items:center;gap:6px;margin:.7rem 0 .2rem;color:#c4302b;font-weight:600;font-size:.9rem;text-decoration:none}
+.ex-yt:hover{text-decoration:underline}
+
+/* ---- Muscle 3D placeholder (when no muscle-specific model yet) ---- */
+.anat-3d-soon{display:flex;align-items:center;gap:14px;padding:18px 20px;border:1px dashed var(--line);border-radius:14px;background:var(--panel2);margin:.4rem 0 .2rem}
+.anat-3d-soon .a3d-ico{font-size:1.8rem;flex:none}
+.anat-3d-soon p{margin:0;color:var(--muted);font-size:.92rem;line-height:1.5}

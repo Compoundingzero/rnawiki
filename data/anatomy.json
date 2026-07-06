@@ -364,7 +364,8 @@
       "problems": [
         "hip-mobility",
         "knee-pain"
-      ]
+      ],
+      "model_embed": "https://sketchfab.com/models/17f9fd854c5342dd9ecd59ff9466af42/embed?ui_theme=dark&autospin=0.2&ui_infos=1&ui_watermark=0&ui_hint=0&transparent=0"
     },
     {
       "id": "adductors",
@@ -481,7 +482,8 @@
       "problems": [
         "ankle-foot",
         "knee-pain"
-      ]
+      ],
+      "model_embed": "https://sketchfab.com/models/6e79f238b65e4490841d02fd30fd374c/embed?ui_theme=dark&autospin=0.2&ui_infos=1&ui_watermark=0&ui_hint=0&transparent=0"
     },
     {
       "id": "chest",
@@ -601,7 +603,8 @@
         "low-back-pain",
         "hip-mobility",
         "knee-pain"
-      ]
+      ],
+      "model_embed": "https://sketchfab.com/models/537556cb8be54bf58d1defa95b8958aa/embed?ui_theme=dark&autospin=0.2&ui_infos=1&ui_watermark=0&ui_hint=0&transparent=0"
     },
     {
       "id": "hamstrings",
@@ -643,7 +646,8 @@
         "knee-pain",
         "low-back-pain",
         "hip-mobility"
-      ]
+      ],
+      "model_embed": "https://sketchfab.com/models/8c70d9533a3e46c89803d5ce5085d3d1/embed?ui_theme=dark&autospin=0.2&ui_infos=1&ui_watermark=0&ui_hint=0&transparent=0"
     },
     {
       "id": "lats",
@@ -842,7 +846,8 @@
       "problems": [
         "knee-pain",
         "hypertrophy"
-      ]
+      ],
+      "model_embed": "https://sketchfab.com/models/c84e1513070c4a9b9b0b65091efa08df/embed?ui_theme=dark&autospin=0.2&ui_infos=1&ui_watermark=0&ui_hint=0&transparent=0"
     },
     {
       "id": "shoulders",

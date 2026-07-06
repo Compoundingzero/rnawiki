@@ -163,13 +163,13 @@ ${crumbLd}${ld}
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 220+ compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
     <a href="/solve" class="nav-solve">Solve</a><a href="/learn">Learn</a><a href="/fuel">Fuel</a>
-    <a href="/stack">Stack <span id="stack-badge" class="stack-badge" hidden>0</span></a><a href="/pros">For pros</a>
+    <a href="/stack">Stack <span id="stack-badge" class="stack-badge" hidden>0</span></a><a href="/for-clinicians">For pros</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/pros">For pros</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/for-clinicians">For pros &amp; clinicians</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/app.js"></script>
 </body>
@@ -188,6 +188,13 @@ const PUB = { publisher: { '@id': SITE_URL + '/#org' }, isPartOf: { '@id': SITE_
 const stripMd = (t) => String(t == null ? '' : t).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`>#]+/g, '').replace(/\s+/g, ' ').trim();
 // Trim to a word boundary so answers never cut mid-word.
 const snip = (t, max = 300) => { const s = stripMd(t); if (s.length <= max) return s; const cut = s.slice(0, max); return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '') + '…'; };
+// Render authored markdown links as crawlable HTML (for the molecular-target citations = E-E-A-T signal).
+function mdLinks(t) {
+  t = String(t || ''); let out = '', last = 0, re = /\[([^\]]+)\]\(([^)]+)\)/g, m;
+  const bold = s => esc(s).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+  while ((m = re.exec(t))) { out += bold(t.slice(last, m.index)); out += `<a href="${esc(m[2])}" target="_blank" rel="nofollow noopener">${esc(m[1])}</a>`; last = m.index + m[0].length; }
+  return out + bold(t.slice(last));
+}
 // Build a visible FAQ section + matching FAQPage JSON-LD from real fields. Google requires the two to
 // match, so both come from the same source. Needs ≥2 real Q&As or it renders nothing (no thin markup).
 function faqBlock(qas) {
@@ -247,6 +254,7 @@ D.compounds.forEach((c) => {
     <p><b>Evidence:</b> ${stars(c.stars)} · <b>Status:</b> ${(c.approvalLabels || []).join(', ')}</p>
     ${c.plain ? `<h2>In plain English</h2><p>${esc(c.plain)}</p>` : ''}
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(c.mechanism)}</p>` : ''}
+    ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}
     ${c.protocol ? `<h2>Protocol</h2><p>${esc(c.protocol)}</p>` : ''}
     ${c.watch ? `<h2>Watch out</h2><p>${esc(c.watch)}</p>` : ''}
     ${c.bottom ? `<h2>Bottom line</h2><p>${esc(c.bottom)}</p>` : ''}
@@ -394,13 +402,11 @@ const anatCrumb = (name, route) => [{ name: 'Home', route: '/' }, { name: 'Anato
 // physiotherapist can override per-muscle by adding "model_embed" to that muscle in data/anatomy.json.
 const MUSCLE_MODEL_DEFAULT = 'https://sketchfab.com/models/75cc6aa94b5c4ed88f9810770d614ac1/embed?ui_theme=dark&autospin=0.15&ui_infos=0&ui_watermark=0&ui_hint=0&transparent=0';
 function muscle3D(m) {
-  const src = m.model_embed || MUSCLE_MODEL_DEFAULT;
-  const credit = m.model_embed
-    ? 'Model added by a RNAwiki contributor.'
-    : 'Model: “Anatomy of the Human Muscular System” by jossangelbd, via Sketchfab (CC).';
-  return `<h2>See it in 3D</h2>
-    <figure class="model-embed"><iframe title="${esc(m.name)} — interactive 3D muscular anatomy" src="${src}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy" frameborder="0"></iframe></figure>
-    <p class="fig-credit">Drag to rotate · scroll to zoom. ${credit} A verified physiotherapist can attach a muscle-specific model.</p>`;
+  if (!m.model_embed) return `<h2>This muscle in 3D</h2>
+    <p class="fig-credit">A 3D model specific to the ${esc(m.name.toLowerCase())} is being added — its origin, insertion and action are detailed below.</p>`;
+  return `<h2>This muscle in 3D</h2>
+    <figure class="model-embed"><iframe title="${esc(m.name)} — interactive 3D anatomy" src="${m.model_embed}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy" frameborder="0"></iframe></figure>
+    <p class="fig-credit">Drag to rotate · scroll to zoom — see the shape, origin and insertion of the ${esc(m.name.toLowerCase())}. 3D model via Sketchfab (CC-BY).</p>`;
 }
 // Energy-system power curve: relative power (%) across time. Highlights the page's own system.
 const ENERGY_CURVES = {
@@ -493,8 +499,11 @@ ANAT.metabolism.forEach((p) => {
   add('/stack', shell({ route: '/stack', title: 'Supplement Stack Builder — combine & check interactions · RNAwiki', desc: 'Build a supplement stack, see combined goal coverage, shared pathways and synergy, and flag prescription vs OTC — then save and share it. Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Stack', route: '/stack' }], body: `<div class="article"><h1>Stack Builder</h1><p>Add compounds from any page, see combined goal coverage, the pathways you're hitting and shared targets, and which items need medical supervision. Your stack saves locally and is shareable by link.</p><h2>Popular compounds to stack</h2><ul>${top.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul></div>` }));
 }
 { // For pros
-  add('/pros', shell({ route: '/pros', title: 'For health professionals in Singapore — contribute, get featured, get leads · RNAwiki', desc: 'Physiotherapists, dietitians, nutritionists and pharmacists in Singapore: improve the protocols in your field and get featured on them — profile, booking link and local leads. Free.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'For pros', route: '/pros' }], body: `<div class="article"><h1>Contribute your expertise. Get featured. Get local leads.</h1><p>RNAwiki is where Singaporeans come to fix a problem or reach a goal. No one owns a protocol — but the verified experts who keep each one accurate get featured on it, with a link to their profile and booking. Contribute in your field and the leads come to you.</p><h2>How it works</h2><ol><li><b>Get verified</b> — prove your credential and link us from your site.</li><li><b>Improve a protocol</b> — edit the movement, nutrition or compounds in your field.</li><li><b>Get featured &amp; get leads</b> — your profile and booking sit on every protocol you improve.</li></ol><p><a href="/solve">See the protocols you could improve →</a></p></div>` }));
+  add('/pros', shell({ route: '/pros', title: 'For health professionals — help build the protocols · RNAwiki', desc: 'Physiotherapists, dietitians, nutritionists, pharmacists and clinics: help peer-review and shape the protocols in your field, and get featured on the ones patients follow. Join the founding list — no account needed.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'For pros', route: '/pros' }], body: `<div class="article"><h1>Help build the protocols your patients already follow.</h1><p>RNAwiki turns root causes into evidence-ranked Move · Fuel · Stack protocols people run and report back on. We're opening a first group of founding clinicians and partner businesses to peer-review and sharpen the clinical logic — the assessment questions, the safety flags, the protocol itself — attributed to the patients following it.</p><h2>How it works</h2><ol><li><b>Register your interest</b> — a two-minute founding list, no account needed.</li><li><b>Shape your specialty's logic</b> — physios shape movement, dietitians shape fuel, pharmacists shape the stack.</li><li><b>Get featured &amp; get leads</b> — your profile and booking sit on every protocol you improve.</li></ol><p><a href="/for-clinicians">Join the founding list →</a></p></div>` }));
 }
+// For clinicians & businesses — the interest/waitlist page (crawlable; SPA hydrates the form)
+add('/for-clinicians', shell({ route: '/for-clinicians', ogType: 'website', title: 'For clinicians & health businesses — join the founding list · RNAwiki', desc: 'Physiotherapists, dietitians, pharmacists, doctors, clinics and health brands: help peer-review and shape the protocols patients follow, and get featured on them. Two-minute founding list — no account needed.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'For clinicians', route: '/for-clinicians' }], body: `<div class="article"><h1>Help build &amp; peer-review the protocols your patients already follow.</h1><p>RNAwiki turns root causes into evidence-ranked Move · Fuel · Stack protocols people run and report back on. We're opening a first group of <b>founding clinicians and partner businesses</b> to sharpen the clinical logic in their field — the assessment questions, the safety flags, the protocol itself — attributed to the patients following it.</p><h2>What you get</h2><ul><li><b>Attribution, not data entry</b> — your name on protocols people are actively running, with real outcomes proving they work.</li><li><b>Own your specialty's logic</b> — physios shape movement, dietitians shape fuel, pharmacists shape the stack; differential questions and red-flags included.</li><li><b>Founding status</b> — the first 50 are named as founding contributors.</li><li><b>Warm leads, later</b> — patients running your protocol are pre-qualified for your clinic when the marketplace opens.</li></ul><p>It takes two minutes and needs no account — just tell us who you are and what you'd improve first.</p></div>` }));
+
 // solve hub
 add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds.</p><ul>${GRAPH.problems.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)}</a></li>`).join('')}</ul>` }));
 
