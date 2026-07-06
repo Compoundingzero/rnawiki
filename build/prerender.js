@@ -292,9 +292,53 @@ D.modules.forEach((m, i) => {
 // ---- anatomy & physiology: crawlable muscle / energy-system / metabolism pages ----
 const ANAT = D.anatomy || { muscles: [], energy_systems: [], metabolism: [] };
 const anatCrumb = (name, route) => [{ name: 'Home', route: '/' }, { name: 'Anatomy', route: '/anatomy' }, { name, route }];
+
+// ---- inline learning visuals (self-authored SVG + one verified embeddable 3D model; no fragile hotlinks) ----
+// Default 3D viewer: "Anatomy of the Human Muscular System" by jossangelbd (Sketchfab, embeddable). A verified
+// physiotherapist can override per-muscle by adding "model_embed" to that muscle in data/anatomy.json.
+const MUSCLE_MODEL_DEFAULT = 'https://sketchfab.com/models/75cc6aa94b5c4ed88f9810770d614ac1/embed?ui_theme=dark&autospin=0.15&ui_infos=0&ui_watermark=0&ui_hint=0&transparent=0';
+function muscle3D(m) {
+  const src = m.model_embed || MUSCLE_MODEL_DEFAULT;
+  const credit = m.model_embed
+    ? 'Model added by a RNAwiki contributor.'
+    : 'Model: “Anatomy of the Human Muscular System” by jossangelbd, via Sketchfab (CC).';
+  return `<h2>See it in 3D</h2>
+    <figure class="model-embed"><iframe title="${esc(m.name)} — interactive 3D muscular anatomy" src="${src}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy" frameborder="0"></iframe></figure>
+    <p class="fig-credit">Drag to rotate · scroll to zoom. ${credit} A verified physiotherapist can attach a muscle-specific model.</p>`;
+}
+// Energy-system power curve: relative power (%) across time. Highlights the page's own system.
+const ENERGY_CURVES = {
+  labels: ['0s', '10s', '30s', '1m', '2m', '5m+'],
+  x: [70, 165, 260, 355, 470, 600],
+  systems: [
+    { id: 'atp-pcr', name: 'ATP–PCr', color: '#f59e0b', p: [100, 78, 24, 8, 3, 1] },
+    { id: 'glycolytic', name: 'Glycolytic', color: '#ef4444', p: [18, 74, 80, 58, 26, 8] },
+    { id: 'oxidative', name: 'Oxidative', color: '#38bdf8', p: [8, 16, 30, 44, 52, 54] },
+  ],
+};
+function energyChart(activeId) {
+  const C = ENERGY_CURVES, W = 660, H = 340, y0 = 250, py = (v) => y0 - v * 2.05;
+  const grid = C.x.map((x, i) => `<line x1="${x}" y1="40" x2="${x}" y2="${y0}" stroke="#1e293b" stroke-width="1"/><text x="${x}" y="${y0 + 22}" text-anchor="middle" font-size="13" fill="#64748b">${C.labels[i]}</text>`).join('');
+  const curves = C.systems.map((s) => {
+    const active = s.id === activeId;
+    const pts = s.p.map((v, i) => `${C.x[i]},${py(v)}`).join(' ');
+    const area = active ? `<polygon points="${C.x[0]},${y0} ${pts} ${C.x[C.x.length - 1]},${y0}" fill="${s.color}" opacity="0.12"/>` : '';
+    return `${area}<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="${active ? 4 : 2}" stroke-linecap="round" stroke-linejoin="round" opacity="${active ? 1 : 0.45}"/>`;
+  }).join('');
+  const legend = C.systems.map((s, i) => `<rect x="${72 + i * 190}" y="300" width="26" height="4" rx="2" fill="${s.color}" opacity="${s.id === activeId ? 1 : 0.45}"/><text x="${104 + i * 190}" y="305" font-size="13" font-weight="${s.id === activeId ? 700 : 400}" fill="${s.id === activeId ? '#e2e8f0' : '#94a3b8'}">${s.name}${s.id === activeId ? ' — this page' : ''}</text>`).join('');
+  return `<figure class="learn-fig"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Relative power output of the three energy systems over time; the ${activeId} system is highlighted.">
+    <text x="70" y="26" font-size="14" font-weight="700" fill="#cbd5e1">Relative power output over time</text>
+    <line x1="70" y1="${y0}" x2="620" y2="${y0}" stroke="#334155" stroke-width="1.5"/>
+    <line x1="70" y1="40" x2="70" y2="${y0}" stroke="#334155" stroke-width="1.5"/>
+    <text x="30" y="150" font-size="12" fill="#64748b" transform="rotate(-90 30 150)" text-anchor="middle">power →</text>
+    ${grid}${curves}${legend}
+  </svg></figure>
+  <p class="fig-credit">Every all-out effort recruits all three systems at once — this shows which one <em>dominates</em> as the seconds tick by.</p>`;
+}
 ANAT.muscles.forEach((m) => {
   const route = '/muscle/' + m.id; const a = m.anatomy || {};
   const body = `<div class="article"><h1>${esc(m.name)}</h1><p>${esc(m.overview)}</p>
+    ${muscle3D(m)}
     <h2>Anatomy</h2><p><b>Muscles:</b> ${esc(m.group)}</p><p><b>Origin:</b> ${esc(a.origin || '')}</p><p><b>Insertion:</b> ${esc(a.insertion || '')}</p>
     <p><b>Actions:</b></p><ul>${(a.actions || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <h2>How the muscle works</h2><p>${esc(m.mechanism)}</p>
@@ -307,6 +351,7 @@ ANAT.muscles.forEach((m) => {
 ANAT.energy_systems.forEach((e) => {
   const route = '/energy/' + e.id;
   const body = `<div class="article"><h1>${esc(e.name)}</h1><p>${esc(e.overview)}</p>
+    ${energyChart(e.id)}
     <p><b>Duration:</b> ${esc(e.duration)} · <b>Intensity:</b> ${esc(e.intensity)} · <b>Fuel:</b> ${esc(e.fuel)} · <b>Oxygen:</b> ${esc(e.oxygen)}</p>
     <h2>How it works</h2><ol>${(e.steps || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
     <h2>What it powers</h2><ul>${(e.powers || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
