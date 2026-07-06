@@ -5,7 +5,11 @@
     {
       "id": "atp-pcr",
       "name": "ATP–PCr system (phosphagen)",
-      "aka": ["phosphagen system", "creatine phosphate system", "immediate energy system"],
+      "aka": [
+        "phosphagen system",
+        "creatine phosphate system",
+        "immediate energy system"
+      ],
       "duration": "0–10 seconds",
       "intensity": "Maximal / explosive",
       "fuel": "Stored ATP and creatine phosphate (PCr) inside the muscle",
@@ -17,17 +21,29 @@
         "ATP is regenerated in a fraction of a second, so power stays maximal — but PCr stores are small and deplete in ~8–10 s.",
         "During rest, PCr is rebuilt using aerobic energy (most restored within 3–5 minutes)."
       ],
-      "powers": ["1–5 rep max lifts", "Jumps and throws", "Sprint starts and short accelerations", "A single explosive movement"],
+      "powers": [
+        "1–5 rep max lifts",
+        "Jumps and throws",
+        "Sprint starts and short accelerations",
+        "A single explosive movement"
+      ],
       "byproduct": "None that causes fatigue (no lactate, no acid) — this is why it is called the 'alactic' system.",
       "recovery": "PCr resynthesis is aerobic: ~50% back in ~30 s, near-full in 3–5 min. This is why heavy-strength and power work uses long rests.",
       "training": "Trained with maximal, brief efforts and long recoveries (heavy lifts, plyometrics, short sprints). Creatine monohydrate supplementation enlarges the PCr store, extending this system slightly.",
       "plain": "Your muscle's 'petty cash' — instant, powerful, and gone in seconds.",
-      "related_pathways": ["NAD⁺", "mitochondria"]
+      "related_pathways": [
+        "NAD⁺",
+        "mitochondria"
+      ]
     },
     {
       "id": "glycolytic",
       "name": "Anaerobic glycolytic system (lactic)",
-      "aka": ["fast glycolysis", "lactic acid system", "anaerobic glycolysis"],
+      "aka": [
+        "fast glycolysis",
+        "lactic acid system",
+        "anaerobic glycolysis"
+      ],
       "duration": "~10 seconds to ~2 minutes",
       "intensity": "High (but sub-maximal)",
       "fuel": "Glucose from blood and muscle glycogen",
@@ -39,17 +55,29 @@
         "Lactate itself is a usable fuel — but the accumulating H⁺ ions lower muscle pH (acidosis), impairing contraction.",
         "This 'burn' rises until power output drops or the effort ends; lactate is then shuttled to heart, liver and other muscle to be reused or reconverted to glucose (Cori cycle)."
       ],
-      "powers": ["30 s–2 min all-out efforts", "8–20 rep hypertrophy sets", "Repeated sprints / HIIT intervals", "The finishing kick of a middle-distance effort"],
+      "powers": [
+        "30 s–2 min all-out efforts",
+        "8–20 rep hypertrophy sets",
+        "Repeated sprints / HIIT intervals",
+        "The finishing kick of a middle-distance effort"
+      ],
       "byproduct": "Lactate + hydrogen ions (H⁺). Lactate is a fuel, not the villain — the H⁺ acidosis is what limits the effort.",
       "recovery": "Clearing lactate and restoring pH takes minutes; active recovery (light movement) clears it faster than sitting still.",
       "training": "Trained with hard intervals of 30 s–2 min and incomplete rest (classic 'lactate tolerance' work), and with moderate-rep resistance training.",
       "plain": "Your muscle's 'credit card' — buys hard work fast, but you pay interest as the burn.",
-      "related_pathways": ["AMPK", "NAD⁺"]
+      "related_pathways": [
+        "AMPK",
+        "NAD⁺"
+      ]
     },
     {
       "id": "oxidative",
       "name": "Aerobic oxidative system",
-      "aka": ["aerobic system", "oxidative phosphorylation", "mitochondrial energy system"],
+      "aka": [
+        "aerobic system",
+        "oxidative phosphorylation",
+        "mitochondrial energy system"
+      ],
       "duration": "~2 minutes to hours",
       "intensity": "Low to moderate (sustainable)",
       "fuel": "Carbohydrate, fat, and (a little) protein — burned with oxygen",
@@ -61,12 +89,21 @@
         "Those electrons pass down the electron transport chain, pumping protons to drive ATP synthase — 'oxidative phosphorylation'.",
         "Oxygen is the final electron acceptor, forming water. Net yield is ~30–32 ATP per glucose (and ~100+ per fat molecule) — slow but enormous."
       ],
-      "powers": ["Rest and daily activity", "Endurance / cardio (running, cycling, swimming)", "Recovery between sets and sessions", "Fat-burning at low-to-moderate intensity"],
+      "powers": [
+        "Rest and daily activity",
+        "Endurance / cardio (running, cycling, swimming)",
+        "Recovery between sets and sessions",
+        "Fat-burning at low-to-moderate intensity"
+      ],
       "byproduct": "Carbon dioxide (breathed out) and water — clean.",
       "recovery": "This IS the recovery system: it resynthesises PCr and clears lactate. A bigger aerobic base means faster recovery between hard efforts.",
       "training": "Trained with sustained low-to-moderate cardio (Zone 2) and higher-intensity intervals that raise VO₂max. Adaptations: more and bigger mitochondria, more capillaries, better fat oxidation.",
       "plain": "Your muscle's 'salary' — slow, steady, and pays for almost everything if you give it time and oxygen.",
-      "related_pathways": ["mitochondria", "AMPK", "NAD⁺"]
+      "related_pathways": [
+        "mitochondria",
+        "AMPK",
+        "NAD⁺"
+      ]
     }
   ],
   "metabolism": [
@@ -88,11 +125,37 @@
         "Net signal: 'fed state — store and build, stop burning fat.'"
       ],
       "when_it_matters": "Chronically high insulin (from constant high-glucose intake and low activity) drives fat storage and, over time, insulin resistance — the road to type 2 diabetes. Exercise makes muscle pull in glucose with little insulin (via AMPK), which is why movement is the most powerful blood-sugar tool.",
-      "hormones": ["Insulin (storage)", "Glucagon (release)", "GLP-1 / GIP (incretins, amplify insulin)", "Adrenaline & cortisol (raise glucose under stress)"],
-      "organs": ["Pancreas (beta & alpha cells)", "Liver", "Skeletal muscle", "Fat tissue"],
+      "hormones": [
+        "Insulin (storage)",
+        "Glucagon (release)",
+        "GLP-1 / GIP (incretins, amplify insulin)",
+        "Adrenaline & cortisol (raise glucose under stress)"
+      ],
+      "organs": [
+        "Pancreas (beta & alpha cells)",
+        "Liver",
+        "Skeletal muscle",
+        "Fat tissue"
+      ],
       "plain": "Insulin is the 'store it' switch. It rises when you eat, tells muscle and fat to soak up sugar, and pauses fat-burning while it does.",
-      "protocol_links": ["Fat loss", "Live longer", "Blood sugar"],
-      "related_pathways": ["PI3K-Akt", "AMPK", "mTOR"]
+      "protocol_links": [
+        "Fat loss",
+        "Live longer",
+        "Blood sugar"
+      ],
+      "related_pathways": [
+        "PI3K-Akt",
+        "AMPK",
+        "mTOR"
+      ],
+      "compounds": [
+        "Berberine",
+        "Metformin",
+        "Alpha-Lipoic",
+        "Chromium",
+        "Inositol"
+      ],
+      "energy": []
     },
     {
       "id": "glucose-conversion",
@@ -105,11 +168,36 @@
         "Gluconeogenesis — in prolonged fasting the liver builds brand-new glucose from lactate, amino acids and glycerol to protect the brain."
       ],
       "when_it_matters": "Muscle glycogen fuels hard training; liver glycogen keeps blood sugar steady overnight. Depleting glycogen (long fasts, low-carb, endurance) shifts the body toward burning fat and, eventually, gluconeogenesis — relevant to fat-loss and metabolic-flexibility protocols.",
-      "hormones": ["Insulin (store: glycogenesis)", "Glucagon & adrenaline (release: glycogenolysis)", "Cortisol (gluconeogenesis)"],
-      "organs": ["Liver (blood-sugar buffer)", "Skeletal muscle (its own fuel store)", "Kidney (minor gluconeogenesis)"],
+      "hormones": [
+        "Insulin (store: glycogenesis)",
+        "Glucagon & adrenaline (release: glycogenolysis)",
+        "Cortisol (gluconeogenesis)"
+      ],
+      "organs": [
+        "Liver (blood-sugar buffer)",
+        "Skeletal muscle (its own fuel store)",
+        "Kidney (minor gluconeogenesis)"
+      ],
       "plain": "Sugar has three fates: burn it now, pack it away as glycogen, or — when you're running low — the liver makes fresh sugar from scratch.",
-      "protocol_links": ["Fat loss", "Endurance", "Blood sugar"],
-      "related_pathways": ["AMPK", "mTOR", "PI3K-Akt"]
+      "protocol_links": [
+        "Fat loss",
+        "Endurance",
+        "Blood sugar"
+      ],
+      "related_pathways": [
+        "AMPK",
+        "mTOR",
+        "PI3K-Akt"
+      ],
+      "compounds": [
+        "Berberine",
+        "Metformin",
+        "Alpha-Lipoic"
+      ],
+      "energy": [
+        "glycolytic",
+        "oxidative"
+      ]
     },
     {
       "id": "fat-management",
@@ -122,11 +210,36 @@
         "The gatekeeper is insulin: high insulin blocks lipolysis, so fat is burned mainly when insulin is low and demand is high."
       ],
       "when_it_matters": "Fat loss = spending more than you store over time. Low-to-moderate exercise (aerobic system) and a calorie deficit lower insulin and raise fat mobilisation; muscle mass raises the 'salary' you burn at rest. This is why fat-loss stacks target insulin sensitivity, fat mobilisation (e.g. caffeine, carnitine) and appetite.",
-      "hormones": ["Insulin (store, blocks burning)", "Adrenaline/noradrenaline (mobilise fat)", "Glucagon, cortisol, growth hormone (mobilise fat)", "Leptin (satiety), Ghrelin (hunger)"],
-      "organs": ["Fat tissue (adipocytes)", "Liver", "Skeletal muscle (burns the fat)"],
+      "hormones": [
+        "Insulin (store, blocks burning)",
+        "Adrenaline/noradrenaline (mobilise fat)",
+        "Glucagon, cortisol, growth hormone (mobilise fat)",
+        "Leptin (satiety), Ghrelin (hunger)"
+      ],
+      "organs": [
+        "Fat tissue (adipocytes)",
+        "Liver",
+        "Skeletal muscle (burns the fat)"
+      ],
       "plain": "Fat goes in when insulin is high and you're in surplus; it comes out and gets burned when insulin is low and you're moving or in a deficit.",
-      "protocol_links": ["Fat loss", "Live longer"],
-      "related_pathways": ["AMPK", "PI3K-Akt", "mitochondria"]
+      "protocol_links": [
+        "Fat loss",
+        "Live longer"
+      ],
+      "related_pathways": [
+        "AMPK",
+        "PI3K-Akt",
+        "mitochondria"
+      ],
+      "compounds": [
+        "Caffeine",
+        "Carnitine",
+        "Green Tea",
+        "Yohimbine"
+      ],
+      "energy": [
+        "oxidative"
+      ]
     },
     {
       "id": "protein-muscle-turnover",
@@ -139,356 +252,712 @@
         "Insulin is permissive (reduces breakdown); testosterone and growth hormone support the anabolic side."
       ],
       "when_it_matters": "Under-eating protein or skipping the training stimulus means breakdown wins and muscle is lost — critical in fat-loss (protect muscle in a deficit) and healthy-ageing (fight sarcopenia) protocols.",
-      "hormones": ["Insulin (anti-breakdown)", "Testosterone & growth hormone (anabolic)", "Cortisol (catabolic)", "IGF-1"],
-      "organs": ["Skeletal muscle", "Liver (processes amino acids)", "Gut (protein digestion)"],
+      "hormones": [
+        "Insulin (anti-breakdown)",
+        "Testosterone & growth hormone (anabolic)",
+        "Cortisol (catabolic)",
+        "IGF-1"
+      ],
+      "organs": [
+        "Skeletal muscle",
+        "Liver (processes amino acids)",
+        "Gut (protein digestion)"
+      ],
       "plain": "Muscle is always being built and torn down at once. Lift + eat enough protein and building wins; skip either and breakdown takes over.",
-      "protocol_links": ["Build muscle", "Live longer", "Fat loss"],
-      "related_pathways": ["mTOR", "AMPK", "HPTA"]
+      "protocol_links": [
+        "Build muscle",
+        "Live longer",
+        "Fat loss"
+      ],
+      "related_pathways": [
+        "mTOR",
+        "AMPK",
+        "HPTA"
+      ],
+      "compounds": [
+        "Creatine",
+        "Whey",
+        "HMB",
+        "Leucine",
+        "EAA"
+      ],
+      "energy": [
+        "atp-pcr"
+      ]
     }
   ],
   "muscles": [
     {
       "id": "abdominals",
       "name": "Abdominals",
-      "aka": ["abs", "core", "rectus abdominis + obliques + transversus"],
+      "aka": [
+        "abs",
+        "core",
+        "rectus abdominis + obliques + transversus"
+      ],
       "region": "Trunk (anterior core)",
       "group": "Rectus abdominis, external & internal obliques, transversus abdominis",
       "overview": "The front and sides of your core. More a corset than a six-pack: these muscles flex and rotate the trunk, but their bigger job is bracing the spine and transmitting force between your upper and lower body.",
       "anatomy": {
         "origin": "Rectus abdominis: pubic crest. Obliques: lower ribs and iliac crest. Transversus: inner ribs, thoracolumbar fascia, iliac crest.",
         "insertion": "Rectus: 5th–7th ribs and sternum. Obliques: linea alba and iliac crest. Transversus: linea alba (wraps horizontally).",
-        "actions": ["Trunk flexion (rectus)", "Trunk rotation & side-bending (obliques)", "Compress abdomen / brace the spine (transversus abdominis)", "Resist extension and rotation (anti-movement, the core's real job)"]
+        "actions": [
+          "Trunk flexion (rectus)",
+          "Trunk rotation & side-bending (obliques)",
+          "Compress abdomen / brace the spine (transversus abdominis)",
+          "Resist extension and rotation (anti-movement, the core's real job)"
+        ]
       },
       "mechanism": "Concentrically they curl the ribcage toward the pelvis; more often they work isometrically, stiffening the trunk so the limbs have a stable base to push from. Intra-abdominal pressure from transversus protects the lumbar spine under load.",
       "fiber_bias": "Mixed, with a postural (type I) lean in transversus and deep fibres — built for endurance and bracing.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Force transfer and spinal protection in almost every lift, sprint, throw and change of direction.",
-      "common_problems": ["Diastasis recti (separation of the rectus)", "Poor bracing → low-back overload", "Over-flexion strain from endless crunches"],
+      "common_problems": [
+        "Diastasis recti (separation of the rectus)",
+        "Poor bracing → low-back overload",
+        "Over-flexion strain from endless crunches"
+      ],
       "training": "Anti-extension (planks, dead-bugs), anti-rotation (Pallof press) and loaded carries build the bracing role; flexion work (crunches, leg raises) trains the rectus.",
-      "stretching": "Gentle spinal extension (cobra/upward dog) lengthens the rectus abdominis."
+      "stretching": "Gentle spinal extension (cobra/upward dog) lengthens the rectus abdominis.",
+      "problems": [
+        "low-back-pain",
+        "hypertrophy"
+      ]
     },
     {
       "id": "abductors",
       "name": "Hip abductors",
-      "aka": ["glute medius/minimus", "hip abductors", "lateral hip"],
+      "aka": [
+        "glute medius/minimus",
+        "hip abductors",
+        "lateral hip"
+      ],
       "region": "Lateral hip",
       "group": "Gluteus medius, gluteus minimus, tensor fasciae latae (TFL)",
       "overview": "The muscles on the side of the hip that lift the leg out and, crucially, stop the pelvis dropping when you stand on one leg. Weakness here is behind a lot of knee and hip pain.",
       "anatomy": {
         "origin": "Outer surface of the ilium (pelvis); TFL from the anterior iliac crest.",
         "insertion": "Greater trochanter of the femur; TFL into the iliotibial (IT) band.",
-        "actions": ["Hip abduction (leg out to the side)", "Pelvic stabilisation in single-leg stance (the key role)", "Internal rotation (anterior fibres) and external rotation (posterior fibres)"]
+        "actions": [
+          "Hip abduction (leg out to the side)",
+          "Pelvic stabilisation in single-leg stance (the key role)",
+          "Internal rotation (anterior fibres) and external rotation (posterior fibres)"
+        ]
       },
       "mechanism": "Most of their work is isometric: during every step, the stance-leg abductors contract to keep the opposite side of the pelvis from dropping (Trendelenburg control). This keeps the knee tracking correctly.",
       "fiber_bias": "Postural, endurance-biased (type I) — they work at low levels all day during walking and standing.",
-      "energy_systems": ["oxidative", "glycolytic"],
+      "energy_systems": [
+        "oxidative",
+        "glycolytic"
+      ],
       "functional_role": "Level pelvis and stable knee during walking, running, stairs and single-leg movement.",
-      "common_problems": ["Gluteus medius weakness → hip drop, IT-band syndrome, patellofemoral knee pain", "Gluteal tendinopathy (lateral hip pain)"],
+      "common_problems": [
+        "Gluteus medius weakness → hip drop, IT-band syndrome, patellofemoral knee pain",
+        "Gluteal tendinopathy (lateral hip pain)"
+      ],
       "training": "Side-lying leg raises, banded lateral walks, single-leg stance work, step-downs.",
-      "stretching": "Figure-4 / crossed-leg glute stretch and standing IT-band-region stretches."
+      "stretching": "Figure-4 / crossed-leg glute stretch and standing IT-band-region stretches.",
+      "problems": [
+        "hip-mobility",
+        "knee-pain"
+      ]
     },
     {
       "id": "adductors",
       "name": "Hip adductors",
-      "aka": ["inner thigh", "groin muscles"],
+      "aka": [
+        "inner thigh",
+        "groin muscles"
+      ],
       "region": "Medial thigh",
       "group": "Adductor magnus, longus, brevis, gracilis, pectineus",
       "overview": "The inner-thigh muscles that pull the legs together and help control the hip. They also quietly assist hip extension and are a common site of 'groin strains' in sport.",
       "anatomy": {
         "origin": "Pubis and ischium (pelvis).",
         "insertion": "Along the linea aspera of the femur; gracilis crosses to the shin (pes anserine).",
-        "actions": ["Hip adduction (bring the thigh inward)", "Assist hip flexion (longus, brevis, pectineus) and hip extension (adductor magnus, the 'fourth hamstring')", "Stabilise the pelvis and control the leg in stance"]
+        "actions": [
+          "Hip adduction (bring the thigh inward)",
+          "Assist hip flexion (longus, brevis, pectineus) and hip extension (adductor magnus, the 'fourth hamstring')",
+          "Stabilise the pelvis and control the leg in stance"
+        ]
       },
       "mechanism": "Concentrically they sweep the thigh toward the midline; in running and cutting they act largely eccentrically to decelerate the leg — which is why they strain under fast change-of-direction.",
       "fiber_bias": "Mixed; adductor magnus has a strong power/extension role akin to the hamstrings.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Leg control in cutting, skating, squatting and any side-to-side athletic movement.",
-      "common_problems": ["Groin (adductor) strain", "Adductor tendinopathy / athletic groin pain", "Weakness contributing to hip instability"],
+      "common_problems": [
+        "Groin (adductor) strain",
+        "Adductor tendinopathy / athletic groin pain",
+        "Weakness contributing to hip instability"
+      ],
       "training": "Copenhagen adductor plank, sumo/wide squats, adduction machine, cossack squats.",
-      "stretching": "Butterfly stretch, wide-stance / side-lunge groin stretches."
+      "stretching": "Butterfly stretch, wide-stance / side-lunge groin stretches.",
+      "problems": [
+        "hip-mobility",
+        "knee-pain"
+      ]
     },
     {
       "id": "biceps",
       "name": "Biceps brachii",
-      "aka": ["biceps", "front of the upper arm"],
+      "aka": [
+        "biceps",
+        "front of the upper arm"
+      ],
       "region": "Anterior upper arm",
       "group": "Biceps brachii (long & short heads), with brachialis underneath",
       "overview": "The showpiece muscle on the front of the arm. It bends the elbow and, uniquely, turns the palm up (supination) — its role in twisting a screwdriver is as important as curling a weight.",
       "anatomy": {
         "origin": "Long head: supraglenoid tubercle of the scapula (runs through the shoulder). Short head: coracoid process of the scapula.",
         "insertion": "Radial tuberosity of the forearm (and bicipital aponeurosis).",
-        "actions": ["Elbow flexion", "Forearm supination (palm-up rotation)", "Weak assist in shoulder flexion"]
+        "actions": [
+          "Elbow flexion",
+          "Forearm supination (palm-up rotation)",
+          "Weak assist in shoulder flexion"
+        ]
       },
       "mechanism": "Because it crosses both the shoulder and elbow, it is a two-joint muscle. It generates most force as an elbow flexor when the forearm is supinated; the deeper brachialis flexes the elbow regardless of grip.",
       "fiber_bias": "Mixed, slightly fast-twitch — responds to both heavier low-rep and moderate-rep work.",
-      "energy_systems": ["atp-pcr", "glycolytic"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic"
+      ],
       "functional_role": "Pulling, lifting and carrying; controlling palm rotation.",
-      "common_problems": ["Biceps tendinopathy (front of shoulder)", "Long-head tendon tears (the 'Popeye' bulge)", "Distal (elbow) tendon rupture"],
+      "common_problems": [
+        "Biceps tendinopathy (front of shoulder)",
+        "Long-head tendon tears (the 'Popeye' bulge)",
+        "Distal (elbow) tendon rupture"
+      ],
       "training": "Curls (barbell, dumbbell, incline), chin-ups, hammer curls (brachialis/brachioradialis).",
-      "stretching": "Arm extended and externally rotated against a wall; doorway stretch."
+      "stretching": "Arm extended and externally rotated against a wall; doorway stretch.",
+      "problems": [
+        "elbow-wrist",
+        "hypertrophy"
+      ]
     },
     {
       "id": "calves",
       "name": "Calves",
-      "aka": ["gastrocnemius + soleus", "triceps surae", "lower leg"],
+      "aka": [
+        "gastrocnemius + soleus",
+        "triceps surae",
+        "lower leg"
+      ],
       "region": "Posterior lower leg",
       "group": "Gastrocnemius (two heads) and soleus, joining into the Achilles tendon",
       "overview": "The engine of push-off. Two muscles share the Achilles tendon: the gastrocnemius for spring and power, the deeper soleus for endurance and standing. Together they point the foot and store elastic energy every step.",
       "anatomy": {
         "origin": "Gastrocnemius: above the knee on the femur. Soleus: back of the tibia and fibula (below the knee).",
         "insertion": "Calcaneus (heel) via the Achilles tendon.",
-        "actions": ["Plantarflexion (point the foot / push off)", "Gastrocnemius assists knee flexion", "Soleus is a key postural muscle for standing balance"]
+        "actions": [
+          "Plantarflexion (point the foot / push off)",
+          "Gastrocnemius assists knee flexion",
+          "Soleus is a key postural muscle for standing balance"
+        ]
       },
       "mechanism": "The gastrocnemius crosses the knee, so it works best with the knee straight (standing calf raise); the soleus works with the knee bent (seated calf raise). The Achilles acts as a spring, storing and returning energy in running and jumping.",
       "fiber_bias": "Soleus is strongly slow-twitch (type I) postural; gastrocnemius is more fast-twitch and powerful.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Push-off in walking, running and jumping; ankle stability and balance in standing.",
-      "common_problems": ["Calf strain ('tennis leg', usually gastrocnemius)", "Achilles tendinopathy", "Weakness limiting single-leg balance and push-off"],
+      "common_problems": [
+        "Calf strain ('tennis leg', usually gastrocnemius)",
+        "Achilles tendinopathy",
+        "Weakness limiting single-leg balance and push-off"
+      ],
       "training": "Standing calf raises (gastrocnemius), seated calf raises (soleus), skipping and jumping.",
-      "stretching": "Straight-knee wall stretch (gastrocnemius) and bent-knee stretch (soleus)."
+      "stretching": "Straight-knee wall stretch (gastrocnemius) and bent-knee stretch (soleus).",
+      "problems": [
+        "ankle-foot",
+        "knee-pain"
+      ]
     },
     {
       "id": "chest",
       "name": "Chest (pectorals)",
-      "aka": ["pecs", "pectoralis major", "pectoralis minor"],
+      "aka": [
+        "pecs",
+        "pectoralis major",
+        "pectoralis minor"
+      ],
       "region": "Anterior chest",
       "group": "Pectoralis major (clavicular & sternal heads), pectoralis minor beneath",
       "overview": "The big fan-shaped muscle across the front of the chest. It drives everything you push away from you and pulls the arm across the body — a hug, a bench press, a shove.",
       "anatomy": {
         "origin": "Clavicle, sternum and upper rib cartilages.",
         "insertion": "Intertubercular groove of the humerus (upper arm).",
-        "actions": ["Horizontal adduction (arm across the body)", "Shoulder flexion (clavicular/upper head)", "Shoulder extension from flexed (sternal/lower head)", "Internal rotation of the humerus"]
+        "actions": [
+          "Horizontal adduction (arm across the body)",
+          "Shoulder flexion (clavicular/upper head)",
+          "Shoulder extension from flexed (sternal/lower head)",
+          "Internal rotation of the humerus"
+        ]
       },
       "mechanism": "It converges from a wide origin onto a single point on the arm, so contracting it sweeps the arm inward and forward. The upper (clavicular) fibres press up and in; the lower (sternal) fibres press down and in — which is why incline and decline angles bias different regions.",
       "fiber_bias": "Mixed, with good fast-twitch capacity — responds to heavy pressing.",
-      "energy_systems": ["atp-pcr", "glycolytic"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic"
+      ],
       "functional_role": "All pressing and pushing; throwing; bringing the arms together.",
-      "common_problems": ["Pec strain or tear (bench press, sudden load)", "Tight pecs pulling shoulders forward (rounded posture)"],
+      "common_problems": [
+        "Pec strain or tear (bench press, sudden load)",
+        "Tight pecs pulling shoulders forward (rounded posture)"
+      ],
       "training": "Bench press (flat/incline/decline), push-ups, dips, cable flyes.",
-      "stretching": "Doorway pec stretch; arm-on-wall chest opener."
+      "stretching": "Doorway pec stretch; arm-on-wall chest opener.",
+      "problems": [
+        "neck-shoulder",
+        "hypertrophy"
+      ]
     },
     {
       "id": "forearms",
       "name": "Forearms",
-      "aka": ["wrist flexors & extensors", "grip muscles", "brachioradialis"],
+      "aka": [
+        "wrist flexors & extensors",
+        "grip muscles",
+        "brachioradialis"
+      ],
       "region": "Forearm",
       "group": "Wrist/finger flexors (anterior), wrist/finger extensors (posterior), brachioradialis",
       "overview": "Dozens of small muscles that move the wrist and fingers and, above all, deliver grip. Grip strength is one of the best simple markers of overall strength and even longevity.",
       "anatomy": {
         "origin": "Flexors: medial epicondyle of the humerus (inner elbow). Extensors: lateral epicondyle (outer elbow).",
         "insertion": "Bones of the wrist, hand and fingers via long tendons.",
-        "actions": ["Wrist flexion / extension", "Finger flexion (grip) and extension", "Radial & ulnar deviation", "Brachioradialis: elbow flexion in neutral grip"]
+        "actions": [
+          "Wrist flexion / extension",
+          "Finger flexion (grip) and extension",
+          "Radial & ulnar deviation",
+          "Brachioradialis: elbow flexion in neutral grip"
+        ]
       },
       "mechanism": "Long tendons run from muscles in the forearm all the way to the fingers, so the fingers are moved by 'remote control'. Grip is mostly isometric — sustained finger-flexor contraction against a bar or load.",
       "fiber_bias": "Endurance-biased (type I) — built to sustain grip and posture over time.",
-      "energy_systems": ["oxidative", "glycolytic"],
+      "energy_systems": [
+        "oxidative",
+        "glycolytic"
+      ],
       "functional_role": "Grip and carry; controlling every hand task and every pulling lift.",
-      "common_problems": ["Lateral epicondylitis ('tennis elbow', extensors)", "Medial epicondylitis ('golfer's elbow', flexors)", "Carpal tunnel / overuse strain"],
+      "common_problems": [
+        "Lateral epicondylitis ('tennis elbow', extensors)",
+        "Medial epicondylitis ('golfer's elbow', flexors)",
+        "Carpal tunnel / overuse strain"
+      ],
       "training": "Dead hangs, farmer's carries, wrist curls and extensions, reverse curls.",
-      "stretching": "Wrist flexor stretch (palm up, gently pull fingers back) and extensor stretch (palm down)."
+      "stretching": "Wrist flexor stretch (palm up, gently pull fingers back) and extensor stretch (palm down).",
+      "problems": [
+        "elbow-wrist"
+      ]
     },
     {
       "id": "glutes",
       "name": "Glutes",
-      "aka": ["gluteus maximus/medius/minimus", "buttocks", "hip extensors"],
+      "aka": [
+        "gluteus maximus/medius/minimus",
+        "buttocks",
+        "hip extensors"
+      ],
       "region": "Posterior hip",
       "group": "Gluteus maximus (power), gluteus medius & minimus (stability)",
       "overview": "The most powerful muscle group in the body. The gluteus maximus extends the hip to drive you up from a squat, forward in a sprint and upright from bending; the smaller glutes keep the pelvis level.",
       "anatomy": {
         "origin": "Maximus: back of the ilium, sacrum and coccyx. Med/min: outer ilium.",
         "insertion": "Maximus: gluteal tuberosity of the femur and the IT band. Med/min: greater trochanter.",
-        "actions": ["Hip extension (maximus — the main mover)", "Hip abduction & pelvic stability (medius/minimus)", "External rotation of the hip", "Control of the trunk over the legs"]
+        "actions": [
+          "Hip extension (maximus — the main mover)",
+          "Hip abduction & pelvic stability (medius/minimus)",
+          "External rotation of the hip",
+          "Control of the trunk over the legs"
+        ]
       },
       "mechanism": "The gluteus maximus is the prime hip extensor, generating enormous force to straighten the hip against load — the top of a deadlift, the drive of a jump. It works with the hamstrings but dominates at higher force. The medius/minimus stabilise as covered under abductors.",
       "fiber_bias": "Maximus is powerful and fairly fast-twitch; medius/minimus lean postural.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Standing up, climbing, sprinting, jumping, lifting from the floor; hip and pelvis control.",
-      "common_problems": ["Gluteal amnesia / underactivity ('dead butt')", "Gluteal tendinopathy", "Weakness overloading the low back and knees"],
+      "common_problems": [
+        "Gluteal amnesia / underactivity ('dead butt')",
+        "Gluteal tendinopathy",
+        "Weakness overloading the low back and knees"
+      ],
       "training": "Hip thrusts, squats, deadlifts, lunges, step-ups, banded work.",
-      "stretching": "Figure-4 / pigeon stretch, knee-to-chest."
+      "stretching": "Figure-4 / pigeon stretch, knee-to-chest.",
+      "problems": [
+        "low-back-pain",
+        "hip-mobility",
+        "knee-pain"
+      ]
     },
     {
       "id": "hamstrings",
       "name": "Hamstrings",
-      "aka": ["hams", "posterior thigh", "biceps femoris/semitendinosus/semimembranosus"],
+      "aka": [
+        "hams",
+        "posterior thigh",
+        "biceps femoris/semitendinosus/semimembranosus"
+      ],
       "region": "Posterior thigh",
       "group": "Biceps femoris, semitendinosus, semimembranosus",
       "overview": "Three muscles down the back of the thigh that both bend the knee and extend the hip — and, most importantly, decelerate the leg at speed. They are the most commonly strained muscle in sprinting sports.",
       "anatomy": {
         "origin": "Ischial tuberosity (sitting bone); short head of biceps femoris from the femur.",
         "insertion": "Around the knee — biceps femoris to the fibula (outside), semitendinosus & semimembranosus to the tibia (inside).",
-        "actions": ["Knee flexion", "Hip extension (with the glutes)", "Deceleration of the swinging leg (eccentric, key in sprinting)", "Rotation of the flexed knee"]
+        "actions": [
+          "Knee flexion",
+          "Hip extension (with the glutes)",
+          "Deceleration of the swinging leg (eccentric, key in sprinting)",
+          "Rotation of the flexed knee"
+        ]
       },
       "mechanism": "As two-joint muscles they extend the hip and flex the knee at once. In sprinting their biggest demand is eccentric — braking the fast-forward-swinging shin just before foot contact — which is exactly when strains happen.",
       "fiber_bias": "Fairly fast-twitch, built for powerful and high-speed eccentric work.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Sprinting, jumping, bending and lifting; knee stability alongside the ACL.",
-      "common_problems": ["Hamstring strain (sprinting)", "Proximal hamstring tendinopathy (sitting-bone pain)", "Weak eccentric strength → re-injury"],
+      "common_problems": [
+        "Hamstring strain (sprinting)",
+        "Proximal hamstring tendinopathy (sitting-bone pain)",
+        "Weak eccentric strength → re-injury"
+      ],
       "training": "Romanian deadlifts, Nordic hamstring curls, hip hinges, glute-ham raises.",
-      "stretching": "Supine leg-raise (with strap), standing forward fold, hip hinge with flat back."
+      "stretching": "Supine leg-raise (with strap), standing forward fold, hip hinge with flat back.",
+      "problems": [
+        "knee-pain",
+        "low-back-pain",
+        "hip-mobility"
+      ]
     },
     {
       "id": "lats",
       "name": "Lats (latissimus dorsi)",
-      "aka": ["lats", "wings", "latissimus dorsi"],
+      "aka": [
+        "lats",
+        "wings",
+        "latissimus dorsi"
+      ],
       "region": "Back (broad)",
       "group": "Latissimus dorsi",
       "overview": "The broadest muscle in the body, sweeping from the lower spine up to the arm. It drives every pull-down and pull-up and gives the back its V-shape. It also links the arm to the opposite hip through the fascia.",
       "anatomy": {
         "origin": "Lower six thoracic vertebrae, lumbar spine, sacrum, iliac crest and lower ribs (via thoracolumbar fascia).",
         "insertion": "Intertubercular groove of the humerus (front of the upper arm).",
-        "actions": ["Shoulder extension (pull the arm down and back)", "Shoulder adduction (arm to the side, e.g. pull-up)", "Internal rotation of the humerus", "Assist trunk and pelvis stability"]
+        "actions": [
+          "Shoulder extension (pull the arm down and back)",
+          "Shoulder adduction (arm to the side, e.g. pull-up)",
+          "Internal rotation of the humerus",
+          "Assist trunk and pelvis stability"
+        ]
       },
       "mechanism": "Because it wraps from the back of the trunk to the front of the arm, contracting it pulls the arm down, back and inward — the essence of a pull-up or row. It also transmits force diagonally across the back to the opposite glute.",
       "fiber_bias": "Mixed — responds to both heavy pulling and higher-rep work.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Pulling and climbing; bringing the body up to the hands (pull-ups) or the hands to the body (rows).",
-      "common_problems": ["Tightness limiting overhead reach", "Strain in heavy pulling / rowing", "Underuse contributing to poor pulling posture"],
+      "common_problems": [
+        "Tightness limiting overhead reach",
+        "Strain in heavy pulling / rowing",
+        "Underuse contributing to poor pulling posture"
+      ],
       "training": "Pull-ups, lat pulldowns, rows (barbell, dumbbell, cable), straight-arm pulldowns.",
-      "stretching": "Overhead reach and side-bend; hanging from a bar."
+      "stretching": "Overhead reach and side-bend; hanging from a bar.",
+      "problems": [
+        "neck-shoulder",
+        "low-back-pain",
+        "hypertrophy"
+      ]
     },
     {
       "id": "lower-back",
       "db_name": "lower back",
       "name": "Lower back (erector spinae)",
-      "aka": ["spinal erectors", "erector spinae", "lumbar extensors"],
+      "aka": [
+        "spinal erectors",
+        "erector spinae",
+        "lumbar extensors"
+      ],
       "region": "Posterior trunk (lumbar)",
       "group": "Erector spinae (iliocostalis, longissimus, spinalis), with deep multifidus",
       "overview": "The columns of muscle either side of the spine that hold you upright and extend the back. With the deep multifidus, they resist the pull of gravity and stabilise each spinal segment.",
       "anatomy": {
         "origin": "Sacrum, iliac crest and lumbar vertebrae.",
         "insertion": "Up the ribs and vertebrae to the neck (running the length of the spine).",
-        "actions": ["Spinal extension (straighten / arch the back)", "Resist flexion under load (keeping a neutral spine)", "Side-bending and rotation control", "Segmental stability (multifidus)"]
+        "actions": [
+          "Spinal extension (straighten / arch the back)",
+          "Resist flexion under load (keeping a neutral spine)",
+          "Side-bending and rotation control",
+          "Segmental stability (multifidus)"
+        ]
       },
       "mechanism": "They work mostly isometrically to keep the spine neutral while the hips and legs do the lifting. In a deadlift they don't 'lift the weight' so much as prevent the spine from rounding under it.",
       "fiber_bias": "Strongly postural (type I), endurance-built — active all day maintaining posture.",
-      "energy_systems": ["oxidative", "glycolytic"],
+      "energy_systems": [
+        "oxidative",
+        "glycolytic"
+      ],
       "functional_role": "Upright posture, safe lifting, and protecting the spine in every loaded movement.",
-      "common_problems": ["Non-specific low-back pain", "Muscle spasm / strain from poor lifting mechanics", "Multifidus inhibition after back pain"],
+      "common_problems": [
+        "Non-specific low-back pain",
+        "Muscle spasm / strain from poor lifting mechanics",
+        "Multifidus inhibition after back pain"
+      ],
       "training": "Hip hinges with neutral spine, back extensions, bird-dogs, carries, deadlifts.",
-      "stretching": "Child's pose, knees-to-chest, cat-camel mobility."
+      "stretching": "Child's pose, knees-to-chest, cat-camel mobility.",
+      "problems": [
+        "low-back-pain"
+      ]
     },
     {
       "id": "middle-back",
       "db_name": "middle back",
       "name": "Middle back",
-      "aka": ["rhomboids", "mid-traps", "scapular retractors"],
+      "aka": [
+        "rhomboids",
+        "mid-traps",
+        "scapular retractors"
+      ],
       "region": "Upper-mid back (between the shoulder blades)",
       "group": "Rhomboids (major & minor), middle trapezius",
       "overview": "The muscles between the shoulder blades that pull them together and hold them onto the ribcage. They are the antidote to a rounded, hunched-forward posture.",
       "anatomy": {
         "origin": "Lower cervical and upper thoracic vertebrae (spinous processes).",
         "insertion": "Medial (inner) border of the scapula.",
-        "actions": ["Scapular retraction (squeeze the shoulder blades together)", "Scapular stabilisation against the ribcage", "Downward rotation and elevation of the scapula (rhomboids)"]
+        "actions": [
+          "Scapular retraction (squeeze the shoulder blades together)",
+          "Scapular stabilisation against the ribcage",
+          "Downward rotation and elevation of the scapula (rhomboids)"
+        ]
       },
       "mechanism": "They anchor the shoulder blade so the arm has a stable base. Every horizontal pull (row) retracts the scapula via these muscles; posturally they resist the shoulders drifting forward.",
       "fiber_bias": "Postural, endurance-biased (type I).",
-      "energy_systems": ["oxidative", "glycolytic"],
+      "energy_systems": [
+        "oxidative",
+        "glycolytic"
+      ],
       "functional_role": "Posture, shoulder-blade control, and a strong base for all pulling and pressing.",
-      "common_problems": ["Interscapular aching from prolonged desk posture", "Weakness → rounded shoulders and shoulder-impingement risk"],
+      "common_problems": [
+        "Interscapular aching from prolonged desk posture",
+        "Weakness → rounded shoulders and shoulder-impingement risk"
+      ],
       "training": "Rows, face pulls, scapular retractions, prone Y-T-W raises.",
-      "stretching": "Cross-body reach; thoracic 'hug and round' between the blades."
+      "stretching": "Cross-body reach; thoracic 'hug and round' between the blades.",
+      "problems": [
+        "neck-shoulder"
+      ]
     },
     {
       "id": "neck",
       "name": "Neck",
-      "aka": ["cervical muscles", "sternocleidomastoid", "deep neck flexors"],
+      "aka": [
+        "cervical muscles",
+        "sternocleidomastoid",
+        "deep neck flexors"
+      ],
       "region": "Cervical spine",
       "group": "Sternocleidomastoid, scalenes, deep neck flexors, upper cervical extensors",
       "overview": "The muscles that move and support the head — a surprisingly heavy load balanced on a slender spine. They turn, tilt and nod the head and, critically, hold it stacked over the shoulders.",
       "anatomy": {
         "origin": "Sternum & clavicle (SCM), cervical vertebrae (scalenes, deep flexors/extensors).",
         "insertion": "Mastoid process of the skull (SCM), ribs (scalenes), skull base and cervical vertebrae.",
-        "actions": ["Head/neck flexion, extension, rotation and side-bending", "Deep neck flexors: stabilise and hold the head over the shoulders", "Assist breathing (scalenes elevate the ribs)"]
+        "actions": [
+          "Head/neck flexion, extension, rotation and side-bending",
+          "Deep neck flexors: stabilise and hold the head over the shoulders",
+          "Assist breathing (scalenes elevate the ribs)"
+        ]
       },
       "mechanism": "The larger SCM and scalenes produce big movements and can dominate when the deep stabilisers are weak; the deep neck flexors do the quiet postural job of keeping the head balanced, reducing strain.",
       "fiber_bias": "Deep stabilisers are strongly postural (type I); superficial movers are more mixed.",
-      "energy_systems": ["oxidative", "glycolytic"],
+      "energy_systems": [
+        "oxidative",
+        "glycolytic"
+      ],
       "functional_role": "Positioning the head and eyes, and protecting the cervical spine in posture and impact.",
-      "common_problems": ["'Tech neck' / forward-head posture and tension headaches", "Whiplash", "Deep-flexor weakness with overactive superficial muscles"],
+      "common_problems": [
+        "'Tech neck' / forward-head posture and tension headaches",
+        "Whiplash",
+        "Deep-flexor weakness with overactive superficial muscles"
+      ],
       "training": "Chin tucks (deep neck flexors), controlled neck range-of-motion, isometric holds.",
-      "stretching": "Gentle side-bend (ear to shoulder) and upper-trap/levator stretches."
+      "stretching": "Gentle side-bend (ear to shoulder) and upper-trap/levator stretches.",
+      "problems": [
+        "neck-shoulder"
+      ]
     },
     {
       "id": "quadriceps",
       "name": "Quadriceps",
-      "aka": ["quads", "front of the thigh", "rectus femoris + 3 vasti"],
+      "aka": [
+        "quads",
+        "front of the thigh",
+        "rectus femoris + 3 vasti"
+      ],
       "region": "Anterior thigh",
       "group": "Rectus femoris, vastus lateralis, vastus medialis (VMO), vastus intermedius",
       "overview": "Four muscles on the front of the thigh that straighten the knee — the muscle you feel working in every squat, stair and stand-up. The rectus femoris also helps flex the hip; the inner VMO helps track the kneecap.",
       "anatomy": {
         "origin": "Rectus femoris: pelvis (AIIS). Three vasti: shaft of the femur.",
         "insertion": "Patella and, via the patellar tendon, the tibial tuberosity (shin).",
-        "actions": ["Knee extension (all four heads)", "Hip flexion (rectus femoris, the two-joint head)", "Patellar tracking and control (especially VMO)", "Decelerate knee bend on landing (eccentric)"]
+        "actions": [
+          "Knee extension (all four heads)",
+          "Hip flexion (rectus femoris, the two-joint head)",
+          "Patellar tracking and control (especially VMO)",
+          "Decelerate knee bend on landing (eccentric)"
+        ]
       },
       "mechanism": "The four heads converge on the kneecap and pull the shin straight through the patellar tendon. They act as powerful shock absorbers, contracting eccentrically to control the descent of a squat or a landing. Balanced pull (notably the VMO) keeps the kneecap tracking in its groove.",
       "fiber_bias": "Mixed to fast-twitch — strong and powerful, with postural demand in standing.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Standing, squatting, climbing, running, jumping and absorbing landings.",
-      "common_problems": ["Patellofemoral pain / poor kneecap tracking (often VMO-related)", "Patellar tendinopathy ('jumper's knee')", "Quad strain in sprinting/kicking"],
+      "common_problems": [
+        "Patellofemoral pain / poor kneecap tracking (often VMO-related)",
+        "Patellar tendinopathy ('jumper's knee')",
+        "Quad strain in sprinting/kicking"
+      ],
       "training": "Squats, lunges, step-ups, leg press, leg extensions, Spanish squats (VMO/tendon).",
-      "stretching": "Standing quad stretch (heel to buttock); couch stretch for the rectus femoris."
+      "stretching": "Standing quad stretch (heel to buttock); couch stretch for the rectus femoris.",
+      "problems": [
+        "knee-pain",
+        "hypertrophy"
+      ]
     },
     {
       "id": "shoulders",
       "name": "Shoulders (deltoids)",
-      "aka": ["delts", "deltoid", "with the rotator cuff"],
+      "aka": [
+        "delts",
+        "deltoid",
+        "with the rotator cuff"
+      ],
       "region": "Shoulder",
       "group": "Deltoid (anterior, lateral, posterior heads); rotator cuff underneath",
       "overview": "The rounded cap of the shoulder. The three-headed deltoid lifts the arm in every direction; beneath it the rotator cuff keeps the ball centred in a very shallow, mobile socket — the trade-off for the shoulder being the body's most mobile joint.",
       "anatomy": {
         "origin": "Clavicle, acromion and scapular spine.",
         "insertion": "Deltoid tuberosity of the humerus.",
-        "actions": ["Shoulder abduction (lift arm to the side — lateral head)", "Shoulder flexion (arm forward — anterior head)", "Shoulder extension & horizontal abduction (arm back — posterior head)", "Rotator cuff: hold the humeral head centred and rotate the arm"]
+        "actions": [
+          "Shoulder abduction (lift arm to the side — lateral head)",
+          "Shoulder flexion (arm forward — anterior head)",
+          "Shoulder extension & horizontal abduction (arm back — posterior head)",
+          "Rotator cuff: hold the humeral head centred and rotate the arm"
+        ]
       },
       "mechanism": "The three deltoid heads pull the arm in different directions, so pressing, raising to the front and raising to the rear each bias a different head. Because the socket is shallow, the rotator cuff must actively compress the joint throughout — stability here is muscular, not bony.",
       "fiber_bias": "Mixed; cuff is postural/stabilising.",
-      "energy_systems": ["atp-pcr", "glycolytic", "oxidative"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic",
+        "oxidative"
+      ],
       "functional_role": "Reaching, lifting and pressing overhead; positioning and stabilising the arm.",
-      "common_problems": ["Rotator-cuff tendinopathy / impingement", "Shoulder instability or dislocation", "Posterior-delt & cuff weakness with rounded posture"],
+      "common_problems": [
+        "Rotator-cuff tendinopathy / impingement",
+        "Shoulder instability or dislocation",
+        "Posterior-delt & cuff weakness with rounded posture"
+      ],
       "training": "Overhead press, lateral raises, front raises, rear-delt flyes, cuff work (external rotations).",
-      "stretching": "Cross-body posterior-shoulder stretch; sleeper stretch for internal rotation."
+      "stretching": "Cross-body posterior-shoulder stretch; sleeper stretch for internal rotation.",
+      "problems": [
+        "neck-shoulder",
+        "hypertrophy"
+      ]
     },
     {
       "id": "traps",
       "name": "Trapezius",
-      "aka": ["traps", "upper/mid/lower trapezius"],
+      "aka": [
+        "traps",
+        "upper/mid/lower trapezius"
+      ],
       "region": "Upper back & neck",
       "group": "Trapezius (upper, middle, lower fibres)",
       "overview": "A large diamond-shaped muscle spanning the neck, shoulders and mid-back. Its three parts move the shoulder blade in different directions and, together, rotate it upward so you can lift the arm overhead.",
       "anatomy": {
         "origin": "Base of the skull, nuchal ligament, and spinous processes from the neck to the mid-back.",
         "insertion": "Clavicle, acromion and spine of the scapula.",
-        "actions": ["Upper: elevate the scapula (shrug) and support the arm's weight", "Middle: retract the scapula", "Lower: depress and upwardly rotate the scapula", "All three together: upward-rotate the scapula for overhead reach"]
+        "actions": [
+          "Upper: elevate the scapula (shrug) and support the arm's weight",
+          "Middle: retract the scapula",
+          "Lower: depress and upwardly rotate the scapula",
+          "All three together: upward-rotate the scapula for overhead reach"
+        ]
       },
       "mechanism": "The upper and lower fibres form a force-couple that spins the shoulder blade upward as you raise the arm — without it, overhead lifting pinches the shoulder. The upper traps also bear the hanging weight of the arms all day.",
       "fiber_bias": "Postural, endurance-biased (type I) — especially the upper fibres.",
-      "energy_systems": ["oxidative", "glycolytic"],
+      "energy_systems": [
+        "oxidative",
+        "glycolytic"
+      ],
       "functional_role": "Shoulder-blade movement and overhead function; carrying and shrugging loads; head support.",
-      "common_problems": ["Upper-trap tension and neck/shoulder aching (stress, desk posture)", "Weak lower traps → poor scapular rotation and impingement"],
+      "common_problems": [
+        "Upper-trap tension and neck/shoulder aching (stress, desk posture)",
+        "Weak lower traps → poor scapular rotation and impingement"
+      ],
       "training": "Shrugs (upper), rows & face pulls (mid), Y-raises and prone lower-trap work.",
-      "stretching": "Upper-trap stretch (ear to shoulder, gentle overpressure)."
+      "stretching": "Upper-trap stretch (ear to shoulder, gentle overpressure).",
+      "problems": [
+        "neck-shoulder"
+      ]
     },
     {
       "id": "triceps",
       "name": "Triceps brachii",
-      "aka": ["triceps", "back of the upper arm"],
+      "aka": [
+        "triceps",
+        "back of the upper arm"
+      ],
       "region": "Posterior upper arm",
       "group": "Triceps brachii (long, lateral, medial heads)",
       "overview": "The three-headed muscle on the back of the arm and the main straightener of the elbow. It makes up about two-thirds of the upper arm's mass — most of your 'arm size' is triceps, not biceps.",
       "anatomy": {
         "origin": "Long head: scapula (infraglenoid tubercle). Lateral & medial heads: back of the humerus.",
         "insertion": "Olecranon of the ulna (point of the elbow).",
-        "actions": ["Elbow extension (all three heads)", "Long head assists shoulder extension and adduction", "Stabilise the elbow in pressing"]
+        "actions": [
+          "Elbow extension (all three heads)",
+          "Long head assists shoulder extension and adduction",
+          "Stabilise the elbow in pressing"
+        ]
       },
       "mechanism": "All three heads converge on the elbow to straighten it, so every press and push-up finishes with the triceps. The long head crosses the shoulder too, so it also helps pull the arm down and back and is stretched most with the arm overhead.",
       "fiber_bias": "Mixed, with good fast-twitch capacity for pressing power.",
-      "energy_systems": ["atp-pcr", "glycolytic"],
+      "energy_systems": [
+        "atp-pcr",
+        "glycolytic"
+      ],
       "functional_role": "Pushing and pressing; locking out any straight-arm movement; throwing.",
-      "common_problems": ["Triceps tendinopathy at the elbow", "Weakness limiting press lockout"],
+      "common_problems": [
+        "Triceps tendinopathy at the elbow",
+        "Weakness limiting press lockout"
+      ],
       "training": "Close-grip bench, dips, push-ups, overhead extensions (long head), pushdowns.",
-      "stretching": "Overhead triceps stretch (bend the elbow, gently pull with the other hand)."
+      "stretching": "Overhead triceps stretch (bend the elbow, gently pull with the other hand).",
+      "problems": [
+        "elbow-wrist",
+        "hypertrophy"
+      ]
     }
   ]
 }
-
