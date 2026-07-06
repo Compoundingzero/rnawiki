@@ -7,6 +7,23 @@ const crypto = require('crypto');
 const db = require('./db');
 
 const DIR = path.join(__dirname, 'site');
+// Cache-busting: a short hash of the built assets, recomputed on each boot (i.e. each deploy).
+// Injected as ?v=<hash> into every HTML response so browsers always fetch the current build —
+// no hard-refresh needed — while HTML/JS/CSS are served no-cache so the CDN can't pin them.
+const ASSET_VER = (() => {
+  try {
+    const h = crypto.createHash('sha1');
+    for (const f of ['app.js', 'styles.css', 'data.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
+    return h.digest('hex').slice(0, 10);
+  } catch (e) { return String(Date.now()); }
+})();
+function versionAssets(html) {
+  return String(html).replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
+}
+function endHtml(res, html, code) {
+  res.writeHead(code || 200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
+  res.end(versionAssets(html));
+}
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SESSION_SECRET || 'dev-secret-change-me';
 const TYPES = {
@@ -749,7 +766,11 @@ async function api(req, res, url) {
 function sendFile(res, file, code) {
   fs.readFile(file, (err, data) => {
     if (err) { res.writeHead(404); return res.end('Not found'); }
-    res.writeHead(code || 200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
+    const ext = path.extname(file);
+    if (ext === '.html') return endHtml(res, data, code);
+    const headers = { 'Content-Type': TYPES[ext] || 'application/octet-stream' };
+    if (ext === '.js' || ext === '.css' || ext === '.json') headers['Cache-Control'] = 'no-cache';
+    res.writeHead(code || 200, headers);
     res.end(data);
   });
 }
@@ -779,8 +800,7 @@ function serveProfileShell(res, handle) {
           .replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${esc(desc)}">`)
           .replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${esc(purl)}">`)
           .replace('</head>', `<script type="application/ld+json">${ld}</script></head>`);
-        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-        res.end(out);
+        endHtml(res, out);
       });
     })
     .catch(() => shell());
@@ -805,14 +825,13 @@ function serveStatic(req, res, url) {
         .replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${esc(desc)}">`)
         .replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${esc(t)}">`)
         .replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${esc(desc)}">`);
-      res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-      res.end(out);
+      endHtml(res, out);
     });
   }
   // "/" serves the prerendered crawlable home if present, else the SPA shell
   if (p === '/') {
     return fs.readFile(path.join(DIR, 'home.html'), (e, html) => {
-      if (!e) { res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' }); return res.end(html); }
+      if (!e) return endHtml(res, html);
       sendFile(res, path.join(DIR, 'index.html'));
     });
   }
@@ -821,13 +840,17 @@ function serveStatic(req, res, url) {
   if (!file.startsWith(DIR)) { res.writeHead(403); return res.end('Forbidden'); }
   fs.readFile(file, (err, data) => {
     if (!err) {
-      res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
+      const ext = path.extname(file);
+      if (ext === '.html') return endHtml(res, data);
+      const headers = { 'Content-Type': TYPES[ext] || 'application/octet-stream' };
+      if (ext === '.js' || ext === '.css' || ext === '.json') headers['Cache-Control'] = 'no-cache';
+      res.writeHead(200, headers);
       return res.end(data);
     }
     // clean-path routing: try the prerendered <path>.html for crawlable SEO pages
     if (!path.extname(file)) {
       return fs.readFile(file + '.html', (e2, html) => {
-        if (!e2) { res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' }); return res.end(html); }
+        if (!e2) return endHtml(res, html);
         // SPA fallback so client-side routing still resolves the view
         sendFile(res, path.join(DIR, 'index.html'));
       });
