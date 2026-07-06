@@ -1092,3 +1092,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .uf-micros{margin:.6rem 0 .2rem;border:1px solid var(--line);border-radius:10px;padding:.5rem .7rem}
 .uf-micros summary{cursor:pointer;font-weight:700;color:var(--accent);font-size:.88rem}
 .uf-micro-grid{margin-top:.3rem}
+
+/* Intake: plain-language options + demoted clinical label */
+.io-clin{display:inline-block;margin-top:.3rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:.1rem .45rem}
+.intake-opt .io-b b{font-size:1rem;line-height:1.35}
