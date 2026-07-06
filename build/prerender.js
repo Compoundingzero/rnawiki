@@ -95,14 +95,14 @@ ${crumbLd}${ld}
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 220+ compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
-    <a href="/solve" class="nav-solve">Solve</a><a href="/learn">Learn</a>
+    <a href="/solve" class="nav-solve">Solve</a><a href="/learn">Learn</a><a href="/anatomy">Anatomy</a>
     <a href="/stack">Stack <span id="stack-badge" class="stack-badge" hidden>0</span></a><a href="/pros">For pros</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/browse">Browse</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/pros">For pros</a> · <a href="/stewardship">Bounty board</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/pros">For pros</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/app.js"></script>
 </body>
@@ -169,7 +169,14 @@ GRAPH.problems.forEach((p) => {
       <ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
       <p><a href="${route}">Open the interactive protocol with the Fuel Tracker →</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
-    add(route, shell({ route, title: `${p.name} protocol — Move, Fuel & Stack (Singapore) · RNAwiki`, desc: `${p.name} (${rc.name}): the exercises to fix it, Singapore foods to fuel it, and evidence-ranked compounds. A full root-cause protocol. Not medical advice.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body }));
+    const protoLd = {
+      '@context': 'https://schema.org', '@type': 'MedicalWebPage', inLanguage: 'en-SG',
+      name: `${p.name} — ${rc.name} protocol`, description: (rc.diagnostic || p.name),
+      about: { '@type': 'MedicalCondition', name: p.name },
+      audience: { '@type': 'MedicalAudience', geographicArea: { '@type': 'AdministrativeArea', name: 'Singapore' } },
+      lastReviewed: '2026-07-06', url: SITE_URL + route,
+    };
+    add(route, shell({ route, title: `${p.name} in Singapore — how to fix ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()} (Move · Fuel · Stack) · RNAwiki`, desc: `${p.name} (${rc.name}): the exercises to fix it, Singapore foods to fuel it, and evidence-ranked supplements — a full root-cause protocol for Singapore. Not medical advice.`, jsonld: protoLd, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body }));
   });
 });
 
