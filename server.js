@@ -664,7 +664,7 @@ async function api(req, res, url) {
     const q = new URL('http://x/' + url).searchParams;
     const pid = clean(q.get('problem'), 80), rcid = clean(q.get('rc'), 80);
     const part = await resolveParticipant(req, { voterKey: q.get('voterKey') });
-    const blank = { experiment: null, streak: 0, checkedToday: false, level: null, completedTotal: 0, runningTotal: 0, checkinsThisWeek: 0, cohortSize: 0, weekLabel: '' };
+    const blank = { experiment: null, streak: 0, checkedToday: false, level: null, completedTotal: 0, runningTotal: 0, checkinsThisWeek: 0, cohortSize: 0, weekLabel: '', onboarded: 0 };
     if (!part.key || !pid || !rcid) return json(res, 200, blank);
     const er = await db.query('SELECT id,status,outcome,started_at FROM experiments WHERE participant=$1 AND problem_id=$2 AND root_cause_id=$3', [part.key, pid, rcid]);
     const exp = er.rows[0];
@@ -676,11 +676,12 @@ async function api(req, res, url) {
     const cr = await db.query(`SELECT count(*)::int AS n, to_char(date_trunc('week', ${wkExpr}), 'IYYY-"W"IW') AS wk
       FROM experiments WHERE problem_id=$1 AND root_cause_id=$2 AND date_trunc('week', started_at)=date_trunc('week', ${wkExpr})`, exp ? [pid, rcid, exp.id] : [pid, rcid]);
     const cohortSize = cr.rows[0].n, weekLabel = cr.rows[0].wk;
-    if (!exp) return json(res, 200, Object.assign({}, blank, { level, completedTotal, runningTotal, cohortSize, weekLabel }));
+    const onboarded = (await db.query('SELECT count(*)::int AS n FROM referrals WHERE referrer=$1', [part.key])).rows[0].n;
+    if (!exp) return json(res, 200, Object.assign({}, blank, { level, completedTotal, runningTotal, cohortSize, weekLabel, onboarded }));
     const set = await checkinDays(exp.id);
     const ws = weekStartUTC();
     const checkinsThisWeek = [...set].filter(d => d >= ws).length;
-    return json(res, 200, { experiment: { status: exp.status, outcome: exp.outcome, started_at: exp.started_at }, streak: streakFromDays(set), checkedToday: set.has(todayUTC()), level, completedTotal, runningTotal, checkinsThisWeek, cohortSize, weekLabel });
+    return json(res, 200, { experiment: { status: exp.status, outcome: exp.outcome, started_at: exp.started_at }, streak: streakFromDays(set), checkedToday: set.has(todayUTC()), level, completedTotal, runningTotal, checkinsThisWeek, cohortSize, weekLabel, onboarded });
   }
   if (seg[0] === 'experiments' && seg[1] === 'start' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
@@ -691,6 +692,17 @@ async function api(req, res, url) {
     const exp = await getOrCreateExperiment(part, pid, rcid);
     await db.query("UPDATE experiments SET status='running' WHERE id=$1", [exp.id]);
     if (part.user) await award(part.user.id, 'experiment', 'start:' + exp.id, 10);
+    // referral first-touch attribution: credit the sharer whose link brought this participant in
+    const ref = clean(b.ref, 80);
+    if (ref && ref !== part.key) {
+      let referrer = null;
+      if (ref.startsWith('u:')) { const uu = await db.query('SELECT id FROM users WHERE lower(username)=lower($1)', [ref.slice(2)]); if (uu.rows[0]) referrer = 'u:' + uu.rows[0].id; }
+      else if (ref.startsWith('v:')) referrer = ref;
+      if (referrer && referrer !== part.key) {
+        const ins = await db.query('INSERT INTO referrals(referrer,participant) VALUES($1,$2) ON CONFLICT (participant) DO NOTHING RETURNING id', [referrer, part.key]);
+        if (ins.rows[0] && referrer.startsWith('u:')) await award(parseInt(referrer.slice(2), 10), 'onboard', 'ob:' + part.key, 25);
+      }
+    }
     return json(res, 200, { ok: true, experimentId: exp.id, streak: 0 });
   }
   if (seg[0] === 'experiments' && seg[1] === 'checkin' && method === 'POST') {

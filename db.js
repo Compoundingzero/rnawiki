@@ -283,6 +283,17 @@ CREATE TABLE IF NOT EXISTS experiment_checkins (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(experiment_id, day)
 );
+
+-- Referral attribution (Phase 6 backlink engine). A shared link carries ?ref=<sharer key>; the first
+-- one a new participant arrives with is credited once (UNIQUE(participant) = first-touch, no double
+-- credit). Powers the "builders you've brought in" status that incentivises link-dropping.
+CREATE TABLE IF NOT EXISTS referrals (
+  id SERIAL PRIMARY KEY,
+  referrer TEXT NOT NULL,
+  participant TEXT NOT NULL UNIQUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_ref_referrer ON referrals(referrer);
 `;
 
 async function init() {

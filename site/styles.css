@@ -1418,3 +1418,13 @@ a.dp-name:hover{color:var(--accent)}
 .home-stat-bar{max-width:340px;height:7px;border-radius:99px;background:var(--panel2);margin:.6rem auto .3rem;overflow:hidden;border:1px solid var(--line)}
 .home-stat-bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),color-mix(in srgb,var(--accent) 60%,var(--blue)));border-radius:99px;transition:width .6s ease}
 .home-stat-sub{font-size:.8rem;color:var(--faint)}
+
+/* ---- Backlink engine: share hub + always-on share button (Phase 6) ---- */
+.exp-share{background:none;border:1px solid var(--line);color:var(--muted);border-radius:20px;padding:6px 13px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap;align-self:center}
+.exp-share:hover{border-color:var(--accent);color:var(--accent)}
+.share-modal h2{margin:.1rem 0 .4rem;color:var(--head)}
+.share-preview{margin:.9rem 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:var(--panel2);color:var(--ink);font-size:.9rem;line-height:1.5;word-break:break-word}
+.share-actions{display:flex;flex-wrap:wrap;gap:9px}
+.share-actions .exp-btn{flex:1 1 auto}
+.share-onboard{margin:1rem 0 0;font-size:.85rem;color:var(--muted);background:color-mix(in srgb,var(--green) 6%,var(--panel));border:1px solid color-mix(in srgb,var(--green) 20%,var(--line));border-radius:9px;padding:10px 12px}
+.share-onboard b{color:var(--green)}
