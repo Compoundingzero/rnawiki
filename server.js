@@ -170,6 +170,16 @@ async function checkinDays(expId) {
   const cr = await db.query("SELECT to_char(day,'YYYY-MM-DD') AS day FROM experiment_checkins WHERE experiment_id=$1 ORDER BY day DESC LIMIT 90", [expId]);
   return new Set(cr.rows.map(x => x.day));
 }
+// Builder identity (Phase 5). Level is a pure function of experiments the participant has run to an
+// outcome — no new state, just a view of the loop data. Same ladder used everywhere.
+const LEVELS = [{ key: 'builder', name: 'Builder', min: 0 }, { key: 'experimenter', name: 'Experimenter', min: 1 }, { key: 'veteran', name: 'Veteran', min: 3 }, { key: 'architect', name: 'Architect', min: 10 }];
+function levelFor(completed) {
+  let cur = LEVELS[0], next = null;
+  for (let i = 0; i < LEVELS.length; i++) { if (completed >= LEVELS[i].min) cur = LEVELS[i]; else { next = LEVELS[i]; break; } }
+  return { key: cur.key, name: cur.name, next: next ? { name: next.name, at: next.min } : null };
+}
+// Monday (UTC) of the current week — for the weekly check-in goal.
+function weekStartUTC() { const d = new Date(todayUTC() + 'T00:00:00Z'); const dow = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - dow); return d.toISOString().slice(0, 10); }
 
 const ADMIN_USER = (process.env.ADMIN_USER || '').toLowerCase();
 // The single super-admin: only this account sees the consolidated control room and can
@@ -654,12 +664,23 @@ async function api(req, res, url) {
     const q = new URL('http://x/' + url).searchParams;
     const pid = clean(q.get('problem'), 80), rcid = clean(q.get('rc'), 80);
     const part = await resolveParticipant(req, { voterKey: q.get('voterKey') });
-    if (!part.key || !pid || !rcid) return json(res, 200, { experiment: null, streak: 0, checkedToday: false });
+    const blank = { experiment: null, streak: 0, checkedToday: false, level: null, completedTotal: 0, runningTotal: 0, checkinsThisWeek: 0, cohortSize: 0, weekLabel: '' };
+    if (!part.key || !pid || !rcid) return json(res, 200, blank);
     const er = await db.query('SELECT id,status,outcome,started_at FROM experiments WHERE participant=$1 AND problem_id=$2 AND root_cause_id=$3', [part.key, pid, rcid]);
     const exp = er.rows[0];
-    if (!exp) return json(res, 200, { experiment: null, streak: 0, checkedToday: false });
+    // participant-wide identity (across all their protocols) → level
+    const tot = await db.query("SELECT count(*) FILTER (WHERE outcome IS NOT NULL)::int AS completed, count(*) FILTER (WHERE status='running')::int AS running FROM experiments WHERE participant=$1", [part.key]);
+    const completedTotal = tot.rows[0].completed, runningTotal = tot.rows[0].running, level = levelFor(completedTotal);
+    // cohort: people who started THIS protocol in my start week (or the current week if I haven't started)
+    const wkExpr = exp ? '(SELECT started_at FROM experiments WHERE id=$3)' : 'now()';
+    const cr = await db.query(`SELECT count(*)::int AS n, to_char(date_trunc('week', ${wkExpr}), 'IYYY-"W"IW') AS wk
+      FROM experiments WHERE problem_id=$1 AND root_cause_id=$2 AND date_trunc('week', started_at)=date_trunc('week', ${wkExpr})`, exp ? [pid, rcid, exp.id] : [pid, rcid]);
+    const cohortSize = cr.rows[0].n, weekLabel = cr.rows[0].wk;
+    if (!exp) return json(res, 200, Object.assign({}, blank, { level, completedTotal, runningTotal, cohortSize, weekLabel }));
     const set = await checkinDays(exp.id);
-    return json(res, 200, { experiment: { status: exp.status, outcome: exp.outcome, started_at: exp.started_at }, streak: streakFromDays(set), checkedToday: set.has(todayUTC()) });
+    const ws = weekStartUTC();
+    const checkinsThisWeek = [...set].filter(d => d >= ws).length;
+    return json(res, 200, { experiment: { status: exp.status, outcome: exp.outcome, started_at: exp.started_at }, streak: streakFromDays(set), checkedToday: set.has(todayUTC()), level, completedTotal, runningTotal, checkinsThisWeek, cohortSize, weekLabel });
   }
   if (seg[0] === 'experiments' && seg[1] === 'start' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
