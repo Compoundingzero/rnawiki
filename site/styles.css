@@ -1105,3 +1105,9 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .sp-row .cta-primary{flex:1}
 .bl-label{display:block;font-size:.78rem;color:var(--muted);line-height:1.5;margin:.5rem 0 .3rem}
 .bl-label b{color:var(--head)}
+
+/* Food search hit rows with an edit affordance */
+.food-hit{display:flex;align-items:center;gap:.2rem}
+.food-hit>button[data-food]{flex:1;min-width:0}
+.food-edit{flex:none;border:none;background:none;cursor:pointer;color:var(--muted);font-size:.95rem;padding:.35rem .55rem;border-radius:8px}
+.food-edit:hover{background:var(--panel);color:var(--accent)}

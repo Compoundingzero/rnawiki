@@ -460,6 +460,8 @@ async function api(req, res, url) {
     // optional micronutrients — an allowlist so only known keys are stored
     const MICROS = ['sodium_mg', 'potassium_mg', 'calcium_mg', 'iron_mg', 'magnesium_mg', 'zinc_mg', 'vitamin_a_ug', 'vitamin_c_mg', 'vitamin_d_ug', 'vitamin_b12_ug', 'folate_ug'];
     MICROS.forEach((k) => { const val = num(b[k]); if (val != null) data[k] = val; });
+    // a correction to an existing food carries its id — once approved it overrides that food
+    const corrects = clean(b.corrects, 40); if (corrects) data.corrects = corrects;
     const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by) VALUES($1,$2,$3,$4) RETURNING id', [name, serving || null, JSON.stringify(data), u.id]);
     await award(u.id, 'food_submit', 'food:' + r.rows[0].id, 20);
     return json(res, 200, { ok: true, id: r.rows[0].id, status: 'pending' });
