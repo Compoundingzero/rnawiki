@@ -1029,3 +1029,54 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .rcg-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
 .rcg-doms{display:flex;flex-wrap:wrap;gap:.5rem;margin:.3rem 0 .2rem}
 .rcg-dom{display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--head);background:#fff;border:1px solid var(--line);border-radius:8px;padding:.3rem .6rem;cursor:pointer}
+
+/* ================= Anatomy & physiology pages ================= */
+.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.6rem 0 1rem}
+.tag-chip{display:inline-flex;align-items:center;gap:.3rem;background:#eef4ff;color:var(--accent);border:1px solid #d9e6ff;border-radius:20px;padding:.3rem .75rem;font-size:.82rem;font-weight:700;text-decoration:none}
+.tag-chip:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+.anat-head{margin-bottom:1rem}
+.anat-region{display:inline-block;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--accent);background:#eef4ff;border-radius:20px;padding:.2rem .7rem;margin-bottom:.5rem}
+.anat-aka{color:var(--muted);font-size:.9rem;margin:.2rem 0 0}
+.anat-lead{font-size:1.08rem;line-height:1.65;color:var(--head)}
+.anat-callout{background:linear-gradient(135deg,#eef4ff,#eafcf3);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.1rem;font-size:1rem;color:var(--head);margin:1rem 0}
+.anat-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1.1rem 1.3rem;margin:1.2rem 0}
+.anat-card h2{margin:0 0 .7rem;font-size:1.15rem}
+.anat-oi{display:grid;grid-template-columns:1fr 1fr;gap:.8rem 1.4rem}
+.anat-oi>div:first-child{grid-column:1/-1}
+.anat-k{display:block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:.15rem}
+.anat-actions{margin:.4rem 0 0;padding-left:1.1rem}
+.anat-actions li{margin:.25rem 0;color:var(--head)}
+.anat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+.anat-mini{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem}
+.anat-mini h3{margin:0 0 .5rem;font-size:1rem}
+.anat-mini ul{margin:.3rem 0;padding-left:1.1rem}
+.anat-mini li{margin:.2rem 0;font-size:.9rem}
+.anat-probs{padding-left:1.1rem}.anat-probs li{margin:.3rem 0}
+.anat-exlist{display:flex;flex-direction:column;gap:.35rem;margin:.3rem 0}
+.anat-ex{display:flex;justify-content:space-between;gap:.5rem;font-size:.86rem;background:#f7fafd;border:1px solid var(--line);border-radius:8px;padding:.35rem .6rem}
+.anat-ex em{font-style:normal;color:var(--muted);font-size:.74rem;text-transform:capitalize}
+.anat-hint{font-size:.82rem;color:var(--muted);margin-top:.5rem;line-height:1.5}
+.energy-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:1rem;margin:1rem 0}
+.anat-steps{counter-reset:s;list-style:none;padding:0;margin:.6rem 0}
+.anat-steps li{position:relative;padding:.55rem 0 .55rem 2.4rem;border-top:1px solid var(--line);color:var(--head)}
+.anat-steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:.5rem;width:1.7rem;height:1.7rem;background:var(--accent);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem}
+.anat-card2{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:1rem 1.2rem;margin:1rem 0}
+.anat-card2 h3{margin:0 0 .4rem;color:#9a3412}
+.anat-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.7rem;margin:.6rem 0 1.4rem}
+.anat-tile{display:flex;flex-direction:column;gap:.2rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;text-decoration:none}
+.anat-tile:hover{border-color:var(--accent);box-shadow:0 6px 18px -12px rgba(0,0,0,.25)}
+.anat-tile b{color:var(--head)}.anat-tile small{color:var(--muted);font-size:.78rem}
+.anat-tile.energy{background:linear-gradient(135deg,#fff,#eef4ff)}
+.anat-tile.physio{background:linear-gradient(135deg,#fff,#f1ecff)}
+.anat-region-group h3{margin:1rem 0 .4rem;font-size:1.05rem;color:var(--head)}
+/* exercise-card muscle links */
+.ex-muscles{font-size:.78rem;margin:.25rem 0}
+.ex-mk{color:var(--muted);font-weight:700}
+.ex-muscle{color:var(--accent);text-decoration:none;font-weight:600;margin-right:.5rem}
+.ex-muscle:hover{text-decoration:underline}
+/* protocol science strips */
+.sci-strip{background:#f7fafd;border:1px dashed var(--line);border-radius:12px;padding:.7rem .9rem;margin:.8rem 0}
+.sci-h{font-weight:800;color:var(--head);font-size:.86rem;margin-bottom:.4rem}
+.sci-row{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.3rem 0}
+.sci-k{font-size:.74rem;color:var(--muted);font-weight:700;margin-right:.3rem;min-width:6.5rem}
+@media(max-width:640px){.anat-oi,.anat-grid{grid-template-columns:1fr}.energy-meta{grid-template-columns:1fr 1fr}}
