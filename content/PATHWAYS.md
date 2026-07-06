@@ -156,7 +156,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** It's the anabolic backbone — insulin and IGF-1 are powerfully muscle-building (and, misused, dangerous). It's also why BPC-157 shows such striking healing in animals: it grows the blood supply healing needs.
 
-**Turn it up:** insulin, IGF-1, growth hormone/secretagogues, feeding. **Don't be fooled:** the very same "grow and survive" signal that builds muscle can also feed tumours — which is why growth-factor drugs carry real cancer caution.
+**Turn it up:** insulin, [IGF-1](/c/igf-1-lr3), growth hormone/secretagogues, [BPC-157](/c/bpc-157) (localised healing), feeding. **Don't be fooled:** the very same "grow and survive" signal that builds muscle can also feed tumours — which is why growth-factor drugs carry real cancer caution.
 
 ---
 
@@ -180,7 +180,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** L-theanine, magnesium, and glycine gently press the brake for calm focus and better sleep — without knocking you out. Stronger versions (alcohol, some sleep drugs) press it hard, which is why they sedate and can become habit-forming.
 
-**Turn it up (toward calm):** theanine, magnesium, glycine, apigenin. **Don't be fooled:** hammering the GABA brake with alcohol or strong sedatives builds dependence and wrecks deep sleep quality — gentle is better.
+**Turn it up (toward calm):** [theanine](/c/l-theanine), [magnesium](/c/magnesium), [glycine](/c/glycine), apigenin. **Don't be fooled:** hammering the GABA brake with alcohol or strong sedatives builds dependence and wrecks deep sleep quality — gentle is better.
 
 ---
 
@@ -250,7 +250,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** When you add testosterone or steroids from outside, the brain sees "plenty" and shuts off its own signal — so your testicles shrink and natural production and fertility drop. Recovery drugs (clomiphene, HCG) work by re-opening this loop.
 
-**Turn it up (restart it):** clomiphene/enclomiphene (block the "enough" signal so the brain keeps sending LH), HCG (mimics LH directly). **Shut it down:** anabolic steroids.
+**Turn it up (restart it):** [clomiphene / enclomiphene](/c/enclomiphene-clomiphene-clomid) (block the "enough" signal so the brain keeps sending LH), [HCG](/c/hcg-human-chorionic-gonadotropin) (mimics LH directly). **Shut it down:** anabolic steroids.
 
 **Don't be fooled:** "post-cycle therapy" isn't optional cleanup — restarting a shut-down loop can take months, and sometimes it doesn't fully recover.
 
@@ -347,7 +347,7 @@ You don't need a science background. Each lesson starts with a one-liner and a p
 
 **Why it matters for you:** Most "anti-inflammatory" supplements work by quieting this switch. Omega-3, curcumin, and boswellia genuinely lower it — helping recovery, joints, and long-term health.
 
-**Turn it down:** omega-3, curcumin (the absorbable forms), boswellia, sulforaphane, good sleep. **Don't be fooled:** blocking *all* inflammation right after training can slightly blunt the adaptation you're training for — time heavy anti-inflammatories away from the workout you want to grow from.
+**Turn it down:** [omega-3](/c/omega-3-epa-dha), curcumin (the absorbable forms), [boswellia](/c/boswellia-serrata), [sulforaphane](/c/sulforaphane), good sleep. **Don't be fooled:** blocking *all* inflammation right after training can slightly blunt the adaptation you're training for — time heavy anti-inflammatories away from the workout you want to grow from.
 
 ---
 
