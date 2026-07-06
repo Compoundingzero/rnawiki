@@ -647,7 +647,7 @@ async function api(req, res, url) {
   // --- consolidated super-admin control room: everything the superadmin needs in one call ---
   if (seg[0] === 'admin' && seg[1] === 'overview' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
-    const [experts, partners, foods, requests, rcc, feedback] = await Promise.all([
+    const [experts, partners, foods, requests, rcc, feedback, proposals, cedits] = await Promise.all([
       db.query("SELECT id,username,domain,requested_domain,domain_verified,application_status,credential,role_backlink,reputation_points FROM users WHERE domain IS NOT NULL OR requested_domain IS NOT NULL ORDER BY (application_status='pending') DESC, domain_verified ASC, created_at ASC"),
       db.query('SELECT id,name,type,location,link,backlink_url,serves,status,created_at FROM partners ORDER BY status ASC, created_at DESC LIMIT 200'),
       db.query("SELECT f.id,f.name,f.serving,f.data,f.status,f.created_at,u.username AS by_user FROM user_foods f LEFT JOIN users u ON u.id=f.submitted_by WHERE f.status='pending' ORDER BY f.created_at ASC LIMIT 200"),
@@ -656,8 +656,12 @@ async function api(req, res, url) {
         (SELECT count(*)::int FROM rootcause_endorsements e WHERE e.change_id=c.id) AS endorsements
         FROM rootcause_changes c LEFT JOIN users u ON u.id=c.submitted_by ORDER BY (c.status='pending') DESC, c.created_at DESC LIMIT 100`),
       db.query("SELECT f.id,f.body,f.page,f.kind,f.contact,f.status,f.created_at,u.username AS by_user FROM feedback f LEFT JOIN users u ON u.id=f.user_id WHERE f.status='open' ORDER BY f.created_at DESC LIMIT 200"),
+      db.query(`SELECT p.id,p.problem_id,p.root_cause_id,p.layer,p.domain,p.change,p.evidence,p.status,p.created_at,u.username AS by_user,
+        (SELECT COUNT(*)::int FROM proposal_actions a WHERE a.proposal_id=p.id AND a.action='endorse') AS endorsements
+        FROM proposals p JOIN users u ON u.id=p.user_id WHERE p.status='pending' ORDER BY p.created_at ASC LIMIT 100`),
+      db.query("SELECT e.id,e.compound_id,e.compound_name,e.note,e.created_at,u.username AS by_user FROM edits e JOIN users u ON u.id=e.user_id ORDER BY e.created_at DESC LIMIT 60"),
     ]);
-    return json(res, 200, { experts: experts.rows, partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, threshold: PANEL_THRESHOLD });
+    return json(res, 200, { experts: experts.rows, partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, threshold: PANEL_THRESHOLD });
   }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
     const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'Verified dietitians only' });
@@ -711,13 +715,14 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'proposals' && seg[1] && seg[2] === 'endorse' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (!u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
+    const sup = isSuper(u); // superadmin (Felix) can approve any pending edit, regardless of domain
+    if (!sup && !u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
     const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
     const pr = (await db.query('SELECT domain,user_id FROM proposals WHERE id=$1', [id])).rows[0];
     if (!pr) return json(res, 404, { error: 'Proposal not found' });
-    // STRICT peer review: endorsement must come from the SAME domain, not the author.
-    if (pr.user_id === u.id) return json(res, 403, { error: 'You cannot endorse your own proposal.' });
-    if (pr.domain !== u.domain) return json(res, 403, { error: `Only another ${pr.domain} can endorse this. Cross-domain experts may Flag instead.` });
+    // STRICT peer review: a same-domain expert (not the author) approves — OR the superadmin.
+    if (!sup && pr.user_id === u.id) return json(res, 403, { error: 'You cannot endorse your own proposal.' });
+    if (!sup && pr.domain !== u.domain) return json(res, 403, { error: `Only another ${pr.domain} or the RNAwiki admin can approve this. Cross-domain experts may Flag instead.` });
     const ins = await db.query(`INSERT INTO proposal_actions(proposal_id,user_id,action) VALUES($1,$2,'endorse')
       ON CONFLICT (proposal_id,user_id,action) DO NOTHING RETURNING id`, [id, u.id]);
     await db.query(`UPDATE proposals SET status='endorsed' WHERE id=$1 AND status!='flagged'`, [id]);
@@ -732,12 +737,13 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'proposals' && seg[1] && seg[2] === 'flag' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (!u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
+    const sup = isSuper(u); // superadmin (Felix) can reject any pending edit
+    if (!sup && !u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
     const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
     const pr = (await db.query('SELECT domain FROM proposals WHERE id=$1', [id])).rows[0];
     if (!pr) return json(res, 404, { error: 'Proposal not found' });
-    // Cross-domain conflict review: only a DIFFERENT domain can flag.
-    if (pr.domain === u.domain) return json(res, 403, { error: 'Same-domain experts endorse, not flag. Flags are for cross-domain conflicts.' });
+    // Cross-domain conflict review: only a DIFFERENT domain can flag — OR the superadmin.
+    if (!sup && pr.domain === u.domain) return json(res, 403, { error: 'Same-domain experts endorse, not flag. Flags are for cross-domain conflicts.' });
     const b = await readBody(req) || {};
     await db.query(`INSERT INTO proposal_actions(proposal_id,user_id,action,note) VALUES($1,$2,'flag',$3)
       ON CONFLICT (proposal_id,user_id,action) DO UPDATE SET note=$3`, [id, u.id, clean(b.note, 500) || null]);
