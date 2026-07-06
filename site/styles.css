@@ -1229,3 +1229,22 @@ a.anat-ex b{color:var(--head)}
 .wr-stats span{font-size:.64rem;color:#9fb3c8;text-transform:uppercase;letter-spacing:.04em}
 .wr-goals{font-size:.82rem;color:#cbd5e1;margin:.6rem 0}
 .wr-foot{font-size:.7rem;color:#64748b;margin-top:.9rem}
+
+/* ================= "Your day" temporal plan ================= */
+.day-plan{margin:.4rem 0 1.4rem}
+.dp-blocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:.7rem;margin:.6rem 0}
+.dp-block{background:var(--panel);border:1px solid var(--line);border-top:3px solid var(--line);border-radius:14px;padding:.75rem .9rem}
+.dp-block.morning{border-top-color:#f59e0b}
+.dp-block.training{border-top-color:#2f7de0}
+.dp-block.meals{border-top-color:#0a7a48}
+.dp-block.evening{border-top-color:#6b46c1}
+.dp-block.periodic{border-top-color:#e5484d}
+.dp-head{font-weight:800;color:var(--head);font-size:.9rem;margin-bottom:.4rem}
+.dp-item{padding:.4rem 0;border-top:1px solid var(--line)}
+.dp-item:first-of-type{border-top:none}
+.dp-name{color:var(--head);font-weight:700;text-decoration:none;font-size:.9rem;margin-right:.4rem}
+a.dp-name:hover{color:var(--accent)}
+.dp-why{margin-top:.15rem}
+.dp-why summary{font-size:.74rem;color:var(--accent);cursor:pointer;list-style:none}
+.dp-why summary::-webkit-details-marker{display:none}
+.dp-why p{font-size:.82rem;color:var(--muted);margin:.3rem 0 0;line-height:1.5}
