@@ -1717,3 +1717,77 @@ Added compounds and four new categories to complete the universe (~220 total).
 ---
 
 *Expanded universe: ~220 compounds across 20 categories. Every entry retains the three required fields — technical mechanism (named gene/receptor), official molecular-target link (NCBI Gene + PubChem), and plain-English explanation.*
+
+---
+
+## Additions to CATEGORY 10 — Cognition (mainstream nootropics, sourced batch)
+
+### Acetyl-L-Carnitine (ALCAR)  🟡 ⭐⭐⭐
+**Goals:** Cognition · Recovery · Mood
+**Technical mechanism:** The acetylated form of L-carnitine that crosses the blood–brain barrier. It shuttles fatty acids into mitochondria for β-oxidation via the carnitine system (**CRAT / CPT1**) and donates acetyl groups for acetylcholine synthesis — supporting neuronal energy metabolism.
+**Molecular target:** [CRAT (NCBI Gene 1384)](https://www.ncbi.nlm.nih.gov/gene/1384) · [Acetyl-L-carnitine (PubChem CID 7045767)](https://pubchem.ncbi.nlm.nih.gov/compound/7045767)
+**In plain English:** A brain-penetrating form of carnitine that helps mitochondria burn fat for fuel and helps make the memory neurotransmitter acetylcholine. Studied mostly in nerve and age-related cognitive problems, not as a healthy-brain booster.
+**Protocol:** 500–2000 mg/day, usually split; take earlier in the day (can be mildly stimulating).
+**Bottom line:** Best human evidence is for diabetic nerve pain and mild age-related cognitive decline — not a strongly proven nootropic for a healthy brain.
+**Human evidence:** RCTs support benefit in diabetic peripheral neuropathy and show modest cognitive benefit in mild cognitive impairment and early Alzheimer's; a meta-analysis suggested antidepressant effects, strongest in older adults. Distinct from plain L-carnitine ([CID 10917](https://pubchem.ncbi.nlm.nih.gov/compound/10917)) by actually reaching the brain.
+**Stacks with:** Alpha-lipoic acid (classic mitochondrial pair), omega-3.
+**Cost:** Cheap (~S$15–25/month).
+
+---
+
+### Phosphatidylserine (PS)  🟡 ⭐⭐⭐ (older cognition data) ⭐⭐ (modern soy-PS)
+**Goals:** Cognition · Stress
+**Technical mechanism:** A phospholipid concentrated in neuronal cell membranes; supports membrane fluidity, receptor function and neurotransmitter release, and appears to dampen the HPA-axis cortisol response to acute stress.
+**Molecular target:** [Phosphatidylserine (PubChem CID 9547096)](https://pubchem.ncbi.nlm.nih.gov/compound/9547096) — a structural membrane phospholipid (no single receptor).
+**In plain English:** A building block of brain-cell membranes. Older studies (using cow-brain PS) improved memory in ageing; the soy-derived PS sold today has weaker, mixed cognitive data but may blunt stress-cortisol spikes.
+**Protocol:** 100–300 mg/day.
+**Bottom line:** Reasonable for age-related memory and for cortisol/stress; don't expect a big effect from modern soy-PS on a healthy young brain.
+**Human evidence:** Early trials with bovine-derived PS showed memory benefit in age-related cognitive decline; soy-derived PS (the current form) shows weaker, inconsistent cognitive results. Several small studies suggest it reduces the cortisol response to acute stress and exercise. Well tolerated.
+**Stacks with:** Omega-3 (DHA), Acetyl-L-carnitine.
+**Cost:** Moderate (~S$25–40/month).
+
+---
+
+## Additions to CATEGORY 12 — Mood (sourced batch)
+
+### SAM-e (S-Adenosylmethionine)  🟡 (US/SG supplement) / 🔵 (Rx in parts of Europe) ⭐⭐⭐⭐ (osteoarthritis) ⭐⭐⭐ (depression)
+**Goals:** Mood · Joint Health
+**Technical mechanism:** The body's universal **methyl donor** — the substrate methyltransferases use to methylate DNA, neurotransmitters and phospholipids. Supports synthesis of dopamine/serotonin and of cartilage proteoglycans.
+**Molecular target:** [S-Adenosylmethionine (PubChem CID 34755)](https://pubchem.ncbi.nlm.nih.gov/compound/34755) — cofactor for methyltransferases (e.g., COMT) across the methylation cycle.
+**In plain English:** A molecule your body already makes that "hands out" methyl groups needed to build mood chemicals and joint cartilage. One of the better-evidenced supplements for depression and osteoarthritis.
+**Protocol:** 400–1600 mg/day, enteric-coated, on an empty stomach; start low and titrate.
+**Bottom line:** Genuinely useful human evidence for both osteoarthritis and depression (adjunct) — a rare supplement that competes with drugs. Not for undiagnosed bipolar.
+**Watch out:** Can trigger mania/hypomania in bipolar disorder; caution with SSRIs/SNRIs (serotonin-syndrome risk). Discuss with a clinician if on antidepressants.
+**Human evidence:** Multiple RCTs and meta-analyses support SAM-e as comparable to NSAIDs for osteoarthritis pain over several weeks (with fewer GI side effects), and as an adjunct in major depression. Quality is heterogeneous; it can precipitate mania in bipolar disorder.
+**Stacks with:** B12 + folate (methylation cofactors).
+**Cost:** Expensive for a supplement (~S$40–70/month).
+
+---
+
+## Additions to CATEGORY 9 — Longevity/antioxidant (sourced batch)
+
+### Silymarin (Milk Thistle)  🟡 ⭐⭐ (weak/mixed human outcomes)
+**Goals:** Longevity · Liver / General health
+**Technical mechanism:** A flavonolignan complex (chief active **silybin**) with antioxidant and anti-fibrotic activity; scavenges free radicals and activates the **Nrf2** antioxidant-response pathway in liver cells.
+**Molecular target:** [Silybin (PubChem CID 1549163)](https://pubchem.ncbi.nlm.nih.gov/compound/1549163) — antioxidant; activates the Nrf2/ARE pathway.
+**In plain English:** The classic "liver support" herb. It's a real antioxidant in the lab, but large reviews haven't shown it clearly improves liver-disease outcomes in people.
+**Protocol:** ~140 mg silymarin, 2–3×/day (standardised extract).
+**Bottom line:** Popular and safe, but the honest verdict is that human outcome data for liver disease is weak. Fine as an antioxidant; not a proven liver treatment.
+**Human evidence:** Despite huge popularity, Cochrane reviews found no convincing benefit on mortality or liver histology in alcoholic or hepatitis-C liver disease. Antioxidant activity is well demonstrated in vitro; hard clinical endpoints are unconvincing. Generally very well tolerated.
+**Stacks with:** General antioxidant habits (alcohol moderation does far more for the liver).
+**Cost:** Cheap (~S$15–25/month).
+
+---
+
+## Additions to CATEGORY 11 — Sleep (sourced batch)
+
+### Valerian (Valeriana officinalis)  🟡 ⭐⭐ (modest, inconsistent)
+**Goals:** Sleep
+**Technical mechanism:** The active **valerenic acid** is an allosteric modulator of **GABA-A** receptors, selective for β2/β3 subunits — nudging the brain's main inhibitory (calming) system, loosely the same target family benzodiazepines act on (far weaker).
+**Molecular target:** [GABRB2 (NCBI Gene 2561)](https://www.ncbi.nlm.nih.gov/gene/2561) · [Valerenic acid (PubChem CID 6440940)](https://pubchem.ncbi.nlm.nih.gov/compound/6440940)
+**In plain English:** A traditional sleep herb that gently boosts GABA, the brain's "calm down" signal. The mechanism is real, but the sleep benefit in studies is modest and inconsistent.
+**Protocol:** 300–600 mg of root extract, 30–60 minutes before bed.
+**Bottom line:** Low-risk and non-habit-forming, but expect a mild effect at best — not a reliable sleep fix.
+**Human evidence:** Meta-analyses suggest a modest, mainly subjective improvement in sleep quality, but trials are heterogeneous and objective (polysomnography) effects are small. Generally well tolerated; occasional next-day grogginess.
+**Stacks with:** Magnesium, glycine, sleep hygiene.
+**Cost:** Cheap (~S$10–20/month).
