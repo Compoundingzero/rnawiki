@@ -1274,3 +1274,12 @@ a.dp-name:hover{color:var(--accent)}
 .sg-buy.warn{background:#fff7ed;border-color:#fed7aa}
 .sg-buy.danger{background:#fff1f0;border-color:#f5c2bd}
 .sg-cost{margin-top:.45rem;font-weight:700;color:var(--accent)}
+
+/* ================= Compound: collapsible "human evidence" block ================= */
+.evidence-block{border:1px solid var(--line);border-radius:12px;padding:.1rem .9rem;margin:.7rem 0;background:var(--panel)}
+.evidence-block summary{cursor:pointer;font-weight:700;color:var(--head);padding:.65rem 0;list-style:none}
+.evidence-block summary::-webkit-details-marker{display:none}
+.evidence-block summary::before{content:'▸ ';color:var(--accent)}
+.evidence-block[open] summary::before{content:'▾ '}
+.ev-hint{font-weight:400;color:var(--muted);font-size:.82rem}
+.ev-body{padding:.1rem 0 .85rem;color:var(--head);line-height:1.62;font-size:.92rem}

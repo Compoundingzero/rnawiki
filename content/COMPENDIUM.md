@@ -51,6 +51,7 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **Protocol:** 3–5 g/day, monohydrate, any time. No loading needed.
 **Watch out:** 1–2 kg water weight in week one (not fat). Safe long-term in healthy kidneys.
 **Bottom line:** If you take one supplement, this is it.
+**Human evidence:** Among the most-studied supplements in existence — hundreds of RCTs and multiple meta-analyses consistently show small but reliable gains in strength, power and lean mass alongside resistance training, plus emerging cognitive benefit under sleep deprivation. One of the very few supplements with strong, replicated human evidence.
 **Stacks with:** Whey/protein and carbs post-workout (the insulin bump helps uptake).
 **Cost:** The cheapest effective supplement — ~S$20–40 for 3–6 months of monohydrate. Buy plain “creatine monohydrate” (Creapure is a quality mark); skip pricey “advanced” forms.
 
@@ -64,6 +65,7 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **Protocol:** 3–6 mg/kg, 45–60 min pre-effort. Cycle off 10–14 days every ~2 months.
 **Watch out:** 5–6 h half-life (up to 9 h in slow metabolisers) — afternoon doses wreck deep sleep.
 **Bottom line:** With creatine, one of the two most proven performance aids on earth.
+**Human evidence:** One of the most-replicated performance aids — meta-analyses show reliable small-to-moderate gains in endurance, power output and alertness. The alertness benefit is largest when you're sleep-deprived and much smaller at a well-rested baseline.
 **Stacks with:** L-theanine (~200 mg) to smooth the jitters without dulling the focus.
 **Avoid:** Other strong stimulants (yohimbine, high-dose synephrine) — additive heart-rate and blood-pressure load. Keep it >8–10 h from bedtime. Go easy if you’re prone to anxiety.
 **Cost:** Pennies — caffeine tablets are ~S$10–20 for months, or just coffee.
@@ -90,6 +92,7 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **Protocol:** 1–3 g combined EPA+DHA/day with a fatty meal. Check label — a 1 g capsule may be only 300 mg EPA+DHA.
 **Watch out:** Blood-thinning >3 g/day; slight AFib signal at 4 g.
 **Bottom line:** Rare supplement with strong evidence across heart, joints, and brain.
+**Human evidence:** REDUCE-IT (2018, ~8,000 high-risk patients already on statins) found high-dose purified EPA cut major cardiovascular events by roughly a quarter — but broader trials of general fish oil in lower-risk people have been largely null. The strong signal is specific to high-dose EPA in high-triglyceride, high-risk people.
 **Stacks with:** Take with a fatty meal for absorption; often paired with vitamin D.
 **Avoid:** High doses (>3 g/day) alongside blood thinners (warfarin, aspirin) — additive bleeding risk. Stop ~1 week before surgery.
 **Cost:** ~S$20–45/month. Buy on total EPA+DHA (read the back), not the “1000 mg fish oil” on the front.
@@ -103,6 +106,7 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** A hormone your skin makes from sunlight that switches on hundreds of genes. Indoor life (very common in Singapore) leaves most people deficient, which quietly lowers testosterone, immunity, and mood.
 **Protocol:** 2,000–4,000 IU D3 + 100–200 mcg K2 with fat; test 25-OH-D, target 75–125 nmol/L.
 **Bottom line:** Highest-value fix if you work indoors. Almost everyone benefits.
+**Human evidence:** VITAL (2019, ~25,000 adults) found vitamin D did not reduce cancer or cardiovascular events in a largely already-sufficient population. The robust evidence is for correcting deficiency (common in low-sun / darker-skinned groups), not for supplementing people who are already replete.
 **Stacks with:** Magnesium (a cofactor that activates vitamin D) and K2 (directs the calcium to bone, not arteries).
 **Avoid:** Mega-doses without K2 and magnesium; get a blood level rather than guessing.
 **Cost:** Cheap — ~S$10–20/month. Everywhere in SG.
@@ -116,6 +120,7 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **In plain English:** A mineral your body uses in hundreds of reactions and burns through when you train and stress. Topping it up — especially glycinate at night — reliably improves sleep.
 **Protocol:** 200–400 mg elemental. Glycinate (sleep/calm), L-threonate (brain), citrate (constipation). Avoid oxide (4% absorbed).
 **Bottom line:** Cheap, safe, most athletes are low. Glycinate before bed.
+**Human evidence:** Human trials show the clearest benefits — sleep, blood pressure, insulin sensitivity — in people who were low in magnesium to begin with (common). In already-replete people the effects are smaller.
 **Stacks with:** Vitamin D3/K2 (magnesium is a cofactor for activating vitamin D) and vitamin B6 (aids uptake).
 **Avoid:** High doses alongside tetracycline or quinolone antibiotics — separate by ~2 hours.
 **Cost:** ~S$15–30/month; glycinate/threonate cost more than oxide but absorb better and are gentler on the gut.
@@ -387,6 +392,7 @@ The most disrupted category in medicine. GLP-1 drugs have made every previous fa
 **Protocol:** 500 mg 3×/day with meals; dihydroberberine for better absorption.
 **Watch out:** GI upset early; CYP3A4 inhibitor (drug interactions).
 **Bottom line:** Strong metabolic supplement; pair with glucose monitoring.
+**Human evidence:** Multiple meta-analyses of human RCTs show berberine lowers fasting glucose and HbA1c to a degree comparable with low-dose metformin, and improves cholesterol and triglycerides — one of the better-evidenced supplements for metabolic health, though trial quality is mixed.
 **Avoid:** Other blood-sugar-lowering drugs (metformin, insulin) without monitoring — additive hypoglycaemia. It inhibits CYP3A4, so it interacts with many prescriptions (statins, immunosuppressants, some blood thinners) — check with a pharmacist first.
 **Cost:** ~S$25–45/month; dihydroberberine costs more but absorbs far better.
 
@@ -798,6 +804,7 @@ The most active frontier in medicine. Most are repurposed metabolic or cancer dr
 **Protocol (off-label):** ~5–6 mg once weekly (intermittent), physician-monitored.
 **Watch out:** Immunosuppression (dose-dependent), mouth sores, raised lipids/glucose. Not a self-prescription.
 **Bottom line:** The most compelling longevity drug we have; still needs human RCTs (PEARL, others ongoing).
+**Human evidence:** No completed human longevity trial exists yet — PEARL and others are ongoing. Every lifespan-extension result is from animals (where it's the most reliable such drug); human use for longevity is off-label and extrapolated, not proven.
 
 ---
 
@@ -830,6 +837,7 @@ The most active frontier in medicine. Most are repurposed metabolic or cancer dr
 **Protocol:** NMN or NR 250–500 mg in the **morning** — NAD⁺ tracks your body clock and peaks in the active phase. Often stacked with pterostilbene, and with **TMG** to replace the methyl groups NAD⁺ metabolism uses up.
 **Watch out:** NMN is a US legal grey area (FDA drug-exclusion ruling); **NR is the clean supplement.** No prescription drug is involved — but skip NAD⁺ IVs from unlicensed providers.
 **Bottom line:** The most exciting longevity lever right now; NR the cleaner legal status, NMN the newer trials, niacin the best value. Full mechanism lives on [the NAD⁺ pathway](/pathway/12).
+**Human evidence:** A 2021 randomised trial (Yoshino et al, Science; ~25 prediabetic postmenopausal women) found 250 mg/day NMN improved muscle insulin sensitivity — a genuine but small, single-population human signal. The dramatic lifespan and healthspan results remain in animals; large human outcome trials don't yet exist.
 **Stacks with:** Pterostilbene (sirtuin activation from another angle) and TMG / betaine (replaces the methyl groups NAD⁺ metabolism uses up).
 **Cost:** ~S$40–90/month for NMN; NR (Niagen) is pricier. On iHerb / Shopee — verify third-party testing, purity varies widely.
 
@@ -1116,6 +1124,7 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** The "it's night" hormone. It re-times your body clock, so it's best for jet lag and late sleep phase, not as a sledgehammer sedative. 0.5 mg works as well as 10 mg with less morning fog.
 **Protocol:** 0.3–1 mg, 30–60 min before target sleep.
 **Bottom line:** Overused at 10–20× the effective dose. Start at 0.5 mg.
+**Human evidence:** Meta-analyses show melatonin modestly shortens time-to-fall-asleep (a few minutes on average) and genuinely helps realign the body clock in jet lag and shift work. Better for *timing* sleep than for staying asleep; low doses (0.5–1 mg) work about as well as higher ones.
 **Stacks with:** Magnesium and glycine for sleep onset.
 **Avoid:** Alcohol and other sedatives (additive drowsiness); don’t drive after. A low dose (0.5–1 mg) works better than the common 3–10 mg.
 **Cost:** Cheap — ~S$10–20/month (note: pharmacist-only/behind-counter in some SG outlets).
@@ -1147,6 +1156,7 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **Protocol:** 300–600 mg/day KSM-66 or Sensoril.
 **Watch out:** Stimulates thyroid; caution in autoimmune disease/thyroid meds; rare liver reports.
 **Bottom line:** Best-evidenced adaptogen for stress, sleep, and hormones.
+**Human evidence:** Several small randomised trials (many using KSM-66 or Sensoril extracts) report reductions in perceived stress and cortisol over 6–8 weeks, with modest sleep and, in some, testosterone effects. Consistent but small studies, often manufacturer-linked — promising, not definitive.
 **Avoid:** Sedatives and benzodiazepines (additive drowsiness), thyroid medication (it can raise thyroid hormone), and immunosuppressants (it’s immune-stimulating). Skip in pregnancy.
 **Cost:** ~S$20–40/month for a standardised extract (KSM-66 or Sensoril). Guardian, Watsons, iHerb.
 
@@ -1158,6 +1168,7 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** The "energising" adaptogen — cuts mental and physical fatigue under stress. Morning use; too stimulating at night.
 **Protocol:** 200–400 mg (3% rosavins) morning.
 **Bottom line:** Best adaptogen for fatigue and heavy training blocks.
+**Human evidence:** Small randomised trials suggest rhodiola reduces fatigue and improves performance under stress or sleep loss, with a good safety profile — but the trials are small and heterogeneous, so it's suggestive rather than settled.
 **Avoid:** Take it early — it can be stimulating and disrupt sleep late in the day; caution with other stimulants and with antidepressants (MAOIs).
 **Cost:** ~S$20–35/month; standardised to ~3% rosavins / 1% salidroside.
 
@@ -1206,6 +1217,7 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **In plain English:** Building blocks and protectors for cartilage. Reduces pain in moderate arthritis over ~8–12 weeks; it's structural, not a painkiller.
 **Protocol:** Glucosamine sulphate 1,500 mg + chondroitin 1,200 mg/day.
 **Bottom line:** Meaningful for moderate OA; give it 3 months.
+**Human evidence:** The large GAIT trial (~1,500 patients) found glucosamine+chondroitin no better than placebo overall for knee osteoarthritis, though a moderate-to-severe-pain subgroup did benefit. Evidence is genuinely mixed — worth a 6–8 week trial for moderate OA, not a sure thing.
 **Avoid:** Shellfish allergy (most glucosamine is shellfish-derived); mild interaction with warfarin.
 **Cost:** ~S$20–40/month; give it 6–8 weeks before judging.
 
