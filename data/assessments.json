@@ -1,0 +1,47 @@
+{
+  "_note": "Per-problem clinical triage. Authored strictly from each root cause's existing differentiators plus standard, well-established red flags. Weights point answers at root_cause ids that must exist on the problem. Expert-extendable; parse.js folds this onto graph.problems[].assessment.",
+  "knee-pain": {
+    "intro": "Four quick taps — this points you to the most likely cause, the way a physiotherapist would triage it.",
+    "questions": [
+      {
+        "id": "location",
+        "q": "Where exactly is the pain?",
+        "options": [
+          { "label": "Behind or around the kneecap", "weights": { "patellofemoral-pain": 2 } },
+          { "label": "Right below the kneecap", "weights": { "patellar-tendinopathy": 2 } },
+          { "label": "Deep, or across the whole joint", "weights": { "knee-oa": 2 } }
+        ]
+      },
+      {
+        "id": "aggravator",
+        "q": "What makes it worst?",
+        "options": [
+          { "label": "Going down stairs, squatting, or after sitting a while", "weights": { "patellofemoral-pain": 2 } },
+          { "label": "Jumping, running, or explosive loading", "weights": { "patellar-tendinopathy": 2 } },
+          { "label": "Stiffness first thing in the morning or after resting", "weights": { "knee-oa": 2 } }
+        ]
+      },
+      {
+        "id": "onset",
+        "q": "How did it come on, and your age?",
+        "options": [
+          { "label": "Gradually, from training or overuse — I'm under 40", "weights": { "patellofemoral-pain": 1, "patellar-tendinopathy": 1 } },
+          { "label": "Slowly over months, and I'm 40 or older", "weights": { "knee-oa": 2 } }
+        ]
+      }
+    ],
+    "redFlags": {
+      "q": "Before we go on — any of these?",
+      "sub": "Tap all that apply. These are the signs that need an in-person exam, not a self-care plan.",
+      "flags": [
+        "The knee locks, catches, or suddenly gives way",
+        "I can't put weight on it, or can't fully straighten it",
+        "It's hot, red, or swollen — or the pain wakes me at night",
+        "It started right after a significant injury, fall, or twist"
+      ],
+      "none": "None of these",
+      "message": "What you've described — locking or giving way, being unable to bear weight, a hot or swollen joint, night pain, or a recent significant injury — should be checked in person before you start any self-care plan. Please see a doctor or physiotherapist first. You can still read the protocol below for background, but get assessed."
+    },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  }
+}

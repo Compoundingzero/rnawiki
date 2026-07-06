@@ -1326,3 +1326,46 @@ a.dp-name:hover{color:var(--accent)}
 .faq-q summary::before{content:"＋";color:var(--accent);font-weight:700}
 .faq-q[open] summary::before{content:"－"}
 .faq-q p{margin:0 0 12px;color:var(--ink);line-height:1.55}
+
+/* ---- Guided clinical assessment (physio-style triage modal) ---- */
+.assess-modal{max-width:520px}
+.assess-top{display:flex;align-items:center;gap:12px;margin:-4px 0 14px}
+.assess-back,.assess-x{background:none;border:0;font-size:1.1rem;color:var(--muted);cursor:pointer;padding:4px 8px;border-radius:8px;line-height:1}
+.assess-back:hover:not([disabled]),.assess-x:hover{background:var(--panel2);color:var(--head)}
+.assess-back[disabled]{opacity:.25;cursor:default}
+.assess-dots{flex:1;display:flex;gap:6px;justify-content:center}
+.assess-dots span{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.assess-dots span.on{background:var(--accent);transform:scale(1.25)}
+.assess-dots span.done{background:var(--accent);opacity:.5}
+.assess-kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.assess-q{margin:.3rem 0 1rem;font-size:1.3rem;color:var(--head);line-height:1.25}
+.assess-sub{color:var(--muted);font-size:.9rem;margin:-.6rem 0 1rem}
+.assess-opts{display:flex;flex-direction:column;gap:10px}
+.assess-opt{display:flex;align-items:center;gap:10px;text-align:left;width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);font-size:1rem;cursor:pointer;transition:border-color .12s,background .12s}
+.assess-opt:hover{border-color:var(--accent);background:var(--panel2)}
+.assess-opt.sel{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.assess-opt .ao-go{margin-left:auto;color:var(--accent);font-weight:700;opacity:.6}
+.assess-flags{display:flex;flex-direction:column;gap:8px;margin-bottom:1rem}
+.assess-flag{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--panel);cursor:pointer;font-size:.95rem;color:var(--ink)}
+.assess-flag input{margin-top:2px;accent-color:var(--red);width:18px;height:18px;flex:none}
+.assess-flag.on{border-color:var(--red);background:color-mix(in srgb,var(--red) 7%,var(--panel))}
+.assess-continue{width:100%;padding:13px;border:0;border-radius:11px;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:1rem;cursor:pointer}
+.assess-continue:hover{filter:brightness(1.06)}
+.assess-result{text-align:left}
+.assess-result h2{margin:.3rem 0 .6rem;color:var(--head)}
+.assess-why{color:var(--ink);line-height:1.55;margin:.2rem 0 .7rem}
+.assess-plain{color:var(--muted);font-style:italic;margin:0 0 .7rem;line-height:1.5}
+.assess-alt{font-size:.9rem;color:var(--muted);background:var(--panel2);padding:9px 12px;border-radius:9px;margin:0 0 1rem}
+.assess-actions{display:flex;flex-direction:column;gap:9px;margin-top:.4rem}
+.assess-go2{padding:13px;border:1px solid var(--line);border-radius:11px;background:var(--panel);color:var(--head);font-weight:600;font-size:1rem;cursor:pointer}
+.assess-go2.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.assess-go2:hover{filter:brightness(1.04)}
+.assess-switch,.assess-close2{background:none;border:0;color:var(--muted);font-size:.9rem;cursor:pointer;padding:8px;text-decoration:underline;text-underline-offset:3px}
+.assess-switch:hover,.assess-close2:hover{color:var(--head)}
+.assess-disclaimer{font-size:.78rem;color:var(--faint);margin:1rem 0 0;text-align:center}
+.assess-result.redflag{text-align:center}
+.assess-result.redflag h2{color:var(--red)}
+.assess-rf-ic{font-size:2.6rem;margin-bottom:.4rem}
+.assess-result.redflag p{color:var(--ink);line-height:1.6;margin:0 0 1rem}
+.rc-assess{margin-left:auto;background:color-mix(in srgb,var(--accent) 10%,var(--panel));border:1px solid var(--accent);color:var(--accent);border-radius:20px;padding:6px 13px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.rc-assess:hover{background:var(--accent);color:var(--accent-ink)}
