@@ -1135,3 +1135,26 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .lyr-head h2{margin:0}
 .sec-edit{flex:none;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:8px;padding:.25rem .6rem;font-size:.76rem;font-weight:700;cursor:pointer}
 .sec-edit:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ================= Exercise pages (animated movement demo) ================= */
+.ex-name{color:var(--head);font-weight:700;text-decoration:none}
+.ex-name:hover{color:var(--accent);text-decoration:underline}
+.ex-demo{position:relative;max-width:440px;margin:1.2rem auto;border-radius:16px;overflow:hidden;background:#eef2f6;border:1px solid var(--line);min-height:180px}
+.ex-demo .exd{width:100%;display:block}
+.ex-demo.anim .exd-1{position:absolute;inset:0;width:100%;animation:exflip 2s ease-in-out infinite}
+@keyframes exflip{0%,22%{opacity:0}50%,72%{opacity:1}100%{opacity:0}}
+.ex-demo-cap{position:absolute;left:10px;bottom:10px;background:rgba(14,20,32,.72);color:#fff;font-size:.72rem;font-weight:600;padding:.25rem .55rem;border-radius:7px}
+.ex-demo.noimg{display:flex;align-items:center;justify-content:center;font-size:3rem;min-height:200px}
+.ex-rx-line{text-align:center;color:var(--muted);font-size:.9rem;margin:.2rem 0 1rem;text-transform:capitalize}
+.ex-mgroup{display:flex;align-items:baseline;gap:.6rem;margin:.4rem 0}
+.ex-mgroup .ex-mk{font-size:.72rem;font-weight:800;text-transform:uppercase;color:var(--muted);min-width:4.5rem}
+.tag-chip.static{background:var(--panel);color:var(--muted);border-color:var(--line);cursor:default}
+a.anat-ex{text-decoration:none}
+a.anat-ex:hover{border-color:var(--accent)}
+a.anat-ex b{color:var(--head)}
+/* 3D model slot on muscle pages */
+.anat-3d{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#0e1420;margin:.6rem 0 1rem}
+.anat-3d iframe{width:100%;height:420px;border:0;display:block}
+.anat-3d.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;background:linear-gradient(135deg,#eef4ff,#f1ecff);color:var(--head);text-align:center;padding:2rem 1rem;min-height:180px}
+.anat-3d.placeholder span{font-weight:700}
+.anat-3d.placeholder small{color:var(--muted)}
