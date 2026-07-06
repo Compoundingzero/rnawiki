@@ -1080,3 +1080,15 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .sci-row{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.3rem 0}
 .sci-k{font-size:.74rem;color:var(--muted);font-weight:700;margin-right:.3rem;min-width:6.5rem}
 @media(max-width:640px){.anat-oi,.anat-grid{grid-template-columns:1fr}.energy-meta{grid-template-columns:1fr 1fr}}
+
+/* Featured contributors (attribution, not ownership) */
+.pc-sub{color:var(--muted);font-size:.85rem;margin:.1rem 0 .7rem}
+.pc-chip{display:flex;align-items:center;gap:.5rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.4rem .6rem}
+.pc-chip-l{display:flex;align-items:center;gap:.5rem;text-decoration:none;flex:1;min-width:0}
+.pc-book{flex:none;border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:8px;padding:.3rem .6rem;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.pc-book:hover{background:var(--accent);color:#fff}
+
+/* Add-food micronutrients */
+.uf-micros{margin:.6rem 0 .2rem;border:1px solid var(--line);border-radius:10px;padding:.5rem .7rem}
+.uf-micros summary{cursor:pointer;font-weight:700;color:var(--accent);font-size:.88rem}
+.uf-micro-grid{margin-top:.3rem}

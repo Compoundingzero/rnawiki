@@ -456,7 +456,10 @@ async function api(req, res, url) {
     const name = clean(b.name, 80), serving = clean(b.serving, 60);
     if (!name) return json(res, 400, { error: 'Food name is required' });
     const num = (x) => (x === 0 || x) && isFinite(x) ? Number(x) : null;
-    const data = { kcal: num(b.kcal), protein_g: num(b.protein_g), carbs_g: num(b.carbs_g), sugar_g: num(b.sugar_g), fat_g: num(b.fat_g), fiber_g: num(b.fiber_g), sodium_mg: num(b.sodium_mg), vitamin_c_mg: num(b.vitamin_c_mg) };
+    const data = { kcal: num(b.kcal), protein_g: num(b.protein_g), carbs_g: num(b.carbs_g), sugar_g: num(b.sugar_g), fat_g: num(b.fat_g), fiber_g: num(b.fiber_g) };
+    // optional micronutrients — an allowlist so only known keys are stored
+    const MICROS = ['sodium_mg', 'potassium_mg', 'calcium_mg', 'iron_mg', 'magnesium_mg', 'zinc_mg', 'vitamin_a_ug', 'vitamin_c_mg', 'vitamin_d_ug', 'vitamin_b12_ug', 'folate_ug'];
+    MICROS.forEach((k) => { const val = num(b[k]); if (val != null) data[k] = val; });
     const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by) VALUES($1,$2,$3,$4) RETURNING id', [name, serving || null, JSON.stringify(data), u.id]);
     await award(u.id, 'food_submit', 'food:' + r.rows[0].id, 20);
     return json(res, 200, { ok: true, id: r.rows[0].id, status: 'pending' });
@@ -690,7 +693,7 @@ async function api(req, res, url) {
     const pid = clean(q.get('problem'), 60), rcid = clean(q.get('rc'), 60);
     if (!pid || !rcid) return json(res, 400, { error: 'problem & rc required' });
     const key = `p:${pid}:${rcid}`;
-    const r = await db.query(`SELECT u.username, u.domain, u.domain_verified, u.reputation_points,
+    const r = await db.query(`SELECT u.username, u.domain, u.domain_verified, u.reputation_points, u.socials,
         (SELECT COUNT(*)::int FROM comments c WHERE c.user_id=u.id AND c.goal_id=$3) AS comments,
         (SELECT COUNT(*)::int FROM proposals p WHERE p.user_id=u.id AND p.problem_id=$1 AND p.root_cause_id=$2) AS edits
       FROM users u
