@@ -1002,3 +1002,30 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .pf-book{border:none;background:linear-gradient(135deg,var(--accent),#2f7de0);color:#fff;font-weight:800;border-radius:10px;padding:.6rem;font-size:.85rem;cursor:default}
 .pf-proto2{background:#f4f8fd;border:1px dashed var(--line);border-radius:10px;padding:.5rem .6rem;font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:.4rem}
 .pf-proto2 .pf-l{font-size:.7rem;font-weight:800;padding:.2rem .4rem;border-radius:7px}
+
+/* ================= Super-admin control room + root-cause governance ================= */
+.adm-tabs{display:flex;gap:.4rem;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:1.2rem 0 1rem}
+.adm-tabs button{border:none;background:none;padding:.6rem .9rem;font:inherit;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;display:flex;align-items:center;gap:.4rem}
+.adm-tabs button.on{color:var(--head);border-bottom-color:var(--accent)}
+.adm-c{font-family:var(--mono);font-size:.72rem;min-width:1.1rem;text-align:center}
+.adm-c.hot{background:#e5484d;color:#fff;border-radius:20px;padding:.05rem .4rem}
+.admin-btn.ok{border-color:var(--green);color:var(--green)}
+.admin-btn.ok:hover{background:var(--green);color:#fff}
+.rcc-act{font-weight:800;font-size:.78rem;white-space:nowrap}
+.rcc-act.add{color:#0a7a48}.rcc-act.remove{color:#c2410c}
+.rcc-why{font-size:.82rem;color:var(--head);margin-top:.2rem}
+
+.rc-stub{background:#fff7ed;border:1px solid #fed7aa;border-radius:12px;padding:.8rem 1rem;color:#9a3412;font-size:.9rem;margin:1rem 0}
+.rcg-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;margin:1.2rem 0}
+.rcg-head{font-weight:800;color:var(--head);display:flex;align-items:center;gap:.5rem}
+.rcg-tag{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;background:#eef4ff;color:var(--accent);border-radius:20px;padding:.15rem .55rem}
+.rcg-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.6rem 0;border-top:1px solid var(--line)}
+.rcg-row b{color:var(--head);font-size:.9rem}
+.rcg-row small{display:block;color:var(--muted);font-size:.8rem;margin:.15rem 0}
+.rcg-row em{font-style:normal;color:var(--accent);font-size:.76rem;font-weight:700}
+.rcg-endorse{flex:none;border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:9px;padding:.4rem .8rem;font-weight:700;cursor:pointer}
+.rcg-endorse:hover{background:var(--accent);color:#fff}
+.rcg-endorse.done{border-color:var(--green);color:var(--green);background:#eafcf3;cursor:default}
+.rcg-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.8rem}
+.rcg-doms{display:flex;flex-wrap:wrap;gap:.5rem;margin:.3rem 0 .2rem}
+.rcg-dom{display:flex;align-items:center;gap:.35rem;font-size:.85rem;color:var(--head);background:#fff;border:1px solid var(--line);border-radius:8px;padding:.3rem .6rem;cursor:pointer}

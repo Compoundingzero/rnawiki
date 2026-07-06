@@ -116,12 +116,20 @@ function safeUrl(s, max) {
 }
 
 const ADMIN_USER = (process.env.ADMIN_USER || '').toLowerCase();
+// The single super-admin: only this account sees the consolidated control room and can
+// verify accounts / approve root-cause changes. Locked to Felix's email by default.
+const SUPERADMIN_EMAIL = (process.env.SUPERADMIN_EMAIL || 'felix360506@gmail.com').toLowerCase();
+const isSuper = u => !!(u && u.email && u.email.toLowerCase() === SUPERADMIN_EMAIL);
+// how many relevant-panel endorsements auto-approve a root-cause change (superadmin can override)
+const PANEL_THRESHOLD = 2;
 async function currentUser(req) {
   const sid = parseCookies(req).sid;
   if (!sid || !db.enabled) return null;
-  const r = await db.query('SELECT u.id, u.username, u.role, u.domain, u.credential, u.domain_verified, u.requested_domain, u.application_status, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
+  const r = await db.query('SELECT u.id, u.username, u.email, u.role, u.domain, u.credential, u.domain_verified, u.requested_domain, u.application_status, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
   const u = r.rows[0];
   if (u && ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
+  if (u && isSuper(u)) u.role = 'admin';           // the superadmin always has admin powers
+  if (u) u.is_super = isSuper(u);
   return u || null;
 }
 function setSessionCookie(res, token) {
@@ -482,6 +490,80 @@ async function api(req, res, url) {
     await db.query('UPDATE protocol_requests SET status=$1 WHERE id=$2', [status, id]);
     return json(res, 200, { ok: true });
   }
+  // --- root-cause governance: experts propose add/remove; the relevant panel endorses ---
+  if (seg[0] === 'rootcause-changes' && !seg[1] && method === 'GET') {
+    const problem = clean(new URL('http://x/' + url).searchParams.get('problem'), 80);
+    const where = problem ? 'WHERE c.problem_id=$1' : "WHERE c.status='pending'";
+    const params = problem ? [problem] : [];
+    const meId = (await currentUser(req) || {}).id || 0;
+    const r = await db.query(`SELECT c.id,c.problem_id,c.action,c.root_cause_id,c.name,c.diagnostic,c.domains,c.rationale,c.status,c.created_at,
+      u.username AS by_user,
+      (SELECT count(*) FROM rootcause_endorsements e WHERE e.change_id=c.id) AS endorsements,
+      (SELECT count(*) FROM rootcause_endorsements e WHERE e.change_id=c.id AND e.user_id=$${params.length + 1}) AS mine
+      FROM rootcause_changes c LEFT JOIN users u ON u.id=c.submitted_by ${where} ORDER BY c.created_at DESC LIMIT 100`, [...params, meId]);
+    return json(res, 200, { changes: r.rows, threshold: PANEL_THRESHOLD });
+  }
+  if (seg[0] === 'rootcause-changes' && !seg[1] && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    if (u.role !== 'admin' && !u.domain_verified) return json(res, 403, { error: 'Only verified experts can propose root-cause changes' });
+    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    const problem_id = clean(b.problem_id, 80), action = b.action === 'remove' ? 'remove' : 'add';
+    if (!problem_id) return json(res, 400, { error: 'Missing problem' });
+    const domains = Array.isArray(b.domains) ? b.domains.filter(d => typeof d === 'string').slice(0, 5) : [];
+    const rationale = clean(b.rationale, 800);
+    let root_cause_id = clean(b.root_cause_id, 80), name = clean(b.name, 120), diagnostic = clean(b.diagnostic, 400);
+    if (action === 'add') {
+      if (!name) return json(res, 400, { error: 'Name the root cause you want to add' });
+      root_cause_id = name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'rc-' + Date.now();
+    } else if (!root_cause_id) return json(res, 400, { error: 'Missing root cause to remove' });
+    const r = await db.query('INSERT INTO rootcause_changes(problem_id,action,root_cause_id,name,diagnostic,domains,rationale,submitted_by) VALUES($1,$2,$3,$4,$5,$6,$7,$8) RETURNING id',
+      [problem_id, action, root_cause_id, name || null, diagnostic || null, JSON.stringify(domains), rationale || null, u.id]);
+    await award(u.id, 'rc_change', 'rcc:' + r.rows[0].id, 15);
+    return json(res, 200, { ok: true, id: r.rows[0].id });
+  }
+  if (seg[0] === 'rootcause-changes' && seg[1] && seg[2] === 'endorse' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
+    const id = parseInt(seg[1], 10);
+    const cr = await db.query('SELECT * FROM rootcause_changes WHERE id=$1', [id]);
+    const ch = cr.rows[0]; if (!ch) return json(res, 404, { error: 'No such change' });
+    if (ch.status !== 'pending') return json(res, 400, { error: 'Already decided' });
+    // the panel = verified experts whose domain is required by this root cause (or a steward of the problem, or the superadmin)
+    const panelDomains = Array.isArray(ch.domains) ? ch.domains : [];
+    const steward = await db.query('SELECT 1 FROM stewardships WHERE problem_id=$1 AND user_id=$2 LIMIT 1', [ch.problem_id, u.id]);
+    const onPanel = isSuper(u) || u.role === 'admin' || steward.rows[0] || (u.domain_verified && (panelDomains.length === 0 || panelDomains.includes(u.domain)));
+    if (!onPanel) return json(res, 403, { error: 'Only the relevant expert panel or a steward of this problem can endorse' });
+    await db.query('INSERT INTO rootcause_endorsements(change_id,user_id,domain) VALUES($1,$2,$3) ON CONFLICT (change_id,user_id) DO NOTHING', [id, u.id, u.domain || null]);
+    await award(u.id, 'rc_endorse', 'rcc:' + id, 5);
+    const cnt = await db.query('SELECT count(*)::int AS n FROM rootcause_endorsements WHERE change_id=$1', [id]);
+    let status = ch.status;
+    if (cnt.rows[0].n >= PANEL_THRESHOLD) { await db.query("UPDATE rootcause_changes SET status='approved' WHERE id=$1 AND status='pending'", [id]); status = 'approved'; }
+    return json(res, 200, { ok: true, endorsements: cnt.rows[0].n, status });
+  }
+  if (seg[0] === 'rootcause-overlay' && method === 'GET') {
+    const r = await db.query("SELECT problem_id,action,root_cause_id,name,diagnostic,domains FROM rootcause_changes WHERE status='approved' ORDER BY created_at ASC");
+    return json(res, 200, { overlay: r.rows });
+  }
+  if (seg[0] === 'admin' && seg[1] === 'rootcause-changes' && seg[2] && method === 'POST') {
+    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
+    const id = parseInt(seg[2], 10); const b = await readBody(req) || {};
+    const status = ['approved', 'rejected', 'pending'].includes(b.status) ? b.status : 'approved';
+    await db.query('UPDATE rootcause_changes SET status=$1, decided_by=$2 WHERE id=$3', [status, u.id, id]);
+    return json(res, 200, { ok: true });
+  }
+  // --- consolidated super-admin control room: everything the superadmin needs in one call ---
+  if (seg[0] === 'admin' && seg[1] === 'overview' && method === 'GET') {
+    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
+    const [experts, partners, foods, requests, rcc] = await Promise.all([
+      db.query("SELECT id,username,domain,requested_domain,domain_verified,application_status,credential,role_backlink,reputation_points FROM users WHERE domain IS NOT NULL OR requested_domain IS NOT NULL ORDER BY (application_status='pending') DESC, domain_verified ASC, created_at ASC"),
+      db.query('SELECT id,name,type,location,link,backlink_url,serves,status,created_at FROM partners ORDER BY status ASC, created_at DESC LIMIT 200'),
+      db.query("SELECT f.id,f.name,f.serving,f.data,f.status,f.created_at,u.username AS by_user FROM user_foods f LEFT JOIN users u ON u.id=f.submitted_by WHERE f.status='pending' ORDER BY f.created_at ASC LIMIT 200"),
+      db.query("SELECT id,request,detail,votes,status,created_at FROM protocol_requests ORDER BY (status='open') DESC, votes DESC, created_at DESC LIMIT 100"),
+      db.query(`SELECT c.id,c.problem_id,c.action,c.root_cause_id,c.name,c.diagnostic,c.domains,c.rationale,c.status,c.created_at,u.username AS by_user,
+        (SELECT count(*)::int FROM rootcause_endorsements e WHERE e.change_id=c.id) AS endorsements
+        FROM rootcause_changes c LEFT JOIN users u ON u.id=c.submitted_by ORDER BY (c.status='pending') DESC, c.created_at DESC LIMIT 100`),
+    ]);
+    return json(res, 200, { experts: experts.rows, partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, threshold: PANEL_THRESHOLD });
+  }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
     const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'Verified dietitians only' });
     const id = parseInt(seg[1], 10); const b = await readBody(req) || {};
@@ -625,7 +707,7 @@ async function api(req, res, url) {
     return json(res, 200, { experts: r.rows });
   }
   if (seg[0] === 'admin' && seg[1] === 'verify-domain' && method === 'POST') {
-    const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'Admin only' });
+    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const username = clean(b.username, 24); const verified = b.verified !== false;
     // approve = grant the requested (or current) domain + verified; reject/unverify = revoke it.

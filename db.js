@@ -144,6 +144,35 @@ CREATE TABLE IF NOT EXISTS protocol_requests (
 );
 CREATE INDEX IF NOT EXISTS idx_protoreq_status ON protocol_requests(status, votes DESC);
 
+-- Root-cause governance: experts propose ADDING a new root cause to a problem, or
+-- REMOVING an existing one. Approval comes from the relevant panel (experts whose
+-- domain is required by that root cause) via endorsements, or the superadmin. A change
+-- is applied to the (otherwise static) graph as a runtime overlay once approved.
+CREATE TABLE IF NOT EXISTS rootcause_changes (
+  id SERIAL PRIMARY KEY,
+  problem_id TEXT NOT NULL,
+  action TEXT NOT NULL,                    -- add | remove
+  root_cause_id TEXT,                      -- target rc (remove) or new slug (add)
+  name TEXT,                               -- proposed name (add)
+  diagnostic TEXT,                         -- proposed "how you'd know" line (add)
+  domains JSONB NOT NULL DEFAULT '[]',     -- relevant expert domains = the panel
+  rationale TEXT,
+  submitted_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  status TEXT NOT NULL DEFAULT 'pending',  -- pending | approved | rejected
+  decided_by INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_rcchange_problem ON rootcause_changes(problem_id, status);
+-- Panel endorsements: one row per (change, expert). Unique keeps a vote idempotent.
+CREATE TABLE IF NOT EXISTS rootcause_endorsements (
+  id SERIAL PRIMARY KEY,
+  change_id INTEGER NOT NULL REFERENCES rootcause_changes(id) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  domain TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(change_id, user_id)
+);
+
 CREATE TABLE IF NOT EXISTS proposals (
   id SERIAL PRIMARY KEY,
   problem_id TEXT NOT NULL,
