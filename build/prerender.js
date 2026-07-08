@@ -171,9 +171,31 @@ ${crumbLd}${ld}
 <main id="app">${body}</main>
 <footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/for-clinicians">For pros &amp; clinicians</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
+<script src="/facts.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>`;
+}
+
+// Build-time pick of a representative daily fact for the prerendered homepage (crawlers + first paint).
+// The client re-renders the true "today" fact on hydration; this just needs to be a real, valid one.
+function prerenderDailyFact() {
+  try {
+    const src = fs.readFileSync(path.join(SITE, 'facts.js'), 'utf8');
+    const m = src.match(/window\.RNAWIKI_FACTS\s*=\s*(\[[\s\S]*\]);/);
+    if (!m) return '';
+    const facts = eval(m[1]);
+    if (!facts || !facts.length) return '';
+    const f = facts[Math.floor(Date.now() / 864e5) % facts.length];
+    return `
+    <section class="daily-fact">
+      <div class="df-card">
+        <div class="df-top"><span class="df-kicker">💡 Did you know?</span><span class="df-meta">a new fact every day</span></div>
+        <p class="df-text">${f.t}</p>
+        <a class="df-link" href="${f.href}">${esc(f.label)}</a>
+      </div>
+    </section>`;
+  } catch (e) { return ''; }
 }
 
 const crumbHtml = (items) => `<div class="crumbs">${items.map((it, i) => it.route ? `<a href="${it.route}">${esc(it.name)}</a>` : `<span>${esc(it.name)}</span>`).join('<span class="sep">›</span>')}</div>`;
@@ -640,6 +662,7 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       <p class="hero-lead">DNA is a blueprint locked in a vault. RNA is the messenger, the architect, and the builder — it reads the code and makes it real. RNAwiki is the RNA for your health: name a problem or a goal, and we build the exact movement, food, and supplements that fix its root cause — with every supplement broken down to its compounds, pathways, and molecular targets, and every food to the nutrients that matter, all in plain English.</p>
       <p><a class="cta-primary" href="/solve">Build my protocol →</a></p>
     </section>
+    ${prerenderDailyFact()}
     <section class="how-3"><h2>How it works</h2>
       <ol><li><b>Diagnose</b> — tell us your pain or goal and answer one clinical question to find the exact root cause.</li>
       <li><b>Execute</b> — get your precision protocol: the movement, evidence-ranked compounds, and biological targets for your recovery.</li>

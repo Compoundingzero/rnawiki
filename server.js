@@ -13,12 +13,12 @@ const DIR = path.join(__dirname, 'site');
 const ASSET_VER = (() => {
   try {
     const h = crypto.createHash('sha1');
-    for (const f of ['app.js', 'styles.css', 'data.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
+    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
     return h.digest('hex').slice(0, 10);
   } catch (e) { return String(Date.now()); }
 })();
 function versionAssets(html) {
-  return String(html).replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
+  return String(html).replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
 }
 function endHtml(res, html, code) {
   res.writeHead(code || 200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });

@@ -1455,3 +1455,16 @@ a.dp-name:hover{color:var(--accent)}
 .mm-fig,.pd-fig{background:var(--panel);padding:1rem .6rem .4rem}
 .mm-fig svg,.pd-fig svg{width:100%;height:auto}
 .mm-fig svg text,.pd-fig svg text{font-family:-apple-system,system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
+
+/* ---- Daily Fact (homepage "Did you know?" widget) ---- */
+.daily-fact{max-width:760px;margin:1.4rem auto 0;padding:0 1rem}
+.df-card{position:relative;background:linear-gradient(135deg,#0c1a16 0%,#12352c 62%,#0d5f52 130%);color:#eafff9;border-radius:16px;padding:1.15rem 1.35rem 1.25rem;box-shadow:var(--shadow);overflow:hidden}
+.df-card::before{content:"🧬";position:absolute;right:-.4rem;bottom:-1rem;font-size:5.5rem;opacity:.08;transform:rotate(-12deg)}
+.df-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:.5rem}
+.df-kicker{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#7fe9d4}
+.df-meta{font-size:.66rem;color:#8fe0cd;opacity:.8}
+.df-text{font-size:1.02rem;line-height:1.5;font-weight:500;margin:.1rem 0 .7rem;position:relative;z-index:1}
+.df-text b{color:#a9f3e2;font-weight:800}
+.df-link{display:inline-block;font-size:.82rem;font-weight:700;color:#0c1a16;background:#7fe9d4;padding:.42rem .8rem;border-radius:999px;position:relative;z-index:1;transition:.15s}
+.df-link:hover{background:#a9f3e2;transform:translateX(2px)}
+@media(max-width:560px){.df-text{font-size:.96rem}}
