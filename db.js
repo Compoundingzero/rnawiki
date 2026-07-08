@@ -321,6 +321,15 @@ CREATE TABLE IF NOT EXISTS telegram_link_tokens (
   rcid TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- The unified plan object (the omnichannel spine): one active plan per account, shared by the
+-- website, the Telegram bot, sharing cards and (later) the earn layer. Anonymous users keep it
+-- in localStorage; it merges up into this row on login.
+CREATE TABLE IF NOT EXISTS user_plans (
+  user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  plan JSONB NOT NULL DEFAULT '{}',
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 `;
 
 async function init() {

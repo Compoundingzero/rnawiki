@@ -377,6 +377,20 @@ async function api(req, res, url) {
   if (seg[0] === 'me' && method === 'GET') {
     const u = await currentUser(req); return json(res, 200, { user: u });
   }
+  // Unified plan object (the omnichannel spine). GET returns the account's saved plan; POST saves it.
+  // Anonymous users keep the plan in localStorage and merge it up here on login (client-side).
+  if (seg[0] === 'plan' && method === 'GET') {
+    const u = await currentUser(req); if (!u) return json(res, 200, { plan: null });
+    const r = await db.query('SELECT plan FROM user_plans WHERE user_id=$1', [u.id]);
+    return json(res, 200, { plan: r.rows[0] ? r.rows[0].plan : null });
+  }
+  if (seg[0] === 'plan' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to save your plan' });
+    const b = await readBody(req, 2e5); if (!b || typeof b.plan !== 'object') return json(res, 400, { error: 'Bad request' });
+    await db.query(`INSERT INTO user_plans(user_id,plan,updated_at) VALUES($1,$2,now())
+      ON CONFLICT(user_id) DO UPDATE SET plan=EXCLUDED.plan, updated_at=now()`, [u.id, JSON.stringify(b.plan)]);
+    return json(res, 200, { ok: true });
+  }
   if (seg[0] === 'auth' && seg[1] === 'google' && method === 'POST') {
     if (!GOOGLE_CLIENT_ID) return json(res, 503, { error: 'Google sign-in is not enabled on this server.' });
     const b = await readBody(req); if (!b || !b.credential) return json(res, 400, { error: 'Missing Google credential' });
