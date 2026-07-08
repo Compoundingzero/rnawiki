@@ -263,9 +263,18 @@ comparePairs.forEach(({ a, b }) => {
   (compoundCompareLinks[b.id] = compoundCompareLinks[b.id] || []).push({ other: a.name, route });
 });
 
+// Daily-fact reverse map — surface each fact on the compound page it references (SEO hook + enrichment).
+let factByHref = {};
+try {
+  const fsrc = fs.readFileSync(path.join(SITE, 'facts.js'), 'utf8');
+  const fm = fsrc.match(/window\.RNAWIKI_FACTS\s*=\s*(\[[\s\S]*\]);/);
+  if (fm) eval('factByHref = (' + fm[1] + ').reduce(function(o,f){o[f.href]=f;return o;},{})');
+} catch (e) { factByHref = {}; }
+
 // compounds
 D.compounds.forEach((c) => {
   const route = '/c/' + slug(c.name);
+  const cpdFact = factByHref['/c/' + slug(c.name)];
   const goalLinks = (c.goalIds || []).map((g) => `<a href="/goal/${g}">${esc(goalById[g].label)}</a>`).join(' · ');
   const usedIn = compoundProtocols[c.id] || [];
   const usedInHtml = usedIn.length ? `<h2>Used in these protocols</h2><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}</a></li>`).join('')}</ul>` : '';
@@ -275,6 +284,7 @@ D.compounds.forEach((c) => {
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: c.category, route: '/' }, { name: c.name }])}
     <div class="detail"><h1>${esc(c.name)}</h1>
     <p><b>Evidence:</b> ${stars(c.stars)} · <b>Status:</b> ${(c.approvalLabels || []).join(', ')}</p>
+    ${cpdFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${cpdFact.t}</span></div>` : ''}
     ${c.plain ? `<h2>In plain English</h2><p>${esc(c.plain)}</p>` : ''}
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(c.mechanism)}</p>` : ''}
     ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}

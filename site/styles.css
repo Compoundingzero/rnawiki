@@ -1510,3 +1510,9 @@ a.dp-name:hover{color:var(--accent)}
 .proto-ixn{margin:.6rem 0 0}
 .proto-ixn-h{font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin-bottom:.35rem}
 .proto-ixn .ixn-panel{box-shadow:none;background:var(--bg)}
+
+/* ---- "Did you know?" fact callout on compound pages ---- */
+.cpd-fact{background:linear-gradient(135deg,#f0faf7,#e6f5f1);border:1px solid #bfe6db;border-left:4px solid var(--accent);border-radius:12px;padding:.7rem .95rem;margin:.9rem 0}
+.cpd-fact .cf-k{font-size:.72rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:#0b6b5c;display:block;margin-bottom:.15rem}
+.cpd-fact .cf-t{font-size:.96rem;color:var(--ink);line-height:1.45}
+.cpd-fact .cf-t b{color:var(--accent)}
