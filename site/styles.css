@@ -1487,3 +1487,10 @@ a.dp-name:hover{color:var(--accent)}
 .ixn-why{font-size:.84rem;color:var(--ink);margin:.2rem 0}
 .ixn-act{font-size:.82rem;color:var(--muted);margin:.15rem 0 0}
 .ixn-foot{font-size:.72rem;color:var(--faint);margin:.6rem 0 0}
+
+/* ---- Keystone card (protocol page — the one highest-leverage habit) ---- */
+.keystone-card{background:linear-gradient(135deg,#fff8ec,#fdefd2);border:1px solid #f0d9a8;border-left:4px solid #e0a021;border-radius:14px;padding:1rem 1.2rem;margin:0 0 1rem;box-shadow:var(--shadow)}
+.ks-badge{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#9a6a00}
+.ks-one{font-size:1.12rem;font-weight:700;color:#3a2a05;margin:.35rem 0 .3rem;line-height:1.35}
+.ks-why{font-size:.9rem;color:#6b5320;margin:0 0 .4rem}
+.ks-note{font-size:.78rem;color:#95803f;margin:0}
