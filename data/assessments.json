@@ -43,5 +43,176 @@
       "message": "What you've described — locking or giving way, being unable to bear weight, a hot or swollen joint, night pain, or a recent significant injury — should be checked in person before you start any self-care plan. Please see a doctor or physiotherapist first. You can still read the protocol below for background, but get assessed."
     },
     "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "low-back-pain": {
+    "intro": "A few quick taps — this points to whether your back mostly needs strengthening or better control, the way a physio would triage it.",
+    "questions": [
+      { "id": "trigger", "q": "When does it bother you most?", "options": [
+        { "label": "A dull ache after sitting or standing a while, easing once I move", "weights": { "weak-posterior-chain": 2 } },
+        { "label": "Sudden 'tweaks' or catches with quick or heavy movements", "weights": { "poor-core-stability": 2 } } ] },
+      { "id": "pattern", "q": "How would you describe it?", "options": [
+        { "label": "A fairly constant low-grade ache and stiffness", "weights": { "weak-posterior-chain": 2 } },
+        { "label": "Fine most of the time, then it grabs unpredictably", "weights": { "poor-core-stability": 2 } } ] },
+      { "id": "activity", "q": "Your activity level?", "options": [
+        { "label": "Mostly sedentary / deconditioned", "weights": { "weak-posterior-chain": 1 } },
+        { "label": "Active, but my back gives way on certain movements", "weights": { "poor-core-stability": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply. These need an in-person exam, not a self-care plan.",
+      "flags": [ "Pain, numbness or tingling running down into the leg or foot", "New weakness in a leg, or trouble controlling your bladder or bowels", "Numbness around the groin or saddle area", "Pain after a significant fall or accident, or with unexplained weight loss or fever", "Night pain that wakes you and isn't eased by changing position" ],
+      "none": "None of these",
+      "message": "What you've described can signal nerve involvement or, rarely, an emergency (cauda equina) — please get assessed in person before any self-care plan. You can read the protocol below for background, but see a doctor or physiotherapist first." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "neck-shoulder": {
+    "intro": "A few quick taps — this points to whether it's posture-driven neck tension or a shoulder-joint problem.",
+    "questions": [
+      { "id": "site", "q": "Where's the main problem?", "options": [
+        { "label": "Tight neck and upper traps, rounded shoulders, tension headaches", "weights": { "upper-cross": 2 } },
+        { "label": "Pain in the shoulder itself when I lift my arm", "weights": { "rotator-cuff-impinge": 2 } } ] },
+      { "id": "aggravator", "q": "What makes it worse?", "options": [
+        { "label": "Long hours at a desk or on my phone", "weights": { "upper-cross": 2 } },
+        { "label": "Reaching overhead — and it aches at night on that side", "weights": { "rotator-cuff-impinge": 2 } } ] },
+      { "id": "arc", "q": "Is there a painful arc lifting your arm?", "options": [
+        { "label": "No real arc — more general tension and stiffness", "weights": { "upper-cross": 1 } },
+        { "label": "Yes — a painful band partway up when I raise my arm", "weights": { "rotator-cuff-impinge": 2 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply.",
+      "flags": [ "Arm weakness, numbness, or pins and needles down the arm or into the hand", "Pain after a fall or injury, or you can't lift the arm at all", "The shoulder looks deformed or out of place", "Neck pain after trauma, or with fever or unexplained weight loss" ],
+      "none": "None of these",
+      "message": "These signs can point to nerve, fracture or other problems that need an in-person exam — please see a doctor or physiotherapist before starting a self-care plan." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "insulin-resistance": {
+    "intro": "A few quick taps — this points to whether inactivity or belly fat is the bigger driver of your blood-sugar issue.",
+    "questions": [
+      { "id": "fit", "q": "Which fits you better?", "options": [
+        { "label": "Energy crashes after meals; I'm just not very active", "weights": { "poor-glucose-disposal": 2 } },
+        { "label": "A growing belly/waist that seems to be pushing my blood sugar up", "weights": { "visceral-adiposity": 2 } } ] },
+      { "id": "waist", "q": "Your waist?", "options": [
+        { "label": "Not especially large — it's more about inactivity", "weights": { "poor-glucose-disposal": 2 } },
+        { "label": "Larger waist / central weight gain", "weights": { "visceral-adiposity": 2 } } ] },
+      { "id": "body", "q": "Best description?", "options": [
+        { "label": "Lean-ish but sedentary", "weights": { "poor-glucose-disposal": 1 } },
+        { "label": "Carrying extra weight around the middle", "weights": { "visceral-adiposity": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply. These need proper testing, not self-management.",
+      "flags": [ "Very frequent urination and thirst, blurred vision, or unexplained weight loss", "A blood-sugar reading in the diabetic range, or you already have diabetes", "Numbness or tingling in the feet" ],
+      "none": "None of these",
+      "message": "These can signal diabetes that needs proper testing (HbA1c / fasting glucose) and medical care — please see a doctor before self-managing. The protocol below is background only." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "visceral-fat": {
+    "intro": "A few quick taps — this points to whether a plain energy surplus or a stress/cortisol pattern is driving the belly fat.",
+    "questions": [
+      { "id": "cause", "q": "What best describes the gain?", "options": [
+        { "label": "Gradual — I'm honestly eating more than I burn", "weights": { "energy-surplus": 2 } },
+        { "label": "Stress-driven — poor sleep, stress eating, gain even when I 'eat okay'", "weights": { "cortisol-fat": 2 } } ] },
+      { "id": "sleepstress", "q": "Sleep and stress?", "options": [
+        { "label": "Both fine — it's mainly diet and activity", "weights": { "energy-surplus": 2 } },
+        { "label": "Poor sleep and high stress", "weights": { "cortisol-fat": 2 } } ] },
+      { "id": "distribution", "q": "Where does it sit?", "options": [
+        { "label": "Fairly general weight gain", "weights": { "energy-surplus": 1 } },
+        { "label": "Mostly belly, with fatigue and cravings", "weights": { "cortisol-fat": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply.",
+      "flags": [ "Rapid belly-fat gain with purple stretch marks, easy bruising, or a rounding face", "Very high blood pressure or blood sugar alongside the weight gain" ],
+      "none": "None of these",
+      "message": "Rapid central weight gain with those features can, rarely, signal a hormonal condition — worth a doctor's check before self-managing." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "chronic-fatigue": {
+    "intro": "A few quick taps — this points to whether low iron or a deeper mitochondrial pattern is behind the fatigue.",
+    "questions": [
+      { "id": "fit", "q": "Which sounds like you?", "options": [
+        { "label": "Tired and breathless on exertion, looking pale", "weights": { "iron-anemia": 2 } },
+        { "label": "Low energy even though I sleep well and my iron is normal", "weights": { "mito-inefficiency": 2 } } ] },
+      { "id": "irisk", "q": "Any of these?", "options": [
+        { "label": "Heavy periods, a vegetarian/vegan diet, or a recent blood donation", "weights": { "iron-anemia": 2 } },
+        { "label": "None of those apply to me", "weights": { "mito-inefficiency": 1 } } ] },
+      { "id": "exertion", "q": "Breathless or heart racing on stairs?", "options": [
+        { "label": "Yes, and I look pale", "weights": { "iron-anemia": 2 } },
+        { "label": "No — just a flat, steady low energy", "weights": { "mito-inefficiency": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply. Fatigue can have serious causes worth ruling out.",
+      "flags": [ "Unexplained weight loss, drenching night sweats, or fever", "Breathless at rest, chest pain, or a very fast or irregular heartbeat", "Very heavy bleeding, or blood in your stool", "Fatigue that is rapidly getting worse over days to weeks" ],
+      "none": "None of these",
+      "message": "Please get a ferritin + full blood count and see a doctor before self-treating — these signs need proper assessment first. The protocol below is background only." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "low-testosterone": {
+    "intro": "A few quick taps — this points to whether lifestyle or a confirmed clinical cause is the better starting point.",
+    "questions": [
+      { "id": "labs", "q": "Have you had blood tests?", "options": [
+        { "label": "Not yet — I just have symptoms (low drive, fatigue, poor recovery)", "weights": { "lifestyle-suppressed-t": 2 } },
+        { "label": "Yes — repeat morning tests confirmed low testosterone", "weights": { "primary-hypogonadism": 2 } } ] },
+      { "id": "lifestyle", "q": "Your lifestyle right now?", "options": [
+        { "label": "Overweight, poor sleep, high stress, low activity", "weights": { "lifestyle-suppressed-t": 2 } },
+        { "label": "Dialled in — yet levels are still low", "weights": { "primary-hypogonadism": 2 } } ] },
+      { "id": "goal", "q": "What are you after?", "options": [
+        { "label": "Fix the basics naturally first", "weights": { "lifestyle-suppressed-t": 1 } },
+        { "label": "Explore medical management", "weights": { "primary-hypogonadism": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply.",
+      "flags": [ "Very low libido with headaches or vision changes", "New breast tissue development, or infertility with loss of morning erections", "Testicular pain, a lump, or a history of undescended testes" ],
+      "none": "None of these",
+      "message": "These can point to a medical cause that needs a doctor (hormone panel, sometimes imaging) — please get assessed rather than self-treating." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "skin-aging": {
+    "intro": "A few quick taps — this points to whether to prioritise rebuilding collagen or repairing sun/UV damage.",
+    "questions": [
+      { "id": "concern", "q": "What bothers you most?", "options": [
+        { "label": "Fine lines, loss of firmness and glow — overall ageing", "weights": { "collagen-loss-glycation": 2 } },
+        { "label": "Sun spots, uneven tone, patchy pigmentation", "weights": { "uv-oxidative": 2 } } ] },
+      { "id": "history", "q": "Your history?", "options": [
+        { "label": "General ageing, plus a sweet tooth and time", "weights": { "collagen-loss-glycation": 2 } },
+        { "label": "Lots of past sun exposure or tanning", "weights": { "uv-oxidative": 2 } } ] },
+      { "id": "look", "q": "Best description of your skin?", "options": [
+        { "label": "Crepey and less plump", "weights": { "collagen-loss-glycation": 1 } },
+        { "label": "Dark spots and blotchy tone", "weights": { "uv-oxidative": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these on your skin?", "sub": "Tap all that apply. These should be checked before any cosmetic routine.",
+      "flags": [ "A mole or spot changing in size, shape or colour, or that bleeds", "A sore that won't heal, or a new firm bump that's growing", "A patch with irregular borders or several colours" ],
+      "none": "None of these",
+      "message": "Any changing, bleeding or non-healing spot should be checked by a doctor or dermatologist to rule out skin cancer before starting a cosmetic routine." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "hair-loss": {
+    "intro": "A few quick taps — this points to whether it's pattern (DHT) loss or shedding from a nutrient shortfall.",
+    "questions": [
+      { "id": "pattern", "q": "What's the pattern?", "options": [
+        { "label": "A receding hairline or thinning crown; it runs in my family", "weights": { "dht-sensitivity": 2 } },
+        { "label": "Diffuse shedding all over, after dieting, stress or with low iron", "weights": { "nutrient-deficiency-hair": 2 } } ] },
+      { "id": "timing", "q": "How did it come on?", "options": [
+        { "label": "Slow, gradual thinning over years, in a pattern", "weights": { "dht-sensitivity": 2 } },
+        { "label": "Noticeable shedding that started after a trigger (crash diet, illness, stress)", "weights": { "nutrient-deficiency-hair": 2 } } ] },
+      { "id": "context", "q": "Anything else?", "options": [
+        { "label": "Family history of male/female pattern loss", "weights": { "dht-sensitivity": 1 } },
+        { "label": "Low iron/ferritin, low protein, or a restrictive diet", "weights": { "nutrient-deficiency-hair": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — any of these?", "sub": "Tap all that apply.",
+      "flags": [ "Patchy bald spots, or hair coming out in clumps", "Redness, scaling, scarring or pain of the scalp", "Sudden loss alongside weight change, fatigue or feeling the cold (possible thyroid issue)" ],
+      "none": "None of these",
+      "message": "Patchy loss, a scarring or inflamed scalp, or loss with other symptoms should be seen by a doctor or dermatologist — some causes are treatable and best caught early." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
+  },
+  "longevity": {
+    "intro": "A few quick taps — this points to the longevity approach that fits you best. Both are valid; it's about your starting angle.",
+    "questions": [
+      { "id": "draw", "q": "Which are you drawn to?", "options": [
+        { "label": "Clearing 'zombie' senescent cells and boosting mitochondria", "weights": { "cellular-senescence": 2 } },
+        { "label": "Cycling growth vs repair — fasting-style autophagy", "weights": { "mtor-overactivation": 2 } } ] },
+      { "id": "context", "q": "Your context?", "options": [
+        { "label": "General anti-ageing and healthspan", "weights": { "cellular-senescence": 2 } },
+        { "label": "I tend to over-eat / stay in surplus and want more repair", "weights": { "mtor-overactivation": 2 } } ] },
+      { "id": "interest", "q": "What interests you more?", "options": [
+        { "label": "Senolytics, NAD⁺, mitochondrial support", "weights": { "cellular-senescence": 1 } },
+        { "label": "Fasting, rapamycin, caloric restriction", "weights": { "mtor-overactivation": 1 } } ] }
+    ],
+    "redFlags": { "q": "Before we go on — do any of these apply?", "sub": "Tap all that apply. If so, aggressive fasting or longevity compounds may not be safe for you.",
+      "flags": [ "You're underweight, or have a history of disordered eating", "You're pregnant or breastfeeding", "You take medication for diabetes or blood pressure (fasting can interact)" ],
+      "none": "None of these",
+      "message": "If any of these apply, please check with a doctor before aggressive fasting or longevity compounds — the plan below can be read for background." },
+    "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
   }
 }
