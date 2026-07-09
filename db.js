@@ -306,10 +306,12 @@ CREATE TABLE IF NOT EXISTS telegram_users (
   first_name TEXT,
   keystone_days JSONB NOT NULL DEFAULT '[]',
   streak INTEGER NOT NULL DEFAULT 0,
+  food_log JSONB NOT NULL DEFAULT '{}',
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   last_active TIMESTAMPTZ NOT NULL DEFAULT now(),
   active BOOLEAN NOT NULL DEFAULT true
 );
+ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS food_log JSONB NOT NULL DEFAULT '{}';
 CREATE INDEX IF NOT EXISTS idx_tg_active ON telegram_users(active, last_active DESC);
 
 -- Short-lived deep-link tokens: web mints one when a user taps "Coach me on Telegram" on a

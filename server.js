@@ -217,14 +217,57 @@ function sameOrigin(req) {
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
 const BOT_USERNAME = process.env.BOT_USERNAME || 'rnawikibot';
 const TG_SECRET = crypto.createHmac('sha256', SECRET).update('tg-webhook').digest('hex').slice(0, 40);
-const TG_HELP = 'What I can do:\n<b>/keystone</b> — your one keystone habit\n<b>/done</b> — mark it done today (builds your streak)\n<b>/streak</b> — your current streak\n<b>/plan</b> — your full protocol link\n<b>/help</b> — this menu';
+const TG_HELP = 'What I can do:\n<b>/keystone</b> — your one keystone habit\n<b>/done</b> — mark it done today (builds your streak)\n<b>type any food</b> (e.g. “2 eggs”, “chicken rice”) — I log it against your protocol’s targets\n<b>/today</b> — your keystone + food progress today\n<b>/streak</b> — your streak · <b>/reset</b> — clear today’s food\n<b>/plan</b> — your full protocol link · <b>/help</b> — this menu';
 let TG_PROTO = {};
 try {
   const g = require('./data/clinical_graph.json'); const ks = require('./data/keystones.json');
   g.problems.forEach(p => p.root_causes.forEach(rc => {
-    TG_PROTO[p.id + '/' + rc.id] = { problem: p.name, rc: rc.name.replace(/\s*\([^)]*\)/, ''), keystone: ks[rc.id] || null };
+    TG_PROTO[p.id + '/' + rc.id] = { problem: p.name, rc: rc.name.replace(/\s*\([^)]*\)/, ''), keystone: ks[rc.id] || null, nt: rc.nutrient_targets || {} };
   }));
 } catch (e) { console.error('[tg] proto load failed:', e.message); }
+// Food database (same source as the web fuel tracker) for logging in chat.
+let TG_FOODS = [];
+try {
+  const ff = require('./data/foods.json'); const arr = Array.isArray(ff) ? ff : (ff.foods || []);
+  TG_FOODS = arr.map(f => ({ id: f.id, name: f.name, serving: f.serving || '', sg: !!f.sg_local, hay: (f.hay || f.name || '').toLowerCase(), n: f }));
+} catch (e) { console.error('[tg] foods load failed:', e.message); }
+const TG_NUT_LABEL = { protein_g: 'protein', fiber_g: 'fibre', sugar_g: 'sugar', kcal: 'calories', omega3_mg: 'omega-3', vitamin_c_mg: 'vitamin C', vitamin_d_iu: 'vitamin D', calcium_mg: 'calcium', magnesium_mg: 'magnesium', zinc_mg: 'zinc', iron_mg: 'iron', potassium_mg: 'potassium', sodium_mg: 'sodium', glycine_g: 'glycine', choline_mg: 'choline' };
+const TG_NUT_UNIT = { protein_g: 'g', fiber_g: 'g', sugar_g: 'g', kcal: 'kcal', omega3_mg: 'mg', vitamin_c_mg: 'mg', vitamin_d_iu: 'IU', calcium_mg: 'mg', magnesium_mg: 'mg', zinc_mg: 'mg', iron_mg: 'mg', potassium_mg: 'mg', sodium_mg: 'mg', glycine_g: 'g', choline_mg: 'mg' };
+function tgFindFoods(q) {
+  q = (q || '').toLowerCase().trim(); if (q.length < 2) return [];
+  return TG_FOODS.filter(f => f.hay.includes(q)).sort((a, b) => (b.sg - a.sg) || (a.name.length - b.name.length)).slice(0, 6);
+}
+function tgFoodProgress(row) {
+  const key = (row.pid || '') + '/' + (row.rcid || ''); const proto = TG_PROTO[key];
+  const nt = (proto && proto.nt) || {}; const keys = Object.keys(nt);
+  const log = row.food_log || {}; const today = new Date().toISOString().slice(0, 10);
+  const items = (log.date === today && Array.isArray(log.items)) ? log.items : [];
+  if (!keys.length) return { text: items.length ? `Logged ${items.length} food${items.length > 1 ? 's' : ''} today.` : 'No food targets on this protocol.', items };
+  const sum = {}; keys.forEach(k => sum[k] = 0);
+  items.forEach(it => keys.forEach(k => { const v = it.n && it.n[k]; if (typeof v === 'number') sum[k] += v * (it.qty || 1); }));
+  const lines = keys.map(k => {
+    const t = nt[k]; const val = Math.round(sum[k]); const unit = TG_NUT_UNIT[k] || ''; const lbl = TG_NUT_LABEL[k] || k;
+    if (t.type === 'limit') { const over = val > t.target; return `${over ? '⚠️' : '✅'} ${lbl}: ${val}/${t.target} ${unit} (limit)`; }
+    const done = val >= t.target; return `${done ? '✅' : '▫️'} ${lbl}: ${val}/${t.target} ${unit}`;
+  });
+  return { text: lines.join('\n'), items };
+}
+async function tgLogFood(chatId, food) {
+  const row = await tgGet(chatId); if (!row) return;
+  const today = new Date().toISOString().slice(0, 10);
+  let log = row.food_log && row.food_log.date === today ? row.food_log : { date: today, items: [] };
+  if (!Array.isArray(log.items)) log.items = [];
+  log.items.push({ name: food.name, serving: food.serving, n: food.n, qty: 1 });
+  await db.query('UPDATE telegram_users SET food_log=$2, last_active=now() WHERE chat_id=$1', [chatId, JSON.stringify(log)]);
+  if (row.user_id && db.enabled) { // mirror into the account's plan log so the web tracker stays in sync
+    try {
+      const pr = (await db.query('SELECT plan FROM user_plans WHERE user_id=$1', [row.user_id])).rows[0];
+      if (pr && pr.plan) { const plan = pr.plan; plan.log = plan.log || {}; plan.log[today] = plan.log[today] || { done: [], keystone: false, food: [] }; plan.log[today].food = (plan.log[today].food || []).concat({ id: food.id, n: 1 }); await db.query('UPDATE user_plans SET plan=$2, updated_at=now() WHERE user_id=$1', [row.user_id, JSON.stringify(plan)]); }
+    } catch (e) {}
+  }
+  const prog = tgFoodProgress({ ...row, food_log: log });
+  return tgSend(chatId, `✅ Logged <b>${tgEsc(food.name)}</b>${food.serving ? ' <i>(' + tgEsc(food.serving) + ')</i>' : ''}.\n\n🍽️ <b>Today, toward your ${tgEsc((TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')] || {}).problem || 'protocol')} targets:</b>\n${prog.text}\n\nType another food to keep going, or /today to review.`);
+}
 function tgEsc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 async function tgApi(method, body) {
   if (!BOT_TOKEN) return null;
@@ -246,7 +289,7 @@ async function tgSendKeystone(chatId, pid, rcid) {
   const k = p.keystone;
   const body = `✅ You're set for <b>${tgEsc(p.problem)}</b> — ${tgEsc(p.rc)}.\n\n⭐ <b>Your one keystone</b>\n${k ? tgEsc(k.one) : 'See your full plan on the site.'}` +
     (k ? `\n\n<i>${tgEsc(k.why)}</i>` : '') +
-    `\n\nDo it today, then tap the button (or send <b>/done</b>) and I'll track your streak.\n\nFull plan → ${SITE_URL}/protocol/${pid}/${rcid}`;
+    `\n\nDo it today, then tap the button (or send <b>/done</b>) and I'll track your streak.\nAnd just type what you eat (e.g. “2 eggs”) — I'll log it against this protocol's food targets. /today to see progress.\n\nFull plan → ${SITE_URL}/protocol/${pid}/${rcid}`;
   return tgSend(chatId, body, { reply_markup: { inline_keyboard: [[{ text: '✅ Did it today', callback_data: 'done' }]] } });
 }
 async function tgMarkDone(chatId) {
@@ -265,6 +308,7 @@ async function handleTgUpdate(update) {
     const cb = update.callback_query; const chatId = cb.message && cb.message.chat && cb.message.chat.id;
     await tgApi('answerCallbackQuery', { callback_query_id: cb.id });
     if (cb.data === 'done' && chatId) return tgMarkDone(chatId);
+    if (cb.data && cb.data.indexOf('food:') === 0 && chatId) { const f = TG_FOODS.find(x => x.id === cb.data.slice(5)); if (f) return tgLogFood(chatId, f); }
     return;
   }
   const msg = update.message; if (!msg || !msg.chat) return;
@@ -282,18 +326,39 @@ async function handleTgUpdate(update) {
         return tgSendKeystone(chatId, t.pid, t.rcid);
       }
     }
-    return tgSend(chatId, `👋 Hi${first ? ' ' + tgEsc(first) : ''}! I'm your RNAwiki coach.\n\nOpen a protocol at ${SITE_URL}/solve and tap <b>“📲 Coach me on Telegram”</b> — I'll then coach you on that exact plan, one keystone habit at a time.\n\n${TG_HELP}`);
+    return tgSend(chatId, `👋 Hi${first ? ' ' + tgEsc(first) : ''}! I'm your RNAwiki coach.\n\nOpen a protocol at ${SITE_URL}/solve and tap <b>“📲 Coach me on Telegram”</b> — I'll then coach you on that exact plan: your one keystone habit, and I'll log your meals against its targets.\n\n${TG_HELP}`);
   }
   const cmd = text.toLowerCase().replace(/^\//, '');
-  if (cmd === 'keystone' || cmd === 'plan' || cmd === 'today') {
-    const row = await tgGet(chatId);
+  const row = await tgGet(chatId);
+  if (cmd === 'keystone' || cmd === 'plan') {
     if (!row || !row.pid) return tgSend(chatId, `You haven't linked a protocol yet. Open ${SITE_URL}/solve and tap “📲 Coach me on Telegram”.`);
     return tgSendKeystone(chatId, row.pid, row.rcid);
   }
+  if (cmd === 'today' || cmd === 'fuel' || cmd === 'progress') {
+    if (!row || !row.pid) return tgSend(chatId, `Link a protocol first — open ${SITE_URL}/solve and tap “📲 Coach me on Telegram”.`);
+    return tgSendToday(chatId, row);
+  }
   if (cmd === 'done' || cmd === 'done ✅' || cmd === '✅' || cmd === 'did it') return tgMarkDone(chatId);
-  if (cmd === 'streak') { const row = await tgGet(chatId); return tgSend(chatId, `🔥 You're on a <b>${(row && row.streak) || 0}-day streak</b>. Keep it going — /done when you've done today's keystone.`); }
+  if (cmd === 'streak') return tgSend(chatId, `🔥 You're on a <b>${(row && row.streak) || 0}-day streak</b>. Keep it going — /done when you've done today's keystone.`);
+  if (cmd === 'reset') { const tdy = new Date().toISOString().slice(0, 10); await db.query('UPDATE telegram_users SET food_log=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ date: tdy, items: [] })]); return tgSend(chatId, `🧹 Cleared today's food log. Type a food to start again.`); }
   if (cmd === 'help' || cmd === 'start') return tgSend(chatId, TG_HELP);
-  return tgSend(chatId, `Got it. When you've done today's keystone, tap <b>/done</b>. See <b>/keystone</b> for the habit, or <b>/help</b> for everything.`);
+  // Any other message → log it as a food (the daily driver, personalised to this protocol's targets).
+  if (text && text[0] !== '/') {
+    if (!row || !row.pid) return tgSend(chatId, `To log food against your targets, link a protocol first: ${SITE_URL}/solve → “📲 Coach me on Telegram”. (/help for more.)`);
+    const matches = tgFindFoods(text);
+    if (!matches.length) return tgSend(chatId, `Hmm, I couldn't find “${tgEsc(text)}”. Try a simpler name (e.g. “eggs”, “oats”, “salmon”, “chicken rice”), or add it on ${SITE_URL}/plan.`);
+    if (matches.length === 1) return tgLogFood(chatId, matches[0]);
+    const kb = matches.slice(0, 5).map(f => [{ text: (f.name + (f.serving ? ' · ' + f.serving : '')).slice(0, 62), callback_data: 'food:' + f.id }]);
+    return tgSend(chatId, `Which one did you have?`, { reply_markup: { inline_keyboard: kb } });
+  }
+  return tgSend(chatId, `Type a food to log it, tap <b>/done</b> for your keystone, or <b>/help</b> for everything.`);
+}
+async function tgSendToday(chatId, row) {
+  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const k = p && p.keystone;
+  const kDone = Array.isArray(row.keystone_days) && row.keystone_days.includes(new Date().toISOString().slice(0, 10));
+  const prog = tgFoodProgress(row);
+  const body = `📋 <b>${tgEsc(p ? p.problem : 'Your protocol')}</b> — today\n\n⭐ <b>Keystone:</b> ${k ? tgEsc(k.one) : '—'}\n${kDone ? '✅ done today' : '▫️ not done yet — /done when you do it'}\n\n🍽️ <b>Food targets:</b>\n${prog.text}\n\nType a food (e.g. “2 eggs”) to log it toward these.`;
+  return tgSend(chatId, body, { reply_markup: { inline_keyboard: [[{ text: kDone ? '✅ Keystone done' : '✅ Mark keystone done', callback_data: 'done' }]] } });
 }
 async function tgSetup() {
   if (!BOT_TOKEN) { console.log('[tg] BOT_TOKEN not set — bot dormant.'); return; }
