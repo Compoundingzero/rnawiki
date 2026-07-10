@@ -359,6 +359,10 @@ const TG_FUNCTIONS = [
   { id: 'protein', icon: '🥩', name: 'Protein-per-meal', kind: 'counter', target: 4, unit: 'protein meals', period: 'day', how: 'Tap + for each meal with a palm of protein. Aim for 3–4 a day — no weighing.', match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'lean mass', 'menopause', 'craving', 'appetite', 'satiety'] },
   { id: 'fermented', icon: '🥬', name: 'Fermented-foods counter', kind: 'counter', target: 3, unit: 'servings', period: 'day', how: 'Tap + per serving — yoghurt, kefir, kimchi, sauerkraut, kombucha.', match: ['gut', 'microbiome', 'digest', 'bloat', 'ibs', 'immun', 'inflamm'] },
   { id: 'pain', icon: '🚦', name: 'Pain traffic-light', kind: 'triage', how: 'After rehab, tap 🟢 fine / 🟡 sore / 🔴 sharp — I tell you to progress, hold or back off.', match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'] },
+  { id: 'eatwin', icon: '⏳', name: 'Eating-window', kind: 'window', target: 10, how: 'Tap first bite / kitchen closed — I track your eating window vs a 10h target.', match: ['insulin', 'glucose', 'visceral', 'belly', 'fat', 'metabolic', 'fasting', 'blood sugar'] },
+  { id: 'bp', icon: '🩺', name: 'Home blood-pressure', kind: 'bp', how: 'Send “bp: 120 80” — I log it and flag when it needs a doctor.', match: ['blood pressure', 'hypertension', 'bp', 'cardiovascular', 'cholesterol'] },
+  { id: 'adhere', icon: '📅', name: 'Daily-dose adherence', kind: 'adherence', how: 'Tap ✅ each day you apply it — I track your streak.', match: ['hair', 'minoxidil', 'finasteride', 'tretinoin', 'acne', 'skin', 'hormonal treatment', 'thyroid'] },
+  { id: 'win', icon: '🌟', name: 'One small win', kind: 'log', how: 'Send “win: …” — naming one tiny win a day lifts low mood.', match: ['depress', 'low mood', 'anhedonia', 'burnout', 'motivation'] },
   { id: 'symptom', icon: '📈', name: 'Symptom check', kind: 'scale', trend: true, scale: [{ v: 1, e: '😣' }, { v: 2, e: '😕' }, { v: 3, e: '😐' }, { v: 4, e: '🙂' }, { v: 5, e: '😄' }], how: 'Tap how you feel today — see the trend over time.', match: ['menopause', 'hot flash', 'migraine', 'headache', 'acne', 'breakout', 'brain fog', 'fog', 'inflamm', 'flare', 'ibs', 'mood'] },
   { id: 'readiness', icon: '🔋', name: 'Readiness check', kind: 'scale', scale: [{ v: 1, e: '😴', label: 'Wiped', g: 'take it easy or rest today' }, { v: 2, e: '😐', label: 'OK', g: 'train as planned' }, { v: 3, e: '💪', label: 'Fresh', g: 'good day to push' }], how: 'Tap how recovered you feel — push or back off.', match: ['overtrain', 'recovery', 'under-recover', 'fatigue', 'plateau', 'burnout'] },
   { id: 'sigh', icon: '🌬️', name: 'Physiological sigh', kind: 'timer', target: 2, unit: 'min', how: 'Two inhales through the nose, one long exhale. Repeat 2 min. In a spike: sigh ×3 · name 3 things you see · sip water.', match: ['anx', 'panic', 'cortisol', 'overwhelm', 'nervous', 'racing'] },
@@ -531,7 +535,18 @@ function tgToolsView(row) {
       lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${row.nudge_hour != null ? '🔔 on with your daily nudge' : '⏰ send /nudge to activate'}`);
     } else if (f.kind === 'log') {
       const last = (t.log || [])[(t.log || []).length - 1];
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${last ? 'last “' + tgEsc(last.text) + '” · send “log: …” to add' : 'send “log: 60kg x 8”'}`);
+      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${last ? 'last “' + tgEsc(last.text) + '”' : 'send “win: …”'}`);
+    } else if (f.kind === 'window') {
+      const e = t.d.eat || {}; let s = '';
+      if (e.first && e.last) { let dur = tgSlpMin(e.last) - tgSlpMin(e.first); if (dur < 0) dur += 1440; const h = Math.floor(dur / 60), mm = dur % 60; s = `${h}h${mm ? mm + 'm' : ''} (target ${f.target}h) ${dur <= f.target * 60 ? '✓' : '⚠️'}`; }
+      else if (e.first) s = `open since ${e.first}`;
+      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${s || 'tap below ↓'}`);
+      kb.push([{ text: '🍽️ First bite', callback_data: 'eat:' + id + ':first' }, { text: '🌙 Kitchen closed', callback_data: 'eat:' + id + ':last' }]);
+    } else if (f.kind === 'bp') {
+      const b = t.d.bp || {}; lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${b.sys ? b.sys + '/' + b.dia + ' today' : 'send “bp: 120 80”'}`);
+    } else if (f.kind === 'adherence') {
+      const done = !!t.d.done[id]; lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${done ? '✅ applied today' : '▫️ not yet'}`);
+      if (!done) kb.push([{ text: '✅ Applied today', callback_data: 'adh:' + id }]);
     } else if (f.kind === 'sleep') {
       const e = tgSleepEff7(row);
       lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${e.nights ? e.avg + '% eff (7-night) — ' + tgSleepRec(e.avg, e.nights) : 'send “sleep: 23:30 00:10 07:00” to start'}`);
@@ -580,6 +595,21 @@ async function tgToolScale(chatId, msgId, id, val) {
   const t = tgTools(row); t.d.tri = t.d.tri || {}; t.d.tri[id] = val;
   await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
   await tgSyncWebDay(row, d => { d.fn[id] = +val; }); // web stores the numeric value
+  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
+}
+function tgLocalHM(row) { const d = new Date(); let m = d.getUTCHours() * 60 + d.getUTCMinutes() + (row && row.tz_offset != null ? row.tz_offset : 480); m = ((m % 1440) + 1440) % 1440; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); }
+async function tgToolEat(chatId, msgId, id, which) {
+  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'window' || (which !== 'first' && which !== 'last')) return;
+  const t = tgTools(row); t.d.eat = t.d.eat || {}; t.d.eat[which] = tgLocalHM(row);
+  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
+  await tgSyncWebDay(row, d => { d.eat = d.eat || {}; d.eat[which] = t.d.eat[which]; });
+  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
+}
+async function tgToolAdhere(chatId, msgId, id) {
+  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'adherence') return;
+  const t = tgTools(row); t.d.done[id] = true;
+  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
+  await tgSyncWebDay(row, d => { d.fn[id] = true; });
   const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
 }
 // Read whether this protocol's keystone is already marked done today in the linked web plan (web → bot direction)
@@ -686,6 +716,8 @@ async function handleTgUpdate(update) {
     if (d.indexOf('tdone:') === 0 && chatId) return tgToolDone(chatId, msgId, d.slice(6));
     if (d.indexOf('tri:') === 0 && chatId) { const pp = d.split(':'); return tgToolTriage(chatId, msgId, pp[1], pp[2]); }
     if (d.indexOf('scl:') === 0 && chatId) { const pp = d.split(':'); return tgToolScale(chatId, msgId, pp[1], pp[2]); }
+    if (d.indexOf('eat:') === 0 && chatId) { const pp = d.split(':'); return tgToolEat(chatId, msgId, pp[1], pp[2]); }
+    if (d.indexOf('adh:') === 0 && chatId) return tgToolAdhere(chatId, msgId, d.slice(4));
     if (d.indexOf('nh:') === 0 && chatId) { const h = +d.slice(3); const r = await tgGet(chatId); const flow = (r && r.flow) || {}; flow.stage = 'nudge_tz'; flow.nudge_hour = h; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); return tgEdit(chatId, msgId, `Great — I'll check in around <b>${tgHourLabel(h)}</b>. Last thing so I get your timezone right: what's the time where you are <b>right now</b>? Reply like <b>14:30</b> or <b>2:30pm</b>.`); }
     if (d === 'noff' && chatId) { await db.query('UPDATE telegram_users SET nudge_hour=NULL, flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({})]); return tgEdit(chatId, msgId, `🔕 Daily nudges are off. /nudge to turn them back on.`); }
     return;
@@ -756,6 +788,17 @@ async function handleTgUpdate(update) {
   if (/^log[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('overload')) {
     const entry = text.replace(/^log[:\s]+/i, '').trim();
     if (entry) { const t = tgTools(row); t.log = (t.log || []).concat({ date: new Date().toISOString().slice(0, 10), text: entry }).slice(-50); await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]); return tgSend(chatId, `🏋️ Logged: <b>${tgEsc(entry)}</b>. Beat it next time. /tools to review.`); }
+  }
+  // Home BP logging: "bp: 120 80"
+  if (/^bp[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('bp')) {
+    const nums = text.replace(/^bp[:\s]+/i, '').trim().split(/[\s/,]+/).map(Number).filter(n => n > 0 && n < 300);
+    if (nums.length >= 2) { const sys = nums[0], dia = nums[1]; const t = tgTools(row); t.d.bp = { sys, dia }; await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]); await tgSyncWebDay(row, d => { d.bp = { sys, dia }; }); const g = (sys >= 160 || dia >= 100) ? '🔴 High — please see a doctor soon.' : (sys >= 140 || dia >= 90) ? '🟠 Above target — keep at the plan.' : (sys >= 130 || dia >= 80) ? '🟡 Slightly raised — on track.' : '🟢 In a healthy range.'; return tgSend(chatId, `🩺 Logged <b>${sys}/${dia}</b>. ${g}`); }
+    return tgSend(chatId, `Send it like <b>bp: 120 80</b> (systolic diastolic).`);
+  }
+  // One small win: "win: ..."
+  if (/^win[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('win')) {
+    const entry = text.replace(/^win[:\s]+/i, '').trim();
+    if (entry) { const t = tgTools(row); t.log = (t.log || []).concat({ date: new Date().toISOString().slice(0, 10), text: entry }).slice(-50); await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]); return tgSend(chatId, `🌟 Nice — “<b>${tgEsc(entry)}</b>”. That counts.`); }
   }
   // Sleep-window logging: "sleep: 23:30 00:10 07:00" (in bed · asleep · woke)
   if (/^sleep[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('sleepwin')) {
