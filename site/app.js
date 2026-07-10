@@ -2907,6 +2907,16 @@
       desc: 'Easy conversational cardio builds the aerobic base — the strongest evidence-backed longevity lever.',
       how: 'Log easy-pace minutes (you can still hold a conversation). Aim for 150 a week.',
       match: ['endur', 'longevity', 'healthspan', 'vo2', 'vascular', 'stamina', 'aerobic'], tg: true },
+    { id: 'symptom', icon: '📈', name: 'Symptom check', kind: 'scale', trend: true,
+      scale: [{ v: 1, e: '😣' }, { v: 2, e: '😕' }, { v: 3, e: '😐' }, { v: 4, e: '🙂' }, { v: 5, e: '😄' }],
+      desc: 'A 5-second daily read so you can actually see what moves your symptoms.',
+      how: "Tap how you feel today. Over time you'll see the trend and what precedes your good days.",
+      match: ['menopause', 'hot flash', 'migraine', 'headache', 'acne', 'breakout', 'brain fog', 'fog', 'inflamm', 'flare', 'ibs', 'mood'], tg: true },
+    { id: 'readiness', icon: '🔋', name: 'Readiness check', kind: 'scale',
+      scale: [{ v: 1, e: '😴', label: 'Wiped', g: "Take it easy or rest today — you'll gain more by recovering." }, { v: 2, e: '😐', label: 'OK', g: 'Train as planned.' }, { v: 3, e: '💪', label: 'Fresh', g: 'Good day to push a little harder.' }],
+      desc: 'A 5-second morning read: push hard today, or recover.',
+      how: "Tap how recovered you feel. I'll tell you whether to push or back off.",
+      match: ['overtrain', 'recovery', 'under-recover', 'fatigue', 'plateau', 'burnout'], tg: true },
     { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep',
       desc: 'The core insomnia fix (CBT-I sleep restriction): match your time in bed to time actually asleep, and sleep gets deeper and faster.',
       how: 'Each morning, log when you got in bed, roughly fell asleep, and woke. It tracks your sleep efficiency and tells you when to shift your bedtime.',
@@ -3197,6 +3207,15 @@
             <p class="fn-w-sub">${last ? 'Last: <b>' + esc(last.text) + '</b> · ' + esc(last.date) : esc(f.how)}</p>
             <div class="fn-log-row"><input class="fn-log-in" data-fn-log="${f.id}" placeholder="e.g. 60kg × 8" autocomplete="off"><button class="fn-step add" data-log-save="${f.id}">Log</button></div></div>`;
         }
+        if (f.kind === 'scale') {
+          const v = (planDay(plan).fn || {})[f.id]; const opt = (f.scale || []).find(o => o.v === v);
+          const btns = (f.scale || []).map(o => `<button class="scl-btn ${v === o.v ? 'on' : ''}" data-scl="${f.id}" data-sclv="${o.v}">${o.e}${o.label ? `<span>${esc(o.label)}</span>` : ''}</button>`).join('');
+          let extra = '';
+          if (opt && opt.g) extra = `<p class="triage-guide yellow">${esc(opt.g)}</p>`;
+          else if (f.trend) { const vals = []; for (let i = 13; i >= 0; i--) vals.push(((plan.log || {})[dISO(i)] || {}).fn ? (plan.log[dISO(i)].fn[f.id] || 0) : 0); if (vals.some(x => x)) extra = `<p class="fn-w-sub">Last 14 days</p>${sparkline(vals)}`; }
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b></div>
+            <p class="fn-w-sub">${esc(f.how)}</p><div class="scl-btns">${btns}</div>${extra}</div>`;
+        }
         if (f.kind === 'triage') {
           const v = (planDay(plan).fn || {})[f.id];
           const guide = { green: 'Fine — progress. Add a rep or a little load next session.', yellow: "Sore but it settled — hold this level, don't push today.", red: 'Sharp, or worse next morning — back off: drop load/reps or rest a day. Lingering pain = too much.' };
@@ -3232,6 +3251,8 @@
       });
       // pain traffic-light: one tap → store today's read + guidance
       host.querySelectorAll('[data-tri]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[b.dataset.tri] = b.dataset.triv; setPlan(pl); render(); });
+      // scale (symptom / readiness): one tap → store numeric value
+      host.querySelectorAll('[data-scl]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[b.dataset.scl] = +b.dataset.sclv; setPlan(pl); render(); });
       // sleep-window time inputs → recompute efficiency and re-render the recommendation
       host.querySelectorAll('.slp-in').forEach(inp => inp.onchange = () => {
         const pl = getPlan(); const d = planDay(pl); d.sleep = d.sleep || {}; d.sleep[inp.dataset.slp] = inp.value || '';
