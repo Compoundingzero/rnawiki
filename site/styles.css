@@ -1627,14 +1627,29 @@ a.dp-name:hover{color:var(--accent)}
 .trk-today-head h2{margin:0;font-size:1.15rem}
 .trk-prog{font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
 .trk-list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel)}
-.trk-row{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s}
-.trk-row:last-child{border-bottom:none}
+.trk-item{border-bottom:1px solid var(--line)}
+.trk-item:last-child{border-bottom:none}
+.trk-row{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;cursor:pointer;transition:background .12s}
 .trk-row:hover{background:rgba(13,148,136,.04)}
 .trk-row .plan-cb{width:1.25rem;height:1.25rem;flex:0 0 auto;accent-color:var(--accent);cursor:pointer}
+/* per-exercise set/rep logger */
+.ex-logtoggle{display:block;width:100%;text-align:left;background:none;border:none;padding:.15rem 1rem .7rem 3.05rem;font-size:.78rem;color:var(--accent);cursor:pointer}
+.ex-logtoggle:hover{text-decoration:underline}
+.ex-logtoggle .ex-lasthint{color:var(--muted)}
+.ex-logtoggle.open{font-weight:600}
+.ex-log{padding:0 1rem .9rem 3.05rem}
+.ex-last{font-size:.8rem;color:var(--muted);margin:0 0 .55rem}
+.ex-last b{color:var(--head)}
+.ex-setrows{display:flex;flex-direction:column;gap:.4rem}
+.ex-setrow{display:flex;align-items:center;gap:.5rem}
+.ex-setn{font-size:.78rem;color:var(--muted);width:2.9rem;flex:0 0 auto}
+.ex-in{width:4.2rem;padding:.35rem .5rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.9rem;text-align:center}
+.ex-in:focus{outline:none;border-color:var(--accent)}
+.ex-x{color:var(--faint);font-size:.85rem}
 .trk-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:.1rem}
 .trk-name{font-weight:600;color:var(--head);font-size:.96rem}
 .trk-sub{font-size:.8rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.trk-row.done .trk-name{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(13,148,136,.5)}
+.trk-item.done .trk-name{color:var(--muted);text-decoration:line-through;text-decoration-color:rgba(13,148,136,.5)}
 .trk-i{flex:0 0 auto;font-size:.78rem;font-weight:600;color:var(--accent);text-decoration:none;padding:.2rem .5rem;border:1px solid var(--line);border-radius:999px}
 .trk-i:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 .trk-fuel{margin:1.4rem 0}

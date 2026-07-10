@@ -2837,10 +2837,8 @@
       desc: '30+ different plants a week is the strongest lever for microbiome diversity.',
       how: 'Add each unique plant you eat. Resets weekly — aim for 30.',
       match: ['gut', 'microbiome', 'fiber', 'digest', 'bloat', 'ibs', 'constipat'], tg: true },
-    { id: 'overload', icon: '🏋️', name: 'Progressive-overload log', kind: 'log',
-      desc: 'Muscle grows when you add load or reps over time — so track it.',
-      how: 'Log weight × reps for your key lift each session; try to beat last time.',
-      match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'atroph', 'lean mass'], tg: true },
+    // NB: progressive-overload logging is now built into every strength movement in the tracker (per-exercise
+    // set/rep logging), so it's no longer a separate selectable tool. Old plans that picked 'overload' just ignore it.
     { id: 'steps', icon: '👟', name: 'Daily step counter', kind: 'counter', target: 8000, unit: 'steps', period: 'day',
       desc: 'Daily steps drive fat loss and a cardio base more reliably than cardio blocks.',
       how: 'Log your step count as you go. Target 8,000 a day.',
@@ -3168,15 +3166,41 @@
     return { protos, resolved, keystones, moves: Object.values(movesMap), supps: Object.values(suppsMap), functions: [...fnSet], fuel };
   }
 
+  // ---- Set/rep logging helpers (progressive overload built into the checklist) ----
+  function prescribedSets(e) { const n = parseInt((e.prescription || {}).sets, 10); return n > 0 ? n : (e.kind === 'stretch' ? 2 : 3); }
+  // most recent PRIOR day that has logged sets for this exercise — the number to beat
+  function lastSets(plan, exId) {
+    const log = plan.log || {}; const tk = today();
+    const days = Object.keys(log).filter(d => d < tk && log[d].sets && Array.isArray(log[d].sets[exId]) && log[d].sets[exId].some(s => s && s.reps != null)).sort();
+    const d = days[days.length - 1]; return d ? { date: d, sets: log[d].sets[exId] } : null;
+  }
+  function setsSummary(sets) {
+    const done = (sets || []).filter(s => s && s.reps != null); if (!done.length) return '';
+    const w = done[0].w; const sameW = done.every(s => s.w === w);
+    if (w != null && sameW) return w + 'kg × ' + done.map(s => s.reps).join(', ');
+    return done.map(s => (s.w != null ? s.w + 'kg×' : '') + s.reps).join(', ');
+  }
+
   // ---- Tracking: one merged, Apple-simple daily view across every protocol the user runs ----
   function renderPlanTracking(plan) {
     const M = mergedPlan(plan);
     if (!M.resolved.length) { app.innerHTML = emptyPlan(); return; }
     const dayLog = planDay(plan); const streak = planStreak(plan); const multi = M.resolved.length > 1;
-    const moveRow = e => { const on = dayLog.done.includes(e.id); const cue = (e.prescription || {}).cue; const sub = [rxLine(e), cue].filter(Boolean).join(' · ');
-      return `<label class="trk-row ${on ? 'done' : ''}"><input type="checkbox" class="plan-cb" data-done="${esc(e.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(e.name)} done"><span class="trk-txt"><span class="trk-name">${e.kind === 'stretch' ? '🧘' : '💪'} ${esc(e.name)}</span>${sub ? `<span class="trk-sub">${sub}</span>` : ''}</span><a class="trk-i" href="#/exercise/${esc(e.id)}" aria-label="Details about ${esc(e.name)}">Details</a></label>`; };
+    const moveRow = e => {
+      const on = dayLog.done.includes(e.id); const cue = (e.prescription || {}).cue; const sub = [rxLine(e), cue].filter(Boolean).join(' · ');
+      const label = `<label class="trk-row"><input type="checkbox" class="plan-cb" data-done="${esc(e.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(e.name)} done"><span class="trk-txt"><span class="trk-name">${e.kind === 'stretch' ? '🧘' : '💪'} ${esc(e.name)}</span>${sub ? `<span class="trk-sub">${sub}</span>` : ''}</span><a class="trk-i" href="#/exercise/${esc(e.id)}" aria-label="Details about ${esc(e.name)}">Details</a></label>`;
+      // stretches: simple checkbox. strength: add an optional set/rep logger for progressive overload.
+      if (e.kind === 'stretch') return `<div class="trk-item ${on ? 'done' : ''}">${label}</div>`;
+      const nSets = prescribedSets(e); const todaySets = (dayLog.sets && dayLog.sets[e.id]) || []; const last = lastSets(plan, e.id);
+      const setRows = Array.from({ length: nSets }, (_, i) => { const s = todaySets[i] || {};
+        return `<div class="ex-setrow"><span class="ex-setn">Set ${i + 1}</span><input class="ex-in" type="number" inputmode="decimal" placeholder="kg" value="${s.w != null ? esc(String(s.w)) : ''}" data-ex="${esc(e.id)}" data-i="${i}" data-field="w" aria-label="Set ${i + 1} weight"><span class="ex-x">×</span><input class="ex-in" type="number" inputmode="numeric" placeholder="reps" value="${s.reps != null ? esc(String(s.reps)) : ''}" data-ex="${esc(e.id)}" data-i="${i}" data-field="r" aria-label="Set ${i + 1} reps"></div>`; }).join('');
+      return `<div class="trk-item ${on ? 'done' : ''}">${label}
+        <button class="ex-logtoggle" data-logtoggle="${esc(e.id)}">📝 Log sets${last ? ` · <span class="ex-lasthint">last ${esc(setsSummary(last.sets))}</span>` : ''}</button>
+        <div class="ex-log" data-exlog="${esc(e.id)}" hidden>${last ? `<div class="ex-last">Last time (${esc(last.date)}): <b>${esc(setsSummary(last.sets))}</b> — beat it 💪</div>` : ''}<div class="ex-setrows">${setRows}</div></div>
+      </div>`;
+    };
     const suppRow = c => { const on = dayLog.done.includes(c.id); const sub = mdStrip(c.protocol || c.plain || c.bottom || '').slice(0, 60);
-      return `<label class="trk-row ${on ? 'done' : ''}"><input type="checkbox" class="plan-cb" data-done="${esc(c.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(c.name)} taken"><span class="trk-txt"><span class="trk-name">💊 ${esc(c.name)}</span>${sub ? `<span class="trk-sub">${esc(sub)}</span>` : ''}</span><a class="trk-i" href="#/c/${slug(c.name)}" aria-label="Details about ${esc(c.name)}">Details</a></label>`; };
+      return `<div class="trk-item ${on ? 'done' : ''}"><label class="trk-row"><input type="checkbox" class="plan-cb" data-done="${esc(c.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(c.name)} taken"><span class="trk-txt"><span class="trk-name">💊 ${esc(c.name)}</span>${sub ? `<span class="trk-sub">${esc(sub)}</span>` : ''}</span><a class="trk-i" href="#/c/${slug(c.name)}" aria-label="Details about ${esc(c.name)}">Details</a></label></div>`; };
     const rows = [...M.moves.map(moveRow), ...M.supps.map(suppRow)].join('');
     const totalItems = M.moves.length + M.supps.length;
     const doneItems = [...M.moves, ...M.supps].filter(x => dayLog.done.includes(x.id)).length;
@@ -3211,12 +3235,28 @@
     wireItemModals('.trk-list', byExId, byCId);
     // keystone toggles (one per protocol)
     app.querySelectorAll('[data-ks]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); const key = b.dataset.ks; d.keystones[key] = !d.keystones[key]; setPlan(pl); renderPlan(); });
+    const refreshProg = () => { const d = planDay(getPlan()); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...M.moves, ...M.supps].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } };
     const refreshPulse = d => {
       const st = planDayStats(M, d);
       const tc = app.querySelector('.week-strip .today'); if (tc) { tc.classList.remove('miss', 'partial', 'full'); tc.classList.add(st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss')); tc.title = today() + ' · ' + st.done + '/' + st.total + ' done'; }
       const ps = app.querySelector('.pulse-streak b'); if (ps) ps.textContent = planStreak(getPlan());
     };
-    app.querySelectorAll('.trk-list [data-done]').forEach(cb => cb.onchange = () => { const pl = getPlan(); const d = planDay(pl); const id = cb.dataset.done; const i = d.done.indexOf(id); if (cb.checked && i < 0) d.done.push(id); else if (!cb.checked && i >= 0) d.done.splice(i, 1); setPlan(pl); cb.closest('.trk-row').classList.toggle('done', cb.checked); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...M.moves, ...M.supps].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } refreshPulse(d); });
+    app.querySelectorAll('.trk-list [data-done]').forEach(cb => cb.onchange = () => { const pl = getPlan(); const d = planDay(pl); const id = cb.dataset.done; const i = d.done.indexOf(id); if (cb.checked && i < 0) d.done.push(id); else if (!cb.checked && i >= 0) d.done.splice(i, 1); setPlan(pl); const item = cb.closest('.trk-item'); if (item) item.classList.toggle('done', cb.checked); refreshProg(); refreshPulse(d); });
+    // Expand/collapse the per-exercise set logger
+    app.querySelectorAll('[data-logtoggle]').forEach(b => b.onclick = () => { const id = b.dataset.logtoggle; const p = app.querySelector('.ex-log[data-exlog="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]'); if (p) { p.hidden = !p.hidden; b.classList.toggle('open', !p.hidden); } });
+    // Log weight × reps; auto-complete the exercise once all prescribed sets have reps
+    app.querySelectorAll('.ex-log .ex-in').forEach(inp => inp.onchange = () => {
+      const pl = getPlan(); const d = planDay(pl); const ex = inp.dataset.ex; const idx = +inp.dataset.i; const field = inp.dataset.field;
+      d.sets[ex] = d.sets[ex] || []; d.sets[ex][idx] = d.sets[ex][idx] || {};
+      const raw = inp.value.trim(); const num = raw === '' ? null : parseFloat(raw);
+      if (field === 'w') d.sets[ex][idx].w = (num != null && !isNaN(num)) ? num : null;
+      else d.sets[ex][idx].reps = (num != null && !isNaN(num)) ? Math.round(num) : null;
+      const e = byExId[ex]; const need = e ? prescribedSets(e) : 3;
+      const filled = (d.sets[ex] || []).filter(s => s && s.reps != null).length;
+      const item = inp.closest('.trk-item'); const cb = item && item.querySelector('[data-done]');
+      if (filled >= need && !d.done.includes(ex)) { d.done.push(ex); if (cb) cb.checked = true; if (item) item.classList.add('done'); }
+      setPlan(pl); refreshProg(); refreshPulse(d);
+    });
     // per-protocol manage actions
     app.querySelectorAll('[data-edit-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.editProto.split('/'); const pl = getPlan(); const pr = planProtocols(pl).find(x => x.pid === pid && x.rcid === rcid); if (!pr) return; pl.draft = { pid, rcid, moves: pr.moves, supps: pr.supps, functions: pr.functions, extra: {}, step: 0 }; setPlan(pl); renderPlan(); });
     app.querySelectorAll('[data-share-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.shareProto.split('/'); const found = findRootCause(pid, rcid); if (found) sharePlan(found.problem, found.rc); });
