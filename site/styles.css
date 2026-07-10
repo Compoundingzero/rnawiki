@@ -1591,3 +1591,6 @@ a.dp-name:hover{color:var(--accent)}
 .st-card{padding:.85rem 1rem}
 .st-meta{gap:.35rem;align-items:center}
 .pill.rx{background:rgba(220,38,38,.1);color:var(--red);border:1px solid rgba(220,38,38,.25)}
+
+/* ---- Compact prescription cue (replaces the verbose "Prescription only" block) ---- */
+.rx-note{font-size:.72rem;font-weight:700;color:var(--red);margin-left:.15rem;white-space:nowrap;vertical-align:middle}

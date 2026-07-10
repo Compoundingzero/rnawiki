@@ -91,7 +91,9 @@
   const starStr = n => { const m = Math.min(5, Math.max(0, n | 0)); return '★'.repeat(m) + '☆'.repeat(5 - m); };
   const STAR_LEGEND = 'Human-evidence strength, 1–5 stars (★). Animal-only data is capped low.';
   const rxBadge = c => c && c.isRx ? '<span class="pill rx" title="A prescription or controlled drug — a doctor has to assess you and prescribe it. It is not a supplement you can buy and take on your own.">Prescription only — see a doctor</span>' : '';
-  const approvalPills = c => rxBadge(c) + c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('');
+  // Approval pills carry the legal status accurately (e.g. 🟡 OTC · 🔵 Prescription); a compact
+  // "℞" cue flags anything needing a doctor without the old verbose, contradictory block.
+  const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (c && c.isRx ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">℞ needs a doctor</span>' : '');
   const badgeRow = c => `<div class="badges"><span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span>${approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
@@ -108,11 +110,13 @@
     const pw = new Set(c.pathwayIds || []); if (!pw.size) return [];
     return D.compounds.filter(o => o.id !== c.id && !o.isNote && (o.pathwayIds || []).some(i => pw.has(i))).sort((a, b) => b.stars - a.stars).slice(0, 4);
   }
+  // Strip markdown to clean plain text for card snippets (bold/italic/links/code → text).
+  function mdStrip(s) { return String(s || '').replace(/\*\*(.+?)\*\*/g, '$1').replace(/(^|[^*])\*(?!\*)(.+?)\*(?!\*)/g, '$1$2').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/`([^`]+)`/g, '$1'); }
   function cpdCard(c) {
     return `<a class="cpd-card" href="#/c/${slug(c.name)}">
       <div class="cat">${c.category || ''}</div>
       <h3>${c.name}</h3>
-      <p class="mech">${c.mechanism || c.plain || c.bottom || ''}</p>
+      <p class="mech">${esc(mdStrip(c.mechanism || c.plain || c.bottom || ''))}</p>
       ${badgeRow(c)}
       ${c.targets && c.targets.length ? `<div class="mini-targets">${c.targets.slice(0, 4).map(t => `<span class="mini-t">${t.sym}</span>`).join('')}</div>` : ''}
     </a>`;
@@ -1392,7 +1396,7 @@
   }
   function renderAz(cat) {
     let list = (cat ? D.compounds.filter(c => c.category === cat) : D.compounds.slice()).sort((a, b) => a.name.localeCompare(b.name));
-    const groups = {}; list.forEach(c => { const L = c.name[0].toUpperCase(); (groups[L] = groups[L] || []).push(c); });
+    const groups = {}; list.forEach(c => { const L0 = c.name[0].toUpperCase(); const L = /[A-Z]/.test(L0) ? L0 : '#'; (groups[L] = groups[L] || []).push(c); });
     let html = '';
     Object.keys(groups).sort().forEach(L => { html += `<div class="az-letter">${L}</div><div class="az-list">` + groups[L].map(c => `<a href="#/c/${slug(c.name)}">${c.name} <span class="stars" style="font-size:.7rem">${'★'.repeat(c.stars)}</span></a>`).join('') + `</div>`; });
     document.getElementById('az-body').innerHTML = html || '<div class="empty">None.</div>';
@@ -3025,7 +3029,7 @@
       <a class="st-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>
       <span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span></a>
       <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
-      <p class="st-plain">${esc((c.plain || c.bottom || c.mechanism || '').slice(0, 150))}</p>
+      <p class="st-plain">${esc(mdStrip(c.plain || c.bottom || c.mechanism || '').slice(0, 150))}</p>
       <button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>
     </div>`;
   }

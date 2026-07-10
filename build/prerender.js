@@ -29,6 +29,8 @@ const GRAPH = D.graph || { problems: [], domains: {} };
 
 // ---- helpers ----
 const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+// strip inline markdown (bold/italic/links/code) to clean text before esc, so raw ** never renders
+const mds = (s) => String(s == null ? '' : s).replace(/\*\*(.+?)\*\*/g, '$1').replace(/(^|[^*])\*(?!\*)(.+?)\*(?!\*)/g, '$1$2').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/`([^`]+)`/g, '$1');
 // Meta descriptions: strip markdown and truncate at a word boundary (no mid-word "…Nia" cuts).
 const cleanDesc = (s, max = 155) => {
   let t = String(s || '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, '').replace(/\s+/g, ' ').trim();
@@ -284,8 +286,8 @@ D.compounds.forEach((c) => {
     <div class="detail"><h1>${esc(c.name)}</h1>
     <p><b>Evidence:</b> ${stars(c.stars)} · <b>Status:</b> ${(c.approvalLabels || []).join(', ')}</p>
     ${cpdFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${cpdFact.t}</span></div>` : ''}
-    ${c.plain ? `<h2>In plain English</h2><p>${esc(c.plain)}</p>` : ''}
-    ${c.mechanism ? `<h2>How it works</h2><p>${esc(c.mechanism)}</p>` : ''}
+    ${c.plain ? `<h2>In plain English</h2><p>${esc(mds(c.plain))}</p>` : ''}
+    ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
     ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}
     ${c.protocol ? `<h2>Protocol</h2><p>${esc(c.protocol)}</p>` : ''}
     ${c.watch ? `<h2>Watch out</h2><p>${esc(c.watch)}</p>` : ''}
