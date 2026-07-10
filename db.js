@@ -317,6 +317,8 @@ ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS sel JSONB NOT NULL DEFAULT '
 ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS nudge_hour INTEGER;          -- local hour 0-23 for the daily check-in (null = off)
 ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS tz_offset INTEGER NOT NULL DEFAULT 480; -- minutes from UTC (480 = SGT)
 ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS last_nudge TEXT;             -- YYYY-MM-DD of the last nudge sent
+ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS functions JSONB NOT NULL DEFAULT '[]';  -- selected protocol function ids (mirrors web plan.functions)
+ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS tools JSONB NOT NULL DEFAULT '{}';       -- per-day/week function state: {day:{date,counters,done}, week:{key,counters}}
 CREATE INDEX IF NOT EXISTS idx_tg_active ON telegram_users(active, last_active DESC);
 
 -- Short-lived deep-link tokens: web mints one when a user taps "Coach me on Telegram" on a
