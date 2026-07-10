@@ -363,6 +363,7 @@ const TG_FUNCTIONS = [
   { id: 'readiness', icon: '🔋', name: 'Readiness check', kind: 'scale', scale: [{ v: 1, e: '😴', label: 'Wiped', g: 'take it easy or rest today' }, { v: 2, e: '😐', label: 'OK', g: 'train as planned' }, { v: 3, e: '💪', label: 'Fresh', g: 'good day to push' }], how: 'Tap how recovered you feel — push or back off.', match: ['overtrain', 'recovery', 'under-recover', 'fatigue', 'plateau', 'burnout'] },
   { id: 'sigh', icon: '🌬️', name: 'Physiological sigh', kind: 'timer', target: 2, unit: 'min', how: 'Two inhales through the nose, one long exhale. Repeat 2 min. In a spike: sigh ×3 · name 3 things you see · sip water.', match: ['anx', 'panic', 'cortisol', 'overwhelm', 'nervous', 'racing'] },
   { id: 'craving', icon: '🌊', name: 'Craving-surf timer', kind: 'timer', target: 10, unit: 'min', how: 'When a craving hits, do something else for 10 min — it almost always passes.', match: ['craving', 'appetite', 'sugar', 'snack', 'binge'] },
+  { id: 'focus', icon: '🎯', name: 'Focus blocks', kind: 'counter', target: 4, unit: 'blocks', period: 'day', how: 'Write your ONE next step, do a 25-min block, tap +. Jot the next step before each break. Aim for 4/day.', match: ['focus', 'adhd', 'concentration', 'brain fog', 'procrastin', 'distract', 'productivity'] },
   { id: 'zone2', icon: '🏃', name: 'Zone-2 minutes', kind: 'counter', target: 150, unit: 'min', period: 'week', step: 10, match: ['endur', 'longevity', 'healthspan', 'vo2', 'vascular', 'stamina', 'aerobic'], how: 'Log easy conversational-pace minutes. Aim for 150 a week.' },
   { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep', how: 'CBT-I sleep restriction — send “sleep: 23:30 00:10 07:00” (in bed · asleep · woke) and I track your sleep efficiency and when to shift your bedtime.', match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'] },
   { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder', how: 'A constant wake time anchors your body clock. I nudge you nightly to protect wind-down.', match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tgOnly: true },
@@ -911,6 +912,16 @@ async function api(req, res, url) {
     const code = crypto.randomBytes(6).toString('base64url');
     await db.query('INSERT INTO shared_plans(code,author_user_id,pid,rcid,plan) VALUES($1,$2,$3,$4,$5)', [code, u ? u.id : null, pid, rcid, JSON.stringify(plan)]);
     return json(res, 200, { code, url: `${SITE_URL}/#/s/${code}`, tg: BOT_USERNAME ? `https://t.me/${BOT_USERNAME}?start=s_${code}` : null });
+  }
+
+  // Public cohort stat for a protocol — k-anonymised (only when >=20 people have a 30/90-day outcome).
+  if (seg[0] === 'outcomes' && seg[1] === 'public' && method === 'GET') {
+    const q = new URL('http://x/' + url).searchParams; const pid = clean(q.get('pid'), 64), rcid = clean(q.get('rcid'), 64);
+    if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
+    const r = (await db.query(`SELECT COUNT(DISTINCT user_id) AS n, COUNT(DISTINCT user_id) FILTER (WHERE improvement>=1) AS better
+      FROM outcome_checkins WHERE pid=$1 AND rcid=$2 AND phase IN ('d30','d90') AND improvement IS NOT NULL`, [pid, rcid])).rows[0];
+    const n = +r.n; if (n < 20) return json(res, 200, { stat: null }); // k-anonymity floor
+    return json(res, 200, { stat: { n, pct: Math.round(+r.better / n * 100) } });
   }
 
   // ===== Outcome-data moat: consent / profile / check-ins / markers / wearables / my-data =====

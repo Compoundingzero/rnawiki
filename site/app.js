@@ -281,6 +281,7 @@
     adminSetPartner(id, status) { return this.call('POST', '/api/admin/partners/' + id, { status }); },
     adminOverview() { return this.call('GET', '/api/admin/overview'); },
     adminOutcomes() { return this.call('GET', '/api/admin/outcomes'); },
+    publicOutcomes(pid, rcid) { return this.call('GET', '/api/outcomes/public?pid=' + encodeURIComponent(pid) + '&rcid=' + encodeURIComponent(rcid)).then(d => d.stat).catch(() => null); },
     setRequestStatus(id, status) { return this.call('POST', '/api/admin/requests/' + id, { status }); },
     rootcauseChanges(problem) { return this.call('GET', '/api/rootcause-changes' + (problem ? '?problem=' + encodeURIComponent(problem) : '')).then(d => d); },
     submitRootcauseChange(b) { return this.call('POST', '/api/rootcause-changes', b); },
@@ -2756,6 +2757,13 @@
     if (n < 3) { host.innerHTML = ''; return; } // don't show weak/zero counts
     host.innerHTML = `<div class="adopt-inner">🧬 <b>${n}</b> ${n === 1 ? 'person is' : 'people are'} building this plan</div>`;
   }
+  // Public, k-anonymised cohort outcome (only renders when ≥20 people have a 30/90-day result)
+  async function mountPublicOutcome(problem, rc) {
+    const host = document.getElementById('outcome-stat'); if (!host) return;
+    let stat; try { stat = await api.publicOutcomes(problem.id, rc.id); } catch (e) { return; }
+    if (!stat || !stat.n) { host.innerHTML = ''; return; }
+    host.innerHTML = `<div class="outcome-proof">🔬 <b>${stat.pct}%</b> of <b>${stat.n}</b> people who tracked this reported their ${esc(problem.name.toLowerCase())} improved. <span class="muted">Real, anonymous outcomes from RNAwiki users.</span></div>`;
+  }
   function openOutcome(problem, rc, done) {
     const m = modal(`<div class="outcome-modal">
       <h2>How's your ${esc(problem.name.toLowerCase())}?</h2>
@@ -2944,6 +2952,10 @@
       desc: 'Cravings peak then fade in about 10 minutes — ride it out instead of fighting it.',
       how: 'When a craving hits, tap start and do something else for 10 minutes. It almost always passes.',
       match: ['craving', 'appetite', 'sugar', 'snack', 'binge'], tg: true },
+    { id: 'focus', icon: '🎯', name: 'Focus blocks', kind: 'counter', target: 4, unit: 'blocks', period: 'day',
+      desc: 'Deep-work blocks beat scattered hours — and the hard part is starting.',
+      how: 'Write your ONE next step, do a 25-min block, tap +. Before each break, jot the next step so restarting is easy. Aim for 4 a day.',
+      match: ['focus', 'adhd', 'concentration', 'brain fog', 'procrastin', 'distract', 'productivity'], tg: true },
     { id: 'zone2', icon: '🏃', name: 'Zone-2 minutes', kind: 'counter', target: 150, unit: 'min', period: 'week', step: 10,
       desc: 'Easy conversational cardio builds the aerobic base — the strongest evidence-backed longevity lever.',
       how: 'Log easy-pace minutes (you can still hold a conversation). Aim for 150 a week.',
@@ -3748,6 +3760,7 @@
         ${rc.diagnostic ? `<p class="rc-diag">${esc(rc.diagnostic)}</p>` : ''}</div>
       </section>
       <div id="adoption-panel" class="adopt-panel"></div>
+      <div id="outcome-stat"></div>
       ${(() => {
         const pw = (rc.pathway_ids || []).map(i => D.pathways[i]).filter(Boolean)[0];
         const pwI = (rc.pathway_ids || [])[0];
@@ -3775,6 +3788,7 @@
         <p class="proto-foot muted">Educational protocol, not medical advice. Nutrient targets are general adult guidance with a stated reason. · <button class="linkbtn" id="cite-proto">Cite this protocol</button></p>
       </div>`;
     mountAdoption(problem, rc);
+    mountPublicOutcome(problem, rc);
     if (clinicHandle) mountClinicHeader(clinicHandle, problem, rc);
     else mountSharedProgress(problem, rc);
     const startBtn = document.getElementById('start-plan');
