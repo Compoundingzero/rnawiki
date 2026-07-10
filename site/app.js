@@ -77,9 +77,11 @@
     return np;
   }
   function getPlan() { try { return migratePlan(JSON.parse(localStorage.getItem(PLAN_KEY))) || null; } catch (e) { return null; } }
+  let _planSaveTimer = null;
   function setPlan(p) {
     if (p) localStorage.setItem(PLAN_KEY, JSON.stringify(p)); else localStorage.removeItem(PLAN_KEY);
-    if (ME && p) api.savePlan(p); // signed-in: mirror to the account so Telegram/other devices stay in sync
+    // localStorage is the immediate source of truth; debounce the account mirror so rapid ticks don't spam the server
+    if (ME && p) { clearTimeout(_planSaveTimer); _planSaveTimer = setTimeout(() => api.savePlan(p), 700); }
   }
   function planProtocols(plan) { return (plan && Array.isArray(plan.protocols)) ? plan.protocols : []; }
   function getDraft() { const p = getPlan(); return p ? p.draft : null; }
@@ -3040,7 +3042,7 @@
       const prev = planProtocols(p).find(x => x.pid === d.pid && x.rcid === d.rcid);
       const entry = { pid: d.pid, rcid: d.rcid, moves: d.moves, supps: d.supps, functions: fns, startedAt: (prev && prev.startedAt) || today() };
       p.protocols = planProtocols(p).filter(x => !(x.pid === d.pid && x.rcid === d.rcid)).concat(entry);
-      p.draft = null; p.justBuilt = { pid: d.pid, rcid: d.rcid };
+      p.draft = null; p.justBuilt = prev ? null : { pid: d.pid, rcid: d.rcid }; // celebrate a new protocol only, not an edit
       setPlan(p); renderPlan();
     };
   }

@@ -1381,7 +1381,7 @@ a.dp-name:hover{color:var(--accent)}
 .assess-result.redflag h2{color:var(--red)}
 .assess-rf-ic{font-size:2.6rem;margin-bottom:.4rem}
 .assess-result.redflag p{color:var(--ink);line-height:1.6;margin:0 0 1rem}
-.rc-assess{margin-left:auto;background:color-mix(in srgb,var(--accent) 10%,var(--panel));border:1px solid var(--accent);color:var(--accent);border-radius:20px;padding:6px 13px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.rc-assess{background:color-mix(in srgb,var(--accent) 10%,var(--panel));border:1px solid var(--accent);color:var(--accent);border-radius:20px;padding:6px 13px;font-size:.82rem;font-weight:600;cursor:pointer;white-space:nowrap}
 .rc-assess:hover{background:var(--accent);color:var(--accent-ink)}
 
 /* ---- Outcome loop: Results Ledger panel · streak · outcome modal · toast (Phase 4) ---- */
@@ -1613,6 +1613,12 @@ a.dp-name:hover{color:var(--accent)}
 .build-nohit{font-size:.85rem;color:var(--muted);margin:.5rem 0 0}
 .build-nav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:1.2rem 0 .5rem;position:sticky;bottom:.6rem;background:var(--bg);padding:.5rem 0}
 .build-count{font-size:.85rem;color:var(--muted)}
+@media(max-width:560px){
+  .build-nav{gap:.5rem .8rem}
+  .build-nav .cta-primary{flex:1 1 100%;order:3;text-align:center;justify-content:center}
+  .build-nav .cta-ghost{order:1}
+  .build-count{order:2}
+}
 .plan-tg{margin:.8rem 0}
 .plan-tg .tg-coach{background:#229ED9;color:#fff;border:none;border-radius:999px;padding:.5rem .95rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit}
 .plan-tg .tg-coach:hover{background:#1b8ec4}
