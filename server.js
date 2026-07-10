@@ -186,6 +186,15 @@ const ADMIN_USER = (process.env.ADMIN_USER || '').toLowerCase();
 // verify accounts / approve root-cause changes. Locked to Felix's email by default.
 const SUPERADMIN_EMAIL = (process.env.SUPERADMIN_EMAIL || 'felix360506@gmail.com').toLowerCase();
 const isSuper = u => !!(u && u.email && u.email.toLowerCase() === SUPERADMIN_EMAIL);
+// Outcome-data moat: consent-notice version + validation allow-lists (reject anything off-list)
+const CONSENT_VERSION = 'v1-2026-07';
+const AGE_BANDS = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
+const SEXES = ['male', 'female', 'other', 'prefer_not'];
+const ETHNICITIES = ['chinese', 'malay', 'indian', 'other', 'prefer_not'];
+const CHECKIN_PHASES = ['baseline', 'd30', 'd90'];
+const BLOOD_MARKERS = ['hba1c', 'fasting_glucose', 'ldl', 'hdl', 'triglycerides', 'total_chol', 'bp_sys', 'bp_dia', 'testosterone', 'shbg', 'tsh', 'ft4', 'ferritin', 'crp', 'vit_d', 'hscrp', 'a1c'];
+const inList = (v, list) => list.includes(v) ? v : null;
+const intOr = (v, lo, hi) => { const n = parseInt(v, 10); return (Number.isFinite(n) && n >= lo && n <= hi) ? n : null; };
 // how many relevant-panel peer approvals move a change to 'peer_approved' (awaiting the
 // superadmin's final approval before it goes live). Peer approval never publishes on its own.
 const PANEL_THRESHOLD = 1;
@@ -902,6 +911,96 @@ async function api(req, res, url) {
     const code = crypto.randomBytes(6).toString('base64url');
     await db.query('INSERT INTO shared_plans(code,author_user_id,pid,rcid,plan) VALUES($1,$2,$3,$4,$5)', [code, u ? u.id : null, pid, rcid, JSON.stringify(plan)]);
     return json(res, 200, { code, url: `${SITE_URL}/#/s/${code}`, tg: BOT_USERNAME ? `https://t.me/${BOT_USERNAME}?start=s_${code}` : null });
+  }
+
+  // ===== Outcome-data moat: consent / profile / check-ins / markers / wearables / my-data =====
+  if (seg[0] === 'consent') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    if (method === 'GET') { const r = await db.query('SELECT consent_research, version, consented_at FROM user_consent WHERE user_id=$1', [u.id]); return json(res, 200, { consent: r.rows[0] || null, version: CONSENT_VERSION }); }
+    if (method === 'POST') {
+      const b = await readBody(req) || {}; const on = !!b.research;
+      await db.query(`INSERT INTO user_consent(user_id,consent_research,version,consented_at,withdrawn_at)
+        VALUES($1,$2,$3, CASE WHEN $2 THEN now() END, CASE WHEN $2 THEN NULL ELSE now() END)
+        ON CONFLICT(user_id) DO UPDATE SET consent_research=$2, version=$3,
+          consented_at=CASE WHEN $2 THEN COALESCE(user_consent.consented_at, now()) ELSE user_consent.consented_at END,
+          withdrawn_at=CASE WHEN $2 THEN NULL ELSE now() END`, [u.id, on, CONSENT_VERSION]);
+      return json(res, 200, { ok: true, research: on });
+    }
+  }
+  if (seg[0] === 'profile') {
+    const u = await currentUser(req); if (!u) return json(res, method === 'GET' ? 200 : 401, method === 'GET' ? { profile: null } : { error: 'Sign in' });
+    if (method === 'GET') { const r = await db.query('SELECT age_band, sex, ethnicity, conditions FROM user_profile WHERE user_id=$1', [u.id]); return json(res, 200, { profile: r.rows[0] || null }); }
+    if (method === 'POST') {
+      const b = await readBody(req) || {};
+      const age = inList(b.age_band, AGE_BANDS), sex = inList(b.sex, SEXES), eth = inList(b.ethnicity, ETHNICITIES);
+      const conds = Array.isArray(b.conditions) ? b.conditions.filter(c => typeof c === 'string').map(c => clean(c, 40)).slice(0, 20) : [];
+      await db.query(`INSERT INTO user_profile(user_id,age_band,sex,ethnicity,conditions,updated_at) VALUES($1,$2,$3,$4,$5,now())
+        ON CONFLICT(user_id) DO UPDATE SET age_band=$2, sex=$3, ethnicity=$4, conditions=$5, updated_at=now()`, [u.id, age, sex, eth, JSON.stringify(conds)]);
+      return json(res, 200, { ok: true });
+    }
+  }
+  if (seg[0] === 'checkin') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    if (method === 'GET') { // which phases are already done for a protocol
+      const q = new URL('http://x/' + url).searchParams; const pid = clean(q.get('pid'), 64), rcid = clean(q.get('rcid'), 64);
+      const r = await db.query('SELECT phase FROM outcome_checkins WHERE user_id=$1 AND pid=$2 AND rcid=$3', [u.id, pid, rcid]);
+      return json(res, 200, { done: r.rows.map(x => x.phase) });
+    }
+    if (method === 'POST') {
+      const cr = await db.query('SELECT consent_research FROM user_consent WHERE user_id=$1', [u.id]);
+      if (!cr.rows[0] || !cr.rows[0].consent_research) return json(res, 403, { error: 'Research consent required' });
+      const b = await readBody(req) || {};
+      const pid = clean(b.pid, 64), rcid = clean(b.rcid, 64), phase = inList(b.phase, CHECKIN_PHASES);
+      if (!pid || !rcid || !phase) return json(res, 400, { error: 'Missing pid/rcid/phase' });
+      await db.query(`INSERT INTO outcome_checkins(user_id,pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note)
+        VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)
+        ON CONFLICT(user_id,pid,rcid,phase) DO UPDATE SET symptom_0_10=$5, improvement=$6, adherence_pct=$7, still_on=$8, note=$9, created_at=now()`,
+        [u.id, pid, rcid, phase, intOr(b.symptom_0_10, 0, 10), intOr(b.improvement, -3, 3), intOr(b.adherence_pct, 0, 100), b.still_on == null ? null : !!b.still_on, clean(b.note, 500) || null]);
+      return json(res, 200, { ok: true });
+    }
+  }
+  if (seg[0] === 'markers') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    if (method === 'GET') { const r = await db.query('SELECT id, marker, value, unit, taken_on FROM blood_markers WHERE user_id=$1 ORDER BY taken_on DESC NULLS LAST, id DESC LIMIT 200', [u.id]); return json(res, 200, { markers: r.rows }); }
+    if (method === 'POST') {
+      const b = await readBody(req) || {}; const marker = inList(b.marker, BLOOD_MARKERS);
+      const value = (b.value != null && Number.isFinite(+b.value)) ? +b.value : null;
+      if (!marker || value == null) return json(res, 400, { error: 'Missing marker/value' });
+      const taken = /^\d{4}-\d{2}-\d{2}$/.test(b.taken_on || '') ? b.taken_on : null;
+      await db.query('INSERT INTO blood_markers(user_id,marker,value,unit,taken_on) VALUES($1,$2,$3,$4,$5)', [u.id, marker, value, clean(b.unit, 16) || null, taken]);
+      return json(res, 200, { ok: true });
+    }
+  }
+  if (seg[0] === 'wearable' && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    const b = await readBody(req) || {}; const day = /^\d{4}-\d{2}-\d{2}$/.test(b.day || '') ? b.day : null; if (!day) return json(res, 400, { error: 'Bad day' });
+    await db.query(`INSERT INTO wearable_daily(user_id,day,steps,sleep_min,resting_hr,weight_kg,source) VALUES($1,$2,$3,$4,$5,$6,$7)
+      ON CONFLICT(user_id,day) DO UPDATE SET steps=COALESCE($3,wearable_daily.steps), sleep_min=COALESCE($4,wearable_daily.sleep_min), resting_hr=COALESCE($5,wearable_daily.resting_hr), weight_kg=COALESCE($6,wearable_daily.weight_kg), source=$7`,
+      [u.id, day, intOr(b.steps, 0, 100000), intOr(b.sleep_min, 0, 1440), intOr(b.resting_hr, 20, 220), (b.weight_kg != null && +b.weight_kg > 0 && +b.weight_kg < 400) ? +b.weight_kg : null, clean(b.source, 24) || 'manual']);
+    return json(res, 200, { ok: true });
+  }
+  if (seg[0] === 'mydata') { // PDPA access + deletion rights over one's own research data
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    if (method === 'GET') {
+      const [c, p, ck, bm, wd] = await Promise.all([
+        db.query('SELECT consent_research,version,consented_at,withdrawn_at FROM user_consent WHERE user_id=$1', [u.id]),
+        db.query('SELECT age_band,sex,ethnicity,conditions FROM user_profile WHERE user_id=$1', [u.id]),
+        db.query('SELECT pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note,created_at FROM outcome_checkins WHERE user_id=$1', [u.id]),
+        db.query('SELECT marker,value,unit,taken_on FROM blood_markers WHERE user_id=$1', [u.id]),
+        db.query('SELECT day,steps,sleep_min,resting_hr,weight_kg FROM wearable_daily WHERE user_id=$1', [u.id]),
+      ]);
+      return json(res, 200, { account: { username: u.username, email: u.email }, consent: c.rows[0] || null, profile: p.rows[0] || null, checkins: ck.rows, markers: bm.rows, wearables: wd.rows });
+    }
+    if (method === 'DELETE') { // erase research data, keep the account + their tracker
+      await Promise.all([
+        db.query('DELETE FROM outcome_checkins WHERE user_id=$1', [u.id]),
+        db.query('DELETE FROM blood_markers WHERE user_id=$1', [u.id]),
+        db.query('DELETE FROM wearable_daily WHERE user_id=$1', [u.id]),
+        db.query('DELETE FROM user_profile WHERE user_id=$1', [u.id]),
+        db.query('UPDATE user_consent SET consent_research=false, withdrawn_at=now() WHERE user_id=$1', [u.id]),
+      ]);
+      return json(res, 200, { ok: true });
+    }
   }
   if (seg[0] === 'shared-plan' && method === 'GET') {
     const q = new URL('http://x/' + url).searchParams; const code = clean(q.get('code'), 32);

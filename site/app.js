@@ -297,6 +297,17 @@
     submitClinicianInterest(b) { return this.call('POST', '/api/clinician-interest', b); },
     sharePlan(pid, rcid, plan) { return this.call('POST', '/api/share-plan', { pid, rcid, plan }); },
     sharedPlan(code) { return this.call('GET', '/api/shared-plan?code=' + encodeURIComponent(code)).catch(() => null); },
+    // outcome-data moat
+    getConsent() { return this.call('GET', '/api/consent').catch(() => null); },
+    setConsent(research) { return this.call('POST', '/api/consent', { research }); },
+    getProfile() { return this.call('GET', '/api/profile').then(d => d.profile).catch(() => null); },
+    saveProfile(p) { return this.call('POST', '/api/profile', p); },
+    checkinsDone(pid, rcid) { return this.call('GET', '/api/checkin?pid=' + encodeURIComponent(pid) + '&rcid=' + encodeURIComponent(rcid)).then(d => d.done || []).catch(() => []); },
+    submitCheckin(b) { return this.call('POST', '/api/checkin', b); },
+    getMarkers() { return this.call('GET', '/api/markers').then(d => d.markers || []).catch(() => []); },
+    addMarker(b) { return this.call('POST', '/api/markers', b); },
+    exportMyData() { return this.call('GET', '/api/mydata'); },
+    deleteMyData() { return this.call('DELETE', '/api/mydata'); },
     ledger(pid, rcid) { return this.call('GET', `/api/ledger?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).catch(() => null); },
     myExperiment(pid, rcid) { return this.call('GET', `/api/experiments/mine?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}&voterKey=${encodeURIComponent(VOTER_KEY)}`).catch(() => ({ experiment: null, streak: 0, checkedToday: false })); },
     startExperiment(pid, rcid) { return this.call('POST', '/api/experiments/start', { problemId: pid, rootCauseId: rcid, voterKey: VOTER_KEY, ref: localStorage.getItem('rnawiki_ref') || undefined }); },
@@ -336,7 +347,7 @@
     const slot = document.getElementById('account-slot'); if (!slot) return;
     if (ME) slot.innerHTML = `<span class="acct"><span class="acct-name">👤 ${esc(ME.username)}</span>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
     else slot.innerHTML = `<button class="acct-btn primary" id="signin-btn">Sign in</button>`;
-    const lo = document.getElementById('logout-btn'); if (lo) lo.onclick = async () => { await api.logout(); ME = null; renderAccount(); route(); };
+    const lo = document.getElementById('logout-btn'); if (lo) lo.onclick = async () => { await api.logout(); ME = null; CONSENT = null; renderAccount(); route(); };
     const si = document.getElementById('signin-btn'); if (si) si.onclick = () => openAuth('login');
   }
 
@@ -387,7 +398,7 @@
         const d = mode === 'login' ? await api.login(b) : await api.register(b);
         // Re-fetch the full user (login/register responses omit is_super) so the super-admin
         // Control room link never disappears after signing in.
-        ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin();
+        ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
       } catch (ex) { err.textContent = ex.message; err.hidden = false; btn.disabled = false; btn.textContent = mode === 'login' ? 'Sign in' : 'Create account'; }
     };
     if (CFG.googleClientId) mountGoogleButton(m.querySelector('#gbtn'), err);
@@ -411,7 +422,7 @@
       callback: async (resp) => {
         try {
           const d = await api.googleAuth(resp.credential);
-          ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin();
+          ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
         } catch (ex) { if (errEl) { errEl.textContent = ex.message; errEl.hidden = false; } }
       },
     });
@@ -3187,6 +3198,64 @@
       if (!ME) setTimeout(() => { if (typeof openAuth === 'function') openAuth('signup'); }, 500); // client makes an account to keep it
     };
   }
+
+  // ===== Outcome-data moat: consent + profile + PDPA data rights =====
+  const CONSENT_NOTICE_VERSION = 'v1-2026-07';
+  const AGE_OPTS = [['18-24', '18–24'], ['25-34', '25–34'], ['35-44', '35–44'], ['45-54', '45–54'], ['55-64', '55–64'], ['65+', '65+']];
+  const SEX_OPTS = [['male', 'Male'], ['female', 'Female'], ['other', 'Other'], ['prefer_not', 'Prefer not to say']];
+  const ETH_OPTS = [['chinese', 'Chinese'], ['malay', 'Malay'], ['indian', 'Indian'], ['other', 'Other'], ['prefer_not', 'Prefer not to say']];
+  let CONSENT = null; // null unknown · true consented · false declined
+  async function loadConsent() { if (!ME) { CONSENT = null; return; } try { const d = await api.getConsent(); CONSENT = d && d.consent ? !!d.consent.consent_research : false; } catch (e) { CONSENT = null; } }
+  function consentCardHtml() {
+    if (!ME || CONSENT !== false || localStorage.getItem('rnawiki_consent_dismiss')) return '';
+    return `<div class="consent-card"><div class="consent-txt"><b>🔬 Help RNAwiki learn what actually works.</b><p>Share your progress anonymously so we can prove real outcomes — like "68% improved in 8 weeks" — and keep sharpening the protocols. Withdraw or delete anytime.</p></div>
+      <div class="consent-acts"><button class="cta-primary" id="consent-open">Share anonymously</button><button class="linkbtn" id="consent-skip">Not now</button></div></div>`;
+  }
+  function wireConsentCard() {
+    const a = document.getElementById('consent-open'); if (a) a.onclick = openConsentModal;
+    const b = document.getElementById('consent-skip'); if (b) b.onclick = () => { localStorage.setItem('rnawiki_consent_dismiss', '1'); const c = document.querySelector('.consent-card'); if (c) c.remove(); };
+  }
+  function openConsentModal() {
+    const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
+      <h2>Share your progress — anonymously</h2>
+      <div class="consent-notice">
+        <p>RNAwiki will use your protocol, symptom check-ins and adherence — and, if you add them, blood markers and wearable data — to build <b>anonymous, aggregated</b> insight into which protocols work, for whom.</p>
+        <ul><li>Never shown to other users, never sold.</li><li>Aggregates appear only when ≥20 people are in a group — no one is identifiable.</li><li>View, export, delete your data, or withdraw, anytime.</li><li>We never collect NRIC or any national ID.</li></ul>
+        <p class="muted">Not medical advice. Consent version ${CONSENT_NOTICE_VERSION}.</p>
+      </div>
+      <div class="consent-acts"><button class="cta-primary" id="cm-yes">✓ I consent — share anonymously</button><button class="cta-ghost" id="cm-no">Decline</button></div>`);
+    m.querySelector('[data-close]').onclick = closeModal;
+    m.querySelector('#cm-yes').onclick = async () => { try { await api.setConsent(true); CONSENT = true; closeModal(); if (typeof toast === 'function') toast('Thank you — your progress helps everyone 🙏'); openProfileModal(); } catch (e) { alert(e.message); } };
+    m.querySelector('#cm-no').onclick = async () => { try { await api.setConsent(false); } catch (e) {} CONSENT = false; localStorage.setItem('rnawiki_consent_dismiss', '1'); closeModal(); const c = document.querySelector('.consent-card'); if (c) c.remove(); };
+  }
+  function openProfileModal() {
+    api.getProfile().then(p => {
+      p = p || {};
+      const sel = (name, opts, cur) => `<select id="pf-${name}" class="pf-in"><option value="">—</option>${opts.map(o => `<option value="${o[0]}"${cur === o[0] ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select>`;
+      const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
+        <h2>A little about you <span class="muted" style="font-size:.8rem;font-weight:400">optional</span></h2>
+        <p class="muted">So we can show what works for people like you. All optional, all anonymous.</p>
+        <div class="pf-grid"><label>Age ${sel('age', AGE_OPTS, p.age_band)}</label><label>Sex ${sel('sex', SEX_OPTS, p.sex)}</label><label>Ethnicity ${sel('eth', ETH_OPTS, p.ethnicity)}</label></div>
+        <div class="consent-acts"><button class="cta-primary" id="pf-save">Save</button><button class="cta-ghost" id="pf-skip">Skip</button></div>`);
+      m.querySelector('[data-close]').onclick = closeModal; m.querySelector('#pf-skip').onclick = closeModal;
+      m.querySelector('#pf-save').onclick = async () => { try { await api.saveProfile({ age_band: m.querySelector('#pf-age').value || null, sex: m.querySelector('#pf-sex').value || null, ethnicity: m.querySelector('#pf-eth').value || null }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
+    });
+  }
+  function openDataModal() {
+    const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
+      <h2>Your data & privacy</h2>
+      <p class="muted">You're in control. Everything is anonymised in aggregate; here's your own copy.</p>
+      <div class="consent-acts" style="flex-direction:column;align-items:stretch">
+        <button class="cta-ghost" id="md-export">⤓ Export my data (JSON)</button>
+        <button class="cta-ghost" id="md-profile">✎ Edit my profile</button>
+        <button class="cta-ghost danger" id="md-delete">🗑 Delete my research data</button>
+      </div>`);
+    m.querySelector('[data-close]').onclick = closeModal;
+    m.querySelector('#md-profile').onclick = () => { closeModal(); openProfileModal(); };
+    m.querySelector('#md-export').onclick = async () => { try { const d = await api.exportMyData(); const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'rnawiki-my-data.json'; a.click(); } catch (e) { alert(e.message); } };
+    m.querySelector('#md-delete').onclick = async () => { if (!confirm('Delete your research data (check-ins, markers, wearables, profile) and withdraw consent? Your account and tracker stay.')) return; try { await api.deleteMyData(); CONSENT = false; closeModal(); if (typeof toast === 'function') toast('Deleted — consent withdrawn'); } catch (e) { alert(e.message); } };
+  }
+
   // The share MOMENT — a celebratory popup shown once, right after the protocol is built
   function buildCelebrateModal(problem, rc) {
     const m = modal(`<div class="build-celebrate">
@@ -3437,13 +3506,14 @@
     const manage = `<section class="trk-manage"><h2>Your protocols</h2>${M.resolved.map(r => `
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
         <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button> · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button> · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
-      <a class="tpm-add" href="#/solve">＋ Add another goal</a></section>`;
+      <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="mydata-link">🔒 Your data &amp; privacy</button>' : ''}</section>`;
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan' }])}
       <section class="plan-hd trk-hd"><div><div class="kicker">My Plan</div><h1>Today</h1><p class="muted">${subtitle}</p></div>
         <div class="plan-hd-actions"><a class="cta-ghost" href="#/progress">📊 Progress</a></div></section>
       <section class="plan-pulse"><div class="pulse-streak">🔥 <b>${streak}</b>-day streak</div>${weekStripHtml(plan, M)}</section>
       ${recapCard}
       ${missBanner}
+      ${consentCardHtml()}
       ${keystoneCards}
       ${danger}
       ${(totalItems || restBanner) ? `<section class="trk-today">
@@ -3459,6 +3529,8 @@
     if (hasFuel) mountFuelTracker(null, null, M.fuel);
     mountPlanFunctions();
     wireTgCoach();
+    wireConsentCard();
+    const mdl = document.getElementById('mydata-link'); if (mdl) mdl.onclick = openDataModal;
     const byExId = {}; M.moves.forEach(e => byExId[e.id] = e);
     const byCId = {}; M.supps.forEach(c => byCId[c.id] = c);
     wireItemModals('.trk-list', byExId, byCId);
@@ -4723,7 +4795,7 @@
   document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
   updateStackBadge();
   route();
-  api.me().then(u => { ME = u; renderAccount(); if (u) syncPlanOnLogin(); }).catch(() => renderAccount());
+  api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } }).catch(() => renderAccount());
   api.config().then(c => { if (c) CFG = c; });
   api.rootcauseOverlay().then(ov => { if (applyRcOverlay(ov)) route(); }).catch(() => {});
   // Always-available feedback button, bottom-right.
