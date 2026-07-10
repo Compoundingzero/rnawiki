@@ -339,6 +339,18 @@ CREATE TABLE IF NOT EXISTS user_plans (
   plan JSONB NOT NULL DEFAULT '{}',
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Shared protocols: anyone (e.g. a trainer) builds a plan and shares a code; a client opens it,
+-- previews the exact selections, and creates an account to use it. Author may be anonymous (null).
+CREATE TABLE IF NOT EXISTS shared_plans (
+  code TEXT PRIMARY KEY,
+  author_user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  pid TEXT NOT NULL,
+  rcid TEXT NOT NULL,
+  plan JSONB NOT NULL DEFAULT '{}',   -- {moves, supps, functions}
+  clicks INTEGER NOT NULL DEFAULT 0,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 `;
 
 async function init() {

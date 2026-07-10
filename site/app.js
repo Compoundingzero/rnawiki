@@ -206,6 +206,8 @@
     submitFeedback(b) { return this.call('POST', '/api/feedback', b); },
     setFeedback(id, status) { return this.call('POST', '/api/admin/feedback/' + id, { status }); },
     submitClinicianInterest(b) { return this.call('POST', '/api/clinician-interest', b); },
+    sharePlan(pid, rcid, plan) { return this.call('POST', '/api/share-plan', { pid, rcid, plan }); },
+    sharedPlan(code) { return this.call('GET', '/api/shared-plan?code=' + encodeURIComponent(code)).catch(() => null); },
     ledger(pid, rcid) { return this.call('GET', `/api/ledger?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).catch(() => null); },
     myExperiment(pid, rcid) { return this.call('GET', `/api/experiments/mine?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}&voterKey=${encodeURIComponent(VOTER_KEY)}`).catch(() => ({ experiment: null, streak: 0, checkedToday: false })); },
     startExperiment(pid, rcid) { return this.call('POST', '/api/experiments/start', { problemId: pid, rootCauseId: rcid, voterKey: VOTER_KEY, ref: localStorage.getItem('rnawiki_ref') || undefined }); },
@@ -2950,11 +2952,57 @@
 
   // ---- Tracking: the finalised protocol — selected items + Fuel (revealed here only) ----
   // Share a self-built protocol (used by the discreet button + the completion popup)
-  function sharePlan(problem, rc) {
-    const url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id;
-    const txt = 'I built my own ' + problem.name + ' protocol on RNAwiki 💪';
+  async function sharePlan(problem, rc) {
+    const pl = getPlan();
+    let url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id;
+    // If this is a built plan, mint a share code carrying the exact selections so a client gets THIS plan
+    if (pl && pl.built) {
+      try { const r = await api.sharePlan(problem.id, rc.id, { moves: pl.moves, supps: pl.supps, functions: pl.functions }); if (r && r.url) url = r.url; } catch (e) {}
+    }
+    const txt = 'I built a ' + problem.name + ' protocol on RNAwiki 💪 — here it is, ready to use:';
     if (navigator.share) navigator.share({ title: 'RNAwiki', text: txt, url }).catch(() => {});
-    else { if (navigator.clipboard) navigator.clipboard.writeText(txt + ' ' + url); if (typeof toast === 'function') toast('Copied — share it anywhere 🔗'); }
+    else { if (navigator.clipboard) navigator.clipboard.writeText(txt + ' ' + url); if (typeof toast === 'function') toast('Link copied — send it to anyone 🔗'); }
+  }
+  // A client opening a shared protocol (e.g. from their trainer): preview the exact plan, then adopt it
+  async function renderSharedPlan(code) {
+    try { await ensureProtocolData(); } catch (e) { app.innerHTML = emptyPlan(); return; }
+    const data = await api.sharedPlan(code);
+    if (!data || !data.pid) { app.innerHTML = `<div class="empty"><h1>This shared link isn't valid</h1><p>It may have expired. <a href="#/solve">Browse protocols →</a></p></div>`; return; }
+    const found = findRootCause(data.pid, data.rcid);
+    if (!found) { app.innerHTML = `<div class="empty"><h1>Protocol not found</h1><p><a href="#/solve">Browse protocols →</a></p></div>`; return; }
+    const { problem, rc } = found; const P = generateProtocol(rc); const plan = data.plan || {};
+    const allMoves = [...(P.strengthen || []), ...(P.stretch || [])];
+    const mSel = Array.isArray(plan.moves) ? plan.moves : allMoves.map(e => e.id);
+    const foodOnly = plan.supps === 'none';
+    const sSel = foodOnly ? [] : (Array.isArray(plan.supps) ? plan.supps : (P.stack || []).map(c => c.id));
+    const fns = Array.isArray(plan.functions) && plan.functions.length ? plan.functions : [defaultFunctionFor(problem, rc)];
+    const moveNames = allMoves.filter(e => mSel.includes(e.id)).map(e => e.name);
+    const suppNames = (P.stack || []).filter(c => sSel.includes(c.id)).map(c => c.name);
+    const toolNames = fns.map(id => { const f = fnById(id); return f ? f.icon + ' ' + f.name : null; }).filter(Boolean);
+    const who = data.author ? esc(data.author) : 'Someone';
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Shared protocol' }])}
+      <section class="shared-hero">
+        <div class="shared-badge">📋 Shared with you</div>
+        <h1>${esc(problem.name)} protocol</h1>
+        <p class="muted">${who} built this ${esc(problem.name.toLowerCase())} plan and shared it with you — ${esc(rc.name)}.</p>
+        <div class="shared-summary">
+          ${moveNames.length ? `<div class="ss-block"><b>💪 Movements</b><span>${moveNames.slice(0, 6).map(esc).join(', ')}${moveNames.length > 6 ? ', +' + (moveNames.length - 6) + ' more' : ''}</span></div>` : ''}
+          ${suppNames.length ? `<div class="ss-block"><b>💊 Supplements</b><span>${suppNames.slice(0, 6).map(esc).join(', ')}</span></div>` : '<div class="ss-block"><b>🍚 Food-only</b><span>no supplements</span></div>'}
+          ${toolNames.length ? `<div class="ss-block"><b>🧩 Tools</b><span>${toolNames.map(esc).join(', ')}</span></div>` : ''}
+        </div>
+        <div class="shared-cta">
+          <button class="cta-primary" id="use-shared">Use this protocol →</button>
+          <button class="tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Coach me on Telegram</button>
+        </div>
+        <p class="shared-note">You'll get your own copy to track daily.${ME ? '' : ' Create a free account to keep it across devices.'}</p>
+      </section>`;
+    wireTgCoach();
+    const use = document.getElementById('use-shared');
+    if (use) use.onclick = () => {
+      const pl = { pid: problem.id, rcid: rc.id, built: true, step: 0, moves: mSel, supps: foodOnly ? 'none' : sSel, functions: fns, startedAt: today(), log: {} };
+      setPlan(pl); navigate('/plan');
+      if (!ME) setTimeout(() => { if (typeof openAuth === 'function') openAuth('signup'); }, 500); // client makes an account to keep it
+    };
   }
   // The share MOMENT — a celebratory popup shown once, right after the protocol is built
   function buildCelebrateModal(problem, rc) {
@@ -4205,6 +4253,7 @@
     else if (parts[0] === 'admin') html = adminLoading();
     else if (parts[0] === 'protocol') html = protocolLoading();
     else if (parts[0] === 'clinic' && parts[3]) html = protocolLoading();
+    else if (parts[0] === 's' && parts[1]) html = '<div class="empty"><h1>Loading shared protocol…</h1></div>';
     else html = notFound();
     app.innerHTML = html; window.scrollTo(0, 0);
     setPageMeta(parts);
@@ -4224,6 +4273,7 @@
     if (parts[0] === 'admin') renderAdmin();
     if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2]);
     if (parts[0] === 'clinic' && parts[3]) renderProtocol(parts[2], parts[3], parts[1]);
+    if (parts[0] === 's' && parts[1]) renderSharedPlan(parts[1]);
     // community discussion on compound + pathway pages
     if (parts[0] === 'c' && bySlug[parts[1]]) renderComments('c:' + bySlug[parts[1]].id, bySlug[parts[1]].name);
     if (parts[0] === 'pathway' && D.pathways[+parts[1]]) renderComments('pw:' + (+parts[1]), D.pathways[+parts[1]].shortLabel || 'this pathway');

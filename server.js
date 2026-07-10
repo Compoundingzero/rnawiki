@@ -599,7 +599,20 @@ async function handleTgUpdate(update) {
     ON CONFLICT(chat_id) DO UPDATE SET last_active=now(), active=true, first_name=COALESCE(EXCLUDED.first_name, telegram_users.first_name)`, [chatId, first || null]);
   if (text.startsWith('/start')) {
     const param = text.split(/\s+/)[1];
-    if (param) {
+    if (param && param.indexOf('s_') === 0) { // a shared protocol (trainer → client)
+      const code = param.slice(2);
+      const sp = (await db.query('SELECT pid,rcid,plan FROM shared_plans WHERE code=$1', [code])).rows[0];
+      if (sp) {
+        db.query('UPDATE shared_plans SET clicks=clicks+1 WHERE code=$1', [code]).catch(() => {});
+        const fns = (sp.plan && Array.isArray(sp.plan.functions) && sp.plan.functions.length) ? sp.plan.functions : [tgDefaultFunction(sp.pid + '/' + sp.rcid)];
+        const supps = (sp.plan && (sp.plan.supps === 'none' ? [] : (Array.isArray(sp.plan.supps) ? sp.plan.supps : undefined)));
+        await db.query('UPDATE telegram_users SET pid=$2, rcid=$3, functions=$4' + (supps !== undefined ? ', sel=$5' : '') + ' WHERE chat_id=$1', supps !== undefined ? [chatId, sp.pid, sp.rcid, JSON.stringify(fns), JSON.stringify({ supps })] : [chatId, sp.pid, sp.rcid, JSON.stringify(fns)]);
+        const p = TG_PROTO[sp.pid + '/' + sp.rcid] || {};
+        await tgSend(chatId, `📋 Someone shared their <b>${tgEsc(p.problem || 'protocol')}</b> plan with you. It's now yours to run — I'll coach you through it.`);
+        return tgSendKeystone(chatId, sp.pid, sp.rcid);
+      }
+    }
+    if (param && param.indexOf('s_') !== 0) {
       const t = (await db.query('SELECT * FROM telegram_link_tokens WHERE token=$1', [param])).rows[0];
       if (t) {
         // pull the web plan's chosen functions (if any) so the bot mirrors them; else assign the matched default
@@ -774,6 +787,26 @@ async function api(req, res, url) {
     await db.query(`INSERT INTO user_plans(user_id,plan,updated_at) VALUES($1,$2,now())
       ON CONFLICT(user_id) DO UPDATE SET plan=EXCLUDED.plan, updated_at=now()`, [u.id, JSON.stringify(b.plan)]);
     return json(res, 200, { ok: true });
+  }
+  // Share a built protocol to clients: mint a short code that carries the exact selections
+  if (seg[0] === 'share-plan' && method === 'POST') {
+    const b = await readBody(req, 1e5); const pid = clean(b && b.pid, 64), rcid = clean(b && b.rcid, 64);
+    if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
+    const u = await currentUser(req);
+    const sel = (b && b.plan && typeof b.plan === 'object') ? b.plan : {};
+    const plan = { moves: Array.isArray(sel.moves) ? sel.moves.slice(0, 100) : undefined, supps: sel.supps === 'none' ? 'none' : (Array.isArray(sel.supps) ? sel.supps.slice(0, 100) : undefined), functions: Array.isArray(sel.functions) ? sel.functions.slice(0, 20) : undefined };
+    const code = crypto.randomBytes(6).toString('base64url');
+    await db.query('INSERT INTO shared_plans(code,author_user_id,pid,rcid,plan) VALUES($1,$2,$3,$4,$5)', [code, u ? u.id : null, pid, rcid, JSON.stringify(plan)]);
+    return json(res, 200, { code, url: `${SITE_URL}/#/s/${code}`, tg: BOT_USERNAME ? `https://t.me/${BOT_USERNAME}?start=s_${code}` : null });
+  }
+  if (seg[0] === 'shared-plan' && method === 'GET') {
+    const q = new URL('http://x/' + url).searchParams; const code = clean(q.get('code'), 32);
+    const r = await db.query('SELECT code,author_user_id,pid,rcid,plan FROM shared_plans WHERE code=$1', [code]);
+    if (!r.rows[0]) return json(res, 404, { error: 'Not found' });
+    db.query('UPDATE shared_plans SET clicks=clicks+1 WHERE code=$1', [code]).catch(() => {});
+    const row = r.rows[0]; let author = null;
+    if (row.author_user_id) { try { const a = (await db.query('SELECT username FROM users WHERE id=$1', [row.author_user_id])).rows[0]; author = a ? a.username : null; } catch (e) {} }
+    return json(res, 200, { pid: row.pid, rcid: row.rcid, plan: row.plan || {}, author });
   }
   if (seg[0] === 'auth' && seg[1] === 'google' && method === 'POST') {
     if (!GOOGLE_CLIENT_ID) return json(res, 503, { error: 'Google sign-in is not enabled on this server.' });

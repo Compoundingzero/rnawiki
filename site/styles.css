@@ -1679,6 +1679,17 @@ a.dp-name:hover{color:var(--accent)}
 .fn-log-in{flex:1;min-width:0;padding:.4rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.9rem}
 .fn-log-in:focus{outline:none;border-color:var(--accent)}
 .fn-w.tgonly .fn-w-tg{margin-top:.4rem;background:#2563eb;color:#fff;border:none;border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}
+/* ---- Shared protocol landing (trainer → client) ---- */
+.shared-hero{max-width:640px;margin:1.5rem auto;padding:1.6rem;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(13,148,136,.06),var(--panel));box-shadow:var(--shadow)}
+.shared-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:rgba(13,148,136,.1);padding:.2rem .6rem;border-radius:999px;margin-bottom:.7rem}
+.shared-hero h1{margin:.2rem 0 .4rem;font-size:1.6rem}
+.shared-summary{display:flex;flex-direction:column;gap:.6rem;margin:1.1rem 0}
+.shared-summary .ss-block{display:flex;flex-direction:column;gap:.15rem;padding:.6rem .8rem;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.shared-summary .ss-block b{font-size:.82rem;color:var(--head)}
+.shared-summary .ss-block span{font-size:.85rem;color:var(--muted);line-height:1.4}
+.shared-cta{display:flex;flex-direction:column;gap:.6rem;margin-top:1.2rem}
+.shared-cta .cta-primary,.shared-cta .tg-coach{width:100%;justify-content:center}
+.shared-note{font-size:.8rem;color:var(--muted);margin:.9rem 0 0;text-align:center}
 /* ---- Build-completion celebration popup ---- */
 .build-celebrate{text-align:center}
 .build-celebrate .bc-emo{font-size:2.6rem;line-height:1}
