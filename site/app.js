@@ -2617,49 +2617,16 @@
   }
   // ---------- the outcome loop UI: Results Ledger + start / check-in / streak / report ----------
   function outcomeLabel(o) { return o === 'better' ? 'Better' : o === 'same' ? 'No change' : 'Worse'; }
-  async function mountExperiment(problem, rc) {
-    const host = document.getElementById('experiment-panel'); if (!host) return;
-    const pid = problem.id, rcid = rc.id;
-    let ledger, mine;
-    try { [ledger, mine] = await Promise.all([api.ledger(pid, rcid), api.myExperiment(pid, rcid)]); }
-    catch (e) { host.innerHTML = ''; return; }
-    if (!ledger) { host.innerHTML = ''; return; } // DB off → hide silently, no broken UI
-    const reload = () => Promise.all([api.ledger(pid, rcid), api.myExperiment(pid, rcid)]).then(([l, m]) => { ledger = l; mine = m; render(); });
-    function render() {
-      const total = ledger.total || 0, running = ledger.running || 0;
-      const outcomes = (ledger.better || 0) + (ledger.same || 0) + (ledger.worse || 0);
-      const pct = outcomes >= 3 ? Math.round((ledger.better || 0) / outcomes * 100) : null;
-      const proof = total === 0
-        ? `<span class="exp-proof empty">🧪 No one's logged this yet — <b>be the first</b> to run it and report back.</span>`
-        : `<span class="exp-proof">🧪 <b>${running || total}</b> ${(running || total) === 1 ? 'person' : 'people'} running this${pct != null ? ` · <b>${pct}%</b> report improvement` : ` · outcomes coming in`}</span>`;
-      const exp = mine.experiment;
-      let action;
-      if (!exp || (exp.status !== 'running' && !exp.outcome)) {
-        action = `<button class="exp-btn primary" data-start>Start this experiment</button>`;
-      } else if (exp.status === 'completed' && exp.outcome) {
-        action = `<div class="exp-done">You reported <b class="oc-${exp.outcome}">${outcomeLabel(exp.outcome)}</b> · <button class="exp-btn sm" data-share>🔗 Share</button> <button class="exp-link" data-report>Update</button></div>`;
-      } else {
-        const streak = mine.streak || 0;
-        action = `<div class="exp-running">
-          <button class="exp-btn ${mine.checkedToday ? 'done' : 'primary'}" data-checkin ${mine.checkedToday ? 'disabled' : ''}>${mine.checkedToday ? '✓ Checked in today' : 'Check in today'}</button>
-          ${streak > 0 ? `<span class="exp-streak">🔥 ${streak}-day streak</span>` : ''}
-          <button class="exp-link" data-report>How did it go?</button></div>`;
-      }
-      const chips = [];
-      if (mine.level && (exp || mine.completedTotal)) { const lv = mine.level; chips.push(`<span class="exp-chip lvl">🧬 ${esc(lv.name)}${lv.next ? ` <em>→ ${esc(lv.next.name)} (${lv.next.at})</em>` : ''}</span>`); }
-      if (exp) { const others = Math.max(0, (mine.cohortSize || 0) - 1); chips.push(`<span class="exp-chip">👥 ${others >= 1 ? 'you + ' + others + ' started this week' : "you're starting this week's cohort"}</span>`); }
-      else if ((mine.cohortSize || 0) >= 1) { chips.push(`<span class="exp-chip">👥 ${mine.cohortSize} started this week — join them</span>`); }
-      if (exp && exp.status === 'running') chips.push(`<span class="exp-chip goal">📅 ${mine.checkinsThisWeek || 0}/7 check-ins this week</span>`);
-      if ((mine.onboarded || 0) >= 1) chips.push(`<span class="exp-chip">🌱 ${mine.onboarded} brought in</span>`);
-      const meta = chips.length ? `<div class="exp-meta">${chips.join('')}</div>` : '';
-      host.innerHTML = `<div class="exp-inner"><div class="exp-proof-row">${proof}</div><div class="exp-cta-row"><div class="exp-action">${action}</div><button class="exp-share" data-shareproto title="Share this protocol">🔗 Share</button></div>${meta}</div>`;
-      const s = host.querySelector('[data-start]'); if (s) s.onclick = async () => { s.disabled = true; s.textContent = 'Starting…'; try { await api.startExperiment(pid, rcid); await reload(); toast('You’re running this experiment 🧪'); } catch (e) { alert(e.message); s.disabled = false; s.textContent = 'Start this experiment'; } };
-      const ci = host.querySelector('[data-checkin]'); if (ci) ci.onclick = async () => { ci.disabled = true; try { const r = await api.checkinExperiment(pid, rcid); mine.streak = r.streak; mine.checkedToday = true; render(); toast(r.streak > 1 ? `🔥 ${r.streak}-day streak!` : 'Checked in ✓'); } catch (e) { alert(e.message); ci.disabled = false; } };
-      const rep = host.querySelector('[data-report]'); if (rep) rep.onclick = () => openOutcome(problem, rc, reload);
-      const sh = host.querySelector('[data-share]'); if (sh) sh.onclick = () => shareResult(problem, rc, exp && exp.outcome);
-      const shp = host.querySelector('[data-shareproto]'); if (shp) shp.onclick = () => shareModal(problem, rc, ledger, mine);
-    }
-    render();
+  // Adoption is measured by the build action, not a separate "experiment" commitment.
+  // We reuse the ledger's running count purely as quiet social proof — shown only when credible.
+  async function mountAdoption(problem, rc) {
+    const host = document.getElementById('adoption-panel'); if (!host) return;
+    let ledger;
+    try { ledger = await api.ledger(problem.id, rc.id); } catch (e) { host.innerHTML = ''; return; }
+    if (!ledger) { host.innerHTML = ''; return; } // DB off → hide silently
+    const n = ledger.running || ledger.total || 0;
+    if (n < 3) { host.innerHTML = ''; return; } // don't show weak/zero counts
+    host.innerHTML = `<div class="adopt-inner">🧬 <b>${n}</b> ${n === 1 ? 'person is' : 'people are'} building this plan</div>`;
   }
   function openOutcome(problem, rc, done) {
     const m = modal(`<div class="outcome-modal">
@@ -2760,15 +2727,16 @@
     return `<div class="plan-tg"><button class="tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Coach me on Telegram — daily nudges for this</button></div>`;
   }
   function wireTgCoach() {
-    app.querySelectorAll('.tg-coach').forEach(b => b.onclick = async () => {
-      const orig = b.textContent; b.disabled = true; b.textContent = 'Opening Telegram…';
+    app.querySelectorAll('.tg-coach').forEach(b => { if (b._tgWired) return; b._tgWired = true; b.onclick = async () => {
+      const orig = b.dataset.tgLabel || b.textContent; b.dataset.tgLabel = orig; b.disabled = true; b.textContent = 'Opening Telegram…';
       try {
         const r = await fetch('/api/telegram/link?pid=' + encodeURIComponent(b.dataset.tgPid) + '&rcid=' + encodeURIComponent(b.dataset.tgRc));
         const j = await r.json().catch(() => ({}));
-        if (j && j.url) { window.open(j.url, '_blank'); b.textContent = '✓ Opened in Telegram'; }
-        else { b.textContent = '📲 Telegram coach — coming soon'; }
-      } catch (e) { b.textContent = orig; b.disabled = false; }
-    });
+        b.textContent = (j && j.url) ? '✓ Opened — tap to reopen' : orig;
+        if (j && j.url) window.open(j.url, '_blank');
+      } catch (e) { b.textContent = orig; }
+      b.disabled = false; // always re-enable so it can be opened again
+    }; });
   }
   function keystoneCardHtml(rc, dayLog, streak) {
     if (!rc.keystone) return '';
@@ -2777,10 +2745,28 @@
   }
   function buildSteps(P) {
     const s = [];
-    if ((P.strengthen || []).length) s.push({ title: 'Movements', icon: '💪', kind: 'move', items: P.strengthen });
-    if ((P.stretch || []).length) s.push({ title: 'Stretches', icon: '🧘', kind: 'move', items: P.stretch });
-    if ((P.stack || []).length) s.push({ title: 'Supplements', icon: '💊', kind: 'supp', items: P.stack });
+    if ((P.strengthen || []).length) s.push({ title: 'Movements', icon: '💪', kind: 'move', bucket: 'strengthen', items: P.strengthen });
+    if ((P.stretch || []).length) s.push({ title: 'Stretches', icon: '🧘', kind: 'move', bucket: 'stretch', items: P.stretch });
+    if ((P.stack || []).length) s.push({ title: 'Supplements', icon: '💊', kind: 'supp', bucket: 'stack', items: P.stack });
     return s;
+  }
+  // Look up a catalogue item by id for a build bucket (used when a user adds their own item)
+  function catalogItem(bucket, id) {
+    if (bucket === 'stack') return byId[id];
+    const EX = window.RNAWIKI_EXERCISES; return EX && EX.exercises.find(e => e.id === id);
+  }
+  // Search the full catalogue for a build section, excluding what's already listed
+  function catalogSearch(bucket, q, excludeIds) {
+    q = (q || '').trim().toLowerCase(); if (q.length < 2) return [];
+    const ex = new Set(excludeIds);
+    if (bucket === 'stack') {
+      return D.compounds.filter(c => !ex.has(c.id) && (c.name.toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q)))
+        .sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, 6);
+    }
+    const EX = window.RNAWIKI_EXERCISES; if (!EX) return [];
+    const wantStretch = bucket === 'stretch';
+    return EX.exercises.filter(e => !ex.has(e.id) && (wantStretch ? e.kind === 'stretch' : e.kind !== 'stretch')
+      && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, 6);
   }
 
   async function renderPlan() {
@@ -2806,29 +2792,60 @@
     const selMoves = () => Array.isArray(getPlan().moves) ? getPlan().moves : allMoves;
     const selSupps = () => { const s = getPlan().supps; return s === 'none' ? [] : (Array.isArray(s) ? s : allSupp); };
     const mSel = selMoves(), sSel = selSupps();
-    const items = step.items.map(it => {
-      if (step.kind === 'move') { const on = mSel.includes(it.id); return `<div class="build-item ${on ? 'sel' : ''}"><input type="checkbox" class="build-cb" data-move="${esc(it.id)}" ${on ? 'checked' : ''} aria-label="Include ${esc(it.name)}">${exerciseCard(it)}</div>`; }
-      const on = sSel.includes(it.id); return `<div class="build-item ${on ? 'sel' : ''}"><input type="checkbox" class="build-cb" data-supp="${it.id}" ${on ? 'checked' : ''} aria-label="Include ${esc(it.name)}">${stackCard(it)}</div>`;
+    const bucket = step.bucket;
+    // user-added items for this section (that aren't already in the default list)
+    const extraIds = (((getPlan().extra || {})[bucket]) || []).filter(id => !step.items.some(it => it.id === id));
+    const extraItems = extraIds.map(id => catalogItem(bucket, id)).filter(Boolean);
+    const dispItems = step.items.concat(extraItems);
+    const items = dispItems.map(it => {
+      const custom = extraIds.includes(it.id) ? '<span class="build-custom">Your pick</span>' : '';
+      if (step.kind === 'move') { const on = mSel.includes(it.id); return `<div class="build-item ${on ? 'sel' : ''}"><input type="checkbox" class="build-cb" data-move="${esc(it.id)}" ${on ? 'checked' : ''} aria-label="Include ${esc(it.name)}">${exerciseCard(it)}${custom}</div>`; }
+      const on = sSel.includes(it.id); return `<div class="build-item ${on ? 'sel' : ''}"><input type="checkbox" class="build-cb" data-supp="${it.id}" ${on ? 'checked' : ''} aria-label="Include ${esc(it.name)}">${stackCard(it)}${custom}</div>`;
     }).join('');
     const chips = steps.map((s, i) => `<span class="bstep ${i === si ? 'on' : i < si ? 'done' : ''}">${s.icon} ${s.title}</span>`).join('<span class="bsep">›</span>') + '<span class="bsep">›</span><span class="bstep">🍽️ Fuel</span>';
-    const count = step.kind === 'move' ? step.items.filter(it => mSel.includes(it.id)).length : step.items.filter(it => sSel.includes(it.id)).length;
+    const count = dispItems.filter(it => (step.kind === 'move' ? mSel : sSel).includes(it.id)).length;
     const foodOnly = step.kind === 'supp' ? `<button class="chip food-only ${plan.supps === 'none' ? 'on' : ''}" id="food-only">🍚 ${plan.supps === 'none' ? '✓ ' : ''}I'll go food-only — no supplements</button>` : '';
     const ixn = step.kind === 'supp' ? `<div id="build-ixn">${sSel.length > 1 ? interactionPanel((P.stack || []).filter(c => sSel.includes(c.id)), { tiers: ['danger', 'timing'] }) : ''}</div>` : '';
+    const addWord = step.title.toLowerCase().replace(/s$/, '');
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Build my plan' }])}
       <section class="plan-hd"><div><div class="kicker">Build your plan · ${esc(problem.name)}</div><h1>${step.icon} ${esc(step.title)}</h1>
         <p class="muted">Browse each one, read what it does, and keep what you'll actually do — this becomes <b>your</b> protocol.</p></div></section>
       <div class="build-steps">${chips}</div>
       ${foodOnly}
       <div class="build-list">${items}</div>
+      <div class="build-add">
+        <label class="build-add-lbl" for="build-search">＋ Add your own ${esc(addWord)}</label>
+        <input type="text" id="build-search" class="build-search" placeholder="Search the full library…" autocomplete="off">
+        <div id="build-results" class="build-results"></div>
+      </div>
       ${ixn}
       <div class="build-nav">
         ${si > 0 ? '<button class="cta-ghost" id="build-back">← Back</button>' : `<a class="cta-ghost" href="#/protocol/${problem.id}/${rc.id}">← Cancel</a>`}
-        <span class="build-count"><b>${count}</b> of ${step.items.length} kept</span>
+        <span class="build-count"><b>${count}</b> of ${dispItems.length} kept</span>
         <button class="cta-primary" id="build-next">${isLast ? '✓ Confirm — build my protocol' : 'Next: ' + steps[si + 1].title + ' →'}</button>
       </div>
       ${tgCoachRow(problem, rc)}`;
     wireTgCoach();
-    const updCount = () => { const el = app.querySelector('.build-count'); if (!el) return; const n = step.kind === 'move' ? step.items.filter(it => selMoves().includes(it.id)).length : step.items.filter(it => selSupps().includes(it.id)).length; el.innerHTML = '<b>' + n + '</b> of ' + step.items.length + ' kept'; };
+    // Learning about an item opens a mini-window over the builder — never navigates away.
+    const byExId = {}; [...(P.strengthen || []), ...(P.stretch || [])].forEach(e => byExId[e.id] = e); extraItems.forEach(x => { if (bucket !== 'stack') byExId[x.id] = x; });
+    const byCId = {}; (P.stack || []).forEach(c => byCId[c.id] = c); extraItems.forEach(x => { if (bucket === 'stack') byCId[x.id] = x; });
+    wireItemModals('.build-list', byExId, byCId);
+    // Search-to-add: pull any item from the full library into this section
+    const addExtra = id => {
+      const pl = getPlan(); pl.extra = pl.extra || {}; pl.extra[bucket] = pl.extra[bucket] || [];
+      if (!pl.extra[bucket].includes(id)) pl.extra[bucket].push(id);
+      if (bucket === 'stack') { const cur = pl.supps === 'none' ? [] : (Array.isArray(pl.supps) ? pl.supps.slice() : allSupp.slice()); if (!cur.includes(id)) cur.push(id); pl.supps = cur; }
+      else { const cur = Array.isArray(pl.moves) ? pl.moves.slice() : allMoves.slice(); if (!cur.includes(id)) cur.push(id); pl.moves = cur; }
+      setPlan(pl); renderPlan();
+    };
+    const search = document.getElementById('build-search'); const results = document.getElementById('build-results');
+    if (search) search.oninput = () => {
+      const hits = catalogSearch(bucket, search.value, dispItems.map(x => x.id));
+      if (!hits.length) { results.innerHTML = search.value.trim().length >= 2 ? '<p class="build-nohit">No matches — try another name.</p>' : ''; return; }
+      results.innerHTML = hits.map(h => `<button class="build-res" data-add-id="${esc(h.id)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${bucket === 'stack' ? esc(h.category || '') : esc((h.primaryMuscles || []).slice(0, 2).join(', '))}</span><span class="br-add">+ Add</span></button>`).join('');
+      results.querySelectorAll('[data-add-id]').forEach(b => b.onclick = () => addExtra(b.dataset.addId));
+    };
+    const updCount = () => { const el = app.querySelector('.build-count'); if (!el) return; const n = dispItems.filter(it => (step.kind === 'move' ? selMoves() : selSupps()).includes(it.id)).length; el.innerHTML = '<b>' + n + '</b> of ' + dispItems.length + ' kept'; };
     app.querySelectorAll('[data-move]').forEach(cb => cb.onchange = () => {
       const pl = getPlan(); const cur = Array.isArray(pl.moves) ? pl.moves.slice() : allMoves.slice(); const id = cb.dataset.move;
       const i = cur.indexOf(id); if (cb.checked && i < 0) cur.push(id); else if (!cb.checked && i >= 0) cur.splice(i, 1);
@@ -2843,10 +2860,34 @@
     });
     const fo = document.getElementById('food-only'); if (fo) fo.onclick = () => { const pl = getPlan(); pl.supps = pl.supps === 'none' ? allSupp.slice() : 'none'; setPlan(pl); renderPlan(); };
     const back = document.getElementById('build-back'); if (back) back.onclick = () => { const pl = getPlan(); pl.step = Math.max(0, (pl.step || 0) - 1); setPlan(pl); renderPlan(); };
-    const next = document.getElementById('build-next'); if (next) next.onclick = () => { const pl = getPlan(); if (isLast) { pl.built = true; setPlan(pl); if (typeof toast === 'function') toast('🎉 Your protocol is built!'); } else { pl.step = (pl.step || 0) + 1; setPlan(pl); } renderPlan(); };
+    const next = document.getElementById('build-next'); if (next) next.onclick = () => { const pl = getPlan(); if (isLast) { pl.built = true; pl.justBuilt = true; setPlan(pl); } else { pl.step = (pl.step || 0) + 1; setPlan(pl); } renderPlan(); };
   }
 
   // ---- Tracking: the finalised protocol — selected items + Fuel (revealed here only) ----
+  // Share a self-built protocol (used by the discreet button + the completion popup)
+  function sharePlan(problem, rc) {
+    const url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id;
+    const txt = 'I built my own ' + problem.name + ' protocol on RNAwiki 💪';
+    if (navigator.share) navigator.share({ title: 'RNAwiki', text: txt, url }).catch(() => {});
+    else { if (navigator.clipboard) navigator.clipboard.writeText(txt + ' ' + url); if (typeof toast === 'function') toast('Copied — share it anywhere 🔗'); }
+  }
+  // The share MOMENT — a celebratory popup shown once, right after the protocol is built
+  function buildCelebrateModal(problem, rc) {
+    const m = modal(`<div class="build-celebrate">
+      <div class="bc-emo">🎉</div>
+      <h2>Your protocol is built.</h2>
+      <p class="modal-sub">You chose exactly what you'll do for ${esc(problem.name.toLowerCase())}. From here it's just tracking — one day at a time.</p>
+      <div class="bc-actions">
+        <button class="cta-primary" data-share>🔗 I built my own protocol — share it</button>
+        <button class="cta-ghost" data-close>Start tracking →</button>
+      </div>
+      <p class="bc-hint">Someone with the same problem is looking for exactly this.</p>
+    </div>`);
+    m.querySelector('[data-close]').onclick = () => closeModal();
+    m.querySelector('[data-share]').onclick = () => sharePlan(problem, rc);
+  }
+
+  // ---- Tracking: a focused, Apple-simple daily tracker — only your selected items, nothing to browse ----
   function renderPlanTracking(plan, problem, rc, P) {
     const allSupp = (P.stack || []).map(c => c.id);
     const sSel = plan.supps === 'none' ? [] : (Array.isArray(plan.supps) ? plan.supps : allSupp);
@@ -2856,34 +2897,39 @@
     const selMovesArr = allMovesArr.filter(e => mSelIds.includes(e.id));
     const dk = today(); const dayLog = (plan.log || {})[dk] || { done: [], keystone: false }; const streak = planStreak(plan);
     const selP = { strengthen: (P.strengthen || []).filter(e => mSelIds.includes(e.id)), stretch: (P.stretch || []).filter(e => mSelIds.includes(e.id)), stack: selStack, fuel: P.fuel };
+    // one compact, checkable row per item — a details link opens the mini-window (never navigates away)
+    const moveRow = e => { const on = dayLog.done.includes(e.id); const cue = (e.prescription || {}).cue; const sub = [rxLine(e), cue].filter(Boolean).join(' · ');
+      return `<label class="trk-row ${on ? 'done' : ''}"><input type="checkbox" class="plan-cb" data-done="${esc(e.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(e.name)} done"><span class="trk-txt"><span class="trk-name">${e.kind === 'stretch' ? '🧘' : '💪'} ${esc(e.name)}</span>${sub ? `<span class="trk-sub">${sub}</span>` : ''}</span><a class="trk-i" href="#/exercise/${esc(e.id)}" aria-label="Details about ${esc(e.name)}">Details</a></label>`; };
+    const suppRow = c => { const on = dayLog.done.includes(c.id); const sub = mdStrip(c.protocol || c.plain || c.bottom || '').slice(0, 60);
+      return `<label class="trk-row ${on ? 'done' : ''}"><input type="checkbox" class="plan-cb" data-done="${esc(c.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(c.name)} taken"><span class="trk-txt"><span class="trk-name">💊 ${esc(c.name)}</span>${sub ? `<span class="trk-sub">${esc(sub)}</span>` : ''}</span><a class="trk-i" href="#/c/${slug(c.name)}" aria-label="Details about ${esc(c.name)}">Details</a></label>`; };
+    const rows = [...selMovesArr.map(moveRow), ...selStack.map(suppRow)].join('');
+    const totalItems = selMovesArr.length + selStack.length;
+    const doneItems = [...selMovesArr, ...selStack].filter(x => dayLog.done.includes(x.id)).length;
+    const danger = selStack.length > 1 ? interactionPanel(selStack, { tiers: ['danger'] }) : '';
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan' }])}
-      <div class="plan-built-banner">🎉 <b>You built your own protocol.</b> <button class="linkbtn" id="plan-share">Share it →</button> · <button class="linkbtn" id="plan-edit">Edit my selections</button></div>
-      <section class="plan-hd"><div><div class="kicker">My Plan · ${esc(problem.category)}</div><h1>${problem.icon || ''} ${esc(problem.name)}</h1><p class="muted">${esc(rc.name)}</p></div>
-        <div class="plan-hd-actions"><a class="cta-ghost" href="#/protocol/${problem.id}/${rc.id}">Full protocol →</a></div></section>
+      <section class="plan-hd trk-hd"><div><div class="kicker">My Plan · ${esc(problem.category)}</div><h1>${problem.icon || ''} ${esc(problem.name)}</h1><p class="muted">${esc(rc.name)}</p></div>
+        <div class="plan-hd-actions"><button class="trk-share" id="plan-share" title="Share this protocol">🔗 Share</button><button class="linkbtn" id="plan-edit">Edit</button></div></section>
       ${keystoneCardHtml(rc, dayLog, streak)}
-      ${dayPlanHtml(problem, rc, selP)}
-      <div class="proto-grid">
-        <section class="layer move" id="p-move"><div class="lyr-head"><h2><span class="lyr-dot mv"></span>Move</h2></div>
-          <p class="lyr-sub">Tick each as you do it today.</p>
-          ${selMovesArr.length ? selMovesArr.map(e => `<div class="plan-item"><input type="checkbox" class="plan-cb" data-done="${esc(e.id)}" ${dayLog.done.includes(e.id) ? 'checked' : ''} aria-label="Mark done">${exerciseCard(e)}</div>`).join('') : '<p class="muted">No movements in your plan — Fuel and Stack do the work.</p>'}
-        </section>
-        <section class="layer stack" id="p-stack"><div class="lyr-head"><h2><span class="lyr-dot st"></span>Stack</h2></div>
-          ${selStack.length ? selStack.map(stackCard).join('') : '<p class="muted">Food-only — no supplements in your plan.</p>'}
-          <div id="plan-ixn">${selStack.length > 1 ? interactionPanel(selStack, { tiers: ['danger', 'timing'] }) : ''}</div>
-        </section>
-        <section class="layer fuel" id="p-fuel"><div class="lyr-head"><h2><span class="lyr-dot fl"></span>Fuel</h2></div>
-          <p class="lyr-sub">Log meals to fill this protocol's targets.</p>
-          <div id="fuel-tracker" data-rc="${problem.id}:${rc.id}"></div>
-        </section>
-      </div>
+      ${danger}
+      ${totalItems ? `<section class="trk-today">
+        <div class="trk-today-head"><h2>Today</h2><span class="trk-prog">${doneItems}/${totalItems} done</span></div>
+        <div class="trk-list">${rows}</div>
+      </section>` : ''}
+      <section class="trk-fuel"><h2>🍽️ Fuel</h2><p class="lyr-sub">Log meals to hit this protocol's targets.</p><div id="fuel-tracker" data-rc="${problem.id}:${rc.id}"></div></section>
+      ${(P.strengthen || P.stretch || P.stack) ? `<details class="trk-timing"><summary>🕐 See your day, laid out by timing</summary>${dayPlanHtml(problem, rc, selP)}</details>` : ''}
       ${tgCoachRow(problem, rc)}`;
     mountFuelTracker(problem, rc);
     wireTgCoach();
+    const byExId = {}; allMovesArr.forEach(e => byExId[e.id] = e);
+    const byCId = {}; (P.stack || []).forEach(c => byCId[c.id] = c);
+    wireItemModals('.trk-list', byExId, byCId);
     const ks = document.getElementById('ks-done');
     if (ks) ks.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.keystone = !d.keystone; pl.streak = planStreak(pl); setPlan(pl); renderPlan(); };
-    app.querySelectorAll('[data-done]').forEach(cb => cb.onchange = () => { const pl = getPlan(); const d = planDay(pl); const id = cb.dataset.done; const i = d.done.indexOf(id); if (cb.checked && i < 0) d.done.push(id); else if (!cb.checked && i >= 0) d.done.splice(i, 1); setPlan(pl); });
+    app.querySelectorAll('.trk-list [data-done]').forEach(cb => cb.onchange = () => { const pl = getPlan(); const d = planDay(pl); const id = cb.dataset.done; const i = d.done.indexOf(id); if (cb.checked && i < 0) d.done.push(id); else if (!cb.checked && i >= 0) d.done.splice(i, 1); setPlan(pl); cb.closest('.trk-row').classList.toggle('done', cb.checked); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...selMovesArr, ...selStack].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } });
     const ed = document.getElementById('plan-edit'); if (ed) ed.onclick = () => { const pl = getPlan(); pl.built = false; pl.step = 0; setPlan(pl); renderPlan(); };
-    const sh = document.getElementById('plan-share'); if (sh) sh.onclick = () => { const url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id; const txt = 'I built my own ' + problem.name + ' protocol on RNAwiki 💪'; if (navigator.share) navigator.share({ title: 'RNAwiki', text: txt, url }).catch(() => {}); else { navigator.clipboard && navigator.clipboard.writeText(txt + ' ' + url); if (typeof toast === 'function') toast('Copied — share it anywhere 🔗'); } };
+    const sh = document.getElementById('plan-share'); if (sh) sh.onclick = () => sharePlan(problem, rc);
+    // The share moment — fire the celebration popup once, right after building
+    if (plan.justBuilt) { const pl = getPlan(); delete pl.justBuilt; setPlan(pl); buildCelebrateModal(problem, rc); }
   }
 
   async function renderProtocol(pid, rcid, clinicHandle) {
@@ -2928,7 +2974,7 @@
         <p class="rc-name">${esc(rc.name)}</p>
         ${rc.diagnostic ? `<p class="rc-diag">${esc(rc.diagnostic)}</p>` : ''}</div>
       </section>
-      <div id="experiment-panel" class="exp-panel"></div>
+      <div id="adoption-panel" class="adopt-panel"></div>
       ${(() => {
         const pw = (rc.pathway_ids || []).map(i => D.pathways[i]).filter(Boolean)[0];
         const pwI = (rc.pathway_ids || [])[0];
@@ -2957,23 +3003,17 @@
         <div id="goal-comments" class="page-discuss"></div>
         <p class="proto-foot muted">Educational protocol, not medical advice. Nutrient targets are general adult guidance with a stated reason. · <button class="linkbtn" id="cite-proto">Cite this protocol</button></p>
       </div>`;
-    mountExperiment(problem, rc);
+    mountAdoption(problem, rc);
     if (clinicHandle) mountClinicHeader(clinicHandle, problem, rc);
     else mountSharedProgress(problem, rc);
     const startBtn = document.getElementById('start-plan');
     if (startBtn) startBtn.onclick = () => {
       const pl = { pid: problem.id, rcid: rc.id, built: false, step: 0, moves: [...(P.strengthen || []), ...(P.stretch || [])].map(e => e.id), supps: (P.stack || []).map(c => c.id), startedAt: today(), log: {} };
+      // adoption is tracked by the build action (idempotent per voterKey), not a separate "experiment" button
+      api.startExperiment(problem.id, rc.id).catch(() => {});
       setPlan(pl); navigate('/plan');
     };
-    app.querySelectorAll('.tg-coach').forEach(b => b.onclick = async () => {
-      const orig = b.textContent; b.disabled = true; b.textContent = 'Opening Telegram…';
-      try {
-        const r = await fetch('/api/telegram/link?pid=' + encodeURIComponent(b.dataset.tgPid) + '&rcid=' + encodeURIComponent(b.dataset.tgRc));
-        const j = await r.json().catch(() => ({}));
-        if (j && j.url) { window.open(j.url, '_blank'); b.textContent = '✓ Opened in Telegram'; }
-        else { b.textContent = '📲 Telegram coach — coming soon'; }
-      } catch (e) { b.textContent = orig; b.disabled = false; }
-    });
+    wireTgCoach();
     const assessBtn = document.getElementById('assess-trigger');
     if (assessBtn) assessBtn.onclick = () => openAssessment(problem);
     const citeBtn = document.getElementById('cite-proto');
@@ -3032,6 +3072,55 @@
       <p class="st-plain">${esc(mdStrip(c.plain || c.bottom || c.mechanism || '').slice(0, 150))}</p>
       <button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>
     </div>`;
+  }
+
+  // ---- Mini-window (modal) detail — used inside the builder & tracker so learning never navigates away ----
+  function exModalHtml(e) {
+    const muscles = (e.primaryMuscles || []).join(', ');
+    const rx = e.prescription || {};
+    return `<div class="item-modal">
+      <button class="modal-x" data-close aria-label="Close">×</button>
+      <div class="im-kind">${e.kind === 'stretch' ? '🧘 Stretch' : '💪 Movement'}</div>
+      <h2>${esc(e.name)}</h2>
+      <div class="im-rx">${rxLine(e)}${rx.cue ? ` · <i>${esc(rx.cue)}</i>` : ''}</div>
+      ${muscles ? `<p class="im-line"><b>${e.kind === 'stretch' ? 'Stretches' : 'Works'}:</b> ${esc(muscles)}</p>` : ''}
+      ${(e.instructions || []).length ? `<div class="im-how"><b>How to do it</b><ol>${e.instructions.slice(0, 6).map(i => `<li>${esc(i)}</li>`).join('')}</ol></div>` : ''}
+      <a class="im-full" href="#/exercise/${esc(e.id)}" data-closenav>Open full page →</a>
+    </div>`;
+  }
+  function cpdModalHtml(c) {
+    const cal = (k, v, cls) => v ? `<div class="im-cal ${cls || ''}"><b>${k}</b> <span>${mdInline(v)}</span></div>` : '';
+    return `<div class="item-modal">
+      <button class="modal-x" data-close aria-label="Close">×</button>
+      <div class="im-kind">💊 Supplement</div>
+      <h2>${esc(c.name)} <span class="stars" title="${esc(c.stars)}/5">${starStr(c.stars)}</span></h2>
+      <div class="im-meta">${approvalPills(c)}</div>
+      ${cal('In plain English', c.plain)}
+      ${cal('How it works', c.mechanism)}
+      ${cal('Protocol', c.protocol)}
+      ${cal('Watch out', c.watch, 'warn')}
+      <a class="im-full" href="#/c/${slug(c.name)}" data-closenav>Open full page →</a>
+    </div>`;
+  }
+  function openItemModal(html) {
+    const m = modal(html);
+    m.querySelectorAll('[data-close]').forEach(b => b.onclick = () => closeModal());
+    m.querySelectorAll('[data-closenav]').forEach(a => a.onclick = () => closeModal()); // let the hash link navigate, just tidy up
+    return m;
+  }
+  // Intercept clicks on a card's internal links within a builder/tracker list so they open the mini-window
+  // instead of leaving the page. byExId/byCId are the current protocol's items (that's all the list can show).
+  function wireItemModals(scopeSel, byExId, byCId) {
+    const host = app.querySelector(scopeSel); if (!host) return;
+    host.addEventListener('click', ev => {
+      const a = ev.target.closest('a[href^="#/"]'); if (!a || !host.contains(a)) return;
+      const href = a.getAttribute('href');
+      const card = a.closest('.build-item, .plan-item, .trk-row');
+      const cb = card && card.querySelector('.build-cb, .plan-cb');
+      if (href.startsWith('#/exercise/')) { const e = byExId[href.split('/')[2]]; if (e) { ev.preventDefault(); openItemModal(exModalHtml(e)); } }
+      else if (href.startsWith('#/c/')) { const sl = href.split('/')[2]; const c = Object.values(byCId).find(x => slug(x.name) === sl); if (c) { ev.preventDefault(); openItemModal(cpdModalHtml(c)); } }
+      else if (href.startsWith('#/muscle/')) { const id = cb && cb.dataset.move; const e = id && byExId[id]; if (e) { ev.preventDefault(); openItemModal(exModalHtml(e)); } }
+    });
   }
 
   // ---------- Fuel Tracker (localStorage, per-day log) ----------
