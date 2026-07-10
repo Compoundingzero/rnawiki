@@ -350,6 +350,9 @@ const TG_FUNCTIONS = [
   { id: 'protein', icon: '🥩', name: 'Protein-per-meal', kind: 'counter', target: 4, unit: 'protein meals', period: 'day', how: 'Tap + for each meal with a palm of protein. Aim for 3–4 a day — no weighing.', match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'lean mass', 'menopause', 'craving', 'appetite', 'satiety'] },
   { id: 'fermented', icon: '🥬', name: 'Fermented-foods counter', kind: 'counter', target: 3, unit: 'servings', period: 'day', how: 'Tap + per serving — yoghurt, kefir, kimchi, sauerkraut, kombucha.', match: ['gut', 'microbiome', 'digest', 'bloat', 'ibs', 'immun', 'inflamm'] },
   { id: 'pain', icon: '🚦', name: 'Pain traffic-light', kind: 'triage', how: 'After rehab, tap 🟢 fine / 🟡 sore / 🔴 sharp — I tell you to progress, hold or back off.', match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'] },
+  { id: 'sigh', icon: '🌬️', name: 'Physiological sigh', kind: 'timer', target: 2, unit: 'min', how: 'Two inhales through the nose, one long exhale. Repeat 2 min. In a spike: sigh ×3 · name 3 things you see · sip water.', match: ['anx', 'panic', 'cortisol', 'overwhelm', 'nervous', 'racing'] },
+  { id: 'craving', icon: '🌊', name: 'Craving-surf timer', kind: 'timer', target: 10, unit: 'min', how: 'When a craving hits, do something else for 10 min — it almost always passes.', match: ['craving', 'appetite', 'sugar', 'snack', 'binge'] },
+  { id: 'zone2', icon: '🏃', name: 'Zone-2 minutes', kind: 'counter', target: 150, unit: 'min', period: 'week', step: 10, match: ['endur', 'longevity', 'healthspan', 'vo2', 'vascular', 'stamina', 'aerobic'], how: 'Log easy conversational-pace minutes. Aim for 150 a week.' },
   { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep', how: 'CBT-I sleep restriction — send “sleep: 23:30 00:10 07:00” (in bed · asleep · woke) and I track your sleep efficiency and when to shift your bedtime.', match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'] },
   { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder', how: 'A constant wake time anchors your body clock. I nudge you nightly to protect wind-down.', match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tgOnly: true },
   { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder', how: '10 min of morning light sets your clock. I remind you within an hour of waking.', match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'], tgOnly: true },
@@ -505,7 +508,7 @@ function tgToolsView(row) {
   fns.forEach(id => {
     const f = tgFnById(id); if (!f) return;
     if (f.kind === 'counter') {
-      const v = (f.period === 'week' ? t.w.c : t.d.c)[id] || 0; const step = f.unit === 'steps' ? 500 : 1;
+      const v = (f.period === 'week' ? t.w.c : t.d.c)[id] || 0; const step = f.step || (f.unit === 'steps' ? 500 : 1);
       lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${v}/${f.target} ${f.unit}${f.period === 'week' ? ' this week' : ''}`);
       kb.push([{ text: `${f.icon} +${step} ${f.name}`, callback_data: 'tinc:' + id }]);
     } else if (f.kind === 'timer') {
@@ -535,7 +538,7 @@ async function tgSendTools(chatId, row) {
 }
 async function tgToolInc(chatId, msgId, id) {
   const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'counter') return;
-  const t = tgTools(row); const step = f.unit === 'steps' ? 500 : 1;
+  const t = tgTools(row); const step = f.step || (f.unit === 'steps' ? 500 : 1);
   if (f.period === 'week') t.w.c[id] = (t.w.c[id] || 0) + step; else t.d.c[id] = (t.d.c[id] || 0) + step;
   await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
   const newVal = f.period === 'week' ? t.w.c[id] : t.d.c[id];

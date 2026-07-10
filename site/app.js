@@ -2895,6 +2895,18 @@
       desc: 'The hurt-vs-harm rule: load the joint enough to heal without flaring it — the #1 reason people quit rehab.',
       how: 'After each rehab session, tap how it felt. I tell you whether to progress, hold, or back off.',
       match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'], tg: true },
+    { id: 'sigh', icon: '🌬️', name: 'Physiological sigh', kind: 'timer', target: 2, unit: 'min',
+      desc: 'The fastest way to drop acute anxiety — a double inhale then a long exhale.',
+      how: 'Tap start: two inhales through the nose, one long exhale through the mouth — repeat for 2 min. In a spike: sigh ×3 · name 3 things you see · sip water.',
+      match: ['anx', 'panic', 'cortisol', 'overwhelm', 'nervous', 'racing'], tg: true },
+    { id: 'craving', icon: '🌊', name: 'Craving-surf timer', kind: 'timer', target: 10, unit: 'min',
+      desc: 'Cravings peak then fade in about 10 minutes — ride it out instead of fighting it.',
+      how: 'When a craving hits, tap start and do something else for 10 minutes. It almost always passes.',
+      match: ['craving', 'appetite', 'sugar', 'snack', 'binge'], tg: true },
+    { id: 'zone2', icon: '🏃', name: 'Zone-2 minutes', kind: 'counter', target: 150, unit: 'min', period: 'week', step: 10,
+      desc: 'Easy conversational cardio builds the aerobic base — the strongest evidence-backed longevity lever.',
+      how: 'Log easy-pace minutes (you can still hold a conversation). Aim for 150 a week.',
+      match: ['endur', 'longevity', 'healthspan', 'vo2', 'vascular', 'stamina', 'aerobic'], tg: true },
     { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep',
       desc: 'The core insomnia fix (CBT-I sleep restriction): match your time in bed to time actually asleep, and sleep gets deeper and faster.',
       how: 'Each morning, log when you got in bed, roughly fell asleep, and woke. It tracks your sleep efficiency and tells you when to shift your bedtime.',
@@ -3167,7 +3179,7 @@
         if (f.kind === 'counter') {
           const store = f.period === 'week' ? ((plan.fnWeek || {})[wk] || {}) : (planDay(plan).fn || {});
           const v = store[f.id] || 0; const pct = Math.min(100, Math.round(v / f.target * 100));
-          const stepBy = f.unit === 'steps' ? 500 : 1;
+          const stepBy = f.step || (f.unit === 'steps' ? 500 : 1);
           return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b><span class="fn-w-val">${v}/${f.target} ${esc(f.unit)}${f.period === 'week' ? ' this week' : ''}</span></div>
             <div class="fn-w-bar"><span style="width:${pct}%"></span></div>
             <div class="fn-w-btns"><button class="fn-step" data-fn-dec="${f.id}">−</button><button class="fn-step add" data-fn-inc="${f.id}">+ ${stepBy}</button></div></div>`;
@@ -3230,7 +3242,7 @@
     render();
   }
   function bumpCounter(f, dir, wk, render) {
-    if (!f) return; const pl = getPlan(); const step = f.unit === 'steps' ? 500 : 1; const delta = dir * step;
+    if (!f) return; const pl = getPlan(); const step = f.step || (f.unit === 'steps' ? 500 : 1); const delta = dir * step;
     if (f.period === 'week') { pl.fnWeek = pl.fnWeek || {}; pl.fnWeek[wk] = pl.fnWeek[wk] || {}; pl.fnWeek[wk][f.id] = Math.max(0, (pl.fnWeek[wk][f.id] || 0) + delta); }
     else { const d = planDay(pl); d.fn = d.fn || {}; d.fn[f.id] = Math.max(0, (d.fn[f.id] || 0) + delta); }
     setPlan(pl); render();
