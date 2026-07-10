@@ -3256,6 +3256,49 @@
     m.querySelector('#md-delete').onclick = async () => { if (!confirm('Delete your research data (check-ins, markers, wearables, profile) and withdraw consent? Your account and tracker stay.')) return; try { await api.deleteMyData(); CONSENT = false; closeModal(); if (typeof toast === 'function') toast('Deleted — consent withdrawn'); } catch (e) { alert(e.message); } };
   }
 
+  // ===== Outcome check-ins (baseline / 30d / 90d) — the feedback loop =====
+  async function mountCheckins(M, dayLog) {
+    const host = document.getElementById('checkin-slot'); if (!host || !ME || !CONSENT) return;
+    // find the most-pressing due check-in across the user's protocols
+    for (const r of M.resolved) {
+      const days = Math.max(0, Math.round((new Date(today() + 'T00:00:00') - new Date((r.pr.startedAt || today()) + 'T00:00:00')) / 86400000));
+      let done; try { done = await api.checkinsDone(r.pr.pid, r.pr.rcid); } catch (e) { done = []; }
+      let phase = null;
+      if (!done.includes('baseline')) phase = 'baseline';
+      else if (days >= 90 && !done.includes('d90')) phase = 'd90';
+      else if (days >= 30 && !done.includes('d30')) phase = 'd30';
+      if (!phase) continue;
+      const label = phase === 'baseline' ? 'Set your starting point' : phase === 'd30' ? "You're 30 days in — how's it going?" : "90 days in — how did it go?";
+      host.innerHTML = `<div class="checkin-banner"><span>📋 <b>${esc(r.problem.name)}:</b> ${label} <span class="muted">(20 sec, anonymous)</span></span><button class="cta-primary sm" id="ci-open">Answer</button></div>`;
+      document.getElementById('ci-open').onclick = () => openCheckinModal(r, phase, dayLog);
+      return; // one at a time
+    }
+  }
+  function openCheckinModal(r, phase, dayLog) {
+    const isBaseline = phase === 'baseline';
+    // prefill adherence from today's completion where we can
+    const M = mergedPlan(getPlan()); const ids = scheduledIds(M, getPlan(), today());
+    const st = planDayStats(M, dayLog, ids); const adhPrefill = st.total ? Math.round(st.done / st.total * 100) : '';
+    const impRow = isBaseline ? '' : `<label class="ci-q">Compared to when you started, your ${esc(r.problem.name.toLowerCase())} is:
+      <select id="ci-imp" class="pf-in"><option value="">—</option><option value="3">Much better</option><option value="2">Better</option><option value="1">A little better</option><option value="0">No change</option><option value="-1">A little worse</option><option value="-2">Worse</option><option value="-3">Much worse</option></select></label>
+      <label class="ci-q">Roughly how well did you stick to it? <input id="ci-adh" class="pf-in" type="number" min="0" max="100" value="${adhPrefill}" placeholder="%"> %</label>
+      <label class="ci-q"><input type="checkbox" id="ci-on" checked> Still following this protocol</label>`;
+    const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
+      <h2>${isBaseline ? 'Your starting point' : 'Your progress'}</h2>
+      <p class="muted">${esc(r.problem.name)} · anonymous · helps everyone with the same problem.</p>
+      <label class="ci-q">Right now, how bad is it? <span class="muted">(0 none — 10 worst)</span>
+        <input id="ci-sym" type="range" min="0" max="10" value="5" class="ci-range"><output id="ci-symv">5</output></label>
+      ${impRow}
+      <div class="consent-acts"><button class="cta-primary" id="ci-save">${isBaseline ? 'Save starting point' : 'Submit'}</button><button class="cta-ghost" id="ci-skip">Skip</button></div>`);
+    m.querySelector('[data-close]').onclick = closeModal; m.querySelector('#ci-skip').onclick = closeModal;
+    const rng = m.querySelector('#ci-sym'), out = m.querySelector('#ci-symv'); rng.oninput = () => out.textContent = rng.value;
+    m.querySelector('#ci-save').onclick = async () => {
+      const body = { pid: r.pr.pid, rcid: r.pr.rcid, phase, symptom_0_10: +rng.value };
+      if (!isBaseline) { const imp = m.querySelector('#ci-imp').value; body.improvement = imp === '' ? null : +imp; const adh = m.querySelector('#ci-adh').value; body.adherence_pct = adh === '' ? null : +adh; body.still_on = m.querySelector('#ci-on').checked; }
+      try { await api.submitCheckin(body); closeModal(); if (typeof toast === 'function') toast('Thank you 🙏 logged anonymously'); const host = document.getElementById('checkin-slot'); if (host) host.innerHTML = ''; } catch (e) { alert(e.message); }
+    };
+  }
+
   // The share MOMENT — a celebratory popup shown once, right after the protocol is built
   function buildCelebrateModal(problem, rc) {
     const m = modal(`<div class="build-celebrate">
@@ -3514,6 +3557,7 @@
       ${recapCard}
       ${missBanner}
       ${consentCardHtml()}
+      <div id="checkin-slot"></div>
       ${keystoneCards}
       ${danger}
       ${(totalItems || restBanner) ? `<section class="trk-today">
@@ -3531,6 +3575,7 @@
     wireTgCoach();
     wireConsentCard();
     const mdl = document.getElementById('mydata-link'); if (mdl) mdl.onclick = openDataModal;
+    mountCheckins(M, dayLog);
     const byExId = {}; M.moves.forEach(e => byExId[e.id] = e);
     const byCId = {}; M.supps.forEach(c => byCId[c.id] = c);
     wireItemModals('.trk-list', byExId, byCId);

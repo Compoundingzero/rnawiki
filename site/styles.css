@@ -1798,6 +1798,13 @@ a.dp-name:hover{color:var(--accent)}
 .pf-in{padding:.5rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.95rem}
 .linkbtn.danger,.cta-ghost.danger{color:#dc2626}
 .cta-ghost.danger{border-color:#f0c0c0}
+/* ---- Outcome check-ins ---- */
+.checkin-banner{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;background:linear-gradient(135deg,#eefaf3,#f4fbf7);border:1px solid #bfe6ce;border-radius:14px;padding:.8rem 1.1rem;margin:0 0 1rem;font-size:.9rem}
+.checkin-banner b{color:var(--head)}
+.cta-primary.sm{padding:.4rem .9rem;font-size:.85rem}
+.ci-q{display:flex;flex-direction:column;gap:.35rem;margin:.9rem 0;font-size:.9rem;font-weight:600;color:var(--head)}
+.ci-range{width:100%}
+.ci-q output{font-weight:700;color:var(--accent);font-size:1.1rem}
 /* ---- Weekly structure: rest-day banner + training-days editor ---- */
 .rest-banner{background:linear-gradient(135deg,#eef4ff,#f6f9ff);border:1px solid #cdddf5;border-radius:12px;padding:.7rem 1rem;font-size:.9rem;color:var(--head);margin:.2rem 0 .8rem}
 .train-days{margin:.7rem 0 .1rem;font-size:.85rem}
