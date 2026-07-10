@@ -282,6 +282,7 @@
     adminOverview() { return this.call('GET', '/api/admin/overview'); },
     adminOutcomes() { return this.call('GET', '/api/admin/outcomes'); },
     adminSignals() { return this.call('GET', '/api/admin/signals'); },
+    adminResearch() { return this.call('GET', '/api/admin/research'); },
     publicOutcomes(pid, rcid) { return this.call('GET', '/api/outcomes/public?pid=' + encodeURIComponent(pid) + '&rcid=' + encodeURIComponent(rcid)).then(d => d.stat).catch(() => null); },
     setRequestStatus(id, status) { return this.call('POST', '/api/admin/requests/' + id, { status }); },
     rootcauseChanges(problem) { return this.call('GET', '/api/rootcause-changes' + (problem ? '?problem=' + encodeURIComponent(problem) : '')).then(d => d); },
@@ -2105,6 +2106,36 @@
           <div class="sig-card"><div class="sig-t">📏 Metabolic risk <span class="muted">(waist-to-height)</span></div><p>${whtrHtml}</p></div>
           <div class="sig-card"><div class="sig-t">💊 Polypharmacy <span class="muted">(${S.medsUsers || 0} users reported meds)</span></div><div class="sig-pills">${medsHtml}</div></div>
           <div class="sig-card sig-wide"><div class="sig-t">📊 Condition-specific outcomes <span class="muted">(validated-flavoured items — literature-comparable)</span></div><ul class="sig-list">${extraHtml}</ul></div>
+        </div>
+        <div id="adm-research"></div>`;
+      loadResearch();
+    }
+    async function loadResearch() {
+      const host = document.getElementById('adm-research'); if (!host) return;
+      let R; try { R = await api.adminResearch(); } catch (e) { return; }
+      const nm = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
+      const DIM_LBL = { age: 'Age', sex: 'Sex', ethnicity: 'Ethnicity' };
+      const pct = (b, n) => n ? Math.round(b / n * 100) : 0;
+      // 1) biomarker before→after
+      const bio = (R.biomarkerDeltas || []).filter(x => x.users >= 1);
+      const bioHtml = bio.length ? bio.map(x => { const d = +x.avg_delta; const dir = d < 0 ? `<span style="color:var(--accent)">▼ ${Math.abs(d)}</span>` : d > 0 ? `▲ ${d}` : '→'; return `<li><span class="muted">${esc(MARKER_LABEL[x.marker] || x.marker)}:</span> avg <b>${dir}</b> <span class="muted">(${x.users} ${x.users === 1 ? 'person' : 'people'} · ${x.fell}↓ ${x.rose}↑)</span></li>`; }).join('') : '<li class="muted">No one has logged the same marker twice yet — the re-lab prompt drives this.</li>';
+      // 2) responder phenotype
+      const ph = R.phenotype || []; const dims = {}; ph.forEach(r => { (dims[r.dim] = dims[r.dim] || []).push(r); });
+      const phBlocks = Object.keys(dims).map(dim => `<div class="rz-sub"><b>${DIM_LBL[dim] || dim}</b><ul class="sig-list">${dims[dim].map(r => `<li><span class="muted">${esc(r.k)}:</span> <b>${pct(r.better, r.n)}%</b> improved <span class="muted">(n=${r.n})</span></li>`).join('')}</ul></div>`).join('');
+      const condHtml = (R.byCondition || []).length ? `<div class="rz-sub"><b>By condition</b><ul class="sig-list">${(R.byCondition).map(r => `<li><span class="muted">${esc(r.k)}:</span> <b>${pct(r.better, r.n)}%</b> improved <span class="muted">(n=${r.n})</span></li>`).join('')}</ul></div>` : '';
+      const phHtml = (phBlocks || condHtml) ? phBlocks + condHtml : '<p class="muted">Need profiles + follow-up check-ins to break down responders.</p>';
+      // 3) adverse events by compound
+      const adv = R.adverseByCompound || [];
+      const advHtml = adv.length ? adv.map(x => `<span class="sig-pill">${esc(x.compound)}${x.isRx ? ' ℞' : ''} <b>${x.n}</b></span>`).join('') : '<span class="muted">No side-effects reported against a stack yet.</span>';
+      // 4) negative results
+      const neg = (R.negativeResults || []).filter(x => x.didnt_work > 0 || x.no_improve > 0);
+      const negHtml = neg.length ? `<table class="board"><thead><tr><th>Protocol</th><th>n</th><th>"Didn't work"</th><th>No improvement</th><th>Avg rating</th></tr></thead><tbody>${neg.map(x => { const o = nm(x.pid, x.rcid); return `<tr><td>${o.icon} <b>${esc(o.pn)}</b> <span class="muted">${esc(o.rn)}</span></td><td>${x.n}</td><td>${x.didnt_work}</td><td>${x.no_improve}</td><td>${x.avg_imp != null ? x.avg_imp : '—'}</td></tr>`; }).join('')}</tbody></table>` : '<p class="muted">No failures logged yet — this fills as follow-ups come in.</p>';
+      host.innerHTML = `<h3 class="sig-h">🧬 Research-grade insights <span class="muted" style="font-size:.75rem;font-weight:400">— what precision medicine pays for</span></h3>
+        <div class="sig-grid">
+          <div class="sig-card"><div class="sig-t">🩸 Biomarker before → after <span class="muted">(within-person, paired)</span></div><ul class="sig-list">${bioHtml}</ul></div>
+          <div class="sig-card"><div class="sig-t">🧑‍🤝‍🧑 Who responds <span class="muted">(% improved by group)</span></div>${phHtml}</div>
+          <div class="sig-card"><div class="sig-t">⚠️ Adverse events by compound <span class="muted">(association, not cause · ℞ = prescription)</span></div><div class="sig-pills">${advHtml}</div></div>
+          <div class="sig-card sig-wide"><div class="sig-t">🚫 What's NOT working <span class="muted">(negative results — rare & valuable)</span></div><div class="ao-table-wrap">${negHtml}</div></div>
         </div>`;
     }
     loadOutcomes();
@@ -3326,6 +3357,7 @@
         <label class="dm-rem-top"><input type="checkbox" id="md-rem-on"> 📧 <b>Email me my daily plan reminder</b></label>
         <div class="dm-rem-when" id="md-rem-when" style="display:none">Send it at <select id="md-rem-hr" class="pf-in">${hrs.join('')}</select> <span class="muted">your time</span></div>
         <p class="dm-rem-hint muted" id="md-rem-hint"></p>
+        <label class="dm-rem-off"><input type="checkbox" id="md-rem-alloff"> 🔕 Turn off <b>all</b> RNAwiki emails</label>
       </div>
       <div class="consent-acts" style="flex-direction:column;align-items:stretch">
         <button class="cta-ghost" id="md-export">⤓ Export my data (JSON)</button>
@@ -3335,17 +3367,20 @@
     // daily-reminder opt-in (only shown to signed-in users with an email on file)
     (async () => {
       const st = await api.getEmailReminders(); if (!st) return;
-      const box = m.querySelector('#md-remind'), on = m.querySelector('#md-rem-on'), when = m.querySelector('#md-rem-when'), hr = m.querySelector('#md-rem-hr'), hint = m.querySelector('#md-rem-hint');
+      const box = m.querySelector('#md-remind'), on = m.querySelector('#md-rem-on'), when = m.querySelector('#md-rem-when'), hr = m.querySelector('#md-rem-hr'), hint = m.querySelector('#md-rem-hint'), allOff = m.querySelector('#md-rem-alloff');
       box.style.display = 'block';
-      if (!st.hasEmail) { on.disabled = true; hint.textContent = 'Add an email to your account to turn on reminders.'; return; }
-      if (!st.emailReady) hint.textContent = 'Reminders are being switched on — you can set your time now.';
-      on.checked = !!st.enabled; when.style.display = st.enabled ? 'block' : 'none'; if (st.hour != null) hr.value = st.hour;
+      allOff.checked = !!st.emailOff;
+      const applyOffState = () => { const off = allOff.checked; on.disabled = off || !st.hasEmail; when.style.display = (on.checked && !off) ? 'block' : 'none'; };
+      if (!st.hasEmail) { on.disabled = true; hint.textContent = 'Add an email to your account to turn on reminders.'; }
+      else if (!st.emailReady) hint.textContent = 'Reminders are being switched on — you can set your time now.';
+      on.checked = !!st.enabled; if (st.hour != null) hr.value = st.hour; applyOffState();
       const save = async () => {
         const enabled = on.checked; when.style.display = enabled ? 'block' : 'none';
         const tzOffset = -new Date().getTimezoneOffset();   // minutes east of UTC (SGT = +480)
         try { await api.setEmailReminders({ enabled, hour: +hr.value, tzOffset }); hint.textContent = enabled ? `On — we'll email your plan at ${hr.options[hr.selectedIndex].text} daily.` : 'Off.'; if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { hint.textContent = e.message; on.checked = !enabled; }
       };
       on.onchange = save; hr.onchange = () => { if (on.checked) save(); };
+      allOff.onchange = async () => { try { await api.setEmailReminders({ allOff: allOff.checked }); applyOffState(); hint.textContent = allOff.checked ? 'All RNAwiki emails are off.' : 'Emails on.'; if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { allOff.checked = !allOff.checked; hint.textContent = e.message; } };
     })();
     m.querySelector('[data-close]').onclick = closeModal;
     m.querySelector('#md-profile').onclick = () => { closeModal(); openProfileModal(); };
@@ -3371,9 +3406,14 @@
     const trend = (label, unit, series, goodDown) => { const s = sparkline(series); if (!s) return ''; const dir = s.delta === 0 ? '→' : (s.delta < 0) === goodDown ? '<span style="color:var(--accent)">▼ ' + Math.abs(s.delta) + '</span>' : '▲ ' + Math.abs(s.delta); return `<div class="hm-trend"><div class="hm-trend-h"><span>${label}</span><b>${s.last}${unit} <span class="muted">${dir}</span></b></div>${s.svg}</div>`; };
     const trends = [trend('Weight', 'kg', chrono.map(x => x.weight_kg != null ? +x.weight_kg : null), true), trend('Waist', 'cm', chrono.map(x => x.waist_cm != null ? +x.waist_cm : null), true), trend('Resting HR', 'bpm', chrono.map(x => x.resting_hr != null ? +x.resting_hr : null), true)].filter(Boolean).join('');
     const trendSec = trends ? `<div class="hm-sec"><b>📈 Your trend</b><div class="hm-trends">${trends}</div></div>` : '';
+    // re-lab prompt: if a marker's latest reading is >75 days old, nudge a recheck (pairs before/after → proves what worked)
+    const now = Date.now(); const seenMk = new Set(); let dueMk = null;
+    for (const x of markers) { if (!x.marker || seenMk.has(x.marker)) continue; seenMk.add(x.marker); if (!dueMk && x.taken_on && (now - Date.parse(String(x.taken_on).slice(0, 10))) > 75 * 86400000) dueMk = x.marker; }
+    const relabSec = dueMk ? `<div class="hm-relab">📊 <b>Time to recheck your ${esc(MARKER_LABEL[dueMk] || dueMk)}.</b> Re-testing and logging it now pairs with your earlier reading — that before/after is the strongest proof your protocol is working.</div>` : '';
     const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
       <h2>Track your health data</h2>
       <p class="muted">Optional &amp; anonymous. Blood results and weigh-ins help prove what actually works.</p>
+      ${relabSec}
       ${trendSec}
       <div class="hm-sec"><b>🩸 Blood marker</b>
         <div class="hm-row"><select id="hm-marker" class="pf-in">${opts}</select><input id="hm-val" class="pf-in hm-num" type="number" step="any" placeholder="value"><input id="hm-date" class="pf-in" type="date"><button class="fn-step add" id="hm-add">Add</button></div>

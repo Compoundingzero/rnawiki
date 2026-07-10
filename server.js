@@ -255,6 +255,9 @@ try {
   const load = (file, key) => { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(DIR, file), 'utf8'), sb); return sb.window[key]; };
   TG_DATA = load('data.js', 'RNAWIKI_DATA'); TG_RXN = load('interactions.js', 'RNAWIKI_INTERACTIONS');
 } catch (e) { console.error('[tg] data/rxn load failed:', e.message); }
+// compound id -> {name, isRx, badge} — used to attribute reported side-effects to specific compounds in the Control Room
+const COMPOUND_BY_ID = {};
+if (TG_DATA && Array.isArray(TG_DATA.compounds)) TG_DATA.compounds.forEach(c => { COMPOUND_BY_ID[c.id] = { name: c.name, isRx: !!c.isRx, badge: c.badge || '' }; });
 const tgSlug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 function tgResolveStack(rc) {
   if (!TG_DATA) return [];
@@ -359,7 +362,7 @@ async function listDueCheckins() {
   const today = new Date().toISOString().slice(0, 10);
   const users = (await db.query(`SELECT u.id, u.email, u.username, u.last_checkin_email, u.email_nudge_hour, p.plan
     FROM users u JOIN user_consent c ON c.user_id=u.id AND c.consent_research
-    JOIN user_plans p ON p.user_id=u.id WHERE u.email IS NOT NULL`)).rows;
+    JOIN user_plans p ON p.user_id=u.id WHERE u.email IS NOT NULL AND u.email_off IS NOT TRUE`)).rows;
   if (!users.length) return [];
   const done = (await db.query('SELECT user_id, pid, rcid, phase FROM outcome_checkins WHERE user_id = ANY($1)', [users.map(u => u.id)])).rows;
   const doneKey = new Set(done.map(d => d.user_id + '|' + d.pid + '|' + d.rcid + '|' + d.phase));
@@ -437,7 +440,7 @@ async function emailReminderTick() {
     const now = new Date(); const nowUtcMin = now.getUTCHours() * 60 + now.getUTCMinutes(); const today = now.toISOString().slice(0, 10);
     const rows = (await db.query(`SELECT u.id, u.email, u.email_nudge_hour, u.email_tz_offset, p.plan
       FROM users u JOIN user_plans p ON p.user_id=u.id
-      WHERE u.email IS NOT NULL AND u.email_nudge_hour IS NOT NULL AND (u.email_last_nudge IS NULL OR u.email_last_nudge <> $1)`, [today])).rows;
+      WHERE u.email IS NOT NULL AND u.email_off IS NOT TRUE AND u.email_nudge_hour IS NOT NULL AND (u.email_last_nudge IS NULL OR u.email_last_nudge <> $1)`, [today])).rows;
     for (const u of rows) {
       const localMin = (((nowUtcMin + (u.email_tz_offset ?? 480)) % 1440) + 1440) % 1440;  // ?? not || — a real 0 (UTC) must stay 0
       if (Math.floor(localMin / 60) !== u.email_nudge_hour) continue;                   // not this user's hour yet
@@ -451,13 +454,52 @@ async function emailReminderTick() {
     }
   } catch (e) { console.error('[email] reminder tick:', e.message); }
 }
+async function sendWinbackEmail(email, name, days) {
+  const link = `${SITE_URL}/#/plan`;
+  const subject = `Your ${name} protocol is still here 👋`;
+  const html = `<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:480px;margin:0 auto;color:#1a1a1a">
+    <h2 style="font-size:20px;margin:0 0 6px">Pick up where you left off</h2>
+    <p style="font-size:15px;line-height:1.5">It's been about <b>${days} days</b> since you last worked on your ${tgEsc(name)} protocol. Your plan, streak history and progress are all still saved — you can jump straight back in.</p>
+    <p style="font-size:15px;line-height:1.5">Even one small action today keeps the momentum going.</p>
+    <p style="margin:20px 0 0"><a href="${link}" style="display:inline-block;background:#2f6f4f;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px">Back to my protocol →</a></p>
+    <p style="font-size:12px;color:#999;line-height:1.5;margin-top:18px">Don't want these? Turn off emails anytime under "Your data &amp; privacy" in your account.</p>
+  </div>`;
+  return sendEmail(email, subject, html);
+}
+// Win back users who drifted: no tracking activity for 10+ days, on a started protocol, not on daily reminders,
+// not active on Telegram, no check-in email lately — capped once/21 days. (Covers the "inactive user" trigger.)
+async function emailWinbackTick() {
+  if (!RESEND_API_KEY || !db.enabled) return;
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const cutoff21 = new Date(Date.now() - 21 * 86400000).toISOString().slice(0, 10);
+    const cutoff7 = new Date(Date.now() - 7 * 86400000).toISOString().slice(0, 10);
+    const rows = (await db.query(`SELECT u.id, u.email, p.plan, to_char(p.updated_at,'YYYY-MM-DD') AS last_active
+      FROM users u JOIN user_plans p ON p.user_id=u.id
+      WHERE u.email IS NOT NULL AND u.email_off IS NOT TRUE AND u.email_nudge_hour IS NULL
+        AND p.updated_at < now() - interval '10 days'
+        AND (u.last_winback_email IS NULL OR u.last_winback_email < $1)
+        AND (u.last_checkin_email IS NULL OR u.last_checkin_email < $2)
+        AND NOT EXISTS (SELECT 1 FROM telegram_users t WHERE t.user_id=u.id AND t.last_active > now() - interval '10 days')`,
+      [cutoff21, cutoff7])).rows;
+    for (const u of rows) {
+      const protos = (u.plan && Array.isArray(u.plan.protocols)) ? u.plan.protocols : [];
+      if (!protos.length) continue;   // never actually started a protocol
+      const name = PROBLEM_NAME[protos[0].pid] || 'your';
+      const days = Math.max(10, Math.floor((Date.parse(today + 'T00:00:00Z') - Date.parse(u.last_active + 'T00:00:00Z')) / 86400000));
+      await db.query('UPDATE users SET last_winback_email=$2 WHERE id=$1', [u.id, today]);   // mark before send → never double-fire
+      await sendWinbackEmail(u.email, name, days);
+    }
+  } catch (e) { console.error('[email] winback tick:', e.message); }
+}
+async function email6hTick() { await emailNudgeTick(); await emailWinbackTick(); }   // sequential so milestone marks last_checkin_email before winback checks it
 function emailStartScheduler() {
   if (!db.enabled || EMAIL_TIMER) return;
   if (!RESEND_API_KEY) { console.log('[email] RESEND_API_KEY not set — nudge emails dormant (due list still visible in Control Room).'); return; }
-  EMAIL_TIMER = setInterval(emailNudgeTick, 6 * 60 * 60 * 1000);   // milestone check-ins — every 6h
-  setTimeout(() => emailNudgeTick().catch(() => {}), 60 * 1000);   // and once shortly after boot
+  EMAIL_TIMER = setInterval(email6hTick, 6 * 60 * 60 * 1000);      // milestone check-ins + inactivity win-back — every 6h
+  setTimeout(() => email6hTick().catch(() => {}), 60 * 1000);      // and once shortly after boot
   EMAIL_REMIND_TIMER = setInterval(emailReminderTick, 5 * 60 * 1000);  // daily reminder digest — TZ-aware 5-min tick
-  console.log('[email] nudge (6h) + daily-reminder (5-min) schedulers started.');
+  console.log('[email] check-in+winback (6h) + daily-reminder (5-min) schedulers started.');
 }
 // Category → problems index, for building a plan inside the chat.
 let TG_CATS = {};
@@ -1125,13 +1167,18 @@ async function api(req, res, url) {
   if (seg[0] === 'email-reminders') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
     if (method === 'GET') {
-      const r = await db.query('SELECT email_nudge_hour, email_tz_offset FROM users WHERE id=$1', [u.id]);
+      const r = await db.query('SELECT email_nudge_hour, email_tz_offset, email_off FROM users WHERE id=$1', [u.id]);
       const row = r.rows[0] || {};
-      return json(res, 200, { enabled: row.email_nudge_hour != null, hour: row.email_nudge_hour, tzOffset: row.email_tz_offset, hasEmail: !!u.email, emailReady: !!RESEND_API_KEY });
+      return json(res, 200, { enabled: row.email_nudge_hour != null, hour: row.email_nudge_hour, tzOffset: row.email_tz_offset, hasEmail: !!u.email, emailReady: !!RESEND_API_KEY, emailOff: !!row.email_off });
     }
     if (method === 'POST') {
+      const b = await readBody(req) || {};
+      if (typeof b.allOff === 'boolean') {   // global suppress — turns every RNAwiki email off/on
+        await db.query('UPDATE users SET email_off=$2 WHERE id=$1', [u.id, b.allOff]);
+        return json(res, 200, { ok: true, emailOff: b.allOff });
+      }
       if (!u.email) return json(res, 400, { error: 'Add an email to your account first to get reminders' });
-      const b = await readBody(req) || {}; const on = !!b.enabled;
+      const on = !!b.enabled;
       const hour = on ? intOr(b.hour, 0, 23) : null;
       if (on && hour == null) return json(res, 400, { error: 'Pick an hour (0–23)' });
       const tz = intOr(b.tzOffset, -720, 840);
@@ -1843,6 +1890,61 @@ async function api(req, res, url) {
       whtr: whtr.rows[0], waistN: waistN.rows[0].n, medsUsers: medsUsers.rows[0].n, topMeds: topMeds.rows, extras: extras.rows,
       nudges: { due: due.length, emailConfigured: !!RESEND_API_KEY, sent: nudgesSent },
     });
+  }
+  // Research-grade insights — the highest-value analyses, super-admin only (owner's dataset, no k-anon floor)
+  if (seg[0] === 'admin' && seg[1] === 'research' && method === 'GET') {
+    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
+    // 1) Within-person biomarker before→after (needs ≥2 readings of a marker for a user)
+    const biomarkerDeltas = (await db.query(`
+      WITH pairs AS (
+        SELECT user_id, marker,
+          (array_agg(value ORDER BY taken_on ASC NULLS FIRST, id ASC))[1] AS v0,
+          (array_agg(value ORDER BY taken_on DESC NULLS LAST, id DESC))[1] AS v1
+        FROM blood_markers WHERE value IS NOT NULL
+        GROUP BY user_id, marker HAVING COUNT(*) >= 2)
+      SELECT marker, COUNT(*)::int AS users, ROUND(AVG(v1 - v0)::numeric, 2) AS avg_delta,
+        COUNT(*) FILTER (WHERE v1 < v0)::int AS fell, COUNT(*) FILTER (WHERE v1 > v0)::int AS rose
+      FROM pairs GROUP BY marker ORDER BY users DESC`)).rows;
+    // 2) Responder phenotype — % reporting improvement, split by demographic dimension
+    const phenotype = (await db.query(`
+      SELECT dim, k, COUNT(*)::int n, COUNT(*) FILTER (WHERE improvement>=1)::int better FROM (
+        SELECT 'age' dim, p.age_band k, oc.improvement FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.age_band IS NOT NULL
+        UNION ALL SELECT 'sex', p.sex, oc.improvement FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.sex IS NOT NULL
+        UNION ALL SELECT 'ethnicity', p.ethnicity, oc.improvement FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.ethnicity IS NOT NULL
+      ) t GROUP BY dim, k ORDER BY dim, n DESC`)).rows;
+    const byCondition = (await db.query(`
+      SELECT cond AS k, COUNT(*)::int n, COUNT(*) FILTER (WHERE oc.improvement>=1)::int better
+      FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id, jsonb_array_elements_text(p.conditions) AS cond
+      WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL GROUP BY cond ORDER BY n DESC`)).rows;
+    // 3) What's NOT working — negative results by protocol
+    const negativeResults = (await db.query(`
+      SELECT pid, rcid, COUNT(*)::int n,
+        COUNT(*) FILTER (WHERE improvement <= 0)::int no_improve,
+        COUNT(*) FILTER (WHERE stop_reason='didnt_work')::int didnt_work,
+        ROUND(AVG(improvement)::numeric,2) avg_imp
+      FROM outcome_checkins WHERE phase IN ('d30','d90')
+      GROUP BY pid, rcid HAVING COUNT(*) >= 1 ORDER BY didnt_work DESC, no_improve DESC LIMIT 20`)).rows;
+    // 4) Adverse events attributed to the compounds the user was taking (association, not causation)
+    const sfxRows = (await db.query(`SELECT user_id, pid, rcid FROM outcome_checkins WHERE side_effects IS NOT NULL`)).rows;
+    const adverseByCompound = [];
+    if (sfxRows.length) {
+      const uids = [...new Set(sfxRows.map(r => r.user_id))];
+      const plans = (await db.query('SELECT user_id, plan FROM user_plans WHERE user_id = ANY($1)', [uids])).rows;
+      const planBy = {}; plans.forEach(p => { planBy[p.user_id] = p.plan; });
+      const tally = {};
+      for (const r of sfxRows) {
+        const plan = planBy[r.user_id]; const protos = (plan && Array.isArray(plan.protocols)) ? plan.protocols : [];
+        const pr = protos.find(x => x.pid === r.pid && x.rcid === r.rcid) || protos[0];
+        const supps = (pr && Array.isArray(pr.supps)) ? pr.supps : [];
+        for (const sid of supps) { tally[sid] = (tally[sid] || 0) + 1; }
+      }
+      for (const sid of Object.keys(tally)) {
+        const c = COMPOUND_BY_ID[sid] || { name: sid, isRx: false, badge: '' };
+        adverseByCompound.push({ compound: c.name, n: tally[sid], isRx: c.isRx, badge: c.badge });
+      }
+      adverseByCompound.sort((a, b) => b.n - a.n);
+    }
+    return json(res, 200, { biomarkerDeltas, phenotype, byCondition, negativeResults, adverseByCompound: adverseByCompound.slice(0, 20) });
   }
   if (seg[0] === 'admin' && seg[1] === 'overview' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });

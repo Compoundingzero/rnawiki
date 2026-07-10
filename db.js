@@ -424,6 +424,8 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS last_checkin_email TEXT;       -- YYY
 ALTER TABLE users ADD COLUMN IF NOT EXISTS email_nudge_hour INTEGER;      -- local hour 0-23 for the daily reminder email (null = off)
 ALTER TABLE users ADD COLUMN IF NOT EXISTS email_tz_offset INTEGER NOT NULL DEFAULT 480; -- minutes east of UTC (480 = SGT)
 ALTER TABLE users ADD COLUMN IF NOT EXISTS email_last_nudge TEXT;         -- YYYY-MM-DD of last daily reminder email sent
+ALTER TABLE users ADD COLUMN IF NOT EXISTS last_winback_email TEXT;       -- YYYY-MM-DD of last inactivity/win-back email sent
+ALTER TABLE users ADD COLUMN IF NOT EXISTS email_off BOOLEAN NOT NULL DEFAULT false; -- global email suppress (protects sender reputation / user choice)
 `;
 
 async function init() {
