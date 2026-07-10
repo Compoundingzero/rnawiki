@@ -94,16 +94,26 @@
     } catch (e) {}
   }
   function planDay(plan) { plan.log = plan.log || {}; const k = today(); const d = plan.log[k] = plan.log[k] || {}; d.keystones = d.keystones || {}; d.done = d.done || []; d.sets = d.sets || {}; d.food = d.food || []; d.fn = d.fn || {}; return d; }
-  // ---- Completion & streak: a day "counts" when you actually show up, not just tap the keystone ----
-  // Completion = (keystones done + checklist items done) / (keystones + checklist). "showed" if a keystone
-  // is done OR ≥50% of the day is done — so doing your workout counts even without the keystone tap.
-  function planDayStats(M, dl) {
-    dl = dl || {};
+  // ---- Weekly structure: strength trains on chosen days; keystone/mobility/supps/tools stay daily ----
+  function planTrainingDays(plan) { return (plan && Array.isArray(plan.trainingDays)) ? plan.trainingDays : [1, 3, 5]; } // default Mon/Wed/Fri
+  function isTrainingDay(plan, date) { const wd = new Date(date + 'T00:00:00').getDay(); return planTrainingDays(plan).includes(wd); }
+  // items actually scheduled on `date`: stretches + supps every day; strength only on training days
+  function scheduledIds(M, plan, date) {
+    const training = isTrainingDay(plan, date);
+    return M.moves.filter(e => e.kind === 'stretch' || training).map(e => e.id).concat(M.supps.map(c => c.id));
+  }
+  function nextTrainingLabel(plan) {
+    const days = planTrainingDays(plan); if (!days.length) return null;
+    for (let i = 1; i <= 7; i++) { const d = new Date(); d.setDate(d.getDate() + i); if (days.includes(d.getDay())) return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d.getDay()]; }
+    return null;
+  }
+  // ---- Completion & streak: a day "counts" when you show up (against what's scheduled THAT day) ----
+  function planDayStats(M, dl, ids) {
+    dl = dl || {}; ids = ids || [];
     const ksTotal = M.keystones.length;
     const ksDone = M.keystones.filter(k => dl.keystones && dl.keystones[k.key]).length;
-    const itemIds = [...M.moves, ...M.supps].map(x => x.id);
-    const itemDone = itemIds.filter(id => (dl.done || []).includes(id)).length;
-    const total = ksTotal + itemIds.length; const done = ksDone + itemDone;
+    const itemDone = ids.filter(id => (dl.done || []).includes(id)).length;
+    const total = ksTotal + ids.length; const done = ksDone + itemDone;
     const pct = total ? done / total : 0;
     return { total, done, pct, showed: ksDone > 0 || pct >= 0.5, full: total > 0 && done >= total };
   }
@@ -111,7 +121,7 @@
     const M = mergedPlan(plan);
     if (!M.keystones.length && !M.moves.length && !M.supps.length) return 0;
     let s = 0; const d = new Date();
-    const showed = () => planDayStats(M, (plan.log || {})[d.toISOString().slice(0, 10)]).showed;
+    const showed = () => { const key = d.toISOString().slice(0, 10); return planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed; };
     if (!showed()) d.setDate(d.getDate() - 1); // grace — a still-pending today doesn't break the streak
     for (; ;) { if (showed()) { s++; d.setDate(d.getDate() - 1); } else break; }
     return s;
@@ -121,7 +131,7 @@
     M = M || mergedPlan(plan); const tk = today(); const cells = [];
     for (let i = 6; i >= 0; i--) {
       const dd = new Date(); dd.setDate(dd.getDate() - i);
-      const key = dd.toISOString().slice(0, 10); const st = planDayStats(M, (plan.log || {})[key]);
+      const key = dd.toISOString().slice(0, 10); const st = planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key));
       const cls = st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss');
       const lbl = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][dd.getDay()];
       cells.push(`<div class="ws-day ${cls}${key === tk ? ' today' : ''}" title="${key} · ${st.done}/${st.total} done"><span class="ws-dot"></span><span class="ws-lbl">${lbl}</span></div>`);
@@ -3201,9 +3211,15 @@
     };
     const suppRow = c => { const on = dayLog.done.includes(c.id); const sub = mdStrip(c.protocol || c.plain || c.bottom || '').slice(0, 60);
       return `<div class="trk-item ${on ? 'done' : ''}"><label class="trk-row"><input type="checkbox" class="plan-cb" data-done="${esc(c.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(c.name)} taken"><span class="trk-txt"><span class="trk-name">💊 ${esc(c.name)}</span>${sub ? `<span class="trk-sub">${esc(sub)}</span>` : ''}</span><a class="trk-i" href="#/c/${slug(c.name)}" aria-label="Details about ${esc(c.name)}">Details</a></label></div>`; };
-    const rows = [...M.moves.map(moveRow), ...M.supps.map(suppRow)].join('');
-    const totalItems = M.moves.length + M.supps.length;
-    const doneItems = [...M.moves, ...M.supps].filter(x => dayLog.done.includes(x.id)).length;
+    // Weekly structure: strength only shows on training days; stretches + supps are daily
+    const training = isTrainingDay(plan, today());
+    const hasStrength = M.moves.some(e => e.kind !== 'stretch');
+    const todayMoves = M.moves.filter(e => e.kind === 'stretch' || training);
+    const rows = [...todayMoves.map(moveRow), ...M.supps.map(suppRow)].join('');
+    const totalItems = todayMoves.length + M.supps.length;
+    const doneItems = [...todayMoves, ...M.supps].filter(x => dayLog.done.includes(x.id)).length;
+    const restBanner = (hasStrength && !training) ? `<div class="rest-banner">😴 <b>Rest day</b> — recovery. Your keystone, mobility${M.supps.length ? ' and supplements' : ''} still count.${nextTrainingLabel(plan) ? ` Next session: <b>${nextTrainingLabel(plan)}</b>.` : ''}</div>` : '';
+    const daysEditor = hasStrength ? `<details class="train-days"><summary>🗓️ Training days · ${planTrainingDays(plan).length}×/week</summary><div class="td-chips">${[0, 1, 2, 3, 4, 5, 6].map(wd => `<button class="td-chip ${planTrainingDays(plan).includes(wd) ? 'on' : ''}" data-td="${wd}">${['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][wd]}</button>`).join('')}</div><p class="td-hint">Strength trains on these days. Keystone, mobility &amp; supplements stay daily.</p></details>` : '';
     const danger = M.supps.length > 1 ? interactionPanel(M.supps, { tiers: ['danger'] }) : '';
     const keystoneCards = M.keystones.map(k => keystoneCardHtml(k.rc, !!dayLog.keystones[k.key], k.key, multi ? k.problem.name : '')).join('');
     const subtitle = multi ? `${M.resolved.length} protocols · ${esc(M.resolved.map(r => r.problem.name).join(' · '))}` : esc(M.resolved[0].rc.name);
@@ -3219,9 +3235,11 @@
       <section class="plan-pulse"><div class="pulse-streak">🔥 <b>${streak}</b>-day streak</div>${weekStripHtml(plan, M)}</section>
       ${keystoneCards}
       ${danger}
-      ${totalItems ? `<section class="trk-today">
-        <div class="trk-today-head"><h2>Today's checklist</h2><span class="trk-prog">${doneItems}/${totalItems} done</span></div>
-        <div class="trk-list">${rows}</div>
+      ${(totalItems || restBanner) ? `<section class="trk-today">
+        <div class="trk-today-head"><h2>Today's checklist</h2>${totalItems ? `<span class="trk-prog">${doneItems}/${totalItems} done</span>` : ''}</div>
+        ${restBanner}
+        ${totalItems ? `<div class="trk-list">${rows}</div>` : ''}
+        ${daysEditor}
       </section>` : ''}
       <div id="plan-functions"></div>
       ${hasFuel ? `<section class="trk-fuel"><h2>🍽️ Fuel</h2><p class="lyr-sub">Log meals to hit your protocols' targets.</p><div id="fuel-tracker"></div></section>` : ''}
@@ -3235,9 +3253,11 @@
     wireItemModals('.trk-list', byExId, byCId);
     // keystone toggles (one per protocol)
     app.querySelectorAll('[data-ks]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); const key = b.dataset.ks; d.keystones[key] = !d.keystones[key]; setPlan(pl); renderPlan(); });
+    // training-days editor: toggle which weekdays strength is scheduled
+    app.querySelectorAll('[data-td]').forEach(b => b.onclick = e => { e.preventDefault(); const pl = getPlan(); const wd = +b.dataset.td; const days = planTrainingDays(pl).slice(); const i = days.indexOf(wd); if (i >= 0) days.splice(i, 1); else days.push(wd); days.sort(); pl.trainingDays = days; setPlan(pl); renderPlan(); });
     const refreshProg = () => { const d = planDay(getPlan()); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...M.moves, ...M.supps].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } };
     const refreshPulse = d => {
-      const st = planDayStats(M, d);
+      const st = planDayStats(M, d, scheduledIds(M, plan, today()));
       const tc = app.querySelector('.week-strip .today'); if (tc) { tc.classList.remove('miss', 'partial', 'full'); tc.classList.add(st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss')); tc.title = today() + ' · ' + st.done + '/' + st.total + ' done'; }
       const ps = app.querySelector('.pulse-streak b'); if (ps) ps.textContent = planStreak(getPlan());
     };
