@@ -1717,6 +1717,32 @@ a.dp-name:hover{color:var(--accent)}
 .ws-day.today .ws-dot{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
 .ws-lbl{font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
 .ws-day.today .ws-lbl{color:var(--accent);font-weight:700}
+/* ---- Progress dashboard ---- */
+.prog-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin:1rem 0}
+.pstat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.9rem .6rem;text-align:center;display:flex;flex-direction:column;gap:.2rem}
+.pstat-n{font-size:1.2rem;font-weight:700;color:var(--head);font-variant-numeric:tabular-nums}
+.pstat-l{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
+@media(max-width:560px){.prog-stats{grid-template-columns:1fr 1fr}}
+.prog-sec{margin:1.5rem 0}
+.prog-sec h2{font-size:1.05rem;margin:0 0 .6rem}
+.prog-line{margin:.2rem 0}
+.prog-line b{color:var(--head)}
+.prog-sub{font-size:.82rem;color:var(--muted);margin:.4rem 0}
+.hm-head{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;max-width:266px;margin-bottom:4px}
+.hm-head span{font-size:.6rem;color:var(--faint);text-align:center}
+.heatmap{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;max-width:266px}
+.hm-cell{width:100%;aspect-ratio:1;border-radius:4px;background:var(--panel2,#e9edf1);display:inline-block}
+.hm-cell.partial{background:#f5b301}
+.hm-cell.full{background:var(--accent)}
+.hm-cell.empty{background:transparent}
+.hm-cell.today{box-shadow:0 0 0 2px var(--bg),0 0 0 3px var(--accent)}
+.hm-legend{display:flex;align-items:center;gap:.4rem;margin-top:.6rem;font-size:.76rem;color:var(--muted)}
+.hm-legend .hm-cell{width:12px;height:12px;aspect-ratio:auto;border-radius:3px}
+.spark{display:flex;align-items:flex-end;gap:3px;height:56px;padding:.3rem 0}
+.spark-bar{flex:1;min-width:4px;background:var(--accent);border-radius:2px 2px 0 0;opacity:.85}
+.ptool{padding:.5rem 0;border-bottom:1px solid var(--line);font-size:.9rem;color:var(--muted)}
+.ptool:last-child{border-bottom:none}
+.ptool b{color:var(--head)}
 /* ---- Weekly structure: rest-day banner + training-days editor ---- */
 .rest-banner{background:linear-gradient(135deg,#eef4ff,#f6f9ff);border:1px solid #cdddf5;border-radius:12px;padding:.7rem 1rem;font-size:.9rem;color:var(--head);margin:.2rem 0 .8rem}
 .train-days{margin:.7rem 0 .1rem;font-size:.85rem}

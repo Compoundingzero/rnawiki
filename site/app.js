@@ -138,6 +138,27 @@
     }
     return `<div class="week-strip">${cells.join('')}</div>`;
   }
+  // ---- Progress-dashboard stats (all derived from plan.log; deterministic) ----
+  function dISO(offset) { const d = new Date(); if (offset) d.setDate(d.getDate() - offset); return d.toISOString().slice(0, 10); }
+  function planStartDate(plan) { const ps = planProtocols(plan).map(p => p.startedAt).filter(Boolean).sort(); return ps[0] || today(); }
+  function daysShown(plan, M, N) { let c = 0; for (let i = 0; i < N; i++) { const key = dISO(i); if (planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed) c++; } return c; }
+  function longestStreak(plan, M) {
+    const log = plan.log || {}; const keys = Object.keys(log).sort(); if (!keys.length) return 0;
+    let best = 0, cur = 0; const end = new Date(today() + 'T00:00:00');
+    for (let d = new Date(keys[0] + 'T00:00:00'); d <= end; d.setDate(d.getDate() + 1)) { const key = d.toISOString().slice(0, 10); if (planDayStats(M, log[key], scheduledIds(M, plan, key)).showed) { cur++; best = Math.max(best, cur); } else cur = 0; }
+    return best;
+  }
+  function adherencePct(plan, M, N) {
+    const start = new Date(planStartDate(plan) + 'T00:00:00'); const t0 = new Date(today() + 'T00:00:00');
+    const daysSince = Math.floor((t0 - start) / 86400000) + 1; const denom = Math.min(N, Math.max(1, daysSince));
+    return Math.round(daysShown(plan, M, denom) / denom * 100);
+  }
+  function dayVolume(dl) { if (!dl || !dl.sets) return 0; let v = 0; Object.keys(dl.sets).forEach(k => (dl.sets[k] || []).forEach(s => { if (s && s.reps) v += (s.w || 0) * s.reps; })); return v; }
+  // tiny inline bar sparkline (values → bars scaled to max)
+  function sparkline(vals) {
+    const max = Math.max(1, ...vals);
+    return `<div class="spark">${vals.map(v => `<span class="spark-bar" style="height:${Math.max(6, Math.round(v / max * 100))}%" title="${v}"></span>`).join('')}</div>`;
+  }
 
   const STACK_KEY = 'rnawiki_stack';
   function getStack() { try { return JSON.parse(localStorage.getItem(STACK_KEY)) || []; } catch (e) { return []; } }
@@ -3231,7 +3252,8 @@
         <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button> · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button> · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
       <a class="tpm-add" href="#/solve">＋ Add another goal</a></section>`;
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan' }])}
-      <section class="plan-hd trk-hd"><div><div class="kicker">My Plan</div><h1>Today</h1><p class="muted">${subtitle}</p></div></section>
+      <section class="plan-hd trk-hd"><div><div class="kicker">My Plan</div><h1>Today</h1><p class="muted">${subtitle}</p></div>
+        <div class="plan-hd-actions"><a class="cta-ghost" href="#/progress">📊 Progress</a></div></section>
       <section class="plan-pulse"><div class="pulse-streak">🔥 <b>${streak}</b>-day streak</div>${weekStripHtml(plan, M)}</section>
       ${keystoneCards}
       ${danger}
@@ -3283,6 +3305,50 @@
     app.querySelectorAll('[data-remove-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.removeProto.split('/'); const found = findRootCause(pid, rcid); const nm = found ? found.problem.name : 'this protocol'; if (!confirm('Remove ' + nm + ' from your plan? Your tracking history stays.')) return; const pl = getPlan(); pl.protocols = planProtocols(pl).filter(x => !(x.pid === pid && x.rcid === rcid)); setPlan(pl); renderPlan(); });
     // The share moment — celebration popup, once, right after a protocol is built
     if (plan.justBuilt && plan.justBuilt.pid) { const pl = getPlan(); const jb = pl.justBuilt; delete pl.justBuilt; setPlan(pl); const f = findRootCause(jb.pid, jb.rcid); if (f) buildCelebrateModal(f.problem, f.rc); }
+  }
+
+  // ---- Progress: the consistency dashboard — showing up, adherence, strength & tool trends ----
+  async function renderProgress() {
+    try { await ensureProtocolData(); } catch (e) { app.innerHTML = emptyPlan(); return; }
+    const plan = getPlan();
+    if (!plan || !planProtocols(plan).length) { app.innerHTML = emptyPlan(); return; }
+    const M = mergedPlan(plan);
+    const streak = planStreak(plan); const longest = longestStreak(plan, M);
+    const wk = daysShown(plan, M, 7); const adh = adherencePct(plan, M, 30);
+    const hasStrength = M.moves.some(e => e.kind !== 'stretch');
+    const stats = `<div class="prog-stats">
+      <div class="pstat"><span class="pstat-n">🔥 ${streak}</span><span class="pstat-l">Current streak</span></div>
+      <div class="pstat"><span class="pstat-n">🏆 ${longest}</span><span class="pstat-l">Longest streak</span></div>
+      <div class="pstat"><span class="pstat-n">📅 ${wk}/7</span><span class="pstat-l">Days this week</span></div>
+      <div class="pstat"><span class="pstat-n">✅ ${adh}%</span><span class="pstat-l">30-day adherence</span></div>
+    </div>`;
+    // 30-day heat-map, weekday-aligned
+    let hmCells = ''; const start = new Date(); start.setDate(start.getDate() - 29);
+    for (let i = 0; i < start.getDay(); i++) hmCells += '<span class="hm-cell empty"></span>';
+    for (let i = 29; i >= 0; i--) { const key = dISO(i); const st = planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)); const cls = st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss'); hmCells += `<span class="hm-cell ${cls}${key === today() ? ' today' : ''}" title="${key} · ${st.done}/${st.total} done"></span>`; }
+    const heatmap = `<section class="prog-sec"><h2>Last 30 days</h2><div class="hm-head">${['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(x => `<span>${x}</span>`).join('')}</div><div class="heatmap">${hmCells}</div><div class="hm-legend"><span class="hm-cell miss"></span> missed <span class="hm-cell partial"></span> partial <span class="hm-cell full"></span> full</div></section>`;
+    // Strength: sessions + volume trend
+    let strengthSec = '';
+    if (hasStrength) {
+      const vols = []; for (let i = 13; i >= 0; i--) vols.push(dayVolume((plan.log || {})[dISO(i)]));
+      let sessions = 0; for (let i = 0; i < 30; i++) { const dl = (plan.log || {})[dISO(i)]; if (dl && dl.sets && Object.keys(dl.sets).some(k => (dl.sets[k] || []).some(s => s && s.reps != null))) sessions++; }
+      const anyVol = vols.some(v => v > 0);
+      strengthSec = `<section class="prog-sec"><h2>Strength</h2><p class="prog-line"><b>${sessions}</b> session${sessions === 1 ? '' : 's'} logged in the last 30 days.</p>${anyVol ? `<p class="prog-sub">Volume (weight × reps) · last 14 days</p>${sparkline(vols)}` : `<p class="prog-sub">Log your sets in Today and your progression shows up here.</p>`}</section>`;
+    }
+    // Tools: 7-day summary per counter tool
+    const toolLines = M.functions.map(id => { const f = fnById(id); if (!f || f.kind !== 'counter') return '';
+      if (f.period === 'week') { const v = ((plan.fnWeek || {})[weekKey()] || {})[id] || 0; return `<div class="ptool">${f.icon} <b>${esc(f.name)}</b> — ${v}/${f.target} ${esc(f.unit)} this week</div>`; }
+      let sum = 0, days = 0; for (let i = 0; i < 7; i++) { const dl = (plan.log || {})[dISO(i)]; const v = dl && dl.fn && dl.fn[id]; if (v != null) { sum += v; days++; } }
+      return `<div class="ptool">${f.icon} <b>${esc(f.name)}</b> — avg ${days ? Math.round(sum / days) : 0}/${f.target} ${esc(f.unit)}/day (7d)</div>`;
+    }).filter(Boolean).join('');
+    const toolsSec = toolLines ? `<section class="prog-sec"><h2>Your tools</h2>${toolLines}</section>` : '';
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan', href: '#/plan' }, { label: 'Progress' }])}
+      <section class="plan-hd"><div><div class="kicker">My Plan · Progress</div><h1>Your progress</h1><p class="muted">Across ${M.resolved.length} protocol${M.resolved.length === 1 ? '' : 's'} · since ${esc(planStartDate(plan))}</p></div>
+        <div class="plan-hd-actions"><a class="cta-ghost" href="#/plan">← Today</a></div></section>
+      ${stats}
+      ${heatmap}
+      ${strengthSec}
+      ${toolsSec}`;
   }
 
   async function renderProtocol(pid, rcid, clinicHandle) {
@@ -4403,6 +4469,7 @@
     else if (parts[0] === 'stack') html = stackPage();
     else if (parts[0] === 'fuel') html = fuelPage(parts[1], parts[2]);
     else if (parts[0] === 'plan') html = planLoading();
+    else if (parts[0] === 'progress') html = planLoading();
     else if (parts[0] === 'legend') html = legendPage();
     else if (parts[0] === 'for-clinicians') html = forClinicians();
     else if (parts[0] === 'about') { history.replaceState(null, '', '/'); parts.length = 0; html = home(); }
@@ -4428,6 +4495,7 @@
     if (parts[0] === 'for-clinicians') bindForClinicians();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan();
+    if (parts[0] === 'progress') renderProgress();
     if (parts[0] === 'stewardship') renderStewardHub();
     if (parts[0] === 'pro') renderPro();
     if (parts[0] === 'pros') renderPros();
