@@ -408,6 +408,18 @@ CREATE TABLE IF NOT EXISTS wearable_daily (
   source TEXT,
   PRIMARY KEY (user_id, day)
 );
+-- ---- High-value data extensions (2026-07) — all optional / nullable, PDPA-safe ----
+-- outcome_checkins: why people stop (persistence), side-effects (pharmacovigilance), per-protocol validated screener answers
+ALTER TABLE outcome_checkins ADD COLUMN IF NOT EXISTS stop_reason TEXT;   -- when still_on=false: didnt_work|side_effects|too_hard|cost|got_better|other
+ALTER TABLE outcome_checkins ADD COLUMN IF NOT EXISTS side_effects TEXT;  -- free/one-tap side-effect report
+ALTER TABLE outcome_checkins ADD COLUMN IF NOT EXISTS extra JSONB;        -- {mood_freq, sleep_quality, vitality, pain_interference, ...} category-specific outcome items
+-- user_profile: height (→ waist-to-height ratio) + concurrent meds/supplements (polypharmacy / interactions)
+ALTER TABLE user_profile ADD COLUMN IF NOT EXISTS height_cm INTEGER;
+ALTER TABLE user_profile ADD COLUMN IF NOT EXISTS meds JSONB NOT NULL DEFAULT '[]';
+-- wearable_daily: waist circumference — best cheap metabolic-risk marker (visceral fat / T2D / CVD)
+ALTER TABLE wearable_daily ADD COLUMN IF NOT EXISTS waist_cm NUMERIC;
+-- users: last time we emailed a check-in nudge (avoid spamming), for the email nudge engine
+ALTER TABLE users ADD COLUMN IF NOT EXISTS last_checkin_email TEXT;       -- YYYY-MM-DD of last check-in nudge email
 `;
 
 async function init() {

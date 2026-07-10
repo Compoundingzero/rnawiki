@@ -193,8 +193,12 @@ const SEXES = ['male', 'female', 'other', 'prefer_not'];
 const ETHNICITIES = ['chinese', 'malay', 'indian', 'other', 'prefer_not'];
 const CHECKIN_PHASES = ['baseline', 'd30', 'd90'];
 const BLOOD_MARKERS = ['hba1c', 'fasting_glucose', 'ldl', 'hdl', 'triglycerides', 'total_chol', 'bp_sys', 'bp_dia', 'testosterone', 'shbg', 'tsh', 'ft4', 'ferritin', 'crp', 'vit_d', 'hscrp', 'a1c'];
+const STOP_REASONS = ['didnt_work', 'side_effects', 'too_hard', 'cost', 'got_better', 'other'];   // why a user discontinued (persistence data)
+const EXTRA_KEYS = ['mood_freq', 'sleep_quality', 'vitality', 'pain_interference'];               // category-specific outcome items, each an int 0..10
 const inList = (v, list) => list.includes(v) ? v : null;
 const intOr = (v, lo, hi) => { const n = parseInt(v, 10); return (Number.isFinite(n) && n >= lo && n <= hi) ? n : null; };
+// keep only whitelisted extra keys with sane int values → safe JSONB, no injection of arbitrary shape
+function cleanExtra(o) { if (!o || typeof o !== 'object') return null; const out = {}; for (const k of EXTRA_KEYS) { const n = intOr(o[k], 0, 10); if (n != null) out[k] = n; } return Object.keys(out).length ? out : null; }
 // how many relevant-panel peer approvals move a change to 'peer_approved' (awaiting the
 // superadmin's final approval before it goes live). Peer approval never publishes on its own.
 const PANEL_THRESHOLD = 1;
@@ -983,13 +987,16 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'profile') {
     const u = await currentUser(req); if (!u) return json(res, method === 'GET' ? 200 : 401, method === 'GET' ? { profile: null } : { error: 'Sign in' });
-    if (method === 'GET') { const r = await db.query('SELECT age_band, sex, ethnicity, conditions FROM user_profile WHERE user_id=$1', [u.id]); return json(res, 200, { profile: r.rows[0] || null }); }
+    if (method === 'GET') { const r = await db.query('SELECT age_band, sex, ethnicity, conditions, height_cm, meds FROM user_profile WHERE user_id=$1', [u.id]); return json(res, 200, { profile: r.rows[0] || null }); }
     if (method === 'POST') {
       const b = await readBody(req) || {};
       const age = inList(b.age_band, AGE_BANDS), sex = inList(b.sex, SEXES), eth = inList(b.ethnicity, ETHNICITIES);
       const conds = Array.isArray(b.conditions) ? b.conditions.filter(c => typeof c === 'string').map(c => clean(c, 40)).slice(0, 20) : [];
-      await db.query(`INSERT INTO user_profile(user_id,age_band,sex,ethnicity,conditions,updated_at) VALUES($1,$2,$3,$4,$5,now())
-        ON CONFLICT(user_id) DO UPDATE SET age_band=$2, sex=$3, ethnicity=$4, conditions=$5, updated_at=now()`, [u.id, age, sex, eth, JSON.stringify(conds)]);
+      const height = intOr(b.height_cm, 80, 250);  // sane human range; null if absent
+      const meds = Array.isArray(b.meds) ? b.meds.filter(x => typeof x === 'string' && x.trim()).map(x => clean(x, 60)).slice(0, 30) : [];
+      await db.query(`INSERT INTO user_profile(user_id,age_band,sex,ethnicity,conditions,height_cm,meds,updated_at) VALUES($1,$2,$3,$4,$5,$6,$7,now())
+        ON CONFLICT(user_id) DO UPDATE SET age_band=$2, sex=$3, ethnicity=$4, conditions=$5,
+          height_cm=COALESCE($6, user_profile.height_cm), meds=$7, updated_at=now()`, [u.id, age, sex, eth, JSON.stringify(conds), height, JSON.stringify(meds)]);
       return json(res, 200, { ok: true });
     }
   }
@@ -1006,10 +1013,13 @@ async function api(req, res, url) {
       const b = await readBody(req) || {};
       const pid = clean(b.pid, 64), rcid = clean(b.rcid, 64), phase = inList(b.phase, CHECKIN_PHASES);
       if (!pid || !rcid || !phase) return json(res, 400, { error: 'Missing pid/rcid/phase' });
-      await db.query(`INSERT INTO outcome_checkins(user_id,pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note)
-        VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)
-        ON CONFLICT(user_id,pid,rcid,phase) DO UPDATE SET symptom_0_10=$5, improvement=$6, adherence_pct=$7, still_on=$8, note=$9, created_at=now()`,
-        [u.id, pid, rcid, phase, intOr(b.symptom_0_10, 0, 10), intOr(b.improvement, -3, 3), intOr(b.adherence_pct, 0, 100), b.still_on == null ? null : !!b.still_on, clean(b.note, 500) || null]);
+      const stop = (b.still_on === false) ? inList(b.stop_reason, STOP_REASONS) : null;   // only meaningful when they stopped
+      const sideFx = clean(b.side_effects, 300) || null;
+      const extra = cleanExtra(b.extra);
+      await db.query(`INSERT INTO outcome_checkins(user_id,pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note,stop_reason,side_effects,extra)
+        VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+        ON CONFLICT(user_id,pid,rcid,phase) DO UPDATE SET symptom_0_10=$5, improvement=$6, adherence_pct=$7, still_on=$8, note=$9, stop_reason=$10, side_effects=$11, extra=$12, created_at=now()`,
+        [u.id, pid, rcid, phase, intOr(b.symptom_0_10, 0, 10), intOr(b.improvement, -3, 3), intOr(b.adherence_pct, 0, 100), b.still_on == null ? null : !!b.still_on, clean(b.note, 500) || null, stop, sideFx, extra ? JSON.stringify(extra) : null]);
       return json(res, 200, { ok: true });
     }
   }
@@ -1028,9 +1038,10 @@ async function api(req, res, url) {
   if (seg[0] === 'wearable' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
     const b = await readBody(req) || {}; const day = /^\d{4}-\d{2}-\d{2}$/.test(b.day || '') ? b.day : null; if (!day) return json(res, 400, { error: 'Bad day' });
-    await db.query(`INSERT INTO wearable_daily(user_id,day,steps,sleep_min,resting_hr,weight_kg,source) VALUES($1,$2,$3,$4,$5,$6,$7)
-      ON CONFLICT(user_id,day) DO UPDATE SET steps=COALESCE($3,wearable_daily.steps), sleep_min=COALESCE($4,wearable_daily.sleep_min), resting_hr=COALESCE($5,wearable_daily.resting_hr), weight_kg=COALESCE($6,wearable_daily.weight_kg), source=$7`,
-      [u.id, day, intOr(b.steps, 0, 100000), intOr(b.sleep_min, 0, 1440), intOr(b.resting_hr, 20, 220), (b.weight_kg != null && +b.weight_kg > 0 && +b.weight_kg < 400) ? +b.weight_kg : null, clean(b.source, 24) || 'manual']);
+    const waist = (b.waist_cm != null && +b.waist_cm >= 40 && +b.waist_cm <= 200) ? +b.waist_cm : null;
+    await db.query(`INSERT INTO wearable_daily(user_id,day,steps,sleep_min,resting_hr,weight_kg,waist_cm,source) VALUES($1,$2,$3,$4,$5,$6,$7,$8)
+      ON CONFLICT(user_id,day) DO UPDATE SET steps=COALESCE($3,wearable_daily.steps), sleep_min=COALESCE($4,wearable_daily.sleep_min), resting_hr=COALESCE($5,wearable_daily.resting_hr), weight_kg=COALESCE($6,wearable_daily.weight_kg), waist_cm=COALESCE($7,wearable_daily.waist_cm), source=$8`,
+      [u.id, day, intOr(b.steps, 0, 100000), intOr(b.sleep_min, 0, 1440), intOr(b.resting_hr, 20, 220), (b.weight_kg != null && +b.weight_kg > 0 && +b.weight_kg < 400) ? +b.weight_kg : null, waist, clean(b.source, 24) || 'manual']);
     return json(res, 200, { ok: true });
   }
   if (seg[0] === 'mydata') { // PDPA access + deletion rights over one's own research data
@@ -1038,10 +1049,10 @@ async function api(req, res, url) {
     if (method === 'GET') {
       const [c, p, ck, bm, wd] = await Promise.all([
         db.query('SELECT consent_research,version,consented_at,withdrawn_at FROM user_consent WHERE user_id=$1', [u.id]),
-        db.query('SELECT age_band,sex,ethnicity,conditions FROM user_profile WHERE user_id=$1', [u.id]),
-        db.query('SELECT pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note,created_at FROM outcome_checkins WHERE user_id=$1', [u.id]),
+        db.query('SELECT age_band,sex,ethnicity,conditions,height_cm,meds FROM user_profile WHERE user_id=$1', [u.id]),
+        db.query('SELECT pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note,stop_reason,side_effects,extra,created_at FROM outcome_checkins WHERE user_id=$1', [u.id]),
         db.query('SELECT marker,value,unit,taken_on FROM blood_markers WHERE user_id=$1', [u.id]),
-        db.query('SELECT day,steps,sleep_min,resting_hr,weight_kg FROM wearable_daily WHERE user_id=$1', [u.id]),
+        db.query('SELECT day,steps,sleep_min,resting_hr,weight_kg,waist_cm FROM wearable_daily WHERE user_id=$1', [u.id]),
       ]);
       return json(res, 200, { account: { username: u.username, email: u.email }, consent: c.rows[0] || null, profile: p.rows[0] || null, checkins: ck.rows, markers: bm.rows, wearables: wd.rows });
     }
@@ -1649,6 +1660,27 @@ async function api(req, res, url) {
       (SELECT COUNT(*) FROM outcome_checkins) AS checkins,
       (SELECT COUNT(*) FROM (SELECT DISTINCT pid,rcid FROM outcome_checkins) t) AS protocols`)).rows[0];
     return json(res, 200, { rows, totals });
+  }
+  // High-value signal breakdowns for the Control Room — super-admin only (owner's own dataset, no k-anon floor)
+  if (seg[0] === 'admin' && seg[1] === 'signals' && method === 'GET') {
+    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
+    const [stopReasons, sideFx, sideFxSamples, whtr, waistN, medsUsers, topMeds, extras] = await Promise.all([
+      db.query(`SELECT stop_reason, COUNT(*)::int n FROM outcome_checkins WHERE stop_reason IS NOT NULL GROUP BY stop_reason ORDER BY n DESC`),
+      db.query(`SELECT COUNT(*)::int n, COUNT(DISTINCT user_id)::int users FROM outcome_checkins WHERE side_effects IS NOT NULL`),
+      db.query(`SELECT pid, side_effects FROM outcome_checkins WHERE side_effects IS NOT NULL ORDER BY created_at DESC LIMIT 15`),
+      db.query(`WITH lastw AS (SELECT DISTINCT ON (user_id) user_id, waist_cm FROM wearable_daily WHERE waist_cm IS NOT NULL ORDER BY user_id, day DESC)
+        SELECT COUNT(*)::int n, ROUND(AVG(w.waist_cm / p.height_cm)::numeric,3) AS avg_whtr,
+          COUNT(*) FILTER (WHERE w.waist_cm / p.height_cm >= 0.5)::int AS at_risk
+        FROM lastw w JOIN user_profile p ON p.user_id=w.user_id AND p.height_cm IS NOT NULL`),
+      db.query(`SELECT COUNT(DISTINCT user_id)::int n FROM wearable_daily WHERE waist_cm IS NOT NULL`),
+      db.query(`SELECT COUNT(*)::int n FROM user_profile WHERE jsonb_array_length(meds) > 0`),
+      db.query(`SELECT lower(trim(m.med)) AS med, COUNT(*)::int AS n FROM user_profile p, jsonb_array_elements_text(p.meds) AS m(med) WHERE jsonb_array_length(p.meds) > 0 GROUP BY 1 ORDER BY n DESC LIMIT 15`),
+      db.query(`SELECT e.k AS key, ROUND(AVG(e.v::numeric),2) AS avg, COUNT(*)::int AS n FROM outcome_checkins oc, jsonb_each_text(oc.extra) AS e(k,v) WHERE oc.extra IS NOT NULL GROUP BY e.k ORDER BY n DESC`),
+    ]);
+    return json(res, 200, {
+      stopReasons: stopReasons.rows, sideFx: sideFx.rows[0], sideFxSamples: sideFxSamples.rows,
+      whtr: whtr.rows[0], waistN: waistN.rows[0].n, medsUsers: medsUsers.rows[0].n, topMeds: topMeds.rows, extras: extras.rows,
+    });
   }
   if (seg[0] === 'admin' && seg[1] === 'overview' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });

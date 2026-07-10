@@ -281,6 +281,7 @@
     adminSetPartner(id, status) { return this.call('POST', '/api/admin/partners/' + id, { status }); },
     adminOverview() { return this.call('GET', '/api/admin/overview'); },
     adminOutcomes() { return this.call('GET', '/api/admin/outcomes'); },
+    adminSignals() { return this.call('GET', '/api/admin/signals'); },
     publicOutcomes(pid, rcid) { return this.call('GET', '/api/outcomes/public?pid=' + encodeURIComponent(pid) + '&rcid=' + encodeURIComponent(rcid)).then(d => d.stat).catch(() => null); },
     setRequestStatus(id, status) { return this.call('POST', '/api/admin/requests/' + id, { status }); },
     rootcauseChanges(problem) { return this.call('GET', '/api/rootcause-changes' + (problem ? '?problem=' + encodeURIComponent(problem) : '')).then(d => d); },
@@ -2073,7 +2074,30 @@
       host.innerHTML = `<section class="adm-outcomes">
         <div class="ao-stats"><div class="ao-stat"><span class="ao-n">${t.consented || 0}</span><span class="ao-l">consented users</span></div><div class="ao-stat"><span class="ao-n">${t.checkins || 0}</span><span class="ao-l">check-ins logged</span></div><div class="ao-stat"><span class="ao-n">${t.protocols || 0}</span><span class="ao-l">protocols with data</span></div></div>
         <div class="ao-table-wrap"><table class="board"><thead><tr><th>Protocol</th><th>Baseline</th><th>30-day</th><th>90-day</th><th>Symptom Δ</th><th>Adherence</th></tr></thead><tbody>${rows}</tbody></table></div>
-        <p class="muted" style="font-size:.78rem">▼ = symptom fell (improved) · ↑ = share reporting better · anonymous aggregate.</p></section>`;
+        <p class="muted" style="font-size:.78rem">▼ = symptom fell (improved) · ↑ = share reporting better · anonymous aggregate.</p>
+        <div id="adm-signals"></div></section>`;
+      loadSignals();
+    }
+    async function loadSignals() {
+      const host = document.getElementById('adm-signals'); if (!host) return;
+      let S; try { S = await api.adminSignals(); } catch (e) { return; }
+      const STOP_LBL = { didnt_work: "Wasn't working", side_effects: 'Side effects', too_hard: 'Too hard to keep up', cost: 'Cost', got_better: 'Got better 🎉', other: 'Other' };
+      const EXTRA_LBL = { mood_freq: 'Mood / anxiety / focus (Cognitive)', sleep_quality: 'Sleep quality (Sleep)', vitality: 'Energy / libido (Hormonal)', pain_interference: 'Pain interference (Musculoskeletal)' };
+      const nameP = pid => { const p = GRAPH.problems.find(x => x.id === pid); return p ? p.name : pid; };
+      const stopN = (S.stopReasons || []).reduce((a, x) => a + x.n, 0);
+      const stopHtml = (S.stopReasons || []).length ? (S.stopReasons).map(x => `<li><b>${x.n}</b> <span class="muted">${esc(STOP_LBL[x.stop_reason] || x.stop_reason)}</span></li>`).join('') : '<li class="muted">No one has reported stopping yet.</li>';
+      const sfx = S.sideFx || {}; const sfxSamples = (S.sideFxSamples || []).map(x => `<li><span class="muted">${esc(nameP(x.pid))}:</span> ${esc(x.side_effects)}</li>`).join('') || '<li class="muted">None reported.</li>';
+      const w = S.whtr || {}; const whtrHtml = w.n ? `<b>${w.avg_whtr}</b> avg waist-to-height <span class="muted">· ${w.at_risk}/${w.n} at metabolic risk (≥0.5)</span>` : `<span class="muted">${S.waistN || 0} waist logs · need height + waist to compute risk</span>`;
+      const medsHtml = (S.topMeds || []).length ? (S.topMeds).map(x => `<span class="sig-pill">${esc(x.med)} <b>${x.n}</b></span>`).join('') : '<span class="muted">No concurrent meds reported yet.</span>';
+      const extraHtml = (S.extras || []).length ? (S.extras).map(x => `<li><span class="muted">${esc(EXTRA_LBL[x.key] || x.key)}:</span> avg <b>${x.avg}</b> <span class="muted">(n=${x.n})</span></li>`).join('') : '<li class="muted">No condition-specific outcomes yet.</li>';
+      host.innerHTML = `<h3 class="sig-h">🔬 High-value signals <span class="muted" style="font-size:.75rem;font-weight:400">— the data that makes this a moat</span></h3>
+        <div class="sig-grid">
+          <div class="sig-card"><div class="sig-t">🚪 Why people stop <span class="muted">(persistence — pharma's #1 blind spot)</span></div><ul class="sig-list">${stopHtml}</ul><p class="muted" style="font-size:.74rem">${stopN} discontinuations logged.</p></div>
+          <div class="sig-card"><div class="sig-t">⚠️ Side effects <span class="muted">(pharmacovigilance)</span></div><p><b>${sfx.n || 0}</b> reports from <b>${sfx.users || 0}</b> users</p><ul class="sig-list sig-scroll">${sfxSamples}</ul></div>
+          <div class="sig-card"><div class="sig-t">📏 Metabolic risk <span class="muted">(waist-to-height)</span></div><p>${whtrHtml}</p></div>
+          <div class="sig-card"><div class="sig-t">💊 Polypharmacy <span class="muted">(${S.medsUsers || 0} users reported meds)</span></div><div class="sig-pills">${medsHtml}</div></div>
+          <div class="sig-card sig-wide"><div class="sig-t">📊 Condition-specific outcomes <span class="muted">(validated-flavoured items — literature-comparable)</span></div><ul class="sig-list">${extraHtml}</ul></div>
+        </div>`;
     }
     loadOutcomes();
     load();
@@ -3277,11 +3301,12 @@
       const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
         <h2>A little about you <span class="muted" style="font-size:.8rem;font-weight:400">optional</span></h2>
         <p class="muted">So we can show what works for people like you. All optional, all anonymous.</p>
-        <div class="pf-grid"><label>Age ${sel('age', AGE_OPTS, p.age_band)}</label><label>Sex ${sel('sex', SEX_OPTS, p.sex)}</label><label>Ethnicity ${sel('eth', ETH_OPTS, p.ethnicity)}</label></div>
+        <div class="pf-grid"><label>Age ${sel('age', AGE_OPTS, p.age_band)}</label><label>Sex ${sel('sex', SEX_OPTS, p.sex)}</label><label>Ethnicity ${sel('eth', ETH_OPTS, p.ethnicity)}</label><label>Height <input id="pf-ht" class="pf-in" type="number" min="80" max="250" value="${p.height_cm != null ? esc(String(p.height_cm)) : ''}" placeholder="cm"></label></div>
         <div class="pf-conds"><span class="pf-conds-h">Any of these? <span class="muted" style="font-weight:400">(optional)</span></span><div class="pf-chips">${COND_OPTS.map(o => `<label class="pf-chip"><input type="checkbox" value="${o[0]}"${(p.conditions || []).includes(o[0]) ? ' checked' : ''}>${esc(o[1])}</label>`).join('')}</div></div>
+        <div class="pf-conds"><span class="pf-conds-h">💊 Anything else you take regularly? <span class="muted" style="font-weight:400">(meds &amp; supplements — helps us spot interactions)</span></span><input id="pf-meds" class="pf-in" style="width:100%" value="${esc((p.meds || []).join(', '))}" placeholder="e.g. metformin, omega-3, statin, magnesium"></div>
         <div class="consent-acts"><button class="cta-primary" id="pf-save">Save</button><button class="cta-ghost" id="pf-skip">Skip</button></div>`);
       m.querySelector('[data-close]').onclick = closeModal; m.querySelector('#pf-skip').onclick = closeModal;
-      m.querySelector('#pf-save').onclick = async () => { const conditions = [...m.querySelectorAll('.pf-chip input:checked')].map(c => c.value); try { await api.saveProfile({ age_band: m.querySelector('#pf-age').value || null, sex: m.querySelector('#pf-sex').value || null, ethnicity: m.querySelector('#pf-eth').value || null, conditions }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
+      m.querySelector('#pf-save').onclick = async () => { const conditions = [...m.querySelectorAll('.pf-chip input:checked')].map(c => c.value); const ht = m.querySelector('#pf-ht').value; const meds = (m.querySelector('#pf-meds').value || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 30); try { await api.saveProfile({ age_band: m.querySelector('#pf-age').value || null, sex: m.querySelector('#pf-sex').value || null, ethnicity: m.querySelector('#pf-eth').value || null, conditions, height_cm: ht === '' ? null : +ht, meds }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
     });
   }
   function openDataModal() {
@@ -3311,10 +3336,11 @@
         <div class="hm-row"><select id="hm-marker" class="pf-in">${opts}</select><input id="hm-val" class="pf-in hm-num" type="number" step="any" placeholder="value"><input id="hm-date" class="pf-in" type="date"><button class="fn-step add" id="hm-add">Add</button></div>
         <ul class="hm-list" id="hm-list">${recent}</ul></div>
       <div class="hm-sec"><b>⚖️ Body metrics (today)</b>
-        <div class="hm-row"><input id="hm-wt" class="pf-in hm-num" type="number" step="0.1" placeholder="weight kg"><input id="hm-rhr" class="pf-in hm-num" type="number" placeholder="resting HR"><input id="hm-steps" class="pf-in hm-num" type="number" placeholder="steps"><input id="hm-sleep" class="pf-in hm-num" type="number" step="0.1" placeholder="sleep hrs"><button class="fn-step add" id="hm-save">Save</button></div></div>`);
+        <div class="hm-row"><input id="hm-wt" class="pf-in hm-num" type="number" step="0.1" placeholder="weight kg"><input id="hm-waist" class="pf-in hm-num" type="number" step="0.1" placeholder="waist cm"><input id="hm-rhr" class="pf-in hm-num" type="number" placeholder="resting HR"><input id="hm-steps" class="pf-in hm-num" type="number" placeholder="steps"><input id="hm-sleep" class="pf-in hm-num" type="number" step="0.1" placeholder="sleep hrs"><button class="fn-step add" id="hm-save">Save</button></div>
+        <p class="muted" style="font-size:.76rem;margin:.4rem 0 0">Waist is the single best at-home marker of metabolic risk — measure at the belly button, relaxed.</p></div>`);
     m.querySelector('[data-close]').onclick = closeModal;
     m.querySelector('#hm-add').onclick = async () => { const marker = m.querySelector('#hm-marker').value; const value = m.querySelector('#hm-val').value; const taken_on = m.querySelector('#hm-date').value || undefined; if (value === '') return; try { await api.addMarker({ marker, value: +value, unit: MARKER_UNIT[marker], taken_on }); const list = m.querySelector('#hm-list'); const li = document.createElement('li'); li.innerHTML = `${esc(MARKER_LABEL[marker])}: <b>${esc(value)}</b> ${esc(MARKER_UNIT[marker])} <span class="muted">${esc(taken_on || 'today')}</span>`; if (list.querySelector('.muted')) list.innerHTML = ''; list.insertBefore(li, list.firstChild); m.querySelector('#hm-val').value = ''; if (typeof toast === 'function') toast('Logged ✓'); } catch (e) { alert(e.message); } };
-    m.querySelector('#hm-save').onclick = async () => { const wt = m.querySelector('#hm-wt').value, rhr = m.querySelector('#hm-rhr').value, stp = m.querySelector('#hm-steps').value, slp = m.querySelector('#hm-sleep').value; if (wt === '' && rhr === '' && stp === '' && slp === '') return; try { await api.saveWearable({ day: today(), weight_kg: wt === '' ? undefined : +wt, resting_hr: rhr === '' ? undefined : +rhr, steps: stp === '' ? undefined : +stp, sleep_min: slp === '' ? undefined : Math.round(+slp * 60), source: 'manual' }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
+    m.querySelector('#hm-save').onclick = async () => { const wt = m.querySelector('#hm-wt').value, wst = m.querySelector('#hm-waist').value, rhr = m.querySelector('#hm-rhr').value, stp = m.querySelector('#hm-steps').value, slp = m.querySelector('#hm-sleep').value; if (wt === '' && wst === '' && rhr === '' && stp === '' && slp === '') return; try { await api.saveWearable({ day: today(), weight_kg: wt === '' ? undefined : +wt, waist_cm: wst === '' ? undefined : +wst, resting_hr: rhr === '' ? undefined : +rhr, steps: stp === '' ? undefined : +stp, sleep_min: slp === '' ? undefined : Math.round(+slp * 60), source: 'manual' }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
   }
 
   // ===== Outcome check-ins (baseline / 30d / 90d) — the feedback loop =====
@@ -3335,28 +3361,58 @@
       return; // one at a time
     }
   }
+  // Per-category validated-flavoured outcome item — turns a generic symptom score into research-grade,
+  // literature-comparable data. Wording paraphrases public-domain screeners (PHQ/GAD frequency, PEG pain).
+  const PROTOCOL_OUTCOME = {
+    'Cognitive': { key: 'mood_freq', q: 'Over the last 2 weeks, how often have you felt down, anxious, or unable to focus?', opts: [[0, 'Not at all'], [1, 'Several days'], [2, 'More than half the days'], [3, 'Nearly every day']] },
+    'Sleep': { key: 'sleep_quality', q: 'How would you rate your sleep lately?', opts: [[0, 'Very good'], [1, 'Fairly good'], [2, 'Fairly poor'], [3, 'Very poor']] },
+    'Hormonal': { key: 'vitality', q: 'How are your energy and libido lately?', opts: [[0, 'Strong / normal'], [1, 'Slightly low'], [2, 'Noticeably low'], [3, 'Very low']] },
+    'Musculoskeletal': { key: 'pain_interference', q: 'In the past week, how much did pain interfere with your normal activities?', opts: [[0, 'Not at all'], [3, 'A little'], [6, 'Moderately'], [10, 'A lot']] },
+  };
+  const STOP_REASON_OPTS = [['didnt_work', "It wasn't working"], ['side_effects', 'Side effects'], ['too_hard', 'Too hard to keep up'], ['cost', 'Cost'], ['got_better', 'I got better 🎉'], ['other', 'Other']];
   function openCheckinModal(r, phase, dayLog) {
     const isBaseline = phase === 'baseline';
     // prefill adherence from today's completion where we can
     const M = mergedPlan(getPlan()); const ids = scheduledIds(M, getPlan(), today());
     const st = planDayStats(M, dayLog, ids); const adhPrefill = st.total ? Math.round(st.done / st.total * 100) : '';
+    const oc = PROTOCOL_OUTCOME[r.problem.category];
+    const extraRow = oc ? `<label class="ci-q">${esc(oc.q)}
+      <select id="ci-extra" class="pf-in"><option value="">—</option>${oc.opts.map(o => `<option value="${o[0]}">${esc(o[1])}</option>`).join('')}</select></label>` : '';
     const impRow = isBaseline ? '' : `<label class="ci-q">Compared to when you started, your ${esc(r.problem.name.toLowerCase())} is:
       <select id="ci-imp" class="pf-in"><option value="">—</option><option value="3">Much better</option><option value="2">Better</option><option value="1">A little better</option><option value="0">No change</option><option value="-1">A little worse</option><option value="-2">Worse</option><option value="-3">Much worse</option></select></label>
       <label class="ci-q">Roughly how well did you stick to it? <input id="ci-adh" class="pf-in" type="number" min="0" max="100" value="${adhPrefill}" placeholder="%"> %</label>
-      <label class="ci-q"><input type="checkbox" id="ci-on" checked> Still following this protocol</label>`;
+      <label class="ci-q"><input type="checkbox" id="ci-on" checked> Still following this protocol</label>
+      <div id="ci-stop-wrap" style="display:none"><label class="ci-q">What made you stop? <span class="muted" style="font-weight:400">(this is the most useful thing you can tell us)</span>
+        <select id="ci-stop" class="pf-in"><option value="">—</option>${STOP_REASON_OPTS.map(o => `<option value="${o[0]}">${esc(o[1])}</option>`).join('')}</select></label></div>
+      <label class="ci-q"><input type="checkbox" id="ci-sfx-on"> I had side effects <span class="muted" style="font-weight:400">(optional)</span></label>
+      <div id="ci-sfx-wrap" style="display:none"><input id="ci-sfx" class="pf-in" style="width:100%" maxlength="300" placeholder="e.g. nausea, headache, trouble sleeping…"></div>`;
     const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
       <h2>${isBaseline ? 'Your starting point' : 'Your progress'}</h2>
       <p class="muted">${esc(r.problem.name)} · anonymous · helps everyone with the same problem.</p>
       <label class="ci-q">Right now, how bad is it? <span class="muted">(0 none — 10 worst)</span>
         <input id="ci-sym" type="range" min="0" max="10" value="5" class="ci-range"><output id="ci-symv">5</output></label>
+      ${extraRow}
       ${impRow}
       <label class="ci-q">Anything you'd add? <span class="muted" style="font-weight:400">(optional)</span><textarea id="ci-note" class="pf-in" rows="2" maxlength="500" placeholder="e.g. what helped most, side effects…"></textarea></label>
       <div class="consent-acts"><button class="cta-primary" id="ci-save">${isBaseline ? 'Save starting point' : 'Submit'}</button><button class="cta-ghost" id="ci-skip">Skip</button></div>`);
     m.querySelector('[data-close]').onclick = closeModal; m.querySelector('#ci-skip').onclick = closeModal;
     const rng = m.querySelector('#ci-sym'), out = m.querySelector('#ci-symv'); rng.oninput = () => out.textContent = rng.value;
+    if (!isBaseline) {
+      const onBox = m.querySelector('#ci-on'), stopWrap = m.querySelector('#ci-stop-wrap');
+      onBox.onchange = () => { stopWrap.style.display = onBox.checked ? 'none' : 'block'; };
+      const sfxBox = m.querySelector('#ci-sfx-on'), sfxWrap = m.querySelector('#ci-sfx-wrap');
+      sfxBox.onchange = () => { sfxWrap.style.display = sfxBox.checked ? 'block' : 'none'; };
+    }
     m.querySelector('#ci-save').onclick = async () => {
       const body = { pid: r.pr.pid, rcid: r.pr.rcid, phase, symptom_0_10: +rng.value, note: (m.querySelector('#ci-note').value || '').trim() || null };
-      if (!isBaseline) { const imp = m.querySelector('#ci-imp').value; body.improvement = imp === '' ? null : +imp; const adh = m.querySelector('#ci-adh').value; body.adherence_pct = adh === '' ? null : +adh; body.still_on = m.querySelector('#ci-on').checked; }
+      if (oc) { const ev = m.querySelector('#ci-extra').value; if (ev !== '') body.extra = { [oc.key]: +ev }; }
+      if (!isBaseline) {
+        const imp = m.querySelector('#ci-imp').value; body.improvement = imp === '' ? null : +imp;
+        const adh = m.querySelector('#ci-adh').value; body.adherence_pct = adh === '' ? null : +adh;
+        body.still_on = m.querySelector('#ci-on').checked;
+        if (!body.still_on) { const sr = m.querySelector('#ci-stop').value; if (sr) body.stop_reason = sr; }
+        if (m.querySelector('#ci-sfx-on').checked) { const sf = (m.querySelector('#ci-sfx').value || '').trim(); if (sf) body.side_effects = sf; }
+      }
       try { await api.submitCheckin(body); closeModal(); if (typeof toast === 'function') toast('Thank you 🙏 logged anonymously'); const host = document.getElementById('checkin-slot'); if (host) host.innerHTML = ''; } catch (e) { alert(e.message); }
     };
   }
