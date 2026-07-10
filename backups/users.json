@@ -7,5 +7,41 @@
     "credential": "testing",
     "domain_verified": true,
     "created_at": "2026-07-05T14:40:34.541Z"
+  },
+  {
+    "id": 4,
+    "username": "zztest_1783695549",
+    "role": "user",
+    "domain": null,
+    "credential": null,
+    "domain_verified": false,
+    "created_at": "2026-07-10T14:59:09.767Z"
+  },
+  {
+    "id": 5,
+    "username": "zztest_1783695659",
+    "role": "user",
+    "domain": null,
+    "credential": null,
+    "domain_verified": false,
+    "created_at": "2026-07-10T15:01:00.077Z"
+  },
+  {
+    "id": 6,
+    "username": "zzrem_1783697588",
+    "role": "user",
+    "domain": null,
+    "credential": null,
+    "domain_verified": false,
+    "created_at": "2026-07-10T15:33:08.995Z"
+  },
+  {
+    "id": 7,
+    "username": "zzres_1783699429",
+    "role": "user",
+    "domain": null,
+    "credential": null,
+    "domain_verified": false,
+    "created_at": "2026-07-10T16:03:49.981Z"
   }
 ]
