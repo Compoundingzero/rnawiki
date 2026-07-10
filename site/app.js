@@ -307,6 +307,7 @@
     submitCheckin(b) { return this.call('POST', '/api/checkin', b); },
     getMarkers() { return this.call('GET', '/api/markers').then(d => d.markers || []).catch(() => []); },
     addMarker(b) { return this.call('POST', '/api/markers', b); },
+    saveWearable(b) { return this.call('POST', '/api/wearable', b); },
     exportMyData() { return this.call('GET', '/api/mydata'); },
     deleteMyData() { return this.call('DELETE', '/api/mydata'); },
     ledger(pid, rcid) { return this.call('GET', `/api/ledger?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).catch(() => null); },
@@ -3280,6 +3281,24 @@
     m.querySelector('#md-export').onclick = async () => { try { const d = await api.exportMyData(); const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'rnawiki-my-data.json'; a.click(); } catch (e) { alert(e.message); } };
     m.querySelector('#md-delete').onclick = async () => { if (!confirm('Delete your research data (check-ins, markers, wearables, profile) and withdraw consent? Your account and tracker stay.')) return; try { await api.deleteMyData(); CONSENT = false; closeModal(); if (typeof toast === 'function') toast('Deleted — consent withdrawn'); } catch (e) { alert(e.message); } };
   }
+  const MARKERS = [['hba1c', 'HbA1c', '%'], ['fasting_glucose', 'Fasting glucose', 'mmol/L'], ['ldl', 'LDL cholesterol', 'mmol/L'], ['hdl', 'HDL cholesterol', 'mmol/L'], ['triglycerides', 'Triglycerides', 'mmol/L'], ['total_chol', 'Total cholesterol', 'mmol/L'], ['bp_sys', 'Blood pressure (systolic)', 'mmHg'], ['bp_dia', 'Blood pressure (diastolic)', 'mmHg'], ['testosterone', 'Testosterone', 'nmol/L'], ['shbg', 'SHBG', 'nmol/L'], ['tsh', 'TSH', 'mIU/L'], ['ft4', 'Free T4', 'pmol/L'], ['ferritin', 'Ferritin', 'µg/L'], ['crp', 'CRP', 'mg/L'], ['vit_d', 'Vitamin D', 'nmol/L']];
+  const MARKER_LABEL = {}, MARKER_UNIT = {}; MARKERS.forEach(m => { MARKER_LABEL[m[0]] = m[1]; MARKER_UNIT[m[0]] = m[2]; });
+  async function openHealthModal() {
+    const markers = await api.getMarkers().catch(() => []);
+    const opts = MARKERS.map(m => `<option value="${m[0]}">${esc(m[1])} (${esc(m[2])})</option>`).join('');
+    const recent = markers.slice(0, 8).map(x => `<li>${esc(MARKER_LABEL[x.marker] || x.marker)}: <b>${esc(String(x.value))}</b> ${esc(x.unit || MARKER_UNIT[x.marker] || '')} <span class="muted">${x.taken_on ? esc(String(x.taken_on).slice(0, 10)) : ''}</span></li>`).join('') || '<li class="muted">No results logged yet.</li>';
+    const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
+      <h2>Track your health data</h2>
+      <p class="muted">Optional &amp; anonymous. Blood results and weigh-ins help prove what actually works.</p>
+      <div class="hm-sec"><b>🩸 Blood marker</b>
+        <div class="hm-row"><select id="hm-marker" class="pf-in">${opts}</select><input id="hm-val" class="pf-in hm-num" type="number" step="any" placeholder="value"><input id="hm-date" class="pf-in" type="date"><button class="fn-step add" id="hm-add">Add</button></div>
+        <ul class="hm-list" id="hm-list">${recent}</ul></div>
+      <div class="hm-sec"><b>⚖️ Body metrics (today)</b>
+        <div class="hm-row"><input id="hm-wt" class="pf-in hm-num" type="number" step="0.1" placeholder="weight kg"><input id="hm-rhr" class="pf-in hm-num" type="number" placeholder="resting HR"><button class="fn-step add" id="hm-save">Save</button></div></div>`);
+    m.querySelector('[data-close]').onclick = closeModal;
+    m.querySelector('#hm-add').onclick = async () => { const marker = m.querySelector('#hm-marker').value; const value = m.querySelector('#hm-val').value; const taken_on = m.querySelector('#hm-date').value || undefined; if (value === '') return; try { await api.addMarker({ marker, value: +value, unit: MARKER_UNIT[marker], taken_on }); const list = m.querySelector('#hm-list'); const li = document.createElement('li'); li.innerHTML = `${esc(MARKER_LABEL[marker])}: <b>${esc(value)}</b> ${esc(MARKER_UNIT[marker])} <span class="muted">${esc(taken_on || 'today')}</span>`; if (list.querySelector('.muted')) list.innerHTML = ''; list.insertBefore(li, list.firstChild); m.querySelector('#hm-val').value = ''; if (typeof toast === 'function') toast('Logged ✓'); } catch (e) { alert(e.message); } };
+    m.querySelector('#hm-save').onclick = async () => { const wt = m.querySelector('#hm-wt').value, rhr = m.querySelector('#hm-rhr').value; if (wt === '' && rhr === '') return; try { await api.saveWearable({ day: today(), weight_kg: wt === '' ? undefined : +wt, resting_hr: rhr === '' ? undefined : +rhr, source: 'manual' }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
+  }
 
   // ===== Outcome check-ins (baseline / 30d / 90d) — the feedback loop =====
   async function mountCheckins(M, dayLog) {
@@ -3574,7 +3593,7 @@
     const manage = `<section class="trk-manage"><h2>Your protocols</h2>${M.resolved.map(r => `
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
         <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button> · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button> · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
-      <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="mydata-link">🔒 Your data &amp; privacy</button>' : ''}</section>`;
+      <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="health-link">🩸 Track health data</button> · <button class="linkbtn" id="mydata-link">🔒 Your data</button>' : ''}</section>`;
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan' }])}
       <section class="plan-hd trk-hd"><div><div class="kicker">My Plan</div><h1>Today</h1><p class="muted">${subtitle}</p></div>
         <div class="plan-hd-actions"><a class="cta-ghost" href="#/progress">📊 Progress</a></div></section>
@@ -3600,6 +3619,7 @@
     wireTgCoach();
     wireConsentCard();
     const mdl = document.getElementById('mydata-link'); if (mdl) mdl.onclick = openDataModal;
+    const hl = document.getElementById('health-link'); if (hl) hl.onclick = openHealthModal;
     mountCheckins(M, dayLog);
     const byExId = {}; M.moves.forEach(e => byExId[e.id] = e);
     const byCId = {}; M.supps.forEach(c => byCId[c.id] = c);

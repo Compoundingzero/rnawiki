@@ -1796,6 +1796,13 @@ a.dp-name:hover{color:var(--accent)}
 .pf-grid{display:flex;flex-direction:column;gap:.7rem;margin:1rem 0}
 .pf-grid label{display:flex;flex-direction:column;gap:.3rem;font-size:.85rem;font-weight:600;color:var(--head)}
 .pf-in{padding:.5rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.95rem}
+.hm-sec{margin:1.1rem 0}
+.hm-sec>b{display:block;margin-bottom:.5rem;color:var(--head)}
+.hm-row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.hm-num{width:6rem}
+.hm-list{list-style:none;padding:0;margin:.6rem 0 0;font-size:.88rem}
+.hm-list li{padding:.3rem 0;border-bottom:1px solid var(--line);color:var(--muted)}
+.hm-list li:last-child{border-bottom:none}
 .linkbtn.danger,.cta-ghost.danger{color:#dc2626}
 .cta-ghost.danger{border-color:#f0c0c0}
 /* ---- Outcome check-ins ---- */
