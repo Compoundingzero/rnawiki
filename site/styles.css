@@ -1700,6 +1700,13 @@ a.dp-name:hover{color:var(--accent)}
 .fn-log-row{display:flex;gap:.5rem}
 .fn-log-in{flex:1;min-width:0;padding:.4rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.9rem}
 .fn-log-in:focus{outline:none;border-color:var(--accent)}
+/* sleep-window tracker */
+.sleep-inputs{display:flex;gap:.6rem;flex-wrap:wrap;margin:.5rem 0}
+.sleep-inputs label{display:flex;flex-direction:column;gap:.2rem;font-size:.72rem;color:var(--muted)}
+.sleep-inputs .slp-in{padding:.4rem .5rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.9rem}
+.sleep-inputs .slp-in:focus{outline:none;border-color:var(--accent)}
+.fn-w-sub.sleep-rec{color:var(--head)}
+.fn-w-sub.sleep-rec b{color:var(--accent)}
 .fn-w.tgonly .fn-w-tg{margin-top:.4rem;background:#2563eb;color:#fff;border:none;border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}
 /* ---- Shared protocol landing (trainer → client) ---- */
 .shared-hero{max-width:640px;margin:1.5rem auto;padding:1.6rem;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(13,148,136,.06),var(--panel));box-shadow:var(--shadow)}

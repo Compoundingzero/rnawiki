@@ -2883,6 +2883,10 @@
       desc: 'Even mild dehydration drops energy, focus and training output.',
       how: 'Tap + for each glass. Target 8 a day.',
       match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'], tg: true },
+    { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep',
+      desc: 'The core insomnia fix (CBT-I sleep restriction): match your time in bed to time actually asleep, and sleep gets deeper and faster.',
+      how: 'Each morning, log when you got in bed, roughly fell asleep, and woke. It tracks your sleep efficiency and tells you when to shift your bedtime.',
+      match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'], tg: true },
     { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder',
       desc: 'A constant wake time anchors your body clock — the biggest lever for sleep.',
       how: 'Set one wake time; the bot nudges you nightly to protect your wind-down.',
@@ -2900,6 +2904,25 @@
   }
   // ISO-ish week key for weekly counters (year + week number)
   function weekKey() { const d = new Date(); const day = (d.getDay() + 6) % 7; d.setDate(d.getDate() - day); return d.toISOString().slice(0, 10); }
+  // ---- Sleep-window (CBT-I sleep restriction) helpers ----
+  function slpToMin(t) { if (!t || !/^\d{1,2}:\d{2}$/.test(t)) return null; const [h, m] = t.split(':').map(Number); return h * 60 + m; }
+  // From in-bed / asleep / woke clock times (spanning midnight) → time in bed, time asleep, sleep efficiency %
+  function computeSleep(s) {
+    const ib = slpToMin(s.inBed), as = slpToMin(s.asleep), wk = slpToMin(s.woke);
+    if (ib == null || as == null || wk == null) return null;
+    const norm = x => x < ib ? x + 1440 : x; // times after the in-bed clock time roll into the next day
+    const tib = norm(wk) - ib, tst = norm(wk) - norm(as);
+    if (tib <= 0 || tst <= 0 || tst > tib) return null;
+    return { tib, tst, se: Math.min(100, Math.round(tst / tib * 100)) };
+  }
+  function sleepEff7(plan) { const log = plan.log || {}; const tk = today(); let sum = 0, n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const dl = log[d.toISOString().slice(0, 10)]; if (dl && dl.sleep && dl.sleep.se != null) { sum += dl.sleep.se; n++; } } return { avg: n ? Math.round(sum / n) : 0, nights: n }; }
+  // CBT-I guidance: SE≥90 extend window, 85–90 hold, <85 tighten (later bedtime, fixed wake)
+  function sleepRec(avg, nights) {
+    if (nights < 3) return 'Log 3+ nights for your sleep-window guidance.';
+    if (avg >= 90) return 'Efficient — try going to bed 15 min earlier tonight.';
+    if (avg >= 85) return 'Dialed in. Hold this window and keep your wake time fixed.';
+    return 'Tighten your window: go to bed 15 min later, keep the same wake time.';
+  }
 
   async function renderPlan() {
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = emptyPlan(); return; }
@@ -3150,6 +3173,17 @@
             <p class="fn-w-sub">${last ? 'Last: <b>' + esc(last.text) + '</b> · ' + esc(last.date) : esc(f.how)}</p>
             <div class="fn-log-row"><input class="fn-log-in" data-fn-log="${f.id}" placeholder="e.g. 60kg × 8" autocomplete="off"><button class="fn-step add" data-log-save="${f.id}">Log</button></div></div>`;
         }
+        if (f.kind === 'sleep') {
+          const s = planDay(plan).sleep || {}; const e7 = sleepEff7(plan);
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b>${s.se != null ? `<span class="fn-w-val">${s.se}% last night</span>` : ''}</div>
+            <p class="fn-w-sub">Last night — log when you got in bed, roughly fell asleep, and woke:</p>
+            <div class="sleep-inputs">
+              <label>🛏️ In bed<input class="slp-in" type="time" data-slp="inBed" value="${esc(s.inBed || '')}"></label>
+              <label>😴 Asleep ~<input class="slp-in" type="time" data-slp="asleep" value="${esc(s.asleep || '')}"></label>
+              <label>☀️ Woke<input class="slp-in" type="time" data-slp="woke" value="${esc(s.woke || '')}"></label>
+            </div>
+            <p class="fn-w-sub sleep-rec">${e7.nights ? `7-night efficiency <b>${e7.avg}%</b> · ` : ''}${esc(sleepRec(e7.avg, e7.nights))}</p></div>`;
+        }
         return '';
       };
       host.innerHTML = `<section class="trk-tools"><h2>🧩 Your tools</h2><div class="fn-w-list">${sel.map(id => { const f = fnById(id); return f ? widget(f) : ''; }).join('')}</div></section>`;
@@ -3160,6 +3194,12 @@
       host.querySelectorAll('[data-log-save]').forEach(b => b.onclick = () => {
         const id = b.dataset.logSave; const inp = host.querySelector('[data-fn-log="' + id + '"]'); const txt = (inp && inp.value || '').trim(); if (!txt) return;
         const pl = getPlan(); pl.tools = pl.tools || {}; pl.tools[id] = pl.tools[id] || { entries: [] }; pl.tools[id].entries.push({ date: today(), text: txt }); setPlan(pl); if (typeof toast === 'function') toast('Logged ✓'); render();
+      });
+      // sleep-window time inputs → recompute efficiency and re-render the recommendation
+      host.querySelectorAll('.slp-in').forEach(inp => inp.onchange = () => {
+        const pl = getPlan(); const d = planDay(pl); d.sleep = d.sleep || {}; d.sleep[inp.dataset.slp] = inp.value || '';
+        const c = computeSleep(d.sleep); d.sleep.se = c ? c.se : null; d.sleep.tib = c ? c.tib : null; d.sleep.tst = c ? c.tst : null;
+        setPlan(pl); render();
       });
     };
     render();

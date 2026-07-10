@@ -347,6 +347,7 @@ const TG_FUNCTIONS = [
   // progressive-overload logging now lives per-exercise in the web tracker, so it's no longer a selectable tool here
   { id: 'steps', icon: '👟', name: 'Daily step counter', kind: 'counter', target: 8000, unit: 'steps', period: 'day', how: 'Log steps toward 8,000/day. Tap + to add 500.', match: ['fat', 'weight', 'cardio', 'endur', 'sedentary', 'circulation'] },
   { id: 'hydration', icon: '💧', name: 'Hydration counter', kind: 'counter', target: 8, unit: 'glasses', period: 'day', how: 'Tap + for each glass. Target 8 a day.', match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'] },
+  { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep', how: 'CBT-I sleep restriction — send “sleep: 23:30 00:10 07:00” (in bed · asleep · woke) and I track your sleep efficiency and when to shift your bedtime.', match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'] },
   { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder', how: 'A constant wake time anchors your body clock. I nudge you nightly to protect wind-down.', match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tgOnly: true },
   { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder', how: '10 min of morning light sets your clock. I remind you within an hour of waking.', match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'], tgOnly: true },
 ];
@@ -358,13 +359,18 @@ function tgDefaultFunction(key) {
   return (hit || tgFnById('hydration')).id;
 }
 function tgWeekKey() { const d = new Date(); const day = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - day); return d.toISOString().slice(0, 10); }
-// Normalise the per-day / per-week function state, resetting stale buckets
+// Normalise the per-day / per-week function state, resetting stale buckets (preserves t.sleep history)
 function tgTools(row) {
   const t = (row && row.tools) || {}; const today = new Date().toISOString().slice(0, 10); const wk = tgWeekKey();
   if (!t.d || t.d.date !== today) t.d = { date: today, c: {}, done: {} };
   if (!t.w || t.w.key !== wk) t.w = { key: wk, c: {} };
   return t;
 }
+// ---- Sleep-window (CBT-I) helpers (mirror site/app.js) ----
+function tgSlpMin(t) { if (!t) return null; t = String(t).trim(); let h, m; if (/^\d{3,4}$/.test(t)) { t = t.padStart(4, '0'); h = +t.slice(0, 2); m = +t.slice(2); } else if (/^\d{1,2}:\d{2}$/.test(t)) { [h, m] = t.split(':').map(Number); } else return null; if (h > 23 || m > 59) return null; return h * 60 + m; }
+function tgComputeSleep(inBed, asleep, woke) { const ib = tgSlpMin(inBed), as = tgSlpMin(asleep), wk = tgSlpMin(woke); if (ib == null || as == null || wk == null) return null; const norm = x => x < ib ? x + 1440 : x; const tib = norm(wk) - ib, tst = norm(wk) - norm(as); if (tib <= 0 || tst <= 0 || tst > tib) return null; return { tib, tst, se: Math.min(100, Math.round(tst / tib * 100)) }; }
+function tgSleepEff7(row) { const t = (row && row.tools && row.tools.sleep) || {}; let sum = 0, n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const e = t[d.toISOString().slice(0, 10)]; if (e && e.se != null) { sum += e.se; n++; } } return { avg: n ? Math.round(sum / n) : 0, nights: n }; }
+function tgSleepRec(avg, nights) { if (nights < 3) return 'Log 3+ nights for your sleep-window guidance.'; if (avg >= 90) return 'Efficient — try bed 15 min earlier tonight.'; if (avg >= 85) return 'Dialed in — hold this window, fixed wake time.'; return 'Tighten: bed 15 min later, keep the same wake time.'; }
 // Sync the bot's protocol (supps + functions) into the linked account's v2 web plan — creating it if needed.
 async function tgUpsertWebProtocol(row) {
   if (!row || !row.user_id || !db.enabled || !row.pid) return;
@@ -508,6 +514,9 @@ function tgToolsView(row) {
     } else if (f.kind === 'log') {
       const last = (t.log || [])[(t.log || []).length - 1];
       lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${last ? 'last “' + tgEsc(last.text) + '” · send “log: …” to add' : 'send “log: 60kg x 8”'}`);
+    } else if (f.kind === 'sleep') {
+      const e = tgSleepEff7(row);
+      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${e.nights ? e.avg + '% eff (7-night) — ' + tgSleepRec(e.avg, e.nights) : 'send “sleep: 23:30 00:10 07:00” to start'}`);
     }
   });
   return { text: `🧩 <b>Your tools — today</b>\n\n${lines.join('\n')}`, kb };
@@ -705,6 +714,17 @@ async function handleTgUpdate(update) {
   if (/^log[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('overload')) {
     const entry = text.replace(/^log[:\s]+/i, '').trim();
     if (entry) { const t = tgTools(row); t.log = (t.log || []).concat({ date: new Date().toISOString().slice(0, 10), text: entry }).slice(-50); await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]); return tgSend(chatId, `🏋️ Logged: <b>${tgEsc(entry)}</b>. Beat it next time. /tools to review.`); }
+  }
+  // Sleep-window logging: "sleep: 23:30 00:10 07:00" (in bed · asleep · woke)
+  if (/^sleep[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('sleepwin')) {
+    const parts = text.replace(/^sleep[:\s]+/i, '').trim().split(/[\s,]+/);
+    const c = parts.length >= 3 ? tgComputeSleep(parts[0], parts[1], parts[2]) : null;
+    if (!c) return tgSend(chatId, `Send three times like <b>sleep: 23:30 00:10 07:00</b> — in bed · roughly asleep · woke.`);
+    const tk = new Date().toISOString().slice(0, 10); const t = tgTools(row); t.sleep = t.sleep || {}; t.sleep[tk] = { inBed: parts[0], asleep: parts[1], woke: parts[2], se: c.se };
+    await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
+    await tgSyncWebDay(row, d => { d.sleep = { inBed: parts[0], asleep: parts[1], woke: parts[2], se: c.se, tib: c.tib, tst: c.tst }; });
+    const e = tgSleepEff7(await tgGet(chatId));
+    return tgSend(chatId, `🛏️ Logged — <b>${c.se}% sleep efficiency</b> last night (${Math.floor(c.tst / 60)}h${c.tst % 60}m asleep of ${Math.floor(c.tib / 60)}h${c.tib % 60}m in bed).\n\n7-night average: <b>${e.avg}%</b>\n${tgSleepRec(e.avg, e.nights)}`);
   }
   if (cmd === 'nudge' || cmd === 'nudges' || cmd === 'remind' || cmd === 'reminders') return tgNudgeStart(chatId);
   // capturing their local time to set the nudge timezone
