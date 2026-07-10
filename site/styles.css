@@ -1642,6 +1642,43 @@ a.dp-name:hover{color:var(--accent)}
 .trk-timing{margin:1rem 0;border:1px solid var(--line);border-radius:12px;padding:.2rem 1rem;background:var(--panel)}
 .trk-timing>summary{cursor:pointer;font-weight:600;padding:.6rem 0;color:var(--head)}
 .trk-timing[open]>summary{border-bottom:1px solid var(--line);margin-bottom:.6rem}
+/* ---- Functions picker (final build stage) ---- */
+.fn-list{display:flex;flex-direction:column;gap:.7rem;margin:.6rem 0}
+.fn-card{border:1px solid var(--line);border-radius:14px;padding:1rem 1.1rem;background:var(--panel);transition:.12s}
+.fn-card.on{border-color:var(--accent);background:rgba(13,148,136,.05)}
+.fn-top{display:flex;gap:.8rem;align-items:flex-start}
+.fn-ico{font-size:1.5rem;line-height:1;flex:0 0 auto}
+.fn-head{flex:1;min-width:0}
+.fn-name{font-weight:700;color:var(--head);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.fn-def{font-size:.66rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#b8860b;background:#fff5db;padding:.1rem .45rem;border-radius:999px}
+.fn-tg{font-size:.66rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#2563eb;background:#e6efff;padding:.1rem .45rem;border-radius:999px}
+.fn-desc{margin:.25rem 0 0;font-size:.9rem;color:var(--muted);line-height:1.45}
+.fn-how{margin:.6rem 0 .8rem;font-size:.85rem;color:var(--head);line-height:1.45}
+.fn-how b{color:var(--muted);font-weight:600}
+.fn-toggle{background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:.4rem 1rem;font-size:.85rem;font-weight:600;color:var(--head);cursor:pointer}
+.fn-toggle.on{background:var(--accent);border-color:var(--accent);color:#fff}
+/* ---- Function widgets (tracker) ---- */
+.trk-tools{margin:1.4rem 0}
+.trk-tools h2{font-size:1.15rem;margin:0 0 .5rem}
+.fn-w-list{display:flex;flex-direction:column;gap:.6rem}
+.fn-w{border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;background:var(--panel)}
+.fn-w-h{display:flex;align-items:center;gap:.5rem}
+.fn-w-h b{color:var(--head);font-size:.95rem}
+.fn-w-val{margin-left:auto;font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.fn-w-done{margin-left:auto;font-size:.78rem;font-weight:700;color:var(--accent)}
+.fn-w-sub{margin:.35rem 0 .5rem;font-size:.83rem;color:var(--muted);line-height:1.4}
+.fn-w-bar{height:7px;background:var(--line);border-radius:999px;overflow:hidden;margin:.5rem 0}
+.fn-w-bar>span{display:block;height:100%;background:var(--accent);border-radius:999px;transition:width .2s}
+.fn-w-btns{display:flex;gap:.5rem}
+.fn-step{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:.35rem .8rem;font-size:.85rem;font-weight:600;color:var(--head);cursor:pointer;min-width:2.4rem}
+.fn-step.add{background:var(--accent);border-color:var(--accent);color:#fff}
+.fn-step:hover{filter:brightness(1.03)}
+.fn-timer{display:flex;align-items:center;gap:.6rem}
+.fn-timer-disp{font-variant-numeric:tabular-nums;font-weight:700;color:var(--head)}
+.fn-log-row{display:flex;gap:.5rem}
+.fn-log-in{flex:1;min-width:0;padding:.4rem .6rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--head);font-size:.9rem}
+.fn-log-in:focus{outline:none;border-color:var(--accent)}
+.fn-w.tgonly .fn-w-tg{margin-top:.4rem;background:#2563eb;color:#fff;border:none;border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}
 /* ---- Build-completion celebration popup ---- */
 .build-celebrate{text-align:center}
 .build-celebrate .bc-emo{font-size:2.6rem;line-height:1}

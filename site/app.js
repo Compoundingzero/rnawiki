@@ -2769,6 +2769,53 @@
       && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, 6);
   }
 
+  // ---- Protocol functions: small interactive tools, each matched to a root problem ----
+  // Every protocol gets ONE default (best keyword match); users add more at the end of building.
+  // `tg:true` = also available in the Telegram bot; `tgOnly:true` = notification-based, Telegram only.
+  const PLAN_FUNCTIONS = [
+    { id: 'walk', icon: '🚶', name: 'Post-meal walk timer', kind: 'timer', target: 10, unit: 'min',
+      desc: 'A 10-minute walk after your biggest meal blunts the glucose spike.',
+      how: 'Tap start after eating — it counts down 10 minutes. Done when it hits zero.',
+      match: ['glucose', 'insulin', 'blood sugar', 'metabolic', 'diabet', 'a1c'], tg: true },
+    { id: 'breath', icon: '🌬️', name: 'Box-breathing timer', kind: 'timer', target: 4, unit: 'min',
+      desc: 'Slow box breathing shifts you into the calm, parasympathetic state.',
+      how: 'Follow the 4-4-4-4 pace for 4 minutes whenever stress or racing thoughts hit.',
+      match: ['anx', 'stress', 'cortisol', 'panic', 'overwhelm', 'nervous'], tg: true },
+    { id: 'plants', icon: '🥦', name: 'Plant-diversity counter', kind: 'counter', target: 30, unit: 'plants', period: 'week',
+      desc: '30+ different plants a week is the strongest lever for microbiome diversity.',
+      how: 'Add each unique plant you eat. Resets weekly — aim for 30.',
+      match: ['gut', 'microbiome', 'fiber', 'digest', 'bloat', 'ibs', 'constipat'], tg: true },
+    { id: 'overload', icon: '🏋️', name: 'Progressive-overload log', kind: 'log',
+      desc: 'Muscle grows when you add load or reps over time — so track it.',
+      how: 'Log weight × reps for your key lift each session; try to beat last time.',
+      match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'atroph', 'lean mass'], tg: true },
+    { id: 'steps', icon: '👟', name: 'Daily step counter', kind: 'counter', target: 8000, unit: 'steps', period: 'day',
+      desc: 'Daily steps drive fat loss and a cardio base more reliably than cardio blocks.',
+      how: 'Log your step count as you go. Target 8,000 a day.',
+      match: ['fat', 'weight', 'cardio', 'endur', 'sedentary', 'circulation'], tg: true },
+    { id: 'hydration', icon: '💧', name: 'Hydration counter', kind: 'counter', target: 8, unit: 'glasses', period: 'day',
+      desc: 'Even mild dehydration drops energy, focus and training output.',
+      how: 'Tap + for each glass. Target 8 a day.',
+      match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'], tg: true },
+    { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder',
+      desc: 'A constant wake time anchors your body clock — the biggest lever for sleep.',
+      how: 'Set one wake time; the bot nudges you nightly to protect your wind-down.',
+      match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tg: true, tgOnly: true },
+    { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder',
+      desc: '10 minutes of morning light sets your clock and lifts daytime mood.',
+      how: 'The bot reminds you to get outside within an hour of waking.',
+      match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'], tg: true, tgOnly: true },
+  ];
+  function fnById(id) { return PLAN_FUNCTIONS.find(f => f.id === id); }
+  function defaultFunctionFor(problem, rc) {
+    const hay = [problem.category, problem.name, rc.name, rc.keystone && rc.keystone.one, rc.keystone && rc.keystone.why].filter(Boolean).join(' ').toLowerCase();
+    const hit = PLAN_FUNCTIONS.find(f => f.match.some(k => hay.includes(k)));
+    return (hit || fnById('hydration')).id; // hydration is the universal fallback
+  }
+  function planFunctions(plan) { return Array.isArray(plan.functions) ? plan.functions : []; }
+  // ISO-ish week key for weekly counters (year + week number)
+  function weekKey() { const d = new Date(); const day = (d.getDay() + 6) % 7; d.setDate(d.getDate() - day); return d.toISOString().slice(0, 10); }
+
   async function renderPlan() {
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = emptyPlan(); return; }
     const plan = getPlan();
@@ -2786,7 +2833,8 @@
     const steps = buildSteps(P);
     const allMoves = [...(P.strengthen || []), ...(P.stretch || [])].map(e => e.id);
     const allSupp = (P.stack || []).map(c => c.id);
-    if (!steps.length) { const pl = getPlan(); pl.built = true; setPlan(pl); return renderPlan(); }
+    // The final wizard stage is the Functions picker (index === steps.length), even if there are no item steps.
+    if ((plan.step || 0) >= steps.length) return renderPlanFunctions(plan, problem, rc, P, steps);
     const si = Math.max(0, Math.min(plan.step || 0, steps.length - 1));
     const step = steps[si]; const isLast = si === steps.length - 1;
     const selMoves = () => Array.isArray(getPlan().moves) ? getPlan().moves : allMoves;
@@ -2802,7 +2850,7 @@
       if (step.kind === 'move') { const on = mSel.includes(it.id); return `<div class="build-item ${on ? 'sel' : ''}"><input type="checkbox" class="build-cb" data-move="${esc(it.id)}" ${on ? 'checked' : ''} aria-label="Include ${esc(it.name)}">${exerciseCard(it)}${custom}</div>`; }
       const on = sSel.includes(it.id); return `<div class="build-item ${on ? 'sel' : ''}"><input type="checkbox" class="build-cb" data-supp="${it.id}" ${on ? 'checked' : ''} aria-label="Include ${esc(it.name)}">${stackCard(it)}${custom}</div>`;
     }).join('');
-    const chips = steps.map((s, i) => `<span class="bstep ${i === si ? 'on' : i < si ? 'done' : ''}">${s.icon} ${s.title}</span>`).join('<span class="bsep">›</span>') + '<span class="bsep">›</span><span class="bstep">🍽️ Fuel</span>';
+    const chips = steps.map((s, i) => `<span class="bstep ${i === si ? 'on' : i < si ? 'done' : ''}">${s.icon} ${s.title}</span>`).join('<span class="bsep">›</span>') + '<span class="bsep">›</span><span class="bstep">🧩 Tools</span><span class="bsep">›</span><span class="bstep">🍽️ Fuel</span>';
     const count = dispItems.filter(it => (step.kind === 'move' ? mSel : sSel).includes(it.id)).length;
     const foodOnly = step.kind === 'supp' ? `<button class="chip food-only ${plan.supps === 'none' ? 'on' : ''}" id="food-only">🍚 ${plan.supps === 'none' ? '✓ ' : ''}I'll go food-only — no supplements</button>` : '';
     const ixn = step.kind === 'supp' ? `<div id="build-ixn">${sSel.length > 1 ? interactionPanel((P.stack || []).filter(c => sSel.includes(c.id)), { tiers: ['danger', 'timing'] }) : ''}</div>` : '';
@@ -2822,7 +2870,7 @@
       <div class="build-nav">
         ${si > 0 ? '<button class="cta-ghost" id="build-back">← Back</button>' : `<a class="cta-ghost" href="#/protocol/${problem.id}/${rc.id}">← Cancel</a>`}
         <span class="build-count"><b>${count}</b> of ${dispItems.length} kept</span>
-        <button class="cta-primary" id="build-next">${isLast ? '✓ Confirm — build my protocol' : 'Next: ' + steps[si + 1].title + ' →'}</button>
+        <button class="cta-primary" id="build-next">${isLast ? 'Next: Tools →' : 'Next: ' + steps[si + 1].title + ' →'}</button>
       </div>
       ${tgCoachRow(problem, rc)}`;
     wireTgCoach();
@@ -2860,7 +2908,44 @@
     });
     const fo = document.getElementById('food-only'); if (fo) fo.onclick = () => { const pl = getPlan(); pl.supps = pl.supps === 'none' ? allSupp.slice() : 'none'; setPlan(pl); renderPlan(); };
     const back = document.getElementById('build-back'); if (back) back.onclick = () => { const pl = getPlan(); pl.step = Math.max(0, (pl.step || 0) - 1); setPlan(pl); renderPlan(); };
-    const next = document.getElementById('build-next'); if (next) next.onclick = () => { const pl = getPlan(); if (isLast) { pl.built = true; pl.justBuilt = true; setPlan(pl); } else { pl.step = (pl.step || 0) + 1; setPlan(pl); } renderPlan(); };
+    const next = document.getElementById('build-next'); if (next) next.onclick = () => { const pl = getPlan(); pl.step = (pl.step || 0) + 1; setPlan(pl); renderPlan(); }; // last item step advances to the Tools picker
+  }
+
+  // ---- Functions picker: the final build stage — default (matched) + optional add-ons ----
+  function renderPlanFunctions(plan, problem, rc, P, steps) {
+    const defId = defaultFunctionFor(problem, rc);
+    // auto-assign the matched default the first time we reach this step (keeps user choices on return)
+    if (!Array.isArray(getPlan().functions)) { const pl = getPlan(); pl.functions = [defId]; setPlan(pl); }
+    const sel = planFunctions(getPlan());
+    const ordered = [fnById(defId), ...PLAN_FUNCTIONS.filter(f => f.id !== defId)].filter(Boolean);
+    const fnCard = f => {
+      const on = sel.includes(f.id); const isDef = f.id === defId;
+      return `<div class="fn-card ${on ? 'on' : ''}">
+        <div class="fn-top"><span class="fn-ico">${f.icon}</span>
+          <div class="fn-head"><div class="fn-name">${esc(f.name)}${isDef ? '<span class="fn-def">★ Matched to your goal</span>' : ''}${f.tgOnly ? '<span class="fn-tg">Telegram only</span>' : ''}</div>
+          <p class="fn-desc">${esc(f.desc)}</p></div></div>
+        <p class="fn-how"><b>How it works:</b> ${esc(f.how)}</p>
+        <button class="fn-toggle ${on ? 'on' : ''}" data-fn="${f.id}">${on ? '✓ Added' : '+ Add'}</button>
+      </div>`;
+    };
+    const chips = steps.map(s => `<span class="bstep done">${s.icon} ${s.title}</span>`).join('<span class="bsep">›</span>') + (steps.length ? '<span class="bsep">›</span>' : '') + '<span class="bstep on">🧩 Tools</span><span class="bsep">›</span><span class="bstep">🍽️ Fuel</span>';
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Build my plan' }])}
+      <section class="plan-hd"><div><div class="kicker">Build your plan · ${esc(problem.name)}</div><h1>🧩 Your tools</h1>
+        <p class="muted">Small tools that make the plan stick. One's already matched to your goal — add any others you'll use. Change them anytime.</p></div></section>
+      <div class="build-steps">${chips}</div>
+      <div class="fn-list">${ordered.map(fnCard).join('')}</div>
+      <div class="build-nav">
+        <button class="cta-ghost" id="fn-back">← Back</button>
+        <span class="build-count"><b>${sel.length}</b> tool${sel.length === 1 ? '' : 's'} added</span>
+        <button class="cta-primary" id="fn-confirm">✓ Confirm — build my protocol</button>
+      </div>`;
+    app.querySelectorAll('[data-fn]').forEach(b => b.onclick = () => {
+      const pl = getPlan(); const cur = planFunctions(pl).slice(); const id = b.dataset.fn;
+      const i = cur.indexOf(id); if (i < 0) cur.push(id); else cur.splice(i, 1);
+      pl.functions = cur; setPlan(pl); renderPlan();
+    });
+    const back = document.getElementById('fn-back'); if (back) back.onclick = () => { const pl = getPlan(); if (!steps.length) { navigate('/protocol/' + problem.id + '/' + rc.id); return; } pl.step = steps.length - 1; setPlan(pl); renderPlan(); };
+    const conf = document.getElementById('fn-confirm'); if (conf) conf.onclick = () => { const pl = getPlan(); pl.built = true; pl.justBuilt = true; setPlan(pl); renderPlan(); };
   }
 
   // ---- Tracking: the finalised protocol — selected items + Fuel (revealed here only) ----
@@ -2885,6 +2970,66 @@
     </div>`);
     m.querySelector('[data-close]').onclick = () => closeModal();
     m.querySelector('[data-share]').onclick = () => sharePlan(problem, rc);
+  }
+
+  // ---- Render the selected protocol functions as live, deterministic widgets in the tracker ----
+  function mountPlanFunctions(problem, rc) {
+    const host = document.getElementById('plan-functions'); if (!host) return;
+    const render = () => {
+      const plan = getPlan(); const sel = planFunctions(plan); if (!sel.length) { host.innerHTML = ''; return; }
+      const wk = weekKey();
+      const widget = f => {
+        if (f.tgOnly) return `<div class="fn-w tgonly"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b><span class="fn-tg">Telegram</span></div><p class="fn-w-sub">${esc(f.how)}</p><button class="fn-w-tg tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Set up in Telegram</button></div>`;
+        if (f.kind === 'counter') {
+          const store = f.period === 'week' ? ((plan.fnWeek || {})[wk] || {}) : (planDay(plan).fn || {});
+          const v = store[f.id] || 0; const pct = Math.min(100, Math.round(v / f.target * 100));
+          const stepBy = f.unit === 'steps' ? 500 : 1;
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b><span class="fn-w-val">${v}/${f.target} ${esc(f.unit)}${f.period === 'week' ? ' this week' : ''}</span></div>
+            <div class="fn-w-bar"><span style="width:${pct}%"></span></div>
+            <div class="fn-w-btns"><button class="fn-step" data-fn-dec="${f.id}">−</button><button class="fn-step add" data-fn-inc="${f.id}">+ ${stepBy}</button></div></div>`;
+        }
+        if (f.kind === 'timer') {
+          const done = !!(planDay(plan).fn || {})[f.id];
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b>${done ? '<span class="fn-w-done">✓ Done today</span>' : ''}</div>
+            <p class="fn-w-sub">${esc(f.how)}</p>
+            <div class="fn-timer"><button class="fn-step add" data-timer-start="${f.id}">▶ Start ${f.target} min</button><span class="fn-timer-disp"></span></div></div>`;
+        }
+        if (f.kind === 'log') {
+          const entries = ((plan.tools || {})[f.id] || {}).entries || [];
+          const last = entries[entries.length - 1];
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b></div>
+            <p class="fn-w-sub">${last ? 'Last: <b>' + esc(last.text) + '</b> · ' + esc(last.date) : esc(f.how)}</p>
+            <div class="fn-log-row"><input class="fn-log-in" data-fn-log="${f.id}" placeholder="e.g. 60kg × 8" autocomplete="off"><button class="fn-step add" data-log-save="${f.id}">Log</button></div></div>`;
+        }
+        return '';
+      };
+      host.innerHTML = `<section class="trk-tools"><h2>🧩 Your tools</h2><div class="fn-w-list">${sel.map(id => { const f = fnById(id); return f ? widget(f) : ''; }).join('')}</div></section>`;
+      wireTgCoach(); // wire the Telegram set-up buttons (they carry .tg-coach)
+      host.querySelectorAll('[data-fn-inc]').forEach(b => b.onclick = () => bumpCounter(fnById(b.dataset.fnInc), +1, wk, render));
+      host.querySelectorAll('[data-fn-dec]').forEach(b => b.onclick = () => bumpCounter(fnById(b.dataset.fnDec), -1, wk, render));
+      host.querySelectorAll('[data-timer-start]').forEach(b => b.onclick = () => startFnTimer(fnById(b.dataset.timerStart), b, render));
+      host.querySelectorAll('[data-log-save]').forEach(b => b.onclick = () => {
+        const id = b.dataset.logSave; const inp = host.querySelector('[data-fn-log="' + id + '"]'); const txt = (inp && inp.value || '').trim(); if (!txt) return;
+        const pl = getPlan(); pl.tools = pl.tools || {}; pl.tools[id] = pl.tools[id] || { entries: [] }; pl.tools[id].entries.push({ date: today(), text: txt }); setPlan(pl); if (typeof toast === 'function') toast('Logged ✓'); render();
+      });
+    };
+    render();
+  }
+  function bumpCounter(f, dir, wk, render) {
+    if (!f) return; const pl = getPlan(); const step = f.unit === 'steps' ? 500 : 1; const delta = dir * step;
+    if (f.period === 'week') { pl.fnWeek = pl.fnWeek || {}; pl.fnWeek[wk] = pl.fnWeek[wk] || {}; pl.fnWeek[wk][f.id] = Math.max(0, (pl.fnWeek[wk][f.id] || 0) + delta); }
+    else { const d = planDay(pl); d.fn = d.fn || {}; d.fn[f.id] = Math.max(0, (d.fn[f.id] || 0) + delta); }
+    setPlan(pl); render();
+  }
+  function startFnTimer(f, btn, render) {
+    if (!f) return; const disp = btn.parentElement.querySelector('.fn-timer-disp'); let s = f.target * 60;
+    btn.disabled = true; btn.textContent = 'Running…';
+    const tick = () => {
+      const m = Math.floor(s / 60), ss = String(s % 60).padStart(2, '0'); if (disp) disp.textContent = ' ' + m + ':' + ss;
+      if (s <= 0) { clearInterval(iv); const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[f.id] = true; setPlan(pl); if (typeof toast === 'function') toast(f.name + ' done ✓'); render(); return; }
+      s--;
+    };
+    tick(); const iv = setInterval(tick, 1000);
   }
 
   // ---- Tracking: a focused, Apple-simple daily tracker — only your selected items, nothing to browse ----
@@ -2915,10 +3060,12 @@
         <div class="trk-today-head"><h2>Today</h2><span class="trk-prog">${doneItems}/${totalItems} done</span></div>
         <div class="trk-list">${rows}</div>
       </section>` : ''}
+      <div id="plan-functions"></div>
       <section class="trk-fuel"><h2>🍽️ Fuel</h2><p class="lyr-sub">Log meals to hit this protocol's targets.</p><div id="fuel-tracker" data-rc="${problem.id}:${rc.id}"></div></section>
       ${(P.strengthen || P.stretch || P.stack) ? `<details class="trk-timing"><summary>🕐 See your day, laid out by timing</summary>${dayPlanHtml(problem, rc, selP)}</details>` : ''}
       ${tgCoachRow(problem, rc)}`;
     mountFuelTracker(problem, rc);
+    mountPlanFunctions(problem, rc);
     wireTgCoach();
     const byExId = {}; allMovesArr.forEach(e => byExId[e.id] = e);
     const byCId = {}; (P.stack || []).forEach(c => byCId[c.id] = c);
