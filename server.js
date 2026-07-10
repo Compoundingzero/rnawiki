@@ -217,7 +217,7 @@ function sameOrigin(req) {
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
 const BOT_USERNAME = process.env.BOT_USERNAME || 'rnawikibot';
 const TG_SECRET = crypto.createHmac('sha256', SECRET).update('tg-webhook').digest('hex').slice(0, 40);
-const TG_HELP = 'What I can do:\n<b>/keystone</b> — your one keystone habit · <b>/done</b> — mark it done (builds your streak)\n<b>type any food</b> (e.g. “2 eggs”, “chicken rice”) — I log it against your protocol’s targets\n<b>/today</b> — keystone + food progress · <b>/stack</b> — your supplements + safety check\n<b>ask about any supplement by name</b> (e.g. “magnesium”) — I’ll explain + link the full page\n<b>/streak</b> · <b>/reset</b> (clear today’s food) · <b>/plan</b> · <b>/help</b>';
+const TG_HELP = 'What I can do:\n<b>/build</b> — build your own plan here (pick problem + supplements)\n<b>/keystone</b> — your one keystone habit · <b>/done</b> — mark it done (builds your streak)\n<b>type any food</b> (e.g. “2 eggs”, “chicken rice”) — I log it against your protocol’s targets\n<b>/today</b> — keystone + food progress · <b>/stack</b> — your supplements + safety check\n<b>ask about any supplement by name</b> (e.g. “magnesium”) — I’ll explain + link the full page\n<b>/streak</b> · <b>/reset</b> (clear today’s food) · <b>/plan</b> · <b>/help</b>';
 let TG_PROTO = {};
 try {
   const g = require('./data/clinical_graph.json'); const ks = require('./data/keystones.json');
@@ -244,8 +244,16 @@ function tgResolveStack(rc) {
   if (!TG_DATA) return [];
   const frags = (rc.compounds || []).map(f => String(f).toLowerCase());
   return TG_DATA.compounds.filter(c => { const nm = c.name.toLowerCase(); const words = nm.split(/[^a-z0-9]+/); return frags.some(f => nm === f || words.includes(f)); })
-    .map(c => ({ name: c.name, isRx: c.isRx, category: c.category, slug: tgSlug(c.name), stars: c.stars, plain: c.plain }));
+    .map(c => ({ id: c.id, name: c.name, isRx: c.isRx, category: c.category, slug: tgSlug(c.name), stars: c.stars, plain: c.plain }));
 }
+// Category → problems index, for building a plan inside the chat.
+let TG_CATS = {};
+try {
+  const gc = require('./data/clinical_graph.json');
+  gc.problems.forEach(p => { (TG_CATS[p.category] = TG_CATS[p.category] || []).push({ pid: p.id, name: p.name, icon: p.icon || '', rcs: p.root_causes.map(r => ({ id: r.id, plain: (r.plain || r.name), name: r.name })) }); });
+} catch (e) { }
+const TG_CAT_KEYS = () => Object.keys(TG_CATS);
+function tgFindProblem(pid) { for (const c of Object.keys(TG_CATS)) { const p = TG_CATS[c].find(x => x.pid === pid); if (p) return p; } return null; }
 function tgCompoundTags(c) { const s = new Set((TG_RXN && TG_RXN.catTags[c.category]) || []); const nm = (c.name || '').toLowerCase(); ((TG_RXN && TG_RXN.nameTags) || []).forEach(r => { if (nm.indexOf(r.m) >= 0) r.t.forEach(t => s.add(t)); }); return s; }
 function tgStackFlags(stack) {
   if (!TG_RXN) return [];
@@ -255,8 +263,9 @@ function tgStackFlags(stack) {
   return flags.filter(f => f.tier === 'danger' || f.tier === 'timing');
 }
 async function tgSendStack(chatId, row) {
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const stack = (p && p.stack) || [];
-  if (!stack.length) return tgSend(chatId, `This protocol leans on food and movement — no supplements mapped. /today for your targets.`);
+  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; let stack = (p && p.stack) || [];
+  const sel = row.sel && row.sel.supps; if (Array.isArray(sel)) stack = stack.filter(c => sel.includes(c.id)); // honour what they chose while building
+  if (!stack.length) return tgSend(chatId, `You're going food-only on this one — no supplements. /today for your food targets.`);
   const list = stack.map(c => `• <b>${tgEsc(c.name)}</b>${c.isRx ? ' 🔵 <i>Rx — see a doctor</i>' : ''}\n  ${SITE_URL}/c/${c.slug}`).join('\n');
   const flags = tgStackFlags(stack);
   const warn = flags.length ? `\n\n⚠️ <b>If you combine these:</b>\n` + flags.map(f => `${f.tier === 'danger' ? '☠️' : '⏰'} <b>${tgEsc(f.title)}</b> (${f.who.map(tgEsc).join(' + ')}) — ${tgEsc(f.action)}`).join('\n') : `\n\n✅ No dangerous interactions flagged among these.`;
@@ -265,6 +274,66 @@ async function tgSendStack(chatId, row) {
 function tgFindCompound(q) { if (!TG_DATA) return null; const t = q.toLowerCase().trim(); return TG_DATA.compounds.find(c => { const nm = c.name.toLowerCase(); return nm === t || nm.split(/[^a-z0-9]+/).includes(t) || (t.length > 3 && nm.indexOf(t) >= 0); }); }
 // second pass: attach the resolved supplement stack to each protocol (needs TG_DATA loaded above)
 try { const gg = require('./data/clinical_graph.json'); gg.problems.forEach(p => p.root_causes.forEach(rc => { const key = p.id + '/' + rc.id; if (TG_PROTO[key]) TG_PROTO[key].stack = tgResolveStack(rc); })); } catch (e) { }
+
+// ---- Build-a-plan inside the chat (mirrors the site's builder) ----
+function tgEdit(chatId, msgId, text, kb) { return tgApi('editMessageText', Object.assign({ chat_id: chatId, message_id: msgId, text, parse_mode: 'HTML', disable_web_page_preview: true }, kb ? { reply_markup: { inline_keyboard: kb } } : {})); }
+async function tgBuildStart(chatId) {
+  const cats = TG_CAT_KEYS(); if (!cats.length) return tgSend(chatId, `Building isn't available right now — try ${SITE_URL}/solve.`);
+  const kb = cats.map((c, i) => [{ text: c, callback_data: 'bc:' + i }]);
+  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ stage: 'cat' })]);
+  return tgSend(chatId, `🧬 <b>Let's build your plan.</b>\nWhat do you want to work on?`, { reply_markup: { inline_keyboard: kb } });
+}
+function tgBuildCatKb() { return TG_CAT_KEYS().map((c, i) => [{ text: c, callback_data: 'bc:' + i }]); }
+function tgBuildCategory(chatId, msgId, catIdx) {
+  const cat = TG_CAT_KEYS()[+catIdx]; const probs = TG_CATS[cat] || [];
+  const kb = probs.map(p => [{ text: (p.icon ? p.icon + ' ' : '') + p.name, callback_data: 'bp:' + p.pid }]);
+  kb.push([{ text: '‹ Back', callback_data: 'bcback' }]);
+  return tgEdit(chatId, msgId, `<b>${tgEsc(cat)}</b> — pick your problem:`, kb);
+}
+async function tgBuildProblem(chatId, msgId, pid) {
+  const prob = tgFindProblem(pid); if (!prob) return;
+  if (prob.rcs.length === 1) { await tgBuildSetRc(chatId, pid, prob.rcs[0].id); return tgBuildStack(chatId, msgId); }
+  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ stage: 'rc', pid })]);
+  const kb = prob.rcs.map(r => [{ text: r.plain.slice(0, 60), callback_data: 'br:' + r.id }]);
+  return tgEdit(chatId, msgId, `<b>${tgEsc(prob.name)}</b> — which sounds most like you?`, kb);
+}
+async function tgBuildSetRc(chatId, pid, rcid) {
+  const stack = (TG_PROTO[pid + '/' + rcid] || {}).stack || [];
+  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ stage: 'stack', pid, rcid, supps: stack.map(c => c.id) })]);
+}
+async function tgBuildStack(chatId, msgId) {
+  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
+  const proto = TG_PROTO[(flow.pid || '') + '/' + (flow.rcid || '')]; const stack = (proto && proto.stack) || [];
+  if (!proto) return tgSend(chatId, `Something went off-track — /build to start again.`);
+  if (!stack.length) return tgBuildConfirm(chatId, msgId);
+  const sel = new Set(flow.supps || []);
+  const kb = stack.map(c => [{ text: (sel.has(c.id) ? '✓ ' : '○ ') + c.name + (c.isRx ? ' 🔵' : ''), callback_data: 'bs:' + c.id }]);
+  kb.push([{ text: (!flow.supps || !flow.supps.length ? '✓ ' : '') + '🍚 Food only', callback_data: 'bfood' }]);
+  kb.push([{ text: '✅ Build my protocol', callback_data: 'bdone' }]);
+  const text = `<b>${tgEsc(proto.problem)}</b> — tap to keep or drop each supplement (or go food-only), then build. Ask me about any by name to learn more.`;
+  return msgId ? tgEdit(chatId, msgId, text, kb) : tgSend(chatId, text, { reply_markup: { inline_keyboard: kb } });
+}
+async function tgBuildToggle(chatId, msgId, compId) {
+  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; const cur = new Set(flow.supps || []);
+  if (cur.has(compId)) cur.delete(compId); else cur.add(compId);
+  flow.supps = [...cur]; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
+  return tgBuildStack(chatId, msgId);
+}
+async function tgBuildFoodOnly(chatId, msgId) {
+  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
+  const proto = TG_PROTO[(flow.pid || '') + '/' + (flow.rcid || '')]; const stack = (proto && proto.stack) || [];
+  flow.supps = (flow.supps && flow.supps.length) ? [] : stack.map(c => c.id);
+  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
+  return tgBuildStack(chatId, msgId);
+}
+async function tgBuildConfirm(chatId, msgId) {
+  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
+  if (!flow.pid || !flow.rcid) return tgSend(chatId, `Something went off-track — /build to start again.`);
+  await db.query('UPDATE telegram_users SET pid=$2, rcid=$3, sel=$4, flow=$5 WHERE chat_id=$1', [chatId, flow.pid, flow.rcid, JSON.stringify({ supps: flow.supps || [] }), JSON.stringify({})]);
+  if (msgId) await tgApi('editMessageReplyMarkup', { chat_id: chatId, message_id: msgId, reply_markup: { inline_keyboard: [] } });
+  await tgSend(chatId, `🎉 <b>You built your own protocol!</b> Here's your daily driver:`);
+  return tgSendKeystone(chatId, flow.pid, flow.rcid);
+}
 const TG_NUT_LABEL = { protein_g: 'protein', fiber_g: 'fibre', sugar_g: 'sugar', kcal: 'calories', omega3_mg: 'omega-3', vitamin_c_mg: 'vitamin C', vitamin_d_iu: 'vitamin D', calcium_mg: 'calcium', magnesium_mg: 'magnesium', zinc_mg: 'zinc', iron_mg: 'iron', potassium_mg: 'potassium', sodium_mg: 'sodium', glycine_g: 'glycine', choline_mg: 'choline' };
 const TG_NUT_UNIT = { protein_g: 'g', fiber_g: 'g', sugar_g: 'g', kcal: 'kcal', omega3_mg: 'mg', vitamin_c_mg: 'mg', vitamin_d_iu: 'IU', calcium_mg: 'mg', magnesium_mg: 'mg', zinc_mg: 'mg', iron_mg: 'mg', potassium_mg: 'mg', sodium_mg: 'mg', glycine_g: 'g', choline_mg: 'mg' };
 function tgFindFoods(q) {
@@ -341,8 +410,16 @@ async function handleTgUpdate(update) {
   if (update.callback_query) {
     const cb = update.callback_query; const chatId = cb.message && cb.message.chat && cb.message.chat.id;
     await tgApi('answerCallbackQuery', { callback_query_id: cb.id });
-    if (cb.data === 'done' && chatId) return tgMarkDone(chatId);
-    if (cb.data && cb.data.indexOf('food:') === 0 && chatId) { const f = TG_FOODS.find(x => x.id === cb.data.slice(5)); if (f) return tgLogFood(chatId, f); }
+    const d = cb.data || ''; const msgId = cb.message && cb.message.message_id;
+    if (d === 'done' && chatId) return tgMarkDone(chatId);
+    if (d.indexOf('food:') === 0 && chatId) { const f = TG_FOODS.find(x => x.id === d.slice(5)); if (f) return tgLogFood(chatId, f); }
+    if (d.indexOf('bc:') === 0 && chatId) return tgBuildCategory(chatId, msgId, d.slice(3));
+    if (d === 'bcback' && chatId) return tgEdit(chatId, msgId, `🧬 <b>Build your plan.</b> What do you want to work on?`, tgBuildCatKb());
+    if (d.indexOf('bp:') === 0 && chatId) return tgBuildProblem(chatId, msgId, d.slice(3));
+    if (d.indexOf('br:') === 0 && chatId) { const r = await tgGet(chatId); const pid = (r && r.flow && r.flow.pid); if (pid) { await tgBuildSetRc(chatId, pid, d.slice(3)); return tgBuildStack(chatId, msgId); } return; }
+    if (d.indexOf('bs:') === 0 && chatId) return tgBuildToggle(chatId, msgId, d.slice(3));
+    if (d === 'bfood' && chatId) return tgBuildFoodOnly(chatId, msgId);
+    if (d === 'bdone' && chatId) return tgBuildConfirm(chatId, msgId);
     return;
   }
   const msg = update.message; if (!msg || !msg.chat) return;
@@ -360,10 +437,11 @@ async function handleTgUpdate(update) {
         return tgSendKeystone(chatId, t.pid, t.rcid);
       }
     }
-    return tgSend(chatId, `👋 Hi${first ? ' ' + tgEsc(first) : ''}! I'm your RNAwiki coach.\n\nOpen a protocol at ${SITE_URL}/solve and tap <b>“📲 Coach me on Telegram”</b> — I'll then coach you on that exact plan: your one keystone habit, and I'll log your meals against its targets.\n\n${TG_HELP}`);
+    return tgSend(chatId, `👋 Hi${first ? ' ' + tgEsc(first) : ''}! I'm your RNAwiki coach.\n\nSend <b>/build</b> to build a plan right here — pick your problem and supplements — and I'll coach you: your one keystone habit, your food logged against its targets, and a safety check on your stack.\n\nOr build it on the site (${SITE_URL}/solve) and tap “📲 Coach me on Telegram”.\n\n${TG_HELP}`);
   }
   const cmd = text.toLowerCase().replace(/^\//, '');
   const row = await tgGet(chatId);
+  if (cmd === 'build' || cmd === 'newplan' || cmd === 'new' || cmd === 'build a plan') return tgBuildStart(chatId);
   if (cmd === 'keystone' || cmd === 'plan') {
     if (!row || !row.pid) return tgSend(chatId, `You haven't linked a protocol yet. Open ${SITE_URL}/solve and tap “📲 Coach me on Telegram”.`);
     return tgSendKeystone(chatId, row.pid, row.rcid);
