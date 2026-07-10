@@ -2911,6 +2911,22 @@
       desc: 'Time-restricted eating lowers fasting insulin and trims visceral fat — the win is closing the kitchen, not counting calories.',
       how: 'Tap when you take your first bite and when you close the kitchen. Aim to keep eating inside a 10-hour window.',
       match: ['insulin', 'glucose', 'visceral', 'belly', 'fat', 'metabolic', 'fasting', 'blood sugar'] },
+    { id: 'bp', icon: '🩺', name: 'Home blood-pressure log', kind: 'bp',
+      desc: 'Home readings predict outcomes better than the clinic — and seeing the number is what drives it down.',
+      how: 'Log a reading (rest 5 min first). I show your 7-day average and flag when it needs a doctor.',
+      match: ['blood pressure', 'hypertension', 'bp', 'cardiovascular', 'cholesterol'] },
+    { id: 'deload', icon: '🔄', name: 'Deload advisor', kind: 'deload',
+      desc: 'Planned recovery weeks are how you break plateaus — 3 weeks push, 1 week back off.',
+      how: "I track your training block and tell you which weeks to push and when to deload. Nothing to log.",
+      match: ['plateau', 'strength', 'hypertrophy', 'muscle', 'overtrain', 'stall'] },
+    { id: 'adhere', icon: '📅', name: 'Daily-dose adherence', kind: 'adherence',
+      desc: 'Slow treatments only work with near-perfect daily use over months — this keeps you on it and shows the proof.',
+      how: 'Tap ✅ each day you apply it. I track your streak and remind you to snap a monthly progress photo (kept privately in your own album).',
+      match: ['hair', 'minoxidil', 'finasteride', 'tretinoin', 'acne', 'skin', 'hormonal treatment', 'thyroid'] },
+    { id: 'win', icon: '🌟', name: 'One small win', kind: 'log',
+      desc: 'Naming one tiny win a day is a proven lever against low mood (behavioural activation).',
+      how: 'Each day, jot one small thing you did. That is the whole exercise.',
+      match: ['depress', 'low mood', 'anhedonia', 'burnout', 'motivation'] },
     { id: 'symptom', icon: '📈', name: 'Symptom check', kind: 'scale', trend: true,
       scale: [{ v: 1, e: '😣' }, { v: 2, e: '😕' }, { v: 3, e: '😐' }, { v: 4, e: '🙂' }, { v: 5, e: '😄' }],
       desc: 'A 5-second daily read so you can actually see what moves your symptoms.',
@@ -3212,6 +3228,36 @@
             <p class="fn-w-sub">${last ? 'Last: <b>' + esc(last.text) + '</b> · ' + esc(last.date) : esc(f.how)}</p>
             <div class="fn-log-row"><input class="fn-log-in" data-fn-log="${f.id}" placeholder="e.g. 60kg × 8" autocomplete="off"><button class="fn-step add" data-log-save="${f.id}">Log</button></div></div>`;
         }
+        if (f.kind === 'bp') {
+          const b = planDay(plan).bp || {};
+          // 7-day average (readings stored per day)
+          let ss = 0, ds = 0, n = 0; for (let i = 0; i < 7; i++) { const dl = (plan.log || {})[dISO(i)]; if (dl && dl.bp && dl.bp.sys) { ss += dl.bp.sys; ds += dl.bp.dia || 0; n++; } }
+          const avgS = n ? Math.round(ss / n) : 0, avgD = n ? Math.round(ds / n) : 0;
+          const guide = !n ? '' : (avgS >= 160 || avgD >= 100) ? '🔴 High — please see a doctor soon.' : (avgS >= 140 || avgD >= 90) ? '🟠 Above target — keep at the plan; recheck weekly.' : (avgS >= 130 || avgD >= 80) ? '🟡 Slightly raised — you\'re on the right track.' : '🟢 In a healthy range — nice.';
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b>${n ? `<span class="fn-w-val">7-day avg ${avgS}/${avgD}</span>` : ''}</div>
+            <p class="fn-w-sub">${esc(f.how)}</p>
+            <div class="bp-row"><input class="ex-in" type="number" inputmode="numeric" placeholder="sys" value="${b.sys != null ? esc(String(b.sys)) : ''}" data-bp="sys" aria-label="Systolic"><span class="ex-x">/</span><input class="ex-in" type="number" inputmode="numeric" placeholder="dia" value="${b.dia != null ? esc(String(b.dia)) : ''}" data-bp="dia" aria-label="Diastolic"><span class="bp-unit">mmHg</span></div>
+            ${guide ? `<p class="triage-guide ${avgS >= 140 ? 'red' : avgS >= 130 ? 'yellow' : 'green'}">${guide}</p>` : ''}</div>`;
+        }
+        if (f.kind === 'deload') {
+          const days = Math.max(0, Math.round((new Date(today() + 'T00:00:00') - new Date(planStartDate(plan) + 'T00:00:00')) / 86400000));
+          const wk = Math.floor(days / 7); const pos = wk % 4; const isDeload = pos === 3;
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b><span class="fn-w-val">Week ${pos + 1} of 4</span></div>
+            <p class="fn-w-sub">${isDeload ? '' : esc(f.how)}</p>
+            <p class="triage-guide ${isDeload ? 'yellow' : 'green'}">${isDeload ? '🔄 <b>Deload week</b> — cut your volume ~40% (lighter loads / fewer sets). Recover and you\'ll come back stronger.' : '💪 <b>Push week</b> — train hard and try to beat last session. Deload in ' + (3 - pos) + ' week' + (3 - pos === 1 ? '' : 's') + '.'}</p></div>`;
+        }
+        if (f.kind === 'adherence') {
+          const doneToday = !!(planDay(plan).fn || {})[f.id];
+          const store = (plan.tools || {})[f.id] || {}; const lastPhoto = store.lastPhoto;
+          const daysSincePhoto = lastPhoto ? Math.round((new Date(today() + 'T00:00:00') - new Date(lastPhoto + 'T00:00:00')) / 86400000) : 999;
+          const photoDue = daysSincePhoto >= 30;
+          // applied-day streak
+          let s = 0; for (let i = 0; ; i++) { const dl = (plan.log || {})[dISO(i)]; if (dl && dl.fn && dl.fn[f.id]) s++; else if (i === 0) continue; else break; }
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b><span class="fn-w-val">🔥 ${s}-day</span></div>
+            <div class="fn-w-btns"><button class="fn-step ${doneToday ? 'add' : ''}" data-adhere="${f.id}">${doneToday ? '✅ Applied today' : 'Mark applied'}</button></div>
+            <p class="fn-w-sub ${photoDue ? 'over' : ''}">${photoDue ? '📸 Time for a monthly progress photo — snap one, keep it in your album, then tap done.' : (lastPhoto ? 'Next progress photo in ' + (30 - daysSincePhoto) + ' days.' : '📸 Take a baseline progress photo to see your before/after.')}</p>
+            ${(photoDue || !lastPhoto) ? `<button class="fn-step" data-photo="${f.id}">📸 Took my photo</button>` : ''}</div>`;
+        }
         if (f.kind === 'window') {
           const e = planDay(plan).eat || {}; let status = '';
           if (e.first && e.last) { let dur = slpToMin(e.last) - slpToMin(e.first); if (dur < 0) dur += 1440; const h = Math.floor(dur / 60), m = dur % 60; const within = dur <= f.target * 60; status = `<p class="fn-w-sub ${within ? '' : 'over'}">Eating window: <b>${h}h${m ? m + 'm' : ''}</b> (target ${f.target}h) — ${within ? '✓ nice, inside your window' : '⚠️ over — close it earlier tomorrow'}</p>`; }
@@ -3268,6 +3314,11 @@
       host.querySelectorAll('[data-scl]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[b.dataset.scl] = +b.dataset.sclv; setPlan(pl); render(); });
       // eating-window: stamp the current local time for first bite / kitchen closed
       host.querySelectorAll('[data-eat]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.eat = d.eat || {}; d.eat[b.dataset.eat] = nowHM(); setPlan(pl); render(); });
+      // blood pressure: store today's reading, refresh the 7-day average + guidance
+      host.querySelectorAll('[data-bp]').forEach(inp => inp.onchange = () => { const pl = getPlan(); const d = planDay(pl); d.bp = d.bp || {}; const n = parseInt(inp.value, 10); d.bp[inp.dataset.bp] = (n > 0 && n < 300) ? n : null; setPlan(pl); render(); });
+      // daily-dose adherence tap + monthly photo stamp
+      host.querySelectorAll('[data-adhere]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[b.dataset.adhere] = !d.fn[b.dataset.adhere]; setPlan(pl); render(); });
+      host.querySelectorAll('[data-photo]').forEach(b => b.onclick = () => { const pl = getPlan(); pl.tools = pl.tools || {}; pl.tools[b.dataset.photo] = pl.tools[b.dataset.photo] || {}; pl.tools[b.dataset.photo].lastPhoto = today(); setPlan(pl); if (typeof toast === 'function') toast('📸 Logged — keep it in your album'); render(); });
       // sleep-window time inputs → recompute efficiency and re-render the recommendation
       host.querySelectorAll('.slp-in').forEach(inp => inp.onchange = () => {
         const pl = getPlan(); const d = planDay(pl); d.sleep = d.sleep || {}; d.sleep[inp.dataset.slp] = inp.value || '';

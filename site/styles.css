@@ -1707,6 +1707,9 @@ a.dp-name:hover{color:var(--accent)}
 .sleep-inputs .slp-in:focus{outline:none;border-color:var(--accent)}
 .fn-w-sub.sleep-rec{color:var(--head)}
 .fn-w-sub.sleep-rec b{color:var(--accent)}
+/* blood pressure */
+.bp-row{display:flex;align-items:center;gap:.4rem;margin:.5rem 0}
+.bp-unit{font-size:.8rem;color:var(--muted)}
 /* eating-window */
 .win-btns{display:flex;gap:.5rem;flex-wrap:wrap;margin:.5rem 0}
 .fn-w-sub.over{color:#a11}
