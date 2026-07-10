@@ -1707,6 +1707,16 @@ a.dp-name:hover{color:var(--accent)}
 .sleep-inputs .slp-in:focus{outline:none;border-color:var(--accent)}
 .fn-w-sub.sleep-rec{color:var(--head)}
 .fn-w-sub.sleep-rec b{color:var(--accent)}
+/* pain traffic-light */
+.triage-btns{display:flex;gap:.5rem;margin:.5rem 0}
+.tri-btn{flex:1;padding:.5rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);font-size:.85rem;font-weight:600;cursor:pointer;color:var(--head)}
+.tri-btn.on.green{background:#eafaf1;border-color:#6fbf8f}
+.tri-btn.on.yellow{background:#fff6e0;border-color:#e6b84e}
+.tri-btn.on.red{background:#fdecec;border-color:#e59a9a}
+.triage-guide{font-size:.85rem;margin:.5rem 0 0;padding:.5rem .7rem;border-radius:8px;line-height:1.45}
+.triage-guide.green{background:#eafaf1;color:#0a6b3b}
+.triage-guide.yellow{background:#fff6e0;color:#8a6100}
+.triage-guide.red{background:#fdecec;color:#a11}
 .fn-w.tgonly .fn-w-tg{margin-top:.4rem;background:#2563eb;color:#fff;border:none;border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}
 /* ---- Shared protocol landing (trainer → client) ---- */
 .shared-hero{max-width:640px;margin:1.5rem auto;padding:1.6rem;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(13,148,136,.06),var(--panel));box-shadow:var(--shadow)}

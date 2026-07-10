@@ -347,6 +347,9 @@ const TG_FUNCTIONS = [
   // progressive-overload logging now lives per-exercise in the web tracker, so it's no longer a selectable tool here
   { id: 'steps', icon: '👟', name: 'Daily step counter', kind: 'counter', target: 8000, unit: 'steps', period: 'day', how: 'Log steps toward 8,000/day. Tap + to add 500.', match: ['fat', 'weight', 'cardio', 'endur', 'sedentary', 'circulation'] },
   { id: 'hydration', icon: '💧', name: 'Hydration counter', kind: 'counter', target: 8, unit: 'glasses', period: 'day', how: 'Tap + for each glass. Target 8 a day.', match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'] },
+  { id: 'protein', icon: '🥩', name: 'Protein-per-meal', kind: 'counter', target: 4, unit: 'protein meals', period: 'day', how: 'Tap + for each meal with a palm of protein. Aim for 3–4 a day — no weighing.', match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'lean mass', 'menopause', 'craving', 'appetite', 'satiety'] },
+  { id: 'fermented', icon: '🥬', name: 'Fermented-foods counter', kind: 'counter', target: 3, unit: 'servings', period: 'day', how: 'Tap + per serving — yoghurt, kefir, kimchi, sauerkraut, kombucha.', match: ['gut', 'microbiome', 'digest', 'bloat', 'ibs', 'immun', 'inflamm'] },
+  { id: 'pain', icon: '🚦', name: 'Pain traffic-light', kind: 'triage', how: 'After rehab, tap 🟢 fine / 🟡 sore / 🔴 sharp — I tell you to progress, hold or back off.', match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'] },
   { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep', how: 'CBT-I sleep restriction — send “sleep: 23:30 00:10 07:00” (in bed · asleep · woke) and I track your sleep efficiency and when to shift your bedtime.', match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'] },
   { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder', how: 'A constant wake time anchors your body clock. I nudge you nightly to protect wind-down.', match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tgOnly: true },
   { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder', how: '10 min of morning light sets your clock. I remind you within an hour of waking.', match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'], tgOnly: true },
@@ -517,6 +520,10 @@ function tgToolsView(row) {
     } else if (f.kind === 'sleep') {
       const e = tgSleepEff7(row);
       lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${e.nights ? e.avg + '% eff (7-night) — ' + tgSleepRec(e.avg, e.nights) : 'send “sleep: 23:30 00:10 07:00” to start'}`);
+    } else if (f.kind === 'triage') {
+      const v = (t.d.tri || {})[id]; const g = { green: '🟢 fine — progress a little', yellow: '🟡 sore — hold this level', red: '🔴 sharp — back off / rest' };
+      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${v ? g[v] : 'log after rehab ↓'}`);
+      kb.push([{ text: '🟢 Fine', callback_data: 'tri:' + id + ':green' }, { text: '🟡 Sore', callback_data: 'tri:' + id + ':yellow' }, { text: '🔴 Sharp', callback_data: 'tri:' + id + ':red' }]);
     }
   });
   return { text: `🧩 <b>Your tools — today</b>\n\n${lines.join('\n')}`, kb };
@@ -540,6 +547,13 @@ async function tgToolDone(chatId, msgId, id) {
   const t = tgTools(row); t.d.done[id] = true;
   await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
   await tgSyncWebDay(row, d => { d.fn[id] = true; }); // mirror timer completion into web plan
+  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
+}
+async function tgToolTriage(chatId, msgId, id, val) {
+  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'triage') return;
+  const t = tgTools(row); t.d.tri = t.d.tri || {}; t.d.tri[id] = val;
+  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
+  await tgSyncWebDay(row, d => { d.fn[id] = val; }); // mirror into web plan
   const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
 }
 // Read whether this protocol's keystone is already marked done today in the linked web plan (web → bot direction)
@@ -644,6 +658,7 @@ async function handleTgUpdate(update) {
     if (d === 'bfin' && chatId) return tgBuildConfirm(chatId, msgId);
     if (d.indexOf('tinc:') === 0 && chatId) return tgToolInc(chatId, msgId, d.slice(5));
     if (d.indexOf('tdone:') === 0 && chatId) return tgToolDone(chatId, msgId, d.slice(6));
+    if (d.indexOf('tri:') === 0 && chatId) { const pp = d.split(':'); return tgToolTriage(chatId, msgId, pp[1], pp[2]); }
     if (d.indexOf('nh:') === 0 && chatId) { const h = +d.slice(3); const r = await tgGet(chatId); const flow = (r && r.flow) || {}; flow.stage = 'nudge_tz'; flow.nudge_hour = h; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); return tgEdit(chatId, msgId, `Great — I'll check in around <b>${tgHourLabel(h)}</b>. Last thing so I get your timezone right: what's the time where you are <b>right now</b>? Reply like <b>14:30</b> or <b>2:30pm</b>.`); }
     if (d === 'noff' && chatId) { await db.query('UPDATE telegram_users SET nudge_hour=NULL, flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({})]); return tgEdit(chatId, msgId, `🔕 Daily nudges are off. /nudge to turn them back on.`); }
     return;

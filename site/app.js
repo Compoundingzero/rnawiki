@@ -2883,6 +2883,18 @@
       desc: 'Even mild dehydration drops energy, focus and training output.',
       how: 'Tap + for each glass. Target 8 a day.',
       match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'], tg: true },
+    { id: 'protein', icon: '🥩', name: 'Protein-per-meal', kind: 'counter', target: 4, unit: 'protein meals', period: 'day',
+      desc: 'Protein at each meal triggers muscle repair and kills appetite — the lever for muscle, fat loss and cravings.',
+      how: 'Tap + for each meal with a palm-sized protein serving. Aim for 3–4 a day — no weighing, just the portion.',
+      match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'lean mass', 'menopause', 'craving', 'appetite', 'satiety'], tg: true },
+    { id: 'fermented', icon: '🥬', name: 'Fermented-foods counter', kind: 'counter', target: 3, unit: 'servings', period: 'day',
+      desc: 'Fermented foods raise gut-microbiome diversity even more than fibre (Stanford RCT).',
+      how: 'Tap + for each serving — yoghurt, kefir, kimchi, sauerkraut, kombucha. A few a day.',
+      match: ['gut', 'microbiome', 'digest', 'bloat', 'ibs', 'immun', 'inflamm'], tg: true },
+    { id: 'pain', icon: '🚦', name: 'Pain traffic-light', kind: 'triage',
+      desc: 'The hurt-vs-harm rule: load the joint enough to heal without flaring it — the #1 reason people quit rehab.',
+      how: 'After each rehab session, tap how it felt. I tell you whether to progress, hold, or back off.',
+      match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'], tg: true },
     { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep',
       desc: 'The core insomnia fix (CBT-I sleep restriction): match your time in bed to time actually asleep, and sleep gets deeper and faster.',
       how: 'Each morning, log when you got in bed, roughly fell asleep, and woke. It tracks your sleep efficiency and tells you when to shift your bedtime.',
@@ -3173,6 +3185,17 @@
             <p class="fn-w-sub">${last ? 'Last: <b>' + esc(last.text) + '</b> · ' + esc(last.date) : esc(f.how)}</p>
             <div class="fn-log-row"><input class="fn-log-in" data-fn-log="${f.id}" placeholder="e.g. 60kg × 8" autocomplete="off"><button class="fn-step add" data-log-save="${f.id}">Log</button></div></div>`;
         }
+        if (f.kind === 'triage') {
+          const v = (planDay(plan).fn || {})[f.id];
+          const guide = { green: 'Fine — progress. Add a rep or a little load next session.', yellow: "Sore but it settled — hold this level, don't push today.", red: 'Sharp, or worse next morning — back off: drop load/reps or rest a day. Lingering pain = too much.' };
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b></div>
+            <p class="fn-w-sub">${esc(f.how)}</p>
+            <div class="triage-btns">
+              <button class="tri-btn green ${v === 'green' ? 'on' : ''}" data-tri="${f.id}" data-triv="green">🟢 Fine</button>
+              <button class="tri-btn yellow ${v === 'yellow' ? 'on' : ''}" data-tri="${f.id}" data-triv="yellow">🟡 Sore</button>
+              <button class="tri-btn red ${v === 'red' ? 'on' : ''}" data-tri="${f.id}" data-triv="red">🔴 Sharp</button>
+            </div>${v ? `<p class="triage-guide ${v}">${esc(guide[v])}</p>` : ''}</div>`;
+        }
         if (f.kind === 'sleep') {
           const s = planDay(plan).sleep || {}; const e7 = sleepEff7(plan);
           return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b>${s.se != null ? `<span class="fn-w-val">${s.se}% last night</span>` : ''}</div>
@@ -3195,6 +3218,8 @@
         const id = b.dataset.logSave; const inp = host.querySelector('[data-fn-log="' + id + '"]'); const txt = (inp && inp.value || '').trim(); if (!txt) return;
         const pl = getPlan(); pl.tools = pl.tools || {}; pl.tools[id] = pl.tools[id] || { entries: [] }; pl.tools[id].entries.push({ date: today(), text: txt }); setPlan(pl); if (typeof toast === 'function') toast('Logged ✓'); render();
       });
+      // pain traffic-light: one tap → store today's read + guidance
+      host.querySelectorAll('[data-tri]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[b.dataset.tri] = b.dataset.triv; setPlan(pl); render(); });
       // sleep-window time inputs → recompute efficiency and re-render the recommendation
       host.querySelectorAll('.slp-in').forEach(inp => inp.onchange = () => {
         const pl = getPlan(); const d = planDay(pl); d.sleep = d.sleep || {}; d.sleep[inp.dataset.slp] = inp.value || '';
