@@ -3235,7 +3235,9 @@
     // Confirm: fold the draft into the plan's protocol list (replacing any existing copy of the same protocol) — never overwrites others
     const conf = document.getElementById('fn-confirm'); if (conf) conf.onclick = () => {
       const p = getPlan(); const d = p.draft; if (!d) return;
-      const fns = (Array.isArray(d.functions) && d.functions.length) ? d.functions : [defId];
+      // respect the user's exact tool choice: if they removed all tools, keep it empty (don't force the matched default back).
+      // The default is only used when they never touched the Tools step (functions still unset).
+      const fns = Array.isArray(d.functions) ? d.functions : [defId];
       const prev = planProtocols(p).find(x => x.pid === d.pid && x.rcid === d.rcid);
       const entry = { pid: d.pid, rcid: d.rcid, moves: d.moves, supps: d.supps, functions: fns, startedAt: (prev && prev.startedAt) || today() };
       p.protocols = planProtocols(p).filter(x => !(x.pid === d.pid && x.rcid === d.rcid)).concat(entry);
