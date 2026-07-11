@@ -1029,6 +1029,22 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .pf-proto2 .pf-l{font-size:.7rem;font-weight:800;padding:.2rem .4rem;border-radius:7px}
 
 /* ================= Super-admin control room + root-cause governance ================= */
+/* Apple-style: one focused view at a time, generous whitespace, quiet chrome */
+.cr-head h1{margin:0 0 .1rem}
+.cr-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;margin:.9rem 0 1.3rem}
+.cr-metric{display:flex;flex-direction:column;gap:.15rem;padding:.85rem 1rem;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.cr-m-n{font-size:1.7rem;font-weight:800;line-height:1;color:var(--head);letter-spacing:-.02em}
+.cr-m-l{font-size:.78rem;color:var(--muted)}
+.cr-seg{display:inline-flex;gap:.2rem;padding:.25rem;border-radius:14px;background:var(--panel);border:1px solid var(--line);margin:0 0 1.4rem;max-width:100%;overflow-x:auto}
+.cr-seg button{border:none;background:transparent;font:inherit;font-weight:600;font-size:.9rem;color:var(--muted);cursor:pointer;padding:.5rem 1.1rem;border-radius:11px;white-space:nowrap;transition:.14s}
+.cr-seg button:hover{color:var(--head)}
+.cr-seg button.on{background:var(--bg);color:var(--head);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.cr-view{min-height:40vh}
+.cr-sec-h{margin:0 0 1rem}
+.cr-sec-h h2{margin:0 0 .15rem;font-size:1.25rem;letter-spacing:-.01em}
+.cr-sec-h p{margin:0;font-size:.85rem}
+.cr-export{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:1.1rem 0 .5rem;padding-top:1rem;border-top:1px solid var(--line)}
+.cr-export-l{font-size:.82rem;color:var(--muted);margin-right:.2rem}
 .adm-tabs{display:flex;gap:.45rem;flex-wrap:wrap;margin:.8rem 0 1rem}
 .adm-tabs button{border:1px solid var(--line);background:var(--panel);padding:.45rem .95rem;font:inherit;font-weight:600;font-size:.88rem;color:var(--muted);cursor:pointer;border-radius:999px;display:flex;align-items:center;gap:.45rem;transition:.12s}
 .adm-tabs button:hover{border-color:var(--accent);color:var(--head)}

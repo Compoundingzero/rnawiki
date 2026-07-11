@@ -1765,6 +1765,25 @@ async function api(req, res, url) {
       return csvExport(res, 'rnawiki-clinicians.csv', ['name', 'email', 'discipline', 'note', 'joined'],
         r.rows.map(x => [x.name, x.email, x.discipline, x.note, x.created_at && x.created_at.toISOString()]));
     }
+    // --- Research dataset exports (anonymous: pseudonymous user_id join key, no name/email) ---
+    if (type === 'checkins') {   // the core outcome dataset, joined to demographics
+      const r = await db.query(`SELECT c.user_id, c.pid, c.rcid, c.phase, c.symptom_0_10, c.improvement, c.adherence_pct, c.still_on, c.stop_reason, c.side_effects, c.extra,
+        p.age_band, p.sex, p.ethnicity, p.conditions, p.height_cm, p.meds, to_char(c.created_at,'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at
+        FROM outcome_checkins c LEFT JOIN user_profile p ON p.user_id=c.user_id ORDER BY c.user_id, c.created_at`);
+      return csvExport(res, 'rnawiki-checkins.csv',
+        ['user_id', 'pid', 'rcid', 'phase', 'symptom_0_10', 'improvement', 'adherence_pct', 'still_on', 'stop_reason', 'side_effects', 'extra', 'age_band', 'sex', 'ethnicity', 'conditions', 'height_cm', 'meds', 'created_at'],
+        r.rows.map(x => [x.user_id, x.pid, x.rcid, x.phase, x.symptom_0_10, x.improvement, x.adherence_pct, x.still_on, x.stop_reason, x.side_effects, x.extra ? JSON.stringify(x.extra) : '', x.age_band, x.sex, x.ethnicity, Array.isArray(x.conditions) ? x.conditions.join('|') : '', x.height_cm, Array.isArray(x.meds) ? x.meds.join('|') : '', x.created_at]));
+    }
+    if (type === 'markers') {
+      const r = await db.query(`SELECT user_id, marker, value, unit, to_char(taken_on,'YYYY-MM-DD') AS taken_on FROM blood_markers ORDER BY user_id, marker, taken_on`);
+      return csvExport(res, 'rnawiki-markers.csv', ['user_id', 'marker', 'value', 'unit', 'taken_on'],
+        r.rows.map(x => [x.user_id, x.marker, x.value, x.unit, x.taken_on]));
+    }
+    if (type === 'wearables') {
+      const r = await db.query(`SELECT user_id, to_char(day,'YYYY-MM-DD') AS day, steps, sleep_min, resting_hr, weight_kg, waist_cm FROM wearable_daily ORDER BY user_id, day`);
+      return csvExport(res, 'rnawiki-wearables.csv', ['user_id', 'day', 'steps', 'sleep_min', 'resting_hr', 'weight_kg', 'waist_cm'],
+        r.rows.map(x => [x.user_id, x.day, x.steps, x.sleep_min, x.resting_hr, x.weight_kg, x.waist_cm]));
+    }
     const r = await db.query('SELECT username,email,role,domain,domain_verified,reputation_points,created_at FROM users ORDER BY created_at DESC');
     return csvExport(res, 'rnawiki-members.csv', ['username', 'email', 'role', 'domain', 'domain_verified', 'reputation', 'joined'],
       r.rows.map(x => [x.username, x.email, x.role, x.domain, x.domain_verified, x.reputation_points, x.created_at && x.created_at.toISOString()]));

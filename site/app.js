@@ -1943,38 +1943,64 @@
       return;
     }
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Control room' }])}
-      <h1>Control room</h1>
-      <p style="color:var(--muted)">Everything in one place — your outcome dataset, the founding list, what people want built, and submissions to approve.</p>
-      <div id="adm-outcomes"><div class="muted" style="padding:1rem 0">Loading outcomes…</div></div>
-      <h2 class="adm-ops-h">Operations</h2>
-      <p class="muted" style="margin-top:-.3rem;font-size:.85rem">Pick an area to review. Red badges = items waiting on you.</p>
-      <div class="ops-menu" id="adm-tabs">${(() => {
-        const OPS = [
-          ['members', '👥', 'Members', 'Everyone who signed up — emails, join dates & roles'],
-          ['clinicians', '🩺', 'Clinician interest', 'Physios, dietitians & doctors on the founding waitlist'],
-          ['requests', '💡', 'Requests', 'Protocols & features users asked you to build'],
-          ['feedback', '💬', 'Feedback', 'Bug reports & suggestions sent from the site'],
-          ['foods', '🥗', 'Food submissions', 'User-submitted foods awaiting your approval'],
-          ['partners', '🏪', 'Partners', 'Local businesses applying to be listed'],
-          ['accounts', '✅', 'Expert applications', 'Clinicians applying for a verified-domain badge'],
-        ];
-        if (PHASE2) OPS.push(['edits', '✎', 'Pending edits', 'Proposed edits to compound pages'], ['rootcauses', '🧬', 'Root-cause changes', 'Proposed changes to protocol root causes']);
-        return OPS.map((o, i) => `<button data-tab="${o[0]}" class="ops-item${i === 0 ? ' on' : ''}"><span class="ops-ico">${o[1]}</span><span class="ops-txt"><span class="ops-title">${esc(o[2])} <span class="adm-c" id="c-${o[0]}"></span></span><span class="ops-desc">${esc(o[3])}</span></span></button>`).join('');
-      })()}</div>
-      <div id="adm-body"><div class="muted" style="padding:2rem">Select an area above.</div></div>`;
-    const tabs = app.querySelector('#adm-tabs');
-    tabs.querySelectorAll('button').forEach(b => b.onclick = () => {
-      tabs.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
-      paintAdmin(b.dataset.tab);
-    });
+      <div class="cr-head"><h1>Control Room</h1></div>
+      <div class="cr-metrics" id="cr-metrics"></div>
+      <div class="cr-seg" id="cr-seg">
+        <button data-v="dataset" class="on">📊 Dataset</button>
+        <button data-v="insights">🔬 Insights</button>
+        <button data-v="operations">🗂 Operations</button>
+      </div>
+      <div id="cr-view" class="cr-view"></div>`;
+    const nameOf = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
+    let _oc = null; const getOutcomes = () => _oc || (_oc = api.adminOutcomes());
+    async function loadMetrics() {
+      const host = app.querySelector('#cr-metrics'); if (!host) return;
+      let O = {}, members = 0;
+      try { O = await getOutcomes(); } catch (e) {}
+      try { const ov = await api.adminOverview(); members = ov.memberCount || (ov.members || []).length || 0; } catch (e) {}
+      const t = O.totals || {};
+      host.innerHTML = [['👥', members, 'members'], ['✅', t.consented || 0, 'consented'], ['📋', t.checkins || 0, 'check-ins'], ['🧬', t.protocols || 0, 'protocols with data']].map(m => `<div class="cr-metric"><span class="cr-m-n">${m[1]}</span><span class="cr-m-l">${m[0]} ${m[2]}</span></div>`).join('');
+    }
+    // ---- Dataset view: the outcome table + raw-data CSV export ----
+    async function renderDataset() {
+      const view = app.querySelector('#cr-view'); view.innerHTML = `<div class="muted" style="padding:1rem 0">Loading outcomes…</div>`;
+      let O; try { O = await getOutcomes(); } catch (e) { view.innerHTML = '<p class="muted">Could not load outcomes.</p>'; return; }
+      const rows = (O.rows || []).map(r => { const nm = nameOf(r.pid, r.rcid);
+        const p30 = r.d30_n ? Math.round(r.d30_imp / r.d30_n * 100) : null, p90 = r.d90_n ? Math.round(r.d90_imp / r.d90_n * 100) : null; const dlt = r.symptom_delta;
+        return `<tr><td>${nm.icon} <b>${esc(nm.pn)}</b> <span class="muted">${esc(nm.rn)}</span></td><td>${r.baseline_n}</td><td>${r.d30_n}${p30 != null ? ` · <b>${p30}%</b>↑` : ''}</td><td>${r.d90_n}${p90 != null ? ` · <b>${p90}%</b>↑` : ''}</td><td>${dlt != null ? (dlt > 0 ? '▼ ' + dlt : dlt < 0 ? '▲ ' + Math.abs(dlt) : '0') + ' pts' : '—'}</td><td>${r.avg_adh != null ? r.avg_adh + '%' : '—'}</td></tr>`;
+      }).join('') || '<tr><td colspan="6" class="muted">No outcome data yet — it accrues as consented users complete their 30- and 90-day check-ins.</td></tr>';
+      view.innerHTML = `<div class="cr-sec-h"><h2>Outcome dataset</h2><p class="muted">Anonymous aggregate, one row per protocol. ▼ = symptom fell (improved) · ↑ = share reporting better.</p></div>
+        <div class="ao-table-wrap"><table class="board"><thead><tr><th>Protocol</th><th>Baseline</th><th>30-day</th><th>90-day</th><th>Symptom Δ</th><th>Adherence</th></tr></thead><tbody>${rows}</tbody></table></div>
+        <div class="cr-export"><span class="cr-export-l">Extract raw data (CSV):</span><a class="admin-btn ok" href="/api/admin/export?type=checkins" download>⤓ Check-ins + demographics</a><a class="admin-btn ok" href="/api/admin/export?type=markers" download>⤓ Blood markers</a><a class="admin-btn ok" href="/api/admin/export?type=wearables" download>⤓ Wearables</a></div>`;
+    }
+    // ---- Insights view: high-value signals + research cuts ----
+    function renderInsights() { app.querySelector('#cr-view').innerHTML = `<div id="adm-signals"><div class="muted" style="padding:1rem 0">Loading insights…</div></div>`; loadSignals(); }
+    function opsMenuHtml() {
+      const OPS = [['members', '👥', 'Members', 'Everyone who signed up — emails, join dates & roles'], ['clinicians', '🩺', 'Clinician interest', 'Physios, dietitians & doctors on the founding waitlist'], ['requests', '💡', 'Requests', 'Protocols & features users asked you to build'], ['feedback', '💬', 'Feedback', 'Bug reports & suggestions sent from the site'], ['foods', '🥗', 'Food submissions', 'User-submitted foods awaiting your approval'], ['partners', '🏪', 'Partners', 'Local businesses applying to be listed'], ['accounts', '✅', 'Expert applications', 'Clinicians applying for a verified-domain badge']];
+      if (PHASE2) OPS.push(['edits', '✎', 'Pending edits', 'Proposed edits to compound pages'], ['rootcauses', '🧬', 'Root-cause changes', 'Proposed changes to protocol root causes']);
+      return OPS.map((o, i) => `<button data-tab="${o[0]}" class="ops-item${i === 0 ? ' on' : ''}"><span class="ops-ico">${o[1]}</span><span class="ops-txt"><span class="ops-title">${esc(o[2])} <span class="adm-c" id="c-${o[0]}"></span></span><span class="ops-desc">${esc(o[3])}</span></span></button>`).join('');
+    }
+    // ---- Operations view: the action queues ----
+    function renderOperations() {
+      const view = app.querySelector('#cr-view');
+      view.innerHTML = `<div class="cr-sec-h"><h2>Operations</h2><p class="muted">Pick an area to review — red badges are waiting on you.</p></div>
+        <div class="ops-menu" id="adm-tabs">${opsMenuHtml()}</div>
+        <div id="adm-body"><div class="muted" style="padding:2rem">Select an area above.</div></div>`;
+      const tabs = view.querySelector('#adm-tabs');
+      tabs.querySelectorAll('button').forEach(b => b.onclick = () => { tabs.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on'); paintAdmin(b.dataset.tab); });
+      load();
+    }
+    function showView(v) { if (v === 'dataset') renderDataset(); else if (v === 'insights') renderInsights(); else if (v === 'operations') renderOperations(); }
+    const segEl = app.querySelector('#cr-seg');
+    segEl.querySelectorAll('button').forEach(b => b.onclick = () => { segEl.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on'); showView(b.dataset.v); });
     let OV = null;
-    const load = async () => { try { OV = await api.adminOverview(); } catch (e) { app.querySelector('#adm-body').innerHTML = `<div class="empty"><h1>${esc(e.message)}</h1></div>`; return; }
+    const load = async () => { const bodyEl = app.querySelector('#adm-body'); try { OV = await api.adminOverview(); } catch (e) { if (bodyEl) bodyEl.innerHTML = `<div class="empty"><h1>${esc(e.message)}</h1></div>`; return; }
       // pending counts on the tab chips
       const pend = { accounts: OV.experts.filter(e => e.application_status === 'pending').length, edits: (OV.proposals || []).length, rootcauses: OV.rootcauseChanges.filter(c => c.status === 'pending').length, requests: OV.requests.filter(r => r.status === 'open').length, partners: OV.partners.filter(p => p.status === 'pending').length, foods: OV.foods.length, feedback: (OV.feedback || []).length };
       for (const k in pend) { const el = document.getElementById('c-' + k); if (el) el.textContent = pend[k] || ''; if (el) el.classList.toggle('hot', pend[k] > 0); }
       const cm = document.getElementById('c-members'); if (cm) cm.textContent = OV.memberCount || (OV.members || []).length || '';
       const cc = document.getElementById('c-clinicians'); if (cc) cc.textContent = (OV.clinicians || []).length || '';
-      paintAdmin(tabs.querySelector('button.on').dataset.tab);
+      const active = app.querySelector('#adm-tabs button.on'); if (active) paintAdmin(active.dataset.tab);
     };
     const act = async (fn) => { try { await fn(); await load(); } catch (e) { alert(e.message); } };
     function paintAdmin(tab) {
@@ -2059,29 +2085,6 @@
         body.querySelectorAll('[data-fb]').forEach(b => b.onclick = () => act(() => api.setFeedback(b.dataset.fb, b.dataset.to)));
       }
     }
-    // Outcome dataset — the moat, aggregated (super-admin only)
-    async function loadOutcomes() {
-      const host = document.getElementById('adm-outcomes'); if (!host) return;
-      let O; try { O = await api.adminOutcomes(); } catch (e) { host.innerHTML = ''; return; }
-      const t = O.totals || {};
-      const nameOf = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
-      const rows = (O.rows || []).map(r => { const nm = nameOf(r.pid, r.rcid);
-        const p30 = r.d30_n ? Math.round(r.d30_imp / r.d30_n * 100) : null, p90 = r.d90_n ? Math.round(r.d90_imp / r.d90_n * 100) : null;
-        const dlt = r.symptom_delta;
-        return `<tr><td>${nm.icon} <b>${esc(nm.pn)}</b> <span class="muted">${esc(nm.rn)}</span></td>
-          <td>${r.baseline_n}</td>
-          <td>${r.d30_n}${p30 != null ? ` · <b>${p30}%</b>↑` : ''}</td>
-          <td>${r.d90_n}${p90 != null ? ` · <b>${p90}%</b>↑` : ''}</td>
-          <td>${dlt != null ? (dlt > 0 ? '▼ ' + dlt : dlt < 0 ? '▲ ' + Math.abs(dlt) : '0') + ' pts' : '—'}</td>
-          <td>${r.avg_adh != null ? r.avg_adh + '%' : '—'}</td></tr>`;
-      }).join('') || '<tr><td colspan="6" class="muted">No outcome data yet — it accrues as consented users complete their 30- and 90-day check-ins.</td></tr>';
-      host.innerHTML = `<section class="adm-outcomes">
-        <div class="ao-stats"><div class="ao-stat"><span class="ao-n">${t.consented || 0}</span><span class="ao-l">consented users</span></div><div class="ao-stat"><span class="ao-n">${t.checkins || 0}</span><span class="ao-l">check-ins logged</span></div><div class="ao-stat"><span class="ao-n">${t.protocols || 0}</span><span class="ao-l">protocols with data</span></div></div>
-        <div class="ao-table-wrap"><table class="board"><thead><tr><th>Protocol</th><th>Baseline</th><th>30-day</th><th>90-day</th><th>Symptom Δ</th><th>Adherence</th></tr></thead><tbody>${rows}</tbody></table></div>
-        <p class="muted" style="font-size:.78rem">▼ = symptom fell (improved) · ↑ = share reporting better · anonymous aggregate.</p>
-        <div id="adm-signals"></div></section>`;
-      loadSignals();
-    }
     async function loadSignals() {
       const host = document.getElementById('adm-signals'); if (!host) return;
       let S; try { S = await api.adminSignals(); } catch (e) { return; }
@@ -2105,7 +2108,7 @@
           <div class="sig-card"><div class="sig-t">⚠️ Side effects <span class="muted">(pharmacovigilance)</span></div><p><b>${sfx.n || 0}</b> reports from <b>${sfx.users || 0}</b> users</p><ul class="sig-list sig-scroll">${sfxSamples}</ul></div>
           <div class="sig-card"><div class="sig-t">📏 Metabolic risk <span class="muted">(waist-to-height)</span></div><p>${whtrHtml}</p></div>
           <div class="sig-card"><div class="sig-t">💊 Polypharmacy <span class="muted">(${S.medsUsers || 0} users reported meds)</span></div><div class="sig-pills">${medsHtml}</div></div>
-          <div class="sig-card sig-wide"><div class="sig-t">📊 Condition-specific outcomes <span class="muted">(validated-flavoured items — literature-comparable)</span></div><ul class="sig-list">${extraHtml}</ul></div>
+          <div class="sig-card sig-wide"><div class="sig-t">📊 Condition-specific outcomes <span class="muted">(one quick self-report item per condition type)</span></div><ul class="sig-list">${extraHtml}</ul></div>
         </div>
         <div id="adm-research"></div>`;
       loadResearch();
@@ -2130,7 +2133,7 @@
       // 4) negative results
       const neg = (R.negativeResults || []).filter(x => x.didnt_work > 0 || x.no_improve > 0);
       const negHtml = neg.length ? `<table class="board"><thead><tr><th>Protocol</th><th>n</th><th>"Didn't work"</th><th>No improvement</th><th>Avg rating</th></tr></thead><tbody>${neg.map(x => { const o = nm(x.pid, x.rcid); return `<tr><td>${o.icon} <b>${esc(o.pn)}</b> <span class="muted">${esc(o.rn)}</span></td><td>${x.n}</td><td>${x.didnt_work}</td><td>${x.no_improve}</td><td>${x.avg_imp != null ? x.avg_imp : '—'}</td></tr>`; }).join('')}</tbody></table>` : '<p class="muted">No failures logged yet — this fills as follow-ups come in.</p>';
-      host.innerHTML = `<h3 class="sig-h">🧬 Research-grade insights <span class="muted" style="font-size:.75rem;font-weight:400">— what precision medicine pays for</span></h3>
+      host.innerHTML = `<h3 class="sig-h">🧬 Research insights <span class="muted" style="font-size:.75rem;font-weight:400">— the highest-value cuts of your data</span></h3>
         <div class="sig-grid">
           <div class="sig-card"><div class="sig-t">🩸 Biomarker before → after <span class="muted">(within-person, paired)</span></div><ul class="sig-list">${bioHtml}</ul></div>
           <div class="sig-card"><div class="sig-t">🧑‍🤝‍🧑 Who responds <span class="muted">(% improved by group)</span></div>${phHtml}</div>
@@ -2138,8 +2141,8 @@
           <div class="sig-card sig-wide"><div class="sig-t">🚫 What's NOT working <span class="muted">(negative results — rare & valuable)</span></div><div class="ao-table-wrap">${negHtml}</div></div>
         </div>`;
     }
-    loadOutcomes();
-    load();
+    loadMetrics();
+    showView('dataset');
   }
 
   // ---------- search ----------
@@ -3446,8 +3449,9 @@
       return; // one at a time
     }
   }
-  // Per-category validated-flavoured outcome item — turns a generic symptom score into research-grade,
-  // literature-comparable data. Wording paraphrases public-domain screeners (PHQ/GAD frequency, PEG pain).
+  // Per-category quick self-report item — adds a condition-specific signal on top of the generic 0–10 symptom.
+  // Wording is inspired by (not a copy of) public-domain screeners' response scales (PHQ/GAD frequency, PEG pain);
+  // treat as a lightweight trend signal, not a validated diagnostic instrument.
   const PROTOCOL_OUTCOME = {
     'Cognitive': { key: 'mood_freq', q: 'Over the last 2 weeks, how often have you felt down, anxious, or unable to focus?', opts: [[0, 'Not at all'], [1, 'Several days'], [2, 'More than half the days'], [3, 'Nearly every day']] },
     'Sleep': { key: 'sleep_quality', q: 'How would you rate your sleep lately?', opts: [[0, 'Very good'], [1, 'Fairly good'], [2, 'Fairly poor'], [3, 'Very poor']] },
