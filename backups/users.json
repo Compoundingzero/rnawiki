@@ -43,5 +43,14 @@
     "credential": null,
     "domain_verified": false,
     "created_at": "2026-07-10T16:03:49.981Z"
+  },
+  {
+    "id": 8,
+    "username": "zztool_1783734539",
+    "role": "user",
+    "domain": null,
+    "credential": null,
+    "domain_verified": false,
+    "created_at": "2026-07-11T01:49:03.863Z"
   }
 ]
