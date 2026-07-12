@@ -390,6 +390,7 @@
         <label>Username<input name="username" autocomplete="username" required placeholder="e.g. hyrox_felix"></label>
         ${login ? '' : '<label>Email <span class="opt">(optional, for recovery)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>'}
         <label>Password<input name="password" type="password" autocomplete="${login ? 'current-password' : 'new-password'}" required placeholder="${login ? 'Your password' : 'At least 8 characters'}"></label>
+        ${login ? '' : `<div class="auth-demo"><label>Age <select name="age_band"><option value="">—</option>${AGE_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label><label>Sex <select name="sex"><option value="">—</option>${SEX_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label></div><p class="auth-demo-why">Optional — so we can show you what actually works for people like you.</p>`}
         <div class="auth-err" id="auth-err" hidden></div>
         <button type="submit" class="btn-primary" id="auth-submit">${login ? 'Sign in' : 'Create account'}</button>
       </form>
@@ -406,7 +407,10 @@
         const d = mode === 'login' ? await api.login(b) : await api.register(b);
         // Re-fetch the full user (login/register responses omit is_super) so the super-admin
         // Control room link never disappears after signing in.
-        ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
+        ME = (await api.me()) || d.user;
+        // seed demographics captured at sign-up (fire-and-forget; session cookie is already set)
+        if (mode !== 'login' && (b.age_band || b.sex)) api.saveProfile({ age_band: b.age_band || null, sex: b.sex || null }).catch(() => {});
+        closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
       } catch (ex) { err.textContent = ex.message; err.hidden = false; btn.disabled = false; btn.textContent = mode === 'login' ? 'Sign in' : 'Create account'; }
     };
     if (CFG.googleClientId) mountGoogleButton(m.querySelector('#gbtn'), err);
@@ -1974,7 +1978,7 @@
         <div class="cr-export"><span class="cr-export-l">Extract raw data (CSV):</span><a class="admin-btn ok" href="/api/admin/export?type=checkins" download>⤓ Check-ins + demographics</a><a class="admin-btn ok" href="/api/admin/export?type=markers" download>⤓ Blood markers</a><a class="admin-btn ok" href="/api/admin/export?type=wearables" download>⤓ Wearables</a></div>`;
     }
     // ---- Insights view: high-value signals + research cuts ----
-    function renderInsights() { app.querySelector('#cr-view').innerHTML = `<div id="adm-signals"><div class="muted" style="padding:1rem 0">Loading insights…</div></div>`; loadSignals(); }
+    function renderInsights() { app.querySelector('#cr-view').innerHTML = `<div id="adm-datasets"><div class="muted" style="padding:1rem 0">Loading datasets…</div></div>`; loadDatasets(); }
     function opsMenuHtml() {
       const OPS = [['members', '👥', 'Members', 'Everyone who signed up — emails, join dates & roles'], ['clinicians', '🩺', 'Clinician interest', 'Physios, dietitians & doctors on the founding waitlist'], ['requests', '💡', 'Requests', 'Protocols & features users asked you to build'], ['feedback', '💬', 'Feedback', 'Bug reports & suggestions sent from the site'], ['foods', '🥗', 'Food submissions', 'User-submitted foods awaiting your approval'], ['partners', '🏪', 'Partners', 'Local businesses applying to be listed'], ['accounts', '✅', 'Expert applications', 'Clinicians applying for a verified-domain badge']];
       if (PHASE2) OPS.push(['edits', '✎', 'Pending edits', 'Proposed edits to compound pages'], ['rootcauses', '🧬', 'Root-cause changes', 'Proposed changes to protocol root causes']);
@@ -2085,61 +2089,59 @@
         body.querySelectorAll('[data-fb]').forEach(b => b.onclick = () => act(() => api.setFeedback(b.dataset.fb, b.dataset.to)));
       }
     }
-    async function loadSignals() {
-      const host = document.getElementById('adm-signals'); if (!host) return;
-      let S; try { S = await api.adminSignals(); } catch (e) { return; }
-      const STOP_LBL = { didnt_work: "Wasn't working", side_effects: 'Side effects', too_hard: 'Too hard to keep up', cost: 'Cost', got_better: 'Got better 🎉', other: 'Other' };
-      const EXTRA_LBL = { mood_freq: 'Mood / anxiety / focus (Cognitive)', sleep_quality: 'Sleep quality (Sleep)', vitality: 'Energy / libido (Hormonal)', pain_interference: 'Pain interference (Musculoskeletal)' };
-      const nameP = pid => { const p = GRAPH.problems.find(x => x.id === pid); return p ? p.name : pid; };
-      const stopN = (S.stopReasons || []).reduce((a, x) => a + x.n, 0);
-      const stopHtml = (S.stopReasons || []).length ? (S.stopReasons).map(x => `<li><b>${x.n}</b> <span class="muted">${esc(STOP_LBL[x.stop_reason] || x.stop_reason)}</span></li>`).join('') : '<li class="muted">No one has reported stopping yet.</li>';
-      const sfx = S.sideFx || {}; const sfxSamples = (S.sideFxSamples || []).map(x => `<li><span class="muted">${esc(nameP(x.pid))}:</span> ${esc(x.side_effects)}</li>`).join('') || '<li class="muted">None reported.</li>';
-      const w = S.whtr || {}; const whtrHtml = w.n ? `<b>${w.avg_whtr}</b> avg waist-to-height <span class="muted">· ${w.at_risk}/${w.n} at metabolic risk (≥0.5)</span>` : `<span class="muted">${S.waistN || 0} waist logs · need height + waist to compute risk</span>`;
-      const medsHtml = (S.topMeds || []).length ? (S.topMeds).map(x => `<span class="sig-pill">${esc(x.med)} <b>${x.n}</b></span>`).join('') : '<span class="muted">No concurrent meds reported yet.</span>';
-      const extraHtml = (S.extras || []).length ? (S.extras).map(x => `<li><span class="muted">${esc(EXTRA_LBL[x.key] || x.key)}:</span> avg <b>${x.avg}</b> <span class="muted">(n=${x.n})</span></li>`).join('') : '<li class="muted">No condition-specific outcomes yet.</li>';
-      const nd = S.nudges || {};
-      const nudgeHtml = `<div class="sig-card"><div class="sig-t">📬 Check-in nudges <span class="muted">(bring people back)</span></div>
-        <p><b>${nd.due || 0}</b> users have a 30/90-day check-in due now.</p>
-        <p class="muted" style="font-size:.8rem">Email: ${nd.emailConfigured ? '<b style="color:var(--accent)">on</b> · ' + (nd.sent || 0) + ' sent' : '<b>off</b> — add RESEND_API_KEY to send. In-app banner + Telegram still nudge.'}</p></div>`;
-      host.innerHTML = `<h3 class="sig-h">🔬 High-value signals <span class="muted" style="font-size:.75rem;font-weight:400">— the data that makes this a moat</span></h3>
-        <div class="sig-grid">
-          ${nudgeHtml}
-          <div class="sig-card"><div class="sig-t">🚪 Why people stop <span class="muted">(persistence — pharma's #1 blind spot)</span></div><ul class="sig-list">${stopHtml}</ul><p class="muted" style="font-size:.74rem">${stopN} discontinuations logged.</p></div>
-          <div class="sig-card"><div class="sig-t">⚠️ Side effects <span class="muted">(pharmacovigilance)</span></div><p><b>${sfx.n || 0}</b> reports from <b>${sfx.users || 0}</b> users</p><ul class="sig-list sig-scroll">${sfxSamples}</ul></div>
-          <div class="sig-card"><div class="sig-t">📏 Metabolic risk <span class="muted">(waist-to-height)</span></div><p>${whtrHtml}</p></div>
-          <div class="sig-card"><div class="sig-t">💊 Polypharmacy <span class="muted">(${S.medsUsers || 0} users reported meds)</span></div><div class="sig-pills">${medsHtml}</div></div>
-          <div class="sig-card sig-wide"><div class="sig-t">📊 Condition-specific outcomes <span class="muted">(one quick self-report item per condition type)</span></div><ul class="sig-list">${extraHtml}</ul></div>
-        </div>
-        <div id="adm-research"></div>`;
-      loadResearch();
-    }
-    async function loadResearch() {
-      const host = document.getElementById('adm-research'); if (!host) return;
-      let R; try { R = await api.adminResearch(); } catch (e) { return; }
+    // One clean, self-explanatory card per data asset: what it is · who it's for · why it's valuable · how it's collected · live number.
+    async function loadDatasets() {
+      const host = document.getElementById('adm-datasets'); if (!host) return;
+      let S = {}, R = {};
+      try { S = await api.adminSignals(); } catch (e) {}
+      try { R = await api.adminResearch(); } catch (e) {}
       const nm = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
-      const DIM_LBL = { age: 'Age', sex: 'Sex', ethnicity: 'Ethnicity' };
+      const nameP = pid => { const p = GRAPH.problems.find(x => x.id === pid); return p ? p.name : pid; };
       const pct = (b, n) => n ? Math.round(b / n * 100) : 0;
-      // 1) biomarker before→after
+      const STOP_LBL = { didnt_work: "wasn't working", side_effects: 'side effects', too_hard: 'too hard to keep up', cost: 'cost', got_better: 'got better', other: 'other' };
+      const EXTRA_LBL = { mood_freq: 'Mood / anxiety / focus', sleep_quality: 'Sleep quality', vitality: 'Energy / libido', pain_interference: 'Pain interference' };
+      const DIM_LBL = { age: 'Age', sex: 'Sex', ethnicity: 'Ethnicity' };
+      const none = t => `<span class="ds-empty">${t}</span>`;
+      const pills = arr => `<div class="sig-pills">${arr.join('')}</div>`;
+      // --- live stat per dataset ---
+      const stopN = (S.stopReasons || []).reduce((a, x) => a + x.n, 0);
+      const statStop = () => stopN ? `<div class="ds-big">${stopN}</div><div class="ds-sub">discontinuations · ${(S.stopReasons || []).map(x => `${x.n} ${esc(STOP_LBL[x.stop_reason] || x.stop_reason)}`).join(' · ')}</div>` : none('No one has stopped yet — fills as users report.');
+      const sfx = S.sideFx || {}; const adv = R.adverseByCompound || [];
+      const statAdverse = () => (sfx.n ? `<div class="ds-big">${sfx.n}</div><div class="ds-sub">reports from ${sfx.users || 0} users</div>` + (adv.length ? pills(adv.slice(0, 8).map(x => `<span class="sig-pill">${esc(x.compound)}${x.isRx ? ' ℞' : ''} <b>${x.n}</b></span>`)) : '') : none('No side-effects reported yet.'));
       const bio = (R.biomarkerDeltas || []).filter(x => x.users >= 1);
-      const bioHtml = bio.length ? bio.map(x => { const d = +x.avg_delta; const dir = d < 0 ? `<span style="color:var(--accent)">▼ ${Math.abs(d)}</span>` : d > 0 ? `▲ ${d}` : '→'; return `<li><span class="muted">${esc(MARKER_LABEL[x.marker] || x.marker)}:</span> avg <b>${dir}</b> <span class="muted">(${x.users} ${x.users === 1 ? 'person' : 'people'} · ${x.fell}↓ ${x.rose}↑)</span></li>`; }).join('') : '<li class="muted">No one has logged the same marker twice yet — the re-lab prompt drives this.</li>';
-      // 2) responder phenotype
+      const statBio = () => bio.length ? `<ul class="ds-list">${bio.map(x => { const d = +x.avg_delta; const dir = d < 0 ? `<b style="color:var(--accent)">▼ ${Math.abs(d)}</b>` : d > 0 ? `<b>▲ ${d}</b>` : '→'; return `<li>${esc(MARKER_LABEL[x.marker] || x.marker)} ${dir} <span class="muted">(${x.users}${x.users === 1 ? ' person' : ' ppl'})</span></li>`; }).join('')}</ul>` : none('Needs 2+ readings of a marker per user — the re-lab prompt drives this.');
       const ph = R.phenotype || []; const dims = {}; ph.forEach(r => { (dims[r.dim] = dims[r.dim] || []).push(r); });
-      const phBlocks = Object.keys(dims).map(dim => `<div class="rz-sub"><b>${DIM_LBL[dim] || dim}</b><ul class="sig-list">${dims[dim].map(r => `<li><span class="muted">${esc(r.k)}:</span> <b>${pct(r.better, r.n)}%</b> improved <span class="muted">(n=${r.n})</span></li>`).join('')}</ul></div>`).join('');
-      const condHtml = (R.byCondition || []).length ? `<div class="rz-sub"><b>By condition</b><ul class="sig-list">${(R.byCondition).map(r => `<li><span class="muted">${esc(r.k)}:</span> <b>${pct(r.better, r.n)}%</b> improved <span class="muted">(n=${r.n})</span></li>`).join('')}</ul></div>` : '';
-      const phHtml = (phBlocks || condHtml) ? phBlocks + condHtml : '<p class="muted">Need profiles + follow-up check-ins to break down responders.</p>';
-      // 3) adverse events by compound
-      const adv = R.adverseByCompound || [];
-      const advHtml = adv.length ? adv.map(x => `<span class="sig-pill">${esc(x.compound)}${x.isRx ? ' ℞' : ''} <b>${x.n}</b></span>`).join('') : '<span class="muted">No side-effects reported against a stack yet.</span>';
-      // 4) negative results
+      const statPheno = () => { const blocks = Object.keys(dims).map(dim => `<div class="ds-phrow"><span class="ds-phk">${DIM_LBL[dim] || dim}</span> ${dims[dim].map(r => `${esc(r.k)} <b>${pct(r.better, r.n)}%</b>`).join(' · ')}</div>`).join(''); const cond = (R.byCondition || []).length ? `<div class="ds-phrow"><span class="ds-phk">Condition</span> ${(R.byCondition).map(r => `${esc(r.k)} <b>${pct(r.better, r.n)}%</b>`).join(' · ')}</div>` : ''; return (blocks || cond) ? blocks + cond : none('Needs demographics + follow-up check-ins.'); };
+      const w = S.whtr || {};
+      const statWhtr = () => w.n ? `<div class="ds-big">${w.avg_whtr}</div><div class="ds-sub">avg waist-to-height · ${w.at_risk}/${w.n} at metabolic risk (≥0.5)</div>` : none(`${S.waistN || 0} waist logs — needs height + waist to compute risk.`);
+      const statMeds = () => (S.topMeds || []).length ? `<div class="ds-sub"><b>${S.medsUsers || 0}</b> users reported concurrent treatments</div>${pills((S.topMeds).slice(0, 10).map(x => `<span class="sig-pill">${esc(x.med)} <b>${x.n}</b></span>`))}` : none('No concurrent treatments reported yet.');
+      const statExtra = () => (S.extras || []).length ? `<ul class="ds-list">${(S.extras).map(x => `<li>${esc(EXTRA_LBL[x.key] || x.key)}: avg <b>${x.avg}</b> <span class="muted">(n=${x.n})</span></li>`).join('')}</ul>` : none('Fills as users answer the per-condition item at check-in.');
       const neg = (R.negativeResults || []).filter(x => x.didnt_work > 0 || x.no_improve > 0);
-      const negHtml = neg.length ? `<table class="board"><thead><tr><th>Protocol</th><th>n</th><th>"Didn't work"</th><th>No improvement</th><th>Avg rating</th></tr></thead><tbody>${neg.map(x => { const o = nm(x.pid, x.rcid); return `<tr><td>${o.icon} <b>${esc(o.pn)}</b> <span class="muted">${esc(o.rn)}</span></td><td>${x.n}</td><td>${x.didnt_work}</td><td>${x.no_improve}</td><td>${x.avg_imp != null ? x.avg_imp : '—'}</td></tr>`; }).join('')}</tbody></table>` : '<p class="muted">No failures logged yet — this fills as follow-ups come in.</p>';
-      host.innerHTML = `<h3 class="sig-h">🧬 Research insights <span class="muted" style="font-size:.75rem;font-weight:400">— the highest-value cuts of your data</span></h3>
-        <div class="sig-grid">
-          <div class="sig-card"><div class="sig-t">🩸 Biomarker before → after <span class="muted">(within-person, paired)</span></div><ul class="sig-list">${bioHtml}</ul></div>
-          <div class="sig-card"><div class="sig-t">🧑‍🤝‍🧑 Who responds <span class="muted">(% improved by group)</span></div>${phHtml}</div>
-          <div class="sig-card"><div class="sig-t">⚠️ Adverse events by compound <span class="muted">(association, not cause · ℞ = prescription)</span></div><div class="sig-pills">${advHtml}</div></div>
-          <div class="sig-card sig-wide"><div class="sig-t">🚫 What's NOT working <span class="muted">(negative results — rare & valuable)</span></div><div class="ao-table-wrap">${negHtml}</div></div>
-        </div>`;
+      const statNeg = () => neg.length ? `<ul class="ds-list">${neg.slice(0, 6).map(x => { const o = nm(x.pid, x.rcid); return `<li>${o.icon} ${esc(o.pn)} <span class="muted">— ${x.didnt_work} quit, ${x.no_improve} no gain (n=${x.n})</span></li>`; }).join('')}</ul>` : none('Fills as follow-ups come in — the failures matter as much as the wins.');
+      const DATASETS = [
+        { icon: '📉', title: 'Persistence — why people quit', who: 'Pharma & digital-health retention teams', why: 'The #1 thing the health system never sees: why people abandon a treatment.', how: 'One tap in the check-in when a user marks they’ve stopped.', stat: statStop },
+        { icon: '⚠️', title: 'Adverse events by compound', who: 'Drug-safety / HSA · supplement brands', why: 'Real-world side-effects — including compounds with zero official monitoring (peptides, longevity drugs).', how: 'One-tap “I had side effects” at check-in, linked to the user’s stack.', stat: statAdverse },
+        { icon: '🩸', title: 'Biomarker before → after', who: 'Pharma real-world-evidence · longevity clinics', why: 'Within-person proof an intervention actually moved a lab value — what buyers pay most for.', how: 'Blood markers over time + a re-lab prompt in the health tracker.', stat: statBio },
+        { icon: '🧑‍🤝‍🧑', title: 'Who responds (phenotypes)', who: 'Pharma precision-medicine teams', why: '“Which kind of person responds to what” — medicine’s single most valuable question.', how: 'Age/sex/ethnicity/condition (from sign-up) × outcome check-ins.', stat: statPheno },
+        { icon: '📏', title: 'Metabolic risk', who: 'Insurers · Healthier SG · weight-loss cos', why: 'Waist-to-height is the cheapest, best at-home predictor of diabetes & heart risk.', how: 'Waist + height in the health tracker.', stat: statWhtr },
+        { icon: '💊', title: 'Concurrent treatments', who: 'Pharma (interactions) · HSA', why: 'What else people take — incl. GLP-1s & TRT — for interaction & real-world combination data.', how: '“Anything else you take regularly?” in the profile.', stat: statMeds },
+        { icon: '📊', title: 'Condition-specific outcomes', who: 'Condition-focused brands & researchers', why: 'A standardized symptom signal per condition, comparable across users.', how: 'One quick self-report item at check-in, matched to the protocol.', stat: statExtra },
+        { icon: '🚫', title: 'What’s NOT working', who: 'Everyone — saves wasted spend', why: 'Failures are invisible in published research; knowing what to skip is rare.', how: 'Outcome check-ins flagging no improvement / “didn’t work”.', stat: statNeg },
+      ];
+      const nd = S.nudges || {};
+      const nudgeLine = `<p class="ds-nudge">📬 <b>${nd.due || 0}</b> check-ins due now · nudge email ${nd.emailConfigured ? `<b style="color:var(--accent)">on</b> (${nd.sent || 0} sent)` : '<b>off</b>'}.</p>`;
+      host.innerHTML = `<div class="cr-sec-h"><h2>Your data assets</h2><p class="muted">Each card is one dataset you’re building — <b>what</b> it is, <b>who</b> it’s for, <b>why</b> it’s valuable, <b>how</b> it’s collected. Numbers are live.</p></div>
+        ${nudgeLine}
+        <div class="ds-grid">${DATASETS.map(d => `
+          <div class="ds-card">
+            <div class="ds-head"><span class="ds-ico">${d.icon}</span><h4>${esc(d.title)}</h4></div>
+            <div class="ds-stat">${d.stat()}</div>
+            <dl class="ds-meta">
+              <div><dt>For</dt><dd>${esc(d.who)}</dd></div>
+              <div><dt>Why</dt><dd>${esc(d.why)}</dd></div>
+              <div><dt>How</dt><dd>${esc(d.how)}</dd></div>
+            </dl>
+          </div>`).join('')}</div>`;
     }
     loadMetrics();
     showView('dataset');
@@ -2415,6 +2417,9 @@
     calcium_mg: 'Calcium', magnesium_mg: 'Magnesium', zinc_mg: 'Zinc', iron_mg: 'Iron',
     potassium_mg: 'Potassium', omega3_mg: 'Omega-3', glycine_g: 'Glycine', choline_mg: 'Choline',
   };
+  // Glycemic index → band + coloured badge. GI is a property of the carbohydrate (published values).
+  function giBand(gi) { return gi >= 70 ? 'high' : gi >= 56 ? 'med' : 'low'; }
+  function giBadge(gi) { return gi == null ? '' : ` <span class="gi-badge gi-${giBand(gi)}" title="Glycemic index — how fast this raises blood sugar (low ≤55 · medium 56–69 · high ≥70)">GI ${gi}</span>`; }
 
   // Core "brain": resolve a root cause into Move / Stack / Fuel.
   function generateProtocol(rc) {
@@ -4281,9 +4286,13 @@
       }).join('');
       const logHtml = log.items.length ? log.items.map((it, i) => {
         const f = resolveItem(it); if (!f) return '';
-        return `<li><span>${esc(f.name)}${f.sg_local ? ' <span class="sg">SG</span>' : ''} <small>${esc(f.serving || '')}</small></span>
+        return `<li><span>${esc(f.name)}${f.sg_local ? ' <span class="sg">SG</span>' : ''}${giBadge(f.gi)} <small>${esc(f.serving || '')}</small></span>
           <span class="qty"><button data-dec="${i}">−</button>${it.n}<button data-inc="${i}">+</button><button class="rm" data-rm="${i}">✕</button></span></li>`;
       }).join('') : '<li class="empty-log">No food logged yet today.</li>';
+      // daily glycemic load — Σ (GI × carbs × servings / 100) over logged foods that have a published GI
+      let gl = 0, glFoods = 0; log.items.forEach(it => { const f = resolveItem(it); if (f && f.gi != null && f.carbs_g != null) { gl += f.gi * f.carbs_g * it.n / 100; glFoods++; } });
+      gl = Math.round(gl); const glBand = gl >= 120 ? 'high' : gl >= 80 ? 'med' : 'low'; const glWord = glBand === 'high' ? 'High' : glBand === 'med' ? 'Moderate' : 'Low';
+      const glHtml = glFoods ? `<div class="gl-summary gi-${glBand}"><div class="gl-top"><span>🩸 Glycemic load today</span><b>${gl} · ${glWord}</b></div><div class="gl-why">How much your day spikes blood sugar (carbs × how fast they hit). Lower is steadier energy — key for fat loss, insulin resistance &amp; diabetes. <span class="muted">Low &lt;80 · Moderate 80–120 · High &gt;120.</span></div></div>` : '';
       const interestBtn = ''; // removed: unshipped "AI logging" teaser (no clear function yet)
       const controls = ME ? `
         <div class="fuel-search">
@@ -4300,6 +4309,7 @@
         : `<div class="fuel-signin"><b>🔒 Sign in to log your meals.</b> Logging is for members — track what you eat against this protocol's biological targets. It's free and takes ten seconds.
              <button class="btn-primary" id="fuel-signin-btn">Sign in / create account</button></div>`;
       root.innerHTML = `${controls}
+        ${glHtml}
         <div class="fuel-bars">${bars || '<p class="muted">No targets for this protocol.</p>'}</div>
         <div id="ai-interest-note" class="ai-interest" hidden></div>
         ${ME ? `<div class="fuel-foot">${log.items.length ? `<button id="fuel-share" class="linkbtn share">🔗 Share my progress${hitGoals.length ? ' · ' + hitGoals.length + ' target' + (hitGoals.length > 1 ? 's' : '') + ' hit' : ''}</button> · ` : ''}<button id="fuel-reset" class="linkbtn">Reset today</button> · saved on this device</div>` : ''}`;
@@ -4318,19 +4328,21 @@
           const pool = FO.foods.map(withOverride).concat(Object.values(window.__userFoods || {}));
           const matched = pool.filter(f => f.hay.includes(v)).sort((a, b) => (b.sg_local - a.sg_local)).slice(0, 8);
           const reloadFoods = () => { window.__userFoodsLoaded = false; loadUserFoods().then(() => render()); };
-          hits.innerHTML = matched.map(f => `<div class="food-hit"><button data-food="${f.id}"><b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg">SG</span>' : ''}${f.verified ? ' <span class="uf-badge">✓</span>' : ''} <small>${esc(f.serving || '')}</small></button><button class="food-edit" data-edit="${f.id}" title="Fix this food’s nutrition">✎</button></div>`).join('') || `<span class="no-hit">No match — <button class="linkbtn" id="add-food-inline">add it →</button></span>`;
+          hits.innerHTML = matched.map(f => `<div class="food-hit"><button data-food="${f.id}"><b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg">SG</span>' : ''}${f.verified ? ' <span class="uf-badge">✓</span>' : ''}${giBadge(f.gi)} <small>${esc(f.serving || '')}</small></button><button class="food-edit" data-edit="${f.id}" title="Fix this food’s nutrition">✎</button></div>`).join('') || `<span class="no-hit">No match — <button class="linkbtn" id="add-food-inline">add it →</button></span>`;
           const afi = document.getElementById('add-food-inline'); if (afi) afi.onclick = () => openAddFoodModal(reloadFoods);
           hits.querySelectorAll('[data-edit]').forEach(b => b.onmousedown = e => { e.preventDefault(); openEditFood(b.dataset.edit, reloadFoods); });
           hits.hidden = false;
         };
         q.onblur = () => setTimeout(() => { if (hits) hits.hidden = true; }, 200);
       }
-      if (hits) hits.querySelectorAll('button[data-food]').forEach(b => b.onclick = () => {
+      // Delegated: the food-hit buttons are created dynamically on keystroke, so bind on the container (not the buttons that don't exist yet).
+      if (hits) hits.onclick = (e) => {
+        const b = e.target.closest('button[data-food]'); if (!b) return;
         const log = getFuelLog(); const id = b.dataset.food;
         const ex = log.items.find(i => i.id === id); if (ex) ex.n++; else log.items.push({ id, n: 1 });
-        setFuelLog(log); if (q) q.value = ''; render(true); // render(true) → celebrate a freshly-hit target
+        setFuelLog(log); if (q) { q.value = ''; } hits.hidden = true; render(true); // render(true) → celebrate a freshly-hit target
         if (ME) api.rep('food_log'); // +5/day for logging (server dedupes per day)
-      });
+      };
       const shareBtn = document.getElementById('fuel-share'); if (shareBtn) shareBtn.onclick = () => openProgressCard(problem, rc, null);
       root.querySelectorAll('[data-inc]').forEach(b => b.onclick = () => { const log = getFuelLog(); log.items[+b.dataset.inc].n++; setFuelLog(log); render(true); });
       root.querySelectorAll('[data-dec]').forEach(b => b.onclick = () => { const log = getFuelLog(); const it = log.items[+b.dataset.dec]; it.n--; if (it.n <= 0) log.items.splice(+b.dataset.dec, 1); setFuelLog(log); render(); });
