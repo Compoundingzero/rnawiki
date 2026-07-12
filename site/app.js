@@ -2468,6 +2468,38 @@
   // Glycemic index → band + coloured badge. GI is a property of the carbohydrate (published values).
   function giBand(gi) { return gi >= 70 ? 'high' : gi >= 56 ? 'med' : 'low'; }
   function giBadge(gi) { return gi == null ? '' : ` <span class="gi-badge gi-${giBand(gi)}" title="Glycemic index — how fast this raises blood sugar (low ≤55 · medium 56–69 · high ≥70)">GI ${gi}</span>`; }
+  // Nutritionist-authored healthier swaps for common Singapore hawker/market foods (shown on the food-detail screen).
+  const FOOD_SUBS = [
+    ['char kway teow', 'Fried Hokkien mee (ask for less dark sauce) or Yong Tau Foo soup', 'CKT is very high in oil, lard and sodium — a soup bowl cuts the fat and salt sharply.'],
+    ['fried hokkien', 'Sliced-fish bee hoon soup', 'A clear soup noodle has a fraction of the oil.'],
+    ['nasi lemak', 'Thosai with sambar, or nasi lemak with half the rice + skip fried sides', 'Coconut rice with fried chicken is calorie- and fat-dense; halving the rice helps a lot.'],
+    ['white rice', 'Brown rice, or add more vegetables and lean protein', 'Brown rice has a lower GI and more fibre — steadier energy and better fullness.'],
+    ['fried rice', 'Steamed rice with a stir-fried dish on the side', 'Fried rice soaks up a lot of oil and salt; steamed rice lets you control it.'],
+    ['chicken rice', 'Steamed chicken (skin off) with plain rice + extra veg', 'The rice is cooked in chicken fat — plain rice and no skin cut the saturated fat.'],
+    ['duck rice', 'Braised duck (skin off) with plain rice + greens', 'Duck skin and flavoured rice are fat-heavy.'],
+    ['char siew', 'Steamed or soup-based meats', 'Char siew is glazed with sugar and higher in fat.'],
+    ['roti prata', 'Thosai or chapati', 'Prata is fried in ghee/oil; thosai and chapati are far lower in fat.'],
+    ['nasi briyani', 'Plain rice with the curry on the side + more veg', 'Briyani rice is cooked in ghee and oil.'],
+    ['laksa', 'Sliced-fish bee hoon soup, or laksa yong tau foo (clear)', 'Laksa gravy is coconut-rich — high in saturated fat and sodium.'],
+    ['curry', 'A clear-soup dish or dhal', 'Coconut curries are high in saturated fat.'],
+    ['mee goreng', 'A soup noodle (mee soto or sliced-fish)', 'Fried noodles absorb a lot of oil.'],
+    ['mee rebus', 'Sliced-fish bee hoon soup', 'The gravy is starchy and sweet; a clear soup is lighter.'],
+    ['economic rice', 'Pick 2 veg + 1 lean protein, less gravy, smaller rice', 'The gravies and fried dishes add hidden oil, sugar and salt.'],
+    ['cai fan', 'Pick 2 veg + 1 steamed/lean protein, less gravy', 'Skip the fried and gravy-heavy dishes.'],
+    ['instant noodle', 'Wholegrain noodles + egg and veg, use half the seasoning', 'Instant noodles are refined and very high in sodium.'],
+    ['maggi', 'Add egg and veg, use half the seasoning packet', 'Cuts the sodium and adds protein and fibre.'],
+    ['kaya toast', 'Wholemeal toast with less kaya and butter', 'Wholemeal raises blood sugar more gently and adds fibre.'],
+    ['bubble tea', 'Order 0% sugar (kosong) and skip or halve the pearls', 'A regular cup can hit 40–60 g of sugar.'],
+    ['kopi', 'Kopi-o kosong or siu dai (less sweet)', 'Default kopi has 2–3 tsp of sugar and condensed milk.'],
+    ['teh', 'Teh-o kosong or siu dai (less sweet)', 'Default teh is sweetened with condensed milk and sugar.'],
+    ['ice kacang', 'Fresh cut fruit, or tau huay with less syrup', 'Ice kacang is mostly sugar syrup and condensed milk.'],
+    ['chendol', 'Tau huay (less syrup) or fresh fruit', 'Chendol is coconut milk + gula melaka syrup — very sugary.'],
+    ['french fries', 'Baked potato or a side of greens', 'Deep-frying roughly doubles the calories.'],
+    ['fried chicken', 'Steamed, roasted (skin off) or grilled chicken', 'The batter and deep-frying add a lot of fat.'],
+    ['fried', 'The steamed, soup or grilled version', 'Deep-frying adds oil and oxidised fats.'],
+    ['satay', 'Ask for less peanut sauce; pair with cucumber, skip the rice cake', 'The sauce and ketupat are where most of the sugar and calories hide.'],
+  ];
+  function foodSub(name) { const n = (name || '').toLowerCase(); const m = FOOD_SUBS.find(([kw]) => n.includes(kw)); return m ? { sub: m[1], why: m[2] } : null; }
 
   // Core "brain": resolve a root cause into Move / Stack / Fuel.
   function generateProtocol(rc) {
@@ -4315,12 +4347,15 @@
     const gi = food.gi;
     const giLine = gi != null ? `<div class="fd-gi gi-${giBand(gi)}">GI ${gi} · ${giBand(gi) === 'high' ? 'High — raises blood sugar fast' : giBand(gi) === 'med' ? 'Medium impact' : 'Low — gentle on blood sugar'}</div>` : '';
     const img = food.image ? `<img class="fd-img" src="${esc(food.image)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : '';
+    const sub = foodSub(food.name);
+    const subHtml = sub ? `<div class="fd-sub"><div class="fd-sub-h">🥗 Healthier swap</div><div class="fd-sub-body"><b>${esc(sub.sub)}</b><p>${esc(sub.why)}</p></div></div>` : '';
     const NUTRI = [['kcal', 'Calories', ''], ['carbs_g', 'Carbs', 'g'], ['protein_g', 'Protein', 'g'], ['fat_g', 'Fat', 'g'], ['sugar_g', 'Sugar', 'g'], ['fiber_g', 'Fiber', 'g']];
     const m = modal(`<button class="modal-x" data-close aria-label="Close">✕</button>
       ${img}
       <h2 class="fd-name">${esc(food.name)}</h2>
       <p class="fd-serv">${esc(food.serving || '1 serving')}${food.sg_local ? ' · <span class="sg">SG</span>' : ''}${food.verified ? ' · <span class="uf-badge">✓ verified</span>' : ''}</p>
       ${giLine}
+      ${subHtml}
       <div class="fd-nutri" id="fd-nutri"></div>
       <div class="fd-qtyrow"><span>Servings</span><div class="fd-qty"><button class="fd-qbtn" data-q="-1" aria-label="Fewer">−</button><span class="fd-qn" id="fd-q">1</span><button class="fd-qbtn" data-q="1" aria-label="More">＋</button></div></div>
       <button class="cta-primary fd-add" id="fd-add">＋ Add ${food.serving ? esc(food.serving.replace(/^1\s+/, '')) : 'to today'}</button>
@@ -4375,6 +4410,20 @@
       let gl = 0, glFoods = 0; log.items.forEach(it => { const f = resolveItem(it); if (f && f.gi != null && f.carbs_g != null) { gl += f.gi * f.carbs_g * it.n / 100; glFoods++; } });
       gl = Math.round(gl); const glBand = gl >= 120 ? 'high' : gl >= 80 ? 'med' : 'low'; const glWord = glBand === 'high' ? 'High' : glBand === 'med' ? 'Moderate' : 'Low';
       const glHtml = glFoods ? `<div class="gl-summary gi-${glBand}"><div class="gl-top"><span>🩸 Glycemic load today</span><b>${gl} · ${glWord}</b></div><div class="gl-why">How much your day spikes blood sugar (carbs × how fast they hit). Lower is steadier energy — key for fat loss, insulin resistance &amp; diabetes. <span class="muted">Low &lt;80 · Moderate 80–120 · High &gt;120.</span></div></div>` : '';
+      // General macros — separate from the protocol targets; the same food log feeds both.
+      let mKcal = 0, mP = 0, mC = 0, mF = 0, mAny = false;
+      log.items.forEach(it => { const f = resolveItem(it); if (!f) return; if (f.kcal != null) { mKcal += f.kcal * it.n; mAny = true; } if (f.protein_g != null) { mP += f.protein_g * it.n; mAny = true; } if (f.carbs_g != null) { mC += f.carbs_g * it.n; mAny = true; } if (f.fat_g != null) { mF += f.fat_g * it.n; mAny = true; } });
+      const macroCals = mP * 4 + mC * 4 + mF * 9;
+      const mpct = g => macroCals ? Math.round(g / macroCals * 100) : 0;
+      const macroHtml = mAny ? `<div class="macro-card">
+        <div class="macro-h">🔢 Today's macros <span class="muted">— all foods you logged (separate from protocol targets)</span></div>
+        <div class="macro-stats">
+          <div class="macro-s"><span class="macro-n">${Math.round(mKcal)}</span><span class="macro-l">calories</span></div>
+          <div class="macro-s macro-p"><span class="macro-n">${Math.round(mP)}g</span><span class="macro-l">Protein</span></div>
+          <div class="macro-s macro-c"><span class="macro-n">${Math.round(mC)}g</span><span class="macro-l">Carbs</span></div>
+          <div class="macro-s macro-f"><span class="macro-n">${Math.round(mF)}g</span><span class="macro-l">Fat</span></div>
+        </div>
+        ${macroCals ? `<div class="macro-split" title="Share of calories from protein / carbs / fat"><i class="ms-p" style="width:${mpct(mP * 4)}%"></i><i class="ms-c" style="width:${mpct(mC * 4)}%"></i><i class="ms-f" style="width:${mpct(mF * 9)}%"></i></div><div class="macro-leg"><span class="macro-p">● ${mpct(mP * 4)}% protein</span><span class="macro-c">● ${mpct(mC * 4)}% carbs</span><span class="macro-f">● ${mpct(mF * 9)}% fat</span></div>` : ''}</div>` : '';
       const interestBtn = ''; // removed: unshipped "AI logging" teaser (no clear function yet)
       const controls = ME ? `
         <div class="fuel-search">
@@ -4393,6 +4442,7 @@
       root.innerHTML = `${controls}
         ${glHtml}
         <div class="fuel-bars">${bars || '<p class="muted">No targets for this protocol.</p>'}</div>
+        ${macroHtml}
         <div id="ai-interest-note" class="ai-interest" hidden></div>
         ${ME && log.items.length ? `<div class="fuel-foot">
           <button id="fuel-share" class="fuel-share-btn">📸 Share ${hitGoals.length ? `— ${hitGoals.length} target${hitGoals.length > 1 ? 's' : ''} hit today 🎯` : 'my day'}</button>
