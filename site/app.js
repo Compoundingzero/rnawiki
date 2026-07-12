@@ -5081,11 +5081,11 @@
                 <text x="200" y="165" text-anchor="middle" class="gpx-lbl">consult → prescribe → gone</text>
               </g>
               <g class="gpx-s2fix">
-                <circle cx="200" cy="100" r="62" fill="none" stroke="var(--line)" stroke-width="3"/>
+                <circle class="gpx-stag" style="--d:.26" cx="200" cy="100" r="62" fill="none" stroke="var(--line)" stroke-width="3"/>
                 <circle class="gpx-arc" cx="200" cy="100" r="62" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="100" transform="rotate(-90 200 100)"/>
-                <g transform="translate(182,82)"><rect width="36" height="34" rx="4" fill="#16a34a"/><rect x="13" y="8" width="10" height="10" rx="2" fill="#fff"/><path d="M18 10 v6 M15 13 h6" stroke="#16a34a" stroke-width="2.2"/></g>
-                <g class="gpx-orbit"><circle cx="200" cy="38" r="8" fill="#16a34a"/><circle cx="200" cy="38" r="8" fill="#16a34a" transform="rotate(120 200 100)"/><circle cx="200" cy="38" r="8" fill="#16a34a" transform="rotate(240 200 100)"/></g>
-                <text x="200" y="190" text-anchor="middle" class="gpx-lbl gpx-lbl-good">week 3 of 12 · your program</text>
+                <g class="gpx-stag" style="--d:.3" transform="translate(182,82)"><rect width="36" height="34" rx="4" fill="#16a34a"/><rect x="13" y="8" width="10" height="10" rx="2" fill="#fff"/><path d="M18 10 v6 M15 13 h6" stroke="#16a34a" stroke-width="2.2"/></g>
+                <g class="gpx-orbit"><circle class="gpx-stag" style="--d:.44" cx="200" cy="38" r="8" fill="#16a34a"/><circle class="gpx-stag" style="--d:.54" cx="200" cy="38" r="8" fill="#16a34a" transform="rotate(120 200 100)"/><circle class="gpx-stag" style="--d:.64" cx="200" cy="38" r="8" fill="#16a34a" transform="rotate(240 200 100)"/></g>
+                <text x="200" y="190" text-anchor="middle" class="gpx-lbl gpx-lbl-good gpx-stag" style="--d:.7">week 3 of 12 · your program</text>
               </g>
             </svg>
           </div>
@@ -5110,15 +5110,15 @@
           <div class="gpx-art">
             <svg class="gpx-svg" viewBox="0 0 400 210" role="img" aria-label="A squeezed margin lifted by an alliance">
               <g class="gpx-lines" stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round">
-                <line class="gpx-ln" x1="200" y1="72" x2="86" y2="34" pathLength="100"/><line class="gpx-ln" x1="200" y1="72" x2="330" y2="40" pathLength="100"/><line class="gpx-ln" x1="200" y1="72" x2="60" y2="96" pathLength="100"/><line class="gpx-ln" x1="200" y1="72" x2="346" y2="100" pathLength="100"/><line class="gpx-ln" x1="200" y1="72" x2="130" y2="122" pathLength="100"/><line class="gpx-ln" x1="200" y1="72" x2="280" y2="124" pathLength="100"/>
+                <line class="gpx-ln" style="--d:.2" x1="200" y1="72" x2="86" y2="34" pathLength="100"/><line class="gpx-ln" style="--d:.3" x1="200" y1="72" x2="330" y2="40" pathLength="100"/><line class="gpx-ln" style="--d:.4" x1="200" y1="72" x2="60" y2="96" pathLength="100"/><line class="gpx-ln" style="--d:.5" x1="200" y1="72" x2="346" y2="100" pathLength="100"/><line class="gpx-ln" style="--d:.6" x1="200" y1="72" x2="130" y2="122" pathLength="100"/><line class="gpx-ln" style="--d:.7" x1="200" y1="72" x2="280" y2="124" pathLength="100"/>
               </g>
               <g class="gpx-sats" fill="#16a34a">
-                <g transform="translate(86,34)" class="gpx-sat"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
-                <g transform="translate(330,40)" class="gpx-sat"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
-                <g transform="translate(60,96)" class="gpx-sat"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
-                <g transform="translate(346,100)" class="gpx-sat"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
-                <g transform="translate(130,122)" class="gpx-sat"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
-                <g transform="translate(280,124)" class="gpx-sat"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
+                <g transform="translate(86,34)" class="gpx-sat" style="--d:.24"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
+                <g transform="translate(330,40)" class="gpx-sat" style="--d:.34"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
+                <g transform="translate(60,96)" class="gpx-sat" style="--d:.44"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
+                <g transform="translate(346,100)" class="gpx-sat" style="--d:.54"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
+                <g transform="translate(130,122)" class="gpx-sat" style="--d:.64"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
+                <g transform="translate(280,124)" class="gpx-sat" style="--d:.74"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🏥</text></g>
               </g>
               <g transform="translate(200,72)"><circle r="26" class="gpx-center-halo" fill="#22c55e" opacity="0"/><circle r="21" fill="#16a34a"/><rect x="-9" y="-9" width="18" height="18" rx="3" fill="#fff"/><path d="M0 -6 v12 M-6 0 h12" stroke="#16a34a" stroke-width="3"/></g>
               <text x="200" y="168" text-anchor="middle" class="gpx-lbl">Your margin on a box of medicine</text>
@@ -5207,12 +5207,12 @@
       if (!document.body.contains(sec)) { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); return; }
       const rect = sec.getBoundingClientRect(); const total = sec.offsetHeight - window.innerHeight;
       const progress = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 0;
-      const t = Math.min(1, Math.max(0, (progress - 0.12) / 0.74));   // scene morph — spread across most of the (now longer) pin, so it eases slowly
+      const t = Math.min(1, Math.max(0, (progress - 0.1) / 0.8));     // scene morph — spans almost the whole pin; per-element --d delays stage the build within it
       sec.style.setProperty('--t', t.toFixed(3));
-      const tc = Math.min(1, Math.max(0, (progress - 0.30) / 0.42));  // text swap — a gradual dissolve, not a flip
+      const tc = Math.min(1, Math.max(0, (progress - 0.34) / 0.42));  // text swap — dissolves in step with the visual build, not before it
       if (cp) cp.style.opacity = 1 - tc;
       if (cf) cf.style.opacity = tc;
-      if (cue) cue.style.opacity = progress > 0.78 ? 0 : (1 - tc) * 0.85;
+      if (cue) cue.style.opacity = progress > 0.82 ? 0 : (1 - tc) * 0.85;
     };
     window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); onScroll();
   }

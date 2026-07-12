@@ -1840,7 +1840,7 @@ a.dp-name:hover{color:var(--accent)}
   .gpm-vs-arr{transform:rotate(90deg)}
 }
 /* Immersive scroll modules — full-screen sticky scene that crossfades pain → fix as you scroll (works on mobile) */
-.gpx{position:relative;height:300vh;--t:0}
+.gpx{position:relative;height:340vh;--t:0}
 .gpx-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;padding:4vh 1.2rem}
 .gpx-art{width:100%;max-width:440px}
 .gpx-svg{width:100%;height:auto;display:block;overflow:visible}
@@ -1861,17 +1861,19 @@ a.dp-name:hover{color:var(--accent)}
 .gpx-beam{opacity:calc(var(--t)*.85)}
 .gpx-others{opacity:calc(1 - var(--t)*.6)}
 .gpx-you{transform:translateY(calc(var(--t)*-14px))}
-.gpx-you-gold{opacity:var(--t)}
-.gpx-badge{opacity:var(--t)}
+.gpx-you-gold{opacity:clamp(0,calc((var(--t) - .12)*2),1)}
+.gpx-badge{opacity:clamp(0,calc((var(--t) - .5)*3),1)}
 .gpx-cd{transform:translateX(calc(var(--x)*1px*(1 - var(--t))));opacity:calc(.35 + var(--t)*.65)}
-.gpx-s2pain{opacity:calc(1 - var(--t))}
-.gpx-s2fix{opacity:var(--t)}
-.gpx-arc{stroke-dashoffset:calc(100 - var(--t)*76)}
-.gpx-orbit{transform-box:view-box;transform-origin:200px 100px;animation:gpspin 10s linear infinite}
-.gpx-ln{stroke-dasharray:100;stroke-dashoffset:calc(100 - var(--t)*100)}
-.gpx-sat{opacity:var(--t)}
-.gpx-center-halo{opacity:calc(var(--t)*.28)}
-.gpx-keep{transform-box:fill-box;transform-origin:left;transform:scaleX(calc(.16 + var(--t)*.46))}
+/* staggered build: each element wakes at its own --d and eases in over ~0.15 of --t */
+.gpx-stag{opacity:clamp(0,calc((var(--t) - var(--d,0))*7),1)}
+.gpx-s2pain{opacity:clamp(0,calc((.42 - var(--t))*3.2),1)}
+.gpx-s2fix{opacity:1}
+.gpx-arc{stroke-dashoffset:calc(100 - clamp(0,calc((var(--t) - .42)*2.1),1)*76)}
+.gpx-orbit{transform-box:view-box;transform-origin:200px 100px;animation:gpspin 13s linear infinite}
+.gpx-ln{stroke-dasharray:100;stroke-dashoffset:calc(100 - clamp(0,calc((var(--t) - var(--d,0))*6),1)*100)}
+.gpx-sat{opacity:clamp(0,calc((var(--t) - var(--d,0))*7),1)}
+.gpx-center-halo{opacity:clamp(0,calc((var(--t) - .15)*.5),.28)}
+.gpx-keep{transform-box:fill-box;transform-origin:left;transform:scaleX(clamp(.16,calc(.16 + (var(--t) - .5)*1.3),.62))}
 @keyframes gpspin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.gpx{height:auto}.gpx-sticky{position:static;height:auto;padding:2.4rem 1.2rem}.gpx-cap{min-height:0}.gpx-cap-l{position:static}.gpx-cap-pain{display:none}.gpx-cue{display:none}.gpx-orbit{animation:none}}
 .gp-band{margin:2.6rem 0}
