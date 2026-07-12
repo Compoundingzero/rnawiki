@@ -1840,7 +1840,7 @@ a.dp-name:hover{color:var(--accent)}
   .gpm-vs-arr{transform:rotate(90deg)}
 }
 /* Immersive scroll modules — full-screen sticky scene that crossfades pain → fix as you scroll (works on mobile) */
-.gpx{position:relative;height:230vh;--t:0}
+.gpx{position:relative;height:300vh;--t:0}
 .gpx-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.6rem;padding:4vh 1.2rem}
 .gpx-art{width:100%;max-width:440px}
 .gpx-svg{width:100%;height:auto;display:block;overflow:visible}

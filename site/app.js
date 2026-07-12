@@ -5207,12 +5207,12 @@
       if (!document.body.contains(sec)) { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); return; }
       const rect = sec.getBoundingClientRect(); const total = sec.offsetHeight - window.innerHeight;
       const progress = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 0;
-      const t = Math.min(1, Math.max(0, (progress - 0.14) / 0.6));    // scene morph — starts early, eases across the pin
+      const t = Math.min(1, Math.max(0, (progress - 0.12) / 0.74));   // scene morph — spread across most of the (now longer) pin, so it eases slowly
       sec.style.setProperty('--t', t.toFixed(3));
-      const tc = Math.min(1, Math.max(0, (progress - 0.42) / 0.22));  // text swap — a beat after the scene
+      const tc = Math.min(1, Math.max(0, (progress - 0.30) / 0.42));  // text swap — a gradual dissolve, not a flip
       if (cp) cp.style.opacity = 1 - tc;
       if (cf) cf.style.opacity = tc;
-      if (cue) cue.style.opacity = progress > 0.72 ? 0 : (1 - tc) * 0.85;
+      if (cue) cue.style.opacity = progress > 0.78 ? 0 : (1 - tc) * 0.85;
     };
     window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); onScroll();
   }
