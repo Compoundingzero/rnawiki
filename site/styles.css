@@ -11,7 +11,7 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 code{background:var(--panel2);padding:1px 6px;border-radius:6px;font-size:.88em;color:#0f766e;font-family:var(--mono)}
@@ -1813,8 +1813,9 @@ a.dp-name:hover{color:var(--accent)}
 .gpm-viz-good{background:linear-gradient(180deg,color-mix(in srgb,#22c55e 9%,var(--panel)),var(--panel))!important;border-color:color-mix(in srgb,#22c55e 28%,var(--line))!important;box-shadow:0 12px 34px rgba(34,197,94,.14)}
 .gpm-pins{font-size:1.5rem;letter-spacing:.12rem;filter:grayscale(.75);opacity:.5;line-height:1.5}
 .gpm-viz-h{font-weight:700;font-size:.88rem;color:var(--head)}
-.gpm-rank{display:flex;justify-content:space-between;align-items:center;gap:.5rem;width:100%;padding:.5rem .7rem;border-radius:10px;background:var(--bg);font-size:.83rem}
-.gpm-rank small{color:var(--muted);white-space:nowrap}
+.gpm-rank{display:flex;justify-content:space-between;align-items:center;gap:.4rem;width:100%;padding:.5rem .7rem;border-radius:10px;background:var(--bg);font-size:.83rem;flex-wrap:wrap}
+.gpm-rank>span{min-width:0;overflow-wrap:anywhere}
+.gpm-rank small{color:var(--muted);text-align:right}
 .gpm-rank-1{background:linear-gradient(90deg,#fef3c7,var(--bg));border:1px solid #fcd34d;font-weight:600}
 .gpm-flowline{font-size:1.7rem;display:flex;align-items:center;gap:.5rem}
 .gpm-ar{color:var(--faint);font-size:1.05rem}
