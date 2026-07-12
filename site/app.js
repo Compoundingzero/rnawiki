@@ -5022,54 +5022,63 @@
         <div class="gp-scrollhint">Scroll to see how ↓</div>
       </section>
 
-      <section class="gpm reveal">
-        <div class="gpm-tag">01 · The price war</div>
-        <div class="gpm-flow">
-          <div class="gpm-side gpm-pain">
-            <div class="gpm-viz gpm-viz-war"><div class="gpm-pins">${'<span>🏥</span>'.repeat(7)}</div></div>
-            <h3>Another clinic just opened down the road.</h3>
-            <p>A GP on nearly every street. You can't out-advertise them, so it comes down to price — a race to the bottom nobody wins. You're invisible in the crowd.</p>
+      <section class="gpx" id="gpx-1">
+        <div class="gpx-sticky">
+          <div class="gpx-scene">
+            <div class="gpx-layer gpx-pain">
+              <div class="gpx-name gpx-name-pain">Lost in the crowd</div>
+              <div class="gpx-viz gpx-crowd">${'<span>🏥</span>'.repeat(15)}</div>
+              <h3>You're one clinic among dozens.</h3>
+              <p>Patients scroll straight past. There's nothing to pick you for but price — a race to the bottom you can't win. You did the training. You have the skill. And still, you're invisible.</p>
+            </div>
+            <div class="gpx-layer gpx-fix">
+              <div class="gpx-name gpx-name-fix">The name they trust</div>
+              <div class="gpx-viz gpx-viz-good"><div class="gpx-viz-h">🏅 Top trusted clinics · Tampines</div><div class="gpm-rank gpm-rank-1"><span>🥇 Dr Tan Family Clinic</span><small>0.4 km</small></div><div class="gpm-rank"><span>🥈 Clinic B</span></div><div class="gpm-rank"><span>🥉 Clinic C</span></div></div>
+              <h3>Now you're the name they <span class="lead">seek out</span>.</h3>
+              <p>Your reliable contributions lift your clinic to the top of what patients see nearby. They choose you for credibility — not the lowest price.</p>
+            </div>
           </div>
-          <div class="gpm-vs"><span class="gpm-vs-lbl">on RNAwiki</span><span class="gpm-vs-arr">➜</span></div>
-          <div class="gpm-side gpm-fix">
-            <div class="gpm-viz gpm-viz-good"><div class="gpm-viz-h">🏅 Top trusted clinics · Tampines</div><div class="gpm-rank gpm-rank-1"><span>🥇 Dr Tan Family Clinic</span><small>0.4 km · verified GP</small></div><div class="gpm-rank"><span>🥈 Clinic B</span><small>1.1 km</small></div><div class="gpm-rank"><span>🥉 Clinic C</span><small>1.8 km</small></div></div>
-            <h3>Now patients seek <span class="lead">you</span> out.</h3>
-            <p>Contribute reliable clinical information and your clinic rises on <b>“Top trusted clinics near you.”</b> The people in your neighbourhood find <b>you</b> first — chosen for credibility, not the cheapest price.</p>
-          </div>
+          <div class="gpx-cue">keep scrolling ↓</div>
         </div>
       </section>
 
-      <section class="gpm reveal">
-        <div class="gpm-tag">02 · One-and-done</div>
-        <div class="gpm-flow">
-          <div class="gpm-side gpm-pain">
-            <div class="gpm-viz gpm-viz-war"><div class="gpm-flowline"><span>🧑</span><span class="gpm-ar">→</span><span>💊</span><span class="gpm-ar">→</span><span class="gpm-gone">👋</span></div><div class="gpm-viz-sub">consult · prescribe · gone</div></div>
-            <h3>Consult. Prescribe. Gone.</h3>
-            <p>A patient walks in, you write a script, they walk out — and you may never see them again. No continuity, nothing that compounds. Every day starts back at zero.</p>
+      <section class="gpx" id="gpx-2">
+        <div class="gpx-sticky">
+          <div class="gpx-scene">
+            <div class="gpx-layer gpx-pain">
+              <div class="gpx-name gpx-name-pain">Here today, gone forever</div>
+              <div class="gpx-viz gpx-flowbig"><span>🧑</span><span class="gpx-ar">→</span><span>💊</span><span class="gpx-ar">→</span><span class="gpx-gone">👋</span></div>
+              <h3>Consult. Prescribe. Gone.</h3>
+              <p>Every patient is a one-time transaction. They walk out and you may never see them again — no relationship, nothing that builds. Tomorrow you start back at zero. Again.</p>
+            </div>
+            <div class="gpx-layer gpx-fix">
+              <div class="gpx-name gpx-name-fix">Patients who stay</div>
+              <div class="gpx-viz gpx-viz-good"><div class="gpm-prog"><span>“Reverse My Pre-Diabetes”</span><small>Sarah · week 3 of 12 · your program</small></div><div class="gpm-loopline"><span>🔁 returns</span><span>💊 refills via you</span><span>🩺 reviews</span></div></div>
+              <h3>They join <span class="lead">your</span> program — and stay.</h3>
+              <p>From the protocols you maintain, patients enrol in programs you built — buying supplements and prescriptions through your clinic, month after month. A relationship that compounds.</p>
+            </div>
           </div>
-          <div class="gpm-vs"><span class="gpm-vs-lbl">on RNAwiki</span><span class="gpm-vs-arr">➜</span></div>
-          <div class="gpm-side gpm-fix">
-            <div class="gpm-viz gpm-viz-good"><div class="gpm-prog"><span>“Reverse My Pre-Diabetes”</span><small>Sarah · week 3 of 12 · your program</small></div><div class="gpm-loopline"><span>🔁 returns</span><span>💊 refills via you</span><span>🩺 reviews</span></div></div>
-            <h3>They join <span class="lead">your</span> program — and stay.</h3>
-            <p>From the protocols you maintain, you build <b>programs patients enrol in</b> — and buy their supplements &amp; prescriptions through your clinic. A recurring relationship, month after month.</p>
-          </div>
+          <div class="gpx-cue">keep scrolling ↓</div>
         </div>
       </section>
 
-      <section class="gpm reveal">
-        <div class="gpm-tag">03 · Thin margins</div>
-        <div class="gpm-flow">
-          <div class="gpm-side gpm-pain">
-            <div class="gpm-viz gpm-viz-war"><div class="gpm-viz-sub">Your margin on a box of medicine</div><div class="gpm-bar"><i class="gpm-bar-cost" style="width:82%"></i><i class="gpm-bar-keep" style="width:18%"></i></div><div class="gpm-bar-key"><span class="gpm-k-cost">■ drug cost</span><span class="gpm-k-keep">■ you keep</span></div></div>
-            <h3>Drug costs eat the profit.</h3>
-            <p>You became a doctor to change lives — but the business turns you into a dispensary, and the margin on every box keeps shrinking.</p>
+      <section class="gpx" id="gpx-3">
+        <div class="gpx-sticky">
+          <div class="gpx-scene">
+            <div class="gpx-layer gpx-pain">
+              <div class="gpx-name gpx-name-pain">The margin trap</div>
+              <div class="gpx-viz"><div class="gpm-viz-sub">Your margin on a box of medicine</div><div class="gpm-bar gpx-bar"><i class="gpm-bar-cost" style="width:84%"></i><i class="gpm-bar-keep" style="width:16%"></i></div><div class="gpm-bar-key"><span class="gpm-k-cost">■ drug cost</span><span class="gpm-k-keep">■ you keep</span></div></div>
+              <h3>The medicine sells. You barely keep a cent.</h3>
+              <p>Drug costs devour the margin on every box. You became a doctor to change lives — and the business turned you into a dispensary running on fumes.</p>
+            </div>
+            <div class="gpx-layer gpx-fix">
+              <div class="gpx-name gpx-name-fix">Stronger together</div>
+              <div class="gpx-viz gpx-viz-good"><div class="gpx-nodesbig">${'<span>🏥</span>'.repeat(6)}</div><div class="gpm-viz-sub">buy together → cost ↓ · margin ↑ · <b>free</b></div><div class="gpm-bar gpx-bar"><i class="gpm-bar-cost" style="width:56%"></i><i class="gpm-bar-keep" style="width:44%"></i></div></div>
+              <h3>A network that <span class="lead">lifts every clinic</span>.</h3>
+              <p>The network buys in bulk, so your cost of goods drops — and clinics share stock through consignment. Your margin grows. And it costs you nothing.</p>
+            </div>
           </div>
-          <div class="gpm-vs"><span class="gpm-vs-lbl">on RNAwiki</span><span class="gpm-vs-arr">➜</span></div>
-          <div class="gpm-side gpm-fix">
-            <div class="gpm-viz gpm-viz-good"><div class="gpm-nodes">${'<span>🏥</span>'.repeat(6)}</div><div class="gpm-viz-sub">buy together → cost ↓ · margin ↑ · <b>free</b></div><div class="gpm-bar"><i class="gpm-bar-cost" style="width:58%"></i><i class="gpm-bar-keep" style="width:42%"></i></div></div>
-            <h3>A network that <span class="lead">lifts every clinic</span>.</h3>
-            <p>As the alliance grows we <b>buy together</b> — bulk pricing drops your cost of goods, and <b>consignment between clinics</b> cuts waste. Your margin rises. And it's <b>completely free</b>.</p>
-          </div>
+          <div class="gpx-cue">keep scrolling ↓</div>
         </div>
       </section>
 
@@ -5097,8 +5106,27 @@
       </section>`;
     bindGpLanding();
   }
+  // Scroll-driven crossfade: as each module scrolls through, the pain scene morphs into the fix scene.
+  function initGpScroll(id) {
+    const sec = document.getElementById(id); if (!sec) return;
+    const pain = sec.querySelector('.gpx-pain'), fix = sec.querySelector('.gpx-fix'), cue = sec.querySelector('.gpx-cue');
+    if (!pain || !fix) return;
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { pain.style.opacity = 1; fix.style.opacity = 1; return; }   // CSS stacks them statically
+    const onScroll = () => {
+      if (!document.body.contains(sec)) { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); return; }
+      const rect = sec.getBoundingClientRect(); const total = sec.offsetHeight - window.innerHeight;
+      const progress = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 0;
+      const t = Math.min(1, Math.max(0, (progress - 0.32) / 0.36));   // crossfade window
+      pain.style.opacity = 1 - t; pain.style.transform = `translateY(${-t * 26}px) scale(${1 - t * 0.06})`;
+      fix.style.opacity = t; fix.style.transform = `translateY(${(1 - t) * 30}px) scale(${0.94 + t * 0.06})`;
+      if (cue) cue.style.opacity = progress > 0.75 ? 0 : (1 - t) * 0.9;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); onScroll();
+  }
   function bindGpLanding() {
     revealOnScroll();
+    initGpScroll('gpx-1'); initGpScroll('gpx-2'); initGpScroll('gpx-3');
     const form = document.getElementById('gp-form'); if (!form) return;
     const err = document.getElementById('gp-err'), btn = document.getElementById('gp-submit');
     form.onsubmit = async (e) => {

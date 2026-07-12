@@ -1839,6 +1839,29 @@ a.dp-name:hover{color:var(--accent)}
   .gpm-vs-lbl{writing-mode:horizontal-tb;transform:none}
   .gpm-vs-arr{transform:rotate(90deg)}
 }
+/* Immersive scroll modules — full-screen sticky scene that crossfades pain → fix as you scroll (works on mobile) */
+.gpx{position:relative;height:215vh}
+.gpx-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5vh 1.2rem}
+.gpx-scene{position:relative;width:100%;max-width:600px;min-height:58vh}
+.gpx-layer{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.1rem;will-change:opacity,transform}
+.gpx-fix{opacity:0}
+.gpx-name{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .95rem;border-radius:999px}
+.gpx-name-pain{color:#b91c1c;background:color-mix(in srgb,#ef4444 13%,transparent)}
+.gpx-name-fix{color:#15803d;background:color-mix(in srgb,#22c55e 15%,transparent)}
+.gpx-layer h3{font-size:clamp(1.3rem,3.6vw,2rem);margin:0;letter-spacing:-.02em;line-height:1.2;color:var(--head)}
+.gpx-layer h3 .lead{color:var(--accent)}
+.gpx-layer p{font-size:1rem;line-height:1.6;color:var(--muted);margin:0;max-width:440px}
+.gpx-viz{border:1px solid var(--line);border-radius:20px;padding:1.4rem 1.2rem;background:var(--panel);width:100%;max-width:400px;display:flex;flex-direction:column;align-items:center;gap:.65rem;box-shadow:0 12px 34px rgba(0,0,0,.08)}
+.gpx-viz-good{background:linear-gradient(180deg,color-mix(in srgb,#22c55e 9%,var(--panel)),var(--panel));border-color:color-mix(in srgb,#22c55e 28%,var(--line));box-shadow:0 16px 44px rgba(34,197,94,.18)}
+.gpx-viz-h{font-weight:700;font-size:.9rem;color:var(--head)}
+.gpx-crowd{border:none;background:none;box-shadow:none;flex-direction:row;flex-wrap:wrap;justify-content:center;font-size:1.7rem;letter-spacing:.1rem;line-height:1.5;filter:grayscale(.8);opacity:.42;max-width:340px;padding:.4rem}
+.gpx-flowbig{border:none;background:none;box-shadow:none;flex-direction:row;gap:.7rem;font-size:2.5rem;align-items:center}
+.gpx-ar{color:var(--faint);font-size:1.4rem}
+.gpx-gone{opacity:.4}
+.gpx-nodesbig{font-size:1.8rem;letter-spacing:.22rem}
+.gpx-bar{height:28px}
+.gpx-cue{position:absolute;bottom:3.5vh;font-size:.76rem;color:var(--faint);letter-spacing:.03em;animation:gpbob 1.8s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.gpx{height:auto}.gpx-sticky{position:static;height:auto;padding:2.4rem 1.2rem}.gpx-scene{min-height:0}.gpx-layer{position:static;margin-bottom:2.2rem}.gpx-cue{display:none}}
 .gp-band{margin:2.6rem 0}
 .gp-pains{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.3rem}
 .gp-pain{border:1px solid var(--line);border-radius:18px;padding:1.4rem 1.3rem;background:var(--panel)}
