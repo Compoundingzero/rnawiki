@@ -5016,7 +5016,7 @@
       <section class="gp-hero">
         <div class="gp-eyebrow">For Singapore GPs &amp; clinics</div>
         <h1 class="gp-h1">You trained for years to <span class="lead">heal people</span>.<br>Not to fight for the next one-off sale.</h1>
-        <p class="gp-sub">A clinic on every corner. Patients who consult once and vanish. Margins squeezed on every box of medicine. RNAwiki turns your expertise into a <b>brand patients seek out</b> — and programs they stay in. Free, for founding clinics.</p>
+        <p class="gp-sub">Turn your expertise into a clinic patients <b>seek out</b> — and programs they <b>stay in</b>. Free, for Singapore's founding clinics.</p>
         <a class="cta-primary gp-cta" href="#gp-apply">Register your clinic's interest →</a>
         <div class="gp-hero-note">Takes 60 seconds · no cost · no obligation</div>
         <div class="gp-scrollhint">Scroll to see how ↓</div>
@@ -5141,6 +5141,22 @@
             </div>
           </div>
           <div class="gpx-cue">keep scrolling ↓</div>
+        </div>
+      </section>
+
+      <section class="gp-aspire reveal">
+        <h2>Imagine being the clinic your neighbourhood <span class="lead">names first</span>.</h2>
+        <p>Not the cheapest. Not the closest. The one they <b>trust</b> — with patients who stay, and the respect you earned the day you qualified.</p>
+      </section>
+
+      <section class="gp-faq reveal">
+        <div class="section-title center">Straight answers</div>
+        <div class="gp-faq-list">
+          <details class="gp-q"><summary>Is it really free?</summary><p>Completely. No fees, no lock-in, no card. We grow only when your clinic does.</p></details>
+          <details class="gp-q"><summary>What's the catch?</summary><p>There isn't one. We're building the trusted health layer for Singapore — and credible GPs are what make it real. Featuring your clinic is simply how patients find that credibility.</p></details>
+          <details class="gp-q"><summary>How much of my time does this take?</summary><p>As little as you like. Review the occasional protocol in your field when you have a spare moment — even small, trusted contributions lift your clinic.</p></details>
+          <details class="gp-q"><summary>Do I have to sell supplements?</summary><p>No obligation at all. The programs and purchases are opt-in — a new recurring revenue stream if you want it, quietly ignored if you don't.</p></details>
+          <details class="gp-q"><summary>Is my information safe?</summary><p>Your details are used solely to contact you about the founding network. Never sold, never shared.</p></details>
         </div>
       </section>
 
