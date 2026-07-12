@@ -170,7 +170,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f4",
-   "hay": "bak chor mee (dry) high-glycemic"
+   "hay": "bak chor mee (dry) high-glycemic",
+   "gi": 52
   },
   {
    "name": "Fishball Noodle Soup",
@@ -196,7 +197,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f5",
-   "hay": "fishball noodle soup "
+   "hay": "fishball noodle soup ",
+   "gi": 55
   },
   {
    "name": "Wanton Mee (dry)",
@@ -224,7 +226,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f6",
-   "hay": "wanton mee (dry) high-glycemic"
+   "hay": "wanton mee (dry) high-glycemic",
+   "gi": 52
   },
   {
    "name": "Roti Prata (2 plain + curry)",
@@ -280,7 +283,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f8",
-   "hay": "economic rice (3 veg + 1 meat) "
+   "hay": "economic rice (3 veg + 1 meat) ",
+   "gi": 75
   },
   {
    "name": "Yong Tau Foo (soup, 6 pcs + noodle)",
@@ -9941,7 +9945,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f375",
-   "hay": "hokkien mee (fried prawn) high-sodium"
+   "hay": "hokkien mee (fried prawn) high-sodium",
+   "gi": 62
   },
   {
    "name": "Mee Goreng (mamak)",
@@ -10057,7 +10062,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f379",
-   "hay": "prawn mee soup (hae mee) high-sodium"
+   "hay": "prawn mee soup (hae mee) high-sodium",
+   "gi": 60
   },
   {
    "name": "Lor Mee",
@@ -10085,7 +10091,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f380",
-   "hay": "lor mee high-sodium"
+   "hay": "lor mee high-sodium",
+   "gi": 62
   },
   {
    "name": "Ban Mian (soup)",
@@ -10113,7 +10120,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f381",
-   "hay": "ban mian (soup) high-sodium"
+   "hay": "ban mian (soup) high-sodium",
+   "gi": 55
   },
   {
    "name": "Bak Kut Teh (with rice)",
@@ -10199,7 +10207,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f384",
-   "hay": "char siew rice high-glycemic"
+   "hay": "char siew rice high-glycemic",
+   "gi": 79
   },
   {
    "name": "Roasted Duck Rice",
@@ -10227,7 +10236,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f385",
-   "hay": "roasted duck rice high-sodium"
+   "hay": "roasted duck rice high-sodium",
+   "gi": 78
   },
   {
    "name": "Fish Head Curry (with rice)",
@@ -10503,7 +10513,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f395",
-   "hay": "roti john high-sodium"
+   "hay": "roti john high-sodium",
+   "gi": 72
   },
   {
    "name": "Murtabak (chicken, half)",
@@ -10531,7 +10542,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f396",
-   "hay": "murtabak (chicken, half) high-sodium"
+   "hay": "murtabak (chicken, half) high-sodium",
+   "gi": 66
   },
   {
    "name": "Char Siew Bao (1)",
@@ -10557,7 +10569,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f397",
-   "hay": "char siew bao (1) "
+   "hay": "char siew bao (1) ",
+   "gi": 68
   },
   {
    "name": "You Tiao (dough fritter)",
@@ -10810,7 +10823,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f406",
-   "hay": "dragonfruit high-fiber"
+   "hay": "dragonfruit high-fiber",
+   "gi": 48
   },
   {
    "name": "Rambutan",
@@ -10836,7 +10850,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f407",
-   "hay": "rambutan "
+   "hay": "rambutan ",
+   "gi": 59
   },
   {
    "name": "Soursop",
@@ -10862,7 +10877,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f408",
-   "hay": "soursop "
+   "hay": "soursop ",
+   "gi": 46
   },
   {
    "name": "Bubble Milk Tea (with pearls)",
@@ -11054,8 +11070,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f415",
-   "hay": "barley water (sweetened) high-glycemic",
-   "gi": 28
+   "hay": "barley water (sweetened) high-glycemic"
   },
   {
    "name": "Ondeh Ondeh (5 pcs)",
@@ -11081,7 +11096,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f416",
-   "hay": "ondeh ondeh (5 pcs) "
+   "hay": "ondeh ondeh (5 pcs) ",
+   "gi": 80
   },
   {
    "name": "Ang Ku Kueh (1)",
@@ -11107,7 +11123,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f417",
-   "hay": "ang ku kueh (1) "
+   "hay": "ang ku kueh (1) ",
+   "gi": 84
   },
   {
    "name": "Kaya (coconut jam)",
@@ -11162,7 +11179,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f419",
-   "hay": "claypot rice high-glycemic high-fat"
+   "hay": "claypot rice high-glycemic high-fat",
+   "gi": 78
   },
   {
    "name": "Murtabak (Mutton, whole)",
@@ -11191,7 +11209,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f420",
-   "hay": "murtabak (mutton, whole) high-fat high-glycemic"
+   "hay": "murtabak (mutton, whole) high-fat high-glycemic",
+   "gi": 66
   },
   {
    "name": "Ngoh Hiang (mixed platter)",
@@ -11502,7 +11521,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f431",
-   "hay": "braised duck rice high-glycemic"
+   "hay": "braised duck rice high-glycemic",
+   "gi": 78
   },
   {
    "name": "Fried Ee Mee (seafood)",
@@ -11759,7 +11779,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f440",
-   "hay": "macaroni chicken soup balanced"
+   "hay": "macaroni chicken soup balanced",
+   "gi": 47
   },
   {
    "name": "Pork Porridge (Teochew)",
@@ -12434,7 +12455,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f464",
-   "hay": "tau huay (beancurd, sweet) high-sugar"
+   "hay": "tau huay (beancurd, sweet) high-sugar",
+   "gi": 45
   },
   {
    "name": "Tau Suan (with you tiao)",
@@ -12462,7 +12484,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f465",
-   "hay": "tau suan (with you tiao) high-sugar"
+   "hay": "tau suan (with you tiao) high-sugar",
+   "gi": 66
   },
   {
    "name": "Cheng Tng",
@@ -12490,7 +12513,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f466",
-   "hay": "cheng tng high-sugar"
+   "hay": "cheng tng high-sugar",
+   "gi": 65
   },
   {
    "name": "Bubur Cha Cha",
@@ -12519,7 +12543,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f467",
-   "hay": "bubur cha cha high-sugar high-fat"
+   "hay": "bubur cha cha high-sugar high-fat",
+   "gi": 66
   },
   {
    "name": "Pulut Hitam (black glutinous)",
@@ -12547,7 +12572,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f468",
-   "hay": "pulut hitam (black glutinous) high-sugar"
+   "hay": "pulut hitam (black glutinous) high-sugar",
+   "gi": 87
   },
   {
    "name": "Peanut Soup (with tang yuan)",
@@ -12777,7 +12803,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f476",
-   "hay": "xiao long bao (din tai fung, 5 pcs)  din tai fung"
+   "hay": "xiao long bao (din tai fung, 5 pcs)  din tai fung",
+   "gi": 68
   },
   {
    "name": "Mr Bean Soya Milk (sweetened)",
@@ -13001,7 +13028,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f484",
-   "hay": "appam (2 pcs)"
+   "hay": "appam (2 pcs)",
+   "gi": 65
   },
   {
    "name": "Vadai (2 pcs)",
@@ -13029,7 +13057,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f485",
-   "hay": "vadai (2 pcs) high-fat"
+   "hay": "vadai (2 pcs) high-fat",
+   "gi": 68
   },
   {
    "name": "Putu Mayam (with sugar & coconut)",
@@ -13115,7 +13144,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f488",
-   "hay": "nasi padang (rice + 3 dishes) high-fat high-glycemic"
+   "hay": "nasi padang (rice + 3 dishes) high-fat high-glycemic",
+   "gi": 76
   },
   {
    "name": "Tauhu Goreng (with peanut sauce)",
@@ -13344,7 +13374,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f496",
-   "hay": "kolo mee high-glycemic"
+   "hay": "kolo mee high-glycemic",
+   "gi": 55
   },
   {
    "name": "Mala Xiang Guo (dry)",
@@ -13457,7 +13488,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f500",
-   "hay": "prawn mee (dry) high-glycemic"
+   "hay": "prawn mee (dry) high-glycemic",
+   "gi": 60
   },
   {
    "name": "Yong Tau Foo (dry, with sauce)",
@@ -13513,7 +13545,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f502",
-   "hay": "ban mian (dry) high-glycemic"
+   "hay": "ban mian (dry) high-glycemic",
+   "gi": 55
   },
   {
    "name": "Fried Wanton (8 pcs)",
@@ -13541,7 +13574,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f503",
-   "hay": "fried wanton (8 pcs) high-fat"
+   "hay": "fried wanton (8 pcs) high-fat",
+   "gi": 52
   },
   {
    "name": "Sliced Fish Soup (with milk, no rice)",
@@ -14073,7 +14107,8 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f522",
-   "hay": "breadtalk floss bun high-sugar breadtalk"
+   "hay": "breadtalk floss bun high-sugar breadtalk",
+   "gi": 70
   },
   {
    "name": "Polar Curry Puff",

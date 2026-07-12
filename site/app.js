@@ -1950,8 +1950,7 @@
       <div class="cr-head"><h1>Control Room</h1></div>
       <div class="cr-metrics" id="cr-metrics"></div>
       <div class="cr-seg" id="cr-seg">
-        <button data-v="dataset" class="on">📊 Dataset</button>
-        <button data-v="insights">🔬 Insights</button>
+        <button data-v="insights" class="on">📊 Data &amp; insights</button>
         <button data-v="operations">🗂 Operations</button>
       </div>
       <div id="cr-view" class="cr-view"></div>`;
@@ -1993,7 +1992,7 @@
       tabs.querySelectorAll('button').forEach(b => b.onclick = () => { tabs.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on'); paintAdmin(b.dataset.tab); });
       load();
     }
-    function showView(v) { if (v === 'dataset') renderDataset(); else if (v === 'insights') renderInsights(); else if (v === 'operations') renderOperations(); }
+    function showView(v) { if (v === 'operations') renderOperations(); else renderInsights(); }
     const segEl = app.querySelector('#cr-seg');
     segEl.querySelectorAll('button').forEach(b => b.onclick = () => { segEl.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on'); showView(b.dataset.v); });
     let OV = null;
@@ -2091,10 +2090,16 @@
     // One clean, self-explanatory card per data asset: what it is · who it's for · why it's valuable · how it's collected · live number.
     async function loadDatasets() {
       const host = document.getElementById('adm-datasets'); if (!host) return;
-      let S = {}, R = {};
+      let S = {}, R = {}, O = {};
       try { S = await api.adminSignals(); } catch (e) {}
       try { R = await api.adminResearch(); } catch (e) {}
+      try { O = await getOutcomes(); } catch (e) {}
       const nm = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
+      // outcomes-by-protocol table (folded in from the old Dataset tab)
+      const oRows = (O.rows || []).map(r => { const o = nm(r.pid, r.rcid); const p30 = r.d30_n ? Math.round(r.d30_imp / r.d30_n * 100) : null, p90 = r.d90_n ? Math.round(r.d90_imp / r.d90_n * 100) : null; const dlt = r.symptom_delta;
+        return `<tr><td>${o.icon} <b>${esc(o.pn)}</b> <span class="muted">${esc(o.rn)}</span></td><td>${r.baseline_n}</td><td>${r.d30_n}${p30 != null ? ` · <b>${p30}%</b>↑` : ''}</td><td>${r.d90_n}${p90 != null ? ` · <b>${p90}%</b>↑` : ''}</td><td>${dlt != null ? (dlt > 0 ? '▼ ' + dlt : dlt < 0 ? '▲ ' + Math.abs(dlt) : '0') + ' pts' : '—'}</td><td>${r.avg_adh != null ? r.avg_adh + '%' : '—'}</td></tr>`;
+      }).join('') || '<tr><td colspan="6" class="muted">No outcome data yet — it accrues as users complete their 30- and 90-day check-ins.</td></tr>';
+      const outcomeTable = `<div class="cr-sec-h"><h2>Outcomes by protocol</h2></div><div class="ao-table-wrap" style="margin-bottom:1.6rem"><table class="board"><thead><tr><th>Protocol</th><th>Baseline</th><th>30-day</th><th>90-day</th><th>Symptom Δ</th><th>Adherence</th></tr></thead><tbody>${oRows}</tbody></table></div>`;
       const nameP = pid => { const p = GRAPH.problems.find(x => x.id === pid); return p ? p.name : pid; };
       const pct = (b, n) => n ? Math.round(b / n * 100) : 0;
       const STOP_LBL = { didnt_work: "wasn't working", side_effects: 'side effects', too_hard: 'too hard to keep up', cost: 'cost', got_better: 'got better', other: 'other' };
@@ -2131,7 +2136,8 @@
       ];
       const nd = S.nudges || {};
       const nudgeLine = `<p class="ds-nudge">📬 <b>${nd.due || 0}</b> check-ins due now · nudge email ${nd.emailConfigured ? `<b style="color:var(--accent)">on</b> (${nd.sent || 0} sent)` : '<b>off</b>'}.</p>`;
-      host.innerHTML = `<div class="cr-sec-h"><h2>Your data assets</h2><p class="muted">Each card is one dataset — <b>what</b> it is, <b>who</b> it’s for, <b>why</b> it’s valuable, <b>how</b> it’s collected. Tap a card to open it full-screen and extract the raw data.</p></div>
+      host.innerHTML = `${outcomeTable}
+        <div class="cr-sec-h"><h2>Your data assets</h2><p class="muted">Each card is one dataset — <b>what</b> it is, <b>who</b> it’s for, <b>why</b> it’s valuable, <b>how</b> it’s collected. Tap a card to open it full-screen and extract the raw data.</p></div>
         ${nudgeLine}
         <div class="ds-grid">${DATASETS.map((d, i) => `
           <button class="ds-card" data-ds="${i}">
@@ -2157,7 +2163,7 @@
       });
     }
     loadMetrics();
-    showView('dataset');
+    showView('insights');
   }
 
   // ---------- search ----------
