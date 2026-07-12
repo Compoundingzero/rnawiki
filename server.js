@@ -194,7 +194,8 @@ const AGE_BANDS = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
 const SEXES = ['male', 'female', 'other', 'prefer_not'];
 const ETHNICITIES = ['chinese', 'malay', 'indian', 'other', 'prefer_not'];
 const CHECKIN_PHASES = ['baseline', 'd30', 'd90'];
-const BLOOD_MARKERS = ['hba1c', 'fasting_glucose', 'ldl', 'hdl', 'triglycerides', 'total_chol', 'bp_sys', 'bp_dia', 'testosterone', 'shbg', 'tsh', 'ft4', 'ferritin', 'crp', 'vit_d', 'hscrp', 'a1c'];
+const BLOOD_MARKERS = ['hba1c', 'fasting_glucose', 'ldl', 'hdl', 'triglycerides', 'total_chol', 'bp_sys', 'bp_dia', 'testosterone', 'shbg', 'tsh', 'ft4', 'ferritin', 'crp', 'vit_d', 'hscrp', 'a1c',
+  'apob', 'lpa', 'fasting_insulin', 'estradiol', 'dhea_s', 'egfr', 'alt', 'uric_acid', 'homa_ir'];   // high-value adds: metabolic, cardiovascular, hormonal, longevity
 const STOP_REASONS = ['didnt_work', 'side_effects', 'too_hard', 'cost', 'got_better', 'other'];   // why a user discontinued (persistence data)
 const EXTRA_KEYS = ['mood_freq', 'sleep_quality', 'vitality', 'pain_interference'];               // category-specific outcome items, each an int 0..10
 const inList = (v, list) => list.includes(v) ? v : null;
