@@ -460,9 +460,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .fuel-search{position:relative;margin-bottom:.6rem}
 #food-q{width:100%;padding:.55rem .8rem;border:1px solid var(--line);border-radius:10px;font-size:.9rem;outline:none}
 #food-q:focus{border-color:var(--fl);box-shadow:0 0 0 3px rgba(22,163,74,.12)}
-.food-hits{position:absolute;top:105%;left:0;right:0;z-index:20;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);max-height:44vh;overflow:auto;padding:.25rem}
-.food-hits button{display:block;width:100%;text-align:left;border:none;background:none;padding:.45rem .6rem;border-radius:8px;cursor:pointer;font-size:.86rem;color:var(--ink)}
-.food-hits button:hover{background:var(--panel2)}
+.food-hits{position:absolute;top:105%;left:0;right:0;z-index:20;background:var(--bg);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);max-height:48vh;overflow:auto;padding:.3rem}
 .food-hits small{color:var(--faint)}
 .no-hit{display:block;padding:.5rem;color:var(--faint)}
 .sg{background:#eafcf3;color:var(--fl);border-radius:5px;padding:0 4px;font-size:.68rem;font-weight:700;vertical-align:middle}
@@ -1221,9 +1219,12 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .bl-label b{color:var(--head)}
 
 /* Food search hit rows with an edit affordance */
-.food-hit{display:flex;align-items:center;gap:.2rem}
-.food-hit>button[data-food]{flex:1;min-width:0}
-.food-edit{flex:none;border:none;background:none;cursor:pointer;color:var(--muted);font-size:.95rem;padding:.35rem .55rem;border-radius:8px}
+.food-hit{display:flex;align-items:center;gap:.2rem;border-radius:9px}
+.food-hit:hover{background:var(--panel2)}
+.food-hit>button[data-food]{flex:1 1 auto;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:.3rem .4rem;text-align:left;border:none;background:none;cursor:pointer;padding:.55rem .65rem;font-size:.88rem;color:var(--ink);line-height:1.25}
+.food-hit>button[data-food] b{font-weight:600}
+.food-hit>button[data-food] small{color:var(--faint);white-space:nowrap}
+.food-edit{flex:none;align-self:stretch;border:none;background:none;cursor:pointer;color:var(--muted);font-size:.95rem;padding:0 .55rem;border-radius:8px}
 .food-edit:hover{background:var(--panel);color:var(--accent)}
 
 /* ================= Fuel page (main menu function) ================= */

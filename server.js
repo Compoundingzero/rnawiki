@@ -13,12 +13,14 @@ const DIR = path.join(__dirname, 'site');
 const ASSET_VER = (() => {
   try {
     const h = crypto.createHash('sha1');
-    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js', 'interactions.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
+    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js', 'interactions.js', 'foods.js', 'exercises.js', 'businesses.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
     return h.digest('hex').slice(0, 10);
   } catch (e) { return String(Date.now()); }
 })();
 function versionAssets(html) {
-  return String(html).replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
+  // expose the version so app.js can cache-bust the lazy-loaded datasets (foods/exercises/businesses.js)
+  html = String(html).replace('</head>', `<script>window.__V="${ASSET_VER}"</script></head>`);
+  return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
 }
 function endHtml(res, html, code) {
   res.writeHead(code || 200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });

@@ -2355,8 +2355,9 @@
   // Lazy-load the big exercise/food datasets only when a protocol route is visited.
   const _lazy = {};
   function loadScript(src) {
+    const vsrc = src + (window.__V ? (src.includes('?') ? '&' : '?') + 'v=' + window.__V : '');
     return _lazy[src] || (_lazy[src] = new Promise((res, rej) => {
-      const s = document.createElement('script'); s.src = src;
+      const s = document.createElement('script'); s.src = vsrc;
       s.onload = res; s.onerror = () => { delete _lazy[src]; rej(new Error('load ' + src)); };
       document.head.appendChild(s);
     }));
