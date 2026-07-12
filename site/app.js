@@ -3759,7 +3759,7 @@
     const hasFuel = Object.keys(M.fuel).length > 0; // hide Fuel entirely when no protocol has food targets
     const firstTg = M.protos[0];
     // Per-protocol manage list + "add another goal" — the merged plan's control centre
-    const manage = `<section class="trk-manage"><h2>Your protocols</h2>${M.resolved.map(r => `
+    const manage = `<section class="trk-sec trk-manage"><div class="trk-sec-h"><h2>Your protocols</h2></div>${M.resolved.map(r => `
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
         <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button> · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button> · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
       <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="health-link">🩸 Track health data</button> · <button class="linkbtn" id="mydata-link">🔒 Your data</button>' : ''}</section>`;
@@ -3773,14 +3773,14 @@
       <div id="checkin-slot"></div>
       ${keystoneCards}
       ${danger}
-      ${(totalItems || restBanner) ? `<section class="trk-today">
-        <div class="trk-today-head"><h2>Today's checklist</h2>${totalItems ? `<span class="trk-prog">${doneItems}/${totalItems} done</span>` : ''}</div>
+      ${(totalItems || restBanner) ? `<section class="trk-sec trk-today">
+        <div class="trk-sec-h"><h2>Today's actions</h2>${totalItems ? `<span class="trk-prog">${doneItems}/${totalItems}</span>` : ''}</div>
         ${restBanner}
         ${totalItems ? `<div class="trk-list">${rows}</div>` : ''}
         ${daysEditor}
       </section>` : ''}
-      <div id="plan-functions"></div>
-      ${hasFuel ? `<section class="trk-fuel"><h2>🍽️ Fuel</h2><p class="lyr-sub">Log meals to hit your protocols' targets.</p><div id="fuel-tracker"></div></section>` : ''}
+      ${M.functions.length ? `<section class="trk-sec"><div class="trk-sec-h"><h2>Tools</h2></div><div id="plan-functions"></div></section>` : '<div id="plan-functions" hidden></div>'}
+      ${hasFuel ? `<section class="trk-sec trk-fuel"><div class="trk-sec-h"><h2>Fuel</h2><span class="trk-sec-sub">log meals vs your targets</span></div><div id="fuel-tracker"></div></section>` : ''}
       ${manage}
       ${firstTg ? tgCoachRow(M.resolved[0].problem, M.resolved[0].rc) : ''}`;
     if (hasFuel) mountFuelTracker(null, null, M.fuel);
@@ -4254,6 +4254,32 @@
     const log = getFuelLog(); log.items.push({ food, n: 1 }); setFuelLog(log);
     if (_fuelRerender) _fuelRerender();
   }
+  // Food detail sheet — confirm the right item/portion/brand (with image if we have one), pick servings, then add.
+  function openFoodDetail(food, onAdd) {
+    let qty = 1;
+    const gi = food.gi;
+    const giLine = gi != null ? `<div class="fd-gi gi-${giBand(gi)}">GI ${gi} · ${giBand(gi) === 'high' ? 'High — raises blood sugar fast' : giBand(gi) === 'med' ? 'Medium impact' : 'Low — gentle on blood sugar'}</div>` : '';
+    const img = food.image ? `<img class="fd-img" src="${esc(food.image)}" alt="" referrerpolicy="no-referrer" onerror="this.remove()">` : '';
+    const NUTRI = [['kcal', 'Calories', ''], ['carbs_g', 'Carbs', 'g'], ['protein_g', 'Protein', 'g'], ['fat_g', 'Fat', 'g'], ['sugar_g', 'Sugar', 'g'], ['fiber_g', 'Fiber', 'g']];
+    const m = modal(`<button class="modal-x" data-close aria-label="Close">✕</button>
+      ${img}
+      <h2 class="fd-name">${esc(food.name)}</h2>
+      <p class="fd-serv">${esc(food.serving || '1 serving')}${food.sg_local ? ' · <span class="sg">SG</span>' : ''}${food.verified ? ' · <span class="uf-badge">✓ verified</span>' : ''}</p>
+      ${giLine}
+      <div class="fd-nutri" id="fd-nutri"></div>
+      <div class="fd-qtyrow"><span>Servings</span><div class="fd-qty"><button class="fd-qbtn" data-q="-1" aria-label="Fewer">−</button><span class="fd-qn" id="fd-q">1</span><button class="fd-qbtn" data-q="1" aria-label="More">＋</button></div></div>
+      <button class="cta-primary fd-add" id="fd-add">＋ Add ${food.serving ? esc(food.serving.replace(/^1\s+/, '')) : 'to today'}</button>
+      <p class="fd-confirm">Double-check it’s the right item, brand &amp; portion before adding.</p>`);
+    const paint = () => {
+      document.getElementById('fd-q').textContent = qty;
+      const cells = NUTRI.filter(([k]) => food[k] != null).map(([k, l, u]) => `<div class="fd-n"><span class="fd-nv">${Math.round(food[k] * qty * 10) / 10}${u}</span><span class="fd-nl">${l}</span></div>`).join('');
+      document.getElementById('fd-nutri').innerHTML = cells || '<span class="muted" style="font-size:.85rem">No nutrition data yet — tap edit in the search to add it.</span>';
+    };
+    paint();
+    m.querySelector('[data-close]').onclick = closeModal;
+    m.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { qty = Math.max(1, Math.min(20, qty + (+b.dataset.q))); paint(); });
+    m.querySelector('#fd-add').onclick = () => { closeModal(); onAdd(qty); };
+  }
   function mountFuelTracker(problem, rc, targetsOverride) {
     const root = document.getElementById('fuel-tracker'); if (!root) return;
     const FO = window.RNAWIKI_FOODS;
@@ -4339,10 +4365,15 @@
       // Delegated: the food-hit buttons are created dynamically on keystroke, so bind on the container (not the buttons that don't exist yet).
       if (hits) hits.onclick = (e) => {
         const b = e.target.closest('button[data-food]'); if (!b) return;
-        const log = getFuelLog(); const id = b.dataset.food;
-        const ex = log.items.find(i => i.id === id); if (ex) ex.n++; else log.items.push({ id, n: 1 });
-        setFuelLog(log); if (q) { q.value = ''; } hits.hidden = true; render(true); // render(true) → celebrate a freshly-hit target
-        if (ME) api.rep('food_log'); // +5/day for logging (server dedupes per day)
+        const id = b.dataset.food;
+        const pool = FO.foods.map(withOverride).concat(Object.values(window.__userFoods || {}));
+        const food = pool.find(f => f.id === id) || foodById(id); if (!food) return;
+        if (q) { q.value = ''; } hits.hidden = true;
+        openFoodDetail(food, (qty) => {   // confirm the item/portion, then log
+          const log = getFuelLog(); const ex = log.items.find(i => i.id === id); if (ex) ex.n += qty; else log.items.push({ id, n: qty });
+          setFuelLog(log); render(true); // render(true) → celebrate a freshly-hit target
+          if (ME) api.rep('food_log'); // +5/day for logging (server dedupes per day)
+        });
       };
       const shareBtn = document.getElementById('fuel-share'); if (shareBtn) shareBtn.onclick = () => openProgressCard(problem, rc, null);
       root.querySelectorAll('[data-inc]').forEach(b => b.onclick = () => { const log = getFuelLog(); log.items[+b.dataset.inc].n++; setFuelLog(log); render(true); });
@@ -4380,6 +4411,7 @@
     const name = (p.product_name || 'Scanned product').trim();
     return {
       name: p.brands ? `${name} (${p.brands.split(',')[0].trim()})` : name, serving: '100 g', scanned: true, sg_local: false, tags: [],
+      brand: p.brands ? p.brands.split(',')[0].trim() : '', image: p.image_front_small_url || p.image_front_url || p.image_url || null,
       kcal: num(n['energy-kcal_100g']), protein_g: num(n.proteins_100g), carbs_g: num(n.carbohydrates_100g), sugar_g: num(n.sugars_100g),
       fat_g: num(n.fat_100g), fiber_g: num(n.fiber_100g), sodium_mg: g2mg(n.sodium_100g), vitamin_c_mg: g2mg(n['vitamin-c_100g']),
       calcium_mg: g2mg(n.calcium_100g), iron_mg: g2mg(n.iron_100g), potassium_mg: g2mg(n.potassium_100g),
