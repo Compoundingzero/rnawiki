@@ -820,6 +820,13 @@
       </div>
     </section>
 
+    <section class="gp-home reveal">
+      <div class="gp-home-inner">
+        <div class="gp-home-txt"><div class="gp-eyebrow">For Singapore GPs</div><h2>Are you a doctor? Turn your expertise into a clinic patients seek out.</h2><p>Feature your clinic, build recurring patient programs, and join a free alliance that cuts your cost of goods — by overseeing the information you already know best.</p></div>
+        <a class="cta-primary" href="#/gp">See how it works →</a>
+      </div>
+    </section>
+
     <section class="browse-sec reveal">
       <div class="section-title center">Or just browse what helps</div>
       <div class="goal-grid">${cards}</div>
@@ -2080,10 +2087,10 @@
         body.querySelectorAll('[data-food]').forEach(b => b.onclick = () => act(() => api.verifyFood(b.dataset.food, b.dataset.to)));
       } else if (tab === 'feedback') {
         const fb = OV.feedback || [];
-        const ico = { idea: '💡', wrong: '⚠️', other: '💬' };
-        const rows = fb.length ? fb.map(f => `<tr><td>${ico[f.kind] || '💬'}</td><td><div>${esc(f.body)}</div>${f.page ? `<small class="muted">on ${esc(f.page)}</small>` : ''}${f.contact ? `<small class="muted"> · ${esc(f.contact)}</small>` : ''}</td><td>${f.by_user ? '@' + esc(f.by_user) : 'guest'}</td><td><button class="admin-btn ok" data-fb="${f.id}" data-to="done">Done</button> <button class="admin-btn" data-fb="${f.id}" data-to="archived">Archive</button></td></tr>`).join('') : '<tr><td colspan="4" class="muted">No open feedback. 🎉</td></tr>';
-        body.innerHTML = `<p class="muted">What people want improved on the wiki. Mark items done or archive them.</p>
-          <table class="board"><thead><tr><th></th><th>Feedback</th><th>By</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
+        const ico = { idea: '💡', wrong: '⚠️', other: '💬' }; const klbl = { idea: 'Idea / suggestion', wrong: 'Something wrong', other: 'Something else' };
+        const rows = fb.length ? fb.map(f => `<tr><td><span class="fb-type">${ico[f.kind] || '💬'} ${esc(klbl[f.kind] || 'Feedback')}</span></td><td><div>${esc(f.body)}</div>${f.page ? `<small class="muted">on ${esc(f.page)}</small>` : ''}${f.contact ? `<small class="muted"> · ${esc(f.contact)}</small>` : ''}</td><td>${f.by_user ? '@' + esc(f.by_user) : 'guest'}</td><td><button class="admin-btn ok" data-fb="${f.id}" data-to="done">Done</button> <button class="admin-btn" data-fb="${f.id}" data-to="archived">Archive</button></td></tr>`).join('') : '<tr><td colspan="4" class="muted">No open feedback. 🎉</td></tr>';
+        body.innerHTML = `<p class="muted">All feedback types in one place — the label shows which kind. Mark items done or archive them.</p>
+          <table class="board"><thead><tr><th>Type</th><th>Feedback</th><th>By</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
         body.querySelectorAll('[data-fb]').forEach(b => b.onclick = () => act(() => api.setFeedback(b.dataset.fb, b.dataset.to)));
       }
     }
@@ -4925,6 +4932,113 @@
     el.querySelectorAll('[data-food-no]').forEach(b => b.onclick = async () => { try { await api.verifyFood(b.dataset.foodNo, 'rejected'); mountFoodQueue(); } catch (e) { alert(e.message); } });
   }
 
+  // ---------- /gp — emotional, scroll-driven landing page to recruit Singapore GPs (indication of interest) ----------
+  // Features shown here are a DEMO of the vision (not yet built) — the goal is to convert doctors to register interest.
+  function renderGpLanding() {
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'For GPs' }])}
+      <section class="gp-hero">
+        <div class="gp-eyebrow">For Singapore GPs &amp; clinics</div>
+        <h1 class="gp-h1">You trained for years to <span class="lead">heal people</span>.<br>Not to fight for the next one-off sale.</h1>
+        <p class="gp-sub">A clinic on every corner. Patients who consult once and vanish. Margins squeezed to the bone on every box of medicine. RNAwiki turns your expertise into a <b>brand patients seek out</b> — and recurring programs they stay in. Free, for founding clinics.</p>
+        <div class="gp-hero-cta"><a class="cta-primary lg" href="#gp-apply">Register your clinic's interest →</a><span class="gp-hero-note">Takes 60 seconds · no cost · no obligation</span></div>
+      </section>
+
+      <section class="gp-band reveal">
+        <div class="section-title center">The quiet truth of running a clinic here</div>
+        <div class="gp-pains">
+          <div class="gp-pain reveal"><span class="gp-pain-ic">🥊</span><h3>Brutal competition</h3><p>A GP clinic on nearly every street. The only lever left is price — a race to the bottom that nobody wins.</p></div>
+          <div class="gp-pain reveal"><span class="gp-pain-ic">🔁</span><h3>One-and-done</h3><p>A patient walks in, you prescribe, they walk out — and you may never see them again. No continuity. No relationship. No compounding.</p></div>
+          <div class="gp-pain reveal"><span class="gp-pain-ic">📉</span><h3>Thin, thankless margins</h3><p>Drug costs eat the profit. You became a doctor to change lives, but the business turns you into a dispensary.</p></div>
+        </div>
+      </section>
+
+      <section class="gp-turn reveal">
+        <h2 class="gp-turn-h">What if every patient became a <span class="lead">lasting relationship</span> — and your name became the reason they chose you?</h2>
+      </section>
+
+      <section class="scrolly" id="scrolly-gp">
+        <div class="scrolly-track">
+          <div class="scrolly-copy">
+            <div class="section-title">How it works — from your chair</div>
+            <div class="sy-step on" data-step="0"><span class="s3-tag mv">Step 1 · Contribute</span><h3>Share what you know</h3><p>Review and sharpen the clinical information on RNAwiki. Your name and clinic are attached to every trusted contribution — real, visible credibility.</p></div>
+            <div class="sy-step" data-step="1"><span class="s3-tag st">Step 2 · Rise</span><h3>Your clinic gets featured</h3><p>The more people your expertise helps, the higher your clinic climbs on <b>“Top trusted clinics near you.”</b> Patients in your neighbourhood discover you first.</p></div>
+            <div class="sy-step" data-step="2"><span class="s3-tag fl">Step 3 · Retain</span><h3>Patients come — and stay</h3><p>They join the <b>programs you built</b> from the reliable protocols you maintain, and buy supplements &amp; prescriptions through your clinic. A recurring relationship — not a one-off consult.</p></div>
+          </div>
+          <div class="scrolly-stage">
+            <div class="phone"><div class="phone-notch"></div><div class="phone-screen">
+              <div class="pf-eg">Preview</div>
+              <div class="sy-frame on" data-frame="0">
+                <div class="pf-bar"><span>✎</span> You reviewed a protocol</div>
+                <div class="pf-proto"><span class="pf-l st">✓ Reviewed</span><b>Metformin for pre-diabetes</b><small>Dr Tan · GP · MCR verified</small></div>
+                <div class="pf-root">👍 <b>128 patients</b> found this helpful → +128 credibility</div>
+              </div>
+              <div class="sy-frame" data-frame="1">
+                <div class="pf-track-h">🏅 Top trusted clinics · Tampines</div>
+                <div class="pf-proto pf-hi"><span class="pf-l mv">🥇</span><b>Dr Tan Family Clinic</b><small>0.4 km · 4 programs · verified GP</small><span class="pf-pick">Featured</span></div>
+                <div class="pf-proto"><span class="pf-l">🥈</span><b>Another clinic</b><small>1.1 km</small></div>
+                <div class="pf-cap">Patients nearby see you first</div>
+              </div>
+              <div class="sy-frame" data-frame="2">
+                <div class="pf-bar"><span>🎉</span> New patient in your program</div>
+                <div class="pf-proto"><span class="pf-l fl">Sarah, 41</span><b>“Reverse My Pre-Diabetes”</b><small>your 12-week program</small></div>
+                <div class="pf-nut"><span>Supplements</span><div class="sy-bar"><i style="--w:100%"></i></div><em>via you</em></div>
+                <div class="pf-nut"><span>Review visit</span><div class="sy-bar"><i style="--w:100%"></i></div><em>booked</em></div>
+                <div class="pf-cap">Recurring care, bought through your clinic</div>
+              </div>
+            </div></div>
+            <div class="sy-dots"><i data-dot="0" class="on"></i><i data-dot="1"></i><i data-dot="2"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gp-band reveal">
+        <div class="section-title center">And a network that lifts every clinic</div>
+        <div class="gp-pains">
+          <div class="gp-pain reveal"><span class="gp-pain-ic">🤝</span><h3>Buy together, pay less</h3><p>As the alliance grows, we negotiate bulk pricing on medications — your cost of goods drops, your margin rises.</p></div>
+          <div class="gp-pain reveal"><span class="gp-pain-ic">🔄</span><h3>Share stock, cut waste</h3><p>Consignment between clinics in the network means less expiring inventory and healthier margins across the board.</p></div>
+          <div class="gp-pain reveal"><span class="gp-pain-ic">🆓</span><h3>Completely free</h3><p>No fees. No lock-in. We only grow when your clinic grows — so everything above costs you nothing.</p></div>
+        </div>
+      </section>
+
+      <section class="gp-found reveal">
+        <h2>Be one of the <span class="lead">founding clinics</span>.</h2>
+        <p>We're hand-picking the first Singapore GPs to shape this network — and to be featured first when patients start searching. Register your interest and we'll reach out personally.</p>
+      </section>
+
+      <section class="gp-apply" id="gp-apply">
+        <div class="gp-form-card">
+          <h2>Register your interest</h2>
+          <p class="muted">No cost, no obligation — just tell us about your clinic and we'll be in touch.</p>
+          <form id="gp-form" class="gp-form">
+            <div class="gp-2col"><label>Your name<input name="name" required placeholder="Dr …"></label><label>Clinic name<input name="clinic" placeholder="e.g. Tan Family Clinic"></label></div>
+            <div class="gp-2col"><label>Email<input name="email" type="email" required placeholder="you@clinic.sg"></label><label>Phone <span class="opt">(optional)</span><input name="phone" placeholder="+65 …"></label></div>
+            <div class="gp-2col"><label>Area / region<input name="area" placeholder="e.g. Tampines"></label><label>MCR no. <span class="opt">(optional)</span><input name="mcr" placeholder="M…"></label></div>
+            <label>Anything you'd like us to know? <span class="opt">(optional)</span><textarea name="message" rows="2" placeholder="What would make this worth your time?"></textarea></label>
+            <div class="auth-err" id="gp-err" hidden></div>
+            <button type="submit" class="cta-primary lg" id="gp-submit">Register my interest</button>
+            <p class="gp-fineprint">Singapore-registered GPs &amp; clinics only. Your details are used solely to contact you about the founding network.</p>
+          </form>
+          <div class="gp-done" id="gp-done" hidden><div class="gp-done-ic">🎉</div><h3>You're on the founding list.</h3><p>Thank you — we'll reach out personally. Watch your inbox.</p></div>
+        </div>
+      </section>`;
+    bindGpLanding();
+  }
+  function bindGpLanding() {
+    revealOnScroll();
+    initScrolly('scrolly-gp');
+    const form = document.getElementById('gp-form'); if (!form) return;
+    const err = document.getElementById('gp-err'), btn = document.getElementById('gp-submit');
+    form.onsubmit = async (e) => {
+      e.preventDefault(); err.hidden = true; btn.disabled = true; btn.textContent = 'Sending…';
+      const b = Object.fromEntries(new FormData(form));
+      const note = [b.clinic && ('Clinic: ' + b.clinic), b.area && ('Area: ' + b.area), b.phone && ('Phone: ' + b.phone), b.mcr && ('MCR: ' + b.mcr), b.message].filter(Boolean).join(' · ');
+      try {
+        await api.submitClinicianInterest({ name: b.name, email: b.email, discipline: 'GP', note });
+        form.hidden = true; const done = document.getElementById('gp-done'); if (done) done.hidden = false;
+      } catch (ex) { err.textContent = ex.message; err.hidden = false; btn.disabled = false; btn.textContent = 'Register my interest'; }
+    };
+  }
+
   // ---------- /pros — the marketing landing page for professionals (separate from the dashboard) ----------
   function renderPros() {
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'For professionals' }])}
@@ -5085,6 +5199,7 @@
     if (parts[0] === 'stewardship') renderStewardHub();
     if (parts[0] === 'pro') renderPro();
     if (parts[0] === 'pros') renderPros();
+    if (parts[0] === 'gp') renderGpLanding();
     if (parts[0] === 'u' && parts[1]) renderProfile(parts[1]);
     if (parts[0] === 'contributors') renderContributors();
     if (parts[0] === 'admin') renderAdmin();
