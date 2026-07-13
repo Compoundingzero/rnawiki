@@ -514,6 +514,35 @@
       if (canEdit) btn.onclick = () => openEditor(c, currentFields);
       else btn.onclick = () => { if (!ME) return openAuth('login'); alert('Compound pages are maintained by verified pharmacology experts (pharmacist / MD / biomedical researcher). Apply for that role in your Pro dashboard.'); };
     }
+    wireCompoundLearning(c);
+  }
+  // Wire all the learning-first interactions on a compound page (depth toggle, 3D, glossary, learned, PubChem specs, ToC)
+  function wireCompoundLearning(c) {
+    const root = document.getElementById('cpd-detail'); if (!root) return;
+    // Depth toggle — show sections whose data-lvl ≤ chosen depth
+    const applyDepth = d => { root.setAttribute('data-depth', d); root.querySelectorAll('[data-lvl]').forEach(el => { el.style.display = (+el.getAttribute('data-lvl') <= d) ? '' : 'none'; }); };
+    root.querySelectorAll('.depth-btn').forEach(b => b.onclick = () => { root.querySelectorAll('.depth-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); applyDepth(+b.dataset.depth); });
+    applyDepth(2);
+    // Glossary hover-defs across the readable body (skips links/headings; first mention only)
+    root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body').forEach(applyGlossary);
+    root.querySelectorAll('.gloss').forEach(g => { g.onclick = e => { e.stopPropagation(); document.querySelectorAll('.gloss.open').forEach(o => o !== g && o.classList.remove('open')); g.classList.toggle('open'); }; });
+    document.addEventListener('click', () => root.querySelectorAll('.gloss.open').forEach(o => o.classList.remove('open')), { once: true });
+    // Learned tracking
+    const lb = document.getElementById('learned-btn'); if (lb) lb.onclick = () => { const on = toggleLearned(c.id); lb.classList.toggle('on', on); lb.textContent = on ? '✓ Learned' : '＋ Mark learned'; if (on && typeof toast === 'function') toast('Marked learned ✓ — building your knowledge map'); };
+    // 3D molecule — lazy-load the PubChem structure viewer only on tap
+    const cid = root.getAttribute('data-cid');
+    const b3d = document.getElementById('mol-3d-btn');
+    if (b3d && cid) b3d.onclick = () => { const wrap = document.getElementById('mol-3d-wrap'); if (!wrap) return; if (wrap.hasChildNodes()) { wrap.hidden = !wrap.hidden; return; } wrap.innerHTML = `<iframe title="3D structure" loading="lazy" src="https://pubchem.ncbi.nlm.nih.gov/compound/${cid}#section=3D-Conformer&embed=true" allowfullscreen></iframe>`; wrap.hidden = false; b3d.textContent = '🔄 3D structure ↓'; };
+    // Molecular formula + weight from PubChem REST (real data, fetched lazily; degrades silently)
+    if (cid) fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${cid}/property/MolecularFormula,MolecularWeight/JSON`).then(r => r.ok ? r.json() : null).then(j => {
+      const p = j && j.PropertyTable && j.PropertyTable.Properties && j.PropertyTable.Properties[0]; if (!p) return;
+      const setChip = (id, vid, val) => { const el = document.getElementById(id), v = document.getElementById(vid); if (el && v && val) { v.textContent = val; el.hidden = false; } };
+      if (p.MolecularFormula) { const mf = document.getElementById('mol-formula'); if (mf) mf.innerHTML = 'Formula <b>' + esc(p.MolecularFormula) + '</b>'; setChip('spec-formula', 'spec-formula-v', p.MolecularFormula); }
+      if (p.MolecularWeight) setChip('spec-mw', 'spec-mw-v', Math.round(+p.MolecularWeight) + ' g/mol');
+    }).catch(() => {});
+    // ToC active-section highlight on scroll
+    const toc = document.getElementById('cpd-toc');
+    if (toc) { const links = [...toc.querySelectorAll('[data-toc]')]; const secs = links.map(l => document.getElementById(l.dataset.toc)).filter(Boolean); const spy = () => { let cur = secs[0]; for (const s of secs) { if (s.getBoundingClientRect().top < 140) cur = s; } links.forEach(l => l.classList.toggle('active', cur && l.dataset.toc === cur.id)); }; window.addEventListener('scroll', spy, { passive: true }); spy(); }
   }
   function baseField(c, k) { return k === 'target' ? c.target : c[k]; }
   function openEditor(c, currentFields) {
@@ -1061,6 +1090,121 @@
   function faqSnip(t, max) { max = max || 300; const s = faqStrip(t); if (s.length <= max) return s; const cut = s.slice(0, max); return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '') + '…'; }
   function faqRender(qas) { const items = qas.filter(x => x && x.q && x.a && String(x.a).trim().length > 8); if (items.length < 2) return ''; return `<div class="section-title">Common questions</div><div class="faq">${items.map(x => `<details class="faq-q"><summary>${esc(x.q)}</summary><p>${esc(x.a)}</p></details>`).join('')}</div>`; }
 
+  // ===== Compound page — learning-first components (all from real data; nothing fabricated) =====
+  // Curated core pharmacology glossary (authored textbook definitions; mirrors FOUNDATIONS.md).
+  const CPD_GLOSSARY = {
+    agonist: 'A molecule that switches a receptor ON.', antagonist: 'A molecule that blocks a receptor — stops it firing.',
+    ligand: 'Any molecule that binds a receptor (agonists and antagonists are both ligands).',
+    receptor: 'A protein a molecule docks onto to send a signal into the cell.',
+    enzyme: 'A protein that speeds up a specific chemical reaction in the body.',
+    cofactor: 'A helper molecule (often a mineral) an enzyme needs to work — e.g. magnesium.',
+    substrate: 'The raw material an enzyme acts on.', kinase: 'An enzyme that adds a phosphate to switch other proteins on or off.',
+    phosphorylation: 'Adding a phosphate group — the body’s main on/off switch for proteins.',
+    transcription: 'Copying a gene’s DNA into RNA — the first step of making a protein.',
+    translation: 'Building a protein from the RNA copy of a gene.',
+    'half-life': 'The time for half the dose to leave your body — sets how long it lasts and how often to dose.',
+    bioavailability: 'The fraction of a dose that actually reaches your bloodstream.',
+    pharmacokinetics: 'What the body does to a drug — absorb, distribute, metabolise, excrete.',
+    pharmacodynamics: 'What the drug does to the body — its effects and how strong they are.',
+    'therapeutic index': 'The gap between an effective dose and a toxic one — bigger is safer.',
+    cyp450: 'Liver enzymes that break down most drugs — the source of many interactions.',
+    rct: 'Randomised controlled trial — the gold standard for proving a human effect.',
+    'meta-analysis': 'A study that pools many trials for the strongest overall answer.',
+    'placebo': 'An inert dummy treatment used to see if an effect is real.',
+    receptor_downregulation: 'The cell removing receptors after overstimulation — the basis of tolerance.',
+    tolerance: 'Needing more over time for the same effect, as the body adapts.',
+    agonism: 'The act of switching a receptor on.', selectivity: 'How specifically a molecule hits its intended target and not others.',
+    affinity: 'How tightly a molecule binds its target.', 'gpcr': 'G-protein-coupled receptor — the biggest receptor family; many drugs act here.',
+    mtor: 'A master growth switch — on = build (muscle), off = repair/cleanup (autophagy).',
+    ampk: 'A cellular “low-fuel” sensor that boosts fat-burning and mitochondria.',
+    autophagy: 'The cell’s recycling of damaged parts — a key longevity process.',
+    mitochondria: 'The cell’s power plants that make ATP energy.', atp: 'The body’s energy currency, spent and remade constantly.',
+    'nmda receptor': 'A glutamate receptor central to learning, memory and excitation.',
+    gaba: 'The brain’s main calming (inhibitory) neurotransmitter.', glutamate: 'The brain’s main excitatory neurotransmitter.',
+    dopamine: 'A neurotransmitter for motivation, focus and reward.', serotonin: 'A neurotransmitter for mood, calm and sleep.',
+    cortisol: 'The main stress hormone; follows a daily rhythm.', 'hpa axis': 'The brain–adrenal stress circuit that controls cortisol.',
+    glycation: 'Sugar sticking to proteins and stiffening them — ages collagen and vessels.',
+    'nitric oxide': 'A gas that widens blood vessels to improve blood flow.',
+    'shbg': 'A blood protein that binds sex hormones; more SHBG = less free testosterone.',
+    inflammation: 'The immune system’s response to damage — helpful acutely, harmful when chronic.',
+  };
+  const GLOSSARY_TERMS = Object.keys(CPD_GLOSSARY).sort((a, b) => b.length - a.length);
+  const GLOSSARY_RE = new RegExp('\\b(' + GLOSSARY_TERMS.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'i');
+  function glossDef(term) { const t = term.toLowerCase(); return CPD_GLOSSARY[t] || CPD_GLOSSARY[t.replace(/s$/, '')] || null; }
+  // Wrap the first mention of each glossary term inside the given root (skips links/headings; DOM-safe).
+  function applyGlossary(root) {
+    if (!root) return; const seen = new Set();
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => (n.nodeValue.trim().length > 2 && n.parentElement && !n.parentElement.closest('a,.gloss,code,h1,h2,h3,summary,.badge,.chip,.spec-strip')) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
+    const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const t = n.nodeValue; const m = GLOSSARY_RE.exec(t); if (!m) return;
+      const term = m[1].toLowerCase(); if (seen.has(term)) return; const def = glossDef(term); if (!def) return;
+      seen.add(term);
+      const span = document.createElement('span');
+      span.innerHTML = esc(t.slice(0, m.index)) + `<span class="gloss" tabindex="0" role="button" aria-label="${esc(term)}: ${esc(def)}" data-def="${esc(def)}">${esc(m[1])}</span>` + esc(t.slice(m.index + m[1].length));
+      n.replaceWith(span);
+    });
+  }
+  function pubchemCID(c) { const src = (c.target || '') + ' ' + (c.raw || ''); const m = src.match(/pubchem\.ncbi\.nlm\.nih\.gov\/compound\/(\d+)/i) || src.match(/PubChem CID\s*(\d+)/i); return m ? m[1] : null; }
+  // Evidence tier from the human-evidence star rating (consistent, editorial mapping — on-brand honesty).
+  const EV_TIER = { 5: ['Strong', 'consistent human RCTs / meta-analyses'], 4: ['Good', 'multiple human trials, some limits'], 3: ['Moderate', 'human data, modest or mixed effect'], 2: ['Early', 'limited or animal-only data'], 1: ['Minimal', 'mechanistic or anecdotal'] };
+  function moleculeViewer(c) {
+    const cid = pubchemCID(c); if (!cid) return '';
+    return `<div class="mol-viewer" data-lvl="1" id="sec-molecule" data-cid="${cid}">
+      <div class="mol-2d"><img loading="lazy" alt="2D structure of ${esc(c.name)}" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${cid}/PNG"></div>
+      <div class="mol-side">
+        <div class="mol-title">The actual molecule <span class="mol-cid">PubChem CID ${cid}</span></div>
+        <div class="mol-formula" id="mol-formula">—</div>
+        <button class="mol-3d-btn" data-lvl="3" id="mol-3d-btn">🔄 Rotate in 3D</button>
+        <div class="mol-3d-wrap" id="mol-3d-wrap" hidden></div>
+        <a class="mol-link" href="https://pubchem.ncbi.nlm.nih.gov/compound/${cid}" target="_blank" rel="noopener">Full PubChem record →</a>
+      </div>
+    </div>`;
+  }
+  function specStrip(c) {
+    const tier = EV_TIER[c.stars] || EV_TIER[2];
+    const chips = [];
+    chips.push(`<span class="spec-chip"><span class="sc-k">Class</span><span class="sc-v">${esc((c.category || '').split('/')[0].trim().toLowerCase())}</span></span>`);
+    chips.push(`<span class="spec-chip"><span class="sc-k">Evidence</span><span class="sc-v">${'★'.repeat(c.stars)}<span class="sc-dim">${'★'.repeat(5 - c.stars)}</span> ${tier[0]}</span></span>`);
+    if ((c.approvalLabels || []).length) chips.push(`<span class="spec-chip"><span class="sc-k">Status</span><span class="sc-v">${(c.approvals || []).join('')} ${esc(c.approvalLabels[0])}</span></span>`);
+    chips.push(`<span class="spec-chip" id="spec-formula" hidden><span class="sc-k">Formula</span><span class="sc-v" id="spec-formula-v"></span></span>`);
+    chips.push(`<span class="spec-chip" id="spec-mw" hidden><span class="sc-k">Mol. weight</span><span class="sc-v" id="spec-mw-v"></span></span>`);
+    if (c.cost) { const cm = String(c.cost).match(/S?\$[\d,]+(?:[–-]\$?[\d,]+)?\s*(?:\/\s*month|\/mo|per month|a month)?/i); if (cm) chips.push(`<span class="spec-chip"><span class="sc-k">Cost</span><span class="sc-v">${esc(cm[0])}</span></span>`); }
+    return `<div class="spec-strip" data-lvl="1">${chips.join('')}</div>`;
+  }
+  function evidenceGlance(c) {
+    const tier = EV_TIER[c.stars] || EV_TIER[2];
+    return `<div class="ev-glance" data-lvl="2" id="sec-evidence-glance">
+      <div class="evg-stars" title="${c.stars}/5 human evidence">${'★'.repeat(c.stars)}<span class="evg-dim">${'★'.repeat(5 - c.stars)}</span></div>
+      <div class="evg-body"><b>${tier[0]} human evidence</b> — ${tier[1]}.<span class="evg-note"> Stars measure <b>human</b> evidence only; animal-only data is capped at ★★.</span></div>
+    </div>`;
+  }
+  function takeawaysBox(c) {
+    const pts = [];
+    if (c.bottom) pts.push(faqSnip(c.bottom, 150));
+    if (c.protocol) pts.push('Dose: ' + faqSnip(c.protocol, 120));
+    if (c.watch) pts.push('Watch: ' + faqSnip(c.watch, 120));
+    if (pts.length < 2) return '';
+    return `<div class="takeaways" data-lvl="1"><div class="tk-h">⚡ The 30-second version</div><ul>${pts.slice(0, 3).map(p => `<li>${mdInline(p)}</li>`).join('')}</ul></div>`;
+  }
+  function depthBar() {
+    return `<div class="depth-bar" role="tablist" aria-label="Reading depth">
+      <span class="depth-lbl">Explain like I'm:</span>
+      <button class="depth-btn" data-depth="1">🌱 New to this</button>
+      <button class="depth-btn active" data-depth="2">📘 Informed</button>
+      <button class="depth-btn" data-depth="3">🔬 Technical</button>
+    </div>`;
+  }
+  function compoundToc(c) {
+    const items = [['sec-plain', 'Plain English'], pubchemCID(c) ? ['sec-molecule', 'The molecule'] : null, c.mechanism ? ['sec-mechanism', 'How it works'] : null, c.protocol ? ['sec-protocol', 'How to take it'] : null, c.watch ? ['sec-watch', 'Watch out'] : null, c.evidence ? ['sec-evidence', 'The evidence'] : null].filter(Boolean);
+    if (items.length < 3) return '';
+    return `<nav class="cpd-toc" id="cpd-toc">${items.map(([id, l]) => `<a href="#${id}" data-toc="${id}">${l}</a>`).join('')}</nav>`;
+  }
+  function learnedBtn(c) { const done = isLearned(c.id); return `<button id="learned-btn" class="learned-btn ${done ? 'on' : ''}">${done ? '✓ Learned' : '＋ Mark learned'}</button>`; }
+  function getLearned() { try { return JSON.parse(localStorage.getItem('rnawiki_learned') || '[]'); } catch (e) { return []; } }
+  function isLearned(id) { return getLearned().includes(id); }
+  function toggleLearned(id) { const l = getLearned(); const i = l.indexOf(id); if (i >= 0) l.splice(i, 1); else l.push(id); localStorage.setItem('rnawiki_learned', JSON.stringify(l)); return l.includes(id); }
+
   function detail(s) {
     const c = bySlug[s]; if (!c) return notFound();
     setTimeout(() => {
@@ -1068,31 +1212,37 @@
       const mh = document.querySelector('[data-mechhelp]'); if (mh) mh.onclick = () => { const g = document.getElementById('mech-guide'); if (g) { g.hidden = !g.hidden; mh.classList.toggle('open', !g.hidden); } };
       enhanceDetail(c);
     }, 0);
-    const callout = (key, k, v, cls) => v ? `<div class="callout ${cls || ''}"><span class="k">${k}</span><span id="field-${key}" class="field-val">${mdInline(v)}</span></div>` : '';
+    const callout = (key, k, v, cls, lvl) => v ? `<div class="callout ${cls || ''}" id="sec-${key}" data-lvl="${lvl || 2}"><span class="k">${k}</span><span id="field-${key}" class="field-val">${mdInline(v)}</span></div>` : '';
     const related = D.compounds.filter(x => x.id !== c.id && (x.category === c.category || x.goalIds.some(g => c.goalIds.includes(g)))).sort((a, b) => b.stars - a.stars).slice(0, 6);
     const goalTags = c.goalIds.map(g => `<a class="chip" href="#/goal/${g}">${goalById[g].icon} ${goalById[g].label}</a>`).join('');
     const added = inStack(c.id);
-    return `<div class="detail">
+    return `<div class="detail" id="cpd-detail" data-depth="2" data-cid="${pubchemCID(c) || ''}">
       ${crumbs([{ label: 'Home', href: '#/' }, { label: c.category }, { label: c.name }])}
       <div class="detail-head">
         <div><h1>${c.name}</h1>${badgeRow(c)}</div>
         <div class="detail-actions">
+          ${learnedBtn(c)}
           ${PHASE2 ? '<button id="edit-btn" class="edit-btn" title="Improve this page">✎ Edit page</button>' : ''}
           <button id="stack-btn" class="stack-btn-lg ${added ? 'in' : ''}">${added ? '✓ In your stack' : '+ Add to stack'}</button>
         </div>
       </div>
+      ${specStrip(c)}
+      ${depthBar()}
+      ${compoundToc(c)}
       <div id="edit-meta" class="edit-meta"></div>
-      ${explodedDiagram(c)}
-      <div class="toolbar" style="margin-top:1rem">${goalTags}</div>
-      ${(() => { const f = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s); return f ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${f.t}</span></div>` : ''; })()}
-      ${callout('plain', 'In plain English — start here', c.plain)}
-      ${callout('mechanism', 'How it works — the science', c.mechanism)}
-      ${callout('target', 'Molecular / gene target', c.target)}
-      ${callout('protocol', 'Protocol', c.protocol)}
-      ${callout('watch', 'Watch out', c.watch, 'warn')}
-      ${callout('bottom', 'Bottom line', c.bottom)}
-      ${c.evidence ? `<details class="evidence-block"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : ''}
-      ${(() => {
+      ${takeawaysBox(c)}
+      ${moleculeViewer(c)}
+      <div class="mech-chain-wrap" data-lvl="2">${explodedDiagram(c)}</div>
+      <div class="toolbar" style="margin-top:1rem" data-lvl="1">${goalTags}</div>
+      ${(() => { const f = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s); return f ? `<div class="cpd-fact" data-lvl="2"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${f.t}</span></div>` : ''; })()}
+      ${callout('plain', 'In plain English — start here', c.plain, '', 1)}
+      ${callout('mechanism', 'How it works — the science', c.mechanism, '', 2)}
+      ${callout('target', 'Molecular / gene target', c.target, '', 3)}
+      ${callout('protocol', 'How to take it', c.protocol, '', 2)}
+      ${callout('watch', 'Watch out', c.watch, 'warn', 2)}
+      ${callout('bottom', 'Bottom line', c.bottom, '', 1)}
+      ${c.evidence ? `${evidenceGlance(c)}<details class="evidence-block" data-lvl="3" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : evidenceGlance(c)}
+      <div data-lvl="2">${(() => {
         const sg = sgAvailability(c); const derived = derivedStacks(c);
         return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>
             ${c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}
@@ -1100,10 +1250,10 @@
           ${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}
           <div class="section-title">🌐 Availability &amp; where to buy</div>
           <div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`;
-      })()}
-      ${c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : ''}
-      ${goDeeper(c)}
-      ${(() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div>` : ''; })()}
+      })()}</div>
+      ${c.brief && !c.mechanism ? `<div class="body" data-lvl="1">${c.bodyHtml}</div>` : ''}
+      <div data-lvl="3">${goDeeper(c)}</div>
+      ${(() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec" data-lvl="1"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })()}
       ${faqRender([
         (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${faqSnip(c.bottom || c.plain, 240)}` } : null,
         c.protocol ? { q: `How do you take ${c.name}?`, a: faqSnip(c.protocol, 300) } : null,
