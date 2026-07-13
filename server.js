@@ -997,7 +997,7 @@ function tgFoodPromptText(stage, nf) {
     case 'nf_serving': return `🥗 <b>${nf && nf.name ? 'Add “' + tgEsc(nf.name) + '”' : 'Add a food'}</b>\nWhat's one serving? (e.g. “1 sandwich”, “100 g”, “1 fillet”)\n<i>Everything from here is optional — skip or submit anytime.</i>`;
     case 'nf_kcal': return `Calories per serving? (a number)`;
     case 'nf_macros': return `Macros in grams — send <b>protein carbs fat</b>, e.g. <b>26 46 19</b>.`;
-    case 'nf_micros': return `Any vitamins or minerals? Type them naturally, e.g.\n<b>vitamin C 20mg, iron 2mg, fibre 3g</b>.`;
+    case 'nf_micros': return `Any vitamins, minerals, sugar or fibre? Type them naturally, e.g.\n<b>sugar 5g, fibre 3g, vitamin C 20mg, iron 2mg</b>.`;
     case 'nf_photo': return `Add a <b>photo</b>? Send one now, or skip.`;
   }
   return '';
@@ -1513,12 +1513,21 @@ async function api(req, res, url) {
   // Public photo proxy for user-submitted food images: streams the Telegram file server-side so the
   // bot token is never exposed in a public URL. <img src="/api/foodphoto?id=123"> works on the website.
   if (seg[0] === 'foodphoto' && req.method === 'GET') {
-    if (!db.enabled || !BOT_TOKEN) { res.writeHead(404); return res.end(); }
+    if (!db.enabled) { res.writeHead(404); return res.end(); }
     const id = +clean(new URL('http://x/' + url).searchParams.get('id'), 12);
     if (!id) { res.writeHead(404); return res.end(); }
     try {
-      const fr = (await db.query('SELECT data FROM user_foods WHERE id=$1', [id])).rows[0];
-      const fid = fr && fr.data && fr.data.photo_file_id; if (!fid) { res.writeHead(404); return res.end(); }
+      const fr = (await db.query('SELECT data FROM user_foods WHERE id=$1', [id])).rows[0]; const d = fr && fr.data;
+      // web-uploaded photo: a data URL stored inline — decode and serve directly
+      if (d && typeof d.photo_data === 'string') {
+        const mm = d.photo_data.match(/^data:(image\/[\w+.-]+);base64,(.*)$/);
+        if (!mm) { res.writeHead(404); return res.end(); }
+        const buf = Buffer.from(mm[2], 'base64');
+        res.writeHead(200, { 'Content-Type': mm[1], 'Cache-Control': 'public, max-age=86400' });
+        return res.end(buf);
+      }
+      // bot photo: proxy the Telegram file server-side (token stays server-side)
+      const fid = d && d.photo_file_id; if (!fid || !BOT_TOKEN) { res.writeHead(404); return res.end(); }
       const gf = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getFile?file_id=${encodeURIComponent(fid)}`).then(r => r.json());
       if (!gf || !gf.ok) { res.writeHead(404); return res.end(); }
       const img = await fetch(`https://api.telegram.org/file/bot${BOT_TOKEN}/${gf.result.file_path}`);
@@ -2022,7 +2031,9 @@ async function api(req, res, url) {
   // --- crowdsourced local foods (anyone submits; a verified dietitian verifies) ---
   if (seg[0] === 'foods' && !seg[1] && method === 'GET') {
     const r = await db.query("SELECT id,name,serving,data FROM user_foods WHERE status='active' ORDER BY created_at DESC LIMIT 500");
-    return json(res, 200, { foods: r.rows });
+    // Strip the heavy photo data URL from the bulk list (served lazily via /api/foodphoto); keep a light `photo` flag.
+    const foods = r.rows.map(f => { const d = Object.assign({}, f.data); const has = !!(d.photo_data || d.photo_file_id); delete d.photo_data; delete d.photo_file_id; if (has) d.photo = 1; return { id: f.id, name: f.name, serving: f.serving, data: d }; });
+    return json(res, 200, { foods });
   }
   if (seg[0] === 'foods' && seg[1] === 'pending' && method === 'GET') {
     const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'Verified dietitians only' });
@@ -2036,14 +2047,19 @@ async function api(req, res, url) {
     if (!name) return json(res, 400, { error: 'Food name is required' });
     const num = (x) => (x === 0 || x) && isFinite(x) ? Number(x) : null;
     const data = { kcal: num(b.kcal), protein_g: num(b.protein_g), carbs_g: num(b.carbs_g), sugar_g: num(b.sugar_g), fat_g: num(b.fat_g), fiber_g: num(b.fiber_g) };
-    // optional micronutrients — an allowlist so only known keys are stored
-    const MICROS = ['sodium_mg', 'potassium_mg', 'calcium_mg', 'iron_mg', 'magnesium_mg', 'zinc_mg', 'vitamin_a_ug', 'vitamin_c_mg', 'vitamin_d_ug', 'vitamin_b12_ug', 'folate_ug'];
+    // optional micronutrients — the SAME 17-field model as foods.json and the Telegram bot (allowlist)
+    const MICROS = ['sodium_mg', 'potassium_mg', 'calcium_mg', 'magnesium_mg', 'iron_mg', 'zinc_mg', 'vitamin_c_mg', 'vitamin_d_iu', 'omega3_mg', 'choline_mg', 'glycine_g'];
     MICROS.forEach((k) => { const val = num(b[k]); if (val != null) data[k] = val; });
+    // optional photo — a small client-resized data URL (parity with the bot's photo); capped so it can't bloat the row
+    const photo = typeof b.photo_data === 'string' && /^data:image\/(png|jpe?g|webp);base64,/.test(b.photo_data) && b.photo_data.length < 400000 ? b.photo_data : null;
+    if (photo) data.photo_data = photo;
     // a correction to an existing food carries its id — once approved it overrides that food
     const corrects = clean(b.corrects, 40); if (corrects) data.corrects = corrects;
-    const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by) VALUES($1,$2,$3,$4) RETURNING id', [name, serving || null, JSON.stringify(data), u.id]);
+    // new foods go live instantly (like the bot); corrections stay pending so a dietitian confirms the change before it overrides an existing food
+    const status = corrects ? 'pending' : 'active';
+    const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by,status) VALUES($1,$2,$3,$4,$5) RETURNING id', [name, serving || null, JSON.stringify(data), u.id, status]);
     await award(u.id, 'food_submit', 'food:' + r.rows[0].id, 20);
-    return json(res, 200, { ok: true, id: r.rows[0].id, status: 'pending' });
+    return json(res, 200, { ok: true, id: r.rows[0].id, status });
   }
   // --- "request a protocol" board ---
   if (seg[0] === 'protocol-requests' && !seg[1] && method === 'GET') {

@@ -4196,7 +4196,7 @@
       }
       const id = 'u' + f.id;
       const fo = Object.assign({ id, name: f.name, serving: f.serving || '', sg_local: true, verified: true, tags: [], hay: (f.name || '').toLowerCase() }, data);
-      if (data.photo_file_id) fo.photo = '/api/foodphoto?id=' + f.id; // server-side proxy (bot token stays server-side)
+      if (data.photo || data.photo_file_id || data.photo_data) fo.photo = '/api/foodphoto?id=' + f.id; // served via proxy (bot token / inline data stays server-side)
       window.__userFoods[id] = fo;
     });
   }
@@ -4207,34 +4207,56 @@
     const pf = prefill || {};
     const editing = !!prefill;
     const va = x => (x === 0 || x) ? ` value="${esc(String(x))}"` : '';   // pre-fill helper
-    const m = modal(`<div class="partner-modal"><h2>${editing ? 'Fix this food’s nutrition' : 'Add or fix a food'}</h2>
-      <p class="muted">${editing ? 'Correct any wrong numbers below. A verified dietitian checks the change, then everyone sees the corrected values.' : 'Add a missing dish or correct a wrong nutrition number — a verified dietitian checks it, then it’s searchable for everyone.'} Leave a field blank if you don’t know it. +20 reputation.</p>
+    const m = modal(`<div class="partner-modal"><h2>${editing ? 'Fix this food’s nutrition' : 'Add a food'}</h2>
+      <p class="muted">${editing ? 'Correct any wrong numbers below. A verified dietitian checks the change, then everyone sees the corrected values.' : 'Add a missing dish — only the name is required, everything else is optional. It goes live instantly for everyone.'} Leave a field blank if you don’t know it. +20 reputation.</p>
       <label>Food name</label><input id="uf-name" placeholder="Chicken rice (roasted)"${va(pf.name)}>
       <label>Serving</label><input id="uf-serv" placeholder="1 plate (~300g)"${va(pf.serving)}>
       <label>Macros (per serving)</label>
       <div class="uf-grid"><input id="uf-kcal" type="number" placeholder="kcal"${va(pf.kcal)}><input id="uf-pro" type="number" placeholder="protein g"${va(pf.protein_g)}><input id="uf-carb" type="number" placeholder="carbs g"${va(pf.carbs_g)}><input id="uf-sug" type="number" placeholder="sugar g"${va(pf.sugar_g)}><input id="uf-fat" type="number" placeholder="fat g"${va(pf.fat_g)}><input id="uf-fib" type="number" placeholder="fiber g"${va(pf.fiber_g)}></div>
-      <details class="uf-micros"${editing && (pf.sodium_mg != null || pf.calcium_mg != null || pf.iron_mg != null) ? ' open' : ''}><summary>${editing ? 'Micronutrients' : '＋ Add micronutrients (optional)'}</summary>
-        <p class="muted" style="font-size:.8rem;margin:.4rem 0">Vitamins &amp; minerals per serving — fill in any you know.</p>
+      <details class="uf-micros"${editing && (pf.sodium_mg != null || pf.calcium_mg != null || pf.iron_mg != null) ? ' open' : ''}><summary>${editing ? 'Vitamins & minerals' : '＋ Add vitamins & minerals (optional)'}</summary>
+        <p class="muted" style="font-size:.8rem;margin:.4rem 0">Per serving — fill in any you know.</p>
         <div class="uf-grid uf-micro-grid">
           <input id="uf-sodium" type="number" placeholder="sodium mg"${va(pf.sodium_mg)}><input id="uf-potassium" type="number" placeholder="potassium mg"${va(pf.potassium_mg)}><input id="uf-calcium" type="number" placeholder="calcium mg"${va(pf.calcium_mg)}>
-          <input id="uf-iron" type="number" placeholder="iron mg"${va(pf.iron_mg)}><input id="uf-magnesium" type="number" placeholder="magnesium mg"${va(pf.magnesium_mg)}><input id="uf-zinc" type="number" placeholder="zinc mg"${va(pf.zinc_mg)}>
-          <input id="uf-vita" type="number" placeholder="vitamin A µg"${va(pf.vitamin_a_ug)}><input id="uf-vitc" type="number" placeholder="vitamin C mg"${va(pf.vitamin_c_mg)}><input id="uf-vitd" type="number" placeholder="vitamin D µg"${va(pf.vitamin_d_ug)}>
-          <input id="uf-b12" type="number" placeholder="vitamin B12 µg"${va(pf.vitamin_b12_ug)}><input id="uf-folate" type="number" placeholder="folate µg"${va(pf.folate_ug)}>
+          <input id="uf-magnesium" type="number" placeholder="magnesium mg"${va(pf.magnesium_mg)}><input id="uf-iron" type="number" placeholder="iron mg"${va(pf.iron_mg)}><input id="uf-zinc" type="number" placeholder="zinc mg"${va(pf.zinc_mg)}>
+          <input id="uf-vitc" type="number" placeholder="vitamin C mg"${va(pf.vitamin_c_mg)}><input id="uf-vitd" type="number" placeholder="vitamin D IU"${va(pf.vitamin_d_iu)}><input id="uf-omega3" type="number" placeholder="omega-3 mg"${va(pf.omega3_mg)}>
+          <input id="uf-choline" type="number" placeholder="choline mg"${va(pf.choline_mg)}><input id="uf-glycine" type="number" placeholder="glycine g"${va(pf.glycine_g)}>
         </div></details>
-      <button class="cta-primary" id="uf-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">${editing ? 'Submit correction' : 'Submit for verification'}</button></div>`);
+      <label>Photo (optional)</label>
+      <input id="uf-photo" type="file" accept="image/*">
+      <div id="uf-photo-prev">${pf.photo ? `<img src="${esc(pf.photo)}" alt="" style="max-height:80px;border-radius:8px;margin-top:.5rem">` : ''}</div>
+      <button class="cta-primary" id="uf-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">${editing ? 'Submit correction' : 'Add food'}</button></div>`);
     const v = id => (document.getElementById(id) || {}).value || '';
+    let photoData = null;
+    const pin = m.querySelector('#uf-photo'), pprev = m.querySelector('#uf-photo-prev');
+    if (pin) pin.onchange = () => { const f = pin.files && pin.files[0]; if (!f) return; resizeImage(f, 256, url => { photoData = url; if (pprev) pprev.innerHTML = `<img src="${url}" alt="" style="max-height:80px;border-radius:8px;margin-top:.5rem">`; }); };
     m.querySelector('#uf-save').onclick = async () => {
       try {
-        await api.submitFood({
+        const r = await api.submitFood({
           name: v('uf-name'), serving: v('uf-serv'),
           kcal: v('uf-kcal'), protein_g: v('uf-pro'), carbs_g: v('uf-carb'), sugar_g: v('uf-sug'), fat_g: v('uf-fat'), fiber_g: v('uf-fib'),
-          sodium_mg: v('uf-sodium'), potassium_mg: v('uf-potassium'), calcium_mg: v('uf-calcium'), iron_mg: v('uf-iron'), magnesium_mg: v('uf-magnesium'), zinc_mg: v('uf-zinc'),
-          vitamin_a_ug: v('uf-vita'), vitamin_c_mg: v('uf-vitc'), vitamin_d_ug: v('uf-vitd'), vitamin_b12_ug: v('uf-b12'), folate_ug: v('uf-folate'),
+          sodium_mg: v('uf-sodium'), potassium_mg: v('uf-potassium'), calcium_mg: v('uf-calcium'), magnesium_mg: v('uf-magnesium'), iron_mg: v('uf-iron'), zinc_mg: v('uf-zinc'),
+          vitamin_c_mg: v('uf-vitc'), vitamin_d_iu: v('uf-vitd'), omega3_mg: v('uf-omega3'), choline_mg: v('uf-choline'), glycine_g: v('uf-glycine'),
+          photo_data: photoData || undefined,
           corrects: pf.id || '',
         });
-        closeModal(); alert(editing ? 'Thanks! Your correction is queued for a dietitian to verify.' : 'Thanks! A dietitian will verify it shortly.'); if (onDone) onDone();
+        closeModal();
+        alert(editing ? 'Thanks! Your correction is queued for a dietitian to verify.' : 'Added — it’s live now and searchable for everyone. 🙏');
+        window.__userFoodsLoaded = false; // refresh the local cache so the new food appears immediately
+        if (onDone) onDone();
       } catch (e) { alert(e.message); }
     };
+  }
+  // Resize an image file to a small JPEG data URL (keeps the stored photo tiny)
+  function resizeImage(file, max, cb) {
+    const img = new Image(); const url = URL.createObjectURL(file);
+    img.onload = () => {
+      const scale = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * scale); c.height = Math.round(img.height * scale);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+      try { cb(c.toDataURL('image/jpeg', 0.8)); } catch (e) { cb(null); }
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); cb(null); };
+    img.src = url;
   }
   // Edit an existing food already in the database — opens the modal pre-filled with its current
   // values; the submission carries `corrects` so an approved change overrides that food.
