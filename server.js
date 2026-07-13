@@ -992,12 +992,27 @@ function tgParseMicros(text) {
 }
 const TG_NF_CANCEL = { inline_keyboard: [[{ text: '✖️ Cancel', callback_data: 'nfcancel' }]] };
 async function tgFoodSaveFlow(chatId, flow) { return db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); }
-function tgFoodPromptText(stage, nf) {
+function tgNutExample(k) { if (k === 'omega3_mg') return '500mg'; if (k === 'calcium_mg' || k === 'magnesium_mg' || k === 'potassium_mg' || k === 'sodium_mg' || k === 'choline_mg') return '100mg'; const u = TG_NUT_UNIT[k] || ''; return u === 'g' ? '3g' : u === 'IU' ? '400 IU' : '20mg'; }
+// Nutrients this user's protocol actually tracks (minus the macros already collected in earlier steps).
+function tgProtoExtraTargets(row) {
+  const p = row && TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const nt = (p && p.nt) || {};
+  return Object.keys(nt).filter(k => !['kcal', 'protein_g', 'carbs_g', 'fat_g'].includes(k));
+}
+function tgFoodPromptText(stage, nf, row) {
   switch (stage) {
     case 'nf_serving': return `🥗 <b>${nf && nf.name ? 'Add “' + tgEsc(nf.name) + '”' : 'Add a food'}</b>\nWhat's one serving? (e.g. “1 sandwich”, “100 g”, “1 fillet”)\n<i>Everything from here is optional — skip or submit anytime.</i>`;
     case 'nf_kcal': return `Calories per serving? (a number)`;
     case 'nf_macros': return `Macros in grams — send <b>protein carbs fat</b>, e.g. <b>26 46 19</b>.`;
-    case 'nf_micros': return `Any vitamins, minerals, sugar or fibre? Type them naturally, e.g.\n<b>sugar 5g, fibre 3g, vitamin C 20mg, iron 2mg</b>.`;
+    case 'nf_micros': {
+      // Ask ONLY for the nutrients this person's protocol tracks — so their fuel actually counts them (no overload).
+      const keys = tgProtoExtraTargets(row); const p = row && TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')];
+      if (keys.length && p) {
+        const labels = keys.map(k => TG_NUT_LABEL[k] || k).join(', ');
+        const ex = keys.slice(0, 2).map(k => `${TG_NUT_LABEL[k] || k} ${tgNutExample(k)}`).join(', ');
+        return `Your <b>${tgEsc(p.problem)}</b> plan tracks <b>${labels}</b> — add any you know so your fuel counts them:\n<b>${ex}</b>`;
+      }
+      return `Any vitamins, minerals, sugar or fibre? Type them naturally, e.g.\n<b>sugar 5g, vitamin C 20mg, iron 2mg</b>.`;
+    }
     case 'nf_photo': return `Add a <b>photo</b>? Send one now, or skip.`;
   }
   return '';
@@ -1014,20 +1029,20 @@ async function tgFoodAddStart(chatId) {
   flow.newfood = { name: nm };
   if (!nm) { flow.stage = 'nf_name'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `🥗 <b>Add a food</b>\nWhat's it called? (e.g. Filet-O-Fish)`, { reply_markup: TG_NF_CANCEL }); }
   flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow);
-  return tgSend(chatId, tgFoodPromptText('nf_serving', flow.newfood), { reply_markup: tgFoodStepKb('nf_serving') });
+  return tgSend(chatId, tgFoodPromptText('nf_serving', flow.newfood, row), { reply_markup: tgFoodStepKb('nf_serving') });
 }
 async function tgFoodAdvance(chatId, row, fromStage) {
   const flow = row.flow; const next = NF_SEQ[NF_SEQ.indexOf(fromStage) + 1];
   if (!next) return tgFoodSubmit(chatId, row);
   flow.stage = next; await tgFoodSaveFlow(chatId, flow);
-  return tgSend(chatId, tgFoodPromptText(next, flow.newfood), { reply_markup: tgFoodStepKb(next) });
+  return tgSend(chatId, tgFoodPromptText(next, flow.newfood, row), { reply_markup: tgFoodStepKb(next) });
 }
 async function tgFoodAddStep(chatId, row, text) {
   const flow = row.flow; const nf = flow.newfood || (flow.newfood = {}); const st = flow.stage;
   const num = s => { const v = parseFloat(String(s).replace(/[^\d.]/g, '')); return isFinite(v) ? v : null; };
   if (/^\/?(cancel|stop)$/i.test(text)) { flow.stage = null; flow.newfood = null; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `No worries — cancelled.`); }
   if (/^\/?skip$/i.test(text)) return tgFoodAdvance(chatId, row, st);
-  if (st === 'nf_name') { nf.name = text.slice(0, 80); flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, tgFoodPromptText('nf_serving', nf), { reply_markup: tgFoodStepKb('nf_serving') }); }
+  if (st === 'nf_name') { nf.name = text.slice(0, 80); flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, tgFoodPromptText('nf_serving', nf, row), { reply_markup: tgFoodStepKb('nf_serving') }); }
   if (st === 'nf_serving') { nf.serving = text.slice(0, 60); }
   else if (st === 'nf_kcal') { const v = num(text); if (v == null) return tgSend(chatId, `Just a number, e.g. <b>380</b> — or skip.`, { reply_markup: tgFoodStepKb('nf_kcal') }); nf.kcal = Math.round(v); }
   else if (st === 'nf_macros') { const nums = String(text).split(/[^\d.]+/).map(parseFloat).filter(n => isFinite(n)); if (nums[0] != null) nf.protein_g = nums[0]; if (nums[1] != null) nf.carbs_g = nums[1]; if (nums[2] != null) nf.fat_g = nums[2]; }

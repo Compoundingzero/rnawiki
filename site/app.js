@@ -223,6 +223,7 @@
 
   // ---------- accounts + API ----------
   let ME = null;
+  let FUEL_TARGETS = null; // the current protocol's nutrient_targets — lets "add a food" highlight what THIS protocol tracks
   // Super-admin (Control Room) access — robust: is_super from the server OR the owner's own email
   // (both come from /api/me). The email fallback guarantees the button can never silently vanish.
   const SUPER_EMAIL = 'felix360506@gmail.com';
@@ -4202,25 +4203,38 @@
   }
   // apply an approved correction (if any) over a base food's values
   function withOverride(f) { if (!f) return f; const o = window.__foodOverrides && window.__foodOverrides[f.id]; return o ? Object.assign({}, f, o) : f; }
+  // Nutrient metadata — the SAME 17-field model as the bot & foods.json. Label + unit for rendering.
+  const NUT_META = {
+    kcal: ['Calories', 'kcal'], protein_g: ['Protein', 'g'], carbs_g: ['Carbs', 'g'], sugar_g: ['Sugar', 'g'], fat_g: ['Fat', 'g'], fiber_g: ['Fiber', 'g'],
+    sodium_mg: ['Sodium', 'mg'], potassium_mg: ['Potassium', 'mg'], calcium_mg: ['Calcium', 'mg'], magnesium_mg: ['Magnesium', 'mg'], iron_mg: ['Iron', 'mg'], zinc_mg: ['Zinc', 'mg'],
+    vitamin_c_mg: ['Vitamin C', 'mg'], vitamin_d_iu: ['Vitamin D', 'IU'], omega3_mg: ['Omega-3', 'mg'], choline_mg: ['Choline', 'mg'], glycine_g: ['Glycine', 'g'],
+  };
+  const MACRO_KEYS = ['kcal', 'protein_g', 'carbs_g', 'sugar_g', 'fat_g', 'fiber_g'];
+  const MICRO_KEYS = ['sodium_mg', 'potassium_mg', 'calcium_mg', 'magnesium_mg', 'iron_mg', 'zinc_mg', 'vitamin_c_mg', 'vitamin_d_iu', 'omega3_mg', 'choline_mg', 'glycine_g'];
   function openAddFoodModal(onDone, prefill) {
     if (!ME) return openAuth('login');
     const pf = prefill || {};
     const editing = !!prefill;
     const va = x => (x === 0 || x) ? ` value="${esc(String(x))}"` : '';   // pre-fill helper
+    const inp = k => `<input id="uf-${k}" type="number" placeholder="${NUT_META[k][0].toLowerCase()} ${NUT_META[k][1]}"${va(pf[k])}>`;
+    // The nutrients THIS protocol actually tracks (so we ask for the crucial ones, not all 17)
+    const tgt = FUEL_TARGETS || {};
+    const trackedMicros = MICRO_KEYS.filter(k => tgt[k]);
+    const otherMicros = MICRO_KEYS.filter(k => !tgt[k]);
+    const trackedHtml = trackedMicros.length ? `<div class="uf-tracked"><div class="uf-tracked-h">⭐ Your plan tracks these — add them so your fuel counts them</div>
+      ${trackedMicros.map(k => `<label class="uf-tk"><span class="uf-tk-l">${NUT_META[k][0]} <small>${esc(tgt[k].why || '')}</small></span>${inp(k)}</label>`).join('')}</div>` : '';
+    const otherLabel = trackedMicros.length ? 'Other vitamins & minerals' : 'Vitamins & minerals';
+    const otherHtml = otherMicros.length ? `<details class="uf-micros"${editing && otherMicros.some(k => pf[k] != null) ? ' open' : ''}><summary>＋ ${otherLabel} (optional)</summary>
+        <p class="muted" style="font-size:.8rem;margin:.4rem 0">Per serving — fill in any you know.</p>
+        <div class="uf-grid uf-micro-grid">${otherMicros.map(inp).join('')}</div></details>` : '';
     const m = modal(`<div class="partner-modal"><h2>${editing ? 'Fix this food’s nutrition' : 'Add a food'}</h2>
       <p class="muted">${editing ? 'Correct any wrong numbers below. A verified dietitian checks the change, then everyone sees the corrected values.' : 'Add a missing dish — only the name is required, everything else is optional. It goes live instantly for everyone.'} Leave a field blank if you don’t know it. +20 reputation.</p>
       <label>Food name</label><input id="uf-name" placeholder="Chicken rice (roasted)"${va(pf.name)}>
       <label>Serving</label><input id="uf-serv" placeholder="1 plate (~300g)"${va(pf.serving)}>
       <label>Macros (per serving)</label>
-      <div class="uf-grid"><input id="uf-kcal" type="number" placeholder="kcal"${va(pf.kcal)}><input id="uf-pro" type="number" placeholder="protein g"${va(pf.protein_g)}><input id="uf-carb" type="number" placeholder="carbs g"${va(pf.carbs_g)}><input id="uf-sug" type="number" placeholder="sugar g"${va(pf.sugar_g)}><input id="uf-fat" type="number" placeholder="fat g"${va(pf.fat_g)}><input id="uf-fib" type="number" placeholder="fiber g"${va(pf.fiber_g)}></div>
-      <details class="uf-micros"${editing && (pf.sodium_mg != null || pf.calcium_mg != null || pf.iron_mg != null) ? ' open' : ''}><summary>${editing ? 'Vitamins & minerals' : '＋ Add vitamins & minerals (optional)'}</summary>
-        <p class="muted" style="font-size:.8rem;margin:.4rem 0">Per serving — fill in any you know.</p>
-        <div class="uf-grid uf-micro-grid">
-          <input id="uf-sodium" type="number" placeholder="sodium mg"${va(pf.sodium_mg)}><input id="uf-potassium" type="number" placeholder="potassium mg"${va(pf.potassium_mg)}><input id="uf-calcium" type="number" placeholder="calcium mg"${va(pf.calcium_mg)}>
-          <input id="uf-magnesium" type="number" placeholder="magnesium mg"${va(pf.magnesium_mg)}><input id="uf-iron" type="number" placeholder="iron mg"${va(pf.iron_mg)}><input id="uf-zinc" type="number" placeholder="zinc mg"${va(pf.zinc_mg)}>
-          <input id="uf-vitc" type="number" placeholder="vitamin C mg"${va(pf.vitamin_c_mg)}><input id="uf-vitd" type="number" placeholder="vitamin D IU"${va(pf.vitamin_d_iu)}><input id="uf-omega3" type="number" placeholder="omega-3 mg"${va(pf.omega3_mg)}>
-          <input id="uf-choline" type="number" placeholder="choline mg"${va(pf.choline_mg)}><input id="uf-glycine" type="number" placeholder="glycine g"${va(pf.glycine_g)}>
-        </div></details>
+      <div class="uf-grid">${MACRO_KEYS.map(inp).join('')}</div>
+      ${trackedHtml}
+      ${otherHtml}
       <label>Photo (optional)</label>
       <input id="uf-photo" type="file" accept="image/*">
       <div id="uf-photo-prev">${pf.photo ? `<img src="${esc(pf.photo)}" alt="" style="max-height:80px;border-radius:8px;margin-top:.5rem">` : ''}</div>
@@ -4231,14 +4245,9 @@
     if (pin) pin.onchange = () => { const f = pin.files && pin.files[0]; if (!f) return; resizeImage(f, 256, url => { photoData = url; if (pprev) pprev.innerHTML = `<img src="${url}" alt="" style="max-height:80px;border-radius:8px;margin-top:.5rem">`; }); };
     m.querySelector('#uf-save').onclick = async () => {
       try {
-        const r = await api.submitFood({
-          name: v('uf-name'), serving: v('uf-serv'),
-          kcal: v('uf-kcal'), protein_g: v('uf-pro'), carbs_g: v('uf-carb'), sugar_g: v('uf-sug'), fat_g: v('uf-fat'), fiber_g: v('uf-fib'),
-          sodium_mg: v('uf-sodium'), potassium_mg: v('uf-potassium'), calcium_mg: v('uf-calcium'), magnesium_mg: v('uf-magnesium'), iron_mg: v('uf-iron'), zinc_mg: v('uf-zinc'),
-          vitamin_c_mg: v('uf-vitc'), vitamin_d_iu: v('uf-vitd'), omega3_mg: v('uf-omega3'), choline_mg: v('uf-choline'), glycine_g: v('uf-glycine'),
-          photo_data: photoData || undefined,
-          corrects: pf.id || '',
-        });
+        const payload = { name: v('uf-name'), serving: v('uf-serv'), photo_data: photoData || undefined, corrects: pf.id || '' };
+        [...MACRO_KEYS, ...MICRO_KEYS].forEach(k => { payload[k] = v('uf-' + k); });
+        await api.submitFood(payload);
         closeModal();
         alert(editing ? 'Thanks! Your correction is queued for a dietitian to verify.' : 'Added — it’s live now and searchable for everyone. 🙏');
         window.__userFoodsLoaded = false; // refresh the local cache so the new food appears immediately
@@ -4410,6 +4419,7 @@
     const root = document.getElementById('fuel-tracker'); if (!root) return;
     const FO = window.RNAWIKI_FOODS;
     const targets = targetsOverride || (rc && rc.nutrient_targets) || {};
+    FUEL_TARGETS = targets; // so "add a food" can highlight exactly what THIS protocol tracks
     function totals() {
       const log = getFuelLog(); const sum = {}, missing = {};
       Object.keys(targets).forEach(k => { sum[k] = 0; missing[k] = 0; });
