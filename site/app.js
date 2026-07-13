@@ -4195,7 +4195,9 @@
         return;
       }
       const id = 'u' + f.id;
-      window.__userFoods[id] = Object.assign({ id, name: f.name, serving: f.serving || '', sg_local: true, verified: true, tags: [], hay: (f.name || '').toLowerCase() }, data);
+      const fo = Object.assign({ id, name: f.name, serving: f.serving || '', sg_local: true, verified: true, tags: [], hay: (f.name || '').toLowerCase() }, data);
+      if (data.photo_file_id) fo.photo = '/api/foodphoto?id=' + f.id; // server-side proxy (bot token stays server-side)
+      window.__userFoods[id] = fo;
     });
   }
   // apply an approved correction (if any) over a base food's values
@@ -4475,7 +4477,7 @@
           const pool = FO.foods.map(withOverride).concat(Object.values(window.__userFoods || {}));
           const matched = pool.filter(f => f.hay.includes(v)).sort((a, b) => (b.sg_local - a.sg_local)).slice(0, 8);
           const reloadFoods = () => { window.__userFoodsLoaded = false; loadUserFoods().then(() => render()); };
-          hits.innerHTML = matched.map(f => `<div class="food-hit"><button data-food="${f.id}"><b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg">SG</span>' : ''}${f.verified ? ' <span class="uf-badge">✓</span>' : ''}${giBadge(f.gi)} <small>${esc(f.serving || '')}</small></button><button class="food-edit" data-edit="${f.id}" title="Fix this food’s nutrition">✎</button></div>`).join('') || `<span class="no-hit">No match — <button class="linkbtn" id="add-food-inline">add it →</button></span>`;
+          hits.innerHTML = matched.map(f => `<div class="food-hit"><button data-food="${f.id}">${f.photo ? `<img class="food-thumb" src="${esc(f.photo)}" alt="" loading="lazy">` : ''}<b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg">SG</span>' : ''}${f.verified ? ' <span class="uf-badge">✓</span>' : ''}${giBadge(f.gi)} <small>${esc(f.serving || '')}</small></button><button class="food-edit" data-edit="${f.id}" title="Fix this food’s nutrition">✎</button></div>`).join('') || `<span class="no-hit">No match — <button class="linkbtn" id="add-food-inline">add it →</button></span>`;
           const afi = document.getElementById('add-food-inline'); if (afi) afi.onclick = () => openAddFoodModal(reloadFoods);
           hits.querySelectorAll('[data-edit]').forEach(b => b.onmousedown = e => { e.preventDefault(); openEditFood(b.dataset.edit, reloadFoods); });
           hits.hidden = false;

@@ -1256,6 +1256,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .food-hit:hover{background:var(--panel2)}
 .food-hit>button[data-food]{flex:1 1 auto;min-width:0;display:flex;align-items:center;flex-wrap:wrap;gap:.3rem .4rem;text-align:left;border:none;background:none;cursor:pointer;padding:.55rem .65rem;font-size:.88rem;color:var(--ink);line-height:1.25}
 .food-hit>button[data-food] b{font-weight:600}
+.food-thumb{width:28px;height:28px;border-radius:6px;object-fit:cover;flex:0 0 auto;background:var(--panel2)}
 .food-hit>button[data-food] small{color:var(--faint);white-space:nowrap}
 .food-edit{flex:none;align-self:stretch;border:none;background:none;cursor:pointer;color:var(--muted);font-size:.95rem;padding:0 .55rem;border-radius:8px}
 .food-edit:hover{background:var(--panel);color:var(--accent)}

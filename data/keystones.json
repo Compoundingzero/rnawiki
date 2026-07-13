@@ -1,55 +1,267 @@
 {
-  "_note": "Per-root-cause KEYSTONE: the single highest-impact, lowest-effort daily habit for that root cause (Assessment #5 research). Folded by parse.js onto graph rc.keystone; shown on the protocol page and, later, driven by the Telegram coach. { one: the habit, why: the low-hanging-fruit rationale }. Authored + reviewable; no runtime AI.",
-  "patellofemoral-pain": { "one": "One daily isometric hold — a 45-second wall-sit or Spanish squat.", "why": "Isometrics quiet kneecap pain almost immediately and need no gym — one hold a day beats a forgotten six-exercise sheet." },
-  "patellar-tendinopathy": { "one": "A daily heavy-slow or isometric hold for the tendon.", "why": "Tendons respond to steady daily load; a single timed hold reduces pain and rebuilds capacity without flaring it." },
-  "knee-oa": { "one": "A short daily quad-loading session (sit-to-stands or a wall-sit).", "why": "Motion and quad strength are the best-proven non-drug levers for knee osteoarthritis — and they're free." },
-  "weak-posterior-chain": { "one": "Break up sitting — stand and walk 2 minutes every hour.", "why": "Prolonged sitting is the aggravator; hourly movement snacks protect the back better than any supplement." },
-  "poor-core-stability": { "one": "A daily 5-minute anti-movement core set (dead-bug, bird-dog, plank).", "why": "Control, not crunches — teaching the core to resist movement is what stops the recurring 'tweaks'." },
-  "upper-cross": { "one": "A posture reset every 45 minutes — chin tuck + shoulder roll.", "why": "Desk posture is the driver; a 10-second reset on a timer undoes hours of forward-head load." },
-  "rotator-cuff-impinge": { "one": "Daily cuff and scapular control work (band external rotations).", "why": "A strong, well-timed cuff keeps the shoulder centred so it stops pinching overhead." },
-  "glute-weakness": { "one": "10 glute bridges before you sit down each morning.", "why": "'Sleepy' glutes cause the ache; 30 seconds of activation primes them for the whole day." },
-  "lateral-epicondylopathy": { "one": "One daily set of slow eccentric wrist loading.", "why": "Eccentrics are the proven tendon fix; one slow set a day rebuilds the tendon without over-gripping." },
-  "achilles-tendinopathy": { "one": "Daily Alfredson heel-raises, slow and controlled.", "why": "The Alfredson protocol is gold-standard and free; the morning-stiffness trend tells you it's working." },
-  "anabolic-resistance": { "one": "Hit protein at every meal (~30 g), aiming ~1.6 g/kg a day.", "why": "Older muscle needs a bigger protein trigger per meal — spreading it out is the single biggest lever against age-related loss." },
-  "poor-glucose-disposal": { "one": "A 10-minute walk after your biggest meal.", "why": "A short post-meal walk blunts the glucose spike ~30% — the best effect-per-minute in all of health, and zero planning." },
-  "visceral-adiposity": { "one": "A daily step floor plus protein at each meal.", "why": "Steps (NEAT) drive more fat loss than most gym plans; protein preserves muscle as the belly fat comes off." },
-  "energy-surplus": { "one": "A daily step target plus protein-forward meals.", "why": "Steps and protein create a gentle deficit without calorie math — the low-effort path out of surplus." },
-  "cortisol-fat": { "one": "A fixed wind-down and a 7-hour sleep target.", "why": "Stress and short sleep drive cortisol belly fat; fixing sleep first does more here than any diet tweak." },
-  "iron-anemia": { "one": "Take iron with vitamin C, away from coffee and dairy.", "why": "If it's iron, correcting it is transformational — and the only failure mode is bad timing, which this fixes." },
-  "mito-inefficiency": { "one": "A daily easy 20-minute walk or zone-2 session.", "why": "Aerobic base rebuilds mitochondria; keeping it easy means you'll actually do it even when tired." },
-  "glycemic-swings": { "one": "A protein-forward breakfast — no naked carbs.", "why": "Stopping the morning glucose spike prevents the afternoon crash-and-craving — fix breakfast, calm the whole day." },
-  "subclinical-hypothyroid": { "one": "If on thyroid medication, take it fasted 30–60 min before food, away from minerals and coffee.", "why": "Thyroid hormone only helps if it's absorbed; timing is the #1 reason people stay symptomatic." },
-  "endothelial-sodium": { "one": "Add a potassium-rich food, take a daily walk, and ease off the salt.", "why": "The potassium-to-sodium ratio plus daily cardio move blood pressure fast, with no prescription." },
-  "ldl-fiber": { "one": "5–10 g of soluble fibre daily (oats or a psyllium scoop).", "why": "Soluble fibre lowers LDL for pennies — one scoop is the cheapest lever there is." },
-  "neuroinflammation": { "one": "10 minutes of morning daylight plus a stable-glucose lunch.", "why": "Light sharpens alertness and steady blood sugar prevents the afternoon fog — both free, both same-day." },
-  "gaba-deficit": { "one": "A 2 pm caffeine cut-off, plus a 2-minute paced breath when anxiety spikes.", "why": "Caffeine's long half-life fuels evening anxiety; a paced breath drops arousal in ~90 seconds — the fastest self-rescue there is." },
-  "monoamine-inflammation": { "one": "Move your body daily, and log one small win.", "why": "Exercise rivals first-line antidepressants; naming a tiny daily win is the evidence-based behavioural lever. Not a substitute for care." },
-  "dopamine-deficit": { "one": "A short bout of movement before focused work, plus protein in the morning.", "why": "A little exercise sharpens attention for ~2 hours and protein supplies dopamine's raw material — stacking the deck before you start." },
-  "cholinergic-decline": { "one": "A daily brisk 20-minute walk.", "why": "Cardiovascular fitness is the strongest modifiable protector of memory — and walking counts." },
-  "hpa-dysregulation": { "one": "One genuine daily downshift, plus morning light.", "why": "Burnout recovery needs real downregulation, not more optimisation — the win is making yourself actually stop." },
-  "circadian-misalign": { "one": "A fixed wake-time every day, with a wind-down alarm at night.", "why": "Anchoring wake-time self-corrects the whole clock within 1–2 weeks — the single most effective, zero-cost sleep fix." },
-  "cortisol-glucose-night": { "one": "Stabilise the evening — no alcohol, and don't eat too late.", "why": "Nighttime cortisol and glucose swings, plus alcohol, drive the 3 am wake; small evening changes fix it." },
-  "circadian-desync": { "one": "Time your light and caffeine to your shift — seek light early, avoid it late.", "why": "Strategic light timing is the only thing that actually shifts the body clock — the highest-leverage move for shift work." },
-  "lifestyle-suppressed-t": { "one": "Sleep 7 hours and lift 3× a week.", "why": "Sleep and resistance training are the biggest natural testosterone levers — poor sleep alone can drop T 10–15%." },
-  "primary-hypogonadism": { "one": "Stay consistent with treatment and don't miss follow-up bloodwork.", "why": "For a confirmed clinical case, adherence and monitoring are where the results and safety live." },
-  "estrogen-decline": { "one": "Strength and impact training 2–3× a week, for muscle and bone.", "why": "Muscle and bone are use-it-or-lose-it through menopause — loading protects both better than any pill alone." },
-  "vascular-hormonal-libido": { "one": "Prioritise sleep, daily cardio for blood flow, and lowering stress.", "why": "Libido is downstream of sleep, stress and vascular health — fix the inputs, not the symptom." },
-  "low-bmd": { "one": "Load your skeleton — short impact or resistance sessions.", "why": "Bone only strengthens in response to load; two short weekly sessions beat calcium alone." },
-  "insulin-androgen": { "one": "A 10-minute post-meal walk — the insulin-first lever.", "why": "Insulin resistance drives the androgens in PCOS; treating the metabolic root eases the downstream symptoms." },
-  "collagen-loss-glycation": { "one": "Sunscreen every morning and a nightly retinoid.", "why": "Sun protection is the #1 anti-ageing intervention, full stop — one tap to confirm; retinoid consistency does the rebuilding." },
-  "uv-oxidative": { "one": "Daily sunscreen, reapplied, plus vitamin C in the morning.", "why": "Most 'ageing' skin is UV damage; blocking it is the highest-yield, lowest-effort move for tone and spots." },
-  "sebum-insulin": { "one": "A consistent AM/PM routine and a lower-glycemic diet — and don't pick.", "why": "Acne clears on consistency, not intensity — and a food-trigger log finds your personal driver." },
-  "dht-sensitivity": { "one": "Minoxidil or finasteride every single day, plus a monthly progress photo.", "why": "These only work with near-perfect adherence and take months — a daily reminder and a photo timeline is the whole game." },
-  "nutrient-deficiency-hair": { "one": "Refeed the follicle — hit protein, iron and zinc; check ferritin.", "why": "Diffuse shedding from deficiency reverses once you're properly refed." },
-  "cellular-senescence": { "one": "Protect your VO₂max and strength — weekly zone-2 plus two lifts.", "why": "Fitness is the most evidence-backed longevity 'drug'; the win is doing the dose simply and consistently." },
-  "mtor-overactivation": { "one": "Keep a consistent daily eating window (time-restricted eating).", "why": "A steady eating window is the simplest way to cycle growth and repair — one timer, no calorie math." },
-  "low-grade-inflammation": { "one": "Omega-3 daily, move your body, and swap one ultra-processed food.", "why": "Diet and movement drive 'inflammaging'; one daily swap compounds without a full diet overhaul." },
-  "dysbiosis": { "one": "Aim for 30 different plants a week.", "why": "Plant diversity is the strongest, most actionable microbiome lever — and counting it is oddly fun and low-effort." },
-  "micronutrient-immune": { "one": "Sleep, vitamin D and zinc — kept consistent.", "why": "The unglamorous foundations do most of the immune work; consistency is the lever." },
-  "stimulus-recovery": { "one": "Log one number each session and beat last week's top set.", "why": "Progressive overload is the only thing that truly breaks a plateau — logging it makes progression visible and honest." },
-  "neural-recovery": { "one": "A quick morning readiness check to gate training vs a deload.", "why": "Grinding through fatigue stalls strength; a 5-second readiness check stops you digging the hole deeper." },
-  "metabolic-adaptation": { "one": "Hold a protein and step floor, and judge by the weekly trend.", "why": "Plateaus are usually adherence drift; a weekly trend beats daily noise, and the floors restart the loss." },
-  "aerobic-base": { "one": "Add easy zone-2 volume each week (and check your iron).", "why": "Most stalls are too little easy volume — plus low iron in endurance athletes; tracking easy minutes fixes the first." },
-  "low-readiness": { "one": "Time caffeine ~45 minutes pre-session with a fast carb.", "why": "Right-timed stimulant and fuel is the cheapest performance jump there is." },
-  "autonomic-imbalance": { "one": "A 10-second morning check — resting heart rate and 'did I sleep?' — and take the rest day when it says so.", "why": "The fix for overtraining is less; a quick morning check catches the dig and gives you permission to stop." }
+ "_note": "Per-root-cause KEYSTONE: the single highest-impact, lowest-effort daily habit for that root cause (Assessment #5 research). Folded by parse.js onto graph rc.keystone; shown on the protocol page and, later, driven by the Telegram coach. { one: the habit, why: the low-hanging-fruit rationale }. Authored + reviewable; no runtime AI.",
+ "patellofemoral-pain": {
+  "one": "One daily isometric hold — a 45-second wall-sit or Spanish squat.",
+  "why": "Isometrics quiet kneecap pain almost immediately and need no gym — one hold a day beats a forgotten six-exercise sheet."
+ },
+ "patellar-tendinopathy": {
+  "one": "A daily heavy-slow or isometric hold for the tendon.",
+  "why": "Tendons respond to steady daily load; a single timed hold reduces pain and rebuilds capacity without flaring it."
+ },
+ "knee-oa": {
+  "one": "A short daily quad-loading session (sit-to-stands or a wall-sit).",
+  "why": "Motion and quad strength are the best-proven non-drug levers for knee osteoarthritis — and they're free."
+ },
+ "weak-posterior-chain": {
+  "one": "Break up sitting — stand and walk 2 minutes every hour.",
+  "why": "Prolonged sitting is the aggravator; hourly movement snacks protect the back better than any supplement."
+ },
+ "poor-core-stability": {
+  "one": "A daily 5-minute anti-movement core set (dead-bug, bird-dog, plank).",
+  "why": "Control, not crunches — teaching the core to resist movement is what stops the recurring 'tweaks'."
+ },
+ "upper-cross": {
+  "one": "A posture reset every 45 minutes — chin tuck + shoulder roll.",
+  "why": "Desk posture is the driver; a 10-second reset on a timer undoes hours of forward-head load."
+ },
+ "rotator-cuff-impinge": {
+  "one": "Daily cuff and scapular control work (band external rotations).",
+  "why": "A strong, well-timed cuff keeps the shoulder centred so it stops pinching overhead."
+ },
+ "glute-weakness": {
+  "one": "10 glute bridges before you sit down each morning.",
+  "why": "'Sleepy' glutes cause the ache; 30 seconds of activation primes them for the whole day."
+ },
+ "lateral-epicondylopathy": {
+  "one": "One daily set of slow eccentric wrist loading.",
+  "why": "Eccentrics are the proven tendon fix; one slow set a day rebuilds the tendon without over-gripping."
+ },
+ "achilles-tendinopathy": {
+  "one": "Daily Alfredson heel-raises, slow and controlled.",
+  "why": "The Alfredson protocol is gold-standard and free; the morning-stiffness trend tells you it's working."
+ },
+ "anabolic-resistance": {
+  "one": "Hit protein at every meal (~30 g), aiming ~1.6 g/kg a day.",
+  "why": "Older muscle needs a bigger protein trigger per meal — spreading it out is the single biggest lever against age-related loss."
+ },
+ "poor-glucose-disposal": {
+  "one": "A 10-minute walk after your biggest meal.",
+  "why": "A short post-meal walk blunts the glucose spike ~30% — the best effect-per-minute in all of health, and zero planning."
+ },
+ "visceral-adiposity": {
+  "one": "A daily step floor plus protein at each meal.",
+  "why": "Steps (NEAT) drive more fat loss than most gym plans; protein preserves muscle as the belly fat comes off."
+ },
+ "energy-surplus": {
+  "one": "A daily step target plus protein-forward meals.",
+  "why": "Steps and protein create a gentle deficit without calorie math — the low-effort path out of surplus."
+ },
+ "cortisol-fat": {
+  "one": "A fixed wind-down and a 7-hour sleep target.",
+  "why": "Stress and short sleep drive cortisol belly fat; fixing sleep first does more here than any diet tweak."
+ },
+ "iron-anemia": {
+  "one": "Take iron with vitamin C, away from coffee and dairy.",
+  "why": "If it's iron, correcting it is transformational — and the only failure mode is bad timing, which this fixes."
+ },
+ "mito-inefficiency": {
+  "one": "A daily easy 20-minute walk or zone-2 session.",
+  "why": "Aerobic base rebuilds mitochondria; keeping it easy means you'll actually do it even when tired."
+ },
+ "glycemic-swings": {
+  "one": "A protein-forward breakfast — no naked carbs.",
+  "why": "Stopping the morning glucose spike prevents the afternoon crash-and-craving — fix breakfast, calm the whole day."
+ },
+ "subclinical-hypothyroid": {
+  "one": "If on thyroid medication, take it fasted 30–60 min before food, away from minerals and coffee.",
+  "why": "Thyroid hormone only helps if it's absorbed; timing is the #1 reason people stay symptomatic."
+ },
+ "endothelial-sodium": {
+  "one": "Add a potassium-rich food, take a daily walk, and ease off the salt.",
+  "why": "The potassium-to-sodium ratio plus daily cardio move blood pressure fast, with no prescription.",
+  "steps": [
+   "Add a potassium-rich food",
+   "Take a daily walk",
+   "Ease off the salt"
+  ]
+ },
+ "ldl-fiber": {
+  "one": "5–10 g of soluble fibre daily (oats or a psyllium scoop).",
+  "why": "Soluble fibre lowers LDL for pennies — one scoop is the cheapest lever there is."
+ },
+ "neuroinflammation": {
+  "one": "10 minutes of morning daylight plus a stable-glucose lunch.",
+  "why": "Light sharpens alertness and steady blood sugar prevents the afternoon fog — both free, both same-day.",
+  "steps": [
+   "10 min morning daylight",
+   "Stable-glucose lunch"
+  ]
+ },
+ "gaba-deficit": {
+  "one": "A 2 pm caffeine cut-off, plus a 2-minute paced breath when anxiety spikes.",
+  "why": "Caffeine's long half-life fuels evening anxiety; a paced breath drops arousal in ~90 seconds — the fastest self-rescue there is.",
+  "steps": [
+   "2pm caffeine cut-off",
+   "Paced breath when anxious"
+  ]
+ },
+ "monoamine-inflammation": {
+  "one": "Move your body daily, and log one small win.",
+  "why": "Exercise rivals first-line antidepressants; naming a tiny daily win is the evidence-based behavioural lever. Not a substitute for care.",
+  "steps": [
+   "Move your body",
+   "Log one small win"
+  ]
+ },
+ "dopamine-deficit": {
+  "one": "A short bout of movement before focused work, plus protein in the morning.",
+  "why": "A little exercise sharpens attention for ~2 hours and protein supplies dopamine's raw material — stacking the deck before you start.",
+  "steps": [
+   "Move before focused work",
+   "Protein in the morning"
+  ]
+ },
+ "cholinergic-decline": {
+  "one": "A daily brisk 20-minute walk.",
+  "why": "Cardiovascular fitness is the strongest modifiable protector of memory — and walking counts."
+ },
+ "hpa-dysregulation": {
+  "one": "One genuine daily downshift, plus morning light.",
+  "why": "Burnout recovery needs real downregulation, not more optimisation — the win is making yourself actually stop.",
+  "steps": [
+   "One genuine downshift",
+   "Get morning light"
+  ]
+ },
+ "circadian-misalign": {
+  "one": "A fixed wake-time every day, with a wind-down alarm at night.",
+  "why": "Anchoring wake-time self-corrects the whole clock within 1–2 weeks — the single most effective, zero-cost sleep fix.",
+  "steps": [
+   "Keep a fixed wake-time",
+   "Wind-down alarm at night"
+  ]
+ },
+ "cortisol-glucose-night": {
+  "one": "Stabilise the evening — no alcohol, and don't eat too late.",
+  "why": "Nighttime cortisol and glucose swings, plus alcohol, drive the 3 am wake; small evening changes fix it.",
+  "steps": [
+   "No alcohol tonight",
+   "Don’t eat too late"
+  ]
+ },
+ "circadian-desync": {
+  "one": "Time your light and caffeine to your shift — seek light early, avoid it late.",
+  "why": "Strategic light timing is the only thing that actually shifts the body clock — the highest-leverage move for shift work."
+ },
+ "lifestyle-suppressed-t": {
+  "one": "Sleep 7 hours and lift 3× a week.",
+  "why": "Sleep and resistance training are the biggest natural testosterone levers — poor sleep alone can drop T 10–15%."
+ },
+ "primary-hypogonadism": {
+  "one": "Stay consistent with treatment and don't miss follow-up bloodwork.",
+  "why": "For a confirmed clinical case, adherence and monitoring are where the results and safety live."
+ },
+ "estrogen-decline": {
+  "one": "Strength and impact training 2–3× a week, for muscle and bone.",
+  "why": "Muscle and bone are use-it-or-lose-it through menopause — loading protects both better than any pill alone."
+ },
+ "vascular-hormonal-libido": {
+  "one": "Prioritise sleep, daily cardio for blood flow, and lowering stress.",
+  "why": "Libido is downstream of sleep, stress and vascular health — fix the inputs, not the symptom.",
+  "steps": [
+   "Prioritise sleep",
+   "Daily cardio",
+   "Lower stress"
+  ]
+ },
+ "low-bmd": {
+  "one": "Load your skeleton — short impact or resistance sessions.",
+  "why": "Bone only strengthens in response to load; two short weekly sessions beat calcium alone."
+ },
+ "insulin-androgen": {
+  "one": "A 10-minute post-meal walk — the insulin-first lever.",
+  "why": "Insulin resistance drives the androgens in PCOS; treating the metabolic root eases the downstream symptoms."
+ },
+ "collagen-loss-glycation": {
+  "one": "Sunscreen every morning and a nightly retinoid.",
+  "why": "Sun protection is the #1 anti-ageing intervention, full stop — one tap to confirm; retinoid consistency does the rebuilding.",
+  "steps": [
+   "Morning sunscreen",
+   "Nightly retinoid"
+  ]
+ },
+ "uv-oxidative": {
+  "one": "Daily sunscreen, reapplied, plus vitamin C in the morning.",
+  "why": "Most 'ageing' skin is UV damage; blocking it is the highest-yield, lowest-effort move for tone and spots.",
+  "steps": [
+   "Sunscreen (reapply through the day)",
+   "Vitamin C in the morning"
+  ]
+ },
+ "sebum-insulin": {
+  "one": "A consistent AM/PM routine and a lower-glycemic diet — and don't pick.",
+  "why": "Acne clears on consistency, not intensity — and a food-trigger log finds your personal driver."
+ },
+ "dht-sensitivity": {
+  "one": "Minoxidil or finasteride every single day, plus a monthly progress photo.",
+  "why": "These only work with near-perfect adherence and take months — a daily reminder and a photo timeline is the whole game."
+ },
+ "nutrient-deficiency-hair": {
+  "one": "Refeed the follicle — hit protein, iron and zinc; check ferritin.",
+  "why": "Diffuse shedding from deficiency reverses once you're properly refed."
+ },
+ "cellular-senescence": {
+  "one": "Protect your VO₂max and strength — weekly zone-2 plus two lifts.",
+  "why": "Fitness is the most evidence-backed longevity 'drug'; the win is doing the dose simply and consistently."
+ },
+ "mtor-overactivation": {
+  "one": "Keep a consistent daily eating window (time-restricted eating).",
+  "why": "A steady eating window is the simplest way to cycle growth and repair — one timer, no calorie math."
+ },
+ "low-grade-inflammation": {
+  "one": "Omega-3 daily, move your body, and swap one ultra-processed food.",
+  "why": "Diet and movement drive 'inflammaging'; one daily swap compounds without a full diet overhaul.",
+  "steps": [
+   "Take omega-3",
+   "Move your body",
+   "Swap one ultra-processed food"
+  ]
+ },
+ "dysbiosis": {
+  "one": "Aim for 30 different plants a week.",
+  "why": "Plant diversity is the strongest, most actionable microbiome lever — and counting it is oddly fun and low-effort."
+ },
+ "micronutrient-immune": {
+  "one": "Sleep, vitamin D and zinc — kept consistent.",
+  "why": "The unglamorous foundations do most of the immune work; consistency is the lever.",
+  "steps": [
+   "Sleep well",
+   "Vitamin D",
+   "Zinc"
+  ]
+ },
+ "stimulus-recovery": {
+  "one": "Log one number each session and beat last week's top set.",
+  "why": "Progressive overload is the only thing that truly breaks a plateau — logging it makes progression visible and honest."
+ },
+ "neural-recovery": {
+  "one": "A quick morning readiness check to gate training vs a deload.",
+  "why": "Grinding through fatigue stalls strength; a 5-second readiness check stops you digging the hole deeper."
+ },
+ "metabolic-adaptation": {
+  "one": "Hold a protein and step floor, and judge by the weekly trend.",
+  "why": "Plateaus are usually adherence drift; a weekly trend beats daily noise, and the floors restart the loss."
+ },
+ "aerobic-base": {
+  "one": "Add easy zone-2 volume each week (and check your iron).",
+  "why": "Most stalls are too little easy volume — plus low iron in endurance athletes; tracking easy minutes fixes the first."
+ },
+ "low-readiness": {
+  "one": "Time caffeine ~45 minutes pre-session with a fast carb.",
+  "why": "Right-timed stimulant and fuel is the cheapest performance jump there is."
+ },
+ "autonomic-imbalance": {
+  "one": "A 10-second morning check — resting heart rate and 'did I sleep?' — and take the rest day when it says so.",
+  "why": "The fix for overtraining is less; a quick morning check catches the dig and gives you permission to stop."
+ }
 }
