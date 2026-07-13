@@ -524,7 +524,9 @@
     root.querySelectorAll('.depth-btn').forEach(b => b.onclick = () => { root.querySelectorAll('.depth-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); applyDepth(+b.dataset.depth); });
     applyDepth(2);
     // Glossary hover-defs across the readable body (skips links/headings; first mention only)
-    root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body').forEach(applyGlossary);
+    root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body, .mc-body p, .pk-note, .analogy p').forEach(applyGlossary);
+    // Self-test — reveal answers (active recall)
+    root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
     root.querySelectorAll('.gloss').forEach(g => { g.onclick = e => { e.stopPropagation(); document.querySelectorAll('.gloss.open').forEach(o => o !== g && o.classList.remove('open')); g.classList.toggle('open'); }; });
     document.addEventListener('click', () => root.querySelectorAll('.gloss.open').forEach(o => o.classList.remove('open')), { once: true });
     // Learned tracking
@@ -1204,6 +1206,38 @@
   function getLearned() { try { return JSON.parse(localStorage.getItem('rnawiki_learned') || '[]'); } catch (e) { return []; } }
   function isLearned(id) { return getLearned().includes(id); }
   function toggleLearned(id) { const l = getLearned(); const i = l.indexOf(id); if (i >= 0) l.splice(i, 1); else l.push(id); localStorage.setItem('rnawiki_learned', JSON.stringify(l)); return l.includes(id); }
+  // ---- authored learning-layer components (render only when the sidecar data exists) ----
+  function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div><p>${mdInline(c.analogy)}</p></div></div>`; }
+  function mechanismCascade(c) {
+    if (!Array.isArray(c.mechSteps) || !c.mechSteps.length) return '';
+    const steps = c.mechSteps.map(s => {
+      const link = s.tag ? ` <a class="mc-tag" href="#/target/${tkey(s.tag)}">${esc(s.tag)}</a>` : '';
+      const fx = s.fx ? `<span class="mc-fx ${/▲/.test(s.fx) ? 'up' : /▼/.test(s.fx) ? 'down' : ''}">${esc(s.fx)}</span>` : '';
+      return `<li class="mc-step"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-t">${esc(s.t)}${link} ${fx}</div><p>${mdInline(s.d)}</p></div></li>`;
+    }).join('');
+    return `<div class="callout mcascade" id="sec-mechanism" data-lvl="2"><span class="k">How it works — step by step</span><ol class="mc-list">${steps}</ol></div>`;
+  }
+  function pkTimeline(c) {
+    const p = c.pk; if (!p) return '';
+    const cells = [['⏱️', 'Onset', p.onset], ['📈', 'Peak', p.peak], ['⏳', 'Half-life', p.halfLife], ['🌙', 'Lasts', p.duration]].filter(x => x[2]);
+    if (!cells.length) return '';
+    return `<div class="pk" data-lvl="2" id="sec-pk"><div class="k">⏳ In your body — timing</div>
+      <div class="pk-row">${cells.map(([i, l, v]) => `<div class="pk-cell"><div class="pk-ico">${i}</div><div class="pk-l">${l}</div><div class="pk-v">${esc(v)}</div></div>`).join('<span class="pk-arrow">→</span>')}</div>
+      ${p.note ? `<p class="pk-note">${mdInline(p.note)}</p>` : ''}</div>`;
+  }
+  function selfTestBox(c) {
+    if (!Array.isArray(c.selfTest) || !c.selfTest.length) return '';
+    const cards = c.selfTest.map((q, i) => `<div class="st-card"><div class="st-q"><b>Q${i + 1}.</b> ${esc(q.q)}</div><div class="st-a" hidden>${mdInline(q.a)}</div><button class="st-reveal" data-streveal="${i}">Show answer</button></div>`).join('');
+    return `<div class="selftest" data-lvl="1"><div class="st-h">🧠 Test yourself <span class="st-sub">— recalling it beats re-reading it</span></div>${cards}</div>`;
+  }
+  function positioningPlot(c) {
+    const peers = D.compounds.filter(x => x.category === c.category && !x.isNote).sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name));
+    if (peers.length < 3) return '';
+    const top = peers.slice(0, 8); const list = top.some(x => x.id === c.id) ? top : top.slice(0, 7).concat([c]);
+    const rows = list.map(x => { const me = x.id === c.id; return `<div class="pos-row ${me ? 'me' : ''}"><a class="pos-name" href="#/c/${slug(x.name)}">${esc(x.name.split('(')[0].trim())}</a><div class="pos-bar"><i style="width:${x.stars / 5 * 100}%"></i></div><span class="pos-stars">${'★'.repeat(x.stars)}</span></div>`; }).join('');
+    const rank = peers.findIndex(x => x.id === c.id) + 1;
+    return `<div class="positioning" data-lvl="2"><div class="section-title">📊 How it ranks on evidence <span class="pos-sub">in ${esc(c.category.split('/')[0].trim().toLowerCase())} · ${rank} of ${peers.length}</span></div><div class="pos-list">${rows}</div></div>`;
+  }
 
   function detail(s) {
     const c = bySlug[s]; if (!c) return notFound();
@@ -1231,17 +1265,21 @@
       ${compoundToc(c)}
       <div id="edit-meta" class="edit-meta"></div>
       ${takeawaysBox(c)}
+      ${analogyBox(c)}
       ${moleculeViewer(c)}
       <div class="mech-chain-wrap" data-lvl="2">${explodedDiagram(c)}</div>
       <div class="toolbar" style="margin-top:1rem" data-lvl="1">${goalTags}</div>
       ${(() => { const f = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s); return f ? `<div class="cpd-fact" data-lvl="2"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${f.t}</span></div>` : ''; })()}
       ${callout('plain', 'In plain English — start here', c.plain, '', 1)}
-      ${callout('mechanism', 'How it works — the science', c.mechanism, '', 2)}
+      ${c.mechSteps ? mechanismCascade(c) : callout('mechanism', 'How it works — the science', c.mechanism, '', 2)}
+      ${c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — technical detail', c.mechanism, '', 3) : ''}
       ${callout('target', 'Molecular / gene target', c.target, '', 3)}
       ${callout('protocol', 'How to take it', c.protocol, '', 2)}
+      ${pkTimeline(c)}
       ${callout('watch', 'Watch out', c.watch, 'warn', 2)}
       ${callout('bottom', 'Bottom line', c.bottom, '', 1)}
       ${c.evidence ? `${evidenceGlance(c)}<details class="evidence-block" data-lvl="3" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : evidenceGlance(c)}
+      ${positioningPlot(c)}
       <div data-lvl="2">${(() => {
         const sg = sgAvailability(c); const derived = derivedStacks(c);
         return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>
@@ -1272,7 +1310,8 @@
         c.watch ? { q: `What are the risks or side effects of ${c.name}?`, a: faqSnip(c.watch, 300) } : null,
         (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
       ])}
-      ${related.length ? `<div class="section-title">Related compounds</div><div class="related">${related.map(cpdCard).join('')}</div>` : ''}
+      ${selfTestBox(c)}
+      ${related.length ? `<div class="section-title" data-lvl="1">Related compounds</div><div class="related" data-lvl="1">${related.map(cpdCard).join('')}</div>` : ''}
       ${solveCta('See the problems &amp; goals this fits — build a protocol →')}
       <div id="goal-comments" class="page-discuss"></div>
     </div>`;

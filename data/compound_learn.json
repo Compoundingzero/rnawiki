@@ -1,0 +1,24 @@
+{
+ "_schema": "Learning-layer data merged onto compounds by build/parse.js (keyed by compound slug). Every field optional; the page renders only what's present. Keep it accurate — this is authored pharmacology, never generated. analogy=one-line mental model · mechSteps=numbered plain-English cascade (tag links a target, fx shows the net effect) · pk=pharmacokinetics for the timeline · selfTest=active-recall Q&A.",
+ "caffeine": {
+  "analogy": "Caffeine is a doorstop jammed into your brain's tiredness sensor. It doesn't add energy — it blocks the signal that says “wind down.”",
+  "mechSteps": [
+   { "n": 1, "t": "It impersonates adenosine", "d": "Caffeine's shape closely mimics adenosine — the molecule that piles up while you're awake and tells your brain “time to rest.” That resemblance lets it slot into the very same receptors.", "tag": "ADORA2A" },
+   { "n": 2, "t": "It blocks the “slow down” brake", "d": "By occupying adenosine's A1 and A2A receptors, caffeine stops adenosine from docking — so the drowsiness signal your brain has been building all day never lands.", "fx": "▼ drowsiness" },
+   { "n": 3, "t": "Excitatory signalling climbs", "d": "With the brake released, dopamine and noradrenaline activity rise. You feel sharper and more motivated, and a given effort feels easier.", "fx": "▲ alertness & focus" },
+   { "n": 4, "t": "Body-wide knock-on effects", "d": "It also sensitises calcium release in muscle (more force), mobilises fat for fuel, and mildly lifts heart rate and metabolism — why it aids both power and endurance.", "fx": "▲ performance" }
+  ],
+  "pk": {
+   "onset": "15–45 min",
+   "peak": "30–75 min",
+   "halfLife": "5–6 h",
+   "duration": "3–5 h",
+   "note": "That half-life is why timing matters: a 4pm dose still has about a quarter circulating at midnight, blocking the very adenosine you need to fall asleep. It stretches to 9 h+ in slow metabolisers and pregnancy, and shortens in smokers."
+  },
+  "selfTest": [
+   { "q": "What molecule does caffeine impersonate — and what does blocking it do?", "a": "Adenosine. Blocking its receptors lifts the “drowsiness” brake your brain builds through the day, so you feel alert." },
+   { "q": "Caffeine's half-life is ~5–6 hours. Why can an afternoon coffee still wreck your sleep?", "a": "After ~10–12 h a quarter of the dose is still circulating, keeping adenosine's sleep signal blocked right when you're trying to fall asleep." },
+   { "q": "Name one way caffeine boosts physical performance beyond feeling more awake.", "a": "It lowers perceived effort and sensitises calcium release in muscle for more force (and it mobilises fat for fuel)." }
+  ]
+ }
+}

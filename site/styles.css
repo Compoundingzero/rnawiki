@@ -2262,3 +2262,51 @@ a.dp-name:hover{color:var(--accent)}
 .learned-btn{border:1px solid var(--line);background:var(--panel);color:var(--muted);border-radius:999px;padding:.45rem .9rem;font-size:.84rem;cursor:pointer}
 .learned-btn.on{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);border-color:var(--accent);font-weight:600}
 @media(max-width:640px){.mol-2d img{width:150px;height:150px}.cpd-toc{overflow-x:auto;flex-wrap:nowrap}}
+
+/* ---- Learning-layer components: analogy, mechanism cascade, PK timeline, self-test, positioning ---- */
+.analogy{display:flex;gap:.7rem;align-items:flex-start;margin:1rem 0;padding:.9rem 1.1rem;border-radius:14px;background:color-mix(in srgb,#f5a623 12%,transparent);border:1px solid color-mix(in srgb,#f5a623 40%,transparent)}
+.analogy .an-ico{font-size:1.3rem;line-height:1}
+.analogy .an-h{font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;margin-bottom:.15rem}
+.analogy p{margin:0;font-size:1.02rem;line-height:1.5;font-weight:500}
+/* Mechanism cascade */
+.mcascade .mc-list{list-style:none;margin:.6rem 0 0;padding:0;counter-reset:none}
+.mc-step{display:flex;gap:.8rem;position:relative;padding-bottom:1.1rem}
+.mc-step:not(:last-child)::before{content:"";position:absolute;left:15px;top:32px;bottom:0;width:2px;background:var(--line)}
+.mc-n{flex:0 0 auto;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:1}
+.mc-body{flex:1 1 auto;min-width:0}
+.mc-t{font-weight:600;margin-bottom:.15rem;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.mc-body p{margin:0;font-size:.94rem;line-height:1.55;color:var(--muted)}
+.mc-tag{font-size:.72rem;font-weight:700;padding:.1rem .45rem;border-radius:6px;background:color-mix(in srgb,var(--accent) 15%,transparent);color:var(--accent);text-decoration:none}
+.mc-fx{font-size:.74rem;font-weight:700;padding:.1rem .45rem;border-radius:6px}
+.mc-fx.up{background:color-mix(in srgb,#16a34a 15%,transparent);color:#16a34a}
+.mc-fx.down{background:color-mix(in srgb,#dc2626 13%,transparent);color:#dc2626}
+/* PK timeline */
+.pk{margin:1rem 0;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+.pk .k{font-weight:700;display:block;margin-bottom:.7rem}
+.pk-row{display:flex;align-items:stretch;gap:.3rem;flex-wrap:wrap}
+.pk-cell{flex:1 1 5rem;text-align:center;padding:.5rem .3rem;border-radius:10px;background:var(--panel2)}
+.pk-ico{font-size:1.1rem}
+.pk-l{font-size:.66rem;text-transform:uppercase;letter-spacing:.04em;color:var(--faint)}
+.pk-v{font-weight:700;font-size:.9rem}
+.pk-arrow{display:flex;align-items:center;color:var(--faint)}
+.pk-note{margin:.7rem 0 0;font-size:.86rem;line-height:1.5;color:var(--muted)}
+/* Self-test */
+.selftest{margin:1.4rem 0;padding:1rem 1.1rem;border-radius:14px;border:1px dashed var(--accent);background:color-mix(in srgb,var(--accent) 5%,transparent)}
+.st-h{font-weight:700;margin-bottom:.6rem}
+.st-sub{font-weight:400;color:var(--muted);font-size:.85rem}
+.st-card{padding:.6rem 0;border-top:1px solid var(--line)}
+.st-card:first-of-type{border-top:none}
+.st-q{font-size:.94rem;line-height:1.5;margin-bottom:.4rem}
+.st-a{font-size:.92rem;line-height:1.55;color:var(--ink);background:var(--panel2);padding:.55rem .7rem;border-radius:8px;margin-top:.3rem}
+.st-reveal{border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:999px;padding:.25rem .8rem;font-size:.8rem;cursor:pointer}
+/* Positioning */
+.positioning{margin:1.2rem 0}
+.pos-sub{font-weight:400;color:var(--muted);font-size:.82rem}
+.pos-list{display:flex;flex-direction:column;gap:.35rem;margin-top:.4rem}
+.pos-row{display:flex;align-items:center;gap:.6rem}
+.pos-row.me .pos-name{font-weight:700;color:var(--accent)}
+.pos-name{flex:0 0 40%;font-size:.84rem;color:var(--ink);text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pos-bar{flex:1 1 auto;height:8px;border-radius:4px;background:var(--panel2);overflow:hidden}
+.pos-bar i{display:block;height:100%;background:var(--line)}
+.pos-row.me .pos-bar i{background:var(--accent)}
+.pos-stars{flex:0 0 auto;font-size:.72rem;color:#f5a623;letter-spacing:.5px}
