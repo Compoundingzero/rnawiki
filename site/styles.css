@@ -2394,3 +2394,14 @@ a.dp-name:hover{color:var(--accent)}
 .jr-bar.big{display:block;width:100%;max-width:none;height:7px;border-radius:4px;background:var(--panel2);overflow:hidden;margin:.3rem 0 .9rem}
 .jr-bar.big i{display:block;height:100%;background:var(--accent);border-radius:4px}
 @media(max-width:640px){.ch-tabs{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}}
+
+/* ---- CTA de-clutter + richer evidence chapter ---- */
+.deeper-link.quiet{font-size:.82rem;color:var(--muted);font-weight:500;text-decoration:none;display:inline-block;margin-top:.6rem;border-bottom:1px dotted var(--line)}
+.deeper-link.quiet:hover{color:var(--accent);border-color:var(--accent)}
+.ch-done{font-size:.9rem;color:var(--muted);text-align:center;margin:0;font-style:italic}
+.bt-lead{font-size:.9rem;line-height:1.55;color:var(--muted);margin:.3rem 0 .7rem;padding:.65rem .85rem;border-radius:10px;background:var(--panel)}
+.evidence-deep{margin:.5rem 0}
+.evd-sec{padding:.8rem 0;border-top:1px solid var(--line)}
+.evd-sec:first-child{border-top:none;padding-top:.2rem}
+.evd-t{font-weight:700;font-size:.96rem;margin-bottom:.3rem}
+.evd-b{font-size:.94rem;line-height:1.62;color:var(--ink)}

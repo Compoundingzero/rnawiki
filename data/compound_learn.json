@@ -1,5 +1,5 @@
 {
- "_schema": "Learning-layer data merged onto compounds by build/parse.js (keyed by compound slug). Every field optional; the page renders only what's present. Keep it accurate — authored pharmacology, never generated. analogy=one-line mental model · mechSteps=numbered plain-English cascade (tag links a target, fx=net effect) · pk=pharmacokinetics for the timeline · selfTest=active-recall Q&A · tech=the biotech deep-dive shown at Technical depth (chem · targets[{sym,url,action,affinity,role}] · signaling · adme{absorb,distribute,metabolise,excrete} · pgx · dose · tolerance · trials[{finding,ref}]).",
+ "_schema": "Learning-layer data merged onto compounds by build/parse.js (keyed by compound slug). Every field optional; the page renders only what's present. Keep it accurate — authored pharmacology, never generated. analogy=one-line mental model · mechSteps=numbered plain-English cascade (tag links a target, fx=net effect) · pk=pharmacokinetics for the timeline · selfTest=active-recall Q&A · evi=the contextual evidence chapter (howStrong · whatItShows · effect · whoBenefits · caveats · trials[{finding,ref}]) · tech=the biotech deep-dive (chem · targets[{sym,url,action,affinity,role}] · signaling · adme{absorb,distribute,metabolise,excrete} · pgx · dose · tolerance).",
  "caffeine": {
   "analogy": "Caffeine is a doorstop jammed into your brain's tiredness sensor. It doesn't add energy — it blocks the signal that says “wind down.”",
   "mechSteps": [
@@ -20,6 +20,18 @@
    { "q": "Caffeine's half-life is ~5–6 hours. Why can an afternoon coffee still wreck your sleep?", "a": "After ~10–12 h a quarter of the dose is still circulating, keeping adenosine's sleep signal blocked right when you're trying to fall asleep." },
    { "q": "Two people take the same dose; one gets a performance boost, one gets jittery and slower. What single gene most likely explains it?", "a": "CYP1A2. Fast metabolisers (AA at −163C>A) tend to benefit; slow metabolisers (C-carriers) clear it slowly and can see blunted or negative effects." }
   ],
+  "evi": {
+   "howStrong": "Caffeine sits near the top of the evidence pyramid — dozens of randomised controlled trials, pooled into multiple meta-analyses and even an umbrella review (a review of reviews). That's about as strong as sports-nutrition evidence ever gets; this is not a 'one small study' supplement. The catch to keep in mind: most of those trials are acute (a single dose) and run in young, active people, so the everyday, long-term picture is less nailed-down than the headline suggests.",
+   "whatItShows": "Read across the trials and the pattern is remarkably consistent: a small-to-moderate boost to endurance, strength, power and alertness. 'Small-to-moderate' is the honest framing — it won't transform an untrained beginner, but for a trained athlete a few percent is the gap between a personal best and an ordinary day.",
+   "effect": "In plain numbers: endurance time-to-exhaustion improves ~11% on average, and strength/power gains cluster around a 2–7% edge. The mental lift is biggest when you're sleep-deprived and shrinks toward zero when you're already well-rested — so caffeine mostly restores performance you'd otherwise lose, rather than adding a brand-new ceiling.",
+   "whoBenefits": "Habitual non-users and fast CYP1A2 metabolisers see the clearest gains. Slow metabolisers and heavy daily users get a blunted (occasionally negative) effect — both tolerance and genetics move the needle, which is why the 'same coffee, opposite result' between two people is real, not imagined.",
+   "caveats": "Because the trials skew acute, young and male, treat the numbers as a solid central estimate rather than a personal guarantee — and assume publication bias inflates the average a little. Your own response (genetics, tolerance, sleep debt) can easily swamp the study-average effect.",
+   "trials": [
+    { "finding": "Umbrella review of 21 meta-analyses: consistent small-to-moderate benefit for muscular endurance, strength, power and aerobic endurance.", "ref": "Grgic et al., 2020, Br J Sports Med" },
+    { "finding": "Endurance time-to-exhaustion improved on the order of ~11% vs placebo across pooled trials.", "ref": "Doherty & Smith, 2005 meta-analysis" },
+    { "finding": "The performance benefit tracked CYP1A2 genotype — present in fast metabolisers, absent or reversed in slow metabolisers.", "ref": "Guest et al., 2018, Med Sci Sports Exerc" }
+   ]
+  },
   "tech": {
    "chem": "1,3,7-trimethylxanthine — a purine alkaloid and methylxanthine (a close cousin of theophylline and theobromine). Its ring closely resembles adenosine, which is what lets it dock into adenosine receptors; unlike adenosine, it's cleared by liver enzymes (chiefly CYP1A2) rather than the adenosine-recycling machinery. Lipophilic, so it crosses the blood–brain barrier and placenta freely and distributes into total body water.",
    "targets": [
@@ -36,12 +48,7 @@
    },
    "pgx": "CYP1A2 activity varies up to ~40-fold between people. The CYP1A2*1F (−163C>A, rs762551) allele defines fast vs slow metabolisers: 'fast' (AA) clear it quickly and tend to get the ergogenic and cardiovascular-neutral profile; 'slow' (C-carriers) show blunted or even negative performance effects and a higher heart-attack signal at high intake. ADORA2A variants (rs5751876) predict caffeine-induced anxiety and sleep disruption. CYP1A2 is induced by smoking and cruciferous vegetables (faster clearance) and inhibited by oral contraceptives and pregnancy (half-life can roughly double).",
    "dose": "Ergogenic window 3–6 mg/kg (~200–400 mg) taken 45–60 min pre-effort; cognitive benefit plateaus by ~200 mg. Above ~9 mg/kg there's no extra benefit — only rising tachycardia and jitter. Acute toxicity climbs past ~1.2 g and lethal doses cluster near 10–14 g, a risk driven almost entirely by anhydrous powder (a teaspoon can be a lethal dose).",
-   "tolerance": "Chronic exposure upregulates adenosine A1/A2A receptor density as compensation, so the net alerting effect fades over ~1–4 weeks and abrupt cessation unmasks the surplus receptors → withdrawal headache and fatigue. A 10–14-day taper every ~2 months restores sensitivity — the pharmacological basis of 'cycling'.",
-   "trials": [
-    { "finding": "Umbrella review of 21 meta-analyses: consistent small-to-moderate benefit for muscular endurance, strength, power and aerobic endurance.", "ref": "Grgic et al., 2020, Br J Sports Med" },
-    { "finding": "Endurance time-to-exhaustion improved on the order of ~11% vs placebo across trials.", "ref": "Doherty & Smith, 2005 meta-analysis" },
-    { "finding": "Performance benefit tracks CYP1A2 genotype — present in fast metabolisers, absent or reversed in slow metabolisers.", "ref": "Guest et al., 2018 (Med Sci Sports Exerc)" }
-   ]
+   "tolerance": "Chronic exposure upregulates adenosine A1/A2A receptor density as compensation, so the net alerting effect fades over ~1–4 weeks and abrupt cessation unmasks the surplus receptors → withdrawal headache and fatigue. A 10–14-day taper every ~2 months restores sensitivity — the pharmacological basis of 'cycling'."
   }
  }
 }

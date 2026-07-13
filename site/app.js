@@ -529,7 +529,7 @@
     root.querySelectorAll('.ch-tab').forEach(t => t.onclick = () => showChapter(t.dataset.ch, true));
     root.querySelectorAll('[data-chgo]').forEach(b => b.onclick = () => { if (b.dataset.chgo === 'journey') { const j = document.getElementById('journey'); if (j) j.scrollIntoView({ behavior: 'smooth', block: 'center' }); } else showChapter(b.dataset.chgo, true); });
     // Glossary hover-defs across the readable body (skips links/headings; first mention only)
-    root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body, .mc-body p, .pk-note, .analogy p, .biotech .bt-sb, .biotech .bt-tg-role, .biotech .bt-adme-row div').forEach(applyGlossary);
+    root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body, .mc-body p, .pk-note, .analogy p, .biotech .bt-sb, .biotech .bt-lead, .biotech .bt-tg-role, .biotech .bt-adme-row div, .evidence-deep .evd-b, .deeper-one').forEach(applyGlossary);
     // Self-test — reveal answers (active recall)
     root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
     root.querySelectorAll('.gloss').forEach(g => { g.onclick = e => { e.stopPropagation(); document.querySelectorAll('.gloss.open').forEach(o => o !== g && o.classList.remove('open')); g.classList.toggle('open'); }; });
@@ -637,28 +637,18 @@
 
   // ---------- "go deeper" on compound pages: pull in the pathway lesson ----------
   function goDeeper(c) {
-    const ids = (c.pathwayIds || []).slice(0, 2);
-    const tgtBlocks = (c.targets || []).map(t => {
-      const ex = targetBySym[tkey(t.sym)];
-      if (!ex || !ex.explainer) return '';
-      return `<div class="deeper-block">
-        <div class="deeper-name">The molecule it targets — <a href="#/target/${tkey(t.sym)}">${t.sym}</a></div>
-        <p class="deeper-one">${mdInline(ex.explainer.oneLine)}</p>
-        <a class="deeper-link" href="#/target/${tkey(t.sym)}">Learn what ${t.sym} is →</a>
-      </div>`;
-    }).filter(Boolean).join('');
-    const pathBlocks = ids.map(i => {
-      const p = D.pathways[i];
-      return `<div class="deeper-block">
-        <div class="deeper-name">The system it works through — <a href="#/pathway/${i}">${p.shortLabel}</a></div>
-        ${p.oneLine ? `<p class="deeper-one">${mdInline(p.oneLine)}</p>` : ''}
+    // Anchor on ONE pathway (the compound's primary system) — guide the reader on what a "pathway" even is,
+    // so the label isn't confusing, and keep the onward link quiet (the chapter's "Next →" is the real CTA).
+    const i = (c.pathwayIds || [])[0]; if (i == null || !D.pathways[i]) return '';
+    const p = D.pathways[i];
+    return `<div class="deeper">
+      <div class="deeper-block">
+        <div class="deeper-name">🧬 The bigger picture — the <a href="#/pathway/${i}">${p.shortLabel}</a> system</div>
+        <p class="deeper-one">Here's the way to think about it: a <b>pathway</b> is one of your body's master control levers — turn it up or down and lots of things shift at once. Everything above is <i>how ${esc(c.name)} grabs this lever</i>; the map below is the lever itself.${p.oneLine ? ` In short: ${mdInline(p.oneLine)}` : ''}</p>
         ${pathwayDiagram(p.diagram, p.shortLabel)}
-        <a class="deeper-link" href="#/pathway/${i}">Read the full ${p.shortLabel} lesson →</a>
-      </div>`;
-    }).join('');
-    if (!tgtBlocks && !pathBlocks) return '';
-    return `<div class="deeper"><h2 class="deeper-h">Go deeper — how ${esc(c.name)} works in your body</h2>
-      <p class="deeper-intro">No science background needed. ${esc(c.name)} does its job by acting on the molecule(s) and body system(s) below. Tap any box to explore, or follow the links for the full plain-English lesson.</p>${tgtBlocks}${pathBlocks}</div>`;
+        <a class="deeper-link quiet" href="#/pathway/${i}">Explore the full ${p.shortLabel} pathway when you're ready →</a>
+      </div>
+    </div>`;
   }
 
   // ---------- views ----------
@@ -1318,10 +1308,9 @@
     if (Array.isArray(t.targets) && t.targets.length) targets = `<div class="bt-sec"><div class="bt-st">🎯 Molecular targets &amp; binding</div><div class="bt-targets">${t.targets.map(x => `<div class="bt-tg"><div class="bt-tg-h">${x.url ? `<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.sym)}</a>` : esc(x.sym)}${x.action ? ` <span class="bt-tg-act">${esc(x.action)}</span>` : ''}</div>${x.affinity ? `<div class="bt-tg-aff">${mdInline(x.affinity)}</div>` : ''}${x.role ? `<div class="bt-tg-role">${mdInline(x.role)}</div>` : ''}</div>`).join('')}</div></div>`;
     let adme = '';
     if (t.adme) { const a = t.adme; const rows = [['A', 'Absorption', a.absorb], ['D', 'Distribution', a.distribute], ['M', 'Metabolism', a.metabolise], ['E', 'Excretion', a.excrete]].filter(r => r[2]); adme = rows.length ? `<div class="bt-sec"><div class="bt-st">🧬 ADME — what your body does to it</div><div class="bt-adme">${rows.map(([k, l, v]) => `<div class="bt-adme-row"><span class="bt-adme-k">${k}</span><div><b>${l}</b> ${mdInline(v)}</div></div>`).join('')}</div></div>` : ''; }
-    let trials = '';
-    if (Array.isArray(t.trials) && t.trials.length) trials = `<div class="bt-sec"><div class="bt-st">📚 Key human trials</div><ul class="bt-trials">${t.trials.map(x => `<li>${mdInline(x.finding)}${x.ref ? ` <span class="bt-ref">— ${esc(x.ref)}</span>` : ''}</li>`).join('')}</ul></div>`;
-    return `<div class="biotech" data-lvl="3" id="sec-biotech">
+    return `<div class="biotech" id="sec-biotech">
       <div class="bt-head"><span class="bt-badge">🔬 The biotech deep-dive</span><span class="bt-sub">how a pharmacologist reads this molecule</span></div>
+      <p class="bt-lead">This is the expert layer — the same facts a pharmacologist would want. Don't worry if a term is new; each one is defined on hover, and the point is simply to see <i>how</i> a scientist reasons about a molecule: what it binds, how tightly, what your body does to it, and why people respond differently.</p>
       ${sec('🧪', 'Chemistry &amp; structure', t.chem ? mdInline(t.chem) : '')}
       ${targets}
       ${sec('🔀', 'Signal transduction', t.signaling ? mdInline(t.signaling) : '')}
@@ -1329,6 +1318,19 @@
       ${sec('🧬', 'Pharmacogenomics — why response differs', t.pgx ? mdInline(t.pgx) : '')}
       ${sec('📐', 'Dose–response &amp; window', t.dose ? mdInline(t.dose) : '')}
       ${sec('🔁', 'Tolerance &amp; withdrawal', t.tolerance ? mdInline(t.tolerance) : '')}
+    </div>`;
+  }
+  // Rich, contextual evidence chapter (renders when the authored `evi` block exists; teaches HOW to read it).
+  function evidenceDeep(c) {
+    const e = c.evi; if (!e) return '';
+    const sec = (icon, title, body) => body ? `<div class="evd-sec"><div class="evd-t">${icon} ${title}</div><div class="evd-b">${mdInline(body)}</div></div>` : '';
+    const trials = (Array.isArray(e.trials) && e.trials.length) ? `<div class="evd-sec"><div class="evd-t">📚 The key trials</div><ul class="bt-trials">${e.trials.map(x => `<li>${mdInline(x.finding)}${x.ref ? ` <span class="bt-ref">— ${esc(x.ref)}</span>` : ''}</li>`).join('')}</ul></div>` : '';
+    return `<div class="evidence-deep">
+      ${sec('🎯', 'How strong is the evidence?', e.howStrong)}
+      ${sec('📈', 'What the studies actually show', e.whatItShows)}
+      ${sec('📐', 'The effect, in plain numbers', e.effect)}
+      ${sec('👤', 'Who benefits most — and least', e.whoBenefits)}
+      ${sec('⚖️', 'The honest caveats', e.caveats)}
       ${trials}
     </div>`;
   }
@@ -1350,7 +1352,7 @@
     const didYouKnow = fact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${fact.t}</span></div>` : '';
     const stacksBlock = (() => { const sg = sgAvailability(c); const derived = derivedStacks(c); return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>${c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<p class="muted" style="font-size:.88rem">Shares a pathway — often paired with: ${derived.map(o => `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`).join(' · ')}.</p>` : ''}` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`; })();
     const usedIn = (() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })();
-    const evidenceBlock = c.evidence ? `${evidenceGlance(c)}<details class="evidence-block" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : evidenceGlance(c);
+    const evidenceBlock = evidenceGlance(c) + (c.evi ? evidenceDeep(c) : (c.evidence ? `<details class="evidence-block" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : ''));
     const exploreBlock = (() => {
       const cmpPeers = D.compounds.filter(x => x.id !== c.id && !x.isNote && Array.isArray(x.goalIds) && x.goalIds.some(g => c.goalIds.includes(g)))
         .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
@@ -1370,7 +1372,7 @@
       { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 },
     ].filter(ch => ch.html && ch.html.trim());
     const tabs = `<div class="ch-tabs" role="tablist">${chapterDefs.map((ch, i) => `<button class="ch-tab${i === 0 ? ' active' : ''}" data-ch="${ch.n}">${ch.icon} ${ch.label}</button>`).join('')}</div>`;
-    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : `<button class="ch-next-btn" data-chgo="journey">Continue your learning journey →</button>`; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}<div class="ch-nav">${nav}</div></section>`; }).join('')}</div>`;
+    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : `<p class="ch-done">🎓 That's the full lesson on ${esc(c.name)} — from newbie to expert. Your one next step is just below ↓</p>`; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}<div class="ch-nav">${nav}</div></section>`; }).join('')}</div>`;
     const faq = faqRender([
       (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${faqSnip(c.bottom || c.plain, 240)}` } : null,
       c.protocol ? { q: `How do you take ${c.name}?`, a: faqSnip(c.protocol, 300) } : null,
