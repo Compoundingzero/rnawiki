@@ -970,54 +970,112 @@ async function tgFoodUndo(chatId) {
   const macros = tgFoodMacros(log.items);
   return tgSend(chatId, `↩️ Removed <b>${tgEsc(removed.name)}</b>.${macros ? `\n\n${macros} <i>today</i>` : ''}\n\n${prog.text}`);
 }
-// ---- Add-a-food submission (guided) → the SAME user_foods pending queue the website uses ----
+// ---- Add-a-food submission → goes LIVE instantly (active) in the SAME user_foods table the website reads ----
+// Everything after the name is OPTIONAL: skip any step, or "✅ Submit now" at any point. Only what the user
+// actually types is stored — no fabricated nutrition.
+const NF_SEQ = ['nf_serving', 'nf_kcal', 'nf_macros', 'nf_micros', 'nf_photo'];
+const NF_KEYS = ['kcal', 'protein_g', 'carbs_g', 'sugar_g', 'fat_g', 'fiber_g', 'sodium_mg', 'potassium_mg', 'calcium_mg', 'magnesium_mg', 'iron_mg', 'zinc_mg', 'vitamin_c_mg', 'vitamin_d_iu', 'omega3_mg', 'choline_mg', 'glycine_g'];
+// Natural-language micro parser: one line like "vitamin C 20mg, iron 2mg, fibre 3g". Each comma-fragment
+// maps to at most one known nutrient + its number; unknown fragments are ignored (never guessed).
+const TG_MICRO = [['fiber_g', /\bfib(?:er|re)\b/i], ['sugar_g', /\bsugars?\b/i], ['sodium_mg', /\bsodium\b|\bsalt\b/i], ['potassium_mg', /\bpotassium\b/i], ['calcium_mg', /\bcalcium\b/i], ['magnesium_mg', /\bmagnesium\b/i], ['iron_mg', /\biron\b/i], ['zinc_mg', /\bzinc\b/i], ['vitamin_c_mg', /\bvit(?:amin)?\.?\s*c\b|\bascorb/i], ['vitamin_d_iu', /\bvit(?:amin)?\.?\s*d\b/i], ['omega3_mg', /\bomega[\s-]*3\b|\bdha\b|\bepa\b/i], ['choline_mg', /\bcholine\b/i], ['glycine_g', /\bglycine\b/i]];
+function tgParseMicros(text) {
+  const out = {};
+  for (const frag of String(text).split(/[,;\n]+|\band\b|\bplus\b|&|\+/i)) {
+    const m = TG_MICRO.find(([, re]) => re.test(frag)); if (!m) continue;
+    const mm = frag.match(m[1]); if (!mm) continue;
+    // take the number AFTER the nutrient keyword (so "omega-3 500mg" → 500, not the 3 inside "omega-3"); fall back to before
+    let num = frag.slice(mm.index + mm[0].length).match(/(\d+(?:\.\d+)?)/) || frag.slice(0, mm.index).match(/(\d+(?:\.\d+)?)/);
+    if (!num) continue;
+    out[m[0]] = parseFloat(num[1]);
+  }
+  return out;
+}
 const TG_NF_CANCEL = { inline_keyboard: [[{ text: '✖️ Cancel', callback_data: 'nfcancel' }]] };
 async function tgFoodSaveFlow(chatId, flow) { return db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); }
+function tgFoodPromptText(stage, nf) {
+  switch (stage) {
+    case 'nf_serving': return `🥗 <b>${nf && nf.name ? 'Add “' + tgEsc(nf.name) + '”' : 'Add a food'}</b>\nWhat's one serving? (e.g. “1 sandwich”, “100 g”, “1 fillet”)\n<i>Everything from here is optional — skip or submit anytime.</i>`;
+    case 'nf_kcal': return `Calories per serving? (a number)`;
+    case 'nf_macros': return `Macros in grams — send <b>protein carbs fat</b>, e.g. <b>26 46 19</b>.`;
+    case 'nf_micros': return `Any vitamins or minerals? Type them naturally, e.g.\n<b>vitamin C 20mg, iron 2mg, fibre 3g</b>.`;
+    case 'nf_photo': return `Add a <b>photo</b>? Send one now, or skip.`;
+  }
+  return '';
+}
+function tgFoodStepKb(stage) {
+  const rows = [];
+  if (stage === 'nf_photo') rows.push([{ text: '⏭️ Skip photo & submit', callback_data: 'nfsubmit' }]);
+  else rows.push([{ text: '⏭️ Skip', callback_data: 'nfskip' }, { text: '✅ Submit now', callback_data: 'nfsubmit' }]);
+  rows.push([{ text: '✖️ Cancel', callback_data: 'nfcancel' }]);
+  return { inline_keyboard: rows };
+}
 async function tgFoodAddStart(chatId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; const nf = flow.newfood || {};
-  flow.newfood = { name: nf.name || '' };
-  if (!flow.newfood.name) { flow.stage = 'nf_name'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `🥗 <b>Add a food</b>\nWhat's it called? (e.g. Filet-O-Fish)`, { reply_markup: TG_NF_CANCEL }); }
+  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; const nm = (flow.newfood && flow.newfood.name) || '';
+  flow.newfood = { name: nm };
+  if (!nm) { flow.stage = 'nf_name'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `🥗 <b>Add a food</b>\nWhat's it called? (e.g. Filet-O-Fish)`, { reply_markup: TG_NF_CANCEL }); }
   flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow);
-  return tgSend(chatId, `🥗 <b>Add “${tgEsc(flow.newfood.name)}”</b>\nWhat's one serving? (e.g. “1 sandwich”, “100 g”, “1 fillet”)`, { reply_markup: TG_NF_CANCEL });
+  return tgSend(chatId, tgFoodPromptText('nf_serving', flow.newfood), { reply_markup: tgFoodStepKb('nf_serving') });
+}
+async function tgFoodAdvance(chatId, row, fromStage) {
+  const flow = row.flow; const next = NF_SEQ[NF_SEQ.indexOf(fromStage) + 1];
+  if (!next) return tgFoodSubmit(chatId, row);
+  flow.stage = next; await tgFoodSaveFlow(chatId, flow);
+  return tgSend(chatId, tgFoodPromptText(next, flow.newfood), { reply_markup: tgFoodStepKb(next) });
 }
 async function tgFoodAddStep(chatId, row, text) {
   const flow = row.flow; const nf = flow.newfood || (flow.newfood = {}); const st = flow.stage;
   const num = s => { const v = parseFloat(String(s).replace(/[^\d.]/g, '')); return isFinite(v) ? v : null; };
   if (/^\/?(cancel|stop)$/i.test(text)) { flow.stage = null; flow.newfood = null; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `No worries — cancelled.`); }
-  if (st === 'nf_name') { nf.name = text.slice(0, 80); flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `Serving size? (e.g. “1 sandwich”, “100 g”)`, { reply_markup: TG_NF_CANCEL }); }
-  if (st === 'nf_serving') { nf.serving = text.slice(0, 60); flow.stage = 'nf_kcal'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `Calories per serving? (kcal — just a number)`, { reply_markup: TG_NF_CANCEL }); }
-  if (st === 'nf_kcal') { const v = num(text); if (v == null) return tgSend(chatId, `Just a number, e.g. <b>380</b>.`, { reply_markup: TG_NF_CANCEL }); nf.kcal = Math.round(v); flow.stage = 'nf_macros'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `Macros in grams — send <b>protein carbs fat</b> together, e.g. <b>26 46 19</b>.`, { reply_markup: { inline_keyboard: [[{ text: '⏭️ Skip macros', callback_data: 'nfskip' }], [{ text: '✖️ Cancel', callback_data: 'nfcancel' }]] } }); }
-  if (st === 'nf_macros') {
-    const nums = String(text).split(/[^\d.]+/).map(parseFloat).filter(n => isFinite(n));
-    if (nums.length) { nf.protein_g = nums[0] != null ? nums[0] : null; nf.carbs_g = nums[1] != null ? nums[1] : null; nf.fat_g = nums[2] != null ? nums[2] : null; }
-    flow.stage = 'nf_photo'; await tgFoodSaveFlow(chatId, flow);
-    return tgSend(chatId, `Optional: send a <b>photo</b> of it, or skip and submit.`, { reply_markup: { inline_keyboard: [[{ text: '⏭️ Skip photo & submit', callback_data: 'nfsubmit' }], [{ text: '✖️ Cancel', callback_data: 'nfcancel' }]] } });
-  }
-  if (st === 'nf_photo') { if (/^\/?skip$/i.test(text)) return tgFoodSubmit(chatId, row); return tgSend(chatId, `Send a photo, or tap “Skip photo & submit”.`, { reply_markup: { inline_keyboard: [[{ text: '⏭️ Skip photo & submit', callback_data: 'nfsubmit' }]] } }); }
+  if (/^\/?skip$/i.test(text)) return tgFoodAdvance(chatId, row, st);
+  if (st === 'nf_name') { nf.name = text.slice(0, 80); flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, tgFoodPromptText('nf_serving', nf), { reply_markup: tgFoodStepKb('nf_serving') }); }
+  if (st === 'nf_serving') { nf.serving = text.slice(0, 60); }
+  else if (st === 'nf_kcal') { const v = num(text); if (v == null) return tgSend(chatId, `Just a number, e.g. <b>380</b> — or skip.`, { reply_markup: tgFoodStepKb('nf_kcal') }); nf.kcal = Math.round(v); }
+  else if (st === 'nf_macros') { const nums = String(text).split(/[^\d.]+/).map(parseFloat).filter(n => isFinite(n)); if (nums[0] != null) nf.protein_g = nums[0]; if (nums[1] != null) nf.carbs_g = nums[1]; if (nums[2] != null) nf.fat_g = nums[2]; }
+  else if (st === 'nf_micros') { Object.assign(nf, tgParseMicros(text)); }
+  else if (st === 'nf_photo') { return tgFoodAdvance(chatId, row, 'nf_photo'); } // any text here = skip photo → submit
+  else return;
+  return tgFoodAdvance(chatId, row, st);
 }
 async function tgFoodAddSkip(chatId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
-  if (flow.stage === 'nf_macros') { flow.stage = 'nf_photo'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `Optional: send a <b>photo</b> of it, or skip and submit.`, { reply_markup: { inline_keyboard: [[{ text: '⏭️ Skip photo & submit', callback_data: 'nfsubmit' }], [{ text: '✖️ Cancel', callback_data: 'nfcancel' }]] } }); }
-  if (flow.stage === 'nf_photo') return tgFoodSubmit(chatId, row);
+  const row = await tgGet(chatId); const st = row && row.flow && row.flow.stage;
+  if (!st || st.indexOf('nf_') !== 0) return;
+  return tgFoodAdvance(chatId, row, st);
 }
 async function tgFoodSubmit(chatId, row) {
   const flow = (row && row.flow) || {}; const nf = flow.newfood;
   if (!nf || !nf.name) { flow.stage = null; flow.newfood = null; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `Nothing to submit — send /start to begin again.`); }
   if (!db.enabled) return tgSend(chatId, `Can't save right now — please try again later.`);
-  const data = {}; ['kcal', 'protein_g', 'carbs_g', 'fat_g'].forEach(k => { if (nf[k] != null) data[k] = nf[k]; });
+  const data = {}; NF_KEYS.forEach(k => { if (nf[k] != null) data[k] = nf[k]; });
   if (nf.photo_file_id) data.photo_file_id = nf.photo_file_id;
   data.source = 'telegram';
   let id = null;
-  try { const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by,status) VALUES($1,$2,$3,$4,$5) RETURNING id', [nf.name.slice(0, 80), nf.serving || null, JSON.stringify(data), row.user_id || null, 'pending']); id = r.rows[0].id; if (row.user_id) award(row.user_id, 'food_submit', 'food:' + id, 20).catch(() => {}); }
+  // status 'active' → live immediately, searchable/loggable on the site and in the bot (no approval step)
+  try { const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by,status) VALUES($1,$2,$3,$4,$5) RETURNING id', [nf.name.slice(0, 80), nf.serving || null, JSON.stringify(data), row.user_id || null, 'active']); id = r.rows[0].id; if (row.user_id) award(row.user_id, 'food_submit', 'food:' + id, 20).catch(() => {}); }
   catch (e) { console.error('[tg] food submit:', e.message); return tgSend(chatId, `Hmm — couldn't save that. Please try again.`); }
-  // log it for the user now (bot-side only — it's pending, not yet a shared food id)
+  // log it for the user now, using the real food id so it mirrors into the web plan too
   const today = new Date().toISOString().slice(0, 10);
   let log = (row.food_log && row.food_log.date === today) ? row.food_log : { date: today, items: [] }; if (!Array.isArray(log.items)) log.items = [];
-  log.items.push({ name: nf.name, serving: nf.serving, n: data, qty: 1 });
+  log.items.push({ id: 'u' + id, name: nf.name, serving: nf.serving, n: data, qty: 1 });
   flow.stage = null; flow.newfood = null;
   await db.query('UPDATE telegram_users SET food_log=$2, flow=$3, last_active=now() WHERE chat_id=$1', [chatId, JSON.stringify(log), JSON.stringify(flow)]);
+  await tgSyncWebDay(row, d => { d.food.push({ id: 'u' + id, n: 1 }); }); // web can resolve 'u'+id (it loads active user_foods)
   const macros = tgFoodMacros(log.items);
-  return tgSend(chatId, `✅ Thanks — <b>${tgEsc(nf.name)}</b> is submitted for review and logged for you today.${macros ? `\n\n${macros} <i>today</i>` : ''}\n\nOnce a dietitian approves it, it'll be searchable for everyone — here and on rnawiki.com. 🙏`);
+  const extras = NF_KEYS.filter(k => k !== 'kcal' && k !== 'protein_g' && k !== 'carbs_g' && k !== 'fat_g' && data[k] != null).length;
+  return tgSend(chatId, `✅ Added <b>${tgEsc(nf.name)}</b> — it's live now and logged for you today.${macros ? `\n\n${macros} <i>today</i>` : ''}${extras ? `\n<i>+ ${extras} vitamin/mineral value${extras > 1 ? 's' : ''}</i>` : ''}\n\nEveryone can now find it here and on rnawiki.com. 🙏`);
+}
+// Search live user-submitted foods (so a food added in chat is instantly findable again)
+async function tgSearchUserFoods(q) {
+  if (!db.enabled) { return []; }
+  q = (q || '').toLowerCase().trim(); if (q.length < 2) return [];
+  try {
+    const r = await db.query("SELECT id,name,serving,data FROM user_foods WHERE status='active' AND lower(name) LIKE $1 ORDER BY created_at DESC LIMIT 5", ['%' + q + '%']);
+    return r.rows.map(f => ({ id: 'u' + f.id, name: f.name, serving: f.serving || '', n: Object.assign({}, f.data), sg: false }));
+  } catch (e) { return []; }
+}
+async function tgGetUserFood(uid) {
+  const n = +String(uid).slice(1); if (!n || !db.enabled) return null;
+  try { const r = (await db.query("SELECT id,name,serving,data FROM user_foods WHERE id=$1 AND status='active'", [n])).rows[0]; return r ? { id: 'u' + r.id, name: r.name, serving: r.serving || '', n: Object.assign({}, r.data), sg: false } : null; }
+  catch (e) { return null; }
 }
 function tgEsc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 async function tgApi(method, body) {
@@ -1194,7 +1252,7 @@ async function handleTgUpdate(update) {
     if (d === 'nfskip') return tgFoodAddSkip(chatId);
     if (d === 'nfsubmit') { const r = await tgGet(chatId); return tgFoodSubmit(chatId, r); }
     if (d === 'nfcancel') { const r = await tgGet(chatId); const fl = (r && r.flow) || {}; fl.stage = null; fl.newfood = null; await tgFoodSaveFlow(chatId, fl); return tgSend(chatId, `Cancelled — no food added.`); }
-    if (d.indexOf('food:') === 0) { const r = await tgGet(chatId); const f = TG_FOODS.find(x => x.id === d.slice(5)); const q = (r && r.flow && r.flow.foodQty) || 1; if (r && r.flow && r.flow.foodQty) { const fl = r.flow; delete fl.foodQty; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(fl)]); } if (f) return tgLogFood(chatId, f, q); return; }
+    if (d.indexOf('food:') === 0) { const r = await tgGet(chatId); const fid = d.slice(5); const q = (r && r.flow && r.flow.foodQty) || 1; if (r && r.flow && r.flow.foodQty) { const fl = r.flow; delete fl.foodQty; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(fl)]); } let f = TG_FOODS.find(x => x.id === fid); if (!f && fid[0] === 'u') f = await tgGetUserFood(fid); if (f) return tgLogFood(chatId, f, q); return; }
     // --- compound cards & actions ---
     if (d.indexOf('cinfo:') === 0) { const c = TG_DATA && TG_DATA.compounds.find(x => x.id === d.slice(6)); if (c) { const r = await tgGet(chatId); const card = tgCompoundCard(c, r); return tgSend(chatId, card.text, { reply_markup: { inline_keyboard: card.kb } }); } return; }
     if (d.indexOf('binfo:') === 0) { const c = TG_DATA && TG_DATA.compounds.find(x => x.id === d.slice(6)); if (c) { const card = tgCompoundCard(c, null); return tgSend(chatId, card.text, { reply_markup: { inline_keyboard: card.kb } }); } return; }
@@ -1333,7 +1391,7 @@ async function handleTgUpdate(update) {
   // with a full card; (3) answer a goal query with the evidence-ranked shortlist. All answers are authored data.
   if (text && text[0] !== '/') {
     const { qty, rest } = tgParseQty(text);
-    const matches = (row && row.pid) ? tgFindFoods(rest) : [];
+    const matches = (row && row.pid) ? [...tgFindFoods(rest), ...await tgSearchUserFoods(rest)].slice(0, 6) : [];
     if (matches.length === 1) return tgLogFood(chatId, matches[0], qty);
     if (matches.length > 1) {
       if (row) { const flow = row.flow || {}; flow.foodQty = qty; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); } // remember qty for the picked option (always refresh, avoid stale)
@@ -1362,8 +1420,8 @@ async function handleTgUpdate(update) {
     // Not a known food/supplement/goal → offer to ADD it to the shared food database.
     if (row) { const fl = row.flow || {}; fl.newfood = { name: text.slice(0, 80) }; await tgFoodSaveFlow(chatId, fl); }
     const addKb = { inline_keyboard: [[{ text: `➕ Add “${text.slice(0, 36)}” as a food`, callback_data: 'addfood' }]] };
-    if (!row || !row.pid) return tgSend(chatId, `I can look up any supplement (e.g. “magnesium”) or a goal (e.g. “what helps sleep”).\n\nOr add “${tgEsc(text)}” to the food database so anyone can log it — I'll take its calories &amp; macros:`, { reply_markup: addKb });
-    return tgSend(chatId, `I don't have “${tgEsc(text)}” yet. Want to add it? I'll take its serving, calories &amp; macros (and a photo if you like) and submit it — once a dietitian approves, everyone can log it here and on rnawiki.com.`, { reply_markup: addKb });
+    if (!row || !row.pid) return tgSend(chatId, `I can look up any supplement (e.g. “magnesium”) or a goal (e.g. “what helps sleep”).\n\nOr add “${tgEsc(text)}” to the food database so anyone can log it — just its calories are enough to start:`, { reply_markup: addKb });
+    return tgSend(chatId, `I don't have “${tgEsc(text)}” yet. Add it in a few taps — just its calories are enough (macros, vitamins &amp; a photo are optional). It goes live instantly for everyone, here and on rnawiki.com.`, { reply_markup: addKb });
   }
   return tgSend(chatId, `Type a food to log it, ask about any supplement by name, or tap below:`, { reply_markup: { inline_keyboard: [[{ text: '📋 Today', callback_data: 'today' }, { text: '✅ Done', callback_data: 'done' }]] } });
 }
