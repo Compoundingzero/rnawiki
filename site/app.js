@@ -519,39 +519,27 @@
   // Wire all the learning-first interactions on a compound page (depth toggle, 3D, glossary, learned, PubChem specs, ToC)
   function wireCompoundLearning(c) {
     const root = document.getElementById('cpd-detail'); if (!root) return;
-    // Depth control — the ONE tab row. Switching reveals/hides content AND scrolls to + flashes the new
-    // sections, so it's unmistakable that the level changed.
-    const DEPTH_DESC = { 1: 'The essentials — what it is and what it does for you.', 2: '+ how it works, timing, evidence and how to use it.', 3: '+ molecular targets & binding, ADME, genetics, dose–response and trials — the biotech deep-dive.' };
-    let prevDepth = 2;
-    const applyDepth = (d, animate) => {
-      const newlyShown = [];
-      root.querySelectorAll('[data-lvl]').forEach(el => { const show = +el.getAttribute('data-lvl') <= d; const wasHidden = el.style.display === 'none'; el.style.display = show ? '' : 'none'; if (show && wasHidden && animate) newlyShown.push(el); });
-      root.setAttribute('data-depth', d);
-      const desc = document.getElementById('depth-desc'); if (desc) desc.textContent = DEPTH_DESC[d] || '';
-      if (animate && d > prevDepth && newlyShown.length) {
-        newlyShown.forEach(el => { el.classList.add('depth-new'); setTimeout(() => el.classList.remove('depth-new'), 1400); });
-        const first = newlyShown.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0];
-        if (first) setTimeout(() => first.scrollIntoView({ behavior: 'smooth', block: 'center' }), 60);
-      }
-      prevDepth = d;
+    // Chapter tabs — each click SWAPS the whole reading area (a step-by-step course inside the page)
+    const chapters = document.getElementById('cpd-chapters');
+    const showChapter = (n, scroll) => {
+      root.querySelectorAll('.chapter').forEach(sec => sec.classList.toggle('active', sec.getAttribute('data-chapter') === String(n)));
+      root.querySelectorAll('.ch-tab').forEach(t => t.classList.toggle('active', t.dataset.ch === String(n)));
+      if (scroll && chapters) chapters.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
-    root.querySelectorAll('.depth-btn').forEach(b => b.onclick = () => { root.querySelectorAll('.depth-btn').forEach(x => x.classList.remove('active')); b.classList.add('active'); applyDepth(+b.dataset.depth, true); });
-    applyDepth(2, false);
+    root.querySelectorAll('.ch-tab').forEach(t => t.onclick = () => showChapter(t.dataset.ch, true));
+    root.querySelectorAll('[data-chgo]').forEach(b => b.onclick = () => { if (b.dataset.chgo === 'journey') { const j = document.getElementById('journey'); if (j) j.scrollIntoView({ behavior: 'smooth', block: 'center' }); } else showChapter(b.dataset.chgo, true); });
     // Glossary hover-defs across the readable body (skips links/headings; first mention only)
     root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body, .mc-body p, .pk-note, .analogy p, .biotech .bt-sb, .biotech .bt-tg-role, .biotech .bt-adme-row div').forEach(applyGlossary);
     // Self-test — reveal answers (active recall)
     root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
     root.querySelectorAll('.gloss').forEach(g => { g.onclick = e => { e.stopPropagation(); document.querySelectorAll('.gloss.open').forEach(o => o !== g && o.classList.remove('open')); g.classList.toggle('open'); }; });
     document.addEventListener('click', () => root.querySelectorAll('.gloss.open').forEach(o => o.classList.remove('open')), { once: true });
-    // Commit the current journey so 'Continue' keeps the reader on ONE track across pages
-    const jc = document.getElementById('journey');
-    if (jc && jc.dataset.jtype) setJourney({ type: jc.dataset.jtype, id: jc.dataset.jtype === 'pathway' ? +jc.dataset.jid : jc.dataset.jid });
     // Ribbon → jump to the journey card
+    const jc = document.getElementById('journey');
     const jr = root.querySelector('.j-ribbon'); if (jr && jc) { jr.style.cursor = 'pointer'; jr.onclick = () => jc.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    // Learned tracking (also updates the journey progress)
+    // Learned tracking
     const lb = document.getElementById('learned-btn'); if (lb) lb.onclick = () => {
       const on = toggleLearned(c.id); lb.classList.toggle('on', on); lb.textContent = on ? '✓ Learned' : '＋ Mark learned';
-      if (jc) { const cur = jc.querySelector('.j-dot.cur'); if (cur) cur.classList.toggle('done', on); const done = jc.querySelectorAll('.j-dot.done').length; const sub = jc.querySelector('.j-sub'); if (sub) sub.innerHTML = sub.innerHTML.replace(/ · \d+ learned/, '') + (done ? ` · ${done} learned` : ''); }
       if (on && typeof toast === 'function') toast('Marked learned ✓ — building your knowledge map');
     };
     // 3D molecule — lazy-load the PubChem structure viewer only on tap
@@ -1231,59 +1219,64 @@
   function getLearned() { try { return JSON.parse(localStorage.getItem('rnawiki_learned') || '[]'); } catch (e) { return []; } }
   function isLearned(id) { return getLearned().includes(id); }
   function toggleLearned(id) { const l = getLearned(); const i = l.indexOf(id); if (i >= 0) l.splice(i, 1); else l.push(id); localStorage.setItem('rnawiki_learned', JSON.stringify(l)); return l.includes(id); }
-  // ---- The single learning journey: ONE forward path (compounds threaded through the pathway that unifies them) ----
-  function getJourney() { try { return JSON.parse(localStorage.getItem('rnawiki_journey') || 'null'); } catch (e) { return null; } }
-  function setJourney(j) { try { localStorage.setItem('rnawiki_journey', JSON.stringify(j)); } catch (e) {} }
+  // ================= ONE master learning journey across the WHOLE /learn web =================
+  // A single ordered curriculum: Foundations (modules) → how the body is fuelled (energy/physiology)
+  // → each master pathway, then the compounds that pull it → any remaining compounds. From ANY
+  // educational page, "Continue" walks this one sequence — so the reader can go newbie → expert through
+  // everything, and always sees how the next thing connects.
   const isFoundational = x => /foundational/i.test(x.category || '');
   const byLearnOrder = (a, b) => (isFoundational(b) - isFoundational(a)) || (b.stars - a.stars) || a.name.localeCompare(b.name);
-  function journeyState(c) {
-    const stored = getJourney(); let kind, anchorId, raw;
-    // continue the journey the reader is already on, if this compound belongs to it
-    if (stored && stored.type === 'pathway' && Array.isArray(c.pathwayIds) && c.pathwayIds.includes(+stored.id) && (compoundsByPathway[+stored.id] || []).length >= 2) { kind = 'pathway'; anchorId = +stored.id; raw = compoundsByPathway[anchorId]; }
-    else if (stored && stored.type === 'goal' && Array.isArray(c.goalIds) && c.goalIds.includes(stored.id)) { kind = 'goal'; anchorId = stored.id; raw = D.compounds.filter(x => x.goalIds.includes(stored.id)); }
-    // otherwise anchor a fresh journey on this compound's richest shared pathway (fall back to its top goal)
-    if (!raw) {
-      const paths = (c.pathwayIds || []).slice().sort((a, b) => (compoundsByPathway[b] || []).length - (compoundsByPathway[a] || []).length);
-      if (paths.length && (compoundsByPathway[paths[0]] || []).length >= 3) { kind = 'pathway'; anchorId = paths[0]; raw = compoundsByPathway[anchorId]; }
-      else if ((c.goalIds || []).length) { kind = 'goal'; anchorId = c.goalIds[0]; raw = D.compounds.filter(x => x.goalIds.includes(anchorId)); }
-    }
-    if (!raw) return null;
-    const track = raw.filter(x => !x.isNote).slice().sort(byLearnOrder);
-    const idx = track.findIndex(x => x.id === c.id); if (idx < 0) return null;
-    const label = kind === 'pathway' ? (D.pathways[anchorId] ? D.pathways[anchorId].shortLabel : 'pathway') : (goalById[anchorId] ? goalById[anchorId].label : anchorId);
-    const icon = kind === 'pathway' ? '🧬' : (goalById[anchorId] ? goalById[anchorId].icon : '🧭');
-    const hubHref = kind === 'pathway' ? ('#/pathway/' + anchorId) : ('#/goal/' + anchorId);
-    return { kind, anchorId, track, idx, next: track[idx + 1] || null, label, icon, hubHref };
+  const T_META = { module: ['📗', 'Foundation'], energy: ['⚡', 'Energy system'], physiology: ['🫀', 'Physiology'], pathway: ['🧬', 'Pathway'], compound: ['💊', 'Compound'] };
+  let _MASTER = null;
+  function buildMasterJourney() {
+    if (_MASTER) return _MASTER;
+    const nodes = []; const push = (type, id, title, href, section) => nodes.push({ type, id, title, href, section });
+    (D.modules || []).forEach((m, i) => push('module', i, (typeof stripNum === 'function' ? stripNum(m.title) : m.title), '#/learn/' + i, 'Foundations'));
+    ((typeof ANAT !== 'undefined' && ANAT.energy_systems) || []).forEach(e => push('energy', e.id, (e.name || '').split('(')[0].trim(), '#/energy/' + e.id, 'How the body runs'));
+    ((typeof ANAT !== 'undefined' && ANAT.metabolism) || []).forEach(p => push('physiology', p.id, p.name, '#/physiology/' + p.id, 'How the body runs'));
+    const seen = new Set();
+    (D.pathways || []).forEach((p, i) => {
+      push('pathway', i, p.shortLabel, '#/pathway/' + i, p.shortLabel + ' pathway');
+      (compoundsByPathway[i] || []).filter(c => !c.isNote).slice().sort(byLearnOrder).forEach(c => { if (!seen.has(c.id)) { seen.add(c.id); push('compound', c.id, c.name, '#/c/' + slug(c.name), p.shortLabel + ' pathway'); } });
+    });
+    D.compounds.filter(c => !c.isNote && !seen.has(c.id)).sort(byLearnOrder).forEach(c => { seen.add(c.id); push('compound', c.id, c.name, '#/c/' + slug(c.name), 'More compounds'); });
+    _MASTER = nodes; return nodes;
   }
-  function journeyRibbon(c) {
-    const j = journeyState(c); if (!j) return '';
-    const pct = Math.round((j.idx + 1) / j.track.length * 100);
-    return `<div class="j-ribbon" data-lvl="1"><span class="jr-ico">${j.icon}</span><span class="jr-txt">${esc(j.label)} journey · <b>${j.idx + 1} of ${j.track.length}</b></span><span class="jr-bar"><i style="width:${pct}%"></i></span></div>`;
+  function masterState(type, id) { const M = buildMasterJourney(); const idx = M.findIndex(n => n.type === type && String(n.id) === String(id)); return idx < 0 ? null : { M, idx, node: M[idx], next: M[idx + 1] || null, total: M.length }; }
+  function nextHook(n) {
+    if (n.type === 'compound') { const c = byId[n.id]; return c ? (c.analogy || faqSnip(c.plain || c.bottom || '', 112)) : ''; }
+    if (n.type === 'pathway') { const p = D.pathways[n.id]; return p && p.oneLine ? faqSnip(p.oneLine, 118) : ''; }
+    if (n.type === 'module') { const m = (D.modules || [])[n.id]; return m && m.intro ? faqSnip(m.intro, 112) : ''; }
+    return '';
   }
-  function journeyCard(c) {
-    const j = journeyState(c); if (!j) return '';
-    const learned = getLearned(); const doneCount = j.track.filter(x => learned.includes(x.id)).length;
-    const pw = j.kind === 'pathway' ? D.pathways[j.anchorId] : null;
-    let connect, nextBlock;
-    if (j.next) {
-      const hook = j.next.analogy ? j.next.analogy : faqSnip(j.next.plain || j.next.bottom || '', 110);
-      connect = pw
-        ? `<div class="j-connect"><b>Why this next →</b> <b>${esc(c.name)}</b> and <b>${esc(j.next.name)}</b> both act on the <b>${esc(j.label)}</b> pathway${pw.oneLine ? ` — ${mdInline(pw.oneLine)}` : '.'} You're building the whole picture of that one system, compound by compound — then it all clicks together at the end.</div>`
-        : `<div class="j-connect"><b>Why this next →</b> another compound people reach for to ${esc(j.label.toLowerCase())} — seeing them back-to-back is how you learn to judge which fits when.</div>`;
-      nextBlock = `<a class="j-next" href="#/c/${slug(j.next.name)}"><div class="jn-l"><div class="jn-lbl">Next in this journey</div><div class="jn-name">${esc(j.next.name)}</div>${hook ? `<div class="jn-hook">${esc(hook)}</div>` : ''}</div><span class="jn-go">Continue →</span></a>`;
-    } else {
-      connect = pw
-        ? `<div class="j-connect"><b>You've now met all ${j.track.length} compounds that pull the ${esc(j.label)} lever.</b> Time to zoom out: the pathway itself shows how they cascade, where they overlap, and how this system connects to the rest of your biology — the thread that ties everything you just learned together.</div>`
-        : `<div class="j-connect"><b>You've explored the key compounds for ${esc(j.label.toLowerCase())}.</b> Next, see the bigger picture of how they work together.</div>`;
-      nextBlock = `<a class="j-next capstone" href="${j.hubHref}"><div class="jn-l"><div class="jn-lbl">The capstone — where it all connects</div><div class="jn-name">The ${esc(j.label)} pathway</div></div><span class="jn-go">See it →</span></a>`;
-    }
-    const dots = j.track.map(x => `<span class="j-dot${x.id === c.id ? ' cur' : ''}${learned.includes(x.id) ? ' done' : ''}" title="${esc(x.name)}"></span>`).join('');
-    return `<div class="journey-card" id="journey" data-lvl="1" data-jtype="${j.kind}" data-jid="${esc(String(j.anchorId))}">
-      <div class="j-head"><span class="j-ico">${j.icon}</span><div><div class="j-title">Your ${esc(j.label)} journey</div><div class="j-sub">Step ${j.idx + 1} of ${j.track.length}${doneCount ? ` · ${doneCount} learned` : ''}</div></div></div>
-      <div class="j-track">${dots}</div>
-      ${connect}
-      ${nextBlock}
+  function masterConnect(cur, next) {
+    const p = cur.type, n = next.type, same = cur.section === next.section;
+    if (p === 'pathway' && n === 'compound') return `<b>Why this next →</b> now meet a molecule that pulls the <b>${esc(cur.title)}</b> lever you just learned — knowing the mechanism first makes every compound on it click instantly.`;
+    if (p === 'compound' && n === 'compound' && same) return `<b>Why this next →</b> <b>${esc(next.title)}</b> works through the same <b>${esc(cur.section)}</b> — you're mapping one system, molecule by molecule.`;
+    if (p === 'compound' && n === 'pathway') return `<b>Why this next →</b> you've mapped that system's molecules; the <b>${esc(next.title)}</b> pathway is the next connected mechanism to master.`;
+    if (p === 'compound' && n === 'compound' && !same) return `<b>Why this next →</b> onward to a new system — <b>${esc(next.title)}</b> opens up <b>${esc(next.section)}</b>.`;
+    if (p === 'module' && n === 'module') return `<b>Why this next →</b> the next building block of the foundation — each one makes the mechanisms and molecules ahead far easier to understand.`;
+    if (p === 'module' && (n === 'energy' || n === 'physiology')) return `<b>Why this next →</b> with the biology basics down, see how your body actually runs on fuel — the ground every compound later acts on.`;
+    if ((p === 'energy' || p === 'physiology')) return `<b>Why this next →</b> keep building the base — this is the machinery the compounds ahead will tune.`;
+    if (p === 'pathway' && n === 'pathway') return `<b>Why this next →</b> a connected mechanism — molecules often pull both at once.`;
+    return `<b>Why this next →</b> the next step in mastering how your biology works.`;
+  }
+  // The one journey card — works on ANY educational page (compound, pathway, module, energy, physiology).
+  function journeyBlock(type, id) {
+    const s = masterState(type, id); if (!s || !s.next) return '';
+    const next = s.next; const meta = T_META[next.type] || ['📘', '']; const hook = nextHook(next);
+    const pct = Math.max(1, Math.round((s.idx + 1) / s.total * 100));
+    return `<div class="journey-card" id="journey" data-jnode="${type}:${esc(String(id))}">
+      <div class="j-head"><span class="j-ico">🧭</span><div><div class="j-title">Your learning journey</div><div class="j-sub">${esc(s.node.section)} · step ${s.idx + 1} of ${s.total}</div></div></div>
+      <div class="jr-bar big"><i style="width:${pct}%"></i></div>
+      <div class="j-connect">${masterConnect(s.node, next)}</div>
+      <a class="j-next" href="${next.href}"><div class="jn-l"><div class="jn-lbl">Next · ${meta[1]}</div><div class="jn-name">${meta[0]} ${esc(next.title)}</div>${hook ? `<div class="jn-hook">${esc(hook)}</div>` : ''}</div><span class="jn-go">Continue →</span></a>
     </div>`;
+  }
+  function journeyRibbon(type, id) {
+    const s = masterState(type, id); if (!s) return '';
+    const pct = Math.max(1, Math.round((s.idx + 1) / s.total * 100));
+    return `<div class="j-ribbon" data-lvl="1"><span class="jr-ico">🧭</span><span class="jr-txt">Learning journey · <b>${esc(s.node.section)}</b> · ${s.idx + 1} of ${s.total}</span><span class="jr-bar"><i style="width:${pct}%"></i></span></div>`;
   }
   // ---- authored learning-layer components (render only when the sidecar data exists) ----
   function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div><p>${mdInline(c.analogy)}</p></div></div>`; }
@@ -1347,11 +1340,44 @@
       const mh = document.querySelector('[data-mechhelp]'); if (mh) mh.onclick = () => { const g = document.getElementById('mech-guide'); if (g) { g.hidden = !g.hidden; mh.classList.toggle('open', !g.hidden); } };
       enhanceDetail(c);
     }, 0);
-    const callout = (key, k, v, cls, lvl) => v ? `<div class="callout ${cls || ''}" id="sec-${key}" data-lvl="${lvl || 2}"><span class="k">${k}</span><span id="field-${key}" class="field-val">${mdInline(v)}</span></div>` : '';
+    const callout = (key, k, v, cls) => v ? `<div class="callout ${cls || ''}" id="sec-${key}"><span class="k">${k}</span><span id="field-${key}" class="field-val">${mdInline(v)}</span></div>` : '';
     const related = D.compounds.filter(x => x.id !== c.id && (x.category === c.category || x.goalIds.some(g => c.goalIds.includes(g)))).sort((a, b) => b.stars - a.stars).slice(0, 6);
     const goalTags = c.goalIds.map(g => `<a class="chip" href="#/goal/${g}">${goalById[g].icon} ${goalById[g].label}</a>`).join('');
     const added = inStack(c.id);
-    return `<div class="detail" id="cpd-detail" data-depth="2" data-cid="${pubchemCID(c) || ''}">
+    // ---- content grouped into flowing chapters (each tab swaps the whole reading area) ----
+    const chainHtml = explodedDiagram(c);
+    const fact = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s);
+    const didYouKnow = fact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${fact.t}</span></div>` : '';
+    const stacksBlock = (() => { const sg = sgAvailability(c); const derived = derivedStacks(c); return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>${c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<p class="muted" style="font-size:.88rem">Shares a pathway — often paired with: ${derived.map(o => `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`).join(' · ')}.</p>` : ''}` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`; })();
+    const usedIn = (() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })();
+    const evidenceBlock = c.evidence ? `${evidenceGlance(c)}<details class="evidence-block" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : evidenceGlance(c);
+    const exploreBlock = (() => {
+      const cmpPeers = D.compounds.filter(x => x.id !== c.id && !x.isNote && Array.isArray(x.goalIds) && x.goalIds.some(g => c.goalIds.includes(g)))
+        .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
+      const cmpCards = cmpPeers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span><span class="cmp-stars">${'★'.repeat(o.stars)}<span class="cmp-dim">${'★'.repeat(5 - o.stars)}</span></span></a>`).join('');
+      const myStack = getStack().map(id => byId[id]).filter(Boolean); let chk = '';
+      if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis, { tiers: ['danger', 'timing'] }); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">✅ No dangerous interactions flagged between ${esc(c.name)} and your ${myStack.length}-item stack.</div>`; }
+      return (cmpCards || chk) ? `<div class="cpd-explore">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
+    })();
+    const ch1 = analogyBox(c) + takeawaysBox(c) + callout('plain', 'In plain English — start here', c.plain) + moleculeViewer(c) + didYouKnow + (!chainHtml && goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '') + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '');
+    const ch2 = (c.mechSteps ? mechanismCascade(c) : callout('mechanism', 'How it works — the science', c.mechanism)) + (chainHtml ? `<div class="mech-chain-wrap">${chainHtml}</div>` : '') + goDeeper(c);
+    const ch3 = callout('protocol', 'How to take it', c.protocol) + pkTimeline(c) + callout('watch', 'Watch out', c.watch, 'warn') + stacksBlock + usedIn;
+    const ch4 = evidenceBlock + positioningPlot(c) + exploreBlock + callout('bottom', 'Bottom line', c.bottom);
+    const ch5 = callout('target', 'Molecular / gene target', c.target) + (c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — the original technical write-up', c.mechanism) : '') + biotechDeepDive(c);
+    const chapterDefs = [
+      { n: 1, icon: '🌱', label: 'Start here', html: ch1 }, { n: 2, icon: '⚙️', label: 'How it works', html: ch2 },
+      { n: 3, icon: '💊', label: 'How to use it', html: ch3 }, { n: 4, icon: '📊', label: 'The evidence', html: ch4 },
+      { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 },
+    ].filter(ch => ch.html && ch.html.trim());
+    const tabs = `<div class="ch-tabs" role="tablist">${chapterDefs.map((ch, i) => `<button class="ch-tab${i === 0 ? ' active' : ''}" data-ch="${ch.n}">${ch.icon} ${ch.label}</button>`).join('')}</div>`;
+    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : `<button class="ch-next-btn" data-chgo="journey">Continue your learning journey →</button>`; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}<div class="ch-nav">${nav}</div></section>`; }).join('')}</div>`;
+    const faq = faqRender([
+      (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${faqSnip(c.bottom || c.plain, 240)}` } : null,
+      c.protocol ? { q: `How do you take ${c.name}?`, a: faqSnip(c.protocol, 300) } : null,
+      c.watch ? { q: `What are the risks or side effects of ${c.name}?`, a: faqSnip(c.watch, 300) } : null,
+      (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
+    ]);
+    return `<div class="detail" id="cpd-detail" data-cid="${pubchemCID(c) || ''}">
       ${crumbs([{ label: 'Home', href: '#/' }, { label: c.category }, { label: c.name }])}
       <div class="detail-head">
         <div><h1>${c.name}</h1>${badgeRow(c)}</div>
@@ -1362,61 +1388,15 @@
         </div>
       </div>
       ${specStrip(c)}
-      ${depthBar()}
-      ${journeyRibbon(c)}
+      ${journeyRibbon('compound', c.id)}
+      <p class="ch-lead">A step-by-step lesson — tap through from beginner to expert. Each tab teaches the next layer.</p>
+      ${tabs}
       <div id="edit-meta" class="edit-meta"></div>
-      ${takeawaysBox(c)}
-      ${analogyBox(c)}
-      ${moleculeViewer(c)}
-      <div class="mech-chain-wrap" data-lvl="2">${explodedDiagram(c)}</div>
-      ${!explodedDiagram(c) && goalTags ? `<div class="toolbar" style="margin-top:1rem" data-lvl="1">${goalTags}</div>` : ''}
-      ${(() => { const f = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s); return f ? `<div class="cpd-fact" data-lvl="2"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${f.t}</span></div>` : ''; })()}
-      ${callout('plain', 'In plain English — start here', c.plain, '', 1)}
-      ${c.mechSteps ? mechanismCascade(c) : callout('mechanism', 'How it works — the science', c.mechanism, '', 2)}
-      ${c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — technical detail', c.mechanism, '', 3) : ''}
-      ${callout('target', 'Molecular / gene target', c.target, '', 3)}
-      ${biotechDeepDive(c)}
-      ${callout('protocol', 'How to take it', c.protocol, '', 2)}
-      ${pkTimeline(c)}
-      ${callout('watch', 'Watch out', c.watch, 'warn', 2)}
-      ${callout('bottom', 'Bottom line', c.bottom, '', 1)}
-      ${c.evidence ? `${evidenceGlance(c)}<details class="evidence-block" data-lvl="3" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : evidenceGlance(c)}
-      ${positioningPlot(c)}
-      <div data-lvl="2">${(() => {
-        const sg = sgAvailability(c); const derived = derivedStacks(c);
-        return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>
-            ${c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}
-            ${derived.length ? `<p class="muted" style="font-size:.88rem">Shares a pathway — often paired with: ${derived.map(o => `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`).join(' · ')}.</p>` : ''}` : ''}
-          ${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}
-          <div class="section-title">🌐 Availability &amp; where to buy</div>
-          <div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`;
-      })()}</div>
-      ${(() => {
-        // real alternatives = compounds that share a GOAL (so the comparison is meaningful), best-matched first
-        const cmpPeers = D.compounds.filter(x => x.id !== c.id && !x.isNote && Array.isArray(x.goalIds) && x.goalIds.some(g => c.goalIds.includes(g)))
-          .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
-        const cmpCards = cmpPeers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span><span class="cmp-stars">${'★'.repeat(o.stars)}<span class="cmp-dim">${'★'.repeat(5 - o.stars)}</span></span></a>`).join('');
-        const myStack = getStack().map(id => byId[id]).filter(Boolean);
-        let chk = '';
-        if (myStack.length) {
-          const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]);
-          const pan = interactionPanel(withThis, { tiers: ['danger', 'timing'] });
-          chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">✅ No dangerous interactions flagged between ${esc(c.name)} and your ${myStack.length}-item stack.</div>`;
-        }
-        return (cmpCards || chk) ? `<div class="cpd-explore" data-lvl="2">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
-      })()}
-      ${c.brief && !c.mechanism ? `<div class="body" data-lvl="1">${c.bodyHtml}</div>` : ''}
-      <div data-lvl="3">${goDeeper(c)}</div>
-      ${(() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec" data-lvl="1"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })()}
-      ${faqRender([
-        (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${faqSnip(c.bottom || c.plain, 240)}` } : null,
-        c.protocol ? { q: `How do you take ${c.name}?`, a: faqSnip(c.protocol, 300) } : null,
-        c.watch ? { q: `What are the risks or side effects of ${c.name}?`, a: faqSnip(c.watch, 300) } : null,
-        (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
-      ])}
+      ${sections}
       ${selfTestBox(c)}
-      ${journeyCard(c)}
-      ${related.length ? `<details class="related-fold" data-lvl="2"><summary>Or branch off — related compounds</summary><div class="related">${related.map(cpdCard).join('')}</div></details>` : ''}
+      <div class="cpd-faq-wrap" hidden>${faq}</div>
+      ${journeyBlock('compound', c.id)}
+      ${related.length ? `<details class="related-fold"><summary>Or branch off — related compounds</summary><div class="related">${related.map(cpdCard).join('')}</div></details>` : ''}
       <div id="goal-comments" class="page-discuss"></div>
     </div>`;
   }
@@ -1553,7 +1533,7 @@
     i = +i; const m = D.modules[i]; if (!m) return notFound();
     const prev = i > 0 ? `<a href="#/learn/${i - 1}">← ${stripNum(D.modules[i - 1].title)}</a>` : `<a href="#/learn">← All modules</a>`;
     const next = i < D.modules.length - 1 ? `<a href="#/learn/${i + 1}">${stripNum(D.modules[i + 1].title)} →</a>` : `<a href="#/pathways">The 16 Pathways →</a>`;
-    return `<div class="article"><div class="learn-progress">Foundations · Module ${i + 1} of ${D.modules.length}</div>${crumbs([{ label: 'Home', href: '#/' }, { label: 'Foundations', href: '#/learn' }, { label: 'Module ' + (i + 1) }])}${foundationsDiagram(i)}${m.html}${learnScaffold(m)}<div class="prevnext">${prev}${next}</div></div>`;
+    return `<div class="article"><div class="learn-progress">Foundations · Module ${i + 1} of ${D.modules.length}</div>${crumbs([{ label: 'Home', href: '#/' }, { label: 'Foundations', href: '#/learn' }, { label: 'Module ' + (i + 1) }])}${foundationsDiagram(i)}${m.html}${learnScaffold(m)}${journeyBlock('module', i)}<div class="prevnext">${prev}${next}</div></div>`;
   }
 
   function pathwaysIndex() {
@@ -1563,37 +1543,15 @@
       <p style="color:var(--muted)">Almost every compound works by turning one of these systems up or down. Learn the 16, and the whole wiki gets a lot simpler.</p>
       <div class="learn-grid" style="margin-top:1.4rem">${cards}</div></div>`;
   }
-  // The pathway that shares the most compounds with pathway i — the strongest bridge onward.
-  function pathwayBridge(i) {
-    const mine = new Set((compoundsByPathway[i] || []).map(c => c.id)); if (!mine.size) return null;
-    let best = -1, bestN = 0;
-    D.pathways.forEach((p, j) => { if (j === i) return; const n = (compoundsByPathway[j] || []).filter(c => mine.has(c.id)).length; if (n > bestN) { bestN = n; best = j; } });
-    return best >= 0 && bestN > 0 ? { j: best, shared: bestN } : null;
-  }
-  // Continue the ONE journey from a finished pathway → the most-connected next pathway (+ an 'apply it' protocol).
-  function pathwayJourneyCard(i) {
-    const b = pathwayBridge(i); if (!b) return '';
-    const p = D.pathways[b.j];
-    let proto = null;
-    for (const cc of (compoundsByPathway[i] || []).slice().sort((a, b) => b.stars - a.stars).slice(0, 6)) { const ps = protocolsForCompound(cc); if (ps && ps.length) { proto = ps[0]; break; } }
-    const applyLink = proto ? `<div class="j-apply">Or <b>apply it</b>: <a href="#/protocol/${proto.p.id}/${proto.rc.id}">build the ${esc(proto.p.name)} protocol</a> that puts these compounds to work.</div>` : '';
-    return `<div class="journey-card" id="journey" data-jtype="pathway" data-jid="${b.j}">
-      <div class="j-head"><span class="j-ico">🧬</span><div><div class="j-title">Keep going — it's all connected</div><div class="j-sub">You just finished the ${esc(D.pathways[i].shortLabel)} pathway</div></div></div>
-      <div class="j-connect"><b>Why this next →</b> the <b>${esc(p.shortLabel)}</b> pathway shares <b>${b.shared} compound${b.shared > 1 ? 's' : ''}</b> with the one you just learned — the two systems overlap, so many molecules pull both levers at once. Follow the thread and you'll gradually map how your whole biology interconnects, one system at a time.</div>
-      <a class="j-next" href="#/pathway/${b.j}"><div class="jn-l"><div class="jn-lbl">Next pathway in your journey</div><div class="jn-name">${esc(p.shortLabel)}</div>${p.oneLine ? `<div class="jn-hook">${esc(faqStrip(p.oneLine).slice(0, 120))}</div>` : ''}</div><span class="jn-go">Continue →</span></a>
-      ${applyLink}
-    </div>`;
-  }
   function pathwayPage(i) {
     i = +i; const p = D.pathways[i]; if (!p) return notFound();
-    setTimeout(() => { try { setJourney({ type: 'pathway', id: i }); } catch (e) {} }, 0); // this pathway is now the active journey thread
     const prev = i > 0 ? `<a href="#/pathway/${i - 1}">← ${D.pathways[i - 1].shortLabel}</a>` : `<a href="#/pathways">← All pathways</a>`;
     const next = i < D.pathways.length - 1 ? `<a href="#/pathway/${i + 1}">${D.pathways[i + 1].shortLabel} →</a>` : `<a href="#/pathways">All pathways →</a>`;
     const cpds = (compoundsByPathway[i] || []).slice().sort((a, b) => b.stars - a.stars);
     const cpdSection = cpds.length ? `<div class="section-title">Compounds that pull this pathway (${cpds.length})</div><div class="card-grid">${cpds.map(cpdCard).join('')}</div>` : '';
     const pwFact = (window.RNAWIKI_FACTS || []).find(x => x.href === '/pathway/' + i);
     const pwFactHtml = pwFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${pwFact.t}</span></div>` : '';
-    return `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Pathways', href: '#/pathways' }, { label: p.shortLabel }])}<h1>${p.shortLabel}</h1>${pwFactHtml}${pathwayDiagram(p.diagram, p.shortLabel)}${p.html}<div class="suggest-row"><button class="linkbtn" data-suggest="simplify" data-ref="${esc(p.shortLabel)} pathway">✨ Too technical? Suggest a simpler version</button></div>${cpdSection}${pathwayJourneyCard(i)}<div id="goal-comments" class="page-discuss"></div><div class="prevnext">${prev}${next}</div></div>`;
+    return `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Pathways', href: '#/pathways' }, { label: p.shortLabel }])}<h1>${p.shortLabel}</h1>${pwFactHtml}${pathwayDiagram(p.diagram, p.shortLabel)}${p.html}<div class="suggest-row"><button class="linkbtn" data-suggest="simplify" data-ref="${esc(p.shortLabel)} pathway">✨ Too technical? Suggest a simpler version</button></div>${cpdSection}${journeyBlock('pathway', i)}<div id="goal-comments" class="page-discuss"></div><div class="prevnext">${prev}${next}</div></div>`;
   }
 
   // ---------- Anatomy & physiology reference pages ----------
@@ -1750,7 +1708,7 @@
       <div class="section-title">How to train it</div><p>${esc(e.training)}</p>
       ${(e.muscles || []).length ? `<div class="section-title">💪 Muscles that rely on it</div><div class="tag-row">${e.muscles.map(m => `<a class="tag-chip" href="#/muscle/${m.id}">${esc(m.name)}</a>`).join('')}</div>` : ''}
       ${e.related_pathways && e.related_pathways.length ? `<div class="section-title">Related pathways</div><div class="tag-row">${pathwayChips(e.related_pathways)}</div>` : ''}
-      ${solveCta('Build a protocol that trains this system →')}
+      ${journeyBlock('energy', e.id)}
       <div id="goal-comments" class="page-discuss"></div></div>`;
   }
   // Hero diagram for each physiology page — visualises that page's core mechanism.
@@ -1822,7 +1780,7 @@
       })()}
       ${(p.energy || []).length ? `<div class="section-title">⚡ Energy systems it feeds</div><div class="tag-row">${p.energy.map(id => energyById[id] ? `<a class="tag-chip" href="#/energy/${id}">⚡ ${esc(energyById[id].name.split('(')[0].trim())}</a>` : '').join('')}</div>` : ''}
       ${p.related_pathways && p.related_pathways.length ? `<div class="section-title">Related pathways</div><div class="tag-row">${pathwayChips(p.related_pathways)}</div>` : ''}
-      ${solveCta('See the protocols this powers →')}
+      ${journeyBlock('physiology', id)}
       <div id="goal-comments" class="page-discuss"></div></div>`;
   }
   function anatomyIndex() {
