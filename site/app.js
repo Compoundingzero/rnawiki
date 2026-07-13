@@ -530,8 +530,17 @@
     root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
     root.querySelectorAll('.gloss').forEach(g => { g.onclick = e => { e.stopPropagation(); document.querySelectorAll('.gloss.open').forEach(o => o !== g && o.classList.remove('open')); g.classList.toggle('open'); }; });
     document.addEventListener('click', () => root.querySelectorAll('.gloss.open').forEach(o => o.classList.remove('open')), { once: true });
-    // Learned tracking
-    const lb = document.getElementById('learned-btn'); if (lb) lb.onclick = () => { const on = toggleLearned(c.id); lb.classList.toggle('on', on); lb.textContent = on ? '✓ Learned' : '＋ Mark learned'; if (on && typeof toast === 'function') toast('Marked learned ✓ — building your knowledge map'); };
+    // Commit the current journey so 'Continue' keeps the reader on ONE track across pages
+    const jc = document.getElementById('journey');
+    if (jc && jc.dataset.jtype) setJourney({ type: jc.dataset.jtype, id: jc.dataset.jtype === 'pathway' ? +jc.dataset.jid : jc.dataset.jid });
+    // Ribbon → jump to the journey card
+    const jr = root.querySelector('.j-ribbon'); if (jr && jc) { jr.style.cursor = 'pointer'; jr.onclick = () => jc.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    // Learned tracking (also updates the journey progress)
+    const lb = document.getElementById('learned-btn'); if (lb) lb.onclick = () => {
+      const on = toggleLearned(c.id); lb.classList.toggle('on', on); lb.textContent = on ? '✓ Learned' : '＋ Mark learned';
+      if (jc) { const cur = jc.querySelector('.j-dot.cur'); if (cur) cur.classList.toggle('done', on); const done = jc.querySelectorAll('.j-dot.done').length; const sub = jc.querySelector('.j-sub'); if (sub) sub.innerHTML = sub.innerHTML.replace(/ · \d+ learned/, '') + (done ? ` · ${done} learned` : ''); }
+      if (on && typeof toast === 'function') toast('Marked learned ✓ — building your knowledge map');
+    };
     // 3D molecule — lazy-load the PubChem structure viewer only on tap
     const cid = root.getAttribute('data-cid');
     const b3d = document.getElementById('mol-3d-btn');
@@ -1209,6 +1218,52 @@
   function getLearned() { try { return JSON.parse(localStorage.getItem('rnawiki_learned') || '[]'); } catch (e) { return []; } }
   function isLearned(id) { return getLearned().includes(id); }
   function toggleLearned(id) { const l = getLearned(); const i = l.indexOf(id); if (i >= 0) l.splice(i, 1); else l.push(id); localStorage.setItem('rnawiki_learned', JSON.stringify(l)); return l.includes(id); }
+  // ---- The single learning journey: ONE forward path (compounds threaded through the pathway that unifies them) ----
+  function getJourney() { try { return JSON.parse(localStorage.getItem('rnawiki_journey') || 'null'); } catch (e) { return null; } }
+  function setJourney(j) { try { localStorage.setItem('rnawiki_journey', JSON.stringify(j)); } catch (e) {} }
+  const isFoundational = x => /foundational/i.test(x.category || '');
+  const byLearnOrder = (a, b) => (isFoundational(b) - isFoundational(a)) || (b.stars - a.stars) || a.name.localeCompare(b.name);
+  function journeyState(c) {
+    const stored = getJourney(); let kind, anchorId, raw;
+    // continue the journey the reader is already on, if this compound belongs to it
+    if (stored && stored.type === 'pathway' && Array.isArray(c.pathwayIds) && c.pathwayIds.includes(+stored.id) && (compoundsByPathway[+stored.id] || []).length >= 2) { kind = 'pathway'; anchorId = +stored.id; raw = compoundsByPathway[anchorId]; }
+    else if (stored && stored.type === 'goal' && Array.isArray(c.goalIds) && c.goalIds.includes(stored.id)) { kind = 'goal'; anchorId = stored.id; raw = D.compounds.filter(x => x.goalIds.includes(stored.id)); }
+    // otherwise anchor a fresh journey on this compound's richest shared pathway (fall back to its top goal)
+    if (!raw) {
+      const paths = (c.pathwayIds || []).slice().sort((a, b) => (compoundsByPathway[b] || []).length - (compoundsByPathway[a] || []).length);
+      if (paths.length && (compoundsByPathway[paths[0]] || []).length >= 3) { kind = 'pathway'; anchorId = paths[0]; raw = compoundsByPathway[anchorId]; }
+      else if ((c.goalIds || []).length) { kind = 'goal'; anchorId = c.goalIds[0]; raw = D.compounds.filter(x => x.goalIds.includes(anchorId)); }
+    }
+    if (!raw) return null;
+    const track = raw.filter(x => !x.isNote).slice().sort(byLearnOrder);
+    const idx = track.findIndex(x => x.id === c.id); if (idx < 0) return null;
+    const label = kind === 'pathway' ? (D.pathways[anchorId] ? D.pathways[anchorId].shortLabel : 'pathway') : (goalById[anchorId] ? goalById[anchorId].label : anchorId);
+    const icon = kind === 'pathway' ? '🧬' : (goalById[anchorId] ? goalById[anchorId].icon : '🧭');
+    const hubHref = kind === 'pathway' ? ('#/pathway/' + anchorId) : ('#/goal/' + anchorId);
+    return { kind, anchorId, track, idx, next: track[idx + 1] || null, label, icon, hubHref };
+  }
+  function journeyRibbon(c) {
+    const j = journeyState(c); if (!j) return '';
+    const pct = Math.round((j.idx + 1) / j.track.length * 100);
+    return `<div class="j-ribbon" data-lvl="1"><span class="jr-ico">${j.icon}</span><span class="jr-txt">${esc(j.label)} journey · <b>${j.idx + 1} of ${j.track.length}</b></span><span class="jr-bar"><i style="width:${pct}%"></i></span></div>`;
+  }
+  function journeyCard(c) {
+    const j = journeyState(c); if (!j) return '';
+    const learned = getLearned(); const doneCount = j.track.filter(x => learned.includes(x.id)).length;
+    let nextBlock;
+    if (j.next) {
+      const hook = j.next.analogy ? j.next.analogy : faqSnip(j.next.plain || j.next.bottom || '', 96);
+      nextBlock = `<a class="j-next" href="#/c/${slug(j.next.name)}"><div class="jn-l"><div class="jn-lbl">Next in this journey</div><div class="jn-name">${esc(j.next.name)}</div>${hook ? `<div class="jn-hook">${esc(hook)}</div>` : ''}</div><span class="jn-go">Continue →</span></a>`;
+    } else {
+      nextBlock = `<a class="j-next capstone" href="${j.hubHref}"><div class="jn-l"><div class="jn-lbl">You've explored the compounds — now see how they connect</div><div class="jn-name">${esc(j.label)} — the whole pathway</div></div><span class="jn-go">See it →</span></a>`;
+    }
+    const dots = j.track.map(x => `<span class="j-dot${x.id === c.id ? ' cur' : ''}${learned.includes(x.id) ? ' done' : ''}" title="${esc(x.name)}"></span>`).join('');
+    return `<div class="journey-card" id="journey" data-lvl="1" data-jtype="${j.kind}" data-jid="${esc(String(j.anchorId))}">
+      <div class="j-head"><span class="j-ico">${j.icon}</span><div><div class="j-title">Your ${esc(j.label)} journey</div><div class="j-sub">Step ${j.idx + 1} of ${j.track.length}${doneCount ? ` · ${doneCount} learned` : ''}</div></div></div>
+      <div class="j-track">${dots}</div>
+      ${nextBlock}
+    </div>`;
+  }
   // ---- authored learning-layer components (render only when the sidecar data exists) ----
   function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div><p>${mdInline(c.analogy)}</p></div></div>`; }
   function mechanismCascade(c) {
@@ -1288,6 +1343,7 @@
       ${specStrip(c)}
       ${depthBar()}
       ${compoundToc(c)}
+      ${journeyRibbon(c)}
       <div id="edit-meta" class="edit-meta"></div>
       ${takeawaysBox(c)}
       ${analogyBox(c)}
@@ -1339,8 +1395,8 @@
         (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
       ])}
       ${selfTestBox(c)}
-      ${related.length ? `<div class="section-title" data-lvl="1">Related compounds</div><div class="related" data-lvl="1">${related.map(cpdCard).join('')}</div>` : ''}
-      ${solveCta('See the problems &amp; goals this fits — build a protocol →')}
+      ${journeyCard(c)}
+      ${related.length ? `<details class="related-fold" data-lvl="2"><summary>Or branch off — related compounds</summary><div class="related">${related.map(cpdCard).join('')}</div></details>` : ''}
       <div id="goal-comments" class="page-discuss"></div>
     </div>`;
   }
