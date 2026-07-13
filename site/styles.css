@@ -520,6 +520,8 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .fbar.over .fbar-val{color:var(--red);font-weight:700}
 .fbar-why{font-size:.72rem;color:var(--faint);margin-top:.1rem}
 .fbar-why .miss{color:var(--orange)}
+.fbar-supp{font-size:.72rem;color:#2563eb;margin-top:.15rem}
+@media(prefers-color-scheme:dark){.fbar-supp{color:#60a5fa}}
 .fuel-foot{font-size:.75rem;color:var(--faint);margin-top:.5rem}
 .linkbtn{background:none;border:none;color:var(--link);cursor:pointer;padding:0;font-size:.75rem}
 @media(max-width:820px){.proto-grid{grid-template-columns:1fr}.how-it-works{grid-template-columns:1fr}.proto-head{flex-direction:column}}

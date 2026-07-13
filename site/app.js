@@ -1623,8 +1623,9 @@
     const cur = getStack(); const added = ids.filter(id => !cur.includes(id));
     if (added.length) setStack(cur.concat(added));
     renderFuelStack(P);
-    loadUserFoods().then(() => mountFuelTracker(p, rc));
-    mountFuelTracker(p, rc);
+    const inStackList = () => (P.stack || []).filter(c => inStack(c.id)); // compounds the user actually has in their stack
+    loadUserFoods().then(() => mountFuelTracker(p, rc, null, inStackList()));
+    mountFuelTracker(p, rc, null, inStackList());
   }
   function renderFuelStack(P) {
     const el = document.getElementById('fuel-stack'); if (!el) return;
@@ -3877,7 +3878,7 @@
       <section class="plan-pulse"><div class="pulse-streak">🔥 <b>${streak}</b>-day streak</div>${weekStripHtml(plan, M)}</section>
       <div class="pt-seg" id="pt-seg">${T.map((t, i) => `<button data-pt="${t[0]}" class="pt-${t[0]}${i === 0 ? ' on' : ''}">${t[1]}</button>`).join('')}</div>
       ${T.map((t, i) => `<div class="pt-panel" data-panel="${t[0]}"${i === 0 ? '' : ' hidden'}>${t[2]}</div>`).join('')}`;
-    if (hasFuel) mountFuelTracker(null, null, M.fuel);
+    if (hasFuel) mountFuelTracker(null, null, M.fuel, M.supps);
     mountPlanFunctions();
     wireTgCoach();
     wireConsentCard();
@@ -4415,11 +4416,22 @@
     m.querySelectorAll('[data-q]').forEach(b => b.onclick = () => { qty = Math.max(1, Math.min(20, qty + (+b.dataset.q))); paint(); });
     m.querySelector('#fd-add').onclick = () => { closeModal(); onAdd(qty); };
   }
-  function mountFuelTracker(problem, rc, targetsOverride) {
+  // Which stacked supplement (by name) plainly supplies a tracked nutrient — so the fuel bar can note
+  // "also in your stack" without inventing amounts (doses are free-text; we never sum them).
+  const NUTRIENT_IN_SUPP = {
+    magnesium_mg: /magnesium/i, calcium_mg: /calcium/i, potassium_mg: /potassium/i, sodium_mg: /electrolyte/i,
+    zinc_mg: /\bzinc\b/i, iron_mg: /\biron\b|ferrous|ferric/i, omega3_mg: /omega[- ]?3|fish oil|\bepa\b|\bdha\b|krill|cod liver/i,
+    vitamin_c_mg: /vitamin c\b|ascorb/i, vitamin_d_iu: /vitamin d\b|cholecalciferol|\bd3\b/i,
+    choline_mg: /choline|alpha-?gpc|cdp-?choline|citicoline/i, glycine_g: /glycine|collagen/i, fiber_g: /psyllium|inulin|glucomannan|\bfib(er|re)\b/i,
+  };
+  function mountFuelTracker(problem, rc, targetsOverride, stackList) {
     const root = document.getElementById('fuel-tracker'); if (!root) return;
     const FO = window.RNAWIKI_FOODS;
     const targets = targetsOverride || (rc && rc.nutrient_targets) || {};
     FUEL_TARGETS = targets; // so "add a food" can highlight exactly what THIS protocol tracks
+    const stack = Array.isArray(stackList) ? stackList : [];
+    // exclude combo/summary entries (·, /, ",", "(brief)") and non-source lookalikes (calcium-d-glucarate isn't dietary calcium)
+    const suppFor = k => (NUTRIENT_IN_SUPP[k] ? stack.filter(c => c && c.name && !/[·/,]|\(brief\)|glucarate/i.test(c.name) && NUTRIENT_IN_SUPP[k].test(c.name)).map(c => c.name) : []);
     function totals() {
       const log = getFuelLog(); const sum = {}, missing = {};
       Object.keys(targets).forEach(k => { sum[k] = 0; missing[k] = 0; });
@@ -4445,6 +4457,7 @@
             <span class="fbar-val">${val} / ${t.target} ${t.unit}${done && !isLimit ? ' ✓' : ''}${over ? ' ⚠' : ''}</span></div>
           <div class="fbar-track"><i style="width:${pct}%"></i></div>
           <div class="fbar-why">${esc(t.why || '')}${missing[k] ? ` · <span class="miss">${missing[k]} logged food${missing[k] > 1 ? 's' : ''} missing ${NUTRIENT_LABEL[k] || k} data</span>` : ''}</div>
+          ${(() => { const s = suppFor(k); return s.length && !isLimit ? `<div class="fbar-supp">🔵 also in your stack: ${s.map(esc).join(', ')} — food target is on top of what your supplement covers</div>` : ''; })()}
         </div>`;
       }).join('');
       const logHtml = log.items.length ? log.items.map((it, i) => {
