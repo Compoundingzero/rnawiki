@@ -1510,7 +1510,7 @@
     const ch3 = callout('protocol', 'How to take it', c.protocol) + pkTimeline(c) + doseSimulator(c) + whenToUseBox(c) + callout('watch', 'Watch out', c.watch, 'warn') + stacksBlock + usedIn;
     const ch4 = evidenceBlock + positioningPlot(c) + exploreBlock + callout('bottom', 'Bottom line', c.bottom);
     const ch5 = expertFramework(c) + callout('target', 'Molecular / gene target', c.target) + (c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — the original technical write-up', c.mechanism) : '') + biotechDeepDive(c);
-    const ch6 = selfTestBox(c) + feynmanBox(c) + graduationBlock(c);
+    const ch6 = selfTestBox(c) + feynmanBox(c) + graduationBlock(c) + journeyBlock('compound', c.id);
     const chapterDefs = [
       { n: 1, icon: '🌱', label: 'Start here', html: ch1, check: 'start' }, { n: 2, icon: '⚙️', label: 'How it works', html: ch2, check: 'how' },
       { n: 3, icon: '💊', label: 'How to use it', html: ch3, check: 'use' }, { n: 4, icon: '📊', label: 'The evidence', html: ch4, check: 'evidence' },
@@ -1518,7 +1518,7 @@
     ].filter(ch => ch.html && ch.html.trim());
     // Numbered mastery spine — a course stepper that checks off as you read
     const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, i) => `<button class="ch-step${i === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${i + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
-    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : `<p class="ch-done">🎓 That's the full lesson on ${esc(c.name)} — from newbie to expert. Your one next step is just below ↓</p>`; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${ch.check ? chapterCheck(c, ch.check) : ''}<div class="ch-nav">${nav}</div></section>`; }).join('')}</div>`;
+    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${ch.check ? chapterCheck(c, ch.check) : ''}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
     const faq = faqRender([
       (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${faqSnip(c.bottom || c.plain, 240)}` } : null,
       c.protocol ? { q: `How do you take ${c.name}?`, a: faqSnip(c.protocol, 300) } : null,
@@ -1542,7 +1542,6 @@
       <div id="edit-meta" class="edit-meta"></div>
       ${sections}
       <div class="cpd-faq-wrap" hidden>${faq}</div>
-      ${journeyBlock('compound', c.id)}
       ${related.length ? `<details class="related-fold"><summary>Or branch off — related compounds</summary><div class="related">${related.map(cpdCard).join('')}</div></details>` : ''}
       <div id="goal-comments" class="page-discuss"></div>
     </div>`;
