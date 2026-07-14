@@ -13,10 +13,34 @@
   "stakes": "It's the most widely used psychoactive drug on Earth — around 80% of adults take it every day, mostly without a second thought about what it's doing.",
   "analogy": "Caffeine is a doorstop jammed into your brain's tiredness sensor. It doesn't add energy — it blocks the signal that says “wind down.”",
   "mechSteps": [
-   { "n": 1, "t": "It impersonates adenosine", "predict": "Caffeine's shape is almost identical to one molecule your brain makes all day. Which one — and why would looking like it be useful?", "d": "Caffeine's ring closely mimics adenosine — the molecule that piles up while you're awake and tells your brain “time to rest.” That resemblance lets it slot into the very same receptors.", "tag": "ADORA2A" },
-   { "n": 2, "t": "It blocks the “slow down” brake", "predict": "If caffeine takes adenosine's parking spot but can't switch the receptor on, what happens to the drowsiness signal?", "d": "By occupying adenosine's A1 and A2A receptors, caffeine stops adenosine from docking — so the drowsiness signal your brain has been building all day never lands.", "fx": "▼ drowsiness" },
-   { "n": 3, "t": "Excitatory signalling climbs", "predict": "With the brake released, which way does brain arousal go — and what do you feel?", "d": "With the brake released, dopamine and noradrenaline activity rise. You feel sharper and more motivated, and a given effort feels easier.", "fx": "▲ alertness & focus" },
-   { "n": 4, "t": "Body-wide knock-on effects", "predict": "Beyond your head — name one way this could help physical performance.", "d": "It also mobilises fat for fuel and mildly lifts heart rate and metabolism (and may sensitise calcium release in muscle) — why it aids endurance and power.", "fx": "▲ performance" }
+   {
+    "n": 1,
+    "t": "It impersonates adenosine",
+    "predict": "Caffeine's shape is almost identical to one molecule your brain makes all day. Which one — and why would looking like it be useful?",
+    "d": "Caffeine's ring closely mimics adenosine — the molecule that piles up while you're awake and tells your brain “time to rest.” That resemblance lets it slot into the very same receptors.",
+    "tag": "ADORA2A"
+   },
+   {
+    "n": 2,
+    "t": "It blocks the “slow down” brake",
+    "predict": "If caffeine takes adenosine's parking spot but can't switch the receptor on, what happens to the drowsiness signal?",
+    "d": "By occupying adenosine's A1 and A2A receptors, caffeine stops adenosine from docking — so the drowsiness signal your brain has been building all day never lands.",
+    "fx": "▼ drowsiness"
+   },
+   {
+    "n": 3,
+    "t": "Excitatory signalling climbs",
+    "predict": "With the brake released, which way does brain arousal go — and what do you feel?",
+    "d": "With the brake released, dopamine and noradrenaline activity rise. You feel sharper and more motivated, and a given effort feels easier.",
+    "fx": "▲ alertness & focus"
+   },
+   {
+    "n": 4,
+    "t": "Body-wide knock-on effects",
+    "predict": "Beyond your head — name one way this could help physical performance.",
+    "d": "It also mobilises fat for fuel and mildly lifts heart rate and metabolism (and may sensitise calcium release in muscle) — why it aids endurance and power.",
+    "fx": "▲ performance"
+   }
   ],
   "framework": {
    "target": "Adenosine A1 & A2A receptors — it <b>blocks</b> them (a competitive antagonist), rather than activating anything.",
@@ -42,20 +66,54 @@
    "note": "The clearance curve is real maths — an exponential decay with caffeine's ~5.5 h half-life. The benefit and jitter curves are teaching shapes (the well-established plateau and rising side-effects), not exact per-person measurements."
   },
   "journey": [
-   { "stage": "☕ The mug", "d": "You drink it. Within minutes it's absorbed across your whole gut — about 99% of the dose gets in." },
-   { "stage": "🩸 The blood", "d": "It dissolves into your bloodstream and rides everywhere. Being small and fat-loving, it crosses into your brain (and the placenta) without resistance." },
-   { "stage": "🧠 The brain", "d": "It reaches your neurons and slots into adenosine's receptors, blocking the tiredness signal. Peak effect lands ~30–75 min after your first sip." },
-   { "stage": "🔬 The liver", "d": "Your liver's CYP1A2 enzyme chops it up (mostly into paraxanthine). How fast that enzyme runs is set by your genes — your personal 'engine size'." },
-   { "stage": "🕗 The fade", "d": "Half is gone in ~5–6 h, but the tail lingers for hours — which is why a late-afternoon cup still shadows your sleep." }
+   {
+    "stage": "☕ The mug",
+    "d": "You drink it. Within minutes it's absorbed across your whole gut — about 99% of the dose gets in."
+   },
+   {
+    "stage": "🩸 The blood",
+    "d": "It dissolves into your bloodstream and rides everywhere. Being small and fat-loving, it crosses into your brain (and the placenta) without resistance."
+   },
+   {
+    "stage": "🧠 The brain",
+    "d": "It reaches your neurons and slots into adenosine's receptors, blocking the tiredness signal. Peak effect lands ~30–75 min after your first sip."
+   },
+   {
+    "stage": "🔬 The liver",
+    "d": "Your liver's CYP1A2 enzyme chops it up (mostly into paraxanthine). How fast that enzyme runs is set by your genes — your personal 'engine size'."
+   },
+   {
+    "stage": "🕗 The fade",
+    "d": "Half is gone in ~5–6 h, but the tail lingers for hours — which is why a late-afternoon cup still shadows your sleep."
+   }
   ],
   "myths": [
-   { "myth": "Caffeine gives you energy.", "truth": "It gives you none of its own. It blocks the tiredness signal so the energy you already have feels available — which is exactly why the fatigue rebounds when it wears off." },
-   { "myth": "More caffeine = more benefit.", "truth": "There's a ceiling around 3–6 mg/kg. Past ~9 mg/kg you get no extra performance — only more jitter, a faster heart, and worse sleep." },
-   { "myth": "Caffeine dehydrates you.", "truth": "At habitual doses the mild diuretic effect is offset by the fluid in the drink. Your regular coffee or tea counts toward hydration." }
+   {
+    "myth": "Caffeine gives you energy.",
+    "truth": "It gives you none of its own. It blocks the tiredness signal so the energy you already have feels available — which is exactly why the fatigue rebounds when it wears off."
+   },
+   {
+    "myth": "More caffeine = more benefit.",
+    "truth": "There's a ceiling around 3–6 mg/kg. Past ~9 mg/kg you get no extra performance — only more jitter, a faster heart, and worse sleep."
+   },
+   {
+    "myth": "Caffeine dehydrates you.",
+    "truth": "At habitual doses the mild diuretic effect is offset by the fluid in the drink. Your regular coffee or tea counts toward hydration."
+   }
   ],
   "contrasts": [
-   { "title": "Caffeine vs adenosine — the decoy", "cidA": 2519, "capA": "caffeine", "cidB": 60961, "capB": "adenosine", "point": "Look at the two structures: near-twins, both built on the same purine ring. That mimicry <i>is</i> the trick — caffeine is shaped enough like adenosine to sit in its receptor, but not enough to switch it on. It occupies the seat without doing the job. A decoy." },
-   { "title": "Caffeine vs amphetamine — brake vs accelerator", "point": "Same felt result (alert, driven), opposite mechanism. Caffeine <b>releases a brake</b> — it blocks the adenosine that slows you down. Amphetamine <b>floors the accelerator</b> — it forces dopamine and noradrenaline out. That single difference is why amphetamine is far more powerful, and far more addictive." }
+   {
+    "title": "Caffeine vs adenosine — the decoy",
+    "cidA": 2519,
+    "capA": "caffeine",
+    "cidB": 60961,
+    "capB": "adenosine",
+    "point": "Look at the two structures: near-twins, both built on the same purine ring. That mimicry <i>is</i> the trick — caffeine is shaped enough like adenosine to sit in its receptor, but not enough to switch it on. It occupies the seat without doing the job. A decoy."
+   },
+   {
+    "title": "Caffeine vs amphetamine — brake vs accelerator",
+    "point": "Same felt result (alert, driven), opposite mechanism. Caffeine <b>releases a brake</b> — it blocks the adenosine that slows you down. Amphetamine <b>floors the accelerator</b> — it forces dopamine and noradrenaline out. That single difference is why amphetamine is far more powerful, and far more addictive."
+   }
   ],
   "whenToUse": {
    "intro": "Put it all together — here's how to actually use it:",
@@ -68,10 +126,22 @@
    ]
   },
   "checks": {
-   "start": { "q": "In one line: does caffeine actually give you energy?", "a": "No — it blocks the tiredness signal (adenosine). The energy was already there; caffeine just hides the fatigue." },
-   "how": { "q": "What does caffeine physically block, and what's the immediate result?", "a": "Adenosine's A1/A2A receptors — so the 'slow down' signal never lands, and alertness climbs." },
-   "use": { "q": "Why does the timing of your last coffee matter so much?", "a": "The ~5–6 h half-life means an afternoon dose is still blocking adenosine at bedtime — sabotaging the sleep signal." },
-   "evidence": { "q": "Is the performance effect large or small — and does it work for everyone?", "a": "Small-to-moderate but well-proven. Strongest in non-users and fast CYP1A2 metabolisers; blunted or even negative in slow metabolisers." }
+   "start": {
+    "q": "In one line: does caffeine actually give you energy?",
+    "a": "No — it blocks the tiredness signal (adenosine). The energy was already there; caffeine just hides the fatigue."
+   },
+   "how": {
+    "q": "What does caffeine physically block, and what's the immediate result?",
+    "a": "Adenosine's A1/A2A receptors — so the 'slow down' signal never lands, and alertness climbs."
+   },
+   "use": {
+    "q": "Why does the timing of your last coffee matter so much?",
+    "a": "The ~5–6 h half-life means an afternoon dose is still blocking adenosine at bedtime — sabotaging the sleep signal."
+   },
+   "evidence": {
+    "q": "Is the performance effect large or small — and does it work for everyone?",
+    "a": "Small-to-moderate but well-proven. Strongest in non-users and fast CYP1A2 metabolisers; blunted or even negative in slow metabolisers."
+   }
   },
   "canExplain": [
    "Why caffeine makes you alert without adding any energy",
@@ -81,9 +151,18 @@
    "How strong the evidence really is, and who benefits most"
   ],
   "selfTest": [
-   { "q": "What molecule does caffeine impersonate — and what does blocking it do?", "a": "Adenosine. Blocking its receptors lifts the “drowsiness” brake your brain builds through the day, so you feel alert." },
-   { "q": "Caffeine's half-life is ~5–6 hours. Why can an afternoon coffee still wreck your sleep?", "a": "After ~10–12 h a quarter of the dose is still circulating, keeping adenosine's sleep signal blocked right when you're trying to fall asleep." },
-   { "q": "Two people take the same dose; one gets a performance boost, one gets jittery and slower. What single gene most likely explains it?", "a": "CYP1A2. Fast metabolisers (AA at −163C>A) tend to benefit; slow metabolisers (C-carriers) clear it slowly and can see blunted or negative effects." }
+   {
+    "q": "What molecule does caffeine impersonate — and what does blocking it do?",
+    "a": "Adenosine. Blocking its receptors lifts the “drowsiness” brake your brain builds through the day, so you feel alert."
+   },
+   {
+    "q": "Caffeine's half-life is ~5–6 hours. Why can an afternoon coffee still wreck your sleep?",
+    "a": "After ~10–12 h a quarter of the dose is still circulating, keeping adenosine's sleep signal blocked right when you're trying to fall asleep."
+   },
+   {
+    "q": "Two people take the same dose; one gets a performance boost, one gets jittery and slower. What single gene most likely explains it?",
+    "a": "CYP1A2. Fast metabolisers (AA at −163C>A) tend to benefit; slow metabolisers (C-carriers) clear it slowly and can see blunted or negative effects."
+   }
   ],
   "evi": {
    "howStrong": "Caffeine sits near the top of the evidence pyramid — dozens of randomised controlled trials, pooled into multiple meta-analyses and even an umbrella review (a review of reviews). That's about as strong as sports-nutrition evidence ever gets; this is not a 'one small study' supplement. The catch to keep in mind: most of those trials are acute (a single dose) and run in young, active people, so the everyday, long-term picture is less nailed-down than the headline suggests.",
@@ -92,17 +171,42 @@
    "whoBenefits": "Habitual non-users and fast CYP1A2 metabolisers see the clearest gains. Slow metabolisers and heavy daily users get a blunted (occasionally negative) effect — both tolerance and genetics move the needle, which is why the 'same coffee, opposite result' between two people is real, not imagined.",
    "caveats": "Because the trials skew acute, young and male, treat the numbers as a solid central estimate rather than a personal guarantee — and assume publication bias inflates the average a little. Your own response (genetics, tolerance, sleep debt) can easily swamp the study-average effect.",
    "trials": [
-    { "finding": "Umbrella review of 21 meta-analyses: consistent small-to-moderate benefit for muscular endurance, strength, power and aerobic endurance.", "ref": "Grgic et al., 2020, Br J Sports Med" },
-    { "finding": "Endurance time-to-exhaustion improved on the order of ~11% vs placebo across pooled trials.", "ref": "Doherty & Smith, 2005 meta-analysis" },
-    { "finding": "The performance benefit tracked CYP1A2 genotype — present in fast metabolisers, absent or reversed in slow metabolisers.", "ref": "Guest et al., 2018, Med Sci Sports Exerc" }
+    {
+     "finding": "Umbrella review of 21 meta-analyses: consistent small-to-moderate benefit for muscular endurance, strength, power and aerobic endurance.",
+     "ref": "Grgic et al., 2020, Br J Sports Med"
+    },
+    {
+     "finding": "Endurance time-to-exhaustion improved on the order of ~11% vs placebo across pooled trials.",
+     "ref": "Doherty & Smith, 2005 meta-analysis"
+    },
+    {
+     "finding": "The performance benefit tracked CYP1A2 genotype — present in fast metabolisers, absent or reversed in slow metabolisers.",
+     "ref": "Guest et al., 2018, Med Sci Sports Exerc"
+    }
    ]
   },
   "tech": {
    "chem": "1,3,7-trimethylxanthine — a purine alkaloid and methylxanthine (a close cousin of theophylline and theobromine). Its ring closely resembles adenosine, which is what lets it dock into adenosine receptors; unlike adenosine, it's cleared by liver enzymes (chiefly CYP1A2) rather than the adenosine-recycling machinery. Lipophilic, so it crosses the blood–brain barrier and placenta freely and distributes into total body water.",
    "targets": [
-    { "sym": "Adenosine A1 & A2A receptors", "url": "https://www.ncbi.nlm.nih.gov/gene/135", "action": "non-selective competitive antagonist", "affinity": "Ki ≈ 2–20 µM; ordinary intake pushes plasma into roughly the same ~10–40 µM range — so this is the target actually engaged at dietary doses", "role": "the mechanism that matters in real life" },
-    { "sym": "Phosphodiesterases (PDE)", "action": "non-selective inhibitor → raises cAMP", "affinity": "only at ≳500 µM, far above any dietary dose", "role": "the textbook 'caffeine raises cAMP' story doesn't apply at the doses people actually take" },
-    { "sym": "RYR1 (ryanodine receptor)", "action": "sensitiser → more Ca²⁺ release (the classic experimental RyR agonist)", "affinity": "mainly at concentrations above those reached in the body", "role": "may add a small direct muscle effect, but caffeine's ergogenic benefit is mostly central (adenosine antagonism)" }
+    {
+     "sym": "Adenosine A1 & A2A receptors",
+     "url": "https://www.ncbi.nlm.nih.gov/gene/135",
+     "action": "non-selective competitive antagonist",
+     "affinity": "Ki ≈ 2–20 µM; ordinary intake pushes plasma into roughly the same ~10–40 µM range — so this is the target actually engaged at dietary doses",
+     "role": "the mechanism that matters in real life"
+    },
+    {
+     "sym": "Phosphodiesterases (PDE)",
+     "action": "non-selective inhibitor → raises cAMP",
+     "affinity": "only at ≳500 µM, far above any dietary dose",
+     "role": "the textbook 'caffeine raises cAMP' story doesn't apply at the doses people actually take"
+    },
+    {
+     "sym": "RYR1 (ryanodine receptor)",
+     "action": "sensitiser → more Ca²⁺ release (the classic experimental RyR agonist)",
+     "affinity": "mainly at concentrations above those reached in the body",
+     "role": "may add a small direct muscle effect, but caffeine's ergogenic benefit is mostly central (adenosine antagonism)"
+    }
    ],
    "signaling": "The key node is the striatal A2A–D2 heteromer: A2A receptors sit physically coupled to dopamine D2 receptors on medium spiny neurons, and A2A activation normally suppresses D2. Antagonising A2A therefore disinhibits dopamine signalling — the molecular reason caffeine feels dopaminergic without being a dopamine drug. Meanwhile A1 blockade across cortex and basal forebrain lifts tonic inhibition of cholinergic and monoaminergic neurons → global cortical arousal.",
    "adme": {
@@ -114,6 +218,207 @@
    "pgx": "CYP1A2 activity varies up to ~40-fold between people. The CYP1A2*1F (−163C>A, rs762551) allele defines fast vs slow metabolisers: 'fast' (AA) clear it quickly and tend to get the ergogenic and cardiovascular-neutral profile; 'slow' (C-carriers) show blunted or even negative performance effects and a higher heart-attack signal at high intake. ADORA2A variants (rs5751876) predict caffeine-induced anxiety and sleep disruption. CYP1A2 is induced by smoking and cruciferous vegetables (faster clearance) and inhibited by oral contraceptives and pregnancy (half-life can roughly double).",
    "dose": "Ergogenic window 3–6 mg/kg (~200–400 mg) taken 45–60 min pre-effort; cognitive benefit plateaus by ~200 mg. Above ~9 mg/kg there's no extra benefit — only rising tachycardia and jitter. Acute toxicity climbs past ~1.2 g and lethal doses cluster near 10–14 g, a risk driven almost entirely by anhydrous powder (a teaspoon can be a lethal dose).",
    "tolerance": "Chronic exposure upregulates adenosine A1/A2A receptor density as compensation, so the net alerting effect fades over ~1–4 weeks and abrupt cessation unmasks the surplus receptors → withdrawal headache and fatigue. A 10–14-day taper every ~2 months restores sensitivity — the pharmacological basis of 'cycling'."
+  }
+ },
+ "creatine-monohydrate": {
+  "hook": {
+   "questions": [
+    "Why does creatine make you heavier in the very first week — before you've built any muscle?",
+    "Why does it help your last few hard reps but do nothing for a long run?",
+    "Why do some people (\"non-responders\") take it and feel absolutely nothing?"
+   ],
+   "payoff": "You can now answer all three. (1) The early weight is water pulled into your muscle cells, not fat or new muscle. (2) Creatine only refuels the phosphocreatine system — the 1–10-second burst battery — so it shines in short, explosive efforts and is irrelevant to steady aerobic work. (3) 'Non-responders' usually already eat a lot of meat and fish, so their muscles start near-full and there's little room left to top up."
+  },
+  "bigIdea": "Creatine doesn't build muscle directly — it recharges your muscles' fastest energy battery, so you can push a little harder every session. It's that extra work, repeated over months, that builds the muscle.",
+  "stakes": "It's the most-studied and most reliably effective legal supplement in all of sports nutrition — hundreds of trials over 30+ years, and still one of the very few that consistently beats placebo.",
+  "analogy": "Phosphocreatine is a spare battery clipped next to your muscle's main one. It holds little charge, but it can recharge the main battery in a fraction of a second — perfect for the short, explosive efforts that drain it fastest.",
+  "mechSteps": [
+   {
+    "n": 1,
+    "t": "Your muscles' real fuel runs out in seconds",
+    "predict": "The molecule that powers a max lift isn't creatine. What is it — and roughly how long does the stored supply last at full effort?",
+    "d": "ATP is the cell's energy currency, but a muscle only stores enough for about 1–2 seconds of all-out effort. After that it must be regenerated, fast, or force drops.",
+    "tag": "ATP"
+   },
+   {
+    "n": 2,
+    "t": "Phosphocreatine is the instant recharger",
+    "predict": "If ATP runs out in ~2 seconds but you can still sprint, something must refill it almost instantly. What hands ATP its energy back?",
+    "d": "Creatine, charged up as phosphocreatine, donates its high-energy phosphate to spent ADP to remake ATP — in a fraction of a second. Creatine kinase runs this reaction both ways as a buffer.",
+    "tag": "CKM"
+   },
+   {
+    "n": 3,
+    "t": "Supplementing tops up the reservoir",
+    "predict": "Most people's muscles aren't fully stocked with creatine. What happens to your burst capacity if you fill them to the brim?",
+    "d": "A normal muscle is only ~60–80% loaded. Daily creatine raises intramuscular phosphocreatine by ~20%, so the recharge holds up for a few more reps before fatigue sets in.",
+    "fx": "▲ reps before failure"
+   },
+   {
+    "n": 4,
+    "t": "More quality work → more adaptation",
+    "d": "Those extra reps, session after session, are the real driver of strength and size. Creatine also draws water into the muscle cell (cell volumisation), which may itself nudge growth signalling.",
+    "fx": "▲ strength & lean mass"
+   }
+  ],
+  "framework": {
+   "target": "The phosphocreatine–creatine kinase energy shuttle. Note the key difference from most compounds on this site: creatine has <b>no receptor</b> to switch on or block. It's a <b>substrate</b> — carried into muscle by the SLC6A8 transporter and banked as phosphocreatine.",
+   "affinity": "There's no receptor binding constant to quote, because there's no receptor. What matters instead is <b>saturation</b>: a normal muscle sits ~60–80% full of creatine, and supplementing tops it to ~100%. That ceiling is why 'more' stops helping once you're full — and why people who start full (heavy meat-eaters) barely respond.",
+   "adme": "Well absorbed orally, then pumped into muscle against a steep gradient by the SLC6A8 transporter (insulin gives it a push). Loading at 20 g/day saturates muscle in 5–7 days; 3–5 g/day reaches the identical endpoint in ~4 weeks. About 95% of your body's creatine is stored in skeletal muscle.",
+   "genetics": "Response tracks how full you already are: vegetarians (low dietary creatine) start lower and respond most, while heavy meat-eaters respond least. Muscle mass, fibre type and SLC6A8 transporter activity also shift how much you can bank.",
+   "evidence": "Very strong for strength, power and lean mass when paired with resistance training; moderate and growing for memory — especially under stress, sleep loss, or ageing."
+  },
+  "pk": {
+   "onset": "days, not minutes",
+   "peak": "muscle saturation at 5–7 days (loading) or ~28 days (3–5 g/day)",
+   "halfLife": "muscle stores turn over slowly — ~1.7%/day is lost as creatinine",
+   "duration": "weeks — muscle levels stay elevated ~4–6 weeks after you stop",
+   "note": "Creatine breaks the usual timing rules. The blood half-life (~1–3 h) is not what drives the effect — muscle saturation over days is. So it's a daily habit, not a pre-workout stopwatch game: keep the reservoir topped up and when you take it barely matters."
+  },
+  "journey": [
+   {
+    "stage": "🥄 The scoop",
+    "d": "You swallow 3–5 g. It dissolves and is absorbed across your gut into the bloodstream."
+   },
+   {
+    "stage": "🩸 The blood",
+    "d": "It circulates until the SLC6A8 transporter on your muscle cells pulls it inside, against a steep gradient. Insulin helps the pump — which is why some take it with carbs."
+   },
+   {
+    "stage": "💪 The muscle",
+    "d": "Inside, creatine kinase adds a phosphate and banks it as phosphocreatine — the fast-recharge reservoir. About 95% of your body's creatine lives here."
+   },
+   {
+    "stage": "⚡ The effort",
+    "d": "During a hard set, phosphocreatine instantly regenerates ATP for a few more powerful contractions — until the reservoir runs low and you rest to refill it."
+   },
+   {
+    "stage": "🚽 The exit",
+    "d": "A small, steady fraction (~1.7%/day) spontaneously converts to creatinine and leaves in urine. That daily loss is why you top up — and why a blood test reads creatinine slightly higher."
+   }
+  ],
+  "myths": [
+   {
+    "myth": "Creatine is a steroid.",
+    "truth": "It isn't a hormone and touches no receptor. It's a small molecule your own body already makes (~1 g/day) and you eat in meat and fish. It recharges an energy molecule; steroids reprogram gene expression — completely different machinery."
+   },
+   {
+    "myth": "Creatine damages your kidneys.",
+    "truth": "In people with healthy kidneys, decades of trials show no harm. It does raise blood creatinine — a breakdown product used to estimate kidney function — so a routine test can look 'off' with nothing actually wrong. (Anyone with existing kidney disease should check with a doctor.)"
+   },
+   {
+    "myth": "You have to load, and you have to cycle it.",
+    "truth": "Loading just fills the reservoir faster (5–7 days vs ~4 weeks) — the final result is identical, so it's optional. And there's nothing to cycle off from: steady daily use simply keeps stores full."
+   }
+  ],
+  "contrasts": [
+   {
+    "title": "Creatine vs a steroid — a fuller battery vs a rewired blueprint",
+    "point": "Same goal, opposite machinery. Creatine <b>tops up an energy molecule you already use</b>, acting within a single set. An anabolic steroid <b>rewrites gene transcription</b> to build tissue over weeks — with a real hormonal cost. That's why one is a grocery-store molecule and the other is a controlled drug."
+   },
+   {
+    "title": "Creatine vs caffeine — muscle vs brain",
+    "point": "The two best-proven legal ergogenics, and they barely overlap. Caffeine <b>releases a fatigue brake in your brain</b> — acute, timed before training. Creatine <b>refills a fast-energy reservoir in your muscle</b> — chronic, taken daily. Different site, different timing, no shared mechanism — which is exactly why they stack so cleanly."
+   }
+  ],
+  "whenToUse": {
+   "intro": "Put it together — here's how to actually use it:",
+   "items": [
+    "**Daily, 3–5 g, any time of day.** Consistency matters far more than timing — you're keeping stores full, not chasing a peak.",
+    "**Loading is optional:** 20 g/day (4×5 g) for 5–7 days fills the reservoir a few weeks sooner. Skip it and 3–5 g/day gets you to the same place in ~4 weeks.",
+    "**With a meal or some carbs** can nudge uptake (insulin helps the transporter), but it's a minor tweak — don't overthink it.",
+    "**Buy plain monohydrate.** It's the form used in nearly every trial; the pricier 'HCl', buffered and ethyl-ester versions have no proven advantage.",
+    "**Stick with it.** The benefit is cumulative and quiet — more quality reps over months, not a jolt you feel today."
+   ]
+  },
+  "checks": {
+   "start": {
+    "q": "In one line: does creatine give your muscles energy, or help them remake it faster?",
+    "a": "It helps them remake it faster. Creatine recharges ATP (via phosphocreatine); it isn't burned as fuel itself."
+   },
+   "how": {
+    "q": "What does supplementing actually raise inside the muscle, and what does that buy you?",
+    "a": "It raises stored phosphocreatine ~20%, so ATP is regenerated for a few more reps before fatigue."
+   },
+   "use": {
+    "q": "Why does the time of day you take creatine barely matter?",
+    "a": "Because the effect comes from keeping muscle stores saturated over days — not from a blood peak. It's a daily top-up, not a pre-workout hit."
+   },
+   "evidence": {
+    "q": "What is creatine strongly proven for, and what is it not?",
+    "a": "Strong for strength, power and lean mass with resistance training; growing (moderate) for memory. It does little for steady endurance work."
+   }
+  },
+  "canExplain": [
+   "Why creatine helps short, explosive efforts but not steady endurance",
+   "The exact system it refuels — phosphocreatine — and why it has no receptor",
+   "Why the first-week weight gain is water, not fat",
+   "Why loading and cycling are optional, and timing barely matters",
+   "How strong the evidence really is for muscle vs. for the brain"
+  ],
+  "selfTest": [
+   {
+    "q": "A muscle only stores ~1–2 seconds of ATP at full effort. How does creatine let you keep going?",
+    "a": "As phosphocreatine, it instantly donates a phosphate to remake ATP from spent ADP — refilling the tank in a fraction of a second, for a few more reps."
+   },
+   {
+    "q": "Your friend eats a lot of steak and says creatine 'does nothing' for him. What's the likely reason?",
+    "a": "His muscles already start near-saturated from dietary creatine, so there's little headroom to top up — a classic non-responder."
+   },
+   {
+    "q": "A blood test shows your creatinine is slightly high after starting creatine. Should you worry?",
+    "a": "In healthy kidneys, no — creatinine is creatine's breakdown product, so more creatine means a higher reading without any kidney harm. (Existing kidney disease is the exception; ask a doctor.)"
+   }
+  ],
+  "evi": {
+   "howStrong": "Creatine sits at the very top of the supplement evidence pyramid: hundreds of randomised controlled trials over three decades, pooled into many meta-analyses and an International Society of Sports Nutrition position stand. For the strength-and-power claim, this is about as settled as sports-nutrition science gets. The cognitive story is younger and thinner — real, but based on far fewer trials.",
+   "whatItShows": "Combined with resistance training, creatine reliably adds to the strength, power and lean-mass gains you'd get from training alone. The effect is meaningful but not magic — it amplifies good training, it doesn't replace it. For the brain, the clearest signal so far is on memory.",
+   "effect": "Typical numbers: a few extra percent of strength and roughly 1–2 kg more lean mass over a training block versus training plus placebo, with the biggest edge on short, high-intensity efforts. For cognition, a 2024 meta-analysis found a modest improvement in memory (about a third of a standard deviation), largest in older adults and when the brain is stressed or sleep-deprived.",
+   "whoBenefits": "People who start with lower muscle creatine gain most — vegetarians and older adults especially. Heavy meat-eaters, who begin near-saturated, respond least (the 'non-responders'). The brain benefit skews toward the stressed, the sleep-deprived and the ageing.",
+   "caveats": "The performance evidence is strong but concentrated in resistance and sprint-type work — don't expect endurance gains. The cognitive evidence is promising but early: fewer trials, short durations, and effects that shrink in well-rested young adults. Kidney safety is well established only for healthy kidneys.",
+   "trials": [
+    {
+     "finding": "International Society of Sports Nutrition position stand: creatine monohydrate is the most effective ergogenic supplement for high-intensity work and is safe long-term in healthy people.",
+     "ref": "Kreider et al., 2017, J Int Soc Sports Nutr"
+    },
+    {
+     "finding": "Meta-analysis in older adults: creatine plus resistance training significantly increased lean tissue mass and lower-limb strength versus resistance training alone.",
+     "ref": "Chilibeck et al., 2017, Open Access J Sports Med"
+    },
+    {
+     "finding": "Systematic review & meta-analysis (16 RCTs, ~492 adults): creatine improved memory (standardised mean difference ≈ 0.31), with moderate certainty of evidence.",
+     "ref": "2024 meta-analysis, Frontiers in Nutrition"
+    }
+   ]
+  },
+  "tech": {
+   "chem": "A naturally occurring nitrogenous organic acid (methylguanidine-acetic acid), not a steroid or a stimulant. Your body synthesises ~1 g/day from the amino acids arginine, glycine and methionine (via AGAT/GATM then GAMT in kidney and liver), and omnivores eat roughly another 1 g/day in meat and fish. Supplemental creatine monohydrate is the same molecule in a stable, well-absorbed crystalline form.",
+   "targets": [
+    {
+     "sym": "SLC6A8 (creatine transporter, CT1)",
+     "url": "https://www.ncbi.nlm.nih.gov/gene/6535",
+     "action": "Na⁺/Cl⁻-dependent transporter — the sole gateway that pumps creatine into muscle and brain against a gradient",
+     "affinity": "not a drug-binding target; uptake is saturable and insulin-sensitive",
+     "role": "the rate-limiter of how much creatine you can actually bank; loss-of-function mutations cause creatine-transporter deficiency"
+    },
+    {
+     "sym": "CKM / creatine kinase",
+     "url": "https://www.ncbi.nlm.nih.gov/gene/1158",
+     "action": "catalyses creatine + ATP ⇌ phosphocreatine + ADP — the reversible reaction that both stores and instantly releases energy",
+     "affinity": "an enzyme substrate, not a receptor ligand",
+     "role": "the actual engine of the effect — the phosphocreatine buffer that regenerates ATP in high-demand tissue"
+    }
+   ],
+   "signaling": "There is no receptor cascade — creatine works through bioenergetics, not signalling. Its job is to raise the phosphocreatine:ATP ratio so ATP is regenerated faster than it's spent during short, intense efforts, delaying fatigue. A secondary, less certain route: drawing water into the cell (cell volumisation) and improving training quality may up-regulate growth pathways such as mTOR and satellite-cell activity — but the dominant, well-established mechanism is the energy buffer itself.",
+   "adme": {
+    "absorb": "Creatine monohydrate is almost completely absorbed from the gut; a 5 g dose transiently raises plasma creatine severalfold.",
+    "distribute": "~95% ends up in skeletal muscle (the rest in brain, heart and testes), taken up by SLC6A8 against a large concentration gradient; insulin increases uptake, which is the basis for taking it with carbohydrate.",
+    "metabolise": "Not enzymatically metabolised. Creatine and phosphocreatine convert spontaneously (non-enzymatically) to creatinine at a fairly constant ~1.7% of the pool per day.",
+    "excrete": "Creatinine is cleared by the kidneys into urine — the reason serum and urinary creatinine rise during supplementation without indicating kidney injury."
+   },
+   "pgx": "No single-gene pharmacogenetic switch like caffeine's CYP1A2. The main determinant of response is baseline muscle creatine — set by diet (meat intake), muscle mass and fibre type — plus SLC6A8 transporter activity. Rare SLC6A8, GATM and GAMT mutations cause creatine-deficiency syndromes, in which oral creatine is used therapeutically.",
+   "dose": "Maintenance 3–5 g/day of creatine monohydrate, indefinitely. Optional loading: 20 g/day split into 4 doses for 5–7 days reaches saturation faster with no better end result. No cycling needed. Higher doses don't help once muscle is saturated and can cause GI upset.",
+   "tolerance": "None in the receptor sense — there is no down-regulation, so the effect doesn't fade and there's nothing to cycle off. The only ceiling is muscle saturation: once your stores are full, additional creatine simply passes through as creatinine."
   }
  }
 }
