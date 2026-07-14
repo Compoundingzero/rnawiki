@@ -543,8 +543,8 @@
     // Predict-then-reveal (mechanism) + before-you-go checks — active recall
     root.querySelectorAll('.mc-reveal').forEach(b => b.onclick = () => { const a = b.closest('.mc-body') && b.closest('.mc-body').querySelector('.mc-answer'); if (a) { a.hidden = false; b.closest('.mc-predict').classList.add('revealed'); b.remove(); } });
     root.querySelectorAll('.cc-reveal').forEach(b => b.onclick = () => { const a = b.closest('.ch-check') && b.closest('.ch-check').querySelector('.cc-a'); if (a) { a.hidden = false; b.remove(); } });
-    // Feynman "explain it back" — reveal the model answer
-    const fyBtn = document.getElementById('fy-check'); if (fyBtn) fyBtn.onclick = () => { const m = document.getElementById('fy-model'); if (m) m.hidden = false; fyBtn.textContent = 'Model answer shown ↓'; fyBtn.disabled = true; };
+    // Feynman "explain it back" — reveal the model answer + share to the community discussion
+    wireFeynman();
     // Dose & clearance simulator
     if (c.sim && document.getElementById('dosesim')) wireDoseSim(c.sim);
     // Glossary hover-defs across the readable body (skips links/headings; first mention only)
@@ -572,6 +572,55 @@
       if (p.MolecularFormula) { const mf = document.getElementById('mol-formula'); if (mf) mf.innerHTML = 'Formula <b>' + esc(p.MolecularFormula) + '</b>'; setChip('spec-formula', 'spec-formula-v', p.MolecularFormula); }
       if (p.MolecularWeight) setChip('spec-mw', 'spec-mw-v', Math.round(+p.MolecularWeight) + ' g/mol');
     }).catch(() => {});
+  }
+  // Feynman "explain it back" → community discussion. Clicking "Compare with the expert answer"
+  // reveals the model answer AND shares the reader's own words as a thread others can reply to.
+  // Replies notify the author on Telegram + email (server-side). The thread stays hidden until the
+  // reader has committed their own answer — so it never spoils the retrieval test.
+  function wireFeynman() {
+    const box = document.querySelector('.feynman'); if (!box) return;
+    const btn = document.getElementById('fy-check'); if (!btn) return;
+    const slugv = box.getAttribute('data-slug') || '';
+    const thread = document.getElementById('fy-thread');
+    const note = document.getElementById('fy-note');
+    const e2 = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
+    const ago = ts => { const s = Math.max(0, (Date.now() - new Date(ts).getTime()) / 1000); if (s < 60) return 'just now'; if (s < 3600) return Math.floor(s / 60) + 'm ago'; if (s < 86400) return Math.floor(s / 3600) + 'h ago'; if (s < 2592000) return Math.floor(s / 86400) + 'd ago'; return new Date(ts).toLocaleDateString(); };
+    const post = p => `<div class="ftp" data-id="${p.id}"><div class="ftp-meta"><span class="ftp-who${p.mine ? ' me' : ''}">${p.mine ? 'You' : e2(p.user)}</span><span class="ftp-ago">${ago(p.ts)}</span></div><div class="ftp-body">${e2(p.body)}</div>${(p.replies || []).map(r => `<div class="ftp ftp-reply" data-id="${r.id}"><div class="ftp-meta"><span class="ftp-who${r.mine ? ' me' : ''}">${r.mine ? 'You' : e2(r.user)}</span><span class="ftp-ago">${ago(r.ts)}</span></div><div class="ftp-body">${e2(r.body)}</div></div>`).join('')}<button class="ftp-reply-btn" data-reply="${p.id}">Reply</button></div>`;
+    let signedIn = false;
+    function render(d) {
+      signedIn = !!(d && d.signedIn);
+      const posts = (d && d.posts) || [];
+      thread.hidden = false;
+      thread.innerHTML = `<div class="ft-h">💬 How others explained it${posts.length ? ` <span class="ft-n">${d.total}</span>` : ''}</div>` +
+        (posts.length ? posts.map(post).join('') : `<p class="ft-empty">No one else has explained this yet — yours could be the first others learn from.</p>`);
+      thread.querySelectorAll('[data-reply]').forEach(b => b.onclick = () => openReply(b));
+    }
+    function openReply(b) {
+      const pid = b.getAttribute('data-reply');
+      if (b.nextElementSibling && b.nextElementSibling.classList.contains('ftp-replybox')) { b.nextElementSibling.remove(); return; }
+      const box2 = document.createElement('div'); box2.className = 'ftp-replybox';
+      box2.innerHTML = `<textarea rows="2" placeholder="Reply…"></textarea><button>Send reply</button>`;
+      b.after(box2);
+      const ta = box2.querySelector('textarea'), sb = box2.querySelector('button');
+      ta.focus();
+      sb.onclick = async () => { const v = (ta.value || '').trim(); if (v.length < 4) { ta.focus(); return; } sb.disabled = true; sb.textContent = 'Sending…'; try { await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slugv, body: v, parent_id: pid }) }); } catch (e) {} await load(); };
+    }
+    async function load() { try { const r = await fetch('/api/explain?slug=' + encodeURIComponent(slugv)); render(await r.json()); } catch (e) { thread.hidden = false; thread.innerHTML = '<p class="ft-empty">Discussion is offline right now.</p>'; } }
+    btn.onclick = async () => {
+      const m = document.getElementById('fy-model'); if (m) m.hidden = false;
+      btn.textContent = 'Model answer shown ↓'; btn.disabled = true;
+      const ta = document.getElementById('fy-input'); const val = ((ta && ta.value) || '').trim();
+      if (val.length >= 4) {
+        try {
+          const r = await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slugv, body: val }) });
+          const d = await r.json().catch(() => ({}));
+          if (ta) { ta.value = ''; ta.placeholder = 'Add another take, or reply to someone below…'; }
+          if (note) { note.hidden = false; note.innerHTML = d && d.signedIn ? '✓ Shared with the community. We\'ll ping you on Telegram &amp; email if someone replies.' : '✓ Shared with the community. <a href="#" class="fy-signin">Sign in</a> to get notified when someone replies.'; const si = note.querySelector('.fy-signin'); if (si) si.onclick = ev => { ev.preventDefault(); if (typeof openAuth === 'function') openAuth('login'); }; }
+        } catch (e) {}
+      }
+      await load();
+      if (thread) thread.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
   }
   // Interactive dose & clearance simulator — the clearance curve is real (exponential decay at the drug's
   // half-life); the ergogenic window and jitter framing are the established teaching shapes.
@@ -1396,7 +1445,7 @@
   }
   function whenToUseBox(c) { const w = c.whenToUse; if (!w || !Array.isArray(w.items) || !w.items.length) return ''; return `<div class="whenuse"><div class="wu-h">🎯 When should <i>you</i> take it?</div>${w.intro ? `<p class="wu-intro">${mdInline(w.intro)}</p>` : ''}<ul class="wu-list">${w.items.map(i => `<li>${mdInline(i)}</li>`).join('')}</ul></div>`; }
   function moleculeJourney(c) { if (!Array.isArray(c.journey) || !c.journey.length) return ''; return `<div class="mjourney"><div class="mj-h">🧭 Follow one molecule — from mug to memory</div><div class="mj-track">${c.journey.map((s, i) => `<div class="mj-stage"><div class="mj-num">${i + 1}</div><div class="mj-body"><div class="mj-stage-t">${esc(s.stage)}</div><div class="mj-stage-d">${mdInline(s.d)}</div></div></div>`).join('')}</div></div>`; }
-  function feynmanBox(c) { return `<div class="feynman"><div class="fy-h">🧑‍🏫 The real test — explain it back</div><p class="fy-sub">In a sentence or two, explain to an imaginary friend what ${esc(c.name)} does and how. Writing it yourself is the single best way to find out whether it actually stuck.</p><textarea class="fy-input" id="fy-input" rows="3" placeholder="e.g. It blocks the tiredness signal in my brain, so…"></textarea><button class="fy-check" id="fy-check">Compare with the expert answer</button><div class="fy-model" id="fy-model" hidden><b>A clean expert answer:</b> ${mdInline(c.bigIdea || c.analogy || '')}</div></div>`; }
+  function feynmanBox(c) { return `<div class="feynman" data-slug="${esc(slug(c.name))}"><div class="fy-h">🧑‍🏫 The real test — explain it back</div><p class="fy-sub">In a sentence or two, explain to an imaginary friend what ${esc(c.name)} does and how. Writing it in your own words is the single best way to find out whether it actually stuck — then compare with the expert answer and see how others put it.</p><textarea class="fy-input" id="fy-input" rows="3" placeholder="e.g. It blocks the tiredness signal in my brain, so…"></textarea><button class="fy-check" id="fy-check">Compare with the expert answer</button><div class="fy-model" id="fy-model" hidden><b>A clean expert answer:</b> ${mdInline(c.bigIdea || c.analogy || '')}</div><div class="fy-note" id="fy-note" hidden></div><div class="fy-thread" id="fy-thread" hidden></div></div>`; }
   function graduationBlock(c) { const canEx = Array.isArray(c.canExplain) && c.canExplain.length ? `<div class="grad-can"><div class="gc-h">✓ You can now explain</div><ul>${c.canExplain.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; const payoff = hookPayoff(c); if (!canEx && !payoff) return ''; return `<div class="graduation">${payoff}${canEx}</div>`; }
   function chapterCheck(c, key) { const ch = c.checks && c.checks[key]; if (!ch) return ''; return `<div class="ch-check"><div class="cc-q">🔎 Before you go on — ${esc(ch.q)}</div><button class="cc-reveal">Show answer</button><div class="cc-a" hidden>${mdInline(ch.a)}</div></div>`; }
   function doseSimulator(c) {
@@ -1461,10 +1510,11 @@
     const ch3 = callout('protocol', 'How to take it', c.protocol) + pkTimeline(c) + doseSimulator(c) + whenToUseBox(c) + callout('watch', 'Watch out', c.watch, 'warn') + stacksBlock + usedIn;
     const ch4 = evidenceBlock + positioningPlot(c) + exploreBlock + callout('bottom', 'Bottom line', c.bottom);
     const ch5 = expertFramework(c) + callout('target', 'Molecular / gene target', c.target) + (c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — the original technical write-up', c.mechanism) : '') + biotechDeepDive(c);
+    const ch6 = selfTestBox(c) + feynmanBox(c) + graduationBlock(c);
     const chapterDefs = [
       { n: 1, icon: '🌱', label: 'Start here', html: ch1, check: 'start' }, { n: 2, icon: '⚙️', label: 'How it works', html: ch2, check: 'how' },
       { n: 3, icon: '💊', label: 'How to use it', html: ch3, check: 'use' }, { n: 4, icon: '📊', label: 'The evidence', html: ch4, check: 'evidence' },
-      { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 },
+      { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 }, { n: 6, icon: '🎓', label: 'Prove it', html: ch6 },
     ].filter(ch => ch.html && ch.html.trim());
     // Numbered mastery spine — a course stepper that checks off as you read
     const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, i) => `<button class="ch-step${i === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${i + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
@@ -1491,9 +1541,6 @@
       ${tabs}
       <div id="edit-meta" class="edit-meta"></div>
       ${sections}
-      ${selfTestBox(c)}
-      ${feynmanBox(c)}
-      ${graduationBlock(c)}
       <div class="cpd-faq-wrap" hidden>${faq}</div>
       ${journeyBlock('compound', c.id)}
       ${related.length ? `<details class="related-fold"><summary>Or branch off — related compounds</summary><div class="related">${related.map(cpdCard).join('')}</div></details>` : ''}

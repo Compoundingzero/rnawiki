@@ -429,6 +429,23 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS email_tz_offset INTEGER NOT NULL DEFA
 ALTER TABLE users ADD COLUMN IF NOT EXISTS email_last_nudge TEXT;         -- YYYY-MM-DD of last daily reminder email sent
 ALTER TABLE users ADD COLUMN IF NOT EXISTS last_winback_email TEXT;       -- YYYY-MM-DD of last inactivity/win-back email sent
 ALTER TABLE users ADD COLUMN IF NOT EXISTS email_off BOOLEAN NOT NULL DEFAULT false; -- global email suppress (protects sender reputation / user choice)
+
+-- "Explain it back" community discussion: on a compound/pathway page, a reader writes their own
+-- explanation ("the Feynman test"), and it's shared as a thread others can reply to. parent_id null
+-- = a top-level explanation; set = a reply. handle snapshots the username at post time so anonymous
+-- (user_id null) posts still render. Replies notify the parent's author by Telegram + email.
+CREATE TABLE IF NOT EXISTS explain_posts (
+  id SERIAL PRIMARY KEY,
+  slug TEXT NOT NULL,
+  kind TEXT NOT NULL DEFAULT 'compound',
+  parent_id INTEGER REFERENCES explain_posts(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  handle TEXT,
+  body TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_explain_slug ON explain_posts(slug, created_at);
+CREATE INDEX IF NOT EXISTS idx_explain_parent ON explain_posts(parent_id);
 `;
 
 async function init() {

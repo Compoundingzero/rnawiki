@@ -354,6 +354,30 @@ async function sendEmail(to, subject, html) {
     return true;
   } catch (e) { console.error('[email]', e.message); return false; }
 }
+// When someone replies to a shared "explain it back" post, ping the original author on their
+// linked Telegram chat and by email (whichever they have). Never notifies a user of their own reply.
+async function notifyReply(parentId, slug, replier, body) {
+  try {
+    const p = (await db.query('SELECT user_id, handle FROM explain_posts WHERE id=$1', [parentId])).rows[0];
+    if (!p || !p.user_id) return;                              // parent was anonymous — nobody to notify
+    if (replier && replier.id === p.user_id) return;           // don't notify yourself
+    const eh = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const name = (replier && replier.username) ? replier.username : 'Someone';
+    const cname = (TG_DATA && Array.isArray(TG_DATA.compounds) && (TG_DATA.compounds.find(x => tgSlug(x.name) === slug) || {}).name) || slug;
+    const snippet = String(body || '').slice(0, 220);
+    const link = `${SITE_URL}/#/c/${slug}`;
+    const tg = (await db.query('SELECT chat_id FROM telegram_users WHERE user_id=$1 AND active ORDER BY last_active DESC LIMIT 1', [p.user_id])).rows[0];
+    if (tg && tg.chat_id && BOT_TOKEN) {
+      tgSend(tg.chat_id, `💬 <b>${tgEsc(name)}</b> replied to your explanation on <b>${tgEsc(cname)}</b>:\n\n“${tgEsc(snippet)}”\n\n${link}`).catch(() => {});
+    }
+    const usr = (await db.query('SELECT email, email_off FROM users WHERE id=$1', [p.user_id])).rows[0];
+    if (usr && usr.email && !usr.email_off) {
+      sendEmail(usr.email, `${name} replied to your explanation of ${cname}`,
+        `<div style="font-family:system-ui,sans-serif;max-width:520px"><p><b>${eh(name)}</b> replied to the explanation of <b>${eh(cname)}</b> you shared on RNAwiki:</p><blockquote style="border-left:3px solid #10b981;margin:0;padding:.4rem 0 .4rem 1rem;color:#334">${eh(snippet)}</blockquote><p style="margin-top:1rem"><a href="${link}" style="background:#10b981;color:#fff;padding:.5rem 1rem;border-radius:8px;text-decoration:none">Read the discussion →</a></p></div>`
+      ).catch(() => {});
+    }
+  } catch (e) { console.error('[explain] notify:', e.message); }
+}
 // Pure: given a plan + a done(pid,rcid,phase)->bool predicate, return the most-pressing due milestone or null.
 function computeDuePhase(plan, doneHas, today) {
   const protos = (plan && Array.isArray(plan.protocols)) ? plan.protocols : [];
@@ -1592,6 +1616,41 @@ async function api(req, res, url) {
   const method = req.method;
 
   if (method !== 'GET' && !sameOrigin(req)) return json(res, 403, { error: 'Bad origin' });
+
+  // --- "Explain it back" community discussion (compound / pathway pages) ---
+  if (seg[0] === 'explain') {
+    const q = new URL('http://x/' + url).searchParams;
+    if (method === 'GET') {
+      const slug = clean(q.get('slug'), 80);
+      if (!slug) return json(res, 400, { error: 'No slug' });
+      const u = await currentUser(req).catch(() => null);
+      const rows = (await db.query('SELECT id, parent_id, user_id, handle, body, created_at FROM explain_posts WHERE slug=$1 ORDER BY created_at ASC LIMIT 400', [slug])).rows;
+      const byId = {};
+      rows.forEach(r => { byId[r.id] = { id: r.id, user: r.handle || 'Someone', anon: !r.handle, mine: !!(u && r.user_id === u.id), body: r.body, ts: r.created_at, replies: [] }; });
+      const top = [];
+      rows.forEach(r => { const n = byId[r.id]; if (r.parent_id && byId[r.parent_id]) byId[r.parent_id].replies.push(n); else if (!r.parent_id) top.push(n); });
+      top.reverse(); // newest explanations first
+      return json(res, 200, { posts: top, total: rows.length, signedIn: !!u });
+    }
+    if (method === 'POST') {
+      const b = await readBody(req, 1e4); if (!b) return json(res, 400, { error: 'Bad request' });
+      const slug = clean(b.slug, 80);
+      const body = String(b.body || '').replace(/\s+\n/g, '\n').trim().slice(0, 1500);
+      const parentId = b.parent_id ? Math.max(0, parseInt(b.parent_id, 10)) || null : null;
+      if (!slug) return json(res, 400, { error: 'No slug' });
+      if (body.length < 4) return json(res, 400, { error: 'Write a little more first.' });
+      const u = await currentUser(req).catch(() => null);
+      // light anti-spam: cap posts per author (or per anonymous IP burst) in a short window
+      if (u) {
+        const rc = (await db.query("SELECT count(*)::int n FROM explain_posts WHERE user_id=$1 AND created_at > now() - interval '10 minutes'", [u.id])).rows[0];
+        if (rc && rc.n >= 12) return json(res, 429, { error: 'Slow down a moment — you have posted a lot just now.' });
+      }
+      const ins = (await db.query('INSERT INTO explain_posts(slug, parent_id, user_id, handle, body) VALUES($1,$2,$3,$4,$5) RETURNING id', [slug, parentId, u ? u.id : null, u ? u.username : null, body])).rows[0];
+      if (parentId) notifyReply(parentId, slug, u, body).catch(() => {});
+      return json(res, 200, { ok: true, id: ins.id, signedIn: !!u });
+    }
+    return json(res, 405, { error: 'Method not allowed' });
+  }
 
   // --- auth ---
   if (seg[0] === 'register' && method === 'POST') {
