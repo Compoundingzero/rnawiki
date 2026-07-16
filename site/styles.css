@@ -2598,3 +2598,7 @@ a.dp-name:hover{color:var(--accent)}
 .gp-form .gp-hint{display:block;margin-top:.35rem;font-size:.78rem;color:var(--muted);line-height:1.4}
 .gp-form input[type=file]{display:block;width:100%;margin-top:.3rem;padding:.55rem;border:1px dashed var(--line);border-radius:10px;background:var(--panel);font:inherit;font-size:.88rem;cursor:pointer;color:var(--muted)}
 .gp-form select{width:100%;padding:.6rem .7rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);font:inherit;color:inherit}
+
+/* Respect the hidden attribute on spec chips — Formula/Mol.weight stay hidden until PubChem
+   data loads, instead of showing empty labelled boxes on peptides/compounds without a CID. */
+.spec-chip[hidden]{display:none!important}
