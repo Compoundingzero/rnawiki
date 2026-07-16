@@ -1728,10 +1728,50 @@
     const prev = i > 0 ? `<a href="#/pathway/${i - 1}">← ${D.pathways[i - 1].shortLabel}</a>` : `<a href="#/pathways">← All pathways</a>`;
     const next = i < D.pathways.length - 1 ? `<a href="#/pathway/${i + 1}">${D.pathways[i + 1].shortLabel} →</a>` : `<a href="#/pathways">All pathways →</a>`;
     const cpds = (compoundsByPathway[i] || []).slice().sort((a, b) => b.stars - a.stars);
-    const cpdSection = cpds.length ? `<div class="section-title">Compounds that pull this pathway (${cpds.length})</div><div class="card-grid">${cpds.map(cpdCard).join('')}</div>` : '';
+    const cpdSection = cpds.length ? `<div class="section-title">Compounds that pull this lever (${cpds.length})</div><div class="card-grid">${cpds.map(cpdCard).join('')}</div>` : '';
     const pwFact = (window.RNAWIKI_FACTS || []).find(x => x.href === '/pathway/' + i);
     const pwFactHtml = pwFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${pwFact.t}</span></div>` : '';
-    return `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Pathways', href: '#/pathways' }, { label: p.shortLabel }])}<h1>${p.shortLabel}</h1>${pwFactHtml}${pathwayDiagram(p.diagram, p.shortLabel)}${p.html}<div class="suggest-row"><button class="linkbtn" data-suggest="simplify" data-ref="${esc(p.shortLabel)} pathway">✨ Too technical? Suggest a simpler version</button></div>${cpdSection}${journeyBlock('pathway', i)}<div id="goal-comments" class="page-discuss"></div><div class="prevnext">${prev}${next}</div></div>`;
+    const crumb = crumbs([{ label: 'Home', href: '#/' }, { label: 'Pathways', href: '#/pathways' }, { label: p.shortLabel }]);
+    // Legacy render until the learning layer is authored (graceful degradation)
+    if (!(p.hook || p.bigIdea || p.mechSteps)) {
+      return `<div class="article">${crumb}<h1>${p.shortLabel}</h1>${pwFactHtml}${pathwayDiagram(p.diagram, p.shortLabel)}${p.html}<div class="suggest-row"><button class="linkbtn" data-suggest="simplify" data-ref="${esc(p.shortLabel)} pathway">✨ Too technical? Suggest a simpler version</button></div>${cpdSection}${journeyBlock('pathway', i)}<div id="goal-comments" class="page-discuss"></div><div class="prevnext">${prev}${next}</div></div>`;
+    }
+    // Chaptered lesson — reuse the compound pedagogy components via a pseudo-compound object
+    const pc = Object.assign({}, p, { name: p.shortLabel, id: 'pw-' + i });
+    const ch1 = hookBox(pc) + stakesLine(pc) + bigIdeaBanner(pc) + analogyBox(pc) + (p.oneLine ? `<p class="pw-oneline">${mdInline(p.oneLine)}</p>` : '') + pathwayDiagram(p.diagram, p.shortLabel);
+    const ch2 = mechanismCascade(pc) + mythsBox(pc) + (p.html ? `<div class="body pw-source"><div class="section-title">The full technical write-up</div>${p.html}</div>` : '');
+    const ch3 = (cpdSection || '<p class="muted">Compounds that act here are being added.</p>') + `<p class="pw-cpd-note">Each of these pulls this exact lever — open any compound to see how, then come back. That's how the whole map connects.</p>`;
+    const ch4 = selfTestBox(pc) + feynmanBox(pc) + graduationBlock(pc) + journeyBlock('pathway', i);
+    const chapterDefs = [
+      { n: 1, icon: '🌱', label: 'Start here', html: ch1 }, { n: 2, icon: '⚙️', label: 'The cascade', html: ch2 },
+      { n: 3, icon: '💊', label: 'The compounds', html: ch3 }, { n: 4, icon: '🎓', label: 'Prove it', html: ch4 },
+    ].filter(ch => ch.html && ch.html.trim());
+    const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, k) => `<button class="ch-step${k === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${k + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
+    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, k) => { const nx = chapterDefs[k + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${k === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
+    setTimeout(() => { wirePathwayLearning(pc); }, 0);
+    return `<div class="detail" id="pw-detail">${crumb}
+      <div class="detail-head"><div><h1>${esc(p.shortLabel)}</h1><span class="pw-badge">🧬 Master pathway</span></div></div>
+      ${pwFactHtml}${journeyRibbon('pathway', i)}
+      <p class="ch-lead">A step-by-step lesson on this master control system — tap through from beginner to expert.</p>
+      ${tabs}${sections}
+      <div class="prevnext">${prev}${next}</div>
+      <div id="goal-comments" class="page-discuss"></div></div>`;
+  }
+  function wirePathwayLearning(pc) {
+    const root = document.getElementById('pw-detail'); if (!root) return;
+    const chapters = document.getElementById('cpd-chapters');
+    const allSteps = [...root.querySelectorAll('.ch-step')];
+    const showChapter = (n, scroll) => {
+      root.querySelectorAll('.chapter').forEach(sec => sec.classList.toggle('active', sec.getAttribute('data-chapter') === String(n)));
+      allSteps.forEach(t => { const on = t.dataset.ch === String(n); t.classList.toggle('active', on); if (on) t.classList.add('done'); });
+      if (scroll && chapters) chapters.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    allSteps.forEach(t => t.onclick = () => showChapter(t.dataset.ch, true));
+    if (allSteps[0]) allSteps[0].classList.add('done');
+    root.querySelectorAll('[data-chgo]').forEach(b => b.onclick = () => showChapter(b.dataset.chgo, true));
+    root.querySelectorAll('.mc-reveal').forEach(b => b.onclick = () => { const a = b.closest('.mc-body') && b.closest('.mc-body').querySelector('.mc-answer'); if (a) { a.hidden = false; b.closest('.mc-predict').classList.add('revealed'); b.remove(); } });
+    root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
+    wireFeynman();
   }
 
   // ---------- Anatomy & physiology reference pages ----------
