@@ -1427,8 +1427,10 @@
     return `<div class="positioning" data-lvl="2"><div class="section-title">📊 How it ranks on evidence <span class="pos-sub">in ${esc(c.category.split('/')[0].trim().toLowerCase())} · ${rank} of ${peers.length}</span></div><div class="pos-list">${rows}</div></div>`;
   }
   // The Technical layer: an exhaustive, structured pharmacology write-up (only rendered at 🔬 depth).
-  // Parse the curated `target` field ("[Label](url) · [PubChem](url) · …") into official-source chips.
+  // Official-source chips. Prefer the agent-verified `refs` (each link checked to resolve + be relevant);
+  // fall back to parsing the curated `target` field ("[Label](url) · [PubChem](url) · …").
   function officialLinks(c) {
+    if (Array.isArray(c.refs) && c.refs.length) return c.refs.filter(r => r && r.url && r.label);
     const out = []; const re = /\[([^\]]+)\]\(([^)]+)\)/g; let m;
     while ((m = re.exec(c.target || '')) !== null) { const label = m[1].replace(/\s*\([^)]*\)\s*$/, '').trim(); out.push({ label, url: m[2] }); }
     return out;
