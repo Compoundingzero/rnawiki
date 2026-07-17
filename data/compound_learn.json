@@ -12242,7 +12242,7 @@
     "How can the same molecule be a calming brain signal AND the main structural brick in your skin and tendons?",
     "Why do longevity researchers get excited about something you can buy for a few cents a gram?"
    ],
-   "payoff": "You can now answer all three. (1) Glycine lowers your core body temperature — the physiological 'go to sleep' cue — by acting on NMDA receptors in your brain's clock (the SCN) that open up blood flow to your skin; it shifts sleep timing rather than sedating you, so sleep architecture (including REM) is preserved. (2) Glycine wears two hats: it's an inhibitory neurotransmitter at glycine receptors AND every third amino acid in the collagen triple-helix — one job is signalling, the other is scaffolding. (3) Glycine helps dispose of excess methyl groups (via the enzyme GNMT), so loading it partly mimics methionine restriction — the reason an 8% glycine diet extended mouse lifespan a few percent."
+   "payoff": "You can now answer all three. (1) Glycine lowers your core body temperature — the physiological 'go to sleep' cue — by acting on NMDA receptors in your brain's clock (the SCN) that open up blood flow to your skin; it cues sleep onset rather than sedating you, so REM is preserved. (2) Glycine wears two hats: it's an inhibitory neurotransmitter at glycine receptors AND every third amino acid in the collagen triple-helix — one job is signalling, the other is scaffolding. (3) Glycine is the principal methyl-group acceptor that clears excess methionine, so loading it partly mimics methionine restriction — the reason an 8% glycine diet extended mouse lifespan a few percent."
   },
   "bigIdea": "Glycine isn't a sedative that shuts your brain off — it's a cooling and quieting signal: it lowers your core temperature to trigger sleep, calms nerve firing, and doubles as the structural brick that holds collagen together. One tiny molecule, several jobs.",
   "analogy": "Think of glycine as the building's thermostat AND its mortar. As a thermostat it nudges your core temperature down a fraction of a degree — the signal your body reads as 'time to sleep' — by opening the skin's radiators. As mortar it's the small brick slotted into every third gap of the collagen wall, the only amino acid tiny enough to fit where the triple helix twists tightest.",
@@ -12266,7 +12266,7 @@
     "n": 3,
     "t": "It cools you down to trigger sleep (the NMDA job)",
     "predict": "Falling asleep is preceded by a small drop in core body temperature. How could a molecule lower your core temperature by acting on your brain's master clock?",
-    "d": "Here glycine acts as a co-agonist at NMDA receptors in the suprachiasmatic nucleus — your circadian clock. Activating them widens blood vessels in your skin, dumping heat and dropping core temperature ~0.3 °C. That drop is a natural sleep-onset cue, which is why it shortens sleep latency without sedating you. (The detailed receptor mechanism is shown in animals; in humans we see the downstream result.)",
+    "d": "Here glycine acts as a co-agonist at NMDA receptors in the suprachiasmatic nucleus — your circadian clock. Activating them widens blood vessels in your skin, dumping heat and dropping core temperature ~0.3 °C. That drop is a natural sleep-onset cue, which is why it shortens sleep latency without sedating you (shown mechanistically in animals).",
     "tag": "NMDA / SCN",
     "fx": "▼ core temperature → faster sleep onset"
    },
@@ -12282,7 +12282,7 @@
     "n": 5,
     "t": "It helps clear methionine (the longevity lever)",
     "predict": "Diets low in the amino acid methionine extend lifespan in rodents. How could adding glycine partly imitate eating less methionine?",
-    "d": "Glycine accepts excess methyl groups via the enzyme GNMT — a principal route for disposing of surplus methionine. Loading glycine speeds that clearance, partly mimicking methionine restriction. This is thought to be why an 8% glycine diet modestly extended mouse lifespan — but note this lever is animal-evidence only.",
+    "d": "Glycine is the principal acceptor for excess methyl groups, via the enzyme GNMT — the main route for disposing of surplus methionine. Loading glycine speeds that clearance, partly mimicking methionine restriction. This is why an 8% glycine diet modestly extended mouse lifespan — but note this lever is animal-evidence only.",
     "tag": "GNMT",
     "fx": "~ mimics methionine restriction"
    }
@@ -12290,7 +12290,7 @@
   "framework": {
    "target": "Two genuine receptors plus a structural role. As a neurotransmitter glycine is the endogenous <b>agonist</b> at inhibitory glycine receptors (GLRA1, a chloride channel) and a <b>co-agonist</b> at excitatory NMDA receptors (it must bind the GluN1 site for glutamate to open the channel). Separately it's a <b>substrate</b> — a raw material woven into collagen and used in glutathione and creatine synthesis.",
    "affinity": "There's no drug-style Ki worth quoting, because glycine is the body's own ligand, not a foreign key — it works at the physiological concentrations your neurons already use, and a 3 g oral bolus nudges those levels. The honest framing: the sleep effect is receptor-mediated (NMDA in the SCN) but the detailed mechanism is demonstrated mainly in animals; in humans we have the downstream result (faster sleep onset, lower core temp), not a measured occupancy curve.",
-   "adme": "Well absorbed orally; freely water-soluble; distributes through body water and crosses into the brain. It's not cleared by a single bottleneck enzyme like caffeine — it's woven into proteins, feeds one-carbon metabolism, and its plasma half-life is dose-dependent (roughly 30 min to a few hours), so there's no clean single number.",
+   "adme": "Well absorbed orally; freely water-soluble; distributes through body water and crosses into the brain. It's not cleared by a single bottleneck enzyme like caffeine — it's woven into proteins, feeds one-carbon metabolism, and its plasma half-life is dose-dependent (measured ~26 min at low doses up to ~245 min as the dose climbs), so there's no clean single number.",
    "genetics": "No caffeine-style fast/slow switch. Response is shaped by your baseline: your body makes and consumes large amounts daily and dietary intake is often below what's used, so 'demand' varies. Rare mutations in GLRA1 cause hyperekplexia (an exaggerated startle disorder), underlining how central the inhibitory role is.",
    "evidence": "Mixed by claim, which is why it sits at 3/5. Sleep: small but real human RCTs. Collagen/tendon: solid mechanism plus gelatin+vitamin-C trials (not always pure glycine). Longevity: animal-only. Treat each benefit on its own evidence."
   },
@@ -12331,7 +12331,7 @@
    },
    {
     "myth": "Glycine will extend your lifespan.",
-    "truth": "That's animal-only so far. An 8% glycine diet extended mouse lifespan by a modest ~4–6%, plausibly by mimicking methionine restriction. There is no human lifespan trial. Interesting mechanism, unproven in people."
+    "truth": "That's animal-only so far. An 8% glycine diet extended mouse median lifespan by a modest ~4–6% (more in males than females), plausibly by mimicking methionine restriction. There is no human lifespan trial. Interesting mechanism, unproven in people."
    }
   ],
   "whenToUse": {
@@ -12380,13 +12380,13 @@
    },
    {
     "q": "Explain the mechanistic link between glycine and the lifespan-extension seen with methionine restriction.",
-    "a": "Glycine accepts excess methyl groups via GNMT, a principal pathway for clearing surplus methionine. Loading glycine speeds methionine disposal, partly imitating a low-methionine diet — thought to be why an 8% glycine diet extended mouse lifespan. It's an animal finding, not proven in humans."
+    "a": "Glycine is the principal acceptor of excess methyl groups via GNMT, the main pathway for clearing surplus methionine. Loading glycine speeds methionine disposal, partly imitating a low-methionine diet — which is why an 8% glycine diet extended mouse lifespan. It's an animal finding, not proven in humans."
    }
   ],
   "evi": {
    "howStrong": "Glycine's evidence is best read claim-by-claim, not as one number — which is exactly why it sits at 3/5. The sleep data are genuine randomised human trials but small (a few dozen participants total) and mostly from one research group. The connective-tissue case rests on a strong biochemical rationale plus a handful of gelatin-and-vitamin-C exercise trials (often testing gelatin, not isolated glycine). The longevity case is mechanistically elegant but entirely animal-based. So: promising and cheap, with real human sleep signal, but nothing here is settled the way creatine's strength benefit is.",
    "whatItShows": "For sleep, the consistent finding is faster sleep onset and better subjective sleep quality with 3 g before bed, without disturbing sleep architecture — plus less next-day sleepiness. For tissue, the signal is a short-term rise in blood markers of collagen synthesis when gelatin+vitamin C is taken before loading. For ageing, it's a modest lifespan extension in mice.",
-   "effect": "Small and specific. Sleep-onset latency shortens by a few minutes and subjective quality improves; the core-temperature drop underpinning it is on the order of ~0.3 °C. A collagen-synthesis marker roughly doubled acutely in the gelatin trial (at the 15 g dose). Mouse median and maximum lifespan rose ~4–6% on an 8% glycine diet.",
+   "effect": "Small and specific. Sleep-onset latency shortens and subjective quality improves; the core-temperature drop underpinning it is on the order of ~0.3 °C. Collagen-synthesis markers roughly doubled acutely in the gelatin trial. Mouse median lifespan rose ~4–6% on an 8% glycine diet (more in males than females), with a smaller rise in maximum (90th-percentile) lifespan.",
    "whoBenefits": "People with mildly unsatisfactory sleep are the clearest beneficiaries of the sleep effect. Those doing tendon/ligament rehab or heavy connective-tissue loading are the rationale for the collagen use. Diets low in glycine-rich tissue (little skin, bone broth, gelatin) may have the most room to gain.",
    "caveats": "The human trials are small and short; the collagen studies often use gelatin rather than pure glycine, so don't over-transfer; and the lifespan data are animal-only with no human evidence. It's very safe and cheap, so the risk of trying is low — but keep expectations proportionate to a small, subtle effect.",
    "trials": [
@@ -12395,11 +12395,11 @@
      "ref": "Yamadera et al., 2007, Sleep and Biological Rhythms"
     },
     {
-     "finding": "Glycine's sleep-promoting and hypothermic effects were mediated by NMDA receptors in the suprachiasmatic nucleus, via peripheral vasodilation (rat study).",
+     "finding": "Glycine's sleep-promoting and hypothermic effects were mediated by NMDA receptors in the suprachiasmatic nucleus, via peripheral vasodilation (animal study).",
      "ref": "Kawai et al., 2015, Neuropsychopharmacology"
     },
     {
-     "finding": "An 8% glycine diet produced a small (~4–6%) but statistically significant increase in median and maximum lifespan in genetically heterogeneous mice across three sites (Interventions Testing Program).",
+     "finding": "An 8% glycine diet produced a small (~4–6%) but statistically significant increase in median lifespan (larger in males), with a more modest rise in maximum lifespan, in genetically heterogeneous mice across three sites (Interventions Testing Program).",
      "ref": "Miller et al., 2019, Aging Cell"
     },
     {
@@ -12434,8 +12434,8 @@
    "adme": {
     "absorb": "Well absorbed orally from the small intestine (via amino-acid transporters); highly water-soluble.",
     "distribute": "Distributes through total body water and crosses the blood–brain barrier; taken up into the CNS and peripheral tissues for both signalling and biosynthesis.",
-    "metabolise": "Not cleared by a single enzyme. Interconverts with serine (SHMT), is cleaved by the glycine cleavage system, and accepts excess methyl groups via GNMT (glycine N-methyltransferase) — a principal route for disposing of surplus methionine, the basis of the methionine-restriction-mimic idea.",
-    "excrete": "Nitrogen is ultimately excreted as urea; only a minor fraction of intact glycine appears in urine under normal loads. The apparent plasma half-life is dose-dependent (reported ~26–245 min as the infused dose rises)."
+    "metabolise": "Not cleared by a single enzyme. Interconverts with serine (SHMT), is cleaved by the glycine cleavage system, and accepts excess methyl groups via GNMT (glycine N-methyltransferase) — the principal route for disposing of surplus methionine, the basis of the methionine-restriction-mimic idea.",
+    "excrete": "Nitrogen is ultimately excreted as urea; only a minor fraction of intact glycine appears in urine under normal loads. The apparent plasma half-life is dose-dependent (reported ~26–245 min as the infused dose rises; Hahn, 1993)."
    },
    "pgx": "No dominant single-gene pharmacogenetic switch analogous to caffeine's CYP1A2. Rare loss-of-function GLRA1 (and GLRB) mutations cause hyperekplexia (exaggerated startle), and defects in the glycine cleavage system cause glycine encephalopathy — illustrating how tightly glycine levels are regulated, but these are disease alleles, not common response modifiers for supplementation.",
    "dose": "Sleep: 3 g in water ~30–60 min before bed (the trial dose). Connective tissue: 5–10 g, ideally with collagen/gelatin plus ~50 mg vitamin C, ~1 h before loading. General supplementation of a few grams daily is common. Doses up to ~15–20 g have been used in studies; the practical ceiling is GI tolerance.",
@@ -12496,6 +12496,13 @@
    "adme": "Injected subcutaneously (no oral form). >98% albumin-bound, small volume of distribution. Cleared not by liver CYP enzymes but by proteolytic breakdown of the peptide, the same way your body handles any large protein. Half-life ~13 hours — hence once daily.",
    "genetics": "No caffeine-style single-gene switch (no CYP1A2 equivalent) governs the response, and there is no clinically actionable pharmacogenetic test to predict who responds. Response varies widely person to person, but honestly: it's not a one-gene story.",
    "evidence": "Strong drug-grade evidence: large phase-3 RCTs (the SCALE weight programme, the LEAD diabetes programme) plus a dedicated cardiovascular-outcomes trial (LEADER) in over 9,000 people. Curated 4/5 — a notch below semaglutide mainly because the newer drug simply does more."
+  },
+  "pk": {
+   "onset": "appetite effects within days; full effect builds over weeks",
+   "peak": "blood level peaks ~8–12 h after a dose (tmax)",
+   "halfLife": "~13 h",
+   "duration": "~24 h — the basis for once-daily dosing",
+   "note": "That ~13-hour half-life is the whole story of why liraglutide is a daily injection while semaglutide is weekly: the shorter albumin tether means the fullness signal fades within a day, so it must be topped up every day. Miss a dose and the effect drops off far faster than with the long-acting weekly agents."
   },
   "journey": [
    {
@@ -12647,7 +12654,7 @@
     "If these were the first and most powerful GH-releasing peptides ever made, why did the field quietly abandon them for ipamorelin?",
     "Why does hexarelin — the most potent one of the three — stop working the fastest?"
    ],
-   "payoff": "You can now answer all three. (1) These peptides are synthetic ghrelin. Ghrelin is your stomach's 'I'm empty' hormone, and its receptor drives both appetite and a GH pulse — so forging that signal bundles hunger in with the growth hormone, most strongly with GHRP-6. (2) They came with baggage the newer peptides don't: GHRP-2 and hexarelin also push up cortisol and prolactin (stress and milk hormones), which is exactly the 'dirtiness' ipamorelin was designed to strip out. (3) Hexarelin is the strongest at the receptor but desensitises it fastest — the ghrelin receptor stops answering the door, and repeated-dosing studies show the GH response clearly shrinking over time."
+   "payoff": "You can now answer all three. (1) These peptides are synthetic ghrelin. Ghrelin is your stomach's 'I'm empty' hormone, and its receptor drives both appetite and a GH pulse — so forging that signal bundles hunger in with the growth hormone, most strongly with GHRP-6. (2) They came with baggage the newer peptides don't: GHRP-2 and hexarelin also push up cortisol and prolactin (stress and milk hormones), which is exactly the 'dirtiness' ipamorelin was designed to strip out. (3) Hexarelin is the strongest at the receptor but desensitises it fastest — the ghrelin receptor stops answering the door, and chronic-dosing studies show the GH response roughly halving over weeks."
   },
   "bigIdea": "These three peptides are counterfeit ghrelin — they forge your hunger hormone's signal at the pituitary to force a growth-hormone pulse, which is why the GH you want arrives bundled with the appetite, cortisol and prolactin you didn't ask for, and why the receptor eventually stops listening.",
   "analogy": "Ghrelin is your stomach's 'I'm empty — wake up, eat, and grow' signal, and its receptor sits on the cells in your pituitary that release growth hormone. These peptides are a forged copy of that signal. Slip the forgery in and you do get the GH pulse — but a forged signal trips every alarm the real one does: hunger, stress hormones, prolactin. Ring the same doorbell too often and, especially with hexarelin, the receptor stops answering at all.",
@@ -12677,21 +12684,21 @@
     "n": 4,
     "t": "The receptor stops answering",
     "predict": "You ring the same doorbell every day. What does the receptor eventually do — and which peptide hits this wall first?",
-    "d": "Repeated stimulation desensitises and down-regulates GHSR, so the GH response shrinks over time. Hexarelin, the most potent, desensitises fastest; repeated-dosing studies show the GH response clearly attenuating. This is why continuous use fails and why 'cycling' exists — you're waiting for the receptor to reset.",
+    "d": "Repeated stimulation desensitises and down-regulates GHSR, so the GH response shrinks over time. Hexarelin, the most potent, desensitises fastest; a 16-week human study showed the GH response falling by roughly half, then recovering after an off-period. This is why continuous use fails and why 'cycling' exists — you're waiting for the receptor to reset.",
     "fx": "effect fades"
    },
    {
     "n": 5,
     "t": "Hexarelin has a second, separate lock",
     "predict": "Hexarelin does something in the heart the others barely do, and it doesn't need growth hormone to do it. How?",
-    "d": "Uniquely, hexarelin also binds CD36, a scavenger receptor on heart muscle, producing GH-independent cardiovascular effects shown in animal work (mediated through CD36 and absent in CD36-deficient hearts). This is a genuine second mechanism — interesting biology, but studied in the lab and animals, not established as a human therapy.",
+    "d": "Uniquely, hexarelin also binds CD36, a scavenger receptor on heart muscle, producing GH-independent cardiovascular effects shown in animal work (absent in CD36-null mice). This is a genuine second mechanism — interesting biology, but studied in the lab and animals, not established as a human therapy.",
     "tag": "CD36"
    }
   ],
   "framework": {
    "target": "The growth hormone secretagogue receptor <b>GHSR-1a</b> (the ghrelin receptor) — a G-protein-coupled receptor. Unlike caffeine (which blocks) these peptides are full <b>agonists</b>: they switch it ON, on pituitary somatotrophs and in the hypothalamus. Hexarelin additionally binds <b>CD36</b> in the heart.",
-   "affinity": "All three are potent, nanomolar-range GHSR agonists — hexarelin the most potent, GHRP-2 next, GHRP-6 least — which is why microgram-per-kilogram doses fully engage the receptor. Honest limit: a single clean, universally cited human Ki for each isn't something to quote with confidence, so treat potency as an ordering (hexarelin > GHRP-2 > GHRP-6), not a hard number.",
-   "adme": "These are peptides, so oral bioavailability is negligible (<1%) — they're injected (subcutaneous/IV) or given intranasally. Plasma half-lives are short (roughly 15–60 minutes; hexarelin ~55 min in humans), but the felt effect is a GH pulse, not a steady blood level.",
+   "affinity": "All three are potent, nanomolar-range GHSR agonists — hexarelin the most potent — which is why microgram-per-kilogram doses fully engage the receptor. Honest limit: a single clean, universally cited human Ki for each isn't something to quote with confidence, so treat potency as an ordering (hexarelin most potent of the three), not a hard number.",
+   "adme": "These are peptides, so oral bioavailability is negligible (<1%) — they're injected (subcutaneous/IV) or given intranasally. Plasma half-lives are short (roughly 15–60 minutes; hexarelin ~55 min, the others in a similar short range), but the felt effect is a GH pulse, not a steady blood level.",
    "genetics": "No validated compound-specific pharmacogenetic switch. GHSR gene variants exist but haven't been characterised for these peptides, so treat individual response as unpredictable.",
    "evidence": "Modest and old (2/5). There are real human endocrine studies of the acute GH/cortisol/prolactin response, and GHRP-2 (pralmorelin) is actually approved in Japan — but only as a diagnostic test for GH deficiency, not as a physique or anti-ageing drug. Controlled long-term data for the muscle/anti-ageing uses people chase is essentially absent, and desensitisation limits chronic use."
   },
@@ -12728,7 +12735,7 @@
    },
    {
     "myth": "The most potent one (hexarelin) is the best one.",
-    "truth": "Hexarelin releases the most GH per dose, but it also desensitises the fastest and carries the strongest cortisol/prolactin bump. Being strongest is exactly why it fades quickest — potency and durability are trade-offs here."
+    "truth": "Hexarelin releases the most GH per dose, but it also desensitises the fastest and carries a strong cortisol/prolactin bump. Being strongest is exactly why it fades quickest — potency and durability are trade-offs here."
    },
    {
     "myth": "These are approved, well-tested drugs.",
@@ -12744,7 +12751,7 @@
    "items": [
     "**Why people reach for it:** the pitch is a strong, cheap GH pulse from a small injection — hexarelin for maximum release, GHRP-2 for a middle path, GHRP-6 when the appetite bump is wanted. The GH-releasing effect is real and documented acutely.",
     "**The hormonal cost:** GHRP-2 and hexarelin acutely raise cortisol and prolactin (stress and milk hormones) — the opposite of what most users assume they're getting. GHRP-6 drives real hunger via the ghrelin pathway.",
-    "**The fade:** the receptor desensitises with repeated use, hexarelin fastest, with chronic studies showing the GH response clearly attenuating. Continuous dosing defeats itself; this is why these were superseded, not a problem you can dose around.",
+    "**The fade:** the receptor desensitises with repeated use, hexarelin fastest, with a 16-week human study showing the GH response roughly halving. Continuous dosing defeats itself; this is why these were superseded, not a problem you can dose around.",
     "**The regulatory reality:** none is approved for physique or anti-ageing anywhere. GHRP-2's only approval is as a diagnostic test in Japan. In most places these are sold as gray-market 'research chemicals,' banned in sport by WADA.",
     "**The product-quality cost:** gray-market peptides are frequently mislabelled, underdosed or contaminated — independent testing of the peptide market repeatedly finds bottles that aren't what the label says.",
     "**The honest evidence picture:** the human data is old, acute, and small — endocrine-response studies and a diagnostic approval, not long-term physique or safety trials. This page exists to explain the pharmacology, not to help you run a protocol."
@@ -12761,7 +12768,7 @@
    },
    "use": {
     "q": "Why does continuous daily use stop working?",
-    "a": "Repeated stimulation desensitises and down-regulates GHSR — the receptor stops responding. Hexarelin fades fastest; chronic dosing clearly attenuates the GH response over time. Only an off-period resets it."
+    "a": "Repeated stimulation desensitises and down-regulates GHSR — the receptor stops responding. Hexarelin fades fastest; a 16-week study roughly halved the GH response, which recovered only after an off-period. Only a break resets it."
    },
    "evidence": {
     "q": "How strong is the human evidence, honestly?",
@@ -12786,18 +12793,18 @@
    },
    {
     "q": "Why is hexarelin's short (~55-minute) plasma half-life almost useless for predicting whether a daily protocol keeps working?",
-    "a": "Because the limiting factor isn't clearance from the blood — it's receptor desensitisation. Even with fresh drug in circulation each day, the GHSR down-regulates and the GH pulse shrinks. The half-life tells you the peptide is gone by the next dose; it tells you nothing about the receptor giving up."
+    "a": "Because the limiting factor isn't clearance from the blood — it's receptor desensitisation. Even with fresh drug in circulation each day, the GHSR down-regulates over weeks and the GH pulse shrinks. The half-life tells you the peptide is gone by the next dose; it tells you nothing about the receptor giving up."
    }
   ],
   "evi": {
-   "howStrong": "This is old, thin, mostly acute human evidence — hence 2/5. In the 1990s these peptides were studied seriously as endocrine probes: single-dose experiments measuring the GH, cortisol and prolactin response, dose-response curves, and use as a pituitary-function test. That work is real and reproducible. What barely exists is controlled, long-term data on the uses people actually chase — added muscle, fat loss, anti-ageing — in healthy people. The one durable clinical outcome is regulatory: GHRP-2/pralmorelin was approved in Japan (2004) as a diagnostic agent for GH deficiency, which validates the acute GH-releasing effect, not chronic benefit.",
+   "howStrong": "This is old, thin, mostly acute human evidence — hence 2/5. In the 1980s–90s these peptides were studied seriously as endocrine probes: single-dose experiments measuring the GH, cortisol and prolactin response, dose-response curves, and use as a pituitary-function test. That work is real and reproducible. What barely exists is controlled, long-term data on the uses people actually chase — added muscle, fat loss, anti-ageing — in healthy people. The one durable clinical outcome is regulatory: GHRP-2/pralmorelin was approved in Japan (2004) as a diagnostic agent for GH deficiency, which validates the acute GH-releasing effect, not chronic benefit.",
    "whatItShows": "Acutely, all three reliably release growth hormone in humans, and GHRP-2 and hexarelin also transiently raise cortisol and prolactin. Chronically, the story is desensitisation: the GH response shrinks with continued dosing. What the evidence does NOT show is a durable, controlled physique or longevity benefit in healthy adults.",
-   "effect": "The acute GH pulse is large and easy to measure — that's exactly why GHRP-2 became a diagnostic test. But the effect is a transient spike, cortisol and prolactin ride along, and the response clearly attenuates in chronic hexarelin studies as the receptor desensitises.",
+   "effect": "The acute GH pulse is large and easy to measure — that's exactly why GHRP-2 became a diagnostic test. But the effect is a transient spike, cortisol and prolactin ride along, and the response falls (roughly halving in a 16-week hexarelin study, then recovering after a break) as the receptor desensitises.",
    "whoBenefits": "The clearest documented beneficiary is a clinician testing for GH deficiency (the pralmorelin diagnostic). For healthy people using these to build muscle or slow ageing, benefit is unproven and the trade-offs — desensitisation, cortisol/prolactin, gray-market quality — are real.",
    "caveats": "Nearly all the human data is acute and decades old, in small samples, using pharmaceutical-grade peptide under monitoring — not the gray-market product a physique user injects. Cortisol and prolactin elevation, receptor desensitisation, and unregulated product quality all cut against casual chronic use. Treat the acute GH numbers as the best case, not what a bottle off the internet delivers.",
    "trials": [
     {
-     "finding": "GHRP-6, the first of the class, released growth hormone dose-dependently in vitro and in vivo without releasing LH, FSH, TSH or prolactin at standard doses — establishing a GH-specific secretagogue distinct from GHRH.",
+     "finding": "GHRP-6, the founding member of the class, released growth hormone dose-dependently in vitro and in vivo, acting directly on the pituitary to specifically release GH — establishing a GH secretagogue distinct from GHRH.",
      "ref": "Bowers, Momany, Reynolds & Hong, 1984, Endocrinology 114:1537"
     },
     {
@@ -12805,19 +12812,23 @@
      "ref": "Massoud, Hindmarsh & Brook, 1996, J Clin Endocrinol Metab 81(12):4338"
     },
     {
+     "finding": "Twice-daily hexarelin over 16 weeks in healthy elderly subjects progressively attenuated the GH response (roughly halving the GH area-under-curve); the blunting was partial and reversible after an off-period.",
+     "ref": "Rahim, O'Neill & Shalet, 1998, J Clin Endocrinol Metab 83(5):1644"
+    },
+    {
      "finding": "Hexarelin's cardiovascular actions are mediated by CD36, a receptor distinct from GHSR-1a, and are absent in CD36-deficient hearts — evidence for a growth-hormone-independent cardiac mechanism (animal/in vitro).",
-     "ref": "Bodart et al., 2002, Circulation Research 90(8):844"
+     "ref": "Bodart et al., 2002, Circulation Research 90:844"
     }
    ]
   },
   "tech": {
-   "chem": "Three synthetic hexapeptides (six amino acids each) built with non-natural D-amino acids for enzymatic stability. GHRP-6 = His-D-Trp-Ala-Trp-D-Phe-Lys-NH2 (MW ~873). Hexarelin (examorelin) = His-D-2-methyl-Trp-Ala-Trp-D-Phe-Lys-NH2 — GHRP-6 with a methylated Trp, raising potency. GHRP-2 (pralmorelin, CAS 158861-67-7) = D-Ala-D-2-Nal-Ala-Trp-D-Phe-Lys-NH2 (MW ~818). All descend from Cyril Bowers' and Frank Momany's enkephalin-derived work; the endogenous ligand of their target receptor, ghrelin, was only identified later (Kojima et al., 1999).",
+   "chem": "Three synthetic hexapeptides (six amino acids each) built with non-natural D-amino acids for enzymatic stability. GHRP-6 = His-D-Trp-Ala-Trp-D-Phe-Lys-NH2 (MW ~873). Hexarelin (examorelin) = His-D-2-methyl-Trp-Ala-Trp-D-Phe-Lys-NH2 — GHRP-6 with a methylated Trp, raising potency. GHRP-2 (pralmorelin, CAS 158861-67-7) = D-Ala-D-2-Nal-Ala-Trp-D-Phe-Lys-NH2 (MW ~818). All descend from Cyril Bowers' and Frank Momany's enkephalin-derived work at Tulane; the endogenous ligand of their target receptor, ghrelin, was only identified later (Kojima et al., 1999).",
    "targets": [
     {
      "sym": "GHSR (GHSR-1a, ghrelin receptor)",
      "url": "https://www.ncbi.nlm.nih.gov/gene/2693",
      "action": "full agonist",
-     "affinity": "potent nanomolar-range agonists; relative potency hexarelin > GHRP-2 > GHRP-6",
+     "affinity": "potent nanomolar-range agonists; hexarelin the most potent of the three",
      "role": "Gq/11-coupled GPCR on pituitary somatotrophs and hypothalamic neurons — the primary target driving both the GH pulse and appetite. Notable for high constitutive (ligand-independent) activity."
     },
     {
@@ -12833,11 +12844,11 @@
     "absorb": "Negligible oral bioavailability (<1%) — degraded by gastric and intestinal peptidases; administered subcutaneously, intravenously, or intranasally.",
     "distribute": "Distributes to receptor-bearing tissue (pituitary, hypothalamus; hexarelin also heart/vasculature via CD36). Short plasma residence.",
     "metabolise": "Proteolytic cleavage by peptidases, as with other small peptides.",
-    "excrete": "Renal elimination of peptide fragments/metabolites; plasma half-lives short (roughly 15–60 min; hexarelin ~55 min in humans, GHRP-6 shorter)."
+    "excrete": "Renal elimination of peptide fragments/metabolites; plasma half-lives short (~15–60 min; hexarelin ~55 min, the others in a similar short range)."
    },
    "pgx": "No validated compound-specific pharmacogenetic marker. GHSR gene polymorphisms exist and could in principle modulate response, but this has not been characterised for these peptides — treat inter-individual variation as unpredictable.",
    "dose": "The only approved dose is diagnostic: GHRP-2/pralmorelin ~1 µg/kg IV as a single GH-provocation test in Japan. Historical human research used single µg/kg boluses. Gray-market physique use commonly cites ~100 µg subcutaneous once or several times daily — doses never validated for chronic safety. This is description, not recommendation; no approved therapeutic (non-diagnostic) dose exists.",
-   "tolerance": "Marked, and central to the class: repeated GHSR stimulation causes receptor desensitisation and down-regulation, blunting the GH response — fastest with hexarelin, with chronic-dosing data showing clear attenuation of the response. This tachyphylaxis (not clearance) is what forces intermittent 'cycling' and is a major reason the class was superseded by ipamorelin."
+   "tolerance": "Marked, and central to the class: repeated GHSR stimulation causes receptor desensitisation and down-regulation, blunting the GH response — fastest with hexarelin, with a 16-week human study showing roughly a halving of the response (partial and reversible after a break). This tachyphylaxis (not clearance) is what forces intermittent 'cycling' and is a major reason the class was superseded by ipamorelin."
   }
  },
  "follistatin-myostatin-inhibitors-ace-031-yk-11": {
@@ -13074,16 +13085,16 @@
     "If it's just a fragment of a protein your own stomach makes, why is the FDA fighting over whether it's even legal?",
     "Why does the exact mechanism that makes it heal wounds also make cancer doctors nervous?"
    ],
-   "payoff": "You can now answer all three. (1) The blood half-life is largely beside the point — BPC-157 works by changing gene expression (turning up VEGFR2 and growth-hormone-receptor genes), and once those genes are dialed up the tissue keeps building new blood vessels for days after the peptide itself is gone. That gap between a minutes-long half-life and a weeks-long effect is called the PK-PD disconnect. (2) It's a synthetic 15-amino-acid fragment, not a natural whole protein, it has never completed a human trial, and its regulatory status is genuinely unsettled: it carries a Category 2 (do-not-compound) history and is now before the FDA's Pharmacy Compounding Advisory Committee (PCAC) at the 23–24 July 2026 meeting, which will weigh whether it belongs on the 503A compounding list — and even a favourable vote there would mean 'may be compounded,' not 'FDA-approved.' (3) Healing runs on new blood vessels (angiogenesis) — and so does tumour growth. The same VEGFR2 switch that feeds a mending tendon could in theory feed a tumour, and no human study has ruled that out."
+   "payoff": "You can now answer all three. (1) The blood half-life is irrelevant — BPC-157 works by changing gene expression (turning up VEGFR2 and growth-hormone-receptor genes), and once those genes are dialed up the tissue keeps building new blood vessels for days after the peptide itself is gone. That gap between a minutes-long half-life and a weeks-long effect is called the PK-PD disconnect. (2) It's a synthetic 15-amino-acid fragment, not a natural whole protein, and it has never completed a human trial. The FDA has treated it as a not-for-compounding (Category 2) substance and removed it from that list in April 2026 — and the Pharmacy Compounding Advisory Committee is reviewing its status on 23–24 July 2026, which is exactly why its legality is unsettled. (3) Healing runs on new blood vessels (angiogenesis) — and so does tumour growth. The same VEGFR2 switch that feeds a mending tendon could in theory feed a tumour, and no human study has ruled that out."
   },
-  "bigIdea": "BPC-157 doesn't patch the wound itself — it tells injured tissue to grow a fresh blood supply, and because healing runs on blood flow, everything downstream (tendon, ligament, gut lining, muscle) mends faster. Hold that one sentence; the whole page follows from it. The catch, held just as tightly: almost all of this is shown in rats, not people.",
+  "bigIdea": "BPC-157 doesn't patch the wound itself — it tells injured tissue to grow a fresh blood supply, and because healing runs on blood flow, everything downstream (tendon, ligament, gut lining, muscle) mends faster. Hold that one sentence; the whole page follows from it.",
   "analogy": "Think of a healing wound as a construction site that has run out of supply roads. BPC-157 doesn't lay bricks — it signals the crew to build new roads (blood vessels) into the site, so oxygen, nutrients and repair cells can finally get in. The catch: the same road-building crew, pointed at the wrong site, could just as easily pave the way for a tumour — and almost every photo we have of this crew working was taken in a rat.",
   "mechSteps": [
    {
     "n": 1,
     "t": "It's a stable fragment of a gut protein",
     "predict": "BPC-157 is a piece of a protein found in stomach juice — a brutal, acidic place. What property would a molecule need just to survive there?",
-    "d": "BPC-157 is a synthetic 15-amino-acid stretch of 'body protection compound,' a protein reported from human gastric juice. Its claim to fame is stability: unlike most peptides it resists rapid breakdown, which is why it survives long enough to act at all.",
+    "d": "BPC-157 is a synthetic 15-amino-acid stretch of 'body protection compound,' a protein isolated from human gastric juice. Its claim to fame is stability: unlike most peptides it resists rapid breakdown, which is why it survives long enough to act at all.",
     "tag": "BPC"
    },
    {
@@ -13104,7 +13115,7 @@
     "n": 4,
     "t": "In tendon, it primes the repair cells",
     "predict": "Blood supply is half the story. In a torn tendon, what would make the local repair cells (fibroblasts) both multiply and crawl into the gap?",
-    "d": "In rat tendon fibroblasts, BPC-157 turns up growth-hormone-receptor genes (making the cells more responsive to your own growth hormone) and activates the FAK–paxillin pathway that drives cell migration. More responsive, more mobile repair cells lay down collagen faster.",
+    "d": "In tendon fibroblasts, BPC-157 turns up growth-hormone-receptor genes (making the cells more responsive to your own growth hormone) and, in separate work, activates the FAK–paxillin pathway that drives cell migration. More responsive, more mobile repair cells lay down collagen faster.",
     "fx": "▲ tendon repair"
    },
    {
@@ -13141,7 +13152,7 @@
    },
    {
     "stage": "🔬 The liver",
-    "d": "It's broken down into smaller peptide fragments and amino acids that rejoin normal metabolism (urine and bile are the main excretory routes in animals). No exotic metabolites, no human clearance data."
+    "d": "It's broken down into smaller peptide fragments and amino acids that rejoin normal metabolism. No exotic metabolites, no human clearance data."
    },
    {
     "stage": "⚠️ The unknowns",
@@ -13174,7 +13185,7 @@
     "**The safety cost:** there is no human safety dataset at all — no established dose, no known long-term effects, no characterised side-effect profile. 'No reported problems' mostly means 'no one has properly looked.'",
     "**The tumour concern:** its core mechanism is pro-angiogenic (VEGFR2). The same new-blood-vessel signal that heals tissue could in theory support tumour growth; this is a real theoretical risk that human data has not addressed.",
     "**The product-quality cost:** it's sold as a 'research chemical' by gray-market vendors. Independent testing of this category repeatedly finds mislabeling, wrong doses, and contamination — so purity and identity are not guaranteed.",
-    "**The legal and testing cost:** BPC-157 is not approved for any human use anywhere. It carries a Category 2 (do-not-compound) history and is under review by the FDA's Pharmacy Compounding Advisory Committee (PCAC) at the 23–24 July 2026 meeting — and even a favourable vote there means 'may be compounded,' not 'FDA-approved.' It is also prohibited in sport at all times under WADA's S0 (non-approved substances) category, so for a tested athlete it's a hard stop."
+    "**The legal and testing cost:** BPC-157 is not approved for any use. It was placed on the FDA's Category 2 (do-not-compound) list, removed from it in April 2026, and is now under Pharmacy Compounding Advisory Committee review (23–24 July 2026) for possible inclusion on the 503A compounding list — so its legal status is genuinely unsettled. It is also prohibited in sport under WADA's S0 non-approved-substances category, banned at all times. For a tested athlete, that's a hard stop."
    ]
   },
   "checks": {
@@ -13224,29 +13235,29 @@
    "caveats": "Three big ones. First, the evidence is overwhelmingly rodent — species translation is not guaranteed. Second, there is no human safety data, so long-term risk (including the theoretical tumour-angiogenesis concern) is genuinely unknown, not merely 'low.' Third, gray-market product purity is unreliable, so even the anecdotes may not reflect what's on the label. Treat everything here as mechanism and animal biology, not a human guarantee.",
    "trials": [
     {
-     "finding": "BPC-157 promoted angiogenesis by increasing VEGFR2 expression (mRNA and protein) and promoting VEGFR2 internalisation, activating the VEGFR2–Akt–eNOS pathway in human endothelial cells and improving blood-flow recovery in a rat ischaemic hind-limb model (mechanistic, in vitro/in vivo — not a human efficacy trial).",
-     "ref": "Hsieh et al., 2017, J Mol Med (Berl), 95(3):323–333, doi:10.1007/s00109-016-1488-y"
+     "finding": "BPC-157 promoted angiogenesis by increasing VEGFR2 expression and activating the VEGFR2–Akt–eNOS pathway (rat hind-limb ischemia model plus endothelial cell culture — mechanistic, not a human efficacy trial).",
+     "ref": "Hsieh et al., 2017, J Mol Med (Berl) 95(3):323–333, doi:10.1007/s00109-016-1488-y"
     },
     {
-     "finding": "BPC-157 produced endothelium- and nitric-oxide-dependent vasodilation via the Src–Caveolin-1–eNOS pathway in isolated rat aorta (mechanistic, ex vivo).",
+     "finding": "BPC-157 produced nitric-oxide-dependent, endothelium-dependent vasomotor effects via the Src–Caveolin-1–eNOS pathway in isolated rat aorta (mechanistic, ex vivo).",
      "ref": "Hsieh et al., 2020, Scientific Reports (Nature), 10:17078, doi:10.1038/s41598-020-74022-y"
     },
     {
-     "finding": "BPC-157 dose- and time-dependently increased growth-hormone-receptor expression (mRNA and protein) in rat Achilles tendon fibroblasts, increasing their proliferative response to added growth hormone (in vitro).",
-     "ref": "Chang et al., 'Pentadecapeptide BPC 157 Enhances the Growth Hormone Receptor Expression in Tendon Fibroblasts,' Molecules 2014 (PMID 25415472)"
+     "finding": "BPC-157 dose- and time-dependently increased growth-hormone-receptor expression (mRNA and protein) in tendon fibroblasts and, with added growth hormone, activated JAK2 and boosted cell proliferation (in vitro).",
+     "ref": "Chang et al., 2014, Molecules 19(11):19066–19077 (PMID 25415472)"
     },
     {
-     "finding": "BPC-157 increased FAK and paxillin phosphorylation and drove in vitro migration, ex vivo outgrowth and survival of tendon fibroblasts — a proposed cellular mechanism for its tendon-healing effect (in vitro/ex vivo).",
-     "ref": "Chang et al., 2011, J Appl Physiol, 110(3):774–780, doi:10.1152/japplphysiol.00945.2010"
+     "finding": "BPC-157 increased tendon-fibroblast migration and outgrowth via activation of the FAK–paxillin signalling pathway (in vitro plus rat Achilles-tendon model) — this FAK–paxillin finding comes from this paper, not the GHR study.",
+     "ref": "Chang et al., 2011, J Appl Physiol 110(3):774–780, doi:10.1152/japplphysiol.00945.2010"
     },
     {
-     "finding": "Pharmacokinetic study reporting an elimination half-life under 30 minutes (≈15 min after IV in rats) in rats and beagle dogs, with metabolism to smaller fragments and urinary/biliary excretion — no human PK.",
-     "ref": "He et al., 2022, Frontiers in Pharmacology, 13:1026182 (PMC9794587)"
+     "finding": "Pharmacokinetic study reporting an elimination half-life under 30 minutes (≈15.2 min after IV in rats) in rats and dogs, with metabolism to smaller fragments and urinary/biliary excretion — no human PK.",
+     "ref": "He et al., 2022, Frontiers in Pharmacology 13:1026182 (PMC9794587)"
     }
    ]
   },
   "tech": {
-   "chem": "A synthetic pentadecapeptide (15 amino acids) reported as a partial sequence of 'body protection compound' (BPC), a protein described from human gastric juice. Its notable physicochemical property is unusual stability — it resists the rapid proteolytic degradation that would destroy most peptides of similar size, which is the basis of its 'gastric-juice-derived' origin story. It is not a steroid, not a hormone in the classical sense, and has no steroid or purine scaffold.",
+   "chem": "A synthetic pentadecapeptide (15 amino acids) corresponding to a partial sequence of 'body protection compound' (BPC), a protein isolated from human gastric juice. Its notable physicochemical property is unusual stability — it resists rapid proteolytic degradation that would destroy most peptides of similar size, which is the basis of its 'gastric-juice-derived' origin story. It is not a steroid, not a hormone in the classical sense, and has no steroid or purine scaffold.",
    "targets": [
     {
      "sym": "KDR / VEGFR2",
@@ -13277,13 +13288,13 @@
    ],
    "signaling": "BPC-157 is pleiotropic and works through expression and pathway modulation rather than a single receptor cascade. The best-characterised arm: it increases VEGFR2 (KDR) expression and internalisation, driving PI3K/Akt → eNOS (NOS3) → nitric oxide, plus ERK1/2, to promote endothelial proliferation, migration and angiogenesis. A parallel Src–Caveolin-1–eNOS pathway produces nitric-oxide-dependent vasomotor effects independent of new VEGF-A. In tendon fibroblasts it upregulates growth-hormone-receptor expression and activates FAK–paxillin to drive migration and collagen deposition. It also modulates the nitric-oxide system broadly (raising eNOS, lowering iNOS in inflamed tissue). No defined high-affinity membrane receptor for BPC-157 itself has been established.",
    "adme": {
-    "absorb": "Administered by injection (subcutaneous/intramuscular) in nearly all use; reported to retain activity via oral routes in animal work owing to its stability, but human absorption data are absent. Absolute IM bioavailability in animals is partial (roughly 14–19% in rats, ~45–51% in dogs).",
+    "absorb": "Administered by injection (subcutaneous/intramuscular) in nearly all use; reported to retain some activity via oral routes in animal work owing to its stability, but human absorption data are absent. Intramuscular bioavailability in animals is modest (~14–19% in rats, ~45–51% in dogs).",
     "distribute": "Distributes to injured/target tissues; detailed human distribution is uncharacterised.",
     "metabolise": "Broken down into smaller peptide fragments and constituent amino acids that enter normal metabolic pathways; no exotic metabolites reported.",
-    "excrete": "Cleared rapidly from plasma (undetectable within hours in animals; urine and bile are the main routes); no human excretion data. Elimination half-life ≈15 min (rat IV), under 30 min in rats and dogs."
+    "excrete": "Cleared rapidly from plasma (undetectable within hours in animals); main routes are urine and bile in animal studies, no human excretion data. Elimination half-life ≈15 min (rat IV), under 30 min in rats and dogs."
    },
    "pgx": "No known pharmacogenetic marker predicts response. With no completed human trials, individual variation is uncharacterised.",
-   "dose": "There is no approved therapeutic dose and none validated for human safety or efficacy. Animal studies use a wide range (roughly µg/kg to mg/kg). Gray-market human use is anecdotally described around 250–500 µg once or twice daily by subcutaneous injection — this is reported as a description of unregulated practice, not a protocol or recommendation.",
+   "dose": "There is no approved therapeutic dose. Animal studies use a wide range (roughly µg/kg to mg/kg). Gray-market human use is anecdotally described in the low-hundreds of micrograms per day by subcutaneous injection — this is a description of unregulated practice, not a recommendation, and no dose has been validated for human safety or efficacy.",
    "tolerance": "No receptor-downregulation tolerance has been described (consistent with it having no defined receptor). Because there are no human longitudinal data, whether the effect wanes, and any long-term consequence of sustained pro-angiogenic signalling, is genuinely unknown rather than reassuringly absent."
   }
  },
@@ -13294,7 +13305,7 @@
     "How can a molecule whose day job is grabbing actin *inside* cells do anything useful when you inject it *outside* them?",
     "There are real human trials on thymosin β4 for dry eye and heart attacks — so why does the honest verdict still say 'no human trials'?"
    ],
-   "payoff": "You can now answer all three. (1) TB-500 is Ac-LKKTETQ, the N-acetylated fragment (residues 17–23) of the 43-amino-acid protein thymosin β4 — it carries the actin-binding motif and little else. (2) Its best-documented extracellular action isn't actin-grabbing at all: that same short motif drives blood-vessel growth (angiogenesis) and endothelial cell migration at low doses, which is a genuinely different job from sequestering actin inside a cell. (3) Every one of those human trials used the *full* recombinant protein delivered as eye drops or an infusion — not the injected TB-500 fragment people actually buy. The fragment itself has never been tested in a human trial."
+   "payoff": "You can now answer all three. (1) TB-500 is Ac-LKKTETQ, the N-acetylated fragment (residues 17–23) of the 43-amino-acid protein thymosin β4 — it carries the actin-binding motif and little else. (2) Its best-documented extracellular action isn't actin-grabbing at all: that same short motif drives blood-vessel growth (angiogenesis) and endothelial cell migration at low concentrations, which is a genuinely different job from sequestering actin inside a cell. (3) Every one of those human trials used the *full* recombinant protein delivered as eye drops or an infusion — not the injected TB-500 fragment people actually buy. The fragment itself has never been tested in a human trial."
   },
   "bigIdea": "TB-500 is a synthetic scrap of the body's own actin-managing protein — its job is to help repair cells physically crawl to a wound and to sprout new blood vessels — but the human evidence is for the whole protein, not this fragment, so it sits on animal data and analogy.",
   "analogy": "Think of thymosin β4 as a full multi-tool the body carries for repair. TB-500 is one blade snapped off that tool — the actin-handling edge, Ac-LKKTETQ. That edge still cuts: it can help cells release their internal scaffolding and start migrating, and it can call in new blood vessels. But a blade is not the tool it came from, and 'the tool works in people' is not the same claim as 'the blade works in people.'",
@@ -13330,7 +13341,7 @@
   ],
   "framework": {
    "target": "Intracellular <b>G-actin</b> (monomeric actin) — thymosin β4's native job is to sequester it. Note the key difference from a drug like caffeine or ostarine: there is <b>no established cell-surface receptor</b> that TB-500 switches on or off. It's an actin-binding peptide, closer to a substrate/scaffold than a receptor ligand.",
-   "affinity": "There's no receptor Ki to quote, because there's no receptor. The relevant number is the actin binding of the <b>full</b> protein: Kd ≈ 0.5–0.7 µM for thymosin β4 : G-actin, 1:1. Two honest caveats: this is the parent protein's constant, not the fragment's, and actin sequestration happens <i>inside</i> cells — so how an injected extracellular peptide reaches that target is genuinely unclear. Its better-documented extracellular action is angiogenic (the actin-binding motif is active at ~50 nM in endothelial migration assays).",
+   "affinity": "There's no receptor Ki to quote, because there's no receptor. The relevant number is the actin binding of the <b>full</b> protein: Kd ≈ 0.5–0.7 µM for thymosin β4 : G-actin, 1:1. Two honest caveats: this is the parent protein's constant, not the fragment's, and actin sequestration happens <i>inside</i> cells — so how an injected extracellular peptide reaches that target is genuinely unclear. Its better-documented extracellular action is angiogenic (the actin-binding motif drives endothelial migration in the low-nanomolar range in vitro).",
    "adme": "Peptide — not orally active, so it's injected (subcutaneous/intramuscular in practice). A reliable human elimination half-life for the TB-500 fragment isn't well characterised; plasma clearance of thymosin-β4 peptides is thought to be short, but its repair effects run on a cell-migration/tissue-remodeling timescale, not a blood-level curve.",
    "genetics": "No validated pharmacogenetic marker. Individual response is uncharacterised — treat it as unknown, not personalised.",
    "evidence": "Weak-to-moderate and indirect (curated 2/5). Solid animal work in cardiac, corneal and dermal repair; small human trials exist for the <b>full/recombinant protein</b> (dry eye, STEMI) with mixed results — but the injected TB-500 fragment itself has no human trials."
@@ -13428,16 +13439,16 @@
    "caveats": "The evidence-to-hype gap is the crux: strong-sounding mechanism, real animal data, but no human trials of the actual product. Add that gray-market vials are frequently mislabeled or impure, that it's WADA-banned and detectable, and that its pro-migration/pro-angiogenic actions carry a theoretical, unstudied cancer concern. Treat mechanistic plausibility as a hypothesis, not a result.",
    "trials": [
     {
-     "finding": "Full protein, not the TB-500 fragment: thymosin β4 (RGN-259) 0.1% eye drops significantly reduced ocular discomfort (~35%) and total corneal fluorescein staining (~59%) versus vehicle in severe dry eye.",
-     "ref": "Thymosin β4 (RGN-259) Phase 2 severe dry-eye RCT, 2015 (IOVS / Clin Ophthalmol)"
+     "finding": "Full protein, not the TB-500 fragment: in a small Phase 2 RCT (n=9 severe dry-eye patients), thymosin β4 (RGN-259) 0.1% eye drops reduced ocular discomfort by ~35% (P=0.014) and total corneal fluorescein staining by ~59% (P=0.011) versus vehicle.",
+     "ref": "Sosne et al., Thymosin β4 (RGN-259) ophthalmic solution, Phase 2 severe dry-eye RCT, Clin Ophthalmol 2015"
     },
     {
-     "finding": "Mechanistic (in vitro): the seven-amino-acid actin-binding motif of thymosin β4 is essential for its angiogenic activity, driving endothelial cell migration at ~50 nM — evidence the same motif TB-500 carries is angiogenic.",
-     "ref": "The actin-binding site on thymosin β4 promotes angiogenesis, FASEB J, 2003"
+     "finding": "Mechanistic (in vitro): the seven-amino-acid actin-binding motif of thymosin β4 is essential for its angiogenic activity, driving endothelial cell migration at low concentrations — evidence the same motif TB-500 carries is angiogenic.",
+     "ref": "Philp et al., The actin-binding site on thymosin β4 promotes angiogenesis, FASEB J 2003"
     },
     {
-     "finding": "Full recombinant protein, not the fragment: in a ~96-patient RCT after acute STEMI, recombinant human thymosin β4 did NOT significantly reduce infarct area overall; a reduction was seen only in the pre-specified subgroup treated within 8 h of PCI.",
-     "ref": "Recombinant human thymosin β4 in acute STEMI after reperfusion, RCT, 2025"
+     "finding": "Full recombinant protein, not the fragment: in a 96-patient RCT after acute STEMI, recombinant human thymosin β4 did NOT significantly reduce infarct area overall; a reduction was seen only in the pre-specified subgroup treated within 8 h of PCI (n=43).",
+     "ref": "Recombinant human thymosin β4 in acute STEMI after reperfusion, RCT, Cardiovasc Res 2025"
     }
    ]
   },
@@ -13484,17 +13495,17 @@
     "How can a molecule just three amino acids long change the activity of thousands of genes at once, without being a hormone or hitting a receptor?",
     "Why is it always written 'GHK-Cu' — what is the copper doing there, and is it just decoration?"
    ],
-   "payoff": "You can now answer all three. (1) Your plasma GHK falls from ~200 ng/ml at 20 to ~80 ng/ml by 60 — the age-decline is real, but the proof that topping it back up helps is strong for topical skin and thin-to-absent for whole-body anti-aging. (2) It has no receptor — it works as a copper chaperone and a broad transcriptional modulator; Connectivity Map analyses report it shifts on the order of 4,000 human genes by ≥50%, toward collagen, antioxidant and DNA-repair programs. (3) The copper is the payload, not decoration: GHK binds Cu²⁺ with very high affinity (stability constant log β ≈ 16.4), strong enough to strip it off albumin and ferry it safely into cells, where copper is a cofactor the repair enzymes need — and free copper alone would be toxic."
+   "payoff": "You can now answer all three. (1) Your plasma GHK falls from ~200 ng/ml at 20 to ~80 ng/ml by 60 — the age-decline is real, but the proof that topping it back up helps is strong for topical skin and thin-to-absent for whole-body anti-aging. (2) It has no receptor — it works as a copper chaperone and a broad transcriptional modulator; Connectivity Map analyses report it shifts on the order of 4,000 human genes by ≥50%, toward collagen, antioxidant and DNA-repair programs. (3) The copper is the payload, not decoration: GHK binds Cu²⁺ with very high affinity (stability constant log β ≈ 16.4), just above albumin's — enough to acquire copper from it and ferry it safely into cells, where copper is a cofactor the repair enzymes need, and free copper alone would be toxic."
   },
   "bigIdea": "GHK-Cu isn't a hormone that flips one switch — it's a copper-carrying tripeptide your body makes less of with age, and adding it back nudges thousands of genes toward a younger, repair-mode setting. Best proven in skin; everything beyond skin is still mostly mechanism, not human outcomes.",
-  "stakes": "It's the best-evidenced of the cosmetic 'copper peptides' and sits in a huge number of serums — but 'best-evidenced cosmetic peptide' is a modest bar, and the gap between what's proven for skin and what's claimed for whole-body aging is where most of the hype lives.",
   "analogy": "Picture your skin's fibroblasts as an ageing construction crew whose blueprints have faded. GHK-Cu doesn't hand them energy or a hormone — it delivers a copy of the younger blueprint (it shifts gene expression toward a repair program) along with the copper their tools actually need to work. So the crew starts rebuilding collagen the way it did decades ago. The copper is the toolbox; the gene shift is the blueprint.",
+  "stakes": "It's the best-evidenced of the cosmetic 'copper peptides' and sits in a huge number of serums — but 'best-evidenced cosmetic peptide' is a modest bar, and the gap between what's proven for skin and what's claimed for whole-body aging is where most of the hype lives.",
   "mechSteps": [
    {
     "n": 1,
     "t": "It carries copper — safely",
     "predict": "The 'Cu' in the name isn't decoration. What does the peptide do with copper, and why can't the cell just use free copper on its own?",
-    "d": "GHK binds copper(II) with very high affinity (stability constant log β ≈ 16.4) — strong enough to pull it off albumin — and ferries it into cells. Free copper is toxic and pro-oxidant, so a chaperone that delivers it precisely, as a cofactor for repair enzymes, is the whole point.",
+    "d": "GHK binds copper(II) with very high affinity (stability constant log β ≈ 16.4) — just above albumin's, enough to pull copper off it — and ferries it into cells. Free copper is toxic and pro-oxidant, so a chaperone that delivers it precisely, as a cofactor for repair enzymes, is the whole point.",
     "tag": "Cu²⁺"
    },
    {
@@ -13521,8 +13532,8 @@
   ],
   "framework": {
    "target": "There is <b>no classical receptor</b> to switch on or block. GHK-Cu is a <b>copper chaperone and transcriptional modulator</b> — it delivers copper into cells and broadly shifts gene expression, plus acts directly on the extracellular matrix (collagen, decorin, glycosaminoglycans, MMP balance, TGF-β). It's a signalling molecule, not an agonist or antagonist.",
-   "affinity": "There's no receptor Ki to quote, because there's no receptor — just like creatine, there's no lock to measure. The number that <i>does</i> matter is its <b>copper-binding constant: log β ≈ 16.4</b>, high enough to take copper off albumin and deliver it into cells. That copper affinity, not a receptor affinity, is the meaningful binding figure here.",
-   "adme": "Topically it penetrates skin and acts locally on dermal fibroblasts. The dramatic '~4,000 gene' story comes from cells in a dish, not measured human systemic pharmacokinetics. Endogenous plasma GHK runs ~200 ng/ml at age 20, falling to ~80 by 60. A human elimination half-life for exogenous dosing is <b>not well established</b> — a genuine data gap, so no half-life is claimed here.",
+   "affinity": "There's no receptor Ki to quote, because there's no receptor — just like creatine, there's no lock to measure. The number that <i>does</i> matter is its <b>copper-binding constant: log β ≈ 16.4</b>, marginally above albumin's (~16.2), high enough to acquire copper from albumin and deliver it into cells. That copper affinity, not a receptor affinity, is the meaningful binding figure here.",
+   "adme": "Topically it penetrates skin and acts locally on dermal fibroblasts. The dramatic '~4,000 gene' story comes from cell-based Connectivity Map data, not measured human systemic pharmacokinetics. Endogenous plasma GHK runs ~200 ng/ml at age 20, falling to ~80 by 60. A human elimination half-life for exogenous dosing is <b>not well established</b> — a genuine data gap, so no half-life is claimed here.",
    "genetics": "No validated pharmacogenetic switch exists for GHK-Cu. Baseline copper status and copper-handling genes (e.g. ATP7A/ATP7B) plausibly shape the copper-dependent effects, but response to GHK-Cu specifically has never been characterised — treat individual response as unknown.",
    "evidence": "Strongest of the cosmetic peptides for <b>topical skin</b> (small controlled trials plus a large mechanistic gene-and-animal literature). But the systemic, anti-ageing and injectable claims rest on cell-culture and animal work, not human outcomes. Not approved as a drug for any indication."
   },
@@ -13533,7 +13544,7 @@
    },
    {
     "stage": "🩸 The copper handoff",
-    "d": "GHK grabs Cu²⁺ with very high affinity — enough to take it from albumin. The copper-loaded complex is the active form; the copper is the payload it's built to carry."
+    "d": "GHK grabs Cu²⁺ with very high affinity — just above albumin's, enough to take it from albumin. The copper-loaded complex is the active form; the copper is the payload it's built to carry."
    },
    {
     "stage": "🔬 The fibroblast",
@@ -13555,7 +13566,7 @@
    },
    {
     "myth": "Injecting GHK-Cu resets your whole body's genes and reverses ageing.",
-    "truth": "The '~4,000 genes' finding is from cells in a dish (Connectivity Map) and animal models — there's essentially no human trial showing systemic anti-ageing. Injected copper is also toxic and pro-oxidant in excess, and injectable products are grey-market and unvalidated for purity."
+    "truth": "The '~4,000 genes' finding is from cell-based Connectivity Map analysis and animal models — there's essentially no human trial showing systemic anti-ageing. Injected copper is also toxic and pro-oxidant in excess, and injectable products are grey-market and unvalidated for purity."
    },
    {
     "myth": "More copper peptide means more collagen.",
@@ -13574,7 +13585,7 @@
     "**The systemic/injectable leap is unproven:** the 'resets thousands of genes / reverses ageing' story is cell-culture and animal work, not human outcome trials. Injectable GHK-Cu is the reclassified, grey-market form.",
     "**The copper cost:** copper is redox-active — in excess it's pro-oxidant and toxic, and injecting copper compounds carries real risk. Unregulated products also vary in purity and dose.",
     "**The regulatory reality:** not approved as a drug for any systemic use anywhere. Cosmetic status is not clinical proof.",
-    "**The honest evidence picture:** skin benefit is real but rests on small, short, often industry-funded trials; everything beyond skin is a promising mechanism with thin human data. This page exists to explain the pharmacology, not to sell you a protocol."
+    "**The honest evidence picture:** skin benefit is real but rests on small, short, often industry-funded trials — the most-cited (Leyden, 2002) was a conference presentation, never peer-reviewed. Everything beyond skin is a promising mechanism with thin human data. This page exists to explain the pharmacology, not to sell you a protocol."
    ]
   },
   "checks": {
@@ -13605,7 +13616,7 @@
   "selfTest": [
    {
     "q": "A friend says GHK-Cu 'resets 4,000 genes to reverse ageing, so just inject it.' Give the two-part correction.",
-    "a": "(1) The ~4,000-gene figure comes from cells in a dish (Connectivity Map) and animal models, not a human anti-ageing outcome trial — the human evidence is essentially topical-skin only. (2) Injected copper is toxic and pro-oxidant in excess, and the injectable product is unapproved and grey-market, so you're taking real risk for an unproven systemic claim."
+    "a": "(1) The ~4,000-gene figure comes from cell-based Connectivity Map analysis and animal models, not a human anti-ageing outcome trial — the human evidence is essentially topical-skin only. (2) Injected copper is toxic and pro-oxidant in excess, and the injectable product is unapproved and grey-market, so you're taking real risk for an unproven systemic claim."
    },
    {
     "q": "Why can't we quote a receptor Ki for GHK-Cu the way we do for a drug?",
@@ -13617,36 +13628,36 @@
    }
   ],
   "evi": {
-   "howStrong": "For a cosmetic peptide, GHK-Cu has the strongest independent evidence — but that's a modest bar. It rests on small, short (roughly 8–12 week), often industry-funded controlled topical trials, plus a large body of mechanistic cell-culture and animal work. There are no large, long-term human trials, and essentially none for systemic or injectable anti-ageing.",
+   "howStrong": "For a cosmetic peptide, GHK-Cu has the strongest independent evidence — but that's a modest bar. It rests on small, short (roughly 8–12 week), often industry-funded controlled topical studies (the most-cited was a conference presentation, not a peer-reviewed trial), plus a large body of mechanistic cell-culture and animal work. There are no large, long-term human trials, and essentially none for systemic or injectable anti-ageing.",
    "whatItShows": "Applied topically, it improves skin density, firmness and the appearance of fine lines, and supports wound healing — consistent with its collagen-and-matrix mechanism. The headline 'resets thousands of genes' and whole-body regeneration claims come from cells and animals, not human outcomes.",
    "effect": "Modest and gradual: visible skin improvement over weeks, not a dramatic transformation. The honest framing is a real but small cosmetic effect on ageing skin.",
    "whoBenefits": "Ageing or photoaged skin (topical) shows the clearest signal. People using it for systemic longevity are running on mechanism and hope, not human outcome data.",
-   "caveats": "Small samples, short durations, frequent industry funding, and a wide translation gap between petri-dish gene data and benefit in a living human. Copper toxicity is the safety ceiling — excess copper is pro-oxidant. Injectable and systemic use is unapproved and largely unstudied for safety.",
+   "caveats": "Small samples, short durations, frequent industry funding, some evidence only from conference presentations, and a wide translation gap between petri-dish gene data and benefit in a living human. Copper toxicity is the safety ceiling — excess copper is pro-oxidant. Injectable and systemic use is unapproved and largely unstudied for safety.",
    "trials": [
     {
-     "finding": "Genomic (Broad Institute Connectivity Map) analysis: GHK shifts on the order of ~4,000 human genes by ≥50%, upregulating collagen, antioxidant and DNA-repair programs and modulating TGF-β and metalloproteinases — the mechanistic basis of the 'gene-reset' claim (cell-based, not a human outcome trial).",
-     "ref": "Pickart & Margolina, 2018, Int J Mol Sci 19:1987"
+     "finding": "Genomic (Broad Institute Connectivity Map) analysis: GHK shifts on the order of ~4,000 human genes by ≥50% (~31% of the genes analysed), upregulating collagen, antioxidant and DNA-repair programs and modulating TGF-β and metalloproteinases — the mechanistic basis of the 'gene-reset' claim (cell-based, not a human outcome trial).",
+     "ref": "Pickart & Margolina, 2018, Int J Mol Sci 19(7):1987"
     },
     {
-     "finding": "Controlled topical facial-cream study in photoaged women (twice daily, 12 weeks): improved skin density and thickness and reduced fine lines and laxity versus control — supportive human skin evidence, though small and industry-associated.",
-     "ref": "Leyden et al., 2002 (Am Acad Dermatology)"
+     "finding": "Controlled topical facial-cream study in ~71 photoaged women (twice daily, 12 weeks): improved skin density and thickness and reduced fine lines and laxity versus control — supportive human skin evidence, but small, industry-sponsored, and presented at a conference rather than peer-reviewed.",
+     "ref": "Leyden et al., 2002 (presented at Am. Acad. Dermatology; not peer-reviewed)"
     }
    ]
   },
   "tech": {
-   "chem": "Glycyl-L-histidyl-L-lysine (GHK), a naturally occurring tripeptide first isolated from human plasma by Loren Pickart in 1973 (structure confirmed 1977). The physiologically active species is the copper(II) complex, GHK-Cu (copper tripeptide-1; PubChem CID 73587880). It binds Cu²⁺ with very high affinity (stability constant log β ≈ 16.4), strong enough to take copper from albumin. Small and water-soluble; present in plasma, saliva and urine, and released locally from extracellular-matrix proteins such as collagen during tissue injury. Plasma levels fall with age (~200 ng/ml at 20 → ~80 ng/ml at 60).",
+   "chem": "Glycyl-L-histidyl-L-lysine (GHK), a naturally occurring tripeptide first isolated from human plasma albumin by Loren Pickart in 1973 (sequence confirmed as glycyl-L-histidyl-L-lysine in 1977). The physiologically active species is the copper(II) complex, GHK-Cu (INCI name: copper tripeptide-1); the free tripeptide is PubChem CID 73587880. It binds Cu²⁺ with very high affinity (stability constant log β ≈ 16.4), marginally above human serum albumin (~16.2) — enough to acquire copper from it. Small and water-soluble; present in plasma, saliva and urine, and released locally from extracellular-matrix proteins such as collagen during tissue injury. Plasma levels fall with age (~200 ng/ml at 20 → ~80 ng/ml at 60).",
    "targets": [
     {
      "sym": "Cu²⁺ (copper ion)",
      "action": "high-affinity chelation and cellular delivery (copper chaperone)",
-     "affinity": "stability constant log β ≈ 16.4 — strong enough to strip copper from albumin",
+     "affinity": "stability constant log β ≈ 16.4 — marginally above albumin's ~16.2, enough to acquire copper from it",
      "role": "the active payload; copper is a cofactor for lysyl oxidase (collagen cross-linking), superoxide dismutase and other repair/antioxidant enzymes. Not a receptor — a carrier function."
     },
     {
      "sym": "Transcriptome (gene expression)",
      "action": "broad transcriptional modulation (not receptor-mediated)",
      "affinity": "no binding constant — acts as a signalling peptide/copper complex, not a ligand at a defined receptor",
-     "role": "Broad Institute Connectivity Map analyses report ~4,000 human genes shifted ≥50%, upregulating collagen, decorin, antioxidant and DNA-repair genes and modulating TGF-β and metalloproteinases."
+     "role": "Broad Institute Connectivity Map analyses report ~4,000 human genes shifted ≥50% (~31% of those analysed), upregulating collagen, decorin, antioxidant and DNA-repair genes and modulating TGF-β and metalloproteinases."
     },
     {
      "sym": "Extracellular matrix (collagen / decorin / MMP–TIMP balance)",
@@ -13818,16 +13829,16 @@
    "caveats": "The whole evidence base is preclinical, so treat every claim as a hypothesis, not a result. Add poor tripeptide stability and bioavailability, no established human dose, no long-term safety data, and a gray-market supply chain where products are frequently mislabeled or contaminated. The gap between 'works in a colitis mouse' and 'helps a person' is where most candidate drugs die.",
    "trials": [
     {
-     "finding": "Nanomolar KPV is taken into intestinal epithelial and immune cells by the PepT1 (SLC15A1) transporter, where it inhibits NF-κB and MAP-kinase signalling; oral KPV reduced DSS- and TNBS-induced colitis in mice.",
+     "finding": "Nanomolar KPV (10 nM) is taken into intestinal epithelial and immune cells by the PepT1 (SLC15A1) transporter, where it inhibits NF-κB and MAP-kinase signalling; oral KPV reduced DSS- and TNBS-induced colitis in mice.",
      "ref": "Dalmasso et al., 2008, Gastroenterology 134:166–178"
     },
     {
      "finding": "The melanocortin-derived tripeptide KPV reduced inflammation across two murine colitis models — improving weight recovery and lowering myeloperoxidase and inflammatory infiltrate.",
-     "ref": "Kannengiesser et al., 2008, Inflammatory Bowel Diseases"
+     "ref": "Kannengiesser et al., 2008, Inflammatory Bowel Diseases 14(3):324"
     },
     {
-     "finding": "KPV's anti-inflammatory effect is distinct from the core α-MSH peptides and appears melanocortin-receptor-independent, acting instead by inhibiting IL-1β-driven functions.",
-     "ref": "Getting, Schiöth & Perretti, 2003, J Pharmacol Exp Ther"
+     "finding": "KPV's anti-inflammatory effect is distinct from the core α-MSH peptides and appears melanocortin-receptor-independent (not blocked by an MC3/4-R antagonist in crystal-induced peritonitis).",
+     "ref": "Getting, Schiöth & Perretti, 2003, J Pharmacol Exp Ther 306:631–637"
     }
    ]
   },
@@ -14011,22 +14022,22 @@
   "evi": {
    "howStrong": "Uneven, and honest framing matters. Its strongest footing is chronic hepatitis B/C and use as a vaccine adjuvant — the basis for approval in ~35 countries — but those effects are modest and the trials are older and heterogeneous. In critical care, the standout is one sizeable randomised trial in severe sepsis (ETASS) whose mortality benefit was only borderline. COVID evidence is genuinely mixed, including a large cohort that found the opposite of benefit. And the popular 'immune resilience for healthy people' use has essentially no controlled evidence at all.",
    "whatItShows": "Where it acts, it measurably shifts immune markers — most concretely, it raised monocyte HLA-DR (a readiness marker) in sepsis patients. What it has NOT robustly shown is a large, consistent survival or cure benefit that clears a US regulatory bar. It moves the immune dials; whether that translates into better hard outcomes depends heavily on the disease and the patient's immune state.",
-   "effect": "In the ETASS sepsis trial, 28-day mortality was 26.0% with thymosin alpha-1 versus 35.0% with control (relative risk ~0.74) — a meaningful-looking gap that was only borderline statistically significant (log-rank P=0.049; non-stratified P=0.062). That is the honest shape of the best acute-care evidence: suggestive, not definitive.",
+   "effect": "In the ETASS sepsis trial, 28-day mortality was 26.0% with thymosin alpha-1 versus 35.0% with control (relative risk ~0.74) — a meaningful-looking gap that was only borderline statistically significant (log-rank P=0.049; non-stratified 28-day P=0.062). That is the honest shape of the best acute-care evidence: suggestive, not definitive.",
    "whoBenefits": "The coherent candidates are people with a suppressed or exhausted immune system — chronic viral infection, sepsis-induced immunoparalysis, and possibly the immune decline of ageing or cancer therapy. Healthy people seeking a general 'boost' are exactly the group with no supporting evidence and a plausible downside.",
    "caveats": "Much of the trial base is from China and older hepatitis studies, with heterogeneous quality; the sepsis benefit is borderline and needs confirmation; and the severe-COVID cohort is a stark reminder that immune modulation can go the wrong way in the wrong context. None of this validates gray-market self-injection for physique or wellness.",
    "trials": [
     {
-     "finding": "ETASS RCT, 361 severe-sepsis patients: 28-day all-cause mortality 26.0% (Tα1) vs 35.0% (control), RR ~0.74; borderline significance (log-rank P=0.049), with greater improvement in monocyte HLA-DR at days 3 and 7.",
-     "ref": "Wu J et al., 2013, Critical Care 17:R8 (ETASS)"
+     "finding": "ETASS RCT, 361 severe-sepsis patients: 28-day all-cause mortality 26.0% (Tα1) vs 35.0% (control), RR ~0.74 (95% CI 0.54–1.02); borderline significance (log-rank P=0.049; 28-day P=0.062), with greater improvement in monocyte HLA-DR at days 3 and 7.",
+     "ref": "Wu J et al., 2013, Critical Care 17(1):R8 (ETASS)"
     },
     {
-     "finding": "Multicenter cohort of 2,282 COVID-19 patients (306 treated): thymosin alpha-1 use was associated with a higher non-recovery rate, especially in more severe disease (adjusted OR ~2.0 in patients with max SOFA ≥2).",
-     "ref": "Liu Y et al., 2021, Frontiers in Immunology 12:673693"
+     "finding": "Multicenter cohort of 2,282 COVID-19 patients (306 treated): thymosin alpha-1 use was associated with a higher non-recovery rate (adjusted OR ~1.5 overall), especially in more severe disease (adjusted OR ~2.0 in patients with max SOFA ≥2).",
+     "ref": "Liu J et al., 2021, Frontiers in Immunology 12:673693"
     }
    ]
   },
   "tech": {
-   "chem": "Thymosin alpha-1 (thymalfasin; brand Zadaxin) is a 28-amino-acid peptide (~3108 Da) with an acetylated N-terminal serine — the acetyl cap is required for activity. It is the N-terminal fragment of prothymosin alpha, a 113-residue nuclear polypeptide, released by cleavage (via the asparaginyl endopeptidase legumain). Being a peptide, it is not orally bioavailable (it would be digested) and is administered subcutaneously.",
+   "chem": "Thymosin alpha-1 (thymalfasin; brand Zadaxin) is a 28-amino-acid peptide (~3108 Da) with an acetylated N-terminal serine — the acetyl cap is required for activity. It is the N-terminal fragment of prothymosin alpha, a 113-residue nuclear polypeptide, released by cleavage (via the lysosomal asparaginyl endopeptidase legumain, which cuts the Asn28–Gly29 bond). Being a peptide, it is not orally bioavailable (it would be digested) and is administered subcutaneously.",
    "targets": [
     {
      "sym": "TLR9",
@@ -14051,7 +14062,7 @@
     "excrete": "Cleared as peptide fragments/amino acids; short plasma half-life on the order of ~2 hours, with no meaningful accumulation."
    },
    "pgx": "No validated pharmacogenetic marker. Response is governed by baseline immune state rather than a single-gene switch — the clearest rationale is in immune-suppressed or immune-exhausted patients, with little expected effect in the immunocompetent.",
-   "dose": "Trial dosing has centred on the 1.6 mg subcutaneous unit: e.g. 1.6 mg every 12 hours in the severe-sepsis ETASS protocol, and roughly 1.6 mg twice weekly over months for chronic hepatitis B. These are the studied, monitored regimens under specific indications — no FDA-approved dose exists, and gray-market wellness use is off-label and unstandardised. This is description, not recommendation.",
+   "dose": "Trial dosing has centred on the 1.6 mg subcutaneous unit: e.g. 1.6 mg twice daily (then once daily) in the severe-sepsis ETASS protocol, and roughly 1.6 mg twice weekly over months for chronic hepatitis B. These are the studied, monitored regimens under specific indications — no FDA-approved dose exists, and gray-market wellness use is off-label and unstandardised. This is description, not recommendation.",
    "tolerance": "There is no receptor-downregulation tolerance in the caffeine sense. As an intermittently dosed immunomodulator it doesn't produce classic tachyphylaxis; the relevant consideration is instead the direction of immune modulation in a given clinical context, which can be beneficial or harmful depending on the starting immune state."
   }
  },
@@ -14093,14 +14104,14 @@
     "t": "It doubles as an immune signal",
     "predict": "Beyond killing bugs directly, it talks to your white blood cells. Through what, and to what end?",
     "d": "LL-37 activates the receptor FPR2 (and engages P2X7, EGFR) to recruit and steer neutrophils, monocytes and T cells, promote wound closure and angiogenesis, and neutralise bacterial LPS before it can ignite a sepsis-level cytokine storm. This immunomodulation, not the raw killing, is much of its appeal for healing.",
-    "tag": "FPR2"
+    "fx": "immune steering"
    },
    {
     "n": 5,
     "t": "The same stickiness can misfire",
     "predict": "The property that makes it useful also makes it dangerous in the wrong tissue. What flips it from healer to instigator?",
     "d": "LL-37 binds nucleic acids. In inflamed skin it complexes with your own released DNA/RNA and shuttles it into immune sensors, triggering type I interferon and NLRP3 inflammasome activation. That is a validated driver of psoriasis and rosacea — the peptide becomes a self-antigen.",
-    "fx": "▲ auto-inflammation"
+    "fx": "auto-inflammation"
    }
   ],
   "framework": {
@@ -14108,7 +14119,7 @@
    "affinity": "There is no single clean Ki to quote, and pretending otherwise would be false precision. LL-37's primary antimicrobial action is a <b>bulk electrostatic membrane interaction</b> governed by its +6 charge and lipid composition, not a defined binding pocket. Its receptor actions (FPR2 etc.) are real but reported across varied assays without one agreed affinity constant. Honest framing: this is a multi-target peptide, not a single-receptor ligand.",
    "adme": "It's a 37-amino-acid peptide, so the pharmacokinetics that matter are a peptide's, not a small molecule's: no meaningful oral bioavailability (digested to fragments), and rapid proteolytic degradation in tissue and blood. This is precisely why every credible human study delivers it <b>locally to a wound</b>, not systemically or by mouth. No reliable human systemic elimination half-life is established.",
    "genetics": "No validated pharmacogenetic switch. The dominant modifier of your own LL-37 is <b>vitamin D status</b> (VDR-driven CAMP transcription), plus the local proteases that activate hCAP18. Skin conditions like psoriasis and rosacea show pathologically elevated LL-37 — dysregulation, not a dosing target.",
-   "evidence": "Modest for humans. The strongest data is a small Phase I/II and a Phase IIb randomised trial of <b>topical</b> LL-37 on hard-to-heal venous leg ulcers — encouraging healing signals, but no regulatory approval for any indication, and essentially no human data supporting LL-37 as a systemic supplement."
+   "evidence": "Thin, and on the best test negative. A small first-in-man Phase I/II trial of <b>topical</b> LL-37 on hard-to-heal venous leg ulcers showed an encouraging healing signal, but the larger, better-powered Phase IIb randomised trial <b>did not meet its primary efficacy endpoint</b> (no significant benefit over placebo overall). No regulatory approval for any indication, and essentially no human data supporting LL-37 as a systemic supplement."
   },
   "journey": [
    {
@@ -14151,10 +14162,10 @@
    }
   ],
   "whenToUse": {
-   "intro": "Why people are interested — and what it costs:",
+   "intro": "Why people use it — and what it costs:",
    "items": [
     "**Why people reach for it:** the pitch is a 'natural, body-made antibiotic that also speeds wound healing' without fostering classical antibiotic resistance. The membrane-killing and immunomodulatory biology is genuinely real and well-characterised — that's the legitimate draw.",
-    "**The evidence reality:** the best human data is topical, on chronic venous leg ulcers — a small Phase I/II and a Phase IIb randomised trial with encouraging healing signals but no approved indication. There is essentially no human evidence for LL-37 as a systemic or oral supplement.",
+    "**The evidence reality:** the best human data is topical, on chronic venous leg ulcers — a small Phase I/II trial showed an encouraging healing signal, but the larger, better-powered Phase IIb randomised trial failed its primary healing endpoint. Nothing is approved, and there is essentially no human evidence for LL-37 as a systemic or oral supplement.",
     "**The auto-inflammation cost:** LL-37 is a validated psoriasis autoantigen and a driver of rosacea-like inflammation through inflammasome activation and self-nucleic-acid sensing. Adding it, especially in or on inflamed skin, can plausibly feed the very fires it's marketed to calm.",
     "**The cancer signal:** in several cancer types (breast, ovarian, lung) LL-37 has shown pro-tumorigenic effects in laboratory and animal work — a real reason for caution that the supplement marketing omits.",
     "**The product-quality cost:** peptides sold as 'research chemicals' are frequently mislabeled, underdosed, or contaminated, and there's no dosing regimen validated for safety in healthy people. You often don't know what's actually in the vial.",
@@ -14176,7 +14187,7 @@
    },
    "evidence": {
     "q": "How strong is the human evidence, honestly?",
-    "a": "Modest. A small Phase I/II and a Phase IIb randomised trial of topical LL-37 on hard-to-heal venous leg ulcers showed encouraging healing, but nothing is approved, and there's essentially no human evidence for supplemental or systemic use."
+    "a": "Thin. A small first-in-man Phase I/II trial of topical LL-37 on venous leg ulcers showed encouraging healing, but the larger Phase IIb randomised trial did NOT meet its primary endpoint. Nothing is approved, and there's essentially no human evidence for supplemental or systemic use."
    }
   },
   "canExplain": [
@@ -14189,7 +14200,7 @@
   "selfTest": [
    {
     "q": "A friend with psoriasis reads that LL-37 is a 'natural antibiotic' and wants to try a topical version to improve his skin. Give the two-part caution.",
-    "a": "(1) LL-37 is a validated psoriasis autoantigen — it complexes with self-DNA/RNA and triggers type I interferon and inflammasome activation, which is a core driver of psoriatic and rosacea inflammation, so adding it to inflamed skin could worsen exactly what he's treating. (2) There's no approved product or safety-validated regimen; the only credible human data is on chronic leg ulcers, not psoriatic skin."
+    "a": "(1) LL-37 is a validated psoriasis autoantigen — it complexes with self-DNA/RNA and triggers type I interferon and inflammasome activation, which is a core driver of psoriatic and rosacea inflammation, so adding it to inflamed skin could worsen exactly what he's treating. (2) There's no approved product or safety-validated regimen; the only credible human data is on chronic leg ulcers, not psoriatic skin — and even there the larger trial failed its primary endpoint."
    },
    {
     "q": "Why does raising your vitamin D do more for your own LL-37 than swallowing an LL-37 supplement would?",
@@ -14201,18 +14212,18 @@
    }
   ],
   "evi": {
-   "howStrong": "Weak-to-modest for humans, and it's important to be blunt about this. LL-37's cellular and animal biology is extensively characterised — membrane disruption, FPR2 signalling, LPS neutralisation, roles in psoriasis and rosacea are all well-supported. But controlled human efficacy data is confined to a small number of topical wound-healing trials. There is no large Phase III, no approved indication, and essentially no human trial of LL-37 as a systemic or oral supplement. Treat the mechanism as strong and the human clinical proof as early.",
-   "whatItShows": "Where it's been tested properly — applied directly to chronic venous leg ulcers — topical LL-37 has shown a signal toward faster healing versus placebo. What has NOT been demonstrated in humans is any benefit from taking it as a supplement, any systemic antimicrobial use, or long-term safety.",
-   "effect": "In the Phase IIb venous-leg-ulcer trial the lower concentrations (notably 0.5 mg/mL) produced healing-rate constants several-fold higher than placebo, with the low dose reaching statistical significance while higher concentrations did not — consistent with a real but concentration-sensitive local effect, not a large or fully settled one.",
+   "howStrong": "Weak for humans, and it's important to be blunt about this. LL-37's cellular and animal biology is extensively characterised — membrane disruption, FPR2 signalling, LPS neutralisation, roles in psoriasis and rosacea are all well-supported. But controlled human efficacy data is confined to topical wound-healing trials, and the pattern there is a small early positive followed by a larger negative: the confirmatory Phase IIb trial did not meet its primary endpoint. There is no approved indication and essentially no human trial of LL-37 as a systemic or oral supplement. Treat the mechanism as strong and the human clinical proof as early and unconfirmed.",
+   "whatItShows": "Where it's been tested properly — applied directly to chronic venous leg ulcers — a small first-in-man trial showed a signal toward faster healing versus placebo, but a larger, better-powered trial did not reproduce a significant benefit on its primary endpoint. What has NOT been demonstrated in humans is any benefit from taking it as a supplement, any systemic antimicrobial use, or long-term safety.",
+   "effect": "In the first-in-man Phase I/II trial (Grönberg 2014, 34 patients) the two lower concentrations produced healing-rate constants several-fold higher than placebo — roughly six-fold for 0.5 mg/mL (p=0.003) and three-fold for 1.6 mg/mL (p=0.088). But the larger Phase IIb trial (Mahlapuu 2021, 148 patients) failed its primary endpoint: no significant healing benefit over placebo overall, with only a secondary-endpoint numeric edge for the low dose (about 62% vs 33% of ulcers reaching ≥50% area reduction). The honest read is an early, unconfirmed local signal — not an established effect.",
    "whoBenefits": "The studied population is people with hard-to-heal chronic wounds (venous leg ulcers), where boosting local immune and repair signalling is the goal. Its use by healthy people for general 'immunity' or physique is entirely off-label, unstudied, and unsupported by human data.",
-   "caveats": "The human evidence is small, topical-only, and unapproved. Against even that modest benefit sit real hazards: LL-37 drives psoriasis and rosacea inflammation, shows pro-tumorigenic activity in some cancers, and gray-market peptide products are frequently mislabeled or contaminated. Cell/animal findings do not guarantee human benefit, and 'made by your body' does not mean safe to add.",
+   "caveats": "The human evidence is small, topical-only, unapproved, and negative on its largest test. Against even a hoped-for benefit sit real hazards: LL-37 drives psoriasis and rosacea inflammation, shows pro-tumorigenic activity in some cancers, and gray-market peptide products are frequently mislabeled or contaminated. Cell/animal findings do not guarantee human benefit, and 'made by your body' does not mean safe to add.",
    "trials": [
     {
-     "finding": "Phase I/II randomised, placebo-controlled trial in 34 patients with hard-to-heal venous leg ulcers: topical LL-37 was safe and improved healing; the 0.5 and 1.6 mg/mL groups showed healing-rate constants roughly six- and three-fold higher than placebo (significant for 0.5 mg/mL).",
+     "finding": "First-in-man Phase I/II randomised, double-blind, placebo-controlled trial in 34 patients with hard-to-heal venous leg ulcers (0.5, 1.6, 3.2 mg/mL vs placebo, twice weekly): topical LL-37 was safe, and the 0.5 and 1.6 mg/mL groups showed healing-rate constants roughly six- and three-fold higher than placebo (significant for 0.5 mg/mL, p=0.003; p=0.088 for 1.6 mg/mL).",
      "ref": "Grönberg et al., 2014, Wound Repair and Regeneration"
     },
     {
-     "finding": "Phase IIb multicentre, randomised, double-blind, placebo-controlled trial (148 patients) of topical LL-37 for hard-to-heal venous leg ulcers: evaluated 0.5 and 1.6 mg/mL vs placebo, supporting an efficacy and safety signal without leading to approval.",
+     "finding": "Phase IIb multicentre, randomised, double-blind, placebo-controlled trial (148 patients) of topical LL-37 (0.5 and 1.6 mg/mL vs placebo) for hard-to-heal venous leg ulcers: did NOT meet its primary efficacy endpoint — no significant improvement in healing versus placebo overall. A secondary endpoint numerically favoured the 0.5 mg/mL dose (about 62% vs 33% of ulcers reaching ≥50% area reduction). No approval.",
      "ref": "Mahlapuu et al., 2021, Wound Repair and Regeneration"
     }
    ]
@@ -14242,7 +14253,7 @@
      "role": "contribute to keratinocyte migration, wound closure and inflammasome regulation"
     }
    ],
-   "signaling": "LL-37 is a multi-pathway peptide rather than a single-receptor ligand. Antimicrobially it acts by direct membrane disruption and by high-affinity binding/neutralisation of LPS, blunting TLR4-driven cytokine release. Immunologically it signals through FPR2 (and P2X7, EGFR) to activate PI3K/Akt and MAPK/Erk cascades, driving chemotaxis, angiogenesis and re-epithelialisation. Its pathological face runs through nucleic-acid sensing: LL-37–self-DNA/RNA complexes activate endosomal TLR9/TLR7 in plasmacytoid dendritic cells to produce type I interferon, and it promotes NLRP3 inflammasome assembly — the mechanistic basis of its role as a psoriasis autoantigen and a rosacea inflammatory mediator.",
+   "signaling": "LL-37 is a multi-pathway peptide rather than a single-receptor ligand. Antimicrobially it acts by direct membrane disruption and by binding/neutralising LPS, blunting TLR4-driven cytokine release. Immunologically it signals through FPR2 (and P2X7, EGFR) to activate PI3K/Akt and MAPK/Erk cascades, driving chemotaxis, angiogenesis and re-epithelialisation. Its pathological face runs through nucleic-acid sensing: LL-37–self-DNA/RNA complexes activate endosomal TLR9/TLR7 in plasmacytoid dendritic cells to produce type I interferon, and it promotes NLRP3 inflammasome assembly — the mechanistic basis of its role as a psoriasis autoantigen and a rosacea inflammatory mediator.",
    "adme": {
     "absorb": "A 37-mer peptide with no meaningful oral bioavailability (digested to fragments); delivered topically/locally in human trials.",
     "distribute": "Acts locally at sites of infection, injury and inflammation; binds avidly to anionic surfaces, LPS and nucleic acids, which shapes where it concentrates.",
@@ -31409,385 +31420,570 @@
  "silymarin-milk-thistle": {
   "hook": {
    "questions": [
-    "Why is the world's most popular \"liver support\" herb backed by such surprisingly weak human evidence?",
-    "If silybin is a genuine antioxidant in a test tube, why doesn't it clearly fix liver disease in people?",
-    "Why do you have to take milk thistle two or three times a day instead of once?"
+    "Milk thistle is a genuine antioxidant in a test tube — so why do the biggest human reviews say it doesn't clearly treat liver disease?",
+    "Why does the same plant come as both a cheap health-store capsule AND a hospital IV drip used for deadly mushroom poisoning?",
+    "If your liver is the organ that breaks everything down, how much of a swallowed 'liver herb' actually reaches it intact?"
    ],
-   "payoff": "You can now answer all three. (1) \"Works in a dish\" and \"works in a patient\" are different claims — and the big randomised trials (Fried 2012 in JAMA, Navarro 2019) found silymarin no better than placebo. (2) It's poorly absorbed and rapidly chopped up (conjugated) by the liver, so little of it lingers at an active level — and oxidative stress is only one small lever in complex liver disease. (3) Its short half-life (~1–4 h) and fast clearance mean blood levels don't persist, which is exactly why the studied dosing is split into 2–3 daily doses."
+   "payoff": "You can now answer all three. (1) The lab antioxidant activity is real, but barely any active silybin survives absorption and liver conjugation to reach the target at a useful dose, so the effect that shines in a dish fades to weak-or-absent in people (Cochrane 2007; Fried 2012, JAMA). (2) The capsule and the IV are the same molecule at wildly different exposures — swallowed silymarin is poorly absorbed, while IV silibinin (Legalon SIL) floods the blood and blocks the transporter that pulls death-cap toxin into liver cells. (3) Very little — poor water solubility plus rapid glucuronide/sulfate conjugation and biliary excretion mean most of an oral dose never arrives as free, active silybin. That bioavailability gap is the whole story."
   },
-  "bigIdea": "Silymarin is a real antioxidant in a dish that mostly fails to become a real treatment in a person — the cleanest lesson on this whole site in why \\\"it works in the lab\\\" and \\\"it works in patients\\\" are two completely different claims.",
-  "stakes": "Milk thistle is one of the best-selling herbal supplements in the world and the default \\\"liver detox\\\" recommendation — which makes the gap between its popularity and its actual human outcome data one of the most useful things to understand about supplements in general.",
-  "analogy": "Silymarin is like a genuinely excellent fire extinguisher that mostly never reaches the fire. In a test tube it neutralises free radicals beautifully. Swallowed, most of it is poorly absorbed and rapidly chopped up and shipped out in bile before it can ever build up to a useful level inside a diseased liver.",
+  "bigIdea": "Milk thistle is a real antioxidant that barely shows up where it's needed — its active molecule, silybin, is genuinely protective in the lab, but so poorly absorbed and so quickly cleared that swallowing it rarely delivers a proven benefit to a diseased human liver.",
+  "stakes": "It's one of the most widely used herbal supplements on Earth for 'liver support' — a multi-hundred-million-dollar habit built on solid test-tube pharmacology and surprisingly thin human outcome data.",
+  "analogy": "Silybin is a competent firefighter who almost never reaches the fire. In the lab — dropped straight onto the cells — it puts out oxidative flames well. Swallowed, most of it gets stuck in traffic (poor absorption) and re-routed by the liver's own dispatch (rapid conjugation and biliary excretion) before it can arrive. The problem was never the firefighter; it's the commute.",
   "mechSteps": [
    {
     "n": 1,
-    "t": "It mops up free radicals directly",
-    "predict": "Liver injury generates reactive oxygen species that damage cell membranes. What is the simplest thing an antioxidant molecule can do about them?",
-    "d": "Silybin — the chief active flavonolignan — is a genuine free-radical scavenger. In the lab it donates electrons to neutralise reactive oxygen species and blunts the lipid peroxidation that damages liver-cell membranes.",
+    "t": "Silybin scavenges free radicals",
+    "predict": "Oxidative stress damages liver cells by producing reactive molecules. What would a good antioxidant do to those molecules — and where must it be to matter?",
+    "d": "Silybin, the chief active flavonolignan, directly neutralises reactive oxygen species and stabilises hepatocyte membranes against lipid peroxidation. This is genuine, repeatable chemistry — in a dish.",
     "tag": "silybin"
    },
    {
     "n": 2,
-    "t": "It flips the master antioxidant switch",
-    "predict": "Beyond mopping up radicals one by one, silybin turns on the cell's own defence program. Which transcription factor is the \"master switch\" for antioxidant genes?",
-    "d": "Under oxidative stress silybin promotes Nrf2 (the NFE2L2 protein) to move into the nucleus and switch on the antioxidant-response element (ARE) — turning up the cell's own defensive enzymes like HO-1 and NQO1.",
+    "t": "It switches on the Nrf2 antioxidant program",
+    "predict": "Beyond mopping up radicals one by one, silybin flips a master switch that makes the cell defend itself. Which transcription factor governs the cell's own antioxidant genes?",
+    "d": "Silybin activates the Nrf2 (NFE2L2) pathway: Nrf2 moves to the nucleus and turns on antioxidant-response-element (ARE) genes, raising the cell's home-grown defences like glutathione and antioxidant enzymes.",
     "tag": "NFE2L2"
    },
    {
     "n": 3,
-    "t": "Downstream: less oxidative and fibrotic signalling",
-    "predict": "If you dial down oxidative stress in the liver, what would you hope happens to the scar-forming cells over time?",
-    "d": "In preclinical models this lowers oxidative damage and dampens the activation of hepatic stellate cells — the cells that lay down scar tissue — which is the basis for the \"anti-fibrotic\" claim.",
-    "fx": "▼ oxidative & fibrotic signals (in models)"
+    "t": "It leans on fibrosis and inflammation",
+    "predict": "Chronic liver injury lays down scar tissue via activated star-shaped cells. What would slowing that process protect?",
+    "d": "In animal and cell models silybin dampens hepatic stellate-cell activation and inflammatory signalling — the anti-fibrotic claim. The mechanism is plausible and consistent in the lab.",
+    "fx": "↓ oxidative + fibrotic stress (in vitro)"
    },
    {
     "n": 4,
-    "t": "The catch — almost none of it reaches the target",
-    "predict": "Every step above is real biochemistry. So why doesn't it translate to patients? Think about what happens to the molecule after you swallow it.",
-    "d": "Silybin is poorly absorbed and, once in the liver, is rapidly conjugated (glucuronide/sulfate) and excreted in bile — roughly 80% of a dose leaves that way. So the elegant mechanism runs at a concentration your diseased liver may never actually see.",
-    "fx": "▼ effective exposure at the target"
+    "t": "Then bioavailability breaks the chain",
+    "predict": "Every step above assumes active silybin reaches the liver in quantity. Given the liver's job is to conjugate and excrete, what happens to a swallowed dose?",
+    "d": "Silybin is poorly water-soluble and poorly absorbed; what does get in is rapidly conjugated to glucuronides and sulfates and pumped into bile. So the clean lab mechanism arrives at the human liver diluted — which is exactly why outcome trials underwhelm.",
+    "fx": "weak human effect"
    }
   ],
   "framework": {
-   "target": "There is <b>no receptor</b> here — silymarin is a pleiotropic antioxidant, not a ligand that switches a receptor on or off. Its chief active, <b>silybin</b>, works by directly scavenging free radicals and by activating the <b>Nrf2/ARE</b> pathway (the NFE2L2 protein), which induces defensive enzymes such as HO-1 and NQO1. Anti-fibrotic effects on hepatic stellate cells are reported mostly in animal and cell models.",
-   "affinity": "There is no binding constant (no Ki) to quote, because there is no receptor being occupied — so don't be reassured by one. The number that actually matters here is <b>exposure</b>, and it is poor: low oral bioavailability plus rapid phase-II conjugation mean that even where the lab mechanism is genuine, reaching an active hepatic concentration in a real person is the unsolved problem.",
-   "adme": "Poorly absorbed from the gut; once absorbed, silybin is rapidly conjugated with glucuronide and sulfate in the liver, and ~80% of a dose is excreted in bile as those conjugates. The terminal half-life is short (~1–4 h). Phosphatidylcholine-complexed forms (silybin–phosphatidylcholine) were developed specifically to improve this weak absorption.",
-   "genetics": "No single-gene pharmacogenetic switch like caffeine's CYP1A2. Response isn't meaningfully predicted by a genotype — the dominant limiter is the poor, variable absorption of the molecule itself.",
-   "evidence": "Weak (2/5 for human outcomes). The antioxidant biochemistry is real and reproducible, but the human outcome data is thin-to-negative: multiple randomised trials and a Cochrane review found no clear benefit for liver disease. Safe — but unproven as a treatment."
+   "target": "The <b>Nrf2/ARE antioxidant-response pathway</b> plus direct free-radical scavenging and membrane stabilisation in hepatocytes. Note the key point for how you read this molecule: silymarin has <b>no classical receptor</b> it switches on or blocks. It's a redox-active antioxidant and a transcription-factor activator, not a ligand sitting in a binding pocket.",
+   "affinity": "There's no clean receptor binding constant (Ki) to quote, because there's no single receptor — so don't trust any page that gives you one. What matters instead is <b>exposure</b>: silybin's measurable effects in cells appear at micromolar concentrations that oral dosing struggles to reach in plasma, and even less so as free (unconjugated) drug. The gap between 'works in a dish' and 'reaches the target in a person' is the whole pharmacological story.",
+   "adme": "Poor oral bioavailability: low water solubility, incomplete absorption, extensive first-pass glucuronidation/sulfation, and biliary excretion (a large fraction of an oral dose leaves in bile). Silybin's plasma half-life is short and formulation-dependent (roughly 1–8 h), with peak levels around 6–8 h. This is why 'standardised' extracts and phospholipid formulations exist — they're attempts to fix the delivery problem.",
+   "genetics": "No clean single-gene pharmacogenetic switch like caffeine's CYP1A2 — response isn't governed by one well-characterised polymorphism. Variation is driven more by formulation and absorption than by a tidy genotype.",
+   "evidence": "Weak-to-mixed in humans. Lab and animal antioxidant data are consistent, but the largest and highest-quality human reviews (Cochrane 2007) and a well-run RCT in hepatitis C (Fried 2012, JAMA) failed to show a clear outcome benefit."
   },
   "journey": [
    {
     "stage": "🌿 The capsule",
-    "d": "You swallow a standardised extract — a mix of flavonolignans of which silybin is the main active. It's poorly water-soluble, so only a modest fraction is absorbed across the gut."
+    "d": "You swallow a standardised extract (~140 mg silymarin). But silybin barely dissolves in water, so only a modest fraction is even available to absorb."
    },
    {
-    "stage": "🩸 The blood",
-    "d": "What gets in circulates briefly. Blood levels are low and don't persist — the short half-life (~1–4 h) is why the studied dose is split into 2–3 times a day."
+    "stage": "🩸 The blood (briefly)",
+    "d": "What's absorbed enters the blood, but the liver — its own destination — immediately conjugates most of it to glucuronides and sulfates, and levels are dominated by these bound forms rather than free active silybin."
    },
    {
-    "stage": "🔬 The liver",
-    "d": "Here the real biochemistry happens: silybin scavenges radicals and nudges the Nrf2/ARE antioxidant program. But the liver is also where it's rapidly conjugated and prepared for disposal."
+    "stage": "🔬 The liver cell",
+    "d": "The silybin that arrives scavenges free radicals and nudges Nrf2 to switch on antioxidant genes. Real chemistry — but at concentrations that oral dosing struggles to push high enough."
    },
    {
-    "stage": "💧 The bile",
-    "d": "About 80% of the dose leaves the liver into bile as glucuronide/sulfate conjugates — the same organ you're trying to help ships most of it straight back out into the gut."
+    "stage": "🟢 The bile",
+    "d": "The liver pumps silybin and its conjugates into bile — a major exit route. Some is deconjugated by gut bacteria and partly reabsorbed (enterohepatic recycling), which stretches out the low-level tail."
    },
    {
     "stage": "🚽 The exit",
-    "d": "Excreted largely via bile into the stool, with a smaller urinary fraction. Little accumulates — which is central to why the clean lab mechanism struggles to become a clinical effect."
+    "d": "The rest leaves in bile (dominant) and, to a lesser degree, urine. Clearance is fairly quick — this is a topped-up daily habit, not a compound that lingers."
    }
   ],
   "myths": [
    {
-    "myth": "Milk thistle detoxes or cleanses your liver.",
-    "truth": "There's no evidence it clears toxins or improves liver outcomes in healthy people. Your liver already detoxifies itself continuously; \"liver detox\" is a marketing frame, not a measured effect of this herb."
+    "myth": "Milk thistle 'detoxes' or 'cleanses' your liver.",
+    "truth": "There's no evidence it detoxifies a healthy liver — the liver already does that. Being an antioxidant in a test tube is not the same as 'cleansing', and no trial shows a wellness benefit in healthy people."
    },
    {
-    "myth": "It's a proven treatment for hepatitis or fatty liver.",
-    "truth": "The major randomised trials say otherwise. In chronic hepatitis C (Fried 2012, JAMA), even higher-than-usual doses did not lower ALT better than placebo; in NASH (Navarro 2019), it did not improve liver histology; a Cochrane review found no clear benefit for alcoholic or viral liver disease."
+    "myth": "It repairs a liver already damaged by alcohol or hepatitis.",
+    "truth": "The best evidence says no. A Cochrane review of 13 randomised trials (915 patients) found no significant effect on mortality or complications of alcoholic/hepatitis B or C liver disease, and the apparent benefit vanished when only high-quality trials were pooled."
    },
    {
-    "myth": "You can take milk thistle to offset heavy drinking.",
-    "truth": "There's no good evidence it protects against alcohol-related liver damage. It does not license drinking, and it doesn't substitute for cutting back — the intervention that actually works."
-   },
-   {
-    "myth": "\"Antioxidant\" automatically means it treats liver disease.",
-    "truth": "Being an antioxidant in a test tube is a mechanism, not an outcome. Silymarin is the textbook case where the mechanism is real but the human benefit didn't follow — partly because so little reaches the target."
+    "myth": "The oral capsule is the same proven therapy as the hospital drip for mushroom poisoning.",
+    "truth": "Same molecule, completely different exposure. IV silibinin (Legalon SIL) floods the blood to block a liver-uptake transporter and is used for death-cap (Amanita) poisoning; your poorly-absorbed oral capsule never reaches those levels. Don't conflate the two."
    }
   ],
   "whenToUse": {
-   "intro": "It's popular and very safe, so if you want to take it, here's how to do it honestly — and where to keep your expectations:",
+   "intro": "It's safe and popular — here's how to use it honestly, without overselling what it does:",
    "items": [
-    "**Studied dose:** a standardised extract, ~140 mg silymarin, 2–3×/day. Look for a product standardised to roughly 70–80% silymarin, not just \"milk thistle powder\".",
-    "**Set expectations honestly:** it's well-tolerated, but don't expect it to treat, reverse, or \"cleanse\" liver disease — the human outcome data is weak-to-negative. Fine as a low-risk antioxidant; not a proven therapy.",
-    "**Don't let it replace what actually works:** less alcohol, weight management for fatty liver, treating underlying hepatitis, and hepatitis vaccination do far more for your liver than any supplement.",
-    "**If you want better absorption,** a silybin–phosphatidylcholine complex is designed to overcome the poor bioavailability of plain silymarin — though better blood levels still haven't translated into proven outcomes.",
-    "**Check interactions and allergies:** silymarin can inhibit some drug-metabolising enzymes in the lab, so flag it if you take narrow-therapeutic-index medication. It's in the ragweed/daisy (Asteraceae) family, so people allergic to those should be cautious; mild GI upset or a laxative effect can occur."
+    "**Set expectations first:** treat it as a well-tolerated antioxidant supplement, not a proven treatment for any liver disease. The human outcome data is weak.",
+    "**If you take it:** the common protocol is a standardised extract, ~140 mg silymarin, 2–3×/day, taken with food. 'Standardised to ~70–80% silymarin/silibinin' is what you're paying for.",
+    "**Formulation matters more than dose:** because plain silybin absorbs so poorly, phospholipid/'phytosome' or micellar formulations exist specifically to improve delivery — that's the real lever, not swallowing more powder.",
+    "**Don't let it replace what works:** it is not a substitute for stopping alcohol, treating hepatitis, or managing metabolic (fatty) liver — those change outcomes; milk thistle hasn't been shown to.",
+    "**Watch the real cautions:** generally very safe, but it can cause mild GI upset/loose stools, and people allergic to the ragweed/daisy family (Asteraceae) can react. It may modestly affect drug-metabolising enzymes, so check with a pharmacist if you're on narrow-margin medications."
    ]
   },
   "checks": {
    "start": {
-    "q": "In one line: is silymarin a proven liver treatment or a lab antioxidant that hasn't proven itself in people?",
-    "a": "The second. It's a genuine antioxidant in the lab, but large human trials haven't shown it improves liver-disease outcomes over placebo."
+    "q": "In one line: is milk thistle a proven liver treatment or a lab antioxidant that struggles to reach the liver?",
+    "a": "The latter. Silybin is a genuine antioxidant in vitro, but poor absorption and rapid clearance mean it hasn't shown clear benefit for liver disease in people."
    },
    "how": {
-    "q": "Name the two things silybin actually does at the molecular level — and the one reason it may not matter in a patient.",
-    "a": "It scavenges free radicals directly and activates the Nrf2/ARE antioxidant program (HO-1, NQO1). It may not matter clinically because poor absorption and rapid conjugation mean little reaches the liver at an active level."
+    "q": "Name the two ways silybin acts as an antioxidant inside a liver cell.",
+    "a": "It directly scavenges free radicals (and stabilises membranes), and it activates the Nrf2/ARE pathway to switch on the cell's own antioxidant genes."
    },
    "use": {
-    "q": "Why is the studied dose taken 2–3 times a day rather than once?",
-    "a": "Because silybin has a short half-life (~1–4 h) and is cleared quickly, so blood levels don't persist — divided dosing keeps some exposure through the day."
+    "q": "Why does the exact form of milk thistle you buy matter more than the milligram number?",
+    "a": "Because plain silybin is poorly water-soluble and poorly absorbed — delivery is the bottleneck, so phospholipid/micellar formulations that improve absorption matter more than simply taking a bigger dose."
    },
    "evidence": {
-    "q": "What did the big randomised trials actually find?",
-    "a": "No benefit over placebo — no ALT improvement in hepatitis C (Fried 2012, JAMA) and no histology improvement in NASH (Navarro 2019); a Cochrane review reached the same null conclusion."
+    "q": "What did the largest, highest-quality human evidence conclude?",
+    "a": "No clear benefit. A Cochrane review found no significant effect on mortality or complications in alcoholic/hepatitis liver disease, and a rigorous JAMA RCT found oral silymarin no better than placebo on ALT in hepatitis C."
    }
   },
   "canExplain": [
-   "Why silymarin is a real antioxidant in a test tube but an unproven treatment in people",
-   "The exact molecular actions of silybin — radical scavenging and Nrf2/ARE activation — and why it has no receptor",
-   "Why poor absorption and rapid conjugation are the crux of its clinical failure",
-   "What the major RCTs (Fried 2012, Navarro 2019) and the Cochrane review actually found",
-   "Why \"antioxidant\" and \"liver detox\" are mechanisms and marketing — not demonstrated outcomes"
+   "Why milk thistle is a real antioxidant in the lab yet unproven as a liver treatment in people",
+   "The two-part mechanism — direct radical scavenging plus Nrf2/ARE activation — and why silybin is the active piece",
+   "Why bioavailability, not potency, is the compound's central limitation",
+   "Why the oral capsule and the IV mushroom-poisoning drug are the same molecule but not the same therapy",
+   "How strong the human evidence actually is, and what the big Cochrane and JAMA results showed"
   ],
   "selfTest": [
    {
-    "q": "A friend says milk thistle is a powerful antioxidant, so it must treat his fatty liver. Where is the flaw in that logic?",
-    "a": "He's mistaking a mechanism for an outcome. Silybin is a real antioxidant in vitro, but in NASH (Navarro 2019) it didn't improve liver histology over placebo — partly because oxidative stress is one small lever, and partly because so little of the drug reaches the liver at an active level."
+    "q": "Silybin performs well as an antioxidant when dropped directly onto liver cells, but disappoints in human trials. Give the pharmacological reason.",
+    "a": "Bioavailability. Swallowed silybin is poorly water-soluble and poorly absorbed, and what gets in is rapidly conjugated (glucuronide/sulfate) and excreted in bile — so the free, active drug rarely reaches liver-effective concentrations in a person."
    },
    {
-    "q": "Two \"antioxidants for the liver\" — silymarin and vitamin E — have opposite RCT track records in fatty liver. What's the honest takeaway?",
-    "a": "That the antioxidant label doesn't predict benefit. Vitamin E improved NASH histology in a major trial (PIVENS), whereas silymarin did not — so each compound must be judged on its own human outcome data, not its shared mechanism-class."
+    "q": "A friend says milk thistle 'must work' because doctors use it for mushroom poisoning. Where does that reasoning break?",
+    "a": "It conflates route and dose. IV silibinin (Legalon SIL) achieves blood levels an oral capsule can't, and works by blocking the transporter (OATP1B3) that carries amatoxin into hepatocytes — a rescue mechanism at high exposure, not evidence that the low-exposure oral capsule treats chronic liver disease."
    },
    {
-    "q": "If you designed a product to fix silymarin's biggest weakness, what would you target, and would that guarantee benefit?",
-    "a": "You'd target its poor bioavailability — e.g. a silybin–phosphatidylcholine complex to raise absorption. But better blood levels still haven't produced proven clinical outcomes, so improving delivery is necessary-but-not-sufficient."
+    "q": "Why can't you quote a receptor Ki for silymarin the way you can for caffeine?",
+    "a": "Because silymarin has no classical receptor. It works as a redox-active antioxidant and an Nrf2/ARE pathway activator — there's no single binding pocket, so any specific Ki you see quoted should be treated as a red flag."
    }
   ],
   "evi": {
-   "howStrong": "Sits low on the evidence pyramid for a compound this famous. There are randomised controlled trials and even a Cochrane systematic review — so the evidence isn't scant, it's actually fairly clear, and what it clearly shows is a lack of benefit. The strongest studies are well-designed and negative, which is more informative than a pile of small positive ones. Preclinical (cell and animal) antioxidant data is abundant and genuinely supportive of the mechanism — but that layer doesn't establish a human outcome.",
-   "whatItShows": "For treating liver disease in people, it mostly shows no clear effect. The consistent pattern across the better trials is no significant improvement in liver enzymes (ALT) or in liver histology versus placebo. What it does show reliably is safety and good tolerability.",
-   "effect": "In plain terms: essentially null for the outcomes that matter. In chronic hepatitis C, higher-than-usual silymarin doses did not lower ALT more than placebo; in non-cirrhotic NASH, the proportion of patients reaching the histological endpoint was statistically indistinguishable from placebo (and fibrosis actually improved most in the placebo group). Treat any claimed benefit as unproven, not established.",
-   "whoBenefits": "No group has robust randomised evidence of benefit for liver disease. The one distinct clinical context is high-dose intravenous silibinin used for Amanita phalloides (death-cap) mushroom poisoning — a very different setting from the oral supplement, and even there the human evidence is observational rather than from controlled trials.",
-   "caveats": "Don't over-read the negative trials into \"it does nothing at all\" — the mechanism is real and the compound is safe; it simply hasn't been shown to change liver outcomes at studied oral doses. Poor, variable bioavailability is a genuine confounder: it's possible a better-absorbed form could perform differently, but that remains unproven. As always, publication bias tends to inflate small positive supplement studies, which is why the larger rigorous trials deserve the most weight.",
+   "howStrong": "Uneven. The mechanistic and animal antioxidant evidence is broad and fairly consistent, but the human clinical evidence is weak and mixed — which is why this page carries 2/5 stars. The single most important human data points cut against a strong effect: a Cochrane systematic review found no convincing outcome benefit, and a well-designed JAMA RCT in hepatitis C found nothing beyond placebo. Some meta-analyses of biomarkers (ALT/AST) in fatty-liver and drug-induced-liver-injury settings do show modest reductions, but biomarker shifts are softer than hard outcomes and the trials are heterogeneous.",
+   "whatItShows": "Read across the human literature and the honest picture is: a possible small improvement in liver enzyme readouts in some settings, but no reliable improvement in the outcomes that actually matter — mortality, complications, or histology. It is consistently safe and well tolerated. That safety, plus real lab antioxidant activity, is why it stays popular despite thin outcome data.",
+   "effect": "There is no well-established human effect size for a clinical outcome to quote — and inventing one would be dishonest. Where signals exist, they are modest biomarker changes (e.g. ALT/AST) of uncertain clinical meaning, not proven changes in disease course.",
+   "whoBenefits": "No group has a robustly proven benefit. The clearest real-world use of the silibinin molecule is IV silibinin for acute amatoxin (death-cap mushroom) poisoning — a distinct high-exposure rescue therapy, largely supported by observational data, and not the same as the oral supplement.",
+   "caveats": "Beware three traps: (1) test-tube antioxidant power does not equal human benefit, because so little active drug reaches the target; (2) biomarker improvements are not outcome improvements; and (3) the strongest positive-sounding results tend to come from lower-quality trials — the benefit shrinks or vanishes when only high-quality studies are pooled (a classic sign of bias).",
    "trials": [
     {
-     "finding": "In 154 patients with chronic hepatitis C previously unresponsive to interferon, two higher-than-usual oral silymarin doses were no better than placebo at reducing serum ALT.",
-     "ref": "Fried et al., 2012, JAMA"
-    },
-    {
-     "finding": "In 78 non-cirrhotic NASH patients, silymarin (420 or 700 mg t.i.d. for 48 weeks) did not significantly improve liver histology versus placebo.",
-     "ref": "Navarro et al., 2019, PLoS One"
-    },
-    {
-     "finding": "Systematic review of milk thistle for alcoholic and/or hepatitis B or C liver disease found no significant effect on mortality or liver histology; better-quality trials showed no benefit.",
+     "finding": "Systematic review of 13 randomised trials (915 patients): milk thistle showed no significant effect on all-cause mortality (RR 0.78, 95% CI 0.53–1.15) or complications of alcoholic and/or hepatitis B/C liver disease; the apparent liver-related mortality benefit was not significant when restricted to high-quality trials.",
      "ref": "Rambaldi et al., 2007, Cochrane Database of Systematic Reviews"
+    },
+    {
+     "finding": "Multicentre double-blind RCT, 154 patients with chronic hepatitis C who had failed interferon therapy: oral silymarin at 420 or 700 mg three times daily for 24 weeks did not reduce serum ALT more than placebo.",
+     "ref": "Fried et al., 2012, JAMA"
     }
    ]
   },
   "tech": {
-   "chem": "Silymarin is not a single molecule but a standardised flavonolignan complex extracted from the seeds of milk thistle (Silybum marianum). It's a mixture of closely related polyphenols — chiefly silybin (silibinin, itself a ~1:1 mix of diastereomers silybin A and B), plus isosilybin, silychristin, silydianin and the flavonoid taxifolin. Silybin is the principal active constituent. These are poorly water-soluble polyphenols, which is the root of the compound's low oral bioavailability.",
+   "chem": "Silymarin is not a single molecule but a flavonolignan complex extracted from the seeds of Silybum marianum (milk thistle), typically standardised to ~70–80% silymarin. Its major constituents are silybin (silibinin, itself a mix of diastereomers A and B), isosilybin, silychristin and silydianin. Silybin (PubChem CID 31553; the AB complex CID 1549163) is the chief active flavonolignan. It is poorly water-soluble and lipophilic, which underlies both its antioxidant membrane activity and its poor oral absorption.",
    "targets": [
     {
      "sym": "NFE2L2 (Nrf2)",
      "url": "https://www.ncbi.nlm.nih.gov/gene/4780",
-     "action": "indirect activator — silybin promotes Nrf2 nuclear translocation and ARE-driven transcription under oxidative stress",
-     "affinity": "not a receptor ligand; no binding constant — an antioxidant-pathway modulator",
-     "role": "the master antioxidant switch; downstream induction of HO-1 and NQO1 is the best-characterised molecular effect"
+     "action": "pathway activator → nuclear translocation → transcription of antioxidant-response-element (ARE) genes",
+     "affinity": "not a direct high-affinity ligand target; activation is indirect (redox/Keap1-linked), effective at micromolar exposures in vitro",
+     "role": "the master antioxidant switch — the curated mechanism of action, raising endogenous defences such as glutathione and antioxidant enzymes"
     },
     {
-     "sym": "Reactive oxygen species",
-     "action": "direct free-radical scavenging / electron donation; inhibits lipid peroxidation",
-     "affinity": "stoichiometric chemical antioxidant, not a saturable target",
-     "role": "the direct antioxidant action independent of any signalling pathway"
+     "sym": "Reactive oxygen species / lipid membranes",
+     "action": "direct free-radical scavenging and membrane stabilisation",
+     "affinity": "no binding constant — this is redox chemistry, not receptor occupancy",
+     "role": "the classic 'hepatoprotective antioxidant' action seen reliably in cell and animal models"
     },
     {
-     "sym": "Hepatic stellate cells",
-     "action": "dampens activation in preclinical models (reported anti-fibrotic effect)",
-     "affinity": "not a defined molecular target; a cell-level effect seen mainly in vitro/in animals",
-     "role": "basis of the \"anti-fibrotic\" claim — not established in humans"
+     "sym": "SLCO1B3 (OATP1B3) / OATP1B1",
+     "url": "https://www.ncbi.nlm.nih.gov/gene/28234",
+     "action": "inhibitor of hepatic uptake transporters",
+     "affinity": "relevant at the high plasma levels achieved by IV silibinin, not by oral supplements",
+     "role": "the mechanistic basis for IV silibinin (Legalon SIL) in Amanita/amatoxin poisoning — it blocks toxin uptake into hepatocytes; a distinct clinical use, not the oral-supplement indication"
     }
    ],
-   "signaling": "The central node is the Keap1–Nrf2–ARE axis: under oxidative stress silybin helps free Nrf2 (NFE2L2) from Keap1 so it enters the nucleus and drives antioxidant-response-element genes — HO-1, NQO1, and glutathione-synthesis enzymes. Preclinical work also reports modulation of NF-κB (anti-inflammatory) and TGF-β/stellate-cell activation (anti-fibrotic). Crucially, most of this is demonstrated in cell and animal systems; the human trials that tested whether it changes clinical liver outcomes were negative.",
+   "signaling": "There is no receptor cascade in the caffeine sense. The dominant node is Keap1–Nrf2–ARE: silybin promotes Nrf2 escape from Keap1-mediated degradation, Nrf2 enters the nucleus and drives ARE-linked antioxidant genes, raising glutathione and phase-II enzymes. Alongside this, direct radical scavenging and membrane stabilisation reduce lipid peroxidation, and in preclinical models silybin dampens hepatic stellate-cell activation (anti-fibrotic) and NF-κB-linked inflammatory signalling. The unifying limitation across all of these is exposure: the human liver rarely sees free silybin at the concentrations that drive these effects in vitro.",
    "adme": {
-    "absorb": "Low and variable oral bioavailability; silybin is poorly water-soluble. Phosphatidylcholine complexation (silybin–phosphatidylcholine, e.g. IdB 1016/Siliphos) was developed specifically to improve absorption.",
-    "distribute": "Distributes to the liver (the intended site) with preferential biliary handling; plasma levels are low and short-lived.",
-    "metabolise": "Rapid hepatic phase-II conjugation — glucuronidation (UGT) and sulfation (SULT) — is the dominant fate and the main reason for low systemic exposure.",
-    "excrete": "Predominantly biliary: roughly 80% of a dose is excreted in bile as conjugates, with a smaller urinary fraction. Terminal half-life is short (~1–4 h)."
+    "absorb": "Poor and variable oral bioavailability owing to low aqueous solubility and incomplete absorption; phospholipid ('phytosome'), micellar and SMEDDS formulations are designed specifically to raise it.",
+    "distribute": "Distributes preferentially to the liver via portal circulation; plasma is dominated by conjugated (glucuronide/sulfate) metabolites rather than free silybin.",
+    "metabolise": "Extensive phase-II conjugation — glucuronidation and sulfation — in the liver; little classical CYP oxidation. It can in turn modestly modulate some drug-metabolising enzymes and transporters, the basis of theoretical interactions.",
+    "excrete": "Predominantly biliary (a large fraction of an oral dose is excreted in bile as conjugates), with enterohepatic recycling and a smaller urinary contribution; short, formulation-dependent plasma half-life (~1–8 h)."
    },
-   "pgx": "No established single-gene pharmacogenetic determinant of response. Silymarin can inhibit certain CYP enzymes and UGT/transporters in vitro, so a theoretical interaction risk exists with narrow-therapeutic-index drugs, but a clinically dominant genotype effect (of the kind CYP1A2 exerts on caffeine) is not established.",
-   "dose": "Common oral supplement dose: standardised extract ~140 mg silymarin, 2–3×/day. A distinct clinical use is intravenous silibinin (Legalon SIL, silibinin-C-2',3-dihydrogen succinate), ~20 mg/kg/day, used for Amanita phalloides poisoning — a hospital antidote setting, not the oral supplement, and supported by observational rather than randomised data.",
-   "tolerance": "No receptor-mediated tolerance or dependence — there's nothing to down-regulate and nothing to cycle. Generally very well tolerated; the main practical limits are mild GI upset/laxative effect and rare allergy in people sensitive to the Asteraceae (ragweed/daisy) family."
+   "pgx": "No well-established single-gene pharmacogenetic determinant of response (contrast caffeine's CYP1A2). Inter-individual variability is driven mainly by absorption and formulation rather than a characterised polymorphism.",
+   "dose": "Common OTC protocol: standardised extract ~140 mg silymarin, 2–3×/day with food (i.e. roughly 280–420 mg/day). Higher oral doses are limited by absorption, not receptor saturation — pushing the number up does not reliably push liver exposure up. IV silibinin (Legalon SIL) is a separate, weight-based hospital regimen used for amatoxin poisoning and is not interchangeable with oral supplements.",
+   "tolerance": "No receptor down-regulation or tolerance in the pharmacological sense, and no need to cycle. Very well tolerated; the main adverse effects are mild GI upset/laxative effect and, rarely, allergic reactions in people sensitive to the Asteraceae (ragweed/daisy) family."
   }
  },
  "valerian-valeriana-officinalis": {
   "hook": {
    "questions": [
-    "If valerian hits the same GABA system as Valium, why doesn't it knock you out the way a prescription sleeping pill does?",
-    "Why does one study show it helps you sleep and the next shows nothing at all?",
-    "Is it safe to take every night — and will you wake up groggy or get hooked the way you might on a sleep drug?"
+    "If valerian hits the same receptor family as Valium, why is it so much weaker — and why won't it make you dependent?",
+    "Why do careful reviews keep saying it 'improves sleep' and 'does nothing for sleep' at the same time?",
+    "Why might a valerian capsule barely reach the very receptor it's designed to nudge?"
    ],
-   "payoff": "You can now answer all three. (1) Valerenic acid sits at a different, weaker seat on the GABA-A receptor than benzodiazepines — and the amount that reaches your brain is thousands of times below what nudges the receptor in a lab dish, so you get a gentle drift toward calm, not a hard stop. (2) 'Valerian' isn't one standardized drug — extracts vary wildly, most trials measure how you *feel* rather than what a monitor records, and objective sleep barely moves; that's why the results disagree. (3) Yes — it's low-risk and non-habit-forming, and its very short (~1 h) half-life means little morning grogginess. Just don't stack it with alcohol or other sedatives."
+   "payoff": "You can now answer all three. (1) Valerenic acid binds a different pocket on GABA-A than benzodiazepines (the loreclezole site, not the benzo site) — flumazenil doesn't even reverse it — so it gently amplifies GABA rather than forcing the channel, which is exactly why it's mild and non-habit-forming. (2) Subjective sleep-quality scores improve in several meta-analyses while objective measures (actigraphy, total sleep time) usually don't — plus the extracts vary so wildly in potency that trials genuinely conflict. (3) Valerenic acid works in a dish only at ≥30 µM, but a real 600 mg dose peaks in your blood around single-digit nanograms per millilitre — roughly a thousandfold lower — so how much ever reaches the receptor in a living person is the honest open question."
   },
-  "bigIdea": "Valerian gently turns up the brain's own volume knob for calm (the GABA system) — but so little of the active compound reaches your receptors that the sleep benefit is mild and hit-or-miss, not a reliable fix.",
-  "analogy": "Valerian is like resting a fingertip on your brain's brake pedal. It's the same braking system that prescription sedatives slam hard — but valerian barely presses, so at most you drift gently toward calm rather than lurching to a stop.",
+  "bigIdea": "Valerian doesn't sedate you like a drug — it gently makes your brain's own 'calm down' signal (GABA) work a little better, and 'a little' is the honest ceiling of what it does.",
+  "analogy": "Think of GABA as the volume knob that turns your brain down for the night. Valerenic acid doesn't turn the knob itself — it just makes your hand's turn go slightly further. A benzodiazepine grabs a different part of the same knob and cranks it hard; valerian only nudges it, and only when your own GABA is already turning.",
   "mechSteps": [
    {
     "n": 1,
-    "t": "Zoom in on one molecule: valerenic acid",
-    "predict": "Valerian root is a soup of dozens of compounds. Which single one do researchers treat as the active marker?",
-    "d": "Valerian is a whole-plant extract, but the constituent most tied to its calming action is valerenic acid — a sesquiterpene the amount of which is used to standardise a good extract. Everything downstream traces back to this one molecule.",
-    "tag": "valerenic acid"
-   },
-   {
-    "n": 2,
-    "t": "It nudges the brain's main calming receptor",
-    "predict": "Valerenic acid loosely shares a target family with Valium — which inhibitory receptor, and does it switch it on directly or just amplify it?",
-    "d": "It's a positive allosteric modulator of the GABA-A receptor — it doesn't open the channel itself, it makes the brain's own GABA work harder. It's selective for receptors carrying the β2 or β3 subunit, docking at the 'loreclezole' site — a different seat from the one benzodiazepines use.",
+    "t": "GABA is your brain's master 'calm down' signal",
+    "predict": "One neurotransmitter is the brain's main brake — the one that quiets neurons for sleep. Which one, and what does it open to do it?",
+    "d": "GABA is the chief inhibitory signal in your brain. When it docks on the GABA-A receptor, the receptor opens a chloride channel that hyperpolarises the neuron — making it harder to fire, which is what 'calming down' physically means.",
     "tag": "GABRB2"
    },
    {
+    "n": 2,
+    "t": "Valerenic acid doesn't switch the receptor on — it helps GABA",
+    "predict": "Valerenic acid barely does anything on its own. So how could it possibly calm you? Think about what it does to GABA that's already there.",
+    "d": "Valerenic acid is a positive allosteric modulator: it doesn't open the channel itself, it makes the receptor more responsive to the GABA your brain is already releasing. It shifts the response curve so a given amount of GABA does a little more.",
+    "tag": "valerenic acid",
+    "fx": "▲ GABA's own effect"
+   },
+   {
     "n": 3,
-    "t": "Calming tone rises, arousal dips",
-    "predict": "If you amplify the brain's main inhibitory signal, which way does alertness go — and what do you feel?",
-    "d": "GABA-A is a chloride channel; boosting it lets more chloride flow, neurons hyperpolarise, and firing quietens. The felt result is a mild drift toward drowsy and less anxious.",
-    "fx": "▼ arousal, ▲ calm"
+    "t": "It sits at a different seat than benzodiazepines",
+    "predict": "Valium works on the same receptor. If valerenic acid used the exact same binding spot, flumazenil (the benzo antidote) would reverse it. It doesn't. What does that tell you?",
+    "d": "Valerenic acid binds the loreclezole pocket on β2/β3 subunits — not the benzodiazepine site — and flumazenil doesn't block it. That different, weaker seat is precisely why it's gentle and non-habit-forming instead of a sedative hammer.",
+    "fx": "▽ gentle, non-addictive"
    },
    {
     "n": 4,
-    "t": "But barely enough reaches the target",
-    "predict": "In a dish the receptor only responds to valerenic acid at fairly high levels — how does that square with the tiny amount in your blood after a capsule?",
-    "d": "In vitro, valerenic acid only potentiates GABA-A at concentrations around 30 µM. After a 600 mg dose, human blood peaks near ~10 nM — roughly a thousandfold lower. That gap is the honest reason the real-world effect is mild and inconsistent, not the knockout a sedative delivers.",
-    "fx": "≈ mild, variable effect"
+    "t": "The catch: it may barely reach its own target",
+    "predict": "In a dish, valerenic acid only works at fairly high concentrations. A pill puts far less than that in your blood. What does that predict about the real-world effect?",
+    "d": "Valerenic acid potentiates GABA-A in the lab only at roughly ≥30 µM, but a real dose peaks in human blood near single-digit nanomolar — about a thousandfold lower. So even though the mechanism is real, how much actually engages the receptor in a person is genuinely uncertain — the deepest reason the effect is mild and inconsistent.",
+    "fx": "▽ mild & inconsistent"
    }
   ],
   "framework": {
-   "target": "The <b>GABA-A receptor</b> — specifically the β2/β3 subunit. Valerenic acid is a <b>positive allosteric modulator</b>: it amplifies the effect of the brain's own GABA rather than switching the receptor on itself. Note the seat matters — it binds the <b>loreclezole-like site</b>, not the benzodiazepine site, which is part of why it's so much gentler than a sleeping pill.",
-   "affinity": "There's no clean nanomolar Ki to quote here — and that's the crux. Valerenic acid only clearly potentiates GABA-A at concentrations around <b>≥30 µM</b> in the lab (and actually <i>inhibits</i> the receptor above ~100 µM). Yet a real 600 mg dose peaks near <b>~10 nM</b> in blood — roughly a thousandfold below the active concentration. Always check this gap: here it explains the whole story.",
-   "adme": "Absorbed as valerenic acid, which crosses into the brain and shows up in blood within 1–2 h at only low ng/mL levels, then clears fast — half-life about <b>1.1 h</b>. But valerian is a whole-plant mixture, so its true pharmacology is genuinely fuzzy; valerenic acid is a marker, not the whole picture.",
-   "genetics": "No characterised pharmacogenetic switch like caffeine's CYP1A2. Far more of the person-to-person variability probably comes from the <i>product</i> — species, plant part, extraction, valerenic-acid and valepotriate content — than from your genes.",
-   "evidence": "Weak — about 2/5. Several meta-analyses and a 2024 umbrella review exist, but the underlying trials are small, short, heterogeneous and high-risk-of-bias; subjective sleep sometimes improves, objective sleep rarely does."
+   "target": "The <b>GABA-A receptor</b> — specifically channels built with <b>β2 or β3 subunits</b>. Valerenic acid is a <b>positive allosteric modulator</b> (it potentiates GABA), not an agonist that opens the channel itself, and crucially <b>not</b> at the benzodiazepine site.",
+   "affinity": "Here's the honest crux. There's no tidy nanomolar Ki to quote: valerenic acid potentiates GABA-A in the lab only at roughly <b>≥30 µM</b>. But a 600 mg valerian dose peaks in human blood at about <b>0.9–2.3 ng/mL</b> (~10 nM) — some <b>thousandfold below</b> that active range. Always check whether a real dose reaches the target; here, it may well not, which is the mechanistic reason to expect only a mild effect.",
+   "adme": "Valerenic acid (the marker constituent) is absorbed with a peak at ~1–2 h and a short elimination half-life of ~1.1 h; it's still measurable in blood for ~5 h. Note that valerian root is a whole-plant extract — valerenic acid is the best-studied active, but not necessarily the only one.",
+   "genetics": "There's no clean single-gene pharmacogenetic switch like caffeine's CYP1A2. What dominates response instead is <b>product variability</b>: extracts differ enormously in valerenic-acid content, and whole root/rhizome preparations behave differently from concentrated extracts — a bigger source of 'it worked / it didn't' than your genes.",
+   "evidence": "Weak and mixed (2/5). Subjective sleep-quality and sleep-latency scores improve in several meta-analyses, but objective sleep measures usually don't, risk of bias is high across the literature, and a 2024 umbrella review found no clear evidence of efficacy — alongside a consistently good safety record."
   },
   "pk": {
-   "onset": "traditionally taken 30–60 min before bed",
-   "peak": "blood valerenic acid peaks ~1–2 h",
-   "halfLife": "~1.1 h (valerenic acid marker)",
-   "duration": "a few hours",
-   "note": "These numbers track valerenic acid, the marker compound — not necessarily the full sedative effect of the whole-plant extract. The short half-life is a plus for morning freshness (little hangover), but it also means there's no clean blood-level-to-effect curve to time precisely, unlike a true dose-driven drug."
+   "onset": "~30–60 min (loose)",
+   "peak": "~1–2 h (valerenic acid)",
+   "halfLife": "~1.1 h (valerenic acid)",
+   "duration": "measurable ~5 h",
+   "note": "These numbers are for valerenic acid, the marker constituent — not necessarily the whole effect. Because the link between blood level and any sleep benefit is loose (and blood levels sit far below the concentration that works in a dish), don't treat this as a precise stopwatch. The practical rule stays simple: take it 30–60 minutes before bed."
   },
   "journey": [
    {
-    "stage": "🌿 The capsule (or tea)",
-    "d": "You take 300–600 mg of root extract 30–60 minutes before bed. It's a mixture of many plant compounds, standardised loosely to its valerenic-acid content."
+    "stage": "🌿 The capsule",
+    "d": "You swallow 300–600 mg of valerian root extract (or drink it as a tea) 30–60 minutes before bed. It's a whole-plant preparation, so you're taking valerenic acid plus a mix of other plant compounds."
    },
    {
     "stage": "🩸 The blood",
-    "d": "Valerenic acid is absorbed and appears in your bloodstream within 1–2 hours — but only at low nanogram-per-millilitre levels, a very small amount."
+    "d": "Valerenic acid is absorbed and peaks in your bloodstream around 1–2 hours later — but only at a few nanograms per millilitre, a strikingly low level for its target."
    },
    {
     "stage": "🧠 The brain",
-    "d": "It crosses into the brain and settles onto GABA-A receptors carrying the β2/β3 subunit, gently amplifying the calming GABA signal already there."
+    "d": "It crosses into the brain and settles onto GABA-A receptors with β2/β3 subunits, at the loreclezole pocket — nudging your own GABA to quiet neurons a little more than it otherwise would."
    },
    {
-    "stage": "🧩 The mixture caveat",
-    "d": "It's never acting alone — other valerian constituents (and possibly effects at adenosine A1 and 5-HT5A receptors seen in vitro) may contribute, which is why no single molecule fully explains the effect."
+    "stage": "🔬 The liver",
+    "d": "Valerenic acid is cleared quickly, with a half-life of only about an hour — much shorter than a typical sleeping pill, so it doesn't linger and build up."
    },
    {
-    "stage": "🕐 The fade",
-    "d": "Valerenic acid clears quickly — half is gone in about an hour — so it leaves your system by morning, which is why grogginess the next day is uncommon."
+    "stage": "🕗 The fade",
+    "d": "It's largely gone within several hours. Because it isn't habit-forming and doesn't drive tolerance, there's nothing to taper off — but also no strong, lasting grip on your sleep to begin with."
    }
   ],
   "myths": [
    {
-    "myth": "Valerian is basically 'natural Valium'.",
-    "truth": "Both touch the GABA-A receptor, so there's a grain of truth — but valerenic acid binds a different, weaker site (the β-subunit/loreclezole seat, not the benzodiazepine seat), reaches only nanomolar blood levels, and is non-habit-forming. It produces nothing like benzodiazepine-level sedation or dependence."
+    "myth": "Valerian is basically a natural version of Valium.",
+    "truth": "Same receptor family, but a different seat. Valerenic acid binds the loreclezole pocket, not the benzodiazepine site — flumazenil (the benzo antidote) doesn't even reverse it. It's far weaker, and unlike benzodiazepines it isn't habit-forming and has no established withdrawal syndrome."
    },
    {
-    "myth": "It reliably knocks you out on the first night.",
-    "truth": "Single-dose effects are inconsistent, and much of the (modest) trial evidence used it nightly over one to several weeks. Expect a mild, subjective easing at best — and for a large share of people, nothing measurable."
+    "myth": "It knocks you out like a sleeping pill.",
+    "truth": "The effect is mild. People often report falling asleep a bit easier or rating their sleep as better (subjective measures), yet objective sleep — total sleep time, actigraphy — frequently shows no change. Some benefit also seems to build over a couple of weeks of nightly use rather than the first dose."
    },
    {
-    "myth": "It's natural, so it's completely safe with anything.",
-    "truth": "It's low-risk and non-habit-forming, but it leans on the brain's sedative system, so don't combine it with alcohol, benzodiazepines or other sedatives. Mild next-day grogginess or GI upset can occur, and rare liver-related case reports exist (mostly with multi-herb products, causality unclear)."
+    "myth": "It's natural, so it's free of side effects and interactions.",
+    "truth": "It's low-risk, not no-risk. It can add to other sedatives (alcohol, benzodiazepines, sleep meds), sometimes causes morning grogginess or vivid dreams, and rare liver-related reports exist — mostly with multi-herb combination products. 'Natural' doesn't mean inert."
    }
   ],
   "whenToUse": {
-   "intro": "Put it together — here's how to actually use it, with honest expectations:",
+   "intro": "It's genuinely low-risk, so it's reasonable to try — just calibrate your expectations. Here's how to use it well:",
    "items": [
-    "**Dose and timing:** 300–600 mg of a standardised root extract, 30–60 minutes before bed. Higher isn't better.",
-    "**Give it a fair trial:** what modest evidence exists often used it nightly for ~2 weeks, so judge it over days, not a single night.",
-    "**Set expectations low:** mild at best, and more 'I felt I slept a bit better' than a measurable knockout. Roughly half of trials find nothing — being a non-responder is common and normal.",
-    "**Don't stack sedatives:** avoid pairing with alcohol, benzodiazepines or other sleep drugs.",
-    "**Know when to move on:** if two weeks of nightly use does nothing, valerian likely isn't your fix — sleep hygiene or CBT-I have far stronger evidence. Its real appeal is being low-risk and non-habit-forming, not powerful."
+    "**Dose and timing:** 300–600 mg of root extract, 30–60 minutes before bed. More isn't better here — there's no reason to megadose.",
+    "**Give it about two weeks.** Some of the benefit appears to build with repeated nightly use, so a single trial night undersells it. If nothing's shifted after 2–4 weeks, it's probably not your answer.",
+    "**Buy a standardised extract from a reputable brand.** Potency varies wildly between products — that variability is a real reason trials disagree, and it's the main thing you can control.",
+    "**Set the bar honestly:** expect mild at best, not a reliable fix. Sleep hygiene, light exposure and a consistent schedule will out-perform it — treat valerian as a gentle add-on.",
+    "**Mind the combinations:** don't stack it with alcohol or other sedatives, and skip it before driving if it leaves you groggy. If you have liver concerns or take other medications, check with a clinician first."
    ]
   },
   "checks": {
    "start": {
-    "q": "In one line — does valerian sedate you like a sleeping pill?",
-    "a": "No. It gently amplifies GABA (the brain's calm signal) at a weaker site than prescription sedatives, so the effect is mild and non-habit-forming, not a knockout."
+    "q": "In one line: does valerian sedate you directly, or work through something your brain already makes?",
+    "a": "Through your own GABA. Valerenic acid makes the GABA-A receptor more responsive to the GABA you're already releasing — it doesn't open the channel or sedate you by itself."
    },
    "how": {
-    "q": "What does valerenic acid do to the GABA-A receptor, and how is that different from Valium?",
-    "a": "It's a positive allosteric modulator at the β2/β3 (loreclezole-like) site — it makes the brain's own GABA work harder rather than opening the channel itself. Benzodiazepines act at a different, more powerful site."
+    "q": "Valerian and Valium both act on GABA-A. What's the key difference, and how do we know?",
+    "a": "They bind different seats. Valerenic acid uses the loreclezole pocket on β2/β3 subunits, not the benzodiazepine site — and flumazenil, which reverses benzos, doesn't reverse valerenic acid. That's why it's weaker and non-habit-forming."
    },
    "use": {
-    "q": "How should you dose it and what should you expect?",
-    "a": "300–600 mg of root extract, 30–60 min before bed, ideally nightly for ~2 weeks. Expect a mild, mostly subjective benefit at best — and possibly none. It's low-risk and non-habit-forming; don't combine with alcohol or sedatives."
+    "q": "Why is buying a standardised extract and giving it two weeks the smart way to try valerian?",
+    "a": "Because product potency varies enormously (a big reason trials conflict), and some benefit seems to build over repeated nightly use rather than the first dose."
    },
    "evidence": {
-    "q": "Is the sleep benefit well proven?",
-    "a": "No — about 2/5. Meta-analyses show inconsistent, mostly subjective improvement; objective sleep measures rarely move, and study quality is low."
+    "q": "How good is the evidence — and where does it fall apart?",
+    "a": "Weak and mixed. Subjective sleep scores improve in several meta-analyses, but objective measures usually don't, bias is high across studies, and a 2024 umbrella review found no clear evidence of efficacy. Safety, though, is consistently good."
    }
   },
   "canExplain": [
-   "Why valerian shares a target family with benzodiazepines yet is far milder and non-habit-forming",
-   "The exact receptor site valerenic acid modulates (the β2/β3 GABA-A subunit) and how a positive allosteric modulator differs from a direct activator",
-   "Why the huge gap between lab-active concentrations and real blood levels explains its mild, inconsistent effect",
-   "Why meta-analyses disagree — subjective versus objective sleep endpoints, and wildly variable extracts",
-   "Why it's low-risk with little morning grogginess, and how to set realistic expectations before trying it"
+   "Why valerian nudges your own GABA rather than sedating you directly",
+   "How it hits the same receptor as benzodiazepines yet is far weaker and non-addictive — and the flumazenil test that proves the difference",
+   "Why a normal dose may barely reach the concentration its target needs, and what that predicts",
+   "Why 'improves sleep' and 'does nothing' can both be true in the literature at once",
+   "How strong the evidence actually is, and why product quality matters more than your genes"
   ],
   "selfTest": [
    {
-    "q": "Valerenic acid potentiates GABA-A in the lab at around 30 µM, but a 600 mg dose peaks near ~10 nM in blood. What does that mismatch predict about the clinical effect?",
-    "a": "That any effect will be weak and unreliable — the concentration actually reaching the receptor is roughly a thousandfold below what clearly modulates it in vitro. This fits the mixed, mostly-subjective trial results."
+    "q": "A friend says valerian is 'just herbal Valium.' Give the two-part mechanistic reason that's wrong.",
+    "a": "First, valerenic acid binds a different site (the loreclezole pocket on β2/β3 subunits), not the benzodiazepine site — flumazenil doesn't reverse it. Second, it only potentiates GABA rather than strongly driving the channel, so it's far weaker and, unlike benzodiazepines, non-habit-forming with no established withdrawal."
    },
    {
-    "q": "A friend calls valerian 'natural Valium.' What's accurate and what's misleading?",
-    "a": "Accurate: both act on the GABA-A receptor. Misleading: valerenic acid binds a different (β-subunit/loreclezole-like) site, is far weaker, non-habit-forming, and produces nothing like benzodiazepine-level sedation or dependence."
+    "q": "Valerenic acid needs ~30 µM to work in a dish, but a 600 mg dose peaks near 10 nM in blood. Why does that gap matter for what you should expect?",
+    "a": "It's roughly a thousandfold shortfall, so how much valerenic acid ever engages the receptor in a living person is uncertain. That mismatch is a core mechanistic reason to expect only a mild, inconsistent effect — not a reliable sleep aid."
    },
    {
-    "q": "One meta-analysis says valerian improves sleep; another says it doesn't. How can both be defensible?",
-    "a": "They weight endpoints differently. Subjective 'my sleep improved' ratings tend to favour valerian, while objective measures — sleep latency, total sleep time on a monitor — generally don't move. Add variable extracts and low study quality and the disagreement is expected."
+    "q": "Two well-run reviews seem to disagree on whether valerian works. Name two honest reasons that isn't a contradiction.",
+    "a": "(1) Subjective outcomes (how people rate their sleep) improve while objective ones (actigraphy, total sleep time) often don't — so 'works' depends on what you measure. (2) Extracts vary hugely in potency, so different trials effectively tested different doses of active compound."
    }
   ],
   "evi": {
-   "howStrong": "Valerian sits low on the evidence pyramid — about 2 out of 5. Several meta-analyses and a 2024 umbrella review exist, so it has been studied, but the underlying trials are small, short, use very different extracts and doses, and carry a high risk of bias. This is the opposite of caffeine or creatine: the mechanism is plausible, but the human evidence is thin and shaky, not settled.",
-   "whatItShows": "The recurring thread is a small, mostly subjective improvement — people report falling asleep a little easier or rating their sleep as better — while objective, measured sleep (how fast you actually fall asleep, total sleep time on a monitor) generally doesn't budge. A large fraction of trials find no effect at all.",
-   "effect": "There's no reliable, clean effect size to quote — that inconsistency *is* the finding. In the 2006 review, dichotomous 'did your sleep improve?' ratings leaned in valerian's favour, but 9 of 16 trials were null and continuous sleep measures didn't clearly move. The honest read: mild at best, and absent for many.",
-   "whoBenefits": "Hard to predict — there's no characterised responder gene or clear subgroup. If anything, the benefit skews toward self-reported sleep quality in people with mild difficulty, and it's most attractive to those who specifically want a non-habit-forming option and accept a small, uncertain payoff.",
-   "caveats": "Extracts vary enormously (species, plant part, valerenic-acid and valepotriate content), so 'valerian' isn't one standardised drug — trials aren't all testing the same thing. Endpoints are mostly subjective and open to placebo effects. Study quality ranges from low to critically low. Treat any positive number as fragile.",
+   "howStrong": "The evidence is weak and genuinely mixed — a step or two up from anecdote, but nowhere near the settled ground of caffeine or creatine. Dozens of trials exist and several have been pooled into meta-analyses, but they are plagued by high risk of bias, small samples, short durations, and — most damagingly — wildly variable extracts, so different studies effectively tested different doses of the active compound. A 2024 umbrella review (a review of reviews) is the honest bottom line: after weighing eight systematic reviews, it found no clear evidence of efficacy for insomnia.",
+   "whatItShows": "A recurring split: people tend to rate their sleep as better (subjective sleep quality and sleep latency improve in several meta-analyses), while objective measures — actigraphy, total sleep time — usually don't move. That pattern is consistent with a real but small effect, a placebo contribution, or both. It is not consistent with a strong hypnotic.",
+   "effect": "Hard to pin to a clean number because outcomes and extracts differ so much. One earlier meta-analysis reported that valerian users were more likely to report improved sleep (relative risk ~1.8), but the same analysis flagged publication bias, and many individual trials were simply null. Treat any single effect size as soft.",
+   "whoBenefits": "If anyone, likely people with mild, self-reported sleep difficulty who use a decent standardised extract nightly for a couple of weeks. It is not a treatment for clinical insomnia, and it shouldn't displace evidence-based options like CBT-I or good sleep hygiene.",
+   "caveats": "The literature is biased toward positive subjective outcomes, extract quality is rarely controlled, and objective benefit is thin. The one thing that is well established is safety: no severe adverse events across trials spanning ages 7–80, with only mild, transient side effects.",
    "trials": [
     {
-     "finding": "Systematic review of 16 randomised placebo-controlled trials (1093 patients): valerian may improve subjective sleep quality, but 9 of 16 studies showed no benefit and most had significant methodological problems.",
-     "ref": "Bent et al., 2006, Am J Med"
+     "finding": "Umbrella review of 8 systematic reviews: subjective sleep-quality and sleep-latency improvements in some meta-analyses, but objective outcomes generally unchanged and high risk of bias throughout — concluding no clear evidence of efficacy, alongside a good safety profile.",
+     "ref": "Valente et al., 2024, European Neuropsychopharmacology"
     },
     {
-     "finding": "Meta-analysis of randomised controlled trials: dichotomous 'sleep quality improved' ratings favoured valerian, but effectiveness was not demonstrated on quantitative or objective sleep measures.",
-     "ref": "Fernández-San-Martín et al., 2010, Sleep Med"
+     "finding": "Systematic review & meta-analysis: valerian users were more likely to report improved sleep quality (RR ≈ 1.8, 95% CI 1.2–2.9), but with evidence of publication bias and many null trials.",
+     "ref": "Bent et al., 2006, American Journal of Medicine"
     },
     {
-     "finding": "Umbrella review of 8 systematic reviews (~15,716 subjects): some subjective improvements in sleep quality and latency, but no benefit on objective sleep outcomes; high risk of bias in all reviews.",
-     "ref": "Valente et al., 2024, Eur Neuropsychopharmacol"
+     "finding": "Systematic review & meta-analysis (60 studies, n≈6,894): valerian improved subjective sleep quality and reduced anxiety, with inconsistency attributed to variable herbal-extract quality; no severe adverse events (ages 7–80).",
+     "ref": "Shinjyo et al., 2020, Journal of Evidence-Based Integrative Medicine"
     }
    ]
   },
   "tech": {
-   "chem": "Valerenic acid is a sesquiterpenoid carboxylic acid (PubChem CID 6440940), the marker/active constituent of Valeriana officinalis root. But valerian itself is a whole-plant extract containing many compounds — valerenic acid and related sesquiterpenes, unstable valepotriates (iridoids), lignans, and small amounts of GABA and glutamine. No single molecule fully accounts for the effect, which is part of why standardisation and reproducibility are hard.",
+   "chem": "Valerenic acid is a sesquiterpenoid carboxylic acid largely specific to Valeriana officinalis, and the usual marker used to standardise extracts. But valerian root is a whole-plant preparation: it also contains acetoxyvalerenic acid, the labile valepotriates, lignans, and small amounts of GABA itself. Attributing the whole effect to valerenic acid is a useful simplification, not a complete account.",
    "targets": [
     {
      "sym": "GABRB2 (GABA-A receptor β2 subunit)",
      "url": "https://www.ncbi.nlm.nih.gov/gene/2561",
-     "action": "β2/β3-selective positive allosteric modulator, acting at the loreclezole-like site (distinct from the benzodiazepine site)",
-     "affinity": "no clean Ki; potentiates GABA currents in vitro at ≥30 µM and inhibits at ≥100 µM — far above the ~10 nM plasma peak reached after dosing",
-     "role": "the calming-tone amplifier — but engaged only at concentrations well above those human dosing achieves, which caps the real effect"
-    },
-    {
-     "sym": "Adenosine A1 / 5-HT5A (proposed, in vitro)",
-     "action": "additional binding reported for valerian constituents in cell/receptor studies",
-     "affinity": "not quantified in humans",
-     "role": "the mechanism may be plural; these contributions are unproven at human exposures and should be treated as hypotheses"
+     "action": "positive allosteric modulator — potentiates GABA-gated Cl⁻ currents; β2/β3-selective and inactive on β1-containing channels",
+     "affinity": "no clean Ki; potentiation seen in vitro at ~≥30 µM (and paradoxical inhibition/open-channel block at ≥100 µM) — far above the ~10 nM plasma peak reached at ordinary doses",
+     "role": "the curated, trusted mechanism, though whether therapeutic levels are reached in vivo is uncertain"
     }
    ],
-   "signaling": "GABA-A is a ligand-gated chloride channel. As a positive allosteric modulator, valerenic acid shifts the GABA concentration–response curve leftward, so a given amount of GABA opens the channel more — more chloride influx, membrane hyperpolarisation, reduced neuronal excitability, and a mild sedative/anxiolytic tone. There is no downstream second-messenger cascade to drive the acute effect; it's direct channel modulation.",
+   "signaling": "Valerenic acid binds the loreclezole pocket on β2/β3 subunits and shifts the GABA concentration–response curve leftward, enhancing chloride influx and neuronal hyperpolarisation. Two distinguishing facts: the effect does not require the γ subunit, and it is not reversed by flumazenil — confirming it acts away from the benzodiazepine site. The β2N265S point mutation (which also abolishes loreclezole's action) sharply reduces valerenic-acid sensitivity, pinpointing the site. Other valerian constituents have been proposed to touch additional targets, but GABA-A β2/β3 modulation is the best-characterised route.",
    "adme": {
-    "absorb": "Valerenic acid is absorbed after oral dosing; plasma Cmax is low (~2 ng/mL range) and occurs at roughly 1–2 h.",
-    "distribute": "Lipophilic enough to cross into the brain; detailed distribution in humans is poorly characterised.",
-    "metabolise": "Human metabolic pathways for valerenic acid are not well defined; the broader valerian extract's metabolism is complex and understudied.",
-    "excrete": "Elimination is rapid — valerenic acid half-life ~1.1 h — but the routes are not clearly characterised in humans."
+    "absorb": "Valerenic acid is orally absorbed; after 600 mg valerian, peak serum concentration of ~0.9–2.3 ng/mL occurs around 1–2 h.",
+    "distribute": "Lipophilic enough to cross into the brain; plasma levels are low (nanomolar range), well below in-vitro active concentrations.",
+    "metabolise": "Cleared relatively rapidly — elimination half-life of the valerenic-acid marker is ~1.1 h in healthy adults.",
+    "excrete": "Valerenic acid remains measurable in serum for ~5 h after a dose; no meaningful accumulation was seen between single and multiple dosing."
    },
-   "pgx": "No established pharmacogenetic determinant of response. Practical variability is dominated by product/extract differences rather than host genetics.",
-   "dose": "300–600 mg of standardised root extract, 30–60 min before bed; several trials dosed nightly over 2–4 weeks. Higher doses are not shown to add benefit.",
-   "tolerance": "Non-habit-forming: unlike benzodiazepines, valerian shows no clear receptor down-regulation, physical dependence, or withdrawal syndrome — a genuine advantage, and one of the few things about it that is well agreed upon."
+   "pgx": "No established single-gene pharmacogenetic determinant analogous to caffeine's CYP1A2. The dominant source of variable response is pharmaceutical, not genetic: extracts differ markedly in valerenic-acid content and in whole-root versus concentrated-extract composition.",
+   "dose": "Commonly 300–600 mg of root extract 30–60 min before bed; some regimens use nightly dosing for 2–4 weeks, consistent with reports that benefit may build with repeated use. Standardisation to valerenic-acid content is the key quality variable.",
+   "tolerance": "Non-habit-forming. Unlike benzodiazepines, valerian has no established tolerance, dependence, or withdrawal syndrome, and its short half-life means it does not accumulate — so there is nothing to cycle off. Safety across trials is good, with only mild, transient adverse effects reported."
+  }
+ },
+ "sam-e-s-adenosylmethionine": {
+  "hook": {
+   "questions": [
+    "Why does a molecule your body already makes in every single cell need to be swallowed as a pill at all — and why enteric-coated, on an empty stomach?",
+    "Why does the same supplement help two things as unrelated as depression and an aching, stiff knee?",
+    "Why must you never just add it to your antidepressant on your own, when it sits on the shelf next to the vitamins?"
+   ],
+   "payoff": "You can now answer all three. (1) Your cells make plenty, but the molecule is fragile and destroyed in the stomach — so oral SAM-e is only ~2-3% absorbed, which is exactly why it's enteric-coated (to survive stomach acid) and taken on an empty stomach. (2) It isn't a drug for depression or for arthritis — it's the universal methyl donor, the raw currency dozens of unrelated enzymes need, so topping it up nudges both mood-chemical synthesis AND cartilage-building at once. (3) Because SAM-e feeds serotonin production and your SSRI blocks serotonin's removal, stacking them can push serotonin dangerously high (serotonin syndrome) — and in undiagnosed bipolar it can tip a person into mania. Over-the-counter does not mean consequence-free."
+  },
+  "bigIdea": "SAM-e doesn't act on a receptor — it's your body's universal methyl-group delivery currency, the single chemical tag that dozens of unrelated enzymes must borrow to build mood chemicals, DNA marks and cartilage, which is why one molecule reaches things as different as depression and arthritis.",
+  "analogy": "SAM-e is a book of postage stamps for your cells. Each methyl group is one stamp. Enzymes can't 'send' their reactions — finish a neurotransmitter, mark a gene, build a membrane, patch cartilage — until SAM-e licks a stamp onto them. Run low on stamps and a whole pile of unrelated deliveries stalls at once; that shared currency is why a single molecule touches mood and joints together.",
+  "mechSteps": [
+   {
+    "n": 1,
+    "t": "Your body forges it from an amino acid + ATP",
+    "predict": "SAM-e isn't eaten in food in any real amount — your cells build it fresh. From which amino acid, and what high-energy molecule pays for the build?",
+    "d": "An enzyme called methionine adenotransferase (MAT) fuses the amino acid methionine with ATP to make SAM-e. That fusion loads a methyl group onto a sulfur atom in a strained, 'primed' state — a chemical spring ready to fire.",
+    "tag": "MAT1A"
+   },
+   {
+    "n": 2,
+    "t": "It hands its methyl group to methyltransferase enzymes",
+    "predict": "SAM-e carries one transferable methyl (-CH3) tag. It doesn't switch a receptor on or off — so what does it actually DO with that tag?",
+    "d": "SAM-e is a substrate, not a signal. Dozens of methyltransferase enzymes grab it and transfer its single methyl group onto their targets — this is 'transmethylation,' and SAM-e is the donor for essentially all of it.",
+    "tag": "COMT"
+   },
+   {
+    "n": 3,
+    "t": "Those transfers build mood chemicals, DNA marks and membranes",
+    "predict": "Name one place a stuck-on methyl group changes how your brain works.",
+    "d": "Methyl transfers finish and regulate neurotransmitters (supporting dopamine and serotonin pathways), stamp methyl marks onto DNA that switch genes on and off, and build phospholipids for cell membranes. In joints the same currency feeds cartilage proteoglycan synthesis.",
+    "fx": "▲ mood-chemical & cartilage synthesis"
+   },
+   {
+    "n": 4,
+    "t": "Spent, it becomes SAH — and must be recycled",
+    "predict": "Once SAM-e gives away its methyl, what's left over, and why can't your body just throw it out?",
+    "d": "Stripped of its methyl, SAM-e becomes SAH (S-adenosylhomocysteine), which is then broken to homocysteine. Homocysteine is remethylated back to methionine — a step that needs folate and vitamin B12 — closing the methylation cycle so the whole loop can run again.",
+    "tag": "SAH"
+   },
+   {
+    "n": 5,
+    "t": "The effect builds over weeks, not minutes",
+    "predict": "SAM-e's blood half-life is only about 1-2 hours. So why does its mood benefit take weeks to appear?",
+    "d": "Like creatine, the felt effect isn't chased by a daily blood peak — it comes from steadily shifting the cell's methylation capacity and downstream synthesis. That's a slow adaptation, which is why depression trials run for weeks and joint relief lags behind a painkiller's.",
+    "fx": "▼ depressive symptoms (over weeks)"
+   }
+  ],
+  "framework": {
+   "target": "There is no receptor. This is the key thing to grasp: SAM-e is a <b>substrate</b> — the methyl-donating cosubstrate for methyltransferase enzymes (COMT, DNA methyltransferases, PEMT and dozens more). Unlike caffeine (which blocks a receptor) or semaglutide (which activates one), SAM-e has nothing to switch on or off.",
+   "affinity": "There's no receptor binding constant to quote, because there's no receptor. What matters instead is the <b>methylation potential</b> — the SAM-e-to-SAH ratio inside the cell. Raise SAM-e and more enzymes can complete their transfers; but the loop is capped by how fast folate and B12 recycle the leftover homocysteine, so 'more' has a ceiling.",
+   "adme": "Poorly absorbed orally (only ~2-3% bioavailability), which is why it's enteric-coated to survive stomach acid; plasma peaks ~3-5 h after an enteric tablet. It crosses into the brain and CSF. It isn't cleared by a liver CYP enzyme — it's consumed inside the methylation cycle, becoming SAH then homocysteine. Plasma half-life is short (~1.5-2 h).",
+   "genetics": "No single clean switch like caffeine's CYP1A2. Response is shaped by the methylation cycle's cofactors: folate and B12 status, and MTHFR variants (which slow homocysteine recycling) all move the needle. COMT genotype (Val158Met) sets how fast SAM-e-driven methylation clears dopamine.",
+   "evidence": "Genuinely good for a supplement (curated 4/5): multiple RCTs and meta-analyses plus a Cochrane review for depression (mainly as an adjunct), and head-to-head RCTs versus an NSAID for osteoarthritis. Stronger than almost any other mood supplement, though many trials are older, small, or heterogeneous."
+  },
+  "journey": [
+   {
+    "stage": "💊 The tablet",
+    "d": "You swallow an enteric-coated dose on an empty stomach. The coating exists for a reason: uncoated SAM-e is shredded by stomach acid, so only about 2-3% of an oral dose ever makes it into you."
+   },
+   {
+    "stage": "🩸 The blood",
+    "d": "What survives dissolves into the bloodstream, peaking around 3-5 hours later. It's a fragile passenger — blood levels rise and fall within hours, but that flicker isn't what does the therapeutic work."
+   },
+   {
+    "stage": "🧠🦴 The tissues",
+    "d": "It crosses into the brain and CSF and reaches joints. There it becomes the methyl currency: feeding neurotransmitter and DNA methylation in the brain, and proteoglycan synthesis in cartilage."
+   },
+   {
+    "stage": "⚗️ The handoff",
+    "d": "A methyltransferase enzyme grabs SAM-e and transfers its methyl group onto a target. Job done, SAM-e is now SAH — a spent stamp that must be cleared before it jams the enzymes."
+   },
+   {
+    "stage": "🔄 The recycle",
+    "d": "SAH is broken to homocysteine, then remethylated back to methionine using folate and B12 — closing the loop so a fresh SAM-e can be forged. Without enough folate/B12, homocysteine backs up."
+   }
+  ],
+  "myths": [
+   {
+    "myth": "SAM-e is basically just an expensive B-vitamin.",
+    "truth": "Folate and B12 are helpers that recycle the methylation cycle upstream; SAM-e is the actual methyl currency being spent downstream. They're linked but not interchangeable — you can be replete in B-vitamins and still be limited by SAM-e supply, and SAM-e's leftover homocysteine still needs those B-vitamins to clear."
+   },
+   {
+    "myth": "It works fast, like a mood boost you feel the same day.",
+    "truth": "Its blood half-life is only ~1.5-2 hours, but the benefit builds over weeks as methylation capacity and downstream synthesis shift. Depression trials run for weeks precisely because there's no same-day hit to chase."
+   },
+   {
+    "myth": "It's over the counter, so it's safe to add to my antidepressant.",
+    "truth": "This is the dangerous one. SAM-e supports serotonin synthesis while SSRIs/SNRIs block serotonin's removal — together they can push serotonin toward serotonin syndrome. And in undiagnosed bipolar disorder it can trigger mania or hypomania. OTC availability is not medical clearance."
+   }
+  ],
+  "whenToUse": {
+   "intro": "How it's actually used — a note on status first: SAM-e is sold OTC in the US but is a prescription medicine (ademetionine) in parts of Europe. Because of real interaction and mania risks, treat the studied doses below as clinical information, not a green light to self-experiment — especially if you take any antidepressant or have any mood-disorder history. Talk to a clinician.",
+   "items": [
+    "**Depression, as an add-on:** studied at 800-1600 mg/day (e.g. 800 mg twice daily) added to an antidepressant in people who didn't respond to the antidepressant alone — done under supervision because of serotonin-syndrome risk. The evidence is weaker for SAM-e used entirely on its own.",
+    "**Osteoarthritis:** ~1200 mg/day was compared head-to-head with the NSAID celecoxib for knee OA; SAM-e was slower to start working but reached comparable symptom relief, with a gentler GI profile.",
+    "**Formulation matters:** enteric-coated, on an empty stomach, and start low then titrate up — this is how the trials dosed it and how you limit early nausea and insomnia.",
+    "**Who must be careful:** anyone with bipolar disorder (mania/hypomania risk), anyone on an SSRI/SNRI or other serotonergic drug (serotonin-syndrome risk), and around a planned pregnancy — discuss with a clinician first.",
+    "**Support the cycle:** because SAM-e generates homocysteine as it's spent, adequate folate and B12 status matters to keep the methylation loop clearing properly."
+   ]
+  },
+  "checks": {
+   "start": {
+    "q": "In one line: does SAM-e work by switching a receptor on or off?",
+    "a": "Neither — it has no receptor. It's a substrate, the methyl-group currency that methyltransferase enzymes borrow to do their jobs."
+   },
+   "how": {
+    "q": "What does SAM-e physically hand over, and name two very different things that transfer builds.",
+    "a": "A single methyl group (-CH3). It's used to build/regulate mood chemicals like dopamine and serotonin, to mark DNA, to build cell membranes, and to make cartilage proteoglycans — which is why one molecule reaches both brain and joints."
+   },
+   "use": {
+    "q": "Why does its short ~1.5-2 hour blood half-life not mean you feel it fast?",
+    "a": "Because the benefit comes from steadily raising methylation capacity and downstream synthesis over weeks, not from a daily blood peak. It's a slow adaptation, more like creatine than caffeine."
+   },
+   "evidence": {
+    "q": "What's it best evidenced for, and what's the single biggest safety catch?",
+    "a": "Osteoarthritis symptom relief and depression (best as an add-on to an antidepressant). The biggest catch: combined with SSRIs/SNRIs it risks serotonin syndrome, and it can trigger mania in bipolar disorder."
+   }
+  },
+  "canExplain": [
+   "Why SAM-e, unlike almost every other compound on this site, has no receptor — it's a methyl-donating substrate",
+   "How one molecule can plausibly help both depression and osteoarthritis through the same shared methyl currency",
+   "Why oral SAM-e is enteric-coated and only ~2-3% absorbed, and why timing on an empty stomach matters",
+   "Why the mood effect builds over weeks despite a short blood half-life",
+   "Why it's genuinely risky to combine with an SSRI, and why bipolar disorder is a hard stop"
+  ],
+  "selfTest": [
+   {
+    "q": "SAM-e touches no receptor, yet it plausibly helps two unrelated problems — low mood and stiff knees. What single fact explains how one molecule can do both?",
+    "a": "It's the universal methyl donor. Dozens of unrelated enzymes borrow its methyl group — some to build mood chemicals and DNA marks in the brain, others to build cartilage proteoglycans in joints — so raising the shared currency nudges both at once."
+   },
+   {
+    "q": "A friend says SAM-e 'did nothing' after taking it with orange juice and breakfast for three days. Give two reasons the trial was doomed.",
+    "a": "First, food and a non-empty stomach cut absorption of an already poorly-absorbed molecule (only ~2-3% oral bioavailability), and it should be enteric-coated on an empty stomach. Second, the mood benefit builds over weeks — three days is far too short to judge it."
+   },
+   {
+    "q": "Why can adding SAM-e to an SSRI be dangerous, in mechanistic terms?",
+    "a": "SAM-e feeds serotonin synthesis while the SSRI blocks serotonin's reuptake/removal — two pushes in the same direction can drive serotonin too high, risking serotonin syndrome. That's why the combination needs a clinician, not self-experimentation."
+   }
+  ],
+  "evi": {
+   "howStrong": "For a supplement, SAM-e's evidence is unusually respectable: multiple randomised controlled trials pooled into several meta-analyses and a Cochrane review for depression, plus head-to-head RCTs against an NSAID for osteoarthritis. That's why it's one of the very few supplements said to 'compete with drugs.' The honest limits: many trials are older, relatively small, and clinically heterogeneous; the case is strongest for SAM-e as an add-on to an antidepressant and weaker for it used entirely on its own, where recent guidance is cautious.",
+   "whatItShows": "Two fairly consistent signals. In depression, SAM-e reduces depressive symptoms versus placebo and appears roughly comparable to older antidepressants, with the clearest role as an adjunct in people who didn't respond to an antidepressant alone. In osteoarthritis, it relieves pain and improves function about as well as an NSAID, but takes longer to get going.",
+   "effect": "In plain terms: a meaningful reduction in depression-rating-scale scores over several weeks, and osteoarthritis symptom relief that starts slower than an NSAID but catches up by the second month or so. It amplifies or substitutes for existing treatment rather than being a dramatic standalone cure.",
+   "whoBenefits": "For mood: adults with mild-to-moderate depression, especially as an add-on when an antidepressant hasn't fully worked. For joints: people with knee osteoarthritis who want NSAID-level relief with a gentler gastrointestinal profile and can accept a slower onset. It is not appropriate for people with bipolar disorder, and needs clinician oversight for anyone on serotonergic drugs.",
+   "caveats": "Trials skew older and smaller, formulations and doses vary, and monotherapy evidence is shakier than adjunct evidence — so treat effect sizes as encouraging rather than guaranteed. The real-world catch is safety, not efficacy: serotonin-syndrome risk with SSRIs/SNRIs and mania risk in bipolar disorder are the reasons 'OTC' should not be read as 'harmless.'",
+   "trials": [
+    {
+     "finding": "Adjunctive SAM-e 800 mg twice daily added to a serotonin reuptake inhibitor in antidepressant non-responders (n=73) produced significantly higher response and remission rates than added placebo over 6 weeks.",
+     "ref": "Papakostas et al., 2010, Am J Psychiatry"
+    },
+    {
+     "finding": "Cochrane review of SAM-e for depression in adults: some evidence of benefit versus placebo and comparability to older antidepressants, but limited by few high-quality trials.",
+     "ref": "Galizia et al., 2016, Cochrane Database Syst Rev"
+    },
+    {
+     "finding": "Randomised double-blind crossover trial of SAM-e 1200 mg/day versus celecoxib 200 mg/day for knee osteoarthritis (n=61): SAM-e was slower in onset but reached comparable symptom control by the second month.",
+     "ref": "Najm et al., 2004, BMC Musculoskeletal Disorders"
+    }
+   ]
+  },
+  "tech": {
+   "chem": "S-adenosyl-L-methionine: a sulfonium compound formed by fusing the amino acid L-methionine with ATP. The methyl group sits on a positively charged sulfonium sulfur, which makes it a strained, high-energy leaving group — chemically 'primed' for transfer, which is the whole point of the molecule. It is synthesised endogenously in essentially every cell and is not obtained in meaningful amounts from food; supplements use stable salts (tosylate disulfate, butanedisulfonate) to improve shelf-stability, enteric-coated because the free molecule is acid-labile.",
+   "targets": [
+    {
+     "sym": "Methyltransferase enzymes (transmethylation)",
+     "action": "SAM-e is the methyl-donating cosubstrate — it is consumed, not a receptor ligand",
+     "affinity": "no receptor binding constant applies; what governs the effect is the intracellular SAM-e:SAH ratio (methylation potential)",
+     "role": "the entire mechanism: SAM-e supplies the methyl group for DNA/histone methylation, neurotransmitter and phospholipid methylation, and cartilage synthesis"
+    },
+    {
+     "sym": "COMT",
+     "url": "https://www.ncbi.nlm.nih.gov/gene/1312",
+     "action": "a representative SAM-e-dependent methyltransferase; uses SAM-e to methylate (and thereby inactivate) catecholamines like dopamine",
+     "affinity": "SAM-e is its methyl-donor substrate, not an inhibitor or agonist",
+     "role": "illustrates the neurotransmitter link — SAM-e supply and COMT genotype together shape catecholamine handling"
+    },
+    {
+     "sym": "MAT1A / MAT2A",
+     "url": "https://www.ncbi.nlm.nih.gov/gene/4143",
+     "action": "methionine adenosyltransferase — the enzyme that synthesises SAM-e from methionine + ATP",
+     "affinity": "the biosynthetic source of endogenous SAM-e",
+     "role": "sets how much SAM-e the body makes on its own; liver-specific MAT1A dominates hepatic methylation capacity"
+    }
+   ],
+   "signaling": "There is no receptor cascade — SAM-e works through biochemistry, not signalling. The governing variable is the SAM-e:SAH ratio ('methylation potential'): high ratio permits methyltransferases to run, and accumulating SAH inhibits them. Beyond transmethylation, SAM-e feeds two other branches: transsulfuration (its downstream homocysteine can be routed to cysteine and glutathione, an antioxidant link) and aminopropylation (SAM-e is decarboxylated to donate aminopropyl groups for polyamine synthesis).",
+   "adme": {
+    "absorb": "Low oral bioavailability (~2-3%); acid-labile, so tablets are enteric-coated and taken on an empty stomach. Plasma peaks ~3-5 h after an enteric dose. Intramuscular/IV routes (used clinically in some countries) achieve far higher exposure.",
+    "distribute": "Crosses the blood-brain barrier into the CNS/CSF, which underlies the central effects; distributes into liver and joint tissue.",
+    "metabolise": "Not a CYP substrate. It is consumed within the methylation cycle: after donating its methyl group it becomes S-adenosylhomocysteine (SAH), which is hydrolysed to homocysteine plus adenosine. Homocysteine is then remethylated to methionine (folate/B12/betaine-dependent) or diverted into transsulfuration.",
+    "excrete": "Metabolic fragments and downstream products are cleared renally; the intact molecule has a short plasma half-life (~1.5-2 h)."
+   },
+   "pgx": "No single actionable pharmacogenetic switch analogous to caffeine's CYP1A2. Response is modulated by the methylation cycle's cofactor status — folate and vitamin B12 — and by MTHFR variants (e.g., C677T) that slow homocysteine remethylation and can raise homocysteine. COMT Val158Met alters the rate of SAM-e-dependent dopamine methylation. None of these are used to guide dosing in practice.",
+   "dose": "Depression: studied at 400-1600 mg/day (commonly 800 mg twice daily as an adjunct); osteoarthritis: ~1200 mg/day. Enteric-coated, empty stomach, titrated up from a low start to limit nausea, GI upset and insomnia. Prescription-strength (ademetionine) is also given parenterally in some countries for cholestasis.",
+   "tolerance": "No receptor down-regulation, so there is no tolerance in the classic pharmacological sense and nothing to 'cycle.' The practical ceilings are the recycling capacity of the folate/B12-dependent cycle and side effects at higher doses (GI upset, anxiety/insomnia, and — critically — precipitation of mania in bipolar disorder and additive serotonergic risk with SSRIs/SNRIs)."
   }
  }
 }
