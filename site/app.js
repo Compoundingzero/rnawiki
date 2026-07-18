@@ -1730,7 +1730,9 @@
     i = +i; const m = D.modules[i]; if (!m) return notFound();
     const prev = i > 0 ? `<a href="#/learn/${i - 1}">← ${stripNum(D.modules[i - 1].title)}</a>` : `<a href="#/learn">← All modules</a>`;
     const next = i < D.modules.length - 1 ? `<a href="#/learn/${i + 1}">${stripNum(D.modules[i + 1].title)} →</a>` : `<a href="#/pathways">The 16 Pathways →</a>`;
-    return `<div class="article"><div class="learn-progress">Foundations · Module ${i + 1} of ${D.modules.length}</div>${crumbs([{ label: 'Home', href: '#/' }, { label: 'Foundations', href: '#/learn' }, { label: 'Module ' + (i + 1) }])}${foundationsDiagram(i)}${m.html}${learnScaffold(m)}${journeyBlock('module', i)}<div class="prevnext">${prev}${next}</div></div>`;
+    const crumb = crumbs([{ label: 'Home', href: '#/' }, { label: 'Foundations', href: '#/learn' }, { label: 'Module ' + (i + 1) }]);
+    if (m.expand) return learnCourse(m.expand, { name: stripNum(m.title), key: 'module-' + i, crumb, progress: `<div class="learn-progress">Foundations · Module ${i + 1} of ${D.modules.length}</div>`, badge: '<span class="pw-badge">📘 Foundations course</span>', prevnext: prev + next, journey: journeyBlock('module', i) });
+    return `<div class="article"><div class="learn-progress">Foundations · Module ${i + 1} of ${D.modules.length}</div>${crumb}${foundationsDiagram(i)}${m.html}${learnScaffold(m)}${journeyBlock('module', i)}<div class="prevnext">${prev}${next}</div></div>`;
   }
 
   function pathwaysIndex() {
@@ -1789,6 +1791,35 @@
     root.querySelectorAll('.mc-reveal').forEach(b => b.onclick = () => { const a = b.closest('.mc-body') && b.closest('.mc-body').querySelector('.mc-answer'); if (a) { a.hidden = false; b.closest('.mc-predict').classList.add('revealed'); b.remove(); } });
     root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
     wireFeynman();
+  }
+  // Full-course renderer for an expanded /learn module (Foundations, energy, metabolism, muscle).
+  // Reuses the chaptered pedagogy; adds fundamentals / deep-dive / expert-lens / connections sections.
+  const paras = s => String(s || '').split(/\n\n+/).filter(Boolean).map(p => `<p>${mdInline(p)}</p>`).join('');
+  function learnCourse(entry, ctx) {
+    const pc = Object.assign({}, entry, { name: ctx.name, id: 'lc-' + ctx.key });
+    const fundamentals = entry.fundamentals ? `<div class="lc-fund"><div class="lc-h">🌱 Start from zero — the ground truth</div>${paras(entry.fundamentals)}</div>` : '';
+    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${entry.deepDive.map((d, i) => `<section class="lc-dd"><h3 class="lc-dd-h"><span class="lc-dd-n">${i + 1}</span> ${esc(d.h)}</h3><div class="lc-dd-b">${paras(d.body)}</div></section>`).join('')}</div>` : '';
+    const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}</div>` : '';
+    const conns = (Array.isArray(entry.connections) && entry.connections.length) ? `<div class="lc-conn"><div class="lc-h">🕸️ How this connects to the rest of the body</div><ul>${entry.connections.map(c => `<li><b>${esc(c.to)}</b> — ${mdInline(c.why)}</li>`).join('')}</ul></div>` : '';
+    const ch1 = hookBox(pc) + bigIdeaBanner(pc) + analogyBox(pc) + fundamentals;
+    const ch2 = mechanismCascade(pc);
+    const ch3 = deep;
+    const ch4 = expert + conns;
+    const ch5 = mythsBox(pc) + selfTestBox(pc) + feynmanBox(pc) + graduationBlock(pc);
+    const chapterDefs = [
+      { n: 1, icon: '🌱', label: 'The big picture', html: ch1 }, { n: 2, icon: '⚙️', label: 'The mechanism', html: ch2 },
+      { n: 3, icon: '🔬', label: 'Deep dive', html: ch3 }, { n: 4, icon: '🧠', label: 'Think like an expert', html: ch4 },
+      { n: 5, icon: '🎓', label: 'Prove it', html: ch5 },
+    ].filter(ch => ch.html && ch.html.trim());
+    const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, k) => `<button class="ch-step${k === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${k + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
+    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, k) => { const nx = chapterDefs[k + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${k === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
+    setTimeout(() => { wirePathwayLearning(pc); }, 0);
+    return `<div class="detail lesson-detail" id="lc-detail">${ctx.crumb || ''}${ctx.progress || ''}
+      <div class="detail-head"><div><h1>${esc(ctx.name)}</h1>${ctx.badge || ''}</div></div>
+      <p class="ch-lead">A full course — from zero to genuinely expert. Five chapters; tap through in order.</p>
+      ${tabs}${sections}${ctx.journey || ''}
+      ${ctx.prevnext ? `<div class="prevnext">${ctx.prevnext}</div>` : ''}
+      <div id="goal-comments" class="page-discuss"></div></div>`;
   }
 
   // ---------- Anatomy & physiology reference pages ----------
@@ -1857,6 +1888,7 @@
   }
   function musclePage(id) {
     const m = muscleById[id]; if (!m) return notFound();
+    if (m.expand) return learnCourse(m.expand, { name: m.name, key: 'muscle-' + id, crumb: anatomyCrumb(m.name), badge: '<span class="pw-badge">💪 Muscle course</span>' });
     const a = m.anatomy || {};
     const exList = arr => arr && arr.length ? `<div class="anat-exlist">${arr.map(e => `<a class="anat-ex" href="#/exercise/${esc(e.id)}"><b>${esc(e.name)}</b>${e.level ? `<em>${esc(e.level)}</em>` : ''}</a>`).join('')}</div>` : '<p class="muted">None catalogued yet.</p>';
     const model = m.model_embed
@@ -1923,6 +1955,7 @@
   }
   function energyPage(id) {
     const e = energyById[id]; if (!e) return notFound();
+    if (e.expand) return learnCourse(e.expand, { name: e.name, key: 'energy-' + id, crumb: anatomyCrumb(e.name), badge: '<span class="pw-badge">⚡ Energy-system course</span>' });
     return `<div class="article">${anatomyCrumb(e.name)}
       <div class="anat-head"><span class="anat-region">Energy system</span><h1>${esc(e.name)}</h1>${e.aka && e.aka.length ? `<p class="anat-aka">${e.aka.map(esc).join(' · ')}</p>` : ''}</div>
       <div class="energy-meta">
@@ -1996,6 +2029,7 @@
   }
   function physiologyPage(id) {
     const p = physioById[id]; if (!p) return notFound();
+    if (p.expand) return learnCourse(p.expand, { name: p.name, key: 'metabolism-' + id, crumb: anatomyCrumb(p.name), badge: '<span class="pw-badge">🔥 Physiology course</span>' });
     const steps = p.how_it_works || p.how_insulin_is_made || p.steps || [];
     return `<div class="article">${anatomyCrumb(p.name)}
       <div class="anat-head"><span class="anat-region">Physiology</span><h1>${esc(p.name)}</h1></div>

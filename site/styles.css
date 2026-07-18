@@ -2629,3 +2629,20 @@ a.dp-name:hover{color:var(--accent)}
 .pw-source{margin-top:1.2rem}
 .pw-source .body{line-height:1.7}
 .pw-cpd-note{margin-top:1rem;font-size:.9rem;color:var(--muted);line-height:1.55;border-left:2px solid color-mix(in srgb,var(--accent) 30%,var(--line));padding-left:.8rem}
+
+/* ---- /learn full-course renderer ---- */
+.lc-h{font-weight:700;font-size:.95rem;margin-bottom:.5rem}
+.lc-fund{margin:1.45rem 0 0;padding:1rem 1.2rem;border-radius:16px;background:color-mix(in srgb,var(--accent) 4%,transparent);border:1px solid color-mix(in srgb,var(--accent) 15%,var(--line))}
+.lc-fund p{line-height:1.7;margin:.6rem 0}
+.lc-dd-lead{font-size:.9rem;color:var(--muted);margin:0 0 1rem;line-height:1.55}
+.lc-dd-wrap{display:flex;flex-direction:column;gap:1.1rem}
+.lc-dd{border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem;background:var(--panel)}
+.lc-dd-h{display:flex;align-items:baseline;gap:.5rem;font-size:1.02rem;font-weight:700;margin:0 0 .5rem;line-height:1.4}
+.lc-dd-n{flex:0 0 auto;width:1.5rem;height:1.5rem;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;display:inline-flex;align-items:center;justify-content:center;font-weight:700}
+.lc-dd-b{line-height:1.7}
+.lc-dd-b p{margin:.6rem 0}
+.lc-expert{margin:1.45rem 0 0;padding:1rem 1.2rem;border-radius:16px;background:color-mix(in srgb,#7c3aed 5%,transparent);border:1px solid color-mix(in srgb,#7c3aed 20%,var(--line))}
+.lc-expert p{line-height:1.7;margin:.6rem 0}
+.lc-conn{margin:1.45rem 0 0;padding:1rem 1.2rem;border-radius:16px;border:1px solid var(--line);background:var(--panel)}
+.lc-conn ul{margin:.4rem 0 0;padding-left:1.1rem}
+.lc-conn li{margin:.5rem 0;line-height:1.6}
