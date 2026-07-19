@@ -4539,6 +4539,47 @@
       ${toolsSec}`;
   }
 
+  // Resolve a causal-chain mediator symbol (e.g. 'AR', 'mTOR', 'cortisol') to a target/pathway page.
+  function mediatorLink(ref) {
+    if (!ref) return null;
+    const k = tkey(ref);
+    if (typeof targetBySym !== 'undefined' && targetBySym[k]) return `#/target/${k}`;
+    const low = ref.toLowerCase();
+    const pi = (D.pathways || []).findIndex(p => ((p.shortLabel || '') + ' ' + (p.title || '')).toLowerCase().includes(low));
+    if (pi >= 0) return `#/pathway/${pi}`;
+    return null;
+  }
+  const CC_TYPE = { trigger: '⚡ trigger', mediator: '⚙️ mediator', tissue: '🧬 tissue', symptom: '💥 symptom' };
+  function causeChain(chain) {
+    if (!Array.isArray(chain) || !chain.length) return '';
+    return `<div class="cc-chain">${chain.map((n, i) => {
+      const link = n.type === 'mediator' && n.ref ? mediatorLink(n.ref) : null;
+      const label = link ? `<a href="${link}">${esc(n.node)}</a>` : esc(n.node);
+      return `<div class="cc-node cc-${esc(n.type)}"><span class="cc-node-t">${CC_TYPE[n.type] || ''}</span><span class="cc-node-b">${label}</span></div>${i < chain.length - 1 ? '<span class="cc-arrow">→</span>' : ''}`;
+    }).join('')}</div>`;
+  }
+  const TIER_LABEL = ['', 'emerging / associative', 'strong association', 'established mechanism'];
+  function causeTier(t) { t = t || 1; return `<span class="cause-tier t${t}" title="Strength of the causal link">${'●'.repeat(t)}${'○'.repeat(3 - t)} <span class="ct-lbl">${TIER_LABEL[t] || ''}</span></span>`; }
+  function causesSection(problem) {
+    const w = problem.why; if (!w) return '';
+    const ladder = (Array.isArray(w.ladder) && w.ladder.length) ? `<div class="cause-ladder-wrap"><div class="cause-ladder-h">The chain, surface → root:</div><ol class="cause-ladder">${w.ladder.map(l => `<li>${mdInline(l)}</li>`).join('')}</ol></div>` : '';
+    const cards = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9)).map(c => {
+      const fixes = (c.fixes || []).map(f => { const ic = { behavior: '🔁', food: '🥗', compound: '💊', rx: '℞' }[f.kind] || '•'; const cs = (f.kind === 'compound' && f.ref) ? slug(f.ref) : null; const inner = cs ? `<a href="#/c/${cs}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li>${ic} ${inner}</li>`; }).join('');
+      return `<div class="cause-card lev-${esc(c.leverage || 'med')}">
+        <div class="cause-head"><span class="cause-rank">${c.rank || ''}</span><h4>${esc(c.name)}</h4><span class="cause-lev">${esc(c.leverage || '')} leverage${c.modifiable === false ? ' · mostly fixed' : ''}</span>${causeTier(c.evidenceTier)}</div>
+        ${causeChain(c.chain)}
+        <div class="cause-tell"><b>Is this you?</b> ${mdInline((c.tell && c.tell.symptoms) || '')}${(c.tell && c.tell.labMarker) ? `<div class="cause-lab">🩸 Confirm it: ${mdInline(c.tell.labMarker)}</div>` : ''}</div>
+        ${fixes ? `<div class="cause-fix"><b>The fix</b><ul>${fixes}</ul></div>` : ''}
+        ${c.confusedWith ? `<div class="cause-confused">↔️ <b>Not:</b> ${mdInline(c.confusedWith)}</div>` : ''}
+      </div>`;
+    }).join('');
+    return `<section class="causes-section" id="p-causes">
+      <div class="cause-h"><h2>🔍 Why this happens to you</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}</div>
+      ${ladder}
+      <div class="cause-cards">${cards}</div>
+      ${w.theOneThing ? `<div class="cause-one"><span class="cause-one-t">⭐ If you do only one thing</span><p>${mdInline(w.theOneThing)}</p></div>` : ''}
+    </section>`;
+  }
   async function renderProtocol(pid, rcid, clinicHandle) {
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = `<div class="empty"><h1>Couldn’t load protocol data</h1><p><a href="#/solve">← Back</a></p></div>`; return; }
     const found = findRootCause(pid, rcid);
@@ -4594,6 +4635,7 @@
           <div class="ps-cell"><span class="ps-k">This protocol</span><b>${moveN ? moveN + ' move' + (moveN !== 1 ? 's' : '') + ' · ' : ''}${P.stack.length} supplement${P.stack.length !== 1 ? 's' : ''}${ntN ? ' · ' + ntN + ' food target' + (ntN !== 1 ? 's' : '') : ''}</b></div>
         </div>`;
       })()}
+      ${causesSection(problem)}
       <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">Browse the movements &amp; supplements, keep what fits you, then track it daily on <b>My Plan</b>.</span></div>
       ${rcSwitch}
       ${rc.keystone ? `<div class="keystone-card">
