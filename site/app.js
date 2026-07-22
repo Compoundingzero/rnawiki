@@ -4574,11 +4574,66 @@
       </div>`;
     }).join('');
     return `<section class="causes-section" id="p-causes">
-      <div class="cause-h"><h2>🔍 Why this happens to you</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}</div>
+      <div class="cause-h"><h2>🔍 Why this happens to you</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}
+        <button class="share-short-btn" data-share-short="${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
       ${ladder}
       <div class="cause-cards">${cards}</div>
       ${w.theOneThing ? `<div class="cause-one"><span class="cause-one-t">⭐ If you do only one thing</span><p>${mdInline(w.theOneThing)}</p></div>` : ''}
     </section>`;
+  }
+  // ---- Short-form / TikTok export engine: 9:16 screenshot-ready card + auto-generated script ----
+  const stripMd = s => String(s || '').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/<[^>]+>/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
+  function shortScript(problem) {
+    const w = problem.why; if (!w) return '';
+    const surface = problem.name;
+    const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    const L = [];
+    L.push(`🎬 HOOK (0–3s):`);
+    L.push(`"${causes.length} real reasons you have ${surface.toLowerCase()} — and the one almost everyone misses."`);
+    L.push('');
+    causes.forEach((c, i) => {
+      const chain = (c.chain || []).map(n => stripMd(n.node)).join(' → ');
+      L.push(`▶ CAUSE ${i + 1} — ${stripMd(c.name)}${c.evidenceTier ? ` (${['','emerging','likely','proven'][c.evidenceTier]})` : ''}:`);
+      if (chain) L.push(`   ${chain}`);
+      const fix = (c.fixes || [])[0]; if (fix) L.push(`   Fix: ${stripMd(fix.what)}`);
+      L.push('');
+    });
+    if (w.theOneThing) { L.push(`⭐ THE ONE THING:`); L.push(`"${stripMd(w.theOneThing).split('. ').slice(0, 2).join('. ')}."`); L.push(''); }
+    L.push(`📣 CTA: "Find which one is yours — full breakdown at rnawiki.com."`);
+    L.push('');
+    L.push(`— Not medical advice. Educational.`);
+    return L.join('\n');
+  }
+  function shareCardHtml(problem) {
+    const w = problem.why; const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    const top = causes[0];
+    const chain = top ? (top.chain || []).map((n, i) => `<div class="sc-node sc-${esc(n.type)}"><span>${{ trigger: '⚡', mediator: '⚙️', tissue: '🧬', symptom: '💥' }[n.type] || ''}</span> ${esc(stripMd(n.node))}</div>${i < top.chain.length - 1 ? '<div class="sc-down">↓</div>' : ''}`).join('') : '';
+    return `<div class="share-card" id="share-card">
+      <div class="sc-brand">🧬 RNAwiki</div>
+      <div class="sc-kicker">${esc(problem.kind === 'want' ? 'THE REAL DRIVERS OF' : 'WHY YOU HAVE')}</div>
+      <div class="sc-title">${esc(problem.name)}</div>
+      <div class="sc-count">${causes.length} cause${causes.length !== 1 ? 's' : ''} — here's #1</div>
+      <div class="sc-chain">${chain}</div>
+      ${top && top.fixes && top.fixes[0] ? `<div class="sc-fix">✅ ${esc(stripMd(top.fixes[0].what)).slice(0, 90)}</div>` : ''}
+      <div class="sc-foot">Find yours → <b>rnawiki.com</b></div>
+    </div>`;
+  }
+  function shareShortModal(problemId) {
+    const problem = (D.graph.problems || []).find(p => p.id === problemId); if (!problem || !problem.why) return;
+    const ov = document.createElement('div'); ov.className = 'modal-ov share-ov';
+    ov.innerHTML = `<div class="modal share-modal"><button class="modal-x" aria-label="Close">×</button>
+      <h3 class="share-h">📱 Make a short — ${esc(problem.name)}</h3>
+      <p class="share-sub">Screenshot the card for your cover, then film (voice-over or captions) with the script. No face needed.</p>
+      <div class="share-grid">
+        <div class="share-card-wrap">${shareCardHtml(problem)}</div>
+        <div class="share-script-wrap"><label>Ready-to-film script</label><textarea class="share-script" readonly rows="16">${esc(shortScript(problem))}</textarea>
+          <button class="cta-primary share-copy">Copy script</button></div>
+      </div></div>`;
+    document.body.appendChild(ov);
+    const close = () => ov.remove();
+    ov.querySelector('.modal-x').onclick = close;
+    ov.onclick = e => { if (e.target === ov) close(); };
+    ov.querySelector('.share-copy').onclick = () => { const t = ov.querySelector('.share-script'); t.select(); try { navigator.clipboard.writeText(t.value); } catch (e) { document.execCommand('copy'); } const b = ov.querySelector('.share-copy'); b.textContent = '✓ Copied'; setTimeout(() => b.textContent = 'Copy script', 1600); };
   }
   async function renderProtocol(pid, rcid, clinicHandle) {
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = `<div class="empty"><h1>Couldn’t load protocol data</h1><p><a href="#/solve">← Back</a></p></div>`; return; }
@@ -6140,4 +6195,5 @@
   bindEntityPopovers();
   document.addEventListener('click', e => { const b = e.target.closest('[data-suggest]'); if (b) { e.preventDefault(); openSuggestModal(b.dataset.suggest, b.dataset.ref); } });
   document.addEventListener('click', e => { if (e.target.closest('[data-mastery-map]')) { e.preventDefault(); masteryMapModal(); } });
+  document.addEventListener('click', e => { const b = e.target.closest('[data-share-short]'); if (b) { e.preventDefault(); shareShortModal(b.getAttribute('data-share-short')); } });
 })();
