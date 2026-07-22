@@ -1393,7 +1393,7 @@
   }
   // ---- authored learning-layer components (render only when the sidecar data exists) ----
   function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div><p>${mdInline(c.analogy)}</p></div></div>`; }
-  function mechanismCascade(c) {
+  function mechanismCascade(c, shareId) {
     if (!Array.isArray(c.mechSteps) || !c.mechSteps.length) return '';
     const anyPredict = c.mechSteps.some(s => s.predict);
     const steps = c.mechSteps.map(s => {
@@ -1403,7 +1403,7 @@
       if (s.predict) return `<li class="mc-step predictable"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-predict"><span class="mc-p-q">🤔 ${esc(s.predict)}</span><button class="mc-reveal">Reveal the answer →</button></div><div class="mc-answer" hidden>${answer}</div></div></li>`;
       return `<li class="mc-step"><span class="mc-n">${s.n}</span><div class="mc-body">${answer}</div></li>`;
     }).join('');
-    return `<div class="callout mcascade" id="sec-mechanism"><span class="k">How it works — step by step</span>${anyPredict ? `<p class="mc-hint">Try to answer each question <i>before</i> you reveal it — guessing first is what makes it stick.</p>` : ''}<ol class="mc-list">${steps}</ol></div>`;
+    return `<div class="callout mcascade" id="sec-mechanism"><span class="k">How it works — step by step</span>${anyPredict ? `<p class="mc-hint">Try to answer each question <i>before</i> you reveal it — guessing first is what makes it stick.</p>` : ''}<ol class="mc-list">${steps}</ol>${shareId ? shareBtn('mechanism:' + shareId) : ''}</div>`;
   }
   function pkTimeline(c) {
     const p = c.pk; if (!p) return '';
@@ -1475,13 +1475,13 @@
       <p class="fw-lead">Here's the real secret of expertise: you don't memorise compounds — you ask the <b>same five questions</b> of every one. Learn the questions and you can size up anything. Here they are for ${esc(c.name)}:</p>
       <ol class="fw-list">${rows.map(([q, tag, a], i) => `<li class="fw-q"><div class="fw-qh"><span class="fw-n">${i + 1}</span><b>${esc(q)}</b> <span class="fw-tag">${esc(tag)}</span></div><div class="fw-a">${mdInline(a)}</div></li>`).join('')}</ol></div>`;
   }
-  function mythsBox(c) { if (!Array.isArray(c.myths) || !c.myths.length) return ''; return `<div class="myths"><div class="myths-h">🚫 Myths to unlearn</div>${c.myths.map(m => `<div class="myth"><div class="myth-x">✗ “${esc(m.myth)}”</div><div class="myth-t"><b>Actually →</b> ${mdInline(m.truth)}</div></div>`).join('')}</div>`; }
+  function mythsBox(c, shareId) { if (!Array.isArray(c.myths) || !c.myths.length) return ''; return `<div class="myths"><div class="myths-h">🚫 Myths to unlearn</div>${c.myths.map(m => `<div class="myth"><div class="myth-x">✗ “${esc(m.myth)}”</div><div class="myth-t"><b>Actually →</b> ${mdInline(m.truth)}</div></div>`).join('')}${shareId ? shareBtn('myths:' + shareId) : ''}</div>`; }
   function contrastBlock(c) {
     if (!Array.isArray(c.contrasts) || !c.contrasts.length) return '';
     return `<div class="contrasts">${c.contrasts.map(ct => { const structs = (ct.cidA && ct.cidB) ? `<div class="ct-structs"><figure><img loading="lazy" alt="" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${ct.cidA}/PNG">${ct.capA ? `<figcaption>${esc(ct.capA)}</figcaption>` : ''}</figure><span class="ct-vs">vs</span><figure><img loading="lazy" alt="" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${ct.cidB}/PNG">${ct.capB ? `<figcaption>${esc(ct.capB)}</figcaption>` : ''}</figure></div>` : ''; return `<div class="contrast"><div class="ct-h">⚖️ ${esc(ct.title)}</div>${structs}<p>${mdInline(ct.point)}</p></div>`; }).join('')}</div>`;
   }
   function whenToUseBox(c) { const w = c.whenToUse; if (!w || !Array.isArray(w.items) || !w.items.length) return ''; const t = compoundTier(c); const ui = TIER_UI[t] || TIER_UI.OTC; return `<div class="whenuse${t === 'DANGER' ? ' danger' : (t === 'RESEARCH' ? ' caution' : '')}"><div class="wu-h">${ui.wuH}</div>${w.intro ? `<p class="wu-intro">${mdInline(w.intro)}</p>` : ''}<ul class="wu-list">${w.items.map(i => `<li>${mdInline(i)}</li>`).join('')}</ul></div>`; }
-  function moleculeJourney(c) { if (!Array.isArray(c.journey) || !c.journey.length) return ''; return `<div class="mjourney"><div class="mj-h">🧭 Follow one molecule — from mug to memory</div><div class="mj-track">${c.journey.map((s, i) => `<div class="mj-stage"><div class="mj-num">${i + 1}</div><div class="mj-body"><div class="mj-stage-t">${esc(s.stage)}</div><div class="mj-stage-d">${mdInline(s.d)}</div></div></div>`).join('')}</div></div>`; }
+  function moleculeJourney(c, shareId) { if (!Array.isArray(c.journey) || !c.journey.length) return ''; return `<div class="mjourney"><div class="mj-h">🧭 Follow one molecule — from mug to memory</div><div class="mj-track">${c.journey.map((s, i) => `<div class="mj-stage"><div class="mj-num">${i + 1}</div><div class="mj-body"><div class="mj-stage-t">${esc(s.stage)}</div><div class="mj-stage-d">${mdInline(s.d)}</div></div></div>`).join('')}</div>${shareId ? shareBtn('journey:' + shareId) : ''}</div>`; }
   function feynmanBox(c) { return `<div class="feynman" data-slug="${esc(slug(c.name))}"><div class="fy-h">🧑‍🏫 The real test — explain it back</div><p class="fy-sub">In a sentence or two, explain to an imaginary friend what ${esc(c.name)} does and how. Writing it in your own words is the single best way to find out whether it actually stuck — then compare with the expert answer and see how others put it.</p><textarea class="fy-input" id="fy-input" rows="3" placeholder="e.g. It blocks the tiredness signal in my brain, so…"></textarea><button class="fy-check" id="fy-check">Compare with the expert answer</button><div class="fy-model" id="fy-model" hidden><b>A clean expert answer:</b> ${mdInline(c.bigIdea || c.analogy || '')}</div><div class="fy-note" id="fy-note" hidden></div><div class="fy-thread" id="fy-thread" hidden></div></div>`; }
   function graduationBlock(c) { const canEx = Array.isArray(c.canExplain) && c.canExplain.length ? `<div class="grad-can"><div class="gc-h">✓ You can now explain</div><ul>${c.canExplain.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; const payoff = hookPayoff(c); if (!canEx && !payoff) return ''; return `<div class="graduation">${payoff}${canEx}</div>`; }
   function chapterCheck(c, key) { const ch = c.checks && c.checks[key]; if (!ch) return ''; return `<div class="ch-check"><div class="cc-q">🔎 Before you go on — ${esc(ch.q)}</div><button class="cc-reveal">Show answer</button><div class="cc-a" hidden>${mdInline(ch.a)}</div></div>`; }
@@ -1530,7 +1530,7 @@
     // ---- content grouped into flowing chapters (each tab swaps the whole reading area) ----
     const chainHtml = explodedDiagram(c);
     const fact = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s);
-    const didYouKnow = fact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${fact.t}</span></div>` : '';
+    const didYouKnow = fact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${fact.t}</span> ${shareBtn('fact:' + s)}</div>` : '';
     const stacksBlock = (() => { const sg = sgAvailability(c); const derived = derivedStacks(c); return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>${c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<p class="muted" style="font-size:.88rem">Shares a pathway — often paired with: ${derived.map(o => `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`).join(' · ')}.</p>` : ''}` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`; })();
     const usedIn = (() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })();
     const evidenceBlock = evidenceGlance(c) + (c.evi ? evidenceDeep(c) : (c.evidence ? `<details class="evidence-block" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : ''));
@@ -1542,8 +1542,8 @@
       if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis, { tiers: ['danger', 'timing'] }); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">✅ No dangerous interactions flagged between ${esc(c.name)} and your ${myStack.length}-item stack.</div>`; }
       return (cmpCards || chk) ? `<div class="cpd-explore">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
     })();
-    const ch1 = hookBox(c) + stakesLine(c) + bigIdeaBanner(c) + analogyBox(c) + takeawaysBox(c) + callout('plain', 'In plain English — start here', c.plain) + moleculeViewer(c) + mythsBox(c) + didYouKnow + (!chainHtml && goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '') + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '');
-    const ch2 = moleculeJourney(c) + (c.mechSteps ? mechanismCascade(c) : callout('mechanism', 'How it works — the science', c.mechanism)) + contrastBlock(c) + (chainHtml ? `<div class="mech-chain-wrap">${chainHtml}</div>` : '') + goDeeper(c);
+    const ch1 = hookBox(c) + stakesLine(c) + bigIdeaBanner(c) + analogyBox(c) + takeawaysBox(c) + callout('plain', 'In plain English — start here', c.plain) + moleculeViewer(c) + mythsBox(c, s) + didYouKnow + (!chainHtml && goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '') + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '');
+    const ch2 = moleculeJourney(c, s) + (c.mechSteps ? mechanismCascade(c, s) : callout('mechanism', 'How it works — the science', c.mechanism)) + contrastBlock(c) + (chainHtml ? `<div class="mech-chain-wrap">${chainHtml}</div>` : '') + goDeeper(c);
     const _tui = tierUI(c);
     const ch3 = callout('protocol', _tui.protoH, c.protocol) + pkTimeline(c) + doseSimulator(c) + whenToUseBox(c) + callout('watch', 'Watch out', c.watch, 'warn') + stacksBlock + usedIn;
     const ch4 = evidenceBlock + positioningPlot(c) + exploreBlock + callout('bottom', 'Bottom line', c.bottom);
@@ -4575,58 +4575,104 @@
     }).join('');
     return `<section class="causes-section" id="p-causes">
       <div class="cause-h"><h2>🔍 Why this happens to you</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}
-        <button class="share-short-btn" data-share-short="${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
+        <button class="share-short-btn" data-share-short="cause:${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
       ${ladder}
       <div class="cause-cards">${cards}</div>
       ${w.theOneThing ? `<div class="cause-one"><span class="cause-one-t">⭐ If you do only one thing</span><p>${mdInline(w.theOneThing)}</p></div>` : ''}
     </section>`;
   }
   // ---- Short-form / TikTok export engine: 9:16 screenshot-ready card + auto-generated script ----
+  // Generalized across content types (causes, myths, mechanism cascade, molecule journey, did-you-know).
   const stripMd = s => String(s || '').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/<[^>]+>/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
-  function shortScript(problem) {
-    const w = problem.why; if (!w) return '';
-    const surface = problem.name;
-    const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
-    const L = [];
-    L.push(`🎬 HOOK (0–3s):`);
-    L.push(`"${causes.length} real reasons you have ${surface.toLowerCase()} — and the one almost everyone misses."`);
-    L.push('');
-    causes.forEach((c, i) => {
-      const chain = (c.chain || []).map(n => stripMd(n.node)).join(' → ');
-      L.push(`▶ CAUSE ${i + 1} — ${stripMd(c.name)}${c.evidenceTier ? ` (${['','emerging','likely','proven'][c.evidenceTier]})` : ''}:`);
-      if (chain) L.push(`   ${chain}`);
-      const fix = (c.fixes || [])[0]; if (fix) L.push(`   Fix: ${stripMd(fix.what)}`);
-      L.push('');
-    });
-    if (w.theOneThing) { L.push(`⭐ THE ONE THING:`); L.push(`"${stripMd(w.theOneThing).split('. ').slice(0, 2).join('. ')}."`); L.push(''); }
-    L.push(`📣 CTA: "Find which one is yours — full breakdown at rnawiki.com."`);
-    L.push('');
-    L.push(`— Not medical advice. Educational.`);
-    return L.join('\n');
-  }
-  function shareCardHtml(problem) {
-    const w = problem.why; const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
-    const top = causes[0];
-    const chain = top ? (top.chain || []).map((n, i) => `<div class="sc-node sc-${esc(n.type)}"><span>${{ trigger: '⚡', mediator: '⚙️', tissue: '🧬', symptom: '💥' }[n.type] || ''}</span> ${esc(stripMd(n.node))}</div>${i < top.chain.length - 1 ? '<div class="sc-down">↓</div>' : ''}`).join('') : '';
-    return `<div class="share-card" id="share-card">
+  const clipTxt = (s, n) => { s = stripMd(s); return s.length > n ? s.slice(0, n - 1).trim() + '…' : s; };
+  const scDisclaimer = ['', '— Not medical advice. Educational.'];
+  // A share button any content section can drop in. `ref` = "type:id".
+  const shareBtn = (ref, label) => `<button class="share-short-btn" data-share-short="${esc(ref)}">📱 ${esc(label || 'Make a short — TikTok / Reel')}</button>`;
+  // Each builder returns { name, spec, script }. spec drives the 9:16 card.
+  const SHARE = {
+    cause(problem) {
+      const w = problem.why; if (!w) return null;
+      const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+      const top = causes[0];
+      const nodes = top ? (top.chain || []).map(n => ({ ico: { trigger: '⚡', mediator: '⚙️', tissue: '🧬', symptom: '💥' }[n.type] || '', cls: 'sc-' + n.type, text: stripMd(n.node) })) : [];
+      const L = [`🎬 HOOK (0–3s):`, `"${causes.length} real reasons you have ${problem.name.toLowerCase()} — and the one almost everyone misses."`, ''];
+      causes.forEach((c, i) => {
+        const chain = (c.chain || []).map(n => stripMd(n.node)).join(' → ');
+        L.push(`▶ CAUSE ${i + 1} — ${stripMd(c.name)}${c.evidenceTier ? ` (${['', 'emerging', 'likely', 'proven'][c.evidenceTier]})` : ''}:`);
+        if (chain) L.push(`   ${chain}`);
+        const fix = (c.fixes || [])[0]; if (fix) L.push(`   Fix: ${stripMd(fix.what)}`);
+        L.push('');
+      });
+      if (w.theOneThing) { L.push(`⭐ THE ONE THING:`, `"${stripMd(w.theOneThing).split('. ').slice(0, 2).join('. ')}."`, ''); }
+      L.push(`📣 CTA: "Find which one is yours — full breakdown at rnawiki.com."`, ...scDisclaimer);
+      return {
+        name: problem.name,
+        spec: { kicker: problem.kind === 'want' ? 'THE REAL DRIVERS OF' : 'WHY YOU HAVE', title: problem.name, count: `${causes.length} cause${causes.length !== 1 ? 's' : ''} — here's #1`, nodes, arrows: true, fix: (top && top.fixes && top.fixes[0]) ? '✅ ' + stripMd(top.fixes[0].what) : '', foot: 'Find yours →' },
+        script: L.join('\n'),
+      };
+    },
+    myths(c) {
+      const M = c.myths || []; if (!M.length) return null;
+      const first = M[0];
+      const nodes = [{ ico: '✗', cls: 'sc-myth', text: '“' + stripMd(first.myth) + '”' }, { ico: '✓', cls: 'sc-truth', text: stripMd(first.truth) }];
+      const L = [`🎬 HOOK (0–3s):`, `"${M.length} thing${M.length !== 1 ? 's' : ''} you still believe about ${c.name} that ${M.length !== 1 ? 'are' : 'is'} flat wrong."`, ''];
+      M.forEach((m, i) => { L.push(`❌ MYTH ${i + 1}: "${stripMd(m.myth)}"`, `✅ TRUTH: ${stripMd(m.truth)}`, ''); });
+      L.push(`📣 CTA: "The real science on ${c.name} — rnawiki.com."`, ...scDisclaimer);
+      return { name: c.name, spec: { kicker: 'MYTHS ABOUT', title: c.name, count: `${M.length} myth${M.length !== 1 ? 's' : ''} to unlearn`, nodes, arrows: false, foot: 'The real science →', grad: 'linear-gradient(160deg,#0f172a,#7c2d12 60%,#b91c1c)' }, script: L.join('\n') };
+    },
+    mechanism(c) {
+      const S = c.mechSteps || []; if (!S.length) return null;
+      const nodes = S.slice(0, 4).map(s => ({ ico: '▸', text: stripMd(s.t) }));
+      const L = [`🎬 HOOK (0–3s):`, `"How ${c.name} actually works — in ${S.length} step${S.length !== 1 ? 's' : ''}."`, ''];
+      S.forEach(s => { L.push(`▶ STEP ${s.n}: ${stripMd(s.t)}${s.fx ? ` (${stripMd(s.fx)})` : ''}`); if (s.d) L.push(`   ${stripMd(s.d)}`); L.push(''); });
+      L.push(`📣 CTA: "The full mechanism — rnawiki.com."`, ...scDisclaimer);
+      return { name: c.name, spec: { kicker: 'HOW IT WORKS', title: c.name, count: `${S.length} step${S.length !== 1 ? 's' : ''}, trigger → effect`, nodes, arrows: true, foot: 'Full mechanism →', grad: 'linear-gradient(160deg,#0f172a,#1e3a8a 60%,#0e7490)' }, script: L.join('\n') };
+    },
+    journey(c) {
+      const J = c.journey || []; if (!J.length) return null;
+      const nodes = J.slice(0, 5).map((s, i) => ({ ico: (i + 1) + '.', text: stripMd(s.stage) }));
+      const L = [`🎬 HOOK (0–3s):`, `"Follow one molecule of ${c.name} through your body."`, ''];
+      J.forEach((s, i) => { L.push(`▶ ${i + 1}. ${stripMd(s.stage)}`); if (s.d) L.push(`   ${stripMd(s.d)}`); L.push(''); });
+      L.push(`📣 CTA: "The whole journey — rnawiki.com."`, ...scDisclaimer);
+      return { name: c.name, spec: { kicker: 'FOLLOW ONE MOLECULE', title: c.name, count: `${J.length} stage${J.length !== 1 ? 's' : ''}, dose → target`, nodes, arrows: true, foot: 'The full journey →', grad: 'linear-gradient(160deg,#0f172a,#155e75 60%,#0d9488)' }, script: L.join('\n') };
+    },
+    fact(c, id) {
+      const f = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + id); if (!f) return null;
+      const L = [`🎬 HOOK (0–3s):`, `"Bet you didn't know this about ${c.name}."`, '', `💡 ${stripMd(f.t)}`, ''];
+      if (c.plain) L.push(`WHY IT MATTERS:`, clipTxt(c.plain, 220), '');
+      L.push(`📣 CTA: "More on ${c.name} — rnawiki.com."`, ...scDisclaimer);
+      return { name: c.name, spec: { kicker: 'DID YOU KNOW', title: c.name, big: stripMd(f.t), foot: 'More surprising facts →', grad: 'linear-gradient(160deg,#0f172a,#3730a3 60%,#7e22ce)' }, script: L.join('\n') };
+    },
+  };
+  function shareCardFromSpec(sp) {
+    const nodes = (sp.nodes || []).map((n, i) => `<div class="sc-node ${n.cls || ''}"><span>${n.ico || ''}</span> ${esc(clipTxt(n.text, 88))}</div>${(sp.arrows && i < sp.nodes.length - 1) ? '<div class="sc-down">↓</div>' : ''}`).join('');
+    return `<div class="share-card" id="share-card"${sp.grad ? ` style="background:${sp.grad}"` : ''}>
       <div class="sc-brand">🧬 RNAwiki</div>
-      <div class="sc-kicker">${esc(problem.kind === 'want' ? 'THE REAL DRIVERS OF' : 'WHY YOU HAVE')}</div>
-      <div class="sc-title">${esc(problem.name)}</div>
-      <div class="sc-count">${causes.length} cause${causes.length !== 1 ? 's' : ''} — here's #1</div>
-      <div class="sc-chain">${chain}</div>
-      ${top && top.fixes && top.fixes[0] ? `<div class="sc-fix">✅ ${esc(stripMd(top.fixes[0].what)).slice(0, 90)}</div>` : ''}
-      <div class="sc-foot">Find yours → <b>rnawiki.com</b></div>
+      <div class="sc-kicker">${esc(sp.kicker || '')}</div>
+      <div class="sc-title">${esc(sp.title || '')}</div>
+      ${sp.count ? `<div class="sc-count">${esc(sp.count)}</div>` : ''}
+      ${nodes ? `<div class="sc-chain">${nodes}</div>` : ''}
+      ${sp.big ? `<div class="sc-big">${esc(clipTxt(sp.big, 190))}</div>` : ''}
+      ${sp.fix ? `<div class="sc-fix">${esc(clipTxt(sp.fix, 96))}</div>` : ''}
+      <div class="sc-foot">${esc(sp.foot || 'Full breakdown →')} <b>rnawiki.com</b></div>
     </div>`;
   }
-  function shareShortModal(problemId) {
-    const problem = (D.graph.problems || []).find(p => p.id === problemId); if (!problem || !problem.why) return;
+  function shareShortModal(ref) {
+    // ref = "type:id". Back-compat: a bare id (no ":") is treated as a cause problem id.
+    let type, id;
+    if (ref.indexOf(':') === -1) { type = 'cause'; id = ref; }
+    else { const i = ref.indexOf(':'); type = ref.slice(0, i); id = ref.slice(i + 1); }
+    let built = null;
+    if (type === 'cause') { const p = (D.graph.problems || []).find(p => p.id === id); if (p) built = SHARE.cause(p); }
+    else if (SHARE[type]) { const c = bySlug[id]; if (c) built = SHARE[type](c, id); }
+    if (!built) return;
     const ov = document.createElement('div'); ov.className = 'modal-ov share-ov';
     ov.innerHTML = `<div class="modal share-modal"><button class="modal-x" aria-label="Close">×</button>
-      <h3 class="share-h">📱 Make a short — ${esc(problem.name)}</h3>
+      <h3 class="share-h">📱 Make a short — ${esc(built.name)}</h3>
       <p class="share-sub">Screenshot the card for your cover, then film (voice-over or captions) with the script. No face needed.</p>
       <div class="share-grid">
-        <div class="share-card-wrap">${shareCardHtml(problem)}</div>
-        <div class="share-script-wrap"><label>Ready-to-film script</label><textarea class="share-script" readonly rows="16">${esc(shortScript(problem))}</textarea>
+        <div class="share-card-wrap">${shareCardFromSpec(built.spec)}</div>
+        <div class="share-script-wrap"><label>Ready-to-film script</label><textarea class="share-script" readonly rows="16">${esc(built.script)}</textarea>
           <button class="cta-primary share-copy">Copy script</button></div>
       </div></div>`;
     document.body.appendChild(ov);
