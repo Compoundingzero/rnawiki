@@ -2713,3 +2713,7 @@ a.dp-name:hover{color:var(--accent)}
 .sc-foot{font-size:.8rem;opacity:.9;text-align:center;padding-top:.3rem}
 .sc-foot b{font-weight:800}
 @media(max-width:560px){.share-card{width:100%;max-width:288px;margin:0 auto}}
+
+/* share modal overlay (no generic .modal-ov existed) */
+.share-ov{position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}
+.share-ov .share-modal{background:var(--bg,#fff);color:var(--ink);border-radius:18px;padding:1.5rem 1.6rem;position:relative;max-height:92vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.4)}
