@@ -215,6 +215,8 @@
     // Authored content: restore a safe allowlist of inline tags the escape turned into text.
     s = s.replace(/&lt;(\/?)(b|i|sub|sup|em|strong)&gt;/gi, '<$1$2>');
     s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/`([^`]+)`/g, '<code>$1</code>');
+    // single-asterisk *italic* (asterisks must hug non-space text so lone markers/multiplication do not match)
+    s = s.replace(/(^|[^*])\*(?!\*)(\S(?:[^*\n]*\S)?)\*(?!\*)/g, "$1<em>$2</em>");
     s = s.replace(/ (\d+) /g, (m, i) => links[+i]);
     return s;
   }
