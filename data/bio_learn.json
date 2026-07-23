@@ -6822,7 +6822,7 @@
     },
     "dosing": {
       "unit": "mg / %",
-      "note": "Oral niacinamide is typically **500 mg** in skin studies; topical **4-5% niacinamide** twice daily; **azelaic acid 10% OTC** (or 15-20% Rx) as a thin layer twice daily; biotin adequate intake is only ~**30 mcg/day**, so most 'hair' doses are 100-300x higher with no proven benefit.",
+      "note": "Oral niacinamide is typically **500 mg** in skin studies; topical **4-5% niacinamide** twice daily; **azelaic acid 10% over-the-counter** (or 15-20% prescription-strength) as a thin layer twice daily; biotin adequate intake is only ~**30 mcg/day**, so most 'hair' doses are 100-300x higher with no proven benefit.",
       "tier": 2
     },
     "timing": {

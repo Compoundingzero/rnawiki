@@ -178,7 +178,7 @@
   const rxBadge = c => c && c.isRx ? '<span class="pill rx" title="A prescription or controlled drug — a doctor has to assess you and prescribe it. It is not a supplement you can buy and take on your own.">Prescription only — see a doctor</span>' : '';
   // Approval pills carry the legal status accurately (e.g. 🟡 OTC · 🔵 Prescription); a compact
   // "℞" cue flags anything needing a doctor without the old verbose, contradictory block.
-  const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (c && c.isRx ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">℞ needs a doctor</span>' : '');
+  const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (c && c.isRx ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">Prescription — needs a doctor</span>' : '');
   const badgeRow = c => `<div class="badges"><span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span>${approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
@@ -1523,11 +1523,36 @@
   const BIO_TIER_LBL = ['', 'emerging', 'good evidence', 'well established'];
   function bioTierChip(t) { if (!t) return ''; return `<span class="bio-tier bt${t}" title="Evidence strength: ${BIO_TIER_LBL[t] || ''}">${'●'.repeat(t)}${'○'.repeat(3 - t)}</span>`; }
   function bioCard(ico, title, html, tier) { if (!html) return ''; return `<div class="bio-card"><div class="bio-card-h"><span class="bio-ico">${ico}</span><h4>${esc(title)}</h4>${tier ? bioTierChip(tier) : ''}</div><div class="bio-card-b">${html}</div></div>`; }
+  // These fields are already wrapped in <b>; strip any **markdown** the author added so asterisks don't show literally.
+  const stripB = s => String(s == null ? '' : s).replace(/\*\*/g, '');
+  // Prescription-only / not-approved compounds get a prominent status banner and a restricted, safe card set —
+  // never a self-directed dose calculator or a "where to buy" line. Educational, not medical advice.
+  function bioBanner(b) {
+    // Strip a leading repeat of the bold label the author may have included in accessNote.
+    const dedupe = s => String(s == null ? '' : s).replace(/^\s*(prescription[- ]only|not approved for human use)[.:]?\s*/i, '').trim();
+    if (b.access === 'prescription') return `<div class="bio-banner bio-banner-rx">💊 <b>Prescription only.</b> ${mdInline(dedupe(b.accessNote) || 'This medicine must be prescribed and monitored by a certified doctor. Everything below is educational, not medical advice, and not a recommendation to take it.')}</div>`;
+    if (b.access === 'unapproved') return `<div class="bio-banner bio-banner-danger">⛔ <b>Not approved for human use.</b> ${mdInline(dedupe(b.accessNote) || 'Sold only as a research chemical, with no certified-safe dose. The documented harms are below. This is educational, not a recommendation to use it.')}</div>`;
+    return '';
+  }
+  function bioBiomarkersCard(b, title) { if (!Array.isArray(b.biomarkers) || !b.biomarkers.length) return ''; return bioCard('🩸', title || 'Biomarkers to track', `<div class="bio-tbl-wrap"><table class="bio-tbl"><thead><tr><th>Marker</th><th>What it tells you</th><th>Target / note</th></tr></thead><tbody>${b.biomarkers.map(m => `<tr><td><b>${esc(stripB(m.marker))}</b>${m.when ? `<div class="bio-when">${esc(m.when)}</div>` : ''}${bioTierChip(m.tier)}</td><td>${mdInline(m.why)}</td><td>${mdInline(m.range || '')}</td></tr>`).join('')}</tbody></table></div>`); }
+  function bioContraCard(b, ico, title) { if (!Array.isArray(b.contra) || !b.contra.length) return ''; return bioCard(ico || '⚠️', title || 'Personalized cautions', `<ul class="bio-contra">${b.contra.map(x => `<li><b>${esc(stripB(x.flag))}:</b> ${mdInline(x.advice)} ${bioTierChip(x.tier)}</li>`).join('')}</ul>`); }
   function bioSection(c) {
     const b = c.bio; if (!b) return '';
+    // Restricted path: prescription-only or not-approved compounds.
+    if (b.access === 'prescription' || b.access === 'unapproved') {
+      const rx = b.access === 'prescription';
+      const rc = [];
+      if (rx && b.typicalDose) rc.push(bioCard('⚖️', 'Typical dose — set by a doctor', `<div class="bio-line">${mdInline(b.typicalDose.line)}</div><div class="bio-note">The usual prescribed range, shown for reference only — not a dose to take on your own. Only a certified doctor can decide if and how much you should take.</div>`, b.typicalDose.tier));
+      if (b.overdose) rc.push(bioCard('☠️', 'Overdose — signs & dangers', mdInline(b.overdose.line), b.overdose.tier));
+      if (b.misuse) rc.push(bioCard('⚠️', rx ? 'Dangers of not taking it as prescribed' : 'Why there is no safe DIY dose', mdInline(b.misuse.line), b.misuse.tier));
+      rc.push(bioBiomarkersCard(b, rx ? 'What a doctor monitors' : 'What harm shows up in labs'));
+      rc.push(bioContraCard(b, '⛔', 'Who must not take it'));
+      const cards = rc.filter(Boolean);
+      const banner = bioBanner(b);
+      if (!banner && !cards.length) return '';
+      return `<section class="bio-section" id="sec-bio"><div class="bio-head"><h2>🛡️ Using it safely — what to know</h2><p class="bio-sub">This is a ${rx ? 'prescription medicine' : 'compound not approved for human use'}. The notes below are educational, not medical advice — always follow a qualified professional.</p></div>${banner}<div class="bio-cards">${cards.join('')}</div></section>`;
+    }
     const cards = [];
-    // These fields are already wrapped in <b>; strip any **markdown** the author added so asterisks don't show literally.
-    const stripB = s => String(s == null ? '' : s).replace(/\*\*/g, '');
     if (b.form) cards.push(bioCard('💊', 'Form & bioavailability', [
       b.form.buy ? `<div class="bio-line bio-buy"><b>Buy:</b> ${mdInline(b.form.buy)}</div>` : '',
       b.form.avoid ? `<div class="bio-line bio-avoid"><b>Skip:</b> ${mdInline(b.form.avoid)}</div>` : '',
@@ -1583,10 +1608,11 @@
     const ch5 = expertFramework(c) + (c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — the original technical write-up', c.mechanism) : '') + biotechDeepDive(c);
     const ch6 = selfTestBox(c) + feynmanBox(c) + graduationBlock(c) + journeyBlock('compound', c.id);
     const chBio = bioSection(c);
+    const _bioAccess = c.bio && (c.bio.access === 'prescription' || c.bio.access === 'unapproved');
     const chapterDefs = [
       { n: 1, icon: '🌱', label: 'Start here', html: ch1, check: 'start' }, { n: 2, icon: '⚙️', label: 'How it works', html: ch2, check: 'how' },
       { n: 3, icon: _tui.icon, label: _tui.label, html: ch3, check: 'use' },
-      { n: 7, icon: '🎯', label: 'Dial it in', html: chBio },
+      { n: 7, icon: _bioAccess ? '🛡️' : '🎯', label: _bioAccess ? 'Using it safely' : 'Dial it in', html: chBio },
       { n: 4, icon: '📊', label: 'The evidence', html: ch4, check: 'evidence' },
       { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 }, { n: 6, icon: '🎓', label: 'Prove it', html: ch6 },
     ].filter(ch => ch.html && ch.html.trim());
@@ -1748,7 +1774,7 @@
         t(380, 304, 'Anecdote · opinion · mechanism', C.mut, 11) +
         arr(64, 322, 64, 52, C.green) + t(64, 44, 'stronger', C.green, 10) + t(64, 340, 'weaker', C.mut, 10) + t(700, 190, '↑ earns more stars', C.line, 10, 'middle', true)],
       ['760 310', 'What every entry shows you — and what each part means.',
-        rows5([['Approval badge', 'legal status — OTC, Rx or banned', C.amber], ['Evidence stars', 'how strong the human proof is', C.teal], ['Technical mechanism', 'the gene / receptor it acts on', C.blue], ['Molecular target', 'an official link to verify it', C.slate], ['In plain English', 'what it actually means for you', C.green]])]
+        rows5([['Approval badge', 'legal status — over-the-counter, prescription, or banned', C.amber], ['Evidence stars', 'how strong the human proof is', C.teal], ['Technical mechanism', 'the gene / receptor it acts on', C.blue], ['Molecular target', 'an official link to verify it', C.slate], ['In plain English', 'what it actually means for you', C.green]])]
     ];
     const d = D[i]; if (!d) return '';
     return `<figure class="learn-fig pd-fig"><svg viewBox="0 0 ${d[0]}" role="img" aria-label="${esc(d[1])}"><defs><marker id="fd-a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="${C.line}"/></marker></defs>${d[2]}</svg><figcaption class="fig-credit">${esc(d[1])}</figcaption></figure>`;
@@ -4600,7 +4626,7 @@
     const w = problem.why; if (!w) return '';
     const ladder = (Array.isArray(w.ladder) && w.ladder.length) ? `<div class="cause-ladder-wrap"><div class="cause-ladder-h">The chain, surface → root:</div><ol class="cause-ladder">${w.ladder.map(l => `<li>${mdInline(l)}</li>`).join('')}</ol></div>` : '';
     const cards = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9)).map(c => {
-      const fixes = (c.fixes || []).map(f => { const ic = { behavior: '🔁', food: '🥗', compound: '💊', rx: '℞' }[f.kind] || '•'; const cs = (f.kind === 'compound' && f.ref) ? slug(f.ref) : null; const inner = cs ? `<a href="#/c/${cs}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li>${ic} ${inner}</li>`; }).join('');
+      const fixes = (c.fixes || []).map(f => { const ic = { behavior: '🔁', food: '🥗', compound: '💊', rx: '🩺' }[f.kind] || '•'; const cs = (f.kind === 'compound' && f.ref) ? slug(f.ref) : null; const inner = cs ? `<a href="#/c/${cs}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li>${ic} ${inner}</li>`; }).join('');
       return `<div class="cause-card lev-${esc(c.leverage || 'med')}">
         <div class="cause-head"><span class="cause-rank">${c.rank || ''}</span><h4>${esc(c.name)}</h4><span class="cause-lev">${esc(c.leverage || '')} leverage${c.modifiable === false ? ' · mostly fixed' : ''}</span>${causeTier(c.evidenceTier)}</div>
         ${causeChain(c.chain)}

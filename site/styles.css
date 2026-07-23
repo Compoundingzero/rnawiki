@@ -2725,6 +2725,9 @@ a.dp-name:hover{color:var(--accent)}
 .bio-section{margin:1.6rem 0;padding:1.3rem 1.4rem;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
 .bio-head h2{margin:0 0 .3rem;font-size:1.35rem}
 .bio-sub{margin:0 0 1.1rem;color:var(--muted);font-size:.9rem;line-height:1.5}
+.bio-banner{border-radius:12px;padding:.85rem 1rem;margin:0 0 1.1rem;font-size:.92rem;line-height:1.5;border:1px solid}
+.bio-banner-rx{background:color-mix(in srgb,#3b82f6 10%,transparent);border-color:color-mix(in srgb,#3b82f6 45%,var(--line))}
+.bio-banner-danger{background:color-mix(in srgb,#ef4444 10%,transparent);border-color:color-mix(in srgb,#ef4444 50%,var(--line))}
 .bio-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
 .bio-card{border:1px solid var(--line);border-radius:14px;padding:.95rem 1.05rem;background:var(--bg,#fff);display:flex;flex-direction:column}
 .bio-card-h{display:flex;align-items:center;gap:.5rem;margin-bottom:.55rem}
