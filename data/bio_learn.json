@@ -6540,5 +6540,1964 @@
         "tier": 2
       }
     ]
+  },
+  "beta-glucans": {
+    "form": {
+      "buy": "High-purity **yeast-derived (1,3)/(1,6)-beta-glucan** (from *Saccharomyces cerevisiae*) or mushroom-sourced material — this branched linkage is what engages dectin-1 and drives the trained-immunity effect.",
+      "avoid": "**Oat/barley (1,3)/(1,4)-beta-glucan** if your goal is immune priming — that soluble fiber lowers cholesterol and blood glucose but does not prime innate cells the same way.",
+      "withFood": "Take **with or without food** — timing evidence is thin, so consistency matters more than clock time.",
+      "bioavailability": "Not absorbed intact into blood — particulate beta-glucan is **sampled by gut-associated immune cells (M cells, macrophages)**, so 'blood levels' are not the mechanism and don't need chasing.",
+      "tier": 2
+    },
+    "foodFirst": {
+      "line": "Eat **mushrooms regularly** — shiitake, maitake, oyster — for background (1,3)/(1,6)-beta-glucan intake alongside their other nutrients.",
+      "note": "Food amounts of immune-active glucan are modest and rarely match the 100-500 mg standardized doses used in prevention trials.",
+      "tier": 1
+    },
+    "cost": {
+      "perDose": "~SGD 0.30-0.80/day",
+      "math": "250 mg/day standardized yeast beta-glucan ≈ SGD 15-30/month",
+      "note": "Rough SG retail range; mushroom-blend products vary widely.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "100-500 mg/day; **250 mg/day** is the most-studied immune dose",
+      "note": "No validated per-kg dosing. Effect builds over weeks of daily use — it is not an acute, dose-on-symptom compound.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **daily and consistently** — trained-immunity benefits accrue over roughly 4-12 weeks, not from single doses.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Many use it **seasonally** during higher-risk windows (cold/flu season, heavy training blocks); continuous daily use is also well tolerated.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Autoimmune condition or immunosuppressant use",
+        "advice": "Beta-glucan stimulates innate immunity via dectin-1 — check with a clinician before use if you have an autoimmune disease or take immunosuppressive medication.",
+        "tier": 2
+      },
+      {
+        "flag": "Yeast allergy/sensitivity",
+        "advice": "Choose mushroom-sourced beta-glucan rather than *Saccharomyces cerevisiae*-derived product.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Insufficient safety data — avoid unless cleared by a clinician.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Pick products that **specify the glucan linkage and source** and are third-party tested for purity; independent standards (NSF, Informed Sport) add assurance against contamination.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Benefit is clearest in people **prone to upper-respiratory infections or under high physical/psychological stress** (e.g. athletes in heavy training); healthy low-risk individuals may notice little.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Vitamin D",
+        "why": "Corrects a common deficiency that independently supports immune defense, complementing beta-glucan's innate-immune priming.",
+        "tier": 2
+      },
+      {
+        "with": "Zinc",
+        "why": "Supports immune-cell function and can shorten colds; a logical pairing for URTI prevention.",
+        "tier": 2
+      },
+      {
+        "with": "Vitamin C",
+        "why": "Modestly reduces cold duration/severity in physically stressed people; low-risk, cheap pairing.",
+        "tier": 1
+      }
+    ]
+  },
+  "medicinal-mushrooms-reishi-turkey-tail-chaga": {
+    "form": {
+      "buy": "**Fruiting-body extract**, hot-water extracted and standardized to a stated **beta-glucan %** (reishi benefits from dual water+alcohol extraction to also capture triterpenes).",
+      "avoid": "**Mycelium-grown-on-grain** products and labels that only list **'polysaccharides %'** — that number counts grain starch (alpha-glucans), not the active 1,3/1,6-beta-glucans.",
+      "bioavailability": "Beta-glucans are locked in a tough **chitin-rich cell wall**; hot-water extraction breaks that matrix down to make them soluble, whereas raw dried powder and grain-based mycelium are largely indigestible fiber and starch.",
+      "tier": 3
+    },
+    "dosing": {
+      "unit": "g/day of fruiting-body extract",
+      "cap": "Reishi human studies used up to ~9 g/day dried-equivalent; no established need to exceed that.",
+      "note": "General immune use: roughly **1-3 g/day of extract**. Turkey tail trials used **~3 g/day of PSK/PSP**. There is no validated per-kg dosing — dose by product beta-glucan content, not body weight.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Anytime for turkey tail and chaga; many take **reishi in the evening** since it is used traditionally for calm and sleep quality.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Generally used **continuously** — benefits are cumulative/preventive rather than acute, so daily dosing is standard and no washout is established.",
+      "tier": 1
+    },
+    "foodFirst": {
+      "line": "**Culinary mushrooms** (shiitake, maitake, oyster) supply the same 1,3/1,6-beta-glucans and belong in the diet first; reishi, chaga and turkey tail are too woody to eat and only useful as extracts.",
+      "note": "Variety matters more than dose here — a regular mixed-mushroom intake covers most of the general immune rationale.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 1-2 per daily 1-3 g extract dose",
+      "math": "A month of a decent fruiting-body extract runs roughly SGD 30-60, i.e. about SGD 1-2/day.",
+      "note": "Grain-mycelium powders are cheaper per gram but deliver far less beta-glucan, so cost-per-active is often worse.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "On anticoagulants / antiplatelets or pre-surgery",
+        "advice": "**Reishi** can increase bleeding time and has mild antiplatelet activity; combine with blood thinners only under medical supervision and pause before surgery.",
+        "tier": 2
+      },
+      {
+        "flag": "Autoimmune disease, transplant, or immunosuppressant therapy",
+        "advice": "These mushrooms **modulate immune activity**; the interaction is theoretical but real enough to clear with your physician before use.",
+        "tier": 2
+      },
+      {
+        "flag": "Kidney stones / kidney disease and heavy chaga use",
+        "advice": "**Chaga is exceptionally high in oxalates** and case reports link heavy intake (~10-15 g/day powder) to oxalate nephropathy — avoid or strictly limit chaga if you have renal risk.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Safety data are insufficient — best avoided.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Mushrooms **bioaccumulate heavy metals** (chaga especially) — buy third-party-tested extracts (heavy metals + a quantified beta-glucan assay), ideally under a standard like **NSF** or **USP**.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "eGFR / serum creatinine",
+        "why": "Only relevant for regular **chaga** users — its high oxalate load has been linked to oxalate nephropathy; watch renal function if using chaga long-term or with kidney risk.",
+        "range": "eGFR >60 mL/min/1.73m^2; creatinine within lab reference",
+        "when": "Baseline and periodically during sustained chaga use",
+        "tier": 2
+      }
+    ],
+    "nonResponders": {
+      "line": "General immune effects are **subclinical** — you should not expect to 'feel' anything beyond, for some people, reishi's calming effect. Absence of a sensation is not non-response.",
+      "tier": 2
+    }
+  },
+  "elderberry-andrographis-lactoferrin-colostrum-brief": {
+    "form": {
+      "buy": "Elderberry standardized to **anthocyanins** (and species-verified *Sambucus nigra*); andrographis standardized to **andrographolide** (% or mg per dose stated); bovine lactoferrin and colostrum standardized to protein / **IgG** content.",
+      "avoid": "**Raw or unripe elderberry**, bark, leaves and seeds contain cyanogenic glycosides that cause nausea and vomiting — only cooked berries or finished extracts are safe.",
+      "withFood": "Take andrographis **with food** to blunt its bitterness and GI upset; elderberry, lactoferrin and colostrum are flexible.",
+      "bioavailability": "Lactoferrin and colostrum are proteins that are partly broken down in the gut, so studied benefits use fairly large daily doses rather than trace food amounts.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Ferritin / serum iron",
+        "why": "Lactoferrin is an iron-binding protein studied in iron-deficiency states (including pregnancy); if you use it around iron status, track the effect rather than assume it.",
+        "range": "Ferritin normal ~30-300 ng/mL; functional deficiency often flagged <30 (WHO uses <15)",
+        "when": "Baseline and after ~8-12 weeks of daily lactoferrin",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "antagonists": [
+        {
+          "nutrient": "Iron supplements",
+          "role": "Lactoferrin binds iron; separate it from iron tablets by a couple of hours so neither saturates nor blocks the other.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Sleep, hand-washing and a **vitamin-C / zinc-adequate diet** prevent and blunt colds more reliably than any of these — treat the supplements as duration/severity shavers, not a substitute.",
+      "note": "Culinary elderberry must be cooked, and ordinary dairy has only trace lactoferrin/colostrum; therapeutic doses come only from concentrates.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "Elderberry & andrographis ~S$0.30-1 per dose; lactoferrin & colostrum ~S$1-3 per day",
+      "note": "Lactoferrin and colostrum are the expensive members of this cluster; elderberry syrups cost more per gram of actives than capsules.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "varies by member and standardization",
+      "note": "No per-kg dosing exists. Elderberry and andrographis are dosed to their standardized actives (e.g. andrographolide) and started at symptom onset in 3-4 divided daily doses; lactoferrin and colostrum are taken as fixed daily grams/hundreds of mg. Follow the standardized label rather than raw extract weight.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Elderberry and andrographis are **acute tools** — start within 24-48h of first symptoms, split across the day, and take andrographis with food. Lactoferrin and colostrum are **daily**, best on an empty stomach and away from iron supplements.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Run elderberry and andrographis as **short acute courses** (through the cold, ~5-10 days) rather than year-round — both are immunostimulants with limited long-term-use data. Lactoferrin and colostrum can be taken continuously.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Autoimmune disease, transplant, or immunosuppressant drugs",
+        "advice": "**Elderberry and andrographis stimulate immune activity** in lab studies — avoid or clear with your doctor to prevent counteracting therapy.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "**Avoid andrographis** — WHO contraindicates it in pregnancy and animal data raise reproductive-toxicity concerns; safety of the others in pregnancy is also not established.",
+        "tier": 2
+      },
+      {
+        "flag": "Blood thinners, blood-pressure or glucose-lowering medication",
+        "advice": "**Andrographis may add to these effects** (antiplatelet/hypotensive signals, mostly preclinical) — monitor closely and involve your prescriber.",
+        "tier": 1
+      },
+      {
+        "flag": "Cow's-milk / dairy protein allergy",
+        "advice": "**Lactoferrin and colostrum are bovine dairy proteins** — avoid them.",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "Elderberry is one of the **most adulterated** botanicals (cut with black-rice extract or dye) — insist on species-verified, anthocyanin-standardized, third-party-tested product; NSF or USP marks are reasonable neutral signals.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Elderberry's cold-duration evidence rests on small, largely industry-funded trials with mixed replication (a Cleveland Clinic influenza RCT found no benefit); if an honest trial shortens nothing for you, it probably won't.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Zinc acetate/gluconate lozenges",
+        "why": "Zinc lozenges started early independently shorten cold duration — the best-evidenced acute cold tool to pair with these.",
+        "tier": 2
+      },
+      {
+        "with": "Adequate vitamin D status",
+        "why": "Correcting deficiency modestly lowers respiratory-infection risk; a sensible foundation under any acute immune supplement.",
+        "tier": 2
+      },
+      {
+        "with": "Probiotics",
+        "why": "Lactoferrin and colostrum act on gut immunity, so pairing them with probiotics is a coherent gut-immune stack.",
+        "tier": 1
+      }
+    ]
+  },
+  "niacinamide-biotin-azelaic-acid-brief": {
+    "form": {
+      "buy": "Choose **niacinamide (nicotinamide)**, not niacin/nicotinic acid, to avoid the harmless but uncomfortable flush; useful topical strengths are **4-5% niacinamide** serums and **10% azelaic acid** (OTC/cosmetic).",
+      "avoid": "Skip **high-dose niacin (nicotinic acid)** for skin (flushing, no added benefit) and **biotin megadoses (5,000-10,000 mcg)** marketed for hair, which do nothing in non-deficient people.",
+      "withFood": "Oral niacinamide is fine with or without food; apply topicals to clean, dry skin.",
+      "bioavailability": "Oral niacinamide is well absorbed; prescription **15-20% azelaic acid** penetrates better than 10% OTC for stubborn acne or rosacea.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Immunoassay labs (TSH, free T4, troponin, some hormone panels)",
+        "why": "High-dose **biotin** interferes with biotin-based immunoassays, producing falsely high or low results and real misdiagnoses.",
+        "range": "Hold biotin at least 2 days before testing (up to 72 hours if taking very high doses)",
+        "when": "Before any blood panel that includes thyroid, hormones or cardiac markers",
+        "tier": 3
+      },
+      {
+        "marker": "Liver enzymes (ALT/AST)",
+        "why": "Only relevant at **gram-level oral niacinamide** (roughly >3 g/day), which can stress the liver; skin-dose oral and all topical use do not require monitoring.",
+        "range": "ALT/AST within lab reference range",
+        "when": "Only if taking multi-gram oral doses long-term",
+        "tier": 2
+      }
+    ],
+    "foodFirst": {
+      "line": "**Vitamin B3 and biotin deficiency are both rare** - B3 is abundant in meat, fish, poultry, peanuts and whole grains, and biotin is in eggs, nuts and seeds plus what gut bacteria make.",
+      "note": "Supplementing biotin without a true deficiency does not improve hair or nails; large amounts of raw egg white (avidin) are the main dietary way to actually deplete biotin.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "Oral niacinamide ~SGD 0.05-0.15/tablet; a tube of topical 10% azelaic acid ~SGD 20-40 (rough)",
+      "note": "Topical niacinamide and azelaic acid are the value plays; branded 'hair vitamin' biotin megadoses are largely wasted money unless you are deficient.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg / %",
+      "note": "Oral niacinamide is typically **500 mg** in skin studies; topical **4-5% niacinamide** twice daily; **azelaic acid 10% OTC** (or 15-20% Rx) as a thin layer twice daily; biotin adequate intake is only ~**30 mcg/day**, so most 'hair' doses are 100-300x higher with no proven benefit.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Apply **azelaic acid** to clean, dry skin (mild early tingling is normal) and **use daily sunscreen** - acne-prone and actively treated skin is more sun-sensitive; niacinamide serum works equally AM or PM.",
+      "tier": 3
+    },
+    "contra": [
+      {
+        "flag": "Upcoming blood tests",
+        "advice": "Stop **high-dose biotin** at least 2 days before labs (72 hours for very high doses) to avoid false thyroid, hormone or troponin readings.",
+        "tier": 3
+      },
+      {
+        "flag": "Sensitive or rosacea-prone skin",
+        "advice": "Patch-test **azelaic acid** and start once daily; transient stinging is common, but persistent burning or worsening redness means scale back.",
+        "tier": 2
+      },
+      {
+        "flag": "Multi-gram oral niacinamide",
+        "advice": "Doses far above skin-study levels (grams/day) can affect the liver and glucose - stay near studied doses and never confuse niacinamide with flushing high-dose niacin.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Confirm the label reads **niacinamide / nicotinamide** (not niacin) and prefer **third-party-tested (USP/NSF)** oral products; azelaic acid efficacy depends on the labeled percentage, not branding.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "**Biotin won't help hair or nails unless you're genuinely deficient**; topical niacinamide and azelaic acid act slowly, so judge results at **8-12 weeks**, not days.",
+      "tier": 3
+    },
+    "synergy": [
+      {
+        "with": "Zinc",
+        "why": "**Niacinamide + zinc** are combined in some acne formulations targeting sebum and inflammation, though evidence that the pair beats either alone is limited.",
+        "tier": 1
+      },
+      {
+        "with": "Azelaic acid",
+        "why": "**Niacinamide + azelaic acid** both calm redness and fade post-acne marks, pairing well for rosacea-prone skin.",
+        "tier": 2
+      },
+      {
+        "with": "Retinoids",
+        "why": "**Niacinamide buffers retinoid irritation** and supports the barrier, improving tolerance of a retinoid routine.",
+        "tier": 2
+      },
+      {
+        "with": "Daily sunscreen",
+        "why": "**SPF** protects the tone and pigment gains from niacinamide and azelaic acid, since UV drives the hyperpigmentation they treat.",
+        "tier": 3
+      }
+    ]
+  },
+  "myo-inositol-d-chiro": {
+    "form": {
+      "buy": "**High-purity myo-inositol powder** in a **40:1 myo:D-chiro-inositol ratio** — this ratio mirrors the body's physiological plasma ratio and is the form used in the bulk of positive PCOS trials.",
+      "avoid": "**D-chiro-inositol-dominant or 1:1 blends** — excess D-chiro can worsen oocyte quality and ovarian outcomes (the 'DCI paradox'). Also skip proprietary blends that hide the actual myo/DCI amounts.",
+      "withFood": "Well tolerated either way; taking it with a meal reduces the mild GI upset some people get at the 4g dose.",
+      "bioavailability": "**Readily absorbed orally**; tasteless-to-slightly-sweet powder dissolves in water, which is cheaper per gram than capsules for a 4g/day dose.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "**Fasting insulin / HOMA-IR**",
+        "why": "The primary mechanism is restoring ovarian insulin sensitivity, so insulin resistance markers are the most direct readout of whether it is working.",
+        "range": "Fasting insulin roughly 2-10 mIU/L; HOMA-IR <2.0",
+        "when": "Baseline, then re-test at 3 months",
+        "tier": 3
+      },
+      {
+        "marker": "**Total & free testosterone**",
+        "why": "Lower insulin reduces ovarian androgen output; falling testosterone tracks improvement in acne and unwanted hair.",
+        "range": "Women total testosterone ~0.3-1.7 nmol/L (lab-dependent)",
+        "when": "Baseline and at 3 months",
+        "tier": 2
+      },
+      {
+        "marker": "**SHBG**",
+        "why": "Rises as insulin falls, binding more free androgen — a useful corroborating signal alongside testosterone.",
+        "range": "Women ~18-90 nmol/L (lab-dependent)",
+        "when": "With the androgen panel at 3 months",
+        "tier": 2
+      },
+      {
+        "marker": "**Menstrual cycle regularity**",
+        "why": "The functional endpoint — restored ovulation and more regular cycles is what most trials measure as success.",
+        "range": "Cycles trending toward 21-35 days",
+        "when": "Track continuously over 3-6 months",
+        "tier": 3
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Folate (folic acid)**",
+          "role": "Commonly co-formulated with myo-inositol in PCOS/fertility trials (typically 200-400 mcg); relevant if conception is a goal, though not required for the insulin-sensitizing effect itself.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Dietary inositol** is found in fruits, beans, whole grains and nuts, but typical intake is only ~1g/day — far below the ~4g used therapeutically.",
+      "note": "Whole-food inositol is a baseline, not a treatment dose; you cannot eat your way to 4g/day practically.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~$0.25-0.40 SGD/day",
+      "math": "A 500g tub of myo-inositol powder runs ~$30-40 SGD and lasts ~125 days at 4g/day.",
+      "note": "One of the cheapest evidence-backed options in this category; powder beats capsules on price per gram.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "g/day",
+      "cap": "GI tolerance limits most people to ~12g/day; the standard PCOS dose is well below this.",
+      "note": "Standard protocol is **4g myo-inositol + ~100mg D-chiro-inositol daily (40:1)**, split into two doses. No per-kg dosing — it is a fixed protocol dose, not weight-scaled.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Split into **two ~2g doses**, morning and evening; allow **8-12 weeks** before judging effect and re-checking labs — cycle and metabolic changes are gradual.",
+      "tier": 3
+    },
+    "cycling": {
+      "line": "**Taken continuously**, not cycled; benefits build over months and reverse if stopped, so treat it as ongoing while reassessing at 3-month intervals.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "**Pregnancy / trying to conceive**",
+        "advice": "Widely studied and generally regarded as safe (including for gestational-diabetes risk), but confirm dose and timing with your OB/GYN rather than self-directing.",
+        "tier": 2
+      },
+      {
+        "flag": "**Bipolar disorder**",
+        "advice": "High-dose inositol has isolated reports of triggering hypomania/mania; anyone with bipolar illness should clear it with their doctor first.",
+        "tier": 1
+      },
+      {
+        "flag": "**GI upset at high doses**",
+        "advice": "Nausea, gas and loose stools appear mainly above ~12g/day; the 4g PCOS dose is usually well tolerated, and splitting doses helps.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose **third-party-tested powder** verified for purity and free of undisclosed fillers; independent standards (NSF, USP) are reasonable neutral markers of manufacturing quality.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "A meaningful minority (**roughly a third in some reports**) don't achieve regular ovulation on inositol alone; the myo:DCI ratio matters, and non-responders may warrant evaluation for other drivers (e.g. thyroid, adrenal, or a metformin trial with their doctor).",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Vitamin D (if deficient)**",
+        "why": "Vitamin D deficiency is common in PCOS and independently linked to insulin resistance; correcting it complements inositol's metabolic effect.",
+        "tier": 2
+      },
+      {
+        "with": "**Alpha-lipoic acid**",
+        "why": "Combination trials pairing ALA with myo-inositol show added improvement in insulin sensitivity in PCOS.",
+        "tier": 2
+      },
+      {
+        "with": "**Folate**",
+        "why": "Standard co-formulation in fertility-oriented protocols; supports the conception use-case rather than the insulin mechanism.",
+        "tier": 2
+      }
+    ]
+  },
+  "dim-calcium-d-glucarate-vitex-iron-brief": {
+    "form": {
+      "buy": "**Standardized extracts and single, disclosed actives**: vitex standardized to casticin/agnuside, DIM in an enhanced-absorption (microencapsulated) form, and calcium-D-glucarate as the D-isomer.",
+      "avoid": "Proprietary 'hormone balance' blends that hide individual doses, and crude high-dose I3C sold as interchangeable with DIM.",
+      "withFood": "Take DIM with a fat-containing meal; vitex is traditionally taken in the morning; split calcium-D-glucarate across the day.",
+      "bioavailability": "Crystalline DIM is poorly and erratically absorbed — enhanced-absorption formulations reach severalfold higher plasma levels at a lower stated dose.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Urinary 2-OHE1:16α-OHE1 ratio",
+        "why": "DIM/I3C shift **estrogen hydroxylation** toward the 2-OH pathway, raising this ratio.",
+        "range": "A higher ratio favors the 2-OH pathway and is generally considered more favorable; there is no universally agreed cutoff, so interpret against the specific lab's reference range.",
+        "when": "Baseline and after ~8-12 weeks.",
+        "tier": 2
+      },
+      {
+        "marker": "Serum prolactin",
+        "why": "Vitex is **dopaminergic** and can lower mildly elevated prolactin — its main proposed mechanism in PMS and cyclic mastalgia.",
+        "range": "Non-pregnant women roughly 4-23 ng/mL (lab-dependent).",
+        "when": "Baseline if cycle irregularity or breast tenderness; recheck after ~3 cycles.",
+        "tier": 2
+      },
+      {
+        "marker": "Mid-luteal progesterone",
+        "why": "Vitex may support **luteal progesterone** where it is low; check ~7 days post-ovulation.",
+        "range": "≥3-5 ng/mL confirms ovulation has occurred; >10 ng/mL indicates a robust luteal phase (cycle- and assay-dependent).",
+        "when": "Mid-luteal phase.",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Dietary fat",
+          "role": "Required to absorb fat-soluble DIM.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Vitamin B6 (P5P)",
+          "role": "Supports dopamine synthesis and has independent PMS evidence, complementing vitex.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Cruciferous vegetables** (broccoli, kale, cabbage, Brussels sprouts) supply the indole precursors DIM is derived from, plus sulforaphane.",
+      "note": "A few servings a week plus ground flaxseed (lignans) covers much of what these supplements target, at food doses.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD $0.30-0.80/day",
+      "math": "DIM 100-200 mg ≈ $0.30-0.70; vitex standardized extract ≈ $0.10-0.30; calcium-D-glucarate 500 mg ≈ $0.30-0.60.",
+      "note": "Rough Singapore ranges; standardized and enhanced-absorption forms sit at the higher end.",
+      "tier": 1
+    },
+    "dosing": {
+      "cap": "DIM is commonly kept at ≤200-300 mg/day.",
+      "note": "Typical adult ranges: DIM 100-200 mg/day; calcium-D-glucarate 500-1500 mg/day in divided doses; vitex standardized extract ~20-40 mg once daily (or ~150-240 mg crude equivalent). Do not stack multiple estrogen-modulating agents without a specific reason.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Vitex in the **morning** (aligns with its action on morning prolactin/dopamine); DIM with the largest fatty meal; calcium-D-glucarate split across the day.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Vitex effects build over **~3 menstrual cycles** — judge it at that point, not after a few weeks, and reassess periodically rather than taking indefinitely.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Avoid all three — vitex is hormonally active and DIM/calcium-D-glucarate are not established as safe.",
+        "tier": 3
+      },
+      {
+        "flag": "Dopaminergic / antipsychotic medication",
+        "advice": "Vitex acts on dopamine receptors — avoid alongside antipsychotics, metoclopramide, or Parkinson's dopamine agonists.",
+        "tier": 2
+      },
+      {
+        "flag": "Hormonal contraception or hormone therapy",
+        "advice": "Vitex may interfere with hormonal contraceptives; discuss before combining.",
+        "tier": 2
+      },
+      {
+        "flag": "Hormone-sensitive cancer (breast, uterine)",
+        "advice": "These agents modify estrogen metabolism/activity — use only under oncology guidance.",
+        "tier": 2
+      },
+      {
+        "flag": "Harmless side effects",
+        "advice": "DIM can turn urine orange/brownish and occasionally causes mild headache — not dangerous, but lower the dose if it bothers you.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Prefer **third-party tested** products (NSF, USP, Informed Choice) and vitex extracts that state casticin/agnuside standardization; avoid undisclosed proprietary blends.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Vitex mainly helps **prolactin-driven / luteal** PMS — if symptoms don't arise from that pathway it may do nothing even after 3 cycles; DIM's effect depends heavily on baseline estrogen metabolism.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Calcium-D-glucarate + DIM",
+        "why": "CDG inhibits β-glucuronidase to reduce estrogen reabsorption while DIM shifts hydroxylation — complementary points on estrogen clearance, though CDG's human outcome data are largely preclinical.",
+        "tier": 1
+      },
+      {
+        "with": "Sulforaphane / cruciferous intake",
+        "why": "Adds Nrf2-driven phase II detox support alongside DIM's shift in estrogen metabolism.",
+        "tier": 2
+      },
+      {
+        "with": "Vitamin B6 and magnesium",
+        "why": "Both have independent PMS evidence and pair well with vitex for cyclical symptoms.",
+        "tier": 2
+      }
+    ]
+  },
+  "calcium-d3-k2": {
+    "form": {
+      "buy": "Two useful forms: **calcium citrate** (absorbs with or without food, better if older or on acid-reducing drugs) and **calcium carbonate** (cheaper, ~40% elemental calcium, needs food/stomach acid). Pair with **D3 (cholecalciferol)** and **K2 as MK-7**.",
+      "avoid": "Avoid **bone meal, oyster shell, dolomite, and coral calcium** — unrefined mineral sources that have historically carried lead. Skip **D2 (ergocalciferol)** where D3 is available.",
+      "withFood": "Carbonate with meals; citrate any time. Take **≤500 mg elemental calcium per dose** — the absorbed fraction drops above that.",
+      "bioavailability": "Read the **elemental calcium** figure, not tablet weight: carbonate ~40%, citrate ~21%. Citrate absorbs better on an empty stomach and with low stomach acid.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "25-hydroxyvitamin D [25(OH)D]",
+        "why": "Vitamin D status gates calcium absorption; if it's low, supplementing calcium alone does little.",
+        "range": "75-125 nmol/L (30-50 ng/mL) optimal; sufficiency ≥50 nmol/L (20 ng/mL)",
+        "when": "Baseline, then ~3 months after starting D3",
+        "tier": 3
+      },
+      {
+        "marker": "Serum calcium (albumin-corrected)",
+        "why": "Safety check for hypercalcemia; flags over-supplementation or an undiagnosed parathyroid problem.",
+        "range": "2.2-2.6 mmol/L",
+        "when": "Baseline; recheck if dosing high-dose D3",
+        "tier": 3
+      },
+      {
+        "marker": "Parathyroid hormone (PTH)",
+        "why": "High PTH with low-normal calcium suggests inadequate calcium/D; high PTH with high calcium flags hyperparathyroidism.",
+        "range": "~1.6-6.9 pmol/L (lab-dependent)",
+        "when": "If calcium/D status is unclear",
+        "tier": 2
+      },
+      {
+        "marker": "DEXA bone density (T-score)",
+        "why": "The actual outcome you're optimizing for bone health.",
+        "range": "T-score ≥ -1.0 normal; ≤ -2.5 osteoporosis",
+        "when": "Every 1-2 years if at risk",
+        "tier": 3
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Vitamin D3",
+          "role": "Drives active intestinal calcium absorption; without adequate D, most supplemental calcium isn't absorbed.",
+          "tier": 3
+        },
+        {
+          "nutrient": "Vitamin K2 (MK-7)",
+          "role": "Activates osteocalcin and matrix Gla protein, directing calcium into bone and away from arterial walls.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Magnesium",
+          "role": "Cofactor for converting vitamin D to its active form and a structural component of the bone matrix.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Iron supplements",
+          "role": "Calcium blocks non-heme iron absorption; separate the two by 2+ hours.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Levothyroxine / thyroid hormone",
+          "role": "Calcium binds it and reduces absorption; separate by at least 4 hours.",
+          "tier": 3
+        },
+        {
+          "nutrient": "Tetracycline & fluoroquinolone antibiotics",
+          "role": "Calcium chelates these antibiotics; separate dosing by 2-4 hours.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Food-first beats pills for calcium**: dairy, calcium-set tofu, canned sardines/salmon with bones, and leafy greens (kale, bok choy) deliver calcium in a food matrix not linked to the cardiovascular signal seen with high-dose supplements.",
+      "note": "One cup of milk/yogurt ≈ 300 mg; 100 g sardines with bones ≈ 350 mg. Most people reach target with 2-3 servings/day and only need supplements to fill the gap.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~$0.10-0.30 SGD",
+      "math": "A bottle of calcium+D3 tablets runs ~$10-25 SGD for 60-100 doses; standalone K2 (MK-7) ~$20-40 for 2-3 months.",
+      "note": "Dietary calcium from dairy or canned fish is often cheaper per gram and better evidenced than pills.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg elemental calcium",
+      "cap": "Total intake (food + supplements) under ~2000-2500 mg/day; the supplemental portion is usually 500-600 mg to fill the dietary gap, not another 1000+.",
+      "note": "Adult target ~1000 mg/day total (1200 mg for women 50+ and men 70+). Supplement only the shortfall after counting food. D3 ~800-2000 IU/day; K2 as MK-7 ~90-180 mcg/day. No per-kg dosing.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Split into **≤500 mg elemental doses** with meals; take at a different time from iron, thyroid meds, and certain antibiotics. Take fat-soluble **K2 and D3 with the largest fatty meal**.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Not cycled — calcium/D3/K2 are taken continuously to maintain status; there's no tolerance or benefit to breaks.",
+      "tier": 3
+    },
+    "contra": [
+      {
+        "flag": "History of calcium kidney stones",
+        "advice": "High-dose calcium *supplements* may raise stone risk while dietary calcium lowers it — prioritize food, take supplements with meals, stay well hydrated, and discuss with your doctor.",
+        "tier": 2
+      },
+      {
+        "flag": "Hypercalcemia or hyperparathyroidism",
+        "advice": "Do not supplement calcium/D without medical supervision — you can worsen dangerously high calcium.",
+        "tier": 3
+      },
+      {
+        "flag": "Cardiovascular concern",
+        "advice": "Some analyses link high-dose calcium supplements (not dietary calcium) to modest CV risk; food-first, adequate K2, and modest supplemental doses mitigate this.",
+        "tier": 2
+      },
+      {
+        "flag": "Chronic kidney disease",
+        "advice": "Calcium and vitamin D handling is altered — dosing must be individualized by a nephrologist.",
+        "tier": 2
+      },
+      {
+        "flag": "Thiazide diuretics or digoxin",
+        "advice": "These raise hypercalcemia risk when combined with calcium/D; monitor serum calcium.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose products **third-party tested (USP, NSF)** and avoid unrefined mineral sources (bone meal, oyster shell, dolomite, coral) that have historically carried lead. Confirm the **elemental calcium** figure on the label.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "If DEXA doesn't improve or PTH stays high, check **vitamin D status, magnesium, stomach acid (chronic PPI use), and malabsorption (celiac)** — calcium can't work without absorption and adequate D.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Vitamin D3",
+        "why": "Increases the fraction of dietary and supplemental calcium actually absorbed in the gut.",
+        "tier": 3
+      },
+      {
+        "with": "Vitamin K2 (MK-7)",
+        "why": "Carboxylates osteocalcin and MGP to route calcium into bone and help inhibit arterial calcification.",
+        "tier": 2
+      },
+      {
+        "with": "Magnesium",
+        "why": "Needed to activate vitamin D and build bone matrix; deficiency blunts the whole system.",
+        "tier": 2
+      },
+      {
+        "with": "Weight-bearing / resistance exercise + adequate protein",
+        "why": "Mechanical loading and protein are the primary drivers of bone remodeling; calcium is the raw material they build with.",
+        "tier": 3
+      }
+    ]
+  },
+  "strontium-silica-brief": {
+    "form": {
+      "buy": "Strontium as **strontium citrate** (OTC); silicon as **orthosilicic acid** or choline-stabilized orthosilicic acid (ch-OSA), or bamboo/horsetail-derived silica. Choose high-purity, third-party-tested products (heavy-metal screened).",
+      "avoid": "**Strontium ranelate** is a withdrawn/prescription-restricted drug carrying cardiovascular and venous-thromboembolism warnings — not a self-directed supplement. Avoid megadose strontium.",
+      "withFood": "Take **strontium away from calcium and meals** — calcium sharply reduces strontium uptake. Silicon (orthosilicic acid) is absorbed with or without food.",
+      "bioavailability": "Strontium absorption is **reduced by dietary calcium and food**; orthosilicic acid is the most bioavailable silicon form (polymerized/colloidal silica absorbs poorly).",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**DEXA BMD / T-score**",
+        "why": "The standard bone-density track, but strontium's high atomic number attenuates X-rays more than calcium, so it **artificially inflates measured BMD** — always tell the technician and physician you take it so readings can be interpreted cautiously.",
+        "range": "T-score above -1.0 normal; -1.0 to -2.5 osteopenia; below -2.5 osteoporosis",
+        "when": "Baseline then every 1-2 years",
+        "tier": 3
+      },
+      {
+        "marker": "**25-OH vitamin D**",
+        "why": "Bone-mineral optimization is pointless without adequate vitamin D driving calcium handling.",
+        "range": "~30-50 ng/mL (75-125 nmol/L)",
+        "when": "Baseline, recheck after correcting a deficiency",
+        "tier": 3
+      },
+      {
+        "marker": "**Serum calcium (with albumin)**",
+        "why": "Baseline calcium status guides whether calcium/D need correcting before adding bone minerals.",
+        "range": "~2.2-2.6 mmol/L",
+        "when": "Baseline",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Vitamin D",
+          "role": "Enables intestinal calcium absorption and normal bone mineralization",
+          "tier": 3
+        },
+        {
+          "nutrient": "Vitamin K2 (MK-7)",
+          "role": "Activates osteocalcin, helping direct mineral into bone matrix",
+          "tier": 2
+        },
+        {
+          "nutrient": "Calcium",
+          "role": "Primary bone mineral; adequacy is the foundation any strontium/silica sits on",
+          "tier": 3
+        },
+        {
+          "nutrient": "Magnesium",
+          "role": "Cofactor for bone matrix and vitamin D metabolism",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Calcium",
+          "role": "Competes with strontium for the same intestinal transport — co-dosing blunts strontium absorption, so separate them",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Silicon is abundant in ordinary diet** — oats and whole grains, bananas, green beans, leafy greens, beer, and silica-rich mineral water; typical intakes of 20-50 mg/day already meet most needs.",
+      "note": "Strontium is not a food-first target at supplemental doses, but trace amounts occur in seafood and some mineral waters.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~$1.20-2.20 SGD/day (both supplements)",
+      "math": "Strontium citrate ~$20-35 SGD/month plus a silica supplement ~$15-30 SGD/month",
+      "note": "Rough Singapore online/pharmacy ranges; dietary silicon is effectively free.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg elemental strontium/day",
+      "cap": "680 mg elemental strontium/day",
+      "note": "Strontium: bone trials used ~680 mg elemental strontium (as ranelate, from a 2 g salt dose) daily — do not exceed this with citrate. Silicon (as ch-OSA): ~6-12 mg elemental silicon/day is the studied range. Per-kg dosing does not apply.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **strontium at night, several hours from any calcium** (supplement or dairy meal) to limit absorption competition; silicon can be taken any time.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Cardiovascular disease / VTE history",
+        "advice": "Strontium ranelate was restricted for **increased heart attack and venous-thromboembolism risk** — anyone with ischemic heart disease, prior clots, or uncontrolled hypertension should avoid supplemental strontium and speak to a doctor.",
+        "tier": 2
+      },
+      {
+        "flag": "Kidney impairment",
+        "advice": "Strontium is renally cleared and accumulates in impaired kidneys — avoid without medical supervision.",
+        "tier": 2
+      },
+      {
+        "flag": "Upcoming or recent DEXA scan",
+        "advice": "Strontium **inflates DEXA density readings**, overstating true bone gain — always disclose use so results aren't misinterpreted as real mineral gain.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "Strontium crosses into bone and placenta and is not established as safe — avoid.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Prefer products with **third-party heavy-metal testing** (strontium mineral sources can carry contaminants) and independent certification (USP/NSF) where available.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "A large DEXA 'improvement' on strontium is frequently **partly an artifact** of strontium's X-ray attenuation, not true new bone — apparent responders may be overstated; judge outcomes by fracture history and other markers, not BMD alone.",
+      "tier": 3
+    },
+    "synergy": [
+      {
+        "with": "Vitamin D + K2",
+        "why": "Supply the absorption and matrix-activation steps that any bone mineral depends on",
+        "tier": 2
+      },
+      {
+        "with": "Weight-bearing / resistance exercise",
+        "why": "Mechanical loading is the strongest non-drug osteogenic stimulus and complements mineral support",
+        "tier": 3
+      },
+      {
+        "with": "Vitamin C (for silica)",
+        "why": "Vitamin C is a required cofactor for collagen synthesis, the connective-tissue matrix silicon supports",
+        "tier": 2
+      }
+    ]
+  },
+  "huperzine-a-ginkgo-panax-ginseng-uridine-brief": {
+    "form": {
+      "buy": "For **ginkgo**, use extract standardized to **24% flavone glycosides + 6% terpene lactones** (the classic pharmacopoeial spec); for **ginseng**, standardized ginsenoside content; for **uridine**, the **uridine-5'-monophosphate (UMP)** form.",
+      "avoid": "Crude, unstandardized ginkgo leaf powder (variable actives, higher **ginkgolic acid** load) and huperzine A products dosed far above the microgram range.",
+      "withFood": "**UMP** is often taken sublingually in nootropic practice, on the rationale of bypassing first-pass metabolism, though the evidence for it being necessary is thin; ginseng and ginkgo can be taken with or without food.",
+      "bioavailability": "Dietary/oral **uridine** is largely metabolized in the gut and liver, so the **UMP** form is used to raise plasma uridine; huperzine A is a small molecule that crosses the blood-brain barrier well.",
+      "tier": 2
+    },
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Choline",
+          "role": "Substrate for acetylcholine — complements the cholinergic action of huperzine A and uridine.",
+          "tier": 2
+        },
+        {
+          "nutrient": "DHA (omega-3)",
+          "role": "Partners with uridine to build neuronal membrane phospholipids via the Kennedy pathway.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Cover **choline** from food first — **eggs, liver, and soy** are rich sources — before layering on cholinergic nootropics.",
+      "note": "A solid dietary choline base makes acetylcholine-oriented compounds like huperzine A and uridine more sensible.",
+      "tier": 2
+    },
+    "dosing": {
+      "note": "Typical self-directed daily ranges: **huperzine A 50-200 mcg**, **ginkgo 120-240 mg** standardized extract, **panax ginseng 200-400 mg** standardized extract, **UMP 150-300 mg**. Start at the low end of each.",
+      "cap": "For self-directed use, **huperzine A ~200 mcg/day** is a sensible ceiling; higher doses used in dementia trials (up to 400 mcg twice daily) produce dose-dependent cholinergic side effects (nausea, cramps, vivid dreams) and are not for casual self-administration.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **ginseng and huperzine A in the morning** — ginseng is mildly stimulating and huperzine's cholinergic effect is long-lasting, so late dosing can disrupt sleep or trigger vivid dreams. Uridine is timing-neutral.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Some users **cycle huperzine A** (e.g. 2-3 weeks on then a break, or 5-days-on/2-off) on the theory that continuous acetylcholinesterase inhibition may blunt response, though this is largely anecdotal; ginseng is also traditionally taken with periodic breaks.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "On anticoagulants/antiplatelets or facing surgery",
+        "advice": "**Ginkgo** may add to bleeding risk — avoid combining and stop at least 1-2 weeks before any procedure.",
+        "tier": 2
+      },
+      {
+        "flag": "On cholinesterase-inhibitor or other cholinergic drugs",
+        "advice": "**Huperzine A** stacks with these effects; also use caution with asthma, slow heart rate, ulcers, or a seizure disorder given its cholinergic activity.",
+        "tier": 2
+      },
+      {
+        "flag": "Diabetes, blood-pressure medication, or warfarin",
+        "advice": "**Panax ginseng** can lower blood glucose and may shift blood pressure; it can also alter warfarin's effect (reports are mixed) — monitor and coordinate with your clinician.",
+        "tier": 2
+      },
+      {
+        "flag": "Epilepsy or seizure history",
+        "advice": "**Ginkgo** may lower the seizure threshold, especially crude products contaminated with **ginkgotoxin** — best avoided.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "For **ginkgo**, look for **ginkgolic acid <5 ppm** on the certificate of analysis; **ginseng** is a frequently adulterated botanical, so favor **third-party-tested** (USP / NSF) material.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "**Ginkgo's** cognitive effects are modest and build over weeks rather than acute — feeling nothing on a given dose is expected, and a subset of people see no measurable benefit at all.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "A choline source (citicoline / alpha-GPC or dietary choline)",
+        "why": "**Huperzine A** slows acetylcholine breakdown while the choline supplies the raw material — the two are complementary.",
+        "tier": 2
+      },
+      {
+        "with": "DHA (omega-3) plus a choline source",
+        "why": "With **uridine (UMP)** these feed the **Kennedy pathway** for neuronal membrane phospholipid synthesis — the classic uridine + DHA + choline stack.",
+        "tier": 2
+      },
+      {
+        "with": "Ginkgo + panax ginseng",
+        "why": "Traditionally combined for cognition; some small trials of the pairing suggest additive effects on memory and attention, but replication is weak.",
+        "tier": 1
+      }
+    ]
+  },
+  "red-yeast-rice-ezetimibe-brief": {
+    "form": {
+      "buy": "A **standardized extract that discloses its monacolin K content per dose** and is third-party tested as **citrinin-free** (citrinin is a nephrotoxic mould by-product of the fermentation).",
+      "avoid": "Products that do **not disclose monacolin K content** or citrinin testing — potency varies by more than 10-fold batch to batch, so an undisclosed label tells you nothing about dose.",
+      "withFood": "Take with the **evening meal**; food increases lovastatin/monacolin K absorption and reduces GI upset.",
+      "bioavailability": "Monacolin K is chemically **lovastatin**, a CYP3A4 substrate — grapefruit and other CYP3A4 inhibitors raise blood levels and myopathy risk.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "**LDL cholesterol**",
+        "why": "The direct target — monacolin K inhibits HMG-CoA reductase exactly like a statin; this is the only endpoint that confirms the product is actually working.",
+        "range": "General goal <2.6 mmol/L (lower if higher cardiovascular risk)",
+        "when": "Baseline, then 6-12 weeks after starting",
+        "tier": 3
+      },
+      {
+        "marker": "**ALT / AST (liver enzymes)**",
+        "why": "Shares statins' rare hepatotoxicity; a baseline plus a follow-up catches the uncommon transaminase rise.",
+        "range": "Within lab reference; investigate if >3x upper limit",
+        "when": "Baseline and if symptoms arise",
+        "tier": 2
+      },
+      {
+        "marker": "**Creatine kinase (CK)**",
+        "why": "Check only if unexplained muscle pain, weakness or dark urine appears — screens for statin-type myopathy/rhabdomyolysis.",
+        "range": "Marked elevation (e.g. >5-10x upper limit) with symptoms warrants stopping and medical review",
+        "when": "Only when muscle symptoms occur",
+        "tier": 3
+      }
+    ],
+    "cofactors": {
+      "depletes": [
+        {
+          "nutrient": "**Coenzyme Q10 (ubiquinone)**",
+          "role": "HMG-CoA reductase sits upstream of both cholesterol and CoQ10 synthesis, so monacolin K lowers circulating CoQ10 — the same mechanism as prescription statins.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Diet moves LDL through the same lever first**: ~5-10 g/day soluble fibre (oats, legumes, psyllium), 2 g/day plant sterols, and cutting saturated fat each independently lower LDL without statin-class risks.",
+      "note": "These stack additively and carry none of the citrinin or myopathy concerns — worth exhausting before, or alongside, any monacolin product.",
+      "tier": 3
+    },
+    "dosing": {
+      "note": "Even **3 mg monacolin K/day meaningfully lowers LDL** in trials; older efficacy studies used up to ~10 mg. Because label-to-actual content varies enormously, powder weight (~1,200-2,400 mg of rice) is meaningless — dose by disclosed monacolin K, not milligrams of rice.",
+      "cap": "Keep the dose as low as is effective. EFSA found serious adverse effects (including rhabdomyolysis) reported from **3 mg/day** and set no safe intake level; the EU restricts products to <3 mg monacolins per serving. Higher intake is an unmonitored statin dose.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take in the **evening**: endogenous cholesterol synthesis peaks overnight and monacolin K, like lovastatin, is short-acting — evening dosing matches the enzyme's activity window.",
+      "tier": 3
+    },
+    "cycling": {
+      "line": "**Not cycled** — LDL lowering persists only while dosing continues and rebounds within weeks of stopping; there is no benefit to intermittent use and no tolerance to reset.",
+      "tier": 3
+    },
+    "contra": [
+      {
+        "flag": "**Already on a statin (or fibrate)**",
+        "advice": "Monacolin K IS a statin — stacking it adds unmonitored dose and multiplies myopathy/liver risk. Do not combine; treat it as mutually exclusive with prescription statin therapy.",
+        "tier": 3
+      },
+      {
+        "flag": "**Pregnancy or breastfeeding**",
+        "advice": "Statins are contraindicated in pregnancy due to fetal risk; the same applies to monacolin K. Avoid entirely.",
+        "tier": 3
+      },
+      {
+        "flag": "**Liver disease or heavy alcohol use**",
+        "advice": "Shares statins' hepatotoxic potential — avoid with active liver disease and get baseline liver enzymes first.",
+        "tier": 3
+      },
+      {
+        "flag": "**Grapefruit / CYP3A4 inhibitors**",
+        "advice": "Grapefruit, certain antifungals, macrolides and others raise monacolin K blood levels and can precipitate rhabdomyolysis — separate or avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "**New muscle pain, weakness or dark urine**",
+        "advice": "Stop and seek medical review — these are the warning signs of statin-type myopathy/rhabdomyolysis.",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "The two dominant quality risks are **undisclosed/variable monacolin K potency** and **citrinin contamination** (a nephrotoxic mycotoxin). Insist on a product that states monacolin K per serving and provides third-party citrinin testing.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "An apparent **non-response is usually a low-potency batch**, not your biology — independent testing has found many products with near-zero monacolin K. If LDL hasn't moved at 8-12 weeks, suspect the product before concluding it doesn't work for you.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**CoQ10**",
+        "why": "Replaces the CoQ10 that monacolin K depletes; evidence that it eases statin-associated muscle complaints is mixed and not endorsed by all guidelines.",
+        "tier": 1
+      },
+      {
+        "with": "**Plant sterols / soluble fibre**",
+        "why": "Lower LDL by absorption and synthesis pathways distinct from HMG-CoA inhibition, so the effect is additive to monacolin K.",
+        "tier": 2
+      }
+    ]
+  },
+  "alpha-lipoic-acid-ala": {
+    "form": {
+      "buy": "Look for **R-ALA (R-lipoic acid)** or stabilized **sodium R-lipoate** for better absorption; note the classic diabetic-neuropathy trials used cheaper **racemic (R/S) ALA** at 600 mg, so racemic is a legitimate, evidence-backed choice.",
+      "avoid": "**Degraded R-ALA** — the free acid polymerizes with heat/light and clumps; discoloured or fused capsules have lost potency. Sodium-salt or racemic forms are more stable.",
+      "withFood": "Take on an **empty stomach**, ~30-60 min before eating; co-ingested food markedly lowers plasma peaks.",
+      "bioavailability": "Oral bioavailability is only **~30%** with a very short half-life (~30 min) and heavy first-pass hepatic metabolism — hence divided or higher doses.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "HbA1c",
+        "why": "ALA's best-studied use beyond neuropathy is **glycemic/insulin-sensitivity support**; track over months if that's your goal.",
+        "range": "<5.7% (normal); 5.7-6.4% pre-diabetic",
+        "when": "Baseline and ~3 months",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting glucose",
+        "why": "ALA can modestly **lower blood glucose** and improve insulin sensitivity — worth monitoring, especially if on glucose-lowering meds.",
+        "range": "3.9-5.5 mmol/L (fasting)",
+        "when": "Baseline, then periodically",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "depletes": [
+        {
+          "nutrient": "Biotin",
+          "role": "ALA **competes with biotin (and pantothenate) for the SMVT transporter**, so chronic high-dose use may modestly lower biotin uptake; a small biotin top-up is a reasonable precaution.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Dietary ALA (spinach, broccoli, organ meats) is **tiny and protein-bound**, so almost none is free/absorbable — meaning food realistically cannot deliver therapeutic amounts.",
+      "note": "This is one of the few antioxidants where supplementation, not diet, is the only way to reach studied doses.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.15-0.50 per 300-600 mg racemic dose; R-ALA / sodium R-lipoate typically 2-3x that.",
+      "math": "A 600 mg racemic bottle of 60-90 caps often runs ~SGD 15-30.",
+      "note": "Racemic ALA is inexpensive; you pay a premium mainly for the R-isomer and stabilized salt forms.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "**600 mg/day** is the trial-validated dose for diabetic neuropathy (ALADIN/SYDNEY trials); up to 1200 mg is used but adds GI upset without clearly more benefit.",
+      "note": "Splitting into 2 doses can ease nausea; per-kg dosing is not standard for ALA.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take in the **morning on an empty stomach**; if nausea occurs, split into two smaller doses rather than taking with a large meal.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No established need to cycle; ALA is used continuously in trials. There is **no evidence of tolerance or dependence**.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "On insulin or sulfonylureas",
+        "advice": "ALA can **add to glucose lowering** — monitor for hypoglycemia and coordinate dose changes with your doctor.",
+        "tier": 2
+      },
+      {
+        "flag": "East Asian ancestry (incl. Singaporean Chinese)",
+        "advice": "ALA is a recognised trigger of **Insulin Autoimmune Syndrome (Hirata disease)**, strongly linked to HLA-DRB1*04:06 that is more common in East Asians; unexplained fasting/spontaneous hypoglycemia after starting ALA warrants stopping and medical review.",
+        "tier": 2
+      },
+      {
+        "flag": "Thyroid disease",
+        "advice": "ALA may **blunt T4-to-T3 conversion** (shown when co-administered with thyroxine); monitor thyroid labs if you have thyroid dysfunction and separate dosing from thyroid meds.",
+        "tier": 1
+      },
+      {
+        "flag": "Thiamine deficiency / heavy alcohol use or pregnancy",
+        "advice": "Correct thiamine first and avoid in pregnancy — **safety data are insufficient**.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose **third-party-tested** product (NSF/USP-type verification); because R-ALA degrades easily, stabilized salt forms and proper packaging matter more here than for most antioxidants.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "For nerve symptoms, a meaningful subset see **little benefit**; the racemic form used in trials targets diabetic neuropathy specifically, and non-diabetic 'general antioxidant' benefits are much less certain.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "Vitamins C and E / glutathione",
+        "why": "ALA's signature mechanism is **recycling other antioxidants** back to their active form, extending their effect in both water- and fat-soluble compartments.",
+        "tier": 2
+      },
+      {
+        "with": "Benfotiamine (fat-soluble thiamine)",
+        "why": "Commonly **combined for diabetic neuropathy**, hitting complementary pathways of glucose-driven nerve damage.",
+        "tier": 2
+      },
+      {
+        "with": "Acetyl-L-carnitine",
+        "why": "Paired in **mitochondrial and neuropathy** protocols for additive support of energy metabolism and nerve function.",
+        "tier": 2
+      }
+    ]
+  },
+  "pqq-ergothioneine-carnosine-quercetin-brief": {
+    "form": {
+      "buy": "Choose **PQQ disodium salt**, **L-ergothioneine**, and a **bioavailable quercetin form** (enzymatically-modified isoquercitrin, or a phospholipid/lecithin complex) — all high-purity and third-party tested.",
+      "avoid": "Plain **quercetin dihydrate** alone is poorly absorbed, and oral **L-carnosine** is largely hydrolysed in serum, so it acts mostly as a beta-alanine/histidine source rather than delivering intact carnosine to tissue.",
+      "withFood": "Take **quercetin with a fat-containing meal** (it is lipophilic); PQQ, ergothioneine and carnosine can be taken with or without food.",
+      "bioavailability": "**Ergothioneine** is actively taken up via the OCTN1 transporter and accumulates in tissues with a very long half-life (roughly a week to a month), while **quercetin aglycone** has notoriously low and variable oral bioavailability.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "hs-CRP",
+        "why": "Quercetin at roughly 500 mg/day or more modestly lowers systemic inflammation in meta-analyses (WMD around -0.3 mg/L), mainly in people with elevated baseline CRP.",
+        "range": "<1 mg/L low, 1-3 average, >3 elevated cardiovascular risk",
+        "when": "Baseline, then after 8-12 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "Serum uric acid",
+        "why": "Quercetin inhibits xanthine oxidase and produces small reductions in serum urate, mainly in those with higher-range or pre-hyperuricaemic levels.",
+        "range": "3.5-7.2 mg/dL (men), 2.6-6.0 mg/dL (women)",
+        "when": "Baseline, then after 4-8 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "Blood pressure",
+        "why": "Quercetin at 500 mg/day or more produces small reductions in systolic/diastolic BP, more so in hypertensives.",
+        "range": "Target <120/80 mmHg",
+        "when": "Home cuff, baseline then at 8 weeks or later (meta-analysis effect appears mainly at doses over 500 mg/day and durations of at least 8 weeks)",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "antagonists": [
+        {
+          "nutrient": "Non-heme iron (and to a lesser degree zinc/copper)",
+          "role": "Quercetin chelates dietary non-heme iron and can blunt its absorption — separate quercetin from iron supplements or iron-rich meals by about 2 hours.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Mushrooms** (especially oyster, king oyster and shiitake) are by far the richest **ergothioneine** source, and **onions, capers, apples and kale** top the **quercetin** list — a mushroom-and-allium-heavy diet delivers meaningful amounts of both.",
+      "note": "**Carnosine** comes from red meat and poultry, so omnivores already get some; **PQQ** occurs in natto, parsley, green tea and fermented soy but only in microgram amounts, so diet alone won't reach studied supplement doses.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~SGD 0.15-1.00 per compound per day",
+      "math": "Quercetin (500-1000 mg) is cheapest at roughly SGD 0.15-0.35/day; PQQ (20 mg) around SGD 0.50-1.00/day; ergothioneine is the priciest of the four per mg.",
+      "note": "Running all four daily is realistically SGD 40-90/month depending on doses and forms.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "note": "Typical studied ranges: **PQQ 10-20 mg**, **quercetin 500-1000 mg** (split, or lower with enzymatically-modified isoquercitrin or phospholipid-complex forms), **L-carnosine 500-1000 mg**, **ergothioneine ~5-30 mg**. No weight-based dosing is established for any of these.",
+      "cap": "Chronic quercetin above ~1 g/day adds drug-interaction risk without clear extra benefit.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **PQQ in the morning** (mildly activating for some); **split quercetin** across meals with fat; ergothioneine and carnosine timing is flexible since ergothioneine accumulates over weeks regardless of when it is taken.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "None require cycling for everyday antioxidant use — daily is fine. The experimental **senolytic 'hit-and-run'** protocol (intermittent high-dose quercetin, usually paired with prescription dasatinib) is a distinct, unproven-in-healthy-people use, not the daily approach described here.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Narrow-therapeutic-index or CYP3A4/P-gp-metabolised medications",
+        "advice": "**Quercetin inhibits CYP3A4 and P-glycoprotein** and can raise levels of drugs such as ciclosporin, some statins and certain chemotherapy agents — check with a pharmacist before combining.",
+        "tier": 2
+      },
+      {
+        "flag": "Antihypertensive or antiplatelet/anticoagulant medication",
+        "advice": "Quercetin can modestly lower blood pressure and has mild antiplatelet activity — watch for additive effects.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Safety data for supplemental doses of all four are insufficient — best avoided.",
+        "tier": 3
+      },
+      {
+        "flag": "Impaired kidney function / very high quercetin doses",
+        "advice": "Very high (mainly intravenous) quercetin has shown dose-limiting renal-toxicity signals in trials; keep oral doses moderate if kidney function is reduced.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Prefer products with **third-party testing** (NSF, USP or Informed Choice); for quercetin confirm the **specific form** (enzymatically-modified isoquercitrin or a phospholipid complex vs plain dihydrate), and for PQQ confirm it is standardised **disodium salt**.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "'No effect' from quercetin usually means the **plain dihydrate form wasn't absorbed** — switch to enzymatically-modified isoquercitrin or a phospholipid-complex form, or take it with fat and vitamin C. For carnosine, high **serum carnosinase** activity rapidly degrades the oral dose, so **beta-alanine** raises muscle carnosine far more reliably.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "CoQ10",
+        "why": "PQQ and CoQ10 act on complementary steps of mitochondrial energy production and have been studied together for this reason.",
+        "tier": 2
+      },
+      {
+        "with": "Vitamin C",
+        "why": "Vitamin C helps regenerate and stabilise oxidised quercetin, improving its practical antioxidant effect.",
+        "tier": 1
+      },
+      {
+        "with": "Bromelain",
+        "why": "Commonly co-formulated with quercetin, adding its own proteolytic anti-inflammatory activity (the claimed absorption boost is not well substantiated).",
+        "tier": 1
+      },
+      {
+        "with": "Fisetin",
+        "why": "Another flavonoid senolytic often stacked with quercetin in longevity protocols, though the senolytic evidence is still largely preclinical.",
+        "tier": 1
+      }
+    ]
+  },
+  "prebiotics-inulin-gos-phgg-butyrate": {
+    "form": {
+      "buy": "**PHGG (partially hydrolysed guar gum)** is the best-tolerated and most versatile — flavourless, dissolves clear, minimal gas. **GOS** and **inulin/FOS** are effective but more gas-forming. For butyrate directly, **tributyrin** or enteric-coated/**calcium-magnesium butyrate** delivers it lower in the gut than plain sodium butyrate.",
+      "avoid": "Cheap inulin sold as a generic 'fibre supplement' at high starting doses; agave-derived inulin syrups (mostly sugar). Non-enteric sodium butyrate is largely absorbed in the upper gut and smells strongly of rancid butter.",
+      "withFood": "Prebiotic powders mix into water, yoghurt or coffee and can be taken with or without food; butyrate capsules are usually taken with meals.",
+      "bioavailability": "Prebiotics are not 'absorbed' — they reach the colon intact and are fermented by resident bacteria into short-chain fatty acids including butyrate, which is why effects build over 2-4 weeks as the microbiome adapts.",
+      "tier": 3
+    },
+    "foodFirst": {
+      "line": "**Food first is the default here.** Whole-food fibres feed the microbiome more diversely than any single supplement: onions, garlic, leeks and chicory (inulin/FOS), slightly-green bananas and cooked-then-cooled potato/rice/oats (resistant starch), legumes (GOS), plus oats and barley (beta-glucan).",
+      "note": "Diversity of plant fibres matters more than total grams — aim for many different plants weekly. Supplements are a tool to top up a hard-to-hit fibre target (~25-38 g/day), not a replacement for eating plants.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~S$0.20-0.60 per serving",
+      "math": "A 500 g tub of PHGG or inulin runs ~S$25-40; at a 5-7 g dose that is roughly 70-100 servings.",
+      "note": "Prebiotic fibre is one of the cheapest evidence-backed gut interventions; butyrate capsules cost more (~S$0.40-1.00/dose) for less clear added benefit if fibre intake is already adequate.",
+      "tier": 2
+    },
+    "dosing": {
+      "note": "Start low and titrate: PHGG ~2-3 g/day up toward 5-10 g; inulin/FOS ~2-3 g up toward 5-10 g; GOS ~1-2 g up toward 3-5 g. Increase every 3-7 days as tolerated. Going straight to a full dose is the most common cause of the bloating and gas that makes people quit.",
+      "cap": "Most trials use ~5-15 g/day of a given prebiotic; gas tends to rise with little added benefit beyond that.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Timing is not critical — consistency matters far more than clock time. Splitting into two smaller doses (e.g. morning and evening) reduces gas versus one large dose.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No need to cycle — prebiotics work by sustaining a fibre-fed microbiome, so benefits depend on continued daily intake and fade within days to weeks of stopping.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "IBS, SIBO, or a low-FODMAP diet",
+        "advice": "Inulin/FOS and GOS are high-FODMAP and can worsen bloating, pain and diarrhoea. **PHGG is low-FODMAP and usually the tolerated choice** — start very low and consider working with a dietitian.",
+        "tier": 3
+      },
+      {
+        "flag": "Transient gas and bloating on starting",
+        "advice": "Expected and dose-dependent as bacteria adapt; drop back to the last comfortable dose and re-titrate more slowly. Persistent severe symptoms mean stop and reassess.",
+        "tier": 3
+      },
+      {
+        "flag": "Active flare of IBD or significant GI disease",
+        "advice": "Do not self-experiment during a flare; fibre tolerance varies and should be guided by your gastroenterologist.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose a **single-ingredient powder with the specific fibre and gram amount stated** (not a proprietary 'fibre blend'). Independent third-party testing (e.g. NSF, Informed Sport) is a neutral marker of label accuracy and contaminant screening.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Response varies with your starting microbiome — some people already eating a high-fibre diet notice little, while low-fibre eaters gain the most. A minority tolerate fermentable prebiotics poorly no matter how slowly they titrate; PHGG or plain dietary fibre is the fallback.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Probiotics (a 'synbiotic' pairing)",
+        "why": "Prebiotic fibre provides the fermentable substrate that live bacteria need to establish and produce short-chain fatty acids.",
+        "tier": 2
+      },
+      {
+        "with": "Resistant starch (green banana, cooked-and-cooled potato/rice)",
+        "why": "A different fermentable substrate that is particularly butyrogenic, broadening the fibres your microbiome can convert to butyrate.",
+        "tier": 2
+      },
+      {
+        "with": "Dietary polyphenols (berries, cocoa, green tea, coffee)",
+        "why": "Polyphenols and fibre together may shift the microbiome toward beneficial fibre-fermenting species more than either alone.",
+        "tier": 1
+      },
+      {
+        "with": "Adequate hydration",
+        "why": "Bulking and viscous fibres like PHGG work better and cause less discomfort when fluid intake is sufficient.",
+        "tier": 2
+      }
+    ]
+  },
+  "zinc-carnosine-akkermansia-s-boulardii-dgl-brief": {
+    "form": {
+      "buy": "**Zinc-carnosine**: the chelated 1:1 zinc-L-carnosine complex (polaprezinc), typically 75 mg tablets. **S. boulardii**: lyophilized, labeled by guaranteed CFU (roughly 5-10 billion). **Akkermansia muciniphila**: the pasteurized form carries the only human RCT data; choose products with cell count guaranteed to expiry. **DGL**: deglycyrrhizinated licorice (glycyrrhizin removed). Prefer high-purity, third-party-tested products generically over any brand.",
+      "avoid": "Regular whole-licorice extract in place of DGL — its glycyrrhizin raises blood pressure and lowers potassium. Probiotic products with no guaranteed CFU count, or only a 'time of manufacture' number.",
+      "withFood": "Chew DGL 15-20 min before meals; probiotics are fine with or just after food; zinc-carnosine can be taken with a little food to blunt nausea.",
+      "bioavailability": "Zinc-carnosine works largely by adhering to inflamed mucosa rather than by systemic zinc absorption, so the intact chelated complex matters more than elemental zinc content.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg / CFU",
+      "note": "Studied ranges: zinc-carnosine 75 mg once or twice daily (~17 mg elemental zinc per 75 mg; the common research regimen of 75 mg twice daily delivers ~34 mg elemental zinc/day, which exceeds typical zinc upper limits); S. boulardii 250-500 mg (~5-10 billion CFU) 1-2x daily; pasteurized Akkermansia ~10^10 cells/day; DGL ~380-400 mg chewed before meals. No per-kg dosing — these are fixed adult doses.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "**DGL is chewed before meals** so it mixes with saliva and coats the esophagus/stomach ahead of food. **S. boulardii around antibiotics** can be taken alongside them (it is a yeast, so antibacterials don't kill it) but is often spaced a couple of hours from the dose anyway. Zinc-carnosine is often split morning/evening on a relatively empty stomach for mucosal contact.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "These are **repair/course tools, not permanent supplements**. Zinc-carnosine is typically run in ~8-week courses; S. boulardii during and for 1-2 weeks after an antibiotic course; DGL for reflux flares rather than indefinitely. Reassess and stop when the target symptom resolves.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Immunocompromised, critically ill, or central venous catheter",
+        "advice": "Live probiotic yeast (S. boulardii) has caused **fungemia** in these groups. Avoid live probiotics and discuss with a clinician first.",
+        "tier": 3
+      },
+      {
+        "flag": "Long-term / high-dose zinc",
+        "advice": "Sustained zinc intake depletes copper. A single 75 mg dose (~17 mg elemental zinc) is modest, but the studied twice-daily regimen (~34 mg/day) exceeds common zinc upper limits — watch copper status if run for months or stacked with other zinc.",
+        "tier": 3
+      },
+      {
+        "flag": "Hypertension, low potassium, or on diuretics",
+        "advice": "Use **DGL specifically** — whole-licorice glycyrrhizin causes pseudoaldosteronism (high BP, low potassium). DGL has this removed.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy / immunosuppression with Akkermansia",
+        "advice": "Human safety data for Akkermansia supplementation is limited and short-term; avoid in pregnancy and immunocompromise until more is known.",
+        "tier": 1
+      },
+      {
+        "flag": "Persistent reflux or 'stomach' symptoms",
+        "advice": "Rule out H. pylori and red-flag causes with a clinician before self-treating long-term with DGL or zinc-carnosine — these relieve symptoms rather than diagnose.",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "depletes": [
+        {
+          "nutrient": "Copper",
+          "role": "Zinc competes with copper for absorption; chronic zinc intake can cause copper deficiency (anemia, neuropathy).",
+          "tier": 3
+        }
+      ],
+      "needs": [
+        {
+          "nutrient": "Dietary fiber / prebiotics",
+          "role": "Probiotic and Akkermansia benefits depend on a substrate-rich gut; fermentable fiber and polyphenols support colonization and mucus turnover.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Systemic antifungals",
+          "role": "Will kill live S. boulardii, negating it — separate use or choose a bacterial probiotic instead.",
+          "tier": 2
+        }
+      ]
+    },
+    "biomarkers": [
+      {
+        "marker": "H. pylori (stool antigen or urea breath test)",
+        "why": "Should be checked before chronically self-treating reflux/gastritis; zinc-carnosine is an adjunct to eradication, not a replacement.",
+        "range": "Negative",
+        "when": "Before starting a long gut-repair course",
+        "tier": 3
+      },
+      {
+        "marker": "Serum copper / ceruloplasmin",
+        "why": "Detects copper depletion if zinc is run for months or stacked with other zinc sources.",
+        "range": "Copper ~11-22 umol/L; ceruloplasmin ~0.2-0.6 g/L (lab-dependent)",
+        "when": "If zinc >8 weeks",
+        "tier": 3
+      },
+      {
+        "marker": "HOMA-IR / fasting insulin / HbA1c",
+        "why": "The relevant measurable target for Akkermansia's metabolic use — track insulin sensitivity rather than gut symptoms.",
+        "range": "HbA1c <5.7%; fasting insulin roughly 2-8 mIU/L (lab-dependent)",
+        "when": "Baseline and ~3 months",
+        "tier": 1
+      }
+    ],
+    "foodFirst": {
+      "line": "**Polyphenol-rich foods raise Akkermansia naturally** — cranberry, pomegranate, grapes, red berries, green tea — as does fermentable fiber and fermented foods. Dietary zinc (oysters, red meat, shellfish) covers zinc needs; a food-diverse gut is the substrate every one of these products depends on.",
+      "note": "For probiotics generally, feeding existing microbes with varied plants often beats adding a single strain.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~$0.30-4/day SGD depending on which",
+      "note": "Rough SGD/day: DGL ~$0.30-0.60, zinc-carnosine ~$0.50-1, S. boulardii ~$0.50-1, Akkermansia the outlier at ~$2-4/day due to anaerobe manufacturing.",
+      "tier": 1
+    },
+    "quality": {
+      "line": "For probiotics, demand **CFU/cell count guaranteed through shelf-life at expiry**, not at manufacture, plus third-party testing. Akkermansia is a strict anaerobe and hard to keep viable, so stability and cold-chain claims matter most there. NSF or USP verification is a neutral quality signal.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "**DGL fails when reflux isn't acid-driven** — non-acid reflux, motility problems, or untreated H. pylori won't respond. Probiotic benefit is strain- and context-specific: S. boulardii's clearest win is preventing antibiotic-associated diarrhea, not general 'gut health,' and it may do little without that trigger.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Antibiotic course",
+        "why": "S. boulardii co-taken with antibiotics reduces antibiotic-associated and C. difficile diarrhea — its best-evidenced use.",
+        "tier": 3
+      },
+      {
+        "with": "H. pylori eradication therapy",
+        "why": "Zinc-carnosine as an adjunct to standard triple therapy has improved eradication and mucosal healing in trials.",
+        "tier": 2
+      },
+      {
+        "with": "Prebiotic fiber + polyphenols",
+        "why": "Feed Akkermansia and other beneficial microbes rather than dosing a probiotic into an empty substrate.",
+        "tier": 2
+      },
+      {
+        "with": "NSAID use",
+        "why": "Zinc-carnosine has been studied for protecting gastric mucosa against NSAID- and stress-induced damage.",
+        "tier": 2
+      }
+    ]
+  },
+  "acetyl-l-carnitine-alcar": {
+    "form": {
+      "buy": "**Acetyl-L-carnitine (ALCAR)** as the L-isomer only — the acetylated ester is the form that crosses the blood-brain barrier. Prefer high-purity, third-party-tested powder or capsules.",
+      "avoid": "Any **D- or DL-carnitine (racemic)** form — the D-isomer is biologically inactive and can competitively interfere with L-carnitine. Plain L-carnitine tartrate is fine for muscle but is a poorer choice for CNS/cognitive goals than the acetylated form.",
+      "withFood": "Take on a **relatively empty stomach** (water, no large meal) for better uptake; if it causes nausea, take with a light snack.",
+      "bioavailability": "Oral bioavailability is **low and saturable** (plain L-carnitine is only ~5-25% absorbed; ALCAR is partly absorbed intact), which is why total daily intake is split into 2-3 doses rather than one large one.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "3 g/day",
+      "note": "Typical studied range is **1,000-2,000 mg/day**, split into 2 doses (e.g. morning + early afternoon). Trials in age-related cognitive decline and neuropathy used up to 2,000-3,000 mg/day. Start at 500 mg to gauge GI tolerance and stimulation before titrating up.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Dose **morning and early afternoon** — ALCAR can be mildly stimulating/alerting, so late-day dosing may disrupt sleep in sensitive people.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "**No mandatory cycling** — it is a naturally occurring metabolite. Long, continuous use is common in the literature; take periodic breaks mainly to re-check whether it is still doing anything for you.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Plasma free carnitine + acylcarnitine profile",
+        "why": "Confirms baseline **carnitine status** — the people who respond most are those who start deficient (see non-responders).",
+        "range": "Free carnitine ~25-50 µmol/L (lab-dependent)",
+        "when": "Baseline if deficiency is suspected (vegan diet, dialysis, valproate use)",
+        "tier": 2
+      },
+      {
+        "marker": "TMAO (trimethylamine-N-oxide)",
+        "why": "Gut bacteria convert carnitine to TMA -> TMAO, a marker **associated with cardiovascular risk**; worth watching with chronic high-dose use, especially with an already meat-heavy diet.",
+        "range": "No firm cutoff; lower is generally viewed as better",
+        "when": "Only if using high doses long-term and cardiovascular risk is a concern",
+        "tier": 1
+      },
+      {
+        "marker": "TSH + free T4",
+        "why": "Carnitine can **blunt thyroid hormone action** peripherally (it has been used therapeutically in hyperthyroidism); track if you are hypothyroid or on thyroid replacement.",
+        "range": "TSH ~0.4-4.0 mIU/L; free T4 per lab range",
+        "when": "Baseline and follow-up if thyroid status is relevant",
+        "tier": 2
+      }
+    ],
+    "foodFirst": {
+      "line": "Dietary **carnitine comes mainly from red meat and other animal products**, so most omnivores are already carnitine-replete — the supplement's edge is the acetylated, brain-penetrating form and topping up genuinely low-carnitine groups.",
+      "note": "Food does not meaningfully supply the *acetyl* form, so the CNS-directed use case cannot be replicated by diet alone.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~S$0.15-0.40 per 500 mg",
+      "math": "A generic third-party-tested ALCAR bottle runs roughly S$25-40 for ~60-90 g; at 1-2 g/day that is about S$0.30-0.80 daily.",
+      "note": "One of the cheaper nootropic-category compounds; the acetyl form costs modestly more than plain L-carnitine.",
+      "tier": 2
+    },
+    "quality": {
+      "line": "Choose products explicitly labelled **L-carnitine / acetyl-L-carnitine** (not DL-) with third-party testing (USP or NSF verification is a reasonable neutral signal); carnitine powder is hygroscopic, so avoid clumped or damp product.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "People who are already **carnitine-replete** (regular meat-eaters, younger and healthy) often notice little; the clearest responders are the **carnitine-depleted** — vegetarians/vegans, older adults, and those on valproate or dialysis.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Alpha-lipoic acid",
+        "why": "The classic **mitochondrial pairing** — co-supplemented in aging/energy-metabolism research (ALCAR feeds fatty-acid oxidation, ALA supports the same pathway as an antioxidant cofactor).",
+        "tier": 2
+      },
+      {
+        "with": "A choline source (dietary or supplemental)",
+        "why": "ALCAR donates acetyl groups toward **acetylcholine synthesis**; adequate choline provides the other half of that reaction.",
+        "tier": 1
+      },
+      {
+        "with": "Omega-3 (EPA/DHA)",
+        "why": "Combined with ALCAR in some **cognition and mood** studies; complementary support for neuronal membranes and mitochondrial function.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Hypothyroidism / thyroid hormone replacement",
+        "advice": "Carnitine can **blunt thyroid hormone action** in tissues; if hypothyroid, use cautiously and monitor TSH/free T4 rather than starting high-dose blind.",
+        "tier": 2
+      },
+      {
+        "flag": "Warfarin / anticoagulants",
+        "advice": "L-carnitine has been reported (case-level) to **raise INR** on warfarin/coumarin anticoagulants; check with the prescriber and monitor INR before combining.",
+        "tier": 1
+      },
+      {
+        "flag": "Bipolar / agitation-prone",
+        "advice": "Its mild stimulating quality can worsen **agitation, restlessness, or insomnia**; start low and stop if activation appears.",
+        "tier": 1
+      },
+      {
+        "flag": "Fishy body/breath odor",
+        "advice": "Chronic high doses can cause a **trimethylaminuria-like fishy odor** via TMA production; lower the dose if it appears.",
+        "tier": 2
+      }
+    ]
+  },
+  "phosphatidylserine-ps": {
+    "form": {
+      "buy": "**Soy- or sunflower-lecithin-derived PS**, ideally third-party tested; sunflower-sourced avoids soy allergens.",
+      "avoid": "**Bovine (cow-brain) cortex PS** — the source with the best old trial data, but carries a theoretical prion/BSE transmission concern and is essentially off the market.",
+      "withFood": "Take **with a fat-containing meal** — PS is a phospholipid and absorption is better alongside dietary fat.",
+      "bioavailability": "Well absorbed orally; note that today's plant-derived PS has a different fatty-acid profile than the bovine PS used in the strongest cognition studies.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "Cognition trials mostly used ~300 mg/day; doses up to ~800 mg/day have been used in cortisol studies and appear well tolerated.",
+      "note": "Common cognition regimen is **100 mg three times daily (300 mg/day)** with meals. Cortisol-blunting exercise studies used higher doses (~600-800 mg/day); some mental-stress studies used 300-400 mg/day. No per-kg dosing is established.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Split with meals through the day for cognition; for a **stress/cortisol** aim, some dose before a known stressor such as a hard training session.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "No established need to cycle; benefits (if any) build over **weeks of continuous use**, so trials ran daily for 6-12 weeks.",
+      "tier": 1
+    },
+    "foodFirst": {
+      "line": "PS occurs in **organ meats, fish (mackerel, herring), and soy/sunflower lecithin**, but a typical diet supplies only ~100-150 mg/day.",
+      "note": "You cannot realistically reach the 300 mg studied doses from food, which is the main rationale for a supplement.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.50-1.50 per 100 mg",
+      "math": "A 60-cap bottle of 100 mg runs roughly SGD 30-60; at 300 mg/day that is ~SGD 1.50-4.50/day.",
+      "note": "Among the pricier nootropic ingredients per gram; sunflower-sourced tends to cost more than soy.",
+      "tier": 1
+    },
+    "biomarkers": [
+      {
+        "marker": "**Salivary or serum cortisol**",
+        "why": "The main mechanistic claim is blunting of the cortisol response to stress; tracking around a stressor (e.g. hard exercise) is the only objective readout.",
+        "range": "Morning serum cortisol reference is roughly ~140-690 nmol/L (highly lab-dependent); interpret trends, not single values.",
+        "when": "Baseline and after 4-6 weeks, ideally sampled at a consistent time of day.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "**Anticoagulant / antiplatelet use** (warfarin, DOACs, aspirin, clopidogrel)",
+        "advice": "Phospholipid supplements may theoretically add to bleeding risk; clear it with your doctor first.",
+        "tier": 1
+      },
+      {
+        "flag": "**Soy allergy**",
+        "advice": "Choose a clearly labeled sunflower-derived PS instead of soy-derived.",
+        "tier": 2
+      },
+      {
+        "flag": "**Pregnancy or breastfeeding**",
+        "advice": "Insufficient safety data — avoid.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Look for a product that **names its source (sunflower or soy) and PS content per serving**, and ideally carries independent third-party testing (e.g. NSF or USP); avoid any bovine-brain sourced material.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Much of the flattering memory data came from **bovine-brain PS**; plant-derived PS has weaker and mixed results, so a subjective non-response is common and expected.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Omega-3 (DHA/EPA)**",
+        "why": "PS is a membrane phospholipid, much of it DHA-enriched; the two are often paired, and adequate DHA supports the membranes PS is meant to build.",
+        "tier": 2
+      }
+    ]
+  },
+  "sam-e-s-adenosylmethionine": {
+    "form": {
+      "buy": "**Enteric-coated tablets** in foil blister packs — SAM-e is degraded by stomach acid, heat and moisture, so coating and sealed packaging protect the active dose.",
+      "avoid": "Non-enteric-coated tablets, loose bottles, or product left in a warm humid room; the molecule oxidizes readily and loses potency.",
+      "withFood": "Take on an **empty stomach**, ~20-30 min before a meal, to improve absorption.",
+      "bioavailability": "Sold as stabilized salts — **1,4-butanedisulfonate (disulfonate)** or **tosylate**; the disulfonate form is generally the more stable. Label should state the salt and the yield of active ion.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**Homocysteine**",
+        "why": "SAM-e is converted to SAH then homocysteine; without adequate B12/folate/B6 to recycle it, blood homocysteine can rise.",
+        "range": "Optimal <10 µmol/L; ~10-15 borderline",
+        "when": "Baseline and after ~8 weeks, especially if B-vitamin status is uncertain",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Folate (B9)** and **Vitamin B12**",
+          "role": "Remethylate homocysteine back to methionine, keeping the methylation cycle running and limiting homocysteine build-up.",
+          "tier": 3
+        },
+        {
+          "nutrient": "**Vitamin B6**",
+          "role": "Cofactor for the transsulfuration pathway that clears homocysteine downstream of SAM-e.",
+          "tier": 2
+        }
+      ],
+      "depletes": [
+        {
+          "nutrient": "**Methyl-cycle B vitamins (folate/B12)**",
+          "role": "Heavy methyl-donor turnover can unmask a marginal folate/B12 deficiency by raising homocysteine demand.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "SAM-e is **made in the body** from the amino acid methionine plus ATP — it is not obtained in meaningful amounts from food.",
+      "note": "Adequate protein (methionine) plus folate and B12 support your own SAM-e production; the supplement is a direct top-up, not a dietary replacement.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~S$0.80-2 per 400 mg tablet",
+      "math": "A typical 800-1600 mg/day dose runs ~S$1.50-6/day — one of the pricier single supplements.",
+      "note": "Rough estimate; enteric-coated products sit at the higher end. Confirm current Singapore pricing.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "~1600 mg/day",
+      "note": "Mood: commonly 800-1600 mg/day (studies span 400-1600). Osteoarthritis: ~600-1200 mg/day. Start low (200-400 mg) and titrate up over days to reduce GI upset, jitteriness or anxiety. Split into two doses.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take in the **morning (and midday)**, not late — SAM-e can be activating and evening doses may disrupt sleep.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No cycling needed; but allow **2-6 weeks** for a mood effect and up to ~4 weeks for osteoarthritis before judging it.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "**Bipolar disorder**",
+        "advice": "SAM-e can trigger mania or hypomania and switch mood states — avoid unless supervised by a psychiatrist.",
+        "tier": 2
+      },
+      {
+        "flag": "**Serotonergic medications (SSRIs, SNRIs, MAOIs, tramadol)**",
+        "advice": "Additive serotonin effect raises serotonin-syndrome risk (case reports); only combine under medical supervision.",
+        "tier": 1
+      },
+      {
+        "flag": "**Parkinson's on levodopa**",
+        "advice": "SAM-e can methylate and may reduce the effect of levodopa — discuss with your neurologist first.",
+        "tier": 1
+      },
+      {
+        "flag": "**Pregnancy / breastfeeding**",
+        "advice": "Data are limited outside specialist obstetric use (e.g. cholestasis); do not self-prescribe.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose **enteric-coated, blister-sealed** products that disclose the salt form and active-ion yield; independent testing (e.g. USP/NSF) helps, as cheaper SAM-e often assays below its label claim.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "If no benefit after ~6 weeks at an adequate dose — or if B12/folate are low — it may not be your lever; correct B-vitamin status first and reassess.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "**B-complex (folate, B12, B6)**",
+        "why": "Keeps homocysteine in check and supports the methylation cycle SAM-e feeds into.",
+        "tier": 2
+      },
+      {
+        "with": "**Betaine (TMG)**",
+        "why": "An alternative methyl donor that helps remethylate homocysteine, complementing SAM-e's methyl turnover.",
+        "tier": 1
+      }
+    ]
+  },
+  "silymarin-milk-thistle": {
+    "form": {
+      "buy": "High-purity extract **standardized to 70-80% silymarin** (the flavonolignan complex), ideally listing **silybin** content. A **silybin-phosphatidylcholine (phytosome) complex** absorbs better than plain extract.",
+      "avoid": "Whole-herb powder or products with no standardization percentage on the label - potency is unpredictable.",
+      "withFood": "Take **with a fat-containing meal** - the flavonolignans are poorly water-soluble and dietary fat improves the modest absorption available.",
+      "bioavailability": "Oral bioavailability is **inherently low** (silybin is poorly water-soluble and rapidly conjugated/excreted). Phytosome and other complexed forms raise plasma silybin roughly **2-5x** over plain extract.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT",
+        "why": "The most-used endpoint in silymarin liver trials; track for any personal change, but note **large human reviews show no consistent benefit**.",
+        "range": "roughly <33 U/L (women), <40 U/L (men); lab-dependent",
+        "when": "Baseline, then after ~8-12 weeks",
+        "tier": 3
+      },
+      {
+        "marker": "AST",
+        "why": "Paired with ALT to gauge hepatocellular status; interpret alongside ALT rather than alone.",
+        "range": "~10-40 U/L, lab-dependent",
+        "when": "With ALT at baseline and ~8-12 weeks",
+        "tier": 3
+      },
+      {
+        "marker": "GGT",
+        "why": "Sensitive marker of hepatobiliary stress and alcohol load; useful personal baseline if liver is the goal.",
+        "range": "~8-40 U/L (women), ~10-60 U/L (men), lab-dependent",
+        "when": "Baseline and periodically",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "antagonists": [
+        {
+          "nutrient": "CYP2C9 substrates",
+          "role": "Silybin **inhibits CYP2C9** at clinically achievable concentrations; effect in vivo appears modest but is relevant for narrow-margin drugs metabolized by it (e.g. warfarin).",
+          "tier": 2
+        }
+      ]
+    },
+    "cost": {
+      "perDose": "~S$0.10-0.40 per 140 mg dose of standardized extract",
+      "math": "A bottle of standardized extract runs roughly S$15-30 for 60-120 doses; phytosome forms cost noticeably more.",
+      "note": "One of the cheaper botanicals; phytosome/complexed forms carry a real price premium for the bioavailability gain.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg silymarin",
+      "cap": "Trials commonly use ~420 mg/day (some NAFLD trials up to ~600 mg/day)",
+      "note": "Typical research dosing is **~140 mg silymarin, 2-3x daily**, taken with meals. There is no established per-kg dosing. Complexed/phytosome forms use lower silybin doses because absorption is higher.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Split across meals (e.g. **with breakfast and dinner**); pairing with dietary fat aids the limited absorption. No compelling reason for a specific time of day.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Asteraceae/ragweed allergy",
+        "advice": "Milk thistle is in the daisy family; those allergic to ragweed, chrysanthemum, marigold or daisy can react - **avoid or trial cautiously**.",
+        "tier": 2
+      },
+      {
+        "flag": "Warfarin / narrow-margin CYP2C9 drugs",
+        "advice": "Possible **CYP2C9 interaction**; if on warfarin or similar, discuss with a clinician and monitor rather than self-adding.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "Safety data are insufficient; **avoid** unless directed by a clinician.",
+        "tier": 2
+      },
+      {
+        "flag": "Hormone-sensitive conditions",
+        "advice": "Silymarin shows **weak, mixed estrogenic activity** in lab models; if you have an estrogen-sensitive condition, be cautious and discuss with a clinician.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose a product **standardized to a stated silymarin percentage** and ideally **third-party tested** (e.g. USP or NSF verified) - botanical extracts vary widely in actual flavonolignan content.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "Because plain-extract absorption is so low, many people see **no change in liver enzymes** - unsurprising given null findings in large human reviews. For a fairer trial, a **phytosome/complexed form** delivers meaningfully more silybin.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Phosphatidylcholine (as a phytosome complex)",
+        "why": "Complexing silybin with phosphatidylcholine markedly **improves absorption** of an otherwise poorly bioavailable molecule.",
+        "tier": 2
+      },
+      {
+        "with": "N-acetylcysteine (NAC)",
+        "why": "Both support **glutathione/antioxidant pathways** in the liver via different mechanisms; a plausible complementary pairing, though outcome data are limited.",
+        "tier": 1
+      }
+    ]
+  },
+  "valerian-valeriana-officinalis": {
+    "form": {
+      "buy": "**Standardized root extract** (capsule or tablet) listing valerenic acid content (commonly ~0.8%); hydroalcoholic or aqueous extracts are the best-studied forms.",
+      "avoid": "**Undosed 'sleep blend' products** where valerian is one of many herbs at unlisted amounts, and cheap root powders with no standardization.",
+      "withFood": "Take **with or without food**; capsules bypass the strong isovaleric-acid smell that makes the tea unpleasant.",
+      "bioavailability": "Active constituents (**valerenic acid, valepotriates**) are not fully characterized, so 'standardization' is an imperfect proxy for potency.",
+      "tier": 2
+    },
+    "foodFirst": {
+      "line": "Valerian is **not a dietary nutrient** — there is no food source, and it is not correcting a deficiency.",
+      "note": "Fix the free levers first: **consistent sleep-wake timing, caffeine cutoff ~8h before bed, and a dark cool room** outperform any sleep herb and cost nothing.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~$0.20–0.60 SGD per night",
+      "math": "A bottle of 60–90 standardized capsules runs ~$15–35 SGD; at 1–2 caps/night that is roughly $0.20–0.60 per dose.",
+      "note": "Cheap relative to prescription hypnotics, but the modest and inconsistent benefit means it is easy to overpay for a placebo-grade effect.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "~900 mg extract/night",
+      "note": "Typical trials use **300–600 mg of standardized extract** 30–120 min before bed (or ~2–3 g dried root as tea). No per-kg dosing exists. Benefit in some studies only appears after **1–2 weeks of nightly use**, not the first dose.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **30 minutes to 2 hours before bed**; for chronic use, dose nightly for 1–2 weeks before judging effect rather than relying on it acutely.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Not a controlled sedative and no clear physical dependence, but long-term safety is poorly studied — **use as-needed or in short courses** and avoid indefinite nightly reliance. Some report grogginess or rebound restlessness on abrupt stop after prolonged use.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Alcohol, benzodiazepines, or other CNS depressants",
+        "advice": "**Additive sedation** — do not stack; combining can cause excess drowsiness and impaired coordination.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "**Insufficient safety data** — avoid unless cleared by a clinician.",
+        "tier": 3
+      },
+      {
+        "flag": "Upcoming surgery",
+        "advice": "Stop **at least 1–2 weeks before surgery** (tapering gradually after long-term use) due to additive effects with anesthetics/sedatives.",
+        "tier": 2
+      },
+      {
+        "flag": "Driving or operating machinery",
+        "advice": "May cause **next-morning drowsiness or impaired alertness** — do not drive until you know how it affects you.",
+        "tier": 2
+      },
+      {
+        "flag": "Liver disease or hepatotoxic medications",
+        "advice": "Rare **hepatotoxicity reports** (mostly multi-herb products) — use caution and stop if jaundice, dark urine, or right-upper-quadrant pain appears.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose products **standardized to valerenic acid and third-party tested** (e.g. USP or NSF certified); herbal supplements are loosely regulated and content varies widely between brands.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "A **large fraction of people get no meaningful benefit** — trial results are genuinely mixed. If sleep hasn't improved after 2–4 weeks of consistent nightly use, stop rather than escalating the dose.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Hops (Humulus lupulus)",
+        "why": "The **valerian–hops combination** is the best-studied pairing and shows more consistent mild sleep benefit than valerian alone in several RCTs.",
+        "tier": 2
+      },
+      {
+        "with": "Lemon balm (Melissa officinalis)",
+        "why": "Traditional GABAergic/anxiolytic pairing; some small trials suggest additive calming effect on sleep onset.",
+        "tier": 1
+      }
+    ]
   }
 }
