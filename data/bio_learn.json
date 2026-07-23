@@ -1,7 +1,7 @@
 {
   "creatine-monohydrate": {
     "form": {
-      "buy": "Plain **creatine monohydrate**. Micronised dissolves better but is chemically identical. **Creapure®** is the German quality mark worth paying a little for.",
+      "buy": "Plain **creatine monohydrate**. Micronised dissolves better but is chemically identical. Look for a **high-purity, third-party-tested** monohydrate — independent purity testing is worth a small premium.",
       "avoid": "‘Advanced’ forms — HCl, ethyl ester, buffered (Kre-Alkalyn), nitrate, liquid. None beat monohydrate head-to-head, and they cost 3–10× more for the same or worse result.",
       "withFood": "Doesn't need food. Co-ingesting carbs/protein raises insulin, which nudges muscle uptake — but once you're saturated this barely matters.",
       "bioavailability": "Near-complete oral absorption at doses ≤5 g; essentially ~100% bioavailable as monohydrate.",
@@ -26,7 +26,7 @@
     "timing": {"line": "Barely matters — it's a saturation game, not a pre-workout stopwatch. If you want the tiny edge, take it **post-workout with carbs/protein**. Consistency (daily) beats timing.", "tier": 2},
     "cycling": {"line": "**No cycling needed.** No tolerance, no receptor downregulation, no washout. Take it daily, indefinitely. Stopping just lets muscle stores fade over ~4–6 weeks.", "tier": 3},
     "contra": [{"flag": "Pre-existing kidney disease", "advice": "Monohydrate is safe for healthy kidneys, but data in established CKD is thin — clear it with a doctor first.", "tier": 2}],
-    "quality": {"line": "Pick **Creapure®** or a brand with third-party testing (Informed Sport / NSF). Cheap bulk creatine from poor synthesis can carry contaminants like dicyandiamide and excess creatinine.", "tier": 2},
+    "quality": {"line": "Choose a **third-party-tested** monohydrate (independent certification such as Informed Sport or NSF). Cheap bulk creatine from poor synthesis can carry contaminants like dicyandiamide and excess creatinine — independent purity testing is the safeguard.", "tier": 2},
     "nonResponders": {"line": "~20–30% see little scale/strength jump — usually because their muscle creatine is **already near-full** from a meat-heavy diet, so there's no room to top up. Vegetarians almost always respond.", "tier": 3},
     "synergy": [
       {"with": "Resistance training", "why": "Creatine only expresses its benefit when you supply the training stimulus it fuels — it's a battery, not a spark.", "tier": 3},
