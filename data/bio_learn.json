@@ -1175,5 +1175,2725 @@
         "tier": 1
       }
     ]
+  },
+  "caffeine": {
+    "form": {
+      "buy": "**Caffeine anhydrous** in tablet or capsule form gives precise, repeatable dosing; brewed coffee, tea and matcha are the food-form equivalents.",
+      "avoid": "**Bulk pure caffeine powder** — a level teaspoon is ~3-5 g, roughly 10x a normal dose, and home scales cannot measure it safely; overdose deaths have occurred. Also avoid high-sugar energy drinks where the dose is buried.",
+      "withFood": "Works fine on an empty stomach for fastest onset; taking it with food only mildly delays absorption. With food is gentler if it upsets your stomach.",
+      "bioavailability": "Near-complete (~99%) oral absorption; blood levels peak ~30-60 min after ingestion.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "**Resting / home blood pressure**",
+        "why": "Caffeine acutely raises blood pressure, especially in non-habitual users and slow metabolizers; worth self-tracking if you are hypertensive or dose high.",
+        "range": "Normal <120/80 mmHg; a home cuff spike of 5-10 mmHg after dosing is common and usually blunts with tolerance.",
+        "when": "Baseline, then ~60 min after a dose on a few days when adjusting intake.",
+        "tier": 3
+      }
+    ],
+    "cofactors": {
+      "depletes": [
+        {
+          "nutrient": "Calcium",
+          "role": "Modestly increases urinary calcium excretion; trivial at moderate intakes with adequate dietary calcium, more relevant in heavy coffee drinkers with low intake.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Non-heme (plant) iron",
+          "role": "Coffee and tea taken with meals reduce non-heme iron absorption (largely via polyphenols/tannins); separate iron-rich meals or supplements from coffee/tea by ~1 hour if iron status is a concern.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Coffee, tea, matcha and cacao** are the everyday food sources — a standard coffee is ~80-100 mg, black/green tea ~30-50 mg, matcha ~40-70 mg per serving.",
+      "note": "For most people the food form is enough; reserve tablets for when you need an exact, known dose (e.g. pre-workout timing).",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "Under $0.05 SGD per anhydrous tablet; ~$0.20-0.60 for home-brewed coffee",
+      "math": "A jar of 100 caffeine tablets is a few SGD; cafe coffee ($4-6) is where the real cost sits.",
+      "note": "One of the cheapest evidence-backed performance aids that exists.",
+      "tier": 3
+    },
+    "dosing": {
+      "perKg": 3,
+      "unit": "mg",
+      "cap": "General population: keep total daily intake at or under ~400 mg, and single doses around 200 mg; pregnancy under 200 mg/day.",
+      "note": "For performance the well-established range is **3-6 mg/kg** taken ~45-60 min before exercise (e.g. ~210-420 mg for a 70 kg person); going above ~6 mg/kg adds side effects, not benefit. For everyday alertness, 40-200 mg is plenty.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Take **30-60 min before** the focus block or workout. With a half-life of ~5 hours, avoid caffeine within ~8-10 hours of bedtime (longer for large pre-workout doses) — an afternoon coffee still measurably degrades that night's sleep.",
+      "tier": 3
+    },
+    "cycling": {
+      "line": "Tolerance to the alertness effect builds within days to weeks, so keep doses as low as works and take periodic breaks; abrupt cessation after regular use causes **withdrawal headache and fatigue** that can last several days (sometimes up to a week), so taper rather than quit cold.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Limit to under ~200 mg/day per major health authorities.",
+        "tier": 3
+      },
+      {
+        "flag": "Anxiety, panic disorder or insomnia",
+        "advice": "Caffeine can trigger or worsen anxiety, palpitations and sleep disruption; keep doses low or avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "Cardiac arrhythmia or uncontrolled hypertension",
+        "advice": "Discuss with your doctor before regular use; caffeine acutely raises heart rate and blood pressure.",
+        "tier": 2
+      },
+      {
+        "flag": "Certain medications (e.g. fluvoxamine, ciprofloxacin and other CYP1A2 inhibitors)",
+        "advice": "These sharply slow caffeine clearance and amplify its effects; check interactions with a pharmacist.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose **USP/pharmaceutical-grade caffeine anhydrous** in pre-measured tablets or capsules; third-party testing (NSF, Informed Sport) helps if you compete. Never dose loose bulk powder by eye — the lethal margin is too narrow to guess.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "Response varies with genetics and habit. **ADORA2A** variants track how much anxiety and sleep disruption you feel, and **CYP1A2** genotype sets how fast you clear it; a much-discussed but genuinely mixed line of evidence suggests fast metabolizers *may* get more of the ergogenic benefit and slow metabolizers more of the blood-pressure downside, though trials are inconsistent. Habitual heavy users see blunted alertness effects.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "L-theanine",
+        "why": "Roughly 1:1 to 2:1 theanine:caffeine (e.g. 100-200 mg theanine with 100 mg caffeine) smooths the jittery edge while preserving the focus and reaction-time benefit — one of the better-supported nootropic pairings.",
+        "tier": 2
+      },
+      {
+        "with": "Carbohydrate (during endurance work)",
+        "why": "Co-ingesting caffeine with carbohydrate enhances endurance performance versus carbohydrate alone, and may speed post-exercise glycogen resynthesis (the latter on more limited evidence).",
+        "tier": 2
+      }
+    ]
+  },
+  "boron": {
+    "form": {
+      "buy": "A **chelated elemental boron** (boron glycinate, citrate, or aspartate) or naturally-occurring **calcium fructoborate**, third-party tested (NSF/USP), with the label stating the *elemental* boron dose.",
+      "avoid": "Industrial **borax/boric acid** sold for non-food use, and megadose products advertising far above 10 mg elemental boron.",
+      "withFood": "Take with a meal; no acute timing benefit since boron acts as a slowly-turned-over mineral pool.",
+      "bioavailability": "Boron is **highly absorbed (~85-90%)** across virtually all common forms, so form choice is about purity and accurate labelling, not absorption.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Free testosterone",
+        "why": "The primary outcome people chase; boron is proposed to raise the **unbound, active fraction**.",
+        "range": "~5-21 ng/dL (≈50-210 pg/mL) calculated free T in adult men, lab-dependent",
+        "when": "Baseline, then 4-8 weeks, drawn in the morning",
+        "tier": 2
+      },
+      {
+        "marker": "SHBG",
+        "why": "The proposed mechanism is **lower SHBG** freeing more testosterone; track it to see if that pathway is actually moving.",
+        "range": "~10-57 nmol/L (adult men)",
+        "when": "Same draw as free testosterone",
+        "tier": 2
+      },
+      {
+        "marker": "Estradiol",
+        "why": "Small trials show boron can **shift estradiol** in men (down in one, up in another), so watch it alongside testosterone rather than assuming a one-way effect.",
+        "range": "~10-40 pg/mL (adult men)",
+        "when": "Baseline and 4-8 weeks",
+        "tier": 1
+      },
+      {
+        "marker": "hsCRP",
+        "why": "A single small human trial reported lower **inflammatory markers** (hsCRP, TNF-alpha) on boron; a speculative secondary read.",
+        "range": "<1 mg/L optimal; 1-3 mg/L average risk",
+        "when": "Baseline and 8-12 weeks",
+        "tier": 1
+      },
+      {
+        "marker": "25-hydroxyvitamin D",
+        "why": "Emerging evidence that boron **supports vitamin D status**, relevant to the bone goal.",
+        "range": "30-50 ng/mL (75-125 nmol/L) sufficiency",
+        "when": "Baseline and 8-12 weeks",
+        "tier": 1
+      }
+    ],
+    "foodFirst": {
+      "line": "**Dried fruit, nuts and legumes** are the richest sources: a handful of raisins plus a few prunes or almonds can supply 2-4 mg boron.",
+      "note": "A typical mixed diet already provides ~1-2 mg/day, so food alone narrows the gap to the doses used in studies.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "<S$0.10 per 3-6 mg dose",
+      "math": "~S$15-25 buys 100-250 capsules of 3-5 mg elemental boron",
+      "note": "One of the cheapest supplements on the shelf; cost is never the limiting factor.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg elemental boron/day",
+      "cap": "20 mg/day (US IOM/FNB tolerable upper intake level for adults; note EFSA sets a lower 10 mg/day)",
+      "note": "**3-6 mg/day** covers general/bone use; the free-testosterone trials used **~6-10 mg/day**. Benefits plateau early — more is not better, and there is no reason to approach the upper limit.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Once daily with any meal; because boron equilibrates into a slow mineral pool, **steady daily intake matters more than time of day**.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No cycling is required at 3-6 mg; some users cycle 5 days on / 2 off, but there is **no evidence a break is needed** at dietary-adjacent doses.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Kidney disease / impaired renal function",
+        "advice": "Boron is cleared almost entirely by the **kidneys**; reduced clearance lets it accumulate, so avoid supplementing without medical guidance.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or trying to conceive",
+        "advice": "High-dose boron is a **developmental/reproductive toxicant** in animal studies; do not supplement above normal dietary intake.",
+        "tier": 3
+      },
+      {
+        "flag": "Hormone-sensitive conditions",
+        "advice": "Because boron can nudge **free testosterone and estradiol**, be cautious and discuss with a clinician if you have a hormone-sensitive condition.",
+        "tier": 1
+      },
+      {
+        "flag": "Exceeding the upper limit",
+        "advice": "Stay at or below the **20 mg/day** ceiling (lower in the EU); higher intakes offer no added benefit and raise toxicity risk (nausea, headache).",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "Prefer a **third-party-tested (NSF/USP)** product that lists *elemental* boron, since chelate weight can otherwise overstate the true dose.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "People already **boron-replete** from a diet rich in fruit, nuts and legumes tend to notice little; effects are clearest when baseline intake is low.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "Vitamin D",
+        "why": "Boron may influence **vitamin D metabolism** and raise 25-OH-D in deficient people; the pair reinforces the bone goal.",
+        "tier": 1
+      },
+      {
+        "with": "Magnesium",
+        "why": "Boron **reduces urinary magnesium loss** (Nielsen deprivation studies), and both minerals support bone mineral density.",
+        "tier": 2
+      },
+      {
+        "with": "Calcium",
+        "why": "Boron lowers **urinary calcium excretion**, complementing calcium intake for bone.",
+        "tier": 2
+      }
+    ]
+  },
+  "taurine": {
+    "form": {
+      "buy": "**Plain taurine powder** or capsules — a single-ingredient amino acid, so cheap generic material is fine as long as it's **third-party tested for purity** (USP/NSF where available).",
+      "avoid": "Getting your dose from **energy drinks** — the taurine is real but comes bundled with sugar, high caffeine and stimulants.",
+      "withFood": "Taken with or without food; free-form amino acid absorbs well either way. Powder dissolves cleanly in water.",
+      "bioavailability": "**Highly water-soluble and well absorbed** as free taurine; no special ester or 'enhanced' form is needed or worth paying for.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "**Resting blood pressure**",
+        "why": "Meta-analyses show modest reductions in systolic/diastolic BP (roughly -4/-1.5 mmHg) with taurine; a home cuff is the cheapest way to see if you personally respond.",
+        "range": "Target <120/80 mmHg; track your own change over 6-8 weeks",
+        "when": "Baseline, then weekly at the same time of day",
+        "tier": 2
+      },
+      {
+        "marker": "**Fasting glucose / HbA1c**",
+        "why": "Some trials show small improvements in fasting glucose and insulin sensitivity; useful if you already track metabolic markers.",
+        "range": "Fasting glucose 4.0-5.5 mmol/L; HbA1c <5.7%",
+        "when": "Baseline and at ~3 months",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Vitamin B6 (as PLP)**",
+          "role": "Cofactor for cysteine sulfinic acid decarboxylase, an enzyme in taurine synthesis; adequate B6 supports the body's own production.",
+          "tier": 2
+        },
+        {
+          "nutrient": "**Cysteine / methionine**",
+          "role": "Sulfur-amino-acid precursors from which endogenous taurine is made.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "**Beta-alanine**",
+          "role": "Shares the same TauT transporter, so high-dose beta-alanine may lower tissue taurine (shown mainly in animals) — reasonable to space them apart.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Taurine is concentrated in **animal foods** — shellfish (scallops, clams), dark-meat poultry, and fish; a mixed omnivore diet supplies several hundred mg to over a gram daily.",
+      "note": "**Plants contain essentially none**, so vegetarians and vegans run lower endogenous levels and are the group most likely to benefit from supplementing.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~SGD $0.10-0.25 per 2-3 g dose",
+      "math": "A 500 g pouch of plain taurine runs roughly SGD $20-30, giving ~165-250 doses of 2-3 g.",
+      "note": "One of the cheapest evidence-backed supplements per gram; buying powder rather than capsules roughly halves the cost.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "g/day",
+      "cap": "Doses up to ~3-6 g/day are used in trials; EFSA estimates an observed safe level of ~6 g/day (~100 mg/kg) for adults.",
+      "note": "Most studies use **1-3 g/day**, often split into two doses. Start at 1-1.5 g/day and assess. No per-kg dosing standard exists for adults.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "For endurance/exercise effects, take **~1-2 hours before training**; for general/cardiometabolic use, timing is flexible and a split morning/evening dose is fine.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "**No cycling needed** — taurine is a normal body constituent with no known tolerance or dependence; continuous daily use is the studied pattern.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "**On blood-pressure medication**",
+        "advice": "Taurine can mildly lower BP, which may be additive with antihypertensives — monitor and discuss with your doctor.",
+        "tier": 2
+      },
+      {
+        "flag": "**Pregnancy / breastfeeding**",
+        "advice": "Food-level amounts are normal, but supplemental doses lack safety data — default to food sources unless a clinician advises otherwise.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose a **single-ingredient, third-party-tested** taurine (USP/NSF or Informed Sport if you compete); it's a simple molecule, so purity and absence of fillers/contaminants are the only real quality variables.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "People who are already **taurine-replete** — heavy meat/seafood eaters, younger adults — tend to notice least; benefits appear largest where levels are low (older adults, vegans, or genuine deficiency).",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Magnesium**",
+        "why": "Both are involved in vascular tone and are commonly paired for blood-pressure and relaxation goals, though evidence for a specific combined effect is limited.",
+        "tier": 1
+      }
+    ]
+  },
+  "n-acetylcysteine-nac": {
+    "form": {
+      "buy": "**Plain N-acetylcysteine** in capsules from a high-purity, third-party-tested source (USP or NSF verified where available).",
+      "avoid": "**Proprietary 'detox' or 'liver' blends** that bury an unstated NAC dose among other actives; loose exposed powder that has oxidised (yellowing, sulfur smell intensifying).",
+      "withFood": "Absorption is modestly higher on an **empty stomach**, but NAC commonly causes nausea, so taking it with a small meal is a reasonable trade if GI upset occurs.",
+      "bioavailability": "Oral **systemic bioavailability is low (~4-10%)** due to extensive first-pass (largely intestinal) deacetylation, but this is enough to raise intracellular cysteine and support glutathione synthesis.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**GGT (gamma-glutamyl transferase)**",
+        "why": "Involved in glutathione metabolism and reflects oxidative/hepatic stress; a cheap proxy to track if using NAC for liver or antioxidant goals.",
+        "range": "Roughly <30 U/L (men), <20 U/L (women); lab-dependent",
+        "when": "Baseline, then after 8-12 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "**ALT / AST**",
+        "why": "Standard liver enzymes to monitor if the goal is liver support; track direction over time rather than a single value.",
+        "range": "ALT ~<40 U/L, AST ~<40 U/L (lab-dependent)",
+        "when": "Baseline and every few months",
+        "tier": 3
+      },
+      {
+        "marker": "**Homocysteine**",
+        "why": "NAC can acutely lower homocysteine via its sulfhydryl group, though longer-term data are mixed; worth checking if a cardiovascular/methylation context applies.",
+        "range": "Optimal ~<10 umol/L (lab-dependent)",
+        "when": "Baseline, recheck after 8-12 weeks",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Glycine**",
+          "role": "Glutathione is a tripeptide (glutamate-cysteine-glycine); glycine is frequently the second co-limiting substrate, which is why GlyNAC is studied together.",
+          "tier": 2
+        },
+        {
+          "nutrient": "**Selenium**",
+          "role": "Required cofactor for glutathione peroxidase, the enzyme that uses glutathione to neutralise peroxides; low selenium blunts the antioxidant payoff.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "**Zinc / copper (high-dose NAC)**",
+          "role": "NAC has metal-chelating activity, so sustained high doses could theoretically nudge trace-mineral status; keep a balanced diet if dosing high long-term.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Dietary **cysteine** raises glutathione too: whey protein, eggs, and other sulfur-rich proteins are the main food sources.",
+      "note": "Whey is notably cysteine-rich; adequate total protein plus glycine-rich foods (gelatin, bone broth, connective tissue) support the same pathway NAC feeds.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~S$0.15-0.40 per 600 mg",
+      "math": "A bottle of 600 mg capsules typically runs S$15-35 for 60-120 caps.",
+      "note": "One of the cheapest evidence-backed antioxidant precursors per dose.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "600-1800 mg/day is the common general-health range; up to ~2400 mg/day has been studied",
+      "note": "Split into divided doses (e.g. 600 mg once or twice daily). Higher acute per-kg dosing exists only in the hospital acetaminophen-overdose protocol and is not a self-directed use.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "**Split into 1-2 doses** across the day; consistency matters more than time of day since the goal is steady glutathione substrate supply.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No established need to cycle for general use; some take periodic breaks, but continuous daily use is the studied pattern.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "**Nitroglycerin / nitrate medications**",
+        "advice": "NAC potentiates nitrate vasodilation and can cause marked hypotension and severe headache; do not combine without medical supervision.",
+        "tier": 2
+      },
+      {
+        "flag": "**Asthma / reactive airways**",
+        "advice": "Serious bronchospasm is chiefly a risk with inhaled/nebulized NAC; oral NAC is generally well tolerated, but people with reactive airways may be more sensitive, so introduce cautiously and stop if breathing worsens.",
+        "tier": 1
+      },
+      {
+        "flag": "**Anticoagulants / bleeding risk**",
+        "advice": "High-dose NAC has mild antiplatelet activity; flag it before surgery or if on blood thinners.",
+        "tier": 1
+      },
+      {
+        "flag": "**Pregnancy / breastfeeding or on other medications**",
+        "advice": "NAC is generally well tolerated but interactions and individual context vary; check with a clinician first.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose **third-party-tested (USP/NSF) plain NAC**; the compound oxidises, so intact capsules and a sealed container beat loose powder that smells strongly of sulfur.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Glycine (GlyNAC)**",
+        "why": "Supplying both cysteine (from NAC) and glycine completes glutathione synthesis; the combination is the form most studied for restoring glutathione and oxidative markers in aging.",
+        "tier": 2
+      },
+      {
+        "with": "**Selenium**",
+        "why": "Fuels glutathione peroxidase so the glutathione NAC helps produce is actually used to clear peroxides.",
+        "tier": 2
+      },
+      {
+        "with": "**Vitamin C**",
+        "why": "Part of the same antioxidant recycling network; helps regenerate oxidised glutathione and broadens redox coverage.",
+        "tier": 1
+      }
+    ]
+  },
+  "coq10-ubiquinol": {
+    "form": {
+      "buy": "**Ubiquinol** (the reduced form) or **ubiquinone**, in an oil-based softgel; ubiquinol is generally better absorbed, especially over age ~50.",
+      "avoid": "Dry tablets, loose-powder capsules, and cheap 'CoQ10' in unspecified form — poorly absorbed without a lipid carrier.",
+      "withFood": "Fat-soluble — take with the fattiest meal of the day; food/fat markedly increases absorption versus fasted.",
+      "bioavailability": "Absorption is low and saturable. Splitting doses above ~100mg and taking with dietary fat matters at least as much as the ubiquinol-vs-ubiquinone choice.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**Plasma total CoQ10**",
+        "why": "The only direct read on whether oral dosing actually raised your levels — absorption varies enormously between people.",
+        "range": "Untreated typically ~0.4–1.5 mg/L; cardiology contexts target roughly >2.5 mg/L (CHF benefit seen at ~2.4–3.5 mg/L).",
+        "when": "Fasting, 4–8 weeks after starting a stable dose.",
+        "tier": 2
+      },
+      {
+        "marker": "**Creatine kinase (CK)**",
+        "why": "For statin users with muscle aches — helps distinguish benign myalgia from true myopathy before attributing symptoms to statin CoQ10 depletion.",
+        "range": "Roughly 30–200 U/L (assay/sex dependent); >10x upper limit is a red flag.",
+        "when": "When new or worsening muscle pain appears.",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Dietary fat",
+          "role": "Lipid carrier for intestinal absorption — CoQ10 taken fasted is largely wasted.",
+          "tier": 3
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Statins (HMG-CoA reductase inhibitors)",
+          "role": "Block the mevalonate pathway shared by cholesterol and endogenous CoQ10 synthesis, lowering circulating CoQ10 — the main rationale for supplementing.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Highest food sources are **organ meats, oily fish (sardines, mackerel), and beef**, but a typical diet supplies only ~3–6 mg/day.",
+      "note": "Diet cannot reach the 100–300 mg used in trials — one of the few supplements where food genuinely can't substitute for a capsule.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~SGD 0.60–1.20 per 100 mg",
+      "math": "A 60-softgel bottle of 100 mg ubiquinol runs roughly SGD 40–70; ubiquinone is usually cheaper per mg.",
+      "note": "One of the pricier foundational supplements per effective dose — worth confirming you actually respond (plasma level) before committing long-term. Local SGD pricing is a rough estimate.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "300 mg/day for self-directed use",
+      "note": "Common maintenance 100–200 mg/day; heart-failure RCTs (e.g. Q-SYMBIO) used 300 mg split as 100 mg three times daily. Split anything above ~100 mg into 2–3 doses with meals to beat absorption saturation.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take with the **largest fat-containing meal**; split doses >100 mg across meals. No need to time around exercise — tissue levels build over weeks, not hours.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No cycling needed — CoQ10 is a physiological molecule taken continuously; there is no tolerance or receptor downregulation.",
+      "tier": 3
+    },
+    "contra": [
+      {
+        "flag": "On warfarin",
+        "advice": "CoQ10 is structurally similar to vitamin K and may blunt warfarin's effect — evidence is limited, but don't start without telling your anticoagulation clinic and monitoring INR.",
+        "tier": 2
+      },
+      {
+        "flag": "On blood-pressure medication",
+        "advice": "CoQ10 can modestly lower blood pressure; watch for additive hypotension and check with your doctor if you're already well-controlled.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "Safety data are limited; avoid supplemental doses unless specifically advised by a clinician.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "CoQ10 oxidizes and degrades with heat and light — favour **oil-based softgels** and third-party-tested products (USP/NSF where available); avoid loose powder and long-shelved bargain tablets.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Because absorption is highly variable, some people barely raise plasma CoQ10 on standard doses. If a plasma level shows no rise, switch to ubiquinol, split the dose, and always take it with fat before concluding it 'doesn't work'.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Selenium",
+        "why": "A Swedish RCT (KiSel-10) combining 200 mg CoQ10 + 200 µg selenium in elderly adults reduced cardiovascular mortality — suggestive but a single trial in a selenium-marginal population.",
+        "tier": 2
+      },
+      {
+        "with": "Statin therapy",
+        "why": "Co-supplementing addresses statin-induced CoQ10 depletion; meta-analyses show modest, inconsistent relief of statin-associated muscle symptoms — worth a trial before stopping a statin.",
+        "tier": 2
+      },
+      {
+        "with": "Omega-3 (EPA/DHA)",
+        "why": "Both are fat-soluble and studied together for endothelial function and cardiovascular risk markers; convenient to co-dose with the same fatty meal.",
+        "tier": 1
+      }
+    ]
+  },
+  "beta-alanine": {
+    "form": {
+      "buy": "Plain **beta-alanine powder or capsules**; a sustained-release / split-dose format lowers the tingling without changing final results.",
+      "avoid": "One large single serving that maximises paresthesia; flashy 'proprietary blends' that hide the actual beta-alanine dose.",
+      "withFood": "Take with a meal — co-ingestion blunts the plasma spike that drives tingling and modestly improves muscle carnosine loading (likely insulin-mediated).",
+      "bioavailability": "Orally well absorbed but cleared from plasma within ~1-2 h; **divided or slow-release doses** raise whole-body retention (less urinary loss), though final carnosine loading is driven mainly by total cumulative intake.",
+      "tier": 2
+    },
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "L-histidine",
+          "role": "The second amino acid in carnosine; beta-alanine is normally rate-limiting, but adequate dietary protein/histidine is required to build carnosine.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Taurine",
+          "role": "Shares the TauT membrane transporter with beta-alanine; chronic high intake reduces taurine uptake in animal models — human relevance is unproven, so keep dietary taurine adequate.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Meat, poultry and fish** deliver beta-alanine (as carnosine), so omnivores start with higher baseline muscle carnosine than vegetarians.",
+      "note": "Food cannot realistically reach loading-level intakes — supplementation raises muscle carnosine far more than diet alone.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.15-0.25 per day",
+      "math": "A ~500 g tub at roughly SGD 20-30 lasts ~150+ days at 3.2 g/day.",
+      "note": "One of the cheapest evidence-backed ergogenic aids per day.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "g/day",
+      "cap": "~6.4 g/day",
+      "note": "Standard loading is **3.2-6.4 g/day total**, split into servings of about 1.6 g or less to minimise tingling. What matters is cumulative intake over 4-12 weeks, not any single dose.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "**Timing of individual doses is irrelevant** — benefit comes from muscle carnosine slowly accumulating over weeks. Take it daily and consistently; splitting across meals just reduces tingling.",
+      "tier": 3
+    },
+    "cycling": {
+      "line": "**Load 4-12 weeks** to saturate muscle carnosine, then a lower maintenance dose sustains it. Carnosine washes out slowly (roughly 2-3%/week, ~14-16 weeks to baseline), so short breaks don't reset your progress.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Paresthesia (skin tingling/flushing)",
+        "advice": "Harmless and transient; reduce it by splitting into smaller doses (about 1.6 g or less) or using a sustained-release form.",
+        "tier": 3
+      },
+      {
+        "flag": "Wrong use case",
+        "advice": "Buffering mainly helps **high-intensity efforts lasting ~1-4 minutes**; expect little benefit for pure 1RM strength or long steady-state endurance.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose **high-purity, third-party-tested** beta-alanine; competing athletes should prefer batches independently certified for contaminant/banned-substance screening (e.g. Informed Sport standard).",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Response scales with **baseline muscle carnosine** — vegetarians and those with low starting levels gain the most, while habitual meat-eaters or already-loaded athletes see smaller changes.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Creatine",
+        "why": "Different mechanisms — phosphocreatine energy supply vs intracellular pH buffering — and commonly stacked, though evidence for additive performance beyond either alone is weak and mixed.",
+        "tier": 1
+      },
+      {
+        "with": "Sodium bicarbonate",
+        "why": "Bicarbonate buffers **extracellular** acid while carnosine buffers **intracellular** acid, so the mechanisms are complementary; combined performance benefit is plausible but inconsistent across studies.",
+        "tier": 2
+      }
+    ]
+  },
+  "betaine-trimethylglycine": {
+    "form": {
+      "buy": "**Betaine anhydrous** (trimethylglycine) powder is the form used in essentially every performance study — cheap, mildly sweet, and fully water-soluble.",
+      "avoid": "Don't confuse it with **betaine HCl**, a separate acidic product sold for stomach-acid support — it is not interchangeable at these doses.",
+      "withFood": "No strict food requirement; it is an osmolyte and sits comfortably with a meal or a drink.",
+      "bioavailability": "Highly water-soluble and well absorbed orally; no special formulation needed.",
+      "tier": 3
+    },
+    "dosing": {
+      "unit": "g/day",
+      "cap": "2.5 g/day",
+      "note": "Standard performance dose is **2.5 g/day**, often split as 1.25 g twice daily. It works by chronic accumulation, so consistency matters more than any single dose. Higher doses add GI upset (nausea, diarrhoea, cramping) and start to nudge blood lipids without clear extra performance benefit.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "**No acute timing needed** — betaine loads over days to weeks as a cellular osmolyte, so take it daily at whatever time you'll remember rather than as a pre-workout.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "**No cycling required.** It is a normal dietary methyl donor and osmolyte; effects plateau with steady daily use and there's no tolerance or washout rationale.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Homocysteine",
+        "why": "Betaine remethylates homocysteine to methionine via the BHMT enzyme — one of its most robustly documented effects (betaine anhydrous is a licensed drug for homocystinuria). A drop confirms the methyl-donor pathway is active in you.",
+        "range": "Typical lab range ~5-15 umol/L; many aim <10",
+        "when": "Baseline, then after 8-12 weeks",
+        "tier": 3
+      },
+      {
+        "marker": "Total / LDL cholesterol",
+        "why": "Betaine modestly raises total cholesterol (and less consistently LDL), but in trials this only reached significance at higher doses (~4-6 g/day); at the 2.5 g performance dose the effect is likely small. Worth a check only if your lipids already run high.",
+        "range": "Track your own trend against your usual lipid targets",
+        "when": "Baseline, then after ~12 weeks",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Choline",
+          "role": "Dietary choline is oxidised to betaine in the body, so the two share a pool; adequate choline supports the same methylation system betaine feeds into.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Folate / B12 / B6",
+          "role": "Betaine handles homocysteine via a folate-independent (BHMT) route, but a functioning overall methylation cycle (folate, B12, B6) keeps methionine and SAMe turnover healthy.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Wheat bran, spinach, beetroot and quinoa** are the richest food sources — 'betaine' is literally named after beets (Beta vulgaris), and wheat bran is the single densest common source.",
+      "note": "Typical diets deliver only a few hundred mg/day; even a deliberately betaine-rich diet reaches roughly 1-2.5 g/day, so food alone rarely hits the 2.5 g used in studies.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.15-0.30 per 2.5 g dose",
+      "math": "A ~300-500 g tub of betaine anhydrous runs roughly SGD 20-35 and lasts ~4-6 months at 2.5 g/day.",
+      "note": "One of the cheapest performance ingredients per gram.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "High LDL / cardiovascular risk",
+        "advice": "Betaine can raise total cholesterol (and sometimes LDL) mainly at intakes of ~4 g/day and above; keep to ~2.5 g and recheck lipids after a few months if yours already run high.",
+        "tier": 2
+      },
+      {
+        "flag": "Kidney disease",
+        "advice": "As with any osmolyte and nitrogen-load supplement, clear it with your doctor if you have impaired renal function.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose **plain betaine anhydrous that is third-party tested** (e.g. NSF or Informed Sport for competing athletes); the raw material is simple, so purity and honest labelling are the main things to verify.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Part of betaine's proposed benefit runs through supporting the body's own **creatine synthesis**, so people already saturated on supplemental creatine may see little added effect — and the strength/power signal across trials is genuinely small and inconsistent.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "Creatine",
+        "why": "Complementary mechanisms: betaine supplies methyl groups (via SAMe) used in the body's own creatine synthesis and adds osmolyte/cell-swelling effects, while supplemental creatine loads the pool directly — commonly stacked in strength formulas.",
+        "tier": 2
+      },
+      {
+        "with": "Choline",
+        "why": "Choline and betaine share the same methylation pool; adequate choline underpins the pathway betaine works through.",
+        "tier": 2
+      }
+    ]
+  },
+  "sodium-bicarbonate": {
+    "dosing": {
+      "perKg": 0.3,
+      "unit": "g/kg",
+      "cap": "Typical range 0.2-0.3 g/kg body mass; a 70 kg person takes ~14-21 g. Doses above 0.3 g/kg raise GI risk without added benefit.",
+      "note": "**GI-prone users start at 0.2 g/kg** and titrate up across sessions. An alternative is **serial (chronic) loading**: ~0.4-0.5 g/kg/day split into 3-4 small doses with meals over 3-7 days, which blunts GI distress and keeps buffering elevated on race day.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Acute single dose **60-180 min before** high-intensity effort; individual time-to-peak blood bicarbonate varies, so find your window in training rather than guessing on race day. GI discomfort tends to be lowest nearer the 180 min mark.",
+      "tier": 3
+    },
+    "foodFirst": {
+      "line": "Take with a **high-carbohydrate meal (~1-1.5 g/kg carbs)** — one of the best-supported ways to cut GI symptoms.",
+      "note": "Splitting the dose into smaller amounts over 30-60 min and taking with plenty of water also reduces stomach upset versus one large bolus.",
+      "tier": 3
+    },
+    "form": {
+      "buy": "**Food-grade or USP/pharmacopoeial sodium bicarbonate** (ordinary baking soda is chemically identical). **Enteric-coated capsules** dissolve in the intestine rather than the stomach and lower GI distress for sensitive users.",
+      "avoid": "Baking *powder* (contains acids and other salts, not the same thing). Effervescent antacid tablets are impractical for a full per-kg dose.",
+      "withFood": "Yes — with carbohydrate and generous fluid.",
+      "bioavailability": "Fully dissociated and absorbed; the limiting factor is GI tolerance, not absorption.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~S$0.05-0.30 per dose (bulk powder)",
+      "math": "A 20 g dose from a ~S$2-3 / 500 g box of baking soda costs pennies; enteric-coated capsules cost more.",
+      "note": "One of the cheapest evidence-backed ergogenic aids available.",
+      "tier": 3
+    },
+    "contra": [
+      {
+        "flag": "**Hypertension / salt-sensitive / cardiovascular or kidney disease**",
+        "advice": "A 20 g dose delivers a large acute sodium load (~5-6 g sodium). Avoid or clear with a doctor first.",
+        "tier": 3
+      },
+      {
+        "flag": "**Pregnancy**",
+        "advice": "Not advised as a performance aid; the sodium load and lack of safety data make it unsuitable.",
+        "tier": 2
+      },
+      {
+        "flag": "**GI distress (nausea, cramping, diarrhoea)**",
+        "advice": "The main real-world limiter. Never trial a full dose for the first time on competition day — 'gut-train' it in practice sessions first.",
+        "tier": 3
+      }
+    ],
+    "cycling": {
+      "line": "No cycling needed — used **acutely before high-intensity sessions/competition**, not as a daily standing supplement. Introduce it in training well before any race.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "Benefit is clearest for **high-intensity efforts lasting ~30 s to 12 min** and repeated sprints; it does little for steady-state low-intensity work. GI intolerance and individual bicarbonate kinetics mean some athletes see no net gain.",
+      "tier": 3
+    },
+    "quality": {
+      "line": "Plain **food-grade or USP-grade sodium bicarbonate** is sufficient; competitive athletes may prefer products carrying an independent sport-testing mark (e.g. Informed Sport, NSF Certified for Sport) to reduce contamination risk.",
+      "tier": 3
+    },
+    "synergy": [
+      {
+        "with": "**Beta-alanine**",
+        "why": "Beta-alanine raises *intracellular* buffering (muscle carnosine) while bicarbonate buffers *extracellularly* — complementary mechanisms, and combined use tends to add to high-intensity performance.",
+        "tier": 2
+      },
+      {
+        "with": "**Creatine**",
+        "why": "Different mechanism (phosphocreatine energy supply vs. acid buffering); commonly stacked for repeated high-intensity efforts with no known negative interaction, though direct combined-effect evidence is limited.",
+        "tier": 1
+      }
+    ],
+    "biomarkers": [
+      {
+        "marker": "**Blood pressure**",
+        "why": "The acute sodium load can transiently raise BP; worth monitoring if you are salt-sensitive or borderline hypertensive before using it regularly.",
+        "range": "Aim resting <120/80 mmHg; reconsider regular use if consistently >130/80",
+        "when": "At rest, on non-dosing days, over several readings",
+        "tier": 2
+      }
+    ]
+  },
+  "hmb-hydroxy-methylbutyrate": {
+    "form": {
+      "buy": "**Calcium-HMB (Ca-HMB)** is the standard, best-studied form; **HMB free acid (HMB-FA)** absorbs faster with a higher, earlier blood peak. Choose a third-party-tested powder or capsule delivering a verified ~1g HMB per serving.",
+      "avoid": "Underdosed 'muscle blend' products where HMB is buried in a proprietary matrix at far below the studied 3g/day.",
+      "withFood": "Ca-HMB can be taken with or without food; splitting around meals is fine. HMB-FA is best taken on a relatively empty stomach for its fast-absorption advantage.",
+      "bioavailability": "HMB-FA reaches plasma peak in ~30-60 min vs ~1-2h for Ca-HMB, with a higher peak; total exposure is broadly comparable, so form matters more for timing than for whether it works.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**Creatine kinase (CK)**",
+        "why": "HMB has been shown to blunt the post-exercise CK rise (a marker of muscle membrane damage) in several trials, though results are mixed; a smaller CK spike after hard training is the most tangible objective signal.",
+        "range": "Resting ~30-200 U/L (highly variable, higher in trained/large-muscle-mass men); interpret the post-exercise delta, not the absolute.",
+        "when": "Compare 24-48h post a hard session, on vs off HMB.",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Adequate total protein / leucine**",
+          "role": "HMB is a downstream leucine metabolite; it complements but does not replace hitting a protein target (~1.6-2.2 g/kg/day). It is a preservation signal, not a building block.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Eat enough protein first.** HMB's anti-catabolic signal is largely moot if you are already in energy balance and eating adequate leucine-rich protein; food-derived leucine covers most of the same pathway.",
+      "note": "Only ~5% of dietary leucine converts to HMB, so the body makes just ~0.2-0.4g/day endogenously (70kg person) — far below the 3g supplemental dose you cannot realistically reach through food, which is why supplementing is only worthwhile in specific catabolic contexts.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD $0.30-0.60 per 3g daily dose",
+      "math": "Bulk Ca-HMB powder ~SGD $30-40 for 250g; 3g/day = ~80 days, so roughly $0.40/day. Capsules and HMB-FA run higher.",
+      "note": "Cheap enough that cost is rarely the deciding factor; whether it does anything for YOU matters far more.",
+      "tier": 1
+    },
+    "dosing": {
+      "perKg": 38,
+      "unit": "mg/kg/day",
+      "cap": "3g/day is the standard studied dose for most adults",
+      "note": "The flat **3g/day** dose is what nearly all trials use; the ~38mg/kg figure is the ISSN position-stand recommendation but for practical purposes just use 3g/day. Split into 3x1g, or take HMB-FA as a single dose near training.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Split **3x1g through the day** (Ca-HMB), or with HMB-FA take ~30-60 min before training. Consistency matters more than exact timing; muscle-tissue HMB levels build over days.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "**No cycling needed** and no known desensitisation. It makes most sense to run it during catabolic windows (aggressive diet, illness/bed rest, injury layoff, older age) and to skip it during ordinary well-fed training blocks.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "Insufficient safety data; avoid.",
+        "tier": 2
+      },
+      {
+        "flag": "Calcium-restricted or on calcium-affecting conditions",
+        "advice": "Ca-HMB adds a small amount of calcium; prefer HMB-FA or account for it if you are managing calcium intake.",
+        "tier": 1
+      },
+      {
+        "flag": "Expecting it to work in trained, well-fed lifters",
+        "advice": "Not a safety issue but a wasted-money one: benefit is minimal in resistance-trained people already eating enough. Manage expectations accordingly.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Look for **third-party testing (NSF Certified for Sport, Informed Sport, or USP)** and a label that states actual HMB (not just 'HMB blend') delivering ~1g per serving. Ca-HMB should list the calcium-HMB monohydrate content.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "**Healthy, resistance-trained adults eating adequate protein in energy balance** are the classic non-responders; controlled trials in this group show little to no added muscle or strength benefit. Response is largest in the malnourished, elderly, ill, or those in a steep caloric deficit.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Vitamin D**",
+        "why": "Ca-HMB combined with vitamin D has been studied in older adults for lean mass and function; correcting a vitamin D deficiency plausibly improves the muscle-preservation context HMB works in.",
+        "tier": 2
+      },
+      {
+        "with": "**Adequate protein during a caloric deficit**",
+        "why": "HMB's clearest use case is preserving lean mass when dieting hard; it pairs with, not replaces, a high-protein deficit diet.",
+        "tier": 2
+      },
+      {
+        "with": "**Creatine**",
+        "why": "Commonly stacked and mechanistically complementary (preservation signal + performance/water-based mass), though evidence for additive benefit specifically is mixed.",
+        "tier": 1
+      }
+    ]
+  },
+  "whey-casein-protein": {
+    "form": {
+      "buy": "**Whey isolate** (fast, ~90% protein, low-lactose) or **micellar casein** (slow, steadier overnight amino release); whey concentrate is cheaper and fine if you tolerate lactose. Favour minimal-ingredient powders.",
+      "avoid": "**Proprietary 'blends' and amino-spiked** products that pad the protein count with cheap free aminos (glycine, taurine, creatine); added sugars and long filler lists.",
+      "withFood": "Mixes into water, milk, oats or yoghurt. Lactose-sensitive users do better with **isolate or hydrolysate**.",
+      "bioavailability": "Whey is a **complete, fast-digesting protein** with the highest leucine content and one of the highest DIAAS scores; casein digests slowly for a prolonged amino drip.",
+      "tier": 3
+    },
+    "foodFirst": {
+      "line": "Build the base from **whole-food protein** — eggs, dairy, meat, fish, tofu, legumes — and use powder as a convenient top-up to hit your daily target, not a replacement.",
+      "note": "Whole foods add micronutrients, fibre and satiety that isolated powder lacks; powder mainly buys convenience and a clean leucine hit.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~$1.50–2.50 SGD per 25–30 g scoop",
+      "math": "~$45–70 SGD for a 900 g–1 kg tub ≈ 30 servings",
+      "note": "Whole-food protein is often cheaper per gram; you pay for convenience and fast leucine delivery.",
+      "tier": 2
+    },
+    "dosing": {
+      "perKg": 1.6,
+      "unit": "g protein/kg body weight/day (whole diet, not just powder)",
+      "cap": "~2.2 g/kg/day — beyond this no added muscle benefit is seen in healthy trainees",
+      "note": "Powder only fills the gap between food intake and your daily target. Per meal, **~0.3–0.4 g/kg (roughly 20–40 g) delivering ~2.5–3 g leucine** maximises muscle protein synthesis.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "**Total daily protein dominates** — hit the target and spread it across ~3–4 meals of ~0.4 g/kg. Peri-workout intake and a pre-sleep casein dose offer small, optional recovery upsides.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Chronic kidney disease",
+        "advice": "High protein is safe for healthy kidneys, but with **CKD set your protein target with a nephrologist** rather than a generic 2 g/kg.",
+        "tier": 3
+      },
+      {
+        "flag": "Cow's-milk allergy",
+        "advice": "Whey and casein are dairy proteins and can trigger reactions — use a **non-dairy protein** (soy, pea, egg) instead.",
+        "tier": 3
+      },
+      {
+        "flag": "Lactose intolerance",
+        "advice": "Choose **whey isolate or hydrolysate** (minimal lactose), casein, or a plant protein rather than concentrate.",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "Prefer powders with **third-party certification (Informed Sport, NSF Certified for Sport)** to screen for heavy metals, contaminants, banned substances and amino-spiking.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Resistance training",
+        "why": "Protein only builds muscle on top of a **progressive overload stimulus** — the two are inseparable for hypertrophy.",
+        "tier": 3
+      },
+      {
+        "with": "Creatine monohydrate",
+        "why": "Complementary strength and lean-mass driver via a different mechanism; commonly and safely stacked.",
+        "tier": 3
+      },
+      {
+        "with": "Adequate total energy and carbohydrate",
+        "why": "Enough calories spare dietary protein for muscle repair rather than being burned for fuel.",
+        "tier": 2
+      }
+    ]
+  },
+  "eaas-bcaas": {
+    "form": {
+      "buy": "**Full-spectrum EAAs** containing all 9 essential amino acids in a balanced ratio, or simply complete dietary/whey protein which supplies the same aminos plus more per dollar.",
+      "avoid": "**BCAA-only blends** (just leucine, isoleucine, valine) sold as muscle builders — they signal synthesis via leucine but cannot supply the other 6 EAAs needed to actually build protein, so any transient synthesis draws amino acids from breakdown of existing tissue.",
+      "withFood": "Can be taken **fasted**; free-form aminos need no food and absorb within ~30 min.",
+      "bioavailability": "**Free-form amino acids** appear in blood faster than intact protein, but whole protein delivers the same net anabolic effect over a meal window.",
+      "tier": 3
+    },
+    "foodFirst": {
+      "line": "If total daily protein hits **1.6-2.2 g/kg** spread across meals, EAAs and BCAAs add essentially nothing — each meal already crosses the leucine threshold.",
+      "note": "A 25-30g serving of whey or any complete protein supplies all 9 EAAs plus ~2.5g leucine (whey is ~10% leucine), usually cheaper per gram of leucine than isolated EAA powder.",
+      "tier": 3
+    },
+    "dosing": {
+      "unit": "g EAAs per dose",
+      "note": "Typical anabolic dose is **~6-15g EAAs providing ~2.5-3g leucine** (the approximate threshold to maximally trigger muscle protein synthesis). BCAA-only doses are commonly 5-10g but lack the full amino pool. Per-kg dosing is not standard for these.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Only meaningfully useful **fasted or when a long gap separates protein meals** (e.g. fasted morning training) — take around the session. With protein-adequate meals the timing question is moot.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "**No cycling needed** — not habit-forming, no receptor downregulation; these are just food-derived nutrients.",
+      "tier": 3
+    },
+    "cofactors": {
+      "antagonists": [
+        {
+          "nutrient": "Tryptophan & tyrosine",
+          "role": "Large BCAA doses compete with these at the shared large-neutral-amino-acid transporter into the brain, which is the theoretical basis for BCAA use in fatigue — but can blunt serotonin/dopamine precursor uptake.",
+          "tier": 1
+        }
+      ]
+    },
+    "cost": {
+      "perDose": "~$1-2 SGD per EAA serving; ~$0.50-1 per 25g whey serving",
+      "math": "EAA/BCAA tubs run roughly $40-70 SGD for ~30 servings; complete-protein powder is typically cheaper per gram of leucine delivered.",
+      "note": "For most people the cheapest effective 'EAA supplement' is an extra scoop of complete protein or an egg/dairy serving.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Already eating adequate protein",
+        "advice": "If you hit ~1.6-2.2 g/kg/day of quality protein, EAAs/BCAAs are redundant spend, not a benefit.",
+        "tier": 3
+      },
+      {
+        "flag": "Maple syrup urine disease (MSUD)",
+        "advice": "Inherited inability to metabolize BCAAs — supplemental BCAAs are dangerous; strictly avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "Advanced kidney or liver disease",
+        "advice": "Amino-acid load and nitrogen handling can be clinically relevant; use only under medical supervision.",
+        "tier": 2
+      },
+      {
+        "flag": "Motor-neuron disease (ALS)",
+        "advice": "High-dose BCAAs are contraindicated in existing ALS (trials showed accelerated respiratory decline); those with a personal/family history may prefer to avoid high-dose BCAA loading pending better data.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Choose powders that are **third-party tested** (e.g. Informed Sport, NSF Certified for Sport, or USP verified) — amino acid powders have historically shown label-accuracy and contamination issues, and competitive athletes need banned-substance screening.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "If your baseline protein is already high, expect **no detectable change** in strength, recovery, or body composition from adding EAAs/BCAAs — the anabolic ceiling is already met.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Resistance training",
+        "why": "Amino acids only build muscle when paired with a mechanical stimulus; without training the MPS bump is small and transient.",
+        "tier": 3
+      },
+      {
+        "with": "Complete protein / whey",
+        "why": "Not additive — whole protein already contains all EAAs, so pairing them is redundant rather than synergistic; pick one.",
+        "tier": 3
+      },
+      {
+        "with": "Leucine",
+        "why": "Leucine is the primary mTOR trigger within the EAA pool; hitting the ~2.5-3g leucine threshold is what actually drives the synthesis signal.",
+        "tier": 2
+      }
+    ]
+  },
+  "caffeine-thermogenic": {
+    "dosing": {
+      "perKg": 3,
+      "unit": "mg/kg",
+      "cap": "400 mg/day for most healthy adults; single doses rarely need to exceed 200 mg for thermogenesis",
+      "note": "**3-6 mg/kg** is the genuinely standard evidence-based range for caffeine's ergogenic and thermogenic effect. A 70 kg person = ~200-400 mg. Start at the low end (3 mg/kg) to gauge tolerance and cardiovascular response.",
+      "tier": 3
+    },
+    "form": {
+      "buy": "**Caffeine anhydrous** in a labelled, fixed-dose tablet or capsule so you know exactly how many mg you take; pharmaceutical-grade, third-party-tested.",
+      "avoid": "**Pure powdered caffeine** sold loose — a level teaspoon holds ~3 g, roughly 2.5x a toxic dose and potentially fatal, and it is impossible to measure safely with kitchen tools. Also avoid proprietary 'blend' pre-workouts that hide the caffeine dose.",
+      "withFood": "Absorption is near-complete either way; food only slightly slows the peak. For fat-oxidation purposes many take it fasted before morning exercise.",
+      "bioavailability": "Oral bioavailability is ~99%, plasma peak at 30-60 min, half-life ~5 h (longer in slow metabolisers, pregnancy, or on oral contraceptives).",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Take **30-60 min before activity** to align the plasma peak with exercise. Keep the last dose **at least 8-10 h before bed** — caffeine's half-life means an afternoon dose measurably degrades sleep depth even if you fall asleep fine.",
+      "tier": 3
+    },
+    "cycling": {
+      "line": "**Tolerance to the thermogenic and appetite effects develops within days to a few weeks**, while tolerance to jitter/insomnia lags. Periodic lower-dose or caffeine-free stretches restore sensitivity; the metabolic bump is largest in habitual non-users.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Arrhythmia, palpitations, or uncontrolled hypertension",
+        "advice": "Caffeine raises heart rate and blood pressure acutely; clear thermogenic dosing with a doctor first.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Keep total caffeine **under ~200 mg/day** per obstetric guidance; do not use it as a fat-loss tool during this period.",
+        "tier": 3
+      },
+      {
+        "flag": "Anxiety disorder or panic attacks",
+        "advice": "Caffeine can trigger or worsen anxiety, especially in fast-onset high doses; go low or avoid.",
+        "tier": 2
+      },
+      {
+        "flag": "Combining with other stimulants (yohimbine, synephrine, ephedrine, high-dose pre-workouts)",
+        "advice": "Stacking stimulants compounds cardiovascular strain — this is where most 'fat-burner' adverse events occur. Do not layer them.",
+        "tier": 2
+      },
+      {
+        "flag": "Poor sleep or shift work",
+        "advice": "Sleep loss impairs fat loss more than caffeine helps it; if caffeine is costing you sleep, the net effect on body composition is negative.",
+        "tier": 2
+      }
+    ],
+    "biomarkers": [
+      {
+        "marker": "Resting heart rate",
+        "why": "Caffeine's acute cardiovascular load shows up as elevated resting/standing HR; a persistent rise signals your dose or timing is too aggressive.",
+        "range": "Typical resting 60-100 bpm; watch for a sustained upward shift from your own baseline",
+        "when": "Morning, before dosing, vs. an off-caffeine baseline",
+        "tier": 2
+      },
+      {
+        "marker": "Blood pressure",
+        "why": "Acute pressor effect is real; matters if you are near or above the hypertension threshold.",
+        "range": "Optimal <120/80 mmHg; caffeine can transiently add ~5-15 mmHg systolic in non-habitual users",
+        "when": "Resting, and note if readings run high after dosing",
+        "tier": 2
+      }
+    ],
+    "nonResponders": {
+      "line": "**CYP1A2 genotype** drives clearance: slow metabolisers get prolonged exposure (more jitter, sleep disruption, and in some studies more cardiovascular risk) with little extra fat-ox benefit, while fast metabolisers clear it quickly and may feel little. **ADORA2A** variants are associated with who gets anxiety from it. Habitual heavy users see a blunted thermogenic response overall.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Exercise (especially fasted or morning training)",
+        "why": "The clearest use case — caffeine reliably raises fat oxidation during exercise and lowers perceived effort, so you train harder and burn more fat than either alone.",
+        "tier": 3
+      },
+      {
+        "with": "L-theanine (~100-200 mg per ~100 mg caffeine)",
+        "why": "Smooths the jittery/anxious edge and stabilises focus without removing the alertness — a well-supported pairing for tolerability, not extra fat loss.",
+        "tier": 2
+      },
+      {
+        "with": "Green tea catechins (EGCG)",
+        "why": "Catechins plus caffeine show a small additive effect on 24 h energy expenditure and fat oxidation vs. caffeine alone; this is the rationale behind green-tea fat-burners.",
+        "tier": 2
+      }
+    ],
+    "foodFirst": {
+      "line": "**Black coffee or tea** delivers caffeine plus polyphenols at near-zero cost and self-limits dose better than pills.",
+      "note": "A cup of brewed coffee is ~80-100 mg, tea ~30-50 mg — enough to hit thermogenic doses without ever touching a supplement.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~S$0.02-0.10 per 100-200 mg tablet",
+      "math": "A bottle of ~100 x 200 mg caffeine tablets runs ~S$8-15 locally, so a few cents per dose.",
+      "note": "One of the cheapest active supplements that exists; brewed coffee is comparably cheap. There is no reason to pay a premium for a branded 'fat-burner'.",
+      "tier": 2
+    },
+    "quality": {
+      "line": "Choose a product with a **stated caffeine dose in mg** and third-party testing (e.g. NSF, USP, Informed Sport); avoid proprietary-blend fat-burners that conceal how much stimulant you are actually taking.",
+      "tier": 2
+    }
+  },
+  "yohimbine": {
+    "form": {
+      "buy": "**Yohimbine HCl** in a standardized, third-party-tested form — you want a known milligram content per capsule.",
+      "avoid": "Crude **yohimbe bark extract** — total alkaloid content is variable and unpredictable, which drives erratic dosing and worse side effects.",
+      "withFood": "Take **fasted**. Even a small insulin rise from food blunts the lipolytic effect — in controlled studies the lipid-mobilising action of yohimbine was completely suppressed after a meal.",
+      "bioavailability": "Oral bioavailability is **highly variable (~7–87%, mean ~33%)**, largely due to first-pass hepatic metabolism and CYP2D6 activity — this is why the same dose can do little in one person and spike anxiety in another.",
+      "tier": 2
+    },
+    "dosing": {
+      "perKg": 0.2,
+      "unit": "mg/kg",
+      "cap": "~20 mg/day total, split into 2 doses",
+      "note": "**0.2 mg/kg** is the dose used across the oral lipolysis studies; the Ostojic 2006 fat-loss trial used a flat **20 mg/day in two doses** for 21 days. Start far lower (2.5–5 mg) to test tolerance before scaling — cardiovascular and anxiety effects are dose-dependent.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **30–45 min before fasted cardio** (typically morning). The effect depends on low insulin plus catecholamine drive from exercise, so pairing it with a fasted training window is the whole point.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Best used during a **defined cutting phase**, not year-round — there's little rationale for chronic use, and stimulant-type side effects compound with continuous dosing.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "**Anxiety or panic disorder**",
+        "advice": "Yohimbine is an alpha-2 antagonist that raises noradrenergic tone — it can provoke or sharply worsen anxiety and trigger panic attacks. Avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "**Hypertension or cardiovascular disease**",
+        "advice": "At higher doses it raises heart rate and blood pressure and can be arrhythmogenic. Do not use with uncontrolled hypertension, arrhythmia, or known cardiac disease.",
+        "tier": 3
+      },
+      {
+        "flag": "**MAOI antidepressants**",
+        "advice": "Combining with MAO inhibitors risks a dangerous hypertensive/adrenergic reaction. Avoid entirely.",
+        "tier": 2
+      },
+      {
+        "flag": "**SSRIs / other antidepressants and stimulants**",
+        "advice": "Additive noradrenergic and serotonergic load; discuss with a clinician before combining.",
+        "tier": 2
+      },
+      {
+        "flag": "**Pregnancy or breastfeeding**",
+        "advice": "Not established as safe — avoid.",
+        "tier": 2
+      },
+      {
+        "flag": "**Regional legal status**",
+        "advice": "Yohimbine is prescription-only or not permitted in supplements in several jurisdictions (e.g. not allowed in supplements sold in Singapore, prescription-only/unlicensed in the UK, Australia and Canada). Check local law before sourcing.",
+        "tier": 3
+      }
+    ],
+    "biomarkers": [
+      {
+        "marker": "**Resting blood pressure**",
+        "why": "Yohimbine can dose-dependently raise BP; track it to catch a problematic pressor response early.",
+        "range": "Aim to stay <130/80 mmHg at rest; do not use if baseline is already elevated",
+        "when": "Baseline, then periodically after dosing during a cycle",
+        "tier": 3
+      },
+      {
+        "marker": "**Resting heart rate**",
+        "why": "Elevated adrenergic tone can raise HR — a rising resting HR flags too much stimulant load.",
+        "range": "Compare against your personal baseline rather than an absolute cutoff",
+        "when": "Baseline and during use",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "Choose **yohimbine HCl with a verified per-capsule milligram content** and third-party testing; standardized HCl is far more predictable than bark extract, where alkaloid content and contaminants vary widely.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Wide differences in **hepatic/CYP2D6 metabolism** mean response is genuinely bimodal — some people feel strong effects (and side effects) at low doses while others notice little. Non-response is not a reason to keep escalating past tolerance.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Fasted state / low insulin**",
+        "why": "Insulin blocks lipolysis, so the effect only appears when insulin is low — in studies the effect was abolished by a meal, making fasting a genuine enabler.",
+        "tier": 2
+      },
+      {
+        "with": "**Caffeine**",
+        "why": "Commonly stacked to amplify catecholamine-driven lipolysis, but it also stacks the cardiovascular and anxiety load — start with one before combining.",
+        "tier": 2
+      }
+    ]
+  },
+  "green-tea-extract-egcg": {
+    "form": {
+      "buy": "**Standardized green tea extract** stating EGCG content in mg per capsule, third-party tested (NSF/USP). A caffeinated extract better matches the caffeine + catechin synergy behind the fat-oxidation effect.",
+      "avoid": "**High-dose single-catechin bolus** products (>800 mg EGCG/day) and anything taken as one large fasted dose — the main hepatotoxicity trigger.",
+      "withFood": "**Take with food.** Fasted intake raises peak EGCG and is the condition most linked to liver injury; food blunts the spike for a small efficacy trade-off.",
+      "bioavailability": "**Low oral bioavailability**; splitting the daily amount across meals is fine. Fasted dosing raises blood EGCG but also raises liver-injury risk, so it is not worth chasing.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST",
+        "why": "Concentrated green tea extract is an established cause of idiosyncratic **drug-induced liver injury**; enzymes catch it early.",
+        "range": "ALT roughly 7-56 U/L; stop and seek review if rising or >2-3x upper normal",
+        "when": "Baseline before starting, and periodically if using >300-400 mg EGCG/day regularly",
+        "tier": 3
+      }
+    ],
+    "cofactors": {
+      "antagonists": [
+        {
+          "nutrient": "Non-heme iron",
+          "role": "Catechins **chelate dietary iron** and lower its absorption; separate extract from iron supplements or iron-rich meals by 1-2 h, especially if iron-deficient.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Brewed green tea** (3-4 cups/day) delivers catechins plus caffeine with far lower hepatotoxicity risk than concentrated extract.",
+      "note": "Whole-tea intake has never been meaningfully tied to liver injury; the risk sits with concentrated capsules.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~S$0.20-0.45 per 300-500 mg EGCG dose",
+      "math": "A bottle of ~120 capsules runs roughly S$20-40 depending on standardization",
+      "note": "Rough Singapore retail range; verify EGCG mg per capsule, not just total extract weight.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg EGCG/day",
+      "cap": "EFSA flags ~800 mg EGCG/day from supplements as the level associated with liver signals; stay below it",
+      "note": "Studied effective range is ~300-500 mg EGCG/day; the fat-oxidation effect is real but small, so higher is not better.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Pair a dose with **caffeine before training** to lift fat oxidation during the session; still take it with a meal rather than fully fasted.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Liver disease or elevated liver enzymes",
+        "advice": "Avoid concentrated extract entirely; it is a recognized cause of idiosyncratic liver injury.",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent hepatotoxic drugs or heavy alcohol",
+        "advice": "Stacking liver stressors raises injury risk; skip the extract or stick to brewed tea.",
+        "tier": 2
+      },
+      {
+        "flag": "Iron-deficiency anemia",
+        "advice": "Catechins further suppress iron absorption; keep well separated from iron intake or avoid.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "High-dose EGCG can interfere with folate metabolism; avoid concentrated supplements and prefer moderate brewed tea.",
+        "tier": 1
+      }
+    ],
+    "quality": {
+      "line": "Pick extracts that **state EGCG in mg** and carry third-party testing (NSF/USP); avoid proprietary blends that hide the actual catechin dose.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "The fat-oxidation effect is **small and blunted in habitual high-caffeine consumers**; the clearest responses show up in lower-caffeine users, and COMT genotype may modulate this.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "Caffeine",
+        "why": "Co-ingestion may **prolong adrenergic fat-cell signaling** (proposed COMT inhibition by EGCG plus caffeine's adenosine blockade); mechanism is largely in vitro and the human thermogenic effect is small.",
+        "tier": 2
+      },
+      {
+        "with": "Exercise",
+        "why": "Catechin intake around training modestly **increases fat oxidation** during and after exercise in several trials.",
+        "tier": 2
+      }
+    ]
+  },
+  "dhea": {
+    "form": {
+      "buy": "**Micronized DHEA** in a third-party-tested oral form; independent assays have repeatedly found actual content well off the label claim, so USP/NSF verification matters here more than for most supplements.",
+      "avoid": "Don't confuse plain DHEA with **7-keto-DHEA** — 7-keto does not convert to sex hormones and is a different product for a different purpose.",
+      "withFood": "Fat-soluble; take with a meal containing some fat to aid absorption.",
+      "bioavailability": "Micronization (smaller particle size) improves oral absorption over non-micronized powder.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**DHEA-S** (DHEA-sulfate)",
+        "why": "The standard, stable serum marker of DHEA status — draw a baseline to confirm you are actually low (levels fall steeply with age) before supplementing, then to titrate dose.",
+        "range": "Strongly age- and sex-dependent; roughly ~80-560 ug/dL across adult men (higher in the 20s-30s, lower in women) and declining ~10%/decade. Aim to restore toward a healthy young-adult range, not above it.",
+        "when": "Baseline, then 6-8 weeks after starting or changing dose",
+        "tier": 3
+      },
+      {
+        "marker": "**Estradiol** and **total/free testosterone**",
+        "why": "DHEA is a precursor that converts downstream; track sex-hormone levels to catch over-conversion (e.g. rising estradiol in men, rising testosterone/androgens in women causing acne or hair changes).",
+        "range": "Keep within normal sex-specific reference ranges",
+        "when": "Baseline and ~8-12 weeks in",
+        "tier": 2
+      },
+      {
+        "marker": "**PSA** (men, esp. 50+)",
+        "why": "Because DHEA feeds androgen pathways, older men should have prostate status established before use and monitored during it.",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "**Lipid panel (HDL)**",
+        "why": "DHEA can modestly lower HDL cholesterol, most notably in women.",
+        "when": "Baseline and periodically",
+        "tier": 2
+      }
+    ],
+    "foodFirst": {
+      "line": "There is **no meaningful dietary source** of DHEA — the body makes it from cholesterol in the adrenal glands, and 'wild yam' creams do NOT convert to DHEA in humans (that conversion only happens in a lab).",
+      "note": "Sleep, stress/cortisol management and resistance training support your own endogenous hormone axis and are the first levers before any precursor supplement.",
+      "tier": 3
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "50 mg/day for general use; higher doses sharply increase side-effect risk and are research/clinical territory only",
+      "note": "Typical studied replacement is 25-50 mg/day in older adults. Women generally start lower (~10-25 mg) because they are far more sensitive to androgenic effects (acne, oily skin, hair changes). Start low, dose to labs, not to a fixed number.",
+      "tier": 3
+    },
+    "timing": {
+      "line": "Take in the **morning** with food, mimicking the body's natural diurnal peak in adrenal steroid output.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Not a compound to run blind indefinitely — re-check DHEA-S and downstream sex hormones every **3-6 months** and adjust or pause based on labs rather than cycling on a fixed calendar.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Hormone-sensitive cancers",
+        "advice": "Avoid with prostate, breast, ovarian or uterine cancer (or high risk) — DHEA feeds estrogen and androgen pathways. Physician oversight only.",
+        "tier": 3
+      },
+      {
+        "flag": "Young men with normal levels",
+        "advice": "Little to no benefit when your own levels are already ample, and it can suppress your natural axis — this is a tool for age-related decline, not a young-athlete booster.",
+        "tier": 2
+      },
+      {
+        "flag": "Women prone to androgenic effects / PCOS",
+        "advice": "Higher sensitivity to acne, oily skin, facial hair and voice changes; use the lowest dose and monitor.",
+        "tier": 2
+      },
+      {
+        "flag": "Competitive athletes",
+        "advice": "DHEA is **banned by WADA** at all times (S1 anabolic agents) — a positive test is likely.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Avoid — hormonal effects on the fetus are not established as safe.",
+        "tier": 3
+      },
+      {
+        "flag": "Regulatory status (Singapore)",
+        "advice": "HSA treats DHEA as a potent hormonal (medicinal) ingredient, not a permitted general-sale health-supplement ingredient, and has issued safety alerts and at least one recall — treat it as prescription-only and use it only under a doctor.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Content varies notoriously between products, so choose a **USP- or NSF-verified, third-party-tested** micronized form; label mg claims cannot be trusted without independent assay.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "People whose DHEA-S is already in a healthy range (most under-40s, and some older adults) get minimal benefit — response tracks how depleted you were to begin with, which is why a baseline lab is worth more than any dose guess.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Weight-bearing / resistance exercise + vitamin D and calcium",
+        "why": "For the bone-density goal, DHEA's modest effect (mainly in older women) is best paired with the mechanical loading and bone nutrients that actually drive mineralization.",
+        "tier": 2
+      }
+    ],
+    "cost": {
+      "perDose": "~$0.15-0.40 SGD per 25 mg dose at international retail",
+      "note": "Cheap as a raw material, but in Singapore it is not a freely-sold supplement, so realistic access is gated by a doctor's visit and dispensing rather than shelf price.",
+      "tier": 1
+    }
+  },
+  "tongkat-ali-eurycoma-longifolia": {
+    "form": {
+      "buy": "Look for a **water-extracted (aqueous) standardized extract**, ideally standardized to a stated **eurycomanone** percentage (commonly 0.8-2%) or quassinoid/eurypeptide content — this aqueous form is used in nearly all positive human trials.",
+      "avoid": "Raw un-standardized root powder and vague '200:1' ratio claims with no quassinoid assay — potency is unknowable and adulteration/heavy-metal risk is higher.",
+      "withFood": "Can be taken with or without food; a little food helps if it feels stimulating on an empty stomach.",
+      "bioavailability": "Water-soluble quassinoids are reasonably absorbed; there is no need for a fat-based or 'liposomal' delivery form.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**Free / total testosterone**",
+        "why": "The primary mechanism is freeing bound T and modestly raising T in stressed or lower-baseline men; a before/after pair shows whether you actually respond.",
+        "range": "Total T adult male ~10.4-34.7 nmol/L (300-1000 ng/dL); free T ~0.2-0.6 nmol/L (lab-dependent)",
+        "when": "Morning (7-10am) fasted, before starting and again after 4-8 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "**SHBG**",
+        "why": "Sex-hormone-binding globulin binds testosterone; a fall in SHBG is a plausible route to more usable free T, though trial results on SHBG are mixed.",
+        "range": "Adult male ~10-57 nmol/L",
+        "when": "Same morning draw as testosterone",
+        "tier": 2
+      },
+      {
+        "marker": "**Morning cortisol**",
+        "why": "A stress-hormone reduction is one of the better-supported effects; pairing cortisol with the T:cortisol ratio captures the anti-stress angle.",
+        "range": "Serum AM cortisol ~140-640 nmol/L (5-23 mcg/dL)",
+        "when": "Morning, same draw",
+        "tier": 2
+      },
+      {
+        "marker": "**ALT / AST (liver enzymes)**",
+        "why": "It is a long-term herbal taken daily, rare liver-injury case reports exist, and root products vary in quality; a periodic liver panel is a sensible safety check.",
+        "range": "ALT ~7-55 U/L, AST ~8-48 U/L (lab-dependent)",
+        "when": "Baseline and every ~3 months of continuous use",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Zinc**",
+          "role": "A cofactor in testosterone synthesis; deficiency blunts T and can cap any benefit from freeing bound hormone.",
+          "tier": 2
+        },
+        {
+          "nutrient": "**Vitamin D**",
+          "role": "Low vitamin D status is associated with lower testosterone; correcting a deficiency supports the same axis.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "**Chronic sleep debt / high alcohol**",
+          "role": "Both suppress testosterone and raise cortisol, working directly against the compound's mechanism.",
+          "tier": 3
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "There is no dietary source of the plant's quassinoids, but the **foundations that set your testosterone** — 7-8h sleep, adequate protein and total calories, resistance training, and correcting zinc/vitamin-D deficiency — move free T further than any herb.",
+      "note": "Fix these first; the extract is a modest add-on, not a substitute.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD $0.30-0.80/day",
+      "math": "A month of standardized water-extract capsules (200-400 mg/day) runs roughly SGD $20-40.",
+      "note": "Quassinoid-standardized, third-party-tested extract costs more than raw root powder — worth it for potency and contaminant testing.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "~400 mg/day of standardized water extract",
+      "note": "Human trials typically used 100-400 mg/day of standardized aqueous extract (standardized to roughly 0.8-2% eurycomanone), with 200 mg/day the most common; more is not clearly better. Start at the low end. No validated per-kg dosing exists.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take in the **morning** — it fits the diurnal testosterone/cortisol rhythm and some users find it mildly activating, which is unwelcome at night.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "Cycling is commonly practiced (e.g. weekdays on, weekends off, or periodic breaks) but is **not well-studied**; breaks are reasonable for reassessing benefit and giving the liver a rest rather than for any proven tolerance effect.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "**Hormone-sensitive conditions**",
+        "advice": "With prostate cancer, or a personal/strong family history of hormone-sensitive cancer, avoid self-supplementing and discuss with a doctor first.",
+        "tier": 2
+      },
+      {
+        "flag": "**Already on TRT or other hormonal therapy**",
+        "advice": "Stacking a T-modulating herb on exogenous testosterone is redundant and unstudied — clear it with the prescriber.",
+        "tier": 2
+      },
+      {
+        "flag": "**Pregnancy / breastfeeding / trying to conceive (female)**",
+        "advice": "Avoid — hormonal effects are not characterised for these situations.",
+        "tier": 2
+      },
+      {
+        "flag": "**Existing liver disease or other hepatotoxic meds/supplements**",
+        "advice": "Be cautious with a daily long-term herbal, given documented liver-injury case reports, and monitor liver enzymes.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Eurycoma root can **accumulate heavy metals** (mercury, lead) — one survey found ~26% of products exceeded the mercury limit — and the market has documented adulteration (including with sildenafil); buy an extract third-party tested for heavy metals and microbes that states a standardized quassinoid/eurycomanone content.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Men with **already-normal, high testosterone and low stress** tend to see little; the clearest effects are in older, lower-baseline, or stressed individuals. If free T, cortisol and libido are unchanged after ~8 weeks, it is not working for you.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "**Ashwagandha**",
+        "why": "Complementary anti-stress route — ashwagandha has its own evidence for lowering cortisol and modestly raising testosterone, reinforcing the same axis.",
+        "tier": 2
+      },
+      {
+        "with": "**Zinc + vitamin D (if deficient)**",
+        "why": "Correcting these removes a ceiling on testosterone production so freeing bound T actually translates to usable hormone.",
+        "tier": 2
+      },
+      {
+        "with": "**Boron**",
+        "why": "Boron has preliminary evidence for lowering SHBG and nudging free testosterone up, overlapping with the free-T mechanism.",
+        "tier": 1
+      }
+    ]
+  },
+  "nmn-nr-nad-precursors": {
+    "form": {
+      "buy": "**NR (nicotinamide riboside)** or **NMN** as high-purity, third-party-tested powder or capsules with a batch certificate of analysis; NR has cleaner regulatory status and more human data.",
+      "avoid": "Cheap unverified **NMN** — independent testing has repeatedly found products under-dosed or degraded, since NMN is unstable to heat and moisture.",
+      "withFood": "Can be taken with or without food; no strong food interaction is established.",
+      "bioavailability": "Oral **NAD+ itself is poorly absorbed** — the precursors work because they are salvaged into NAD+; sublingual/liposomal 'enhanced absorption' claims are largely unproven marketing.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "~1000 mg/day",
+      "note": "**NR** is studied at 250-1000 mg/day and **NMN** at 250-900 mg/day, both raising blood NAD+ dose-dependently; most human trials use 250-500 mg. No per-kg dosing standard exists — start low.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take in the **morning** — NAD+ metabolism is circadian-linked and dosing early may align with the natural daytime peak; there is no proven benefit to evening dosing.",
+      "tier": 1
+    },
+    "biomarkers": [
+      {
+        "marker": "Whole-blood NAD+",
+        "why": "The **direct target** — the only marker that confirms the precursor is actually raising NAD+; rises reliably with NR/NMN.",
+        "range": "Assay-dependent; no universal reference range — track your own change from baseline on the same lab.",
+        "when": "Baseline, then after 4-8 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "Homocysteine",
+        "why": "Nicotinamide breakdown is cleared via **methylation**; a rise is theoretically possible at high doses, though human NR trials (up to 3000 mg) have not shown one — a cheap check for high-dose users.",
+        "range": "Optimal <10 umol/L",
+        "when": "Baseline and after 8-12 weeks at higher doses",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Methyl donors (folate, B12, betaine/TMG)",
+          "role": "Excess precursor is excreted as methylated nicotinamide, drawing on the **methyl pool** — a theoretical demand; human trials show methyl balance is largely maintained without added donors, so this is precautionary.",
+          "tier": 1
+        }
+      ],
+      "depletes": [
+        {
+          "nutrient": "SAMe / methyl groups",
+          "role": "Methylating the nicotinamide breakdown product consumes **S-adenosylmethionine** — a real mechanism, but human high-dose trials have not shown methyl-donor depletion or a homocysteine rise.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Exercise and fasting/caloric restriction** raise NAD+ through the same salvage pathway, and dietary **niacin (B3) and tryptophan** feed NAD+ synthesis — the cheapest levers first.",
+      "note": "Niacin (nicotinic acid) also raises NAD+ but causes flushing at higher doses.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~$1.30-3 SGD/day",
+      "math": "A month of third-party-tested NR/NMN at 300-500 mg/day typically runs ~$40-90 SGD; premium branded lines cost more.",
+      "note": "NMN pricing is volatile and quality varies widely — the cheapest options are the ones most likely to be under-dosed.",
+      "tier": 1
+    },
+    "quality": {
+      "line": "Prefer products with a **batch certificate of analysis (COA)** verifying identity and purity, ideally NSF or USP verified where available — independent testing has found many NMN products contain far less than labelled.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "TMG (betaine)",
+        "why": "Commonly co-taken to **replenish methyl groups** used clearing the precursor; sensible in theory but human trials show methylation stays balanced without it, so outcome data is thin.",
+        "tier": 1
+      },
+      {
+        "with": "Exercise",
+        "why": "Physical activity independently **boosts NAD+ and mitochondrial biogenesis**, reinforcing the same metabolic pathway the supplement targets.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active cancer",
+        "advice": "NAD+ fuels cellular metabolism and there is a **theoretical concern** (from tumour-bearing animal models) that precursors could feed existing malignant cells; unresolved and not shown in humans — discuss with your oncologist before use.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "**No adequate safety data** — avoid.",
+        "tier": 2
+      }
+    ],
+    "nonResponders": {
+      "line": "Blood NAD+ almost always rises, but **clinical benefits (energy, longevity) remain unproven** in humans — a measurable NAD+ increase does not guarantee any felt effect, so judge by outcomes, not the lab alone.",
+      "tier": 2
+    }
+  },
+  "resveratrol-pterostilbene": {
+    "form": {
+      "buy": "**Trans-resveratrol** standardized extract (commonly from Japanese knotweed / Polygonum cuspidatum) or **pterostilbene**, its more absorbable dimethylated cousin; micronized forms can further improve uptake.",
+      "avoid": "Cheap **cis-resveratrol** or vague extracts that don't state a trans-resveratrol %. Trans- is the active isomer and degrades under light and heat.",
+      "withFood": "Take with a **meal** — both molecules are lipophilic. Evidence that dietary fat substantially boosts resveratrol absorption is limited and mixed, so treat it as a sensible default rather than a proven amplifier.",
+      "bioavailability": "Resveratrol is well absorbed but undergoes rapid, extensive **glucuronidation/sulfation**, leaving very low free-compound blood levels; **pterostilbene**'s two methyl groups slow conjugation, giving higher bioavailability and a longer half-life. The oft-cited ~20% vs ~80% figures are from **rat** pharmacokinetics, not humans.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "LDL cholesterol",
+        "why": "A human RCT of **pterostilbene 250 mg/day** monotherapy **raised LDL** (~+17 mg/dL) — worth monitoring on higher pterostilbene doses.",
+        "range": "near-optimal <2.6 mmol/L (100 mg/dL)",
+        "when": "Baseline, then ~8-12 weeks in",
+        "tier": 2
+      },
+      {
+        "marker": "hs-CRP",
+        "why": "Tracks the modest, **inconsistent anti-inflammatory** effect; results are mixed, so treat as exploratory.",
+        "range": "<1.0 mg/L low cardiovascular risk",
+        "when": "Baseline and ~12 weeks",
+        "tier": 1
+      },
+      {
+        "marker": "HbA1c / fasting glucose",
+        "why": "The clearest human signal is improved **glycemic control / insulin sensitivity**, mainly in people with diabetes or metabolic dysfunction.",
+        "range": "HbA1c <5.7%; fasting glucose 4.0-5.5 mmol/L",
+        "when": "Baseline and ~12 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "Blood pressure",
+        "why": "Meta-analyses show **small systolic reductions**, mostly at higher doses (≥150 mg/day).",
+        "range": "<120/80 mmHg",
+        "when": "Periodically",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Dietary fat / food",
+          "role": "Both compounds are lipophilic; taking with a meal is sensible, though the absorption benefit for resveratrol is modest and mixed in human data.",
+          "tier": 1
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Anticoagulants / antiplatelets",
+          "role": "Resveratrol has antiplatelet activity; additive bleeding risk.",
+          "tier": 2
+        },
+        {
+          "nutrient": "CYP3A4 / CYP2C9 substrate drugs",
+          "role": "Inhibits these enzymes in vitro, potentially raising levels of statins, warfarin and others; clinical magnitude uncertain.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Exercise training adaptations",
+          "role": "In older adults, high-dose resveratrol (250 mg/day) **blunted** some training-induced cardiovascular gains in one RCT.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Red wine, grapes, berries and peanuts carry resveratrol, but only in **trace amounts** — a glass of red wine has roughly 0.5-1 mg versus the 150-1000 mg used in trials.",
+      "note": "Eat the polyphenol-rich foods for the whole matrix, but understand you cannot reach study doses through diet.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~$0.30-0.70 SGD",
+      "math": "A bottle of ~60 caps (250-500 mg trans-resveratrol) typically runs ~$25-45 SGD.",
+      "note": "Pterostilbene and enhanced blends sit at the higher end.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "Doses above ~1 g/day commonly cause GI distress (cramping, diarrhea) with little added benefit.",
+      "note": "Common human ranges: **resveratrol 150-500 mg/day**, **pterostilbene 50-250 mg/day**. Be candid that human longevity/healthspan outcomes have been underwhelming despite strong preclinical hype.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take with the day's **largest meal**; specific time-of-day has no strong evidence base.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Hormone-sensitive conditions",
+        "advice": "Resveratrol is a **phytoestrogen** with mixed estrogenic activity — caution with estrogen-sensitive cancers; clear it with your clinician.",
+        "tier": 2
+      },
+      {
+        "flag": "Blood thinners or upcoming surgery",
+        "advice": "Antiplatelet effect adds bleeding risk — stop well before surgery and discuss if on anticoagulants.",
+        "tier": 2
+      },
+      {
+        "flag": "On CYP3A4/2C9-metabolized medication",
+        "advice": "May raise blood levels of statins, warfarin and similar drugs; check for interactions.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "Insufficient safety data — avoid.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose **third-party-tested** products standardized to a stated **trans-resveratrol %** (NSF/USP as neutral quality guidance); store cool and dark since trans- degrades with light and heat.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Direct SIRT1 activation is **contested** (early findings were partly an assay artifact of the fluorophore-tagged peptide substrate), and human longevity, cognitive and performance results have been weak — many people see no measurable change.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "NAD+ precursor (NMN / NR)",
+        "why": "Sirtuins require NAD+ as substrate, so pairing a sirtuin activator with NAD+ replenishment is mechanistically complementary — human benefit still unproven.",
+        "tier": 1
+      },
+      {
+        "with": "Quercetin",
+        "why": "A complementary polyphenol sometimes co-formulated with stilbenes and studied for metabolic endpoints; combined efficacy in humans is not established.",
+        "tier": 1
+      }
+    ]
+  },
+  "fisetin": {
+    "form": {
+      "buy": "Generic **high-purity fisetin** (typically extracted from the wax tree, *Rhus succedanea*, or smoketree, *Cotinus coggygria*); look for ≥98% purity with a certificate of analysis. **Liposomal or phytosome** forms, or co-formulation with a fat carrier, meaningfully improve its otherwise poor uptake.",
+      "avoid": "Cheap low-purity extracts without a COA, and standard powder taken on an empty stomach (most passes through unabsorbed).",
+      "withFood": "Take with a **fat-containing meal** — fisetin is lipophilic and absorption is substantially higher with dietary fat.",
+      "bioavailability": "**Poor and short-lived**: low aqueous solubility, extensive first-pass glucuronidation, and a short plasma half-life. This is why hit-and-run senolytic dosing uses large amounts over 1-2 days rather than daily micro-doses.",
+      "tier": 2
+    },
+    "dosing": {
+      "perKg": 20,
+      "unit": "mg",
+      "cap": "~1,000-1,600 mg/day at typical body weights (e.g. ~1,400 mg at 70 kg)",
+      "note": "The **~20 mg/kg/day** figure comes from human senolytic trials (Mayo/Scripps lineage) given for **2 consecutive days per month**, not daily. It is a research dose, not an established consumer standard — dose-response and long-term safety in humans are still being studied. This is a ceiling to understand, not a target to chase.",
+      "tier": 1
+    },
+    "timing": {
+      "line": "Take the **full daily dose with the fattiest meal of the day** across the 1-2 dosing days; splitting into 2 portions with separate fatty meals may aid absorption.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "The senolytic model is **intermittent 'hit-and-run'**: a short high-dose burst (typically 2 consecutive days) then weeks off, repeated roughly monthly. Continuous daily dosing is not the studied paradigm.",
+      "tier": 2
+    },
+    "foodFirst": {
+      "line": "Fisetin occurs in **strawberries, apples, persimmons and onions**, but dietary amounts are milligrams — orders of magnitude below the senolytic doses studied.",
+      "note": "Whole-food fisetin is fine for baseline flavonoid intake but cannot reach a senolytic threshold; don't treat 'eat more strawberries' as equivalent.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "hs-CRP",
+        "why": "Senescent cells drive a pro-inflammatory secretory phenotype (SASP); a downward trend in systemic inflammation is one plausible readout, though fisetin's effect on it in humans is not yet confirmed.",
+        "range": "<1.0 mg/L optimal (>3.0 = high cardiovascular-risk band)",
+        "when": "Baseline, then a few weeks after a dosing cycle; interpret trends, not single values.",
+        "tier": 1
+      },
+      {
+        "marker": "IL-6",
+        "why": "A core SASP cytokine; elevated levels track with inflammaging. Useful as a research-oriented marker rather than a proven fisetin endpoint.",
+        "range": "Roughly <2-3 pg/mL in healthy adults (assay-dependent)",
+        "when": "Baseline and periodically alongside hs-CRP.",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Dietary fat",
+          "role": "Lipophilic carrier that markedly improves fisetin absorption.",
+          "tier": 2
+        }
+      ]
+    },
+    "synergy": [
+      {
+        "with": "Quercetin",
+        "why": "A structurally related flavonoid senolytic; quercetin is the partner in the dasatinib+quercetin senolytic regimen. The two are studied in the same senolytic context, though a specific fisetin+quercetin combination is not independently validated.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Anticoagulant / antiplatelet therapy",
+        "advice": "Flavonoids can have mild antiplatelet effects; discuss with a clinician before high-dose use if on warfarin, DOACs, or aspirin.",
+        "tier": 2
+      },
+      {
+        "flag": "Narrow-therapeutic-index drugs / CYP-metabolised medications",
+        "advice": "Fisetin can inhibit several CYP enzymes and drug transporters in vitro; high doses may alter levels of co-administered drugs (e.g. certain statins, immunosuppressants). Check interactions with a pharmacist.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "No safety data at supplemental/senolytic doses — avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "Active cancer treatment",
+        "advice": "Do not self-add around chemotherapy without oncology guidance; senolytic and antioxidant effects could interact with therapy.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Because fisetin is plant-extracted, choose products with a **third-party COA covering purity (≥98%) and heavy metals**; NSF or USP verification is a reasonable neutral quality signal.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Senolytic effects are largely **subclinical** — you should not expect to 'feel' anything acutely. Perceived non-response is expected; judge by biomarker trends over time, not sensation.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 10-30 per monthly cycle",
+      "math": "A 2-day cycle at ~1,000-1,500 mg/day ≈ 2-3 g total; standard 100 mg capsules run roughly SGD 0.30-0.60 each, so a cycle is ~20-30 capsules. Bulk powder is cheaper per gram; liposomal forms cost more.",
+      "note": "Rough Singapore estimate; prices vary widely by form and purity.",
+      "tier": 1
+    }
+  },
+  "spermidine": {
+    "form": {
+      "buy": "**Wheat germ extract standardized to a stated spermidine content** (typically ~1-6 mg spermidine per daily serving), third-party tested for label accuracy.",
+      "avoid": "**Unstandardized 'wheat germ' powders** that declare only total mg, not actual spermidine — polyamine content varies widely by source and processing.",
+      "withFood": "Well tolerated **with or without food**; aligning the dose with an overnight/fasted window is sometimes suggested to complement autophagy, but this timing benefit is purely theoretical.",
+      "bioavailability": "**Polyamines are absorbed in the small intestine but circulating levels are tightly homeostatically regulated** — a 40 mg/day trial barely shifted plasma polyamines — and gut bacteria also synthesize them, so status varies with both diet and microbiome.",
+      "tier": 2
+    },
+    "foodFirst": {
+      "line": "**Wheat germ is the richest common food source** (~20-40 mg spermidine/100g); aged/hard cheese, natto, dried soybeans, mushrooms, and legumes also contribute.",
+      "note": "Higher dietary polyamine intake (Mediterranean-style pattern) is associated with lower mortality in a few observational cohorts — food is a legitimate first line, though this is association, not a demonstrated causal effect.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.60-1.50/day",
+      "math": "Wheat germ extract supplements run roughly SGD 30-55/month at label doses of ~1-3 mg spermidine.",
+      "note": "Plain culinary wheat germ is far cheaper per mg but has less predictable, unlabelled spermidine content.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "~6 mg/day supplemental spermidine in most trials",
+      "note": "Human trials use **~0.9-6 mg spermidine/day**. The largest cognition RCT (SmartAge) used 0.9 mg/day and found **no benefit on memory vs placebo**; a small earlier pilot used 1.2 mg/day. A 2024 trial gave 40 mg/day safely for 28 days. No established upper limit, and higher doses are not shown to be better.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "No timing is clearly required; some users align the dose with an **overnight fast** to complement the autophagy signal, though this is unproven.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "**No cycling needed** — supplemental spermidine simply mirrors normal dietary polyamine intake and is taken continuously.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Active cancer or recent cancer history",
+        "advice": "**Polyamines support cell proliferation** and are elevated in many tumors; anyone with active or recent cancer should clear supplemental polyamines with their oncologist first.",
+        "tier": 2
+      },
+      {
+        "flag": "Celiac disease / gluten sensitivity",
+        "advice": "Most supplements are **wheat germ-derived and may contain gluten**; choose a certified gluten-free or synthetic spermidine source.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "No safety data for concentrated doses above normal dietary intake — avoid supplements and rely on food.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Look for a **declared spermidine content in mg** (not just total wheat germ mg) plus third-party testing; standardization between products varies substantially.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Because **gut bacteria also synthesize spermidine** and plasma levels are tightly regulated, people already running high baseline polyamine status may notice less added effect.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "Fasting / caloric restriction",
+        "why": "Both are described as triggering **autophagy**; spermidine is often called a fasting mimetic and the downstream mechanisms overlap, though additive human benefit is unproven.",
+        "tier": 2
+      },
+      {
+        "with": "Exercise",
+        "why": "Endurance exercise also induces autophagy, so the combination is plausibly additive — not demonstrated in humans.",
+        "tier": 1
+      }
+    ]
+  },
+  "urolithin-a": {
+    "form": {
+      "buy": "**Direct Urolithin A** as the finished metabolite (a standardized, high-purity, third-party-tested capsule or softgel), not a pomegranate or ellagic-acid extract that only supplies the precursor.",
+      "avoid": "Products labeled 'urolithin A' that are really **ellagic acid or pomegranate extract** — these only help if your gut bacteria convert them, which about half of people can't.",
+      "withFood": "Take **with a fat-containing meal** — it's lipophilic and absorption improves with dietary fat.",
+      "bioavailability": "Rapidly conjugated (glucuronide/sulfate) after absorption; trials dosed it **once daily** and still saw effects at 500-1000 mg.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg",
+      "cap": "1000 mg/day (highest daily dose in the multi-month RCTs; well tolerated)",
+      "note": "Human RCTs used **500 mg or 1000 mg once daily** for up to 4 months: 500 mg improved mitochondrial gene expression/acylcarnitines and hamstring strength (~12%), 1000 mg lowered CRP. The main trial's primary power-output endpoint was NOT met, so treat muscle efficacy as promising rather than proven.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "**No strict circadian timing** — once daily with a meal; sustained daily use over months matters far more than time of day.",
+      "tier": 2
+    },
+    "foodFirst": {
+      "line": "**Pomegranate, walnuts, raspberries, and strawberries** supply the ellagitannin/ellagic-acid precursors your gut can turn into Urolithin A.",
+      "note": "Conversion depends on specific gut bacteria (*Gordonibacter* and related species); roughly **half of Western populations are non-producers** (metabotype 0), so food alone won't reliably raise Urolithin A.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "The core reason to supplement the finished molecule: about **half of people can't convert dietary precursors** into Urolithin A, so pomegranate juice or ellagic acid does little for them — direct supplementation bypasses this.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~$2-4 SGD per 500 mg",
+      "math": "~$60-120 SGD/month at 500 mg/day",
+      "note": "One of the pricier longevity supplements; generic Urolithin A powder tends to run cheaper than branded softgels but demands stricter third-party purity checks.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "**No cycling needed** — RCTs dosed continuously for up to 4 months and benefits accrue with sustained daily use rather than pulsing.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "**Avoid** — no safety data in these groups.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose a product that lists an **actual Urolithin A content in mg** and is third-party tested for purity; be skeptical of 'pomegranate complex' blends that imply UA without stating it.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Resistance and endurance exercise",
+        "why": "Both training and Urolithin A independently drive **mitophagy and mitochondrial turnover**; the trial benefits layer onto an active lifestyle rather than replacing it.",
+        "tier": 2
+      }
+    ]
+  },
+  "ca-akg-calcium-alpha-ketoglutarate": {
+    "form": {
+      "buy": "High-purity **calcium alpha-ketoglutarate (Ca-AKG)** powder or capsules, third-party tested with a COA stating actual Ca-AKG content.",
+      "avoid": "Harsh, strongly acidic **free-acid AKG** and unverified 'longevity blends' that don't disclose the real Ca-AKG dose.",
+      "withFood": "Take **with food** — the salt is acidic and can cause GI upset or reflux on an empty stomach.",
+      "bioavailability": "AKG is **rapidly metabolized and endogenously abundant**, so effective oral doses sit in the gram range; the calcium salt is more stable and palatable than the free acid.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Epigenetic (DNA-methylation) age clock",
+        "why": "This was the **primary and only outcome** in the single human study; it is the mechanistic target (TET-driven methylation reset). Treat as exploratory, not diagnostic.",
+        "range": "Reported relative to chronological age (e.g. Horvath-type DNAm clocks)",
+        "when": "Baseline and after 6-12 months; interpret cautiously given high test-retest noise",
+        "tier": 1
+      },
+      {
+        "marker": "Serum calcium",
+        "why": "Ca-AKG is **~20% elemental calcium by weight**, so 2 g/day adds ~400 mg calcium; monitor to avoid excess total intake, especially if stacking other calcium sources.",
+        "range": "2.2-2.6 mmol/L",
+        "when": "If combining with calcium supplements, dairy-heavy diet, or vitamin D/K stack",
+        "tier": 3
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Vitamin C (ascorbate)",
+          "role": "Reductant that keeps the iron centre active in the **2-oxoglutarate-dependent dioxygenases** (TET, prolyl hydroxylases) that AKG fuels.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Iron (Fe II)",
+          "role": "These same dioxygenases are **Fe(II)-dependent**; frank iron deficiency limits their activity.",
+          "tier": 2
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Iron / zinc",
+          "role": "The calcium load in Ca-AKG can **reduce absorption of iron and zinc** when co-ingested; separate by a couple of hours.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "There is **no meaningful dietary source** — AKG is an endogenous TCA-cycle metabolite the body makes.",
+      "note": "Circulating AKG appears to decline with age and rise with metabolic health/exercise, but this rests largely on non-human and observational data; supplementation is the only way to reach the gram-level doses studied.",
+      "tier": 1
+    },
+    "cost": {
+      "perDose": "~SGD 0.30-0.60/day",
+      "math": "Generic Ca-AKG powder ~SGD 40-60 per 250 g / ~125 days at 2 g/day",
+      "note": "Branded epigenetic-longevity blends cost several times more per gram for the same molecule.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "~3 g/day",
+      "note": "The single human study delivered **~1 g/day (women's formulation) to 2 g/day (men's)** of Ca-AKG; common self-use range is 1-3 g/day. No validated per-kg dosing exists.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take **with meals**, often split morning/evening, mainly for GI tolerance — no evidence that timing affects the outcome.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No established cycling protocol; the human study dosed **continuously for ~7 months**. Insufficient data to recommend on/off cycling either way.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Hypercalcemia or already supplementing calcium",
+        "advice": "Count the **~20% elemental calcium** in Ca-AKG toward your daily total and stay within recommended calcium intake.",
+        "tier": 3
+      },
+      {
+        "flag": "History of calcium-oxalate kidney stones",
+        "advice": "Be cautious — the added calcium load may be undesirable; discuss with a clinician.",
+        "tier": 2
+      },
+      {
+        "flag": "Chronic kidney disease / impaired renal function",
+        "advice": "Caution with the calcium and mineral load; get medical guidance before use.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "**No safety data** at supplemental doses — avoid.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Pick **third-party-tested Ca-AKG** with a COA confirming actual content; the salt is hygroscopic and can clump or degrade, and cheap powders may under-deliver the stated dose.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Epigenetic-clock readouts are **noisy**, and the supporting human evidence is a single uncontrolled, open-label study — no measurable biological-age change is expected and tells you little about whether it 'worked'.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "Vitamin C",
+        "why": "Recycles the iron centre of the **2-OG-dependent dioxygenases** AKG drives; mechanistic plausibility only, with no outcome data on the combination.",
+        "tier": 1
+      }
+    ]
+  },
+  "glynac-glycine-nac": {
+    "form": {
+      "buy": "High-purity, third-party-tested **N-acetylcysteine** (capsule or powder) plus free-form **glycine** powder (tastes mildly sweet). Look for USP/NSF-verified single-ingredient products so you control the ratio.",
+      "avoid": "Proprietary 'glutathione booster' blends with undisclosed or sub-clinical amounts of each ingredient.",
+      "withFood": "Take with a meal — the large amino-acid load (several grams each) can cause nausea or loose stools on an empty stomach.",
+      "bioavailability": "Oral NAC bioavailability is low (~4-10%) but is enough to raise intracellular cysteine, the rate-limiting glutathione precursor; glycine is well absorbed. Oral glutathione itself is largely broken down, which is why the two precursors are used instead.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "why": "GlyNAC trials in older adults reported improved insulin resistance; track glycaemic control as a downstream signal.",
+        "range": "Fasting glucose 4.0-5.5 mmol/L; HbA1c <5.7%",
+        "when": "Baseline and after ~12-16 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "hs-CRP",
+        "why": "Reduced systemic inflammation was one of the more consistent findings across the pilot and RCT.",
+        "range": "<1.0 mg/L (low cardiovascular risk)",
+        "when": "Baseline and 12-16 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "Blood pressure",
+        "why": "Endothelial function improved in the Baylor older-adult trials; BP is a cheap cardiovascular signal to self-monitor at home.",
+        "range": "<120/80 mmHg",
+        "when": "Weekly at home",
+        "tier": 1
+      },
+      {
+        "marker": "ALT / AST",
+        "why": "The amino-acid load is metabolised by the liver; confirm liver enzymes stay in range.",
+        "range": "ALT & AST roughly 10-40 U/L",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "RBC or whole-blood glutathione (GSH)",
+        "why": "The direct mechanistic target — restoring depleted glutathione is the whole rationale. Not offered by every lab, so treat as optional.",
+        "range": "Lab-specific; aim to move a low baseline toward the young-adult reference",
+        "when": "Baseline and 12+ weeks, if your lab offers it",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Selenium",
+          "role": "Cofactor for glutathione peroxidase — the enzyme that uses glutathione to neutralise peroxides. Adequate selenium lets restocked glutathione actually do its job.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Riboflavin (B2)",
+          "role": "Feeds glutathione reductase (via FAD) which recycles oxidised glutathione back to its active form.",
+          "tier": 2
+        },
+        {
+          "nutrient": "Vitamin C",
+          "role": "Helps regenerate glutathione from its oxidised state, supporting the redox cycle.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Glycine** occurs in collagen/gelatin (bone broth, skin-on cuts) and NAC's precursor cysteine is high in eggs and whey.",
+      "note": "Food cannot realistically deliver the multi-gram trial doses of either amino acid, so diet supports but does not replace supplementation here.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~$0.50-1.00 SGD/day",
+      "math": "Bulk glycine powder is very cheap (~$0.10-0.20 for several grams); NAC adds ~$0.40-0.80/day at trial-scale doses.",
+      "note": "One of the cheaper longevity interventions per gram; buying single-ingredient powders is far cheaper than pre-mixed blends.",
+      "tier": 2
+    },
+    "dosing": {
+      "perKg": 100,
+      "unit": "mg/kg/day glycine; NAC dosed higher (~130 mg/kg/day)",
+      "cap": "Trials used glycine ~100 mg/kg/day and NAC ~130 mg/kg/day; many people start lower (e.g. glycine 3-5 g + NAC 600-1200 mg/day) and titrate up for tolerance.",
+      "note": "The Baylor trials dosed glycine at 1.33 mmol/kg/day (~100 mg/kg, ~7 g for a 70 kg adult) and NAC at 0.81 mmol/kg/day (~130 mg/kg, ~9 g), split across 2-3 servings. The high NAC dose is where GI side effects appear, so ramp up gradually.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Split the daily amount into **2-3 divided doses with meals** to cut nausea and smooth amino-acid delivery; there is no strong evidence favouring a specific time of day.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "Trials ran continuously for 16-24 weeks with benefits accruing over time, and declining after stopping — there is no established need to cycle. Some users pause NAC periodically, but this is preference, not evidence-based.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "Nitroglycerin / nitrate medication",
+        "advice": "NAC can potentiate nitrate vasodilation and cause marked hypotension and headache — avoid the combination unless supervised.",
+        "tier": 2
+      },
+      {
+        "flag": "Anticoagulant / antiplatelet therapy or bleeding disorder",
+        "advice": "NAC has mild antiplatelet activity; discuss with your doctor before combining with blood thinners.",
+        "tier": 1
+      },
+      {
+        "flag": "Asthma",
+        "advice": "NAC has rarely triggered bronchospasm (mostly with inhaled/IV forms); introduce cautiously and stop if wheezing occurs.",
+        "tier": 1
+      },
+      {
+        "flag": "Kidney disease or protein restriction",
+        "advice": "This delivers several grams of amino acids daily; clear it with your physician if renal function is impaired.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "High-dose data are lacking — do not self-experiment during pregnancy without medical guidance.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose single-ingredient **NAC and glycine verified by NSF or USP** (or an equivalent third-party assay) — amino-acid powders can carry heavy-metal or purity concerns from cheap manufacturing.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Benefits are clearest in **older or glutathione-depleted people** with elevated oxidative stress; young, healthy individuals with already-normal glutathione may notice little, since you cannot 'over-restock' a full system.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Resistance / aerobic exercise",
+        "why": "GlyNAC trials paired supplementation with maintained activity; both target mitochondrial function and muscle, and the effects appear complementary.",
+        "tier": 2
+      },
+      {
+        "with": "Selenium + vitamin C",
+        "why": "Support the enzymes that use and recycle the glutathione you're restocking, so the antioxidant cycle runs efficiently.",
+        "tier": 2
+      },
+      {
+        "with": "Taurine",
+        "why": "Another sulphur-related amino acid studied for age-related decline; commonly stacked in longevity protocols (evidence still emerging).",
+        "tier": 1
+      }
+    ]
+  },
+  "sulforaphane": {
+    "form": {
+      "buy": "**Glucoraphanin standardised to sulforaphane yield**, ideally co-formulated with **active myrosinase** — the enzyme that converts the inert precursor into actual sulforaphane. Third-party tested for stated content.",
+      "avoid": "Supplements listing only **glucoraphanin** with no active myrosinase and no verified sulforaphane yield — the enzyme is heat-inactivated during most processing, so conversion depends entirely on your gut bacteria and can be near-zero.",
+      "withFood": "Food status matters little; if taking a myrosinase-free product, co-ingest a pinch of raw mustard seed powder to supply the enzyme.",
+      "bioavailability": "Real absorbed dose is highly variable. Controlled trials show adding **active myrosinase roughly doubles** sulforaphane absorption versus precursor alone (~40% vs ~19%); glucoraphanin-only capsules with no live enzyme can yield far less than fresh sprouts.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "why": "**Broccoli sprout extract lowered fasting glucose** in the obese, dysregulated subgroup of a randomised type-2 diabetes trial (via NRF2-linked suppression of hepatic glucose output); a later prediabetes RCT showed only a small, microbiota-dependent effect, so treat this as a modest, worth-tracking signal.",
+        "range": "Fasting glucose 3.9-5.5 mmol/L; HbA1c <5.7%",
+        "when": "Baseline and after 8-12 weeks",
+        "tier": 2
+      },
+      {
+        "marker": "ALT (liver enzyme)",
+        "why": "NRF2 activation supports hepatic detox/antioxidant capacity; **modest ALT reductions** have been seen in a small RCT of adults with high-normal liver enzymes. An emerging, non-specific readout.",
+        "range": "ALT roughly 7-35 U/L (lab-dependent)",
+        "when": "Baseline and after 8-12 weeks",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Myrosinase",
+          "role": "Enzyme that hydrolyses inert **glucoraphanin into active sulforaphane**; destroyed by heat, so cooked broccoli or enzyme-free capsules yield little without a raw source (sprouts, mustard powder) or capable gut bacteria.",
+          "tier": 3
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "Iodine",
+          "role": "Breakdown products of raw cruciferous glucosinolates can compete with **thyroid iodine uptake**; clinically relevant mainly at very high intakes or with iodine deficiency, so keep iodine adequate if consuming large daily sprout quantities.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Fresh broccoli sprouts** (3-5 days old) are the richest natural source, carrying many times the glucoraphanin of mature broccoli plus their own intact myrosinase.",
+      "note": "Home-sprouting broccoli seeds is cheap and gives a live-enzyme source no capsule matches; brief light steaming of mature broccoli preserves more myrosinase than boiling, which fully inactivates it.",
+      "tier": 3
+    },
+    "cost": {
+      "perDose": "~$0.30-0.80 SGD per capsule dose; sprouting seeds far cheaper per serve",
+      "math": "A pack of broccoli sprouting seeds (~$10-20 SGD) yields many trays of sprouts over months, dropping cost per serving well below capsules.",
+      "note": "Rough Singapore ranges; capsule cost varies widely with standardisation and whether active myrosinase is included.",
+      "tier": 2
+    },
+    "dosing": {
+      "note": "Human trials commonly use broccoli-sprout preparations delivering roughly **glucoraphanin equivalent to ~10-40 mg sulforaphane per day**, or ~50-100 g fresh sprouts. Because conversion is so variable, the yield of active sulforaphane matters more than the milligrams of precursor on the label. No per-kg standard exists.",
+      "cap": "No established safe upper limit; food-level intakes are well tolerated, concentrated extracts less studied long-term.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "**Once daily, any time** works — sulforaphane clears within a few hours but the NRF2 antioxidant gene program it switches on stays elevated for roughly a day or more.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "**No cycling required**; daily intake was well tolerated across weeks-to-months trials with no clear tolerance to its NRF2 effect.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Thyroid / iodine status",
+        "advice": "Large daily raw-cruciferous intake has mild goitrogenic potential; if you have thyroid disease or low iodine, keep iodine adequate and discuss high-dose use with your clinician.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy / breastfeeding",
+        "advice": "Culinary amounts are fine, but **concentrated extracts are under-studied** in pregnancy — stick to food-level intake unless advised otherwise.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose products **standardised to and tested for actual sulforaphane yield** (not just glucoraphanin), ideally stating active myrosinase content, from a maker doing third-party purity/potency testing.",
+      "tier": 3
+    },
+    "nonResponders": {
+      "line": "With enzyme-free precursor products, active sulforaphane depends on **gut bacteria that carry myrosinase-like activity** — low-converter microbiomes (or recent antibiotics) produce little, which co-ingested mustard powder or sprouts can rescue.",
+      "tier": 2
+    },
+    "synergy": [
+      {
+        "with": "Mustard seed powder (myrosinase source)",
+        "why": "Adding a raw myrosinase source to cooked broccoli or an enzyme-free capsule **restores conversion of glucoraphanin to sulforaphane**, raising the absorbed dose.",
+        "tier": 3
+      }
+    ]
+  },
+  "astaxanthin": {
+    "form": {
+      "buy": "**Natural algae-derived** astaxanthin from *Haematococcus pluvialis*, supplied as the **esterified form** in an oil suspension (softgel).",
+      "avoid": "**Synthetic astaxanthin** (petrochemical-derived, sold mostly for aquaculture) — different stereoisomer profile and less human safety/efficacy data.",
+      "withFood": "Fat-soluble — always take with a **meal containing dietary fat** to meaningfully raise absorption.",
+      "bioavailability": "Absorption is low and highly fat-dependent; co-ingested fat can multiply plasma uptake several-fold versus a fasted dose.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "**hs-CRP**",
+        "why": "Astaxanthin has modest anti-inflammatory signals in some trials; a cheap, standard way to watch systemic inflammation over months.",
+        "range": "<1.0 mg/L optimal; 1-3 average; >3 elevated",
+        "when": "Baseline, then after ~8-12 weeks",
+        "tier": 1
+      },
+      {
+        "marker": "**Oxidized LDL (oxLDL)**",
+        "why": "A core mechanistic claim is lipid-membrane antioxidant protection; oxLDL is the most directly relevant human oxidative marker, though testing is specialised.",
+        "range": "Lab-specific; track your own trend, not an absolute cutoff",
+        "when": "Baseline and ~12 weeks",
+        "tier": 1
+      }
+    ],
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "**Dietary fat**",
+          "role": "Required carrier for intestinal absorption of this lipophilic carotenoid — a fatty meal is the single biggest lever on how much you actually absorb.",
+          "tier": 3
+        }
+      ],
+      "antagonists": [
+        {
+          "nutrient": "**Other carotenoids / plant sterols (very high dose)**",
+          "role": "Compete for the same mixed-micelle absorption pathway; megadosing one fat-soluble carotenoid can blunt uptake of others taken at the same time.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "**Wild salmon, trout, shrimp, krill and salmon roe** are the natural dietary sources (astaxanthin is what makes them pink-red).",
+      "note": "Food doses are small — a serving of wild salmon supplies only ~1-5 mg (sockeye is richest, most species less), well below typical supplement doses, so diet complements rather than replaces a supplement here.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.30-0.70 per 12 mg softgel",
+      "math": "A 60-count bottle of 12 mg natural astaxanthin runs roughly SGD 20-40, i.e. one to two months at one/day.",
+      "note": "Rough Singapore retail/online range; higher-mg or premium esterified products sit at the top end.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg/day",
+      "cap": "Consumer use commonly 4-12 mg/day; trials have gone to ~20-40 mg short-term. No established per-kg dosing.",
+      "note": "Benefits plateau — more is not linearly better. Start at 4-6 mg with food and give it 6-8 weeks, as antioxidant/skin effects accrue slowly.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Take with the **largest fat-containing meal** of the day; time of day doesn't matter, absorption does.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "No cycling needed — it's a dietary carotenoid with no tolerance or dependence; daily continuous use is the studied pattern.",
+      "tier": 2
+    },
+    "contra": [
+      {
+        "flag": "**On blood-pressure medication**",
+        "advice": "Astaxanthin may modestly lower blood pressure; watch for additive effects and discuss with your doctor.",
+        "tier": 1
+      },
+      {
+        "flag": "**On anticoagulants / antiplatelet drugs**",
+        "advice": "Theoretical additive effect on bleeding tendency; flag it to your prescriber before adding.",
+        "tier": 1
+      },
+      {
+        "flag": "**Pregnancy / breastfeeding**",
+        "advice": "Insufficient safety data at supplemental doses — default to food sources only unless a clinician advises otherwise.",
+        "tier": 2
+      },
+      {
+        "flag": "**Allergy to source organism / seafood**",
+        "advice": "Krill- or algae-source products can matter if you have relevant allergies — check the source.",
+        "tier": 2
+      }
+    ],
+    "quality": {
+      "line": "Choose **natural *Haematococcus pluvialis*-derived**, esterified astaxanthin with a stated mg of actual astaxanthin (not total oil), ideally **third-party tested** for content and oxidation; oil-suspension softgels protect the pigment from degradation.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "People with **fat malabsorption** (very low-fat diet, bile/pancreatic issues, some GI conditions) or who dose it fasted may absorb little and see nothing — fix the fat pairing first.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "**Omega-3 (EPA/DHA)**",
+        "why": "Both are lipophilic and incorporate into cell membranes; taken together the fish oil also supplies the fat that drives astaxanthin absorption.",
+        "tier": 2
+      },
+      {
+        "with": "**Vitamin E / tocotrienols**",
+        "why": "Complementary lipid-phase antioxidants; classic membrane antioxidant network where one helps regenerate/spare the other.",
+        "tier": 1
+      },
+      {
+        "with": "**Other carotenoids (lutein, zeaxanthin)**",
+        "why": "Often stacked for skin and eye endpoints as a broader carotenoid approach — take spaced or with ample fat to limit absorption competition.",
+        "tier": 1
+      }
+    ]
+  },
+  "epithalon-epitalon": {
+    "form": {
+      "buy": "Sold only as **lyophilized (freeze-dried) 'research-use-only' powder**, reconstituted with bacteriostatic water for subcutaneous injection; no pharmaceutical-grade product exists.",
+      "avoid": "Avoid **oral and nasal 'epitalon' products** (a short peptide destroyed by gut proteases, so these are effectively inactive) and any injectable vial lacking a third-party certificate of analysis.",
+      "bioavailability": "As a short peptide it is **degraded by digestive enzymes**, so only injected routes deliver intact peptide; this is a core reason the evidence base is thin and route-dependent.",
+      "tier": 2
+    },
+    "quality": {
+      "line": "This is a **gray-market peptide with zero regulatory oversight** — mislabeling, under-dosing, and contamination are common; only consider vials with a batch-specific third-party COA showing high purity and low endotoxin, and recognize sterility is still unverifiable at home.",
+      "tier": 2
+    },
+    "dosing": {
+      "unit": "mg",
+      "note": "Biohacker protocols commonly cite **5-10 mg subcutaneous per day**, but this is copied from old unreplicated single-group studies, not a validated dose; there is no established safe or effective amount.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "Almost always run as **short courses of ~10-20 days, once or twice a year** rather than continuously — but note this schedule comes from convention, not from any evidence showing it is safer or more effective.",
+      "tier": 1
+    },
+    "foodFirst": {
+      "line": "No nutrient reproduces this peptide, but the **evidence-backed longevity levers — sleep, resistance and aerobic exercise, not smoking, and caloric moderation — have vastly stronger data** and should be maxed out before an unproven injectable.",
+      "note": "Spending on validated basics returns more healthspan per dollar than a gray-market peptide with no replicated human outcomes.",
+      "tier": 3
+    },
+    "contra": [
+      {
+        "flag": "Active or prior cancer",
+        "advice": "A **core marketed mechanism is telomerase activation**, which is theoretically concerning for helping tumor cells evade senescence (cell-line work has shown telomerase upregulation in cancer lines); avoid and discuss any peptide use with an oncologist.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "**No safety data exist** in these groups; do not use.",
+        "tier": 2
+      },
+      {
+        "flag": "Any self-injection of gray-market peptide",
+        "advice": "Unverified sterility and purity carry real **infection, abscess, and contaminant risk**; understand you cannot confirm what is in the vial.",
+        "tier": 2
+      }
+    ]
+  },
+  "low-dose-lithium": {
+    "form": {
+      "buy": "Sold OTC as **lithium orotate** (or aspartate); read the label for **elemental lithium** content, usually 1-5 mg, not the total salt weight.",
+      "avoid": "Do not confuse OTC micro-dose lithium with prescription **lithium carbonate**, which delivers roughly ~55-340 mg elemental daily and requires blood monitoring.",
+      "withFood": "Take with food or a full glass of water to blunt mild nausea.",
+      "bioavailability": "Lithium salts are well absorbed; claims that **orotate** targets the brain better than carbonate are marketing, not shown in humans.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Serum lithium",
+        "why": "At 1-5 mg elemental, levels usually sit far below the assay's limit; a reading approaching the **therapeutic 0.6-1.2 mmol/L range means the dose is far too high**.",
+        "range": "target <0.2 mmol/L, often undetectable",
+        "when": "only if dosing above ~10 mg elemental or symptomatic",
+        "tier": 2
+      },
+      {
+        "marker": "TSH",
+        "why": "Therapeutic lithium suppresses thyroid output; micro-dose risk is low and routine monitoring is unproven at this dose, but a **baseline TSH** is a reasonable precaution on chronic use.",
+        "range": "0.4-4.0 mIU/L",
+        "when": "baseline, then periodically on chronic use",
+        "tier": 1
+      },
+      {
+        "marker": "eGFR / creatinine",
+        "why": "Lithium is cleared by the kidney and is nephrotoxic at therapeutic doses; confirm **baseline renal function** before long-term use.",
+        "range": "eGFR >90 mL/min/1.73m2",
+        "when": "baseline, then annually",
+        "tier": 2
+      }
+    ],
+    "cofactors": {
+      "antagonists": [
+        {
+          "nutrient": "Sodium / hydration",
+          "role": "Low sodium intake or dehydration slows lithium excretion and **raises blood levels** - stay hydrated and avoid crash-cutting salt.",
+          "tier": 3
+        },
+        {
+          "nutrient": "NSAIDs, thiazide diuretics, ACE inhibitors / ARBs",
+          "role": "All **raise serum lithium** by cutting renal excretion - a genuine interaction, most relevant as the dose climbs.",
+          "tier": 3
+        },
+        {
+          "nutrient": "Caffeine",
+          "role": "Increases renal lithium clearance, modestly lowering levels.",
+          "tier": 2
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "Lithium is a trace mineral in **drinking water, whole grains, and vegetables**; the longevity signal comes from populations with naturally lithium-rich water at microgram intakes, far below any supplement.",
+      "note": "Some natural mineral waters carry meaningful lithium, a food-first route, though content varies widely and is rarely labeled.",
+      "tier": 2
+    },
+    "cost": {
+      "perDose": "~SGD 0.05-0.15 per 5 mg dose",
+      "math": "roughly SGD 15-30 for a 100-200 capsule bottle",
+      "note": "One of the cheapest supplements per day, though OTC availability in Singapore is inconsistent.",
+      "tier": 1
+    },
+    "dosing": {
+      "unit": "mg elemental lithium",
+      "cap": "keep to single-digit mg elemental unless clinically supervised",
+      "note": "OTC micro-dosing is typically **1-5 mg elemental daily**; water-epidemiology intakes are far lower still. There is no shown benefit to pushing higher, and doses above ~10-20 mg approach ranges that warrant blood monitoring.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "Timing is not critical; take with a meal. If it feels mildly sedating, shift it to the **evening**.",
+      "tier": 1
+    },
+    "cycling": {
+      "line": "No established cycling protocol; the hypothesized benefits are chronic and preventive, so continuous low dosing is the norm rather than pulsing.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Kidney disease",
+        "advice": "Impaired renal clearance concentrates lithium - do not self-dose; involve a clinician.",
+        "tier": 3
+      },
+      {
+        "flag": "On prescription lithium or a diagnosed mood disorder",
+        "advice": "Do not self-supplement or stack - dosing must be managed by your prescriber.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Therapeutic lithium is linked to fetal cardiac defects and micro-dose safety is unstudied - avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "Thyroid disease",
+        "advice": "Lithium can further suppress thyroid function; monitor TSH or avoid.",
+        "tier": 2
+      },
+      {
+        "flag": "Taking NSAIDs, thiazides, or ACE inhibitors / ARBs",
+        "advice": "These raise lithium levels; be cautious and avoid combining with higher supplemental doses.",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "Choose a product that states **elemental lithium** clearly and is third-party tested (USP or NSF) for label accuracy and heavy-metal purity.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "There is **no acute felt effect** - any benefit is slow and preventive, so 'nothing happening' is expected and is not a reason to escalate the dose.",
+      "tier": 2
+    }
+  },
+  "racetams-piracetam-aniracetam-oxiracetam-phenylpiracetam": {
+    "form": {
+      "buy": "**High-purity powder or capsules with a batch Certificate of Analysis (COA)**; racetams are grey-market in many countries, so third-party identity/purity testing matters more than usual.",
+      "avoid": "**Unverified bulk powder** sold with no COA or lot testing — adulteration and mislabelled potency are the main real-world risks.",
+      "withFood": "**Aniracetam is lipophilic** — take it with a meal containing fat for meaningful absorption; piracetam and oxiracetam are water-soluble and can be taken with or without food.",
+      "bioavailability": "**Piracetam is nearly 100% orally bioavailable** and excreted largely unchanged; aniracetam is rapidly and extensively metabolised (short plasma half-life), so its effects are brief and dosing is often split.",
+      "tier": 2
+    },
+    "cofactors": {
+      "needs": [
+        {
+          "nutrient": "Choline (as citicoline/CDP-choline or alpha-GPC)",
+          "role": "Racetams raise acetylcholine turnover; **adequate choline is the substrate** the mechanism draws on.",
+          "tier": 2
+        }
+      ],
+      "depletes": [
+        {
+          "nutrient": "Acetylcholine / choline stores",
+          "role": "The classic **'racetam headache'** is commonly (though anecdotally) attributed to accelerated acetylcholine use outrunning choline supply.",
+          "tier": 1
+        }
+      ]
+    },
+    "foodFirst": {
+      "line": "There is **no dietary source of the racetam molecule itself** — but its required cofactor, choline, is food-first: eggs, liver, and soy are dense sources before you reach for a choline supplement.",
+      "note": "Fixing baseline dietary choline first often resolves headaches and non-response without adding another pill.",
+      "tier": 2
+    },
+    "dosing": {
+      "cap": "Phenylpiracetam is potent at 100-200 mg; tolerance builds quickly, so it is not a daily-forever compound.",
+      "note": "Typical self-reported ranges by compound: **piracetam 1.2-4.8 g/day (usually split)**, aniracetam 750-1500 mg/day, oxiracetam 800-2400 mg/day, phenylpiracetam 100-200 mg used intermittently. Per-kg dosing is not standard for racetams.",
+      "tier": 2
+    },
+    "timing": {
+      "line": "**Split piracetam/oxiracetam** across the day; take stimulating phenylpiracetam and short-acting aniracetam **earlier** — phenylpiracetam late in the day commonly disrupts sleep.",
+      "tier": 2
+    },
+    "cycling": {
+      "line": "**Phenylpiracetam tolerance is reported to develop fast** (within days to weeks), so it is best used intermittently/cycled; piracetam and oxiracetam are reported to show far less tachyphylaxis and are used more continuously.",
+      "tier": 1
+    },
+    "contra": [
+      {
+        "flag": "Renal impairment",
+        "advice": "**Piracetam is cleared almost entirely by the kidneys** (>98% excreted unchanged) and requires dose reduction or avoidance in reduced renal function — check with a clinician.",
+        "tier": 3
+      },
+      {
+        "flag": "Blood thinners / upcoming surgery",
+        "advice": "Piracetam has **antiplatelet/haemorheological activity**; use caution with anticoagulants/antiplatelets and pause before surgery.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "**Avoid** — safety data are insufficient.",
+        "tier": 2
+      },
+      {
+        "flag": "Regulatory / legal status",
+        "advice": "Racetams are **not approved as dietary supplements** and are prescription-only or unapproved in many jurisdictions (including the US) — check your local legal status before purchasing.",
+        "tier": 3
+      }
+    ],
+    "quality": {
+      "line": "Because racetams are grey-market, insist on a **third-party Certificate of Analysis** for identity and purity; avoid anonymous powders with no batch testing.",
+      "tier": 2
+    },
+    "nonResponders": {
+      "line": "Effects (especially piracetam) are often **subtle rather than stimulating**; some people feel nothing even with a choline source and are genuine non-responders — aniracetam and phenylpiracetam tend to be more noticeable.",
+      "tier": 1
+    },
+    "synergy": [
+      {
+        "with": "A choline source (citicoline/CDP-choline or alpha-GPC)",
+        "why": "Supplies the acetylcholine substrate the racetam draws on and is **anecdotally reported to reduce the racetam headache** — the most consistently recommended pairing.",
+        "tier": 2
+      }
+    ]
   }
 }
