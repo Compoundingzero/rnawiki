@@ -10703,5 +10703,2293 @@
         "tier": 2
       }
     ]
+  },
+  "boldenone-equipoise": {
+    "access": "unapproved",
+    "accessNote": "A veterinary-only injectable anabolic steroid (boldenone undecylenate) with no approved human medical use; human circulation is entirely non-medical and supplied through underground or counterfeit channels.",
+    "overdose": {
+      "line": "Toxicity from anabolic-androgenic steroids is cumulative rather than a single acute event; boldenone's most dangerous signature is strong stimulation of red blood cell production, driving hematocrit well above the normal ceiling (polycythemia). Thickened, hyperviscous blood causes headaches, facial flushing, dizziness, visual disturbance and rising blood pressure, and sharply raises the risk of venous and arterial clots — deep vein thrombosis, pulmonary embolism, stroke and heart attack. Sustained high exposure also promotes left ventricular hypertrophy and cardiomyopathy. In women and adolescents, excess androgen causes rapid, often irreversible virilization; in adolescents it can prematurely close growth plates.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "There is no established safe human dose: boldenone was never tested or approved for people, so no human pharmacokinetic or safety range exists, and underground/veterinary product carries no purity, sterility or concentration guarantees (counterfeiting and under-dosing are common). Documented harms of non-medical use include suppression or shutdown of the body's own testosterone (low LH/FSH, testicular atrophy, infertility that can persist after stopping), polycythemia and thrombotic events, adverse cardiac remodeling, suppressed HDL with worsened lipids, estrogenic effects such as gynecomastia and water retention from aromatization, mood disturbance and aggression, and injection-related infection or abscess. None of this is monitored or managed the way a prescribed drug would be.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Hematocrit / hemoglobin",
+        "why": "Boldenone strongly stimulates erythropoiesis; a rising hematocrit is the earliest and most dangerous lab signal, flagging blood-hyperviscosity and clot risk.",
+        "range": "Hematocrit above ~52–54% (normal adult male ~41–50%) is a red flag",
+        "when": "The hallmark abnormality of boldenone use",
+        "tier": 3
+      },
+      {
+        "marker": "LH and FSH",
+        "why": "Exogenous androgen suppresses the pituitary; near-zero gonadotropins reflect a shut-down HPTA and explain testicular atrophy and infertility.",
+        "range": "Suppressed, often below the assay's lower limit",
+        "tier": 3
+      },
+      {
+        "marker": "Endogenous testosterone (with LH/FSH)",
+        "why": "Natural production collapses under exogenous steroid; low endogenous testosterone with suppressed LH marks HPTA suppression that may not fully recover.",
+        "range": "Endogenous output suppressed; interpret alongside suppressed LH/FSH",
+        "tier": 3
+      },
+      {
+        "marker": "HDL cholesterol",
+        "why": "Anabolic steroids markedly lower HDL and raise LDL, compounding cardiovascular risk over time.",
+        "range": "HDL can fall below ~30 mg/dL (0.8 mmol/L)",
+        "tier": 3
+      },
+      {
+        "marker": "Estradiol",
+        "why": "Boldenone aromatizes to estrogen (roughly half the rate of testosterone), so estradiol can shift out of range — classically elevated, driving gynecomastia and fluid retention, though a metabolite with aromatase-inhibiting activity means levels can also fall.",
+        "range": "Out of normal male range in either direction; classically elevated",
+        "tier": 2
+      },
+      {
+        "marker": "Blood pressure",
+        "why": "Erythrocytosis and fluid retention raise blood pressure, adding to stroke and cardiac strain.",
+        "range": "Sustained readings above 130/80 mmHg warrant concern",
+        "tier": 2
+      },
+      {
+        "marker": "Liver enzymes (ALT/AST)",
+        "why": "Injectable, non-17-alpha-alkylated steroids are less hepatotoxic than oral ones, but transaminases are still checked to separate steroid effect from muscle breakdown.",
+        "range": "Mild elevations possible; interpret with CK",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Women, and anyone pregnant or who may become pregnant",
+        "advice": "Androgens cause virilization (deepened voice, facial hair, clitoral enlargement) that is often permanent, and are toxic to a developing fetus.",
+        "tier": 3
+      },
+      {
+        "flag": "Hormone-sensitive cancers (prostate or male breast cancer)",
+        "advice": "Androgens can accelerate the growth of androgen-dependent tumors and are absolutely contraindicated.",
+        "tier": 3
+      },
+      {
+        "flag": "Existing polycythemia or high hematocrit",
+        "advice": "Boldenone's erythropoietic drive would push blood viscosity into an immediately dangerous, clot-prone range.",
+        "tier": 3
+      },
+      {
+        "flag": "Cardiovascular disease, uncontrolled hypertension, or prior clot/stroke/heart attack",
+        "advice": "The combination of raised hematocrit, lowered HDL and cardiac remodeling multiplies the risk of thrombosis and cardiac events.",
+        "tier": 3
+      },
+      {
+        "flag": "Adolescents and anyone with open growth plates",
+        "advice": "Androgens can prematurely fuse epiphyses and permanently stunt growth.",
+        "tier": 3
+      },
+      {
+        "flag": "Untreated hyperlipidemia or liver disease",
+        "advice": "Steroid-driven HDL suppression and hepatic strain worsen these conditions.",
+        "tier": 2
+      }
+    ]
+  },
+  "oxymetholone-anadrol-drostanolone-masteron-methenolone-primobolan": {
+    "access": "unapproved",
+    "accessNote": "All three are Schedule III controlled anabolic steroids. Only oxymetholone retains a recognized medical use (treating certain anemias); drostanolone (formerly used in breast cancer) and methenolone have little to no approved human use in most markets. Using any of them to gain size or \"harden\" falls entirely outside legitimate medical use.",
+    "overdose": {
+      "line": "There is no acute antidote and harm accrues with dose and duration rather than a single lethal event. High doses of the oral 17-alpha-alkylated agent (oxymetholone) can trigger cholestatic liver injury with jaundice, dark urine and right-upper-quadrant pain, and rare peliosis hepatis (blood-filled liver cysts) that can rupture and bleed. A rapid rise in red-cell mass raises blood viscosity and can precipitate stroke, heart attack or venous clots; severe hypertension, fluid overload, and mood disturbance (aggression, mania, psychosis) are also documented. Effects reverse slowly if at all after stopping.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "No self-administered dose is validated as safe: these are unlicensed for physique use, sourced from unregulated underground supply of uncertain identity, purity and concentration. Documented harms of non-medical use include hepatotoxicity (worst with oral oxymetholone), a sharp drop in HDL with rising LDL that accelerates atherosclerosis, left-ventricular hypertrophy and cardiomyopathy, hypertension, polycythemia with clot risk, and suppression of the body's own testosterone/LH/FSH that can cause testicular shrinkage, infertility and mood collapse and may not fully recover. Stacking multiple agents, as is common, multiplies these risks rather than balancing them.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST (and bilirubin)",
+        "range": "ALT ~7-56 U/L; flag sustained elevation or rising bilirubin",
+        "when": "Baseline and periodically during any exposure",
+        "why": "17-alpha-alkylated orals (oxymetholone) are directly hepatotoxic, causing cholestasis, peliosis hepatis and hepatic adenomas/carcinoma; transaminase and bilirubin rises are the early lab signal.",
+        "tier": 3
+      },
+      {
+        "marker": "HDL cholesterol / LDL",
+        "range": "HDL can fall >50% (often 60-80% with oral 17-alkylated agents) with LDL rising",
+        "when": "Baseline and during exposure",
+        "why": "Anabolic steroids, especially oral 17-alkylated ones, suppress HDL and raise LDL, accelerating atherosclerosis and cardiovascular risk.",
+        "tier": 3
+      },
+      {
+        "marker": "Hematocrit / hemoglobin",
+        "range": "Concern as hematocrit exceeds ~0.52-0.54",
+        "when": "Baseline and during exposure",
+        "why": "Androgens stimulate erythropoiesis; a rising red-cell mass increases blood viscosity and the risk of thrombosis, stroke and myocardial infarction.",
+        "tier": 3
+      },
+      {
+        "marker": "LH, FSH and endogenous total testosterone",
+        "range": "LH/FSH suppressed toward undetectable; own testosterone falls",
+        "when": "Baseline and after cessation to assess recovery",
+        "why": "Exogenous androgens shut down the hypothalamic-pituitary-gonadal axis, causing testicular atrophy, low sperm production and infertility that can persist after stopping.",
+        "tier": 3
+      },
+      {
+        "marker": "Estradiol",
+        "range": "Elevated with fluid retention / breast tissue changes",
+        "when": "During exposure if symptoms appear",
+        "why": "Oxymetholone has estrogenic activity despite not aromatizing and can cause gynecomastia and water retention; the DHT-derived agents (drostanolone, methenolone) do not aromatize but co-administered compounds often do.",
+        "tier": 2
+      },
+      {
+        "marker": "PSA (and blood pressure)",
+        "range": "Rising PSA; BP trending into hypertensive range",
+        "when": "Baseline and periodically, older users especially",
+        "why": "Androgens stimulate prostate tissue and can raise blood pressure and promote left-ventricular hypertrophy; both are markers of cumulative harm.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or possibility of pregnancy",
+        "advice": "Absolutely contraindicated: androgens are teratogenic and virilize a female fetus. Not to be used by anyone who is or may become pregnant.",
+        "tier": 3
+      },
+      {
+        "flag": "Known or suspected prostate cancer, or male breast cancer",
+        "advice": "These cancers are androgen-driven; anabolic steroids can accelerate their growth and must be avoided.",
+        "tier": 3
+      },
+      {
+        "flag": "Existing liver disease or abnormal liver enzymes",
+        "advice": "17-alpha-alkylated orals such as oxymetholone are hepatotoxic and can precipitate cholestasis, peliosis hepatis and liver tumors; avoid entirely with any hepatic impairment.",
+        "tier": 3
+      },
+      {
+        "flag": "Cardiovascular disease, uncontrolled hypertension or high cardiac risk",
+        "advice": "Adverse lipid shifts, raised blood pressure, polycythemia and cardiomyopathy compound existing cardiovascular disease and raise the risk of clot, stroke and heart attack.",
+        "tier": 3
+      },
+      {
+        "flag": "Pre-existing polycythemia or elevated hematocrit",
+        "advice": "Androgens further raise red-cell mass and blood viscosity, increasing thrombotic risk; avoid.",
+        "tier": 2
+      },
+      {
+        "flag": "Adolescents / not yet skeletally mature",
+        "advice": "Androgens can cause premature closure of growth plates and permanent stunting, plus irreversible virilization; must not be used.",
+        "tier": 3
+      },
+      {
+        "flag": "Women",
+        "advice": "High risk of irreversible virilization (voice deepening, hair growth, clitoral enlargement, menstrual disruption); these agents are inappropriate for non-medical use in women.",
+        "tier": 2
+      }
+    ]
+  },
+  "andarine-s4-yk-11-s-23": {
+    "access": "unapproved",
+    "accessNote": "Andarine (S4), YK-11 and S-23 are experimental selective androgen receptor modulators sold as \"research chemicals\" or \"not for human consumption\" powders; none has ever completed human clinical trials or been approved by any drug regulator for medical use.",
+    "overdose": {
+      "line": "There is no established human toxic dose because none was ever set in trials. Andarine produces dose-dependent vision changes — a yellow-green tint to sight and poor dark adaptation (night blindness) from binding retinal androgen receptors — that worsen as intake rises and typically clear a few days after stopping. Across the SARM class, higher intake and stacking drive acute drug-induced liver injury (jaundice, dark urine, right-upper-quadrant pain, raised ALT/AST and often markedly elevated bilirubin); reported cases include cholestatic injury requiring hospitalisation, with enzymes taking months to normalise. Steeply suppressed testosterone, mood disturbance, and (with S-23, shown in animals) collapse of sperm production are also reported.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe do-it-yourself dose: these compounds never passed human safety testing, so no threshold for organ harm is known. Independent lab analyses of products sold as SARMs repeatedly find mislabelling — wrong compound, wrong amount, undeclared other drugs or none at all — so a user cannot know what they are taking. Documented harms include acute liver injury, lasting suppression of natural testosterone, adverse lipid shifts, and (Andarine) visual disturbance; all three are also WADA-banned.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST",
+        "range": "normal ALT ~7–56 U/L; SARM-associated hepatotoxicity can push these into the hundreds",
+        "why": "Detects drug-induced liver injury, the most consistently reported serious SARM harm.",
+        "when": "Baseline and if any jaundice, dark urine, nausea or abdominal pain appears",
+        "tier": 3
+      },
+      {
+        "marker": "Total bilirubin",
+        "range": "normal ~0.1–1.2 mg/dL; cholestatic SARM injury can raise it several-fold",
+        "why": "Rising bilirubin with jaundice signals cholestatic liver injury, a documented SARM pattern.",
+        "when": "Alongside liver enzymes",
+        "tier": 3
+      },
+      {
+        "marker": "Total & free testosterone",
+        "range": "suppressed well below the normal adult male range (~300–1000 ng/dL total)",
+        "why": "SARMs strongly suppress the body's own testosterone production.",
+        "when": "Baseline and during/after exposure",
+        "tier": 3
+      },
+      {
+        "marker": "LH & FSH",
+        "range": "suppressed below normal reference range",
+        "why": "Shows the degree of hypothalamic-pituitary shutdown driving testosterone suppression.",
+        "when": "With a testosterone panel",
+        "tier": 3
+      },
+      {
+        "marker": "HDL cholesterol / LDL",
+        "range": "HDL often falls sharply; LDL may rise",
+        "why": "Androgenic compounds worsen the lipid profile, an adverse cardiovascular signal.",
+        "when": "Baseline and follow-up",
+        "tier": 2
+      },
+      {
+        "marker": "Sperm concentration",
+        "range": "can fall toward severe oligospermia/azoospermia (S-23 was studied in animals as a male contraceptive candidate)",
+        "why": "S-23 in particular suppressed spermatogenesis in animal studies, a signal of possible effects on fertility.",
+        "when": "If fertility is a concern",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Not approved for anyone — no human use has an established safety basis",
+        "advice": "Because these compounds never passed human safety testing, no group has a demonstrated safe use; this is general educational information, not a green light for any person.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy, breastfeeding, or trying to conceive",
+        "advice": "Androgenic compounds risk fetal harm and disrupt sperm production; must be avoided by anyone pregnant, nursing, or planning conception.",
+        "tier": 3
+      },
+      {
+        "flag": "Women and adolescents",
+        "advice": "Virilising effects in women and disruption of ongoing hormonal development in under-25s make exposure especially hazardous.",
+        "tier": 2
+      },
+      {
+        "flag": "Existing or prior liver disease / drug-induced liver injury",
+        "advice": "Given the documented hepatotoxicity of SARMs, anyone with liver disease or a past drug-induced liver injury faces amplified risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Cardiovascular disease or adverse lipids",
+        "advice": "The HDL-lowering, pro-atherogenic lipid shift adds risk for those with existing heart disease or dyslipidaemia.",
+        "tier": 2
+      },
+      {
+        "flag": "Pre-existing eye or vision disorders (Andarine specifically)",
+        "advice": "Andarine's retinal effects on colour and night vision make it particularly ill-advised where vision is already compromised.",
+        "tier": 2
+      },
+      {
+        "flag": "Competitive athletes",
+        "advice": "All three are prohibited by WADA and trigger anti-doping sanctions.",
+        "tier": 3
+      }
+    ]
+  },
+  "cardarine-gw-501516": {
+    "access": "unapproved",
+    "accessNote": "GlaxoSmithKline abandoned it in 2006–2007 after long-term rodent studies showed it caused cancers in multiple organs; it now exists only as a grey-market \"endurance\" and fat-loss chemical and is banned in sport.",
+    "overdose": {
+      "line": "There is no characterised human overdose syndrome — it never reached the trials that would define one. The defining hazard is not acute collapse but cumulative harm: rodents dosed at roughly 3 mg/kg/day and above developed tumours across many organ sites (liver, stomach, bladder, colon, skin, tongue, and others) over long-term dosing, so 'more' or 'longer' pushes carcinogenic risk, not a survivable ceiling. Reported human effects from grey-market use are non-specific — nausea, stomach pain, headache — and give no reliable warning before serious damage.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no established safe human dose because no dose was ever proven safe in people — development was stopped precisely because the animal cancer signal was severe. Grey-market vials are unregulated: purity, actual content, and contamination with other research chemicals are unverified, so even a 'known' amount is a guess. It is prohibited at all times under the WADA code (S4), and stacking it with SARMs or stimulants — the common pattern — compounds liver and metabolic strain with no medical oversight.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST (liver transaminases)",
+        "range": "ALT >2x upper limit of normal warrants stopping and medical review",
+        "why": "Liver stress and injury are among the most consistently reported human concerns with prolonged use, including a documented hepatotoxicity case; rodent liver was a tumour site.",
+        "tier": 2,
+        "when": "If use is disclosed to a clinician, at baseline and periodically"
+      },
+      {
+        "marker": "Bilirubin and ALP",
+        "range": "Above lab reference range",
+        "why": "Screens for cholestatic or broader hepatobiliary injury alongside transaminases.",
+        "tier": 1
+      },
+      {
+        "marker": "Fasting lipid panel",
+        "range": "Track LDL, HDL, triglycerides against baseline",
+        "why": "The compound alters lipid handling via PPAR-delta; changes are a marker of its metabolic activity, not evidence of safety.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Everyone — no one",
+        "advice": "It is not approved for human use anywhere and was discontinued for multi-organ carcinogenicity; there is no population for whom a benefit has been shown to outweigh that risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Personal or family history of cancer",
+        "advice": "Absolutely avoid — the core documented hazard is tumour promotion across multiple organ types.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Avoid entirely — no reproductive safety data exist and PPAR-delta signalling is critical in development.",
+        "tier": 2
+      },
+      {
+        "flag": "Existing liver disease or raised transaminases",
+        "advice": "Avoid — liver injury is among the most reported human effects and the liver was a rodent tumour site.",
+        "tier": 2
+      },
+      {
+        "flag": "Competitive or tested athletes",
+        "advice": "Prohibited at all times under the WADA code (metabolic modulators, S4); a positive test is among the more common findings in its class.",
+        "tier": 3
+      }
+    ]
+  },
+  "stenabolic-sr9009": {
+    "access": "unapproved",
+    "accessNote": "A REV-ERB nuclear-receptor agonist that has only ever been tested in rodents and cell lines; it is sold grey-market as an \"exercise mimetic\" but has never entered a human trial.",
+    "overdose": {
+      "line": "There is no established human toxic dose because SR9009 has never undergone human pharmacokinetic or safety testing, so any dose is uncharacterised. Rodent data came from intraperitoneal injection at up to 100 mg/kg — not oral use — and because the compound is barely absorbed by mouth, people chasing an effect tend to escalate blind into an unknown range. Compounding the risk, in vitro work shows SR9009 is roughly 100x more potent at the LXR-alpha receptor than at REV-ERB and produces many effects that persist even when REV-ERB is genetically removed, so overexposure drives uncharacterised off-target signalling on hepatic lipid metabolism and the circadian clock rather than a single predictable poisoning syndrome.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no safe do-it-yourself dose: no human study has ever defined an effective or tolerated amount, the parent molecule has very poor oral bioavailability and high metabolic clearance, and grey-market powders and capsules carry no verified identity, purity or content. Because documented effects are substantially REV-ERB-independent and hit LXR-alpha and the circadian machinery, self-experimentation gambles on off-target actions that were never intended or tested in people, with no dose-finding, no monitoring standard, and no antidote.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST (liver transaminases)",
+        "why": "No human hepatic-safety data exist and REV-ERB/LXR pathways sit on hepatic lipid handling, so a clinician assessing anyone who has used it would baseline and recheck liver enzymes for injury.",
+        "tier": 1
+      },
+      {
+        "marker": "Fasting lipid panel (LDL, HDL, triglycerides)",
+        "why": "LXR-alpha agonism — at which SR9009 is far more potent than at REV-ERB — drives hepatic lipogenesis, so lipids are the most plausible place off-target effects would surface.",
+        "tier": 1
+      },
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "why": "The marketed rationale is metabolic (glucose and fat handling); any real or off-target metabolic action would be tracked here, and there is no human evidence it is benign.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Everyone — it is not approved for human use",
+        "advice": "No human has been shown a safe dose, indication or monitoring plan; there is no medical scenario in which taking it is a validated choice.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "REV-ERB and LXR pathways govern circadian and lipid biology with no reproductive safety data whatsoever; exposure must be avoided entirely.",
+        "tier": 2
+      },
+      {
+        "flag": "Existing liver disease or elevated liver enzymes",
+        "advice": "Hepatic metabolism and LXR-driven lipogenesis are directly in the firing line and there is no human hepatotoxicity data to reassure, so a compromised liver is at unquantified risk.",
+        "tier": 1
+      },
+      {
+        "flag": "Anyone taking medications with narrow therapeutic windows or hepatic metabolism",
+        "advice": "Its metabolism, transporter and enzyme interactions in humans are entirely uncharacterised, so interaction risk cannot be predicted or managed.",
+        "tier": 1
+      }
+    ]
+  },
+  "tesamorelin-egrifta": {
+    "access": "prescription",
+    "accessNote": "It is prescribed to reduce excess visceral abdominal fat in people with HIV-associated lipodystrophy, and requires a prescriber because it stimulates the body's own growth hormone axis.",
+    "typicalDose": {
+      "line": "In its approved use a prescriber typically directs 2 mg once daily by subcutaneous injection into the abdomen. This is reference information only, not a recommendation or instruction; the dose, duration, and whether the drug is appropriate at all are decisions only a treating doctor can make after evaluation.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "There is limited overdose data, but because tesamorelin drives pituitary growth hormone (and thus IGF-1) release, excess or over-frequent dosing produces growth-hormone-excess effects: fluid retention, peripheral edema, joint pain and stiffness, muscle pain, carpal tunnel-type numbness and tingling, and worsening blood sugar. Sustained IGF-1 elevation carries the acromegaly-associated concerns of the growth hormone class. Seek medical care for severe swelling, breathing trouble, or signs of a hypersensitivity reaction.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Skipping the daily injection lets visceral fat re-accumulate, since the effect reverses when treatment stops; there is no benefit to 'catching up' by doubling a dose, which only raises IGF-1 and fluid-retention risk. It is not a general fat-loss, muscle-building, or anti-aging drug and is misused as one. Self-dosing without IGF-1 and glucose monitoring, or using it despite an undiagnosed tumor or pituitary problem, is the core danger — the prescription framework exists to catch exactly those risks.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1",
+        "range": "kept within the age- and sex-specific reference range; persistent elevation above normal prompts dose reduction or stopping",
+        "why": "Tesamorelin works by raising growth hormone and therefore IGF-1; sustained elevation is the main marker of over-stimulation and drives the growth-hormone-excess risks.",
+        "when": "Baseline, then periodically during treatment",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "range": "fasting glucose roughly 4.0-5.5 mmol/L (70-99 mg/dL); HbA1c below ~5.7%",
+        "why": "Growth hormone opposes insulin, so the drug can worsen glucose tolerance and unmask or aggravate diabetes.",
+        "when": "Baseline and during treatment",
+        "tier": 3
+      },
+      {
+        "marker": "Anti-tesamorelin antibodies",
+        "range": "qualitative; clinical relevance assessed if response wanes",
+        "why": "Some patients develop antibodies to the peptide, which may reduce effect over time.",
+        "when": "If efficacy declines",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Disruption of the hypothalamic-pituitary axis (hypopituitarism, pituitary tumor or surgery, prior head irradiation or head trauma)",
+        "advice": "Contraindicated — tesamorelin acts on the pituitary, so it should not be used when that axis is compromised.",
+        "tier": 3
+      },
+      {
+        "flag": "Active malignancy (or, per prescriber judgment, a history of cancer)",
+        "advice": "Contraindicated in active cancer; growth-hormone/IGF-1 stimulation could promote tumor growth, and any pre-existing cancer must be evaluated and cleared first.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy",
+        "advice": "Contraindicated — no benefit in pregnancy and potential fetal harm; treatment should be stopped if pregnancy occurs.",
+        "tier": 3
+      },
+      {
+        "flag": "Known hypersensitivity to tesamorelin or mannitol",
+        "advice": "Do not use; serious hypersensitivity reactions have been reported.",
+        "tier": 3
+      },
+      {
+        "flag": "Active proliferative or severe non-proliferative diabetic retinopathy",
+        "advice": "Avoid — the growth hormone class can worsen retinopathy; eye status should be assessed in people with diabetes.",
+        "tier": 2
+      }
+    ]
+  },
+  "sermorelin": {
+    "access": "prescription",
+    "accessNote": "A GHRH(1-29) analog that physicians prescribe to stimulate the pituitary's own pulsatile growth hormone release; the branded product was discontinued in 2008 (for commercial, not safety, reasons), so it is now dispensed through licensed compounding pharmacies and is also sold on the grey market as an unregulated \"research peptide.\"",
+    "typicalDose": {
+      "line": "For reference only and always set by a prescriber: adult off-label protocols commonly use roughly 200-300 mcg by subcutaneous injection at bedtime (to mimic the natural nighttime GH pulse), with the dose titrated against IGF-1 levels. This is not a recommendation or a target to self-administer.",
+      "tier": 2
+    },
+    "overdose": {
+      "line": "Acute overdose is rarely life-threatening but produces marked facial flushing, headache, dizziness, nausea, a metallic taste, warmth/tightness in the chest and injection-site pain; very large boluses can cause transient hypotension and rapid heartbeat. Sustained over-dosing drives excess GH/IGF-1, producing acromegaly-like effects: fluid retention and edema, hand/foot swelling, carpal-tunnel-type numbness and tingling, joint and muscle aches, and worsening insulin resistance with elevated blood sugar. Because it acts through the pituitary with intact negative feedback, true GH excess is harder to reach than with injected GH, but it is still possible with high sustained dosing.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "The core danger is bypassing a prescriber: grey-market vials are unregulated, so purity, sterility, dose and even peptide identity are unverified, and improper reconstitution or non-sterile technique risks contamination and infection. Self-dosing without IGF-1 and glucose monitoring, stacking it with GHRPs or GH secretagogues to push levels higher, or continuing despite a contraindication (especially any cancer history) can drive sustained IGF-1 excess and its harms. Skipping the prescribed monitoring means rising blood sugar, fluid retention or an unmasked tumor can go undetected.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1",
+        "range": "kept within the age-adjusted reference range (roughly 100-260 ng/mL depending on age/sex), not pushed above it",
+        "when": "baseline, then periodically during treatment",
+        "why": "Primary efficacy and safety marker; IGF-1 above the age-appropriate range signals GH excess and its risks",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "range": "fasting glucose <100 mg/dL (5.6 mmol/L); HbA1c <5.7%",
+        "when": "baseline and periodically",
+        "why": "GH/IGF-1 elevation reduces insulin sensitivity and can raise blood sugar",
+        "tier": 2
+      },
+      {
+        "marker": "Free T4 / TSH",
+        "range": "within lab reference range",
+        "when": "baseline and periodically",
+        "why": "GH-axis stimulation can alter thyroid hormone metabolism and unmask hypothyroidism, though this effect is uncertain at sermorelin's modest GH elevation",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active malignancy or recent cancer history",
+        "advice": "Contraindicated; IGF-1 is a growth-promoting signal, so use requires oncology input and is generally avoided",
+        "tier": 2
+      },
+      {
+        "flag": "Pituitary tumor or other active pituitary/hypothalamic disease",
+        "advice": "Contraindicated; stimulating the pituitary is unsafe with underlying tumor or structural disease",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Not to be used; safety is not established",
+        "tier": 2
+      },
+      {
+        "flag": "Untreated hypothyroidism",
+        "advice": "Correct thyroid status first, as it blunts the GH response and confounds treatment",
+        "tier": 2
+      },
+      {
+        "flag": "Known hypersensitivity to sermorelin or GHRH",
+        "advice": "Do not use",
+        "tier": 3
+      },
+      {
+        "flag": "Severe untreated liver or kidney disease",
+        "advice": "Evaluate and manage before any use, as clearance and IGF-1 production are affected",
+        "tier": 1
+      }
+    ]
+  },
+  "cjc-1295-dac": {
+    "access": "unapproved",
+    "accessNote": "A research-grade GHRH analog with no FDA or EMA approval for human use; sold only as a \"research chemical\" of unverified purity, and clinical development was halted at an early phase and never resumed.",
+    "overdose": {
+      "line": "Excess dosing drives supraphysiologic growth hormone and IGF-1, producing acromegaly-like effects: fluid retention with swelling of hands, feet and face, carpal-tunnel numbness and tingling, joint and muscle aches, and headaches. Higher exposures can cause flushing, a systemic vasodilatory reaction, raised heart rate and blood pressure, and rising fasting glucose from acute insulin resistance. The ~6-8 day albumin-bound half-life of the DAC form means an excessive dose keeps stimulating GH for over a week and cannot be quickly reversed.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no established safe dose because the compound was never approved and has no validated human dosing; grey-market vials vary in purity, concentration and sterility, so the actual amount injected is unknown. Sustained self-administration pushes GH and IGF-1 above physiologic range, and because IGF-1 is a potent mitogen the main documented concerns are insulin resistance progressing toward diabetes, and a theoretical increase in tumour promotion. Stacking with a ghrelin peptide amplifies GH output and these risks. Long-term safety has never been studied.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1",
+        "range": "keep within the age/sex-adjusted reference range; supraphysiologic values signal GH excess",
+        "when": "baseline and periodically",
+        "why": "Primary downstream marker of GH stimulation and the main safety signal for acromegalic and mitogenic risk.",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose",
+        "range": "70-99 mg/dL (3.9-5.5 mmol/L)",
+        "when": "baseline and periodically",
+        "why": "GH stimulation induces insulin resistance; rising fasting glucose is the earliest metabolic warning.",
+        "tier": 2
+      },
+      {
+        "marker": "HbA1c",
+        "range": "<5.7%",
+        "when": "baseline and every few months",
+        "why": "Captures sustained glycemic drift from GH-driven insulin resistance that a single fasting glucose can miss.",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting insulin",
+        "range": "typically 2-12 mIU/L (lab-dependent)",
+        "when": "baseline and periodically",
+        "why": "Detects developing insulin resistance before fasting glucose rises.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active cancer or a history of malignancy",
+        "advice": "IGF-1 is a growth-promoting mitogen, so raising it is contraindicated where it could drive tumour growth.",
+        "tier": 2
+      },
+      {
+        "flag": "Active acromegaly or existing GH excess",
+        "advice": "Further stimulating GH compounds the disease and its cardiovascular and metabolic complications.",
+        "tier": 3
+      },
+      {
+        "flag": "Uncontrolled or poorly controlled diabetes / insulin resistance",
+        "advice": "GH stimulation worsens insulin resistance and can destabilize glucose control.",
+        "tier": 2
+      },
+      {
+        "flag": "Proliferative diabetic retinopathy",
+        "advice": "GH and IGF-1 can promote abnormal retinal vessel growth and worsen sight-threatening disease.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Effects on the fetus or infant are unstudied and the compound is unapproved for any use.",
+        "tier": 2
+      }
+    ]
+  },
+  "ipamorelin": {
+    "access": "unapproved",
+    "accessNote": "A ghrelin-receptor (GHS-R1a) agonist that reached only Phase II trials for post-surgical ileus before development was abandoned; it exists today only as a grey-market injectable \"research\" peptide with no pharmaceutical-grade sterility, purity, or dosing oversight.",
+    "overdose": {
+      "line": "There is no established human toxic dose. Excess ghrelin-receptor stimulation drives a supraphysiologic growth-hormone pulse, so acute over-exposure shows up as fluid retention and peripheral edema, puffy hands/face, joint aches, and carpal-tunnel-type numbness or tingling from nerve compression, often with headache, facial flushing, sweating and light-headedness. Sustained GH excess antagonises insulin and can push blood sugar up toward insulin resistance and glucose intolerance. Because the product is unregulated, a further and sometimes larger danger is the injection itself: bacterial contamination or endotoxin causing fever, chills and injection-site infection.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose because there is no approved human dose, no quality control, and no long-term human safety data. Grey-market vials are typically unsterile, mislabelled, or under/over-concentrated, and self-reconstitution invites dosing errors and contamination. The core biological risk is sustained elevation of GH and IGF-1: IGF-1 is mitogenic, so it can accelerate growth of occult or existing tumours, and chronic GH excess promotes insulin resistance, glucose intolerance, soft-tissue and possibly cardiac overgrowth, and fluid retention. None of these effects can be safely titrated at home.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1 (serum)",
+        "why": "The main downstream readout of GH-axis stimulation; a level pushed above the age-adjusted reference range signals excess exposure and the mitogenic/insulin-resistance risk that follows.",
+        "range": "Interpreted against age- and sex-specific reference range; values above it are the concern",
+        "when": "Baseline and if exposure is ongoing",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose",
+        "why": "GH excess antagonises insulin and can raise fasting glucose toward or into the impaired/diabetic range.",
+        "range": "Normal fasting <5.6 mmol/L (100 mg/dL); 5.6-6.9 impaired",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "HbA1c",
+        "why": "Captures the sustained insulin-resistance / glucose-intolerance effect of chronic GH-axis stimulation better than a single glucose.",
+        "range": "Normal <5.7%; 5.7-6.4% pre-diabetes",
+        "when": "Every 3 months if exposure continues",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting insulin",
+        "why": "Rises early as GH-driven insulin resistance develops, often before glucose or HbA1c move.",
+        "range": "Elevated fasting insulin indicates resistance",
+        "when": "Baseline and periodically",
+        "tier": 1
+      },
+      {
+        "marker": "IGFBP-3",
+        "why": "Co-regulated with IGF-1 by GH; helps confirm genuine GH-axis over-stimulation when IGF-1 is borderline.",
+        "range": "Interpreted against age-adjusted reference range",
+        "when": "With IGF-1 if clarification needed",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active or prior cancer",
+        "advice": "IGF-1 is a growth factor that can promote proliferation of malignant cells; anyone with active, treated, or suspected cancer must avoid GH-secretagogue peptides entirely.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data exist and the GH/IGF-1 axis is tightly regulated in pregnancy; exposure is contraindicated.",
+        "tier": 3
+      },
+      {
+        "flag": "Children and adolescents with open growth plates",
+        "advice": "Uncontrolled GH/IGF-1 stimulation outside specialist care risks abnormal skeletal and organ growth.",
+        "tier": 2
+      },
+      {
+        "flag": "Diabetes or impaired glucose tolerance",
+        "advice": "GH excess worsens insulin resistance and can destabilise blood-sugar control.",
+        "tier": 2
+      },
+      {
+        "flag": "Active diabetic retinopathy",
+        "advice": "GH/IGF-1 elevation can drive proliferative retinal changes and worsen existing retinopathy.",
+        "tier": 1
+      },
+      {
+        "flag": "Critical or acute illness",
+        "advice": "GH secretagogues have been linked to worse outcomes in acutely/critically ill patients and should not be used in that setting.",
+        "tier": 1
+      }
+    ]
+  },
+  "hexarelin-ghrp-2-ghrp-6": {
+    "access": "unapproved",
+    "accessNote": "First-generation ghrelin/GH-secretagogue research peptides sold grey-market with no pharmaceutical quality control, purity assurance, or human safety data.",
+    "overdose": {
+      "line": "No human overdose threshold has ever been established. Acute excess typically produces intense hunger, head-rush and facial flushing, tingling or numbness in the hands, water retention and puffiness, headache, and lethargy. Because these peptides push growth-hormone output above physiologic levels, heavy or sustained use can drive acromegaly-like effects (joint pain, soft-tissue and hand/foot swelling, carpal-tunnel symptoms) and worsening insulin resistance with rising blood glucose. GHRP-2 and hexarelin also raise cortisol and prolactin, and hexarelin in particular causes rapid receptor desensitization so escalating the dose stops working while side effects accumulate.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe do-it-yourself dose because these compounds are not approved for human use and no therapeutic dose has been validated for safety. Product sold as these peptides is unregulated: content, purity, sterility, and actual identity are frequently wrong, and injectable use of non-sterile material risks infection. Stimulating the GH/IGF-1 axis carries documented harms — insulin resistance and higher blood glucose, sodium and water retention, and prolactin elevation that can cause breast tissue growth in men. Raising IGF-1 signaling can also accelerate growth of an occult or existing tumor. Combining with insulin, other GH secretagogues, or anabolic agents compounds the metabolic and cardiovascular risk.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1",
+        "range": "age/sex-dependent, roughly 100-300 ng/mL in adults",
+        "why": "Downstream marker of GH output; supraphysiologic levels signal excessive stimulation and raise proliferation risk.",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting glucose",
+        "range": "70-99 mg/dL (3.9-5.5 mmol/L)",
+        "why": "GH excess drives insulin resistance and can push glucose into the impaired or diabetic range.",
+        "tier": 2
+      },
+      {
+        "marker": "HbA1c",
+        "range": "<5.7%",
+        "why": "Captures sustained glucose elevation that fasting glucose can miss.",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting insulin / HOMA-IR",
+        "range": "insulin ~2-8 mIU/L; HOMA-IR <2",
+        "why": "Detects developing insulin resistance before fasting glucose rises.",
+        "tier": 2
+      },
+      {
+        "marker": "Prolactin",
+        "range": "men <15-20 ng/mL",
+        "why": "GHRP-2 and hexarelin can raise prolactin, contributing to gynecomastia and sexual dysfunction.",
+        "tier": 2
+      },
+      {
+        "marker": "Morning cortisol",
+        "range": "~6-18 mcg/dL (0800h)",
+        "why": "These peptides can stimulate ACTH and cortisol release, especially at higher doses.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active or prior cancer / malignancy",
+        "advice": "GH and IGF-1 signaling promote cell proliferation and could accelerate tumor growth; must not be used.",
+        "tier": 2
+      },
+      {
+        "flag": "Diabetes or impaired glucose tolerance",
+        "advice": "GH-driven insulin resistance worsens glycemic control.",
+        "tier": 2
+      },
+      {
+        "flag": "Active pituitary tumor or acromegaly",
+        "advice": "Further GH stimulation is directly harmful.",
+        "tier": 2
+      },
+      {
+        "flag": "Proliferative diabetic retinopathy",
+        "advice": "IGF-1 elevation can worsen retinal neovascularization.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data; the GH/IGF-1 and prolactin effects are inappropriate in this setting.",
+        "tier": 3
+      },
+      {
+        "flag": "Children and adolescents with open growth plates",
+        "advice": "Unsupervised GH-axis stimulation can disturb normal growth and metabolism.",
+        "tier": 2
+      }
+    ]
+  },
+  "mk-677-ibutamoren": {
+    "access": "unapproved",
+    "accessNote": "An investigational oral ghrelin-receptor agonist that Merck tested for GH deficiency, muscle wasting and frailty but never brought to market; it is sold only as an unregulated research chemical and used off-label in bodybuilding.",
+    "overdose": {
+      "line": "There is no established human toxicity threshold, and grey-market products are unregulated for dose and purity. Higher exposure exaggerates the known effects: marked fluid retention with lower-limb edema, sharply raised fasting glucose, lethargy, muscle and joint pain, and elevated blood pressure. In vulnerable people the fluid-loading effect matters most — a clinical trial in elderly hip-fracture patients was halted after congestive heart failure occurred in 6.5% on MK-677 versus 1.7% on placebo, mostly in those over 80 with prior cardiac history.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose because the compound was never approved and self-sourced product is untested for identity, dose and contaminants. The core harm is not acute but chronic: sustained GH and IGF-1 elevation drives insulin resistance and pushes fasting glucose and HbA1c toward prediabetic territory within weeks, causes sodium-and-water retention and raised blood pressure, and carries an unquantified long-term concern that persistently high IGF-1 is mitogenic (a theoretical cancer-promotion risk). Stacking with insulin-affecting or cardiac drugs compounds these dangers.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Fasting glucose",
+        "why": "Rises measurably (roughly 5-20 mg/dL / 0.3-1.1 mmol/L) as GH/IGF-1 antagonize insulin; can cross into impaired-fasting-glucose range within weeks.",
+        "range": "Normal <100 mg/dL (5.6 mmol/L); 100-125 = impaired",
+        "when": "Baseline and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "HbA1c",
+        "why": "Reflects sustained glycemic drift; short trials showed movement toward prediabetic levels, though long-term data are limited.",
+        "range": "Normal <5.7%; 5.7-6.4% prediabetic",
+        "when": "Baseline and every ~3 months",
+        "tier": 2
+      },
+      {
+        "marker": "IGF-1",
+        "why": "Direct downstream readout of GH secretagogue activity; rose ~70% at 25 mg/day in trials, and supraphysiologic levels are the mitogenic concern.",
+        "range": "Age/sex-specific reference; elevation above upper limit is the red flag",
+        "when": "Baseline and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting insulin / HOMA-IR",
+        "why": "Captures the fall in insulin sensitivity (reduced ~15-34% in studies) that precedes glucose changes.",
+        "range": "HOMA-IR rising above ~2.0-2.5 suggests insulin resistance",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting cortisol / prolactin",
+        "why": "Ghrelin-receptor stimulation can produce mild, non-specific increases in these pituitary-axis hormones.",
+        "range": "Within lab reference range",
+        "when": "If symptoms warrant",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Diabetes, prediabetes, or insulin resistance",
+        "advice": "The reliable rise in fasting glucose and fall in insulin sensitivity can worsen glycemic control and precipitate hyperglycemia.",
+        "tier": 3
+      },
+      {
+        "flag": "Heart failure or significant cardiac disease (especially elderly)",
+        "advice": "Sodium and water retention increase cardiac load; a trial in older patients was stopped for excess congestive heart failure.",
+        "tier": 2
+      },
+      {
+        "flag": "Active or prior malignancy",
+        "advice": "Sustained supraphysiologic IGF-1 is mitogenic, raising a theoretical risk of promoting tumour growth.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data exist and hormonal manipulation of the GH/IGF-1 axis is not studied in this setting.",
+        "tier": 2
+      },
+      {
+        "flag": "Children and adolescents (outside specialist endocrine care)",
+        "advice": "Manipulating the GH axis during growth carries unstudied developmental risks.",
+        "tier": 2
+      }
+    ]
+  },
+  "human-growth-hormone-somatropin": {
+    "access": "prescription",
+    "accessNote": "Approved to treat diagnosed growth hormone deficiency and specific conditions (e.g. Turner syndrome, chronic kidney disease in children, Prader-Willi, short-bowel/AIDS wasting); dispensed and titrated by an endocrinologist, not for physique goals.",
+    "typicalDose": {
+      "line": "There is no self-dosing formula. In adult replacement a doctor starts very low and titrates to keep IGF-1 in the age-appropriate range; children are dosed by weight and growth response. Adult daily amounts are typically a small fraction of a milligram, individualized by blood levels, age, sex and side effects — set and adjusted only by the prescriber.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Acute excess can cause hypoglycemia first, then rebound hyperglycemia. Sustained excess produces acromegaly-like effects: fluid retention and swelling, joint and muscle pain, carpal tunnel syndrome, enlargement of hands, feet and facial bones, headaches, high blood pressure, insulin resistance, and over time heart enlargement (cardiomegaly). Some effects of long-term over-dosing do not fully reverse.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Self-injecting without a diagnosed deficiency, chasing muscle or anti-aging effects, or doubling and stacking doses drives IGF-1 into supraphysiologic ranges and commonly causes edema, carpal tunnel, joint pain, new insulin resistance or frank type 2 diabetes, and acromegalic tissue changes. Unregulated/black-market vials carry contamination and mislabeled-potency risk, and there is a biologically plausible concern that chronically elevated IGF-1 could promote existing tumors. Skipping prescribed monitoring means these harms go undetected until advanced.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1",
+        "why": "Primary titration target; kept within the age- and sex-adjusted reference range. Values above range signal over-dosing.",
+        "range": "Age/sex-specific reference range (lab-dependent)",
+        "when": "Baseline, ~6-8 weeks after any dose change, then periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose and HbA1c",
+        "why": "GH antagonizes insulin; excess causes insulin resistance and can unmask or worsen diabetes.",
+        "range": "Fasting glucose <5.6 mmol/L; HbA1c <5.7%",
+        "when": "Baseline and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Free T4 (with TSH)",
+        "why": "GH can unmask central hypothyroidism, lowering free T4; thyroid status must be replete for accurate GH titration.",
+        "range": "Free T4 within lab reference range",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "Fasting lipid panel",
+        "why": "Monitored as part of the metabolic picture in GH replacement.",
+        "range": "Individualized to cardiovascular risk",
+        "when": "Baseline and periodically",
+        "tier": 2
+      },
+      {
+        "marker": "Bone age and height velocity (children)",
+        "why": "In pediatric use, growth response and skeletal maturation guide dosing and timing of stopping.",
+        "range": "Tracked against growth charts",
+        "when": "Periodically during treatment",
+        "tier": 3
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active or suspected cancer",
+        "advice": "Growth hormone raises IGF-1, which can promote proliferation; treatment is withheld until malignancy is excluded or in remission and managed by specialists.",
+        "tier": 3
+      },
+      {
+        "flag": "Acute critical illness (e.g. major surgery, trauma, respiratory failure, ICU)",
+        "advice": "High-dose GH increased mortality in critically ill patients in controlled trials; it must not be used in this setting.",
+        "tier": 3
+      },
+      {
+        "flag": "Proliferative or severe diabetic retinopathy",
+        "advice": "GH can worsen retinopathy; it is contraindicated.",
+        "tier": 3
+      },
+      {
+        "flag": "Prader-Willi syndrome with severe obesity, uncontrolled sleep apnea, or respiratory impairment",
+        "advice": "Sudden deaths have been reported; requires sleep and airway assessment and specialist oversight before and during use.",
+        "tier": 3
+      },
+      {
+        "flag": "Closed growth plates when the goal is height",
+        "advice": "GH cannot increase height once epiphyses have fused; using it for that purpose only exposes the person to risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Known hypersensitivity to somatropin or excipients",
+        "advice": "Do not use.",
+        "tier": 3
+      }
+    ]
+  },
+  "igf-1-lr3": {
+    "access": "unapproved",
+    "accessNote": "It exists only as an unregulated \"research use only\" peptide — there is no pharmaceutical-grade human product, no approved indication, and no established human dosing standard.",
+    "overdose": {
+      "line": "Long R3 IGF-1 resists the IGF binding proteins that normally buffer native IGF-1 and has a much longer half-life, so its insulin-like, glucose-lowering effect is potent and prolonged. Overdose presents as severe hypoglycemia: sweating, tremor, palpitations, intense hunger, blurred vision, confusion and slurred speech, progressing to seizures, loss of consciousness and, untreated, death. Because the effect outlasts a single dose of carbohydrate, hypoglycemia can recur for many hours after it first appears to resolve.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose. The compound is sold as unregulated powder of unverified identity, purity and concentration, so any self-measured amount is a guess. Its long half-life means a miscalculation cannot be quickly reversed, making the resulting hypoglycemia dangerous and difficult to manage. Separately, chronic IGF-1 receptor stimulation is mitogenic — sustained exposure can accelerate the growth of existing or undiagnosed tumours and drive organ and soft-tissue overgrowth (acromegaly-like changes, including cardiac enlargement).",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Fasting blood glucose",
+        "range": "Normal 4.0-5.5 mmol/L (70-99 mg/dL); hypoglycemia <3.9 mmol/L (<70 mg/dL), severe <2.8 mmol/L",
+        "when": "The acute danger; low readings signal the insulin-like effect driving symptomatic hypoglycemia.",
+        "why": "Detects the primary acute toxicity — profound and prolonged hypoglycemia.",
+        "tier": 3
+      },
+      {
+        "marker": "Serum IGF-1",
+        "range": "Adult reference roughly 100-300 ng/mL, strongly age-dependent (higher in young adults, lower after ~50)",
+        "when": "Supraphysiologic total IGF-1 activity reflects excess growth-factor signalling.",
+        "why": "Marks the systemic overdrive of the growth-factor axis linked to tissue overgrowth and mitogenic risk.",
+        "tier": 2
+      },
+      {
+        "marker": "HbA1c",
+        "range": "Normal <5.7%",
+        "when": "Glycemic instability over weeks of repeated exposure.",
+        "why": "Captures longer-term disturbance of glucose regulation from repeated insulin-like stimulation.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Any current, prior, or strong family history of cancer",
+        "advice": "IGF-1 receptor signalling is mitogenic and can promote proliferation of malignant or pre-malignant cells; exposure is contraindicated.",
+        "tier": 3
+      },
+      {
+        "flag": "Diabetes, or anyone using insulin or sulfonylureas",
+        "advice": "Additive glucose-lowering effect can precipitate severe, hard-to-reverse hypoglycemia.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "A potent growth factor with no human safety data; effects on the fetus or infant are unknown and potentially harmful.",
+        "tier": 2
+      },
+      {
+        "flag": "Active or proliferative diabetic retinopathy",
+        "advice": "IGF-1 is implicated in retinal neovascularization and can worsen proliferative eye disease.",
+        "tier": 2
+      },
+      {
+        "flag": "Children and adolescents",
+        "advice": "Excess IGF-1 signalling during growth risks abnormal skeletal and organ development; use outside a specialist medical setting is contraindicated.",
+        "tier": 2
+      }
+    ]
+  },
+  "follistatin-myostatin-inhibitors-ace-031-yk-11": {
+    "access": "unapproved",
+    "accessNote": "Neither compound is approved for human use: ACE-031's Duchenne trials were halted for vascular/bleeding safety signals, and YK-11 is a grey-market steroidal SARM that never passed preclinical screening or reached any human trial.",
+    "overdose": {
+      "line": "There is no established human dose, so any amount is effectively an overdose of an untested agent. ACE-031 (an ActRIIB ligand trap) also blocks BMP9/BMP10 vascular signalling — trial subjects developed nosebleeds, gum bleeding and spider-vein telangiectasias, and higher exposure risks worse abnormal vessel growth and bleeding. YK-11, a steroidal SARM, concentrates supraphysiologic androgenic and hepatic stress: acute liver injury (jaundice, dark urine, right-upper-quadrant pain, nausea), sharp testosterone suppression, and cardiovascular strain. Seek urgent care for uncontrolled bleeding, jaundice, or chest pain.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose because neither compound has any validated human dosing, purity standard, or safety margin — grey-market vials are unregulated and frequently mislabelled or contaminated. ACE-031's own supervised trial was stopped early for bleeding and vascular events driven by off-target BMP9/BMP10 inhibition, so no self-administered regimen can be considered safe. YK-11 never advanced past early lab screening — never tested in animals or humans for muscle growth, safety, or dose — and carries documented hepatotoxicity, testosterone suppression and hair loss from user reports. Combining them, or stacking with other SARMs or anabolics, compounds liver and cardiovascular risk.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST",
+        "range": "ALT typically <40 U/L; abused YK-11 can drive marked elevations",
+        "why": "YK-11 is a steroidal SARM associated with hepatocellular injury and enzyme spikes.",
+        "when": "Baseline and if any use/symptoms",
+        "tier": 2
+      },
+      {
+        "marker": "Total bilirubin",
+        "range": ">~2x upper limit signals cholestatic/hepatic injury",
+        "why": "Rising bilirubin with jaundice reflects SARM-driven liver damage.",
+        "when": "If jaundice or elevated transaminases",
+        "tier": 2
+      },
+      {
+        "marker": "Total testosterone / LH / FSH",
+        "range": "Suppressed testosterone with low LH/FSH indicates axis shutdown",
+        "why": "YK-11 suppresses the hypothalamic-pituitary-gonadal axis.",
+        "when": "Baseline and after exposure",
+        "tier": 2
+      },
+      {
+        "marker": "Full blood count / haemoglobin",
+        "range": "Falling haemoglobin signals blood loss",
+        "why": "ACE-031-class ActRIIB traps caused epistaxis and mucosal bleeding via BMP9/10 inhibition.",
+        "when": "If recurrent bleeding",
+        "tier": 1
+      },
+      {
+        "marker": "Lipid panel (HDL / LDL)",
+        "range": "Suppressed HDL is typical of androgenic SARMs",
+        "why": "YK-11's androgenic activity worsens lipids and cardiovascular risk.",
+        "when": "Baseline and periodically if exposed",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Anyone — no approved human use",
+        "advice": "Neither ACE-031 nor YK-11 is approved for human use; there is no clinical scenario in which self-administration is safe.",
+        "tier": 3
+      },
+      {
+        "flag": "Bleeding disorders, anticoagulant/antiplatelet use, or history of telangiectasia/vascular malformation",
+        "advice": "ActRIIB ligand traps promoted abnormal vessels and mucosal bleeding — bleeding risk is amplified.",
+        "tier": 2
+      },
+      {
+        "flag": "Liver disease or elevated liver enzymes",
+        "advice": "YK-11's hepatotoxicity can precipitate serious liver injury.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy, breastfeeding, or trying to conceive (either partner)",
+        "advice": "Untested developmental toxicity plus androgenic/hormone-axis effects; avoid entirely.",
+        "tier": 3
+      },
+      {
+        "flag": "Hormone-sensitive cancer, cardiovascular disease, or adolescents",
+        "advice": "Androgenic SARM activity and unknown vascular/growth effects make exposure unacceptably risky.",
+        "tier": 2
+      }
+    ]
+  },
+  "bpc-157": {
+    "access": "unapproved",
+    "accessNote": "A synthetic \"body protection compound\" peptide sold as a research chemical; it has no completed human clinical trials establishing safety or efficacy and is not approved for human use by any regulator. The FDA placed it on its Category 2 compounding list (substances flagged for significant safety risks) in 2023, then removed it from that list in April 2026 and referred it for compounding review — but removal is not approval, and it remains an unapproved, investigational compound.",
+    "overdose": {
+      "line": "There is no human toxicology data, so no overdose threshold or antidote is known — the concrete acute danger comes from injecting unregulated grey-market product: injection-site pain, redness, swelling, sterile or bacterial abscess, cellulitis, and in the worst case bloodstream infection or sepsis presenting as fever, chills, rapid heartbeat and low blood pressure. Because the peptide is strongly angiogenic (blood-vessel-promoting) in animals, a separate theoretical concern is accelerated growth of any existing tumour, though this has not been quantified in people.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no established safe do-it-yourself dose because the compound was never tested to a human safety standard — dosing is done blind, with no approved product, no pharmacological reference range, and no medical monitoring. Grey-market vials carry documented risks of underdosing, overdosing, wrong peptide, bacterial contamination, endotoxin, and heavy-metal or solvent residues, and self-injection adds infection, nerve and vascular injury risk. Athletes should also treat it as a non-approved substance that is prohibited at all times under anti-doping rules.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "CBC (white cell count) and CRP",
+        "why": "Screen for injection-related infection or systemic inflammatory response if an injected user develops fever, spreading redness or feeling unwell.",
+        "when": "Only if symptoms of infection appear",
+        "range": "WBC 4-11 x10^9/L, CRP <5 mg/L",
+        "tier": 2
+      },
+      {
+        "marker": "Liver panel (ALT, AST) and renal panel (creatinine, eGFR)",
+        "why": "General safety screen — organ handling and toxicity of chronic dosing in humans are simply unstudied, so baseline and periodic checks are the only way to catch unexpected harm.",
+        "range": "ALT/AST within lab reference; eGFR >60 mL/min/1.73m^2",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active cancer or a personal history of cancer",
+        "advice": "Must avoid — the peptide promotes new blood-vessel and tissue growth in animal models, a mechanism that could theoretically feed tumour growth; there is no human safety data to exclude this.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Must avoid — there are no reproductive or developmental safety studies in humans.",
+        "tier": 3
+      },
+      {
+        "flag": "Anyone, as a general matter",
+        "advice": "It is not approved for human use and has no verified purity, dose or safety profile; any use is experimental and unsupervised.",
+        "tier": 3
+      },
+      {
+        "flag": "Competitive or drug-tested athletes",
+        "advice": "Must avoid — it is a non-approved (WADA S0) substance prohibited at all times, in and out of competition, and its use can trigger a sanction even without a positive test.",
+        "tier": 3
+      }
+    ]
+  },
+  "tb-500-thymosin-beta-4-fragment": {
+    "access": "unapproved",
+    "accessNote": "A synthetic actin-binding fragment related to thymosin beta-4, sold only as a research chemical with no pharmaceutical-grade oversight; nearly all safety data comes from animals or from the full-length parent peptide, and it is banned at all times in tested sport under WADA (non-approved substances S0 and peptide/growth-factor class S2).",
+    "overdose": {
+      "line": "There is no established human toxic dose, so anyone injecting it is guessing. Anecdotal reports at higher amounts describe head-rush, flushing, lightheadedness, and lethargy shortly after a dose. The more concrete acute danger is the injected product itself: unregulated vials frequently carry bacterial endotoxin, which can cause fever, chills, rigors, hypotension and, in the worst case, sepsis within hours of an injection.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "No human dose has ever been validated for the TB-500 fragment, so no DIY amount can be called safe. Grey-market vials are frequently mislabeled, under- or over-filled, and contaminated with bacteria or endotoxin, meaning the person injecting has no idea of the true dose or purity. On top of that, thymosin beta-4 is overexpressed in several cancers and promotes angiogenesis, tumor-cell migration and metastasis in lab and animal models, so chronic self-injection carries an unquantified risk of feeding an undetected tumor.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "CBC with differential",
+        "why": "Rising white-cell count after injection points to a contaminated product and infection, the most likely acute harm.",
+        "range": "WBC ~4-11 x10^9/L",
+        "when": "If fever, chills or injection-site redness develop",
+        "tier": 2
+      },
+      {
+        "marker": "hs-CRP",
+        "why": "A non-specific inflammation and infection marker that rises with an endotoxin reaction or injection-site cellulitis.",
+        "range": "<3 mg/L",
+        "when": "With any systemic reaction after dosing",
+        "tier": 2
+      },
+      {
+        "marker": "Injection-site inspection / soft-tissue exam",
+        "why": "Abscess, cellulitis or granuloma from non-sterile self-injection is a documented harm of grey-market peptides; there is no blood test that confirms the peptide is safe.",
+        "when": "Ongoing",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active cancer or a personal history of cancer",
+        "advice": "Thymosin beta-4 drives angiogenesis and cell migration and is overexpressed in several tumor types; exogenous use could theoretically accelerate tumor growth or metastasis and must be avoided.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No human safety data exist in pregnancy or lactation for a peptide that manipulates cell growth and vascularization; it must not be used.",
+        "tier": 3
+      },
+      {
+        "flag": "Competitive athletes in tested sport",
+        "advice": "Prohibited at all times under WADA (S0/S2); a positive test carries disqualification and a multi-year ban.",
+        "tier": 3
+      },
+      {
+        "flag": "Anyone unable to verify product sterility and content",
+        "advice": "Because it is only available as an unregulated research chemical, the realistic risk is contamination, mislabeling and infection rather than a known therapeutic effect.",
+        "tier": 2
+      }
+    ]
+  },
+  "ghk-cu-copper-peptide": {
+    "access": "unapproved",
+    "accessNote": "Topical GHK-Cu is a well-studied cosmetic ingredient, but there is no injectable or systemic product cleared for human use — that route relies on grey-market research-grade peptide of unverified purity and sterility.",
+    "overdose": {
+      "line": "The peptide itself has low acute toxicity in animal studies; the real hazard on repeated or high-dose injection is the copper it carries. Copper overload causes nausea, vomiting, abdominal pain and diarrhoea, and in more severe toxicity, hemolytic anemia, liver injury (jaundice, rising transaminases) and, in acute copper poisoning, acute kidney injury and multi-organ failure. Non-sterile grey-market vials add risk of injection-site infection, abscess and endotoxin/pyrogen reactions (fever, rigors). No toxic threshold has been established for injected GHK-Cu in humans.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no clinically validated injectable dose, so any self-administered amount is guesswork on top of material of unknown concentration, purity and sterility. Repeated dosing delivers a cumulative copper load the body must clear, and GHK broadly upregulates gene expression including angiogenic and tissue-remodeling pathways — a theoretical concern with any undiagnosed or active tumor. Documented DIY harms track with unsterile injection (infection, abscess) and with copper burden rather than a known 'safe' peptide window.",
+      "tier": 1
+    },
+    "biomarkers": [
+      {
+        "marker": "Serum copper",
+        "why": "Directly tracks the copper load delivered by the complex; rising levels signal accumulation toward toxicity.",
+        "range": "Normal ~70-140 µg/dL (11-22 µmol/L)",
+        "when": "Baseline and if systemic exposure is suspected",
+        "tier": 2
+      },
+      {
+        "marker": "Ceruloplasmin",
+        "why": "Assesses copper-handling capacity and helps distinguish overload from a Wilson's-type disorder that would make any copper exposure dangerous.",
+        "range": "Normal ~20-35 mg/dL",
+        "when": "Baseline",
+        "tier": 2
+      },
+      {
+        "marker": "ALT / AST",
+        "why": "Liver is a primary site of copper-related injury; transaminase rises flag hepatocellular damage.",
+        "range": "Normal roughly <40 U/L",
+        "when": "Baseline and if unwell",
+        "tier": 2
+      },
+      {
+        "marker": "CBC with haptoglobin",
+        "why": "Copper toxicity can trigger hemolysis; falling hemoglobin with low haptoglobin indicates red-cell breakdown.",
+        "range": "Hemolysis: low haptoglobin, dropping Hb",
+        "when": "If toxicity suspected",
+        "tier": 1
+      },
+      {
+        "marker": "Creatinine / eGFR",
+        "why": "Severe copper toxicity can precipitate acute kidney injury.",
+        "range": "eGFR >90 normal; rising creatinine is a warning",
+        "when": "If toxicity suspected",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Wilson's disease or any copper-metabolism / copper-overload disorder",
+        "advice": "Must not use — the body cannot clear the copper, so even small copper-carrying doses risk rapid accumulation and organ damage.",
+        "tier": 3
+      },
+      {
+        "flag": "Active or prior malignancy",
+        "advice": "Should avoid — GHK upregulates angiogenic and tissue-remodeling genes, a theoretical risk with tumor tissue that has not been shown safe.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Should avoid — there are no human safety data for systemic GHK-Cu in pregnancy or lactation.",
+        "tier": 2
+      },
+      {
+        "flag": "Known copper hypersensitivity",
+        "advice": "Must not use — risk of allergic and injection-site reactions.",
+        "tier": 2
+      }
+    ]
+  },
+  "kpv": {
+    "access": "unapproved",
+    "accessNote": "Available only as a grey-market \"research\" peptide; no drug regulator has cleared KPV for human use and no completed human trial has defined a safe dose or duration.",
+    "overdose": {
+      "line": "No human toxicity threshold has been established; animal models show low acute toxicity, so the real acute dangers of grey-market vials are not a classic 'overdose' but bacterial contamination, endotoxin and sterility failures causing fever, injection-site infection, abscess or sepsis.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "Because no human dosing has ever been validated, every self-administered amount is a guess; unregulated vials vary in purity and may be underdosed, mislabelled or contaminated, and reconstituting or injecting without sterile technique risks serious infection. There is no established safe DIY protocol.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "CRP / ESR",
+        "range": "CRP <5 mg/L; ESR <20 mm/hr",
+        "why": "No KPV-specific lab exists, so a clinician tracks non-specific inflammatory markers to catch an infection or paradoxical inflammatory response.",
+        "when": "Baseline and if unwell",
+        "tier": 1
+      },
+      {
+        "marker": "Full blood count (CBC/WBC)",
+        "range": "WBC 4-11 x10^9/L",
+        "why": "Screens for infection (raised WBC) introduced by a non-sterile injectable and for unexpected haematological effects.",
+        "when": "Baseline and if febrile",
+        "tier": 1
+      },
+      {
+        "marker": "Liver and kidney panel (ALT/AST, creatinine/eGFR)",
+        "range": "ALT/AST <40 U/L; eGFR >90 mL/min",
+        "why": "Baseline organ function when exposing the body to an unapproved compound with no human long-term data.",
+        "when": "Baseline",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active or recent infection",
+        "advice": "An immune-modulating, anti-inflammatory peptide combined with a non-sterile injection route can worsen or mask infection; avoid.",
+        "tier": 1
+      },
+      {
+        "flag": "Active or prior malignancy",
+        "advice": "KPV alters NF-kB and inflammatory signalling; its effect on human tumour biology is unknown, so it should be avoided.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No reproductive or developmental safety data exist; do not use.",
+        "tier": 2
+      },
+      {
+        "flag": "Known hypersensitivity to the peptide or vial excipients",
+        "advice": "Prior reaction is a contraindication to re-exposure.",
+        "tier": 2
+      },
+      {
+        "flag": "Children and adolescents",
+        "advice": "No safety data in this group; not appropriate.",
+        "tier": 2
+      }
+    ]
+  },
+  "thymosin-alpha-1-zadaxin": {
+    "access": "prescription",
+    "accessNote": "Approved and dispensed as thymalfasin in 35+ countries for chronic hepatitis B and as an immune adjunct in cancer/infection care; not FDA-approved in the US, where any supply is grey-market research peptide.",
+    "typicalDose": {
+      "line": "Where approved for chronic hepatitis B, a doctor typically prescribes 1.6 mg by subcutaneous injection twice weekly (injections ~3–4 days apart) for roughly 6–12 months; the exact regimen, indication and duration are set by the prescriber, not chosen by the patient. Reference figure only, not a recommendation.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "No distinct acute-overdose toxidrome is documented; animal studies tolerated large multiples of the human dose without organ damage, and human adverse events are usually limited to injection-site pain, low-grade fever and flu-like aches. The real hazard of excess is immune over-activation — case reports of severe immune-related inflammatory events (e.g. when combined with checkpoint-inhibitor cancer drugs) mean any new autoimmune-type or systemic inflammatory symptoms warrant urgent medical review.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Because this is used as a prescribed course, the danger is self-directed use: dosing outside medical supervision, stacking with immunotherapy or vaccines, or continuing during an autoimmune flare can drive harmful immune over-activation, while grey-market vials carry no guarantee of identity, sterility or endotoxin control — injecting non-pharmaceutical peptide risks contamination, sepsis and unknown impurities. It is not a substitute for prescribed antiviral therapy, and stopping or altering a real hepatitis regimen on your own can let viral disease progress.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "ALT / AST (liver transaminases)",
+        "range": "ALT ~7–56 U/L, AST ~10–40 U/L",
+        "why": "Tracks hepatic inflammation and treatment response in its primary hepatitis-B indication.",
+        "when": "Baseline then periodically through a course",
+        "tier": 3
+      },
+      {
+        "marker": "HBV DNA viral load",
+        "range": "Target: sustained decline / undetectable",
+        "why": "Direct measure of antiviral effect in chronic hepatitis B.",
+        "when": "Baseline and during/after treatment",
+        "tier": 3
+      },
+      {
+        "marker": "HBeAg / anti-HBe serology",
+        "range": "Goal: HBeAg loss with anti-HBe seroconversion",
+        "why": "Seroconversion is the key efficacy endpoint the prescriber monitors.",
+        "when": "Periodically over months",
+        "tier": 3
+      },
+      {
+        "marker": "Complete blood count (CBC)",
+        "range": "Neutrophils ~2.0–7.5 ×10⁹/L",
+        "why": "Screens for marrow/immune effects, especially when co-administered with interferon.",
+        "when": "Baseline and during therapy",
+        "tier": 2
+      },
+      {
+        "marker": "Autoimmune / inflammatory markers (e.g. TSH, symptom-directed)",
+        "range": "TSH ~0.4–4.0 mIU/L",
+        "why": "An immune-stimulating drug can unmask thyroid or other autoimmune activity; checked if symptoms arise.",
+        "when": "If autoimmune symptoms develop",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Known hypersensitivity to thymosin alpha-1 or any excipient",
+        "advice": "Absolute contraindication — do not use.",
+        "tier": 3
+      },
+      {
+        "flag": "Organ transplant recipients / deliberately immunosuppressed patients",
+        "advice": "Boosting T-cell activity can undermine anti-rejection therapy and trigger graft rejection; must not be used without transplant-team direction.",
+        "tier": 2
+      },
+      {
+        "flag": "Active autoimmune disease or flare",
+        "advice": "Enhancing immune function may theoretically worsen autoimmune activity; use only under specialist supervision.",
+        "tier": 1
+      },
+      {
+        "flag": "Concurrent immune-checkpoint (immunotherapy) cancer treatment",
+        "advice": "Combination has been linked in case reports to serious immune-related adverse events; only under oncology oversight.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Insufficient safety data; avoid.",
+        "tier": 2
+      }
+    ]
+  },
+  "ll-37": {
+    "access": "unapproved",
+    "accessNote": "An endogenous human antimicrobial peptide (the cathelicidin cleaved from hCAP18) studied only in early lab and animal work; it has no approval for human use and is sold grey-market as an injectable \"research chemical\" with no purity, sterility, potency, or dosing standards.",
+    "overdose": {
+      "line": "There is no established human dose, so no defined toxic threshold exists, but in lab studies LL-37 turns cytotoxic to human cells above roughly 4 micromolar — permeabilising cell membranes, injuring mitochondria, and (at higher concentrations) lysing red blood cells — so systemic exposure could plausibly drive hemolysis, a broad inflammatory cytokine surge, and injection-site tissue injury or necrosis; no human toxicity or overdose data exist.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose: LL-37 is a potent immune-signalling molecule and a known self-antigen — bound to your own DNA and RNA it switches on type-I interferon pathways and can ignite or worsen autoimmune inflammation (documented in psoriasis, lupus, rosacea and atherosclerotic plaque), and grey-market vials additionally carry the risks of endotoxin contamination, wrong or degraded peptide, and non-sterile self-injection.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "hs-CRP / ESR",
+        "why": "General inflammatory response to an immune-activating peptide; would rise if a systemic inflammatory reaction is triggered. No validated monitoring protocol exists for this compound.",
+        "tier": 1
+      },
+      {
+        "marker": "CBC with haptoglobin, LDH, and bilirubin",
+        "why": "Screens for the red-cell breakdown (hemolysis) that LL-37 causes in vitro at higher concentrations; low haptoglobin with high LDH and bilirubin signals hemolysis.",
+        "tier": 1
+      },
+      {
+        "marker": "ANA and anti-dsDNA antibodies",
+        "why": "LL-37 acts as an autoantigen and drives interferon-mediated autoimmunity in lab and disease models; new positivity or a flare in a susceptible person is the relevant harm signal.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Not approved for human use in anyone",
+        "advice": "Because it has no approved indication, no established dose, and no human safety data, there is no population for which self-administration is considered safe.",
+        "tier": 3
+      },
+      {
+        "flag": "Autoimmune or chronic inflammatory disease (psoriasis, lupus/SLE, rosacea, rheumatoid arthritis, psoriatic arthritis)",
+        "advice": "LL-37 is a self-antigen that amplifies interferon-driven autoimmune inflammation and is directly implicated in these conditions — exposure risks triggering or worsening disease.",
+        "tier": 2
+      },
+      {
+        "flag": "Established atherosclerotic or cardiovascular disease",
+        "advice": "Cathelicidin/LL-37 has been identified as a plaque autoantigen linked to vascular inflammation, so it is a plausible aggravator in people with existing arterial disease.",
+        "tier": 1
+      },
+      {
+        "flag": "Active cancer or a personal cancer history",
+        "advice": "LL-37 has pro-tumour, pro-angiogenic effects in several cancers (e.g. ovarian, lung, breast), though effects are organ-dependent; the uncertainty alone warrants avoidance.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data exist in pregnancy or lactation for an immune-active peptide, so exposure is not appropriate.",
+        "tier": 3
+      }
+    ]
+  },
+  "rapamycin-sirolimus": {
+    "access": "prescription",
+    "accessNote": "FDA-approved as the immunosuppressant sirolimus to prevent kidney-transplant rejection and to treat lymphangioleiomyomatosis (LAM); its use for longevity is entirely off-label and investigational.",
+    "typicalDose": {
+      "line": "For reference only, and always set by a prescribing physician to measured blood levels — not a target to copy. In approved transplant/LAM use a doctor typically starts with a loading dose (around 6 mg) then roughly 2 mg once daily, adjusting to a whole-blood trough of about 5-15 ng/mL. Off-label longevity protocols use much lower intermittent (often weekly) dosing, but this is unproven, unlicensed, and a decision only a clinician can make and monitor.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Toxicity usually builds from cumulative over-exposure rather than a single large dose. Signs include painful mouth ulcers (stomatitis), interstitial pneumonitis (dry cough, breathlessness, fever — can be fatal), sharply raised triglycerides and cholesterol, low platelets and white cells, anemia, leg and face swelling, protein in the urine, impaired wound healing, and dangerously blunted immunity leading to serious bacterial, viral, or opportunistic infections. Acute single overdoses have been reported to trigger atrial fibrillation.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Self-dosing without a prescription is hazardous because the drug has a narrow therapeutic window and no blood-level monitoring is being done. It is a CYP3A4 substrate: grapefruit and strong inhibitors (clarithromycin, ketoconazole, ritonavir, diltiazem) push levels into the toxic range, while inducers (rifampin, St John's wort) cause loss of effect; combining with cyclosporine raises exposure further. Unsupervised use suppresses immunity, raises lipids and glucose, and impairs wound healing, and live vaccines become dangerous while it is active.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Sirolimus whole-blood trough level",
+        "range": "~5-15 ng/mL (indication-dependent)",
+        "when": "Steady state (check ~3-4 days after any loading dose, and allow 7-14 days after a dose change), then periodically",
+        "why": "Narrow therapeutic index; the single most important safety check to keep exposure below toxic levels",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting lipid panel (triglycerides, total/LDL cholesterol)",
+        "range": "TG <1.7 mmol/L; LDL <3.0 mmol/L (baseline goals)",
+        "when": "Baseline then every few months",
+        "why": "Hypertriglyceridemia and hypercholesterolemia are common, dose-related class effects",
+        "tier": 3
+      },
+      {
+        "marker": "Complete blood count (platelets, WBC, hemoglobin)",
+        "range": "Platelets >150 x10^9/L; WBC >4 x10^9/L",
+        "when": "Baseline then periodically",
+        "why": "Thrombocytopenia, leukopenia/neutropenia, and anemia are recognised dose-related effects",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "range": "Fasting glucose <5.6 mmol/L; HbA1c <5.7%",
+        "when": "Baseline then periodically",
+        "why": "mTOR inhibition can impair glucose tolerance and unmask hyperglycemia",
+        "tier": 2
+      },
+      {
+        "marker": "Renal function and urine protein",
+        "range": "eGFR stable; urine protein:creatinine within normal limits",
+        "when": "Baseline then periodically",
+        "why": "Sirolimus can cause or worsen proteinuria",
+        "tier": 2
+      },
+      {
+        "marker": "Liver function tests (ALT, AST, bilirubin)",
+        "range": "Within normal limits",
+        "when": "Baseline then periodically",
+        "why": "Hepatic impairment alters clearance and requires dose adjustment and monitoring",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy, breastfeeding, or trying to conceive",
+        "advice": "Avoid — effective contraception is required during and for a period after use; it can harm a developing fetus and impair male and female fertility.",
+        "tier": 3
+      },
+      {
+        "flag": "Active serious or untreated infection",
+        "advice": "Do not use — immunosuppression can allow bacterial, viral, fungal, or opportunistic infections to become life-threatening.",
+        "tier": 3
+      },
+      {
+        "flag": "Lung transplant recipients / recent major surgery or unhealed wounds",
+        "advice": "Contraindicated early after lung transplant (risk of bronchial anastomotic dehiscence) and cautioned around surgery because it impairs wound healing.",
+        "tier": 3
+      },
+      {
+        "flag": "Need for live vaccines",
+        "advice": "Live vaccines (e.g. MMR, yellow fever, live varicella) should be avoided while the drug is active due to blunted immune response and infection risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Known hypersensitivity to sirolimus",
+        "advice": "Do not use if there is a documented allergy to sirolimus or formulation components.",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent strong CYP3A4 inhibitors or inducers",
+        "advice": "Combinations (e.g. certain azole antifungals, macrolides, HIV protease inhibitors, rifampin, St John's wort, grapefruit) can push levels to toxic or subtherapeutic — only a prescriber can manage these.",
+        "tier": 3
+      },
+      {
+        "flag": "Severe hepatic impairment",
+        "advice": "Reduced clearance requires dose reduction and closer monitoring; unsupervised use is unsafe.",
+        "tier": 2
+      },
+      {
+        "flag": "Uncontrolled hyperlipidemia or diabetes",
+        "advice": "Use with caution and specialist oversight, as the drug can worsen lipids and glucose control.",
+        "tier": 2
+      }
+    ]
+  },
+  "metformin": {
+    "access": "prescription",
+    "accessNote": "It is the standard first-line oral medicine for type-2 diabetes, and the same molecule is being studied off-label for healthspan (e.g. the TAME trial) — a doctor decides if and how it is used.",
+    "typicalDose": {
+      "line": "For reference only, and always set by a prescribing doctor: immediate-release metformin is usually started low (around 500 mg once or twice daily, taken with food to limit gut upset) and titrated slowly, with a typical maintenance range of roughly 1500–2000 mg/day and a usual ceiling near 2000–2550 mg/day depending on the formulation and the person's kidney function. Extended-release versions are dosed differently. This is background information, not a recommendation or a dosing instruction.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "The signature danger of metformin toxicity or overdose is lactic acidosis (MALA): nausea, vomiting, abdominal pain, muscle aches, unusual tiredness, deep rapid breathing, feeling cold, low blood pressure, drowsiness and confusion that can progress to coma. It carries a high fatality rate and needs emergency care (often dialysis). Note that metformin alone rarely causes low blood sugar, so hypoglycaemia is not the typical overdose picture.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Not following the prescription is where harm concentrates: doubling up or self-escalating doses, or continuing during dehydration, vomiting/diarrhoea, acute illness, sepsis, heavy alcohol use, or around iodinated-contrast scans and surgery, all raise the risk of lactic acidosis — especially if kidney function has quietly declined. Taking it without the renal and B12 monitoring a doctor would order removes the safety net. Skipping or abruptly stopping instead loses glycaemic control.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "eGFR / serum creatinine",
+        "range": "Contraindicated below eGFR 30 mL/min/1.73m²; not started and dose reviewed between 30–45",
+        "why": "Metformin is cleared by the kidneys; impaired clearance is the main driver of lactic-acidosis risk, so renal function is checked before starting and periodically after",
+        "when": "Baseline and at least annually, more often if kidney function is borderline or declining",
+        "tier": 3
+      },
+      {
+        "marker": "Vitamin B12",
+        "range": "Deficiency flagged below ~148 pmol/L (~200 pg/mL)",
+        "why": "Long-term use reduces B12 absorption and can cause deficiency and neuropathy over years",
+        "when": "Periodically with long-term use, or if anaemia or neuropathy symptoms appear",
+        "tier": 2
+      },
+      {
+        "marker": "HbA1c",
+        "range": "Individualised, commonly a target near <7% (53 mmol/mol) in type-2 diabetes",
+        "why": "Tracks whether glycaemic control is adequate and guides dose in the diabetes indication",
+        "when": "Every 3–6 months",
+        "tier": 3
+      },
+      {
+        "marker": "Venous lactate",
+        "range": "Normal <2 mmol/L; markedly elevated (often >5) in lactic acidosis",
+        "why": "Confirms suspected metformin-associated lactic acidosis when a person is acutely unwell",
+        "when": "When toxicity is suspected (acute illness, symptoms above)",
+        "tier": 3
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Severe kidney impairment (eGFR <30 mL/min/1.73m²)",
+        "advice": "Absolute contraindication — reduced clearance sharply raises lactic-acidosis risk",
+        "tier": 3
+      },
+      {
+        "flag": "Acute metabolic acidosis, including diabetic ketoacidosis",
+        "advice": "Must not be used; requires emergency management instead",
+        "tier": 3
+      },
+      {
+        "flag": "Conditions causing tissue hypoxia — decompensated heart failure, respiratory failure, recent MI, shock, sepsis",
+        "advice": "Avoid; these states independently promote lactic acidosis",
+        "tier": 3
+      },
+      {
+        "flag": "Severe hepatic impairment",
+        "advice": "Avoid — impaired lactate clearance raises risk",
+        "tier": 3
+      },
+      {
+        "flag": "Acute dehydration or serious infection, and around iodinated-contrast imaging or major surgery",
+        "advice": "Temporarily withheld under medical guidance because of transient renal risk",
+        "tier": 3
+      },
+      {
+        "flag": "Heavy or binge alcohol use",
+        "advice": "Avoid — alcohol compounds lactic-acidosis and hypoglycaemia risk",
+        "tier": 3
+      }
+    ]
+  },
+  "acarbose": {
+    "access": "prescription",
+    "accessNote": "Approved and prescribed for type-2 diabetes to blunt the post-meal glucose spike; it needs medical supervision to titrate against gut tolerance, liver enzymes, and interacting glucose-lowering drugs.",
+    "typicalDose": {
+      "line": "As a reference only, and never a recommendation: a doctor typically starts 25 mg taken with the first bite of each main meal (three times daily) and titrates upward over weeks against tolerance, up to 50-100 mg three times daily; body-weight and country labels cap the maximum (commonly 300 mg/day, and 50 mg three times daily in adults at or below 60 kg because of higher liver-enzyme risk). The dose, escalation, and ceiling are set by the prescriber, not the reader.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Acarbose is barely absorbed into the bloodstream, so an overdose taken alone does NOT cause hypoglycaemia or systemic toxicity. Taken with carbohydrate-containing food or drink, an excess dose causes marked flatulence, bloating, abdominal cramping, and osmotic diarrhoea as undigested carbohydrate ferments in the colon; symptoms are usually self-limiting once carbohydrate is withheld for several hours.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Taking it away from the first bite of a meal makes it useless, and pushing the dose above what was prescribed (to \"cancel\" more carbs) drives severe GI distress and dose-related liver-enzyme elevation. Critically, when combined with insulin or a sulfonylurea it can provoke hypoglycaemia that must be treated with glucose (dextrose) tablets or gel, NOT table sugar or sucrose-containing sweets, because acarbose blocks sucrose breakdown and the sugar will not raise blood glucose fast enough.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "HbA1c",
+        "range": "individualised target, often <7% / <53 mmol/mol",
+        "when": "every ~3 months",
+        "why": "Tracks whether the drug is actually improving glycaemic control and guides dose changes.",
+        "tier": 3
+      },
+      {
+        "marker": "Postprandial (1-2 h) glucose",
+        "range": "target set by prescriber, commonly <10 mmol/L / <180 mg/dL",
+        "when": "periodically",
+        "why": "Acarbose's main effect is flattening the post-meal spike, so this is the most direct measure of its action.",
+        "tier": 3
+      },
+      {
+        "marker": "ALT / AST",
+        "range": "normal ~<40 U/L; sustained rise >3x upper limit prompts dose cut or stop",
+        "when": "every 3 months during the first year, then periodically",
+        "why": "Dose-related transaminase elevation and rare hepatotoxicity occur, more likely above 50 mg three times daily; monitoring catches it before jaundice.",
+        "tier": 2
+      },
+      {
+        "marker": "eGFR / serum creatinine",
+        "range": "caution as eGFR falls; avoided in severe impairment (CrCl <25 mL/min)",
+        "when": "before starting and periodically",
+        "why": "Drug and metabolites accumulate to much higher plasma levels in renal failure, which is why it is contraindicated there.",
+        "tier": 3
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Inflammatory bowel disease, colonic ulceration, partial intestinal obstruction or predisposition to it, or chronic disorders of digestion/absorption",
+        "advice": "Contraindicated; the increased colonic gas and fermentation can worsen the bowel condition or precipitate obstruction.",
+        "tier": 3
+      },
+      {
+        "flag": "Cirrhosis or significant liver impairment",
+        "advice": "Contraindicated; the liver is the site of reported drug injury and impaired clearance raises the risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Severe renal impairment (creatinine clearance <25 mL/min)",
+        "advice": "Contraindicated; the poorly-absorbed drug and its metabolites accumulate to markedly higher plasma concentrations.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Not recommended; adequate human safety data are lacking.",
+        "tier": 2
+      },
+      {
+        "flag": "Diabetic ketoacidosis",
+        "advice": "Contraindicated; this is a medical emergency requiring insulin, not a meal-timed oral agent.",
+        "tier": 3
+      },
+      {
+        "flag": "Conditions worsened by increased intestinal gas (e.g. large hernias)",
+        "advice": "Contraindicated; predictable bloating and gas can aggravate the condition.",
+        "tier": 2
+      }
+    ]
+  },
+  "quercetin-dasatinib-d-q": {
+    "access": "prescription",
+    "accessNote": "Dasatinib is an approved tyrosine-kinase-inhibitor chemotherapy for chronic myeloid leukaemia and Ph+ acute lymphoblastic leukaemia; its senolytic use with quercetin is investigational and studied only under physician supervision in clinical trials.",
+    "typicalDose": {
+      "line": "Reference only, always set by a physician. In leukaemia, dasatinib is prescribed at 100 mg once daily (chronic-phase CML) up to 140 mg daily (advanced disease). In senolytic research it has been given very differently — roughly 100 mg dasatinib plus about 1000-1250 mg quercetin for 2-3 consecutive days, given as short intermittent courses separated by weeks — but this is an unapproved investigational protocol used only inside supervised trials, not a validated or recommended regimen.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Toxicity is dose- and exposure-driven: severe myelosuppression (neutropenia, thrombocytopenia, anaemia) raising infection and bleeding risk; serious bleeding including GI or intracranial haemorrhage; fluid retention with pleural or pericardial effusion and pulmonary oedema causing breathlessness and cough; QT-interval prolongation and arrhythmia risk; and, rarely, pulmonary arterial hypertension. Warning signs include unusual bruising or bleeding, fever, new shortness of breath, chest pain, swelling, palpitations or fainting — all needing urgent medical assessment.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Taking dasatinib without prescription and monitoring is dangerous. It is a CYP3A4 substrate, so strong CYP3A4 inhibitors (azole antifungals, some macrolides, grapefruit) and even quercetin itself can raise its blood levels and toxicity; inducers can make it ineffective. Combining it with anticoagulants or antiplatelet agents sharply increases bleeding, and stacking QT-prolonging drugs risks dangerous arrhythmia. Acid-suppressing drugs (PPIs, H2 blockers, antacids) cut its absorption. Skipping trial-style safety bloodwork and ECGs means effusions, low counts and rhythm changes go undetected until they are serious.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Complete blood count with differential",
+        "why": "Detects dasatinib myelosuppression — falling neutrophils, platelets and haemoglobin.",
+        "when": "Baseline and periodically during any course",
+        "range": "Neutrophils >1.5 x10^9/L, platelets >100 x10^9/L before dosing",
+        "tier": 3
+      },
+      {
+        "marker": "ECG (QTc interval)",
+        "why": "Dasatinib can prolong ventricular repolarisation and provoke arrhythmia.",
+        "when": "Baseline and if on other QT-prolonging drugs",
+        "range": "QTc <450 ms (men) / <460 ms (women)",
+        "tier": 3
+      },
+      {
+        "marker": "Serum potassium and magnesium",
+        "why": "Low levels amplify QT-prolongation risk and are corrected before dosing.",
+        "when": "Baseline and during treatment",
+        "range": "K 3.5-5.0 mmol/L; Mg within lab reference",
+        "tier": 3
+      },
+      {
+        "marker": "Chest X-ray / clinical review for effusion",
+        "why": "Fluid retention with pleural or pericardial effusion is a characteristic dasatinib toxicity.",
+        "when": "If dyspnoea, cough or chest discomfort develop",
+        "range": "No new effusion",
+        "tier": 3
+      },
+      {
+        "marker": "Liver function tests (ALT, AST, bilirubin)",
+        "why": "Monitors for hepatotoxicity and informs dosing.",
+        "when": "Baseline and periodically",
+        "range": "Transaminases within ~3x upper limit of normal",
+        "tier": 2
+      },
+      {
+        "marker": "Echocardiography / right-heart assessment",
+        "why": "Screens for the rare but serious pulmonary arterial hypertension linked to dasatinib.",
+        "when": "If unexplained breathlessness or signs of right-heart strain",
+        "range": "Normal estimated pulmonary artery pressure",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Dasatinib is fetotoxic and contraindicated; effective contraception is required and breastfeeding should be avoided.",
+        "tier": 3
+      },
+      {
+        "flag": "Pre-existing pleural or pericardial effusion, heart failure or fluid-retention disorders",
+        "advice": "Must not use — dasatinib strongly promotes serous effusions and fluid overload.",
+        "tier": 3
+      },
+      {
+        "flag": "Bleeding disorders or use of anticoagulants/antiplatelet drugs",
+        "advice": "Avoid — platelet dysfunction and thrombocytopenia raise haemorrhage risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Congenital long QT syndrome, significant arrhythmia, or uncorrected low potassium/magnesium",
+        "advice": "Avoid — additive QT prolongation can trigger dangerous arrhythmias.",
+        "tier": 3
+      },
+      {
+        "flag": "Significant myelosuppression or active infection",
+        "advice": "Do not use until counts recover — dasatinib deepens cytopenias.",
+        "tier": 3
+      },
+      {
+        "flag": "Pulmonary arterial hypertension",
+        "advice": "Contraindicated — dasatinib is a recognised cause and can worsen it.",
+        "tier": 2
+      },
+      {
+        "flag": "Concurrent strong CYP3A4 inhibitors (azole antifungals, certain macrolides, grapefruit)",
+        "advice": "Avoid the combination — dasatinib levels and toxicity rise substantially.",
+        "tier": 2
+      }
+    ]
+  },
+  "sglt2-inhibitors-empagliflozin-canagliflozin": {
+    "access": "prescription",
+    "accessNote": "Prescribed for type 2 diabetes, chronic heart failure (reduced and preserved ejection fraction), and chronic kidney disease, based on a clinician's assessment of kidney function and cardiovascular risk.",
+    "typicalDose": {
+      "line": "For reference only, and set by a prescribing doctor — not a recommendation. Empagliflozin is typically prescribed at 10-25 mg once daily and canagliflozin at 100-300 mg once daily, usually taken in the morning, with the dose and eligibility governed by kidney function (eGFR) and the specific condition being treated.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "These drugs rarely cause dangerous hypoglycaemia on their own, so acute overdose is mostly about fluid and acid-base effects: heavy urination, dehydration, low blood pressure, dizziness and acute kidney injury. The most dangerous complication is euglycaemic diabetic ketoacidosis — ketoacidosis with only mildly raised or even near-normal blood glucose, presenting as nausea, vomiting, abdominal pain, deep rapid breathing, fruity breath and confusion. It is easy to miss because glucose looks 'fine', and it is a medical emergency.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Stopping abruptly removes the heart- and kidney-protective effect these drugs provide. Doubling doses or continuing them through acute illness, vomiting, fasting, dehydration, heavy alcohol use, crash/keto dieting or around surgery sharply raises the risk of euglycaemic ketoacidosis — which is why doctors give 'sick-day' pause instructions and hold the drug before operations. Combining with diuretics can cause dangerous volume depletion, and self-dosing without periodic kidney-function checks means declining eGFR or a brewing genital infection can go unnoticed.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "eGFR / serum creatinine",
+        "why": "Determines eligibility and dosing; an expected small early dip occurs, but a sustained fall or acute kidney injury must be caught.",
+        "when": "Before starting, then periodically",
+        "range": "eGFR generally >20-30 mL/min/1.73m2 for continuation depending on indication",
+        "tier": 3
+      },
+      {
+        "marker": "HbA1c / fasting glucose",
+        "why": "Tracks glycaemic effect when used for diabetes; glucose can look near-normal even during ketoacidosis, so it is not a safety marker on its own.",
+        "when": "Every 3-6 months",
+        "range": "Individualised, often HbA1c target ~7% (53 mmol/mol)",
+        "tier": 3
+      },
+      {
+        "marker": "Blood/urine ketones (beta-hydroxybutyrate)",
+        "why": "Detects euglycaemic ketoacidosis during illness, fasting or unexplained nausea/vomiting.",
+        "when": "During acute illness or ketoacidosis symptoms",
+        "range": "Blood BHB >0.6 mmol/L warrants attention; >3 mmol/L is high-risk",
+        "tier": 3
+      },
+      {
+        "marker": "Serum electrolytes and volume/blood pressure",
+        "why": "Diuretic-like effect can cause dehydration, hypotension and electrolyte shifts, especially with other diuretics.",
+        "when": "After initiation and dose changes",
+        "range": "Within normal reference range",
+        "tier": 2
+      },
+      {
+        "marker": "LDL cholesterol",
+        "why": "SGLT2 inhibitors can modestly raise LDL, relevant in high cardiovascular-risk patients.",
+        "when": "Periodically",
+        "range": "Individualised to cardiovascular risk",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Type 1 diabetes or prior diabetic ketoacidosis",
+        "advice": "Not appropriate for routine glucose control in type 1 diabetes and avoided with a history of DKA, because of high euglycaemic ketoacidosis risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Not recommended; should be stopped when pregnancy is planned or confirmed.",
+        "tier": 3
+      },
+      {
+        "flag": "Recurrent genital or urinary infections, or prior Fournier's gangrene",
+        "advice": "Glucose in the urine promotes genital yeast and urinary infections, and rare necrotising perineal infection (Fournier's gangrene) has occurred; a history of these weighs against use.",
+        "tier": 2
+      },
+      {
+        "flag": "Acute illness, dehydration, fasting or upcoming surgery",
+        "advice": "Should be paused during significant illness, volume depletion or around major surgery (typically held several days before) to avoid ketoacidosis and kidney injury.",
+        "tier": 2
+      },
+      {
+        "flag": "Severe renal impairment / dialysis",
+        "advice": "The glucose-lowering effect fails and initiation is limited at very low eGFR; use at the margins is decided case-by-case by a specialist.",
+        "tier": 3
+      },
+      {
+        "flag": "Canagliflozin and lower-limb / fracture risk",
+        "advice": "Canagliflozin has been linked with signals for lower-limb amputation and bone fracture (the original amputation boxed warning was later removed by the FDA after further data), so caution still applies in those with prior amputation, peripheral vascular disease or high fracture risk.",
+        "tier": 1
+      }
+    ]
+  },
+  "mots-c": {
+    "access": "unapproved",
+    "accessNote": "Sold only as a research chemical with no completed human safety or efficacy trial, and the single MOTS-c analog tested in people had its clinical development discontinued.",
+    "overdose": {
+      "line": "No human toxicology or overdose threshold exists, so the effects of excessive dosing are genuinely uncharacterised. Because it activates AMPK and drives glucose into skeletal muscle, an exaggerated response could plausibly cause hypoglycaemia (shakiness, sweating, palpitations, confusion), and injecting an unregulated vial can trigger acute endotoxin-driven fever, chills, and injection-site reactions.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no validated human dose, so every DIY regimen is guesswork with no safety margin behind it. Grey-market peptide vials are unregulated and have repeatedly been found to contain inaccurate or absent active peptide, bacterial contamination, and endotoxin; non-sterile self-injection risks abscess, cellulitis, and bloodstream infection, and the long-term effects of a mitochondrial signalling peptide in humans are simply unknown.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Fasting glucose",
+        "range": "4.0-5.5 mmol/L (72-99 mg/dL)",
+        "when": "Baseline and if symptoms of a low occur",
+        "why": "Its AMPK / GLUT4 action can push glucose down; watch for hypoglycaemia, especially alongside any glucose-lowering medication.",
+        "tier": 2
+      },
+      {
+        "marker": "HbA1c",
+        "range": "<5.7%",
+        "when": "Baseline and periodically",
+        "why": "Tracks the metabolic effect over months and flags meaningful glycaemic shifts.",
+        "tier": 1
+      },
+      {
+        "marker": "CRP",
+        "range": "<3 mg/L",
+        "when": "If fever, redness or pain follows an injection",
+        "why": "Rises with injection-site infection, abscess, or endotoxin reaction from a contaminated product.",
+        "tier": 2
+      },
+      {
+        "marker": "White cell count",
+        "range": "4-11 x10^9/L",
+        "when": "If systemic infection is suspected",
+        "why": "Elevated with cellulitis or bloodstream infection from non-sterile injecting.",
+        "tier": 2
+      },
+      {
+        "marker": "ALT / AST",
+        "range": "ALT <40 U/L, AST <40 U/L",
+        "when": "Baseline and periodically",
+        "why": "General safety screen for hepatic injury given an unstudied injected compound of unknown purity.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data of any kind exists; an unapproved injected peptide must not be used.",
+        "tier": 3
+      },
+      {
+        "flag": "Diabetes treated with insulin or sulfonylureas",
+        "advice": "The insulin-sensitising, glucose-lowering action is additive and could provoke dangerous hypoglycaemia.",
+        "tier": 2
+      },
+      {
+        "flag": "Active infection or a compromised immune system",
+        "advice": "Injecting an unsterile-risk product raises the chance of serious systemic infection.",
+        "tier": 2
+      },
+      {
+        "flag": "Anyone unable to verify a sterile, correctly identified product",
+        "advice": "There is no approved, quality-controlled human source, so purity, dose accuracy, and sterility cannot be assured.",
+        "tier": 3
+      },
+      {
+        "flag": "Active or prior cancer",
+        "advice": "Effects of a proliferation- and metabolism-modulating mitochondrial peptide on tumour biology in humans are unstudied; avoid.",
+        "tier": 1
+      }
+    ]
+  },
+  "elamipretide-ss-31": {
+    "access": "prescription",
+    "accessNote": "Granted FDA accelerated approval in September 2025 to improve muscle strength in patients weighing at least 30 kg with the rare mitochondrial disorder Barth syndrome; every anti-aging or general-longevity use is off-label, unproven, and typically supplied through unregulated grey-market channels rather than a pharmacy.",
+    "typicalDose": {
+      "line": "In its one approved use, Barth syndrome, the label sets the dosage at 40 mg once daily as a subcutaneous injection in patients weighing at least 30 kg (reduced to 20 mg daily in severe renal impairment); the exact regimen is decided by the prescriber. This is a reference figure for education only, not a recommendation, and no dose is established for longevity or healthspan use.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "No overdose was reported in the clinical trials and there is no well-characterised human overdose syndrome; the manufacturer notes that overdose signs are likely histamine-related, mainly a drop in blood pressure and light-headedness or presyncope. The serious acute danger with any injected peptide is a hypersensitivity or anaphylactic reaction, which can occur within minutes of a dose: spreading hives, swelling of the lips or throat, wheeze, or a sudden drop in blood pressure is a medical emergency.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Because it is an injectable peptide, the real harm comes from using it outside medical supervision: grey-market 'longevity' vials carry no guarantee of purity, dose, or sterility, and non-sterile self-injection can cause injection-site abscesses and bloodstream infection. Skipping, stopping, or self-adjusting a prescribed course removes the cardiac and functional monitoring its narrow approval depends on, and its benefit for anti-aging or general healthspan has never been demonstrated.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Injection-site skin assessment",
+        "why": "Injection-site reactions (erythema, induration, pruritus, pain) are the most common adverse effect and occurred in essentially all treated patients in the pivotal trial; a hot, spreading, or increasingly painful site can signal infection needing treatment.",
+        "when": "With each injection / at every clinic visit",
+        "range": "No reaction; skin intact",
+        "tier": 3
+      },
+      {
+        "marker": "LVEF on echocardiogram",
+        "why": "Barth syndrome causes cardiomyopathy, so ejection fraction tracks the underlying disease and cardiac status; a sensible check given the drug's mitochondrial/cardiac target.",
+        "when": "Baseline and periodically during treatment",
+        "range": "Normal ~55-70%",
+        "tier": 2
+      },
+      {
+        "marker": "Knee-extensor muscle strength (and 6-minute walk distance)",
+        "why": "Improvement in knee extensor muscle strength is the intermediate endpoint the accelerated approval rests on; a doctor uses it to judge whether treatment is actually helping.",
+        "when": "Baseline and follow-up",
+        "tier": 2
+      },
+      {
+        "marker": "eGFR / renal function",
+        "why": "The label reduces the dose in severe renal impairment, so kidney function is checked to set and adjust dosing.",
+        "when": "Baseline and as clinically indicated",
+        "range": "eGFR >=30 mL/min = full dose; <30 = reduced",
+        "tier": 2
+      },
+      {
+        "marker": "CRP and white cell count",
+        "why": "Rise if a self-injection site or deeper tissue becomes infected, the main lab signal of harm in unsupervised grey-market use.",
+        "when": "If an injection site looks infected or fever develops",
+        "range": "CRP <5 mg/L; WBC 4-11 x10^9/L",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Known serious hypersensitivity to elamipretide or the injection's excipients",
+        "advice": "Contraindicated on the label; do not use because of the risk of a serious allergic reaction.",
+        "tier": 3
+      },
+      {
+        "flag": "Neonates and infants (benzyl-alcohol preservative)",
+        "advice": "Not approved in neonates; the benzyl alcohol content can cause fatal toxicity.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "No adequate human safety data; avoid outside a formal clinical trial.",
+        "tier": 2
+      },
+      {
+        "flag": "Anyone below the approved weight (~30 kg) or without the Barth-syndrome indication",
+        "advice": "Dose and safety are unestablished; this is not a validated longevity therapy and should not be self-sourced off-label.",
+        "tier": 2
+      },
+      {
+        "flag": "Anyone unable to inject under sterile, medically supervised conditions",
+        "advice": "Non-sterile self-injection of unregulated grey-market product risks serious skin and bloodstream infection.",
+        "tier": 2
+      }
+    ]
+  },
+  "17-estradiol": {
+    "access": "unapproved",
+    "accessNote": "Its lifespan evidence comes only from male mice in the NIA Interventions Testing Program; there are no controlled human longevity trials and no established systemic human dose or safety profile. A separate low-dose topical formulation is an approved prescription hair-loss treatment in parts of Europe, South America and Korea, but that does not validate any systemic or longevity use.",
+    "overdose": {
+      "line": "The 'non-feminizing' label reflects that 17a-estradiol is a weak activator of estrogen receptor alpha compared with 17b-estradiol; selectivity is relative, not absolute, and estrogenic effects could plausibly emerge as the dose rises. Because it is a weak estrogen, feminizing effects (such as gynecomastia, reduced libido or testicular changes in men) and the recognised dangers of potent estrogens - venous thromboembolism (leg swelling/pain, sudden breathlessness or chest pain from DVT/PE), stroke, and cholestatic liver injury - are extrapolated from stronger estrogens and are not documented for 17a-estradiol in humans; there is no human overdose data. As an unregulated research chemical, unknown identity and purity add unpredictable toxicity on top of this.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no safe do-it-yourself dose. The only efficacy data is a fixed dietary concentration fed to mice, which does not translate to a human dose, and the survival benefit appeared in males only and vanished in females and castrated males - so the effect may not apply to a given person at all. Bought as a research chemical it carries no purity or identity guarantee. Because it is estrogenic, even if weakly, self-dosing could affect the testosterone/LH/FSH axis and carries theoretical clot risk, with no medical monitoring to catch harm early.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Total testosterone (men)",
+        "range": "reference ~264-916 ng/dL",
+        "when": "baseline and periodically",
+        "why": "Estrogenic activity can suppress the hypothalamic-pituitary-gonadal axis, potentially lowering testosterone.",
+        "tier": 2
+      },
+      {
+        "marker": "LH and FSH",
+        "range": "e.g. LH ~1.7-8.6 IU/L; suppression signals HPG shutdown",
+        "when": "baseline and periodically",
+        "why": "Estrogen negative feedback can lower gonadotropins, an early sign of endocrine disruption.",
+        "tier": 2
+      },
+      {
+        "marker": "SHBG",
+        "range": "men ~10-57 nmol/L",
+        "when": "baseline and periodically",
+        "why": "Estrogens characteristically raise SHBG, lowering free testosterone even when total looks normal.",
+        "tier": 2
+      },
+      {
+        "marker": "ALT / AST (and bilirubin)",
+        "range": "ALT/AST typically <40 U/L",
+        "when": "baseline and periodically",
+        "why": "Estrogens can cause cholestatic or hepatocellular injury; rising enzymes or bilirubin flag liver stress.",
+        "tier": 2
+      },
+      {
+        "marker": "Estradiol (immunoassay)",
+        "range": "interpret with caution",
+        "when": "if checked",
+        "why": "Standard assays measure 17-beta-estradiol and may not reflect 17-alpha levels, so a 'normal' result can be falsely reassuring.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Personal or family history of estrogen-sensitive cancer (e.g. breast)",
+        "advice": "This compound has estrogenic activity, which could stimulate hormone-sensitive tumours; avoid it.",
+        "tier": 2
+      },
+      {
+        "flag": "History of venous thromboembolism, known thrombophilia, or prior DVT/PE/stroke",
+        "advice": "Estrogens can raise clotting risk; anyone with a clotting history or disorder should avoid it as a precaution.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or possible pregnancy",
+        "advice": "Hormonally active estrogens are contraindicated in pregnancy due to fetal risk.",
+        "tier": 3
+      },
+      {
+        "flag": "Active liver disease",
+        "advice": "Estrogens are metabolised hepatically and can cause cholestasis, worsening existing liver impairment.",
+        "tier": 2
+      },
+      {
+        "flag": "Established cardiovascular/cerebrovascular disease, uncontrolled hypertension, or smokers over 35",
+        "advice": "These sharply amplify the thromboembolic and vascular risks of estrogen exposure.",
+        "tier": 2
+      }
+    ]
+  },
+  "modafinil-armodafinil": {
+    "access": "prescription",
+    "accessNote": "Approved for narcolepsy, obstructive sleep apnoea residual sleepiness and shift-work sleep disorder; a Schedule IV controlled substance widely taken off-label for wakefulness and focus.",
+    "typicalDose": {
+      "line": "As a reference only, and always decided by the prescribing doctor: modafinil is usually 200 mg once in the morning (up to 400 mg has no proven added benefit); armodafinil is usually 150 mg once daily. Shift-work dosing is taken about 1 hour before the shift. Doses are reduced in severe liver impairment and in older adults.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Overdose is dominated by over-stimulation: agitation, insomnia, anxiety, confusion, irritability, tremor, headache, nausea, palpitations, tachycardia, raised blood pressure and sometimes chest pain. Ingestions of several grams have caused marked restlessness and cardiovascular stimulation; deaths from modafinil alone are rare, but it becomes far more dangerous combined with other stimulants or in people with heart disease.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Not following the prescription carries real risk. Taking it too late in the day wrecks sleep; doubling doses or stacking it with other stimulants raises blood pressure, heart rate and anxiety toward the overdose picture. It is an enzyme inducer that lowers the effectiveness of hormonal contraceptives (pill, patch, ring, implant) during use and for a month after, causing unplanned pregnancies, and it alters levels of other CYP3A4/CYP2C19 drugs. As a controlled substance it carries dependence and misuse potential, and any spreading rash is a medical emergency, not a dose to push through.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure and resting heart rate",
+        "why": "Modafinil and armodafinil can raise both; monitored at baseline and periodically, with dose or drug review if hypertension or tachycardia develops.",
+        "range": "Target generally <140/90 mmHg; resting HR ~60-100 bpm",
+        "when": "Baseline and periodically during treatment",
+        "tier": 3
+      },
+      {
+        "marker": "ECG",
+        "why": "Screens for and monitors cardiac risk in anyone with a history of left ventricular hypertrophy, arrhythmia, valve disease or prior stimulant-related ischaemic changes.",
+        "range": "No new ischaemic changes or significant arrhythmia",
+        "when": "Baseline if cardiac history; as clinically indicated",
+        "tier": 2
+      },
+      {
+        "marker": "Liver function (ALT, AST, bilirubin)",
+        "why": "Clearance is hepatic; severe impairment requires a halved dose, so liver status guides prescribing.",
+        "range": "ALT/AST roughly within lab reference (~<40 U/L)",
+        "when": "Baseline in known or suspected liver disease",
+        "tier": 2
+      },
+      {
+        "marker": "Pregnancy test / contraception review",
+        "why": "Linked to major congenital malformations, and it reduces hormonal contraceptive efficacy, so pregnancy status and reliable non-hormonal or added barrier contraception are checked before and during use.",
+        "when": "Before starting in people who can become pregnant",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Prior serious skin or hypersensitivity reaction to modafinil or armodafinil",
+        "advice": "Absolute contraindication. Stevens-Johnson syndrome, toxic epidermal necrolysis, DRESS and multi-organ hypersensitivity have occurred; any rash, mucosal blistering, fever or facial swelling means stop immediately and seek urgent care, and the drug must never be restarted.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy",
+        "advice": "Contraindicated. Registry and label data show increased major congenital malformations (including cardiac and hypospadias); it is avoided in pregnancy and reliable contraception is used, remembering it weakens hormonal contraception.",
+        "tier": 2
+      },
+      {
+        "flag": "Significant cardiovascular disease",
+        "advice": "Used with great caution or avoided with left ventricular hypertrophy, mitral valve prolapse syndrome, recent myocardial infarction, unstable angina, serious arrhythmia or uncontrolled hypertension, because of its blood-pressure and heart-rate effects.",
+        "tier": 2
+      },
+      {
+        "flag": "History of psychosis, mania or severe anxiety",
+        "advice": "Can trigger or worsen psychosis, mania, hallucinations, aggression, suicidal ideation and severe anxiety; used with great caution or avoided in these conditions.",
+        "tier": 2
+      },
+      {
+        "flag": "Severe hepatic impairment",
+        "advice": "Not a safe standard dose; the dose must be halved and use reconsidered, since the liver clears the drug.",
+        "tier": 2
+      }
+    ]
+  },
+  "semax-selank": {
+    "access": "unapproved",
+    "accessNote": "Registered as prescription nasal-spray medicines only in Russia (Semax for stroke/cognition, Selank for anxiety); everywhere else, including Singapore, the US and EU, no regulator has reviewed them and they circulate as grey-market research chemicals with no purity, sterility or potency guarantee.",
+    "overdose": {
+      "line": "No characterised human overdose syndrome exists — short Russian trials report low acute toxicity, so the real danger of a large or repeated dose is not a known toxic threshold but the unregulated product itself: over-concentrated or mislabelled vials can deliver far more peptide than intended, and non-sterile material can trigger fever, chills and systemic infection. Acute effects reported at higher intranasal strengths include headache, marked nasal-mucosa irritation, and over-stimulation or agitation. Any fever, spreading redness, confusion or breathing difficulty after use is a medical emergency.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no validated safe do-it-yourself dose outside Russia's specific clinical formulations — grey-market vials are frequently mislabelled, under- or over-dosed, and are not sterile-manufactured, so reconstituting and self-administering (intranasally or by injection) risks bacterial contamination, endotoxin reactions and injection-site infection. Long-term human safety is essentially unstudied, interactions with stimulants, SSRIs and other CNS drugs are uncharacterised, and 'stacking' the two compounds compounds all of these unknowns.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "CRP + white cell count (WBC)",
+        "range": "CRP <5 mg/L; WBC 4-11 x10^9/L",
+        "tier": 1,
+        "when": "if fever, malaise or local reaction follows use",
+        "why": "The main measurable harm from unregulated peptides is infection or endotoxin reaction from non-sterile product; a rising CRP/WBC is the earliest lab signal."
+      },
+      {
+        "marker": "Liver and kidney panel (ALT/AST, creatinine/eGFR)",
+        "range": "ALT/AST <40 U/L; eGFR >90 mL/min/1.73m2",
+        "tier": 1,
+        "when": "baseline and if unwell after use",
+        "why": "Not because the peptides are known hepato- or nephrotoxic, but to detect harm from solvents, preservatives or adulterants in unverified grey-market vials."
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Absolute contraindication — no reproductive safety data exist in humans.",
+        "tier": 3
+      },
+      {
+        "flag": "Known hypersensitivity to either peptide or spray excipients",
+        "advice": "Do not use; risk of allergic reaction.",
+        "tier": 3
+      },
+      {
+        "flag": "Children and adolescents",
+        "advice": "Not for non-medical use; no safety data outside supervised Russian paediatric protocols.",
+        "tier": 2
+      },
+      {
+        "flag": "Uncontrolled hypertension",
+        "advice": "Avoid — blood-pressure changes have been reported and are unmonitored in self-use.",
+        "tier": 1
+      },
+      {
+        "flag": "Serious or unstable psychiatric illness (e.g. bipolar disorder, psychosis)",
+        "advice": "Avoid — CNS-active peptides can worsen mood instability or agitation, and interactions with psychiatric medication are unstudied.",
+        "tier": 1
+      }
+    ]
+  },
+  "nicotine-non-combusted": {
+    "access": "prescription",
+    "accessNote": "Approved for human use as a smoking-cessation aid (gum, patch, lozenge, pouch), often available over the counter; using it purely for focus is off-label and carries high dependence risk.",
+    "typicalDose": {
+      "line": "As a clinician- or label-directed cessation aid only: transdermal patches are typically stepped down over weeks (commonly 21 mg, then 14 mg, then 7 mg per 24 h), and gum/lozenges come as 2 mg or 4 mg units with a stated daily piece cap. These are reference cessation figures a prescriber or pharmacist sets against smoking history, not a recommendation and not a cognitive-use dose.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Acute nicotine toxicity is biphasic: early nausea, vomiting, salivation, sweating, abdominal cramps, headache, tremor, hypertension and fast heart rate, then weakness, low blood pressure, slow heart rate, confusion, seizures, and in severe cases respiratory muscle failure and coma. Overlapping products (patch plus pouches plus continued smoking) is a common route to poisoning; swallowed gum, lozenges, or e-liquid are especially dangerous to children and pets. The classic '30–60 mg is lethal' figure is now considered too low, but any ingestion still warrants urgent poison-control contact.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Nicotine is powerfully addictive, and self-dosing for concentration reliably escalates into tolerance and daily dependence; abruptly stopping brings irritability, anxiety, poor focus, and cravings that drive relapse. Stacking forms or continuing to smoke while patched raises toxicity risk, it acutely stresses the cardiovascular system, and adolescent or young-adult use can durably alter the developing brain.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure and resting heart rate",
+        "why": "Nicotine is a sympathomimetic that acutely raises both; a clinician watches these especially with any cardiovascular history.",
+        "tier": 3
+      },
+      {
+        "marker": "Serum or urine cotinine",
+        "why": "The main nicotine metabolite; confirms exposure and rough intake level and distinguishes ongoing use from abstinence.",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "why": "Nicotine can worsen insulin sensitivity; emerging signal, monitored mainly in those already at metabolic risk.",
+        "tier": 1,
+        "when": "periodically in at-risk users"
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Recent heart attack, unstable angina, or serious/unstable arrhythmia",
+        "advice": "The sympathomimetic load can precipitate ischemia or dangerous rhythms; use only under direct cardiology guidance.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Nicotine crosses the placenta and enters breast milk and is toxic to the developing nervous and cardiovascular system; avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "Children and adolescents",
+        "advice": "Highly vulnerable to poisoning and to lasting effects on the developing brain; not appropriate outside specialist care.",
+        "tier": 2
+      },
+      {
+        "flag": "Uncontrolled hypertension",
+        "advice": "Acute pressor effect can worsen control; blood pressure should be managed first.",
+        "tier": 2
+      },
+      {
+        "flag": "Pheochromocytoma or uncontrolled hyperthyroidism",
+        "advice": "Nicotine can trigger catecholamine release and dangerous surges; avoid.",
+        "tier": 2
+      }
+    ]
   }
 }
