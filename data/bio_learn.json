@@ -12991,5 +12991,2003 @@
         "tier": 2
       }
     ]
+  },
+  "dihexa": {
+    "access": "unapproved",
+    "accessNote": "An experimental angiotensin-IV-derived compound (a metabolically stable HGF/c-Met activator) tested only in rodents; sold as a research chemical with no regulatory approval or human clinical data anywhere, and its foundational Washington State University mechanism papers were retracted in 2025 for research misconduct.",
+    "overdose": {
+      "line": "No human toxicity or overdose data exist, so a harmful dose is genuinely unknown and any acute reaction would be unpredictable; the specific mechanistic hazard is that its potent hepatocyte growth factor (HGF)/c-Met signalling drives cell proliferation and could accelerate the growth of an existing or occult tumour rather than cause a classic acute overdose. Rodent work also reported hepatotoxicity at doses only modestly above the effective range.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no established safe human dose: no clinical trials, no human pharmacokinetics, and no purity, content or contaminant guarantees from research-chemical supply, so any use is uncontrolled self-experimentation. The central concern is activation of the HGF/c-Met pathway, a well-recognised driver of tumour growth and metastasis, which is why a theoretical cancer risk is repeatedly flagged for this compound.",
+      "tier": 1
+    },
+    "biomarkers": [
+      {
+        "marker": "CBC with differential",
+        "why": "There is no dihexa-specific lab abnormality validated in humans; a baseline haematology screen is only a general safety reference given unknown-purity research-chemical material, not evidence that use is safe.",
+        "tier": 1
+      },
+      {
+        "marker": "Liver panel (ALT/AST)",
+        "range": "ALT/AST roughly <40 U/L",
+        "why": "Baseline hepatic function reference; rodent studies showed hepatotoxicity just above the effective dose and the compound's human metabolism and clearance are entirely uncharacterised.",
+        "tier": 1
+      },
+      {
+        "marker": "No validated cancer-screening marker exists",
+        "why": "HGF/c-Met-driven proliferation would not be reliably caught by any routine blood test, so the theoretical tumour risk cannot be monitored away with labs.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active cancer, prior cancer, or strong family/genetic cancer risk",
+        "advice": "HGF/c-Met signalling is an established promoter of tumour growth and metastasis, so activating it is a specific hazard for anyone with current, past, or elevated cancer risk.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "No reproductive or developmental safety data exist, and a potent growth-factor-signalling agent carries obvious theoretical fetal and infant risk.",
+        "tier": 1
+      },
+      {
+        "flag": "Anyone seeking a proven or approved treatment",
+        "advice": "With zero human safety or efficacy data and no approval, there is no context in which use is medically supported; effects and long-term risks are unknown.",
+        "tier": 2
+      }
+    ]
+  },
+  "pt-141-bremelanotide-vyleesi": {
+    "access": "prescription",
+    "accessNote": "A melanocortin-receptor agonist approved as an on-demand subcutaneous injection for acquired, generalized low sexual desire (HSDD) in premenopausal women; the use discussed elsewhere (men, postmenopausal women) is off-label and outside its tested population.",
+    "typicalDose": {
+      "line": "As a reference only, the approved regimen a prescriber decides on is a single 1.75 mg subcutaneous injection taken as-needed at least 45 minutes before anticipated activity, with a hard ceiling of one dose per 24 hours and no more than 8 doses per month — this is not a recommendation to dose yourself, and the limits exist because of blood-pressure and skin effects.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Exceeding the dose or frequency amplifies its known effects: severe, sometimes protracted nausea and vomiting (nausea already affects ~40% at the normal dose), marked flushing, and a larger transient spike in blood pressure with a compensatory drop in heart rate. Because each dose raises BP for several hours, closely-spaced or doubled dosing risks dangerous hypertensive elevations, especially in anyone with cardiovascular disease.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "The main harm is redosing outside the prescription — taking more than one dose in 24 hours, stacking doses to chase an effect, or exceeding 8 per month — which drives cumulative blood-pressure elevation and focal darkening of the skin, face, gums and breasts (melanocortin-driven hyperpigmentation that may not fully reverse). Grey-market or 'research' vials of uncertain concentration make the delivered dose unknowable, and combining it with other vasoactive drugs compounds the cardiovascular risk. It is not a chronic daily medication.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure and heart rate",
+        "range": "Each dose transiently raises systolic BP by roughly 6 mmHg and lowers heart rate for several hours (resolving within about 12 hours); a prescriber screens for and excludes uncontrolled hypertension before use",
+        "when": "Baseline before starting and if cardiovascular symptoms arise",
+        "why": "Its most clinically important effect is a transient pressor response, so uncontrolled or high-risk blood pressure is the key thing a doctor checks",
+        "tier": 3
+      },
+      {
+        "marker": "Skin and mucosal exam for hyperpigmentation",
+        "range": "Clinical inspection (face, gums, breasts) rather than a lab value; risk rises with more frequent dosing and in darker skin",
+        "when": "Periodically with ongoing use",
+        "why": "Melanocortin agonism can cause focal darkening that may persist after stopping",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Uncontrolled hypertension or known cardiovascular disease",
+        "advice": "Must not use — the transient pressor effect of each dose can be dangerous; a prescriber excludes these before starting.",
+        "tier": 3
+      },
+      {
+        "flag": "Outside the approved population (men, postmenopausal women)",
+        "advice": "Not established as safe or effective in these groups; any such use is off-label and unstudied for safety.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or trying to conceive",
+        "advice": "Should not be used; it is not established as safe in pregnancy.",
+        "tier": 2
+      },
+      {
+        "flag": "Significant hepatic or renal impairment",
+        "advice": "Caution or avoidance — severe impairment can worsen nausea and alter drug exposure, so this is a prescriber's judgement, not a self-decision.",
+        "tier": 2
+      }
+    ]
+  },
+  "pde-5-inhibitors-sildenafil-tadalafil": {
+    "access": "prescription",
+    "accessNote": "Prescribed for erectile dysfunction, benign prostatic symptoms and pulmonary arterial hypertension; a doctor must first check cardiovascular status because these drugs can collapse blood pressure when combined with nitrates.",
+    "typicalDose": {
+      "line": "For reference only, and always set by a prescriber rather than the reader: sildenafil for erectile dysfunction is usually 25–100 mg taken as needed about one hour beforehand, at most once in 24 hours; tadalafil is usually 10 mg (range 5–20 mg) as needed or a low 2.5–5 mg once-daily regimen. Pulmonary-hypertension dosing is different and separately supervised (for example sildenafil 20 mg three times daily, tadalafil 40 mg once daily). A doctor lowers the dose for kidney or liver impairment, older age, and interacting drugs. This is not a recommendation to take it or a self-dosing guide.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "In overdose or excessive dosing the ordinary side effects intensify: severe headache, facial flushing, nasal congestion, dizziness, blurred or blue-tinged vision, indigestion, and marked drops in blood pressure causing fainting. The dangerous outcomes are priapism — a painful erection lasting over 4 hours, a urological emergency that can permanently scar erectile tissue if untreated — and profound, sometimes fatal hypotension when taken with nitrates or 'poppers'. Rare but serious events include sudden loss of vision in one eye (non-arteritic anterior ischaemic optic neuropathy) and sudden hearing loss, both of which warrant stopping the drug and seeking urgent care.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "The lethal mistake is combining a PDE-5 inhibitor with any nitrate heart medicine or recreational nitrite 'poppers' — together they can drop blood pressure to a fatal level, which is exactly why a prescription and cardiac review exist. Other harms come from stacking or repeating doses to chase a stronger effect (raising priapism and hypotension risk), skipping the cardiovascular evaluation that screens for unstable heart disease, and buying unregulated 'herbal' or online products frequently spiked with undeclared, unmeasured drug or contaminants.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure (and heart rate)",
+        "range": "assessed before and during use; caution if resting BP is below ~90/50 mmHg or the patient is on multiple antihypertensives/alpha-blockers",
+        "why": "The drug's core action is vasodilation; a doctor confirms the cardiovascular system can tolerate a further fall in pressure.",
+        "tier": 3,
+        "when": "Before starting and if dizziness or fainting occurs"
+      },
+      {
+        "marker": "Renal function (eGFR / creatinine)",
+        "range": "eGFR below ~30 mL/min/1.73m² prompts a lower starting dose",
+        "why": "Impaired clearance raises drug levels and side-effect risk, so dosing is reduced.",
+        "tier": 2,
+        "when": "Before starting; periodically in ongoing use"
+      },
+      {
+        "marker": "Liver function (ALT, AST, bilirubin)",
+        "range": "significant hepatic impairment (e.g. Child–Pugh B/C) prompts dose reduction",
+        "why": "The liver metabolises these drugs; impairment increases exposure.",
+        "tier": 2,
+        "when": "Before starting"
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Taking any nitrate (nitroglycerin, isosorbide mono-/dinitrate) or recreational nitrite 'poppers'",
+        "advice": "Absolute contraindication — the combination can cause fatal hypotension; the two must never be used together.",
+        "tier": 3
+      },
+      {
+        "flag": "Taking a soluble guanylate cyclase stimulator such as riociguat",
+        "advice": "Contraindicated — additive vasodilation and dangerous blood-pressure drops.",
+        "tier": 3
+      },
+      {
+        "flag": "Recent heart attack or stroke, unstable angina, severe heart failure, or uncontrolled arrhythmia",
+        "advice": "Generally contraindicated until a cardiologist judges the heart can tolerate sexual activity and vasodilation.",
+        "tier": 3
+      },
+      {
+        "flag": "Severe low blood pressure, or severe uncontrolled high blood pressure",
+        "advice": "Contraindicated — further vasodilation is unsafe at these extremes.",
+        "tier": 3
+      },
+      {
+        "flag": "Severe liver impairment or end-stage kidney disease",
+        "advice": "Use is restricted and, if considered at all, only under specialist supervision with adjusted dosing.",
+        "tier": 2
+      },
+      {
+        "flag": "Prior non-arteritic anterior ischaemic optic neuropathy (NAION) or a hereditary degenerative retinal disorder such as retinitis pigmentosa",
+        "advice": "Contraindicated or strongly cautioned because of the risk to vision.",
+        "tier": 2
+      }
+    ]
+  },
+  "melanotan-ii": {
+    "access": "unapproved",
+    "accessNote": "A synthetic melanocortin-receptor agonist sold only as a grey-market \"research\" peptide for self-injection; its close relative bremelanotide is an approved medicine, but Melanotan II itself has never passed human safety trials, and its long-term melanoma risk is unknown.",
+    "overdose": {
+      "line": "Because vials are dosed by eye and true potency is unverified, taking too much triggers intense nausea and vomiting, facial flushing, dizziness and loss of appetite; it also commonly causes prolonged painful erections (priapism), which is a medical emergency that can permanently damage erectile tissue if not treated within a few hours. Sharp rises in blood pressure and heart rate and, in isolated case reports, rhabdomyolysis (muscle breakdown) with acute kidney injury have occurred.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no established safe dose. The peptide is unregulated, so purity, sterility and actual peptide content vary widely between and even within vials, and home reconstitution and measurement errors are common. Documented harms include a rapid increase in the number, size and darkness of moles, new atypical (dysplastic) nevi, and published case reports of melanoma in users; the melanoma link is unproven but the tumour-promoting concern is why long-term safety is called unknown. Non-sterile self-injection additionally risks abscesses and bloodborne infection.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Full-skin dermatological exam with dermoscopy",
+        "range": "baseline and any new or changing lesion",
+        "why": "MT-II darkens existing moles and drives new and atypical (dysplastic) nevi; serial skin exams are how early melanoma is detected",
+        "when": "before and during any exposure, and for any changing lesion",
+        "tier": 2
+      },
+      {
+        "marker": "Blood pressure",
+        "range": "concern if sustained >140/90 mmHg",
+        "why": "melanocortin agonism raises blood pressure and heart rate via sympathetic outflow",
+        "when": "if symptomatic (headache, palpitations)",
+        "tier": 2
+      },
+      {
+        "marker": "Creatine kinase (CK)",
+        "range": "markedly elevated (e.g. >1000 U/L) suggests muscle injury",
+        "why": "rare rhabdomyolysis has been reported; checked if severe muscle pain or dark urine occurs",
+        "when": "only if muscle symptoms appear",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Personal history of melanoma, atypical/dysplastic nevus syndrome, or numerous moles",
+        "advice": "Must not use it; MT-II darkens and multiplies nevi and melanoma has been reported in users, making pre-existing mole risk especially dangerous.",
+        "tier": 2
+      },
+      {
+        "flag": "Family history of melanoma, or fair skin with heavy freckling/many nevi",
+        "advice": "Avoid entirely; baseline melanoma risk compounds the unknown long-term skin-cancer concern.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Do not use; there is no human safety data.",
+        "tier": 3
+      },
+      {
+        "flag": "Cardiovascular disease or uncontrolled hypertension",
+        "advice": "Avoid; the drug can raise blood pressure and heart rate.",
+        "tier": 2
+      },
+      {
+        "flag": "Conditions predisposing to priapism (e.g. sickle cell disease, myeloma, prior priapism)",
+        "advice": "Avoid; MT-II commonly causes prolonged erections that can become an emergency.",
+        "tier": 2
+      }
+    ]
+  },
+  "cagrilintide-cagrisema": {
+    "access": "unapproved",
+    "accessNote": "An investigational long-acting amylin analog still in phase 3 obesity trials, tested both alone and stacked with semaglutide; it has no regulatory approval for human use, so anything obtained outside a trial comes from unregulated grey-market peptide suppliers of unknown identity and purity.",
+    "overdose": {
+      "line": "Excess dosing drives the drug's own effects to extremes: relentless nausea, repeated vomiting, and diarrhea that can cause dehydration, electrolyte loss, and pre-renal acute kidney injury; protracted vomiting also carries an aspiration risk. Because it profoundly slows gastric emptying, an overdose can leave the stomach retaining food and fluid for many hours. Risk of dangerously low blood sugar is low with the amylin analog alone but rises sharply when it is combined with semaglutide or any other glucose-lowering drug.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no established safe do-it-yourself dose: trial regimens rely on slow week-by-week titration under supervision precisely because the gastrointestinal effects are severe (gastrointestinal adverse events affected roughly 80% of participants on the combination in phase 3), and skipping that titration invites intractable vomiting and dehydration. Grey-market vials carry no guarantee of identity, concentration, sterility, or endotoxin content, so a self-injector cannot know the true dose or whether the product is contaminated. Combining it with semaglutide or insulin without medical oversight compounds both the volume-depletion and hypoglycemia danger.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Serum creatinine / eGFR",
+        "why": "Repeated vomiting and diarrhea can cause dehydration and pre-renal acute kidney injury; a rising creatinine or falling eGFR flags volume depletion.",
+        "range": "eGFR below ~60 mL/min/1.73m2, or creatinine rising >0.3 mg/dL above baseline, signals concern",
+        "when": "Baseline and if persistent GI symptoms occur",
+        "tier": 2
+      },
+      {
+        "marker": "Serum electrolytes (sodium, potassium, bicarbonate)",
+        "why": "Protracted vomiting drives hypokalemia and metabolic alkalosis; low sodium can accompany dehydration.",
+        "range": "Potassium <3.5 mmol/L or bicarbonate abnormal indicates vomiting-related disturbance",
+        "when": "If persistent vomiting or diarrhea occurs",
+        "tier": 2
+      },
+      {
+        "marker": "Lipase",
+        "why": "Acute pancreatitis is a monitored class-level precaution for incretin/amylin agents; severe persistent abdominal pain plus a raised lipase warrants stopping and evaluation.",
+        "range": ">3x upper limit of normal with symptoms suggests pancreatitis",
+        "when": "If severe abdominal pain develops",
+        "tier": 1
+      },
+      {
+        "marker": "Resting heart rate",
+        "why": "Amylin and incretin therapies can raise heart rate; cagrilintide's own effect is modest (mean ~2-3 bpm) but larger or symptomatic increases should be checked.",
+        "range": "Sustained rise well above the typical few-bpm range warrants review",
+        "tier": 2
+      },
+      {
+        "marker": "Blood glucose (fasting / self-monitored)",
+        "why": "Hypoglycemia risk is meaningful when the amylin analog is combined with semaglutide, insulin, or a sulfonylurea.",
+        "range": "<70 mg/dL (3.9 mmol/L) is hypoglycemia",
+        "when": "Especially relevant with any concurrent glucose-lowering drug",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Weight-loss agents are not used in pregnancy or lactation; anyone pregnant, planning pregnancy, or nursing must not take it.",
+        "tier": 3
+      },
+      {
+        "flag": "Personal or family history of medullary thyroid carcinoma or MEN2",
+        "advice": "This is a hard contraindication for the semaglutide component when stacked, and is applied cautiously to the class.",
+        "tier": 2
+      },
+      {
+        "flag": "Prior pancreatitis",
+        "advice": "A history of pancreatitis is a precautionary contraindication given the incretin/amylin class signal and its effect on GI motility.",
+        "tier": 2
+      },
+      {
+        "flag": "Severe gastroparesis or serious gastrointestinal disease",
+        "advice": "The drug markedly slows gastric emptying, which can dangerously worsen pre-existing delayed emptying.",
+        "tier": 2
+      },
+      {
+        "flag": "Type 1 diabetes or concurrent insulin/sulfonylurea use",
+        "advice": "Amylin analogs added to insulin have a documented severe-hypoglycemia risk; this combination must only ever be managed by a physician.",
+        "tier": 2
+      }
+    ]
+  },
+  "setmelanotide-imcivree": {
+    "access": "prescription",
+    "accessNote": "Approved only for chronic weight management in rare genetic obesity of the melanocortin-4 pathway (POMC, PCSK1 or LEPR deficiency, Bardet-Biedl syndrome) and hypothalamic obesity, confirmed by genetic or clinical diagnosis and started under specialist supervision.",
+    "typicalDose": {
+      "line": "Given as a once-daily subcutaneous injection, always decided and titrated by the prescribing specialist. For reference only, in adults and children 12 and older it is typically started at 2 mg daily and adjusted after about 2 weeks up to a maximum of 3 mg daily; younger children start at a lower dose and are titrated in smaller steps. This is not a recommendation or a self-dosing instruction.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "There is no antidote. Excess drug exaggerates melanocortin activation: marked skin darkening and new or darkening moles, severe nausea and vomiting, headache, and in males spontaneous or prolonged painful erections (an erection lasting over 4 hours is a urological emergency). Serious hypersensitivity, including anaphylaxis, has been reported and can be life-threatening. Any suspected overdose needs urgent medical care.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "This is a specialist-supervised injection, not a general fat-loss shot. Using it without the confirmed genetic/clinical indication carries the risks with no proven benefit. Skipping the required baseline and periodic full-body skin exams can let a melanoma be missed among the drug-induced pigment changes; ignoring mood monitoring can miss emerging depression or suicidal thoughts. Stopping reverses the pigmentation and the appetite effect, so weight is typically regained. Never adjust the dose, double up for a missed day, or inject without the prescriber's oversight.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Full-body skin and mole (nevi) examination",
+        "range": "Baseline then periodically; dermatology referral for any changing lesion",
+        "why": "The drug commonly darkens skin and existing moles by activating MC1R; regular exams are needed so a melanoma is not masked.",
+        "when": "Before starting and periodically during treatment",
+        "tier": 3
+      },
+      {
+        "marker": "Depression / suicidality screening (e.g. PHQ-type mood review)",
+        "range": "No new-onset or worsening depressive symptoms or suicidal ideation",
+        "why": "Depression and suicidal ideation are recognised adverse effects; discontinuation is considered if they appear or persist.",
+        "when": "Baseline and at follow-up visits",
+        "tier": 3
+      },
+      {
+        "marker": "Body weight / BMI (BMI-Z in children)",
+        "range": "Response typically assessed at ~12-16 weeks; continue only if clinically meaningful loss",
+        "why": "Confirms the treatment is actually working; non-responders are stopped rather than dose-escalated indefinitely.",
+        "when": "Baseline and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Growth and pubertal development (children)",
+        "range": "Track against age-appropriate growth curves",
+        "why": "Children need monitoring of growth and development on chronic therapy.",
+        "when": "Periodically in pediatric patients",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Prior serious hypersensitivity to setmelanotide or any excipient",
+        "advice": "Contraindicated; anaphylaxis and other serious hypersensitivity reactions have occurred.",
+        "tier": 3
+      },
+      {
+        "flag": "Neonates and low-birth-weight infants",
+        "advice": "Not to be used; the benzyl alcohol preservative can cause fatal 'gasping syndrome' in this group.",
+        "tier": 3
+      },
+      {
+        "flag": "Obesity not caused by the approved conditions (ordinary or lifestyle obesity)",
+        "advice": "Not indicated; benefit is unproven outside the specified melanocortin-pathway diagnoses and the risks still apply.",
+        "tier": 3
+      },
+      {
+        "flag": "History of depression or suicidal ideation",
+        "advice": "Increased risk of recurrence; use only with close psychiatric monitoring and prescriber judgement.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Weight loss offers no benefit during pregnancy and is not recommended; discuss contraception and infant exposure with the prescriber.",
+        "tier": 2
+      }
+    ]
+  },
+  "t3-t4-thyroid-liothyronine-levothyroxine": {
+    "access": "prescription",
+    "accessNote": "Prescribed to replace missing thyroid hormone in hypothyroidism and after thyroid removal, with the dose titrated to blood tests by a doctor.",
+    "typicalDose": {
+      "line": "As a reference only, doctors titrate levothyroxine (T4) to blood tests, with full daily replacement commonly falling in the range of about 50-200 mcg once daily (started lower in older or cardiac patients), while liothyronine (T3) is usually 25-75 mcg/day in divided doses; the exact dose is a medical decision, not something to self-set.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Excess thyroid hormone causes thyrotoxicosis: fast or pounding heartbeat, palpitations, atrial fibrillation, tremor, anxiety, insomnia, sweating, heat intolerance, weight loss and diarrhea; severe overdose can progress to thyroid storm with high fever, dangerous arrhythmia, heart failure and delirium. T3 (liothyronine) acts faster and peaks sooner than T4, so overdose signs appear more abruptly.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Stopping abruptly or skipping doses lets hypothyroidism return (fatigue, and at the extreme myxedema), while doubling doses or self-dosing for fat loss pushes the body into thyrotoxicosis, driving arrhythmia, muscle wasting and accelerated bone loss; absorption and effect are also altered by calcium, iron and antacids (reduced) and by warfarin (potentiated), so changes belong with a doctor and blood tests, not guesswork.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "TSH",
+        "why": "Primary marker doctors use to titrate the dose; a suppressed (low) value signals over-replacement, a high value under-replacement.",
+        "range": "0.4-4.0 mIU/L (treatment target often ~0.5-2.5)",
+        "when": "6-8 weeks after a dose change, then periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Free T4",
+        "why": "Confirms circulating hormone is in range and cross-checks TSH.",
+        "range": "~12-22 pmol/L (0.9-1.7 ng/dL)",
+        "when": "With TSH after dose changes",
+        "tier": 3
+      },
+      {
+        "marker": "Free T3",
+        "why": "Most relevant when liothyronine (T3) is used; an elevated level flags over-dosing and toxicity risk.",
+        "range": "~3.1-6.8 pmol/L",
+        "when": "When on T3-containing therapy",
+        "tier": 2
+      },
+      {
+        "marker": "Heart rate / ECG",
+        "why": "Over-replacement raises heart rate and the risk of atrial fibrillation, especially in older adults.",
+        "range": "Resting HR roughly 60-100 bpm; watch for new irregular rhythm",
+        "when": "At review, especially with palpitations",
+        "tier": 3
+      },
+      {
+        "marker": "Bone mineral density (DEXA)",
+        "why": "Chronic over-replacement (suppressed TSH) accelerates bone loss, notably in postmenopausal women.",
+        "range": "T-score above -1.0 normal",
+        "when": "With long-term over-replacement or risk factors",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Untreated adrenal insufficiency",
+        "advice": "Cortisol deficiency must be corrected first, or starting thyroid hormone can precipitate an adrenal crisis.",
+        "tier": 3
+      },
+      {
+        "flag": "Untreated (overt) thyrotoxicosis",
+        "advice": "The body already has too much thyroid hormone, so adding more is contraindicated until treated.",
+        "tier": 3
+      },
+      {
+        "flag": "Recent acute myocardial infarction",
+        "advice": "Raising metabolic and cardiac demand soon after a heart attack can worsen ischemia; only under specialist care.",
+        "tier": 3
+      },
+      {
+        "flag": "Uncontrolled coronary artery disease or arrhythmia",
+        "advice": "Increased cardiac workload can trigger angina or arrhythmia; requires cautious, doctor-supervised titration.",
+        "tier": 2
+      }
+    ]
+  },
+  "synephrine-higenamine-orlistat-brief": {
+    "access": "unapproved",
+    "accessNote": "Higenamine is a WADA-banned beta-agonist sold only as a grey-market \"research\"/supplement stimulant, and bitter-orange synephrine is an unregulated adrenergic supplement ingredient — neither is an approved human medicine; orlistat is a separately approved lipase-inhibitor drug (some strengths prescription, some over-the-counter) and is not the same thing as the stimulants it is grouped with here.",
+    "overdose": {
+      "line": "Stimulant toxicity from synephrine or higenamine presents as chest pain, severe hypertension, a racing or irregular heartbeat, palpitations, agitation, tremor, headache and overheating; documented severe cases in synephrine-supplement users include heart attack, ischaemic stroke and ventricular fibrillation, and risk is sharply amplified when combined with caffeine or other stimulants. Orlistat itself has low acute toxicity — overdose effects are mainly severe gastrointestinal (oily diarrhoea, cramping, urgency).",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no established safe do-it-yourself dose: independent testing found higenamine supplements mislabeled from trace amounts up to 62 mg per serving (potential intake ~110 mg/day), so the actual amount ingested is unknowable. Stacking these stimulants with caffeine, other pre-workout agents or decongestants multiplies cardiac and blood-pressure risk, and combining synephrine with an MAO inhibitor can trigger a hypertensive crisis. Orlistat misuse also blunts absorption of fat-soluble vitamins and of co-taken medicines (e.g. thyroid hormone, ciclosporin, anticoagulants, antiepileptics).",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Resting blood pressure and heart rate",
+        "why": "Synephrine and higenamine are adrenergic stimulants that raise both; sustained elevation (e.g. >140/90 mmHg or resting HR >100 bpm) signals cardiovascular strain.",
+        "tier": 3,
+        "range": "Normal ~<120/80 mmHg; HR 60-100 bpm",
+        "when": "Baseline and during use"
+      },
+      {
+        "marker": "ECG / QTc interval",
+        "why": "Synephrine shows proarrhythmic effects in cardiomyocyte studies; QTc prolongation and arrhythmia are the mechanism behind reported syncope and sudden cardiac events.",
+        "tier": 2,
+        "range": "QTc concerning >450-470 ms",
+        "when": "If palpitations, syncope or chest pain"
+      },
+      {
+        "marker": "Troponin",
+        "why": "Rises with acute cardiac injury — used to confirm myocardial infarction reported after synephrine-containing products.",
+        "tier": 2,
+        "range": "Elevated above assay upper reference limit",
+        "when": "During chest pain / suspected cardiac event"
+      },
+      {
+        "marker": "25-hydroxyvitamin D (and vitamins A, E)",
+        "why": "Orlistat blocks absorption of fat-soluble vitamins A, D, E and K; deficiency develops over months of use.",
+        "tier": 3,
+        "range": "Vitamin D sufficiency ~50-125 nmol/L (20-50 ng/mL)",
+        "when": "Periodically with orlistat use"
+      },
+      {
+        "marker": "INR",
+        "why": "Orlistat reduces vitamin K absorption and can destabilise warfarin, raising bleeding risk.",
+        "tier": 3,
+        "range": "Off anticoagulant ~0.8-1.2; therapeutic on warfarin 2-3",
+        "when": "With orlistat, especially on warfarin"
+      },
+      {
+        "marker": "ALT / AST (liver enzymes)",
+        "why": "Rare but serious hepatocellular injury and acute liver failure have been reported with orlistat (FDA review: 13 severe cases, 2 deaths, 3 transplants).",
+        "tier": 2,
+        "range": "ALT normal roughly <40 U/L",
+        "when": "If jaundice, dark urine or right-upper-quadrant pain"
+      },
+      {
+        "marker": "Serum creatinine / eGFR and urinary oxalate",
+        "why": "Orlistat increases enteric oxalate absorption, causing calcium-oxalate stones and oxalate nephropathy with acute kidney injury in postmarketing reports.",
+        "tier": 2,
+        "range": "Creatinine ~60-110 umol/L; rising level flags injury",
+        "when": "In those at renal risk or with stone history"
+      },
+      {
+        "marker": "TSH / free T4",
+        "why": "Orlistat lowers levothyroxine absorption, which can worsen hypothyroidism in treated patients.",
+        "tier": 3,
+        "range": "TSH ~0.4-4.0 mIU/L",
+        "when": "In people on thyroid hormone"
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Cardiovascular disease — hypertension, coronary artery disease, arrhythmia, or prior heart attack or stroke",
+        "advice": "The stimulant components raise heart rate and blood pressure and are linked to angina, infarction, arrhythmia and stroke; these conditions are a hard stop.",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent caffeine, other stimulants, decongestants, or an MAO inhibitor",
+        "advice": "Combinations sharply amplify cardiovascular risk, and synephrine with an MAO inhibitor can provoke a hypertensive crisis.",
+        "tier": 2
+      },
+      {
+        "flag": "Hyperthyroidism or phaeochromocytoma",
+        "advice": "Adrenergic stimulation compounds an already catecholamine-driven or hypermetabolic state.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "None of these agents is established as safe; orlistat's vitamin malabsorption and the stimulants' cardiovascular effects are both unsuitable in pregnancy.",
+        "tier": 3
+      },
+      {
+        "flag": "Chronic malabsorption syndrome or cholestasis",
+        "advice": "These are explicit contraindications to orlistat, which further impairs nutrient absorption.",
+        "tier": 3
+      },
+      {
+        "flag": "History of calcium-oxalate kidney stones or chronic kidney disease",
+        "advice": "Orlistat increases oxalate absorption and can precipitate stones or oxalate nephropathy with kidney failure.",
+        "tier": 2
+      },
+      {
+        "flag": "Organ-transplant or on ciclosporin, warfarin, levothyroxine or antiepileptics",
+        "advice": "Orlistat lowers absorption of these narrow-margin drugs, risking transplant rejection, clotting instability or loss of seizure/thyroid control.",
+        "tier": 3
+      },
+      {
+        "flag": "Eating disorder",
+        "advice": "Fat-loss agents can entrench disordered eating and purging behaviour and carry no benefit that offsets that harm.",
+        "tier": 2
+      }
+    ]
+  },
+  "insulin-anabolic-misuse": {
+    "access": "prescription",
+    "accessNote": "A hormone prescribed to control blood glucose in type 1 and type 2 diabetes; it is diverted and injected by some bodybuilders to drive nutrient uptake into muscle, where a single dosing error can be fatal.",
+    "typicalDose": {
+      "line": "There is no standard dose — an endocrinologist individually titrates insulin against a person's own blood-glucose readings, body weight, diet, and remaining pancreatic function, usually as a basal (long-acting) plus mealtime (rapid-acting) regimen adjusted continuously. The correct amount for one person can be lethal for another, so no reference figure can be applied without medical supervision.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Excess insulin drives blood glucose dangerously low (hypoglycemia): early sweating, tremor, hunger, palpitations and anxiety, progressing to confusion, slurred speech, blurred vision and aggression, then seizures, loss of consciousness, coma and death. In someone without diabetes — the anabolic-misuse scenario — even a few extra units taken without eating enough carbohydrate can be fatal, and rebound spikes plus neuroglycopenia can cause permanent brain injury. Hypoglycemia can recur for hours after the injectable's action outlasts a single meal.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "For a prescribed patient, skipping or under-dosing risks dangerous hyperglycemia and ketoacidosis, while doubling up, injecting without eating, mixing up rapid- and long-acting types, or stacking on alcohol or a missed meal causes severe hypoglycemia. Non-medical anabolic use — injecting insulin without diabetes to force muscle glucose uptake — is a leading cause of hypoglycemic death in bodybuilding: there is no monitored feedback, action peaks unpredictably, and users often inject alone. Never abruptly change, self-adjust, or combine insulin regimens outside a doctor's direction.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood glucose (capillary/self-monitored)",
+        "range": "target ~4.0–7.0 mmol/L (72–126 mg/dL); <3.9 mmol/L is hypoglycemia",
+        "why": "The direct, minute-to-minute safety measure — the value that tips into life-threatening lows on overdose.",
+        "tier": 3,
+        "when": "Multiple times daily on insulin; before/after meals and exercise"
+      },
+      {
+        "marker": "HbA1c",
+        "range": "individualized target, often <7.0% (53 mmol/mol)",
+        "why": "Reflects average glucose control over ~3 months and guides whether a prescribed dose is right.",
+        "tier": 3,
+        "when": "Every 3–6 months"
+      },
+      {
+        "marker": "Serum potassium",
+        "range": "3.5–5.0 mmol/L; <3.5 is hypokalemia",
+        "why": "Insulin shifts potassium into cells; large or excess doses can drop serum potassium enough to cause cardiac arrhythmia.",
+        "tier": 3,
+        "when": "During high-dose or acute treatment and in overdose management"
+      },
+      {
+        "marker": "C-peptide",
+        "range": "reflects endogenous insulin output",
+        "why": "In a suspected non-diabetic misuse or overdose, a low C-peptide alongside high measured insulin points to injected exogenous insulin.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "No diagnosed diabetes / anabolic 'muscle-building' use",
+        "advice": "Injecting insulin without a genuine medical indication has no safe dose and is a documented cause of fatal hypoglycemia — this is exactly the misuse pattern to avoid.",
+        "tier": 3
+      },
+      {
+        "flag": "Current or unrecognized hypoglycemia (hypoglycemia unawareness)",
+        "advice": "Insulin must never be given during a low, and people who cannot feel their lows are at very high risk of a severe unheralded episode.",
+        "tier": 3
+      },
+      {
+        "flag": "Inability to reliably monitor glucose or access fast carbohydrate",
+        "advice": "Safe use depends on frequent glucose checks and immediate treatment of lows; without both, a routine dose can become lethal.",
+        "tier": 3
+      },
+      {
+        "flag": "Low serum potassium (hypokalemia)",
+        "advice": "Insulin lowers potassium further and can precipitate dangerous arrhythmias until the level is corrected.",
+        "tier": 3
+      },
+      {
+        "flag": "Significant kidney or liver impairment",
+        "advice": "Reduced insulin clearance prolongs its action and markedly raises hypoglycemia risk, requiring specialist dose adjustment.",
+        "tier": 2
+      }
+    ]
+  },
+  "letrozole-raloxifene-cabergoline-pregnenolone-proviron-brief": {
+    "access": "prescription",
+    "accessNote": "Each is an approved medicine for a distinct condition — letrozole for hormone-receptor-positive breast cancer, raloxifene for osteoporosis, cabergoline for high prolactin, and mesterolone as an androgen where approved — and none is intended for the physique or \"cycle-support\" uses they get diverted to.",
+    "typicalDose": {
+      "line": "Reference ranges a physician selects and monitors, never a target to self-set: letrozole is commonly 2.5 mg once daily for breast cancer; raloxifene 60 mg once daily; cabergoline is started low (about 0.25 mg twice weekly) and titrated slowly; oral mesterolone is often 25-75 mg daily in divided doses in countries where it is approved. The correct drug, dose, and duration depend entirely on the specific diagnosis and cannot be generalised.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Harm is drug-specific: excess cabergoline can cause orthostatic hypotension and fainting, severe nausea, hallucinations, compulsive/impulse-control behaviour, and — with sustained high doses — fibrotic heart-valve damage. Over-suppressing estrogen with letrozole produces crippling joint and bone pain, accelerated bone loss, and adverse lipid shifts. Raloxifene excess raises the risk of venous clots (DVT/PE) and stroke. Too much androgen from mesterolone drives acne, aggression, thickened blood, and worsened cholesterol. There is no simple antidote — treatment is supportive.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Skipping labs, self-adjusting, or stacking these to chase a physique strips away the monitoring that makes them safe: driving estradiol toward zero with letrozole wrecks joints, libido, mood, and bone density; unsupervised cabergoline risks valve fibrosis and dangerous blood-pressure drops; combining any of them with other hormones multiplies clot and cardiac risk. Doubling a dose, stopping abruptly, or using them without a diagnosis can rebound the very hormone being controlled and cause lasting harm.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Estradiol",
+        "range": "kept within a physiologic range (roughly 10-40 pg/mL in men), not crushed toward zero",
+        "when": "before and periodically during letrozole use",
+        "why": "letrozole blocks aromatase; over-suppression causes joint pain, bone loss, and lipid and mood problems",
+        "tier": 3
+      },
+      {
+        "marker": "Prolactin",
+        "range": "men <15-20 ng/mL; women <25 ng/mL",
+        "when": "at baseline and to titrate cabergoline",
+        "why": "cabergoline is dosed to normalise an elevated prolactin, the actual therapeutic target",
+        "tier": 3
+      },
+      {
+        "marker": "Echocardiogram (valve assessment)",
+        "range": "no new or progressive valve regurgitation/fibrosis",
+        "when": "baseline and periodically on longer-term or higher-dose (higher cumulative) cabergoline",
+        "why": "ergot dopamine agonists are linked to fibrotic valvular heart disease; the risk is cumulative-dose and duration related and is mainly seen at high exposure, less certain at usual prolactin-treatment doses",
+        "tier": 2
+      },
+      {
+        "marker": "Lipid panel (LDL, HDL, triglycerides)",
+        "range": "clinician-defined targets; watch for falling HDL",
+        "when": "baseline and periodically",
+        "why": "aromatase inhibitors and androgens both worsen the lipid profile and can suppress HDL",
+        "tier": 3
+      },
+      {
+        "marker": "Bone mineral density (DEXA, T-score)",
+        "range": "T-score above -2.5; track change over time",
+        "when": "before and during prolonged letrozole or in osteoporosis on raloxifene",
+        "why": "estrogen suppression accelerates bone loss; raloxifene is used partly to protect bone",
+        "tier": 3
+      },
+      {
+        "marker": "Liver enzymes (ALT/AST)",
+        "range": "roughly <40 U/L",
+        "when": "baseline and periodically on oral androgen use",
+        "why": "oral androgens can raise transaminases; mesterolone is not 17-alpha-alkylated and is less hepatotoxic than alkylated oral steroids, so this is a general precaution rather than a strong signal for this drug",
+        "tier": 1
+      },
+      {
+        "marker": "Haematocrit / haemoglobin",
+        "range": "flag haematocrit above ~52% in men",
+        "when": "periodically on androgen use",
+        "why": "androgens stimulate red-cell production, thickening blood and raising clot risk",
+        "tier": 2
+      },
+      {
+        "marker": "Total testosterone, LH, FSH",
+        "range": "interpreted against age and clinical context",
+        "when": "baseline and follow-up",
+        "why": "exogenous androgen and estrogen manipulation suppress the HPT axis and gonadal output",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or trying to conceive",
+        "advice": "Letrozole is teratogenic, raloxifene is contraindicated in pregnancy, and androgens virilise a female fetus — none should be used by anyone who is or may become pregnant without a specific, supervised indication.",
+        "tier": 3
+      },
+      {
+        "flag": "History of venous thromboembolism or stroke (DVT, PE, clotting disorder)",
+        "advice": "Raloxifene increases clot and stroke risk and is contraindicated with a prior clotting event; disclose any such history to a prescriber.",
+        "tier": 3
+      },
+      {
+        "flag": "Existing heart-valve disease or fibrotic disorders",
+        "advice": "Cabergoline can worsen valvular and other fibrosis and should be avoided in people with valvulopathy or a fibrotic condition.",
+        "tier": 3
+      },
+      {
+        "flag": "Prostate cancer or male breast cancer",
+        "advice": "Androgens such as mesterolone can stimulate hormone-sensitive prostate and breast cancers and are contraindicated in these conditions.",
+        "tier": 3
+      },
+      {
+        "flag": "Uncontrolled or severe hypertension",
+        "advice": "Cabergoline can cause marked blood-pressure changes and needs blood pressure controlled and monitored before and during use.",
+        "tier": 2
+      },
+      {
+        "flag": "No medical diagnosis / normal hormone levels",
+        "advice": "Using these to manipulate hormones without a diagnosis removes any therapeutic rationale and exposes the person to all the risks with none of the benefit — a doctor's assessment is required first.",
+        "tier": 2
+      }
+    ]
+  },
+  "epo-erythropoietin": {
+    "access": "prescription",
+    "accessNote": "A biologic (epoetin) prescribed to correct anemia in chronic kidney disease, chemotherapy, and select other conditions; also a banned performance-enhancing drug in sport.",
+    "typicalDose": {
+      "line": "For reference only, not a recommendation: a physician individualizes the dose by body weight and lab values, starting low and titrating to the lowest dose that avoids the need for a blood transfusion. Doctors deliberately keep hemoglobin below roughly 11-12 g/dL, because pushing higher raises the risk of clots and death. Route (IV or subcutaneous), frequency, and iron support are all set and adjusted by the prescriber based on labs.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Excess EPO overshoots red-cell production and thickens the blood (polycythemia / high hematocrit), causing hyperviscosity: severe hypertension, headache, blurred vision, chest pain, and greatly increased risk of clots, deep vein thrombosis, pulmonary embolism, stroke, heart attack, and seizures. Dehydration compounds it. In endurance athletes, dangerously high hematocrit has caused fatal clots, sometimes during sleep when heart rate is low. A separate danger is pure red cell aplasia from anti-EPO antibodies, which paradoxically leaves the person severely and transfusion-dependently anemic.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Not following the prescription is dangerous: overshooting the hemoglobin target, self-adjusting to chase a higher number, or continuing without monitoring drives hematocrit into thrombotic territory and can cause stroke or heart attack. Skipping iron support blunts the effect and prompts risky dose escalation; abrupt changes destabilize hemoglobin. Non-medical use for sport or 'endurance' has no legitimate dose, is done without lab monitoring, and has directly killed athletes via clots; it is also banned in all sanctioned sport.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Hemoglobin / hematocrit",
+        "why": "Primary safety and efficacy monitor; kept controlled (commonly Hb ~10-11 g/dL) and never allowed to rise too fast or too high, as overshoot drives clot and death risk.",
+        "range": "Hb target roughly 10-11 g/dL; reduce/interrupt if approaching or exceeding 11 g/dL",
+        "when": "Weekly at start/after dose change, then monthly once stable",
+        "tier": 3
+      },
+      {
+        "marker": "Blood pressure",
+        "why": "EPO commonly raises BP; uncontrolled hypertension is a contraindication and a red flag for hypertensive crisis/seizure.",
+        "range": "Kept controlled, e.g. <140/90 mmHg",
+        "when": "Each visit / dosing",
+        "tier": 3
+      },
+      {
+        "marker": "Ferritin and transferrin saturation (TSAT)",
+        "why": "Adequate iron is needed for the response; low iron blunts EPO and leads to unsafe dose escalation.",
+        "range": "Ferritin >100 mcg/L; TSAT >20%",
+        "when": "Before starting and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Reticulocyte count",
+        "why": "Confirms marrow response; a falling count on adequate dosing can signal pure red cell aplasia from anti-EPO antibodies.",
+        "when": "Baseline and if response is lost",
+        "tier": 2
+      },
+      {
+        "marker": "Serum potassium",
+        "why": "Monitored particularly in kidney disease as red-cell mass and dialysis dynamics shift.",
+        "when": "Periodically in CKD",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Uncontrolled hypertension",
+        "advice": "Must not start until blood pressure is controlled; EPO raises BP and can precipitate hypertensive crisis or seizures.",
+        "tier": 3
+      },
+      {
+        "flag": "Pure red cell aplasia that began after EPO or other erythropoietin agents (anti-EPO antibodies)",
+        "advice": "Must not take EPO; antibodies neutralize the drug and the body's own erythropoietin.",
+        "tier": 3
+      },
+      {
+        "flag": "Serious hypersensitivity to the product or its components",
+        "advice": "Anaphylaxis and severe skin reactions have occurred; do not use.",
+        "tier": 3
+      },
+      {
+        "flag": "Active cancer where the goal is cure and anemia is not chemo-induced",
+        "advice": "ESAs have shortened survival and hastened tumor progression in several cancers; use only under strict oncology criteria, never off-label.",
+        "tier": 2
+      },
+      {
+        "flag": "History of stroke, heart attack, or clotting disorder",
+        "advice": "Higher hemoglobin targets increase thrombotic events; requires the lowest possible dose and close specialist oversight.",
+        "tier": 3
+      },
+      {
+        "flag": "Anyone seeking it for athletic performance",
+        "advice": "No safe non-medical dose exists; unmonitored use has caused fatal clots and it is banned in sport.",
+        "tier": 3
+      }
+    ]
+  },
+  "aod-9604-fragment-176-191": {
+    "access": "unapproved",
+    "accessNote": "A synthetic fragment of human growth hormone (residues 176-191) studied for obesity; its Phase IIb trial failed the primary endpoint in 2007 and development was abandoned, so it has never been approved as a medicine anywhere and is sold only as a grey-market research/injectable peptide.",
+    "overdose": {
+      "line": "There is no established human toxic threshold: across roughly 900 trial subjects it was tolerated much like placebo with no dose-limiting toxicity, so an isolated large dose of pure peptide has no well-defined poisoning syndrome. The concrete acute danger comes almost entirely from the unregulated injectable itself — bacterial or endotoxin contamination and non-sterile reconstitution can cause fever, chills, injection-site infection, abscess, and in severe cases bloodstream infection (sepsis), regardless of the peptide dose.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose because no dose was ever approved and, unlike the pharmaceutical-grade product used in trials, grey-market vials have unverified identity, purity, and actual peptide content, and are reconstituted and injected without sterile technique. Anyone using it is taking on injection and contamination risk for a compound that failed to produce meaningful fat loss in its pivotal trial — real risk with no demonstrated benefit.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Fasting glucose / HbA1c",
+        "range": "Fasting 4.0-5.5 mmol/L; HbA1c <5.7%",
+        "when": "Baseline and if used",
+        "why": "Trials showed no adverse effect on glucose metabolism, but any GH-axis peptide warrants monitoring for impaired glucose handling.",
+        "tier": 2
+      },
+      {
+        "marker": "IGF-1",
+        "range": "Age/sex-specific reference range",
+        "when": "Baseline and periodically",
+        "why": "The fragment was designed not to raise IGF-1 (confirmed in trials); a rise would signal contamination with full-length GH or mislabelled product.",
+        "tier": 2
+      },
+      {
+        "marker": "CRP / white cell count",
+        "range": "CRP <5 mg/L; WBC 4-11 x10^9/L",
+        "when": "If fever, redness, or pain after injection",
+        "why": "Detects injection-site or systemic infection from a non-sterile or contaminated preparation.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No human safety data exist in pregnancy or lactation; an unapproved injectable should be avoided entirely.",
+        "tier": 3
+      },
+      {
+        "flag": "Active or suspected cancer",
+        "advice": "Growth-hormone-axis peptides are theoretically undesirable with active malignancy; avoid without oncology input.",
+        "tier": 1
+      },
+      {
+        "flag": "Children and adolescents",
+        "advice": "No data in the developing; an unapproved GH fragment must not be used.",
+        "tier": 3
+      },
+      {
+        "flag": "Anyone unable to inject sterilely or verify the product",
+        "advice": "Because it is only available as an unregulated injectable of unknown purity, the contamination and infection risk applies to every user.",
+        "tier": 2
+      }
+    ]
+  },
+  "mgf-peg-mgf": {
+    "access": "unapproved",
+    "accessNote": "A synthetic splice variant of IGF-1 (IGF-1Ec); the product sold as \"MGF/PEG-MGF\" is its C-terminal E-domain peptide, marketed only as a \"research chemical.\" It has never completed human clinical trials, so no safety, dosing, or purity standards exist for people.",
+    "overdose": {
+      "line": "No toxic threshold has ever been characterised in humans — the peptide has never been formally studied for safety, so any \"overdose\" is entirely uncharted and its systemic effects are unknown. The most concrete and immediate danger is not the peptide's pharmacology but the injection of an unregulated product: research-grade vials can carry bacterial contamination or bacterial endotoxin, which can trigger fever, rigors, injection-site abscess and, rarely, sepsis — and there is no way to verify what a grey-market vial actually contains.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no safe do-it-yourself dose because none has ever been established in a controlled human study, and the purity, actual peptide content and sterility of research-grade vials are unverified — self-reconstitution with non-sterile technique risks contamination, endotoxin reactions and abscesses. Mechanistically, MGF is a growth- and proliferation-promoting peptide, so chronic use carries a plausible but unquantified concern about stimulating the growth of undiagnosed or pre-existing abnormal cells; this risk cannot be dosed away.",
+      "tier": 1
+    },
+    "biomarkers": [
+      {
+        "marker": "IGF-1 (serum)",
+        "range": "age/sex-specific reference range",
+        "tier": 1,
+        "why": "MGF belongs to the IGF-1 family, so the IGF axis is the lab most relevant to any growth-related harm — though MGF's effect on circulating IGF-1 is poorly characterised, making this a mechanistic rather than validated marker."
+      },
+      {
+        "marker": "CRP / white cell count",
+        "range": "CRP <5 mg/L; WBC 4-11 x10^9/L",
+        "tier": 3,
+        "when": "If fever, chills or injection-site pain appear",
+        "why": "Rising inflammatory markers flag injection-related infection or an endotoxin reaction from a contaminated vial."
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Any current or past cancer, or strong family cancer history",
+        "advice": "Must not use — MGF is a growth- and proliferation-promoting peptide and could accelerate the growth of malignant or premalignant cells.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Must not use — an unapproved growth-factor peptide with zero reproductive safety data.",
+        "tier": 3
+      },
+      {
+        "flag": "Under 18 or still growing",
+        "advice": "Must not use — growth-factor signalling during development carries unquantified risk.",
+        "tier": 2
+      },
+      {
+        "flag": "Active infection or immunocompromise",
+        "advice": "Must not use — injecting a non-sterile, unregulated product markedly raises infection and sepsis risk.",
+        "tier": 2
+      }
+    ]
+  },
+  "dsip-delta-sleep-inducing-peptide-emideltide": {
+    "access": "unapproved",
+    "accessNote": "Sold only as a grey-market \"research chemical\" labelled not-for-human-use; no regulator (FDA, EMA, TGA, Health Canada) has approved it for sleep or any condition. The FDA had placed it in the compounding category reserved for substances raising significant safety concerns (citing immunogenicity); as of April 2026 it was removed from that category and is under FDA advisory (PCAC) review — it remains an unapproved substance, not a cleared medicine.",
+    "overdose": {
+      "line": "No human toxic dose has ever been defined, and animal studies show unusually low acute lethality — but that is not reassurance: grey-market vials contain unknown, unverified amounts of peptide, so any 'overdose' is unquantifiable. Reported dose-related effects include headache, nausea, dizziness or vertigo, excessive drowsiness and transient drops in blood pressure (best documented after intravenous use); the sharper acute danger is a febrile or anaphylactic reaction to bacterial endotoxin or impurities in non-sterile injectable material.",
+      "tier": 1
+    },
+    "misuse": {
+      "line": "There is no safe DIY dose because DSIP has never completed the trials that would establish one. Grey-market product varies in purity, concentration and sterility, so every self-injection carries unknown-content, contamination and immunogenicity risk — the FDA has cited immunogenicity, meaning the body can mount an immune response against the injected peptide. Reconstituting and injecting an unapproved research chemical at home has no dosing standard, no quality control and no medical oversight.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "CRP (and ESR)",
+        "range": "CRP <3 mg/L; ESR <20 mm/hr",
+        "when": "if fever, injection-site reaction or feeling unwell after use",
+        "why": "Rising inflammatory markers flag an infectious or inflammatory reaction to non-sterile injected material — the most realistic acute harm.",
+        "tier": 2
+      },
+      {
+        "marker": "Full blood count (WBC)",
+        "range": "WBC 4-11 x10^9/L",
+        "when": "if signs of infection or systemic reaction",
+        "why": "A raised or abnormal white-cell count points to infection or an immune response to contaminated material.",
+        "tier": 2
+      },
+      {
+        "marker": "Anti-drug (anti-peptide) antibodies",
+        "range": "qualitative; specialist assay only",
+        "when": "if immunogenicity is suspected",
+        "why": "The FDA has cited immunogenicity concern for DSIP; antibodies raised against the peptide could in principle cross-react with the body's own signalling peptides. Testing is not routinely available.",
+        "tier": 1
+      },
+      {
+        "marker": "Liver enzymes (ALT/AST) and creatinine/eGFR",
+        "range": "ALT/AST <40 U/L; creatinine ~60-110 umol/L",
+        "when": "baseline and if unwell after use",
+        "why": "Not a known DSIP target-organ effect, but a general safety screen for injury from unknown contaminants in unregulated product.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data exist in pregnancy or lactation; an unapproved injectable peptide must be avoided entirely.",
+        "tier": 3
+      },
+      {
+        "flag": "Children and adolescents",
+        "advice": "No data in developing humans; must not be used.",
+        "tier": 3
+      },
+      {
+        "flag": "History of anaphylaxis or hypersensitivity to peptides or injectables",
+        "advice": "Non-sterile grey-market peptides carry real anaphylaxis risk; prior severe allergic reactions make any use dangerous.",
+        "tier": 2
+      },
+      {
+        "flag": "Autoimmune disease",
+        "advice": "The documented immunogenicity concern is more hazardous where the immune system is already dysregulated.",
+        "tier": 1
+      },
+      {
+        "flag": "Use of sedatives, opioids or other CNS depressants, or a tendency to low blood pressure",
+        "advice": "Reported drowsiness and blood-pressure lowering could compound with these; the interaction is uncharacterised, so avoid.",
+        "tier": 1
+      }
+    ]
+  },
+  "cerebrolysin-ara-290-brief": {
+    "access": "unapproved",
+    "accessNote": "Cerebrolysin is a porcine-brain-derived peptide mixture licensed only in certain countries (e.g. Russia, China, South Korea) for stroke and dementia and never FDA/EMA-approved, while ARA-290 (cibinetide) is an investigational Phase-2 EPO-derived peptide with no marketing approval anywhere.",
+    "overdose": {
+      "line": "Excess or rapid injection of Cerebrolysin can trigger hyperventilation, dizziness, agitation, flushing, chills and blood-pressure swings, and because it is a foreign porcine protein it can provoke hypersensitivity reactions up to anaphylaxis; it can also precipitate seizures in susceptible people. The dominant acute danger for both peptides is non-sterile, unverified grey-market vials, where injection can cause abscess, cellulitis, endotoxin/pyrogen fever-and-rigor reactions, and bloodstream infection.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "There is no established safe DIY dose: human dosing for both compounds exists only inside monitored clinical settings or trials, and grey-market injectables are unregulated for identity, purity, dose and sterility. Self-injecting a foreign porcine-derived protein (Cerebrolysin) without oversight risks allergic reactions and seizures, ARA-290 human safety data come only from short supervised studies, and reconstituting or injecting unverified vials adds infection and immune-reaction risk on top.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "CRP + white cell count",
+        "range": "CRP <5 mg/L; WBC 4-11 x10^9/L normal",
+        "when": "if fever, or redness/pain/swelling at an injection site",
+        "why": "Non-sterile grey-market injection is the leading harm; rising CRP and WBC flag injection-site or systemic infection.",
+        "tier": 3
+      },
+      {
+        "marker": "Serum tryptase / eosinophils",
+        "range": "baseline tryptase ~1-11.4 ng/mL; an acute rise of >20% + 2 ng/mL over baseline supports mast-cell activation",
+        "when": "after any rash, wheeze, swelling or collapse post-injection",
+        "why": "Cerebrolysin is porcine-derived; an acute tryptase or eosinophil rise confirms a hypersensitivity/anaphylactic reaction to the foreign protein.",
+        "tier": 2
+      },
+      {
+        "marker": "eGFR / serum creatinine",
+        "range": "eGFR <30 mL/min/1.73m2 = severe impairment",
+        "why": "Severe renal impairment is a labelled contraindication for Cerebrolysin; kidney function is checked before any clinical use because the peptide/amino-acid load is renally cleared.",
+        "tier": 2
+      },
+      {
+        "marker": "Haemoglobin / haematocrit",
+        "range": "Hct >~52% (men) / >~48% (women) flags erythrocytosis",
+        "why": "ARA-290 itself is engineered to be non-erythropoietic and does not raise red-cell mass in trials, but a mislabelled or EPO-contaminated grey-market product could raise haematocrit and clotting risk.",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Epilepsy, prior seizures, or status epilepticus",
+        "advice": "Cerebrolysin may increase seizure frequency, and epilepsy / active status epilepticus is a labelled absolute contraindication; these people must not use it.",
+        "tier": 3
+      },
+      {
+        "flag": "Known allergy to porcine products or to the preparation",
+        "advice": "Hypersensitivity to any component is an absolute contraindication and risks anaphylaxis on injection.",
+        "tier": 3
+      },
+      {
+        "flag": "Severe renal impairment",
+        "advice": "Severe renal impairment is a labelled contraindication for Cerebrolysin; excluded from clinical use without specialist assessment.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No adequate safety data for either compound; should not be used.",
+        "tier": 2
+      },
+      {
+        "flag": "Active cancer or high clotting/thrombotic risk",
+        "advice": "ARA-290 is designed to be non-erythropoietic and is not known to raise red-cell mass, so a direct proliferative/clotting risk is unproven; still, given its EPO-region origin and very limited human data, people with active malignancy or high thrombotic risk are best excluded as a precaution, and any mislabelled or EPO-contaminated grey-market vial would carry real clotting risk.",
+        "tier": 1
+      }
+    ]
+  },
+  "tretinoin-retinoids": {
+    "access": "prescription",
+    "accessNote": "Topical tretinoin is prescribed for acne and photoaging; oral retinoids such as isotretinoin are prescribed for severe acne under a mandatory pregnancy-prevention and lab-monitoring program because they cause severe birth defects.",
+    "typicalDose": {
+      "line": "For reference only, and always set by a doctor, never self-selected: topical tretinoin is prescribed in strengths from roughly 0.025% to 0.1%, usually a pea-sized amount applied thinly at night, starting low to limit irritation. Oral isotretinoin is dosed to body weight and a cumulative target decided and adjusted entirely by a dermatologist. These figures describe how clinicians prescribe it and are not a recommendation to take it.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Overusing topical tretinoin does not usually cause systemic poisoning but produces chemical-burn-like injury: intense burning, redness, swelling, peeling, and blistering. Oral retinoid overdose or accumulation causes hypervitaminosis A — headache, nausea and vomiting, dizziness, drowsiness, unsteadiness, facial flushing, severe dry cracked lips and skin, and with sustained excess, markedly raised triglycerides (pancreatitis risk), raised liver enzymes, bone and joint pain, and raised pressure around the brain (pseudotumor cerebri) causing headache and visual changes.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "The gravest misuse of oral retinoids is any use in pregnancy or without strict contraception — a single course causes severe, often fatal birth defects, which is why prescribed monthly pregnancy tests and two contraception methods are non-negotiable. Other documented harms: combining oral isotretinoin with tetracycline antibiotics (raised brain pressure), stacking it with vitamin A supplements or heavy alcohol (additive toxicity, soaring triglycerides), and self-escalating topical strength or frequency, which causes chemical burns rather than faster results. Never share a prescription or take someone else's.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Serum beta-hCG (pregnancy test)",
+        "why": "Oral retinoids are potent teratogens; pregnancy must be excluded before, during, and after treatment",
+        "range": "Negative required before dispensing, monthly during, and after stopping",
+        "when": "Baseline, monthly, and post-treatment for oral isotretinoin/acitretin",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting triglycerides",
+        "why": "Oral retinoids commonly raise triglycerides; very high levels risk pancreatitis",
+        "range": "Normal <150 mg/dL (<1.7 mmol/L); clinicians act well before 500 mg/dL",
+        "when": "Baseline then periodically on oral therapy",
+        "tier": 3
+      },
+      {
+        "marker": "ALT / AST (liver enzymes)",
+        "why": "Oral retinoids can cause dose-related hepatocellular enzyme elevation",
+        "range": "Roughly <40 U/L normal; treatment paused if persistently elevated",
+        "when": "Baseline then periodically on oral therapy",
+        "tier": 3
+      },
+      {
+        "marker": "Total and LDL cholesterol",
+        "why": "Oral retinoids can raise cholesterol alongside triglycerides",
+        "range": "Interpreted against standard lipid targets by the prescriber",
+        "when": "Baseline and periodically on oral therapy",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pregnancy or trying to conceive",
+        "advice": "Absolute contraindication for oral retinoids and avoided for topical; causes severe birth defects — effective contraception is required with oral use",
+        "tier": 3
+      },
+      {
+        "flag": "Breastfeeding",
+        "advice": "Oral retinoids are contraindicated; discuss any retinoid use while nursing with a doctor",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent tetracycline antibiotics",
+        "advice": "Combined with oral isotretinoin this raises the risk of increased pressure around the brain (pseudotumor cerebri)",
+        "tier": 3
+      },
+      {
+        "flag": "Significant liver disease or high triglycerides",
+        "advice": "Oral retinoids can worsen liver injury and lipid levels and are used with caution or avoided",
+        "tier": 3
+      },
+      {
+        "flag": "Vitamin A supplementation or existing hypervitaminosis A",
+        "advice": "Additive toxicity with oral retinoids; supplemental vitamin A should be stopped",
+        "tier": 3
+      },
+      {
+        "flag": "Broken, eczematous, or sunburned skin",
+        "advice": "Topical tretinoin causes severe irritation on compromised skin and should not be applied there",
+        "tier": 2
+      },
+      {
+        "flag": "History of depression or mood disorder",
+        "advice": "Mood should be monitored during oral isotretinoin; report new low mood, though a causal link remains debated",
+        "tier": 1
+      }
+    ]
+  },
+  "minoxidil": {
+    "access": "prescription",
+    "accessNote": "The topical solution/foam is sold over the counter for pattern hair loss, but oral minoxidil is a doctor-prescribed vasodilator used off-label at low doses for hair loss and, at higher doses, for severe treatment-resistant hypertension.",
+    "typicalDose": {
+      "line": "For reference only, and always chosen and titrated by a physician: low-dose oral minoxidil used off-label for hair loss is generally prescribed in the range of roughly 0.25-5 mg once daily (often lower in women than men), while its original antihypertensive dosing historically ran higher (an effective range of about 5-40 mg/day, usually split). The topical form for hair loss is a 2-5% solution or foam applied to the scalp. This is educational reference, not a dose to self-administer.",
+      "tier": 2
+    },
+    "overdose": {
+      "line": "Excess oral minoxidil produces exaggerated vasodilation: profound low blood pressure, dizziness or fainting, and a reflex fast heart rate. Marked salt and water retention causes rapid weight gain and swelling and can precipitate heart failure. A recognised serious complication is pericardial effusion (fluid around the heart) that can progress to cardiac tamponade, along with ECG changes and rarely myocardial ischemia. Overdose is a medical emergency.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Taking oral minoxidil without prescription and monitoring is dangerous: it is a potent vasodilator that on its own causes fluid retention and reflex tachycardia, which is why doctors typically co-prescribe a diuretic and often a beta-blocker. Self-dosing, doubling up, or combining it with other blood-pressure or heart medications can drop pressure dangerously or trigger fluid overload. Skipping the scheduled BP, weight and cardiac checks means the early warning signs of effusion or heart strain go undetected.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure",
+        "why": "Primary effect is lowering BP; monitored to avoid dangerous hypotension and to guide titration.",
+        "range": "Target individualized; symptomatic if systolic falls below ~90 mmHg",
+        "when": "At initiation and each dose change",
+        "tier": 3
+      },
+      {
+        "marker": "Heart rate",
+        "why": "Reflex tachycardia is expected and may need a beta-blocker.",
+        "range": "Concern if persistently >100 bpm at rest",
+        "when": "At initiation and follow-up",
+        "tier": 3
+      },
+      {
+        "marker": "Body weight / fluid status",
+        "why": "Detects sodium and water retention and edema before overt heart failure.",
+        "range": "Rapid gain of >1-2 kg or new edema is a flag",
+        "when": "Baseline then regularly",
+        "tier": 3
+      },
+      {
+        "marker": "ECG",
+        "why": "Screens for T-wave/ST changes and rhythm effects seen with minoxidil.",
+        "range": "Qualitative",
+        "when": "Baseline and if symptomatic",
+        "tier": 2
+      },
+      {
+        "marker": "Echocardiogram",
+        "why": "Screens for pericardial effusion, the key serious cardiac risk.",
+        "range": "Qualitative",
+        "when": "If fluid retention, breathlessness, or cardiac symptoms appear",
+        "tier": 2
+      },
+      {
+        "marker": "Renal function and electrolytes",
+        "why": "Fluid balance and co-prescribed diuretics affect kidneys, sodium and potassium.",
+        "range": "Creatinine, eGFR, Na+, K+ within lab reference",
+        "when": "Baseline and periodically",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Pheochromocytoma",
+        "advice": "Contraindicated: minoxidil can provoke a catecholamine surge and dangerous BP spikes.",
+        "tier": 3
+      },
+      {
+        "flag": "Recent heart attack or unstable/acute angina",
+        "advice": "Reflex tachycardia and increased cardiac workload can worsen ischemia; oral use is contraindicated or requires specialist care.",
+        "tier": 2
+      },
+      {
+        "flag": "Significant heart failure or existing pericardial effusion/pericardial disease",
+        "advice": "Fluid retention and effusion risk can precipitate decompensation or tamponade.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Not recommended; systemic minoxidil is avoided due to fetal/infant risk and lack of safety data.",
+        "tier": 2
+      },
+      {
+        "flag": "Known minoxidil hypersensitivity",
+        "advice": "Do not use; risk of allergic reaction.",
+        "tier": 3
+      },
+      {
+        "flag": "Uncontrolled or borderline low blood pressure",
+        "advice": "Additive hypotension can cause fainting and falls; requires physician oversight and often combination therapy.",
+        "tier": 2
+      }
+    ]
+  },
+  "estradiol-menopausal-hrt": {
+    "access": "prescription",
+    "accessNote": "Prescribed for menopausal symptoms (hot flushes, night sweats, genitourinary atrophy) and prevention of osteoporosis; a progestogen is added when the uterus is intact to protect the endometrium.",
+    "typicalDose": {
+      "line": "Doctors individualise the dose to the lowest that controls symptoms. As reference only, transdermal estradiol patches are commonly prescribed in the 25-100 mcg/day range and oral micronised estradiol around 1-2 mg/day, with transdermal routes generally preferred because they avoid first-pass liver effects and carry lower clot risk. This is not a recommendation or a dosing instruction — the route, dose, and any progestogen are decided by a prescriber.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Acute estrogen overdose is rarely life-threatening but produces nausea, vomiting, breast tenderness, bloating/fluid retention, headache, and unscheduled vaginal bleeding (including withdrawal bleeding in women, and breast tenderness in men or children exposed accidentally). The more serious danger is sustained over-exposure, which raises the risk of venous thromboembolism (DVT/PE) and, with unopposed estrogen in a woman with a uterus, endometrial hyperplasia and cancer.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Harm here comes from not following the prescription: taking estrogen without the prescribed progestogen when the uterus is intact drives endometrial hyperplasia and cancer; doubling doses or applying extra patches raises clot, stroke, and breast-tissue risk without added benefit; and self-sourcing or 'topping up' bypasses the screening (bleeding work-up, breast and cardiovascular assessment) that makes HRT safe. Abrupt stopping is not dangerous but hot flushes usually rebound. Any new leg swelling, chest pain, breathlessness, or unexpected vaginal bleeding needs urgent medical review.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure",
+        "why": "Estrogen can raise blood pressure in some women; checked at baseline and follow-up.",
+        "range": "target <140/90 mmHg",
+        "when": "baseline, then periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Breast screening / mammography",
+        "why": "Combined HRT modestly increases breast cancer risk over time, so screening is kept up to date.",
+        "when": "per national screening schedule while on HRT",
+        "tier": 3
+      },
+      {
+        "marker": "Endometrial assessment (transvaginal ultrasound)",
+        "why": "Any unscheduled or persistent bleeding is investigated to exclude endometrial hyperplasia or cancer.",
+        "range": "post-menopausal endometrial thickness typically <4-5 mm",
+        "when": "if abnormal bleeding occurs",
+        "tier": 3
+      },
+      {
+        "marker": "Fasting triglycerides",
+        "why": "Oral (not transdermal) estrogen raises triglycerides and can provoke pancreatitis if already high.",
+        "range": "<1.7 mmol/L desirable",
+        "when": "baseline and if on oral estrogen",
+        "tier": 2
+      },
+      {
+        "marker": "Serum estradiol",
+        "why": "Sometimes checked with transdermal patches or implants to confirm absorption and guide dosing.",
+        "range": "therapeutic targets commonly cited around 200-600 pmol/L, but symptom control matters more than any single number",
+        "when": "if response or absorption is uncertain",
+        "tier": 2
+      },
+      {
+        "marker": "Liver function tests (ALT, AST)",
+        "why": "Estrogen is hepatically metabolised; monitored where liver disease is a concern.",
+        "when": "if clinically indicated",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Current or past estrogen-dependent cancer (breast or endometrial)",
+        "advice": "Systemic estrogen is contraindicated; discuss non-hormonal options with an oncologist/gynaecologist.",
+        "tier": 3
+      },
+      {
+        "flag": "Undiagnosed abnormal vaginal bleeding",
+        "advice": "Must be investigated before any estrogen is started.",
+        "tier": 3
+      },
+      {
+        "flag": "Active or previous venous thromboembolism (DVT/PE) or known thrombophilia",
+        "advice": "Systemic estrogen raises clot risk; if HRT is considered, transdermal routes carry lower risk but need specialist assessment.",
+        "tier": 3
+      },
+      {
+        "flag": "Active or recent arterial thromboembolic disease (heart attack, stroke, unstable angina)",
+        "advice": "Estrogen is contraindicated in the setting of recent arterial events.",
+        "tier": 3
+      },
+      {
+        "flag": "Active liver disease or significantly deranged liver function",
+        "advice": "Avoid until liver function normalises.",
+        "tier": 3
+      },
+      {
+        "flag": "Known or suspected pregnancy",
+        "advice": "HRT is not used in pregnancy.",
+        "tier": 3
+      }
+    ]
+  },
+  "amphetamine-adderall-lisdexamfetamine-vyvanse": {
+    "access": "prescription",
+    "accessNote": "Prescribed for ADHD and narcolepsy; a Schedule II controlled drug because of its high potential for dependence and abuse.",
+    "typicalDose": {
+      "line": "A doctor individually titrates from a low starting dose and adjusts to response and tolerability. As reference only, adult ADHD ranges are roughly 5–40 mg/day for mixed amphetamine salts or dextroamphetamine, and about 30–70 mg/day for lisdexamfetamine. This is set and monitored by a prescriber — not a self-dosing guide.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Overdose brings dangerous hypertension, fast or irregular heartbeat, chest pain, marked agitation, tremor, confusion, hallucinations or paranoia, dilated pupils, and high body temperature. Severe cases progress to seizures, heart attack, stroke, rhabdomyolysis (muscle breakdown that can cause kidney failure), circulatory collapse, and death. Combining with other stimulants or serotonergic drugs raises the risk sharply.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Taking more than prescribed, crushing or snorting for a faster hit, or redosing to stay awake rapidly builds tolerance, dependence, and cardiovascular strain, and can trigger stimulant psychosis. Stopping abruptly after regular use causes a withdrawal 'crash' — deep fatigue, hypersomnia, and depression that can include suicidal thoughts. Combining with an MAOI (or within 14 days of one) can cause a life-threatening hypertensive crisis; stacking with other stimulants or decongestants compounds cardiac risk.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure",
+        "range": "Ideally <130/80 mmHg; treat/reassess if sustained higher",
+        "why": "Amphetamines raise blood pressure; used to catch stimulant-induced hypertension",
+        "when": "Baseline before starting, then periodically and after dose changes",
+        "tier": 3
+      },
+      {
+        "marker": "Resting heart rate",
+        "range": "~60–100 bpm resting",
+        "why": "Stimulants increase heart rate; persistent tachycardia signals a problem",
+        "when": "Baseline then periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Body weight (and growth in children)",
+        "range": "Track trend vs. baseline / growth curve",
+        "why": "Appetite suppression can cause weight loss and, in children, slowed growth",
+        "when": "Baseline then each review",
+        "tier": 3
+      },
+      {
+        "marker": "ECG / QTc",
+        "range": "QTc <450 ms (men) / <470 ms (women) as a rough guide",
+        "why": "Screens for structural or rhythm disease before/during stimulant use in those with cardiac risk factors or symptoms",
+        "when": "If cardiac history, symptoms, or risk factors present",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Structural heart disease, cardiomyopathy, serious arrhythmia, or coronary artery disease",
+        "advice": "Stimulants can precipitate sudden cardiac events; generally must not be used",
+        "tier": 3
+      },
+      {
+        "flag": "Moderate-to-severe or uncontrolled hypertension",
+        "advice": "Further blood-pressure elevation is dangerous; contraindicated until controlled",
+        "tier": 3
+      },
+      {
+        "flag": "Use of an MAOI now or within the past 14 days",
+        "advice": "Risk of hypertensive crisis; must not be combined",
+        "tier": 3
+      },
+      {
+        "flag": "Hyperthyroidism, phaeochromocytoma, or symptomatic cardiovascular disease",
+        "advice": "Amphetamine amplifies adrenergic effects; contraindicated",
+        "tier": 3
+      },
+      {
+        "flag": "History of stimulant/amphetamine psychosis, or active substance-use disorder",
+        "advice": "High relapse and psychosis risk; avoid or use only under specialist supervision",
+        "tier": 2
+      },
+      {
+        "flag": "Untreated glaucoma",
+        "advice": "Can raise intraocular pressure; avoid",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Crosses the placenta and enters breast milk; use only if a specialist judges benefit to outweigh risk",
+        "tier": 2
+      }
+    ]
+  },
+  "methylphenidate-ritalin": {
+    "access": "prescription",
+    "accessNote": "Approved for ADHD and narcolepsy but classified as a Schedule II controlled substance because of its high potential for abuse and dependence.",
+    "typicalDose": {
+      "line": "For adult ADHD, immediate-release methylphenidate is titrated individually by a physician, commonly 20-30 mg per day split across 2-3 doses, with total intake usually not exceeding about 60 mg per day; the exact dose, timing, and formulation are set and adjusted by the prescribing doctor. Shown here only as reference, not as a recommendation to take it.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Overdose produces sympathomimetic and CNS overstimulation: agitation, confusion, hallucinations, tremor, muscle twitching and seizures, dilated pupils, sweating, flushing, high fever, and dangerously fast heart rate, arrhythmias and severe hypertension that can lead to hypertensive crisis, cardiovascular collapse, rhabdomyolysis, or death. Emergency care is needed for suspected overdose.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Not following the prescription is where the danger lies: crushing, snorting or injecting tablets, escalating or doubling doses, or 'stacking' with other stimulants sharply raises the risk of addiction, psychosis, seizures and cardiac events. Combining with an MAO inhibitor (or use within 14 days of one) can trigger a life-threatening hypertensive crisis, and stopping abruptly after heavy use can cause a severe crash with depression and fatigue. Regular non-medical use leads to tolerance and dependence.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure",
+        "range": "Ideally below ~130/80 mmHg; treatment reassessed if sustained rises above ~140/90 mmHg",
+        "why": "Stimulants raise blood pressure; doctors check at baseline and during treatment.",
+        "when": "Baseline and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Resting heart rate",
+        "range": "Typically 60-100 bpm; persistent tachycardia prompts review",
+        "why": "Methylphenidate increases heart rate and can unmask arrhythmia.",
+        "when": "Baseline and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Body weight and (in children) height/growth",
+        "range": "Tracked against expected growth curve; unexplained loss flagged",
+        "why": "Appetite suppression can cause weight loss and blunt growth in children.",
+        "when": "Baseline and each follow-up",
+        "tier": 3
+      },
+      {
+        "marker": "ECG / cardiac assessment",
+        "range": "Normal rhythm and structure",
+        "why": "Screens for structural heart disease or arrhythmia before and during stimulant use in those with cardiac risk.",
+        "when": "Baseline if cardiac history or symptoms",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Use of an MAO inhibitor now or within the past 14 days",
+        "advice": "Contraindicated; the combination can cause a hypertensive crisis.",
+        "tier": 3
+      },
+      {
+        "flag": "Known serious structural cardiac abnormality, cardiomyopathy, serious arrhythmia, or advanced coronary disease",
+        "advice": "Must not use; risk of sudden death, stroke and myocardial infarction.",
+        "tier": 3
+      },
+      {
+        "flag": "Uncontrolled hypertension, hyperthyroidism, or pheochromocytoma",
+        "advice": "Should not take it until the underlying condition is controlled and evaluated by a doctor.",
+        "tier": 3
+      },
+      {
+        "flag": "Marked anxiety, agitation, or tension",
+        "advice": "Avoid, as the drug can aggravate these symptoms.",
+        "tier": 3
+      },
+      {
+        "flag": "History of drug or alcohol dependence",
+        "advice": "Requires careful specialist assessment due to high abuse and diversion potential.",
+        "tier": 2
+      },
+      {
+        "flag": "Motor tics, Tourette syndrome, or a family history of it",
+        "advice": "Use only under specialist guidance; stimulants may worsen tics.",
+        "tier": 2
+      },
+      {
+        "flag": "Glaucoma",
+        "advice": "Contraindicated per labeling.",
+        "tier": 3
+      }
+    ]
+  },
+  "orexin-antagonists-suvorexant-lemborexant": {
+    "access": "prescription",
+    "accessNote": "Dual orexin receptor antagonists approved to treat chronic insomnia (trouble falling or staying asleep); dispensed only after a clinician evaluates the sleep complaint.",
+    "typicalDose": {
+      "line": "A doctor decides the dose, choosing the lowest effective amount taken once at night within roughly 30 minutes of bed and only when at least 7 hours of sleep are possible before waking. For reference only, suvorexant is typically 10 mg (raised to a maximum of 20 mg) and lemborexant 5 mg (maximum 10 mg) nightly; this is not a recommendation to take it.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Toxicity is dominated by heavy, prolonged drowsiness and next-day sedation; larger ingestions can cause deep sedation, confusion, sleep paralysis and vivid hallucinations. The danger rises sharply when combined with alcohol, opioids, benzodiazepines or other CNS depressants, where additive sedation can impair breathing. Seek emergency care for any suspected overdose.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Not following the prescription is where harm happens: taking a dose when a full night of sleep is not available, or doubling up after a missed dose, produces dangerous next-morning grogginess and impaired driving. These drugs can trigger complex sleep behaviours (sleep-driving, sleep-eating, acting out) and, rarely, transient sleep paralysis or dream-like hallucinations. Combining with alcohol or other sedatives, or using someone else's supply, compounds sedation and fall risk.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Depression / suicidal ideation screen",
+        "why": "Worsening mood and suicidal thoughts have been reported with sedative-hypnotics, so a clinician checks mental state before and during use rather than relying on a lab test.",
+        "tier": 2,
+        "when": "Before starting and at follow-up",
+        "range": "Clinical assessment, not a lab value"
+      },
+      {
+        "marker": "Daytime somnolence / next-day function",
+        "why": "Persistent morning grogginess signals the dose is too high or sleep window too short; used to titrate down.",
+        "tier": 2,
+        "when": "At follow-up visits",
+        "range": "Clinical assessment"
+      },
+      {
+        "marker": "Liver function (ALT, AST, bilirubin)",
+        "why": "These drugs are cleared hepatically; lemborexant is not recommended and suvorexant is used cautiously in significant liver impairment, so baseline liver status guides suitability.",
+        "tier": 2,
+        "when": "If liver disease is suspected",
+        "range": "ALT/AST roughly <40 U/L; bilirubin <21 umol/L (lab-dependent)"
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Narcolepsy",
+        "advice": "Contraindicated — blocking orexin worsens the underlying orexin-deficient disease and its cataplexy/sleep attacks.",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent strong CYP3A4 inhibitors",
+        "advice": "Drugs like certain azole antifungals and some antibiotics/HIV medicines raise blood levels sharply; combining suvorexant with strong inhibitors is not recommended and lemborexant must be avoided or dose-limited — a doctor manages this.",
+        "tier": 3
+      },
+      {
+        "flag": "Severe hepatic impairment",
+        "advice": "Impaired clearance prolongs sedation; lemborexant is not recommended and suvorexant needs caution or avoidance.",
+        "tier": 2
+      },
+      {
+        "flag": "Alcohol or other CNS depressants / opioids",
+        "advice": "Additive sedation and breathing suppression — must not be combined without medical supervision.",
+        "tier": 3
+      },
+      {
+        "flag": "Driving or safety-critical activity the next morning",
+        "advice": "Not to be used when full overnight sleep is not possible; residual impairment persists into the next day.",
+        "tier": 3
+      },
+      {
+        "flag": "History of depression or suicidal thoughts",
+        "advice": "Use only under close clinical monitoring, as mood worsening has been reported.",
+        "tier": 2
+      },
+      {
+        "flag": "Severe sleep apnoea or COPD",
+        "advice": "Caution — respiratory depression risk is not fully characterised in severe compromised breathing.",
+        "tier": 1
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Safety is not established; use only if a clinician judges the benefit outweighs the risk.",
+        "tier": 1
+      },
+      {
+        "flag": "Older adults",
+        "advice": "Greater sensitivity means higher fall and next-day confusion risk, so the lowest dose and close review are needed.",
+        "tier": 2
+      }
+    ]
+  },
+  "z-drugs-zolpidem-ambien-trazodone-doxylamine-brief": {
+    "access": "prescription",
+    "accessNote": "Zolpidem is prescribed short-term for insomnia and trazodone is used off-label for sleep; doxylamine is sold over the counter as an antihistamine sleep aid, but all three interact dangerously with alcohol and other sedatives and are best used only under medical guidance.",
+    "typicalDose": {
+      "line": "A doctor decides the dose; the following is reference only, not a recommendation. Zolpidem immediate-release is usually 5 mg at bedtime for women and 5-10 mg for men (10 mg maximum), lowered further in older adults because clearance is slower and next-morning impairment is common. Trazodone used off-label for sleep is typically 25-100 mg at bedtime, far below its antidepressant range. Doxylamine as an OTC sleep aid is 25 mg at bedtime. None of these should be self-titrated.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Overdose produces deepening CNS depression: heavy sedation progressing to stupor or coma. Zolpidem is most dangerous combined with alcohol, opioids or other sedatives, where fatal respiratory depression can occur. Trazodone overdose adds orthostatic hypotension, QT prolongation with arrhythmia, priapism and seizures. Doxylamine overdose is anticholinergic: fast heart rate, dilated pupils, agitation and delirium, urinary retention, high fever, seizures, and notably rhabdomyolysis (muscle breakdown) that can occur even without prolonged immobility. Any suspected overdose is a medical emergency.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Following the prescription is the protection. Doubling a dose, or taking one without setting aside a full 7-8 hours to sleep, causes dangerous next-morning drowsiness and impaired driving. Stacking any of these with alcohol, opioids or other sedatives can suppress breathing. Zolpidem can trigger complex sleep behaviours (sleep-driving, sleep-eating, sleep-walking with no memory of it), which is why it must be stopped permanently if that ever happens. Nightly long-term use builds tolerance and dependence; stopping abruptly after chronic use causes rebound insomnia and withdrawal, so any change is made with a doctor.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "ECG (QTc interval)",
+        "when": "On trazodone, especially with other QT-prolonging drugs or existing cardiac risk",
+        "why": "Trazodone can prolong the QT interval and provoke arrhythmia; a baseline and follow-up ECG identifies at-risk patients",
+        "range": "QTc under ~450 ms (men) / ~470 ms (women)",
+        "tier": 2
+      },
+      {
+        "marker": "Creatine kinase (CK)",
+        "when": "After a suspected doxylamine overdose",
+        "why": "Doxylamine overdose can cause rhabdomyolysis, releasing CK; a sharp rise flags muscle breakdown and kidney risk",
+        "range": "Normal roughly <200 U/L; markedly elevated (often thousands) in rhabdomyolysis",
+        "tier": 2
+      },
+      {
+        "marker": "Liver enzymes (ALT/AST)",
+        "when": "If jaundice, dark urine or malaise develop on trazodone",
+        "why": "Trazodone has rare case reports of hepatotoxicity",
+        "range": "ALT/AST within normal limits",
+        "tier": 1
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Prior complex sleep behaviour (sleep-driving, sleep-walking) on a Z-drug",
+        "advice": "Zolpidem is contraindicated after any such episode and must never be used again",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent alcohol, opioids or other CNS depressants",
+        "advice": "Combined sedation and respiratory depression can be fatal; these must not be layered together",
+        "tier": 3
+      },
+      {
+        "flag": "Untreated sleep apnea or significant respiratory impairment",
+        "advice": "Sedatives blunt the drive to breathe and worsen nighttime oxygenation",
+        "tier": 2
+      },
+      {
+        "flag": "Older adults",
+        "advice": "Higher risk of falls, fractures, confusion and next-day impairment; doxylamine's anticholinergic load is specifically flagged in the Beers criteria for older people",
+        "tier": 2
+      },
+      {
+        "flag": "Narrow-angle glaucoma or bladder-outlet/urinary retention (doxylamine)",
+        "advice": "Anticholinergic effects can precipitate acute glaucoma or acute urinary retention",
+        "tier": 3
+      },
+      {
+        "flag": "Current or recent MAOI or other strongly serotonergic drugs (trazodone)",
+        "advice": "Risk of serotonin syndrome; combination requires a doctor-managed washout",
+        "tier": 3
+      },
+      {
+        "flag": "Severe liver impairment",
+        "advice": "Zolpidem and trazodone clearance is reduced, raising toxicity; use must be avoided or dose-adjusted by a doctor",
+        "tier": 2
+      }
+    ]
+  },
+  "ssris-sertraline-escitalopram": {
+    "access": "prescription",
+    "accessNote": "First-line antidepressants used for major depression, generalized anxiety, panic disorder, OCD, PTSD and related conditions; the specific agent, dose and follow-up are set and adjusted by a prescriber.",
+    "typicalDose": {
+      "line": "For reference only, and always chosen, started and titrated by a prescriber — not a recommendation or instruction to self-dose: sertraline is commonly prescribed from about 25–50 mg/day up to a usual maximum near 200 mg/day, and escitalopram from about 10 mg/day up to 20 mg/day (lower ceilings in older adults, e.g. escitalopram commonly capped near 10 mg/day). Treatment is typically started low, raised gradually to response and tolerability, and reviewed over weeks.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Taken alone, SSRIs are less acutely toxic than older antidepressants, but overdose is still dangerous: nausea and vomiting, drowsiness, tremor, agitation, tachycardia, and — most notably with citalopram/escitalopram — dose-dependent QT-interval prolongation that can trigger fatal heart-rhythm disturbances, as well as seizures. The gravest risk is serotonin syndrome — agitation and confusion, high fever, muscle rigidity, clonus and hyperreflexia, heavy sweating and unstable blood pressure — which is most likely when SSRIs are combined with other serotonergic drugs and is a life-threatening medical emergency.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Stopping abruptly after regular use can cause a discontinuation syndrome — dizziness, electric-shock 'brain-zap' sensations, flu-like symptoms, insomnia and irritability — so doses are tapered under a prescriber rather than stopped suddenly; short half-life agents like sertraline are more prone to this. Doubling missed doses, or combining an SSRI with an MAOI (a washout of at least two weeks is required in either direction, longer when switching from fluoxetine), triptans, tramadol, St John's Wort or recreational stimulants such as MDMA can precipitate serotonin syndrome. In people under 25, suicidal thoughts can rise in the early weeks of treatment, which is exactly why close medical monitoring — not self-management — is essential.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Serum sodium",
+        "range": "Normal ~135–145 mmol/L",
+        "when": "Baseline in higher-risk patients (older adults, diuretic users) and if symptoms of hyponatraemia appear",
+        "why": "SSRIs can cause SIADH and hyponatraemia, sometimes symptomatic (confusion, falls, seizures), particularly in the elderly.",
+        "tier": 3
+      },
+      {
+        "marker": "ECG QT interval (QTc)",
+        "range": "Concern as QTc rises above ~450–470 ms; high risk at QTc over 500 ms or a rise of more than 60 ms",
+        "when": "Considered with citalopram/escitalopram, at higher doses, or alongside other QT-prolonging drugs or cardiac risk",
+        "why": "Citalopram and escitalopram cause dose-dependent QT prolongation, raising the risk of torsades-type arrhythmia.",
+        "tier": 3
+      },
+      {
+        "marker": "Clinical review of mood, side effects and suicidality",
+        "when": "Early and repeatedly in the first weeks and after dose changes",
+        "why": "Response and emergent suicidal ideation (especially under age 25) are tracked clinically rather than by a blood test, and guide dosing decisions.",
+        "tier": 3
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Current MAOI use, or within ~14 days of one (longer when switching from fluoxetine)",
+        "advice": "Do not combine — the interaction can cause fatal serotonin syndrome; a prescriber-supervised washout is mandatory in either direction.",
+        "tier": 3
+      },
+      {
+        "flag": "Congenital long-QT syndrome, other QT-prolonging drugs, or significant electrolyte disturbance",
+        "advice": "Particularly relevant to citalopram/escitalopram; an alternative or careful ECG/electrolyte oversight is needed, decided by a doctor.",
+        "tier": 3
+      },
+      {
+        "flag": "Known or undiagnosed bipolar disorder",
+        "advice": "An SSRI alone can trigger a switch to mania; treatment should only proceed under specialist assessment, usually with mood-stabiliser cover.",
+        "tier": 2
+      },
+      {
+        "flag": "High bleeding risk — anticoagulants, antiplatelets or NSAIDs, or a bleeding disorder",
+        "advice": "SSRIs impair platelet function and raise gastrointestinal bleeding risk; this must be weighed by a prescriber.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "Not absolutely barred but requires an individualised risk–benefit discussion with a doctor (some agents carry specific concerns); never start or stop unsupervised.",
+        "tier": 2
+      },
+      {
+        "flag": "Known hypersensitivity to the specific SSRI",
+        "advice": "Must not be taken.",
+        "tier": 3
+      }
+    ]
+  },
+  "ketamine-esketamine-spravato": {
+    "access": "prescription",
+    "accessNote": "Esketamine nasal spray is approved for treatment-resistant depression given under direct medical supervision, and racemic ketamine is a scheduled anesthetic used off-label for depression — both are tightly controlled because of dissociation, cardiovascular effects, and real abuse potential.",
+    "typicalDose": {
+      "line": "Reference only, and always set and administered by a clinician — never self-dosed: approved esketamine nasal spray is given in a certified clinical setting at roughly 56-84 mg per supervised session (typically twice weekly at first, then spaced out), with the patient monitored for at least 2 hours afterward; off-label ketamine for depression is prepared and delivered by a physician or anesthetist under monitoring.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Overdose produces heavy sedation progressing to unconsciousness, intense dissociation and hallucinations (the 'K-hole'), agitation or emergence delirium, dangerously high blood pressure and fast heart rate, vomiting with aspiration risk, and — at high doses or combined with alcohol, benzodiazepines or opioids — respiratory depression and arrest. Prolonged high-dose exposure can cause rhabdomyolysis. It is a medical emergency requiring airway and cardiovascular support.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "Taking it outside supervision is the core danger: driving or operating machinery while sedation and dissociation persist, and combining it with alcohol, benzodiazepines or opioids, can be lethal through respiratory depression. Repeated non-medical use causes rapid tolerance and dependence, ketamine-induced ulcerative cystitis (painful, shrunken bladder with bleeding, sometimes irreversible), biliary/liver injury, and cognitive impairment. Skipping the post-dose monitoring window removes the safety net for blood-pressure and airway emergencies.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "Blood pressure",
+        "range": "Checked before dosing and monitored after; a transient rise peaking ~40 min is expected. Hold/urgent review if >180/110 mmHg",
+        "why": "Esketamine and ketamine cause acute BP surges that can be dangerous in vascular disease",
+        "when": "Each supervised session",
+        "tier": 3
+      },
+      {
+        "marker": "Sedation & dissociation (e.g. CADSS)",
+        "range": "Observed until returned to baseline, minimum ~2 hours post-dose",
+        "why": "Ensures the patient is safe to be discharged and not impaired",
+        "when": "Every session",
+        "tier": 3
+      },
+      {
+        "marker": "Urinalysis / renal function",
+        "range": "Screen for hematuria, urgency, reduced bladder capacity; creatinine/eGFR",
+        "why": "Chronic or frequent ketamine exposure causes ulcerative cystitis and upper-tract damage",
+        "when": "With ongoing therapy or suspected misuse",
+        "tier": 2
+      },
+      {
+        "marker": "Liver enzymes (ALT, AST, ALP, bilirubin)",
+        "range": "Standard reference ranges; watch for rising ALP/bilirubin",
+        "why": "Repeated ketamine use is linked to hepatotoxicity and biliary tract dilation/cholangiopathy",
+        "when": "Periodically with prolonged use",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Uncontrolled or severe hypertension, aneurysmal vascular disease, or history of intracerebral hemorrhage",
+        "advice": "Excluded from treatment — the acute blood-pressure surge can trigger a catastrophic vascular event",
+        "tier": 3
+      },
+      {
+        "flag": "Concurrent CNS depressants (alcohol, benzodiazepines, opioids, sedatives)",
+        "advice": "Combination sharply raises the risk of respiratory depression and over-sedation; must be disclosed to the prescriber",
+        "tier": 3
+      },
+      {
+        "flag": "History of psychosis or schizophrenia-spectrum illness",
+        "advice": "Dissociative and psychotomimetic effects can precipitate or worsen psychotic symptoms",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Not recommended; potential fetal and infant harm and lack of safety data",
+        "tier": 2
+      },
+      {
+        "flag": "History of ketamine or other substance use disorder",
+        "advice": "Real dependence and diversion risk; use only under close specialist oversight",
+        "tier": 2
+      },
+      {
+        "flag": "Severe hepatic impairment",
+        "advice": "Reduced clearance and existing liver vulnerability increase toxicity risk",
+        "tier": 2
+      }
+    ]
+  },
+  "psilocybin-microdosing": {
+    "access": "unapproved",
+    "accessNote": "It is a Schedule I controlled substance being studied in supervised clinical trials for depression; \"microdosing\" is unproven, sits outside any approved protocol, and is illegal in most jurisdictions.",
+    "overdose": {
+      "line": "The psilocybin molecule has low direct organ toxicity and fatal poisoning from it alone is rare, but excessive doses can cause overwhelming panic, confusion, paranoia and frank psychosis, persistent vomiting, and sharp rises in heart rate and blood pressure; rarely hyperthermia or seizures occur. The gravest dangers are injury or self-harm from disordered behaviour while intoxicated, and — with foraged mushrooms — life-threatening poisoning from misidentified toxic look-alikes.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "There is no safe do-it-yourself dose. Psilocybin content varies several-fold between mushroom species and even between individual specimens, so accurate self-dosing is impossible, and foraged mushrooms are easily confused with lethally toxic species. Combining it with lithium has triggered seizures, and with SSRIs, SNRIs or MAOIs it risks serotonin toxicity or an unpredictable, blunted response. Even repeated 'microdoses' can precipitate lasting psychiatric harm in vulnerable people, and rigorous placebo-controlled trials have not confirmed the mood or focus benefits microdosing is promoted on.",
+      "tier": 2
+    },
+    "biomarkers": [
+      {
+        "marker": "Heart rate and blood pressure",
+        "range": "acute transient rise, e.g. systolic +20–30 mmHg during effect",
+        "why": "Psilocin is mildly sympathomimetic; supervised trials monitor these acutely because spikes matter in anyone with cardiovascular disease.",
+        "when": "During and shortly after dosing in trial settings",
+        "tier": 2
+      },
+      {
+        "marker": "ECG / QTc interval",
+        "range": "baseline screening; significant QTc prolongation is a trial exclusion",
+        "why": "Clinical protocols take a baseline ECG and exclude significant cardiac disease or QTc prolongation before dosing, as a general cardiac-safety precaution.",
+        "when": "Baseline screening in clinical protocols",
+        "tier": 1
+      },
+      {
+        "marker": "Routine bloodwork (liver, renal, electrolytes)",
+        "range": "typically unremarkable",
+        "why": "No routine lab captures psilocybin harm — the damage is psychiatric and behavioural, so normal bloodwork must never be read as evidence that use is safe.",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Personal or family history of psychosis, schizophrenia or bipolar disorder",
+        "advice": "A recognised exclusion in every clinical trial — psychedelics can trigger prolonged psychosis or mania in predisposed people.",
+        "tier": 3
+      },
+      {
+        "flag": "Currently taking lithium",
+        "advice": "Case reports link the combination to seizures and severe neurotoxicity; considered a hard contraindication.",
+        "tier": 2
+      },
+      {
+        "flag": "Taking SSRIs, SNRIs, MAOIs or other serotonergic drugs",
+        "advice": "Risk of serotonin toxicity and an altered, unpredictable response; requires medical oversight, not self-experimentation.",
+        "tier": 2
+      },
+      {
+        "flag": "Serious cardiovascular disease, uncontrolled hypertension or valvular/arrhythmia history",
+        "advice": "Sympathomimetic effects and 5-HT2B receptor activity make repeated dosing hazardous for the heart.",
+        "tier": 2
+      },
+      {
+        "flag": "Pregnancy or breastfeeding",
+        "advice": "No safety data exist; avoid entirely.",
+        "tier": 2
+      }
+    ]
+  },
+  "statins-atorvastatin-rosuvastatin": {
+    "access": "prescription",
+    "accessNote": "Prescribed to lower LDL cholesterol and cut the risk of heart attack and stroke, especially after a cardiac event or in people with high cardiovascular risk; a doctor confirms the indication and monitors for side effects.",
+    "typicalDose": {
+      "line": "For reference only, and always chosen by a prescribing doctor based on LDL target and risk: atorvastatin is typically 10-80 mg once daily and rosuvastatin 5-40 mg once daily, taken at any time of day. This is not a recommendation or a dosing instruction.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "Acute overdose of a single large amount is usually not immediately life-threatening, but the serious dose-related toxicity is muscle injury (myopathy progressing to rhabdomyolysis): severe muscle pain, weakness, tenderness, and dark tea-coloured urine from myoglobin, which can cause acute kidney failure. Markedly raised creatine kinase and liver enzymes may accompany it. Any suspected rhabdomyolysis needs urgent medical care.",
+      "tier": 3
+    },
+    "misuse": {
+      "line": "The main harms come from not following the prescription. Stopping abruptly removes cardiovascular protection and after a heart attack is associated with worse outcomes. Doubling up or self-escalating the dose raises the risk of muscle damage. Muscle toxicity climbs sharply when combined with certain fibrates, some antibiotics/antifungals, or (for atorvastatin) grapefruit juice and strong CYP3A4 inhibitors, so never mix statins with other drugs or supplements without medical review.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "LDL cholesterol (lipid panel)",
+        "range": "Target set individually; high-intensity dosing typically lowers LDL by 50% or more",
+        "why": "Primary measure of whether the drug is working",
+        "when": "Baseline, then roughly 4-12 weeks after starting or a dose change, then periodically",
+        "tier": 3
+      },
+      {
+        "marker": "ALT / AST (liver transaminases)",
+        "range": "Concern if persistently above ~3x the upper limit of normal",
+        "why": "Statins can occasionally raise liver enzymes",
+        "when": "Baseline; repeat if symptoms of liver problems occur",
+        "tier": 3
+      },
+      {
+        "marker": "Creatine kinase (CK)",
+        "range": "Myopathy suspected above ~5x ULN; rhabdomyolysis typically above ~10x ULN",
+        "why": "Detects muscle breakdown when a patient reports muscle pain or weakness",
+        "when": "If muscle symptoms develop (not routine in asymptomatic people)",
+        "tier": 3
+      },
+      {
+        "marker": "HbA1c / fasting glucose",
+        "range": "Watch for a small upward drift",
+        "why": "Statins carry a modest increase in new-onset type 2 diabetes",
+        "when": "Periodically, especially in those already at risk",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Active liver disease or unexplained persistent elevation of liver enzymes",
+        "advice": "Statins are avoided until liver status is clarified and stable",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Generally stopped before conception and during pregnancy/nursing; discuss with a doctor if planning pregnancy",
+        "tier": 2
+      },
+      {
+        "flag": "Prior statin-associated rhabdomyolysis or serious myopathy",
+        "advice": "A doctor must weigh re-exposure carefully, often with a different statin, lower dose, or avoidance",
+        "tier": 2
+      },
+      {
+        "flag": "Concurrent strong CYP3A4 inhibitors or interacting lipid drugs (certain fibrates, macrolide antibiotics, azole antifungals, some HIV/HCV agents)",
+        "advice": "Combinations must be screened and adjusted by a prescriber to avoid dangerous muscle toxicity",
+        "tier": 3
+      }
+    ]
+  },
+  "pcsk9-inhibitors-evolocumab-inclisiran": {
+    "access": "prescription",
+    "accessNote": "Prescribed to lower LDL cholesterol in familial hypercholesterolemia or established cardiovascular disease when statins alone are insufficient or not tolerated; started and monitored by a physician.",
+    "typicalDose": {
+      "line": "For reference only, and always set by the prescribing doctor: evolocumab is typically given as 140 mg subcutaneously every 2 weeks or 420 mg once monthly; inclisiran (an siRNA) is typically 284 mg subcutaneously at baseline, again at 3 months, then every 6 months. These are physician-determined regimens, not a recommendation or a self-dosing guide.",
+      "tier": 3
+    },
+    "overdose": {
+      "line": "These agents have an unusually wide safety margin and there is no recognised acute toxic overdose syndrome; in trials LDL was driven to very low levels (<25 mg/dL) without clear acute harm, and there is no specific antidote. An accidental extra injection is far more likely to cause local reactions (pain, redness, swelling) than systemic toxicity. The main uncertainty is the long-term effect of sustained very-low LDL, not acute overdose.",
+      "tier": 2
+    },
+    "misuse": {
+      "line": "Stopping or skipping doses is the real hazard: LDL cholesterol rebounds toward baseline within weeks (evolocumab) or months (inclisiran), removing the cardiovascular protection the drug provides. Doubling a dose does not add meaningful LDL lowering and wastes drug. Because these are injectables that pair with statins or other lipid therapy, altering the regimen without the prescriber risks under-treatment; never self-adjust.",
+      "tier": 3
+    },
+    "biomarkers": [
+      {
+        "marker": "LDL-C",
+        "why": "Primary efficacy target; doctors expect roughly a 50-60% reduction and check it a few weeks to months after starting or changing dose.",
+        "range": "treatment goal often <70 mg/dL (<1.8 mmol/L), or <55 mg/dL (<1.4 mmol/L) in very-high-risk patients",
+        "when": "before starting, then after dose is established and periodically",
+        "tier": 3
+      },
+      {
+        "marker": "Full lipid panel (total cholesterol, HDL, triglycerides, non-HDL-C)",
+        "why": "Tracks overall lipid response and residual risk alongside LDL.",
+        "range": "individualised to cardiovascular risk",
+        "when": "at follow-up visits",
+        "tier": 3
+      },
+      {
+        "marker": "Lipoprotein(a) — Lp(a)",
+        "why": "PCSK9 inhibitors modestly lower Lp(a); sometimes measured in high-risk or familial patients.",
+        "range": "lower is better; no formal treatment target",
+        "when": "selected patients",
+        "tier": 2
+      }
+    ],
+    "contra": [
+      {
+        "flag": "Prior serious hypersensitivity/allergic reaction to the specific agent or its components",
+        "advice": "Must not receive it; history of angioedema or severe injection reaction should be disclosed to the prescriber.",
+        "tier": 3
+      },
+      {
+        "flag": "Pregnancy and breastfeeding",
+        "advice": "Data are limited; monoclonal antibodies cross the placenta later in pregnancy and lipid-lowering is generally paused during pregnancy, so use is usually avoided unless a doctor judges otherwise.",
+        "tier": 2
+      },
+      {
+        "flag": "Children below approved age/indication",
+        "advice": "Only specific familial hypercholesterolemia indications are approved in defined age groups; use outside these is a prescriber decision.",
+        "tier": 2
+      }
+    ]
   }
 }
