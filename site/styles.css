@@ -2695,6 +2695,11 @@ a.dp-name:hover{color:var(--accent)}
 .cause-tell{margin:.9rem 0;line-height:1.6}
 .cause-evi{margin:.9rem 0;font-size:.9rem;line-height:1.55;color:var(--muted)}
 .cause-evi .cbl{color:var(--muted)}
+.cf-plan-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;margin-bottom:.15rem}
+.cf-plan-h .cbl{margin-bottom:0;color:#15803d}
+.adopt-plan{margin-top:.7rem;border:1px solid color-mix(in srgb,#16a34a 40%,var(--line));background:color-mix(in srgb,#16a34a 10%,transparent);color:#15803d;border-radius:999px;padding:.45rem 1rem;font-size:.86rem;font-weight:600;cursor:pointer}
+.adopt-plan:hover{background:color-mix(in srgb,#16a34a 18%,transparent)}
+.adopt-plan.adopted{background:color-mix(in srgb,#16a34a 20%,transparent);cursor:default}
 .cause-head{display:flex;align-items:center;gap:.55rem;flex-wrap:wrap;margin-bottom:.7rem}
 .cause-rank{flex:0 0 auto;width:1.6rem;height:1.6rem;border-radius:50%;background:var(--ink);color:var(--bg,#fff);font-weight:700;font-size:.82rem;display:flex;align-items:center;justify-content:center}
 .cause-head h4{margin:0;font-size:1.02rem;flex:1;min-width:150px}

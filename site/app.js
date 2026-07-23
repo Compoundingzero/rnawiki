@@ -16,6 +16,12 @@
   const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
   const byId = {}; D.compounds.forEach(c => byId[c.id] = c);
   const bySlug = {}; D.compounds.forEach(c => bySlug[slug(c.name)] = c);
+  // Resolve a loose compound reference (e.g. "Omega-3") to a real compound, tolerating short/partial names.
+  function resolveCompound(ref) {
+    if (!ref) return null; const s = slug(ref); if (!s) return null;
+    if (bySlug[s]) return bySlug[s];
+    return D.compounds.find(c => { const cs = slug(c.name); return cs === s || cs.startsWith(s + '-') || s.startsWith(cs + '-') || cs.split('-').join('').includes(s.split('-').join('')); }) || null;
+  }
   // Anatomy & physiology reference layer (muscles, energy systems, metabolism)
   const ANAT = D.anatomy || { muscles: [], energy_systems: [], metabolism: [] };
   const muscleById = {}; (ANAT.muscles || []).forEach(m => muscleById[m.id] = m);
@@ -4668,7 +4674,9 @@
     const ladder = (Array.isArray(w.ladder) && w.ladder.length) ? `<details class="cause-bigpic"><summary>🧭 The big picture — how one spot forms, surface → root</summary><ol class="cause-ladder">${w.ladder.map(l => `<li>${mdInline(l)}</li>`).join('')}</ol></details>` : '';
     const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
     const items = causes.map((c, i) => {
-      const fixes = sortedFixes(c).map(f => { const ic = FIX_ICO[f.kind] || '•'; const cs = (f.kind === 'compound' && f.ref) ? slug(f.ref) : null; const inner = cs ? `<a href="#/c/${cs}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li><span class="fix-kind fk-${esc(f.kind || 'x')}">${ic} ${esc(FIX_LBL[f.kind] || 'Other')}</span> ${inner}</li>`; }).join('');
+      const _fixArr = sortedFixes(c);
+      const fixes = _fixArr.map(f => { const ic = FIX_ICO[f.kind] || '•'; const cc = (f.kind === 'compound' && f.ref) ? resolveCompound(f.ref) : null; const inner = cc ? `<a href="#/c/${slug(cc.name)}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li><span class="fix-kind fk-${esc(f.kind || 'x')}">${ic} ${esc(FIX_LBL[f.kind] || 'Other')}</span> ${inner}</li>`; }).join('');
+      const suppIds = [...new Set(_fixArr.filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc ? cc.id : null; }).filter(Boolean))];
       const plain = c.plain ? `<div class="cause-plain"><span class="cbl">What’s actually going on</span><p>${mdInline(c.plain)}</p></div>` : '';
       const evi = c.evidence ? `<div class="cause-evi"><span class="cbl">How sure are we?</span> ${mdInline(c.evidence)} ${causeTier(c.evidenceTier)}</div>` : '';
       return `<details class="cause-acc lev-${esc(c.leverage || 'med')}" name="p-cause-acc"${i === 0 ? ' open' : ''}>
@@ -4679,7 +4687,7 @@
           <div class="cause-tell"><span class="cbl">Is this you?</span> ${mdInline(String((c.tell && c.tell.symptoms) || '').replace(/\s*Honest tiering:.*$/i, '').trim())}</div>
           ${evi}
           ${(c.tell && c.tell.labMarker) ? `<div class="cause-lab">🩸 <b>Confirm it:</b> ${mdInline(c.tell.labMarker)}</div>` : ''}
-          ${fixes ? `<div class="cause-fix"><b>The fix</b> <span class="fix-order-note">cheapest &amp; safest first ↓</span><ul class="fix-list">${fixes}</ul></div>` : ''}
+          ${fixes ? `<div class="cause-fix"><div class="cf-plan-h"><span class="cbl">✅ Your plan if this is your cause</span><span class="fix-order-note">work down the list — cheapest &amp; safest first</span></div><ul class="fix-list">${fixes}</ul>${suppIds.length ? `<button class="adopt-plan" data-adopt="${suppIds.join(',')}">➕ Add ${suppIds.length === 1 ? 'this supplement' : 'these ' + suppIds.length + ' supplements'} to my stack</button>` : ''}</div>` : ''}
           ${c.confusedWith ? `<div class="cause-confused">↔️ <b>Not:</b> ${mdInline(c.confusedWith)}</div>` : ''}
         </div>
       </details>`;
@@ -6458,6 +6466,8 @@
   document.addEventListener('click', e => { const b = e.target.closest('[data-scroll]'); if (b) { e.preventDefault(); const t = document.getElementById(b.getAttribute('data-scroll')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
   // Universal cause-finder — present on every protocol.
   document.addEventListener('click', e => { const b = e.target.closest('[data-find-cause]'); if (b) { e.preventDefault(); const p = problemById[b.getAttribute('data-find-cause')]; if (p) openCauseFinder(p); } });
+  // Adopt a cause's default plan — seed My Plan's stack with that cause's supplements.
+  document.addEventListener('click', e => { const b = e.target.closest('.adopt-plan'); if (b) { e.preventDefault(); const ids = (b.getAttribute('data-adopt') || '').split(',').filter(Boolean); const s = getStack(); let added = 0; ids.forEach(id => { if (!s.includes(id)) { s.push(id); added++; } }); setStack(s); updateStackBadge(); b.classList.add('adopted'); b.textContent = added ? `✓ Added ${added} to your stack — track them on My Plan` : '✓ Already in your stack'; } });
   // Personalized per-kg dose calculator (biohacker layer)
   document.addEventListener('input', e => {
     const i = e.target.closest('.bio-dose-w'); if (!i) return;
