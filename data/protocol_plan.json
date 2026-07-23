@@ -1,0 +1,22 @@
+{
+  "acne": {
+    "timeline": [
+      { "when": "Week 0", "what": "**Confirm your cause first** (see above), then start the *behaviour + food* levers immediately — cut high-glycemic carbs and trial removing milk/whey. If using a topical retinoid, start every third night to build tolerance." },
+      { "when": "Weeks 2–4", "what": "Expect an initial **'purge'** on a retinoid — things can look worse before better as clogged pores clear. Skin may be dry and flaky; do not stop. Dietary changes show little yet." },
+      { "when": "Weeks 6–8", "what": "The dairy and glycemic-load changes start to show — fewer new inflamed spots. Retinoid tolerance is up; move toward nightly use." },
+      { "when": "Week 12", "what": "The honest checkpoint. A real regimen shows a **clear drop in new breakouts** by now. Post-inflammatory marks fade slowly over months after the active acne settles." }
+    ],
+    "working": "Fewer *new* inflamed spots week over week (count them — memory lies), less oiliness by mid-afternoon, and existing spots resolving without leaving deep marks. You are chasing the trend, not a clear face overnight.",
+    "reassess": "See a doctor early — don't self-treat for months — if you have **painful, deep nodules or cysts**, scarring, acne that suddenly worsens or covers the back/chest, or breakouts with irregular periods and excess facial/body hair (possible PCOS). These have prescription routes that prevent permanent scarring topicals can't.",
+    "context": [
+      { "who": "Women with irregular cycles / jawline acne", "mod": "This is often the hormonal (androgen) route — a doctor-led hormonal option frequently outperforms topicals alone. Worth raising early." },
+      { "who": "Over ~40 with new adult acne", "mod": "Rule out a trigger first: a new medication, cosmetic, or high stress. Skin is drier, so retinoids need slower titration and more moisturiser." },
+      { "who": "Hard trainers / heavy sweat", "mod": "Shower and change out of occlusive kit promptly (mechanical/'acne mechanica'); whey protein is a common hidden dairy-and-insulin driver worth trialling off." }
+    ],
+    "troubleshooting": [
+      { "issue": "No change after 12 weeks of a consistent regimen", "fix": "You're likely treating the wrong cause. Re-check which cause fits you above — a diet lever won't fix a comedogenic-product or hormonal driver, and vice-versa. This is the point to see a clinician." },
+      { "issue": "Retinoid made it much worse / too irritating", "fix": "That's usually the expected purge + over-use. Drop frequency, apply a pea-sized amount to dry skin, buffer with moisturiser, and stop other actives. If it's genuine burning or swelling, stop and ask a pharmacist/doctor." },
+      { "issue": "Only the jaw/chin breaks out, cyclically", "fix": "Points to the hormonal route rather than diet or products — prioritise the hormonal cause and a doctor's assessment over stacking more topicals." }
+    ]
+  }
+}

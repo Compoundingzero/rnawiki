@@ -4658,6 +4658,17 @@
       ${w.theOneThing ? `<div class="cause-one"><span class="cause-one-t">⭐ If you do only one thing</span><p>${mdInline(w.theOneThing)}</p></div>` : ''}
     </section>`;
   }
+  // ---- Stage 4: protocol action-plan (timeline · working signals · reassess · context · troubleshooting) ----
+  function planSection(problem) {
+    const pl = problem.plan; if (!pl) return '';
+    const tl = (Array.isArray(pl.timeline) && pl.timeline.length) ? `<div class="plan-block"><div class="plan-h">📆 What to expect — and when</div><ol class="plan-timeline">${pl.timeline.map(t => `<li><span class="pt-when">${esc(t.when)}</span><span class="pt-what">${mdInline(t.what)}</span></li>`).join('')}</ol></div>` : '';
+    const wk = pl.working ? `<div class="plan-card plan-working"><div class="plan-ch">✅ What “it’s working” looks like</div><p>${mdInline(pl.working)}</p></div>` : '';
+    const re = pl.reassess ? `<div class="plan-card plan-reassess"><div class="plan-ch">🚩 When to reassess or see a doctor</div><p>${mdInline(pl.reassess)}</p></div>` : '';
+    const ctx = (Array.isArray(pl.context) && pl.context.length) ? `<div class="plan-block"><div class="plan-h">👥 Does your situation change it?</div><div class="plan-ctx">${pl.context.map(c => `<div class="pctx"><b>${esc(c.who)}</b><span>${mdInline(c.mod)}</span></div>`).join('')}</div></div>` : '';
+    const tr = (Array.isArray(pl.troubleshooting) && pl.troubleshooting.length) ? `<details class="plan-trouble"><summary>🔧 Troubleshooting — if it’s not working</summary>${pl.troubleshooting.map(t => `<div class="ptr"><div class="ptr-q">${mdInline(t.issue)}</div><div class="ptr-a">${mdInline(t.fix)}</div></div>`).join('')}</details>` : '';
+    if (!tl && !wk && !re && !ctx && !tr) return '';
+    return `<section class="plan-section" id="p-plan"><h2>🗺️ Your plan — timeline, signals &amp; troubleshooting</h2><p class="plan-sub">Educational, not medical advice. Timelines are typical, not promises.</p><div class="plan-grid">${wk}${re}</div>${tl}${ctx}${tr}</section>`;
+  }
   // ---- Short-form / TikTok export engine: 9:16 screenshot-ready card + auto-generated script ----
   // Generalized across content types (causes, myths, mechanism cascade, molecule journey, did-you-know).
   const stripMd = s => String(s || '').replace(/\*\*([^*]+)\*\*/g, '$1').replace(/<[^>]+>/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').trim();
@@ -4897,6 +4908,7 @@
       })()}
       ${theOneThingHead(problem)}
       ${causesSection(problem)}
+      ${planSection(problem)}
       <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">Browse the movements &amp; supplements, keep what fits you, then track it daily on <b>My Plan</b>.</span></div>
       ${rcSwitch}
       ${rc.keystone ? `<div class="keystone-card">

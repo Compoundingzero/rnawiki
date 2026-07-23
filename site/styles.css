@@ -2708,7 +2708,33 @@ a.dp-name:hover{color:var(--accent)}
 .fk-compound{background:color-mix(in srgb,#8b5cf6 16%,transparent);color:#6d28d9}
 .fk-rx{background:color-mix(in srgb,#3b82f6 16%,transparent);color:#1d4ed8}
 @media(prefers-color-scheme:dark){.fk-behavior{color:#4ade80}.fk-food{color:#fbbf24}.fk-compound{color:#c4b5fd}.fk-rx{color:#93c5fd}}
-@media(max-width:640px){.cc-node{min-width:calc(50% - .4rem)}.cc-arrow{display:none}}
+/* Stage 4 — protocol action plan */
+.plan-section{margin:1.6rem 0;padding:1.3rem 1.4rem;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
+.plan-section h2{margin:0 0 .2rem;font-size:1.35rem}
+.plan-sub{margin:0 0 1rem;font-size:.84rem;color:var(--muted);font-style:italic}
+.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem}
+.plan-card{border-radius:14px;padding:.9rem 1.05rem;border:1px solid var(--line)}
+.plan-working{background:color-mix(in srgb,#16a34a 8%,transparent);border-color:color-mix(in srgb,#16a34a 28%,var(--line))}
+.plan-reassess{background:color-mix(in srgb,#ef4444 7%,transparent);border-color:color-mix(in srgb,#ef4444 30%,var(--line))}
+.plan-ch{font-size:.82rem;font-weight:700;margin-bottom:.35rem}
+.plan-card p{margin:0;line-height:1.55;font-size:.92rem}
+.plan-block{margin:1.1rem 0}
+.plan-h{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.plan-timeline{list-style:none;margin:0;padding:0;position:relative}
+.plan-timeline li{display:grid;grid-template-columns:120px 1fr;gap:.8rem;padding:.55rem 0;border-bottom:1px solid var(--line);align-items:baseline}
+.plan-timeline li:last-child{border-bottom:none}
+.pt-when{font-weight:700;font-size:.86rem;color:var(--accent)}
+.pt-what{line-height:1.55;font-size:.92rem}
+.plan-ctx{display:flex;flex-direction:column;gap:.55rem}
+.pctx{border-left:3px solid color-mix(in srgb,var(--accent) 45%,var(--line));padding:.15rem 0 .15rem .7rem}
+.pctx b{display:block;font-size:.9rem}
+.pctx span{font-size:.9rem;line-height:1.5;color:var(--ink)}
+.plan-trouble{margin-top:1.1rem;border:1px solid var(--line);border-radius:12px;padding:.3rem .9rem;background:var(--bg,#fff)}
+.plan-trouble summary{cursor:pointer;font-weight:700;padding:.55rem 0}
+.ptr{padding:.5rem 0;border-top:1px solid var(--line)}
+.ptr-q{font-weight:600;font-size:.9rem}
+.ptr-a{font-size:.9rem;line-height:1.5;color:var(--muted);margin-top:.2rem}
+@media(max-width:640px){.plan-grid{grid-template-columns:1fr}.plan-timeline li{grid-template-columns:1fr;gap:.15rem}.cc-node{min-width:calc(50% - .4rem)}.cc-arrow{display:none}}
 
 /* ---- Short-form / TikTok export ---- */
 .share-short-btn{margin-top:.6rem;border:1px solid color-mix(in srgb,#ec4899 40%,var(--line));background:color-mix(in srgb,#ec4899 8%,transparent);color:#db2777;border-radius:999px;padding:.4rem .9rem;font-size:.85rem;font-weight:600;cursor:pointer}
