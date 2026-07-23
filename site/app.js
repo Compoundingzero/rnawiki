@@ -868,6 +868,31 @@
     m.querySelectorAll('[data-rc]').forEach(b => b.onclick = () => { closeModal(); navigate('/protocol/' + p.id + '/' + b.dataset.rc); });
   }
 
+  // ---------- universal cause-finder: EVERY protocol gets a "which cause is yours" step ----------
+  // Prefers a hand-authored clinical assessment (scores root_causes). Otherwise builds a symptom
+  // picker from the educational why.causes and opens the matching cause (its fixes = its default plan).
+  function openCauseFinder(problem) {
+    if (problem.assessment && problem.assessment.questions && problem.assessment.questions.length) return openAssessment(problem);
+    if (problem.root_causes && problem.root_causes.length > 1) return openIntakeBasic(problem);
+    const w = problem.why; const causes = (w && Array.isArray(w.causes)) ? w.causes.slice().sort((a, b) => (a.rank || 9) - (b.rank || 9)) : [];
+    if (!causes.length) return openIntakeBasic(problem);
+    const opts = causes.map((c, i) => `<button class="intake-opt" data-cause="${i}"><span class="io-i">${c.rank || i + 1}</span><span class="io-b"><b>${esc(causeHook(c) || c.name)}</b><small>${esc(c.name)}</small></span><span class="io-go">→</span></button>`).join('');
+    modal(`<div class="intake">
+      <div class="intake-head"><span class="kicker">${esc(problem.category)} · quick check</span>
+        <h2>${problem.icon || ''} Which sounds most like you?</h2>
+        <p>Your ${esc(problem.name.toLowerCase())} can come from any of these — sometimes more than one. Pick the symptoms that fit and it opens that cause and its plan. Nothing here is a diagnosis.</p></div>
+      <div class="intake-opts">${opts}</div>
+      <button class="intake-skip" data-cause="0">Not sure — start with the highest-leverage cause</button>
+    </div>`).querySelectorAll('[data-cause]').forEach(b => b.onclick = () => { closeModal(); openCauseInAccordion(+b.dataset.cause); });
+  }
+  function openCauseInAccordion(idx) {
+    const sec = document.getElementById('p-causes'); if (!sec) return;
+    const accs = sec.querySelectorAll('.cause-acc');
+    accs.forEach((d, i) => { d.open = (i === idx); });
+    const t = accs[idx] || accs[0];
+    if (t) setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
+  }
+
   function home() {
     const cc = D.meta.counts;
     const cards = D.goals.map(g => {
@@ -4659,12 +4684,17 @@
         </div>
       </details>`;
     }).join('');
+    const nC = causes.length;
     return `<section class="causes-section" id="p-causes">
-      <div class="cause-h"><h2>🔍 Why this happens — find your cause</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}
-        <p class="cause-howto">Ranked by leverage — <b>#1 fixes the most</b>. Open the one whose symptoms sound like you and read just that: each is a self-contained explanation and plan. Fixes run <b>behaviour → food → supplement → prescription</b>.</p>
-        <button class="share-short-btn" data-share-short="cause:${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
+      <div class="cause-h"><div class="cause-step">STEP 1 · FIND YOUR CAUSE</div><h2>🔍 What’s actually causing your ${esc(problem.name.toLowerCase())}?</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}</div>
       ${ladder}
+      <div class="cause-finder">
+        <div class="cf-txt"><b>There are ${nC} common causes${nC > 1 ? ' — and often more than one is at play' : ''}.</b> The right fix depends entirely on which is yours. Answer a few quick questions and we’ll point you to it.</div>
+        <button class="cta-primary cf-btn" data-find-cause="${esc(problem.id)}">🔍 Find my cause — 20-second check</button>
+      </div>
+      <div class="cause-list-label"><span class="cll-h">The ${nC} possible cause${nC !== 1 ? 's' : ''}</span> · ranked by leverage (#1 fixes the most) — <b>open the one that sounds like you</b>. Each is a self-contained explanation and plan; fixes run behaviour → food → supplement → prescription.</div>
       <div class="cause-accordion">${items}</div>
+      <div class="cause-foot"><button class="share-short-btn" data-share-short="cause:${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
       ${w.theOneThing ? `<div class="cause-one"><span class="cause-one-t">⭐ If you do only one thing</span><p>${mdInline(w.theOneThing)}</p></div>` : ''}
     </section>`;
   }
@@ -6426,6 +6456,8 @@
   document.addEventListener('click', e => { const b = e.target.closest('[data-share-short]'); if (b) { e.preventDefault(); shareShortModal(b.getAttribute('data-share-short')); } });
   // Smooth-scroll to an on-page section by id (journey rail, "one thing" jump) without hijacking the hash router.
   document.addEventListener('click', e => { const b = e.target.closest('[data-scroll]'); if (b) { e.preventDefault(); const t = document.getElementById(b.getAttribute('data-scroll')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); } });
+  // Universal cause-finder — present on every protocol.
+  document.addEventListener('click', e => { const b = e.target.closest('[data-find-cause]'); if (b) { e.preventDefault(); const p = problemById[b.getAttribute('data-find-cause')]; if (p) openCauseFinder(p); } });
   // Personalized per-kg dose calculator (biohacker layer)
   document.addEventListener('input', e => {
     const i = e.target.closest('.bio-dose-w'); if (!i) return;

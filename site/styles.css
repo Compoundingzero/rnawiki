@@ -2661,6 +2661,13 @@ a.dp-name:hover{color:var(--accent)}
 .cause-card{border:1px solid var(--line);border-left:4px solid var(--faint);border-radius:14px;padding:1rem 1.15rem;background:var(--bg,#fff)}
 .cause-card.lev-high{border-left-color:#16a34a}.cause-card.lev-med{border-left-color:#f59e0b}.cause-card.lev-low{border-left-color:#94a3b8}
 /* Focused accordion — one cause open at a time (Apple-style focus) */
+.cause-step{font-size:.72rem;font-weight:800;letter-spacing:.08em;color:var(--accent);margin-bottom:.3rem}
+.cause-finder{margin:1.1rem 0;padding:1.1rem 1.25rem;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 12%,transparent),color-mix(in srgb,var(--accent) 4%,transparent));border:1px solid color-mix(in srgb,var(--accent) 30%,var(--line));display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.2rem}
+.cf-txt{flex:1;min-width:240px;line-height:1.55;font-size:.95rem}
+.cf-btn{flex:0 0 auto;white-space:nowrap}
+.cause-list-label{margin:1.3rem 0 .7rem;font-size:.86rem;line-height:1.5;color:var(--muted)}
+.cll-h{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem;color:var(--ink)}
+.cause-foot{margin-top:1rem}
 .cause-howto{margin:.5rem 0 0}
 .cause-bigpic{margin:0 0 1rem;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,var(--accent) 4%,transparent);padding:.2rem .9rem}
 .cause-bigpic summary{cursor:pointer;font-weight:600;padding:.6rem 0;font-size:.9rem;color:var(--muted)}
