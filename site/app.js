@@ -2273,7 +2273,7 @@
   // ---------- Fuel (a main function: pick a protocol → personalised tracker + auto-stack) ----------
   function fuelPage(pid, rcid) {
     const p = pid && problemById[pid];
-    const rc = p && p.root_causes.find(r => r.id === rcid);
+    const rc = resolveRc(p, rcid);
     if (p && rc) {
       return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Fuel', href: '#/fuel' }, { label: p.name }])}
         <section class="fuel-page">
@@ -2309,7 +2309,7 @@
   }
   async function mountFuel(pid, rcid) {
     try { await ensureProtocolData(); } catch (e) {}
-    const p = problemById[pid]; const rc = p && p.root_causes.find(r => r.id === rcid);
+    const p = problemById[pid]; const rc = resolveRc(p, rcid);
     if (!p || !rc) return;
     const P = generateProtocol(rc);
     // auto-populate the stack with this protocol's compounds
@@ -2518,7 +2518,7 @@
     const purl = (location.origin || 'https://rnawiki.com') + '/u/' + encodeURIComponent(u.username);
     const socials = profileSocials(u.socials);
     const protoName = (pid, rcid) => {
-      const p = problemById[pid]; const rc = p && p.root_causes.find(r => r.id === rcid);
+      const p = problemById[pid]; const rc = resolveRc(p, rcid);
       return p ? p.name + (rc ? ' — ' + rc.name.split('(')[0].trim() : '') : pid;
     };
     const stewarded = (d.stewarded || []).map(sp => `<a class="prof-steward" href="#/protocol/${sp.problem_id}/${sp.root_cause_id}">🩺 ${esc(protoName(sp.problem_id, sp.root_cause_id))}</a>`).join('');
@@ -2669,7 +2669,7 @@
         <button data-v="operations">🗂 Operations</button>
       </div>
       <div id="cr-view" class="cr-view"></div>`;
-    const nameOf = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
+    const nameOf = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = resolveRc(p, rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
     let _oc = null; const getOutcomes = () => _oc || (_oc = api.adminOutcomes());
     async function loadMetrics() {
       const host = app.querySelector('#cr-metrics'); if (!host) return;
@@ -2830,7 +2830,7 @@
       try { S = await api.adminSignals(); } catch (e) {}
       try { R = await api.adminResearch(); } catch (e) {}
       try { O = await getOutcomes(); } catch (e) {}
-      const nm = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = p && p.root_causes.find(r => r.id === rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
+      const nm = (pid, rcid) => { const p = GRAPH.problems.find(x => x.id === pid); const rc = resolveRc(p, rcid); return { pn: p ? p.name : pid, rn: rc ? rc.name.split('(')[0].trim() : rcid, icon: p ? (p.icon || '') : '' }; };
       // outcomes-by-protocol table (folded in from the old Dataset tab)
       const oRows = (O.rows || []).map(r => { const o = nm(r.pid, r.rcid); const p30 = r.d30_n ? Math.round(r.d30_imp / r.d30_n * 100) : null, p90 = r.d90_n ? Math.round(r.d90_imp / r.d90_n * 100) : null; const dlt = r.symptom_delta;
         return `<tr><td>${o.icon} <b>${esc(o.pn)}</b> <span class="muted">${esc(o.rn)}</span></td><td>${r.baseline_n}</td><td>${r.d30_n}${p30 != null ? ` · <b>${p30}%</b>↑` : ''}</td><td>${r.d90_n}${p90 != null ? ` · <b>${p90}%</b>↑` : ''}</td><td>${dlt != null ? (dlt > 0 ? '▼ ' + dlt : dlt < 0 ? '▲ ' + Math.abs(dlt) : '0') + ' pts' : '—'}</td><td>${r.avg_adh != null ? r.avg_adh + '%' : '—'}</td></tr>`;
@@ -3159,13 +3159,54 @@
     return changed;
   }
   function protocolName(pid, rcid) {
-    const p = problemById[pid]; const rc = p && p.root_causes.find(r => r.id === rcid);
+    const p = problemById[pid]; const rc = resolveRc(p, rcid);
     return p ? p.name + (rc ? ' — ' + rc.name.split('(')[0].trim() : '') : pid;
+  }
+  // ITEM 2 — per-cause protocols: synthesize a why.cause into a root-cause the whole engine understands.
+  // Move/Fuel scaffolding is borrowed from the best-matching real root_cause; Stack (and identity) come
+  // from the cause itself, so each cause you identify gets its own Move·Fuel·Stack plan.
+  // Map a why.cause to the real root_cause whose Move/Fuel scaffolding fits best (scored on shared clinical
+  // words + a few synonyms). Returns null when nothing matches well, so the caller falls back to the primary rc.
+  function alignRootCause(cause, rcs) {
+    if (!rcs || !rcs.length) return null;
+    const hay = (String(cause.name) + ' ' + (cause.hook || '') + ' ' + ((cause.tell && cause.tell.symptoms) || '')).toLowerCase();
+    let best = null, bestScore = 0;
+    rcs.forEach(r => {
+      const toks = (r.id + ' ' + r.name).toLowerCase().split(/[^a-z0-9]+/).filter(t => t.length > 2);
+      let sc = 0; toks.forEach(t => { if (hay.includes(t)) sc += t.length; });
+      const rk = (r.id + ' ' + r.name).toLowerCase();
+      if (/osteoarthritis|cartilage/.test(hay) && /\boa\b|osteoarthritis/.test(rk)) sc += 8;
+      if (/iliotibial|it band/.test(hay) && /\bit\b|iliotibial|lateral/.test(rk)) sc += 6;
+      if (sc > bestScore) { bestScore = sc; best = r; }
+    });
+    return bestScore >= 4 ? best : null;
+  }
+  function causeAsRc(problem, ci) {
+    const causes = (problem.why && problem.why.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    const cause = causes[ci]; const rcs = problem.root_causes || [];
+    if (!cause) return rcs[0];
+    let base = alignRootCause(cause, rcs);                              // best clinical-name match
+    if (!base && rcs.length === causes.length) base = rcs[ci];          // else align by index when counts match
+    base = base || rcs[0] || {};                                       // else the primary root_cause
+    const compNames = (cause.fixes || []).filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc ? cc.name : f.ref; });
+    return Object.assign({}, base, {
+      id: 'wc' + ci, name: cause.name,
+      diagnostic: cause.hook || (cause.tell && cause.tell.symptoms) || base.diagnostic || '',
+      compounds: compNames.length ? compNames : (base.compounds || []),
+      _causeIndex: ci, _cause: cause,
+    });
   }
   function findRootCause(pid, rcid) {
     const p = problemById[pid]; if (!p) return null;
+    if (/^wc\d+$/.test(rcid || '')) { const rc = causeAsRc(p, +rcid.slice(2)); return rc ? { problem: p, rc } : null; }
     const rc = p.root_causes.find(r => r.id === rcid) || p.root_causes[0];
     return rc ? { problem: p, rc } : null;
+  }
+  // Resolve a root-cause id (real OR a 'wc<n>' cause key) to its rc object — for name lookups everywhere.
+  function resolveRc(p, rcid) {
+    if (!p) return null;
+    if (/^wc\d+$/.test(rcid || '')) return causeAsRc(p, +rcid.slice(2));
+    return (p.root_causes || []).find(r => r.id === rcid) || null;
   }
   const NUTRIENT_LABEL = {
     kcal: 'Calories', protein_g: 'Protein', carbs_g: 'Carbs', sugar_g: 'Sugar', fat_g: 'Fat',
@@ -4754,7 +4795,7 @@
           ${symptoms ? `<div class="cause-tell"><span class="cbl">Is this you?</span> ${symptoms}</div>` : ''}
           ${confidenceMeter(c)}
           ${(c.tell && c.tell.labMarker) ? `<div class="cause-lab">🩸 <b>Confirm it:</b> ${mdInline(c.tell.labMarker)}</div>` : ''}
-          ${fixes ? `<div class="cause-fix"><div class="cf-plan-h"><span class="cbl">✅ Your plan if this is your cause</span><span class="fix-order-note">work down the list — cheapest &amp; safest first</span></div><ul class="fix-list">${fixes}</ul>${suppIds.length ? `<button class="adopt-plan" data-adopt="${suppIds.join(',')}">➕ Add ${suppIds.length === 1 ? 'this supplement' : 'these ' + suppIds.length + ' supplements'} to my stack</button>` : ''}</div>` : ''}
+          ${fixes ? `<div class="cause-fix"><div class="cf-plan-h"><span class="cbl">✅ Your plan if this is your cause</span><span class="fix-order-note">work down the list — cheapest &amp; safest first</span></div><ul class="fix-list">${fixes}</ul><div class="cause-plan-cta"><button class="cta-primary build-cause-btn" data-build-cause="${esc(problem.id)}#${i}">▶ Build my plan for this cause →</button>${suppIds.length ? `<button class="adopt-plan" data-adopt="${suppIds.join(',')}">＋ Just add the ${suppIds.length === 1 ? 'supplement' : suppIds.length + ' supplements'} to my stack</button>` : ''}</div></div>` : ''}
           ${goDeeper}
         </div>
       </details>`;
@@ -6536,6 +6577,22 @@
   document.addEventListener('click', e => { const b = e.target.closest('[data-find-cause]'); if (b) { e.preventDefault(); const p = problemById[b.getAttribute('data-find-cause')]; if (p) openCauseFinder(p); } });
   // Adopt a cause's default plan — seed My Plan's stack with that cause's supplements.
   document.addEventListener('click', e => { const b = e.target.closest('.adopt-plan'); if (b) { e.preventDefault(); const ids = (b.getAttribute('data-adopt') || '').split(',').filter(Boolean); const s = getStack(); let added = 0; ids.forEach(id => { if (!s.includes(id)) { s.push(id); added++; } }); setStack(s); updateStackBadge(); b.classList.add('adopted'); b.textContent = added ? `✓ Added ${added} to your stack — track them on My Plan` : '✓ Already in your stack'; } });
+  // ITEM 2 — build a full Move·Fuel·Stack plan for THIS cause (opens the builder seeded from the cause).
+  document.addEventListener('click', e => {
+    const b = e.target.closest('[data-build-cause]'); if (!b) return; e.preventDefault();
+    const [pid, ciStr] = b.getAttribute('data-build-cause').split('#'); const p = problemById[pid]; if (!p) return;
+    b.disabled = true; const orig = b.textContent; b.textContent = 'Loading…';
+    ensureProtocolData().then(() => {
+      const rc = causeAsRc(p, +ciStr); const P = generateProtocol(rc);
+      const pl = getPlan() || newPlan();
+      const existing = planProtocols(pl).find(x => x.pid === pid && x.rcid === rc.id);
+      pl.draft = existing
+        ? { pid, rcid: rc.id, moves: existing.moves, supps: existing.supps, functions: existing.functions, extra: {}, step: 0 }
+        : { pid, rcid: rc.id, moves: [...(P.strengthen || []), ...(P.stretch || [])].map(x => x.id), supps: (P.stack || []).map(c => c.id), functions: undefined, extra: {}, step: 0 };
+      api.startExperiment(pid, rc.id).catch(() => {});
+      setPlan(pl); navigate('/plan');
+    }).catch(() => { b.disabled = false; b.textContent = orig; });
+  });
   // Personalized per-kg dose calculator (biohacker layer)
   document.addEventListener('input', e => {
     const i = e.target.closest('.bio-dose-w'); if (!i) return;

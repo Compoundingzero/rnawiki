@@ -2706,6 +2706,9 @@ a.dp-name:hover{color:var(--accent)}
 .adopt-plan{margin-top:.7rem;border:1px solid color-mix(in srgb,#16a34a 40%,var(--line));background:color-mix(in srgb,#16a34a 10%,transparent);color:#15803d;border-radius:999px;padding:.45rem 1rem;font-size:.86rem;font-weight:600;cursor:pointer}
 .adopt-plan:hover{background:color-mix(in srgb,#16a34a 18%,transparent)}
 .adopt-plan.adopted{background:color-mix(in srgb,#16a34a 20%,transparent);cursor:default}
+.cause-plan-cta{margin-top:.9rem;display:flex;flex-wrap:wrap;gap:.6rem .9rem;align-items:center}
+.build-cause-btn{cursor:pointer}
+.cause-plan-cta .adopt-plan{margin-top:0}
 /* ---- Apple-style scroll-reveal biological journey ---- */
 .key-insight{margin:1.5rem 0 1.7rem;padding:1.3rem 1.2rem 1rem;text-align:center;position:relative}
 .ki-mark{display:block;font-family:Georgia,"Times New Roman",serif;font-size:2.6rem;line-height:.6;color:color-mix(in srgb,var(--accent) 42%,transparent);margin-bottom:.2rem}
