@@ -212,6 +212,12 @@ CREATE TABLE IF NOT EXISTS fork_clones (
   UNIQUE(fork_id, voter_key)
 );
 
+-- people who built a stack (for the "N people helped" heartbeat; protocol-starters come from experiments)
+CREATE TABLE IF NOT EXISTS helped_people (
+  voter_key TEXT PRIMARY KEY,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
 CREATE TABLE IF NOT EXISTS proposals (
   id SERIAL PRIMARY KEY,
   problem_id TEXT NOT NULL,

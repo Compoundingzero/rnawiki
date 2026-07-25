@@ -173,7 +173,7 @@
 
   const STACK_KEY = 'rnawiki_stack';
   function getStack() { try { return JSON.parse(localStorage.getItem(STACK_KEY)) || []; } catch (e) { return []; } }
-  function setStack(a) { localStorage.setItem(STACK_KEY, JSON.stringify(a)); updateStackBadge(); }
+  function setStack(a) { localStorage.setItem(STACK_KEY, JSON.stringify(a)); updateStackBadge(); if (a && a.length && !window._rnaHelpedPinged) { window._rnaHelpedPinged = true; try { api.helped(); } catch (e) {} } }
   function inStack(id) { return getStack().includes(id); }
   function toggleStack(id) { const s = getStack(); const i = s.indexOf(id); if (i >= 0) s.splice(i, 1); else s.push(id); setStack(s); }
   function updateStackBadge() { const b = document.getElementById('stack-badge'); const n = getStack().length; if (b) { b.textContent = n; b.hidden = n === 0; } }
@@ -334,6 +334,7 @@
     checkinExperiment(pid, rcid) { return this.call('POST', '/api/experiments/checkin', { problemId: pid, rootCauseId: rcid, voterKey: VOTER_KEY }); },
     reportOutcome(pid, rcid, outcome) { return this.call('POST', '/api/experiments/outcome', { problemId: pid, rootCauseId: rcid, outcome, voterKey: VOTER_KEY }); },
     stats() { return this.call('GET', '/api/stats').catch(() => null); },
+    helped() { return this.call('POST', '/api/helped', { voterKey: VOTER_KEY }).catch(() => null); },
   };
   // Tier-1 voting: a stable anonymous voter key so votes need no account.
   const VOTER_KEY = (() => { let k = localStorage.getItem('rnawiki_voter'); if (!k) { k = 'v' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('rnawiki_voter', k); } return k; })();
@@ -475,7 +476,7 @@
   }
   function renderGoalComments(goalId) { return renderComments(goalId, goalById[goalId] ? goalById[goalId].label : goalId); }
   async function renderComments(key, label) {
-    const box = document.getElementById('goal-comments'); if (!box) return;
+    const box = document.getElementById('goal-comments'); if (box) box.innerHTML = ''; return; // comments removed
     const composer = ME
       ? `<form id="cm-form" class="comment-form"><textarea id="cm-body" maxlength="2000" rows="3" placeholder="Tried it? Share what worked, a question, or a tip about ${esc(label)}…"></textarea><div class="cm-actions"><span class="cm-hint">Be kind and useful. Not medical advice.</span><button class="btn-primary" id="cm-post">Post comment</button></div></form>`
       : `<div class="comment-signin"><b>💬 Join the discussion.</b> <a href="#" id="cm-signin">Sign in or create a free account</a> to share your experience or ask a question.</div>`;
@@ -499,7 +500,7 @@
     } catch (ex) { list.innerHTML = `<div class="empty">${esc(ex.message)}</div>`; }
   }
   async function renderHomeComments() {
-    const box = document.getElementById('home-comments'); if (!box) return;
+    const box = document.getElementById('home-comments'); if (box) box.innerHTML = ''; return; // comments removed
     const cs = await api.recentComments();
     if (!cs.length) return;
     box.innerHTML = `<div class="section-title">Latest from the community</div><div class="recent-comments">${cs.map(c => `<a class="rc" href="#/goal/${esc(c.goal_id)}"><div class="rc-head"><span class="comment-user">👤 ${esc(c.username)}</span><span class="rc-goal">${goalById[c.goal_id] ? goalById[c.goal_id].icon + ' ' + goalById[c.goal_id].label : c.goal_id}</span><span class="comment-time">${ago(c.created_at)}</span></div><div class="rc-body">${userText(c.body).slice(0, 240)}</div></a>`).join('')}</div>`;
@@ -2916,12 +2917,16 @@
     ...(D.graph.problems || []).map(p => ({ kind: 'Protocol', title: p.name, sub: p.category + ' · ' + (p.kind === 'want' ? 'goal' : 'problem'), href: '#/protocol/' + p.id + '/' + p.root_causes[0].id, hay: (p.name + ' ' + p.category + ' ' + p.root_causes.map(rc => rc.name + ' ' + rc.diagnostic).join(' ')).toLowerCase() })),
   ];
   function runSearch(q) {
-    q = q.trim().toLowerCase(); if (!q) { searchOut.hidden = true; return; }
+    const rawQ = q.trim(); q = rawQ.toLowerCase(); if (!q) { searchOut.hidden = true; return; }
     const terms = q.split(/\s+/);
     const scored = index.map(it => { let s = 0; const t = it.title.toLowerCase(); terms.forEach(x => { if (t === x) s += 14; else if (t.startsWith(x)) s += 10; else if (t.includes(x)) s += 6; else if (it.hay.includes(x)) s += 2; }); return { it, s }; })
       .filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.it.title.length - b.it.title.length).slice(0, 12);
-    searchOut.innerHTML = scored.length ? scored.map(x => `<a href="${x.it.href}"><span class="sr-kind">${x.it.kind}</span> ${x.it.title} <span style="color:var(--faint);font-size:.82rem">· ${x.it.sub}</span></a>`).join('') : '<a>No matches</a>';
+    searchOut.innerHTML = scored.length
+      ? scored.map(x => `<a href="${x.it.href}"><span class="sr-kind">${x.it.kind}</span> ${x.it.title} <span style="color:var(--faint);font-size:.82rem">· ${x.it.sub}</span></a>`).join('')
+      : `<div class="sr-empty">Can’t find <b>“${esc(rawQ)}”</b>? <button type="button" class="sr-request">Request it or leave feedback →</button></div>`;
     searchOut.hidden = false;
+    const rq = searchOut.querySelector('.sr-request');
+    if (rq) rq.onclick = e => { e.preventDefault(); e.stopPropagation(); searchOut.hidden = true; openFeedbackModal('Requesting: "' + rawQ + '" — '); };
   }
   searchBox.addEventListener('input', () => runSearch(searchBox.value));
   searchBox.addEventListener('focus', () => { if (searchBox.value) runSearch(searchBox.value); });
@@ -3371,13 +3376,13 @@
       <div id="requests-board"></div>`;
   }
   // Anyone can suggest an improvement or flag something wrong — collected for the admin.
-  function openFeedbackModal() {
+  function openFeedbackModal(prefill) {
     const page = location.pathname + location.hash;
     const m = modal(`<div class="partner-modal"><h2>Help us improve RNAwiki</h2>
-      <p class="muted">Spotted something wrong, confusing, or missing? Have an idea? Tell us — it goes straight to the team.</p>
+      <p class="muted">Spotted something wrong, confusing, or missing? Want us to add something? Tell us — it goes straight to the team.</p>
       <label>What kind of feedback?</label>
-      <select id="fb-kind"><option value="idea">💡 An idea / suggestion</option><option value="wrong">⚠️ Something looks wrong</option><option value="other">💬 Something else</option></select>
-      <label>Your feedback</label><textarea id="fb-body" rows="4" maxlength="2000" placeholder="What would make RNAwiki better?"></textarea>
+      <select id="fb-kind"><option value="idea">💡 A request / suggestion</option><option value="wrong">⚠️ Something looks wrong</option><option value="other">💬 Something else</option></select>
+      <label>Your feedback</label><textarea id="fb-body" rows="4" maxlength="2000" placeholder="What would make RNAwiki better?">${prefill ? esc(prefill) : ''}</textarea>
       ${ME ? '' : '<label>Email (optional — if you’d like a reply)</label><input id="fb-contact" type="email" placeholder="you@example.com">'}
       <button class="cta-primary" id="fb-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">Send feedback</button></div>`);
     m.querySelector('#fb-save').onclick = async () => {
@@ -3742,11 +3747,11 @@
   // Movement heartbeat on the home page. Hidden until there's real activity — never shows a fake or zero count.
   async function mountHomeStat() {
     const el = document.getElementById('home-stat'); if (!el) return;
-    const s = await api.stats(); if (!s || !s.experiments) return;
-    const n = Number(s.experiments);
+    const s = await api.stats(); if (!s) return;
+    const n = Number(s.helped != null ? s.helped : s.experiments) || 0; if (!n) return;
     const next = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000].find(m => m > n);
     const bar = next ? `<div class="home-stat-bar"><span style="width:${Math.max(3, Math.round(n / next * 100))}%"></span></div><div class="home-stat-sub">${(next - n).toLocaleString()} to go until the community hits ${next.toLocaleString()}</div>` : '';
-    el.innerHTML = `🧪 <b>${n.toLocaleString()}</b> experiment${n === 1 ? '' : 's'} run by the community${s.improved ? ` · <b>${Number(s.improved).toLocaleString()}</b> reported better` : ''}${bar}`;
+    el.innerHTML = `🧬 <b>${n.toLocaleString()}</b> ${n === 1 ? 'person' : 'people'} helped${bar}`;
     el.hidden = false;
   }
 

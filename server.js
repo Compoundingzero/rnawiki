@@ -2260,7 +2260,20 @@ async function api(req, res, url) {
   // collective counter for the home page (movement heartbeat)
   if (seg[0] === 'stats' && method === 'GET') {
     const r = await db.query("SELECT count(*)::int AS experiments, count(*) FILTER (WHERE outcome='better')::int AS improved FROM experiments");
-    return json(res, 200, r.rows[0] || { experiments: 0, improved: 0 });
+    // "people helped" = distinct people who started a protocol OR built a stack
+    let helped = 0;
+    try {
+      const h = await db.query("SELECT count(*)::int AS n FROM (SELECT participant AS k FROM experiments UNION SELECT voter_key FROM helped_people) t");
+      helped = (h.rows[0] && h.rows[0].n) || 0;
+    } catch (e) { helped = (r.rows[0] && r.rows[0].experiments) || 0; }
+    return json(res, 200, Object.assign({ experiments: 0, improved: 0 }, r.rows[0] || {}, { helped }));
+  }
+  // record a "stack built" engagement (idempotent per person) for the people-helped counter
+  if (seg[0] === 'helped' && method === 'POST') {
+    const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64);
+    if (!voterKey) return json(res, 400, { error: 'Missing' });
+    try { await db.query('INSERT INTO helped_people(voter_key) VALUES($1) ON CONFLICT (voter_key) DO NOTHING', [voterKey]); } catch (e) {}
+    return json(res, 200, { ok: true });
   }
   // public aggregate for one protocol (the Results Ledger)
   if (seg[0] === 'ledger' && method === 'GET') {

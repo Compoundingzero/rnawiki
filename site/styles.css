@@ -34,6 +34,9 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .search-results a{display:block;padding:.5rem .7rem;border-radius:8px;color:var(--ink)}
 .search-results a:hover,.search-results a.active{background:var(--panel2);text-decoration:none}
 .search-results .sr-kind{font-size:.72rem;color:var(--faint);text-transform:uppercase;letter-spacing:.05em}
+.sr-empty{padding:.75rem .85rem;font-size:.9rem;line-height:1.5;color:var(--muted)}
+.sr-request{background:none;border:none;color:var(--accent);font-weight:600;cursor:pointer;padding:0;font-size:.9rem}
+.sr-request:hover{text-decoration:underline}
 .topnav{display:flex;gap:1.1rem;font-size:.92rem}
 .topnav a{color:var(--muted)}
 .topnav a:hover{color:var(--head);text-decoration:none}
