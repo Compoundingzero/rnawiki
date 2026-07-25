@@ -877,7 +877,44 @@
   // ---------- universal cause-finder: EVERY protocol gets a "which cause is yours" step ----------
   // Prefers a hand-authored clinical assessment (scores root_causes). Otherwise builds a symptom
   // picker from the educational why.causes and opens the matching cause (its fixes = its default plan).
+  // Scored "find your cause" quiz over why.causes — a few discriminating questions → opens the winning cause.
+  function openCauseQuiz(p) {
+    const quiz = p.causeQuiz; const causes = (p.why && p.why.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    if (!quiz || !Array.isArray(quiz.questions) || !quiz.questions.length || !causes.length) return openCauseInAccordion(0);
+    const Q = quiz.questions.length; let step = 0; const answers = {};
+    const m = modal(''); const box = m.querySelector('.modal'); box.classList.add('assess-modal');
+    const dots = a => `<div class="assess-dots">${Array.from({ length: Q }, (_, i) => `<span class="${i === a ? 'on' : i < a ? 'done' : ''}"></span>`).join('')}</div>`;
+    function render() {
+      if (step < Q) {
+        const q = quiz.questions[step];
+        box.innerHTML = `<div class="assess-top">${step > 0 ? '<button class="assess-back" data-back>←</button>' : '<span></span>'}${dots(step)}<button class="assess-x" data-x aria-label="Close">✕</button></div>
+          <div class="assess-kicker">${p.icon || ''} ${esc(p.name)} · find your cause</div>
+          <h2 class="assess-q">${esc(q.q)}</h2>
+          <div class="assess-opts">${(q.options || []).map((o, i) => `<button class="assess-opt ${answers[step] === i ? 'sel' : ''}" data-opt="${i}">${esc(o.label)}<span class="ao-go">→</span></button>`).join('')}</div>`;
+        box.querySelectorAll('[data-opt]').forEach(b => b.onclick = () => { answers[step] = +b.dataset.opt; step++; render(); });
+      } else {
+        const sc = causes.map(() => 0);
+        quiz.questions.forEach((q, qi) => { const oi = answers[qi]; if (oi == null) return; ((q.options[oi] || {}).causes || []).forEach(ci => { if (sc[ci] != null) sc[ci]++; }); });
+        const ranked = sc.map((s, i) => ({ i, s })).sort((a, b) => b.s - a.s);
+        const top = (ranked[0] && ranked[0].s > 0) ? ranked[0].i : 0;
+        const c = causes[top]; const near = ranked[1] && ranked[1].s > 0 && (ranked[0].s - ranked[1].s <= 1);
+        box.innerHTML = `<div class="assess-top"><button class="assess-back" data-back>←</button><span></span><button class="assess-x" data-x aria-label="Close">✕</button></div>
+          <div class="assess-result"><div class="assess-kicker">Your quick check</div>
+            <h2>This looks most like: ${esc(c.name)}</h2>
+            ${causeHook(c) ? `<p class="assess-plain">${mdInline(causeHook(c))}</p>` : ''}
+            ${near ? `<p class="assess-alt">It could also be <b>${esc(causes[ranked[1].i].name)}</b> — worth reading both.</p>` : ''}
+            <div class="assess-actions"><button class="assess-go2 primary" data-go="${top}">Read this cause & its plan →</button><button class="assess-switch" data-all>Show me all the causes</button></div>
+            <p class="assess-disclaimer">A quick self-check to point you to the likely cause — not a diagnosis.</p></div>`;
+        box.querySelector('[data-go]').onclick = () => { closeModal(); openCauseInAccordion(top); };
+        const all = box.querySelector('[data-all]'); if (all) all.onclick = () => { closeModal(); openCauseInAccordion(0); };
+      }
+      const back = box.querySelector('[data-back]'); if (back) back.onclick = () => { if (step > 0) { step--; render(); } };
+      box.querySelectorAll('[data-x]').forEach(x => x.onclick = () => closeModal());
+    }
+    render();
+  }
   function openCauseFinder(problem) {
+    if (problem.causeQuiz && problem.causeQuiz.questions && problem.causeQuiz.questions.length) return openCauseQuiz(problem);
     if (problem.assessment && problem.assessment.questions && problem.assessment.questions.length) return openAssessment(problem);
     if (problem.root_causes && problem.root_causes.length > 1) return openIntakeBasic(problem);
     const w = problem.why; const causes = (w && Array.isArray(w.causes)) ? w.causes.slice().sort((a, b) => (a.rank || 9) - (b.rank || 9)) : [];
