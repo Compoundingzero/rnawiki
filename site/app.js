@@ -3433,9 +3433,9 @@
     const extra = getStack().filter(id => !protoIds.includes(id)).map(id => byId[id]).filter(Boolean);
     const items = (P.stack || []).concat(extra);
     const rows = items.map(c => `<label class="fork-item"><input type="checkbox" value="${c.id}" checked> <b>${esc(c.name)}</b> <span class="stars">${starStr(c.stars)}</span>${c.isRx ? ' <span class="pill rx">Prescription</span>' : ''}</label>`).join('');
-    const m = modal(`<div class="partner-modal"><h2>🍴 Fork this protocol</h2>
-      <p class="muted">Make your own take on <b>${esc(problem.name)}</b> — keep what suits you, drop what doesn't. It's saved as a <b>community variation</b> (clearly not the reviewed protocol). When others clone it, you earn reputation.</p>
-      <label>Name your variation</label><input id="fk-title" maxlength="80" placeholder="e.g. My SG longevity stack — no rapamycin">
+    const m = modal(`<div class="partner-modal"><h2>💬 Share your stack</h2>
+      <p class="muted">Share your own take on <b>${esc(problem.name)}</b> — keep what suits you, drop what doesn't. It shows up as a <b>community stack</b> (clearly not the reviewed protocol) that others can like and use. When someone uses it, you earn reputation.</p>
+      <label>Name your stack</label><input id="fk-title" maxlength="80" placeholder="e.g. My SG longevity stack — no rapamycin">
       <label>What did you change &amp; why? (optional)</label><textarea id="fk-note" rows="2" maxlength="500" placeholder="Dropped X (couldn't source it in SG), added Y for sleep…"></textarea>
       <label>Your stack (${items.length})</label>
       <div class="fork-items">${rows || '<p class="muted">This protocol has no supplements to fork.</p>'}</div>
@@ -3443,7 +3443,7 @@
     m.querySelector('#fk-save').onclick = async () => {
       const title = (document.getElementById('fk-title') || {}).value || ''; if (!title.trim()) return alert('Name your variation first.');
       const stack = [...m.querySelectorAll('.fork-items input:checked')].map(i => i.value);
-      try { await api.createFork({ problem_id: problem.id, root_cause_id: rc.id, title, note: (document.getElementById('fk-note') || {}).value || '', stack }); closeModal(); alert('Saved! It’s now a community fork. +10 points — every clone earns you more.'); mountForks(problem, rc); }
+      try { await api.createFork({ problem_id: problem.id, root_cause_id: rc.id, title, note: (document.getElementById('fk-note') || {}).value || '', stack }); closeModal(); alert('Shared! It’s now a community stack. +10 points — every person who uses it earns you more.'); mountCommunityStacks(problem, rc); }
       catch (e) { alert(e.message); }
     };
   }
@@ -3474,16 +3474,24 @@
     const p = problemById[f.problem_id];
     const cpds = (f.stack || []).map(x => byId[x]).filter(Boolean);
     const base = '#/protocol/' + f.problem_id + '/' + f.root_cause_id;
-    app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: p ? p.name : 'Protocol', href: p ? base : '#/' }, { label: 'Variation' }])}
-      <span class="anat-region">🍴 Community variation · not reviewed</span>
+    let likes = 0; try { const s = await api.votes(['fork:' + f.id]); likes = (s['fork:' + f.id] || {}).up || 0; } catch (e) {}
+    const liked = myVote('fork:' + f.id) === 1;
+    app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: p ? p.name : 'Protocol', href: p ? base : '#/' }, { label: 'Stack' }])}
+      <span class="anat-region">💬 Community stack · not reviewed</span>
       <h1>${esc(f.title)}</h1>
-      <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''} · ${f.clones} clone${f.clones !== 1 ? 's' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
+      <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
       ${f.note ? `<p class="anat-lead">${esc(f.note)}</p>` : ''}
       <div class="section-title">The stack (${cpds.length})</div>
       <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${c.isRx ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b><span class="stars">${starStr(c.stars)}</span></a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
-      <div style="margin-top:1.2rem"><button class="cta-primary" id="fork-clone-btn" style="border:none;cursor:pointer">Clone this stack →</button></div>
-      <p class="lp-note" style="margin-top:1.2rem">A community-made variation, not the official reviewed protocol. See the <a href="${base}">official ${esc(p ? p.name : '')} protocol →</a></p></div>`;
+      <div class="cstack-actions" style="margin-top:1.2rem">
+        <button class="cta-primary cstack-use" id="fork-clone-btn" style="border:none;cursor:pointer">Use this stack →</button>
+        <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likes}</span></button>
+        <button class="cstack-share" id="fork-share-btn" title="Share this stack">🔗 Share</button>
+      </div>
+      <p class="lp-note" style="margin-top:1.2rem">A community-made stack, not the official reviewed protocol. See the <a href="${base}">official ${esc(p ? p.name : '')} protocol →</a></p></div>`;
     const cb = document.getElementById('fork-clone-btn'); if (cb) cb.onclick = () => cloneForkTo(f.id);
+    const sb = document.getElementById('fork-share-btn'); if (sb) sb.onclick = () => shareFork(f);
+    bindLikeBtn(app, app);
     try { glossarize(app); } catch (e) {}
   }
   async function cloneForkTo(id) {
@@ -3494,6 +3502,67 @@
       alert(added.length ? `Added ${added.length} compound${added.length !== 1 ? 's' : ''} to your stack. Opening the Stack Builder…` : 'You already have all of these — opening your stack.');
       navigate('/stack');
     } catch (e) { alert(e.message); }
+  }
+  // ---------- Community stacks (real people's takes on a protocol's cause) ----------
+  // Reuses the existing fork infrastructure (protocol_forks) for the stacks themselves,
+  // and the frictionless votes table (keyed `fork:<id>`) for likes — no account needed to like.
+  async function shareFork(f) {
+    if (!f) return;
+    const url = (location.origin || 'https://rnawiki.com') + '/fork/' + f.id;
+    const p = problemById[f.problem_id];
+    const text = `“${f.title}” — a community stack for ${p ? p.name : 'this'} on RNAwiki (Singapore).`;
+    try {
+      if (navigator.share) await navigator.share({ title: 'RNAwiki stack', text, url });
+      else { await navigator.clipboard.writeText(text + '\n' + url); alert('Link copied — paste it into WhatsApp / Telegram / X.'); }
+    } catch (e) {}
+    if (ME) api.rep('share');
+  }
+  function bindLikeBtn(el, root) {
+    root.querySelectorAll('[data-like]').forEach(b => b.onclick = async () => {
+      const t = 'fork:' + b.dataset.like, next = myVote(t) === 1 ? 0 : 1;
+      setMyVote(t, next);
+      b.classList.toggle('on', next === 1);
+      const h = b.querySelector('.cstack-heart'); if (h) h.textContent = next === 1 ? '❤️' : '🤍';
+      try { const r = await api.vote({ targetId: t, voterKey: VOTER_KEY, value: next }); const c = b.querySelector('.cstack-likec'); if (c) c.textContent = r.score.up || 0; }
+      catch (e) {}
+    });
+  }
+  async function mountCommunityStacks(problem, rc) {
+    const el = document.getElementById('community-stacks'); if (!el) return;
+    let forks = []; try { forks = await api.forksFor(problem.id, rc.id); } catch (e) {}
+    const addBtn = '<button class="linkbtn cstack-add" id="cstack-add">share the stack that worked for you</button>';
+    if (!forks.length) {
+      el.innerHTML = `<div class="cstack-wrap"><div class="section-title">💬 What others are actually taking</div>
+        <p class="cstack-empty">No community stacks for this cause yet. If you’ve built a version that works for you, be the first to ${addBtn} — the people starting out after you will thank you.</p></div>`;
+      const b = document.getElementById('cstack-add'); if (b) b.onclick = () => openForkModal(problem, rc);
+      return;
+    }
+    let scores = {}; try { scores = await api.votes(forks.map(f => 'fork:' + f.id)); } catch (e) {}
+    const likesOf = f => (scores['fork:' + f.id] || {}).up || 0;
+    forks.sort((a, b) => (likesOf(b) - likesOf(a)) || ((b.clones || 0) - (a.clones || 0)));
+    const card = f => {
+      const cpds = (f.stack || []).map(id => byId[id]).filter(Boolean);
+      const chips = cpds.slice(0, 6).map(c => `<a class="cstack-chip${c.isRx ? ' rx' : ''}" href="#/c/${slug(c.name)}">${esc(c.name)}</a>`).join('');
+      const more = cpds.length > 6 ? `<span class="cstack-chip more">+${cpds.length - 6}</span>` : '';
+      const liked = myVote('fork:' + f.id) === 1, using = f.clones || 0;
+      return `<div class="cstack-card">
+        <div class="cstack-hd"><a class="cstack-title" href="#/fork/${f.id}"><b>${esc(f.title)}</b></a>
+          <span class="cstack-by">${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''}${using ? ' · ' + using + ' using' : ''}</span></div>
+        ${f.note ? `<p class="cstack-note">${esc(f.note)}</p>` : ''}
+        <div class="cstack-chips">${chips || '<span class="muted">—</span>'}${more}</div>
+        <div class="cstack-actions">
+          <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likesOf(f)}</span></button>
+          <button class="cstack-use" data-clone="${f.id}">Use this stack →</button>
+          <button class="cstack-share" data-share="${f.id}" title="Share this stack">🔗</button>
+        </div></div>`;
+    };
+    el.innerHTML = `<div class="cstack-wrap"><div class="section-title">💬 What others are actually taking <span class="lp-tag">${forks.length} · not reviewed</span></div>
+      <p class="muted cstack-lead">Real people’s takes on this cause — not the official reviewed protocol. Like the ones that resonate, use any as a starting point, or ${addBtn}.</p>
+      <div class="cstack-list">${forks.map(card).join('')}</div></div>`;
+    const addB = document.getElementById('cstack-add'); if (addB) addB.onclick = () => openForkModal(problem, rc);
+    el.querySelectorAll('[data-clone]').forEach(b => b.onclick = () => cloneForkTo(b.dataset.clone));
+    el.querySelectorAll('[data-share]').forEach(b => b.onclick = () => shareFork(forks.find(x => String(x.id) === b.dataset.share)));
+    bindLikeBtn(el, el);
   }
   // Section-level share unit: the smallest self-contained nugget worth sending to a friend.
   async function shareSection(layer, problem, rc) {
@@ -5079,6 +5148,7 @@
         <p class="ks-note">The highest-impact, lowest-effort habit for this. Nail this one thing and the rest compounds.</p>
         <button class="tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Coach me on Telegram — a daily nudge for this</button>
       </div>` : ''}
+      <div id="community-stacks"></div>
       <div class="proto-after">
         ${voteFoot(problem.id, rc.id, 'protocol')}
         ${pfaq}
@@ -5105,6 +5175,7 @@
     const assessBtn = document.getElementById('assess-trigger');
     if (assessBtn) assessBtn.onclick = () => openAssessment(problem);
     initCauseMotion();
+    mountCommunityStacks(problem, rc);
     const citeBtn = document.getElementById('cite-proto');
     if (citeBtn) citeBtn.onclick = () => citeModal(`${problem.name} — ${rc.name.split('(')[0].trim()} protocol`, (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id);
     mountVotes([`${problem.id}:${rc.id}:protocol`]);
