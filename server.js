@@ -2166,14 +2166,17 @@ async function api(req, res, url) {
   }
   // --- protocol forks (community variations — UGC engine) ---
   if (seg[0] === 'forks' && seg[1] === 'popular' && method === 'GET') {
-    const r = await db.query("SELECT f.id,f.title,f.problem_id,f.root_cause_id,f.clones,u.username AS by_user FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.clones > 0 ORDER BY f.clones DESC, f.created_at DESC LIMIT 12");
+    // real stacks rank above demo fixtures; as real ones accumulate they push demos past the limit
+    const r = await db.query("SELECT f.id,f.title,f.problem_id,f.root_cause_id,f.clones,u.username AS by_user FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.clones > 0 ORDER BY f.is_demo ASC, f.clones DESC, f.created_at DESC LIMIT 12");
     return json(res, 200, { forks: r.rows });
   }
   if (seg[0] === 'forks' && !seg[1] && method === 'GET') {
     const q = new URL('http://x/' + url).searchParams;
     const problem = clean(q.get('problem'), 80), rc = clean(q.get('rc'), 80);
     if (!problem || !rc) return json(res, 200, { forks: [] });
-    const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.created_at,u.username AS by_user,u.domain,u.domain_verified FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.problem_id=$1 AND f.root_cause_id=$2 ORDER BY f.clones DESC, f.created_at DESC LIMIT 30", [problem, rc]);
+    // Auto-swap: show demo/seed stacks only while NO real stack exists for this exact problem+cause.
+    // The moment a real user shares one here, every demo for this cause drops out automatically.
+    const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.created_at,u.username AS by_user,u.domain,u.domain_verified FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.problem_id=$1 AND f.root_cause_id=$2 AND (f.is_demo = false OR NOT EXISTS (SELECT 1 FROM protocol_forks r WHERE r.problem_id=$1 AND r.root_cause_id=$2 AND r.is_demo = false)) ORDER BY f.clones DESC, f.created_at DESC LIMIT 30", [problem, rc]);
     return json(res, 200, { forks: r.rows });
   }
   if (seg[0] === 'forks' && !seg[1] && method === 'POST') {

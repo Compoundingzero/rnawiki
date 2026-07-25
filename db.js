@@ -203,6 +203,9 @@ CREATE TABLE IF NOT EXISTS protocol_forks (
 );
 CREATE INDEX IF NOT EXISTS idx_forks_protocol ON protocol_forks(problem_id, root_cause_id, clones DESC);
 CREATE INDEX IF NOT EXISTS idx_forks_popular ON protocol_forks(clones DESC, created_at DESC);
+-- Demo/seed stacks (launch fixtures). They auto-retire per protocol as soon as a REAL
+-- (is_demo=false) stack exists for that problem+cause, so real UGC replaces the fakes on its own.
+ALTER TABLE protocol_forks ADD COLUMN IF NOT EXISTS is_demo BOOLEAN NOT NULL DEFAULT false;
 -- one clone per browser per fork (idempotent) — drives the author's reputation
 CREATE TABLE IF NOT EXISTS fork_clones (
   id SERIAL PRIMARY KEY,
