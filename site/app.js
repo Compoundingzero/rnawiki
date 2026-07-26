@@ -584,53 +584,15 @@
       if (p.MolecularWeight) setChip('spec-mw', 'spec-mw-v', Math.round(+p.MolecularWeight) + ' g/mol');
     }).catch(() => {});
   }
-  // Feynman "explain it back" → community discussion. Clicking "Compare with the expert answer"
-  // reveals the model answer AND shares the reader's own words as a thread others can reply to.
-  // Replies notify the author on Telegram + email (server-side). The thread stays hidden until the
-  // reader has committed their own answer — so it never spoils the retrieval test.
+  // Feynman "explain it back" — a PRIVATE active-recall self-test. The reader writes their own
+  // explanation, then "Compare with the expert answer" reveals the model answer. No sharing, no
+  // community thread (all commenting removed) — nothing they write leaves the page.
   function wireFeynman() {
     const box = document.querySelector('.feynman'); if (!box) return;
     const btn = document.getElementById('fy-check'); if (!btn) return;
-    const slugv = box.getAttribute('data-slug') || '';
-    const thread = document.getElementById('fy-thread');
-    const note = document.getElementById('fy-note');
-    const e2 = s => String(s == null ? '' : s).replace(/[&<>"]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]));
-    const ago = ts => { const s = Math.max(0, (Date.now() - new Date(ts).getTime()) / 1000); if (s < 60) return 'just now'; if (s < 3600) return Math.floor(s / 60) + 'm ago'; if (s < 86400) return Math.floor(s / 3600) + 'h ago'; if (s < 2592000) return Math.floor(s / 86400) + 'd ago'; return new Date(ts).toLocaleDateString(); };
-    const post = p => `<div class="ftp" data-id="${p.id}"><div class="ftp-meta"><span class="ftp-who${p.mine ? ' me' : ''}">${p.mine ? 'You' : e2(p.user)}</span><span class="ftp-ago">${ago(p.ts)}</span></div><div class="ftp-body">${e2(p.body)}</div>${(p.replies || []).map(r => `<div class="ftp ftp-reply" data-id="${r.id}"><div class="ftp-meta"><span class="ftp-who${r.mine ? ' me' : ''}">${r.mine ? 'You' : e2(r.user)}</span><span class="ftp-ago">${ago(r.ts)}</span></div><div class="ftp-body">${e2(r.body)}</div></div>`).join('')}<button class="ftp-reply-btn" data-reply="${p.id}">Reply</button></div>`;
-    let signedIn = false;
-    function render(d) {
-      signedIn = !!(d && d.signedIn);
-      const posts = (d && d.posts) || [];
-      thread.hidden = false;
-      thread.innerHTML = `<div class="ft-h">💬 How others explained it${posts.length ? ` <span class="ft-n">${d.total}</span>` : ''}</div>` +
-        (posts.length ? posts.map(post).join('') : `<p class="ft-empty">No one else has explained this yet — yours could be the first others learn from.</p>`);
-      thread.querySelectorAll('[data-reply]').forEach(b => b.onclick = () => openReply(b));
-    }
-    function openReply(b) {
-      const pid = b.getAttribute('data-reply');
-      if (b.nextElementSibling && b.nextElementSibling.classList.contains('ftp-replybox')) { b.nextElementSibling.remove(); return; }
-      const box2 = document.createElement('div'); box2.className = 'ftp-replybox';
-      box2.innerHTML = `<textarea rows="2" placeholder="Reply…"></textarea><button>Send reply</button>`;
-      b.after(box2);
-      const ta = box2.querySelector('textarea'), sb = box2.querySelector('button');
-      ta.focus();
-      sb.onclick = async () => { const v = (ta.value || '').trim(); if (v.length < 4) { ta.focus(); return; } sb.disabled = true; sb.textContent = 'Sending…'; try { await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slugv, body: v, parent_id: pid }) }); } catch (e) {} await load(); };
-    }
-    async function load() { try { const r = await fetch('/api/explain?slug=' + encodeURIComponent(slugv)); render(await r.json()); } catch (e) { thread.hidden = false; thread.innerHTML = '<p class="ft-empty">Discussion is offline right now.</p>'; } }
-    btn.onclick = async () => {
+    btn.onclick = () => {
       const m = document.getElementById('fy-model'); if (m) m.hidden = false;
       btn.textContent = 'Model answer shown ↓'; btn.disabled = true;
-      const ta = document.getElementById('fy-input'); const val = ((ta && ta.value) || '').trim();
-      if (val.length >= 4) {
-        try {
-          const r = await fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: slugv, body: val }) });
-          const d = await r.json().catch(() => ({}));
-          if (ta) { ta.value = ''; ta.placeholder = 'Add another take, or reply to someone below…'; }
-          if (note) { note.hidden = false; note.innerHTML = d && d.signedIn ? '✓ Shared with the community. We\'ll ping you on Telegram &amp; email if someone replies.' : '✓ Shared with the community. <a href="#" class="fy-signin">Sign in</a> to get notified when someone replies.'; const si = note.querySelector('.fy-signin'); if (si) si.onclick = ev => { ev.preventDefault(); if (typeof openAuth === 'function') openAuth('login'); }; }
-        } catch (e) {}
-      }
-      await load();
-      if (thread) thread.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     };
   }
   // Interactive dose & clearance simulator — the clearance curve is real (exponential decay at the drug's
@@ -1035,6 +997,8 @@
       </div>
     </section>
 
+    <section class="reveal home-stacks-sec"><div id="home-stacks"></div></section>
+
     <section class="browse-sec reveal">
       <div class="section-title center">Or just browse what helps</div>
       <div class="goal-grid">${cards}</div>
@@ -1143,9 +1107,33 @@
       <div class="pulse-feed">${items.map(row).join('')}</div>`;
     revealOnScroll();
   }
+  // Top community stacks on the home page — social proof + discovery. Real user-built stacks
+  // (falls back to demo fixtures until real ones arrive), ranked by likes then usage.
+  async function mountHomeStacks() {
+    const el = document.getElementById('home-stacks'); if (!el) return;
+    let forks = []; try { forks = await api.popularForks(); } catch (e) {}
+    if (!forks.length) { el.style.display = 'none'; return; }
+    let scores = {}; try { scores = await api.votes(forks.map(f => 'fork:' + f.id)); } catch (e) {}
+    const likesOf = f => (scores['fork:' + f.id] || {}).up || 0;
+    forks.sort((a, b) => (likesOf(b) - likesOf(a)) || ((b.clones || 0) - (a.clones || 0)));
+    const top = forks.slice(0, 8);
+    el.innerHTML = `<div class="section-title center">💬 Top stacks people built</div>
+      <p class="muted center" style="font-size:.88rem;margin-top:-.4rem">Real supplement stacks shared by the community — open one to like it, use it, or make it your own.</p>
+      <div class="home-stack-row">${top.map(f => {
+        const p = problemById[f.problem_id];
+        return `<a class="home-stack-card" href="#/fork/${f.id}">
+          <div class="hsc-title"><b>${esc(f.title)}</b></div>
+          ${p ? `<div class="hsc-for">for ${esc(p.name)}</div>` : ''}
+          <div class="hsc-foot"><span class="hsc-by">${f.by_user ? '@' + esc(f.by_user) : 'someone'}</span><span class="hsc-likes">❤️ ${likesOf(f)}${f.clones ? ' · ' + f.clones + ' using' : ''}</span></div>
+        </a>`;
+      }).join('')}</div>
+      <p class="browse-more center"><a href="#/stack">Build your own stack →</a></p>`;
+    revealOnScroll();
+  }
   function bindHome() {
     revealOnScroll();
     mountHomeLeaderboard();
+    mountHomeStacks();
     mountPulse();
     initScrolly('scrolly-how');
     const inp = document.getElementById('hero-solve-input');
@@ -1553,7 +1541,7 @@
   }
   function whenToUseBox(c) { const w = c.whenToUse; if (!w || !Array.isArray(w.items) || !w.items.length) return ''; const t = compoundTier(c); const ui = TIER_UI[t] || TIER_UI.OTC; return `<div class="whenuse${t === 'DANGER' ? ' danger' : (t === 'RESEARCH' ? ' caution' : '')}"><div class="wu-h">${ui.wuH}</div>${w.intro ? `<p class="wu-intro">${mdInline(w.intro)}</p>` : ''}<ul class="wu-list">${w.items.map(i => `<li>${mdInline(i)}</li>`).join('')}</ul></div>`; }
   function moleculeJourney(c, shareId) { if (!Array.isArray(c.journey) || !c.journey.length) return ''; return `<div class="mjourney"><div class="mj-h">🧭 Follow one molecule — from mug to memory</div><div class="mj-track">${c.journey.map((s, i) => `<div class="mj-stage"><div class="mj-num">${i + 1}</div><div class="mj-body"><div class="mj-stage-t">${esc(s.stage)}</div><div class="mj-stage-d">${mdInline(s.d)}</div></div></div>`).join('')}</div>${shareId ? shareBtn('journey:' + shareId) : ''}</div>`; }
-  function feynmanBox(c) { return `<div class="feynman" data-slug="${esc(slug(c.name))}"><div class="fy-h">🧑‍🏫 The real test — explain it back</div><p class="fy-sub">In a sentence or two, explain to an imaginary friend what ${esc(c.name)} does and how. Writing it in your own words is the single best way to find out whether it actually stuck — then compare with the expert answer and see how others put it.</p><textarea class="fy-input" id="fy-input" rows="3" placeholder="e.g. It blocks the tiredness signal in my brain, so…"></textarea><button class="fy-check" id="fy-check">Compare with the expert answer</button><div class="fy-model" id="fy-model" hidden><b>A clean expert answer:</b> ${mdInline(c.bigIdea || c.analogy || '')}</div><div class="fy-note" id="fy-note" hidden></div><div class="fy-thread" id="fy-thread" hidden></div></div>`; }
+  function feynmanBox(c) { return `<div class="feynman" data-slug="${esc(slug(c.name))}"><div class="fy-h">🧑‍🏫 The real test — explain it back</div><p class="fy-sub">In a sentence or two, explain to an imaginary friend what ${esc(c.name)} does and how. Writing it in your own words is the single best way to find out whether it actually stuck — then compare with the expert answer.</p><textarea class="fy-input" id="fy-input" rows="3" placeholder="e.g. It blocks the tiredness signal in my brain, so…"></textarea><button class="fy-check" id="fy-check">Compare with the expert answer</button><div class="fy-model" id="fy-model" hidden><b>A clean expert answer:</b> ${mdInline(c.bigIdea || c.analogy || '')}</div></div>`; }
   function graduationBlock(c) { const canEx = Array.isArray(c.canExplain) && c.canExplain.length ? `<div class="grad-can"><div class="gc-h">✓ You can now explain</div><ul>${c.canExplain.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : ''; const payoff = hookPayoff(c); if (!canEx && !payoff) return ''; return `<div class="graduation">${payoff}${canEx}</div>`; }
   function chapterCheck(c, key) { const ch = c.checks && c.checks[key]; if (!ch) return ''; return `<div class="ch-check"><div class="cc-q">🔎 Before you go on — ${esc(ch.q)}</div><button class="cc-reveal">Show answer</button><div class="cc-a" hidden>${mdInline(ch.a)}</div></div>`; }
   function doseSimulator(c) {
