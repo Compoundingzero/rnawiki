@@ -63,7 +63,7 @@
   }
 
   // ---------- stack (localStorage + URL share) ----------
-  // ---------- Unified plan object (the omnichannel spine: web + Telegram + sharing all read this) ----------
+  // ---------- Unified plan object (the spine: the web tracker and sharing both read this) ----------
   // v2 shape — ONE plan holds every protocol the user runs, merged into one daily experience:
   //   { v:2, protocols:[{pid,rcid,moves,supps,functions,startedAt}], draft:{pid,rcid,moves,supps,functions,extra,step}|null,
   //     log:{ [date]:{ keystones:{"pid/rcid":bool}, done:[itemId], sets:{exId:[{w,reps}]}, food:[], fn:{fid:n} } },
@@ -253,7 +253,6 @@
     savePlan(plan) { return this.call('POST', '/api/plan', { plan }).catch(() => null); },
     config() { return this.call('GET', '/api/config').catch(() => ({ googleClientId: null })); },
     googleAuth(credential) { return this.call('POST', '/api/auth/google', { credential }); },
-    telegramAttach(token) { return this.call('POST', '/api/telegram/attach', { token }); },
     register(b) { return this.call('POST', '/api/register', b); },
     login(b) { return this.call('POST', '/api/login', b); },
     logout() { return this.call('POST', '/api/logout'); },
@@ -423,7 +422,7 @@
         ME = (await api.me()) || d.user;
         // seed demographics captured at sign-up (fire-and-forget; session cookie is already set)
         if (mode !== 'login' && (b.age_band || b.sex)) api.saveProfile({ age_band: b.age_band || null, sex: b.sex || null }).catch(() => {});
-        closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent(); tgSyncConsume();
+        closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
       } catch (ex) { err.textContent = ex.message; err.hidden = false; btn.disabled = false; btn.textContent = mode === 'login' ? 'Sign in' : 'Create account'; }
     };
     if (CFG.googleClientId) mountGoogleButton(m.querySelector('#gbtn'), err);
@@ -447,24 +446,13 @@
       callback: async (resp) => {
         try {
           const d = await api.googleAuth(resp.credential);
-          ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent(); tgSyncConsume();
+          ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
         } catch (ex) { if (errEl) { errEl.textContent = ex.message; errEl.hidden = false; } }
       },
     });
     window.google.accounts.id.renderButton(container, { theme: 'outline', size: 'large', width: 320, text: 'continue_with' });
   }
   function requireAuth(then) { if (ME) return then(); openAuth('login'); }
-  // Finish a Telegram → account sync: the user opened ?tgsync=<token> from the bot. If signed in, bind the
-  // chat to this account; if not, stash the token and prompt sign-in, then complete right after login.
-  async function tgSyncConsume() {
-    const m = location.search.match(/[?&]tgsync=([\w-]+)/);
-    const token = m ? m[1] : sessionStorage.getItem('tgsync');
-    if (!token) return;
-    if (m) history.replaceState(null, '', location.pathname + (location.hash || '')); // clean the URL either way
-    if (!ME) { sessionStorage.setItem('tgsync', token); toast('Sign in to connect your Telegram plan'); openAuth('login'); return; }
-    try { await api.telegramAttach(token); sessionStorage.removeItem('tgsync'); toast('✅ Telegram connected — your plan syncs both ways'); }
-    catch (e) { sessionStorage.removeItem('tgsync'); toast(e.message || 'That sync link expired — try again from the bot'); }
-  }
 
   // ---------- comments ----------
   function commentItem(c) {
@@ -3819,22 +3807,6 @@
         <a class="cta-primary" href="#/solve">Find my root cause →</a>
       </section>`;
   }
-  // The Telegram-coach CTA appears at every stage of building + tracking.
-  function tgCoachRow(problem, rc) {
-    return `<div class="plan-tg"><button class="tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Coach me on Telegram — daily nudges for this</button><p class="tg-sync-note">🔗 Sign in first and your keystone, food, tools &amp; progress sync both ways.</p></div>`;
-  }
-  function wireTgCoach() {
-    app.querySelectorAll('.tg-coach').forEach(b => { if (b._tgWired) return; b._tgWired = true; b.onclick = async () => {
-      const orig = b.dataset.tgLabel || b.textContent; b.dataset.tgLabel = orig; b.disabled = true; b.textContent = 'Opening Telegram…';
-      try {
-        const r = await fetch('/api/telegram/link?pid=' + encodeURIComponent(b.dataset.tgPid) + '&rcid=' + encodeURIComponent(b.dataset.tgRc));
-        const j = await r.json().catch(() => ({}));
-        b.textContent = (j && j.url) ? '✓ Opened — tap to reopen' : orig;
-        if (j && j.url) window.open(j.url, '_blank');
-      } catch (e) { b.textContent = orig; }
-      b.disabled = false; // always re-enable so it can be opened again
-    }; });
-  }
   // done = is this protocol's keystone done today; key = "pid/rcid"; label = protocol name (shown only when >1 protocol)
   function keystoneCardHtml(rc, done, key, label) {
     if (!rc.keystone) return '';
@@ -3869,7 +3841,6 @@
 
   // ---- Protocol functions: small interactive tools, each matched to a root problem ----
   // Every protocol gets ONE default (best keyword match); users add more at the end of building.
-  // `tg:true` = also available in the Telegram bot; `tgOnly:true` = notification-based, Telegram only.
   const PLAN_FUNCTIONS = [
     { id: 'walk', icon: '🚶', name: 'Post-meal walk timer', kind: 'timer', target: 10, unit: 'min',
       desc: 'A 10-minute walk after your biggest meal blunts the glucose spike.',
@@ -3958,11 +3929,11 @@
     { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder',
       desc: 'A constant wake time anchors your body clock — the biggest lever for sleep.',
       how: 'Set one wake time; the bot nudges you nightly to protect your wind-down.',
-      match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tg: true, tgOnly: true },
+      match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'] },
     { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder',
       desc: '10 minutes of morning light sets your clock and lifts daytime mood.',
       how: 'The bot reminds you to get outside within an hour of waking.',
-      match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'], tg: true, tgOnly: true },
+      match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'] },
   ];
   function fnById(id) { return PLAN_FUNCTIONS.find(f => f.id === id); }
   function defaultFunctionFor(problem, rc) {
@@ -4054,8 +4025,7 @@
         <span class="build-count"><b>${count}</b> of ${dispItems.length} kept</span>
         <button class="cta-primary" id="build-next">${isLast ? 'Next: Tools →' : 'Next: ' + steps[si + 1].title + ' →'}</button>
       </div>
-      ${tgCoachRow(problem, rc)}`;
-    wireTgCoach();
+`;
     // Learning about an item opens a mini-window over the builder — never navigates away.
     const byExId = {}; [...(P.strengthen || []), ...(P.stretch || [])].forEach(e => byExId[e.id] = e); extraItems.forEach(x => { if (bucket !== 'stack') byExId[x.id] = x; });
     const byCId = {}; (P.stack || []).forEach(c => byCId[c.id] = c); extraItems.forEach(x => { if (bucket === 'stack') byCId[x.id] = x; });
@@ -4104,7 +4074,7 @@
       const on = sel.includes(f.id); const isDef = f.id === defId;
       return `<div class="fn-card ${on ? 'on' : ''}">
         <div class="fn-top"><span class="fn-ico">${f.icon}</span>
-          <div class="fn-head"><div class="fn-name">${esc(f.name)}${isDef ? '<span class="fn-def">★ Matched to your goal</span>' : ''}${f.tgOnly ? '<span class="fn-tg">Telegram only</span>' : ''}</div>
+          <div class="fn-head"><div class="fn-name">${esc(f.name)}${isDef ? '<span class="fn-def">★ Matched to your goal</span>' : ''}</div>
           <p class="fn-desc">${esc(f.desc)}</p></div></div>
         <p class="fn-how"><b>How it works:</b> ${esc(f.how)}</p>
         <button class="fn-toggle ${on ? 'on' : ''}" data-fn="${f.id}">${on ? '✓ Added' : '+ Add'}</button>
@@ -4184,11 +4154,9 @@
         </div>
         <div class="shared-cta">
           <button class="cta-primary" id="use-shared">Use this protocol →</button>
-          <button class="tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Coach me on Telegram</button>
         </div>
         <p class="shared-note">You'll get your own copy to track daily.${ME ? '' : ' Create a free account to keep it across devices.'}</p>
       </section>`;
-    wireTgCoach();
     const use = document.getElementById('use-shared');
     if (use) use.onclick = () => {
       const p = getPlan() || newPlan();
@@ -4418,7 +4386,7 @@
       const plan = getPlan(); const M = mergedPlan(plan); const sel = M.functions; if (!sel.length) { host.innerHTML = ''; return; }
       const tg = M.protos[0] || {}; const wk = weekKey();
       const widget = f => {
-        if (f.tgOnly) return `<div class="fn-w tgonly"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b><span class="fn-tg">Telegram</span></div><p class="fn-w-sub">${esc(f.how)}</p><button class="fn-w-tg tg-coach" data-tg-pid="${esc(tg.pid || '')}" data-tg-rc="${esc(tg.rcid || '')}">📲 Set up in Telegram</button></div>`;
+        if (f.kind === 'reminder') return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b></div><p class="fn-w-sub">${esc(f.how)}</p></div>`;
         if (f.kind === 'counter') {
           const store = f.period === 'week' ? ((plan.fnWeek || {})[wk] || {}) : (planDay(plan).fn || {});
           const v = store[f.id] || 0; const pct = Math.min(100, Math.round(v / f.target * 100));
@@ -4512,7 +4480,6 @@
         return '';
       };
       host.innerHTML = `<section class="trk-tools"><h2>🧩 Your tools</h2><div class="fn-w-list">${sel.map(id => { const f = fnById(id); return f ? widget(f) : ''; }).join('')}</div></section>`;
-      wireTgCoach(); // wire the Telegram set-up buttons (they carry .tg-coach)
       host.querySelectorAll('[data-fn-inc]').forEach(b => b.onclick = () => bumpCounter(fnById(b.dataset.fnInc), +1, wk, render));
       host.querySelectorAll('[data-fn-dec]').forEach(b => b.onclick = () => bumpCounter(fnById(b.dataset.fnDec), -1, wk, render));
       host.querySelectorAll('[data-timer-start]').forEach(b => b.onclick = () => startFnTimer(fnById(b.dataset.timerStart), b, render));
@@ -4640,7 +4607,6 @@
     const keystoneCards = M.keystones.map(k => keystoneCardHtml(k.rc, !!dayLog.keystones[k.key], k.key, multi ? k.problem.name : '')).join('');
     const subtitle = multi ? `${M.resolved.length} protocols · ${esc(M.resolved.map(r => r.problem.name).join(' · '))}` : esc(M.resolved[0].rc.name);
     const hasFuel = Object.keys(M.fuel).length > 0; // hide Fuel entirely when no protocol has food targets
-    const firstTg = M.protos[0];
     // Per-protocol manage list + "add another goal" — the merged plan's control centre
     const manage = `<section class="trk-sec trk-manage"><div class="trk-sec-h"><h2>Your protocols</h2></div>${M.resolved.map(r => `
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
@@ -4660,7 +4626,7 @@
       ${recapCard}${missBanner}`;
     const fuelPanel = hasFuel ? `<p class="pt-sub">Log what you eat — your protocol's targets fill as you go.</p><div id="fuel-tracker"></div>` : '';
     const toolsPanel = `<div id="plan-functions"></div>`;
-    const planPanel = `${manage}${firstTg ? tgCoachRow(M.resolved[0].problem, M.resolved[0].rc) : ''}`;
+    const planPanel = `${manage}`;
     const T = [['today', '☀️ Today', todayPanel]];
     if (hasFuel) T.push(['fuel', '🍽️ Fuel', fuelPanel]);
     if (M.functions.length) T.push(['tools', '🧩 Tools', toolsPanel]);
@@ -4673,7 +4639,6 @@
       ${T.map((t, i) => `<div class="pt-panel" data-panel="${t[0]}"${i === 0 ? '' : ' hidden'}>${t[2]}</div>`).join('')}`;
     if (hasFuel) mountFuelTracker(null, null, M.fuel, M.supps);
     mountPlanFunctions();
-    wireTgCoach();
     wireConsentCard();
     const mdl = document.getElementById('mydata-link'); if (mdl) mdl.onclick = openDataModal;
     const hl = document.getElementById('health-link'); if (hl) hl.onclick = openHealthModal;
@@ -5130,7 +5095,6 @@
         <p class="ks-one">${esc(rc.keystone.one)}</p>
         <p class="ks-why">${esc(rc.keystone.why)}</p>
         <p class="ks-note">The highest-impact, lowest-effort habit for this. Nail this one thing and the rest compounds.</p>
-        <button class="tg-coach" data-tg-pid="${problem.id}" data-tg-rc="${rc.id}">📲 Coach me on Telegram — a daily nudge for this</button>
       </div>` : ''}
       <div id="community-stacks"></div>
       <div class="proto-after">
@@ -5155,7 +5119,6 @@
       api.startExperiment(problem.id, rc.id).catch(() => {});
       setPlan(pl); navigate('/plan');
     };
-    wireTgCoach();
     const assessBtn = document.getElementById('assess-trigger');
     if (assessBtn) assessBtn.onclick = () => openAssessment(problem);
     initCauseMotion();
@@ -6618,7 +6581,7 @@
   document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
   updateStackBadge();
   route();
-  api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } tgSyncConsume(); }).catch(() => { renderAccount(); tgSyncConsume(); });
+  api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } }).catch(() => { renderAccount(); });
   api.config().then(c => { if (c) CFG = c; });
   api.rootcauseOverlay().then(ov => { if (applyRcOverlay(ov)) route(); }).catch(() => {});
   // Always-available feedback button, bottom-right.

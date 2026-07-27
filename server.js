@@ -241,122 +241,66 @@ function sameOrigin(req) {
   try { return new URL(o).host === req.headers.host; } catch (e) { return false; }
 }
 
-// ---------- Telegram coach (@rnawikibot) ----------
-// Dormant until BOT_TOKEN is set. A per-user, per-protocol keystone coach: link from a protocol
-// page, get the one keystone habit, tap "Did it today" to build a streak. All content is authored
-// (keystones/protocol names) — no AI, nothing generated at runtime.
-const BOT_TOKEN = process.env.BOT_TOKEN || '';
-const BOT_USERNAME = process.env.BOT_USERNAME || 'rnawikibot';
-const TG_SECRET = crypto.createHmac('sha256', SECRET).update('tg-webhook').digest('hex').slice(0, 40);
 // ---- Email nudges (Resend) — activates when RESEND_API_KEY is set; otherwise the "due" list still shows in Control Room ----
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
 const EMAIL_FROM = process.env.EMAIL_FROM || 'RNAwiki <hello@rnawiki.com>';
-const TG_HELP = 'What I can do:\n<b>/build</b> — build your own plan here (pick problem + supplements)\n<b>/keystone</b> — your one keystone habit · <b>/done</b> — mark it done (builds your streak)\n<b>type any food</b> (e.g. “2 eggs”, “chicken rice”) — I log it against your protocol’s targets\n<b>/today</b> — keystone + food progress · <b>/progress</b> — your streak &amp; consistency · <b>/tools</b> — your protocol’s tools (counters, timers, reminders) · <b>/stack</b> — supplements + safety · <b>/schedule</b> — what to take when\n<b>ask about any supplement by name</b> (e.g. “magnesium”) — I’ll explain + link the full page\n<b>/nudge</b> — a daily check-in at your time · <b>/streak</b> · <b>/reset</b> (clear food) · <b>/plan</b> · <b>/help</b>';
-let TG_PROTO = {};
+// Full compound catalogue, loaded once in an isolated context. Kept after the Telegram
+// removal because the Control Room attributes reported side-effects to specific compounds
+// through COMPOUND_BY_ID below. The interaction engine (interactions.js) was only ever read
+// by the bot's /stack command and is no longer loaded here.
+let SITE_DATA = null;
+try {
+  const vm = require('vm');
+  const sb = { window: {} };
+  vm.runInNewContext(fs.readFileSync(path.join(DIR, 'data.js'), 'utf8'), sb);
+  SITE_DATA = sb.window.RNAWIKI_DATA;
+} catch (e) { console.error('[data] catalogue load failed:', e.message); }
+// compound id -> {name, isRx, badge} — used to attribute reported side-effects in the Control Room
+const COMPOUND_BY_ID = {};
+if (SITE_DATA && Array.isArray(SITE_DATA.compounds)) SITE_DATA.compounds.forEach(c => { COMPOUND_BY_ID[c.id] = { name: c.name, isRx: !!c.isRx, badge: c.badge || '' }; });
+// ===== Email nudge engine — milestone check-ins and the daily reminder digest =====
+const PROBLEM_NAME = (() => { try { const g = require('./data/clinical_graph.json'); const m = {}; (g.problems || []).forEach(p => { m[p.id] = p.name; }); return m; } catch (e) { return {}; } })();
+// HTML escape for email bodies. (Was tgEsc, shared with the bot; the bot is gone, the emails remain.)
+function htmlEsc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+// problem/root-cause index + keystone, keyed "pid/rcid".
+// NOTE: this was named PROTO_INDEX and lived in the Telegram block, but it is NOT bot-specific —
+// buildReminderLines() reads it to compose the daily reminder EMAIL. Deleting it with the bot
+// would have silently emptied every reminder email. Kept, renamed.
+const PROTO_INDEX = {};
 try {
   const g = require('./data/clinical_graph.json'); const ks = require('./data/keystones.json');
   g.problems.forEach(p => p.root_causes.forEach(rc => {
-    TG_PROTO[p.id + '/' + rc.id] = { problem: p.name, rc: rc.name.replace(/\s*\([^)]*\)/, ''), keystone: ks[rc.id] || null, nt: rc.nutrient_targets || {} };
+    PROTO_INDEX[p.id + '/' + rc.id] = { problem: p.name, rc: rc.name.replace(/\s*\([^)]*\)/, ''), keystone: ks[rc.id] || null, nt: rc.nutrient_targets || {} };
   }));
-} catch (e) { console.error('[tg] proto load failed:', e.message); }
-// Food database (same source as the web fuel tracker) for logging in chat.
-let TG_FOODS = [];
-try {
-  const ff = require('./data/foods.json'); const arr = Array.isArray(ff) ? ff : (ff.foods || []);
-  TG_FOODS = arr.map(f => ({ id: f.id, name: f.name, serving: f.serving || '', sg: !!f.sg_local, hay: (f.hay || f.name || '').toLowerCase(), n: f }));
-} catch (e) { console.error('[tg] foods load failed:', e.message); }
-// Full compound catalogue + interaction engine (same as the site) — for /stack safety advice
-// and "ask about X" lookups. Loaded once, in an isolated context.
-let TG_DATA = null, TG_RXN = null;
-try {
-  const vm = require('vm');
-  const load = (file, key) => { const sb = { window: {} }; vm.runInNewContext(fs.readFileSync(path.join(DIR, file), 'utf8'), sb); return sb.window[key]; };
-  TG_DATA = load('data.js', 'RNAWIKI_DATA'); TG_RXN = load('interactions.js', 'RNAWIKI_INTERACTIONS');
-} catch (e) { console.error('[tg] data/rxn load failed:', e.message); }
-// compound id -> {name, isRx, badge} — used to attribute reported side-effects to specific compounds in the Control Room
-const COMPOUND_BY_ID = {};
-if (TG_DATA && Array.isArray(TG_DATA.compounds)) TG_DATA.compounds.forEach(c => { COMPOUND_BY_ID[c.id] = { name: c.name, isRx: !!c.isRx, badge: c.badge || '' }; });
-const tgSlug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-function tgResolveStack(rc) {
-  if (!TG_DATA) return [];
-  const frags = (rc.compounds || []).map(f => String(f).toLowerCase());
-  return TG_DATA.compounds.filter(c => { const nm = c.name.toLowerCase(); const words = nm.split(/[^a-z0-9]+/); return frags.some(f => nm === f || words.includes(f)); })
-    .map(c => ({ id: c.id, name: c.name, isRx: c.isRx, approvals: c.approvals, category: c.category, slug: tgSlug(c.name), stars: c.stars, plain: c.plain, protocol: c.protocol }));
-}
-// Time-of-day bucketing — ported verbatim from the site's timingBucket (parses each
-// compound's own dosing text; no invented rules).
-function tgTimingBucket(c) {
-  const t = ((c.protocol || '') + ' ' + (c.plain || '')).toLowerCase();
-  if (/weekly|monthly|every \d+ ?days|\d+ (consecutive )?days? (a |per )?month|pulse|intermittent(ly)?|\bcycle\b|2 days monthly/.test(t)) return 'periodic';
-  if (/pre-?\s?(workout|exercise|train)|before (a |your )?(workout|exercise|train)|post-?\s?(workout|exercise|train)|after (a |your )?(workout|exercise|train)/.test(t)) return 'training';
-  if (/before bed|bedtime|at night|\bevening\b|\bnight\b|before sleep/.test(t)) return 'evening';
-  if (/\bmorning\b|on waking|empty stomach|with breakfast|\bam\b/.test(t)) return 'morning';
-  return 'meals';
-}
-async function tgSendSchedule(chatId, row) {
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; if (!p) return tgSend(chatId, `Link or /build a protocol first.`);
-  let stack = p.stack || []; const sel = row.sel && row.sel.supps; if (Array.isArray(sel)) stack = stack.filter(c => sel.includes(c.id));
-  const buckets = { morning: [], training: [], meals: [], evening: [], periodic: [] };
-  stack.forEach(c => buckets[tgTimingBucket(c)].push(c.name + (c.isRx ? ' 🔵' : '')));
-  const order = [['morning', '☀️ Morning / on waking'], ['training', '🏋️ Around training'], ['meals', '🍽️ With meals / anytime'], ['evening', '🌙 Evening & bedtime'], ['periodic', '🔁 Periodic (not daily)']];
-  const parts = order.filter(([k]) => buckets[k].length).map(([k, label]) => `<b>${label}</b>\n${buckets[k].map(n => '• ' + tgEsc(n)).join('\n')}`);
-  const kline = p.keystone ? `⭐ <b>Keystone (do this daily):</b> ${tgEsc(p.keystone.one)}\n\n` : '';
-  const body = `🗓️ <b>Your ${tgEsc(p.problem)} day — what to take when</b>\n\n${kline}${parts.length ? parts.join('\n\n') : 'Food-only — no supplements to time.'}\n\n💪 Your movements (with how-to) → ${SITE_URL}/protocol/${row.pid}/${row.rcid}\n\n<i>Timing is from each supplement's own guidance — not a prescription.</i>`;
-  return tgSend(chatId, body);
-}
-// ---- Opt-in daily nudges (each user's own time + timezone) ----
-function tgHourLabel(h) { return (h % 12 || 12) + (h < 12 ? 'am' : 'pm'); }
-function tgParseTime(s) {
-  const m = String(s).toLowerCase().replace(/\s+/g, '').match(/^(\d{1,2})(?::(\d{2}))?(am|pm)?$/); if (!m) return null;
-  let h = +m[1]; const min = m[2] ? +m[2] : 0; const ap = m[3];
-  if (ap === 'pm' && h < 12) h += 12; if (ap === 'am' && h === 12) h = 0;
-  if (h > 23 || min > 59) return null; return h * 60 + min;
-}
-async function tgNudgeStart(chatId) {
-  const row = await tgGet(chatId); if (!row || !row.pid) return tgSend(chatId, `Build a plan first (/build), then I can nudge you daily.`);
-  const times = [['7 AM', 7], ['8 AM', 8], ['9 AM', 9], ['12 PM', 12], ['6 PM', 18], ['9 PM', 21]]; const kb = [];
-  for (let i = 0; i < times.length; i += 2) kb.push(times.slice(i, i + 2).map(([l, h]) => ({ text: l, callback_data: 'nh:' + h })));
-  kb.push([{ text: '🔕 Turn nudges off', callback_data: 'noff' }]);
-  return tgSend(chatId, `⏰ <b>Daily check-in</b> — when should I nudge you (your local time)?`, { reply_markup: { inline_keyboard: kb } });
-}
-async function tgSendNudge(r) {
-  const p = TG_PROTO[(r.pid || '') + '/' + (r.rcid || '')]; const k = p && p.keystone;
-  const today = new Date().toISOString().slice(0, 10); const done = Array.isArray(r.keystone_days) && r.keystone_days.includes(today);
-  const streak = r.streak || 0;
-  // reminder-type functions the user selected show up as their daily nudge lines
-  const reminders = (Array.isArray(r.functions) ? r.functions : []).map(id => tgFnById(id)).filter(f => f && f.kind === 'reminder');
-  const remLines = reminders.length ? '\n\n' + reminders.map(f => `${f.icon} ${tgEsc(f.how)}`).join('\n') : '';
-  const riskLine = (!done && streak >= 3) ? `\n\n🔥 You're on a <b>${streak}-day streak</b> — one keystone keeps it alive.` : '';
-  // Once a week (their local Sunday) add a glanceable 7-day summary — proactive value the site can't push.
-  const set = new Set(Array.isArray(r.keystone_days) ? r.keystone_days : []);
-  const localDow = new Date(Date.now() + (r.tz_offset ?? 480) * 60000).getUTCDay();
-  let weekLine = '';
-  if (localDow === 0) { const grid = []; let n = 0; for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); const has = set.has(d.toISOString().slice(0, 10)); grid.push(has ? '🟩' : '⬜'); if (has) n++; } weekLine = `\n\n📊 <b>This week:</b> ${grid.join('')}  ${n}/7 days`; }
-  const body = (done
-    ? `👋 Keystone already done today ✅ — nice. Log your meals as you eat (just type them). 🔥 ${streak}-day streak.`
-    : `👋 <b>Daily check-in.</b>\n⭐ Today's keystone: ${k ? tgEsc(k.one) : '—'}\n\nTap ✅ when you've done it, and log your meals by typing them (e.g. “2 eggs”).`) + riskLine + remLines + weekLine;
-  const res = await tgSend(r.chat_id, body, { reply_markup: { inline_keyboard: [[{ text: done ? '✅ Done' : '✅ Mark keystone done', callback_data: 'done' }, { text: '📋 Today', callback_data: 'today' }]] } });
-  if (res && res.ok === false && res.error_code === 403) await db.query('UPDATE telegram_users SET active=false WHERE chat_id=$1', [r.chat_id]).catch(() => { });
-  return res;
-}
-let TG_NUDGE_TIMER = null;
-function tgStartScheduler() {
-  if (!BOT_TOKEN || !db.enabled || TG_NUDGE_TIMER) return;
-  TG_NUDGE_TIMER = setInterval(async () => {
-    try {
-      const now = new Date(); const nowUtcMin = now.getUTCHours() * 60 + now.getUTCMinutes(); const today = now.toISOString().slice(0, 10);
-      const rows = (await db.query('SELECT * FROM telegram_users WHERE active AND nudge_hour IS NOT NULL AND pid IS NOT NULL AND (last_nudge IS NULL OR last_nudge <> $1)', [today])).rows;
-      for (const r of rows) {
-        const localMin = (((nowUtcMin + (r.tz_offset ?? 480)) % 1440) + 1440) % 1440;  // ?? not || — a real 0 (UTC) must stay 0
-        if (Math.floor(localMin / 60) === r.nudge_hour) { await db.query('UPDATE telegram_users SET last_nudge=$2 WHERE chat_id=$1', [r.chat_id, today]); await tgSendNudge(r).catch(() => { }); }
-      }
-    } catch (e) { console.error('[tg] nudge tick:', e.message); }
-  }, 5 * 60 * 1000);
-  console.log('[tg] nudge scheduler started (5-min tick).');
-}
-
-// ===== Email nudge engine — milestone check-ins for users who don't use Telegram =====
-const PROBLEM_NAME = (() => { try { const g = require('./data/clinical_graph.json'); const m = {}; (g.problems || []).forEach(p => { m[p.id] = p.name; }); return m; } catch (e) { return {}; } })();
+} catch (e) { console.error('[proto] index load failed:', e.message); }
+// ---- Protocol functions (mirrors site/app.js PLAN_FUNCTIONS — keep the two in sync) ----
+// Same story: read by the reminder email, not only by the bot. The two entries that used to
+// carry `tgOnly: true` ('wake', 'sunlight') are reminder-kind functions; email now delivers
+// them, so the flag is gone rather than the functions.
+const PLAN_FUNCTIONS = [
+  { id: 'walk', icon: '🚶', name: 'Post-meal walk timer', kind: 'timer', target: 10, unit: 'min', how: 'A 10-min walk after your biggest meal blunts the glucose spike.', match: ['glucose', 'insulin', 'blood sugar', 'metabolic', 'diabet', 'a1c'] },
+  { id: 'breath', icon: '🌬️', name: 'Box-breathing timer', kind: 'timer', target: 4, unit: 'min', how: '4 minutes of 4-4-4-4 breathing when stress hits.', match: ['anx', 'stress', 'cortisol', 'panic', 'overwhelm', 'nervous'] },
+  { id: 'plants', icon: '🥦', name: 'Plant-diversity counter', kind: 'counter', target: 30, unit: 'plants', period: 'week', how: '30+ different plants a week feeds a diverse microbiome.', match: ['gut', 'microbiome', 'fiber', 'digest', 'bloat', 'ibs', 'constipat'] },
+  { id: 'steps', icon: '👟', name: 'Daily step counter', kind: 'counter', target: 8000, unit: 'steps', period: 'day', how: 'Log steps toward 8,000/day.', match: ['fat', 'weight', 'cardio', 'endur', 'sedentary', 'circulation'] },
+  { id: 'hydration', icon: '💧', name: 'Hydration counter', kind: 'counter', target: 8, unit: 'glasses', period: 'day', how: 'Target 8 glasses a day.', match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'] },
+  { id: 'protein', icon: '🥩', name: 'Protein-per-meal', kind: 'counter', target: 4, unit: 'protein meals', period: 'day', how: 'A palm of protein per meal. Aim for 3–4 a day — no weighing.', match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'lean mass', 'menopause', 'craving', 'appetite', 'satiety'] },
+  { id: 'fermented', icon: '🥬', name: 'Fermented-foods counter', kind: 'counter', target: 3, unit: 'servings', period: 'day', how: 'Yoghurt, kefir, kimchi, sauerkraut, kombucha.', match: ['gut', 'microbiome', 'digest', 'bloat', 'ibs', 'immun', 'inflamm'] },
+  { id: 'pain', icon: '🚦', name: 'Pain traffic-light', kind: 'triage', how: 'After rehab: 🟢 fine / 🟡 sore / 🔴 sharp — progress, hold or back off.', match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'] },
+  { id: 'eatwin', icon: '⏳', name: 'Eating-window', kind: 'window', target: 10, how: 'First bite to kitchen closed, against a 10h target.', match: ['insulin', 'glucose', 'visceral', 'belly', 'fat', 'metabolic', 'fasting', 'blood sugar'] },
+  { id: 'bp', icon: '🩺', name: 'Home blood-pressure', kind: 'bp', how: 'Log your readings and see when they need a doctor.', match: ['blood pressure', 'hypertension', 'bp', 'cardiovascular', 'cholesterol'] },
+  { id: 'adhere', icon: '📅', name: 'Daily-dose adherence', kind: 'adherence', how: 'Mark each day you apply it — track your streak.', match: ['hair', 'minoxidil', 'finasteride', 'tretinoin', 'acne', 'skin', 'hormonal treatment', 'thyroid'] },
+  { id: 'win', icon: '🌟', name: 'One small win', kind: 'log', how: 'Naming one tiny win a day lifts low mood.', match: ['depress', 'low mood', 'anhedonia', 'burnout', 'motivation'] },
+  { id: 'symptom', icon: '📈', name: 'Symptom check', kind: 'scale', trend: true, scale: [{ v: 1, e: '😣' }, { v: 2, e: '😕' }, { v: 3, e: '😐' }, { v: 4, e: '🙂' }, { v: 5, e: '😄' }], how: 'How you feel today — see the trend over time.', match: ['menopause', 'hot flash', 'migraine', 'headache', 'acne', 'breakout', 'brain fog', 'fog', 'inflamm', 'flare', 'ibs', 'mood'] },
+  { id: 'readiness', icon: '🔋', name: 'Readiness check', kind: 'scale', scale: [{ v: 1, e: '😴', label: 'Wiped', g: 'take it easy or rest today' }, { v: 2, e: '😐', label: 'OK', g: 'train as planned' }, { v: 3, e: '💪', label: 'Fresh', g: 'good day to push' }], how: 'How recovered you feel — push or back off.', match: ['overtrain', 'recovery', 'under-recover', 'fatigue', 'plateau', 'burnout'] },
+  { id: 'sigh', icon: '🌬️', name: 'Physiological sigh', kind: 'timer', target: 2, unit: 'min', how: 'Two inhales through the nose, one long exhale. Repeat 2 min.', match: ['anx', 'panic', 'cortisol', 'overwhelm', 'nervous', 'racing'] },
+  { id: 'craving', icon: '🌊', name: 'Craving-surf timer', kind: 'timer', target: 10, unit: 'min', how: 'When a craving hits, do something else for 10 min — it almost always passes.', match: ['craving', 'appetite', 'sugar', 'snack', 'binge'] },
+  { id: 'focus', icon: '🎯', name: 'Focus blocks', kind: 'counter', target: 4, unit: 'blocks', period: 'day', how: 'Write your ONE next step, do a 25-min block. Aim for 4/day.', match: ['focus', 'adhd', 'concentration', 'brain fog', 'procrastin', 'distract', 'productivity'] },
+  { id: 'zone2', icon: '🏃', name: 'Zone-2 minutes', kind: 'counter', target: 150, unit: 'min', period: 'week', step: 10, match: ['endur', 'longevity', 'healthspan', 'vo2', 'vascular', 'stamina', 'aerobic'], how: 'Easy conversational-pace minutes. Aim for 150 a week.' },
+  { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep', how: 'CBT-I sleep restriction — track sleep efficiency and when to shift your bedtime.', match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'] },
+  { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder', how: 'A constant wake time anchors your body clock — a nightly nudge to protect wind-down.', match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'] },
+  { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder', how: '10 min of morning light sets your clock — a reminder within an hour of waking.', match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'] },
+];
+function fnById(id) { return PLAN_FUNCTIONS.find(f => f.id === id); }
 async function sendEmail(to, subject, html) {
   if (!RESEND_API_KEY) return false;
   try {
@@ -378,13 +322,12 @@ async function notifyReply(parentId, slug, replier, body) {
     if (replier && replier.id === p.user_id) return;           // don't notify yourself
     const eh = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     const name = (replier && replier.username) ? replier.username : 'Someone';
-    const cname = (TG_DATA && Array.isArray(TG_DATA.compounds) && (TG_DATA.compounds.find(x => tgSlug(x.name) === slug) || {}).name) || slug;
+    const nameSlug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    const cname = (SITE_DATA && Array.isArray(SITE_DATA.compounds) && (SITE_DATA.compounds.find(x => nameSlug(x.name) === slug) || {}).name) || slug;
     const snippet = String(body || '').slice(0, 220);
     const link = `${SITE_URL}/#/c/${slug}`;
-    const tg = (await db.query('SELECT chat_id FROM telegram_users WHERE user_id=$1 AND active ORDER BY last_active DESC LIMIT 1', [p.user_id])).rows[0];
-    if (tg && tg.chat_id && BOT_TOKEN) {
-      tgSend(tg.chat_id, `💬 <b>${tgEsc(name)}</b> replied to your explanation on <b>${tgEsc(cname)}</b>:\n\n“${tgEsc(snippet)}”\n\n${link}`).catch(() => {});
-    }
+    // (The Telegram notification branch was removed 2026-07-28 with the bot. Email is now the
+    // only reply notification channel.)
     const usr = (await db.query('SELECT email, email_off FROM users WHERE id=$1', [p.user_id])).rows[0];
     if (usr && usr.email && !usr.email_off) {
       sendEmail(usr.email, `${name} replied to your explanation of ${cname}`,
@@ -428,26 +371,26 @@ async function sendCheckinEmail(d) {
   const link = `${SITE_URL}/#/plan`;
   const subject = `You're ${wk} into your ${name} protocol — 2-min check-in?`;
   const html = `<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:480px;margin:0 auto;color:#1a1a1a">
-    <h2 style="font-size:20px">How's it going with ${tgEsc(name)}?</h2>
+    <h2 style="font-size:20px">How's it going with ${htmlEsc(name)}?</h2>
     <p style="font-size:15px;line-height:1.5">You've been at it for <b>${wk}</b>. A 20-second check-in tells you whether it's working — and helps everyone with the same problem.</p>
-    <p><a href="${link}" style="display:inline-block;background:#2f6f4f;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px">Log my ${tgEsc(wk)} check-in →</a></p>
+    <p><a href="${link}" style="display:inline-block;background:#2f6f4f;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px">Log my ${htmlEsc(wk)} check-in →</a></p>
     <p style="font-size:12px;color:#888;line-height:1.5">Anonymous &amp; optional. You're getting this because you consented to help RNAwiki learn what works. Manage or withdraw anytime in your account.</p>
   </div>`;
   return sendEmail(d.user.email, subject, html);
 }
 // ---- Daily reminder email — bundles EVERY nudge the user selected (keystone + tools), web parity of the TG daily nudge ----
-// Reads the saved plan: keystone(s) from TG_PROTO + each selected tool from TG_FUNCTIONS. Returns [] if nothing to remind.
+// Reads the saved plan: keystone(s) from PROTO_INDEX + each selected tool from PLAN_FUNCTIONS. Returns [] if nothing to remind.
 function buildReminderLines(plan) {
   const protos = (plan && Array.isArray(plan.protocols)) ? plan.protocols : [];
   const lines = [], seen = new Set();
   for (const pr of protos) {
-    const info = TG_PROTO[(pr.pid || '') + '/' + (pr.rcid || '')];
+    const info = PROTO_INDEX[(pr.pid || '') + '/' + (pr.rcid || '')];
     if (info && info.keystone && info.keystone.one && !seen.has('k:' + pr.pid + pr.rcid)) {
       seen.add('k:' + pr.pid + pr.rcid);
       lines.push({ icon: '⭐', label: info.keystone.one, sub: info.keystone.why || '' });
     }
     const fns = Array.isArray(pr.functions) ? pr.functions : [];
-    for (const fid of fns) { const f = tgFnById(fid); if (f && !seen.has(fid)) { seen.add(fid); lines.push({ icon: f.icon, label: f.name, sub: f.how || '' }); } }
+    for (const fid of fns) { const f = fnById(fid); if (f && !seen.has(fid)) { seen.add(fid); lines.push({ icon: f.icon, label: f.name, sub: f.how || '' }); } }
   }
   return lines;
 }
@@ -455,8 +398,8 @@ function buildReminderEmail(plan, due) {
   const lines = buildReminderLines(plan);
   if (!lines.length && !due) return null;
   const link = `${SITE_URL}/#/plan`;
-  const items = lines.map(l => `<li style="margin:0 0 10px;font-size:15px;line-height:1.45"><span style="font-size:17px">${l.icon}</span> <b>${tgEsc(l.label)}</b>${l.sub ? `<br><span style="color:#666;font-size:13px">${tgEsc(l.sub)}</span>` : ''}</li>`).join('');
-  const ci = due ? `<div style="margin:18px 0;padding:12px 14px;background:#f0f7f3;border-radius:10px;font-size:14px">📋 You're <b>${due.phase === 'd90' ? '90 days' : '30 days'}</b> into your ${tgEsc(PROBLEM_NAME[due.pr.pid] || 'protocol')} — a 20-second check-in is due. It's in your tracker.</div>` : '';
+  const items = lines.map(l => `<li style="margin:0 0 10px;font-size:15px;line-height:1.45"><span style="font-size:17px">${l.icon}</span> <b>${htmlEsc(l.label)}</b>${l.sub ? `<br><span style="color:#666;font-size:13px">${htmlEsc(l.sub)}</span>` : ''}</li>`).join('');
+  const ci = due ? `<div style="margin:18px 0;padding:12px 14px;background:#f0f7f3;border-radius:10px;font-size:14px">📋 You're <b>${due.phase === 'd90' ? '90 days' : '30 days'}</b> into your ${htmlEsc(PROBLEM_NAME[due.pr.pid] || 'protocol')} — a 20-second check-in is due. It's in your tracker.</div>` : '';
   const html = `<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:480px;margin:0 auto;color:#1a1a1a">
     <h2 style="font-size:20px;margin:0 0 4px">Today's plan ⭐</h2>
     <p style="font-size:14px;color:#666;margin:0 0 16px">Your reminders for today — tick them off in the tracker.</p>
@@ -482,7 +425,7 @@ async function emailNudgeTick() {
     }
   } catch (e) { console.error('[email] nudge tick:', e.message); }
 }
-// Daily reminder digest — TZ-aware 5-min tick (mirrors tgStartScheduler): fires once/day at each user's chosen local hour.
+// Daily reminder digest — TZ-aware 5-min tick: fires once/day at each user's chosen local hour.
 async function emailReminderTick() {
   if (!RESEND_API_KEY || !db.enabled) return;
   try {
@@ -508,7 +451,7 @@ async function sendWinbackEmail(email, name, days) {
   const subject = `Your ${name} protocol is still here 👋`;
   const html = `<div style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;max-width:480px;margin:0 auto;color:#1a1a1a">
     <h2 style="font-size:20px;margin:0 0 6px">Pick up where you left off</h2>
-    <p style="font-size:15px;line-height:1.5">It's been about <b>${days} days</b> since you last worked on your ${tgEsc(name)} protocol. Your plan, streak history and progress are all still saved — you can jump straight back in.</p>
+    <p style="font-size:15px;line-height:1.5">It's been about <b>${days} days</b> since you last worked on your ${htmlEsc(name)} protocol. Your plan, streak history and progress are all still saved — you can jump straight back in.</p>
     <p style="font-size:15px;line-height:1.5">Even one small action today keeps the momentum going.</p>
     <p style="margin:20px 0 0"><a href="${link}" style="display:inline-block;background:#2f6f4f;color:#fff;text-decoration:none;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px">Back to my protocol →</a></p>
     <p style="font-size:12px;color:#999;line-height:1.5;margin-top:18px">Don't want these? Turn off emails anytime under "Your data &amp; privacy" in your account.</p>
@@ -528,8 +471,13 @@ async function emailWinbackTick() {
       WHERE u.email IS NOT NULL AND u.email_off IS NOT TRUE AND u.email_nudge_hour IS NULL
         AND p.updated_at < now() - interval '10 days'
         AND (u.last_winback_email IS NULL OR u.last_winback_email < $1)
-        AND (u.last_checkin_email IS NULL OR u.last_checkin_email < $2)
-        AND NOT EXISTS (SELECT 1 FROM telegram_users t WHERE t.user_id=u.id AND t.last_active > now() - interval '10 days')`,
+        AND (u.last_checkin_email IS NULL OR u.last_checkin_email < $2)`,
+      // The removed clause was: AND NOT EXISTS (SELECT 1 FROM telegram_users t WHERE
+      // t.user_id=u.id AND t.last_active > now() - interval '10 days'). Its intent was "do not
+      // win back someone who is active on another channel". With the bot gone there is no other
+      // channel, and web activity is already covered by `p.updated_at < now() - interval
+      // '10 days'` above, so the condition is subsumed rather than dropped. Verified before
+      // removal: the audience count was identical with and without it (1 row either way).
       [cutoff21, cutoff7])).rows;
     for (const u of rows) {
       const protos = (u.plan && Array.isArray(u.plan.protocols)) ? u.plan.protocols : [];
@@ -550,1005 +498,6 @@ function emailStartScheduler() {
   EMAIL_REMIND_TIMER = setInterval(emailReminderTick, 5 * 60 * 1000);  // daily reminder digest — TZ-aware 5-min tick
   console.log('[email] check-in+winback (6h) + daily-reminder (5-min) schedulers started.');
 }
-// Category → problems index, for building a plan inside the chat.
-let TG_CATS = {};
-try {
-  const gc = require('./data/clinical_graph.json');
-  gc.problems.forEach(p => { (TG_CATS[p.category] = TG_CATS[p.category] || []).push({ pid: p.id, name: p.name, icon: p.icon || '', rcs: p.root_causes.map(r => ({ id: r.id, plain: (r.plain || r.name), name: r.name })) }); });
-} catch (e) { }
-const TG_CAT_KEYS = () => Object.keys(TG_CATS);
-function tgFindProblem(pid) { for (const c of Object.keys(TG_CATS)) { const p = TG_CATS[c].find(x => x.pid === pid); if (p) return p; } return null; }
-function tgCompoundTags(c) { const s = new Set((TG_RXN && TG_RXN.catTags[c.category]) || []); const nm = (c.name || '').toLowerCase(); ((TG_RXN && TG_RXN.nameTags) || []).forEach(r => { if (nm.indexOf(r.m) >= 0) r.t.forEach(t => s.add(t)); }); return s; }
-function tgStackFlags(stack) {
-  if (!TG_RXN) return [];
-  const byTag = {}; stack.forEach(c => tgCompoundTags(c).forEach(t => (byTag[t] = byTag[t] || []).push(c.name)));
-  const flags = [];
-  (TG_RXN.rules || []).forEach(rule => { if (!rule.need.every(n => (byTag[n[0]] || []).length >= n[1])) return; const inv = {}; rule.need.forEach(n => (byTag[n[0]] || []).forEach(nm => inv[nm] = 1)); flags.push({ tier: rule.tier, title: rule.title, action: rule.action, who: Object.keys(inv) }); });
-  return flags.filter(f => f.tier === 'danger' || f.tier === 'timing');
-}
-async function tgSendStack(chatId, row) {
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')];
-  const stack = tgUserStackObjs(row); // protocol-selected supps + anything the user added from a compound card
-  if (!stack.length) return tgSend(chatId, `You're going food-only on this one — no supplements. /today for your food targets.`);
-  const list = stack.map(c => `• <b>${tgEsc(c.name)}</b>${tgGated(c) ? ' 🔵 <i>Rx — see a doctor</i>' : ''}${c.added ? ' <i>· added by you</i>' : ''}\n  ${SITE_URL}/c/${c.slug || tgSlug(c.name)}`).join('\n');
-  const flags = tgStackFlags(stack);
-  const warn = flags.length ? `\n\n⚠️ <b>If you combine these:</b>\n` + flags.map(f => `${f.tier === 'danger' ? '☠️' : '⏰'} <b>${tgEsc(f.title)}</b> (${f.who.map(tgEsc).join(' + ')}) — ${tgEsc(f.action)}`).join('\n') : `\n\n✅ No dangerous interactions flagged among these.`;
-  return tgSend(chatId, `💊 <b>${tgEsc(p ? p.problem : 'Your')} — supplements</b>\n${list}${warn}\n\n<i>Educational, not a prescription. Tap a link to learn about any of them.</i>`);
-}
-function tgFindCompound(q) { if (!TG_DATA) return null; const t = q.toLowerCase().trim(); return TG_DATA.compounds.find(c => { const nm = c.name.toLowerCase(); return nm === t || nm.split(/[^a-z0-9]+/).includes(t) || (t.length > 3 && nm.indexOf(t) >= 0); }); }
-// second pass: attach the resolved supplement stack to each protocol (needs TG_DATA loaded above)
-try { const gg = require('./data/clinical_graph.json'); gg.problems.forEach(p => p.root_causes.forEach(rc => { const key = p.id + '/' + rc.id; if (TG_PROTO[key]) TG_PROTO[key].stack = tgResolveStack(rc); })); } catch (e) { }
-
-// ---- Answer helpers: strip markdown, goal lookup, quantity parsing, compound cards ----
-// Everything the bot says about a compound is AUTHORED content echoed verbatim (dose, mechanism,
-// safety) — never generated. tgStripMd only removes markdown chrome, it invents nothing.
-function tgStripMd(s) {
-  return String(s == null ? '' : s)
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')   // [text](url) → text
-    .replace(/\*\*([^*]+)\*\*/g, '$1').replace(/\*([^*]+)\*/g, '$1').replace(/__([^_]+)__/g, '$1')
-    .replace(/[`>#]/g, '').replace(/\s+/g, ' ').trim();
-}
-// Goal taxonomy (same 16 goals + evidence-star ranking as the website's goal pages)
-const TG_GOALS = (TG_DATA && Array.isArray(TG_DATA.goals)) ? TG_DATA.goals : [];
-const TG_GOAL_STOP = new Set(['what', 'whats', 'the', 'best', 'good', 'for', 'with', 'help', 'helps', 'and', 'you', 'your', 'can', 'get', 'how', 'does', 'most', 'better', 'more', 'some', 'any', 'thing', 'things', 'take', 'should', 'stuff', 'supplement', 'supplements']);
-function tgFindGoal(q) {
-  const toks = (q || '').toLowerCase().split(/[^a-z]+/).filter(w => w.length > 2 && !TG_GOAL_STOP.has(w));
-  if (!toks.length) return null;
-  let best = null, bestScore = 0;
-  for (const g of TG_GOALS) {
-    const hay = (g.label + ' ' + (g.keys || []).join(' ')).toLowerCase();
-    let score = 0; for (const t of toks) if (hay.includes(t)) score++;
-    if (score > bestScore) { bestScore = score; best = g; }
-  }
-  return bestScore > 0 ? best : null;
-}
-function tgGoalTop(goalId, n) {
-  if (!TG_DATA) return [];
-  return TG_DATA.compounds.filter(c => Array.isArray(c.goalIds) && c.goalIds.includes(goalId) && !c.isNote)
-    .sort((a, b) => (b.stars || 0) - (a.stars || 0) || a.name.localeCompare(b.name)).slice(0, n || 5);
-}
-// Rank multiple compound matches for a free-text query (for disambiguation)
-function tgFindCompounds(q) {
-  if (!TG_DATA) return [];
-  const t = (q || '').toLowerCase().trim(); if (t.length < 2) return [];
-  const scored = [];
-  for (const c of TG_DATA.compounds) {
-    const nm = c.name.toLowerCase(); const words = nm.split(/[^a-z0-9]+/);
-    let s = 0;
-    if (nm === t) s = 100; else if (words.includes(t)) s = 80;
-    else if (nm.startsWith(t)) s = 60; else if (t.length > 3 && nm.indexOf(t) >= 0) s = 40;
-    if (s) scored.push({ c, s });
-  }
-  return scored.sort((a, b) => b.s - a.s || (b.c.stars || 0) - (a.c.stars || 0)).slice(0, 6).map(x => x.c);
-}
-function tgStars(n) { n = Math.max(0, Math.min(5, +n || 0)); return n ? ' ' + '⭐'.repeat(n) : ''; }
-// A compound is "gated" (off by default, warned) only when it has NO over-the-counter path — i.e. it's
-// prescription-only or controlled. Dual-status items (e.g. Vitamin D3, NAC = 🟡+🔵) stay OTC and are not gated.
-function tgOtcAvailable(c) { const a = (c && c.approvals) || []; return a.includes('🟢') || a.includes('🟡'); }
-function tgGated(c) { return !!(c && c.isRx) && !tgOtcAvailable(c); }
-// Build a rich compound card + inline actions. `row` = the user's telegram record (for stack-aware actions).
-function tgCompoundCard(c, row) {
-  const appr = (c.approvals && c.approvals.length) ? c.approvals.join(' ') : '';
-  const apprLbl = (c.approvalLabels && c.approvalLabels[0]) || '';
-  const plain = c.plain ? tgEsc(tgStripMd(c.plain)) : '';
-  const mech = c.mechanism ? tgEsc(tgStripMd(c.mechanism)) : '';
-  const dose = c.protocol ? tgEsc(tgStripMd(c.protocol)) : '';
-  const watch = tgStripMd([c.watch, c.avoid].filter(Boolean).join(' ')); // authored safety notes only
-  const lines = [`${appr ? appr + ' ' : ''}<b>${tgEsc(c.name)}</b>${tgStars(c.stars)}`];
-  if (apprLbl) lines.push(`<i>${tgEsc(apprLbl)}${tgGated(c) ? ' · 🔵 prescription — see a doctor' : ''}</i>`);
-  if (plain) lines.push('\n' + plain);
-  else if (mech) lines.push('\n' + mech.slice(0, 260) + (mech.length > 260 ? '…' : ''));
-  if (dose) lines.push(`\n💊 <b>Dose &amp; timing:</b> ${dose}`);
-  if (watch) lines.push(`\n⚠️ <b>Watch:</b> ${tgEsc(watch)}`);
-  const slug = c.slug || tgSlug(c.name);
-  const kb = [];
-  const linked = row && row.pid;
-  if (linked) kb.push([{ text: '➕ Add to my plan', callback_data: 'cadd:' + c.id }, { text: '⚠️ Check with my stack', callback_data: 'cchk:' + c.id }]);
-  kb.push([{ text: '📖 Full page (evidence, cost, links)', url: `${SITE_URL}/c/${slug}` }]);
-  return { text: lines.join('\n'), kb };
-}
-
-// ---- Protocol functions (mirrors site/app.js PLAN_FUNCTIONS — keep the two in sync) ----
-const TG_FUNCTIONS = [
-  { id: 'walk', icon: '🚶', name: 'Post-meal walk timer', kind: 'timer', target: 10, unit: 'min', how: 'A 10-min walk after your biggest meal blunts the glucose spike. Tap ✓ when done.', match: ['glucose', 'insulin', 'blood sugar', 'metabolic', 'diabet', 'a1c'] },
-  { id: 'breath', icon: '🌬️', name: 'Box-breathing timer', kind: 'timer', target: 4, unit: 'min', how: '4 minutes of 4-4-4-4 breathing when stress hits. Tap ✓ when done.', match: ['anx', 'stress', 'cortisol', 'panic', 'overwhelm', 'nervous'] },
-  { id: 'plants', icon: '🥦', name: 'Plant-diversity counter', kind: 'counter', target: 30, unit: 'plants', period: 'week', how: '30+ different plants a week feeds a diverse microbiome. Tap + for each new plant.', match: ['gut', 'microbiome', 'fiber', 'digest', 'bloat', 'ibs', 'constipat'] },
-  // progressive-overload logging now lives per-exercise in the web tracker, so it's no longer a selectable tool here
-  { id: 'steps', icon: '👟', name: 'Daily step counter', kind: 'counter', target: 8000, unit: 'steps', period: 'day', how: 'Log steps toward 8,000/day. Tap + to add 500.', match: ['fat', 'weight', 'cardio', 'endur', 'sedentary', 'circulation'] },
-  { id: 'hydration', icon: '💧', name: 'Hydration counter', kind: 'counter', target: 8, unit: 'glasses', period: 'day', how: 'Tap + for each glass. Target 8 a day.', match: ['energy', 'skin', 'headache', 'focus', 'fatigue', 'kidney'] },
-  { id: 'protein', icon: '🥩', name: 'Protein-per-meal', kind: 'counter', target: 4, unit: 'protein meals', period: 'day', how: 'Tap + for each meal with a palm of protein. Aim for 3–4 a day — no weighing.', match: ['muscle', 'strength', 'hypertrophy', 'sarcopenia', 'lean mass', 'menopause', 'craving', 'appetite', 'satiety'] },
-  { id: 'fermented', icon: '🥬', name: 'Fermented-foods counter', kind: 'counter', target: 3, unit: 'servings', period: 'day', how: 'Tap + per serving — yoghurt, kefir, kimchi, sauerkraut, kombucha.', match: ['gut', 'microbiome', 'digest', 'bloat', 'ibs', 'immun', 'inflamm'] },
-  { id: 'pain', icon: '🚦', name: 'Pain traffic-light', kind: 'triage', how: 'After rehab, tap 🟢 fine / 🟡 sore / 🔴 sharp — I tell you to progress, hold or back off.', match: ['pain', 'knee', 'back', 'neck', 'shoulder', 'hip', 'tendin', 'tendon', 'joint', 'stiff', 'ache', 'rehab', 'sciatic', 'plantar'] },
-  { id: 'eatwin', icon: '⏳', name: 'Eating-window', kind: 'window', target: 10, how: 'Tap first bite / kitchen closed — I track your eating window vs a 10h target.', match: ['insulin', 'glucose', 'visceral', 'belly', 'fat', 'metabolic', 'fasting', 'blood sugar'] },
-  { id: 'bp', icon: '🩺', name: 'Home blood-pressure', kind: 'bp', how: 'Send “bp: 120 80” — I log it and flag when it needs a doctor.', match: ['blood pressure', 'hypertension', 'bp', 'cardiovascular', 'cholesterol'] },
-  { id: 'adhere', icon: '📅', name: 'Daily-dose adherence', kind: 'adherence', how: 'Tap ✅ each day you apply it — I track your streak.', match: ['hair', 'minoxidil', 'finasteride', 'tretinoin', 'acne', 'skin', 'hormonal treatment', 'thyroid'] },
-  { id: 'win', icon: '🌟', name: 'One small win', kind: 'log', how: 'Send “win: …” — naming one tiny win a day lifts low mood.', match: ['depress', 'low mood', 'anhedonia', 'burnout', 'motivation'] },
-  { id: 'symptom', icon: '📈', name: 'Symptom check', kind: 'scale', trend: true, scale: [{ v: 1, e: '😣' }, { v: 2, e: '😕' }, { v: 3, e: '😐' }, { v: 4, e: '🙂' }, { v: 5, e: '😄' }], how: 'Tap how you feel today — see the trend over time.', match: ['menopause', 'hot flash', 'migraine', 'headache', 'acne', 'breakout', 'brain fog', 'fog', 'inflamm', 'flare', 'ibs', 'mood'] },
-  { id: 'readiness', icon: '🔋', name: 'Readiness check', kind: 'scale', scale: [{ v: 1, e: '😴', label: 'Wiped', g: 'take it easy or rest today' }, { v: 2, e: '😐', label: 'OK', g: 'train as planned' }, { v: 3, e: '💪', label: 'Fresh', g: 'good day to push' }], how: 'Tap how recovered you feel — push or back off.', match: ['overtrain', 'recovery', 'under-recover', 'fatigue', 'plateau', 'burnout'] },
-  { id: 'sigh', icon: '🌬️', name: 'Physiological sigh', kind: 'timer', target: 2, unit: 'min', how: 'Two inhales through the nose, one long exhale. Repeat 2 min. In a spike: sigh ×3 · name 3 things you see · sip water.', match: ['anx', 'panic', 'cortisol', 'overwhelm', 'nervous', 'racing'] },
-  { id: 'craving', icon: '🌊', name: 'Craving-surf timer', kind: 'timer', target: 10, unit: 'min', how: 'When a craving hits, do something else for 10 min — it almost always passes.', match: ['craving', 'appetite', 'sugar', 'snack', 'binge'] },
-  { id: 'focus', icon: '🎯', name: 'Focus blocks', kind: 'counter', target: 4, unit: 'blocks', period: 'day', how: 'Write your ONE next step, do a 25-min block, tap +. Jot the next step before each break. Aim for 4/day.', match: ['focus', 'adhd', 'concentration', 'brain fog', 'procrastin', 'distract', 'productivity'] },
-  { id: 'zone2', icon: '🏃', name: 'Zone-2 minutes', kind: 'counter', target: 150, unit: 'min', period: 'week', step: 10, match: ['endur', 'longevity', 'healthspan', 'vo2', 'vascular', 'stamina', 'aerobic'], how: 'Log easy conversational-pace minutes. Aim for 150 a week.' },
-  { id: 'sleepwin', icon: '🛏️', name: 'Sleep-window tracker', kind: 'sleep', how: 'CBT-I sleep restriction — send “sleep: 23:30 00:10 07:00” (in bed · asleep · woke) and I track your sleep efficiency and when to shift your bedtime.', match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'] },
-  { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder', how: 'A constant wake time anchors your body clock. I nudge you nightly to protect wind-down.', match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'], tgOnly: true },
-  { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder', how: '10 min of morning light sets your clock. I remind you within an hour of waking.', match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'], tgOnly: true },
-];
-function tgFnById(id) { return TG_FUNCTIONS.find(f => f.id === id); }
-function tgDefaultFunction(key) {
-  const p = TG_PROTO[key] || {}; const k = p.keystone || {};
-  const hay = [p.problem, p.rc, k.one, k.why].filter(Boolean).join(' ').toLowerCase();
-  const hit = TG_FUNCTIONS.find(f => f.match.some(m => hay.includes(m)));
-  return (hit || tgFnById('hydration')).id;
-}
-function tgWeekKey() { const d = new Date(); const day = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - day); return d.toISOString().slice(0, 10); }
-// Normalise the per-day / per-week function state, resetting stale buckets (preserves t.sleep history)
-function tgTools(row) {
-  const t = (row && row.tools) || {}; const today = new Date().toISOString().slice(0, 10); const wk = tgWeekKey();
-  if (!t.d || t.d.date !== today) t.d = { date: today, c: {}, done: {} };
-  if (!t.w || t.w.key !== wk) t.w = { key: wk, c: {} };
-  return t;
-}
-// ---- Sleep-window (CBT-I) helpers (mirror site/app.js) ----
-function tgSlpMin(t) { if (!t) return null; t = String(t).trim(); let h, m; if (/^\d{3,4}$/.test(t)) { t = t.padStart(4, '0'); h = +t.slice(0, 2); m = +t.slice(2); } else if (/^\d{1,2}:\d{2}$/.test(t)) { [h, m] = t.split(':').map(Number); } else return null; if (h > 23 || m > 59) return null; return h * 60 + m; }
-function tgComputeSleep(inBed, asleep, woke) { const ib = tgSlpMin(inBed), as = tgSlpMin(asleep), wk = tgSlpMin(woke); if (ib == null || as == null || wk == null) return null; const norm = x => x < ib ? x + 1440 : x; const tib = norm(wk) - ib, tst = norm(wk) - norm(as); if (tib <= 0 || tst <= 0 || tst > tib) return null; return { tib, tst, se: Math.min(100, Math.round(tst / tib * 100)) }; }
-function tgSleepEff7(row) { const t = (row && row.tools && row.tools.sleep) || {}; let sum = 0, n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const e = t[d.toISOString().slice(0, 10)]; if (e && e.se != null) { sum += e.se; n++; } } return { avg: n ? Math.round(sum / n) : 0, nights: n }; }
-function tgSleepRec(avg, nights) { if (nights < 3) return 'Log 3+ nights for your sleep-window guidance.'; if (avg >= 90) return 'Efficient — try bed 15 min earlier tonight.'; if (avg >= 85) return 'Dialed in — hold this window, fixed wake time.'; return 'Tighten: bed 15 min later, keep the same wake time.'; }
-// Sync the bot's protocol (supps + functions) into the linked account's v2 web plan — creating it if needed.
-async function tgUpsertWebProtocol(row) {
-  if (!row || !row.user_id || !db.enabled || !row.pid) return;
-  try {
-    const r = (await db.query('SELECT plan FROM user_plans WHERE user_id=$1', [row.user_id])).rows[0];
-    let plan = (r && r.plan) || { v: 2, protocols: [], draft: null, log: {}, fnWeek: {}, tools: {} };
-    if (!Array.isArray(plan.protocols)) plan.protocols = []; plan.v = 2;
-    const supps = (row.sel && Array.isArray(row.sel.supps)) ? row.sel.supps : undefined;
-    let entry = plan.protocols.find(x => x.pid === row.pid && x.rcid === row.rcid);
-    if (!entry) { entry = { pid: row.pid, rcid: row.rcid, startedAt: new Date().toISOString().slice(0, 10) }; plan.protocols.push(entry); }
-    if (supps !== undefined) entry.supps = supps;
-    entry.functions = row.functions || [];
-    if (r) await db.query('UPDATE user_plans SET plan=$2, updated_at=now() WHERE user_id=$1', [row.user_id, JSON.stringify(plan)]);
-    else await db.query('INSERT INTO user_plans(user_id,plan,updated_at) VALUES($1,$2,now())', [row.user_id, JSON.stringify(plan)]);
-  } catch (e) {}
-}
-// Mutate today's entry in the linked account's v2 web plan (e.g. mark a keystone / log food) so web stays in sync.
-async function tgSyncWebDay(row, mutate) {
-  if (!row || !row.user_id || !db.enabled) return;
-  try {
-    const r = (await db.query('SELECT plan FROM user_plans WHERE user_id=$1', [row.user_id])).rows[0];
-    if (!r || !r.plan) return; const plan = r.plan; const tk = new Date().toISOString().slice(0, 10);
-    plan.log = plan.log || {}; const d = plan.log[tk] = plan.log[tk] || {};
-    d.keystones = d.keystones || {}; d.done = d.done || []; d.sets = d.sets || {}; d.food = d.food || []; d.fn = d.fn || {};
-    mutate(d, plan);
-    await db.query('UPDATE user_plans SET plan=$2, updated_at=now() WHERE user_id=$1', [row.user_id, JSON.stringify(plan)]);
-  } catch (e) {}
-}
-// Mint a share code for a built plan (so a bot-built protocol can be handed to clients with exact selections)
-async function tgMakeShareCode(pid, rcid, sel, userId) {
-  if (!db.enabled) return null;
-  try { const code = crypto.randomBytes(6).toString('base64url'); await db.query('INSERT INTO shared_plans(code,author_user_id,pid,rcid,plan) VALUES($1,$2,$3,$4,$5)', [code, userId || null, pid, rcid, JSON.stringify(sel)]); return code; } catch (e) { return null; }
-}
-
-// ---- Build-a-plan inside the chat (mirrors the site's builder) ----
-function tgEdit(chatId, msgId, text, kb) { return tgApi('editMessageText', Object.assign({ chat_id: chatId, message_id: msgId, text, parse_mode: 'HTML', disable_web_page_preview: true }, kb ? { reply_markup: { inline_keyboard: kb } } : {})); }
-async function tgBuildStart(chatId) {
-  const cats = TG_CAT_KEYS(); if (!cats.length) return tgSend(chatId, `Building isn't available right now — try ${SITE_URL}/solve.`);
-  const kb = cats.map((c, i) => [{ text: c, callback_data: 'bc:' + i }]);
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ stage: 'cat' })]);
-  return tgSend(chatId, `🧬 <b>Let's build your plan.</b>\nWhat do you want to work on?`, { reply_markup: { inline_keyboard: kb } });
-}
-function tgBuildCatKb() { return TG_CAT_KEYS().map((c, i) => [{ text: c, callback_data: 'bc:' + i }]); }
-function tgBuildCategory(chatId, msgId, catIdx) {
-  const cat = TG_CAT_KEYS()[+catIdx]; const probs = TG_CATS[cat] || [];
-  const kb = probs.map(p => [{ text: (p.icon ? p.icon + ' ' : '') + p.name, callback_data: 'bp:' + p.pid }]);
-  kb.push([{ text: '‹ Back', callback_data: 'bcback' }]);
-  return tgEdit(chatId, msgId, `<b>${tgEsc(cat)}</b> — pick your problem:`, kb);
-}
-async function tgBuildProblem(chatId, msgId, pid) {
-  const prob = tgFindProblem(pid); if (!prob) return;
-  if (prob.rcs.length === 1) { await tgBuildSetRc(chatId, pid, prob.rcs[0].id); return tgBuildStack(chatId, msgId); }
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ stage: 'rc', pid })]);
-  const kb = prob.rcs.map(r => [{ text: r.plain.slice(0, 60), callback_data: 'br:' + r.id }]);
-  return tgEdit(chatId, msgId, `<b>${tgEsc(prob.name)}</b> — which sounds most like you?`, kb);
-}
-async function tgBuildSetRc(chatId, pid, rcid) {
-  const stack = (TG_PROTO[pid + '/' + rcid] || {}).stack || [];
-  const dflt = stack.filter(c => !tgGated(c)).map(c => c.id);   // prescription-only/controlled supplements start OFF — a deliberate tap enables them
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ stage: 'stack', pid, rcid, supps: dflt })]);
-}
-async function tgBuildStack(chatId, msgId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
-  const proto = TG_PROTO[(flow.pid || '') + '/' + (flow.rcid || '')]; const stack = (proto && proto.stack) || [];
-  if (!proto) return tgSend(chatId, `Something went off-track — /build to start again.`);
-  if (!stack.length) return tgBuildConfirm(chatId, msgId);
-  const sel = new Set(flow.supps || []);
-  // each supplement: a toggle + an ℹ️ that opens its card in a separate message (never disturbs this wizard)
-  const kb = stack.map(c => [{ text: (sel.has(c.id) ? '✓ ' : '○ ') + c.name + (tgGated(c) ? ' 🔵' : ''), callback_data: 'bs:' + c.id }, { text: 'ℹ️', callback_data: 'binfo:' + c.id }]);
-  kb.push([{ text: (!flow.supps || !flow.supps.length ? '✓ ' : '') + '🍚 Food only', callback_data: 'bfood' }]);
-  kb.push([{ text: '⚡ Use recommended plan', callback_data: 'bexpress' }]);
-  kb.push([{ text: '🧩 Next: your tools →', callback_data: 'bdone' }]);
-  const hasGated = stack.some(c => tgGated(c));
-  const text = `<b>${tgEsc(proto.problem)}</b> — keep or drop each supplement, tap ℹ️ to learn about one, then continue.${hasGated ? '\n🔵 = prescription-only (off by default — add only if your doctor prescribed it).' : ''}`;
-  return msgId ? tgEdit(chatId, msgId, text, kb) : tgSend(chatId, text, { reply_markup: { inline_keyboard: kb } });
-}
-// Final build stage: pick the interactive tools. Collapsed by default (just the matched ⭐ tool); "Add more" expands the full list.
-async function tgBuildFunctions(chatId, msgId, expanded) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
-  if (!flow.pid || !flow.rcid) return tgSend(chatId, `Something went off-track — /build to start again.`);
-  const key = flow.pid + '/' + flow.rcid; const defId = tgDefaultFunction(key);
-  if (!Array.isArray(flow.functions)) { flow.functions = [defId]; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); }
-  const sel = new Set(flow.functions); const def = tgFnById(defId);
-  if (!expanded && def) {
-    const text = `🧩 <b>Your tool</b> — one small thing that makes it stick.\n\n${def.icon} <b>${tgEsc(def.name)}</b> ⭐\n<i>${tgEsc(def.how)}</i>\n\nThis one's matched to your goal. Add more if you like, or build now.`;
-    const kb = [[{ text: '➕ Add more tools', callback_data: 'bmore' }], [{ text: '✅ Build my protocol', callback_data: 'bfin' }]];
-    return msgId ? tgEdit(chatId, msgId, text, kb) : tgSend(chatId, text, { reply_markup: { inline_keyboard: kb } });
-  }
-  const ordered = [def, ...TG_FUNCTIONS.filter(f => f.id !== defId)].filter(Boolean);
-  const lines = ordered.map(f => `${f.icon} <b>${tgEsc(f.name)}</b>${f.id === defId ? ' ⭐' : ''}${f.tgOnly ? ' <i>(chat only)</i>' : ''}\n<i>${tgEsc(f.how)}</i>`).join('\n\n');
-  const kb = ordered.map(f => [{ text: (sel.has(f.id) ? '✓ ' : '○ ') + f.icon + ' ' + f.name + (f.tgOnly ? ' 📲' : ''), callback_data: 'bt:' + f.id }]);
-  kb.push([{ text: '✅ Build my protocol', callback_data: 'bfin' }]);
-  const text = `🧩 <b>Your tools</b> — tap any you'll actually use.\n⭐ one's matched to your goal.\n\n${lines}`;
-  return msgId ? tgEdit(chatId, msgId, text, kb) : tgSend(chatId, text, { reply_markup: { inline_keyboard: kb } });
-}
-async function tgBuildFnToggle(chatId, msgId, id) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; const cur = new Set(flow.functions || []);
-  if (cur.has(id)) cur.delete(id); else cur.add(id); flow.functions = [...cur];
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-  return tgBuildFunctions(chatId, msgId, true); // toggling happens in the expanded view
-}
-async function tgBuildToggle(chatId, msgId, compId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; const cur = new Set(flow.supps || []);
-  if (cur.has(compId)) cur.delete(compId); else cur.add(compId);
-  flow.supps = [...cur]; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-  return tgBuildStack(chatId, msgId);
-}
-async function tgBuildFoodOnly(chatId, msgId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
-  const proto = TG_PROTO[(flow.pid || '') + '/' + (flow.rcid || '')]; const stack = (proto && proto.stack) || [];
-  flow.supps = (flow.supps && flow.supps.length) ? [] : stack.map(c => c.id);
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-  return tgBuildStack(chatId, msgId);
-}
-async function tgBuildConfirm(chatId, msgId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
-  if (!flow.pid || !flow.rcid) return tgSend(chatId, `Something went off-track — /build to start again.`);
-  const fns = (Array.isArray(flow.functions) && flow.functions.length) ? flow.functions : [tgDefaultFunction(flow.pid + '/' + flow.rcid)];
-  await db.query('UPDATE telegram_users SET pid=$2, rcid=$3, sel=$4, functions=$5, flow=$6 WHERE chat_id=$1', [chatId, flow.pid, flow.rcid, JSON.stringify({ supps: flow.supps || [] }), JSON.stringify(fns), JSON.stringify({})]);
-  const saved = await tgGet(chatId);
-  await tgUpsertWebProtocol(saved); // sync this protocol into the linked account's web plan (creates it if needed)
-  if (msgId) await tgApi('editMessageReplyMarkup', { chat_id: chatId, message_id: msgId, reply_markup: { inline_keyboard: [] } });
-  const p = TG_PROTO[flow.pid + '/' + flow.rcid] || {}; const k = p.keystone;
-  // mint a real share code so a client can open THIS exact plan (parity with the web share)
-  const code = await tgMakeShareCode(flow.pid, flow.rcid, { supps: flow.supps || [], functions: fns }, saved && saved.user_id);
-  const shareLink = code ? `${SITE_URL}/#/s/${code}` : `${SITE_URL}/protocol/${flow.pid}/${flow.rcid}`;
-  const toolNames = fns.map(id => { const f = tgFnById(id); return f ? f.icon + ' ' + f.name : null; }).filter(Boolean).join(', ');
-  const hasReminder = fns.some(id => { const f = tgFnById(id); return f && f.kind === 'reminder'; });
-  const steps = tgKsSteps(k);
-  // The keystone is the hero. Multi-action keystones show as a checklist so nothing feels lumped together.
-  const ksBlock = steps
-    ? `⭐ <b>Your keystone — do these today</b>\n${steps.map(s => `⬜ ${tgEsc(s)}`).join('\n')}`
-    : `⭐ <b>Your one keystone</b>\n${k ? tgEsc(k.one) : 'See your full plan on the site.'}`;
-  const body = `🎉 <b>Your ${tgEsc(p.problem || 'protocol')} plan is ready.</b>\n\n` +
-    ksBlock + (k && k.why ? `\n<i>${tgEsc(k.why)}</i>` : '') +
-    `\n\n${steps ? 'Tick each one off in ' : 'Do it today, then tap ✅ below — track it in '}<b>📋 Today</b>. Just type what you eat (e.g. <b>2 eggs</b>) and I'll log it toward your targets.` +
-    (toolNames ? `\n\n🧩 <b>Tools:</b> ${toolNames}` : '') +
-    (hasReminder && saved.nudge_hour == null ? `\n⏰ Your reminder needs a daily time — set it below.` : '') +
-    `\n\nFull plan → ${SITE_URL}/protocol/${flow.pid}/${flow.rcid}`;
-  const kb = [steps ? [{ text: '📋 Open today\'s checklist', callback_data: 'today' }] : [{ text: '✅ Did it today', callback_data: 'done' }, { text: '📋 Today', callback_data: 'today' }]];
-  const r2 = [{ text: '📤 Share plan', url: shareLink }];
-  if (hasReminder && saved.nudge_hour == null) r2.push({ text: '⏰ Set reminder', callback_data: 'gonudge' });
-  kb.push(r2);
-  if (!saved.user_id) kb.push([{ text: '🔗 Sync to my rnawiki.com account', callback_data: 'syncacct' }]); // Stage 1: optional, never a gate
-  return tgSend(chatId, body, { reply_markup: { inline_keyboard: kb } });
-}
-// ---- Function dashboard (/tools) — counters, timers, reminders ----
-function tgToolsView(row) {
-  const fns = Array.isArray(row.functions) ? row.functions : []; const t = tgTools(row);
-  const kb = []; const lines = [];
-  fns.forEach(id => {
-    const f = tgFnById(id); if (!f) return;
-    if (f.kind === 'counter') {
-      const v = (f.period === 'week' ? t.w.c : t.d.c)[id] || 0; const step = f.step || (f.unit === 'steps' ? 500 : 1);
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${v}/${f.target} ${f.unit}${f.period === 'week' ? ' this week' : ''}`);
-      kb.push([{ text: `${f.icon} +${step} ${f.name}`, callback_data: 'tinc:' + id }]);
-    } else if (f.kind === 'timer') {
-      const done = !!t.d.done[id];
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${done ? '✅ done today' : '▫️ not yet'}`);
-      if (!done) kb.push([{ text: `${f.icon} Mark ${f.name} done`, callback_data: 'tdone:' + id }]);
-    } else if (f.kind === 'reminder') {
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${row.nudge_hour != null ? '🔔 on with your daily nudge' : '⏰ send /nudge to activate'}`);
-    } else if (f.kind === 'log') {
-      const last = (t.log || [])[(t.log || []).length - 1];
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${last ? 'last “' + tgEsc(last.text) + '”' : 'tap below ↓'}`);
-      kb.push([{ text: `${f.icon} Add ${f.name}`, callback_data: 'ask:win' }]);
-    } else if (f.kind === 'window') {
-      const e = t.d.eat || {}; let s = '';
-      if (e.first && e.last) { let dur = tgSlpMin(e.last) - tgSlpMin(e.first); if (dur < 0) dur += 1440; const h = Math.floor(dur / 60), mm = dur % 60; s = `${h}h${mm ? mm + 'm' : ''} (target ${f.target}h) ${dur <= f.target * 60 ? '✓' : '⚠️'}`; }
-      else if (e.first) s = `open since ${e.first}`;
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${s || 'tap below ↓'}`);
-      kb.push([{ text: '🍽️ First bite', callback_data: 'eat:' + id + ':first' }, { text: '🌙 Kitchen closed', callback_data: 'eat:' + id + ':last' }]);
-    } else if (f.kind === 'bp') {
-      const b = t.d.bp || {}; lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${b.sys ? b.sys + '/' + b.dia + ' today' : 'tap below ↓'}`);
-      kb.push([{ text: '🩺 Log blood pressure', callback_data: 'ask:bp' }]);
-    } else if (f.kind === 'adherence') {
-      const done = !!t.d.done[id]; lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${done ? '✅ applied today' : '▫️ not yet'}`);
-      if (!done) kb.push([{ text: '✅ Applied today', callback_data: 'adh:' + id }]);
-    } else if (f.kind === 'sleep') {
-      const e = tgSleepEff7(row);
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${e.nights ? e.avg + '% eff (7-night) — ' + tgSleepRec(e.avg, e.nights) : 'tap below ↓'}`);
-      kb.push([{ text: '🛏️ Log last night\'s sleep', callback_data: 'ask:sleep' }]);
-    } else if (f.kind === 'triage') {
-      const v = (t.d.tri || {})[id]; const g = { green: '🟢 fine — progress a little', yellow: '🟡 sore — hold this level', red: '🔴 sharp — back off / rest' };
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${v ? g[v] : 'log after rehab ↓'}`);
-      kb.push([{ text: '🟢 Fine', callback_data: 'tri:' + id + ':green' }, { text: '🟡 Sore', callback_data: 'tri:' + id + ':yellow' }, { text: '🔴 Sharp', callback_data: 'tri:' + id + ':red' }]);
-    } else if (f.kind === 'scale') {
-      const v = (t.d.tri || {})[id]; const opt = (f.scale || []).find(o => String(o.v) === String(v));
-      lines.push(`${f.icon} <b>${tgEsc(f.name)}</b>: ${opt ? opt.e + (opt.label ? ' ' + opt.label : '') + (opt.g ? ' — ' + opt.g : '') : 'tap below ↓'}`);
-      kb.push((f.scale || []).map(o => ({ text: o.e + (o.label ? ' ' + o.label : ''), callback_data: 'scl:' + id + ':' + o.v })));
-    }
-  });
-  return { text: `🧩 <b>Your tools — today</b>\n\n${lines.join('\n')}`, kb };
-}
-async function tgSendTools(chatId, row) {
-  if (!row || !row.pid) return tgSend(chatId, `/build a plan first, then I'll show your tools.`);
-  if (!Array.isArray(row.functions) || !row.functions.length) return tgSend(chatId, `No tools on this protocol yet — /build to add some.`);
-  const v = tgToolsView(row); return tgSend(chatId, v.text, v.kb.length ? { reply_markup: { inline_keyboard: v.kb } } : {});
-}
-async function tgToolInc(chatId, msgId, id) {
-  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'counter') return;
-  const t = tgTools(row); const step = f.step || (f.unit === 'steps' ? 500 : 1);
-  if (f.period === 'week') t.w.c[id] = (t.w.c[id] || 0) + step; else t.d.c[id] = (t.d.c[id] || 0) + step;
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  const newVal = f.period === 'week' ? t.w.c[id] : t.d.c[id];
-  await tgSyncWebDay(row, (d, plan) => { if (f.period === 'week') { plan.fnWeek = plan.fnWeek || {}; const wk = tgWeekKey(); plan.fnWeek[wk] = plan.fnWeek[wk] || {}; plan.fnWeek[wk][id] = newVal; } else { d.fn[id] = newVal; } }); // mirror counter into web plan
-  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
-}
-async function tgToolDone(chatId, msgId, id) {
-  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'timer') return;
-  const t = tgTools(row); t.d.done[id] = true;
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.fn[id] = true; }); // mirror timer completion into web plan
-  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
-}
-async function tgToolTriage(chatId, msgId, id, val) {
-  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'triage') return;
-  const t = tgTools(row); t.d.tri = t.d.tri || {}; t.d.tri[id] = val;
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.fn[id] = val; }); // mirror into web plan
-  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
-}
-async function tgToolScale(chatId, msgId, id, val) {
-  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'scale') return;
-  const t = tgTools(row); t.d.tri = t.d.tri || {}; t.d.tri[id] = val;
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.fn[id] = +val; }); // web stores the numeric value
-  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
-}
-function tgLocalHM(row) { const d = new Date(); let m = d.getUTCHours() * 60 + d.getUTCMinutes() + (row && row.tz_offset != null ? row.tz_offset : 480); m = ((m % 1440) + 1440) % 1440; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); }
-async function tgToolEat(chatId, msgId, id, which) {
-  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'window' || (which !== 'first' && which !== 'last')) return;
-  const t = tgTools(row); t.d.eat = t.d.eat || {}; t.d.eat[which] = tgLocalHM(row);
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.eat = d.eat || {}; d.eat[which] = t.d.eat[which]; });
-  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
-}
-async function tgToolAdhere(chatId, msgId, id) {
-  const row = await tgGet(chatId); const f = tgFnById(id); if (!row || !f || f.kind !== 'adherence') return;
-  const t = tgTools(row); t.d.done[id] = true;
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.fn[id] = true; });
-  const v = tgToolsView(await tgGet(chatId)); return tgEdit(chatId, msgId, v.text, v.kb);
-}
-// Read whether this protocol's keystone is already marked done today in the linked web plan (web → bot direction)
-async function tgWebKeystoneDone(row) {
-  if (!row || !row.user_id || !db.enabled || !row.pid) return false;
-  try { const r = (await db.query('SELECT plan FROM user_plans WHERE user_id=$1', [row.user_id])).rows[0]; const tk = new Date().toISOString().slice(0, 10); return !!(r && r.plan && r.plan.log && r.plan.log[tk] && r.plan.log[tk].keystones && r.plan.log[tk].keystones[row.pid + '/' + row.rcid]); } catch (e) { return false; }
-}
-const TG_NUT_LABEL = { protein_g: 'protein', fiber_g: 'fibre', sugar_g: 'sugar', kcal: 'calories', omega3_mg: 'omega-3', vitamin_c_mg: 'vitamin C', vitamin_d_iu: 'vitamin D', calcium_mg: 'calcium', magnesium_mg: 'magnesium', zinc_mg: 'zinc', iron_mg: 'iron', potassium_mg: 'potassium', sodium_mg: 'sodium', glycine_g: 'glycine', choline_mg: 'choline' };
-const TG_NUT_UNIT = { protein_g: 'g', fiber_g: 'g', sugar_g: 'g', kcal: 'kcal', omega3_mg: 'mg', vitamin_c_mg: 'mg', vitamin_d_iu: 'IU', calcium_mg: 'mg', magnesium_mg: 'mg', zinc_mg: 'mg', iron_mg: 'mg', potassium_mg: 'mg', sodium_mg: 'mg', glycine_g: 'g', choline_mg: 'mg' };
-function tgFindFoods(q) {
-  q = (q || '').toLowerCase().trim(); if (q.length < 2) return [];
-  return TG_FOODS.filter(f => f.hay.includes(q)).sort((a, b) => (b.sg - a.sg) || (a.name.length - b.name.length)).slice(0, 6);
-}
-// "2 eggs" / "2x eggs" / "three eggs" / "half avocado" → {qty, rest}; plain "eggs" → {qty:1, rest:"eggs"}
-const TG_NUMWORD = { a: 1, an: 1, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, half: 0.5 };
-function tgParseQty(text) {
-  const t = (text || '').trim();
-  let m = t.match(/^(\d+(?:\.\d+)?)\s*[x×]?\s+(.+)$/i);              // "2 eggs", "2x eggs", "1.5 cups rice"
-  if (m) { const q = parseFloat(m[1]); if (q > 0 && q <= 50) return { qty: q, rest: m[2].trim() }; }
-  m = t.match(/^([a-z]+)\s+(.+)$/i);                                  // "three eggs", "half avocado"
-  if (m && TG_NUMWORD[m[1].toLowerCase()] != null) return { qty: TG_NUMWORD[m[1].toLowerCase()], rest: m[2].trim() };
-  return { qty: 1, rest: t };
-}
-// Calories + macros summed across the day's logged foods (× qty) — same fields/maths as the web macro card, authored data only.
-function tgFoodMacros(items) {
-  let kcal = 0, p = 0, c = 0, f = 0, any = false;
-  (items || []).forEach(it => { const n = it.n || {}; const q = it.qty || 1; if (n.kcal != null) { kcal += n.kcal * q; any = true; } if (n.protein_g != null) { p += n.protein_g * q; any = true; } if (n.carbs_g != null) { c += n.carbs_g * q; any = true; } if (n.fat_g != null) { f += n.fat_g * q; any = true; } });
-  if (!any) return '';
-  return `🔥 <b>${Math.round(kcal)} kcal</b> · P ${Math.round(p)}g · C ${Math.round(c)}g · F ${Math.round(f)}g`;
-}
-function tgFoodProgress(row) {
-  const key = (row.pid || '') + '/' + (row.rcid || ''); const proto = TG_PROTO[key];
-  const nt = (proto && proto.nt) || {}; const keys = Object.keys(nt);
-  const log = row.food_log || {}; const today = new Date().toISOString().slice(0, 10);
-  const items = (log.date === today && Array.isArray(log.items)) ? log.items : [];
-  if (!keys.length) return { text: items.length ? `Logged ${items.length} food${items.length > 1 ? 's' : ''} today.` : 'No food targets on this protocol.', items };
-  const sum = {}; keys.forEach(k => sum[k] = 0);
-  items.forEach(it => keys.forEach(k => { const v = it.n && it.n[k]; if (typeof v === 'number') sum[k] += v * (it.qty || 1); }));
-  const lines = keys.map(k => {
-    const t = nt[k]; const val = Math.round(sum[k]); const unit = TG_NUT_UNIT[k] || ''; const lbl = TG_NUT_LABEL[k] || k;
-    if (t.type === 'limit') { const over = val > t.target; return `${over ? '⚠️' : '✅'} ${lbl}: ${val}/${t.target} ${unit} (limit)`; }
-    const done = val >= t.target; return `${done ? '✅' : '▫️'} ${lbl}: ${val}/${t.target} ${unit}`;
-  });
-  return { text: lines.join('\n'), items };
-}
-async function tgLogFood(chatId, food, qty) {
-  const row = await tgGet(chatId); if (!row) return;
-  qty = qty && qty > 0 ? Math.min(qty, 50) : 1;
-  const today = new Date().toISOString().slice(0, 10);
-  let log = row.food_log && row.food_log.date === today ? row.food_log : { date: today, items: [] };
-  if (!Array.isArray(log.items)) log.items = [];
-  log.items.push({ id: food.id, name: food.name, serving: food.serving, n: food.n, qty });
-  await db.query('UPDATE telegram_users SET food_log=$2, last_active=now() WHERE chat_id=$1', [chatId, JSON.stringify(log)]);
-  await tgSyncWebDay(row, d => { d.food.push({ id: food.id, n: qty }); }); // mirror food into the v2 web plan (qty carries through)
-  const prog = tgFoodProgress({ ...row, food_log: log });
-  const macros = tgFoodMacros(log.items);
-  const qlabel = qty !== 1 ? `${qty % 1 === 0 ? qty : qty.toFixed(1)}× ` : '';
-  const body = `✅ Logged ${qlabel}<b>${tgEsc(food.name)}</b>${food.serving ? ' <i>(' + tgEsc(food.serving) + ')</i>' : ''}.` +
-    (macros ? `\n\n${macros} <i>today</i>` : '') +
-    `\n\n🍽️ <b>Toward your ${tgEsc((TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')] || {}).problem || 'protocol')} targets:</b>\n${prog.text}\n\nType another food to keep going.`;
-  return tgSend(chatId, body, { reply_markup: { inline_keyboard: [[{ text: '↩️ Undo', callback_data: 'foodundo' }, { text: '📋 Today', callback_data: 'today' }]] } });
-}
-async function tgFoodUndo(chatId) {
-  const row = await tgGet(chatId); if (!row) return;
-  const today = new Date().toISOString().slice(0, 10);
-  const log = row.food_log && row.food_log.date === today ? row.food_log : null;
-  if (!log || !Array.isArray(log.items) || !log.items.length) return tgSend(chatId, `Nothing to undo today.`);
-  const removed = log.items.pop();
-  await db.query('UPDATE telegram_users SET food_log=$2 WHERE chat_id=$1', [chatId, JSON.stringify(log)]);
-  await tgSyncWebDay(row, d => { if (Array.isArray(d.food)) { for (let i = d.food.length - 1; i >= 0; i--) { if (d.food[i].id === removed.id) { d.food.splice(i, 1); break; } } } }); // remove the matching web-plan entry
-  const prog = tgFoodProgress({ ...row, food_log: log });
-  const macros = tgFoodMacros(log.items);
-  return tgSend(chatId, `↩️ Removed <b>${tgEsc(removed.name)}</b>.${macros ? `\n\n${macros} <i>today</i>` : ''}\n\n${prog.text}`);
-}
-// ---- Add-a-food submission → goes LIVE instantly (active) in the SAME user_foods table the website reads ----
-// Everything after the name is OPTIONAL: skip any step, or "✅ Submit now" at any point. Only what the user
-// actually types is stored — no fabricated nutrition.
-const NF_SEQ = ['nf_serving', 'nf_kcal', 'nf_macros', 'nf_micros', 'nf_photo'];
-const NF_KEYS = ['kcal', 'protein_g', 'carbs_g', 'sugar_g', 'fat_g', 'fiber_g', 'sodium_mg', 'potassium_mg', 'calcium_mg', 'magnesium_mg', 'iron_mg', 'zinc_mg', 'vitamin_c_mg', 'vitamin_d_iu', 'omega3_mg', 'choline_mg', 'glycine_g'];
-// Natural-language micro parser: one line like "vitamin C 20mg, iron 2mg, fibre 3g". Each comma-fragment
-// maps to at most one known nutrient + its number; unknown fragments are ignored (never guessed).
-const TG_MICRO = [['fiber_g', /\bfib(?:er|re)\b/i], ['sugar_g', /\bsugars?\b/i], ['sodium_mg', /\bsodium\b|\bsalt\b/i], ['potassium_mg', /\bpotassium\b/i], ['calcium_mg', /\bcalcium\b/i], ['magnesium_mg', /\bmagnesium\b/i], ['iron_mg', /\biron\b/i], ['zinc_mg', /\bzinc\b/i], ['vitamin_c_mg', /\bvit(?:amin)?\.?\s*c\b|\bascorb/i], ['vitamin_d_iu', /\bvit(?:amin)?\.?\s*d\b/i], ['omega3_mg', /\bomega[\s-]*3\b|\bdha\b|\bepa\b/i], ['choline_mg', /\bcholine\b/i], ['glycine_g', /\bglycine\b/i]];
-function tgParseMicros(text) {
-  const out = {};
-  for (const frag of String(text).split(/[,;\n]+|\band\b|\bplus\b|&|\+/i)) {
-    const m = TG_MICRO.find(([, re]) => re.test(frag)); if (!m) continue;
-    const mm = frag.match(m[1]); if (!mm) continue;
-    // take the number AFTER the nutrient keyword (so "omega-3 500mg" → 500, not the 3 inside "omega-3"); fall back to before
-    let num = frag.slice(mm.index + mm[0].length).match(/(\d+(?:\.\d+)?)/) || frag.slice(0, mm.index).match(/(\d+(?:\.\d+)?)/);
-    if (!num) continue;
-    out[m[0]] = parseFloat(num[1]);
-  }
-  return out;
-}
-const TG_NF_CANCEL = { inline_keyboard: [[{ text: '✖️ Cancel', callback_data: 'nfcancel' }]] };
-async function tgFoodSaveFlow(chatId, flow) { return db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); }
-function tgNutExample(k) { if (k === 'omega3_mg') return '500mg'; if (k === 'calcium_mg' || k === 'magnesium_mg' || k === 'potassium_mg' || k === 'sodium_mg' || k === 'choline_mg') return '100mg'; const u = TG_NUT_UNIT[k] || ''; return u === 'g' ? '3g' : u === 'IU' ? '400 IU' : '20mg'; }
-// Nutrients this user's protocol actually tracks (minus the macros already collected in earlier steps).
-function tgProtoExtraTargets(row) {
-  const p = row && TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const nt = (p && p.nt) || {};
-  return Object.keys(nt).filter(k => !['kcal', 'protein_g', 'carbs_g', 'fat_g'].includes(k));
-}
-function tgFoodPromptText(stage, nf, row) {
-  switch (stage) {
-    case 'nf_serving': return `🥗 <b>${nf && nf.name ? 'Add “' + tgEsc(nf.name) + '”' : 'Add a food'}</b>\nWhat's one serving? (e.g. “1 sandwich”, “100 g”, “1 fillet”)\n<i>Everything from here is optional — skip or submit anytime.</i>`;
-    case 'nf_kcal': return `Calories per serving? (a number)`;
-    case 'nf_macros': return `Macros in grams — send <b>protein carbs fat</b>, e.g. <b>26 46 19</b>.`;
-    case 'nf_micros': {
-      // Ask ONLY for the nutrients this person's protocol tracks — so their fuel actually counts them (no overload).
-      const keys = tgProtoExtraTargets(row); const p = row && TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')];
-      if (keys.length && p) {
-        const labels = keys.map(k => TG_NUT_LABEL[k] || k).join(', ');
-        const ex = keys.slice(0, 2).map(k => `${TG_NUT_LABEL[k] || k} ${tgNutExample(k)}`).join(', ');
-        return `Your <b>${tgEsc(p.problem)}</b> plan tracks <b>${labels}</b> — add any you know so your fuel counts them:\n<b>${ex}</b>`;
-      }
-      return `Any vitamins, minerals, sugar or fibre? Type them naturally, e.g.\n<b>sugar 5g, vitamin C 20mg, iron 2mg</b>.`;
-    }
-    case 'nf_photo': return `Add a <b>photo</b>? Send one now, or skip.`;
-  }
-  return '';
-}
-function tgFoodStepKb(stage) {
-  const rows = [];
-  if (stage === 'nf_photo') rows.push([{ text: '⏭️ Skip photo & submit', callback_data: 'nfsubmit' }]);
-  else rows.push([{ text: '⏭️ Skip', callback_data: 'nfskip' }, { text: '✅ Submit now', callback_data: 'nfsubmit' }]);
-  rows.push([{ text: '✖️ Cancel', callback_data: 'nfcancel' }]);
-  return { inline_keyboard: rows };
-}
-async function tgFoodAddStart(chatId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; const nm = (flow.newfood && flow.newfood.name) || '';
-  flow.newfood = { name: nm };
-  if (!nm) { flow.stage = 'nf_name'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `🥗 <b>Add a food</b>\nWhat's it called? (e.g. Filet-O-Fish)`, { reply_markup: TG_NF_CANCEL }); }
-  flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow);
-  return tgSend(chatId, tgFoodPromptText('nf_serving', flow.newfood, row), { reply_markup: tgFoodStepKb('nf_serving') });
-}
-async function tgFoodAdvance(chatId, row, fromStage) {
-  const flow = row.flow; const next = NF_SEQ[NF_SEQ.indexOf(fromStage) + 1];
-  if (!next) return tgFoodSubmit(chatId, row);
-  flow.stage = next; await tgFoodSaveFlow(chatId, flow);
-  return tgSend(chatId, tgFoodPromptText(next, flow.newfood, row), { reply_markup: tgFoodStepKb(next) });
-}
-async function tgFoodAddStep(chatId, row, text) {
-  const flow = row.flow; const nf = flow.newfood || (flow.newfood = {}); const st = flow.stage;
-  const num = s => { const v = parseFloat(String(s).replace(/[^\d.]/g, '')); return isFinite(v) ? v : null; };
-  if (/^\/?(cancel|stop)$/i.test(text)) { flow.stage = null; flow.newfood = null; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `No worries — cancelled.`); }
-  if (/^\/?skip$/i.test(text)) return tgFoodAdvance(chatId, row, st);
-  if (st === 'nf_name') { nf.name = text.slice(0, 80); flow.stage = 'nf_serving'; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, tgFoodPromptText('nf_serving', nf, row), { reply_markup: tgFoodStepKb('nf_serving') }); }
-  if (st === 'nf_serving') { nf.serving = text.slice(0, 60); }
-  else if (st === 'nf_kcal') { const v = num(text); if (v == null) return tgSend(chatId, `Just a number, e.g. <b>380</b> — or skip.`, { reply_markup: tgFoodStepKb('nf_kcal') }); nf.kcal = Math.round(v); }
-  else if (st === 'nf_macros') { const nums = String(text).split(/[^\d.]+/).map(parseFloat).filter(n => isFinite(n)); if (nums[0] != null) nf.protein_g = nums[0]; if (nums[1] != null) nf.carbs_g = nums[1]; if (nums[2] != null) nf.fat_g = nums[2]; }
-  else if (st === 'nf_micros') { Object.assign(nf, tgParseMicros(text)); }
-  else if (st === 'nf_photo') { return tgFoodAdvance(chatId, row, 'nf_photo'); } // any text here = skip photo → submit
-  else return;
-  return tgFoodAdvance(chatId, row, st);
-}
-async function tgFoodAddSkip(chatId) {
-  const row = await tgGet(chatId); const st = row && row.flow && row.flow.stage;
-  if (!st || st.indexOf('nf_') !== 0) return;
-  return tgFoodAdvance(chatId, row, st);
-}
-async function tgFoodSubmit(chatId, row) {
-  const flow = (row && row.flow) || {}; const nf = flow.newfood;
-  if (!nf || !nf.name) { flow.stage = null; flow.newfood = null; await tgFoodSaveFlow(chatId, flow); return tgSend(chatId, `Nothing to submit — send /start to begin again.`); }
-  if (!db.enabled) return tgSend(chatId, `Can't save right now — please try again later.`);
-  const data = {}; NF_KEYS.forEach(k => { if (nf[k] != null) data[k] = nf[k]; });
-  if (nf.photo_file_id) data.photo_file_id = nf.photo_file_id;
-  data.source = 'telegram';
-  let id = null;
-  // status 'active' → live immediately, searchable/loggable on the site and in the bot (no approval step)
-  try { const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by,status) VALUES($1,$2,$3,$4,$5) RETURNING id', [nf.name.slice(0, 80), nf.serving || null, JSON.stringify(data), row.user_id || null, 'active']); id = r.rows[0].id; if (row.user_id) award(row.user_id, 'food_submit', 'food:' + id, 20).catch(() => {}); }
-  catch (e) { console.error('[tg] food submit:', e.message); return tgSend(chatId, `Hmm — couldn't save that. Please try again.`); }
-  // log it for the user now, using the real food id so it mirrors into the web plan too
-  const today = new Date().toISOString().slice(0, 10);
-  let log = (row.food_log && row.food_log.date === today) ? row.food_log : { date: today, items: [] }; if (!Array.isArray(log.items)) log.items = [];
-  log.items.push({ id: 'u' + id, name: nf.name, serving: nf.serving, n: data, qty: 1 });
-  flow.stage = null; flow.newfood = null;
-  await db.query('UPDATE telegram_users SET food_log=$2, flow=$3, last_active=now() WHERE chat_id=$1', [chatId, JSON.stringify(log), JSON.stringify(flow)]);
-  await tgSyncWebDay(row, d => { d.food.push({ id: 'u' + id, n: 1 }); }); // web can resolve 'u'+id (it loads active user_foods)
-  const macros = tgFoodMacros(log.items);
-  const extras = NF_KEYS.filter(k => k !== 'kcal' && k !== 'protein_g' && k !== 'carbs_g' && k !== 'fat_g' && data[k] != null).length;
-  return tgSend(chatId, `✅ Added <b>${tgEsc(nf.name)}</b> — it's live now and logged for you today.${macros ? `\n\n${macros} <i>today</i>` : ''}${extras ? `\n<i>+ ${extras} vitamin/mineral value${extras > 1 ? 's' : ''}</i>` : ''}\n\nEveryone can now find it here and on rnawiki.com. 🙏`);
-}
-// Search live user-submitted foods (so a food added in chat is instantly findable again)
-async function tgSearchUserFoods(q) {
-  if (!db.enabled) { return []; }
-  q = (q || '').toLowerCase().trim(); if (q.length < 2) return [];
-  try {
-    const r = await db.query("SELECT id,name,serving,data FROM user_foods WHERE status='active' AND lower(name) LIKE $1 ORDER BY created_at DESC LIMIT 5", ['%' + q + '%']);
-    return r.rows.map(f => ({ id: 'u' + f.id, name: f.name, serving: f.serving || '', n: Object.assign({}, f.data), sg: false }));
-  } catch (e) { return []; }
-}
-async function tgGetUserFood(uid) {
-  const n = +String(uid).slice(1); if (!n || !db.enabled) return null;
-  try { const r = (await db.query("SELECT id,name,serving,data FROM user_foods WHERE id=$1 AND status='active'", [n])).rows[0]; return r ? { id: 'u' + r.id, name: r.name, serving: r.serving || '', n: Object.assign({}, r.data), sg: false } : null; }
-  catch (e) { return null; }
-}
-function tgEsc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-async function tgApi(method, body) {
-  if (!BOT_TOKEN) return null;
-  try {
-    const r = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/${method}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    return await r.json();
-  } catch (e) { console.error('[tg] api', method, e.message); return null; }
-}
-function tgSend(chatId, text, extra) { return tgApi('sendMessage', Object.assign({ chat_id: chatId, text, parse_mode: 'HTML', disable_web_page_preview: true }, extra || {})); }
-async function tgGet(chatId) { return (await db.query('SELECT * FROM telegram_users WHERE chat_id=$1', [chatId])).rows[0]; }
-function tgComputeStreak(days) {
-  const set = new Set(days || []); let s = 0; const d = new Date();
-  for (; ;) { const key = d.toISOString().slice(0, 10); if (set.has(key)) { s++; d.setDate(d.getDate() - 1); } else break; }
-  return s;
-}
-async function tgSendKeystone(chatId, pid, rcid) {
-  const p = TG_PROTO[(pid || '') + '/' + (rcid || '')];
-  if (!p) return tgSend(chatId, `You're linked! Open ${SITE_URL}/solve and pick a protocol, then tap “📲 Coach me on Telegram”.`);
-  const row = await tgGet(chatId);
-  const v = await tgTodayView(row, { header: `✅ <b>You're set for ${tgEsc(p.problem)}</b> — ${tgEsc(p.rc)}.` });
-  return tgSend(chatId, v.text, { reply_markup: { inline_keyboard: v.kb } });
-}
-async function tgMarkDone(chatId) {
-  const row = await tgGet(chatId); if (!row) return;
-  const today = new Date().toISOString().slice(0, 10);
-  // multi-step keystone: "did it all" ticks every step so the checklist reflects completion
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const steps = tgKsSteps(p && p.keystone);
-  if (steps) { const t = tgTools(row); t.d.ks = {}; steps.forEach((_, i) => t.d.ks[i] = true); await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]); }
-  let days = Array.isArray(row.keystone_days) ? row.keystone_days : [];
-  if (days.includes(today)) return tgSend(chatId, `Already logged today ✅ — 🔥 <b>${row.streak}-day streak</b>. See you tomorrow!`);
-  const prev = row.streak || 0;
-  days = days.concat(today).slice(-120);
-  const streak = tgComputeStreak(days);
-  await db.query('UPDATE telegram_users SET keystone_days=$2, streak=$3, last_active=now() WHERE chat_id=$1', [chatId, JSON.stringify(days), streak]);
-  if (row.pid) await tgSyncWebDay(row, d => { d.keystones[row.pid + '/' + row.rcid] = true; }); // mirror the tick into the web plan
-  let msg;
-  if (streak === 1 && prev >= 2) msg = `✅ Back on it — that's what matters. Missing a day doesn't undo the work; you just start again. 🔥 <b>Fresh streak: day 1.</b>`; // gentle recovery, never punishing
-  else { const cheer = ['Nice.', 'That\'s the one thing.', 'Consistency wins.', 'This is how it compounds.', 'Love it.'][streak % 5]; msg = `✅ Logged! ${cheer} 🔥 <b>${streak}-day streak</b>${streak && streak % 7 === 0 ? ' — a full week 🎉' : ''}.`; }
-  return tgSend(chatId, msg);
-}
-// ---- Shared logging paths (used by both typed prefixes AND the guided-prompt buttons — no memorised syntax required) ----
-async function tgLogBp(chatId, row, str) {
-  const nums = String(str).trim().split(/[\s/,]+/).map(Number).filter(n => n > 0 && n < 300);
-  if (nums.length < 2) return tgSend(chatId, `Send it like <b>120 80</b> — systolic then diastolic.`);
-  const sys = nums[0], dia = nums[1]; const t = tgTools(row); t.d.bp = { sys, dia };
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.bp = { sys, dia }; });
-  const g = (sys >= 160 || dia >= 100) ? '🔴 High — please see a doctor soon.' : (sys >= 140 || dia >= 90) ? '🟠 Above target — keep at the plan.' : (sys >= 130 || dia >= 80) ? '🟡 Slightly raised — on track.' : '🟢 In a healthy range.';
-  return tgSend(chatId, `🩺 Logged <b>${sys}/${dia}</b>. ${g}`);
-}
-async function tgLogSleep(chatId, row, str) {
-  const parts = String(str).trim().split(/[\s,]+/);
-  const c = parts.length >= 3 ? tgComputeSleep(parts[0], parts[1], parts[2]) : null;
-  if (!c) return tgSend(chatId, `Send three times like <b>23:30 00:10 07:00</b> — in bed · roughly asleep · woke.`);
-  const tk = new Date().toISOString().slice(0, 10); const t = tgTools(row); t.sleep = t.sleep || {}; t.sleep[tk] = { inBed: parts[0], asleep: parts[1], woke: parts[2], se: c.se };
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  await tgSyncWebDay(row, d => { d.sleep = { inBed: parts[0], asleep: parts[1], woke: parts[2], se: c.se, tib: c.tib, tst: c.tst }; });
-  const e = tgSleepEff7(await tgGet(chatId));
-  return tgSend(chatId, `🛏️ Logged — <b>${c.se}% sleep efficiency</b> last night (${Math.floor(c.tst / 60)}h${c.tst % 60}m asleep of ${Math.floor(c.tib / 60)}h${c.tib % 60}m in bed).\n\n7-night average: <b>${e.avg}%</b>\n${tgSleepRec(e.avg, e.nights)}`);
-}
-async function tgLogWin(chatId, row, str) {
-  const entry = String(str).trim(); if (!entry) return tgSend(chatId, `Type your one small win from today.`);
-  const t = tgTools(row); t.log = (t.log || []).concat({ date: new Date().toISOString().slice(0, 10), text: entry }).slice(-50);
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  return tgSend(chatId, `🌟 Nice — “<b>${tgEsc(entry)}</b>”. That counts.`);
-}
-async function tgLogOverload(chatId, row, str) {
-  const entry = String(str).trim(); if (!entry) return tgSend(chatId, `Type what you lifted, e.g. <b>squat 60kg x 8</b>.`);
-  const t = tgTools(row); t.log = (t.log || []).concat({ date: new Date().toISOString().slice(0, 10), text: entry }).slice(-50);
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  return tgSend(chatId, `🏋️ Logged: <b>${tgEsc(entry)}</b>. Beat it next time. /tools to review.`);
-}
-async function tgAskPrompt(chatId, what) {
-  const prompts = { bp: '🩺 Send your reading as <b>systolic diastolic</b> — e.g. <b>120 80</b>.', sleep: '🛏️ Send three times — <b>in bed · asleep · woke</b>, e.g. <b>23:30 00:10 07:00</b>.', win: '🌟 What\'s one small win from today? Just type it.', log: '🏋️ What did you lift? Type it, e.g. <b>squat 60kg x 8</b>.' };
-  if (!prompts[what]) return;
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {}; flow.stage = 'await_' + what;
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-  return tgSend(chatId, prompts[what]);
-}
-// ---- Personal stack (protocol-selected supps + anything the user added from a compound card) ----
-function tgUserStackObjs(row) {
-  if (!row) return [];
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')];
-  let stack = ((p && p.stack) || []).slice();
-  const sel = row.sel && row.sel.supps; if (Array.isArray(sel)) stack = stack.filter(c => sel.includes(c.id));
-  const saved = (row.tools && Array.isArray(row.tools.saved)) ? row.tools.saved : [];
-  const extra = saved.filter(id => !stack.some(s => s.id === id)).map(id => { const c = TG_DATA && TG_DATA.compounds.find(x => x.id === id); return c ? { id: c.id, name: c.name, isRx: c.isRx, approvals: c.approvals, category: c.category, slug: tgSlug(c.name), added: true } : null; }).filter(Boolean);
-  return stack.concat(extra);
-}
-async function tgCompoundAdd(chatId, id) {
-  const row = await tgGet(chatId); const c = TG_DATA && TG_DATA.compounds.find(x => x.id === id); if (!row || !c) return;
-  const t = tgTools(row); t.saved = Array.isArray(t.saved) ? t.saved : [];
-  const already = t.saved.includes(id) || tgUserStackObjs(row).some(s => s.id === id && !s.added);
-  if (already) return tgSend(chatId, `<b>${tgEsc(c.name)}</b> is already on your plan.`);
-  t.saved.push(id); await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  return tgSend(chatId, `➕ Added <b>${tgEsc(c.name)}</b> to your plan${tgGated(c) ? ' — 🔵 prescription, use only under a doctor' : ''}. It'll show in your /stack.`, { reply_markup: { inline_keyboard: [[{ text: '↩️ Undo', callback_data: 'cdel:' + id }, { text: '💊 My stack', callback_data: 'hub:stack' }]] } });
-}
-async function tgCompoundDel(chatId, id) {
-  const row = await tgGet(chatId); if (!row) return; const t = tgTools(row); t.saved = (t.saved || []).filter(x => x !== id);
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  const c = TG_DATA && TG_DATA.compounds.find(x => x.id === id);
-  return tgSend(chatId, `↩️ Removed ${c ? '<b>' + tgEsc(c.name) + '</b>' : 'it'} from your plan.`);
-}
-async function tgCompoundCheck(chatId, id) {
-  const row = await tgGet(chatId); const c = TG_DATA && TG_DATA.compounds.find(x => x.id === id); if (!row || !c) return;
-  const stackObjs = tgUserStackObjs(row);
-  const others = stackObjs.filter(s => s.id !== c.id);
-  if (!others.length) return tgSend(chatId, `You've no other supplements on your plan yet to check <b>${tgEsc(c.name)}</b> against. Add a protocol or a few supplements first.`);
-  const union = stackObjs.some(s => s.id === c.id) ? stackObjs : stackObjs.concat([{ id: c.id, name: c.name, category: c.category }]);
-  const flags = tgStackFlags(union).filter(f => f.who.includes(c.name));
-  if (!flags.length) return tgSend(chatId, `✅ No dangerous interactions flagged between <b>${tgEsc(c.name)}</b> and your current stack (${others.map(s => tgEsc(s.name)).join(', ')}).`);
-  return tgSend(chatId, `⚠️ <b>${tgEsc(c.name)} + your stack:</b>\n` + flags.map(f => `${f.tier === 'danger' ? '☠️' : '⏰'} <b>${tgEsc(f.title)}</b> (${f.who.map(tgEsc).join(' + ')}) — ${tgEsc(f.action)}`).join('\n') + `\n\n<i>Educational, not a prescription.</i>`);
-}
-async function tgBuildExpress(chatId, msgId) {
-  const row = await tgGet(chatId); const flow = (row && row.flow) || {};
-  if (!flow.pid || !flow.rcid) return tgSend(chatId, `Start with /build.`);
-  const stack = (TG_PROTO[flow.pid + '/' + flow.rcid] || {}).stack || [];
-  flow.supps = stack.filter(c => !tgGated(c)).map(c => c.id);       // recommended = every over-the-counter supplement
-  flow.functions = [tgDefaultFunction(flow.pid + '/' + flow.rcid)];  // the one matched tool
-  await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-  return tgBuildConfirm(chatId, msgId);
-}
-// Stage 1 — reverse account sync (bot → web). Mints a token tied to this chat; the site's ?tgsync= hook binds it.
-async function tgSyncStart(chatId) {
-  const row = await tgGet(chatId);
-  if (row && row.user_id) return tgSend(chatId, `🔗 You're already synced to your rnawiki.com account.`);
-  if (!db.enabled) return tgSend(chatId, `Sync isn't available right now — everything here still works.`);
-  const token = crypto.randomBytes(9).toString('base64url');
-  await db.query('INSERT INTO telegram_link_tokens(token, chat_id) VALUES($1,$2)', [token, chatId]);
-  db.query("DELETE FROM telegram_link_tokens WHERE created_at < now() - interval '1 day'").catch(() => {});
-  return tgSend(chatId, `🔗 <b>Sync to your account</b>\nOpen this link and sign in — your keystone, food, tools and progress will then stay in step across chat and site:\n${SITE_URL}/?tgsync=${token}\n\n<i>Optional — everything here works without it.</i>`);
-}
-async function tgSendProgress(chatId, row) {
-  if (!row || !row.pid) return tgSend(chatId, `/build a plan first, then I can show your progress.`);
-  const days = Array.isArray(row.keystone_days) ? row.keystone_days : []; const set = new Set(days);
-  const streak = tgComputeStreak(days);
-  const grid = []; for (let i = 6; i >= 0; i--) { const d = new Date(); d.setDate(d.getDate() - i); grid.push(set.has(d.toISOString().slice(0, 10)) ? '🟩' : '⬜'); }
-  let last30 = 0; for (let i = 0; i < 30; i++) { const d = new Date(); d.setDate(d.getDate() - i); if (set.has(d.toISOString().slice(0, 10))) last30++; }
-  const t = tgTools(row); const fns = Array.isArray(row.functions) ? row.functions : [];
-  const toolLines = fns.map(id => { const f = tgFnById(id); if (!f || f.kind !== 'counter') return null; const v = (f.period === 'week' ? t.w.c : t.d.c)[id] || 0; return `${f.icon} ${f.name}: ${v}/${f.target} ${f.unit}${f.period === 'week' ? ' this week' : ' today'}`; }).filter(Boolean);
-  const body = `📊 <b>Your progress</b>\n\n🔥 <b>${streak}-day streak</b>\n${grid.join('')}  <i>last 7 days</i>\n✅ ${last30}/30 days this month${toolLines.length ? '\n\n' + toolLines.join('\n') : ''}\n\nKeep it going — <b>/done</b> when you've done today's keystone.`;
-  return tgSend(chatId, body);
-}
-async function handleTgUpdate(update) {
-  if (update.callback_query) {
-    const cb = update.callback_query; const chatId = cb.message && cb.message.chat && cb.message.chat.id;
-    const d = cb.data || ''; const msgId = cb.message && cb.message.message_id;
-    // Enabling a prescription-only supplement pops a clear safety alert (still lets them proceed — informed choice).
-    if (d.indexOf('bs:') === 0 && chatId) {
-      const r = await tgGet(chatId); const flow = (r && r.flow) || {}; const comp = TG_DATA && TG_DATA.compounds.find(x => x.id === d.slice(3));
-      const enabling = comp && !((flow.supps) || []).includes(comp.id);
-      if (comp && tgGated(comp) && enabling) await tgApi('answerCallbackQuery', { callback_query_id: cb.id, text: '🔵 ' + comp.name + ' is prescription-only. Add it only if a doctor has prescribed it for you. Any timing shown is not a prescription.', show_alert: true });
-      else await tgApi('answerCallbackQuery', { callback_query_id: cb.id });
-      return tgBuildToggle(chatId, msgId, d.slice(3));
-    }
-    await tgApi('answerCallbackQuery', { callback_query_id: cb.id });
-    if (!chatId) return;
-    // --- daily hub + core ---
-    if (d === 'done' || d === 'hub:done') return tgMarkDone(chatId);
-    if (d.indexOf('ksd:') === 0) return tgKsTick(chatId, msgId, +d.slice(4));
-    if (d === 'today') { const r = await tgGet(chatId); return r && r.pid ? tgSendToday(chatId, r) : tgSend(chatId, `/build a plan first.`); }
-    if (d === 'gobuild') return tgBuildStart(chatId);
-    if (d === 'gonudge') return tgNudgeStart(chatId);
-    if (d === 'syncacct') return tgSyncStart(chatId);
-    if (d === 'havecode') return tgSend(chatId, `Tap the link your clinic or trainer sent you — it opens your exact plan right here. If you were given a short code, send it as <b>/start &lt;code&gt;</b>.`);
-    if (d === 'hub:tools') { const r = await tgGet(chatId); return tgSendTools(chatId, r); }
-    if (d === 'hub:stack') { const r = await tgGet(chatId); return tgSendStack(chatId, r); }
-    if (d === 'hub:sched') { const r = await tgGet(chatId); return tgSendSchedule(chatId, r); }
-    if (d === 'hub:prog') { const r = await tgGet(chatId); return tgSendProgress(chatId, r); }
-    if (d === 'hub:food') return tgSend(chatId, `🍽️ Just type what you ate — e.g. <b>2 eggs</b>, <b>chicken rice</b>, <b>oats</b>. I'll log it toward your targets.`);
-    if (d === 'foodundo') return tgFoodUndo(chatId);
-    if (d === 'addfood') return tgFoodAddStart(chatId);
-    if (d === 'nfskip') return tgFoodAddSkip(chatId);
-    if (d === 'nfsubmit') { const r = await tgGet(chatId); return tgFoodSubmit(chatId, r); }
-    if (d === 'nfcancel') { const r = await tgGet(chatId); const fl = (r && r.flow) || {}; fl.stage = null; fl.newfood = null; await tgFoodSaveFlow(chatId, fl); return tgSend(chatId, `Cancelled — no food added.`); }
-    if (d.indexOf('food:') === 0) { const r = await tgGet(chatId); const fid = d.slice(5); const q = (r && r.flow && r.flow.foodQty) || 1; if (r && r.flow && r.flow.foodQty) { const fl = r.flow; delete fl.foodQty; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(fl)]); } let f = TG_FOODS.find(x => x.id === fid); if (!f && fid[0] === 'u') f = await tgGetUserFood(fid); if (f) return tgLogFood(chatId, f, q); return; }
-    // --- compound cards & actions ---
-    if (d.indexOf('cinfo:') === 0) { const c = TG_DATA && TG_DATA.compounds.find(x => x.id === d.slice(6)); if (c) { const r = await tgGet(chatId); const card = tgCompoundCard(c, r); return tgSend(chatId, card.text, { reply_markup: { inline_keyboard: card.kb } }); } return; }
-    if (d.indexOf('binfo:') === 0) { const c = TG_DATA && TG_DATA.compounds.find(x => x.id === d.slice(6)); if (c) { const card = tgCompoundCard(c, null); return tgSend(chatId, card.text, { reply_markup: { inline_keyboard: card.kb } }); } return; }
-    if (d.indexOf('cadd:') === 0) return tgCompoundAdd(chatId, d.slice(5));
-    if (d.indexOf('cdel:') === 0) return tgCompoundDel(chatId, d.slice(5));
-    if (d.indexOf('cchk:') === 0) return tgCompoundCheck(chatId, d.slice(5));
-    // --- guided prompts (replace memorised prefixes) ---
-    if (d.indexOf('ask:') === 0) return tgAskPrompt(chatId, d.slice(4));
-    // --- build wizard ---
-    if (d.indexOf('bc:') === 0) return tgBuildCategory(chatId, msgId, d.slice(3));
-    if (d === 'bcback') return tgEdit(chatId, msgId, `🧬 <b>Build your plan.</b> What do you want to work on?`, tgBuildCatKb());
-    if (d.indexOf('bp:') === 0) return tgBuildProblem(chatId, msgId, d.slice(3));
-    if (d.indexOf('br:') === 0) { const r = await tgGet(chatId); const pid = (r && r.flow && r.flow.pid); if (pid) { await tgBuildSetRc(chatId, pid, d.slice(3)); return tgBuildStack(chatId, msgId); } return; }
-    if (d === 'bfood') return tgBuildFoodOnly(chatId, msgId);
-    if (d === 'bexpress') return tgBuildExpress(chatId, msgId);
-    if (d === 'bdone') return tgBuildFunctions(chatId, msgId, false);
-    if (d === 'bmore') return tgBuildFunctions(chatId, msgId, true);
-    if (d.indexOf('bt:') === 0) return tgBuildFnToggle(chatId, msgId, d.slice(3));
-    if (d === 'bfin') return tgBuildConfirm(chatId, msgId);
-    // --- tools dashboard ---
-    if (d.indexOf('tinc:') === 0) return tgToolInc(chatId, msgId, d.slice(5));
-    if (d.indexOf('tdone:') === 0) return tgToolDone(chatId, msgId, d.slice(6));
-    if (d.indexOf('tri:') === 0) { const pp = d.split(':'); return tgToolTriage(chatId, msgId, pp[1], pp[2]); }
-    if (d.indexOf('scl:') === 0) { const pp = d.split(':'); return tgToolScale(chatId, msgId, pp[1], pp[2]); }
-    if (d.indexOf('eat:') === 0) { const pp = d.split(':'); return tgToolEat(chatId, msgId, pp[1], pp[2]); }
-    if (d.indexOf('adh:') === 0) return tgToolAdhere(chatId, msgId, d.slice(4));
-    // --- nudges ---
-    if (d.indexOf('nh:') === 0) { const h = +d.slice(3); const r = await tgGet(chatId); const flow = (r && r.flow) || {}; flow.stage = 'nudge_tz'; flow.nudge_hour = h; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); return tgEdit(chatId, msgId, `Great — I'll check in around <b>${tgHourLabel(h)}</b>. Last thing so I get your timezone right: what's the time where you are <b>right now</b>? Reply like <b>14:30</b> or <b>2:30pm</b>.`); }
-    if (d === 'noff') { await db.query('UPDATE telegram_users SET nudge_hour=NULL, flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify({})]); return tgEdit(chatId, msgId, `🔕 Daily nudges are off. /nudge to turn them back on.`); }
-    return;
-  }
-  const msg = update.message; if (!msg || !msg.chat) return;
-  const chatId = msg.chat.id; const text = (msg.text || '').trim();
-  const first = (msg.from && msg.from.first_name) || msg.chat.first_name || '';
-  await db.query(`INSERT INTO telegram_users(chat_id,first_name) VALUES($1,$2)
-    ON CONFLICT(chat_id) DO UPDATE SET last_active=now(), active=true, first_name=COALESCE(EXCLUDED.first_name, telegram_users.first_name)`, [chatId, first || null]);
-  // Photo during an add-a-food flow → capture the highest-resolution file_id and submit.
-  if (msg.photo && Array.isArray(msg.photo) && msg.photo.length) {
-    const rowP = await tgGet(chatId);
-    if (rowP && rowP.flow && rowP.flow.stage === 'nf_photo') {
-      const largest = msg.photo[msg.photo.length - 1]; const flow = rowP.flow; flow.newfood = flow.newfood || {}; flow.newfood.photo_file_id = largest.file_id;
-      await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-      return tgFoodSubmit(chatId, await tgGet(chatId));
-    }
-    return; // stray photo — ignore
-  }
-  if (text.startsWith('/start')) {
-    const param = text.split(/\s+/)[1];
-    if (param && param.indexOf('s_') === 0) { // a shared protocol (trainer → client)
-      const code = param.slice(2);
-      const sp = (await db.query('SELECT pid,rcid,plan FROM shared_plans WHERE code=$1', [code])).rows[0];
-      if (sp) {
-        db.query('UPDATE shared_plans SET clicks=clicks+1 WHERE code=$1', [code]).catch(() => {});
-        const fns = (sp.plan && Array.isArray(sp.plan.functions) && sp.plan.functions.length) ? sp.plan.functions : [tgDefaultFunction(sp.pid + '/' + sp.rcid)];
-        const supps = (sp.plan && (sp.plan.supps === 'none' ? [] : (Array.isArray(sp.plan.supps) ? sp.plan.supps : undefined)));
-        await db.query('UPDATE telegram_users SET pid=$2, rcid=$3, functions=$4' + (supps !== undefined ? ', sel=$5' : '') + ' WHERE chat_id=$1', supps !== undefined ? [chatId, sp.pid, sp.rcid, JSON.stringify(fns), JSON.stringify({ supps })] : [chatId, sp.pid, sp.rcid, JSON.stringify(fns)]);
-        const p = TG_PROTO[sp.pid + '/' + sp.rcid] || {};
-        await tgSend(chatId, `📋 Someone shared their <b>${tgEsc(p.problem || 'protocol')}</b> plan with you. It's now yours to run — I'll coach you through it.`);
-        return tgSendKeystone(chatId, sp.pid, sp.rcid);
-      }
-    }
-    if (param && param.indexOf('s_') !== 0) {
-      const t = (await db.query('SELECT * FROM telegram_link_tokens WHERE token=$1', [param])).rows[0];
-      if (t) {
-        // pull the web plan's chosen functions for THIS protocol (v2 per-protocol) so the bot mirrors them
-        let fns = null;
-        try { const pr = t.user_id ? (await db.query('SELECT plan FROM user_plans WHERE user_id=$1', [t.user_id])).rows[0] : null; if (pr && pr.plan) { const pl = pr.plan; if (Array.isArray(pl.protocols)) { const e = pl.protocols.find(x => x.pid === t.pid && x.rcid === t.rcid); if (e && Array.isArray(e.functions)) fns = e.functions; } else if (Array.isArray(pl.functions)) fns = pl.functions; } } catch (e) {}
-        if (!fns || !fns.length) fns = [tgDefaultFunction(t.pid + '/' + t.rcid)];
-        await db.query('UPDATE telegram_users SET user_id=$2, pid=$3, rcid=$4, functions=$5 WHERE chat_id=$1', [chatId, t.user_id, t.pid, t.rcid, JSON.stringify(fns)]);
-        await db.query('DELETE FROM telegram_link_tokens WHERE token=$1', [param]);
-        if (t.user_id) await tgSend(chatId, `🔗 <b>Linked to your rnawiki.com account.</b> Your keystone, food, tools and progress now sync both ways — track here or on the site, it stays in step.`);
-        return tgSendKeystone(chatId, t.pid, t.rcid);
-      }
-    }
-    return tgSend(chatId, `👋 Hi${first ? ' ' + tgEsc(first) : ''} — I'm your RNAwiki coach.\n\nI'll set you up with <b>one keystone habit</b>, log your food against its targets, and keep your streak going. Takes about a minute.`, { reply_markup: { inline_keyboard: [[{ text: '🧬 Build my plan', callback_data: 'gobuild' }], [{ text: '🔗 I have a link from my clinic', callback_data: 'havecode' }]] } });
-  }
-  const cmd = text.toLowerCase().replace(/^\//, '');
-  const row = await tgGet(chatId);
-  if (cmd === 'build' || cmd === 'newplan' || cmd === 'new' || cmd === 'build a plan') return tgBuildStart(chatId);
-  if (cmd === 'keystone' || cmd === 'plan') {
-    if (!row || !row.pid) return tgSend(chatId, `You haven't linked a protocol yet. Open ${SITE_URL}/solve and tap “📲 Coach me on Telegram”.`);
-    return tgSendKeystone(chatId, row.pid, row.rcid);
-  }
-  if (cmd === 'today' || cmd === 'fuel') {
-    if (!row || !row.pid) return tgSend(chatId, `Link a protocol first — open ${SITE_URL}/solve and tap “📲 Coach me on Telegram”.`);
-    return tgSendToday(chatId, row);
-  }
-  if (cmd === 'progress' || cmd === 'stats') {
-    if (!row || !row.pid) return tgSend(chatId, `/build a plan first, then I can show your progress.`);
-    return tgSendProgress(chatId, row);
-  }
-  if (cmd === 'stack' || cmd === 'supplements' || cmd === 'supps') {
-    if (!row || !row.pid) return tgSend(chatId, `Link a protocol first — ${SITE_URL}/solve → “📲 Coach me on Telegram”.`);
-    return tgSendStack(chatId, row);
-  }
-  if (cmd === 'schedule' || cmd === 'when' || cmd === 'timing' || cmd === 'day') {
-    if (!row || !row.pid) return tgSend(chatId, `/build a plan first, then I'll show your day.`);
-    return tgSendSchedule(chatId, row);
-  }
-  if (cmd === 'tools' || cmd === 'dashboard' || cmd === 'functions') {
-    if (!row || !row.pid) return tgSend(chatId, `/build a plan first — your tools come with it.`);
-    return tgSendTools(chatId, row);
-  }
-  // Typed prefixes still work (backward compatible); the guided-prompt buttons route to the same helpers.
-  if (/^log[:\s]/i.test(text) && row && Array.isArray(row.functions) && row.functions.includes('overload')) return tgLogOverload(chatId, row, text.replace(/^log[:\s]+/i, ''));
-  if (/^bp[:\s]/i.test(text) && row) return tgLogBp(chatId, row, text.replace(/^bp[:\s]+/i, ''));
-  if (/^win[:\s]/i.test(text) && row) return tgLogWin(chatId, row, text.replace(/^win[:\s]+/i, ''));
-  if (/^sleep[:\s]/i.test(text) && row) return tgLogSleep(chatId, row, text.replace(/^sleep[:\s]+/i, ''));
-  // Guided-prompt captures (a button set flow.stage; the next message is the value)
-  if (row && row.flow && typeof row.flow.stage === 'string' && row.flow.stage.indexOf('await_') === 0 && text && text[0] !== '/') {
-    const what = row.flow.stage.slice(6); const flow = row.flow; delete flow.stage;
-    await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]);
-    if (what === 'bp') return tgLogBp(chatId, row, text);
-    if (what === 'sleep') return tgLogSleep(chatId, row, text);
-    if (what === 'win') return tgLogWin(chatId, row, text);
-    if (what === 'log') return tgLogOverload(chatId, row, text);
-  }
-  // Add-a-food guided flow captures (name/serving/kcal/macros/photo-skip)
-  if (row && row.flow && typeof row.flow.stage === 'string' && row.flow.stage.indexOf('nf_') === 0 && text) return tgFoodAddStep(chatId, row, text);
-  if (cmd === 'nudge' || cmd === 'nudges' || cmd === 'remind' || cmd === 'reminders') return tgNudgeStart(chatId);
-  // capturing their local time to set the nudge timezone
-  if (row && row.flow && row.flow.stage === 'nudge_tz' && text && text[0] !== '/') {
-    const localMin = tgParseTime(text);
-    if (localMin == null) return tgSend(chatId, `Hmm, I didn't get that time. Reply like <b>14:30</b> or <b>2:30pm</b>.`);
-    const now = new Date(); const nowUtcMin = now.getUTCHours() * 60 + now.getUTCMinutes();
-    let off = localMin - nowUtcMin; off = (((off % 1440) + 1440) % 1440); if (off > 720) off -= 1440;
-    const h = row.flow.nudge_hour;
-    await db.query('UPDATE telegram_users SET nudge_hour=$2, tz_offset=$3, flow=$4 WHERE chat_id=$1', [chatId, h, off, JSON.stringify({})]);
-    return tgSend(chatId, `✅ All set — I'll check in each day around <b>${tgHourLabel(h)}</b> your time. /nudge to change it anytime.`);
-  }
-  if (cmd === 'done' || cmd === 'done ✅' || cmd === '✅' || cmd === 'did it') return tgMarkDone(chatId);
-  if (cmd === 'streak') return tgSend(chatId, `🔥 You're on a <b>${(row && row.streak) || 0}-day streak</b>. Keep it going — /done when you've done today's keystone.`);
-  if (cmd === 'reset') { const tdy = new Date().toISOString().slice(0, 10); await db.query('UPDATE telegram_users SET food_log=$2 WHERE chat_id=$1', [chatId, JSON.stringify({ date: tdy, items: [] })]); return tgSend(chatId, `🧹 Cleared today's food log. Type a food to start again.`); }
-  if (cmd === 'help' || cmd === 'start') return tgSend(chatId, TG_HELP);
-  // Any other message → (1) log a food, honouring a leading quantity; (2) answer a supplement by name
-  // with a full card; (3) answer a goal query with the evidence-ranked shortlist. All answers are authored data.
-  if (text && text[0] !== '/') {
-    const { qty, rest } = tgParseQty(text);
-    const matches = (row && row.pid) ? [...tgFindFoods(rest), ...await tgSearchUserFoods(rest)].slice(0, 6) : [];
-    if (matches.length === 1) return tgLogFood(chatId, matches[0], qty);
-    if (matches.length > 1) {
-      if (row) { const flow = row.flow || {}; flow.foodQty = qty; await db.query('UPDATE telegram_users SET flow=$2 WHERE chat_id=$1', [chatId, JSON.stringify(flow)]); } // remember qty for the picked option (always refresh, avoid stale)
-      const kb = matches.slice(0, 5).map(f => [{ text: ((qty !== 1 ? (qty % 1 === 0 ? qty : qty.toFixed(1)) + '× ' : '') + f.name + (f.serving ? ' · ' + f.serving : '')).slice(0, 62), callback_data: 'food:' + f.id }]);
-      return tgSend(chatId, `Which one did you have?`, { reply_markup: { inline_keyboard: kb } });
-    }
-    // supplement lookup — a real card, not a redirect
-    const cmps = tgFindCompounds(text);
-    if (cmps.length) {
-      const t0 = text.toLowerCase().trim();
-      if (cmps.length === 1 || cmps[0].name.toLowerCase() === t0) { const card = tgCompoundCard(cmps[0], row); return tgSend(chatId, card.text, { reply_markup: { inline_keyboard: card.kb } }); }
-      const kb = cmps.map(c => [{ text: (((c.approvals && c.approvals[0]) ? c.approvals[0] + ' ' : '') + c.name).slice(0, 60), callback_data: 'cinfo:' + c.id }]);
-      return tgSend(chatId, `Which one do you mean?`, { reply_markup: { inline_keyboard: kb } });
-    }
-    // goal query — "what helps sleep?", "best for fat loss"
-    const goal = tgFindGoal(text);
-    if (goal) {
-      const top = tgGoalTop(goal.id, 5);
-      if (top.length) {
-        const list = top.map((c, i) => `${i + 1}. ${(c.approvals && c.approvals[0]) || ''} <b>${tgEsc(c.name)}</b>${tgStars(c.stars)}`).join('\n');
-        const kb = top.map(c => [{ text: c.name.slice(0, 60), callback_data: 'cinfo:' + c.id }]);
-        kb.push([{ text: '📖 Full ' + goal.label + ' list', url: `${SITE_URL}/goal/${goal.id}` }]);
-        return tgSend(chatId, `${goal.icon} <b>Best for ${tgEsc(goal.label)}</b> — ranked by strength of human evidence:\n${list}\n\nTap one to learn more.`, { reply_markup: { inline_keyboard: kb } });
-      }
-    }
-    // Not a known food/supplement/goal → offer to ADD it to the shared food database.
-    if (row) { const fl = row.flow || {}; fl.newfood = { name: text.slice(0, 80) }; await tgFoodSaveFlow(chatId, fl); }
-    const addKb = { inline_keyboard: [[{ text: `➕ Add “${text.slice(0, 36)}” as a food`, callback_data: 'addfood' }]] };
-    if (!row || !row.pid) return tgSend(chatId, `I can look up any supplement (e.g. “magnesium”) or a goal (e.g. “what helps sleep”).\n\nOr add “${tgEsc(text)}” to the food database so anyone can log it — just its calories are enough to start:`, { reply_markup: addKb });
-    return tgSend(chatId, `I don't have “${tgEsc(text)}” yet. Add it in a few taps — just its calories are enough (macros, vitamins &amp; a photo are optional). It goes live instantly for everyone, here and on rnawiki.com.`, { reply_markup: addKb });
-  }
-  return tgSend(chatId, `Type a food to log it, ask about any supplement by name, or tap below:`, { reply_markup: { inline_keyboard: [[{ text: '📋 Today', callback_data: 'today' }, { text: '✅ Done', callback_data: 'done' }]] } });
-}
-// The single daily home surface — keystone, food + macros, and one-tap access to everything else.
-// A keystone's authored sub-steps (only present on genuinely multi-action keystones) — never parsed from text.
-function tgKsSteps(k) { return (k && Array.isArray(k.steps) && k.steps.length > 1) ? k.steps : null; }
-// The single daily home surface, as a pure view so it can be sent OR edited in place after a step-tick.
-async function tgTodayView(row, opts) {
-  opts = opts || {};
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const k = p && p.keystone;
-  const today = new Date().toISOString().slice(0, 10);
-  const dayDone = (Array.isArray(row.keystone_days) && row.keystone_days.includes(today)) || await tgWebKeystoneDone(row);
-  const steps = tgKsSteps(k);
-  const t = tgTools(row); const ksState = (t.d && t.d.ks) || {};
-  const prog = tgFoodProgress(row); const macros = tgFoodMacros(prog.items); const streak = row.streak || 0;
-  // --- keystone block (checklist for multi-step, single line otherwise) ---
-  let ksBlock, ksKb = [];
-  if (steps) {
-    const doneAt = i => dayDone || !!ksState[i];
-    const n = steps.filter((_, i) => doneAt(i)).length;
-    ksBlock = `⭐ <b>Keystone — ${n}/${steps.length} today</b>\n` + steps.map((s, i) => `${doneAt(i) ? '✅' : '⬜'} ${tgEsc(s)}`).join('\n');
-    ksKb = steps.map((s, i) => [{ text: `${doneAt(i) ? '✅' : '◻️'} ${s}`.slice(0, 58), callback_data: 'ksd:' + i }]);
-    if (!dayDone) ksKb.push([{ text: '✅ Did it all today', callback_data: 'done' }]);
-  } else {
-    ksBlock = `⭐ <b>Keystone:</b> ${k ? tgEsc(k.one) : '—'}\n${dayDone ? '✅ done today' : '▫️ not done yet'}`;
-    ksKb = [[{ text: dayDone ? '✅ Keystone done' : '✅ Mark keystone done', callback_data: 'done' }]];
-  }
-  const header = opts.header ? opts.header + '\n\n' : '';
-  const body = `${header}📋 <b>${tgEsc(p ? p.problem : 'Your protocol')} — today</b>${streak ? `   🔥 ${streak}` : ''}\n\n` +
-    `${ksBlock}` + (k && k.why ? `\n<i>${tgEsc(k.why)}</i>` : '') +
-    `\n\n🍽️ <b>Food targets:</b>\n${prog.text}` + (macros ? `\n\n${macros} <i>today</i>` : '') +
-    `\n\nType a food (e.g. <b>2 eggs</b>) to log it.` + (row.user_id ? `\n\n🔗 <i>Synced with rnawiki.com</i>` : '');
-  const kb = ksKb.slice();
-  const row2 = [];
-  if (Array.isArray(row.functions) && row.functions.length) row2.push({ text: '🧩 Tools', callback_data: 'hub:tools' });
-  if ((p && p.stack && p.stack.length) || (row.tools && (row.tools.saved || []).length)) row2.push({ text: '💊 Stack', callback_data: 'hub:stack' });
-  row2.push({ text: '🗓️ Schedule', callback_data: 'hub:sched' });
-  kb.push(row2);
-  kb.push([{ text: '📊 Progress', callback_data: 'hub:prog' }, { text: '↩️ Undo food', callback_data: 'foodundo' }]);
-  return { text: body, kb };
-}
-async function tgSendToday(chatId, row) { const v = await tgTodayView(row); return tgSend(chatId, v.text, { reply_markup: { inline_keyboard: v.kb } }); }
-// Tick one keystone step; when the last one lands, the day counts as done (streak) — refreshed in place.
-async function tgKsTick(chatId, msgId, i) {
-  const row = await tgGet(chatId); if (!row) return;
-  const p = TG_PROTO[(row.pid || '') + '/' + (row.rcid || '')]; const steps = tgKsSteps(p && p.keystone);
-  if (!steps) return tgMarkDone(chatId); // safety: not a multi-step keystone
-  const t = tgTools(row); t.d.ks = t.d.ks || {}; t.d.ks[i] = !t.d.ks[i];
-  await db.query('UPDATE telegram_users SET tools=$2 WHERE chat_id=$1', [chatId, JSON.stringify(t)]);
-  let justCompleted = false;
-  if (steps.every((_, idx) => t.d.ks[idx])) {
-    const today = new Date().toISOString().slice(0, 10); let days = Array.isArray(row.keystone_days) ? row.keystone_days : [];
-    if (!days.includes(today)) { days = days.concat(today).slice(-120); const streak = tgComputeStreak(days); await db.query('UPDATE telegram_users SET keystone_days=$2, streak=$3, last_active=now() WHERE chat_id=$1', [chatId, JSON.stringify(days), streak]); if (row.pid) await tgSyncWebDay(row, d => { d.keystones[row.pid + '/' + row.rcid] = true; }); justCompleted = true; }
-  }
-  const fresh = await tgGet(chatId); const v = await tgTodayView(fresh); await tgEdit(chatId, msgId, v.text, v.kb);
-  if (justCompleted) await tgSend(chatId, `🎉 Keystone complete for today — every part done! 🔥 <b>${fresh.streak}-day streak</b>.`);
-}
-async function tgSetup() {
-  if (!BOT_TOKEN) { console.log('[tg] BOT_TOKEN not set — bot dormant.'); return; }
-  tgStartScheduler();
-  const r = await tgApi('setWebhook', { url: `${SITE_URL}/api/telegram/webhook`, secret_token: TG_SECRET, allowed_updates: ['message', 'callback_query'] });
-  console.log('[tg] setWebhook:', r && r.ok ? 'ok → ' + SITE_URL + '/api/telegram/webhook' : JSON.stringify(r));
-  // Native discoverability: the "/" command menu + the blue Menu button (so users tap, never memorise).
-  await tgApi('setMyCommands', { commands: [
-    { command: 'today', description: 'Your day — keystone, food, tools' },
-    { command: 'done', description: 'Mark your keystone done' },
-    { command: 'progress', description: 'Your streak & consistency' },
-    { command: 'build', description: 'Build or change your plan' },
-    { command: 'help', description: 'What I can do' },
-  ] });
-  await tgApi('setChatMenuButton', { menu_button: { type: 'commands' } });
-}
-
 // ---------- API ----------
 async function api(req, res, url) {
   // url keeps its query string (handlers parse ?goal=/?ids=/?problem= from it);
@@ -1564,7 +513,7 @@ async function api(req, res, url) {
     if (db.enabled && e === 'booking' && handle) db.query('UPDATE users SET booking_clicks = booking_clicks + 1 WHERE lower(username)=lower($1)', [handle]).catch(() => {});
     res.writeHead(204); return res.end();
   }
-  // Public photo proxy for user-submitted food images: streams the Telegram file server-side so the
+  // Public photo proxy for user-submitted food images: serves the inline data-URL upload. (The
   // bot token is never exposed in a public URL. <img src="/api/foodphoto?id=123"> works on the website.
   if (seg[0] === 'foodphoto' && req.method === 'GET') {
     if (!db.enabled) { res.writeHead(404); return res.end(); }
@@ -1580,52 +529,10 @@ async function api(req, res, url) {
         res.writeHead(200, { 'Content-Type': mm[1], 'Cache-Control': 'public, max-age=86400' });
         return res.end(buf);
       }
-      // bot photo: proxy the Telegram file server-side (token stays server-side)
-      const fid = d && d.photo_file_id; if (!fid || !BOT_TOKEN) { res.writeHead(404); return res.end(); }
-      const gf = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getFile?file_id=${encodeURIComponent(fid)}`).then(r => r.json());
-      if (!gf || !gf.ok) { res.writeHead(404); return res.end(); }
-      const img = await fetch(`https://api.telegram.org/file/bot${BOT_TOKEN}/${gf.result.file_path}`);
-      if (!img.ok) { res.writeHead(404); return res.end(); }
-      const buf = Buffer.from(await img.arrayBuffer());
-      res.writeHead(200, { 'Content-Type': img.headers.get('content-type') || 'image/jpeg', 'Cache-Control': 'public, max-age=86400' });
-      return res.end(buf);
+      // Bot photo uploads are gone with the Telegram integration (removed 2026-07-28).
+      // Only web-uploaded photos (stored inline as a data URL above) are served.
+      res.writeHead(404); return res.end();
     } catch (e) { res.writeHead(404); return res.end(); }
-  }
-  // Telegram bot — handled before the same-origin/db gates (Telegram posts cross-origin; auth is the secret header)
-  if (seg[0] === 'telegram') {
-    if (!BOT_TOKEN || !db.enabled) return json(res, 503, { error: 'Bot not enabled' });
-    if (seg[1] === 'webhook' && req.method === 'POST') {
-      if (req.headers['x-telegram-bot-api-secret-token'] !== TG_SECRET) { res.writeHead(401); return res.end(); }
-      const update = await readBody(req, 1e6);
-      try { await handleTgUpdate(update || {}); } catch (e) { console.error('[tg] update:', e.message); }
-      return json(res, 200, { ok: true });
-    }
-    if (seg[1] === 'link' && req.method === 'GET') {
-      const u = await currentUser(req);
-      const q = new URL('http://x/' + url).searchParams;
-      const pid = clean(q.get('pid'), 64), rcid = clean(q.get('rcid'), 64);
-      const token = crypto.randomBytes(9).toString('base64url');
-      await db.query('INSERT INTO telegram_link_tokens(token,user_id,pid,rcid) VALUES($1,$2,$3,$4)', [token, u ? u.id : null, pid || null, rcid || null]);
-      db.query("DELETE FROM telegram_link_tokens WHERE created_at < now() - interval '1 day'").catch(() => {});
-      return json(res, 200, { url: `https://t.me/${BOT_USERNAME}?start=${token}` });
-    }
-    // Reverse sync: signed-in user opened ?tgsync=<token> — bind that Telegram chat to their account.
-    if (seg[1] === 'attach' && req.method === 'POST') {
-      if (!sameOrigin(req)) return json(res, 403, { error: 'Bad origin' });
-      const u = await currentUser(req);
-      if (!u) return json(res, 401, { error: 'Sign in first' });
-      const body = await readBody(req, 1e4); const token = clean(body && body.token, 64);
-      if (!token) return json(res, 400, { error: 'No token' });
-      const t = (await db.query('SELECT * FROM telegram_link_tokens WHERE token=$1 AND chat_id IS NOT NULL', [token])).rows[0];
-      if (!t) return json(res, 404, { error: 'This link has expired — tap “Sync to my account” in the bot again.' });
-      await db.query('UPDATE telegram_users SET user_id=$1 WHERE chat_id=$2', [u.id, t.chat_id]);
-      await db.query('DELETE FROM telegram_link_tokens WHERE token=$1', [token]);
-      const trow = (await db.query('SELECT * FROM telegram_users WHERE chat_id=$1', [t.chat_id])).rows[0];
-      if (trow && trow.pid) await tgUpsertWebProtocol(trow); // push the bot's plan up into the web account
-      tgSend(t.chat_id, `🔗 <b>Synced to your rnawiki.com account.</b> Your keystone, food, tools and progress now stay in step across chat and site.`).catch(() => {});
-      return json(res, 200, { ok: true });
-    }
-    return json(res, 404, { error: 'Not found' });
   }
   if (!db.enabled) return json(res, 503, { error: 'Accounts are not available right now.' });
   const method = req.method;
@@ -1736,7 +643,7 @@ async function api(req, res, url) {
     const plan = { moves: Array.isArray(sel.moves) ? sel.moves.slice(0, 100) : undefined, supps: sel.supps === 'none' ? 'none' : (Array.isArray(sel.supps) ? sel.supps.slice(0, 100) : undefined), functions: Array.isArray(sel.functions) ? sel.functions.slice(0, 20) : undefined };
     const code = crypto.randomBytes(6).toString('base64url');
     await db.query('INSERT INTO shared_plans(code,author_user_id,pid,rcid,plan) VALUES($1,$2,$3,$4,$5)', [code, u ? u.id : null, pid, rcid, JSON.stringify(plan)]);
-    return json(res, 200, { code, url: `${SITE_URL}/#/s/${code}`, tg: BOT_USERNAME ? `https://t.me/${BOT_USERNAME}?start=s_${code}` : null });
+    return json(res, 200, { code, url: `${SITE_URL}/#/s/${code}` });
   }
 
   // Public cohort stat for a protocol — k-anonymised (only when >=20 people have a 30/90-day outcome).
@@ -2393,15 +1300,6 @@ async function api(req, res, url) {
     return json(res, 200, { ok: true, outcome });
   }
   // --- one-click CSV export of members / waitlist (super-admin only) ---
-  if (seg[0] === 'admin' && seg[1] === 'telegram' && method === 'GET') {
-    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
-    const total = (await db.query('SELECT count(*)::int AS n FROM telegram_users WHERE active')).rows[0].n;
-    const linked = (await db.query('SELECT count(*)::int AS n FROM telegram_users WHERE active AND pid IS NOT NULL')).rows[0].n;
-    const active7 = (await db.query("SELECT count(*)::int AS n FROM telegram_users WHERE last_active > now() - interval '7 days'")).rows[0].n;
-    const done7 = (await db.query("SELECT count(*)::int AS n FROM telegram_users WHERE keystone_days @> to_jsonb(to_char(now(),'YYYY-MM-DD'))")).rows[0].n;
-    const top = (await db.query('SELECT pid, count(*)::int AS n FROM telegram_users WHERE pid IS NOT NULL GROUP BY pid ORDER BY n DESC LIMIT 8')).rows;
-    return json(res, 200, { activated: total, linkedToProtocol: linked, activeLast7d: active7, doneKeystoneToday: done7, topProtocols: top });
-  }
   if (seg[0] === 'admin' && seg[1] === 'export' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
     const type = clean(new URL('http://x/' + url).searchParams.get('type'), 20);
@@ -2900,6 +1798,5 @@ const server = http.createServer((req, res) => {
 
 db.init().catch(e => console.error('[db] init failed:', e.message)).finally(() => {
   server.listen(PORT, () => console.log('RNAwiki serving on :' + PORT + (db.enabled ? ' (accounts on)' : ' (read-only)')));
-  if (db.enabled) tgSetup().catch(e => console.error('[tg] setup:', e.message));
   if (db.enabled) emailStartScheduler();
 });

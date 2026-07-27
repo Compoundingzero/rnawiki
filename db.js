@@ -314,48 +314,15 @@ CREATE TABLE IF NOT EXISTS referrals (
 );
 CREATE INDEX IF NOT EXISTS idx_ref_referrer ON referrals(referrer);
 
--- Telegram coach: one row per chat that has activated @rnawikibot. Linked (optionally) to a web
--- user and pinned to a protocol (pid/rcid) so the bot coaches that person on that exact protocol.
--- keystone_days = dates the user marked their keystone done; streak derived from it.
-CREATE TABLE IF NOT EXISTS telegram_users (
-  chat_id BIGINT PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
-  pid TEXT,
-  rcid TEXT,
-  first_name TEXT,
-  keystone_days JSONB NOT NULL DEFAULT '[]',
-  streak INTEGER NOT NULL DEFAULT 0,
-  food_log JSONB NOT NULL DEFAULT '{}',
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
-  last_active TIMESTAMPTZ NOT NULL DEFAULT now(),
-  active BOOLEAN NOT NULL DEFAULT true
-);
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS food_log JSONB NOT NULL DEFAULT '{}';
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS flow JSONB NOT NULL DEFAULT '{}';
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS sel JSONB NOT NULL DEFAULT '{}';
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS nudge_hour INTEGER;          -- local hour 0-23 for the daily check-in (null = off)
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS tz_offset INTEGER NOT NULL DEFAULT 480; -- minutes from UTC (480 = SGT)
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS last_nudge TEXT;             -- YYYY-MM-DD of the last nudge sent
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS functions JSONB NOT NULL DEFAULT '[]';  -- selected protocol function ids (mirrors web plan.functions)
-ALTER TABLE telegram_users ADD COLUMN IF NOT EXISTS tools JSONB NOT NULL DEFAULT '{}';       -- per-day/week function state: {day:{date,counters,done}, week:{key,counters}}
-CREATE INDEX IF NOT EXISTS idx_tg_active ON telegram_users(active, last_active DESC);
+-- Telegram integration REMOVED 2026-07-28. The telegram_users and telegram_link_tokens
+-- tables are no longer created here, so a fresh database will not have them. The existing
+-- production tables were deliberately NOT dropped -- dropping is irreversible and they still
+-- hold one row (dumped to the 2026-07-28 backup). Drop them by hand once you are sure:
+--   DROP TABLE IF EXISTS telegram_link_tokens; DROP TABLE IF EXISTS telegram_users;
 
--- Short-lived deep-link tokens: web mints one when a user taps "Coach me on Telegram" on a
--- protocol; the bot's /start <token> consumes it to link the chat to that user + protocol.
-CREATE TABLE IF NOT EXISTS telegram_link_tokens (
-  token TEXT PRIMARY KEY,
-  user_id INTEGER,
-  pid TEXT,
-  rcid TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
--- chat_id is set for the reverse direction: the bot mints a token, the user opens ?tgsync=<token>
--- on the site while signed in, and /api/telegram/attach binds that chat to their account.
-ALTER TABLE telegram_link_tokens ADD COLUMN IF NOT EXISTS chat_id BIGINT;
-
--- The unified plan object (the omnichannel spine): one active plan per account, shared by the
--- website, the Telegram bot, sharing cards and (later) the earn layer. Anonymous users keep it
--- in localStorage; it merges up into this row on login.
+-- The unified plan object: one active plan per account, shared by the website, sharing cards
+-- and (later) the earn layer. Anonymous users keep it in localStorage; it merges up into this
+-- row on login.
 CREATE TABLE IF NOT EXISTS user_plans (
   user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
   plan JSONB NOT NULL DEFAULT '{}',

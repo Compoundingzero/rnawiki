@@ -1740,9 +1740,6 @@ a.dp-name:hover{color:var(--accent)}
 .cpd-fact .cf-t b{color:var(--accent)}
 
 /* ---- "Coach me on Telegram" button (protocol keystone card) ---- */
-.tg-coach{margin-top:.7rem;display:inline-block;background:#229ED9;color:#fff;border:none;border-radius:999px;padding:.5rem .95rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit;transition:.15s}
-.tg-coach:hover{background:#1b8ec4}
-.tg-coach:disabled{opacity:.7;cursor:default}
 
 /* ---- My Plan page (the personal execution "kitchen") ---- */
 .plan-hd{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
@@ -1824,10 +1821,6 @@ a.dp-name:hover{color:var(--accent)}
   .build-nav .cta-ghost{order:1}
   .build-count{order:2}
 }
-.plan-tg{margin:.8rem 0}
-.tg-sync-note{font-size:.78rem;color:var(--muted);margin:.4rem 0 0}
-.plan-tg .tg-coach{background:#229ED9;color:#fff;border:none;border-radius:999px;padding:.5rem .95rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit}
-.plan-tg .tg-coach:hover{background:#1b8ec4}
 .plan-built-banner{background:linear-gradient(135deg,#f2fbf5,#eafaf1);border:1px solid #b4e2c9;border-radius:12px;padding:.7rem 1rem;margin:0 0 1rem;font-size:.95rem}
 
 /* ---- Focused daily tracker (post-build) ---- */
@@ -2065,7 +2058,6 @@ a.dp-name:hover{color:var(--accent)}
 .fn-head{flex:1;min-width:0}
 .fn-name{font-weight:700;color:var(--head);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
 .fn-def{font-size:.66rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#b8860b;background:#fff5db;padding:.1rem .45rem;border-radius:999px}
-.fn-tg{font-size:.66rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:#2563eb;background:#e6efff;padding:.1rem .45rem;border-radius:999px}
 .fn-desc{margin:.25rem 0 0;font-size:.9rem;color:var(--muted);line-height:1.45}
 .fn-how{margin:.6rem 0 .8rem;font-size:.85rem;color:var(--head);line-height:1.45}
 .fn-how b{color:var(--muted);font-weight:600}
@@ -2120,7 +2112,6 @@ a.dp-name:hover{color:var(--accent)}
 .triage-guide.green{background:#eafaf1;color:#0a6b3b}
 .triage-guide.yellow{background:#fff6e0;color:#8a6100}
 .triage-guide.red{background:#fdecec;color:#a11}
-.fn-w.tgonly .fn-w-tg{margin-top:.4rem;background:#2563eb;color:#fff;border:none;border-radius:999px;padding:.4rem .9rem;font-size:.82rem;font-weight:600;cursor:pointer}
 /* ---- Shared protocol landing (trainer → client) ---- */
 .shared-hero{max-width:640px;margin:1.5rem auto;padding:1.6rem;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,rgba(13,148,136,.06),var(--panel));box-shadow:var(--shadow)}
 .shared-badge{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:rgba(13,148,136,.1);padding:.2rem .6rem;border-radius:999px;margin-bottom:.7rem}
@@ -2130,7 +2121,7 @@ a.dp-name:hover{color:var(--accent)}
 .shared-summary .ss-block b{font-size:.82rem;color:var(--head)}
 .shared-summary .ss-block span{font-size:.85rem;color:var(--muted);line-height:1.4}
 .shared-cta{display:flex;flex-direction:column;gap:.6rem;margin-top:1.2rem}
-.shared-cta .cta-primary,.shared-cta .tg-coach{width:100%;justify-content:center}
+.shared-cta .cta-primary{width:100%;justify-content:center}
 .shared-note{font-size:.8rem;color:var(--muted);margin:.9rem 0 0;text-align:center}
 /* ---- Consistency pulse: streak + 7-day week strip ---- */
 .plan-pulse{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.75rem 1.1rem;margin:0 0 1rem}
