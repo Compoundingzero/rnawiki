@@ -108,6 +108,11 @@ function json(res, code, obj, headers) {
   res.end(JSON.stringify(obj));
 }
 function clean(s, max) { return String(s == null ? '' : s).trim().slice(0, max || 4000); }
+// Strict positive-integer path segment. parseInt() is wrong for route ids in two directions:
+// parseInt('abc') is NaN, which Postgres rejects with a 500, and parseInt('20x') is 20, which
+// silently serves record 20 from a URL that was never a valid id. Returns 0 on anything that
+// is not purely digits, so the existing `if (!id) return 400` guards do the right thing.
+function pathId(s) { return /^\d{1,9}$/.test(String(s == null ? '' : s)) ? parseInt(s, 10) : 0; }
 // CSV export helpers for the super-admin control room (member + waitlist extraction).
 function csvCell(v) { const s = v == null ? '' : String(v); return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; }
 function csvExport(res, filename, headers, rows) {
@@ -185,9 +190,19 @@ function weekStartUTC() { const d = new Date(todayUTC() + 'T00:00:00Z'); const d
 
 const ADMIN_USER = (process.env.ADMIN_USER || '').toLowerCase();
 // The single super-admin: only this account sees the consolidated control room and can
-// verify accounts / approve root-cause changes. Locked to Felix's email by default.
-const SUPERADMIN_EMAIL = (process.env.SUPERADMIN_EMAIL || 'felix360506@gmail.com').toLowerCase();
-const isSuper = u => !!(u && u.email && u.email.toLowerCase() === SUPERADMIN_EMAIL);
+// verify accounts / approve root-cause changes.
+//
+// SECURITY (fixed 2026-07-28): this used to compare users.email against a literal address.
+// users.email is user-supplied, is never verified at /api/register, and had no UNIQUE index —
+// so `POST /api/register {"email":"<the literal>"}` minted a super-admin session in one request.
+// Super-admin is now decided on immutable identifiers only: the SERIAL primary key, or the
+// Google subject. Neither can be chosen by a registrant. NEVER key this on email again.
+const SUPERADMIN_ID = parseInt(process.env.SUPERADMIN_ID || '3', 10) || 0;
+const SUPERADMIN_GOOGLE_SUB = String(process.env.SUPERADMIN_GOOGLE_SUB || '');
+const isSuper = u => !!(u && (
+  (SUPERADMIN_ID && Number(u.id) === SUPERADMIN_ID) ||
+  (SUPERADMIN_GOOGLE_SUB && u.google_sub && String(u.google_sub) === SUPERADMIN_GOOGLE_SUB)
+));
 // Outcome-data moat: consent-notice version + validation allow-lists (reject anything off-list)
 const CONSENT_VERSION = 'v1-2026-07';
 const AGE_BANDS = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
@@ -208,7 +223,7 @@ const PANEL_THRESHOLD = 1;
 async function currentUser(req) {
   const sid = parseCookies(req).sid;
   if (!sid || !db.enabled) return null;
-  const r = await db.query('SELECT u.id, u.username, u.email, u.role, u.domain, u.credential, u.domain_verified, u.requested_domain, u.application_status, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
+  const r = await db.query('SELECT u.id, u.username, u.email, u.google_sub, u.role, u.domain, u.credential, u.domain_verified, u.requested_domain, u.application_status, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
   const u = r.rows[0];
   if (u && ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
   if (u && isSuper(u)) u.role = 'admin';           // the superadmin always has admin powers
@@ -1654,6 +1669,14 @@ async function api(req, res, url) {
 
   // --- auth ---
   if (seg[0] === 'register' && method === 'POST') {
+    // SECURITY (2026-07-28): password registration is closed by default. It accepted an
+    // arbitrary unverified email, had no confirmation step and no password-reset path, and was
+    // the entry point for the super-admin escalation above. Google sign-in (/api/auth/google)
+    // remains open and still creates accounts, so signup is not blocked — only this path is.
+    // Set ALLOW_PASSWORD_REGISTRATION=1 to re-open it (existing accounts can still log in).
+    if (process.env.ALLOW_PASSWORD_REGISTRATION !== '1') {
+      return json(res, 403, { error: 'Password sign-up is closed. Please use "Continue with Google".' });
+    }
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const username = clean(b.username, 24), email = clean(b.email, 120), password = String(b.password || '');
     if (!/^[a-zA-Z0-9_.-]{3,24}$/.test(username)) return json(res, 400, { error: 'Username: 3–24 letters, numbers, _ . -' });
@@ -1875,7 +1898,15 @@ async function api(req, res, url) {
     if (p.email_verified === false || p.email_verified === 'false') return json(res, 401, { error: 'Your Google email is not verified' });
     const sub = String(p.sub), email = String(p.email || '').toLowerCase();
     try {
-      let u = (await db.query('SELECT id,username,role,domain,credential,domain_verified FROM users WHERE google_sub=$1 OR (email=$2 AND email IS NOT NULL) LIMIT 1', [sub, email || '\x00'])).rows[0];
+      // SECURITY (2026-07-28): this matched `google_sub OR email` with an unordered LIMIT 1.
+      // Because a password account could be registered with anyone's email address, a matching
+      // email row could win the race and bind a victim's verified Google identity to an
+      // attacker-created account. Always prefer the google_sub match; email is only a
+      // first-time link hint.
+      let u = (await db.query(
+        `SELECT id,username,role,domain,credential,domain_verified,google_sub FROM users
+          WHERE google_sub=$1 OR (email=$2 AND email IS NOT NULL)
+          ORDER BY (google_sub=$1) DESC, id ASC LIMIT 1`, [sub, email || '\x00'])).rows[0];
       if (u) {
         await db.query('UPDATE users SET google_sub=$1 WHERE id=$2 AND google_sub IS NULL', [sub, u.id]);
       } else {
@@ -1920,7 +1951,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'comments' && seg[1] && method === 'DELETE') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Not signed in' });
-    const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
+    const id = pathId(seg[1]); if (!id) return json(res, 400, { error: 'bad id' });
     await db.query('DELETE FROM comments WHERE id=$1 AND (user_id=$2 OR $3=\'admin\')', [id, u.id, u.role]);
     return json(res, 200, { ok: true });
   }
@@ -2150,7 +2181,7 @@ async function api(req, res, url) {
     return json(res, 200, { ok: true, id: r.rows[0].id });
   }
   if (seg[0] === 'protocol-requests' && seg[1] && seg[2] === 'vote' && method === 'POST') {
-    const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64); const id = parseInt(seg[1], 10);
+    const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64); const id = pathId(seg[1]);
     if (!voterKey || !id) return json(res, 400, { error: 'Missing vote' });
     const ins = await db.query("INSERT INTO votes(target_id,voter_key,value) VALUES($1,$2,1) ON CONFLICT (target_id,voter_key) DO NOTHING RETURNING id", ['req:' + id, voterKey]);
     if (ins.rows[0]) await db.query('UPDATE protocol_requests SET votes=votes+1 WHERE id=$1', [id]);
@@ -2159,7 +2190,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'admin' && seg[1] === 'requests' && seg[2] && method === 'POST') {
     const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'Admin only' });
-    const id = parseInt(seg[2], 10); const b = await readBody(req) || {};
+    const id = pathId(seg[2]); const b = await readBody(req) || {};
     const status = ['open', 'building', 'done', 'declined'].includes(b.status) ? b.status : 'open';
     await db.query('UPDATE protocol_requests SET status=$1 WHERE id=$2', [status, id]);
     return json(res, 200, { ok: true });
@@ -2190,7 +2221,7 @@ async function api(req, res, url) {
     return json(res, 200, { ok: true, id: r.rows[0].id });
   }
   if (seg[0] === 'forks' && seg[1] && seg[2] === 'clone' && method === 'POST') {
-    const id = parseInt(seg[1], 10); const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64);
+    const id = pathId(seg[1]); const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64);
     if (!id || !voterKey) return json(res, 400, { error: 'Missing' });
     const fr = await db.query('SELECT * FROM protocol_forks WHERE id=$1', [id]); const f = fr.rows[0]; if (!f) return json(res, 404, { error: 'No such fork' });
     const ins = await db.query('INSERT INTO fork_clones(fork_id,voter_key) VALUES($1,$2) ON CONFLICT (fork_id,voter_key) DO NOTHING RETURNING id', [id, voterKey]);
@@ -2198,7 +2229,7 @@ async function api(req, res, url) {
     return json(res, 200, { ok: true, stack: f.stack, problem_id: f.problem_id, root_cause_id: f.root_cause_id, title: f.title });
   }
   if (seg[0] === 'forks' && seg[1] && method === 'GET') {
-    const id = parseInt(seg[1], 10);
+    const id = pathId(seg[1]); if (!id) return json(res, 404, { error: 'No such fork' });
     const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.problem_id,f.root_cause_id,f.created_at,u.username AS by_user,u.domain,u.domain_verified FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.id=$1", [id]);
     if (!r.rows[0]) return json(res, 404, { error: 'No such fork' });
     return json(res, 200, { fork: r.rows[0] });
@@ -2406,7 +2437,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'admin' && seg[1] === 'feedback' && seg[2] && method === 'POST') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
-    const id = parseInt(seg[2], 10); const b = await readBody(req) || {};
+    const id = pathId(seg[2]); const b = await readBody(req) || {};
     const status = ['open', 'done', 'archived'].includes(b.status) ? b.status : 'done';
     await db.query('UPDATE feedback SET status=$1 WHERE id=$2', [status, id]);
     return json(res, 200, { ok: true });
@@ -2444,7 +2475,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'rootcause-changes' && seg[1] && seg[2] === 'endorse' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    const id = parseInt(seg[1], 10);
+    const id = pathId(seg[1]);
     const cr = await db.query('SELECT * FROM rootcause_changes WHERE id=$1', [id]);
     const ch = cr.rows[0]; if (!ch) return json(res, 404, { error: 'No such change' });
     if (ch.status !== 'pending') return json(res, 400, { error: 'Already decided' });
@@ -2468,7 +2499,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'admin' && seg[1] === 'rootcause-changes' && seg[2] && method === 'POST') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
-    const id = parseInt(seg[2], 10); const b = await readBody(req) || {};
+    const id = pathId(seg[2]); const b = await readBody(req) || {};
     const status = ['approved', 'rejected', 'pending'].includes(b.status) ? b.status : 'approved';
     await db.query('UPDATE rootcause_changes SET status=$1, decided_by=$2 WHERE id=$3', [status, u.id, id]);
     return json(res, 200, { ok: true });
@@ -2604,7 +2635,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
     const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'Verified dietitians only' });
-    const id = parseInt(seg[1], 10); const b = await readBody(req) || {};
+    const id = pathId(seg[1]); const b = await readBody(req) || {};
     const status = ['active', 'rejected'].includes(b.status) ? b.status : 'active';
     const r = await db.query('UPDATE user_foods SET status=$1, verified_by=$2 WHERE id=$3 RETURNING id,name,status', [status, u.id, id]);
     if (!r.rows[0]) return json(res, 404, { error: 'No such food' });
@@ -2617,7 +2648,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'admin' && seg[1] === 'partners' && seg[2] && method === 'POST') {
     const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'Admin only' });
-    const id = parseInt(seg[2], 10); const b = await readBody(req) || {};
+    const id = pathId(seg[2]); const b = await readBody(req) || {};
     const status = ['active', 'rejected', 'pending'].includes(b.status) ? b.status : 'active';
     const r = await db.query('UPDATE partners SET status=$1 WHERE id=$2 RETURNING id,name,status', [status, id]);
     if (!r.rows[0]) return json(res, 404, { error: 'No such partner' });
@@ -2656,7 +2687,7 @@ async function api(req, res, url) {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
     const sup = isSuper(u); // superadmin (Felix) can approve any pending edit, regardless of domain
     if (!sup && !u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
-    const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
+    const id = pathId(seg[1]); if (!id) return json(res, 400, { error: 'bad id' });
     const pr = (await db.query('SELECT domain,user_id FROM proposals WHERE id=$1', [id])).rows[0];
     if (!pr) return json(res, 404, { error: 'Proposal not found' });
     // STRICT peer review: a same-domain expert (not the author) approves — OR the superadmin.
@@ -2678,7 +2709,7 @@ async function api(req, res, url) {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
     const sup = isSuper(u); // superadmin (Felix) can reject any pending edit
     if (!sup && !u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
-    const id = parseInt(seg[1], 10); if (!id) return json(res, 400, { error: 'bad id' });
+    const id = pathId(seg[1]); if (!id) return json(res, 400, { error: 'bad id' });
     const pr = (await db.query('SELECT domain FROM proposals WHERE id=$1', [id])).rows[0];
     if (!pr) return json(res, 404, { error: 'Proposal not found' });
     // Cross-domain conflict review: only a DIFFERENT domain can flag — OR the superadmin.

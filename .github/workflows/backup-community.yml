@@ -2,15 +2,23 @@ name: Backup community data
 
 # Durably versions all community-generated data (comments, compound edits,
 # votes, stewardship proposals, expert domains) from Railway Postgres into the
-# `community-backups` branch of this repo. Runs on a schedule and on demand.
+# PRIVATE repo Compoundingzero/rnawiki-backups.
 #
-# One-time setup (see scripts/backup-community.js header):
-#   1. In Railway, enable PUBLIC networking on the Postgres service and copy its
-#      PUBLIC connection string (host ends in .proxy.rlwy.net).
-#   2. Add it as a repo secret named DATABASE_URL
-#      (Settings -> Secrets and variables -> Actions -> New repository secret),
-#      or run:  gh secret set DATABASE_URL --repo Compoundingzero/rnawiki
-# Until the secret exists the job simply no-ops (it will not fail loudly).
+# SECURITY (changed 2026-07-28): this job used to commit the snapshot to a
+# `community-backups` branch of THIS repository, which is PUBLIC. Community
+# content — usernames, comment bodies, proposed edits — would have been
+# published permanently, and git history is unreachable by the /api/mydata
+# erasure path, so a deletion request could never have been honoured. The
+# destination is now a private repository. Do not point this back at `origin`.
+#
+# Setup (already done; recorded here so it can be rebuilt):
+#   1. Railway Postgres: public networking on, PUBLIC connection string
+#      (host ends .proxy.rlwy.net) stored as the repo secret DATABASE_URL.
+#   2. Private repo Compoundingzero/rnawiki-backups exists.
+#   3. An ed25519 deploy key with WRITE access is installed on that repo, and
+#      its private half is stored here as the secret BACKUP_DEPLOY_KEY.
+# If either secret is missing the job fails loudly — it must never silently
+# stop backing up, because Postgres has no PITR and this is the only backup.
 
 on:
   schedule:
@@ -18,11 +26,14 @@ on:
   workflow_dispatch: {}       # manual "Run workflow" button
 
 permissions:
-  contents: write             # push to the community-backups branch
+  contents: read              # no longer needs write — nothing is pushed here
 
 concurrency:
   group: community-backup
   cancel-in-progress: false
+
+env:
+  BACKUP_REPO: git@github.com:Compoundingzero/rnawiki-backups.git
 
 jobs:
   backup:
@@ -34,38 +45,54 @@ jobs:
           node-version: '20'
       - run: npm ci
 
+      - name: Check required secrets
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          BACKUP_DEPLOY_KEY: ${{ secrets.BACKUP_DEPLOY_KEY }}
+        run: |
+          missing=0
+          [ -z "$DATABASE_URL" ] && { echo "::error::DATABASE_URL secret is not set."; missing=1; }
+          [ -z "$BACKUP_DEPLOY_KEY" ] && { echo "::error::BACKUP_DEPLOY_KEY secret is not set."; missing=1; }
+          if [ "$missing" = "1" ]; then
+            echo "::error::Refusing to run. This is the only backup of community data (Postgres has no PITR)."
+            exit 1
+          fi
+
       - name: Export community data from Postgres
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           CI: 'true'
         run: node scripts/backup-community.js
 
-      - name: Commit snapshot to community-backups branch
+      - name: Push snapshot to the PRIVATE backup repo
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          BACKUP_DEPLOY_KEY: ${{ secrets.BACKUP_DEPLOY_KEY }}
         run: |
-          if [ -z "$DATABASE_URL" ]; then
-            echo "DATABASE_URL secret not set — skipping backup commit."
-            exit 0
-          fi
-          if [ ! -d backups ]; then echo "No backups produced — skipping."; exit 0; fi
-          git config user.name "pbswiki-backup-bot"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          set -euo pipefail
+          if [ ! -d backups ]; then echo "::error::No backups produced."; exit 1; fi
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$BACKUP_DEPLOY_KEY" > ~/.ssh/backup_key
+          chmod 600 ~/.ssh/backup_key
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/backup_key -o IdentitiesOnly=yes"
+
           tmp="$(mktemp -d)"
           cp -r backups/* "$tmp"/
-          git fetch origin community-backups || true
-          if git rev-parse --verify origin/community-backups >/dev/null 2>&1; then
-            git checkout -B community-backups origin/community-backups
-          else
-            git checkout --orphan community-backups
-            git rm -rf . >/dev/null 2>&1 || true
-          fi
+
+          dest="$(mktemp -d)"
+          git clone --depth 50 "$BACKUP_REPO" "$dest" 2>/dev/null || {
+            mkdir -p "$dest" && git -C "$dest" init -b main && git -C "$dest" remote add origin "$BACKUP_REPO"
+          }
+          cd "$dest"
+          git config user.name "rnawiki-backup-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           rm -rf backups && mkdir -p backups && cp -r "$tmp"/* backups/
           git add -f backups
           if git diff --cached --quiet; then
             echo "No community changes since last backup."
           else
             git commit -m "Community backup $(date -u +%FT%TZ)"
-            git push origin community-backups
-            echo "Pushed community backup."
+            git push origin HEAD:main
+            echo "Pushed community backup to the private repo."
           fi

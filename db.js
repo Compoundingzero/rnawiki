@@ -69,6 +69,11 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS role_backlink TEXT;      -- their sit
 -- Google (Gmail) sign-in: google_sub links the Google account; pass is now optional.
 ALTER TABLE users ADD COLUMN IF NOT EXISTS google_sub TEXT UNIQUE;
 ALTER TABLE users ALTER COLUMN pass DROP NOT NULL;
+-- SECURITY (2026-07-28): email had no uniqueness constraint, so two accounts could share an
+-- address. Combined with the old email-based super-admin check that was a privilege escalation,
+-- and it still allows a Google-identity takeover via the email-link branch of /api/auth/google.
+-- Case-insensitive, NULLs excluded (most accounts have no email).
+CREATE UNIQUE INDEX IF NOT EXISTS users_email_lower_uniq ON users (lower(email)) WHERE email IS NOT NULL;
 
 -- Reputation + public profile (Phase 5) -----------------------------------
 ALTER TABLE users ADD COLUMN IF NOT EXISTS reputation_points INTEGER NOT NULL DEFAULT 0;

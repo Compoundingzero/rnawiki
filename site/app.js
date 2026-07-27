@@ -982,7 +982,7 @@
     <section class="trust reveal">
       <div class="section-title center">Open, and honest</div>
       <h2 class="wr-head">Not a wiki of opinions.<br>An <span class="lead">open, evidence-ranked</span> engine.</h2>
-      <p class="trust-lead">Every protocol here is ranked by the strength of real human evidence — hype earns nothing, and it’s free to read and use today. The information is overseen by verified healthcare professionals worldwide who stand behind its accuracy and credibility.</p>
+      <p class="trust-lead">Every protocol here is ranked by the strength of real human evidence — hype earns nothing, and it’s free to read and use today. It is compiled from published research, it says plainly where the evidence is thin or contested, and it is not a substitute for seeing a clinician.</p>
       <div class="trust-row">
         <div class="trust-pill"><b>${cc.compounds}</b> compounds, evidence-ranked</div>
         <div class="trust-pill"><b>${GRAPH.problems.length}</b> problems, mapped to root causes</div>
@@ -3801,16 +3801,12 @@
     m.querySelector('[data-link]').onclick = async () => { try { await navigator.clipboard.writeText(url); toast('Link copied 🔗'); } catch (e) { prompt('Copy link:', url); } };
     m.querySelector('[data-blog]').onclick = async () => { try { await navigator.clipboard.writeText(blogHtml); toast('Blog HTML copied — paste into your site'); } catch (e) { prompt('Copy HTML:', blogHtml); } };
   }
-  // Movement heartbeat on the home page. Hidden until there's real activity — never shows a fake or zero count.
-  async function mountHomeStat() {
-    const el = document.getElementById('home-stat'); if (!el) return;
-    const s = await api.stats(); if (!s) return;
-    const n = Number(s.helped != null ? s.helped : s.experiments) || 0; if (!n) return;
-    const next = [10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 25000, 50000, 100000].find(m => m > n);
-    const bar = next ? `<div class="home-stat-bar"><span style="width:${Math.max(3, Math.round(n / next * 100))}%"></span></div><div class="home-stat-sub">${(next - n).toLocaleString()} to go until the community hits ${next.toLocaleString()}</div>` : '';
-    el.innerHTML = `🧬 <b>${n.toLocaleString()}</b> ${n === 1 ? 'person' : 'people'} helped${bar}`;
-    el.hidden = false;
-  }
+  // REMOVED 2026-07-28 (fabrication cluster, v3 Phase -1.4): the "N people helped" counter.
+  // `helped` counted people who STARTED a protocol or built a stack. outcome_checkins is 0 —
+  // nobody has ever reported an outcome — so "helped" asserted a result the data cannot support,
+  // and most of the counted keys were the audit's own driven sessions. Do not reinstate this
+  // without an outcome measure behind it.
+  async function mountHomeStat() { }
 
   // ---------- My Plan — the personal execution page (the "kitchen") ----------
   function planLoading() { return `<div class="empty"><h1>Loading your plan…</h1></div>`; }
