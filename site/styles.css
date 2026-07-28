@@ -3023,3 +3023,9 @@ a.dp-name:hover{color:var(--accent)}
 .lf-myths dd::before{content:"✓ ";color:var(--accent,#10b981);font-weight:700}
 .lf-conn dd{margin:0 0 .2rem 0;line-height:1.6;color:var(--muted)}
 @media print{ .learn-flat{border-top:none} }
+
+/* /about — the how-to-use instructions (2026-07-28) */
+.about-steps{padding-left:1.25rem;line-height:1.62}
+.about-steps li{margin:0 0 .75rem}
+.about-key{list-style:none;padding:0;margin:.4rem 0}
+.about-key li{margin:0 0 .7rem;padding-left:.9rem;border-left:2px solid var(--line,#e0e0e0);line-height:1.6}

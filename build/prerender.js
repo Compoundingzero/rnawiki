@@ -353,6 +353,24 @@ D.compounds.forEach((c) => {
   const usedInHtml = usedIn.length ? `<h2>Used in these protocols</h2><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}</a></li>`).join('')}</ul>` : '';
   const cmpLinks = compoundCompareLinks[c.id] || [];
   const compareHtml = cmpLinks.length ? `<h2>Compare ${esc(c.name)}</h2><ul>${cmpLinks.slice(0, 8).map((x) => `<li><a href="${x.route}">${esc(c.name)} vs ${esc(x.other)}</a></li>`).join('')}</ul>` : '';
+  // ---- INTERNAL LINKS TO /target/ (added 2026-07-28) ----------------------------------------
+  // prerender.js emitted ZERO `/target/` hrefs anywhere, so 102 of the 103 target pages had no
+  // inbound link from the site and were reachable only from sitemap.xml. Search Console confirms
+  // the consequence: of 151 URLs in "Crawled - currently not indexed", exactly ONE is a /target/
+  // page. They are not being judged thin and they are not canonical duplicates — Google has
+  // largely never crawled them. A sitemap gets a URL known; internal links get it crawled.
+  // Every compound already NAMES its molecular targets, so the link costs no new authoring.
+  const tSet = new Set((D.targets || []).map((t) => tkey(t.sym)));
+  const tLinks = (c.targets || [])
+    .filter((t) => tSet.has(tkey(t.sym)))
+    .filter((t, i, a) => a.findIndex((x) => tkey(x.sym) === tkey(t.sym)) === i);
+  const targetLinksHtml = tLinks.length
+    ? `<h2>Molecular targets ${esc(c.name)} acts on</h2><ul>${tLinks.map((t) => {
+        const full = (D.targets || []).find((x) => tkey(x.sym) === tkey(t.sym));
+        const n = full ? (full.compoundIds || []).length : 0;
+        return `<li><a href="/target/${tkey(t.sym)}">${esc(t.sym)}</a>${full && full.name && full.name.toLowerCase() !== t.sym.toLowerCase() ? ` — ${esc(full.name)}` : ''}${n > 1 ? ` <span class="muted">(${n} compounds act here)</span>` : ''}</li>`;
+      }).join('')}</ul>`
+    : '';
   const pathLink = (c.pathwayIds || []).length && D.pathways[c.pathwayIds[0]] ? `<p><b>How it works:</b> <a href="/pathway/${c.pathwayIds[0]}">the ${esc(D.pathways[c.pathwayIds[0]].shortLabel)} pathway →</a></p>` : '';
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: c.category, route: '/' }, { name: c.name }])}
     <div class="detail"><h1>${esc(c.name)}</h1>
@@ -361,6 +379,7 @@ D.compounds.forEach((c) => {
     ${c.plain ? `<h2>In plain English</h2><p>${esc(mds(c.plain))}</p>` : ''}
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
     ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}
+    ${targetLinksHtml}
     ${c.protocol ? `<h2>Protocol</h2><p>${esc(c.protocol)}</p>` : ''}
     ${c.watch ? `<h2>Watch out</h2><p>${esc(c.watch)}</p>` : ''}
     ${c.bottom ? `<h2>Bottom line</h2><p>${esc(c.bottom)}</p>` : ''}
@@ -916,12 +935,66 @@ let written = 0;
       <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
       <h2>What is inside</h2>
       <p><strong>${cnt.compounds || D.compounds.length} compounds</strong> across <strong>${cats.length} categories</strong>, <strong>${(GRAPH.problems || []).length} problems</strong> broken down into their root causes, and <strong>${(D.pathways || []).length} master pathways</strong> with their molecular targets. Each compound carries a plain-English explanation, the named receptor or enzyme it acts on, a link to the official gene or compound record, and an honest verdict.</p>
-      <h2>How to read it</h2>
-      <p>Start from what you want to change — <a href="/solve">a problem or a goal</a> — not from a compound. Every problem is split into <em>root causes</em>, because the fix depends on which one you have. Each protocol then gives you the movement, the food and the evidence-ranked compounds for that specific cause.</p>
-      <p>Evidence strength is shown as stars. <a href="/legend">What the stars and badges mean →</a></p>
+      <h2>How to use this site — start here</h2>
+      <p><strong>Start from what you want to change, not from a compound.</strong> That is the one
+      instruction that matters. Searching "ashwagandha" tells you about a plant. Starting from
+      "I can't fall asleep" tells you which of the several different things causing that you
+      actually have — and the fix is different for each.</p>
+      <ol class="about-steps">
+        <li><strong>Name the problem or goal.</strong> Go to <a href="/solve">Solve</a> and pick it.
+        41 problems, each broken into its root causes.</li>
+        <li><strong>Pick your root cause.</strong> Every problem lists 1–5. This is the step most
+        health advice skips, and it is why most health advice fails: insomnia from a late body clock
+        and insomnia from night-time cortisol need opposite interventions. If the description does
+        not sound like you, open a sibling cause — they are linked at the bottom of every protocol.</li>
+        <li><strong>Read the protocol in order: Move → Fuel → Stack.</strong> That order is
+        deliberate. Movement and food change more, more cheaply and more safely, than any
+        supplement. The Stack is last because it should be.</li>
+        <li><strong>Check "When to reassess or see a doctor" before you start.</strong> It is on
+        every protocol page. Some things on this site are not self-treatable and the page will say
+        so plainly.</li>
+        <li><strong>Follow the science down as far as you want.</strong> Each compound links to the
+        <a href="/pathways">pathway</a> it works through and the molecular targets it acts on. That
+        is the layer that turns a list of supplements into an understanding — learn one pathway and
+        you have explained a whole family of compounds at once.</li>
+      </ol>
+
+      <h2>How to read the signals</h2>
+      <ul class="about-key">
+        <li><strong>★ Stars</strong> rate <em>human</em> evidence for a compound <em>overall</em>.
+        They are not a grade for your specific goal, and they are not a prediction of how well it
+        will work for you. Animal-only evidence is capped at two stars and labelled.
+        <a href="/legend">Full key →</a></li>
+        <li><strong>Badges</strong> say who <em>approved</em> a molecule. A badge is
+        <em>not</em> a statement about where you can buy it — a medicine can be approved and still
+        be prescription-only.</li>
+        <li><strong>Availability</strong> is shown separately, for Singapore: over the counter,
+        pharmacy medicine, prescription only, controlled, or not approved.</li>
+        <li><strong>Prescription medicines appear in a separate block</strong> headed "Medical
+        options — discuss with a doctor". They are never in the Stack, never ranked, and never
+        given a dose here. They are listed so you know they exist and can raise them with a
+        clinician.</li>
+        <li><strong>Where the evidence is thin, contested or animal-only, the page says so.</strong>
+        Hedging is not weakness here — an unhedged claim is the thing to distrust.</li>
+      </ul>
+
+      <h2>What this site will not do</h2>
+      <ul class="about-key">
+        <li>It will not tell you what to buy, or name a brand to buy. Nothing is for sale and there
+        are no affiliate links.</li>
+        <li>It will not give doses for prescription medicines.</li>
+        <li>It will not diagnose you. The root-cause quiz is a way to narrow reading, not a
+        clinical assessment.</li>
+        <li>It will not pretend to certainty it does not have.</li>
+      </ul>
+
       <h2>How it is made, and its limits</h2>
-      <p>Pages are drafted with AI assistance and edited by a human. <strong>They are not reviewed by a clinician.</strong> Where the evidence is thin, contested, or animal-only, the page says so rather than rounding up. Star ratings summarise the human evidence for a compound overall — they are not a grade for your specific use.</p>
-      <p>Corrections are welcome and wanted. If something here is wrong, it should be fixed rather than defended.</p>
+      <p>Pages are drafted with AI assistance and edited by a human. <strong>They are not reviewed
+      by a clinician.</strong> Star ratings summarise the human evidence for a compound overall, not
+      for your specific use.</p>
+      <p><strong>Found something wrong?</strong> That is the most useful thing you can send. Errors
+      here should be fixed rather than defended — corrections are welcome and wanted.</p>
+
       <h2>Where to go next</h2>
       <ul><li><a href="/solve">Solve a problem or reach a goal</a></li><li><a href="/az">Every compound, A–Z</a></li><li><a href="/browse">Browse by category</a></li><li><a href="/pathways">The master pathways</a></li><li><a href="/learn">Start learning from the beginning</a></li></ul>
     </div>` }));

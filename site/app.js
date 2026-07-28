@@ -2433,23 +2433,100 @@
       <div class="compare-table" id="cmp-out"></div>`;
   }
 
+  // Kept in step with build/prerender.js's /about body (see the note there). Three times today a
+  // page was fixed in one document and not the other; this is the same page, not a variant.
   function aboutPage() {
     const c = D.meta.counts;
+    const nP = (GRAPH.problems || []).length;
+    const nR = (GRAPH.problems || []).reduce((n, p) => n + ((p.root_causes || []).length), 0);
     return `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'About' }])}<h1>About RNAwiki</h1>
-      <div class="disclaimer"><strong>Not medical advice.</strong> Educational content only. Nothing here recommends using any substance. Non-approved and controlled substances are documented for completeness and harm-reduction, not endorsement. Consult a clinician before taking anything.</div>
-      <h2>Why RNA — the blueprint vs. the builder</h2>
-      <p>Most people idolise DNA — they treat it as destiny, the master code that dictates how strong they can get and how long they'll live. But there's a flaw in that thinking: <b>DNA does nothing on its own.</b> It's a blueprint locked inside a vault. A blueprint can't pour concrete, frame a wall, or build a house. It's pure, static potential.</p>
-      <p><b>RNA is the action.</b> RNA is the messenger, the architect, and the builder. It reads the static code of your DNA, leaves the vault, and actively builds the proteins, tissues, and enzymes that make up your physical reality. Every adaptation you force — lifting heavy, recovering from DOMS, running a longevity protocol — is a wave of RNA translating your genes into a stronger, longer-lived you. DNA is your starting line; RNA is the work you put in.</p>
-      <p>RNAwiki is built on this exact first principle. We're not a static encyclopedia of facts — we're the messenger. This platform takes the foundational code of human performance and translates it into actionable, real-world results you can use today. It cuts through the noise: start from the thing you want to improve, and you get the compounds that genuinely help — ranked honestly by how strong the human evidence is, with the real mechanism and the real catch. No hype, no affiliate spin. Just what works, what doesn't, and why.</p>
-      <h2>What's inside</h2>
-      <p><strong>${c.compounds} compounds</strong> across <strong>${c.categories} categories</strong> — supplements, prescription drugs, and non-approved research compounds — each with a plain-English explanation, the science behind it, and a link to the official record. Plus <strong>${c.targets} molecular targets</strong> and <strong>${c.pathways} pathways</strong> that connect them.</p>
-      <h2>How to use it</h2>
-      <ol><li>Pick <a href="#/">a goal</a> and browse what helps, best-evidence first.</li><li>Read any compound for the honest verdict.</li><li>Want the deeper science? Start with <a href="#/learn">Foundations</a> and the <a href="#/pathways">pathways</a>.</li></ol>
-      <p><a href="#/legend">What do the stars and colours mean? →</a></p>
-      <h2>Contribute</h2>
-      <p>RNAwiki is a community wiki — spotted a missing compound, an error, or new evidence? Create an account and edit any page, vote on protocols, or join a protocol's <b>Stewardship</b> tab. Clinicians (physio, dietitian, pharmacist/MD) can steward protocols within their exact domain and get a verified badge. See the <a href="/contributors">Contributors</a> page, or <a href="mailto:felix360506@gmail.com?subject=RNAwiki%20suggestion">email a suggestion</a>.</p></div>`;
+      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
+
+      <h2>What is inside</h2>
+      <p><strong>${c.compounds} compounds</strong> across <strong>${c.categories} categories</strong>, <strong>${nP} problems</strong> broken down into <strong>${nR} root-cause protocols</strong>, and ${(D.pathways || []).length} master pathways with their molecular targets. Free, no paywall, no account needed.</p>
+
+      <h2>How to use this site — start here</h2>
+      <p><strong>Start from what you want to change, not from a compound.</strong> That is the one instruction that matters. Searching "ashwagandha" tells you about a plant. Starting from "I can't fall asleep" tells you which of the several different things causing that you actually have — and the fix is different for each.</p>
+      <ol class="about-steps">
+        <li><strong>Name the problem or goal.</strong> Go to <a href="#/solve">Solve</a> and pick it.</li>
+        <li><strong>Pick your root cause.</strong> Every problem lists 1–5. This is the step most health advice skips, and it is why most health advice fails: insomnia from a late body clock and insomnia from night-time cortisol need opposite interventions. If the description does not sound like you, open a sibling cause.</li>
+        <li><strong>Read the protocol in order: Move → Fuel → Stack.</strong> That order is deliberate. Movement and food change more, more cheaply and more safely, than any supplement. The Stack is last because it should be.</li>
+        <li><strong>Check "When to reassess or see a doctor" before you start.</strong> It is on every protocol page. Some things here are not self-treatable and the page will say so.</li>
+        <li><strong>Follow the science down as far as you want.</strong> Each compound links to the <a href="#/pathways">pathway</a> it works through and the targets it acts on — learn one pathway and you have explained a whole family of compounds at once.</li>
+      </ol>
+
+      <h2>How to read the signals</h2>
+      <ul class="about-key">
+        <li><strong>★ Stars</strong> rate <em>human</em> evidence for a compound <em>overall</em> — not a grade for your goal, not a prediction for you. Animal-only evidence is capped at two stars and labelled. <a href="#/legend">Full key →</a></li>
+        <li><strong>Badges</strong> say who <em>approved</em> a molecule. A badge is <em>not</em> a statement about where you can buy it.</li>
+        <li><strong>Availability</strong> is shown separately, for Singapore.</li>
+        <li><strong>Prescription medicines sit in a separate block</strong> headed "Medical options — discuss with a doctor". Never in the Stack, never ranked, never dosed here.</li>
+        <li><strong>Where the evidence is thin or contested, the page says so.</strong> An unhedged claim is the thing to distrust.</li>
+      </ul>
+
+      <h2>What this site will not do</h2>
+      <ul class="about-key">
+        <li>It will not tell you what to buy, or name a brand to buy. Nothing is for sale; no affiliate links.</li>
+        <li>It will not give doses for prescription medicines.</li>
+        <li>It will not diagnose you. The root-cause quiz narrows your reading; it is not a clinical assessment.</li>
+        <li>It will not pretend to certainty it does not have.</li>
+      </ul>
+
+      <h2>How it is made, and its limits</h2>
+      <p>Pages are drafted with AI assistance and edited by a human. <strong>They are not reviewed by a clinician.</strong></p>
+      <p><strong>Found something wrong?</strong> That is the most useful thing you can send. Errors here should be fixed rather than defended.</p>
+
+      <h2>Where to go next</h2>
+      <ul><li><a href="#/solve">Solve a problem or reach a goal</a></li><li><a href="#/az">Every compound, A–Z</a></li><li><a href="#/browse">Browse by category</a></li><li><a href="#/pathways">The master pathways</a></li><li><a href="#/newsletter">The weekly newsletter</a></li></ul>
+    </div>`;
   }
 
+  // ---------- /newsletter ----------
+  // ADDED 2026-07-28. The prerendered page shipped without a matching SPA route, so a hard load of
+  // /newsletter worked (curl 200) while CLICKING the footer link from anywhere inside the app fell
+  // through route() to notFound(). Third instance today of the same class: build a prerendered page,
+  // forget the hydrated twin. Rule of thumb — if prerender.js gains an add('/x'), app.js needs a
+  // route for 'x' in the same commit.
+  function nlForm(source, cta) {
+    return `<form class="nl-form" data-nl data-source="${esc(source)}" novalidate>
+      <label class="sr-only" for="nl-e-${esc(source)}">Your email address</label>
+      <input id="nl-e-${esc(source)}" class="nl-input" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com">
+      <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="nl-btn" type="submit">${esc(cta)}</button>
+      <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
+      <p class="nl-note">One email a week. Unsubscribe in one click. No spam, ever.</p>
+    </form>`;
+  }
+  function newsletterPage() {
+    const nC = D.compounds.length;
+    const nP = (GRAPH.problems || []).length;
+    const nR = (GRAPH.problems || []).reduce((n, p) => n + ((p.root_causes || []).length), 0);
+    return `<div class="nl-page">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Newsletter' }])}
+      <section class="nl-hero">
+        <p class="nl-kicker">The RNAwiki newsletter</p>
+        <h1>One thing a week that changes how you read the evidence.</h1>
+        <p class="nl-lead">Most health advice tells you what to take. This tells you <em>why it would work</em>, how strongly that is actually shown, and where the evidence runs out — so you can judge the next claim yourself.</p>
+        ${nlForm('hero', 'Send me the weekly email')}
+      </section>
+      <section class="nl-what"><h2>What lands in your inbox</h2><ul class="nl-list">
+        <li><b>A mechanism, made concrete.</b> Not "supports metabolic health" — the actual receptor or enzyme, what it does, and what changes downstream.</li>
+        <li><b>A popular claim, pressure-tested.</b> Where the number everyone quotes came from, and whether the study behind it holds it up. Often it does not.</li>
+        <li><b>A protocol, broken to its root cause.</b> The same problem has different fixes depending on which cause you have. Most advice skips that step.</li>
+      </ul></section>
+      <section class="nl-honest"><h2>What it is not</h2><ul class="nl-list nl-not">
+        <li>Not a supplement-of-the-month. Nothing here is for sale and there are no affiliate links.</li>
+        <li>Not medical advice. It is educational, and it says so where it matters.</li>
+        <li>Not padded. One email, once a week. If there is nothing worth sending, nothing gets sent.</li>
+      </ul></section>
+      <section class="nl-proof"><h2>Where it comes from</h2>
+        <p>It is written out of RNAwiki itself — <b>${nC} compounds</b>, <b>${nP} problems</b> broken into <b>${nR} root-cause protocols</b>, and the molecular targets underneath them. Free to read, no paywall, no account needed.</p>
+        <p class="nl-caveat">Written with AI assistance and edited by a human. Not reviewed by a clinician. Where the evidence is thin, contested or animal-only, it says so instead of rounding up — <a href="#/about">how this site is made</a>.</p>
+      </section>
+      <section class="nl-close"><h2>Start this week</h2>
+        <p>Free. One click to leave, and the link is in every email.</p>
+        ${nlForm('footer', 'Subscribe — it is free')}
+      </section></div>`;
+  }
   function notFound() { return `<div class="empty"><h1>Not found</h1><p><a href="#/">← Home</a></p></div>`; }
 
   // ---------- contributors showcase ----------
@@ -6297,6 +6374,7 @@
     else if (parts[0] === 'plan') html = planLoading();
     else if (parts[0] === 'progress') html = planLoading();
     else if (parts[0] === 'legend') html = legendPage();
+    else if (parts[0] === 'newsletter') html = newsletterPage();
     else if (parts[0] === 'for-clinicians') html = forClinicians();
     // FIXED 2026-07-28: this rewrote the URL bar to "/" and rendered the homepage, discarding the
     // fully authored aboutPage() -- which holds the site's ONLY disclaimer -- and leaving /about
