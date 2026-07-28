@@ -1925,8 +1925,18 @@ const SECURITY_HEADERS = {
     "script-src 'self' 'unsafe-inline' https://accounts.google.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
-    "connect-src 'self' https://accounts.google.com",
-    "frame-src https://accounts.google.com",
+    // pubchem.ncbi.nlm.nih.gov is fetched by app.js:744 for the molecular formula / weight chips on
+    // every compound page carrying a CID (150 of 170). Blocking it did not throw anything a user
+    // could see — the chips are `hidden` until the fetch resolves, so they just never appeared.
+    // The *images* from the same host kept working the whole time because img-src allows https:,
+    // which is exactly why this looked fine on a visual check.
+    "connect-src 'self' https://accounts.google.com https://pubchem.ncbi.nlm.nih.gov",
+    // sketchfab.com is the 3D muscle model embedded on all 17 /muscle pages (MUSCLE_MODEL_DEFAULT
+    // in both renderers). Shipping this CSP without it silently broke the single most visual
+    // element on the site — the page still rendered, the iframe just never loaded, so nothing
+    // failed loudly enough to notice. Caught by watching the browser console, not the HTML.
+    // If you add another embed, it has to be listed here or it will fail the same quiet way.
+    "frame-src https://accounts.google.com https://sketchfab.com",
     "frame-ancestors 'none'",
     "base-uri 'self'",
     "form-action 'self'",

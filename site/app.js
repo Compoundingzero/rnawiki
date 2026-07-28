@@ -283,6 +283,102 @@
     </a>`;
   }
   function crumbs(items) { return `<div class="crumbs">${items.map((it, i) => it.href ? `<a href="${it.href}">${it.label}</a>` : `<span>${it.label}</span>`).join('<span class="sep">›</span>')}</div>`; }
+  // ---- BLOCK RENDERER (2026-07-28) ----------------------------------------------------------
+  // Two measured defects in how authored prose reaches the page, both presentation-only:
+  //
+  //   1. MARKDOWN LISTS RENDERED AS PROSE. 87 blocks in learn_expand.json (8,721 words) are authored
+  //      as "- item\n\n- item". Both renderers wrapped the whole thing in one <p>, and HTML collapses
+  //      the newlines — so /pathway/6 shipped a 558-word wall of text with literal dashes in it. The
+  //      longest "paragraphs" on the site were never paragraphs.
+  //   2. SLABS. 913 blocks run past 90 words; the reader gets no landing place. Splitting at sentence
+  //      boundaries takes the 90th percentile from 215 words to 93 with zero re-authoring.
+  //
+  // This changes not one word of content — it only decides where a block ends. Verified lossless
+  // across all 45 courses (0 words added or lost).
+  // `inline` is passed in because the two documents escape differently: app.js formats-then-escapes
+  // (mdInline), prerender.js escapes-then-formats (mdSafe). Do not hardcode either one here.
+  const MD_ABBR = /(?:\b(?:et al|vs|i\.e|e\.g|cf|approx|Dr|Prof|Mr|Mrs|Ms|St|Fig|No|ca|resp|incl|max|min|avg|ie|eg)\.)$/i;
+  function mdSentences(text) {
+    const out = []; let buf = '';
+    // Judged in context: a decimal (p<0.05), an abbreviation (et al.), an initial (J. Smith) and a
+    // real full stop are indistinguishable to a naive /[.!?]\s/ split.
+    for (let i = 0; i < text.length; i++) {
+      buf += text[i];
+      if (!/[.!?]/.test(text[i])) continue;
+      const next = text.slice(i + 1);
+      if (!/^\s/.test(next)) continue;
+      if (/^\s*$/.test(next)) break;
+      if (!/^\s+["'“(]?[A-Z0-9]/.test(next)) continue;
+      if (MD_ABBR.test(buf.trimEnd())) continue;
+      if (/\b[A-Z]\.$/.test(buf.trimEnd())) continue;
+      out.push(buf.trim()); buf = '';
+    }
+    if (buf.trim()) out.push(buf.trim());
+    return out;
+  }
+  const mdWc = (s) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+  function mdChunk(block, MAX, TARGET) {
+    if (mdWc(block) <= MAX) return [block];
+    const sents = mdSentences(block);
+    if (sents.length < 2) return [block];         // one giant sentence — leave it whole, don't maim it
+    const out = []; let cur = [];
+    for (const s of sents) {
+      // Close the current chunk BEFORE the sentence that would burst it, not after. Appending first
+      // and checking after let a 64-word chunk plus a 70-word sentence ship as 134 words — which is
+      // how /learn/0 kept a 135-word paragraph through the first pass of this fix.
+      if (cur.length && mdWc(cur.join(' ') + ' ' + s) > MAX) { out.push(cur.join(' ')); cur = []; }
+      cur.push(s);
+      if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
+    }
+    if (cur.length) {
+      // A stranded tail of a few words reads as a mistake; fold it back.
+      if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
+      else out.push(cur.join(' '));
+    }
+    return out;
+  }
+  function mdBlocks(text, inline, MAX, TARGET) {
+    MAX = MAX || 90; TARGET = TARGET || 65;
+    const src = String(text || '').trim();
+    if (!src) return '';
+    const out = [];
+    let list = null;      // { ord: bool, items: [] }
+    const flushList = () => {
+      if (!list) return;
+      const tag = list.ord ? 'ol' : 'ul';
+      out.push(`<${tag} class="md-list">${list.items.map((it) => `<li>${inline(it)}</li>`).join('')}</${tag}>`);
+      list = null;
+    };
+    // Split on blank lines first, then walk each block line by line so a list authored with single
+    // newlines and a list authored with blank lines between items both come out as one <ul>.
+    for (const block of src.split(/\n\n+/)) {
+      const lines = block.split('\n');
+      let para = [];
+      const flushPara = () => {
+        const t = para.join(' ').trim(); para = [];
+        if (!t) return;
+        flushList();
+        mdChunk(t, MAX, TARGET).forEach((c) => out.push(`<p>${inline(c)}</p>`));
+      };
+      for (const raw of lines) {
+        const m = raw.match(/^\s*(?:([-*•])|(\d+)[.)])\s+(.*)$/);
+        if (m) {
+          flushPara();
+          const ord = !!m[2];
+          if (!list || list.ord !== ord) { flushList(); list = { ord, items: [] }; }
+          list.items.push(m[3]);
+        } else if (list && /^\s+\S/.test(raw) && raw.trim()) {
+          list.items[list.items.length - 1] += ' ' + raw.trim();   // indented continuation of an item
+        } else if (raw.trim()) {
+          if (list) flushList();
+          para.push(raw.trim());
+        }
+      }
+      flushPara();
+    }
+    flushList();
+    return out.join('');
+  }
   function mdInline(s) {
     if (!s) return '';
     const links = [];
@@ -1463,7 +1559,7 @@
     return `<div class="j-ribbon" data-lvl="1"><span class="jr-ico">🧭</span><span class="jr-txt">Learning journey · <b>${esc(s.node.section)}</b> · ${s.idx + 1} of ${s.total}</span><span class="jr-bar"><i style="width:${pct}%"></i></span></div>`;
   }
   // ---- authored learning-layer components (render only when the sidecar data exists) ----
-  function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div><p>${mdInline(c.analogy)}</p></div></div>`; }
+  function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div>${mdBlocks(c.analogy, mdInline)}</div></div>`; }
   function mechanismCascade(c, shareId) {
     if (!Array.isArray(c.mechSteps) || !c.mechSteps.length) return '';
     const anyPredict = c.mechSteps.some(s => s.predict);
@@ -1535,8 +1631,8 @@
   }
   // ---- Pedagogy components (render only when authored; each teaches, not just informs) ----
   function hookBox(c) { const h = c.hook; if (!h || !Array.isArray(h.questions) || !h.questions.length) return ''; return `<div class="hook"><div class="hook-h">First — could you answer these?</div><ol class="hook-qs">${h.questions.map(q => `<li>${esc(q)}</li>`).join('')}</ol><p class="hook-sub">Probably not yet. By the end of this page you'll answer all three without thinking — that's the whole point.</p></div>`; }
-  function hookPayoff(c) { const h = c.hook; if (!h || !h.payoff) return ''; return `<div class="hook-payoff"><div class="hp-h">🎯 Remember those three questions?</div><p>${mdInline(h.payoff)}</p></div>`; }
-  function bigIdeaBanner(c) { if (!c.bigIdea) return ''; return `<div class="bigidea"><span class="bi-tag">THE ONE IDEA TO REMEMBER</span><p>${mdInline(c.bigIdea)}</p></div>`; }
+  function hookPayoff(c) { const h = c.hook; if (!h || !h.payoff) return ''; return `<div class="hook-payoff"><div class="hp-h">🎯 Remember those three questions?</div>${mdBlocks(h.payoff, mdInline)}</div>`; }
+  function bigIdeaBanner(c) { if (!c.bigIdea) return ''; return `<div class="bigidea"><span class="bi-tag">THE ONE IDEA TO REMEMBER</span>${mdBlocks(c.bigIdea, mdInline)}</div>`; }
   function stakesLine(c) { return c.stakes ? `<p class="stakes">🌍 ${mdInline(c.stakes)}</p>` : ''; }
   function expertFramework(c) {
     const f = c.framework; if (!f) return '';
@@ -1940,98 +2036,6 @@
   }
   // Full-course renderer for an expanded /learn module (Foundations, energy, metabolism, muscle).
   // Reuses the chaptered pedagogy; adds fundamentals / deep-dive / expert-lens / connections sections.
-  // ---- BLOCK RENDERER (2026-07-28) ----------------------------------------------------------
-  // Two measured defects in how authored prose reaches the page, both presentation-only:
-  //
-  //   1. MARKDOWN LISTS RENDERED AS PROSE. 87 blocks in learn_expand.json (8,721 words) are authored
-  //      as "- item\n\n- item". Both renderers wrapped the whole thing in one <p>, and HTML collapses
-  //      the newlines — so /pathway/6 shipped a 558-word wall of text with literal dashes in it. The
-  //      longest "paragraphs" on the site were never paragraphs.
-  //   2. SLABS. 913 blocks run past 90 words; the reader gets no landing place. Splitting at sentence
-  //      boundaries takes the 90th percentile from 215 words to 93 with zero re-authoring.
-  //
-  // This changes not one word of content — it only decides where a block ends. Verified lossless
-  // across all 45 courses (0 words added or lost).
-  // `inline` is passed in because the two documents escape differently: app.js formats-then-escapes
-  // (mdInline), prerender.js escapes-then-formats (mdSafe). Do not hardcode either one here.
-  const MD_ABBR = /(?:\b(?:et al|vs|i\.e|e\.g|cf|approx|Dr|Prof|Mr|Mrs|Ms|St|Fig|No|ca|resp|incl|max|min|avg|ie|eg)\.)$/i;
-  function mdSentences(text) {
-    const out = []; let buf = '';
-    // Judged in context: a decimal (p<0.05), an abbreviation (et al.), an initial (J. Smith) and a
-    // real full stop are indistinguishable to a naive /[.!?]\s/ split.
-    for (let i = 0; i < text.length; i++) {
-      buf += text[i];
-      if (!/[.!?]/.test(text[i])) continue;
-      const next = text.slice(i + 1);
-      if (!/^\s/.test(next)) continue;
-      if (/^\s*$/.test(next)) break;
-      if (!/^\s+["'“(]?[A-Z0-9]/.test(next)) continue;
-      if (MD_ABBR.test(buf.trimEnd())) continue;
-      if (/\b[A-Z]\.$/.test(buf.trimEnd())) continue;
-      out.push(buf.trim()); buf = '';
-    }
-    if (buf.trim()) out.push(buf.trim());
-    return out;
-  }
-  const mdWc = (s) => (s.trim() ? s.trim().split(/\s+/).length : 0);
-  function mdChunk(block, MAX, TARGET) {
-    if (mdWc(block) <= MAX) return [block];
-    const sents = mdSentences(block);
-    if (sents.length < 2) return [block];         // one giant sentence — leave it whole, don't maim it
-    const out = []; let cur = [];
-    for (const s of sents) {
-      cur.push(s);
-      if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
-    }
-    if (cur.length) {
-      // A stranded tail of a few words reads as a mistake; fold it back.
-      if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
-      else out.push(cur.join(' '));
-    }
-    return out;
-  }
-  function mdBlocks(text, inline, MAX, TARGET) {
-    MAX = MAX || 90; TARGET = TARGET || 65;
-    const src = String(text || '').trim();
-    if (!src) return '';
-    const out = [];
-    let list = null;      // { ord: bool, items: [] }
-    const flushList = () => {
-      if (!list) return;
-      const tag = list.ord ? 'ol' : 'ul';
-      out.push(`<${tag} class="md-list">${list.items.map((it) => `<li>${inline(it)}</li>`).join('')}</${tag}>`);
-      list = null;
-    };
-    // Split on blank lines first, then walk each block line by line so a list authored with single
-    // newlines and a list authored with blank lines between items both come out as one <ul>.
-    for (const block of src.split(/\n\n+/)) {
-      const lines = block.split('\n');
-      let para = [];
-      const flushPara = () => {
-        const t = para.join(' ').trim(); para = [];
-        if (!t) return;
-        flushList();
-        mdChunk(t, MAX, TARGET).forEach((c) => out.push(`<p>${inline(c)}</p>`));
-      };
-      for (const raw of lines) {
-        const m = raw.match(/^\s*(?:([-*•])|(\d+)[.)])\s+(.*)$/);
-        if (m) {
-          flushPara();
-          const ord = !!m[2];
-          if (!list || list.ord !== ord) { flushList(); list = { ord, items: [] }; }
-          list.items.push(m[3]);
-        } else if (list && /^\s+\S/.test(raw) && raw.trim()) {
-          list.items[list.items.length - 1] += ' ' + raw.trim();   // indented continuation of an item
-        } else if (raw.trim()) {
-          if (list) flushList();
-          para.push(raw.trim());
-        }
-      }
-      flushPara();
-    }
-    flushList();
-    return out.join('');
-  }
   const paras = (s) => mdBlocks(s, mdInline);
   function learnCourse(entry, ctx) {
     const pc = Object.assign({}, entry, { name: ctx.name, id: 'lc-' + ctx.key });
@@ -2081,12 +2085,40 @@
   // The "Your day" plan — a layman-friendly 24h checklist; each item expands to the "why".
   function musclePage(id) {
     const m = muscleById[id]; if (!m) return notFound();
-    if (m.expand) return learnCourse(m.expand, { name: m.name, key: 'muscle-' + id, crumb: anatomyCrumb(m.name), badge: '<span class="pw-badge">💪 Muscle course</span>' });
     const a = m.anatomy || {};
     const exList = arr => arr && arr.length ? `<div class="anat-exlist">${arr.map(e => `<a class="anat-ex" href="#/exercise/${esc(e.id)}"><b>${esc(e.name)}</b>${e.level ? `<em>${esc(e.level)}</em>` : ''}</a>`).join('')}</div>` : '<p class="muted">None catalogued yet.</p>';
     const model = m.model_embed
       ? `<div class="section-title">This muscle in 3D</div><div class="anat-3d"><iframe title="${esc(m.name)} — interactive 3D anatomy" src="${esc(m.model_embed)}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe></div><p class="fig-credit">Drag to rotate · scroll to zoom — see the shape, origin and insertion of the ${esc(m.name.toLowerCase())}. 3D model via Sketchfab (CC-BY); the ℹ button credits the author. Origin, insertion and action are detailed just below.</p>`
       : `<div class="section-title">This muscle in 3D</div><div class="anat-3d-soon"><span class="a3d-ico">🧊</span><p>A 3D model specific to the <b>${esc(m.name.toLowerCase())}</b> is being added. Its origin, insertion and action are detailed just below — and a verified physiotherapist can attach a model via ✎ Edit.</p></div>`;
+    // ---- THE COURSE SHORT-CIRCUIT USED TO EAT THIS WHOLE PAGE (fixed 2026-07-28) ----
+    // `if (m.expand) return learnCourse(...)` sat at the TOP of this function, and all 17 muscles
+    // have `.expand`. So on every muscle page the SPA silently dropped the 3D model, the anatomy
+    // card, the origin/insertion, the exercises and the stretches — while the PRERENDERED page kept
+    // all of it. The two documents disagreed and the app was the degraded one, which is the reverse
+    // of the usual assumption. Identical bug to the pathway diagram that rendered on 0 of 16 pages:
+    // an early return above the visual content. When you add a `return learnCourse(...)`, check what
+    // is BELOW it.
+    const anatChapter = {
+      icon: '🦴', label: 'Anatomy & training', at: 1, html: `
+      <div class="anat-card"><h2>Anatomy</h2>
+        <div class="anat-oi"><div><span class="anat-k">Muscles</span>${esc(m.group)}</div>
+          <div><span class="anat-k">Origin</span>${esc(a.origin || '—')}</div>
+          <div><span class="anat-k">Insertion</span>${esc(a.insertion || '—')}</div></div>
+        <div class="anat-k" style="margin-top:.8rem">What it does</div>
+        <ul class="anat-actions">${(a.actions || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+      <div class="anat-grid">
+        <div class="anat-mini"><h3>Fibre-type bias</h3><p>${esc(m.fiber_bias)}</p></div>
+        <div class="anat-mini"><h3>Functional role</h3><p>${esc(m.functional_role)}</p></div>
+      </div>
+      <div class="section-title">Energy systems it relies on</div>
+      <div class="tag-row">${energyChips(m.energy_systems)}</div>
+      <div class="anat-grid">
+        <div class="anat-mini"><h3>💪 Exercises that train it${m.exercise_count ? ` <span class="muted">(${m.exercise_count})</span>` : ''}</h3>${exList(m.exercises)}<p class="anat-hint">${esc(m.training || '')}</p></div>
+        <div class="anat-mini"><h3>🧘 Stretches${m.stretch_count ? ` <span class="muted">(${m.stretch_count})</span>` : ''}</h3>${exList(m.stretches)}<p class="anat-hint">${esc(m.stretching || '')}</p></div>
+      </div>` };
+    if (m.expand) return learnCourse(m.expand, { name: m.name, key: 'muscle-' + id, crumb: anatomyCrumb(m.name),
+      lede: `<p class="anat-lead">${esc(m.overview)}</p>${model}`,
+      badge: '<span class="pw-badge">💪 Muscle course</span>', extraChapters: [anatChapter] });
     return `<div class="article">${anatomyCrumb(m.name)}
       <div class="anat-head"><span class="anat-region">${esc(m.region)}</span>
         <div class="lyr-head"><h1>${esc(m.name)}</h1>${PHASE2 ? '<button class="sec-edit" id="mu-edit" title="Suggest an edit">✎ Edit</button>' : ''}</div>
@@ -2148,7 +2180,30 @@
   }
   function energyPage(id) {
     const e = energyById[id]; if (!e) return notFound();
-    if (e.expand) return learnCourse(e.expand, { name: e.name, key: 'energy-' + id, crumb: anatomyCrumb(e.name), badge: '<span class="pw-badge">⚡ Energy-system course</span>' });
+    // Same early-return bug as musclePage — all 3 energy systems have `.expand`, so the two SVG
+    // diagrams (the effort curve and the metabolic mill) rendered on ZERO of them in the app while
+    // the prerendered page kept both. Hand them to the course instead of returning above them.
+    if (e.expand) return learnCourse(e.expand, { name: e.name, key: 'energy-' + id, crumb: anatomyCrumb(e.name),
+      lede: `<div class="energy-meta">
+        <div><span class="anat-k">Duration</span>${esc(e.duration)}</div>
+        <div><span class="anat-k">Intensity</span>${esc(e.intensity)}</div>
+        <div><span class="anat-k">Fuel</span>${esc(e.fuel)}</div>
+        <div><span class="anat-k">Oxygen</span>${esc(e.oxygen)}</div>
+      </div>
+      <p class="anat-lead">${esc(e.overview)}</p>
+      ${e.plain ? `<div class="anat-callout">💡 ${esc(e.plain)}</div>` : ''}
+      ${energyChartSvg(e.id)}`,
+      badge: '<span class="pw-badge">⚡ Energy-system course</span>',
+      extraChapters: [{ icon: '🔥', label: 'The fuel pathway', at: 1, html: `
+        <div class="section-title">The metabolic pathway — where the energy comes from</div>
+        ${metabolicMillSvg(e.id)}
+        <div class="section-title">How it works, step by step</div>
+        <ol class="anat-steps">${(e.steps || []).map(x => `<li>${esc(x)}</li>`).join('')}</ol>
+        <div class="anat-grid">
+          <div class="anat-mini"><h3>What it powers</h3><ul>${(e.powers || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+          <div class="anat-mini"><h3>Byproduct &amp; recovery</h3><p><b>Byproduct:</b> ${esc(e.byproduct)}</p><p><b>Recovery:</b> ${esc(e.recovery)}</p></div>
+        </div>
+        <div class="section-title">How to train it</div><p>${esc(e.training)}</p>` }] });
     return `<div class="article">${anatomyCrumb(e.name)}
       <div class="anat-head"><span class="anat-region">Energy system</span><h1>${esc(e.name)}</h1>${e.aka && e.aka.length ? `<p class="anat-aka">${e.aka.map(esc).join(' · ')}</p>` : ''}</div>
       <div class="energy-meta">
@@ -2222,8 +2277,28 @@
   }
   function physiologyPage(id) {
     const p = physioById[id]; if (!p) return notFound();
-    if (p.expand) return learnCourse(p.expand, { name: p.name, key: 'metabolism-' + id, crumb: anatomyCrumb(p.name), badge: '<span class="pw-badge">🔥 Physiology course</span>' });
     const steps = p.how_it_works || p.how_insulin_is_made || p.steps || [];
+    // Same early-return bug again — all 4 physiology entries have `.expand`, so physioDiagram()
+    // (this page's only visual) plus the mechanism steps, hormones/organs and the compound links
+    // rendered on ZERO of them in the app. Third instance of this pattern; see musclePage.
+    if (p.expand) return learnCourse(p.expand, { name: p.name, key: 'metabolism-' + id, crumb: anatomyCrumb(p.name),
+      lede: `<p class="anat-lead">${esc(p.overview)}</p>
+        ${p.plain ? `<div class="anat-callout">💡 ${esc(p.plain)}</div>` : ''}
+        ${physioDiagram(id)}`,
+      badge: '<span class="pw-badge">🔥 Physiology course</span>',
+      extraChapters: [{ icon: '🔬', label: 'The process', at: 1, html: `
+        ${p.how_insulin_is_made ? `<div class="section-title">How insulin is made</div><ol class="anat-steps">${p.how_insulin_is_made.map(x => `<li>${esc(x)}</li>`).join('')}</ol><div class="section-title">What insulin does</div><ul class="anat-probs">${(p.what_insulin_does || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : `<div class="section-title">How it works</div><ol class="anat-steps">${steps.map(x => `<li>${esc(x)}</li>`).join('')}</ol>`}
+        ${p.when_it_matters ? `<div class="anat-card2"><h3>Why it matters for your protocol</h3><p>${esc(p.when_it_matters)}</p></div>` : ''}
+        <div class="anat-grid">
+          <div class="anat-mini"><h3>Key hormones</h3><ul>${(p.hormones || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+          <div class="anat-mini"><h3>Key organs</h3><ul>${(p.organs || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        </div>
+        ${(() => {
+          const cpds = (p.compounds || []).map(n => findCpt(n)).filter(Boolean);
+          const seen = new Set(); const uniq = cpds.filter(c => !seen.has(c.id) && seen.add(c.id));
+          return uniq.length ? `<div class="section-title">🧪 Compounds that act on this</div>
+            <div class="tag-row">${uniq.map(c => `<a class="tag-chip" href="#/c/${slug(c.name)}">${esc(c.name)}</a>`).join('')}</div>` : '';
+        })()}` }] });
     return `<div class="article">${anatomyCrumb(p.name)}
       <div class="anat-head"><span class="anat-region">Physiology</span><h1>${esc(p.name)}</h1></div>
       <p class="anat-lead">${esc(p.overview)}</p>
@@ -4756,7 +4831,7 @@
     }).join('');
     return `<div class="bio-journey">${steps}</div>`;
   }
-  function keyInsightBlock(c) { if (!c.keyInsight) return ''; return `<div class="key-insight"><span class="ki-mark">“</span><p>${mdInline(c.keyInsight)}</p></div>`; }
+  function keyInsightBlock(c) { if (!c.keyInsight) return ''; return `<div class="key-insight"><span class="ki-mark">“</span>${mdBlocks(c.keyInsight, mdInline)}</div>`; }
   // CONFIDENCE METER — REWRITTEN 2026-07-28 (Phase 1 item 9).
   // This rendered a percentage BAR whose tier-3 state was 100% FULL. A full bar reads as
   // "certain", and it sat on causes whose own evidence field openly hedges — so every cause read
@@ -4792,7 +4867,7 @@
   // The single highest-leverage action, surfaced at the top of a protocol.
   function theOneThingHead(problem) {
     const w = problem.why; if (!w || !w.theOneThing) return '';
-    return `<div class="one-thing-head"><span class="oth-badge">⭐ Start here — the one thing</span><p>${mdInline(w.theOneThing)}</p><a class="oth-jump" data-scroll="p-causes">See the full cause-by-cause plan ↓</a></div>`;
+    return `<div class="one-thing-head"><span class="oth-badge">⭐ Start here — the one thing</span>${mdBlocks(w.theOneThing, mdInline)}<a class="oth-jump" data-scroll="p-causes">See the full cause-by-cause plan ↓</a></div>`;
   }
   // Short symptom teaser for the accordion header — authored `hook`, else the first clause of the symptoms.
   function causeHook(c) {
@@ -4809,7 +4884,7 @@
       const fixes = _fixArr.map(f => { const ic = FIX_ICO[f.kind] || '•'; const cc = (f.kind === 'compound' && f.ref) ? resolveCompound(f.ref) : null; const inner = cc ? `<a href="#/c/${slug(cc.name)}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li><span class="fix-kind fk-${esc(f.kind || 'x')}">${ic} ${esc(FIX_LBL[f.kind] || 'Other')}</span> ${inner}</li>`; }).join('');
       const suppIds = [...new Set(_fixArr.filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc ? cc.id : null; }).filter(Boolean))];
       const symptoms = mdInline(String((c.tell && c.tell.symptoms) || '').replace(/\s*Honest tiering:.*$/i, '').trim());
-      const goDeeper = (c.plain || c.confusedWith) ? `<details class="cause-deeper"><summary>Go deeper — the full mechanism</summary>${c.plain ? `<p>${mdInline(c.plain)}</p>` : ''}${c.confusedWith ? `<div class="cause-confused">↔️ <b>Often confused with:</b> ${mdInline(c.confusedWith)}</div>` : ''}</details>` : '';
+      const goDeeper = (c.plain || c.confusedWith) ? `<details class="cause-deeper"><summary>Go deeper — the full mechanism</summary>${c.plain ? `${mdBlocks(c.plain, mdInline)}` : ''}${c.confusedWith ? `<div class="cause-confused">↔️ <b>Often confused with:</b> ${mdInline(c.confusedWith)}</div>` : ''}</details>` : '';
       return `<details class="cause-acc lev-${esc(c.leverage || 'med')}" name="p-cause-acc"${i === 0 ? ' open' : ''}>
         <summary class="cause-sum"><span class="cause-rank">${c.rank || i + 1}</span><span class="cs-main"><span class="cs-name">${esc(c.name)}</span>${causeHook(c) ? `<span class="cs-hook">${mdInline(causeHook(c))}</span>` : ''}</span><span class="cs-meta"><span class="cause-lev">${esc(c.leverage || '')} leverage</span></span></summary>
         <div class="cause-body">
@@ -4842,8 +4917,8 @@
   function planSection(problem) {
     const pl = problem.plan; if (!pl) return '';
     const tl = (Array.isArray(pl.timeline) && pl.timeline.length) ? `<div class="plan-block"><div class="plan-h">📆 What to expect — and when</div><ol class="plan-timeline">${pl.timeline.map(t => `<li><span class="pt-when">${esc(t.when)}</span><span class="pt-what">${mdInline(t.what)}</span></li>`).join('')}</ol></div>` : '';
-    const wk = pl.working ? `<div class="plan-card plan-working"><div class="plan-ch">✅ What “it’s working” looks like</div><p>${mdInline(pl.working)}</p></div>` : '';
-    const re = pl.reassess ? `<div class="plan-card plan-reassess"><div class="plan-ch">🚩 When to reassess or see a doctor</div><p>${mdInline(pl.reassess)}</p></div>` : '';
+    const wk = pl.working ? `<div class="plan-card plan-working"><div class="plan-ch">✅ What “it’s working” looks like</div>${mdBlocks(pl.working, mdInline)}</div>` : '';
+    const re = pl.reassess ? `<div class="plan-card plan-reassess"><div class="plan-ch">🚩 When to reassess or see a doctor</div>${mdBlocks(pl.reassess, mdInline)}</div>` : '';
     const ctx = (Array.isArray(pl.context) && pl.context.length) ? `<div class="plan-block"><div class="plan-h">👥 Does your situation change it?</div><div class="plan-ctx">${pl.context.map(c => `<div class="pctx"><b>${esc(c.who)}</b><span>${mdInline(c.mod)}</span></div>`).join('')}</div></div>` : '';
     const tr = (Array.isArray(pl.troubleshooting) && pl.troubleshooting.length) ? `<details class="plan-trouble"><summary>🔧 Troubleshooting — if it’s not working</summary>${pl.troubleshooting.map(t => `<div class="ptr"><div class="ptr-q">${mdInline(t.issue)}</div><div class="ptr-a">${mdInline(t.fix)}</div></div>`).join('')}</details>` : '';
     if (!tl && !wk && !re && !ctx && !tr) return '';

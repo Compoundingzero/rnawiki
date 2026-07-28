@@ -11,6 +11,105 @@
 
 const fs = require('fs');
 const path = require('path');
+
+// ---- BLOCK RENDERER (2026-07-28) ----------------------------------------------------------
+// Two measured defects in how authored prose reaches the page, both presentation-only:
+//
+//   1. MARKDOWN LISTS RENDERED AS PROSE. 87 blocks in learn_expand.json (8,721 words) are authored
+//      as "- item\n\n- item". Both renderers wrapped the whole thing in one <p>, and HTML collapses
+//      the newlines — so /pathway/6 shipped a 558-word wall of text with literal dashes in it. The
+//      longest "paragraphs" on the site were never paragraphs.
+//   2. SLABS. 913 blocks run past 90 words; the reader gets no landing place. Splitting at sentence
+//      boundaries takes the 90th percentile from 215 words to 93 with zero re-authoring.
+//
+// This changes not one word of content — it only decides where a block ends. Verified lossless
+// across all 45 courses (0 words added or lost).
+// `inline` is passed in because the two documents escape differently: app.js formats-then-escapes
+// (mdInline), prerender.js escapes-then-formats (mdSafe). Do not hardcode either one here.
+const MD_ABBR = /(?:\b(?:et al|vs|i\.e|e\.g|cf|approx|Dr|Prof|Mr|Mrs|Ms|St|Fig|No|ca|resp|incl|max|min|avg|ie|eg)\.)$/i;
+function mdSentences(text) {
+  const out = []; let buf = '';
+  // Judged in context: a decimal (p<0.05), an abbreviation (et al.), an initial (J. Smith) and a
+  // real full stop are indistinguishable to a naive /[.!?]\s/ split.
+  for (let i = 0; i < text.length; i++) {
+    buf += text[i];
+    if (!/[.!?]/.test(text[i])) continue;
+    const next = text.slice(i + 1);
+    if (!/^\s/.test(next)) continue;
+    if (/^\s*$/.test(next)) break;
+    if (!/^\s+["'“(]?[A-Z0-9]/.test(next)) continue;
+    if (MD_ABBR.test(buf.trimEnd())) continue;
+    if (/\b[A-Z]\.$/.test(buf.trimEnd())) continue;
+    out.push(buf.trim()); buf = '';
+  }
+  if (buf.trim()) out.push(buf.trim());
+  return out;
+}
+const mdWc = (s) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+function mdChunk(block, MAX, TARGET) {
+  if (mdWc(block) <= MAX) return [block];
+  const sents = mdSentences(block);
+  if (sents.length < 2) return [block];         // one giant sentence — leave it whole, don't maim it
+  const out = []; let cur = [];
+  for (const s of sents) {
+    // Close the current chunk BEFORE the sentence that would burst it, not after. Appending first
+    // and checking after let a 64-word chunk plus a 70-word sentence ship as 134 words — which is
+    // how /learn/0 kept a 135-word paragraph through the first pass of this fix.
+    if (cur.length && mdWc(cur.join(' ') + ' ' + s) > MAX) { out.push(cur.join(' ')); cur = []; }
+    cur.push(s);
+    if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
+  }
+  if (cur.length) {
+    // A stranded tail of a few words reads as a mistake; fold it back.
+    if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
+    else out.push(cur.join(' '));
+  }
+  return out;
+}
+function mdBlocks(text, inline, MAX, TARGET) {
+  MAX = MAX || 90; TARGET = TARGET || 65;
+  const src = String(text || '').trim();
+  if (!src) return '';
+  const out = [];
+  let list = null;      // { ord: bool, items: [] }
+  const flushList = () => {
+    if (!list) return;
+    const tag = list.ord ? 'ol' : 'ul';
+    out.push(`<${tag} class="md-list">${list.items.map((it) => `<li>${inline(it)}</li>`).join('')}</${tag}>`);
+    list = null;
+  };
+  // Split on blank lines first, then walk each block line by line so a list authored with single
+  // newlines and a list authored with blank lines between items both come out as one <ul>.
+  for (const block of src.split(/\n\n+/)) {
+    const lines = block.split('\n');
+    let para = [];
+    const flushPara = () => {
+      const t = para.join(' ').trim(); para = [];
+      if (!t) return;
+      flushList();
+      mdChunk(t, MAX, TARGET).forEach((c) => out.push(`<p>${inline(c)}</p>`));
+    };
+    for (const raw of lines) {
+      const m = raw.match(/^\s*(?:([-*•])|(\d+)[.)])\s+(.*)$/);
+      if (m) {
+        flushPara();
+        const ord = !!m[2];
+        if (!list || list.ord !== ord) { flushList(); list = { ord, items: [] }; }
+        list.items.push(m[3]);
+      } else if (list && /^\s+\S/.test(raw) && raw.trim()) {
+        list.items[list.items.length - 1] += ' ' + raw.trim();   // indented continuation of an item
+      } else if (raw.trim()) {
+        if (list) flushList();
+        para.push(raw.trim());
+      }
+    }
+    flushPara();
+  }
+  flushList();
+  return out.join('');
+}
+
+
 const ROOT = path.join(__dirname, '..');
 const SITE = path.join(ROOT, 'site');
 const SITE_NAME = process.env.SITE_NAME || 'RNAwiki';
@@ -512,7 +611,7 @@ GRAPH.problems.forEach((p) => {
     const safety = `
       ${plan.reassess ? `<section class="plan-reassess">
         <h3>When to reassess or see a doctor</h3>
-        <p>${mdSafe(plan.reassess)}</p>
+        ${mdBlocks(plan.reassess, mdSafe)}
         <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
         through a protocol — in Singapore call <b>995</b> for an emergency, or go to A&amp;E.
         A polyclinic or GP is the right first stop for anything persistent.</p>
@@ -636,99 +735,6 @@ function pathwayDiagramHtml(spec, hub) {
     </div>
     ${goals ? `<div class="pd-goals"><span class="pd-goalslbl">Helps with</span>${goals}</div>` : ''}
   </div>`;
-}
-
-// ---- BLOCK RENDERER (2026-07-28) ----------------------------------------------------------
-// Two measured defects in how authored prose reaches the page, both presentation-only:
-//
-//   1. MARKDOWN LISTS RENDERED AS PROSE. 87 blocks in learn_expand.json (8,721 words) are authored
-//      as "- item\n\n- item". Both renderers wrapped the whole thing in one <p>, and HTML collapses
-//      the newlines — so /pathway/6 shipped a 558-word wall of text with literal dashes in it. The
-//      longest "paragraphs" on the site were never paragraphs.
-//   2. SLABS. 913 blocks run past 90 words; the reader gets no landing place. Splitting at sentence
-//      boundaries takes the 90th percentile from 215 words to 93 with zero re-authoring.
-//
-// This changes not one word of content — it only decides where a block ends. Verified lossless
-// across all 45 courses (0 words added or lost).
-// `inline` is passed in because the two documents escape differently: app.js formats-then-escapes
-// (mdInline), prerender.js escapes-then-formats (mdSafe). Do not hardcode either one here.
-const MD_ABBR = /(?:\b(?:et al|vs|i\.e|e\.g|cf|approx|Dr|Prof|Mr|Mrs|Ms|St|Fig|No|ca|resp|incl|max|min|avg|ie|eg)\.)$/i;
-function mdSentences(text) {
-  const out = []; let buf = '';
-  // Judged in context: a decimal (p<0.05), an abbreviation (et al.), an initial (J. Smith) and a
-  // real full stop are indistinguishable to a naive /[.!?]\s/ split.
-  for (let i = 0; i < text.length; i++) {
-    buf += text[i];
-    if (!/[.!?]/.test(text[i])) continue;
-    const next = text.slice(i + 1);
-    if (!/^\s/.test(next)) continue;
-    if (/^\s*$/.test(next)) break;
-    if (!/^\s+["'“(]?[A-Z0-9]/.test(next)) continue;
-    if (MD_ABBR.test(buf.trimEnd())) continue;
-    if (/\b[A-Z]\.$/.test(buf.trimEnd())) continue;
-    out.push(buf.trim()); buf = '';
-  }
-  if (buf.trim()) out.push(buf.trim());
-  return out;
-}
-const mdWc = (s) => (s.trim() ? s.trim().split(/\s+/).length : 0);
-function mdChunk(block, MAX, TARGET) {
-  if (mdWc(block) <= MAX) return [block];
-  const sents = mdSentences(block);
-  if (sents.length < 2) return [block];         // one giant sentence — leave it whole, don't maim it
-  const out = []; let cur = [];
-  for (const s of sents) {
-    cur.push(s);
-    if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
-  }
-  if (cur.length) {
-    // A stranded tail of a few words reads as a mistake; fold it back.
-    if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
-    else out.push(cur.join(' '));
-  }
-  return out;
-}
-function mdBlocks(text, inline, MAX, TARGET) {
-  MAX = MAX || 90; TARGET = TARGET || 65;
-  const src = String(text || '').trim();
-  if (!src) return '';
-  const out = [];
-  let list = null;      // { ord: bool, items: [] }
-  const flushList = () => {
-    if (!list) return;
-    const tag = list.ord ? 'ol' : 'ul';
-    out.push(`<${tag} class="md-list">${list.items.map((it) => `<li>${inline(it)}</li>`).join('')}</${tag}>`);
-    list = null;
-  };
-  // Split on blank lines first, then walk each block line by line so a list authored with single
-  // newlines and a list authored with blank lines between items both come out as one <ul>.
-  for (const block of src.split(/\n\n+/)) {
-    const lines = block.split('\n');
-    let para = [];
-    const flushPara = () => {
-      const t = para.join(' ').trim(); para = [];
-      if (!t) return;
-      flushList();
-      mdChunk(t, MAX, TARGET).forEach((c) => out.push(`<p>${inline(c)}</p>`));
-    };
-    for (const raw of lines) {
-      const m = raw.match(/^\s*(?:([-*•])|(\d+)[.)])\s+(.*)$/);
-      if (m) {
-        flushPara();
-        const ord = !!m[2];
-        if (!list || list.ord !== ord) { flushList(); list = { ord, items: [] }; }
-        list.items.push(m[3]);
-      } else if (list && /^\s+\S/.test(raw) && raw.trim()) {
-        list.items[list.items.length - 1] += ' ' + raw.trim();   // indented continuation of an item
-      } else if (raw.trim()) {
-        if (list) flushList();
-        para.push(raw.trim());
-      }
-    }
-    flushPara();
-  }
-  flushList();
-  return out.join('');
 }
 
 function learnFlatHtml(e, opts) {
