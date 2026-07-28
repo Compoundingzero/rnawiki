@@ -2817,11 +2817,6 @@ a.dp-name:hover{color:var(--accent)}
 .oth-jump{font-size:.86rem;font-weight:600;color:var(--accent);cursor:pointer;text-decoration:none}
 .oth-jump:hover{text-decoration:underline}
 .cause-howto{margin:.5rem 0 0;font-size:.9rem;line-height:1.55;color:var(--muted)}
-.cause-confirm{margin:.9rem 0;border:1px solid var(--line);border-radius:12px;background:color-mix(in srgb,#ef4444 5%,transparent);padding:.3rem .9rem}
-.cause-confirm summary{cursor:pointer;font-weight:700;padding:.55rem 0;font-size:.92rem}
-.cause-confirm ul{margin:.3rem 0 .5rem;padding-left:1.2rem}
-.cause-confirm li{margin:.3rem 0;line-height:1.5}
-.cause-confirm .cc-note{font-size:.8rem;color:var(--muted);font-style:italic;margin:.2rem 0 .5rem}
 .fix-order-note{font-size:.76rem;font-weight:500;color:var(--muted);font-style:italic}
 .fix-list{margin:.35rem 0 0;padding-left:0;list-style:none}
 .fix-list li{margin:.4rem 0;line-height:1.5;display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
@@ -2969,3 +2964,8 @@ a.dp-name:hover{color:var(--accent)}
   .plan-reassess{border:1px solid #000;padding:.5rem}
   h1,h2,h3{break-after:avoid;page-break-after:avoid}
 }
+
+/* Confidence meter, rebuilt on the discrete tier indicator (2026-07-28). The old percentage bar
+   rendered tier 3 as a 100%-full bar, which reads as certainty on content that hedges. */
+.conf-note{font-size:.8rem;color:var(--muted);margin:.35rem 0 0;line-height:1.45}
+.conf-ev{font-size:.88rem;color:var(--text);margin:.5rem 0 0;line-height:1.55}

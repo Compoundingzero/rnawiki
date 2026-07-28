@@ -1106,19 +1106,6 @@
   }
 
   // wire the landing funnel (autosuggest + intake routing)
-  async function mountHomeLeaderboard() {
-    const el = document.getElementById('home-leaderboard'); if (!el) return;
-    let d; try { d = await api.contributors(); } catch (e) { return; }
-    const top = (d.top || []).filter(x => x.reputation_points > 0);
-    if (!top.length) return;
-    el.innerHTML = `<div class="section-title center">Top contributors</div>
-      <div class="lb-row">${top.map((u, i) => `<a class="lb-card" href="#/u/${encodeURIComponent(u.username)}">
-        <span class="lb-rank">#${i + 1}</span>
-        <span class="lb-name">@${esc(u.username)}</span>
-        ${u.domain ? `<span class="sb-dom ${u.domain}">${esc((GRAPH.domains[u.domain] || {}).label || u.domain)}${u.domain_verified ? ' ✓' : ''}</span>` : ''}
-        <span class="lb-pts">✦ ${u.reputation_points}</span></a>`).join('')}</div>`;
-    revealOnScroll();
-  }
   // Resolve a comment key (goal_id) into a human label + link, using client data.
   function pulseCommentRef(key) {
     const seg = String(key || '').split(':');
@@ -1133,29 +1120,6 @@
     return { label: 'the wiki', href: '#/' };
   }
   // Community pulse: a live feed of recent activity — social proof the wiki is alive + discovery.
-  async function mountPulse() {
-    const el = document.getElementById('home-pulse'); if (!el) return;
-    let items = []; try { items = await api.pulse(); } catch (e) {}
-    if (!items.length) {
-      // Phase 2 (public forking/editing) isn't live yet, so don't invite it. Hide the empty strip.
-      el.style.display = 'none';
-      return;
-    }
-    const dom = d => d ? `<span class="pl-dom ${d}">${esc((GRAPH.domains[d] || {}).label || d)}</span>` : '';
-    const row = it => {
-      const actor = `<a class="pl-actor" href="#/u/${encodeURIComponent(it.actor)}">@${esc(it.actor)}</a>${it.domain && it.verified ? ' ✓' : ''}`;
-      const p = problemById[it.problem_id]; const pName = p ? p.name : it.problem_id;
-      if (it.type === 'fork') return `<div class="pl-item"><span class="pl-ic">🍴</span><div>${actor} forked <a href="#/fork/${it.id}">${esc(it.title)}</a> <small>· a take on ${esc(pName)}</small><span class="pl-t">${ago(it.at)}</span></div></div>`;
-      if (it.type === 'edit') return `<div class="pl-item"><span class="pl-ic">✎</span><div>${actor} ${dom(it.domain)} improved the <b>${esc(it.layer || '')}</b> of <a href="#/protocol/${it.problem_id}/${it.root_cause_id}">${esc(pName)}</a><span class="pl-t">${ago(it.at)}</span></div></div>`;
-      if (it.type === 'comment') { const r = pulseCommentRef(it.goal_id); return `<div class="pl-item"><span class="pl-ic">💬</span><div>${actor} ${dom(it.domain)} joined the discussion on <a href="${r.href}">${esc(r.label)}</a><span class="pl-t">${ago(it.at)}</span></div></div>`; }
-      if (it.type === 'food') return `<div class="pl-item"><span class="pl-ic">🍽️</span><div>${actor} added <b>${esc(it.name)}</b> to the food database<span class="pl-t">${ago(it.at)}</span></div></div>`;
-      return '';
-    };
-    el.innerHTML = `<div class="section-title center">🟢 Happening now</div>
-      <p class="muted center" style="font-size:.85rem;margin-top:-.4rem">A living, community-built wiki — here's the latest.</p>
-      <div class="pulse-feed">${items.map(row).join('')}</div>`;
-    revealOnScroll();
-  }
   // Top community stacks on the home page — social proof + discovery. Real user-built stacks
   // (falls back to demo fixtures until real ones arrive), ranked by likes then usage.
   async function mountHomeStacks() {
@@ -1181,9 +1145,7 @@
   }
   function bindHome() {
     revealOnScroll();
-    mountHomeLeaderboard();
     mountHomeStacks();
-    mountPulse();
     initScrolly('scrolly-how');
     const inp = document.getElementById('hero-solve-input');
     const out = document.getElementById('hero-solve-out');
@@ -3585,43 +3547,6 @@
       catch (e) {}
     });
   }
-  async function mountCommunityStacks(problem, rc) {
-    const el = document.getElementById('community-stacks'); if (!el) return;
-    let forks = []; try { forks = await api.forksFor(problem.id, rc.id); } catch (e) {}
-    const addBtn = '<button class="linkbtn cstack-add" id="cstack-add">share the stack that worked for you</button>';
-    if (!forks.length) {
-      el.innerHTML = `<div class="cstack-wrap"><div class="section-title">💬 What others are actually taking</div>
-        <p class="cstack-empty">No community stacks for this cause yet. If you’ve built a version that works for you, be the first to ${addBtn} — the people starting out after you will thank you.</p></div>`;
-      const b = document.getElementById('cstack-add'); if (b) b.onclick = () => openForkModal(problem, rc);
-      return;
-    }
-    let scores = {}; try { scores = await api.votes(forks.map(f => 'fork:' + f.id)); } catch (e) {}
-    const likesOf = f => (scores['fork:' + f.id] || {}).up || 0;
-    forks.sort((a, b) => (likesOf(b) - likesOf(a)) || ((b.clones || 0) - (a.clones || 0)));
-    const card = f => {
-      const cpds = (f.stack || []).map(id => byId[id]).filter(Boolean);
-      const chips = cpds.slice(0, 6).map(c => `<a class="cstack-chip${needsDoctor(c) ? ' rx' : ''}" href="#/c/${slug(c.name)}">${esc(c.name)}</a>`).join('');
-      const more = cpds.length > 6 ? `<span class="cstack-chip more">+${cpds.length - 6}</span>` : '';
-      const liked = myVote('fork:' + f.id) === 1, using = f.clones || 0;
-      return `<div class="cstack-card">
-        <div class="cstack-hd"><a class="cstack-title" href="#/fork/${f.id}"><b>${esc(f.title)}</b></a>
-          <span class="cstack-by">${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''}${using ? ' · ' + using + ' using' : ''}</span></div>
-        ${f.note ? `<p class="cstack-note">${esc(f.note)}</p>` : ''}
-        <div class="cstack-chips">${chips || '<span class="muted">—</span>'}${more}</div>
-        <div class="cstack-actions">
-          <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likesOf(f)}</span></button>
-          <button class="cstack-use" data-clone="${f.id}">Use this stack →</button>
-          <button class="cstack-share" data-share="${f.id}" title="Share this stack">🔗</button>
-        </div></div>`;
-    };
-    el.innerHTML = `<div class="cstack-wrap"><div class="section-title">💬 What others are actually taking <span class="lp-tag">${forks.length} · not reviewed</span></div>
-      <p class="muted cstack-lead">Real people’s takes on this cause — not the official reviewed protocol. Like the ones that resonate, use any as a starting point, or ${addBtn}.</p>
-      <div class="cstack-list">${forks.map(card).join('')}</div></div>`;
-    const addB = document.getElementById('cstack-add'); if (addB) addB.onclick = () => openForkModal(problem, rc);
-    el.querySelectorAll('[data-clone]').forEach(b => b.onclick = () => cloneForkTo(b.dataset.clone));
-    el.querySelectorAll('[data-share]').forEach(b => b.onclick = () => shareFork(forks.find(x => String(x.id) === b.dataset.share)));
-    bindLikeBtn(el, el);
-  }
   // Section-level share unit: the smallest self-contained nugget worth sending to a friend.
   async function shareSection(layer, problem, rc) {
     let P = {}; try { P = generateProtocol(rc); } catch (e) {}
@@ -3679,12 +3604,12 @@
     return `<div class="empty"><h1>Building your protocol…</h1><p class="muted">Loading movement & food data.</p></div>`;
   }
   // (Removed the old ownership banner — protocols belong to no one; contributing experts are
-  // featured via mountProtocolContributors instead.)
+  // featured on the protocol page instead.)
   // Contextual leads: the steward sits in the column of their domain (physio→Move, dietitian→
   // Fuel, pharmacist→Stack); a supplement partner sits by Stack, a gym/clinic by Move. No
   // standalone "deals" block — a lead only appears next to the thing it fulfils.
   // Local businesses that have earned a place (backlink-verified partners). No expert "owns"
-  // the protocol — the featured experts appear via mountProtocolContributors instead.
+  // the protocol.
   async function mountContextPartners(problem, rc) {
     let partners = [];
     try { partners = await api.partners(problem.category); } catch (e) {}
@@ -3697,30 +3622,6 @@
   }
   // This protocol belongs to no one. The experts who contribute most to it (comments + edits)
   // are FEATURED here — attribution. Their profile links out to their work and details.
-  async function mountProtocolContributors(problem, rc) {
-    const el = document.getElementById('proto-contributors'); if (!el) return;
-    let list = []; try { list = await api.protocolContributors(problem.id, rc.id); } catch (e) {}
-    // Per-section "who says?" trust stamp — the reviewer credit the "not medical advice" footer can't give.
-    if (PHASE2) ['move', 'fuel', 'stack'].forEach(layer => {
-      const t = document.getElementById('trust-' + layer); if (!t) return;
-      const dom = LAYER_DOMAIN && Object.keys(LAYER_DOMAIN).find(d => LAYER_DOMAIN[d] === layer) ? layer : layer; // guard
-      const needed = { move: 'physio', fuel: 'dietitian', stack: 'pharmacist' }[layer];
-      const rev = list.find(u => u.domain === needed && u.domain_verified);
-      const domLabel = (GRAPH.domains[needed] || {}).label || needed;
-      t.innerHTML = rev
-        ? `<a class="sec-trust-l ok" href="#/u/${encodeURIComponent(rev.username)}" title="Reviewed & maintained by a verified expert">✓ Reviewed by @${esc(rev.username)}</a>`
-        : `<span class="sec-trust-l" title="No verified ${esc(domLabel)} has reviewed this section yet — be the first">🛡️ Open for ${esc(domLabel)} review</span>`;
-    });
-    if (!list.length) return;
-    el.innerHTML = `<div class="pc-title">🏅 Experts who keep this protocol accurate</div>
-      <p class="pc-sub">No one owns a protocol — these experts have contributed most to it. See their work.</p>
-      <div class="pc-row">${list.map(u => {
-        const n = (u.comments || 0) + (u.edits || 0);
-        return `<a class="pc-chip pc-chip-l" href="#/u/${encodeURIComponent(u.username)}">
-          <span class="pc-u">@${esc(u.username)}</span>${u.domain ? `<span class="sb-dom ${u.domain}">${esc((GRAPH.domains[u.domain] || {}).label || u.domain)}${u.domain_verified ? ' ✓' : ''}</span>` : ''}
-          <span class="pc-n">${n} contribution${n !== 1 ? 's' : ''}</span></a>`;
-      }).join('')}</div>`;
-  }
   // Root-cause governance panel (verified experts + admin): request adding/removing a root
   // cause for this problem, and approve others' requests. Flow: one relevant peer approves a
   // request, then the superadmin gives the final sign-off before it goes live. A freshly-added
@@ -4834,7 +4735,7 @@
       return `<div class="cc-node cc-${esc(n.type)}"><span class="cc-node-t">${CC_TYPE[n.type] || ''}</span><span class="cc-node-b">${label}</span></div>${i < chain.length - 1 ? '<span class="cc-arrow">→</span>' : ''}`;
     }).join('')}</div>`;
   }
-  const TIER_LABEL = ['', 'emerging / associative', 'strong association', 'established mechanism'];
+  const TIER_LABEL = ['', 'emerging / associative', 'strong association', 'established mechanism — effect size varies by person'];
   function causeTier(t) { t = t || 1; return `<span class="cause-tier t${t}" title="Strength of the causal link">${'●'.repeat(t)}${'○'.repeat(3 - t)} <span class="ct-lbl">${TIER_LABEL[t] || ''}</span></span>`; }
   // ---- Apple-style scroll-reveal biological journey: the chain becomes moments you move through ----
   const CC_ICON = { trigger: '⚡', mediator: '⚙️', tissue: '🧬', symptom: '💥' };
@@ -4852,11 +4753,24 @@
     return `<div class="bio-journey">${steps}</div>`;
   }
   function keyInsightBlock(c) { if (!c.keyInsight) return ''; return `<div class="key-insight"><span class="ki-mark">“</span><p>${mdInline(c.keyInsight)}</p></div>`; }
-  const CONF = { 1: { lbl: 'Emerging — worth testing', w: 34, cls: 'c1' }, 2: { lbl: 'Strong association', w: 67, cls: 'c2' }, 3: { lbl: 'Established mechanism', w: 100, cls: 'c3' } };
+  // CONFIDENCE METER — REWRITTEN 2026-07-28 (Phase 1 item 9).
+  // This rendered a percentage BAR whose tier-3 state was 100% FULL. A full bar reads as
+  // "certain", and it sat on causes whose own evidence field openly hedges — so every cause read
+  // as settled at the point of consumption. Worse, `causeTier()` directly below already existed,
+  // already styled, rendering an honest discrete ●●○ indicator — and had ZERO call sites. The
+  // honest control was written and the overconfident one shipped.
+  // Now: call causeTier(), relabel the question to what the tier actually measures (how well
+  // established the MECHANISM is, not how well it will work for you), and render the authored
+  // evidence prose inline instead of hiding it inside a closed <details>.
   function confidenceMeter(c) {
-    const t = c.evidenceTier || 1; const m = CONF[t] || CONF[1];
-    return `<div class="conf"><div class="cbl">How strong is the evidence?</div><div class="conf-bar ${m.cls}"><i style="width:${m.w}%"></i></div><div class="conf-lbl">${esc(m.lbl)}</div>${c.evidence ? `<details class="conf-more"><summary>See the science</summary><p>${mdInline(c.evidence)}</p></details>` : ''}</div>`;
+    const t = c.evidenceTier || 1;
+    const ev = c.evidence ? `<div class="conf-ev">${mdInline(c.evidence)}</div>` : '';
+    return `<div class="conf"><div class="cbl">How well established is the mechanism?</div>`
+      + causeTier(t)
+      + `<div class="conf-note">This rates how well the CAUSAL LINK is established — not how much it will help you. Effect size varies from person to person.</div>`
+      + ev + `</div>`;
   }
+
   // Scroll-reveal for the biological journeys: each step eases up as it enters the viewport.
   function initCauseMotion() {
     const journeys = document.querySelectorAll('.bio-journey'); if (!journeys.length) return;
@@ -4916,7 +4830,8 @@
       <div class="cause-list-label"><span class="cll-h">The ${nC} possible cause${nC !== 1 ? 's' : ''}</span> · ranked by leverage (#1 fixes the most) — <b>open the one that sounds like you</b>. Each is a self-contained explanation and plan; fixes run behaviour → food → supplement → prescription.</div>
       <div class="cause-accordion">${items}</div>
       <div class="cause-foot"><button class="share-short-btn" data-share-short="cause:${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
-      ${w.theOneThing ? `<div class="cause-one"><span class="cause-one-t">⭐ If you do only one thing</span><p>${mdInline(w.theOneThing)}</p></div>` : ''}
+      ${'' /* REMOVED 2026-07-28: duplicate. theOneThingHead() already prints this exact string
+             higher up the same page, so every protocol page said the same ~515 characters twice. */}
     </section>`;
   }
   // ---- Stage 4: protocol action-plan (timeline · working signals · reassess · context · troubleshooting) ----
@@ -5133,16 +5048,9 @@
         `<a class="${r.id === rc.id ? 'on' : ''}" title="${esc(r.diagnostic || '')}" href="#/protocol/${problem.id}/${r.id}">${esc(r.name.split('(')[0].trim())}</a>`).join('')}
         <span class="rc-hint">Hover a root cause to see who it fits.</span>${problem.assessment ? `<button class="rc-assess" id="assess-trigger">🔍 Not sure? Take the 30-second check</button>` : ''}</div>` : '';
 
-    // Journey rail — frames the protocol as one connected sequence (Assessed ✓ → Move · Stack · Fuel → Track).
-    // Scroll buttons (not #anchors) so the hash router isn't hijacked.
-    const journeyRail = `<nav class="journey-rail" aria-label="Your protocol journey">
-      <span class="jr-step done">✓ Assessed</span><span class="jr-sep">→</span>
-      <button class="jr-step" data-scroll="p-move">Move</button>
-      <button class="jr-step" data-scroll="p-stack">Stack</button>
-      <button class="jr-step" data-scroll="p-fuel">Fuel</button>
-      <span class="jr-sep">→</span>
-      <button class="jr-step track" data-scroll="p-fuel">Track daily</button>
-    </nav>`;
+    // REMOVED 2026-07-28: `journeyRail` was constructed on every protocol render and never
+    // interpolated anywhere — it rendered on 0 of 52 pages, and its scroll anchors did not exist
+    // either. The .oth-jump button still uses the data-scroll handler, so that stays.
 
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Solve', href: '#/solve' }, { label: problem.name }])}
       <div id="clinic-header"></div>
@@ -5178,7 +5086,12 @@
         <p class="ks-why">${esc(rc.keystone.why)}</p>
         <p class="ks-note">The highest-impact, lowest-effort habit for this. Nail this one thing and the rest compounds.</p>
       </div>` : ''}
-      <div id="community-stacks"></div>
+      ${'' /* REMOVED 2026-07-28: #community-stacks. It rendered a 232-char empty state on 42 of 52
+             protocol pages, and on the other 10 it rendered SEEDED DEMO FORKS attributed to a
+             fabricated "verified physiotherapist" — the FTC fake-expert surface. Those forks and
+             credentials were deleted in Phase -1, so this now renders an empty state on 52 of 52.
+             The feature is still reachable in its own right; it just no longer sits on a protocol
+             page pretending a community exists. */}
       <div class="proto-after">
         ${voteFoot(problem.id, rc.id, 'protocol')}
         ${pfaq}
@@ -5204,7 +5117,6 @@
     const assessBtn = document.getElementById('assess-trigger');
     if (assessBtn) assessBtn.onclick = () => openAssessment(problem);
     initCauseMotion();
-    mountCommunityStacks(problem, rc);
     const citeBtn = document.getElementById('cite-proto');
     if (citeBtn) citeBtn.onclick = () => citeModal(`${problem.name} — ${rc.name.split('(')[0].trim()} protocol`, (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id);
     mountVotes([`${problem.id}:${rc.id}:protocol`]);
