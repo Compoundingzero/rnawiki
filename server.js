@@ -1922,7 +1922,12 @@ function serveMissing(res, safe) {
 const SECURITY_HEADERS = {
   'Content-Security-Policy': [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' https://accounts.google.com",
+    // static.cloudflareinsights.com is Cloudflare Web Analytics, which Cloudflare auto-injects.
+    // It was CSP-blocked from the day the headers shipped, so it had collected nothing. Enabled
+    // deliberately: Search Console only sees the SEARCH side (impressions, queries, position) and
+    // goes blind the moment a reader lands. This is the only source for which pages actually get
+    // read and where non-search traffic comes from. Cookieless, so it needs no consent banner.
+    "script-src 'self' 'unsafe-inline' https://accounts.google.com https://static.cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     // pubchem.ncbi.nlm.nih.gov is fetched by app.js:744 for the molecular formula / weight chips on

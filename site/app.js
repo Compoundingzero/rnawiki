@@ -2105,7 +2105,8 @@
           <div><span class="anat-k">Origin</span>${esc(a.origin || '—')}</div>
           <div><span class="anat-k">Insertion</span>${esc(a.insertion || '—')}</div></div>
         <div class="anat-k" style="margin-top:.8rem">What it does</div>
-        <ul class="anat-actions">${(a.actions || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <p class="muted" style="font-size:.88rem;margin:.2rem 0 .5rem">Grey stays still; teal is what this muscle moves.</p>
+        <div class="afig-grid">${(a.action_figures || []).join('') || (a.actions || []).map(x => `<p>${esc(x)}</p>`).join('')}</div></div>
       <div class="anat-grid">
         <div class="anat-mini"><h3>Fibre-type bias</h3><p>${esc(m.fiber_bias)}</p></div>
         <div class="anat-mini"><h3>Functional role</h3><p>${esc(m.functional_role)}</p></div>
@@ -2130,7 +2131,8 @@
           <div><span class="anat-k">Origin</span>${esc(a.origin || '—')}</div>
           <div><span class="anat-k">Insertion</span>${esc(a.insertion || '—')}</div></div>
         <div class="anat-k" style="margin-top:.8rem">What it does</div>
-        <ul class="anat-actions">${(a.actions || []).map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>
+        <p class="muted" style="font-size:.88rem;margin:.2rem 0 .5rem">Grey stays still; teal is what this muscle moves.</p>
+        <div class="afig-grid">${(a.action_figures || []).join('') || (a.actions || []).map(x => `<p>${esc(x)}</p>`).join('')}</div></div>
       <div class="section-title">How the muscle works</div><p>${esc(m.mechanism)}</p>
       <div class="anat-grid">
         <div class="anat-mini"><h3>Fibre-type bias</h3><p>${esc(m.fiber_bias)}</p></div>

@@ -899,7 +899,9 @@ ANAT.muscles.forEach((m) => {
   const body = `<div class="article"><h1>${esc(m.name)}</h1><p>${esc(m.overview)}</p>
     ${muscle3D(m)}
     <h2>Anatomy</h2><p><b>Muscles:</b> ${esc(m.group)}</p><p><b>Origin:</b> ${esc(a.origin || '')}</p><p><b>Insertion:</b> ${esc(a.insertion || '')}</p>
-    <p><b>Actions:</b></p><ul>${(a.actions || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+    <h2>What this muscle actually does</h2>
+    <p>Each movement below is animated — the grey part stays still, the teal part is what this muscle moves.</p>
+    <div class="afig-grid">${(a.action_figures || []).join('') || (a.actions || []).map((x) => `<p>${esc(x)}</p>`).join('')}</div>
     <h2>How the muscle works</h2><p>${esc(m.mechanism)}</p>
     <p><b>Fibre-type bias:</b> ${esc(m.fiber_bias)}</p><p><b>Functional role:</b> ${esc(m.functional_role)}</p>
     <h2>Common problems</h2><ul>${(m.common_problems || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
