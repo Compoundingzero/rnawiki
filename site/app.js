@@ -197,21 +197,44 @@
   // ---------- helpers ----------
   const starStr = n => { const m = Math.min(5, Math.max(0, n | 0)); return '★'.repeat(m) + '☆'.repeat(5 - m); };
   const STAR_LEGEND = 'Human-evidence strength, 1–5 stars (★). Animal-only data is capped low.';
-  const rxBadge = c => c && c.isRx ? '<span class="pill rx" title="A prescription or controlled drug — a doctor has to assess you and prescribe it. It is not a supplement you can buy and take on your own.">Prescription only — see a doctor</span>' : '';
+  // Regulatory class, authored per compound in data/regulatory_class.json and merged into data.js
+  // by build/parse.js (2026-07-28). Before that merge existed, every regulatory decision in the SPA
+  // keyed on `c.isRx`, which MISSES statins, SSRIs, PDE-5 inhibitors, finasteride, tretinoin,
+  // minoxidil and Contrave (all badged green "FDA approved") and wrongly flags vitamin D3 and iron.
+  // A green badge means "a regulator approved this molecule", NOT "buy it off a shelf". Reading it
+  // as the latter is what printed "available over the counter -- Guardian, Watsons" on seven
+  // prescription-only medicines. The authored class wins; the badge is only a fallback.
+  const regClass = (c) => {
+    if (!c) return 'unknown';
+    if (c.regulatory_class) return c.regulatory_class;
+    const ap = c.approvals || [];
+    if (ap.includes('\u26ab')) return 'controlled';
+    if (ap.includes('\ud83d\udd35') || c.isRx) return 'prescription';
+    if (ap.includes('\ud83d\udd34')) return 'unapproved';
+    if (ap.includes('\ud83d\udfe1')) return 'supplement';
+    if (ap.includes('\ud83d\udfe2')) return 'otc';
+    return 'unknown';
+  };
+  const needsDoctor = (c) => ['prescription', 'controlled', 'pharmacy'].includes(regClass(c));
+  const rxBadge = c => needsDoctor(c) ? '<span class="pill rx" title="A prescription or controlled drug \u2014 a doctor has to assess you and prescribe it. It is not a supplement.">\u211e Needs a doctor</span>' : '';
   // Approval pills carry the legal status accurately (e.g. 🟡 OTC · 🔵 Prescription); a compact
   // "℞" cue flags anything needing a doctor without the old verbose, contradictory block.
-  const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (c && c.isRx ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">Prescription — needs a doctor</span>' : '');
+  const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (needsDoctor(c) ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">Prescription — needs a doctor</span>' : '');
   const badgeRow = c => `<div class="badges"><span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span>${approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
   function sgAvailability(c) {
-    const ap = c.approvals || [];
-    if (ap.includes('⚫')) return { tag: 'Controlled substance', cls: 'danger', body: 'A controlled substance in most countries — illegal to buy, sell or possess without authorisation (in Singapore: HSA / CNB). Listed for education only, not as a purchase option.' };
-    if (c.isRx) return { tag: 'Prescription only', cls: 'rx', body: 'Prescription-only — a doctor must assess and prescribe it. Not sold over the counter or on supplement sites. (In Singapore: HSA-regulated.)' };
-    if (ap.includes('🔴')) return { tag: 'Not widely approved', cls: 'warn', body: 'Not approved for general sale in most markets (Singapore included) — only grey-market, where dose, purity and legality are uncertain. Approach with real caution.' };
-    if (ap.includes('🟡') || ap.includes('🟢')) return { tag: 'Available over the counter', cls: 'ok', body: 'Widely available OTC — e.g. <b>iHerb</b> (ships worldwide); in Singapore also <b>Guardian</b>, <b>Watsons</b>, <b>GNC</b>, <b>Shopee / Lazada</b>. Look for a third-party-tested / GMP mark and check the actual dose per serving.' };
-    return { tag: 'Check locally', cls: '', body: 'Availability and legal status vary by country — check your national regulator (in Singapore, the HSA) before buying.' };
+    switch (regClass(c)) {
+      case 'controlled': return { tag: 'Controlled substance', cls: 'danger', body: 'A controlled substance in Singapore (HSA / CNB) and most other countries \u2014 illegal to buy, sell or possess without authorisation. Listed here for completeness only.' };
+      case 'prescription': return { tag: 'Prescription only', cls: 'rx', body: 'A prescription-only medicine. In Singapore it is dispensed by a licensed pharmacy against a doctor\'s prescription \u2014 it is not sold over the counter, and buying it from an online marketplace or an overseas seller is both unlawful and unsafe. Speak to a GP or polyclinic.' };
+      case 'pharmacy': return { tag: 'Pharmacy medicine', cls: 'rx', body: 'A pharmacy-only medicine \u2014 sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' };
+      case 'unapproved': return { tag: 'Not approved', cls: 'warn', body: 'Not approved for human use in Singapore or most markets. Grey-market supply only: dose, purity and legality are all uncertain.' };
+      case 'supplement':
+      case 'otc': return { tag: 'Available over the counter', cls: 'ok', body: 'Widely available over the counter. Look for a third-party-tested / GMP mark and check the dose per serving.' };
+      default: return { tag: 'Check locally', cls: '', body: 'Availability and legal status vary by country \u2014 check your national regulator (in Singapore, the HSA) before buying.' };
+    }
   }
+
   // Compounds that share a pathway — plausible synergy partners (the site's existing "⚡ Synergy" concept).
   function derivedStacks(c) {
     const pw = new Set(c.pathwayIds || []); if (!pw.size) return [];
@@ -1368,7 +1391,7 @@
     const L = (c.approvalLabels || []).join(',');
     if (/death|fatal|lethal|deadly|do not use/i.test((c.watch || '') + (c.bottom || ''))) return 'DANGER';
     if (/Not Approved|Controlled/.test(L)) return 'RESEARCH';
-    if (c.isRx || /Prescription|Off-Label/.test(L)) return 'RX';
+    if (needsDoctor(c) || /Prescription|Off-Label/.test(L)) return 'RX';
     return 'OTC';
   }
   const TIER_UI = {
@@ -3476,7 +3499,7 @@
       <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
       ${f.note ? `<p class="anat-lead">${esc(f.note)}</p>` : ''}
       <div class="section-title">The stack (${cpds.length})</div>
-      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${c.isRx ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b><span class="stars">${starStr(c.stars)}</span></a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
+      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b><span class="stars">${starStr(c.stars)}</span></a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
       <div class="cstack-actions" style="margin-top:1.2rem">
         <button class="cta-primary cstack-use" id="fork-clone-btn" style="border:none;cursor:pointer">Use this stack →</button>
         <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likes}</span></button>
@@ -3536,7 +3559,7 @@
     forks.sort((a, b) => (likesOf(b) - likesOf(a)) || ((b.clones || 0) - (a.clones || 0)));
     const card = f => {
       const cpds = (f.stack || []).map(id => byId[id]).filter(Boolean);
-      const chips = cpds.slice(0, 6).map(c => `<a class="cstack-chip${c.isRx ? ' rx' : ''}" href="#/c/${slug(c.name)}">${esc(c.name)}</a>`).join('');
+      const chips = cpds.slice(0, 6).map(c => `<a class="cstack-chip${needsDoctor(c) ? ' rx' : ''}" href="#/c/${slug(c.name)}">${esc(c.name)}</a>`).join('');
       const more = cpds.length > 6 ? `<span class="cstack-chip more">+${cpds.length - 6}</span>` : '';
       const liked = myVote('fork:' + f.id) === 1, using = f.clones || 0;
       return `<div class="cstack-card">
@@ -5190,7 +5213,7 @@
     </div>`;
   }
   function stackCard(c) {
-    return `<div class="st-card${c.isRx ? ' rx' : ''}">
+    return `<div class="st-card${needsDoctor(c) ? ' rx' : ''}">
       <a class="st-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>
       <span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span></a>
       <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>

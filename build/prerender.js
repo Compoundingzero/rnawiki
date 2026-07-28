@@ -60,6 +60,7 @@ const sgAvail = (c) => {
   switch (regClass(c)) {
     case 'controlled': return { tag: 'Controlled substance', body: 'A controlled substance in Singapore (HSA / CNB) and most other countries. Illegal to buy, sell or possess without authorisation. Listed here for completeness only.' };
     case 'prescription': return { tag: 'Prescription only', body: 'A prescription-only medicine. In Singapore it is dispensed by a licensed pharmacy against a doctor\'s prescription — it is not sold over the counter, and buying it from an online marketplace or an overseas seller is both unlawful and unsafe. Speak to a GP or polyclinic.' };
+    case 'pharmacy': return { tag: 'Pharmacy medicine', body: 'A pharmacy-only medicine — sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' };
     case 'unapproved': return { tag: 'Not approved', body: 'Not approved for human use in Singapore or most markets. Grey-market supply only: dose, purity and legality are all uncertain.' };
     case 'supplement':
     case 'otc': return { tag: 'Available over the counter', body: 'Widely available OTC — e.g. iHerb (ships worldwide); in Singapore also Guardian, Watsons, GNC, Shopee / Lazada. Look for a third-party-tested / GMP mark and check the dose per serving.' };
