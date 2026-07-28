@@ -1,71 +1,128 @@
-# PBswiki — Project Briefing
+# RNAwiki — project briefing
 
-## What This Is
-A "wants-first" wiki of health, fitness, and longevity compounds — approved and non-approved.
-Users start from a **goal** ("build muscle", "lose fat", "live longer") and get compounds ranked
-by human-evidence strength, each with: technical mechanism (named genes/receptors), an official
-gene/molecular-target link, and a plain-English explanation.
+**Owner:** Felix. **Live:** https://rnawiki.com. **Constraint: no camera / no video, ever.**
+Free, no paywall, Singapore-targeted (`en_SG`).
 
-**Owner:** Felix. **Constraint: no camera / no video ever.** Static, free-to-host, perpetual.
+> This file was rewritten on 2026-07-28. The previous version described a Next.js 15 + TypeScript +
+> Tailwind v4 + MDX + Fuse.js stack, a `/supplement/[slug]` route and a "build order" — **none of
+> which was ever built.** If you are reading an older copy of this file anywhere, discard it.
 
-## Content Sources (the four-layer learning architecture)
-The wiki is a *curriculum*, not just a reference. Four content layers, three now written:
-- **Layer 1 — `content/FOUNDATIONS.md`** ✅ — the prerequisite spine: Biology 101 (cell, central dogma, the 4 target types, signaling), Pharmacokinetics (ADME/half-life/bioavailability), Pharmacodynamics (agonist/antagonist/affinity/selectivity/tolerance), Evidence literacy (evidence hierarchy, p-value vs effect size, trial phases, regulatory maps), core glossary, and the embeddable visualization toolkit (PubChem, Mol*/RCSB PDB, UniProt, AlphaFold, Reactome, KEGG).
-- **Layer 2 — `content/PATHWAYS.md`** ✅ — the 16 master pathways (GPCR/cAMP, nuclear receptors, mTOR, AMPK, NO/cGMP, PI3K-Akt, GABA/glutamate, monoamines, cholinergic, HPTA, HPA, mitochondria, NAD⁺/sirtuins, NF-κB, melanocortin, senescence/autophagy). Each has a numbered cascade + the compounds that pull it. This is the "latticework" that makes a reader expert.
-- **Layer 3 — `content/COMPENDIUM.md`** ✅ — ~220 compounds across 20 categories. *To upgrade later:* add per-entry numbered step-by-step cascade, embedded 3D structure (Mol*/PubChem), three-depth toggle (ELI5/Informed/Technical), prerequisite links back to Layers 1–2, and self-test questions.
-- **Layer 4 — Learning tools** ⏳ (build with the site): wired-in glossary hover-defs, guided learning paths + progress tracking, flashcard/Anki export, compare tool.
+---
 
-`content/COMPENDIUM.md` — every compound entry has:
-- Approval badge (🟢🟡🔵🟠🔴⚫) + evidence stars (⭐–⭐⭐⭐⭐⭐)
-- **Technical mechanism** — receptor/enzyme/gene named
-- **Molecular target** — official link: [NCBI Gene](https://www.ncbi.nlm.nih.gov/gene/) for the gene, [PubChem](https://pubchem.ncbi.nlm.nih.gov/) for the compound, Examine/PMC where useful
-- **In plain English** — layman explanation
-- Protocol / Watch out / Bottom line
+## What this actually is
 
-When building MDX pages, split COMPENDIUM.md into one file per compound under `content/supplements/`,
-preserving frontmatter: `goals`, `approval`, `evidence`, `category`, `geneTargets[]`, `pubchem`.
+A "wants-first" health/performance wiki and protocol engine. A reader names a **problem** or a
+**goal** and gets the movement, the Singapore food, and the evidence-ranked compounds that address
+its root cause — with supplements broken down to compounds → pathways → molecular targets.
 
-## Editorial Rules (never violate)
-1. **Note faithfully, not through a lens.** Describe what the compound *does* mechanistically —
-   do not editorialise it into an investing/business analogy.
+Explicit competitive target: match or beat Examine.com's coverage, but free and visual where
+Examine is paywalled and prose.
+
+**Scale:** ~800 indexed URLs — 170 compound pages, 103 molecular-target pages, 52 protocol pages
+(41 problems), 45 `/learn` courses, 16 pathway, 17 muscle, 16 goal, ~107–404 `/compare` (the count
+depends on the generator gates), plus indexes.
+
+## The stack — what it really is
+
+**Vanilla JS. No framework, no bundler, no TypeScript, no Tailwind.** Two npm dependencies:
+`pg` and `@resvg/resvg-js`. That is the whole dependency tree, and it is a feature — keep it.
+
+```
+build/parse.js       reads content/*.md + data/*.json  -> writes site/data.js
+build/prerender.js   reads site/data.js               -> writes the static HTML for every route
+site/app.js          ~6,600 lines, the whole SPA in one IIFE
+site/styles.css      the whole stylesheet
+server.js            ~1,800 lines, plain node:http. No express.
+db.js                Postgres schema, applied on boot (idempotent DDL)
+data/*.json          the content sidecars (see below)
+content/*.md         upstream markdown source, read by parse.js at build time
+```
+
+**Deploy:** `git push origin main` → Railway. The Railway service is named **`RNAwiki`**
+(capital R-N-A) — `railway variable list --service RNAwiki`.
+**`site/` is ephemeral** — a fresh container, no volume. Everything under `site/` is regenerated
+at boot by `prestart`.
+
+**`parse.js` is already a hard deploy gate.** `prestart` is
+`node build/parse.js && (node build/prerender.js || echo …)` — the `|| echo` is scoped to the
+parenthesised prerender group, so a `process.exit(1)` in `parse.js` stops the deploy today.
+Only `prerender.js` failures are swallowed. No CI file is needed for this.
+
+**Database:** Railway Postgres. Use `DATABASE_PUBLIC_URL`, not the internal one, from your machine.
+Query it by writing a script in the repo root (where `pg` is installed) and running
+`railway run --service Postgres node ./x.js`. **Postgres has no PITR.** The only backup is the
+GitHub Action in `.github/workflows/`, which pushes to the **private** repo
+`Compoundingzero/rnawiki-backups`. Never point it back at this repo — this one is public.
+
+## The two-document rule — internalise this before making any claim
+
+**`curl` returns the PRERENDERED document. A headless browser returns the HYDRATED one. They are
+different documents and both are broken in places.**
+
+- Any claim about *what a user sees* needs Chrome
+  (`puppeteer-core`, `executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'`).
+- Any claim about *what Google or an answer engine sees* needs `curl`.
+- **~90% of traffic never runs JavaScript**, and there are only ~20 JS-executing sessions/day.
+  So rank every defect by **which document it lives in**. A defect in the prerendered document
+  outranks a prettier one in the SPA, almost always.
+- Do not assume the prerendered document is the degraded twin. On compound resolution it was the
+  *more correct* one.
+
+## Rules that are not negotiable
+
+1. **No brand recommendations.** Never name a commercial product or supplement brand as something
+   to buy. Independent certification standards (NSF, USP, Informed Sport, IFOS) are fine, framed as
+   "look for third-party testing". Naming a drug to identify it — "semaglutide (Ozempic/Wegovy)" —
+   is identification, not a buy-rec, and is fine.
 2. **Human evidence gets the stars.** Animal-only data is capped at ⭐⭐ and must say "animal".
-3. **Every molecular claim links to an official source** (NCBI Gene / PubChem / PMC / FDA / Examine).
-4. **Harm-reduction framing for non-approved compounds** — document risks plainly, never encourage.
-   DNP and similarly lethal compounds carry an explicit "do not use" and exist only for completeness.
-5. **Legal status is per-country where it differs** (US FDA, Singapore HSA, WADA for athletes).
-6. **Not medical advice** — global disclaimer on every page.
+   *(Known live violation: `parse.js` picks the largest ⭐-run regardless of the animal/human label,
+   so Rapamycin renders 5 stars from animal data. Fix at source, not in the renderer.)*
+3. **Every molecular claim links to an official source** — NCBI Gene, PubChem, PMC, FDA.
+4. **Harm-reduction framing for non-approved compounds.** Document risks plainly, never encourage.
+5. **Not medical advice**, on every page — and a real escalation path, not just a disclaimer.
+6. **A badge is not a supply classification.** 🟢 means "approved by a regulator", NOT "buy it off
+   a shelf". Conflating those is what put "available over the counter — Guardian, Watsons" on
+   prescription-only medicines.
+7. **Singapore regulatory exposure is real.** The operative regime is the **Medicines Act 1975
+   s.51 + the Medicines (Medical Advertisements) Regulations** — wider than the HPA 2007 route,
+   5× the penalty, with a prior-permit requirement and **no educational exemption**. Do not
+   advertise a prescription-only medicine to the public.
+8. **Verify before asserting.** Across five rounds of audit, agent findings that did not reproduce
+   appeared in *every single round*. Re-run the check yourself before acting on it. Cite
+   `file:line` or a live URL, and label findings verified / inferred / could-not-check.
 
-## Tech Stack (planned)
-- Next.js 15 (App Router) + TypeScript + Tailwind v4
-- Content as MDX (no database → static export → free hosting)
-- Client-side search: Fuse.js (zero API cost)
-- Deploy: Railway static or GitHub Pages
-- Ongoing cost target: **$0/month**
+## Environment gotchas that will otherwise waste hours
 
-## Site Structure
-```
-/                       Home — "What do you want to achieve?" goal grid
-/goal/[slug]            Goal page — compounds ranked by evidence, filterable by approval
-/supplement/[slug]      Entry — badges, mechanism, gene target links, plain English, protocol
-/compare               Side-by-side two compounds
-/az                    A–Z index
-/about                 Methodology + disclaimer + evidence/approval key
-```
+- **`grep` here is ugrep** and treats `site/app.js` and the large JSON as binary.
+  **Always `/usr/bin/grep -a`.**
+- After editing a sidecar in `data/`, run `node build/parse.js` to regenerate `site/data.js`.
+- `sso.agc.gov.sg` and `hsa.gov.sg` **work** with `curl -A '<Chrome UA>'`. It is *headless Chrome*
+  that gets a 403 there — the reverse of the usual pattern.
+- `examine.com`, `jospt.org` and `nice.org.uk` genuinely block. Europe PMC, PubMed eutils, openFDA,
+  PubChem and NCBI Gene all work with no key.
+- `node --check` will not catch a deleted function that still has callers. **Boot the server**
+  (`PORT=8099 node server.js`) and hit a few routes before you push.
 
-## Goal Taxonomy
-Build Muscle · Lose Fat · Endurance · Recover Faster · Sleep Better · Focus & Cognition ·
-Live Longer · Joint Health · Cardiovascular · Hormonal/Testosterone · Stress & Anxiety ·
-Sexual Health · Gut Health
+## Where the content lives
 
-## Build Order
-1. Scaffold Next.js + Tailwind + MDX loader
-2. Split COMPENDIUM.md → per-compound MDX with frontmatter
-3. Components: ApprovalBadge, EvidenceStars, GoalTag, GeneTargetLink, SupplementCard, Search
-4. Goal pages (ranking + filters) → supplement pages → compare → A–Z
-5. About/disclaimer page
-6. Deploy static to Railway; generate domain
+| file | holds |
+|---|---|
+| `data/compound_learn.json` | 157 compound learn layers — hooks, mechSteps, myths, evidence, refs |
+| `data/bio_learn.json` | bioavailability / contraindications / access for all 170 entries (incl. 13 multi-compound bundles) |
+| `data/cause_learn.json` | **224 causes, 995 chain steps, 858 fixes** — the real claim corpus |
+| `data/clinical_graph.json` | **216 asserted (compound × root_cause) pairs**, the protocol graph |
+| `data/learn_expand.json` | the 45 `/learn` courses (~308k words) |
+| `data/target_learn.json` | the 103 `/target` pages |
+| `data/protocol_plan.json` | per-problem plan, including the `reassess` clinician-escalation text |
+| `data/keystones.json` | 53 keystone habits — the least-hedged object in the corpus, renders as "⭐ START HERE" |
+| `content/*.md` | 3,312 lines of upstream source read by `parse.js` — upstream of the stars, badges and categories |
 
-## Regulatory Note (keep current)
-April 2026: FDA removed 12 peptides (BPC-157, TB-500, GHK-Cu, MOTS-C, Epitalon, LL-37, KPV, DSIP,
-Semax, Melanotan II, DiHexa, PEG-MGF) from Category 2. PCAC 503A compounding review July 23–24, 2026
-for BPC-157, TB-500, MOTS-C, KPV, DSIP, Semax, Epitalon. Removal ≠ approval. Re-check this quarterly.
+## Current state of the work
+
+The authoritative plan is `~/Downloads/RNAwiki_Anatomical_Framework_Plan_v4.md` (plus any later
+revision). Live execution state — what has actually shipped — is
+`~/Downloads/RNAwiki_EXECUTION_STATE.md`. **Read the state file before starting anything.**
+
+The organising insight from five rounds of audit: **every layer is authored well and connected to
+nothing.** The writing is good; the machinery between the writing and the reader is where the
+defects are. Phase 1 is joins, not authoring.

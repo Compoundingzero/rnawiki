@@ -17,10 +17,26 @@
   const byId = {}; D.compounds.forEach(c => byId[c.id] = c);
   const bySlug = {}; D.compounds.forEach(c => bySlug[slug(c.name)] = c);
   // Resolve a loose compound reference (e.g. "Omega-3") to a real compound, tolerating short/partial names.
+  //
+  // FIXED 2026-07-28. This used to OR four clauses inside a single D.compounds.find(), so the
+  // FIRST compound in array order matching ANY clause won -- the weakest clause (bare substring
+  // containment) beat an exact match that appeared later in the array. Live consequences:
+  //   "Vitamin C"      -> Collagen Peptides (+ Vitamin C)   instead of Vitamin C (Ascorbate)
+  //   "Calcium"        -> Ca-AKG (a longevity compound)     instead of Calcium (+ D3 + K2)
+  //   "Zinc-Carnosine" -> Zinc                              instead of Zinc-Carnosine ...
+  // i.e. a calcium recommendation for bone health linked to a longevity compound, on every
+  // JS-executing page. The prerendered document was already correct -- prerender.js:findCpt is a
+  // different, ordered resolver. Running the same four clauses as four ORDERED PASSES makes an
+  // exact match unbeatable, and only falls through to containment when nothing better exists.
   function resolveCompound(ref) {
     if (!ref) return null; const s = slug(ref); if (!s) return null;
-    if (bySlug[s]) return bySlug[s];
-    return D.compounds.find(c => { const cs = slug(c.name); return cs === s || cs.startsWith(s + '-') || s.startsWith(cs + '-') || cs.split('-').join('').includes(s.split('-').join('')); }) || null;
+    if (bySlug[s]) return bySlug[s];                                     // pass 1: exact slug
+    const flat = x => x.split('-').join('');
+    return D.compounds.find(c => slug(c.name) === s)                     // pass 2: exact name
+      || D.compounds.find(c => slug(c.name).startsWith(s + '-'))         // pass 3: ref is a prefix
+      || D.compounds.find(c => s.startsWith(slug(c.name) + '-'))         // pass 4: name is a prefix
+      || D.compounds.find(c => flat(slug(c.name)).includes(flat(s)))     // pass 5: last-resort substring
+      || null;
   }
   // Anatomy & physiology reference layer (muscles, energy systems, metabolism)
   const ANAT = D.anatomy || { muscles: [], energy_systems: [], metabolism: [] };
@@ -2289,10 +2305,12 @@
     const p = problemById[pid]; const rc = resolveRc(p, rcid);
     if (!p || !rc) return;
     const P = generateProtocol(rc);
-    // auto-populate the stack with this protocol's compounds
-    const ids = (P.stack || []).map(c => c.id).filter(Boolean);
-    const cur = getStack(); const added = ids.filter(id => !cur.includes(id));
-    if (added.length) setStack(cur.concat(added));
+    // REMOVED 2026-07-28: merely OPENING /fuel used to silently write this protocol's compounds
+    // into the user's saved stack -- no click, no confirmation, no interaction check. On the LDL
+    // protocol that wrote in Statins (a prescription medicine) AND Red Yeast Rice, a pairing the
+    // site's own interaction rules forbid; elsewhere it wrote in Semaglutide. Adding to a stack
+    // must be an explicit act by the reader. The page still displays the protocol's compounds
+    // below -- it just no longer decides for them.
     renderFuelStack(P);
     const inStackList = () => (P.stack || []).filter(c => inStack(c.id)); // compounds the user actually has in their stack
     loadUserFoods().then(() => mountFuelTracker(p, rc, null, inStackList()));
