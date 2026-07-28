@@ -521,7 +521,17 @@
       "dietitian",
       "pharmacist"
      ],
-     "plain": "Tight neck and shoulders, rounded posture and tension headaches from desk/phone"
+     "plain": "Tight neck and shoulders, rounded posture and tension headaches from desk/phone",
+     "avoid_movements": [
+      "behind the neck",
+      "behind-the-neck",
+      "upright row",
+      "overhead press",
+      "military press",
+      "push press",
+      "snatch",
+      "jerk"
+     ]
     },
     {
      "id": "rotator-cuff-impinge",
