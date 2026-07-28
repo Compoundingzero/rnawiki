@@ -1153,21 +1153,24 @@
     </section>
     <div class="how-cta center scrolly-cta"><a class="cta-primary" href="#/solve">See every problem &amp; goal →</a></div>
 
-    <section class="trust reveal">
-      <div class="section-title center">Open, and honest</div>
-      <h2 class="wr-head">Not a wiki of opinions.<br>An <span class="lead">open, evidence-ranked</span> engine.</h2>
-      <p class="trust-lead">Every protocol here is ranked by the strength of real human evidence — hype earns nothing, and it’s free to read and use today. It is compiled from published research, it says plainly where the evidence is thin or contested, and it is not a substitute for seeing a clinician.</p>
-      <div class="trust-row">
-        <div class="trust-pill"><b>${cc.compounds}</b> compounds, evidence-ranked</div>
-        <div class="trust-pill"><b>${GRAPH.problems.length}</b> problems, mapped to root causes</div>
-        <div class="trust-pill">open · evidence-first · free</div>
-      </div>
-    </section>
-
-    <section class="gp-home reveal">
-      <div class="gp-home-inner">
-        <div class="gp-home-txt"><div class="gp-eyebrow">For healthcare professionals worldwide</div><h2>A health professional? Share what you know — and help thousands.</h2><p>Doctor, nurse, pharmacist, dietitian, physio, TCM, coach — anywhere in the world. Contribute the knowledge you already have, build a name people trust, and help them live healthier. Free.</p></div>
-        <a class="cta-primary" href="#/gp">See how it works →</a>
+    ${/* REMOVED 2026-07-28 at Felix's instruction:
+          - the "Not a wiki of opinions / An open, evidence-ranked engine" trust section. The
+            corpus is not open-sourced, so calling the engine "open" was a claim the project
+            cannot currently stand behind. Removing an overclaim is not a design change, it is
+            an accuracy fix.
+          - the "A health professional? Share what you know" block and its /gp CTA. No interest
+            is being collected from clinicians at this stage.
+          The newsletter signup takes this slot: it is the only thing on the home page actually
+          asking the reader for something, and it previously lived on a separate /newsletter page
+          that a visitor had to find. */ ''}
+    <section class="nl-home reveal">
+      <div class="nl-home-inner">
+        <div class="nl-eyebrow">Free weekly · no spam · unsubscribe in one click</div>
+        <h2>Know what you're being prescribed — before you're prescribed it.</h2>
+        <p>One email a week: what actually changed in the evidence for a drug or supplement you
+        might be taking, in plain English. What works, what quietly does not, and what it should
+        cost you.</p>
+        ${nlForm('home', 'Get it free →')}
       </div>
     </section>
 
@@ -6658,7 +6661,7 @@
     else if (parts[0] === 'plan') html = planLoading();
     else if (parts[0] === 'progress') html = planLoading();
     else if (parts[0] === 'legend') html = legendPage();
-    else if (parts[0] === 'newsletter') html = newsletterPage();
+    // /newsletter folded into the home page 2026-07-28; server 301s the old URL.
     else if (parts[0] === 'for-clinicians') html = forClinicians();
     // FIXED 2026-07-28: this rewrote the URL bar to "/" and rendered the homepage, discarding the
     // fully authored aboutPage() -- which holds the site's ONLY disclaimer -- and leaving /about

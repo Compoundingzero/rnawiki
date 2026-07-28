@@ -1892,6 +1892,10 @@ function serveStatic(req, res, url) {
 //   /compare/*  -> 410 Gone      (deliberately withdrawn; tells Google to drop it and stop retrying)
 //   other route -> 404 Not Found
 // Anything else still gets the SPA shell, so client-side routing keeps working.
+// /newsletter was folded into the home page (2026-07-28). Redirect rather than 404: the link is
+// in the footer of every prerendered page already in Google's index, and in the welcome email.
+const LEGACY_REDIRECTS = { '/newsletter': '/#newsletter' };
+
 const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
 function serveMissing(res, safe) {
   const seg = String(safe || '').split('/').filter(Boolean);
@@ -1955,6 +1959,8 @@ const SECURITY_HEADERS = {
 const server = http.createServer((req, res) => {
   for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
   const url = req.url;
+  const _redir = LEGACY_REDIRECTS[url.split('?')[0].replace(/\/+$/, '') || '/'];
+  if (_redir) { res.writeHead(301, { Location: _redir }); res.end(); return; }
   if (url.startsWith('/api/')) {
     api(req, res, url).catch(e => { console.error(e); json(res, 500, { error: 'Server error' }); });
     return;

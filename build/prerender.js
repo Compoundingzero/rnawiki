@@ -400,7 +400,7 @@ ${crumbLd}${ld}
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/#newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
@@ -1506,96 +1506,10 @@ let written = 0;
       <p class="nl-note" id="nl-note-${esc(source)}">One email a week. Unsubscribe in one click. No spam, ever.</p>
     </form>`;
 
-  add('/newsletter', shell({
-    route: '/newsletter',
-    title: 'The RNAwiki newsletter — what changed in drugs and supplements, in plain English',
-    desc: 'One email a week: what actually changed in drugs and supplements, whether it touches you, and the claim on the label checked against the trial behind it. Free, Singapore, no affiliate links.',
-    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Newsletter', route: '/newsletter' }],
-    jsonld: [{
-      '@context': 'https://schema.org', '@type': 'WebPage', inLanguage: 'en',
-      name: 'The RNAwiki newsletter', url: SITE_URL + '/newsletter',
-      description: 'What changed in drugs and supplements this week, and whether it affects you.',
-      publisher: PUB.publisher, isPartOf: PUB.isPartOf,
-    }],
-    body: `<div class="nl-page">
-      <section class="nl-hero">
-        <p class="nl-kicker">The RNAwiki newsletter</p>
-        <h1>The money doesn't leave all at once. It leaves forty dollars at a time.</h1>
-        <p class="nl-lead">A bottle whose label makes a claim no trial supports. A consult you walked out of still not really knowing what you'd been given, or why. Nobody ever handed you the tools to check either one — so you paid, and you hoped.</p>
-        <p class="nl-lead"><strong>One email a week closes that gap.</strong> What actually changed in drugs and supplements, whether it touches you, and what the evidence really says underneath the label.</p>
-        ${signupForm('hero', 'Send me the weekly email')}
-      </section>
+  // /newsletter RETIRED 2026-07-28. The signup now lives on the home page, which is where the
+  // reader already is. server.js 301s /newsletter -> / so the ~515 footer links and any shared
+  // links keep working; the footer link itself now points at the home anchor.
 
-      <section class="nl-cost">
-        <h2>What it costs when the thing you were given doesn't work</h2>
-        <p>Researchers put a number on this. Not on drug prices — on what happens <em>after</em>, when a
-        prescription fails to do its job and the problem has to be treated again.</p>
-        <ul class="nl-stat nl-stat-big">
-          <li><b>US$2,481</b> — the average additional cost, per person, of a <b>treatment failure</b>:
-          you took what you were prescribed and it did not work.</li>
-          <li><b>US$2,610</b> — the average, per person, when the medicine creates a
-          <b>new medical problem</b> that then needs treating too.</li>
-          <li><b>US$528.4&nbsp;billion a year</b> across the US — <b>16% of the entire national health
-          bill</b>, spent on medication that didn't do what it was meant to.</li>
-        </ul>
-        <p class="nl-cite">Watanabe, McInnis &amp; Hirsch, <em>Annals of Pharmacotherapy</em> 2018 —
-        <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" rel="noopener">PMID 29577766</a>. 2016 US
-        dollars; plausible range $495.3–672.7 billion. Check it yourself, that's the point.</p>
-        <p class="nl-punch">Read that middle number again. It is not the price of the drug. It is what
-        it costs you <em>after</em> the drug didn't work — the second visit, the second prescription,
-        the thing that got worse while you waited.</p>
-        <p>Nobody hands you a way to tell, in advance, which category you're about to be in. You get a
-        name on a box and a dosing instruction, and you hope.</p>
-
-        <h2>Now do your own</h2>
-        <ol class="nl-sum">
-          <li>Open the cupboard where the supplements live. Add up what they cost you a month.
-          <b>Write the number down.</b></li>
-          <li>Add anything you're currently prescribed and have been taking for more than three months
-          without a clear sense of whether it's working.</li>
-          <li>Then the only question that matters: <b>how many of those could you defend with an actual
-          trial?</b></li>
-        </ol>
-        <p class="nl-punch">For most people the honest answer is "none — I trusted the label, or I
-        trusted that someone had checked." That isn't stupidity. Checking was never made possible for you.</p>
-      </section>
-
-      <section class="nl-what">
-        <h2>What lands in your inbox</h2>
-        <dl class="nl-in">
-          <dt>What actually changed this week — and whether it touches you</dt>
-          <dd>A drug gets approved. A supplement gets pulled. A big trial reads out and every headline mangles it. <b>Most of it will not affect you.</b> I'll tell you the one that does, in plain English, and what — if anything — to do differently.</dd>
-
-          <dt>The claim on the label, held against the trial behind it</dt>
-          <dd>Usually the number is real and the sentence wrapped around it is not. A supplement that says it "improves emotional wellbeing" turns out to have measured one depression score. A weight-loss figure quoted as a 14-week result was actually 52 weeks, most of it unblinded. <b>Once you can see that move, you cannot unsee it</b> — and you stop paying for it.</dd>
-
-          <dt>The question worth asking before you agree to anything</dt>
-          <dd>Not <em>refuse it</em> — ask about it. What is this for, what does it actually do, what happens if I don't take it, and is there something cheaper that does the same job? <b>Ten minutes of understanding is worth more than any second opinion you'll pay for.</b></dd>
-        </dl>
-      </section>
-
-      <section class="nl-honest">
-        <h2>What this is not</h2>
-        <ul class="nl-list nl-not">
-          <li><b>It is not "don't trust your doctor."</b> Almost every expensive mistake in this area is made at a pharmacy shelf, not in a consulting room. The point is to walk in able to ask a real question — not to stay away.</li>
-          <li>Not a supplement-of-the-month. Nothing here is for sale and there are no affiliate links. I don't make money if you buy something.</li>
-          <li>Not medical advice, and it says so where it matters.</li>
-          <li>Not padded. One email, once a week. If nothing worth sending happened, nothing gets sent.</li>
-        </ul>
-      </section>
-
-      <section class="nl-proof">
-        <h2>Why you can check me</h2>
-        <p>It's written out of RNAwiki — <b>${nCompounds} compounds</b>, <b>${nProblems} problems</b> broken into <b>${nProtocols} root-cause protocols</b>, <b>${nTrials} trials cited</b>, of which <b>${nPmid} have been matched to the paper by hand</b> and linked so you can open them yourself. Free to read, no paywall, no account.</p>
-        <p class="nl-caveat">Written with AI assistance and edited by a human. Not reviewed by a clinician. Where the evidence is thin, contested or animal-only, it says so instead of rounding up — <a href="/about">how this site is made</a>.</p>
-      </section>
-
-      <section class="nl-close">
-        <h2>The cost of another year of not knowing</h2>
-        <p>Twelve more months of the same cupboard, the same guesses, the same quiet outflow. Or one email a week, free, one click to leave.</p>
-        ${signupForm('footer', 'Start knowing what I am paying for')}
-      </section>
-    </div>` }));
 
   add('/pathways', shell({
     route: '/pathways', title: `The ${(D.pathways || []).length} master pathways · RNAwiki`,
@@ -1636,7 +1550,7 @@ let swept = 0;
 
 // sitemap + robots
 const now = new Date().toISOString().slice(0, 10);
-const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', '/newsletter', ...pages.map((p) => p.route)];
+const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.map((p) => p.route)];
 const uniq = [...new Set(urls)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

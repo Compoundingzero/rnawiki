@@ -3167,7 +3167,7 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 
 /* Every heading must clear the sticky topbar when jumped to. .topbar is position:sticky;top:0;
    z-index:50 — anything that lands at y=0 lands underneath it. */
-.article h2, .article h3, .learn-flat h2, .learn-flat h3 { scroll-margin-top: 70px; }
+/* superseded by the 180px rule below — 70px did not clear the sticky chapter strip. */
 
 .pagetoc { margin: .8rem 0 1.4rem; }
 .pagetoc .toc-lbl { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .04em;
@@ -3215,7 +3215,11 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
   background: var(--bg, #fff); border: 1px solid var(--line, #e2e8f0); color: var(--fg, #0a1420);
   text-decoration: none; }
 .lc-jump a:hover, .lc-jump a:focus { border-color: var(--accent, #0d9488); color: var(--accent, #0d9488); }
-.lc-dd { scroll-margin-top: 120px; }   /* clears the topbar AND the sticky chapter strip */
+/* Measured at 1440px: topbar 60px + chapter strip 97px = 157px of sticky chrome. At 120px the
+   section heading landed UNDERNEATH the header, so a jump link looked like it went to the wrong
+   section — you arrived at the right content with its title hidden. */
+.lc-dd, .dd { scroll-margin-top: 180px; }
+.learn-flat h2, .learn-flat h3, .article h2, .article h3 { scroll-margin-top: 180px; }
 
 /* Myths become a decision instead of a statement. */
 .myths details.myth { border: 1px solid var(--line, #e2e8f0); border-radius: 10px; padding: .5rem .75rem;
@@ -3256,3 +3260,16 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 @media (prefers-reduced-motion: no-preference) {
   .dd, .lc-dd { transition: opacity .25s ease; }
 }
+
+/* ===== NEWSLETTER ON THE HOME PAGE (2026-07-28) ==============================================
+   Moved out of a standalone /newsletter page nobody had to visit, into the slot vacated by the
+   "open, evidence-ranked engine" overclaim and the health-professional CTA. */
+.nl-home { padding: 2.4rem 1.2rem; }
+.nl-home-inner { max-width: 640px; margin: 0 auto; text-align: center;
+  border: 1px solid var(--line, #e2e8f0); border-radius: 18px; padding: 1.8rem 1.4rem;
+  background: linear-gradient(180deg, var(--panel, #f8fafc), var(--bg, #fff)); }
+.nl-home .nl-eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--accent, #0d9488); margin-bottom: .5rem; }
+.nl-home h2 { font-size: 1.6rem; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 .6rem; }
+.nl-home p { color: var(--muted, #475569); margin: 0 auto 1.1rem; max-width: 52ch; }
+.nl-home .nl-form { justify-content: center; }
