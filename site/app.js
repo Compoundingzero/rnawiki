@@ -1110,19 +1110,26 @@
     </section>` : '';
     return `
     <section class="hero funnel-hero reveal in">
-      <div class="kicker">The open protocol engine</div>
-      <h1>DNA is the idea that<br>never came to life.<br><span class="lead">RNA is the action.</span></h1>
-      <p class="hero-lead">DNA is a blueprint locked in a vault. <b>RNA is the messenger, the architect, and the builder</b> — it reads the code and makes it real. RNAwiki is the RNA for your health: name a problem or a goal, and we build the exact movement, food, and supplements that fix its root cause — with every supplement broken down to its <b>compounds, pathways, and molecular targets</b>, and every food to the nutrients that matter, all in plain English.</p>
+      ${/* HERO REWRITE (2026-07-28). The old H1 was brand etymology — it answered "why is this
+            called RNAwiki?", a question no first-time visitor has. It is not deleted: it still runs
+            in full in the why-rna section below, where a reader who has already been served will
+            actually care. The kicker no longer says "open" — the corpus is not open-sourced. */ ''}
+      <div class="kicker">Free · no account · nothing here is for sale</div>
+      <h1>You know what you were told to take.<br><span class="lead">You were never shown what it's for.</span></h1>
+      <p class="hero-lead">Start from the other end. Name the problem — we'll show you the
+      <b>root cause underneath it</b>, then the movement, the food and the compounds that act on
+      <i>that cause</i>, each one ranked by how good the human evidence actually is. Not a shopping
+      list. The reasoning you were never handed.</p>
       <div class="funnel">
         <div class="funnel-search">
           <span class="fs-ico">🔍</span>
-          <input id="hero-solve-input" type="text" autocomplete="off" placeholder="What do you want to fix or improve?" aria-label="What do you want to fix or improve?">
+          <input id="hero-solve-input" type="text" autocomplete="off" placeholder="What's wrong, or what do you want to fix?" aria-label="What's wrong, or what do you want to fix?">
           <div id="hero-solve-out" class="funnel-out" hidden></div>
         </div>
-        <button id="hero-solve-btn" class="cta-primary funnel-btn">Build my protocol →</button>
+        <button id="hero-solve-btn" class="cta-primary funnel-btn">Show me the root cause →</button>
       </div>
       <div class="seed-row">${seeds}<a class="seed-all" href="#/solve">or see all ${cc.problems || GRAPH.problems.length} →</a></div>
-      <p class="hero-note">Free · evidence-ranked · honest · no bro-science</p>
+      <p class="hero-note">Free · no account · <b>no affiliate links</b> · says so out loud when the evidence is thin</p>
       <div id="home-stat" class="home-stat" hidden></div>
     </section>
     ${factHtml}
