@@ -422,7 +422,6 @@
   const VOTER_KEY = (() => { let k = localStorage.getItem('rnawiki_voter'); if (!k) { k = 'v' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('rnawiki_voter', k); } return k; })();
   // Referral first-touch: remember the first ?ref token a visitor arrives with; compute my own share key.
   (function () { try { const rf = new URL(location.href).searchParams.get('ref'); if (rf && rf.length < 90 && !localStorage.getItem('rnawiki_ref') && rf !== 'v:' + VOTER_KEY) localStorage.setItem('rnawiki_ref', rf); } catch (e) {} })();
-  function myRefKey() { return ME ? 'u:' + ME.username : 'v:' + VOTER_KEY; }
   function myVote(targetId) { try { return (JSON.parse(localStorage.getItem('rnawiki_myvotes')) || {})[targetId] || 0; } catch (e) { return 0; } }
   function setMyVote(targetId, v) { let m = {}; try { m = JSON.parse(localStorage.getItem('rnawiki_myvotes')) || {}; } catch (e) {} if (v) m[targetId] = v; else delete m[targetId]; localStorage.setItem('rnawiki_myvotes', JSON.stringify(m)); }
   const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
@@ -535,8 +534,6 @@
     });
     window.google.accounts.id.renderButton(container, { theme: 'outline', size: 'large', width: 320, text: 'continue_with' });
   }
-  function requireAuth(then) { if (ME) return then(); openAuth('login'); }
-
   // ---------- comments ----------
   function commentItem(c) {
     const canDel = ME && (ME.username === c.username || ME.role === 'admin');
@@ -1139,18 +1136,6 @@
 
   // wire the landing funnel (autosuggest + intake routing)
   // Resolve a comment key (goal_id) into a human label + link, using client data.
-  function pulseCommentRef(key) {
-    const seg = String(key || '').split(':');
-    if (seg[0] === 'p' && seg[1]) return { label: protocolName(seg[1], seg[2]), href: `#/protocol/${seg[1]}/${seg[2]}` };
-    if (seg[0] === 'c' && byId[seg[1]]) return { label: byId[seg[1]].name, href: `#/c/${slug(byId[seg[1]].name)}` };
-    if (seg[0] === 'pw' && D.pathways[+seg[1]]) return { label: D.pathways[+seg[1]].shortLabel + ' pathway', href: `#/pathway/${+seg[1]}` };
-    if (seg[0] === 'mu' && muscleById[seg[1]]) return { label: muscleById[seg[1]].name, href: `#/muscle/${seg[1]}` };
-    if (seg[0] === 'ex') return { label: 'an exercise', href: `#/exercise/${seg[1]}` };
-    if (seg[0] === 'en' && energyById[seg[1]]) return { label: energyById[seg[1]].name, href: `#/energy/${seg[1]}` };
-    if (seg[0] === 'ph' && physioById[seg[1]]) return { label: physioById[seg[1]].name, href: `#/physiology/${seg[1]}` };
-    const g = goalById[key]; if (g) return { label: g.label, href: `#/goal/${key}` };
-    return { label: 'the wiki', href: '#/' };
-  }
   // Community pulse: a live feed of recent activity — social proof the wiki is alive + discovery.
   // Top community stacks on the home page — social proof + discovery. Real user-built stacks
   // (falls back to demo fixtures until real ones arrive), ranked by likes then usage.
@@ -1382,22 +1367,6 @@
     if (c.watch) pts.push('Watch: ' + faqSnip(c.watch, 120));
     if (pts.length < 2) return '';
     return `<div class="takeaways" data-lvl="1"><div class="tk-h">⚡ The 30-second version</div><ul>${pts.slice(0, 3).map(p => `<li>${mdInline(p)}</li>`).join('')}</ul></div>`;
-  }
-  function depthBar() {
-    return `<div class="depth-wrap">
-      <div class="depth-bar" role="tablist" aria-label="Reading depth">
-        <span class="depth-lbl">Explain like I'm:</span>
-        <button class="depth-btn" data-depth="1">🌱 New to this</button>
-        <button class="depth-btn active" data-depth="2">📘 Informed</button>
-        <button class="depth-btn" data-depth="3">🔬 Technical</button>
-      </div>
-      <div class="depth-desc" id="depth-desc"></div>
-    </div>`;
-  }
-  function compoundToc(c) {
-    const items = [['sec-plain', 'Plain English'], pubchemCID(c) ? ['sec-molecule', 'The molecule'] : null, c.mechanism ? ['sec-mechanism', 'How it works'] : null, c.protocol ? ['sec-protocol', 'How to take it'] : null, c.watch ? ['sec-watch', 'Watch out'] : null, c.evidence ? ['sec-evidence', 'The evidence'] : null].filter(Boolean);
-    if (items.length < 3) return '';
-    return `<nav class="cpd-toc" id="cpd-toc">${items.map(([id, l]) => `<a href="#${id}" data-toc="${id}">${l}</a>`).join('')}</nav>`;
   }
   // Safety/framing tier — mirrors the authoring manifest. Drives tab labels, the protocol heading,
   // the "when to use" header and the add-to-stack control so the page never invites use of a
@@ -2004,60 +1973,8 @@
   }
   // Weave the anatomy layer into a protocol: which muscles the Move work trains + how they're
   // fuelled (energy systems), and which metabolism the Fuel targets.
-  function moveScienceStrip(P) {
-    const ids = new Set();
-    [...(P.strengthen || []), ...(P.stretch || [])].forEach(e => ((e && e.primaryMuscles) || []).forEach(mn => { if (muscleByName[mn]) ids.add(muscleByName[mn].id); }));
-    if (!ids.size) return '';
-    const muscleLinks = [...ids].slice(0, 6).map(id => `<a class="tag-chip" href="#/muscle/${id}">${esc(muscleById[id].name)}</a>`).join('');
-    const energy = (ANAT.energy_systems || []).map(e => `<a class="tag-chip" href="#/energy/${e.id}">⚡ ${esc(e.name.split('(')[0].trim())}</a>`).join('');
-    return `<div class="sci-strip"><div class="sci-h">🔬 The science behind these movements</div>
-      <div class="sci-row"><span class="sci-k">Muscles worked</span>${muscleLinks}</div>
-      <div class="sci-row"><span class="sci-k">How they're fuelled</span>${energy}</div></div>`;
-  }
-  function fuelScienceStrip(problem, rc) {
-    const hay = ((problem.name || '') + ' ' + (problem.category || '') + ' ' + (rc.name || '')).toLowerCase();
-    let picks;
-    if (/fat|weight|lean|lose|obes/.test(hay)) picks = ['fat-management', 'insulin-blood-sugar'];
-    else if (/muscle|strength|mass|sarcopenia|hypertrophy|build/.test(hay)) picks = ['protein-muscle-turnover', 'insulin-blood-sugar'];
-    else if (/endur|cardio|run|vo2|energy|fatigue|stamina/.test(hay)) picks = ['glucose-conversion', 'fat-management'];
-    else if (/sugar|glucose|diabet|metabolic|insulin/.test(hay)) picks = ['insulin-blood-sugar', 'glucose-conversion'];
-    else picks = ['insulin-blood-sugar', 'glucose-conversion'];
-    const links = picks.filter(id => physioById[id]).map(id => `<a class="tag-chip" href="#/physiology/${id}">${esc(physioById[id].name)}</a>`).join('');
-    return links ? `<div class="sci-strip"><div class="sci-h">🔬 The physiology this fuel targets</div><div class="sci-row">${links}</div></div>` : '';
-  }
   // Temporal stacking: bucket a compound into a time-of-day slot from its dosing text.
-  function timingBucket(c) {
-    const t = ((c.protocol || '') + ' ' + (c.plain || '')).toLowerCase();
-    if (/weekly|monthly|every \d+ ?days|\d+ (consecutive )?days? (a |per )?month|pulse|intermittent(ly)?|\bcycle\b|2 days monthly/.test(t)) return 'periodic';
-    if (/pre-?\s?(workout|exercise|train)|before (a |your )?(workout|exercise|train)|post-?\s?(workout|exercise|train)|after (a |your )?(workout|exercise|train)/.test(t)) return 'training';
-    if (/before bed|bedtime|at night|\bevening\b|\bnight\b|before sleep/.test(t)) return 'evening';
-    if (/\bmorning\b|on waking|empty stomach|with breakfast|\bam\b/.test(t)) return 'morning';
-    return 'meals'; // default: with a meal / anytime in the day
-  }
   // The "Your day" plan — a layman-friendly 24h checklist; each item expands to the "why".
-  function dayPlanHtml(problem, rc, P) {
-    const BLOCKS = [
-      { k: 'morning', icon: '☀️', label: 'Morning' },
-      { k: 'training', icon: '🏋️', label: 'Around training' },
-      { k: 'meals', icon: '🍽️', label: 'With meals / anytime' },
-      { k: 'evening', icon: '🌙', label: 'Evening & bedtime' },
-      { k: 'periodic', icon: '🔁', label: 'Periodic (not daily)' },
-    ];
-    const bucket = {}; BLOCKS.forEach(b => bucket[b.k] = []);
-    (P.stack || []).forEach(c => { bucket[timingBucket(c)].push({ name: c.name, href: '#/c/' + slug(c.name), detail: c.protocol || '', rx: c.isRx }); });
-    // exercises go around training
-    const moves = [...(P.strengthen || []), ...(P.stretch || [])];
-    if (moves.length) bucket.training.unshift({ name: (rc.prescription && rc.prescription.scheme) || (moves.length + ' exercises'), href: '', detail: (rc.prescription && rc.prescription.detail) || 'See the Move section below.', move: true });
-    const activeBlocks = BLOCKS.filter(b => bucket[b.k].length);
-    if (!activeBlocks.length) return '';
-    const item = it => `<div class="dp-item">${it.href ? `<a class="dp-name" href="${it.href}">${esc(it.name)}</a>` : `<b class="dp-name">${it.move ? '💪 ' : ''}${esc(it.name)}</b>`}${it.rx ? '<span class="pill rx">Prescription</span>' : ''}${it.detail ? `<details class="dp-why"><summary>why &amp; how</summary><p>${esc(it.detail)}</p></details>` : ''}</div>`;
-    return `<div class="day-plan">
-      <div class="section-title" style="margin-top:0">📅 Your day <span class="lp-tag">when to take what</span></div>
-      <p class="muted" style="font-size:.85rem;margin-top:-.3rem">The whole protocol as a simple daily plan. Tap “why &amp; how” on any item for the dose and the reason for the timing.</p>
-      <div class="dp-blocks">${activeBlocks.map(b => `<div class="dp-block ${b.k}"><div class="dp-head">${b.icon} ${b.label}</div>${bucket[b.k].map(item).join('')}</div>`).join('')}</div>
-      <p class="muted" style="font-size:.82rem">Plus: hit your food targets across the day — log meals in the <b class="fl">Fuel</b> section below.</p>
-    </div>`;
-  }
   function musclePage(id) {
     const m = muscleById[id]; if (!m) return notFound();
     if (m.expand) return learnCourse(m.expand, { name: m.name, key: 'muscle-' + id, crumb: anatomyCrumb(m.name), badge: '<span class="pw-badge">💪 Muscle course</span>' });
@@ -2721,16 +2638,6 @@
       host.innerHTML = [['👥', members, 'members'], ['✅', t.consented || 0, 'consented'], ['📋', t.checkins || 0, 'check-ins'], ['🧬', t.protocols || 0, 'protocols with data']].map(m => `<div class="cr-metric"><span class="cr-m-n">${m[1]}</span><span class="cr-m-l">${m[0]} ${m[2]}</span></div>`).join('');
     }
     // ---- Dataset view: the outcome table + raw-data CSV export ----
-    async function renderDataset() {
-      const view = app.querySelector('#cr-view'); view.innerHTML = `<div class="muted" style="padding:1rem 0">Loading outcomes…</div>`;
-      let O; try { O = await getOutcomes(); } catch (e) { view.innerHTML = '<p class="muted">Could not load outcomes.</p>'; return; }
-      const rows = (O.rows || []).map(r => { const nm = nameOf(r.pid, r.rcid);
-        const p30 = r.d30_n ? Math.round(r.d30_imp / r.d30_n * 100) : null, p90 = r.d90_n ? Math.round(r.d90_imp / r.d90_n * 100) : null; const dlt = r.symptom_delta;
-        return `<tr><td>${nm.icon} <b>${esc(nm.pn)}</b> <span class="muted">${esc(nm.rn)}</span></td><td>${r.baseline_n}</td><td>${r.d30_n}${p30 != null ? ` · <b>${p30}%</b>↑` : ''}</td><td>${r.d90_n}${p90 != null ? ` · <b>${p90}%</b>↑` : ''}</td><td>${dlt != null ? (dlt > 0 ? '▼ ' + dlt : dlt < 0 ? '▲ ' + Math.abs(dlt) : '0') + ' pts' : '—'}</td><td>${r.avg_adh != null ? r.avg_adh + '%' : '—'}</td></tr>`;
-      }).join('') || '<tr><td colspan="6" class="muted">No outcome data yet — it accrues as consented users complete their 30- and 90-day check-ins.</td></tr>';
-      view.innerHTML = `<div class="cr-sec-h"><h2>Outcome dataset</h2></div>
-        <div class="ao-table-wrap"><table class="board"><thead><tr><th>Protocol</th><th>Baseline</th><th>30-day</th><th>90-day</th><th>Symptom Δ</th><th>Adherence</th></tr></thead><tbody>${rows}</tbody></table></div>`;
-    }
     // ---- Insights view: high-value signals + research cuts ----
     function renderInsights() { app.querySelector('#cr-view').innerHTML = `<div id="adm-datasets"><div class="muted" style="padding:1rem 0">Loading datasets…</div></div>`; loadDatasets(); }
     function opsMenuHtml() {
@@ -3170,21 +3077,6 @@
     await Promise.all(jobs);
   }
   // Local Partners: sample SG businesses relevant to a problem's category.
-  function localPartners(problem) {
-    const B = window.RNAWIKI_BUSINESSES;
-    if (!B || !B.businesses) return '';
-    const matches = B.businesses.filter(b => (b.serves || []).includes(problem.category)).slice(0, 3);
-    if (!matches.length) return '';
-    const TYPE_ICON = { physio: '🧑‍⚕️', gym: '🏋️', supplement: '💊', clinic: '🏥', dietitian: '🥗' };
-    return `<section class="local-partners">
-      <div class="section-title">Local partners for ${esc(problem.name)} <span class="lp-tag">Singapore</span></div>
-      <div class="lp-grid">${matches.map(b => `<a class="lp-card" href="${esc(b.link)}" target="_blank" rel="noopener nofollow">
-        <span class="lp-ico">${TYPE_ICON[b.type] || '📍'}</span>
-        <span class="lp-body"><b>${esc(b.name)}</b><small>${esc(b.type)} · ${esc(b.location)}</small><span class="lp-blurb">${esc(b.blurb || '')}</span></span></a>`).join('')}
-      </div>
-      <p class="lp-note">${esc(B.disclaimer || '')} <a href="mailto:felix360506@gmail.com?subject=RNAwiki%20local%20partner">List your business →</a></p>
-    </section>`;
-  }
   const GRAPH = D.graph || { problems: [], categories: [], domains: {} };
   const problemById = {}; GRAPH.problems.forEach(p => problemById[p.id] = p);
   // Approved root-cause changes are applied as a runtime overlay onto the static graph,
@@ -3478,48 +3370,6 @@
     };
   }
   // ---------- Fork a protocol: community variations (UGC engine) ----------
-  function openForkModal(problem, rc) {
-    if (!ME) return openAuth('login');
-    let P = {}; try { P = generateProtocol(rc); } catch (e) {}
-    const protoIds = (P.stack || []).map(c => c.id);
-    const extra = getStack().filter(id => !protoIds.includes(id)).map(id => byId[id]).filter(Boolean);
-    const items = (P.stack || []).concat(extra);
-    const rows = items.map(c => `<label class="fork-item"><input type="checkbox" value="${c.id}" checked> <b>${esc(c.name)}</b> <span class="stars">${starStr(c.stars)}</span>${c.isRx ? ' <span class="pill rx">Prescription</span>' : ''}</label>`).join('');
-    const m = modal(`<div class="partner-modal"><h2>💬 Share your stack</h2>
-      <p class="muted">Share your own take on <b>${esc(problem.name)}</b> — keep what suits you, drop what doesn't. It shows up as a <b>community stack</b> (clearly not the reviewed protocol) that others can like and use. When someone uses it, you earn reputation.</p>
-      <label>Name your stack</label><input id="fk-title" maxlength="80" placeholder="e.g. My SG longevity stack — no rapamycin">
-      <label>What did you change &amp; why? (optional)</label><textarea id="fk-note" rows="2" maxlength="500" placeholder="Dropped X (couldn't source it in SG), added Y for sleep…"></textarea>
-      <label>Your stack (${items.length})</label>
-      <div class="fork-items">${rows || '<p class="muted">This protocol has no supplements to fork.</p>'}</div>
-      <button class="cta-primary" id="fk-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">Save my variation</button></div>`);
-    m.querySelector('#fk-save').onclick = async () => {
-      const title = (document.getElementById('fk-title') || {}).value || ''; if (!title.trim()) return alert('Name your variation first.');
-      const stack = [...m.querySelectorAll('.fork-items input:checked')].map(i => i.value);
-      try { await api.createFork({ problem_id: problem.id, root_cause_id: rc.id, title, note: (document.getElementById('fk-note') || {}).value || '', stack }); closeModal(); alert('Shared! It’s now a community stack. +10 points — every person who uses it earns you more.'); mountCommunityStacks(problem, rc); }
-      catch (e) { alert(e.message); }
-    };
-  }
-  async function mountForks(problem, rc) {
-    const el = document.getElementById('community-forks'); if (!el) return;
-    // Phase 2 feature (public forking). Until it launches, render nothing.
-    if (!PHASE2) { el.style.display = 'none'; return; }
-    let forks = []; try { forks = await api.forksFor(problem.id, rc.id); } catch (e) {}
-    const forkBtn = `<button class="linkbtn" id="fk-new">🍴 Fork this protocol →</button>`;
-    if (!forks.length) { el.innerHTML = `<div class="fork-empty">No community variations yet. Made a tweak that works for you? ${forkBtn}</div>`; }
-    else {
-      el.innerHTML = `<div class="section-title">🍴 Community variations <span class="lp-tag">not reviewed · ${forks.length}</span></div>
-        <p class="muted" style="font-size:.85rem;margin-top:-.3rem">Real people's takes on this protocol — not the official, expert-maintained one. Clone one to load its stack, or ${forkBtn}</p>
-        <div class="fork-list">${forks.map(f => {
-        const names = (f.stack || []).map(id => byId[id]).filter(Boolean).slice(0, 5).map(c => esc(c.name)).join(', ');
-        return `<div class="fork-card"><div class="fork-head"><a class="fork-title" href="#/fork/${f.id}"><b>${esc(f.title)}</b></a><span class="fork-by">${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''} · ${f.clones} clone${f.clones !== 1 ? 's' : ''}</span></div>
-          ${f.note ? `<p class="fork-note">${esc(f.note)}</p>` : ''}
-          <p class="fork-stack">${names || '—'}${(f.stack || []).length > 5 ? ' +' + ((f.stack || []).length - 5) + ' more' : ''}</p>
-          <button class="fork-clone" data-clone="${f.id}">Clone this stack →</button></div>`;
-      }).join('')}</div>`;
-    }
-    const nb = document.getElementById('fk-new'); if (nb) nb.onclick = () => openForkModal(problem, rc);
-    el.querySelectorAll('[data-clone]').forEach(b => b.onclick = () => cloneForkTo(b.dataset.clone));
-  }
   async function mountForkPage(id) {
     const f = await api.getFork(id);
     if (!f) { app.innerHTML = notFound(); return; }
@@ -3642,16 +3492,6 @@
   // standalone "deals" block — a lead only appears next to the thing it fulfils.
   // Local businesses that have earned a place (backlink-verified partners). No expert "owns"
   // the protocol.
-  async function mountContextPartners(problem, rc) {
-    let partners = [];
-    try { partners = await api.partners(problem.category); } catch (e) {}
-    const fill = (id, html) => { const el = document.getElementById(id); if (el && !el.innerHTML) el.innerHTML = html; };
-    const supp = partners.find(p => p.type === 'supplement');
-    if (supp) fill('stack-context', `<a class="ctx-card ext" href="${esc(supp.link)}" target="_blank" rel="noopener nofollow"><span class="ctx-ico">🏬</span><span class="ctx-body"><b>Get these in Singapore</b><small>${esc(supp.name)}${supp.location ? ' · ' + esc(supp.location) : ''}</small></span></a>`);
-    const gym = partners.find(p => p.type === 'gym' || p.type === 'physio' || p.type === 'clinic');
-    if (gym) fill('move-context', `<a class="ctx-card ext" href="${esc(gym.link)}" target="_blank" rel="noopener nofollow"><span class="ctx-ico">🏋️</span><span class="ctx-body"><b>Train this near you</b><small>${esc(gym.name)}${gym.location ? ' · ' + esc(gym.location) : ''}</small></span></a>`);
-    document.querySelectorAll('.ctx-book').forEach(b => b.addEventListener('click', () => { try { if (navigator.sendBeacon) navigator.sendBeacon('/api/track?e=booking&u=' + encodeURIComponent(b.dataset.h)); } catch (e) {} }));
-  }
   // This protocol belongs to no one. The experts who contribute most to it (comments + edits)
   // are FEATURED here — attribution. Their profile links out to their work and details.
   // Root-cause governance panel (verified experts + admin): request adding/removing a root
@@ -3713,7 +3553,6 @@
     };
   }
   // ---------- the outcome loop UI: Results Ledger + start / check-in / streak / report ----------
-  function outcomeLabel(o) { return o === 'better' ? 'Better' : o === 'same' ? 'No change' : 'Worse'; }
   // Adoption is measured by the build action, not a separate "experiment" commitment.
   // We reuse the ledger's running count purely as quiet social proof — shown only when credible.
   async function mountAdoption(problem, rc) {
@@ -3732,78 +3571,9 @@
     if (!stat || !stat.n) { host.innerHTML = ''; return; }
     host.innerHTML = `<div class="outcome-proof">🔬 <b>${stat.pct}%</b> of <b>${stat.n}</b> people who tracked this reported their ${esc(problem.name.toLowerCase())} improved. <span class="muted">Real, anonymous outcomes from RNAwiki users.</span></div>`;
   }
-  function openOutcome(problem, rc, done) {
-    const m = modal(`<div class="outcome-modal">
-      <h2>How's your ${esc(problem.name.toLowerCase())}?</h2>
-      <p class="muted">Honest answers make this useful for the next person — including “no change”.</p>
-      <div class="outcome-btns">
-        <button class="oc-choice better" data-o="better"><span class="oc-emo">📈</span> Better</button>
-        <button class="oc-choice same" data-o="same"><span class="oc-emo">➖</span> No change</button>
-        <button class="oc-choice worse" data-o="worse"><span class="oc-emo">📉</span> Worse</button>
-      </div>
-      <p class="assess-disclaimer">Your report is anonymous in the results.</p></div>`);
-    m.querySelectorAll('[data-o]').forEach(b => b.onclick = async () => {
-      const o = b.dataset.o; m.querySelectorAll('[data-o]').forEach(x => x.disabled = true);
-      try {
-        await api.reportOutcome(problem.id, rc.id, o);
-        if (done) done();
-        if (o === 'better') { closeModal(); celebrateOutcome(problem, rc); }
-        else {
-          m.querySelector('.outcome-modal').innerHTML = `<div class="outcome-thanks"><div class="oc-emo big">🙏</div><h2>Thank you — logged.</h2><p class="muted">Honest “${outcomeLabel(o).toLowerCase()}” reports are exactly what keep this ledger trustworthy.</p><button class="exp-btn primary" data-close>Done</button></div>`;
-          m.querySelector('[data-close]').onclick = () => closeModal();
-        }
-      } catch (e) { alert(e.message); m.querySelectorAll('[data-o]').forEach(x => x.disabled = false); }
-    });
-  }
-  function celebrateOutcome(problem, rc) {
-    const m = modal(`<div class="outcome-celebrate"><div class="oc-emo big">🎉</div>
-      <h2>That's a win worth sharing.</h2>
-      <p>You ran the ${esc(problem.name)} protocol and it worked. Share it — someone with the same problem is looking for exactly this.</p>
-      <button class="exp-btn primary" data-share>🔗 Copy my result + link</button>
-      <button class="exp-link" data-close>Maybe later</button></div>`);
-    m.querySelector('[data-share]').onclick = () => shareResult(problem, rc, 'better');
-    m.querySelector('[data-close]').onclick = () => closeModal();
-  }
   // every shared link carries my ref key so a start from it credits me ("builders brought in")
-  function protoShareUrl(problem, rc) { return (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id + '?ref=' + encodeURIComponent(myRefKey()); }
-  async function doShare(title, text, url) {
-    try { if (navigator.share) { await navigator.share({ title, text, url }); return; } }
-    catch (e) { if (e && e.name === 'AbortError') return; }
-    try { await navigator.clipboard.writeText(text); toast('Copied — paste it anywhere 🎉'); }
-    catch (e) { prompt('Copy this:', text); }
-  }
   // bake the live ledger stat into the shared text (only when it's real: ≥3 outcomes) — the credible bit
-  function ledgerStatText(ledger) {
-    if (!ledger) return '';
-    const o = (ledger.better || 0) + (ledger.same || 0) + (ledger.worse || 0);
-    if (o < 3) return '';
-    return ` — ${Math.round((ledger.better || 0) / o * 100)}% of ${o} people who tried it got better`;
-  }
-  async function shareResult(problem, rc, outcome) {
-    const url = protoShareUrl(problem, rc);
-    const verb = outcome === 'better' ? 'it worked' : 'I tried it';
-    await doShare('RNAwiki — ' + problem.name, `I ran the RNAwiki ${problem.name} protocol — ${verb}. Here's exactly what I did: ${url}`, url);
-  }
   // general "share this protocol" hub — socials text (with stat), plain link, and a blog/embed HTML snippet
-  function shareModal(problem, rc, ledger, mine) {
-    const url = protoShareUrl(problem, rc);
-    const social = `RNAwiki has an evidence-ranked protocol for ${problem.name}${ledgerStatText(ledger)}: ${url}`;
-    const blogHtml = `<a href="${url}">Evidence-ranked ${esc(problem.name)} protocol — RNAwiki</a>`;
-    const ob = (mine && mine.onboarded) || 0;
-    const m = modal(`<div class="share-modal">
-      <h2>Share this protocol</h2>
-      <p class="muted">The most helpful thing to paste when someone asks about ${esc(problem.name.toLowerCase())} — it carries the real result data.</p>
-      <div class="share-preview">${esc(social)}</div>
-      <div class="share-actions">
-        <button class="exp-btn primary" data-social>${navigator.share ? 'Share' : 'Copy for socials'}</button>
-        <button class="exp-btn" data-link>Copy link</button>
-        <button class="exp-btn" data-blog>Copy blog HTML</button>
-      </div>
-      <p class="share-onboard">${ob ? `🌱 You've brought <b>${ob}</b> ${ob === 1 ? 'builder' : 'builders'} in so far. Every share grows the data.` : `Every person who starts from your link makes the results stronger — you'll see how many you've brought in.`}</p></div>`);
-    m.querySelector('[data-social]').onclick = () => doShare('RNAwiki — ' + problem.name, social, url);
-    m.querySelector('[data-link]').onclick = async () => { try { await navigator.clipboard.writeText(url); toast('Link copied 🔗'); } catch (e) { prompt('Copy link:', url); } };
-    m.querySelector('[data-blog]').onclick = async () => { try { await navigator.clipboard.writeText(blogHtml); toast('Blog HTML copied — paste into your site'); } catch (e) { prompt('Copy HTML:', blogHtml); } };
-  }
   // REMOVED 2026-07-28 (fabrication cluster, v3 Phase -1.4): the "N people helped" counter.
   // `helped` counted people who STARTED a protocol or built a stack. outcome_checkins is 0 —
   // nobody has ever reported an outcome — so "helped" asserted a result the data cannot support,
@@ -4192,7 +3962,7 @@
   let CONSENT = null; // null unknown · true tracked (default) · false explicitly withdrawn
   // Tracking is ON by default (users can withdraw/delete anytime via "Your data"). Only an explicit withdrawal turns it off.
   async function loadConsent() { if (!ME) { CONSENT = null; return; } try { const d = await api.getConsent(); CONSENT = (d && d.consent && d.consent.consent_research === false) ? false : true; } catch (e) { CONSENT = true; } }
-  function consentCardHtml() { return ''; }   // no opt-in card — capture by default; withdrawal lives in "Your data"
+   // no opt-in card — capture by default; withdrawal lives in "Your data"
   function wireConsentCard() {
     const a = document.getElementById('consent-open'); if (a) a.onclick = openConsentModal;
     const b = document.getElementById('consent-skip'); if (b) b.onclick = () => { localStorage.setItem('rnawiki_consent_dismiss', '1'); const c = document.querySelector('.consent-card'); if (c) c.remove(); };
@@ -4759,14 +4529,6 @@
     return null;
   }
   const CC_TYPE = { trigger: '⚡ trigger', mediator: '⚙️ mediator', tissue: '🧬 tissue', symptom: '💥 symptom' };
-  function causeChain(chain) {
-    if (!Array.isArray(chain) || !chain.length) return '';
-    return `<div class="cc-chain">${chain.map((n, i) => {
-      const link = n.type === 'mediator' && n.ref ? mediatorLink(n.ref) : null;
-      const label = link ? `<a href="${link}">${esc(n.node)}</a>` : esc(n.node);
-      return `<div class="cc-node cc-${esc(n.type)}"><span class="cc-node-t">${CC_TYPE[n.type] || ''}</span><span class="cc-node-b">${label}</span></div>${i < chain.length - 1 ? '<span class="cc-arrow">→</span>' : ''}`;
-    }).join('')}</div>`;
-  }
   const TIER_LABEL = ['', 'emerging / associative', 'strong association', 'established mechanism — effect size varies by person'];
   function causeTier(t) { t = t || 1; return `<span class="cause-tier t${t}" title="Strength of the causal link">${'●'.repeat(t)}${'○'.repeat(3 - t)} <span class="ct-lbl">${TIER_LABEL[t] || ''}</span></span>`; }
   // ---- Apple-style scroll-reveal biological journey: the chain becomes moments you move through ----
@@ -5740,7 +5502,6 @@
   }
 
   // ---------- Tier 2: domain-isolated stewardship hub ----------
-  function stewardLoading() { return `<div class="empty"><h1>Loading the Stewardship roundtable…</h1></div>`; }
   async function renderStewardship(pid, rcid) {
     const found = findRootCause(pid, rcid);
     if (!found) { app.innerHTML = notFound(); return; }
@@ -5957,10 +5718,6 @@
     const si = m.querySelector('#es-signin'); if (si) si.onclick = () => { closeModal(); openAuth('login'); };
     const be = m.querySelector('#es-become'); if (be) be.onclick = () => closeModal();
   }
-  function openEditSection(pid, rcid, layer, onDone) {
-    const needed = LAYER_DOMAIN[layer] || 'physio';
-    expertGate(needed, '✎ Edit the ' + layer + ' section', () => openProposeModal(pid, rcid, layer, ME.role === 'admin' ? needed : ME.domain, onDone || (() => {})));
-  }
   // Edit affordance for content pages (exercises, muscles). Verified experts of `domain` submit a
   // correction to the review queue; anyone else gets the become-an-expert gate.
   function openEditContent(what, refLabel, domain) {
@@ -6064,20 +5821,6 @@
 
   // ---------- Local partners (DB-approved, backlink-verified) + submit ----------
   const PARTNER_TYPE_ICON = { physio: '🧑‍⚕️', gym: '🏋️', supplement: '💊', clinic: '🏥', dietitian: '🥗' };
-  async function mountLocalPartners(problem) {
-    const el = document.getElementById('local-partners'); if (!el) return;
-    let live = []; try { live = await api.partners(problem.category); } catch (e) {}
-    const B = window.RNAWIKI_BUSINESSES;
-    const samples = (B && B.businesses ? B.businesses.filter(b => (b.serves || []).includes(problem.category)) : []);
-    const list = (live.length ? live : samples).slice(0, 3);
-    const card = b => `<a class="lp-card" href="${esc(b.link)}" target="_blank" rel="noopener nofollow">
-      <span class="lp-ico">${PARTNER_TYPE_ICON[b.type] || '📍'}</span>
-      <span class="lp-body"><b>${esc(b.name)}</b><small>${esc(b.type || '')}${b.location ? ' · ' + esc(b.location) : ''}</small>${b.blurb ? `<span class="lp-blurb">${esc(b.blurb)}</span>` : ''}</span></a>`;
-    el.innerHTML = `<div class="section-title">Local partners for ${esc(problem.name)} <span class="lp-tag">Singapore</span></div>
-      <div class="lp-grid">${list.map(card).join('') || '<p class="muted">No partners here yet.</p>'}</div>
-      <p class="lp-note">${live.length ? 'Backlink-verified local partners.' : (B ? esc(B.disclaimer || '') : '')} <button class="linkbtn" id="lp-list">List your business (free — link exchange) →</button></p>`;
-    const lb = document.getElementById('lp-list'); if (lb) lb.onclick = () => openPartnerModal(problem);
-  }
   function openPartnerModal(problem) {
     const cats = (GRAPH.categories || []);
     const catField = problem ? '' : `<label>Category to appear in</label><select id="pm-cat">${cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}</select>`;
