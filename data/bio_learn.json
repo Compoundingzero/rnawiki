@@ -4032,7 +4032,7 @@
   "cost": {
    "perDose": "~SGD 0.35-0.90 per dose",
    "math": "A 250mg x 60-capsule bottle typically runs ~SGD 20-35, i.e. ~SGD 0.35-0.60 per 250mg; a 500mg dose is roughly double.",
-   "note": "Rough Singapore/online (iHerb-style) pricing; varies by supplier and dose size.",
+   "note": "Rough Singapore/online pricing; varies by supplier and dose size.",
    "tier": 2
   },
   "dosing": {

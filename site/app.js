@@ -1825,7 +1825,11 @@
     const cleanName = t.name.replace(new RegExp('^' + t.sym + '\\s*', 'i'), '') || t.sym;
     const crumb = crumbs([{ label: 'Home', href: '#/' }, { label: 'Browse targets', href: '#/browse' }, { label: t.sym }]);
     const cpdSection = list.length ? `<div class="section-title">Compounds acting on ${esc(t.sym)} (${list.length})</div><div class="card-grid">${list.map(cpdCard).join('')}</div>` : '';
-    const explainerHtml = (t.explainer && t.explainer.html) ? `<div class="target-explainer">${t.explainer.html}</div>` : '';
+    // The prescription notice is generated in parse.js and MUST render in both documents — this is
+    // the regulatory surface, and a notice that only reaches the prerendered page is not a notice.
+    const pomHtml = t.pomNotice
+      ? `<div class="pom-notice"><b>⚕️ Prescription-only medicines are named on this page.</b> ${esc(t.pomNotice.text)}</div>` : '';
+    const explainerHtml = (t.explainer && t.explainer.html) ? `${pomHtml}<div class="target-explainer">${t.explainer.html}</div>` : pomHtml;
     // Legacy render until the learning layer is authored (graceful degradation)
     if (!(t.hook || t.bigIdea || t.mechSteps)) {
       return `<div class="detail">${crumb}

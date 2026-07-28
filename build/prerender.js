@@ -783,7 +783,14 @@ GRAPH.problems.forEach((p) => {
   const list = t.compoundIds.map((id) => D.compounds.find((c) => c.id === id)).filter(Boolean);
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Browse', route: '/browse' }, { name: t.sym }])}
     <h1>${esc(t.sym)}</h1><p>${esc(t.name)} — the molecular target that ${list.length} compounds in the wiki act on.</p>
+    ${t.pomNotice ? `<div class="pom-notice"><b>⚕️ Prescription-only medicines are named on this page.</b> ${mdSafe(t.pomNotice.text)}</div>` : ''}
     ${t.explainer ? `<div>${t.explainer.html}</div>` : ''}
+    ${/* 103 target pages averaged 175 words against 117,232 words of authored target_learn content.
+          These were the LAST layer held back by the stage-2 gate audit, and correctly so: 37 of them
+          named a prescription-only medicine with no status anywhere on the page. That is now
+          generated from regulatory_class.json (see parse.js) rather than hand-written, so it cannot
+          rot as the corpus grows, and the emission is safe to turn on. */ ''}
+    ${learnFlatHtml(t)}
     <h2>Compounds acting on ${esc(t.sym)}</h2><ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>`;
   add(route, shell({ route, title: `${t.sym} — molecular target & the compounds that hit it · RNAwiki`, desc: `${t.sym}: ${(t.name || '').slice(0, 130)}. Learn what it does and every compound that acts on it.`, ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
 });

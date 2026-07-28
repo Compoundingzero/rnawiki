@@ -3143,3 +3143,7 @@ a.dp-name:hover{color:var(--accent)}
 .pred > summary::after { content: " — have a guess, then open"; font-weight: 400; font-size: .84rem; color: #b45309; }
 .pred[open] > summary::after { content: ""; }
 .pred-a { margin-top: .5rem; padding-top: .5rem; border-top: 1px dashed #fcd34d; }
+
+/* Automatic prescription-status notice on /target pages — generated from regulatory_class.json. */
+.pom-notice { border: 1px solid #fecaca; border-left: 4px solid #b3261e; background: #fef2f2; border-radius: 10px; padding: .7rem .9rem; margin: .9rem 0; font-size: .93rem; line-height: 1.5; }
+.pom-notice b { color: #b3261e; }
