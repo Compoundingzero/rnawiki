@@ -1075,9 +1075,22 @@
 
   function home() {
     const cc = D.meta.counts;
+    // ---- REGULATORY (2026-07-28) -------------------------------------------------------------
+    // "18 compounds" under FAT LOSS on the home page, where 15 of the 18 are prescription-only,
+    // controlled or unapproved, is a promotional count for medicines a reader cannot legally
+    // obtain — on the single most promotional surface of the site. Measured across the goal
+    // taxonomy: Growth Hormone Axis Peptides 11/11 Rx, Fat Loss 15/18, Hormonal Health 9/11,
+    // Cognition 11/19. Medicines Act 1975 s.51 has no educational exemption.
+    // The count now states the split, so the card promises what it can actually deliver.
+    const RX = new Set(['prescription', 'controlled', 'unapproved']);
     const cards = D.goals.map(g => {
-      const n = D.compounds.filter(c => c.goalIds.includes(g.id)).length;
-      return `<a class="goal-card" href="#/goal/${g.id}"><span class="ico">${g.icon}</span><span><span class="lbl">${g.label}</span><br><span class="n">${n} compounds</span></span></a>`;
+      const inGoal = D.compounds.filter(c => c.goalIds.includes(g.id));
+      const open = inGoal.filter(c => !RX.has(c.regulatory_class)).length;
+      const rx = inGoal.length - open;
+      const label = rx
+        ? `${open} you can buy · ${rx} prescription-only`
+        : `${open} compound${open === 1 ? '' : 's'}`;
+      return `<a class="goal-card" href="#/goal/${g.id}"><span class="ico">${g.icon}</span><span><span class="lbl">${g.label}</span><br><span class="n">${label}</span></span></a>`;
     }).join('');
     // a few high-intent example chips to seed the funnel
     const seeds = ['Knee Pain', 'Trouble Falling Asleep', 'Brain Fog', 'Belly / Visceral Fat', 'Low Testosterone', 'Longevity / Healthspan']
