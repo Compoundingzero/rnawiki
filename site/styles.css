@@ -3045,3 +3045,14 @@ a.dp-name:hover{color:var(--accent)}
 .lf-test dt::before{content:"Q. ";color:var(--accent,#10b981)}
 .lf-test dd{margin:0 0 .2rem;line-height:1.6;color:var(--muted)}
 .lf-test dd::before{content:"A. ";font-weight:700;color:var(--text)}
+
+/* Newsletter — loss-framed sections (2026-07-28) */
+.nl-cost{background:color-mix(in srgb,#dc2626 5%,transparent);border-radius:14px;padding:1.2rem 1.15rem}
+.nl-sum{margin:0;padding-left:1.3rem;line-height:1.65}
+.nl-sum li{margin:0 0 .6rem}
+.nl-punch{margin:.9rem 0 .4rem;font-size:1.04rem;line-height:1.55;font-weight:600}
+.nl-sub{margin:.3rem 0 0;font-size:.9rem;color:var(--muted);line-height:1.55}
+.nl-stat{list-style:none;padding:0;margin:.5rem 0 .9rem}
+.nl-stat li{margin:0 0 .4rem;padding-left:.9rem;border-left:3px solid var(--accent,#10b981);line-height:1.55}
+.nl-in dt{font-weight:700;margin:1rem 0 .3rem;font-size:1.02rem}
+.nl-in dd{margin:0 0 .5rem;line-height:1.62;color:var(--text)}

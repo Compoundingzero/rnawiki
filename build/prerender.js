@@ -1119,6 +1119,11 @@ let written = 0;
   //    work instead.
   //  - The form is prerendered, so it is visible before any JavaScript runs.
   const nCompounds = D.compounds.length;
+  const n5 = D.compounds.filter((c) => c.stars === 5).length;
+  const nLow = D.compounds.filter((c) => c.stars <= 2).length;
+  const nAnimal = D.compounds.filter((c) => c.animalOnly).length;
+  const nTrials = (() => { let n = 0; Object.keys(LEARN_RAW).forEach((k) => { const e = LEARN_RAW[k]; if (e && e.evi && Array.isArray(e.evi.trials)) n += e.evi.trials.filter((t) => t && t.ref).length; }); return n; })();
+  const nPmid = (() => { let n = 0; Object.keys(LEARN_RAW).forEach((k) => { const e = LEARN_RAW[k]; if (e && e.evi && Array.isArray(e.evi.trials)) n += e.evi.trials.filter((t) => t && t.pmid).length; }); return n; })();
   const nProblems = (GRAPH.problems || []).length;
   const nProtocols = (GRAPH.problems || []).reduce((n, p) => n + (p.root_causes || []).length, 0);
   const signupForm = (source, cta) => `<form class="nl-form" data-nl data-source="${esc(source)}" novalidate>
@@ -1133,52 +1138,80 @@ let written = 0;
 
   add('/newsletter', shell({
     route: '/newsletter',
-    title: 'The RNAwiki newsletter — one evidence-checked idea a week',
-    desc: 'One email a week: a mechanism worth understanding, a popular claim that turns out weaker than it looks, or a protocol broken down to its root cause. Free, evidence-first, no affiliate links.',
+    title: 'The RNAwiki newsletter — what changed in drugs and supplements, in plain English',
+    desc: 'One email a week: what actually changed in drugs and supplements, whether it touches you, and the claim on the label checked against the trial behind it. Free, Singapore, no affiliate links.',
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Newsletter', route: '/newsletter' }],
     jsonld: [{
       '@context': 'https://schema.org', '@type': 'WebPage', inLanguage: 'en',
       name: 'The RNAwiki newsletter', url: SITE_URL + '/newsletter',
-      description: 'One evidence-checked idea a week from RNAwiki.',
+      description: 'What changed in drugs and supplements this week, and whether it affects you.',
       publisher: PUB.publisher, isPartOf: PUB.isPartOf,
     }],
     body: `<div class="nl-page">
       <section class="nl-hero">
         <p class="nl-kicker">The RNAwiki newsletter</p>
-        <h1>One thing a week that changes how you read the evidence.</h1>
-        <p class="nl-lead">Most health advice tells you what to take. This tells you <em>why it would work</em>, how strongly that is actually shown, and where the evidence runs out — so you can judge the next claim yourself.</p>
+        <h1>The money doesn't leave all at once. It leaves forty dollars at a time.</h1>
+        <p class="nl-lead">A bottle whose label makes a claim no trial supports. A consult you walked out of still not really knowing what you'd been given, or why. Nobody ever handed you the tools to check either one — so you paid, and you hoped.</p>
+        <p class="nl-lead"><strong>One email a week closes that gap.</strong> What actually changed in drugs and supplements, whether it touches you, and what the evidence really says underneath the label.</p>
         ${signupForm('hero', 'Send me the weekly email')}
+      </section>
+
+      <section class="nl-cost">
+        <h2>Do this now. It takes a minute, and it stings.</h2>
+        <ol class="nl-sum">
+          <li>Open the cupboard where the supplements live. Add up what they cost you a month. <b>Write the number down.</b></li>
+          <li>Add your visits. A private GP consultation in Singapore runs about <b>S$30–65</b> before medication and GST; a subsidised polyclinic visit is roughly <b>S$15–20</b>. Count the last three months.</li>
+          <li>Now the only question that matters: <b>how many of those could you defend with an actual trial?</b></li>
+        </ol>
+        <p class="nl-punch">For most people the honest answer is "none — I trusted the label." That isn't stupidity. It's that checking was never made possible for you.</p>
+        <p class="nl-sub">About <b>53% of people in Singapore</b> take supplements. Most are paying a subscription to a claim they've never seen tested.</p>
+      </section>
+
+      <section class="nl-hard">
+        <h2>What the shelf will never tell you</h2>
+        <p>Of the <b>${nCompounds} compounds</b> ranked on this site:</p>
+        <ul class="nl-stat">
+          <li><b>${n5}</b> clear the top human-evidence bar.</li>
+          <li><b>${nLow}</b> sit at two stars or below.</li>
+          <li><b>${nAnimal}</b> are capped because the evidence is <em>animal only</em> — no human trial has been completed.</li>
+        </ul>
+        <p>They cost roughly the same. Same packaging, same confident font, same shelf. <strong>Nothing at the point of sale distinguishes the ${n5} from the ${nLow}</strong> — and that gap is where your money goes.</p>
       </section>
 
       <section class="nl-what">
         <h2>What lands in your inbox</h2>
-        <ul class="nl-list">
-          <li><b>A mechanism, made concrete.</b> Not "supports metabolic health" — the actual receptor or enzyme, what it does, and what changes downstream.</li>
-          <li><b>A popular claim, pressure-tested.</b> Where the number everyone quotes came from, and whether the study behind it holds it up. Often it does not.</li>
-          <li><b>A protocol, broken to its root cause.</b> The same problem has different fixes depending on which cause you have. Most advice skips that step.</li>
-        </ul>
+        <dl class="nl-in">
+          <dt>What actually changed this week — and whether it touches you</dt>
+          <dd>A drug gets approved. A supplement gets pulled. A big trial reads out and every headline mangles it. <b>Most of it will not affect you.</b> I'll tell you the one that does, in plain English, and what — if anything — to do differently.</dd>
+
+          <dt>The claim on the label, held against the trial behind it</dt>
+          <dd>Usually the number is real and the sentence wrapped around it is not. A supplement that says it "improves emotional wellbeing" turns out to have measured one depression score. A weight-loss figure quoted as a 14-week result was actually 52 weeks, most of it unblinded. <b>Once you can see that move, you cannot unsee it</b> — and you stop paying for it.</dd>
+
+          <dt>The question worth asking before you agree to anything</dt>
+          <dd>Not <em>refuse it</em> — ask about it. What is this for, what does it actually do, what happens if I don't take it, and is there something cheaper that does the same job? <b>Ten minutes of understanding is worth more than any second opinion you'll pay for.</b></dd>
+        </dl>
       </section>
 
       <section class="nl-honest">
-        <h2>What it is not</h2>
+        <h2>What this is not</h2>
         <ul class="nl-list nl-not">
-          <li>Not a supplement-of-the-month. Nothing here is for sale and there are no affiliate links.</li>
-          <li>Not medical advice. It is educational, and it says so where it matters.</li>
-          <li>Not padded. One email, once a week. If there is nothing worth sending, nothing gets sent.</li>
+          <li><b>It is not "don't trust your doctor."</b> Almost every expensive mistake in this area is made at a pharmacy shelf, not in a consulting room. The point is to walk in able to ask a real question — not to stay away.</li>
+          <li>Not a supplement-of-the-month. Nothing here is for sale and there are no affiliate links. I don't make money if you buy something.</li>
+          <li>Not medical advice, and it says so where it matters.</li>
+          <li>Not padded. One email, once a week. If nothing worth sending happened, nothing gets sent.</li>
         </ul>
       </section>
 
       <section class="nl-proof">
-        <h2>Where it comes from</h2>
-        <p>It is written out of RNAwiki itself — <b>${nCompounds} compounds</b>, <b>${nProblems} problems</b> broken into <b>${nProtocols} root-cause protocols</b>, and the molecular targets underneath them. Free to read, no paywall, no account needed.</p>
+        <h2>Why you can check me</h2>
+        <p>It's written out of RNAwiki — <b>${nCompounds} compounds</b>, <b>${nProblems} problems</b> broken into <b>${nProtocols} root-cause protocols</b>, <b>${nTrials} trials cited</b>, of which <b>${nPmid} have been matched to the paper by hand</b> and linked so you can open them yourself. Free to read, no paywall, no account.</p>
         <p class="nl-caveat">Written with AI assistance and edited by a human. Not reviewed by a clinician. Where the evidence is thin, contested or animal-only, it says so instead of rounding up — <a href="/about">how this site is made</a>.</p>
-        <p><a class="nl-sample" href="/solve">See the kind of thing it is built on →</a></p>
       </section>
 
       <section class="nl-close">
-        <h2>Start this week</h2>
-        <p>Free. One click to leave, and the link is in every email.</p>
-        ${signupForm('footer', 'Subscribe — it is free')}
+        <h2>The cost of another year of not knowing</h2>
+        <p>Twelve more months of the same cupboard, the same guesses, the same quiet outflow. Or one email a week, free, one click to leave.</p>
+        ${signupForm('footer', 'Start knowing what I am paying for')}
       </section>
     </div>` }));
 
