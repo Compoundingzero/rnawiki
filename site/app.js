@@ -1576,7 +1576,7 @@
   function evidenceDeep(c) {
     const e = c.evi; if (!e) return '';
     const sec = (icon, title, body) => body ? `<div class="evd-sec"><div class="evd-t">${icon} ${title}</div><div class="evd-b">${mdInline(body)}</div></div>` : '';
-    const trials = (Array.isArray(e.trials) && e.trials.length) ? `<div class="evd-sec"><div class="evd-t">📚 The key trials</div><ul class="bt-trials">${e.trials.map(x => `<li>${mdInline(x.finding)}${x.ref ? ` <span class="bt-ref">— ${esc(x.ref)}</span>` : ''}</li>`).join('')}</ul></div>` : '';
+    const trials = (Array.isArray(e.trials) && e.trials.length) ? `<div class="evd-sec"><div class="evd-t">📚 The key trials</div><ul class="bt-trials">${e.trials.map(x => `<li>${mdInline(x.finding)}${x.ref ? ` <span class="bt-ref">— ${esc(x.ref)}</span>` : ''}${x.pmid ? ` <a class="bt-pmid" href="https://pubmed.ncbi.nlm.nih.gov/${esc(x.pmid)}/" target="_blank" rel="noopener" title="Open this paper on PubMed — checked against the claim by a human on ${esc(x.pmid_verified_on || '')}">PMID ${esc(x.pmid)} ↗</a>` : ''}</li>`).join('')}</ul></div>` : '';
     return `<div class="evidence-deep">
       ${sec('🎯', 'How strong is the evidence?', e.howStrong)}
       ${sec('📈', 'What the studies actually show', e.whatItShows)}

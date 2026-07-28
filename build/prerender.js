@@ -30,6 +30,16 @@ const FO = readJSON(path.join(ROOT, 'data', 'foods.json'));
 // the site -- and until 2026-07-28 NONE of it reached the prerendered document. See the protocol
 // emit below.
 const PLAN = readJSON(path.join(ROOT, 'data', 'protocol_plan.json')) || {};
+// compound_learn, indexed by the compound NAME as it appears in D.compounds. The file is keyed by
+// slug and each entry also carries a `name`, so index on both and prefer the explicit name.
+const LEARN_RAW = readJSON(path.join(ROOT, 'data', 'compound_learn.json')) || {};
+const LEARN_BY_NAME = {};
+Object.keys(LEARN_RAW).forEach((k) => {
+  const e = LEARN_RAW[k];
+  if (!e || typeof e !== 'object') return;
+  if (e.name) LEARN_BY_NAME[e.name] = e;
+  LEARN_BY_NAME['__slug__' + k] = e;
+});
 const CAUSE = readJSON(path.join(ROOT, 'data', 'cause_learn.json')) || {};
 const GRAPH = D.graph || { problems: [], domains: {} };
 
@@ -360,6 +370,16 @@ D.compounds.forEach((c) => {
   // page. They are not being judged thin and they are not canonical duplicates — Google has
   // largely never crawled them. A sitemap gets a URL known; internal links get it crawled.
   // Every compound already NAMES its molecular targets, so the link costs no new authoring.
+  // Key trials WITH their verified PMIDs, in the crawlable document (added 2026-07-28). 136 refs
+  // were resolved by the propose-only resolver and then checked one by one BY A HUMAN against the
+  // finding each is attached to — that human pass is what makes them citations rather than
+  // guesses, and it caught a wrong paper (GHK-Cu) plus 16 claims that needed correcting. A
+  // citation only a JavaScript user can see is half a citation, so they render here too.
+  const cle = LEARN_BY_NAME[c.name] || LEARN_BY_NAME['__slug__' + slug(c.name)];
+  const trialsArr = (cle && cle.evi && Array.isArray(cle.evi.trials)) ? cle.evi.trials.filter((t) => t && t.finding) : [];
+  const trialsHtml = trialsArr.length ? `<h2>The key trials behind this</h2><ul>${trialsArr.map((t) =>
+      `<li>${mdSafe(t.finding)}${t.ref ? ` <span class="bt-ref">— ${esc(t.ref)}</span>` : ''}`
+      + `${t.pmid ? ` <a class="bt-pmid" href="https://pubmed.ncbi.nlm.nih.gov/${esc(t.pmid)}/" rel="noopener">PMID ${esc(t.pmid)}</a>` : ''}</li>`).join('')}</ul>` : '';
   const tSet = new Set((D.targets || []).map((t) => tkey(t.sym)));
   const tLinks = (c.targets || [])
     .filter((t) => tSet.has(tkey(t.sym)))
@@ -380,6 +400,7 @@ D.compounds.forEach((c) => {
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
     ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}
     ${targetLinksHtml}
+    ${trialsHtml}
     ${c.protocol ? `<h2>Protocol</h2><p>${esc(c.protocol)}</p>` : ''}
     ${c.watch ? `<h2>Watch out</h2><p>${esc(c.watch)}</p>` : ''}
     ${c.bottom ? `<h2>Bottom line</h2><p>${esc(c.bottom)}</p>` : ''}
