@@ -3155,3 +3155,51 @@ a.dp-name:hover{color:var(--accent)}
 .lf-steps .ms-head b { font-weight: 650; }
 .lf-steps .ms-body { color: var(--muted, #475569); }
 .lf-steps .pred { margin-top: .35rem; }
+
+/* ===== HEADING ANCHORS + PAGE CONTENTS (2026-07-28) ==========================================
+   0 of ~7,000 headings were addressable, so no contents list, deep link or "you are here" was
+   possible anywhere on the site. Added as one pass in shell(); see build/prerender.js. */
+.hanchor { float: left; margin-left: -1.05em; padding-right: .25em; color: var(--muted, #94a3b8);
+  text-decoration: none; opacity: 0; font-weight: 400; }
+h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
+.hanchor:focus { outline: 2px solid var(--accent, #0d9488); outline-offset: 2px; border-radius: 3px; }
+@media (max-width: 640px) { .hanchor { display: none; } }   /* no hover on touch; it only steals width */
+
+/* Every heading must clear the sticky topbar when jumped to. .topbar is position:sticky;top:0;
+   z-index:50 — anything that lands at y=0 lands underneath it. */
+.article h2, .article h3, .learn-flat h2, .learn-flat h3 { scroll-margin-top: 70px; }
+
+.pagetoc { margin: .8rem 0 1.4rem; }
+.pagetoc .toc-lbl { display: block; font-size: .75rem; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted, #64748b); margin-bottom: .4rem; }
+/* MOBILE: a real contents CARD. The inherited .cpd-toc is overflow-x:auto;flex-wrap:nowrap, which
+   shows ~3 of 18 pills in a scroller the reader has to discover — weak orientation, and the
+   measured complaint was "I cannot tell where I am or how much is left". */
+@media (max-width: 899px) {
+  .pagetoc { position: static; display: block; overflow: visible; flex-wrap: wrap;
+    border: 1px solid var(--line, #e2e8f0); border-radius: 12px; padding: .7rem .9rem;
+    background: var(--panel, #f8fafc); }
+  .pagetoc a { display: block; padding: .3rem 0; border-bottom: 1px solid rgba(0,0,0,.04);
+    font-size: .9rem; }
+  .pagetoc a:last-child { border-bottom: 0; }
+}
+/* DESKTOP: the sticky pill row .cpd-toc was always meant to be — but offset below the topbar. */
+@media (min-width: 900px) {
+  .pagetoc { position: sticky; top: 58px; z-index: 4; }
+}
+
+/* Anchors are now everywhere, so honour reduced motion for the jump. */
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ===== DEEP DIVE (2026-07-28) ================================================================
+   ~48% of a course page, previously one generic h2 + 9-11 identical h3 + prose runs. */
+.dd { margin: 1.6rem 0 0; }
+.dd-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  color: var(--accent, #0d9488); margin: 0 0 .15rem; }
+/* The deck is the section's own first sentence, moved. It is the entry point that lets a reader
+   skim 11 sections in one screen instead of reading 3,000 words to find the one they want. */
+.dd-deck { font-size: 1.12rem; line-height: 1.5; color: var(--fg, #0a1420); font-weight: 500;
+  margin: .35rem 0 .7rem; }
+/* h3 was 16.32px against 16px body text in an identical colour — 20-30 landmarks that read as
+   zero. Deep-dive headings are h2 now; make h2 unmistakably a landmark. */
+.learn-flat h2, .article h2 { font-size: 1.34rem; line-height: 1.25; letter-spacing: -.01em; }

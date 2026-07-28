@@ -301,7 +301,60 @@ function protoMove(rc) {
 }
 
 // ---- page shell ----
+// ---- HEADING ANCHORS + CONTENTS CARD (2026-07-28) --------------------------------------------
+// Measured: 19-29 good headings per page and **0 of ~6,000 carried an id**, so there was no table
+// of contents, no deep link, no scroll-spy and no "you are here" anywhere on the site. A reader
+// four screens into a 33-screen document could not tell whether they were a quarter or three
+// quarters through.
+//
+// Done as ONE post-process pass over the assembled body rather than at the ~80 <h2> template sites
+// in this file. Editing 80 sites is 80 chances to drift, and `mdBlocks()` has no heading path at
+// all, so the "add it where headings are emitted" instinct would have missed most of them.
+// Deliberately conservative: only <h2>/<h3> with NO existing attributes are touched, inner tags are
+// stripped before slugging, and a de-dup counter runs even though the corpus currently has 0
+// collisions — the corpus grows.
+function anchorHeadings(html) {
+  const seen = new Map();
+  const heads = [];
+  const out = String(html || '').replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (m, lvl, inner) => {
+    const text = inner.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+    if (!text) return m;
+    let slug = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+    if (!slug) return m;
+    const n = (seen.get(slug) || 0) + 1;
+    seen.set(slug, n);
+    if (n > 1) slug = `${slug}-${n}`;
+    heads.push({ level: +lvl, text, slug });
+    return `<h${lvl} id="${slug}"><a class="hanchor" href="#${slug}" aria-label="Link to this section">#</a>${inner}</h${lvl}>`;
+  });
+  return { html: out, heads };
+}
+
+// The contents card. On mobile `.cpd-toc` is `overflow-x:auto; flex-wrap:nowrap`, which turns 18
+// pills into a one-row scroller showing about three — weak orientation, and the reader has to
+// discover it. So: a plain contents CARD on mobile (answers "what is in here and how long", which
+// is the actual complaint) and the sticky pill row from 900px up.
+// NOTE the top offset. `.topbar` is `position:sticky; top:0; z-index:50`, so anything inside <main>
+// that sticks at top:0 slides underneath it and is unreadable. 58px is this codebase's existing
+// house value for that offset (`.scrolly-track{top:58px}`).
+function tocHtml(heads, minutes) {
+  const h2 = heads.filter((h) => h.level === 2);
+  if (h2.length < 4) return '';
+  return `<nav class="cpd-toc pagetoc" aria-label="Contents">
+    <span class="toc-lbl">On this page${minutes ? ` · ${minutes} min read` : ''}</span>
+    ${h2.map((h) => `<a href="#${h.slug}">${esc(h.text)}</a>`).join('')}
+  </nav>`;
+}
+
 function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType, robots }) {
+  // Anchor every heading and build the contents card from what we actually emitted, so the TOC can
+  // never list a section that is not there (or miss one that is).
+  const _an = anchorHeadings(body);
+  const _words = String(_an.html).replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+  const _mins = Math.max(1, Math.round(_words / 230));
+  const _toc = tocHtml(_an.heads, _words > 700 ? _mins : 0);
+  // Insert after the first </h1> so the reader gets title -> what's in here -> content.
+  body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
   const img = ogImage || (SITE_URL + '/og.png');
   const url = SITE_URL + route;
   const ld = [].concat(jsonld || []).map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('');
@@ -897,15 +950,54 @@ function learnFlatHtml(e, opts) {
     }).join('')}</ol>`);
   }
   // — the deep layer —
+  if (Array.isArray(e.myths) && e.myths.length) {
+    // Same defect, 1,127 myths on 302 pages: the claim and its correction printed together, so the
+    // reader never has to decide whether they believed it. Stating a belief before it is corrected
+    // is most of what makes a myth stick.
+    out.push(`<h2>Common misconceptions</h2><div class="lf-myths">${e.myths.map((m) =>
+      `<details class="pred myth"><summary>${mdSafe(m.myth || '')}</summary><div class="pred-a">${mdSafe(m.truth || '')}</div></details>`).join('')}</div>`);
+  }
   if (Array.isArray(e.deepDive) && e.deepDive.length) {
-    out.push(`<h2>Going deeper</h2>${e.deepDive.map((d) =>
-      `<h3>${mdSafe(d.h || '')}</h3>${P(d.body || '')}`).join('')}`);
+    // ---- DEEP-DIVE REBUILD (2026-07-28) ------------------------------------------------------
+    // This block is ~48% of a course page and was the only major field with no design applied to
+    // it: one generic <h2>Going deeper</h2> followed by 9-11 near-identical <h3> + prose runs.
+    // Measured on /pathway/6 and /muscle/biceps: 22-25 consecutive mobile screens with no visual,
+    // no link and no interactive element. That is the wall.
+    //
+    // Three changes, none of which touch a word of the content:
+    //  1. h3 -> h2. The authored headings are excellent ("The gabapentin lie, and other names that
+    //     deceive") and were buried a level down, where the type scale renders them at 16.32px
+    //     against 16px body text in the SAME colour — a bold line, not a landmark. Promoting them
+    //     also puts them in the contents card, which is where they earn their keep.
+    //  2. A numbered eyebrow, "Deep dive · 3 of 11". Deleting the "Going deeper" wrapper removes
+    //     the only signal that a new KIND of content has begun, and 11 more h2 with no grouping is
+    //     its own problem. The counter restores the boundary and adds the finiteness the page had
+    //     nowhere else: the reader can see there is an end.
+    //  3. A visible DECK — the section's own first sentence, promoted to larger type between the
+    //     heading and the body. Verified on 432 of 491 sections (88%) at a <=32-word gate; median
+    //     18 words. The sentence MOVES, it is not duplicated, so nothing is added and nothing is
+    //     hidden. Deliberately NOT <details>: collapsing 141,932 words one day after this site
+    //     finished un-hiding an 85%-hidden document would be the same mistake wearing a new hat.
+    const ddSplit = (body) => {
+      const t = String(body || '').trim();
+      const sents = mdSentences(t);
+      if (sents.length < 2) return { deck: '', rest: t };
+      const first = sents[0];
+      if (mdWc(first) > 32) return { deck: '', rest: t };
+      return { deck: first, rest: t.slice(t.indexOf(first) + first.length).trim() };
+    };
+    const n = e.deepDive.length;
+    out.push(e.deepDive.map((d, i) => {
+      const { deck, rest } = ddSplit(d.body);
+      return `<section class="dd">
+        <p class="dd-eyebrow">Deep dive · ${i + 1} of ${n}</p>
+        <h2>${mdSafe(d.h || '')}</h2>
+        ${deck ? `<p class="dd-deck">${mdSafe(deck)}</p>` : ''}
+        ${P(rest)}
+      </section>`;
+    }).join(''));
   }
   if (e.expertLens) out.push(`<h2>How an expert reasons with this</h2>${P(e.expertLens)}`);
-  if (Array.isArray(e.myths) && e.myths.length) {
-    out.push(`<h2>Common misconceptions</h2><dl class="lf-myths">${e.myths.map((m) =>
-      `<dt>${mdSafe(m.myth || '')}</dt><dd>${mdSafe(m.truth || '')}</dd>`).join('')}</dl>`);
-  }
   // RETRIEVAL DEVICES (added 2026-07-28). I originally left selfTest and canExplain out as
   // "checklists, not exposition". A design review pushed back and was right: retrieval practice IS
   // learning content, and their absence is a large part of why a 7,500-word page still reads as
@@ -915,8 +1007,14 @@ function learnFlatHtml(e, opts) {
     out.push(`<h2>What you can explain after this</h2><ul class="lf-can">${e.canExplain.map((c) => `<li>${mdSafe(c)}</li>`).join('')}</ul>`);
   }
   if (Array.isArray(e.selfTest) && e.selfTest.length) {
-    out.push(`<h2>Check yourself</h2><dl class="lf-test">${e.selfTest.map((t) =>
-      `<dt>${mdSafe(t.q || '')}</dt><dd>${mdSafe(t.a || '')}</dd>`).join('')}</dl>`);
+    // PARITY FIX. app.js:1588 already renders these answers behind a reveal; this renderer printed
+    // them in a <dl> right under the question. 1,137 questions across 305 pages whose entire
+    // retrieval value was destroyed by the markup — and once again the PRERENDERED document, the
+    // one ~90% of readers get, was the degraded twin. Same defect class as the pathway diagram
+    // that rendered on 0 of 16 pages. A question with its answer printed beneath it is not a
+    // question, it is prose.
+    out.push(`<h2>Check yourself</h2><div class="lf-test">${e.selfTest.map((t) =>
+      `<details class="pred qa"><summary>${mdSafe(t.q || '')}</summary><div class="pred-a">${mdSafe(t.a || '')}</div></details>`).join('')}</div>`);
   }
   if (Array.isArray(e.connections) && e.connections.length) {
     out.push(`<h2>What this connects to</h2><dl class="lf-conn">${e.connections.map((c) =>

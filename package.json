@@ -5,7 +5,7 @@
   "description": "RNAwiki — translate the code of human performance into real results. Drug, supplement & longevity wiki with root-cause protocols and community editing.",
   "scripts": {
     "build": "node build/parse.js && node build/prerender.js",
-    "prestart": "node build/parse.js && (node build/prerender.js || echo '[prestart] prerender skipped (SPA fallback still serves)')",
+    "prestart": "node build/parse.js && node build/prerender.js",
     "start": "node server.js"
   },
   "dependencies": {
