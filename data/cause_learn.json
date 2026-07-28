@@ -713,7 +713,7 @@
    "Upstream: several different switches keep flipping that alarm on - stress hormones, caffeine and alcohol rebound, blood-sugar crashes, sleep debt, and a breathing pattern that keeps CO2 too low",
    "Root: it comes down to what you drink and when, what and when you eat, how much you sleep, how you breathe, and whether you ever actually downshift the stress axis"
   ],
-  "intro": "Anxiety feels like one thing - a mind that won't stand down - but underneath it is almost always the same physics: your brain's excitatory signalling (glutamate, adrenaline) is running faster than its inhibitory braking (GABA), so the threat-detection circuitry stays switched on when nothing is actually wrong. What differs person to person is WHY the alarm keeps getting tripped. For one person it's a stress axis that never resets after years of pressure; for another it's the third coffee, or the wine the night before; for another it's a blood-sugar crash at 4pm that dumps adrenaline into a calm afternoon; for another it's simply not sleeping enough; for another it's a fast, shallow breathing habit quietly keeping CO2 too low. Most people have two or three of these running at once. The point of this page is to help you find YOURS - because the fix for a caffeine-driven jitter is nothing like the fix for a stress-axis stuck in overdrive.",
+  "intro": "Anxiety feels like one thing - a mind that won't stand down - but underneath it is almost always the same physics: your brain's excitatory signalling (glutamate, adrenaline) is running faster than its inhibitory braking (GABA), so the threat-detection circuitry stays switched on when nothing is actually wrong. What differs person to person is WHY the alarm keeps getting tripped. For one person it's a stress axis that never resets after years of pressure; for another it's the third coffee, or the wine the night before; for another it's a blood-sugar crash at 4pm that dumps adrenaline into a calm afternoon; for another it's simply not sleeping enough; for another it's a fast, shallow breathing habit quietly keeping CO2 too low. Most people have two or three of these running at once. The point of this page is to help you find YOURS - because the fix for a caffeine-driven jitter is nothing like the fix for a stress-axis stuck in overdrive. One thing to hold alongside all of this: if your anxiety is persistent, disabling, or comes with panic attacks, it is a recognised and treatable condition, and the drivers on this page sit underneath - not instead of - proper treatment. Cognitive behavioural therapy (CBT) is the first-line treatment for most anxiety disorders and is not a drug; SSRI and SNRI antidepressants are the first-line medicines and are something to discuss with a doctor. Nothing on this page is a reason to delay that conversation.",
   "causes": [
    {
     "name": "Chronic stress / HPA-axis overdrive",
@@ -761,6 +761,10 @@
     "modifiable": true,
     "fixes": [
      {
+      "what": "Cognitive behavioural therapy (CBT) - the first-line treatment for anxiety disorders, drug-free and the most durable option. It retrains the appraisal step that keeps the alarm switched on, and brief versions delivered in primary care work",
+      "kind": "behavior"
+     },
+     {
       "what": "Daily deliberate downshift: 5-10 min of slow-exhale breathing (exhale longer than inhale) to raise vagal tone and close the stress loop",
       "kind": "behavior"
      },
@@ -777,6 +781,10 @@
       "what": "Magnesium - blunts HPA-axis output and is commonly depleted by chronic stress",
       "kind": "compound",
       "ref": "Magnesium"
+     },
+     {
+      "what": "If anxiety is persistent or disabling, ask a doctor about first-line medication - an SSRI or SNRI antidepressant. These are prescription-only and take several weeks to work; they are worth raising early rather than as a last resort, and they combine well with CBT",
+      "kind": "rx"
      }
     ],
     "confusedWith": "Subclinical hyperthyroidism - check TSH before assuming it's 'just stress', especially with tremor, weight loss or heat intolerance.",
@@ -1031,6 +1039,10 @@
       "what": "L-Theanine and Apigenin - both nudge the excitation/inhibition balance back toward inhibition",
       "kind": "compound",
       "ref": "L-Theanine"
+     },
+     {
+      "what": "Benzodiazepines act on this exact brake - they are positive allosteric modulators at the GABA-A receptor, which is why they work within minutes. They are prescription-only and deliberately NOT first-line: guidance limits them to short-term use (roughly 2-4 weeks) because tolerance, dependence and withdrawal build quickly, and they are discouraged in older adults (falls, cognitive impairment). Named here so you recognise them, not as something to seek out - CBT and an SSRI/SNRI are what guidelines reach for first",
+      "kind": "rx"
      }
     ],
     "keyInsight": "Your brain runs on an accelerator and a brake. Glutamate is the accelerator; magnesium and GABA are what press the brake. Run low on both and your mind keeps revving even when you're safely parked — the tension isn't about your life, it's about a brake that was never strong enough.",
@@ -1098,7 +1110,7 @@
     "plain": "\"Over-breathing\" doesn't mean gasping — it usually looks like quiet, fast, shallow breathing from the upper chest, often with mouth-breathing and frequent sighs. The problem is that it flushes out too much carbon dioxide, the gas your body normally keeps in careful balance. Losing too much of it turns your blood slightly alkaline, and that single chemistry shift both lowers the amount of usable calcium in your blood and narrows the vessels feeding your brain. The result is a cluster of scary-but-harmless sensations — tingling, dizziness, chest tightness, a racing heart, and the maddening feeling that you can't get a full breath — which your brain can misread as danger and answer with a panic surge. Because slow nasal breathing lets carbon dioxide build back up, gently correcting the pattern often calms the whole cascade."
    }
   ],
-  "theOneThing": "Audit your caffeine and morning-after alcohol first. It's the single most common hidden driver, it fully mimics 'real' anxiety (adenosine-blocked over-arousal plus GABA rebound), and it's the fastest to test: cap caffeine at ~200mg with nothing after midday, cut the evening drinks, and see how much of your anxiety disappears within two weeks. If it does, you've found a driver you can control for free. If it doesn't, you've cleanly ruled it out and can move to the stress-axis, blood-sugar, sleep and breathing levers."
+  "theOneThing": "Audit your caffeine and morning-after alcohol first. It's the single most common hidden driver, it fully mimics 'real' anxiety (adenosine-blocked over-arousal plus GABA rebound), and it's the fastest to test: cap caffeine at ~200mg with nothing after midday, cut the evening drinks, and see how much of your anxiety disappears within two weeks. If it does, you've found a driver you can control for free. If it doesn't, you've cleanly ruled it out and can move to the stress-axis, blood-sugar, sleep and breathing levers. Run that audit in parallel with, not instead of, getting assessed: if the anxiety is persistent, stops you doing things, or brings panic attacks, CBT is the first-line treatment and an SSRI or SNRI is the first-line medicine - both worth raising with a doctor now rather than after you have worked through every lifestyle lever."
  },
  "acne": {
   "intro": "Acne is never just \"dirty skin.\" Every spot starts the same way — an oil gland over-produces sebum, the pore's lining turns sticky and plugs, and Cutibacterium acnes blooms inside the trapped oil and triggers inflammation — but what DRIVES that cascade differs from person to person. For one person it's blood-sugar and dairy spikes flooding the skin with insulin and IGF-1; for another it's androgens carving deep, tender cysts along the jaw; for a third it's a comedogenic moisturiser, a mask, or a stressful, sleep-starved month. Most people have two or three of these running at once. So the job here isn't to find THE cause of acne — it's to find YOURS, because the fix for hormonal jaw cysts is nothing like the fix for a pore-clogging cream.",

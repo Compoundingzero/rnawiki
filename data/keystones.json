@@ -163,7 +163,8 @@
  },
  "estrogen-decline": {
   "one": "Strength and impact training 2–3× a week, for muscle and bone.",
-  "why": "Muscle and bone are use-it-or-lose-it through menopause — loading protects both better than any pill alone."
+  "why": "Muscle responds to loading in a way no routine menopause prescription replaces. But for bone density specifically, menopausal hormone therapy raises BMD more than exercise alone — so treat this as the habit to keep up alongside a doctor's conversation about HRT, not a substitute for one.",
+  "_evidence": "HRT vs exercise for BMD: PMID 41536367 (2025 systematic review, 6 studies — HRT produced greater BMD gains than exercise alone; combined therapy may be additive). Fracture reduction with HRT: PMID 12117397 (WHI). Exercise for bone/function: PMID 21735380 (Cochrane), PMID 28975661 (LIFTMOR RCT)."
  },
  "vascular-hormonal-libido": {
   "one": "Prioritise sleep, daily cardio for blood flow, and lowering stress.",
@@ -176,7 +177,8 @@
  },
  "low-bmd": {
   "one": "Load your skeleton — short impact or resistance sessions.",
-  "why": "Bone only strengthens in response to load; two short weekly sessions beat calcium alone."
+  "why": "Loading is the one bone stimulus you control daily, and two short weekly sessions do more than calcium alone. If your BMD is already low, ask a doctor about drug treatment too — that is where the largest BMD gains come from.",
+  "_evidence": "Exercise for postmenopausal bone: PMID 21735380 (Cochrane), PMID 28975661 (LIFTMOR). Larger BMD gains from pharmacotherapy: PMID 41536367."
  },
  "insulin-androgen": {
   "one": "A 10-minute post-meal walk — the insulin-first lever.",

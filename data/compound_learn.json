@@ -6075,7 +6075,7 @@
     "Asthma inhalers hit the exact same receptor and get handed to children — so why is this one banned, abused, and landing people in the ER?",
     "Why do people who never touched it test positive for it, and even end up in hospital, just from eating a steak?"
    ],
-   "payoff": "You can now answer all three. (1) In a 2025 randomised trial (Hostrup et al., J Physiol), clenbuterol added ~0.9 kg of lean mass and raised fat oxidation ~39% — but produced no measurable drop in fat mass. Its physique reputation runs well ahead of the human data. (2) It hits the very same beta-2 receptor (ADRB2) as a salbutamol inhaler; the difference is time. An inhaler clears in a few hours, but clenbuterol's half-life is roughly a day (~26–37 h), so a single dose whips your heart for over a day and accumulates with repeat dosing. The danger is the duration, not the target. (3) It's used illegally to lean up cattle; residues in meat and liver have poisoned hundreds of people (Spain, ~300 cases 1989–1992), and athletes have failed drug tests from contaminated meat alone."
+   "payoff": "You can now answer all three. (1) In the only randomised controlled trial ever run in healthy humans (Hostrup et al., 2025, J Physiol; 11 men, 80 µg/day, two 2-week cycles), clenbuterol added ~0.9 kg of lean mass but moved fat mass by exactly nothing — 0.00 kg, 95% CI −0.52 to +0.52. The muscle biopsies pointed the wrong way too: reduced HAD activity and less OXPHOS complex V, i.e. less fat-burning and oxidative machinery, alongside a 7% fall in VO₂max. Its physique reputation runs well ahead of the human data. (2) It hits the very same beta-2 receptor (ADRB2) as a salbutamol inhaler; the difference is time. An inhaler clears in a few hours, but clenbuterol's half-life is roughly a day (~26–37 h), so a single dose whips your heart for over a day and accumulates with repeat dosing. The danger is the duration, not the target. (3) It's used illegally to lean up cattle; residues in meat and liver have poisoned hundreds of people (Spain, ~300 cases 1989–1992), and athletes have failed drug tests from contaminated meat alone."
   },
   "bigIdea": "Clenbuterol doesn't melt fat — it jams your body's \\\"burn fuel and hold muscle\\\" beta-2 switch wide open, full-time, across every tissue that carries it, including a heart that never agreed to race.",
   "analogy": "Think of adrenaline's beta-2 receptor as a throttle your body blips for a few minutes during a sprint, then releases. Clenbuterol wedges that throttle open for a day at a time — everywhere at once. Fat cells dump fuel, muscle clings to its protein, and the heart, which carries the very same throttle, is forced to race whether it needs to or not.",
@@ -6148,7 +6148,7 @@
   "myths": [
    {
     "myth": "Clenbuterol is a powerful fat burner.",
-    "truth": "The best human RCT (Hostrup et al., 2025) found it raised fat oxidation ~39% and added ~0.9 kg of lean mass — but produced no measurable loss of fat mass. Most of the \"fat-burning\" reputation traces to livestock studies and anecdote, not controlled human fat-loss data."
+    "truth": "The only randomised controlled trial in healthy humans (Hostrup et al., 2025) added ~0.9 kg of lean mass and left fat mass completely unchanged — 0.00 kg. The widely repeated \"+39% fat oxidation\" does not come from that trial at all: it comes from a separate open-label, uncontrolled study of six men measured 140 minutes after a single 80 µg dose (Jessen et al., 2020), which recorded metabolic rate but never measured body fat. Over two weeks the same research group found the opposite direction inside the muscle — repressed HAD activity and reduced OXPHOS complex V, meaning less capacity to oxidise fat, not more. The rest of the \"fat-burning\" reputation traces to livestock studies and anecdote."
    },
    {
     "myth": "It's beta-2 selective, so the heart is safe.",
@@ -6205,7 +6205,7 @@
    },
    {
     "q": "A man takes clenbuterol for eight weeks to \"get lean.\" Based on the best human RCT, what most likely happens to his fat mass — and what does that reveal about the drug's reputation?",
-    "a": "Probably little to no change in fat mass. The 2025 RCT raised fat oxidation ~39% and added ~0.9 kg lean mass but showed no fat-mass reduction — so the \"fat burner\" reputation outruns the controlled human evidence; the reliable effect is muscle sparing, not fat loss."
+    "a": "Probably little to no change in fat mass. The 2025 RCT added ~0.9 kg of lean mass but measured the fat-mass change at 0.00 kg (95% CI −0.52 to +0.52), and its muscle biopsies showed repressed HAD activity and reduced OXPHOS complex V — less fat-oxidising capacity, not more. The \"+39% fat oxidation\" number people quote is an acute, single-dose result in six men from a separate uncontrolled study, and it never translated into lost fat. The reputation outruns the controlled human evidence; the reliable effect is lean-mass gain, not fat loss."
    },
    {
     "q": "Why can clenbuterol cause muscle cramps and cardiac arrhythmias through the same underlying mechanism?",
@@ -6214,14 +6214,18 @@
   ],
   "evi": {
    "howStrong": "Moderate but mismatched to the popular use. Clenbuterol has genuine human data — but it's concentrated in three places that aren't physique fat loss: a small, rigorous 2025 randomised crossover trial of body composition; documented mass-poisoning outbreaks from contaminated meat; and its deliberate clinical use in the Harefield left-ventricular-assist-device protocol to help failing hearts recover. For the actual reason people take it — burning fat for a leaner look — the controlled human evidence is thin and, where it exists, unflattering.",
-   "whatItShows": "Consistently, clenbuterol raises fat oxidation and adds a modest amount of lean mass in humans. What it has NOT shown in a controlled trial is meaningful fat-mass loss — the outcome its reputation is built on. Separately, human toxicology is crystal clear on the harms: tachycardia, tremor, and hypokalemia are reliable, dose-dependent consequences.",
-   "effect": "In the 2025 RCT (11 healthy men, 80 µg/day, two 2-week cycles): roughly +0.9 kg lean mass and ~+39% fat oxidation, but no significant change in fat mass — alongside reduced cardiorespiratory fitness and desensitised beta-2 signalling. In poisoning outbreaks, symptoms begin within ~0.5–3 h and persist for 3–5 days, tracking the long half-life.",
+   "whatItShows": "In the one controlled human trial, clenbuterol adds a modest amount of lean mass and raises muscle protein content. A single acute dose does raise whole-body fat oxidation — but that is a one-off metabolic-rate measurement in six men, and over two weeks of dosing the muscle's own fat-oxidising machinery (HAD activity, OXPHOS complex V) went down, not up. What clenbuterol has never shown in a controlled trial is meaningful fat-mass loss — the outcome its reputation is built on. Separately, human toxicology is crystal clear on the harms: tachycardia, tremor, and hypokalemia are reliable, dose-dependent consequences.",
+   "effect": "In the 2025 RCT (11 healthy men, 80 µg/day, two 2-week cycles): lean mass +0.91 kg (95% CI 0.02–1.81) and muscle protein content +17%, with a fat-mass change of 0.00 kg (95% CI −0.52 to +0.52). Against that: V̇O₂max down 7%, exercise capacity down 4%, maximal HAD activity repressed, OXPHOS complex V abundance reduced, and beta-2 signalling desensitised within the two weeks. Fat oxidation was not measured in that trial — the ~+39% figure often attached to it is from a separate uncontrolled single-dose study in six men (Jessen et al., 2020) and did not translate into fat loss. In poisoning outbreaks, symptoms begin within ~0.5–3 h and persist for 3–5 days, tracking the long half-life.",
    "whoBenefits": "The studied benefit (lean-mass preservation) appears in muscle-wasting and cardiac-recovery contexts, not in lean people chasing a lower body-fat percentage. The people most affected by clenbuterol in the human record are, ironically, poisoning victims who never intended to take it — consumers of illegally treated beef and organ meat.",
    "caveats": "The strongest fat-loss claims rest on livestock and animal studies, which don't transfer cleanly to humans. Human trials are small and short. Set against that thin benefit is a heavy, well-documented cost: cardiac hypertrophy, arrhythmia-prone hypokalemia, a self-limiting effect from receptor down-regulation, no human approval for physique use, a WADA ban, and a real risk of unlabelled/contaminated gray-market product.",
    "trials": [
     {
-     "finding": "Randomised crossover RCT, 11 healthy men, 80 µg/day clenbuterol over two 2-week cycles: increased lean mass (~0.9 kg) and fat oxidation (~39%) with NO change in fat mass, while reducing cardiorespiratory fitness and desensitising skeletal-muscle beta-2 signalling.",
-     "ref": "Hostrup et al., 2025, The Journal of Physiology"
+     "finding": "Randomised, placebo-controlled crossover RCT — the only one in healthy humans. 11 men, 80 µg/day clenbuterol over two 2-week cycles: lean mass +0.91 kg (95% CI 0.02–1.81) and muscle protein content up, with NO change in fat mass (0.00 kg, 95% CI −0.52 to +0.52). Against that, V̇O₂max fell 7% and exercise capacity 4%, maximal HAD activity was repressed and OXPHOS complex V abundance fell — i.e. reduced muscle oxidative and fat-oxidising capacity — and beta-2 signalling desensitised over the cycle. Fat oxidation was not an outcome in this trial.",
+     "ref": "Hostrup et al., 2025, The Journal of Physiology (PMID 40946331)"
+    },
+    {
+     "finding": "Open-label, uncontrolled acute study in six young men — the actual source of the \"+39% fat burning\" claim. 140 minutes after one 80 µg oral dose, resting energy expenditure rose 21% (P < 0.001) and fat oxidation 39% (P = 0.006), with mTOR and PKA signalling up in muscle. Limits worth holding onto: n = 6, a single dose, no placebo group and no randomisation, and the endpoints were metabolic rate and muscle signalling — body fat was never measured. The 2025 RCT cites this study only as background in its introduction; it is not a finding of that trial.",
+     "ref": "Jessen et al., 2020, Drug Testing and Analysis (PMID 31887249)"
     },
     {
      "finding": "Harefield protocol — combined continuous-flow LVAD support plus clenbuterol to induce physiological cardiac hypertrophy and myocardial recovery: of 15 patients with severe non-ischaemic cardiomyopathy, 11 recovered enough for device explant, demonstrating a legitimate, monitored clinical use of the drug's beta-2 hypertrophic effect.",
@@ -6269,6 +6273,14 @@
    {
     "label": "Clenbuterol (PubChem CID 2783)",
     "url": "https://pubchem.ncbi.nlm.nih.gov/compound/2783"
+   },
+   {
+    "label": "Hostrup et al. 2025 — clenbuterol RCT (PubMed)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40946331/"
+   },
+   {
+    "label": "Jessen et al. 2020 — acute clenbuterol, energy expenditure & fat oxidation (PubMed)",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/31887249/"
    }
   ]
  },
@@ -28665,11 +28677,11 @@
     "Why can a lean bodybuilder inject insulin, feel completely fine for an hour, then be found unconscious?",
     "If a hospital has unlimited glucose, why do people still die from an insulin overdose?"
    ],
-   "payoff": "You can now answer all three. (1) Insulin is powerfully anabolic because it forces glucose and amino acids into muscle and fires the mTOR growth pathway — but the very same push drags blood sugar down, and the brain runs almost entirely on blood sugar. (2) Injected insulin is a depot under the skin that keeps releasing for hours; its glucose-lowering action outlasts the brief lift you feel, so the crash often lands later — asleep, alone, after the carbs are gone. (3) You cannot pull an injected dose back out; treatment is a race of IV glucose against a drug that keeps working, and if a low is found late, the brain has already starved. The dose that people use and the dose that kills sit dangerously close, and there is no switch to turn it off. Do not use it."
+   "payoff": "You can now answer all three. (1) Insulin is powerfully anabolic because it forces glucose and amino acids into muscle and fires the mTOR growth pathway — but the very same push drags blood sugar down, and the brain runs almost entirely on blood sugar. (2) Injected insulin is a depot under the skin that keeps releasing for hours; its glucose-lowering action outlasts the brief lift you feel, so the crash often lands later — asleep, alone, after the carbs are gone. (3) You cannot pull an injected dose back out; treatment is a race of IV glucose against a drug that keeps working, and if a low is found late, the brain has already starved. The dose that people use and the dose that kills sit dangerously close, and there is no switch to turn it off. Do not use it to build muscle. (If you have diabetes, none of this is about your prescription — that is a conversation for your doctor or diabetes nurse, not a web page.)"
   },
-  "bigIdea": "Insulin forces fuel into muscle — hugely anabolic — but the exact same action crashes your blood sugar and starves the brain, and it can kill you within hours with no way to switch it off. Do not use it.",
+  "bigIdea": "For someone with diabetes, insulin is a prescribed, life-sustaining medicine — this page is not about that use. For a lifter without diabetes, it is something else entirely: it forces fuel into muscle, which is hugely anabolic, but the exact same action crashes your blood sugar and starves the brain, and it can kill you within hours with no way to switch it off. Do not use it to build muscle.",
   "analogy": "Insulin is like throwing open every floodgate to pour a river's water out onto the fields. The crops — your muscle — drink it up and grow. But the river that feeds the city downstream — your brain, which runs almost entirely on blood sugar — can run dry. And once you have cranked the gates open with an injection, you cannot close them again for hours; you have to keep pouring water back in by eating, or the city dies of thirst while you sleep.",
-  "stakes": "This is a licensed, life-saving drug for diabetics turned into one of the highest-risk substances misused in bodybuilding. Non-diabetic lifters inject it to drive nutrients into muscle, it is cheap and easy to obtain, and it is undetectable by standard doping tests — which is part of its appeal. It has put young, healthy bodybuilders into hypoglycemic comas and killed them, and there is no antidote that stops it acting.",
+  "stakes": "**Read this first — this page is about the non-medical misuse of insulin to build muscle, by people who do not have diabetes. It is not a guide to diabetes treatment.** Insulin is a life-sustaining prescription medicine: millions of people with diabetes need it every day, and for them skipping, delaying or under-dosing it is itself dangerous. If what you came for is insulin *for diabetes* — which type, how much, when to take it, or whether to change a dose — you will not find it here, and you should not look for it on any web page: speak to your doctor, diabetes nurse or pharmacist, and never adjust a prescribed insulin on the strength of something you read online. If that is you, this is the wrong page and there is no reason to read on. With that clear, the rest of this page is the other insulin story: a licensed, life-saving drug turned into one of the highest-risk substances misused in bodybuilding. Non-diabetic lifters inject it to drive nutrients into muscle, it is cheap and easy to obtain, and it is undetectable by standard doping tests — which is part of its appeal. It has put young, healthy bodybuilders into hypoglycemic comas and killed them, and there is no antidote that stops it acting.",
   "mechSteps": [
    {
     "n": 1,
@@ -28768,7 +28780,7 @@
     "**There is no off switch and no antidote.** An injected dose is a depot you cannot retrieve. Treatment is only IV glucose and hours of monitoring, racing a drug that keeps working — and if you are found late, it is too late.",
     "**The crash comes after you feel safe.** The glucose-lowering action outlasts the felt lift, so people pass out hours later, asleep or alone. This delayed, unwitnessed crash is exactly how healthy young bodybuilders die.",
     "**The user's own state makes it worse.** Lean, fasted, low-carb, glycogen-depleted pre-contest dieting — the very condition it's used in — strips away the glucose reserve that might have softened the fall.",
-    "**Bottom line: do not use it.** It is a prescription, controlled drug; misuse has caused documented hypoglycemic comas and deaths in non-diabetic lifters; and it is documented here only so the danger is unmistakable."
+    "**Bottom line: do not use it to build muscle.** (Prescribed insulin for diabetes is a different question entirely, and not one this page answers.) It is a prescription, controlled drug; misuse has caused documented hypoglycemic comas and deaths in non-diabetic lifters; and it is documented here only so the danger is unmistakable."
    ]
   },
   "checks": {
