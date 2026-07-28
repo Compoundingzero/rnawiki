@@ -373,7 +373,11 @@ D.compounds.forEach((c) => {
     ${pathLink}
     ${usedInHtml}${compareHtml}</div>`;
   const cqa = faqBlock([
-    (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${snip(c.bottom || c.plain, 240)}` } : null,
+    // The star is a whole-compound summary, not an answer to "does it work for MY use", and it was
+    // leading the FAQPage answer on all 170 /c/ pages -- i.e. it was the sentence answer engines
+    // quoted. The authored bottom line is the honest answer; the star stays on the page, in the
+    // badge row where its scope is visible, rather than inside a structured-data efficacy claim.
+    (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `${snip(c.bottom || c.plain, 260)}` } : null,
     c.protocol ? { q: `How do you take ${c.name}?`, a: snip(c.protocol, 300) } : null,
     c.watch ? { q: `What are the risks or side effects of ${c.name}?`, a: snip(c.watch, 300) } : null,
     (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
@@ -390,9 +394,16 @@ D.compounds.forEach((c) => {
 comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   const route = `/compare/${slug(a.name)}-vs-${slug(b.name)}`;
   const gl = goalLabel.toLowerCase();
-  const verdict = a.stars === b.stars
-    ? `Both carry a comparable human-evidence rating (${stars(a.stars)}). Choose on mechanism fit, side-effects, availability and cost rather than evidence strength alone — they work through different mechanisms.`
-    : `${(a.stars > b.stars ? a : b).name} has the stronger human-evidence rating (${stars(Math.max(a.stars, b.stars))} vs ${stars(Math.min(a.stars, b.stars))}), but the right choice still depends on your goal, tolerance and budget.`;
+  // VERDICT — REWRITTEN 2026-07-28. This used to declare a winner "for {goal}" from the difference
+  // between two star ratings. That is a category error: the star is a single WHOLE-COMPOUND rating
+  // covering everything the compound has been studied for, not a grade for this indication. So the
+  // page was answering "which is better for fat loss?" with a number that is not about fat loss —
+  // and it emitted that answer into FAQPage JSON-LD, which is the part answer engines quote back.
+  // Until claims.json carries a per-(compound x indication) grade, the honest answer is that we do
+  // not have one, and the page's real value is the side-by-side profile below it.
+  const verdict = `We do not publish an indication-specific evidence grade for ${a.name} or ${b.name} for ${gl}, so we are not going to name a winner. `
+    + `The star ratings shown below are whole-compound summaries across everything each has been studied for — they are not a grade for this use, and comparing them here would be misleading. `
+    + `What actually differs is mechanism, side-effect profile, interactions, availability and cost. Those are compared in full below.`;
   const cmp = (k, va, vb) => `<tr><th>${esc(k)}</th><td>${va}</td><td>${vb}</td></tr>`;
   const table = `<div class="cmp-wrap"><table class="cmp-table"><thead><tr><th></th><th><a href="/c/${slug(a.name)}">${esc(a.name)}</a></th><th><a href="/c/${slug(b.name)}">${esc(b.name)}</a></th></tr></thead><tbody>
     ${cmp('Human evidence', stars(a.stars), stars(b.stars))}
@@ -775,15 +786,21 @@ ANAT.metabolism.forEach((p) => {
 }
 
 // solve hub
-add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds.</p><ul>${GRAPH.problems.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)}</a></li>`).join('')}</ul>` }));
+// FIXED 2026-07-28: this listed only root_causes[0] of each problem, so of the 52 protocol pages
+// exactly 41 had a funnel entry and the other 11 were reachable only from a compound page or the
+// sitemap. Every root cause is its own page with its own protocol, so list them all -- and name the
+// cause, because "Knee pain" three times is not a useful set of links to a crawler or a reader.
+add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds. Each problem is broken into its root causes, because the fix depends on which one you have.</p>${GRAPH.problems.map((p) => `<h2>${esc(p.name)}</h2><ul>${p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)} — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>`).join('')}` }));
 
 // ---- crawlable home page (SPA shell has an empty body; this gives Google real content) ----
 // Written to home.html; the server serves it for "/" and falls back to index.html.
 {
   const byCat = {};
   GRAPH.problems.forEach((p) => { (byCat[p.category] = byCat[p.category] || []).push(p); });
+  // Same fix as /solve: link every root cause, not just the first, so all 52 protocol pages have a
+  // crawlable entry from the homepage instead of 41.
   const problemList = Object.keys(byCat).map((cat) => `<section><h2>${esc(cat)}</h2><ul class="seo-links">${byCat[cat]
-    .map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)}</a></li>`).join('')}</ul></section>`).join('');
+    .flatMap((p) => p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)}${p.root_causes.length > 1 ? ` — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}` : ''}</a></li>`)).join('')}</ul></section>`).join('');
   const goalLinks = D.goals.map((g) => `<li><a href="/goal/${g.id}">${esc(g.label)}</a></li>`).join('');
   const homeBody = `
     <section class="hero funnel-hero">

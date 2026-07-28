@@ -1714,7 +1714,9 @@
     const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, i) => `<button class="ch-step${i === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${i + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
     const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${ch.check ? chapterCheck(c, ch.check) : ''}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
     const faq = faqRender([
-      (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `Human-evidence rating: ${c.stars} of 5. ${faqSnip(c.bottom || c.plain, 240)}` } : null,
+      // See the note in build/prerender.js: the star is a whole-compound summary, not an
+      // indication-specific grade, so it does not belong inside a structured-data efficacy claim.
+      (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `${faqSnip(c.bottom || c.plain, 260)}` } : null,
       c.protocol ? { q: `How do you take ${c.name}?`, a: faqSnip(c.protocol, 300) } : null,
       c.watch ? { q: `What are the risks or side effects of ${c.name}?`, a: faqSnip(c.watch, 300) } : null,
       (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
@@ -2444,11 +2446,16 @@
   }
 
   // honest, data-driven verdict — never fabricates a winner; higher stars = stronger human evidence
+  // Kept in step with build/prerender.js (see the note there). The star is a whole-compound
+  // summary across everything a compound has been studied for, not a grade for the specific use
+  // this page asks about, so it cannot name a winner "for {goal}" — and the prerendered twin was
+  // emitting exactly that into FAQPage JSON-LD. Both documents now decline to rank.
   function comparisonVerdict(A, B) {
-    if (A.stars === B.stars) return `Both carry a comparable human-evidence rating (${A.stars} of 5). Choose on mechanism fit, side-effects, availability and cost rather than evidence strength alone — they work through different mechanisms.`;
-    const hi = A.stars > B.stars ? A : B, lo = A.stars > B.stars ? B : A;
-    return `${hi.name} has the stronger human-evidence rating (${hi.stars} vs ${lo.stars} of 5), but the right choice still depends on your goal, tolerance and budget.`;
+    return `We do not publish an indication-specific evidence grade for ${A.name} or ${B.name} for this use, so we are not going to name a winner. `
+      + `The star ratings are whole-compound summaries across everything each has been studied for — not a grade for this use. `
+      + `What actually differs is mechanism, side-effect profile, interactions, availability and cost, compared in full below.`;
   }
+
   // static comparison view for /compare/a-vs-b — mirrors the prerendered page so the FAQ schema matches after hydration
   function renderComparison(pair) {
     const idx = (pair || '').indexOf('-vs-');
