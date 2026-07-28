@@ -875,10 +875,25 @@ function learnFlatHtml(e, opts) {
       // PREDICT-THEN-REVEAL. 235 of 340 mechSteps carry an authored `predict` prompt and this
       // renderer referenced it ZERO times, so the best learning device in the corpus reached only
       // the ~10% of readers who run JS. <details> is native: no JavaScript, works everywhere.
+      // REGRESSION FIX (2026-07-28, same day I shipped the bug). Putting the step TITLE inside the
+      // <details> meant "How it actually works, step by step" rendered as nine question boxes and
+      // nothing else: 787 of 1,101 words collapsed, 0 step titles visible, in the document ~90% of
+      // readers get. A reader who scrolled to the mechanism was shown no mechanism.
+      // The title and its effect line now always render; only the explanation sits behind the
+      // prompt. The spine of the cascade is visible whether or not anyone opens anything.
+      // NOTE on the prompts themselves: `predict` is authored as a LOOK-AHEAD on some pages
+      // (pathway:gaba-glutamate is 9/9 look-ahead — step 1 asks which ion triggers release, which
+      // is step 2) but as a same-step check on most others (a random sample of 10 across courses,
+      // compounds and targets came out 3 look-ahead / 7 same-step). So there is NO global
+      // off-by-one to apply — shifting every prompt would break the ~70% that are already correct.
+      // Keeping the title visible is what makes both kinds survivable: the reader can always see
+      // where they are in the sequence, so a forward-looking prompt reads as a bridge, not a
+      // mismatch. Logged for a proper per-step pass.
+      const head = `<div class="ms-head">${t}${fx}</div>`;
       const pred = m.predict
-        ? `<details class="pred"><summary>${mdSafe(m.predict)}</summary><div class="pred-a">${t}${d}${fx}</div></details>`
-        : null;
-      return pred ? `<li>${pred}</li>` : `<li>${t}${d}${fx}</li>`;
+        ? `<details class="pred"><summary>${mdSafe(m.predict)}</summary><div class="pred-a">${d}</div></details>`
+        : `<div class="ms-body">${d}</div>`;
+      return `<li>${head}${pred}</li>`;
     }).join('')}</ol>`);
   }
   // — the deep layer —

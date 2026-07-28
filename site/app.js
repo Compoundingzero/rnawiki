@@ -2123,7 +2123,17 @@
       <div class="anat-grid">
         <div class="anat-mini"><h3>💪 Exercises that train it${m.exercise_count ? ` <span class="muted">(${m.exercise_count})</span>` : ''}</h3>${exList(m.exercises)}<p class="anat-hint">${esc(m.training || '')}</p></div>
         <div class="anat-mini"><h3>🧘 Stretches${m.stretch_count ? ` <span class="muted">(${m.stretch_count})</span>` : ''}</h3>${exList(m.stretches)}<p class="anat-hint">${esc(m.stretching || '')}</p></div>
-      </div>` };
+      </div>
+      <div class="section-title">How the muscle works</div><p>${esc(m.mechanism || '')}</p>
+      ${(m.common_problems || []).length ? `<div class="section-title">Common problems</div><ul class="anat-probs">${m.common_problems.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
+      ${(m.problems || []).length ? `<div class="section-title">🎯 Fix or train this</div>
+        <div class="tag-row">${m.problems.map(pid => { const pr = problemById[pid]; return pr ? `<a class="tag-chip" href="#/protocol/${pid}/${pr.root_causes[0].id}">${esc(pr.name)} →</a>` : ''; }).join('')}</div>` : ''}` };
+    // ^ mechanism / common_problems / the protocol CTA were left behind when I moved the anatomy
+    // into a chapter this morning. They existed ONLY below the `return learnCourse(...)`, so the
+    // app silently dropped the three named clinical problems (tendinopathy, Popeye tear, distal
+    // rupture) and the route to a protocol — the page's entire conversion path. The prerendered
+    // page kept them, so the two documents disagreed again. FIFTH instance of this early-return
+    // pattern; the rule stands: when you add a `return learnCourse(...)`, read what is BELOW it.
     if (m.expand) return learnCourse(m.expand, { name: m.name, key: 'muscle-' + id, crumb: anatomyCrumb(m.name),
       lede: `<p class="anat-lead">${esc(m.overview)}</p>${model}`,
       badge: '<span class="pw-badge">💪 Muscle course</span>', extraChapters: [anatChapter] });

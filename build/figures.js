@@ -318,7 +318,7 @@ function actionFigure(action) {
   const built = (POSES[pose] || POSES.generic)(pose === 'generic' ? label : dir);
   // The <title> is what a screen reader announces, and it is also what survives if CSS never loads.
   return `<figure class="afig">
-    <svg viewBox="0 0 200 150" role="img" aria-labelledby="" focusable="false">
+    <svg viewBox="0 0 200 150" role="img" focusable="false">
       <title>${esc(label)}: ${esc(built.alt)}</title>
       <defs><marker id="afig-ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
         <path d="M0,0 L8,4 L0,8 z" fill="${C.arrow}"/></marker></defs>
