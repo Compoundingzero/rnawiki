@@ -810,10 +810,20 @@
       } else {
         if (flagsOn.size) {
           const rf = A.redFlags || {};
+          // Emergency tier (added 2026-07-28). Some red flags are not "see someone soon", they are
+          // "this could be happening right now". The neck-shoulder page's own reassess prose opens
+          // with referred cardiac pain as *call emergency services now*, yet the quiz -- which is
+          // the entry point most readers actually tap -- did not carry that flag at all, so someone
+          // with anginal-equivalent symptoms could pass straight through into a stretching plan.
+          // These flags now escalate to 995 / A&E instead of the generic "see a clinician" card,
+          // and the option to continue to the protocol anyway is withheld.
+          const emerg = Array.isArray(rf.emergencyIdx) && rf.emergencyIdx.some(i => flagsOn.has(i));
           box.innerHTML = `<div class="assess-top"><button class="assess-back" data-back>←</button><span></span><button class="assess-x" data-x aria-label="Close">✕</button></div>
-            <div class="assess-result redflag"><div class="assess-rf-ic">⚠️</div><h2>See a clinician first</h2>
-              <p>${esc(rf.message || 'Please get this assessed in person before starting a self-care plan.')}</p>
-              <div class="assess-actions"><button class="assess-go2" data-anyway>Show the protocol for background</button><button class="assess-close2" data-x>Close</button></div></div>`;
+            <div class="assess-result redflag${emerg ? ' emergency' : ''}"><div class="assess-rf-ic">${emerg ? '🚨' : '⚠️'}</div>
+              <h2>${emerg ? 'This needs emergency care now' : 'See a clinician first'}</h2>
+              <p>${esc(emerg ? (rf.emergencyMessage || 'Call 995 in Singapore, or your local emergency number, now.') : (rf.message || 'Please get this assessed in person before starting a self-care plan.'))}</p>
+              ${emerg ? '<p class="assess-emerg-num"><b>Singapore: call 995</b> · or go straight to A&amp;E</p>' : ''}
+              <div class="assess-actions">${emerg ? '' : '<button class="assess-go2" data-anyway>Show the protocol for background</button>'}<button class="assess-close2" data-x>Close</button></div></div>`;
         } else {
           const { sc, ranked } = assessScore(A, answers);
           const topId = ranked[0] || p.root_causes[0].id;
