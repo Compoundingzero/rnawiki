@@ -1,0 +1,1268 @@
+{
+ "muscle:biceps#0": {
+  "type": "sort",
+  "title": "Where does the shoulder leave the biceps?",
+  "why": "The section's payoff is being able to predict any curl's difficulty curve from shoulder position alone. Sorting real positions forces the reader to apply the rule instead of reading it.",
+  "spec": {
+   "prompt": "The elbow job is the same in all five. Which shoulder positions leave the biceps long and working hard, and which slide it toward active insufficiency?",
+   "buckets": [
+    "Long, hard range",
+    "Sliding into insufficiency"
+   ],
+   "items": [
+    {
+     "label": "Arm reached behind you",
+     "bucket": 0,
+     "why": "Shoulder extended, so the biceps is stretched at its shoulder end; the curl feels stronger"
+    },
+    {
+     "label": "Incline dumbbell curl",
+     "bucket": 0,
+     "why": "Lying back drops the shoulder into extension, pre-stretching the long head"
+    },
+    {
+     "label": "Preacher curl, bottom",
+     "bucket": 0,
+     "why": "Flexed shoulder plus extended elbow leaves the muscle long, but at poor leverage"
+    },
+    {
+     "label": "Arm raised forward",
+     "bucket": 1,
+     "why": "Shoulder flexed, so the muscle is partly used up with little shortening range left"
+    },
+    {
+     "label": "Preacher curl, top",
+     "bucket": 1,
+     "why": "Flexed shoulder plus flexing elbow, so it feels easy near the top"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#1": {
+  "type": "compare",
+  "title": "Bent arm vs. straight arm: who does the twisting",
+  "why": "The paragraph welds four ideas together — angle-dependence, a second muscle, the mechanic, the screwdriver test. One row each pulls them apart and makes the bent-arm instinct obvious.",
+  "spec": {
+   "columns": [
+    "Elbow bent (near 90°)",
+    "Arm straight, unloaded"
+   ],
+   "rows": [
+    {
+     "attr": "Which muscle supinates",
+     "values": [
+      "Biceps",
+      "The supinator muscle, deeper"
+     ]
+    },
+    {
+     "attr": "Biceps supination leverage",
+     "values": [
+      "Strong, fully recruited",
+      "Poor"
+     ]
+    },
+    {
+     "attr": "Twisting torque available",
+     "values": [
+      "Serious torque",
+      "Low-force spinning only"
+     ]
+    },
+    {
+     "attr": "Where you see it",
+     "values": [
+      "Mechanic braces a seized bolt",
+      "Casual, unresisted turning"
+     ]
+    },
+    {
+     "attr": "Screwdriver test",
+     "values": [
+      "Twisting strength lives here",
+      "Noticeably less to give"
+     ]
+    }
+   ]
+  }
+ },
+ "muscle:biceps#2": {
+  "type": "compare",
+  "title": "Same weight, three grips: who actually lifts it",
+  "why": "The section stacks two separate mechanisms — tendon leverage and team substitution — onto three grips. Laid side by side, the reader can see that grip is a routing switch, not a variation.",
+  "spec": {
+   "columns": [
+    "Supinated (palm-up)",
+    "Neutral (hammer)",
+    "Pronated (palm-down)"
+   ],
+   "rows": [
+    {
+     "attr": "Biceps tendon",
+     "values": [
+      "Fully wound on radius",
+      "Thumb-up, never supinates",
+      "Partly unwound off radius"
+     ]
+    },
+    {
+     "attr": "Flexion moment arm",
+     "values": [
+      "Longest lever",
+      "Biceps not favoured",
+      "Shrunk, mechanical disadvantage"
+     ]
+    },
+    {
+     "attr": "Who takes the load",
+     "values": [
+      "Biceps",
+      "Brachialis + brachioradialis",
+      "Brachialis + forearm extensors"
+     ]
+    },
+    {
+     "attr": "Strength you feel",
+     "values": [
+      "Full biceps force",
+      "Not the biceps' job",
+      "Far weaker, whole team substituted"
+     ]
+    },
+    {
+     "attr": "Called",
+     "values": [
+      "Standard curl",
+      "Hammer curl",
+      "Reverse curl"
+     ]
+    }
+   ]
+  }
+ },
+ "muscle:biceps#3": {
+  "type": "flow",
+  "title": "The long head's route: from above the socket to the groove",
+  "why": "The section's whole point is that an unusual anatomical path creates a mechanical problem. Reading the route as prose is hard to hold; laying it out as an ordered journey makes the friction — and therefore the front-of-shoulder pain — follow visibly from the anatomy.",
+  "spec": {
+   "steps": [
+    {
+     "label": "Supraglenoid tubercle",
+     "sub": "origin above the socket, off the labrum"
+    },
+    {
+     "label": "Inside the joint capsule",
+     "sub": "arches over the top of the humeral head"
+    },
+    {
+     "label": "Bicipital groove",
+     "sub": "exits through a tight bony canyon"
+    },
+    {
+     "label": "Under a ligament roof",
+     "sub": "transverse humeral ligament plus a cuff sling"
+    },
+    {
+     "label": "Slides on every movement",
+     "sub": "constant friction and shear"
+    }
+   ],
+   "outcome": "Classic tendinopathy site: ache at the FRONT of the shoulder, often blamed on the cuff"
+  }
+ },
+ "muscle:biceps#4": {
+  "type": "sort",
+  "title": "Two biceps ruptures, opposite urgency — which sign belongs to which?",
+  "why": "This is the section's central distinction and the one with real stakes: a proximal long-head tear is largely cosmetic and often left alone, while a distal tear has no backup and a roughly 2-3 week repair window. Making the reader place each sign forces the discrimination the prose only describes.",
+  "spec": {
+   "prompt": "Same muscle, two tear sites. Which findings belong to the proximal long-head rupture, and which to the distal one?",
+   "buckets": [
+    "Proximal long head (shoulder)",
+    "Distal tendon (elbow)"
+   ],
+   "items": [
+    {
+     "label": "Popeye bulge, lower arm",
+     "bucket": 0,
+     "why": "freed at the top, the belly balls up DOWN the arm"
+    },
+    {
+     "label": "Only 10-20% strength lost",
+     "bucket": 0,
+     "why": "the short head and brachialis still do the job"
+    },
+    {
+     "label": "Older, degenerated tendon",
+     "bucket": 0,
+     "why": "snaps in its groove, sometimes with an audible pop"
+    },
+    {
+     "label": "Often left untreated",
+     "bucket": 0,
+     "why": "largely a cosmetic and comfort issue; redundancy saves the arm"
+    },
+    {
+     "label": "Reverse Popeye",
+     "bucket": 1,
+     "why": "the muscle balls up HIGHER on the arm"
+    },
+    {
+     "label": "Hook test finds nothing",
+     "bucket": 1,
+     "why": "the fingertip sweeps through empty air; the taut tendon is gone"
+    },
+    {
+     "label": "Catching a falling object",
+     "bucket": 1,
+     "why": "sudden eccentric overload, forearm forced straight against a hard contraction"
+    },
+    {
+     "label": "Repair within 2-3 weeks",
+     "bucket": 1,
+     "why": "retracted tendon scars down; unrepaired costs ~30% flexion, ~40-50% supination"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#5": {
+  "type": "compare",
+  "title": "Three muscles, one job: who actually flexes your elbow",
+  "why": "The section's argument is that the biceps is not the strongest elbow flexor and that grip position decides who leads. Side-by-side attributes make the division of labour — and why supinated-only curls train a third of the group — legible at a glance.",
+  "spec": {
+   "columns": [
+    "Biceps brachii",
+    "Brachialis",
+    "Brachioradialis"
+   ],
+   "rows": [
+    {
+     "attr": "Where it sits",
+     "values": [
+      "Superficial, front of arm",
+      "Directly under the biceps",
+      "Forearm, crosses the elbow"
+     ]
+    },
+    {
+     "attr": "Strongest when",
+     "values": [
+      "Forearm supinated",
+      "Every grip position",
+      "Neutral, thumb-up"
+     ]
+    },
+    {
+     "attr": "Claim to fame",
+     "values": [
+      "Long moment arm, owns supination",
+      "True workhorse of flexion",
+      "Long-lever speed muscle"
+     ]
+    },
+    {
+     "attr": "Trained by",
+     "values": [
+      "Supinated curls",
+      "Reverse and hammer curls",
+      "Hammer curls"
+     ]
+    },
+    {
+     "attr": "What it does to the look",
+     "values": [
+      "The peak lifters chase",
+      "Pushes the peak up and out",
+      "The cord that pops out"
+     ]
+    }
+   ]
+  }
+ },
+ "muscle:biceps#6": {
+  "type": "sort",
+  "title": "Shape or fibre mix? Attribute each fact",
+  "why": "The section stacks two separate explanations — architecture and fibre type — and readers blur them. Sorting the consequences back to their cause forces the split to stick.",
+  "spec": {
+   "prompt": "Every fact below is true of the biceps. Does it follow from how its fibres are ARRANGED, or from what KIND of fibres they are?",
+   "buckets": [
+    "Architecture (fusiform)",
+    "Fibre type (~40/60)"
+   ],
+   "items": [
+    {
+     "label": "Large, fast range",
+     "bucket": 0,
+     "why": "Long fibres in line with the tendon let it shorten a lot"
+    },
+    {
+     "label": "Less force per size",
+     "bucket": 0,
+     "why": "Fusiform packs fewer fibres side by side than a pennate muscle"
+    },
+    {
+     "label": "Sits on the brachialis",
+     "bucket": 0,
+     "why": "A range-and-speed muscle riding on top of a force muscle"
+    },
+    {
+     "label": "Rewards heavy 5-8 sets",
+     "bucket": 1,
+     "why": "Heavier low-rep work recruits the high-threshold Type II fibres"
+    },
+    {
+     "label": "Grows from pump work",
+     "bucket": 1,
+     "why": "Moderate-rep, higher-volume work fatigues and recruits those fibres another way"
+    },
+    {
+     "label": "Fatigue-resistant carrying",
+     "bucket": 1,
+     "why": "Roughly 40% Type I fibres handle posture and carrying"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#7": {
+  "type": "compare",
+  "title": "Chin-up vs pull-up vs curl, on the same bar",
+  "why": "The section's claim is that grip and load — not the exercise's label — decide which muscle works. Laying the three side by side makes the pull-up column the proof: same body, same bar, opposite bias.",
+  "spec": {
+   "columns": [
+    "Chin-up (supinated)",
+    "Pull-up (pronated)",
+    "Curl"
+   ],
+   "rows": [
+    {
+     "attr": "Load driving elbow flexion",
+     "values": [
+      "70+ kg bodyweight",
+      "70+ kg bodyweight",
+      "About 15-20 kg"
+     ]
+    },
+    {
+     "attr": "What the grip does",
+     "values": [
+      "Strongest flexing position",
+      "Pronated biceps flexes poorly",
+      "Direct, isolated flexion"
+     ]
+    },
+    {
+     "attr": "Load mostly goes to",
+     "values": [
+      "Biceps, shared with lats",
+      "Lats and brachialis",
+      "Biceps"
+     ]
+    },
+    {
+     "attr": "Role in a programme",
+     "values": [
+      "Can build biceps alone",
+      "Biases lats, not biceps",
+      "Targeted volume on top"
+     ]
+    }
+   ]
+  }
+ },
+ "muscle:biceps#8": {
+  "type": "sort",
+  "title": "One eccentric force, two destinations",
+  "why": "The section's whole point is that growth and rupture share a mechanism and are separated only by control and progression. Sorting real scenarios makes the reader apply that line rather than read it.",
+  "spec": {
+   "prompt": "Lowering under load is the one event behind soreness, growth and tears. Which side of it does each belong to?",
+   "buckets": [
+    "Growth side",
+    "Rupture side"
+   ],
+   "items": [
+    {
+     "label": "Slow controlled negative",
+     "bucket": 0,
+     "why": "High tension while lengthening: microdamage, then repair and reinforce"
+    },
+    {
+     "label": "Stretch at the bottom",
+     "bucket": 0,
+     "why": "Tension in the lengthened position is the master growth signal"
+    },
+    {
+     "label": "DOMS at 24-72 hours",
+     "bucket": 0,
+     "why": "The same eccentric microdamage that drives the hypertrophy response"
+    },
+    {
+     "label": "Built up over time",
+     "bucket": 0,
+     "why": "Heavy eccentrics done slowly and progressively raise tendon tolerance"
+    },
+    {
+     "label": "Catching a heavy load",
+     "bucket": 1,
+     "why": "Sudden unbraced overload forces the elbow open mid-contraction"
+    },
+    {
+     "label": "A deadlift slipping",
+     "bucket": 1,
+     "why": "Unexpected maximal eccentric: the distal tendon is one rope, no backup"
+    },
+    {
+     "label": "Arm-wrestling",
+     "bucket": 1,
+     "why": "Elbow forced to extend against a maximally contracting biceps"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#9": {
+  "type": "anatomy",
+  "title": "Two attachments, and what the second one lies on top of",
+  "why": "The section is spatial and the prose fights it: a flat fan peels off the distal tendon, runs the OTHER way from the bone insertion, and forms a roof over the brachial artery and median nerve. Seeing the tendon split into a bone arm and a fascia arm — with the artery and nerve underneath the fan — is what makes both the load-sharing answer and the missed-rupture trap obvious in one look.",
+  "spec": {
+   "shape": "arm-joint",
+   "hotspots": [
+    {
+     "at": [
+      50,
+      16
+     ],
+     "label": "Biceps muscle belly",
+     "note": "One muscle, two distal attachments — bone and fascia"
+    },
+    {
+     "at": [
+      50,
+      40
+     ],
+     "label": "Distal tendon",
+     "note": "The aponeurosis peels off this tendon as a sheet"
+    },
+    {
+     "at": [
+      66,
+      58
+     ],
+     "label": "Radial tuberosity",
+     "note": "The textbook bone insertion; bears concentrated force"
+    },
+    {
+     "at": [
+      34,
+      54
+     ],
+     "label": "Bicipital aponeurosis",
+     "note": "Flat fan blending into ulnar-side forearm flexor fascia"
+    },
+    {
+     "at": [
+      44,
+      48
+     ],
+     "label": "Artery and nerve",
+     "note": "Brachial artery, median nerve — roofed by the fan"
+    },
+    {
+     "at": [
+      30,
+      72
+     ],
+     "label": "Tether in rupture",
+     "note": "Intact fan stops the torn muscle retracting — masks it"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#10": {
+  "type": "flow",
+  "title": "The tendon tap, step by step — and why no brain is involved",
+  "why": "The reflex is described in one long sentence that a reader skims as 'tap, jerk'. Broken into its links, it becomes visible that the loop goes muscle → cord → muscle and never reaches the brain, which is exactly why it is fast, involuntary, and diagnostic: each link is a place the loop can break, so an absent jerk indicts C5–C6 or the musculocutaneous nerve rather than the biceps.",
+  "spec": {
+   "steps": [
+    {
+     "label": "Hammer taps tendon",
+     "sub": "clinician strikes the biceps tendon"
+    },
+    {
+     "label": "Muscle suddenly stretched",
+     "sub": "the tap is a fast stretch, not a load"
+    },
+    {
+     "label": "Muscle spindles fire",
+     "sub": "stretch receptors inside the muscle"
+    },
+    {
+     "label": "Sensory nerve to cord",
+     "sub": "signal travels up to the C5–C6 level"
+    },
+    {
+     "label": "Straight back down",
+     "sub": "motor nerve — no brain required"
+    },
+    {
+     "label": "Biceps contracts",
+     "sub": "the forearm jerks, involuntarily"
+    }
+   ],
+   "outcome": "An absent or weak jerk points at C5–C6 or the musculocutaneous nerve — not at the muscle."
+  }
+ },
+ "muscle:biceps#fundamentals": {
+  "type": "sort",
+  "title": "Anchored end, moving end, or neither?",
+  "why": "The section's whole payoff is that BOTH origins sit on the scapula and the insertion sits past the elbow — which is why the muscle crosses two joints. Making the reader place each landmark forces that conclusion instead of stating it.",
+  "spec": {
+   "prompt": "The biceps can only shorten and pull between an anchored ORIGIN and a moving INSERTION. Place each landmark.",
+   "buckets": [
+    "Origin — on scapula",
+    "Insertion — on forearm",
+    "Neither — just passes"
+   ],
+   "items": [
+    {
+     "label": "Supraglenoid tubercle",
+     "bucket": 0,
+     "why": "Long head starts here, a bump just above the shoulder socket"
+    },
+    {
+     "label": "Coracoid process",
+     "bucket": 0,
+     "why": "Short head starts on this hook at the front of the scapula"
+    },
+    {
+     "label": "Radial tuberosity",
+     "bucket": 1,
+     "why": "Knob on the radius just past the elbow; the main insertion"
+    },
+    {
+     "label": "Bicipital aponeurosis",
+     "bucket": 1,
+     "why": "Flat sheet fanning off into the forearm's connective-tissue wrapping"
+    },
+    {
+     "label": "Bony groove in humerus",
+     "bucket": 2,
+     "why": "Long head's tendon only runs down it — no head attaches to the humerus"
+    },
+    {
+     "label": "Musculocutaneous nerve",
+     "bucket": 2,
+     "why": "Not an attachment — it delivers the C5–C6 signal that fires the muscle"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#analogy": {
+  "type": "anatomy",
+  "title": "The rope and the spool, drawn",
+  "why": "The prose ends with 'keep the image' and then supplies no image. This is that image, pinned onto the real arm so rope=biceps, spool=radius, and the two jobs (bend, spin) are visible at the places they happen.",
+  "spec": {
+   "shape": "arm-joint",
+   "hotspots": [
+    {
+     "at": [
+      38,
+      32
+     ],
+     "label": "The rope",
+     "note": "The biceps and its tendon — one thing that can only shorten and pull"
+    },
+    {
+     "at": [
+      50,
+      56
+     ],
+     "label": "Pull, elbow bends",
+     "note": "Job one: the whole forearm swings up toward you — elbow flexion"
+    },
+    {
+     "at": [
+      70,
+      74
+     ],
+     "label": "The spool",
+     "note": "The radius, the forearm bone on the thumb side, free to spin"
+    },
+    {
+     "at": [
+      60,
+      66
+     ],
+     "label": "Glued far side",
+     "note": "The rope's end fixes to the FAR side of the spool, so pulling winds it"
+    },
+    {
+     "at": [
+      86,
+      84
+     ],
+     "label": "Spin, palm up",
+     "note": "Job two: the spool's face turns to the ceiling — supination"
+    },
+    {
+     "at": [
+      88,
+      56
+     ],
+     "label": "Palm down un-wraps",
+     "note": "Pronation partly unwinds the rope, costing spin and pull; brachialis takes over"
+    }
+   ]
+  }
+ },
+ "muscle:biceps#expertLens": {
+  "type": "compare",
+  "title": "The four questions a specialist actually asks",
+  "why": "The section is explicitly four lenses, but they arrive as one paragraph so they read as one blur. Laid side by side against the same three questions — what it asks, what the clue is, what it changes — the reader can see that each lens is a different decision, not more description.",
+  "spec": {
+   "columns": [
+    "Where in the chain?",
+    "Is there a backup?",
+    "What position loads it?",
+    "Eccentric is the hinge"
+   ],
+   "rows": [
+    {
+     "attr": "Asks",
+     "values": [
+      "Belly, tendon, groove, or nerve?",
+      "Redundant, or no backup?",
+      "Which grip? Which shoulder angle?",
+      "How is it loaded while lengthening?"
+     ]
+    },
+    {
+     "attr": "Clue used",
+     "values": [
+      "Painful resisted supination; lost reflex points to neck",
+      "Hook test; lacertus fibrosus intact or torn",
+      "Supination plus shoulder extension loads it most",
+      "One sudden unbraced maximal lengthening tears it"
+     ]
+    },
+    {
+     "attr": "What it changes",
+     "values": [
+      "Look at the arm, the shoulder, or the neck",
+      "Proximal often left; distal repaired inside 2–3 weeks",
+      "Load the biceps, or offload to brachialis",
+      "Prescribe controlled, progressively-loaded eccentrics"
+     ]
+    },
+    {
+     "attr": "Stake if wrong",
+     "values": [
+      "Treating the arm when the problem is C5–C6",
+      "Miss distal: ~30% flexion, ~40–50% supination lost",
+      "Curls alone leave brachialis undertrained",
+      "Same contraction builds muscle or ruptures it"
+     ]
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#0": {
+  "type": "sort",
+  "title": "Is it the channel, or does it phone the channel?",
+  "why": "The section's whole payoff is one split — ionotropic receptors ARE the pore, metabotropic ones are GPCRs that start a slow cascade. A reader who can place all six named receptor families on the correct side has actually got it; reading the paragraph twice does not prove that.",
+  "spec": {
+   "prompt": "Sort each receptor: is it the ion channel itself, or a GPCR that acts through a cascade?",
+   "buckets": [
+    "Ionotropic (is the channel)",
+    "Metabotropic (GPCR)"
+   ],
+   "items": [
+    {
+     "label": "AMPA",
+     "bucket": 0,
+     "why": "Pore opens instantly; fast Na+ in = instant push"
+    },
+    {
+     "label": "NMDA",
+     "bucket": 0,
+     "why": "Ionotropic; passes Ca2+, the coincidence-detecting learning switch"
+    },
+    {
+     "label": "Kainate",
+     "bucket": 0,
+     "why": "Glutamate's third ionotropic receptor, a modulatory cousin"
+    },
+    {
+     "label": "mGluR1-8",
+     "bucket": 1,
+     "why": "Glutamate's metabotropic set; tunes gain up or down"
+    },
+    {
+     "label": "GABA-A",
+     "bucket": 0,
+     "why": "The chloride pore itself; fast Cl- = instant brake"
+    },
+    {
+     "label": "GABA-B",
+     "bucket": 1,
+     "why": "GPCR: opens K+, closes Ca2+; slow lingering brake"
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#1": {
+  "type": "compare",
+  "title": "Four ways to press the same brake — and why one of them kills",
+  "why": "This section is a four-item bullet list where single items run 40-143 words, but it is really one comparison table: same receptor, different pocket, different effect on the opening, different ceiling. Laid out as a grid, the frequency-vs-duration / ceiling-vs-no-ceiling contrast the prose calls 'the most important safety concept in all of sedative pharmacology' becomes a single glance instead of a 470-word read.",
+  "spec": {
+   "columns": [
+    "Benzos & Z-drugs",
+    "Barbiturates",
+    "Neurosteroids",
+    "Alcohol & anesthetics"
+   ],
+   "rows": [
+    {
+     "attr": "Named examples",
+     "values": [
+      "Diazepam, alprazolam; zolpidem, zopiclone",
+      "Phenobarbital",
+      "Allopregnanolone (brexanolone, zuranolone)",
+      "Alcohol, propofol, inhaled anesthetics"
+     ]
+    },
+    {
+     "attr": "Where it binds",
+     "values": [
+      "Alpha/gamma interface (Z-drugs prefer alpha1)",
+      "Yet another, separate site",
+      "Especially extrasynaptic delta-subunit receptors",
+      "Section does not name the site"
+     ]
+    },
+    {
+     "attr": "What it does to openings",
+     "values": [
+      "More FREQUENT openings",
+      "Each opening lasts LONGER",
+      "The body's own PAM, like benzos",
+      "Potentiate GABA-A (alcohol also blocks NMDA)"
+     ]
+    },
+    {
+     "attr": "Works without GABA?",
+     "values": [
+      "No - a PAM, needs GABA already present",
+      "Yes, at high dose it prises the channel open",
+      "No - a PAM, so GABA must be there",
+      "No - they potentiate, not open"
+     ]
+    },
+    {
+     "attr": "Ceiling, and what follows",
+     "values": [
+      "Ceiling; rarely kills alone, but co-ingestion does",
+      "NO ceiling; kills by respiratory arrest",
+      "Endogenous dial: cycle shifts mood, seizure threshold",
+      "General anesthesia = forcibly maximizing the brake"
+     ]
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#2": {
+  "type": "flow",
+  "title": "The AND-gate, in order: what has to be true before NMDA opens",
+  "why": "The 375-word list buries the section's headline claim — that NMDA is a coincidence detector — inside item 1. Laying the gating conditions out as an ordered chain makes visible that AMPA has to fire FIRST, that glutamate alone is inert, and that the co-agonist is a third simultaneous requirement, not an afterthought.",
+  "spec": {
+   "steps": [
+    {
+     "label": "Glutamate binds AMPA",
+     "sub": "plain Na+ enters, membrane depolarises"
+    },
+    {
+     "label": "Glutamate binds NMDA",
+     "sub": "alone this does nothing — the Mg2+ stays"
+    },
+    {
+     "label": "Glycine or D-serine bound",
+     "sub": "required co-agonist, at a separate site"
+    },
+    {
+     "label": "Depolarisation ejects Mg2+",
+     "sub": "the resting-voltage pore plug pops out"
+    },
+    {
+     "label": "NMDA opens to Ca2+",
+     "sub": "Ca2+ instructs; it doesn't just excite"
+    },
+    {
+     "label": "CaMKII inserts AMPA receptors",
+     "sub": "the synapse is strengthened"
+    }
+   ],
+   "outcome": "LTP. Both 'input arrived' and 'cell was already active' had to be true at once."
+  }
+ },
+ "pathway:gaba-glutamate#3": {
+  "type": "sort",
+  "title": "Clearance is a control point — so which way does each of these push glutamate?",
+  "why": "The section's central claim is that glutamate is never destroyed, only cleared, which makes every step of the clearance loop druggable. Sorting a drug, a toxin, a metabolic state and a supplement into the same two buckets forces the reader to apply that claim rather than nod at it — and the glutamine item lands the section's own closing warning.",
+  "spec": {
+   "prompt": "Glutamate is never destroyed at the synapse — only cleared. Which of these speed clearance up, and which leave glutamate lingering?",
+   "buckets": [
+    "Clears glutamate faster",
+    "Leaves glutamate lingering"
+   ],
+   "items": [
+    {
+     "label": "Ceftriaxone",
+     "bucket": 0,
+     "why": "an antibiotic that upregulates GLT-1, the main clearance transporter"
+    },
+    {
+     "label": "Riluzole",
+     "bucket": 0,
+     "why": "reduces glutamate release; proposed also to boost EAAT2"
+    },
+    {
+     "label": "Boosting EAAT2 expression",
+     "bucket": 0,
+     "why": "an active drug-discovery target for exactly this reason"
+    },
+    {
+     "label": "Ischemia",
+     "bucket": 1,
+     "why": "clearance costs ATP, so metabolic failure IS excitotoxicity"
+    },
+    {
+     "label": "Toxins slowing EAAT2",
+     "bucket": 1,
+     "why": "transporter stalls, glutamate lingers, system pushed toward excitotoxicity"
+    },
+    {
+     "label": "Extra glutamine supply",
+     "bucket": 1,
+     "why": "the precursor neurons reconvert with glutaminase — not innocent 'fuel'"
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#4": {
+  "type": "compare",
+  "title": "Same channel, three chloride states, three opposite answers",
+  "why": "The section's whole argument is that one identical GABA-A opening produces inhibition, excitation, or a failing brake depending only on which pump is winning. Laid side by side, the reader can read the pump row and predict the outcome row without being told.",
+  "spec": {
+   "columns": [
+    "Mature neuron",
+    "Fetus / newborn",
+    "Injured or epileptic"
+   ],
+   "rows": [
+    {
+     "attr": "Dominant pump",
+     "values": [
+      "KCC2 — pumps Cl− out",
+      "NKCC1 — pumps Cl− in",
+      "KCC2 downregulated"
+     ]
+    },
+    {
+     "attr": "Chloride inside",
+     "values": [
+      "Low",
+      "High",
+      "Creeping up"
+     ]
+    },
+    {
+     "attr": "Cl− reversal potential",
+     "values": [
+      "~−75 mV, below rest",
+      "Above resting voltage",
+      "Shifts upward"
+     ]
+    },
+    {
+     "attr": "Open a GABA-A channel",
+     "values": [
+      "Cl− in → more negative → INHIBITION",
+      "Cl− out → more positive → EXCITATION",
+      "Weak inward pull, can flip"
+     ]
+    },
+    {
+     "attr": "What that explains",
+     "values": [
+      "The brake works",
+      "Phenobarbital weak; bumetanide trialled",
+      "Neuropathic pain; benzos stop working"
+     ]
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#5": {
+  "type": "sort",
+  "title": "Which control point does each calming compound actually grab?",
+  "why": "The section's payoff is that 'calming' does not mean 'GABA'. Forcing the reader to place each compound before the reveal exposes the assumption — and the answer key shows only one of the seven is a straightforward GABA-A grab, while four work entirely on the accelerator.",
+  "spec": {
+   "prompt": "Everything here calms. But which side of the map does each one actually grab — the GABA brake, the glutamate accelerator, or both?",
+   "buckets": [
+    "Brake side (GABA / Cl−)",
+    "Accelerator side (glutamate)",
+    "Both sides at once"
+   ],
+   "items": [
+    {
+     "label": "Apigenin (chamomile)",
+     "bucket": 0,
+     "why": "Weak ligand at GABA-A's benzodiazepine site — a feather-light PAM."
+    },
+    {
+     "label": "L-theanine",
+     "bucket": 1,
+     "why": "Weakly blocks glutamate receptors and starves glutamate synthesis of glutamine."
+    },
+    {
+     "label": "Magnesium",
+     "bucket": 1,
+     "why": "Mg2+ is the ion plugging the NMDA pore. Accelerator, not GABA."
+    },
+    {
+     "label": "Gabapentin / pregabalin",
+     "bucket": 1,
+     "why": "Binds α2δ calcium subunit, cutting glutamate release. Never touches GABA."
+    },
+    {
+     "label": "Ketamine",
+     "bucket": 1,
+     "why": "NMDA antagonist — blocks inhibitory interneurons, causing a glutamate surge."
+    },
+    {
+     "label": "Alcohol",
+     "bucket": 2,
+     "why": "Potentiates GABA-A and blocks NMDA — brake and accelerator together."
+    },
+    {
+     "label": "Glycine",
+     "bucket": 2,
+     "why": "Own Cl− channel brake; also NMDA co-agonist. Sleep via temperature."
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#6": {
+  "type": "sort",
+  "title": "Which 'GABA' drugs actually raise GABA?",
+  "why": "The section's entire argument is that a drug's name is a historical artifact of the chemists' intent, not its mechanism. Making the reader commit to an answer before the reveal is the only way that lands.",
+  "spec": {
+   "prompt": "Sort each one by whether it actually raises GABA in the brain.",
+   "buckets": [
+    "Actually raises GABA",
+    "Does NOT"
+   ],
+   "items": [
+    {
+     "label": "Gabapentin",
+     "bucket": 1,
+     "why": "Binds the alpha-2-delta calcium subunit; cuts glutamate release instead"
+    },
+    {
+     "label": "Pregabalin",
+     "bucket": 1,
+     "why": "Same alpha-2-delta target; turns down the accelerator, not up the brake"
+    },
+    {
+     "label": "Vigabatrin",
+     "bucket": 0,
+     "why": "Irreversibly blocks GABA-transaminase, the degrading enzyme, so GABA accumulates"
+    },
+    {
+     "label": "Tiagabine",
+     "bucket": 0,
+     "why": "Blocks the GAT-1 reuptake transporter, so released GABA lingers in the synapse"
+    },
+    {
+     "label": "Valproate",
+     "bucket": 0,
+     "why": "Multiple actions, including raising GABA"
+    },
+    {
+     "label": "GABA supplement",
+     "bucket": 1,
+     "why": "Crosses the blood-brain barrier poorly; any effect is likely gut or vagal"
+    },
+    {
+     "label": "Caffeine",
+     "bucket": 1,
+     "why": "Blocks adenosine receptors; disinhibits and raises net excitation instead"
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#7": {
+  "type": "scale",
+  "title": "One axis, read at different volumes",
+  "why": "The section's claim is that a single ratio runs through neurology, psychiatry and addiction medicine. Placing the conditions on one axis shows the tilt has a direction: schizophrenia sits on the opposite side from seizure, which is exactly why NMDA blockers mimic psychosis rather than treating it.",
+  "spec": {
+   "axis": {
+    "left": "Too little excitation",
+    "right": "Runaway excitation"
+   },
+   "items": [
+    {
+     "label": "Schizophrenia",
+     "at": 10,
+     "note": "NMDA hypofunction; ketamine and PCP transiently mimic it"
+    },
+    {
+     "label": "Autism",
+     "at": 48,
+     "note": "altered balance in specific circuits; direction not settled"
+    },
+    {
+     "label": "Anxiety, insomnia",
+     "at": 66,
+     "note": "mild chronic tilt; why GABA-A PAMs treat both"
+    },
+    {
+     "label": "Benzo withdrawal",
+     "at": 80,
+     "note": "GABA-A downregulated, so too few brakes remain"
+    },
+    {
+     "label": "Seizure",
+     "at": 92,
+     "note": "self-recruiting glutamatergic chain reaction across whole regions"
+    },
+    {
+     "label": "Stroke, TBI",
+     "at": 99,
+     "note": "excitotoxicity and calcium overload kill the neurons"
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#8": {
+  "type": "compare",
+  "title": "The four clocks running at once",
+  "why": "The section says confusing the timescales is the single most common error in reasoning about a drug. A scale would show the span but not the mix-up; laying machinery, function and example side by side makes 'I feel calm now' and 'my system is healthier' visibly different rows of the same table.",
+  "spec": {
+   "columns": [
+    "Milliseconds",
+    "Seconds to minutes",
+    "Minutes to hours",
+    "Days to years"
+   ],
+   "rows": [
+    {
+     "attr": "Machinery",
+     "values": [
+      "AMPA and GABA-A (ionotropic)",
+      "mGluR, GABA-B, tonic inhibition",
+      "NMDA-driven calcium signalling",
+      "Receptor and pump numbers"
+     ]
+    },
+    {
+     "attr": "What it sets",
+     "values": [
+      "The fast tick of computation",
+      "Gain and background tone",
+      "Synaptic strength (LTP/LTD)",
+      "The whole balance, homeostatically"
+     ]
+    },
+    {
+     "attr": "You meet it as",
+     "values": [
+      "Moment-to-moment braking",
+      "Your general arousal level",
+      "A night's study; one ketamine dose",
+      "Benzo tolerance; alcohol upregulating NMDA"
+     ]
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#fundamentals": {
+  "type": "sort",
+  "title": "Which ion, which direction, therefore which sign?",
+  "why": "The section ends by telling the reader that this one question is 'the whole game'. A sort makes them actually run it instead of nodding at it.",
+  "spec": {
+   "prompt": "Each move below happens at a synapse. Does it push the neuron toward firing, or away from it?",
+   "buckets": [
+    "Toward firing (excitation)",
+    "Away from firing (inhibition)"
+   ],
+   "items": [
+    {
+     "label": "Na+ flows in",
+     "bucket": 0,
+     "why": "positive charge enters — inside gets more positive, closer to threshold"
+    },
+    {
+     "label": "Ca2+ flows in",
+     "bucket": 0,
+     "why": "also a positive ion entering — voltage rises toward the ~−55 mV threshold"
+    },
+    {
+     "label": "Cl− flows in",
+     "bucket": 1,
+     "why": "negative charge enters — inside gets more negative, further from firing"
+    },
+    {
+     "label": "K+ flows out",
+     "bucket": 1,
+     "why": "positive charge leaves — inside gets more negative, further from firing"
+    },
+    {
+     "label": "Glutamate binds",
+     "bucket": 0,
+     "why": "it opens Na+/Ca2+ channels — the accelerator"
+    },
+    {
+     "label": "GABA binds",
+     "bucket": 1,
+     "why": "it opens Cl− channels — the brake"
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#analogy": {
+  "type": "compare",
+  "title": "Three ways a foot meets the brake pedal",
+  "why": "The analogy is not one image but three variants of the same pedal, and the difference between them is the whole safety lesson. Laid side by side, gentle-vs-slammed-vs-reversed separates cleanly; read as prose it blurs.",
+  "spec": {
+   "columns": [
+    "Gentle brake",
+    "Slammed brake",
+    "Newborn wiring"
+   ],
+   "rows": [
+    {
+     "attr": "Called in the prose",
+     "values": [
+      "benzodiazepine, chamomile's apigenin",
+      "barbiturate, high-dose alcohol",
+      "a newborn brain"
+     ]
+    },
+    {
+     "attr": "What the foot does",
+     "values": [
+      "makes YOUR press more effective",
+      "presses the pedal to the floor by itself",
+      "pressing 'brake' eases the accelerator forward"
+     ]
+    },
+    {
+     "attr": "Needs traffic (natural GABA) already there",
+     "values": [
+      "yes — nothing happens without it",
+      "no — no traffic needed",
+      "not a pedal problem; the cable is reversed"
+     ]
+    },
+    {
+     "attr": "Can it stop the car dead",
+     "values": [
+      "no",
+      "yes — including the car that runs breathing",
+      "no — the car moves forward instead"
+     ]
+    },
+    {
+     "attr": "Why it behaves that way",
+     "values": [
+      "it amplifies an existing press",
+      "it acts alone, with no ceiling from traffic",
+      "the pump that charges the brakes isn't installed yet"
+     ]
+    }
+   ]
+  }
+ },
+ "pathway:gaba-glutamate#expertLens": {
+  "type": "flow",
+  "title": "The pharmacologist's five-question routine",
+  "why": "The section's claim is that these five questions, run in order, replace memorising drugs. Rendered as an ordered chain with its payoff at the end, the routine becomes something the reader can reuse on a molecule the lesson never mentions.",
+  "spec": {
+   "steps": [
+    {
+     "label": "Which control point?",
+     "sub": "synthesis · release · receptor · clearance · gradient pump"
+    },
+    {
+     "label": "Agonist, antagonist, modulator?",
+     "sub": "modulator needs the transmitter present → sets the safety ceiling"
+    },
+    {
+     "label": "Which ion, which sign?",
+     "sub": "voltage up or voltage down"
+    },
+    {
+     "label": "Which timescale?",
+     "sub": "fast lid · slow tone · rewrite · homeostatic reset"
+    },
+    {
+     "label": "How does it compensate?",
+     "sub": "days-to-weeks pushback → tolerance, dependence, withdrawal"
+    }
+   ],
+   "outcome": "Any molecule's effect, dangers and failure modes — with no drug memorised"
+  }
+ },
+ "pathway:gaba-glutamate#mechSteps": {
+  "type": "sort",
+  "title": "Every control point — which way does each one tip?",
+  "why": "Step 8's predict prompt asks the reader to list every point in steps 1-8 where a molecule could grab the system, and step 9 grades them with six named levers. Right now that payoff is a prose instruction with no way to check the answer. This turns it into the actual test: eight levers pulled from eight different steps, each one classified brake-ward or accelerator-ward. It forces a pass across the whole cascade rather than step-by-step reading, and it makes the section's real claim visible — the same nine steps read as one control panel.",
+  "spec": {
+   "prompt": "A molecule grabs each lever below. Which way does the E/I balance tip?",
+   "buckets": [
+    "Tips toward the brake",
+    "Tips toward the accelerator"
+   ],
+   "items": [
+    {
+     "label": "Block presynaptic Ca2+ channels",
+     "bucket": 0,
+     "why": "Step 2: the control point gabapentin grabs — less calcium, less glutamate spilled."
+    },
+    {
+     "label": "Boost GAD enzyme activity",
+     "bucket": 0,
+     "why": "Step 6: GAD snips glutamate into GABA — more GAD, more brake fluid."
+    },
+    {
+     "label": "Make GABA-A more responsive",
+     "bucket": 0,
+     "why": "Step 9: same GABA, bigger chloride response — one of the six listed levers."
+    },
+    {
+     "label": "Block the NMDA receptor",
+     "bucket": 0,
+     "why": "Step 9: blocking the glutamate receptor is listed as a calming lever."
+    },
+    {
+     "label": "Deplete vitamin B6",
+     "bucket": 1,
+     "why": "Step 6: B6 is GAD's cofactor — isoniazid depletes it and can trigger seizures."
+    },
+    {
+     "label": "Block EAAT2 glutamate clearance",
+     "bucket": 1,
+     "why": "Step 5: glutamate lingers, Ca2+ floods the cell — excitotoxicity."
+    },
+    {
+     "label": "Lose the KCC2 pump",
+     "bucket": 1,
+     "why": "Step 8: internal Cl- rises, so GABA weakens or even excites."
+    },
+    {
+     "label": "Park more AMPA receptors",
+     "bucket": 1,
+     "why": "Step 3: AMPA number is synaptic strength — more receptors, more fast excitation."
+    }
+   ]
+  }
+ }
+}

@@ -3273,3 +3273,84 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 .nl-home h2 { font-size: 1.6rem; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 .6rem; }
 .nl-home p { color: var(--muted, #475569); margin: 0 auto 1.1rem; max-width: 52ch; }
 .nl-home .nl-form { justify-content: center; }
+
+/* ===== SECTION SYNTHESIS WIDGETS (2026-07-28) ================================================
+   One renderer, six declarative types, authored as data in data/section_widgets.json.
+   All CSS-only — no JS — so they work in the prerendered document and for the ~90% of readers
+   who never run it. A widget always sits BESIDE the prose; it never replaces a word of it. */
+.wwrap { margin: 1rem 0 1.2rem; padding: .9rem 1rem 1rem; border: 1px solid var(--line, #e2e8f0);
+  border-left: 3px solid var(--accent, #0d9488); border-radius: 12px; background: var(--panel, #f8fafc); }
+.ww-t { margin: 0 0 .7rem; font-weight: 700; font-size: .98rem; line-height: 1.3; }
+.w { margin: 0; color: var(--fg, #0a1420); }
+
+/* scale */
+.wsc svg { width: 100%; overflow: visible; }
+.wsc circle { fill: var(--accent, #0d9488); }
+.wsc text { font-size: 4px; }
+.wsc .wsc-l { font-weight: 700; fill: var(--fg, #0a1420); }
+.wsc .wsc-n { fill: var(--muted, #64748b); }
+.wsc-ends { display: flex; justify-content: space-between; font-size: .74rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .04em; color: var(--muted, #64748b); margin-top: .3rem; }
+
+/* compare — the type most of these bullet walls always were */
+.wcmp { overflow-x: auto; }
+.wcmp table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+.wcmp th, .wcmp td { border: 1px solid var(--line, #e2e8f0); padding: .45rem .6rem; text-align: left;
+  vertical-align: top; }
+.wcmp thead th { background: var(--bg, #fff); font-size: .8rem; }
+.wcmp tbody th { background: var(--bg, #fff); font-weight: 600; width: 22%; min-width: 8.5rem; }
+
+/* flow */
+.wflow { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; align-items: stretch; }
+.wflow li { flex: 1 1 8rem; background: var(--bg, #fff); border: 1px solid var(--line, #e2e8f0);
+  border-radius: 9px; padding: .45rem .6rem; position: relative; }
+.wflow li + li::before { content: "→"; position: absolute; left: -.32rem; top: 50%; transform: translateY(-50%);
+  color: var(--muted, #94a3b8); font-size: .7rem; }
+.wflow .wf-l { display: block; font-weight: 650; font-size: .85rem; }
+.wflow .wf-s { display: block; font-size: .76rem; color: var(--muted, #64748b); }
+.wflow .wf-out { border-color: var(--accent, #0d9488); background: color-mix(in srgb, var(--accent, #0d9488) 8%, transparent); }
+
+/* sort — commit first, then check. This is the only one that is retrieval rather than display. */
+.wsort fieldset { border: 0; margin: 0; padding: 0; }
+.ws-prompt { font-weight: 600; font-size: .9rem; margin-bottom: .5rem; padding: 0; }
+.ws-head, .ws-list li { display: grid; grid-template-columns: 1fr repeat(var(--nb, 2), 4.6rem) 1.4rem; gap: .3rem; align-items: center; }
+.ws-head { margin-bottom: .25rem; }
+.ws-bh { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .03em;
+  color: var(--muted, #64748b); text-align: center; line-height: 1.15; }
+.ws-list { list-style: none; margin: 0; padding: 0; }
+.ws-list li { padding: .3rem 0; border-top: 1px solid var(--line, #e2e8f0); }
+.ws-item { font-size: .88rem; font-weight: 600; }
+.ws-opt { display: flex; justify-content: center; cursor: pointer; padding: .35rem 0; }
+.ws-opt input { accent-color: var(--accent, #0d9488); width: 1.05rem; height: 1.05rem; }
+.ws-fb { font-size: .74rem; color: var(--muted, #64748b); grid-column: 1 / -1; display: none; }
+.ws-yes, .ws-no { display: none; margin-right: .3rem; }
+.ws-check { display: inline-flex; align-items: center; gap: .45rem; margin-top: .6rem; cursor: pointer;
+  font-weight: 600; font-size: .88rem; padding: .35rem .8rem; border-radius: 999px;
+  border: 1px solid var(--accent, #0d9488); color: var(--accent, #0d9488); }
+/* Reveal only after the reader commits — the browser grades it, no script and no answer in the text. */
+.wsort:has(.wsc-toggle:checked) .ws-fb { display: block; }
+.wsort:has(.wsc-toggle:checked) li:has(.ok:checked) .ws-yes { display: inline; color: #0d9488; }
+.wsort:has(.wsc-toggle:checked) li:has(input:checked):not(:has(.ok:checked)) .ws-no { display: inline; color: #b3261e; }
+
+/* quadrant */
+.wquad .wq-box { position: relative; aspect-ratio: 4/3; border-left: 2px solid var(--line, #cbd5e1);
+  border-bottom: 2px solid var(--line, #cbd5e1); margin: 1.3rem 1rem 1.5rem 4.5rem; }
+.wq-pt { position: absolute; transform: translate(-50%, 50%); background: var(--bg, #fff);
+  border: 1px solid var(--accent, #0d9488); border-radius: 999px; padding: .1rem .45rem; font-size: .74rem; white-space: nowrap; }
+.wq-yt, .wq-yb, .wq-xl, .wq-xr { position: absolute; font-size: .7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: .03em; color: var(--muted, #64748b); }
+.wq-yt { left: -4.3rem; top: 0; } .wq-yb { left: -4.3rem; bottom: 0; }
+.wq-xl { left: 0; bottom: -1.3rem; } .wq-xr { right: 0; bottom: -1.3rem; }
+
+/* anatomy */
+.wana { display: grid; grid-template-columns: minmax(9rem, 15rem) 1fr; gap: 1rem; align-items: start; }
+.wana svg { width: 100%; color: var(--fg, #0a1420); }
+.wana .wa-hs circle { fill: var(--accent, #0d9488); }
+.wana .wa-hs text { font-size: 5px; font-weight: 700; fill: var(--fg, #0a1420); }
+.wana .wa-key { margin: 0; padding-left: 1.1rem; font-size: .84rem; }
+.wana .wa-key li { margin-bottom: .3rem; }
+@media (max-width: 640px) {
+  .wana { grid-template-columns: 1fr; }
+  .ws-head, .ws-list li { grid-template-columns: 1fr repeat(var(--nb, 2), 3.4rem) 1.2rem; }
+  .ws-item { font-size: .82rem; }
+}

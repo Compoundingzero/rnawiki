@@ -941,8 +941,8 @@ function learnFlatHtml(e, opts) {
     out.push(`<h2>Questions this answers</h2><ul>${e.hook.questions.map((q) => `<li>${mdSafe(q)}</li>`).join('')}</ul>`);
   }
   // — 5 minutes —
-  if (e.analogy) out.push(`<h2>An analogy that holds up</h2>${P(e.analogy)}`);
-  if (e.fundamentals) out.push(`<h2>The fundamentals underneath it</h2>${P(e.fundamentals)}`);
+  if (e.analogy) out.push(`<h2>An analogy that holds up</h2>${P(e.analogy)}${(e.widgets || {}).analogy || ''}`);
+  if (e.fundamentals) out.push(`<h2>The fundamentals underneath it</h2>${P(e.fundamentals)}${(e.widgets || {}).fundamentals || ''}`);
   if (Array.isArray(e.mechSteps) && e.mechSteps.length) {
     // Lead with the animated cascade, THEN the steps. The picture is the map; the prose is the
     // detail you go to once you know where you are. This order was the whole point of the
@@ -1027,11 +1027,12 @@ function learnFlatHtml(e, opts) {
             ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>`
             : sp.head;
         })()}
+        ${((e.widgets || {})[String(i)]) || ''}
         ${sectionCheckpoint(`${i}`, 'Tick it and the section dims, so you can see what is left')}
       </section>`;
     }).join(''));
   }
-  if (e.expertLens) out.push(`<h2>How an expert reasons with this</h2>${P(e.expertLens)}`);
+  if (e.expertLens) out.push(`<h2>How an expert reasons with this</h2>${P(e.expertLens)}${(e.widgets || {}).expertLens || ''}`);
   // RETRIEVAL DEVICES (added 2026-07-28). I originally left selfTest and canExplain out as
   // "checklists, not exposition". A design review pushed back and was right: retrieval practice IS
   // learning content, and their absence is a large part of why a 7,500-word page still reads as

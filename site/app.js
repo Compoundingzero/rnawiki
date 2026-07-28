@@ -2080,7 +2080,7 @@
 
   function learnCourse(entry, ctx) {
     const pc = Object.assign({}, entry, { name: ctx.name, id: 'lc-' + ctx.key });
-    const fundamentals = entry.fundamentals ? `<div class="lc-fund"><div class="lc-h">🌱 Start from zero — the ground truth</div>${paras(entry.fundamentals)}</div>` : '';
+    const fundamentals = entry.fundamentals ? `<div class="lc-fund"><div class="lc-h">🌱 Start from zero — the ground truth</div>${paras(entry.fundamentals)}${(entry.widgets || {}).fundamentals || ''}</div>` : '';
     // ---- THE DECK, AND A JUMP LIST (2026-07-28) ----------------------------------------------
     // I built this for the prerendered document and shipped NOTHING to the app, which is what the
     // owner actually reads. He screenshotted the deep-dive tab: 9-11 cards of 300-600 words each,
@@ -2107,8 +2107,8 @@
             return `<a href="#dd-${ctx.key}-${i}" title="${esc(raw)}">${esc(lab)}</a>`;
           }).join('')}</nav>`
       : '';
-    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}<div class="lc-dd-b">${(() => { const sp = splitSection(paras(rest), 2); return sp.rest ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>` : sp.head; })()}</div>${sectionCheckpoint(String(i), 'Tick it and the section dims, so you can see what is left')}</section>`; }).join('')}</div>` : '';
-    const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}</div>` : '';
+    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}<div class="lc-dd-b">${(() => { const sp = splitSection(paras(rest), 2); return sp.rest ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>` : sp.head; })()}</div>${((entry.widgets || {})[String(i)]) || ''}${sectionCheckpoint(String(i), 'Tick it and the section dims, so you can see what is left')}</section>`; }).join('')}</div>` : '';
+    const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}${(entry.widgets || {}).expertLens || ''}</div>` : '';
     const conns = (Array.isArray(entry.connections) && entry.connections.length) ? `<div class="lc-conn"><div class="lc-h">🕸️ How this connects to the rest of the body</div><ul>${entry.connections.map(c => `<li><b>${esc(c.to)}</b> — ${mdInline(c.why)}</li>`).join('')}</ul></div>` : '';
     // `lede` (added 2026-07-28) — the 30-second answer, the map, and the WHY, ahead of the
     // exposition. A design review measured that on these pages hook.payoff (the "why should I
