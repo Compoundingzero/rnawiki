@@ -834,6 +834,94 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
 
 // ---- write files ----
 let written = 0;
+// ---- the five index pages that were in the sitemap but never prerendered -------------------
+// Added 2026-07-28. /browse, /az, /about, /pathways and /legend were hand-appended to the sitemap
+// below and never passed to add(), so all five served a ~3.5 kB empty SPA shell canonicalised to
+// "/" — i.e. Google was told they existed, then given nothing. /about was worse than a soft-404:
+// site/app.js deliberately rewrote the URL bar to "/" and rendered the homepage, discarding a fully
+// authored aboutPage() that contains THE SITE'S ONLY DISCLAIMER. These are also the natural
+// crawlable indexes for 170 compounds and 16 pathways, so leaving them blank forfeited the site's
+// best internal-linking surface.
+{
+  const cnt = D.meta.counts || {};
+  const cats = [...new Set(D.compounds.map((c) => c.category).filter(Boolean))].sort();
+  const byCat = {};
+  D.compounds.forEach((c) => { (byCat[c.category] = byCat[c.category] || []).push(c); });
+  const azSorted = D.compounds.slice().sort((a, b) => a.name.localeCompare(b.name));
+  const letterOf = (n) => { const ch = n.replace(/^[^A-Za-z0-9]+/, '').charAt(0).toUpperCase(); return /[A-Z]/.test(ch) ? ch : '#'; };
+  const byLetter = {};
+  azSorted.forEach((c) => { (byLetter[letterOf(c.name)] = byLetter[letterOf(c.name)] || []).push(c); });
+  const link = (c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`;
+
+  add('/about', shell({
+    route: '/about', title: 'About RNAwiki — what it is, how it is made, and its limits',
+    desc: 'RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, written for Singapore. What is inside, how it is built, how to read it — and what it is not.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'About', route: '/about' }],
+    body: `<div class="article"><h1>About RNAwiki</h1>
+      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
+      <h2>What is inside</h2>
+      <p><strong>${cnt.compounds || D.compounds.length} compounds</strong> across <strong>${cats.length} categories</strong>, <strong>${(GRAPH.problems || []).length} problems</strong> broken down into their root causes, and <strong>${(D.pathways || []).length} master pathways</strong> with their molecular targets. Each compound carries a plain-English explanation, the named receptor or enzyme it acts on, a link to the official gene or compound record, and an honest verdict.</p>
+      <h2>How to read it</h2>
+      <p>Start from what you want to change — <a href="/solve">a problem or a goal</a> — not from a compound. Every problem is split into <em>root causes</em>, because the fix depends on which one you have. Each protocol then gives you the movement, the food and the evidence-ranked compounds for that specific cause.</p>
+      <p>Evidence strength is shown as stars. <a href="/legend">What the stars and badges mean →</a></p>
+      <h2>How it is made, and its limits</h2>
+      <p>Pages are drafted with AI assistance and edited by a human. <strong>They are not reviewed by a clinician.</strong> Where the evidence is thin, contested, or animal-only, the page says so rather than rounding up. Star ratings summarise the human evidence for a compound overall — they are not a grade for your specific use.</p>
+      <p>Corrections are welcome and wanted. If something here is wrong, it should be fixed rather than defended.</p>
+      <h2>Where to go next</h2>
+      <ul><li><a href="/solve">Solve a problem or reach a goal</a></li><li><a href="/az">Every compound, A–Z</a></li><li><a href="/browse">Browse by category</a></li><li><a href="/pathways">The master pathways</a></li><li><a href="/learn">Start learning from the beginning</a></li></ul>
+    </div>` }));
+
+  add('/legend', shell({
+    route: '/legend', title: 'Legend — what the stars, badges and colours mean · RNAwiki',
+    desc: 'How to read RNAwiki: the 1–5 star human-evidence scale, the regulatory badges, and what each one does and does not claim.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Legend', route: '/legend' }],
+    body: `<div class="article"><h1>How to read RNAwiki</h1>
+      <h2>Evidence stars</h2>
+      <p>Stars rate <strong>human</strong> evidence for a compound overall — not for your particular goal, and not how well it will work for you. Animal-only evidence is capped at two stars and labelled.</p>
+      <ul>
+        <li>${stars(5)} — consistent, replicated human trials</li>
+        <li>${stars(4)} — good human evidence, some inconsistency</li>
+        <li>${stars(3)} — mixed or limited human trials</li>
+        <li>${stars(2)} — early, small, or animal-only evidence</li>
+        <li>${stars(1)} — mechanistic or anecdotal only</li>
+      </ul>
+      <h2>Regulatory badges</h2>
+      <p>A badge says who has <em>approved</em> a molecule. <strong>It is not a statement about where you can buy it.</strong> A medicine can be approved and still be prescription-only.</p>
+      <ul>${Object.entries(D.approvalLabels || {}).map(([b, l]) => `<li><b>${b}</b> — ${esc(l)}</li>`).join('')}</ul>
+      <h2>Availability</h2>
+      <p>Availability is shown separately from approval, for Singapore: over the counter, pharmacy medicine, prescription only, controlled, or not approved. Where a compound is prescription-only we say so and do not give a dose.</p>
+      <p><a href="/about">More about how this site is made →</a></p></div>` }));
+
+  add('/az', shell({
+    route: '/az', title: `All ${D.compounds.length} compounds A–Z · RNAwiki`,
+    desc: `Every compound on RNAwiki, listed A to Z with its human-evidence rating — supplements, prescription medicines and non-approved research compounds.`,
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'A–Z', route: '/az' }],
+    body: `<div class="article"><h1>Every compound, A–Z</h1>
+      <p>All ${D.compounds.length} compounds, with their human-evidence rating. <a href="/legend">What the stars mean →</a></p>
+      ${Object.keys(byLetter).sort().map((L) => `<h2>${esc(L)}</h2><ul>${byLetter[L].map(link).join('')}</ul>`).join('')}</div>` }));
+
+  add('/browse', shell({
+    route: '/browse', title: 'Browse compounds by category · RNAwiki',
+    desc: `Browse all ${D.compounds.length} compounds by category — nootropics, longevity, hormones, performance, recovery and more, each evidence-ranked.`,
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Browse', route: '/browse' }],
+    body: `<div class="article"><h1>Browse by category</h1>
+      <p>${D.compounds.length} compounds across ${cats.length} categories. Prefer to start from a problem instead? <a href="/solve">Start there →</a></p>
+      ${cats.map((cat) => `<h2>${esc(cat)}</h2><ul>${byCat[cat].slice().sort((a, b) => b.stars - a.stars).map(link).join('')}</ul>`).join('')}</div>` }));
+
+  add('/pathways', shell({
+    route: '/pathways', title: `The ${(D.pathways || []).length} master pathways · RNAwiki`,
+    desc: 'The master signalling pathways behind every compound on RNAwiki — GPCR/cAMP, nuclear receptors, mTOR, AMPK, NO/cGMP and more, each with the compounds that act on it.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Pathways', route: '/pathways' }],
+    body: `<div class="article"><h1>The master pathways</h1>
+      <p>Almost every compound here works through one of these. Learning the pathway once explains a whole family of compounds at a time — this is the layer that turns a list into an understanding.</p>
+      <ul>${(D.pathways || []).map((p, i) => {
+        const nm = String(p.name || p.title || ('Pathway ' + (i + 1))).replace(/^PATHWAY\s*\d+\s*[—-]\s*/i, '');
+        const n = D.compounds.filter((c) => (c.pathwayIds || []).includes(i)).length;
+        return `<li><a href="/pathway/${i}">${esc(nm)}</a>${n ? ` — ${n} compound${n === 1 ? '' : 's'}` : ''}</li>`;
+      }).join('')}</ul>
+      <p><a href="/learn">Start from the beginning →</a> · <a href="/about">About RNAwiki →</a></p></div>` }));
+}
+
 pages.forEach(({ route, html }) => {
   const file = path.join(SITE, route.replace(/^\//, '') + '.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -855,6 +943,7 @@ let swept = 0;
     else if (f.endsWith('.html') && !writtenPaths.has(p)) { fs.unlinkSync(p); swept++; } } };
   genRoots.forEach((r) => sweep(path.join(SITE, r)));
 })();
+
 
 // sitemap + robots
 const now = new Date().toISOString().slice(0, 10);

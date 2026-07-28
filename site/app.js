@@ -6554,7 +6554,10 @@
     else if (parts[0] === 'progress') html = planLoading();
     else if (parts[0] === 'legend') html = legendPage();
     else if (parts[0] === 'for-clinicians') html = forClinicians();
-    else if (parts[0] === 'about') { history.replaceState(null, '', '/'); parts.length = 0; html = home(); }
+    // FIXED 2026-07-28: this rewrote the URL bar to "/" and rendered the homepage, discarding the
+    // fully authored aboutPage() -- which holds the site's ONLY disclaimer -- and leaving /about
+    // worse than a soft-404 for both readers and crawlers.
+    else if (parts[0] === 'about') html = aboutPage();
     else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
     else if (parts[0] === 'solve') html = solvePage();
     else if (parts[0] === 'stewardship') html = stewardHubLoading();
