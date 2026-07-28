@@ -41,7 +41,10 @@ const refs = [];
   if (!o || typeof o !== 'object') return;
   if (Array.isArray(o.trials)) {
     o.trials.forEach((t, i) => {
-      if (t && t.ref) refs.push({ path: `${p}.trials[${i}]`, ref: String(t.ref), finding: String(t.finding || '') });
+      // Skip anything a human has already adjudicated. Re-asking a question Felix has answered is
+      // not merely wasteful, it invites a different answer the second time and silently overwrites
+      // a verified binding with a fresh guess.
+      if (t && t.ref && !t.pmid) refs.push({ path: `${p}.trials[${i}]`, ref: String(t.ref), finding: String(t.finding || '') });
     });
   }
   for (const k of Object.keys(o)) walk(o[k], `${p}.${k}`);
@@ -80,12 +83,18 @@ async function search(query, pageSize = 5) {
 const jname = (h) => h.journalTitle || (h.journalInfo && h.journalInfo.journal && h.journalInfo.journal.title) || '';
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+const FROM_JSON = args.includes('--from-json');   // re-render the md from the last run, no queries
+
 (async () => {
-  const out = { resolved: [], ambiguous: [], unresolvable: [], errored: [] };
-  const todo = refs.slice(0, LIMIT === Infinity ? refs.length : LIMIT);
+  const out = FROM_JSON
+    ? JSON.parse(fs.readFileSync(path.join(DATA, 'citation_review.json'), 'utf8'))
+    : { resolved: [], ambiguous: [], unresolvable: [], errored: [] };
+  const todo = FROM_JSON
+    ? new Array(out.resolved.length + out.ambiguous.length + out.unresolvable.length + out.errored.length)
+    : refs.slice(0, LIMIT === Infinity ? refs.length : LIMIT);
   console.log(`[cite] ${refs.length} refs found; processing ${todo.length}`);
 
-  for (let i = 0; i < todo.length; i++) {
+  for (let i = 0; FROM_JSON ? false : i < todo.length; i++) {
     const r = todo[i];
     const p = parseRef(r.ref);
 
@@ -106,15 +115,29 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
       // something rather than just being lucky.
       const jt = p.journalHint && p.journalHint.length > 3 && !/^\d/.test(p.journalHint)
         ? ` AND JOURNAL:"${p.journalHint.replace(/[":]/g, ' ').trim()}"` : '';
-      let q = `AUTH:"${p.surname}" AND PUB_YEAR:${p.year}${jt}`;
+      // ---- SUBJECT ANCHOR (added 2026-07-28, and it should have been here from the start) ----
+      // Measured on the first run: 65% of the 317 "ambiguous" rows had NOT ONE candidate whose
+      // title even mentioned the compound. Wilding 2021 (STEP 1 semaglutide) was offered three
+      // COVID heparin trials. That is not an ambiguous queue, it is an unanswerable one — asking a
+      // human to pick the right paper from four wrong ones is worse than asking nothing.
+      // Cause: AUTH+PUB_YEAR alone. Europe PMC's author match is loose, so a common surname in a
+      // busy year returns whatever it likes. A human searching this would type the DRUG NAME. So do
+      // that: anchor on the compound from the entry's own path, which costs nothing and is never
+      // wrong about what the citation is supposed to be about.
+      const subject = (r.path.match(/^compound_learn\.([^.]+)/) || [])[1] || '';
+      const subjTerm = subject.split('-').filter((w) => w.length > 3)[0] || '';
+      const st = subjTerm ? ` AND TITLE:"${subjTerm}"` : '';
+      let q = `AUTH:"${p.surname}" AND PUB_YEAR:${p.year}${st}${jt}`;
       let hits = await search(q, 5);
-      // If the journal string was too specific to match anything, fall back to author+year and let
-      // it land in `ambiguous` — never widen in a way that could produce a confident wrong answer.
-      if (!hits.length && jt) { q = `AUTH:"${p.surname}" AND PUB_YEAR:${p.year}`; hits = await search(q, 5); }
+      // Widen in a fixed order, narrowest first, so a single hit always means the tightest query
+      // that could produce one — never widen past author+year.
+      if (!hits.length && st && jt) { q = `AUTH:"${p.surname}" AND PUB_YEAR:${p.year}${st}`; hits = await search(q, 5); }
+      if (!hits.length && jt) { q = `AUTH:"${p.surname}" AND PUB_YEAR:${p.year}${jt}`; hits = await search(q, 5); }
+      if (!hits.length) { q = `AUTH:"${p.surname}" AND PUB_YEAR:${p.year}`; hits = await search(q, 5); }
       if (hits.length === 1) {
         const h = hits[0];
         out.resolved.push({ ...r, pmid: h.pmid || null, title: h.title, journal: jname(h), year: h.pubYear,
-          pubTypes: (h.pubTypeList && h.pubTypeList.pubType) || [], rule: q.includes('JOURNAL:') ? 'single hit on author+year+journal' : 'single hit on author+year' });
+          pubTypes: (h.pubTypeList && h.pubTypeList.pubType) || [], rule: 'single hit on ' + q.replace(/AUTH:|PUB_YEAR:|TITLE:|JOURNAL:|"/g, '').trim() });
       } else {
         out.ambiguous.push({ ...r, nHits: hits.length,
           candidates: hits.slice(0, 4).map((h) => ({ pmid: h.pmid, title: h.title, journal: jname(h), year: h.pubYear })) });
@@ -126,12 +149,34 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     await sleep(120);   // be polite to a free API
   }
 
+  // ---- FLAG THE PROPOSALS THAT LOOK RIGHT BUT AREN'T (2026-07-28) ----
+  // The subject anchor made single hits far more likely to be the correct paper — and thereby made
+  // a NEW failure mode more likely too: a tight query can land cleanly on a Reply, a Correction
+  // notice or a conference abstract instead of the trial itself. Those bind without tripping any
+  // author/year check, so a reviewer skimming 117 rows will pass them. Surface them explicitly.
+  // Note the deliberate non-flag: a Letter is CORRECT when the ref itself cites a two-page range
+  // (Cousen 2009, Br J Dermatol 161(3):707-708 IS a letter). Flag the type, let the human judge.
+  const RISKY = /\b(reply|comment|editorial|erratum|correction|letter|retraction|author response)\b/i;
+  out.resolved.forEach((x) => {
+    const f = [];
+    if (RISKY.test(x.title || '') || (x.pubTypes || []).some((p) => RISKY.test(p))) {
+      f.push('this record is a reply/letter/correction, not the primary report — check the ref really means this and not the paper it comments on');
+    }
+    if (!x.pmid) f.push('no PMID (preprint, book chapter or conference abstract) — nothing to link to');
+    if (/Suppl|abstract/i.test(x.ref)) f.push('the ref itself names a supplement/abstract — often not the peer-reviewed paper');
+    if (f.length) x.flags = f;
+  });
+
   const n = todo.length;
   const pct = (x) => n ? ((100 * x) / n).toFixed(1) + '%' : '0%';
   fs.writeFileSync(path.join(DATA, 'citation_review.json'), JSON.stringify(out, null, 1));
 
   const md = [];
   md.push('# Citation review queue — PROPOSE ONLY, nothing here has been written into the corpus\n');
+  md.push('**Round 2.** The 136 refs already adjudicated and bound are excluded — this file is only the open ones.');
+  md.push('Retrieval now anchors on the compound name as a TITLE term. In round 1, 65% of "ambiguous" rows');
+  md.push('had not one candidate whose title even mentioned the compound, which made that section');
+  md.push('unanswerable rather than merely hard.\n');
   md.push(`Generated by \`build/resolve_citations.js\` over ${n} of ${refs.length} \`evi.trials[].ref\` strings.\n`);
   md.push('**Claims are printed IN FULL below.** The first version of this file truncated them at 220');
   md.push('characters, which made 41 of 136 rows impossible to verify — the reviewer could not see the end of');
@@ -151,6 +196,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
     md.push(`- **path**: \`${x.path}\``);
     md.push(`- **finding it is attached to**: ${x.finding}`);
     md.push(`- **proposed**: PMID ${x.pmid} — ${x.title} (*${x.journal}* ${x.year}) — ${(x.pubTypes || []).join(', ')}`);
+    (x.flags || []).forEach((f) => md.push(`- ⚠️ **CHECK THIS ONE**: ${f}`));
     md.push(`- [ ] accept  [ ] reject\n`);
   });
 

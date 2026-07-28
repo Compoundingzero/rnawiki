@@ -638,9 +638,102 @@ function pathwayDiagramHtml(spec, hub) {
   </div>`;
 }
 
+// ---- BLOCK RENDERER (2026-07-28) ----------------------------------------------------------
+// Two measured defects in how authored prose reaches the page, both presentation-only:
+//
+//   1. MARKDOWN LISTS RENDERED AS PROSE. 87 blocks in learn_expand.json (8,721 words) are authored
+//      as "- item\n\n- item". Both renderers wrapped the whole thing in one <p>, and HTML collapses
+//      the newlines — so /pathway/6 shipped a 558-word wall of text with literal dashes in it. The
+//      longest "paragraphs" on the site were never paragraphs.
+//   2. SLABS. 913 blocks run past 90 words; the reader gets no landing place. Splitting at sentence
+//      boundaries takes the 90th percentile from 215 words to 93 with zero re-authoring.
+//
+// This changes not one word of content — it only decides where a block ends. Verified lossless
+// across all 45 courses (0 words added or lost).
+// `inline` is passed in because the two documents escape differently: app.js formats-then-escapes
+// (mdInline), prerender.js escapes-then-formats (mdSafe). Do not hardcode either one here.
+const MD_ABBR = /(?:\b(?:et al|vs|i\.e|e\.g|cf|approx|Dr|Prof|Mr|Mrs|Ms|St|Fig|No|ca|resp|incl|max|min|avg|ie|eg)\.)$/i;
+function mdSentences(text) {
+  const out = []; let buf = '';
+  // Judged in context: a decimal (p<0.05), an abbreviation (et al.), an initial (J. Smith) and a
+  // real full stop are indistinguishable to a naive /[.!?]\s/ split.
+  for (let i = 0; i < text.length; i++) {
+    buf += text[i];
+    if (!/[.!?]/.test(text[i])) continue;
+    const next = text.slice(i + 1);
+    if (!/^\s/.test(next)) continue;
+    if (/^\s*$/.test(next)) break;
+    if (!/^\s+["'“(]?[A-Z0-9]/.test(next)) continue;
+    if (MD_ABBR.test(buf.trimEnd())) continue;
+    if (/\b[A-Z]\.$/.test(buf.trimEnd())) continue;
+    out.push(buf.trim()); buf = '';
+  }
+  if (buf.trim()) out.push(buf.trim());
+  return out;
+}
+const mdWc = (s) => (s.trim() ? s.trim().split(/\s+/).length : 0);
+function mdChunk(block, MAX, TARGET) {
+  if (mdWc(block) <= MAX) return [block];
+  const sents = mdSentences(block);
+  if (sents.length < 2) return [block];         // one giant sentence — leave it whole, don't maim it
+  const out = []; let cur = [];
+  for (const s of sents) {
+    cur.push(s);
+    if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
+  }
+  if (cur.length) {
+    // A stranded tail of a few words reads as a mistake; fold it back.
+    if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
+    else out.push(cur.join(' '));
+  }
+  return out;
+}
+function mdBlocks(text, inline, MAX, TARGET) {
+  MAX = MAX || 90; TARGET = TARGET || 65;
+  const src = String(text || '').trim();
+  if (!src) return '';
+  const out = [];
+  let list = null;      // { ord: bool, items: [] }
+  const flushList = () => {
+    if (!list) return;
+    const tag = list.ord ? 'ol' : 'ul';
+    out.push(`<${tag} class="md-list">${list.items.map((it) => `<li>${inline(it)}</li>`).join('')}</${tag}>`);
+    list = null;
+  };
+  // Split on blank lines first, then walk each block line by line so a list authored with single
+  // newlines and a list authored with blank lines between items both come out as one <ul>.
+  for (const block of src.split(/\n\n+/)) {
+    const lines = block.split('\n');
+    let para = [];
+    const flushPara = () => {
+      const t = para.join(' ').trim(); para = [];
+      if (!t) return;
+      flushList();
+      mdChunk(t, MAX, TARGET).forEach((c) => out.push(`<p>${inline(c)}</p>`));
+    };
+    for (const raw of lines) {
+      const m = raw.match(/^\s*(?:([-*•])|(\d+)[.)])\s+(.*)$/);
+      if (m) {
+        flushPara();
+        const ord = !!m[2];
+        if (!list || list.ord !== ord) { flushList(); list = { ord, items: [] }; }
+        list.items.push(m[3]);
+      } else if (list && /^\s+\S/.test(raw) && raw.trim()) {
+        list.items[list.items.length - 1] += ' ' + raw.trim();   // indented continuation of an item
+      } else if (raw.trim()) {
+        if (list) flushList();
+        para.push(raw.trim());
+      }
+    }
+    flushPara();
+  }
+  flushList();
+  return out.join('');
+}
+
 function learnFlatHtml(e, opts) {
   if (!e) return '';
-  const P = (t) => `<p>${mdSafe(t)}</p>`;
+  const P = (t) => mdBlocks(t, mdSafe);
   const out = [];
   // — 30 seconds —
   if (e.hook && e.hook.payoff) out.push(`<p class="lf-payoff">${mdSafe(e.hook.payoff)}</p>`);
@@ -748,7 +841,7 @@ const learnScaffold = (m) => {
 };
 D.modules.forEach((m, i) => {
   const route = '/learn/' + i;
-  add(route, shell({ route, title: `${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')} · RNAwiki Foundations`, desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${foundationsDiagram(i)}${m.html || ''}${learnScaffold(m)}</div>` }));
+  add(route, shell({ route, title: `${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')} · RNAwiki Foundations`, desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${foundationsDiagram(i)}${m.html || ''}${learnFlatHtml(m.expand)}${learnScaffold(m)}</div>` }));
 });
 
 // ---- anatomy & physiology: crawlable muscle / energy-system / metabolism pages ----
@@ -805,7 +898,7 @@ ANAT.muscles.forEach((m) => {
     <p><b>Fibre-type bias:</b> ${esc(m.fiber_bias)}</p><p><b>Functional role:</b> ${esc(m.functional_role)}</p>
     <h2>Common problems</h2><ul>${(m.common_problems || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <h2>Training & stretching</h2><p>${esc(m.training || '')}</p><p>${esc(m.stretching || '')}</p>
-    ${(m.problems || []).length ? `<h2>Fix or train this</h2><ul>${m.problems.map((pid) => { const pr = GRAPH.problems.find((x) => x.id === pid); return pr ? `<li><a href="/protocol/${pid}/${pr.root_causes[0].id}">${esc(pr.name)}</a></li>` : ''; }).join('')}</ul>` : ''}</div>`;
+    ${(m.problems || []).length ? `<h2>Fix or train this</h2><ul>${m.problems.map((pid) => { const pr = GRAPH.problems.find((x) => x.id === pid); return pr ? `<li><a href="/protocol/${pid}/${pr.root_causes[0].id}">${esc(pr.name)}</a></li>` : ''; }).join('')}</ul>` : ''}${learnFlatHtml(m.expand)}</div>`;
   add(route, shell({ route, title: `${m.name} — anatomy, function & training · RNAwiki`, desc: (m.overview || '').slice(0, 155), ogImage: renderOgCard(`og/muscle/${m.id}.png`, { kind: 'Muscle · ' + (m.region || ''), title: m.name, sub: m.overview }), breadcrumbs: anatCrumb(m.name, route), body }));
 });
 function metabolicMill(active) {
@@ -842,7 +935,7 @@ ANAT.energy_systems.forEach((e) => {
     <p><b>Duration:</b> ${esc(e.duration)} · <b>Intensity:</b> ${esc(e.intensity)} · <b>Fuel:</b> ${esc(e.fuel)} · <b>Oxygen:</b> ${esc(e.oxygen)}</p>
     <h2>How it works</h2><ol>${(e.steps || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
     <h2>What it powers</h2><ul>${(e.powers || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
-    <p><b>Byproduct:</b> ${esc(e.byproduct)}</p><p><b>Recovery:</b> ${esc(e.recovery)}</p><p><b>Training:</b> ${esc(e.training)}</p></div>`;
+    <p><b>Byproduct:</b> ${esc(e.byproduct)}</p><p><b>Recovery:</b> ${esc(e.recovery)}</p><p><b>Training:</b> ${esc(e.training)}</p>${learnFlatHtml(e.expand)}</div>`;
   add(route, shell({ route, title: `${e.name} — how it fuels muscle · RNAwiki`, desc: (e.overview || '').slice(0, 155), ogImage: renderOgCard(`og/energy/${e.id}.png`, { kind: 'Energy system', title: e.name.split('(')[0].trim(), sub: e.plain || e.overview }), breadcrumbs: anatCrumb(e.name, route), body }));
 });
 function physioDiagram(id) {
@@ -899,7 +992,7 @@ ANAT.metabolism.forEach((p) => {
     ${p.what_insulin_does ? `<h2>What insulin does</h2><ul>${p.what_insulin_does.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
     ${p.when_it_matters ? `<h2>Why it matters</h2><p>${esc(p.when_it_matters)}</p>` : ''}
     <p><b>Key hormones:</b> ${(p.hormones || []).map(esc).join(', ')}</p>
-    ${(() => { const cs = (p.compounds || []).map((n) => findCpt(n)).filter(Boolean); const seen = new Set(); const u = cs.filter((c) => !seen.has(c.id) && seen.add(c.id)); return u.length ? `<h2>Compounds that act on this</h2><ul>${u.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''; })()}</div>`;
+    ${(() => { const cs = (p.compounds || []).map((n) => findCpt(n)).filter(Boolean); const seen = new Set(); const u = cs.filter((c) => !seen.has(c.id) && seen.add(c.id)); return u.length ? `<h2>Compounds that act on this</h2><ul>${u.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''; })()}${learnFlatHtml(p.expand)}</div>`;
   add(route, shell({ route, title: `${p.name} — the physiology in plain English · RNAwiki`, desc: (p.plain || p.overview || '').slice(0, 155), ogImage: renderOgCard(`og/physiology/${p.id}.png`, { kind: 'Physiology', title: p.name, sub: p.plain || p.overview }), breadcrumbs: anatCrumb(p.name, route), body }));
 });
 {
