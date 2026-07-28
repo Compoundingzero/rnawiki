@@ -259,6 +259,23 @@ CREATE TABLE IF NOT EXISTS scans (
 );
 CREATE INDEX IF NOT EXISTS idx_scans_user_day ON scans(user_id, created_at);
 
+-- Newsletter subscribers (2026-07-28). One row per address. This is the local record of consent;
+-- the address is ALSO pushed to a Resend audience, which is what the weekly broadcast sends from.
+-- Kept locally as well so (a) a Resend outage does not lose a signup, (b) consent has an auditable
+-- timestamp and source page for PDPA, and (c) unsubscribes can be honoured on our side too.
+-- lower(email) is the unique key so the same person cannot be double-counted or double-mailed.
+CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+  id SERIAL PRIMARY KEY,
+  email TEXT NOT NULL,
+  source TEXT,                                        -- which page/CTA the signup came from
+  resend_contact_id TEXT,                             -- null if the Resend push failed; retryable
+  unsubscribed BOOLEAN NOT NULL DEFAULT false,
+  unsub_token TEXT,                                   -- one-click unsubscribe without an account
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE UNIQUE INDEX IF NOT EXISTS newsletter_email_lower_uniq ON newsletter_subscribers (lower(email));
+CREATE INDEX IF NOT EXISTS idx_newsletter_created ON newsletter_subscribers(created_at DESC);
+
 -- Founding-clinician waitlist (Phase-2 marketplace demand capture). A public, no-account form:
 -- a physio/dietitian/pharmacist/MD registers interest to shape protocols in their field. Surfaced,
 -- with a one-click CSV export, in the super-admin control room. UNIQUE(email) keeps it de-duped.

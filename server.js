@@ -490,6 +490,53 @@ async function emailWinbackTick() {
   } catch (e) { console.error('[email] winback tick:', e.message); }
 }
 async function email6hTick() { await emailNudgeTick(); await emailWinbackTick(); }   // sequential so milestone marks last_checkin_email before winback checks it
+// ===== Newsletter (2026-07-28) =================================================================
+// Subscribers are stored locally AND pushed to a Resend audience. Both, deliberately:
+//  - Resend is what the weekly broadcast actually sends from, so the contact has to exist there;
+//  - the local row is the auditable record of consent (timestamp + which page it came from), which
+//    is what PDPA cares about, and it means a Resend outage cannot silently lose a signup.
+// If the Resend push fails the row is still written with resend_contact_id NULL, so it is
+// retryable rather than lost.
+const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '';
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
+
+async function resendAddContact(email) {
+  if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) return null;
+  try {
+    const r = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, unsubscribed: false }),
+      signal: AbortSignal.timeout(10000),
+    });
+    const j = await r.json().catch(() => ({}));
+    return (j && j.id) ? j.id : null;
+  } catch (e) { console.error('[newsletter] resend add failed:', e.message); return null; }
+}
+async function resendUnsubscribe(email) {
+  if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) return false;
+  try {
+    await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts/${encodeURIComponent(email)}`, {
+      method: 'PATCH',
+      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ unsubscribed: true }),
+      signal: AbortSignal.timeout(10000),
+    });
+    return true;
+  } catch (e) { console.error('[newsletter] resend unsub failed:', e.message); return false; }
+}
+function welcomeEmail(unsubUrl) {
+  return `<div style="font-family:system-ui,-apple-system,sans-serif;max-width:540px;margin:0 auto;color:#1a1a1a">
+    <p style="font-size:17px;line-height:1.5">You're in.</p>
+    <p style="font-size:15px;line-height:1.6">Once a week I'll send you one thing from RNAwiki — a mechanism worth understanding, a claim that turned out to be weaker than it looked, or a protocol broken down to its root cause. Written the way the site is: what the evidence actually says, and where it runs out.</p>
+    <p style="font-size:15px;line-height:1.6">No supplement of the month. No affiliate links. If something is uncertain, it will say so.</p>
+    <p style="font-size:15px;line-height:1.6"><a href="${SITE_URL}/solve" style="color:#10b981">Start with a problem you actually have →</a></p>
+    <hr style="border:none;border-top:1px solid #e5e5e5;margin:22px 0">
+    <p style="font-size:12px;color:#777;line-height:1.5">You're getting this because you subscribed at rnawiki.com. Educational only, not medical advice.<br>
+    <a href="${unsubUrl}" style="color:#777">Unsubscribe</a> — one click, no questions.</p>
+  </div>`;
+}
+
 function emailStartScheduler() {
   if (!db.enabled || EMAIL_TIMER) return;
   if (!RESEND_API_KEY) { console.log('[email] RESEND_API_KEY not set — nudge emails dormant (due list still visible in Control Room).'); return; }
@@ -1210,6 +1257,54 @@ async function api(req, res, url) {
     return json(res, 200, Object.assign({ experiments: 0, improved: 0 }, r.rows[0] || {}, { helped }));
   }
   // record a "stack built" engagement (idempotent per person) for the people-helped counter
+  // --- newsletter ---
+  if (seg[0] === 'subscribe' && method === 'POST') {
+    const b = await readBody(req, 4096); if (!b) return json(res, 400, { error: 'Bad request' });
+    // Honeypot: a field no human sees and every naive bot fills. Return 200 so the bot believes it
+    // worked and does not retry with a different shape.
+    if (clean(b.website, 80)) return json(res, 200, { ok: true });
+    const email = clean(b.email, 160).toLowerCase();
+    if (!EMAIL_RE.test(email)) return json(res, 400, { error: 'That email address does not look right.' });
+    const source = clean(b.source, 60) || 'newsletter';
+    try {
+      // Rate limit by volume, not by IP (which is unreliable behind Railway's proxy): if this many
+      // signups have arrived in a minute, something automated is happening.
+      const burst = (await db.query("SELECT count(*)::int n FROM newsletter_subscribers WHERE created_at > now() - interval '1 minute'")).rows[0];
+      if (burst && burst.n > 20) return json(res, 429, { error: 'Too many signups right now — try again in a minute.' });
+
+      const tok = crypto.randomBytes(16).toString('base64url');
+      const ins = await db.query(
+        `INSERT INTO newsletter_subscribers(email, source, unsub_token) VALUES($1,$2,$3)
+           ON CONFLICT (lower(email)) DO UPDATE SET unsubscribed = false
+           RETURNING id, unsub_token, (xmax = 0) AS is_new`,
+        [email, source, tok]);
+      const row = ins.rows[0];
+      const isNew = row && row.is_new;
+      // Push to Resend regardless — a returning subscriber may have been unsubscribed there.
+      const cid = await resendAddContact(email);
+      if (cid) await db.query('UPDATE newsletter_subscribers SET resend_contact_id=$2 WHERE id=$1', [row.id, cid]).catch(() => {});
+      if (isNew) {
+        const unsubUrl = `${SITE_URL}/api/unsubscribe?t=${encodeURIComponent(row.unsub_token || tok)}`;
+        sendEmail(email, 'Welcome to RNAwiki', welcomeEmail(unsubUrl)).catch(() => {});
+      }
+      return json(res, 200, { ok: true, alreadySubscribed: !isNew });
+    } catch (e) { console.error('[newsletter]', e.message); return json(res, 500, { error: 'Could not sign you up just now. Try again shortly.' }); }
+  }
+  if (seg[0] === 'unsubscribe' && method === 'GET') {
+    const t = clean(new URL('http://x/' + url).searchParams.get('t'), 64);
+    let ok = false, email = null;
+    if (t) {
+      const r = await db.query('UPDATE newsletter_subscribers SET unsubscribed=true WHERE unsub_token=$1 RETURNING email', [t]).catch(() => ({ rows: [] }));
+      if (r.rows[0]) { ok = true; email = r.rows[0].email; await resendUnsubscribe(email); }
+    }
+    return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>${ok ? 'Unsubscribed' : 'Link not recognised'} · RNAwiki</title><link rel="stylesheet" href="/styles.css"></head>
+<body><main class="article" style="max-width:38rem;margin:4rem auto;padding:0 1.25rem">
+<h1>${ok ? 'You\'re unsubscribed' : 'That link is not recognised'}</h1>
+<p>${ok ? 'You won\'t get the weekly email again. Nothing else changes — the site stays free and open.' : 'It may already have been used. If you keep receiving emails, reply to one and it will be sorted manually.'}</p>
+<p><a href="/">Back to RNAwiki</a></p></main></body></html>`, ok ? 200 : 404);
+  }
   if (seg[0] === 'helped' && method === 'POST') {
     const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64);
     if (!voterKey) return json(res, 400, { error: 'Missing' });

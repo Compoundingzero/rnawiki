@@ -416,6 +416,7 @@
     reportOutcome(pid, rcid, outcome) { return this.call('POST', '/api/experiments/outcome', { problemId: pid, rootCauseId: rcid, outcome, voterKey: VOTER_KEY }); },
     stats() { return this.call('GET', '/api/stats').catch(() => null); },
     helped() { return this.call('POST', '/api/helped', { voterKey: VOTER_KEY }).catch(() => null); },
+    subscribe(email, source, website) { return this.call('POST', '/api/subscribe', { email, source, website }); },
   };
   // Tier-1 voting: a stable anonymous voter key so votes need no account.
   const VOTER_KEY = (() => { let k = localStorage.getItem('rnawiki_voter'); if (!k) { k = 'v' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('rnawiki_voter', k); } return k; })();
@@ -6655,6 +6656,36 @@
   // Universal cause-finder — present on every protocol.
   document.addEventListener('click', e => { const b = e.target.closest('[data-find-cause]'); if (b) { e.preventDefault(); const p = problemById[b.getAttribute('data-find-cause')]; if (p) openCauseFinder(p); } });
   // Adopt a cause's default plan — seed My Plan's stack with that cause's supplements.
+  // ---------- newsletter signup ----------
+  // The form is prerendered, so it renders and submits meaning even before this runs. This upgrades
+  // it to an inline confirmation: navigating away after a signup is the single easiest way to lose
+  // the second conversion (the click into the site), so nothing here changes the page.
+  document.addEventListener('submit', async (e) => {
+    const f = e.target.closest('form[data-nl]'); if (!f) return;
+    e.preventDefault();
+    const input = f.querySelector('.nl-input');
+    const btn = f.querySelector('.nl-btn');
+    const out = f.querySelector('[data-nl-status]');
+    const email = (input && input.value || '').trim();
+    const website = (f.querySelector('.nl-hp') || {}).value || '';   // honeypot
+    const say = (msg, cls) => { if (out) { out.textContent = msg; out.className = 'nl-status ' + (cls || ''); } };
+    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)) { say('That email address does not look right.', 'err'); input && input.focus(); return; }
+    const orig = btn ? btn.textContent : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Signing you up…'; }
+    try {
+      const r = await api.subscribe(email, f.dataset.source || 'newsletter', website);
+      f.classList.add('done');
+      say(r && r.alreadySubscribed
+        ? 'You are already on the list — nothing to do.'
+        : 'Done. Check your inbox for a short welcome note.', 'ok');
+      if (input) input.value = '';
+      if (btn) { btn.textContent = '✓ Subscribed'; }
+    } catch (err) {
+      say((err && err.message) || 'Could not sign you up just now. Try again shortly.', 'err');
+      if (btn) { btn.disabled = false; btn.textContent = orig; }
+    }
+  });
+
   document.addEventListener('click', e => { const b = e.target.closest('.adopt-plan'); if (b) { e.preventDefault(); const ids = (b.getAttribute('data-adopt') || '').split(',').filter(Boolean); const s = getStack(); let added = 0; ids.forEach(id => { if (!s.includes(id)) { s.push(id); added++; } }); setStack(s); updateStackBadge(); b.classList.add('adopted'); b.textContent = added ? `✓ Added ${added} to your stack — track them on My Plan` : '✓ Already in your stack'; } });
   // ITEM 2 — build a full Move·Fuel·Stack plan for THIS cause (opens the builder seeded from the cause).
   document.addEventListener('click', e => {

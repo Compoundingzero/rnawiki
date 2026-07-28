@@ -238,7 +238,7 @@ ${crumbLd}${ld}
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
@@ -908,6 +908,83 @@ let written = 0;
       <p>${D.compounds.length} compounds across ${cats.length} categories. Prefer to start from a problem instead? <a href="/solve">Start there →</a></p>
       ${cats.map((cat) => `<h2>${esc(cat)}</h2><ul>${byCat[cat].slice().sort((a, b) => b.stars - a.stars).map(link).join('')}</ul>`).join('')}</div>` }));
 
+  // ---- newsletter landing page ---------------------------------------------------------------
+  // Built for one job: get the email. Conversion decisions, and why each one:
+  //  - ONE ask. No nav bait, no secondary CTA above the form.
+  //  - The form is ABOVE the fold and needs ONE field. Every extra field costs signups, and a name
+  //    is not needed to send a weekly email.
+  //  - The headline promises a SPECIFIC thing, not "subscribe to our newsletter".
+  //  - Objections are answered ON the page (how often, what it is not, how to leave) because the
+  //    unanswered ones are what stop people typing.
+  //  - Credibility is the site's REAL numbers only. No subscriber count, no testimonials, no
+  //    "join N readers" — this site had a fabricated-credibility cluster removed on 2026-07-28 and
+  //    is not getting another one. When there is nothing honest to boast about, boast about the
+  //    work instead.
+  //  - The form is prerendered, so it is visible before any JavaScript runs.
+  const nCompounds = D.compounds.length;
+  const nProblems = (GRAPH.problems || []).length;
+  const nProtocols = (GRAPH.problems || []).reduce((n, p) => n + (p.root_causes || []).length, 0);
+  const signupForm = (source, cta) => `<form class="nl-form" data-nl data-source="${esc(source)}" novalidate>
+      <label class="sr-only" for="nl-email-${esc(source)}">Your email address</label>
+      <input id="nl-email-${esc(source)}" class="nl-input" type="email" name="email" required
+             autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="nl-note-${esc(source)}">
+      <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="nl-btn" type="submit">${esc(cta)}</button>
+      <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
+      <p class="nl-note" id="nl-note-${esc(source)}">One email a week. Unsubscribe in one click. No spam, ever.</p>
+    </form>`;
+
+  add('/newsletter', shell({
+    route: '/newsletter',
+    title: 'The RNAwiki newsletter — one evidence-checked idea a week',
+    desc: 'One email a week: a mechanism worth understanding, a popular claim that turns out weaker than it looks, or a protocol broken down to its root cause. Free, evidence-first, no affiliate links.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Newsletter', route: '/newsletter' }],
+    jsonld: [{
+      '@context': 'https://schema.org', '@type': 'WebPage', inLanguage: 'en',
+      name: 'The RNAwiki newsletter', url: SITE_URL + '/newsletter',
+      description: 'One evidence-checked idea a week from RNAwiki.',
+      publisher: PUB.publisher, isPartOf: PUB.isPartOf,
+    }],
+    body: `<div class="nl-page">
+      <section class="nl-hero">
+        <p class="nl-kicker">The RNAwiki newsletter</p>
+        <h1>One thing a week that changes how you read the evidence.</h1>
+        <p class="nl-lead">Most health advice tells you what to take. This tells you <em>why it would work</em>, how strongly that is actually shown, and where the evidence runs out — so you can judge the next claim yourself.</p>
+        ${signupForm('hero', 'Send me the weekly email')}
+      </section>
+
+      <section class="nl-what">
+        <h2>What lands in your inbox</h2>
+        <ul class="nl-list">
+          <li><b>A mechanism, made concrete.</b> Not "supports metabolic health" — the actual receptor or enzyme, what it does, and what changes downstream.</li>
+          <li><b>A popular claim, pressure-tested.</b> Where the number everyone quotes came from, and whether the study behind it holds it up. Often it does not.</li>
+          <li><b>A protocol, broken to its root cause.</b> The same problem has different fixes depending on which cause you have. Most advice skips that step.</li>
+        </ul>
+      </section>
+
+      <section class="nl-honest">
+        <h2>What it is not</h2>
+        <ul class="nl-list nl-not">
+          <li>Not a supplement-of-the-month. Nothing here is for sale and there are no affiliate links.</li>
+          <li>Not medical advice. It is educational, and it says so where it matters.</li>
+          <li>Not padded. One email, once a week. If there is nothing worth sending, nothing gets sent.</li>
+        </ul>
+      </section>
+
+      <section class="nl-proof">
+        <h2>Where it comes from</h2>
+        <p>It is written out of RNAwiki itself — <b>${nCompounds} compounds</b>, <b>${nProblems} problems</b> broken into <b>${nProtocols} root-cause protocols</b>, and the molecular targets underneath them. Free to read, no paywall, no account needed.</p>
+        <p class="nl-caveat">Written with AI assistance and edited by a human. Not reviewed by a clinician. Where the evidence is thin, contested or animal-only, it says so instead of rounding up — <a href="/about">how this site is made</a>.</p>
+        <p><a class="nl-sample" href="/solve">See the kind of thing it is built on →</a></p>
+      </section>
+
+      <section class="nl-close">
+        <h2>Start this week</h2>
+        <p>Free. One click to leave, and the link is in every email.</p>
+        ${signupForm('footer', 'Subscribe — it is free')}
+      </section>
+    </div>` }));
+
   add('/pathways', shell({
     route: '/pathways', title: `The ${(D.pathways || []).length} master pathways · RNAwiki`,
     desc: 'The master signalling pathways behind every compound on RNAwiki — GPCR/cAMP, nuclear receptors, mTOR, AMPK, NO/cGMP and more, each with the compounds that act on it.',
@@ -947,7 +1024,7 @@ let swept = 0;
 
 // sitemap + robots
 const now = new Date().toISOString().slice(0, 10);
-const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.map((p) => p.route)];
+const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', '/newsletter', ...pages.map((p) => p.route)];
 const uniq = [...new Set(urls)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
