@@ -1645,7 +1645,10 @@
       <p class="fw-lead">Here's the real secret of expertise: you don't memorise compounds — you ask the <b>same five questions</b> of every one. Learn the questions and you can size up anything. Here they are for ${esc(c.name)}:</p>
       <ol class="fw-list">${rows.map(([q, tag, a], i) => `<li class="fw-q"><div class="fw-qh"><span class="fw-n">${i + 1}</span><b>${esc(q)}</b> <span class="fw-tag">${esc(tag)}</span></div><div class="fw-a">${mdInline(a)}</div></li>`).join('')}</ol></div>`;
   }
-  function mythsBox(c, shareId) { if (!Array.isArray(c.myths) || !c.myths.length) return ''; return `<div class="myths"><div class="myths-h">🚫 Myths to unlearn</div>${c.myths.map(m => `<div class="myth"><div class="myth-x">✗ “${esc(m.myth)}”</div><div class="myth-t"><b>Actually →</b> ${mdInline(m.truth)}</div></div>`).join('')}${shareId ? shareBtn('myths:' + shareId) : ''}</div>`; }
+  // The claim and its correction were printed together, so the reader never had to decide whether
+  // they believed it — and deciding is most of what makes a myth stick. Matches the prerendered
+  // document, which got this fix first.
+  function mythsBox(c, shareId) { if (!Array.isArray(c.myths) || !c.myths.length) return ''; return `<div class="myths"><div class="myths-h">🚫 Myths to unlearn — do you believe any of these?</div>${c.myths.map(m => `<details class="myth"><summary class="myth-x">“${esc(m.myth)}”</summary><div class="myth-t"><b>Actually →</b> ${mdInline(m.truth)}</div></details>`).join('')}${shareId ? shareBtn('myths:' + shareId) : ''}</div>`; }
   function contrastBlock(c) {
     if (!Array.isArray(c.contrasts) || !c.contrasts.length) return '';
     return `<div class="contrasts">${c.contrasts.map(ct => { const structs = (ct.cidA && ct.cidB) ? `<div class="ct-structs"><figure><img loading="lazy" alt="" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${ct.cidA}/PNG">${ct.capA ? `<figcaption>${esc(ct.capA)}</figcaption>` : ''}</figure><span class="ct-vs">vs</span><figure><img loading="lazy" alt="" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${ct.cidB}/PNG">${ct.capB ? `<figcaption>${esc(ct.capB)}</figcaption>` : ''}</figure></div>` : ''; return `<div class="contrast"><div class="ct-h">⚖️ ${esc(ct.title)}</div>${structs}<p>${mdInline(ct.point)}</p></div>`; }).join('')}</div>`;
@@ -2047,7 +2050,33 @@
   function learnCourse(entry, ctx) {
     const pc = Object.assign({}, entry, { name: ctx.name, id: 'lc-' + ctx.key });
     const fundamentals = entry.fundamentals ? `<div class="lc-fund"><div class="lc-h">🌱 Start from zero — the ground truth</div>${paras(entry.fundamentals)}</div>` : '';
-    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${entry.deepDive.map((d, i) => `<section class="lc-dd"><h3 class="lc-dd-h"><span class="lc-dd-n">${i + 1}</span> ${esc(d.h)}</h3><div class="lc-dd-b">${paras(d.body)}</div></section>`).join('')}</div>` : '';
+    // ---- THE DECK, AND A JUMP LIST (2026-07-28) ----------------------------------------------
+    // I built this for the prerendered document and shipped NOTHING to the app, which is what the
+    // owner actually reads. He screenshotted the deep-dive tab: 9-11 cards of 300-600 words each,
+    // no entry point, no way in but to read. Same treatment as prerender now: the section's own
+    // first sentence promoted to larger type (it MOVES, nothing is duplicated, nothing hidden),
+    // plus a jump list so 11 sections are skimmable in one screen instead of 3,000 words.
+    const ddDeck = (body) => {
+      const t = String(body || '').trim();
+      const sents = mdSentences(t);
+      if (sents.length < 2) return { deck: '', rest: t };
+      const first = sents[0];
+      if (mdWc(first) > 32) return { deck: '', rest: t };
+      return { deck: first, rest: t.slice(t.indexOf(first) + first.length).trim() };
+    };
+    const ddN = (entry.deepDive || []).length;
+    const ddJump = ddN > 3
+      ? `<nav class="lc-jump" aria-label="Sections in this chapter"><span class="lcj-l">${ddN} sections</span>${
+          entry.deepDive.map((d, i) => {
+            // Break at a WORD boundary. Slicing at 34 chars produced chips reading "The gabapentin
+            // lie, and other name" — a truncation that looks like a rendering bug, not a label.
+            const raw = String(d.h || '').split(/[:—]/)[0].trim();
+            let lab = raw;
+            if (lab.length > 30) { lab = lab.slice(0, 30); lab = lab.slice(0, Math.max(lab.lastIndexOf(' '), 12)).replace(/[,;\s]+$/, '') + '…'; }
+            return `<a href="#dd-${ctx.key}-${i}" title="${esc(raw)}">${esc(lab)}</a>`;
+          }).join('')}</nav>`
+      : '';
+    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}<div class="lc-dd-b">${paras(rest)}</div></section>`; }).join('')}</div>` : '';
     const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}</div>` : '';
     const conns = (Array.isArray(entry.connections) && entry.connections.length) ? `<div class="lc-conn"><div class="lc-h">🕸️ How this connects to the rest of the body</div><ul>${entry.connections.map(c => `<li><b>${esc(c.to)}</b> — ${mdInline(c.why)}</li>`).join('')}</ul></div>` : '';
     // `lede` (added 2026-07-28) — the 30-second answer, the map, and the WHY, ahead of the

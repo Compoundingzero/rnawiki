@@ -3203,3 +3203,26 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 /* h3 was 16.32px against 16px body text in an identical colour — 20-30 landmarks that read as
    zero. Deep-dive headings are h2 now; make h2 unmistakably a landmark. */
 .learn-flat h2, .article h2 { font-size: 1.34rem; line-height: 1.25; letter-spacing: -.01em; }
+
+/* ===== SPA parity for the deck / jump list / myth reveal (2026-07-28) ========================
+   These shipped to the prerendered document first and NOT to the app, which is what the owner
+   actually reads. That asymmetry is the whole reason the page still looked like a wall to him. */
+.lc-jump { display: flex; flex-wrap: wrap; gap: .3rem; margin: .6rem 0 1.1rem; padding: .7rem .8rem;
+  border: 1px solid var(--line, #e2e8f0); border-radius: 12px; background: var(--panel, #f8fafc); }
+.lc-jump .lcj-l { flex: 0 0 100%; font-size: .7rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted, #64748b); margin-bottom: .1rem; }
+.lc-jump a { font-size: .82rem; padding: .25rem .6rem; border-radius: 999px;
+  background: var(--bg, #fff); border: 1px solid var(--line, #e2e8f0); color: var(--fg, #0a1420);
+  text-decoration: none; }
+.lc-jump a:hover, .lc-jump a:focus { border-color: var(--accent, #0d9488); color: var(--accent, #0d9488); }
+.lc-dd { scroll-margin-top: 120px; }   /* clears the topbar AND the sticky chapter strip */
+
+/* Myths become a decision instead of a statement. */
+.myths details.myth { border: 1px solid var(--line, #e2e8f0); border-radius: 10px; padding: .5rem .75rem;
+  margin: .4rem 0; background: var(--bg, #fff); }
+.myths details.myth > summary { cursor: pointer; font-weight: 600; list-style: none; }
+.myths details.myth > summary::-webkit-details-marker { display: none; }
+.myths details.myth > summary::before { content: "✗ "; color: #b3261e; font-weight: 800; }
+.myths details.myth > summary::after { content: "  — true or false?"; font-weight: 400; font-size: .82rem; color: var(--muted, #64748b); }
+.myths details.myth[open] > summary::after { content: ""; }
+.myths details.myth .myth-t { margin-top: .45rem; padding-top: .45rem; border-top: 1px dashed var(--line, #e2e8f0); }
