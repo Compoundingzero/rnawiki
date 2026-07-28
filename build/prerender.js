@@ -1318,6 +1318,42 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
   const problemList = Object.keys(byCat).map((cat) => `<section><h2>${esc(cat)}</h2><ul class="seo-links">${byCat[cat]
     .flatMap((p) => p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)}${p.root_causes.length > 1 ? ` — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}` : ''}</a></li>`)).join('')}</ul></section>`).join('');
   const goalLinks = D.goals.map((g) => `<li><a href="/goal/${g.id}">${esc(g.label)}</a></li>`).join('');
+  // Loss-framed newsletter capture for the PRERENDERED home. Until now `site/index.html` had ZERO
+  // `data-nl` forms and no `id="newsletter"`, while every prerendered footer links `/#newsletter`
+  // and server.js 301s the old page there — so the funnel was severed for the ~90% of traffic that
+  // never runs JS, at every entry point. Identical copy to the SPA block by construction.
+  const nlHomeBlock = `
+    <section class="nl-home" id="newsletter">
+      <div class="nl-home-inner">
+        <div class="nl-eyebrow">Free weekly &middot; no spam &middot; one click to leave</div>
+        <h2>Medicine that doesn&rsquo;t work still sends you a bill.</h2>
+        <p class="nl-lede">The evidence on what you were given is public. It just isn&rsquo;t written
+        for you &mdash; so you pay, and you hope. That gap is not an accident of nature; it is the one
+        thing standing between you and a decision you could have made yourself.</p>
+        <div class="nl-cost">
+          <div class="nl-fig"><b>US$2,481</b><span>the average extra cost, per person, when a
+            prescription simply doesn&rsquo;t do its job</span></div>
+          <div class="nl-fig"><b>16%</b><span>of the entire national health bill &mdash; US$528bn a
+            year &mdash; spent on medication that didn&rsquo;t work as intended</span></div>
+        </div>
+        <p class="nl-src">Watanabe, McInnis &amp; Hirsch, <i>Annals of Pharmacotherapy</i> 2018 &middot;
+          <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" rel="noopener">PMID 29577766</a>
+          &middot; US figures. No Singapore equivalent has been published.</p>
+        <p class="nl-turn">You cannot fix a health system. You can stop being the person it happens to.</p>
+        <form class="nl-form" data-nl data-source="home-static" method="post" action="/api/subscribe" novalidate>
+          <label class="sr-only" for="nl-e-home-static">Your email address</label>
+          <input id="nl-e-home-static" class="nl-input" type="email" name="email" required
+            autocomplete="email" inputmode="email" placeholder="you@example.com">
+          <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="nl-btn" type="submit">Send me the weekly email &rarr;</button>
+          <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
+        </form>
+        <p class="nl-fine">One email a week &mdash; what actually changed in the evidence for a drug
+        or supplement you might be taking, in plain English. Not medical advice, and never a
+        substitute for seeing a clinician.</p>
+      </div>
+    </section>`;
+
   const homeBody = `
     <section class="hero funnel-hero">
       <div class="kicker">The open protocol engine</div>
@@ -1333,6 +1369,7 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
     </section>
     <section class="why-rna"><h2>Why RNA? DNA is the blueprint. RNA is the builder.</h2>
       <p>Most people idolise DNA — the master code locked in the vault. But DNA does nothing on its own; a blueprint can't pour concrete. RNA is the action: the messenger and builder that reads your code and builds the proteins, tissue, and enzymes that become your physical reality. Every adaptation you force — a heavy lift, recovery from DOMS, a longevity protocol — is a wave of RNA translating your genes into a stronger, longer-lived you. RNAwiki is the messenger: it turns the foundational code of exercise science, biomechanics, and longevity into results you can use today.</p></section>
+    ${nlHomeBlock}
     <section><h2>Start a protocol</h2>${problemList}</section>
     <section><h2>Or browse by goal</h2><ul class="seo-links">${goalLinks}</ul></section>`;
   // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"

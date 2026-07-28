@@ -1163,14 +1163,27 @@
           The newsletter signup takes this slot: it is the only thing on the home page actually
           asking the reader for something, and it previously lived on a separate /newsletter page
           that a visitor had to find. */ ''}
-    <section class="nl-home reveal">
+    <section class="nl-home reveal" id="newsletter">
       <div class="nl-home-inner">
-        <div class="nl-eyebrow">Free weekly · no spam · unsubscribe in one click</div>
-        <h2>Know what you're being prescribed — before you're prescribed it.</h2>
-        <p>One email a week: what actually changed in the evidence for a drug or supplement you
-        might be taking, in plain English. What works, what quietly does not, and what it should
-        cost you.</p>
-        ${nlForm('home', 'Get it free →')}
+        <div class="nl-eyebrow">Free weekly · no spam · one click to leave</div>
+        <h2>Medicine that doesn't work still sends you a bill.</h2>
+        <p class="nl-lede">The evidence on what you were given is public. It just isn't written for
+        you — so you pay, and you hope. That gap is not an accident of nature; it is the one thing
+        standing between you and a decision you could have made yourself.</p>
+        <div class="nl-cost">
+          <div class="nl-fig"><b>US$2,481</b><span>the average extra cost, per person, when a
+            prescription simply doesn't do its job</span></div>
+          <div class="nl-fig"><b>16%</b><span>of the entire national health bill — US$528bn a year —
+            spent on medication that didn't work as intended</span></div>
+        </div>
+        <p class="nl-src">Watanabe, McInnis &amp; Hirsch, <i>Annals of Pharmacotherapy</i> 2018 ·
+          <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" target="_blank" rel="noopener">PMID 29577766</a>
+          · US figures. No Singapore equivalent has been published.</p>
+        <p class="nl-turn">You cannot fix a health system. You can stop being the person it happens to.</p>
+        ${nlForm('home', 'Send me the weekly email →')}
+        <p class="nl-fine">One email a week — what actually changed in the evidence for a drug or
+        supplement you might be taking, in plain English. Not medical advice, and never a
+        substitute for seeing a clinician.</p>
       </div>
     </section>
 

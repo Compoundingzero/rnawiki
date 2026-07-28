@@ -99,7 +99,7 @@ function readBody(req, maxBytes) {
   return new Promise((resolve) => {
     let data = ''; let tooBig = false;
     req.on('data', c => { data += c; if (data.length > cap) { tooBig = true; req.destroy(); } });
-    req.on('end', () => { if (tooBig) return resolve(null); try { resolve(data ? JSON.parse(data) : {}); } catch (e) { resolve(null); } });
+    req.on('end', () => { if (tooBig) return resolve(null); try { resolve(data ? (/x-www-form-urlencoded/i.test(req.headers['content-type']||'') ? ((q)=>Object.fromEntries(new URLSearchParams(q))) : JSON.parse)(data) : {}); } catch (e) { resolve(null); } });
     req.on('error', () => resolve(null));
   });
 }

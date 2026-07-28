@@ -3354,3 +3354,22 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
   .ws-head, .ws-list li { grid-template-columns: 1fr repeat(var(--nb, 2), 3.4rem) 1.2rem; }
   .ws-item { font-size: .82rem; }
 }
+
+/* ===== HOME NEWSLETTER — loss-framed (2026-07-28) ===========================================
+   Copy carries the register from the retired /newsletter page. The villain is the DISTRIBUTION
+   of information, never a person: "the evidence is public, it just isn't written for you" is
+   literally true (trials are on PubMed, in clinical register) and a pharmacologist would nod at
+   it. Every figure is US$-prefixed — an unprefixed $2,481 reads as SGD to a Singaporean, which
+   would make the block false. */
+.nl-home .nl-lede { font-size: 1.02rem; }
+.nl-cost { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1.1rem auto 0; max-width: 46rem; }
+.nl-fig { border: 1px solid var(--line, #e2e8f0); border-radius: 12px; padding: .8rem .7rem; background: var(--bg, #fff); }
+.nl-fig b { display: block; font-size: 1.75rem; line-height: 1.05; letter-spacing: -.02em; color: #b3261e; }
+.nl-fig span { display: block; font-size: .8rem; line-height: 1.35; color: var(--muted, #64748b); margin-top: .3rem; }
+/* The PMID is the punchline, not a disclaimer: on an evidence site a live PubMed link is proof
+   the newsletter does the thing it promises. */
+.nl-src { font-size: .72rem; color: var(--faint, #94a3b8); margin: .55rem auto 0; max-width: 46rem; }
+.nl-src a { color: inherit; text-decoration: underline; }
+.nl-turn { font-weight: 650; font-size: 1.05rem; margin: 1rem auto .2rem; max-width: 40rem; }
+.nl-fine { font-size: .78rem; color: var(--muted, #64748b); margin-top: .7rem; }
+@media (max-width: 640px) { .nl-cost { grid-template-columns: 1fr; } .nl-fig b { font-size: 1.5rem; } }
