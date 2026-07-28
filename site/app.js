@@ -2094,9 +2094,30 @@
   // idea at a time, and end each section with a checkpoint that forces the "do I actually have this?"
   // decision. Nothing is hidden from crawlers (<details> keeps content in the DOM) and no word moves.
   function splitSection(html, keep) {
-    const parts = String(html || '').split(/(?<=<\/p>)/).filter((x) => x.trim());
-    if (parts.length <= keep + 1) return { head: parts.join(''), rest: '', n: 0 };
-    return { head: parts.slice(0, keep).join(''), rest: parts.slice(keep).join(''), n: parts.length - keep };
+    const s = String(html || '');
+    // Paragraph boundaries first — the common case.
+    const parts = s.split(/(?<=<\/p>)/).filter((x) => x.trim());
+    if (parts.length > keep + 1) {
+      return { head: parts.slice(0, keep).join(''), rest: parts.slice(keep).join(''), n: parts.length - keep };
+    }
+    // LIST FALLBACK (2026-07-28). Measured: 35% of /pathway/6's deep-dive words sit inside a single
+    // <ul> — section 5 is 91% list, 558 of 612 words — versus 6% on /muscle/biceps. Counting only
+    // </p> meant the splitter did nothing at all on exactly the sections the owner kept calling
+    // walls, while appearing to work everywhere else. Same treatment, 6x different effect: that is
+    // why one page felt fixed and the other did not.
+    const m = s.match(/^([\s\S]*?)<(ul|ol)([^>]*)>([\s\S]*?)<\/\2>([\s\S]*)$/);
+    if (m) {
+      const [, before, tag, attrs, inner, after] = m;
+      const items = inner.split(/(?<=<\/li>)/).filter((x) => x.trim());
+      if (items.length > keep + 1) {
+        return {
+          head: `${before}<${tag}${attrs}>${items.slice(0, keep).join('')}</${tag}>`,
+          rest: `<${tag}${attrs}>${items.slice(keep).join('')}</${tag}>${after}`,
+          n: items.length - keep,
+        };
+      }
+    }
+    return { head: s, rest: '', n: 0 };
   }
 
   function sectionCheckpoint(id, label) {
