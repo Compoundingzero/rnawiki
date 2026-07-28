@@ -3226,3 +3226,33 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 .myths details.myth > summary::after { content: "  — true or false?"; font-weight: 400; font-size: .82rem; color: var(--muted, #64748b); }
 .myths details.myth[open] > summary::after { content: ""; }
 .myths details.myth .myth-t { margin-top: .45rem; padding-top: .45rem; border-top: 1px dashed var(--line, #e2e8f0); }
+
+/* ===== SECTION SPLIT + CHECKPOINT (2026-07-28) ==============================================
+   One idea at a time, then a decision. The checkpoint is the synthesis device: ticking it forces
+   "do I actually have this?", and the dimmed state turns 11 sections into a visible worklist. */
+.dd-more { margin: .5rem 0 0; }
+.dd-more > summary { cursor: pointer; font-weight: 600; font-size: .92rem; color: var(--accent, #0d9488);
+  list-style: none; padding: .45rem 0; }
+.dd-more > summary::-webkit-details-marker { display: none; }
+.dd-more > summary::before { content: "▸ "; }
+.dd-more[open] > summary::before { content: "▾ "; }
+.dd-more[open] > summary { color: var(--muted, #64748b); font-weight: 500; }
+
+.dd-check { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+  margin: .9rem 0 0; padding-top: .7rem; border-top: 1px dashed var(--line, #e2e8f0); }
+.dd-check label { display: inline-flex; align-items: center; gap: .45rem; cursor: pointer;
+  font-weight: 600; font-size: .92rem; padding: .3rem .7rem; border-radius: 999px;
+  border: 1px solid var(--line, #e2e8f0); background: var(--bg, #fff); }
+.dd-check input { accent-color: var(--accent, #0d9488); width: 1rem; height: 1rem; }
+.dd-check .ddc-hint { font-size: .78rem; color: var(--muted, #94a3b8); }
+
+/* The whole section reports its own state. :has() is already proven in this stylesheet. */
+.dd:has(.ddc:checked), .lc-dd:has(.ddc:checked) { opacity: .62; }
+.dd:has(.ddc:checked) .dd-eyebrow::after,
+.lc-dd:has(.ddc:checked) .dd-eyebrow::after { content: " · ✓ got it"; color: var(--accent, #0d9488); }
+.dd:has(.ddc:checked) label, .lc-dd:has(.ddc:checked) label {
+  border-color: var(--accent, #0d9488); color: var(--accent, #0d9488); }
+.dd:has(.ddc:checked):hover, .lc-dd:has(.ddc:checked):hover { opacity: 1; }
+@media (prefers-reduced-motion: no-preference) {
+  .dd, .lc-dd { transition: opacity .25s ease; }
+}

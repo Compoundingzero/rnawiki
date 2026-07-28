@@ -2047,6 +2047,34 @@
   // Full-course renderer for an expanded /learn module (Foundations, energy, metabolism, muscle).
   // Reuses the chaptered pedagogy; adds fundamentals / deep-dive / expert-lens / connections sections.
   const paras = (s) => mdBlocks(s, mdInline);
+
+  // ---- SECTION SPLIT + CHECKPOINT (2026-07-28) -------------------------------------------------
+  // Felix: "in each of the broken up sections, add visual interactions or something to help the user
+  // synthesize the information better."
+  //
+  // What I tested and REJECTED first, so the reasoning is on the record:
+  //  - Linking the ALL-CAPS terms: only 3% of the 2,076 distinct terms resolve to a page, and the
+  //    most frequent are AND / NOT / THE / BOTH — emphasis, not vocabulary. No link layer exists.
+  //  - Pairing each section with its authored "you can now explain X" statement: the counts are
+  //    almost exactly 1:1 (491 sections, 510 statements) and keyword matching hits 85%, but the
+  //    arrays are only 20% ORDER-ALIGNED, so a specific claim would be attached to the wrong
+  //    section most of the time. A visibly wrong "you can now explain this" costs more trust than
+  //    the device buys.
+  //
+  // What survives is honest and covers every section: split the rendered prose so a reader meets one
+  // idea at a time, and end each section with a checkpoint that forces the "do I actually have this?"
+  // decision. Nothing is hidden from crawlers (<details> keeps content in the DOM) and no word moves.
+  function splitSection(html, keep) {
+    const parts = String(html || '').split(/(?<=<\/p>)/).filter((x) => x.trim());
+    if (parts.length <= keep + 1) return { head: parts.join(''), rest: '', n: 0 };
+    return { head: parts.slice(0, keep).join(''), rest: parts.slice(keep).join(''), n: parts.length - keep };
+  }
+
+  function sectionCheckpoint(id, label) {
+    return `<div class="dd-check"><label><input type="checkbox" class="ddc"><span>I've got this</span></label>` +
+      `<span class="ddc-hint">${label}</span></div>`;
+  }
+
   function learnCourse(entry, ctx) {
     const pc = Object.assign({}, entry, { name: ctx.name, id: 'lc-' + ctx.key });
     const fundamentals = entry.fundamentals ? `<div class="lc-fund"><div class="lc-h">🌱 Start from zero — the ground truth</div>${paras(entry.fundamentals)}</div>` : '';
@@ -2076,7 +2104,7 @@
             return `<a href="#dd-${ctx.key}-${i}" title="${esc(raw)}">${esc(lab)}</a>`;
           }).join('')}</nav>`
       : '';
-    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}<div class="lc-dd-b">${paras(rest)}</div></section>`; }).join('')}</div>` : '';
+    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}<div class="lc-dd-b">${(() => { const sp = splitSection(paras(rest), 2); return sp.rest ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>` : sp.head; })()}</div>${sectionCheckpoint(String(i), 'Tick it and the section dims, so you can see what is left')}</section>`; }).join('')}</div>` : '';
     const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}</div>` : '';
     const conns = (Array.isArray(entry.connections) && entry.connections.length) ? `<div class="lc-conn"><div class="lc-h">🕸️ How this connects to the rest of the body</div><ul>${entry.connections.map(c => `<li><b>${esc(c.to)}</b> — ${mdInline(c.why)}</li>`).join('')}</ul></div>` : '';
     // `lede` (added 2026-07-28) — the 30-second answer, the map, and the WHY, ahead of the

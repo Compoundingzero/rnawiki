@@ -901,6 +901,34 @@ function pathwayDiagramHtml(spec, hub) {
   </div>`;
 }
 
+
+// ---- SECTION SPLIT + CHECKPOINT (2026-07-28) -------------------------------------------------
+// Felix: "in each of the broken up sections, add visual interactions or something to help the user
+// synthesize the information better."
+//
+// What I tested and REJECTED first, so the reasoning is on the record:
+//  - Linking the ALL-CAPS terms: only 3% of the 2,076 distinct terms resolve to a page, and the
+//    most frequent are AND / NOT / THE / BOTH — emphasis, not vocabulary. No link layer exists.
+//  - Pairing each section with its authored "you can now explain X" statement: the counts are
+//    almost exactly 1:1 (491 sections, 510 statements) and keyword matching hits 85%, but the
+//    arrays are only 20% ORDER-ALIGNED, so a specific claim would be attached to the wrong
+//    section most of the time. A visibly wrong "you can now explain this" costs more trust than
+//    the device buys.
+//
+// What survives is honest and covers every section: split the rendered prose so a reader meets one
+// idea at a time, and end each section with a checkpoint that forces the "do I actually have this?"
+// decision. Nothing is hidden from crawlers (<details> keeps content in the DOM) and no word moves.
+function splitSection(html, keep) {
+  const parts = String(html || '').split(/(?<=<\/p>)/).filter((x) => x.trim());
+  if (parts.length <= keep + 1) return { head: parts.join(''), rest: '', n: 0 };
+  return { head: parts.slice(0, keep).join(''), rest: parts.slice(keep).join(''), n: parts.length - keep };
+}
+
+function sectionCheckpoint(id, label) {
+  return `<div class="dd-check"><label><input type="checkbox" class="ddc"><span>I've got this</span></label>` +
+    `<span class="ddc-hint">${label}</span></div>`;
+}
+
 function learnFlatHtml(e, opts) {
   if (!e) return '';
   const P = (t) => mdBlocks(t, mdSafe);
@@ -993,7 +1021,13 @@ function learnFlatHtml(e, opts) {
         <p class="dd-eyebrow">Deep dive · ${i + 1} of ${n}</p>
         <h2>${mdSafe(d.h || '')}</h2>
         ${deck ? `<p class="dd-deck">${mdSafe(deck)}</p>` : ''}
-        ${P(rest)}
+        ${(() => {
+          const sp = splitSection(P(rest), 2);
+          return sp.rest
+            ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>`
+            : sp.head;
+        })()}
+        ${sectionCheckpoint(`${i}`, 'Tick it and the section dims, so you can see what is left')}
       </section>`;
     }).join(''));
   }
