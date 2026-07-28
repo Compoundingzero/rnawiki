@@ -582,12 +582,48 @@ GRAPH.problems.forEach((p) => {
 // the deep layer — so the same page serves a skimmer and a reader without two sets of content.
 // selfTest and canExplain are NOT emitted: they are self-assessment checklists, not exposition, and
 // they read as filler to a crawler. That is the honest reason; it is not a risk mitigation.
-function learnFlatHtml(e) {
+// Prerender twin of site/app.js's pathwayDiagram(). Deliberately the same markup and the same CSS
+// classes, so the crawlable page and the hydrated page show the SAME map rather than two variants.
+// This is the only diagrammatic element on a pathway page: a design review measured ZERO svg/img/
+// table/canvas content elements across all 16 pages in both renderers, on a site whose owner is a
+// visual learner building a visual knowledge graph.
+function pathwayDiagramHtml(spec, hub) {
+  if (!spec) return '';
+  const goalByLabel = {};
+  (D.goals || []).forEach((g) => { goalByLabel[String(g.label).toLowerCase()] = g; });
+  const chip = (label, cls) => { const c = findCpt(label); return c
+    ? `<a class="pd-chip ${cls}" href="/c/${slug(c.name)}">${esc(label)}</a>`
+    : `<span class="pd-chip ${cls}">${esc(label)}</span>`; };
+  const eff = (label, dir) => `<span class="pd-eff ${dir}"><span class="pd-arrow">${dir === 'up' ? '\u25b2' : '\u25bc'}</span>${esc(label)}</span>`;
+  const goalChip = (label) => { const g = goalByLabel[String(label).toLowerCase()]; return g
+    ? `<a class="pd-goal" href="/goal/${g.id}">${esc(g.icon || '')} ${esc(g.label)}</a>`
+    : `<span class="pd-goal">${esc(label)}</span>`; };
+  const on = (spec.on || []).map((x) => chip(x, 'on')).join('');
+  const off = (spec.off || []).map((x) => chip(x, 'off')).join('');
+  const up = (spec.up || []).map((x) => eff(x, 'up')).join('');
+  const down = (spec.down || []).map((x) => eff(x, 'down')).join('');
+  const goals = (spec.goals || []).map(goalChip).join('');
+  if (!(on || off || up || down)) return '';
+  return `<div class="pdiagram">
+    <div class="pd-legend"><b>How to read this map.</b> Left = what flips this system on or off. Middle = the system itself. Right = what it changes in your body.</div>
+    <div class="pd-flow">
+      <div class="pd-col">${on ? `<div class="pd-coltitle green">Switches it ON</div><div class="pd-chips">${on}</div>` : ''}${off ? `<div class="pd-coltitle red">Switches it OFF</div><div class="pd-chips">${off}</div>` : ''}</div>
+      <div class="pd-arrowcol"><span class="pd-flowarrow"></span></div>
+      <div class="pd-hubwrap"><div class="pd-hub">${esc(hub)}</div></div>
+      <div class="pd-arrowcol"><span class="pd-flowarrow"></span></div>
+      <div class="pd-col">${up ? `<div class="pd-coltitle">Turns UP</div><div class="pd-chips">${up}</div>` : ''}${down ? `<div class="pd-coltitle">Turns DOWN</div><div class="pd-chips">${down}</div>` : ''}</div>
+    </div>
+    ${goals ? `<div class="pd-goals"><span class="pd-goalslbl">Helps with</span>${goals}</div>` : ''}
+  </div>`;
+}
+
+function learnFlatHtml(e, opts) {
   if (!e) return '';
   const P = (t) => `<p>${mdSafe(t)}</p>`;
   const out = [];
   // — 30 seconds —
   if (e.hook && e.hook.payoff) out.push(`<p class="lf-payoff">${mdSafe(e.hook.payoff)}</p>`);
+  if (opts && opts.diagram) out.push(opts.diagram);
   if (e.bigIdea) out.push(`<h2>The big idea</h2>${P(e.bigIdea)}`);
   if (Array.isArray(e.hook && e.hook.questions) && e.hook.questions.length) {
     out.push(`<h2>Questions this answers</h2><ul>${e.hook.questions.map((q) => `<li>${mdSafe(q)}</li>`).join('')}</ul>`);
@@ -613,6 +649,18 @@ function learnFlatHtml(e) {
     out.push(`<h2>Common misconceptions</h2><dl class="lf-myths">${e.myths.map((m) =>
       `<dt>${mdSafe(m.myth || '')}</dt><dd>${mdSafe(m.truth || '')}</dd>`).join('')}</dl>`);
   }
+  // RETRIEVAL DEVICES (added 2026-07-28). I originally left selfTest and canExplain out as
+  // "checklists, not exposition". A design review pushed back and was right: retrieval practice IS
+  // learning content, and their absence is a large part of why a 7,500-word page still reads as
+  // thin. 15,565 words of it were crawler-invisible. What makes the page feel like a course is not
+  // more prose — it is the question you cannot yet answer, and the claim you can now make.
+  if (Array.isArray(e.canExplain) && e.canExplain.length) {
+    out.push(`<h2>What you can explain after this</h2><ul class="lf-can">${e.canExplain.map((c) => `<li>${mdSafe(c)}</li>`).join('')}</ul>`);
+  }
+  if (Array.isArray(e.selfTest) && e.selfTest.length) {
+    out.push(`<h2>Check yourself</h2><dl class="lf-test">${e.selfTest.map((t) =>
+      `<dt>${mdSafe(t.q || '')}</dt><dd>${mdSafe(t.a || '')}</dd>`).join('')}</dl>`);
+  }
   if (Array.isArray(e.connections) && e.connections.length) {
     out.push(`<h2>What this connects to</h2><dl class="lf-conn">${e.connections.map((c) =>
       `<dt>${mdSafe(c.to || '')}</dt><dd>${mdSafe(c.why || '')}</dd>`).join('')}</dl>`);
@@ -624,7 +672,7 @@ D.pathways.forEach((p, i) => {
   const route = '/pathway/' + i;
   const pwFact = factByHref['/pathway/' + i];
   const pwFactHtml = pwFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${pwFact.t}</span></div>` : '';
-  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${pwFactHtml}${p.html || ''}${learnFlatHtml(p.expand)}</div>` }));
+  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${pwFactHtml}${p.html || ''}${learnFlatHtml(p.expand, { diagram: pathwayDiagramHtml(p.diagram, p.shortLabel) })}</div>` }));
 });
 function foundationsDiagram(i) {
   const C = { blue: '#2563eb', teal: '#0d9488', slate: '#475569', red: '#b3261e', amber: '#d97706', line: '#64748b', mut: '#94a3b8', green: '#059669' };

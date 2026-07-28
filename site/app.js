@@ -1887,8 +1887,15 @@
     // Deep-expanded course (full fundamentals/deep-dive/expert-lens) — route through the course renderer,
     // injecting a "compounds that pull this lever" chapter that the generic renderer doesn't have.
     if (p.expand) {
+      // pathwayDiagram() sat in the LEGACY branch BELOW this early return, and every one of the 16
+      // pathways has p.expand — so an authored diagram existed on 16 of 16 pages and rendered on
+      // zero of them. Same for p.html. Hoisted into the lede so both finally appear, at the top.
+      const payoff = (p.expand.hook && p.expand.hook.payoff)
+        ? `<p class="lc-why"><span class="lc-why-k">Why this one matters</span>${mdInline(p.expand.hook.payoff)}</p>` : '';
+      const oneLine = p.oneLine ? `<p class="pw-oneline"><b>In one line:</b> ${mdInline(p.oneLine)}</p>` : '';
+      const lede = payoff + oneLine + pathwayDiagram(p.diagram, p.shortLabel);
       const cpdChapter = { icon: '💊', label: 'The compounds', at: 3, html: (cpdSection || '<p class="muted">Compounds that act here are being added.</p>') + `<p class="pw-cpd-note">Each of these pulls this exact lever — open any compound to see how it does, then come back. That's how the whole map connects.</p>` };
-      return learnCourse(p.expand, { name: p.shortLabel, key: 'pathway-' + i, crumb, badge: '<span class="pw-badge">🧬 Master-pathway course</span>', prevnext: prev + next, journey: journeyBlock('pathway', i), extraChapters: [cpdChapter] });
+      return learnCourse(p.expand, { name: p.shortLabel, key: 'pathway-' + i, crumb, lede, badge: '<span class="pw-badge">🧬 Master-pathway course</span>', prevnext: prev + next, journey: journeyBlock('pathway', i), extraChapters: [cpdChapter] });
     }
     // Legacy render until the learning layer is authored (graceful degradation)
     if (!(p.hook || p.bigIdea || p.mechSteps)) {
@@ -1940,7 +1947,12 @@
     const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${entry.deepDive.map((d, i) => `<section class="lc-dd"><h3 class="lc-dd-h"><span class="lc-dd-n">${i + 1}</span> ${esc(d.h)}</h3><div class="lc-dd-b">${paras(d.body)}</div></section>`).join('')}</div>` : '';
     const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}</div>` : '';
     const conns = (Array.isArray(entry.connections) && entry.connections.length) ? `<div class="lc-conn"><div class="lc-h">🕸️ How this connects to the rest of the body</div><ul>${entry.connections.map(c => `<li><b>${esc(c.to)}</b> — ${mdInline(c.why)}</li>`).join('')}</ul></div>` : '';
-    const ch1 = hookBox(pc) + bigIdeaBanner(pc) + analogyBox(pc) + fundamentals;
+    // `lede` (added 2026-07-28) — the 30-second answer, the map, and the WHY, ahead of the
+    // exposition. A design review measured that on these pages hook.payoff (the "why should I
+    // care") rendered as segment 69 OF 69, the authored pathway diagram never rendered at all
+    // (dead below an early return), and p.html's one-line summary was dropped entirely. The reader
+    // met ~7,500 words before meeting a single reason to read them.
+    const ch1 = (ctx.lede || '') + hookBox(pc) + bigIdeaBanner(pc) + analogyBox(pc) + fundamentals;
     const ch2 = mechanismCascade(pc);
     const ch3 = deep;
     const ch4 = expert + conns;

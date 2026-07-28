@@ -3029,3 +3029,19 @@ a.dp-name:hover{color:var(--accent)}
 .about-steps li{margin:0 0 .75rem}
 .about-key{list-style:none;padding:0;margin:.4rem 0}
 .about-key li{margin:0 0 .7rem;padding-left:.9rem;border-left:2px solid var(--line,#e0e0e0);line-height:1.6}
+
+/* Course lede — the why + the map, above the exposition (2026-07-28). A design review measured
+   hook.payoff rendering as segment 69 of 69; the reader met 7,500 words before a reason to read. */
+.lc-why{font-size:1.02rem;line-height:1.6;margin:0 0 .9rem;padding:.75rem .9rem;border-radius:10px;
+  background:color-mix(in srgb,var(--accent,#10b981) 8%,transparent);border-left:3px solid var(--accent,#10b981)}
+.lc-why-k{display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent,#10b981);margin-bottom:.3rem}
+
+/* Retrieval devices in the crawlable view (2026-07-28). These are the learning content, not
+   decoration — a design review found their absence was much of why a 7,500-word page read thin. */
+.lf-can{margin:0;padding-left:1.15rem;line-height:1.6}
+.lf-can li{margin:0 0 .45rem}
+.lf-test dt{font-weight:700;margin:.9rem 0 .3rem}
+.lf-test dt::before{content:"Q. ";color:var(--accent,#10b981)}
+.lf-test dd{margin:0 0 .2rem;line-height:1.6;color:var(--muted)}
+.lf-test dd::before{content:"A. ";font-weight:700;color:var(--text)}
