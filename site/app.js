@@ -2524,23 +2524,24 @@
         <p class="nl-lead"><strong>One email a week closes that gap.</strong> What actually changed in drugs and supplements, whether it touches you, and what the evidence really says underneath the label.</p>
         ${nlForm('hero', 'Send me the weekly email')}
       </section>
-      <section class="nl-cost"><h2>Do this now. It takes a minute, and it stings.</h2>
+      <section class="nl-cost">
+        <h2>What it costs when the thing you were given doesn't work</h2>
+        <p>Researchers put a number on this. Not on drug prices — on what happens <em>after</em>, when a prescription fails to do its job and the problem has to be treated again.</p>
+        <ul class="nl-stat nl-stat-big">
+          <li><b>US$2,481</b> — the average additional cost, per person, of a <b>treatment failure</b>: you took what you were prescribed and it did not work.</li>
+          <li><b>US$2,610</b> — the average, per person, when the medicine creates a <b>new medical problem</b> that then needs treating too.</li>
+          <li><b>US$528.4&nbsp;billion a year</b> across the US — <b>16% of the entire national health bill</b>, spent on medication that didn't do what it was meant to.</li>
+        </ul>
+        <p class="nl-cite">Watanabe, McInnis &amp; Hirsch, <em>Annals of Pharmacotherapy</em> 2018 — <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" target="_blank" rel="noopener">PMID 29577766</a>. 2016 US dollars; plausible range $495.3–672.7 billion. Check it yourself, that's the point.</p>
+        <p class="nl-punch">Read that middle number again. It is not the price of the drug. It is what it costs you <em>after</em> the drug didn't work — the second visit, the second prescription, the thing that got worse while you waited.</p>
+        <p>Nobody hands you a way to tell, in advance, which category you're about to be in. You get a name on a box and a dosing instruction, and you hope.</p>
+        <h2>Now do your own</h2>
         <ol class="nl-sum">
           <li>Open the cupboard where the supplements live. Add up what they cost you a month. <b>Write the number down.</b></li>
-          <li>Add your visits. A private GP consultation in Singapore runs about <b>S$30–65</b> before medication and GST; a subsidised polyclinic visit is roughly <b>S$15–20</b>. Count the last three months.</li>
-          <li>Now the only question that matters: <b>how many of those could you defend with an actual trial?</b></li>
+          <li>Add anything you're currently prescribed and have been taking for more than three months without a clear sense of whether it's working.</li>
+          <li>Then the only question that matters: <b>how many of those could you defend with an actual trial?</b></li>
         </ol>
-        <p class="nl-punch">For most people the honest answer is "none — I trusted the label." That isn't stupidity. It's that checking was never made possible for you.</p>
-        <p class="nl-sub">About <b>53% of people in Singapore</b> take supplements. Most are paying a subscription to a claim they've never seen tested.</p>
-      </section>
-      <section class="nl-hard"><h2>What the shelf will never tell you</h2>
-        <p>Of the <b>${nC} compounds</b> ranked on this site:</p>
-        <ul class="nl-stat">
-          <li><b>${n5}</b> clear the top human-evidence bar.</li>
-          <li><b>${nLow}</b> sit at two stars or below.</li>
-          <li><b>${nAn}</b> are capped because the evidence is <em>animal only</em> — no human trial has been completed.</li>
-        </ul>
-        <p>They cost roughly the same. Same packaging, same confident font, same shelf. <strong>Nothing at the point of sale distinguishes the ${n5} from the ${nLow}</strong> — and that gap is where your money goes.</p>
+        <p class="nl-punch">For most people the honest answer is "none — I trusted the label, or I trusted that someone had checked." That isn't stupidity. Checking was never made possible for you.</p>
       </section>
       <section class="nl-what"><h2>What lands in your inbox</h2>
         <dl class="nl-in">

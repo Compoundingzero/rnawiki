@@ -5138,7 +5138,7 @@
      "ref": "Eli Lilly TRIUMPH-4 press release, December 2025 (full publication pending)"
     },
     {
-     "finding": "Mechanistic study: retatrutide dose-dependently delays gastric emptying. Linking that to how the GLP-1 arm drives satiety is a reasonable inference, but this study did not test it directly.",
+     "finding": "Mechanistic study reporting that retatrutide delays gastric emptying. The paper is not abstracted in the public indexes, so the strength and dose-dependence of that effect in humans is not something we can currently verify or quote; treat the mechanism as reported, not as quantified. Linking it to how the GLP-1 arm drives satiety is a reasonable inference this study did not test.",
      "ref": "Urva et al., 2023, Diabetes Obes Metab",
      "pmid": "37311727",
      "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/37311727/",
@@ -12242,7 +12242,7 @@
      "ref": "Prakash & Goa, 1999, BioDrugs 12(2):139-157"
     },
     {
-     "finding": "Nightly GHRH(1-29) in healthy elderly men raised IGF-1 and increased lean body mass over several weeks, showing the aged pituitary remains responsive. Calling that \"anti-aging-relevant\" is interpretation, not a measured clinical outcome.",
+     "finding": "Six weeks of nightly GHRH(1-29) in 11 healthy men aged 64-76 with low baseline IGF-I increased nocturnal GH release (mean GH, area under the peak and peak amplitude all rose), but produced NO change in IGF-I, IGFBP-3 or GH binding protein, and improved only 2 of 6 measures of muscle strength. It shows the aged pituitary still responds to GHRH — not that the downstream anabolic axis followed.",
      "ref": "Vittone et al., 1997, Metabolism",
      "pmid": "9005976",
      "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/9005976/",
@@ -29548,7 +29548,7 @@
      "ref": "Heuberger et al., 2017, Lancet Haematology"
     },
     {
-     "finding": "Normal Hematocrit Cardiac Trial: hemodialysis patients targeted to a normal (higher) hematocrit had higher rates of death and nonfatal myocardial infarction; the trial was stopped early.",
+     "finding": "Normal Hematocrit Cardiac Trial: in haemodialysis patients with cardiac disease, targeting a normal (higher) haematocrit produced numerically more deaths and nonfatal myocardial infarctions than the lower target (risk ratio 1.3, 95% CI 0.9-1.9). The trial was halted and the higher target was not recommended — but the difference did NOT reach the prespecified statistical stopping boundary, so the excess risk was not statistically conclusive.",
      "ref": "Besarab et al., 1998, N Engl J Med",
      "pmid": "9718377",
      "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/9718377/",
@@ -34467,7 +34467,7 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "In healthy men (n=75), a soy-based phosphatidylserine/phosphatidic acid complex at the 400 mg dose (but not 200 mg) normalised the ACTH and cortisol response to the Trier Social Stress Test in the chronically high-stress subgroup.",
+     "finding": "In 75 healthy men, the higher dose of a soy phosphatidylserine/phosphatidic acid complex (the arm designated PAS 400, which supplies both components — not 400 mg of phosphatidylserine alone) normalised the ACTH and salivary/serum cortisol response to the Trier Social Stress Test in chronically HIGH-stress subjects only; the lower dose (PAS 200) did not, and neither affected heart rate or the psychological stress response.",
      "ref": "Hellhammer et al., 2014, Lipids in Health and Disease",
      "pmid": "25081826",
      "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/25081826/",

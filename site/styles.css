@@ -3056,3 +3056,5 @@ a.dp-name:hover{color:var(--accent)}
 .nl-stat li{margin:0 0 .4rem;padding-left:.9rem;border-left:3px solid var(--accent,#10b981);line-height:1.55}
 .nl-in dt{font-weight:700;margin:1rem 0 .3rem;font-size:1.02rem}
 .nl-in dd{margin:0 0 .5rem;line-height:1.62;color:var(--text)}
+.nl-stat-big li{font-size:1.02rem;margin:0 0 .6rem}
+.nl-cite{font-size:.82rem;color:var(--muted);line-height:1.5;margin:.2rem 0 1rem}
