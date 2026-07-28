@@ -1779,15 +1779,71 @@ function serveStatic(req, res, url) {
     if (!path.extname(file)) {
       return fs.readFile(file + '.html', (e2, html) => {
         if (!e2) return endHtml(res, html);
-        // SPA fallback so client-side routing still resolves the view
-        sendFile(res, path.join(DIR, 'index.html'));
+        return serveMissing(res, safe);
       });
     }
-    sendFile(res, path.join(DIR, 'index.html'));
+    serveMissing(res, safe);
   });
 }
 
+// Added 2026-07-28. Every unknown path used to fall through to index.html at HTTP 200. For a
+// generated content route that is WORSE than a soft-404: index.html uses relative script srcs, so
+// /compare/gone resolves data.js to /compare/data.js and the visitor gets a BLANK WHITE PAGE at
+// HTTP 200, which a crawler reads as a real, thin page. This matters now because tightening the
+// compare generator (no prescription/controlled/unapproved pairs) took /compare from 404 URLs to
+// 107 -- 297 URLs that were previously indexed no longer exist.
+//
+// Content routes are fully enumerated by the prerenderer, so "no file" means "no such page":
+//   /compare/*  -> 410 Gone      (deliberately withdrawn; tells Google to drop it and stop retrying)
+//   other route -> 404 Not Found
+// Anything else still gets the SPA shell, so client-side routing keeps working.
+const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
+function serveMissing(res, safe) {
+  const seg = String(safe || '').split('/').filter(Boolean);
+  if (seg.length && GENERATED_ROUTES.includes(seg[0])) {
+    const gone = seg[0] === 'compare';
+    const code = gone ? 410 : 404;
+    const title = gone ? 'This comparison has been withdrawn' : 'Page not found';
+    const body = gone
+      ? 'We removed the head-to-head comparisons that pitted a prescription or controlled medicine against a supplement. Ranking a medicine you cannot buy against one you can was not a comparison worth publishing, so this page is gone for good rather than temporarily unavailable.'
+      : 'That page does not exist. It may have been renamed.';
+    return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>${title} · RNAwiki</title><link rel="stylesheet" href="/styles.css">
+</head><body><main class="article" style="max-width:44rem;margin:4rem auto;padding:0 1.25rem">
+<h1>${title}</h1><p>${body}</p>
+<p><a href="/solve">Browse problems and goals</a> · <a href="/stack">Compound index</a> · <a href="/">Home</a></p>
+</main></body></html>`, code);
+  }
+  sendFile(res, path.join(DIR, 'index.html'));
+}
+
+// Added 2026-07-28. The server set no security headers at all: no CSP, HSTS,
+// X-Content-Type-Options or Referrer-Policy anywhere. Five res.setHeader calls, no new dependency
+// (helmet would be a third npm dep for this). The CSP is deliberately permissive on inline
+// script/style because the SPA and the prerendered pages both inline them; it still blocks
+// third-party script origins, framing, and form posts to another host, and it is what would have
+// contained the mdInline injection sink had that ever been reachable by user input.
+const SECURITY_HEADERS = {
+  'Content-Security-Policy': [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' https://accounts.google.com",
+    "style-src 'self' 'unsafe-inline'",
+    "img-src 'self' data: https:",
+    "connect-src 'self' https://accounts.google.com",
+    "frame-src https://accounts.google.com",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+  ].join('; '),
+  'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'geolocation=(), microphone=(), camera=(), interest-cohort=()',
+};
+
 const server = http.createServer((req, res) => {
+  for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
   const url = req.url;
   if (url.startsWith('/api/')) {
     api(req, res, url).catch(e => { console.error(e); json(res, 500, { error: 'Server error' }); });

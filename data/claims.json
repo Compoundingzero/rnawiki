@@ -1,0 +1,84 @@
+{
+  "note": "The evidence spine. NOTHING on a compound/protocol page may assert an effect without a claim_id that resolves here. `direction` and `grade` are the load-bearing fields: 'not_established' is a first-class value and is expected to be the MOST COMMON one. Verified by build/verify_claims.js against Europe PMC.",
+  "schema": {
+    "claim_id": "stable slug: <compound>__<indication>",
+    "compound": "compound name as in data.js",
+    "indication": "the specific use being claimed",
+    "statement": "one plain-English sentence a reader sees",
+    "direction": "supports | refutes | inverts | insufficient | not_established",
+    "grade": "A (multiple RCTs/MA) | B (1 RCT or consistent trials) | C (mechanistic/animal/observational only) | not_established",
+    "n_trials": "integer or null",
+    "n_participants": "integer or null",
+    "population": "who the evidence is in (e.g. 'adults', 'athletes', 'postmenopausal women')",
+    "sources": [{ "pmid": "string", "note": "what this paper actually found" }],
+    "reviewer": "who signed off (null = machine-drafted, unreviewed)",
+    "status": "draft | verified | blocked",
+    "renders": "true only if the page may display this as a positive recommendation"
+  },
+  "claims": [
+    {
+      "claim_id": "testosterone__acne",
+      "compound": "Testosterone (TRT)", "indication": "acne / sebum control",
+      "statement": "Androgens including testosterone INCREASE sebum and acne; testosterone is not a treatment for acne.",
+      "direction": "inverts", "grade": "A", "n_trials": null, "n_participants": null, "population": "adults",
+      "sources": [{ "pmid": "39589032", "note": "Androgen-driven sebaceous activity; androgens worsen, not treat, acne." }],
+      "reviewer": null, "status": "verified", "renders": false
+    },
+    {
+      "claim_id": "modafinil__sleep_maintenance",
+      "compound": "Modafinil", "indication": "night waking / sleep maintenance",
+      "statement": "Modafinil is a wake-promoting agent; it worsens night waking rather than treating it.",
+      "direction": "inverts", "grade": "A", "n_trials": null, "n_participants": null, "population": "adults",
+      "sources": [{ "pmid": "41367108", "note": "Wake-promotion pharmacology contradicts a sleep-maintenance indication." }],
+      "reviewer": null, "status": "verified", "renders": false
+    },
+    {
+      "claim_id": "semaglutide__hair_loss",
+      "compound": "Semaglutide", "indication": "hair loss",
+      "statement": "GLP-1 agonists are associated with INCREASED hair shedding (telogen effluvium via rapid weight loss), not hair regrowth.",
+      "direction": "inverts", "grade": "B", "n_trials": null, "n_participants": null, "population": "adults on GLP-1 therapy",
+      "sources": [{ "pmid": "41998799", "note": "Hair loss reported as an adverse effect, not a benefit." }],
+      "reviewer": null, "status": "verified", "renders": false
+    },
+    {
+      "claim_id": "metformin__iron_deficiency_anaemia",
+      "compound": "Metformin", "indication": "iron-deficiency anaemia",
+      "statement": "Metformin LOWERS vitamin B12 and is associated with anaemia; it does not treat iron-deficiency anaemia.",
+      "direction": "inverts", "grade": "A", "n_trials": null, "n_participants": null, "population": "adults with type 2 diabetes",
+      "sources": [{ "pmid": "30615306", "note": "Metformin-associated B12 deficiency / anaemia signal." }],
+      "reviewer": null, "status": "verified", "renders": false
+    },
+    {
+      "claim_id": "rapamycin__tendinopathy",
+      "compound": "Rapamycin (Sirolimus)", "indication": "tendinopathy",
+      "statement": "No human trials support rapamycin for tendinopathy; mTOR inhibition BLOCKS the exercise-induced rise in muscle protein synthesis, the opposite of what tendon repair needs.",
+      "direction": "refutes", "grade": "C", "n_trials": 0, "n_participants": 0, "population": "none (human data absent)",
+      "sources": [{ "pmid": "19188252", "note": "Rapamycin blocks the exercise-induced increase in human muscle protein synthesis." }],
+      "reviewer": null, "status": "verified", "renders": false
+    },
+    {
+      "claim_id": "statins__knee_oa",
+      "compound": "Statins (Atorvastatin/Rosuvastatin)", "indication": "knee osteoarthritis",
+      "statement": "Randomised trial evidence does not support statins for knee osteoarthritis pain or progression.",
+      "direction": "refutes", "grade": "B", "n_trials": 1, "n_participants": null, "population": "adults with knee OA",
+      "sources": [{ "pmid": "33844449", "note": "RCT-negative for statins in knee OA." }],
+      "reviewer": null, "status": "verified", "renders": false
+    },
+    {
+      "claim_id": "hipknee__patellofemoral_pain",
+      "compound": "Hip + knee strengthening", "indication": "patellofemoral pain",
+      "statement": "Combined hip and knee strengthening beats knee-strengthening alone for patellofemoral pain (pain SMD -1.29, function SMD 0.99).",
+      "direction": "supports", "grade": "A", "n_trials": 6, "n_participants": null, "population": "adults with PFP",
+      "sources": [{ "pmid": "39934098", "note": "SR/MA: hip+knee superior to knee-alone." }],
+      "reviewer": null, "status": "verified", "renders": true
+    },
+    {
+      "claim_id": "omega3__atrial_fibrillation",
+      "compound": "Omega-3", "indication": "cardiovascular / high-dose safety",
+      "statement": "High-dose omega-3 (≈4 g/day) carries a dose-dependent increase in atrial fibrillation risk — a safety caveat, not a benefit claim.",
+      "direction": "supports", "grade": "A", "n_trials": null, "n_participants": 25000, "population": "adults",
+      "sources": [{ "pmid": "" , "note": "VITAL / AHA dose-dependent AF signal — PMID to be filled by reviewer (INTENTIONAL BLANK to test the verifier)." }],
+      "reviewer": null, "status": "draft", "renders": false
+    }
+  ]
+}

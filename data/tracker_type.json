@@ -1,0 +1,376 @@
+{
+  "note": "Response-Tracker type per protocol (report §2.6). Merge as required field on each root_cause. Photos for type 2 stay ON-DEVICE (uploading them creates a PDPA obligation).",
+  "distribution": {
+    "1": 11,
+    "2": 5,
+    "3": 22,
+    "4": 10,
+    "5": 4
+  },
+  "protocols": [
+    {
+      "protocol": "knee-pain/patellofemoral-pain",
+      "name": "Knee Pain — Patellofemoral pain (kneecap tracking)",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "knee-pain/patellar-tendinopathy",
+      "name": "Knee Pain — Patellar tendinopathy (tendon overload)",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "knee-pain/knee-oa",
+      "name": "Knee Pain — Early osteoarthritis (cartilage wear)",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "low-back-pain/weak-posterior-chain",
+      "name": "Lower Back Pain — Weak posterior chain / deconditioning",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "low-back-pain/poor-core-stability",
+      "name": "Lower Back Pain — Poor motor control / core stability",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "neck-shoulder/upper-cross",
+      "name": "Neck & Shoulder Pain — Upper-cross posture (desk/phone)",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "neck-shoulder/rotator-cuff-impinge",
+      "name": "Neck & Shoulder Pain — Rotator-cuff impingement",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "hip-mobility/glute-weakness",
+      "name": "Hip Pain & Stiffness — Glute weakness / hip instability",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "elbow-wrist/lateral-epicondylopathy",
+      "name": "Wrist / Elbow Tendinitis — Tendon overuse (tennis/golfer elbow)",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "ankle-foot/achilles-tendinopathy",
+      "name": "Ankle / Foot Pain — Achilles tendinopathy",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "sarcopenia/anabolic-resistance",
+      "name": "Muscle Loss (Sarcopenia) — Anabolic resistance + low protein (aging)",
+      "trackerType": 1,
+      "window": "2 weeks tolerance, 12 weeks strength",
+      "source": "rule"
+    },
+    {
+      "protocol": "insulin-resistance/poor-glucose-disposal",
+      "name": "Insulin Resistance — Poor glucose disposal / inactivity",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "insulin-resistance/visceral-adiposity",
+      "name": "Insulin Resistance — Visceral adiposity driving resistance",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "visceral-fat/energy-surplus",
+      "name": "Belly / Visceral Fat — Chronic energy surplus",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "visceral-fat/cortisol-fat",
+      "name": "Belly / Visceral Fat — Cortisol / stress-driven storage",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "chronic-fatigue/iron-anemia",
+      "name": "Chronic Fatigue / Low Energy — Low iron / anemia",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "chronic-fatigue/mito-inefficiency",
+      "name": "Chronic Fatigue / Low Energy — Mitochondrial inefficiency",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "cravings/glycemic-swings",
+      "name": "Sugar Cravings & Appetite — Blood-sugar swings",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "thyroid/subclinical-hypothyroid",
+      "name": "Thyroid Slowdown — Sluggish thyroid / nutrient deficits",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "blood-pressure/endothelial-sodium",
+      "name": "High Blood Pressure — Endothelial dysfunction + sodium/potassium imbalance",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "cholesterol/ldl-fiber",
+      "name": "High Cholesterol / Lipids — High LDL / low soluble fiber",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "brain-fog/neuroinflammation",
+      "name": "Brain Fog — Neuroinflammation / poor metabolic control",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "anxiety/gaba-deficit",
+      "name": "Anxiety — Low GABAergic tone / over-arousal",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "low-mood/monoamine-inflammation",
+      "name": "Low Mood / Depression — Low monoamines + inflammation",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "adhd-focus/dopamine-deficit",
+      "name": "Focus / ADHD — Low dopaminergic drive / distractibility",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "memory/cholinergic-decline",
+      "name": "Memory Decline — Cholinergic / vascular decline",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "burnout/hpa-dysregulation",
+      "name": "Burnout — HPA-axis dysregulation",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "insomnia/circadian-misalign",
+      "name": "Trouble Falling Asleep — Circadian misalignment / hyperarousal",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "sleep-maintenance/cortisol-glucose-night",
+      "name": "Waking Through the Night — Nighttime cortisol / glucose swings",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "shift-work/circadian-desync",
+      "name": "Shift Work / Jet Lag — Circadian desynchrony",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "low-testosterone/lifestyle-suppressed-t",
+      "name": "Low Testosterone — Lifestyle-suppressed testosterone",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "low-testosterone/primary-hypogonadism",
+      "name": "Low Testosterone — Primary hypogonadism (clinical)",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "override"
+    },
+    {
+      "protocol": "menopause/estrogen-decline",
+      "name": "Menopause Symptoms — Estrogen decline",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "low-libido/vascular-hormonal-libido",
+      "name": "Low Libido — Vascular / hormonal / stress",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "bone-density/low-bmd",
+      "name": "Bone Density / Osteoporosis — Low bone mineral density",
+      "trackerType": 5,
+      "window": "no short-term window — you are acting on population risk",
+      "source": "override"
+    },
+    {
+      "protocol": "pcos/insulin-androgen",
+      "name": "PCOS / Hormonal Weight — Insulin resistance + high androgens",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "skin-aging/collagen-loss-glycation",
+      "name": "Skin Aging / Wrinkles — Collagen loss + glycation",
+      "trackerType": 2,
+      "window": "12 weeks minimum, stated loudly",
+      "source": "rule"
+    },
+    {
+      "protocol": "skin-aging/uv-oxidative",
+      "name": "Skin Aging / Wrinkles — UV / oxidative damage",
+      "trackerType": 2,
+      "window": "12 weeks minimum, stated loudly",
+      "source": "rule"
+    },
+    {
+      "protocol": "acne/sebum-insulin",
+      "name": "Acne / Skin Clarity — Sebum + insulin/androgen-driven",
+      "trackerType": 2,
+      "window": "12 weeks minimum, stated loudly",
+      "source": "rule"
+    },
+    {
+      "protocol": "hair-loss/dht-sensitivity",
+      "name": "Hair Loss / Thinning — DHT-sensitive (pattern) hair loss",
+      "trackerType": 2,
+      "window": "12 weeks minimum, stated loudly",
+      "source": "rule"
+    },
+    {
+      "protocol": "hair-loss/nutrient-deficiency-hair",
+      "name": "Hair Loss / Thinning — Nutrient deficiency (iron/zinc/protein)",
+      "trackerType": 2,
+      "window": "12 weeks minimum, stated loudly",
+      "source": "rule"
+    },
+    {
+      "protocol": "longevity/cellular-senescence",
+      "name": "Longevity / Healthspan — Senescence & mitochondrial decline",
+      "trackerType": 5,
+      "window": "no short-term window — you are acting on population risk",
+      "source": "rule"
+    },
+    {
+      "protocol": "longevity/mtor-overactivation",
+      "name": "Longevity / Healthspan — Chronic mTOR over-activation",
+      "trackerType": 5,
+      "window": "no short-term window — you are acting on population risk",
+      "source": "override"
+    },
+    {
+      "protocol": "inflammation/low-grade-inflammation",
+      "name": "Chronic Inflammation — Chronic low-grade inflammation",
+      "trackerType": 5,
+      "window": "no short-term window — you are acting on population risk",
+      "source": "rule"
+    },
+    {
+      "protocol": "gut-health/dysbiosis",
+      "name": "Gut Health — Dysbiosis / low fiber diversity",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "immunity/micronutrient-immune",
+      "name": "Immunity — Micronutrient gaps / immune resilience",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "override"
+    },
+    {
+      "protocol": "hypertrophy/stimulus-recovery",
+      "name": "Build Muscle (Plateau) — Insufficient stimulus or recovery",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "strength-plateau/neural-recovery",
+      "name": "Strength Plateau — Neural efficiency + recovery limits",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "fat-loss-plateau/metabolic-adaptation",
+      "name": "Fat Loss Plateau — Metabolic adaptation / adherence drift",
+      "trackerType": 4,
+      "window": "per marker: BP 2wk · lipids 8–12wk · HbA1c 12wk · waist/weight 4wk",
+      "source": "rule"
+    },
+    {
+      "protocol": "endurance-plateau/aerobic-base",
+      "name": "Endurance Plateau — Thin aerobic base / iron status",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "pre-workout/low-readiness",
+      "name": "Pre-Workout Energy — Low training readiness",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    },
+    {
+      "protocol": "overtraining/autonomic-imbalance",
+      "name": "Overtraining / Under-recovery — Autonomic imbalance / systemic fatigue",
+      "trackerType": 3,
+      "window": "2-week baseline before starting",
+      "source": "rule"
+    }
+  ]
+}

@@ -1,0 +1,3216 @@
+{
+  "generated_by": "build/regulatory_class.js",
+  "note": "Source of truth for compound regulatory class. Merged into each compound by build/parse.js. Once every row is source:\"human-override\" or reviewed, delete RX_BY_NAME/OTC_OVERRIDE from build/prerender.js.",
+  "classes": [
+    "supplement",
+    "otc",
+    "pharmacy",
+    "prescription",
+    "controlled",
+    "unapproved",
+    "unknown"
+  ],
+  "distribution": {
+    "supplement": 76,
+    "prescription": 35,
+    "unapproved": 33,
+    "controlled": 22,
+    "otc": 3,
+    "pharmacy": 1
+  },
+  "renderable_count": 79,
+  "needs_split_count": 6,
+  "needs_review_count": 53,
+  "compounds": [
+    {
+      "id": "c0",
+      "name": "Creatine Monohydrate",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c1",
+      "name": "Caffeine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c2",
+      "name": "L-Theanine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c3",
+      "name": "Omega-3 (EPA/DHA)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c4",
+      "name": "Vitamin D3 (+ K2)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c5",
+      "name": "Magnesium",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c6",
+      "name": "Zinc",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c7",
+      "name": "Boron",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c8",
+      "name": "Taurine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c9",
+      "name": "N-Acetylcysteine (NAC)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c10",
+      "name": "Glycine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c11",
+      "name": "CoQ10 / Ubiquinol",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c12",
+      "name": "Beta-Alanine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c13",
+      "name": "L-Citrulline / Citrulline Malate",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c14",
+      "name": "Betaine (Trimethylglycine)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c15",
+      "name": "Sodium Bicarbonate",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c16",
+      "name": "HMB (β-Hydroxy β-Methylbutyrate)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c17",
+      "name": "Whey / Casein Protein",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c18",
+      "name": "EAAs / BCAAs",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c19",
+      "name": "Semaglutide (Ozempic / Wegovy / Rybelsus)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c20",
+      "name": "Tirzepatide (Mounjaro / Zepbound)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c21",
+      "name": "Retatrutide",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c22",
+      "name": "Liraglutide (Saxenda / Victoza)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c23",
+      "name": "Orforglipron",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c24",
+      "name": "Caffeine (thermogenic)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c25",
+      "name": "Ephedrine (EC/ECA stack)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c26",
+      "name": "Yohimbine",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c27",
+      "name": "Clenbuterol",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c28",
+      "name": "2,4-Dinitrophenol (DNP)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c29",
+      "name": "Berberine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c30",
+      "name": "Green Tea Extract (EGCG)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c31",
+      "name": "Naltrexone/Bupropion (Contrave)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c32",
+      "name": "Phentermine / Qsymia (phentermine-topiramate)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c33",
+      "name": "Testosterone (TRT)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c34",
+      "name": "HCG (Human Chorionic Gonadotropin)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c35",
+      "name": "Enclomiphene / Clomiphene (Clomid)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c36",
+      "name": "Anastrozole / Exemestane (Aromatase Inhibitors)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c37",
+      "name": "Tamoxifen (Nolvadex)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c38",
+      "name": "DHEA",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c39",
+      "name": "Finasteride / Dutasteride",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c40",
+      "name": "Tongkat Ali (Eurycoma longifolia)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c41",
+      "name": "Fadogia Agrestis",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c42",
+      "name": "Nandrolone (Deca-Durabolin)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c43",
+      "name": "Trenbolone",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c44",
+      "name": "Oxandrolone (Anavar)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c45",
+      "name": "Stanozolol (Winstrol)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c46",
+      "name": "Boldenone (Equipoise)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c47",
+      "name": "Methandrostenolone (Dianabol)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c48",
+      "name": "Oxymetholone (Anadrol) · Drostanolone (Masteron) · Methenolone (Primobolan)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c49",
+      "name": "Ostarine (MK-2866, Enobosarm)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c50",
+      "name": "Ligandrol (LGD-4033)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c51",
+      "name": "Testolone (RAD-140)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c52",
+      "name": "Andarine (S4) · YK-11 · S-23",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c53",
+      "name": "Cardarine (GW-501516)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c54",
+      "name": "Stenabolic (SR9009)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c55",
+      "name": "Tesamorelin (Egrifta)",
+      "regulatory_class": "otc",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Available over the counter in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "otc"
+    },
+    {
+      "id": "c56",
+      "name": "Sermorelin",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c57",
+      "name": "CJC-1295 (± DAC)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c58",
+      "name": "Ipamorelin",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c59",
+      "name": "Hexarelin / GHRP-2 / GHRP-6",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c60",
+      "name": "MK-677 (Ibutamoren)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c61",
+      "name": "Human Growth Hormone (Somatropin)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c62",
+      "name": "IGF-1 LR3",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c63",
+      "name": "Follistatin / Myostatin inhibitors (ACE-031, YK-11)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c64",
+      "name": "BPC-157",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c65",
+      "name": "TB-500 (Thymosin Beta-4 fragment)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c66",
+      "name": "GHK-Cu (Copper Peptide)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c67",
+      "name": "KPV",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c68",
+      "name": "Thymosin Alpha-1 (Zadaxin)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c69",
+      "name": "LL-37",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c70",
+      "name": "Rapamycin (Sirolimus)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c71",
+      "name": "Metformin",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c72",
+      "name": "Acarbose",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c73",
+      "name": "NMN / NR (NAD⁺ precursors)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c74",
+      "name": "Resveratrol / Pterostilbene",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c75",
+      "name": "Fisetin",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c76",
+      "name": "Quercetin + Dasatinib (D+Q)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c77",
+      "name": "Spermidine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c78",
+      "name": "Urolithin A",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c79",
+      "name": "Ca-AKG (Calcium Alpha-Ketoglutarate)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c80",
+      "name": "GlyNAC (Glycine + NAC)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c81",
+      "name": "Sulforaphane",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c82",
+      "name": "SGLT2 Inhibitors (Empagliflozin / Canagliflozin)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c83",
+      "name": "Astaxanthin",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c84",
+      "name": "Epithalon (Epitalon)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c85",
+      "name": "MOTS-c",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c86",
+      "name": "Elamipretide (SS-31)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c87",
+      "name": "17-α-Estradiol",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟠",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c88",
+      "name": "Low-Dose Lithium",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c89",
+      "name": "Modafinil / Armodafinil",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c90",
+      "name": "Racetams (Piracetam, Aniracetam, Oxiracetam, Phenylpiracetam)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c91",
+      "name": "Noopept",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c92",
+      "name": "Citicoline (CDP-Choline)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c93",
+      "name": "Alpha-GPC",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c94",
+      "name": "Lion's Mane (Hericium erinaceus)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c95",
+      "name": "Bacopa Monnieri",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c96",
+      "name": "Semax / Selank",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c97",
+      "name": "Methylene Blue",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c98",
+      "name": "Nicotine (non-combusted)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c99",
+      "name": "L-Tyrosine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c100",
+      "name": "Bromantane",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c101",
+      "name": "Phenibut",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c102",
+      "name": "Dihexa",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c103",
+      "name": "Melatonin",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c104",
+      "name": "Apigenin",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c105",
+      "name": "Ashwagandha (Withania somnifera)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c106",
+      "name": "Rhodiola Rosea",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c107",
+      "name": "Saffron (Crocus sativus)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c108",
+      "name": "5-HTP / L-Tryptophan",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c109",
+      "name": "Collagen Peptides (+ Vitamin C)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c110",
+      "name": "Glucosamine + Chondroitin",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c111",
+      "name": "Boswellia Serrata",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c112",
+      "name": "Citrus Bergamot",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c113",
+      "name": "Nattokinase",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c114",
+      "name": "Beetroot / Dietary Nitrate",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c115",
+      "name": "PT-141 (Bremelanotide / Vyleesi)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c116",
+      "name": "PDE-5 Inhibitors (Sildenafil / Tadalafil)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c117",
+      "name": "Melanotan II",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c118",
+      "name": "Probiotics",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c119",
+      "name": "L-Glutamine",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c120",
+      "name": "Vitamin C (Ascorbate)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c121",
+      "name": "B-Complex / B12 / Methylfolate / B6",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c122",
+      "name": "Iron",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c123",
+      "name": "Iodine / Selenium",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c124",
+      "name": "Niacin / NADH (Vitamin B3)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c125",
+      "name": "Turkesterone / Ecdysterone",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c126",
+      "name": "Cordyceps",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c127",
+      "name": "Agmatine · Glycerol · Theacrine (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as dietary supplements in Singapore.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "All three are supplement-category."
+    },
+    {
+      "id": "c128",
+      "name": "Cagrilintide (± CagriSema)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c129",
+      "name": "Setmelanotide (Imcivree)",
+      "regulatory_class": "otc",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Available over the counter in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "otc"
+    },
+    {
+      "id": "c130",
+      "name": "T3 / T4 Thyroid (Liothyronine / Levothyroxine)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c131",
+      "name": "Synephrine · Higenamine · Orlistat (brief)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Mixed: synephrine is a supplement, higenamine is WADA-prohibited for athletes, orlistat is a pharmacy/prescription weight-loss medicine.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": true,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "Bundle contains orlistat (a medicine) and higenamine (WADA-banned) — most-restrictive wins."
+    },
+    {
+      "id": "c132",
+      "name": "Insulin (anabolic misuse)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c133",
+      "name": "Letrozole · Raloxifene · Cabergoline · Pregnenolone · Proviron (brief)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "All prescription medicines (Proviron/mesterolone is also a controlled anabolic).",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": true,
+      "needs_human_review": false,
+      "_seed_was": "prescription",
+      "_override_why": "Correctly caught by the regex; naming it explicitly."
+    },
+    {
+      "id": "c134",
+      "name": "EPO (Erythropoietin)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c135",
+      "name": "AOD-9604 (Fragment 176-191)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c136",
+      "name": "MGF / PEG-MGF",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c137",
+      "name": "DSIP (Delta Sleep-Inducing Peptide, Emideltide)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore or most markets; grey-market supply only.",
+      "approvals": [
+        {
+          "badge": "🔴",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unapproved"
+    },
+    {
+      "id": "c138",
+      "name": "Cerebrolysin · ARA-290 (brief)",
+      "regulatory_class": "unapproved",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Not approved for human use in Singapore; research/grey-market peptides only.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "Both are unapproved biologics/peptides."
+    },
+    {
+      "id": "c139",
+      "name": "Beta-Glucans",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c140",
+      "name": "Medicinal Mushrooms (Reishi, Turkey Tail, Chaga)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c141",
+      "name": "Elderberry · Andrographis · Lactoferrin · Colostrum (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as dietary/immune supplements in Singapore.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "All supplement-category."
+    },
+    {
+      "id": "c142",
+      "name": "Tretinoin / Retinoids",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c143",
+      "name": "Minoxidil",
+      "regulatory_class": "pharmacy",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Topical minoxidil (Regaine) is Pharmacy-only (P) in Singapore — no prescription, but bought from a pharmacist. Oral minoxidil is prescription-only.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "prescription",
+      "_override_why": "Topical is P, not full POM; the regex over-restricted it to prescription."
+    },
+    {
+      "id": "c144",
+      "name": "Niacinamide · Biotin · Azelaic acid (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Niacinamide/biotin are supplements; low-strength azelaic acid is a cosmetic/OTC topical.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": true,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "Supplement + OTC topical; none are POM at the doses discussed."
+    },
+    {
+      "id": "c145",
+      "name": "Estradiol / Menopausal HRT",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c146",
+      "name": "Myo-Inositol (+ D-Chiro)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c147",
+      "name": "DIM / Calcium-D-Glucarate · Vitex · Iron (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as dietary supplements in Singapore.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "All supplement-category."
+    },
+    {
+      "id": "c148",
+      "name": "Calcium (+ D3 + K2)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c149",
+      "name": "Strontium · Silica (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Strontium citrate and silica are sold as supplements; strontium ranelate (a bone-drug salt) is prescription — this entry refers to the supplement salts.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": true,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "Supplement salts, not the ranelate drug."
+    },
+    {
+      "id": "c150",
+      "name": "Amphetamine (Adderall) / Lisdexamfetamine (Vyvanse)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c151",
+      "name": "Methylphenidate (Ritalin)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c152",
+      "name": "Huperzine A · Ginkgo · Panax Ginseng · Uridine (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as nootropic/herbal supplements in Singapore.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "All supplement-category."
+    },
+    {
+      "id": "c153",
+      "name": "Orexin Antagonists (Suvorexant, Lemborexant)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c154",
+      "name": "Z-drugs (Zolpidem/Ambien) · Trazodone · Doxylamine (brief)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Zolpidem is a controlled hypnotic (POM + schedule); trazodone is POM; doxylamine is a Pharmacy-only sedating antihistamine.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": true,
+      "needs_human_review": false,
+      "_seed_was": "controlled",
+      "_override_why": "Most-restrictive: zolpidem is controlled, but the bundle is dispensed as prescription/pharmacy."
+    },
+    {
+      "id": "c155",
+      "name": "SSRIs (Sertraline, Escitalopram)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c156",
+      "name": "Ketamine / Esketamine (Spravato)",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c157",
+      "name": "Psilocybin / Microdosing",
+      "regulatory_class": "controlled",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+      "approvals": [
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "⚫",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "controlled"
+    },
+    {
+      "id": "c158",
+      "name": "Statins (Atorvastatin/Rosuvastatin)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c159",
+      "name": "PCSK9 Inhibitors (Evolocumab, Inclisiran)",
+      "regulatory_class": "otc",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Available over the counter in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟢",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "otc"
+    },
+    {
+      "id": "c160",
+      "name": "Red Yeast Rice · Ezetimibe (brief)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Red yeast rice is a supplement; ezetimibe is a prescription cholesterol medicine.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": true,
+      "needs_human_review": false,
+      "_seed_was": "prescription",
+      "_override_why": "Bundle mixes a supplement with a POM — most-restrictive wins."
+    },
+    {
+      "id": "c161",
+      "name": "Alpha-Lipoic Acid (ALA)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c162",
+      "name": "PQQ · Ergothioneine · Carnosine · Quercetin (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as dietary supplements in Singapore.",
+      "approvals": [],
+      "source": "human-override",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "unknown",
+      "_override_why": "All supplement-category."
+    },
+    {
+      "id": "c163",
+      "name": "Prebiotics (Inulin, GOS, PHGG) & Butyrate",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c164",
+      "name": "Zinc-Carnosine · Akkermansia · S. boulardii · DGL (brief)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c165",
+      "name": "Acetyl-L-Carnitine (ALCAR)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c166",
+      "name": "Phosphatidylserine (PS)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c167",
+      "name": "SAM-e (S-Adenosylmethionine)",
+      "regulatory_class": "prescription",
+      "consumer_renderable": false,
+      "sg_hsa_status": "Prescription-only medicine (POM) in Singapore — a doctor must prescribe it; not sold OTC.",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        },
+        {
+          "badge": "🔵",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": true,
+      "_seed_was": "prescription"
+    },
+    {
+      "id": "c168",
+      "name": "Silymarin (Milk Thistle)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    },
+    {
+      "id": "c169",
+      "name": "Valerian (Valeriana officinalis)",
+      "regulatory_class": "supplement",
+      "consumer_renderable": true,
+      "sg_hsa_status": "Sold as a dietary supplement in Singapore (general sale).",
+      "approvals": [
+        {
+          "badge": "🟡",
+          "molecule": null,
+          "indication": null
+        }
+      ],
+      "source": "seed",
+      "needs_split": false,
+      "needs_human_review": false,
+      "_seed_was": "supplement"
+    }
+  ]
+}

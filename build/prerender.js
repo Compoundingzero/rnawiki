@@ -25,6 +25,12 @@ const D = global.window.RNAWIKI_DATA;
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { return null; } };
 const EX = readJSON(path.join(ROOT, 'data', 'clinical_exercises.json'));
 const FO = readJSON(path.join(ROOT, 'data', 'foods.json'));
+// The per-problem plan: context / working / reassess / timeline / troubleshooting. `reassess` names
+// a doctor, clinician, A&E or polyclinic on all 41 problems and is the best-written safety text on
+// the site -- and until 2026-07-28 NONE of it reached the prerendered document. See the protocol
+// emit below.
+const PLAN = readJSON(path.join(ROOT, 'data', 'protocol_plan.json')) || {};
+const CAUSE = readJSON(path.join(ROOT, 'data', 'cause_learn.json')) || {};
 const GRAPH = D.graph || { problems: [], domains: {} };
 
 // ---- helpers ----
@@ -38,17 +44,27 @@ const cleanDesc = (s, max = 155) => {
   t = t.slice(0, max); const sp = t.lastIndexOf(' ');
   return (sp > max * 0.6 ? t.slice(0, sp) : t).replace(/[\s,;:.\-—–]+$/, '') + '…';
 };
+// Inline markdown -> HTML, ESCAPE FIRST then format. That order matters: site/app.js's mdInline
+// does the reverse (it extracts links before escaping and interpolates the URL raw), which makes
+// it an attribute-injection sink. This one cannot be, because by the time any formatting runs
+// there are no live angle brackets or quotes left. Bold and italic only -- no links, no raw HTML.
+const mdSafe = (s) => esc(String(s == null ? '' : s))
+  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+  .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  .replace(/(^|[^*])\*(?!\*)(.+?)\*(?!\*)/g, '$1<em>$2</em>');
 const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const tkey = (s) => s.toUpperCase().replace(/[^A-Z0-9]+/g, '-').replace(/^-|-$/g, '');
 const stars = (n) => '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n));
 // Singapore availability from approval status (see app.js sgAvailability) + shared-pathway synergy.
 const sgAvail = (c) => {
-  const ap = c.approvals || [];
-  if (ap.includes('⚫')) return { tag: 'Controlled substance', body: 'A controlled substance in most countries — illegal to buy, sell or possess without authorisation (in Singapore: HSA / CNB). Education only.' };
-  if (c.isRx) return { tag: 'Prescription only', body: 'Prescription-only — a doctor must prescribe it. Not sold over the counter. (In Singapore: HSA-regulated.)' };
-  if (ap.includes('🔴')) return { tag: 'Not widely approved', body: 'Not approved for general sale in most markets (Singapore included). Grey-market only — dose, purity and legality uncertain.' };
-  if (ap.includes('🟡') || ap.includes('🟢')) return { tag: 'Available over the counter', body: 'Widely available OTC — e.g. iHerb (ships worldwide); in Singapore also Guardian, Watsons, GNC, Shopee / Lazada. Look for a third-party-tested / GMP mark and check the dose per serving.' };
-  return { tag: 'Check locally', body: 'Availability and legal status vary by country — check your national regulator (in Singapore, the HSA) before buying.' };
+  switch (regClass(c)) {
+    case 'controlled': return { tag: 'Controlled substance', body: 'A controlled substance in Singapore (HSA / CNB) and most other countries. Illegal to buy, sell or possess without authorisation. Listed here for completeness only.' };
+    case 'prescription': return { tag: 'Prescription only', body: 'A prescription-only medicine. In Singapore it is dispensed by a licensed pharmacy against a doctor\'s prescription — it is not sold over the counter, and buying it from an online marketplace or an overseas seller is both unlawful and unsafe. Speak to a GP or polyclinic.' };
+    case 'unapproved': return { tag: 'Not approved', body: 'Not approved for human use in Singapore or most markets. Grey-market supply only: dose, purity and legality are all uncertain.' };
+    case 'supplement':
+    case 'otc': return { tag: 'Available over the counter', body: 'Widely available OTC — e.g. iHerb (ships worldwide); in Singapore also Guardian, Watsons, GNC, Shopee / Lazada. Look for a third-party-tested / GMP mark and check the dose per serving.' };
+    default: return { tag: 'Check locally', body: 'Availability and legal status vary by country — check your national regulator (in Singapore, the HSA) before buying.' };
+  }
 };
 const derivedStacks = (c) => {
   const pw = new Set(c.pathwayIds || []); if (!pw.size) return [];
@@ -105,12 +121,54 @@ function findCpt(label) {
   for (const c of D.compounds) { const n = c.name.toLowerCase(); if (n.startsWith(l + ' ') || n.startsWith(l + ' (') || (l.length > 4 && n.startsWith(l))) return c; }
   return null;
 }
+// ---- regulatory classification (replaces the unreliable c.isRx flag) ----
+// c.isRx misses statins, SSRIs, PDE-5 inhibitors, finasteride, tretinoin, minoxidil
+// and Contrave (all badged 🟢 "FDA Approved"), and wrongly flags vitamin D3 and iron.
+// 🟢 means "approved by a regulator", NOT "buy it off a shelf". Nothing keys on isRx again.
+// STOPGAP: the RX_BY_NAME / OTC_OVERRIDE regexes are a bridge. The real fix is the
+// `regulatory_class` field authored per compound in the source data (see revision 3, item 2);
+// the day every compound carries it, delete both regexes and read c.regulatory_class directly.
+const RX_BY_NAME = /\b(statin|atorvastatin|rosuvastatin|simvastatin|tretinoin|isotretinoin|retinoid|finasteride|dutasteride|minoxidil|ssri|sertraline|escitalopram|fluoxetine|pde-?5|sildenafil|tadalafil|bremelanotide|pt-?141|naltrexone|bupropion|ezetimibe|spironolactone|anastrozole|exemestane|letrozole|clomiphene|enclomiphene|metformin|acarbose|semaglutide|tirzepatide|liraglutide|rapamycin|sirolimus|levothyroxine|liothyronine|estradiol|hrt|erythropoietin|\bepo\b|hcg|chorionic|yohimbine|modafinil|armodafinil|methylphenidate|amphetamine|lisdexamfetamine|testosterone|trt|oxandrolone|nandrolone|trenbolone|clenbuterol|zolpidem|trazodone)\b/i;
+const CONTROLLED_BY_NAME = /\b(methylphenidate|amphetamine|lisdexamfetamine|modafinil|armodafinil|testosterone|trt|oxandrolone|nandrolone|trenbolone|erythropoietin|\bepo\b|zolpidem)\b/i;
+const OTC_OVERRIDE = /^(Vitamin D3|Iron$|Calcium|Magnesium|Zinc|Melatonin)/; // mis-flagged isRx in the data
+function regClass(c) {
+  if (c.regulatory_class) return c.regulatory_class;   // authored field wins once it exists
+  const ap = c.approvals || [];
+  if (ap.includes('⚫') || CONTROLLED_BY_NAME.test(c.name)) return 'controlled';
+  if (OTC_OVERRIDE.test(c.name)) return 'supplement';
+  if (ap.includes('🔵') || c.isRx || RX_BY_NAME.test(c.name)) return 'prescription';
+  if (ap.includes('🔴')) return 'unapproved';
+  if (ap.includes('🟡')) return 'supplement';
+  if (ap.includes('🟢')) return 'otc';
+  return 'unknown';
+}
+const isConsumerRenderable = (c) => ['supplement', 'otc'].includes(regClass(c));
+// Explicit nutrient labels. The old /_\w+$/ regex ate the type suffix AND the discriminator
+// ('_c' / '_d'), collapsing vitamin_c_mg and vitamin_d_iu both to "vitamin". A map fails
+// visibly on an unknown key instead of silently mislabelling.
+const NUTRIENT_LABEL = {
+  protein_g: 'protein', kcal: 'energy', fiber_g: 'fibre', sugar_g: 'added sugar',
+  omega3_mg: 'omega-3 (EPA+DHA)', vitamin_c_mg: 'vitamin C', vitamin_d_iu: 'vitamin D',
+  calcium_mg: 'calcium', magnesium_mg: 'magnesium', zinc_mg: 'zinc', iron_mg: 'iron',
+  potassium_mg: 'potassium', sodium_mg: 'sodium', glycine_g: 'glycine', choline_mg: 'choline',
+};
+const nutrientLabel = (k) => NUTRIENT_LABEL[k] || k.replace(/_(mg|g|iu|kcal|mcg|ug)$/i, '').replace(/_/g, ' ');
 function protoStack(rc) {
   const picked = [], ids = new Set();
-  (rc.compounds || []).forEach((n) => { const c = findCpt(n); if (c && !ids.has(c.id)) { ids.add(c.id); picked.push(c); } });
-  const pool = D.compounds.filter((c) => (rc.goal_ids || []).some((g) => (c.goalIds || []).includes(g)) || (rc.pathway_ids || []).some((p) => (c.pathwayIds || []).includes(p))).sort((a, b) => b.stars - a.stars);
-  pool.forEach((c) => { if (!ids.has(c.id)) { ids.add(c.id); picked.push(c); } });
-  return picked.slice(0, 6);
+  (rc.compounds || []).forEach((n) => {
+    const c = findCpt(n);
+    if (!c || ids.has(c.id)) return;
+    if (!isConsumerRenderable(c)) return;   // Rx / controlled / unapproved never render in a Stack
+    ids.add(c.id); picked.push(c);
+  });
+  return picked;                             // no pool padding, no slice-to-six
+}
+// Prescription items authored into rc.compounds are still real editorial content. Surface them
+// in a separate, non-recommending block that names the gate rather than the product.
+function protoMedical(rc) {
+  return (rc.compounds || []).map(findCpt).filter(Boolean)
+    .filter((c) => !isConsumerRenderable(c))
+    .filter((c, i, a) => a.findIndex((x) => x.id === c.id) === i);
 }
 function protoFuel(rc) {
   if (!FO) return [];
@@ -118,11 +176,15 @@ function protoFuel(rc) {
   return FO.foods.map((f) => ({ f, h: (f.tags || []).filter((t) => want.has(t)).length })).filter((x) => x.h > 0)
     .sort((a, b) => (b.f.sg_local - a.f.sg_local) || (b.h - a.h)).slice(0, 6).map((x) => x.f);
 }
+// Curated rows only. The tag join (protocol -> muscle group -> first 3 exercises under that
+// tag) produced lists that contradicted the page's own prescription text on 48 of the 49
+// protocols that rendered one — including internal rotation on a page prescribing external
+// rotation. Until protocol_exercise is populated, the prescription prose IS the exercise list.
 function protoMove(rc) {
-  if (!EX) return [];
-  const out = [], seen = new Set();
-  (rc.move_tags || []).forEach((t) => (EX.byTag[t] || []).slice(0, 3).forEach((id) => { if (!seen.has(id)) { seen.add(id); const e = EX.exercises.find((x) => x.id === id); if (e) out.push(e); } }));
-  return out.slice(0, 4);
+  if (!EX || !Array.isArray(rc.protocol_exercise)) return [];
+  return rc.protocol_exercise
+    .map((r) => { const e = EX.exercises.find((x) => x.id === r.exercise_id); return e ? { ...e, ...r } : null; })
+    .filter(Boolean);
 }
 
 // ---- page shell ----
@@ -251,6 +313,10 @@ D.goals.forEach((g) => {
   const list = fullForCompare.filter((c) => (c.goalIds || []).includes(g.id)).sort((a, b) => b.stars - a.stars).slice(0, 8);
   for (let i = 0; i < list.length; i++) for (let j = i + 1; j < list.length; j++) {
     let a = list[i], b = list[j];
+    // Never generate a "which works better" superiority comparison that involves a prescription,
+    // controlled or unapproved medicine. Advertising a POM to the public (and ranking it against a
+    // supplement) is exactly what Singapore reg 7 prohibits. Only supplement/OTC pairs are generated.
+    if (!isConsumerRenderable(a) || !isConsumerRenderable(b)) continue;
     if (slug(a.name) > slug(b.name)) { const t = a; a = b; b = t; } // canonical alphabetical
     const key = slug(a.name) + '|' + slug(b.name);
     if (!comparePairs.has(key)) comparePairs.set(key, { a, b, goalLabel: g.label, goalId: g.id });
@@ -311,7 +377,7 @@ D.compounds.forEach((c) => {
   const jsonld = [{
     '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: c.name,
     about: { '@type': 'Drug', name: c.name }, description: (c.plain || c.bottom || '').slice(0, 300),
-    url: SITE_URL + route, inLanguage: 'en', lastReviewed: BUILD_DATE, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
+    url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
   }].concat(cqa.ld || []);
   add(route, shell({ route, title: `${c.name}: dosage, evidence & uses · RNAwiki`, desc: cleanDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
 });
@@ -343,7 +409,7 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
     { q: `Is ${a.name} or ${b.name} better for ${gl}?`, a: verdict },
     { q: `What's the difference between ${a.name} and ${b.name}?`, a: `${a.name}: ${snip(a.bottom || a.plain, 130)} — ${b.name}: ${snip(b.bottom || b.plain, 130)}` },
   ]);
-  const jsonld = [{ '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${a.name} vs ${b.name}`, description: `Compare ${a.name} and ${b.name} for ${gl}.`, url: SITE_URL + route, inLanguage: 'en', lastReviewed: BUILD_DATE, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified }].concat(faq.ld || []);
+  const jsonld = [{ '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${a.name} vs ${b.name}`, description: `Compare ${a.name} and ${b.name} for ${gl}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified }].concat(faq.ld || []);
   add(route, shell({ route, title: `${a.name} vs ${b.name}: which works better? · RNAwiki`, desc: `${a.name} vs ${b.name} for ${gl}: human evidence, mechanism, safety and availability compared — plain English, honest verdict.`, jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }, { name: `${a.name} vs ${b.name}`, route }], body: body + faq.html }));
 });
 
@@ -357,7 +423,7 @@ D.goals.forEach((g) => {
     <p>${list.length} compounds that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, with honest verdicts.</p>
     <ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
     ${protos.length ? `<h2>Full protocols</h2><ul>${protos.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)} — Move, Fuel &amp; Stack</a></li>`).join('')}</ul>` : ''}`;
-  const goalLd = { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${g.label} — what actually helps`, description: `Compounds ranked by human evidence for ${g.label.toLowerCase()}.`, url: SITE_URL + route, inLanguage: 'en', lastReviewed: BUILD_DATE, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified };
+  const goalLd = { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${g.label} — what actually helps`, description: `Compounds ranked by human evidence for ${g.label.toLowerCase()}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified };
   add(route, shell({ route, title: `${g.label}: what actually helps (ranked by evidence) · RNAwiki`, desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence — plain English, honest verdicts.`, jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
 });
 
@@ -365,8 +431,42 @@ D.goals.forEach((g) => {
 GRAPH.problems.forEach((p) => {
   p.root_causes.forEach((rc) => {
     const route = `/protocol/${p.id}/${rc.id}`;
-    const stack = protoStack(rc), fuel = protoFuel(rc), move = protoMove(rc);
-    const nt = Object.entries(rc.nutrient_targets || {}).map(([k, t]) => `${k.replace(/_\w+$/, '').replace(/_/g, ' ')}: ${t.target}${t.unit} (${t.type})`).join(', ');
+    const stack = protoStack(rc), med = protoMedical(rc), fuel = protoFuel(rc), move = protoMove(rc);
+    const nt = Object.entries(rc.nutrient_targets || {}).map(([k, t]) => `${nutrientLabel(k)}: ${t.target}${t.unit} (${t.type})`).join(', ');
+
+    // ---- THE SAFETY LAYER (added 2026-07-28) ----------------------------------------------
+    // Measured across all 52 prerendered protocol files BEFORE this change:
+    //   "See a doctor" 0/52 · "red flag" 0/52 · "emergency" 0/52 · "A&E" 0/52 · "995" 0/52
+    //   "reassess" 0/52 · "pregnan" 0/52 · "warfarin" 0/52     ... while "HowTo" was 52/52.
+    // So the escalation layer reached 0% of the ~90% of traffic that never runs JavaScript,
+    // while the star-ranked supplement stack and a HowTo schema reached 100% of it. Meanwhile
+    // protocol_plan.reassess names a doctor, clinician, A&E or polyclinic on 41 of 41 problems
+    // and is well written. It was authored, and connected to nothing. This emits it.
+    const plan = PLAN[p.id] || {};
+    const timeline = Array.isArray(plan.timeline) ? plan.timeline : [];
+    // Sibling root causes: the same problem's other causes, so a reader who is on the wrong one
+    // has a way out of it. (Also gives the 11 off-funnel causes an inbound link.)
+    const siblings = (p.root_causes || []).filter((x) => x.id !== rc.id);
+    // Cause NAMES only, never the bodies -- the bodies are the unverified 995-step chain corpus.
+    // NOTE: cause_learn.json is keyed by PROBLEM id ("knee-pain"), not root-cause id. Keying it
+    // on rc.id silently renders nothing on all 52 pages rather than failing -- the same
+    // looks-complete-but-empty join that this codebase keeps producing. Verified: CAUSE[p.id].
+    const causeNames = ((CAUSE[p.id] || {}).causes || []).map((c) => c && c.name).filter(Boolean).slice(0, 8);
+    const safety = `
+      ${plan.reassess ? `<section class="plan-reassess">
+        <h3>When to reassess or see a doctor</h3>
+        <p>${mdSafe(plan.reassess)}</p>
+        <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
+        through a protocol — in Singapore call <b>995</b> for an emergency, or go to A&amp;E.
+        A polyclinic or GP is the right first stop for anything persistent.</p>
+      </section>` : ''}
+      ${timeline.length ? `<h3>What to expect, and by when</h3>
+        <ul>${timeline.map((t) => `<li><b>${esc(t.when)}</b> — ${mdSafe(t.what)}</li>`).join('')}</ul>` : ''}
+      ${causeNames.length ? `<h3>Other things that cause this</h3>
+        <p>${causeNames.map(esc).join(' · ')}</p>` : ''}
+      ${siblings.length ? `<h3>Other root causes of ${esc(p.name)}</h3>
+        <p class="muted">If the description above does not sound like you, it is probably one of these.</p>
+        <ul>${siblings.map((s) => `<li><a href="/protocol/${p.id}/${s.id}">${esc(s.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>` : ''}`;
     const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name }])}
       <h1>${p.icon || ''} ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
@@ -377,9 +477,16 @@ GRAPH.problems.forEach((p) => {
       <h3>Fuel — foods to fuel it</h3>
       ${fuel.length ? `<ul>${fuel.map((f) => `<li>${esc(f.name)}${f.sg_local ? ' (local SG)' : ''}</li>`).join('')}</ul>` : ''}
       ${nt ? `<p><b>Daily nutrient targets:</b> ${esc(nt)}</p>` : ''}
-      <h3>Stack — evidence-ranked compounds</h3>
-      <ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
+      <h3>Stack — supplements with human trial evidence for this use</h3>
+      ${stack.length
+        ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>`
+        : `<p>No supplement has trial evidence specific to this problem that we'd put our name to. That is the honest answer, not an omission.</p>`}
+      ${med.length ? `<h3>Medical options — discuss with a doctor</h3>
+        <p>These are prescription or controlled medicines. We list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and we do not give doses for them here.</p>
+        <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
+      ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol →</a></p>
+      <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology">How this page was made</a> · <a href="/corrections">Corrections</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
     const rcShort = rc.name.replace(/\s*\([^)]*\)/, '');
     const moveNames = move.slice(0, 5).map((e) => e.name).join(', ');
@@ -387,12 +494,12 @@ GRAPH.problems.forEach((p) => {
     const stackNames = stack.slice(0, 5).map((c) => c.name).join(', ');
     const pqa = faqBlock([
       rc.diagnostic ? { q: `What causes ${p.name.toLowerCase()}?`, a: `${rc.name}. ${snip(rc.diagnostic, 240)}` } : null,
-      move.length ? { q: `What exercises help ${p.name.toLowerCase()}?`, a: `Key movements: ${moveNames}.` } : null,
+      (rc.prescription || move.length) ? { q: `What exercises help ${p.name.toLowerCase()}?`, a: `${rc.prescription ? rc.prescription.detail : ''}${move.length ? ` Key movements: ${moveNames}.` : ''}`.trim() } : null,
       fuel.length ? { q: `What should you eat for ${p.name.toLowerCase()}?`, a: `Foods that support it: ${fuelNames}.` } : null,
       stack.length ? { q: `What supplements help ${p.name.toLowerCase()}?`, a: `Evidence-ranked options: ${stackNames}.` } : null,
     ]);
     const howto = (move.length || fuel.length || stack.length) ? { '@context': 'https://schema.org', '@type': 'HowTo', name: `How to address ${p.name} — ${rcShort}`, description: snip(rc.diagnostic || p.name, 200), step: [
-      move.length ? { '@type': 'HowToStep', name: 'Move', text: `Corrective movement: ${moveNames}.` } : null,
+      (rc.prescription || move.length) ? { '@type': 'HowToStep', name: 'Move', text: rc.prescription ? rc.prescription.detail : `Corrective movement: ${moveNames}.` } : null,
       fuel.length ? { '@type': 'HowToStep', name: 'Fuel', text: `Eat to support recovery: ${fuelNames}.` } : null,
       stack.length ? { '@type': 'HowToStep', name: 'Stack', text: `Evidence-ranked supplements to consider: ${stackNames}.` } : null,
     ].filter(Boolean) } : null;
@@ -400,8 +507,11 @@ GRAPH.problems.forEach((p) => {
       '@context': 'https://schema.org', '@type': 'MedicalWebPage', inLanguage: 'en',
       name: `${p.name} — ${rc.name} protocol`, description: (rc.diagnostic || p.name),
       about: { '@type': 'MedicalCondition', name: p.name },
-      audience: { '@type': 'MedicalAudience', audienceType: 'Patient' },
-      lastReviewed: BUILD_DATE, url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
+      // audience:MedicalAudience/Patient removed — it asserted these pages address patients of a
+      // condition (an intended-use claim), including on brain-fog & burnout where there is none.
+      // lastReviewed removed — it stamped the build date as if a clinician had reviewed the page.
+      // Re-add both per-page only when a named reviewer actually checks it. dateModified is honest.
+      url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
     }].concat(howto || []).concat(pqa.ld || []);
     add(route, shell({ route, title: `${p.name} (${rcShort.toLowerCase()}): exercises, supplements & what works · RNAwiki`, desc: `${p.name} — ${rc.name}: the exercises to fix it, foods to fuel it, and evidence-ranked supplements. A full root-cause protocol. Not medical advice.`, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
   });
@@ -707,6 +817,22 @@ pages.forEach(({ route, html }) => {
   fs.writeFileSync(file, html); written++;
 });
 
+// ---- sweep stale output (Patch 8) ----
+// The generator is otherwise additive-only: unpublishing a page (Patch 7, or the kill-list)
+// removes it from `pages` but leaves its HTML on disk, still served on direct hit and still in
+// Google's index. Delete any *.html under a generated root that we did NOT write this run.
+// Never sweeps the SITE root itself — index.html / app.js / styles.css / data.js are hand-authored.
+const writtenPaths = new Set(pages.map(({ route }) => path.join(SITE, route.replace(/^\//, '') + '.html')));
+const genRoots = new Set(pages.map(({ route }) => route.replace(/^\//, '').split('/')[0])
+  .filter((seg) => seg && fs.existsSync(path.join(SITE, seg)) && fs.statSync(path.join(SITE, seg)).isDirectory()));
+let swept = 0;
+(function () {
+  const sweep = (dir) => { for (const f of fs.readdirSync(dir)) { const p = path.join(dir, f);
+    if (fs.statSync(p).isDirectory()) sweep(p);
+    else if (f.endsWith('.html') && !writtenPaths.has(p)) { fs.unlinkSync(p); swept++; } } };
+  genRoots.forEach((r) => sweep(path.join(SITE, r)));
+})();
+
 // sitemap + robots
 const now = new Date().toISOString().slice(0, 10);
 const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.map((p) => p.route)];
@@ -718,5 +844,5 @@ ${uniq.map((u) => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${now}</lastmod><ch
 fs.writeFileSync(path.join(SITE, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(SITE, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
-console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.length} urls) + robots.txt`);
+console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.length} urls) + robots.txt; swept ${swept} stale files`);
 console.log(`[prerender] base URL: ${SITE_URL}`);
