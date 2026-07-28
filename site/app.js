@@ -1624,7 +1624,7 @@
     if (b.cofactors) { const co = b.cofactors; const grp = (t, arr, ic) => (arr && arr.length) ? `<div class="bio-co-grp"><div class="bio-co-h">${ic} ${t}</div><ul>${arr.map(x => `<li><b>${esc(stripB(x.nutrient))}</b> — ${mdInline(x.role)} ${bioTierChip(x.tier)}</li>`).join('')}</ul></div>` : ''; const html = grp('Needs / cofactors', co.needs, '➕') + grp('Depletes', co.depletes, '➖') + grp('Antagonists', co.antagonists, '⛔'); if (html) cards.push(bioCard('🔗', 'Cofactors, depletions & antagonists', html)); }
     if (b.foodFirst) cards.push(bioCard('🥗', 'Food first', `<div class="bio-line">${mdInline(b.foodFirst.line)}</div>${b.foodFirst.note ? `<div class="bio-note">${mdInline(b.foodFirst.note)}</div>` : ''}`, b.foodFirst.tier));
     if (b.cost) cards.push(bioCard('💲', 'Cost per effective dose', `<div class="bio-cost-big">${esc(b.cost.perDose || '')}</div>${b.cost.math ? `<div class="bio-note">${mdInline(b.cost.math)}</div>` : ''}${b.cost.note ? `<div class="bio-line">${mdInline(b.cost.note)}</div>` : ''}`, b.cost.tier));
-    if (b.dosing) { const d = b.dosing; const calc = d.perKg ? `<div class="bio-dose" data-perkg="${esc(String(d.perKg))}" data-cap="${esc(d.cap || '')}" data-unit="${esc(d.unit || 'g')}"><label>Your body weight <input type="number" class="bio-dose-w" placeholder="70" min="30" max="250" inputmode="numeric"> kg</label><div class="bio-dose-out">— enter your weight —</div></div>` : ''; const cap = (d.cap && !d.perKg) ? `<div class="bio-line bio-muted"><b>Upper limit:</b> ${mdInline(d.cap)}</div>` : ''; const note = d.note ? `<div class="bio-note">${mdInline(d.note)}</div>` : ''; const inner = calc + cap + note; if (inner) cards.push(bioCard('⚖️', d.perKg ? 'Personalized dose' : 'Dose', inner, d.tier)); }
+    if (b.dosing) { const d = b.dosing; const calc = d.perKg ? `<div class="bio-dose" data-perkg="${esc(String(d.perKg))}" data-unit="${esc(d.unit || 'g')}"${d.capValue != null ? ` data-cap-value="${esc(String(d.capValue))}"` : ''}${d.capPerKg != null ? ` data-cap-perkg="${esc(String(d.capPerKg))}"` : ''}${d.molecule ? ` data-molecule="${esc(d.molecule)}"` : ''}${d.flat ? ` data-flat="${esc(d.flat)}"` : ''}${d.schedule ? ` data-schedule="${esc(d.schedule)}"` : ''}><label>Your body weight <input type="number" class="bio-dose-w" placeholder="70" min="30" max="250" inputmode="numeric"> kg</label><div class="bio-dose-out">— enter your weight —</div></div>` : ''; const cap = d.cap ? `<div class="bio-line bio-muted"><b>Upper limit:</b> ${mdInline(d.cap)}</div>` : ''; const note = d.note ? `<div class="bio-note">${mdInline(d.note)}</div>` : ''; const inner = calc + cap + note; if (inner) cards.push(bioCard('⚖️', d.perKg ? 'Personalized dose' : 'Dose', inner, d.tier)); }
     if (b.timing) cards.push(bioCard('⏰', 'Timing', mdInline(b.timing.line), b.timing.tier));
     if (b.cycling) cards.push(bioCard('🔄', 'Cycling & tolerance', mdInline(b.cycling.line), b.cycling.tier));
     if (Array.isArray(b.contra) && b.contra.length) cards.push(bioCard('⚠️', 'Personalized cautions', `<ul class="bio-contra">${b.contra.map(x => `<li><b>${esc(stripB(x.flag))}:</b> ${mdInline(x.advice)} ${bioTierChip(x.tier)}</li>`).join('')}</ul>`));
@@ -6636,12 +6636,33 @@
   });
   // Personalized per-kg dose calculator (biohacker layer)
   document.addEventListener('input', e => {
+    // FIXED 2026-07-28. This used to do `parseFloat(d.cap)` on a human sentence. parseFloat
+    // returns NaN unless the string STARTS with a digit, so on 8 of the 11 calculators the cap was
+    // silently discarded -- and on the one where it did parse, "3g/day is the standard studied
+    // dose" became the number 3, which capped a correct 2,660 mg answer to "3 mg". A 1,000x
+    // under-dose, rendered at every bodyweight. Meanwhile l-tyrosine printed 7,000 mg against its
+    // own "keep total under ~5-6 g" and the agmatine bundle printed 84 g without saying that the
+    // per-kg figure is for GLYCEROL, not agmatine (84 g of agmatine would be a serious overdose).
+    // The fix is to stop parsing prose: read the authored capValue/capUnit/capPerKg/molecule/
+    // flat/schedule fields instead. build/parse.js asserts they are present and coherent.
     const i = e.target.closest('.bio-dose-w'); if (!i) return;
     const box = i.closest('.bio-dose'); const out = box.querySelector('.bio-dose-out');
-    const pk = parseFloat(box.getAttribute('data-perkg')); const unit = (box.getAttribute('data-unit') || 'g').split('/')[0];
-    const cap = parseFloat(box.getAttribute('data-cap')); const w = parseFloat(i.value);
+    const num = (a) => { const v = parseFloat(box.getAttribute(a)); return isNaN(v) ? null : v; };
+    const str = (a) => box.getAttribute(a) || '';
+    const pk = num('data-perkg'); const unit = (str('data-unit') || 'g').split('/')[0];
+    const w = parseFloat(i.value);
     if (!w || w < 20 || w > 300) { out.textContent = '— enter your weight —'; return; }
-    let d = pk * w; let capped = false; if (!isNaN(cap) && d > cap) { d = cap; capped = true; }
-    out.innerHTML = `≈ <b>${Math.round(d * 10) / 10} ${esc(unit)}</b> / day${capped ? ` <span class="bio-dose-cap">(capped at ${esc(String(cap))} ${esc(unit)})</span>` : ''}`;
+    let d = pk * w, capped = false;
+    const capPerKg = num('data-cap-perkg'), capValue = num('data-cap-value');
+    const hardCap = capPerKg != null ? capPerKg * w : capValue;   // per-kg caps scale with the person
+    if (hardCap != null && d > hardCap) { d = hardCap; capped = true; }
+    const mol = str('data-molecule'), flat = str('data-flat'), sched = str('data-schedule');
+    const round = (x) => x >= 100 ? Math.round(x) : Math.round(x * 10) / 10;
+    out.innerHTML =
+      `≈ <b>${round(d)} ${esc(unit)}</b> / day`
+      + (mol ? ` <span class="bio-dose-mol">of ${esc(mol)}</span>` : '')
+      + (capped ? ` <span class="bio-dose-cap">(capped at ${round(hardCap)} ${esc(unit)})</span>` : '')
+      + (sched ? `<div class="bio-dose-sched">⚠️ ${esc(sched)}</div>` : '')
+      + (flat ? `<div class="bio-dose-flat">In practice most people just use a flat <b>${esc(flat)}</b> — the per-kg figure is what the trials used, not a target to hit.</div>` : '');
   });
 })();
