@@ -98,7 +98,32 @@
     Object.keys(np.log).forEach(d => { const dl = np.log[d]; if (!dl) return; if (typeof dl.keystone === 'boolean') { dl.keystones = dl.keystones || {}; if (key) dl.keystones[key] = dl.keystone; delete dl.keystone; } dl.keystones = dl.keystones || {}; dl.done = dl.done || []; dl.sets = dl.sets || {}; dl.food = dl.food || []; dl.fn = dl.fn || {}; });
     return np;
   }
-  function getPlan() { try { return migratePlan(JSON.parse(localStorage.getItem(PLAN_KEY))) || null; } catch (e) { return null; } }
+  // GUARD 1 — shape coercion (added 2026-07-28). getPlan() returned whatever was in localStorage,
+  // so a plan that had become structurally malformed (protocols not an array, log not an object —
+  // a half-written save, an older schema, a sync that lost a field) flowed straight into the
+  // renderer, which then found no protocols and told the user "You haven't started a plan yet"
+  // OVER AN INTACT PLAN. That is the product lying about the user's own data, and it is
+  // unrecoverable from the UI. Coerce the shape instead: keep every field that is usable, discard
+  // only what is structurally wrong, and never let a bad shape read as "no plan".
+  function coercePlan(p) {
+    if (!p || typeof p !== 'object' || Array.isArray(p)) return null;
+    const obj = (v) => (v && typeof v === 'object' && !Array.isArray(v)) ? v : {};
+    p.protocols = Array.isArray(p.protocols)
+      ? p.protocols.filter((x) => x && typeof x === 'object' && x.pid)
+      : [];
+    p.log = obj(p.log); p.tools = obj(p.tools); p.fnWeek = obj(p.fnWeek);
+    if (p.draft && (typeof p.draft !== 'object' || Array.isArray(p.draft))) delete p.draft;
+    // a log keyed by anything that is not a YYYY-MM-DD date can hang date loops downstream
+    Object.keys(p.log).forEach((k) => {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || isNaN(Date.parse(k + 'T00:00:00'))) delete p.log[k];
+      else if (!p.log[k] || typeof p.log[k] !== 'object') delete p.log[k];
+    });
+    return p;
+  }
+  function getPlan() {
+    try { return coercePlan(migratePlan(JSON.parse(localStorage.getItem(PLAN_KEY)))) || null; }
+    catch (e) { console.warn('[plan] unreadable, treating as empty:', e && e.message); return null; }
+  }
   let _planSaveTimer = null;
   function setPlan(p) {
     if (p) localStorage.setItem(PLAN_KEY, JSON.stringify(p)); else localStorage.removeItem(PLAN_KEY);
@@ -145,7 +170,7 @@
     const M = mergedPlan(plan);
     if (!M.keystones.length && !M.moves.length && !M.supps.length) return 0;
     let s = 0; const d = new Date();
-    const showed = () => { const key = d.toISOString().slice(0, 10); return planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed; };
+    const showed = () => { const key = localISO(d); return planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed; };
     if (!showed()) d.setDate(d.getDate() - 1); // grace — a still-pending today doesn't break the streak
     for (; ;) { if (showed()) { s++; d.setDate(d.getDate() - 1); } else break; }
     return s;
@@ -155,7 +180,7 @@
     M = M || mergedPlan(plan); const tk = today(); const cells = [];
     for (let i = 6; i >= 0; i--) {
       const dd = new Date(); dd.setDate(dd.getDate() - i);
-      const key = dd.toISOString().slice(0, 10); const st = planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key));
+      const key = localISO(dd); const st = planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key));
       const cls = st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss');
       const lbl = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][dd.getDay()];
       cells.push(`<div class="ws-day ${cls}${key === tk ? ' today' : ''}" title="${key} · ${st.done}/${st.total} done"><span class="ws-dot"></span><span class="ws-lbl">${lbl}</span></div>`);
@@ -163,13 +188,19 @@
     return `<div class="week-strip">${cells.join('')}</div>`;
   }
   // ---- Progress-dashboard stats (all derived from plan.log; deterministic) ----
-  function dISO(offset) { const d = new Date(); if (offset) d.setDate(d.getDate() - offset); return d.toISOString().slice(0, 10); }
+  function dISO(offset) { const d = new Date(); if (offset) d.setDate(d.getDate() - offset); return localISO(d); }
   function planStartDate(plan) { const ps = planProtocols(plan).map(p => p.startedAt).filter(Boolean).sort(); return ps[0] || today(); }
   function daysShown(plan, M, N) { let c = 0; for (let i = 0; i < N; i++) { const key = dISO(i); if (planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed) c++; } return c; }
   function longestStreak(plan, M) {
     const log = plan.log || {}; const keys = Object.keys(log).sort(); if (!keys.length) return 0;
     let best = 0, cur = 0; const end = new Date(today() + 'T00:00:00');
-    for (let d = new Date(keys[0] + 'T00:00:00'); d <= end; d.setDate(d.getDate() + 1)) { const key = d.toISOString().slice(0, 10); if (planDayStats(M, log[key], scheduledIds(M, plan, key)).showed) { cur++; best = Math.max(best, cur); } else cur = 0; }
+    // GUARD 2 — error boundary on the streak walk (added 2026-07-28). This walks day by day from
+    // the first logged date to today. If either bound is an invalid Date the comparison never
+    // advances sanely, and the render hangs — an unrecoverable spinner on the user's own plan
+    // page. Bail on invalid bounds and hard-cap the iterations at ~10 years.
+    if (isNaN(new Date(keys[0] + 'T00:00:00')) || isNaN(end)) return 0;   // longestStreak returns a number
+    let _guard = 0;
+    for (let d = new Date(keys[0] + 'T00:00:00'); d <= end && _guard++ < 3700; d.setDate(d.getDate() + 1)) { const key = localISO(d); if (planDayStats(M, log[key], scheduledIds(M, plan, key)).showed) { cur++; best = Math.max(best, cur); } else cur = 0; }
     return best;
   }
   function adherencePct(plan, M, N) {
@@ -3925,7 +3956,7 @@
     return (hit || fnById('hydration')).id; // hydration is the universal fallback
   }
   // ISO-ish week key for weekly counters (year + week number)
-  function weekKey() { const d = new Date(); const day = (d.getDay() + 6) % 7; d.setDate(d.getDate() - day); return d.toISOString().slice(0, 10); }
+  function weekKey() { const d = new Date(); const day = (d.getDay() + 6) % 7; d.setDate(d.getDate() - day); return localISO(d); }
   // ---- Sleep-window (CBT-I sleep restriction) helpers ----
   function slpToMin(t) { if (!t || !/^\d{1,2}:\d{2}$/.test(t)) return null; const [h, m] = t.split(':').map(Number); return h * 60 + m; }
   function nowHM() { const d = new Date(); return String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); }
@@ -3938,7 +3969,7 @@
     if (tib <= 0 || tst <= 0 || tst > tib) return null;
     return { tib, tst, se: Math.min(100, Math.round(tst / tib * 100)) };
   }
-  function sleepEff7(plan) { const log = plan.log || {}; const tk = today(); let sum = 0, n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const dl = log[d.toISOString().slice(0, 10)]; if (dl && dl.sleep && dl.sleep.se != null) { sum += dl.sleep.se; n++; } } return { avg: n ? Math.round(sum / n) : 0, nights: n }; }
+  function sleepEff7(plan) { const log = plan.log || {}; const tk = today(); let sum = 0, n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const dl = log[localISO(d)]; if (dl && dl.sleep && dl.sleep.se != null) { sum += dl.sleep.se; n++; } } return { avg: n ? Math.round(sum / n) : 0, nights: n }; }
   // CBT-I guidance: SE≥90 extend window, 85–90 hold, <85 tighten (later bedtime, fixed wake)
   function sleepRec(avg, nights) {
     if (nights < 3) return 'Log 3+ nights for your sleep-window guidance.';
@@ -5226,7 +5257,17 @@
 
   // ---------- Fuel Tracker (localStorage, per-day log) ----------
   const FUEL_KEY = 'rnawiki_fuel_log';
-  function today() { return new Date().toISOString().slice(0, 10); }
+  // LOCAL date, not UTC (fixed 2026-07-28). today() used toISOString(), which is UTC — and
+  // Singapore is UTC+8, so between midnight and 08:00 local time the app believed it was still
+  // YESTERDAY. A user ticking their keystone at 07:55 on Monday had it recorded against Sunday;
+  // the morning's "8 of 8 done" became "0 of 12" in the afternoon and the day then read as a miss.
+  // Every date key in the tracker has to agree, so the six sibling call sites that built their own
+  // UTC key were converted with it.
+  const localISO = (d) => {
+    const x = d || new Date();
+    return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+  };
+  function today() { return localISO(); }
   function getFuelLog() {
     try { const l = JSON.parse(localStorage.getItem(FUEL_KEY)); if (l && l.date === today()) return l; } catch (e) {}
     return { date: today(), items: [] };
