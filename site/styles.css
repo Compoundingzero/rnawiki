@@ -3004,3 +3004,22 @@ a.dp-name:hover{color:var(--accent)}
   .nl-input,.nl-btn{flex:1 0 100%}
   .nl-hero{padding-top:1.7rem}
 }
+
+/* ---- Flat learn layer in the PRERENDERED document (2026-07-28, Phase 2 canary) --------------
+   Deliberately shares no class names with the SPA's chaptered renderer. In particular it must
+   never pick up `.chapter{display:none}` — the whole point is that this content is visible. */
+.learn-flat{margin:2rem 0 0;border-top:1px solid var(--line,#e5e5e5);padding-top:1.4rem}
+.learn-flat h2{font-size:1.22rem;margin:1.7rem 0 .6rem;letter-spacing:-.01em}
+.learn-flat h3{font-size:1.02rem;margin:1.2rem 0 .35rem;color:var(--text)}
+.learn-flat p{line-height:1.65;margin:0 0 .8rem}
+.lf-payoff{font-size:1.05rem;line-height:1.6;color:var(--muted);
+  border-left:3px solid var(--accent,#10b981);padding-left:.9rem;margin:0 0 1.2rem}
+.lf-steps{counter-reset:none;padding-left:1.3rem;line-height:1.62}
+.lf-steps li{margin:0 0 .9rem}
+.lf-fx{margin:.35rem 0 0;font-size:.9rem;color:var(--muted);border-left:2px solid var(--line,#ddd);padding-left:.65rem}
+.lf-myths dt,.lf-conn dt{font-weight:700;margin:.9rem 0 .25rem}
+.lf-myths dt::before{content:"✗ ";color:#dc2626}
+.lf-myths dd{margin:0 0 .2rem 0;line-height:1.6}
+.lf-myths dd::before{content:"✓ ";color:var(--accent,#10b981);font-weight:700}
+.lf-conn dd{margin:0 0 .2rem 0;line-height:1.6;color:var(--muted)}
+@media print{ .learn-flat{border-top:none} }

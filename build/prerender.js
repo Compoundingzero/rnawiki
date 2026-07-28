@@ -546,11 +546,66 @@ GRAPH.problems.forEach((p) => {
 });
 
 // pathways + learn
+// ---- the learn layer, rendered FLAT for the prerendered document ----------------------------
+// Added 2026-07-28 (Phase 2, canary). Until now build/prerender.js referenced `.expand` ZERO times:
+// it emitted only `p.html` for /pathway/i, so all 16 live pathway pages together carried 4,888
+// words against ~106,534 authored. ~95% of the layer was invisible to the ~90% of traffic that
+// never runs JavaScript.
+//
+// Deliberately a NEW flat renderer rather than a call into site/app.js's:
+//  - `styles.css:2436` is `.chapter{display:none}`. Reusing the SPA's chaptered renderer would ship
+//    60-80% of the words inside hidden elements — published but invisible, the worst of both.
+//  - v4 established that a shared module CANNOT render these pages anyway: the SPA composition
+//    embeds IIFE-scoped variables.
+// So this owns its own markup and uses no `.chapter` class anywhere.
+//
+// Ordered as progressive disclosure — the 30-second answer, then the 5-minute understanding, then
+// the deep layer — so the same page serves a skimmer and a reader without two sets of content.
+// selfTest and canExplain are NOT emitted: they are self-assessment checklists, not exposition, and
+// they read as filler to a crawler. That is the honest reason; it is not a risk mitigation.
+function learnFlatHtml(e) {
+  if (!e) return '';
+  const P = (t) => `<p>${mdSafe(t)}</p>`;
+  const out = [];
+  // — 30 seconds —
+  if (e.hook && e.hook.payoff) out.push(`<p class="lf-payoff">${mdSafe(e.hook.payoff)}</p>`);
+  if (e.bigIdea) out.push(`<h2>The big idea</h2>${P(e.bigIdea)}`);
+  if (Array.isArray(e.hook && e.hook.questions) && e.hook.questions.length) {
+    out.push(`<h2>Questions this answers</h2><ul>${e.hook.questions.map((q) => `<li>${mdSafe(q)}</li>`).join('')}</ul>`);
+  }
+  // — 5 minutes —
+  if (e.analogy) out.push(`<h2>An analogy that holds up</h2>${P(e.analogy)}`);
+  if (e.fundamentals) out.push(`<h2>The fundamentals underneath it</h2>${P(e.fundamentals)}`);
+  if (Array.isArray(e.mechSteps) && e.mechSteps.length) {
+    out.push(`<h2>How it actually works, step by step</h2><ol class="lf-steps">${e.mechSteps.map((m) => {
+      const t = m.t ? `<b>${mdSafe(m.t)}</b>` : '';
+      const d = m.d ? ` ${mdSafe(m.d)}` : '';
+      const fx = m.fx ? `<div class="lf-fx">${mdSafe(m.fx)}</div>` : '';
+      return `<li>${t}${d}${fx}</li>`;
+    }).join('')}</ol>`);
+  }
+  // — the deep layer —
+  if (Array.isArray(e.deepDive) && e.deepDive.length) {
+    out.push(`<h2>Going deeper</h2>${e.deepDive.map((d) =>
+      `<h3>${mdSafe(d.h || '')}</h3>${P(d.body || '')}`).join('')}`);
+  }
+  if (e.expertLens) out.push(`<h2>How an expert reasons with this</h2>${P(e.expertLens)}`);
+  if (Array.isArray(e.myths) && e.myths.length) {
+    out.push(`<h2>Common misconceptions</h2><dl class="lf-myths">${e.myths.map((m) =>
+      `<dt>${mdSafe(m.myth || '')}</dt><dd>${mdSafe(m.truth || '')}</dd>`).join('')}</dl>`);
+  }
+  if (Array.isArray(e.connections) && e.connections.length) {
+    out.push(`<h2>What this connects to</h2><dl class="lf-conn">${e.connections.map((c) =>
+      `<dt>${mdSafe(c.to || '')}</dt><dd>${mdSafe(c.why || '')}</dd>`).join('')}</dl>`);
+  }
+  return out.length ? `<section class="learn-flat">${out.join('')}</section>` : '';
+}
+
 D.pathways.forEach((p, i) => {
   const route = '/pathway/' + i;
   const pwFact = factByHref['/pathway/' + i];
   const pwFactHtml = pwFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${pwFact.t}</span></div>` : '';
-  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${pwFactHtml}${p.html || ''}</div>` }));
+  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${pwFactHtml}${p.html || ''}${learnFlatHtml(p.expand)}</div>` }));
 });
 function foundationsDiagram(i) {
   const C = { blue: '#2563eb', teal: '#0d9488', slate: '#475569', red: '#b3261e', amber: '#d97706', line: '#64748b', mut: '#94a3b8', green: '#059669' };
