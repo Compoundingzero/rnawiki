@@ -63,7 +63,10 @@ const sgAvail = (c) => {
     case 'pharmacy': return { tag: 'Pharmacy medicine', body: 'A pharmacy-only medicine — sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' };
     case 'unapproved': return { tag: 'Not approved', body: 'Not approved for human use in Singapore or most markets. Grey-market supply only: dose, purity and legality are all uncertain.' };
     case 'supplement':
-    case 'otc': return { tag: 'Available over the counter', body: 'Widely available OTC — e.g. iHerb (ships worldwide); in Singapore also Guardian, Watsons, GNC, Shopee / Lazada. Look for a third-party-tested / GMP mark and check the dose per serving.' };
+    // Named retailers removed 2026-07-28: they read as a purchase recommendation, and in Singapore
+    // "where to buy" copy is the kind of string that attracts the Medicines Act 1975 s.51
+    // advertising regime. The useful part for a reader is the purity criterion, not the shop.
+    case 'otc': return { tag: 'Available over the counter', body: 'Widely available over the counter. Look for a third-party-tested / GMP mark (USP, NSF or Informed Sport) and check the dose per serving.' };
     default: return { tag: 'Check locally', body: 'Availability and legal status vary by country — check your national regulator (in Singapore, the HSA) before buying.' };
   }
 };

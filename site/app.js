@@ -3295,7 +3295,19 @@
       // "low_impact_deload") can't pull a chest exercise into a knee protocol. Null for non-MSK
       // problems (no mapping) -> no filter, preserving prior behaviour.
       const rel = (rc.relevant_muscles && rc.relevant_muscles.length) ? new Set(rc.relevant_muscles) : null;
-      const inRegion = e => !rel || (e.primaryMuscles || []).some(m => rel.has(m));
+      // Contraindicated movements (added 2026-07-28). The computed tag join could surface an
+      // exercise the cause's OWN prescription tells you to avoid: rotator-cuff impingement says
+      // "avoid painful overhead loading until controlled" and the #1 rendered movement was an
+      // overhead cable press. The tag join knows which muscles an exercise trains; it has no idea
+      // which movements the condition cannot tolerate. `avoid_movements` is authored per cause and
+      // build/parse.js asserts that any cause whose prescription names a movement to avoid has one.
+      const avoid = (rc.avoid_movements || []).map(a => String(a).toLowerCase());
+      const notContra = (e) => {
+        if (!avoid.length || !e) return true;
+        const hay = ((e.name || '') + ' ' + (e.id || '')).toLowerCase().replace(/_/g, ' ');
+        return !avoid.some(a => hay.includes(a));
+      };
+      const inRegion = e => (!rel || (e.primaryMuscles || []).some(m => rel.has(m))) && notContra(e);
       // STRENGTHEN: round-robin across the loading tags, taking loading (non-stretch) exercises
       const seen = new Set();
       const lists = strengthenTags.map(t => (EX.byTag[t] || []).filter(id => { const e = exById[id]; return e && e.kind !== 'stretch' && inRegion(e); }));
@@ -3316,7 +3328,7 @@
       }
       const cap = (rc.anchor_exercises && rc.anchor_exercises.length) ? rc.anchor_exercises.length : (strengthGoal ? 4 : 3);
       // curated anchor lifts (the flagship compounds for this goal) take the first slots
-      (rc.anchor_exercises || []).forEach(id => { const e = exById[id]; if (e && !seen.has(id) && strengthen.length < cap) { seen.add(id); strengthen.push(e); } });
+      (rc.anchor_exercises || []).forEach(id => { const e = exById[id]; if (e && notContra(e) && !seen.has(id) && strengthen.length < cap) { seen.add(id); strengthen.push(e); } });
       let added = true;
       while (added && strengthen.length < cap) {
         added = false;

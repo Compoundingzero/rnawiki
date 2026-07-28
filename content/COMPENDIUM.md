@@ -80,7 +80,7 @@ These are the highest-evidence, lowest-risk compounds. Most people are deficient
 **Protocol:** 200 mg theanine : 100 mg caffeine for focus; 200–400 mg alone for sleep.
 **Bottom line:** The most practical no-prescription focus stack.
 **Stacks with:** Caffeine — the classic calm-focus pairing (roughly 1:2 caffeine:theanine); removes the jitters without dulling the alertness.
-**Cost:** Cheap — ~S$15–25/month. iHerb, Guardian, Shopee.
+**Cost:** Cheap — ~S$15–25/month. Widely available online and in pharmacies; look for third-party testing.
 
 ---
 
@@ -879,7 +879,7 @@ The most active frontier in medicine. Most are repurposed metabolic or cancer dr
 **Bottom line:** The most exciting longevity lever right now; NR the cleaner legal status, NMN the newer trials, niacin the best value. Full mechanism lives on [the NAD⁺ pathway](/pathway/12).
 **Human evidence:** A 2021 randomised trial (Yoshino et al, Science; ~25 prediabetic postmenopausal women) found 250 mg/day NMN improved muscle insulin sensitivity — a genuine but small, single-population human signal. The dramatic lifespan and healthspan results remain in animals; large human outcome trials don't yet exist.
 **Stacks with:** Pterostilbene (sirtuin activation from another angle) and TMG / betaine (replaces the methyl groups NAD⁺ metabolism uses up).
-**Cost:** ~S$40–90/month for NMN; NR (Niagen) is pricier. On iHerb / Shopee — verify third-party testing, purity varies widely.
+**Cost:** ~S$40–90/month for NMN; NR is pricier. Widely sold online and in pharmacies — look for third-party testing, as purity varies widely.
 
 ---
 
@@ -929,11 +929,11 @@ The most active frontier in medicine. Most are repurposed metabolic or cancer dr
 **Technical mechanism:** Gut-microbiome metabolite of ellagitannins (pomegranate) that induces **mitophagy** — selective recycling of damaged mitochondria — improving muscle mitochondrial quality. Only ~40% of people make it from food, so direct supplementation standardises the dose.
 **Molecular target:** [Urolithin A (PubChem CID 5488186)](https://pubchem.ncbi.nlm.nih.gov/compound/5488186) · [Examine: Urolithin A](https://examine.com/supplements/urolithin-a/)
 **In plain English:** Your muscle cells' power plants get damaged with age; this compound tells the cell to recycle the broken ones. Human trials show improved muscle endurance in older adults. Many people can't make it from pomegranate alone, so the supplement guarantees a dose.
-**Protocol:** 500–1,000 mg/day (Mitopure).
+**Protocol:** 500–1,000 mg/day of a standardised urolithin A preparation (the dose used in the human trials).
 **Bottom line:** One of the better-evidenced mitochondrial-longevity supplements.
 **Human evidence:** Human RCTs (Andreux 2019; Singh 2022) show improved muscle mitochondrial gene expression and endurance/strength in middle-aged and older adults by triggering mitophagy — the clean-up of worn-out mitochondria. Promising, still a young evidence base.
 **Stacks with:** Regular exercise (same mitophagy pathway) and omega-3.
-**Cost:** Premium — the studied form (Mitopure) runs ~S$60–90/month. Pomegranate does not reliably yield it (depends on gut bacteria).
+**Cost:** Premium — the standardised, trial-tested form runs roughly S$60–90/month. Pomegranate does not reliably yield it (it depends on your gut bacteria).
 
 ---
 
@@ -1208,12 +1208,12 @@ From the best-evidenced wakefulness drugs to the experimental "smart drugs."
 **Technical mechanism:** Withanolides act on the **HPA axis** to lower cortisol and modulate **GABA** receptors; reduces the cortisol-driven suppression of testosterone.
 **Molecular target:** [NR3C1 glucocorticoid receptor (NCBI Gene)](https://www.ncbi.nlm.nih.gov/gene/2908) · [Withanolide A (PubChem CID 11294368)](https://pubchem.ncbi.nlm.nih.gov/compound/11294368)
 **In plain English:** Turns down the stress-hormone (cortisol) thermostat, which improves sleep, calm, and — because stress suppresses testosterone — modestly raises T in stressed men.
-**Protocol:** 300–600 mg/day KSM-66 or Sensoril.
+**Protocol:** 300–600 mg/day of a standardised root or leaf extract, matching the standardisation used in the trials (see Human evidence).
 **Watch out:** Stimulates thyroid; caution in autoimmune disease/thyroid meds; rare liver reports.
 **Bottom line:** Best-evidenced adaptogen for stress, sleep, and hormones.
 **Human evidence:** Several small randomised trials (many using KSM-66 or Sensoril extracts) report reductions in perceived stress and cortisol over 6–8 weeks, with modest sleep and, in some, testosterone effects. Consistent but small studies, often manufacturer-linked — promising, not definitive.
 **Avoid:** Sedatives and benzodiazepines (additive drowsiness), thyroid medication (it can raise thyroid hormone), and immunosuppressants (it’s immune-stimulating). Skip in pregnancy.
-**Cost:** ~S$20–40/month for a standardised extract (KSM-66 or Sensoril). Guardian, Watsons, iHerb.
+**Cost:** ~S$20–40/month for a standardised extract. Widely stocked in Singapore pharmacies and online — look for a third-party-tested / GMP mark.
 
 ---
 

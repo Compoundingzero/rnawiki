@@ -590,7 +590,19 @@
       "dietitian",
       "pharmacist"
      ],
-     "plain": "Shoulder pain lifting my arm overhead, and it aches at night"
+     "plain": "Shoulder pain lifting my arm overhead, and it aches at night",
+     "avoid_movements": [
+      "overhead press",
+      "shoulder press",
+      "military press",
+      "push press",
+      "behind the neck",
+      "behind neck",
+      "upright row",
+      "jerk",
+      "snatch",
+      "overhead"
+     ]
     }
    ]
   },
