@@ -1562,6 +1562,9 @@
   function analogyBox(c) { if (!c.analogy) return ''; return `<div class="analogy" data-lvl="1"><span class="an-ico">💡</span><div><div class="an-h">The one-line mental model</div>${mdBlocks(c.analogy, mdInline)}</div></div>`; }
   function mechanismCascade(c, shareId) {
     if (!Array.isArray(c.mechSteps) || !c.mechSteps.length) return '';
+    // The animated cascade goes FIRST — the map before the detail. Precomputed by build/figures.js
+    // and shared verbatim with the prerendered document, so the two cannot drift.
+    const casc = c.cascade || '';
     const anyPredict = c.mechSteps.some(s => s.predict);
     const steps = c.mechSteps.map(s => {
       const link = s.tag ? ` <a class="mc-tag" href="#/target/${tkey(s.tag)}">${esc(s.tag)}</a>` : '';
@@ -1570,7 +1573,7 @@
       if (s.predict) return `<li class="mc-step predictable"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-predict"><span class="mc-p-q">🤔 ${esc(s.predict)}</span><button class="mc-reveal">Reveal the answer →</button></div><div class="mc-answer" hidden>${answer}</div></div></li>`;
       return `<li class="mc-step"><span class="mc-n">${s.n}</span><div class="mc-body">${answer}</div></li>`;
     }).join('');
-    return `<div class="callout mcascade" id="sec-mechanism"><span class="k">How it works — step by step</span>${anyPredict ? `<p class="mc-hint">Try to answer each question <i>before</i> you reveal it — guessing first is what makes it stick.</p>` : ''}<ol class="mc-list">${steps}</ol>${shareId ? shareBtn('mechanism:' + shareId) : ''}</div>`;
+    return `<div class="callout mcascade" id="sec-mechanism"><span class="k">How it works — step by step</span>${casc}${anyPredict ? `<p class="mc-hint">Try to answer each question <i>before</i> you reveal it — guessing first is what makes it stick.</p>` : ''}<ol class="mc-list">${steps}</ol>${shareId ? shareBtn('mechanism:' + shareId) : ''}</div>`;
   }
   function pkTimeline(c) {
     const p = c.pk; if (!p) return '';

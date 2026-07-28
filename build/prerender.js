@@ -453,6 +453,100 @@ try {
   if (fm) eval('factByHref = (' + fm[1] + ').reduce(function(o,f){o[f.href]=f;return o;},{})');
 } catch (e) { factByHref = {}; }
 
+// ---- BIOHACKER / NUTRITIONIST LAYER, PRERENDERED (2026-07-28) --------------------------------
+// All 170 compounds carry `c.bio` — form, biomarkers, cofactors, food-first, cost, dosing, timing,
+// cycling, contraindications, quality, non-responders, synergy — and this renderer emitted none of
+// it. ~430 words per compound reaching only the ~10% of traffic that runs JavaScript.
+//
+// ★ THE RESTRICTED PATH IS REGULATORY, NOT COSMETIC. ★
+// 83 of 170 compounds are `access: prescription` or `unapproved`. For those the SPA deliberately
+// shows a DIFFERENT set of cards — no dosing, no cycling, no timing, no cost-per-dose, no
+// food-first, no "buy this form" — because publishing a self-administration protocol for a
+// prescription-only medicine is exactly what Medicines Act 1975 s.51 prohibits, and there is no
+// educational exemption. A second renderer that quietly forgot that check would put a DIY dose for
+// semaglutide on a public page. So the access check is the FIRST thing here, and a build-time
+// assertion below proves no restricted compound ever emits a self-dosing card.
+function bioFlatHtml(c) {
+  const b = c.bio;
+  if (!b) return '';
+  const card = (ico, title, inner) => inner ? `<div class="biof-card"><h3>${ico} ${esc(title)}</h3>${inner}</div>` : '';
+  const line = (label, v) => v ? `<p><b>${esc(label)}:</b> ${mdSafe(v)}</p>` : '';
+  const marks = (heading) => (Array.isArray(b.biomarkers) && b.biomarkers.length)
+    ? card('🩸', heading, `<table class="biof-tbl"><thead><tr><th>Marker</th><th>What it tells you</th><th>Target / note</th></tr></thead><tbody>${
+      b.biomarkers.map((m) => `<tr><td><b>${mdSafe(m.marker)}</b>${m.when ? `<br><small>${mdSafe(m.when)}</small>` : ''}</td><td>${mdSafe(m.why)}</td><td>${mdSafe(m.range || '')}</td></tr>`).join('')}</tbody></table>`)
+    : '';
+  const contra = (heading) => (Array.isArray(b.contra) && b.contra.length)
+    ? card('⛔', heading, `<ul>${b.contra.map((x) => `<li><b>${mdSafe(x.flag)}:</b> ${mdSafe(x.advice)}</li>`).join('')}</ul>`) : '';
+
+  // ---- restricted ----
+  if (b.access === 'prescription' || b.access === 'unapproved') {
+    const rx = b.access === 'prescription';
+    const cards = [
+      rx && b.typicalDose ? card('⚖️', 'Typical dose — set by a doctor', `${mdSafe(b.typicalDose.line)}<p class="biof-note">The usual prescribed range, shown for reference only — <b>not a dose to take on your own</b>. Only a qualified doctor can decide if and how much you should take.</p>`) : '',
+      b.overdose ? card('☠️', 'Overdose — signs and dangers', mdSafe(b.overdose.line)) : '',
+      b.misuse ? card('⚠️', rx ? 'Dangers of not taking it as prescribed' : 'Why there is no safe DIY dose', mdSafe(b.misuse.line)) : '',
+      marks(rx ? 'What a doctor monitors' : 'What harm shows up in labs'),
+      contra('Who must not take it'),
+    ].filter(Boolean);
+    if (!cards.length && !b.accessNote) return '';
+    return `<section class="biof"><h2>🛡️ Using it safely — what to know</h2>
+      <p class="biof-sub">This is a ${rx ? 'prescription-only medicine' : 'compound not approved for human use'}. The notes below are educational, not medical advice — always follow a qualified professional.</p>
+      ${b.accessNote ? `<p class="biof-access">${mdSafe(b.accessNote)}</p>` : ''}
+      <div class="biof-cards">${cards.join('')}</div></section>`;
+  }
+
+  // ---- open (supplement / OTC) ----
+  const cards = [
+    b.form ? card('💊', 'Form & bioavailability', line('Buy', b.form.buy) + line('Skip', b.form.avoid) + line('With food', b.form.withFood) + line('Absorption', b.form.bioavailability)) : '',
+    marks('Biomarkers to track'),
+    b.cofactors ? card('🔗', 'Cofactors & interactions', ['needs', 'depletes', 'antagonists'].map((k) => Array.isArray(b.cofactors[k]) && b.cofactors[k].length
+      ? `<p><b>${k === 'needs' ? 'Needs alongside it' : k === 'depletes' ? 'It depletes' : 'Works against it'}:</b></p><ul>${b.cofactors[k].map((x) => `<li><b>${mdSafe(x.nutrient || x.name || '')}</b> — ${mdSafe(x.role || x.why || '')}</li>`).join('')}</ul>` : '').join('')) : '',
+    b.foodFirst ? card('🥗', 'Food first', mdSafe(b.foodFirst.line) + (b.foodFirst.note ? `<p class="biof-note">${mdSafe(b.foodFirst.note)}</p>` : '')) : '',
+    b.dosing ? card('⚖️', 'Dose', (b.dosing.flat ? `<p>${mdSafe(b.dosing.flat)}</p>` : '') + (b.dosing.perKg ? `<p><b>${mdSafe(String(b.dosing.perKg))} ${mdSafe(b.dosing.unit || '')}</b> per kg of bodyweight${b.dosing.capValue ? `, capped at ${mdSafe(String(b.dosing.capValue))} ${mdSafe(b.dosing.capUnit || b.dosing.unit || '')}` : ''}.</p>` : '') + (b.dosing.note ? `<p class="biof-note">${mdSafe(b.dosing.note)}</p>` : '')) : '',
+    b.timing ? card('⏰', 'Timing', mdSafe(b.timing.line)) : '',
+    b.cycling ? card('🔄', 'Cycling', mdSafe(b.cycling.line)) : '',
+    contra('Personalised cautions'),
+    b.quality ? card('🔬', 'Quality — what to look for', mdSafe(b.quality.line)) : '',
+    b.nonResponders ? card('🤷', 'If it does nothing for you', mdSafe(b.nonResponders.line)) : '',
+    Array.isArray(b.synergy) && b.synergy.length ? card('🤝', 'Pairs well with', `<ul>${b.synergy.map((x) => `<li><b>${mdSafe(x.with)}</b> — ${mdSafe(x.why)}</li>`).join('')}</ul>`) : '',
+    b.cost ? card('💰', 'Cost per dose', mdSafe(b.cost.perDose || '') + (b.cost.note ? `<p class="biof-note">${mdSafe(b.cost.note)}</p>` : '')) : '',
+  ].filter(Boolean);
+  if (!cards.length) return '';
+  return `<section class="biof"><h2>🧪 Practical use — form, dose, timing and what to watch</h2>
+    <div class="biof-cards">${cards.join('')}</div></section>`;
+}
+
+// ★ REGULATORY GATE — runs before a single compound page is written. ★
+// bioFlatHtml() branches on b.access, and a future edit that reorders those branches, or adds a
+// card above the check, would silently publish a self-administration protocol for a prescription
+// medicine. Assert the property directly on the OUTPUT rather than trusting the code shape.
+{
+  const BANNED = [
+    ['Form &amp; bioavailability', 'tells a reader which form to buy'],
+    ['Food first', 'frames a prescription medicine as a nutrition choice'],
+    ['Cycling', 'a self-administration schedule'],
+    ['Timing', 'a self-administration schedule'],
+    ['Cost per dose', 'prices it as a consumer purchase'],
+    ['Pairs well with', 'recommends stacking it'],
+    ['Practical use — form, dose, timing', 'the entire open-access heading'],
+  ];
+  const bad = [];
+  D.compounds.forEach((c) => {
+    const b = c.bio; if (!b) return;
+    if (b.access !== 'prescription' && b.access !== 'unapproved') return;
+    const html = bioFlatHtml(c);
+    BANNED.forEach(([needle, why]) => { if (html.includes(needle)) bad.push(`${c.name}: emits "${needle}" — ${why}`); });
+  });
+  if (bad.length) {
+    console.error('[prerender] REGULATORY — restricted compounds emitted self-administration content:');
+    bad.slice(0, 12).forEach((x) => console.error('  ✗ ' + x));
+    console.error('  Medicines Act 1975 s.51 has no educational exemption. Refusing to build.');
+    process.exit(1);
+  }
+  const n = D.compounds.filter((c) => c.bio && (c.bio.access === 'prescription' || c.bio.access === 'unapproved')).length;
+  console.log(`[prerender] bio layer: ${n} restricted compounds pass the no-self-dosing gate`);
+}
+
 // compounds
 D.compounds.forEach((c) => {
   const route = '/c/' + slug(c.name);
@@ -498,6 +592,16 @@ D.compounds.forEach((c) => {
     ${c.plain ? `<h2>In plain English</h2><p>${esc(mds(c.plain))}</p>` : ''}
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
     ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}
+    ${/* THE COMPOUND PAGE WAS 614 WORDS PRERENDERED AND 4,705 HYDRATED (2026-07-28).
+          157 of 170 compounds carry a full learn layer — hook, bigIdea, analogy, mechSteps with
+          687 prediction prompts, myths, canExplain, selfTest — on the compound object itself, and
+          this renderer emitted none of it. The compound page is the most important page type on
+          the site and ~87% of it was reaching only the ~10% of traffic that runs JavaScript.
+          The shape of `c` already matches what learnFlatHtml expects, so this is a one-line join —
+          which is the recurring shape of this project's defects: authored well, connected to
+          nothing. */ ''}
+    ${learnFlatHtml(c)}
+    ${bioFlatHtml(c)}
     ${targetLinksHtml}
     ${trialsHtml}
     ${c.protocol ? `<h2>Protocol</h2><p>${esc(c.protocol)}</p>` : ''}
@@ -752,11 +856,22 @@ function learnFlatHtml(e, opts) {
   if (e.analogy) out.push(`<h2>An analogy that holds up</h2>${P(e.analogy)}`);
   if (e.fundamentals) out.push(`<h2>The fundamentals underneath it</h2>${P(e.fundamentals)}`);
   if (Array.isArray(e.mechSteps) && e.mechSteps.length) {
-    out.push(`<h2>How it actually works, step by step</h2><ol class="lf-steps">${e.mechSteps.map((m) => {
+    // Lead with the animated cascade, THEN the steps. The picture is the map; the prose is the
+    // detail you go to once you know where you are. This order was the whole point of the
+    // progressive-disclosure work and the mechanism section was still doing it backwards.
+    out.push('<h2>How it actually works, step by step</h2>');
+    if (e.cascade) out.push(e.cascade);
+    out.push(`<ol class="lf-steps">${e.mechSteps.map((m) => {
       const t = m.t ? `<b>${mdSafe(m.t)}</b>` : '';
       const d = m.d ? ` ${mdSafe(m.d)}` : '';
       const fx = m.fx ? `<div class="lf-fx">${mdSafe(m.fx)}</div>` : '';
-      return `<li>${t}${d}${fx}</li>`;
+      // PREDICT-THEN-REVEAL. 235 of 340 mechSteps carry an authored `predict` prompt and this
+      // renderer referenced it ZERO times, so the best learning device in the corpus reached only
+      // the ~10% of readers who run JS. <details> is native: no JavaScript, works everywhere.
+      const pred = m.predict
+        ? `<details class="pred"><summary>${mdSafe(m.predict)}</summary><div class="pred-a">${t}${d}${fx}</div></details>`
+        : null;
+      return pred ? `<li>${pred}</li>` : `<li>${t}${d}${fx}</li>`;
     }).join('')}</ol>`);
   }
   // — the deep layer —

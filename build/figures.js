@@ -329,3 +329,68 @@ function actionFigure(action) {
 }
 
 module.exports = { actionFigure, classify };
+
+// ================================================================================================
+// ANIMATED SIGNAL CASCADE (2026-07-28)
+//
+// Felix on /pathway/6: "not enough visuals, too many words, more boring than a textbook. Research
+// how people make learning such things fun."
+//
+// The honest finding from that research is that the two things with the strongest evidence behind
+// them are not games or gimmicks — they are (1) seeing the process MOVE, and (2) being made to
+// PREDICT what happens next before being told. Both were already possible here and neither was
+// happening:
+//   - every pathway is a sequence of 5-12 mechSteps and the page rendered them as a numbered list
+//     of paragraphs. A cascade that does not move does not read as a cascade.
+//   - 235 of 340 mechSteps carry an authored `predict` prompt — a written-out prediction question —
+//     and `prerender.js` referenced `predict` ZERO times. The single best-evidenced learning device
+//     in the corpus was invisible to the ~90% of traffic that never runs JS.
+//
+// So: draw the chain, run a pulse down it, light each node as the pulse arrives, and let the reader
+// step through it. CSS only — the pulse must reach the readers who do not execute JavaScript, which
+// is almost all of them.
+const CC = { node: '#0d9488', dim: '#cbd5e1', line: '#94a3b8', text: '#334155', tag: '#64748b', fx: '#b5533a' };
+
+function cascadeFigure(steps, title) {
+  const S = (steps || []).filter((s) => s && (s.t || s.d));
+  if (S.length < 3) return '';                       // 2 boxes and an arrow is not worth the space
+  const W = 340, BH = 52, GAP = 26, PAD = 16;
+  const H = PAD * 2 + S.length * BH + (S.length - 1) * GAP;
+  const cycle = Math.max(6, S.length * 1.15);        // one full trip down the chain
+  const wrap = (t, n) => {                           // crude but predictable two-line wrap
+    const w = String(t || '').split(/\s+/); const out = []; let cur = '';
+    for (const x of w) { if ((cur + ' ' + x).trim().length > n) { out.push(cur.trim()); cur = x; } else cur += ' ' + x; }
+    if (cur.trim()) out.push(cur.trim());
+    return out.slice(0, 2);
+  };
+  let body = '';
+  S.forEach((s, i) => {
+    const y = PAD + i * (BH + GAP);
+    const delay = (i * cycle / S.length).toFixed(2);
+    const lines = wrap(s.t || s.d, 34);
+    body += `<g class="casc-node" style="--d:${delay}s;--cycle:${cycle}s">
+      <rect x="34" y="${y}" width="${W - 68}" height="${BH}" rx="10"/>
+      <text class="casc-n" x="50" y="${y + BH / 2 + 5}">${i + 1}</text>
+      ${lines.map((l, k) => `<text class="casc-t" x="70" y="${y + (lines.length === 1 ? BH / 2 + 4 : 20 + k * 15)}">${esc(l)}</text>`).join('')}
+      ${s.tag ? `<text class="casc-tag" x="${W - 44}" y="${y + BH - 8}" text-anchor="end">${esc(String(s.tag).slice(0, 18))}</text>` : ''}
+    </g>`;
+    if (i < S.length - 1) {
+      body += `<line class="casc-link" x1="${W / 2}" y1="${y + BH}" x2="${W / 2}" y2="${y + BH + GAP}"
+        stroke="${CC.line}" stroke-width="2.4" marker-end="url(#casc-ar)"/>`;
+    }
+  });
+  // The travelling pulse. It is the thing that makes this read as a signal rather than a flowchart.
+  const pulse = `<circle class="casc-pulse" cx="${W / 2}" cy="0" r="7"
+    style="--y0:${PAD + BH / 2}px;--y1:${PAD + (S.length - 1) * (BH + GAP) + BH / 2}px;--cycle:${cycle}s"/>`;
+  return `<figure class="casc" aria-label="Animated diagram: the ${esc(title || 'pathway')} signal passing through ${S.length} steps in order.">
+    <figcaption class="casc-cap"><b>Watch the signal travel</b><span>Each step lights up as the signal reaches it. ${S.length} steps, start to finish.</span></figcaption>
+    <svg viewBox="0 0 ${W} ${H}" role="img">
+      <title>The ${esc(title || 'pathway')} cascade: ${S.map((s, i) => (i + 1) + '. ' + esc(String(s.t || '').slice(0, 60))).join('; ')}</title>
+      <defs><marker id="casc-ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+        <path d="M0,0 L8,4 L0,8 z" fill="${CC.line}"/></marker></defs>
+      ${body}${pulse}
+    </svg>
+  </figure>`;
+}
+
+module.exports.cascadeFigure = cascadeFigure;
