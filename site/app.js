@@ -255,7 +255,19 @@
   function mdInline(s) {
     if (!s) return '';
     const links = [];
-    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, u) => { links.push(`<a href="${u}" target="_blank" rel="noopener">${t}</a>`); return `  ${links.length - 1}  `; });
+    // SECURITY (2026-07-28): this interpolated the URL RAW, before the escape pass below ran, so a
+    // URL could close the href and add its own attributes:
+    //   [x](" onmouseover="alert(1))   ->   <a href="" onmouseover="alert(1" ...>x</a>
+    //   [click](javascript:alert(1))   ->   <a href="javascript:alert(1" ...>click</a>
+    // NOT exploitable by a visitor today -- every user-supplied surface goes through esc(), and
+    // mdInline is fed only authored sidecar content. It was a LATENT sink: one future feature that
+    // piped user text through it (a community note, a comment, a shared-plan description) would
+    // have made it live, silently. Now the scheme is allowlisted and quotes/brackets escaped, so no
+    // URL can break out of the attribute regardless of what feeds it.
+    const safeUrl = (u) => /^(https?:|mailto:|\/|#)/i.test(String(u).trim())
+      ? String(u).replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      : '#';
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (m, t, u) => { links.push(`<a href="${safeUrl(u)}" target="_blank" rel="noopener">${t}</a>`); return `  ${links.length - 1}  `; });
     s = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // Authored content: restore a safe allowlist of inline tags the escape turned into text.
     s = s.replace(/&lt;(\/?)(b|i|sub|sup|em|strong)&gt;/gi, '<$1$2>');
@@ -6604,6 +6616,24 @@
     else html = notFound();
     app.innerHTML = html; window.scrollTo(0, 0);
     setPageMeta(parts);
+    // ACCESSIBILITY (2026-07-28). route() replaces the ENTIRE page body on every navigation, and
+    // nothing announced it: aria-live 0, role="status" 0, no focus move, no skip link. So a
+    // screen-reader user who clicked any in-app link heard NOTHING — focus stayed on the
+    // now-destroyed link and the new <h1> was never read. For a single-page app that is the core
+    // accessibility failure; it removes the experience rather than degrading it.
+    // Announce the new page title, then move focus to the new heading so the next thing read is
+    // the content, not the top of the document.
+    try {
+      const h1 = app.querySelector('h1');
+      const live = document.getElementById('route-status');
+      if (live) {
+        const title = (h1 && h1.textContent.trim()) || document.title.split('·')[0].trim();
+        // clear first — re-setting identical text does not re-announce in some screen readers
+        live.textContent = '';
+        setTimeout(() => { live.textContent = title ? title + ' — page loaded' : 'Page loaded'; }, 60);
+      }
+      if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
+    } catch (e) { }
     closeGlossPop();
     try { glossarize(app); } catch (e) { }
     const nav = document.querySelector('.topnav'); if (nav) nav.classList.remove('open');

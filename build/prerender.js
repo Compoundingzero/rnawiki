@@ -201,7 +201,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
     itemListElement: breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: SITE_URL + b.route })),
   })}</script>` : '';
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en-SG">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -226,6 +226,8 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
 ${crumbLd}${ld}
 </head>
 <body>
+<a class="skip-link" href="#app">Skip to content</a>
+<div id="route-status" role="status" aria-live="polite" class="sr-only"></div>
 <header class="topbar">
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 170 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>

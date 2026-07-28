@@ -2941,3 +2941,31 @@ a.dp-name:hover{color:var(--accent)}
 .assess-result.redflag.emergency{border-color:#dc2626;background:color-mix(in srgb,#dc2626 7%,transparent)}
 .assess-result.redflag.emergency h2{color:#dc2626}
 .assess-emerg-num{margin:.6rem 0 0;font-size:1.05rem;color:#dc2626}
+
+/* Accessibility (added 2026-07-28) --------------------------------------------------------- */
+/* Visually-hidden but still announced. Used by the SPA route-change live region. */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* Skip link: off-screen until focused, then a real, visible target. */
+.skip-link{position:absolute;left:-9999px;top:0;z-index:1000;background:var(--accent,#10b981);
+  color:#fff;padding:.6rem 1rem;border-radius:0 0 8px 0;font-weight:700;text-decoration:none}
+.skip-link:focus{left:0}
+/* The route handler moves focus to the new <h1>; don't paint a focus ring for that programmatic
+   move, but keep it for real keyboard focus. */
+#app h1[tabindex="-1"]:focus{outline:none}
+#app h1[tabindex="-1"]:focus-visible{outline:2px solid var(--accent,#10b981);outline-offset:3px}
+
+/* Print (added 2026-07-28): the cause chain is the thing people actually print or hand to a
+   clinician, so make it legible and drop the app furniture. */
+@media print{
+  .topbar,.foot,.menu-btn,.skip-link,.cta-primary,.assess-continue,#community-stacks,
+  .share-row,.vote-foot,.plan-tabs{display:none !important}
+  body{background:#fff;color:#000;font-size:11pt}
+  a{color:#000;text-decoration:underline}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:9pt;color:#444}
+  details{display:block !important}
+  details>summary{display:none}
+  .cause-chain,.chain-step,.plan-reassess,.keystone-card{break-inside:avoid;page-break-inside:avoid}
+  .plan-reassess{border:1px solid #000;padding:.5rem}
+  h1,h2,h3{break-after:avoid;page-break-after:avoid}
+}
