@@ -17741,12 +17741,14 @@
    "caveats": "Association is not causation: high-spermidine diets are healthy diets overall, a hard confounder to remove. Oral dosing barely shifts blood levels. And the polyamine–cancer relationship is two-sided, so 'more autophagy = safe for everyone' overreaches. Treat the numbers as directional, not a personal guarantee.",
    "trials": [
     {
-     "finding": "Spermidine competitively inhibited the acetyltransferase activity of recombinant EP300 and induced autophagy in cultured human cells — the mechanistic basis for the whole page.",
+     "finding": "Spermidine competitively inhibited the acetyltransferase activity of recombinant EP300 and induced autophagy in cultured human cells — providing an in-vitro mechanism by which spermidine can induce autophagy.",
      "ref": "Pietrocola et al., 2015, Cell Death & Differentiation",
      "pmid": "25526088",
      "pmid_verified_by": "felix",
      "pmid_verified_on": "2026-07-30",
-     "pmid_edit_note": "ACCEPT AFTER EDIT — Replace the ending with: “providing an in-vitro mechanism by which spermidine can induce autophagy.” Remove “the mechanistic basis for the whole page,” which overgeneralizes recombinant-enzyme and cultured-cell findings."
+     "finding_prev": "Spermidine competitively inhibited the acetyltransferase activity of recombinant EP300 and induced autophagy in cultured human cells — the mechanistic basis for the whole page.",
+     "finding_edited_by": "felix",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Prospective 20-year cohort (Bruneck, 829 adults): higher dietary spermidine intake was associated with lower all-cause mortality; top-vs-bottom-third gap comparable to being ~5.7 years younger (95% CI 3.6–8.1 y).",
@@ -20013,12 +20015,14 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Ablation of ERα abolished the metabolic benefits of 17-α-estradiol in male mice, showing the effect is ERα-mediated (it works through the estrogen receptor, weakly).",
+     "finding": "Ablation of ERα abolished the metabolic benefits of 17-α-estradiol in male mice, showing the effect is ERα-mediated (it works through the estrogen receptor), showing that the metabolic effects in male rodents were ERα-dependent.",
      "ref": "Mann et al., 2020, eLife",
      "pmid": "33289482",
      "pmid_verified_by": "felix",
      "pmid_verified_on": "2026-07-30",
-     "pmid_edit_note": "ACCEPT AFTER EDIT — Delete “weakly.” Replace the ending with: “showing that the metabolic effects in male rodents were ERα-dependent.” Receptor dependence does not quantify weak versus strong agonism."
+     "finding_prev": "Ablation of ERα abolished the metabolic benefits of 17-α-estradiol in male mice, showing the effect is ERα-mediated (it works through the estrogen receptor, weakly).",
+     "finding_edited_by": "felix",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "17-α-estradiol reduced age-associated sarcopenia and improved late-life physical function in male mice but not in females or castrated males.",
@@ -25973,12 +25977,14 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Meta-analysis of 6 RCTs (546 participants): nattokinase significantly reduced systolic BP (MD −3.45 mmHg) and diastolic BP (MD −2.32 mmHg); low-dose supplementation showed no significant lipid-lowering effect.",
+     "finding": "Meta-analysis of 6 RCTs (546 participants): nattokinase significantly reduced systolic BP (MD −3.45 mmHg) and diastolic BP (MD −2.32 mmHg); low-dose supplementation showed no significant lipid-lowering effect.Low total doses worsened pooled total cholesterol, LDL and HDL values rather than merely showing no lipid-lowering effect; a small glucose increase was also reported.",
      "ref": "Li et al., 2023, Reviews in Cardiovascular Medicine",
      "pmid": "39076715",
      "pmid_verified_by": "felix",
      "pmid_verified_on": "2026-07-30",
-     "pmid_edit_note": "ACCEPT AFTER EDIT — Replace the final clause with: “low total doses worsened pooled total cholesterol, LDL and HDL values rather than merely showing no lipid-lowering effect; a small glucose increase was also reported.”"
+     "finding_prev": "Meta-analysis of 6 RCTs (546 participants): nattokinase significantly reduced systolic BP (MD −3.45 mmHg) and diastolic BP (MD −2.32 mmHg); low-dose supplementation showed no significant lipid-lowering effect.",
+     "finding_edited_by": "felix",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "8-week randomised controlled trial (86 adults, SBP 130–159 mmHg): daily 2000 FU nattokinase reduced systolic and diastolic blood pressure versus placebo (net SBP −5.6 mmHg, DBP −2.8 mmHg).",
@@ -26212,12 +26218,14 @@
      "ref": "Kapil et al., 2013, Free Radic Biol Med"
     },
     {
-     "finding": "Dose-response study (70/140/280 mL beetroot juice ≈ 4.2/8.4/16.8 mmol): plasma nitrite peaked ~2–3 h post-ingestion, with O₂-cost and exercise effects plateauing at the highest dose.",
+     "finding": "Dose-response study (70/140/280 mL beetroot juice ≈ 4.2/8.4/16.8 mmol): plasma nitrite peaked ~2–3 h post-ingestion, with O₂-cost and exercise effects plateauing at the highest dose.Plasma nitrite and oxygen cost changed dose-dependently, but exercise tolerance did not improve further with 16.8 versus 8.4 mmol nitrate.",
      "ref": "Wylie et al., 2013, J Appl Physiol",
      "pmid": "23640589",
      "pmid_verified_by": "felix",
      "pmid_verified_on": "2026-07-30",
-     "pmid_edit_note": "ACCEPT AFTER EDIT — Replace the final clause with: “plasma nitrite and oxygen cost changed dose-dependently, but exercise tolerance did not improve further with 16.8 versus 8.4 mmol nitrate.” The plateau applies to exercise tolerance, not to plasma nitrite."
+     "finding_prev": "Dose-response study (70/140/280 mL beetroot juice ≈ 4.2/8.4/16.8 mmol): plasma nitrite peaked ~2–3 h post-ingestion, with O₂-cost and exercise effects plateauing at the highest dose.",
+     "finding_edited_by": "felix",
+     "finding_edited_on": "2026-07-30"
     }
    ]
   },
