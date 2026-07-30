@@ -767,7 +767,12 @@ D.goals.forEach((g) => {
   const protos = GRAPH.problems.filter((p) => p.root_causes.some((rc) => (rc.goal_ids || []).includes(g.id)));
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: g.label }])}
     <h1>${g.icon} ${esc(g.label)}</h1>
-    <p>${list.length} compounds that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, with honest verdicts.</p>
+    ${/* The goal page had the same defect as the home cards: "18 compounds that help you lose
+          fat" where 18 of the 18 are prescription-only. Caught by the new goal-count gate, not by
+          me — I fixed the home page and never looked here. */ ''}
+    <p>${(() => { const RX = new Set(['prescription', 'controlled', 'unapproved']);
+      const open = list.filter((c) => !RX.has(c.regulatory_class)).length; const rx = list.length - open;
+      return rx ? `${open} you can buy and ${rx} that need a prescription` : `${open} compounds`; })()} that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, with honest verdicts.</p>
     <ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
     ${protos.length ? `<h2>Full protocols</h2><ul>${protos.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)} — Move, Fuel &amp; Stack</a></li>`).join('')}</ul>` : ''}`;
   const goalLd = { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${g.label} — what actually helps`, description: `Compounds ranked by human evidence for ${g.label.toLowerCase()}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified };

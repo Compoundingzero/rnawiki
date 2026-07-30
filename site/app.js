@@ -2784,65 +2784,9 @@
       <p class="nl-note">One email a week. Unsubscribe in one click. No spam, ever.</p>
     </form>`;
   }
-  function newsletterPage() {
-    const nC = D.compounds.length;
-    const n5 = D.compounds.filter(c => c.stars === 5).length;
-    const nLow = D.compounds.filter(c => c.stars <= 2).length;
-    const nAn = D.compounds.filter(c => c.animalOnly).length;
-    const nP = (GRAPH.problems || []).length;
-    const nR = (GRAPH.problems || []).reduce((n, p) => n + ((p.root_causes || []).length), 0);
-    return `<div class="nl-page">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Newsletter' }])}
-      <section class="nl-hero">
-        <p class="nl-kicker">The RNAwiki newsletter</p>
-        <h1>The money doesn't leave all at once. It leaves forty dollars at a time.</h1>
-        <p class="nl-lead">A bottle whose label makes a claim no trial supports. A consult you walked out of still not really knowing what you'd been given, or why. Nobody ever handed you the tools to check either one — so you paid, and you hoped.</p>
-        <p class="nl-lead"><strong>One email a week closes that gap.</strong> What actually changed in drugs and supplements, whether it touches you, and what the evidence really says underneath the label.</p>
-        ${nlForm('hero', 'Send me the weekly email')}
-      </section>
-      <section class="nl-cost">
-        <h2>What it costs when the thing you were given doesn't work</h2>
-        <p>Researchers put a number on this. Not on drug prices — on what happens <em>after</em>, when a prescription fails to do its job and the problem has to be treated again.</p>
-        <ul class="nl-stat nl-stat-big">
-          <li><b>US$2,481</b> — the average additional cost, per person, of a <b>treatment failure</b>: you took what you were prescribed and it did not work.</li>
-          <li><b>US$2,610</b> — the average, per person, when the medicine creates a <b>new medical problem</b> that then needs treating too.</li>
-          <li><b>US$528.4&nbsp;billion a year</b> across the US — <b>16% of the entire national health bill</b>, spent on medication that didn't do what it was meant to.</li>
-        </ul>
-        <p class="nl-cite">Watanabe, McInnis &amp; Hirsch, <em>Annals of Pharmacotherapy</em> 2018 — <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" target="_blank" rel="noopener">PMID 29577766</a>. 2016 US dollars; plausible range $495.3–672.7 billion. Check it yourself, that's the point.</p>
-        <p class="nl-punch">Read that middle number again. It is not the price of the drug. It is what it costs you <em>after</em> the drug didn't work — the second visit, the second prescription, the thing that got worse while you waited.</p>
-        <p>Nobody hands you a way to tell, in advance, which category you're about to be in. You get a name on a box and a dosing instruction, and you hope.</p>
-        <h2>Now do your own</h2>
-        <ol class="nl-sum">
-          <li>Open the cupboard where the supplements live. Add up what they cost you a month. <b>Write the number down.</b></li>
-          <li>Add anything you're currently prescribed and have been taking for more than three months without a clear sense of whether it's working.</li>
-          <li>Then the only question that matters: <b>how many of those could you defend with an actual trial?</b></li>
-        </ol>
-        <p class="nl-punch">For most people the honest answer is "none — I trusted the label, or I trusted that someone had checked." That isn't stupidity. Checking was never made possible for you.</p>
-      </section>
-      <section class="nl-what"><h2>What lands in your inbox</h2>
-        <dl class="nl-in">
-          <dt>What actually changed this week — and whether it touches you</dt>
-          <dd>A drug gets approved. A supplement gets pulled. A big trial reads out and every headline mangles it. <b>Most of it will not affect you.</b> I'll tell you the one that does, in plain English, and what — if anything — to do differently.</dd>
-          <dt>The claim on the label, held against the trial behind it</dt>
-          <dd>Usually the number is real and the sentence wrapped around it is not. A supplement that says it "improves emotional wellbeing" turns out to have measured one depression score. A weight-loss figure quoted as a 14-week result was actually 52 weeks, most of it unblinded. <b>Once you can see that move, you cannot unsee it</b> — and you stop paying for it.</dd>
-          <dt>The question worth asking before you agree to anything</dt>
-          <dd>Not <em>refuse it</em> — ask about it. What is this for, what does it actually do, what happens if I don't take it, and is there something cheaper that does the same job? <b>Ten minutes of understanding is worth more than any second opinion you'll pay for.</b></dd>
-        </dl>
-      </section>
-      <section class="nl-honest"><h2>What this is not</h2><ul class="nl-list nl-not">
-        <li><b>It is not "don't trust your doctor."</b> Almost every expensive mistake in this area is made at a pharmacy shelf, not in a consulting room. The point is to walk in able to ask a real question — not to stay away.</li>
-        <li>Not a supplement-of-the-month. Nothing here is for sale and there are no affiliate links. I don't make money if you buy something.</li>
-        <li>Not medical advice, and it says so where it matters.</li>
-        <li>Not padded. One email, once a week. If nothing worth sending happened, nothing gets sent.</li>
-      </ul></section>
-      <section class="nl-proof"><h2>Why you can check me</h2>
-        <p>It's written out of RNAwiki — <b>${nC} compounds</b>, <b>${nP} problems</b> broken into <b>${nR} root-cause protocols</b>, and every key trial linked to the paper itself. Free to read, no paywall, no account.</p>
-        <p class="nl-caveat">Written with AI assistance and edited by a human. Not reviewed by a clinician. Where the evidence is thin, contested or animal-only, it says so instead of rounding up — <a href="#/about">how this site is made</a>.</p>
-      </section>
-      <section class="nl-close"><h2>The cost of another year of not knowing</h2>
-        <p>Twelve more months of the same cupboard, the same guesses, the same quiet outflow. Or one email a week, free, one click to leave.</p>
-        ${nlForm('footer', 'Start knowing what I am paying for')}
-      </section></div>`;
-  }
+  // newsletterPage() removed 2026-07-30 — the /newsletter route was folded into the home page
+  // and this function had ZERO call sites (verified: one occurrence in the file, its own
+  // definition). Its loss-framed copy lives on in the home newsletter block.
   function notFound() { return `<div class="empty"><h1>Not found</h1><p><a href="#/">← Home</a></p></div>`; }
 
   // ---------- contributors showcase ----------
