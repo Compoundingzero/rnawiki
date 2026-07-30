@@ -3633,3 +3633,33 @@ a.seed-chip:hover { text-decoration: none; }
 .body-twin { columns: 2; column-gap: 1.5rem; margin: .5rem 0 1rem; padding-left: 1.1rem; }
 @media (max-width: 560px) { .body-twin { columns: 1; } }
 .body-twin li { break-inside: avoid; margin: .3rem 0; }
+
+/* Move 4 — "Where does it hurt?" reverse funnel */
+.where-page .kicker { color: var(--accent-ink); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .74rem; }
+.where-lead { color: var(--muted); max-width: 60ch; line-height: 1.55; }
+.where-wrap { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 1.6rem; align-items: start; margin: 1.4rem 0; }
+@media (max-width: 720px) { .where-wrap { grid-template-columns: 1fr; } }
+.body-where { position: sticky; top: 1rem; }
+.body-where-svg { width: 100%; height: auto; max-height: 64vh; display: block; }
+.bw-sil { fill: var(--line-soft); stroke: var(--line); stroke-width: 1; }
+.bw-flabel { fill: var(--muted); font-size: 12px; font-weight: 600; font-family: var(--font); }
+.bw-zone { fill: var(--accent); fill-opacity: .16; stroke: var(--accent); stroke-width: 1.2; stroke-opacity: .35; transition: fill-opacity .15s, stroke-opacity .15s; }
+.bw-zone:hover { fill-opacity: .38; stroke-opacity: .8; }
+.bw-zone.on { fill-opacity: .55; stroke-opacity: 1; }
+.bw-index { display: flex; flex-direction: column; gap: .5rem; }
+.bw-zone-sec { border: 1px solid var(--line); border-radius: 12px; padding: .7rem 1rem; background: var(--panel); transition: border-color .15s, box-shadow .15s; }
+.bw-zone-sec.on { border-color: var(--accent); box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 22%, transparent); }
+.bw-zone-sec h3 { margin: 0 0 .35rem; font-size: 1rem; color: var(--head); }
+.bw-zone-sec ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
+.bw-zone-sec li { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.bw-prob { text-decoration: none; color: var(--head); }
+.bw-prob:hover { color: var(--accent-ink); }
+.bw-find { border: 1px solid var(--line); background: transparent; color: var(--muted); font-size: .74rem; padding: 2px 9px; border-radius: 999px; cursor: pointer; }
+.bw-find:hover { border-color: var(--accent); color: var(--accent-ink); }
+.bw-none { color: var(--muted); font-size: .9rem; }
+.where-foot { margin-top: 1.2rem; }
+
+/* Move 4 — "point to where it hurts" entry link on /solve */
+.where-cta{margin:.6rem 0 0}
+.where-cta a{display:inline-block;color:var(--accent-ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;text-decoration:none;font-size:.95rem}
+.where-cta a:hover{border-color:var(--accent)}

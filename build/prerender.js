@@ -1351,6 +1351,16 @@ ANAT.muscles.forEach((m) => {
     <p><a href="/anatomy">← All muscle groups</a></p></div>`;
   ['/body', '/body/leg'].forEach((route) => add(route, shell({ route, title: 'Interactive 3D body — see the muscles and how they move · RNAwiki', desc: 'Rotate a 3D leg model, peel the layers, and watch each muscle perform its action — origin, insertion and the exercises that train it, on the body.', breadcrumbs: anatCrumb('Interactive 3D body', '/body'), body })));
 })();
+// /where — "Where does it hurt?" reverse funnel (Move 4). Text index is the crawlable/a11y core; the
+// SVG is an aria-hidden visual map. Both prebuilt in parse.js so this matches the hydrated document.
+(function addWhere() {
+  if (!D.bodyWhereIndex) return;
+  const body = `<div class="article where-page"><div class="kicker">Start from your body</div><h1>Where does it hurt?</h1>
+    <p class="where-lead">Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and see the likely cause, the protocol, and a 3-question cause-finder.</p>
+    <div class="where-wrap"><div class="body-where">${D.bodyWhereSvg || ''}</div>${D.bodyWhereIndex}</div>
+    <p class="where-foot"><a href="/body">Or explore the muscles in 3D →</a></p></div>`;
+  add('/where', shell({ route: '/where', title: 'Where does it hurt? Find the likely cause and the fix · RNAwiki', desc: 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Where does it hurt?', route: '/where' }], body }));
+})();
 function metabolicMill(active) {
   const C = { fat: '#b5533a', carb: '#475569', prot: '#2563eb', mito: '#0d9488', atp: '#d97706', line: '#64748b' };
   const op = z => z === 'out' ? 1 : z === 'imm' ? (active === 'atp-pcr' ? 1 : .32) : z === 'ana' ? (active === 'glycolytic' ? 1 : .32) : z === 'glyc' ? ((active === 'glycolytic' || active === 'oxidative') ? 1 : .32) : (active === 'oxidative' ? 1 : .32);

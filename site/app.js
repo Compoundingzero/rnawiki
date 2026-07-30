@@ -2157,6 +2157,38 @@
   // Temporal stacking: bucket a compound into a time-of-day slot from its dosing text.
   // The "Your day" plan — a layman-friendly 24h checklist; each item expands to the "why".
   // ---------- 3D body map (Move 7): the full BodyParts3D/Three.js engine, lazy-loaded ----------
+  // "Where does it hurt?" — the reverse funnel. SVG + text index are prebuilt in parse.js (D.bodyWhereSvg /
+  // D.bodyWhereIndex) so both documents match. The text index is the crawlable + accessible core; the SVG
+  // is an aria-hidden visual map that scrolls to the matching section on tap. Cause-finder handoff reuses
+  // the global [data-find-cause] handler.
+  function whereShell() {
+    return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Where does it hurt?' }])}
+      <section class="where-page">
+        <div class="kicker">Start from your body</div>
+        <h1>Where does it hurt?</h1>
+        <p class="where-lead">Tap the spot — or pick it from the list — and see what's likely going on and the plan. Not sure which one? Answer three quick questions.</p>
+        <div class="where-wrap">
+          <div class="body-where">${D.bodyWhereSvg || ''}</div>
+          ${D.bodyWhereIndex || ''}
+        </div>
+        <p class="where-foot"><a class="cta-ghost" href="#/body">Or explore the muscles in 3D →</a></p>
+      </section>`;
+  }
+  function bindWhere() {
+    const svg = document.querySelector('.body-where-svg'); if (!svg) return;
+    svg.querySelectorAll('.bw-zone').forEach((z) => {
+      z.style.cursor = 'pointer';
+      z.addEventListener('click', () => {
+        const id = z.getAttribute('data-zone');
+        const sec = document.getElementById('zone-' + id); if (!sec) return;
+        svg.querySelectorAll('.bw-zone.on').forEach((e) => e.classList.remove('on'));
+        svg.querySelectorAll('[data-zone="' + id + '"]').forEach((e) => e.classList.add('on'));
+        document.querySelectorAll('.bw-zone-sec.on').forEach((s) => s.classList.remove('on'));
+        sec.classList.add('on');
+        sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  }
   // bodyShell() is the crawlable page (a real muscle index — what Google + the ~90% no-JS traffic get).
   // mountBody() lazy-imports site/bodymap.js ONLY here and upgrades the shell to the interactive canvas
   // on capable devices; renderStructurePanel() shows a picked muscle's facts from the SAME registry.
@@ -3723,6 +3755,7 @@
         <div class="kicker">Protocol engine</div>
         <h1>Stop guessing. Start solving.</h1>
         <p>Tell us the problem you want to fix or the goal you want to reach. We identify the likely root cause and build you one protocol: the <b class="mv">movement</b> to fix it, the <b class="fl">food</b> to fuel it (with a tracker that hits your biological targets), and the evidence-ranked <b class="st">compounds</b> to support it.</p>
+        <p class="where-cta"><a href="#/where">🧍 Not sure what it's called? <b>Point to where it hurts →</b></a></p>
       </section>
       ${filterBtns}
       <div id="solve-list">${sections}</div>
@@ -6625,6 +6658,7 @@
     else if (parts[0] === 'pro') { title = t('Pro dashboard — contribute & get featured on RNAwiki'); desc = 'For clinicians and businesses: improve protocols, track your leads, and manage your branded patient protocol links on RNAwiki.'; }
     else if (parts[0] === 'u' && parts[1]) { title = t('@' + parts[1] + ' — contribution portfolio'); desc = `@${parts[1]}'s clinical contribution portfolio on RNAwiki — reputation, accepted edits, and professional links.`; }
     else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model, peel back the layers, and watch each muscle perform its action. Origin, insertion and the exercises that train it, on the body.'; }
+    else if (parts[0] === 'where') { title = t('Where does it hurt? Find the likely cause and the fix'); desc = 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.'; }
     else if (parts[0] === 'clinic' && problemById[parts[2]]) { const p = problemById[parts[2]]; title = t(`${p.name} — home-care protocol from @${parts[1]}`); desc = `A clinician-issued ${p.name} home-care protocol from @${parts[1]} on RNAwiki — movement, stack, and Singapore food targets.`; }
     document.title = title;
     let m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'description'); document.head.appendChild(m); }
@@ -6649,6 +6683,7 @@
     else if (parts[0] === 'pathway') html = pathwayPage(parts[1]);
     else if (parts[0] === 'anatomy') html = anatomyIndex();
     else if (parts[0] === 'body') html = bodyShell(parts[1]);
+    else if (parts[0] === 'where') html = whereShell();
     else if (parts[0] === 'muscle') html = musclePage(parts[1]);
     else if (parts[0] === 'exercise') html = '<div class="empty"><h1>Loading exercise…</h1></div>';
     else if (parts[0] === 'fork') html = '<div class="empty"><h1>Loading variation…</h1></div>';
@@ -6744,6 +6779,7 @@
     if (parts[0] === 'pathway' && D.pathways[+parts[1]]) renderComments('pw:' + (+parts[1]), D.pathways[+parts[1]].shortLabel || 'this pathway');
     if (parts[0] === 'muscle' && muscleById[parts[1]]) { renderComments('mu:' + parts[1], muscleById[parts[1]].name); const mb = document.getElementById('mu-edit'); if (mb) mb.onclick = () => openEditContent('muscle', muscleById[parts[1]].name, 'physio'); }
     if (parts[0] === 'body') mountBody(parts[1]);
+    if (parts[0] === 'where') bindWhere();
     if (parts[0] === 'exercise' && parts[1]) mountExercise(parts[1]);
     if (parts[0] === 'fork' && parts[1]) mountForkPage(parts[1]);
     if (parts[0] === 'energy' && energyById[parts[1]]) renderComments('en:' + parts[1], energyById[parts[1]].name);

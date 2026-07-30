@@ -1,0 +1,37 @@
+{
+  "_note": "Move 4 'Where does it hurt?' body map. parse.js prebuilds bodyWhereSvg + bodyWhereIndex from this so both documents are identical. Zones map body regions -> real MSK problem ids. Bilateral parts carry two shapes sharing one data-zone. Coords are on a 0..180 base per figure; the renderer adds figures.<view>.ox.",
+  "viewBox": "0 0 380 440",
+  "figures": {
+    "front": { "ox": 10, "label": "Front" },
+    "back": { "ox": 200, "label": "Back" }
+  },
+  "silhouette": [
+    { "t": "ellipse", "cx": 80, "cy": 40, "rx": 23, "ry": 27 },
+    { "t": "rect", "x": 71, "y": 63, "w": 18, "h": 14, "rx": 8 },
+    { "t": "rect", "x": 49, "y": 75, "w": 62, "h": 92, "rx": 24 },
+    { "t": "rect", "x": 53, "y": 156, "w": 54, "h": 44, "rx": 18 },
+    { "t": "rect", "x": 31, "y": 80, "w": 17, "h": 118, "rx": 8 },
+    { "t": "rect", "x": 112, "y": 80, "w": 17, "h": 118, "rx": 8 },
+    { "t": "rect", "x": 56, "y": 194, "w": 22, "h": 182, "rx": 11 },
+    { "t": "rect", "x": 82, "y": 194, "w": 22, "h": 182, "rx": 11 },
+    { "t": "ellipse", "cx": 67, "cy": 386, "rx": 13, "ry": 8 },
+    { "t": "ellipse", "cx": 93, "cy": 386, "rx": 13, "ry": 8 }
+  ],
+  "zones": [
+    { "id": "neck", "label": "Neck", "view": "front", "problemIds": ["neck-shoulder"], "shapes": [{ "cx": 80, "cy": 66, "rx": 12, "ry": 9 }] },
+    { "id": "shoulders", "label": "Shoulders", "view": "front", "problemIds": ["neck-shoulder"], "shapes": [{ "cx": 52, "cy": 84, "rx": 12, "ry": 10 }, { "cx": 108, "cy": 84, "rx": 12, "ry": 10 }] },
+    { "id": "chest", "label": "Chest", "view": "front", "problemIds": [], "muscleGroup": "chest", "shapes": [{ "cx": 80, "cy": 106, "rx": 22, "ry": 15 }] },
+    { "id": "elbow", "label": "Elbow", "view": "front", "problemIds": ["elbow-wrist"], "shapes": [{ "cx": 38, "cy": 146, "rx": 9, "ry": 12 }, { "cx": 122, "cy": 146, "rx": 9, "ry": 12 }] },
+    { "id": "wrist", "label": "Wrist & forearm", "view": "front", "problemIds": ["elbow-wrist"], "shapes": [{ "cx": 38, "cy": 184, "rx": 9, "ry": 12 }, { "cx": 122, "cy": 184, "rx": 9, "ry": 12 }] },
+    { "id": "hip", "label": "Hip", "view": "front", "problemIds": ["hip-mobility"], "shapes": [{ "cx": 60, "cy": 176, "rx": 11, "ry": 12 }, { "cx": 100, "cy": 176, "rx": 11, "ry": 12 }] },
+    { "id": "thigh", "label": "Front of thigh", "view": "front", "problemIds": ["knee-pain"], "shapes": [{ "cx": 67, "cy": 248, "rx": 11, "ry": 26 }, { "cx": 93, "cy": 248, "rx": 11, "ry": 26 }] },
+    { "id": "knee", "label": "Knee", "view": "front", "problemIds": ["knee-pain"], "shapes": [{ "cx": 67, "cy": 310, "rx": 11, "ry": 12 }, { "cx": 93, "cy": 310, "rx": 11, "ry": 12 }] },
+    { "id": "shin", "label": "Shin", "view": "front", "problemIds": ["ankle-foot"], "shapes": [{ "cx": 67, "cy": 350, "rx": 10, "ry": 22 }, { "cx": 93, "cy": 350, "rx": 10, "ry": 22 }] },
+    { "id": "ankle-foot", "label": "Ankle & foot", "view": "front", "problemIds": ["ankle-foot"], "shapes": [{ "cx": 67, "cy": 384, "rx": 13, "ry": 9 }, { "cx": 93, "cy": 384, "rx": 13, "ry": 9 }] },
+    { "id": "upper-back", "label": "Upper back", "view": "back", "problemIds": ["neck-shoulder"], "shapes": [{ "cx": 80, "cy": 102, "rx": 24, "ry": 18 }] },
+    { "id": "low-back", "label": "Lower back", "view": "back", "problemIds": ["low-back-pain"], "shapes": [{ "cx": 80, "cy": 150, "rx": 22, "ry": 15 }] },
+    { "id": "glutes", "label": "Glutes", "view": "back", "problemIds": ["hip-mobility", "low-back-pain"], "shapes": [{ "cx": 80, "cy": 184, "rx": 24, "ry": 15 }] },
+    { "id": "hamstring", "label": "Back of thigh", "view": "back", "problemIds": ["knee-pain"], "shapes": [{ "cx": 67, "cy": 248, "rx": 11, "ry": 26 }, { "cx": 93, "cy": 248, "rx": 11, "ry": 26 }] },
+    { "id": "calf", "label": "Calf", "view": "back", "problemIds": ["ankle-foot"], "shapes": [{ "cx": 67, "cy": 350, "rx": 10, "ry": 22 }, { "cx": 93, "cy": 350, "rx": 10, "ry": 22 }] }
+  ]
+}
