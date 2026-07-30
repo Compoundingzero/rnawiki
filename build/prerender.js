@@ -2100,6 +2100,22 @@ let written = 0;
       <p>72 of 387 goal assignments were wrong, including a wakefulness-promoting drug ranked first
       under "Sleep Better". The taxonomy was rebuilt and is now checked at build time.</p>
 
+      <h3>Reviewer credentials that were not real</h3>
+      <p>This is the worst one, and it is published here because a corrections log that leaves out
+      its worst entry is not a corrections log.</p>
+      <p>The site displayed community protocols attributed to a <em>"verified physiotherapist"</em>,
+      alongside other named contributor accounts. None of those people existed. The accounts and
+      their content were seeded demonstration data, and the verification badge was not backed by any
+      check — there was no verification process behind it at all. Everything in that cluster has
+      been deleted.</p>
+      <p>The wording around it went too. The site said verified clinicians stewarded protocols in
+      their field, that a verified dietitian checked corrections to food data, that a verified
+      physiotherapist could attach anatomy models, and that a verified expert would build a
+      requested protocol. None of that was happening. There are no verified professionals here, no
+      programme that verifies anyone, and no clinician has reviewed this content — which is what the
+      line at the foot of every protocol page has always said, and is now the only thing the site
+      says on the subject.</p>
+
       <h3>Citations audited end to end</h3>
       <p>Every citation in the corpus was checked against its record. Across two passes, 244
       citations were bound to verified sources, 58 claims were corrected to match what the source

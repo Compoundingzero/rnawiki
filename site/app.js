@@ -696,7 +696,7 @@
     if (btn) {
       const canEdit = ME && (ME.role === 'admin' || (ME.domain === 'pharmacist' && ME.domain_verified));
       if (canEdit) btn.onclick = () => openEditor(c, currentFields);
-      else btn.onclick = () => { if (!ME) return openAuth('login'); alert('Compound pages are maintained by verified pharmacology experts (pharmacist / MD / biomedical researcher). Apply for that role in your Pro dashboard.'); };
+      else btn.onclick = () => { if (!ME) return openAuth('login'); alert('Compound pages are edited by the site maintainer. Use the Feedback button to send a correction — corrections are welcome and wanted.'); };
     }
     wireCompoundLearning(c);
   }
@@ -1221,7 +1221,7 @@
           // type="button" is load-bearing: these buttons now live inside a real <form>, and a
           // <button> with no type defaults to type="submit" -- so without this, clicking a
           // suggestion would submit the form to /solve instead of opening the triage modal.
-          out.innerHTML = `<button type="button" class="funnel-hit funnel-req" id="hero-req"><span class="fh-i">✨</span><span class="fh-b"><b>Don’t see it? Request this protocol</b><small>A verified expert will build it — takes 10 seconds</small></span></button>`;
+          out.innerHTML = `<button type="button" class="funnel-hit funnel-req" id="hero-req"><span class="fh-i">✨</span><span class="fh-b"><b>Don’t see it? Request this protocol</b><small>Tell us what you need — takes 10 seconds</small></span></button>`;
           out.hidden = false;
           const rb = document.getElementById('hero-req'); if (rb) rb.onclick = () => { out.hidden = true; openRequestModal(inp.value.trim()); };
         } else { out.hidden = true; out.innerHTML = ''; }
@@ -2247,7 +2247,7 @@
     const exList = arr => arr && arr.length ? `<div class="anat-exlist">${arr.map(e => `<a class="anat-ex" href="#/exercise/${esc(e.id)}"><b>${esc(e.name)}</b>${e.level ? `<em>${esc(e.level)}</em>` : ''}</a>`).join('')}</div>` : '<p class="muted">None catalogued yet.</p>';
     const model = m.model_embed
       ? `<div class="section-title">This muscle in 3D</div><div class="anat-3d"><iframe title="${esc(m.name)} — interactive 3D anatomy" src="${esc(m.model_embed)}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe></div><p class="fig-credit">Drag to rotate · scroll to zoom — see the shape, origin and insertion of the ${esc(m.name.toLowerCase())}. 3D model via Sketchfab (CC-BY); the ℹ button credits the author. Origin, insertion and action are detailed just below.</p>`
-      : `<div class="section-title">This muscle in 3D</div><div class="anat-3d-soon"><span class="a3d-ico">🧊</span><p>A 3D model specific to the <b>${esc(m.name.toLowerCase())}</b> is being added. Its origin, insertion and action are detailed just below — and a verified physiotherapist can attach a model via ✎ Edit.</p></div>`;
+      : `<div class="section-title">This muscle in 3D</div><div class="anat-3d-soon"><span class="a3d-ico">🧊</span><p>A 3D model specific to the <b>${esc(m.name.toLowerCase())}</b> is being added. Its origin, insertion and action are detailed just below.</p></div>`;
     // ---- THE COURSE SHORT-CIRCUIT USED TO EAT THIS WHOLE PAGE (fixed 2026-07-28) ----
     // `if (m.expand) return learnCourse(...)` sat at the TOP of this function, and all 17 muscles
     // have `.expand`. So on every muscle page the SPA silently dropped the 3D model, the anatomy
@@ -3765,7 +3765,7 @@
       ${filterBtns}
       <div id="solve-list">${sections}</div>
       <div class="request-cta">
-        <div><b>Don’t see your problem or goal?</b> <span>Request it and we’ll have a verified expert build the protocol.</span></div>
+        <div><b>Don’t see your problem or goal?</b> <span>Tell us, and it goes on the list of what to build next.</span></div>
         <button class="cta-primary" id="req-proto">Request a protocol →</button>
       </div>
       <div id="requests-board"></div>`;
@@ -3832,7 +3832,7 @@
     app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: p ? p.name : 'Protocol', href: p ? base : '#/' }, { label: 'Stack' }])}
       <span class="anat-region">💬 Community stack · not reviewed</span>
       <h1>${esc(f.title)}</h1>
-      <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.domain && f.domain_verified ? ' ✓' : ''}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
+      <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
       ${f.note ? `<p class="anat-lead">${esc(f.note)}</p>` : ''}
       <div class="section-title">The stack (${cpds.length})</div>
       <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b><span class="stars">${starStr(c.stars)}</span></a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
@@ -3894,7 +3894,7 @@
   function openRequestModal(prefill) {
     if (!ME) return openAuth('login');
     const m = modal(`<div class="partner-modal"><h2>Request a protocol</h2>
-      <p class="muted">Tell us the problem or goal you want solved. Others can upvote it, and a verified expert can pick it up and build it.</p>
+      <p class="muted">Tell us the problem or goal you want solved. Others can upvote it, and the most-wanted ones get built first.</p>
       <label>Problem or goal</label><input id="rq-title" maxlength="120" placeholder="e.g. Plantar fasciitis, Perimenopause sleep, Marathon recovery" value="${esc(prefill || '')}">
       <label>Anything specific? (optional)</label><textarea id="rq-detail" rows="3" maxlength="1000" placeholder="Symptoms, what you’ve tried, your goal…"></textarea>
       <button class="cta-primary" id="rq-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">Submit request</button></div>`);
@@ -3954,7 +3954,7 @@
     if (!PHASE2) return; // expert root-cause governance is Phase 2 — not launched
     const canPropose = ME && (ME.role === 'admin' || ME.domain_verified);
     let html = '';
-    if (rc._stub) html += `<div class="rc-stub">🧩 This root cause was added by the expert panel — its full protocol is being built. ${canPropose ? 'Add the Move, Fuel and Stack above.' : 'Check back soon, or join the discussion below.'}</div>`;
+    if (rc._stub) html += `<div class="rc-stub">🧩 This root cause does not have its full protocol yet. ${canPropose ? 'Add the Move, Fuel and Stack above.' : 'Check back soon, or join the discussion below.'}</div>`;
     if (!canPropose) { el.innerHTML = html; return; }
     let data = { changes: [], threshold: 2 };
     try { data = await api.rootcauseChanges(problem.id); } catch (e) {}
@@ -5515,11 +5515,13 @@
       // an approved correction to an existing food overrides that food rather than adding a duplicate
       if (data.corrects) {
         const o = Object.assign({}, data); delete o.corrects;
-        window.__foodOverrides[data.corrects] = Object.assign(o, { serving: f.serving || undefined, verified: true, corrected: true });
+        // No `verified: true` here (removed 2026-07-30). This is the submitter's own edit, held for
+        // review — flagging it verified client-side asserted a check that nobody performs.
+        window.__foodOverrides[data.corrects] = Object.assign(o, { serving: f.serving || undefined, corrected: true });
         return;
       }
       const id = 'u' + f.id;
-      const fo = Object.assign({ id, name: f.name, serving: f.serving || '', sg_local: true, verified: true, tags: [], hay: (f.name || '').toLowerCase() }, data);
+      const fo = Object.assign({ id, name: f.name, serving: f.serving || '', sg_local: true, tags: [], hay: (f.name || '').toLowerCase() }, data);
       if (data.photo || data.photo_file_id || data.photo_data) fo.photo = '/api/foodphoto?id=' + f.id; // served via proxy (bot token / inline data stays server-side)
       window.__userFoods[id] = fo;
     });
@@ -5551,7 +5553,7 @@
         <p class="muted" style="font-size:.8rem;margin:.4rem 0">Per serving — fill in any you know.</p>
         <div class="uf-grid uf-micro-grid">${otherMicros.map(inp).join('')}</div></details>` : '';
     const m = modal(`<div class="partner-modal"><h2>${editing ? 'Fix this food’s nutrition' : 'Add a food'}</h2>
-      <p class="muted">${editing ? 'Correct any wrong numbers below. A verified dietitian checks the change, then everyone sees the corrected values.' : 'Add a missing dish — only the name is required, everything else is optional. It goes live instantly for everyone.'} Leave a field blank if you don’t know it. +20 reputation.</p>
+      <p class="muted">${editing ? 'Correct any wrong numbers below. Your correction is held for review before it replaces the published values.' : 'Add a missing dish — only the name is required, everything else is optional. It goes live instantly for everyone.'} Leave a field blank if you don’t know it. +20 reputation.</p>
       <label>Food name</label><input id="uf-name" placeholder="Chicken rice (roasted)"${va(pf.name)}>
       <label>Serving</label><input id="uf-serv" placeholder="1 plate (~300g)"${va(pf.serving)}>
       <label>Macros (per serving)</label>
@@ -5721,7 +5723,7 @@
     const m = modal(`<button class="modal-x" data-close aria-label="Close">✕</button>
       ${img}
       <h2 class="fd-name">${esc(food.name)}</h2>
-      <p class="fd-serv">${esc(food.serving || '1 serving')}${food.sg_local ? ' · <span class="sg">SG</span>' : ''}${food.verified ? ' · <span class="uf-badge">✓ verified</span>' : ''}</p>
+      <p class="fd-serv">${esc(food.serving || '1 serving')}${food.sg_local ? ' · <span class="sg">SG</span>' : ''}</p>
       ${giLine}
       ${subHtml}
       <div class="fd-nutri" id="fd-nutri"></div>
@@ -5844,7 +5846,7 @@
           const pool = FO.foods.map(withOverride).concat(Object.values(window.__userFoods || {}));
           const matched = pool.filter(f => f.hay.includes(v)).sort((a, b) => (b.sg_local - a.sg_local)).slice(0, 8);
           const reloadFoods = () => { window.__userFoodsLoaded = false; loadUserFoods().then(() => render()); };
-          hits.innerHTML = matched.map(f => `<div class="food-hit"><button data-food="${f.id}">${f.photo ? `<img class="food-thumb" src="${esc(f.photo)}" alt="" loading="lazy">` : ''}<b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg">SG</span>' : ''}${f.verified ? ' <span class="uf-badge">✓</span>' : ''}${giBadge(f.gi)} <small>${esc(f.serving || '')}</small></button><button class="food-edit" data-edit="${f.id}" title="Fix this food’s nutrition">✎</button></div>`).join('') || `<span class="no-hit">No match — <button class="linkbtn" id="add-food-inline">add it →</button></span>`;
+          hits.innerHTML = matched.map(f => `<div class="food-hit"><button data-food="${f.id}">${f.photo ? `<img class="food-thumb" src="${esc(f.photo)}" alt="" loading="lazy">` : ''}<b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg">SG</span>' : ''}${giBadge(f.gi)} <small>${esc(f.serving || '')}</small></button><button class="food-edit" data-edit="${f.id}" title="Fix this food’s nutrition">✎</button></div>`).join('') || `<span class="no-hit">No match — <button class="linkbtn" id="add-food-inline">add it →</button></span>`;
           const afi = document.getElementById('add-food-inline'); if (afi) afi.onclick = () => openAddFoodModal(reloadFoods);
           hits.querySelectorAll('[data-edit]').forEach(b => b.onmousedown = e => { e.preventDefault(); openEditFood(b.dataset.edit, reloadFoods); });
           hits.hidden = false;
