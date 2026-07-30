@@ -475,9 +475,14 @@ const crumbHtml = (items) => `<div class="crumbs">${items.map((it, i) => it.rout
 // ---- SEO entities & structured-data helpers ----
 const BUILD_DATE = new Date().toISOString().slice(0, 10); // real freshness signal for dateModified/lastReviewed
 // The publisher entity (E-E-A-T). Referenced by @id from every clinical page; defined in full on home.
-const ORG = { '@type': 'Organization', '@id': SITE_URL + '/#org', name: SITE_NAME, url: SITE_URL + '/', logo: SITE_URL + '/og.png',
+const ORG = { '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE_URL + '/#org', name: SITE_NAME, url: SITE_URL + '/', logo: SITE_URL + '/og.png',
   sameAs: ['https://twitter.com/Compoundingzero', 'https://compoundingzero.substack.com', 'https://github.com/Compoundingzero'] };
-const WEBSITE = { '@type': 'WebSite', '@id': SITE_URL + '/#website', url: SITE_URL + '/', name: SITE_NAME, inLanguage: 'en', publisher: { '@id': SITE_URL + '/#org' } };
+const WEBSITE = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE_URL + '/#website', url: SITE_URL + '/', name: SITE_NAME, inLanguage: 'en', publisher: { '@id': SITE_URL + '/#org' },
+  // Sitelinks search box. index.html declared this for months while /az ignored ?q= entirely, so it
+  // promised Google a search that dropped the query. app.js now reads the parameter (see azQuery),
+  // which is the only reason this belongs here. Google crawls '/' -> home.html, so declaring it
+  // only in the index.html shell put it on a document the canonical home never serves.
+  potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: SITE_URL + '/az?q={search_term_string}' }, 'query-input': 'required name=search_term_string' } };
 const PUB = { publisher: { '@id': SITE_URL + '/#org' }, isPartOf: { '@id': SITE_URL + '/#website' }, dateModified: BUILD_DATE };
 const stripMd = (t) => String(t == null ? '' : t).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`>#]+/g, '').replace(/\s+/g, ' ').trim();
 // Trim to a word boundary so answers never cut mid-word.
@@ -1945,4 +1950,34 @@ fs.writeFileSync(path.join(SITE, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(SITE, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
 
 console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.length} urls) + robots.txt; swept ${swept} stale files`);
+
+// ---- build-time assertion: structured data ----------------------------------------------------
+// Added 2026-07-30. Two blocks on the home page shipped without "@context" for months. Google
+// silently discards a block with no @context, so the WebSite and Organization entities -- the two
+// that carry the sitelinks search box and the brand panel -- were being emitted, served, and thrown
+// away, with nothing anywhere reporting a problem. Valid JSON is not the bar; a block can parse
+// perfectly and still be invisible. 1,260 of 1,262 blocks were correct, which is exactly why this
+// went unnoticed: an eyeball check of any random page would have passed.
+(function assertStructuredData() {
+  const bad = [];
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) return walk(p);
+    if (!e.name.endsWith('.html')) return;
+    const html = fs.readFileSync(p, 'utf8');
+    (html.match(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g) || []).forEach((blk) => {
+      const body = blk.replace(/^[^>]*>/, '').replace(/<\/script>$/, '');
+      let j; try { j = JSON.parse(body); } catch (err) { bad.push(`${p}: JSON-LD does not parse — ${err.message}`); return; }
+      if (!j['@context']) bad.push(`${p}: @type=${[].concat(j['@graph'] || j).map((x) => x['@type']).join(',')} has no @context — Google discards this block`);
+    });
+  });
+  walk(SITE);
+  if (bad.length) {
+    console.error('\n[prerender] STRUCTURED-DATA ASSERTION FAILED — refusing to build:');
+    bad.slice(0, 20).forEach((m) => console.error('  \u2717 ' + m));
+    if (bad.length > 20) console.error(`  … and ${bad.length - 20} more`);
+    process.exit(1);
+  }
+  console.log('[prerender] structured data OK — every JSON-LD block parses and declares @context.');
+})();
 console.log(`[prerender] base URL: ${SITE_URL}`);

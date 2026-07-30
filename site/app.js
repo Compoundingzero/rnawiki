@@ -2480,22 +2480,46 @@
       ${solveCta('Turn this into a protocol →')}</div>`;
   }
 
+  // The site's WebSite JSON-LD has always declared a SearchAction pointing at /az?q={term}, but
+  // nothing read that parameter: /az, /az?q=magnesium and /az?q=zzzznonsense returned byte-identical
+  // documents. So the structured data promised Google a search box that would drop the user's query
+  // on arrival. Reading ?q= here is what makes that declaration true. Also gives the A-Z page the
+  // filter a 171-entry index needs, and makes a search shareable as a URL.
+  function azQuery() { try { return (new URL(location.href).searchParams.get('q') || '').slice(0, 80); } catch (e) { return ''; } }
   function azPage() {
+    const q0 = azQuery();
     setTimeout(() => {
-      const bar = document.getElementById('az-cats'); if (!bar) return;
-      bar.querySelectorAll('.chip').forEach(chip => chip.onclick = () => { bar.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); chip.classList.add('active'); renderAz(chip.dataset.cat); });
-      renderAz('');
+      const bar = document.getElementById('az-cats'), box = document.getElementById('az-q');
+      if (!bar) return;
+      const cur = () => (bar.querySelector('.chip.active') || {}).dataset ? bar.querySelector('.chip.active').dataset.cat : '';
+      bar.querySelectorAll('.chip').forEach(chip => chip.onclick = () => { bar.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); chip.classList.add('active'); renderAz(chip.dataset.cat, box ? box.value : ''); });
+      if (box) {
+        box.oninput = () => {
+          renderAz(cur(), box.value);
+          // Keep the URL in step so a filtered view can be copied and shared, without adding a
+          // history entry per keystroke.
+          try { const u = new URL(location.href); box.value ? u.searchParams.set('q', box.value) : u.searchParams.delete('q'); history.replaceState(null, '', u); } catch (e) {}
+        };
+        if (q0) box.value = q0;
+      }
+      renderAz('', q0);
     }, 0);
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'A–Z' }])}<h1>A–Z Index</h1>
+      <div class="toolbar"><input id="az-q" type="search" placeholder="Filter ${D.compounds.length} compounds by name…" aria-label="Filter compounds by name" value="${esc(q0)}" style="flex:1;min-width:12rem;padding:.5rem .7rem;border-radius:.5rem;border:1px solid var(--line);background:var(--card);color:inherit;font:inherit"></div>
       <div class="toolbar" id="az-cats"><span class="chip active" data-cat="">All (${D.compounds.length})</span>${D.categories.map(c => `<span class="chip" data-cat="${c}">${c}</span>`).join('')}</div>
       <div id="az-body"></div>`;
   }
-  function renderAz(cat) {
-    let list = (cat ? D.compounds.filter(c => c.category === cat) : D.compounds.slice()).sort((a, b) => a.name.localeCompare(b.name));
+  function renderAz(cat, q) {
+    const needle = String(q || '').trim().toLowerCase();
+    let list = (cat ? D.compounds.filter(c => c.category === cat) : D.compounds.slice());
+    if (needle) list = list.filter(c => c.name.toLowerCase().includes(needle) || String(c.category || '').toLowerCase().includes(needle));
+    list.sort((a, b) => a.name.localeCompare(b.name));
     const groups = {}; list.forEach(c => { const L0 = c.name[0].toUpperCase(); const L = /[A-Z]/.test(L0) ? L0 : '#'; (groups[L] = groups[L] || []).push(c); });
     let html = '';
     Object.keys(groups).sort().forEach(L => { html += `<div class="az-letter">${L}</div><div class="az-list">` + groups[L].map(c => `<a href="#/c/${slug(c.name)}">${c.name} <span class="stars" style="font-size:.7rem">${'★'.repeat(c.stars)}</span></a>`).join('') + `</div>`; });
-    document.getElementById('az-body').innerHTML = html || '<div class="empty">None.</div>';
+    const body = document.getElementById('az-body'); if (!body) return;
+    // A no-match state must say what was searched and offer a way out, not just "None."
+    body.innerHTML = html || `<div class="empty">No compound matches “${esc(needle)}”. <a href="#/az" onclick="var b=document.getElementById('az-q');if(b){b.value='';b.oninput();}">Clear the filter</a> to see all ${D.compounds.length}.</div>`;
   }
 
   function stackPage() {
