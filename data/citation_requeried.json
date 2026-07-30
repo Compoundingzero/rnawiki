@@ -1,0 +1,3082 @@
+[
+ {
+  "path": "compound_learn.ostarine-mk-2866-enobosarm.evi.trials[1]",
+  "ref": "Dobs et al., 2013, Lancet Oncology",
+  "finding": "Phase 2, cancer patients: enobosarm (1 mg and 3 mg) significantly increased lean body mass versus baseline (~1.0–1.5 kg median), supporting an anabolic effect in muscle-wasting disease.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "23921736",
+    "title": "A little better than placebo is still better than nothing.",
+    "journal": "Nature medicine",
+    "year": "2013"
+   },
+   {
+    "pmid": "23992602",
+    "title": "Alogliptin after acute coronary syndrome in patients with type 2 diabetes.",
+    "journal": "The New England journal of medicine",
+    "year": "2013"
+   },
+   {
+    "pmid": "23672276",
+    "title": "Association of serum calcium with serum sex steroid hormones in men in NHANES III.",
+    "journal": "The aging male : the official journal of the International Society for the Study of the Aging Male",
+    "year": "2013"
+   },
+   {
+    "pmid": "23559086",
+    "title": "Macimorelin (AEZS-130)-stimulated growth hormone (GH) test: validation of a novel oral stimulation test for the diagnosis of adult GH deficiency.",
+    "journal": "The Journal of clinical endocrinology and metabolism",
+    "year": "2013"
+   }
+  ],
+  "best": {
+   "pmid": "23499390",
+   "title": "Effects of enobosarm on muscle wasting and physical function in patients with cancer: a double-blind, randomised controlled phase 2 trial.",
+   "score": 6.25,
+   "reasons": [
+    "shares phase/cancer/enobosarm (+2.3)",
+    "names the compound: enobosarm (+2.5)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"ostarine\" AND \"cancer\" AND \"enobosarm\" AND \"baseline\" AND \"median\") AND PUB_YEAR:2013"
+ },
+ {
+  "path": "compound_learn.ostarine-mk-2866-enobosarm.evi.trials[3]",
+  "ref": "Enobosarm Study G200802, 2024, Lancet Oncology 25:317–325",
+  "finding": "Phase 2 in AR-positive, ER-positive, HER2-negative advanced breast cancer: enobosarm showed clinical activity, reflecting ongoing legitimate oncology development of the molecule.",
+  "nHits": 2,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"ostarine\" AND \"ar-positive\" AND \"er-positive\" AND \"her2-negative\" AND \"advanced\") AND PUB_YEAR:2024",
+  "best": {
+   "pmid": "38342115",
+   "title": "Activity and safety of enobosarm, a novel, oral, selective androgen receptor modulator, in androgen receptor-positive, oestrogen receptor-positive, and HER2-negative advanced breast cancer (Study G200802): a randomised, open-label, multicentre, multinational, parallel design, phase 2 trial.",
+   "score": 8.25,
+   "reasons": [
+    "shares phase/her2-negative/advanced/breast/cancer (+5.7)",
+    "names the compound: enobosarm (+2.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.n-acetylcysteine-nac.evi.trials[1]",
+  "ref": "Systematic review & meta-analysis, 2024 (PMC11456833)",
+  "finding": "OCD augmentation: systematic review & meta-analysis of 5 RCTs (n=212, 2,000–3,000 mg/day) found a small but significant Yale-Brown improvement (MD ≈ −2.97).",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"acetylcysteine\" AND \"augmentation\" AND \"systematic\" AND \"meta-analysis\" AND \"yale-brown\") AND PUB_YEAR:2024",
+  "best": {
+   "pmid": "39376972",
+   "title": "The safety and efficacy of N-acetylcysteine as an augmentation in the treatment of obsessive-compulsive disorder in adults: a systematic review and meta-analysis of randomized clinical trials.",
+   "score": 10.15,
+   "reasons": [
+    "shares augmentation/systematic/meta-analysis (+3.1)",
+    "names the compound: acetylcysteine (+2.5)",
+    "both say meta-?analys/i (+2.5)",
+    "both say systematic review/i (+2)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.coq10-ubiquinol.evi.trials[0]",
+  "ref": "Mortensen et al., 2014, JACC: Heart Failure",
+  "finding": "Q-SYMBIO RCT (420 chronic heart-failure patients): CoQ10 100 mg three times daily on top of standard therapy roughly halved major adverse cardiovascular events over two years (HR ≈ 0.50) and reduced cardiovascular and all-cause mortality.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "25485541",
+    "title": "Combined ablation and resection (CARe) as an effective parenchymal sparing treatment for extensive colorectal liver metastases.",
+    "journal": "PloS one",
+    "year": "2014"
+   },
+   {
+    "pmid": "25514246",
+    "title": "The single-breath diffusing capacity of CO and NO in healthy children of European descent.",
+    "journal": "PloS one",
+    "year": "2014"
+   },
+   {
+    "pmid": "25405981",
+    "title": "HPV mRNA is more specific than HPV DNA in triage of women with minor cervical lesions.",
+    "journal": "PloS one",
+    "year": "2014"
+   },
+   {
+    "pmid": "25551465",
+    "title": "Residents in difficulty--just slower learners? A case-control study.",
+    "journal": "BMC medical education",
+    "year": "2014"
+   }
+  ],
+  "best": {
+   "pmid": "25282031",
+   "title": "The effect of coenzyme Q10 on morbidity and mortality in chronic heart failure: results from Q-SYMBIO: a randomized double-blind trial.",
+   "score": 3.99,
+   "reasons": [
+    "shares q-symbio/chronic/mortality (+2.5)",
+    "both say randomi[sz]ed/i (+1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"coq10\" AND \"q-symbio\" AND \"chronic\" AND \"heart-failure\" AND \"standard\") AND PUB_YEAR:2014"
+ },
+ {
+  "path": "compound_learn.sodium-bicarbonate.evi.trials[2]",
+  "ref": "Umbrella review, 2021, J Int Soc Sports Nutr",
+  "finding": "Umbrella review of meta-analyses concluded that sodium bicarbonate supplementation improves exercise performance, concentrated in high-intensity efforts.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"sodium\" AND \"umbrella\" AND \"meta-analyses\" AND \"concluded\" AND \"sodium\") AND PUB_YEAR:2021",
+  "best": {
+   "pmid": "34794476",
+   "title": "Effects of sodium bicarbonate supplementation on exercise performance: an umbrella review.",
+   "score": 14.59,
+   "reasons": [
+    "shares umbrella/sodium/bicarbonate/supplementation/exercise (+5.6)",
+    "names the compound: sodium, bicarbonate (+5.0)",
+    "both say umbrella review/i (+4)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.eaas-bcaas.evi.trials[0]",
+  "ref": "Wolfe, 2017, J Int Soc Sports Nutr ('BCAAs and muscle protein synthesis in humans: myth or reality?')",
+  "finding": "Review of the BCAA literature concluded that BCAAs alone cannot maximally stimulate muscle protein synthesis in humans, because the other EAAs become rate-limiting — substrate, not just signal, is required.",
+  "nHits": 2,
+  "candidates": [
+   {
+    "pmid": "28947109",
+    "title": "Preimplantation genetics and other reproductive options in Huntington disease.",
+    "journal": "Handbook of clinical neurology",
+    "year": "2017"
+   },
+   {
+    "pmid": "31985736",
+    "title": "Search for dark matter produced in association with heavy-flavor quark pairs in proton-proton collisions at  s = 13  TeV.",
+    "journal": "The European physical journal. C, Particles and fields",
+    "year": "2017"
+   },
+   {
+    "pmid": "29261129",
+    "title": "Lym-1 Chimeric Antigen Receptor T Cells Exhibit Potent Anti-Tumor Effects against B-Cell Lymphoma.",
+    "journal": "International journal of molecular sciences",
+    "year": "2017"
+   },
+   {
+    "pmid": "29224586",
+    "title": "A scoping review of the evidence for efficacy of acupuncture in companion animals.",
+    "journal": "Animal health research reviews",
+    "year": "2017"
+   }
+  ],
+  "best": {
+   "pmid": "28642676",
+   "title": "International Society of Sports Nutrition Position Stand: protein and exercise.",
+   "score": 0.77,
+   "reasons": [
+    "shares protein (+0.8)"
+   ]
+  },
+  "bestScore": 0.65,
+  "gap": 0.65,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"eaas\" AND \"literature\" AND \"concluded\" AND \"cannot\" AND \"maximally\") AND PUB_YEAR:2017"
+ },
+ {
+  "path": "compound_learn.eaas-bcaas.evi.trials[1]",
+  "ref": "Jackman et al., 2017, Frontiers in Physiology 8:390",
+  "finding": "~5.6 g of BCAAs after resistance exercise raised myofibrillar muscle protein synthesis ~22% vs placebo — roughly half the response reported for an equivalent dose of complete protein.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "29182278",
+    "title": "Understanding How Sterols Regulate Membrane Remodeling in Supported Lipid Bilayers.",
+    "journal": "Langmuir : the ACS journal of surfaces and colloids",
+    "year": "2017"
+   },
+   {
+    "pmid": "29184059",
+    "title": "Cardiopatch platform enables maturation and scale-up of human pluripotent stem cell-derived engineered heart tissues.",
+    "journal": "Nature communications",
+    "year": "2017"
+   },
+   {
+    "pmid": "29072750",
+    "title": "Nanoscale, conformal films of graphitic carbon nitride deposited at room temperature: a method for construction of heterojunction devices.",
+    "journal": "Nanoscale",
+    "year": "2017"
+   },
+   {
+    "pmid": "29088700",
+    "title": "Synaptotagmin 7 confers frequency invariance onto specialized depressing synapses.",
+    "journal": "Nature",
+    "year": "2017"
+   }
+  ],
+  "best": {
+   "pmid": "28642676",
+   "title": "International Society of Sports Nutrition Position Stand: protein and exercise.",
+   "score": 1.6,
+   "reasons": [
+    "shares exercise/protein (+1.6)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"eaas\" AND \"resistance\" AND \"exercise\" AND \"raised\" AND \"myofibrillar\") AND PUB_YEAR:2017"
+ },
+ {
+  "path": "compound_learn.ephedrine-ec-eca-stack.evi.trials[3]",
+  "ref": "Systematic review & meta-analysis of RCTs, 2021",
+  "finding": "Systematic review and meta-analysis of randomised controlled trials of ephedrine-containing products: greater weight loss than placebo (mean difference ≈ −1.97 kg) alongside a higher mean heart rate (~+5.76 bpm).",
+  "nHits": 2,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"ephedrine\" AND \"systematic\" AND \"meta-analysis\" AND \"trials\" AND \"ephedrine-containing\") AND PUB_YEAR:2021",
+  "best": {
+   "pmid": "34832979",
+   "title": "Effects of Ephedrine-Containing Products on Weight Loss and Lipid Profiles: A Systematic Review and Meta-Analysis of Randomized Controlled Trials.",
+   "score": 14.62,
+   "reasons": [
+    "shares systematic/meta-analysis/trials/ephedrine-containing/products (+6.1)",
+    "names the compound: ephedrine (+2.5)",
+    "both say meta-?analys/i (+2.5)",
+    "both say systematic review/i (+2)",
+    "both say randomi[sz]ed/i (+1.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.clenbuterol.evi.trials[2]",
+  "ref": "Birks et al., 2006, New England Journal of Medicine",
+  "finding": "Harefield protocol — combined continuous-flow LVAD support plus clenbuterol to induce physiological cardiac hypertrophy and myocardial recovery: of 15 patients with severe non-ischaemic cardiomyopathy, 11 recovered enough for device explant, demonstrating a legitimate, monitored clinical use of the drug's beta-2 hypertrophic effect.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "19529497",
+    "title": "All solid photonic bandgap fiber based on an array of oriented rectangular high index rods.",
+    "journal": "Optics express",
+    "year": "2006"
+   },
+   {
+    "pmid": "19529335",
+    "title": "Approximate band structure calculation for photonic bandgap fibres.",
+    "journal": "Optics express",
+    "year": "2006"
+   },
+   {
+    "pmid": "16942514",
+    "title": "Baccalaureate nursing studies: voyaging towards discovery.",
+    "journal": "International journal of nursing practice",
+    "year": "2006"
+   },
+   {
+    "pmid": "17124843",
+    "title": "Growth factor and receptor mRNA expression in the intestine of horses with large colon volvulus: a pilot study.",
+    "journal": "Equine veterinary journal",
+    "year": "2006"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"clenbuterol\" AND \"harefield\" AND \"protocol\" AND \"combined\" AND \"continuous-flow\") AND PUB_YEAR:2006"
+ },
+ {
+  "path": "compound_learn.green-tea-extract-egcg.evi.trials[3]",
+  "ref": "Chen et al., 2005, Biochem Pharmacol",
+  "finding": "EGCG and other galloyl catechins are potent inhibitors of human liver COMT in vitro (IC50 ≈ 0.07–0.2 µM), the mechanistic basis for prolonged noradrenaline signalling.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "16307303",
+    "title": "Chloroplast sulfate transport in green algae--genes, proteins and effects.",
+    "journal": "Photosynthesis research",
+    "year": "2005"
+   },
+   {
+    "pmid": "15853401",
+    "title": "Arsenic transport and transformation associated with MSMA application on a golf course green.",
+    "journal": "Journal of agricultural and food chemistry",
+    "year": "2005"
+   },
+   {
+    "pmid": "16853237",
+    "title": "Green emission from end-group-enhanced aggregation in polydioctylfluorene.",
+    "journal": "The journal of physical chemistry. B",
+    "year": "2005"
+   },
+   {
+    "title": "Components and antioxidant activity of polysaccharide conjugate from green tea.",
+    "journal": "Food chemistry",
+    "year": "2005"
+   }
+  ],
+  "best": {
+   "pmid": "16137775",
+   "title": "Antiviral effect of catechins in green tea on influenza virus.",
+   "score": 3.39,
+   "reasons": [
+    "shares catechins (+0.9)",
+    "names the compound: green (+2.5)"
+   ]
+  },
+  "bestScore": 2.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"green\" AND \"galloyl\" AND \"catechins\" AND \"potent\" AND \"inhibitors\") AND PUB_YEAR:2005"
+ },
+ {
+  "path": "compound_learn.dhea.evi.trials[2]",
+  "ref": "Intrarosa (prasterone) FDA approval, 2016",
+  "finding": "Intravaginal prasterone (DHEA) 6.5 mg significantly improved moderate-to-severe dyspareunia from vulvovaginal atrophy, supporting FDA approval of Intrarosa in 2016.",
+  "nHits": 2,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"dhea\" AND \"intravaginal\" AND \"prasterone\" AND \"moderate-to-severe\" AND \"dyspareunia\") AND PUB_YEAR:2016",
+  "best": {
+   "pmid": "26731686",
+   "title": "Efficacy of intravaginal dehydroepiandrosterone (DHEA) on moderate to severe dyspareunia and vaginal dryness, symptoms of vulvovaginal atrophy, and of the genitourinary syndrome of menopause.",
+   "score": 7.01,
+   "reasons": [
+    "shares intravaginal/dhea/dyspareunia/vulvovaginal/atrophy (+4.5)",
+    "names the compound: dhea (+2.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.tongkat-ali-eurycoma-longifolia.evi.trials[2]",
+  "ref": "Food & Nutrition Research, 2021 (Physta multicentre RCT)",
+  "finding": "Ageing men (50–70 y, low testosterone; n=105), Physta 200 mg/day for 12 weeks: increased total testosterone and significantly reduced cortisol, with improved muscle strength; no significant change in SHBG.",
+  "nHits": 0,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"tongkat\" AND \"ageing\" AND \"testosterone\" AND \"physta\" AND \"cortisol\") AND PUB_YEAR:2021",
+  "best": null
+ },
+ {
+  "path": "compound_learn.trenbolone.evi.trials[0]",
+  "ref": "Bauer et al., 2000, APMIS (PubMed 11252818)",
+  "finding": "Characterised trenbolone's receptor affinities: 17β-trenbolone binds the human androgen receptor with affinity similar to DHT and the (bovine) progestin receptor slightly more strongly than progesterone — the basis for its potent androgenic and progestogenic profile.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "23270842",
+    "title": "Gifts to physicians from industry.",
+    "journal": "The virtual mentor : VM",
+    "year": "2000"
+   },
+   {
+    "pmid": "11137617",
+    "title": "Immunostimulation by bacterial components: II. Efficacy studies and meta-analysis of the bacterial extract OM-89.",
+    "journal": "International journal of immunopharmacology",
+    "year": "2000"
+   },
+   {
+    "pmid": "11123610",
+    "title": "A molecular analysis of ground sloth diet through the last glaciation.",
+    "journal": "Molecular ecology",
+    "year": "2000"
+   },
+   {
+    "pmid": "11110717",
+    "title": "A new mutation in the HNF4 binding region of the factor VII promoter in a patient with severe factor VII deficiency.",
+    "journal": "Blood",
+    "year": "2000"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"trenbolone\" AND \"characterised\" AND \"trenbolone\" AND \"receptor\" AND \"affinities\") AND PUB_YEAR:2000"
+ },
+ {
+  "path": "compound_learn.oxandrolone-anavar.evi.trials[1]",
+  "ref": "HIV-associated weight loss RCT, 2006, J Acquir Immune Defic Syndr (PubMed 16540931)",
+  "finding": "RCT in 262 men with HIV-associated weight loss (20/40/80 mg/day): gains in body weight and body cell mass exceeded placebo at 40 mg (and body cell mass at 40–80 mg), but with significant rises in transaminases and LDL, a fall in HDL, and suppression of SHBG, LH, FSH and total/free testosterone.",
+  "nHits": 1,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"oxandrolone\" AND \"hiv-associated\" AND \"weight\" AND \"exceeded\" AND \"transaminases\") AND PUB_YEAR:2006",
+  "best": {
+   "pmid": "17703327",
+   "title": "Abstracts of the Society of General Internal Medicine 29th Annual Meeting, April 26-29, 2006, Los Angeles, California, USA.",
+   "score": 0,
+   "reasons": []
+  }
+ },
+ {
+  "path": "compound_learn.methandrostenolone-dianabol.evi.trials[0]",
+  "ref": "Freed et al., 1975, BMJ",
+  "finding": "Double-blind crossover trial in 13 experienced weightlifters (methandienone 10–25 mg/day): strength improvements significantly greater than placebo, but body-weight rise was associated with water retention, systolic blood pressure rose significantly, and three men withdrew due to side effects.",
+  "nHits": 2,
+  "candidates": [
+   {
+    "pmid": "53752",
+    "title": "Letter: Do dietary lectins protect against colonic cancer?",
+    "journal": "Lancet (London, England)",
+    "year": "1975"
+   },
+   {
+    "pmid": "1228254",
+    "title": "Separation of cholinergic proteolipids from quenched rat cerebral cortex and resolution of properties at low temperature.",
+    "journal": "Japanese journal of pharmacology",
+    "year": "1975"
+   },
+   {
+    "pmid": "1211514",
+    "title": "Unusual foreign bodies associated with cranial trauma.",
+    "journal": "The American journal of roentgenology, radium therapy, and nuclear medicine",
+    "year": "1975"
+   },
+   {
+    "pmid": "1200722",
+    "title": "Human pesticide poisonings by a fat-soluble organophosphate insecticide.",
+    "journal": "Archives of environmental health",
+    "year": "1975"
+   }
+  ],
+  "best": {
+   "pmid": "1102048",
+   "title": "A double-blind crossover trial of methandienone (Dianabol, CIBA) in moderate dosage on highly trained experienced athletes.",
+   "score": 9.6,
+   "reasons": [
+    "shares double-blind/crossover/experienced/methandienone (+4.1)",
+    "names the compound: dianabol (+2.5)",
+    "both say crossover|cross-ove (+1.5)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 0.55,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"methandrostenolone\" AND \"double-blind\" AND \"crossover\" AND \"experienced\" AND \"weightlifters\") AND PUB_YEAR:1975"
+ },
+ {
+  "path": "compound_learn.ligandrol-lgd-4033.evi.trials[1]",
+  "ref": "Viking Therapeutics VK5211 Phase 2, presented ASBMR 2018 Annual Meeting",
+  "finding": "Phase 2 (VK5211), 108 patients recovering from hip fracture: dose-dependent placebo-adjusted increases in lean body mass (~4.8%, 7.2%, 9.1% at 0.5/1/2 mg over 12 weeks), decreased fat mass and improved 6-minute-walk distance, with no drug-related serious adverse events.",
+  "nHits": 0,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"ligandrol\" AND \"vk5211\" AND \"recovering\" AND \"fracture\" AND \"dose-dependent\") AND PUB_YEAR:2018",
+  "best": null
+ },
+ {
+  "path": "compound_learn.testolone-rad-140.evi.trials[1]",
+  "ref": "Phase 1 abstract P5-11-01, AACR 2020, Cancer Research 80(4 Suppl)",
+  "finding": "First-in-human Phase 1 dose-escalation study of RAD140 in ER+/HER2− metastatic breast cancer — an early safety and pharmacokinetic study, not a muscle-building trial (NCT03088527).",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "33195028",
+    "title": "Detection of Pb(II): Au Nanoparticle Incorporated CuBTC MOFs.",
+    "journal": "Frontiers in chemistry",
+    "year": "2020"
+   },
+   {
+    "pmid": "35519712",
+    "title": "Structural, optical and electronic properties of Ni<sub>1-<i>x</i></sub> Co <sub><i>x</i></sub> O in the complete composition range.",
+    "journal": "RSC advances",
+    "year": "2020"
+   },
+   {
+    "pmid": "35520327",
+    "title": "Structural correlation of a nanoparticle-embedded mesoporous CoTiO<sub>3</sub> perovskite for an efficient electrochemical supercapacitor.",
+    "journal": "RSC advances",
+    "year": "2020"
+   },
+   {
+    "pmid": "35515801",
+    "title": "Insight into the photophysics of strong dual emission (blue & green) producing graphene quantum dot clusters and their application towards selective and sensitive detection of trace level Fe<sup>3+</sup> and Cr<sup>6+</sup> ions.",
+    "journal": "RSC advances",
+    "year": "2020"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"testolone\" AND \"first-in-human\" AND \"dose-escalation\" AND \"rad140\" AND \"metastatic\") AND PUB_YEAR:2020"
+ },
+ {
+  "path": "compound_learn.andarine-s4-yk-11-s-23.evi.trials[1]",
+  "ref": "Kanno et al., 2013, Biological & Pharmaceutical Bulletin 36:1460–1465",
+  "finding": "YK-11 induced myogenic differentiation of cultured C2C12 muscle cells more strongly than DHT, and this depended on YK-11-induced follistatin expression (the effect was reversed by anti-follistatin antibody) — a cell-culture finding, not human or in-vivo.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "24026338",
+    "title": "Papuamine causes autophagy following the reduction of cell survival through mitochondrial damage and JNK activation in MCF-7 human breast cancer cells.",
+    "journal": "International journal of oncology",
+    "year": "2013"
+   },
+   {
+    "pmid": "23748714",
+    "title": "Detection of human herpesviruses (HHVs) in semen of human male infertile patients.",
+    "journal": "The Journal of reproduction and development",
+    "year": "2013"
+   },
+   {
+    "pmid": "23251234",
+    "title": "Low-intensity ultrasound enhances the anticancer activity of cetuximab in human head and neck cancer cells.",
+    "journal": "Experimental and therapeutic medicine",
+    "year": "2013"
+   },
+   {
+    "pmid": "25814852",
+    "title": "Measurement of jet shapes in top-quark pair events at [Formula: see text] using the ATLAS detector.",
+    "journal": "The European physical journal. C, Particles and fields",
+    "year": "2013"
+   }
+  ],
+  "best": null,
+  "bestScore": 2.15,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"andarine\" AND \"induced\" AND \"myogenic\" AND \"differentiation\" AND \"cultured\") AND PUB_YEAR:2013"
+ },
+ {
+  "path": "compound_learn.andarine-s4-yk-11-s-23.evi.trials[2]",
+  "ref": "Jones, Chen, Hwang, Miller & Dalton, 2009, Endocrinology 150:385–395",
+  "finding": "S-23 was characterized as a high-affinity (Ki ≈ 1.7 nM) full androgen-receptor agonist that suppressed LH/FSH and produced complete, reversible suppression of spermatogenesis in male rats — supporting its study as a hormonal male contraceptive.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "19849782",
+    "title": "The type III effectors of Xanthomonas.",
+    "journal": "Molecular plant pathology",
+    "year": "2009"
+   },
+   {
+    "pmid": "19849787",
+    "title": "Identification and functional characterization of effectors in expressed sequence tags from various life cycle stages of the potato cyst nematode Globodera pallida.",
+    "journal": "Molecular plant pathology",
+    "year": "2009"
+   },
+   {
+    "pmid": "19444822",
+    "title": "Can prenatal ultrasound detect the effects of in-utero alcohol exposure? A pilot study.",
+    "journal": "Ultrasound in obstetrics & gynecology : the official journal of the International Society of Ultrasound in Obstetrics and Gynecology",
+    "year": "2009"
+   },
+   {
+    "pmid": "19127527",
+    "title": "Is puberty starting earlier in urban South Africa?",
+    "journal": "American journal of human biology : the official journal of the Human Biology Council",
+    "year": "2009"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"andarine\" AND \"characterized\" AND \"high-affinity\" AND \"androgen-receptor\" AND \"agonist\") AND PUB_YEAR:2009"
+ },
+ {
+  "path": "compound_learn.stenabolic-sr9009.evi.trials[0]",
+  "ref": "Solt et al., 2012, Nature 485:62–68",
+  "finding": "Synthetic REV-ERB agonists (SR9009 and SR9011), dosed intraperitoneally in mice, altered circadian behaviour and improved metabolic parameters, including reduced fat mass and improved dyslipidaemia and hyperglycaemia in diet-induced obese mice.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "23137688",
+    "title": "General anesthesia: activating a sleep switch?",
+    "journal": "Current biology : CB",
+    "year": "2012"
+   },
+   {
+    "pmid": "23268668",
+    "title": "Case records of the Massachusetts General Hospital. Case 40-2012. A 43-year-old woman with cardiorespiratory arrest after a cesarean section.",
+    "journal": "The New England journal of medicine",
+    "year": "2012"
+   },
+   {
+    "pmid": "23316659",
+    "title": "[Generalized pustular psoriasis of pregnancy].",
+    "journal": "Harefuah",
+    "year": "2012"
+   },
+   {
+    "pmid": "23034040",
+    "title": "Management of opioid analgesic overdose.",
+    "journal": "The New England journal of medicine",
+    "year": "2012"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"stenabolic\" AND \"synthetic\" AND \"rev-erb\" AND \"agonists\" AND \"sr9009\") AND PUB_YEAR:2012"
+ },
+ {
+  "path": "compound_learn.stenabolic-sr9009.evi.trials[2]",
+  "ref": "Dierickx et al., 2019, PNAS 116:12147–12152",
+  "finding": "SR9009 altered cell proliferation, metabolism and gene transcription in hepatocytes and embryonic stem cells engineered to lack BOTH REV-ERBα and REV-ERBβ — demonstrating REV-ERB-independent effects through an unknown mechanism.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "34191164",
+    "title": "Diagnosis of an intestinal mucormycosis 'fungus ball' located with PET/CT with [<sup>18</sup>F] FDG-PET/CT.",
+    "journal": "European journal of hybrid imaging",
+    "year": "2019"
+   },
+   {
+    "pmid": "31863006",
+    "title": "Survival of a long-lived single island endemic, the Raso lark Alauda razae, in relation to age, fluctuating population and rainfall.",
+    "journal": "Scientific reports",
+    "year": "2019"
+   },
+   {
+    "pmid": "31800633",
+    "title": "The fertile grounds of reproductive activism in The Gambia: A qualitative study of local key stakeholders' understandings and heterogeneous actions related to infertility.",
+    "journal": "PloS one",
+    "year": "2019"
+   },
+   {
+    "pmid": "31564649",
+    "title": "Obstetric and maternal outcomes in patients diagnosed with Hodgkin lymphoma during pregnancy: a multicentre, retrospective, cohort study.",
+    "journal": "The Lancet. Haematology",
+    "year": "2019"
+   }
+  ],
+  "best": {
+   "pmid": "31127047",
+   "title": "SR9009 has REV-ERB-independent effects on cell proliferation and metabolism.",
+   "score": 7.08,
+   "reasons": [
+    "shares sr9009/cell/proliferation/metabolism/rev-erb-independent (+4.6)",
+    "names the compound: sr9009 (+2.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"stenabolic\" AND \"sr9009\" AND \"altered\" AND \"proliferation\" AND \"metabolism\") AND PUB_YEAR:2019"
+ },
+ {
+  "path": "compound_learn.tesamorelin-egrifta.evi.trials[0]",
+  "ref": "Falutz et al., 2007, N Engl J Med 357:2359",
+  "finding": "Phase-3 RCT (n=412 HIV patients with abdominal fat): tesamorelin 2 mg SC daily reduced visceral adipose tissue ~15% over 26 weeks vs a rise on placebo, and raised IGF-1 ~80%, with improved triglycerides.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "18057338",
+    "title": "Metabolic effects of a growth hormone-releasing factor in patients with HIV.",
+    "journal": "The New England journal of medicine",
+    "year": "2007"
+   },
+   {
+    "pmid": "17710086",
+    "title": "Therapy insight: Body-shape changes and metabolic complications associated with HIV and highly active antiretroviral therapy.",
+    "journal": "Nature clinical practice. Endocrinology & metabolism",
+    "year": "2007"
+   },
+   {
+    "pmid": "17521962",
+    "title": "Functional T cell subsets contribute differentially to HIV peptide-specific responses within infected individuals: correlation of these functional T cell subsets with markers of disease progression.",
+    "journal": "Clinical immunology (Orlando, Fla.)",
+    "year": "2007"
+   }
+  ],
+  "best": null,
+  "bestScore": 2.03,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"tesamorelin\" AND \"phase-3\" AND \"abdominal\" AND \"tesamorelin\" AND \"visceral\") AND PUB_YEAR:2007"
+ },
+ {
+  "path": "compound_learn.mk-677-ibutamoren.evi.trials[0]",
+  "ref": "Chapman et al., 1996, J Clin Endocrinol Metab 81(12):4249–4257",
+  "finding": "Once-daily oral MK-677 for up to 4 weeks in healthy adults aged 64–81 enhanced pulsatile GH release and, at 25 mg/day, restored serum IGF-1 to young-adult levels.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "8979856",
+    "title": "Language and Operations in Children's Class Inclusion Reasoning: The Operational Semantic Theory of Reasoning",
+    "journal": "Developmental review : DR",
+    "year": "1996"
+   },
+   {
+    "pmid": "9121824",
+    "title": "Treatment Helpfulness Questionnaire: a measure of patient satisfaction with treatment modalities provided in chronic pain management programs.",
+    "journal": "Pain",
+    "year": "1996"
+   },
+   {
+    "pmid": "9006860",
+    "title": "Therapeutic compliance.",
+    "journal": "Australian veterinary journal",
+    "year": "1996"
+   },
+   {
+    "pmid": "8981731",
+    "title": "The incidence of anti-Wra and Wra antigen in blood donors and hospital patients.",
+    "journal": "Transfusion medicine (Oxford, England)",
+    "year": "1996"
+   }
+  ],
+  "best": {
+   "pmid": "8954023",
+   "title": "Stimulation of the growth hormone (GH)-insulin-like growth factor I axis by daily oral administration of a GH secretogogue (MK-677) in healthy elderly subjects.",
+   "score": 5.57,
+   "reasons": [
+    "shares oral/mk-677/healthy (+2.1)",
+    "same figure 677 (+2.0)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"ibutamoren\" AND \"once-daily\" AND \"mk-677\" AND \"healthy\" AND \"adults\") AND PUB_YEAR:1996"
+ },
+ {
+  "path": "compound_learn.mk-677-ibutamoren.evi.trials[1]",
+  "ref": "Murphy et al., 1998, J Clin Endocrinol Metab 83(2):320–325",
+  "finding": "In healthy volunteers made catabolic by caloric restriction, MK-677 reversed diet-induced nitrogen wasting (mean nitrogen balance +0.31 vs −1.48 g/day on placebo) alongside raised GH/IGF-1.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "10396525",
+    "title": "Strong correlation between Helicobacter pylori seropositivity and Chlamydia pneumoniae IgG concentrations.",
+    "journal": "Journal of epidemiology and community health",
+    "year": "1998"
+   },
+   {
+    "pmid": "10351149",
+    "title": "Potential clinical benefits and cost savings of universal leucocyte-depletion of blood components.",
+    "journal": "Transfusion science",
+    "year": "1998"
+   },
+   {
+    "pmid": "9930475",
+    "title": "Preconditioning prevents myocardial stunning after cardiac transplantation.",
+    "journal": "The Annals of thoracic surgery",
+    "year": "1998"
+   },
+   {
+    "pmid": "9925299",
+    "title": "The design, synthesis, and evaluation of novel conformationally rigid analogues of sialyl Lewis(x).",
+    "journal": "Bioorganic & medicinal chemistry",
+    "year": "1998"
+   }
+  ],
+  "best": {
+   "pmid": "9467534",
+   "title": "MK-677, an orally active growth hormone secretagogue, reverses diet-induced catabolism.",
+   "score": 3.78,
+   "reasons": [
+    "shares mk-677/diet-induced (+1.8)",
+    "same figure 677 (+2.0)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"ibutamoren\" AND \"healthy\" AND \"volunteers\" AND \"catabolic\" AND \"caloric\") AND PUB_YEAR:1998"
+ },
+ {
+  "path": "compound_learn.human-growth-hormone-somatropin.evi.trials[1]",
+  "ref": "Blackman et al., 2002, JAMA 288:2282–2292",
+  "finding": "Randomised controlled trial in healthy aged men and women: GH increased lean mass and decreased fat mass but did NOT improve muscle strength or VO2max, and adverse events — especially glucose intolerance — were frequent.",
+  "nHits": 4,
+  "candidates": [
+   {
+    "pmid": "12466519",
+    "title": "Cardiac pacing for sinus-node dysfunction.",
+    "journal": "The New England journal of medicine",
+    "year": "2002"
+   },
+   {
+    "pmid": "12464561",
+    "title": "Viral immunology: challenges associated with the progression from bench to clinic.",
+    "journal": "Trends in immunology",
+    "year": "2002"
+   },
+   {
+    "pmid": "12492602",
+    "title": "Assessment of venous capacitance. Radionuclide plethysmography: methodology and research applications.",
+    "journal": "British journal of clinical pharmacology",
+    "year": "2002"
+   },
+   {
+    "pmid": "12467058",
+    "title": "Advanced age and adjuvant tamoxifen prescription in early-stage breast carcinoma patients.",
+    "journal": "Cancer",
+    "year": "2002"
+   }
+  ],
+  "best": {
+   "pmid": "24688268",
+   "title": "Biochemical and immunological markers of over-training.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"human\" AND \"healthy\" AND \"muscle\" AND \"strength\" AND \"vo2max\") AND PUB_YEAR:2002"
+ },
+ {
+  "path": "compound_learn.glycine.evi.trials[0]",
+  "ref": "Yamadera et al., 2007, Sleep and Biological Rhythms",
+  "finding": "3 g glycine before bed shortened polysomnographic latency to sleep onset and to slow-wave sleep, improved subjective sleep quality, and reduced daytime sleepiness, without altering sleep architecture.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "17695791",
+    "title": "[Influenza telephone consultation target the general public--2003-2004, 2004-2005].",
+    "journal": "Kansenshogaku zasshi. The Journal of the Japanese Association for Infectious Diseases",
+    "year": "2007"
+   },
+   {
+    "pmid": "17561701",
+    "title": "[Overview of psychiatric therapy for chronic fatigue syndrome].",
+    "journal": "Nihon rinsho. Japanese journal of clinical medicine",
+    "year": "2007"
+   },
+   {
+    "pmid": "17694257",
+    "title": "Power Doppler and spectral Doppler measurements of knee-joint synovitis in rheumatoid arthritis patients with superficial pattern signals and in those with deep pattern signals.",
+    "journal": "Modern rheumatology",
+    "year": "2007"
+   },
+   {
+    "pmid": "17929128",
+    "title": "Doppler ultrasound measurements of knee joint synovitis in rheumatoid arthritis patients treated with infliximab.",
+    "journal": "Modern rheumatology",
+    "year": "2007"
+   }
+  ],
+  "best": {
+   "title": "S",
+   "score": -1.5,
+   "reasons": [
+    "no PMID (-1.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"glycine\" AND \"glycine\" AND \"shortened\" AND \"polysomnographic\" AND \"latency\") AND PUB_YEAR:2007"
+ },
+ {
+  "path": "compound_learn.glycine.evi.trials[3]",
+  "ref": "Shaw et al., 2017, American Journal of Clinical Nutrition",
+  "finding": "Vitamin C-enriched gelatin (15 g) taken ~1 h before intermittent exercise roughly doubled a blood marker of collagen synthesis (gelatin, not isolated glycine).",
+  "nHits": 2,
+  "candidates": [
+   {
+    "pmid": "29033403",
+    "title": "Development of a new test cell to measure cumulative permeation of water-insoluble pesticides with low vapor pressure through protective clothing and glove materials.",
+    "journal": "Industrial health",
+    "year": "2017"
+   },
+   {
+    "pmid": "28129252",
+    "title": "Optimal diagnostic thresholds for diagnosis of orthostatic hypotension with a 'sit-to-stand test'.",
+    "journal": "Journal of hypertension",
+    "year": "2017"
+   },
+   {
+    "pmid": "28031080",
+    "title": "The interaction between monoamine oxidase A and punitive discipline in the development of antisocial behavior: Mediation by maladaptive social information processing.",
+    "journal": "Development and psychopathology",
+    "year": "2017"
+   },
+   {
+    "pmid": "29375285",
+    "title": "Small RNA Sequencing of Sporadic Amyotrophic Lateral Sclerosis Cerebrospinal Fluid Reveals Differentially Expressed miRNAs Related to Neural and Glial Activity.",
+    "journal": "Frontiers in neuroscience",
+    "year": "2017"
+   }
+  ],
+  "best": {
+   "pmid": "27852613",
+   "title": "Vitamin C-enriched gelatin supplementation before intermittent activity augments collagen synthesis.",
+   "score": 5.28,
+   "reasons": [
+    "shares vitamin/c-enriched/gelatin/intermittent/collagen (+5.3)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"glycine\" AND \"vitamin\" AND \"c-enriched\" AND \"gelatin\" AND \"intermittent\") AND PUB_YEAR:2017"
+ },
+ {
+  "path": "compound_learn.hexarelin-ghrp-2-ghrp-6.evi.trials[0]",
+  "ref": "Bowers, Momany, Reynolds & Hong, 1984, Endocrinology 114:1537",
+  "finding": "GHRP-6, the founding member of the class, released growth hormone dose-dependently in vitro and in vivo, acting directly on the pituitary to specifically release GH — establishing a GH secretagogue distinct from GHRH.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "title": "Identification of fungicidal and nematocidal components in the leaves of Piper betle (Piperaceae).",
+    "journal": "Journal of agricultural and food chemistry",
+    "year": "1984"
+   },
+   {
+    "pmid": "6504278",
+    "title": "Traumatic acute epidural hematoma: unrecognized high lethality in comatose patients.",
+    "journal": "Neurosurgery",
+    "year": "1984"
+   },
+   {
+    "pmid": "6209339",
+    "title": "Removal of rat dendritic cells from single cell suspensions by passage through columns of Sephadex G-10.",
+    "journal": "Journal of immunological methods",
+    "year": "1984"
+   },
+   {
+    "pmid": "6501579",
+    "title": "Dissociation between the processing of affective and nonaffective faces: a case study.",
+    "journal": "Journal of clinical neuropsychology",
+    "year": "1984"
+   }
+  ],
+  "best": null,
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"hexarelin\" AND \"ghrp-6\" AND \"founding\" AND \"member\" AND \"released\") AND PUB_YEAR:1984"
+ },
+ {
+  "path": "compound_learn.hexarelin-ghrp-2-ghrp-6.evi.trials[3]",
+  "ref": "Bodart et al., 2002, Circulation Research 90:844",
+  "finding": "Hexarelin's cardiovascular actions are mediated by CD36, a receptor distinct from GHSR-1a, and are absent in CD36-deficient hearts — evidence for a growth-hormone-independent cardiac mechanism (animal/in vitro).",
+  "nHits": 3,
+  "candidates": [
+   {
+    "pmid": "11988484",
+    "title": "CD36 mediates the cardiovascular action of growth hormone-releasing peptides in the heart.",
+    "journal": "Circulation research",
+    "year": "2002"
+   },
+   {
+    "pmid": "11977986",
+    "title": "Characterization of MPF and MAPK activities during meiotic maturation of Xenopus tropicalis oocytes.",
+    "journal": "Developmental biology",
+    "year": "2002"
+   },
+   {
+    "pmid": "11891929",
+    "title": "Metaphase arrest in amphibian oocytes: interaction between CSF and MPF sets the equilibrium.",
+    "journal": "Molecular reproduction and development",
+    "year": "2002"
+   },
+   {
+    "pmid": "11949813",
+    "title": "ANAFOR: application of a restricted linear least squares procedure to NMR data processing.",
+    "journal": "Solid state nuclear magnetic resonance",
+    "year": "2002"
+   }
+  ],
+  "best": {
+   "pmid": "11988484",
+   "title": "CD36 mediates the cardiovascular action of growth hormone-releasing peptides in the heart.",
+   "score": 1.78,
+   "reasons": [
+    "shares cardiovascular/cd36 (+1.8)"
+   ]
+  },
+  "bestScore": 1.78,
+  "gap": 1.78,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"hexarelin\" AND \"hexarelin\" AND \"cardiovascular\" AND \"actions\" AND \"mediated\") AND PUB_YEAR:2002"
+ },
+ {
+  "path": "compound_learn.follistatin-myostatin-inhibitors-ace-031-yk-11.evi.trials[2]",
+  "ref": "Campbell et al., 2017, Muscle & Nerve 55:458",
+  "finding": "Phase 2 trial of the myostatin ligand-trap ACE-031 in ambulatory Duchenne boys was stopped after the second dosing regimen due to epistaxis and telangiectasias (vascular safety signals).",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "28926408",
+    "title": "Serum glycan-binding IgG antibodies in HIV-1 infection and during the development of broadly neutralizing responses.",
+    "journal": "AIDS (London, England)",
+    "year": "2017"
+   },
+   {
+    "pmid": "28288012",
+    "title": "Influence of Upper-Body Exercise on the Fatigability of Human Respiratory Muscles.",
+    "journal": "Medicine and science in sports and exercise",
+    "year": "2017"
+   },
+   {
+    "pmid": "28270252",
+    "title": "Differences between migrants and Spanish-born population through the HIV care cascade, Catalonia: an analysis using multiple data sources.",
+    "journal": "Epidemiology and infection",
+    "year": "2017"
+   },
+   {
+    "pmid": "29387681",
+    "title": "Evaluation of a Direct-Instruction Intervention to Improve Movement and Preliteracy Skills among Young Children: A Within-Subject Repeated-Measures Design.",
+    "journal": "Frontiers in pediatrics",
+    "year": "2017"
+   }
+  ],
+  "best": null,
+  "bestScore": 1.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"follistatin\" AND \"myostatin\" AND \"ligand-trap\" AND \"ace-031\" AND \"ambulatory\") AND PUB_YEAR:2017"
+ },
+ {
+  "path": "compound_learn.bpc-157.evi.trials[0]",
+  "ref": "Hsieh et al., 2017, J Mol Med (Berl), doi:10.1007/s00109-016-1488-y",
+  "finding": "BPC-157 promoted angiogenesis by increasing VEGFR2 expression and activating the VEGFR2–Akt–eNOS pathway in endothelial cells (mechanistic, in vitro/in vivo — not a human efficacy trial).",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "28629484",
+    "title": "Outbreak of non-tuberculous mycobacteria skin or soft tissue infections associated with handling fish - New York City, 2013-2014.",
+    "journal": "Epidemiology and infection",
+    "year": "2017"
+   },
+   {
+    "pmid": "29387682",
+    "title": "Modified Ride-On Cars and Young Children with Disabilities: Effects of Combining Mobility and Social Training.",
+    "journal": "Frontiers in pediatrics",
+    "year": "2017"
+   },
+   {
+    "pmid": "29281670",
+    "title": "Submovement control processes in discrete aiming as a function of space-time constraints.",
+    "journal": "PloS one",
+    "year": "2017"
+   },
+   {
+    "pmid": "29295584",
+    "title": "Mortality Rate Associated with Admission Hyperglycemia in Traumatic Femoral Fracture Patients Is Greater Than Non-Diabetic Normoglycemic Patients but Not Diabetic Normoglycemic Patients.",
+    "journal": "International journal of environmental research and public health",
+    "year": "2017"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"bpc-157\" AND \"promoted\" AND \"angiogenesis\" AND \"increasing\") AND PUB_YEAR:2017"
+ },
+ {
+  "path": "compound_learn.bpc-157.evi.trials[1]",
+  "ref": "Hsieh et al., 2020, Scientific Reports (Nature), doi:10.1038/s41598-020-74022-y",
+  "finding": "BPC-157 produced nitric-oxide-dependent vasomotor effects via the Src–Caveolin-1–eNOS pathway in isolated rat aorta (mechanistic, ex vivo).",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "32941303",
+    "title": "A Study of Physical Activity, Frailty, and Health-Related Quality of Life Among Community-Dwelling Older Adults in Taiwan.",
+    "journal": "The journal of nursing research : JNR",
+    "year": "2020"
+   },
+   {
+    "pmid": "33144426",
+    "title": "Therapeutic Efficacy and Inhibitory Mechanism of Regorafenib Combined With Radiation in Colorectal Cancer.",
+    "journal": "In vivo (Athens, Greece)",
+    "year": "2020"
+   },
+   {
+    "pmid": "32606148",
+    "title": "The <i>In Vivo</i> Radiosensitizing Effect of Magnolol on Tumor Growth of Hepatocellular Carcinoma.",
+    "journal": "In vivo (Athens, Greece)",
+    "year": "2020"
+   },
+   {
+    "pmid": "32399577",
+    "title": "Association Between Atopic Dermatitis and Autism Spectrum Disorder: A Systematic Review and Meta-analysis.",
+    "journal": "Acta dermato-venereologica",
+    "year": "2020"
+   }
+  ],
+  "best": {
+   "pmid": "33051481",
+   "title": "Modulatory effects of BPC 157 on vasomotor tone and the activation of Src-Caveolin-1-endothelial nitric oxide synthase pathway.",
+   "score": 3.66,
+   "reasons": [
+    "shares vasomotor/pathway (+1.7)",
+    "same figure 157 (+2.0)"
+   ]
+  },
+  "bestScore": 0.59,
+  "gap": 0.59,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"bpc-157\" AND \"produced\" AND \"nitric-oxide-dependent\" AND \"vasomotor\") AND PUB_YEAR:2020"
+ },
+ {
+  "path": "compound_learn.bpc-157.evi.trials[2]",
+  "ref": "Chang et al., Pentadecapeptide BPC 157 enhances GH-receptor expression in tendon fibroblasts, Molecules 2014 (PMID 25415472)",
+  "finding": "BPC-157 dose- and time-dependently increased growth-hormone-receptor expression and activated FAK–paxillin signalling to drive fibroblast migration in tendon (in vitro).",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "25364440",
+    "title": "Delta-like ligand 4: A predictor of poor prognosis in clear cell renal cell carcinoma.",
+    "journal": "Oncology letters",
+    "year": "2014"
+   },
+   {
+    "pmid": "25649935",
+    "title": "Comparison of surgical methods of transient middle cerebral artery occlusion between rats and mice.",
+    "journal": "The Journal of veterinary medical science",
+    "year": "2014"
+   },
+   {
+    "pmid": "25279156",
+    "title": "Association between fetuin-A levels with insulin resistance and carotid intima-media thickness in patients with new-onset type 2 diabetes mellitus.",
+    "journal": "Biomedical reports",
+    "year": "2014"
+   },
+   {
+    "pmid": "25297077",
+    "title": "Gene cloning and induced expression pattern of IRF4 and IRF10 in the Asian swamp eel (Monopterus albus).",
+    "journal": "Dong wu xue yan jiu = Zoological research",
+    "year": "2014"
+   }
+  ],
+  "best": {
+   "pmid": "25415472",
+   "title": "Pentadecapeptide BPC 157 enhances the growth hormone receptor expression in tendon fibroblasts.",
+   "score": 3.66,
+   "reasons": [
+    "shares expression/tendon (+1.7)",
+    "same figure 157 (+2.0)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 0.55,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"bpc-157\" AND \"time-dependently\" AND \"growth-hormone-receptor\" AND \"expression\") AND PUB_YEAR:2014"
+ },
+ {
+  "path": "compound_learn.tb-500-thymosin-beta-4-fragment.evi.trials[0]",
+  "ref": "Thymosin β4 (RGN-259) Phase 2 severe dry-eye RCT, Cornea, 2015 (n=9)",
+  "finding": "Full protein, not the TB-500 fragment, and a very small trial (9 patients): thymosin β4 (RGN-259) 0.1% eye drops significantly reduced ocular discomfort (~35%) and total corneal fluorescein staining (~59%) versus vehicle in severe dry eye.",
+  "nHits": 0,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"thymosin\" AND \"protein\" AND \"tb-500\" AND \"fragment\" AND \"thymosin\") AND PUB_YEAR:2015",
+  "best": null
+ },
+ {
+  "path": "compound_learn.tb-500-thymosin-beta-4-fragment.evi.trials[1]",
+  "ref": "The actin-binding site on thymosin β4 promotes angiogenesis, FASEB J, 2003",
+  "finding": "Mechanistic (in vitro): the seven-amino-acid actin-binding motif of thymosin β4 is essential for its angiogenic activity, driving endothelial cell migration at ~50 nM — evidence the same motif TB-500 carries is angiogenic.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "12840645",
+    "title": "Age, body mass, and gender as predictors of masters olympic weightlifting performance.",
+    "journal": "Medicine and science in sports and exercise",
+    "year": "2003"
+   },
+   {
+    "pmid": "12943198",
+    "title": "Synthesis and initial results for MAO-B inhibition by new N-propargyl-3-pyrrol-1-ylindanamine derivatives, analogues of rasagiline.",
+    "journal": "Journal of enzyme inhibition and medicinal chemistry",
+    "year": "2003"
+   },
+   {
+    "pmid": "12718496",
+    "title": "Effects of software programs stimulating regular breaks and exercises on work-related neck and upper-limb disorders.",
+    "journal": "Scandinavian journal of work, environment & health",
+    "year": "2003"
+   },
+   {
+    "pmid": "12576411",
+    "title": "Gender differences in skeletal muscle fatigability are related to contraction type and EMG spectral compression.",
+    "journal": "Journal of applied physiology (Bethesda, Md. : 1985)",
+    "year": "2003"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"thymosin\" AND \"mechanistic\" AND \"seven-amino-acid\" AND \"actin-binding\" AND \"thymosin\") AND PUB_YEAR:2003"
+ },
+ {
+  "path": "compound_learn.tb-500-thymosin-beta-4-fragment.evi.trials[2]",
+  "ref": "Recombinant human thymosin β4 in acute STEMI after reperfusion, RCT, Cardiovascular Research, 2025",
+  "finding": "Full recombinant protein, not the fragment: in a 96-patient RCT after acute STEMI, recombinant human thymosin β4 did NOT significantly reduce infarct area overall; a reduction was seen only in the pre-specified subgroup treated within 8 h of PCI.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"thymosin\" AND \"recombinant\" AND \"protein\" AND \"fragment\" AND \"patient\") AND PUB_YEAR:2025",
+  "best": {
+   "pmid": "40177110",
+   "title": "Protein to biomaterials: Unraveling the antiviral and proangiogenic activities of Ac-Tβ&lt;sub&gt;1-17&lt;/sub&gt; peptide, a thymosin β4 metabolite, and its implications in peptide-scaffold preparation.",
+   "score": 4.1,
+   "reasons": [
+    "shares protein/thymosin (+1.6)",
+    "names the compound: thymosin (+2.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.ghk-cu-copper-peptide.evi.trials[1]",
+  "ref": "Leyden et al., 2002 (Am Acad Dermatology presentation)",
+  "finding": "Controlled topical facial-cream study in photoaged women (71 subjects, twice daily, 12 weeks): improved skin density and thickness and reduced fine lines and laxity versus control — supportive human skin evidence, though small and industry-associated (a conference presentation, not a peer-reviewed journal paper).",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "12438905",
+    "title": "Healthcare utilization by women in a comprehensive managed care population subsequent to diagnosis of a sexually transmitted disease.",
+    "journal": "Sexually transmitted diseases",
+    "year": "2002"
+   },
+   {
+    "pmid": "12499768",
+    "title": "Reconstruction of the stapes superstructure with a combined glass-ceramic (Bioverit) implant in guinea pigs.",
+    "journal": "ORL; journal for oto-rhino-laryngology and its related specialties",
+    "year": "2002"
+   },
+   {
+    "pmid": "12423546",
+    "title": "Scrotal temperatures do not differ among young boys wearing disposable or reusable diapers.",
+    "journal": "Skin research and technology : official journal of International Society for Bioengineering and the Skin (ISBS) [and] International Society for Digital Imaging of Skin (ISDIS) [and] International Society for Skin Imaging (ISSI)",
+    "year": "2002"
+   },
+   {
+    "pmid": "12196750",
+    "title": "Efficacy of a low-dose oral contraceptive containing 20 microg of ethinyl estradiol and 100 microg of levonorgestrel for the treatment of moderate acne: A randomized, placebo-controlled trial.",
+    "journal": "Journal of the American Academy of Dermatology",
+    "year": "2002"
+   }
+  ],
+  "best": null,
+  "bestScore": 2.15,
+  "gap": 0.12,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"copper\" AND \"topical\" AND \"facial-cream\" AND \"photoaged\" AND \"density\") AND PUB_YEAR:2002"
+ },
+ {
+  "path": "compound_learn.kpv.evi.trials[0]",
+  "ref": "Dalmasso et al., 2008, Gastroenterology 134:166–178",
+  "finding": "Nanomolar KPV is taken into intestinal epithelial and immune cells by the PepT1 (SLC15A1) transporter, where it inhibits NF-κB and MAP-kinase signalling; oral KPV reduced DSS- and TNBS-induced colitis in mice.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "19065266",
+    "title": "Ecto-phosphorylation of CD98 regulates cell-cell interactions.",
+    "journal": "PloS one",
+    "year": "2008"
+   },
+   {
+    "pmid": "19107206",
+    "title": "Distinct genetic loci control plasma HIV-RNA and cellular HIV-DNA levels in HIV-1 infection: the ANRS Genome Wide Association 01 study.",
+    "journal": "PloS one",
+    "year": "2008"
+   },
+   {
+    "pmid": "19000681",
+    "title": "You see UC: an animal model of ulcerative colitis.",
+    "journal": "Gastroenterology",
+    "year": "2008"
+   },
+   {
+    "pmid": "19012186",
+    "title": "Proteomic profiling of amniotic fluid in preterm labor using two-dimensional liquid separation and mass spectrometry.",
+    "journal": "The journal of maternal-fetal & neonatal medicine : the official journal of the European Association of Perinatal Medicine, the Federation of Asia and Oceania Perinatal Societies, the International Society of Perinatal Obstetricians",
+    "year": "2008"
+   }
+  ],
+  "best": {
+   "pmid": "18346532",
+   "title": "The role of nitric oxide in intestinal epithelial injury and restitution in neonatal necrotizing enterocolitis.",
+   "score": 1.9,
+   "reasons": [
+    "shares intestinal/epithelial (+1.9)"
+   ]
+  },
+  "bestScore": 0.77,
+  "gap": 0.77,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"nanomolar\" AND \"intestinal\" AND \"epithelial\" AND \"immune\") AND PUB_YEAR:2008"
+ },
+ {
+  "path": "compound_learn.kpv.evi.trials[1]",
+  "ref": "Kannengiesser et al., 2008, Inflammatory Bowel Diseases 14(3):324–331",
+  "finding": "The melanocortin-derived tripeptide KPV reduced inflammation across two murine colitis models (DSS and CD45RBhi transfer) — improving weight recovery and lowering myeloperoxidase and inflammatory infiltrate.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "19169489",
+    "title": "HNF1alpha mutations are present in half of clinically defined MODY patients in South-Brazilian individuals.",
+    "journal": "Arquivos brasileiros de endocrinologia e metabologia",
+    "year": "2008"
+   },
+   {
+    "pmid": "29788621",
+    "title": "Molecular pathogenesis of inflammatory bowel disease: relevance for novel therapies.",
+    "journal": "Personalized medicine",
+    "year": "2008"
+   },
+   {
+    "pmid": "18596229",
+    "title": "Two nonsense mutations in the TMPRSS6 gene in a patient with microcytic anemia and iron deficiency.",
+    "journal": "Blood",
+    "year": "2008"
+   },
+   {
+    "pmid": "18297260",
+    "title": "Best practice guidelines for the molecular genetic diagnosis of maturity-onset diabetes of the young.",
+    "journal": "Diabetologia",
+    "year": "2008"
+   }
+  ],
+  "best": null,
+  "bestScore": 1.07,
+  "gap": 1.07,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"melanocortin-derived\" AND \"tripeptide\" AND \"inflammation\" AND \"across\") AND PUB_YEAR:2008"
+ },
+ {
+  "path": "compound_learn.rapamycin-sirolimus.evi.trials[1]",
+  "ref": "Arriola Apelo et al., 2016, Aging Cell",
+  "finding": "Intermittent rapamycin dosing extended lifespan while reducing the glucose and immune side effects of daily dosing, by more selectively inhibiting mTORC1 and sparing mTORC2.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "27701660",
+    "title": "Association Between Low-Density Lipoprotein Cholesterol-Lowering Genetic Variants and Risk of Type 2 Diabetes: A Meta-analysis.",
+    "journal": "JAMA",
+    "year": "2016"
+   },
+   {
+    "pmid": "27805813",
+    "title": "Computational and Experimental Studies of Regioselective S<sub>N</sub>Ar Halide Exchange (Halex) Reactions of Pentachloropyridine.",
+    "journal": "The Journal of organic chemistry",
+    "year": "2016"
+   },
+   {
+    "pmid": "27566853",
+    "title": "Plus Disease in Retinopathy of Prematurity: Improving Diagnosis by Ranking Disease Severity and Using Quantitative Image Analysis.",
+    "journal": "Ophthalmology",
+    "year": "2016"
+   },
+   {
+    "pmid": "27623840",
+    "title": "Prevalence of microcephaly in Europe: population based study.",
+    "journal": "BMJ (Clinical research ed.)",
+    "year": "2016"
+   }
+  ],
+  "best": {
+   "pmid": "26463117",
+   "title": "Alternative rapamycin treatment regimens mitigate the impact of rapamycin on glucose homeostasis and the immune system.",
+   "score": 4.87,
+   "reasons": [
+    "shares rapamycin/glucose/immune (+2.4)",
+    "names the compound: rapamycin (+2.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"rapamycin\" AND \"intermittent\" AND \"rapamycin\" AND \"dosing\" AND \"extended\") AND PUB_YEAR:2016"
+ },
+ {
+  "path": "compound_learn.rapamycin-sirolimus.evi.trials[3]",
+  "ref": "PEARL trial, 2025 (Aging)",
+  "finding": "PEARL trial: 48 weeks of low-dose weekly compounded rapamycin (5–10 mg) in healthy adults aged 50–85 was well tolerated with no serious drug-related adverse events; it established safety rather than a proven lifespan or definitive healthspan benefit.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "41398594",
+    "title": "Hierarchical therapeutic potential in the mesenchymal stem cell landscape.",
+    "journal": "Journal of translational medicine",
+    "year": "2025"
+   },
+   {
+    "pmid": "41401132",
+    "title": "Quantifying Metal-Organic Framework (MOF)-Polymer Adsorption Using Single-Particle Langmuir Isotherm Testing (SPLIT).",
+    "journal": "ACS applied materials & interfaces",
+    "year": "2025"
+   },
+   {
+    "pmid": "41406451",
+    "title": "Contact Precautions for MRSA and Vancomycin-Resistant Enterococcus.",
+    "journal": "The New England journal of medicine",
+    "year": "2025"
+   },
+   {
+    "pmid": "41406443",
+    "title": "Measles.",
+    "journal": "The New England journal of medicine",
+    "year": "2025"
+   }
+  ],
+  "best": {
+   "pmid": "41121328",
+   "title": "Low-dose rapamycin alleviates clinical symptoms of fatigue and PEM in ME/CFS patients via improvement of autophagy: a pilot study.",
+   "score": 5.72,
+   "reasons": [
+    "shares low-dose/rapamycin (+1.7)",
+    "names the compound: rapamycin (+2.5)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"rapamycin\" AND \"low-dose\" AND \"weekly\" AND \"compounded\" AND \"rapamycin\") AND PUB_YEAR:2025"
+ },
+ {
+  "path": "compound_learn.metformin.evi.trials[0]",
+  "ref": "UK Prospective Diabetes Study (UKPDS) 34, 1998, Lancet",
+  "finding": "In overweight type 2 diabetics, metformin reduced any diabetes-related endpoint by ~32% and all-cause mortality by ~36% versus conventional treatment — a hard-outcome benefit beyond glucose lowering.",
+  "nHits": 1,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"metformin\" AND \"overweight\" AND \"diabetics\" AND \"metformin\" AND \"diabetes-related\") AND PUB_YEAR:1998",
+  "best": {
+   "pmid": "9834725",
+   "title": "New guidelines for the management of diabetes: a physician's guide. Steering Committee for the Revision of the Clinical Practice Guidelines for the Management of Diabetes in Canada.",
+   "score": 0,
+   "reasons": []
+  }
+ },
+ {
+  "path": "compound_learn.nmn-nr-nad-precursors.evi.trials[0]",
+  "ref": "Martens et al., 2018, Nature Communications",
+  "finding": "Chronic nicotinamide riboside supplementation was well-tolerated and elevated blood NAD⁺ in healthy middle-aged and older adults (a small placebo-controlled crossover RCT), with a suggestion of reduced blood pressure/arterial stiffness in those with elevated readings.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "30559387",
+    "title": "Routes of Zika virus dissemination in the testis and epididymis of immunodeficient mice.",
+    "journal": "Nature communications",
+    "year": "2018"
+   },
+   {
+    "pmid": "30367037",
+    "title": "Multifunctional sequence-defined macromolecules for chemical data storage.",
+    "journal": "Nature communications",
+    "year": "2018"
+   },
+   {
+    "pmid": "30348994",
+    "title": "APOE ε2 is associated with increased tau pathology in primary tauopathy.",
+    "journal": "Nature communications",
+    "year": "2018"
+   },
+   {
+    "pmid": "30297844",
+    "title": "Direct protein-lipid interactions shape the conformational landscape of secondary transporters.",
+    "journal": "Nature communications",
+    "year": "2018"
+   }
+  ],
+  "best": {
+   "pmid": "29599478",
+   "title": "Chronic nicotinamide riboside supplementation is well-tolerated and elevates NAD<sup>+</sup> in healthy middle-aged and older adults.",
+   "score": 10.23,
+   "reasons": [
+    "shares chronic/nicotinamide/riboside/supplementation/well-tolerated (+8.7)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"precursors\" AND \"chronic\" AND \"nicotinamide\" AND \"riboside\" AND \"supplementation\") AND PUB_YEAR:2018"
+ },
+ {
+  "path": "compound_learn.ca-akg-calcium-alpha-ketoglutarate.evi.trials[0]",
+  "ref": "Asadi Shahmirzadi et al., 2020, Cell Metabolism",
+  "finding": "Late-life calcium-AKG supplementation extended lifespan (significant mainly in females), compressed morbidity, and reduced frailty and inflammatory markers in aging mice.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "33584581",
+    "title": "Prevalence of Naturally-Occurring NS5A and NS5B Resistance-Associated Substitutions in Iranian Patients With Chronic Hepatitis C Infection.",
+    "journal": "Frontiers in microbiology",
+    "year": "2020"
+   },
+   {
+    "title": "A generalized Gompertz growth model with applications and related birth-death processes",
+    "journal": "Ricerche di matematica",
+    "year": "2020"
+   },
+   {
+    "pmid": "33488724",
+    "title": "Antipseudomonal <i>β</i>-Lactams Resistance in Iran.",
+    "journal": "International journal of microbiology",
+    "year": "2020"
+   },
+   {
+    "pmid": "34466593",
+    "title": "Developing A General Framework for National Health Information Network for Developing Countries.",
+    "journal": "Galen medical journal",
+    "year": "2020"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"calcium\" AND \"late-life\" AND \"calcium-akg\" AND \"supplementation\" AND \"extended\") AND PUB_YEAR:2020"
+ },
+ {
+  "path": "compound_learn.ca-akg-calcium-alpha-ketoglutarate.evi.trials[2]",
+  "ref": "ABLE trial protocol, GeroScience 2023",
+  "finding": "Ongoing double-blind, placebo-controlled RCT of 1 g/day sustained-release Ca-AKG vs placebo in 120 biologically older middle-aged adults (40–60) in Singapore; designed to test change in DNA-methylation age (efficacy results pending).",
+  "nHits": 6,
+  "candidates": [
+   {
+    "title": "A Population Analysis of Delayed Ejaculation Using a Claims Database: Characteristics and National Trends in Prevalence, Incidence, and Pharmacotherapy",
+    "journal": "",
+    "year": "2023"
+   },
+   {
+    "title": "NS-AUA 2023 Annual Meeting Abstracts – Infertility, Impotence, General Urology",
+    "journal": "Canadian Urological Association journal = Journal de l'Association des urologues du Canada",
+    "year": "2023"
+   },
+   {
+    "pmid": "37696308",
+    "title": "Postoperative Opioid Prescribing in Adolescents and Young Adults After Urologic Procedures Is Associated With New Persistent Opioid Use Disorder: A Large Claims Database Analysis.",
+    "journal": "Urology",
+    "year": "2023"
+   },
+   {
+    "pmid": "37535961",
+    "title": "Safety of Vaginal Estrogen Therapy for Genitourinary Syndrome of Menopause in Women With a History of Breast Cancer.",
+    "journal": "Obstetrics and gynecology",
+    "year": "2023"
+   }
+  ],
+  "best": {
+   "pmid": "36271471",
+   "title": "Efficacy and Safety of Parathyroid Hormone Replacement With TransCon PTH in Hypoparathyroidism: 26-Week Results From the Phase 3 PaTHway Trial.",
+   "score": 0.83,
+   "reasons": [
+    "shares efficacy (+0.8)"
+   ]
+  },
+  "bestScore": 2.21,
+  "gap": 0.71,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"calcium\" AND \"ongoing\" AND \"double-blind\" AND \"placebo-controlled\" AND \"sustained-release\") AND PUB_YEAR:2023"
+ },
+ {
+  "path": "compound_learn.sulforaphane.evi.trials[0]",
+  "ref": "Egner et al., 2014, Cancer Prevention Research (Qidong trial)",
+  "finding": "Broccoli-sprout beverage (600 µmol glucoraphanin + 40 µmol sulforaphane daily, 12 weeks) increased urinary excretion of benzene detox metabolites by ~61% and acrolein by ~23% in a polluted region (Qidong) of China.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "25308602",
+    "title": "Aflatoxin exposure during the first 1000 days of life in rural South Asia assessed by aflatoxin B₁-lysine albumin biomarkers.",
+    "journal": "Food and chemical toxicology : an international journal published for the British Industrial Biological Research Association",
+    "year": "2014"
+   },
+   {
+    "pmid": "25414679",
+    "title": "Creatures of habit (and control): a multi-level learning perspective on the modulation of congruency effects.",
+    "journal": "Frontiers in psychology",
+    "year": "2014"
+   },
+   {
+    "pmid": "24965566",
+    "title": "The prozone effect in serum assays for IgG4: comment on the article by Khosroshahi et al.",
+    "journal": "Arthritis & rheumatology (Hoboken, N.J.)",
+    "year": "2014"
+   },
+   {
+    "pmid": "24945665",
+    "title": "Dissociable causal roles for left and right parietal cortex in controlling attentional biases from the contents of working memory.",
+    "journal": "NeuroImage",
+    "year": "2014"
+   }
+  ],
+  "best": {
+   "pmid": "24913818",
+   "title": "Rapid and sustainable detoxication of airborne pollutants by broccoli sprout beverage: results of a randomized clinical trial in China.",
+   "score": 1.48,
+   "reasons": [
+    "shares beverage/china (+1.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"sulforaphane\" AND \"broccoli-sprout\" AND \"beverage\" AND \"glucoraphanin\" AND \"sulforaphane\") AND PUB_YEAR:2014"
+ },
+ {
+  "path": "compound_learn.astaxanthin.evi.trials[0]",
+  "ref": "Systematic review & meta-analysis, Nutrients, 2021 (PMC8472736)",
+  "finding": "Systematic review and meta-analysis of oral astaxanthin for human skin ageing: significantly restored skin moisture and improved elasticity, but did not significantly reduce wrinkle depth versus placebo.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"astaxanthin\" AND \"systematic\" AND \"meta-analysis\" AND \"astaxanthin\" AND \"ageing\") AND PUB_YEAR:2021",
+  "best": {
+   "pmid": "34578794",
+   "title": "Systematic Review and Meta-Analysis on the Effects of Astaxanthin on Human Skin Ageing.",
+   "score": 12.89,
+   "reasons": [
+    "shares systematic/meta-analysis/astaxanthin/skin/ageing (+4.4)",
+    "names the compound: astaxanthin (+2.5)",
+    "both say meta-?analys/i (+2.5)",
+    "both say systematic review/i (+2)",
+    "both are about people (+1.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.elamipretide-ss-31.evi.trials[3]",
+  "ref": "TAZPOWER 168-week open-label extension, 2024, Genetics in Medicine",
+  "finding": "Barth syndrome crossover (12 patients) plus open-label extension: the randomised phase showed no significant separation from placebo on the primary endpoints, but the long-term open-label extension reported improvements in muscle strength — the basis for later approval.",
+  "nHits": 2,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"elamipretide\" AND \"syndrome\" AND \"crossover\" AND \"open-label\" AND \"extension\") AND PUB_YEAR:2024",
+  "best": {
+   "pmid": "39115603",
+   "title": "New and Emerging Drug and Gene Therapies for Friedreich Ataxia.",
+   "score": 0,
+   "reasons": []
+  }
+ },
+ {
+  "path": "compound_learn.elamipretide-ss-31.evi.trials[4]",
+  "ref": "US FDA, September 2025",
+  "finding": "FDA granted accelerated approval to elamipretide (FORZINITY) to improve muscle strength in Barth syndrome patients weighing at least 30 kg — the first FDA-approved mitochondria-targeted therapeutic.",
+  "nHits": 3,
+  "candidates": [
+   {
+    "pmid": "41453644",
+    "title": "Is FIB-4 the right tool for screening for liver fibrosis?",
+    "journal": "Annals of hepatology",
+    "year": "2025"
+   },
+   {
+    "pmid": "41516990",
+    "title": "Symptom Experiences and Coping Strategies in Turkish Patients with Implantable Cardioverter-Defibrillators: A Cross-Sectional Study Based on Interviews.",
+    "journal": "Healthcare (Basel, Switzerland)",
+    "year": "2025"
+   },
+   {
+    "pmid": "41472216",
+    "title": "Comparative Clinical Outcomes of Major Respiratory Viruses in Hospitalized Adults During the Post-Pandemic Period: A Retrospective Cohort Study.",
+    "journal": "Viruses",
+    "year": "2025"
+   },
+   {
+    "title": "Association of different serum PAPP A levels, in first trimester, with adverse pregnancy outcomes: a retrospective study",
+    "journal": "",
+    "year": "2025"
+   }
+  ],
+  "best": {
+   "pmid": "40195966",
+   "title": "Advancements in the treatment of Alzheimer's disease: a comprehensive review.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 1.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"elamipretide\" AND \"granted\" AND \"accelerated\" AND \"approval\" AND \"elamipretide\") AND PUB_YEAR:2025"
+ },
+ {
+  "path": "compound_learn.racetams-piracetam-aniracetam-oxiracetam-phenylpiracetam.evi.trials[0]",
+  "ref": "Flicker & Grimley Evans, 2001, Cochrane Database of Systematic Reviews, CD001011",
+  "finding": "Systematic review of piracetam for dementia or cognitive impairment: evidence inadequate to support clinical use, though an effect on global impression of change and a case for further research were noted.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "11579072",
+    "title": "Results of a 10 week community based strength and balance training programme to reduce fall risk factors: a randomised controlled trial in 65-75 year old women with osteoporosis.",
+    "journal": "British journal of sports medicine",
+    "year": "2001"
+   },
+   {
+    "pmid": "11536351",
+    "title": "Effect of testosterone deprivation on the cognitive performance of a patient with Alzheimer's disease.",
+    "journal": "International journal of geriatric psychiatry",
+    "year": "2001"
+   },
+   {
+    "pmid": "18059684",
+    "title": "Sequence of phase correction in multiconjugate adaptive optics.",
+    "journal": "Optics letters",
+    "year": "2001"
+   },
+   {
+    "pmid": "11681155",
+    "title": "Corticosteroid induced osteoporosis. Guidelines for treatment.",
+    "journal": "Australian family physician",
+    "year": "2001"
+   }
+  ],
+  "best": null,
+  "bestScore": 0.89,
+  "gap": 0.89,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"racetams\" AND \"systematic\" AND \"piracetam\" AND \"dementia\" AND \"cognitive\") AND PUB_YEAR:2001"
+ },
+ {
+  "path": "compound_learn.citicoline-cdp-choline.evi.trials[2]",
+  "ref": "Fioravanti & Yanagi, 2005, Cochrane Database of Systematic Reviews",
+  "finding": "Cochrane review (14 studies; ~884 cases in the memory analysis, elderly patients with chronic cerebral disorders): modest, consistent benefit on memory and behaviour, but no benefit on attention.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "16433198",
+    "title": "Idarubicin and idarubicinol effects on breast cancer multicellular spheroids.",
+    "journal": "Journal of chemotherapy (Florence, Italy)",
+    "year": "2005"
+   },
+   {
+    "pmid": "16396703",
+    "title": "Effect of continuous high hydrostatic pressure on the morphology and cytoskeleton of normal and osteoarthritic human chondrocytes cultivated in alginate gels.",
+    "journal": "Clinical and experimental rheumatology",
+    "year": "2005"
+   },
+   {
+    "pmid": "16268653",
+    "title": "Unexpected and expeditious entry into trifluoromethyl aziridines from substituted beta-dicarbonyl compounds.",
+    "journal": "The Journal of organic chemistry",
+    "year": "2005"
+   },
+   {
+    "pmid": "16853372",
+    "title": "Electrode surface modification by a spirobifluorene derivative. An XPS and electrochemical investigation.",
+    "journal": "The journal of physical chemistry. B",
+    "year": "2005"
+   }
+  ],
+  "best": {
+   "pmid": "15846601",
+   "title": "Cytidinediphosphocholine (CDP-choline) for cognitive and behavioural disturbances associated with chronic cerebral disorders in the elderly.",
+   "score": 7.26,
+   "reasons": [
+    "shares elderly/chronic/cerebral/disorders (+3.3)",
+    "names the compound: choline (+2.5)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"citicoline\" AND \"cochrane\" AND \"studies\" AND \"memory\" AND \"elderly\") AND PUB_YEAR:2005"
+ },
+ {
+  "path": "compound_learn.alpha-gpc.evi.trials[0]",
+  "ref": "De Jesus Moreno Moreno, 2003, Clin Ther 25(1):178–193",
+  "finding": "Multicenter double-blind RCT in mild-to-moderate Alzheimer's: choline alfoscerate 400 mg three times daily for 180 days significantly improved cognitive scores versus placebo.",
+  "nHits": 3,
+  "candidates": [
+   {
+    "pmid": "12729637",
+    "title": "The development of new triazole based inhibitors of tumor necrosis factor-alpha (TNF-alpha) production.",
+    "journal": "Bioorganic & medicinal chemistry letters",
+    "year": "2003"
+   },
+   {
+    "pmid": "12885434",
+    "title": "Tumor necrosis factor alpha increases cytosolic calcium responses to AMPA and KCl in primary cultures of rat hippocampal neurons.",
+    "journal": "Brain research",
+    "year": "2003"
+   }
+  ],
+  "best": {
+   "pmid": "12708222",
+   "title": "Long-term cholinesterase inhibitor therapy for Alzheimer's disease: implications for long-term care.",
+   "score": 0.89,
+   "reasons": [
+    "shares alzheimer (+0.9)"
+   ]
+  },
+  "bestScore": 2.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"alpha\" AND \"multicenter\" AND \"double-blind\" AND \"mild-to-moderate\" AND \"alzheimer\") AND PUB_YEAR:2003"
+ },
+ {
+  "path": "compound_learn.alpha-gpc.evi.trials[3]",
+  "ref": "Kawamura et al., 2012, Nutrition 28(11–12):1122–1126",
+  "finding": "Single 1,000 mg dose of glycerophosphocholine increased growth-hormone secretion and fat oxidation in young adults.",
+  "nHits": 3,
+  "candidates": [
+   {
+    "pmid": "22807952",
+    "title": "Co-expression of ERCC1 and Snail is a prognostic but not predictive factor of cisplatin-based neoadjuvant chemotherapy for bladder cancer.",
+    "journal": "Oncology letters",
+    "year": "2012"
+   },
+   {
+    "pmid": "22211243",
+    "title": "Microregional antitumor activity of a small-molecule hypoxia-inducible             factor 1 inhibitor.",
+    "journal": "International journal of molecular medicine",
+    "year": "2012"
+   },
+   {
+    "pmid": "23285185",
+    "title": "Piperidinols that show anti-tubercular activity as inhibitors of arylamine N-acetyltransferase: an essential enzyme for mycobacterial survival inside macrophages.",
+    "journal": "PloS one",
+    "year": "2012"
+   },
+   {
+    "pmid": "23323139",
+    "title": "Association between the G252A Tumor Necrosis Factor-β Gene Polymorphism and Medication-Overuse Headache.",
+    "journal": "Journal of clinical neurology (Seoul, Korea)",
+    "year": "2012"
+   }
+  ],
+  "best": {
+   "pmid": "25049471",
+   "title": "Roles of conceptus secretory proteins in establishment and maintenance of pregnancy in ruminants.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"alpha\" AND \"single\" AND \"glycerophosphocholine\" AND \"growth-hormone\" AND \"secretion\") AND PUB_YEAR:2012"
+ },
+ {
+  "path": "compound_learn.alpha-gpc.evi.trials[4]",
+  "ref": "Lee et al., 2021, JAMA Netw Open 4(11):e2136008",
+  "finding": "Nationwide retrospective cohort (>12 million adults ≥50 y): alpha-GPC use associated with higher 10-year incident stroke risk in a dose-response manner (observational; confounded by indication).",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "35087726",
+    "title": "A Rare Case of 3:1 Alpha Variant.",
+    "journal": "Journal of epilepsy research",
+    "year": "2021"
+   },
+   {
+    "pmid": "34805574",
+    "title": "Value of alpha-fetoprotein in hepatocellular carcinoma.",
+    "journal": "Translational gastroenterology and hepatology",
+    "year": "2021"
+   },
+   {
+    "pmid": "34879193",
+    "title": "Tracking the Emergence of SARS-CoV-2 Alpha Variant in the United Kingdom.",
+    "journal": "The New England journal of medicine",
+    "year": "2021"
+   },
+   {
+    "pmid": "34943457",
+    "title": "Prognostic and Genomic Analysis of Proteasome 20S Subunit Alpha (PSMA) Family Members in Breast Cancer.",
+    "journal": "Diagnostics (Basel, Switzerland)",
+    "year": "2021"
+   }
+  ],
+  "best": {
+   "pmid": "34735494",
+   "title": "Pediatric thalassemic patients have higher incidence of asthma: A nationwide population-based retrospective cohort study.",
+   "score": 6.5,
+   "reasons": [
+    "shares nationwide/retrospective/cohort/higher (+3.5)",
+    "both say cohort/i (+1.5)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 2.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"alpha\" AND \"nationwide\" AND \"retrospective\" AND \"cohort\" AND \"million\") AND PUB_YEAR:2021"
+ },
+ {
+  "path": "compound_learn.lion-s-mane-hericium-erinaceus.evi.trials[0]",
+  "ref": "Mori et al., 2009, Phytotherapy Research",
+  "finding": "Double-blind placebo-controlled trial in adults with mild cognitive impairment: 3 g/day of Lion's Mane powder for 16 weeks improved cognitive-scale (HDS-R) scores versus placebo, but the benefit declined within ~4 weeks of stopping.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "19416315",
+    "title": "Sensory and motor deficits in children with cerebral palsy born preterm correlate with diffusion tensor imaging abnormalities in thalamocortical pathways.",
+    "journal": "Developmental medicine and child neurology",
+    "year": "2009"
+   },
+   {
+    "pmid": "20360909",
+    "title": "Screening of potential molecular targets for colorectal cancer therapy.",
+    "journal": "International journal of general medicine",
+    "year": "2009"
+   },
+   {
+    "pmid": "20018737",
+    "title": "Gangliosides play pivotal roles in the regulation of complement systems and in the maintenance of integrity in nerve tissues.",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": "2009"
+   },
+   {
+    "pmid": "20082260",
+    "title": "Simultaneous presence of bovine papillomavirus in blood and in short-term lymphocyte cultures from dairy cattle in Pernambuco, Brazil.",
+    "journal": "Genetics and molecular research : GMR",
+    "year": "2009"
+   }
+  ],
+  "best": {
+   "pmid": "18785205",
+   "title": "Prepulse inhibition in fragile X syndrome: feasibility, reliability, and implications for treatment.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"lion\" AND \"double-blind\" AND \"placebo-controlled\" AND \"adults\" AND \"cognitive\") AND PUB_YEAR:2009"
+ },
+ {
+  "path": "compound_learn.lion-s-mane-hericium-erinaceus.evi.trials[2]",
+  "ref": "Nagano et al., 2010, Biomedical Research",
+  "finding": "Double-blind placebo-controlled trial in 30 women over 4 weeks: Lion's Mane fruiting-body cookies reduced self-reported depression and anxiety versus placebo.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "23658952",
+    "title": "Optimization and characterization of a carbamate inhibitor for plasma platelet-activating factor acetylhydrolase (pPAFAH)",
+    "journal": "",
+    "year": "2010"
+   },
+   {
+    "pmid": "22993565",
+    "title": "Effects of pre-operative transcatheter arterial chemoembolization for resectable hepatocellular carcinoma: Implication of circulating cancer cells by detection of α-fetoprotein mRNA.",
+    "journal": "Experimental and therapeutic medicine",
+    "year": "2010"
+   },
+   {
+    "pmid": "20948177",
+    "title": "Development of fluorescent probes for bioimaging applications.",
+    "journal": "Proceedings of the Japan Academy. Series B, Physical and biological sciences",
+    "year": "2010"
+   },
+   {
+    "pmid": "21231581",
+    "title": "Observation of a centrality-dependent dijet asymmetry in lead-lead collisions at sqrt[S(NN)] =2.76 TeV with the ATLAS detector at the LHC.",
+    "journal": "Physical review letters",
+    "year": "2010"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"lion\" AND \"double-blind\" AND \"placebo-controlled\" AND \"fruiting-body\" AND \"cookies\") AND PUB_YEAR:2010"
+ },
+ {
+  "path": "compound_learn.semax-selank.evi.trials[0]",
+  "ref": "Zozulya (Zozulia) et al., 2008, Zh Nevrol Psikhiatr im. S.S. Korsakova (Russian-language)",
+  "finding": "Selank (1350 µg/day intranasal) vs the benzodiazepine medazepam in generalized anxiety disorder and neurasthenia (62 patients, 14 days): comparable reduction in anxiety scores, with Selank additionally showing anti-asthenic effects and no sedation.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "18923525",
+    "title": "Activating mutations in ALK provide a therapeutic target in neuroblastoma.",
+    "journal": "Nature",
+    "year": "2008"
+   },
+   {
+    "pmid": "18941210",
+    "title": "Mycobacterium bovis bacille Calmette-Guérin infection in the CNS suppresses experimental autoimmune encephalomyelitis and Th17 responses in an IFN-gamma-independent manner.",
+    "journal": "Journal of immunology (Baltimore, Md. : 1950)",
+    "year": "2008"
+   },
+   {
+    "pmid": "18728195",
+    "title": "Semaphorin 6D regulates the late phase of CD4+ T cell primary immune responses.",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "year": "2008"
+   },
+   {
+    "pmid": "18773080",
+    "title": "A beta-lactam antibiotic dampens excitotoxic inflammatory CNS damage in a mouse model of multiple sclerosis.",
+    "journal": "PloS one",
+    "year": "2008"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"semax\" AND \"selank\" AND \"intranasal\" AND \"benzodiazepine\" AND \"medazepam\") AND PUB_YEAR:2008"
+ },
+ {
+  "path": "compound_learn.semax-selank.evi.trials[1]",
+  "ref": "Semax ischaemic-stroke rehabilitation study, Zh Nevrol Psikhiatr im. S.S. Korsakova, 2018 (PMID 29798983, Russian-language)",
+  "finding": "Semax added to rehabilitation after ischemic stroke (110 patients, ~6000 µg/day in short courses): faster recovery of neurological and motor function and elevated plasma BDNF versus the non-Semax subgroup.",
+  "nHits": 3,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"semax\" AND \"rehabilitation\" AND \"ischemic\" AND \"stroke\" AND \"courses\") AND PUB_YEAR:2018",
+  "best": {
+   "pmid": "29798983",
+   "title": "[The efficacy of semax in the tretament of patients at different stages of ischemic stroke].",
+   "score": 6.19,
+   "reasons": [
+    "shares semax/ischemic/stroke (+2.2)",
+    "names the compound: semax (+2.5)",
+    "both are about people (+1.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.dihexa.evi.trials[0]",
+  "ref": "McCoy et al., 2013, J Pharmacol Exp Ther 344:141–154 (2021 Notice of Concern)",
+  "finding": "Metabolically stabilised angiotensin-IV analogs (including dihexa) reversed scopolamine-induced memory deficits in rats (Morris water maze), were orally active at ~2 mg/kg and brain-penetrant, and showed serum stability on the order of hours — the pharmacokinetic case for dihexa as a drug candidate. Note: this paper carries a 2021 Notice of Concern from the journal for possible image manipulation; it has not been formally retracted, so read it with that caveat.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "34551225",
+    "title": "Efficacy of the mRNA-1273 SARS-CoV-2 Vaccine at Completion of Blinded Phase.",
+    "journal": "The New England journal of medicine",
+    "year": "2021"
+   },
+   {
+    "pmid": "34928945",
+    "title": "Safely resuming neglected tropical disease control activities during COVID-19: Perspectives from Nigeria and Guinea.",
+    "journal": "PLoS neglected tropical diseases",
+    "year": "2021"
+   },
+   {
+    "pmid": "34975633",
+    "title": "Pharmacotherapy of Primary Impulsive Aggression in Violent Criminal Offenders.",
+    "journal": "Frontiers in psychology",
+    "year": "2021"
+   },
+   {
+    "pmid": "34902079",
+    "title": "Value of Patient-Centered Glycemic Control in Patients with Type 2 Diabetes.",
+    "journal": "Current diabetes reports",
+    "year": "2021"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"dihexa\" AND \"metabolically\" AND \"stabilised\" AND \"angiotensin-iv\" AND \"analogs\") AND PUB_YEAR:2021"
+ },
+ {
+  "path": "compound_learn.dihexa.evi.trials[1]",
+  "ref": "Benoist et al., 2014, J Pharmacol Exp Ther 351:390–402 (RETRACTED 2025)",
+  "finding": "Reported that dihexa binds HGF and that its synaptogenic effect is HGF/c-Met-dependent — this was the keystone mechanistic paper, and it was RETRACTED in 2025 (published April 2025) after a Washington State University investigation found fabricated/falsified figures. Cited here only to flag that the mechanism's primary evidence is compromised.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "41444867",
+    "title": "Less Is More: Optimized pharmacotherapy with improved coNtinuity of CarE in hospitaLized oLder peOple (LIMONCELLO): study protocol of a cluster randomized controlled trial.",
+    "journal": "BMC geriatrics",
+    "year": "2025"
+   },
+   {
+    "pmid": "41418196",
+    "title": "Content-Addressable Memory with a Content-Free Energy Function.",
+    "journal": "Physical review letters",
+    "year": "2025"
+   },
+   {
+    "pmid": "41557411",
+    "title": "Stress Isotropization in Weakly Jammed Granular Packings.",
+    "journal": "Physical review letters",
+    "year": "2025"
+   },
+   {
+    "title": "Development and Evaluation of a Reusable Self-Healing Phantom for Ultrasound-Guided Femoral Vascular Access",
+    "journal": "",
+    "year": "2025"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"dihexa\" AND \"reported\" AND \"dihexa\" AND \"synaptogenic\" AND \"c-met-dependent\") AND PUB_YEAR:2025"
+ },
+ {
+  "path": "compound_learn.dihexa.evi.trials[2]",
+  "ref": "Athira Pharma LIFT-AD Phase 2/3 topline results, September 2024",
+  "finding": "Fosgonimeton (ATH-1017), a related HGF/c-Met-pathway molecule and the closest clinical relative, failed to meet its primary or key secondary endpoints in the Phase 2/3 LIFT-AD trial of mild-to-moderate Alzheimer's disease (the treatment effect on the Global Statistical Test was 0.08, p≈0.7; safety was acceptable).",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "39739056",
+    "title": "Characterizing tick diversity among caprine hosts of Kerala, India: a phylogenetic study.",
+    "journal": "Molecular biology reports",
+    "year": "2024"
+   },
+   {
+    "pmid": "39738509",
+    "title": "Multifaceted properties of Ni and Zn codoped MgO nanoparticles.",
+    "journal": "Scientific reports",
+    "year": "2024"
+   },
+   {
+    "pmid": "39674829",
+    "title": "Coniferaldehyde activates autophagy and enhances oxidative stress resistance and lifespan of Caenorhabditis elegans via par-4/aak-2/skn-1 pathway.",
+    "journal": "Biogerontology",
+    "year": "2024"
+   },
+   {
+    "title": "Comparative Analysis of Antifungal Properties and Metabolic Profiles in Seagrass Species from Rameshwaram Island, India",
+    "journal": "",
+    "year": "2024"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"dihexa\" AND \"fosgonimeton\" AND \"ath-1017\" AND \"related\" AND \"c-met-pathway\") AND PUB_YEAR:2024"
+ },
+ {
+  "path": "compound_learn.apigenin.evi.trials[1]",
+  "ref": "Hieu et al., 2019, Phytotherapy Research",
+  "finding": "Systematic review and meta-analysis (12 RCTs): chamomile significantly improved sleep quality across pooled trials (SMD ≈ −0.73, 95% CI [−1.23, −0.23]), though evidence for clinical insomnia specifically was limited (a single RCT showed no change in insomnia severity).",
+  "nHits": 3,
+  "candidates": [
+   {
+    "pmid": "32215091",
+    "title": "Primary Cementless Bipolar Long Stem Hemiarthroplasty for Unstable Osteoporotic Intertrochanteric Fracture in the Elderly Patients.",
+    "journal": "Open access Macedonian journal of medical sciences",
+    "year": "2019"
+   },
+   {
+    "pmid": "35540071",
+    "title": "Electronic and optical properties of Janus ZrSSe by density functional theory.",
+    "journal": "RSC advances",
+    "year": "2019"
+   },
+   {
+    "pmid": "31808767",
+    "title": "Enhanced anisotropic electrical conductivity of perturbed monolayer β<sub>12</sub>-borophene.",
+    "journal": "Physical chemistry chemical physics : PCCP",
+    "year": "2019"
+   },
+   {
+    "pmid": "31847847",
+    "title": "Evolving trends in infective endocarditis in a developing country: a consequence of medical progress?",
+    "journal": "Annals of clinical microbiology and antimicrobials",
+    "year": "2019"
+   }
+  ],
+  "best": {
+   "pmid": "30521155",
+   "title": "An update and systematic review on the treatment of primary dysmenorrhea.",
+   "score": 2.95,
+   "reasons": [
+    "shares systematic (+0.9)",
+    "both say systematic review/i (+2)"
+   ]
+  },
+  "bestScore": 2,
+  "gap": 2,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"apigenin\" AND \"systematic\" AND \"meta-analysis\" AND \"chamomile\" AND \"quality\") AND PUB_YEAR:2019"
+ },
+ {
+  "path": "compound_learn.5-htp-l-tryptophan.evi.trials[1]",
+  "ref": "Nutrients 2025;17(17):2773 (PMC12430700), National University of Singapore",
+  "finding": "Small single-blind 12-week trial in older adults (n=30, 100 mg/day, no placebo — control simply did not take it): 5-HTP significantly raised serum serotonin, nudged up a cognitive score (MoCA), and lowered a geriatric depression score by week 8. Hypothesis-generating at best given the size and lack of blinded placebo control.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"tryptophan\" AND \"single-blind\" AND \"adults\" AND \"control\" AND \"simply\") AND PUB_YEAR:2025",
+  "best": {
+   "pmid": "41479860",
+   "title": "Pathophysiology of depression and anxiety in metabolic dysfunction-associated steatotic liver disease.",
+   "score": 0.95,
+   "reasons": [
+    "shares depression (+0.9)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.beetroot-dietary-nitrate.evi.trials[1]",
+  "ref": "Larsen et al., 2007, Acta Physiologica",
+  "finding": "Sodium nitrate (0.1 mmol/kg/day, 3 days) reduced the oxygen cost of submaximal cycling and raised gross efficiency (~19.7%→21.1%) in trained men.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "18946547",
+    "title": "Retrograde tracing with recombinant rabies virus reveals correlations between projection targets and dendritic architecture in layer 5 of mouse barrel cortex.",
+    "journal": "Frontiers in neural circuits",
+    "year": "2007"
+   },
+   {
+    "title": "Pre-rigor filleting and drip loss from fillets of farmed Atlantic cod (Gadus morhua L.)",
+    "journal": "Aquaculture research.",
+    "year": "2007"
+   },
+   {
+    "pmid": "18225674",
+    "title": "'Saturday night palsy'.",
+    "journal": "Emergency nurse : the journal of the RCN Accident and Emergency Nursing Association",
+    "year": "2007"
+   },
+   {
+    "pmid": "18058779",
+    "title": "Extending the light-harvesting properties of transition-metal dendrimers.",
+    "journal": "Chemphyschem : a European journal of chemical physics and physical chemistry",
+    "year": "2007"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"beetroot\" AND \"sodium\" AND \"nitrate\" AND \"oxygen\" AND \"submaximal\") AND PUB_YEAR:2007"
+ },
+ {
+  "path": "compound_learn.pde-5-inhibitors-sildenafil-tadalafil.evi.trials[2]",
+  "ref": "Wang et al., 2018, LUTS (PubMed 29341503)",
+  "finding": "Systematic review & meta-analysis (13 RCTs, ~3,973 men): tadalafil 5 mg once daily significantly improved both lower-urinary-tract (prostate) symptom scores and erectile function versus placebo.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "30562987",
+    "title": "Development of Small-Molecule MERS-CoV Inhibitors.",
+    "journal": "Viruses",
+    "year": "2018"
+   },
+   {
+    "pmid": "28866656",
+    "title": "Immune checkpoint inhibitors in cancer therapy.",
+    "journal": "Journal of biomedical research",
+    "year": "2018"
+   },
+   {
+    "pmid": "30232145",
+    "title": "Histone Deacetylase Inhibitors Synergize with Catalytic Inhibitors of EZH2 to Exhibit Antitumor Activity in Small Cell Carcinoma of the Ovary, Hypercalcemic Type.",
+    "journal": "Molecular cancer therapeutics",
+    "year": "2018"
+   },
+   {
+    "pmid": "30386819",
+    "title": "Synergism of antihypertensives and cholinesterase inhibitors in Alzheimer's disease.",
+    "journal": "Alzheimer's & dementia (New York, N. Y.)",
+    "year": "2018"
+   }
+  ],
+  "best": {
+   "pmid": "29341503",
+   "title": "Tadalafil 5 mg Once Daily Improves Lower Urinary Tract Symptoms and Erectile Dysfunction: A Systematic Review and Meta-analysis.",
+   "score": 12.04,
+   "reasons": [
+    "shares systematic/meta-analysis/tadalafil/once/daily (+5.0)",
+    "names the compound: tadalafil (+2.5)",
+    "both say meta-?analys/i (+2.5)",
+    "both say systematic review/i (+2)"
+   ]
+  },
+  "bestScore": 2.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"inhibitors\" AND \"systematic\" AND \"meta-analysis\" AND \"tadalafil\" AND \"lower-urinary-tract\") AND PUB_YEAR:2018"
+ },
+ {
+  "path": "compound_learn.b-complex-b12-methylfolate-b6.evi.trials[2]",
+  "ref": "Lonn et al., 2006, New England Journal of Medicine",
+  "finding": "Folic acid + B12 + B6 lowered homocysteine (~25%) but did not reduce major cardiovascular events in high-risk vascular patients, though stroke was modestly reduced (HOPE-2).",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "17065341",
+    "title": "Pubertal timing is an independent predictor of central adiposity in young adult males: the Gothenburg osteoporosis and obesity determinants study.",
+    "journal": "Diabetes",
+    "year": "2006"
+   },
+   {
+    "pmid": "17033599",
+    "title": "Remodeling of the thoracic aorta after stent grafting of type B dissection: a Swedish multicenter study.",
+    "journal": "The Journal of cardiovascular surgery",
+    "year": "2006"
+   },
+   {
+    "pmid": "17362358",
+    "title": "Hybrids and fruit set in a mixed flowering-time population of Gymnadenia conopsea (Orchidaceae).",
+    "journal": "Hereditas",
+    "year": "2006"
+   },
+   {
+    "pmid": "17060764",
+    "title": "Body composition, dietary intake, and energy expenditure after laparoscopic Roux-en-Y gastric bypass and laparoscopic vertical banded gastroplasty: a randomized clinical trial.",
+    "journal": "Annals of surgery",
+    "year": "2006"
+   }
+  ],
+  "best": {
+   "pmid": "16373648",
+   "title": "Efficacy of B vitamins in lowering homocysteine in older men: maximal effects for those with B12 deficiency and hyperhomocysteinemia.",
+   "score": 3.1,
+   "reasons": [
+    "shares b12/homocysteine (+1.6)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"complex\" AND \"lowered\" AND \"homocysteine\" AND \"cardiovascular\" AND \"events\") AND PUB_YEAR:2006"
+ },
+ {
+  "path": "compound_learn.iodine-selenium.evi.trials[1]",
+  "ref": "Systematic review & meta-analysis, Thyroid, 2024 (PMID 38243784)",
+  "finding": "In Hashimoto's thyroiditis, selenium supplementation significantly reduced thyroid peroxidase antibodies (SMD ≈ -0.96; 29 cohorts; ~2,358 participants) and lowered TSH.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"iodine\" AND \"hashimoto\" AND \"thyroiditis\" AND \"selenium\" AND \"supplementation\") AND PUB_YEAR:2024",
+  "best": {
+   "pmid": "39650307",
+   "title": "Role of Supplementation with Selenium and Myo-Inositol Versus Selenium Alone in Patients of Autoimmune Thyroiditis: A Systematic Review and Meta-Analysis.",
+   "score": 7.04,
+   "reasons": [
+    "shares thyroiditis/selenium/supplementation (+3.0)",
+    "names the compound: selenium (+2.5)",
+    "both are about people (+1.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.niacin-nadh-vitamin-b3.evi.trials[0]",
+  "ref": "AIM-HIGH Investigators (Boden et al.), 2011, N Engl J Med",
+  "finding": "Extended-release niacin added to statin therapy did not reduce cardiovascular events in patients with established heart disease and low HDL; the trial was stopped early for lack of benefit.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"niacin\" AND \"extended-release\" AND \"niacin\" AND \"statin\" AND \"therapy\") AND PUB_YEAR:2011",
+  "best": {
+   "pmid": "21392609",
+   "title": "The role of niacin in raising high-density lipoprotein cholesterol to reduce cardiovascular events in patients with atherosclerotic cardiovascular disease and optimally treated low-density lipoprotein cholesterol: baseline characteristics of study participants. The Atherothrombosis Intervention in Metabolic syndrome with low HDL/high triglycerides: impact on Global Health outcomes (AIM-HIGH) trial.",
+   "score": 9.15,
+   "reasons": [
+    "shares niacin/reduce/cardiovascular/events/disease (+5.2)",
+    "names the compound: niacin (+2.5)",
+    "both are about people (+1.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.niacin-nadh-vitamin-b3.evi.trials[2]",
+  "ref": "Coronary Drug Project; long-term follow-up Canner et al., 1986, J Am Coll Cardiol",
+  "finding": "In the pre-statin era, niacin monotherapy modestly reduced recurrent nonfatal myocardial infarction, and 15-year follow-up showed lower total mortality.",
+  "nHits": 0,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"niacin\" AND \"pre-statin\" AND \"niacin\" AND \"monotherapy\" AND \"modestly\") AND PUB_YEAR:1986",
+  "best": null
+ },
+ {
+  "path": "compound_learn.cagrilintide-cagrisema.evi.trials[2]",
+  "ref": "REDEFINE 1, 2025, N Engl J Med (NEJMoa2502081)",
+  "finding": "REDEFINE 1 phase 3 (n=3417, overweight/obesity without diabetes): CagriSema 2.4/2.4 mg produced 22.7% mean weight loss over 68 weeks (trial-product estimand) vs 16.1% (semaglutide), 11.8% (cagrilintide) and 2.3% (placebo).",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"cagrilintide\" AND \"redefine\" AND \"overweight\" AND \"obesity\" AND \"without\") AND PUB_YEAR:2025",
+  "best": {
+   "pmid": "40544433",
+   "title": "Coadministered Cagrilintide and Semaglutide in Adults with Overweight or Obesity.",
+   "score": 6.3,
+   "reasons": [
+    "shares overweight/obesity/semaglutide/cagrilintide (+3.8)",
+    "names the compound: cagrilintide (+2.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.cagrilintide-cagrisema.evi.trials[3]",
+  "ref": "REDEFINE 2, 2025, N Engl J Med",
+  "finding": "REDEFINE 2 phase 3 (overweight/obesity WITH type 2 diabetes): CagriSema produced ~13.7% weight loss (treatment-policy estimate) vs ~3.4% placebo over 68 weeks.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"cagrilintide\" AND \"redefine\" AND \"overweight\" AND \"obesity\" AND \"diabetes\") AND PUB_YEAR:2025",
+  "best": {
+   "pmid": "40544432",
+   "title": "Cagrilintide-Semaglutide in Adults with Overweight or Obesity and Type 2 Diabetes.",
+   "score": 5.64,
+   "reasons": [
+    "shares overweight/obesity/type/diabetes (+3.1)",
+    "names the compound: cagrilintide (+2.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.insulin-anabolic-misuse.evi.trials[1]",
+  "ref": "Severe Hypoglycemia Due to Cryptic Insulin Use in a Bodybuilder, J Emerg Med, 2019",
+  "finding": "Case report of severe, prolonged hypoglycemia and coma in a bodybuilder from covert ('cryptic') insulin use, illustrating how difficult and drawn-out correction can be.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "30865794",
+    "title": "One Month of Rifapentine plus Isoniazid to Prevent HIV-Related Tuberculosis.",
+    "journal": "The New England journal of medicine",
+    "year": "2019"
+   },
+   {
+    "pmid": "31700184",
+    "title": "Exercise reduces inflammatory cell production and cardiovascular inflammation via instruction of hematopoietic progenitor cells.",
+    "journal": "Nature medicine",
+    "year": "2019"
+   },
+   {
+    "pmid": "31107305",
+    "title": "\"FANMI\": A Promising Differentiated Model of HIV Care for Adolescents in Haiti.",
+    "journal": "Journal of acquired immune deficiency syndromes (1999)",
+    "year": "2019"
+   },
+   {
+    "pmid": "31448551",
+    "title": "Prevalence of hypertension and cardiovascular risk factors among long-term AIDS survivors: A report from the field.",
+    "journal": "Journal of clinical hypertension (Greenwich, Conn.)",
+    "year": "2019"
+   }
+  ],
+  "best": {
+   "pmid": "31426870",
+   "title": "Tigecycline-induced sustained severe hypoglycemia: a case report.",
+   "score": 5.08,
+   "reasons": [
+    "shares case/report/severe/hypoglycemia (+3.1)",
+    "both say case report/i (+2)"
+   ]
+  },
+  "bestScore": 0.71,
+  "gap": 0.71,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"insulin\" AND \"report\" AND \"severe\" AND \"prolonged\" AND \"hypoglycemia\") AND PUB_YEAR:2019"
+ },
+ {
+  "path": "compound_learn.epo-erythropoietin.evi.trials[4]",
+  "ref": "Pfeffer et al., 2009, N Engl J Med",
+  "finding": "TREAT: in type-2-diabetes CKD patients, darbepoetin alfa (an EPO analog) targeting higher haemoglobin roughly doubled the risk of fatal or nonfatal stroke versus placebo.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "19940289",
+    "title": "A sensitive cardiac troponin T assay in stable coronary artery disease.",
+    "journal": "The New England journal of medicine",
+    "year": "2009"
+   },
+   {
+    "pmid": "19880844",
+    "title": "A trial of darbepoetin alfa in type 2 diabetes and chronic kidney disease.",
+    "journal": "The New England journal of medicine",
+    "year": "2009"
+   },
+   {
+    "pmid": "19723701",
+    "title": "Cardiac-resynchronization therapy for the prevention of heart-failure events.",
+    "journal": "The New England journal of medicine",
+    "year": "2009"
+   },
+   {
+    "pmid": "19336502",
+    "title": "Effect of clopidogrel added to aspirin in patients with atrial fibrillation.",
+    "journal": "The New England journal of medicine",
+    "year": "2009"
+   }
+  ],
+  "best": {
+   "pmid": "19214293",
+   "title": "Canadian Cardiovascular Society Consensus Conference guidelines on heart failure, update 2009: diagnosis and management of right-sided heart failure, myocarditis, device therapy and recent important clinical trials.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 1.6,
+  "gap": 0.1,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"erythropoietin\" AND \"type-2-diabetes\" AND \"darbepoetin\" AND \"analog\" AND \"targeting\") AND PUB_YEAR:2009"
+ },
+ {
+  "path": "compound_learn.mgf-peg-mgf.evi.trials[0]",
+  "ref": "Yang & Goldspink, 2002, FEBS Letters 522:156–160",
+  "finding": "The MGF E-domain peptide increased myoblast proliferation and inhibited their differentiation, and blocking the IGF-1 receptor did not abolish the effect — evidence MGF acts through a separate, non-IGF-1R receptor.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "12459056",
+    "title": "Synthesis, biodegradability, and biocompatibility of lysine diisocyanate-glucose polymers.",
+    "journal": "Tissue engineering",
+    "year": "2002"
+   },
+   {
+    "pmid": "12234149",
+    "title": "Correlation of cytokinin levels in the endosperms and roots with cell number and cell division activity during endosperm development in rice.",
+    "journal": "Annals of botany",
+    "year": "2002"
+   },
+   {
+    "pmid": "12234827",
+    "title": "An implantable bolus infusion pump for use in freely moving, nontethered rats.",
+    "journal": "American journal of physiology. Heart and circulatory physiology",
+    "year": "2002"
+   },
+   {
+    "pmid": "12513133",
+    "title": "Limits on extra dimensions and new particle production in the exclusive photon and missing energy signature in pp collisions at square root [s]=1.8 TeV.",
+    "journal": "Physical review letters",
+    "year": "2002"
+   }
+  ],
+  "best": {
+   "pmid": "12095637",
+   "title": "Different roles of the IGF-I Ec peptide (MGF) and mature IGF-I in myoblast proliferation and differentiation.",
+   "score": 4.46,
+   "reasons": [
+    "shares mgf/peptide/myoblast/proliferation/differentiation (+4.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"e-domain\" AND \"peptide\" AND \"myoblast\" AND \"proliferation\") AND PUB_YEAR:2002"
+ },
+ {
+  "path": "compound_learn.beta-glucans.evi.trials[0]",
+  "ref": "Zhong et al., 2021, European Journal of Nutrition",
+  "finding": "Systematic review and meta-analysis of 13 RCTs: yeast β-glucan significantly reduced upper-respiratory-tract-infection incidence (odds ratio ≈ 0.35, 95% CI 0.19–0.62) and decreased the number and duration of episodes versus placebo.",
+  "nHits": 4,
+  "candidates": [
+   {
+    "pmid": "33868570",
+    "title": "Dietary Beta-Hydroxy Beta-Methyl Butyrate Supplementation Alleviates Liver Injury in Lipopolysaccharide-Challenged Piglets.",
+    "journal": "Oxidative medicine and cellular longevity",
+    "year": "2021"
+   },
+   {
+    "pmid": "34125004",
+    "title": "The expression and clinical prognostic value of protein phosphatase 1 catalytic subunit beta in pancreatic cancer.",
+    "journal": "Bioengineered",
+    "year": "2021"
+   },
+   {
+    "pmid": "34752669",
+    "title": "Molecular analysis of alpha- and beta-thalassemia in Meizhou region and comparison of gene mutation spectrum with different regions of southern China.",
+    "journal": "Journal of clinical laboratory analysis",
+    "year": "2021"
+   },
+   {
+    "pmid": "34636093",
+    "title": "miR-29a-3p promotes migration and invasion in ameloblastoma via Wnt/β-catenin signaling by targeting catenin beta interacting protein 1.",
+    "journal": "Head & neck",
+    "year": "2021"
+   }
+  ],
+  "best": {
+   "pmid": "33900466",
+   "title": "Effects of yeast β-glucans for the prevention and treatment of upper respiratory tract infection in healthy subjects: a systematic review and meta-analysis.",
+   "score": 9.73,
+   "reasons": [
+    "shares systematic/meta-analysis/yeast (+2.7)",
+    "names the compound: glucans (+2.5)",
+    "both say meta-?analys/i (+2.5)",
+    "both say systematic review/i (+2)"
+   ]
+  },
+  "bestScore": 2.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"beta\" AND \"systematic\" AND \"meta-analysis\" AND \"glucan\" AND \"upper-respiratory-tract-infection\") AND PUB_YEAR:2021"
+ },
+ {
+  "path": "compound_learn.medicinal-mushrooms-reishi-turkey-tail-chaga.evi.trials[0]",
+  "ref": "Nakazato et al., 1994, The Lancet",
+  "finding": "Adding PSK to standard adjuvant chemotherapy after curative gastrectomy improved 5-year disease-free rate (70.7% vs 59.4%) and 5-year survival (73.0% vs 60.0%) in a randomised trial of 262 gastric-cancer patients.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "7531630",
+    "title": "Cytoplasmic lamellar bodies are not immunostained with rabbit anti-cystatin C serum.",
+    "journal": "Clinical neuropathology",
+    "year": "1994"
+   },
+   {
+    "pmid": "7811289",
+    "title": "Identification of 10-kDa proguanylin as a major guanylin molecule in human intestine and plasma and its increase in renal insufficiency.",
+    "journal": "Biochemical and biophysical research communications",
+    "year": "1994"
+   },
+   {
+    "pmid": "10774421",
+    "title": "Anti-Borrelia burgdorferi antibodies in sera of patients with facial paralysis.",
+    "journal": "European archives of oto-rhino-laryngology : official journal of the European Federation of Oto-Rhino-Laryngological Societies (EUFOS) : affiliated with the German Society for Oto-Rhino-Laryngology - Head and Neck Surgery",
+    "year": "1994"
+   },
+   {
+    "pmid": "7900154",
+    "title": "Human prostate acid phosphatase is carrier protein for ABH blood group antigens of semen.",
+    "journal": "The Tohoku journal of experimental medicine",
+    "year": "1994"
+   }
+  ],
+  "best": null,
+  "bestScore": 1.5,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"medicinal\" AND \"adding\" AND \"standard\" AND \"adjuvant\" AND \"chemotherapy\") AND PUB_YEAR:1994"
+ },
+ {
+  "path": "compound_learn.medicinal-mushrooms-reishi-turkey-tail-chaga.evi.trials[1]",
+  "ref": "Oba et al., 2007, Cancer Immunology, Immunotherapy",
+  "finding": "Individual-patient-data meta-analysis of adjuvant PSK immunochemotherapy in curatively resected gastric cancer found a significant overall-survival benefit.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "18057852",
+    "title": "[A case of adult neuroblastoma arising in the retroperitoneum following a poorly aggressive course].",
+    "journal": "Nihon Shokakibyo Gakkai zasshi = The Japanese journal of gastro-enterology",
+    "year": "2007"
+   },
+   {
+    "pmid": "17982628",
+    "title": "Ingestion of thioproline suppresses rat esophageal adenocarcinogenesis caused by duodenogastroesophageal reflux.",
+    "journal": "Oncology reports",
+    "year": "2007"
+   },
+   {
+    "pmid": "18040631",
+    "title": "Gallbladder torsion-induced emphysematous cholecystitis in a 16-year-old boy.",
+    "journal": "Journal of hepato-biliary-pancreatic surgery",
+    "year": "2007"
+   },
+   {
+    "title": "Extent of processing of barley grain did not affect productivity of lactating dairy cows",
+    "journal": "Animal feed science and technology",
+    "year": "2007"
+   }
+  ],
+  "best": null,
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"medicinal\" AND \"individual-patient-data\" AND \"meta-analysis\" AND \"adjuvant\" AND \"immunochemotherapy\") AND PUB_YEAR:2007"
+ },
+ {
+  "path": "compound_learn.tretinoin-retinoids.evi.trials[2]",
+  "ref": "Topical tretinoin for photoaging systematic review, 2022, Int J Womens Dermatol",
+  "finding": "Systematic review of randomized controlled trials: topical tretinoin consistently improved measures of facial photoaging.",
+  "nHits": 6,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"tretinoin\" AND \"systematic\" AND \"trials\" AND \"topical\" AND \"tretinoin\") AND PUB_YEAR:2022",
+  "best": {
+   "pmid": "35620028",
+   "title": "Topical tretinoin for treating photoaging: A systematic review of randomized controlled trials.",
+   "score": 10.27,
+   "reasons": [
+    "shares systematic/trials/topical/tretinoin/photoaging (+4.3)",
+    "names the compound: tretinoin (+2.5)",
+    "both say systematic review/i (+2)",
+    "both say randomi[sz]ed/i (+1.5)"
+   ]
+  }
+ },
+ {
+  "path": "compound_learn.estradiol-menopausal-hrt.evi.trials[2]",
+  "ref": "Canonico et al., 2007, Circulation (ESTHER study)",
+  "finding": "ESTHER: oral estrogen was associated with a markedly increased venous thromboembolism risk (OR ~4.2) whereas transdermal estrogen was not (OR ~0.9) versus non-users.",
+  "nHits": 5,
+  "candidates": [
+   {
+    "pmid": "20608380",
+    "title": "[Health assistance to homeless people in a health unit in São Paulo city].",
+    "journal": "Revista da Escola de Enfermagem da U S P",
+    "year": "2007"
+   },
+   {
+    "pmid": "17996661",
+    "title": "Clinical sedation scores as indicators of sedative and analgesic drug exposure in intensive care unit patients.",
+    "journal": "The American journal of geriatric pharmacotherapy",
+    "year": "2007"
+   },
+   {
+    "pmid": "17705688",
+    "title": "Clinical validation of a new control-oriented model of insulin and glucose dynamics in subjects with type 1 diabetes.",
+    "journal": "Diabetes technology & therapeutics",
+    "year": "2007"
+   },
+   {
+    "pmid": "17497595",
+    "title": "Sutureless tension-free hernia repair with human fibrin glue (tissucol) in soccer players with chronic inguinal pain: initial experience.",
+    "journal": "International journal of sports medicine",
+    "year": "2007"
+   }
+  ],
+  "best": {
+   "pmid": "17056225",
+   "title": "Developmental exposure of mice to TCDD elicits a similar uterine phenotype in adult animals as observed in women with endometriosis.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"estradiol\" AND \"esther\" AND \"estrogen\" AND \"associated\" AND \"markedly\") AND PUB_YEAR:2007"
+ },
+ {
+  "path": "compound_learn.calcium-d3-k2.evi.trials[3]",
+  "ref": "Knapen et al., 2015, Thromb Haemost 113:1135-44",
+  "finding": "3-year RCT: MK-7 180 µg/day improved arterial stiffness (carotid-femoral pulse wave velocity) and reduced inactive MGP (dp-ucMGP) by about half in healthy postmenopausal women.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "26500288",
+    "title": "Adverse Outcome Pathways for Regulatory Applications: Examination of Four Case Studies With Different Degrees of Completeness and Scientific Confidence.",
+    "journal": "Toxicological sciences : an official journal of the Society of Toxicology",
+    "year": "2015"
+   },
+   {
+    "pmid": "26436901",
+    "title": "Negligible fronto-parietal BOLD activity accompanying unreportable switches in bistable perception.",
+    "journal": "Nature neuroscience",
+    "year": "2015"
+   },
+   {
+    "pmid": "26550867",
+    "title": "Disentangling Mass and Mixing Hierarchies.",
+    "journal": "Physical review letters",
+    "year": "2015"
+   },
+   {
+    "pmid": "26495126",
+    "title": "Yogurt drink fortified with menaquinone-7 improves vitamin K status in a healthy population.",
+    "journal": "Journal of nutritional science",
+    "year": "2015"
+   }
+  ],
+  "best": {
+   "pmid": "26676157",
+   "title": "An Open Label Parallel Group Study to Assess the Effects of Amlodipine and Cilnidipine on Pulse Wave Velocity and Augmentation Pressures in Mild to Moderate Essential Hypertensive Patients.",
+   "score": 3.57,
+   "reasons": [
+    "shares pulse/wave/velocity (+2.1)",
+    "both are about people (+1.5)"
+   ]
+  },
+  "bestScore": 0.77,
+  "gap": 0.77,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"calcium\" AND \"arterial\" AND \"stiffness\" AND \"carotid-femoral\" AND \"velocity\") AND PUB_YEAR:2015"
+ },
+ {
+  "path": "compound_learn.ssris-sertraline-escitalopram.evi.trials[2]",
+  "ref": "Bousman et al., 2023, Clin Pharmacol Ther (CPIC)",
+  "finding": "CPIC guideline: CYP2C19 poor metabolisers of escitalopram and sertraline have elevated exposure; a ~50% starting-dose reduction is recommended.",
+  "nHits": 2,
+  "candidates": [
+   {
+    "title": "Plasma neurofilament light protein provides evidence of accelerated brain ageing in treatment-resistant schizophrenia",
+    "journal": "",
+    "year": "2023"
+   },
+   {
+    "pmid": "37960239",
+    "title": "Neuroimaging Insights: Kava's (<i>Piper methysticum</i>) Effect on Dorsal Anterior Cingulate Cortex GABA in Generalized Anxiety Disorder.",
+    "journal": "Nutrients",
+    "year": "2023"
+   },
+   {
+    "pmid": "37988817",
+    "title": "Comprehensive dissection of prevalence rates, sex differences, and blood level-dependencies of clozapine-associated adverse drug reactions.",
+    "journal": "Psychiatry research",
+    "year": "2023"
+   },
+   {
+    "pmid": "37895294",
+    "title": "<i>CYP2D6</i> and <i>CYP2C19</i> Variant Coverage of Commercial Antidepressant Pharmacogenomic Testing Panels Available in Victoria, Australia.",
+    "journal": "Genes",
+    "year": "2023"
+   }
+  ],
+  "best": {
+   "pmid": "37765085",
+   "title": "The Effects of CYP2C19 Genotype on Proxies of SSRI Antidepressant Response in the UK Biobank.",
+   "score": 0.77,
+   "reasons": [
+    "shares cyp2c19 (+0.8)"
+   ]
+  },
+  "bestScore": 0.77,
+  "gap": 0.77,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"ssris\" AND \"guideline\" AND \"cyp2c19\" AND \"metabolisers\" AND \"escitalopram\") AND PUB_YEAR:2023"
+ },
+ {
+  "path": "compound_learn.ketamine-esketamine-spravato.evi.trials[2]",
+  "ref": "Popova et al., 2019, American Journal of Psychiatry",
+  "finding": "TRANSFORM-2 phase 3: flexibly dosed esketamine nasal spray plus a newly initiated oral antidepressant significantly reduced MADRS at day 28 versus placebo plus antidepressant in treatment-resistant depression.",
+  "nHits": 0,
+  "candidates": [
+   {
+    "pmid": "31878088",
+    "title": "Promising New Inhibitors of Tyrosyl-DNA Phosphodiesterase I (Tdp 1) Combining 4-Arylcoumarin and Monoterpenoid Moieties as Components of Complex Antitumor Therapy.",
+    "journal": "International journal of molecular sciences",
+    "year": "2019"
+   },
+   {
+    "pmid": "31861797",
+    "title": "Terpenoids in the Essential Oil and Concentrated Aromatic Products Obtained from <i>Nicotiana glutinosa</i> L. Leaves.",
+    "journal": "Molecules (Basel, Switzerland)",
+    "year": "2019"
+   },
+   {
+    "pmid": "31878111",
+    "title": "Effects of a Nicotine Fact Sheet on Perceived Risk of Nicotine and E-Cigarettes and Intentions to Seek Information About and Use E-Cigarettes.",
+    "journal": "International journal of environmental research and public health",
+    "year": "2019"
+   },
+   {
+    "pmid": "31905713",
+    "title": "Production of Abzymes in Th, CBA, and C57BL/6 Mice before and after MOG Treatment: Comparing Changes in Cell Differentiation and Proliferation.",
+    "journal": "Biomolecules",
+    "year": "2019"
+   }
+  ],
+  "best": null,
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"ketamine\" AND \"transform-2\" AND \"flexibly\" AND \"esketamine\" AND \"initiated\") AND PUB_YEAR:2019"
+ },
+ {
+  "path": "compound_learn.pcsk9-inhibitors-evolocumab-inclisiran.evi.trials[1]",
+  "ref": "Schwartz et al., 2018, N Engl J Med 379:2097",
+  "finding": "ODYSSEY OUTCOMES: alirocumab after acute coronary syndrome reduced major adverse cardiovascular events, with a signal toward lower all-cause mortality.",
+  "nHits": 0,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"pcsk9\" AND \"odyssey\" AND \"outcomes\" AND \"alirocumab\" AND \"coronary\") AND PUB_YEAR:2097",
+  "best": null
+ },
+ {
+  "path": "compound_learn.pcsk9-inhibitors-evolocumab-inclisiran.evi.trials[2]",
+  "ref": "Ray et al., 2020, N Engl J Med 382:1507",
+  "finding": "ORION-10 and ORION-11: inclisiran lowered LDL by about 52% and 50% respectively versus placebo at day 510, with twice-yearly dosing and an adverse-event profile similar to placebo apart from injection-site reactions.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "title": "Repurposing Nonnucleoside Antivirals Against SARS-CoV2 NSP12 (RNA Dependent RNA Polymerase) and Identification of Domain Specific Interactions",
+    "journal": "",
+    "year": "2020"
+   },
+   {
+    "title": "Drug Repurposing Commonly Against Dengue Virus Capsid and SARS-CoV-2 Nucleocapsid: An in Silico Approach",
+    "journal": "",
+    "year": "2020"
+   },
+   {
+    "title": "SARS-CoV-2 Nucleocapsid Assembly Inhibitors: Repurposing Antiviral and Antimicrobial Drugs Targeting Nucleocapsid-RNA Interaction",
+    "journal": "",
+    "year": "2020"
+   },
+   {
+    "pmid": "33643174",
+    "title": "Transcranial Doppler Ultrasonographic Evaluation of Cerebrovascular Abnormalities in Children With Acute Bacterial Meningitis.",
+    "journal": "Frontiers in neurology",
+    "year": "2020"
+   }
+  ],
+  "best": {
+   "pmid": "33089390",
+   "title": "Low-density Lipoprotein-Cholesterol Lowering Strategies for Prevention of Atherosclerotic Cardiovascular Disease: Focus on siRNA Treatment Targeting PCSK9 (Inclisiran).",
+   "score": 5.95,
+   "reasons": [
+    "shares inclisiran (+0.9)",
+    "names the compound: pcsk9, inclisiran (+5.0)"
+   ]
+  },
+  "bestScore": 1,
+  "gap": 1,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"pcsk9\" AND \"orion-10\" AND \"orion-11\" AND \"inclisiran\" AND \"lowered\") AND PUB_YEAR:2020"
+ },
+ {
+  "path": "compound_learn.alpha-lipoic-acid-ala.evi.trials[2]",
+  "ref": "Ziegler et al., 2011, Diabetes Care 34(9):2054–2060",
+  "finding": "NATHAN 1 trial: 4 years of oral ALA 600 mg/day did not meet its primary composite endpoint (NIS-LL plus neurophysiologic tests; P=0.105), though some secondary neuropathic impairment measures improved.",
+  "nHits": 0,
+  "candidates": [],
+  "why": "no candidates at all",
+  "requery": "(\"alpha\" AND \"nathan\" AND \"primary\" AND \"composite\" AND \"endpoint\") AND PUB_YEAR:2060",
+  "best": null
+ },
+ {
+  "path": "compound_learn.prebiotics-inulin-gos-phgg-butyrate.evi.trials[1]",
+  "ref": "Singh et al., 2014, Immunity 40(1):128–139",
+  "finding": "GPR109A (HCAR2), a receptor for butyrate and niacin, promotes anti-inflammatory macrophages/dendritic cells and Treg induction, suppressing colonic inflammation and carcinogenesis (mouse).",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "25574956",
+    "title": "Relationships of pulmonary function, inflammation, and T-cell activation and senescence in an HIV-infected cohort.",
+    "journal": "AIDS (London, England)",
+    "year": "2014"
+   },
+   {
+    "pmid": "25353261",
+    "title": "Physical activity and spatial differences in medial knee T1rho and t2 relaxation times in knee osteoarthritis.",
+    "journal": "The Journal of orthopaedic and sports physical therapy",
+    "year": "2014"
+   },
+   {
+    "pmid": "25271023",
+    "title": "Expression and clinical significance of CXCR5/CXCL13 in human non‑small cell lung carcinoma.",
+    "journal": "International journal of oncology",
+    "year": "2014"
+   },
+   {
+    "pmid": "25328548",
+    "title": "Microscale Bioadhesive Hydrogel Arrays for Cell Engineering Applications.",
+    "journal": "Cellular and molecular bioengineering",
+    "year": "2014"
+   }
+  ],
+  "best": {
+   "pmid": "24950204",
+   "title": "Inflammatory bowel disease as a model for translating the microbiome.",
+   "score": 0,
+   "reasons": []
+  },
+  "bestScore": 1.07,
+  "gap": 1.07,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"prebiotics\" AND \"gpr109a\" AND \"receptor\" AND \"butyrate\" AND \"niacin\") AND PUB_YEAR:2014"
+ },
+ {
+  "path": "compound_learn.prebiotics-inulin-gos-phgg-butyrate.evi.trials[2]",
+  "ref": "Niv et al., 2016, Nutrition & Metabolism 13:10",
+  "finding": "Partially hydrolysed guar gum (PHGG), 6 g/day for 12 weeks, significantly improved bloating scores versus placebo in patients with IBS in a randomised trial.",
+  "nHits": 1,
+  "candidates": [
+   {
+    "pmid": "27408906",
+    "title": "Reinforcement learning with Marr.",
+    "journal": "Current opinion in behavioral sciences",
+    "year": "2016"
+   },
+   {
+    "pmid": "27599017",
+    "title": "The effects of aging on the interaction between reinforcement learning and attention.",
+    "journal": "Psychology and aging",
+    "year": "2016"
+   },
+   {
+    "pmid": "27442499",
+    "title": "Mucin gene expression in the intestine of ulcerative colitis patients: a systematic review and meta-analysis.",
+    "journal": "European journal of gastroenterology & hepatology",
+    "year": "2016"
+   },
+   {
+    "pmid": "28195019",
+    "title": "Do You See the Forest or the Tree? Neural Gain and Breadth Versus Focus in Perceptual Processing.",
+    "journal": "Psychological science",
+    "year": "2016"
+   }
+  ],
+  "best": {
+   "title": "4th Pediatric Allergy and Asthma Meeting (PAAM)",
+   "score": -1.5,
+   "reasons": [
+    "no PMID (-1.5)"
+   ]
+  },
+  "bestScore": 1.5,
+  "gap": 1.5,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"prebiotics\" AND \"partially\" AND \"hydrolysed\" AND \"bloating\" AND \"scores\") AND PUB_YEAR:2016"
+ },
+ {
+  "path": "compound_learn.prebiotics-inulin-gos-phgg-butyrate.evi.trials[3]",
+  "ref": "Reimer et al., systematic review & meta-analysis, Am J Clin Nutr, 2024",
+  "finding": "Chicory inulin-type fructans produced small but significant improvements in weight-management outcomes (~0.97 kg body-weight reduction) across randomised controlled trials — note: industry-funded.",
+  "nHits": 6,
+  "candidates": [
+   {
+    "pmid": "39758556",
+    "title": "﻿Parazoanthidae (Cnidaria, Zoantharia) associated with glass sponges on the Nishi-Shichito Ridge, northwestern Pacific Ocean, with the description of a new species.",
+    "journal": "ZooKeys",
+    "year": "2024"
+   },
+   {
+    "pmid": "39721961",
+    "title": "Lost and found: dynamics of relationship and employment status over time in people with affective and psychotic spectrum disorders.",
+    "journal": "BJPsych open",
+    "year": "2024"
+   },
+   {
+    "pmid": "39693410",
+    "title": "Striatal stimulation enhances cognitive control and evidence processing in rodents and humans.",
+    "journal": "Science translational medicine",
+    "year": "2024"
+   },
+   {
+    "pmid": "39769182",
+    "title": "Whole-Exome Sequencing, Mutational Signature Analysis, and Outcome in Multiple Myeloma-A Pilot Study.",
+    "journal": "International journal of molecular sciences",
+    "year": "2024"
+   }
+  ],
+  "best": {
+   "pmid": "39313030",
+   "title": "The effects of chicory inulin-type fructans supplementation on weight management outcomes: systematic review, meta-analysis, and meta-regression of randomized controlled trials.",
+   "score": 8.15,
+   "reasons": [
+    "shares chicory/inulin-type/fructans/outcomes/trials (+4.2)",
+    "names the compound: inulin (+2.5)",
+    "both say randomi[sz]ed/i (+1.5)"
+   ]
+  },
+  "bestScore": 0,
+  "gap": 0,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"prebiotics\" AND \"chicory\" AND \"inulin-type\" AND \"fructans\" AND \"produced\") AND PUB_YEAR:2024"
+ },
+ {
+  "path": "compound_learn.sam-e-s-adenosylmethionine.evi.trials[0]",
+  "ref": "Papakostas et al., 2010, Am J Psychiatry",
+  "finding": "Adjunctive SAM-e 800 mg twice daily added to a serotonin reuptake inhibitor in antidepressant non-responders (n=73) produced higher response (36.1% vs 17.6%) and remission rates than added placebo over 6 weeks.",
+  "nHits": 2,
+  "candidates": [
+   {
+    "pmid": "26650135",
+    "title": "Reply to Fleisch et al. Letter.",
+    "journal": "The American journal of psychiatry",
+    "year": "2010"
+   },
+   {
+    "pmid": "20595412",
+    "title": "S-adenosyl methionine (SAMe) augmentation of serotonin reuptake inhibitors for antidepressant nonresponders with major depressive disorder: a double-blind, randomized clinical trial.",
+    "journal": "The American journal of psychiatry",
+    "year": "2010"
+   }
+  ],
+  "best": {
+   "pmid": "20595412",
+   "title": "S-adenosyl methionine (SAMe) augmentation of serotonin reuptake inhibitors for antidepressant nonresponders with major depressive disorder: a double-blind, randomized clinical trial.",
+   "score": 2.91,
+   "reasons": [
+    "shares serotonin/reuptake/antidepressant (+2.9)"
+   ]
+  },
+  "bestScore": 2.91,
+  "gap": 6.91,
+  "why": "no candidate scores high enough — the paper is probably not in this list",
+  "requery": "(\"adenosylmethionine\" AND \"adjunctive\" AND \"serotonin\" AND \"reuptake\" AND \"inhibitor\") AND PUB_YEAR:2010"
+ }
+]
