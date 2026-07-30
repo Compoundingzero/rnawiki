@@ -3211,6 +3211,12 @@
    "needs_split": false,
    "needs_human_review": false,
    "_seed_was": "supplement"
+  },
+  {
+   "name": "Insulin (prescribed)",
+   "regulatory_class": "prescription",
+   "source": "human-override",
+   "note": "Prescription-only medicine in Singapore (POM). Authored 2026-07-30 so that /c/insulin lands on the medicine, not the misuse entry."
   }
  ]
 }

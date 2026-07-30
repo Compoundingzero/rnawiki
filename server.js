@@ -1924,6 +1924,21 @@ function serveStatic(req, res, url) {
 // in the footer of every prerendered page already in Google's index, and in the welcome email.
 const LEGACY_REDIRECTS = { '/newsletter': '/#newsletter' };
 
+// ---- COMPOUND SHORT-NAME ALIASES (2026-07-30) ------------------------------------------------
+// "do not ever leave a page as an error." /c/creatine, /c/collagen, /c/testosterone and /c/insulin
+// all 404'd, because the entries are named "Creatine Monohydrate", "Collagen Peptides" and so on —
+// and the short form is exactly what a reader types. Built at parse time from each compound's own
+// name; only unambiguous aliases are kept, plus a small curated set where the automatic rule has to
+// be overruled (see ALIAS_OVERRIDE in build/parse.js — "insulin" must reach the medicine, not the
+// anabolic-misuse entry). 257 aliases, so this whole class of dead end is gone.
+let COMPOUND_ALIASES = {};
+try {
+  const dj = fs.readFileSync(path.join(__dirname, 'site', 'data.js'), 'utf8');
+  const m = dj.match(/^window\.RNAWIKI_DATA = ([\s\S]*);\s*$/);
+  if (m) COMPOUND_ALIASES = (JSON.parse(m[1]).compoundAliases) || {};
+  console.log('[server] compound aliases loaded:', Object.keys(COMPOUND_ALIASES).length);
+} catch (e) { console.warn('[server] no compound aliases:', e.message); }
+
 const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
 function serveMissing(res, safe) {
   const seg = String(safe || '').split('/').filter(Boolean);
@@ -1989,6 +2004,11 @@ const server = http.createServer((req, res) => {
   const url = req.url;
   const _redir = LEGACY_REDIRECTS[url.split('?')[0].replace(/\/+$/, '') || '/'];
   if (_redir) { res.writeHead(301, { Location: _redir }); res.end(); return; }
+  const _cm = url.split('?')[0].match(/^\/c\/([^/]+)\/?$/);
+  if (_cm) {
+    const _target = COMPOUND_ALIASES[decodeURIComponent(_cm[1]).toLowerCase()];
+    if (_target) { res.writeHead(301, { Location: '/c/' + _target }); res.end(); return; }
+  }
   if (url.startsWith('/api/')) {
     api(req, res, url).catch(e => { console.error(e); json(res, 500, { error: 'Server error' }); });
     return;
