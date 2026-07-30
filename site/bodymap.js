@@ -38,7 +38,16 @@ export function canRun3D() {
 }
 
 // ---- registry lookup (the ONLY source of content) --------------------------------------------
-function structures() { return (window.RNAWIKI_DATA && window.RNAWIKI_DATA.structures) || {}; }
+// parse.js exposes RNAWIKI_DATA.structures as an ARRAY (+ structuresByGroup). The engine keys on FMA,
+// so build+cache an fma->structure index from whatever shape is present (array or already-keyed object).
+let _fmaIndex = null;
+function structures() {
+  if (_fmaIndex) return _fmaIndex;
+  const raw = (window.RNAWIKI_DATA && window.RNAWIKI_DATA.structures) || [];
+  _fmaIndex = {};
+  (Array.isArray(raw) ? raw : Object.values(raw)).forEach((s) => { if (s && s.fma) _fmaIndex[s.fma] = s; });
+  return _fmaIndex;
+}
 function structureByFma(fma) { return structures()[fma] || null; }
 
 // ---- action → joint movement, ported from build/figures.js classify() ------------------------
@@ -65,21 +74,30 @@ function classifyAction(txt) {
 // spike against the actual mesh coordinates (see scripts/anatomy/README.md → "Calibrate the rig").
 // `distal` lists the FMA ids of the meshes that move with the segment; everything else stays put.
 // `range` is [restDeg, endDeg] the segment swings through for a given direction.
+// LEG RIG — first-pass calibration (2026-07). pivots are in the model's NATIVE (Z-up) space, derived
+// from the raw OBJ vertex ranges: femur Z 403..843 (knee..hip), tibia Z 60..406 (ankle..knee),
+// talus Z 35..70. So knee joint ~Z403, hip ~Z820 (femoral head), ankle ~Z62. `axis` [1,0,0] = the
+// native mediolateral axis (femur's widest horizontal span is X) → flexion/extension. `distal` lists
+// the FMA ids that swing with the segment (explicit, so the world-vs-local belowPivot fallback is not
+// used). ⚠ The joint X/Y centres and the axis handedness are BEST-GUESS and need a real-device visual
+// pass to look anatomically exact — see NEEDS FELIX. The distal membership + Z-levels are grounded.
+const LEG_SHIN = ['FMA:24476', 'FMA:24479', 'FMA:24485', 'FMA:9708', 'FMA:22541', 'FMA:22542', 'FMA:22532']; // tibia,fibula,patella,talus,gastroc,soleus,tib-ant
+const LEG_THIGH = ['FMA:9611', 'FMA:22430', 'FMA:22432', 'FMA:22431', 'FMA:22433', 'FMA:22356', 'FMA:22357', 'FMA:22438']; // femur + 4 quads + 3 hams
 const RIGS = {
   leg: {
     knee: {
-      pivot: [0, 0.52, 0], axis: [1, 0, 0],
-      distal: [], // fill with tibia/fibula/foot FMA ids in the spike; fallback moves meshes below pivot.y
+      pivot: [-84, -100, 403], axis: [1, 0, 0],
+      distal: LEG_SHIN,
       range: { flexion: [0, 120], extension: [120, 0] },
     },
     hip: {
-      pivot: [0, 0.92, 0], axis: [1, 0, 0],
-      distal: [],
+      pivot: [-40, -60, 820], axis: [1, 0, 0],
+      distal: LEG_THIGH.concat(LEG_SHIN),
       range: { flexion: [0, 75], extension: [0, -25], abduction: [0, 40], adduction: [0, -25] },
     },
     ankle: {
-      pivot: [0, 0.08, 0], axis: [1, 0, 0],
-      distal: [],
+      pivot: [-77, -70, 62], axis: [1, 0, 0],
+      distal: ['FMA:9708'],
       range: { plantarflexion: [0, 40], dorsiflexion: [0, -25] },
     },
   },
@@ -129,6 +147,13 @@ export async function mountBodyMap(container, opts = {}) {
   const gltf = await loader.loadAsync(`/anatomy/${region}.glb`);
   root = gltf.scene;
   scene.add(root);
+  // BodyParts3D geometry is Z-up (superior = +Z, confirmed from the OBJ vertex ranges: femur spans
+  // Z 403..843 hip->knee); three/glTF is Y-up. Rotate -90deg about X so the model stands upright and
+  // the auto-scale below (which measures size.y) is correct. RIGS pivots stay in the model's LOCAL
+  // (pre-rotation, Z-up) space because each distal group is a child of root and inherits this rotation.
+  // The facing direction may still need a real-device pass — see NEEDS FELIX.
+  root.rotation.x = -Math.PI / 2;
+  root.updateMatrixWorld(true);
   // centre + scale the model into a ~1.5m-tall view box
   const box = new THREE.Box3().setFromObject(root);
   const size = new THREE.Vector3(); box.getSize(size);

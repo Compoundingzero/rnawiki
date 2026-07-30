@@ -2156,6 +2156,43 @@
   // fuelled (energy systems), and which metabolism the Fuel targets.
   // Temporal stacking: bucket a compound into a time-of-day slot from its dosing text.
   // The "Your day" plan — a layman-friendly 24h checklist; each item expands to the "why".
+  // ---------- 3D body map (Move 7): the full BodyParts3D/Three.js engine, lazy-loaded ----------
+  // bodyShell() is the crawlable page (a real muscle index — what Google + the ~90% no-JS traffic get).
+  // mountBody() lazy-imports site/bodymap.js ONLY here and upgrades the shell to the interactive canvas
+  // on capable devices; renderStructurePanel() shows a picked muscle's facts from the SAME registry.
+  function bodyShell(region) {
+    region = region || 'leg';
+    const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves'];
+    const legSubs = legGroups.flatMap(g => (structuresByGroup[g] || [])).filter(s => s.fma);
+    const twin = legSubs.map(s => `<li><a href="#/body/${esc(region)}?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ` — ${esc(s.plainName)}` : ''} <a class="muted" href="#/muscle/${esc(s.groupId)}">(full page)</a></li>`).join('');
+    return `<div class="body-shell">
+      <h1>🧍 Interactive 3D body — the ${esc(region)}</h1>
+      <p class="muted">Rotate the model, peel back the layers, and tap a muscle to see where it attaches, what it does, and to watch it perform its action. Best on a laptop or a recent phone; the muscle list below is the full no-3D version.</p>
+      <div class="bm-stage"><div id="bm-canvas" class="bm-canvas"></div><aside id="bm-panel" class="bm-panel"><p class="muted">Tap a muscle on the model, or pick one from the list below.</p></aside></div>
+      <div class="section-title">The ${esc(region)} muscles</div>
+      <ul class="body-twin">${twin}</ul>
+      <p><a class="proto-more" href="#/anatomy">← All muscle groups</a></p>
+    </div>`;
+  }
+  function mountBody(region) {
+    region = region || 'leg';
+    const canvas = document.getElementById('bm-canvas'); if (!canvas) return;
+    const fail = (msg) => { canvas.innerHTML = `<div class="bm-fallback"><p>${msg}</p></div>`; };
+    const fma = new URLSearchParams(location.hash.split('?')[1] || '').get('fma');
+    import('/bodymap.js').then(m => {
+      if (!m.canRun3D()) return fail('<b>Your device can’t show the interactive 3D model</b> (older browser, low memory, data-saver, or reduced-motion is on). The muscle list below has everything, and each muscle page carries an animated 2D figure of the action.');
+      m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => renderStructurePanel(st) })
+        .catch(() => fail('The 3D model couldn’t load. The muscle list below still works, and each muscle page has an animated 2D figure.'));
+    }).catch(() => fail('The 3D model couldn’t load. The muscle list below still works.'));
+  }
+  function renderStructurePanel(st) {
+    const el = document.getElementById('bm-panel'); if (!el || !st) return;
+    el.innerHTML = `<div class="bm-card"><h2>${esc(st.name)}${st.plainName ? ` <span class="sm-plain">${esc(st.plainName)}</span>` : ''}</h2>
+      <p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((st.origin && st.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((st.insertion && st.insertion.attachTo) || '—')}</p>
+      ${(st.actions && st.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(st.actions.join('; '))}</p>` : ''}
+      ${st.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(st.locate)}</p>` : ''}
+      ${st.groupId ? `<p><a class="proto-more" href="#/muscle/${esc(st.groupId)}">Full ${esc(st.groupId)} page →</a></p>` : ''}</div>`;
+  }
   function musclePage(id) {
     const m = muscleById[id]; if (!m) return notFound();
     const a = m.anatomy || {};
@@ -2172,8 +2209,14 @@
     // an early return above the visual content. When you add a `return learnCourse(...)`, check what
     // is BELOW it.
     const subs = structuresByGroup[id] || [];
+    // Only the four LEG groups have geometry in leg.glb today, so the 3D button appears there; other
+    // groups render nothing (their model is not built yet). Focus the first sub-muscle that has an FMA.
+    const LEG3D = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
+    const focus3d = subs.find(s => s.fma);
+    const btn3d = (LEG3D[id] && focus3d) ? `<a class="cta-3d" href="#/body/leg?fma=${encodeURIComponent(focus3d.fma)}">▶ See the movement in 3D</a>` : '';
     const subMuscles = subs.length ? `<div class="section-title">The individual muscles in this group</div>
         <p class="muted" style="font-size:.88rem;margin-top:-.3rem">“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
+        ${btn3d}
         <div class="submuscle-list">${subs.map(s => `<div class="submuscle">
           <h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3>
           <p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>
@@ -6531,6 +6574,7 @@
     else if (parts[0] === 'pros') { title = t('For health professionals — contribute, get featured, get leads'); desc = 'Physiotherapists, dietitians, nutritionists and pharmacists: improve the protocols in your field and get featured on them — profile, booking link and local leads. Free.'; }
     else if (parts[0] === 'pro') { title = t('Pro dashboard — contribute & get featured on RNAwiki'); desc = 'For clinicians and businesses: improve protocols, track your leads, and manage your branded patient protocol links on RNAwiki.'; }
     else if (parts[0] === 'u' && parts[1]) { title = t('@' + parts[1] + ' — contribution portfolio'); desc = `@${parts[1]}'s clinical contribution portfolio on RNAwiki — reputation, accepted edits, and professional links.`; }
+    else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model, peel back the layers, and watch each muscle perform its action. Origin, insertion and the exercises that train it, on the body.'; }
     else if (parts[0] === 'clinic' && problemById[parts[2]]) { const p = problemById[parts[2]]; title = t(`${p.name} — home-care protocol from @${parts[1]}`); desc = `A clinician-issued ${p.name} home-care protocol from @${parts[1]} on RNAwiki — movement, stack, and Singapore food targets.`; }
     document.title = title;
     let m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'description'); document.head.appendChild(m); }
@@ -6554,6 +6598,7 @@
     else if (parts[0] === 'pathways') html = pathwaysIndex();
     else if (parts[0] === 'pathway') html = pathwayPage(parts[1]);
     else if (parts[0] === 'anatomy') html = anatomyIndex();
+    else if (parts[0] === 'body') html = bodyShell(parts[1]);
     else if (parts[0] === 'muscle') html = musclePage(parts[1]);
     else if (parts[0] === 'exercise') html = '<div class="empty"><h1>Loading exercise…</h1></div>';
     else if (parts[0] === 'fork') html = '<div class="empty"><h1>Loading variation…</h1></div>';
@@ -6648,6 +6693,7 @@
     if (parts[0] === 'c' && bySlug[parts[1]]) renderComments('c:' + bySlug[parts[1]].id, bySlug[parts[1]].name);
     if (parts[0] === 'pathway' && D.pathways[+parts[1]]) renderComments('pw:' + (+parts[1]), D.pathways[+parts[1]].shortLabel || 'this pathway');
     if (parts[0] === 'muscle' && muscleById[parts[1]]) { renderComments('mu:' + parts[1], muscleById[parts[1]].name); const mb = document.getElementById('mu-edit'); if (mb) mb.onclick = () => openEditContent('muscle', muscleById[parts[1]].name, 'physio'); }
+    if (parts[0] === 'body') mountBody(parts[1]);
     if (parts[0] === 'exercise' && parts[1]) mountExercise(parts[1]);
     if (parts[0] === 'fork' && parts[1]) mountForkPage(parts[1]);
     if (parts[0] === 'energy' && energyById[parts[1]]) renderComments('en:' + parts[1], energyById[parts[1]].name);

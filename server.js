@@ -1974,7 +1974,10 @@ const SECURITY_HEADERS = {
     // deliberately: Search Console only sees the SEARCH side (impressions, queries, position) and
     // goes blind the moment a reader lands. This is the only source for which pages actually get
     // read and where non-search traffic comes from. Cookieless, so it needs no consent banner.
-    "script-src 'self' 'unsafe-inline' https://accounts.google.com https://static.cloudflareinsights.com",
+    // 'wasm-unsafe-eval' lets the self-hosted meshopt decoder (site/vendor/three/meshopt_decoder) run its
+    // tiny WASM to decompress the 3D body-map GLBs. It permits WebAssembly only — NOT JS eval() — so it is
+    // materially narrower than 'unsafe-eval'. Without it the 3D model never decodes (CSP blocks the decode).
+    "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://accounts.google.com https://static.cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     // pubchem.ncbi.nlm.nih.gov is fetched by app.js:744 for the molecular formula / weight chips on

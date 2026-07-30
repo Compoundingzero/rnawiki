@@ -1300,7 +1300,10 @@ ANAT.muscles.forEach((m) => {
   const route = '/muscle/' + m.id; const a = m.anatomy || {};
   // Granular sub-muscles (structures.json) whose groupId is this group — crawlable, both documents.
   const subs = (D.structures || []).filter((s) => s.groupId === m.id);
-  const subHtml = subs.length ? `<h2>The individual muscles in this group</h2>
+  const LEG3D_M = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
+  const f3dM = subs.find((s) => s.fma);
+  const btn3dM = (LEG3D_M[m.id] && f3dM) ? `<a class="cta-3d" href="/body/leg?fma=${encodeURIComponent(f3dM.fma)}">▶ See the movement in 3D</a>` : '';
+  const subHtml = subs.length ? `<h2>The individual muscles in this group</h2>${btn3dM}
     <p>“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
     <div class="submuscle-list">${subs.map((s) => `<div class="submuscle"><h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3><p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}</div>`).join('')}</div>` : '';
   const body = `<div class="article"><h1>${esc(m.name)}</h1><p>${esc(m.overview)}</p>
@@ -1317,6 +1320,20 @@ ANAT.muscles.forEach((m) => {
     ${(m.problems || []).length ? `<h2>Fix or train this</h2><ul>${m.problems.map((pid) => { const pr = GRAPH.problems.find((x) => x.id === pid); return pr ? `<li><a href="/protocol/${pid}/${pr.root_causes[0].id}">${esc(pr.name)}</a></li>` : ''; }).join('')}</ul>` : ''}${learnFlatHtml(m.expand)}</div>`;
   add(route, shell({ route, title: `${m.name} — anatomy, function & training · RNAwiki`, desc: (m.overview || '').slice(0, 155), ogImage: renderOgCard(`og/muscle/${m.id}.png`, { kind: 'Muscle · ' + (m.region || ''), title: m.name, sub: m.overview }), breadcrumbs: anatCrumb(m.name, route), body }));
 });
+// /body and /body/leg — crawlable shell for the 3D body map (Move 7). The <canvas> is a JS-only
+// enhancement (app.js mountBody lazy-loads bodymap.js); this prerendered page is a real muscle index
+// for Google + the ~90% no-JS traffic, per the two-document rule.
+(function addBodyShell() {
+  const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves'];
+  const legSubs = legGroups.reduce((acc, g) => acc.concat((D.structures || []).filter((s) => s.groupId === g)), []).filter((s) => s.fma);
+  const twin = legSubs.map((s) => `<li><a href="/body/leg?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ' — ' + esc(s.plainName) : ''} <a href="/muscle/${esc(s.groupId)}">(full page)</a></li>`).join('');
+  const body = `<div class="article body-shell"><h1>Interactive 3D body — the leg</h1>
+    <p>Rotate a 3D anatomical model of the leg, peel back the layers, and tap a muscle to see where it attaches, what it does, and watch it perform its action. This page lists every muscle in the model; the interactive 3D above is an enhancement for capable devices.</p>
+    <div id="bm-canvas" class="bm-canvas"></div>
+    <h2>The leg muscles</h2><ul class="body-twin">${twin}</ul>
+    <p><a href="/anatomy">← All muscle groups</a></p></div>`;
+  ['/body', '/body/leg'].forEach((route) => add(route, shell({ route, title: 'Interactive 3D body — see the muscles and how they move · RNAwiki', desc: 'Rotate a 3D leg model, peel the layers, and watch each muscle perform its action — origin, insertion and the exercises that train it, on the body.', breadcrumbs: anatCrumb('Interactive 3D body', '/body'), body })));
+})();
 function metabolicMill(active) {
   const C = { fat: '#b5533a', carb: '#475569', prot: '#2563eb', mito: '#0d9488', atp: '#d97706', line: '#64748b' };
   const op = z => z === 'out' ? 1 : z === 'imm' ? (active === 'atp-pcr' ? 1 : .32) : z === 'ana' ? (active === 'glycolytic' ? 1 : .32) : z === 'glyc' ? ((active === 'glycolytic' || active === 'oxidative') ? 1 : .32) : (active === 'oxidative' ? 1 : .32);
