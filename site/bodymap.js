@@ -136,8 +136,11 @@ export async function mountBodyMap(container, opts = {}) {
   // interaction plumbing
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
-  const picky = []; // pickable meshes
-  const byFma = new Map(); // fma -> mesh
+  const picky = []; // pickable meshes (catalogued muscles)
+  const byFma = new Map(); // fma -> mesh (pickable muscles)
+  const byFmaAll = new Map(); // fma -> mesh (ALL meshes incl. bones — for attachment highlighting)
+  const boneFmas = new Set(); // fma ids whose layer is 'skeleton'
+  const TEAL = new THREE.Color(0x0d9488), BONE_BLUE = new THREE.Color(0x2563eb), BONE_AMBER = new THREE.Color(0xf59e0b);
   const highlightMat = { color: new THREE.Color(0x0d9488), emissive: new THREE.Color(0x0d9488), emissiveIntensity: 0.45 };
   let root = null;
 
@@ -172,6 +175,8 @@ export async function mountBodyMap(container, opts = {}) {
     o.material = o.material.clone();
     o.material.clippingPlanes = [clip];
     o.material.transparent = true;
+    byFmaAll.set(fma, o);
+    if (o.userData.layer === 'skeleton') boneFmas.add(fma);
     if (structureByFma(fma)) { picky.push(o); byFma.set(fma, o); }
   });
 
@@ -204,29 +209,53 @@ export async function mountBodyMap(container, opts = {}) {
   }
   renderer.domElement.addEventListener('click', onPointer);
 
+  // Map an origin/insertion attachTo phrase to the FMA of the leg bone it names, so selecting a muscle
+  // can highlight the two bones it actually connects to. Order matters (specific → general).
+  function resolveBone(text) {
+    const t = String(text || '').toLowerCase();
+    if (/patella|kneecap/.test(t)) return 'FMA:24485';
+    if (/fibula|fibular/.test(t)) return 'FMA:24479';
+    if (/calcaneus|calcaneal|\bheel|achilles|metatars|cuneiform|navicular|tarsal|midfoot|\bfoot\b|talus/.test(t)) return 'FMA:9708';
+    if (/tibia|tibial|pes anserin|\bshin/.test(t)) return 'FMA:24476';
+    if (/femur|femoral|linea aspera|intertrochanteric|supracondylar|\btrochanter|gluteal tuberosity|condyle/.test(t)) return 'FMA:9611';
+    if (/ilium|iliac|ischia|ischial|pubis|pubic|acetabul|coxae|pelvi|hip bone|sacr/.test(t)) return 'FMA:16585';
+    return null;
+  }
+  // SELECT is the learning moment (Felix: teach where it connects + how it moves, don't just isolate a
+  // lone fibre). Show the muscle bright; its ORIGIN bone tinted blue + INSERTION bone tinted amber and
+  // clearly visible; the rest of the skeleton faint (so the movement has context); other muscles nearly
+  // gone. Frame the muscle + its two bones, then animate the muscle's action.
   function select(fma) {
     if (!byFma.has(fma)) return;
-    if (state.selected) restore(state.selected);
+    stopAction();
     state.selected = fma;
-    const mesh = byFma.get(fma);
-    mesh.material.emissive = highlightMat.emissive; mesh.material.emissiveIntensity = highlightMat.emissiveIntensity;
-    // dim the siblings so the selection reads
-    picky.forEach((m) => { if (m !== mesh) m.material.opacity = Math.min(m.material.opacity, 0.28); });
-    frame(mesh);
-    if (typeof opts.onSelect === 'function') opts.onSelect(fma, structureByFma(fma));
+    const st = structureByFma(fma);
+    const originB = resolveBone(st && st.origin && st.origin.attachTo);
+    const insertB = resolveBone(st && st.insertion && st.insertion.attachTo);
+    root.traverse((o) => {
+      if (!o.isMesh || !o.material) return;
+      const f = o.userData.fma;
+      o.material.emissiveIntensity = 0;
+      if (f === fma) { o.material.emissive.copy(TEAL); o.material.emissiveIntensity = 0.5; o.material.opacity = 1; }
+      else if (f === originB) { o.material.emissive.copy(BONE_BLUE); o.material.emissiveIntensity = 0.2; o.material.opacity = 0.72; }
+      else if (f === insertB) { o.material.emissive.copy(BONE_AMBER); o.material.emissiveIntensity = 0.2; o.material.opacity = 0.72; }
+      else if (boneFmas.has(f)) { o.material.opacity = 0.3; }
+      else { o.material.opacity = 0.05; }
+    });
+    frameGroup([fma, originB, insertB]);
+    playAction(fma);
+    if (typeof opts.onSelect === 'function') opts.onSelect(fma, st);
   }
-  function restore(fma) {
-    const mesh = byFma.get(fma); if (!mesh) return;
-    mesh.material.emissiveIntensity = 0;
-    picky.forEach((m) => { m.material.opacity = state.layers[m.userData.layer] != null ? state.layers[m.userData.layer] : 1; });
-  }
-  function frame(mesh) {
-    const b = new THREE.Box3().setFromObject(mesh); const c = new THREE.Vector3(); b.getCenter(c);
-    const rad = b.getSize(new THREE.Vector3()).length() * 0.5 || 0.2;
-    const dist = rad / Math.tan((camera.fov * Math.PI / 180) / 2) * 1.8;
+  function frameGroup(fmas) {
+    const bb = new THREE.Box3(); let any = false;
+    fmas.filter(Boolean).forEach((f) => { const m = byFmaAll.get(f); if (m) { bb.expandByObject(m); any = true; } });
+    if (!any) return;
+    const c = bb.getCenter(new THREE.Vector3());
+    const rad = bb.getSize(new THREE.Vector3()).length() * 0.5 || 0.3;
+    const dist = rad / Math.tan((camera.fov * Math.PI / 180) / 2) * 1.5;
     const dir = camera.position.clone().sub(controls.target).normalize();
     controls.target.copy(c);
-    tweenCamera(c.clone().add(dir.multiplyScalar(Math.max(0.5, dist))));
+    tweenCamera(c.clone().add(dir.multiplyScalar(Math.max(0.45, dist))));
   }
   let camTween = null;
   function tweenCamera(to) { camTween = { from: camera.position.clone(), to, t: 0 }; }
@@ -235,44 +264,36 @@ export async function mountBodyMap(container, opts = {}) {
   // Given a structure's action string, rotate the distal segment about the joint, oscillating
   // rest↔end so the reader SEES the movement the muscle produces. This is the 3D twin of the SVG
   // action figures — same joint, same direction, same story.
+  let activeGroup = null;
   function playAction(fma, action) {
+    stopAction();
     const st = structureByFma(fma); if (!st) return;
     const act = action || (st.actions && st.actions[0]); if (!act) return;
     const { joint, dir } = classifyAction(act);
-    const jr = rig[joint]; if (!jr) return; // no rig for this joint yet → no-op (safe)
+    const jr = rig[joint]; if (!jr) return; // no rig for this joint yet → safe no-op
     const range = jr.range[dir] || jr.range.flexion || [0, 40];
-    // build a pivot group holding the distal meshes, if not already built
-    const group = buildDistalGroup(joint, jr);
-    if (!group) return;
-    state.animating = { group, axis: new THREE.Vector3().fromArray(jr.axis).normalize(), a0: range[0] * Math.PI / 180, a1: range[1] * Math.PI / 180, phase: 0, label: act };
-  }
-  const distalGroups = {};
-  function buildDistalGroup(joint, jr) {
-    if (distalGroups[joint]) return distalGroups[joint];
-    const pivot = new THREE.Vector3().fromArray(jr.pivot);
-    const g = new THREE.Group(); g.position.copy(pivot); root.add(g);
-    const set = new Set(jr.distal);
-    picky.forEach((m) => {
-      const isDistal = set.size ? set.has(m.userData.fma) : belowPivot(m, pivot);
-      if (isDistal) { m.getWorldPosition(new THREE.Vector3()); g.attach(m); }
-    });
-    if (!g.children.length) { root.remove(g); return null; }
-    distalGroups[joint] = g; return g;
-  }
-  function belowPivot(mesh, pivot) {
-    const c = new THREE.Box3().setFromObject(mesh).getCenter(new THREE.Vector3());
-    return c.y < pivot.y - 0.02; // limb axis is roughly vertical in BodyParts3D's anatomical pose
+    // Reparent the distal segment (its FMA list — bones + muscles) into a fresh pivot group at the joint.
+    // THREE.attach preserves world transform, so rotating the group swings the segment about the joint.
+    // Rebuilt every play and returned to root on stop, so selecting across joints never breaks.
+    const g = new THREE.Group(); g.position.fromArray(jr.pivot); root.add(g);
+    new Set(jr.distal).forEach((f) => { const m = byFmaAll.get(f); if (m) g.attach(m); });
+    if (!g.children.length) { root.remove(g); return; }
+    activeGroup = g;
+    state.animating = { group: g, axis: new THREE.Vector3().fromArray(jr.axis).normalize(), a0: range[0] * Math.PI / 180, a1: range[1] * Math.PI / 180, phase: 0, label: act };
   }
   function stepAnimation() {
     const a = state.animating; if (!a) return;
-    a.phase += 0.018;
-    const k = (Math.sin(a.phase) + 1) / 2; // 0..1..0
-    const ang = a.a0 + (a.a1 - a.a0) * k;
-    a.group.setRotationFromAxisAngle(a.axis, ang);
+    a.phase += 0.02;
+    const k = (Math.sin(a.phase - Math.PI / 2) + 1) / 2; // ease 0..1..0, starting from rest
+    a.group.setRotationFromAxisAngle(a.axis, a.a0 + (a.a1 - a.a0) * k);
   }
   function stopAction() {
     state.animating = null;
-    Object.values(distalGroups).forEach((g) => g.setRotationFromAxisAngle(new THREE.Vector3(1, 0, 0), 0));
+    if (activeGroup) {
+      activeGroup.rotation.set(0, 0, 0); activeGroup.updateMatrixWorld(true);
+      activeGroup.children.slice().forEach((m) => root.attach(m)); // return meshes to root at rest
+      root.remove(activeGroup); activeGroup = null;
+    }
   }
 
   // camera tween inside the loop
@@ -312,7 +333,7 @@ export async function mountBodyMap(container, opts = {}) {
       const hay = [st.name, st.plainName, ...(st.aka || [])].join(' ').toLowerCase();
       if (hay.includes(q)) { best = fma; break; }
     }
-    if (best) { select(best); if (opts.autoplayAction !== false) playAction(best); }
+    if (best) select(best); // select() frames the bones + auto-plays the action
     return best;
   }
 
@@ -329,10 +350,7 @@ export async function mountBodyMap(container, opts = {}) {
   }
 
   // ---- deep-link entry (muscle page "see the movement in 3D") ----
-  if (opts.focusFma) {
-    select(opts.focusFma);
-    if (opts.autoplayAction) playAction(opts.focusFma, typeof opts.autoplayAction === 'string' ? opts.autoplayAction : null);
-  }
+  if (opts.focusFma) select(opts.focusFma); // select() frames the muscle + its two bones and auto-plays
 
   return { focus: select, playAction, stopAction, setLayer, sliceAt, search, snapshot, dispose, region };
 }

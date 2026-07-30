@@ -2178,20 +2178,36 @@
     region = region || 'leg';
     const canvas = document.getElementById('bm-canvas'); if (!canvas) return;
     const fail = (msg) => { canvas.innerHTML = `<div class="bm-fallback"><p>${msg}</p></div>`; };
-    const fma = new URLSearchParams(location.hash.split('?')[1] || '').get('fma');
+    // The muscle-page button deep-links via ?fma= in the PATH query (/body/leg?fma=FMA:x); the twin
+    // list links via the hash (#/body/leg?fma=). Read either, so both actually focus the muscle.
+    const fma = new URLSearchParams(location.search).get('fma') || new URLSearchParams(location.hash.split('?')[1] || '').get('fma');
+    const ctrlRef = {};
     import('/bodymap.js').then(m => {
       if (!m.canRun3D()) return fail('<b>Your device can’t show the interactive 3D model</b> (older browser, low memory, data-saver, or reduced-motion is on). The muscle list below has everything, and each muscle page carries an animated 2D figure of the action.');
-      m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => renderStructurePanel(st) })
+      m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => renderStructurePanel(st, f, ctrlRef) })
+        .then((c) => { ctrlRef.c = c; })
         .catch(() => fail('The 3D model couldn’t load. The muscle list below still works, and each muscle page has an animated 2D figure.'));
     }).catch(() => fail('The 3D model couldn’t load. The muscle list below still works.'));
   }
-  function renderStructurePanel(st) {
+  function renderStructurePanel(st, fma, ctrlRef) {
     const el = document.getElementById('bm-panel'); if (!el || !st) return;
-    el.innerHTML = `<div class="bm-card"><h2>${esc(st.name)}${st.plainName ? ` <span class="sm-plain">${esc(st.plainName)}</span>` : ''}</h2>
-      <p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((st.origin && st.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((st.insertion && st.insertion.attachTo) || '—')}</p>
-      ${(st.actions && st.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(st.actions.join('; '))}</p>` : ''}
-      ${st.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(st.locate)}</p>` : ''}
-      ${st.groupId ? `<p><a class="proto-more" href="#/muscle/${esc(st.groupId)}">Full ${esc(st.groupId)} page →</a></p>` : ''}</div>`;
+    const oB = (st.origin && st.origin.attachTo) || '—';
+    const iB = (st.insertion && st.insertion.attachTo) || '—';
+    el.innerHTML = `<div class="bm-card">
+      <h2 class="bm-name">${esc(st.name)}</h2>
+      ${st.plainName ? `<p class="bm-plain">${esc(st.plainName)}</p>` : ''}
+      <div class="bm-attach">
+        <div class="bm-att bm-att-o"><span class="bm-att-dot"></span><span class="bm-att-k">Origin</span><span class="bm-att-v">${esc(oB)}</span></div>
+        <div class="bm-att bm-att-i"><span class="bm-att-dot"></span><span class="bm-att-k">Insertion</span><span class="bm-att-v">${esc(iB)}</span></div>
+      </div>
+      ${(st.actions && st.actions.length) ? `<div class="bm-field"><span class="bm-field-k">What it does</span><p class="bm-field-v">${esc(st.actions.join('; '))}</p></div>` : ''}
+      ${(fma && ctrlRef) ? `<button type="button" class="bm-replay" id="bm-replay">▶ Replay the movement</button>` : ''}
+      ${st.locate ? `<div class="bm-field"><span class="bm-field-k">Find it on yourself</span><p class="bm-field-v">${esc(st.locate)}</p></div>` : ''}
+      ${st.groupId ? `<p class="bm-fullpage"><a class="proto-more" href="#/muscle/${esc(st.groupId)}">Full ${esc(st.groupId)} page →</a></p>` : ''}
+      <p class="bm-legend muted"><b>In the model:</b> the muscle glows teal; its <span class="bm-dot-o"></span> origin bone and <span class="bm-dot-i"></span> insertion bone stay lit; and the joint moves through the muscle's action.</p>
+    </div>`;
+    const rb = document.getElementById('bm-replay');
+    if (rb && ctrlRef) rb.onclick = () => { if (ctrlRef.c) ctrlRef.c.playAction(fma); };
   }
   function musclePage(id) {
     const m = muscleById[id]; if (!m) return notFound();
