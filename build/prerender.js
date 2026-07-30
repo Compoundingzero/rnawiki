@@ -1044,14 +1044,20 @@ function learnFlatHtml(e, opts) {
         <p class="dd-eyebrow">Deep dive Â· ${i + 1} of ${n}</p>
         <h2>${mdSafe(d.h || '')}</h2>
         ${deck ? `<p class="dd-deck">${mdSafe(deck)}</p>` : ''}
+        ${/* THE WIDGET GOES BEFORE THE PROSE, NOT AFTER (2026-07-30).
+              Measured: 73% of pathway sort items and 59% of muscle ones had their label AND their
+              rationale appearing verbatim in the paragraph immediately above them. A quiz whose
+              answer you have just read is not a quiz â€” it is more words, which is precisely the
+              "wordy" complaint. Asked BEFORE the prose, the same widget becomes a reason to read:
+              you commit, then the section pays it off. Zero content changes, pure ordering. */ ''}
+        ${((e.widgets || {})[String(i)]) || ''}
         ${(() => {
           const sp = splitSection(P(rest), 2);
           return sp.rest
             ? `${sp.head}<details class="dd-more"><summary>Keep going â€” ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>`
             : sp.head;
         })()}
-        ${((e.widgets || {})[String(i)]) || ''}
-        ${sectionCheckpoint(`${i}`, 'Tick it and the section dims, so you can see what is left')}
+        ${sectionCheckpoint(`${i}`, 'Ticked sections fade, so the page shows you what is left')}
       </section>`;
     }).join(''));
   }
@@ -1399,7 +1405,6 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal â
     const stack = protoStack(rc);
     const stackLine = stack.map((c) => `${esc(c.name)} ${stars(c.stars)}`).join(' &middot; ');
     const T = Object.entries(rc.nutrient_targets);
-    const fuelLine = T.map(([k, t]) => `${nutrientLabel(k)}&nbsp;${t.target}${t.unit}`).join(' &middot; ');
     const foods = protoFuel(rc).slice(0, 3).map((f) => f.name).join(', ');
     // Illustrative fill levels for the tracker. Labelled as an example day in .wex-fine below --
     // they are the one thing on this block that is not read from the corpus, so they are named.
@@ -1425,8 +1430,11 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal â
           <span class="wex-n">2</span>
           <h3>The protocol for <em>that</em> cause</h3>
           <p class="wex-line"><span class="pf-l mv">Move</span><b>${esc(rc.prescription.scheme)}</b><small>${esc(rc.prescription.detail)}</small></p>
-          <p class="wex-line"><span class="pf-l st">Stack</span><b>${stackLine}</b><small>stars are the strength of the <i>human</i> evidence for this use &mdash; each opens to its compounds, pathways, molecular targets and legal status in Singapore</small></p>
-          <p class="wex-line"><span class="pf-l fl">Fuel</span><b>${fuelLine}</b><small>daily targets, hit from local food${foods ? ` &mdash; ${esc(foods)}` : ''}</small></p>
+          <p class="wex-line"><span class="pf-l st">Stack</span><b>${stackLine}</b><small>stars = strength of the <i>human</i> evidence for this use</small></p>
+          ${/* The numbers deliberately do NOT appear here: they are stated once, in card 3, next to
+                the reason each one exists. Listing them twice cost ~60px of duplicated list on a
+                phone and said nothing the second time. */ ''}
+          <p class="wex-line"><span class="pf-l fl">Fuel</span><b>${T.length} daily nutrient targets</b><small>hit from local food${foods ? ` &mdash; ${esc(foods)}` : ''}</small></p>
         </li>
         <li class="wex-card">
           <span class="wex-n">3</span>

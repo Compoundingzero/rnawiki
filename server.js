@@ -1868,8 +1868,22 @@ function serveStatic(req, res, url) {
   // "/" serves the prerendered crawlable home if present, else the SPA shell
   if (p === '/') {
     return fs.readFile(path.join(DIR, 'home.html'), (e, html) => {
-      if (!e) return endHtml(res, html);
-      sendFile(res, path.join(DIR, 'index.html'));
+      if (e) return sendFile(res, path.join(DIR, 'index.html'));
+      // ---- NO-JS COMPLETION STATE, PART 2 (2026-07-30) ----------------------------------------
+      // /api/subscribe already 303s a native form post to /?subscribed=1#newsletter. That fixed the
+      // white page reading {"ok":true} -- but it landed the reader on a home page with no
+      // confirmation on it, because the "you're in" message existed only inside site/app.js, i.e.
+      // only for the ~10% who never needed the redirect in the first place. So the MAIN call to
+      // action still had no completion state for the ~90%: they were returned to a page that looked
+      // exactly as it had before they subscribed.
+      // The message itself is authored ONCE, in build/prerender.js, hidden by `.nl-done{display:none}`.
+      // All this does is un-hide it. app.js does the same from location.search on hydration, so the
+      // two paths agree and neither owns a copy of the words.
+      const nl = qp.get('subscribed') ? 'done' : (qp.has('suberr') ? 'bad' : '');
+      if (nl) {
+        html = String(html).replace(`class="nl-${nl}"`, `class="nl-${nl}" style="display:block"`);
+      }
+      endHtml(res, html);
     });
   }
   const safe = path.normalize(p).replace(/^(\.\.[/\\])+/, '');

@@ -1073,155 +1073,86 @@
     if (t) setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
   }
 
+  // ---- THE HOME PAGE HAS EXACTLY ONE SOURCE (2026-07-30) ---------------------------------------
+  // build/prerender.js -> site/home.html. app.js does NOT render the home page any more. It
+  // captures the server-rendered markup at boot and replays that exact string for client-side
+  // navigations back to "/".
+  //
+  // What this replaces: a ~150-line second renderer that had drifted into a different page from the
+  // prerendered one -- the prerendered home had no search input and no seed chips, so the ~90% of
+  // traffic that never runs JavaScript could not use the page's FIRST call to action; the SPA had no
+  // problem list and no crawlable goal labels. Sixth recorded instance of this exact failure on this
+  // project ("build a prerendered page, forget the hydrated twin" -- see the note above nlForm()).
+  //
+  // WHY CAPTURE, AND NOT A SHARED RENDERER MODULE. A shared module is the obvious answer and it is
+  // the wrong one: every block of this page is a function of D -- goal counts, regulatory_class
+  // splits, seed chips, the worked example's root-cause record. Sharing the renderer means two
+  // callers, each building a D and each needing to be kept in step, which is the same drift surface
+  // one level down. Capture has no call site to keep in step, and no second copy of anything.
+  //
+  // WHY IT IS SAFE. package.json prestart is `node build/parse.js && node build/prerender.js` with
+  // no `|| echo`, so a prerender failure stops the deploy and site/home.html is guaranteed present
+  // at boot (CLAUDE.md still describes the old swallowing behaviour; it is stale). server.js serves
+  // it for "/".
+  let HOME_HTML = '';
+  let _firstPaint = true;
+  let _homeFetching = false;
   function home() {
-    const cc = D.meta.counts;
-    // ---- REGULATORY (2026-07-28) -------------------------------------------------------------
-    // "18 compounds" under FAT LOSS on the home page, where 15 of the 18 are prescription-only,
-    // controlled or unapproved, is a promotional count for medicines a reader cannot legally
-    // obtain — on the single most promotional surface of the site. Measured across the goal
-    // taxonomy: Growth Hormone Axis Peptides 11/11 Rx, Fat Loss 15/18, Hormonal Health 9/11,
-    // Cognition 11/19. Medicines Act 1975 s.51 has no educational exemption.
-    // The count now states the split, so the card promises what it can actually deliver.
-    const RX = new Set(['prescription', 'controlled', 'unapproved']);
-    const cards = D.goals.map(g => {
-      const inGoal = D.compounds.filter(c => c.goalIds.includes(g.id));
-      const open = inGoal.filter(c => !RX.has(c.regulatory_class)).length;
-      const rx = inGoal.length - open;
-      const label = rx
-        ? `${open} you can buy · ${rx} prescription-only`
-        : `${open} compound${open === 1 ? '' : 's'}`;
-      return `<a class="goal-card" href="#/goal/${g.id}"><span class="ico">${g.icon}</span><span><span class="lbl">${g.label}</span><br><span class="n">${label}</span></span></a>`;
-    }).join('');
-    // a few high-intent example chips to seed the funnel
-    const seeds = ['Knee Pain', 'Trouble Falling Asleep', 'Brain Fog', 'Belly / Visceral Fat', 'Low Testosterone', 'Longevity / Healthspan']
-      .map(n => (GRAPH.problems || []).find(p => p.name.toLowerCase() === n.toLowerCase())).filter(Boolean)
-      .map(p => `<button class="seed-chip" data-pid="${p.id}">${p.icon} ${esc(p.name)}</button>`).join('');
-    // Daily fact — one per day, deterministic by date, cycling the RNAWIKI_FACTS series.
-    // Each links to the page that teaches it; feeds the same one sequence (read → learn → solve).
-    const F = (window.RNAWIKI_FACTS || []);
-    const fct = F.length ? F[Math.floor(Date.now() / 864e5) % F.length] : null;
-    const factHtml = fct ? `
-    <section class="daily-fact reveal">
-      <div class="df-card">
-        <div class="df-top"><span class="df-kicker">💡 Did you know?</span><span class="df-meta">a new fact every day</span></div>
-        <p class="df-text">${fct.t}</p>
-        <a class="df-link" href="#${fct.href}">${esc(fct.label)}</a>
-      </div>
-    </section>` : '';
-    return `
-    <section class="hero funnel-hero reveal in">
-      ${/* HERO REWRITE (2026-07-28). The old H1 was brand etymology — it answered "why is this
-            called RNAwiki?", a question no first-time visitor has. It is not deleted: it still runs
-            in full in the why-rna section below, where a reader who has already been served will
-            actually care. The kicker no longer says "open" — the corpus is not open-sourced. */ ''}
-      <div class="kicker">Free · no account · nothing here is for sale</div>
-      <h1>You know what you were told to take.<br><span class="lead">You were never shown what it's for.</span></h1>
-      <p class="hero-lead">Start from the other end. Name the problem — we'll show you the
-      <b>root cause underneath it</b>, then the movement, the food and the compounds that act on
-      <i>that cause</i>, each one ranked by how good the human evidence actually is. Not a shopping
-      list. The reasoning you were never handed.</p>
-      <div class="funnel">
-        <div class="funnel-search">
-          <span class="fs-ico">🔍</span>
-          <input id="hero-solve-input" type="text" autocomplete="off" placeholder="What's wrong, or what do you want to fix?" aria-label="What's wrong, or what do you want to fix?">
-          <div id="hero-solve-out" class="funnel-out" hidden></div>
-        </div>
-        <button id="hero-solve-btn" class="cta-primary funnel-btn">Show me the root cause →</button>
-      </div>
-      <div class="seed-row">${seeds}<a class="seed-all" href="#/solve">or see all ${cc.problems || GRAPH.problems.length} →</a></div>
-      <p class="hero-note">Free · no account · <b>no affiliate links</b> · says so out loud when the evidence is thin</p>
-      <div id="home-stat" class="home-stat" hidden></div>
-    </section>
-    ${factHtml}
-    <section class="scrolly" id="scrolly-how">
-      <div class="scrolly-track">
-        <div class="scrolly-copy">
-          <div class="section-title">How it works</div>
-          <div class="sy-step on" data-step="0"><span class="s3-tag mv">Step 1 · Diagnose</span><h3>Find the real driver</h3><p>Name your problem or goal and answer one clinical question. We pinpoint the root cause — not the symptom.</p></div>
-          <div class="sy-step" data-step="1"><span class="s3-tag st">Step 2 · Get your protocol</span><h3>Move · Stack · Fuel</h3><p>The exact exercises with sets, reps and easier/harder options; evidence-ranked supplements broken down to their compounds and pathways; and the food targets to hit.</p></div>
-          <div class="sy-step" data-step="2"><span class="s3-tag fl">Step 3 · Track</span><h3>See it working</h3><p>Log your local meals and watch the nutrient bars fill toward the biological targets your protocol is built around.</p></div>
-        </div>
-        <div class="scrolly-stage">
-          <div class="phone"><div class="phone-notch"></div><div class="phone-screen">
-            <div class="pf-eg">Example</div>
-            <div class="sy-frame on" data-frame="0">
-              <div class="pf-bar"><span>🔍</span> knee pain going downstairs</div>
-              <div class="pf-q">Which fits you best?</div>
-              <div class="pf-opt pf-hi">Aches under the kneecap on stairs<span class="pf-pick">✓</span></div>
-              <div class="pf-opt">Sharp pain on the inner side</div>
-              <div class="pf-opt">Swelling after activity</div>
-              <div class="pf-root">→ Likely root cause: <b>weak VMO / patellar tracking</b></div>
-            </div>
-            <div class="sy-frame" data-frame="1">
-              <div class="pf-proto"><span class="pf-l mv">💪 Move</span><b>Spanish squat</b><small>3 × 45s · easier / harder</small></div>
-              <div class="pf-proto"><span class="pf-l st">💊 Stack</span><b>Collagen + Vit C</b><small>compounds · pathways · legal status</small></div>
-              <div class="pf-proto"><span class="pf-l fl">🍚 Fuel</span><b>Protein 1.6 g/kg</b><small>targets from local meals</small></div>
-              <div class="pf-cap">Your full protocol, built from the root cause</div>
-            </div>
-            <div class="sy-frame" data-frame="2">
-              <div class="pf-track-h">Today’s targets</div>
-              <div class="pf-nut"><span>Protein</span><div class="sy-bar"><i style="--w:82%"></i></div><em>82%</em></div>
-              <div class="pf-nut"><span>Collagen</span><div class="sy-bar"><i style="--w:64%"></i></div><em>64%</em></div>
-              <div class="pf-nut"><span>Vitamin C</span><div class="sy-bar"><i style="--w:95%"></i></div><em>95%</em></div>
-              <div class="pf-nut"><span>Fibre</span><div class="sy-bar"><i style="--w:71%"></i></div><em>71%</em></div>
-              <div class="pf-cap">From the local meals you logged</div>
-            </div>
-          </div></div>
-          <div class="sy-dots"><i data-dot="0" class="on"></i><i data-dot="1"></i><i data-dot="2"></i></div>
-        </div>
-      </div>
-    </section>
-    <div class="how-cta center scrolly-cta"><a class="cta-primary" href="#/solve">See every problem &amp; goal →</a></div>
+    if (HOME_HTML) return HOME_HTML;
+    // Only reachable when the first paint was some OTHER route and the reader then navigated to "/"
+    // client-side. The tempting fix is a small hand-written stand-in hero -- but that is precisely
+    // the second copy this change exists to delete, and a degraded twin drifts just as happily as a
+    // full one. So: fetch the one source, and show a loading stub for the ~100ms in between. That is
+    // already this router's pattern for /protocol, /plan, /pro, /fork and /s.
+    if (!_homeFetching) {
+      _homeFetching = true;
+      fetch('/', { credentials: 'same-origin' })
+        .then((r) => r.text())
+        .then((t) => {
+          const m = t.match(/<main id="app">([\s\S]*)<\/main>/);
+          if (!m) return;
+          HOME_HTML = m[1];
+          // Still on "/"? Swap it in. If the reader has moved on, keep the cache and do nothing.
+          if (!currentRoute().split('?')[0].split('/').filter(Boolean).length) {
+            app.innerHTML = HOME_HTML;
+            bindHome();
+          }
+        })
+        .catch(() => { })
+        .then(() => { _homeFetching = false; });
+    }
+    return '<div class="empty"><h1>Loading…</h1></div>';
+  }
 
-    ${/* REMOVED 2026-07-28 at Felix's instruction:
-          - the "Not a wiki of opinions / An open, evidence-ranked engine" trust section. The
-            corpus is not open-sourced, so calling the engine "open" was a claim the project
-            cannot currently stand behind. Removing an overclaim is not a design change, it is
-            an accuracy fix.
-          - the "A health professional? Share what you know" block and its /gp CTA. No interest
-            is being collected from clinicians at this stage.
-          The newsletter signup takes this slot: it is the only thing on the home page actually
-          asking the reader for something, and it previously lived on a separate /newsletter page
-          that a visitor had to find. */ ''}
-    ${/* The no-JS form posts natively and the server 303s back to /?subscribed=1#newsletter.
-          Without this the reader is returned to an unchanged page and cannot tell it worked. */ ''}
-    <section class="nl-home reveal" id="newsletter">
-      ${(() => {
-        const q = new URLSearchParams(location.search);
-        if (q.get('subscribed')) return '<p class="nl-done">✅ You\'re in. Check your inbox for a welcome email — it has the one-click unsubscribe in it, so you never have to hunt for one.</p>';
-        const e = q.get('suberr');
-        return e ? `<p class="nl-err">${esc(e)}</p>` : '';
-      })()}
-      <div class="nl-home-inner">
-        <div class="nl-eyebrow">Free weekly · no spam · one click to leave</div>
-        <h2>Medicine that doesn't work still sends you a bill.</h2>
-        <p class="nl-lede">The evidence on what you were given is public. It just isn't written for
-        you — so you pay, and you hope. That gap is not an accident of nature; it is the one thing
-        standing between you and a decision you could have made yourself.</p>
-        <div class="nl-cost">
-          <div class="nl-fig"><b>US$2,481</b><span>the average extra cost, per person, when a
-            prescription simply doesn't do its job</span></div>
-          <div class="nl-fig"><b>16%</b><span>of the entire national health bill — US$528bn a year —
-            spent on medication that didn't work as intended</span></div>
-        </div>
-        <p class="nl-src">Watanabe, McInnis &amp; Hirsch, <i>Annals of Pharmacotherapy</i> 2018 ·
-          <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" target="_blank" rel="noopener">PMID 29577766</a>
-          · US figures. No Singapore equivalent has been published.</p>
-        <p class="nl-turn">You cannot fix a health system. You can stop being the person it happens to.</p>
-        ${nlForm('home', 'Send me the weekly email →')}
-        <p class="nl-fine">One email a week — what actually changed in the evidence for a drug or
-        supplement you might be taking, in plain English. Not medical advice, and never a
-        substitute for seeing a clinician.</p>
-      </div>
-    </section>
+  // The prerendered daily fact is stamped at deploy time, the fact is date-derived, and a container
+  // can run for days -- so a build-stamped fact goes stale. This is the one legitimate reason for JS
+  // to change home markup, and it does so IN PLACE: two text nodes and an href. Patching nodes is
+  // not a second renderer. Re-emitting the card would be, so the card, its kicker and its structure
+  // stay in build/prerender.js.
+  function refreshDailyFact() {
+    const F = window.RNAWIKI_FACTS || [];
+    const card = document.querySelector('.daily-fact .df-card');
+    if (!card || !F.length) return;
+    const f = F[Math.floor(Date.now() / 864e5) % F.length];
+    const t = card.querySelector('.df-text');
+    const a = card.querySelector('.df-link');
+    if (t) t.innerHTML = f.t;
+    if (a) { a.textContent = f.label; a.setAttribute('href', f.href); }
+  }
 
-    <section class="reveal home-stacks-sec"><div id="home-stacks"></div></section>
-
-    <section class="browse-sec reveal">
-      <div class="section-title center">Or just browse what helps</div>
-      <div class="goal-grid">${cards}</div>
-      <p class="browse-more">Want the deep science? <a href="#/learn">Foundations</a> · <a href="#/pathways">Pathways</a> · <a href="#/az">A–Z of compounds</a></p>
-    </section>`;
+  // The newsletter's completion state. The MESSAGE is authored once, in build/prerender.js, hidden
+  // by default; server.js un-hides it for readers without JS when it serves "/?subscribed=1".
+  // Here we set it from the query on every bind, so a stale "you're in" cannot survive a
+  // client-side navigation back to "/" via the captured string.
+  function syncNlNotice() {
+    const q = new URLSearchParams(location.search);
+    const ok = q.get('subscribed');
+    const err = q.get('suberr');
+    document.querySelectorAll('.nl-done').forEach((e) => { e.style.display = ok ? 'block' : 'none'; });
+    document.querySelectorAll('.nl-bad').forEach((e) => {
+      if (err) e.textContent = err;
+      e.style.display = err ? 'block' : 'none';
+    });
   }
 
   // scroll-triggered reveal for landing sections (respects reduced-motion; degrades to visible)
@@ -1233,7 +1164,13 @@
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); obs.unobserve(en.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach(e => io.observe(e));
+    // `.armed` is what actually applies opacity:0 (see the note on `.reveal` in styles.css). It is
+    // added HERE, one statement before the observer starts watching, so an element can only ever be
+    // hidden when the thing that un-hides it already exists. Previously the CSS hid every `.reveal`
+    // unconditionally and this observer was the only way back -- so no JS, a JS error above this
+    // line, or a `.reveal` class pasted into a prerendered page all meant permanently blank content
+    // for the ~90% of readers who never run JavaScript.
+    els.forEach(e => { e.classList.add('armed'); io.observe(e); });
   }
 
   // Scroll-driven "scrollytelling": a pinned stage whose frames advance as the
@@ -1275,51 +1212,44 @@
   }
 
   // wire the landing funnel (autosuggest + intake routing)
-  // Resolve a comment key (goal_id) into a human label + link, using client data.
-  // Community pulse: a live feed of recent activity — social proof the wiki is alive + discovery.
-  // Top community stacks on the home page — social proof + discovery. Real user-built stacks
-  // (falls back to demo fixtures until real ones arrive), ranked by likes then usage.
-  async function mountHomeStacks() {
-    const el = document.getElementById('home-stacks'); if (!el) return;
-    let forks = []; try { forks = await api.popularForks(); } catch (e) {}
-    if (!forks.length) { el.style.display = 'none'; return; }
-    let scores = {}; try { scores = await api.votes(forks.map(f => 'fork:' + f.id)); } catch (e) {}
-    const likesOf = f => (scores['fork:' + f.id] || {}).up || 0;
-    forks.sort((a, b) => (likesOf(b) - likesOf(a)) || ((b.clones || 0) - (a.clones || 0)));
-    const top = forks.slice(0, 8);
-    el.innerHTML = `<div class="section-title center">💬 Top stacks people built</div>
-      <p class="muted center" style="font-size:.88rem;margin-top:-.4rem">Real supplement stacks shared by the community — open one to like it, use it, or make it your own.</p>
-      <div class="home-stack-row">${top.map(f => {
-        const p = problemById[f.problem_id];
-        return `<a class="home-stack-card" href="#/fork/${f.id}">
-          <div class="hsc-title"><b>${esc(f.title)}</b></div>
-          ${p ? `<div class="hsc-for">for ${esc(p.name)}</div>` : ''}
-          <div class="hsc-foot"><span class="hsc-by">${f.by_user ? '@' + esc(f.by_user) : 'someone'}</span><span class="hsc-likes">❤️ ${likesOf(f)}${f.clones ? ' · ' + f.clones + ' using' : ''}</span></div>
-        </a>`;
-      }).join('')}</div>
-      <p class="browse-more center"><a href="#/stack">Build your own stack →</a></p>`;
-    revealOnScroll();
-  }
+  // REMOVED 2026-07-30: mountHomeStacks(). It rendered `#home-stacks` from GET /api/forks/popular,
+  // which filters `WHERE f.clones > 0`; the 21 demo forks were deleted in round 5 and no real ones
+  // exist, so the endpoint returns [] and the renderer's first act was `el.style.display='none'`.
+  // Measured 0px tall on the live page. The section and its container are gone from the home markup.
+  // `api.popularForks()` is KEPT -- mountPopularForks() still uses it elsewhere.
+
+  // bindHome() IS BIND-ONLY. It must never create markup: the home page's markup has exactly one
+  // source, build/prerender.js. Everything below attaches behaviour to nodes that are already in the
+  // document, or patches a value that is genuinely time-dependent (the daily fact, the newsletter
+  // notice). If you find yourself writing HTML in here, the change belongs in build/prerender.js.
   function bindHome() {
-    revealOnScroll();
-    mountHomeStacks();
-    initScrolly('scrolly-how');
+    refreshDailyFact();
+    syncNlNotice();
+    // Deliberately NOT called here any more, each with the block it served:
+    //   revealOnScroll()           -- the home page emits no `.reveal` at all now. Kept for /gp,
+    //                                 /pros and the other SPA-only landing pages that still use it.
+    //   mountHomeStacks()          -- deleted, see above.
+    //   initScrolly('scrolly-how') -- the scrollytelling block is replaced by the static `.wex`
+    //                                 worked example. initScrolly() itself STAYS: /pros calls it.
+    const form = document.getElementById('hero-solve');
     const inp = document.getElementById('hero-solve-input');
     const out = document.getElementById('hero-solve-out');
-    const btn = document.getElementById('hero-solve-btn');
     if (!inp) return;
     let active = -1, current = [];
     const paint = list => {
       current = list; active = -1;
       if (!list.length) {
         if (inp.value.trim().length >= 3) {
-          out.innerHTML = `<button class="funnel-hit funnel-req" id="hero-req"><span class="fh-i">✨</span><span class="fh-b"><b>Don’t see it? Request this protocol</b><small>A verified expert will build it — takes 10 seconds</small></span></button>`;
+          // type="button" is load-bearing: these buttons now live inside a real <form>, and a
+          // <button> with no type defaults to type="submit" -- so without this, clicking a
+          // suggestion would submit the form to /solve instead of opening the triage modal.
+          out.innerHTML = `<button type="button" class="funnel-hit funnel-req" id="hero-req"><span class="fh-i">✨</span><span class="fh-b"><b>Don’t see it? Request this protocol</b><small>A verified expert will build it — takes 10 seconds</small></span></button>`;
           out.hidden = false;
           const rb = document.getElementById('hero-req'); if (rb) rb.onclick = () => { out.hidden = true; openRequestModal(inp.value.trim()); };
         } else { out.hidden = true; out.innerHTML = ''; }
         return;
       }
-      out.innerHTML = list.map((p, i) => `<button class="funnel-hit" data-pid="${p.id}" data-i="${i}">
+      out.innerHTML = list.map((p, i) => `<button type="button" class="funnel-hit" data-pid="${p.id}" data-i="${i}">
         <span class="fh-i">${p.icon}</span>
         <span class="fh-b"><b>${esc(p.name)}</b><small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}${p.rcCount > 1 ? ' · ' + p.rcCount + ' root causes' : ''}</small></span></button>`).join('');
       out.hidden = false;
@@ -1339,7 +1269,10 @@
       else return;
       out.querySelectorAll('.funnel-hit').forEach((h, i) => h.classList.toggle('on', i === active));
     });
-    btn.onclick = go;
+    // The hero is a real <form action="/solve" method="get"> so that CTA #1 exists and functions
+    // with JavaScript off. Binding the FORM (not the button) catches both the click and Enter, and
+    // preventDefault keeps the JS path -- suggestProtocols + openIntake -- exactly as it was.
+    if (form) form.addEventListener('submit', e => { e.preventDefault(); go(); });
     // close the dropdown on outside click — bind the document listener once, resolve the element live
     if (!bindHome._clickBound) {
       bindHome._clickBound = true;
@@ -1348,7 +1281,19 @@
         if (o && !e.target.closest('.funnel-search')) o.hidden = true;
       });
     }
-    document.querySelectorAll('.seed-chip').forEach(c => c.onclick = () => openIntake(c.dataset.pid));
+    // The chips are `<a href="/protocol/{pid}/{rc0}">` now, so a reader without JS gets a real
+    // protocol page instead of a dead <button>. With JS they do what they always did: open the
+    // triage modal. Safe against the global link interceptor, which checks e.defaultPrevented first
+    // and runs on document, i.e. after this handler on the anchor itself.
+    document.querySelectorAll('.seed-chip[data-pid]').forEach(c => c.onclick = e => {
+      e.preventDefault(); openIntake(c.dataset.pid);
+    });
+    // The worked example's closing link returns the reader to CTA #1. href="#top" + data-scroll
+    // (an existing handler) does the scrolling in both documents; this only adds the focus, so the
+    // caret is already in the search box when the scroll lands.
+    document.querySelectorAll('[data-focus-search]').forEach(a => a.addEventListener('click', () => {
+      setTimeout(() => { const i = document.getElementById('hero-solve-input'); if (i) i.focus({ preventScroll: true }); }, 450);
+    }));
   }
 
   // ---------- legend (what the stars & colours mean) ----------
@@ -2040,12 +1985,21 @@
       // pathwayDiagram() sat in the LEGACY branch BELOW this early return, and every one of the 16
       // pathways has p.expand — so an authored diagram existed on 16 of 16 pages and rendered on
       // zero of them. Same for p.html. Hoisted into the lede so both finally appear, at the top.
-      const payoff = (p.expand.hook && p.expand.hook.payoff)
-        ? `<p class="lc-why"><span class="lc-why-k">Why this one matters</span>${mdInline(p.expand.hook.payoff)}</p>` : '';
+      const payoff = (p.expand.hook && p.expand.hook.payoff) ? `<p class="lc-why"><span class="lc-why-k">Why this one matters</span>${mdInline(p.expand.hook.payoff)}</p>` : '';
       const oneLine = p.oneLine ? `<p class="pw-oneline"><b>In one line:</b> ${mdInline(p.oneLine)}</p>` : '';
-      const lede = payoff + oneLine + pathwayDiagram(p.diagram, p.shortLabel);
+      // ---- LEDE ORDER (2026-07-30) --------------------------------------------------------------
+      // Measured against /muscle/biceps, the page the owner calls perfect: biceps opens with a
+      // 34-word line and a draggable 3D model, then the hook. The pathway page opened with the
+      // 120-word `hook.payoff` — the longest single paragraph on the page, first thing, above the
+      // fold — then a one-liner, then the diagram. 223 words of prose above the hook versus 75.
+      // Two different code paths produced that: `pathwayPage` prepends lc-why, `musclePage` never
+      // did, even though muscle:biceps has a 76-word payoff authored and available.
+      // So: lead with the SHORT concrete line and the picture, exactly like the page that works.
+      // The payoff is not deleted — it moves below, where the hook's questions have created the
+      // need it answers, and reads as a promise rather than a preamble.
+      const lede = oneLine + pathwayDiagram(p.diagram, p.shortLabel);
       const cpdChapter = { icon: '💊', label: 'The compounds', at: 3, html: (cpdSection || '<p class="muted">Compounds that act here are being added.</p>') + `<p class="pw-cpd-note">Each of these pulls this exact lever — open any compound to see how it does, then come back. That's how the whole map connects.</p>` };
-      return learnCourse(p.expand, { name: p.shortLabel, key: 'pathway-' + i, crumb, lede, badge: '<span class="pw-badge">🧬 Master-pathway course</span>', prevnext: prev + next, journey: journeyBlock('pathway', i), extraChapters: [cpdChapter] });
+      return learnCourse(p.expand, { name: p.shortLabel, key: 'pathway-' + i, crumb, lede, postHook: payoff, badge: '<span class="pw-badge">🧬 Master-pathway course</span>', prevnext: prev + next, journey: journeyBlock('pathway', i), extraChapters: [cpdChapter] });
     }
     // Legacy render until the learning layer is authored (graceful degradation)
     if (!(p.hook || p.bigIdea || p.mechSteps)) {
@@ -2169,7 +2123,7 @@
             return `<a href="#dd-${ctx.key}-${i}" title="${esc(raw)}">${esc(lab)}</a>`;
           }).join('')}</nav>`
       : '';
-    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}<div class="lc-dd-b">${(() => { const sp = splitSection(paras(rest), 2); return sp.rest ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>` : sp.head; })()}</div>${((entry.widgets || {})[String(i)]) || ''}${sectionCheckpoint(String(i), 'Tick it and the section dims, so you can see what is left')}</section>`; }).join('')}</div>` : '';
+    const deep = (Array.isArray(entry.deepDive) && entry.deepDive.length) ? `<div class="lc-dd-wrap"><p class="lc-dd-lead">The core of the course — work through each section. This is where a curious beginner becomes genuinely expert.</p>${ddJump}${entry.deepDive.map((d, i) => { const { deck, rest } = ddDeck(d.body); return `<section class="lc-dd" id="dd-${ctx.key}-${i}"><p class="dd-eyebrow">Deep dive · ${i + 1} of ${ddN}</p><h3 class="lc-dd-h">${esc(d.h)}</h3>${deck ? `<p class="dd-deck">${mdInline(deck)}</p>` : ''}${((entry.widgets || {})[String(i)]) || ''}<div class="lc-dd-b">${(() => { const sp = splitSection(paras(rest), 2); return sp.rest ? `${sp.head}<details class="dd-more"><summary>Keep going — ${sp.n} more ${sp.n === 1 ? 'part' : 'parts'} of this idea</summary>${sp.rest}</details>` : sp.head; })()}</div>${sectionCheckpoint(String(i), 'Ticked sections fade, so the page shows you what is left')}</section>`; }).join('')}</div>` : '';
     const expert = entry.expertLens ? `<div class="lc-expert"><div class="lc-h">🧠 How an expert actually reasons with this</div>${paras(entry.expertLens)}${(entry.widgets || {}).expertLens || ''}</div>` : '';
     const conns = (Array.isArray(entry.connections) && entry.connections.length) ? `<div class="lc-conn"><div class="lc-h">🕸️ How this connects to the rest of the body</div><ul>${entry.connections.map(c => `<li><b>${esc(c.to)}</b> — ${mdInline(c.why)}</li>`).join('')}</ul></div>` : '';
     // `lede` (added 2026-07-28) — the 30-second answer, the map, and the WHY, ahead of the
@@ -2177,7 +2131,9 @@
     // care") rendered as segment 69 OF 69, the authored pathway diagram never rendered at all
     // (dead below an early return), and p.html's one-line summary was dropped entirely. The reader
     // met ~7,500 words before meeting a single reason to read them.
-    const ch1 = (ctx.lede || '') + hookBox(pc) + bigIdeaBanner(pc) + analogyBox(pc) + fundamentals;
+    // `postHook` lands the "why this matters" promise AFTER the hook's questions, so it answers a
+    // need the reader now has instead of being a 120-word preamble above the fold.
+    const ch1 = (ctx.lede || '') + hookBox(pc) + (ctx.postHook || '') + bigIdeaBanner(pc) + analogyBox(pc) + fundamentals;
     const ch2 = mechanismCascade(pc);
     const ch3 = deep;
     const ch4 = expert + conns;
@@ -4005,7 +3961,10 @@
   // nobody has ever reported an outcome — so "helped" asserted a result the data cannot support,
   // and most of the counted keys were the audit's own driven sessions. Do not reinstate this
   // without an outcome measure behind it.
-  async function mountHomeStat() { }
+  // REMOVED 2026-07-30: mountHomeStat(). It was `async function mountHomeStat() { }` -- an empty
+  // stub -- and the `#home-stat` div it was meant to fill was rendered with the `hidden` attribute.
+  // Dead in both directions, in both documents. The div is gone from the home markup and the call
+  // is gone from route().
 
   // ---------- My Plan — the personal execution page (the "kitchen") ----------
   function planLoading() { return `<div class="empty"><h1>Loading your plan…</h1></div>`; }
@@ -6741,7 +6700,23 @@
     else if (parts[0] === 'clinic' && parts[3]) html = protocolLoading();
     else if (parts[0] === 's' && parts[1]) html = '<div class="empty"><h1>Loading shared protocol…</h1></div>';
     else html = notFound();
-    app.innerHTML = html; window.scrollTo(0, 0);
+    // FIRST PAINT OF "/" (2026-07-30). The prerendered home is already in the DOM and HOME_HTML is
+    // byte-identical to it, so writing it again buys nothing and costs a full reflow, any
+    // browser-restored form state, and a repaint of every emoji on the page. Every later navigation
+    // writes normally. This is also what makes the capture in home() legitimate rather than merely
+    // clever: the string in the DOM and the string the SPA replays are the same object.
+    if (!(_firstPaint && !parts.length && HOME_HTML)) app.innerHTML = html;
+    _firstPaint = false;
+    // Do not fight an on-page fragment. This used to be an unconditional window.scrollTo(0, 0),
+    // which silently defeated every anchor into a rendered page -- including `/?subscribed=1#newsletter`,
+    // the landing spot for the newsletter's own 303, and the `/#newsletter` link in the footer of all
+    // 514 pages. Both scrolled to the top of the home page instead of to the form the reader had just
+    // used, so the site's MAIN call to action had no visible completion state for JS readers either.
+    // `#/...` fragments are router paths, not anchors, and must still scroll to top.
+    const frag = (location.hash || '').replace(/^#/, '');
+    const anchor = (frag && frag.charAt(0) !== '/') ? document.getElementById(frag) : null;
+    if (anchor) anchor.scrollIntoView({ block: 'start' });
+    else window.scrollTo(0, 0);
     setPageMeta(parts);
     // ACCESSIBILITY (2026-07-28). route() replaces the ENTIRE page body on every navigation, and
     // nothing announced it: aria-live 0, role="status" 0, no focus move, no skip link. So a
@@ -6764,7 +6739,9 @@
     closeGlossPop();
     try { glossarize(app); } catch (e) { }
     const nav = document.querySelector('.topnav'); if (nav) nav.classList.remove('open');
-    if (!parts.length) { bindHome(); renderHomeComments(); mountHomeStat(); }
+    // renderHomeComments() and mountHomeStat() dropped: the first is `{ …; return; // comments
+    // removed }` and the second was an empty stub. Neither rendered anything in either document.
+    if (!parts.length) bindHome();
     if (parts[0] === 'solve') bindSolve();
     if (parts[0] === 'for-clinicians') bindForClinicians();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
@@ -6807,6 +6784,13 @@
   const cc = D.meta.counts;
   document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
   updateStackBadge();
+  // CAPTURE THE PRERENDERED HOME BEFORE ANYTHING CAN TOUCH IT. This must run before route(), which
+  // is the only thing that writes to #app. Nothing above this line writes into #app --
+  // updateStackBadge() addresses `#stack-badge` and the footer stats live outside <main> -- so the
+  // captured string is exactly what build/prerender.js emitted.
+  // currentRoute() returns "/" for the home page in both the path form and the legacy #/ form, so
+  // this is exact and does not fire on any other route.
+  if (!currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;
   route();
   api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } }).catch(() => { renderAccount(); });
   api.config().then(c => { if (c) CFG = c; });
