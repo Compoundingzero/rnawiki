@@ -334,9 +334,15 @@
       if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
     }
     if (cur.length) {
-      // A stranded tail of a few words reads as a mistake; fold it back.
-      if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
-      else out.push(cur.join(' '));
+      // A stranded tail of a few words reads as a mistake, so fold it back — but ONLY if the merged
+      // paragraph still respects MAX. Without that guard this rule defeated the limit it sits inside:
+      // biceps mechStep[4] is 5 sentences of 4/24/27/34/12 words, the first four flush at exactly 89,
+      // and folding the 12-word tail back produced a 101-word paragraph. Every "why is this still
+      // over 90?" I chased today traced to here, not to the sentence splitter.
+      const tail = cur.join(' ');
+      if (mdWc(tail) < 25 && out.length && mdWc(out[out.length - 1] + ' ' + tail) <= MAX) {
+        out[out.length - 1] += ' ' + tail;
+      } else out.push(tail);
     }
     return out;
   }
@@ -1541,7 +1547,7 @@
       const link = s.tag ? ` <a class="mc-tag" href="#/target/${tkey(s.tag)}">${esc(s.tag)}</a>` : '';
       const fx = s.fx ? `<span class="mc-fx ${/▲/.test(s.fx) ? 'up' : /▼/.test(s.fx) ? 'down' : ''}">${esc(s.fx)}</span>` : '';
       const answer = `<div class="mc-t">${esc(s.t)}${link} ${fx}</div><p>${mdInline(s.d)}</p>`;
-      if (s.predict) return `<li class="mc-step predictable"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-t mc-t-vis">${esc(s.t)}${link} ${fx}</div><div class="mc-predict"><span class="mc-p-q">🤔 ${esc(s.predict)}</span><button class="mc-reveal">Reveal the answer →</button></div><div class="mc-answer" hidden><p>${mdInline(s.d)}</p></div></div></li>`;
+      if (s.predict) return `<li class="mc-step predictable"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-t mc-t-vis">${esc(s.t)}${link} ${fx}</div><div class="mc-predict"><span class="mc-p-q">🤔 ${esc(s.predict)}</span><button class="mc-reveal">Reveal the answer →</button></div><div class="mc-answer" hidden>${mdBlocks(s.d, mdInline)}</div></div></li>`;
       return `<li class="mc-step"><span class="mc-n">${s.n}</span><div class="mc-body">${answer}</div></li>`;
     }).join('');
     return `<div class="callout mcascade" id="sec-mechanism"><span class="k">How it works — step by step</span>${casc}${anyPredict ? `<p class="mc-hint">Try to answer each question <i>before</i> you reveal it — guessing first is what makes it stick.</p>` : ''}<ol class="mc-list">${steps}</ol>${shareId ? shareBtn('mechanism:' + shareId) : ''}</div>`;
@@ -1967,7 +1973,7 @@
       // pathwayDiagram() sat in the LEGACY branch BELOW this early return, and every one of the 16
       // pathways has p.expand — so an authored diagram existed on 16 of 16 pages and rendered on
       // zero of them. Same for p.html. Hoisted into the lede so both finally appear, at the top.
-      const payoff = (p.expand.hook && p.expand.hook.payoff) ? `<p class="lc-why"><span class="lc-why-k">Why this one matters</span>${mdInline(p.expand.hook.payoff)}</p>` : '';
+      const payoff = (p.expand.hook && p.expand.hook.payoff) ? `<div class="lc-why"><span class="lc-why-k">Why this one matters</span>${mdBlocks(p.expand.hook.payoff, mdInline)}</div>` : '';
       const oneLine = p.oneLine ? `<p class="pw-oneline"><b>In one line:</b> ${mdInline(p.oneLine)}</p>` : '';
       // ---- LEDE ORDER (2026-07-30) --------------------------------------------------------------
       // Measured against /muscle/biceps, the page the owner calls perfect: biceps opens with a

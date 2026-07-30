@@ -60,9 +60,15 @@ function mdChunk(block, MAX, TARGET) {
     if (mdWc(cur.join(' ')) >= TARGET) { out.push(cur.join(' ')); cur = []; }
   }
   if (cur.length) {
-    // A stranded tail of a few words reads as a mistake; fold it back.
-    if (mdWc(cur.join(' ')) < 25 && out.length) out[out.length - 1] += ' ' + cur.join(' ');
-    else out.push(cur.join(' '));
+    // A stranded tail of a few words reads as a mistake, so fold it back — but ONLY if the merged
+    // paragraph still respects MAX. Without that guard this rule defeated the limit it sits inside:
+    // biceps mechStep[4] is 5 sentences of 4/24/27/34/12 words, the first four flush at exactly 89,
+    // and folding the 12-word tail back produced a 101-word paragraph. Every "why is this still
+    // over 90?" I chased today traced to here, not to the sentence splitter.
+    const tail = cur.join(' ');
+    if (mdWc(tail) < 25 && out.length && mdWc(out[out.length - 1] + ' ' + tail) <= MAX) {
+      out[out.length - 1] += ' ' + tail;
+    } else out.push(tail);
   }
   return out;
 }
@@ -1050,7 +1056,7 @@ function learnFlatHtml(e, opts) {
   if (!_hasAny) return '';
   // — 30 seconds —
   out.push(partDivider(1, 5));
-  if (e.hook && e.hook.payoff) out.push(`<p class="lf-payoff">${mdSafe(e.hook.payoff)}</p>`);
+  if (e.hook && e.hook.payoff) out.push(`<div class="lf-payoff">${mdBlocks(e.hook.payoff, mdSafe)}</div>`);
   if (opts && opts.diagram) out.push(opts.diagram);
   if (e.bigIdea) out.push(`<h2>The big idea</h2>${P(e.bigIdea)}`);
   if (Array.isArray(e.hook && e.hook.questions) && e.hook.questions.length) {
@@ -1068,7 +1074,9 @@ function learnFlatHtml(e, opts) {
     if (e.cascade) out.push(e.cascade);
     out.push(`<ol class="lf-steps">${e.mechSteps.map((m) => {
       const t = m.t ? `<b>${mdSafe(m.t)}</b>` : '';
-      const d = m.d ? ` ${mdSafe(m.d)}` : '';
+      // Split the step description like every other prose block. It was going through mdSafe()
+      // alone, so a 95-word multi-sentence description shipped as one paragraph inside the reveal.
+      const d = m.d ? mdBlocks(m.d, mdSafe) : '';
       const fx = m.fx ? `<div class="lf-fx">${mdSafe(m.fx)}</div>` : '';
       // PREDICT-THEN-REVEAL. 235 of 340 mechSteps carry an authored `predict` prompt and this
       // renderer referenced it ZERO times, so the best learning device in the corpus reached only
