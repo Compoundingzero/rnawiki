@@ -3593,3 +3593,23 @@ a.seed-chip:hover { text-decoration: none; }
 .lf-part-t { font-size: 1.02rem; font-weight: 700; color: var(--fg, #0a1420); }
 .lf-part:first-child { margin-top: 1rem; }
 @media (max-width: 640px) { .lf-part { flex-direction: column; gap: .1rem; } }
+
+/* Move 1 — crawlable cause cascade (no-JS / prerendered twin of the SPA .bj- accordion) */
+.cause-flat { margin: 2rem 0; }
+.cause-flat > h2 { font-size: 1.35rem; margin: 0 0 .3rem; color: var(--head); }
+.cause-flat-item { border: 1px solid var(--line); border-radius: var(--r-lg, 14px); padding: 1rem 1.2rem; margin: 1rem 0; background: var(--panel); }
+.cause-flat-item > h3 { font-size: 1.12rem; margin: 0 0 .5rem; color: var(--head); }
+.cause-flat-item h4 { font-size: .8rem; margin: 1rem 0 .4rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.cf-hook { color: var(--muted); margin: 0 0 .6rem; }
+.cf-key { background: var(--panel); border-left: 3px solid var(--accent); padding: .5rem .85rem; border-radius: 0 8px 8px 0; }
+.cf-tell { margin-top: .6rem; }
+.cf-conf { color: var(--muted); margin-top: .5rem; }
+.cf-fixes { margin: .3rem 0; padding-left: 1.15rem; }
+.cf-fixes li { margin: .4rem 0; }
+.cf-kind { font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; background: var(--line-soft); color: var(--muted); padding: 1px 7px; border-radius: 6px; margin-right: .35rem; }
+.cf-deeper { margin-top: .8rem; padding-top: .6rem; border-top: 1px dashed var(--line); }
+.bjf-step { padding: .6rem 0; border-top: 1px solid var(--line-soft); }
+.bjf-step:first-child { border-top: 0; }
+.bjf-lay { margin: 0 0 .2rem; color: var(--head); }
+.bjf-node { margin: 0 0 .3rem; font-size: .92rem; }
+.bjf-tag { font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-ink); background: var(--line-soft); padding: 1px 6px; border-radius: 5px; margin-right: .35rem; }

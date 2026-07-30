@@ -779,6 +779,38 @@ D.goals.forEach((g) => {
   add(route, shell({ route, title: `${g.label}: what actually helps (ranked by evidence) · RNAwiki`, desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence — plain English, honest verdicts.`, jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
 });
 
+// FLAT prerender of the cause cascade (Move 1, 2026-07). The 224-cause / 995-step "why" corpus
+// (site/app.js causesSection -> bioJourney) rendered ONLY in the SPA, so the ~90% of traffic that
+// never runs JS, and Google, never saw the site's core mechanism content. Round-5 random sampling
+// put corpus overstatement at 3% (the 27% figure was a worst-neighbourhood bound, retired). This
+// emits it crawlably: escape-then-format via mdSafe (NEVER app.js's mdInline sink), routed through
+// mdBlocks so nothing ships as a wall of text, and with NO .chapter/display:none so nothing hides.
+const CC_TAG = { trigger: 'the trigger', mediator: 'the mechanism', structure: 'the anatomy', amplifier: 'what makes it worse', tissue: 'in the tissue', outcome: 'the result', symptom: 'the symptom' };
+const tierLabel = (t) => t >= 3 ? 'Well-established mechanism' : t === 2 ? 'Reasonably established' : 'Emerging — mechanistic / limited human data';
+function causeChainFlat(chain) {
+  return (chain || []).map((n) => {
+    const lay = n.lay ? `<p class="bjf-lay"><strong>${mdSafe(n.lay)}</strong></p>` : '';
+    const node = n.node ? `<p class="bjf-node"><span class="bjf-tag">${esc(CC_TAG[n.type] || 'the science')}</span> ${mdSafe(n.node)}</p>` : '';
+    const say = n.say ? mdBlocks(n.say, mdSafe) : '';
+    return `<div class="bjf-step">${lay}${node}${say}</div>`;
+  }).join('');
+}
+function causeCascadeFlat(p) {
+  const w = CAUSE[p.id]; if (!w || !Array.isArray(w.causes) || !w.causes.length) return '';
+  const causes = w.causes.slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+  const items = causes.map((c, i) => {
+    const hook = c.hook ? `<p class="cf-hook">${mdSafe(c.hook)}</p>` : '';
+    const ki = c.keyInsight ? `<p class="cf-key"><strong>The key insight:</strong> ${mdSafe(c.keyInsight)}</p>` : '';
+    const chain = c.chain && c.chain.length ? `<h4>The pathway — step by step</h4>${causeChainFlat(c.chain)}` : '';
+    const sym = (c.tell && c.tell.symptoms) ? `<p class="cf-tell"><strong>Is this you?</strong> ${mdSafe(String(c.tell.symptoms).replace(/\s*Honest tiering:.*$/i, '').trim())}</p>` : '';
+    const conf = c.evidenceTier ? `<p class="cf-conf"><small>How well established is this mechanism: <b>${esc(tierLabel(c.evidenceTier))}</b> — this rates the causal link, not how much a given fix will help you.</small></p>` : '';
+    const fixes = Array.isArray(c.fixes) && c.fixes.length ? `<h4>Your plan if this is your cause</h4><p class="muted">Work down the list — cheapest and safest first.</p><ul class="cf-fixes">${c.fixes.map((f) => `<li><span class="cf-kind">${esc(f.kind || 'other')}</span> ${mdSafe(f.what || '')}</li>`).join('')}</ul>` : '';
+    const deeper = c.plain ? `<div class="cf-deeper"><p><strong>Go deeper — the full mechanism.</strong></p>${mdBlocks(c.plain, mdSafe)}</div>` : '';
+    return `<div class="cause-flat-item"><h3>Cause ${c.rank || i + 1}: ${mdSafe(c.name)}</h3>${hook}${ki}${chain}${sym}${conf}${fixes}${deeper}</div>`;
+  }).join('');
+  return `<section class="cause-flat"><h2>What’s actually causing this — the ${causes.length} common cause${causes.length !== 1 ? 's' : ''}</h2>${w.intro ? mdBlocks(w.intro, mdSafe) : ''}<p class="muted">Ranked by leverage (#1 fixes the most). Open the one that sounds like you — each is a self-contained explanation and plan.</p>${items}</section>`;
+}
+
 // protocols
 GRAPH.problems.forEach((p) => {
   p.root_causes.forEach((rc) => {
@@ -799,11 +831,10 @@ GRAPH.problems.forEach((p) => {
     // Sibling root causes: the same problem's other causes, so a reader who is on the wrong one
     // has a way out of it. (Also gives the 11 off-funnel causes an inbound link.)
     const siblings = (p.root_causes || []).filter((x) => x.id !== rc.id);
-    // Cause NAMES only, never the bodies -- the bodies are the unverified 995-step chain corpus.
-    // NOTE: cause_learn.json is keyed by PROBLEM id ("knee-pain"), not root-cause id. Keying it
-    // on rc.id silently renders nothing on all 52 pages rather than failing -- the same
-    // looks-complete-but-empty join that this codebase keeps producing. Verified: CAUSE[p.id].
-    const causeNames = ((CAUSE[p.id] || {}).causes || []).map((c) => c && c.name).filter(Boolean).slice(0, 8);
+    // The full cause bodies (chain/lay/say/keyInsight/fixes) are now emitted crawlably by
+    // causeCascadeFlat(p) higher in the body (Move 1, 2026-07). cause_learn.json is keyed by
+    // PROBLEM id ("knee-pain"), not root-cause id -- causeCascadeFlat reads CAUSE[p.id] for that
+    // reason (keying on rc.id silently renders nothing, the looks-complete-but-empty join trap).
     const safety = `
       ${plan.reassess ? `<section class="plan-reassess">
         <h3>When to reassess or see a doctor</h3>
@@ -814,8 +845,6 @@ GRAPH.problems.forEach((p) => {
       </section>` : ''}
       ${timeline.length ? `<h3>What to expect, and by when</h3>
         <ul>${timeline.map((t) => `<li><b>${esc(t.when)}</b> — ${mdSafe(t.what)}</li>`).join('')}</ul>` : ''}
-      ${causeNames.length ? `<h3>Other things that cause this</h3>
-        <p>${causeNames.map(esc).join(' · ')}</p>` : ''}
       ${siblings.length ? `<h3>Other root causes of ${esc(p.name)}</h3>
         <p class="muted">If the description above does not sound like you, it is probably one of these.</p>
         <ul>${siblings.map((s) => `<li><a href="/protocol/${p.id}/${s.id}">${esc(s.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>` : ''}`;
@@ -823,6 +852,7 @@ GRAPH.problems.forEach((p) => {
       <h1>${p.icon || ''} ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
       ${rc.keystone ? `<div class="keystone-card"><div class="ks-badge">⭐ Your one keystone</div><p class="ks-one">${esc(rc.keystone.one)}</p><p class="ks-why">${esc(rc.keystone.why)}</p></div>` : ''}
+      ${causeCascadeFlat(p)}
       <h3>Move — the mechanics that fix it${rc.prescription ? `: ${esc(rc.prescription.scheme)}` : ''}</h3>
       ${rc.prescription ? `<p>${esc(rc.prescription.detail)}</p>` : ''}
       ${move.length ? `<ul>${move.map((e) => `<li>${esc(e.name)}</li>`).join('')}</ul>` : ''}
