@@ -1407,7 +1407,10 @@
   let _glossSeen = new Set();
   function resetGlossary() { _glossSeen = new Set(); }
   function applyGlossary(root, shared) {
-    if (!root) return; const seen = shared || _glossSeen;
+    // `shared` must be a Set. Array.prototype.forEach passes (element, index, array), so any
+    // `.forEach(applyGlossary)` call site hands the INDEX in here — truthy from the second element
+    // on, and `seen.has` is not a function on a number. Type-check rather than trust the caller.
+    if (!root) return; const seen = (shared instanceof Set) ? shared : _glossSeen;
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => (n.nodeValue.trim().length > 2 && n.parentElement && !n.parentElement.closest('a,.gloss,code,h1,h2,h3,summary,.badge,.chip,.spec-strip')) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
     const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(n => {

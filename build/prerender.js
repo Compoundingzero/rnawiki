@@ -984,11 +984,37 @@ function sectionCheckpoint(id, label) {
     `<span class="ddc-hint">${label}</span></div>`;
 }
 
+// ---- PARTS IN THE FLAT DOCUMENT (2026-07-30) -------------------------------------------------
+// The prerendered course page is 9,513 words labelled "41 min read" as ONE continuous scroll,
+// while the SPA presents the identical content as six named chapters. It is not structureless —
+// it has a contents card and 18 anchored headings — but it gives the reader no sense of PARTS, so
+// "41 minutes" reads as one indivisible obligation rather than six things.
+// Deliberately NOT <details> around each part: collapsing 9,500 words in the crawled document is
+// the 85%-hidden defect this project spent two days removing. This is pure typography — a labelled
+// divider at each boundary. Nothing hides, nothing moves, no word changes, and the reader gets the
+// same map the app gives them.
+function partDivider(n, total) {
+  // The labels live INSIDE the function on purpose. As a module-level `const` they were in the
+  // temporal dead zone when learnFlatHtml ran during module execution — the fifth time a
+  // use-before-initialization has bitten this file (DATA_DIR twice, mdWc, GLOSSARY, now this).
+  // `node --check` catches none of them; only running the build does.
+  const L = ['The big picture', 'The mechanism', 'Going deeper', 'How an expert reasons', 'Prove it'];
+  return `<div class="lf-part" role="separator" aria-label="Part ${n} of ${total}: ${L[n - 1]}">`
+    + `<span class="lf-part-n">Part ${n} of ${total}</span><span class="lf-part-t">${L[n - 1]}</span></div>`;
+}
+
 function learnFlatHtml(e, opts) {
   if (!e) return '';
   const P = (t) => mdBlocks(t, mdSafe);
   const out = [];
+  // Nothing to divide if there is nothing to show. Pushing the divider unconditionally gave 13
+  // multi-compound bundle entries an otherwise-empty learn section (learn-flat pages 305 -> 318).
+  const _hasAny = !!(e.hook || e.bigIdea || e.analogy || e.fundamentals
+    || (Array.isArray(e.mechSteps) && e.mechSteps.length) || (Array.isArray(e.deepDive) && e.deepDive.length)
+    || e.expertLens || (Array.isArray(e.myths) && e.myths.length) || (Array.isArray(e.selfTest) && e.selfTest.length));
+  if (!_hasAny) return '';
   // — 30 seconds —
+  out.push(partDivider(1, 5));
   if (e.hook && e.hook.payoff) out.push(`<p class="lf-payoff">${mdSafe(e.hook.payoff)}</p>`);
   if (opts && opts.diagram) out.push(opts.diagram);
   if (e.bigIdea) out.push(`<h2>The big idea</h2>${P(e.bigIdea)}`);
@@ -1002,6 +1028,7 @@ function learnFlatHtml(e, opts) {
     // Lead with the animated cascade, THEN the steps. The picture is the map; the prose is the
     // detail you go to once you know where you are. This order was the whole point of the
     // progressive-disclosure work and the mechanism section was still doing it backwards.
+    out.push(partDivider(2, 5));
     out.push('<h2>How it actually works, step by step</h2>');
     if (e.cascade) out.push(e.cascade);
     out.push(`<ol class="lf-steps">${e.mechSteps.map((m) => {
@@ -1070,6 +1097,7 @@ function learnFlatHtml(e, opts) {
       return { deck: first, rest: t.slice(t.indexOf(first) + first.length).trim() };
     };
     const n = e.deepDive.length;
+    out.push(partDivider(3, 5));
     out.push(e.deepDive.map((d, i) => {
       const { deck, rest } = ddSplit(d.body);
       return `<section class="dd">
@@ -1093,14 +1121,14 @@ function learnFlatHtml(e, opts) {
       </section>`;
     }).join(''));
   }
-  if (e.expertLens) out.push(`<h2>How an expert reasons with this</h2>${P(e.expertLens)}${(e.widgets || {}).expertLens || ''}`);
+  if (e.expertLens) out.push(partDivider(4, 5) + `<h2>How an expert reasons with this</h2>${P(e.expertLens)}${(e.widgets || {}).expertLens || ''}`);
   // RETRIEVAL DEVICES (added 2026-07-28). I originally left selfTest and canExplain out as
   // "checklists, not exposition". A design review pushed back and was right: retrieval practice IS
   // learning content, and their absence is a large part of why a 7,500-word page still reads as
   // thin. 15,565 words of it were crawler-invisible. What makes the page feel like a course is not
   // more prose — it is the question you cannot yet answer, and the claim you can now make.
   if (Array.isArray(e.canExplain) && e.canExplain.length) {
-    out.push(`<h2>What you can explain after this</h2><ul class="lf-can">${e.canExplain.map((c) => `<li>${mdSafe(c)}</li>`).join('')}</ul>`);
+    out.push(partDivider(5, 5) + `<h2>What you can explain after this</h2><ul class="lf-can">${e.canExplain.map((c) => `<li>${mdSafe(c)}</li>`).join('')}</ul>`);
   }
   if (Array.isArray(e.selfTest) && e.selfTest.length) {
     // PARITY FIX. app.js:1588 already renders these answers behind a reveal; this renderer printed
