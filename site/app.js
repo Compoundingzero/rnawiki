@@ -2899,162 +2899,10 @@
   // ---------- contributors showcase ----------
   // ---------- public expert profile / portfolio (/u/:handle) ----------
   const BADGE_LABEL = { 'verified-expert': '✓ Verified Expert' };
-  function profileSocials(s) {
-    s = s || {}; const items = [];
-    if (s.instagram) items.push(['Instagram', 'https://instagram.com/' + s.instagram]);
-    if (s.twitter) items.push(['X', 'https://x.com/' + s.twitter]);
-    if (s.linkedin) items.push(['LinkedIn', s.linkedin]);
-    if (s.website) items.push(['Website', s.website]);
-    if (s.booking_link) items.push(['📅 Book an appointment', s.booking_link, 'book']);
-    return items.map(([label, href, cls]) => `<a class="prof-social${cls ? ' ' + cls : ''}" href="${esc(href)}" target="_blank" rel="noopener nofollow">${esc(label)}</a>`).join('');
-  }
-  function profileLoading(handle) { return `<div class="empty"><h1>Loading @${esc(handle)}…</h1></div>`; }
-  async function renderProfile(handle) {
-    let d;
-    try { d = await api.profile(handle); }
-    catch (e) { app.innerHTML = `<div class="empty"><h1>No such member</h1><p>@${esc(handle)} wasn’t found. <a href="#/">← Home</a></p></div>`; return; }
-    const u = d.user, c = d.counts || {};
-    const dom = GRAPH.domains[u.domain] || null;
-    const isMe = ME && ME.username.toLowerCase() === u.username.toLowerCase();
-    const badges = (u.badges || []).map(b => `<span class="prof-badge">${esc(BADGE_LABEL[b] || b)}</span>`).join('');
-    const purl = (location.origin || 'https://rnawiki.com') + '/u/' + encodeURIComponent(u.username);
-    const socials = profileSocials(u.socials);
-    const protoName = (pid, rcid) => {
-      const p = problemById[pid]; const rc = resolveRc(p, rcid);
-      return p ? p.name + (rc ? ' — ' + rc.name.split('(')[0].trim() : '') : pid;
-    };
-    const stewarded = (d.stewarded || []).map(sp => `<a class="prof-steward" href="#/protocol/${sp.problem_id}/${sp.root_cause_id}">🩺 ${esc(protoName(sp.problem_id, sp.root_cause_id))}</a>`).join('');
-    const accepted = (d.accepted || []).map(a => {
-      const dl = (GRAPH.domains[a.domain] || {}).label || a.domain;
-      return `<a class="prof-contrib" href="#/protocol/${a.problem_id}/${a.root_cause_id}">
-        <span class="pc-dom ${a.domain}">${esc(dl)}</span>
-        <span class="pc-body"><b>${esc(protoName(a.problem_id, a.root_cause_id))}</b><small>${esc(a.change.slice(0, 130))}</small></span></a>`;
-    }).join('');
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Contributors', href: '#/contributors' }, { label: '@' + u.username }])}
-      <section class="prof-head">
-        <div class="prof-avatar">${esc(u.username.slice(0, 1).toUpperCase())}</div>
-        <div class="prof-id">
-          <h1>@${esc(u.username)}</h1>
-          <div class="prof-badges">${dom ? `<span class="prof-domain ${u.domain}">${esc(dom.label)}${u.domain_verified ? ' ✓' : ''}</span>` : ''}${badges}</div>
-          <div class="prof-rep">✦ <b>${u.reputation_points || 0}</b> reputation · ${c.accepted || 0} accepted edits · ${c.proposals || 0} proposals · ${c.comments || 0} comments</div>
-        </div>
-        ${isMe ? '<button class="cta-ghost" id="prof-edit">Edit profile</button>' : ''}
-      </section>
-      ${socials ? `<div class="prof-socials">${socials}</div>` : (isMe ? '<p class="muted" style="text-align:center">Add your Instagram, LinkedIn, website & booking link so patients can reach you — tap “Edit profile”.</p>' : '')}
-      ${isMe ? `<div class="prof-share">
-        <b>🔗 Backlink your expertise</b>
-        <p>Add this link to your Instagram bio, LinkedIn, and clinic staff page to verify your clinical contributions to Singapore’s protocol engine:</p>
-        <div class="prof-share-row"><input readonly value="${esc(purl)}" id="prof-url"><button id="prof-copy">Copy</button></div>
-      </div>` : ''}
-      ${stewarded ? `<div class="section-title">Featured on</div><div class="prof-stewarded">${stewarded}</div>` : ''}
-      <div class="section-title">Accepted contributions</div>
-      <div class="prof-contribs">${accepted || '<p class="muted">No peer-reviewed contributions yet — open any protocol in your field and tap <b>Refine</b> to improve it.</p>'}</div>`;
-    if (isMe) {
-      const eb = document.getElementById('prof-edit'); if (eb) eb.onclick = () => openEditProfile(u);
-      const cp = document.getElementById('prof-copy'); if (cp) cp.onclick = () => {
-        const i = document.getElementById('prof-url'); try { i.select(); } catch (e) {}
-        if (navigator.clipboard) navigator.clipboard.writeText(i.value).catch(() => {}); else { try { document.execCommand('copy'); } catch (e) {} }
-        cp.textContent = 'Copied ✓';
-      };
-    }
-  }
-  function openEditProfile(u) {
-    const s = u.socials || {};
-    const m = modal(`<div class="edit-profile">
-      <h2>Edit profile</h2>
-      <p class="muted">These appear on your public profile — how clinics and patients reach you.</p>
-      <label>Instagram handle</label><input id="ep-ig" placeholder="yourhandle" value="${esc(s.instagram || '')}">
-      <label>X / Twitter handle</label><input id="ep-tw" placeholder="yourhandle" value="${esc(s.twitter || '')}">
-      <label>LinkedIn URL</label><input id="ep-li" placeholder="https://linkedin.com/in/…" value="${esc(s.linkedin || '')}">
-      <label>Website / clinic URL</label><input id="ep-web" placeholder="https://…" value="${esc(s.website || '')}">
-      <label>Booking link</label><input id="ep-book" placeholder="https://… (appointment link)" value="${esc(s.booking_link || '')}">
-      <button class="cta-primary" id="ep-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">Save</button>
-    </div>`);
-    m.querySelector('#ep-save').onclick = async () => {
-      const socials = {
-        instagram: document.getElementById('ep-ig').value, twitter: document.getElementById('ep-tw').value,
-        linkedin: document.getElementById('ep-li').value, website: document.getElementById('ep-web').value,
-        booking_link: document.getElementById('ep-book').value,
-      };
-      try { const r = await api.saveProfile(socials); if (ME) ME.socials = r.socials; closeModal(); renderProfile(u.username); }
-      catch (e) { alert(e.message); }
-    };
-  }
 
-  function contribLoading() { return `<div class="empty"><h1>Loading contributors…</h1></div>`; }
-  async function renderContributors() {
-    let d = { experts: [], leaderboard: [] }; try { d = await api.contributors(); } catch (e) {}
-    const experts = d.experts.length ? d.experts.map(e => `<a class="expert-card" href="#/u/${encodeURIComponent(e.username)}"><div class="ex-verified">✓ Verified ${esc((GRAPH.domains[e.domain] || {}).label || e.domain)}</div><b>@${esc(e.username)}</b>${e.credential ? `<small>${esc(e.credential)}</small>` : ''}</a>`).join('')
-      : '<p class="muted">No verified experts yet. Are you a movement, nutrition, or pharmacology professional (physio, chiro, dietitian, nutritionist, pharmacist, or biomedical researcher)? Contribute on any protocol’s Stewardship tab and get verified.</p>';
-    const board = d.leaderboard.length ? `<table class="board"><thead><tr><th>Contributor</th><th>Edits</th><th>Proposals</th><th>Comments</th></tr></thead><tbody>${d.leaderboard.map(r => `<tr><td><a href="#/u/${encodeURIComponent(r.username)}">@${esc(r.username)}</a></td><td>${r.edits}</td><td>${r.proposals}</td><td>${r.comments}</td></tr>`).join('')}</tbody></table>`
-      : '<p class="muted">No contributions yet — be the first.</p>';
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Contributors' }])}
-      <h1>Contributors</h1>
-      <p style="color:var(--muted)">RNAwiki is built by its community. Verified clinicians steward the protocols within their exact domain; everyone can improve compound pages, vote, and discuss. Every contribution carries permanent attribution.</p>
-      <div class="section-title">Domain-verified experts</div>
-      <div class="expert-grid">${experts}</div>
-      <div class="section-title">Top contributors</div>
-      ${board}
-      <p class="muted" style="margin-top:1.2rem">Want to be listed? <a href="/about">How to contribute →</a></p>`;
-  }
 
   // ---------- admin: verify expert credentials ----------
   function adminLoading() { return `<div class="empty"><h1>Loading…</h1></div>`; }
-  // Founding-clinician recruitment page (Phase-2 marketplace demand capture). A separate,
-  // quiet surface for a different audience — it never clutters the patient's core loop.
-  function forClinicians() {
-    return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'For clinicians' }])}
-      <div class="clin-wrap">
-        <p class="eyebrow">For physios · dietitians · pharmacists · doctors · clinics &amp; health businesses</p>
-        <h1>Help build &amp; peer-review the protocols your patients already follow.</h1>
-        <p class="lead">RNAwiki turns root causes into evidence-ranked <b>Move · Fuel · Stack</b> protocols people run and report back on. We're opening a first group of <b>founding clinicians</b> to sharpen the clinical logic in their field — the assessment questions, the safety flags, the protocol itself — attributed to the patients following it.</p>
-        <div class="clin-grid">
-          <div class="clin-card"><h3>Attribution, not data entry</h3><p>Your name on protocols people are actively running — with real outcomes proving they work.</p></div>
-          <div class="clin-card"><h3>Own your specialty's logic</h3><p>Physios shape movement, dietitians shape fuel, pharmacists shape the stack — differential questions and red-flags included.</p></div>
-          <div class="clin-card"><h3>Founding status</h3><p>The first 50 are named as founding contributors. Early, credible, permanent.</p></div>
-          <div class="clin-card"><h3>Warm leads, later</h3><p>Patients running your protocol are pre-qualified for your clinic when the marketplace opens.</p></div>
-        </div>
-        <form id="clin-form" class="clin-form" novalidate>
-          <h3>Join the founding list <span class="muted" style="font-weight:400">· two minutes, no account</span></h3>
-          <div class="clin-row">
-            <input name="name" placeholder="Your name" autocomplete="name" required>
-            <input name="email" type="email" placeholder="Email" autocomplete="email" required>
-          </div>
-          <div class="clin-row">
-            <select name="discipline">
-              <option value="">I'm a…</option>
-              <option>Physiotherapist</option><option>Dietitian / Nutritionist</option>
-              <option>Pharmacist</option><option>Doctor (MD)</option>
-              <option>S&amp;C coach / trainer</option>
-              <option>Clinic / gym / studio</option><option>Supplement / health brand</option>
-              <option>Other clinician or business</option>
-            </select>
-            <input name="note" placeholder="What would you improve first? (optional)">
-          </div>
-          <button type="submit" class="clin-btn">Join the founding list</button>
-          <p class="clin-consent muted">We'll only email you about the founding-clinician programme. No spam — unsubscribe anytime.</p>
-          <div id="clin-msg" class="clin-msg" hidden></div>
-        </form>
-      </div>`;
-  }
-  function bindForClinicians() {
-    const f = document.getElementById('clin-form'); if (!f) return;
-    const val = n => (f.querySelector('[name="' + n + '"]').value || '').trim();
-    f.onsubmit = async e => {
-      e.preventDefault();
-      const b = { name: val('name'), email: val('email'), discipline: f.querySelector('[name="discipline"]').value, note: val('note') };
-      const msg = document.getElementById('clin-msg'), btn = f.querySelector('.clin-btn');
-      if (!b.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(b.email)) { msg.hidden = false; msg.className = 'clin-msg err'; msg.textContent = 'Please add your name and a valid email.'; return; }
-      btn.disabled = true; btn.textContent = 'Sending…';
-      try {
-        await api.submitClinicianInterest(b);
-        f.innerHTML = `<div class="clin-done"><div class="clin-tick">✓</div><h3>You're on the founding list.</h3><p class="muted">We'll be in touch as the founding-clinician programme opens. Thank you for helping build the honest version of this.</p></div>`;
-      } catch (ex) {
-        msg.hidden = false; msg.className = 'clin-msg err'; msg.textContent = ex.message || 'Could not save — please try again.';
-        btn.disabled = false; btn.textContent = 'Join the founding list';
-      }
-    };
-  }
 
   // The consolidated super-admin control room — every admin power in one place.
   // Gated to the single super-admin account (Felix); the server enforces this too.
@@ -3122,7 +2970,7 @@
       const body = app.querySelector('#adm-body'); if (!OV) return;
       if (tab === 'gps') {   // GP-only: interest (from /gp) + verified-badge applications + clinics to feature
         const ci = OV.clinicians || [];
-        const ciRows = ci.length ? ci.map(c => `<tr><td>${esc(c.name)}<br><span class="muted" style="font-size:.8rem">${esc(c.email)}</span>${c.note ? `<br><span class="muted" style="font-size:.78rem">“${esc(c.note)}”</span>` : ''}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.country || '—')}</td><td>${esc(c.license_no || '—')}</td><td>${c.has_proof ? `<a class="admin-btn" href="/api/clinician-photo?id=${c.id}" target="_blank" rel="noopener">View proof↗</a>` : '<span class="muted">none</span>'}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">No applications yet — share the <a href="#/gp">/gp</a> page.</td></tr>';
+        const ciRows = ci.length ? ci.map(c => `<tr><td>${esc(c.name)}<br><span class="muted" style="font-size:.8rem">${esc(c.email)}</span>${c.note ? `<br><span class="muted" style="font-size:.78rem">“${esc(c.note)}”</span>` : ''}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.country || '—')}</td><td>${esc(c.license_no || '—')}</td><td>${c.has_proof ? `<a class="admin-btn" href="/api/clinician-photo?id=${c.id}" target="_blank" rel="noopener">View proof↗</a>` : '<span class="muted">none</span>'}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">No applications — the clinician recruitment page was removed on 2026-07-30.</td></tr>';
         const ex = OV.experts || [];
         const exRows = ex.length ? ex.map(e => { const status = e.domain_verified ? '✓ verified' : (e.application_status || 'none'); const actions = e.domain_verified ? `<button class="admin-btn" data-verify="${esc(e.username)}" data-to="0">Revoke</button>` : `<button class="admin-btn ok" data-verify="${esc(e.username)}" data-to="1">Approve</button> <button class="admin-btn" data-verify="${esc(e.username)}" data-to="0">Reject</button>`; return `<tr><td>@${esc(e.username)}</td><td>${esc(e.credential || '—')}${e.role_backlink ? ` · <a href="${esc(e.role_backlink)}" target="_blank" rel="noopener nofollow">backlink↗</a>` : ''}</td><td>${esc(status)}</td><td>${actions}</td></tr>`; }).join('') : '<tr><td colspan="4" class="muted">No badge applications.</td></tr>';
         const pt = OV.partners || [];
@@ -5359,8 +5207,7 @@
       </div>`;
     mountAdoption(problem, rc);
     mountPublicOutcome(problem, rc);
-    if (clinicHandle) mountClinicHeader(clinicHandle, problem, rc);
-    else mountSharedProgress(problem, rc);
+    mountSharedProgress(problem, rc);
     const startBtn = document.getElementById('start-plan');
     if (startBtn) startBtn.onclick = () => {
       const pl = getPlan() || newPlan();
@@ -5968,239 +5815,30 @@
     badge.hidden = !(total >= 4 && (score.up || 0) / total < 0.5);
   }
 
-  // ---------- Tier 2: domain-isolated stewardship hub ----------
-  async function renderStewardship(pid, rcid) {
-    const found = findRootCause(pid, rcid);
-    if (!found) { app.innerHTML = notFound(); return; }
-    const { problem, rc } = found;
-    let proposals = [];
-    try { proposals = await api.proposals(pid, rcid); } catch (e) {}
-    const dom = GRAPH.domains;
-    const LAYERS = [['move', 'physio'], ['fuel', 'dietitian'], ['stack', 'pharmacist']];
-    const cols = LAYERS.map(([layer, domainKey]) => {
-      const d = dom[domainKey] || {};
-      const list = proposals.filter(p => p.layer === layer);
-      const items = list.length ? list.map(p => proposalCard(p)).join('') : '<p class="muted sm">No proposals yet in this domain.</p>';
-      const canPropose = ME && ME.domain === domainKey;
-      return `<div class="steward-col" style="--dc:${d.color || '#888'}">
-        <div class="steward-col-h"><b>${d.layer || layer}</b><small>${d.label || domainKey} only</small></div>
-        ${items}
-        ${canPropose ? `<button class="propose-btn" data-layer="${layer}" data-domain="${domainKey}">+ Propose a ${d.layer} change</button>`
-          : `<div class="locked">${ME ? (ME.domain ? `Locked — you are registered as ${dom[ME.domain] ? dom[ME.domain].label : ME.domain}. Only a ${d.label} can edit here.` : 'Set your expert domain below to contribute.') : 'Sign in as a verified expert to contribute.'}</div>`}
-      </div>`;
-    }).join('');
-
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Solve', href: '#/solve' }, { label: problem.name, href: `#/protocol/${pid}/${rcid}` }, { label: 'Stewardship' }])}
-      <section class="steward-head">
-        <div class="kicker">Protocol stewardship · clinical roundtable</div>
-        <h1>${esc(problem.name)} — ${esc(rc.name)}</h1>
-        <p>Experts collaborate here, but each is <b>locked to their domain</b>: a physio edits <b class="mv">Move</b>, a dietitian edits <b class="fl">Fuel</b>, a pharmacist/MD edits <b class="st">Stack</b>. A proposal is verified only when <b>another expert in the same domain</b> endorses it. Cross-domain experts can flag conflicts, not approve them. This is the anti-bro-science moat.</p>
-      </section>
-      ${domainBar()}
-      <div class="steward-grid">${cols}</div>`;
-    bindStewardship(pid, rcid, problem, rc);
-    try { glossarize(app); } catch (e) {}
-  }
-  function proposalCard(p) {
-    const credVerified = !!p.domain_verified;          // credential checked by a maintainer
-    const peerEndorsed = p.status === 'endorsed';       // endorsed by a same-domain peer
-    const flagged = p.status === 'flagged';
-    const canEndorse = ME && ME.domain === p.domain && ME.username !== p.username;
-    const canFlag = ME && ME.domain && ME.domain !== p.domain;
-    const dname = (GRAPH.domains[p.domain] || {}).label || p.domain;
-    return `<div class="prop ${(peerEndorsed || credVerified) ? 'ok' : ''} ${flagged ? 'flag' : ''}" data-id="${p.id}">
-      ${credVerified ? `<div class="prop-verified">✓ Verified ${esc(dname)}</div>` : ''}
-      ${peerEndorsed ? `<div class="prop-endorsed">✓ Peer-endorsed by another ${esc(dname)}</div>` : ''}
-      ${flagged ? `<div class="prop-flagged">⚑ Cross-domain conflict flagged</div>` : ''}
-      <p class="prop-change">${esc(p.change)}</p>
-      ${p.evidence ? `<a class="prop-ev" href="${esc(p.evidence)}" target="_blank" rel="noopener">🔗 Evidence</a>` : ''}
-      <div class="prop-meta"><span>by <b>@${esc(p.username)}</b>${p.credential ? ' · ' + esc(p.credential) : ''}</span>
-        <span class="prop-counts">${p.endorsements ? '👥 ' + p.endorsements : ''} ${p.flags ? '⚑ ' + p.flags : ''}</span></div>
-      <div class="prop-actions">
-        ${canEndorse ? `<button class="p-endorse" data-id="${p.id}">Endorse (same-domain)</button>` : ''}
-        ${canFlag ? `<button class="p-flag" data-id="${p.id}">Flag conflict</button>` : ''}
-        <a class="p-gh" target="_blank" rel="noopener" href="${ghIssueUrl(p)}">Open as GitHub issue ↗</a>
-      </div></div>`;
-  }
-  function ghIssueUrl(p) {
-    const title = `[Steward Proposal] ${p.domain} · ${p.layer}`;
-    const body = `**Domain:** ${p.domain}\n**Layer:** ${p.layer}\n**Proposed change:** ${p.change}\n**Evidence:** ${p.evidence || 'n/a'}\n**By:** @${p.username}`;
-    const labels = `domain-${p.domain},needs-peer-review`;
-    return `https://github.com/Compoundingzero/rnawiki/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent(labels)}`;
-  }
   // ---------- Micro-bounty Board (global stewardship hub) ----------
   const BOUNTY_DOMAIN = { scaling: 'physio', 'food-verify': 'dietitian', safety: 'pharmacist' };
   const BOUNTY_VERB = { scaling: 'Add an easier + harder variation', 'food-verify': 'Verify the macros & micros', safety: 'Add safety / interaction notes' };
-  function computeBounties() {
-    const out = [], exSeen = new Set(), cpSeen = new Set();
-    (GRAPH.problems || []).forEach(p => p.root_causes.forEach(rc => {
-      let P; try { P = generateProtocol(rc); } catch (e) { return; }
-      (P.strengthen || []).forEach(e => {
-        if (e && e.needs_scaling_bounty && !exSeen.has(e.id)) {
-          exSeen.add(e.id);
-          out.push({ type: 'scaling', domain: 'physio', title: e.name, sub: (e.primaryMuscles || []).join(', '), ctx: `${p.name} → ${rc.name.split('(')[0].trim()}`, ref: e.id });
-        }
-      });
-      (P.stack || []).forEach(c => {
-        if (c && !c.watch && !cpSeen.has(c.id)) {
-          cpSeen.add(c.id);
-          out.push({ type: 'safety', domain: 'pharmacist', title: c.name, sub: c.category || '', ctx: `${p.name} → ${rc.name.split('(')[0].trim()}`, ref: c.id });
-        }
-      });
-    }));
-    const FO = window.RNAWIKI_FOODS;
-    (FO ? FO.foods : []).filter(f => f.sg_local).forEach(f => {
-      out.push({ type: 'food-verify', domain: 'dietitian', title: f.name, sub: f.serving || '', ctx: 'Singapore food database', ref: f.id });
-    });
-    return out;
-  }
-  function stewardHubLoading() { return `<div class="empty"><h1>Loading the bounty board…</h1></div>`; }
-  async function renderStewardHub() {
-    try { await ensureProtocolData(); } catch (e) {}
-    const all = computeBounties();
-    const dom = GRAPH.domains || {};
-    const counts = { physio: 0, dietitian: 0, pharmacist: 0 };
-    all.forEach(b => counts[b.domain]++);
-    const CAP = 24;
-    const tabs = ['all', 'physio', 'dietitian', 'pharmacist'].map(k =>
-      `<button class="bnt-tab${k === 'all' ? ' on' : ''}" data-dom="${k}">${k === 'all' ? `All · ${all.length}` : `${(dom[k] || {}).label || k} · ${counts[k]}`}</button>`).join('');
-    const card = b => `<div class="bnt-card" data-dom="${b.domain}">
-      <div class="bnt-top"><span class="bnt-badge ${b.domain}">${(dom[b.domain] || {}).label || b.domain}</span><span class="bnt-min">~2 min</span></div>
-      <b>${BOUNTY_VERB[b.type]}</b>
-      <div class="bnt-title">${esc(b.title)}${b.sub ? ` <small>${esc(b.sub)}</small>` : ''}</div>
-      <div class="bnt-ctx">Appears in: ${esc(b.ctx)}</div>
-      <button class="bnt-solve" data-solve="${esc(b.type)}|${esc(b.ref)}|${esc(b.title)}">Solve & get attribution →</button>
-    </div>`;
-    // interleave domains so the capped view shows a mix, not 24 of one kind
-    const byDom = { physio: [], dietitian: [], pharmacist: [] };
-    all.forEach(b => byDom[b.domain].push(b));
-    const interleaved = [];
-    for (let i = 0; interleaved.length < all.length; i++) {
-      let any = false;
-      for (const d of ['physio', 'dietitian', 'pharmacist']) { if (byDom[d][i]) { interleaved.push(byDom[d][i]); any = true; } }
-      if (!any) break;
-    }
-    const shown = interleaved.slice(0, CAP);
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Bounty board' }])}
-      <section class="hero" style="text-align:left;padding:1.4rem 0 .6rem">
-        <div class="kicker">Expert micro-bounties</div>
-        <h1 style="font-size:2rem">Low-hanging fruit. Permanent credit.</h1>
-        <p style="margin:.5rem 0 0">Don't write a whole protocol — solve one specific, ~2-minute task inside your exact domain. A physio adds an exercise variation; a dietitian verifies a local dish; a pharmacist adds a safety note. Every solve carries your attribution.</p>
-      </section>
-      <div class="bnt-tabs">${tabs}</div>
-      <div class="bnt-grid">${shown.map(card).join('')}</div>
-      ${all.length > CAP ? `<p class="muted" style="text-align:center;margin-top:1rem">Showing ${CAP} of ${all.length} open bounties. Filter by your domain to see yours.</p>` : ''}
-      <p class="proto-foot muted">Proposals are domain-isolated: you can only solve bounties in your verified domain, and a same-domain peer must endorse before a change goes live.</p>`;
-    app.querySelectorAll('.bnt-tab').forEach(t => t.onclick = () => {
-      app.querySelectorAll('.bnt-tab').forEach(x => x.classList.remove('on')); t.classList.add('on');
-      const k = t.dataset.dom;
-      app.querySelectorAll('.bnt-card').forEach(c => { c.style.display = (k === 'all' || c.dataset.dom === k) ? '' : 'none'; });
-    });
-    app.querySelectorAll('[data-solve]').forEach(b => b.onclick = () => {
-      const [type, ref, title] = b.dataset.solve.split('|');
-      openBountyModal({ type, ref, title, domain: BOUNTY_DOMAIN[type] });
-    });
-  }
-  function bountyGhUrl(b, change, evidence, handle) {
-    const dom = (GRAPH.domains[b.domain] || {}).label || b.domain;
-    const title = `[Micro-bounty] ${b.domain} · ${BOUNTY_VERB[b.type]}: ${b.title}`;
-    const body = `**Domain:** ${dom}\n**Task:** ${BOUNTY_VERB[b.type]} for **${b.title}** (ref: ${b.ref})\n**Proposed:** ${change || '(fill in)'}\n**Evidence:** ${evidence || 'n/a'}\n**By:** @${handle || 'anonymous'}`;
-    return `https://github.com/Compoundingzero/rnawiki/issues/new?title=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}&labels=${encodeURIComponent('micro-bounty,domain-' + b.domain)}`;
-  }
-  function openBountyModal(b) {
-    const dom = GRAPH.domains[b.domain] || { label: b.domain };
-    const locked = ME && ME.domain && ME.domain !== b.domain;
-    const m = modal(`<div class="bounty-modal">
-      <span class="bnt-badge ${b.domain}">${dom.label} only</span>
-      <h2>${BOUNTY_VERB[b.type]}</h2>
-      <p class="bm-target">${esc(b.title)}</p>
-      ${locked ? `<div class="bm-block">Your registered domain is <b>${(GRAPH.domains[ME.domain] || {}).label || ME.domain}</b>. Only a <b>${dom.label}</b> can solve this bounty — this keeps edits inside each expert's circle of competence.</div>`
-        : `<label class="bm-l">Your proposed ${b.type === 'scaling' ? 'easier & harder variations' : b.type === 'food-verify' ? 'verified values (per serving)' : 'safety / interaction note'}</label>
-        <textarea id="bm-change" rows="3" placeholder="${b.type === 'scaling' ? 'e.g. Easier: Wall sit. Harder: Deficit Bulgarian split squat.' : b.type === 'food-verify' ? 'e.g. 320 kcal, 18g protein, 45g carb…' : 'e.g. Avoid with anticoagulants; GI upset common at >2g.'}"></textarea>
-        <label class="bm-l">Evidence link (PubMed / openFDA / official)</label>
-        <input id="bm-ev" type="url" placeholder="https://pubmed.ncbi.nlm.nih.gov/…">
-        <label class="bm-l">Attribution handle</label>
-        <input id="bm-handle" type="text" value="${ME ? esc(ME.username) : ''}" placeholder="@yourhandle">
-        <button id="bm-submit" class="cta-primary" style="border:none;cursor:pointer;width:100%;margin-top:.9rem">Submit for peer review →</button>
-        <p class="bm-note">Opens a pre-filled GitHub issue tagged for same-domain review. ${ME ? '' : 'Tip: sign in to also post it in-app with your profile.'}</p>`}
-    </div>`);
-    if (!locked) m.querySelector('#bm-submit').onclick = () => {
-      const change = (m.querySelector('#bm-change').value || '').trim();
-      const ev = (m.querySelector('#bm-ev').value || '').trim();
-      const handle = (m.querySelector('#bm-handle').value || '').trim().replace(/^@/, '');
-      window.open(bountyGhUrl(b, change, ev, handle), '_blank', 'noopener');
-      closeModal();
-    };
-  }
 
-  function domainBar() {
-    if (!ME) return `<div class="domain-bar muted">Sign in to apply for an expert role and contribute.</div>`;
-    const dom = GRAPH.domains;
-    // Already granted — no self-service change (an admin owns role assignment).
-    if (ME.domain_verified && ME.domain) return `<div class="domain-bar"><span class="domain-you"><b class="dv-ok">✓ Verified ${esc((dom[ME.domain] || {}).label || ME.domain)}</b> — you can improve the ${esc((dom[ME.domain] || {}).layer)} of any protocol and get featured on it. To change roles, contact the admin.</span></div>`;
-    // Application pending admin review.
-    if (ME.application_status === 'pending') return `<div class="domain-bar"><span class="dv-pending">⏳ Your application for <b>${esc((dom[ME.requested_domain] || {}).label || ME.requested_domain)}</b> is with the admin. Once your credential and rnawiki.com backlink are checked, you’ll get the ✓ and can edit &amp; get featured.</span></div>`;
-    // Apply / re-apply.
-    const opts = Object.keys(dom).map(k => `<option value="${k}">${dom[k].label} (${dom[k].layer}) — ${(dom[k].roles || []).slice(0, 3).join(', ')}…</option>`).join('');
-    const rolesHint = Object.keys(dom).map(k => `<span><b>${dom[k].label}</b> — ${(dom[k].roles || []).join(', ')}</span>`).join('');
-    return `<div class="domain-bar">
-      <label>Apply for an expert role:
-        <select id="domain-sel"><option value="">— choose —</option>${opts}</select></label>
-      <input id="cred-inp" placeholder="Your registration / credential (MOH reg. no. / SNRC / registry ID)" value="${esc(ME.credential || '')}">
-      <label class="bl-label">Attribution — required: add a link to <b>rnawiki.com</b> from your clinic website or one of your socials, then paste that page here. It’s how we verify you’re real, and how you credit the wiki you contribute to.</label>
-      <input id="backlink-inp" placeholder="e.g. https://yourclinic.sg/about  (must contain a link to rnawiki.com)">
-      <button id="domain-save">Apply for verification</button>
-      ${ME.application_status === 'rejected' ? '<span class="dv-pending">Your last application wasn’t approved — re-apply with a valid credential.</span>' : ''}
-      <div class="domain-roles">${rolesHint}</div>
-      <p class="muted" style="font-size:.78rem;margin:.4rem 0 0">You can’t assign your own role — an admin verifies your credential and grants it, so every expert badge is earned.</p>
-    </div>`;
-  }
-  function bindStewardship(pid, rcid, problem, rc) {
-    const save = document.getElementById('domain-save');
-    if (save) save.onclick = async () => {
-      const domain = document.getElementById('domain-sel').value;
-      const credential = document.getElementById('cred-inp').value;
-      const backlink_url = (document.getElementById('backlink-inp') || {}).value || '';
-      try { const r = await api.setDomain({ domain, credential, backlink_url }); ME.application_status = r.application_status; ME.requested_domain = r.requested_domain; ME.credential = credential; renderStewardship(pid, rcid); }
-      catch (e) { alert(e.message); }
-    };
-    app.querySelectorAll('.propose-btn').forEach(b => b.onclick = () => openProposeModal(pid, rcid, b.dataset.layer, b.dataset.domain, () => renderStewardship(pid, rcid)));
-    app.querySelectorAll('.p-endorse').forEach(b => b.onclick = async () => { try { await api.endorse(b.dataset.id); renderStewardship(pid, rcid); } catch (e) { alert(e.message); } });
-    app.querySelectorAll('.p-flag').forEach(b => b.onclick = async () => { const note = prompt('Describe the cross-domain conflict:') || ''; try { await api.flag(b.dataset.id, note); renderStewardship(pid, rcid); } catch (e) { alert(e.message); } });
-  }
-  // Shared gate: only verified experts of `needed` domain (or admin) may edit. Otherwise show a
-  // modal explaining that + a CTA to become a verified expert. Runs onAllowed() when permitted.
-  function expertGate(needed, title, onAllowed) {
-    const domLabel = (GRAPH.domains[needed] || {}).label || needed;
-    if (ME && (ME.role === 'admin' || (ME.domain === needed && ME.domain_verified))) { onAllowed(); return; }
-    const m = modal(`<div class="partner-modal"><h2>${esc(title)}</h2>
-      <p class="muted">This is kept accurate by <b>verified ${esc(domLabel)} experts</b> — every change is peer-reviewed before it goes live, so what you read here stays trustworthy.</p>
-      ${!ME
-        ? `<p>Sign in to continue, then apply to become a verified expert.</p>
-           <button class="cta-primary" id="es-signin" style="border:none;cursor:pointer;width:100%">Sign in / create account</button>`
-        : (ME.domain === needed && !ME.domain_verified
-          ? `<p>You’ve applied as a ${esc(domLabel)} — once an admin verifies your credential and rnawiki.com backlink, you’ll be able to edit this.</p>`
-          : `<p>You’re signed in as <b>@${esc(ME.username)}</b>${ME.domain ? ` (${esc((GRAPH.domains[ME.domain] || {}).label || ME.domain)})` : ''}. Only verified <b>${esc(domLabel)}</b> experts can edit this.</p>`)}
-      <a class="cta-primary" href="#/pros" id="es-become" style="display:block;text-align:center;text-decoration:none;${!ME ? 'background:#fff;color:var(--accent);border:1px solid var(--accent);margin-top:.6rem' : 'border:none'}">Become a verified expert →</a></div>`);
-    const si = m.querySelector('#es-signin'); if (si) si.onclick = () => { closeModal(); openAuth('login'); };
-    const be = m.querySelector('#es-become'); if (be) be.onclick = () => closeModal();
-  }
-  // Edit affordance for content pages (exercises, muscles). Verified experts of `domain` submit a
-  // correction to the review queue; anyone else gets the become-an-expert gate.
+  // Edit affordance for content pages (exercises, muscles). Rewritten 2026-07-30: this used to run
+  // through expertGate(), which told the reader the page was "kept accurate by verified physio
+  // experts" and every change "peer-reviewed before it goes live", then offered to let them apply
+  // to become one. None of that existed — no verified expert, no peer review, no application to
+  // approve it. The button is on every exercise page, so that was the most-served fake-credential
+  // surface on the site. It now does what it always actually did: file the suggestion in the
+  // feedback queue, open to anyone, described honestly.
   function openEditContent(what, refLabel, domain) {
-    const needed = domain || 'physio';
-    expertGate(needed, '✎ Suggest an edit', () => {
+    {
       const m = modal(`<div class="partner-modal"><h2>✎ Suggest an edit</h2>
-        <p class="muted">Editing <b>${esc(refLabel)}</b>. Your edit is held until a relevant-domain expert or the RNAwiki admin approves it, then it goes live. Describe the correction or addition, and cite a source where you can.</p>
+        <p class="muted">Editing <b>${esc(refLabel)}</b>. Your suggestion goes to the maintainer, who checks it against the source before anything changes. Describe the correction or addition, and cite a source if you have one — a link to the paper is the most useful thing you can send.</p>
         <textarea id="ec-body" rows="5" maxlength="2000" placeholder="e.g. The primary mover is really the gluteus medius; the cue should be…"></textarea>
         <button class="cta-primary" id="ec-save" style="border:none;cursor:pointer;width:100%;margin-top:.8rem">Submit for review</button></div>`);
       m.querySelector('#ec-save').onclick = async () => {
         const body = (document.getElementById('ec-body') || {}).value || '';
         if (!body.trim()) return alert('Describe the edit first.');
-        try { await api.submitFeedback({ body: `[EDIT · ${what}: ${refLabel}] ${body}`, kind: 'wrong', page: location.pathname + location.hash }); closeModal(); alert('Thank you — your edit is queued for review. +2 points.'); }
+        try { await api.submitFeedback({ body: `[EDIT · ${what}: ${refLabel}] ${body}`, kind: 'wrong', page: location.pathname + location.hash }); closeModal(); alert('Thank you — that has gone to the maintainer.'); }
         catch (e) { alert(e.message); }
       };
-    });
+    }
   }
   // ---------- Per-exercise / per-stretch page (animated demo + muscles worked) ----------
   async function mountExercise(id) {
@@ -6244,22 +5882,6 @@
     renderComments('ex:' + e.id, e.name);
     try { glossarize(app); } catch (e2) {}
   }
-  function openProposeModal(pid, rcid, layer, domain, onDone) {
-    const d = GRAPH.domains[domain] || {};
-    const m = modal(`<h2>Propose a ${esc(d.layer || layer)} change</h2>
-      <p class="muted sm">As a ${esc(d.label || domain)} you may only edit the <b>${esc(d.layer || layer)}</b> layer. Proposals need a same-domain endorsement to be verified.</p>
-      <label class="fld">Proposed change<textarea id="prop-change" rows="4" placeholder="What should change, and why (mechanism / dosing / contraindication)…"></textarea></label>
-      <label class="fld">Evidence link (PubMed / openFDA / guideline)<input id="prop-ev" placeholder="https://pubmed.ncbi.nlm.nih.gov/..."></label>
-      <div class="modal-actions"><button id="prop-cancel" class="ghost">Cancel</button><button id="prop-submit" class="primary">Submit proposal</button></div>`);
-    m.querySelector('#prop-cancel').onclick = closeModal;
-    m.querySelector('#prop-submit').onclick = async () => {
-      const change = m.querySelector('#prop-change').value.trim();
-      const evidence = m.querySelector('#prop-ev').value.trim();
-      if (!change) return;
-      try { await api.addProposal({ problemId: pid, rootCauseId: rcid, layer, change, evidence }); closeModal(); onDone(); }
-      catch (e) { alert(e.message); }
-    };
-  }
 
   // ---------- Cite this (APA) — frictionless backlink for students/bloggers ----------
   function citeModal(title, url, author) {
@@ -6271,97 +5893,9 @@
     m.querySelector('#cite-copy').onclick = () => { const t = document.getElementById('cite-text'); try { t.select(); } catch (e) {} if (navigator.clipboard) navigator.clipboard.writeText(t.value); m.querySelector('#cite-copy').textContent = 'Copied ✓'; };
   }
 
-  // ---------- Branded patient protocol link: a clinic-branded protocol page (/clinic/:handle/:pid/:rcid) ----------
-  async function mountClinicHeader(handle, problem, rc) {
-    const el = document.getElementById('clinic-header'); if (!el) return;
-    let p; try { p = await api.profile(handle); } catch (e) { return; }
-    const s = (p.user && p.user.socials) || {};
-    const cta = s.booking_link ? `<a class="cta-primary" href="${esc(s.booking_link)}" target="_blank" rel="noopener nofollow">📅 Book an appointment</a>`
-      : (s.website ? `<a class="cta-primary" href="${esc(s.website)}" target="_blank" rel="noopener nofollow">Visit clinic →</a>` : '');
-    const dl = (GRAPH.domains[p.user.domain] || {}).label || '';
-    el.innerHTML = `<div class="clinic-header">
-      <div class="ch-l"><span class="ch-tag">Your home-care protocol from</span>
-        <a class="ch-name" href="#/u/${encodeURIComponent(p.user.username)}">@${esc(p.user.username)}</a>
-        ${dl ? `<span class="sb-dom ${p.user.domain}">${esc(dl)}${p.user.domain_verified ? ' ✓' : ''}</span>` : ''}</div>
-      ${cta}</div>`;
-  }
 
   // ---------- Local partners (DB-approved, backlink-verified) + submit ----------
   const PARTNER_TYPE_ICON = { physio: '🧑‍⚕️', gym: '🏋️', supplement: '💊', clinic: '🏥', dietitian: '🥗' };
-  function openPartnerModal(problem) {
-    const cats = (GRAPH.categories || []);
-    const catField = problem ? '' : `<label>Category to appear in</label><select id="pm-cat">${cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('')}</select>`;
-    const m = modal(`<div class="partner-modal"><h2>List your business</h2>
-      <p class="muted">${problem ? `Free lead-gen on the <b>${esc(problem.name)}</b> protocol.` : 'Free lead-gen on the protocols in your category.'} The deal: add a link to rnawiki.com on your site, we send you local patients. Remove the link and the listing goes.</p>
-      <label>Business name</label><input id="pm-name" placeholder="Core Physio SG">
-      <label>Type</label><select id="pm-type"><option value="clinic">Clinic</option><option value="physio">Physio</option><option value="gym">Gym</option><option value="supplement">Supplement store</option><option value="dietitian">Dietitian</option></select>
-      ${catField}
-      <label>Location</label><input id="pm-loc" placeholder="Tanjong Pagar">
-      <label>Your website</label><input id="pm-link" placeholder="https://yourclinic.sg">
-      <label>Page where you linked to RNAwiki</label><input id="pm-back" placeholder="https://yourclinic.sg/resources">
-      <button class="cta-primary" id="pm-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">Submit for review</button>
-      <p class="bm-note">We verify the backlink, then list you.</p></div>`);
-    const v = (id) => (document.getElementById(id) || {}).value || '';
-    m.querySelector('#pm-save').onclick = async () => {
-      try { await api.submitPartner({ name: v('pm-name'), type: v('pm-type'), location: v('pm-loc'), link: v('pm-link'), backlink_url: v('pm-back'), serves: problem ? problem.category : v('pm-cat') }); closeModal(); alert('Thanks! We’ll verify your backlink and list you shortly.'); }
-      catch (e) { alert(e.message); }
-    };
-  }
-  // ---------- Pro dashboard (/pro): the one place experts/businesses manage their presence ----------
-  function proLoading() { return `<div class="empty"><h1>Loading your Pro dashboard…</h1></div>`; }
-  async function renderPro() {
-    if (!PHASE2) {
-      app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'For pros' }])}
-        <div class="empty"><h1>The contributor programme is opening soon</h1><p class="muted">We're not accepting expert edits yet — we're assembling a first group of founding clinicians and partner businesses to shape the protocols. Register your interest and you'll be first in.</p>
-        <a class="cta-primary" href="#/for-clinicians">Join the founding list →</a></div>`;
-      return;
-    }
-    if (!ME) {
-      app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Pro' }])}
-        <div class="empty"><h1>Pro dashboard</h1><p class="muted">For physios, chiros, dietitians, nutritionists, pharmacists, researchers, gyms & clinics — manage your profile, see your leads, and get your name on the protocols you own.</p>
-        <button class="cta-primary" id="pro-signin">Sign in / create account</button></div>`;
-      const b = document.getElementById('pro-signin'); if (b) b.onclick = () => openAuth();
-      return;
-    }
-    try { await ensureProtocolData(); } catch (e) {}
-    let prof; try { prof = await api.profile(ME.username); } catch (e) { prof = { user: ME, stewarded: [], accepted: [], counts: {} }; }
-    const dom = GRAPH.domains[ME.domain] || null;
-    const verified = ME.domain_verified;
-    const stewarded = (prof.stewarded || []).map(sp => `<div class="pro-row"><a href="#/protocol/${sp.problem_id}/${sp.root_cause_id}">🩺 ${esc(protocolName(sp.problem_id, sp.root_cause_id))}</a> <span class="pro-row-acts">${verified ? `<button class="linkbtn" data-refine="${sp.problem_id}|${sp.root_cause_id}">Refine</button> ` : ''}<button class="linkbtn" data-rx="${sp.problem_id}|${sp.root_cause_id}">Copy patient link</button></span></div>`).join('')
-      || '<p class="muted">You haven’t contributed to a protocol yet. Open any protocol in your field and tap <b>Refine</b> — no adoption needed. The more you contribute, the higher you’re featured on it.</p>';
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Pro dashboard' }])}
-      <section class="pro-hd">
-        <div class="prof-avatar">${esc(ME.username.slice(0, 1).toUpperCase())}</div>
-        <div class="pro-hd-id"><h1>@${esc(ME.username)}</h1>
-          <div>${dom ? `<span class="prof-domain ${ME.domain}">${esc(dom.label)}${verified ? ' ✓' : ' · pending'}</span>` : '<span class="muted">No domain set yet</span>'} · <a href="#/u/${encodeURIComponent(ME.username)}">public profile ↗</a></div></div>
-        <button class="cta-ghost" id="pro-editprof">Edit profile</button>
-      </section>
-      <div class="pro-stats">
-        <div class="pro-stat"><b>${ME.profile_views || 0}</b><span>profile views</span></div>
-        <div class="pro-stat"><b>${ME.booking_clicks || 0}</b><span>booking clicks</span></div>
-        <div class="pro-stat"><b>${ME.reputation_points || 0}</b><span>reputation</span></div>
-      </div>
-      ${!verified ? `<div class="pro-card"><b>Get verified to contribute &amp; get featured for leads</b>${domainBar()}</div>` : ''}
-      <div class="pro-card"><div class="section-title">Protocols you’re featured on</div>${stewarded}
-        <p class="muted" style="margin-top:.6rem;font-size:.82rem">No one owns a protocol. As a verified ${verified ? esc((dom || {}).label || 'expert') : 'expert'} you can improve the ${verified ? esc((dom || {}).layer || '') + ' layer of' : ''} <b>any</b> protocol in your field — <a href="#/solve">browse protocols →</a>. Your edits feature you on each one, with your profile and booking link.</p></div>
-      ${verified ? `<div class="pro-card"><div class="section-title">📣 Share your work</div>
-        <p class="muted">Every edit you make gets you featured. When a contribution is approved, post it — we’ll write the caption (with a link to your profile) so people can find all your work. <button class="linkbtn" id="pro-share">Get a share caption →</button></p></div>` : ''}
-      <div class="pro-card"><div class="section-title">List your business</div>
-        <p class="muted">Gyms, clinics & supplement stores — get featured next to the protocol you fulfil. Strict link exchange. <button class="linkbtn" id="pro-partner">Submit your business →</button></p></div>
-      ${(verified && ME.domain === 'dietitian') || ME.role === 'admin' ? '<div class="pro-card" id="food-queue"><div class="section-title">Foods to verify</div><p class="muted">Loading…</p></div>' : ''}`;
-    const ep = document.getElementById('pro-editprof'); if (ep) ep.onclick = () => openEditProfile(prof.user || ME);
-    const ds = document.getElementById('domain-save');
-    if (ds) ds.onclick = async () => { try { const r = await api.setDomain({ domain: document.getElementById('domain-sel').value, credential: document.getElementById('cred-inp').value, backlink_url: (document.getElementById('backlink-inp') || {}).value || '' }); ME.application_status = r.application_status; ME.requested_domain = r.requested_domain; ME.credential = document.getElementById('cred-inp').value; renderPro(); } catch (e) { alert(e.message); } };
-    app.querySelectorAll('[data-rx]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.rx.split('|'); const link = (location.origin || 'https://rnawiki.com') + '/clinic/' + encodeURIComponent(ME.username) + '/' + pid + '/' + rcid; if (navigator.clipboard) navigator.clipboard.writeText(link).catch(() => {}); alert('Patient protocol link copied:\n' + link); });
-    app.querySelectorAll('[data-refine]').forEach(b => b.onclick = () => {
-      const [pid, rcid] = b.dataset.refine.split('|');
-      if (!ME.domain) return alert('You need a verified domain to edit.');
-      openProposeModal(pid, rcid, DOMAIN_LAYER[ME.domain], ME.domain, () => {});
-    });
-    const pp = document.getElementById('pro-partner'); if (pp) pp.onclick = () => openPartnerModal(null);
-    const psh = document.getElementById('pro-share'); if (psh) psh.onclick = () => openSharePrompt('');
-    mountFoodQueue();
-  }
   async function mountFoodQueue() {
     const el = document.getElementById('food-queue'); if (!el) return;
     let foods = []; try { foods = await api.pendingFoods(); } catch (e) { el.remove(); return; }
@@ -6373,205 +5907,6 @@
     el.querySelectorAll('[data-food-no]').forEach(b => b.onclick = async () => { try { await api.verifyFood(b.dataset.foodNo, 'rejected'); mountFoodQueue(); } catch (e) { alert(e.message); } });
   }
 
-  // ---------- /gp — emotional, scroll-driven landing page to recruit healthcare professionals worldwide ----------
-  // A knowledge-sharing platform: professionals of any discipline apply (with credential proof) to contribute.
-  function renderGpLanding() {
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'For professionals' }])}
-      <section class="gp-hero">
-        <div class="gp-eyebrow">For healthcare professionals worldwide</div>
-        <h1 class="gp-h1">You trained for years to <span class="lead">help people</span>.<br>Here, what you know helps thousands.</h1>
-        <p class="gp-sub">Share your expertise, cut through the health noise, and help people everywhere live better — while building a name the world learns to <b>trust</b>. Free, for every professional who makes health make sense.</p>
-        <a class="cta-primary gp-cta" href="#gp-apply">Join as a contributor →</a>
-        <div class="gp-hero-note">Takes 60 seconds · no cost · open to every discipline</div>
-        <div class="gp-scrollhint">Scroll to see how ↓</div>
-      </section>
-
-      <section class="gpx" id="gpx-1">
-        <div class="gpx-sticky">
-          <div class="gpx-art">
-            <svg class="gpx-svg" viewBox="0 0 400 210" role="img" aria-label="Your clinic rising above the crowd">
-              <defs>
-                <radialGradient id="glow1" cx="50%" cy="45%" r="55%"><stop offset="0%" stop-color="#fbbf24" stop-opacity=".6"/><stop offset="100%" stop-color="#fbbf24" stop-opacity="0"/></radialGradient>
-                <linearGradient id="beam1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#fde68a" stop-opacity="0"/><stop offset="100%" stop-color="#fde68a" stop-opacity=".4"/></linearGradient>
-              </defs>
-              <line x1="0" y1="182" x2="400" y2="182" stroke="var(--line)" stroke-width="2"/>
-              <ellipse class="gpx-glow" cx="200" cy="140" rx="130" ry="78" fill="url(#glow1)"/>
-              <path class="gpx-beam" d="M200 0 L146 182 L254 182 Z" fill="url(#beam1)"/>
-              <g class="gpx-others" fill="#94a3b8">
-                <g transform="translate(24,124)"><rect width="46" height="58" rx="4"/><path d="M-5 0 L23 -18 L51 0 Z" fill="#cbd5e1"/><rect x="18" y="16" width="10" height="10" fill="#f1f5f9"/></g>
-                <g transform="translate(88,134)"><rect width="40" height="48" rx="4"/><path d="M-5 0 L20 -15 L45 0 Z" fill="#cbd5e1"/><rect x="15" y="14" width="9" height="9" fill="#f1f5f9"/></g>
-                <g transform="translate(270,132)"><rect width="42" height="50" rx="4"/><path d="M-5 0 L21 -16 L47 0 Z" fill="#cbd5e1"/><rect x="16" y="14" width="9" height="9" fill="#f1f5f9"/></g>
-                <g transform="translate(330,126)"><rect width="46" height="56" rx="4"/><path d="M-5 0 L23 -18 L51 0 Z" fill="#cbd5e1"/><rect x="18" y="15" width="10" height="10" fill="#f1f5f9"/></g>
-              </g>
-              <g class="gpx-you">
-                <rect x="166" y="94" width="68" height="88" rx="5" fill="#cbd5e1"/>
-                <rect class="gpx-you-gold" x="166" y="94" width="68" height="88" rx="5" fill="#f59e0b"/>
-                <path d="M160 94 L200 66 L240 94 Z" fill="#cbd5e1"/>
-                <path class="gpx-you-gold" d="M160 94 L200 66 L240 94 Z" fill="#d97706"/>
-                <rect x="193" y="112" width="14" height="14" rx="2" fill="#fff"/>
-                <path d="M200 114 v10 M195 119 h10" stroke="#ef4444" stroke-width="2.6"/>
-                <rect x="176" y="140" width="15" height="15" rx="2" fill="#fff" opacity=".7"/><rect x="209" y="140" width="15" height="15" rx="2" fill="#fff" opacity=".7"/>
-              </g>
-              <g class="gpx-badge" transform="translate(200,60)"><circle r="17" fill="#f59e0b"/><path d="M0 -9 l2.6 5.3 5.8 .8 -4.2 4.1 1 5.8 -5.2 -2.7 -5.2 2.7 1 -5.8 -4.2 -4.1 5.8 -.8 z" fill="#fff"/></g>
-              <g class="gpx-cd-wrap" fill="#64748b">
-                <circle class="gpx-cd" style="--x:-165" cx="200" cy="198" r="5"/><circle class="gpx-cd" style="--x:-110" cx="200" cy="204" r="5"/><circle class="gpx-cd" style="--x:150" cx="200" cy="198" r="5"/><circle class="gpx-cd" style="--x:95" cx="200" cy="204" r="5"/><circle class="gpx-cd" style="--x:-55" cx="200" cy="200" r="5"/><circle class="gpx-cd" style="--x:55" cx="200" cy="200" r="5"/>
-              </g>
-            </svg>
-          </div>
-          <div class="gpx-cap">
-            <div class="gpx-cap-l gpx-cap-pain">
-              <span class="gpx-name gpx-name-pain">Capped by the clock</span>
-              <h3>Your expertise stops at the door.</h3>
-              <p>You help one person at a time, for as many hours as a day holds. Years of training — and its reach is limited to whoever can reach you.</p>
-            </div>
-            <div class="gpx-cap-l gpx-cap-fix">
-              <span class="gpx-name gpx-name-fix">The voice they trust</span>
-              <h3>Now your knowledge reaches <span class="lead">everyone</span> who needs it.</h3>
-              <p>What you know rises above the noise — helping people across the world find clarity, with your name and credentials on every trusted contribution.</p>
-            </div>
-          </div>
-          <div class="gpx-cue">keep scrolling ↓</div>
-        </div>
-      </section>
-
-      <section class="gpx" id="gpx-2">
-        <div class="gpx-sticky">
-          <div class="gpx-art">
-            <svg class="gpx-svg" viewBox="0 0 400 210" role="img" aria-label="One-off patients versus a returning program">
-              <g class="gpx-s2pain">
-                <line x1="16" y1="105" x2="384" y2="105" stroke="var(--line)" stroke-width="2" stroke-dasharray="3 7"/>
-                <path d="M368 98 l12 7 -12 7" fill="none" stroke="var(--faint)" stroke-width="2"/>
-                <g fill="#64748b"><circle cx="70" cy="105" r="10"/><circle cx="170" cy="105" r="10" opacity=".8"/><circle cx="280" cy="105" r="10" opacity=".45"/><circle cx="360" cy="105" r="10" opacity=".12"/></g>
-                <text x="200" y="165" text-anchor="middle" class="gpx-lbl">consult → prescribe → gone</text>
-              </g>
-              <g class="gpx-s2fix">
-                <circle class="gpx-stag" style="--d:.26" cx="200" cy="100" r="62" fill="none" stroke="var(--line)" stroke-width="3"/>
-                <circle class="gpx-arc" cx="200" cy="100" r="62" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" pathLength="100" stroke-dasharray="100" transform="rotate(-90 200 100)"/>
-                <g class="gpx-stag" style="--d:.3" transform="translate(182,82)"><rect width="36" height="34" rx="4" fill="#16a34a"/><rect x="13" y="8" width="10" height="10" rx="2" fill="#fff"/><path d="M18 10 v6 M15 13 h6" stroke="#16a34a" stroke-width="2.2"/></g>
-                <g class="gpx-orbit"><circle class="gpx-stag" style="--d:.44" cx="200" cy="38" r="8" fill="#16a34a"/><circle class="gpx-stag" style="--d:.54" cx="200" cy="38" r="8" fill="#16a34a" transform="rotate(120 200 100)"/><circle class="gpx-stag" style="--d:.64" cx="200" cy="38" r="8" fill="#16a34a" transform="rotate(240 200 100)"/></g>
-                <text x="200" y="190" text-anchor="middle" class="gpx-lbl gpx-lbl-good gpx-stag" style="--d:.7">week 3 of 12 · your program</text>
-              </g>
-            </svg>
-          </div>
-          <div class="gpx-cap">
-            <div class="gpx-cap-l gpx-cap-pain">
-              <span class="gpx-name gpx-name-pain">Drowning in noise</span>
-              <h3>The internet is full of health nonsense.</h3>
-              <p>For every good answer, a hundred bad ones. People follow influencers over experts — and get hurt by advice that's confident and wrong.</p>
-            </div>
-            <div class="gpx-cap-l gpx-cap-fix">
-              <span class="gpx-name gpx-name-fix">You put the signal back</span>
-              <h3>Your knowledge becomes the layer people <span class="lead">actually trust</span>.</h3>
-              <p>Verified by real professionals, your contributions become the reference people rely on — working for thousands, long after you write them.</p>
-            </div>
-          </div>
-          <div class="gpx-cue">keep scrolling ↓</div>
-        </div>
-      </section>
-
-      <section class="gpx" id="gpx-3">
-        <div class="gpx-sticky">
-          <div class="gpx-art">
-            <svg class="gpx-svg" viewBox="0 0 400 210" role="img" aria-label="A squeezed margin lifted by an alliance">
-              <g class="gpx-lines" stroke="#22c55e" stroke-width="2.5" fill="none" stroke-linecap="round">
-                <line class="gpx-ln" style="--d:.2" x1="200" y1="72" x2="86" y2="34" pathLength="100"/><line class="gpx-ln" style="--d:.3" x1="200" y1="72" x2="330" y2="40" pathLength="100"/><line class="gpx-ln" style="--d:.4" x1="200" y1="72" x2="60" y2="96" pathLength="100"/><line class="gpx-ln" style="--d:.5" x1="200" y1="72" x2="346" y2="100" pathLength="100"/><line class="gpx-ln" style="--d:.6" x1="200" y1="72" x2="130" y2="122" pathLength="100"/><line class="gpx-ln" style="--d:.7" x1="200" y1="72" x2="280" y2="124" pathLength="100"/>
-              </g>
-              <g class="gpx-sats" fill="#16a34a">
-                <g transform="translate(86,34)" class="gpx-sat" style="--d:.24"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🧑‍⚕️</text></g>
-                <g transform="translate(330,40)" class="gpx-sat" style="--d:.34"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🧑‍⚕️</text></g>
-                <g transform="translate(60,96)" class="gpx-sat" style="--d:.44"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🧑‍⚕️</text></g>
-                <g transform="translate(346,100)" class="gpx-sat" style="--d:.54"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🧑‍⚕️</text></g>
-                <g transform="translate(130,122)" class="gpx-sat" style="--d:.64"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🧑‍⚕️</text></g>
-                <g transform="translate(280,124)" class="gpx-sat" style="--d:.74"><circle r="15" fill="#dcfce7"/><text x="0" y="5" text-anchor="middle" font-size="15">🧑‍⚕️</text></g>
-              </g>
-              <g transform="translate(200,72)"><circle r="26" class="gpx-center-halo" fill="#22c55e" opacity="0"/><circle r="21" fill="#16a34a"/><rect x="-9" y="-9" width="18" height="18" rx="3" fill="#fff"/><path d="M0 -6 v12 M-6 0 h12" stroke="#16a34a" stroke-width="3"/></g>
-              <text x="200" y="168" text-anchor="middle" class="gpx-lbl">The reach of what you know</text>
-              <g transform="translate(70,178)">
-                <rect x="0" y="0" width="260" height="20" rx="6" fill="#fecaca"/>
-                <rect class="gpx-keep" x="0" y="0" width="260" height="20" rx="6" fill="#22c55e"/>
-              </g>
-            </svg>
-          </div>
-          <div class="gpx-cap">
-            <div class="gpx-cap-l gpx-cap-pain">
-              <span class="gpx-name gpx-name-pain">One expert, one tide</span>
-              <h3>Alone, you can't fix health.</h3>
-              <p>You can correct the myths in front of you — but the tide of misinformation is bigger than any one person, in any one place.</p>
-            </div>
-            <div class="gpx-cap-l gpx-cap-fix">
-              <span class="gpx-name gpx-name-fix">Stronger together</span>
-              <h3>A <span class="lead">global community</span> of professionals.</h3>
-              <p>Thousands of verified experts, each adding their slice, together build the most trusted health resource in the world — and your name is part of it.</p>
-            </div>
-          </div>
-          <div class="gpx-cue">keep scrolling ↓</div>
-        </div>
-      </section>
-
-      <section class="gpj" id="gpj">
-        <div class="gpj-head"><div class="gp-eyebrow">How it works — from wherever you are</div><h2>You already have the expertise.<br>Here's how it <span class="lead">compounds</span>.</h2></div>
-        <div class="gpj-track">
-          <div class="gpj-line"><div class="gpj-fill" id="gpj-fill"></div></div>
-          <div class="gpj-steps">
-            <div class="gpj-step"><div class="gpj-node">✍️</div><div class="gpj-body"><h4>You share what you know</h4><p>Contribute and sharpen the health knowledge in your field — a few minutes when you have them. Your name and credentials ride on every trusted contribution.</p></div></div>
-            <div class="gpj-step"><div class="gpj-node">⭐</div><div class="gpj-body"><h4>Your reputation compounds</h4><p>Every person your expertise helps builds your standing as a verified expert. Credibility you build once keeps working for you.</p></div></div>
-            <div class="gpj-step"><div class="gpj-node">🌍</div><div class="gpj-body"><h4>You reach people everywhere</h4><p>Your guidance surfaces to people worldwide searching for real answers — not only those who can sit in front of you.</p></div></div>
-            <div class="gpj-step"><div class="gpj-node">🧬</div><div class="gpj-body"><h4>You shape the protocols</h4><p>Turn your expertise into the trusted, step-by-step protocols people actually follow to eat, move, sleep and live better.</p></div></div>
-            <div class="gpj-step"><div class="gpj-node">🤝</div><div class="gpj-body"><h4>You help people succeed — at scale</h4><p>The impact of your career, multiplied: your knowledge quietly changes how thousands of people live. That's the whole point — and it's free.</p></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="gp-aspire reveal">
-        <h2>Imagine being one of the experts the world learns to <span class="lead">trust</span>.</h2>
-        <p>Not the loudest. Not the flashiest. The one people rely on to get their health <b>right</b> — with your name on the knowledge that helped them.</p>
-      </section>
-
-      <section class="gp-faq reveal">
-        <div class="section-title center">Straight answers</div>
-        <div class="gp-faq-list">
-          <details class="gp-q"><summary>Who can join?</summary><p>Any qualified health or healthcare professional, anywhere in the world — doctors, nurses, pharmacists, dietitians, physiotherapists, TCM practitioners, psychologists, health coaches and more. If you're trained to help people be healthier, you belong here.</p></details>
-          <details class="gp-q"><summary>Is it really free?</summary><p>Completely. No fees, no lock-in, no card. It's built by professionals, for people.</p></details>
-          <details class="gp-q"><summary>What's the catch?</summary><p>There isn't one. We're building the world's most trusted health layer — and verified professionals are what make it real.</p></details>
-          <details class="gp-q"><summary>How much of my time does this take?</summary><p>As little as you like. Contribute in your field when you have a spare moment — even small, trusted additions help people and lift your standing.</p></details>
-          <details class="gp-q"><summary>Do I have to sell anything?</summary><p>Never. This is a knowledge platform, not a sales channel. Your only currency here is what you know.</p></details>
-          <details class="gp-q"><summary>Is my information safe?</summary><p>Your details and proof of credentials are used solely to verify you and contact you about the network. Never sold, never shared.</p></details>
-        </div>
-      </section>
-
-      <section class="gp-join" id="gp-apply">
-        <div class="gp-join-inner">
-          <div class="gp-join-head">
-            <div class="gp-eyebrow">Founding contributors · worldwide</div>
-            <h2>Be one of the <span class="lead">first experts we verify</span>.</h2>
-            <p>We're hand-picking the founding professionals to shape this platform — across every discipline and country. It's free, with no obligation. Tell us about yourself, verify your credential, and we'll reach out personally.</p>
-          </div>
-          <div class="gp-form-card">
-            <form id="gp-form" class="gp-form">
-              <div class="gp-2col"><label>Your name<input name="name" required placeholder="Dr / Nurse / …"></label><label>Email<input name="email" type="email" required placeholder="you@example.com"></label></div>
-              <div class="gp-2col">
-                <label>Your profession<select name="discipline" required>
-                  <option value="" disabled selected>Select…</option>
-                  <option>Doctor / Physician</option><option>Nurse</option><option>Pharmacist</option>
-                  <option>Dietitian / Nutritionist</option><option>Physiotherapist</option><option>TCM practitioner</option>
-                  <option>Psychologist / Therapist</option><option>Dentist</option><option>Health / wellness coach</option>
-                  <option>Researcher / Scientist</option><option>Other health professional</option>
-                </select></label>
-                <label>Country<input name="country" required placeholder="e.g. Singapore"></label>
-              </div>
-              <label>Professional registration / licence no.<input name="license_no" required placeholder="Your licence, registration or council number"></label>
-              <label>Photo proof of your credential<input name="proof" id="gp-proof" type="file" accept="image/*" capture="environment"><span class="gp-hint">A clear photo of your licence, registration card or professional ID. Used only to verify you.</span></label>
-              <label>Anything you'd like us to know? <span class="opt">optional</span><textarea name="message" rows="2" placeholder="Your field of expertise, how you'd like to help…"></textarea></label>
-              <div class="auth-err" id="gp-err" hidden></div>
-              <button type="submit" class="cta-primary lg" id="gp-submit">Apply to contribute →</button>
-              <p class="gp-fineprint">🔒 Open to verified health professionals worldwide. Your details and credential proof are used only to verify you and contact you — never sold or shared.</p>
-            </form>
-            <div class="gp-done" id="gp-done" hidden><div class="gp-done-ic">🎉</div><h3>You're on the founding list.</h3><p>Thank you — we'll verify your credential and reach out personally. Watch your inbox.</p></div>
-          </div>
-        </div>
-      </section>`;
-    bindGpLanding();
-  }
   // Scroll-driven: --t (0→1) morphs the SVG scene; the caption text crossfades pain→fix a beat later.
   function initGpScroll(id) {
     const sec = document.getElementById(id); if (!sec) return;
@@ -6606,30 +5941,6 @@
       steps.forEach(s => { const n = s.querySelector('.gpj-node').getBoundingClientRect(); s.classList.toggle('on', (n.top + n.height / 2) < line); });
     };
     window.addEventListener('scroll', onScroll, { passive: true }); window.addEventListener('resize', onScroll); onScroll();
-  }
-  function bindGpLanding() {
-    revealOnScroll();
-    initGpScroll('gpx-1'); initGpScroll('gpx-2'); initGpScroll('gpx-3'); initGpJourney('gpj');
-    const form = document.getElementById('gp-form'); if (!form) return;
-    const err = document.getElementById('gp-err'), btn = document.getElementById('gp-submit');
-    const showErr = (m) => { err.textContent = m; err.hidden = false; btn.disabled = false; btn.textContent = 'Apply to contribute →'; };
-    form.onsubmit = async (e) => {
-      e.preventDefault(); err.hidden = true; btn.disabled = true; btn.textContent = 'Sending…';
-      const b = Object.fromEntries(new FormData(form));
-      // read the credential photo → data URL (client-side cap so the upload stays reasonable)
-      let proof_photo = '';
-      const fi = document.getElementById('gp-proof'); const file = fi && fi.files && fi.files[0];
-      if (file) {
-        if (!/^image\//.test(file.type)) return showErr('Please attach an image of your credential.');
-        if (file.size > 4 * 1024 * 1024) return showErr('That photo is over 4 MB — please attach a smaller one.');
-        try { proof_photo = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = () => rej(new Error('Could not read that file')); r.readAsDataURL(file); }); }
-        catch (ex2) { return showErr('Could not read that photo — try another.'); }
-      }
-      try {
-        await api.submitClinicianInterest({ name: b.name, email: b.email, discipline: b.discipline || 'Other', country: b.country, license_no: b.license_no, proof_photo, note: b.message });
-        form.hidden = true; const done = document.getElementById('gp-done'); if (done) done.hidden = false;
-      } catch (ex) { showErr(ex.message); }
-    };
   }
 
   // ---------- /pros — the marketing landing page for professionals (separate from the dashboard) ----------
@@ -6719,18 +6030,13 @@
     else if (parts[0] === 'progress') html = planLoading();
     else if (parts[0] === 'legend') html = legendPage();
     // /newsletter folded into the home page 2026-07-28; server 301s the old URL.
-    else if (parts[0] === 'for-clinicians') html = forClinicians();
     // FIXED 2026-07-28: this rewrote the URL bar to "/" and rendered the homepage, discarding the
     // fully authored aboutPage() -- which holds the site's ONLY disclaimer -- and leaving /about
     // worse than a soft-404 for both readers and crawlers.
     else if (parts[0] === 'about') html = aboutPage();
-    else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
+    else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u', 'gp'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
     else if (parts[0] === 'solve') html = solvePage();
-    else if (parts[0] === 'stewardship') html = stewardHubLoading();
-    else if (parts[0] === 'pro') html = proLoading();
     // dead: the line above sets parts.length = 0, so parts[0] is undefined by here.
-    else if (parts[0] === 'u' && parts[1]) html = profileLoading(parts[1]);
-    else if (parts[0] === 'contributors') html = contribLoading();
     else if (parts[0] === 'admin') html = adminLoading();
     else if (parts[0] === 'protocol') html = protocolLoading();
     else if (parts[0] === 'clinic' && parts[3]) html = protocolLoading();
@@ -6785,16 +6091,10 @@
     // removed }` and the second was an empty stub. Neither rendered anything in either document.
     if (!parts.length) bindHome();
     if (parts[0] === 'solve') bindSolve();
-    if (parts[0] === 'for-clinicians') bindForClinicians();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan();
     if (parts[0] === 'progress') renderProgress();
-    if (parts[0] === 'stewardship') renderStewardHub();
-    if (parts[0] === 'pro') renderPro();
     // dead: /pros is retired above and parts is emptied, so this never fires.
-    if (parts[0] === 'gp') renderGpLanding();
-    if (parts[0] === 'u' && parts[1]) renderProfile(parts[1]);
-    if (parts[0] === 'contributors') renderContributors();
     if (parts[0] === 'admin') renderAdmin();
     if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2]);
     if (parts[0] === 'clinic' && parts[3]) renderProtocol(parts[2], parts[3], parts[1]);

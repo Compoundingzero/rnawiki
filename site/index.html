@@ -48,9 +48,13 @@
   <div class="foot-stats" id="foot-stats"></div>
 </footer>
 
-<script src="data.js"></script>
-<script src="facts.js"></script>
-<script src="interactions.js"></script>
-<script src="app.js"></script>
+<!-- Absolute, not relative (fixed 2026-07-30). With src="data.js", any SPA route with two or
+     more path segments resolved these to /exercise/data.js, /fork/data.js, /u/data.js and so on:
+     404, no app.js, BLANK WHITE PAGE at HTTP 200. That silently killed every per-exercise page and
+     every /fork/<id> share permalink — the URL a reader sends someone else. -->
+<script src="/data.js"></script>
+<script src="/facts.js"></script>
+<script src="/interactions.js"></script>
+<script src="/app.js"></script>
 </body>
 </html>
