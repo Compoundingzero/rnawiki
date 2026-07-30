@@ -172,8 +172,14 @@
    "caveats": "Because the trials skew acute, young and male, treat the numbers as a solid central estimate rather than a personal guarantee — and assume publication bias inflates the average a little. Your own response (genetics, tolerance, sleep debt) can easily swamp the study-average effect.",
    "trials": [
     {
-     "finding": "Umbrella review of 21 meta-analyses: consistent small-to-moderate benefit for muscular endurance, strength, power and aerobic endurance.",
-     "ref": "Grgic et al., 2020, Br J Sports Med"
+     "finding": "Umbrella review of 21 meta-analyses (from 11 systematic reviews): caffeine was ergogenic for aerobic endurance, muscle strength, muscle endurance and power, on moderate-quality evidence. Effects were generally larger for aerobic than anaerobic exercise, not every meta-analysis gave a definite direction of effect once 95% prediction intervals were considered, and most primary studies were conducted in young men.",
+     "ref": "Grgic et al., 2020, Br J Sports Med",
+     "pmid": "30926628",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Umbrella review of 21 meta-analyses: consistent small-to-moderate benefit for muscular endurance, strength, power and aerobic endurance.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Across 16 reported performance effect sizes, caffeine improved exercise performance by 11.2% (95% CI 4.6–17.8%); this meta-analysis primarily examined perceived exertion and did not establish an 11% improvement specifically in endurance time-to-exhaustion.",
@@ -644,7 +650,10 @@
    "trials": [
     {
      "finding": "STEP 1: once-weekly semaglutide 2.4 mg produced −14.9% bodyweight at 68 weeks vs −2.4% with placebo (n=1,961).",
-     "ref": "Wilding et al., 2021, N Engl J Med"
+     "ref": "Wilding et al., 2021, N Engl J Med",
+     "pmid": "33567185",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "SELECT: in patients with prior cardiovascular disease and overweight/obesity but no diabetes, semaglutide cut major adverse cardiovascular events by 20% vs placebo (HR 0.80).",
@@ -1081,7 +1090,10 @@
     },
     {
      "finding": "Phase 2, cancer patients: enobosarm (1 mg and 3 mg) significantly increased lean body mass versus baseline (~1.0–1.5 kg median), supporting an anabolic effect in muscle-wasting disease.",
-     "ref": "Dobs et al., 2013, Lancet Oncology"
+     "ref": "Dobs et al., 2013, Lancet Oncology",
+     "pmid": "23499390",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Phase 3 POWER trials (NSCLC muscle wasting; 3 mg/day): enobosarm met the lean-body-mass co-primary endpoint but failed the physical-function (stair-climb power) co-primary endpoint, leading to lack of FDA approval.",
@@ -1089,7 +1101,10 @@
     },
     {
      "finding": "Phase 2 in AR-positive, ER-positive, HER2-negative advanced breast cancer: enobosarm showed clinical activity, reflecting ongoing legitimate oncology development of the molecule.",
-     "ref": "Enobosarm Study G200802, 2024, Lancet Oncology 25:317–325"
+     "ref": "Enobosarm Study G200802, 2024, Lancet Oncology 25:317–325",
+     "pmid": "38342115",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -1776,11 +1791,17 @@
     },
     {
      "finding": "Individual-participant-data meta-analysis (~11,000 participants): vitamin D supplementation modestly reduced acute respiratory infections, with the clearest benefit in the most deficient and with daily/weekly (not bolus) dosing.",
-     "ref": "Martineau et al., 2017, BMJ"
+     "ref": "Martineau et al., 2017, BMJ",
+     "pmid": "28202713",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "VITAL RCT (~25,871 adults, 2,000 IU/day): no significant reduction in invasive cancer or major cardiovascular events versus placebo in a largely vitamin-D-replete population.",
-     "ref": "Manson et al., 2019, N Engl J Med"
+     "ref": "Manson et al., 2019, N Engl J Med",
+     "pmid": "30415629",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Three years of MK-7 (vitamin K2) 180 mcg/day reduced age-related progression of arterial stiffness versus placebo in healthy postmenopausal women — an effect concentrated in women who started with high arterial stiffness, rather than uniform across the cohort.",
@@ -2231,8 +2252,14 @@
      "ref": "Prasad et al., 1996, Nutrition 12(5):344–348"
     },
     {
-     "finding": "In elite wrestlers, 4 weeks of oral zinc (3 mg/kg/day) prevented the drop in resting and post-exercise testosterone normally caused by exhaustive training.",
-     "ref": "Kilic et al., 2006, Neuro Endocrinol Lett 27(1–2):247–252"
+     "finding": "In 10 elite male wrestlers, 4 weeks of oral zinc sulfate (3 mg/kg/day) prevented the fall in resting and post-exercise testosterone produced by an acute exhaustive exercise bout. Single-arm before/after design - every subject received zinc, with no placebo group.",
+     "ref": "Kilic et al., 2006, Neuro Endocrinol Lett 27(1–2):247–252",
+     "pmid": "16648789",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "In elite wrestlers, 4 weeks of oral zinc (3 mg/kg/day) prevented the drop in resting and post-exercise testosterone normally caused by exhaustive training.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     }
    ]
   },
@@ -2716,7 +2743,10 @@
     },
     {
      "finding": "Meta-analysis of 10 RCTs: a single oral dose of 1–6 g taurine improved endurance performance (Hedges' g = 0.40, 95% CI 0.12–0.67).",
-     "ref": "Waldron et al., 2018, Sports Medicine"
+     "ref": "Waldron et al., 2018, Sports Medicine",
+     "pmid": "29546641",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -3151,11 +3181,17 @@
    "trials": [
     {
      "finding": "Q-SYMBIO RCT (420 chronic heart-failure patients): CoQ10 100 mg three times daily on top of standard therapy roughly halved major adverse cardiovascular events over two years (HR ≈ 0.50) and reduced cardiovascular and all-cause mortality.",
-     "ref": "Mortensen et al., 2014, JACC: Heart Failure"
+     "ref": "Mortensen et al., 2014, JACC: Heart Failure",
+     "pmid": "25282031",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Meta-analysis of 12 RCTs (575 statin-treated patients): CoQ10 supplementation reduced statin-associated muscle pain, weakness, cramps and fatigue — but did not lower plasma creatine kinase.",
-     "ref": "Qu et al., 2018, J Am Heart Assoc"
+     "ref": "Qu et al., 2018, J Am Heart Assoc",
+     "pmid": "30371340",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Systematic review & meta-analysis: CoQ10 did not significantly improve statin-associated muscle pain or statin adherence — illustrating the genuinely conflicting evidence base.",
@@ -3597,7 +3633,10 @@
     },
     {
      "finding": "Systematic review & meta-analysis: acute citrulline supplementation produced a small but statistically significant improvement in high-intensity strength and power performance.",
-     "ref": "Trexler et al., 2019, Sports Medicine"
+     "ref": "Trexler et al., 2019, Sports Medicine",
+     "pmid": "30895562",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "L-citrulline supplementation improved oxygen-uptake kinetics and high-intensity cycling exercise performance versus placebo.",
@@ -3829,12 +3868,24 @@
    "caveats": "The trials are small, short, heavily male, and inconsistently dosed, so small-study effects and publication bias likely inflate the average. The strength signal is real but modest, and the null results for upper body and power are just as consistent. High doses (≥4–6 g/day) have raised LDL/total cholesterol in some healthy adults — a reason not to exceed the studied ~2.5 g.",
    "trials": [
     {
-     "finding": "Meta-analysis (17 RCTs, 317 participants): betaine significantly improved maximal strength (SMD ≈ 0.47) and lower-body strength (SMD ≈ 0.49), and vertical jump (SMD ≈ 0.36), with no significant effect on upper-body strength, sprint/throw power, or muscular endurance.",
-     "ref": "Zawieja et al., 2024, J Sports Sci 42(22):2131–2144"
+     "finding": "Meta-analysis (17 studies, 317 participants): chronic betaine (at least 7 days) significantly improved maximal strength (SMD 0.47, 95% CI 0.04-0.89) and lower-body strength (SMD 0.49, 95% CI 0.01-0.98), with no significant effect on upper-body strength, cycling sprint power, bench-press throw power or muscular endurance. Vertical jump improved (SMD 0.36, 95% CI 0.03-0.69) only after one low-quality study was excluded.",
+     "ref": "Zawieja et al., 2024, J Sports Sci 42(22):2131–2144",
+     "pmid": "39514262",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Meta-analysis (17 RCTs, 317 participants): betaine significantly improved maximal strength (SMD ≈ 0.47) and lower-body strength (SMD ≈ 0.49), and vertical jump (SMD ≈ 0.36), with no significant effect on upper-body strength, sprint/throw power, or muscular endurance.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Pharmacokinetics in healthy subjects: oral betaine peaked ~1 h, single-dose elimination half-life ~14.4 h (rising to ~41 h with repeated dosing as tissue pools accumulate), with under ~4% excreted unchanged — eliminated chiefly by metabolism.",
-     "ref": "Schwahn et al., 2003, Br J Clin Pharmacol 55(1):6–13"
+     "finding": "Pharmacokinetics in 12 healthy male volunteers given 50 mg/kg orally: betaine peaked at ~0.9 h, with a single-dose elimination half-life of ~14.4 h rising to ~41 h after 5 days of twice-daily dosing (betaine and its metabolite dimethylglycine both accumulate). Renal clearance is low - urinary excretion was equivalent to about 4% of the dose - so betaine is eliminated chiefly by metabolism.",
+     "ref": "Schwahn et al., 2003, Br J Clin Pharmacol 55(1):6–13",
+     "pmid": "12534635",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Pharmacokinetics in healthy subjects: oral betaine peaked ~1 h, single-dose elimination half-life ~14.4 h (rising to ~41 h with repeated dosing as tissue pools accumulate), with under ~4% excreted unchanged — eliminated chiefly by metabolism.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     }
    ]
   },
@@ -4051,7 +4102,10 @@
    "trials": [
     {
      "finding": "Position stand: sodium bicarbonate reliably improves high-intensity exercise lasting ~30 s to 12 min; optimal single dose ~0.3 g/kg taken 60–180 min pre-effort, with 0.2 g/kg the minimum effective dose and higher doses adding no benefit.",
-     "ref": "Grgic et al., 2021, J Int Soc Sports Nutr (ISSN position stand)"
+     "ref": "Grgic et al., 2021, J Int Soc Sports Nutr (ISSN position stand)",
+     "pmid": "34503527",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Meta-analysis of acute alkalosis: sodium bicarbonate produced a small performance enhancement of ~1.7% in a single ~1-minute sprint, with benefit increasing across repeated sprint bouts.",
@@ -4062,8 +4116,14 @@
      "pmid_rejected_on": "2026-07-30"
     },
     {
-     "finding": "Umbrella review of meta-analyses concluded that sodium bicarbonate supplementation improves exercise performance, concentrated in high-intensity efforts.",
-     "ref": "Umbrella review, 2021, J Int Soc Sports Nutr"
+     "finding": "Umbrella review of 8 meta-analyses (moderate-to-high methodological quality): sodium bicarbonate acutely enhances peak anaerobic power, anaerobic capacity, muscle endurance, 2000-m rowing and high-intensity intermittent running, plus endurance events lasting ~45 s to 8 min; no significant benefit was found for general mean power, muscle strength or repeated-sprint ability, and evidence certainty was only low to moderate.",
+     "ref": "Umbrella review, 2021, J Int Soc Sports Nutr",
+     "pmid": "34794476",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Umbrella review of meta-analyses concluded that sodium bicarbonate supplementation improves exercise performance, concentrated in high-intensity efforts.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     }
    ]
   },
@@ -4979,7 +5039,10 @@
    "trials": [
     {
      "finding": "SURMOUNT-1: once-weekly tirzepatide 15 mg produced ~20.9% mean bodyweight reduction at 72 weeks vs ~3.1% with placebo in adults with obesity/overweight (n=2,539).",
-     "ref": "Jastreboff et al., 2022, N Engl J Med"
+     "ref": "Jastreboff et al., 2022, N Engl J Med",
+     "pmid": "35658024",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "SURMOUNT-5 (head-to-head): tirzepatide produced greater weight loss than semaglutide — ~20.2% vs ~13.7% at 72 weeks in adults with obesity without diabetes.",
@@ -5215,8 +5278,14 @@
    "caveats": "The efficacy is real, but the safety file is thin: no long-term data, GI side effects during escalation, a glucagon-driven nudge upward in heart rate and glucose, and likely loss of some lean mass alongside fat — a general concern for this whole drug class. Treat the trial numbers as the best case under clean, dosed, monitored conditions, not what an unregulated online vial delivers. And remember several figures are press-release-stage, pending full publication.",
    "trials": [
     {
-     "finding": "Phase 2 randomised trial, 338 adults with obesity: retatrutide produced dose-dependent weight loss up to ~24.2% on average at the 12 mg dose over 48 weeks — the largest reported for a drug at the time.",
-     "ref": "Jastreboff et al., 2023, N Engl J Med"
+     "finding": "Phase 2 randomised, placebo-controlled trial in 338 adults with obesity (or BMI 27-30 with a weight-related condition): retatrutide produced dose-dependent weight loss, reaching a least-squares mean -24.2% at the 12 mg dose at 48 weeks versus -2.1% with placebo.",
+     "ref": "Jastreboff et al., 2023, N Engl J Med",
+     "pmid": "37366315",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Phase 2 randomised trial, 338 adults with obesity: retatrutide produced dose-dependent weight loss up to ~24.2% on average at the 12 mg dose over 48 weeks — the largest reported for a drug at the time.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Phase 2a MASLD substudy, 98 participants with ≥10% liver fat: retatrutide cut hepatic fat by ~81–82% (relative) at the 8 mg and 12 mg doses by 24 weeks, normalising liver fat (<5%) in ~79–86% of them.",
@@ -5701,11 +5770,20 @@
    "trials": [
     {
      "finding": "A single 100 mg caffeine dose raised resting metabolic rate ~3-4% over 150 min; dosing 100 mg every 2 h over 12 h raised energy expenditure 8-11%, netting +150 kcal/day in lean and +79 kcal/day in postobese volunteers.",
-     "ref": "Dulloo et al., 1989, Am J Clin Nutr 49:44-50"
+     "ref": "Dulloo et al., 1989, Am J Clin Nutr 49:44-50",
+     "pmid": "2912010",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
-     "finding": "Caffeine increased metabolic rate and fat oxidation in both normal-weight and obese individuals.",
-     "ref": "Acheson et al., 1980, Am J Clin Nutr 33:989-997"
+     "finding": "Caffeine and coffee raised metabolic rate in both normal-weight and obese individuals, but the increase in fat oxidation was seen only in the normal-weight subjects - plasma free fatty acids did not rise in the obese.",
+     "ref": "Acheson et al., 1980, Am J Clin Nutr 33:989-997",
+     "pmid": "7369170",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Caffeine increased metabolic rate and fat oxidation in both normal-weight and obese individuals.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "A dose-response meta-analysis of 13 RCTs (606 participants) found that each doubling of caffeine dose was associated with 22%, 17% and 28% greater reductions in weight, BMI and fat mass, respectively; heterogeneity was very high (I² 91–94%), so the result is uncertain.",
@@ -5961,12 +6039,21 @@
    "caveats": "The benefit is modest and short-term; the effect fades with tolerance while the cardiovascular risk persists. The trials skew toward obese dieters, so the numbers don't transfer to lean users. Herbal ephedra products are also variable in dose and were linked to serious adverse events — the reason the FDA banned them in 2004. Treat the trial numbers as a best case under dosed, monitored conditions.",
    "trials": [
     {
-     "finding": "Meta-analysis assessing efficacy and safety: ephedrine/ephedra promoted modest weight loss (~0.9 kg/month more than placebo) over ≤6 months, but was associated with a 2–3 fold increase in psychiatric, autonomic, gastrointestinal symptoms and heart palpitations.",
-     "ref": "Shekelle et al., 2003, JAMA 289:1537–1545"
+     "finding": "Meta-analysis assessing efficacy and safety: ephedrine/ephedra promoted modest weight loss (~0.9 kg/month more than placebo) in trials of no more than 6 months, with no long-term data; use of ephedra or ephedrine with caffeine was associated with a 2.2- to 3.6-fold increase in the odds of psychiatric, autonomic or gastrointestinal symptoms and heart palpitations. Evidence for athletic performance was insufficient.",
+     "ref": "Shekelle et al., 2003, JAMA 289:1537–1545",
+     "pmid": "12672771",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Meta-analysis assessing efficacy and safety: ephedrine/ephedra promoted modest weight loss (~0.9 kg/month more than placebo) over ≤6 months, but was associated with a 2–3 fold increase in psychiatric, autonomic, gastrointestinal symptoms and heart palpitations.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "6-month randomised, double-blind, placebo-controlled trial of herbal ephedra/caffeine (90/192 mg/day): greater loss of body weight (−5.3 vs −2.6 kg) and body fat, with improved LDL and HDL cholesterol, versus placebo.",
-     "ref": "Boozer et al., 2002, Int J Obes 26:593–604"
+     "ref": "Boozer et al., 2002, Int J Obes 26:593–604",
+     "pmid": "12032741",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Double-blind trial in obese subjects on an energy-restricted diet: an ephedrine/caffeine compound produced greater weight loss than ephedrine alone, caffeine alone, or placebo — establishing the synergy of the combination.",
@@ -5974,7 +6061,10 @@
     },
     {
      "finding": "Systematic review and meta-analysis of randomised controlled trials of ephedrine-containing products: greater weight loss than placebo (mean difference ≈ −1.97 kg) alongside a higher mean heart rate (~+5.76 bpm).",
-     "ref": "Systematic review & meta-analysis of RCTs, 2021"
+     "ref": "Systematic review & meta-analysis of RCTs, 2021",
+     "pmid": "34832979",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -6430,7 +6520,10 @@
     },
     {
      "finding": "Open-label, uncontrolled acute study in six young men — the actual source of the \"+39% fat burning\" claim. 140 minutes after one 80 µg oral dose, resting energy expenditure rose 21% (P < 0.001) and fat oxidation 39% (P = 0.006), with mTOR and PKA signalling up in muscle. Limits worth holding onto: n = 6, a single dose, no placebo group and no randomisation, and the endpoints were metabolic rate and muscle signalling — body fat was never measured. The 2025 RCT cites this study only as background in its introduction; it is not a finding of that trial.",
-     "ref": "Jessen et al., 2020, Drug Testing and Analysis (PMID 31887249)"
+     "ref": "Jessen et al., 2020, Drug Testing and Analysis (PMID 31887249)",
+     "pmid": "31887249",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Harefield protocol — combined continuous-flow LVAD support plus clenbuterol to induce physiological cardiac hypertrophy and myocardial recovery: of 15 patients with severe non-ischaemic cardiomyopathy, 11 recovered enough for device explant, demonstrating a legitimate, monitored clinical use of the drug's beta-2 hypertrophic effect.",
@@ -6888,8 +6981,14 @@
    "caveats": "You can't separate EGCG's contribution from caffeine's in most trials. Effects are small enough that publication bias plausibly inflates the average, and the whole picture assumes diet is otherwise controlled. And at isolated doses ≥800 mg/day, the safety signal (liver enzymes) starts to matter more than the tiny benefit.",
    "trials": [
     {
-     "finding": "Meta-analysis: catechins or an EGCG–caffeine mixture produced a small but significant reduction in body weight and aided weight maintenance (~−1.3 kg); habitual caffeine intake and ethnicity were moderators.",
-     "ref": "Hursel et al., 2009, Int J Obes"
+     "finding": "Meta-analysis of 11 studies: catechins or an EGCG-caffeine mixture produced a small but significant reduction in body weight and helped maintain weight after a period of weight loss (-1.31 kg, P<0.001). Habitual caffeine intake and ethnicity did not individually reach significance as moderators (P=0.09 and P=0.37); only their interaction did (P=0.04).",
+     "ref": "Hursel et al., 2009, Int J Obes",
+     "pmid": "19597519",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Meta-analysis: catechins or an EGCG–caffeine mixture produced a small but significant reduction in body weight and aided weight maintenance (~−1.3 kg); habitual caffeine intake and ethnicity were moderators.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "A green tea extract (~270 mg EGCG + 150 mg caffeine) raised 24-hour energy expenditure ~4% and fat oxidation beyond what the caffeine content alone explained.",
@@ -7379,7 +7478,10 @@
    "trials": [
     {
      "finding": "CONQUER: 56-week Phase 3 RCT in overweight/obese adults with comorbidities — top-dose phentermine 15 mg/topiramate 92 mg produced roughly 10% weight loss, with about 70% achieving ≥5% and 48% achieving ≥10% loss versus placebo.",
-     "ref": "Gadde et al., 2011, The Lancet"
+     "ref": "Gadde et al., 2011, The Lancet",
+     "pmid": "21481449",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "EQUIP: 56-week Phase 3 RCT in adults with class II–III obesity — the 15/92 mg dose produced 10.9% weight loss versus 1.6% on placebo.",
@@ -7621,8 +7723,14 @@
      "ref": "Snyder et al. (Testosterone Trials), 2016, N Engl J Med"
     },
     {
-     "finding": "5,246 middle-aged and older hypogonadal men at high cardiovascular risk: transdermal testosterone was non-inferior to placebo for major adverse cardiac events, but showed higher rates of atrial fibrillation and pulmonary embolism.",
-     "ref": "Lincoff & Bhasin et al. (TRAVERSE), 2023, N Engl J Med"
+     "finding": "TRAVERSE: 5,246 hypogonadal men aged 45-80 with pre-existing or high cardiovascular risk. Transdermal testosterone was non-inferior to placebo for major adverse cardiac events, but showed higher rates of atrial fibrillation, acute kidney injury and pulmonary embolism.",
+     "ref": "Lincoff & Bhasin et al. (TRAVERSE), 2023, N Engl J Med",
+     "pmid": "37326322",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "5,246 middle-aged and older hypogonadal men at high cardiovascular risk: transdermal testosterone was non-inferior to placebo for major adverse cardiac events, but showed higher rates of atrial fibrillation and pulmonary embolism.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Supraphysiological testosterone enanthate (600 mg/week), with and without exercise, increased fat-free mass and muscle strength in normal men. Note this tested a single supraphysiological dose, so it demonstrates an anabolic effect but does not by itself establish a dose-response relationship.",
@@ -8293,7 +8401,10 @@
     },
     {
      "finding": "Intergroup Exemestane Study: switching to exemestane after 2–3 years of tamoxifen improved disease-free survival vs continuing tamoxifen.",
-     "ref": "Coombes et al., 2004, N Engl J Med"
+     "ref": "Coombes et al., 2004, N Engl J Med",
+     "pmid": "15014181",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "MA.27: exemestane and anastrozole neither was superior for breast-cancer outcomes in this superiority trial; 4-year event-free survival was 91.0% versus 91.2%. as initial adjuvant therapy (4-year event-free survival ~91% in both arms).",
@@ -8540,12 +8651,21 @@
      "ref": "Early Breast Cancer Trialists' Collaborative Group (EBCTCG), 2011, Lancet"
     },
     {
-     "finding": "ATLAS randomised trial (~15,000 women): continuing tamoxifen to 10 years versus stopping at 5 further reduced breast-cancer recurrence and mortality, with a small increase in endometrial cancer and venous thromboembolism.",
-     "ref": "Davies et al. (ATLAS), 2013, Lancet"
+     "finding": "ATLAS randomised trial (12,894 women randomised; breast-cancer outcomes reported in the 6,846 with ER-positive disease): continuing tamoxifen to 10 years versus stopping at 5 further reduced breast-cancer recurrence, breast-cancer mortality and overall mortality - with most of the gain appearing after year 10 - at the cost of increased endometrial cancer (RR 1.74) and pulmonary embolism (RR 1.87).",
+     "ref": "Davies et al. (ATLAS), 2013, Lancet",
+     "pmid": "23219286",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "ATLAS randomised trial (~15,000 women): continuing tamoxifen to 10 years versus stopping at 5 further reduced breast-cancer recurrence and mortality, with a small increase in endometrial cancer and venous thromboembolism.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Randomised trial in men on bicalutamide for prostate cancer: tamoxifen (but not the aromatase inhibitor anastrozole) significantly reduced the incidence of gynecomastia and breast pain.",
-     "ref": "Boccardo et al., 2005, J Clin Oncol"
+     "ref": "Boccardo et al., 2005, J Clin Oncol",
+     "pmid": "15681525",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -8765,7 +8885,10 @@
     },
     {
      "finding": "Intravaginal prasterone (DHEA) 6.5 mg significantly improved moderate-to-severe dyspareunia from vulvovaginal atrophy, supporting FDA approval of Intrarosa in 2016.",
-     "ref": "Intrarosa (prasterone) FDA approval, 2016"
+     "ref": "Intrarosa (prasterone) FDA approval, 2016",
+     "pmid": "26731686",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -9012,7 +9135,10 @@
     },
     {
      "finding": "Dutasteride reduced prostate-cancer diagnoses by ~23% versus placebo over four years (REDUCE trial).",
-     "ref": "Andriole et al., 2010, N Engl J Med"
+     "ref": "Andriole et al., 2010, N Engl J Med",
+     "pmid": "20357281",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -10747,7 +10873,12 @@
     },
     {
      "finding": "Double-blind crossover trial in 11 athletic men (methandienone 100 mg/day, 6 weeks): weight gain (~2–3 kg) confined to lean mass, but retained potassium and nitrogen were disproportionately large for the weight gained — i.e. the gain was not normal muscle.",
-     "ref": "Hervey et al., 1981, Clinical Science (earlier reported in Lancet, 1976)"
+     "ref": "Hervey et al., 1981, Clinical Science (earlier reported in Lancet, 1976)",
+     "pmid": "7018798",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper. PMID 61389 is Hervey et al., Lancet 1976;2(7988):699-702 - the FIRST trial, in 11 athletic men. It reports a weight gain of 3.3 +/- 0.6 kg confined to the lean body mass and a disproportionately large potassium accumulation (420 +/- 68 mmol), measures NO nitrogen at all, and explicitly declines the claim's",
+     "pmid_rejected_on": "2026-07-30"
     }
    ]
   },
@@ -11838,7 +11969,10 @@
    "trials": [
     {
      "finding": "268 subjects with low HDL: GW501516 raised HDL cholesterol up to ~16.9% (10 mg/day over 12 weeks) and lowered LDL and triglycerides — a metabolic (lipid) effect, not a performance one.",
-     "ref": "Olson et al., 2012, Arterioscler Thromb Vasc Biol"
+     "ref": "Olson et al., 2012, Arterioscler Thromb Vasc Biol",
+     "pmid": "22814748",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Randomized 2-week study in moderately obese men: GW501516 (10 mg/day) reduced fasting triglycerides ~30%, LDL ~23%, and liver fat ~20%, with reduced markers of oxidative stress — consistent with increased fatty-acid oxidation.",
@@ -12041,7 +12175,10 @@
     },
     {
      "finding": "REV-ERBα modulates skeletal-muscle oxidative capacity; its activation increased mitochondrial biogenesis and exercise capacity in mice, underpinning the 'exercise mimetic' framing.",
-     "ref": "Woldt et al., 2013, Nature Medicine 19:1039–1046"
+     "ref": "Woldt et al., 2013, Nature Medicine 19:1039–1046",
+     "pmid": "23852339",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "SR9009 altered cell proliferation, metabolism and gene transcription in hepatocytes and embryonic stem cells engineered to lack BOTH REV-ERBα and REV-ERBβ — demonstrating REV-ERB-independent effects through an unknown mechanism.",
@@ -12905,7 +13042,10 @@
    "trials": [
     {
      "finding": "Ipamorelin was the first GH secretagogue shown to release GH with potency/efficacy similar to GHRP-6 while — strikingly — NOT raising ACTH or cortisol above GHRH levels, establishing its defining selectivity (preclinical: rat pituitary cells and swine).",
-     "ref": "Raun et al., 1998, Eur J Endocrinol 139:552–561"
+     "ref": "Raun et al., 1998, Eur J Endocrinol 139:552–561",
+     "pmid": "9849822",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "direct human evidence that intravenous ipamorelin triggers GH release.",
@@ -13122,19 +13262,31 @@
    "trials": [
     {
      "finding": "Once-daily oral MK-677 for up to 4 weeks in healthy adults aged 64–81 enhanced pulsatile GH release and, at 25 mg/day, restored serum IGF-1 to young-adult levels.",
-     "ref": "Chapman et al., 1996, J Clin Endocrinol Metab 81(12):4249–4257"
+     "ref": "Chapman et al., 1996, J Clin Endocrinol Metab 81(12):4249–4257",
+     "pmid": "8954023",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "In healthy volunteers made catabolic by caloric restriction, MK-677 reversed diet-induced nitrogen wasting (mean nitrogen balance +0.31 vs −1.48 g/day on placebo) alongside raised GH/IGF-1.",
-     "ref": "Murphy et al., 1998, J Clin Endocrinol Metab 83(2):320–325"
+     "ref": "Murphy et al., 1998, J Clin Endocrinol Metab 83(2):320–325",
+     "pmid": "9467534",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Prolonged oral MK-677 improved sleep quality, increasing stage IV (slow-wave) sleep ~50% in young subjects and increasing REM sleep in both young and older adults.",
-     "ref": "Copinschi et al., 1997, Neuroendocrinology 66(4):278–286"
+     "ref": "Copinschi et al., 1997, Neuroendocrinology 66(4):278–286",
+     "pmid": "9349662",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "One-year randomised trial in 65 healthy older adults (25 mg/day): MK-677 raised IGF-1 to young-adult levels and increased fat-free mass ~1.1 kg vs a ~0.5 kg loss on placebo, but did NOT improve strength or physical function, and raised fasting glucose while reducing insulin sensitivity.",
-     "ref": "Nass et al., 2008, Ann Intern Med 149(9):601–611"
+     "ref": "Nass et al., 2008, Ann Intern Med 149(9):601–611",
+     "pmid": "18981485",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "In a 123-person phase IIb hip-fracture trial of 25 mg/day MK-0677, IGF-1 increased by 51.4 ng/mL versus placebo, but most functional measures—including stair-climb power—did not improve; the trial ended early because of a congestive-heart-failure safety signal.",
@@ -13794,7 +13946,10 @@
     },
     {
      "finding": "Vitamin C-enriched gelatin (15 g) taken ~1 h before intermittent exercise roughly doubled a blood marker of collagen synthesis (gelatin, not isolated glycine).",
-     "ref": "Shaw et al., 2017, American Journal of Clinical Nutrition"
+     "ref": "Shaw et al., 2017, American Journal of Clinical Nutrition",
+     "pmid": "27852613",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -14715,8 +14870,14 @@
      "ref": "Hsieh et al., 2020, Scientific Reports (Nature), doi:10.1038/s41598-020-74022-y"
     },
     {
-     "finding": "BPC-157 dose- and time-dependently increased growth-hormone-receptor expression and activated FAK–paxillin signalling to drive fibroblast migration in tendon (in vitro).",
-     "ref": "Chang et al., Pentadecapeptide BPC 157 enhances GH-receptor expression in tendon fibroblasts, Molecules 2014 (PMID 25415472)"
+     "finding": "BPC-157 dose- and time-dependently increased growth-hormone-receptor expression (mRNA and protein) in tendon fibroblasts isolated from rat Achilles tendon, and potentiated growth-hormone-driven proliferation via JAK2 activation (in vitro, rat-derived cells).",
+     "ref": "Chang et al., Pentadecapeptide BPC 157 enhances GH-receptor expression in tendon fibroblasts, Molecules 2014 (PMID 25415472)",
+     "pmid": "25415472",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "BPC-157 dose- and time-dependently increased growth-hormone-receptor expression and activated FAK–paxillin signalling to drive fibroblast migration in tendon (in vitro).",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Pharmacokinetic study reporting an elimination half-life under 30 minutes (≈15 min IV in rats) in rats and dogs, with metabolism to smaller peptide fragments — no human PK.",
@@ -15584,11 +15745,17 @@
    "trials": [
     {
      "finding": "ETASS RCT, 361 severe-sepsis patients (181 Tα1 / 180 control): 28-day all-cause mortality 26.0% (Tα1) vs 35.0% (control), RR ~0.74 (95% CI 0.54–1.02); borderline (mortality comparison P=0.062; log-rank survival P=0.049), with greater improvement in monocyte HLA-DR at days 3 and 7.",
-     "ref": "Wu J et al., 2013, Critical Care 17:R8 (ETASS)"
+     "ref": "Wu J et al., 2013, Critical Care 17:R8 (ETASS)",
+     "pmid": "23327199",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Multicenter cohort of 2,282 COVID-19 patients (306 treated): thymosin alpha-1 use was associated with a higher non-recovery rate (overall adjusted OR ~1.5), rising to adjusted OR ~2.0 (95% CI 1.4–2.9) in patients with maximum SOFA ≥2 — i.e. worse outcomes in more severe disease.",
-     "ref": "Liu J et al., 2021, Frontiers in Immunology 12:673693"
+     "ref": "Liu J et al., 2021, Frontiers in Immunology 12:673693",
+     "pmid": "34408744",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -16030,8 +16197,14 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Intermittent rapamycin dosing extended lifespan while reducing the glucose and immune side effects of daily dosing, by more selectively inhibiting mTORC1 and sparing mTORC2.",
-     "ref": "Arriola Apelo et al., 2016, Aging Cell"
+     "finding": "In mice, an intermittent rapamycin dosing schedule reduced the glucose-intolerance and immunosuppressive side effects seen with daily dosing (less impact on pyruvate tolerance, fasting glucose and insulin, beta-cell function and the immune system), consistent with more selective mTORC1 inhibition; the FDA-approved analogues everolimus and temsirolimus showed a similar separation. Lifespan was not measured in this study.",
+     "ref": "Arriola Apelo et al., 2016, Aging Cell",
+     "pmid": "26463117",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Intermittent rapamycin dosing extended lifespan while reducing the glucose and immune side effects of daily dosing, by more selectively inhibiting mTORC1 and sparing mTORC2.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "An mTOR inhibitor (the rapalog everolimus) improved influenza-vaccine responses in healthy elderly adults, indicating mTOR inhibition can enhance rather than only suppress aspects of immune function.",
@@ -16529,8 +16702,14 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "STOP-NIDDM: in people with impaired glucose tolerance, acarbose reduced progression to type 2 diabetes (2002 Lancet) and, in a secondary analysis, was reported to reduce cardiovascular events and hypertension (2003 JAMA).",
-     "ref": "Chiasson et al., STOP-NIDDM, 2002 Lancet & 2003 JAMA"
+     "finding": "STOP-NIDDM secondary analysis (Chiasson et al., JAMA 2003; 1,429 randomised, 1,368 analysed, mean follow-up 3.3 years): in people with impaired glucose tolerance, acarbose 100 mg three times daily was associated with a 49% relative reduction in major cardiovascular events (HR 0.51, 95% CI 0.28-0.95, P=.03; 2.5% absolute risk reduction) and a 34% relative reduction in new hypertension (HR 0.66, 95% CI 0.49-0.89, P=.006; 5.3% absolute risk reduction) versus placebo. The separate primary report (Chiasson et al., Lancet 2002, PMID 12086760) is the one showing reduced progression to type 2 diabetes.",
+     "ref": "Chiasson et al., STOP-NIDDM, 2002 Lancet & 2003 JAMA",
+     "pmid": "12876091",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "STOP-NIDDM: in people with impaired glucose tolerance, acarbose reduced progression to type 2 diabetes (2002 Lancet) and, in a secondary analysis, was reported to reduce cardiovascular events and hypertension (2003 JAMA).",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "ACE trial: in 6,522 Chinese patients with coronary heart disease and impaired glucose tolerance, acarbose reduced incident diabetes (rate ratio ~0.82) but did NOT reduce cardiovascular events.",
@@ -16751,16 +16930,28 @@
    "caveats": "Trials are small, short, and heterogeneous, so it's easy to cherry-pick a win. Much of the excitement rests on animal work that doesn't scale linearly to humans. Long-term safety data remain limited, and because much of the precursor is broken down before reaching tissue, 'more NAD⁺ in blood' doesn't guarantee 'more NAD⁺ where you want it.'",
    "trials": [
     {
-     "finding": "Chronic nicotinamide riboside supplementation was well-tolerated and elevated blood NAD⁺ in healthy middle-aged and older adults (a small placebo-controlled crossover RCT), with a suggestion of reduced blood pressure/arterial stiffness in those with elevated readings.",
-     "ref": "Martens et al., 2018, Nature Communications"
+     "finding": "Chronic nicotinamide riboside supplementation (2 x 6-week randomised, double-blind, placebo-controlled crossover trial) was well tolerated and effectively stimulated NAD+ metabolism in healthy middle-aged and older adults; the authors flag reduced blood pressure and arterial stiffness as a signal warranting further clinical trials rather than an established effect.",
+     "ref": "Martens et al., 2018, Nature Communications",
+     "pmid": "29599478",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Chronic nicotinamide riboside supplementation was well-tolerated and elevated blood NAD⁺ in healthy middle-aged and older adults (a small placebo-controlled crossover RCT), with a suggestion of reduced blood pressure/arterial stiffness in those with elevated readings.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "NMN 250 mg/day for 10 weeks increased skeletal-muscle insulin sensitivity and insulin signalling in prediabetic postmenopausal women, without changing several other metabolic indices.",
-     "ref": "Yoshino et al., 2021, Science"
+     "ref": "Yoshino et al., 2021, Science",
+     "pmid": "33888596",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "NR dose-dependently raised whole-blood NAD⁺ (~22%, 51%, 142% at 100, 300, 1000 mg) and was well tolerated over 8 weeks in healthy overweight adults.",
-     "ref": "Conze et al., 2019, Scientific Reports"
+     "ref": "Conze et al., 2019, Scientific Reports",
+     "pmid": "31278280",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -18422,7 +18613,10 @@
     },
     {
      "finding": "Randomised, placebo-controlled trial (24 older adults randomised — 12 to GlyNAC vs 12 to an isonitrogenous alanine placebo — for 16 weeks; NCT01870193): GlyNAC corrected glutathione deficiency and improved oxidative stress, inflammation (IL-6, TNF-alpha), insulin resistance, mitochondrial fatty-acid oxidation, physical function, and gait speed (about 19%).",
-     "ref": "Kumar et al., 2023, Journals of Gerontology: Series A"
+     "ref": "Kumar et al., 2023, Journals of Gerontology: Series A",
+     "pmid": "35975308",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -18859,11 +19053,19 @@
    "trials": [
     {
      "finding": "EMPA-REG OUTCOME: empagliflozin reduced cardiovascular death by 38% and hospitalisation for heart failure by 35% in type 2 diabetes with established cardiovascular disease (n≈7,020).",
-     "ref": "Zinman et al., 2015, N Engl J Med"
+     "ref": "Zinman et al., 2015, N Engl J Med",
+     "pmid": "26378978",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "CREDENCE: canagliflozin reduced the primary renal composite (ESKD, doubling of serum creatinine, renal or cardiovascular death) by 30% (HR 0.70) in diabetic kidney disease.",
-     "ref": "Perkovic et al., 2019, N Engl J Med"
+     "ref": "Perkovic et al., 2019, N Engl J Med",
+     "pmid": "30697905",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper. PMID 30697905 is Toyama et al., Diabetes Obes Metab 2019;21(5):1237-1250 - a systematic review and meta-analysis of 27 studies (up to 7,363 participants) of SGLT2 inhibitors as a class in type 2 diabetes with CKD, with literature searched only to 7 August 2018, so it predates and does not include CREDENCE.",
+     "pmid_rejected_on": "2026-07-30"
     },
     {
      "finding": "CANVAS Program: canagliflozin reduced major cardiovascular events but roughly doubled lower-limb amputation risk (HR ~1.97), leading to a boxed warning later reviewed.",
@@ -18875,7 +19077,10 @@
     },
     {
      "finding": "ITP: dietary canagliflozin (180 ppm from 7 months of age) extended median lifespan of genetically heterogeneous male mice by ~14%, with no lifespan benefit in females.",
-     "ref": "Miller et al., 2020, JCI Insight"
+     "ref": "Miller et al., 2020, JCI Insight",
+     "pmid": "32990681",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -19102,7 +19307,10 @@
    "trials": [
     {
      "finding": "Systematic review and meta-analysis of oral astaxanthin for human skin ageing: significantly restored skin moisture and improved elasticity, but did not significantly reduce wrinkle depth versus placebo.",
-     "ref": "Systematic review & meta-analysis, Nutrients, 2021 (PMC8472736)"
+     "ref": "Systematic review & meta-analysis, Nutrients, 2021 (PMC8472736)",
+     "pmid": "34578794",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Multiple small randomised, double-blind, placebo-controlled trials report reduced subjective eye fatigue and improved accommodation with astaxanthin in screen/computer-related eye strain — though sample sizes are small and results are not uniformly positive.",
@@ -19328,8 +19536,14 @@
      "ref": "Al-Dulaimi, Thomas et al., 2025, Biogerontology (Brunel University London)"
     },
     {
-     "finding": "In female Swiss-derived SHR mice, Epitalon (1 µg/mouse, 5 days/month, lifelong) raised maximum lifespan by ~12% and did not increase total spontaneous tumour incidence (fewer malignant lymphomas) — foundational animal evidence for a geroprotective, non-tumour-promoting profile in that model.",
-     "ref": "Anisimov et al., 2003, Biogerontology"
+     "finding": "In female outbred Swiss-derived SHR mice (n=54 per group) given Epitalon 1 microgram/mouse (about 30-40 microgram/kg) subcutaneously on 5 consecutive days every month from age 3 months until natural death, Epitalon did NOT change mean lifespan, but increased the lifespan of the last 10% of survivors by 13.3% (P<0.01) and maximum lifespan by 12.3%. It also slowed the age-related shutdown of oestrous function and cut bone-marrow chromosome aberrations by 17.1% (P<0.05). Total spontaneous tumour incidence was unchanged, with a 6.0-fold reduction in leukaemia - foundational animal evidence for a geroprotective, non-tumour-promoting profile in that model.",
+     "ref": "Anisimov et al., 2003, Biogerontology",
+     "pmid": "14501183",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "In female Swiss-derived SHR mice, Epitalon (1 µg/mouse, 5 days/month, lifelong) raised maximum lifespan by ~12% and did not increase total spontaneous tumour incidence (fewer malignant lymphomas) — foundational animal evidence for a geroprotective, non-tumour-promoting profile in that model.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Long-term treatment with epithalamin (the pineal *extract*, not synthetic AEDG) in elderly coronary patients was associated with roughly halved cardiovascular mortality (and lower total mortality) over extended follow-up.",
@@ -20932,7 +21146,10 @@
     },
     {
      "finding": "Noopept increased the expression of NGF and BDNF in the rat hippocampus, the neurotrophic mechanism underlying its purported effects (animal study).",
-     "ref": "Ostrovskaya et al., 2008, Bull Exp Biol Med 146(3):334–337"
+     "ref": "Ostrovskaya et al., 2008, Bull Exp Biol Med 146(3):334–337",
+     "pmid": "19240853",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -21148,8 +21365,14 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Cochrane review (14 studies; ~884 cases in the memory analysis, elderly patients with chronic cerebral disorders): modest, consistent benefit on memory and behaviour, but no benefit on attention.",
-     "ref": "Fioravanti & Yanagi, 2005, Cochrane Database of Systematic Reviews"
+     "finding": "Cochrane review of 14 double-blind, placebo-controlled trials in elderly patients with chronic cerebral disorders (subjective memory complaints through to mild-to-moderate vascular or senile dementia): evidence of benefit on memory and behaviour in the short to medium term, stronger evidence on global clinical impression, but no evidence of benefit on attention; well tolerated.",
+     "ref": "Fioravanti & Yanagi, 2005, Cochrane Database of Systematic Reviews",
+     "pmid": "15846601",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Cochrane review (14 studies; ~884 cases in the memory analysis, elderly patients with chronic cerebral disorders): modest, consistent benefit on memory and behaviour, but no benefit on attention.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "ICTUS trial (~2,298 patients, 2000 mg/day): citicoline was not efficacious in moderate-to-severe acute ischaemic stroke — a large, well-controlled negative result.",
@@ -22022,8 +22245,14 @@
      "ref": "Zozulya (Zozulia) et al., 2008, Zh Nevrol Psikhiatr im. S.S. Korsakova (Russian-language)"
     },
     {
-     "finding": "Semax added to rehabilitation after ischemic stroke (110 patients, ~6000 µg/day in short courses): faster recovery of neurological and motor function and elevated plasma BDNF versus the non-Semax subgroup.",
-     "ref": "Semax ischaemic-stroke rehabilitation study, Zh Nevrol Psikhiatr im. S.S. Korsakova, 2018 (PMID 29798983, Russian-language)"
+     "finding": "Semax added to post-stroke rehabilitation (110 patients; 6,000 microg/day in two 10-day courses): raised plasma BDNF and kept it elevated throughout, and accelerated and improved final functional recovery on the Barthel index versus the non-Semax subgroup, with a smaller effect on paresis; motor improvement tracked mainly with early rehabilitation timing. Non-randomised subgroup comparison, not placebo-controlled.",
+     "ref": "Semax ischaemic-stroke rehabilitation study, Zh Nevrol Psikhiatr im. S.S. Korsakova, 2018 (PMID 29798983, Russian-language)",
+     "pmid": "29798983",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Semax added to rehabilitation after ischemic stroke (110 patients, ~6000 µg/day in short courses): faster recovery of neurological and motor function and elevated plasma BDNF versus the non-Semax subgroup.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "In rats, a single dose of Semax raised hippocampal BDNF protein (~1.4-fold) and increased TrkB receptor phosphorylation — the animal basis for the 'raises neurotrophins' claim.",
@@ -23170,8 +23399,14 @@
    "caveats": "Treat the 'anxiolytic' label as a description of an acute feeling, not a proven therapy. The absence of RCTs, the reliance on inaccessible old data, the fast tolerance and the severe withdrawal together mean the risk-to-evidence ratio is poor. Gray-market product quality adds a further unknown.",
    "trials": [
     {
-     "finding": "Systematic review of phenibut clinical trials and case reports: reviewed 11 clinical trials (583 patients), but none available in English and none containing statistical analysis, precluding any efficacy conclusion; also catalogued 14 dependence/intoxication case reports (16 patients).",
-     "ref": "Kupats et al., 2020, Drug Testing and Analysis (systematic review)"
+     "finding": "Systematic review of phenibut safety and tolerability (Kupats et al., Pharmacopsychiatry 2020;53(5):201-208): 11 clinical trials (583 patients) and 14 dependence/intoxication case reports (16 patients) were reviewed. Adverse events were reported in only 5.66% of clinical-trial patients, most commonly somnolence (1.89%), whereas the case reports involved doses of 0.5-100 g/day - far above the recommended 0.25-2 g/day - with cardiovascular effects, insomnia, anxiety and agitation, hallucinations and depressed consciousness. The authors concluded phenibut appears safe and well tolerated at therapeutic doses, while leaving open the quality of online-purchased phenibut and the contribution of alcohol and other drug abuse to reported dependence. Note this review assessed safety and tolerability, not efficacy.",
+     "ref": "Kupats et al., 2020, Drug Testing and Analysis (systematic review)",
+     "pmid": "32340063",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Systematic review of phenibut clinical trials and case reports: reviewed 11 clinical trials (583 patients), but none available in English and none containing statistical analysis, precluding any efficacy conclusion; also catalogued 14 dependence/intoxication case reports (16 patients).",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Pharmacology review characterising phenibut (β-phenyl-GABA) as a GABA-B-acting tranquilizer and nootropic, based largely on older, non-controlled Russian data.",
@@ -25763,7 +25998,10 @@
     },
     {
      "finding": "Bergamot polyphenolic fraction added to rosuvastatin enhanced the statin's LDL-lowering and reduced LOX-1 expression versus statin alone (open-label).",
-     "ref": "Gliozzi et al., 2013, International Journal of Cardiology"
+     "ref": "Gliozzi et al., 2013, International Journal of Cardiology",
+     "pmid": "24239156",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Systematic review and meta-analysis of 14 RCTs: bergamot significantly reduced total cholesterol, LDL and triglycerides and raised HDL — but with high heterogeneity across small studies.",
@@ -26215,7 +26453,10 @@
     },
     {
      "finding": "Chlorhexidine mouthwash lowered oral nitrate reduction (~90%) and raised blood pressure by ~2–3.5 mmHg, establishing a physiological role for nitrate-reducing oral bacteria in BP control.",
-     "ref": "Kapil et al., 2013, Free Radic Biol Med"
+     "ref": "Kapil et al., 2013, Free Radic Biol Med",
+     "pmid": "23183324",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Dose-response study (70/140/280 mL beetroot juice ≈ 4.2/8.4/16.8 mmol): plasma nitrite peaked ~2–3 h post-ingestion, with O₂-cost and exercise effects plateauing at the highest dose.Plasma nitrite and oxygen cost changed dose-dependently, but exercise tolerance did not improve further with 16.8 versus 8.4 mmol nitrate.",
@@ -26657,7 +26898,10 @@
     },
     {
      "finding": "Systematic review & meta-analysis (13 RCTs, ~3,973 men): tadalafil 5 mg once daily significantly improved both lower-urinary-tract (prostate) symptom scores and erectile function versus placebo.",
-     "ref": "Wang et al., 2018, LUTS (PubMed 29341503)"
+     "ref": "Wang et al., 2018, LUTS (PubMed 29341503)",
+     "pmid": "29341503",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -27125,7 +27369,10 @@
     },
     {
      "finding": "PLACIDE, a large RCT (2,941 older inpatients on antibiotics): a lactobacilli/bifidobacteria preparation did NOT reduce antibiotic-associated diarrhoea (10.8% vs 10.4%) or C. difficile diarrhoea.",
-     "ref": "Allen et al. (PLACIDE), 2013, Lancet"
+     "ref": "Allen et al. (PLACIDE), 2013, Lancet",
+     "pmid": "23932219",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "RCT of Lactobacillus rhamnosus GG (10^10 CFU twice daily) in young children with acute gastroenteritis: no reduction in the severity or duration of illness versus placebo.",
@@ -27562,8 +27809,14 @@
      "ref": "Hemilä & Chalker, 2013, Cochrane Database of Systematic Reviews (CD000980)"
     },
     {
-     "finding": "Depletion-repletion pharmacokinetics in healthy volunteers established that plasma follows sigmoid kinetics — tissue/cell stores saturate by ~200-400 mg/day — and formed the basis for raising the RDA to 200 mg.",
-     "ref": "Levine et al., 1996, Proc Natl Acad Sci USA 93:3704-3709"
+     "finding": "Depletion-repletion pharmacokinetics in 7 healthy volunteers hospitalised for 4-6 months on a <5 mg/day vitamin C diet, with steady-state measured at seven daily doses from 30 to 2,500 mg, established that plasma vitamin C follows sigmoid kinetics: the steep portion lies between 30 and 100 mg/day, circulating neutrophils, monocytes and lymphocytes saturate at 100 mg/day (holding at least 14-fold higher concentrations than plasma), the first dose beyond the sigmoid portion is 200 mg/day, and plasma saturates completely at 1,000 mg/day. Bioavailability was complete at a single 200 mg dose and declined at 500 mg and above. On this basis the authors recommended raising the RDA from 60 to 200 mg/day, and concluded that doses above 400 mg/day have no evident value and that safe intake is below 1,000 mg/day.",
+     "ref": "Levine et al., 1996, Proc Natl Acad Sci USA 93:3704-3709",
+     "pmid": "8623000",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Depletion-repletion pharmacokinetics in healthy volunteers established that plasma follows sigmoid kinetics — tissue/cell stores saturate by ~200-400 mg/day — and formed the basis for raising the RDA to 200 mg.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     }
    ]
   },
@@ -27807,7 +28060,12 @@
     },
     {
      "finding": "Folic acid + B12 + B6 lowered homocysteine (~25%) but did not reduce major cardiovascular events in high-risk vascular patients, though stroke was modestly reduced (HOPE-2).",
-     "ref": "Lonn et al., 2006, New England Journal of Medicine"
+     "ref": "Lonn et al., 2006, New England Journal of Medicine",
+     "pmid": "16373648",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper. PMID 16373648 is Flicker et al., Stroke 2006;37:547-9 - a 2-year trial in 299 Australian men aged >=75 showing that the homocysteine-LOWERING effect of B vitamins is greatest in those with B12 deficiency or hyperhomocysteinaemia. It reports no cardiovascular event outcomes at all, no ~25% homocysteine redu",
+     "pmid_rejected_on": "2026-07-30"
     }
    ]
   },
@@ -28032,8 +28290,14 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Systematic review and meta-analysis: iron treatment improved iron status and blood iron parameters in iron-deficient but non-anemic endurance athletes.",
-     "ref": "Burden et al., 2015, Br J Sports Med 49(21):1389–97"
+     "finding": "Systematic review and meta-analysis (17 eligible studies): in iron-deficient but non-anaemic endurance athletes, iron treatment had large effects on serum ferritin (Hedges' g=1.088, 95% CI 0.914-1.263), serum iron (g=1.004, 0.828-1.181) and transferrin saturation (g=0.741, 0.564-0.919), and moderate effects on haemoglobin concentration (g=0.695, 0.533-0.836) and VO2max (g=0.610, 0.399-0.821), all p<0.001 - i.e. it improved both iron status and aerobic capacity. Treatments lasting beyond 80 days had the least effect on ferritin.",
+     "ref": "Burden et al., 2015, Br J Sports Med 49(21):1389–97",
+     "pmid": "25361786",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Systematic review and meta-analysis: iron treatment improved iron status and blood iron parameters in iron-deficient but non-anemic endurance athletes.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     }
    ]
   },
@@ -28262,7 +28526,12 @@
     },
     {
      "finding": "In Hashimoto's thyroiditis, selenium supplementation significantly reduced thyroid peroxidase antibodies (SMD ≈ -0.96; 29 cohorts; ~2,358 participants) and lowered TSH.",
-     "ref": "Systematic review & meta-analysis, Thyroid, 2024 (PMID 38243784)"
+     "ref": "Systematic review & meta-analysis, Thyroid, 2024 (PMID 38243784)",
+     "pmid": "39650307",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper, and it points the opposite way on the claimed outcome. PMID 39650307 (Clin Med Insights Endocrinol Diabetes 2024, not Thyroid) pools just 3 studies / 288 participants comparing selenium PLUS myo-inositol against selenium alone, and found TPOAb NON-significantly reduced by the combination. The claim's numbe",
+     "pmid_rejected_on": "2026-07-30"
     }
    ]
   },
@@ -28451,7 +28720,12 @@
    "trials": [
     {
      "finding": "Extended-release niacin added to statin therapy did not reduce cardiovascular events in patients with established heart disease and low HDL; the trial was stopped early for lack of benefit.",
-     "ref": "AIM-HIGH Investigators (Boden et al.), 2011, N Engl J Med"
+     "ref": "AIM-HIGH Investigators (Boden et al.), 2011, N Engl J Med",
+     "pmid": "21392609",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper - this is the design/baseline paper, not the result. PMID 21392609 (Am Heart J 2011;161:538-43) reports only the BASELINE CHARACTERISTICS of the 3,414 randomised AIM-HIGH participants and closes by saying the study 'should determine whether there is incremental clinical benefit of niacin' - it contains no o",
+     "pmid_rejected_on": "2026-07-30"
     },
     {
      "finding": "In 25,673 high-risk patients on a statin, extended-release niacin/laropiprant produced no reduction in major vascular events and a significant excess of serious adverse effects (diabetes, infection, bleeding).",
@@ -28733,7 +29007,10 @@
     },
     {
      "finding": "Phase 1 study of purified 20-hydroxyecdysone (BIO101) in healthy young and older adults established safety and pharmacokinetics, with a short mean plasma half-life (~2.4–4.9 h).",
-     "ref": "Dioh et al., 2023, Journal of Cachexia, Sarcopenia and Muscle"
+     "ref": "Dioh et al., 2023, Journal of Cachexia, Sarcopenia and Muscle",
+     "pmid": "37057316",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -29149,8 +29426,14 @@
    "caveats": "The headline 22.7% underwhelmed expectations (below Novo's ~25% guidance), partly because flexible dosing meant many patients never reached the top dose. Gastrointestinal side effects are common. Above all, these figures describe pharmaceutical-grade drug given under medical supervision with gradual escalation — not a self-sourced peptide. Treat them as the best case under clean, monitored conditions.",
    "trials": [
     {
-     "finding": "Phase 2 dose-finding trial (n=706): once-weekly cagrilintide monotherapy produced dose-dependent weight loss up to ~10.8% at 4.5 mg over 26 weeks vs ~3.0% placebo, and outperformed liraglutide 3.0 mg.",
-     "ref": "Lau et al., 2021, Lancet"
+     "finding": "Phase 2 dose-finding trial (906 randomised: 706 to once-weekly cagrilintide 0.3-4.5 mg, 99 to liraglutide 3.0 mg, 101 to placebo; adults with BMI >=30, or >=27 with hypertension or dyslipidaemia, without diabetes): over 26 weeks cagrilintide monotherapy produced dose-dependent weight loss of 6.0-10.8%, reaching 10.8% (11.5 kg) at 4.5 mg versus 3.0% (3.3 kg) on placebo, and beat liraglutide 3.0 mg (10.8% vs 9.0%; estimated treatment difference 1.8%, p=0.03). Gastrointestinal adverse events were more frequent on cagrilintide (41-63% vs 32% placebo), primarily nausea (20-47% vs 18%).",
+     "ref": "Lau et al., 2021, Lancet",
+     "pmid": "34798060",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Phase 2 dose-finding trial (n=706): once-weekly cagrilintide monotherapy produced dose-dependent weight loss up to ~10.8% at 4.5 mg over 26 weeks vs ~3.0% placebo, and outperformed liraglutide 3.0 mg.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Phase 1b trial: cagrilintide (up to 4.5 mg) co-administered with semaglutide 2.4 mg produced up to ~17% weight loss over 20 weeks and was well tolerated.",
@@ -29161,12 +29444,21 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "REDEFINE 1 phase 3 (n=3417, overweight/obesity without diabetes): CagriSema 2.4/2.4 mg produced 22.7% mean weight loss over 68 weeks (trial-product estimand) vs 16.1% (semaglutide), 11.8% (cagrilintide) and 2.3% (placebo).",
-     "ref": "REDEFINE 1, 2025, N Engl J Med (NEJMoa2502081)"
+     "finding": "REDEFINE 1 phase 3 (n=3,417, overweight or obesity without diabetes): CagriSema 2.4/2.4 mg produced a mean 20.4% weight loss over 68 weeks versus 3.0% with placebo (treatment-policy estimand; estimated difference -17.3 percentage points, 95% CI -18.1 to -16.6, P<0.001), with more participants reaching 5%, 20%, 25% and 30% weight-loss thresholds. Gastrointestinal adverse events affected 79.6% versus 39.9% on placebo, mostly transient and mild-to-moderate.",
+     "ref": "REDEFINE 1, 2025, N Engl J Med (NEJMoa2502081)",
+     "pmid": "40544433",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "REDEFINE 1 phase 3 (n=3417, overweight/obesity without diabetes): CagriSema 2.4/2.4 mg produced 22.7% mean weight loss over 68 weeks (trial-product estimand) vs 16.1% (semaglutide), 11.8% (cagrilintide) and 2.3% (placebo).",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "REDEFINE 2 phase 3 (overweight/obesity WITH type 2 diabetes): CagriSema produced ~13.7% weight loss (treatment-policy estimate) vs ~3.4% placebo over 68 weeks.",
-     "ref": "REDEFINE 2, 2025, N Engl J Med"
+     "ref": "REDEFINE 2, 2025, N Engl J Med",
+     "pmid": "40544432",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -30015,7 +30307,10 @@
    "trials": [
     {
      "finding": "About 4 weeks of rHuEPO in healthy subjects raised VO₂max ~12.6% but increased time-to-exhaustion at 80% VO₂max by ~54% — showing it boosts submaximal endurance far more than peak aerobic capacity.",
-     "ref": "Thomsen et al., 2007, Eur J Appl Physiol"
+     "ref": "Thomsen et al., 2007, Eur J Appl Physiol",
+     "pmid": "17668232",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "In trained men, rHuEPO improved running time-trial performance ~6%, with a residual ~3% improvement still present four weeks after the last dose.",
@@ -30026,8 +30321,14 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Double-blind RCT in well-trained cyclists: EPO increased haemoglobin mass and VO₂max and improved maximal lab tests, but did NOT significantly improve actual road-race performance up Mont Ventoux.",
-     "ref": "Heuberger et al., 2017, Lancet Haematology"
+     "finding": "Double-blind, randomised, placebo-controlled trial in 48 well-trained non-professional male cyclists (rHuEPO, epoetin beta, mean 6,000 IU per week, or placebo for 8 weeks): EPO raised haemoglobin concentration, maximal power output and VO2max in a maximal laboratory exercise test, but did NOT improve submaximal laboratory exercise performance (mean power output 283.18 W vs 277.28 W) or actual road-race time up Mont Ventoux (1 h 40 min 32 s vs 1 h 40 min 15 s, 0.3% difference, 95% CI -8.3 to 9.6).",
+     "ref": "Heuberger et al., 2017, Lancet Haematology",
+     "pmid": "28669689",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Double-blind RCT in well-trained cyclists: EPO increased haemoglobin mass and VO₂max and improved maximal lab tests, but did NOT significantly improve actual road-race performance up Mont Ventoux.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Normal Hematocrit Cardiac Trial: in haemodialysis patients with cardiac disease, targeting a normal (higher) haematocrit produced numerically more deaths and nonfatal myocardial infarctions than the lower target (risk ratio 1.3, 95% CI 0.9-1.9). The trial was halted and the higher target was not recommended — but the difference did NOT reach the prespecified statistical stopping boundary, so the excess risk was not statistically conclusive.",
@@ -30232,8 +30533,14 @@
    "caveats": "The core problem is translation: strong rodent mechanism, negative human efficacy, and a likely brown-fat/β3 species gap. Add no long-term human safety data, regulator-flagged immunogenicity concerns, a WADA ban, and grey-market products of uncertain identity and dose. Treat the rodent numbers as biology, not as a promise for people.",
    "trials": [
     {
-     "finding": "In obese mice, both human GH and AOD-9604 reduced body weight and fat and increased β3-adrenergic receptor expression after ~14 days of chronic dosing; in β3-receptor knockout mice the chronic weight-loss and lipolysis effect was lost, while an acute energy-expenditure/fat-oxidation effect persisted — localising the durable mechanism to the β3 pathway.",
-     "ref": "Heffernan et al., 2001, Endocrinology 142(12):5182-5189"
+     "finding": "In obese mice, both human GH and AOD-9604 reduced body weight and body fat after 14 days of chronic intraperitoneal dosing, and raised the repressed expression of beta3-adrenergic receptor RNA back towards lean-mouse levels. In beta3-AR knockout mice, chronic treatment failed to produce the weight change and lipolysis seen in wild-type controls, although acute AOD-9604 still increased energy expenditure and fat oxidation in the knockouts. The authors concluded that the lipolytic actions of hGH and AOD-9604 are NOT mediated directly through the beta3-AR, but that the increase in beta3-AR expression they cause may subsequently contribute to enhanced lipolytic sensitivity (animal study).",
+     "ref": "Heffernan et al., 2001, Endocrinology 142(12):5182-5189",
+     "pmid": "11713213",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "In obese mice, both human GH and AOD-9604 reduced body weight and fat and increased β3-adrenergic receptor expression after ~14 days of chronic dosing; in β3-receptor knockout mice the chronic weight-loss and lipolysis effect was lost, while an acute energy-expenditure/fat-oxidation effect persisted — localising the durable mechanism to the β3 pathway.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Pooled review of human trials of the hexadecapeptide AOD9604 reported it was generally well tolerated at the doses tested, with no effect on IGF-1 and no adverse effect on glucose tolerance (unlike full growth hormone) — safety/tolerability, not proof of weight-loss efficacy.",
@@ -30657,7 +30964,10 @@
    "trials": [
     {
      "finding": "Double-blind study in 16 chronic insomniac patients (25 nmol/kg IV): DSIP produced some weak objective improvements (higher sleep efficiency, shorter sleep latency) but no meaningful change in subjective sleep quality, and the authors noted the effects were weak and possibly partly an artefact of a change in the placebo group; they concluded short-term DSIP is not likely to be of major therapeutic benefit.",
-     "ref": "Bes, Hofman, Schuur & Van Boxtel, 1992, Neuropsychobiology 26(4):193-197"
+     "ref": "Bes, Hofman, Schuur & Van Boxtel, 1992, Neuropsychobiology 26(4):193-197",
+     "pmid": "1299794",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "In 11 healthy male volunteers, a single intravenous dose (25 nmol/kg) of DSIP produced a significant reduction of ACTH-like immunoreactivity in plasma lasting at least three hours, while plasma cortisol was unaffected — indicating an inhibitory effect on ACTH secretion (HPA-axis dampening).",
@@ -30848,7 +31158,10 @@
    "trials": [
     {
      "finding": "Systematic review and meta-analysis of 13 RCTs: yeast β-glucan significantly reduced upper-respiratory-tract-infection incidence (odds ratio ≈ 0.35, 95% CI 0.19–0.62) and decreased the number and duration of episodes versus placebo.",
-     "ref": "Zhong et al., 2021, European Journal of Nutrition"
+     "ref": "Zhong et al., 2021, European Journal of Nutrition",
+     "pmid": "33900466",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "250 mg/day baker's yeast β-glucan (Wellmune) for 12 weeks reduced upper-respiratory symptoms and improved mood state in women under moderate psychological stress.",
@@ -31284,11 +31597,17 @@
     },
     {
      "finding": "'Restoration of collagen formation in photodamaged human skin by tretinoin' — biopsy-confirmed increased collagen I formation versus vehicle.",
-     "ref": "Griffiths et al., 1993, N Engl J Med"
+     "ref": "Griffiths et al., 1993, N Engl J Med",
+     "pmid": "8336752",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Systematic review of randomized controlled trials: topical tretinoin consistently improved measures of facial photoaging.",
-     "ref": "Topical tretinoin for photoaging systematic review, 2022, Int J Womens Dermatol"
+     "ref": "Topical tretinoin for photoaging systematic review, 2022, Int J Womens Dermatol",
+     "pmid": "35620028",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -32219,11 +32538,17 @@
     },
     {
      "finding": "Pooled trial-level meta-analysis found calcium supplements (without co-administered vitamin D) associated with increased risk of myocardial infarction (RR ~1.27, 95% CI 1.01-1.59).",
-     "ref": "Bolland et al., 2010, BMJ 341:c3691"
+     "ref": "Bolland et al., 2010, BMJ 341:c3691",
+     "pmid": "20671013",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "3-year RCT (n=244): MK-7 (vitamin K2) 180 µg/day significantly slowed the decline in bone mineral density at lumbar spine and femoral neck in healthy postmenopausal women.",
-     "ref": "Knapen et al., 2013, Osteoporos Int 24:2499-2507"
+     "ref": "Knapen et al., 2013, Osteoporos Int 24:2499-2507",
+     "pmid": "23525894",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "3-year RCT: MK-7 180 µg/day improved arterial stiffness (carotid-femoral pulse wave velocity) and reduced inactive MGP (dp-ucMGP) by about half in healthy postmenopausal women.",
@@ -32450,7 +32775,10 @@
    "trials": [
     {
      "finding": "Network meta-analysis of 133 double-blind RCTs (14,346 children/adolescents; 10,296 adults): amphetamines were the most efficacious medication for ADHD in adults, with methylphenidate favoured first-line in children and adolescents.",
-     "ref": "Cortese et al., 2018, Lancet Psychiatry"
+     "ref": "Cortese et al., 2018, Lancet Psychiatry",
+     "pmid": "30097390",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "In 24 healthy adults, equimolar oral lisdexamfetamine 100 mg and d-amphetamine 40 mg produced similar peak amphetamine exposure and subjective effects; lisdexamfetamine peaks occurred about 1.1 hours later, but peak drug liking was not lower and the authors judged oral abuse risk similar.",
@@ -32705,7 +33033,10 @@
     },
     {
      "finding": "Human PET: a single 60 mg oral dose of methylphenidate blocked ~74% of striatal dopamine transporters, with therapeutic doses occupying roughly 50–75% — directly confirming reuptake blockade as the in-vivo mechanism at clinical doses.",
-     "ref": "Volkow et al., 1998, American Journal of Psychiatry"
+     "ref": "Volkow et al., 1998, American Journal of Psychiatry",
+     "pmid": "9766762",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -32928,8 +33259,14 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "SUNRISE 1: in older adults, lemborexant was superior to both placebo and zolpidem extended release on objectively measured sleep onset (latency to persistent sleep) over one month.",
-     "ref": "Rosenberg et al., 2019, JAMA Network Open"
+     "finding": "SUNRISE 1 (phase 3, 1,006 randomised adults aged 55 and older with insomnia disorder; 86% women, median age 63): over one month, both lemborexant 5 mg and 10 mg were superior to placebo on the objective primary endpoint of sleep onset (latency to persistent sleep on polysomnography; treatment ratios 0.77 and 0.72, both P<.001) and on sleep efficiency and wake-after-sleep onset. Against zolpidem tartrate extended release 6.25 mg, lemborexant's significant advantage was on sleep maintenance - wake-after-sleep onset in the second half of the night (-6.7 and -8.0 minutes) - not on sleep onset.",
+     "ref": "Rosenberg et al., 2019, JAMA Network Open",
+     "pmid": "31880796",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "SUNRISE 1: in older adults, lemborexant was superior to both placebo and zolpidem extended release on objectively measured sleep onset (latency to persistent sleep) over one month.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "SUNRISE 2: over 12 months, lemborexant significantly improved patient-reported sleep onset, wake after sleep onset and sleep efficiency versus placebo in adults with insomnia.",
@@ -33622,11 +33959,17 @@
     },
     {
      "finding": "Phase 2, 59 patients: two doses of psilocybin (with psychological support) were not significantly superior to 6 weeks of daily escitalopram on the primary depression outcome (QIDS-SR-16 at week 6), though several secondary measures trended in psilocybin's favour.",
-     "ref": "Carhart-Harris et al., 2021, N Engl J Med"
+     "ref": "Carhart-Harris et al., 2021, N Engl J Med",
+     "pmid": "33852780",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Randomised waiting-list-controlled trial in major depressive disorder (24 participants): psilocybin-assisted therapy produced large, rapid antidepressant effects versus delayed treatment.",
-     "ref": "Davis et al., 2021, JAMA Psychiatry"
+     "ref": "Davis et al., 2021, JAMA Psychiatry",
+     "pmid": "33146667",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "Self-blinding citizen-science placebo-controlled study of microdosing (191 completers): micro-dose and placebo groups improved equally on wellbeing and cognition, and participants' guess about their allocation predicted outcomes more than actual allocation.",
@@ -33639,7 +33982,10 @@
     },
     {
      "finding": "Human PET study (8 healthy volunteers): the intensity of psilocybin's subjective effects correlated with cerebral 5-HT2A receptor occupancy and plasma psilocin levels, with occupancy reaching up to ~72% at higher doses.",
-     "ref": "Madsen et al., 2019, Neuropsychopharmacology"
+     "ref": "Madsen et al., 2019, Neuropsychopharmacology",
+     "pmid": "30685771",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     }
    ]
   },
@@ -34108,7 +34454,12 @@
    "trials": [
     {
      "finding": "FOURIER: evolocumab added to statin in 27,564 patients with atherosclerotic disease reduced the key secondary endpoint (cardiovascular death, MI, or stroke) by about 20%, with LDL lowered roughly 60%.",
-     "ref": "Sabatine et al., 2017, N Engl J Med"
+     "ref": "Sabatine et al., 2017, N Engl J Med",
+     "pmid": "28927706",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper. PMID 28927706 is the prespecified DIABETES subgroup analysis of FOURIER (Sabatine et al., Lancet Diabetes Endocrinol 2017;5:941-950), reporting key-secondary-endpoint HRs split by diabetes status (0.82 with diabetes, 0.78 without) and showing evolocumab does not worsen glycaemia. It reports no overall ~20%",
+     "pmid_rejected_on": "2026-07-30"
     },
     {
      "finding": "ODYSSEY OUTCOMES: alirocumab after acute coronary syndrome reduced major adverse cardiovascular events, with a signal toward lower all-cause mortality.",
@@ -34116,7 +34467,12 @@
     },
     {
      "finding": "ORION-10 and ORION-11: inclisiran lowered LDL by about 52% and 50% respectively versus placebo at day 510, with twice-yearly dosing and an adverse-event profile similar to placebo apart from injection-site reactions.",
-     "ref": "Ray et al., 2020, N Engl J Med 382:1507"
+     "ref": "Ray et al., 2020, N Engl J Med 382:1507",
+     "pmid": "33089390",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "pmid_rejected_note": "Wrong paper - this is a narrative review, not the trial. PMID 33089390 is Sinning & Landmesser, Curr Cardiol Rep 2020;22:176, a review of LDL-lowering strategies that only summarises inclisiran as reducing LDL-C 'by approximately 50%' across three phase 3 studies. It does not report the trial-specific 52% (ORION-10) an",
+     "pmid_rejected_on": "2026-07-30"
     }
    ]
   },
@@ -34316,7 +34672,10 @@
    "trials": [
     {
      "finding": "Meta-analysis of four intravenous RCTs (ALADIN I, ALADIN III, SYDNEY, NATHAN II): IV 600 mg/day for 3 weeks significantly improved neuropathic symptoms (~24% relative improvement in Total Symptom Score vs placebo) and was well tolerated.",
-     "ref": "Ziegler et al., 2004, Diabetic Medicine"
+     "ref": "Ziegler et al., 2004, Diabetic Medicine",
+     "pmid": "14984445",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "SYDNEY 2 trial: oral ALA improved the Total Symptom Score over 5 weeks; 600 mg once daily gave the best risk-to-benefit, with 1,200 and 1,800 mg adding side effects but no extra benefit.",
@@ -34785,7 +35144,10 @@
    "trials": [
     {
      "finding": "Systematic review & meta-analysis of RCTs found acetyl-L-carnitine significantly reduced pain in peripheral neuropathy versus placebo, with a larger effect in diabetic than non-diabetic neuropathy.",
-     "ref": "Li et al., 2015, PLOS ONE"
+     "ref": "Li et al., 2015, PLOS ONE",
+     "pmid": "25751285",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30"
     },
     {
      "finding": "An older meta-analysis of double-blind trials lasting at least 3 months found a small pooled advantage for acetyl-L-carnitine over placebo (summary effect size 0.201; CGI-C effect size 0.32) and reported good tolerability. The pooled measures were heterogeneous, so avoid implying a large or clinically certain benefit.",
@@ -35221,8 +35583,14 @@
    "caveats": "Beware three traps: (1) test-tube antioxidant power does not equal human benefit, because so little active drug reaches the target; (2) biomarker improvements are not outcome improvements; and (3) the strongest positive-sounding results tend to come from lower-quality trials — the benefit shrinks or vanishes when only high-quality studies are pooled (a classic sign of bias).",
    "trials": [
     {
-     "finding": "Systematic review of 13 randomised trials (915 patients): milk thistle showed no significant effect on all-cause mortality (RR 0.78, 95% CI 0.53–1.15) or complications of alcoholic and/or hepatitis B/C liver disease; the apparent liver-related mortality benefit was not significant when restricted to high-quality trials.",
-     "ref": "Rambaldi et al., 2007, Cochrane Database of Systematic Reviews"
+     "finding": "Cochrane review of 18 randomised trials (1,088 patients): milk thistle showed no significant effect on all-cause mortality (RR 0.78, 95% CI 0.53-1.15), complications of liver disease (RR 0.95, 95% CI 0.83-1.09) or liver histology in alcoholic and/or hepatitis B/C liver disease; liver-related mortality was reduced across all trials (RR 0.50, 95% CI 0.29-0.88) but not when restricted to high-quality trials (RR 0.57, 95% CI 0.28-1.19).",
+     "ref": "Rambaldi et al., 2007, Cochrane Database of Systematic Reviews",
+     "pmid": "17943794",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Systematic review of 13 randomised trials (915 patients): milk thistle showed no significant effect on all-cause mortality (RR 0.78, 95% CI 0.53–1.15) or complications of alcoholic and/or hepatitis B/C liver disease; the apparent liver-related mortality benefit was not significant when restricted to high-quality trials.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Multicentre double-blind RCT, 154 patients with chronic hepatitis C who had failed interferon therapy: oral silymarin at 420 or 700 mg three times daily for 24 weeks did not reduce serum ALT more than placebo.",
@@ -35433,8 +35801,14 @@
    "caveats": "The literature is biased toward positive subjective outcomes, extract quality is rarely controlled, and objective benefit is thin. The one thing that is well established is safety: no severe adverse events across trials spanning ages 7–80, with only mild, transient side effects.",
    "trials": [
     {
-     "finding": "Umbrella review of 8 systematic reviews: subjective sleep-quality and sleep-latency improvements in some meta-analyses, but objective outcomes generally unchanged and high risk of bias throughout — concluding no clear evidence of efficacy, alongside a good safety profile.",
-     "ref": "Valente et al., 2024, European Neuropsychopharmacology"
+     "finding": "Umbrella review of 8 systematic reviews: valerian appears effective for subjective improvement of sleep quality, but its effectiveness has not been demonstrated on quantitative or objective measures, and the underlying studies are heterogeneous and of low methodological quality - the authors conclude there is no empirical support for valerian in insomnia, alongside a good safety profile.",
+     "ref": "Valente et al., 2024, European Neuropsychopharmacology",
+     "pmid": "38359657",
+     "pmid_verified_by": "agent-audit",
+     "pmid_verified_on": "2026-07-30",
+     "finding_prev": "Umbrella review of 8 systematic reviews: subjective sleep-quality and sleep-latency improvements in some meta-analyses, but objective outcomes generally unchanged and high risk of bias throughout — concluding no clear evidence of efficacy, alongside a good safety profile.",
+     "finding_edited_by": "agent-audit",
+     "finding_edited_on": "2026-07-30"
     },
     {
      "finding": "Systematic review & meta-analysis: valerian users were more likely to report improved sleep quality (RR ≈ 1.8, 95% CI 1.2–2.9), but with evidence of publication bias and many null trials.",
