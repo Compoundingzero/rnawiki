@@ -649,20 +649,10 @@
   }
   function renderGoalComments(goalId) { return renderComments(goalId, goalById[goalId] ? goalById[goalId].label : goalId); }
   async function renderComments(key, label) {
-    const box = document.getElementById('goal-comments'); if (box) box.innerHTML = ''; return; // comments removed
-    const composer = ME
-      ? `<form id="cm-form" class="comment-form"><textarea id="cm-body" maxlength="2000" rows="3" placeholder="Tried it? Share what worked, a question, or a tip about ${esc(label)}…"></textarea><div class="cm-actions"><span class="cm-hint">Be kind and useful. Not medical advice.</span><button class="btn-primary" id="cm-post">Post comment</button></div></form>`
-      : `<div class="comment-signin"><b>💬 Join the discussion.</b> <a href="#" id="cm-signin">Sign in or create a free account</a> to share your experience or ask a question.</div>`;
-    box.innerHTML = `<div class="discuss-head"><h2>💬 Community discussion</h2><p class="discuss-sub">Share your experience or ask a question about ${esc(label)} — verified experts and stewards reply here.</p></div>${composer}<div id="cm-list" class="comment-list"><div class="empty">Loading…</div></div>`;
-    const si = document.getElementById('cm-signin'); if (si) si.onclick = e => { e.preventDefault(); openAuth('login'); };
-    if (ME) {
-      const form = document.getElementById('cm-form'), body = document.getElementById('cm-body'), btn = document.getElementById('cm-post');
-      form.onsubmit = async e => {
-        e.preventDefault(); const v = body.value.trim(); if (!v) return; btn.disabled = true;
-        try { await api.postComment(key, v); body.value = ''; await loadComments(key); } catch (ex) { alert(ex.message); } finally { btn.disabled = false; }
-      };
-    }
-    loadComments(key);
+    // Comments were removed in c154f86. The body below this line has been unreachable ever
+    // since, and it still described a discussion where "verified experts and stewards reply" —
+    // a claim about people who never existed. Deleted 2026-07-30 rather than left to be found.
+    const box = document.getElementById('goal-comments'); if (box) box.innerHTML = '';
   }
   async function loadComments(key) {
     const list = document.getElementById('cm-list'); if (!list) return;
@@ -2898,7 +2888,6 @@
 
   // ---------- contributors showcase ----------
   // ---------- public expert profile / portfolio (/u/:handle) ----------
-  const BADGE_LABEL = { 'verified-expert': '✓ Verified Expert' };
 
 
   // ---------- admin: verify expert credentials ----------
