@@ -1441,9 +1441,13 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal â
     // Illustrative fill levels for the tracker. Labelled as an example day in .wex-fine below --
     // they are the one thing on this block that is not read from the corpus, so they are named.
     const FILL = [82, 64, 95, 71];
+    // Name, TARGET VALUE, an example fill, and the authored reason the target exists. The target
+    // value is the number the old hard-coded mock got wrong, so it is rendered straight from
+    // rc.nutrient_targets and it appears exactly once on the page -- here, next to its reason.
     const bars = T.map(([k, t], i) => {
       const w = FILL[i % FILL.length];
-      return `<li><span>${nutrientLabel(k)}</span><i class="wex-bar" style="--w:${w}%"></i><em>${w}%</em><small>${esc(t.why || '')}</small></li>`;
+      return `<li><span>${nutrientLabel(k)} <b>${t.target}${t.unit}</b></span><em>${w}%</em>`
+        + `<i class="wex-bar" style="--w:${w}%"></i><small>${esc(t.why || '')}</small></li>`;
     }).join('');
     return `
     <section class="wex" id="how-it-works" aria-labelledby="wex-h">

@@ -3452,15 +3452,20 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 .wex-line small { color: var(--muted); font-size: .73rem; line-height: 1.45; }
 
 /* 3 -- the tracker, and the mechanism under each number */
-.wex-bars { list-style: none; margin: 0 0 .7rem; padding: 0; display: grid; gap: .6rem; }
-.wex-bars li { display: grid; grid-template-columns: 5.4rem 1fr 2.4rem; align-items: center;
-  gap: .2rem .5rem; font-size: .77rem; color: var(--head); }
-.wex-bar { display: block; height: 9px; border-radius: 6px; background: #e3ebf3;
+.wex-bars { list-style: none; margin: 0 0 .7rem; padding: 0; display: grid; gap: .7rem; }
+/* Three rows per nutrient: name + target / the bar / the reason the target exists. The target value
+   is the number the block it replaced hard-coded wrongly, so it gets its own line and its own
+   emphasis rather than being buried in a run-on list. */
+.wex-bars li { display: grid; grid-template-columns: 1fr auto; align-items: baseline;
+  gap: .22rem .5rem; font-size: .77rem; color: var(--head); }
+.wex-bars li > span { min-width: 0; }
+.wex-bars li > span b { font-family: var(--mono); font-weight: 700; color: var(--accent); }
+.wex-bar { grid-column: 1 / -1; display: block; height: 9px; border-radius: 6px; background: #e3ebf3;
   position: relative; overflow: hidden; }
 .wex-bar::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w, 0%);
   border-radius: 6px; background: linear-gradient(90deg, #38bdf8, #2f7de0); }
 .wex-bars em { font-style: normal; font-family: var(--mono); font-size: .71rem;
-  color: var(--muted); text-align: right; }
+  color: var(--muted); text-align: right; white-space: nowrap; }
 .wex-bars small { grid-column: 1 / -1; font-size: .71rem; line-height: 1.4; color: var(--faint); }
 
 /* shared payoff line */
@@ -3495,7 +3500,7 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 }
 @media (max-width: 420px) {
   .wex { padding: 0 .9rem; }
-  .wex-bars li { grid-template-columns: 4.8rem 1fr 2.2rem; font-size: .74rem; }
+  .wex-bars li { font-size: .74rem; }
   .wex-bars small { font-size: .69rem; line-height: 1.35; }
 }
 
