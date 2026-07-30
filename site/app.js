@@ -1181,39 +1181,7 @@
   // user scrolls through a tall section. Progress (0..1) drives the active step,
   // the mock-up frame, the nutrient bars and the progress dots — the module is
   // literally moved by the scrollbar, not just revealed once.
-  function initScrolly(id) {
-    const sec = document.getElementById(id); if (!sec) return;
-    const steps = [...sec.querySelectorAll('.sy-step')];
-    const frames = [...sec.querySelectorAll('.sy-frame')];
-    const dots = [...sec.querySelectorAll('[data-dot]')];
-    const bars = [...sec.querySelectorAll('.sy-bar > i')];
-    const n = frames.length; if (!n) return;
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { steps.forEach(s => s.classList.add('on')); return; }
-    let raf = 0, lastIdx = -1;
-    const update = () => {
-      if (!document.body.contains(sec)) { window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll); return; }
-      const rect = sec.getBoundingClientRect();
-      const total = sec.offsetHeight - window.innerHeight;
-      const progress = total > 0 ? Math.min(Math.max(-rect.top / total, 0), 1) : 0;
-      // idx: which of n frames is active; sub: progress within that frame (0..1)
-      const raw = progress * n;
-      const idx = Math.min(n - 1, Math.floor(raw));
-      const sub = Math.min(1, Math.max(0, raw - idx));
-      if (idx !== lastIdx) {
-        lastIdx = idx;
-        frames.forEach((f, i) => f.classList.toggle('on', i === idx));
-        steps.forEach((s, i) => s.classList.toggle('on', i === idx));
-        dots.forEach((dt, i) => dt.classList.toggle('on', i === idx));
-      }
-      // last frame's nutrient bars fill as you scroll through it
-      if (idx === n - 1) bars.forEach(b => { const w = parseFloat(b.style.getPropertyValue('--w')) || 100; b.style.width = (w * (0.25 + 0.75 * sub)) + '%'; });
-    };
-    const onScroll = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; update(); }); };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
-    update();
-  }
+  // initScrolly() removed 2026-07-30 — unreachable, see the /pros note in route().
 
   // wire the landing funnel (autosuggest + intake routing)
   // REMOVED 2026-07-30: mountHomeStacks(). It rendered `#home-stacks` from GET /api/forks/popular,
@@ -6525,71 +6493,7 @@
   }
 
   // ---------- /pros — the marketing landing page for professionals (separate from the dashboard) ----------
-  function renderPros() {
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'For professionals' }])}
-      <section class="hero funnel-hero reveal in" style="padding-top:2rem">
-        <div class="kicker">For clinicians &amp; local businesses</div>
-        <h1>Contribute your expertise.<br><span class="lead">Get featured. Get local leads.</span></h1>
-        <p class="hero-lead">RNAwiki is where people come to fix a problem or reach a goal. No one owns a protocol — but the verified experts who keep each one accurate get featured on it, with a link to their profile and booking. Contribute in your field and the leads come to you.</p>
-        <div class="how-cta"><a class="cta-primary" href="#/for-clinicians">Join the founding list →</a></div>
-      </section>
-      <section class="scrolly" id="scrolly-pros">
-        <div class="scrolly-track">
-          <div class="scrolly-copy">
-            <div class="section-title">How it works for you</div>
-            <div class="sy-step on" data-step="0"><span class="s3-tag mv">Step 1 · Get verified</span><h3>Apply once</h3><p>Prove your credential and link us from your site. We verify you as a movement, nutrition, or pharmacology expert — every badge is earned, never self-assigned.</p></div>
-            <div class="sy-step" data-step="1"><span class="s3-tag st">Step 2 · Contribute</span><h3>Improve a protocol</h3><p>Edit a condition in your field — correct the movement, nutrition or compounds. The more you contribute, the higher you’re featured on that protocol, with your profile and booking link.</p></div>
-            <div class="sy-step" data-step="2"><span class="s3-tag fl">Step 3 · Get leads</span><h3>Track &amp; convert</h3><p>See who’s viewing your profile and clicking through to book. Every protocol you’re featured on links straight to your clinic — a high-authority backlink that lifts <b>your</b> Google ranking. And you can hand each patient a clean, branded protocol page to take home and share.</p></div>
-          </div>
-          <div class="scrolly-stage">
-            <div class="phone"><div class="phone-notch"></div><div class="phone-screen">
-              <div class="sy-frame on" data-frame="0">
-                <div class="pf-eg">Example</div>
-                <div class="pf-verify"><div class="pf-av">🩺</div><b>Dr. Tan, Physiotherapist</b><small>AHPC-registered · linked from clinic site</small><span class="pf-badge">✓ Verified · Movement</span></div>
-                <div class="pf-cap">Credential + backlink checked by an admin</div>
-              </div>
-              <div class="sy-frame" data-frame="1">
-                <div class="pf-clinic"><div class="pf-av">🩺</div><div><b>Dr Tan · The Knee Clinic</b><small>Top contributor · Patellofemoral pain</small></div></div>
-                <button class="pf-book">Book an appointment</button>
-                <div class="pf-proto2"><span class="pf-l mv">💪 Move</span> you edited the movement</div>
-                <div class="pf-cap">Your profile is featured on the protocol</div>
-              </div>
-              <div class="sy-frame" data-frame="2">
-                <div class="pf-track-h">Your last 30 days</div>
-                <div class="pf-nut"><span>Views</span><div class="sy-bar"><i style="--w:88%"></i></div><em>1.2k</em></div>
-                <div class="pf-nut"><span>Clicks</span><div class="sy-bar"><i style="--w:54%"></i></div><em>96</em></div>
-                <div class="pf-nut"><span>Rep</span><div class="sy-bar"><i style="--w:72%"></i></div><em>340</em></div>
-                <div class="pf-cap">Real leads — plus a backlink to your clinic that lifts your ranking</div>
-              </div>
-            </div></div>
-            <div class="sy-dots"><i data-dot="0" class="on"></i><i data-dot="1"></i><i data-dot="2"></i></div>
-          </div>
-        </div>
-      </section>
-      <section class="trust reveal">
-        <div class="section-title center">Why it’s worth your time</div>
-        <div class="pros-grid">
-          <div class="pros-card"><b>🩺 Free lead-gen</b><p>Your clinic in front of high-intent locals — the exact people already looking to fix what you treat.</p></div>
-          <div class="pros-card"><b>🔗 A backlink that lifts your SEO</b><p>Your public profile and every protocol you’re featured on link out to your clinic — high-authority backlinks that lift your own Google ranking.</p></div>
-          <div class="pros-card"><b>📋 A branded protocol page</b><p>Stop printing handouts. Give each patient a branded link to their exact home protocol — your name and booking button on top — that they can save and share.</p></div>
-          <div class="pros-card"><b>🏅 Authority &amp; attribution</b><p>Every edit and answer carries your name, forever — a public, verifiable record of your clinical work.</p></div>
-        </div>
-      </section>
-      <div id="pros-leaderboard" class="reveal"></div>
-      <section class="pro-strip reveal">
-        <div class="ps-copy"><h2>Ready?</h2><p>Physio · chiro · dietitian · nutritionist · pharmacist · researcher · gym · clinic — it’s free.</p></div>
-        <a class="cta-ghost" href="#/for-clinicians">Join the founding list →</a>
-      </section>`;
-    revealOnScroll();
-    initScrolly('scrolly-pros');
-    (async () => {
-      let d; try { d = await api.contributors(); } catch (e) { return; }
-      const top = (d.top || []).filter(x => x.reputation_points > 0);
-      const el = document.getElementById('pros-leaderboard');
-      if (el && top.length) el.innerHTML = `<div class="section-title center">Experts already building here</div>
-        <div class="lb-row">${top.map((u, i) => `<a class="lb-card" href="#/u/${encodeURIComponent(u.username)}"><span class="lb-rank">#${i + 1}</span><span class="lb-name">@${esc(u.username)}</span><span class="lb-pts">✦ ${u.reputation_points}</span></a>`).join('')}</div>`;
-    })();
-  }
+  // renderPros() removed 2026-07-30 — unreachable, see the /pros note in route().
 
   // ---------- router (path-based + crawlable, legacy #/ still works) ----------
   function currentRoute() {
@@ -6666,7 +6570,7 @@
     else if (parts[0] === 'solve') html = solvePage();
     else if (parts[0] === 'stewardship') html = stewardHubLoading();
     else if (parts[0] === 'pro') html = proLoading();
-    else if (parts[0] === 'pros') html = '<div class="empty"><h1>Loading…</h1></div>';
+    // dead: the line above sets parts.length = 0, so parts[0] is undefined by here.
     else if (parts[0] === 'u' && parts[1]) html = profileLoading(parts[1]);
     else if (parts[0] === 'contributors') html = contribLoading();
     else if (parts[0] === 'admin') html = adminLoading();
@@ -6726,7 +6630,7 @@
     if (parts[0] === 'progress') renderProgress();
     if (parts[0] === 'stewardship') renderStewardHub();
     if (parts[0] === 'pro') renderPro();
-    if (parts[0] === 'pros') renderPros();
+    // dead: /pros is retired above and parts is emptied, so this never fires.
     if (parts[0] === 'gp') renderGpLanding();
     if (parts[0] === 'u' && parts[1]) renderProfile(parts[1]);
     if (parts[0] === 'contributors') renderContributors();
