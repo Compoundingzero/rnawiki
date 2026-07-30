@@ -3663,3 +3663,12 @@ a.seed-chip:hover { text-decoration: none; }
 .where-cta{margin:.6rem 0 0}
 .where-cta a{display:inline-block;color:var(--accent-ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;text-decoration:none;font-size:.95rem}
 .where-cta a:hover{border-color:var(--accent)}
+
+/* Credibility spine (2026-07-30): the trust line at the foot of every protocol, and the standfirst
+   on /methodology, /corrections and /compare. .review-state had been emitted by the prerenderer for
+   weeks with no rule at all, so the one sentence that tells a reader this content is not
+   clinician-reviewed rendered as an ordinary paragraph. */
+.lede{font-size:1.08rem;line-height:1.6;color:var(--ink);border-left:3px solid var(--accent);padding-left:.9rem;margin:.9rem 0 1.4rem}
+.review-state{font-size:.9rem;color:var(--muted);background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:.7rem .9rem;margin:1.2rem 0}
+.review-state b{color:var(--ink)}
+.review-state a{white-space:nowrap}

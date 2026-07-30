@@ -653,7 +653,11 @@ D.compounds.forEach((c) => {
   const usedIn = compoundProtocols[c.id] || [];
   const usedInHtml = usedIn.length ? `<h2>Used in these protocols</h2><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}</a></li>`).join('')}</ul>` : '';
   const cmpLinks = compoundCompareLinks[c.id] || [];
-  const compareHtml = cmpLinks.length ? `<h2>Compare ${esc(c.name)}</h2><ul>${cmpLinks.slice(0, 8).map((x) => `<li><a href="${x.route}">${esc(c.name)} vs ${esc(x.other)}</a></li>`).join('')}</ul>` : '';
+  // Cap raised 8 -> 12 (2026-07-30). At 8, a pair that ranked ninth on BOTH of its two compounds
+  // had no inbound link anywhere on the site: /compare/magnesium-vs-vitamin-d3-k2 and
+  // /compare/l-citrulline-citrulline-malate-vs-omega-3-epa-dha were published and unreachable by
+  // browsing. The most-compared compound has 12 pairs, so 12 truncates nothing.
+  const compareHtml = cmpLinks.length ? `<h2>Compare ${esc(c.name)}</h2><ul>${cmpLinks.slice(0, 12).map((x) => `<li><a href="${x.route}">${esc(c.name)} vs ${esc(x.other)}</a></li>`).join('')}</ul>` : '';
   // ---- INTERNAL LINKS TO /target/ (added 2026-07-28) ----------------------------------------
   // prerender.js emitted ZERO `/target/` hrefs anywhere, so 102 of the 103 target pages had no
   // inbound link from the site and were reachable only from sitemap.xml. Search Console confirms
@@ -891,7 +895,7 @@ GRAPH.problems.forEach((p) => {
         <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
       ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol →</a></p>
-      <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology">How this page was made</a> · <a href="/corrections">Corrections</a></p>
+      <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
     const rcShort = rc.name.replace(/\s*\([^)]*\)/, '');
     const moveNames = move.slice(0, 5).map((e) => e.name).join(', ');
@@ -1963,7 +1967,7 @@ let written = 0;
 
       <h2>Found something wrong?</h2>
       <p>That is the most useful thing you can send. Errors here should be fixed rather than defended.
-      <a href="/corrections">See what has already been corrected, and how to report one →</a></p>
+      <a href="/corrections" data-native>See what has already been corrected, and how to report one →</a></p>
       <p><a href="/legend">How to read the stars and badges →</a> · <a href="/about">About RNAwiki →</a></p>
       </div>` }));
 
@@ -2052,7 +2056,7 @@ let written = 0;
       actually reports, and 8 were rejected outright and removed. Where no source could be found for a
       claim, the claim was removed rather than left standing.</p>
 
-      <p><a href="/methodology">How a page here is made →</a> · <a href="/legend">How to read the stars →</a></p>
+      <p><a href="/methodology" data-native>How a page here is made →</a> · <a href="/legend">How to read the stars →</a></p>
       </div>` }));
 
   // ---- /compare index ------------------------------------------------------------------------
@@ -2085,8 +2089,9 @@ let written = 0;
         <p>Only supplements and over-the-counter compounds are compared this way. We do not publish a
         "which works better" page that ranks a prescription or controlled medicine against a
         supplement — you cannot act on that comparison, and in Singapore advertising a
-        prescription-only medicine to the public is prohibited. <a href="/methodology">How these pages
+        prescription-only medicine to the public is prohibited. <a href="/methodology" data-native>How these pages
         are made →</a></p>
+        <div id="cmp-tool"></div>
         ${groups.map(({ g, list }) => `<h2>${esc(g.label)}</h2>
           <p><a href="/goal/${g.id}">Everything for ${esc(String(g.label).toLowerCase())} →</a></p>
           <ul>${list.map((x) => `<li><a href="${x.route}">${esc(x.a.name)} vs ${esc(x.b.name)}</a></li>`).join('')}</ul>`).join('')}
@@ -2224,5 +2229,92 @@ console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.len
     process.exit(1);
   }
   console.log('[prerender] structured data OK — every JSON-LD block parses and declares @context.');
+})();
+
+// ---- build-time assertion: the internal link graph ---------------------------------------------
+// Added 2026-07-30. Two failures in this one class shipped in a single evening, and neither could be
+// caught by looking at the page that contained the bug:
+//   * /where was published with nothing on the site linking to it — a page nobody could reach.
+//   * /methodology, /corrections and /compare were linked from 52, 52 and 119 pages respectively and
+//     none of the three existed. /compare answered HTTP 410 Gone, so 119 pages were telling Google
+//     their own parent had been permanently deleted.
+// Both directions matter and both are invisible locally: a dead link looks fine on the page that
+// emits it, and an orphan looks fine on itself. Only the whole graph shows either one, so the whole
+// graph is what gets checked. This runs over the PRERENDERED documents deliberately — that is the
+// document ~90% of readers and every crawler receive.
+(function assertLinkGraph() {
+  // Routes that legitimately have no prerendered page: interactive app views that need JavaScript
+  // and state to mean anything. They are deliberately kept out of the sitemap. Adding to this list
+  // is a decision to serve a crawler an empty shell, so keep it short and justified.
+  const SPA_ONLY = ['/plan'];
+  const SPA_PREFIX = ['/fuel/'];
+  const emitted = new Set(pages.map((p) => p.route));
+  emitted.add('/');
+
+  const isKnown = (u) => {
+    if (emitted.has(u)) return true;
+    if (SPA_ONLY.includes(u) || SPA_PREFIX.some((p) => u.startsWith(p))) return true;
+    // An href that carries a file extension is an asset (/styles.css, /og.png) and is checked on
+    // disk. An extensionless href is a ROUTE, and a route counts as live only if THIS run emitted
+    // it — deliberately not "a file of that name exists". site/ is never wiped between builds, so
+    // a page dropped from the generator leaves its .html behind, and every /compare/* page creates
+    // a site/compare/ directory. Trusting either would make a genuinely dead link look alive and
+    // silence this gate at the exact moment it is needed. Verified: with that fallback in place,
+    // deleting the /compare index left all 119 dead breadcrumbs undetected.
+    if (!/\.[a-z0-9]{2,5}$/i.test(u)) return false;
+    return fs.existsSync(path.join(SITE, u.replace(/^\//, '')));
+  };
+  const norm = (href, from) => {
+    if (!href) return null;
+    let h = String(href).trim();
+    if (/^(https?:|mailto:|tel:|javascript:|data:|#)/i.test(h)) return null;
+    h = h.split('#')[0].split('?')[0];
+    if (!h) return null;
+    if (!h.startsWith('/')) h = path.posix.normalize((from === '/' ? '/' : path.posix.dirname(from) + '/') + h);
+    return (h.length > 1 ? h.replace(/\/+$/, '') : h) || '/';
+  };
+
+  const dead = new Map();          // dead target -> Set(pages linking to it)
+  const inbound = new Map();       // emitted route -> count of OTHER pages linking to it
+  emitted.forEach((r) => inbound.set(r, 0));
+  const seen = new Set();          // "from|to", so one page linking twice still counts once
+
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) return walk(p);
+    if (!e.name.endsWith('.html')) return;
+    let from = '/' + path.relative(SITE, p).replace(/\.html$/, '');
+    if (from === '/home' || from === '/index') from = '/';
+    const html = fs.readFileSync(p, 'utf8');
+    for (const m of html.matchAll(/href\s*=\s*"([^"]*)"/g)) {
+      const to = norm(m[1], from);
+      if (!to || to === from) continue;
+      if (!isKnown(to)) {
+        if (!dead.has(to)) dead.set(to, new Set());
+        dead.get(to).add(from);
+        continue;
+      }
+      const key = from + '|' + to;
+      if (inbound.has(to) && !seen.has(key)) { seen.add(key); inbound.set(to, inbound.get(to) + 1); }
+    }
+  });
+  walk(SITE);
+
+  const orphans = [...inbound.entries()].filter(([r, n]) => r !== '/' && n === 0).map(([r]) => r);
+  const fail = [];
+  [...dead.entries()].sort((a, b) => b[1].size - a[1].size).forEach(([to, srcs]) => {
+    fail.push(`dead link -> ${to}  (linked from ${srcs.size} page${srcs.size === 1 ? '' : 's'}, e.g. ${[...srcs].slice(0, 3).join(', ')})`);
+  });
+  orphans.forEach((r) => fail.push(`orphan page ${r} — published, but no other page links to it`));
+
+  if (fail.length) {
+    console.error('\n[prerender] LINK-GRAPH ASSERTION FAILED — refusing to build:');
+    fail.slice(0, 25).forEach((m) => console.error('  ✗ ' + m));
+    if (fail.length > 25) console.error(`  … and ${fail.length - 25} more`);
+    console.error('  Either give the target a page, or give the page an inbound link. Do not delete the link to silence this.');
+    process.exit(1);
+  }
+  const thin = [...inbound.entries()].filter(([r, n]) => r !== '/' && n === 1).length;
+  console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans (${thin} reachable from a single page).`);
 })();
 console.log(`[prerender] base URL: ${SITE_URL}`);
