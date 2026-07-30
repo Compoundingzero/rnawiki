@@ -3672,3 +3672,13 @@ a.seed-chip:hover { text-decoration: none; }
 .review-state{font-size:.9rem;color:var(--muted);background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:.7rem .9rem;margin:1.2rem 0}
 .review-state b{color:var(--ink)}
 .review-state a{white-space:nowrap}
+
+/* Fuel Tracker's readable twin (2026-07-30). Matches .bio-tbl so the two data tables on the site
+   read as one thing. The wrapper scrolls rather than the page: a targets table can carry six
+   nutrient columns and must not force the body to scroll sideways on a phone. */
+.tbl-wrap{overflow-x:auto;margin:.6rem 0 1rem}
+.fuel-tbl{width:100%;border-collapse:collapse;font-size:.86rem}
+.fuel-tbl th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:.35rem .6rem .35rem 0;border-bottom:1px solid var(--line);white-space:nowrap}
+.fuel-tbl td{padding:.5rem .6rem .5rem 0;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.45}
+.fuel-tbl tr:last-child td{border-bottom:none}
+.sg-chip{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.05rem .4rem;vertical-align:middle}

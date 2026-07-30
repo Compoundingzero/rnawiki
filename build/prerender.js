@@ -506,7 +506,10 @@ function faqBlock(qas) {
 
 // ---- renderers ----
 const pages = []; // {route, html}
-function add(route, html) { pages.push({ route, html }); }
+// opts.noSitemap: emit the page (so it is served, linked and link-graph-checked) but keep it
+// out of sitemap.xml. For utility views that must not be a dead end for a reader without
+// JavaScript, but are not search destinations and would read as near-duplicates if indexed.
+function add(route, html, opts) { pages.push({ route, html, noSitemap: !!(opts && opts.noSitemap) }); }
 
 // reverse index: which protocols explicitly list each compound (the "Used in" module + flow)
 const compoundProtocols = {};
@@ -884,7 +887,7 @@ GRAPH.problems.forEach((p) => {
       ${rc.prescription ? `<p>${esc(rc.prescription.detail)}</p>` : ''}
       ${move.length ? `<ul>${move.map((e) => `<li>${esc(e.name)}</li>`).join('')}</ul>` : ''}
       <h3>Fuel — foods to fuel it</h3>
-      ${fuel.length ? `<ul>${fuel.map((f) => `<li>${esc(f.name)}${f.sg_local ? ' (local SG)' : ''}</li>`).join('')}</ul>` : ''}
+      ${fuel.length ? `<ul>${fuel.map((f) => `<li>${esc(f.name)}${f.sg_local ? ' (sold in SG)' : ''}</li>`).join('')}</ul>` : ''}
       ${nt ? `<p><b>Daily nutrient targets:</b> ${esc(nt)}</p>` : ''}
       <h3>Stack — supplements with human trial evidence for this use</h3>
       ${stack.length
@@ -894,7 +897,7 @@ GRAPH.problems.forEach((p) => {
         <p>These are prescription or controlled medicines. We list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and we do not give doses for them here.</p>
         <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
       ${safety}
-      <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol →</a></p>
+      <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
       <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
     const rcShort = rc.name.replace(/\s*\([^)]*\)/, '');
@@ -923,6 +926,53 @@ GRAPH.problems.forEach((p) => {
       url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
     }].concat(howto || []).concat(pqa.ld || []);
     add(route, shell({ route, title: `${p.name} (${rcShort.toLowerCase()}): exercises, supplements & what works · RNAwiki`, desc: `${p.name} — ${rc.name}: the exercises to fix it, foods to fuel it, and evidence-ranked supplements. A full root-cause protocol. Not medical advice.`, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
+
+    // ---- the Fuel Tracker's readable twin ----------------------------------------------------
+    // Added 2026-07-30. Every protocol page links to /fuel/<problem>/<cause>, and not one of those
+    // 52 routes had a page: they fell through to the empty SPA shell, so the link read "Open the
+    // Fuel Tracker" and delivered a blank white document to the ~90% of readers who do not run
+    // JavaScript. Logging your own day genuinely needs JavaScript. The targets, the foods, and the
+    // reason behind each target do not — and `nutrient_targets[k].why` is authored for every target
+    // and rendered in exactly one place on the whole site, inside the tracker widget (app.js), so
+    // it has never been visible to a crawler or a no-JS reader at all. This emits it.
+    // noindex + kept out of the sitemap: this is a utility view, and its food list overlaps the
+    // protocol page's, so it should be reachable and readable without competing in search.
+    {
+      const tgts = Object.entries(rc.nutrient_targets || {});
+      const cols = tgts.map(([k]) => k).filter((k) => k !== 'kcal').slice(0, 5);
+      const num = (v) => (v === null || v === undefined || v === '' ? '—' : v);
+      const fuelRoute = `/fuel/${p.id}/${rc.id}`;
+      const fbody = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel' }])}
+        <h1>Fuel — ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
+        <p class="lede">What to eat for this cause, how much of it, and why each target is the
+        target. The day-by-day log needs JavaScript; everything below does not.</p>
+        ${tgts.length ? `<h2>Daily targets, and why</h2>
+          <div class="tbl-wrap"><table class="fuel-tbl"><thead><tr><th>Nutrient</th><th>Target</th><th>Why this one</th></tr></thead><tbody>
+          ${tgts.map(([k, t]) => `<tr><td><b>${esc(nutrientLabel(k))}</b></td><td>${esc(String(t.target))}${esc(t.unit || '')}${t.type ? ` <span class="muted">(${esc(t.type)})</span>` : ''}</td><td>${esc(t.why || '—')}</td></tr>`).join('')}
+          </tbody></table></div>` : ''}
+        ${fuel.length ? `<h2>Foods that move these numbers</h2>
+          <p>Chosen because they carry the nutrients above. Marked items are on the Singapore list — hawker
+          dishes and the supermarket staples sold here; the rest are generic reference foods.</p>
+          <div class="tbl-wrap"><table class="fuel-tbl"><thead><tr><th>Food</th><th>Serving</th><th>kcal</th>${cols.map((k) => `<th>${esc(nutrientLabel(k))}</th>`).join('')}</tr></thead><tbody>
+          ${fuel.map((f) => `<tr><td><b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg-chip">sold in SG</span>' : ''}</td><td>${esc(f.serving || '—')}</td><td>${num(f.kcal)}</td>${cols.map((k) => `<td>${num(f[k])}</td>`).join('')}</tr>`).join('')}
+          </tbody></table></div>
+          <p class="muted">A dash means that value is not recorded for that food, not that it contains none.</p>` : ''}
+        <h2>Using this</h2>
+        <p>Food is the slowest lever on this list and the one that holds. Hit the targets from meals
+        first; a supplement is for the gap you cannot close that way, which is why the compounds sit
+        on the protocol page rather than this one.</p>
+        <p><a href="${route}">← Back to the full ${esc(p.name)} protocol</a> — the movements, the
+        evidence-ranked compounds, and when to see a clinician instead.</p>
+        <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
+        <p><em>Educational, not medical advice. Nutrient targets are general adult guidance.</em></p>`;
+      add(fuelRoute, shell({
+        route: fuelRoute, robots: 'noindex,follow',
+        title: `Fuel for ${p.name} — ${rcShort.toLowerCase()} · RNAwiki`,
+        desc: `Daily nutrient targets for ${p.name} (${rcShort.toLowerCase()}), why each one, and the Singapore foods that hit them.`,
+        breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel', route: fuelRoute }],
+        body: fbody,
+      }), { noSitemap: true });
+    }
   });
 });
 
@@ -2099,6 +2149,57 @@ let written = 0;
         </div>` }));
   }
 
+  // ---- /plan ---------------------------------------------------------------------------------
+  // Added 2026-07-30. "My Plan" sits in the top navigation of all 521 pages, which made it the
+  // single most-linked destination on the site — and it had never been prerendered. A reader
+  // without JavaScript, which is roughly nine in ten, clicked it and got a blank white document;
+  // Google was served the same blank document canonicalised to "/", i.e. told the most-linked page
+  // on the site was a duplicate of the home page. The live plan genuinely needs JavaScript (it is
+  // per-reader state), but "needs JavaScript to show YOUR plan" is not a reason to serve nothing to
+  // everyone else: what a plan is, and how to start one, is ordinary explainable content. The SPA
+  // replaces this the moment it boots, so a reader with a plan never sees it.
+  add('/plan', shell({
+    route: '/plan', title: 'My Plan — build one plan from your root cause · RNAwiki',
+    desc: 'One plan, built from the root cause of your problem: the movements to fix it, the Singapore foods to fuel it, and the compounds with human evidence for it. Free, no account needed.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'My Plan', route: '/plan' }],
+    body: `<div class="article"><h1>My Plan</h1>
+      <p class="lede">One plan, in one place, built from the <em>cause</em> of your problem rather
+      than its name. Your plan lives in this browser — there is no account to create and nothing to
+      pay.</p>
+      <p><strong>If you already have a plan, it will appear here in a moment.</strong> It is stored
+      on your own device, so it loads when the page does. If you are reading with JavaScript turned
+      off, this page cannot show it — everything else below works either way.</p>
+
+      <h2>How a plan gets built</h2>
+      <ol class="about-steps">
+        <li><strong>Name the problem or the goal.</strong> Start at <a href="/solve">Solve</a>, or
+        <a href="/where">point to where it hurts</a> if you do not know what it is called.</li>
+        <li><strong>Find which cause you actually have.</strong> Most problems here have several,
+        and the fix is different for each — the same knee pain has a different answer depending on
+        whether the tendon, the joint surface or the hip is driving it. Each protocol opens with a
+        short set of questions that narrows it.</li>
+        <li><strong>Start the plan.</strong> That pulls the movements, the Singapore foods and the
+        evidence-ranked compounds for <em>that cause</em> into one list.</li>
+        <li><strong>Work it, then reassess.</strong> Every protocol states how long to give it
+        before you judge it, what "working" looks like, and the point at which the answer is a
+        clinician rather than another supplement.</li>
+      </ol>
+
+      <h2>Start from something concrete</h2>
+      <ul>
+        <li><a href="/solve">Every problem and goal, with its root causes</a></li>
+        <li><a href="/where">Point to where it hurts</a> — for pain you cannot name</li>
+        <li><a href="/stack">The compound index</a> — if you already know what you are looking at</li>
+        <li><a href="/az">All ${D.compounds.length} compounds, A–Z</a></li>
+      </ul>
+
+      <h2>What a plan is not</h2>
+      <p>It is not a prescription and not a diagnosis. It is a reading list with an order, built
+      from the same evidence the rest of the site shows you. Prescription and controlled medicines
+      are never added to a plan and never dosed here. <a href="/methodology" data-native>How these
+      pages are made →</a></p>
+      </div>` }));
+
   add('/az', shell({
     route: '/az', title: `All ${D.compounds.length} compounds A–Z · RNAwiki`,
     desc: `Every compound on RNAwiki, listed A to Z with its human-evidence rating — supplements, prescription medicines and non-approved research compounds.`,
@@ -2190,7 +2291,7 @@ let swept = 0;
 
 // sitemap + robots
 const now = new Date().toISOString().slice(0, 10);
-const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.map((p) => p.route)];
+const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.filter((p) => !p.noSitemap).map((p) => p.route)];
 const uniq = [...new Set(urls)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -2246,8 +2347,11 @@ console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.len
   // Routes that legitimately have no prerendered page: interactive app views that need JavaScript
   // and state to mean anything. They are deliberately kept out of the sitemap. Adding to this list
   // is a decision to serve a crawler an empty shell, so keep it short and justified.
-  const SPA_ONLY = ['/plan'];
-  const SPA_PREFIX = ['/fuel/'];
+  // Emptied on 2026-07-30: /plan and every /fuel/ route are prerendered now, so nothing on the
+  // site links to a route that serves a blank shell any more. Adding to these lists is a decision
+  // to hand a crawler and a no-JS reader an empty document, so keep them empty if you can.
+  const SPA_ONLY = [];
+  const SPA_PREFIX = [];
   const emitted = new Set(pages.map((p) => p.route));
   emitted.add('/');
 
