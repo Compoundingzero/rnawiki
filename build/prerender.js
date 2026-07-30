@@ -1331,7 +1331,18 @@ const anatCrumb = (name, route) => [{ name: 'Home', route: '/' }, { name: 'Anato
 // Default 3D viewer: "Anatomy of the Human Muscular System" by jossangelbd (Sketchfab, embeddable). A verified
 // physiotherapist can override per-muscle by adding "model_embed" to that muscle in data/anatomy.json.
 const MUSCLE_MODEL_DEFAULT = 'https://sketchfab.com/models/75cc6aa94b5c4ed88f9810770d614ac1/embed?ui_theme=dark&autospin=0.15&ui_infos=0&ui_watermark=0&ui_hint=0&transparent=0';
-function muscle3D(m) {
+function muscle3D(m, legFma) {
+  // LEG groups have a first-party BodyParts3D model that lights this muscle's origin/insertion bones and
+  // animates its action — a far better teacher than a generic stock render, and FMA-keyed to this page.
+  // Promote it. Groups without their own geometry keep the Sketchfab viewer (it works); an unbuilt one
+  // shows the "being added" note.
+  if (legFma) return `<h2>This muscle in 3D</h2>
+    <a class="cta-3d cta-3d-hero" href="/body/leg?fma=${encodeURIComponent(legFma)}">
+      <span class="cta-3d-hero-ico" aria-hidden="true">🦿</span>
+      <span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Watch the ${esc(m.name.toLowerCase())} light up between its origin and insertion bones and move through its action.</span></span>
+      <span class="cta-3d-hero-go" aria-hidden="true">▶</span>
+    </a>
+    <p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`;
   if (!m.model_embed) return `<h2>This muscle in 3D</h2>
     <p class="fig-credit">A 3D model specific to the ${esc(m.name.toLowerCase())} is being added — its origin, insertion and action are detailed below.</p>`;
   return `<h2>This muscle in 3D</h2>
@@ -1373,12 +1384,12 @@ ANAT.muscles.forEach((m) => {
   const subs = (D.structures || []).filter((s) => s.groupId === m.id);
   const LEG3D_M = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
   const f3dM = subs.find((s) => s.fma);
-  const btn3dM = (LEG3D_M[m.id] && f3dM) ? `<a class="cta-3d" href="/body/leg?fma=${encodeURIComponent(f3dM.fma)}">▶ See the movement in 3D</a>` : '';
-  const subHtml = subs.length ? `<h2>The individual muscles in this group</h2>${btn3dM}
+  const legFmaM = (LEG3D_M[m.id] && f3dM) ? f3dM.fma : null; // the first-party 3D now leads muscle3D()
+  const subHtml = subs.length ? `<h2>The individual muscles in this group</h2>
     <p>“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
     <div class="submuscle-list">${subs.map((s) => `<div class="submuscle"><h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3><p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}</div>`).join('')}</div>` : '';
   const body = `<div class="article"><h1>${esc(m.name)}</h1><p>${esc(m.overview)}</p>
-    ${muscle3D(m)}
+    ${muscle3D(m, legFmaM)}
     <h2>Anatomy</h2><p><b>Muscles:</b> ${esc(m.group)}</p><p><b>Origin:</b> ${esc(a.origin || '')}</p><p><b>Insertion:</b> ${esc(a.insertion || '')}</p>
     <h2>What this muscle actually does</h2>
     <p>Each movement below is animated — the grey part stays still, the teal part is what this muscle moves.</p>

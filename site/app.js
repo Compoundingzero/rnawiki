@@ -2235,9 +2235,17 @@
     const m = muscleById[id]; if (!m) return notFound();
     const a = m.anatomy || {};
     const exList = arr => arr && arr.length ? `<div class="anat-exlist">${arr.map(e => `<a class="anat-ex" href="#/exercise/${esc(e.id)}"><b>${esc(e.name)}</b>${e.level ? `<em>${esc(e.level)}</em>` : ''}</a>`).join('')}</div>` : '<p class="muted">None catalogued yet.</p>';
-    const model = m.model_embed
-      ? `<div class="section-title">This muscle in 3D</div><div class="anat-3d"><iframe title="${esc(m.name)} — interactive 3D anatomy" src="${esc(m.model_embed)}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe></div><p class="fig-credit">Drag to rotate · scroll to zoom — see the shape, origin and insertion of the ${esc(m.name.toLowerCase())}. 3D model via Sketchfab (CC-BY); the ℹ button credits the author. Origin, insertion and action are detailed just below.</p>`
-      : `<div class="section-title">This muscle in 3D</div><div class="anat-3d-soon"><span class="a3d-ico">🧊</span><p>A 3D model specific to the <b>${esc(m.name.toLowerCase())}</b> is being added. Its origin, insertion and action are detailed just below.</p></div>`;
+    // The four LEG groups have a first-party BodyParts3D model that lights this muscle's origin/insertion
+    // bones and animates its action — a better teacher than a generic stock render, and FMA-keyed to this
+    // page. Lead with it. Other groups keep the Sketchfab viewer (it works) or the "being added" note.
+    const subs = structuresByGroup[id] || [];
+    const LEG3D = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
+    const legFocus = LEG3D[id] ? (subs.find(s => s.fma) || null) : null;
+    const model = legFocus
+      ? `<div class="section-title">This muscle in 3D</div><a class="cta-3d cta-3d-hero" href="#/body/leg?fma=${encodeURIComponent(legFocus.fma)}"><span class="cta-3d-hero-ico" aria-hidden="true">🦿</span><span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Watch the ${esc(m.name.toLowerCase())} light up between its origin and insertion bones and move through its action.</span></span><span class="cta-3d-hero-go" aria-hidden="true">▶</span></a><p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`
+      : (m.model_embed
+        ? `<div class="section-title">This muscle in 3D</div><div class="anat-3d"><iframe title="${esc(m.name)} — interactive 3D anatomy" src="${esc(m.model_embed)}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe></div><p class="fig-credit">Drag to rotate · scroll to zoom — see the shape, origin and insertion of the ${esc(m.name.toLowerCase())}. 3D model via Sketchfab (CC-BY); the ℹ button credits the author. Origin, insertion and action are detailed just below.</p>`
+        : `<div class="section-title">This muscle in 3D</div><div class="anat-3d-soon"><span class="a3d-ico">🧊</span><p>A 3D model specific to the <b>${esc(m.name.toLowerCase())}</b> is being added. Its origin, insertion and action are detailed just below.</p></div>`);
     // ---- THE COURSE SHORT-CIRCUIT USED TO EAT THIS WHOLE PAGE (fixed 2026-07-28) ----
     // `if (m.expand) return learnCourse(...)` sat at the TOP of this function, and all 17 muscles
     // have `.expand`. So on every muscle page the SPA silently dropped the 3D model, the anatomy
@@ -2246,15 +2254,10 @@
     // of the usual assumption. Identical bug to the pathway diagram that rendered on 0 of 16 pages:
     // an early return above the visual content. When you add a `return learnCourse(...)`, check what
     // is BELOW it.
-    const subs = structuresByGroup[id] || [];
-    // Only the four LEG groups have geometry in leg.glb today, so the 3D button appears there; other
-    // groups render nothing (their model is not built yet). Focus the first sub-muscle that has an FMA.
-    const LEG3D = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
-    const focus3d = subs.find(s => s.fma);
-    const btn3d = (LEG3D[id] && focus3d) ? `<a class="cta-3d" href="#/body/leg?fma=${encodeURIComponent(focus3d.fma)}">▶ See the movement in 3D</a>` : '';
+    // subs/legFocus computed above; the first-party 3D now leads the page (muscle `model`), so the
+    // submuscle list no longer repeats a "see it in 3D" button.
     const subMuscles = subs.length ? `<div class="section-title">The individual muscles in this group</div>
         <p class="muted" style="font-size:.88rem;margin-top:-.3rem">“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
-        ${btn3d}
         <div class="submuscle-list">${subs.map(s => `<div class="submuscle">
           <h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3>
           <p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>
