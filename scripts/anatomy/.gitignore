@@ -1,0 +1,8 @@
+# Build inputs and scratch — reproducible from the download + build steps, kept OUT of the public repo.
+# The shippable artifact is assets/anatomy/*.glb (committed), not these.
+# NOTE: git .gitignore does NOT support inline (# ...) comments on a pattern line — keep them separate.
+node_modules/
+# downloaded BodyParts3D STL + converted OBJ (~86 MB); re-fetch per README §1
+bodyparts3d/
+# per-part intermediate GLBs from build-leg.mjs
+.tmp/

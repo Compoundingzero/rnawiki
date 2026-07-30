@@ -1,0 +1,16 @@
+{
+  "name": "rnawiki-anatomy-pipeline",
+  "private": true,
+  "type": "module",
+  "description": "ISOLATED build-time toolchain for the 3D anatomy assets. Deliberately separate from the repo-root package.json so the runtime dependency tree stays pg + @resvg/resvg-js only. Nothing here ships to the server; it produces static GLBs committed under assets/anatomy/.",
+  "scripts": {
+    "build:leg": "node build-leg.mjs leg"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.1.0",
+    "@gltf-transform/extensions": "^4.1.0",
+    "@gltf-transform/functions": "^4.1.0",
+    "meshoptimizer": "^0.22.0",
+    "obj2gltf": "^3.1.6"
+  }
+}
