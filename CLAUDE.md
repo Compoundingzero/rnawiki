@@ -75,8 +75,12 @@ different documents and both are broken in places.**
    "look for third-party testing". Naming a drug to identify it — "semaglutide (Ozempic/Wegovy)" —
    is identification, not a buy-rec, and is fine.
 2. **Human evidence gets the stars.** Animal-only data is capped at ⭐⭐ and must say "animal".
-   *(Known live violation: `parse.js` picks the largest ⭐-run regardless of the animal/human label,
-   so Rapamycin renders 5 stars from animal data. Fix at source, not in the renderer.)*
+   *Fixed and gated (2026-07-30).* `parse.js` splits the evidence runs by label, caps animal-only at
+   2, and sets `animalOnly`. `assertHumanEvidenceStars()` fails the build if any animal-only compound
+   exceeds 2 stars **or** carries a badge that does not say "animal" — verified by reintroducing the
+   original bug, which the gate catches (Acarbose and Fisetin at 3). Rapamycin now renders 3 stars
+   with `animalOnly=false`, because it does have human data; the 5 stars were the bug.
+   **Do not re-report this as live without running `node build/parse.js` first.**
 3. **Every molecular claim links to an official source** — NCBI Gene, PubChem, PMC, FDA.
 4. **Harm-reduction framing for non-approved compounds.** Document risks plainly, never encourage.
 5. **Not medical advice**, on every page — and a real escalation path, not just a disclaimer.
@@ -119,9 +123,9 @@ different documents and both are broken in places.**
 
 ## Current state of the work
 
-The authoritative plan is `~/Downloads/RNAwiki_Anatomical_Framework_Plan_v4.md` (plus any later
-revision). Live execution state — what has actually shipped — is
-`~/Downloads/RNAwiki_EXECUTION_STATE.md`. **Read the state file before starting anything.**
+The authoritative plan is `~/Downloads/RNAwiki_Anatomical_Framework_Plan_v6.md` (supersedes v5/v4).
+Live execution state — what has actually shipped — is `~/Downloads/RNAwiki_EXECUTION_STATE.md`.
+**Read the state file, then v6 §5 (resume point), before starting anything.**
 
 The organising insight from five rounds of audit: **every layer is authored well and connected to
 nothing.** The writing is good; the machinery between the writing and the reader is where the
