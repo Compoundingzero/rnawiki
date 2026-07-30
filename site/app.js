@@ -4944,6 +4944,15 @@
     if (pi >= 0) return `#/pathway/${pi}`;
     return null;
   }
+  // Move 3B: a `structure` chain node links into the body — a structures.json id → its group's muscle
+  // page, or an anatomy group id → that page. Mirrors mediatorLink; returns null if the ref is unknown.
+  function structureLink(ref) {
+    if (!ref) return null;
+    const s = (D.structures || []).find(x => x.id === ref);
+    if (s) return `#/muscle/${s.groupId}`;
+    if ((((D.anatomy || {}).muscles) || []).some(m => m.id === ref)) return `#/muscle/${ref}`;
+    return null;
+  }
   const CC_TYPE = { trigger: '⚡ trigger', mediator: '⚙️ mediator', tissue: '🧬 tissue', symptom: '💥 symptom' };
   const TIER_LABEL = ['', 'emerging / associative', 'strong association', 'established mechanism — effect size varies by person'];
   function causeTier(t) { t = t || 1; return `<span class="cause-tier t${t}" title="Strength of the causal link">${'●'.repeat(t)}${'○'.repeat(3 - t)} <span class="ct-lbl">${TIER_LABEL[t] || ''}</span></span>`; }
@@ -4953,10 +4962,11 @@
   function bioJourney(chain) {
     if (!Array.isArray(chain) || !chain.length) return '';
     const steps = chain.map(n => {
-      const link = n.type === 'mediator' && n.ref ? mediatorLink(n.ref) : null;
+      const link = n.type === 'mediator' && n.ref ? mediatorLink(n.ref) : (n.type === 'structure' && n.ref ? structureLink(n.ref) : null);
+      const sciLbl = n.type === 'structure' ? 'the anatomy' : 'the science';
       // Lead with plain English (n.lay); show the technical name (n.node) only as a subtle, linkable tag.
       const head = n.lay ? esc(n.lay) : (link ? `<a href="${link}">${esc(n.node)}</a>` : esc(n.node));
-      const sci = n.lay ? `<div class="bj-sci"><span class="bj-sci-k">the science</span> ${link ? `<a href="${link}">${esc(n.node)}</a>` : esc(n.node)}</div>` : '';
+      const sci = n.lay ? `<div class="bj-sci"><span class="bj-sci-k">${sciLbl}</span> ${link ? `<a href="${link}">${esc(n.node)}</a>` : esc(n.node)}</div>` : '';
       const say = n.say ? `<div class="bj-say">${mdInline(n.say)}</div>` : '';
       return `<div class="bj-step bj-${esc(n.type)}"><div class="bj-rail"><span class="bj-dot">${CC_ICON[n.type] || '•'}</span></div><div class="bj-content"><div class="bj-kind">${esc(CC_WORD[n.type] || n.type)}</div><div class="bj-node">${head}</div>${sci}${say}</div></div>`;
     }).join('');

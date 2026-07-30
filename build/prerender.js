@@ -798,10 +798,22 @@ D.goals.forEach((g) => {
 // mdBlocks so nothing ships as a wall of text, and with NO .chapter/display:none so nothing hides.
 const CC_TAG = { trigger: 'the trigger', mediator: 'the mechanism', structure: 'the anatomy', amplifier: 'what makes it worse', tissue: 'in the tissue', outcome: 'the result', symptom: 'the symptom' };
 const tierLabel = (t) => t >= 3 ? 'Well-established mechanism' : t === 2 ? 'Reasonably established' : 'Emerging — mechanistic / limited human data';
+// Move 3B: a `structure` chain node links into the body — a structures.json id → its group's /muscle
+// page, or an anatomy group id → that page. If a ref doesn't resolve, render plain text (no broken link).
+const STRUCT_BY_ID = {}; (D.structures || []).forEach((s) => { STRUCT_BY_ID[s.id] = s; });
+const MUSCLE_GROUP_IDS = new Set((((D.anatomy || {}).muscles) || []).map((m) => m.id));
+function structureHref(ref) {
+  if (!ref) return null;
+  if (STRUCT_BY_ID[ref]) return '/muscle/' + STRUCT_BY_ID[ref].groupId;
+  if (MUSCLE_GROUP_IDS.has(ref)) return '/muscle/' + ref;
+  return null;
+}
 function causeChainFlat(chain) {
   return (chain || []).map((n) => {
     const lay = n.lay ? `<p class="bjf-lay"><strong>${mdSafe(n.lay)}</strong></p>` : '';
-    const node = n.node ? `<p class="bjf-node"><span class="bjf-tag">${esc(CC_TAG[n.type] || 'the science')}</span> ${mdSafe(n.node)}</p>` : '';
+    const href = (n.type === 'structure' && n.ref) ? structureHref(n.ref) : null;
+    const nodeLabel = href ? `<a href="${href}">${mdSafe(n.node)}</a>` : mdSafe(n.node);
+    const node = n.node ? `<p class="bjf-node"><span class="bjf-tag">${esc(CC_TAG[n.type] || 'the science')}</span> ${nodeLabel}</p>` : '';
     const say = n.say ? mdBlocks(n.say, mdSafe) : '';
     return `<div class="bjf-step">${lay}${node}${say}</div>`;
   }).join('');
