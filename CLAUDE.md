@@ -95,6 +95,23 @@ different documents and both are broken in places.**
    appeared in *every single round*. Re-run the check yourself before acting on it. Cite
    `file:line` or a live URL, and label findings verified / inferred / could-not-check.
 
+## The build gates — a fix without a gate is a fix that gets rediscovered
+
+`parse.js` and `prerender.js` refuse to build on: unbound evidence claims · dose calculators with no
+machine-readable cap · a protocol prescribing a movement its own page contraindicates · animal-only
+compounds above 2 stars or with a badge that does not say "animal" · compounds missing from the goal
+taxonomy · a page naming a prescription/controlled substance without stating its status · a
+restricted compound rendering self-dosing instructions · JSON-LD missing `@context` · **a link to a
+route no page serves, or a page published with nothing linking to it** (`assertLinkGraph`).
+
+Every one exists because that exact defect shipped. **Prove a new gate by reintroducing the original
+bug** — `assertLinkGraph`'s first version passed that test wrongly, because it trusted "a file of
+that name exists" and `site/` is never wiped between builds. The user-facing list is `/methodology`.
+
+**Adding a prerendered page needs an SPA answer too.** Without one, a crawler gets the page and a
+reader with JavaScript gets `notFound()`. Use the `KEEP` sentinel in `app.js`'s `route()` plus
+`data-native` on the inbound links (see `/methodology`), or give the route a real renderer.
+
 ## Environment gotchas that will otherwise waste hours
 
 - **`grep` here is ugrep** and treats `site/app.js` and the large JSON as binary.
