@@ -3428,7 +3428,7 @@
         if (!SRC[term] || seen.has(term)) continue;
         seen.add(term);
         const start = match.index, end = start + match[1].length;
-        const span = document.createElement('span'); span.className = 'gloss'; span.textContent = text.slice(start, end); span.setAttribute('data-def', SRC[term]); span.setAttribute('title', SRC[term]);
+        const span = document.createElement('span'); span.className = 'gloss'; span.textContent = text.slice(start, end); const _gdef = typeof SRC[term] === 'string' ? SRC[term] : ((SRC[term] && SRC[term].d) || ''); span.setAttribute('data-def', _gdef); span.setAttribute('title', _gdef);
         const afterNode = document.createTextNode(text.slice(end));
         node.nodeValue = text.slice(0, start);
         node.parentNode.insertBefore(span, node.nextSibling);

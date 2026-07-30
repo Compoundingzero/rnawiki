@@ -702,9 +702,9 @@ D.compounds.forEach((c) => {
     ${bioFlatHtml(c)}
     ${targetLinksHtml}
     ${trialsHtml}
-    ${c.protocol ? `<h2>Protocol</h2><p>${esc(c.protocol)}</p>` : ''}
-    ${c.watch ? `<h2>Watch out</h2><p>${esc(c.watch)}</p>` : ''}
-    ${c.bottom ? `<h2>Bottom line</h2><p>${esc(c.bottom)}</p>` : ''}
+    ${c.protocol ? `<h2>Protocol</h2><p>${mdSafe(c.protocol)}</p>` : ''}
+    ${c.watch ? `<h2>Watch out</h2><p>${mdSafe(c.watch)}</p>` : ''}
+    ${c.bottom ? `<h2>Bottom line</h2><p>${mdSafe(c.bottom)}</p>` : ''}
     ${goalLinks ? `<p><b>Helps with:</b> ${goalLinks}</p>` : ''}
     ${c.evidence ? `<h2>The human evidence</h2><p>${esc(String(c.evidence).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, ''))}</p>` : ''}
     ${(() => {
@@ -727,7 +727,7 @@ D.compounds.forEach((c) => {
   ]);
   const jsonld = [{
     '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: c.name,
-    about: { '@type': 'Drug', name: c.name }, description: (c.plain || c.bottom || '').slice(0, 300),
+    about: { '@type': 'Drug', name: c.name }, description: cleanDesc(c.plain || c.bottom || '', 300),
     url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
   }].concat(cqa.ld || []);
   add(route, shell({ route, title: `${c.name}: dosage, evidence & uses · RNAwiki`, desc: cleanDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
@@ -1870,6 +1870,229 @@ let written = 0;
       <h2>Availability</h2>
       <p>Availability is shown separately from approval, for Singapore: over the counter, pharmacy medicine, prescription only, controlled, or not approved. Where a compound is prescription-only we say so and do not give a dose.</p>
       <p><a href="/about">More about how this site is made →</a></p></div>` }));
+
+  // ---- /methodology and /corrections ---------------------------------------------------------
+  // Added 2026-07-30. Every one of the 52 protocol pages ends with the line "Written with AI
+  // assistance and edited by a human. Not yet reviewed by a clinician. How this page was made ·
+  // Corrections" — and BOTH of those links pointed at routes that did not exist, in any form. No
+  // static page, no SPA route, no server handler: they fell through to the SPA shell and served the
+  // home page's title at HTTP 200. So the site invited scrutiny of its own method and of its own
+  // errors, and sent every reader who accepted the invitation to a dead end. That is worse than
+  // omitting the line: a broken "how was this made?" link is a claim of transparency with nothing
+  // behind it. These two pages are the credibility spine the trust line was already promising.
+  add('/methodology', shell({
+    route: '/methodology', title: 'How a page on RNAwiki is made · RNAwiki',
+    desc: 'The full method behind every page: where the writing comes from, what "AI-assisted, human-edited, not clinician-reviewed" actually means, how evidence is rated, and the automated checks that can refuse to publish.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'How a page is made', route: '/methodology' }],
+    body: `<div class="article"><h1>How a page here is made</h1>
+      <p class="lede">Most health sites ask you to trust the output. This page describes the process
+      instead, so you can judge it — including the parts that should make you cautious.</p>
+
+      <h2>Who writes it</h2>
+      <p>Pages are drafted with AI assistance and edited by a human. <strong>They are not reviewed by
+      a clinician.</strong> That sentence appears at the foot of every protocol, and it is meant
+      literally: no doctor, physiotherapist or dietitian has signed off on this content. If a page
+      ever claims a professional reviewer, it is stating a fact about a specific named person — and
+      no page does, today.</p>
+      <p>Nothing here is written for a sponsor. Nothing is for sale, there are no affiliate links,
+      and no commercial product or supplement brand is ever named as something to buy. Independent
+      testing standards (NSF, USP, Informed Sport, IFOS) are named, because "look for third-party
+      testing" is advice you can act on without being sold to.</p>
+
+      <h2>Where the words come from</h2>
+      <p>The site is generated, not hand-maintained page by page. A build step reads the source —
+      markdown for the compound corpus, structured data files for causes, pathways, molecular
+      targets, exercises and protocol plans — and writes every page from it. The consequence worth
+      knowing: <strong>a correction made once propagates everywhere that claim appears</strong>, and
+      an error made once does the same. That is why the automated checks below exist.</p>
+
+      <h2>How evidence is rated</h2>
+      <p>The 1–5 star rating summarises <strong>human</strong> evidence for a compound overall — not
+      for your particular goal, and not how well it will work for you. Animal-only evidence is capped
+      at two stars and has to say "animal" on the page. This is enforced at build time rather than by
+      editorial discipline, because it had previously failed: one compound was showing five stars off
+      rodent data. <a href="/legend">The full scale is on the legend page →</a></p>
+      <p>Where a page cites a trial, the citation is bound to a real record and links out to it —
+      usually PubMed or Europe PMC, where a large share of the papers are free to read in full. A
+      citation here is a pointer you are meant to follow, not a decoration.</p>
+
+      <h2>What we will not publish</h2>
+      <ul class="about-key">
+        <li><strong>No doses for prescription medicines.</strong> Prescription-only and controlled
+        medicines are documented so you know they exist and can raise them with a clinician. They are
+        listed, not ranked, and never recommended.</li>
+        <li><strong>No head-to-head "which is better" comparison involving a prescription medicine.</strong>
+        Ranking a medicine you cannot buy against a supplement you can is not a useful comparison, and
+        in Singapore advertising a prescription-only medicine to the public is prohibited outright —
+        the Medicines Act 1975 and its advertising regulations carry no educational exemption.</li>
+        <li><strong>No diagnosis.</strong> The root-cause questions narrow your reading. They are not
+        a clinical assessment.</li>
+        <li><strong>No certainty we do not have.</strong> Where the honest answer is "no supplement has
+        trial evidence for this", the page says that instead of filling the space.</li>
+      </ul>
+
+      <h2>The checks that can stop a release</h2>
+      <p>Editorial rules that live only in someone's head get rediscovered as bugs. So the rules that
+      matter most are executable, and a failure blocks publication rather than filing a ticket. The
+      build currently refuses to ship if:</p>
+      <ul class="about-key">
+        <li>an animal-only compound shows more than two stars, or carries a rating badge that does not
+        say "animal";</li>
+        <li>a page names a prescription or controlled substance without stating that it is prescription
+        or controlled;</li>
+        <li>a restricted compound's page would render self-dosing instructions;</li>
+        <li>a dose calculator lacks a machine-readable maximum (a milligram/gram slip once made one
+        calculator understate a dose a thousandfold);</li>
+        <li>a protocol would prescribe a movement that the same page tells you to avoid;</li>
+        <li>an evidence claim is not bound to a record in the claims file;</li>
+        <li>any compound is missing from the goal taxonomy;</li>
+        <li>a machine-readable data block would be emitted in a form search engines silently discard;</li>
+        <li>a page links to a route that does not exist, or a page is published with nothing linking
+        to it.</li>
+      </ul>
+      <p>Each of these exists because that exact defect shipped at least once.</p>
+
+      <h2>The limits you should hold in mind</h2>
+      <ul class="about-key">
+        <li>No clinician review. This is the largest one.</li>
+        <li>A star rating is a summary of a literature, and summaries lose information. The page body
+        is where the honest detail is; read it before acting on a number.</li>
+        <li>Coverage is uneven. Some compounds have a deep evidence layer, others a short profile.</li>
+        <li>Singapore availability and regulatory status change, and this site is a snapshot.</li>
+      </ul>
+
+      <h2>Found something wrong?</h2>
+      <p>That is the most useful thing you can send. Errors here should be fixed rather than defended.
+      <a href="/corrections">See what has already been corrected, and how to report one →</a></p>
+      <p><a href="/legend">How to read the stars and badges →</a> · <a href="/about">About RNAwiki →</a></p>
+      </div>` }));
+
+  add('/corrections', shell({
+    route: '/corrections', title: 'Corrections — what RNAwiki got wrong, and fixed · RNAwiki',
+    desc: 'A public log of substantive corrections to published claims on RNAwiki, and how to report an error you have found.',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Corrections', route: '/corrections' }],
+    body: `<div class="article"><h1>Corrections</h1>
+      <p class="lede">A site with no corrections page is not a site with no errors. This is the log of
+      substantive corrections to published health claims — what was wrong, and what replaced it.</p>
+
+      <h2>How to report one</h2>
+      <p>Use the feedback link on any page, or write to
+      <a href="mailto:hello@rnawiki.com">hello@rnawiki.com</a>. The most useful report names the page,
+      quotes the sentence, and says what the source actually shows. You do not need to be polite about
+      it and you do not need a credential.</p>
+      <p>Claims are corrected at their source, so a fix propagates to every page that repeats it —
+      usually within a day.</p>
+
+      <h2>Corrections made</h2>
+      <p>This log begins on 27 July 2026, when the site was first audited end to end. It covers
+      corrections to published claims; routine editing and code changes are not listed.</p>
+
+      <h3>A trial figure attributed to the wrong study</h3>
+      <p>The clenbuterol page repeated a widely quoted "+39% fat oxidation" and attached it to the
+      randomised controlled trial in healthy humans. The controlled trial reports no such thing — it
+      measured a fat-mass change of 0.00 kg. The 39% comes from a separate open-label, uncontrolled
+      study of six men, measured 140 minutes after a single dose. The number is now shown with its
+      real source and its real design, next to the controlled result it was being used to dress up.</p>
+
+      <h3>Animal data was earning human evidence ratings</h3>
+      <p>The star rating was taking the highest evidence grade on a compound regardless of species, so
+      compounds with strong rodent data and thin human data could display a high human-evidence rating.
+      Rapamycin was the clearest case at five stars; it now shows three, which is what its human
+      evidence supports. Animal-only compounds are capped at two stars and labelled, and the build
+      refuses to publish if that is ever violated again.</p>
+
+      <h3>Prescription medicines described as available over the counter</h3>
+      <p>The site was reading a regulatory approval badge as if it were a supply classification. Seven
+      prescription-only medicines consequently displayed as available from ordinary retailers, while a
+      common vitamin displayed as prescription-only. Approval and availability are now separate fields
+      and are stated separately.</p>
+
+      <h3>A protocol prescribing the movement it told you to avoid</h3>
+      <p>The rotator-cuff protocol listed an overhead press, on a page whose own advice was to avoid
+      overhead loading. The exercise tags behind it had been assigned by muscle group rather than by
+      function. Tags are now derived from the movement itself, and a protocol that would prescribe a
+      movement it contraindicates fails the build.</p>
+
+      <h3>A dose calculator returning milligrams where grams were correct</h3>
+      <p>One calculator produced a result a thousand times too small. Every calculator now carries a
+      machine-readable maximum and is checked at build time.</p>
+
+      <h3>Anxiety listing no first-line treatment</h3>
+      <p>The anxiety protocol discussed supplements without naming cognitive behavioural therapy or
+      SSRIs — the treatments with the strongest evidence for the condition. Omitting them made the
+      supplement evidence look stronger by comparison than it is. Both are now named.</p>
+
+      <h3>A bone-health claim stated backwards</h3>
+      <p>The menopause protocol inverted the direction of an effect on bone density. Corrected.</p>
+
+      <h3>A triage questionnaire with no cardiac red flag</h3>
+      <p>The neck-and-shoulder questionnaire screened for nerve and structural warning signs but not
+      for the cardiac presentation its own escalation text opened with. It now screens for it, and
+      withholds the protocol in favour of emergency advice when it fires.</p>
+
+      <h3>A trial cited to the wrong journal</h3>
+      <p>A phenibut trial was credited to <em>Drug Testing and Analysis</em>; it was published in
+      <em>Pharmacopsychiatry</em>. The page body had the right journal in the text while the citation
+      had the wrong one — the page was contradicting itself.</p>
+
+      <h3>Microdosing conclusions drawn from full-dose trials</h3>
+      <p>The psilocybin entry presented five trials together under a microdosing heading. Four used
+      full 10–25 mg doses with psychological support; the one genuine microdosing trial — self-blinded,
+      placebo-controlled, 191 completers — found the microdose and placebo groups improved equally.
+      Nothing on the page distinguished them, so four strong full-dose results read as support for
+      microdosing. The entry now states the distinction before the results.</p>
+
+      <h3>Compounds ranked against the wrong goals</h3>
+      <p>72 of 387 goal assignments were wrong, including a wakefulness-promoting drug ranked first
+      under "Sleep Better". The taxonomy was rebuilt and is now checked at build time.</p>
+
+      <h3>Citations audited end to end</h3>
+      <p>Every citation in the corpus was checked against its record. Across two passes, 244
+      citations were bound to verified sources, 58 claims were corrected to match what the source
+      actually reports, and 8 were rejected outright and removed. Where no source could be found for a
+      claim, the claim was removed rather than left standing.</p>
+
+      <p><a href="/methodology">How a page here is made →</a> · <a href="/legend">How to read the stars →</a></p>
+      </div>` }));
+
+  // ---- /compare index ------------------------------------------------------------------------
+  // Added 2026-07-30. Every one of the 119 comparison pages carried a breadcrumb to "/compare" —
+  // in the visible trail AND in the BreadcrumbList data Google reads — and /compare was not a page.
+  // Worse than a 404: serveMissing() answers anything under /compare with HTTP 410 Gone, which is
+  // the correct answer for a withdrawn comparison and precisely the wrong one for the parent of a
+  // live section. So each of the 119 pages told Google its own parent was permanently deleted.
+  // The index also removes the last two link orphans: compound pages cap their comparison list at
+  // eight, so a pair ranked ninth on BOTH of its compounds had nothing anywhere pointing to it.
+  {
+    const byGoal = new Map();
+    comparePairs.forEach(({ a, b, goalId }) => {
+      if (!byGoal.has(goalId)) byGoal.set(goalId, []);
+      byGoal.get(goalId).push({ a, b, route: `/compare/${slug(a.name)}-vs-${slug(b.name)}` });
+    });
+    const groups = [...byGoal.entries()]
+      .map(([gid, list]) => ({ g: goalById[gid], list: list.sort((x, y) => x.a.name.localeCompare(y.a.name)) }))
+      .filter((x) => x.g)
+      .sort((x, y) => y.list.length - x.list.length);
+    const total = comparePairs.size;
+    add('/compare', shell({
+      route: '/compare', title: `Head-to-head: ${total} supplement comparisons · RNAwiki`,
+      desc: `Every side-by-side comparison on RNAwiki — ${total} pairs of supplements that are used for the same goal, compared on human evidence, mechanism, safety and Singapore availability.`,
+      breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }],
+      body: `<div class="article"><h1>Head-to-head comparisons</h1>
+        <p class="lede">${total} pairs of compounds that people actually weigh against each other,
+        because they are used for the same goal. Each page puts the two side by side on human
+        evidence, mechanism, side effects, interactions and what it costs in Singapore.</p>
+        <p>Only supplements and over-the-counter compounds are compared this way. We do not publish a
+        "which works better" page that ranks a prescription or controlled medicine against a
+        supplement — you cannot act on that comparison, and in Singapore advertising a
+        prescription-only medicine to the public is prohibited. <a href="/methodology">How these pages
+        are made →</a></p>
+        ${groups.map(({ g, list }) => `<h2>${esc(g.label)}</h2>
+          <p><a href="/goal/${g.id}">Everything for ${esc(String(g.label).toLowerCase())} →</a></p>
+          <ul>${list.map((x) => `<li><a href="${x.route}">${esc(x.a.name)} vs ${esc(x.b.name)}</a></li>`).join('')}</ul>`).join('')}
+        <p><a href="/az">Every compound, A–Z →</a> · <a href="/browse">Browse by category →</a></p>
+        </div>` }));
+  }
 
   add('/az', shell({
     route: '/az', title: `All ${D.compounds.length} compounds A–Z · RNAwiki`,
