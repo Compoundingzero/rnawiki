@@ -40,15 +40,26 @@ export function canRun3D() {
 // ---- registry lookup (the ONLY source of content) --------------------------------------------
 // parse.js exposes RNAWIKI_DATA.structures as an ARRAY (+ structuresByGroup). The engine keys on FMA,
 // so build+cache an fma->structure index from whatever shape is present (array or already-keyed object).
+//
+// ⚠ THE JOIN KEY MUST BE NORMALISED. three.js's GLTFLoader SANITISES node names — it strips the colon,
+// so a GLB node named "FMA:22430" arrives as mesh.name "FMA22430". The registry key is "FMA:22430".
+// Comparing them raw NEVER matches, which silently disables every pick, highlight and animation (the
+// model then shows a lone muscle with no bones and no movement). normFma() reduces any spelling —
+// "FMA:22430", "FMA22430", "FMA_22430", "fma:22430", 22430 — to the canonical "FMA:22430", and BOTH
+// sides of every comparison go through it. Do not remove this; it is the fix for that exact bug.
+function normFma(v) {
+  const m = String(v == null ? '' : v).match(/(\d+)/);
+  return m ? 'FMA:' + m[1] : '';
+}
 let _fmaIndex = null;
 function structures() {
   if (_fmaIndex) return _fmaIndex;
   const raw = (window.RNAWIKI_DATA && window.RNAWIKI_DATA.structures) || [];
   _fmaIndex = {};
-  (Array.isArray(raw) ? raw : Object.values(raw)).forEach((s) => { if (s && s.fma) _fmaIndex[s.fma] = s; });
+  (Array.isArray(raw) ? raw : Object.values(raw)).forEach((s) => { if (s && s.fma) _fmaIndex[normFma(s.fma)] = s; });
   return _fmaIndex;
 }
-function structureByFma(fma) { return structures()[fma] || null; }
+function structureByFma(fma) { return structures()[normFma(fma)] || null; }
 
 // ---- action → joint movement, ported from build/figures.js classify() ------------------------
 // We reuse the SAME joint+direction vocabulary the 2D animated figures use, so the 3D movement of a
@@ -167,8 +178,9 @@ export async function mountBodyMap(container, opts = {}) {
 
   root.traverse((o) => {
     if (!o.isMesh) return;
-    // mesh.name is the FMA id (set at build time). userData.layer is skin|superficial|deep|skeleton.
-    const fma = o.name;
+    // mesh.name is the FMA id (set at build time) — but sanitised by the loader, so normalise it to the
+    // canonical "FMA:nnnn" the registry and the rigs use. Everything downstream keys on this value.
+    const fma = normFma(o.name);
     o.userData.fma = fma;
     o.userData.layer = o.userData.layer || inferLayer(o);
     o.userData.baseColor = (o.material && o.material.color) ? o.material.color.clone() : new THREE.Color(0xb08a86);
@@ -221,26 +233,32 @@ export async function mountBodyMap(container, opts = {}) {
     if (/ilium|iliac|ischia|ischial|pubis|pubic|acetabul|coxae|pelvi|hip bone|sacr/.test(t)) return 'FMA:16585';
     return null;
   }
+  const _bone = (t) => normFma(resolveBone(t)) || null;
   // SELECT is the learning moment (Felix: teach where it connects + how it moves, don't just isolate a
   // lone fibre). Show the muscle bright; its ORIGIN bone tinted blue + INSERTION bone tinted amber and
   // clearly visible; the rest of the skeleton faint (so the movement has context); other muscles nearly
   // gone. Frame the muscle + its two bones, then animate the muscle's action.
   function select(fma) {
+    fma = normFma(fma);
     if (!byFma.has(fma)) return;
     stopAction();
     state.selected = fma;
     const st = structureByFma(fma);
-    const originB = resolveBone(st && st.origin && st.origin.attachTo);
-    const insertB = resolveBone(st && st.insertion && st.insertion.attachTo);
+    const originB = _bone(st && st.origin && st.origin.attachTo);
+    const insertB = _bone(st && st.insertion && st.insertion.attachTo);
     root.traverse((o) => {
       if (!o.isMesh || !o.material) return;
       const f = o.userData.fma;
       o.material.emissiveIntensity = 0;
-      if (f === fma) { o.material.emissive.copy(TEAL); o.material.emissiveIntensity = 0.5; o.material.opacity = 1; }
-      else if (f === originB) { o.material.emissive.copy(BONE_BLUE); o.material.emissiveIntensity = 0.2; o.material.opacity = 0.72; }
-      else if (f === insertB) { o.material.emissive.copy(BONE_AMBER); o.material.emissiveIntensity = 0.2; o.material.opacity = 0.72; }
-      else if (boneFmas.has(f)) { o.material.opacity = 0.3; }
-      else { o.material.opacity = 0.05; }
+      if (o.userData.baseColor) o.material.color.copy(o.userData.baseColor); // reset any prior tint
+      if (f === fma) { o.material.color.copy(TEAL); o.material.emissive.copy(TEAL); o.material.emissiveIntensity = 0.55; o.material.opacity = 1; }
+      // Colour the two bones outright (not just a faint emissive tint) so it is unmistakable WHERE the
+      // muscle attaches: origin bone blue, insertion bone amber. Kept nearly solid so they read as the
+      // structural anchors while the muscle moves between them.
+      else if (f === originB) { o.material.color.copy(BONE_BLUE); o.material.emissive.copy(BONE_BLUE); o.material.emissiveIntensity = 0.35; o.material.opacity = 0.95; }
+      else if (f === insertB) { o.material.color.copy(BONE_AMBER); o.material.emissive.copy(BONE_AMBER); o.material.emissiveIntensity = 0.35; o.material.opacity = 0.95; }
+      else if (boneFmas.has(f)) { o.material.opacity = 0.32; } // rest of the skeleton = faint context
+      else { o.material.opacity = 0.05; } // other muscles nearly gone
     });
     frameGroup([fma, originB, insertB]);
     playAction(fma);

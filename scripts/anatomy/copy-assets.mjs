@@ -17,9 +17,32 @@
 //
 // RUN:  node scripts/anatomy/copy-assets.mjs         (from repo root, as prestart does)
 
-import { readdirSync, existsSync, mkdirSync, cpSync, statSync } from 'node:fs';
+import { readdirSync, existsSync, mkdirSync, cpSync, statSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+// GATE: read a GLB's JSON chunk and assert its DEFAULT scene actually contains the whole region, with
+// FMA-named nodes. This exists because a real bug shipped: the leg build emitted 19 single-node scenes
+// (one per part) and the loader shows ONLY the default scene — so the model was a lone muscle with no
+// bones and no movement, and every pick/animation silently no-op'd because names didn't match either.
+// Prove the gate by pointing it at that old file: default scene had 1 node → this throws. (2026-07-31)
+function assertGlbUsable(file, buf) {
+  if (buf.readUInt32LE(0) !== 0x46546c67) die(`${file}: not a GLB (bad magic).`);
+  const jsonLen = buf.readUInt32LE(12);
+  let j;
+  try { j = JSON.parse(buf.slice(20, 20 + jsonLen).toString('utf8')); }
+  catch (e) { die(`${file}: unreadable JSON chunk (${e.message}).`); }
+  const nodes = j.nodes || [];
+  const sceneIdx = (typeof j.scene === 'number') ? j.scene : 0;
+  const scene = (j.scenes || [])[sceneIdx];
+  if (!scene) die(`${file}: no default scene.`);
+  const rootCount = (scene.nodes || []).length;
+  // a region model is many parts; a default scene with 0–1 roots is the "lone muscle" regression.
+  if (rootCount < 2) die(`${file}: default scene has ${rootCount} node(s) — expected the whole region (many meshes). The build likely wrote one scene per part; merge them into a single scene.`);
+  const fmaNamed = nodes.filter((n) => /\d{3,}/.test(String(n.name || ''))).length;
+  if (fmaNamed < 2) die(`${file}: nodes are not FMA-named (${fmaNamed} with an id) — the engine keys picks on FMA ids in node names.`);
+  return { rootCount, nodeCount: nodes.length, fmaNamed };
+}
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, '../..');
@@ -35,9 +58,11 @@ const glbs = readdirSync(SRC_GLB).filter((f) => f.endsWith('.glb'));
 if (!glbs.length) die(`no *.glb in ${path.relative(REPO, SRC_GLB)} — nothing to serve (run npm run build:leg in scripts/anatomy).`);
 mkdirSync(DST_GLB, { recursive: true });
 for (const f of glbs) {
-  cpSync(path.join(SRC_GLB, f), path.join(DST_GLB, f));
+  const src = path.join(SRC_GLB, f);
+  const info = assertGlbUsable(f, readFileSync(src)); // gate BEFORE staging — never serve a broken model
+  cpSync(src, path.join(DST_GLB, f));
   const kb = (statSync(path.join(DST_GLB, f)).size / 1024).toFixed(0);
-  console.log(`  anatomy/${f}  (${kb} KB)  ->  site/anatomy/${f}`);
+  console.log(`  anatomy/${f}  (${kb} KB, ${info.rootCount} scene-roots / ${info.nodeCount} nodes)  ->  site/anatomy/${f}`);
 }
 
 // 2. Vendored Three.js: assert the served-in-place files exist (no copy — they are committed under site/).
