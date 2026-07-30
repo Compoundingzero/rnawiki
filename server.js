@@ -1260,11 +1260,25 @@ async function api(req, res, url) {
   // --- newsletter ---
   if (seg[0] === 'subscribe' && method === 'POST') {
     const b = await readBody(req, 4096); if (!b) return json(res, 400, { error: 'Bad request' });
+    // ---- NO-JS COMPLETION STATE (2026-07-30) --------------------------------------------------
+    // The newsletter is the home page's MAIN call to action, and for the ~90% of traffic that never
+    // runs JavaScript it had no completion state at all: the browser POSTs the form natively, this
+    // endpoint answers application/json, and the subscriber lands on a white page reading
+    // {"ok":true,"alreadySubscribed":false}. They did subscribe — they just have no way to know it,
+    // and no way back. A native form post must end in a redirect, not a payload.
+    const wantsHtml = /x-www-form-urlencoded/i.test(req.headers['content-type'] || '');
+    const done = (ok, msg) => {
+      if (!wantsHtml) return null;
+      const q = ok ? 'subscribed=1' : `suberr=${encodeURIComponent(String(msg || '').slice(0, 120))}`;
+      res.writeHead(303, { Location: `/?${q}#newsletter` });
+      res.end();
+      return true;
+    };
     // Honeypot: a field no human sees and every naive bot fills. Return 200 so the bot believes it
     // worked and does not retry with a different shape.
-    if (clean(b.website, 80)) return json(res, 200, { ok: true });
+    if (clean(b.website, 80)) return done(true) || json(res, 200, { ok: true });
     const email = clean(b.email, 160).toLowerCase();
-    if (!EMAIL_RE.test(email)) return json(res, 400, { error: 'That email address does not look right.' });
+    if (!EMAIL_RE.test(email)) return done(false, 'That email address does not look right.') || json(res, 400, { error: 'That email address does not look right.' });
     const source = clean(b.source, 60) || 'newsletter';
     try {
       // Rate limit by volume, not by IP (which is unreliable behind Railway's proxy): if this many
@@ -1287,8 +1301,8 @@ async function api(req, res, url) {
         const unsubUrl = `${SITE_URL}/api/unsubscribe?t=${encodeURIComponent(row.unsub_token || tok)}`;
         sendEmail(email, 'Welcome to RNAwiki', welcomeEmail(unsubUrl)).catch(() => {});
       }
-      return json(res, 200, { ok: true, alreadySubscribed: !isNew });
-    } catch (e) { console.error('[newsletter]', e.message); return json(res, 500, { error: 'Could not sign you up just now. Try again shortly.' }); }
+      return done(true) || json(res, 200, { ok: true, alreadySubscribed: !isNew });
+    } catch (e) { console.error('[newsletter]', e.message); return done(false, 'Could not sign you up just now. Try again shortly.') || json(res, 500, { error: 'Could not sign you up just now. Try again shortly.' }); }
   }
   if (seg[0] === 'unsubscribe' && method === 'GET') {
     const t = clean(new URL('http://x/' + url).searchParams.get('t'), 64);

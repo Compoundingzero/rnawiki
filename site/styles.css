@@ -3373,3 +3373,11 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 .nl-turn { font-weight: 650; font-size: 1.05rem; margin: 1rem auto .2rem; max-width: 40rem; }
 .nl-fine { font-size: .78rem; color: var(--muted, #64748b); margin-top: .7rem; }
 @media (max-width: 640px) { .nl-cost { grid-template-columns: 1fr; } .nl-fig b { font-size: 1.5rem; } }
+
+/* Completion state for the native (no-JS) newsletter post — the server 303s to
+   /?subscribed=1#newsletter, so this is the only thing telling ~90% of subscribers it worked. */
+.nl-done, .nl-err { margin: 0 auto .9rem; max-width: 46rem; padding: .6rem .9rem; border-radius: 10px;
+  font-weight: 600; font-size: .93rem; }
+.nl-done { background: color-mix(in srgb, var(--accent, #0d9488) 12%, transparent);
+  border: 1px solid var(--accent, #0d9488); color: var(--accent, #0d9488); }
+.nl-err { background: #fef2f2; border: 1px solid #fecaca; color: #b3261e; }

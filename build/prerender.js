@@ -352,7 +352,12 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   const _an = anchorHeadings(body);
   const _words = String(_an.html).replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
   const _mins = Math.max(1, Math.round(_words / 230));
-  const _toc = tocHtml(_an.heads, _words > 700 ? _mins : 0);
+  // NOT on the home page. The contents card is right for a 33-screen course; on a landing page
+  // whose whole job is two CTAs it lands between the headline and the lead, stays pinned for the
+  // entire scroll at >=900px, and offers 12 competing destinations on top of the primary ask.
+  // Also excluded from the index pages, which are already lists of links.
+  const _noToc = route === '/' || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
+  const _toc = (!_noToc && _words > 700) ? tocHtml(_an.heads, _mins) : '';
   // Insert after the first </h1> so the reader gets title -> what's in here -> content.
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
   const img = ogImage || (SITE_URL + '/og.png');
@@ -1338,7 +1343,18 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
   // crawlable entry from the homepage instead of 41.
   const problemList = Object.keys(byCat).map((cat) => `<section><h2>${esc(cat)}</h2><ul class="seo-links">${byCat[cat]
     .flatMap((p) => p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)}${p.root_causes.length > 1 ? ` — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}` : ''}</a></li>`)).join('')}</ul></section>`).join('');
-  const goalLinks = D.goals.map((g) => `<li><a href="/goal/${g.id}">${esc(g.label)}</a></li>`).join('');
+  // The honest "N you can buy · M prescription-only" split shipped to the SPA only, so the
+  // regulatory fix reached ~10% of traffic while the prerendered home kept promising a bare count
+  // of "compounds" for goals that are majority prescription-only (Lose Fat: 4 open, 18 Rx).
+  // Same split here, from the same data.
+  const RX_CLASS = new Set(['prescription', 'controlled', 'unapproved']);
+  const goalLinks = D.goals.map((g) => {
+    const inGoal = D.compounds.filter((c) => (c.goalIds || []).includes(g.id));
+    const open = inGoal.filter((c) => !RX_CLASS.has(c.regulatory_class)).length;
+    const rx = inGoal.length - open;
+    const note = rx ? ` — ${open} you can buy, ${rx} prescription-only` : '';
+    return `<li><a href="/goal/${g.id}">${esc(g.label)}</a>${note}</li>`;
+  }).join('');
   // Loss-framed newsletter capture for the PRERENDERED home. Until now `site/index.html` had ZERO
   // `data-nl` forms and no `id="newsletter"`, while every prerendered footer links `/#newsletter`
   // and server.js 301s the old page there — so the funnel was severed for the ~90% of traffic that

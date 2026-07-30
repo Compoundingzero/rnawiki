@@ -1183,7 +1183,15 @@
           The newsletter signup takes this slot: it is the only thing on the home page actually
           asking the reader for something, and it previously lived on a separate /newsletter page
           that a visitor had to find. */ ''}
+    ${/* The no-JS form posts natively and the server 303s back to /?subscribed=1#newsletter.
+          Without this the reader is returned to an unchanged page and cannot tell it worked. */ ''}
     <section class="nl-home reveal" id="newsletter">
+      ${(() => {
+        const q = new URLSearchParams(location.search);
+        if (q.get('subscribed')) return '<p class="nl-done">✅ You\'re in. Check your inbox for a welcome email — it has the one-click unsubscribe in it, so you never have to hunt for one.</p>';
+        const e = q.get('suberr');
+        return e ? `<p class="nl-err">${esc(e)}</p>` : '';
+      })()}
       <div class="nl-home-inner">
         <div class="nl-eyebrow">Free weekly · no spam · one click to leave</div>
         <h2>Medicine that doesn't work still sends you a bill.</h2>
