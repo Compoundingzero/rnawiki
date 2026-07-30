@@ -25,14 +25,16 @@
     "t": "Binding bends the receptor — the message crosses the wall as a shape change",
     "d": "Binding on the outside forces the receptor to subtly change shape, and because the protein runs all the way through the membrane, that shape change is transmitted mechanically to its tail on the INSIDE. This is the whole trick of signalling: no molecule crossed the membrane, but INFORMATION did — carried as a bend propagating through a single protein. The inside tail is now in a new shape that can grab the next player.",
     "tag": "transduction",
-    "fx": "The signal has crossed the impassable wall without any substance crossing it. The receptor's inner face is now 'active.'"
+    "fx": "The signal has crossed the impassable wall without any substance crossing it. The receptor's inner face is now 'active.'",
+    "predict": "The adrenaline is stuck in a pocket on the outside and it cannot cross the greasy membrane. Yet the inside of the cell is about to know all about it. If no substance gets through, what does — and what carries it?"
    },
    {
     "n": 3,
     "t": "The receptor switches on a G-protein",
     "d": "That newly-shaped inner tail grabs a shuttle protein sitting just inside the membrane — the G-protein (this is literally what the 'G' in GPCR refers to). The receptor flips the G-protein into its 'on' state and releases it to run downstream. Crucially, ONE receptor can switch on MANY G-proteins in a row while the ligand sits in its pocket. This is the first stage of amplification — one ligand, many activated shuttles.",
     "tag": "amplification",
-    "fx": "One binding event has become many messengers. The signal is being multiplied."
+    "fx": "One binding event has become many messengers. The signal is being multiplied.",
+    "predict": "The receptor's inner face is now active, and it grabs a shuttle protein waiting just inside the membrane. Here is the part that matters: while one adrenaline molecule sits in its pocket, how many shuttles does that receptor get through?"
    },
    {
     "n": 4,
@@ -47,14 +49,16 @@
     "t": "cAMP activates a kinase (PKA)",
     "d": "cAMP switches on an enzyme called Protein Kinase A (PKA). A kinase is a protein whose job is to attach a phosphate group onto OTHER proteins. That act — attaching a phosphate — is called phosphorylation, and it is the cell's universal on/off switch: sticking a bulky, negatively-charged phosphate onto a protein forces it to change shape, which turns it on or off. PKA is now an activated switch-flipper, and each PKA can phosphorylate many target proteins before it is reset.",
     "tag": "kinase",
-    "fx": "The chemical signal (cAMP) is now converted into ACTION on other proteins. Amplification stage three."
+    "fx": "The chemical signal (cAMP) is now converted into ACTION on other proteins. Amplification stage three.",
+    "predict": "The interior of the cell is now flooded with a small messenger. It switches on an enzyme whose whole job is to stick one small tag onto other proteins. What is that tag, and why would adding it flip a protein on or off?"
    },
    {
     "n": 6,
     "t": "PKA phosphorylates the effector — the machine that does the visible job",
     "d": "PKA sticks phosphates onto the enzyme hormone-sensitive lipase (HSL), the machine that chops stored fat into releasable fuel. Phosphorylated HSL wakes up and starts breaking down fat. (In liver and muscle, the same PKA cascade activates the enzymes that release stored sugar — one relay, many end-effects depending on the cell.) Now — finally — the cell is DOING the thing the hormone asked for.",
     "tag": "effector",
-    "fx": "Stored fat is being liberated into the bloodstream as free fatty acids for fuel. The 'mobilise energy' command has been executed."
+    "fx": "Stored fat is being liberated into the bloodstream as free fatty acids for fuel. The 'mobilise energy' command has been executed.",
+    "predict": "Four relay stages in and nothing visible has happened yet. The original message was 'mobilise energy', so which stored fuel gets unlocked right here — and why does the identical cascade do something different inside your liver?"
    },
    {
     "n": 7,
@@ -69,7 +73,8 @@
     "t": "The off-switch — and why it's a drug target too",
     "d": "The signal must be terminated or the cell would burn itself out. An enzyme called phosphodiesterase (PDE) chews up cAMP, ending the message; phosphatases pull the phosphates back off HSL. Here is the punchline that ties the module together: many 'stimulant' effects come from disabling this OFF machinery rather than pushing the ON button. Viagra is the clean example — it inhibits a phosphodiesterase (PDE5) in one specific tissue, so a second messenger (cGMP there) lingers and the 'go' signal stays on. Caffeine can inhibit PDE too, but only at doses higher than you get from coffee (we'll fix that common myth in the deep dive). Understanding the OFF switch is understanding half of pharmacology.",
     "tag": "termination",
-    "fx": "The system resets, ready for the next signal — unless a drug is deliberately jamming the reset, in which case the signal outlives its trigger."
+    "fx": "The system resets, ready for the next signal — unless a drug is deliberately jamming the reset, in which case the signal outlives its trigger.",
+    "predict": "A signal that never stopped would burn the cell out, so something has to destroy the messenger. Now the twist worth predicting: if you wanted to make a signal stronger and longer, is pushing the ON button your only option?"
    }
   ],
   "deepDive": [
@@ -230,7 +235,8 @@
     "t": "The demand hits",
     "d": "You initiate an all-out effort — a heavy pull off the floor, a jump, a sprint step. Calcium floods the muscle fiber, myosin heads latch onto actin, and each head splits one ATP to power its stroke: ATP → ADP + Pi + energy. Across billions of heads, ATP is being spent at a colossal rate.",
     "tag": "trigger",
-    "fx": "flash"
+    "fx": "flash",
+    "predict": "You go all-out — a maximal pull, a jump, a sprint step. Billions of tiny motors latch on, and each one spends a single molecule to power its stroke. Which molecule is it, and what is left behind after every stroke?"
    },
    {
     "n": 2,
@@ -252,14 +258,16 @@
     "t": "The phosphate transfer — the heart of the system",
     "d": "CK catalyzes: PCr + ADP + H⁺ → ATP + creatine. In well under a millisecond it strips the phosphate off phosphocreatine and clips it onto ADP, regenerating ATP. Because PCr's phosphate sits at higher energy than ATP's (−43 vs −31 kJ/mol standard), this runs strongly forward the instant ADP appears.",
     "fx": "pulse",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "The enzyme moves one phosphate off the store and onto the spent fuel. For that swap to run hard in this direction the instant it is needed, what has to be true about the energy held in those two phosphate bonds?"
    },
    {
     "n": 5,
     "t": "Power stays maximal — for now",
     "d": "ATP is remade as fast as it's spent, so the myosin motors never notice a shortage. Force and velocity stay at 100%. This is the only system that can keep pace with truly maximal power output — its rate of ATP resupply is the highest in the body.",
     "tag": "payoff",
-    "fx": "flash"
+    "fx": "flash",
+    "predict": "Resupply now matches spending almost exactly. What does that feel like from the muscle's point of view in the first seconds — and what does it imply about how this system ranks against every other one for sheer rate?"
    },
    {
     "n": 6,
@@ -272,13 +280,15 @@
     "n": 7,
     "t": "The backup and the alarm",
     "d": "As ADP piles up faster than CK can clear it, adenylate kinase (myokinase) runs 2 ADP → ATP + AMP, squeezing out one more ATP. The AMP it produces is a cellular 'low-fuel' alarm: it activates AMPK and switches on glycolysis, and some AMP is broken down (to IMP + ammonia), which is why blood ammonia rises in sprints.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "With the store running dry, spent ADP piles up — and the cell has one last trick: combine two spent molecules to salvage one usable one. What by-product does that leave behind, and what alarm might the cell read it as?"
    },
    {
     "n": 8,
     "t": "Handover",
     "d": "By ~8–10 seconds of maximal work, PCr is largely spent and glycolysis is carrying the load. Power has dropped off its peak. The phosphagen system has done its job: it covered the gap between 'go' and the moment the slower systems could contribute.",
-    "tag": "payoff"
+    "tag": "payoff",
+    "predict": "Around ten seconds into a maximal effort the battery is flat and power has come off its peak. Which system has picked up the load by then — and what was the phosphagen system's whole purpose in the first place?"
    },
    {
     "n": 9,
@@ -506,7 +516,8 @@
     "t": "Insulin + C-peptide: the manufacturing giveaway",
     "d": "Insulin is built as one long chain, PROINSULIN, then enzymes (convertases PC1/3 and PC2) snip out a middle piece. What's left folded together — two chains held by disulfide bonds — is mature insulin; the snipped-out middle is C-PEPTIDE. They're released in a strict 1:1 molar ratio. C-peptide lasts ~30 min in blood versus insulin's few minutes, so doctors measure C-peptide to tell how much insulin a person's OWN pancreas is making (injected insulin has no C-peptide).",
     "tag": "output",
-    "fx": "Equal moles of insulin and C-peptide are now in circulation; insulin heads out to act on the whole body."
+    "fx": "Equal moles of insulin and C-peptide are now in circulation; insulin heads out to act on the whole body.",
+    "predict": "Insulin is cut out of a longer chain, and the offcut is released alongside it in a fixed one-to-one ratio. Why would that discarded piece be more useful to measure in blood than the hormone everyone actually cares about?"
    },
    {
     "n": 8,
@@ -528,7 +539,8 @@
     "t": "GLUT4 garage doors roll up",
     "d": "In muscle and fat, the Akt cascade triggers GLUT4 glucose transporters — stored inside the cell in vesicles — to travel to the surface and insert into the membrane. Now glucose can pour into the cell. This is THE rate-limiting, insulin-dependent step of glucose disposal. Muscle is the biggest sink: it soaks up the majority of meal glucose.",
     "tag": "effector",
-    "fx": "Blood glucose starts falling as muscle and fat pull trucks off the road."
+    "fx": "Blood glucose starts falling as muscle and fat pull trucks off the road.",
+    "predict": "The signal has arrived inside a muscle cell. The transporters that let glucose in are already built and simply parked in storage. What has to happen to them — and which tissue soaks up most of a meal's glucose?"
    },
    {
     "n": 11,
@@ -542,7 +554,8 @@
     "t": "Fat cells: store fat, stop burning it",
     "d": "In fat tissue, insulin promotes lipogenesis (storing fat) and — critically — BLOCKS lipolysis (fat breakdown) by shutting off the enzyme hormone-sensitive lipase. This is why insulin is called the master storage hormone: while it's high, you physically cannot efficiently release fat from fat cells to burn. The net broadcast across all three tissues: 'FED STATE — store glucose, store fat, build, stop burning reserves.'",
     "tag": "effector",
-    "fx": "Whole-body metabolism is now locked in storage mode for as long as insulin stays elevated."
+    "fx": "Whole-body metabolism is now locked in storage mode for as long as insulin stays elevated.",
+    "predict": "Insulin reaches a fat cell. The obvious half is that it says store. Predict the less obvious half: what does it do to the machinery that releases fat, and what follows from that for anyone hoping to burn some?"
    },
    {
     "n": 13,
@@ -556,7 +569,8 @@
     "t": "Chronic overload to insulin resistance",
     "d": "If insulin is chronically high (frequent high-glucose intake, excess body fat, low activity), target cells DOWN-regulate their response — the cascade gets sluggish (insulin resistance). Now normal insulin can't lower glucose, so the pancreas secretes MORE to compensate. For years this works (high insulin, normal glucose — 'prediabetes'). Eventually beta cells can't keep up, glucose climbs, and that is TYPE 2 DIABETES. The whole disease is this one control loop breaking under chronic overload — with no backup lowering signal to rescue it.",
     "tag": "output",
-    "fx": "The dispatcher is screaming and the doors barely open — the road stays jammed with damaging trucks."
+    "fx": "The dispatcher is screaming and the doors barely open — the road stays jammed with damaging trucks.",
+    "predict": "Keep the signal shouting for years and the cells stop listening. Trace what the pancreas does in response — and why blood sugar can read perfectly normal for a long time while the loop is already failing underneath."
    }
   ],
   "deepDive": [
@@ -744,7 +758,8 @@
     "t": "The brain fires the musculocutaneous nerve",
     "d": "A signal travels from the C5–C6 nerve roots down the musculocutaneous nerve to the biceps. Calcium floods the muscle fibers, actin and myosin filaments ratchet past each other, and the whole muscle begins to shorten — pulling its tendon up off the radial tuberosity.",
     "fx": "A chemical signal (acetylcholine → calcium release) becomes mechanical tension in the tendon.",
-    "tag": "trigger"
+    "tag": "trigger",
+    "predict": "Between deciding to curl and any visible movement, a signal runs down one nerve into the muscle. Which ion has to flood the fibre before actin and myosin can begin ratcheting past each other?"
    },
    {
     "n": 3,
@@ -758,28 +773,32 @@
     "t": "Supinated = maximum flexion leverage",
     "d": "With the forearm supinated, the tendon is fully wound around the radius and pulls at a more perpendicular, efficient angle. The biceps' MOMENT ARM for elbow flexion (its leverage) is at its largest, so for a given muscle tension it delivers its greatest bending torque. This is precisely why a supinated curl feels stronger than a pronated one with the identical weight.",
     "fx": "Peak elbow-flexion leverage. The muscle is now doing its signature job at mechanical best.",
-    "tag": "key"
+    "tag": "key",
+    "predict": "Palm now facing up, the tendon is wound fully around the forearm bone. Think about the angle it pulls at from there — why should that make the very same muscle tension produce more bend at the elbow?"
    },
    {
     "n": 5,
     "t": "The elbow bends — the fight peaks near half-way up",
     "d": "Here's the subtle part. Two torques oppose each other: the muscle's pulling torque AND gravity's resistance torque (weight × the horizontal distance from your elbow to the dumbbell). That resistance is LARGEST exactly when the forearm is horizontal — around 90° of elbow bend — because the weight is then farthest, sideways, from the joint. That is the real reason the mid-range is a curl's 'sticking point': not that the muscle is weak there (it's actually near its strongest), but that the load against it is at its maximum. Match those two curves and you can predict where any lift stalls.",
     "fx": "Net difficulty = muscle torque MINUS resistance torque; both hump near 90°, and resistance usually wins there.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "Curls almost always stall about halfway up. The obvious reading is that the biceps is weak in that position, but you have just seen it is near its strongest there. So what else peaks at exactly that elbow angle?"
    },
    {
     "n": 6,
     "t": "The shoulder quietly assists — and the two-joint trap springs",
     "d": "The biceps also gives a weak tug of shoulder flexion (raising the upper arm forward). But here's the two-joint catch: if the shoulder flexes a lot AND the elbow flexes a lot at the same time, the muscle becomes so short it can barely generate force — 'active insufficiency'. This is why you instinctively keep your elbow pinned to your side during a strict curl instead of letting it drift forward: elbow drift flexes the shoulder and steals the biceps' remaining shortening range.",
     "fx": "Reveals the price of being a two-joint muscle: it cannot fully shorten across both joints at once.",
-    "tag": "insight"
+    "tag": "insight",
+    "predict": "The biceps crosses your shoulder as well as your elbow. Notice that you instinctively pin your elbow to your ribs during a strict curl — what would the muscle lose if you let that elbow drift forward instead?"
    },
    {
     "n": 7,
     "t": "Lowering: the same muscle brakes the weight",
     "d": "On the way down the biceps doesn't switch off — it lengthens WHILE staying tense (an ECCENTRIC contraction), paying out the rope slowly to control the descent. Eccentric loading produces higher force per active fiber than lifting does, and is the main driver of muscle soreness and growth. It is also when the distal tendon bears its greatest strain — which is exactly when, under a sudden unbraced overload, it tends to fail.",
     "fx": "One eccentric contraction quietly links three things you thought were separate: DOMS, hypertrophy, and distal rupture.",
-    "tag": "payoff"
+    "tag": "payoff",
+    "predict": "On the way down the biceps stays tense while getting longer. That one mode of contraction ties together three things you probably filed separately: next-day soreness, growth, and where a tendon gives way. What is the thread?"
    }
   ],
   "deepDive": [
@@ -1851,14 +1870,16 @@
     "t": "The investment phase: 2 ATP are spent to prime the sugar",
     "d": "Through several enzyme steps the 6-carbon sugar is rearranged and phosphorylated a second time, now carrying two phosphate tags. The gatekeeper step here is phosphofructokinase-1 (PFK-1) — the single most important control valve of the whole system. PFK senses the cell's energy state: when ATP and citrate are plentiful ('we have energy') it slows down; when ADP, AMP, and inorganic phosphate pile up ('we're burning ATP fast') it accelerates. PFK is the accelerator pedal of glycolysis, and it's self-regulating — you never consciously touch it.",
     "tag": "investment",
-    "fx": "The cell has now spent 2 ATP total. It is temporarily in energy DEBT. Everything after this point is payoff. PFK has committed the fuel — past this valve, there's no turning back."
+    "fx": "The cell has now spent 2 ATP total. It is temporarily in energy DEBT. Everything after this point is payoff. PFK has committed the fuel — past this valve, there's no turning back.",
+    "predict": "Strange accounting: a pathway whose entire job is making ATP begins by spending some. One enzyme here decides whether the whole line runs fast or slow — what would it need to sense in order to make that call sensibly?"
    },
    {
     "n": 3,
     "t": "The split: one 6-carbon sugar becomes two 3-carbon pieces",
     "d": "The primed 6-carbon molecule is cleaved cleanly down the middle into two 3-carbon fragments (both funnel into glyceraldehyde-3-phosphate). This is the 'lysis' — the actual sugar-splitting the pathway is named for. From here everything happens in duplicate: two parallel 3-carbon molecules march down the rest of the line.",
     "tag": "the split",
-    "fx": "You now have two 3-carbon fuel fragments where you had one 6-carbon sugar. The assembly line doubles."
+    "fx": "You now have two 3-carbon fuel fragments where you had one 6-carbon sugar. The assembly line doubles.",
+    "predict": "The word glycolysis literally means sugar-splitting, and your six-carbon sugar is about to be cut. Where would you cut it, and what does that single decision do to every step of the accounting that follows?"
    },
    {
     "n": 4,
@@ -1873,7 +1894,8 @@
     "t": "The payoff phase, part 2: cashing in for ATP (substrate-level phosphorylation)",
     "d": "Enzymes now transfer the high-energy phosphates directly from the fuel fragments onto ADP, rebuilding ATP. Because there are two 3-carbon fragments and two ATP-generating steps each, this produces 4 ATP total. This method — handing a phosphate straight from a substrate to ADP — is called substrate-level phosphorylation. It needs no oxygen and no mitochondria, which is exactly why it's so fast.",
     "tag": "payoff-2",
-    "fx": "4 ATP produced − 2 ATP invested = NET 2 ATP per glucose (3 if starting from glycogen). Each fragment has now become pyruvate, a 3-carbon end-product. The books are balanced and you're in profit — but there's a catch waiting."
+    "fx": "4 ATP produced − 2 ATP invested = NET 2 ATP per glucose (3 if starting from glycogen). Each fragment has now become pyruvate, a 3-carbon end-product. The books are balanced and you're in profit — but there's a catch waiting.",
+    "predict": "Time to get paid. The high-energy phosphates sitting on the fuel fragments are handed straight to ADP, with no oxygen and no mitochondria involved. Two fragments, two such steps each — so how many ATP, and what is the net?"
    },
    {
     "n": 6,
@@ -1888,7 +1910,8 @@
     "t": "The rescue: pyruvate + NADH → lactate + NAD⁺",
     "d": "The enzyme lactate dehydrogenase (LDH) grabs the backed-up pyruvate and dumps NADH's cargo onto it, converting pyruvate to LACTATE and — critically — regenerating the free NAD⁺ truck. That is the ENTIRE reason lactate exists: it's not a waste product, it's the exhaust valve that recharges NAD⁺ so the fast engine can keep firing. Make lactate, free your trucks, keep sprinting. This single reaction is what lets glycolysis sustain high power for a minute or two instead of choking in seconds.",
     "tag": "the rescue",
-    "fx": "NAD⁺ is regenerated → glycolysis keeps running → fast ATP keeps flowing. You've bought yourself continued high power. Lactate accumulates in the muscle and spills into the blood — a measurable signal that this fast lane is running hot."
+    "fx": "NAD⁺ is regenerated → glycolysis keeps running → fast ATP keeps flowing. You've bought yourself continued high power. Lactate accumulates in the muscle and spills into the blood — a measurable signal that this fast lane is running hot.",
+    "predict": "Every truck is loaded and the line is seconds from seizing. The cell's fix is to dump that cargo onto the backed-up pyruvate. So what is lactate actually for — and what does that do to its reputation as a waste product?"
    },
    {
     "n": 8,
@@ -1903,7 +1926,8 @@
     "t": "The aftermath: lactate is shuttled out and reused, not thrown away",
     "d": "When the effort eases, lactate is far too valuable to waste. It's transported out of fatigued fibers by MCT (monocarboxylate) transporters and shuttled to tissues that oxidize it as premium fuel — the heart and slow-twitch muscle actively PREFER lactate, and the brain uses it too. Some travels to the liver, which spends ATP to rebuild it into glucose (the Cori cycle). Light 'active recovery' movement clears lactate roughly twice as fast as sitting still, because working aerobic tissues drink it up. This same panting-it-off period is the EPOC that repays the oxygen deficit you opened at the start.",
     "tag": "recovery",
-    "fx": "Within minutes, blood lactate falls and muscle pH normalizes. The 'waste product' has become fuel for your heart, glucose from your liver, and a training signal that tells your body to build more mitochondria and transporters. The credit card bill is paid — with interest that makes you fitter."
+    "fx": "Within minutes, blood lactate falls and muscle pH normalizes. The 'waste product' has become fuel for your heart, glucose from your liver, and a training signal that tells your body to build more mitochondria and transporters. The credit card bill is paid — with interest that makes you fitter.",
+    "predict": "The effort is over and the lactate has to go somewhere. Which organs would you nominate to drink it as premium fuel — and would you clear it faster sitting on a bench, or walking a slow lap?"
    }
   ],
   "deepDive": [
@@ -2559,7 +2583,8 @@
     "t": "The surprise — carbs mostly aren't converted to fat",
     "d": "In humans, making new fat from carbohydrate (de novo lipogenesis) is metabolically expensive and runs at a trickle under normal diets. Your body first tops up its glycogen stores, burns the carbs for immediate energy — and STOPS burning fat. So the dietary FAT you ate that same day gets stored instead of used. Carbs don't become fat so much as they give fat a free pass into storage by taking its place in the furnace.",
     "tag": "key insight",
-    "fx": "dietary fat spared and stored"
+    "fx": "dietary fat spared and stored",
+    "predict": "If carbohydrate mostly is not spun into body fat, then gaining fat after a big carb meal still needs explaining. Follow the fat you ate in that same meal instead — what happens to it while the carbs are being burned?"
    },
    {
     "n": 4,
@@ -2582,7 +2607,8 @@
     "t": "Transport — fatty acids hitch a ride on albumin",
     "d": "Free fatty acids bind to albumin, the most abundant blood protein, which ferries them through the watery bloodstream to hungry tissues — mainly working muscle. The glycerol backbone floats off separately to the liver, where it can help make glucose. Nothing is wasted.",
     "tag": "transport",
-    "fx": "FFAs delivered to muscle"
+    "fx": "FFAs delivered to muscle",
+    "predict": "Fatty acids are oily and blood is watery, so they cannot simply float there. What carries them through the bloodstream, and what becomes of the glycerol backbone they were attached to?"
    },
    {
     "n": 7,
@@ -2605,14 +2631,16 @@
     "t": "The energy payoff — why fat is the premium fuel",
     "d": "Completely burning one 16-carbon fatty acid (palmitate) nets about 106 ATP; a molecule of glucose nets only ~30–32. Gram for gram fat holds more than twice the energy of carbs or protein (~9 vs ~4 kcal/g). That density is exactly why the body chose fat as its long-term store: maximum fuel, minimum weight to carry.",
     "tag": "payoff",
-    "fx": "~106 ATP per fatty acid"
+    "fx": "~106 ATP per fatty acid",
+    "predict": "A single fatty acid is finally burned to completion. Glucose nets roughly thirty ATP, so put a number on fat — and then say why the body chose it for long-term storage rather than sugar."
    },
    {
     "n": 10,
     "t": "The atoms leave your body — through your lungs",
     "d": "The carbon and hydrogen of the burned fat combine with the oxygen you breathed to form CO2 and water. The CO2 is exhaled; the water leaves in urine, sweat, and breath. Of 10 kg of fat lost, about 8.4 kg literally leaves as carbon dioxide you breathe out, and 1.6 kg as water. You quite literally exhale your fat.",
     "tag": "the exit",
-    "fx": "fat → CO2 (exhaled) + H2O"
+    "fx": "fat → CO2 (exhaled) + H2O",
+    "predict": "Fat is built out of carbon and hydrogen, and those atoms have to physically leave you. Of ten kilograms of fat lost, roughly how much departs as the gas you breathe out, and where does the remainder go?"
    }
   ],
   "deepDive": [
@@ -3116,7 +3144,8 @@
     "t": "Transversus abdominis fires ~30 ms early",
     "d": "In healthy people, TVA (and the deep multifidus in the back) contract roughly 30 milliseconds BEFORE the deltoid during rapid arm raises — a genuine head start, and crucially INDEPENDENT of the movement's direction, which marks it as a pre-programmed stabilising command rather than a reflex reaction. The corset tightens before the limb loads the spine. This anticipatory timing, not peak force, is what distinguishes a resilient trunk. In people with low-back pain this pre-firing is measurably DELAYED — the corset arrives late, after the spine has already been loaded unprotected.",
     "tag": "pre-firing",
-    "fx": "The waist cinches inward a fraction of a second before anything moves."
+    "fx": "The waist cinches inward a fraction of a second before anything moves.",
+    "predict": "The deep corset beats the arm muscle to the punch by a measurable margin, and it does so no matter which direction the arm swings. Why does that direction-independence matter — and what changes about the timing in people with back pain?"
    },
    {
     "n": 3,
@@ -3131,28 +3160,32 @@
     "t": "Intra-abdominal pressure spikes",
     "d": "Squeezing the walls of a sealed incompressible container raises internal pressure. Under a heavy deadlift with a braced Valsalva, measured IAP commonly reaches ~155-175 mmHg (belt on the higher end); heavy squats push past 200 mmHg, and a maximal Valsalva can drive toward 200-300 mmHg — pressures that would be alarming inside a blood vessel but are transient and normal here. By Pascal's principle that pressure pushes outward in all directions equally, against every interior surface at once.",
     "tag": "IAP",
-    "fx": "The trunk transforms from a floppy tube into a rigid, drum-tight strut."
+    "fx": "The trunk transforms from a floppy tube into a rigid, drum-tight strut.",
+    "predict": "Sealed at both ends, walls squeezing inward, contents that will not compress. Put a number on it: is the pressure inside a braced trunk under a heavy deadlift closer to a blood-pressure reading, or several times higher?"
    },
    {
     "n": 5,
     "t": "The spine gets supported from the front",
     "d": "The pressurised cavity pushes UP against the diaphragm and DOWN against the pelvic floor, creating an EXTENSOR MOMENT that helps hold the spine erect — as if an internal air-strut braces your vertebrae from inside the belly. Simultaneously TVA tensions the thoracolumbar fascia behind, laterally 'guy-wiring' the lumbar spine. The nuance experts add: it is not pressure alone — the co-contraction of the whole wall also directly STIFFENS the trunk (McGill's 'superstiffness'), and pressure and stiffness reinforce each other. Either way, the small spinal erectors no longer carry the load alone.",
     "tag": "unloading",
-    "fx": "Shear and buckling forces on the individual lumbar discs drop; the low back stops being the weak link."
+    "fx": "Shear and buckling forces on the individual lumbar discs drop; the low back stops being the weak link.",
+    "predict": "The pressure pushes outward in every direction at once, which includes upward against the diaphragm and downward against the pelvic floor. What does that pair of opposing pushes do for a spine that is trying not to fold?"
    },
    {
     "n": 6,
     "t": "Force transmits through the rigid trunk",
     "d": "Now the payoff. Force from the legs and hips travels up through a stiff torso to the arms (deadlift, throw), or force from the arms anchors into the ground (bench-press leg drive, punch). A rigid segment transmits force with almost no loss; a floppy one leaks energy and bends in the middle. This is the abdominals' true job: not to bend the trunk, but to STOP it bending so power passes through uninterrupted.",
     "tag": "transfer",
-    "fx": "The bar breaks the floor / the punch lands with the mass of the whole body behind it."
+    "fx": "The bar breaks the floor / the punch lands with the mass of the whole body behind it.",
+    "predict": "Here is the payoff. Your legs make the force but your hands hold the bar. What does a soft midsection do to force travelling between the two — and what does that make the real job of your abs?"
    },
    {
     "n": 7,
     "t": "Controlled release",
     "d": "After the rep you exhale, IAP drops, the walls relax, and the cylinder de-pressurises back to a low resting tone — the deep abdominals never fully switch off, keeping a light postural brace to hold you upright against gravity. Ready to re-pressurise for the next rep. In running or fighting this cycle happens breath by breath, dozens of times a minute, at a submaximal setting.",
     "tag": "reset",
-    "fx": "Trunk returns to pliable; breathing resumes."
+    "fx": "Trunk returns to pliable; breathing resumes.",
+    "predict": "The rep is done and you breathe out. Do the deep abdominals switch off completely between reps — and what setting would this same pressurise-and-release cycle be running at during a long run or a round of sparring?"
    }
   ],
   "deepDive": [
@@ -3360,7 +3393,8 @@
     "t": "Repeat ~10,000 times a day",
     "d": "Every stride is one rep of this stabilise-and-release cycle. That's why these are endurance-built, low-effort-all-day muscles rather than explosive movers — and why they fatigue silently before they fail visibly.",
     "tag": "integration",
-    "fx": "Walking, running, stairs, and standing in a queue are all strings of single-leg-balance moments. The abductors work almost continuously — which is exactly why the gluteus medius is roughly 58% slow-twitch (type I) endurance fibre, a higher fraction than most thigh muscles."
+    "fx": "Walking, running, stairs, and standing in a queue are all strings of single-leg-balance moments. The abductors work almost continuously — which is exactly why the gluteus medius is roughly 58% slow-twitch (type I) endurance fibre, a higher fraction than most thigh muscles.",
+    "predict": "Every single stride is one rep of this hold-and-release cycle, all day long. What does that imply about the fibre type these muscles are built from — and about how you would notice them getting tired?"
    }
   ],
   "deepDive": [
@@ -3526,7 +3560,8 @@
     "t": "The plant and the cut",
     "d": "A footballer sprinting forward suddenly plants the right foot wide and outside their body to change direction to the left. At the instant of the plant, the right thigh is being forced into ABDUCTION — splayed away from the midline — and often externally rotated, because the body's momentum keeps carrying the torso sideways over a foot that's now stuck to the ground far out to the side.",
     "tag": "setup",
-    "fx": "Hip abducts and externally rotates under high external load; adductors are stretched"
+    "fx": "Hip abducts and externally rotates under high external load; adductors are stretched",
+    "predict": "Picture planting your foot wide and outside your body to cut the other way at speed. The foot is stuck to the ground but your momentum is not. What is that doing to the angle of your thigh at the hip?"
    },
    {
     "n": 2,
@@ -3547,21 +3582,24 @@
     "t": "Tension funnels to the myotendinous junction",
     "d": "Force in a muscle must pass through the transition zone where fleshy fibres hand off to tendon — the MYOTENDINOUS JUNCTION (MTJ). This interface is the mechanical weak link: stiff tendon meets compliant muscle, and the folded membrane here concentrates strain. Adductor longus is especially exposed because it has a long, thin tendon and a proximal MTJ close to its narrow pubic origin, so the same force is squeezed through less tissue.",
     "fx": "Strain (stretch per unit length) peaks at the muscle–tendon interface near the pubis",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "Peak tension has to travel out of fleshy fibre and into stiff tendon. Somewhere along that route the two materials meet. Why would strain concentrate exactly there, and why is adductor longus the worst-placed member of the group?"
    },
    {
     "n": 5,
     "t": "Demand exceeds capacity → the strain",
     "d": "If the eccentric demand outruns the tissue's current capacity — too fast, too far, too fatigued, too weak — fibres tear at the MTJ. That's a Grade I–III adductor strain, felt as a sudden sharp pull in the inner groin, sometimes with an audible pop and later bruising. This is why strains happen during explosive deceleration, not slow squeezing: it's the eccentric overload, not the shortening, that breaks the tissue.",
     "fx": "Fibre disruption at the MTJ — the clinical 'groin strain'",
-    "tag": "failure"
+    "tag": "failure",
+    "predict": "Groin strains almost never happen while someone squeezes their legs together against resistance. They happen in the split second of a hard cut. Given where you now know the tension peaks, why should that be?"
    },
    {
     "n": 6,
     "t": "Or: reverse the brake into a re-accelerator",
     "d": "If the tissue holds, the elastic energy just stored in the stretched tendon plus a now-shortening (CONCENTRIC) contraction snaps the thigh back toward the midline — pulling the planted leg under the body to push off in the new direction. The same muscle that braked the cut now powers the re-acceleration, recycling stored energy like a spring. Steering, brake, and engine in one unit.",
     "fx": "Elastic recoil + concentric adduction repositions the limb and helps propel the cut",
-    "tag": "payoff"
+    "tag": "payoff",
+    "predict": "Suppose the tissue holds. The tendon is stretched full of stored energy and the muscle is still firing hard. What happens in the next fraction of a second — and what does that make the adductors, besides a brake?"
    }
   ],
   "deepDive": [
@@ -3742,7 +3780,8 @@
     "t": "The muscle's real job: tune the spring",
     "d": "The muscle's role in running is not to move much but to set and hold the tendon's tension so the spring works — and to add extra power when you need to accelerate, jump, or climb. It is the winch that decides how tight the bowstring is.",
     "fx": "By contracting harder or softer, the nervous system tunes stiffness moment to moment, adapting the same spring to jogging, sprinting, or hopping over a curb.",
-    "tag": "control"
+    "tag": "control",
+    "predict": "If the tendon does most of the work in steady running, the muscle is not redundant — it is doing something less obvious. Think of a bow: what does the archer's hand contribute, if the string is what stores the energy?"
    },
    {
     "n": 5,
@@ -3757,7 +3796,8 @@
     "t": "Fibre type sets the tempo",
     "d": "The soleus (~80% slow-twitch) is built to fire low-level, all day, holding you upright against gravity and never fatiguing. The gastrocnemius (~50% slow-twitch, plenty of fast-twitch) is built for brief, powerful bursts — the leap, the sprint start.",
     "fx": "Standing still, your soleus is quietly working every second; sprinting, your gastrocnemius dominates the explosive push.",
-    "tag": "division-of-labour"
+    "tag": "division-of-labour",
+    "predict": "You already know the soleus leans slow-twitch. Put rough numbers on both bellies — and say which of the two is quietly working right now, while you stand still reading this sentence."
    },
    {
     "n": 7,
@@ -3772,7 +3812,8 @@
     "t": "Adaptation over weeks vs months",
     "d": "Load the system repeatedly and both halves adapt — but on different clocks. Muscle grows and strengthens over weeks; the Achilles tendon remodels more slowly, stiffening and thickening only with sustained, heavy, slow loading over months.",
     "fx": "This timing mismatch — fast muscle vs slow tendon — is exactly why runners who ramp up too quickly get Achilles pain: the motor outpaces the spring's ability to keep up.",
-    "tag": "adaptation"
+    "tag": "adaptation",
+    "predict": "Both halves of the spring adapt to training, but not on the same clock. Which half do you think lags behind — and what would that mismatch do to a runner who doubles their mileage this month?"
    }
   ],
   "deepDive": [
@@ -3936,7 +3977,8 @@
     "t": "Set-up: arm out to the side, elbow at shoulder height",
     "d": "You lie on a bench, arms open wide, barbell at chest level. Your upper arms are roughly perpendicular to your torso. The pec is stretched long across the front of the ribs — a loaded, taut fan.",
     "fx": "Muscle lengthened and pre-tensioned; sarcomeres near the long end of their length-tension range, storing elastic energy like a drawn bow.",
-    "tag": "stretch"
+    "tag": "stretch",
+    "predict": "Lie back and open your arms wide with your upper arms level with your shoulders. The fan of muscle running from your breastbone out to your arm bone hasn't moved anything yet — so what state is it already in?"
    },
    {
     "n": 2,
@@ -3950,35 +3992,40 @@
     "t": "Reveal: horizontal adduction — the arm sweeps in and forward",
     "d": "The converging fibres drag the humeral insertion toward the midline of the chest. Because the arm started out to the side at shoulder height, the dominant result is the arm swinging forward across the body. The bar rises. This is the pec's home action, where it is strongest.",
     "fx": "Sternocostal and clavicular fibres act together; the arm accelerates through the mid-range where the pec's moment arm (leverage) is largest.",
-    "tag": "concentric"
+    "tag": "concentric",
+    "predict": "You have committed to a direction. Now the mechanism: every fibre of the fan converges onto one small patch of your arm bone, so what is it about starting with the arm out to the side that decides where the arm ends up?"
    },
    {
     "n": 4,
     "t": "The sticking point: near the bottom, the pec is weak",
     "d": "At the very bottom, arm deep and elbow below the torso, the pec is at a mechanical disadvantage — its line of pull is nearly parallel to the arm, so it can compress the joint but barely rotate it forward. This is the classic bench 'sticking point,' where the lift stalls.",
     "fx": "Poor moment arm at end-range; the triceps and anterior deltoid must contribute torque to escape the hole.",
-    "tag": "leverage"
+    "tag": "leverage",
+    "predict": "At the very bottom of a bench press the pec is at its weakest, which is odd, because that is where it is most stretched. What has happened to the direction of its pull relative to the arm bone down there?"
    },
    {
     "n": 5,
     "t": "The hidden rotation you never notice",
     "d": "As the arm sweeps forward, the pec is ALSO internally rotating the humerus — remember the wrung-towel twist of its tendon. In a bench press this is masked because your grip on a rigid bar locks rotation. But throw a punch or a cable fly with a free hand and you'll feel the arm want to rotate palm-down at the finish.",
     "fx": "The bilaminar twisted insertion converts fibre shortening into a rotational torque on the humerus.",
-    "tag": "rotation"
+    "tag": "rotation",
+    "predict": "The pec's tendon reaches the arm bone with a twist built into it. That means every press also drives a movement you have almost certainly never felt while holding a barbell. What is it, and why does the bar hide it?"
    },
    {
     "n": 6,
     "t": "Lockout: the two heads hand off the job",
     "d": "Near the top, as the arm moves from out-to-the-side toward pointing up-and-forward, the CLAVICULAR (upper) fibres — which run upward toward the collarbone — gain leverage to flex the shoulder and finish the press. The sternal fibres fade. This is why moderate incline pressing biases the clavicular head: you've moved the arm into the arc where those fibres have leverage.",
     "fx": "Regional line-of-pull differences mean upper vs lower fibres dominate at different arm angles.",
-    "tag": "regional"
+    "tag": "regional",
+    "predict": "Near the top your arm is pointing up-and-forward rather than out to the side. The upper fibres run toward your collarbone, the lower ones toward your breastbone. Which set now has the leverage to finish the press?"
    },
    {
     "n": 7,
     "t": "The eccentric: lowering the bar — the danger zone",
     "d": "Now reverse. You lower the bar slowly; the pec must LENGTHEN under tension (eccentric contraction) to control the descent. As the elbow passes the plane of the torso into extension and abduction — and the forearm rolls the humerus into EXTERNAL rotation, the exact opposite of the pec's own internal-rotation pull — the sternocostal fibres are stretched to their limit WHILE generating high force.",
     "fx": "Eccentric loading generates forces higher than the muscle can produce concentrically, concentrated on an already-maximally-lengthened tendon.",
-    "tag": "eccentric"
+    "tag": "eccentric",
+    "predict": "Now reverse it and lower the bar slowly. The pec must make force while being stretched, and the descent also twists your arm bone the exact opposite way the pec itself wants to twist it. Why is that combination dangerous?"
    },
    {
     "n": 8,
@@ -3992,7 +4039,8 @@
     "t": "Reveal: rupture at the humeral insertion, almost always the sternal head",
     "d": "The tendon tears off the arm bone (or at the muscle-tendon junction), almost always the sternocostal head, at roughly 30° of extension, 40° of abduction and forced external rotation — the bottom third of a heavy bench descent. You hear a pop, feel a tearing, and a bruise blooms down the arm. External rotation elongates the sternal (posterior) lamina — the very fibres whose job is internal rotation — so the 'wrung towel' concentrates the load onto the one strand already stretched to its limit.",
     "fx": "Force exceeds tensile strength of the enthesis; the sternal lamina, most elongated at this joint angle, avulses.",
-    "tag": "failure"
+    "tag": "failure",
+    "predict": "You know the tear happens where tendon meets arm bone, and nearly always in the lower head. The question worth answering is why that one strand of the twisted tendon — what has the forced outward rotation done to it?"
    }
   ],
   "deepDive": [
@@ -4168,7 +4216,8 @@
     "t": "The bellies fire, up near the elbow",
     "d": "Your motor cortex sends the command and the finger-flexor bellies — flexor digitorum profundus and superficialis — contract. Crucially, these muscles sit in the forearm, not the hand. The hand stays light while the engine works remotely.",
     "tag": "activation",
-    "fx": "Contraction begins several inches from the joints being moved. The force must now be transmitted a long way — and because the profundus is thickly pennate (fibres angled like a feather), it packs a lot of force-generating cross-section into that forearm space."
+    "fx": "Contraction begins several inches from the joints being moved. The force must now be transmitted a long way — and because the profundus is thickly pennate (fibres angled like a feather), it packs a lot of force-generating cross-section into that forearm space.",
+    "predict": "Squeeze your fist hard and feel your forearm with the other hand, then feel your palm. The muscles that curl your fingers are not where you would expect them. Where do they actually sit, and what does the hand gain from that?"
    },
    {
     "n": 3,
@@ -4183,14 +4232,16 @@
     "t": "Through the tunnel and around the pulleys",
     "d": "At the wrist the flexor tendons dive through the CARPAL TUNNEL — a rigid arch of wrist bones roofed by a tough ligament — then run along each finger held tight to the bone by a series of fibrous PULLEYS. Without these guides the tendons would bowstring straight across the joints when you pull.",
     "tag": "guiding",
-    "fx": "Pulleys keep the tendon hugging the bone so the pull stays efficient around each curling knuckle. Nine flexor tendons plus the median nerve share the carpal tunnel — remember that crowd for later."
+    "fx": "Pulleys keep the tendon hugging the bone so the pull stays efficient around each curling knuckle. Nine flexor tendons plus the median nerve share the carpal tunnel — remember that crowd for later.",
+    "predict": "Nine of these tendons plus one nerve squeeze through a rigid arch of bone at your wrist. What then keeps each tendon hugging the bone as its knuckle curls, instead of bowstringing straight across the joint?"
    },
    {
     "n": 5,
     "t": "The fingertips clamp — and hold",
     "d": "The tendons haul the finger bones into a curl around the bar. Now the movement stops but the work doesn't: to hold the load you sustain an ISOMETRIC contraction — constant tension, no motion. This is grip. It's a hold, not a lift.",
     "tag": "grip",
-    "fx": "Because it's isometric and sustained, grip taxes fatigue-resistance more than raw speed — which is exactly why these muscles are built endurance-heavy (nearly half slow-twitch fibres)."
+    "fx": "Because it's isometric and sustained, grip taxes fatigue-resistance more than raw speed — which is exactly why these muscles are built endurance-heavy (nearly half slow-twitch fibres).",
+    "predict": "The bar is in your hand and nothing is moving any more, yet the work has not stopped. What kind of contraction is a grip — and what should that tell you about the fibres these muscles are built from?"
    },
    {
     "n": 6,
@@ -4378,14 +4429,16 @@
     "t": "The reveal: it's weakest here",
     "d": "Counterintuitively, in deep flexion the glute max's extension moment arm is relatively short, and — the expert detail — the ADDUCTOR MAGNUS actually has the largest hip-extension moment arm of any muscle in this deep position, with the hamstrings close behind. So out of the hole, the work is shared, and your hamstrings and inner thighs (not your glutes) are what feel the depth. This is why deep squats aren't the peak glute builder gym lore assumes.",
     "tag": "Key insight",
-    "fx": "Adductor magnus and hamstrings supply the bulk of extension torque out of deep flexion; glute max is a supporting player here"
+    "fx": "Adductor magnus and hamstrings supply the bulk of extension torque out of deep flexion; glute max is a supporting player here",
+    "predict": "So the glute is weakest at the bottom, which raises a better question. If it is not supplying the torque that gets you out of the hole, which muscles are? One of them is probably not on your list."
    },
    {
     "n": 3,
     "t": "Drive: extending toward neutral",
     "d": "You push the floor away and the hip begins to straighten. As the thigh sweeps back under the pelvis, the glute max's moment arm lengthens fast. Motor units that were already firing suddenly find themselves at a joint angle where their pull converts efficiently into extension torque — the same effort now produces far more turning force.",
     "tag": "Ramp-up",
-    "fx": "Glute contribution rises steeply as the hip approaches neutral; the handoff from adductor magnus/hamstrings to glute max is underway"
+    "fx": "Glute contribution rises steeply as the hip approaches neutral; the handoff from adductor magnus/hamstrings to glute max is underway",
+    "predict": "You push the floor away and the hip begins to straighten. Nothing about your effort has changed, yet the glute's contribution climbs steeply. What is changing as the thigh sweeps back underneath the pelvis?"
    },
    {
     "n": 4,
@@ -4400,14 +4453,16 @@
     "t": "External rotation & abduction fine-tune",
     "d": "The upper glute max fibres also externally rotate and abduct the hip, while medius and minimus fire to keep the pelvis from dropping on the unsupported side. In any single-leg version — lunge, step-up, sprint stride — this frontal-plane control becomes as decisive as the raw backward push.",
     "tag": "Stabilise",
-    "fx": "Medius/minimus generate frontal-plane torque to hold the pelvis level; upper glute max adds rotation and abduction"
+    "fx": "Medius/minimus generate frontal-plane torque to hold the pelvis level; upper glute max adds rotation and abduction",
+    "predict": "Everything so far has been a straight backward push. Now stand on one leg — a lunge, a step-up, a sprint stride. What second job does the glute suddenly have to do that a two-legged squat never asked of it?"
    },
    {
     "n": 6,
     "t": "Trunk brake: the human superpower",
     "d": "During running, at the instant your foot strikes the ground the glute max fires hard — but its main job here isn't to shove you forward. Your trunk is pitched forward and momentum is trying to fold you further over the planted leg; the glute contracts to arrest that pitch and hold you upright, then helps decelerate the swinging leg. This trunk-braking duty at foot strike is what balloons the human glute to its enormous size.",
     "tag": "Human twist",
-    "fx": "Glute max is only lightly active in walking but fires vigorously in running, and its activity rises markedly with running speed (Lieberman 2006)"
+    "fx": "Glute max is only lightly active in walking but fires vigorously in running, and its activity rises markedly with running speed (Lieberman 2006)",
+    "predict": "The human glute is enormous compared with other primates', yet it is barely active in walking. Running is where it fires hard, and its main job at foot strike is not shoving you forward. What is it stopping?"
    }
   ],
   "deepDive": [
@@ -4570,7 +4625,8 @@
     "n": 1,
     "t": "Meet the three muscles — and their shared root",
     "d": "On the back of the thigh sit three muscles. From the inside (medial) edge: SEMIMEMBRANOSUS (deep, broad, membranous tendon) and SEMITENDINOSUS (superficial, with a long thin cord-like tendon you can feel behind the inner knee). On the outside (lateral) edge: BICEPS FEMORIS, which has TWO heads — a long head and a short head. All of them except the biceps short head originate from one spot: the ISCHIAL TUBEROSITY, the bony 'sitting bone' you rest on in a hard chair. Reach back and find it now — that single knob is the shared root of the whole group.",
-    "tag": "anatomy"
+    "tag": "anatomy",
+    "predict": "Sit on a hard chair and press down: you can feel the bony knob these muscles grow from. What is that knob called — and which one of the four hamstring heads does not share the anchor with the others?"
    },
    {
     "n": 2,
@@ -4583,13 +4639,15 @@
     "n": 3,
     "t": "Reveal — they also ROTATE the bent knee",
     "d": "Correct if you guessed rotation. When the knee is flexed, the inner two (semi-s) rotate the shin inward; biceps femoris rotates it outward. A straight knee is locked and can't rotate, so this only works when the knee is bent. This is why the hamstrings quietly help stabilise a bent, cutting, planting knee — and why they work alongside the ACL to stop the shin sliding forward on the thigh. A hamstring is not just a hinge; it's a steering and stabilising cable too.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "You have the extra movement. Now the constraint: try rotating your shin with your knee locked straight, then again with it bent. Why should this steering ability exist in only one of those two positions?"
    },
    {
     "n": 4,
     "t": "The two-joint move: hip and knee together",
     "d": "Because they run from sitting bone to below the knee, contracting them does two things at once: EXTEND THE HIP (drive the thigh backward, like standing up from a bow) and FLEX THE KNEE (curl the heel up). In real life these combine — the hamstring is a hip-extension powerhouse in a deadlift or a sprint drive, partnering the glutes. One muscle, two joints, two jobs.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "The group starts on your pelvis and finishes below your knee, crossing two joints on the way. So a single contraction produces two movements at once. Name both — and say which one people routinely forget the hamstrings do."
    },
    {
     "n": 5,
@@ -4602,7 +4660,8 @@
     "n": 6,
     "t": "Reveal — terminal swing is the danger zone",
     "d": "It is stretched to near-maximum length at both ends simultaneously — this phase is called TERMINAL SWING (the last part of the leg's forward swing before foot contact). And here the hamstring must fire HARD to stop the shin from whipping out and to start pulling the leg back down for a powerful foot strike. Maximum length + maximum force = the classic setup for a strain. Note what did NOT cause it: no impact, no collision, no sudden stretch from outside. The muscle overloaded itself.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "Long at both ends and firing hard to stop the shin whipping out, the muscle is about to tear. Notice what is absent from this picture: no tackle, no collision, nothing from outside at all. So what tore it?"
    },
    {
     "n": 7,
@@ -4615,7 +4674,8 @@
     "n": 8,
     "t": "Reveal — biceps femoris long head is the marked man",
     "d": "Several reasons stack up. As sprint speed climbs from submaximal to maximal, biceps femoris activity and stretch in terminal swing rise more steeply than the others; it lengthens the most (its muscle-tendon unit stretches to roughly 108-112% of upright standing length). Its architecture — a long proximal tendon and a two-head junction — concentrates strain at its muscle-tendon junctions. And, as you'll see, its two heads are run by two DIFFERENT nerves that must fire in perfect sync. More stretch, more force, more speed, more internal coordination to get wrong — the same muscle, every time.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "One of the three takes roughly seven of every ten tears. Several disadvantages stack on that one muscle — how much longer does it actually get in terminal swing, and what about its own internal wiring adds risk?"
    }
   ],
   "deepDive": [
@@ -4789,7 +4849,8 @@
     "t": "The line of pull declares itself",
     "d": "The lat runs from the front of your humerus, wraps behind, and heads down to your spine and pelvis. The only way it can shorten is to drag the arm bone down and back toward that low, broad anchor. Because your hands are locked on the bar (a CLOSED chain — the far end can't move), the arm bone can't go to the spine, so the spine and the whole body must come up to the arm. This is the single most important reversal in the lesson: same muscle, but a fixed hand turns 'pull arm down' into 'pull body up.'",
     "tag": "principle",
-    "fx": "Closed kinetic chain established: the hand is the anchor, the torso is the load"
+    "fx": "Closed kinetic chain established: the hand is the anchor, the torso is the load",
+    "predict": "Your hands are locked onto a bar that cannot move. A muscle can only pull its two ends toward each other, so if the arm bone can't travel down to your spine, what has to travel instead?"
    },
    {
     "n": 3,
@@ -4804,42 +4865,48 @@
     "t": "The twist cashes in — internal rotation",
     "d": "Because the tendon wraps to insert on the front of the humerus, the same pull also spins the arm bone INWARD (internal rotation) — the palm-down tendency you feel. This is the twisted-rope geometry paying off: one line of pull, three simultaneous actions (extension, adduction, internal rotation). It's why a supinated (palm-toward-you) chin-up subtly changes the lat's leverage versus a pronated pull-up, and why fighting the internal-rotation tendency with poor form is what grinds the front of the shoulder.",
     "tag": "contraction",
-    "fx": "Humerus internally rotates as it extends and adducts"
+    "fx": "Humerus internally rotates as it extends and adducts",
+    "predict": "One contraction, and you have now seen it produce three actions at once. Given that the third is a spin, what changes between a palms-toward-you chin-up and a palms-away pull-up — and what gets ground down if you fight that spin?"
    },
    {
     "n": 5,
     "t": "The shoulder blade must cooperate",
     "d": "The lat mostly acts on the arm bone, not directly on the shoulder blade — but the arm and blade move as a linked pair (scapulohumeral rhythm). As the lat drags the humerus down, the scapula downwardly rotates and depresses, guided by the lower trapezius and rhomboids. If the blade DOESN'T follow — if you shrug up into your traps instead — the lat loses its efficient length and the biceps and upper traps steal the job. Good pulling is felt as 'pull the shoulder blade down into the back pocket first.'",
     "tag": "teamwork",
-    "fx": "Scapula downwardly rotates and depresses to keep the lat at working length"
+    "fx": "Scapula downwardly rotates and depresses to keep the lat at working length",
+    "predict": "The lat barely touches the shoulder blade, yet arm and blade travel as a pair. If you shrug up toward your ears as you pull instead of letting the blade slide down, which muscles end up stealing your lat's job?"
    },
    {
     "n": 6,
     "t": "The torso climbs — closed-chain payoff",
     "d": "With the arm bone effectively fixed to the fixed hand, the lat's shortening now hauls the origin — your spine, ribs, and pelvis — upward. Your bodyweight rises. This is the essence of climbing: bringing the body up to the hands. In a row or pulldown (open chain) the identical contraction instead brings the hands/bar to the body. Same engine, two jobs, decided only by which end is anchored.",
     "tag": "outcome",
-    "fx": "Body rises toward the bar; chest travels up and slightly forward"
+    "fx": "Body rises toward the bar; chest travels up and slightly forward",
+    "predict": "Same muscle, same contraction. Compare hauling yourself up to a fixed bar with hauling a cable bar down to your chest — one thing about the setup, and only one, decides which of those two you get. What is it?"
    },
    {
     "n": 7,
     "t": "Force bleeds diagonally into the opposite hip",
     "d": "The lat's lower anchor isn't bone — it's the thoracolumbar fascia, a broad sheet continuous across the midline with the OPPOSITE gluteus maximus. So some of the tension you generate doesn't just move your arm; it pre-tensions that fascial sheet and stiffens the link to the contralateral hip, helping stabilise the sacroiliac joint and the whole trunk. In a strict pull-up this is subtle. In a sprint stride or a one-arm cable pull it's the main event: the arm and the opposite leg are wired together.",
     "tag": "whole-body",
-    "fx": "Tension transmits across the thoracolumbar fascia to the contralateral gluteus maximus"
+    "fx": "Tension transmits across the thoracolumbar fascia to the contralateral gluteus maximus",
+    "predict": "The lat's lower end anchors into a broad sheet of fascia rather than straight into bone. Follow that sheet across your midline. Which muscle, on the opposite side of your body, does your pulling arm turn out to be wired to?"
    },
    {
     "n": 8,
     "t": "Top of the rep — why the last inches are brutal",
     "d": "As your chin nears the bar the lat is now maximally SHORTENED. A muscle's active force output falls off at its shortest length (the actin and myosin filaments over-overlap and lose leverage), and simultaneously the arm's position gives the lat a poor moment arm for further extension. So exactly when you need the most force, the lat can produce the least — which is why the final chin-over-bar inches feel disproportionately hard and why sticking points live at the top of pulls, not the bottom.",
     "tag": "insight",
-    "fx": "Lat near maximal shortening: reduced active tension + poor leverage = the sticking point"
+    "fx": "Lat near maximal shortening: reduced active tension + poor leverage = the sticking point",
+    "predict": "Chin nearly at the bar, the lat is now as short as it will get. Two separate things go wrong for it at that length, not one. What are they — and why do sticking points sit at the top of a pull-up?"
    },
    {
     "n": 9,
     "t": "Lowering — the stretch that builds the muscle",
     "d": "You descend under control. The lat now lengthens while still generating force — an ECCENTRIC contraction. Lengthening under load, especially at the fully-stretched bottom, is a potent hypertrophy stimulus (stretch-mediated growth). This is why the descent of a pull-up and the deep bottom of a lat pulldown or straight-arm pulldown matter as much as the pull: the muscle grows fastest where it's long and loaded.",
     "tag": "training",
-    "fx": "Eccentric lengthening under load at long muscle length = strong growth signal"
+    "fx": "Eccentric lengthening under load at long muscle length = strong growth signal",
+    "predict": "You lower yourself under control, so the lat is lengthening while still pulling hard. Which half of a pull-up would you bet does more for building the muscle, and which part of the range earns the most?"
    }
   ],
   "deepDive": [
@@ -5027,7 +5094,8 @@
     "t": "The erectors answer isometrically — they hold, they don't lift",
     "d": "The erectors contract HARD but do not shorten. They generate exactly enough backward pull to cancel the forward-folding torque, and their downward-and-backward fiber angle also pulls the upper vertebrae back, cancelling the forward shear. The joint angles at your spine barely change through the whole lift. This is the counter-intuitive core: the 'back muscles' in a deadlift are an isometric brace resisting bend AND slide — not the engine.",
     "tag": "mechanism",
-    "fx": "Spine angle and alignment held constant; the load is now bridged across a rigid column"
+    "fx": "Spine angle and alignment held constant; the load is now bridged across a rigid column",
+    "predict": "They hold rather than shorten. But gravity is doing two things to your loaded spine at once, not one — bending it forward is only the obvious one. What is the second, and what about the fibre direction cancels that too?"
    },
    {
     "n": 5,
@@ -5050,7 +5118,8 @@
     "t": "Lockout and reset — endurance, not one heroic pull",
     "d": "You stand fully upright, then must hold that same stiffness for the next rep, the next set, and every box you carry the rest of the day. This is why the erectors are built for endurance: their real test isn't one heroic contraction but staying switched on, rep after rep, hour after hour, without ever letting the shape slip.",
     "tag": "endurance",
-    "fx": "Sustained low-to-moderate isometric output holds posture and alignment over time"
+    "fx": "Sustained low-to-moderate isometric output holds posture and alignment over time",
+    "predict": "You are upright and the rep is over, but the day is not. Given what these muscles actually do under a load, what would you expect them to be built for: one enormous contraction, or something else entirely?"
    }
   ],
   "deepDive": [
@@ -5222,7 +5291,8 @@
     "n": 1,
     "t": "Meet the cast — three muscles, one job",
     "d": "The 'middle back' is really three overlapping sheets. RHOMBOID MINOR: a small band from the base of the neck (spinous processes ~C7-T1) to the top of the scapula's inner edge. RHOMBOID MAJOR: below it, a larger sheet from the upper mid-back vertebrae (~T2-T5) to the rest of the scapula's inner (medial) border. MIDDLE TRAPEZIUS: the horizontal middle slice of the big diamond-shaped trapezius, running straight from the thoracic spine out to the spine of the scapula. All three share one direction of pull: from the spine, outward and slightly up, to the inner edge of the shoulder blade.",
-    "tag": "anatomy"
+    "tag": "anatomy",
+    "predict": "Three overlapping sheets sit between your spine and your shoulder blade. Before the names: reach across and feel the inner edge of your own blade, then the bumps of your spine. What direction must all three of them pull?"
    },
    {
     "n": 2,
@@ -5261,7 +5331,8 @@
     "t": "One wire runs it all — the dorsal scapular nerve",
     "d": "Both rhomboids are driven by a single nerve, the DORSAL SCAPULAR NERVE, arising mainly from the C5 spinal root (sometimes C4). Middle trapezius is run separately by the spinal accessory nerve (cranial nerve XI). This split matters clinically.",
     "fx": "If the dorsal scapular nerve is injured (it pierces a neck muscle, the middle scalene, where it can be compressed), the rhomboids weaken and the scapula drifts laterally and 'wings' slightly at its inner edge — while the middle trap, on its own nerve, still works. Knowing which muscle fails tells a clinician which nerve, and which level of the neck, is the culprit. One region, two wiring systems.",
-    "tag": "clinical"
+    "tag": "clinical",
+    "predict": "The rhomboids and the middle trapezius do nearly the same job, yet they are not run by the same nerve. Why would a clinician care which of the two has gone weak when a shoulder blade starts drifting outward?"
    }
   ],
   "deepDive": [
@@ -5599,7 +5670,8 @@
     "t": "The patella multiplies the leverage",
     "d": "Turning force at a joint = muscle force x moment arm (the perpendicular distance from the pull to the pivot). By propping the tendon forward off the femur, the patella lengthens that moment arm — increasing the effective leverage of the quad on the shin by roughly a third, greatest near full extension. Same muscle force, more knee torque. This is why people who have had a patella removed need about 30% more quad force just to hold the knee straight, and lose a large fraction of their knee-extension strength.",
     "tag": "Leverage",
-    "fx": "The patella is a force multiplier, not a passenger. It converts muscle tension into usable turning force far more efficiently than a straight tendon could."
+    "fx": "The patella is a force multiplier, not a passenger. It converts muscle tension into usable turning force far more efficiently than a straight tendon could.",
+    "predict": "Propping the tendon forward off the thigh bone lengthens the gap between the pull and the pivot. Put a size on that: how much extra knee torque does it buy, and what happens to someone who loses the kneecap altogether?"
    },
    {
     "n": 4,
@@ -5614,14 +5686,16 @@
     "t": "The kneecap must track in its groove",
     "d": "As the knee bends and straightens, the patella must glide up and down a shallow V-shaped channel on the end of the femur (the trochlear groove). The four heads must pull in balance — the outer vastus lateralis pulls it slightly outward, the inner vastus medialis pulls it slightly inward. If the sideways pulls don't balance, the kneecap rides the edge of its groove instead of the centre.",
     "tag": "Tracking",
-    "fx": "This is where most knee pain is born — not from weakness, but from a kneecap that isn't centred under the enormous compressive load the pulley creates."
+    "fx": "This is where most knee pain is born — not from weakness, but from a kneecap that isn't centred under the enormous compressive load the pulley creates.",
+    "predict": "Four heads pull on one kneecap from slightly different angles while it slides along a shallow groove. What happens to it if the outer pull and the inner pull are not balanced — and where does most knee pain come from?"
    },
    {
     "n": 6,
     "t": "The hidden cost: compression",
     "d": "The pulley that multiplies your leverage does so by wrapping the tendon over the patella — and the tension in that wrap presses the kneecap hard into the femur. This patellofemoral joint reaction force climbs steeply as the knee bends, reaching on the order of 7-8 times bodyweight in a deep loaded squat, with cartilage contact stress highest in the deep mid-range around 90 degrees. The joint is engineered for it via the thickest cartilage in the body, but only if the load is spread across a centred, well-tracked kneecap.",
     "tag": "Joint load",
-    "fx": "Every rep is a trade: leverage bought with compression. Manage the compression (depth, tracking, load, tissue tolerance) and the knee thrives; mismanage it and the same mechanism grinds."
+    "fx": "Every rep is a trade: leverage bought with compression. Manage the compression (depth, tracking, load, tissue tolerance) and the knee thrives; mismanage it and the same mechanism grinds.",
+    "predict": "Every pulley charges a price. Wrapping the tendon over the kneecap presses it hard into the thigh bone, so in a deep loaded squat, is that force roughly your bodyweight, or several times more than that?"
    }
   ],
   "deepDive": [
@@ -5783,7 +5857,8 @@
     "n": 1,
     "t": "Arm hangs at your side — the setup",
     "d": "Standing relaxed, arm down. The humeral head sits in the glenoid, held by the cuff cords and the joint capsule. Gravity and the weight of the arm are pulling DOWN and slightly out. The supraspinatus (top cuff muscle) and the joint capsule are quietly resisting the arm's weight — this is why you can hang your arm all day without it sagging out of socket.",
-    "tag": "start"
+    "tag": "start",
+    "predict": "Stand and let your arm hang completely relaxed. Gravity is dragging a heavy limb down and slightly outward, yet the ball never sags out of its socket. What is quietly holding it in there while you do nothing at all?"
    },
    {
     "n": 2,
@@ -5806,7 +5881,8 @@
     "t": "The force couple — cuff cancels the shear",
     "d": "The subscapularis (front), infraspinatus and teres minor (back) pull the ball DOWNWARD and inward at the same instant the deltoid pulls up. Two opposing pulls acting as a team is a FORCE COUPLE. The upward deltoid force and the downward cuff force cancel their sliding components, leaving a pure PIVOT — now the arm rotates cleanly around a stable centre. This is concavity compression in action: the ball is squeezed into the dish and can only spin.",
     "fx": "The arm now rises smoothly outward instead of jamming upward. Stable, powerful abduction.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "Three cuff muscles pull the ball down and in at the same instant the big deltoid hauls it up. Add those two opposite pulls together: what cancels out, what survives — and what does the arm finally do as a result?"
    },
    {
     "n": 5,
@@ -5821,21 +5897,24 @@
     "t": "Scapulohumeral rhythm — the 2:1 split",
     "d": "Of the ~180 degrees of arm elevation, about 120 degrees comes from the ball turning in the socket and about 60 degrees from the shoulder blade rotating on the ribs — a 2:1 ratio, roughly 2 degrees of arm-in-socket for every 1 degree of shoulder-blade rotation. This teamwork is called SCAPULOHUMERAL RHYTHM. It's why 'shoulder mobility' is never just the ball joint — a stiff or weak shoulder blade steals overhead range.",
     "fx": "Smooth, coordinated overhead reach; the socket stays under the ball the whole way.",
-    "tag": "mechanism"
+    "tag": "mechanism",
+    "predict": "Put numbers on the split. Out of a full overhead reach, how many of those degrees come from the ball turning inside its socket, and how many from the blade rotating across your ribs?"
    },
    {
     "n": 7,
     "t": "Clearing the roof — external rotation near the top",
     "d": "As the arm passes ~90 degrees, a bony bump on the humerus (the greater tuberosity, where the cuff attaches) would collide with the acromion roof. To dodge it, the arm automatically EXTERNALLY ROTATES a few degrees, swinging that bump backward so it slides UNDER the roof instead of into it. This is why raising your arm with your thumb up (externally rotated) is pain-free but raising it with your thumb down (internally rotated, bump jammed forward) pinches — the classic impingement test.",
     "fx": "The tuberosity clears the acromion; full pain-free overhead position achieved.",
-    "tag": "result"
+    "tag": "result",
+    "predict": "Raise your arm out to the side with your thumb pointing up, then again with the thumb turned down. One is comfortable and one pinches. What small automatic rotation happens in the first version that the second one blocks?"
    },
    {
     "n": 8,
     "t": "Overhead — and the whole chain revealed",
     "d": "Arm fully overhead. To get here your body ran, in milliseconds: supraspinatus initiation → deltoid power → cuff force-couple compression → scapular upward rotation at 2:1 → automatic external rotation to clear the roof. A failure at ANY link — weak cuff, stiff shoulder blade, tight capsule, a bony spur on the acromion — turns this silent, effortless motion into pinching, weakness, or pain. That's the entire clinical map of the shoulder in one movement.",
     "fx": "Full, stable, pain-free overhead reach — the payoff of a working mover-plus-stabiliser system.",
-    "tag": "result"
+    "tag": "result",
+    "predict": "Before you read the recap, try to rebuild the whole sequence yourself, from the first few degrees to fully overhead — five links inside a few milliseconds. Then ask which single weak link would make this hurt."
    }
   ],
   "deepDive": [
@@ -5940,7 +6019,8 @@
     "t": "You begin to lift the arm — the socket must be re-aimed",
     "d": "As the arm rises past roughly 30 degrees, the shoulder joint alone can no longer continue smoothly: keep swinging the arm up in a fixed socket and the top of the arm bone (the greater tubercle of the humerus) jams the supraspinatus tendon and its bursa against the acromion (the bony shelf). To prevent that collision, the scapula itself must start to rotate so its socket tips upward and stays under the advancing arm bone. The nervous system triggers this automatically and pre-emptively — the traps and serratus fire BEFORE and DURING the lift, not in reaction to it. Good movement is feed-forward, not feedback.",
     "tag": "trigger",
-    "fx": "Upper and lower trap tension rises; scapula begins to rotate upward; serratus anterior joins in."
+    "fx": "Upper and lower trap tension rises; scapula begins to rotate upward; serratus anterior joins in.",
+    "predict": "Hold your shoulder blade completely still and keep raising your arm — something in there is going to collide. What hits what? And does your nervous system wait to feel that before it starts rotating the blade?"
    },
    {
     "n": 3,
@@ -5955,14 +6035,16 @@
     "t": "Serratus anterior — the silent third partner",
     "d": "The trapezius does not spin the scapula alone. The serratus anterior, a fan of muscle wrapping from the side of the ribs to the inner edge of the scapula, is arguably the PRIMARY upward rotator — it drags the lower corner of the scapula forward and around the ribcage. Trapezius and serratus form a combined force-couple around the scapula's centre of rotation: serratus rotates it AND presses it flat against the ribs, while the lower trap acts as a 'check rein,' anchoring the inner spine so the blade rotates cleanly instead of just sliding sideways off the ribs. Real overhead motion is a three-muscle collaboration, and no single member can be understood alone.",
     "tag": "collaboration",
-    "fx": "Coordinated, flat, smooth upward rotation with the scapula hugging the ribcage; no winging."
+    "fx": "Coordinated, flat, smooth upward rotation with the scapula hugging the ribcage; no winging.",
+    "predict": "Two slices of trapezius spinning the blade is not the whole story. A third muscle wraps from your ribs to the blade's inner edge. What does it add that the traps cannot, and which of the three is arguably the main rotator?"
    },
    {
     "n": 5,
     "t": "Full overhead — the missing 60 degrees appears",
     "d": "By the time your hand is straight overhead, the scapula has upwardly rotated about 60 degrees. That scapular rotation ADDS to the roughly 120 degrees available at the shoulder joint itself to produce the full ~180 degrees of arm elevation. This division of labour is the scapulohumeral rhythm — about two-thirds of the motion from the ball-and-socket joint, one-third from the rotating scapula. The 'missing 60 degrees' from the hook was the trapezius (plus serratus) spinning the dish. You have been doing this thousands of times a day without ever feeling the handoff.",
     "tag": "payoff",
-    "fx": "Arm fully overhead; tendons clear of the acromion; joint congruent and stable throughout the arc."
+    "fx": "Arm fully overhead; tendons clear of the acromion; joint congruent and stable throughout the arc.",
+    "predict": "Your hand is straight overhead. The ball-and-socket joint cannot supply all of that arc by itself. How many degrees has the blade quietly contributed, and what fraction of the whole movement does that work out to be?"
    },
    {
     "n": 6,
@@ -7043,7 +7125,8 @@
     "t": "The result: flow up, pressure down",
     "d": "A wider pipe carries far more blood — flow scales with roughly the fourth power of radius (Poiseuille's law), so even a small widening massively increases delivery, while systemic widening drops blood pressure. More oxygen and nutrients reach muscle (the gym 'pump', better endurance economy); in the penis this same widening, triggered by nerve-released NO, is literally what an erection is; across the whole body it keeps blood pressure healthy.",
     "fx": "radius↑ → flow ∝ r⁴ → delivery↑↑, pressure↓",
-    "tag": "result"
+    "tag": "result",
+    "predict": "The muscle in the vessel wall relaxes and the pipe widens a little. Before you assume a small widening gives a small effect — how does flow through a tube scale with its radius?"
    },
    {
     "n": 7,
@@ -7803,7 +7886,8 @@
     "n": 3,
     "t": "Load the finished molecule into vesicles",
     "d": "Freshly made acetylcholine floating in the nerve ending is useless — it must be packaged. A second pump, the vesicular acetylcholine transporter (VAChT), stuffs ACh into membrane bubbles (vesicles), trading protons back out to concentrate several thousand molecules into each. The vesicles cluster at the release zone, primed like loaded rounds in a magazine, waiting for the trigger.",
-    "tag": "LOAD"
+    "tag": "LOAD",
+    "predict": "Freshly built acetylcholine is floating loose inside the nerve ending, and in that state it is useless. What has to happen to it before an arriving electrical signal can do anything with it at all?"
    },
    {
     "n": 4,
@@ -8456,7 +8540,8 @@
     "t": "CoQ10 and cytochrome c: the couriers between stations",
     "d": "The complexes are fixed in place, so electrons need ferries between them. Coenzyme Q10 (ubiquinone) shuttles electrons from Complexes I and II to Complex III. Cytochrome c then carries them from III to IV. This is why CoQ10 matters so much: it's a physical link in the chain. Choke the CoQ10 supply and the whole downstream flow stalls — no matter how healthy the complexes are.",
     "tag": "core",
-    "fx": "CoQ10 skates back and forth across the membrane like a tireless dock worker moving crates between two cranes."
+    "fx": "CoQ10 skates back and forth across the membrane like a tireless dock worker moving crates between two cranes.",
+    "predict": "The complexes are bolted into the membrane and cannot move, yet electrons have to travel between them. What does the ferrying — and why would a shortage of one small mobile carrier stall everything downstream of it?"
    },
    {
     "n": 4,
@@ -8471,7 +8556,8 @@
     "t": "The proton-motive force: a real, measurable battery",
     "d": "The pumped protons create two forms of pressure at once: an electrical voltage (the matrix side becomes negative, about 140–180 millivolts) AND a chemical/pH gradient (the outside is more acidic). Together these make the 'proton-motive force,' roughly 200 millivolts total across a membrane only a few atoms (~5 nm) thick. Do the arithmetic and the field strength is staggering — tens of millions of volts per metre, stronger per unit distance than the electric field that triggers a bolt of lightning. This charged membrane is the mitochondrion's true energy store, moment to moment.",
     "tag": "insight",
-    "fx": "The membrane hums with tension, a taut battery holding ~200 mV across a gap thinner than a wavelength of light."
+    "fx": "The membrane hums with tension, a taut battery holding ~200 mV across a gap thinner than a wavelength of light.",
+    "predict": "Protons have been pumped to one side of a membrane only a few atoms thick. That builds two different kinds of pressure at once, not one. Name both — then try to estimate the field strength across a gap that thin."
    },
    {
     "n": 6,
@@ -8486,7 +8572,8 @@
     "t": "Oxygen: the essential drain at the bottom",
     "d": "After electrons have paid their energy at every step, they're 'spent' — low-energy — and must go somewhere, or the whole staircase backs up. Complex IV hands them to oxygen, which grabs them together with protons to form plain water. This is the ONLY reason you breathe. Oxygen isn't 'fuel'; it's the terminal electron acceptor — the drain. Now the poisons snap into focus: cyanide and carbon monoxide both jam Complex IV DIRECTLY, clamping onto the very iron site that normally hands electrons to oxygen (CO additionally hogs hemoglobin, so less oxygen even reaches the tissue in the first place). Either way the result is identical to suffocation — electrons have nowhere to fall, the chain freezes, no protons pump, no ATP. Death in minutes.",
     "tag": "payoff",
-    "fx": "Electrons meet oxygen; water forms, one molecule at a time — the quiet end of every meal you've ever eaten."
+    "fx": "Electrons meet oxygen; water forms, one molecule at a time — the quiet end of every meal you've ever eaten.",
+    "predict": "The electrons have paid their energy at every step and are now spent. If nothing accepts them, the whole staircase backs up. What takes them at the very bottom — and does that make oxygen a fuel, or something else?"
    },
    {
     "n": 8,
@@ -8501,7 +8588,8 @@
     "t": "Build, clean, replace: mitochondrial quality control",
     "d": "Cells fight decline two ways. Biogenesis: build MORE mitochondria — which, for a former bacterium, literally means having existing ones grow and divide in two (master switch: a protein called PGC-1α, powerfully turned on by exercise). Mitophagy: identify damaged mitochondria, tag them, and digest/recycle them before they poison the cell. A young, active person does both briskly. With age and inactivity, both slow — you end up with fewer, older, leakier plants. Nearly every 'mitochondrial' intervention on the market is trying to nudge one of these two levers.",
     "tag": "payoff",
-    "fx": "A worn-out mitochondrion is wrapped, swallowed, and dismantled for parts — the cell's ruthless recycling crew at work."
+    "fx": "A worn-out mitochondrion is wrapped, swallowed, and dismantled for parts — the cell's ruthless recycling crew at work.",
+    "predict": "Mitochondria wear out, so a cell needs two opposite abilities to keep the population healthy. One is building more of them. What is the other — and which everyday activity turns out to be a master switch for both?"
    }
   ],
   "deepDive": [
@@ -8880,7 +8968,8 @@
     "t": "IKK marks the guard for death",
     "d": "IKKβ phosphorylates IκB — specifically on two serine residues (Ser32 and Ser36 on IκBα). This phosphorylation doesn't release NF-κB by itself; it is a molecular 'kiss of death' tag that creates a docking site for the destruction machinery. This is the true committed step of the pathway.",
     "tag": "the trigger pull",
-    "fx": "This is why IKKβ is the single most drugged node in the whole pathway. Block IKKβ and the guard is never tagged, the guard never dies, NF-κB stays chained — the entire downstream fire is prevented. High-dose aspirin/salicylate and many natural compounds hit right here."
+    "fx": "This is why IKKβ is the single most drugged node in the whole pathway. Block IKKβ and the guard is never tagged, the guard never dies, NF-κB stays chained — the entire downstream fire is prevented. High-dose aspirin/salicylate and many natural compounds hit right here.",
+    "predict": "The kinase adds one small phosphate tag to the guard protein. Notice that this by itself does not free the switch — so what has the tag actually created, and why does that make this the point of no return?"
    },
    {
     "n": 5,
@@ -8895,7 +8984,8 @@
     "t": "NF-κB storms the nucleus",
     "d": "Freed, the p50/p65 dimer's now-exposed nuclear localization signal drags it through the nuclear pore into the nucleus — the cell's control room. There it binds specific DNA sequences called 'κB sites' sitting in the control regions (promoters/enhancers) of hundreds of target genes.",
     "tag": "translocation",
-    "fx": "This physical relocation — cytoplasm to nucleus — is exactly what scientists stain for to SEE inflammation happening in a cell under a microscope. 'Nuclear translocation of p65' is the visual signature of an activated inflammatory switch."
+    "fx": "This physical relocation — cytoplasm to nucleus — is exactly what scientists stain for to SEE inflammation happening in a cell under a microscope. 'Nuclear translocation of p65' is the visual signature of an activated inflammatory switch.",
+    "predict": "The guard is gone, and the address label on the switch is exposed for the first time. Where does that label take it, and what does it grab hold of once it arrives?"
    },
    {
     "n": 7,
@@ -9147,14 +9237,16 @@
     "t": "Room 1 — Skin: cAMP → pigment (a tan)",
     "d": "In a melanocyte (skin pigment cell), PKA activates the transcription factor CREB, which drives a master gene-controller called MITF, which turns up tyrosinase and related enzymes — the factory that builds melanin. The output shifts toward eumelanin, the brown-black, UV-shielding pigment. That's a tan: not decorative damage but a built shield.",
     "tag": "branch",
-    "fx": "The pigment is packaged into melanosomes and handed off to surrounding keratinocytes, where it forms literal caps over their nuclei — molecular umbrellas over their DNA."
+    "fx": "The pigment is packaged into melanosomes and handed off to surrounding keratinocytes, where it forms literal caps over their nuclei — molecular umbrellas over their DNA.",
+    "predict": "Same messenger, first address: a pigment cell in your skin. Follow the switch through to its end product — then reconsider what a tan actually is, given the cell went to the trouble of building it deliberately."
    },
    {
     "n": 6,
     "t": "Room 2 — Appetite centre: cAMP → 'I'm full'",
     "d": "On MC4R neurons in the hypothalamus (notably the paraventricular nucleus), the same cAMP surge is read as a satiety command: reduce food intake, raise energy expenditure. Here the melanocortin tone is the brake pedal on eating — high signal means stop.",
     "tag": "branch",
-    "fx": "This is why losing MC4R function is the most common single-gene cause of human obesity: a stuck-off satiety brake."
+    "fx": "This is why losing MC4R function is the most common single-gene cause of human obesity: a stuck-off satiety brake.",
+    "predict": "Identical switch, different room — this time a cluster of neurons in the hypothalamus. If this receptor's signal is read as a command about eating, is it the accelerator or the brake, and what else does it move?"
    },
    {
     "n": 7,
@@ -9169,14 +9261,16 @@
     "t": "Room 4 — Adrenal: ACTH → cortisol (the private line)",
     "d": "On MC2R in the adrenal cortex, ACTH (and ONLY ACTH) raises cAMP to drive steroidogenesis — cortisol and other steroids. This is the same cAMP switch again, but wired to the enzymes of steroid synthesis instead of pigment. The firewall (MC2R ignores MSH, needs the MRAP chaperone) keeps the stress axis from being triggered by a wandering pigment signal.",
     "tag": "branch",
-    "fx": "Break the firewall's logic from the other side and you get a clinical tell: in Addison's disease the failing adrenal can't make cortisol, so ACTH floods the blood — and because ACTH shares α-MSH's first 13 amino acids, it spills onto skin MC1R and bronzes the skin."
+    "fx": "Break the firewall's logic from the other side and you get a clinical tell: in Addison's disease the failing adrenal can't make cortisol, so ACTH floods the blood — and because ACTH shares α-MSH's first 13 amino acids, it spills onto skin MC1R and bronzes the skin.",
+    "predict": "The fourth address answers only one member of the family and ignores all the rest. Why would the body firewall this particular room so carefully — what would go wrong if a wandering pigment signal could open it?"
    },
    {
     "n": 9,
     "t": "Room 5 — Glands: cAMP → oil and heat",
     "d": "On MC5R, found on sebaceous and other exocrine glands, the same switch tunes sebum (skin oil) secretion, some pheromone-related output, and aspects of thermoregulation. It's the least glamorous room, but it completes the picture: five addresses, one switch.",
     "tag": "branch",
-    "fx": "MC5R is why a non-selective tanning peptide can leave users unexpectedly oily or flushed — the gland room answered the call too."
+    "fx": "MC5R is why a non-selective tanning peptide can leave users unexpectedly oily or flushed — the gland room answered the call too.",
+    "predict": "One room left, and it is the one nobody advertises. Think about which glands sit in your skin alongside the pigment cells: what would you expect the very same switch to be tuning in there?"
    },
    {
     "n": 10,
@@ -9359,7 +9453,8 @@
     "n": 3,
     "t": "Building the garbage bag (the phagophore)",
     "d": "Activated ULK1 switches on a second complex built around Beclin-1 and the lipid-kinase VPS34 (PI3K class III). This complex stamps a patch of membrane with a lipid mark called PI3P, which acts as a docking flag: 'build the bag here.' A crescent-shaped double membrane called the PHAGOPHORE begins to form and curl around the target cargo.",
-    "tag": "nucleation"
+    "tag": "nucleation",
+    "predict": "The go-signal has fired, but a cell keeps no spare bags lying around — it has to build one on the spot. How would you mark out the right patch of membrane so the machinery knows where to start building?"
    },
    {
     "n": 4,
@@ -9373,14 +9468,16 @@
     "n": 5,
     "t": "Selective clean-up: mitophagy and friends",
     "d": "Autophagy isn't only bulk garbage collection; it targets specific broken organelles. A damaged mitochondrion (leaking, depolarised) accumulates the kinase PINK1 on its surface, which recruits Parkin to coat it in ubiquitin — the same 'bag me' flag. This selective removal of dead mitochondria is MITOPHAGY. There are parallel programs for aggregates (aggrephagy), invading microbes (xenophagy), and lipid droplets (lipophagy).",
-    "tag": "selective"
+    "tag": "selective",
+    "predict": "So far this is bulk collection. But a cell often needs to remove one specific broken organelle while leaving its healthy neighbours untouched. How would you label just the leaky one for pickup?"
    },
    {
     "n": 6,
     "t": "Delivery to the shredder",
     "d": "The sealed autophagosome is trafficked along the cell's rails to a LYSOSOME and fuses with it (via SNARE proteins), forming an AUTOLYSOSOME. Inside, acid (pH ~4.5) and dozens of hydrolase enzymes dissolve the cargo into amino acids, fatty acids, and sugars, which are pumped back into the cell to build fresh parts. The loop closes: broken → recycled → rebuilt. This final fusion step is exactly why counting autophagosomes can mislead you — a pile of bags means nothing if they never reach the shredder.",
     "tag": "degradation",
-    "fx": "Under sustained fasting, the transcription factor TFEB — normally held in the cytoplasm by mTOR — is released, enters the nucleus, and orders the cell to build MORE lysosomes and autophagy machinery. It's the master 'upgrade the whole recycling department' switch, and it's the node the 2024 spermidine work (via eIF5A) turns out to converge on."
+    "fx": "Under sustained fasting, the transcription factor TFEB — normally held in the cytoplasm by mTOR — is released, enters the nucleus, and orders the cell to build MORE lysosomes and autophagy machinery. It's the master 'upgrade the whole recycling department' switch, and it's the node the 2024 spermidine work (via eIF5A) turns out to converge on.",
+    "predict": "The bag is sealed and full, yet nothing has been recycled. Where does it still have to go — and why does that make counting sealed bags a poor way to measure whether recycling is actually happening?"
    },
    {
     "n": 7,
@@ -9394,7 +9491,8 @@
     "n": 8,
     "t": "Bolting the cell-cycle brake shut",
     "d": "Two brake systems lock the cell cycle permanently. The p53→p21 axis (fast, early) and the p16INK4a→Rb axis (durable, long-term) both block the cyclin-dependent kinases (CDK4/6) that a cell needs to progress toward division. With CDKs blocked, the Rb protein stays 'on the brake,' trapping the E2F factors that would launch DNA replication. p16 is the marker researchers stain for to count senescent cells in tissue.",
-    "tag": "arrest"
+    "tag": "arrest",
+    "predict": "A cell that must never divide again cannot rely on a single switch. Two brake systems lock it down, one fast and one durable. Which of them would you expect researchers to stain for when counting these cells in tissue?"
    },
    {
     "n": 9,
@@ -9425,7 +9523,8 @@
     "t": "Why senolytics are PULSED, not daily",
     "d": "Because senescent cells take weeks to re-accumulate and the killing is a 'hit-and-run' — you only need to briefly release the handrail once for the cell to commit to death — you don't need continuous drug exposure. Human trials dose in short bursts — a couple of consecutive days, then nothing for weeks — rather than continuously. Specific doses are deliberately not given here: dasatinib is a prescription antineoplastic, and the senolytic doses used in trials are research doses, not consumer standards.",
     "tag": "dosing",
-    "fx": "Pulsing also spares normal tissue from chronic exposure to what are, after all, cytotoxic drugs. Daily senolytic dosing would be both unnecessary and riskier. The hit-and-run logic falls straight out of the mechanism rather than from tradition — which is the point worth taking, not a schedule to follow."
+    "fx": "Pulsing also spares normal tissue from chronic exposure to what are, after all, cytotoxic drugs. Daily senolytic dosing would be both unnecessary and riskier. The hit-and-run logic falls straight out of the mechanism rather than from tradition — which is the point worth taking, not a schedule to follow.",
+    "predict": "Two facts about these cells decide the schedule: how long they take to come back, and how briefly you need to touch them to commit them to dying. Put those together — what does that say about continuous daily exposure?"
    }
   ],
   "deepDive": [
@@ -9595,7 +9694,8 @@
     "t": "The three origins load up",
     "d": "Before movement, look at the three anchors. The LONG head grips the infraglenoid tubercle — a small bump on the scapula just below the shoulder socket. The LATERAL head grips the back of the humerus ABOVE the spiral groove (a diagonal channel in the bone). The MEDIAL head — mostly hidden underneath the other two — grips the back of the humerus BELOW the spiral groove, running deep and close to the elbow.",
     "tag": "anatomy",
-    "fx": "Three separate start-points, one shared destination — this is why the heads can be loaded independently."
+    "fx": "Three separate start-points, one shared destination — this is why the heads can be loaded independently.",
+    "predict": "Three heads, one shared tendon at the elbow. Before you read the anchors: one of the three does not start on the arm bone at all. Where must it grab instead, and what extra joint does that give it a say over?"
    },
    {
     "n": 2,
@@ -9610,7 +9710,8 @@
     "t": "The reveal — you can't mentally isolate, but geometry can",
     "d": "Because one nerve serves all three heads, they all receive the drive to contract together; you cannot consciously switch one off. BUT the long head's contribution is set mechanically by shoulder position (its bi-articular rope is taut or slack), so you 'select' heads by moving the shoulder, not by concentrating. This is why exercise SELECTION beats 'mind-muscle isolation' for the triceps.",
     "tag": "key-insight",
-    "fx": "Position is the selector. Overhead = long head stretched and loaded; arms down = long head slack."
+    "fx": "Position is the selector. Overhead = long head stretched and loaded; arms down = long head slack.",
+    "predict": "One nerve means all three heads receive the same command, so attention cannot silence one of them. Yet the long head's share still swings hugely between exercises. What is different about the long head that lets geometry do what focus cannot?"
    },
    {
     "n": 4,
@@ -9625,28 +9726,32 @@
     "t": "You fire — all three heads pull the olecranon",
     "d": "The radial nerve fires. All three heads shorten and drag their common tendon, which wraps behind the elbow and hauls the olecranon backward, straightening the forearm. The lateral and medial heads contribute their full, position-independent force. The long head's contribution depends on where it sits on its curve: a large share when it's at a favourable length, and — counter-intuitively — a smaller active share when it's stretched to its extreme overhead, which forces the other two heads to pick up the slack.",
     "tag": "contraction",
-    "fx": "Total extension force = two constant heads + one position-dependent head."
+    "fx": "Total extension force = two constant heads + one position-dependent head.",
+    "predict": "All three heads now haul on the same bony hook behind your elbow. Two of them deliver the same force whatever your shoulder is doing; the third does not. So what happens to those two when your arm is stretched fully overhead?"
    },
    {
     "n": 6,
     "t": "The last inch — lockout",
     "d": "As the elbow nears full straightening, the movement enters LOCKOUT. Here the chest and shoulders have run out of leverage, and the triceps is the muscle that finishes and locks a press. The MEDIAL head, running deep and close to the joint, is the reliable workhorse of lockout — the head active across essentially all loads and speeds, the 'idle-always-on' engine of elbow extension, while the lateral and long heads join in more heavily as resistance rises.",
     "tag": "function",
-    "fx": "This is why bench-press and push-up failures happen at the top, and why they're a triceps problem, not a chest problem."
+    "fx": "This is why bench-press and push-up failures happen at the top, and why they're a triceps problem, not a chest problem.",
+    "predict": "A bench press or a push-up almost never fails off the chest — it fails in the last few inches. Which head, running deep and close to the joint, would you expect to be the one carrying that final stretch?"
    },
    {
     "n": 7,
     "t": "The long head tires first",
     "d": "During sustained maximal effort the long head fatigues earliest, the medial next, the lateral last — measured onsets of roughly 40 s, 50 s, and 65 s in a controlled forceful-grip study, with the long head showing the steepest fatigue slope of the three. Its dual-joint duty and fibre make-up mean it burns out soonest — which you feel as the long head 'cramping' or giving out first in high-rep overhead work.",
     "tag": "fatigue",
-    "fx": "Different heads = different endurance. Program the long head's volume accordingly."
+    "fx": "Different heads = different endurance. Program the long head's volume accordingly.",
+    "predict": "Push a hard set of overhead extensions and one head audibly quits before the others. Which would you pick, given that only one of the three crosses two joints — and how far apart are the three in seconds?"
    },
    {
     "n": 8,
     "t": "The revealed result — and the twist",
     "d": "Now the payoff to your step-4 prediction: training elbow extension with the arm OVERHEAD grew the triceps substantially more than in the arm-down position — about 1.4x more across the whole muscle and ~1.5x more in the long head, in a controlled 12-week trial. The twist that separates experts from parrots: the overhead arm was under LIGHTER absolute load, AND the long head at full overhead stretch is actually on the weak, descending limb of its force curve — yet it still grew the most. Stretch tension, not peak active force or heavy load, drove the growth.",
     "tag": "evidence",
-    "fx": "Geometry (stretch tension) beat both load and peak force. This is the single most practical — and most counter-intuitive — fact in the lesson."
+    "fx": "Geometry (stretch tension) beat both load and peak force. This is the single most practical — and most counter-intuitive — fact in the lesson.",
+    "predict": "Time to settle your earlier prediction. The overhead position used a lighter absolute load and put the long head on the weak part of its force curve, yet it still grew the most. What does that leave as the driver?"
    }
   ],
   "deepDive": [

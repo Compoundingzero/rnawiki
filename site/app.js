@@ -1614,7 +1614,7 @@
       const link = s.tag ? ` <a class="mc-tag" href="#/target/${tkey(s.tag)}">${esc(s.tag)}</a>` : '';
       const fx = s.fx ? `<span class="mc-fx ${/▲/.test(s.fx) ? 'up' : /▼/.test(s.fx) ? 'down' : ''}">${esc(s.fx)}</span>` : '';
       const answer = `<div class="mc-t">${esc(s.t)}${link} ${fx}</div><p>${mdInline(s.d)}</p>`;
-      if (s.predict) return `<li class="mc-step predictable"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-predict"><span class="mc-p-q">🤔 ${esc(s.predict)}</span><button class="mc-reveal">Reveal the answer →</button></div><div class="mc-answer" hidden>${answer}</div></div></li>`;
+      if (s.predict) return `<li class="mc-step predictable"><span class="mc-n">${s.n}</span><div class="mc-body"><div class="mc-t mc-t-vis">${esc(s.t)}${link} ${fx}</div><div class="mc-predict"><span class="mc-p-q">🤔 ${esc(s.predict)}</span><button class="mc-reveal">Reveal the answer →</button></div><div class="mc-answer" hidden><p>${mdInline(s.d)}</p></div></div></li>`;
       return `<li class="mc-step"><span class="mc-n">${s.n}</span><div class="mc-body">${answer}</div></li>`;
     }).join('');
     return `<div class="callout mcascade" id="sec-mechanism"><span class="k">How it works — step by step</span>${casc}${anyPredict ? `<p class="mc-hint">Try to answer each question <i>before</i> you reveal it — guessing first is what makes it stick.</p>` : ''}<ol class="mc-list">${steps}</ol>${shareId ? shareBtn('mechanism:' + shareId) : ''}</div>`;

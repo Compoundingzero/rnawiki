@@ -284,7 +284,8 @@
     "n": 4,
     "t": "More quality work → more adaptation",
     "d": "Those extra reps, session after session, are the real driver of strength and size. Creatine also draws water into the muscle cell (cell volumisation), which may itself nudge growth signalling.",
-    "fx": "▲ strength & lean mass"
+    "fx": "▲ strength & lean mass",
+    "predict": "Those extra hard reps have to turn into something. Where does the adaptation actually come from — and what second, water-related effect inside the muscle cell might be adding a nudge of its own?"
    }
   ],
   "framework": {
@@ -4322,7 +4323,8 @@
     "n": 5,
     "t": "Net muscle is build minus breakdown, over weeks",
     "d": "Muscle grows only when synthesis stays above breakdown, repeated across training sessions. The single spike is small — it's total daily protein, session after session, that drives the actual gains.",
-    "fx": "▲ strength & lean mass"
+    "fx": "▲ strength & lean mass",
+    "predict": "One serving gave you one leucine spike and a few hours of raised synthesis. Muscle only grows when synthesis stays ahead of breakdown, so over a month, what matters more than the timing of that single spike?"
    }
   ],
   "framework": {
@@ -16336,7 +16338,8 @@
     "t": "Refilled NAD⁺ powers the machinery",
     "d": "With the NAD⁺ pool topped up, sirtuins, PARP repair and energy metabolism have more of the cofactor they need. In humans this shows up reliably as higher blood NAD⁺ — the felt benefits are real but modest, and larger when you started depleted.",
     "fx": "▲ NAD⁺-dependent repair & signalling",
-    "tag": "SIRT1"
+    "tag": "SIRT1",
+    "predict": "The pool is topped up and the enzymes have their cofactor back. Predict which part of this shows up reliably in human trials — the blood measurement, or how people feel — and who would notice the most."
    }
   ],
   "framework": {
@@ -18419,7 +18422,8 @@
     "n": 5,
     "t": "Heart and kidney outcomes improve — and a longevity signal appears",
     "d": "Across large trials the net result is fewer heart-failure hospitalisations, slower kidney decline, and lower cardiovascular death. Separately, canagliflozin extended male-mouse lifespan in the ITP — an intriguing animal signal, not a proven human anti-ageing effect.",
-    "fx": "▼ CV & kidney events"
+    "fx": "▼ CV & kidney events",
+    "predict": "Sugar and sodium have been leaving in the urine every day for months. Beyond blood glucose, which two organs do the large outcome trials show benefit — and how far should a mouse lifespan result carry?"
    }
   ],
   "framework": {
@@ -18655,7 +18659,8 @@
     "n": 4,
     "t": "The payoff builds over weeks",
     "d": "Because it accumulates in lipid-rich tissues (skin, eye, mitochondria) and works partly by slowly retuning gene expression, the visible benefits — skin moisture and elasticity, eye-strain relief — emerge over weeks of daily use, not minutes.",
-    "fx": "▲ skin, eye & mitochondrial resilience"
+    "fx": "▲ skin, eye & mitochondrial resilience",
+    "predict": "This molecule sits inside your membranes rather than switching a receptor on and off, and part of what it does is slowly retune gene expression. So over what timescale would you expect anything visible to appear?"
    }
   ],
   "framework": {
@@ -24534,7 +24539,8 @@
     "n": 5,
     "t": "Repeat for weeks — the wall goes up slowly",
     "d": "Each session lays down a little net new collagen; the tissue adapts over weeks, not days. This is a daily habit stacked onto training, not a pill you feel working today.",
-    "fx": "▲ tendon stiffness & resilience"
+    "fx": "▲ tendon stiffness & resilience",
+    "predict": "Remember how little blood reaches a tendon and how slowly it turns over. Given that, how much new collagen would you expect one session to lay down — and what does that make this: a habit, or a fix?"
    }
   ],
   "framework": {
@@ -25204,7 +25210,8 @@
     "n": 5,
     "t": "Over weeks, the panel shifts",
     "d": "Combine less synthesis with less absorption and, across daily dosing, total cholesterol, LDL and triglycerides drift down while HDL edges up — modestly, and gradually.",
-    "fx": "▼ LDL & TG · ▲ HDL"
+    "fx": "▼ LDL & TG · ▲ HDL",
+    "predict": "You have met two separate brakes now — one on how much cholesterol the liver builds, one on how much the gut lets through. Put them together and predict both the direction and the size of the change."
    }
   ],
   "framework": {
@@ -25435,7 +25442,8 @@
     "n": 4,
     "t": "The blood tilts toward dissolving, and pressure eases a little",
     "d": "Net result: your blood sits slightly more on the clot-dissolving side of the balance, and — through mechanisms still being worked out — average blood pressure drops modestly. Both effects are small and stay within the normal range in healthy people.",
-    "fx": "▼ clot risk · ▼ blood pressure"
+    "fx": "▼ clot risk · ▼ blood pressure",
+    "predict": "It cuts fibrin directly and tips the body's own clot-dissolving balance. Predict the size of the blood-pressure effect that comes along with that, in someone whose pressure is already in the normal range."
    }
   ],
   "framework": {

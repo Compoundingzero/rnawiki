@@ -389,6 +389,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="stylesheet" href="/styles.css">
+<noscript><style>.reveal,.reveal *{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
 ${crumbLd}${ld}
 </head>
@@ -415,24 +416,20 @@ ${crumbLd}${ld}
 }
 
 // Build-time pick of a representative daily fact for the prerendered homepage (crawlers + first paint).
-// The client re-renders the true "today" fact on hydration; this just needs to be a real, valid one.
-function prerenderDailyFact() {
+// Returns the fact OBJECT, not markup: the card is built once, in homeBody, so the kicker copy and the
+// card structure have exactly one definition. app.js then patches .df-text / .df-link IN PLACE on
+// hydration (refreshDailyFact) because this stamp is frozen at deploy time and a container can run
+// for days -- the fact is date-derived, so a build-stamped one goes stale. Patching two text nodes is
+// not a second renderer; re-emitting the card would be.
+function dailyFactObj() {
   try {
     const src = fs.readFileSync(path.join(SITE, 'facts.js'), 'utf8');
     const m = src.match(/window\.RNAWIKI_FACTS\s*=\s*(\[[\s\S]*\]);/);
-    if (!m) return '';
+    if (!m) return null;
     const facts = eval(m[1]);
-    if (!facts || !facts.length) return '';
-    const f = facts[Math.floor(Date.now() / 864e5) % facts.length];
-    return `
-    <section class="daily-fact">
-      <div class="df-card">
-        <div class="df-top"><span class="df-kicker">💡 Did you know?</span><span class="df-meta">a new fact every day</span></div>
-        <p class="df-text">${f.t}</p>
-        <a class="df-link" href="${f.href}">${esc(f.label)}</a>
-      </div>
-    </section>`;
-  } catch (e) { return ''; }
+    if (!facts || !facts.length) return null;
+    return facts[Math.floor(Date.now() / 864e5) % facts.length];
+  } catch (e) { return null; }
 }
 
 const crumbHtml = (items) => `<div class="crumbs">${items.map((it, i) => it.route ? `<a href="${it.route}">${esc(it.name)}</a>` : `<span>${esc(it.name)}</span>`).join('<span class="sep">›</span>')}</div>`;
@@ -1334,36 +1331,163 @@ ANAT.metabolism.forEach((p) => {
 // cause, because "Knee pain" three times is not a useful set of links to a crawler or a reader.
 add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds. Each problem is broken into its root causes, because the fix depends on which one you have.</p>${GRAPH.problems.map((p) => `<h2>${esc(p.name)}</h2><ul>${p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)} — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>`).join('')}` }));
 
-// ---- crawlable home page (SPA shell has an empty body; this gives Google real content) ----
-// Written to home.html; the server serves it for "/" and falls back to index.html.
+// ---- THE HOME PAGE: ONE DOCUMENT, ONE SOURCE -------------------------------------------------
+// Written to home.html. server.js serves it for "/", and site/app.js CAPTURES it at boot rather
+// than rendering a second copy (see HOME_HTML there). Until 2026-07-30 there were TWO
+// hand-maintained home pages -- `homeBody` here and `home()` in app.js -- and they had drifted
+// into genuinely different pages: this one had no search input and no seed chips, so the ~90% of
+// traffic that never runs JavaScript could not use the page's FIRST call to action at all, while
+// the SPA had no problem list and no crawlable goal labels. That is the sixth recorded instance on
+// this project of a prerendered page and its hydrated twin drifting apart. There is now no twin:
+// this string is the only definition of the home page that exists.
+//
+// The page is a funnel with exactly two conversion targets and nothing else:
+//   CTA #1  the protocol search in the hero, plus pre-filled chips (which ARE CTA #1, pre-typed)
+//   CTA #2  the newsletter -- the MAIN ask -- stated once in full, once as a closing line
+//
+// Cut from this document, with the reason each cut costs nothing:
+//   * the 7-category / 52-link "Start a protocol" farm -- all 52 hrefs are byte-identical to the
+//     ones on /solve (verified: 0 links on home are absent from /solve), and /solve is in the
+//     topbar nav AND the footer of all 514 pages, so every protocol page stays 2 hops from home.
+//   * `.why-rna` -- 108 words of brand etymology. It answers "why is this site called RNAwiki?",
+//     which is nobody's reason for arriving. Moved verbatim to /about, which is prerendered and
+//     already holds the site's disclaimer. Nothing is destroyed.
+//   * `.how-3` -- the same three steps as the worked example, told abstractly. One explanation of
+//     one thing, and the concrete one wins.
+//   * `#home-stat` (empty renderer) and `.home-stacks-sec` (/api/forks/popular returns [] since the
+//     demo forks were deleted; measured 0px tall). Both rendered nothing in either document.
 {
-  const byCat = {};
-  GRAPH.problems.forEach((p) => { (byCat[p.category] = byCat[p.category] || []).push(p); });
-  // Same fix as /solve: link every root cause, not just the first, so all 52 protocol pages have a
-  // crawlable entry from the homepage instead of 41.
-  const problemList = Object.keys(byCat).map((cat) => `<section><h2>${esc(cat)}</h2><ul class="seo-links">${byCat[cat]
-    .flatMap((p) => p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)}${p.root_causes.length > 1 ? ` — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}` : ''}</a></li>`)).join('')}</ul></section>`).join('');
-  // The honest "N you can buy · M prescription-only" split shipped to the SPA only, so the
-  // regulatory fix reached ~10% of traffic while the prerendered home kept promising a bare count
-  // of "compounds" for goals that are majority prescription-only (Lose Fat: 4 open, 18 Rx).
-  // Same split here, from the same data.
   const RX_CLASS = new Set(['prescription', 'controlled', 'unapproved']);
+
+  // ---- the worked example ---------------------------------------------------------------------
+  // Replaces the `.scrolly` scrollytelling block. Measured at 1440x900 before removal: 1800px, or
+  // 40% of a 4,549px page, for 160 words and zero calls to action. It revealed nothing on scroll,
+  // because `.sy-step{opacity:.62}` dims steps rather than hiding them -- every word was already
+  // legible at first paint, so two screens of scrolling changed only the opacity. Its height was
+  // `200vh`, a function of the viewport rather than of its content. Below 820px
+  // `.scrolly-stage{display:none}` removed the phone mock, which was its only explanatory element,
+  // so on a phone it explained nothing. And it lived only in app.js, so 90% of readers never saw
+  // the site's single best argument at all.
+  //
+  // `/pros` still uses .scrolly / .scrolly-track / .scrolly-stage / .sy-step / .sy-frame / .sy-bar /
+  // .sy-dots / .phone / .pf-bar. NONE of those rules are touched. This block is namespaced `.wex-`.
+  //
+  // EVERY FIGURE HERE IS READ FROM THE RECORD THAT RENDERS /protocol/knee-pain/patellofemoral-pain.
+  // The old mock hard-coded "Protein 1.6 g/kg" while the protocol page says 100 g -- a fabricated
+  // number in the demo of an evidence site. The fix is not to correct the constant, it is to stop
+  // having a constant: rc.prescription, rc.nutrient_targets, rc.keystone and protoStack(rc) are the
+  // same accessors the protocol page uses, so the demo cannot contradict the product. If the record
+  // changes, this block changes with it.
+  const WEX = (() => {
+    const p = GRAPH.problems.find((x) => x.id === 'knee-pain');
+    const rc = p && (p.root_causes || []).find((r) => r.id === 'patellofemoral-pain');
+    if (!p || !rc || !rc.prescription || !rc.nutrient_targets || !rc.keystone) {
+      // Hard gate, deliberately. This is the home page's central explanatory block; dropping it
+      // silently would leave a landing page that asks for an email having demonstrated nothing.
+      // package.json prestart is `node build/parse.js && node build/prerender.js` with no
+      // `|| echo`, so exiting here stops the deploy -- which is the correct outcome.
+      console.error('[prerender] FATAL: the home worked example requires knee-pain / '
+        + 'patellofemoral-pain to carry prescription, nutrient_targets and keystone. '
+        + 'Repair the record, or repoint WEX at another root cause.');
+      process.exit(1);
+    }
+    const short = (s) => esc(String(s).replace(/\s*\([^)]*\)/, ''));
+    // The three options are this problem's real root causes, in data order.
+    const opts = p.root_causes.map((r) => `<li${r.id === rc.id ? ' class="on"' : ''}>${short(r.name)}${r.id === rc.id ? '<b>&#10003;</b>' : ''}</li>`).join('');
+    // protoStack() already excludes prescription / controlled / unapproved compounds, so this block
+    // can never advertise a prescription-only medicine no matter what is authored into rc.compounds.
+    const stack = protoStack(rc);
+    const stackLine = stack.map((c) => `${esc(c.name)} ${stars(c.stars)}`).join(' &middot; ');
+    const T = Object.entries(rc.nutrient_targets);
+    const fuelLine = T.map(([k, t]) => `${nutrientLabel(k)}&nbsp;${t.target}${t.unit}`).join(' &middot; ');
+    const foods = protoFuel(rc).slice(0, 3).map((f) => f.name).join(', ');
+    // Illustrative fill levels for the tracker. Labelled as an example day in .wex-fine below --
+    // they are the one thing on this block that is not read from the corpus, so they are named.
+    const FILL = [82, 64, 95, 71];
+    const bars = T.map(([k, t], i) => {
+      const w = FILL[i % FILL.length];
+      return `<li><span>${nutrientLabel(k)}</span><i class="wex-bar" style="--w:${w}%"></i><em>${w}%</em><small>${esc(t.why || '')}</small></li>`;
+    }).join('');
+    return `
+    <section class="wex" id="how-it-works" aria-labelledby="wex-h">
+      <p class="wex-kick">One real search, start to finish</p>
+      <h2 id="wex-h">Someone typed <span class="wex-q">knee pain going downstairs</span>.<br>This is everything the site handed back.</h2>
+      <ol class="wex-chain">
+        <li class="wex-card">
+          <span class="wex-n">1</span>
+          <h3>One question &mdash; not a diagnosis</h3>
+          <p class="wex-ask">${esc(p.name)} has ${p.root_causes.length} root causes. Which one fits?</p>
+          <ul class="wex-opts">${opts}</ul>
+          <p class="wex-out"><span>Root cause</span><b>${esc(rc.name)}</b></p>
+          <p class="wex-ks"><b>&#11088; If you do one thing:</b> ${esc(rc.keystone.one)}</p>
+        </li>
+        <li class="wex-card">
+          <span class="wex-n">2</span>
+          <h3>The protocol for <em>that</em> cause</h3>
+          <p class="wex-line"><span class="pf-l mv">Move</span><b>${esc(rc.prescription.scheme)}</b><small>${esc(rc.prescription.detail)}</small></p>
+          <p class="wex-line"><span class="pf-l st">Stack</span><b>${stackLine}</b><small>stars are the strength of the <i>human</i> evidence for this use &mdash; each opens to its compounds, pathways, molecular targets and legal status in Singapore</small></p>
+          <p class="wex-line"><span class="pf-l fl">Fuel</span><b>${fuelLine}</b><small>daily targets, hit from local food${foods ? ` &mdash; ${esc(foods)}` : ''}</small></p>
+        </li>
+        <li class="wex-card">
+          <span class="wex-n">3</span>
+          <h3>And <em>why</em> every number is there</h3>
+          <ul class="wex-bars">${bars}</ul>
+          <p class="wex-out"><span>What changes</span><b>You stop taking things on faith and start watching a number move.</b></p>
+        </li>
+      </ol>
+      <p class="wex-foot">No account, no payment, nothing to buy. One sentence and one tap.
+        <a class="wex-back" href="#top" data-scroll="top" data-focus-search>Do it with yours &rarr;</a></p>
+      <p class="wex-fine">A real protocol from this site &mdash; <a href="/protocol/${p.id}/${rc.id}">read the whole thing</a>.
+        The percentages in step 3 are an example day, not data. Educational, not medical advice.</p>
+    </section>`;
+  })();
+
+  // ---- the goal index -------------------------------------------------------------------------
+  // Unlike the 52 protocol links, these 16 cannot be cut: there is no /goals index page, and /az
+  // and /browse carry zero /goal/ links (verified), so home is the only hub these 16 pages have.
   const goalLinks = D.goals.map((g) => {
     const inGoal = D.compounds.filter((c) => (c.goalIds || []).includes(g.id));
     const open = inGoal.filter((c) => !RX_CLASS.has(c.regulatory_class)).length;
     const rx = inGoal.length - open;
-    const note = rx ? ` — ${open} you can buy, ${rx} prescription-only` : '';
-    return `<li><a href="/goal/${g.id}">${esc(g.label)}</a>${note}</li>`;
+    // MEDICINES ACT 1975 s.51 -- this split is not decoration. A bare "18 compounds" under Lose Fat
+    // when most of them are prescription-only is a promotional count for medicines the reader cannot
+    // legally obtain, on the site's most promotional surface. It used to be computed twice, in two
+    // slightly different wordings; now there is one definition and it reaches both documents.
+    const label = rx ? `${open} you can buy &middot; ${rx} prescription-only`
+      : `${open} compound${open === 1 ? '' : 's'}`;
+    return `<li><a href="/goal/${g.id}"><span class="gi-i">${g.icon}</span><span class="gi-b">${esc(g.label)}</span><span class="gi-n">${label}</span></a></li>`;
   }).join('');
-  // Loss-framed newsletter capture for the PRERENDERED home. Until now `site/index.html` had ZERO
-  // `data-nl` forms and no `id="newsletter"`, while every prerendered footer links `/#newsletter`
-  // and server.js 301s the old page there — so the funnel was severed for the ~90% of traffic that
-  // never runs JS, at every entry point. Identical copy to the SPA block by construction.
-  const nlHomeBlock = `
-    <section class="nl-home" id="newsletter">
+
+  // ---- seed chips ------------------------------------------------------------------------------
+  // Real anchors to a real protocol page, so they work with JavaScript off -- that is the whole
+  // reason they now live in this document. bindHome() upgrades them to the triage modal when JS is
+  // running (preventDefault), which is what they did before, for the 10%.
+  const SEEDS = ['Knee Pain', 'Trouble Falling Asleep', 'Brain Fog', 'Belly / Visceral Fat', 'Low Testosterone', 'Longevity / Healthspan'];
+  const seedChips = SEEDS
+    .map((n) => (GRAPH.problems || []).find((p) => p.name.toLowerCase() === n.toLowerCase()))
+    .filter((p) => p && (p.root_causes || []).length)
+    .map((p) => `<a class="seed-chip" data-pid="${esc(p.id)}" href="/protocol/${esc(p.id)}/${esc(p.root_causes[0].id)}">${p.icon || ''} ${esc(p.name)}</a>`)
+    .join('');
+  const nProblems = (D.meta.counts && D.meta.counts.problems) || (GRAPH.problems || []).length;
+
+  // ---- the newsletter, defined once and rendered twice ------------------------------------------
+  // `full` carries the loss-framed copy and the Watanabe figures; the close block is a one-line
+  // restatement so the page never terminates without an ask. Two placements of one CTA is not two
+  // CTAs. The copy itself is unchanged -- it is loss-framed, cited to a live PMID, and US$-prefixed
+  // so it cannot be misread as SGD.
+  //
+  // .nl-done / .nl-bad are the NO-JS COMPLETION STATE. /api/subscribe already answers a native form
+  // post with a 303 to /?subscribed=1#newsletter (server.js), but this document had no confirmation
+  // element for it to land on, and the SPA's copy of that message lived only in app.js -- so the
+  // ~90% were redirected to a page that looked exactly as it had before they subscribed. server.js
+  // un-hides the right one when it serves "/" with the query.
+  const nlBlock = (source, full) => `
+    <section class="nl-home${full ? '' : ' nl-close-sec'}"${full ? ' id="newsletter"' : ''}>
       <div class="nl-home-inner">
+        <p class="nl-done">&#10003; You&rsquo;re in. Check your inbox for a welcome email &mdash; the one-click unsubscribe is in it, so you never have to hunt for one.</p>
+        <p class="nl-bad">That email address didn&rsquo;t look right &mdash; try again.</p>
         <div class="nl-eyebrow">Free weekly &middot; no spam &middot; one click to leave</div>
-        <h2>Medicine that doesn&rsquo;t work still sends you a bill.</h2>
+        ${full ? `<h2>Medicine that doesn&rsquo;t work still sends you a bill.</h2>
         <p class="nl-lede">The evidence on what you were given is public. It just isn&rsquo;t written
         for you &mdash; so you pay, and you hope. That gap is not an accident of nature; it is the one
         thing standing between you and a decision you could have made yourself.</p>
@@ -1376,39 +1500,80 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
         <p class="nl-src">Watanabe, McInnis &amp; Hirsch, <i>Annals of Pharmacotherapy</i> 2018 &middot;
           <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" rel="noopener">PMID 29577766</a>
           &middot; US figures. No Singapore equivalent has been published.</p>
-        <p class="nl-turn">You cannot fix a health system. You can stop being the person it happens to.</p>
-        <form class="nl-form" data-nl data-source="home-static" method="post" action="/api/subscribe" novalidate>
-          <label class="sr-only" for="nl-e-home-static">Your email address</label>
-          <input id="nl-e-home-static" class="nl-input" type="email" name="email" required
+        <p class="nl-turn">You cannot fix a health system. You can stop being the person it happens to.</p>`
+      : `<h2>One email a week. It might be about something you are taking right now.</h2>`}
+        <form class="nl-form" data-nl data-source="${source}" method="post" action="/api/subscribe" novalidate>
+          <label class="sr-only" for="nl-e-${source}">Your email address</label>
+          <input id="nl-e-${source}" class="nl-input" type="email" name="email" required
             autocomplete="email" inputmode="email" placeholder="you@example.com">
+          <input type="hidden" name="source" value="${source}">
           <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="nl-btn" type="submit">Send me the weekly email &rarr;</button>
           <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
         </form>
-        <p class="nl-fine">One email a week &mdash; what actually changed in the evidence for a drug
-        or supplement you might be taking, in plain English. Not medical advice, and never a
-        substitute for seeing a clinician.</p>
+        <p class="nl-fine">${full
+      ? 'One email a week &mdash; what actually changed in the evidence for a drug or supplement you might be taking, in plain English. Not medical advice, and never a substitute for seeing a clinician.'
+      : 'Unsubscribe in one click. Not medical advice.'}</p>
       </div>
     </section>`;
 
+  // ---- the daily fact --------------------------------------------------------------------------
+  // Kept, moved, relabelled. It is the only actual sample of the product on the page. It used to sit
+  // at 17% depth, above the argument, where its job was to send the reader to /c/l-tyrosine -- i.e.
+  // out of the funnel before either CTA. Below the newsletter and relabelled, the same block becomes
+  // evidence of what subscribing gets you. The `.df-text` / `.df-link` hooks are load-bearing:
+  // app.js patches those two nodes in place on hydration, because the stamp below is frozen at
+  // deploy time and the fact is date-derived.
+  const FACT = dailyFactObj();
+  const factBlock = FACT ? `
+    <section class="daily-fact">
+      <div class="df-card">
+        <div class="df-top"><span class="df-kicker">&#128161; A sample of what lands</span><span class="df-meta">one like this, free, every week</span></div>
+        <p class="df-text">${FACT.t}</p>
+        <a class="df-link" href="${FACT.href}">${esc(FACT.label)}</a>
+      </div>
+    </section>` : '';
+
   const homeBody = `
-    <section class="hero funnel-hero">
-      <div class="kicker">The open protocol engine</div>
-      <h1>DNA is the idea that never came to life. RNA is the action.</h1>
-      <p class="hero-lead">DNA is a blueprint locked in a vault. RNA is the messenger, the architect, and the builder — it reads the code and makes it real. RNAwiki is the RNA for your health: name a problem or a goal, and we build the exact movement, food, and supplements that fix its root cause — with every supplement broken down to its compounds, pathways, and molecular targets, and every food to the nutrients that matter, all in plain English.</p>
-      <p><a class="cta-primary" href="/solve">Build my protocol →</a></p>
+    <section class="hero funnel-hero" id="top">
+      <div class="kicker">Free &middot; no account &middot; nothing here is for sale</div>
+      <h1>You know what you were told to take.<br><span class="lead">You were never shown what it&rsquo;s for.</span></h1>
+      <p class="hero-lead">Start from the other end. Name the problem &mdash; we&rsquo;ll show you the
+      <b>root cause underneath it</b>, then the movement, the food and the compounds that act on
+      <i>that cause</i>, each one ranked by how good the human evidence actually is. Not a shopping
+      list. The reasoning you were never handed.</p>
+      ${/* A REAL <form>, so CTA #1 exists for the ~90%: GET /solve?q=... lands on the prerendered
+            52-link protocol index. bindHome() preventDefaults it and runs the existing
+            suggestProtocols() / openIntake() path when JS is available. */ ''}
+      <form class="funnel" id="hero-solve" action="/solve" method="get" role="search">
+        <div class="funnel-search">
+          <span class="fs-ico">&#128269;</span>
+          <input id="hero-solve-input" name="q" type="text" autocomplete="off"
+            placeholder="What&rsquo;s wrong, or what do you want to fix?"
+            aria-label="What is wrong, or what do you want to fix?">
+          <div id="hero-solve-out" class="funnel-out" hidden></div>
+        </div>
+        <button id="hero-solve-btn" class="cta-primary funnel-btn" type="submit">Show me the root cause &rarr;</button>
+      </form>
+      <div class="seed-row">${seedChips}<a class="seed-all" href="/solve">or see all ${nProblems} &rarr;</a></div>
+      <p class="hero-note">Free &middot; no account &middot; <b>no affiliate links</b> &middot; says so out loud when the evidence is thin</p>
     </section>
-    ${prerenderDailyFact()}
-    <section class="how-3"><h2>How it works</h2>
-      <ol><li><b>Diagnose</b> — tell us your pain or goal and answer one clinical question to find the exact root cause.</li>
-      <li><b>Execute</b> — get your precision protocol: the movement, evidence-ranked compounds, and biological targets for your recovery.</li>
-      <li><b>Fuel</b> — log your local Singaporean meals and watch your nutrient bars fill toward the targets that heal your issue.</li></ol>
+
+    ${WEX}
+
+    ${nlBlock('home', true)}
+
+    ${factBlock}
+
+    <section class="goal-index">
+      <h2>Or start from a goal</h2>
+      <p class="gi-sub">${D.goals.length} goals, ${D.compounds.length} compounds, ranked by the strength of
+      the <b>human</b> evidence. Each one says up front how many you can actually buy in Singapore.</p>
+      <ul class="gi-list">${goalLinks}</ul>
     </section>
-    <section class="why-rna"><h2>Why RNA? DNA is the blueprint. RNA is the builder.</h2>
-      <p>Most people idolise DNA — the master code locked in the vault. But DNA does nothing on its own; a blueprint can't pour concrete. RNA is the action: the messenger and builder that reads your code and builds the proteins, tissue, and enzymes that become your physical reality. Every adaptation you force — a heavy lift, recovery from DOMS, a longevity protocol — is a wave of RNA translating your genes into a stronger, longer-lived you. RNAwiki is the messenger: it turns the foundational code of exercise science, biomechanics, and longevity into results you can use today.</p></section>
-    ${nlHomeBlock}
-    <section><h2>Start a protocol</h2>${problemList}</section>
-    <section><h2>Or browse by goal</h2><ul class="seo-links">${goalLinks}</ul></section>`;
+
+    ${nlBlock('home-close', false)}`;
+
   // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"
   fs.writeFileSync(path.join(SITE, 'home.html'), shell({
     route: '/', ogType: 'website',
@@ -1447,6 +1612,13 @@ let written = 0;
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'About', route: '/about' }],
     body: `<div class="article"><h1>About RNAwiki</h1>
       <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
+      ${/* MOVED HERE 2026-07-30 from the home page's `.why-rna` section, verbatim. It is good
+            writing and it is not deleted -- but it answers "why is this site called RNAwiki?",
+            which is not a question anyone arrives with, and on the landing page it cost the search
+            box 330px of the reader's attention. Here it reaches someone who has already been
+            served and may actually want it. */ ''}
+      <h2>Why &ldquo;RNA&rdquo;? DNA is the blueprint. RNA is the builder.</h2>
+      <p>Most people idolise DNA — the master code locked in the vault. But DNA does nothing on its own; a blueprint can't pour concrete. RNA is the action: the messenger and builder that reads your code and builds the proteins, tissue, and enzymes that become your physical reality. Every adaptation you force — a heavy lift, recovery from DOMS, a longevity protocol — is a wave of RNA translating your genes into a stronger, longer-lived you. RNAwiki is the messenger: it turns the foundational code of exercise science, biomechanics, and longevity into results you can use today.</p>
       <h2>What is inside</h2>
       <p><strong>${cnt.compounds || D.compounds.length} compounds</strong> across <strong>${cats.length} categories</strong>, <strong>${(GRAPH.problems || []).length} problems</strong> broken down into their root causes, and <strong>${(D.pathways || []).length} master pathways</strong> with their molecular targets. Each compound carries a plain-English explanation, the named receptor or enzyme it acts on, a link to the official gene or compound record, and an honest verdict.</p>
       <h2>How to use this site — start here</h2>
