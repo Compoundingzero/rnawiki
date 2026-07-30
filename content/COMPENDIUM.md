@@ -1674,7 +1674,7 @@ Added compounds and four new categories to complete the universe (~220 total).
 ### Psilocybin / Microdosing  🔵(trials)/⚫ ⭐⭐⭐ (macro, trials) ⭐⭐ (microdosing)
 **Technical mechanism:** **5-HT2A serotonin receptor (HTR2A)** agonist driving neuroplasticity (BDNF, dendritic growth); breakthrough-therapy status for depression. Microdosing evidence is far weaker than full-dose therapy.
 **Molecular target:** [HTR2A 5-HT2A receptor (NCBI Gene)](https://www.ncbi.nlm.nih.gov/gene/3356) · [Psilocybin (PubChem CID 10624)](https://pubchem.ncbi.nlm.nih.gov/compound/10624)
-**In plain English:** Full-dose (with therapy) shows real, lasting antidepressant effects via a burst of brain plasticity. Sub-perceptual "microdosing" is mostly placebo in controlled trials.
+**In plain English:** **Read the doses before the conclusions.** Four of the five trials cited here used FULL doses of 10–25 mg with psychological support, not microdoses. The one genuine microdosing study — a self-blinding placebo-controlled citizen-science trial in 191 completers — found micro-dose and placebo groups improved EQUALLY. Two different interventions, two different evidence bases; do not read the trial results across from one to the other. Full-dose (with therapy) shows real, lasting antidepressant effects via a burst of brain plasticity. Sub-perceptual "microdosing" is mostly placebo in controlled trials.
 **Bottom line:** Macro-dose therapy is the real signal; microdosing hype outruns data.
 
 ---

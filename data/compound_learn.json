@@ -23400,13 +23400,15 @@
    "trials": [
     {
      "finding": "Systematic review of phenibut safety and tolerability (Kupats et al., Pharmacopsychiatry 2020;53(5):201-208): 11 clinical trials (583 patients) and 14 dependence/intoxication case reports (16 patients) were reviewed. Adverse events were reported in only 5.66% of clinical-trial patients, most commonly somnolence (1.89%), whereas the case reports involved doses of 0.5-100 g/day - far above the recommended 0.25-2 g/day - with cardiovascular effects, insomnia, anxiety and agitation, hallucinations and depressed consciousness. The authors concluded phenibut appears safe and well tolerated at therapeutic doses, while leaving open the quality of online-purchased phenibut and the contribution of alcohol and other drug abuse to reported dependence. Note this review assessed safety and tolerability, not efficacy.",
-     "ref": "Kupats et al., 2020, Drug Testing and Analysis (systematic review)",
+     "ref": "Kupats et al., 2020, Pharmacopsychiatry (systematic review)",
      "pmid": "32340063",
      "pmid_verified_by": "agent-audit",
      "pmid_verified_on": "2026-07-30",
      "finding_prev": "Systematic review of phenibut clinical trials and case reports: reviewed 11 clinical trials (583 patients), but none available in English and none containing statistical analysis, precluding any efficacy conclusion; also catalogued 14 dependence/intoxication case reports (16 patients).",
      "finding_edited_by": "agent-audit",
-     "finding_edited_on": "2026-07-30"
+     "finding_edited_on": "2026-07-30",
+     "ref_prev": "Kupats et al., 2020, Drug Testing and Analysis (systematic review)",
+     "ref_corrected_on": "2026-07-30"
     },
     {
      "finding": "Pharmacology review characterising phenibut (β-phenyl-GABA) as a GABA-B-acting tranquilizer and nootropic, based largely on older, non-controlled Russian data.",
