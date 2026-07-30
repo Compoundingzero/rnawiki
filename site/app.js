@@ -6713,9 +6713,12 @@
     // 514 pages. Both scrolled to the top of the home page instead of to the form the reader had just
     // used, so the site's MAIN call to action had no visible completion state for JS readers either.
     // `#/...` fragments are router paths, not anchors, and must still scroll to top.
+    // rAF so the measurement happens after this write has been laid out -- without it the element's
+    // offset is read against a stale layout on first paint. The 60px sticky topbar is cleared by
+    // `scroll-margin-top` on the three anchor targets in styles.css, not by arithmetic here.
     const frag = (location.hash || '').replace(/^#/, '');
     const anchor = (frag && frag.charAt(0) !== '/') ? document.getElementById(frag) : null;
-    if (anchor) anchor.scrollIntoView({ block: 'start' });
+    if (anchor) requestAnimationFrame(() => anchor.scrollIntoView({ block: 'start' }));
     else window.scrollTo(0, 0);
     setPageMeta(parts);
     // ACCESSIBILITY (2026-07-28). route() replaces the ENTIRE page body on every navigation, and

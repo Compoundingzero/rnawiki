@@ -346,9 +346,41 @@ function tocHtml(heads, minutes) {
   </nav>`;
 }
 
+// ---- GLOSSARY IN THE PRERENDERED DOCUMENT (2026-07-30) ---------------------------------------
+// The site already has a working glossary — but only in the SPA. `glossarize()` runs from five
+// call sites in app.js and produces 18 spans on /pathway/6. `prerender.js` has NEVER emitted one:
+// git shows the glossary shipped 2026-07-04, this file was created 2026-07-05, and
+// `git log -S gloss` on it returns nothing, ever. So the ~90% of readers who do not run JS have
+// never had a definition available, on any page, while the footer promised them one.
+//
+// Two glossaries had also grown independently (40 + 83 terms, 19 defined twice with conflicting
+// wordings). Merged and extended to 214 terms; coverage of hard-term hits on /pathway/6 was 7%.
+//
+// The operative variable turned out not to be jargon DENSITY — /muscle/biceps, the page the owner
+// calls perfect, is the 10th densest of 45 courses. It is UNGLOSSED REFERENT-FREE terms: biceps
+// leaves 8 hard terms unglossed and most are body-locatable (elbow, grip, tendon); the pathway
+// page leaves 16 and none are. You cannot fix that by shortening — only by attaching a meaning at
+// the point of use.
+const { glossify: _glossify, compile: _compileGloss } = require('./glossify.js');
+const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
+const GLOSS_COMPILED = _compileGloss(GLOSSARY);
+let _glossLinks = 0;
+
 function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType, robots }) {
   // Anchor every heading and build the contents card from what we actually emitted, so the TOC can
   // never list a section that is not there (or miss one that is).
+  // Gloss BEFORE anchoring so heading ids are computed from clean text, and never inside a heading.
+  // Suppress any term that is the page's own subject — defining "receptor" on the receptor page is
+  // noise. rank-1 terms only, at most 2 per section, no page cap (a fixed cap starved the end of
+  // every long page: deciles 8-10 of /pathway/6 got zero).
+  if (route !== '/' && GLOSS_COMPILED) {
+    const _h1 = (String(body).match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [, ''])[1].replace(/<[^>]+>/g, '').toLowerCase();
+    const _sup = Object.keys(GLOSSARY).filter((k) => _h1.includes(k));
+    try {
+      const _g = _glossify(body, { glossary: GLOSSARY, compiled: GLOSS_COMPILED, suppress: _sup, maxRank: 1, perSection: 2, perPage: Infinity });
+      body = _g.html; _glossLinks += _g.links;
+    } catch (e) { /* a glossing failure must never cost the page */ }
+  }
   const _an = anchorHeadings(body);
   const _words = String(_an.html).replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
   const _mins = Math.max(1, Math.round(_words / 230));

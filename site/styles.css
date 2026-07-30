@@ -3532,3 +3532,47 @@ a.seed-chip:hover { text-decoration: none; }
 .nl-bad { background: #fdecec; border: 1px solid #f3b7b7; color: #8f2323; }
 .nl-close-sec .nl-home-inner { padding-top: 1.4rem; padding-bottom: 1.4rem; }
 .nl-close-sec h2 { font-size: 1.22rem; }
+/* ---- Inline plain-English glossary (no JavaScript required) --------------------------------
+   ~90% of traffic never runs JS, so the reveal is a checkbox + :has(), not a tooltip. Every
+   element in the unit is phrasing content, so it is legal inside <p>, <li>, <dd> and <td>. */
+.pgl{position:relative;display:inline}
+/* The control. Focusable and hit-testable, but visually nothing: the LABEL is what you see. */
+.pgl-c{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+.pgl-t{display:inline;font:inherit;color:inherit}
+/* The definition. sr-only by DEFAULT, which is the whole accessibility story: it is already in
+   the accessibility tree, so a screen reader hears "metabotropic — a receptor that…" as an
+   ordinary inline parenthetical and never has to operate anything. */
+.pgl-d{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* Only advertise the affordance where the reveal actually works. Without :has() the dotted
+   underline would promise an interaction that does nothing. */
+@supports selector(:has(*)){
+  .pgl-t{border-bottom:1px dotted var(--accent2,#0d9488);cursor:help}
+  .pgl-t:hover{background:rgba(13,148,136,.08)}
+  .pgl-c:focus-visible ~ *,.pgl-t:has(.pgl-c:focus-visible){outline:2px solid var(--accent,#0d9488);outline-offset:2px;border-radius:3px}
+  .pgl:has(.pgl-c:checked) .pgl-t{background:rgba(13,148,136,.12);border-bottom-style:solid}
+  /* REVEALED = INLINE, not a floating bubble.
+     A positioned bubble anchored to the term overflows the viewport whenever the term sits near
+     the right edge — measured: /pathway/6 at 390px went from scrollWidth 390 to 535. There is no
+     way to clamp it back without JS, and JS is exactly what this layer cannot assume. Flowing the
+     definition into the paragraph has no positioning math, cannot clip, cannot overflow, reflows
+     correctly at every width, and prints. It is also the device the corpus already uses by hand
+     ("a phenomenon called ACTIVE INSUFFICIENCY (a two-joint muscle can't ...)") — so this is
+     automating a proven pattern, not inventing one. */
+  .pgl:has(.pgl-c:checked) .pgl-d{
+    position:static;display:inline;
+    width:auto;height:auto;margin:0 .12em;padding:.08em .45em;
+    clip:auto;clip-path:none;overflow:visible;white-space:normal;
+    font-size:.92em;font-weight:400;line-height:inherit;
+    color:var(--ink,#0f172a);background:rgba(13,148,136,.10);
+    border-left:2px solid var(--accent,#0d9488);border-radius:0 5px 5px 0;
+    box-decoration-break:clone;-webkit-box-decoration-break:clone
+  }
+  .pgl:has(.pgl-c:checked) .pgl-d b{color:var(--accent,#0d9488);font-weight:650}
+}
+@media print{ .pgl-t{border-bottom:0} .pgl-d{position:static;width:auto;height:auto;clip:auto;clip-path:none;margin:0;white-space:normal;font-size:.9em;color:#333} .pgl-d::before{content:"(" } .pgl-d::after{content:")"} .pgl-c{display:none} }
+
+/* The topbar is `position:sticky; top:0` and 60px tall, so any anchor landing -- the newsletter's own
+   303 target /?subscribed=1#newsletter, the /#newsletter link in every footer, and the worked
+   example's "#top" return link -- would otherwise have its first 60px hidden underneath it. */
+#top, #how-it-works, #newsletter { scroll-margin-top: 4.5rem; }
