@@ -723,6 +723,7 @@
     // Dose & clearance simulator
     if (c.sim && document.getElementById('dosesim')) wireDoseSim(c.sim);
     // Glossary hover-defs across the readable body (skips links/headings; first mention only)
+    resetGlossary();
     root.querySelectorAll('.field-val, .takeaways, .cpd-fact .cf-t, .evg-body, .mc-body p, .pk-note, .analogy p, .biotech .bt-sb, .biotech .bt-lead, .biotech .bt-tg-role, .biotech .bt-adme-row div, .evidence-deep .evd-b, .deeper-one, .framework .fw-a, .myth-t, .contrast p, .whenuse li, .mj-stage-d, .hook-payoff p, .bigidea p').forEach(applyGlossary);
     // Self-test — reveal answers (active recall)
     root.querySelectorAll('.st-reveal').forEach(b => b.onclick = () => { const card = b.closest('.st-card'); const a = card && card.querySelector('.st-a'); if (a) { a.hidden = false; b.remove(); } });
@@ -1398,8 +1399,15 @@
   const GLOSSARY_RE = new RegExp('\\b(' + GLOSSARY_TERMS.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b', 'i');
   function glossDef(term) { const t = term.toLowerCase(); return CPD_GLOSSARY[t] || CPD_GLOSSARY[t.replace(/s$/, '')] || null; }
   // Wrap the first mention of each glossary term inside the given root (skips links/headings; DOM-safe).
-  function applyGlossary(root) {
-    if (!root) return; const seen = new Set();
+  // A page-level set, not a per-call one. `applyGlossary` is invoked once per matching element
+  // (app.js:726 iterates a selector list), and `seen` used to be declared inside — so every
+  // element got its own "first occurrence" and the same word was glossed again and again.
+  // Measured on /c/creatine-monohydrate: 25 spans for ~14 distinct terms — receptor x5, atp x5,
+  // kinase x3. A definition repeated five times on one page is noise, not help.
+  let _glossSeen = new Set();
+  function resetGlossary() { _glossSeen = new Set(); }
+  function applyGlossary(root, shared) {
+    if (!root) return; const seen = shared || _glossSeen;
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, { acceptNode: n => (n.nodeValue.trim().length > 2 && n.parentElement && !n.parentElement.closest('a,.gloss,code,h1,h2,h3,summary,.badge,.chip,.spec-strip')) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT });
     const nodes = []; while (walker.nextNode()) nodes.push(walker.currentNode);
     nodes.forEach(n => {
@@ -3350,7 +3358,13 @@
   };
   function glossarize(root) {
     if (!root) return;
-    const terms = Object.keys(GLOSSARY).filter(t => t.trim()).sort((a, b) => b.length - a.length);
+    // Prefer the shared 214-term glossary from data.js — the same object prerender.js glosses the
+    // static pages with — and fall back to the two in-file lists if it is absent. Without this the
+    // SPA overwrites the static glosses on first paint with its own smaller set, so a JS reader got
+    // 18 definitions on /pathway/6 where a no-JS reader got 35.
+    const SHARED = (D && D.glossary) || null;
+    const SRC = SHARED ? Object.assign({}, GLOSSARY, SHARED) : GLOSSARY;
+    const terms = Object.keys(SRC).filter(t => t.trim()).sort((a, b) => b.length - a.length);
     const rxSrc = '\\b(' + terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b';
     const seen = new Set();
     const SKIPTAG = { A: 1, H1: 1, H2: 1, H3: 1, H4: 1, CODE: 1, BUTTON: 1, INPUT: 1, TEXTAREA: 1, SELECT: 1, LABEL: 1 };
@@ -3362,10 +3376,10 @@
       const text = node.nodeValue; const gx = new RegExp(rxSrc, 'ig'); let match;
       while ((match = gx.exec(text))) {
         const term = match[1].toLowerCase();
-        if (!GLOSSARY[term] || seen.has(term)) continue;
+        if (!SRC[term] || seen.has(term)) continue;
         seen.add(term);
         const start = match.index, end = start + match[1].length;
-        const span = document.createElement('span'); span.className = 'gloss'; span.textContent = text.slice(start, end); span.setAttribute('data-def', GLOSSARY[term]); span.setAttribute('title', GLOSSARY[term]);
+        const span = document.createElement('span'); span.className = 'gloss'; span.textContent = text.slice(start, end); span.setAttribute('data-def', SRC[term]); span.setAttribute('title', SRC[term]);
         const afterNode = document.createTextNode(text.slice(end));
         node.nodeValue = text.slice(0, start);
         node.parentNode.insertBefore(span, node.nextSibling);
