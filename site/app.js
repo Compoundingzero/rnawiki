@@ -41,6 +41,9 @@
   // Anatomy & physiology reference layer (muscles, energy systems, metabolism)
   const ANAT = D.anatomy || { muscles: [], energy_systems: [], metabolism: [] };
   const muscleById = {}; (ANAT.muscles || []).forEach(m => muscleById[m.id] = m);
+  // Granular sub-muscles (structures.json) indexed by their parent group id — powers the
+  // "individual muscles in this group" section on /muscle pages and the 3D body-map lookup.
+  const structuresByGroup = {}; (D.structures || []).forEach(s => { (structuresByGroup[s.groupId] = structuresByGroup[s.groupId] || []).push(s); });
   // exercise-DB muscle strings (e.g. "middle back") → muscle, so exercise cards can link
   const muscleByName = {}; (ANAT.muscles || []).forEach(m => muscleByName[m.db_name || m.id] = m);
   const energyById = {}; (ANAT.energy_systems || []).forEach(e => energyById[e.id] = e);
@@ -2194,6 +2197,15 @@
     // of the usual assumption. Identical bug to the pathway diagram that rendered on 0 of 16 pages:
     // an early return above the visual content. When you add a `return learnCourse(...)`, check what
     // is BELOW it.
+    const subs = structuresByGroup[id] || [];
+    const subMuscles = subs.length ? `<div class="section-title">The individual muscles in this group</div>
+        <p class="muted" style="font-size:.88rem;margin-top:-.3rem">“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
+        <div class="submuscle-list">${subs.map(s => `<div class="submuscle">
+          <h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3>
+          <p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>
+          ${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}
+          ${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}
+        </div>`).join('')}</div>` : '';
     const anatChapter = {
       icon: '🦴', label: 'Anatomy & training', at: 1, html: `
       <div class="anat-card"><h2>Anatomy</h2>
@@ -2203,6 +2215,7 @@
         <div class="anat-k" style="margin-top:.8rem">What it does</div>
         <p class="muted" style="font-size:.88rem;margin:.2rem 0 .5rem">Grey stays still; teal is what this muscle moves.</p>
         <div class="afig-grid">${(a.action_figures || []).join('') || (a.actions || []).map(x => `<p>${esc(x)}</p>`).join('')}</div></div>
+      ${subMuscles}
       <div class="anat-grid">
         <div class="anat-mini"><h3>Fibre-type bias</h3><p>${esc(m.fiber_bias)}</p></div>
         <div class="anat-mini"><h3>Functional role</h3><p>${esc(m.functional_role)}</p></div>

@@ -3613,3 +3613,11 @@ a.seed-chip:hover { text-decoration: none; }
 .bjf-lay { margin: 0 0 .2rem; color: var(--head); }
 .bjf-node { margin: 0 0 .3rem; font-size: .92rem; }
 .bjf-tag { font-size: .62rem; text-transform: uppercase; letter-spacing: .06em; color: var(--accent-ink); background: var(--line-soft); padding: 1px 6px; border-radius: 5px; margin-right: .35rem; }
+
+/* Move 3 — sub-muscle registry section on /muscle group pages (both documents) */
+.submuscle-list { display: grid; gap: .7rem; margin: .8rem 0 1.2rem; }
+.submuscle { border: 1px solid var(--line); border-radius: var(--r-lg, 14px); padding: .8rem 1rem; background: var(--panel); }
+.submuscle > h3 { font-size: 1.05rem; margin: 0 0 .4rem; color: var(--head); }
+.submuscle .sm-plain { font-weight: 400; font-size: .9rem; color: var(--muted); }
+.submuscle p { margin: .25rem 0; font-size: .92rem; }
+.sm-k { font-size: .64rem; text-transform: uppercase; letter-spacing: .05em; color: var(--accent-ink); margin-right: .35rem; }

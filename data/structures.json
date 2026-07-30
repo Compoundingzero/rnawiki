@@ -1,5 +1,5 @@
 {
-  "generated_by": "MACRO B content team: leg (wf_eb10c930-11f) + trunk/spine/shoulder (wf_ce0b3a5d-c7b), author->adversarial-verify, 2026-07",
+  "generated_by": "MACRO B content team: leg + trunk/spine/shoulder + arm/forearm/chest/adductor/neck (waves 1-3), author->adversarial-verify, 2026-07",
   "disclaimer": "Anatomical facts (origin/insertion/action/innervation) are textbook-consensus, sourced and cross-checked against a second independent source. Not medical advice.",
   "structures": [
     {
@@ -1852,6 +1852,960 @@
       ],
       "id": "serratus-anterior",
       "meshId": "FMA13397",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "38485",
+      "name": "Brachioradialis",
+      "plainName": "Forearm flexor (thumb-side)",
+      "kind": "muscle",
+      "groupId": "forearms",
+      "region": "forearm",
+      "origin": {
+        "text": "Proximal (upper) portion of the lateral supracondylar ridge of the humerus (just above the elbow, on the thumb side of the upper arm bone)",
+        "attachTo": "Lateral supracondylar ridge of humerus"
+      },
+      "insertion": {
+        "text": "Lateral side of the distal radius, just proximal to the styloid process at the wrist",
+        "attachTo": "Distal radius (near radial styloid process)"
+      },
+      "actions": [
+        "Flexes the elbow (bends the forearm toward the upper arm)",
+        "Strongest as an elbow flexor when the forearm is in a mid/neutral, thumb-up position",
+        "Assists in rotating the forearm toward a neutral mid-position (pronating from a supinated position and supinating from a pronated position)"
+      ],
+      "innervation": {
+        "nerve": "Radial nerve",
+        "roots": "C5-C6"
+      },
+      "antagonists": [
+        "Triceps brachii",
+        "Anconeus"
+      ],
+      "synergists": [
+        "Biceps brachii",
+        "Brachialis"
+      ],
+      "locate": "Rest your forearm on a table with your thumb pointing up, then bend your elbow against light resistance (or lift a bottle). The muscle that pops up as a prominent ridge running from just below the outer elbow crease down toward the thumb-side of your wrist is the brachioradialis.",
+      "palpation": "With the elbow bent about 90 degrees and the thumb pointing up, resist someone pushing your forearm down; the brachioradialis stands out as a firm cord on the upper thumb-side of the forearm, easily grasped between finger and thumb near the elbow.",
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Brachioradialis"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/brachioradialis-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/upper-limb/muscles/posterior-forearm/"
+        }
+      ],
+      "id": "brachioradialis",
+      "meshId": "38485",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "13109",
+      "name": "Pectoralis minor",
+      "plainName": "Small chest muscle (under the pecs)",
+      "kind": "muscle",
+      "groupId": "chest",
+      "region": "chest-deep",
+      "origin": {
+        "text": "Anterior surface of the 3rd, 4th and 5th ribs, near the costal cartilages, and the fascia over the adjacent intercostal muscles",
+        "attachTo": "3rd-5th ribs"
+      },
+      "insertion": {
+        "text": "Medial border and superior surface of the coracoid process of the scapula",
+        "attachTo": "coracoid process of scapula"
+      },
+      "actions": [
+        "Draws the scapula forward and downward (protraction and depression), stabilising it against the chest wall",
+        "Rotates the scapula downward (tips the glenoid cavity inferiorly)",
+        "Raises the 3rd-5th ribs during forced inspiration when the scapula is fixed (accessory muscle of breathing)"
+      ],
+      "innervation": {
+        "nerve": "Medial pectoral nerve (with a contribution from the lateral pectoral nerve via the ansa pectoralis)",
+        "roots": "C8, T1"
+      },
+      "antagonists": [
+        "Trapezius",
+        "Serratus anterior"
+      ],
+      "synergists": [
+        "Pectoralis major",
+        "Serratus anterior",
+        "Rhomboid major",
+        "Rhomboid minor"
+      ],
+      "locate": "Place your fingertips just below the outer end of your collarbone, near the front of the shoulder, then press inward through the thick pectoralis major. The pectoralis minor is the thin, flat muscle lying underneath, running from your upper front ribs up to the bony hook (coracoid process) at the front tip of your shoulder blade. You can feel it tighten if you push your shoulder forward and down.",
+      "palpation": "With the pectoralis major relaxed, palpate deep and slightly medial to the coracoid process (the bony bump on the front of the shoulder). Ask the person to reach the hand behind the small of their back and gently push it backward against light resistance; the pectoralis minor contracts and can be felt tensing beneath the pectoralis major in the anterior axillary fold.",
+      "commonProblems": [
+        "Tightness or shortening pulls the scapula into a forward-tilted, protracted position, contributing to rounded-shoulder posture",
+        "Can compress the neurovascular bundle beneath it, a cause of (pectoralis minor / neurogenic) thoracic outlet syndrome with arm numbness or tingling",
+        "Referred pain over the front of the shoulder and down the inner arm from trigger points"
+      ],
+      "confidence": "textbook",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Pectoralis_minor"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/pectoralis-minor-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/upper-limb/muscles/pectoral-region/"
+        }
+      ],
+      "id": "pectoralis-minor",
+      "meshId": "13109",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "37688",
+      "name": "Triceps brachii muscle",
+      "plainName": "Triceps (back of the upper arm)",
+      "kind": "muscle",
+      "groupId": "triceps",
+      "region": "upper-arm-posterior",
+      "aka": [
+        "Triceps",
+        "Three-headed muscle of the arm"
+      ],
+      "origin": {
+        "text": "Three heads: the long head from the infraglenoid tubercle of the scapula (just below the shoulder socket); the lateral head from the posterior humerus above the radial (spiral) groove; the medial head from the posterior humerus below the radial groove.",
+        "attachTo": "infraglenoid tubercle of scapula; posterior surface of humerus"
+      },
+      "insertion": {
+        "text": "Common tendon onto the posterior aspect of the olecranon process of the ulna (the point of the elbow).",
+        "attachTo": "olecranon process of ulna"
+      },
+      "actions": [
+        "Extends the forearm at the elbow (straightens the arm)",
+        "Long head extends the arm at the shoulder",
+        "Long head adducts the arm at the shoulder",
+        "Long head helps stabilise the shoulder joint"
+      ],
+      "innervation": {
+        "nerve": "Radial nerve",
+        "roots": "C6, C7, C8"
+      },
+      "antagonists": [
+        "Biceps brachii muscle",
+        "Brachialis muscle"
+      ],
+      "synergists": [
+        "Anconeus muscle"
+      ],
+      "locate": "Rest one arm straight down. With your other hand, feel the fleshy mass on the BACK of your upper arm, opposite the biceps. Straighten your elbow hard (as if pushing something away) and you will feel it firm up. Trace it down to the bony tip of your elbow, where its tendon attaches.",
+      "palpation": "With the elbow slightly bent, press into the back of the upper arm and ask the person to straighten the elbow against resistance; the three heads bulge and firm under your fingers, and the common tendon can be traced to the point of the elbow.",
+      "commonProblems": [
+        "Triceps tendinopathy or tendon strain from repetitive pushing/pressing loads",
+        "Distal triceps tendon rupture (uncommon) causing weak elbow extension",
+        "Weak elbow extension after radial nerve injury (e.g. mid-shaft humerus fracture)"
+      ],
+      "confidence": "textbook",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Triceps_brachii_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/triceps-brachii-muscle"
+        },
+        {
+          "type": "statpearls",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK536996/"
+        }
+      ],
+      "id": "triceps-brachii",
+      "meshId": "37688",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "22441",
+      "name": "Adductor longus muscle",
+      "plainName": "Inner-thigh muscle (adductor longus)",
+      "kind": "muscle",
+      "groupId": "adductors",
+      "region": "thigh-medial",
+      "origin": {
+        "text": "Body of the pubis, just below the pubic crest and next to the pubic symphysis (front of the pelvis)",
+        "attachTo": "pubis"
+      },
+      "insertion": {
+        "text": "Middle third of the linea aspera, the rough ridge running down the back of the thigh bone (femur)",
+        "attachTo": "femur"
+      },
+      "actions": [
+        "Adducts the hip (pulls the thigh inward toward the midline)",
+        "Flexes the hip (helps lift the thigh forward)",
+        "May assist in rotation of the thigh at the hip, though whether it contributes to medial or lateral rotation is debated between sources",
+        "Helps stabilise the pelvis during standing and walking"
+      ],
+      "innervation": {
+        "nerve": "Anterior branch of the obturator nerve",
+        "roots": "L2-L4"
+      },
+      "synergists": [
+        "Adductor brevis",
+        "Adductor magnus",
+        "Pectineus",
+        "Gracilis"
+      ],
+      "antagonists": [
+        "Gluteus medius",
+        "Gluteus minimus",
+        "Tensor fasciae latae"
+      ],
+      "locate": "Sit down and squeeze your knees together against your own hands. Run your fingers up the inner thigh toward the groin: the firm cord you feel tighten near the top, just below where the leg meets the pelvis, is the adductor longus. It is the most prominent of the inner-thigh muscles you can grab.",
+      "palpation": "With the hip slightly flexed, abducted and externally rotated, resist adduction; the adductor longus stands out as the most palpable tendon at the medial groin, easily grasped between finger and thumb where it attaches to the pubis.",
+      "commonProblems": [
+        "Groin strain (adductor strain), a common sports injury from sprinting, kicking or sudden changes of direction",
+        "Adductor tendinopathy causing chronic groin pain",
+        "Overuse pain in field sports, football and hockey"
+      ],
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Adductor_longus_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/adductor-longus-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/lower-limb/muscles/thigh/medial-compartment/"
+        }
+      ],
+      "id": "adductor-longus",
+      "meshId": "22441",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "37667",
+      "name": "Brachialis muscle",
+      "plainName": "The deep elbow-bending muscle that sits underneath the biceps",
+      "kind": "muscle",
+      "groupId": "biceps",
+      "region": "upper-arm-anterior-deep",
+      "aka": [
+        "Musculus brachialis"
+      ],
+      "origin": {
+        "text": "Anterior surface of the distal half of the humerus (the front of the upper-arm bone, below the deltoid attachment)",
+        "attachTo": "humerus"
+      },
+      "insertion": {
+        "text": "Coronoid process and tuberosity of the ulna (the front of the ulna just past the elbow joint)",
+        "attachTo": "ulna"
+      },
+      "actions": [
+        "Flexion of the forearm at the elbow joint"
+      ],
+      "synergists": [
+        "Biceps brachii",
+        "Brachioradialis"
+      ],
+      "antagonists": [
+        "Triceps brachii"
+      ],
+      "innervation": {
+        "nerve": "Musculocutaneous nerve (with a small lateral part supplied by the radial nerve)",
+        "roots": "C5, C6"
+      },
+      "locate": "Bend your elbow so your forearm comes up toward your shoulder. The big bulge on the front of your upper arm is the biceps; the brachialis lies underneath and just below it, closest to the elbow. To feel it, straighten your arm slightly and press your fingers into the front-outer edge of your lower upper arm, just above the elbow crease and a little toward the thumb side, then bend the elbow against light resistance and feel the firm muscle harden there beside the biceps.",
+      "palpation": "Palpate on the anterolateral aspect of the lower arm, just lateral to the biceps tendon and proximal to the elbow crease. Ask the person to flex the elbow against resistance with the forearm pronated (palm down) to minimise biceps involvement; the brachialis is felt as a firm band deep and lateral to the biceps, above the elbow joint.",
+      "commonProblems": [
+        "Strain or overuse from repetitive or heavy elbow-flexion loading (e.g. curls, rock climbing, carrying)",
+        "Can compress or irritate the musculocutaneous nerve nearby, which may cause forearm sensory changes and weak elbow flexion"
+      ],
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia-infobox",
+          "url": "https://en.wikipedia.org/wiki/Brachialis_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/brachialis-muscle"
+        },
+        {
+          "type": "statpearls",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK551630/"
+        }
+      ],
+      "id": "brachialis",
+      "meshId": "37667",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "43882",
+      "name": "Gracilis muscle",
+      "plainName": "Inner-thigh strap muscle",
+      "kind": "muscle",
+      "groupId": "adductors",
+      "region": "thigh-medial",
+      "aka": [
+        "Musculus gracilis"
+      ],
+      "origin": {
+        "text": "Body and inferior ramus of the pubis, extending onto the adjoining ischial ramus (the ischiopubic ramus).",
+        "attachTo": "ischiopubic-ramus"
+      },
+      "insertion": {
+        "text": "Medial surface of the proximal (upper) shaft of the tibia, via the pes anserinus tendon shared with sartorius and semitendinosus.",
+        "attachTo": "tibia-pes-anserinus"
+      },
+      "actions": [
+        "Adducts the thigh at the hip (draws the leg inward toward the midline)",
+        "Flexes the knee",
+        "Medially (internally) rotates the leg at the knee when the knee is bent",
+        "Assists weakly with hip flexion"
+      ],
+      "innervation": {
+        "nerve": "Anterior branch of the obturator nerve",
+        "roots": "L2-L3 (some sources L2-L4)"
+      },
+      "locate": "Sit down and squeeze your knees together against your own fist placed between them. Run your fingers up the very innermost edge of your thigh, near the surface, from just above the inner knee toward the groin — the long, thin cord-like band you feel tighten there is the gracilis. It is the most superficial of the inner-thigh muscles, so it is the one closest to your skin along that inside seam.",
+      "palpation": "With the person seated or supine and the hip slightly abducted, resist active adduction; the gracilis stands out as a thin, superficial band along the medial thigh, easiest to trace toward its tendon just above the inner knee (part of the pes anserinus).",
+      "synergists": [
+        "Adductor longus",
+        "Adductor magnus",
+        "Adductor brevis",
+        "Pectineus"
+      ],
+      "antagonists": [
+        "Gluteus medius",
+        "Gluteus minimus",
+        "Tensor fasciae latae"
+      ],
+      "commonProblems": [
+        "Groin (adductor) strain, often felt as a pull along the inner thigh during sudden change-of-direction or kicking movements",
+        "Tenderness at the pes anserinus insertion near the inner knee (pes anserine bursitis/tendinopathy)"
+      ],
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia-infobox",
+          "url": "https://en.wikipedia.org/wiki/Gracilis_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/gracilis-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/lower-limb/muscles/thigh/medial-compartment/"
+        }
+      ],
+      "id": "gracilis",
+      "meshId": "43882",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "",
+      "name": "Biceps brachii muscle",
+      "plainName": "Biceps",
+      "kind": "muscle",
+      "groupId": "biceps",
+      "region": "upper-arm-anterior",
+      "aka": [
+        "Biceps",
+        "Biceps brachii"
+      ],
+      "origin": {
+        "text": "Two heads on the scapula (shoulder blade): the short head from the coracoid process, and the long head from the supraglenoid tubercle, just above the shoulder socket.",
+        "attachTo": "scapula"
+      },
+      "insertion": {
+        "text": "The two heads join into one tendon that attaches to the radial tuberosity of the radius (forearm bone on the thumb side); it also spreads out as the bicipital aponeurosis into the deep fascia on the inner (medial) side of the forearm.",
+        "attachTo": "radius"
+      },
+      "actions": [
+        "Flexes the elbow (bends the forearm up toward the shoulder)",
+        "Supinates the forearm (rotates the palm to face upward), its strongest action, especially with the elbow bent",
+        "Weakly flexes the shoulder (raises the arm forward)"
+      ],
+      "innervation": {
+        "nerve": "Musculocutaneous nerve",
+        "roots": "C5–C6"
+      },
+      "antagonists": [
+        "Triceps brachii muscle"
+      ],
+      "synergists": [
+        "Brachialis muscle",
+        "Brachioradialis muscle",
+        "Supinator muscle"
+      ],
+      "locate": "Bend your elbow to about a right angle and turn your palm up as if holding a bowl of soup. Look at the front of your upper arm, between shoulder and elbow: the rounded muscle that bulges up is your biceps. This is the classic \"make a muscle\" bump.",
+      "palpation": "With your other hand, wrap your fingers around the front of your upper arm midway between shoulder and elbow. Now curl your forearm up (or turn your palm firmly upward against resistance) and you will feel the muscle tighten and harden into a ball under your fingers. Follow it downward toward the crease of your elbow and you can feel its tendon become a firm cord that you can pluck like a guitar string.",
+      "commonProblems": [
+        "Biceps tendinitis: irritation of the long-head tendon at the front of the shoulder, causing aching pain worsened by overhead or lifting activity",
+        "Proximal (long head) biceps tendon tear: often causes a bulging 'Popeye' deformity in the mid-upper arm",
+        "Distal biceps tendon rupture: a tear at the elbow attachment, usually from a sudden heavy load on a bent arm, weakening supination and elbow flexion",
+        "Delayed-onset muscle soreness after curls or other resistance training"
+      ],
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Biceps"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/biceps-brachii-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/upper-limb/muscles/upper-arm/"
+        }
+      ],
+      "id": "biceps-brachii",
+      "meshId": "",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "22423",
+      "name": "Tensor fasciae latae muscle",
+      "plainName": "Tensor fasciae latae (TFL) — the small hip muscle just below your front hip-bone",
+      "kind": "muscle",
+      "groupId": "abductors",
+      "region": "hip-lateral",
+      "origin": {
+        "text": "Anterior part of the outer lip of the iliac crest and the outer surface of the anterior superior iliac spine (ASIS)",
+        "attachTo": "iliac crest (outer lip, front) and anterior superior iliac spine"
+      },
+      "insertion": {
+        "text": "Iliotibial tract (fascia lata), which continues down to attach at the lateral condyle of the tibia (Gerdy's tubercle); its fascial fibres also blend into the lateral patellar retinaculum",
+        "attachTo": "iliotibial tract, continuing to the lateral condyle of the tibia"
+      },
+      "actions": [
+        "Abducts the hip (moves the thigh out to the side)",
+        "Flexes the hip (lifts the thigh forward)",
+        "Medially (internally) rotates the thigh",
+        "Tensions the iliotibial tract, helping stabilize the hip and knee during standing and walking"
+      ],
+      "innervation": {
+        "nerve": "Superior gluteal nerve",
+        "roots": "L4, L5, S1"
+      },
+      "antagonists": [
+        "Gluteus maximus (opposes hip flexion and medial rotation)",
+        "Adductor muscles of the thigh (oppose hip abduction)"
+      ],
+      "synergists": [
+        "Gluteus medius",
+        "Gluteus minimus",
+        "Iliopsoas (hip flexion)",
+        "Gluteus maximus (via shared iliotibial tract insertion)"
+      ],
+      "locate": "Stand up and place your fingers on the bony bump at the front of your hip (the point where your front pocket meets your waistband). Slide your fingers about two finger-widths down and slightly out onto the soft muscle. Now lift that leg's knee up and slightly out to the side, or turn the foot inward — you should feel a small muscle tighten under your fingers. That firm bulge is the tensor fasciae latae.",
+      "palpation": "Lie on your back or stand. Find the anterior superior iliac spine (the front hip-bone point), then move about 2 cm down and lateral onto the muscle belly. Actively abduct and internally rotate the hip against light resistance — the TFL will bulge and firm up, making it easy to feel just in front of the gluteus medius.",
+      "commonProblems": [
+        "Tightness or trigger points that contribute to lateral hip and outer-thigh pain",
+        "Overactivity linked to iliotibial band (ITB) syndrome and lateral knee pain, common in runners and cyclists",
+        "Can contribute to a compensatory hip-hike or gait changes when gluteus medius is weak"
+      ],
+      "confidence": "textbook",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Tensor_fasciae_latae_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/tensor-fasciae-latae-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/lower-limb/muscles/gluteal-region/"
+        }
+      ],
+      "id": "tensor-fasciae-latae",
+      "meshId": "22423",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "9627",
+      "name": "Pectoralis major muscle",
+      "plainName": "Big chest muscle",
+      "kind": "muscle",
+      "groupId": "chest",
+      "region": "chest",
+      "locate": "Put your hand flat on the front of your chest, just below the collarbone and above the nipple. Press your palm firmly against a wall or push your two palms together in front of you: the thick fan of muscle that hardens and bulges on either side of your breastbone is the pectoralis major. It stretches from your breastbone across to where your armpit meets the front of your upper arm.",
+      "palpation": "With one arm, push your palm hard against a wall at chest height. Feel the front of the chest with the other hand: the broad muscle that tightens from the breastbone out toward the armpit fold is the pectoralis major. Its lower border forms the front wall of the armpit and can be pinched between finger and thumb.",
+      "origin": {
+        "text": "Clavicular head: anterior surface of the medial half of the clavicle (collarbone). Sternocostal head: anterior surface of the sternum (breastbone) and the costal cartilages of the upper six ribs. A small abdominal part arises from the aponeurosis over the upper abdomen (variously described as the aponeurosis of the external oblique or the anterior layer of the rectus sheath).",
+        "attachTo": "clavicle, sternum, and upper costal cartilages"
+      },
+      "insertion": {
+        "text": "Both heads converge to a flat tendon that attaches to the lateral lip of the bicipital (intertubercular) groove of the humerus, on the front of the upper arm bone.",
+        "attachTo": "lateral lip of the intertubercular groove of the humerus"
+      },
+      "actions": [
+        "Adducts the arm at the shoulder (draws the upper arm toward the midline of the body)",
+        "Medially (internally) rotates the arm at the shoulder",
+        "Flexes the arm at the shoulder, chiefly via the clavicular head (lifts the arm forward)",
+        "Extends the flexed arm back toward the body, chiefly via the sternocostal head",
+        "Horizontal adduction of the arm (as in a bench press or hugging motion)",
+        "Assists in drawing the scapula anteriorly and inferiorly"
+      ],
+      "innervation": {
+        "nerve": "Lateral pectoral nerve and medial pectoral nerve (from the brachial plexus)",
+        "roots": "C5-T1 overall (clavicular head predominantly C5-C6 via the lateral pectoral nerve; sternocostal head predominantly C7, C8, T1)"
+      },
+      "synergists": [
+        "Anterior deltoid",
+        "Coracobrachialis",
+        "Subscapularis (medial rotation)",
+        "Latissimus dorsi (adduction and medial rotation)"
+      ],
+      "antagonists": [
+        "Posterior deltoid",
+        "Trapezius",
+        "Infraspinatus (lateral rotation)",
+        "Teres minor (lateral rotation)"
+      ],
+      "commonProblems": [
+        "Strains or tears of the muscle or its tendon, often from heavy bench pressing",
+        "Soreness and tightness after pushing exercises",
+        "Rare rupture at the humeral tendon attachment causing bruising and a visible defect in the chest contour"
+      ],
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Pectoralis_major_muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/upper-limb/muscles/pectoral-region/"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/major-pectoralis-muscle"
+        }
+      ],
+      "id": "pectoralis-major",
+      "meshId": "9627",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "38459",
+      "name": "Flexor carpi radialis muscle",
+      "plainName": "Flexor carpi radialis (a forearm muscle that bends the wrist toward the palm and tilts the hand toward the thumb)",
+      "kind": "muscle",
+      "groupId": "forearms",
+      "region": "forearm-anterior",
+      "origin": {
+        "text": "Medial epicondyle of the humerus, via the common flexor tendon",
+        "attachTo": "medial-epicondyle-humerus"
+      },
+      "insertion": {
+        "text": "Bases of the second and third metacarpal bones (palmar surface)",
+        "attachTo": "base-second-third-metacarpal"
+      },
+      "actions": [
+        "Flexion of the wrist (bends the palm toward the forearm)",
+        "Abduction of the wrist (radial deviation; tilts the hand toward the thumb side)",
+        "Assists weakly with forearm pronation"
+      ],
+      "innervation": {
+        "nerve": "Median nerve",
+        "roots": "C6, C7"
+      },
+      "antagonists": [
+        "Extensor carpi ulnaris muscle",
+        "Extensor carpi radialis longus muscle",
+        "Extensor carpi radialis brevis muscle"
+      ],
+      "synergists": [
+        "Flexor carpi ulnaris muscle",
+        "Palmaris longus muscle"
+      ],
+      "locate": "Rest your forearm palm-up on a table. Make a fist and bend your wrist toward you against light resistance: the most prominent tendon standing up in the middle of your wrist is palmaris longus, and the cord just to its thumb side is the flexor carpi radialis tendon. Trace that cord up toward the inner side of your elbow to feel the muscle belly.",
+      "palpation": "With the forearm supinated (palm up), resist wrist flexion and radial deviation; palpate the taut tendon at the front of the wrist on the thumb side of palmaris longus, and follow it proximally to the muscle belly in the upper-medial forearm.",
+      "commonProblems": [
+        "Medial epicondylitis (golfer's elbow) from overload of the common flexor origin",
+        "Wrist flexor tendinopathy or strain from repetitive gripping and flexion",
+        "FCR tendinitis near its insertion, sometimes with trapezium/scaphoid arthritis"
+      ],
+      "confidence": "textbook",
+      "source": [
+        {
+          "type": "wikipedia-infobox",
+          "url": "https://en.wikipedia.org/wiki/Flexor_carpi_radialis_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/flexor-carpi-radialis-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/upper-limb/muscles/anterior-forearm/"
+        }
+      ],
+      "id": "flexor-carpi-radialis",
+      "meshId": "38459",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "FMA:38494",
+      "name": "Extensor carpi radialis longus muscle",
+      "plainName": "the long wrist-straightening muscle on the thumb side of your forearm — it cocks your wrist backward and tilts the hand toward the thumb",
+      "aka": [
+        "Musculus extensor carpi radialis longus",
+        "ECRL",
+        "Long radial extensor of the wrist"
+      ],
+      "kind": "muscle",
+      "groupId": "forearms",
+      "region": "forearm-posterior",
+      "origin": {
+        "text": "The lower part of the lateral supracondylar ridge of the humerus (the bony crest running up from the outer elbow), with a contribution from the lateral intermuscular septum of the arm.",
+        "attachTo": "humerus (lateral supracondylar ridge, below the origin of brachioradialis)"
+      },
+      "insertion": {
+        "text": "The tendon runs down the thumb side of the forearm and attaches to the back of the base of the second metacarpal bone (the hand bone leading to the index finger).",
+        "attachTo": "posterior (dorsal) surface of the base of the second metacarpal"
+      },
+      "actions": [
+        "wrist extension (cocking the back of the hand upward)",
+        "radial deviation of the wrist / abduction of the hand (tilting the hand toward the thumb side)",
+        "weakly assists elbow flexion"
+      ],
+      "innervation": {
+        "nerve": "Radial nerve",
+        "roots": "C6-C7"
+      },
+      "antagonists": [
+        "flexor carpi ulnaris",
+        "flexor carpi radialis",
+        "palmaris longus"
+      ],
+      "synergists": [
+        "extensor carpi radialis brevis",
+        "extensor carpi ulnaris",
+        "flexor carpi radialis (in radial deviation)",
+        "brachioradialis (in elbow flexion)"
+      ],
+      "locate": "Rest your forearm palm-down on a table with the hand relaxed off the edge. With your other hand, feel the top of the forearm just below and beyond the bony bump on the outer (thumb-side) elbow. Now lift the back of your hand up toward the ceiling as if revving a motorbike throttle — the firm ridge of muscle that springs up there, running down toward the base of your index finger, is the extensor carpi radialis longus.",
+      "palpation": "With the forearm pronated and supported, palpate the upper posterolateral forearm just distal to the lateral epicondyle, deep to brachioradialis. Ask the patient to extend the wrist with slight radial deviation against resistance; the contracting muscle belly and its tendon (traceable toward the base of the second metacarpal) rise under the fingers.",
+      "commonProblems": [
+        "lateral-epicondylitis-tennis-elbow",
+        "wrist-extensor-strain",
+        "radial-tunnel-syndrome"
+      ],
+      "confidence": "textbook",
+      "source": [
+        {
+          "type": "encyclopedia",
+          "url": "https://en.wikipedia.org/wiki/Extensor_carpi_radialis_longus_muscle"
+        },
+        {
+          "type": "anatomy-reference",
+          "url": "https://www.kenhub.com/en/library/anatomy/extensor-carpi-radialis-longus-muscle"
+        },
+        {
+          "type": "anatomy-reference",
+          "url": "https://teachmeanatomy.info/upper-limb/muscles/posterior-forearm/"
+        }
+      ],
+      "id": "extensor-carpi-radialis-longus",
+      "meshId": "FMA38494",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "13407",
+      "name": "Sternocleidomastoid muscle",
+      "plainName": "The rope-like muscle on the side of your neck",
+      "kind": "muscle",
+      "groupId": "neck",
+      "region": "neck-anterior",
+      "aka": [
+        "SCM",
+        "Musculus sternocleidomastoideus"
+      ],
+      "origin": {
+        "text": "Two heads: the sternal head from the front (manubrium) of the breastbone, and the clavicular head from the inner portion of the collarbone.",
+        "attachTo": "Manubrium of sternum and medial third of clavicle"
+      },
+      "insertion": {
+        "text": "The two heads join and attach to the bony bump behind the ear (mastoid process) and the ridge along the back of the skull (superior nuchal line).",
+        "attachTo": "Mastoid process of the temporal bone and lateral half of the superior nuchal line of the occipital bone"
+      },
+      "actions": [
+        "Turns the head to the opposite side (one side contracting alone)",
+        "Tilts the head toward the same shoulder (one side contracting alone)",
+        "Bends the neck forward, bringing chin toward chest (both sides together); note that acting on a rigid neck it can instead extend the head at the top joints",
+        "Assists breathing in by lifting the breastbone and collarbone during hard inhalation"
+      ],
+      "innervation": {
+        "nerve": "Accessory nerve (cranial nerve XI) for motor supply; cervical plexus for sensory/proprioception",
+        "roots": "CN XI; C2-C3"
+      },
+      "locate": "Turn your head to the left and look slightly up: a firm, rope-like band pops out on the RIGHT side of your neck, running from behind your right ear down to the notch at the top of your breastbone. Pinch it gently between finger and thumb. Turn the other way to feel it on the left.",
+      "palpation": "With the head rotated to the opposite side, grasp the prominent cord running from behind the ear to the sternoclavicular joint; roll it between fingers along its length. The sternal (tendinous) head is most distinct near its lower attachment at the top of the breastbone.",
+      "synergists": [
+        "Scalene muscles",
+        "Splenius capitis (contralateral rotation)",
+        "Longus colli",
+        "Longus capitis"
+      ],
+      "antagonists": [
+        "Splenius capitis",
+        "Semispinalis capitis",
+        "Trapezius (upper fibres)",
+        "Contralateral sternocleidomastoid"
+      ],
+      "commonProblems": [
+        "Torticollis (wry neck) - sustained spasm holding the head tilted and rotated",
+        "Congenital muscular torticollis in infants from a tight or fibrotic SCM",
+        "Trigger points referring pain to the head, face, ear, or behind the eye",
+        "Whiplash strain from sudden neck acceleration"
+      ],
+      "confidence": "sourced",
+      "source": [
+        {
+          "type": "wikipedia-infobox",
+          "url": "https://en.wikipedia.org/wiki/Sternocleidomastoid_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/sternocleidomastoid-muscle"
+        },
+        {
+          "type": "statpearls-ncbi",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK532881/"
+        }
+      ],
+      "id": "sternocleidomastoid",
+      "meshId": "13407",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "22443",
+      "name": "Adductor magnus muscle",
+      "plainName": "Great inner-thigh muscle",
+      "kind": "muscle",
+      "groupId": "adductors",
+      "region": "thigh-medial",
+      "origin": {
+        "text": "Adductor part: the front branches of the pubic bone (inferior pubic ramus) and the branch of the sitting bone (ischial ramus). Hamstring part: the sitting bone itself (ischial tuberosity).",
+        "attachTo": "ischial-tuberosity"
+      },
+      "insertion": {
+        "text": "Adductor part: down the rough vertical ridge on the back of the thigh bone (linea aspera). Hamstring part: the adductor tubercle just above the inner knee. (Sources differ on whether the medial supracondylar line belongs to the adductor part or the hamstring part.)",
+        "attachTo": "linea-aspera"
+      },
+      "actions": [
+        "Pulls the thigh inward toward the midline (hip adduction) - both parts",
+        "Bends the hip, drawing the thigh forward (hip flexion) - adductor part",
+        "Straightens the hip, drawing the thigh backward (hip extension) - hamstring part"
+      ],
+      "innervation": {
+        "nerve": "Dual supply: posterior branch of the obturator nerve (adductor part) and the tibial part of the sciatic nerve (hamstring part)",
+        "roots": "Obturator L2-L4; tibial part of sciatic L4"
+      },
+      "confidence": "sourced",
+      "locate": "Sit down and find your inner thigh. Press your fingers into the soft muscle on the inside of your thigh, high up near the groin, then trace it downward along the inner thigh toward a bony bump just above the inside of your knee. This large sheet of muscle running that whole length is the adductor magnus. Squeeze your knees together against your own hands and you will feel it firm up along the inner thigh.",
+      "palpation": "With the hip slightly bent and turned out, press into the inner thigh while squeezing the knees together against resistance; the muscle tightens under your fingers along the inner thigh from groin to just above the inner knee.",
+      "synergists": [
+        "Adductor longus muscle",
+        "Adductor brevis muscle",
+        "Gracilis muscle",
+        "Pectineus muscle"
+      ],
+      "antagonists": [
+        "Gluteus medius muscle",
+        "Gluteus minimus muscle",
+        "Tensor fasciae latae muscle"
+      ],
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Adductor_magnus_muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/lower-limb/muscles/thigh/medial-compartment/"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/adductor-magnus"
+        }
+      ],
+      "id": "adductor-magnus",
+      "meshId": "22443",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "22653",
+      "name": "Splenius capitis muscle",
+      "plainName": "Neck strap muscle (skull attachment)",
+      "kind": "muscle",
+      "groupId": "neck",
+      "region": "neck-posterior",
+      "aka": [
+        "Splenius capitis"
+      ],
+      "origin": {
+        "text": "Lower half of the nuchal ligament and the spinous processes of the C7 to T3 vertebrae",
+        "attachTo": "nuchal-ligament-and-C7-T3-spinous-processes"
+      },
+      "insertion": {
+        "text": "Mastoid process of the temporal bone and the lateral part of the superior nuchal line of the occipital bone",
+        "attachTo": "mastoid-process-and-superior-nuchal-line"
+      },
+      "actions": [
+        "Bilaterally: extends the head and neck (tilts the head back)",
+        "Unilaterally: laterally flexes the head to the same side (ear toward shoulder)",
+        "Unilaterally: rotates the head to the same side (turns the face toward the working side)"
+      ],
+      "innervation": {
+        "nerve": "Lateral branches of the posterior (dorsal) rami of the middle cervical spinal nerves",
+        "roots": "C3-C4"
+      },
+      "synergists": [
+        "Splenius cervicis",
+        "Semispinalis capitis",
+        "Longissimus capitis",
+        "Trapezius (upper fibres)",
+        "Sternocleidomastoid (same side, for rotation to that side)"
+      ],
+      "antagonists": [
+        "Longus capitis",
+        "Longus colli",
+        "Rectus capitis anterior",
+        "Sternocleidomastoid (opposite side, for rotation)"
+      ],
+      "commonProblems": [
+        "Neck stiffness and pain from prolonged forward-head posture at a desk or phone",
+        "Tension headaches referred to the top of the head",
+        "Muscle strain or 'crick' after sleeping in an awkward position or sudden neck movement"
+      ],
+      "locate": "Feel for the bony bump just behind your ear (the mastoid process). The splenius capitis runs diagonally from there down and inward to the base of your neck and upper back. To feel it work, place your fingertips on the back of your neck, then tip your head backward or turn your face toward that same hand against light resistance and you will feel the muscle tighten under your fingers.",
+      "palpation": "Palpate in the upper posterior neck. A small portion is accessible in the triangle bounded by the sternocleidomastoid in front, the upper trapezius behind, and the levator scapulae below; most of the muscle lies deep to the trapezius. Turning the head to the same side against resistance makes the accessible part firm and easier to feel.",
+      "confidence": "textbook",
+      "source": [
+        {
+          "type": "wikipedia",
+          "url": "https://en.wikipedia.org/wiki/Splenius_capitis_muscle"
+        },
+        {
+          "type": "kenhub",
+          "url": "https://www.kenhub.com/en/library/anatomy/splenius-capitis-muscle"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/encyclopaedia/s/splenius-capitis/"
+        }
+      ],
+      "id": "splenius-capitis",
+      "meshId": "22653",
+      "secondSourceVerified": true,
+      "reviewedBy": null,
+      "reviewedAt": null
+    },
+    {
+      "fma": "64829",
+      "name": "Scalene muscles",
+      "plainName": "Side-of-neck breathing muscles",
+      "kind": "muscle-group",
+      "groupId": "neck",
+      "region": "neck-lateral",
+      "origin": {
+        "text": "Anterior and posterior tubercles of the transverse processes of the cervical vertebrae (C2–C7). The anterior scalene arises from the anterior tubercles of C3–C6, the middle scalene from the posterior tubercles of the lower six cervical vertebrae (C2–C7), and the posterior scalene from the posterior tubercles of the lower cervical vertebrae (commonly given as C5–C7; some sources give C4–C6).",
+        "attachTo": "cervical-vertebrae-transverse-processes"
+      },
+      "insertion": {
+        "text": "First and second ribs. The anterior scalene attaches to the scalene tubercle on the inner border of the first rib; the middle scalene to the superior surface of the first rib behind the subclavian groove; the posterior scalene to the second rib (external/outer surface).",
+        "attachTo": "first-rib,second-rib"
+      },
+      "actions": [
+        "Elevate the first and second ribs during forceful inhalation (accessory muscles of inspiration)",
+        "Bend the neck sideways toward the same side (ipsilateral lateral flexion) when one side contracts",
+        "Assist bending the neck forward when both sides contract together",
+        "Help stabilise the cervical spine against side-to-side movement"
+      ],
+      "innervation": {
+        "nerve": "Anterior rami of the cervical spinal nerves",
+        "roots": "C3–C8"
+      },
+      "confidence": "sourced",
+      "locate": "Put two fingers flat on the side of your neck, just above the collarbone and a little behind the big rope-like muscle (sternocleidomastoid) that stands out when you turn your head. Take a short, sharp sniff through your nose: the small band of muscle that tightens under your fingertips is the scalenes.",
+      "palpation": "Sit upright and find the sternocleidomastoid by turning your head to the opposite side. Slide your fingers just behind and above the collarbone, into the soft hollow at the base of the neck, and press gently. A quick sniff makes the scalenes contract and firm up under your fingers. Palpate lightly only — the brachial plexus and subclavian artery pass between the anterior and middle scalenes here.",
+      "commonProblems": [
+        "Tightness from chronic upper-chest (shallow) breathing, which overworks the scalenes as accessory breathing muscles",
+        "Neck and shoulder tension linked to poor posture or a forward head position",
+        "Thoracic outlet syndrome: tight scalenes can compress the brachial plexus nerves or subclavian artery, causing tingling, numbness, or coldness in the arm and hand",
+        "Referred aching into the shoulder, chest, or upper arm from trigger points"
+      ],
+      "synergists": [
+        "Sternocleidomastoid",
+        "Longus colli",
+        "Longus capitis",
+        "External intercostals (during inspiration)"
+      ],
+      "antagonists": [
+        "Deep posterior neck extensors (splenius capitis and splenius cervicis)",
+        "Contralateral scalene muscles (opposing side flexion)"
+      ],
+      "source": [
+        {
+          "type": "wikipedia-infobox",
+          "url": "https://en.wikipedia.org/wiki/Scalene_muscles"
+        },
+        {
+          "type": "teachmeanatomy",
+          "url": "https://teachmeanatomy.info/neck/muscles/scalene/"
+        },
+        {
+          "type": "statpearls-ncbi",
+          "url": "https://www.ncbi.nlm.nih.gov/books/NBK519058/"
+        }
+      ],
+      "id": "scalene-muscles",
+      "meshId": "64829",
       "secondSourceVerified": true,
       "reviewedBy": null,
       "reviewedAt": null

@@ -1290,12 +1290,18 @@ function energyChart(activeId) {
 }
 ANAT.muscles.forEach((m) => {
   const route = '/muscle/' + m.id; const a = m.anatomy || {};
+  // Granular sub-muscles (structures.json) whose groupId is this group — crawlable, both documents.
+  const subs = (D.structures || []).filter((s) => s.groupId === m.id);
+  const subHtml = subs.length ? `<h2>The individual muscles in this group</h2>
+    <p>“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
+    <div class="submuscle-list">${subs.map((s) => `<div class="submuscle"><h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3><p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}</div>`).join('')}</div>` : '';
   const body = `<div class="article"><h1>${esc(m.name)}</h1><p>${esc(m.overview)}</p>
     ${muscle3D(m)}
     <h2>Anatomy</h2><p><b>Muscles:</b> ${esc(m.group)}</p><p><b>Origin:</b> ${esc(a.origin || '')}</p><p><b>Insertion:</b> ${esc(a.insertion || '')}</p>
     <h2>What this muscle actually does</h2>
     <p>Each movement below is animated — the grey part stays still, the teal part is what this muscle moves.</p>
     <div class="afig-grid">${(a.action_figures || []).join('') || (a.actions || []).map((x) => `<p>${esc(x)}</p>`).join('')}</div>
+    ${subHtml}
     <h2>How the muscle works</h2><p>${esc(m.mechanism)}</p>
     <p><b>Fibre-type bias:</b> ${esc(m.fiber_bias)}</p><p><b>Functional role:</b> ${esc(m.functional_role)}</p>
     <h2>Common problems</h2><ul>${(m.common_problems || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
