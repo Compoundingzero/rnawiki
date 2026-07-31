@@ -487,7 +487,10 @@
     submitRootcauseChange(b) { return this.call('POST', '/api/rootcause-changes', b); },
     endorseRootcauseChange(id) { return this.call('POST', '/api/rootcause-changes/' + id + '/endorse', {}); },
     setRootcauseChange(id, status) { return this.call('POST', '/api/admin/rootcause-changes/' + id, { status }); },
-    rootcauseOverlay() { return this.call('GET', '/api/rootcause-overlay').then(d => d.overlay || []).catch(() => []); },
+    // Resolves to null (not []) when the request fails. "The server answered and there is nothing
+    // to apply" and "we could not ask" are different facts about the page, and the second one is
+    // now shown to the reader instead of being swallowed. See mountRcOverlayNotice().
+    rootcauseOverlay() { return this.call('GET', '/api/rootcause-overlay').then(d => d.overlay || []).catch(() => null); },
     createFork(b) { return this.call('POST', '/api/forks', b); },
     forksFor(pid, rcid) { return this.call('GET', `/api/forks?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).then(d => d.forks || []).catch(() => []); },
     popularForks() { return this.call('GET', '/api/forks/popular').then(d => d.forks || []).catch(() => []); },
@@ -3571,6 +3574,31 @@
     });
     return changed;
   }
+  // VISIBLE DEGRADATION (W1, 2026-08-01). The overlay carries the approved additions and removals to
+  // a problem's root causes. Its only call site swallowed every failure with .catch(() => []), which
+  // is indistinguishable from "nothing to apply" -- so when the endpoint fails the protocol page
+  // silently shows the built-in cause list. Measured hydrated on /protocol/knee-pain/knee-oa:
+  // 503 GET /api/rootcause-overlay, and nothing on the page. Three outcomes are now distinguished,
+  // and the state is driven by the RESPONSE, never by an assumption about the environment -- so this
+  // is correct whether or not production also fails:
+  //   'pending' -> not settled yet: say nothing
+  //   'live'    -> the request succeeded, empty overlay included: say nothing, the list is current
+  //   'offline' -> the request failed: state the absence, on the section the overlay would have changed
+  let RC_OVERLAY_STATE = 'pending';
+  function mountRcOverlayNotice() {
+    const stale = document.getElementById('rc-overlay-absent'); if (stale) stale.remove();
+    const sec = document.getElementById('p-causes');
+    if (!sec || RC_OVERLAY_STATE !== 'offline') return;
+    const n = document.createElement('div');
+    n.id = 'rc-overlay-absent';
+    n.className = 'callout warn';          // existing component; no styles.css change
+    n.setAttribute('role', 'status');
+    n.setAttribute('data-api-absent', 'rootcause-overlay');  // scripts/smoke.mjs asserts on this
+    n.innerHTML = '<strong>Community updates to this cause list could not be loaded.</strong> ' +
+      'You are reading the built-in root causes. A cause the community has since added or retired ' +
+      'would not appear here. Nothing else on this page depends on it.';
+    sec.insertBefore(n, sec.firstChild);
+  }
   function protocolName(pid, rcid) {
     const p = problemById[pid]; const rc = resolveRc(p, rcid);
     return p ? p.name + (rc ? ' — ' + rc.name.split('(')[0].trim() : '') : pid;
@@ -6282,8 +6310,10 @@
     if (parts[0] === 'progress') renderProgress();
     // dead: /pros is retired above and parts is emptied, so this never fires.
     if (parts[0] === 'admin') renderAdmin();
-    if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2]);
-    if (parts[0] === 'clinic' && parts[3]) renderProtocol(parts[2], parts[3], parts[1]);
+    // .then(mountRcOverlayNotice): #p-causes does not exist until renderProtocol has painted, so the
+    // notice has to be re-mounted after every protocol render, not only when the overlay settles.
+    if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2]).then(mountRcOverlayNotice);
+    if (parts[0] === 'clinic' && parts[3]) renderProtocol(parts[2], parts[3], parts[1]).then(mountRcOverlayNotice);
     if (parts[0] === 's' && parts[1]) renderSharedPlan(parts[1]);
     // community discussion on compound + pathway pages
     if (parts[0] === 'c' && bySlug[parts[1]]) renderComments('c:' + bySlug[parts[1]].id, bySlug[parts[1]].name);
@@ -6331,7 +6361,11 @@
   route();
   api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } }).catch(() => { renderAccount(); });
   api.config().then(c => { if (c) CFG = c; });
-  api.rootcauseOverlay().then(ov => { if (applyRcOverlay(ov)) route(); }).catch(() => {});
+  api.rootcauseOverlay().then(ov => {
+    RC_OVERLAY_STATE = ov === null ? 'offline' : 'live';
+    if (applyRcOverlay(ov)) route();
+    mountRcOverlayNotice();
+  }).catch(() => { RC_OVERLAY_STATE = 'offline'; mountRcOverlayNotice(); });
   // Always-available feedback button, bottom-right.
   const fbBtn = document.createElement('button');
   fbBtn.className = 'feedback-fab'; fbBtn.type = 'button'; fbBtn.title = 'Suggest an improvement';
