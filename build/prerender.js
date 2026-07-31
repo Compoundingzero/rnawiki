@@ -1495,11 +1495,14 @@ ANAT.muscles.forEach((m) => {
 // enhancement (app.js mountBody lazy-loads bodymap.js); this prerendered page is a real muscle index
 // for Google + the ~90% no-JS traffic, per the two-document rule.
 (function addBodyShell() {
-  const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves'];
+  // Keep this list in sync with bodyShell() in site/app.js. tibialis-anterior is browsable in 3D but
+  // has no group page, so its "(full page)" link is guarded by MUSCLE_GROUP_IDS (a dead link would
+  // fail assertLinkGraph). No "peel back the layers" — there is no layer control in the UI.
+  const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves', 'tibialis-anterior'];
   const legSubs = legGroups.reduce((acc, g) => acc.concat((D.structures || []).filter((s) => s.groupId === g)), []).filter((s) => s.fma);
-  const twin = legSubs.map((s) => `<li><a href="/body/leg?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ' — ' + esc(s.plainName) : ''} <a href="/muscle/${esc(s.groupId)}">(full page)</a></li>`).join('');
+  const twin = legSubs.map((s) => `<li><a href="/body/leg?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ' — ' + esc(s.plainName) : ''}${MUSCLE_GROUP_IDS.has(s.groupId) ? ` <a href="/muscle/${esc(s.groupId)}">(full page)</a>` : ''}</li>`).join('');
   const body = `<div class="article body-shell"><h1>Interactive 3D body — the leg</h1>
-    <p>Rotate a 3D anatomical model of the leg, peel back the layers, and tap a muscle to see where it attaches, what it does, and watch it perform its action. This page lists every muscle in the model; the interactive 3D above is an enhancement for capable devices.</p>
+    <p>Spin a 3D anatomical model of the leg and tap any muscle to see the bones it attaches to — origin and insertion — and watch it move. This page lists every muscle in the model; the interactive 3D above is an enhancement for capable devices.</p>
     <div id="bm-canvas" class="bm-canvas"></div>
     <h2>The leg muscles</h2><ul class="body-twin">${twin}</ul>
     <p><a href="/anatomy">← All muscle groups</a></p></div>`;
@@ -1512,7 +1515,7 @@ ANAT.muscles.forEach((m) => {
     canonical: '/body/leg',
     robots: route === '/body' ? 'noindex,follow' : undefined,
     title: seoTitle('Interactive 3D body: the muscles and how they move'),
-    desc: seoDesc('Rotate a 3D leg model, peel the layers, and watch each muscle perform its action — origin, insertion and the exercises that train it, on the body.'),
+    desc: seoDesc('Rotate a 3D leg model and tap any muscle to see the bones it attaches to — origin and insertion — and watch it perform its action, on the body.'),
     breadcrumbs: anatCrumb('Interactive 3D body', '/body/leg'), body })));
 })();
 // /where — "Where does it hurt?" reverse funnel (Move 4). Text index is the crawlable/a11y core; the
