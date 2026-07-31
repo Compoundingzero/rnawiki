@@ -11,6 +11,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto'); // per-page sitemap lastmod hashes (see "sitemap + robots" below)
 
 // ---- BLOCK RENDERER (2026-07-28) ----------------------------------------------------------
 // Two measured defects in how authored prose reaches the page, both presentation-only:
@@ -2419,17 +2420,74 @@ let swept = 0;
 
 
 // sitemap + robots
+//
+// PER-PAGE lastmod (2026-08-01). Until now every one of the 564 <url> entries carried the SAME
+// value -- `new Date()` read at build time -- so the sitemap asserted that all 564 pages had
+// changed, on every single build. Measured before the fix: with ZERO content edited and the build
+// clock moved forward 9 days, all 564 lastmod values moved to 2026-08-09. `site/` is ephemeral on
+// Railway (prestart regenerates it on every boot), so a container restart with no commit behind it
+// re-stamped all 564 as well. Google's own documentation says it ignores lastmod on a site where
+// the value is not consistently accurate, so this field was not merely useless here -- it was
+// spending the one crawl-prioritisation signal a static site gets, on noise.
+//
+// A page's lastmod is now the date its own OUTPUT last changed. `build/lastmod.json` is the
+// committed record of route -> [content hash, date]. If this build's hash matches the record, the
+// recorded date is reused; if it differs, or the route is new, today is stamped and the record
+// updated. COMMIT build/lastmod.json alongside any content change -- it is the only part of this
+// that survives the ephemeral container. If it goes stale the failure mode is the OLD behaviour
+// (a page restamped as changed when it was not), never a page claiming to be older than it is.
+//
+// TWO fields are normalised out of the hash. Both are stamped by the clock rather than authored,
+// and leaving either in would make every page hash-different every day -- reinstating the exact
+// bug this replaces:
+//   1. JSON-LD "dateModified", which is BUILD_DATE (see line ~485) on every clinical page.
+//   2. The home page's <section class="daily-fact">, which rotates on Date.now()/864e5. app.js
+//      already re-patches .df-text/.df-link in place on hydration precisely because the build's
+//      copy goes stale, so the build's copy is not treated as the document's content anywhere else
+//      either. Rotating trivia is not a content revision.
 const now = new Date().toISOString().slice(0, 10);
+const LASTMOD_FILE = path.join(ROOT, 'build', 'lastmod.json');
+const lastmodPrev = (() => {
+  try { return JSON.parse(fs.readFileSync(LASTMOD_FILE, 'utf8')); } catch (e) { return {}; }
+})();
+const lastmodNext = {};
+const lmHash = (html) => crypto.createHash('sha256').update(String(html)
+  .replace(/"dateModified":"[^"]*"/g, '"dateModified":"@"')
+  .replace(/<section class="daily-fact">[\s\S]*?<\/section>/, '<section class="daily-fact">@</section>'))
+  .digest('hex').slice(0, 16);
+
+const htmlByRoute = new Map(pages.map(({ route, html }) => [route, html]));
+// "/" is written straight to home.html rather than via add() (so "/home" never leaks into the
+// sitemap), which means it is not in `pages`. Read it back off disk -- it was written this run.
+try { htmlByRoute.set('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { /* handled by the lmUnknown branch */ }
+
+let lmKept = 0, lmMoved = 0, lmUnknown = 0;
+function lastmodFor(route) {
+  const html = htmlByRoute.get(route);
+  if (html === undefined) { lmUnknown++; return now; } // no output to compare against: stamp today, which is the old behaviour
+  const h = lmHash(html);
+  const prev = lastmodPrev[route];
+  const unchanged = !!(prev && prev[0] === h && /^\d{4}-\d{2}-\d{2}$/.test(prev[1]));
+  const date = unchanged ? prev[1] : now;
+  unchanged ? lmKept++ : lmMoved++;
+  lastmodNext[route] = [h, date];
+  return date;
+}
+
 const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.filter((p) => !p.noSitemap).map((p) => p.route)];
 const uniq = [...new Set(urls)];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${uniq.map((u) => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${now}</lastmod><changefreq>weekly</changefreq><priority>${u === '/' ? '1.0' : u.startsWith('/protocol') || u.startsWith('/c/') ? '0.8' : '0.6'}</priority></url>`).join('\n')}
+${uniq.map((u) => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${lastmodFor(u)}</lastmod><changefreq>weekly</changefreq><priority>${u === '/' ? '1.0' : u.startsWith('/protocol') || u.startsWith('/c/') ? '0.8' : '0.6'}</priority></url>`).join('\n')}
 </urlset>`;
 fs.writeFileSync(path.join(SITE, 'sitemap.xml'), sitemap);
 fs.writeFileSync(path.join(SITE, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+// One route per line so a content change shows up as a readable diff, not a one-line blob.
+fs.writeFileSync(LASTMOD_FILE, '{\n' + Object.keys(lastmodNext).sort()
+  .map((r) => `  ${JSON.stringify(r)}: ${JSON.stringify(lastmodNext[r])}`).join(',\n') + '\n}\n');
 
 console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.length} urls) + robots.txt; swept ${swept} stale files`);
+console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmMoved} changed -> ${now}${lmUnknown ? `, ${lmUnknown} with no prerendered output (stamped today)` : ''}`);
 
 // ---- build-time assertion: structured data ----------------------------------------------------
 // Added 2026-07-30. Two blocks on the home page shipped without "@context" for months. Google
