@@ -4,8 +4,8 @@
   "private": true,
   "description": "RNAwiki — translate the code of human performance into real results. Drug, supplement & longevity wiki with root-cause protocols and community editing.",
   "scripts": {
-    "build": "node build/parse.js && node build/prerender.js",
-    "prestart": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs",
+    "build": "node build/parse.js && node build/prerender.js && node build/precompress.js",
+    "prestart": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs && node build/precompress.js",
     "start": "node server.js"
   },
   "dependencies": {

@@ -4,6 +4,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const zlib = require('node:zlib');
 const db = require('./db');
 
 const DIR = path.join(__dirname, 'site');
@@ -23,8 +24,12 @@ function versionAssets(html) {
   return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
 }
 function endHtml(res, html, code) {
-  res.writeHead(code || 200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-cache' });
-  res.end(versionAssets(html));
+  // res.req is the request this response belongs to (node >= 12.17) — used so the ~40 endHtml call
+  // sites do not all have to be rewritten to thread `req` through just to read Accept-Encoding
+  // and If-None-Match.
+  sendBody(res.req, res, Buffer.from(versionAssets(html), 'utf8'), {
+    type: 'text/html; charset=utf-8', ext: '.html', cacheControl: 'no-cache', code: code || 200,
+  });
 }
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SESSION_SECRET || 'dev-secret-change-me';
@@ -33,6 +38,171 @@ const TYPES = {
   '.js': 'text/javascript; charset=utf-8', '.json': 'application/json',
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.png': 'image/png',
 };
+
+// ---------- transfer: compression + cache validators (W1, 2026-08-01) ----------
+// WHAT WAS BROKEN, measured on this server before the change:
+//   GET /data.js with `Accept-Encoding: br, gzip, deflate` -> 200, 11,662,047 bytes, and the
+//   response carried no Content-Encoding, no ETag and no Last-Modified. Its only cache header was
+//   `Cache-Control: no-cache`, which means "you may cache this but revalidate before reuse" — and
+//   there was nothing to revalidate WITH, so every revalidation was a full re-download. Proven:
+//   `If-Modified-Since: Sat, 01 Jan 2040` and `If-None-Match: "abc"` both returned 200 with the
+//   whole body. The ?v=<hash> cache-buster injected by versionAssets() was therefore doing no work
+//   at all: it changed the URL on every deploy, but the URL it changed away from could never have
+//   produced a 304 anyway.
+//
+// WHAT PRODUCTION ACTUALLY DOES (W0 left this as an open question; measured 2026-08-01):
+//   Cloudflare fronts rnawiki.com and DOES brotli-compress on the fly — `Accept-Encoding: br` gets
+//   `content-encoding: br` and 3,268,924 wire bytes. So the origin's missing compression was
+//   half-hidden. It is still worth fixing twice over: the build-time q11 sibling is 2,391,843 B
+//   (877,081 B better than the edge's on-the-fly pass, on every uncached load), and every response
+//   came back `cf-cache-status: EXPIRED` because a response with no validator cannot be
+//   revalidated — so the edge re-pulled all 11.66 MB uncompressed from Railway each time.
+//
+// THE SHAPE OF THE FIX: validators are computed here for every static and HTML response, the
+// conditional-GET headers are honoured, and the encoded copy is either read off disk (built by
+// build/precompress.js) or produced on the fly for small bodies only. Nothing is compressed
+// synchronously above OTF_MAX — brotli q11 on data.js takes 15.9 s, which is a build step, not a
+// request handler.
+const COMPRESSIBLE = new Set(['.html', '.css', '.js', '.json', '.svg', '.xml', '.txt']);
+const OTF_MAX = 262144;          // on-the-fly ceiling (bytes). Bigger than this must be precompressed.
+const OTF_MIN = 512;             // below this, framing overhead eats the saving
+const OTF_CACHE = new Map();     // etag|encoding -> Buffer
+const OTF_MAX_ENTRIES = 400;     // ~2 MB at the observed 5 KB/page compressed size
+
+// Accept-Encoding, honouring `q=0` — which is a REFUSAL, not a low preference. A naive
+// indexOf('gzip') would ship a gzip body to a client that explicitly said `gzip;q=0`.
+function pickEncoding(req) {
+  const raw = req && req.headers && req.headers['accept-encoding'];
+  if (!raw) return null;
+  let br = false, gz = false;
+  for (const part of String(raw).split(',')) {
+    const bits = part.trim().split(';');
+    const name = bits[0].trim().toLowerCase();
+    const qp = bits.slice(1).map((s) => s.trim()).find((s) => s.slice(0, 2) === 'q=');
+    const q = qp ? parseFloat(qp.slice(2)) : 1;
+    if (!(q > 0)) continue;
+    if (name === 'br') br = true;
+    else if (name === 'gzip') gz = true;
+    else if (name === '*') { br = true; gz = true; }
+  }
+  return br ? 'br' : gz ? 'gzip' : null;
+}
+
+function etagOf(buf) {
+  return '"' + buf.length.toString(16) + '-' + crypto.createHash('sha1').update(buf).digest('base64url').slice(0, 20) + '"';
+}
+
+// If-None-Match takes precedence over If-Modified-Since (RFC 9110 §13.1.3 / §15.4.5). Weak
+// comparison on both sides: a 304 promises the same REPRESENTATION, and the identity copy and its
+// .br sibling are the same representation, so the W/ prefix is irrelevant here.
+function isFresh(req, etag, lastMod) {
+  if (!req || (req.method !== 'GET' && req.method !== 'HEAD')) return false;
+  const inm = req.headers['if-none-match'];
+  if (inm) {
+    const want = etag.replace(/^W\//, '');
+    return String(inm).split(',').some((t) => { const x = t.trim(); return x === '*' || x.replace(/^W\//, '') === want; });
+  }
+  const ims = req.headers['if-modified-since'];
+  if (ims && lastMod) {
+    const then = Date.parse(ims), mine = Date.parse(lastMod);
+    return Number.isFinite(then) && Number.isFinite(mine) && mine <= then;
+  }
+  return false;
+}
+
+// Compress a small body, memoised by ETag so a hot page is compressed once per boot rather than
+// once per reader. Quality is deliberately low (br 5 / gzip 6): this runs on the request path.
+function compressSmall(buf, want, etag) {
+  const key = etag + '|' + want;
+  const hit = OTF_CACHE.get(key);
+  if (hit) return hit;
+  let out;
+  try {
+    out = want === 'br'
+      ? zlib.brotliCompressSync(buf, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: 5, [zlib.constants.BROTLI_PARAM_SIZE_HINT]: buf.length } })
+      : zlib.gzipSync(buf, { level: 6 });
+  } catch (e) { return null; }
+  if (out.length >= buf.length) return null;      // never ship a "compressed" copy that is bigger
+  if (OTF_CACHE.size >= OTF_MAX_ENTRIES) OTF_CACHE.clear();
+  OTF_CACHE.set(key, out);
+  return out;
+}
+
+// The single exit for in-memory bodies (all HTML). Validators first, then encoding.
+function sendBody(req, res, buf, opts) {
+  const o = opts || {};
+  const code = o.code || 200;
+  res.setHeader('Vary', 'Accept-Encoding');
+  if (o.cacheControl) res.setHeader('Cache-Control', o.cacheControl);
+  // Validators only on 200. A 304 is a promise that the origin would otherwise have answered 200,
+  // so tagging the 404/410 pages from serveMissing() would invite a client to keep reusing a cached
+  // error page as if it were the resource.
+  let etag = null;
+  if (code === 200) {
+    etag = o.etag || etagOf(buf);
+    res.setHeader('ETag', etag);
+    if (o.lastModified) res.setHeader('Last-Modified', o.lastModified);
+    if (isFresh(req, etag, o.lastModified)) { res.writeHead(304); return res.end(); }
+  }
+  let out = buf, enc = null;
+  if (COMPRESSIBLE.has(o.ext) && buf.length >= OTF_MIN && buf.length <= OTF_MAX) {
+    const want = pickEncoding(req);
+    // The memo key must ALWAYS be content-derived. On the non-200 path `etag` is null, and a null
+    // key would make every error page share one cache slot and serve each other's bodies.
+    const z = want ? compressSmall(buf, want, etag || etagOf(buf)) : null;
+    if (z) { out = z; enc = want; }
+  }
+  if (enc) res.setHeader('Content-Encoding', enc);
+  res.writeHead(code, { 'Content-Type': o.type || 'application/octet-stream', 'Content-Length': out.length });
+  res.end(out);
+}
+
+// The single exit for files on disk. The validator is derived from the SOURCE file (size + mtime),
+// NOT from the bytes actually sent — that is what makes one ETag correct across the identity copy
+// and both precompressed siblings, so a client that switches encoding still gets a clean 304.
+function sendAsset(req, res, file, st, ext, code) {
+  const status = code || 200;
+  const etag = '"' + st.size.toString(16) + '-' + Math.floor(st.mtimeMs).toString(16) + '"';
+  // Truncated to whole seconds before formatting, so Last-Modified and the If-Modified-Since it
+  // will come back as are the same instant. Without the truncation an unmodified file looks
+  // fractionally newer than the date we ourselves sent and never 304s.
+  const lastMod = new Date(Math.floor(st.mtimeMs / 1000) * 1000).toUTCString();
+  res.setHeader('Vary', 'Accept-Encoding');
+  res.setHeader('ETag', etag);
+  res.setHeader('Last-Modified', lastMod);
+  // Cache-Control is UNCHANGED from before this commit on purpose: no-cache for js/css/json (so the
+  // CDN cannot pin a build), nothing for images. `no-cache` only ever meant "revalidate"; the point
+  // of this change is that there is now something to revalidate against, so the revalidation costs
+  // ~200 bytes instead of 11.66 MB.
+  if (ext === '.js' || ext === '.css' || ext === '.json') res.setHeader('Cache-Control', 'no-cache');
+  if (status === 200 && isFresh(req, etag, lastMod)) { res.writeHead(304); return res.end(); }
+  const finish = (buf, enc) => {
+    if (enc) res.setHeader('Content-Encoding', enc);
+    res.writeHead(status, { 'Content-Type': TYPES[ext] || 'application/octet-stream', 'Content-Length': buf.length });
+    res.end(buf);
+  };
+  const want = COMPRESSIBLE.has(ext) ? pickEncoding(req) : null;
+  const identity = () => fs.readFile(file, (err, data) => {
+    if (err) { res.writeHead(404); return res.end('Not found'); }
+    if (want && data.length >= OTF_MIN && data.length <= OTF_MAX) {
+      const z = compressSmall(data, want, etag);
+      if (z) return finish(z, want);
+    }
+    finish(data, null);
+  });
+  if (!want) return identity();
+  const sib = file + (want === 'br' ? '.br' : '.gz');
+  fs.stat(sib, (e2, s2) => {
+    // A sibling older than its source is a build that did not rerun. Serving it would ship the
+    // previous deploy's data.js to every reader while the identity copy on disk was correct —
+    // a silent, invisible content regression. Fall back to identity instead.
+    // Compared in whole SECONDS, matching build/precompress.js: fs.utimesSync writes whole-ms
+    // mtimes while APFS reports sub-ms ones on the source, so a strict ms comparison would call a
+    // perfectly current sibling stale and quietly serve 11.66 MB of identity to every reader.
+    if (e2 || !s2.isFile() || Math.floor(s2.mtimeMs / 1000) < Math.floor(st.mtimeMs / 1000)) return identity();
+    fs.readFile(sib, (e3, d3) => (e3 ? identity() : finish(d3, want)));
+  });
+}
 const EDITABLE = ['mechanism', 'target', 'plain', 'protocol', 'watch', 'bottom'];
 // Hard domain isolation for stewardship: each expert domain owns exactly one layer.
 const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
@@ -2029,14 +2199,18 @@ async function api(req, res, url) {
 
 // ---------- static ----------
 function sendFile(res, file, code) {
-  fs.readFile(file, (err, data) => {
-    if (err) { res.writeHead(404); return res.end('Not found'); }
-    const ext = path.extname(file);
-    if (ext === '.html') return endHtml(res, data, code);
-    const headers = { 'Content-Type': TYPES[ext] || 'application/octet-stream' };
-    if (ext === '.js' || ext === '.css' || ext === '.json') headers['Cache-Control'] = 'no-cache';
-    res.writeHead(code || 200, headers);
-    res.end(data);
+  const ext = path.extname(file);
+  // HTML is rewritten at send time by versionAssets(), so it can never be served from a
+  // precompressed sibling — it goes through endHtml -> sendBody and is compressed in memory.
+  if (ext === '.html') {
+    return fs.readFile(file, (err, data) => {
+      if (err) { res.writeHead(404); return res.end('Not found'); }
+      endHtml(res, data, code);
+    });
+  }
+  fs.stat(file, (err, st) => {
+    if (err || !st.isFile()) { res.writeHead(404); return res.end('Not found'); }
+    sendAsset(res.req, res, file, st, ext, code);
   });
 }
 // /u/:handle — serve the SPA shell but inject profile-specific title/meta/OG + Person JSON-LD,
@@ -2117,14 +2291,18 @@ function serveStatic(req, res, url) {
   const safe = path.normalize(p).replace(/^(\.\.[/\\])+/, '');
   const file = path.join(DIR, safe);
   if (!file.startsWith(DIR)) { res.writeHead(403); return res.end('Forbidden'); }
-  fs.readFile(file, (err, data) => {
-    if (!err) {
+  // The precompressed siblings written by build/precompress.js live beside their sources inside
+  // site/, so without this they would be directly fetchable at /data.js.br — a second, crawlable
+  // URL for the same bytes, served as application/octet-stream with no Content-Encoding (i.e. a
+  // download of brotli soup). They are an encoding of an existing resource, not a resource.
+  // A hard 404, not serveMissing() — serveMissing falls through to the SPA shell at HTTP 200 for
+  // any path outside GENERATED_ROUTES, and a 200 is an invitation to index it.
+  if (/\.(br|gz)$/.test(safe)) { res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' }); return res.end('Not found'); }
+  fs.stat(file, (err, st) => {
+    if (!err && st.isFile()) {
       const ext = path.extname(file);
-      if (ext === '.html') return endHtml(res, data);
-      const headers = { 'Content-Type': TYPES[ext] || 'application/octet-stream' };
-      if (ext === '.js' || ext === '.css' || ext === '.json') headers['Cache-Control'] = 'no-cache';
-      res.writeHead(200, headers);
-      return res.end(data);
+      if (ext === '.html') return fs.readFile(file, (e, d) => (e ? serveMissing(res, safe) : endHtml(res, d)));
+      return sendAsset(req, res, file, st, ext, 200);
     }
     // clean-path routing: try the prerendered <path>.html for crawlable SEO pages
     if (!path.extname(file)) {

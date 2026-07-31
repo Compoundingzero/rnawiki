@@ -31,3 +31,8 @@ site/stack.html
 site/pros.html
 site/compare/
 site/for-clinicians.html
+
+# Build-time precompression siblings (build/precompress.js). Regenerated on every build;
+# never source. Committing them would put an 11.66 MB asset in the repo twice.
+*.br
+*.gz
