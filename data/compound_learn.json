@@ -1533,13 +1533,11 @@
     {
      "finding": "High-dose icosapent ethyl (pure EPA, ~4 g/day) in statin-treated patients with elevated triglycerides reduced the primary composite cardiovascular endpoint by ~25% versus placebo.",
      "ref": "Bhatt et al. (REDUCE-IT), 2019, N Engl J Med",
-     "pmid_rejected": "31426600",
-     "pmid_rejected_note": "PMID 31426600 is an unrelated poultry-nutrition review. Use REDUCE-IT, “Cardiovascular Risk Reduction with Icosapent Ethyl for Hypertriglyceridemia,” PMID 30415628; 4 g/day reduced the primary composite endpoint by 25% relative to placebo (HR 0.75).",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "pmid": "30415628",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/30415628/"
     },
     {
-     "finding": "an exploratory subgroup analysis suggested benefit among participants with low baseline fish intake.",
+     "finding": "1 g/day marine omega-3 in a general primary-prevention population did not significantly reduce major cardiovascular events or invasive cancer overall; an exploratory subgroup analysis suggested benefit among participants with low baseline fish intake, but that should be read as hypothesis-generating, not a confirmed benefit.",
      "ref": "Manson et al. (VITAL), 2019, N Engl J Med",
      "pmid": "30415637",
      "pmid_verified_by": "felix",
@@ -2724,7 +2722,7 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "changes in circulating taurine were not a universal feature of aging and should not be treated as a universal aging biomarker.",
+     "finding": "Measured longitudinally and cross-sectionally in three geographically distinct human cohorts, in non-human primates and in mice, circulating taurine INCREASED or stayed flat with age — so changes in circulating taurine were not a universal feature of aging and should not be treated as a universal aging biomarker.",
      "ref": "Fernandez et al., 2025, Science",
      "pmid": "40472098",
      "pmid_verified_by": "felix",
@@ -3639,14 +3637,14 @@
      "pmid_verified_on": "2026-07-30"
     },
     {
-     "finding": "L-citrulline supplementation improved oxygen-uptake kinetics and high-intensity cycling exercise performance versus placebo.",
+     "finding": "In a short-term crossover study in 10 healthy men, L-citrulline supplementation improved oxygen-uptake kinetics and high-intensity cycling exercise performance versus placebo — a result from that specific protocol, not a general performance guarantee.",
      "ref": "Bailey et al., 2015, J Appl Physiol",
      "pmid": "26023227",
      "pmid_verified_by": "felix",
      "pmid_verified_on": "2026-07-30"
     },
     {
-     "finding": "Pharmacokinetic study: oral L-citrulline raised plasma L-arginine more effectively than across the study’s dosing regimens. of oral L-arginine, confirming citrulline's superior route to arginine.",
+     "finding": "Pharmacokinetic study: oral L-citrulline raised plasma L-arginine more effectively than an equivalent dose of oral L-arginine, confirming citrulline's superior route to arginine — but no treatment improved flow-mediated dilation, so the study shows better arginine exposure and NO signalling, not a demonstrated clinical vascular benefit.",
      "ref": "Schwedhelm et al., 2008, Br J Clin Pharmacol",
      "pmid": "17662090",
      "pmid_verified_by": "felix",
@@ -4110,10 +4108,8 @@
     {
      "finding": "Meta-analysis of acute alkalosis: sodium bicarbonate produced a small performance enhancement of ~1.7% in a single ~1-minute sprint, with benefit increasing across repeated sprint bouts.",
      "ref": "Carr, Hopkins & Gore, 2011, Sports Medicine",
-     "pmid_rejected": "21719899",
-     "pmid_rejected_note": "PMID 21719899 is a 13-person ingestion-protocol study and not the cited performance meta-analysis. Use “Effects of acute alkalosis and acidosis on performance: a meta-analysis,” PMID 21923200, which reports a 1.7% effect for a typical single 1-minute sprint and about 0.6% more benefit per five addit",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "pmid": "21923200",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/21923200/"
     },
     {
      "finding": "Umbrella review of 8 meta-analyses (moderate-to-high methodological quality): sodium bicarbonate acutely enhances peak anaerobic power, anaerobic capacity, muscle endurance, 2000-m rowing and high-intensity intermittent running, plus endurance events lasting ~45 s to 8 min; no significant benefit was found for general mean power, muscle strength or repeated-sprint ability, and evidence certainty was only low to moderate.",
@@ -4583,10 +4579,8 @@
     {
      "finding": "Meta-analysis of 49 RCTs (~1,863 adults): protein supplementation significantly augmented resistance-training gains in strength (1RM) and fat-free mass; benefit plateaued near 1.62 g/kg/day, with total intake outweighing source and timing.",
      "ref": "Morton et al., 2018, Br J Sports Med",
-     "pmid_rejected": "29757056",
-     "pmid_rejected_note": "PMID 29757056 is an eight-man acute whey-versus-collagen study. Use “A systematic review, meta-analysis and meta-regression of the effect of protein supplementation on resistance training-induced gains in muscle mass and strength in healthy adults,” PMID 28698222; replace the incomplete ending with ",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "pmid": "28698222",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/28698222/"
     },
     {
      "finding": "Whey ('fast' protein) produced a rapid, transient rise in blood leucine and a rapid, short-lived increase in WHOLE-BODY protein synthesis (this study measured whole-body leucine kinetics, not muscle-specific synthesis), while casein ('slow' protein) gave a slower, prolonged rise with better net postprandial protein balance (less breakdown).",
@@ -6284,7 +6278,7 @@
    "caveats": "The trials are few, small, short, and skewed toward lean young athletes, so publication bias and small-sample noise loom large. The cardiovascular and anxiety risks are real and dose-sensitive, the safe window is narrow, and CYP2D6 poor metabolisers can get an outsized response from an ordinary dose. \"Natural\" yohimbe supplements are also notoriously inconsistent in actual content.",
    "trials": [
     {
-     "finding": "20 elite male soccer players, 20 mg/day yohimbine for 21 days: body-fat percentage fell (~9.3% → ~7.1%) versus no change on placebo, with no change in body mass or exercise performance.",
+     "finding": "In one very small trial — 20 professional male soccer players given 20 mg/day yohimbine for 21 days — body-fat percentage fell (~9.3% → ~7.1%) versus no change on placebo, with no change in body mass or exercise performance. This is weak evidence for a general fat-loss claim.",
      "ref": "Ostojic, 2006, Research in Sports Medicine",
      "pmid": "17214405",
      "pmid_verified_by": "felix",
@@ -6737,7 +6731,7 @@
    "caveats": "Short trials, regional skew and variable quality mean the reported effect sizes are probably a solid ceiling rather than a personal guarantee. GI upset is the common real-world limiter, and the CYP3A4 interaction is a genuine safety concern alongside prescription drugs. It's a supplement, not a licensed diabetes treatment — pair it with glucose monitoring.",
    "trials": [
     {
-     "finding": "Berberine 500 mg 3×/day produced similar within-group HbA1c and fasting-glucose reductions to metformin in a 36-person, 3-month pilot trial. for reductions in HbA1c and fasting glucose over 3 months in newly diagnosed type 2 diabetes.",
+     "finding": "Berberine 500 mg 3×/day produced similar within-group HbA1c and fasting-glucose reductions to metformin in a small, 36-person, 3-month pilot trial in newly diagnosed type 2 diabetes — the reductions were similar in this pilot study, not a formal equivalence result.",
      "ref": "Yin et al., 2008, Metabolism",
      "pmid": "18442638",
      "pmid_verified_by": "felix",
@@ -6755,7 +6749,7 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Meta-analysis: berberine reduced fasting and postprandial glucose, HbA1c and blood lipids, with no statistically significant difference from some oral hypoglycemic or lipid-lowering comparators. oral hypoglycaemic and lipid-lowering drugs.",
+     "finding": "Meta-analysis: berberine reduced fasting and postprandial glucose, HbA1c and blood lipids, with no statistically significant difference from some oral hypoglycaemic or lipid-lowering comparators — but the 27 included trials were generally low quality, so comparability with standard drugs was only weakly substantiated.",
      "ref": "Lan et al., 2015, J Ethnopharmacol",
      "pmid": "25498346",
      "pmid_verified_by": "felix",
@@ -7229,7 +7223,7 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "COR-II: NB32 achieved ~6.4% weight loss vs ~1.2% on placebo at week 56, with 50.5% of NB32 participants versus 17.1% of placebo participants in the prespecified modified-intention-to-treat/LOCF analysis. losing ≥5%.",
+     "finding": "COR-II: NB32 achieved ~6.4% weight loss vs ~1.2% on placebo at week 56, with 50.5% of NB32 participants versus 17.1% of placebo participants losing ≥5% of body weight in the prespecified modified-intention-to-treat/LOCF analysis.",
      "ref": "Apovian et al., 2013, Obesity",
      "pmid": "23408728",
      "pmid_verified_by": "felix",
@@ -8407,7 +8401,7 @@
      "pmid_verified_on": "2026-07-30"
     },
     {
-     "finding": "MA.27: exemestane and anastrozole neither was superior for breast-cancer outcomes in this superiority trial; 4-year event-free survival was 91.0% versus 91.2%. as initial adjuvant therapy (4-year event-free survival ~91% in both arms).",
+     "finding": "MA.27: in this superiority trial, neither exemestane nor anastrozole was superior for breast-cancer outcomes as initial adjuvant therapy; 4-year event-free survival was 91.0% versus 91.2%.",
      "ref": "Goss et al., 2013, J Clin Oncol",
      "pmid": "23358971",
      "pmid_verified_by": "felix",
@@ -9340,7 +9334,7 @@
    "caveats": "Small samples, heterogeneous extracts and doses, frequent industry funding, and publication bias all inflate confidence. Note too that the headline 'lowers SHBG' mechanism is mostly in vitro — human SHBG often doesn't move measurably. And the real-world safety issue isn't the herb itself but heavy-metal contamination in low-quality products.",
    "trials": [
     {
-     "finding": "Moderately stressed adults (n=63), 200 mg/day standardised extract for 4 weeks: salivary cortisol reduced ~16% and testosterone increased ~37% vs placebo, with improved tension, anger and confusion scores.",
+     "finding": "Moderately stressed adults (n=63), 200 mg/day standardised extract for 4 weeks: salivary cortisol reduced ~16% and testosterone increased ~37% vs placebo, with improved tension, anger and confusion scores. This was a single small four-week trial using salivary biomarkers and mood scales, not established clinical benefit.",
      "ref": "Talbott et al., 2013, J Int Soc Sports Nutr",
      "pmid": "23705671",
      "pmid_verified_by": "felix",
@@ -9520,7 +9514,7 @@
    "caveats": "Rat mg/kg dosing does not map onto human dosing; the findings come from a single lab and have never been independently replicated; there is no human ADME, safety, or efficacy data; and the one thing the animal work does show clearly is organ toxicity. Popularity has vastly outrun the science.",
    "trials": [
     {
-     "finding": "In male rats, aqueous stem extract (18/50/100 mg/kg over 5 days) raised serum testosterone dose-dependently — increased serum testosterone in a dose-dependent manner. at the top dose — alongside increased sexual behaviour. Rodent only.",
+     "finding": "In male rats, aqueous stem extract (18/50/100 mg/kg over 5 days) raised serum testosterone dose-dependently, alongside increased sexual behaviour. Rodent only; the abstract does not support a specific fold-increase figure at the top dose, and none of this extends to humans.",
      "ref": "Yakubu, Akanji & Oladiji, 2005, Asian Journal of Andrology 7(4):399–404",
      "pmid": "16281088",
      "pmid_verified_by": "felix",
@@ -10191,7 +10185,7 @@
    "caveats": "Read the numbers as best-case, under dosed and monitored clinical conditions — not what a mislabeled gray-market capsule delivers. The benefits ride alongside near-universal HPTA suppression, an adverse HDL/LDL shift, documented hepatotoxicity, dose-dependent virilisation in women, a Schedule III legal status, and a WADA ban. 'Mild' steroid, real costs.",
    "trials": [
     {
-     "finding": "the trial stopped early at a planned interim analysis for benefit; hepatic transaminases should be monitored.",
+     "finding": "Multicentre RCT in 81 adults with 20–60% TBSA burns: oxandrolone 10 mg every 12 h shortened hospital length of stay (~31.6 vs ~43.3 days) versus placebo; the trial was stopped early at interim analysis for benefit, with a recommendation to monitor hepatic transaminases.",
      "ref": "Wolf et al., 2006, J Burn Care Res 27(2):131–139",
      "pmid": "16566555",
      "pmid_verified_by": "felix",
@@ -10422,7 +10416,7 @@
    "caveats": "Watch the gap between the evidence and the use: controlled data exist at 0.5–2 mg/day for a disease, while gray-market physique use runs far higher, unmonitored, with products that are frequently mislabeled or contaminated. Even the reassuring HAE safety data show virilization and menstrual changes in women and raised liver/muscle enzymes; extrapolating that to high-dose bodybuilding use understates the risk. Treat any physique claim as anecdote, not trial-backed fact.",
    "trials": [
     {
-     "finding": "C1-inhibitor function and C4 rose significantly but remained below the lower limit of normal; menstrual abnormalities, virilization and elevated creatine phosphokinase occurred.",
+     "finding": "27 hereditary-angioedema patients treated with 0.5–2 mg/day stanozolol over 2 years: minimal effective doses controlled attack frequency and raised C1-inhibitor function and C4, though both measures remained below the lower limit of normal; menstrual or virilising changes occurred in four women and creatine phosphokinase rose in five men.",
      "ref": "Sheffer, Fearon & Austen, 1981, J Allergy Clin Immunol",
      "pmid": "6790595",
      "pmid_verified_by": "felix",
@@ -12389,7 +12383,7 @@
      "ref": "Falutz et al., 2007, N Engl J Med 357:2359"
     },
     {
-     "finding": "Randomised placebo-controlled trial in HIV patients with abdominal fat accumulation: tesamorelin reduced both visceral fat and liver fat.",
+     "finding": "Randomised placebo-controlled trial in HIV patients with abdominal fat accumulation: tesamorelin reduced both visceral fat and liver fat. This was a preliminary 50-person study, the liver-fat reduction was modest, and long-term clinical significance was unknown.",
      "ref": "Stanley et al., 2014, JAMA",
      "pmid": "25038357",
      "pmid_verified_by": "felix",
@@ -12821,7 +12815,7 @@
    "caveats": "The central caveat is the outcome gap: raising GH and IGF-1 is proven, but that they translate into benefit — or are safe long-term — is not. Add the costs of chronic GH excess (insulin resistance, edema, joint/carpal-tunnel symptoms, a theoretical IGF-1 cancer concern), the fact that development was halted and it was never approved, WADA prohibition, and gray-market products that are frequently mislabeled or contaminated. Treat the trial numbers as clean-drug, short-term pharmacology — not a guide to what an unregulated vial does over months.",
    "trials": [
     {
-     "finding": "after repeated weekly or biweekly doses, mean IGF-1 remained above baseline for up to 28 days.",
+     "finding": "Two randomised, placebo-controlled, double-blind ascending-dose trials in healthy adults (28 and 49 days) measured what a long-acting GHRH analog does to growth hormone and IGF-1: after repeated weekly or biweekly doses, mean IGF-1 remained above baseline for up to 28 days.",
      "ref": "Teichman et al., 2006, J Clin Endocrinol Metab 91(3):799–805",
      "pmid": "16352683",
      "pmid_verified_by": "felix",
@@ -13048,7 +13042,7 @@
      "pmid_verified_on": "2026-07-30"
     },
     {
-     "finding": "direct human evidence that intravenous ipamorelin triggers GH release.",
+     "finding": "In healthy men, intravenous ipamorelin showed dose-proportional pharmacokinetics with a terminal half-life of about 2 hours and produced a single GH pulse peaking at about 0.67 hours. This is intravenous pharmacokinetic evidence of a short-lived GH pulse, not evidence of clinical benefit or of what a consumer subcutaneous regimen does.",
      "ref": "Gobburu et al., 1999, Pharm Res 16:1412–1416",
      "pmid": "10496658",
      "pmid_verified_by": "felix",
@@ -16187,7 +16181,7 @@
    "caveats": "The chasm between animal and human evidence is the headline caveat: spectacular mouse data does not guarantee a human longevity benefit. Real risks (dose-dependent immunosuppression, mouth ulcers, raised lipids and glucose, impaired wound healing, CYP3A interactions) mean it belongs under medical supervision. Longevity dosing schedules are extrapolated from animals, not validated by human outcome trials.",
    "trials": [
     {
-     "finding": "the first pharmacologic intervention shown to extend lifespan in both sexes of a mammalian species.",
+     "finding": "Rapamycin fed to genetically heterogeneous mice beginning at 600 days of age — the equivalent of starting in late middle age — extended both median and maximal lifespan in males and females. It was the first pharmacologic intervention shown to extend lifespan in both sexes of a mammalian species.",
      "ref": "Harrison et al., 2009, Nature",
      "pmid": "19587680",
      "pmid_verified_by": "felix",
@@ -18844,7 +18838,7 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Randomised placebo-controlled trial in young men with autism spectrum disorder: 18 weeks of sulforaphane improved ABC (~34%) and SRS (~17%) behaviour scores; improvements reversed after stopping.",
+     "finding": "Randomised placebo-controlled trial in young men with autism spectrum disorder: 18 weeks of sulforaphane improved ABC (~34%) and SRS (~17%) behaviour scores; improvements reversed after stopping. This was a small trial — 44 randomised young males — relying heavily on caregiver and clinician rating scales.",
      "ref": "Singh et al., 2014, PNAS",
      "pmid": "25313065",
      "pmid_verified_by": "felix",
@@ -20703,7 +20697,7 @@
      "pmid_review": "visible-text-only"
     },
     {
-     "finding": "expectations exceeded measured effects: methylphenidate improved memory but not other domains consistently; modafinil improved attention in well-rested people and several domains during sleep deprivation, but repeated dosing did not prevent longer-term cognitive decline during sustained sleep loss.",
+     "finding": "A systematic review of modafinil and methylphenidate used as cognitive enhancers by healthy people found that expectations exceeded measured effects: methylphenidate improved memory but not other domains consistently; modafinil improved attention in well-rested people and several domains during sleep deprivation, but repeated dosing did not prevent longer-term cognitive decline during sustained sleep loss.",
      "ref": "Repantis et al., 2010, Pharmacological Research 62:187-206",
      "pmid": "20416377",
      "pmid_verified_by": "felix",
@@ -21350,7 +21344,7 @@
    "caveats": "Several key trials were funded by citicoline manufacturers (e.g. Cognizin/Kyowa), so assume some publication and sponsorship bias. Populations, doses (250 mg to 2 g) and cognitive tests vary widely, making pooling messy. And the single largest, best-controlled trial — ICTUS in acute stroke — was flatly negative, a useful anchor against over-claiming.",
    "trials": [
     {
-     "finding": "12 weeks of 500 mg/day citicoline improved overall and episodic memory versus placebo in healthy older adults with age-associated memory impairment; short-term/working memory was unchanged.",
+     "finding": "12 weeks of 500 mg/day citicoline improved overall and episodic memory versus placebo in healthy older adults with age-associated memory impairment, but these were secondary outcomes, not the trial's primary result; short-term/working memory was unchanged.",
      "ref": "Nakazaki et al., 2021, Journal of Nutrition",
      "pmid": "33978188",
      "pmid_verified_by": "felix",
@@ -21599,7 +21593,7 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "600 mg/day for 6 days significantly increased lower-body isometric mid-thigh-pull peak force vs placebo in 13 college-aged men.",
+     "finding": "In a very small exploratory crossover study (n=13), 600 mg/day for 6 days significantly increased lower-body isometric mid-thigh-pull peak force vs placebo in college-aged men; the upper-body result did not reach significance, and no sport-performance outcome was tested.",
      "ref": "Bellar et al., 2015, J Int Soc Sports Nutr 12:42",
      "pmid": "26582972",
      "pmid_verified_by": "felix",
@@ -21799,10 +21793,8 @@
     {
      "finding": "Double-blind placebo-controlled pilot in early Alzheimer's disease: 1,050 mg/day of erinacine A-enriched H. erinaceus mycelia for 49 weeks improved MMSE and daily-function (IADL) scores versus placebo.",
      "ref": "Li et al., 2020, Frontiers in Aging Neuroscience",
-     "pmid_rejected": "32718049",
-     "pmid_rejected_note": "PMID 32718049 is an unrelated sea-lion virome paper. Use “Prevention of Early Alzheimer’s Disease by Erinacine A-Enriched Hericium erinaceus Mycelia Pilot Double-Blind Placebo-Controlled Study,” PMID 32581767. Replace the claim with: “In a small 49-week pilot trial, 1,050 mg/day enriched mycelia imp",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "pmid": "32581767",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/32581767/"
     },
     {
      "finding": "Double-blind placebo-controlled trial in 30 women over 4 weeks: Lion's Mane fruiting-body cookies reduced self-reported depression and anxiety versus placebo.",
@@ -22499,7 +22491,7 @@
    "caveats": "The cognitive trials are few, small, short and acute, so publication bias and chance can loom large. The biggest real-world limits are safety, not efficacy: serotonin-syndrome risk with antidepressants, haemolysis in G6PD deficiency, and a pro-oxidant reversal at higher doses. This is why it belongs under medical supervision.",
    "trials": [
     {
-     "finding": "and increased correct responses during memory retrieval by 7%.",
+     "finding": "A randomised, double-blind, placebo-controlled functional-MRI trial in 26 healthy adults found that a single low oral dose of methylene blue increased fMRI activity in the brain regions handling sustained attention and memory retrieval, and increased correct responses during memory retrieval by 7%.",
      "ref": "Rodriguez et al., 2016, Radiology",
      "pmid": "27351678",
      "pmid_verified_by": "felix",
@@ -24328,7 +24320,7 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Meta-analysis of 5 RCTs (400 adults): ashwagandha significantly improved sleep (SMD ≈ -0.59), with the largest effects in diagnosed insomnia, at ≥600 mg/day and ≥8 weeks.",
+     "finding": "Meta-analysis of 5 RCTs (400 adults): ashwagandha significantly improved sleep (SMD ≈ -0.59), with the largest effects in diagnosed insomnia, at ≥600 mg/day and ≥8 weeks. Only five RCTs were included, heterogeneity was moderate (I²=62%), and long-term safety data were limited.",
      "ref": "Cheah et al., 2021, PLOS ONE",
      "pmid": "34559859",
      "pmid_verified_by": "felix",
@@ -24559,7 +24551,7 @@
      "pmid_verified_on": "2026-07-28"
     },
     {
-     "finding": "Double-blind placebo-controlled trial in students during an exam period: SHR-5 improved mental fatigue, well-being and neuro-motor performance.",
+     "finding": "Double-blind placebo-controlled pilot study in students during a 20-day examination period: SHR-5 improved mental fatigue, well-being and neuro-motor performance. Do not generalise beyond that examination-stress protocol.",
      "ref": "Spasov et al., 2000, Phytomedicine",
      "pmid": "10839209",
      "pmid_verified_by": "felix",
@@ -25282,7 +25274,7 @@
    "caveats": "Many trials are small, short (weeks to a few months) and funded by collagen manufacturers, so treat effect sizes as optimistic central estimates. Blood-marker changes are a proxy, not a guarantee of fewer injuries. And the whole effect hinges on adequate vitamin C and on actually loading the tissue — a passive dose does little.",
    "trials": [
     {
-     "finding": "engineered ligaments exposed ex vivo to post-dose serum.",
+     "finding": "In an eight-man crossover study, 15 g vitamin C-enriched gelatin taken 1 hour before intermittent exercise doubled circulating P1NP, an indirect marker of collagen synthesis; serum collected after dosing also improved collagen content and mechanics in an ex vivo engineered-ligament model. This does not establish proven injury prevention.",
      "ref": "Shaw et al., 2017, Am J Clin Nutr",
      "pmid": "27852613",
      "pmid_verified_by": "felix",
@@ -25292,7 +25284,7 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Randomised, double-blind, placebo-controlled 147 athletes were randomized, but only 97 were included in the reported efficacy analysis.: 10 g/day collagen hydrolysate for 24 weeks reduced activity-related joint pain versus placebo.",
+     "finding": "Randomised, double-blind, placebo-controlled trial in 147 athletes: 10 g/day collagen hydrolysate for 24 weeks improved several activity-related joint pain measures versus placebo, though only 97 of 147 participants were evaluable and the knee-subgroup finding needs confirmation.",
      "ref": "Clark et al., 2008, Curr Med Res Opin",
      "pmid": "18416885",
      "pmid_verified_by": "felix",
@@ -25749,7 +25741,7 @@
    "caveats": "Trials skew small and industry-funded, so assume the average is a touch optimistic. AKBA's low, sometimes undetectable plasma levels mean product quality and standardisation drive results as much as dose. It's a symptom modifier, not proven to halt joint disease progression.",
    "trials": [
     {
-     "finding": "the authors recommended treatment for at least 4 weeks.",
+     "finding": "Systematic review and meta-analysis of 7 RCTs (545 knee-osteoarthritis patients): Boswellia products reduced pain and stiffness and improved function versus controls; the authors suggested at least four weeks of treatment. The seven trials used heterogeneous Boswellia products and controls, which limits certainty and generalisability.",
      "ref": "Yu et al., 2020, BMC Complementary Medicine and Therapies",
      "pmid": "32680575",
      "pmid_verified_by": "felix",
@@ -26207,7 +26199,7 @@
    "caveats": "Small, short, partly industry-funded trials; unresolved questions about oral bioavailability of a 28 kDa protein; and a real, dose-independent bleeding risk when combined with anticoagulants or antiplatelets. Hard cardiovascular outcomes (actual clot events prevented) have not been shown — the evidence is on markers and blood pressure, not on strokes or heart attacks avoided.",
    "trials": [
     {
-     "finding": "raised antithrombin and prolonged activated partial thromboplastin time; all changes remained within normal ranges.",
+     "finding": "Single 2,000-FU oral dose in 12 healthy men (double-blind, placebo-controlled crossover) significantly raised D-dimer and fibrin/fibrinogen-degradation products, lowered factor VIII, and raised antithrombin and aPTT — all changes remained within normal ranges. This n=12 single-dose study does not demonstrate clinical thrombolysis, clot prevention, or safety alongside anticoagulants.",
      "ref": "Kurosawa et al., 2015, Scientific Reports 5:11601",
      "pmid": "26109079",
      "pmid_verified_by": "felix",
@@ -26217,7 +26209,7 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Meta-analysis of 6 RCTs (546 participants): nattokinase significantly reduced systolic BP (MD −3.45 mmHg) and diastolic BP (MD −2.32 mmHg); low-dose supplementation showed no significant lipid-lowering effect.Low total doses worsened pooled total cholesterol, LDL and HDL values rather than merely showing no lipid-lowering effect; a small glucose increase was also reported.",
+     "finding": "Meta-analysis of 6 RCTs (546 participants): nattokinase significantly reduced systolic BP (MD −3.45 mmHg) and diastolic BP (MD −2.32 mmHg). The lipid picture was not simply neutral: lower-dose studies showed higher total cholesterol and LDL and lower HDL, and pooled fasting glucose rose slightly; clinical significance of these changes is uncertain.",
      "ref": "Li et al., 2023, Reviews in Cardiovascular Medicine",
      "pmid": "39076715",
      "pmid_verified_by": "felix",
@@ -27584,7 +27576,7 @@
      "ref": "Zhou et al., 2019, Gut"
     },
     {
-     "finding": "Glutamine (15 g/day) added to a low-FODMAP diet for 6 weeks improved IBS severity more than the diet plus placebo (~88% vs ~60% responder rate).",
+     "finding": "Glutamine (15 g/day) added to a low-FODMAP diet for 6 weeks improved IBS severity more than the diet plus placebo (~88% vs ~60% responder rate) in a small 50-person study with 44 completers, using a >45% IBS-SSS reduction threshold. Replication is needed.",
      "ref": "Rastgoo et al., 2021, Frontiers in Nutrition",
      "pmid": "34977110",
      "pmid_verified_by": "felix",
@@ -28055,10 +28047,8 @@
     {
      "finding": "High-dose folic acid + B12 + B6 slowed the rate of brain atrophy in people with mild cognitive impairment, with the greatest effect in those starting with elevated homocysteine (VITACOG).",
      "ref": "Smith et al., 2010, PLoS ONE",
-     "pmid_rejected": "21151560",
-     "pmid_rejected_note": "PMID 21151560 is an unrelated fungal mating-locus paper. Use “Homocysteine-lowering by B vitamins slows the rate of accelerated brain atrophy in mild cognitive impairment: a randomized controlled trial,” PMID 20838622; specify that 168 participants completed the MRI analysis and treatment lasted 24 ",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "pmid": "20838622",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/20838622/"
     },
     {
      "finding": "Folic acid + B12 + B6 lowered homocysteine (~25%) but did not reduce major cardiovascular events in high-risk vascular patients, though stroke was modestly reduced (HOPE-2).",
@@ -28519,12 +28509,10 @@
    "caveats": "This is deficiency correction, not enhancement — if you're already sufficient, more does nothing and iodine excess actively harms. Selenium's antibody drop has not clearly translated into changed clinical outcomes or reduced need for thyroid medication, and its narrow safe window matters.",
    "trials": [
     {
-     "finding": "Iodine-deficient children under 5 scored roughly 6.9-8.1 IQ points lower than iodine-replete children (best estimate ~7.5 points).",
-     "ref": "Bougma et al., 2013, Nutrients (corrected 2014)",
-     "pmid_rejected": true,
-     "pmid_rejected_note": "The proposed item is a 2014 correction notice that only amends authorship and contains no substantive evidence. Cite the original systematic review, “Iodine and Mental Development of Children 5 Years Old and Under,” PMID 23609774, PMCID PMC3705354. Replace the claim with: “Across mixed designs, esti",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "finding": "Across mixed study designs, the estimated IQ deficit in iodine-deficient children under 5 was 7.4 points (range 6.9–10.2 across designs), with high heterogeneity and evidence drawn mostly from non-randomised studies.",
+     "ref": "Bougma, Aboud & Harding, 2013, Nutrients",
+     "pmid": "23609774",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/23609774/"
     },
     {
      "finding": "In Hashimoto's thyroiditis, selenium supplementation significantly reduced thyroid peroxidase antibodies (SMD ≈ -0.96; 29 cohorts; ~2,358 participants) and lowered TSH.",
@@ -30974,10 +30962,8 @@
     {
      "finding": "In 11 healthy male volunteers, a single intravenous dose (25 nmol/kg) of DSIP produced a significant reduction of ACTH-like immunoreactivity in plasma lasting at least three hours, while plasma cortisol was unaffected — indicating an inhibitory effect on ACTH secretion (HPA-axis dampening).",
      "ref": "Bjartell, Ekman, Bergquist & Widerlöv, 1989, Psychoneuroendocrinology 14(5):347-355",
-     "pmid_rejected": "2664725",
-     "pmid_rejected_note": "PMID 2664725 concerns DSIP-like immunoreactivity in gut tissue and is unrelated to the volunteer experiment. Use “Reduction of immunoreactive ACTH in plasma following intravenous injection of delta sleep-inducing peptide in man,” PMID 2554357. Replace the incomplete ending with: “a small randomized,",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "pmid": "2554357",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/2554357/"
     }
    ]
   },
@@ -31816,7 +31802,7 @@
    "caveats": "The benefit is maintenance-dependent and reverses on stopping. Most trials run 48 weeks to a couple of years, so very-long-term regrowth is less quantified. Oral minoxidil raises heart rate and can cause fluid retention and hypertrichosis; it's not for use in pregnancy.",
    "trials": [
     {
-     "finding": "48-week RCT in men: 5% topical minoxidil was superior to 2% and to placebo across hair count and investigator-assessed regrowth, with more pruritus and local irritation at 5%..",
+     "finding": "48-week RCT in men: 5% topical minoxidil was superior to 2% and to placebo across hair count and investigator-assessed regrowth, with more pruritus and local irritation at 5%.",
      "ref": "Olsen et al., 2002, J Am Acad Dermatol",
      "pmid": "12196747",
      "pmid_verified_by": "felix",
@@ -31826,15 +31812,13 @@
      "finding_edited_on": "2026-07-30"
     },
     {
-     "finding": "Network meta-analysis: topical and low-dose oral minoxidil, and 5-alpha-reductase inhibitors, all beat placebo for hair density in male pattern hair loss.",
-     "ref": "Gupta et al., 2024, J Cosmet Dermatol",
-     "pmid_rejected": "37386777",
-     "pmid_rejected_note": "PMID 37386777 is explicitly a network meta-analysis of female pattern hair loss and cannot support a male claim. Use the male analysis “Relative Efficacy of Minoxidil and the 5-α Reductase Inhibitors in Androgenetic Alopecia Treatment of Male Patients,” PMID 35107565. Replace “all beat placebo” with",
-     "pmid_rejected_by": "felix",
-     "pmid_rejected_on": "2026-07-30"
+     "finding": "Network meta-analysis of 23 trials in men with androgenetic alopecia: rankings varied by dose, drug and timepoint — 0.5 mg/day dutasteride gave the largest total-hair-count gain at 24 weeks, 5 mg/day oral minoxidil the largest terminal-hair-count gain at 24 weeks, and finasteride (5 mg/day for total count, 1 mg/day for terminal count) the largest gains at 48 weeks. The trial did not simply show every option beating placebo.",
+     "ref": "Gupta et al., 2022, JAMA Dermatol",
+     "pmid": "35107565",
+     "pmid_url": "https://pubmed.ncbi.nlm.nih.gov/35107565/"
     },
     {
-     "finding": "RCT: 1 mg low-dose oral minoxidil a 65-person, 6-month RCT found no statistically significant between-group difference between 1 mg/day oral and 5% topical minoxidil; this was not a formal equivalence or noninferiority trial, and topical treatment improved photographic density within group whereas oral treatment did not. to 5% topical solution for improving androgenetic alopecia.",
+     "finding": "A 65-person, 6-month mixed-sex RCT found no statistically significant between-group difference between 1 mg/day oral minoxidil and 5% topical minoxidil for androgenetic alopecia; this was not a formal equivalence or non-inferiority trial. Topical treatment improved photographic hair density within-group, while oral treatment did not.",
      "ref": "Asilian et al., 2024, J Cosmet Dermatol",
      "pmid": "38031516",
      "pmid_verified_by": "felix",
@@ -33668,7 +33652,7 @@
    "caveats": "Durability is the crux: a single dose is a rapid rescue, not a lasting cure, so benefit depends on repeated sessions. Some esketamine pivotal trials showed only modest placebo separation and blinding is hard because the dissociation is obvious. Chronic use carries real costs (bladder toxicity, dependence, cognitive effects) that the acute efficacy trials were not designed to capture.",
    "trials": [
     {
-     "finding": "First randomised placebo-controlled trial showing IV ketamine produced a rapid antidepressant effect in depressed patients within 72 hours,.",
+     "finding": "First randomised placebo-controlled trial showing IV ketamine produced a rapid antidepressant effect in depressed patients — improvement was reported within 72 hours, not necessarily within hours. It was the first placebo-controlled, double-blind ketamine trial, but only seven patients completed it.",
      "ref": "Berman et al., 2000, Biological Psychiatry",
      "pmid": "10686270",
      "pmid_verified_by": "felix",
