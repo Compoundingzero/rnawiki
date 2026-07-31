@@ -301,12 +301,13 @@ function setSessionCookie(res, token) {
   // and raw setHeader would silently drop whichever of the two was set first.
   appendCookie(res, `sid=${token}; HttpOnly; Path=/; Max-Age=${days * 86400}; SameSite=Lax; Secure`);
 }
-// simple same-origin guard for mutations
-function sameOrigin(req) {
-  const o = req.headers.origin;
-  if (!o) return true; // non-browser or same-origin fetch without Origin
-  try { return new URL(o).host === req.headers.host; } catch (e) { return false; }
-}
+// (The same-origin guard now lives with the rest of the write hardening, below — see sameOrigin()
+// near WRITE_METHODS. An earlier duplicate of this name sat here and was shadowed by it, because
+// function declarations hoist and the later one wins for every caller. It has been removed: it
+// returned TRUE for a request with no Origin, which is the OPPOSITE of the policy actually
+// enforced, so anyone reading server.js top-down learned the wrong rule. Proven dead before
+// deletion — a POST with a Chrome UA and neither Origin nor Referer returns
+// 403 "Cross-origin writes are not accepted.", a response only the surviving version can produce.)
 
 // ---- Email nudges (Resend) — activates when RESEND_API_KEY is set; otherwise the "due" list still shows in Control Room ----
 const RESEND_API_KEY = process.env.RESEND_API_KEY || '';
