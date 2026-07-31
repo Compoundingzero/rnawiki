@@ -1444,7 +1444,7 @@
    "hay": "meiji plain crackers (meiji) "
   },
   {
-   "name": "Baked almonds (FairPrice)",
+   "name": "Baked almonds",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -1467,7 +1467,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f49",
-   "hay": "baked almonds (fairprice) "
+   "hay": "baked almonds"
   },
   {
    "name": "Ice Mountain Pure drinking water (F&N)",
@@ -1600,7 +1600,7 @@
    "hay": "natural set yogurt (pauls) "
   },
   {
-   "name": "Cocoa Malt Beverage (Nestlé Milo)",
+   "name": "Cocoa Malt Beverage (Nestl\u00e9 Milo)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -1623,7 +1623,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f55",
-   "hay": "cocoa malt beverage (nestlé milo) "
+   "hay": "cocoa malt beverage (nestl\u00e9 milo) "
   },
   {
    "name": "Zero Sugar (Coca Cola)",
@@ -1990,7 +1990,7 @@
    "hay": "brioche butter loaf (sunshine) "
   },
   {
-   "name": "Baked Cashew Nuts (FairPrice)",
+   "name": "Baked Cashew Nuts",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -2013,7 +2013,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f70",
-   "hay": "baked cashew nuts (fairprice) "
+   "hay": "baked cashew nuts"
   },
   {
    "name": "Greek Yogurt (Chobani)",
@@ -2380,7 +2380,7 @@
    "hay": "greek style yogurt with a hint of vanilla bean (farmers union) "
   },
   {
-   "name": "Iced Mil (Nestlé)",
+   "name": "Iced Mil (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -2403,7 +2403,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f85",
-   "hay": "iced mil (nestlé) "
+   "hay": "iced mil (nestl\u00e9) "
   },
   {
    "name": "Skippy Creamy Peanut Butter (Skippy)",
@@ -2666,7 +2666,7 @@
    "hay": "the greek (brownes dairy) "
   },
   {
-   "name": "Baked Macadamia (FairPrice)",
+   "name": "Baked Macadamia",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -2689,10 +2689,10 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f96",
-   "hay": "baked macadamia (fairprice) "
+   "hay": "baked macadamia"
   },
   {
-   "name": "Iced Caffè Latte (Nescafe)",
+   "name": "Iced Caff\u00e8 Latte (Nescafe)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -2715,7 +2715,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f97",
-   "hay": "iced caffè latte (nescafe) "
+   "hay": "iced caff\u00e8 latte (nescafe) "
   },
   {
    "name": "Chocolate Malt (Oatside)",
@@ -3316,7 +3316,7 @@
    "hay": "oatside matcha (oatside) "
   },
   {
-   "name": "Food (我咋知道)",
+   "name": "Food (\u6211\u548b\u77e5\u9053)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -3339,7 +3339,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f121",
-   "hay": "food (我咋知道) "
+   "hay": "food (\u6211\u548b\u77e5\u9053) "
   },
   {
    "name": "Milo (Milo)",
@@ -3394,7 +3394,7 @@
    "hay": "bonne maman peanut butter (bonne maman) "
   },
   {
-   "name": "Strawberry Ice Cream (Häagen-Dazs)",
+   "name": "Strawberry Ice Cream (H\u00e4agen-Dazs)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -3417,7 +3417,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f124",
-   "hay": "strawberry ice cream (häagen-dazs) "
+   "hay": "strawberry ice cream (h\u00e4agen-dazs) "
   },
   {
    "name": "First Drip Black Coffee (Pokka)",
@@ -4902,7 +4902,7 @@
    "hay": "100% juice orange (marigold) "
   },
   {
-   "name": "Nestle Cereal Honey Stars (Nestlé)",
+   "name": "Nestle Cereal Honey Stars (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -4925,7 +4925,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f182",
-   "hay": "nestle cereal honey stars (nestlé) "
+   "hay": "nestle cereal honey stars (nestl\u00e9) "
   },
   {
    "name": "Low Fat Milk (MariGold)",
@@ -4954,7 +4954,7 @@
    "hay": "low fat milk (marigold) "
   },
   {
-   "name": "Nescafé original (Nestlé)",
+   "name": "Nescaf\u00e9 original (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -4977,7 +4977,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f184",
-   "hay": "nescafé original (nestlé) "
+   "hay": "nescaf\u00e9 original (nestl\u00e9) "
   },
   {
    "name": "Yoghurt low fat (Marigold)",
@@ -5188,7 +5188,7 @@
    "hay": "muesli bars "
   },
   {
-   "name": "Nestle fitness granola (Nestlé)",
+   "name": "Nestle fitness granola (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -5211,7 +5211,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f193",
-   "hay": "nestle fitness granola (nestlé) "
+   "hay": "nestle fitness granola (nestl\u00e9) "
   },
   {
    "name": "Ice lemon tea",
@@ -5812,7 +5812,7 @@
    "hay": "all-natural california raisin bun - 6 pcs (sunshine) "
   },
   {
-   "name": "Honey Stars (Nestlé)",
+   "name": "Honey Stars (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -5835,10 +5835,10 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f217",
-   "hay": "honey stars (nestlé) "
+   "hay": "honey stars (nestl\u00e9) "
   },
   {
-   "name": "Nin Jiom Herbal Candy Original (京都念慈菴 Nin JiomNin Jiom)",
+   "name": "Nin Jiom Herbal Candy Original (\u4eac\u90fd\u5ff5\u6148\u83f4 Nin JiomNin Jiom)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -5861,10 +5861,10 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f218",
-   "hay": "nin jiom herbal candy original (京都念慈菴 nin jiomnin jiom) "
+   "hay": "nin jiom herbal candy original (\u4eac\u90fd\u5ff5\u6148\u83f4 nin jiomnin jiom) "
   },
   {
-   "name": "KNAX Gewürzgurken (Hengstenberg)",
+   "name": "KNAX Gew\u00fcrzgurken (Hengstenberg)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -5887,7 +5887,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f219",
-   "hay": "knax gewürzgurken (hengstenberg) "
+   "hay": "knax gew\u00fcrzgurken (hengstenberg) "
   },
   {
    "name": "Swiss Milk Chocolate Almond (Lindt)",
@@ -7190,7 +7190,7 @@
    "hay": "organic tricolor quinoa "
   },
   {
-   "name": "Superfood BF cereal (Nature’s superfoods)",
+   "name": "Superfood BF cereal (Nature\u2019s superfoods)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -7213,7 +7213,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f270",
-   "hay": "superfood bf cereal (nature’s superfoods) "
+   "hay": "superfood bf cereal (nature\u2019s superfoods) "
   },
   {
    "name": "indomie goreng 85g (indomie)",
@@ -7450,7 +7450,7 @@
    "hay": "coca cola original taste less sugar (singapour) (coke) "
   },
   {
-   "name": "Gold honey flakes (Nestlé)",
+   "name": "Gold honey flakes (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -7473,7 +7473,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f280",
-   "hay": "gold honey flakes (nestlé) "
+   "hay": "gold honey flakes (nestl\u00e9) "
   },
   {
    "name": "Salted Gula Melaka",
@@ -7746,7 +7746,7 @@
    "carbs_g": 0.746268656716418,
    "sugar_g": 0.00011134328358209,
    "fat_g": 1.64179104477612,
-   "fiber_g": 0.0000222388059701493,
+   "fiber_g": 2.22388059701493e-05,
    "sodium_mg": 0,
    "vitamin_c_mg": null,
    "vitamin_d_iu": null,
@@ -8516,7 +8516,7 @@
    "hay": "5 black multi-grain mixed instant oatmeal (quaker) "
   },
   {
-   "name": "100% Natural Coconut Water (FairPrice)",
+   "name": "100% Natural Coconut Water",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -8539,7 +8539,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f321",
-   "hay": "100% natural coconut water (fairprice) "
+   "hay": "100% natural coconut water"
   },
   {
    "name": "Ikan bilis Goreng (Star Master)",
@@ -8646,7 +8646,7 @@
    "hay": "oatside protein chocolate oat milk (oatside) "
   },
   {
-   "name": "Milo 3 In 1 (Nestlé)",
+   "name": "Milo 3 In 1 (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -8669,10 +8669,10 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f326",
-   "hay": "milo 3 in 1 (nestlé) "
+   "hay": "milo 3 in 1 (nestl\u00e9) "
   },
   {
-   "name": "Eggs (Cold Storage)",
+   "name": "Eggs",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -8695,7 +8695,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f327",
-   "hay": "eggs (cold storage) "
+   "hay": "eggs"
   },
   {
    "name": "gold kili kopi c kosong (gold kili)",
@@ -9270,7 +9270,7 @@
    "hay": "hokkaido mocha (suzuki gourmet coffee) "
   },
   {
-   "name": "Nescafé Iced Caramel (Nestlé)",
+   "name": "Nescaf\u00e9 Iced Caramel (Nestl\u00e9)",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -9293,7 +9293,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f350",
-   "hay": "nescafé iced caramel (nestlé) "
+   "hay": "nescaf\u00e9 iced caramel (nestl\u00e9) "
   },
   {
    "name": "Baked almonds",
@@ -9478,7 +9478,7 @@
    "hay": "choy sun oyster sauce (lee kum kee) "
   },
   {
-   "name": "Coconit Cream (FairPrice)",
+   "name": "Coconit Cream",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -9501,7 +9501,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f358",
-   "hay": "coconit cream (fairprice) "
+   "hay": "coconit cream"
   },
   {
    "name": "Ravioli Tartufo Funghi E Formaggio (Giovani Rana)",
@@ -9686,7 +9686,7 @@
    "hay": "red sugar cane & water chestnut drink (life) "
   },
   {
-   "name": "Full Cream Fresh Milk (FairPrice)",
+   "name": "Full Cream Fresh Milk",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -9709,7 +9709,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f366",
-   "hay": "full cream fresh milk (fairprice) "
+   "hay": "full cream fresh milk"
   },
   {
    "name": "100PLUS Active With Vitamin B (100PLUS)",
@@ -9842,7 +9842,7 @@
    "hay": "lotte zero cookies & cream sand (lotte) "
   },
   {
-   "name": "Potato Chips Hot & Spicy (FairPrice)",
+   "name": "Potato Chips Hot & Spicy",
    "serving": "100 g",
    "sg_local": false,
    "source": "openfoodfacts",
@@ -9865,7 +9865,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f372",
-   "hay": "potato chips hot & spicy (fairprice) "
+   "hay": "potato chips hot & spicy"
   },
   {
    "name": "Quinoa & Brown Rice Crackers (Ceres Organics)",
@@ -13850,7 +13850,7 @@
    "hay": "fresh coconut (water + flesh)"
   },
   {
-   "name": "McSpicy (McDonald’s)",
+   "name": "McSpicy (McDonald\u2019s)",
    "serving": "1 burger",
    "sg_local": true,
    "source": "seed",
@@ -13858,7 +13858,7 @@
     "high-fat",
     "high-sodium"
    ],
-   "place": "McDonald’s",
+   "place": "McDonald\u2019s",
    "kcal": 540,
    "protein_g": 28,
    "carbs_g": 45,
@@ -13877,15 +13877,15 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f514",
-   "hay": "mcspicy (mcdonald’s) high-fat high-sodium mcdonald’s"
+   "hay": "mcspicy (mcdonald\u2019s) high-fat high-sodium mcdonald\u2019s"
   },
   {
-   "name": "Filet-O-Fish (McDonald’s)",
+   "name": "Filet-O-Fish (McDonald\u2019s)",
    "serving": "1 burger",
    "sg_local": true,
    "source": "seed",
    "tags": [],
-   "place": "McDonald’s",
+   "place": "McDonald\u2019s",
    "kcal": 333,
    "protein_g": 15,
    "carbs_g": 38,
@@ -13904,17 +13904,17 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f515",
-   "hay": "filet-o-fish (mcdonald’s)  mcdonald’s"
+   "hay": "filet-o-fish (mcdonald\u2019s)  mcdonald\u2019s"
   },
   {
-   "name": "Fries, medium (McDonald’s)",
+   "name": "Fries, medium (McDonald\u2019s)",
    "serving": "1 medium",
    "sg_local": true,
    "source": "seed",
    "tags": [
     "high-fat"
    ],
-   "place": "McDonald’s",
+   "place": "McDonald\u2019s",
    "kcal": 330,
    "protein_g": 4,
    "carbs_g": 42,
@@ -13933,7 +13933,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f516",
-   "hay": "fries, medium (mcdonald’s) high-fat mcdonald’s"
+   "hay": "fries, medium (mcdonald\u2019s) high-fat mcdonald\u2019s"
   },
   {
    "name": "Chicken McNuggets (6 pc)",
@@ -13941,7 +13941,7 @@
    "sg_local": true,
    "source": "seed",
    "tags": [],
-   "place": "McDonald’s",
+   "place": "McDonald\u2019s",
    "kcal": 250,
    "protein_g": 14,
    "carbs_g": 15,
@@ -13960,7 +13960,7 @@
    "glycine_g": null,
    "choline_mg": null,
    "id": "f517",
-   "hay": "chicken mcnuggets (6 pc)  mcdonald’s"
+   "hay": "chicken mcnuggets (6 pc)  mcdonald\u2019s"
   },
   {
    "name": "KFC Fried Chicken (2 pc)",

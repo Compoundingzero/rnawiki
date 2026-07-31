@@ -290,6 +290,11 @@ function classify(txt) {
     if (/neck|cervical|\bhead\b/.test(t)) return ['brace', 'neck'];
     if (/shoulder|humerus/.test(t)) return ['brace', 'shoulder'];
     if (/pelvi|hip|single-leg|stance/.test(t)) return ['brace', 'pelvis'];
+    // Leg/ankle holds must draw a LEG, not the generic torso. Without these, "deceleration of the
+    // swinging leg" (eccentric hamstring) and "postural ... standing balance" (soleus) fell through
+    // to ['brace', null] and rendered a trunk silhouette — the wrong body part for the muscle.
+    if (/ankle|calf|heel|\btoe|plantarflex|dorsiflex|standing|balance|soleus|gastrocnem/.test(t)) return ['brace', 'knee'];
+    if (/\bleg\b|thigh|femur|hamstring|quadricep/.test(t)) return ['brace', 'knee'];
     return ['brace', null];
   }
   if (/\b(breath|respirat|ribs|ribcage)/.test(t)) return ['ribs', null];
@@ -297,6 +302,13 @@ function classify(txt) {
   if (/pronat/.test(t)) return ['supination', 'pronation'];
   if (/scapul/.test(t)) return ['scapula', dir === 'flexion' ? 'retraction' : dir];
   if (/\b(elbow)\b/.test(t)) return ['elbow', dir];
+  // A PURE long-axis rotation ("external rotation of the hip") must draw a TWIST, not a joint swing.
+  // The joint checks below would otherwise capture "...of the hip/knee" as a flexion (dir defaults to
+  // flexion when no plane word is present), rendering a movement identical to the abduction tile beside
+  // it. Route rotation of the rotating joints to the rotation pose, which actually depicts a twist.
+  if (/rotat/.test(t) && /\b(hip|thigh|femur|knee|shoulder|humerus|glenohumeral|arm)\b/.test(t)) {
+    return ['rotation', /external|lateral|posterior/.test(t) ? 'external' : /internal|medial|anterior/.test(t) ? 'internal' : null];
+  }
   if (/\b(knee)\b/.test(t)) return ['knee', dir];
   if (/\b(ankle|plantarflex\w*|dorsiflex\w*|calf|heel|toe)/.test(t)) return ['ankle', dir];
   if (/\b(hip|thigh|femur)\b/.test(t)) return ['hip', dir];

@@ -2184,13 +2184,16 @@
   // on capable devices; renderStructurePanel() shows a picked muscle's facts from the SAME registry.
   function bodyShell(region) {
     region = region || 'leg';
-    const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves'];
+    // tibialis-anterior is the one anterior-shin muscle with a mesh but no group page of its own;
+    // include it so it is browsable in 3D (its full-page link is guarded below, since /muscle/
+    // tibialis-anterior does not exist and a dead link would fail the assertLinkGraph build gate).
+    const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves', 'tibialis-anterior'];
     const legSubs = legGroups.flatMap(g => (structuresByGroup[g] || [])).filter(s => s.fma);
-    const twin = legSubs.map(s => `<li><a href="#/body/${esc(region)}?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ` — ${esc(s.plainName)}` : ''} <a class="muted" href="#/muscle/${esc(s.groupId)}">(full page)</a></li>`).join('');
+    const twin = legSubs.map(s => `<li><a href="#/body/${esc(region)}?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ` — ${esc(s.plainName)}` : ''}${muscleById[s.groupId] ? ` <a class="muted" href="#/muscle/${esc(s.groupId)}">(full page)</a>` : ''}</li>`).join('');
     return `<div class="body-shell">
       <h1>🧍 Interactive 3D body — the ${esc(region)}</h1>
-      <p class="muted">Rotate the model, peel back the layers, and tap a muscle to see where it attaches, what it does, and to watch it perform its action. Best on a laptop or a recent phone; the muscle list below is the full no-3D version.</p>
-      <div class="bm-stage"><div id="bm-canvas" class="bm-canvas"></div><aside id="bm-panel" class="bm-panel"><p class="muted">Tap a muscle on the model, or pick one from the list below.</p></aside></div>
+      <p class="muted bm-intro">Spin the model and tap any muscle to see the bones it attaches to — <b class="bm-o-word">origin in blue</b>, <b class="bm-i-word">insertion in amber</b> — and watch it move. Best on a laptop or a recent phone; the muscle list below is the full no-3D version.</p>
+      <div class="bm-stage"><div class="bm-canvas-wrap"><div id="bm-canvas" class="bm-canvas"></div><div id="bm-hud" class="bm-hud" hidden></div></div><aside id="bm-panel" class="bm-panel"><p class="muted">Tap a muscle on the model, or pick one from the list below.</p></aside></div>
       <!-- Legend added 2026-07-31. Without it the colours are decoration; with it they are the
            lesson. The tendon shading is honestly labelled as indicative, because BodyParts3D has no
            separate tendon meshes and the pale ends are computed from the muscle's own long axis. -->
@@ -2223,28 +2226,74 @@
     // list links via the hash (#/body/leg?fma=). Read either, so both actually focus the muscle.
     const fma = new URLSearchParams(location.search).get('fma') || new URLSearchParams(location.hash.split('?')[1] || '').get('fma');
     const ctrlRef = {};
+    // On a phone the info panel + "Replay the movement" button sit far below the fold, so a reader
+    // taps a muscle and can neither see the movement nor reach replay without scrolling the model
+    // off-screen. This compact HUD is pinned to the bottom of the canvas: name + action + a big
+    // Replay button live WITH the model, so selection, explanation and replay share one screen.
+    const hud = document.getElementById('bm-hud');
+    const updateHud = (f, st) => {
+      if (!hud || !st) return;
+      const act = (st.actions && st.actions[0] || '').replace(/\s*\(.*$/, '').replace(/;.*$/, '').trim();
+      hud.innerHTML = `<div class="bm-hud-txt"><span class="bm-hud-name">${esc(st.name)}</span>${act ? `<span class="bm-hud-act">${esc(act)}</span>` : ''}</div>`
+        + `<button type="button" class="bm-hud-replay" aria-label="Replay the movement">▶ Replay</button>`;
+      hud.hidden = false;
+      const rb = hud.querySelector('.bm-hud-replay');
+      if (rb) rb.onclick = () => { if (ctrlRef.c) ctrlRef.c.playAction(f); };
+    };
     import('/bodymap.js').then(m => {
       if (!m.canRun3D()) return fail('<b>Your device can’t show the interactive 3D model</b> (older browser, low memory, data-saver, or reduced-motion is on). The muscle list below has everything, and each muscle page carries an animated 2D figure of the action.');
-      m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => renderStructurePanel(st, f, ctrlRef) })
+      m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => { renderStructurePanel(st, f, ctrlRef); updateHud(f, st); } })
         .then((c) => { ctrlRef.c = c; clearLoading(); })
         .catch(() => fail('The 3D model couldn’t load. The muscle list below still works, and each muscle page has an animated 2D figure.'));
     }).catch(() => fail('The 3D model couldn’t load. The muscle list below still works.'));
   }
+  // Map an in-model muscle NAME (lowercased) -> its fma, so a muscle's "works with"/"opposes"
+  // chips can deep-link to that muscle on the same 3D model. Built once from the registry.
+  let _legNameFma = null;
+  function legNameToFma() {
+    if (_legNameFma) return _legNameFma;
+    _legNameFma = {};
+    (D.structures || []).forEach(s => { if (s.fma) _legNameFma[String(s.name || '').toLowerCase().trim()] = s.fma; });
+    return _legNameFma;
+  }
+  // Render a comma/paren list of muscle names as chips, deep-linking any that exist on the model.
+  function relChips(list, cls) {
+    if (!list || !list.length) return '';
+    const map = legNameToFma();
+    return list.map(name => {
+      const key = String(name || '').toLowerCase().trim();
+      const fma = map[key];
+      return fma
+        ? `<a class="bm-rel-chip ${cls} is-link" href="#/body/leg?fma=${encodeURIComponent(fma)}">${esc(name)}</a>`
+        : `<span class="bm-rel-chip ${cls}">${esc(name)}</span>`;
+    }).join('');
+  }
   function renderStructurePanel(st, fma, ctrlRef) {
     const el = document.getElementById('bm-panel'); if (!el || !st) return;
-    const oB = (st.origin && st.origin.attachTo) || '—';
-    const iB = (st.insertion && st.insertion.attachTo) || '—';
+    const oTech = (st.origin && st.origin.attachTo) || '—';
+    const iTech = (st.insertion && st.insertion.attachTo) || '—';
+    // Plain-language attachment leads; the technical Latin follows in muted type. A general reader
+    // learns "your heel bone" first, then meets "calcaneus" — instead of only the jargon.
+    const attRow = (cls, kind, plain, tech) => `<div class="bm-att ${cls}"><span class="bm-att-dot"></span><span class="bm-att-k">${kind}</span><span class="bm-att-v">${plain ? `${esc(plain)}<span class="bm-att-tech">${esc(tech)}</span>` : esc(tech)}</span></div>`;
+    // The leg model has no separate foot bones, so a calf/shin insertion is pinned to the nearest
+    // ankle bone (talus). Say so, rather than let the amber pin silently assert the wrong location.
+    const footApprox = /calcaneus|calcaneal|heel|achilles|cuneiform|metatars|navicular|tarsal|\bfoot\b/i.test(iTech);
+    const actions = (st.actions || []);
     el.innerHTML = `<div class="bm-card">
       <h2 class="bm-name">${esc(st.name)}</h2>
       ${st.plainName ? `<p class="bm-plain">${esc(st.plainName)}</p>` : ''}
+      ${st.everydayUse ? `<p class="bm-why">${esc(st.everydayUse)}</p>` : ''}
       <div class="bm-attach">
-        <div class="bm-att bm-att-o"><span class="bm-att-dot"></span><span class="bm-att-k">Origin</span><span class="bm-att-v">${esc(oB)}</span></div>
-        <div class="bm-att bm-att-i"><span class="bm-att-dot"></span><span class="bm-att-k">Insertion</span><span class="bm-att-v">${esc(iB)}</span></div>
+        ${attRow('bm-att-o', 'Origin', st.plainOrigin, oTech)}
+        ${attRow('bm-att-i', 'Insertion', st.plainInsertion, iTech)}
       </div>
-      ${(st.actions && st.actions.length) ? `<div class="bm-field"><span class="bm-field-k">What it does</span><p class="bm-field-v">${esc(st.actions.join('; '))}</p></div>` : ''}
+      ${footApprox ? `<p class="bm-approx muted">The model has no separate foot bones, so the heel/foot attachment is pinned to the nearest ankle bone — the real attachment is where the plain description says.</p>` : ''}
+      ${actions.length ? `<div class="bm-field"><span class="bm-field-k">What it does</span><p class="bm-field-v">${esc(actions.join('; '))}</p></div>` : ''}
       ${(fma && ctrlRef) ? `<button type="button" class="bm-replay" id="bm-replay">▶ Replay the movement</button>` : ''}
+      ${(st.synergists && st.synergists.length) ? `<div class="bm-field"><span class="bm-field-k">Works with</span><div class="bm-rel">${relChips(st.synergists, 'is-syn')}</div></div>` : ''}
+      ${(st.antagonists && st.antagonists.length) ? `<div class="bm-field"><span class="bm-field-k">Opposes</span><div class="bm-rel">${relChips(st.antagonists, 'is-ant')}</div></div>` : ''}
       ${st.locate ? `<div class="bm-field"><span class="bm-field-k">Find it on yourself</span><p class="bm-field-v">${esc(st.locate)}</p></div>` : ''}
-      ${st.groupId ? `<p class="bm-fullpage"><a class="proto-more" href="#/muscle/${esc(st.groupId)}">Full ${esc(st.groupId)} page →</a></p>` : ''}
+      ${(st.groupId && muscleById[st.groupId]) ? `<p class="bm-fullpage"><a class="proto-more" href="#/muscle/${esc(st.groupId)}">Full ${esc(st.groupId)} page →</a></p>` : ''}
       <p class="bm-legend muted"><b>In the model:</b> the muscle keeps its red belly and pale tendon ends; its <span class="bm-dot-o"></span> origin bone turns blue and its <span class="bm-dot-i"></span> insertion bone amber, each with a labelled pin; and the joint moves through the muscle's action.</p>
     </div>`;
     const rb = document.getElementById('bm-replay');
@@ -2261,7 +2310,7 @@
     const LEG3D = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
     const legFocus = LEG3D[id] ? (subs.find(s => s.fma) || null) : null;
     const model = legFocus
-      ? `<div class="section-title">This muscle in 3D</div><a class="cta-3d cta-3d-hero" href="#/body/leg?fma=${encodeURIComponent(legFocus.fma)}"><span class="cta-3d-hero-ico" aria-hidden="true">🦿</span><span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Watch the ${esc(m.name.toLowerCase())} light up between its origin and insertion bones and move through its action.</span></span><span class="cta-3d-hero-go" aria-hidden="true">▶</span></a><p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`
+      ? `<div class="section-title">This muscle in 3D</div><a class="cta-3d cta-3d-hero" href="#/body/leg?fma=${encodeURIComponent(legFocus.fma)}"><span class="cta-3d-hero-ico" aria-hidden="true">🦿</span><span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Opens on the ${esc(legFocus.name.toLowerCase())} — its origin and insertion bones light up and it moves through its action. Every ${esc((m.group || m.name).toLowerCase())} muscle is tappable there too.</span></span><span class="cta-3d-hero-go" aria-hidden="true">▶</span></a><p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`
       : (m.model_embed
         ? `<div class="section-title">This muscle in 3D</div><div class="anat-3d"><iframe title="${esc(m.name)} — interactive 3D anatomy" src="${esc(m.model_embed)}" allow="autoplay; fullscreen; xr-spatial-tracking" allowfullscreen loading="lazy"></iframe></div><p class="fig-credit">Drag to rotate · scroll to zoom — see the shape, origin and insertion of the ${esc(m.name.toLowerCase())}. 3D model via Sketchfab (CC-BY); the ℹ button credits the author. Origin, insertion and action are detailed just below.</p>`
         : `<div class="section-title">This muscle in 3D</div><div class="anat-3d-soon"><span class="a3d-ico">🧊</span><p>A 3D model specific to the <b>${esc(m.name.toLowerCase())}</b> is being added. Its origin, insertion and action are detailed just below.</p></div>`);
@@ -2282,6 +2331,7 @@
           <p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>
           ${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}
           ${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}
+          ${(s.fma && LEG3D[id]) ? `<p class="sm-3d"><a href="#/body/leg?fma=${encodeURIComponent(s.fma)}">See the ${esc(s.name.toLowerCase())} in the interactive 3D leg →</a></p>` : ''}
         </div>`).join('')}</div>` : '';
     const anatChapter = {
       icon: '🦴', label: 'Anatomy & training', at: 1, html: `
@@ -5994,7 +6044,7 @@
     else if (parts[0] === 'pros') { title = t('For health professionals — contribute, get featured, get leads'); desc = 'Physiotherapists, dietitians, nutritionists and pharmacists: improve the protocols in your field and get featured on them — profile, booking link and local leads. Free.'; }
     else if (parts[0] === 'pro') { title = t('Pro dashboard — contribute & get featured on RNAwiki'); desc = 'For clinicians and businesses: improve protocols, track your leads, and manage your branded patient protocol links on RNAwiki.'; }
     else if (parts[0] === 'u' && parts[1]) { title = t('@' + parts[1] + ' — contribution portfolio'); desc = `@${parts[1]}'s clinical contribution portfolio on RNAwiki — reputation, accepted edits, and professional links.`; }
-    else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model, peel back the layers, and watch each muscle perform its action. Origin, insertion and the exercises that train it, on the body.'; }
+    else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model and tap any muscle to see the bones it attaches to — origin and insertion — and watch it perform its action, on the body.'; }
     else if (parts[0] === 'where') { title = t('Where does it hurt? Find the likely cause and the fix'); desc = 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.'; }
     else if (parts[0] === 'clinic' && problemById[parts[2]]) { const p = problemById[parts[2]]; title = t(`${p.name} — home-care protocol from @${parts[1]}`); desc = `A clinician-issued ${p.name} home-care protocol from @${parts[1]} on RNAwiki — movement, stack, and Singapore food targets.`; }
     document.title = title;
@@ -6084,6 +6134,7 @@
     if (anchor) requestAnimationFrame(() => anchor.scrollIntoView({ block: 'start' }));
     else window.scrollTo(0, 0);
     setPageMeta(parts);
+    document.body.classList.toggle('route-bodymap', parts[0] === 'body'); // hides the Feedback FAB that overlaps the 3D canvas
     // ACCESSIBILITY (2026-07-28). route() replaces the ENTIRE page body on every navigation, and
     // nothing announced it: aria-live 0, role="status" 0, no focus move, no skip link. So a
     // screen-reader user who clicked any in-app link heard NOTHING — focus stayed on the

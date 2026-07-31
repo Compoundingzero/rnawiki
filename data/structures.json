@@ -65,7 +65,10 @@
       "meshId": "FMA22430",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the front of your hip bone, just above the socket",
+      "plainInsertion": "your kneecap, then onto the shin through the patellar tendon",
+      "everydayUse": "The only quad that also lifts the thigh — it powers kicking, sprinting and rising from a chair."
     },
     {
       "fma": "FMA:22432",
@@ -134,7 +137,10 @@
       "meshId": "FMA22432",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the inner shaft of your thigh bone (femur)",
+      "plainInsertion": "the inner edge of your kneecap",
+      "everydayUse": "The teardrop above the inner knee — it keeps the kneecap tracking straight and locks out the last few degrees of a squat or stand."
     },
     {
       "fma": "FMA:22431",
@@ -199,7 +205,10 @@
       "meshId": "FMA22431",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the outer shaft of your thigh bone (femur)",
+      "plainInsertion": "the outer edge of your kneecap",
+      "everydayUse": "The largest quad and the outer sweep of the thigh — the main knee-straightener in squats, stairs and jumps."
     },
     {
       "fma": "FMA:22433",
@@ -265,7 +274,10 @@
       "meshId": "FMA22433",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the front of your thigh-bone shaft (femur)",
+      "plainInsertion": "your kneecap, deep to the other quads",
+      "everydayUse": "The hidden quad beneath rectus femoris — pure knee-straightening power for standing and stepping."
     },
     {
       "fma": "FMA:22356",
@@ -332,7 +344,10 @@
       "meshId": "FMA22356",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "your sitting bone (ischial tuberosity); the short head from the back of the thigh bone",
+      "plainInsertion": "the head of the outer shin bone (fibula), at the outside of the knee",
+      "everydayUse": "The outer hamstring — it bends the knee and drives the leg back as you run, and turns the shin outward."
     },
     {
       "fma": "FMA:22357",
@@ -399,7 +414,10 @@
       "meshId": "FMA22357",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "your sitting bone (ischial tuberosity)",
+      "plainInsertion": "the top of the inner shin bone (tibia)",
+      "everydayUse": "An inner hamstring — it bends the knee and extends the hip in every stride, hip-hinge and glute bridge."
     },
     {
       "fma": "FMA:22438",
@@ -465,7 +483,10 @@
       "meshId": "FMA22438",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "your sitting bone (ischial tuberosity)",
+      "plainInsertion": "the back of the inner shin bone (tibia)",
+      "everydayUse": "The deepest inner hamstring — it powers hip extension in running and deadlifting and steadies the bent knee."
     },
     {
       "fma": "FMA:22314",
@@ -531,7 +552,10 @@
       "meshId": "FMA22314",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the back of your pelvis and tailbone (ilium and sacrum)",
+      "plainInsertion": "the upper thigh bone and the IT band down the outer thigh",
+      "everydayUse": "Your biggest, strongest muscle — it drives you up out of a chair, up stairs, and forward in every sprint and jump."
     },
     {
       "fma": "FMA:22315",
@@ -595,7 +619,10 @@
       "meshId": "FMA22315",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the outer blade of your hip bone (ilium)",
+      "plainInsertion": "the bony bump at the top of your thigh bone (greater trochanter)",
+      "everydayUse": "It lifts the leg out to the side and — the key part — keeps your pelvis level every time you stand on one leg or take a step."
     },
     {
       "fma": "FMA:22317",
@@ -658,7 +685,10 @@
       "meshId": "FMA22317",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the outer blade of your hip bone, beneath gluteus medius",
+      "plainInsertion": "the bony bump at the top of your thigh bone (greater trochanter)",
+      "everydayUse": "The deep hip stabiliser — it works with gluteus medius to stop your pelvis dropping as you walk."
     },
     {
       "fma": "FMA:22541",
@@ -720,7 +750,10 @@
       "meshId": "FMA22541",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the bottom of your thigh bone, just above the knee (two heads)",
+      "plainInsertion": "your heel bone (calcaneus), through the Achilles tendon",
+      "everydayUse": "The visible calf bulge — it points the toes to push off in every step, jump and calf-raise, and helps bend the knee."
     },
     {
       "fma": "FMA:22542",
@@ -786,7 +819,10 @@
       "meshId": "FMA22542",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the back of your shin bones (tibia and fibula)",
+      "plainInsertion": "your heel bone (calcaneus), through the Achilles tendon",
+      "everydayUse": "The deep calf endurance muscle — it points the toes and quietly holds you upright against sway whenever you stand."
     },
     {
       "fma": "FMA:22532",
@@ -849,7 +885,10 @@
       "meshId": "FMA22532",
       "secondSourceVerified": true,
       "reviewedBy": null,
-      "reviewedAt": null
+      "reviewedAt": null,
+      "plainOrigin": "the outer surface of your shin bone (tibia)",
+      "plainInsertion": "the inner arch of your foot (medial cuneiform and first metatarsal)",
+      "everydayUse": "It lifts your foot and toes so they clear the ground as you walk — the muscle that fails in foot-drop and aches as shin splints."
     },
     {
       "fma": "FMA:22827",

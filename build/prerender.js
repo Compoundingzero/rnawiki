@@ -222,7 +222,7 @@ function ogCardSvg({ kind, title, sub, starN, rx }) {
   let starsSvg = '';
   if (starN != null) { starsSvg = starPolys(starN, 74, yy, 26) + (rx ? `<rect x="266" y="${yy - 21}" width="188" height="42" rx="8" fill="#fff1f0" stroke="#f5c2bd"/><text x="280" y="${yy + 8}" font-family="Roboto" font-weight="700" font-size="23" fill="#b3261e">Prescription</text>` : ''); yy += 58; }
   const subSvg = (sub ? wrapText(sub, 62, 2) : []).map((l, i) => `<text x="72" y="${yy + i * 40}" font-family="Roboto" font-size="31" fill="#9fb3c8">${xe(l)}</text>`).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1a2b"/><stop offset="1" stop-color="#0e1420"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#2f7de0"/></linearGradient></defs><rect width="1200" height="630" fill="url(#b)"/><rect width="1200" height="8" fill="url(#a)"/><text x="72" y="112" font-family="Roboto" font-weight="700" font-size="40"><tspan fill="#38bdf8">RNA</tspan><tspan fill="#ffffff">wiki</tspan></text><text x="1128" y="112" text-anchor="end" font-family="Roboto" font-weight="700" font-size="23" fill="#64748b">${xe((kind || '').toUpperCase())}</text>${titleSvg}${starsSvg}${subSvg}<text x="72" y="580" font-family="Roboto" font-weight="700" font-size="28" fill="#38bdf8">rnawiki.com<tspan fill="#64748b" font-weight="400">  ·  Singapore</tspan></text></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630"><defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1a2b"/><stop offset="1" stop-color="#0e1420"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#38bdf8"/><stop offset="1" stop-color="#2f7de0"/></linearGradient></defs><rect width="1200" height="630" fill="url(#b)"/><rect width="1200" height="8" fill="url(#a)"/><text x="72" y="112" font-family="Roboto" font-weight="700" font-size="40"><tspan fill="#38bdf8">RNA</tspan><tspan fill="#ffffff">wiki</tspan></text><text x="1128" y="112" text-anchor="end" font-family="Roboto" font-weight="700" font-size="23" fill="#64748b">${xe((kind || '').toUpperCase())}</text>${titleSvg}${starsSvg}${subSvg}<text x="72" y="580" font-family="Roboto" font-weight="700" font-size="28" fill="#38bdf8">rnawiki.com<tspan fill="#64748b" font-weight="400">  ·  free · evidence-ranked</tspan></text></svg>`;
 }
 let ogCount = 0;
 function renderOgCard(relPath, opts) {
@@ -647,7 +647,7 @@ function bioFlatHtml(c) {
     b.quality ? card('🔬', 'Quality — what to look for', mdSafe(b.quality.line)) : '',
     b.nonResponders ? card('🤷', 'If it does nothing for you', mdSafe(b.nonResponders.line)) : '',
     Array.isArray(b.synergy) && b.synergy.length ? card('🤝', 'Pairs well with', `<ul>${b.synergy.map((x) => `<li><b>${mdSafe(x.with)}</b> — ${mdSafe(x.why)}</li>`).join('')}</ul>`) : '',
-    b.cost ? card('💰', 'Cost per dose', mdSafe(b.cost.perDose || '') + (b.cost.note ? `<p class="biof-note">${mdSafe(b.cost.note)}</p>` : '')) : '',
+    b.cost ? card('\ud83d\udcb0', 'Cost per dose', mdSafe(b.cost.perDose || '') + (b.cost.note ? `<p class="biof-note">${mdSafe(b.cost.note)}</p>` : '') + `<p class="biof-note">Singapore retail, as an order-of-magnitude guide \u2014 about 0.75 of this in US dollars, and cheaper in bulk almost everywhere.</p>`) : '',
   ].filter(Boolean);
   if (!cards.length) return '';
   return `<section class="biof"><h2>🧪 Practical use — form, dose, timing and what to watch</h2>
@@ -1418,15 +1418,16 @@ const anatCrumb = (name, route) => [{ name: 'Home', route: '/' }, { name: 'Anato
 // Default 3D viewer: "Anatomy of the Human Muscular System" by jossangelbd (Sketchfab, embeddable). A verified
 // physiotherapist can override per-muscle by adding "model_embed" to that muscle in data/anatomy.json.
 const MUSCLE_MODEL_DEFAULT = 'https://sketchfab.com/models/75cc6aa94b5c4ed88f9810770d614ac1/embed?ui_theme=dark&autospin=0.15&ui_infos=0&ui_watermark=0&ui_hint=0&transparent=0';
-function muscle3D(m, legFma) {
+function muscle3D(m, legFma, legName) {
   // LEG groups have a first-party BodyParts3D model that lights this muscle's origin/insertion bones and
   // animates its action — a far better teacher than a generic stock render, and FMA-keyed to this page.
   // Promote it. Groups without their own geometry keep the Sketchfab viewer (it works); an unbuilt one
-  // shows the "being added" note.
+  // shows the "being added" note. The CTA opens on ONE representative sub-muscle (legName), so the copy
+  // names it rather than claiming the whole group lights up.
   if (legFma) return `<h2>This muscle in 3D</h2>
     <a class="cta-3d cta-3d-hero" href="/body/leg?fma=${encodeURIComponent(legFma)}">
       <span class="cta-3d-hero-ico" aria-hidden="true">🦿</span>
-      <span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Watch the ${esc(m.name.toLowerCase())} light up between its origin and insertion bones and move through its action.</span></span>
+      <span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Opens on the ${esc((legName || m.name).toLowerCase())} — its origin and insertion bones light up and it moves through its action. Every ${esc((m.group || m.name).toLowerCase())} muscle is tappable there too.</span></span>
       <span class="cta-3d-hero-go" aria-hidden="true">▶</span>
     </a>
     <p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`;
@@ -1472,11 +1473,12 @@ ANAT.muscles.forEach((m) => {
   const LEG3D_M = { quadriceps: 1, hamstrings: 1, glutes: 1, calves: 1 };
   const f3dM = subs.find((s) => s.fma);
   const legFmaM = (LEG3D_M[m.id] && f3dM) ? f3dM.fma : null; // the first-party 3D now leads muscle3D()
+  const legNameM = (LEG3D_M[m.id] && f3dM) ? f3dM.name : null;
   const subHtml = subs.length ? `<h2>The individual muscles in this group</h2>
     <p>“${esc(m.group || m.name)}” is really several separate muscles. Here is each one — where it runs, what it does, and how to find it on your own body.</p>
-    <div class="submuscle-list">${subs.map((s) => `<div class="submuscle"><h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3><p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}</div>`).join('')}</div>` : '';
+    <div class="submuscle-list">${subs.map((s) => `<div class="submuscle"><h3>${esc(s.name)}${s.plainName ? ` <span class="sm-plain">${esc(s.plainName)}</span>` : ''}</h3><p class="sm-oi"><span class="sm-k">Runs from</span> ${esc((s.origin && s.origin.attachTo) || '—')} <span class="sm-k">to</span> ${esc((s.insertion && s.insertion.attachTo) || '—')}</p>${(s.actions && s.actions.length) ? `<p class="sm-act"><span class="sm-k">What it does</span> ${esc(s.actions.join('; '))}</p>` : ''}${s.locate ? `<p class="sm-locate"><span class="sm-k">Find it on yourself</span> ${esc(s.locate)}</p>` : ''}${(s.fma && LEG3D_M[m.id]) ? `<p class="sm-3d"><a href="/body/leg?fma=${encodeURIComponent(s.fma)}">See the ${esc(s.name.toLowerCase())} in the interactive 3D leg →</a></p>` : ''}</div>`).join('')}</div>` : '';
   const body = `<div class="article"><h1>${esc(m.name)}</h1><p>${esc(m.overview)}</p>
-    ${muscle3D(m, legFmaM)}
+    ${muscle3D(m, legFmaM, legNameM)}
     <h2>Anatomy</h2><p><b>Muscles:</b> ${esc(m.group)}</p><p><b>Origin:</b> ${esc(a.origin || '')}</p><p><b>Insertion:</b> ${esc(a.insertion || '')}</p>
     <h2>What this muscle actually does</h2>
     <p>Each movement below is animated — the grey part stays still, the teal part is what this muscle moves.</p>

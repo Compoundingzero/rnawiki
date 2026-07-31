@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html lang="en-SG">
+<!-- lang was "en-SG" on all 577 pages while og:locale said "en_US" on 576 of them — the two
+     tags contradicted each other sitewide, and both narrowed a site that is written for
+     readers anywhere. Plain "en" is the honest signal: one language, no country claim. -->
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About RNAwiki — what it is, how it is made, and its limits</title>
-<meta name="description" content="RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, written for Singapore. What is inside, how it is built, how to read it — and what it is not.">
+<meta name="description" content="RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, open to readers anywhere. What is inside, how it is built, how to read it — and what it is not.">
 <link rel="canonical" href="https://rnawiki.com/about">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="RNAwiki">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en">
 <meta property="og:title" content="About RNAwiki — what it is, how it is made, and its limits">
-<meta property="og:description" content="RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, written for Singapore. What is inside, how it is built, how to read it — and what it is not.">
+<meta property="og:description" content="RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, open to readers anywhere. What is inside, how it is built, how to read it — and what it is not.">
 <meta property="og:url" content="https://rnawiki.com/about">
 <meta property="og:image" content="https://rnawiki.com/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://rnawiki.com/og.png">
 <meta name="twitter:title" content="About RNAwiki — what it is, how it is made, and its limits">
-<meta name="twitter:description" content="RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, written for Singapore. What is inside, how it is built, how to read it — and what it is not.">
+<meta name="twitter:description" content="RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, open to readers anywhere. What is inside, how it is built, how to read it — and what it is not.">
 <link rel="stylesheet" href="/styles.css">
 <noscript><style>.reveal,.reveal *{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
@@ -31,7 +34,7 @@
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap"><input id="search" type="search" placeholder="Search 170 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
-    <a href="/solve" class="nav-solve">Solve</a><a href="/plan">My Plan</a><a href="/learn">Learn</a>
+    <a href="/solve" class="nav-solve">Solve</a><a href="/where">Where it hurts</a><a href="/plan">My Plan</a><a href="/learn">Learn</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
@@ -40,12 +43,12 @@
     <span class="toc-lbl">On this page · 4 min read</span>
     <a href="#why-ldquo-rna-rdquo-dna-is-the-blueprint-rna-is-the-builder">Why &amp;ldquo;RNA&amp;rdquo;? DNA is the blueprint. RNA is the builder.</a><a href="#what-is-inside">What is inside</a><a href="#how-to-use-this-site-start-here">How to use this site — start here</a><a href="#how-to-read-the-signals">How to read the signals</a><a href="#what-this-site-will-not-do">What this site will not do</a><a href="#how-it-is-made-and-its-limits">How it is made, and its limits</a><a href="#where-to-go-next">Where to go next</a>
   </nav>
-      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
+      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician. In an emergency, call your local emergency number — <b>999</b>, <b>911</b>, <b>112</b>, <b>995</b> or <b>000</b> depending on where you are — or go to an emergency department.</div>
       
       <h2 id="why-ldquo-rna-rdquo-dna-is-the-blueprint-rna-is-the-builder"><a class="hanchor" href="#why-ldquo-rna-rdquo-dna-is-the-blueprint-rna-is-the-builder" aria-label="Link to this section">#</a>Why &ldquo;RNA&rdquo;? DNA is the blueprint. RNA is the builder.</h2>
       <p>Most people idolise DNA — the master code locked in the vault. But DNA does nothing on its own; a blueprint can't pour concrete. RNA is the action: the messenger and builder that reads your code and builds the proteins, tissue, and <span class="pgl"><label class="pgl-t">enzymes<input type="checkbox" class="pgl-c" aria-label="what enzyme means"></label><span class="pgl-d" role="note"><b>enzyme</b> — A protein that speeds up one specific chemical reaction in the body.</span></span> that become your physical reality. Every adaptation you force — a heavy lift, recovery from DOMS, a longevity protocol — is a wave of RNA translating your genes into a stronger, longer-lived you. RNAwiki is the messenger: it turns the foundational code of exercise science, biomechanics, and longevity into results you can use today.</p>
       <h2 id="what-is-inside"><a class="hanchor" href="#what-is-inside" aria-label="Link to this section">#</a>What is inside</h2>
-      <p><strong>170 compounds</strong> across <strong>20 categories</strong>, <strong>41 problems</strong> broken down into their root causes, and <strong>16 master pathways</strong> with their molecular targets. Each compound carries a plain-English explanation, the named <span class="pgl"><label class="pgl-t">receptor<input type="checkbox" class="pgl-c" aria-label="what receptor means"></label><span class="pgl-d" role="note"><b>receptor</b> — A protein a signal plugs into — like a lock that a specific key fits.</span></span> or <span class="pgl"><label class="pgl-t">enzyme<input type="checkbox" class="pgl-c" aria-label="what enzyme means"></label><span class="pgl-d" role="note"><b>enzyme</b> — A protein that speeds up one specific chemical reaction in the body.</span></span> it acts on, a link to the official gene or compound record, and an honest verdict.</p>
+      <p><strong>171 compounds</strong> across <strong>20 categories</strong>, <strong>41 problems</strong> broken down into their root causes, and <strong>16 master pathways</strong> with their molecular targets. Each compound carries a plain-English explanation, the named <span class="pgl"><label class="pgl-t">receptor<input type="checkbox" class="pgl-c" aria-label="what receptor means"></label><span class="pgl-d" role="note"><b>receptor</b> — A protein a signal plugs into — like a lock that a specific key fits.</span></span> or <span class="pgl"><label class="pgl-t">enzyme<input type="checkbox" class="pgl-c" aria-label="what enzyme means"></label><span class="pgl-d" role="note"><b>enzyme</b> — A protein that speeds up one specific chemical reaction in the body.</span></span> it acts on, a link to the official gene or compound record, and an honest verdict.</p>
       <h2 id="how-to-use-this-site-start-here"><a class="hanchor" href="#how-to-use-this-site-start-here" aria-label="Link to this section">#</a>How to use this site — start here</h2>
       <p><strong>Start from what you want to change, not from a compound.</strong> That is the one
       instruction that matters. Searching "ashwagandha" tells you about a plant. Starting from
@@ -79,7 +82,7 @@
         <li><strong>Badges</strong> say who <em>approved</em> a molecule. A badge is
         <em>not</em> a statement about where you can buy it — a medicine can be approved and still
         be prescription-only.</li>
-        <li><strong>Availability</strong> is shown separately, for Singapore: over the counter,
+        <li><strong>Availability</strong> is shown separately from approval — over the counter,
         pharmacy medicine, prescription only, controlled, or not approved.</li>
         <li><strong>Prescription medicines appear in a separate block</strong> headed "Medical
         options — discuss with a doctor". They are never in the Stack, never ranked, and never
@@ -109,7 +112,7 @@
       <h2 id="where-to-go-next"><a class="hanchor" href="#where-to-go-next" aria-label="Link to this section">#</a>Where to go next</h2>
       <ul><li><a href="/solve">Solve a problem or reach a goal</a></li><li><a href="/az">Every compound, A–Z</a></li><li><a href="/browse">Browse by category</a></li><li><a href="/pathways">The master pathways</a></li><li><a href="/learn">Start learning from the beginning</a></li></ul>
     </div></main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/#newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/where">Where it hurts</a> · <a href="/#newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
