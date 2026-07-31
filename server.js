@@ -94,13 +94,38 @@ function parseCookies(req) {
   c.split(';').forEach(p => { const i = p.indexOf('='); if (i > 0) out[p.slice(0, i).trim()] = decodeURIComponent(p.slice(i + 1).trim()); });
   return out;
 }
+// The default cap is deliberately small. Most POST handlers take the default and every one of them
+// validates down to a few hundred bytes of allow-listed fields (longest: proposals.change 4000,
+// feedback.body 2000, comments.body 2000) — but the old 1e5 default let each buffer 100 KB, so the
+// write guard's own 15-request burst allowed 1.5 MB of in-memory string per IP per burst on
+// endpoints that then throw 99% of it away. Handlers that genuinely need more pass an explicit cap
+// (edits 5e4, foods 8e4, plan 2e5, scan 4e5, clinician-interest 1.6e6, share-plan 2e4).
+// OVER-CAP BEHAVIOUR, corrected 2026-08-01 after measuring it. The old code called req.destroy()
+// the moment the cap was passed. That kills the connection, so the caller never receives the
+// handler's `400 Bad request` — in Chrome the fetch() rejects with an opaque "TypeError: Failed to
+// fetch", measured. With the default coming down from 1e5 to 1.6e4 that path gets hit far more
+// often, so it now has to behave. Two thresholds instead of one:
+//   over `cap`      -> stop accumulating and DROP what we have (this is the memory control, and it
+//                      is the whole point), but keep draining so 'end' fires and the handler can
+//                      answer a real 400 that a human can read;
+//   over `HARD_CAP` -> a genuine flood, not a fat form. Kill the socket.
+const BODY_HARD_CAP = 8e6;
 function readBody(req, maxBytes) {
-  const cap = maxBytes || 1e5;
+  const cap = maxBytes || 1.6e4;
   return new Promise((resolve) => {
-    let data = ''; let tooBig = false;
-    req.on('data', c => { data += c; if (data.length > cap) { tooBig = true; req.destroy(); } });
+    let data = ''; let seen = 0; let tooBig = false;
+    // Check BEFORE appending. The old order appended first, so one socket chunk could carry the
+    // buffer up to ~64 KB past the cap before the check fired.
+    req.on('data', c => {
+      seen += c.length;
+      if (seen > BODY_HARD_CAP) { tooBig = true; data = ''; return req.destroy(); }
+      if (tooBig) return;
+      if (data.length + c.length > cap) { tooBig = true; data = ''; return; }   // drain, do not destroy
+      data += c;
+    });
     req.on('end', () => { if (tooBig) return resolve(null); try { resolve(data ? (/x-www-form-urlencoded/i.test(req.headers['content-type']||'') ? ((q)=>Object.fromEntries(new URLSearchParams(q))) : JSON.parse)(data) : {}); } catch (e) { resolve(null); } });
     req.on('error', () => resolve(null));
+    req.on('aborted', () => resolve(null));
   });
 }
 function json(res, code, obj, headers) {
@@ -784,11 +809,18 @@ async function api(req, res, url) {
   }
   // Share a built protocol to clients: mint a short code that carries the exact selections
   if (seg[0] === 'share-plan' && method === 'POST') {
-    const b = await readBody(req, 1e5); const pid = clean(b && b.pid, 64), rcid = clean(b && b.rcid, 64);
+    const b = await readBody(req, 2e4); const pid = clean(b && b.pid, 64), rcid = clean(b && b.rcid, 64);
     if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const u = await currentUser(req);
     const sel = (b && b.plan && typeof b.plan === 'object') ? b.plan : {};
-    const plan = { moves: Array.isArray(sel.moves) ? sel.moves.slice(0, 100) : undefined, supps: sel.supps === 'none' ? 'none' : (Array.isArray(sel.supps) ? sel.supps.slice(0, 100) : undefined), functions: Array.isArray(sel.functions) ? sel.functions.slice(0, 20) : undefined };
+    // Bound the CONTENT, not only the count. slice(0,100) capped how many entries were stored but
+    // not how big each one was, and every entry is echoed verbatim to anyone holding the code
+    // (GET /api/shared-plan) — i.e. an unauthenticated, publicly-readable arbitrary-text store:
+    // one 100 KB POST bought one permanent 100 KB public blob, repeatable at the burst rate.
+    // These are ids (move/compound/function slugs), so 80 chars is generous. Cleaning each element
+    // also drops the non-string case, which survived Array.isArray + slice.
+    const ids = (a, n) => Array.isArray(a) ? a.filter(x => typeof x === 'string').map(x => clean(x, 80)).filter(Boolean).slice(0, n) : undefined;
+    const plan = { moves: ids(sel.moves, 100), supps: sel.supps === 'none' ? 'none' : ids(sel.supps, 100), functions: ids(sel.functions, 20) };
     const code = crypto.randomBytes(6).toString('base64url');
     await db.query('INSERT INTO shared_plans(code,author_user_id,pid,rcid,plan) VALUES($1,$2,$3,$4,$5)', [code, u ? u.id : null, pid, rcid, JSON.stringify(plan)]);
     return json(res, 200, { code, url: `${SITE_URL}/#/s/${code}` });
@@ -1027,7 +1059,9 @@ async function api(req, res, url) {
     // Compound pages = the pharmacology knowledge base: only verified pharmacist/MD/biomedical
     // researchers (or admin) may edit them.
     if (u.role !== 'admin' && !(u.domain === 'pharmacist' && u.domain_verified)) return json(res, 403, { error: 'Compound pages are maintained by verified pharmacology experts (pharmacist / MD / biomedical researcher). Apply for that role in your Pro dashboard.' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    // 6 EDITABLE fields x 6000 chars + note ~= 36 KB — the one default-cap handler that legitimately
+    // exceeds the 16 KB default. Authenticated and role-gated, so a larger ceiling is acceptable.
+    const b = await readBody(req, 5e4); if (!b) return json(res, 400, { error: 'Bad request' });
     const cid = clean(b.compoundId, 40); const name = clean(b.compoundName, 120);
     if (!cid || !b.fields || typeof b.fields !== 'object') return json(res, 400, { error: 'Nothing to save' });
     const fields = {};
@@ -1205,7 +1239,12 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'foods' && !seg[1] && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in to add a food' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    // 8e4, sized from a MEASUREMENT rather than from the 400000 literal below. app.js's own
+    // resizeImage(file, 256) is the only producer of photo_data; driven in Chrome against a
+    // worst-case 4032x3024 pure-noise photo (JPEG-incompressible) it emits a 35,131-char data URL.
+    // 8e4 is >2x that, plus the ~30 numeric nutrient fields. This handler must NOT take the 1.6e4
+    // default — that would reject every photo upload with a bare 'Bad request'.
+    const b = await readBody(req, 8e4); if (!b) return json(res, 400, { error: 'Bad request' });
     const name = clean(b.name, 80), serving = clean(b.serving, 60);
     if (!name) return json(res, 400, { error: 'Food name is required' });
     const num = (x) => (x === 0 || x) && isFinite(x) ? Number(x) : null;
@@ -1213,8 +1252,12 @@ async function api(req, res, url) {
     // optional micronutrients — the SAME 17-field model as foods.json and the Telegram bot (allowlist)
     const MICROS = ['sodium_mg', 'potassium_mg', 'calcium_mg', 'magnesium_mg', 'iron_mg', 'zinc_mg', 'vitamin_c_mg', 'vitamin_d_iu', 'omega3_mg', 'choline_mg', 'glycine_g'];
     MICROS.forEach((k) => { const val = num(b[k]); if (val != null) data[k] = val; });
-    // optional photo — a small client-resized data URL (parity with the bot's photo); capped so it can't bloat the row
-    const photo = typeof b.photo_data === 'string' && /^data:image\/(png|jpe?g|webp);base64,/.test(b.photo_data) && b.photo_data.length < 400000 ? b.photo_data : null;
+    // optional photo — a small client-resized data URL; capped so it can't bloat the row.
+    // 60000, was 400000. The 400 KB allowance never described anything real: the only producer is
+    // app.js resizeImage(file, 256), measured at 35,131 chars on a worst-case 12 MP noise photo,
+    // so the old literal was 11x larger than the largest payload the client can emit and admitted
+    // 365 KB of anything-else straight into the row's JSONB.
+    const photo = typeof b.photo_data === 'string' && /^data:image\/(png|jpe?g|webp);base64,/.test(b.photo_data) && b.photo_data.length < 60000 ? b.photo_data : null;
     if (photo) data.photo_data = photo;
     // a correction to an existing food carries its id — once approved it overrides that food
     const corrects = clean(b.corrects, 40); if (corrects) data.corrects = corrects;
@@ -1328,7 +1371,14 @@ async function api(req, res, url) {
   }
   // --- founding-clinician waitlist (public, no account needed) ---
   if (seg[0] === 'clinician-interest' && method === 'POST') {
-    const b = await readBody(req, 6e6); if (!b) return json(res, 400, { error: 'That was too large — please attach a smaller photo (under ~4 MB).' });
+    // 1.6e6 (was 6e6) ~= a 1.2 MB image once base64-expanded — ample for a phone photo of a licence,
+    // and now the largest body any UNAUTHENTICATED endpoint accepts. At 6e6 a single IP could push
+    // ~90 MB of base64 through Node's string buffer and into Postgres inside one 15-request burst,
+    // on a path with no account and no email verification. The three size limits also disagreed with
+    // each other: 6e6 read cap, a 5e6 store slice, and a message saying "~4 MB". Now two, and they
+    // agree. Verified no UX cost: `submitClinicianInterest` is declared at app.js:499 and CALLED
+    // NOWHERE — there is no intake form in the client today, so nothing can bounce.
+    const b = await readBody(req, 1.6e6); if (!b) return json(res, 400, { error: 'That was too large — please attach a smaller photo (under ~1 MB).' });
     const name = clean(b.name, 120), email = clean(b.email, 160).toLowerCase();
     const discipline = clean(b.discipline, 60), note = clean(b.note, 600);
     const country = clean(b.country, 60), license_no = clean(b.license_no, 100);
