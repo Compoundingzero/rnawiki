@@ -173,10 +173,10 @@ const stars = (n) => '★'.repeat(n) + '☆'.repeat(Math.max(0, 5 - n));
 // Singapore availability from approval status (see app.js sgAvailability) + shared-pathway synergy.
 const sgAvail = (c) => {
   switch (regClass(c)) {
-    case 'controlled': return { tag: 'Controlled substance', body: 'A controlled substance in Singapore (HSA / CNB) and most other countries. Illegal to buy, sell or possess without authorisation. Listed here for completeness only.' };
-    case 'prescription': return { tag: 'Prescription only', body: 'A prescription-only medicine. In Singapore it is dispensed by a licensed pharmacy against a doctor\'s prescription — it is not sold over the counter, and buying it from an online marketplace or an overseas seller is both unlawful and unsafe. Speak to a GP or polyclinic.' };
+    case 'controlled': return { tag: 'Controlled substance', body: 'A controlled substance in most countries, including Singapore (HSA / CNB). Illegal to buy, sell or possess without authorisation almost everywhere, though the exact schedule differs by country. Listed here for completeness only.' };
+    case 'prescription': return { tag: 'Prescription only', body: 'A prescription-only medicine in most countries: dispensed by a licensed pharmacy against a doctor\'s prescription, not sold over the counter. Buying it from an online marketplace or an overseas seller is unsafe, and in many countries unlawful. Classification varies — check the rules where you live, and speak to a doctor.' };
     case 'pharmacy': return { tag: 'Pharmacy medicine', body: 'A pharmacy-only medicine — sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' };
-    case 'unapproved': return { tag: 'Not approved', body: 'Not approved for human use in Singapore or most markets. Grey-market supply only: dose, purity and legality are all uncertain.' };
+    case 'unapproved': return { tag: 'Not approved', body: 'Not approved for human use in most markets, Singapore included. Grey-market supply only: dose, purity and legality are all uncertain wherever you are.' };
     case 'supplement':
     // Named retailers removed 2026-07-28: they read as a purchase recommendation, and in Singapore
     // "where to buy" copy is the kind of string that attracts the Medicines Act 1975 s.51
@@ -293,7 +293,12 @@ function protoFuel(rc) {
   if (!FO) return [];
   const want = new Set(rc.fuel_tags || []);
   return FO.foods.map((f) => ({ f, h: (f.tags || []).filter((t) => want.has(t)).length })).filter((x) => x.h > 0)
-    .sort((a, b) => (b.f.sg_local - a.f.sg_local) || (b.h - a.h)).slice(0, 6).map((x) => x.f);
+    // Ranked by how many of THIS cause's nutrient targets the food actually hits — not by whether
+    // it is on the Singapore list. The old comparator put sg_local first, so every reader anywhere
+    // got Singapore hawker food ahead of the food that best fits their target. Singapore items are
+    // still labelled, and still win ties, but they no longer outrank a better nutritional match.
+    .sort((a, b) => (b.h - a.h) || (b.f.sg_local - a.f.sg_local) || a.f.name.localeCompare(b.f.name))
+    .slice(0, 6).map((x) => x.f);
 }
 // Curated rows only. The tag join (protocol -> muscle group -> first 3 exercises under that
 // tag) produced lists that contradicted the page's own prescription text on 48 of the 49
@@ -406,7 +411,10 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
     itemListElement: breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: SITE_URL + b.route })),
   })}</script>` : '';
   return `<!DOCTYPE html>
-<html lang="en-SG">
+<!-- lang was "en-SG" on all 577 pages while og:locale said "en_US" on 576 of them — the two
+     tags contradicted each other sitewide, and both narrowed a site that is written for
+     readers anywhere. Plain "en" is the honest signal: one language, no country claim. -->
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -416,7 +424,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
 <meta name="robots" content="${robots || 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'}">
 <meta property="og:type" content="${ogType || 'article'}">
 <meta property="og:site_name" content="${SITE_NAME}">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${esc(url)}">
@@ -870,8 +878,10 @@ GRAPH.problems.forEach((p) => {
         <h3>When to reassess or see a doctor</h3>
         ${mdBlocks(plan.reassess, mdSafe)}
         <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
-        through a protocol — in Singapore call <b>995</b> for an emergency, or go to A&amp;E.
-        A polyclinic or GP is the right first stop for anything persistent.</p>
+        through a protocol — <b>call your local emergency number</b> and go to an emergency
+        department. (It is 999 in the UK and much of Asia, 911 in North America, 112 across Europe,
+        995 in Singapore, 000 in Australia.) A family doctor or general practice is the right first
+        stop for anything persistent.</p>
       </section>` : ''}
       ${timeline.length ? `<h3>What to expect, and by when</h3>
         <ul>${timeline.map((t) => `<li><b>${esc(t.when)}</b> — ${mdSafe(t.what)}</li>`).join('')}</ul>` : ''}
@@ -951,8 +961,9 @@ GRAPH.problems.forEach((p) => {
           ${tgts.map(([k, t]) => `<tr><td><b>${esc(nutrientLabel(k))}</b></td><td>${esc(String(t.target))}${esc(t.unit || '')}${t.type ? ` <span class="muted">(${esc(t.type)})</span>` : ''}</td><td>${esc(t.why || '—')}</td></tr>`).join('')}
           </tbody></table></div>` : ''}
         ${fuel.length ? `<h2>Foods that move these numbers</h2>
-          <p>Chosen because they carry the nutrients above. Marked items are on the Singapore list — hawker
-          dishes and the supermarket staples sold here; the rest are generic reference foods.</p>
+          <p>Chosen because they carry the nutrients above. Marked items are on our Singapore list — hawker dishes
+          and the staples sold there — kept because they are the best-documented set we have; the rest
+          are generic foods you can find almost anywhere.</p>
           <div class="tbl-wrap"><table class="fuel-tbl"><thead><tr><th>Food</th><th>Serving</th><th>kcal</th>${cols.map((k) => `<th>${esc(nutrientLabel(k))}</th>`).join('')}</tr></thead><tbody>
           ${fuel.map((f) => `<tr><td><b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg-chip">sold in SG</span>' : ''}</td><td>${esc(f.serving || '—')}</td><td>${num(f.kcal)}</td>${cols.map((k) => `<td>${num(f[k])}</td>`).join('')}</tr>`).join('')}
           </tbody></table></div>
@@ -968,7 +979,7 @@ GRAPH.problems.forEach((p) => {
       add(fuelRoute, shell({
         route: fuelRoute, robots: 'noindex,follow',
         title: `Fuel for ${p.name} — ${rcShort.toLowerCase()} · RNAwiki`,
-        desc: `Daily nutrient targets for ${p.name} (${rcShort.toLowerCase()}), why each one, and the Singapore foods that hit them.`,
+        desc: `Daily nutrient targets for ${p.name} (${rcShort.toLowerCase()}), why each one, and the everyday foods that hit them.`,
         breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel', route: fuelRoute }],
         body: fbody,
       }), { noSitemap: true });
@@ -1541,7 +1552,7 @@ ANAT.metabolism.forEach((p) => {
     <h2>4. Metabolism &amp; physiology</h2><ul>${li(ANAT.metabolism, (p) => `<li><a href="/physiology/${p.id}">${esc(p.name)}</a></li>`)}</ul>
     <h2>5. Muscle anatomy</h2><ul>${li(ANAT.muscles, (m) => `<li><a href="/muscle/${m.id}">${esc(m.name)}</a></li>`)}</ul>
     <h2>6. The systems (advanced)</h2><p>The 16 master <a href="/pathways">pathways</a> and their molecular targets — the deepest layer, for when you want to know <i>why</i>.</p></div>`;
-  add('/learn', shell({ route: '/learn', title: 'Learn — how the body works and how to read RNAwiki (Singapore)', desc: 'A guided primer: start from your goal, follow it down to the movement, food, compound, target and pathway. Energy systems, metabolism and muscle anatomy in plain English.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Learn', route: '/learn' }], body }));
+  add('/learn', shell({ route: '/learn', title: 'Learn — how the body works and how to read RNAwiki', desc: 'A guided primer: start from your goal, follow it down to the movement, food, compound, target and pathway. Energy systems, metabolism and muscle anatomy in plain English.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Learn', route: '/learn' }], body }));
 }
 { // Stack builder
   const top = D.compounds.slice().sort((a, b) => b.stars - a.stars).slice(0, 40);
@@ -1798,7 +1809,7 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
     <section class="goal-index">
       <h2>Or start from a goal</h2>
       <p class="gi-sub">${D.goals.length} goals, ${D.compounds.length} compounds, ranked by the strength of
-      the <b>human</b> evidence. Each one says up front how many you can actually buy in Singapore.</p>
+      the <b>human</b> evidence. Each one says up front what you can actually buy without a prescription.</p>
       <ul class="gi-list">${goalLinks}</ul>
     </section>
 
@@ -1838,10 +1849,10 @@ let written = 0;
 
   add('/about', shell({
     route: '/about', title: 'About RNAwiki — what it is, how it is made, and its limits',
-    desc: 'RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, written for Singapore. What is inside, how it is built, how to read it — and what it is not.',
+    desc: 'RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, open to readers anywhere. What is inside, how it is built, how to read it — and what it is not.',
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'About', route: '/about' }],
     body: `<div class="article"><h1>About RNAwiki</h1>
-      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
+      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician. In an emergency, call your local emergency number — <b>999</b>, <b>911</b>, <b>112</b>, <b>995</b> or <b>000</b> depending on where you are — or go to an emergency department.</div>
       ${/* MOVED HERE 2026-07-30 from the home page's `.why-rna` section, verbatim. It is good
             writing and it is not deleted -- but it answers "why is this site called RNAwiki?",
             which is not a question anyone arrives with, and on the landing page it cost the search
@@ -1884,7 +1895,7 @@ let written = 0;
         <li><strong>Badges</strong> say who <em>approved</em> a molecule. A badge is
         <em>not</em> a statement about where you can buy it — a medicine can be approved and still
         be prescription-only.</li>
-        <li><strong>Availability</strong> is shown separately, for Singapore: over the counter,
+        <li><strong>Availability</strong> is shown separately from approval — over the counter,
         pharmacy medicine, prescription only, controlled, or not approved.</li>
         <li><strong>Prescription medicines appear in a separate block</strong> headed "Medical
         options — discuss with a doctor". They are never in the Stack, never ranked, and never
@@ -1933,7 +1944,7 @@ let written = 0;
       <p>A badge says who has <em>approved</em> a molecule. <strong>It is not a statement about where you can buy it.</strong> A medicine can be approved and still be prescription-only.</p>
       <ul>${Object.entries(D.approvalLabels || {}).map(([b, l]) => `<li><b>${b}</b> — ${esc(l)}</li>`).join('')}</ul>
       <h2>Availability</h2>
-      <p>Availability is shown separately from approval, for Singapore: over the counter, pharmacy medicine, prescription only, controlled, or not approved. Where a compound is prescription-only we say so and do not give a dose.</p>
+      <p>Availability is shown separately from approval: over the counter, pharmacy medicine, prescription only, controlled, or not approved. The classification we show is Singapore's, because that is the one regulator we track in full — it is a good guide almost everywhere, but check your own country's rules before assuming. Where a compound is prescription-only we say so and do not give a dose.</p>
       <p><a href="/about">More about how this site is made →</a></p></div>` }));
 
   // ---- /methodology and /corrections ---------------------------------------------------------
@@ -2023,7 +2034,7 @@ let written = 0;
         <li>A star rating is a summary of a literature, and summaries lose information. The page body
         is where the honest detail is; read it before acting on a number.</li>
         <li>Coverage is uneven. Some compounds have a deep evidence layer, others a short profile.</li>
-        <li>Singapore availability and regulatory status change, and this site is a snapshot.</li>
+        <li>Availability and regulatory status differ between countries and change over time, and this site is a snapshot. Where we state a legal classification it is Singapore's unless we say otherwise.</li>
       </ul>
 
       <h2>Found something wrong?</h2>
@@ -2157,12 +2168,12 @@ let written = 0;
     const total = comparePairs.size;
     add('/compare', shell({
       route: '/compare', title: `Head-to-head: ${total} supplement comparisons · RNAwiki`,
-      desc: `Every side-by-side comparison on RNAwiki — ${total} pairs of supplements that are used for the same goal, compared on human evidence, mechanism, safety and Singapore availability.`,
+      desc: `Every side-by-side comparison on RNAwiki — ${total} pairs of supplements that are used for the same goal, compared on human evidence, mechanism, safety and availability.`,
       breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }],
       body: `<div class="article"><h1>Head-to-head comparisons</h1>
         <p class="lede">${total} pairs of compounds that people actually weigh against each other,
         because they are used for the same goal. Each page puts the two side by side on human
-        evidence, mechanism, side effects, interactions and what it costs in Singapore.</p>
+        evidence, mechanism, side effects, interactions and roughly what each costs.</p>
         <p>Only supplements and over-the-counter compounds are compared this way. We do not publish a
         "which works better" page that ranks a prescription or controlled medicine against a
         supplement — you cannot act on that comparison, and in Singapore advertising a
@@ -2187,7 +2198,7 @@ let written = 0;
   // replaces this the moment it boots, so a reader with a plan never sees it.
   add('/plan', shell({
     route: '/plan', title: 'My Plan — build one plan from your root cause · RNAwiki',
-    desc: 'One plan, built from the root cause of your problem: the movements to fix it, the Singapore foods to fuel it, and the compounds with human evidence for it. Free, no account needed.',
+    desc: 'One plan, built from the root cause of your problem: the movements to fix it, the foods to fuel it, and the compounds with human evidence for it. Free, no account needed.',
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'My Plan', route: '/plan' }],
     body: `<div class="article"><h1>My Plan</h1>
       <p class="lede">One plan, in one place, built from the <em>cause</em> of your problem rather
@@ -2205,7 +2216,7 @@ let written = 0;
         and the fix is different for each — the same knee pain has a different answer depending on
         whether the tendon, the joint surface or the hip is driving it. Each protocol opens with a
         short set of questions that narrows it.</li>
-        <li><strong>Start the plan.</strong> That pulls the movements, the Singapore foods and the
+        <li><strong>Start the plan.</strong> That pulls the movements, the foods and the
         evidence-ranked compounds for <em>that cause</em> into one list.</li>
         <li><strong>Work it, then reassess.</strong> Every protocol states how long to give it
         before you judge it, what "working" looks like, and the point at which the answer is a

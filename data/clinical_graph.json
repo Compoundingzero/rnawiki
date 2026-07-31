@@ -76,7 +76,10 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "omega-3",
+      "vitamin-c",
+      "glycine"
      ],
      "pathway_ids": [
       13
@@ -222,7 +225,10 @@
      "fuel_tags": [
       "anti-inflammatory",
       "omega-3",
-      "high-fiber"
+      "high-fiber",
+      "high-protein",
+      "vitamin-c",
+      "glycine"
      ],
      "pathway_ids": [
       13
@@ -316,7 +322,10 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "omega-3",
+      "high-fiber",
+      "magnesium"
      ],
      "pathway_ids": [
       13
@@ -397,7 +406,10 @@
       "posterior_chain"
      ],
      "fuel_tags": [
-      "high-protein"
+      "high-protein",
+      "omega-3",
+      "high-fiber",
+      "magnesium"
      ],
      "pathway_ids": [],
      "goal_ids": [
@@ -474,7 +486,9 @@
      ],
      "fuel_tags": [
       "anti-inflammatory",
-      "magnesium"
+      "magnesium",
+      "omega-3",
+      "high-fiber"
      ],
      "pathway_ids": [
       13
@@ -551,7 +565,10 @@
      ],
      "fuel_tags": [
       "collagen-synthesis",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "high-protein",
+      "vitamin-c",
+      "glycine"
      ],
      "pathway_ids": [
       13
@@ -707,7 +724,8 @@
      "fuel_tags": [
       "collagen-synthesis",
       "vitamin-c",
-      "high-protein"
+      "high-protein",
+      "glycine"
      ],
      "pathway_ids": [
       13
@@ -786,7 +804,9 @@
      ],
      "fuel_tags": [
       "collagen-synthesis",
-      "vitamin-c"
+      "vitamin-c",
+      "high-protein",
+      "glycine"
      ],
      "pathway_ids": [
       13
@@ -867,7 +887,10 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "leucine"
+      "leucine",
+      "calcium",
+      "vitamin-d",
+      "magnesium"
      ],
      "pathway_ids": [
       2,
@@ -957,7 +980,8 @@
      "fuel_tags": [
       "low-glycemic",
       "high-fiber",
-      "high-protein"
+      "high-protein",
+      "magnesium"
      ],
      "pathway_ids": [
       3,
@@ -1030,7 +1054,8 @@
      "fuel_tags": [
       "high-protein",
       "high-fiber",
-      "low-glycemic"
+      "low-glycemic",
+      "magnesium"
      ],
      "pathway_ids": [
       3
@@ -1178,7 +1203,9 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "high-fiber",
+      "magnesium"
      ],
      "pathway_ids": [
       10
@@ -1257,7 +1284,8 @@
      "fuel_tags": [
       "iron",
       "vitamin-c",
-      "high-protein"
+      "high-protein",
+      "magnesium"
      ],
      "pathway_ids": [
       11
@@ -1319,7 +1347,9 @@
      ],
      "fuel_tags": [
       "omega-3",
-      "magnesium"
+      "magnesium",
+      "iron",
+      "vitamin-c"
      ],
      "pathway_ids": [
       11,
@@ -1392,7 +1422,8 @@
      "fuel_tags": [
       "high-protein",
       "high-fiber",
-      "low-glycemic"
+      "low-glycemic",
+      "magnesium"
      ],
      "pathway_ids": [
       3
@@ -1468,7 +1499,10 @@
       "low_impact_deload"
      ],
      "fuel_tags": [
-      "high-protein"
+      "high-protein",
+      "vitamin-c",
+      "omega-3",
+      "zinc"
      ],
      "pathway_ids": [
       1
@@ -1553,7 +1587,8 @@
      "fuel_tags": [
       "nitrate",
       "potassium",
-      "high-fiber"
+      "high-fiber",
+      "magnesium"
      ],
      "pathway_ids": [
       4
@@ -1695,7 +1730,10 @@
       "omega-3",
       "low-glycemic",
       "anti-inflammatory",
-      "choline"
+      "choline",
+      "high-fiber",
+      "high-protein",
+      "magnesium"
      ],
      "pathway_ids": [
       13,
@@ -1852,7 +1890,9 @@
      ],
      "fuel_tags": [
       "omega-3",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "choline",
+      "high-fiber"
      ],
      "pathway_ids": [
       7,
@@ -1929,7 +1969,8 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "choline"
+      "choline",
+      "omega-3"
      ],
      "pathway_ids": [
       7,
@@ -2067,7 +2108,9 @@
      ],
      "fuel_tags": [
       "magnesium",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "omega-3",
+      "high-fiber"
      ],
      "pathway_ids": [
       10
@@ -2143,7 +2186,8 @@
       "mobility_stretch"
      ],
      "fuel_tags": [
-      "magnesium"
+      "magnesium",
+      "glycine"
      ],
      "pathway_ids": [
       0,
@@ -2214,7 +2258,8 @@
      ],
      "fuel_tags": [
       "magnesium",
-      "low-glycemic"
+      "low-glycemic",
+      "glycine"
      ],
      "pathway_ids": [
       10
@@ -2282,7 +2327,8 @@
       "conditioning_aerobic"
      ],
      "fuel_tags": [
-      "low-glycemic"
+      "low-glycemic",
+      "magnesium"
      ],
      "pathway_ids": [
       0
@@ -2350,7 +2396,9 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "zinc"
+      "zinc",
+      "vitamin-d",
+      "magnesium"
      ],
      "pathway_ids": [
       9,
@@ -2412,7 +2460,10 @@
       "compound_strength"
      ],
      "fuel_tags": [
-      "high-protein"
+      "high-protein",
+      "zinc",
+      "vitamin-d",
+      "magnesium"
      ],
      "pathway_ids": [
       9
@@ -2485,7 +2536,9 @@
      ],
      "fuel_tags": [
       "calcium",
-      "high-protein"
+      "high-protein",
+      "vitamin-d",
+      "magnesium"
      ],
      "pathway_ids": [
       1
@@ -2563,7 +2616,9 @@
      ],
      "fuel_tags": [
       "nitrate",
-      "zinc"
+      "zinc",
+      "vitamin-d",
+      "magnesium"
      ],
      "pathway_ids": [
       4,
@@ -2642,7 +2697,9 @@
      ],
      "fuel_tags": [
       "calcium",
-      "high-protein"
+      "high-protein",
+      "vitamin-d",
+      "magnesium"
      ],
      "pathway_ids": [
       1
@@ -2721,7 +2778,8 @@
      "fuel_tags": [
       "low-glycemic",
       "high-fiber",
-      "high-protein"
+      "high-protein",
+      "magnesium"
      ],
      "pathway_ids": [
       3,
@@ -2799,7 +2857,8 @@
       "collagen-synthesis",
       "vitamin-c",
       "omega-3",
-      "high-protein"
+      "high-protein",
+      "zinc"
      ],
      "pathway_ids": [
       13,
@@ -2870,7 +2929,11 @@
      "fuel_tags": [
       "polyphenol",
       "anti-inflammatory",
-      "vitamin-c"
+      "vitamin-c",
+      "omega-3",
+      "high-protein",
+      "zinc",
+      "high-fiber"
      ],
      "pathway_ids": [
       13
@@ -2953,7 +3016,11 @@
      "fuel_tags": [
       "low-glycemic",
       "zinc",
-      "omega-3"
+      "omega-3",
+      "vitamin-c",
+      "high-protein",
+      "high-fiber",
+      "magnesium"
      ],
      "pathway_ids": [
       1,
@@ -3040,7 +3107,8 @@
      "stretch_tags": [],
      "fuel_tags": [
       "zinc",
-      "high-protein"
+      "high-protein",
+      "iron"
      ],
      "pathway_ids": [
       1
@@ -3167,7 +3235,9 @@
      "fuel_tags": [
       "anti-inflammatory",
       "high-fiber",
-      "polyphenol"
+      "polyphenol",
+      "omega-3",
+      "glycine"
      ],
      "pathway_ids": [
       15,
@@ -3238,7 +3308,9 @@
      ],
      "fuel_tags": [
       "low-glycemic",
-      "high-fiber"
+      "high-fiber",
+      "high-protein",
+      "magnesium"
      ],
      "pathway_ids": [
       2,
@@ -3453,7 +3525,8 @@
      "fuel_tags": [
       "vitamin-c",
       "zinc",
-      "probiotic"
+      "probiotic",
+      "vitamin-d"
      ],
      "pathway_ids": [
       13
@@ -3872,7 +3945,10 @@
      ],
      "fuel_tags": [
       "high-protein",
-      "anti-inflammatory"
+      "anti-inflammatory",
+      "omega-3",
+      "high-fiber",
+      "magnesium"
      ],
      "pathway_ids": [
       10,

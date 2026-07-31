@@ -259,10 +259,10 @@
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
   function sgAvailability(c) {
     switch (regClass(c)) {
-      case 'controlled': return { tag: 'Controlled substance', cls: 'danger', body: 'A controlled substance in Singapore (HSA / CNB) and most other countries \u2014 illegal to buy, sell or possess without authorisation. Listed here for completeness only.' };
-      case 'prescription': return { tag: 'Prescription only', cls: 'rx', body: 'A prescription-only medicine. In Singapore it is dispensed by a licensed pharmacy against a doctor\'s prescription \u2014 it is not sold over the counter, and buying it from an online marketplace or an overseas seller is both unlawful and unsafe. Speak to a GP or polyclinic.' };
+      case 'controlled': return { tag: 'Controlled substance', cls: 'danger', body: 'A controlled substance in most countries, including Singapore (HSA / CNB) \u2014 illegal to buy, sell or possess without authorisation almost everywhere, though the exact schedule differs by country. Listed here for completeness only.' };
+      case 'prescription': return { tag: 'Prescription only', cls: 'rx', body: 'A prescription-only medicine in most countries: dispensed by a licensed pharmacy against a doctor\'s prescription, not sold over the counter. Buying it from an online marketplace or an overseas seller is unsafe, and in many countries unlawful. Classification varies \u2014 check the rules where you live, and speak to a doctor.' };
       case 'pharmacy': return { tag: 'Pharmacy medicine', cls: 'rx', body: 'A pharmacy-only medicine \u2014 sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' };
-      case 'unapproved': return { tag: 'Not approved', cls: 'warn', body: 'Not approved for human use in Singapore or most markets. Grey-market supply only: dose, purity and legality are all uncertain.' };
+      case 'unapproved': return { tag: 'Not approved', cls: 'warn', body: 'Not approved for human use in most markets, Singapore included. Grey-market supply only: dose, purity and legality are all uncertain wherever you are.' };
       case 'supplement':
       case 'otc': return { tag: 'Available over the counter', cls: 'ok', body: 'Widely available over the counter. Look for a third-party-tested / GMP mark and check the dose per serving.' };
       default: return { tag: 'Check locally', cls: '', body: 'Availability and legal status vary by country \u2014 check your national regulator (in Singapore, the HSA) before buying.' };
@@ -958,8 +958,8 @@
           box.innerHTML = `<div class="assess-top"><button class="assess-back" data-back>←</button><span></span><button class="assess-x" data-x aria-label="Close">✕</button></div>
             <div class="assess-result redflag${emerg ? ' emergency' : ''}"><div class="assess-rf-ic">${emerg ? '🚨' : '⚠️'}</div>
               <h2>${emerg ? 'This needs emergency care now' : 'See a clinician first'}</h2>
-              <p>${esc(emerg ? (rf.emergencyMessage || 'Call 995 in Singapore, or your local emergency number, now.') : (rf.message || 'Please get this assessed in person before starting a self-care plan.'))}</p>
-              ${emerg ? '<p class="assess-emerg-num"><b>Singapore: call 995</b> · or go straight to A&amp;E</p>' : ''}
+              <p>${esc(emerg ? (rf.emergencyMessage || 'Call your local emergency number now — 999, 911, 112, 995 or 000 depending on where you are.') : (rf.message || 'Please get this assessed in person before starting a self-care plan.'))}</p>
+              ${emerg ? '<p class="assess-emerg-num"><b>Call your local emergency number</b> — 999 · 911 · 112 · 995 · 000 — or go straight to an emergency department</p>' : ''}
               <div class="assess-actions">${emerg ? '' : '<button class="assess-go2" data-anyway>Show the protocol for background</button>'}<button class="assess-close2" data-x>Close</button></div></div>`;
         } else {
           const { sc, ranked } = assessScore(A, answers);
@@ -2846,7 +2846,7 @@
     const nP = (GRAPH.problems || []).length;
     const nR = (GRAPH.problems || []).reduce((n, p) => n + ((p.root_causes || []).length), 0);
     return `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'About' }])}<h1>About RNAwiki</h1>
-      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician — in Singapore, a GP or polyclinic, and <b>995</b> or A&amp;E in an emergency.</div>
+      <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician. In an emergency, call your local emergency number — <b>999</b>, <b>911</b>, <b>112</b>, <b>995</b> or <b>000</b> depending on where you are — or go to an emergency department.</div>
 
       <h2>What is inside</h2>
       <p><strong>${c.compounds} compounds</strong> across <strong>${c.categories} categories</strong>, <strong>${nP} problems</strong> broken down into <strong>${nR} root-cause protocols</strong>, and ${(D.pathways || []).length} master pathways with their molecular targets. Free, no paywall, no account needed.</p>
@@ -3574,7 +3574,9 @@
       fuel = FO.foods
         .map(f => ({ f, hits: (f.tags || []).filter(t => wanted.has(t)).length }))
         .filter(x => x.hits > 0)
-        .sort((a, b) => (b.f.sg_local - a.f.sg_local) || (b.hits - a.hits))
+        // Ranked by nutrient fit first, not by Singapore-list membership — see the note on
+        // protoFuel() in build/prerender.js. Keeps the two documents telling the same story.
+        .sort((a, b) => (b.hits - a.hits) || (b.f.sg_local - a.f.sg_local) || a.f.name.localeCompare(b.f.name))
         .slice(0, 6).map(x => x.f);
     }
     // --- STACK: resolve hero compounds by name, backfill from goals/pathways, rank by evidence ---

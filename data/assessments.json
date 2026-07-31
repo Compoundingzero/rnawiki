@@ -159,7 +159,7 @@
     1,
     2
    ],
-   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call 995 or go straight to A&E; elsewhere call your local emergency number. Do not wait to see if it settles."
+   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call your local emergency number or go straight to an emergency department; elsewhere call your local emergency number. Do not wait to see if it settles."
   },
   "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
  },
@@ -236,7 +236,7 @@
    "emergencyIdx": [
     0
    ],
-   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call 995 or go straight to A&E; elsewhere call your local emergency number. Do not wait to see if it settles."
+   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call your local emergency number or go straight to an emergency department; elsewhere call your local emergency number. Do not wait to see if it settles."
   },
   "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
  },
@@ -312,7 +312,7 @@
    "emergencyIdx": [
     0
    ],
-   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call 995 or go straight to A&E; elsewhere call your local emergency number. Do not wait to see if it settles."
+   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call your local emergency number or go straight to an emergency department; elsewhere call your local emergency number. Do not wait to see if it settles."
   },
   "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
  },
@@ -458,7 +458,7 @@
    "emergencyIdx": [
     1
    ],
-   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call 995 or go straight to A&E; elsewhere call your local emergency number. Do not wait to see if it settles."
+   "emergencyMessage": "Some of what you have tapped can be an emergency, not something to work through with a self-care plan. In Singapore call your local emergency number or go straight to an emergency department; elsewhere call your local emergency number. Do not wait to see if it settles."
   },
   "notMedicalAdvice": "This is an educational self-check, not a diagnosis. If in doubt, see a clinician."
  },
