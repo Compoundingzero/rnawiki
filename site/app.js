@@ -3203,6 +3203,105 @@
     showView('insights');
   }
 
+  // ---------- analytics (W1) — see docs/EVENT_SCHEMA.md ----------
+  // That document is the spec, this is the implementation, and build/parse.js fails the build if
+  // they disagree. Read it before adding an event.
+  //
+  // WHY THIS IS NOT A THIRD-PARTY <script> TAG. GoatCounter's own count.js builds its payload in
+  // get_data(): `p` (path), `r` (referrer) and `t` (title) are all overridable, but `q:
+  // location.search` is set unconditionally with NO hook, and get_path() returns
+  // `loc.pathname + loc.search`. On this site all four channels carry a health disclosure: the home
+  // hero is a real <form action="/solve" method="get" name="q">, so /solve?q=<the reader's own
+  // words> is a URL the site's own primary CTA generates; titles read "Bremelanotide (PT-141):
+  // dosage, evidence…"; and a same-origin document.referrer is the full previous URL. There is no
+  // configuration of count.js that withholds them. So we call the endpoint ourselves and send only
+  // what is in the vocabulary below.
+  //
+  // TRANSPORT is an <img> GET, which the existing CSP `img-src 'self' data: https:` already
+  // permits — this install needs no CSP change and adds no script origin. Do NOT "upgrade" it to
+  // navigator.sendBeacon without first adding the host to connect-src: sendBeacon is governed by
+  // connect-src, would be blocked, and would fail silently (the exact way Cloudflare Web Analytics
+  // and the PubChem fetch both failed before — see the CSP comments in server.js).
+  const A_CODE = null; // ← set to the GoatCounter site code (e.g. 'rnawiki') to switch this on. null = fully inert.
+  // ALLOWLIST, not blocklist. Verbatim paths are only the routes that encode no health interest.
+  // A route template added tomorrow and forgotten here fails CLOSED to /t/other; it can never leak
+  // a health-encoding URL by omission.
+  const A_PUBLIC = ['/', '/about', '/anatomy', '/az', '/body', '/browse', '/compare', '/corrections',
+    '/learn', '/legend', '/methodology', '/pathways', '/plan', '/solve', '/stack', '/where'];
+  const A_TPL = {
+    c: 'compound', compare: 'compare-pair', target: 'target', pathway: 'pathway',
+    protocol: 'protocol', clinic: 'protocol', problem: 'problem', goal: 'goal', muscle: 'muscle',
+    learn: 'learn-module', energy: 'energy', physiology: 'physiology', body: 'body-region',
+    fuel: 'fuel', exercise: 'exercise', fork: 'fork', progress: 'progress', s: 'shared-plan',
+    admin: 'admin',
+  };
+  const A_TPLV = Object.keys(A_TPL).map(k => A_TPL[k]).concat('other');
+  // Search-result kinds, mapped from the index's own `kind` strings to the closed vocabulary.
+  const A_KIND = {
+    Compound: 'compound', Target: 'target', Pathway: 'pathway', Learn: 'learn-module',
+    Muscle: 'muscle', 'Energy system': 'energy', Physiology: 'physiology', Protocol: 'protocol',
+  };
+  // Every event REQUIRES a suffix drawn from a closed array. ev() fails shut on anything else, so
+  // "a compound name can never be sent" is a property of this data structure, not a promise.
+  const A_EVENTS = {
+    'search-issued': ['hit', 'miss'],
+    'search-chosen': A_TPLV,
+    'citation-outbound': ['pubmed', 'pmc', 'ncbi', 'pubchem', 'fda', 'other'],
+  };
+  function aTemplate(parts) {
+    const p = '/' + (parts || []).join('/');
+    if (A_PUBLIC.indexOf(p) >= 0) return p;
+    if (!parts || !parts.length) return '/';
+    return '/t/' + (A_TPL[parts[0]] || 'other');
+  }
+  function aRef() {
+    // Only the ORIGIN of an EXTERNAL referrer. A same-origin referrer is the reader's previous
+    // RNAwiki URL — exactly the health disclosure this module exists to withhold. An external
+    // referrer's PATH is dropped too: a link from a forum thread whose URL names a condition
+    // discloses the reader's health state just as effectively as our own URL would.
+    try {
+      if (!document.referrer) return '';
+      const u = new URL(document.referrer);
+      if (u.host === location.host) return '';
+      return '&r=' + encodeURIComponent(u.origin);
+    } catch (e) { return ''; }
+  }
+  function aSend(p, isEvent) {
+    if (!A_CODE) return;
+    if (navigator.webdriver) return;              // headless Chrome / the QA harness must not move the counts
+    try {
+      new Image().src = 'https://' + A_CODE + '.goatcounter.com/count'
+        + '?p=' + encodeURIComponent(p)
+        + '&t=' + encodeURIComponent(p)           // the template name, NEVER document.title
+        + (isEvent ? '&e=1' : '')
+        + '&s=' + ((window.screen && screen.width) || 0)
+        + '&rnd=' + Date.now()
+        + aRef();
+    } catch (e) { }
+  }
+  const RNA_A = {
+    pv(parts) { aSend(aTemplate(parts), false); },
+    ev(name, suffix) {
+      const allowed = A_EVENTS[name];
+      if (!allowed || allowed.indexOf(String(suffix)) < 0) return;  // closed vocabulary, fails shut
+      aSend('e/' + name + '/' + suffix, true);
+    },
+  };
+  // ONE delegated listener for outbound citation clicks. app.js emits PubMed links from many
+  // target="_blank" rel="noopener" call sites; a listener cannot drift the way N edits can, and
+  // because those links open a new tab the page is not unloaded, so an Image() beacon completes.
+  // Only the HOST CLASS travels. The PMID is withheld: a paper identifies a condition.
+  document.addEventListener('click', e => {
+    const a = e.target && e.target.closest && e.target.closest('a[href^="http"]');
+    if (!a) return;
+    let h; try { h = new URL(a.href).host; } catch (err) { return; }
+    if (h === location.host) return;
+    RNA_A.ev('citation-outbound',
+      /pubmed\.ncbi/.test(h) ? 'pubmed' : /pmc\.ncbi/.test(h) ? 'pmc'
+        : /pubchem/.test(h) ? 'pubchem' : /ncbi/.test(h) ? 'ncbi'
+          : /fda\.gov/.test(h) ? 'fda' : 'other');
+  }, true);
+
   // ---------- search ----------
   const searchBox = document.getElementById('search');
   const searchOut = document.getElementById('search-results');
@@ -3222,16 +3321,34 @@
     const scored = index.map(it => { let s = 0; const t = it.title.toLowerCase(); terms.forEach(x => { if (t === x) s += 14; else if (t.startsWith(x)) s += 10; else if (t.includes(x)) s += 6; else if (it.hay.includes(x)) s += 2; }); return { it, s }; })
       .filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.it.title.length - b.it.title.length).slice(0, 12);
     searchOut.innerHTML = scored.length
-      ? scored.map(x => `<a href="${x.it.href}"><span class="sr-kind">${x.it.kind}</span> ${x.it.title} <span style="color:var(--faint);font-size:.82rem">· ${x.it.sub}</span></a>`).join('')
+      ? scored.map(x => `<a href="${x.it.href}" data-k="${A_KIND[x.it.kind] || 'other'}"><span class="sr-kind">${x.it.kind}</span> ${x.it.title} <span style="color:var(--faint);font-size:.82rem">· ${x.it.sub}</span></a>`).join('')
       : `<div class="sr-empty">Can’t find <b>“${esc(rawQ)}”</b>? <button type="button" class="sr-request">Request it or leave feedback →</button></div>`;
     searchOut.hidden = false;
     const rq = searchOut.querySelector('.sr-request');
     if (rq) rq.onclick = e => { e.preventDefault(); e.stopPropagation(); searchOut.hidden = true; openFeedbackModal('Requesting: "' + rawQ + '" — '); };
   }
-  searchBox.addEventListener('input', () => runSearch(searchBox.value));
+  // search-issued fires on a 900 ms IDLE, not per keystroke. Per-keystroke would emit a prefix
+  // series — one hit per character — which is a timing side channel that reconstructs the length
+  // and rhythm of what the reader typed even though the text itself is never sent. The only thing
+  // that travels is whether the search matched anything. See docs/EVENT_SCHEMA.md.
+  let _aSearchT = null;
+  searchBox.addEventListener('input', () => {
+    runSearch(searchBox.value);
+    clearTimeout(_aSearchT);
+    if (!searchBox.value.trim()) return;
+    _aSearchT = setTimeout(() => {
+      RNA_A.ev('search-issued', searchOut.querySelector('a') ? 'hit' : 'miss');
+    }, 900);
+  });
   searchBox.addEventListener('focus', () => { if (searchBox.value) runSearch(searchBox.value); });
   document.addEventListener('click', e => { if (!e.target.closest('.search-wrap')) searchOut.hidden = true; });
-  searchOut.addEventListener('click', () => { searchOut.hidden = true; searchBox.value = ''; });
+  searchOut.addEventListener('click', (e) => {
+    // Only the KIND CLASS of the chosen result — never its title, href or position. Which
+    // compound a reader picked out of a search is the same disclosure as the URL itself.
+    const a = e.target && e.target.closest && e.target.closest('a[data-k]');
+    if (a) RNA_A.ev('search-chosen', a.getAttribute('data-k'));
+    searchOut.hidden = true; searchBox.value = '';
+  });
 
   // ---------- glossary: tap any jargon term to get a plain definition ----------
   const GLOSSARY = {
@@ -6178,6 +6295,10 @@
     if (parts[0] === 'fork' && parts[1]) mountForkPage(parts[1]);
     if (parts[0] === 'energy' && energyById[parts[1]]) renderComments('en:' + parts[1], energyById[parts[1]].name);
     if (parts[0] === 'physiology' && physioById[parts[1]]) renderComments('ph:' + parts[1], physioById[parts[1]].name);
+    // Page view LAST, and by TEMPLATE only — aTemplate() collapses /c/ssris-… to /t/compound.
+    // `parts` is the router's own already-parsed path with the query string stripped upstream
+    // (route() splits on '?'), which is why nothing here can see /solve?q=<symptom>.
+    try { RNA_A.pv(parts); } catch (e) { }
   }
   // intercept internal link clicks -> pushState navigation (keeps #/ links working)
   document.addEventListener('click', e => {
