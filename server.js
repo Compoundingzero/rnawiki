@@ -661,6 +661,32 @@ function looksAutomated(req) {
   if (!ua) return true;
   return /\b(curl|wget|python-requests|python-urllib|libwww|httpie|scrapy|go-http-client|java|okhttp|axios\/|node-fetch|postman)\b/i.test(ua);
 }
+// ---- GET-side counters ----
+// The chokepoint above guards WRITE_METHODS only, which is correct — reads must stay anonymous and
+// unthrottled. But three GET handlers perform an UPDATE ... + 1: /api/track (booking_clicks),
+// /api/shared-plan (shared_plans.clicks) and /api/u/:handle (profile_views). All three are numbers
+// RNAwiki shows to the expert they describe, and all three move for a bare `curl` with no Origin
+// and no browser UA — measured, 21 consecutive curl GETs of /api/track all returned 204 and all
+// reached the UPDATE. A count anyone can inflate from a shell loop — or that a crawler or a
+// link-prefetcher inflates by accident — is a fabricated count under product constraint 5.
+// Count each (ip, counter, target) at most once per 6h and never count something that announces
+// itself as automated. Deliberately its OWN map, NOT rateAllow(): sharing the write bucket would
+// let a crawler exhaust a real user's write budget.
+const CT_SEEN = new Map();                 // 'ip|kind|target' -> ts
+const CT_TTL_MS = 6 * 60 * 60 * 1000;
+const CT_MAX_KEYS = 20000;
+function countOnce(req, kind, target) {
+  if (looksAutomated(req)) return false;
+  const now = Date.now(), k = clientIp(req) + '|' + kind + '|' + String(target);
+  const prev = CT_SEEN.get(k);
+  if (prev && now - prev < CT_TTL_MS) return false;
+  if (CT_SEEN.size >= CT_MAX_KEYS) {
+    for (const [kk, ts] of CT_SEEN) if (now - ts >= CT_TTL_MS) CT_SEEN.delete(kk);
+    if (CT_SEEN.size >= CT_MAX_KEYS) CT_SEEN.clear();
+  }
+  CT_SEEN.set(k, now);
+  return true;
+}
 // Returns true if the request was blocked (and the response already sent).
 function writeBlocked(req, res) {
   if (!sameOrigin(req)) { json(res, 403, { error: 'Cross-origin writes are not accepted.' }); return true; }
@@ -683,7 +709,11 @@ async function api(req, res, url) {
   if (seg[0] === 'track' && req.method === 'GET') {
     const q = new URL('http://x/' + url).searchParams;
     const e = clean(q.get('e'), 20), handle = clean(q.get('u'), 24);
-    if (db.enabled && e === 'booking' && handle) db.query('UPDATE users SET booking_clicks = booking_clicks + 1 WHERE lower(username)=lower($1)', [handle]).catch(() => {});
+    // The single easiest number on the site to fabricate: per-username, caller-chosen, no dedupe of
+    // any kind, and it is the lead-gen metric shown to the expert whose booking link it counts.
+    // NOTE the definition change: genuine repeat clicks by the same person inside 6h now count once,
+    // which is what a click-THROUGH metric should mean anyway. Say so wherever it is displayed.
+    if (db.enabled && e === 'booking' && handle && countOnce(req, 'booking', handle)) db.query('UPDATE users SET booking_clicks = booking_clicks + 1 WHERE lower(username)=lower($1)', [handle]).catch(() => {});
     res.writeHead(204); return res.end();
   }
   // Public photo proxy for user-submitted food images: serves the inline data-URL upload. (The
@@ -987,7 +1017,10 @@ async function api(req, res, url) {
     const q = new URL('http://x/' + url).searchParams; const code = clean(q.get('code'), 32);
     const r = await db.query('SELECT code,author_user_id,pid,rcid,plan FROM shared_plans WHERE code=$1', [code]);
     if (!r.rows[0]) return json(res, 404, { error: 'Not found' });
-    db.query('UPDATE shared_plans SET clicks=clicks+1 WHERE code=$1', [code]).catch(() => {});
+    // A share code is a public URL, so every preview-unfurl (WhatsApp, Telegram, Slack) and every
+    // reload counted as a click. This is the number a trainer would use to judge whether sharing
+    // works — instrumentation, which is what W1 exists to make trustworthy.
+    if (countOnce(req, 'shareclick', code)) db.query('UPDATE shared_plans SET clicks=clicks+1 WHERE code=$1', [code]).catch(() => {});
     const row = r.rows[0]; let author = null;
     if (row.author_user_id) { try { const a = (await db.query('SELECT username FROM users WHERE id=$1', [row.author_user_id])).rows[0]; author = a ? a.username : null; } catch (e) {} }
     return json(res, 200, { pid: row.pid, rcid: row.rcid, plan: row.plan || {}, author });
@@ -1171,7 +1204,10 @@ async function api(req, res, url) {
     const ur = await db.query('SELECT id,username,domain,domain_verified,reputation_points,socials,badges,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
     const uu = ur.rows[0];
     if (!uu) return json(res, 404, { error: 'No such user' });
-    db.query('UPDATE users SET profile_views = profile_views + 1 WHERE id=$1', [uu.id]).catch(() => {});
+    // /u/:handle is DELIBERATELY crawlable — serveProfileShell injects Person JSON-LD and OG tags
+    // precisely so search engines fetch it — so this number was dominated by bots, and the SPA
+    // called this API again on every route into the profile.
+    if (countOnce(req, 'profileview', uu.id)) db.query('UPDATE users SET profile_views = profile_views + 1 WHERE id=$1', [uu.id]).catch(() => {});
     const accepted = await db.query(`SELECT problem_id,root_cause_id,layer,domain,change,created_at
       FROM proposals WHERE user_id=$1 AND status='endorsed' ORDER BY created_at DESC LIMIT 30`, [uu.id]);
     const counts = (await db.query(`SELECT
