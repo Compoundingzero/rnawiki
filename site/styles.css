@@ -3689,3 +3689,28 @@ a.seed-chip:hover { text-decoration: none; }
 .fuel-tbl td{padding:.5rem .6rem .5rem 0;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.45}
 .fuel-tbl tr:last-child td{border-bottom:none}
 .sg-chip{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.05rem .4rem;vertical-align:middle}
+
+/* 3D body map — tissue legend + origin/insertion markers (2026-07-31).
+   The model rendered every mesh in one flat grey, so muscle and bone were indistinguishable. The
+   engine now colours by tissue; these are the on-page key and the labelled attachment markers. */
+.bm-key { list-style: none; margin: .5rem 0 1.1rem; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; font-size: .84rem; color: var(--muted); }
+.bm-key li { display: flex; align-items: center; gap: .4rem; }
+.bm-sw { width: 14px; height: 14px; border-radius: 4px; flex: 0 0 auto; border: 1px solid rgba(0,0,0,.12); }
+.bm-sw-muscle { background: #b3453c; }
+.bm-sw-tendon { background: #e4ddcd; }
+.bm-sw-bone   { background: #e8dcc0; }
+.bm-sw-origin { background: #2563eb; }
+.bm-sw-insert { background: #f59e0b; }
+
+.bm-canvas { position: relative; }   /* markers are absolutely positioned against the canvas box */
+.bm-marker { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: .3rem; pointer-events: none; z-index: 3; white-space: nowrap; }
+.bm-dot { width: 9px; height: 9px; border-radius: 50%; box-shadow: 0 0 0 2px #fff, 0 1px 3px rgba(0,0,0,.35); }
+.bm-lab { font-size: .62rem; font-weight: 700; letter-spacing: .07em; padding: .12rem .38rem; border-radius: 999px; color: #fff; box-shadow: 0 1px 4px rgba(0,0,0,.28); }
+.bm-origin .bm-dot, .bm-origin .bm-lab { background: #2563eb; }
+.bm-insertion .bm-dot, .bm-insertion .bm-lab { background: #f59e0b; }
+@media (prefers-reduced-motion: reduce) { .bm-marker { transition: none; } }
+.bm-loading { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; min-height: 340px; text-align: center; padding: 2rem 1rem; color: var(--muted); }
+.bm-loading p { margin: 0; font-size: .9rem; }
+.bm-spin { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--accent); animation: bm-spin 0.9s linear infinite; }
+@keyframes bm-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .bm-spin { animation: none; border-top-color: var(--line); } }

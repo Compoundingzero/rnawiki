@@ -117,6 +117,39 @@ const RIGS = {
 // ---- the engine ------------------------------------------------------------------------------
 // mountBodyMap(container, opts) -> a controller { focus(fma), playAction(fma, action), setLayer,
 //   sliceAt, snapshot(), dispose() }. opts: { region='leg', focusFma, autoplayAction, onSelect }.
+// Write a red-belly -> pale-ends colour ramp into a muscle geometry, along its own longest axis.
+// A muscle's tendons are at its two extremities, so position along the long axis is a reasonable
+// stand-in for "how tendinous is this part". Returns false if the geometry has no positions, so the
+// caller can fall back to a flat colour rather than render an untinted grey mesh.
+function tendonRamp(geom, muscle, tendon) {
+  const pos = geom && geom.attributes && geom.attributes.position;
+  if (!pos || !pos.count) return false;
+  if (!geom.boundingBox) geom.computeBoundingBox();
+  const bb = geom.boundingBox;
+  const span = [bb.max.x - bb.min.x, bb.max.y - bb.min.y, bb.max.z - bb.min.z];
+  const ax = span.indexOf(Math.max(...span));            // the muscle's long axis
+  const lo = [bb.min.x, bb.min.y, bb.min.z][ax], hi = [bb.max.x, bb.max.y, bb.max.z][ax];
+  const len = (hi - lo) || 1;
+  const m = muscle || MUSCLE_RED_S, t = tendon || TENDON_PEARL_S;
+  const col = new Float32Array(pos.count * 3);
+  for (let i = 0; i < pos.count; i++) {
+    const v = ax === 0 ? pos.getX(i) : ax === 1 ? pos.getY(i) : pos.getZ(i);
+    const u = (v - lo) / len;                             // 0..1 along the muscle
+    // Distance from the nearest end, remapped so the middle ~64% is fully muscle and each outer
+    // ~18% fades to tendon. smoothstep keeps the transition from reading as a hard painted band.
+    let e = Math.min(u, 1 - u) / 0.18; if (e > 1) e = 1;
+    const k = e * e * (3 - 2 * e);
+    col[i * 3] = t.r + (m.r - t.r) * k;
+    col[i * 3 + 1] = t.g + (m.g - t.g) * k;
+    col[i * 3 + 2] = t.b + (m.b - t.b) * k;
+  }
+  geom.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  return true;
+}
+// Module-scope copies so tendonRamp can run without being handed the palette every call.
+const MUSCLE_RED_S = new THREE.Color(0xb3453c);
+const TENDON_PEARL_S = new THREE.Color(0xe4ddcd);
+
 export async function mountBodyMap(container, opts = {}) {
   const region = opts.region || 'leg';
   const rig = RIGS[region] || {};
@@ -132,9 +165,15 @@ export async function mountBodyMap(container, opts = {}) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.01, 100);
-  camera.position.set(0, 0.5, 2.4);
-  scene.add(new THREE.HemisphereLight(0xffffff, 0x556070, 1.1));
-  const key = new THREE.DirectionalLight(0xffffff, 0.8); key.position.set(1, 2, 2); scene.add(key);
+  camera.position.set(0, 0.15, 2.4); // replaced by fitToModel() once the geometry's real bounds are known
+  // Lighting rebuilt 2026-07-31. One flat hemisphere plus one key light rendered the model as a
+  // silhouette with almost no surface form — muscle bellies looked like the same slab as bone. A
+  // key/fill/rim set gives the fibres somewhere to catch light, which is most of what makes an
+  // anatomy render legible; the colour ramp does the rest.
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x4a5568, 0.75));
+  const key = new THREE.DirectionalLight(0xfff6ec, 1.05); key.position.set(1.2, 1.8, 1.6); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xdce6ff, 0.42); fill.position.set(-1.6, 0.4, 1.0); scene.add(fill);
+  const rim = new THREE.DirectionalLight(0xffffff, 0.55); rim.position.set(-0.4, 1.0, -2.0); scene.add(rim);
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true; controls.dampingFactor = 0.08;
@@ -151,7 +190,22 @@ export async function mountBodyMap(container, opts = {}) {
   const byFma = new Map(); // fma -> mesh (pickable muscles)
   const byFmaAll = new Map(); // fma -> mesh (ALL meshes incl. bones — for attachment highlighting)
   const boneFmas = new Set(); // fma ids whose layer is 'skeleton'
+  // Declared HERE, not next to setAttachMarkers(): tick() starts before that point in the
+  // function body, and updateMarkers() reading a `const` from its temporal dead zone threw
+  // "Cannot access 'markerEls' before initialization" on every single frame — which killed the
+  // whole mount, so the page fell back to "3D model couldn't load".
+  const markerEls = [];      // [{el, point}] labelled origin/insertion pins, projected each frame
   const TEAL = new THREE.Color(0x0d9488), BONE_BLUE = new THREE.Color(0x2563eb), BONE_AMBER = new THREE.Color(0xf59e0b);
+  // ---- TISSUE PALETTE (2026-07-31) -------------------------------------------------------------
+  // Felix, looking at the live model on a laptop: "i am unable to tell apart the muscles from the
+  // structure". He was right, and the screenshot showed why — BodyParts3D ships every mesh with the
+  // same neutral material, so muscle and bone rendered as one undifferentiated grey mass. Colour is
+  // the whole point of an anatomy render: it is the only channel that says "this is a different
+  // tissue". These are the colours of every anatomy plate ever drawn.
+  const MUSCLE_RED = new THREE.Color(0xb3453c);   // muscle belly
+  const TENDON_PEARL = new THREE.Color(0xe4ddcd); // tendon / aponeurosis at the ends
+  const BONE_IVORY = new THREE.Color(0xe8dcc0);   // bone
+  const WHITE = new THREE.Color(0xffffff);
   const highlightMat = { color: new THREE.Color(0x0d9488), emissive: new THREE.Color(0x0d9488), emissiveIntensity: 0.45 };
   let root = null;
 
@@ -175,6 +229,24 @@ export async function mountBodyMap(container, opts = {}) {
   const s = 1.5 / (size.y || 1);
   root.scale.setScalar(s);
   root.position.sub(centre.multiplyScalar(s));
+  // Frame the whole model to the CONTAINER, not to a hard-coded camera distance. The old fixed
+  // position.set(0, 0.5, 2.4) was tuned for one viewport; on a laptop the leg overflowed the canvas
+  // top and bottom and read as a cropped grey strip. This measures the model and the aspect ratio
+  // and backs the camera off far enough for whichever of height/width is the binding constraint.
+  function fitToModel(pad) {
+    const bb = new THREE.Box3().setFromObject(root);
+    const c = bb.getCenter(new THREE.Vector3()), sz = bb.getSize(new THREE.Vector3());
+    const aspect = camera.aspect || 1;
+    const vfov = camera.fov * Math.PI / 180;
+    const distH = (sz.y * 0.5) / Math.tan(vfov / 2);
+    const distW = (Math.max(sz.x, sz.z) * 0.5) / Math.tan(Math.atan(Math.tan(vfov / 2) * aspect));
+    const d = Math.max(distH, distW) * (pad || 1.18);
+    controls.target.copy(c);
+    camera.position.set(c.x, c.y + sz.y * 0.04, c.z + d);
+    camera.near = Math.max(0.01, d / 100); camera.far = d * 12;
+    camera.updateProjectionMatrix();
+    controls.update();
+  }
 
   root.traverse((o) => {
     if (!o.isMesh) return;
@@ -183,10 +255,28 @@ export async function mountBodyMap(container, opts = {}) {
     const fma = normFma(o.name);
     o.userData.fma = fma;
     o.userData.layer = o.userData.layer || inferLayer(o);
-    o.userData.baseColor = (o.material && o.material.color) ? o.material.color.clone() : new THREE.Color(0xb08a86);
     o.material = o.material.clone();
     o.material.clippingPlanes = [clip];
     o.material.transparent = true;
+    const isBone = (o.userData.layer === 'skeleton');
+    if (isBone) {
+      o.userData.baseColor = BONE_IVORY.clone();
+      o.material.color.copy(BONE_IVORY);
+      o.material.roughness = 0.62; o.material.metalness = 0.0;
+    } else {
+      // Muscle: shade the belly red and let it fade to tendon-pale at BOTH ends. BodyParts3D has no
+      // separate tendon meshes — the tendinous portion is baked into the muscle geometry — so the
+      // only way to show it is to shade the mesh itself. tendonRamp() writes per-vertex colours and
+      // the material multiplies them by white. This is INDICATIVE, not a measured tendon boundary,
+      // and the on-page legend says so; the alternative was leaving the reader unable to tell muscle
+      // from bone at all, which is what shipped.
+      o.userData.hasRamp = tendonRamp(o.geometry);
+      o.userData.baseColor = WHITE.clone();
+      o.material.color.copy(WHITE);
+      o.material.vertexColors = o.userData.hasRamp;
+      o.material.roughness = 0.78; o.material.metalness = 0.0;
+      o.material.needsUpdate = true;
+    }
     byFmaAll.set(fma, o);
     if (o.userData.layer === 'skeleton') boneFmas.add(fma);
     if (structureByFma(fma)) { picky.push(o); byFma.set(fma, o); }
@@ -200,13 +290,17 @@ export async function mountBodyMap(container, opts = {}) {
     controls.update();
     if (state.animating) stepAnimation();
     renderer.render(scene, camera);
+    updateMarkers();
   }
   function resize() {
     const w = container.clientWidth, h = container.clientHeight || Math.round(w * 1.1);
     renderer.setSize(w, h, false);
     camera.aspect = w / h; camera.updateProjectionMatrix();
   }
-  const ro = new ResizeObserver(resize); ro.observe(container); resize(); tick();
+  const ro = new ResizeObserver(() => { resize(); if (!state.selected) fitToModel(); }); ro.observe(container);
+  resize();
+  fitToModel();   // must run AFTER resize() so camera.aspect is the real one
+  tick();
 
   // ---- picking ----
   function onPointer(ev) {
@@ -251,18 +345,72 @@ export async function mountBodyMap(container, opts = {}) {
       const f = o.userData.fma;
       o.material.emissiveIntensity = 0;
       if (o.userData.baseColor) o.material.color.copy(o.userData.baseColor); // reset any prior tint
-      if (f === fma) { o.material.color.copy(TEAL); o.material.emissive.copy(TEAL); o.material.emissiveIntensity = 0.55; o.material.opacity = 1; }
+      // The selected muscle KEEPS its anatomical colour and its tendon ramp — repainting it flat
+      // teal (what this used to do) threw away the one thing the reader came here to see. Selection
+      // is signalled by full opacity plus a warm glow instead.
+      if (f === fma) { o.material.emissive.copy(MUSCLE_RED); o.material.emissiveIntensity = 0.22; o.material.opacity = 1; }
       // Colour the two bones outright (not just a faint emissive tint) so it is unmistakable WHERE the
       // muscle attaches: origin bone blue, insertion bone amber. Kept nearly solid so they read as the
       // structural anchors while the muscle moves between them.
-      else if (f === originB) { o.material.color.copy(BONE_BLUE); o.material.emissive.copy(BONE_BLUE); o.material.emissiveIntensity = 0.35; o.material.opacity = 0.95; }
-      else if (f === insertB) { o.material.color.copy(BONE_AMBER); o.material.emissive.copy(BONE_AMBER); o.material.emissiveIntensity = 0.35; o.material.opacity = 0.95; }
-      else if (boneFmas.has(f)) { o.material.opacity = 0.32; } // rest of the skeleton = faint context
-      else { o.material.opacity = 0.05; } // other muscles nearly gone
+      else if (f === originB) { o.material.color.copy(BONE_BLUE); o.material.emissive.copy(BONE_BLUE); o.material.emissiveIntensity = 0.3; o.material.opacity = 0.98; }
+      else if (f === insertB) { o.material.color.copy(BONE_AMBER); o.material.emissive.copy(BONE_AMBER); o.material.emissiveIntensity = 0.3; o.material.opacity = 0.98; }
+      else if (boneFmas.has(f)) { o.material.opacity = 0.5; }  // rest of the skeleton = ivory context
+      else { o.material.opacity = 0.08; }                      // other muscles nearly gone
     });
+    setAttachMarkers(fma, originB, insertB);
     frameGroup([fma, originB, insertB]);
     playAction(fma);
     if (typeof opts.onSelect === 'function') opts.onSelect(fma, st);
+  }
+  // ---- ORIGIN / INSERTION MARKERS --------------------------------------------------------------
+  // Felix asked for the textbook diagram: the muscle, with ORIGIN labelled at the fixed end and
+  // INSERTION at the moving end. We do not have measured attachment coordinates — structures.json
+  // describes each attachment in prose ("lateral condyle of the femur"), not as a point. What we DO
+  // have is both meshes, so we take the point on the muscle closest to the origin bone, and the point
+  // closest to the insertion bone. That is the real closest approach of the two structures, which is
+  // where they attach, to within the resolution of the mesh. Labels are plain DOM projected onto the
+  // canvas each frame — no extra Three.js vendor file, and the text stays crisp and selectable.
+  function clearMarkers() { markerEls.splice(0).forEach((m) => { if (m.el.parentNode) m.el.parentNode.removeChild(m.el); }); }
+  function nearestPointOnMesh(mesh, target) {
+    const pos = mesh.geometry.attributes.position; if (!pos) return null;
+    const v = new THREE.Vector3(); let best = null, bestD = Infinity;
+    // Every 3rd vertex is plenty at ~4k faces/mesh and keeps this well under a frame.
+    for (let i = 0; i < pos.count; i += 3) {
+      v.fromBufferAttribute(pos, i); mesh.localToWorld(v);
+      const d = v.distanceToSquared(target);
+      if (d < bestD) { bestD = d; best = v.clone(); }
+    }
+    return best;
+  }
+  function setAttachMarkers(fma, originB, insertB) {
+    clearMarkers();
+    const muscle = byFmaAll.get(fma); if (!muscle) return;
+    const mk = (boneFma, label, cls) => {
+      const bone = boneFmas.has(boneFma) ? byFmaAll.get(boneFma) : null; if (!bone) return;
+      const bc = new THREE.Box3().setFromObject(bone).getCenter(new THREE.Vector3());
+      const p = nearestPointOnMesh(muscle, bc); if (!p) return;
+      const el = document.createElement('div');
+      el.className = 'bm-marker ' + cls;
+      el.innerHTML = '<span class="bm-dot"></span><span class="bm-lab">' + label + '</span>';
+      container.appendChild(el);
+      markerEls.push({ el, point: p });
+    };
+    mk(originB, 'ORIGIN', 'bm-origin');
+    mk(insertB, 'INSERTION', 'bm-insertion');
+  }
+  // Project each marker to screen space once per frame. Hidden when it falls behind the model's
+  // centre depth so a label never floats over geometry it is not attached to.
+  function updateMarkers() {
+    if (!markerEls.length) return;
+    const w = container.clientWidth, h = container.clientHeight || 1;
+    markerEls.forEach((m) => {
+      const v = m.point.clone().project(camera);
+      const vis = v.z < 1 && v.x > -1.2 && v.x < 1.2 && v.y > -1.2 && v.y < 1.2;
+      m.el.style.display = vis ? 'flex' : 'none';
+      if (!vis) return;
+      m.el.style.left = Math.round((v.x * 0.5 + 0.5) * w) + 'px';
+      m.el.style.top = Math.round((-v.y * 0.5 + 0.5) * h) + 'px';
+    });
   }
   function frameGroup(fmas) {
     const bb = new THREE.Box3(); let any = false;

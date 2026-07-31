@@ -2191,6 +2191,16 @@
       <h1>🧍 Interactive 3D body — the ${esc(region)}</h1>
       <p class="muted">Rotate the model, peel back the layers, and tap a muscle to see where it attaches, what it does, and to watch it perform its action. Best on a laptop or a recent phone; the muscle list below is the full no-3D version.</p>
       <div class="bm-stage"><div id="bm-canvas" class="bm-canvas"></div><aside id="bm-panel" class="bm-panel"><p class="muted">Tap a muscle on the model, or pick one from the list below.</p></aside></div>
+      <!-- Legend added 2026-07-31. Without it the colours are decoration; with it they are the
+           lesson. The tendon shading is honestly labelled as indicative, because BodyParts3D has no
+           separate tendon meshes and the pale ends are computed from the muscle's own long axis. -->
+      <ul class="bm-key">
+        <li><i class="bm-sw bm-sw-muscle"></i>Muscle belly — the part that shortens</li>
+        <li><i class="bm-sw bm-sw-tendon"></i>Tendon end <span class="muted">(indicative shading, not a measured boundary)</span></li>
+        <li><i class="bm-sw bm-sw-bone"></i>Bone</li>
+        <li><i class="bm-sw bm-sw-origin"></i>Origin — the anchored end, tap a muscle to see it</li>
+        <li><i class="bm-sw bm-sw-insert"></i>Insertion — the end that gets pulled</li>
+      </ul>
       <div class="section-title">The ${esc(region)} muscles</div>
       <ul class="body-twin">${twin}</ul>
       <p><a class="proto-more" href="#/anatomy">← All muscle groups</a></p>
@@ -2199,7 +2209,16 @@
   function mountBody(region) {
     region = region || 'leg';
     const canvas = document.getElementById('bm-canvas'); if (!canvas) return;
-    const fail = (msg) => { canvas.innerHTML = `<div class="bm-fallback"><p>${msg}</p></div>`; };
+    const fail = (msg) => { canvas.innerHTML = `<div class="bm-fallback"><p>${msg}</p></div>`; }; // replaces the loading state wholesale
+    // A loading state, added 2026-07-31 because Felix reported the model "does not load on the
+    // laptop/desktop version". It does load — but it is an 800 KB model plus the Three.js modules
+    // behind a lazy import, and until the first frame renders the box was simply EMPTY. An empty
+    // box and a broken page look identical, so on any connection slower than a fast one the honest
+    // reading of the screen was "this is broken". Removed the moment the canvas is inserted.
+    canvas.innerHTML = '<div class="bm-loading"><span class="bm-spin" aria-hidden="true"></span>'
+      + '<p>Loading the 3D model — about 800&nbsp;KB.</p>'
+      + '<p class="muted">The full muscle list below works without it.</p></div>';
+    const clearLoading = () => { const l = canvas.querySelector('.bm-loading'); if (l) l.remove(); };
     // The muscle-page button deep-links via ?fma= in the PATH query (/body/leg?fma=FMA:x); the twin
     // list links via the hash (#/body/leg?fma=). Read either, so both actually focus the muscle.
     const fma = new URLSearchParams(location.search).get('fma') || new URLSearchParams(location.hash.split('?')[1] || '').get('fma');
@@ -2207,7 +2226,7 @@
     import('/bodymap.js').then(m => {
       if (!m.canRun3D()) return fail('<b>Your device can’t show the interactive 3D model</b> (older browser, low memory, data-saver, or reduced-motion is on). The muscle list below has everything, and each muscle page carries an animated 2D figure of the action.');
       m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => renderStructurePanel(st, f, ctrlRef) })
-        .then((c) => { ctrlRef.c = c; })
+        .then((c) => { ctrlRef.c = c; clearLoading(); })
         .catch(() => fail('The 3D model couldn’t load. The muscle list below still works, and each muscle page has an animated 2D figure.'));
     }).catch(() => fail('The 3D model couldn’t load. The muscle list below still works.'));
   }
@@ -2226,7 +2245,7 @@
       ${(fma && ctrlRef) ? `<button type="button" class="bm-replay" id="bm-replay">▶ Replay the movement</button>` : ''}
       ${st.locate ? `<div class="bm-field"><span class="bm-field-k">Find it on yourself</span><p class="bm-field-v">${esc(st.locate)}</p></div>` : ''}
       ${st.groupId ? `<p class="bm-fullpage"><a class="proto-more" href="#/muscle/${esc(st.groupId)}">Full ${esc(st.groupId)} page →</a></p>` : ''}
-      <p class="bm-legend muted"><b>In the model:</b> the muscle glows teal; its <span class="bm-dot-o"></span> origin bone and <span class="bm-dot-i"></span> insertion bone stay lit; and the joint moves through the muscle's action.</p>
+      <p class="bm-legend muted"><b>In the model:</b> the muscle keeps its red belly and pale tendon ends; its <span class="bm-dot-o"></span> origin bone turns blue and its <span class="bm-dot-i"></span> insertion bone amber, each with a labelled pin; and the joint moves through the muscle's action.</p>
     </div>`;
     const rb = document.getElementById('bm-replay');
     if (rb && ctrlRef) rb.onclick = () => { if (ctrlRef.c) ctrlRef.c.playAction(fma); };
