@@ -735,13 +735,35 @@ async function api(req, res, url) {
       if (!slug) return json(res, 400, { error: 'No slug' });
       if (body.length < 4) return json(res, 400, { error: 'Write a little more first.' });
       const u = await currentUser(req).catch(() => null);
-      // light anti-spam: cap posts per author (or per anonymous IP burst) in a short window
+      // Light anti-spam. The "(or per anonymous IP burst)" half of the old comment described
+      // protection that did not exist: the whole check sat inside `if (u)`, so the ONE path with no
+      // account — the one that writes a public row rendered on compound and pathway pages — was the
+      // only unthrottled one. Its sole limiter was the chokepoint bucket, i.e. ~900 posts/hour/IP.
+      // Anonymous posts are now capped by volume rather than by IP (IP is unreliable behind
+      // Railway's proxy), the same shape /api/subscribe already uses. 20/10min is set well above
+      // real demand — there are ~20 JS-executing sessions per day sitewide.
       if (u) {
         const rc = (await db.query("SELECT count(*)::int n FROM explain_posts WHERE user_id=$1 AND created_at > now() - interval '10 minutes'", [u.id])).rows[0];
         if (rc && rc.n >= 12) return json(res, 429, { error: 'Slow down a moment — you have posted a lot just now.' });
+      } else {
+        const ac = (await db.query("SELECT count(*)::int n FROM explain_posts WHERE user_id IS NULL AND created_at > now() - interval '10 minutes'")).rows[0];
+        if (ac && ac.n >= 20) return json(res, 429, { error: 'A lot of anonymous posts just arrived — try again in a few minutes, or sign in to post now.' });
       }
-      const ins = (await db.query('INSERT INTO explain_posts(slug, parent_id, user_id, handle, body) VALUES($1,$2,$3,$4,$5) RETURNING id', [slug, parentId, u ? u.id : null, u ? u.username : null, body])).rows[0];
-      if (parentId) notifyReply(parentId, slug, u, body).catch(() => {});
+      // parent_id was taken on trust: any integer was accepted, and notifyReply() looks the row up
+      // by id alone — it never checks the parent is on the slug being replied to. So an
+      // unauthenticated caller could aim a reply at ANY post id and have the server email that
+      // post's author 220 attacker-chosen characters, repeatedly, from RNAwiki's own sending
+      // domain. The body is htmlEsc'd, so the exposure is volume, content and sender reputation
+      // rather than injection. Resolving the parent against the slug closes both that amplifier and
+      // the mis-threading; `parent_id IS NULL` additionally enforces the one level of nesting the
+      // renderer above actually displays.
+      let parent = null;
+      if (parentId) {
+        parent = (await db.query('SELECT id FROM explain_posts WHERE id=$1 AND slug=$2 AND parent_id IS NULL', [parentId, slug])).rows[0] || null;
+        if (!parent) return json(res, 400, { error: 'That discussion has moved — reload the page and try again.' });
+      }
+      const ins = (await db.query('INSERT INTO explain_posts(slug, parent_id, user_id, handle, body) VALUES($1,$2,$3,$4,$5) RETURNING id', [slug, parent ? parent.id : null, u ? u.id : null, u ? u.username : null, body])).rows[0];
+      if (parent) notifyReply(parent.id, slug, u, body).catch(() => {});
       return json(res, 200, { ok: true, id: ins.id, signedIn: !!u });
     }
     return json(res, 405, { error: 'Method not allowed' });
