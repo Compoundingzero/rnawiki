@@ -103,6 +103,10 @@ const RIGS = {
     },
     hip: {
       pivot: [-40, -60, 820], axis: [1, 0, 0],
+      // abduction/adduction happen in the FRONTAL plane — a rotation about the anteroposterior
+      // (front-back) axis, NOT the mediolateral one flexion/extension use. Without this, the glute
+      // abductors (medius/minimus) swing the leg FORWARD like a flexor instead of out to the side.
+      axisFrontal: [0, 1, 0],
       distal: LEG_THIGH.concat(LEG_SHIN),
       range: { flexion: [0, 75], extension: [0, -25], abduction: [0, 40], adduction: [0, -25] },
     },
@@ -445,7 +449,10 @@ export async function mountBodyMap(container, opts = {}) {
     new Set(jr.distal).forEach((f) => { const m = byFmaAll.get(f); if (m) g.attach(m); });
     if (!g.children.length) { root.remove(g); return; }
     activeGroup = g;
-    state.animating = { group: g, axis: new THREE.Vector3().fromArray(jr.axis).normalize(), a0: range[0] * Math.PI / 180, a1: range[1] * Math.PI / 180, phase: 0, label: act };
+    // Frontal-plane actions (abduction/adduction) rotate about the joint's anteroposterior axis;
+    // sagittal-plane actions (flexion/extension, plantar/dorsiflexion) use the mediolateral axis.
+    const axisArr = (dir === 'abduction' || dir === 'adduction') ? (jr.axisFrontal || jr.axis) : jr.axis;
+    state.animating = { group: g, axis: new THREE.Vector3().fromArray(axisArr).normalize(), a0: range[0] * Math.PI / 180, a1: range[1] * Math.PI / 180, phase: 0, label: act };
   }
   function stepAnimation() {
     const a = state.animating; if (!a) return;
