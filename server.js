@@ -545,8 +545,66 @@ function emailStartScheduler() {
   EMAIL_REMIND_TIMER = setInterval(emailReminderTick, 5 * 60 * 1000);  // daily reminder digest — TZ-aware 5-min tick
   console.log('[email] check-in+winback (6h) + daily-reminder (5-min) schedulers started.');
 }
+// ---------- unauthenticated write hardening ----------
+// Every unauthenticated POST was forgeable: resolveParticipant() trusts a body-supplied voterKey,
+// so two curl calls could move the public counters. Three cheap layers, no dependencies, applied at
+// the single api() chokepoint so a new endpoint cannot forget to opt in.
+const WRITE_METHODS = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
+const RL_BUCKETS = new Map();          // ip -> { tokens, ts }
+const RL_BURST = 15;                   // burst allowance per IP
+const RL_REFILL_MS = 4000;             // +1 token per 4s (~15/min sustained)
+const RL_MAX_KEYS = 5000;              // bound memory; evict oldest when exceeded
+
+function clientIp(req) {
+  const xf = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+  return xf || (req.socket && req.socket.remoteAddress) || 'unknown';
+}
+function rateAllow(ip) {
+  const now = Date.now();
+  let b = RL_BUCKETS.get(ip);
+  if (!b) {
+    if (RL_BUCKETS.size >= RL_MAX_KEYS) {              // cheap sweep of the stalest half
+      const stale = [...RL_BUCKETS.entries()].sort((a, c) => a[1].ts - c[1].ts).slice(0, RL_MAX_KEYS / 2);
+      stale.forEach(([k]) => RL_BUCKETS.delete(k));
+    }
+    b = { tokens: RL_BURST, ts: now }; RL_BUCKETS.set(ip, b);
+  }
+  b.tokens = Math.min(RL_BURST, b.tokens + Math.floor((now - b.ts) / RL_REFILL_MS));
+  b.ts = now;
+  if (b.tokens <= 0) return false;
+  b.tokens -= 1;
+  return true;
+}
+// A browser always sends Origin on a cross-document POST. Requiring it (or a matching Referer)
+// blocks both CSRF and the trivial `curl -d` forgery that moved the counters.
+function sameOrigin(req) {
+  const host = String(req.headers.host || '').toLowerCase();
+  if (!host) return false;
+  const originOf = (v) => { try { return new URL(v).host.toLowerCase(); } catch (e) { return null; } };
+  const o = req.headers.origin ? originOf(req.headers.origin) : null;
+  if (o) return o === host;
+  const r = req.headers.referer ? originOf(req.headers.referer) : null;
+  if (r) return r === host;
+  return false;                                        // no Origin and no Referer on a write → refuse
+}
+// Speed bump only — the rate limit and origin check are the real controls.
+function looksAutomated(req) {
+  const ua = String(req.headers['user-agent'] || '');
+  if (!ua) return true;
+  return /\b(curl|wget|python-requests|python-urllib|libwww|httpie|scrapy|go-http-client|java|okhttp|axios\/|node-fetch|postman)\b/i.test(ua);
+}
+// Returns true if the request was blocked (and the response already sent).
+function writeBlocked(req, res) {
+  if (!sameOrigin(req)) { json(res, 403, { error: 'Cross-origin writes are not accepted.' }); return true; }
+  if (looksAutomated(req)) { json(res, 403, { error: 'Automated writes are not accepted.' }); return true; }
+  if (!rateAllow(clientIp(req))) { json(res, 429, { error: 'Too many writes — slow down a moment.' }, { 'Retry-After': '10' }); return true; }
+  return false;
+}
+
 // ---------- API ----------
 async function api(req, res, url) {
+  // Harden every write at one place. GET/HEAD are untouched, so reading stays fully anonymous.
+  if (WRITE_METHODS.has(req.method) && writeBlocked(req, res)) return;
   // url keeps its query string (handlers parse ?goal=/?ids=/?problem= from it);
   // routing uses the path portion only.
   const parts = url.split('?')[0].split('/').filter(Boolean); // ['api', ...]
