@@ -3714,3 +3714,8 @@ a.seed-chip:hover { text-decoration: none; }
 .bm-spin { width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--accent); animation: bm-spin 0.9s linear infinite; }
 @keyframes bm-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .bm-spin { animation: none; border-top-color: var(--line); } }
+.cause-allpage { margin: .9rem 0 0; font-size: .92rem; }
+/* One-line-per-cause summary that replaced the full 7,000-word cascade on root-cause pages. */
+.cause-brief { margin: 1.4rem 0; }
+.cause-brief-list { margin: .5rem 0 .8rem; padding-left: 1.1rem; line-height: 1.6; }
+.cause-brief-list li { margin: .3rem 0; }

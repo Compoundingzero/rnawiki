@@ -377,7 +377,7 @@ const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
 const GLOSS_COMPILED = _compileGloss(GLOSSARY);
 let _glossLinks = 0;
 
-function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType, robots }) {
+function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType, robots, canonical }) {
   // Anchor every heading and build the contents card from what we actually emitted, so the TOC can
   // never list a section that is not there (or miss one that is).
   // Gloss BEFORE anchoring so heading ids are computed from clean text, and never inside a heading.
@@ -404,7 +404,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   // Insert after the first </h1> so the reader gets title -> what's in here -> content.
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
   const img = ogImage || (SITE_URL + '/og.png');
-  const url = SITE_URL + route;
+  const url = SITE_URL + (canonical || route);   // canonical overrides self-reference (see /body)
   const ld = [].concat(jsonld || []).map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('');
   const crumbLd = breadcrumbs ? `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -492,6 +492,35 @@ const WEBSITE = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': S
   // only in the index.html shell put it on a document the canonical home never serves.
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: SITE_URL + '/az?q={search_term_string}' }, 'query-input': 'required name=search_term_string' } };
 const PUB = { publisher: { '@id': SITE_URL + '/#org' }, isPartOf: { '@id': SITE_URL + '/#website' }, dateModified: BUILD_DATE };
+// ---- SEO length budgets (2026-07-31) ---------------------------------------------------------
+// Measured across the built site: 100% of /protocol titles ran to ~101 chars and 100% of their
+// descriptions to ~178, against Google's ~60 / ~155 display budgets. So on the flagship page type
+// every single search result showed a cut-off title AND a cut-off description — the two pieces of
+// text whose entire job is to earn the click. These trim at a word boundary so nothing ends
+// mid-word, and they leave the " · RNAwiki" suffix intact because that is the brand signal.
+const SUFFIX = ' \u00b7 RNAwiki';
+function seoTitle(main, max = 60) {
+  main = String(main || '').replace(/\s+/g, ' ').trim();
+  // Budget against the ESCAPED length. "&" becomes "&amp;" in the emitted document, so a title that
+  // measures 58 raw can ship at 62 — which is how 30 compound titles stayed over budget after the
+  // first pass at this. Trim word-by-word until what we actually emit fits.
+  const fits = (t) => esc(t + SUFFIX).length <= max;
+  if (fits(main)) return main + SUFFIX;
+  let words = main.split(' ');
+  while (words.length > 1 && !fits(words.join(' '))) words.pop();
+  let out = words.join(' ').replace(/[\s,;:\u2014-]+$/, '');
+  // A single word can still be too long (a very long compound name); hard-cut it as a last resort.
+  while (out.length > 1 && !fits(out)) out = out.slice(0, -1);
+  return out + SUFFIX;
+}
+function seoDesc(text, max = 155) {
+  const s2 = stripMd(text).replace(/\s+/g, ' ').trim();
+  const fits = (t) => esc(t).length <= max;              // escaped length, same reason as seoTitle
+  if (fits(s2)) return s2;
+  let words = s2.split(' ');
+  while (words.length > 1 && !fits(words.join(' ') + '\u2026')) words.pop();
+  return words.join(' ').replace(/[\s,;:]+$/, '') + '\u2026';
+}
 const stripMd = (t) => String(t == null ? '' : t).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`>#]+/g, '').replace(/\s+/g, ' ').trim();
 // Trim to a word boundary so answers never cut mid-word.
 const snip = (t, max = 300) => { const s = stripMd(t); if (s.length <= max) return s; const cut = s.slice(0, max); return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:]$/, '') + '…'; };
@@ -745,7 +774,7 @@ D.compounds.forEach((c) => {
     about: { '@type': 'Drug', name: c.name }, description: cleanDesc(c.plain || c.bottom || '', 300),
     url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
   }].concat(cqa.ld || []);
-  add(route, shell({ route, title: `${c.name}: dosage, evidence & uses · RNAwiki`, desc: cleanDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
+  add(route, shell({ route, title: seoTitle(`${c.name}: dosage, evidence & uses`), desc: seoDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
 });
 
 // comparison pages ([A] vs [B]) — high-intent long-tail, non-thin (two full profiles + honest verdict)
@@ -783,7 +812,7 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
     { q: `What's the difference between ${a.name} and ${b.name}?`, a: `${a.name}: ${snip(a.bottom || a.plain, 130)} — ${b.name}: ${snip(b.bottom || b.plain, 130)}` },
   ]);
   const jsonld = [{ '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${a.name} vs ${b.name}`, description: `Compare ${a.name} and ${b.name} for ${gl}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified }].concat(faq.ld || []);
-  add(route, shell({ route, title: `${a.name} vs ${b.name}: which works better? · RNAwiki`, desc: `${a.name} vs ${b.name} for ${gl}: human evidence, mechanism, safety and availability compared — plain English, honest verdict.`, jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }, { name: `${a.name} vs ${b.name}`, route }], body: body + faq.html }));
+  add(route, shell({ route, title: seoTitle(`${a.name} vs ${b.name}: which works better?`), desc: seoDesc(`${a.name} vs ${b.name} for ${gl}: human evidence, mechanism, safety and availability compared.`), jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }, { name: `${a.name} vs ${b.name}`, route }], body: body + faq.html }));
 });
 
 // goals
@@ -802,7 +831,7 @@ D.goals.forEach((g) => {
     <ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
     ${protos.length ? `<h2>Full protocols</h2><ul>${protos.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)} — Move, Fuel &amp; Stack</a></li>`).join('')}</ul>` : ''}`;
   const goalLd = { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${g.label} — what actually helps`, description: `Compounds ranked by human evidence for ${g.label.toLowerCase()}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified };
-  add(route, shell({ route, title: `${g.label}: what actually helps (ranked by evidence) · RNAwiki`, desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence — plain English, honest verdicts.`, jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
+  add(route, shell({ route, title: seoTitle(`${g.label}: what actually helps`), desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence — plain English, honest verdicts.`, jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
 });
 
 // FLAT prerender of the cause cascade (Move 1, 2026-07). The 224-cause / 995-step "why" corpus
@@ -849,6 +878,53 @@ function causeCascadeFlat(p) {
   return `<section class="cause-flat"><h2>What’s actually causing this — the ${causes.length} common cause${causes.length !== 1 ? 's' : ''}</h2>${w.intro ? mdBlocks(w.intro, mdSafe) : ''}<p class="muted">Ranked by leverage (#1 fixes the most). Open the one that sounds like you — each is a self-contained explanation and plan.</p>${items}</section>`;
 }
 
+// The cascade in ONE LINE PER CAUSE, for the root-cause pages. Measured before this change: the 21
+// root-cause pages that share a problem with a sibling were 94-97% identical to that sibling, because
+// causeCascadeFlat(p) is keyed by PROBLEM and rendered in full on every one of them — roughly 7,000
+// of each page's 7,800 words were the same text as the page next door. Google treats that as
+// duplicate content on the site's flagship page type. The full cascade now lives once, at
+// /problem/<id>; each root-cause page names every cause and links there.
+// NOT auto-matched to "the one cause this page is about": word-overlap matching scored 19 of 21, but
+// its weak matches were wrong (skin-aging's "UV / oxidative damage" matched "smoking and air
+// pollution"). Computing an edge that should be curated is the mistake this project already made
+// with exercise tags. Listing all of them, correctly, beats guessing one.
+function causeCascadeSummary(p) {
+  const w = CAUSE[p.id]; if (!w || !Array.isArray(w.causes) || !w.causes.length) return '';
+  const causes = w.causes.slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+  const items = causes.map((c, i) => `<li><b>${mdSafe(c.name)}</b>${c.hook ? ` — ${mdSafe(c.hook)}` : ''}</li>`).join('');
+  return `<section class="cause-brief"><h2>Why ${esc(p.name.toLowerCase())} happens — the ${causes.length} common cause${causes.length !== 1 ? 's' : ''}</h2>
+    <ul class="cause-brief-list">${items}</ul>
+    <p><a href="/problem/${p.id}" data-native>Read the full breakdown of all ${causes.length} causes — the pathway, the tell, and the plan for each →</a></p></section>`;
+}
+
+// ---- /problem/<id> — the cascade's canonical home --------------------------------------------
+// The "why this happens" corpus is authored per PROBLEM, not per root cause, and had no page of its
+// own, so it was being stamped onto every root-cause page instead. This gives it one URL. The
+// breadcrumb trail already read Home > Solve > <problem>, so this is the page that trail always
+// implied existed.
+GRAPH.problems.forEach((p) => {
+  const w = CAUSE[p.id]; if (!w || !Array.isArray(w.causes) || !w.causes.length) return;
+  const route = `/problem/${p.id}`;
+  const rcs = (p.root_causes || []).map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)} — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('');
+  const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name }])}
+    <h1>${p.icon || ''} Why ${esc(p.name.toLowerCase())} happens</h1>
+    <p class="lede">Every common cause, what drives it, how to tell which one is yours, and what to
+    do about each. The fix depends on the cause — that is the whole reason this page exists.</p>
+    ${causeCascadeFlat(p)}
+    ${rcs ? `<h2>The full protocols</h2><p>Once you know which cause fits you, this is where the movements, food and compounds are:</p><ul>${rcs}</ul>` : ''}
+    <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>`;
+  add(route, shell({
+    route,
+    title: seoTitle(`Why ${p.name.toLowerCase()} happens: every cause`),
+    desc: seoDesc(`The ${w.causes.length} common causes of ${p.name.toLowerCase()} — the mechanism behind each, how to tell which is yours, and what to do about it.`),
+    jsonld: [{ '@context': 'https://schema.org', '@type': 'MedicalWebPage', inLanguage: 'en',
+      name: `Why ${p.name} happens`, about: { '@type': 'MedicalCondition', name: p.name },
+      url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified }],
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }],
+    body,
+  }));
+});
+
 // protocols
 GRAPH.problems.forEach((p) => {
   p.root_causes.forEach((rc) => {
@@ -892,7 +968,7 @@ GRAPH.problems.forEach((p) => {
       <h1>${p.icon || ''} ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
       ${rc.keystone ? `<div class="keystone-card"><div class="ks-badge">⭐ Your one keystone</div><p class="ks-one">${esc(rc.keystone.one)}</p><p class="ks-why">${esc(rc.keystone.why)}</p></div>` : ''}
-      ${causeCascadeFlat(p)}
+      ${causeCascadeSummary(p)}
       <h3>Move — the mechanics that fix it${rc.prescription ? `: ${esc(rc.prescription.scheme)}` : ''}</h3>
       ${rc.prescription ? `<p>${esc(rc.prescription.detail)}</p>` : ''}
       ${move.length ? `<ul>${move.map((e) => `<li>${esc(e.name)}</li>`).join('')}</ul>` : ''}
@@ -935,7 +1011,7 @@ GRAPH.problems.forEach((p) => {
       // Re-add both per-page only when a named reviewer actually checks it. dateModified is honest.
       url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
     }].concat(howto || []).concat(pqa.ld || []);
-    add(route, shell({ route, title: `${p.name} (${rcShort.toLowerCase()}): exercises, supplements & what works · RNAwiki`, desc: `${p.name} — ${rc.name}: the exercises to fix it, foods to fuel it, and evidence-ranked supplements. A full root-cause protocol. Not medical advice.`, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
+    add(route, shell({ route, title: seoTitle(`${p.name}: ${rcShort.toLowerCase()}`), desc: seoDesc(`${p.name} — ${rcShort}: the exercises, foods and evidence-ranked compounds for this root cause.`), jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
 
     // ---- the Fuel Tracker's readable twin ----------------------------------------------------
     // Added 2026-07-30. Every protocol page links to /fuel/<problem>/<cause>, and not one of those
@@ -1002,7 +1078,7 @@ GRAPH.problems.forEach((p) => {
           rot as the corpus grows, and the emission is safe to turn on. */ ''}
     ${learnFlatHtml(t)}
     <h2>Compounds acting on ${esc(t.sym)}</h2><ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>`;
-  add(route, shell({ route, title: `${t.sym} — molecular target & the compounds that hit it · RNAwiki`, desc: `${t.sym}: ${(t.name || '').slice(0, 130)}. Learn what it does and every compound that acts on it.`, ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
+  add(route, shell({ route, title: seoTitle(`${t.sym}: the compounds that hit it`), desc: seoDesc(`${t.sym}: ${t.name || ''}. What it does, and every compound that acts on it.`), ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
 });
 
 // pathways + learn
@@ -1411,7 +1487,7 @@ ANAT.muscles.forEach((m) => {
     <h2>Common problems</h2><ul>${(m.common_problems || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <h2>Training & stretching</h2><p>${esc(m.training || '')}</p><p>${esc(m.stretching || '')}</p>
     ${(m.problems || []).length ? `<h2>Fix or train this</h2><ul>${m.problems.map((pid) => { const pr = GRAPH.problems.find((x) => x.id === pid); return pr ? `<li><a href="/protocol/${pid}/${pr.root_causes[0].id}">${esc(pr.name)}</a></li>` : ''; }).join('')}</ul>` : ''}${learnFlatHtml(m.expand)}</div>`;
-  add(route, shell({ route, title: `${m.name} — anatomy, function & training · RNAwiki`, desc: (m.overview || '').slice(0, 155), ogImage: renderOgCard(`og/muscle/${m.id}.png`, { kind: 'Muscle · ' + (m.region || ''), title: m.name, sub: m.overview }), breadcrumbs: anatCrumb(m.name, route), body }));
+  add(route, shell({ route, title: seoTitle(`${m.name}: anatomy, function and training`), desc: seoDesc(m.overview || ''), ogImage: renderOgCard(`og/muscle/${m.id}.png`, { kind: 'Muscle · ' + (m.region || ''), title: m.name, sub: m.overview }), breadcrumbs: anatCrumb(m.name, route), body }));
 });
 // /body and /body/leg — crawlable shell for the 3D body map (Move 7). The <canvas> is a JS-only
 // enhancement (app.js mountBody lazy-loads bodymap.js); this prerendered page is a real muscle index
@@ -1425,7 +1501,17 @@ ANAT.muscles.forEach((m) => {
     <div id="bm-canvas" class="bm-canvas"></div>
     <h2>The leg muscles</h2><ul class="body-twin">${twin}</ul>
     <p><a href="/anatomy">← All muscle groups</a></p></div>`;
-  ['/body', '/body/leg'].forEach((route) => add(route, shell({ route, title: 'Interactive 3D body — see the muscles and how they move · RNAwiki', desc: 'Rotate a 3D leg model, peel the layers, and watch each muscle perform its action — origin, insertion and the exercises that train it, on the body.', breadcrumbs: anatCrumb('Interactive 3D body', '/body'), body })));
+  // /body and /body/leg were byte-identical and each self-canonicalised, so we published two URLs
+  // claiming to be the canonical version of the same page. /body/leg is the one with a model behind
+  // it; /body is the hub. Both are emitted (the SPA routes both), but /body/leg carries the canonical
+  // and /body is marked noindex so only one competes.
+  ['/body', '/body/leg'].forEach((route) => add(route, shell({
+    route,
+    canonical: '/body/leg',
+    robots: route === '/body' ? 'noindex,follow' : undefined,
+    title: seoTitle('Interactive 3D body: the muscles and how they move'),
+    desc: seoDesc('Rotate a 3D leg model, peel the layers, and watch each muscle perform its action — origin, insertion and the exercises that train it, on the body.'),
+    breadcrumbs: anatCrumb('Interactive 3D body', '/body/leg'), body })));
 })();
 // /where — "Where does it hurt?" reverse funnel (Move 4). Text index is the crawlable/a11y core; the
 // SVG is an aria-hidden visual map. Both prebuilt in parse.js so this matches the hydrated document.
@@ -1472,7 +1558,7 @@ ANAT.energy_systems.forEach((e) => {
     <h2>How it works</h2><ol>${(e.steps || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ol>
     <h2>What it powers</h2><ul>${(e.powers || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <p><b>Byproduct:</b> ${esc(e.byproduct)}</p><p><b>Recovery:</b> ${esc(e.recovery)}</p><p><b>Training:</b> ${esc(e.training)}</p>${learnFlatHtml(e.expand)}</div>`;
-  add(route, shell({ route, title: `${e.name} — how it fuels muscle · RNAwiki`, desc: (e.overview || '').slice(0, 155), ogImage: renderOgCard(`og/energy/${e.id}.png`, { kind: 'Energy system', title: e.name.split('(')[0].trim(), sub: e.plain || e.overview }), breadcrumbs: anatCrumb(e.name, route), body }));
+  add(route, shell({ route, title: seoTitle(`${e.name}: how it fuels muscle`), desc: seoDesc(e.overview || ''), ogImage: renderOgCard(`og/energy/${e.id}.png`, { kind: 'Energy system', title: e.name.split('(')[0].trim(), sub: e.plain || e.overview }), breadcrumbs: anatCrumb(e.name, route), body }));
 });
 function physioDiagram(id) {
   const C = { glu: '#475569', ins: '#0d9488', mito: '#0d9488', fat: '#b5533a', prot: '#2563eb', atp: '#d97706', line: '#64748b', up: '#059669', down: '#b3261e', mut: '#94a3b8' };
@@ -1529,7 +1615,7 @@ ANAT.metabolism.forEach((p) => {
     ${p.when_it_matters ? `<h2>Why it matters</h2><p>${esc(p.when_it_matters)}</p>` : ''}
     <p><b>Key hormones:</b> ${(p.hormones || []).map(esc).join(', ')}</p>
     ${(() => { const cs = (p.compounds || []).map((n) => findCpt(n)).filter(Boolean); const seen = new Set(); const u = cs.filter((c) => !seen.has(c.id) && seen.add(c.id)); return u.length ? `<h2>Compounds that act on this</h2><ul>${u.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''; })()}${learnFlatHtml(p.expand)}</div>`;
-  add(route, shell({ route, title: `${p.name} — the physiology in plain English · RNAwiki`, desc: (p.plain || p.overview || '').slice(0, 155), ogImage: renderOgCard(`og/physiology/${p.id}.png`, { kind: 'Physiology', title: p.name, sub: p.plain || p.overview }), breadcrumbs: anatCrumb(p.name, route), body }));
+  add(route, shell({ route, title: seoTitle(`${p.name}: the physiology in plain English`), desc: seoDesc(p.plain || p.overview || ''), ogImage: renderOgCard(`og/physiology/${p.id}.png`, { kind: 'Physiology', title: p.name, sub: p.plain || p.overview }), breadcrumbs: anatCrumb(p.name, route), body }));
 });
 {
   const route = '/anatomy';

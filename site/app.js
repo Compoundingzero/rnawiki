@@ -4948,6 +4948,11 @@
       </div>
       <div class="cause-list-label"><span class="cll-h">The ${nC} possible cause${nC !== 1 ? 's' : ''}</span> · ranked by leverage (#1 fixes the most) — <b>open the one that sounds like you</b>. Each is a self-contained explanation and plan; fixes run behaviour → food → supplement → prescription.</div>
       <div class="cause-accordion">${items}</div>
+      <!-- The cascade now has a canonical page of its own (/problem/<id>) — the prerendered
+           root-cause pages link there instead of repeating 7,000 words each. The SPA renders
+           the causes inline as before, but must still offer the route, or the two documents
+           disagree about whether that page exists. data-native: it is prerender-only. -->
+      <p class="cause-allpage"><a href="/problem/${esc(problem.id)}" data-native>Read all ${nC} cause${nC !== 1 ? 's' : ''} of ${esc(problem.name.toLowerCase())} on one page →</a></p>
       <div class="cause-foot"><button class="share-short-btn" data-share-short="cause:${esc(problem.id)}">📱 Make a short — TikTok / Reel</button></div>
       ${'' /* REMOVED 2026-07-28: duplicate. theOneThingHead() already prints this exact string
              higher up the same page, so every protocol page said the same ~515 characters twice. */}
@@ -6001,7 +6006,7 @@
   // Sentinel meaning "this route's page is the prerendered document — leave #app alone".
   // A plain null/'' would be indistinguishable from a renderer that returned nothing by mistake.
   const KEEP = Symbol('keep-prerendered');
-  const KEEP_PRERENDERED = ['methodology', 'corrections'];
+  const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem'];
   function route() {
     const raw = currentRoute();
     const [pathPart, queryPart] = raw.split('?');
