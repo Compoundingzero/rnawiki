@@ -1427,7 +1427,7 @@ function muscle3D(m, legFma, legName) {
   if (legFma) return `<h2>This muscle in 3D</h2>
     <a class="cta-3d cta-3d-hero" href="/body/leg?fma=${encodeURIComponent(legFma)}">
       <span class="cta-3d-hero-ico" aria-hidden="true">🦿</span>
-      <span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Opens on the ${esc((legName || m.name).toLowerCase())} — its origin and insertion bones light up and it moves through its action. Every ${esc((m.group || m.name).toLowerCase())} muscle is tappable there too.</span></span>
+      <span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Opens on the ${esc((legName || m.name).toLowerCase())} — its origin and insertion bones light up and it moves through its action. Every ${esc(m.name.toLowerCase())} muscle is tappable there too.</span></span>
       <span class="cta-3d-hero-go" aria-hidden="true">▶</span>
     </a>
     <p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`;
