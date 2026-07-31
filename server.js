@@ -159,13 +159,53 @@ function streakFromDays(daySet) {
   while (daySet.has(iso(d))) { streak++; d.setUTCDate(d.getUTCDate() - 1); }
   return streak;
 }
-// participant = the signed-in user, else their anonymous voter key (so anyone can take part and the
-// ledger still dedupes to one row per person per protocol).
-async function resolveParticipant(req, extra) {
+// participant = the signed-in user, else a SERVER-MINTED anonymous id carried in a signed, httpOnly,
+// SameSite=Lax cookie. It is NEVER read from the request body.
+//
+// WHAT WAS BROKEN (measured 2026-08-01, hydrated Chrome against a real Postgres): the key was
+// `clean(extra.voterKey, 64)` straight from the POST body, so ONE browser session posting 12
+// made-up voterKeys to /api/experiments/start created 12 rows in the public ledger, and a fresh
+// paint of /protocol/knee-pain/patellofemoral-pain then rendered
+// `🧬 12 people are building this plan` (app.js:3927, shown once running >= 3). Same forged keys
+// moved /api/stats and minted reputation: 25 points per distinct 'ob:'+key (referral award) and
+// 5 per distinct 'forkclone:'+id+':'+key, both idempotent only on the caller's own string.
+// app.js records that the previous `N people helped` counter was DELETED on 2026-07-28 for exactly
+// this reason. Product constraint 5 (never fabricate counts) is the binding rule.
+//
+// CONSTRAINT 3 (anonymous-first) is preserved exactly: no account, no email, no fingerprint — an
+// opaque random id the server hands out. It is minted ONLY when the reader chooses to participate
+// (a write); pure reading never sets it, so a crawler or a casual reader is never tagged.
+//
+// MIGRATION: the client's localStorage key (app.js VOTER_KEY) is simply ignored from now on.
+// app.js still sends it in five calls; that is harmless dead weight, not a coordinated release.
+const ANON_COOKIE = 'rw_pid';
+const ANON_MAX_AGE = 2 * 365 * 86400;
+function anonSign(id) { return crypto.createHmac('sha256', SECRET).update('anon:' + id).digest('base64url').slice(0, 27); }
+function anonRead(req) {
+  const raw = parseCookies(req)[ANON_COOKIE]; if (!raw) return null;
+  const i = raw.lastIndexOf('.'); if (i <= 0) return null;
+  const id = raw.slice(0, i), sig = raw.slice(i + 1);
+  if (!/^[A-Za-z0-9_-]{16,32}$/.test(id)) return null;
+  const want = Buffer.from(anonSign(id)), got = Buffer.from(sig);
+  if (want.length !== got.length || !crypto.timingSafeEqual(want, got)) return null;
+  return id;
+}
+// Never clobber another Set-Cookie already on the response (the session cookie).
+function appendCookie(res, c) {
+  const cur = res.getHeader('Set-Cookie');
+  res.setHeader('Set-Cookie', cur ? [].concat(cur, c) : [c]);
+}
+function anonMint(res) {
+  const id = crypto.randomBytes(16).toString('base64url');
+  appendCookie(res, `${ANON_COOKIE}=${id}.${anonSign(id)}; HttpOnly; Path=/; Max-Age=${ANON_MAX_AGE}; SameSite=Lax; Secure`);
+  return id;
+}
+async function resolveParticipant(req, res, opts) {
   const u = await currentUser(req);
   if (u) return { key: 'u:' + u.id, user: u };
-  const vk = clean((extra && extra.voterKey) || '', 64);
-  return { key: vk ? 'v:' + vk : null, user: null };
+  let id = anonRead(req);
+  if (!id && res && !(opts && opts.readOnly)) id = anonMint(res);
+  return { key: id ? 'v:' + id : null, user: null };
 }
 async function getOrCreateExperiment(part, pid, rcid) {
   const r = await db.query(`INSERT INTO experiments(participant,user_id,problem_id,root_cause_id)
@@ -232,7 +272,9 @@ async function currentUser(req) {
 }
 function setSessionCookie(res, token) {
   const days = 30;
-  res.setHeader('Set-Cookie', `sid=${token}; HttpOnly; Path=/; Max-Age=${days * 86400}; SameSite=Lax; Secure`);
+  // appendCookie, not setHeader: a response may already carry the anonymous participant cookie,
+  // and raw setHeader would silently drop whichever of the two was set first.
+  appendCookie(res, `sid=${token}; HttpOnly; Path=/; Max-Age=${days * 86400}; SameSite=Lax; Secure`);
 }
 // simple same-origin guard for mutations
 function sameOrigin(req) {
@@ -546,8 +588,9 @@ function emailStartScheduler() {
   console.log('[email] check-in+winback (6h) + daily-reminder (5-min) schedulers started.');
 }
 // ---------- unauthenticated write hardening ----------
-// Every unauthenticated POST was forgeable: resolveParticipant() trusts a body-supplied voterKey,
-// so two curl calls could move the public counters. Three cheap layers, no dependencies, applied at
+// Every unauthenticated POST was forgeable: resolveParticipant() USED TO trust a body-supplied
+// voterKey (closed 2026-08-01 — the id is now server-minted in the signed rw_pid cookie), and two
+// curl calls could move the public counters. Three cheap layers, no dependencies, applied at
 // the single api() chokepoint so a new endpoint cannot forget to opt in.
 const WRITE_METHODS = new Set(['POST', 'PUT', 'PATCH', 'DELETE']);
 const RL_BUCKETS = new Map();          // ip -> { tokens, ts }
@@ -1007,8 +1050,11 @@ async function api(req, res, url) {
     return json(res, 200, { scores });
   }
   if (seg[0] === 'votes' && method === 'POST') {
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const targetId = clean(b.targetId, 120), voterKey = clean(b.voterKey, 64);
+    const b = await readBody(req, 2048); if (!b) return json(res, 400, { error: 'Bad request' });
+    // voter_key is server-issued ('u:<id>' or 'v:<cookie id>'), so UNIQUE(target_id,voter_key)
+    // actually means one vote per person instead of one vote per string the caller invented.
+    const part = await resolveParticipant(req, res);
+    const targetId = clean(b.targetId, 120), voterKey = part.key;
     const value = b.value > 0 ? 1 : b.value < 0 ? -1 : 0;
     if (!targetId || !voterKey) return json(res, 400, { error: 'Missing vote' });
     if (value === 0) { // toggle off
@@ -1193,7 +1239,8 @@ async function api(req, res, url) {
     return json(res, 200, { ok: true, id: r.rows[0].id });
   }
   if (seg[0] === 'protocol-requests' && seg[1] && seg[2] === 'vote' && method === 'POST') {
-    const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64); const id = pathId(seg[1]);
+    await readBody(req, 512); const id = pathId(seg[1]);
+    const part = await resolveParticipant(req, res); const voterKey = part.key;
     if (!voterKey || !id) return json(res, 400, { error: 'Missing vote' });
     const ins = await db.query("INSERT INTO votes(target_id,voter_key,value) VALUES($1,$2,1) ON CONFLICT (target_id,voter_key) DO NOTHING RETURNING id", ['req:' + id, voterKey]);
     if (ins.rows[0]) await db.query('UPDATE protocol_requests SET votes=votes+1 WHERE id=$1', [id]);
@@ -1233,7 +1280,11 @@ async function api(req, res, url) {
     return json(res, 200, { ok: true, id: r.rows[0].id });
   }
   if (seg[0] === 'forks' && seg[1] && seg[2] === 'clone' && method === 'POST') {
-    const id = pathId(seg[1]); const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64);
+    // Two public effects per call: the `clones` sort key for /api/forks/popular, and
+    // award(..., 'forkclone:'+id+':'+voterKey, 5). award() is idempotent only on UNIQUE(user,kind,ref)
+    // and ref embedded the CALLER's string, so reputation into the public leaderboard was unbounded.
+    const id = pathId(seg[1]); await readBody(req, 512);
+    const part = await resolveParticipant(req, res); const voterKey = part.key;
     if (!id || !voterKey) return json(res, 400, { error: 'Missing' });
     const fr = await db.query('SELECT * FROM protocol_forks WHERE id=$1', [id]); const f = fr.rows[0]; if (!f) return json(res, 404, { error: 'No such fork' });
     const ins = await db.query('INSERT INTO fork_clones(fork_id,voter_key) VALUES($1,$2) ON CONFLICT (fork_id,voter_key) DO NOTHING RETURNING id', [id, voterKey]);
@@ -1378,7 +1429,10 @@ async function api(req, res, url) {
 <p><a href="/">Back to RNAwiki</a></p></main></body></html>`, ok ? 200 : 404);
   }
   if (seg[0] === 'helped' && method === 'POST') {
-    const b = await readBody(req) || {}; const voterKey = clean(b.voterKey, 64);
+    // helped_people.voter_key is the PRIMARY KEY and feeds the `helped` figure in GET /api/stats —
+    // one forged key was one more "person helped". Nothing in the body is trusted; drain and drop.
+    await readBody(req, 512);
+    const part = await resolveParticipant(req, res); const voterKey = part.key;
     if (!voterKey) return json(res, 400, { error: 'Missing' });
     try { await db.query('INSERT INTO helped_people(voter_key) VALUES($1) ON CONFLICT (voter_key) DO NOTHING', [voterKey]); } catch (e) {}
     return json(res, 200, { ok: true });
@@ -1400,7 +1454,11 @@ async function api(req, res, url) {
   if (seg[0] === 'experiments' && seg[1] === 'mine' && method === 'GET') {
     const q = new URL('http://x/' + url).searchParams;
     const pid = clean(q.get('problem'), 80), rcid = clean(q.get('rc'), 80);
-    const part = await resolveParticipant(req, { voterKey: q.get('voterKey') });
+    // GET: read the cookie, never the ?voterKey query param, and never mint on a read. Before this,
+    // anyone could read back any participant's streak, level and referral count by replaying a key
+    // that app.js puts in the query string (so: proxy logs, Referer headers). readOnly:true is the
+    // line that keeps "reading is fully anonymous" literally true.
+    const part = await resolveParticipant(req, res, { readOnly: true });
     const blank = { experiment: null, streak: 0, checkedToday: false, level: null, completedTotal: 0, runningTotal: 0, checkinsThisWeek: 0, cohortSize: 0, weekLabel: '', onboarded: 0 };
     if (!part.key || !pid || !rcid) return json(res, 200, blank);
     const er = await db.query('SELECT id,status,outcome,started_at FROM experiments WHERE participant=$1 AND problem_id=$2 AND root_cause_id=$3', [part.key, pid, rcid]);
@@ -1423,7 +1481,7 @@ async function api(req, res, url) {
   if (seg[0] === 'experiments' && seg[1] === 'start' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const pid = clean(b.problemId, 80), rcid = clean(b.rootCauseId, 80);
-    const part = await resolveParticipant(req, b);
+    const part = await resolveParticipant(req, res);
     if (!part.key) return json(res, 400, { error: 'Could not identify you — enable cookies or sign in' });
     if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const exp = await getOrCreateExperiment(part, pid, rcid);
@@ -1445,7 +1503,7 @@ async function api(req, res, url) {
   if (seg[0] === 'experiments' && seg[1] === 'checkin' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const pid = clean(b.problemId, 80), rcid = clean(b.rootCauseId, 80);
-    const part = await resolveParticipant(req, b);
+    const part = await resolveParticipant(req, res);
     if (!part.key || !pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const exp = await getOrCreateExperiment(part, pid, rcid);
     const day = todayUTC();
@@ -1459,7 +1517,10 @@ async function api(req, res, url) {
     const pid = clean(b.problemId, 80), rcid = clean(b.rootCauseId, 80);
     const outcome = ['better', 'same', 'worse'].includes(b.outcome) ? b.outcome : null;
     if (!outcome) return json(res, 400, { error: 'Pick better, same, or worse' });
-    const part = await resolveParticipant(req, b);
+    // Highest-consequence of the three: `outcome` is caller-chosen from {better,same,worse} and
+    // lands in the aggregate served by GET /api/ledger. An efficacy claim assembled from forged
+    // rows is precisely what product constraint 5 forbids.
+    const part = await resolveParticipant(req, res);
     if (!part.key || !pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const exp = await getOrCreateExperiment(part, pid, rcid);
     await db.query("UPDATE experiments SET outcome=$1, status='completed', outcome_at=now() WHERE id=$2", [outcome, exp.id]);
@@ -2078,6 +2139,13 @@ const server = http.createServer((req, res) => {
 });
 
 db.init().catch(e => console.error('[db] init failed:', e.message)).finally(() => {
+  // The anonymous participant cookie is only as good as SECRET. With the built-in default, the
+  // HMAC key is a public constant in a public repo, anyone can forge `rw_pid`, and the fix above
+  // is theatre. Same key also pseudonymises the research export, so an unset value makes that
+  // "non-reversible" id reversible by anyone with the repo. Say so loudly at boot.
+  if (db.enabled && SECRET === 'dev-secret-change-me') {
+    console.warn('[security] SESSION_SECRET is UNSET — participant cookies are forgeable and the research-export pseudonym is reversible. Set a 32-byte random value.');
+  }
   server.listen(PORT, () => console.log('RNAwiki serving on :' + PORT + (db.enabled ? ' (accounts on)' : ' (read-only)')));
   if (db.enabled) emailStartScheduler();
 });
