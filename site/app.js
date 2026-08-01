@@ -2897,6 +2897,10 @@
         .map(i => ({ label: D.pathways[i].shortLabel, n: paths[i].length }));
     })();
     const nReview = r.flags.length + (overlaps.length ? 1 : 0);
+    // True exactly when the verdict below takes its ❔ branch: nothing dangerous, nothing to
+    // review, and fewer than two of these compounds are checkable at all. Kept in step with the
+    // ternary by construction — if that ternary changes, this line changes with it.
+    const notEnough = !nDanger && !nReview && covered.length < 2;
     const parts = [];
     parts.push(nDanger
       ? `<span class="ixn-verdict bad">☠️ ${nDanger} dangerous combination${nDanger > 1 ? 's' : ''} — read below</span>`
@@ -2904,7 +2908,15 @@
         : (covered.length < 2
           ? `<span class="ixn-verdict warn">❔ Not enough to check — I have interaction pharmacology for ${covered.length} of these ${list.length}</span>`
           : `<span class="ixn-verdict ok">✅ Nothing flagged between the ${covered.length} of ${list.length} I have pharmacology for</span>`)));
-    if (r.synergies.length) parts.push(`<span class="ixn-verdict good">✅ ${r.synergies.length} good pairing${r.synergies.length > 1 ? 's' : ''}</span>`);
+    // W3.5 (2026-08-02): this is a VERDICT chip — same shape, same row, same weight as the ✅/⚠️/☠️
+    // chip beside it. In the ❔ state it puts a green tick next to an explicit statement that
+    // nothing could be checked. MEASURED hydrated: /stack?ids=c0,c12 (Creatine + Beta-Alanine)
+    // rendered "❔ Not enough to check — I have interaction pharmacology for 0 of these 2" and
+    // "✅ 1 good pairing" on the SAME LINE at 1280x900 (both chips y=333) and 52px apart at
+    // 390x844 (y=486 / y=538), both above the fold. The synergy is authored data and stays — it
+    // still renders as an .ixn good ROW below, where it reads as information rather than as a
+    // clearance. What goes is the chip that reads as a second verdict.
+    if (r.synergies.length && !notEnough) parts.push(`<span class="ixn-verdict good">✅ ${r.synergies.length} good pairing${r.synergies.length > 1 ? 's' : ''}</span>`);
     const lap = overlaps.length ? `<div class="ixn blunt">
         <div class="ixn-h">🔻 <b>Overlapping pathways</b> <span class="ixn-who">${overlaps.map(o => esc(o.label)).join(' · ')}</span></div>
         <p class="ixn-why">Two or more of these push the same pathway: ${overlaps.map(o => `${esc(o.label)} ×${o.n}`).join(', ')}. That can mean synergy — or the same effect delivered twice, which is how side-effects add up without the dose on the label going up.</p>
