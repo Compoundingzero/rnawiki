@@ -490,8 +490,13 @@ const crumbHtml = (items) => `<div class="crumbs">${items.map((it, i) => it.rout
 // ---- SEO entities & structured-data helpers ----
 const BUILD_DATE = new Date().toISOString().slice(0, 10); // real freshness signal for dateModified/lastReviewed
 // The publisher entity (E-E-A-T). Referenced by @id from every clinical page; defined in full on home.
+// W4 (2026-08-02): sameAs is read from data/site_config.json via data.site, not typed here. This
+// object is emitted into every prerendered page, so a hard-coded handle here was the widest-reach
+// copy of the string on the site. assertHandleFromConfig() in build/parse.js fails the build if it
+// comes back.
+const SITE_X = (D.site || { x: {}, links: {} });
 const ORG = { '@context': 'https://schema.org', '@type': 'Organization', '@id': SITE_URL + '/#org', name: SITE_NAME, url: SITE_URL + '/', logo: SITE_URL + '/og.png',
-  sameAs: ['https://twitter.com/Compoundingzero', 'https://compoundingzero.substack.com', 'https://github.com/Compoundingzero'] };
+  sameAs: [SITE_X.x.profile, (SITE_X.links || {}).substack, (SITE_X.links || {}).github].filter(Boolean) };
 const WEBSITE = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE_URL + '/#website', url: SITE_URL + '/', name: SITE_NAME, inLanguage: 'en', publisher: { '@id': SITE_URL + '/#org' },
   // Sitelinks search box. index.html declared this for months while /az ignored ?q= entirely, so it
   // promised Google a search that dropped the query. app.js now reads the parameter (see azQuery),

@@ -1,0 +1,32 @@
+{
+  "_doc": [
+    "SITE CONFIG (W4, 2026-08-02). The one place the owner's identity is written down.",
+    "",
+    "WHY THIS FILE EXISTS. The X handle was hard-coded in build/prerender.js:494 (the Organization",
+    "JSON-LD sameAs, which reaches every prerendered page) and a personal username was sitting in the",
+    "sign-in modal's placeholder as `e.g. hyrox_felix` -- measured hydrated at 390x844 by opening the",
+    "modal on /. Three of the four X-loop surfaces added in this wave print the handle, so without a",
+    "config there would have been seven hard-coded copies of one string across three files.",
+    "",
+    "VOICE. `x.handle` is a PERSONAL account belonging to ONE INDIVIDUAL. There is no company, no",
+    "editorial board and no clinical service. Every string generated from this file must read as one",
+    "person speaking. assertSingleVoice() and assertNoCredentialClaims() in build/parse.js already",
+    "fail the build on the opposite, and assertHandleFromConfig() fails it if the handle is typed",
+    "into a renderer again.",
+    "",
+    "`handle` is stored WITHOUT the leading @ and must match X's own rule: 1-15 characters,",
+    "letters/digits/underscore only. parse.js validates it and refuses to build otherwise, because",
+    "an invalid handle silently produces a share link to a profile that does not exist.",
+    "",
+    "NOT A CREDENTIAL. Nothing here asserts that the account holder is a clinician, is qualified, or",
+    "has reviewed anything. It is a name and three links."
+  ],
+  "x": {
+    "handle": "compoundingzero",
+    "profile": "https://x.com/compoundingzero"
+  },
+  "links": {
+    "substack": "https://compoundingzero.substack.com",
+    "github": "https://github.com/Compoundingzero"
+  }
+}

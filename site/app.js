@@ -1,6 +1,12 @@
 (function () {
   const D = window.RNAWIKI_DATA;
   const SITE_NAME = 'RNAwiki'; // brand name; domain configured via SITE_URL env at build (prerender)
+  // W4 (2026-08-02): the owner's X handle, read from data/site_config.json via build/parse.js.
+  // NEVER type it here — assertHandleFromConfig() fails the build on any copy of it in this file,
+  // build/prerender.js or server.js. The fallback is empty on purpose: a missing config must make
+  // the X surfaces disappear, not print "@undefined" or somebody else's name.
+  const OWNER = (D.site && D.site.x) ? D.site.x : { handle: '', profile: '' };
+  const AT = OWNER.handle ? '@' + OWNER.handle : '';
   const app = document.getElementById('app');
 
   // One-time migration of a visitor's own browser-local data from the old pbswiki_* key
@@ -624,7 +630,7 @@
       <p class="modal-sub">${login ? 'Sign in to log food, comment and edit pages.' : 'Create an account to log your meals, comment, and improve any page. Free, takes 10 seconds.'}</p>
       ${google}
       <form id="auth-form" class="auth-form">
-        <label>Username<input name="username" autocomplete="username" required placeholder="e.g. hyrox_felix"></label>
+        <label>Username<input name="username" autocomplete="username" required placeholder="Letters, numbers, underscores"></label>
         ${login ? '' : '<label>Email <span class="opt">(optional, for recovery)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>'}
         <label>Password<input name="password" type="password" autocomplete="${login ? 'current-password' : 'new-password'}" required placeholder="${login ? 'Your password' : 'At least 8 characters'}"></label>
         ${login ? '' : `<div class="auth-demo"><label>Age <select name="age_band"><option value="">—</option>${AGE_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label><label>Sex <select name="sex"><option value="">—</option>${SEX_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label></div><p class="auth-demo-why">Optional — so I can show you what actually works for people like you.</p>`}
