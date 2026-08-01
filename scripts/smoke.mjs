@@ -396,7 +396,15 @@ const ASSERTIONS = {
       if (!host) return 'no #p1-log — Phase 1 asks for 7 days and offers nowhere to put them';
       // 4. explicit start
       if (read()) return 'a log already exists before Start was tapped — logging must never begin on its own';
-      if (host.querySelector('button')) return '#p1-log offers controls before Start was tapped';
+      // W4.5 (d): the pre-start panel now carries exactly ONE control — restore. A reader who
+      // exported their log (because this page's own copy told them to) and then cleared their browser
+      // had nowhere to put the file back: measured hydrated on a device with no log, 0 buttons, no
+      // file input, and the word "restore" 0 times on the whole page (qa/out/w45log_bde.json).
+      // Everything that RECORDS a day must still be absent until Start is tapped.
+      const preBtns = [...host.querySelectorAll('button')].map(b => b.dataset.p1 || b.className || '?');
+      if (preBtns.some(x => x !== 'restore')) return `#p1-log offers ${JSON.stringify(preBtns)} before Start was tapped — nothing that records a day may exist yet`;
+      if (!host.querySelector('button[data-p1="restore"]')) return 'no restore control before Start — the reader who exported their log and cleared their browser cannot put it back, which is the exact case the export copy is written for';
+      if (!host.querySelector('#p1-sync-state')) return 'the pre-start panel has no #p1-sync-state, so a refused restore would fail silently — the one outcome trackValidate() exists to prevent';
       const start = document.getElementById('phase1-start');
       if (!start) return 'no #phase1-start button to begin the log';
       start.click();

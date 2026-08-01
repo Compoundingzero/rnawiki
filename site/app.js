@@ -5996,7 +5996,24 @@
     if (!p1) return '';
     const log = trackGet(problem, rc);
     if (!log || !log.started) {
-      return `<p class="p1-log-pre">Tap <b>Start day 1</b> and this becomes a 7-day log: <b>one tap a day</b>. No account, no typing, no sliders. It is kept on this device only, and nothing is sent anywhere unless you switch on the anonymous sync inside it.</p>`;
+      // THE FILE THE COPY TELLS THEM TO KEEP HAS TO OPEN SOMEWHERE. The export copy reads
+      // "Clearing your browser data deletes it and there is no copy anywhere - so if it matters to
+      // you, export it." MEASURED HYDRATED on a device with no log (qa/out/w45log_bde.json d_noLog):
+      // #p1-log rendered one paragraph and nothing else - 0 buttons, no #p1-file, and the word
+      // "restore" appeared 0 times in #p1-log AND 0 times on the whole page. The reader who did
+      // exactly what the copy told them to do could not use the file.
+      // Restore is the ONLY control here: nothing that RECORDS a day may exist before Start is
+      // tapped, which is what phase1LoggerIsOneTapAndLeaksNothing asserts.
+      // #p1-sync-state is load-bearing, not decoration: every restore message - including
+      // "Not restored - <reason>" - is written into it, so without it a rejected file fails silently,
+      // which is the one outcome trackValidate() exists to prevent.
+      return `<p class="p1-log-pre">Tap <b>Start day 1</b> and this becomes a 7-day log: <b>one tap a day</b>. No account, no typing, no sliders. It is kept on this device only, and nothing is sent anywhere unless you switch on the anonymous sync inside it.</p>
+      <div class="p1-log-foot">
+        <button type="button" class="p1-mini" data-p1="restore">⤒ Restore from a file</button>
+        <input type="file" id="p1-file" accept="application/json,.json" hidden>
+      </div>
+      <p class="p1-log-note">Ran this week on another device, or cleared this browser? Restore the JSON file you exported and the log opens where you left off. The file is read in this browser and nothing is uploaded.</p>
+      <p class="p1-sync-state" id="p1-sync-state" role="status"></p>`;
     }
     const today = isoDay();
     const days = [];
@@ -6401,6 +6418,30 @@
       // thing: the tap is already in localStorage before this ever runs.
       .catch(() => say('Could not reach the site. Nothing left this device — your log is safe here.'));
   }
+  // TWO KEYS, ONE STATE - the rule the delete path already follows, applied everywhere.
+  // `rnawiki_phase1` holds "this week is started" (it disables the Start button, prints its date and
+  // opens Phase 2); `rnawiki_track` holds the week itself. RESTORE wrote only the second.
+  // MEASURED (qa/out/w45log_bde.json): tap Start on 2026-08-02, then restore a file whose week began
+  // 2026-07-27 -> the log correctly read "Day 7 of 7" over "2026-07-27 -> 2026-08-02" while the
+  // button above it read "Started 2026-08-02 on this device". One week, two start dates, six days
+  // apart, with the receipt already minted from the earlier one.
+  function phase1Sync(problem, rc) {
+    const log = trackGet(problem, rc);
+    if (!log || !log.started) return;
+    const k = `${problem.id}/${rc.id}`;
+    try {
+      const s = JSON.parse(localStorage.getItem(PHASE1_KEY) || '{}');
+      if (!s[k] || s[k].started !== log.started) {
+        // Object.assign, not a fresh object: `skipped` is a different fact about this protocol and is
+        // not ours to drop.
+        s[k] = Object.assign({}, s[k], { started: log.started });
+        localStorage.setItem(PHASE1_KEY, JSON.stringify(s));
+      }
+    } catch (e) { /* private mode: the log still works, it is just not remembered */ }
+    const sb = document.getElementById('phase1-start');
+    if (sb) { sb.disabled = true; sb.textContent = `✓ Started ${log.started} on this device`; }
+    const p2 = document.getElementById('phase-2'); if (p2) p2.open = true;
+  }
   function mountPhase1Log(problem, rc) {
     const host = document.getElementById('p1-log');
     if (!host || !rc.phase1) return;
@@ -6411,6 +6452,10 @@
     // is deliberately not seeded: they said they already do this.
     const st0 = phase1State(problem, rc);
     if (st0 && st0.started && !trackGet(problem, rc)) trackStart(problem, rc, st0.started);
+    // ...and the same reconciliation in the other direction, for devices a pre-W4.5 restore already
+    // split. phase1Section() rendered the Start button from `rnawiki_phase1` before this ran, so the
+    // DOM is corrected here too, not only the storage.
+    phase1Sync(problem, rc);
     phase1LogDraw(problem, rc, null);
     host.onclick = (ev) => {
       const b = ev.target.closest('button[data-p1]');
@@ -6524,8 +6569,14 @@
           if (dayNum(inc.started) < dayNum(cur.started)) cur.started = inc.started;
         });
         if (!trackWrite(o)) { say('This browser refused to save. Nothing was changed.'); return; }
+        // Both keys move together, or the Start button and the log print two different start dates
+        // for one week (qa/out/w45log_bde.json).
+        phase1Sync(problem, rc);
         phase1LogDraw(problem, rc, null);
-        say(`Restored ${v.days} logged day${v.days === 1 ? '' : 's'} across ${v.protocols} protocol${v.protocols === 1 ? '' : 's'}.`);
+        // A file can hold another protocol's week. Saying "restored" over an unchanged panel reads as
+        // a failure; naming it is the difference between quiet and honest.
+        const mine = Object.prototype.hasOwnProperty.call(v.logs, trackKey(problem, rc));
+        say(`Restored ${v.days} logged day${v.days === 1 ? '' : 's'} across ${v.protocols} protocol${v.protocols === 1 ? '' : 's'}.` + (mine ? '' : ' None of them is this protocol, so the log on this page has not changed.'));
       };
       r.readAsText(f.files[0]);
     };
