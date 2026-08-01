@@ -120,7 +120,26 @@ window.RNAWIKI_INTERACTIONS = {
     // blood-pressure lowering / nitrate / PDE-5
     { m: "beetroot", t: ["hypotensive", "nitrate"], ids: ["c114"] }, { m: "nitrate", t: ["hypotensive", "nitrate"], ids: ["c114"] },
     { m: "pde-5", t: ["hypotensive", "pde5"], ids: ["c116"] }, { m: "sildenafil", t: ["hypotensive", "pde5"], ids: ["c116"] }, { m: "tadalafil", t: ["hypotensive", "pde5"], ids: ["c116"] },
-    { m: "citrulline", t: ["hypotensive"], ids: ["c13"] }, { m: "agmatine", t: ["hypotensive"], ids: ["c127"] }, { m: "taurine", t: ["hypotensive"], ids: ["c8"] },
+    { m: "citrulline", t: ["hypotensive"], ids: ["c13"] }, { m: "taurine", t: ["hypotensive"], ids: ["c8"] },
+    // `agmatine` DELETED 2026-08-02. It matched exactly one compound and that compound's whole
+    // authored record refutes the tag. c127's agmatine content is "arginine metabolite → NO
+    // modulation + neuropathic pain", and its own foodFirst note says "Agmatine's NO/pump claims in
+    // humans are weak and largely mechanistic". A recursive scan of the WHOLE c127 record for
+    // /blood pressure|hypotens|lower.*pressure|vasodil|relax/i returns exactly ONE hit, and it
+    // points the other way: bio.biomarkers[0].marker "**Resting heart rate & blood pressure**",
+    // whose why reads "Theacrine is a caffeine-like stimulant; track these ... to catch excess
+    // cardiovascular load". Zero BP-lowering assertions on the page.
+    // Because c127 ALSO carries `stimulant`, the same page rendered two contradictory rows.
+    // Measured hydrated at 390x844, 0 pageerrors:
+    //   /stack?ids=c127,c8 → "⏰ Both of these lower blood pressure · Agmatine · Glycerol ·
+    //                         Theacrine (brief) + Taurine ... Each relaxes blood vessels a little,
+    //                         so the drop adds up."
+    //   /stack?ids=c127,c1 → "☠️ Stacked stimulants — cardiovascular strain ... heart rate and
+    //                         blood pressure compound."
+    // Four rendered rows go: hypotensive_stack 6 → 3 firing 2-compound stacks, pde5_vasodilator
+    // 3 → 2. c127 keeps `stimulant`, which its own contra block supports word for word, so it stays
+    // reachable and coverage does not move: 90/171 before and after. A lower honest number beats a
+    // higher false one.
     // hepatotoxic (liver strain) — oral AAS + a few others
     { m: "green tea", t: ["hepatotoxic"], ids: ["c30"] }, { m: "red yeast rice", t: ["statin_like", "hepatotoxic"], ids: ["c161"] },
     { m: "dnp", t: ["do_not_use", "hepatotoxic"], ids: ["c28"] }, { m: "dinitrophenol", t: ["do_not_use", "hepatotoxic"], ids: ["c28"] },
