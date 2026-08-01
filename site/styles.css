@@ -3614,6 +3614,38 @@ a.seed-chip:hover { text-decoration: none; }
 @media (max-width: 640px) { .lf-part { flex-direction: column; gap: .1rem; } }
 
 /* Move 1 — crawlable cause cascade (no-JS / prerendered twin of the SPA .bj- accordion) */
+/* ---- /problem/* — the differential-diagnosis spine (2026-08-01, W2/D13) ----------------------
+   Measured before: median page height 29,844px, the first protocol link at 98% of it on 41/41, and
+   the 224 tells spread from y=5,137 (cause #1) to y=31,797 (cause #6). These three blocks put the
+   escalation layer, every tell, and the way out above the mechanism prose. */
+.prob-redflags { margin: 1.4rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r-lg, 14px); }
+.prob-redflags > h2 { font-size: 1.2rem; margin: 0 0 .5rem; color: var(--head); }
+.prob-redflags .esc-note { font-size: .92rem; color: var(--ink); margin: .6rem 0 0; }
+.prob-dx { margin: 1.6rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r-lg, 14px); background: var(--panel); }
+.prob-dx > h2 { font-size: 1.25rem; margin: 0 0 .4rem; color: var(--head); }
+.dx-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .9rem; }
+.dx-row { border-top: 1px solid var(--line); padding-top: .9rem; }
+.dx-row:first-child { border-top: 0; padding-top: 0; }
+.dx-name { margin: 0 0 .15rem; font-size: 1.02rem; line-height: 1.35; }
+.dx-name a { color: var(--head); text-decoration: none; }
+.dx-name a:hover { text-decoration: underline; }
+.dx-hook { margin: 0 0 .45rem; color: var(--muted); }
+.dx-tell, .dx-conf, .dx-lab { margin: .35rem 0; font-size: .94rem; line-height: 1.5; }
+.dx-lbl { display: inline-block; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--line-soft); padding: 1px 7px; border-radius: 6px; margin-right: .3rem; vertical-align: 1px; }
+.dx-lab { color: var(--muted); }
+.dx-go { margin: .5rem 0 0; }
+.dx-go a { display: inline-flex; align-items: center; min-height: 44px; color: var(--link); font-weight: 600; font-size: .92rem; }
+.prob-route { margin: 1.4rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r-lg, 14px); background: var(--panel2); }
+.prob-route > h2 { font-size: 1.15rem; margin: 0 0 .4rem; color: var(--head); }
+.prob-route-honest { color: var(--muted); font-size: .92rem; margin: .5rem 0 0; }
+.cf-next { margin-top: .9rem; padding-top: .7rem; border-top: 1px dashed var(--line); }
+.cf-next p { margin: .3rem 0; }
+.cf-next-up { font-size: .9rem; }
+.cf-next-up a { display: inline-flex; align-items: center; min-height: 44px; }
+/* .topbar is position:sticky;top:0 and 58px tall, so a fragment landing at scroll-top would put the
+   target underneath it. Verified by clicking a shipped .hanchor: the target landed at rectTop 56px. */
+.cause-flat-item[id], .prob-dx[id], .prob-redflags[id], .prob-route[id] { scroll-margin-top: 66px; }
+
 .cause-flat { margin: 2rem 0; }
 .cause-flat > h2 { font-size: 1.35rem; margin: 0 0 .3rem; color: var(--head); }
 .cause-flat-item { border: 1px solid var(--line); border-radius: var(--r-lg, 14px); padding: 1rem 1.2rem; margin: 1rem 0; background: var(--panel); }

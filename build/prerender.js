@@ -912,9 +912,113 @@ function causeCascadeFlat(p) {
     const conf = c.evidenceTier ? `<p class="cf-conf"><small>How well established is this mechanism: <b>${esc(tierLabel(c.evidenceTier))}</b> — this rates the causal link, not how much a given fix will help you.</small></p>` : '';
     const fixes = Array.isArray(c.fixes) && c.fixes.length ? `<h4>Your plan if this is your cause</h4><p class="muted">Work down the list — cheapest and safest first. The tag on each step is the regulator’s current classification, not a recommendation.</p><ul class="cf-fixes">${c.fixes.map(fixItemHtml).join('')}</ul>` : '';
     const deeper = c.plain ? `<div class="cf-deeper"><p><strong>Go deeper — the full mechanism.</strong></p>${mdBlocks(c.plain, mdSafe)}</div>` : '';
-    return `<div class="cause-flat-item"><h3>Cause ${c.rank || i + 1}: ${mdSafe(c.name)}</h3>${hook}${ki}${chain}${sym}${conf}${fixes}${deeper}</div>`;
+    // id="cause-N" is what the differential index above jumps to. N is the sorted position, which
+    // equals c.rank on 224/224 causes (checked against data/cause_learn.json), so the number in the
+    // index, the number in this heading and the fragment are the same number.
+    return `<div class="cause-flat-item" id="cause-${i + 1}"><h3>Cause ${c.rank || i + 1}: ${mdSafe(c.name)}</h3>${hook}${ki}${chain}${sym}${conf}${fixes}${deeper}${causeNext(p, c, causes.length)}</div>`;
   }).join('');
-  return `<section class="cause-flat"><h2>What’s actually causing this — the ${causes.length} common cause${causes.length !== 1 ? 's' : ''}</h2>${w.intro ? mdBlocks(w.intro, mdSafe) : ''}<p class="muted">Ranked by leverage (#1 fixes the most). Open the one that sounds like you — each is a self-contained explanation and plan.</p>${items}</section>`;
+  return `<section class="cause-flat"><h2>What’s actually causing this — the ${causes.length} common cause${causes.length !== 1 ? 's' : ''} in full</h2>${w.intro ? mdBlocks(w.intro, mdSafe) : ''}<p class="muted">Ranked by leverage (#1 fixes the most). Each is a self-contained explanation and plan. If you have not read the side-by-side tells yet, <a href="#which-one">start there</a> — it is much faster.</p>${items}</section>`;
+}
+
+// ---- the three blocks that turn /problem into a differential ----------------------------------
+// MEASURED HYDRATED, 390x844, all 41 pages, default DOM, before this change (out/w2d13_before.json):
+//   · median page height 29,844 px = 35.4 phone screens
+//   · the FIRST link to a protocol sat at 98% of that height on 41/41 (min 98, max 99, median
+//     y = 29,346 px). The page a reader is sent to by /solve, by every protocol and by every
+//     breadcrumb had its exit at the very bottom.
+//   · "reassess" 0/41 and "not medical advice" 0/41, while data/protocol_plan.json has a written
+//     `reassess` block for 41/41 problems that has been live on all 52 /protocol/* pages since
+//     2026-07-28. The decision hub was the one page in the funnel with no escalation layer.
+//   · the fields that let a reader tell two causes APART — confusedWith (208/224) and
+//     tell.labMarker (216/224) — were authored and rendered nowhere in either document.
+//   · the 224 `.cf-tell` paragraphs were spread over the whole page: cause #1's tell at a median
+//     y of 5,137 px, #6's at 31,797 px. Comparing the first cause against the last cost a
+//     ~26,000 px scroll, which is the real reason the page could not be used as a differential.
+// So: escalation first, then every tell in one block, then the way out — before the 30,000 px of
+// mechanism prose rather than after it.
+
+// 1. Escalation. Rendered from the authored `reassess` text; no new clinical claim is made here.
+function problemRedFlags(p) {
+  const plan = PLAN[p.id] || {};
+  if (!plan.reassess) return '';
+  return `<section class="prob-redflags plan-reassess" id="red-flags">
+    <h2>First — when this is not a self-care problem</h2>
+    ${mdBlocks(plan.reassess, mdSafe)}
+    <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
+    through a protocol — <b>call your local emergency number</b> and go to an emergency department.
+    (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America, 112 across
+    Europe, 000 in Australia.) For anything persistent, a family doctor or polyclinic is the right
+    first stop.</p>
+    <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has
+    reviewed it, and nothing on it is a diagnosis.</p>
+  </section>`;
+}
+
+// 2. The differential: every cause's discriminating text in one block, in reading order.
+function problemDifferential(p, causes) {
+  const rows = causes.map((c, i) => {
+    const n = i + 1;
+    const tell = (c.tell && c.tell.symptoms) ? String(c.tell.symptoms).replace(/\s*Honest tiering:.*$/i, '').trim() : '';
+    const lab = (c.tell && c.tell.labMarker) ? String(c.tell.labMarker).trim() : '';
+    return `<li class="dx-row">
+      <p class="dx-name"><a href="#cause-${n}"><b>${n}. ${mdSafe(c.name)}</b></a></p>
+      ${c.hook ? `<p class="dx-hook">${mdSafe(c.hook)}</p>` : ''}
+      ${tell ? `<p class="dx-tell"><span class="dx-lbl">The tell</span> ${mdSafe(tell)}</p>` : ''}
+      ${c.confusedWith ? `<p class="dx-conf"><span class="dx-lbl">Often mistaken for</span> ${mdSafe(c.confusedWith)}</p>` : ''}
+      ${lab ? `<p class="dx-lab"><span class="dx-lbl">What a test would show</span> ${mdSafe(lab)}</p>` : ''}
+      <p class="dx-go"><a href="#cause-${n}">The mechanism and the plan for cause ${n} →</a></p></li>`;
+  }).join('');
+  // The <h2> stays BARE. anchorHeadings() (prerender.js:331) only matches `<h([23])>` with no
+  // attributes, so an authored id here would silently drop the heading out of the contents card and
+  // lose its # anchor. The jump target lives on the <section> instead.
+  return `<section class="prob-dx" id="which-one" aria-label="Which cause is yours">
+    <h2>Which one is you? — the ${causes.length} causes side by side</h2>
+    <p class="muted">Ranked by leverage: #1 is the cause that, fixed, changes the most for the most
+    people. Read the tells, pick the closest, jump straight to it. More than one can be true at
+    once, and this is a reading aid rather than a diagnosis — the “what a test would show” lines
+    say what a doctor would order, not what you should conclude on your own.</p>
+    <ol class="dx-list">${rows}</ol></section>`;
+}
+
+// 3. The way out, stated exactly as honestly as the data supports. The bind from a root cause (what
+// a /protocol/<problem>/<root_cause> URL names) to a cause on this page is the authored, build-gated
+// join in data/cause_map.json, folded onto each root cause as `cause_key` by build/parse.js. It
+// covers 47 of the 52 root causes and therefore 47 of the 224 causes; the other 5 root causes are
+// deliberately unmapped because they are umbrellas over several causes. NOTHING is guessed here:
+// word-overlap matching was tried on this exact surface once already and rejected (see the comment
+// above causeCascadeSummary), and the counts below are computed per page, never hard-coded.
+function protocolRoute(p, causes) {
+  const rcs = p.root_causes || [];
+  if (!rcs.length) return '';
+  const links = rcs.map((rc) => `<a href="/protocol/${p.id}/${rc.id}">${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a>`).join(' · ');
+  const bound = rcs.filter((rc) => rc.cause_key).length;
+  const nC = causes.length;
+  const head = rcs.length === 1
+    ? `${esc(p.name)} has <b>one</b> full protocol — the movements, the food and the compounds — written around the root cause ${links}.`
+    : `${esc(p.name)} has <b>${rcs.length}</b> full protocols — the movements, the food and the compounds — each written around one root cause: ${links}.`;
+  const honest = bound
+    ? `${bound} of the ${nC} cause${nC === 1 ? '' : 's'} below ${bound === 1 ? 'is' : 'are'} matched to ${rcs.length === 1 ? 'it' : 'one of them'}. For the ${nC - bound} that ${nC - bound === 1 ? 'is' : 'are'} not, the step-by-step plan inside the cause is what this site has — there is no separate protocol to send you to, and pretending otherwise would be worse than saying so.`
+    : `None of the ${nC} causes below is matched to ${rcs.length === 1 ? 'it' : 'one of them'} individually: ${rcs.length === 1 ? 'that root cause is' : 'those root causes are'} an umbrella over several of them. The step-by-step plan inside each cause is what this site has for that cause.`;
+  return `<section class="prob-route" id="the-plan">
+    <h2>Where the full plan lives</h2><p>${head}</p><p class="prob-route-honest">${honest}</p></section>`;
+}
+
+// The footer of one cause: the protocol authored for THIS cause if there is one, and the way back.
+function causeNext(p, c, nCauses) {
+  const rc = (p.root_causes || []).find((r) => r.cause_key === c.name);
+  const back = `<p class="cf-next-up"><a href="#which-one">↑ Back to the ${nCauses} causes side by side</a></p>`;
+  if (rc) {
+    return `<div class="cf-next"><p><b>The full protocol for this cause:</b>
+      <a href="/protocol/${p.id}/${rc.id}">${esc(p.name)} — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a>
+      — the movements, the Singapore food and the compounds, in one plan.</p>${back}</div>`;
+  }
+  const rcs = p.root_causes || [];
+  const links = rcs.map((r) => `<a href="/protocol/${p.id}/${r.id}">${esc(r.name.replace(/\s*\([^)]*\)/, ''))}</a>`).join(' · ');
+  const nFix = Array.isArray(c.fixes) ? c.fixes.length : 0;
+  return `<div class="cf-next"><p><b>No full protocol is written for this cause.</b> The
+    ${nFix}-step plan above is what this site has for it. ${rcs.length
+      ? `${esc(p.name)}'s protocol${rcs.length === 1 ? ' is' : 's are'} written around ${rcs.length === 1 ? 'a different root cause' : 'other root causes'}: ${links}.`
+      : ''}</p>${back}</div>`;
 }
 
 // The cascade in ONE LINE PER CAUSE, for the root-cause pages. Measured before this change: the 21
@@ -944,13 +1048,20 @@ function causeCascadeSummary(p) {
 GRAPH.problems.forEach((p) => {
   const w = CAUSE[p.id]; if (!w || !Array.isArray(w.causes) || !w.causes.length) return;
   const route = `/problem/${p.id}`;
-  const rcs = (p.root_causes || []).map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)} — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('');
+  const causes = w.causes.slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+  // Order is the whole change: escalation, then the differential, then the exit — all of it above
+  // the 30,000 px of mechanism prose that used to come first. The old bottom-of-page "The full
+  // protocols" list is gone because protocolRoute() carries the same links near the top and every
+  // cause block now carries them again at the point of decision.
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name }])}
     <h1>${p.icon || ''} Why ${esc(p.name.toLowerCase())} happens</h1>
-    <p class="lede">Every common cause, what drives it, how to tell which one is yours, and what to
-    do about each. The fix depends on the cause — that is the whole reason this page exists.</p>
+    <p class="lede">The same symptom has different causes, and they need different fixes — so this
+    page starts with the ${causes.length} cause${causes.length === 1 ? '' : 's'} side by side and how to
+    tell them apart, then gives the mechanism and the plan for each.</p>
+    ${problemRedFlags(p)}
+    ${problemDifferential(p, causes)}
+    ${protocolRoute(p, causes)}
     ${causeCascadeFlat(p)}
-    ${rcs ? `<h2>The full protocols</h2><p>Once you know which cause fits you, this is where the movements, food and compounds are:</p><ul>${rcs}</ul>` : ''}
     <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>`;
   add(route, shell({
     route,
