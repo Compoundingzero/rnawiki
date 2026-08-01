@@ -6598,6 +6598,23 @@
   // A plain null/'' would be indistinguishable from a renderer that returned nothing by mistake.
   const KEEP = Symbol('keep-prerendered');
   const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem'];
+  // THE BACK BUTTON LIED ON 41 OF 41 /problem ROUTES (measured hydrated 2026-08-01, 390x844).
+  // KEEP means "the prerendered document IS the page, do not write #app". That is true at boot and
+  // false the moment any SPA render has overwritten #app -- and nothing tracked the difference.
+  // Land on /problem/knee-pain, click a protocol link (SPA nav), press Back: popstate fires,
+  // route() runs, returns KEEP, and skips the only write to #app. Result on all 41: the URL came
+  // back (41/41) and the document did not (0/41). /problem/knee-pain went from h1 "🦵 Why knee pain
+  // happens" / 8,490 words / 12 cause anchors to h1 "Knee Pain" / 3,363 words / 0 cause anchors,
+  // under the /problem/knee-pain URL. The address bar was lying about what was on screen.
+  //
+  // So: remember which path the DOM in #app belongs to, and cache that document at boot. The cache
+  // is the same trick HOME_HTML uses and it is safe for the same reason -- these three prerendered
+  // articles bind nothing at boot (0 inline handlers site-wide, every control is document-
+  // delegated), so re-inserting the captured string and letting route() re-run glossarize() gives
+  // the page back exactly, with no second renderer anywhere.
+  let KEEP_PATH = (location.pathname || '/').replace(/\.html$/, '');
+  let KEEP_HTML = null;   // the prerendered #app for KEEP_PATH -- captured just before route(), below
+  let KEEP_LIVE = true;   // is that document still the one in #app?
   function route() {
     const raw = currentRoute();
     const [pathPart, queryPart] = raw.split('?');
@@ -6661,6 +6678,20 @@
     // browser-restored form state, and a repaint of every emoji on the page. Every later navigation
     // writes normally. This is also what makes the capture in home() legitimate rather than merely
     // clever: the string in the DOM and the string the SPA replays are the same object.
+    // A KEEP route whose prerendered document is no longer in #app has to get it BACK, or the URL
+    // and the page disagree (41/41 before this). Restore from the boot capture when it is the same
+    // path -- instant, no network, byte-identical. Otherwise the reader reached a DIFFERENT
+    // prerender-only article client-side, which is only possible through a legacy #/ link (every
+    // inbound link to these three carries data-native), so the server has to serve it:
+    // location.replace, not reload, because in that case location.pathname is "/" and reloading
+    // would re-enter this branch forever. Scoped to KEEP_PRERENDERED so /compare -- which already
+    // self-heals by testing for #cmp-tool -- cannot be reached by this code at all.
+    if (html === KEEP && KEEP_PRERENDERED.indexOf(parts[0]) >= 0 && !KEEP_LIVE) {
+      if (KEEP_HTML != null && KEEP_PATH === pathPart) { app.innerHTML = KEEP_HTML; KEEP_LIVE = true; }
+      else if (location.pathname.replace(/\.html$/, '') === pathPart) { location.reload(); return; }
+      else { location.replace(pathPart + (queryPart ? '?' + queryPart : '')); return; }
+    }
+    if (html !== KEEP) KEEP_LIVE = false;
     if (html !== KEEP && !(_firstPaint && !parts.length && HOME_HTML)) app.innerHTML = html;
     if (html === KEEP && parts[0] === 'compare' && document.getElementById('cmp-tool')) {
       document.getElementById('cmp-tool').innerHTML = comparePicker();
@@ -6759,6 +6790,12 @@
   // currentRoute() returns "/" for the home page in both the path form and the legacy #/ form, so
   // this is exact and does not fire on any other route.
   if (!currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;
+  // Same capture, same reason, for the three prerender-only articles. This is the ONLY moment the
+  // document the server sent is guaranteed untouched -- nothing above this line writes into #app.
+  // Captured BEFORE route(), so the cached string is the pre-glossarized one; route() runs
+  // glossarize(app) on every render including the restore, so a restored page is identical to a
+  // freshly-loaded one rather than double-glossarized.
+  if (KEEP_PRERENDERED.indexOf((KEEP_PATH.split('/').filter(Boolean)[0] || '')) >= 0) KEEP_HTML = app.innerHTML;
   route();
   api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } }).catch(() => { renderAccount(); });
   api.config().then(c => { if (c) CFG = c; });

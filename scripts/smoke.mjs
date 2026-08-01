@@ -619,6 +619,43 @@ try {
     }
   }
 
+  // ------------------------------------------------- Back button on a KEEP_PRERENDERED route
+  // W2.5(a): /problem is in KEEP_PRERENDERED, so route() returns the KEEP sentinel and never
+  // writes #app. Before the fix, Back from a protocol restored the URL and left the PROTOCOL on
+  // screen on 41 of 41 /problem routes (URL returned 41/41, DOM returned 0/41): /problem/knee-pain
+  // showed h1 "Knee Pain" / 3,363 words / 0 cause anchors instead of the 8,490-word differential.
+  // The per-route runner above cannot express this -- it is a relation between two navigations.
+  // Prove this gate by deleting the `html === KEEP && ... && !KEEP_LIVE` branch from route().
+  try {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 390, height: 844 });
+    await page.goto(BASE + '/problem/knee-pain', { waitUntil: 'networkidle2', timeout: NAV_TIMEOUT });
+    await new Promise(r => setTimeout(r, SETTLE_MS));
+    const before = await page.evaluate(() => ({
+      h1: document.querySelector('#app h1').textContent.trim(),
+      causes: document.querySelectorAll('#app [id^="cause-"]').length,
+    }));
+    const went = await page.evaluate(() => {
+      const a = [...document.querySelectorAll('#app a')].find(x =>
+        (x.getAttribute('href') || '').indexOf('/protocol/') === 0 && !x.hasAttribute('data-native'));
+      if (!a) return false; a.click(); return true;
+    });
+    if (!went) fail.push('ASSERTION backButtonRestoresKeptDocument FAILED — /problem/knee-pain has no in-app protocol link to navigate away with');
+    else {
+      await new Promise(r => setTimeout(r, SETTLE_MS));
+      await page.goBack({ waitUntil: 'domcontentloaded' }).catch(() => { });
+      await new Promise(r => setTimeout(r, SETTLE_MS));
+      const after = await page.evaluate(() => ({
+        path: location.pathname,
+        h1: document.querySelector('#app h1').textContent.trim(),
+        causes: document.querySelectorAll('#app [id^="cause-"]').length,
+      }));
+      if (after.path !== '/problem/knee-pain' || after.h1 !== before.h1 || after.causes !== before.causes)
+        fail.push(`ASSERTION backButtonRestoresKeptDocument FAILED — Back landed on ${after.path} showing h1 ${JSON.stringify(after.h1)} with ${after.causes} cause anchors; expected /problem/knee-pain, ${JSON.stringify(before.h1)}, ${before.causes} — the address bar and the document disagree`);
+    }
+    await page.close();
+  } catch (e) { fail.push('backButtonRestoresKeptDocument: harness error — ' + (e && e.message ? e.message : String(e))); }
+
   const w = Math.max(...rows.map(r => r.route.length));
   console.log(bold(`\n  class            route${' '.repeat(Math.max(0, w - 5))}  http  console  pageerr  failed-req`));
   for (const r of rows) {
