@@ -2,8 +2,14 @@
  *
  * Exhaustive-by-RULE, not by pair: every compound is TAGGED with its interaction-relevant
  * pharmacology (via category defaults + name matches), then a bounded set of authored rules
- * fires when tags collide. Covers all 170 compounds; the authored surface is ~20 tags + ~20
- * rules of established pharmacology a clinician can audit. Deterministic — no runtime AI.
+ * fires when tags collide. Deterministic — no runtime AI.
+ *
+ * IT DOES NOT COVER EVERYTHING. This header used to claim "Covers all 170 compounds; ~20 tags +
+ * ~20 rules", which was false on every count: the corpus is 171, and measured hydrated on /stack
+ * before 2026-08-01, 94 of them carried a tag some rule consumed and 77 did not — 35 of those 77
+ * prescription, controlled or unapproved. The `coverage` block below is the measured truth, it is
+ * printed to the reader by interactionPanel() in site/app.js, and assertInteractionCoverage() in
+ * build/parse.js fails the build if it drifts from what the corpus actually supports.
  * Each danger/blunt/timing rule carries a plain-English WHY (educate, don't just warn) and,
  * where relevant, a pathway link. Synergies suggest what pairs WELL. Not medical advice.
  *
@@ -11,6 +17,14 @@
  * interactions. AI drafted this; a pharmacist should review before it's treated as authoritative.
  */
 window.RNAWIKI_INTERACTIONS = {
+  // Coverage — MEASURED against the corpus, not asserted, and build-gated by
+  // assertInteractionCoverage() in build/parse.js. app.js prints these proportions next to the
+  // verdict, so they have to stay exact. `unreachable` is the number of compounds that carry no
+  // tag any rule consumes and therefore CANNOT produce a flag, no matter what they are stacked
+  // with. That number is not a target to game: the honest response to it is the "❔ Not enough to
+  // check" state in the panel, not a tag invented to make the number look better.
+  coverage: { compounds: 171, reachable: 100, unreachable: 71, unreachableRx: 33 },
+
   // Category → default tags (broad, safe defaults; refined by nameTags below).
   catTags: {
     "SARMs & SELECTIVE METABOLIC AGENTS": ["hpta_suppressive"],
@@ -64,10 +78,17 @@ window.RNAWIKI_INTERACTIONS = {
     // grapefruit-type metabolism
     { m: "bergamot", t: ["cyp3a4"] },
     // minerals that compete for absorption
-    { m: "calcium", t: ["divalent_mineral"] }, { m: "iron", t: ["divalent_mineral", "iron"] }, { m: "zinc", t: ["divalent_mineral", "zinc"] },
+    // `iron` deleted 2026-08-01: no rule consumed it, and everything it was there for is already
+    // carried — competition with other minerals by `divalent_mineral`, the vitamin-C absorption
+    // pairing by the name-matched synergy below. A tag no rule reads is dead data that reads as
+    // coverage, so it goes rather than gets a rule invented for it.
+    { m: "calcium", t: ["divalent_mineral"] }, { m: "iron", t: ["divalent_mineral"] }, { m: "zinc", t: ["divalent_mineral", "zinc"] },
     { m: "magnesium", t: ["divalent_mineral"] }, { m: "strontium", t: ["divalent_mineral"] }, { m: "boron", t: ["divalent_mineral"] },
     // high-dose antioxidants (can blunt training adaptation)
-    { m: "n-acetylcysteine", t: ["antioxidant_hd"] }, { m: "vitamin c", t: ["antioxidant_hd", "vitc"] },
+    // `vitc` deleted 2026-08-01, same reason as `iron`: no rule read it, and vitamin C's two real
+    // interactions here are already covered — antioxidant load by `antioxidant_hd`, the iron
+    // pairing by the name-matched synergy below.
+    { m: "n-acetylcysteine", t: ["antioxidant_hd"] }, { m: "vitamin c", t: ["antioxidant_hd"] },
     { m: "astaxanthin", t: ["antioxidant_hd"] },
     // mTOR
     { m: "rapamycin", t: ["mtor_inhibitor", "immunosuppress"] }, { m: "eaas", t: ["mtor_activator"] }, { m: "bcaa", t: ["mtor_activator"] },
@@ -101,6 +122,16 @@ window.RNAWIKI_INTERACTIONS = {
       title: "Nitrate + PDE-5 = blood-pressure crash",
       why: "Nitrates (like beetroot) and PDE-5 drugs (sildenafil / tadalafil) both widen blood vessels through the same NO→cGMP route. Together, blood pressure can drop dangerously.",
       action: "Never combine a nitrate source with a PDE-5 inhibitor.", pathway: "/pathway/4" },
+    // Wired 2026-08-01. `hypotensive` was assigned to 8 compounds and read by no rule, so the
+    // checker cleared L-Citrulline + PDE-5 Inhibitors with a green tick while this site's own
+    // compendium entry for citrulline says the opposite: "Stacking strong blood-flow agents —
+    // citrulline + beetroot + ED drugs (PDE-5) + nitrates together can drop blood pressure
+    // dangerously" (content/COMPENDIUM.md:233). This rule wires up what was already written down.
+    // `notIf` keeps it from double-counting the nitrate case, which has its own rule above.
+    { id: "pde5_vasodilator", tier: "danger", need: [["pde5", 1], ["hypotensive", 2]], notIf: ["nitrate_pde5"],
+      title: "PDE-5 inhibitor plus another blood-flow agent",
+      why: "A PDE-5 drug already widens blood vessels through the NO→cGMP route. Citrulline, beetroot and agmatine feed the same route from the other end. Pushing one lever twice can drop blood pressure far enough to make you faint.",
+      action: "Don't stack blood-flow agents on top of a PDE-5 inhibitor — pick one. If you take any blood-pressure medication, this needs a doctor, not a supplement plan.", pathway: "/pathway/4" },
     { id: "sedation", tier: "danger", need: [["cns_depressant", 2]],
       title: "Additive sedation / breathing risk",
       why: "Each of these slows the brain's arousal system. Stacked, sedation deepens toward slowed breathing — phenibut with a Z-drug or alcohol is a documented cause of overdoses.",
@@ -150,6 +181,27 @@ window.RNAWIKI_INTERACTIONS = {
       title: "Compounded testosterone shutdown",
       why: "Each of these suppresses your natural testosterone. Stacked, the shutdown is deeper and recovery is harder.",
       action: "Understand the suppression and have a recovery plan; this is not casual stacking.", pathway: "/pathway/9" },
+    // Wired 2026-08-01: `5ar_inhibitor` and `glp1` were assigned and read by no rule, which is why
+    // Finasteride / Dutasteride could never produce a flag at all. Both are duplicate-therapy
+    // rules — the same receptor or enzyme hit twice — which is the same shape as the
+    // double_statin rule above, one tier softer because neither is acutely dangerous.
+    { id: "double_5ar", tier: "blunt", need: [["5ar_inhibitor", 2]],
+      title: "Two 5-alpha-reductase inhibitors — the same job twice",
+      why: "Finasteride and dutasteride both block the enzyme that turns testosterone into DHT. Running both is more of one mechanism, not two mechanisms, and the sexual and mood side-effects people quit over scale with the total blockade.",
+      action: "Use one, at the dose it was prescribed at." },
+    { id: "double_glp1", tier: "blunt", need: [["glp1", 2]],
+      title: "Two GLP-1 agonists — duplicate therapy",
+      why: "These act on the same receptor. Two together is a bigger dose of one drug class rather than a second angle on the problem, and the nausea, vomiting and slowed stomach emptying scale with it.",
+      action: "Run one GLP-1 at a time, titrated by whoever prescribed it." },
+
+    { id: "hypotensive_stack", tier: "timing", need: [["hypotensive", 2]], notIf: ["pde5_vasodilator", "nitrate_pde5"],
+      title: "Both of these lower blood pressure",
+      why: "Each relaxes blood vessels a little, so the drop adds up. On its own that is usually harmless; the way it shows up is light-headedness when you stand up quickly, especially in the first week.",
+      action: "Stand up slowly while you settle in. If you already take blood-pressure medication, ask a pharmacist before adding either." },
+    { id: "mild_sedatives", tier: "timing", need: [["sedative_mild", 2]],
+      title: "Two mild sedatives at once",
+      why: "Melatonin, valerian and apigenin all nudge the same wind-down machinery. Stacked, the sedation adds up, and the usual result is a groggy morning rather than deeper sleep.",
+      action: "Start with one and give it two weeks before adding anything. If you're also on a strong sedative or drinking alcohol, treat all of these as off-limits." },
 
     { id: "mineral", tier: "timing", need: [["divalent_mineral", 2]],
       title: "Minerals compete — space them out",
