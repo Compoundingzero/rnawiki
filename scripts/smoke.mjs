@@ -76,6 +76,9 @@ const ROUTES = [
   ['plan', '/plan'],
   ['progress', '/progress'],
   ['solve', '/solve'],
+  // Same template class, with a query. /solve?q= used to render byte-identically to /solve
+  // (#app.innerHTML 11,797 chars on every query), so the unqueried route above cannot detect D11.
+  ['solve-q', '/solve?q=knee%20pain'],
   ['stack', '/stack'],
   ['where', '/where'],
 ];
@@ -117,6 +120,45 @@ const CONSOLE_ALLOWLIST = [
 // ----------------------------------------------- per-route DOM assertions
 // Keep these few and load-bearing. Each names the defect it locks down.
 const ASSERTIONS = {
+  // D10 (commit e7a19ef): /solve is the funnel entrance. It used to link every card to
+  // `#/protocol/{pid}/{root_causes[0].id}`, so a JS reader saw 41 of the 52 protocol URLs and 0
+  // /problem URLs while the crawler document had all 52 — 11 protocol URLs unreachable. Prove this
+  // gate by reverting solveCard() to a single <a href="#/protocol/${p.id}/${p.root_causes[0].id}">.
+  // The data-native clause is separate and just as load-bearing: /problem is KEEP_PRERENDERED, so a
+  // /problem link without it leaves the /solve DOM sitting under a /problem URL.
+  '/solve': [{
+    name: 'solveReachesEveryProtocolAndProblem',
+    why: 'D10: /solve must reach all 52 protocol URLs and all 41 problem URLs, and every /problem link must carry data-native',
+    evaluate: () => {
+      const G = window.RNAWIKI_DATA.graph;
+      const want = [];
+      G.problems.forEach(p => p.root_causes.forEach(rc => want.push('/protocol/' + p.id + '/' + rc.id)));
+      const A = [...document.querySelectorAll('#app a[href]')].map(a => a.getAttribute('href').replace(/^#/, ''));
+      const missP = want.filter(u => A.indexOf(u) < 0);
+      if (missP.length) return `${missP.length} of ${want.length} protocol URLs unreachable, e.g. ${missP.slice(0, 3).join(', ')}`;
+      const missProb = G.problems.map(p => '/problem/' + p.id).filter(u => A.indexOf(u) < 0);
+      if (missProb.length) return `${missProb.length} of ${G.problems.length} problem URLs unreachable, e.g. ${missProb.slice(0, 3).join(', ')}`;
+      const noNative = [...document.querySelectorAll('#app a[href^="/problem/"]')].filter(a => !a.hasAttribute('data-native')).length;
+      if (noNative) return `${noNative} /problem link(s) missing data-native — KEEP_PRERENDERED means the click would leave the /solve DOM in place under a /problem URL`;
+      return null;
+    },
+  }],
+  // D11 (commits e7a19ef + d6df0f8): the query must change the page and round-trip into the field.
+  // Prove this gate by reverting route() to `html = solvePage()`.
+  '/solve?q=knee%20pain': [{
+    name: 'solveQueryIsRead',
+    why: 'D11: ?q= was split off in route() and thrown away — every query rendered the same 11,797-char #app with no <input> in it',
+    evaluate: () => {
+      const inp = document.getElementById('solve-q');
+      if (!inp) return 'no #solve-q field on /solve';
+      if (inp.value !== 'knee pain') return `#solve-q value is ${JSON.stringify(inp.value)}, expected "knee pain"`;
+      const hits = document.querySelector('#q-hits');
+      if (!hits || !hits.querySelector('.solve-card')) return 'no ranked matches rendered for q=knee pain';
+      const first = hits.querySelector('.solve-card').dataset.pid;
+      if (first !== 'knee-pain') return `top match is ${first}, expected knee-pain`;
+      return null;
+    },
+  }],
   // D3 (commit da1e71e): the protocol page must expand the cause its own URL is about. Before the
   // fix app.js hard-coded `open` on index 0, so this route printed "Patellar tendinopathy (tendon
   // overload)" in its header and expanded "Hip & quad weakness with patellofemoral pain" — on 20
@@ -326,12 +368,53 @@ try {
     for (const a of (ASSERTIONS[route] || [])) {
       const gate = !a.onlyIfRequestFailed || badRequests.some(f => a.onlyIfRequestFailed.test(f.path));
       if (!gate) continue;
+      // Two kinds of assertion. `selector` is presence-only and covers most defects. `evaluate`
+      // exists for the ones that are a RELATION between things on the page — "every protocol URL
+      // in the graph is reachable from here" cannot be written as a CSS selector. It runs in the
+      // page and returns null to pass, or the failure message.
+      if (a.evaluate) {
+        const msg = await page.evaluate(a.evaluate).catch(e => 'threw: ' + (e && e.message ? e.message : String(e)));
+        if (msg) add(`ASSERTION ${a.name} FAILED — ${msg} — ${a.why}`);
+        continue;
+      }
       const present = await page.$(a.selector).then(x => !!x).catch(() => false);
       if (!present) add(`ASSERTION ${a.name} FAILED — expected ${a.selector} — ${a.why}`);
     }
 
     rows.push({ cls, route, status, con: consoleErrors.length, pe: pageErrors.length, bad: badRequests.length });
     await page.close();
+  }
+
+  // ------------------------------------------------- /solve?q= cross-document parity
+  // The ?q= ranking exists TWICE: rankProblems() in site/app.js for the SPA, and searchSolve() in
+  // server.js for the ~90% who never run JavaScript. Both read the same parse.js-authored index, so
+  // the only way they can diverge is a weight edited in one file and not the other. That divergence
+  // is silent — each document looks fine on its own. This is the only check that sees both.
+  // The server expresses its ranking as injected `#q-hits .solve-card[data-pid=…]{order:N}` rules;
+  // the SPA expresses it as the DOM order of #q-hits cards. They must be the same list.
+  // Prove this gate by changing a single weight in server.js searchSolve() (e.g. 18 -> 4).
+  for (const q of ['knee pain', 'belly fat', 'low testosterone', 'insomnia', 'zzzznonsense']) {
+    const u = '/solve?q=' + encodeURIComponent(q);
+    let pre, hyd;
+    try {
+      const html = await (await fetch(BASE + u)).text();
+      pre = /id="q-none" data-on/.test(html) ? ['(none)']
+        : [...html.matchAll(/#q-hits \.solve-card\[data-pid="([a-z0-9-]+)"\]\{order:(\d+)\}/g)]
+          .map(m => ({ id: m[1], o: +m[2] })).sort((a, b) => a.o - b.o).map(x => x.id);
+      const page = await browser.newPage();
+      await page.setViewport({ width: 390, height: 844 });
+      await page.goto(BASE + u, { waitUntil: 'networkidle2', timeout: 45000 });
+      await new Promise(r => setTimeout(r, 700));
+      hyd = await page.evaluate(() => document.querySelector('#q-hits.q-empty') ? ['(none)']
+        : [...document.querySelectorAll('#q-hits .solve-card')].map(c => c.dataset.pid));
+      await page.close();
+    } catch (e) {
+      fail.push(`solve-q-parity ${JSON.stringify(q)}: harness error — ${e && e.message ? e.message : String(e)}`);
+      continue;
+    }
+    if (JSON.stringify(pre) !== JSON.stringify(hyd)) {
+      fail.push(`ASSERTION solveQParity FAILED — q=${JSON.stringify(q)}: prerendered ranks [${pre.join(', ')}] but hydrated ranks [${hyd.join(', ')}] — server.js searchSolve() and site/app.js rankProblems() have drifted`);
+    }
   }
 
   const w = Math.max(...rows.map(r => r.route.length));
