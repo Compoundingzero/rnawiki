@@ -23,18 +23,31 @@ window.RNAWIKI_INTERACTIONS = {
   // tag any rule consumes and therefore CANNOT produce a flag, no matter what they are stacked
   // with. That number is not a target to game: the honest response to it is the "❔ Not enough to
   // check" state in the panel, not a tag invented to make the number look better.
-  // 2026-08-01: 100 → 99. EPO (Erythropoietin) was filed under "SARMs & SELECTIVE METABOLIC
-  // AGENTS" by a COMPENDIUM heading that pointed at the wrong category number, and inherited
-  // `hpta_suppressive` from the category default below. Filing it where it belongs removes a tag
-  // its own page never supported, and one compound stops being counted as covered. The number goes
-  // DOWN on purpose: a lower honest figure beats a higher false one.
-  coverage: { compounds: 171, reachable: 99, unreachable: 72, unreachableRx: 34 },
+  // 2026-08-01: 100 → 99 → 97. Three compounds lost a tag no page of theirs supported: EPO
+  // (mis-filed as a SARM by a COMPENDIUM heading), then Cardarine and Stenabolic, which inherited
+  // `hpta_suppressive` from a category default that has now been deleted. The number goes DOWN on
+  // purpose: a lower honest figure beats a higher false one, and those three now render
+  // "❔ I hold no interaction pharmacology for …" instead of silently inheriting somebody else's
+  // mechanism.
+  coverage: { compounds: 171, reachable: 97, unreachable: 74, unreachableRx: 36 },
 
-  // Category → default tags (broad, safe defaults; refined by nameTags below).
-  catTags: {
-    "SARMs & SELECTIVE METABOLIC AGENTS": ["hpta_suppressive"],
-    "ANABOLIC-ANDROGENIC STEROIDS": ["hpta_suppressive"]
-  },
+  // catTags MUST STAY EMPTY. It is kept as a field only so compoundTags() in site/app.js and its
+  // copy in build/parse.js keep the same shape; assertInteractionCoverage() fails the build if
+  // anything is put back here.
+  //
+  // Until 2026-08-01 this defaulted two whole categories to `hpta_suppressive`. A category default
+  // asserts a mechanism for every current AND FUTURE member of that category — the only thing
+  // between "file a compound under a heading" and "publish a named pharmacological claim about it"
+  // is that nobody notices. It had already fired three times. Measured hydrated at 390x844:
+  //   /stack?ids=c53,c54  → "🔻 Compounded testosterone shutdown · Cardarine (GW-501516) +
+  //                          Stenabolic (SR9009)". Cardarine's own mechanism opens "Not a SARM —
+  //                          a PPARδ (PPARD) agonist"; Stenabolic's is "REV-ERBα (NR1D1) agonist —
+  //                          a circadian-clock nuclear receptor". Neither page mentions testosterone.
+  //   /stack?ids=c135,c49 → "🔻 Compounded testosterone shutdown · EPO (Erythropoietin) +
+  //                          Ostarine", fixed in the previous commit at its source.
+  // The assignments that were TRUE are re-asserted per compound in nameTags below, each one
+  // checkable against that compound's own page. Tag compounds, never categories.
+  catTags: {},
 
   // name substring (lowercased) → tags. All matches apply; order irrelevant.
   nameTags: [
@@ -108,8 +121,27 @@ window.RNAWIKI_INTERACTIONS = {
     { m: "finasteride", t: ["5ar_inhibitor"] }, { m: "dutasteride", t: ["5ar_inhibitor"] },
     // thyroid hormone (mineral-blocked absorption)
     { m: "t3 / t4", t: ["thyroid"] }, { m: "levothyroxine", t: ["thyroid"] }, { m: "liothyronine", t: ["thyroid"] },
-    // exogenous testosterone
-    { m: "testosterone", t: ["hpta_suppressive"] }
+    // Exogenous androgens → HPTA suppression. ASSERTED PER COMPOUND, never by category (see the
+    // catTags note above). Each match string was tested against all 171 lowercased compound names
+    // and hits exactly one. The comment on each line is that compound's OWN authored support,
+    // quoted from site/data.js — if you cannot quote the page, do not add the line.
+    { m: "testosterone", t: ["hpta_suppressive"] },        // watch: "Testicular shrinkage/infertility (suppresses LH/FSH)"
+    { m: "nandrolone", t: ["hpta_suppressive"] },          // watch: "prolonged HPTA suppression"
+    { m: "oxandrolone", t: ["hpta_suppressive"] },         // watch: "Lipid deterioration, HPTA suppression"
+    { m: "oxymetholone", t: ["hpta_suppressive"] },        // watch: "all suppress natural testosterone"
+    { m: "ostarine", t: ["hpta_suppressive"] },            // watch: "HPTA suppression, liver injury cases"
+    { m: "ligandrol", t: ["hpta_suppressive"] },           // watch: "Marked suppression, hepatotoxicity"
+    { m: "andarine", t: ["hpta_suppressive"] },            // watch: "Minimal human data, strong suppression"
+    // The four below are exogenous androgen-receptor agonists by their own authored MECHANISM;
+    // their pages do not use the word "suppression". The tag rests on the mechanism the page
+    // states, not on an inference about the molecule's class — which is the line this file now
+    // holds everywhere. If Felix would rather these carried the tag only when the page says so,
+    // the honest fix is one authored sentence on each page, not a quieter tag.
+    { m: "trenbolone", t: ["hpta_suppressive"] },          // mech: "19-nor with extreme AR binding affinity (higher than testosterone)"
+    { m: "stanozolol", t: ["hpta_suppressive"] },          // mech: "DHT-derived, 17α-alkylated, non-aromatising"
+    { m: "boldenone", t: ["hpta_suppressive"] },           // mech: "Testosterone with a 1,2 double bond"
+    { m: "methandrostenolone", t: ["hpta_suppressive"] },  // mech: "Oral 17α-alkylated, aromatises readily"
+    { m: "testolone", t: ["hpta_suppressive"] }            // mech: "Potent AR agonist designed to mimic testosterone's anabolism"
   ],
 
   // Rules: fire when every `need` [tag, minDistinctCompounds] is satisfied by the stack.
