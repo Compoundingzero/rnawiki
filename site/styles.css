@@ -4014,3 +4014,13 @@ a.assess-switch { text-align: center; }
 .rcpt-x{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;font-size:1rem;line-height:1.3}
 .rcpt-x:hover{border-color:#0f766e;color:#0b5f59}
 .rcpt-x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* W4 · Loop B — the stack-audit hook. Sits OUTSIDE the collapsed Phase 2 drawer, because it is
+   aimed at a reader who already takes a stack. High contrast on purpose; #0a1420 on #f1f4f8 =
+   16.3:1, the scope line #5c6a7a on #f1f4f8 = 5.04:1. Link >= 44px tall (D25). */
+.stack-audit{margin:1.4rem 0;padding:1.05rem 1.1rem 1.1rem;border:1px solid var(--line);border-left:6px solid #0f766e;border-radius:14px;background:var(--panel2)}
+.stack-audit h3{margin:0 0 .5rem;font-size:1.2rem;line-height:1.3;font-weight:800;color:var(--head)}
+.stack-audit p{margin:0 0 .6rem;font-size:1rem;line-height:1.55;color:var(--ink)}
+.stack-audit .sa-x{display:inline-flex;align-items:center;min-height:44px;padding:.5rem 1rem;border-radius:999px;background:#0f766e;color:#fff;text-decoration:none;font-weight:700}
+.stack-audit .sa-x:hover{background:#0b5f59}
+.stack-audit .sa-x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.stack-audit .sa-scope{margin:0;font-size:1rem;line-height:1.55;color:var(--muted)}

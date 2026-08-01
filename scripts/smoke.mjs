@@ -576,6 +576,39 @@ const ASSERTIONS = {
       return null;
     },
   }, {
+    // W4 · LOOP B (2026-08-02). build/prerender.js gates the crawler's copy on all 52 routes; this
+    // gates the READER's, because the two documents saying different things is the defect class
+    // (D2/D33) this branch has already fixed four times. The offer is one person's, so it must
+    // read as one person's, must state that it is not from a clinician, and must be visible
+    // WITHOUT opening the Phase 2 drawer — the reader it is aimed at already takes a stack.
+    // PROVE THIS GATE by deleting ${stackAuditCallout()} from renderProtocol(), by moving it
+    // inside protocolLayers()' <details>, or by dropping the "not a clinician" sentence.
+    name: 'loopBStackAuditIsOnePersonAndSaysItsScope',
+    why: 'W4: an open offer to go through a stranger\'s supplements must be visible, must be in one person\'s voice, and must state in the same breath that it is not a clinician and not medical advice',
+    evaluate: () => {
+      const app = document.getElementById('app');
+      const el = app.querySelector('.stack-audit');
+      if (!el) return 'no stack-audit callout in the hydrated document — the crawler gets one and the reader does not';
+      const t = (el.innerText || '').replace(/\s+/g, ' ');
+      if (!/supplement stack right now/i.test(t)) return `the callout does not open with the question it exists to ask — "${t.slice(0, 70)}…"`;
+      if (!/not a clinician/i.test(t)) return 'the callout never says it is not from a clinician';
+      if (!/not medical advice/i.test(t)) return 'the callout never says it is not medical advice';
+      if (/\b(we|our|us)\b/i.test(t)) return `the callout speaks as an organisation — "${(t.match(/.{0,40}\b(we|our|us)\b.{0,40}/i) || [''])[0]}". There is one person here`;
+      if (/\b(verified|certified|qualified|licensed|registered)\b/i.test(t)) return 'the callout implies a credential that does not exist';
+      const a = el.querySelector('a.sa-x');
+      if (!a) return 'the callout makes an offer on X and gives no way to reach it';
+      const h = (((window.RNAWIKI_DATA.site || {}).x) || {}).handle;
+      if (!h) return 'no handle in data.site';
+      if (a.getAttribute('href') !== 'https://x.com/' + h) return `the callout links to "${a.getAttribute('href')}" instead of the configured profile for @${h}`;
+      const r = a.getBoundingClientRect();
+      if (r.height < 44) return `the callout link is ${Math.round(r.height)}px tall — under 44 (D25)`;
+      // visible without opening Phase 2
+      const d2 = app.querySelector('#phase-2');
+      if (d2 && d2.contains(el)) return 'the callout is inside the collapsed Phase 2 drawer, so the reader who already takes a stack never sees it';
+      if (!el.offsetParent && getComputedStyle(el).position !== 'fixed') return 'the callout is not rendered';
+      return null;
+    },
+  }, {
     name: 'rcOverlayNotice',
     onlyIfRequestFailed: /^\/api\/rootcause-overlay$/,
     selector: '#p-causes [data-api-absent="rootcause-overlay"]',

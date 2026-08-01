@@ -5932,6 +5932,29 @@
         <p class="p1-sync-state" id="p1-sync-state" role="status"></p>
       </div>`;
   }
+  // ---- W4 · LOOP B (2026-08-02): THE STACK-AUDIT HOOK ------------------------------------------
+  // build/prerender.js:stackAuditCallout() emits the IDENTICAL markup and copy. If only one of the
+  // two documents carried it, a crawler and a reader would get different pages — the D2/D33 defect
+  // class this branch has fixed four times already, and the reason the two functions are kept
+  // character-for-character the same rather than "roughly the same".
+  //
+  // It sits OUTSIDE the collapsed Phase 2 drawer, immediately after it. Inside, it would be
+  // invisible until the reader opened Phase 2 — and this is aimed at somebody who already takes a
+  // stack, i.e. exactly the reader who does not need to be sold Phase 2.
+  //
+  // One person, no credential, nothing to buy. assertSingleVoice() and assertNoCredentialClaims()
+  // in build/parse.js fail the build on the opposite. The handle comes from data/site_config.json;
+  // with none configured this renders nothing rather than a link to nowhere.
+  function stackAuditCallout() {
+    const h = OWNER.handle, url = OWNER.profile;
+    if (!h || !url) return '';
+    return `<aside class="stack-audit">
+    <h3>Taking a complex supplement stack right now?</h3>
+    <p>I go through stacks by hand and look for the same three things: two compounds doing the same job, fillers you are paying for, and doses too low to do anything. Post yours in a reply to me on X and I will break it down, free.</p>
+    <p><a class="sa-x" href="${esc(url)}" rel="noopener">𝕏 @${esc(h)} on X →</a></p>
+    <p class="sa-scope">I am not a clinician and this is not medical advice. It is one person reading labels against the evidence already on this site — and if something on your list needs a prescription, that conversation belongs with a doctor or pharmacist, not with me.</p>
+  </aside>`;
+  }
   // ---- W4 (2026-08-02): THE RESEARCH RECEIPT ---------------------------------------------------
   // MEASURED HYDRATED at 390x844 in the default DOM state before this, on
   // /protocol/knee-pain/patellofemoral-pain, /protocol/insomnia/circadian-misalign,
@@ -6644,6 +6667,7 @@
       ${causesSection(problem, causeIndexForRc(problem, rc))}
       ${planSection(problem)}
       ${protocolLayers(problem, rc, P)}
+      ${stackAuditCallout()}
       <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">This is Phase 2 — the full programme. Do Phase 1 first: it is one free thing for 7 days, and it is the only way to know what actually moved.</span></div>
       ${rcSwitch}
       ${'' /* W4/W3.6 (2026-08-02): the keystone card is SUPPRESSED on the 38 of 52 routes whose

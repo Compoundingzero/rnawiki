@@ -487,6 +487,34 @@ function dailyFactObj() {
 
 const crumbHtml = (items) => `<div class="crumbs">${items.map((it, i) => it.route ? `<a href="${it.route}">${esc(it.name)}</a>` : `<span>${esc(it.name)}</span>`).join('<span class="sep">›</span>')}</div>`;
 
+// ---- W4 · LOOP B (2026-08-02): THE STACK-AUDIT HOOK ------------------------------------------
+// One person's own offer, on all 52 protocol pages, in BOTH documents. site/app.js emits the
+// identical markup — if only one of them carried it, a crawler and a reader would see different
+// pages, which is the D2/D33 defect class this branch has already fixed four times.
+//
+// It is placed OUTSIDE the collapsed Phase 2 <details>, immediately after it. Inside, it would be
+// invisible until the reader opened the drawer, which is exactly the audience least likely to need
+// it: this is aimed at somebody who ALREADY takes a stack.
+//
+// THREE THINGS THE COPY MUST DO, and the single-voice and no-credential gates already fail the
+// build on the opposite:
+//   · one person speaking ("I"), never an organisation and never a service;
+//   · no credential, stated or implied — the scope line says plainly that this is not a clinician
+//     and not medical advice;
+//   · no brand, no product, nothing to buy (constraint 1).
+// The handle is read from data/site_config.json; with none configured the block does not render at
+// all rather than printing a link to nowhere.
+function stackAuditCallout() {
+  const h = (SITE_X.x || {}).handle, url = (SITE_X.x || {}).profile;
+  if (!h || !url) return '';
+  return `<aside class="stack-audit">
+    <h3>Taking a complex supplement stack right now?</h3>
+    <p>I go through stacks by hand and look for the same three things: two compounds doing the same job, fillers you are paying for, and doses too low to do anything. Post yours in a reply to me on X and I will break it down, free.</p>
+    <p><a class="sa-x" href="${esc(url)}" rel="noopener">𝕏 @${esc(h)} on X →</a></p>
+    <p class="sa-scope">I am not a clinician and this is not medical advice. It is one person reading labels against the evidence already on this site — and if something on your list needs a prescription, that conversation belongs with a doctor or pharmacist, not with me.</p>
+  </aside>`;
+}
+
 // ---- SEO entities & structured-data helpers ----
 const BUILD_DATE = new Date().toISOString().slice(0, 10); // real freshness signal for dateModified/lastReviewed
 // The publisher entity (E-E-A-T). Referenced by @id from every clinical page; defined in full on home.
@@ -1243,6 +1271,7 @@ GRAPH.problems.forEach((p) => {
           <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
         </div>
       </details>
+      ${stackAuditCallout()}
       ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
       <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
@@ -2943,6 +2972,22 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     const iP2 = at(/id="phase-2"/);
     if (iP2 < 0) bad.push(`${pg.route}: no #phase-2 container — the stack must be behind an optional second phase`);
     else if (iP1 >= 0 && iP2 < iP1) bad.push(`${pg.route}: Phase 2 is emitted before Phase 1`);
+    // ---- W4 · LOOP B (2026-08-02): the stack-audit hook, in the document a crawler gets --------
+    // It has to be OUTSIDE the Phase 2 <details>, or it is invisible until a reader opens a drawer
+    // aimed at the readers who need it least. `iP2close` is the end of that element; the callout
+    // must come after it. And it must carry its scope line: an offer to go through somebody's
+    // supplement stack, made by a person who is not a clinician, has to say so in the same breath.
+    // PROVE IT by moving ${stackAuditCallout()} inside the <div class="p2-body">, or by deleting
+    // the "not a clinician" sentence: the build stops and names all 52 routes.
+    const iSA = at(/class="stack-audit"/);
+    if (iSA < 0) bad.push(`${pg.route}: no stack-audit callout — the one loop this site has is missing from the crawler's document`);
+    else {
+      const iP2close = h.indexOf('</details>', iP2);
+      if (iP2close >= 0 && iSA < iP2close) bad.push(`${pg.route}: the stack-audit callout is inside the collapsed Phase 2 drawer, so it is invisible to the reader it is aimed at`);
+      const sa = h.slice(iSA, iSA + 1600);
+      if (!/not a clinician/i.test(sa)) bad.push(`${pg.route}: the stack-audit offer never says it is not from a clinician — an offer to go through somebody's supplements has to state its scope in the same breath`);
+      if (!/not medical advice/i.test(sa)) bad.push(`${pg.route}: the stack-audit offer never says it is not medical advice`);
+    }
     if (iMetric >= 0 && iMetric > iStack) bad.push(`${pg.route}: the tracked metric comes after the supplement stack`);
     if (iStop >= 0 && iStop > iStack) bad.push(`${pg.route}: the stop rule comes after the supplement stack`);
     // The header over the stop rule must name the horizon THE RULE names. It printed a timeline
