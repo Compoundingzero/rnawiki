@@ -397,14 +397,17 @@ const ASSERTIONS = {
       // W4 (2026-08-02): this compared getBoundingClientRect().top. #p-stack is about to live
       // inside <details id="phase-2">, closed by default, so the y-comparison was expected to
       // read y(card) === 0 and invert on every protocol route.
-      // IT DOES NOT — MEASURED, not assumed (out/w4int_smokeproof.mjs, hydrated 390x844 on both
-      // protocol smoke routes): with #p-stack wrapped in a closed <details>, HeadlessChrome 150
-      // still lays the subtree out (.st-card rect top 16,816 px, height 227 px, display block,
-      // contentVisibility "visible", offsetParent non-null), and the old predicate fired on 0/2.
-      // Four native closed <details> already on the page measure the same way.
-      // The comparison is switched to DOM ORDER anyway, because that is what "above" MEANS here
-      // and it does not depend on a UA's current choice about laying out collapsed content — but
-      // this is a robustness change, not a fix for a live break. Do not cite it as one.
+      // The predicted inversion DOES NOT HAPPEN — measured, not assumed. The element this
+      // assertion actually reads, #p-stack .st-card, keeps a real rect inside the closed
+      // <details> (top 18,152 px, height 227 px, display block, contentVisibility "visible"), so
+      // the old predicate fired on 0/2 smoke routes.
+      // BUT GEOMETRY IN THERE IS NOT TRUSTWORTHY, and that IS measured
+      // (out/w4int_after_geom.json, hydrated 390x844, 52/52, reproduced 4/4 on one route):
+      // #p-stack ITSELF returns a ZERO rect while its own descendant .st-card returns 18,152 px
+      // IN THE SAME evaluate. Any collapsed subtree can report either. So the geometry form of
+      // this assertion was one selector change away from silently comparing against zero.
+      // DOM order is what "above" means here and it does not depend on a UA's current choice
+      // about laying out collapsed content.
       const order = [...app.querySelectorAll('*')];
       const card = document.querySelector('#p-stack .st-card');
       if (card && order.indexOf(document.querySelector('.plan-reassess')) > order.indexOf(card))
