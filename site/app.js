@@ -1800,7 +1800,7 @@
         .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
       const cmpCards = cmpPeers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span><span class="cmp-stars">${'★'.repeat(o.stars)}<span class="cmp-dim">${'★'.repeat(5 - o.stars)}</span></span></a>`).join('');
       const myStack = getStack().map(id => byId[id]).filter(Boolean); let chk = '';
-      if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis, { tiers: ['danger', 'timing'] }); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">❔ ${esc(c.name)} is the only thing in your stack, so there is nothing to cross-check it against yet. Add a second compound and this becomes an interaction check.</div>`; }
+      if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">❔ ${esc(c.name)} is the only thing in your stack, so there is nothing to cross-check it against yet. Add a second compound and this becomes an interaction check.</div>`; }
       return (cmpCards || chk) ? `<div class="cpd-explore">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
     })();
     const ch1 = hookBox(c) + stakesLine(c) + bigIdeaBanner(c) + analogyBox(c) + takeawaysBox(c) + callout('plain', 'In plain English — start here', c.plain) + moleculeViewer(c) + mythsBox(c, s) + didYouKnow + (!chainHtml && goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '') + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '');
@@ -2845,10 +2845,25 @@
     });
     return { flags, synergies: syn };
   }
-  function interactionPanel(list, opts) {
+  function interactionPanel(list) {
     if (list.length < 2) return '';
     const r = stackInteractions(list);
-    if (opts && opts.tiers) r.flags = r.flags.filter(f => opts.tiers.indexOf(f.tier) >= 0);
+    // ---- W3.5 (2026-08-02): ONE VERDICT, THE SAME ON ALL FIVE SURFACES -----------------------
+    // An `opts.tiers` filter stood here and removed rows BEFORE the verdict counted them, so a
+    // page that hid a row also silently promoted its own verdict from ⚠️ to ✅. The `opts`
+    // parameter is gone entirely, because a per-call-site display option that can change the
+    // verdict is a defect class, not a setting. MEASURED hydrated at 390x844 before the change:
+    //   NAC + Vitamin C         /stack  "⚠️ 1 thing to review" + 🔻 May blunt training adaptation
+    //                           /c/vitamin-c-ascorbate  "✅ Nothing flagged between the 2 of 2 I
+    //                                                    have pharmacology for", zero rows
+    //                           /c/n-acetylcysteine-nac  the same green string
+    //   bone-density/low-bmd    /plan tracker "✅ Nothing flagged between the 5 of 6 …"
+    //                           same 6 on /stack "⚠️ 2 things to review" + ⏰ Minerals compete
+    //   skin-aging/uv-oxidative /plan builder "✅ Nothing flagged between the 5 of 6 …"
+    //                           same 6 on /stack "⚠️ 2 things to review" + 🔻 May blunt training
+    // The tracker filtered to tiers:['danger'] — the daily-checklist surface, the one place a
+    // mineral-timing warning would actually change behaviour. If the panel is ever too heavy
+    // there, collapse the panel; never hide a row the verdict counted.
     const nDanger = r.flags.filter(f => f.tier === 'danger').length;
     const icon = { danger: '☠️', blunt: '🔻', timing: '⏰' };
     const order = { danger: 0, blunt: 1, timing: 2 };
@@ -2869,7 +2884,18 @@
     //     directly under the verdict, and forces the verdict off green.
     const covered = list.filter(c => { let ok = false; compoundTags(c).forEach(t => { if (RULE_TAGS.has(t)) ok = true; }); return ok; });
     const uncovered = list.filter(c => covered.indexOf(c) < 0);
-    const overlaps = (opts && opts.overlaps) || [];
+    // Pathway overlap is computed HERE, not passed in. It used to arrive only from renderStack()
+    // below, which is why it forced the verdict off green on /stack and nowhere else: hydrated at
+    // 390x844, /stack?ids=c13,c116 rendered "🔻 Overlapping pathways · Nitric oxide / cGMP" while
+    // /c/l-citrulline-citrulline-malate with the same pair in the stack rendered no overlap row at
+    // all. Same data, one surface. The `&& D.pathways[i]` guard is new: a stale pathway id now
+    // yields no row instead of a TypeError.
+    const overlaps = (function () {
+      const paths = {};
+      list.forEach(c => (c.pathwayIds || []).forEach(i => (paths[i] = (paths[i] || []).concat(c.name))));
+      return Object.keys(paths).filter(i => paths[i].length > 1 && D.pathways[i])
+        .map(i => ({ label: D.pathways[i].shortLabel, n: paths[i].length }));
+    })();
     const nReview = r.flags.length + (overlaps.length ? 1 : 0);
     const parts = [];
     parts.push(nDanger
@@ -2914,12 +2940,12 @@
     // while the "✅ No dangerous interactions flagged" tick sat at y=486, in the first screenful.
     // On mobile the reassurance was visible and the warning was not. It is one warning, so it is
     // rendered once, at the top, and it now forces the verdict off green.
-    const overlaps = Object.keys(paths).filter(i => paths[i].length > 1)
-      .map(i => ({ label: D.pathways[i].shortLabel, n: paths[i].length }));
+    // W3.5 (2026-08-02): the overlap computation itself moved INTO interactionPanel(), so all five
+    // surfaces get it and not just this one. `paths` is still used by the Pathways-hit block below.
     const rows = list.map(c => `<div class="stack-row"><a href="#/c/${slug(c.name)}"><b>${c.name}</b></a> <span class="stars" style="font-size:.75rem">${'★'.repeat(c.stars)}</span> <span style="color:var(--faint);font-size:.82rem">${c.category}</span> <button class="stack-x" data-id="${c.id}">remove</button></div>`).join('');
     const sharedTargets = Object.values(tgts).filter(t => t.who.length > 1);
     out.innerHTML = `
-      ${interactionPanel(list, { overlaps })}
+      ${interactionPanel(list)}
       <div class="stack-grid">
         <div class="stack-list">${rows}</div>
         <div class="stack-summary">
@@ -4599,7 +4625,7 @@
     const chips = steps.map((s, i) => `<span class="bstep ${i === si ? 'on' : i < si ? 'done' : ''}">${s.icon} ${s.title}</span>`).join('<span class="bsep">›</span>') + '<span class="bsep">›</span><span class="bstep">🧩 Tools</span><span class="bsep">›</span><span class="bstep">🍽️ Fuel</span>';
     const count = dispItems.filter(it => (step.kind === 'move' ? mSel : sSel).includes(it.id)).length;
     const foodOnly = step.kind === 'supp' ? `<button class="chip food-only ${dr.supps === 'none' ? 'on' : ''}" id="food-only">🍚 ${dr.supps === 'none' ? '✓ ' : ''}I'll go food-only — no supplements</button>` : '';
-    const ixn = step.kind === 'supp' ? `<div id="build-ixn">${sSel.length > 1 ? interactionPanel((P.stack || []).filter(c => sSel.includes(c.id)), { tiers: ['danger', 'timing'] }) : ''}</div>` : '';
+    const ixn = step.kind === 'supp' ? `<div id="build-ixn">${sSel.length > 1 ? interactionPanel((P.stack || []).filter(c => sSel.includes(c.id))) : ''}</div>` : '';
     const addWord = step.title.toLowerCase().replace(/s$/, '');
     app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Build my plan' }])}
       <section class="plan-hd"><div><div class="kicker">Build your plan · ${esc(problem.name)}</div><h1>${step.icon} ${esc(step.title)}</h1>
@@ -4648,7 +4674,7 @@
       const d = getDraft(); if (!d) return; const cur = d.supps === 'none' ? [] : (Array.isArray(d.supps) ? d.supps.slice() : allSupp.slice()); const id = cb.dataset.supp;
       const i = cur.indexOf(id); if (cb.checked && i < 0) cur.push(id); else if (!cb.checked && i >= 0) cur.splice(i, 1);
       d.supps = cur; setDraft(d); cb.closest('.build-item').classList.toggle('sel', cb.checked);
-      const ix = document.getElementById('build-ixn'); if (ix) ix.innerHTML = cur.length > 1 ? interactionPanel((P.stack || []).filter(c => cur.includes(c.id)), { tiers: ['danger', 'timing'] }) : '';
+      const ix = document.getElementById('build-ixn'); if (ix) ix.innerHTML = cur.length > 1 ? interactionPanel((P.stack || []).filter(c => cur.includes(c.id))) : '';
       updCount();
     });
     const fo = document.getElementById('food-only'); if (fo) fo.onclick = () => { const d = getDraft(); if (!d) return; d.supps = d.supps === 'none' ? allSupp.slice() : 'none'; setDraft(d); renderPlan(); };
@@ -5196,7 +5222,7 @@
     const doneItems = [...todayMoves, ...M.supps].filter(x => dayLog.done.includes(x.id)).length;
     const restBanner = (hasStrength && !training) ? `<div class="rest-banner">😴 <b>Rest day</b> — recovery. Your keystone, mobility${M.supps.length ? ' and supplements' : ''} still count.${nextTrainingLabel(plan) ? ` Next session: <b>${nextTrainingLabel(plan)}</b>.` : ''}</div>` : '';
     const daysEditor = hasStrength ? `<details class="train-days"><summary>🗓️ Training days · ${planTrainingDays(plan).length}×/week</summary><div class="td-chips">${[0, 1, 2, 3, 4, 5, 6].map(wd => `<button class="td-chip ${planTrainingDays(plan).includes(wd) ? 'on' : ''}" data-td="${wd}">${['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][wd]}</button>`).join('')}</div><p class="td-hint">Strength trains on these days. Keystone, mobility &amp; supplements stay daily.</p></details>` : '';
-    const danger = M.supps.length > 1 ? interactionPanel(M.supps, { tiers: ['danger'] }) : '';
+    const danger = M.supps.length > 1 ? interactionPanel(M.supps) : '';
     const keystoneCards = M.keystones.map(k => keystoneCardHtml(k.rc, !!dayLog.keystones[k.key], k.key, multi ? k.problem.name : '')).join('');
     const subtitle = multi ? `${M.resolved.length} protocols · ${esc(M.resolved.map(r => r.problem.name).join(' · '))}` : esc(M.resolved[0].rc.name);
     const hasFuel = Object.keys(M.fuel).length > 0; // hide Fuel entirely when no protocol has food targets
