@@ -2709,6 +2709,72 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log('[prerender] structured data OK — every JSON-LD block parses and declares @context.');
 })();
 
+// ---- build-time assertion: /problem/* is still a differential ----------------------------------
+// Added 2026-08-01 with the D13 restructure. The defect this locks down was invisible on the page
+// that contained it: every block was present and correct, in the wrong ORDER, so the reader met
+// 30,000 px of mechanism prose before any of the three things they came for. Measured hydrated on
+// all 41 pages: the first protocol link at 98% of page height on 41/41, no escalation block on any
+// of them, 0 of 224 causes carrying an anchor or a next step, 0 of 861 plan items linked.
+//
+// This checks the PRERENDERED documents, which is also the hydrated DOM here — /problem is one of
+// the three KEEP_PRERENDERED routes (app.js:6204), so app.js never rewrites it. It is a whole-corpus
+// check because smoke.mjs only visits /problem/knee-pain, and a per-problem data gap (a missing
+// `reassess`, a cause with no fixes) would slip past a single-route gate.
+//
+// NOTE the deploy-gate asymmetry: `prestart` is `node build/parse.js && (node build/prerender.js ||
+// echo …)`, so a process.exit(1) HERE does not stop a Railway deploy — it ships the previous page.
+// It does fail `npm run build`, which is the gate the workflow actually runs before a commit.
+(function assertProblemSpine() {
+  const bad = [];
+  let checked = 0, causesSeen = 0, linkedItems = 0, planItems = 0;
+  pages.filter((pg) => /^\/problem\//.test(pg.route)).forEach((pg) => {
+    checked++;
+    const h = pg.html;
+    const at = (re) => { const m = h.match(re); return m ? m.index : -1; };
+    const iRed = at(/id="red-flags"/);
+    const iDx = at(/id="which-one"/);
+    const iRoute = at(/id="the-plan"/);
+    const iProse = at(/class="cause-flat"/);
+    const iProto = at(/href="\/protocol\//);
+    if (iRed < 0) bad.push(`${pg.route}: no #red-flags escalation block (data/protocol_plan.json.reassess missing?)`);
+    if (!/not medical advice/i.test(h)) bad.push(`${pg.route}: does not say the page is not medical advice`);
+    if (iDx < 0) bad.push(`${pg.route}: no #which-one differential block`);
+    if (iRoute < 0) bad.push(`${pg.route}: no #the-plan route-out block`);
+    if (iProse < 0) { bad.push(`${pg.route}: no .cause-flat prose section`); return; }
+    // THE ORDER IS THE ASSERTION. Anything else and the reader is back where they started.
+    if (iRed > iProse) bad.push(`${pg.route}: the escalation block comes AFTER the mechanism prose`);
+    if (iDx > iProse) bad.push(`${pg.route}: the differential comes AFTER the mechanism prose`);
+    if (iRoute > iProse) bad.push(`${pg.route}: the route to a protocol comes AFTER the mechanism prose`);
+    if (iProto < 0 || iProto > iProse) bad.push(`${pg.route}: the first protocol link is inside or after the mechanism prose (this is the 98%-of-page-height defect)`);
+    // Every #cause-N must resolve. assertLinkGraph cannot see these: norm() returns null for a
+    // "#..." href, so in-page fragments are outside its reach by design.
+    const ids = new Set((h.match(/id="cause-\d+"/g) || []).map((s) => s.slice(4, -1)));
+    const jumps = [...new Set((h.match(/href="#(cause-\d+)"/g) || []).map((s) => s.slice(7, -1)))];
+    if (!jumps.length) bad.push(`${pg.route}: no #cause-N jump links`);
+    jumps.forEach((j) => { if (!ids.has(j)) bad.push(`${pg.route}: #${j} resolves to nothing`); });
+    const nCause = (h.match(/class="cause-flat-item"/g) || []).length;
+    const nRow = (h.match(/class="dx-row"/g) || []).length;
+    const nTell = (h.match(/class="dx-tell"/g) || []).length;
+    const nNext = (h.match(/class="cf-next"/g) || []).length;
+    causesSeen += nCause;
+    if (nRow !== nCause) bad.push(`${pg.route}: ${nRow} differential rows for ${nCause} causes`);
+    if (nTell !== nCause) bad.push(`${pg.route}: ${nTell} tells for ${nCause} causes — a cause a reader cannot recognise cannot be chosen`);
+    if (nNext !== nCause) bad.push(`${pg.route}: ${nNext} end-of-cause next steps for ${nCause} causes`);
+    if (ids.size !== nCause) bad.push(`${pg.route}: ${ids.size} anchors for ${nCause} causes`);
+    const lis = h.match(/<li><span class="cf-kind[\s\S]*?<\/li>/g) || [];
+    planItems += lis.length;
+    linkedItems += lis.filter((li) => /<a href="\/c\//.test(li)).length;
+  });
+  if (checked && !linkedItems) bad.push(`0 of ${planItems} plan items link to the compound they name — fixItemHtml() has stopped resolving`);
+  if (bad.length) {
+    console.error('\n[prerender] /problem SPINE ASSERTION FAILED — refusing to build:');
+    bad.slice(0, 20).forEach((m) => console.error('  ✗ ' + m));
+    if (bad.length > 20) console.error(`  … and ${bad.length - 20} more`);
+    process.exit(1);
+  }
+  console.log('[prerender] /problem spine OK — %d pages: escalation, %d tells and a protocol route all above the prose; %d/%d plan items linked.', checked, causesSeen, linkedItems, planItems);
+})();
+
 // ---- build-time assertion: the internal link graph ---------------------------------------------
 // Added 2026-07-30. Two failures in this one class shipped in a single evening, and neither could be
 // caught by looking at the page that contained the bug:

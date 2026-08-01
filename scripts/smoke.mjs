@@ -120,6 +120,47 @@ const CONSOLE_ALLOWLIST = [
 // ----------------------------------------------- per-route DOM assertions
 // Keep these few and load-bearing. Each names the defect it locks down.
 const ASSERTIONS = {
+  // D13 (commit 7c832be): /problem/* is the differential-diagnosis hub — where /solve, every
+  // protocol and every breadcrumb send a reader to work out which of their 4-7 causes they have.
+  // Measured hydrated at 390x844 on all 41 pages before the fix: the first protocol link sat at 98%
+  // of a 29,844 px page on 41/41, there was no escalation block on any of them, 0 of 224 causes had
+  // an anchor or a next step, and 0 of 861 plan items were linked. This asserts the ORDER, which is
+  // what the defect actually was. Prove it by moving ${causeCascadeFlat(p)} back above
+  // ${problemDifferential(p, causes)} in build/prerender.js — firstProtocolPct jumps back to 98.
+  '/problem/knee-pain': [{
+    name: 'problemPageIsADifferential',
+    why: 'D13: escalation, every tell, and a route to a protocol must all come BEFORE the mechanism prose, and every #cause-N must resolve',
+    evaluate: () => {
+      const app = document.querySelector('#app') || document.body;
+      const H = document.documentElement.scrollHeight;
+      const y = el => Math.round(el.getBoundingClientRect().top + window.scrollY);
+      if (!document.getElementById('red-flags')) return 'no #red-flags escalation block';
+      if (!/not medical advice/i.test(app.innerText)) return '#red-flags does not say the page is not medical advice';
+      const dx = document.getElementById('which-one');
+      if (!dx) return 'no #which-one differential block';
+      const rows = dx.querySelectorAll('.dx-row');
+      const causes = app.querySelectorAll('.cause-flat-item');
+      if (rows.length !== causes.length) return `${rows.length} differential rows for ${causes.length} causes`;
+      if (dx.querySelectorAll('.dx-tell').length !== rows.length) return 'a differential row has no tell';
+      if (y(dx) > 844 * 4) return `the differential starts at ${y(dx)}px, below the 4th screen`;
+      const proto = [...app.querySelectorAll('a[href]')].find(a => /(^|\/)protocol\//.test(a.getAttribute('href')));
+      if (!proto) return 'no link to a protocol anywhere on the page';
+      const pct = Math.round(100 * y(proto) / H);
+      if (pct > 40) return `the first protocol link is at ${pct}% of page height (was 98% — this is the defect)`;
+      const ids = new Set([...causes].map(c => c.id).filter(Boolean));
+      if (ids.size !== causes.length) return `${ids.size} of ${causes.length} cause blocks have an id`;
+      const jumps = [...app.querySelectorAll('a[href^="#cause-"]')];
+      if (!jumps.length) return 'no #cause-N jump links';
+      const dead = jumps.filter(a => !document.getElementById(a.getAttribute('href').slice(1)));
+      if (dead.length) return `${dead.length} of ${jumps.length} #cause-N links resolve to nothing`;
+      const next = [...causes].filter(c => c.querySelector('.cf-next a[href^="/protocol/"]')).length;
+      if (next !== causes.length) return `${next} of ${causes.length} causes offer a protocol at the end`;
+      const lis = [...app.querySelectorAll('.cf-fixes li')];
+      const linked = lis.filter(li => li.querySelector('a[href^="/c/"]')).length;
+      if (!linked) return `0 of ${lis.length} plan items link to the compound they name`;
+      return null;
+    },
+  }],
   // D10 (commit e7a19ef): /solve is the funnel entrance. It used to link every card to
   // `#/protocol/{pid}/{root_causes[0].id}`, so a JS reader saw 41 of the 52 protocol URLs and 0
   // /problem URLs while the crawler document had all 52 — 11 protocol URLs unreachable. Prove this
