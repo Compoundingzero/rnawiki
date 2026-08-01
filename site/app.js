@@ -620,7 +620,7 @@
         <label>Username<input name="username" autocomplete="username" required placeholder="e.g. hyrox_felix"></label>
         ${login ? '' : '<label>Email <span class="opt">(optional, for recovery)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>'}
         <label>Password<input name="password" type="password" autocomplete="${login ? 'current-password' : 'new-password'}" required placeholder="${login ? 'Your password' : 'At least 8 characters'}"></label>
-        ${login ? '' : `<div class="auth-demo"><label>Age <select name="age_band"><option value="">—</option>${AGE_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label><label>Sex <select name="sex"><option value="">—</option>${SEX_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label></div><p class="auth-demo-why">Optional — so we can show you what actually works for people like you.</p>`}
+        ${login ? '' : `<div class="auth-demo"><label>Age <select name="age_band"><option value="">—</option>${AGE_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label><label>Sex <select name="sex"><option value="">—</option>${SEX_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label></div><p class="auth-demo-why">Optional — so I can show you what actually works for people like you.</p>`}
         <div class="auth-err" id="auth-err" hidden></div>
         <button type="submit" class="btn-primary" id="auth-submit">${login ? 'Sign in' : 'Create account'}</button>
       </form>
@@ -1242,7 +1242,7 @@
           // type="button" is load-bearing: these buttons now live inside a real <form>, and a
           // <button> with no type defaults to type="submit" -- so without this, clicking a
           // suggestion would submit the form to /solve instead of opening the triage modal.
-          out.innerHTML = `<button type="button" class="funnel-hit funnel-req" id="hero-req"><span class="fh-i">✨</span><span class="fh-b"><b>Don’t see it? Request this protocol</b><small>Tell us what you need — takes 10 seconds</small></span></button>`;
+          out.innerHTML = `<button type="button" class="funnel-hit funnel-req" id="hero-req"><span class="fh-i">✨</span><span class="fh-b"><b>Don’t see it? Request this protocol</b><small>Tell me what you need — takes 10 seconds</small></span></button>`;
           out.hidden = false;
           const rb = document.getElementById('hero-req'); if (rb) rb.onclick = () => { out.hidden = true; openRequestModal(inp.value.trim()); };
         } else { out.hidden = true; out.innerHTML = ''; }
@@ -2729,7 +2729,7 @@
       <section class="fuel-picker">
         <div class="kicker">Personalised nutrition</div>
         <h1>🍚 Fuel your protocol</h1>
-        <p class="hero-lead">Pick the protocol you're following. We load its supplement stack — yours to tweak — and a food tracker set to its exact biological targets, so every meal moves you toward fixing the root cause.</p>
+        <p class="hero-lead">Pick the protocol you're following. Its supplement stack loads here — yours to tweak — with a food tracker set to its exact biological targets, so every meal moves you toward fixing the root cause.</p>
         <label class="fuel-sel-l">Which protocol are you following?</label>
         <select id="fuel-sel" class="fuel-sel"><option value="">— choose a problem or goal —</option>${opts}</select>
         <p class="muted" style="font-size:.85rem;margin-top:.9rem">Not sure yet? <a href="#/solve">Find your root cause first →</a></p>
@@ -2856,7 +2856,7 @@
   // this page asks about, so it cannot name a winner "for {goal}" — and the prerendered twin was
   // emitting exactly that into FAQPage JSON-LD. Both documents now decline to rank.
   function comparisonVerdict(A, B) {
-    return `We do not publish an indication-specific evidence grade for ${A.name} or ${B.name} for this use, so we are not going to name a winner. `
+    return `I do not publish an indication-specific evidence grade for ${A.name} or ${B.name} for this use, so I am not going to name a winner. `
       + `The star ratings are whole-compound summaries across everything each has been studied for — not a grade for this use. `
       + `What actually differs is mechanism, side-effect profile, interactions, availability and cost, compared in full below.`;
   }
@@ -3976,8 +3976,8 @@
   // Anyone can suggest an improvement or flag something wrong — collected for the admin.
   function openFeedbackModal(prefill) {
     const page = location.pathname + location.hash;
-    const m = modal(`<div class="partner-modal"><h2>Help us improve RNAwiki</h2>
-      <p class="muted">Spotted something wrong, confusing, or missing? Want us to add something? Tell us — it goes straight to the team.</p>
+    const m = modal(`<div class="partner-modal"><h2>Help me improve RNAwiki</h2>
+      <p class="muted">Spotted something wrong, confusing, or missing? Want something added? Tell me — it comes straight to me.</p>
       <label>What kind of feedback?</label>
       <select id="fb-kind"><option value="idea">💡 A request / suggestion</option><option value="wrong">⚠️ Something looks wrong</option><option value="other">💬 Something else</option></select>
       <label>Your feedback</label><textarea id="fb-body" rows="4" maxlength="2000" placeholder="What would make RNAwiki better?">${prefill ? esc(prefill) : ''}</textarea>
@@ -4000,7 +4000,7 @@
     const dom = (GRAPH.domains[ME.domain] || {}).label || 'health';
     const caption = `Just contributed to an open, evidence-based health protocol on RNAwiki${what ? ' — ' + what : ''}. 🧬\n\nI'm helping keep the ${dom.toLowerCase()} guidance accurate so people can fix the root cause, not just the symptom.\n\nSee all my contributions 👉 ${profile}\n(search "${ME.username} rnawiki")\n\n#RNAwiki #Health`;
     const m = modal(`<div class="partner-modal"><h2>📣 Nice work — share it</h2>
-      <p class="muted">Your contribution is live. Post this to your socials to build your profile — every view is a potential lead. The link isn’t clickable on most platforms, so we’ve added a search hint too.</p>
+      <p class="muted">Your contribution is live. Post this to your socials to build your profile — every view is a potential lead. The link isn’t clickable on most platforms, so there is a search hint too.</p>
       <textarea id="sp-cap" rows="8" style="font-size:.9rem">${esc(caption)}</textarea>
       <div class="sp-row"><button class="cta-primary" id="sp-copy" style="border:none;cursor:pointer">Copy caption</button><button class="linkbtn" id="sp-share">Share…</button></div>
       <p class="muted" style="font-size:.78rem;margin-top:.6rem">Tip: add a screenshot of the protocol you improved for more reach.</p></div>`);
@@ -4097,7 +4097,7 @@
   function openRequestModal(prefill) {
     if (!ME) return openAuth('login');
     const m = modal(`<div class="partner-modal"><h2>Request a protocol</h2>
-      <p class="muted">Tell us the problem or goal you want solved. Others can upvote it, and the most-wanted ones get built first.</p>
+      <p class="muted">Tell me the problem or goal you want solved. Others can upvote it, and the most-wanted ones get built first.</p>
       <label>Problem or goal</label><input id="rq-title" maxlength="120" placeholder="e.g. Plantar fasciitis, Perimenopause sleep, Marathon recovery" value="${esc(prefill || '')}">
       <label>Anything specific? (optional)</label><textarea id="rq-detail" rows="3" maxlength="1000" placeholder="Symptoms, what you’ve tried, your goal…"></textarea>
       <button class="cta-primary" id="rq-save" style="border:none;cursor:pointer;width:100%;margin-top:1rem">Submit request</button></div>`);
@@ -4666,7 +4666,7 @@
       <h2>Share your progress — anonymously</h2>
       <div class="consent-notice">
         <p>RNAwiki will use your protocol, symptom check-ins and adherence — and, if you add them, blood markers and wearable data — to build <b>anonymous, aggregated</b> insight into which protocols work, for whom.</p>
-        <ul><li>Never shown to other users, never sold.</li><li>Aggregates appear only when ≥20 people are in a group — no one is identifiable.</li><li>View, export, delete your data, or withdraw, anytime.</li><li>We never collect NRIC or any national ID.</li></ul>
+        <ul><li>Never shown to other users, never sold.</li><li>Aggregates appear only when ≥20 people are in a group — no one is identifiable.</li><li>View, export, delete your data, or withdraw, anytime.</li><li>I never collect NRIC or any national ID.</li></ul>
         <p class="muted">Not medical advice. Consent version ${CONSENT_NOTICE_VERSION}.</p>
       </div>
       <div class="consent-acts"><button class="cta-primary" id="cm-yes">✓ I consent — share anonymously</button><button class="cta-ghost" id="cm-no">Decline</button></div>`);
@@ -4680,10 +4680,10 @@
       const sel = (name, opts, cur) => `<select id="pf-${name}" class="pf-in"><option value="">—</option>${opts.map(o => `<option value="${o[0]}"${cur === o[0] ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select>`;
       const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
         <h2>A little about you <span class="muted" style="font-size:.8rem;font-weight:400">optional</span></h2>
-        <p class="muted">So we can show what works for people like you. All optional, all anonymous.</p>
+        <p class="muted">So I can show what works for people like you. All optional, all anonymous.</p>
         <div class="pf-grid"><label>Age ${sel('age', AGE_OPTS, p.age_band)}</label><label>Sex ${sel('sex', SEX_OPTS, p.sex)}</label><label>Ethnicity ${sel('eth', ETH_OPTS, p.ethnicity)}</label><label>Height <input id="pf-ht" class="pf-in" type="number" min="80" max="250" value="${p.height_cm != null ? esc(String(p.height_cm)) : ''}" placeholder="cm"></label></div>
         <div class="pf-conds"><span class="pf-conds-h">Any of these? <span class="muted" style="font-weight:400">(optional)</span></span><div class="pf-chips">${COND_OPTS.map(o => `<label class="pf-chip"><input type="checkbox" value="${o[0]}"${(p.conditions || []).includes(o[0]) ? ' checked' : ''}>${esc(o[1])}</label>`).join('')}</div></div>
-        <div class="pf-conds"><span class="pf-conds-h">💊 Anything else you take regularly? <span class="muted" style="font-weight:400">(meds &amp; supplements — helps us spot interactions)</span></span><input id="pf-meds" class="pf-in" style="width:100%" value="${esc((p.meds || []).join(', '))}" placeholder="e.g. metformin, omega-3, statin, magnesium"></div>
+        <div class="pf-conds"><span class="pf-conds-h">💊 Anything else you take regularly? <span class="muted" style="font-weight:400">(meds &amp; supplements — so the interaction check can see them)</span></span><input id="pf-meds" class="pf-in" style="width:100%" value="${esc((p.meds || []).join(', '))}" placeholder="e.g. metformin, omega-3, statin, magnesium"></div>
         <div class="consent-acts"><button class="cta-primary" id="pf-save">Save</button><button class="cta-ghost" id="pf-skip">Skip</button></div>`);
       m.querySelector('[data-close]').onclick = closeModal; m.querySelector('#pf-skip').onclick = closeModal;
       m.querySelector('#pf-save').onclick = async () => { const conditions = [...m.querySelectorAll('.pf-chip input:checked')].map(c => c.value); const ht = m.querySelector('#pf-ht').value; const meds = (m.querySelector('#pf-meds').value || '').split(',').map(s => s.trim()).filter(Boolean).slice(0, 30); try { await api.saveProfile({ age_band: m.querySelector('#pf-age').value || null, sex: m.querySelector('#pf-sex').value || null, ethnicity: m.querySelector('#pf-eth').value || null, conditions, height_cm: ht === '' ? null : +ht, meds }); closeModal(); if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { alert(e.message); } };
@@ -4718,7 +4718,7 @@
       const save = async () => {
         const enabled = on.checked; when.style.display = enabled ? 'block' : 'none';
         const tzOffset = -new Date().getTimezoneOffset();   // minutes east of UTC (SGT = +480)
-        try { await api.setEmailReminders({ enabled, hour: +hr.value, tzOffset }); hint.textContent = enabled ? `On — we'll email your plan at ${hr.options[hr.selectedIndex].text} daily.` : 'Off.'; if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { hint.textContent = e.message; on.checked = !enabled; }
+        try { await api.setEmailReminders({ enabled, hour: +hr.value, tzOffset }); hint.textContent = enabled ? `On — your plan arrives by email at ${hr.options[hr.selectedIndex].text} daily.` : 'Off.'; if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { hint.textContent = e.message; on.checked = !enabled; }
       };
       on.onchange = save; hr.onchange = () => { if (on.checked) save(); };
       allOff.onchange = async () => { try { await api.setEmailReminders({ allOff: allOff.checked }); applyOffState(); hint.textContent = allOff.checked ? 'All RNAwiki emails are off.' : 'Emails on.'; if (typeof toast === 'function') toast('Saved ✓'); } catch (e) { allOff.checked = !allOff.checked; hint.textContent = e.message; } };
@@ -4807,7 +4807,7 @@
       <select id="ci-imp" class="pf-in"><option value="">—</option><option value="3">Much better</option><option value="2">Better</option><option value="1">A little better</option><option value="0">No change</option><option value="-1">A little worse</option><option value="-2">Worse</option><option value="-3">Much worse</option></select></label>
       <label class="ci-q">Roughly how well did you stick to it? <input id="ci-adh" class="pf-in" type="number" min="0" max="100" value="${adhPrefill}" placeholder="%"> %</label>
       <label class="ci-q"><input type="checkbox" id="ci-on" checked> Still following this protocol</label>
-      <div id="ci-stop-wrap" style="display:none"><label class="ci-q">What made you stop? <span class="muted" style="font-weight:400">(this is the most useful thing you can tell us)</span>
+      <div id="ci-stop-wrap" style="display:none"><label class="ci-q">What made you stop? <span class="muted" style="font-weight:400">(this is the most useful thing you can tell me)</span>
         <select id="ci-stop" class="pf-in"><option value="">—</option>${STOP_REASON_OPTS.map(o => `<option value="${o[0]}">${esc(o[1])}</option>`).join('')}</select></label></div>
       <label class="ci-q"><input type="checkbox" id="ci-sfx-on"> I had side effects <span class="muted" style="font-weight:400">(optional)</span></label>
       <div id="ci-sfx-wrap" style="display:none"><input id="ci-sfx" class="pf-in" style="width:100%" maxlength="300" placeholder="e.g. nausea, headache, trouble sleeping…"></div>`;
@@ -5328,7 +5328,7 @@
       <div class="cause-h"><div class="cause-step">STEP 1 · FIND YOUR CAUSE</div><h2>🔍 What’s actually causing your ${esc(problem.name.toLowerCase())}?</h2>${w.intro ? `<p class="cause-sub">${mdInline(w.intro)}</p>` : ''}</div>
       ${ladder}
       <div class="cause-finder">
-        <div class="cf-txt"><b>There are ${nC} common causes${nC > 1 ? ' — and often more than one is at play' : ''}.</b> The right fix depends entirely on which is yours. Answer a few quick questions and we’ll point you to it.</div>
+        <div class="cf-txt"><b>There are ${nC} common causes${nC > 1 ? ' — and often more than one is at play' : ''}.</b> The right fix depends entirely on which is yours. Answer a few quick questions and I’ll point you to it.</div>
         <button class="cta-primary cf-btn" data-find-cause="${esc(problem.id)}">🔍 Find my cause — 20-second check</button>
       </div>
       <div class="cause-list-label"><span class="cll-h">The ${nC} possible cause${nC !== 1 ? 's' : ''}</span> · ranked by leverage (#1 fixes the most) — <b>open the one that sounds like you</b>. Each is a self-contained explanation and plan; fixes run behaviour → food → supplement → prescription.</div>
@@ -6291,7 +6291,7 @@
     try {
       const r = await api.vote({ targetId: 'feature:ai-food-scan', voterKey: VOTER_KEY, value: 1 });
       const n = (r && r.score && r.score.up) || 1;
-      if (note) { note.hidden = false; note.innerHTML = `✓ Noted, thank you. <b>${n}</b> ${n === 1 ? 'person wants' : 'people want'} snap-a-photo food logging — we build it when enough of you do.`; }
+      if (note) { note.hidden = false; note.innerHTML = `✓ Noted, thank you. <b>${n}</b> ${n === 1 ? 'person wants' : 'people want'} snap-a-photo food logging — I build it when enough of you do.`; }
     } catch (e) { if (note) { note.hidden = false; note.textContent = '✓ Thanks — your interest is noted.'; } }
     if (b) { b.disabled = true; b.textContent = '✓ Interest registered'; }
   }
@@ -6532,7 +6532,7 @@
     else if (parts[0] === 'target' && targetBySym[tkey(decodeURIComponent(parts[1] || ''))]) { const tg = targetBySym[tkey(decodeURIComponent(parts[1]))]; title = t(`${tg.sym} — the molecular target and every compound that hits it`); desc = `${tg.sym}: ${(tg.name || '').slice(0, 120)}`; }
     else if (parts[0] === 'pathway' && D.pathways[+parts[1]]) { title = t(`${D.pathways[+parts[1]].shortLabel} pathway explained`); }
     else if (parts[0] === 'compare' && parts[1]) { const i = parts[1].indexOf('-vs-'); const A = i >= 0 && bySlug[parts[1].slice(0, i)], B = i >= 0 && bySlug[parts[1].slice(i + 4)]; if (A && B) { title = t(`${A.name} vs ${B.name} — which works better?`); desc = `${A.name} vs ${B.name}: human evidence, mechanism, safety and availability compared. Plain English, honest verdict.`; } }
-    else if (parts[0] === 'solve') { title = t('Solve a problem or reach a goal — protocol engine'); desc = 'Tell us the problem or goal. Get a full Move · Fuel · Stack protocol for the root cause.'; }
+    else if (parts[0] === 'solve') { title = t('Solve a problem or reach a goal — protocol engine'); desc = 'Tell me the problem or goal. Get a full Move · Fuel · Stack protocol for the root cause.'; }
     else if (parts[0] === 'stewardship') { title = t('Expert micro-bounties — the bounty board'); desc = 'Solve a 2-minute clinical micro-bounty in your domain — add an exercise variation, verify a local dish, or add a safety note. Permanent attribution.'; }
     else if (parts[0] === 'pros') { title = t('For health professionals — contribute, get featured, get leads'); desc = 'Physiotherapists, dietitians, nutritionists and pharmacists: improve the protocols in your field and get featured on them — profile, booking link and local leads. Free.'; }
     else if (parts[0] === 'pro') { title = t('Pro dashboard — contribute & get featured on RNAwiki'); desc = 'For clinicians and businesses: improve protocols, track your leads, and manage your branded patient protocol links on RNAwiki.'; }

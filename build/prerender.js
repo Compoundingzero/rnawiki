@@ -789,7 +789,7 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   // and it emitted that answer into FAQPage JSON-LD, which is the part answer engines quote back.
   // Until claims.json carries a per-(compound x indication) grade, the honest answer is that we do
   // not have one, and the page's real value is the side-by-side profile below it.
-  const verdict = `We do not publish an indication-specific evidence grade for ${a.name} or ${b.name} for ${gl}, so we are not going to name a winner. `
+  const verdict = `I do not publish an indication-specific evidence grade for ${a.name} or ${b.name} for ${gl}, so I am not going to name a winner. `
     + `The star ratings shown below are whole-compound summaries across everything each has been studied for — they are not a grade for this use, and comparing them here would be misleading. `
     + `What actually differs is mechanism, side-effect profile, interactions, availability and cost. Those are compared in full below.`;
   const cmp = (k, va, vb) => `<tr><th>${esc(k)}</th><td>${va}</td><td>${vb}</td></tr>`;
@@ -1159,9 +1159,9 @@ GRAPH.problems.forEach((p) => {
       <h3>Stack — supplements with human trial evidence for this use</h3>
       ${stack.length
         ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>`
-        : `<p>No supplement has trial evidence specific to this problem that we'd put our name to. That is the honest answer, not an omission.</p>`}
+        : `<p>No supplement has trial evidence specific to this problem that I'd put my name to. That is the honest answer, not an omission.</p>`}
       ${med.length ? `<h3>Medical options — discuss with a doctor</h3>
-        <p>These are prescription or controlled medicines. We list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and we do not give doses for them here.</p>
+        <p>These are prescription or controlled medicines. I list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and I do not give doses for them here.</p>
         <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
       ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
@@ -1218,8 +1218,8 @@ GRAPH.problems.forEach((p) => {
           ${tgts.map(([k, t]) => `<tr><td><b>${esc(nutrientLabel(k))}</b></td><td>${esc(String(t.target))}${esc(t.unit || '')}${t.type ? ` <span class="muted">(${esc(t.type)})</span>` : ''}</td><td>${esc(t.why || '—')}</td></tr>`).join('')}
           </tbody></table></div>` : ''}
         ${fuel.length ? `<h2>Foods that move these numbers</h2>
-          <p>Chosen because they carry the nutrients above. Marked items are on our Singapore list — hawker dishes
-          and the staples sold there — kept because they are the best-documented set we have; the rest
+          <p>Chosen because they carry the nutrients above. Marked items are on the Singapore list — hawker dishes
+          and the staples sold there — kept because they are the best-documented set I have; the rest
           are generic foods you can find almost anywhere.</p>
           <div class="tbl-wrap"><table class="fuel-tbl"><thead><tr><th>Food</th><th>Serving</th><th>kcal</th>${cols.map((k) => `<th>${esc(nutrientLabel(k))}</th>`).join('')}</tr></thead><tbody>
           ${fuel.map((f) => `<tr><td><b>${esc(f.name)}</b>${f.sg_local ? ' <span class="sg-chip">sold in SG</span>' : ''}</td><td>${esc(f.serving || '—')}</td><td>${num(f.kcal)}</td>${cols.map((k) => `<td>${num(f[k])}</td>`).join('')}</tr>`).join('')}
@@ -2092,7 +2092,7 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
     <section class="hero funnel-hero" id="top">
       <div class="kicker">Free &middot; no account &middot; nothing here is for sale</div>
       <h1>You know what you were told to take.<br><span class="lead">You were never shown what it&rsquo;s for.</span></h1>
-      <p class="hero-lead">Start from the other end. Name the problem &mdash; we&rsquo;ll show you the
+      <p class="hero-lead">Start from the other end. Name the problem &mdash; I&rsquo;ll show you the
       <b>root cause underneath it</b>, then the movement, the food and the compounds that act on
       <i>that cause</i>, each one ranked by how good the human evidence actually is. Not a shopping
       list. The reasoning you were never handed.</p>
@@ -2257,7 +2257,7 @@ let written = 0;
       <p>A badge says who has <em>approved</em> a molecule. <strong>It is not a statement about where you can buy it.</strong> A medicine can be approved and still be prescription-only.</p>
       <ul>${Object.entries(D.approvalLabels || {}).map(([b, l]) => `<li><b>${b}</b> — ${esc(l)}</li>`).join('')}</ul>
       <h2>Availability</h2>
-      <p>Availability is shown separately from approval: over the counter, pharmacy medicine, prescription only, controlled, or not approved. The classification we show is Singapore's, because that is the one regulator we track in full — it is a good guide almost everywhere, but check your own country's rules before assuming. Where a compound is prescription-only we say so and do not give a dose.</p>
+      <p>Availability is shown separately from approval: over the counter, pharmacy medicine, prescription only, controlled, or not approved. The classification shown is Singapore's, because that is the one regulator I track in full — it is a good guide almost everywhere, but check your own country's rules before assuming. Where a compound is prescription-only the page says so and gives no dose.</p>
       <p><a href="/about">More about how this site is made →</a></p></div>` }));
 
   // ---- /methodology and /corrections ---------------------------------------------------------
@@ -2305,7 +2305,7 @@ let written = 0;
       usually PubMed or Europe PMC, where a large share of the papers are free to read in full. A
       citation here is a pointer you are meant to follow, not a decoration.</p>
 
-      <h2>What we will not publish</h2>
+      <h2>What I will not publish</h2>
       <ul class="about-key">
         <li><strong>No doses for prescription medicines.</strong> Prescription-only and controlled
         medicines are documented so you know they exist and can raise them with a clinician. They are
@@ -2316,7 +2316,7 @@ let written = 0;
         the Medicines Act 1975 and its advertising regulations carry no educational exemption.</li>
         <li><strong>No diagnosis.</strong> The root-cause questions narrow your reading. They are not
         a clinical assessment.</li>
-        <li><strong>No certainty we do not have.</strong> Where the honest answer is "no supplement has
+        <li><strong>No certainty I do not have.</strong> Where the honest answer is "no supplement has
         trial evidence for this", the page says that instead of filling the space.</li>
       </ul>
 
@@ -2347,7 +2347,7 @@ let written = 0;
         <li>A star rating is a summary of a literature, and summaries lose information. The page body
         is where the honest detail is; read it before acting on a number.</li>
         <li>Coverage is uneven. Some compounds have a deep evidence layer, others a short profile.</li>
-        <li>Availability and regulatory status differ between countries and change over time, and this site is a snapshot. Where we state a legal classification it is Singapore's unless we say otherwise.</li>
+        <li>Availability and regulatory status differ between countries and change over time, and this site is a snapshot. Where I state a legal classification it is Singapore's unless I say otherwise.</li>
       </ul>
 
       <h2>Found something wrong?</h2>
@@ -2487,7 +2487,7 @@ let written = 0;
         <p class="lede">${total} pairs of compounds that people actually weigh against each other,
         because they are used for the same goal. Each page puts the two side by side on human
         evidence, mechanism, side effects, interactions and roughly what each costs.</p>
-        <p>Only supplements and over-the-counter compounds are compared this way. We do not publish a
+        <p>Only supplements and over-the-counter compounds are compared this way. I do not publish a
         "which works better" page that ranks a prescription or controlled medicine against a
         supplement — you cannot act on that comparison, and in Singapore advertising a
         prescription-only medicine to the public is prohibited. <a href="/methodology" data-native>How these pages

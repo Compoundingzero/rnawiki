@@ -1337,8 +1337,8 @@ async function api(req, res, url) {
     const domain = clean(b.domain, 20), credential = clean(b.credential, 200), backlink = safeUrl(b.backlink_url);
     if (u.domain_verified) return json(res, 400, { error: 'You already hold a verified role. Ask the admin to change it.' });
     if (!DOMAIN_LAYER[domain]) return json(res, 400, { error: 'Choose a domain to apply for.' });
-    if (!credential) return json(res, 400, { error: 'Add your registration/credential so we can verify you.' });
-    if (!backlink) return json(res, 400, { error: 'Add the URL of a page on your site or socials that links back to rnawiki.com — that link exchange is how we verify experts.' });
+    if (!credential) return json(res, 400, { error: 'Add your registration/credential so I can verify you.' });
+    if (!backlink) return json(res, 400, { error: 'Add the URL of a page on your site or socials that links back to rnawiki.com — that link exchange is how I verify experts.' });
     // sets a PENDING application only — domain stays null until an admin approves it.
     await db.query("UPDATE users SET requested_domain=$1, credential=$2, role_backlink=$3, application_status='pending' WHERE id=$4", [domain, credential, backlink, u.id]);
     return json(res, 200, { ok: true, application_status: 'pending', requested_domain: domain });
@@ -1591,7 +1591,7 @@ async function api(req, res, url) {
   if (seg[0] === 'feedback' && !seg[1] && method === 'POST') {
     const u = await currentUser(req);
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const body = clean(b.body, 2000); if (!body) return json(res, 400, { error: 'Tell us what to improve' });
+    const body = clean(b.body, 2000); if (!body) return json(res, 400, { error: 'Tell me what to improve' });
     const kind = ['idea', 'wrong', 'other'].includes(b.kind) ? b.kind : 'idea';
     await db.query('INSERT INTO feedback(body,page,kind,user_id,contact) VALUES($1,$2,$3,$4,$5)',
       [body, clean(b.page, 200) || null, kind, u ? u.id : null, clean(b.contact, 120) || null]);
@@ -2435,7 +2435,7 @@ function serveMissing(res, safe) {
     const code = gone ? 410 : 404;
     const title = gone ? 'This comparison has been withdrawn' : 'Page not found';
     const body = gone
-      ? 'We removed the head-to-head comparisons that pitted a prescription or controlled medicine against a supplement. Ranking a medicine you cannot buy against one you can was not a comparison worth publishing, so this page is gone for good rather than temporarily unavailable.'
+      ? 'I removed the head-to-head comparisons that pitted a prescription or controlled medicine against a supplement. Ranking a medicine you cannot buy against one you can was not a comparison worth publishing, so this page is gone for good rather than temporarily unavailable.'
       : 'That page does not exist. It may have been renamed.';
     return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
