@@ -23,13 +23,14 @@ window.RNAWIKI_INTERACTIONS = {
   // tag any rule consumes and therefore CANNOT produce a flag, no matter what they are stacked
   // with. That number is not a target to game: the honest response to it is the "❔ Not enough to
   // check" state in the panel, not a tag invented to make the number look better.
-  // 2026-08-01: 100 → 99 → 97. Three compounds lost a tag no page of theirs supported: EPO
-  // (mis-filed as a SARM by a COMPENDIUM heading), then Cardarine and Stenabolic, which inherited
-  // `hpta_suppressive` from a category default that has now been deleted. The number goes DOWN on
-  // purpose: a lower honest figure beats a higher false one, and those three now render
-  // "❔ I hold no interaction pharmacology for …" instead of silently inheriting somebody else's
-  // mechanism.
-  coverage: { compounds: 171, reachable: 97, unreachable: 74, unreachableRx: 36 },
+  // 2026-08-01: 100 → 99 → 97 → 96. Four compounds lost a tag no page of theirs supported: EPO
+  // (mis-filed as a SARM by a COMPENDIUM heading), Cardarine and Stenabolic (which inherited
+  // `hpta_suppressive` from a category default that has now been deleted), and TB-500 (which the
+  // bare substring "thymosin" pulled into an immune-stimulant rule while its own mechanism says it
+  // REDUCES inflammation). The number goes DOWN on purpose: a lower honest figure beats a higher
+  // false one, and those four now render "❔ I hold no interaction pharmacology for …" instead of
+  // silently inheriting somebody else's mechanism.
+  coverage: { compounds: 171, reachable: 96, unreachable: 75, unreachableRx: 37 },
 
   // catTags MUST STAY EMPTY. It is kept as a field only so compoundTags() in site/app.js and its
   // copy in build/parse.js keep the same shape; assertInteractionCoverage() fails the build if
@@ -113,7 +114,16 @@ window.RNAWIKI_INTERACTIONS = {
     { m: "hmb", t: ["mtor_activator"] }, { m: "igf-1", t: ["mtor_activator", "hypoglycemic"] },
     // immune direction
     { m: "beta-glucan", t: ["immunostim"] }, { m: "mushroom", t: ["immunostim"] }, { m: "reishi", t: ["immunostim"] },
-    { m: "andrographis", t: ["immunostim"] }, { m: "ll-37", t: ["immunostim"] }, { m: "thymosin", t: ["immunostim"] },
+    // "thymosin" narrowed to "thymosin alpha" 2026-08-01. A nameTag match is an UNANCHORED
+    // SUBSTRING, and the bare string hit two different molecules that do opposite things.
+    // Thymosin α-1 is an immunomodulator by its own mechanism ("activating Toll-like receptors
+    // (TLR9/2) and T-cell maturation"). Thymosin β-4 is not: TB-500's own mechanism is "regulates
+    // actin polymerisation to enable cell migration to wounds, promotes angiogenesis, and REDUCES
+    // INFLAMMATION". Measured hydrated at 390x844: /stack?ids=c65,c70 rendered "🔻 Opposing immune
+    // direction · TB-500 (Thymosin Beta-4 fragment) + Rapamycin (Sirolimus)", explained with
+    // "Mushrooms / beta-glucans push the immune system up" — a sentence about neither compound in
+    // the row. "thymosin alpha" hits exactly one compound in the 171-name corpus.
+    { m: "andrographis", t: ["immunostim"] }, { m: "ll-37", t: ["immunostim"] }, { m: "thymosin alpha", t: ["immunostim"] },
     // aromatase inhibitors (estrogen crash)
     { m: "anastrozole", t: ["aromatase_inhibitor"] }, { m: "exemestane", t: ["aromatase_inhibitor"] },
     { m: "letrozole", t: ["aromatase_inhibitor"] }, { m: "aromatase", t: ["aromatase_inhibitor"] },
