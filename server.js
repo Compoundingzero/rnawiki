@@ -2267,6 +2267,47 @@ function serveStatic(req, res, url) {
       endHtml(res, out);
     });
   }
+  // ---- /solve?q= FOR READERS WITHOUT JAVASCRIPT (2026-08-01, W2/D11) --------------------------
+  // The home hero is a REAL <form action="/solve" method="get">, so the site's FIRST call to action
+  // lands the ~90% of readers who never run JS on /solve?q=<their words>. Measured before this:
+  // /solve and /solve?q=knee%20pain were the same 16,222 bytes, so they were shown the unfiltered
+  // list with no acknowledgement of what they had typed, and no field to correct it in.
+  //
+  // This does NO body surgery. Everything it needs -- both headings, the term slots, and one card
+  // per problem -- is authored in build/prerender.js and hidden by CSS. The server only:
+  //   (a) injects one <style> that hides the NON-matching cards (never a display value it has to
+  //       restore, so no layout knowledge leaks into this file) and `order:`s the matches,
+  //   (b) flips #q-hits or #q-none visible with a single id-keyed substitution,
+  //   (c) fills <em class="q-term"> and the input's value.
+  // Same pattern as the newsletter completion state on "/" a few lines below. The query is never
+  // logged and never reaches analytics -- it is a symptom description typed by a stranger.
+  if (p === '/solve' && (qp.get('q') || '').trim()) {
+    const q = String(qp.get('q')).slice(0, 120);
+    return fs.readFile(path.join(DIR, 'solve.html'), 'utf8', (e, html) => {
+      if (e) return sendFile(res, path.join(DIR, 'index.html'));
+      const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      const hits = searchSolve(q);
+      const ids = hits.map((h) => h.id);
+      let css;
+      if (ids.length) {
+        const off = SOLVE_INDEX.problems.map((x) => x.id).filter((id) => ids.indexOf(id) < 0);
+        css = '#q-hits .solve-card{order:99}'
+          + ids.map((id, i) => `#q-hits .solve-card[data-pid="${id}"]{order:${i}}`).join('')
+          + (off.length ? off.map((id) => `#q-hits .solve-card[data-pid="${id}"]`).join(',') + '{display:none}' : '');
+        html = html.replace('id="q-hits"', 'id="q-hits" data-on');
+        // Honest heading: say "mentions" when nothing matched the problem's NAME, only its body text.
+        if (hits[0].s < 18) html = html.replace('>Closest match for <', '>Nothing is named this — these mention <');
+      } else {
+        css = '';
+        html = html.replace('id="q-none"', 'id="q-none" data-on');
+      }
+      html = html
+        .replace(/<em class="q-term"><\/em>/g, `<em class="q-term">“${esc(q)}”</em>`)
+        .replace('id="solve-q" name="q" type="search" value=""', `id="solve-q" name="q" type="search" value="${esc(q)}"`)
+        .replace('</head>', `<style id="q-filter">${css}</style></head>`);
+      endHtml(res, html);
+    });
+  }
   // "/" serves the prerendered crawlable home if present, else the SPA shell
   if (p === '/') {
     return fs.readFile(path.join(DIR, 'home.html'), (e, html) => {
@@ -2338,12 +2379,53 @@ const LEGACY_REDIRECTS = { '/newsletter': '/#newsletter' };
 // be overruled (see ALIAS_OVERRIDE in build/parse.js — "insulin" must reach the medicine, not the
 // anabolic-misuse entry). 257 aliases, so this whole class of dead end is gone.
 let COMPOUND_ALIASES = {};
+// The /solve?q= search index, authored once in build/parse.js. This exists so the ~90% of readers
+// who never run JavaScript get an answer to the query they typed into the home hero's real GET
+// form. Before this, /solve and /solve?q=<anything> were the same 16,222 bytes.
+let SOLVE_INDEX = { problems: [], stop: [] };
 try {
   const dj = fs.readFileSync(path.join(__dirname, 'site', 'data.js'), 'utf8');
   const m = dj.match(/^window\.RNAWIKI_DATA = ([\s\S]*);\s*$/);
-  if (m) COMPOUND_ALIASES = (JSON.parse(m[1]).compoundAliases) || {};
+  if (m) {
+    const _d = JSON.parse(m[1]);
+    COMPOUND_ALIASES = _d.compoundAliases || {};
+    const _g = _d.graph || {};
+    SOLVE_INDEX = {
+      problems: (_g.problems || []).map((p) => ({ id: p.id, name: p.solveName || '', hay: p.solveHay || '' })),
+      stop: _g.solveStopwords || [],
+    };
+  }
   console.log('[server] compound aliases loaded:', Object.keys(COMPOUND_ALIASES).length);
+  console.log('[server] solve index loaded:', SOLVE_INDEX.problems.length, 'problems');
 } catch (e) { console.warn('[server] no compound aliases:', e.message); }
+
+// The SAME scoring loop as rankProblems() in site/app.js. Both read the index above; the weights
+// and the 0.34 relative cut must stay identical or the crawler document and the hydrated document
+// answer the same query differently. scripts/smoke.mjs asserts they do not (solve-q-parity).
+// A boolean substring filter was tried first and measured useless: "low testosterone" matched
+// 37 of 41 problems, "cant sleep" 28. This ranks, and it never hides the full list.
+function searchSolve(q) {
+  const stop = SOLVE_INDEX.stop;
+  const T = [...new Set(String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').split(' ')
+    .filter((t) => t.length >= 3 && stop.indexOf(t) < 0))].slice(0, 8);
+  if (!T.length) return [];
+  const sc = SOLVE_INDEX.problems.map((p) => {
+    let s = 0;
+    T.forEach((t) => {
+      const st = t.length >= 6 ? t.slice(0, 5) : null;
+      if (p.name === ' ' + t + ' ') s += 30;
+      else if (p.name.indexOf(' ' + t + ' ') >= 0) s += 18;
+      else if (p.name.indexOf(t) >= 0) s += 10;
+      else if (p.hay.indexOf(' ' + t + ' ') >= 0) s += 4;
+      else if (p.hay.indexOf(t) >= 0) s += 1;
+      else if (st && (p.name.indexOf(st) >= 0 || p.hay.indexOf(st) >= 0)) s += 1;
+    });
+    return { id: p.id, s, len: p.name.length };
+  }).filter((x) => x.s > 0).sort((a, b) => b.s - a.s || a.len - b.len);
+  if (!sc.length) return [];
+  const cut = sc[0].s * 0.34;
+  return sc.filter((x) => x.s >= cut).slice(0, 6);
+}
 
 const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
 function serveMissing(res, safe) {

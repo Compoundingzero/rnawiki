@@ -3847,7 +3847,10 @@
         else if (st && (n.indexOf(st) >= 0 || h.indexOf(st) >= 0)) s += 1;   // crude stem
       });
       return { p, s };
-    }).filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.p.name.length - b.p.name.length);
+      // Tie-break on solveName.length, NOT p.name.length: server.js only has the normalised form,
+      // and normalising "Belly / Visceral Fat" changes its length, so the two runtimes would order
+      // ties differently. One field, one rule.
+    }).filter(x => x.s > 0).sort((a, b) => b.s - a.s || (a.p.solveName || '').length - (b.p.solveName || '').length);
     if (!sc.length) return [];
     const cut = sc[0].s * 0.34;   // relative, so one strong hit suppresses a weak tail
     return sc.filter(x => x.s >= cut).slice(0, 6);
