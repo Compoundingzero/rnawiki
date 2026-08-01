@@ -2363,7 +2363,11 @@ let written = 0;
         <li>any compound is missing from the goal taxonomy;</li>
         <li>a machine-readable data block would be emitted in a form search engines silently discard;</li>
         <li>a page links to a route that does not exist, or a page is published with nothing linking
-        to it.</li>
+        to it;</li>
+        <li>any page would claim a review, a verification or a professional credential — no expert has
+        been verified here and no clinician has reviewed this content, so the build refuses to publish
+        a sentence that says otherwise, and equally refuses to publish if the record of the false
+        credentials this site once displayed is deleted from the corrections log.</li>
       </ul>
       <p>Each of these exists because that exact defect shipped at least once.</p>
 

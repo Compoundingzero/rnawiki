@@ -6440,7 +6440,7 @@
           <button class="scan-btn" id="add-food" type="button">＋ Add or fix a food</button>
         </div>
         ${interestBtn}
-        <p class="fuel-contribute">💡 Anyone can help: spotted a missing dish or a wrong nutrition number? <button class="linkbtn" id="add-food-2">Add or fix it →</button> A dietitian checks it, then everyone can log it. You earn +20 points.</p>
+        <p class="fuel-contribute">💡 Anyone can help: spotted a missing dish or a wrong nutrition number? <button class="linkbtn" id="add-food-2">Add or fix it →</button> It goes into a queue and is approved before everyone can log it. You earn +20 points.</p>
         <ul class="fuel-log">${logHtml}</ul>`
         : `<div class="fuel-signin"><b>🔒 Sign in to log your meals.</b> Logging is for members — track what you eat against this protocol's biological targets. It's free and takes ten seconds.
              <button class="btn-primary" id="fuel-signin-btn">Sign in / create account</button></div>`;
