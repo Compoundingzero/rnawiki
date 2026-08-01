@@ -1053,7 +1053,7 @@
   // Scored "find your cause" quiz over why.causes — a few discriminating questions → opens the winning cause.
   function openCauseQuiz(p) {
     const quiz = p.causeQuiz; const causes = (p.why && p.why.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
-    if (!quiz || !Array.isArray(quiz.questions) || !quiz.questions.length || !causes.length) return openCauseInAccordion(0);
+    if (!quiz || !Array.isArray(quiz.questions) || !quiz.questions.length || !causes.length) return goToCause(p, 0);
     const Q = quiz.questions.length; let step = 0; const answers = {};
     const m = modal(''); const box = m.querySelector('.modal'); box.classList.add('assess-modal');
     const dots = a => `<div class="assess-dots">${Array.from({ length: Q }, (_, i) => `<span class="${i === a ? 'on' : i < a ? 'done' : ''}"></span>`).join('')}</div>`;
@@ -1071,15 +1071,31 @@
         const ranked = sc.map((s, i) => ({ i, s })).sort((a, b) => b.s - a.s);
         const top = (ranked[0] && ranked[0].s > 0) ? ranked[0].i : 0;
         const c = causes[top]; const near = ranked[1] && ranked[1].s > 0 && (ranked[0].s - ranked[1].s <= 1);
+        // THE QUIZ USED TO CONTRADICT THE PAGE IT WAS ON (measured hydrated 2026-08-01, all 52
+        // protocol routes x2 answer paths). It called openCauseInAccordion(top), which only sets
+        // `open` on a <details>: the URL, the tab title, the h1 sub-line and the entire
+        // Move/Fuel/Stack plan below still belonged to the URL's cause. On 39 of 52 routes the
+        // accordion jumped to a DIFFERENT cause with the h1 unchanged on 39/39 -- e.g.
+        // /protocol/knee-pain/patellar-tendinopathy, sub-line "Patellar tendinopathy (tendon
+        // overload)", quiz says "This looks most like: Hip & quad weakness with patellofemoral
+        // pain", accordion jumps to index 0, URL unmoved. That is the D3 contradiction class,
+        // rebuilt inside the one control that exists to resolve it.
+        // A quiz result is a DESTINATION, so it is a real <a href>: shareable, middle-clickable,
+        // gate-able, and it cannot desync a page it is leaving.
+        const dest = causeDestination(p, top);
+        const nat = dest.indexOf('/problem/') === 0 ? ' data-native' : '';
         box.innerHTML = `<div class="assess-top"><button class="assess-back" data-back>←</button><span></span><button class="assess-x" data-x aria-label="Close">✕</button></div>
           <div class="assess-result"><div class="assess-kicker">Your quick check</div>
             <h2>This looks most like: ${esc(c.name)}</h2>
             ${causeHook(c) ? `<p class="assess-plain">${mdInline(causeHook(c))}</p>` : ''}
             ${near ? `<p class="assess-alt">It could also be <b>${esc(causes[ranked[1].i].name)}</b> — worth reading both.</p>` : ''}
-            <div class="assess-actions"><button class="assess-go2 primary" data-go="${top}">Read this cause & its plan →</button><button class="assess-switch" data-all>Show me all the causes</button></div>
+            <div class="assess-actions"><a class="assess-go2 primary" href="${dest}"${nat} data-go="${top}">Read this cause &amp; its plan →</a><a class="assess-switch" href="/problem/${esc(p.id)}" data-native data-all>Show me all the causes</a></div>
             <p class="assess-disclaimer">A quick self-check to point you to the likely cause — not a diagnosis.</p></div>`;
-        box.querySelector('[data-go]').onclick = () => { closeModal(); openCauseInAccordion(top); };
-        const all = box.querySelector('[data-all]'); if (all) all.onclick = () => { closeModal(); openCauseInAccordion(0); };
+        // The /protocol destination is an in-app navigation, so the modal has to be dismissed by
+        // hand; the /problem one is a real page load and takes the modal with it. Not
+        // preventDefault-ed: the global interceptor (or the browser, for data-native) does the
+        // navigating, and this only closes the overlay in front of it.
+        box.querySelectorAll('[data-go], [data-all]').forEach(a => a.addEventListener('click', () => closeModal()));
       }
       const back = box.querySelector('[data-back]'); if (back) back.onclick = () => { if (step > 0) { step--; render(); } };
       box.querySelectorAll('[data-x]').forEach(x => x.onclick = () => closeModal());
@@ -1099,15 +1115,13 @@
         <p>Your ${esc(problem.name.toLowerCase())} can come from any of these — sometimes more than one. Pick the symptoms that fit and it opens that cause and its plan. Nothing here is a diagnosis.</p></div>
       <div class="intake-opts">${opts}</div>
       <button class="intake-skip" data-cause="0">Not sure — start with the highest-leverage cause</button>
-    </div>`).querySelectorAll('[data-cause]').forEach(b => b.onclick = () => { closeModal(); openCauseInAccordion(+b.dataset.cause); });
+    </div>`).querySelectorAll('[data-cause]').forEach(b => b.onclick = () => { closeModal(); goToCause(problem, +b.dataset.cause); });
   }
-  function openCauseInAccordion(idx) {
-    const sec = document.getElementById('p-causes'); if (!sec) return;
-    const accs = sec.querySelectorAll('.cause-acc');
-    accs.forEach((d, i) => { d.open = (i === idx); });
-    const t = accs[idx] || accs[0];
-    if (t) setTimeout(() => t.scrollIntoView({ behavior: 'smooth', block: 'start' }), 60);
-  }
+  // openCauseInAccordion() DELETED 2026-08-01. It set `open` on one <details> and nothing else, so
+  // every caller left the URL, the tab title, the h1 sub-line and the whole Move/Fuel/Stack plan
+  // belonging to a cause the reader had just been told was not theirs — measured on 39 of 52
+  // protocol routes. Its three callers now use goToCause(), which navigates to a route that
+  // actually serves that cause. If you are about to re-add it, the thing you want is a link.
 
   // ---- THE HOME PAGE HAS EXACTLY ONE SOURCE (2026-07-30) ---------------------------------------
   // build/prerender.js -> site/home.html. app.js does NOT render the home page any more. It
@@ -3752,6 +3766,29 @@
   // ORDER IS LOAD-BEARING: a synthesized `wc<n>` cause-protocol carries its own exact index and
   // must win, because causeAsRc() Object.assigns over a real root cause. Unmapped -> 0, which is
   // exactly the old behaviour, so the 5 deliberately-unmapped root causes are unchanged.
+  // The inverse of causeIndexForRc: where does an authored why.cause actually LIVE?
+  // 47 of the 224 authored causes have a root-cause protocol of their own (data/cause_map.json
+  // binds 47 of 52 root causes to a cause name, folded on as `cause_key` by build/parse.js). The
+  // other 177 do not, and there is no protocol URL to send anyone to.
+  // DO NOT synthesize /protocol/<p>/wc<n> here. causeAsRc() mints that id for in-memory use, but
+  // it is not a servable route -- measured, `curl /protocol/knee-pain/wc3` returns 404, because
+  // server.js routes /protocol/* through GENERATED_ROUTES -> serveMissing. A quiz result the
+  // reader reloads or shares would be a dead page.
+  // The 177 have a real destination: the prerendered /problem document carries id="cause-N" on
+  // every cause (build/prerender.js:918, N = sorted position + 1). Verified hydrated:
+  // /problem/knee-pain#cause-3 lands with the target present.
+  function causeDestination(problem, ci) {
+    const causes = (problem.why && problem.why.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    const c = causes[ci];
+    const rc = c && (problem.root_causes || []).find(r => r.cause_key === c.name);
+    return rc ? '/protocol/' + problem.id + '/' + rc.id : '/problem/' + problem.id + '#cause-' + (ci + 1);
+  }
+  // /problem is prerender-only, so it needs a REAL navigation -- the same reason every inbound
+  // /problem link on the site carries data-native.
+  function goToCause(problem, ci) {
+    const url = causeDestination(problem, ci);
+    if (url.indexOf('/problem/') === 0) location.assign(url); else navigate(url);
+  }
   function causeIndexForRc(problem, rc) {
     if (!rc) return 0;
     if (rc._causeIndex != null) return rc._causeIndex;

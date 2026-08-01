@@ -3578,6 +3578,15 @@ a.seed-chip:hover { text-decoration: none; }
 a.funnel-hit { text-decoration: none; color: inherit; box-sizing: border-box; }
 a.funnel-hit:hover { text-decoration: none; }
 
+/* ===== CAUSE QUIZ: the result is a link now (W2.5c, 2026-08-01) ==============================
+   The result buttons called openCauseInAccordion(), which opened a <details> and left the URL,
+   the title and the whole plan below belonging to a different cause — on 39 of 52 protocol routes.
+   They are <a href> now, so `.assess-go2` (written for a <button>) needs the block layout and
+   centring a button had for free. `.assess-switch` already carries its own underline. */
+a.assess-go2 { display: block; text-align: center; text-decoration: none; box-sizing: border-box; }
+a.assess-go2:hover { text-decoration: none; }
+a.assess-switch { text-align: center; }
+
 /* ===== NEWSLETTER: the no-JS completion state ================================================
    `.nl-done` / `.nl-bad` had NO rules at all -- the SPA rendered a `.nl-done` paragraph that was
    never styled, and the prerendered document did not render one, so a native form post ended on a
