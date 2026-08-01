@@ -5325,15 +5325,55 @@
     // margin-block-start; .plan-h/.plan-ch set margin-bottom only).
     const tl = (Array.isArray(pl.timeline) && pl.timeline.length) ? `<div class="plan-block"><h3 class="plan-h" style="margin:0 0 .5rem">📆 What to expect — and when</h3><ol class="plan-timeline">${pl.timeline.map(t => `<li><span class="pt-when">${esc(t.when)}</span><span class="pt-what">${mdInline(t.what)}</span></li>`).join('')}</ol></div>` : '';
     const wk = pl.working ? `<div class="plan-card plan-working"><h3 class="plan-ch" style="margin:0 0 .35rem">✅ What “it’s working” looks like</h3>${mdBlocks(pl.working, mdInline)}</div>` : '';
-    // The escalation sentence. PRERENDERED 52/52 (build/prerender.js, the `safety` block), HYDRATED
-    // 2/52 before this — and the Singapore number 995 on 0/52 — so the one page in the funnel that
-    // tells a reader to act on their own body carried no way out of it for a JS reader. Wording is
-    // the prerendered wording, so the two documents say the same thing.
-    const re = pl.reassess ? `<div class="plan-card plan-reassess"><h3 class="plan-ch" style="margin:0 0 .35rem">🚩 When to reassess or see a doctor</h3>${mdBlocks(pl.reassess, mdInline)}<p class="esc-note" style="margin:.6rem 0 0">If something is severe, sudden, or getting rapidly worse, do not work through a protocol — <b>call your local emergency number</b> and go to an emergency department. (It is 999 in the UK and much of Asia, 911 in North America, 112 across Europe, 995 in Singapore, 000 in Australia.) A family doctor or general practice is the right first stop for anything persistent.</p></div>` : '';
+    // The escalation block used to render HERE, inside the plan section. It is now the first thing
+    // on the page — see safetyFirstSection(). It was MOVED, not copied: printing the same
+    // escalation text twice would train a reader to skip it.
     const ctx = (Array.isArray(pl.context) && pl.context.length) ? `<div class="plan-block"><h3 class="plan-h" style="margin:0 0 .5rem">👥 Does your situation change it?</h3><div class="plan-ctx">${pl.context.map(c => `<div class="pctx"><b>${esc(c.who)}</b><span>${mdInline(c.mod)}</span></div>`).join('')}</div></div>` : '';
     const tr = (Array.isArray(pl.troubleshooting) && pl.troubleshooting.length) ? `<details class="plan-trouble"><summary>🔧 Troubleshooting — if it’s not working</summary>${pl.troubleshooting.map(t => `<div class="ptr"><div class="ptr-q">${mdInline(t.issue)}</div><div class="ptr-a">${mdInline(t.fix)}</div></div>`).join('')}</details>` : '';
-    if (!tl && !wk && !re && !ctx && !tr) return '';
-    return `<section class="plan-section" id="p-plan"><h2>🗺️ Your plan — timeline, signals &amp; troubleshooting</h2><p class="plan-sub">Educational, not medical advice. Timelines are typical, not promises.</p><div class="plan-grid">${wk}${re}</div>${tl}${ctx}${tr}</section>`;
+    if (!tl && !wk && !ctx && !tr) return '';
+    return `<section class="plan-section" id="p-plan"><h2>🗺️ Your plan — timeline, signals &amp; troubleshooting</h2><p class="plan-sub">Educational, not medical advice. Timelines are typical, not promises.</p><div class="plan-grid">${wk}</div>${tl}${ctx}${tr}</section>`;
+  }
+  // ---- W2 (2026-08-01): THE SAFETY STRUCTURE, ABOVE THE RECOMMENDATIONS ------------------------
+  // MEASURED HYDRATED at 390x844 in the DEFAULT DOM state (nothing expanded, nothing clicked) on all
+  // 52 /protocol/* routes before this — out/w2safe_before.json:
+  //   · a labelled stop-rule element:            0/52
+  //   · a named primary tracking metric element: 0/52
+  //   · the 🚩 reassess card BELOW the page's first supplement recommendation on 52/52. Median y:
+  //     first supplement 8,914 px, red flags 11,023 px, on an 18,430 px page.
+  // Note WHERE the first recommendation is: not the Stack section, but the "💊 Supplement" fix line
+  // inside the open cause accordion (DOM index 144 against the red flags' 691 on
+  // /protocol/knee-pain/patellofemoral-pain). So this has to sit above causesSection(), not merely
+  // above protocolLayers(), and above theOneThingHead() too — that block is authored prose and is
+  // free to name a compound.
+  //
+  // NOTHING HERE IS WRITTEN BY THE RENDERER. `problem.safety` is promoted from this page's own
+  // authored plan by data/protocol_safety.json and gated by assertProtocolSafety() in
+  // build/parse.js: the quote must be verbatim, the checkpoint must be one of the problem's own
+  // timeline steps, and the stop rule's action is that troubleshooting entry's own authored `fix`.
+  // The label is a condensation, so the sentence it was condensed from is printed under it.
+  function safetyFirstSection(problem) {
+    const pl = problem.plan || {}, s = problem.safety;
+    if (!pl.reassess && !s) return '';
+    const red = pl.reassess ? `<div class="plan-card plan-reassess">
+        <h2 class="plan-ch" style="margin:0 0 .35rem">🚩 First — when this is not a self-care problem</h2>
+        ${mdBlocks(pl.reassess, mdInline)}
+        <p class="esc-note" style="margin:.6rem 0 0">If something is severe, sudden, or getting rapidly worse, do not work through a protocol — <b>call your local emergency number</b> and go to an emergency department. (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America, 112 across Europe, 000 in Australia.) For anything persistent, a family doctor or polyclinic is the right first stop.</p>
+        <p class="esc-note" style="margin:.4rem 0 0"><b>This page is information, not medical advice.</b> No clinician has reviewed it, and nothing on it is a diagnosis.</p>
+      </div>` : '';
+    const struct = s ? `<div class="safety-grid">
+        <div class="sf-card track-metric" data-primary-metric="${esc(s.metric)}">
+          <span class="sf-k">📏 The one thing to track</span>
+          <b class="sf-v">${esc(s.metric)}</b>
+          <p class="sf-src">${mdInline(s.metricSource)}</p>
+          <p class="sf-base">Write down where it is <b>today</b> — that is the baseline you will compare against at ${esc(s.checkpoint)}.</p>
+        </div>
+        <div class="sf-card stop-rule" data-stop-rule data-checkpoint="${esc(s.checkpoint)}">
+          <span class="sf-k">⏱️ The stop rule · ${esc(s.checkpoint)}</span>
+          <b class="sf-v">${esc(s.stopIssue)}</b>
+          <p class="sf-src">${mdInline(s.stopFix)}</p>
+        </div>
+      </div>` : '';
+    return `<section class="safety-first" id="red-flags">${red}${struct}</section>`;
   }
   // ---- D2 (2026-08-01): MOVE · FUEL · STACK, restored to the HYDRATED document -----------------
   // MEASURED BEFORE THIS, hydrated at 390x844 with every <details> expanded and every .chapter
@@ -5633,6 +5673,7 @@
           <div class="ps-cell"><span class="ps-k">This protocol</span><b>${moveN ? moveN + ' move' + (moveN !== 1 ? 's' : '') + ' · ' : ''}${P.stack.length} supplement${P.stack.length !== 1 ? 's' : ''}${ntN ? ' · ' + ntN + ' food target' + (ntN !== 1 ? 's' : '') : ''}</b></div>
         </div>`;
       })()}
+      ${safetyFirstSection(problem)}
       ${theOneThingHead(problem)}
       ${causesSection(problem, causeIndexForRc(problem, rc))}
       ${planSection(problem)}

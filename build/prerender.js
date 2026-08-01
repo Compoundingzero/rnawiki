@@ -1099,16 +1099,46 @@ GRAPH.problems.forEach((p) => {
     // causeCascadeFlat(p) higher in the body (Move 1, 2026-07). cause_learn.json is keyed by
     // PROBLEM id ("knee-pain"), not root-cause id -- causeCascadeFlat reads CAUSE[p.id] for that
     // reason (keying on rc.id silently renders nothing, the looks-complete-but-empty join trap).
+    // ---- THE SAFETY STRUCTURE, ABOVE THE RECOMMENDATIONS (2026-08-01, W2) ------------------
+    // This block used to render BELOW the Stack and the Medical options on 52/52 prerendered
+    // pages — the escalation text sat under the recommendations it qualifies, in the document
+    // ~90% of readers get. The same inversion was measured hydrated (median y 11,023 px for the
+    // 🚩 card against 8,914 px for the first supplement line). It is hoisted here, and given the
+    // two structures the page never had: the ONE metric this protocol is judged by, and the point
+    // at which the honest answer is to stop and get help.
+    // Every string comes from data/protocol_plan.json via data/protocol_safety.json, which selects
+    // rather than writes and is gated by assertProtocolSafety() in build/parse.js. Class names
+    // match site/app.js exactly, so the two documents render the same thing.
+    const sfy = p.safety;
+    const redflags = `
+      ${plan.reassess ? `<section class="safety-first" id="red-flags">
+        <div class="plan-card plan-reassess">
+          <h3>First — when this is not a self-care problem</h3>
+          ${mdBlocks(plan.reassess, mdSafe)}
+          <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
+          through a protocol — <b>call your local emergency number</b> and go to an emergency
+          department. (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America,
+          112 across Europe, 000 in Australia.) For anything persistent, a family doctor or
+          polyclinic is the right first stop.</p>
+          <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has
+          reviewed it, and nothing on it is a diagnosis.</p>
+        </div>
+        ${sfy ? `<div class="safety-grid">
+          <div class="sf-card track-metric" data-primary-metric="${esc(sfy.metric)}">
+            <span class="sf-k">The one thing to track</span>
+            <b class="sf-v">${esc(sfy.metric)}</b>
+            <p class="sf-src">${mdSafe(sfy.metricSource)}</p>
+            <p class="sf-base">Write down where it is <b>today</b> — that is the baseline you will
+            compare against at ${esc(sfy.checkpoint)}.</p>
+          </div>
+          <div class="sf-card stop-rule" data-stop-rule data-checkpoint="${esc(sfy.checkpoint)}">
+            <span class="sf-k">The stop rule · ${esc(sfy.checkpoint)}</span>
+            <b class="sf-v">${esc(sfy.stopIssue)}</b>
+            <p class="sf-src">${mdSafe(sfy.stopFix)}</p>
+          </div>
+        </div>` : ''}
+      </section>` : ''}`;
     const safety = `
-      ${plan.reassess ? `<section class="plan-reassess">
-        <h3>When to reassess or see a doctor</h3>
-        ${mdBlocks(plan.reassess, mdSafe)}
-        <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
-        through a protocol — <b>call your local emergency number</b> and go to an emergency
-        department. (It is 999 in the UK and much of Asia, 911 in North America, 112 across Europe,
-        995 in Singapore, 000 in Australia.) A family doctor or general practice is the right first
-        stop for anything persistent.</p>
-      </section>` : ''}
       ${timeline.length ? `<h3>What to expect, and by when</h3>
         <ul>${timeline.map((t) => `<li><b>${esc(t.when)}</b> — ${mdSafe(t.what)}</li>`).join('')}</ul>` : ''}
       ${siblings.length ? `<h3>Other root causes of ${esc(p.name)}</h3>
@@ -1117,6 +1147,7 @@ GRAPH.problems.forEach((p) => {
     const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name }])}
       <h1>${p.icon || ''} ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
+      ${redflags}
       ${rc.keystone ? `<div class="keystone-card"><div class="ks-badge">⭐ Your one keystone</div><p class="ks-one">${esc(rc.keystone.one)}</p><p class="ks-why">${esc(rc.keystone.why)}</p></div>` : ''}
       ${causeCascadeSummary(p)}
       <h3>Move — the mechanics that fix it${rc.prescription ? `: ${esc(rc.prescription.scheme)}` : ''}</h3>

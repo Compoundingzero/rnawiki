@@ -2858,11 +2858,31 @@ a.dp-name:hover{color:var(--accent)}
 .fk-compound{background:color-mix(in srgb,#8b5cf6 16%,transparent);color:#6d28d9}
 .fk-rx{background:color-mix(in srgb,#3b82f6 16%,transparent);color:#1d4ed8}
 @media(prefers-color-scheme:dark){.fk-behavior{color:#4ade80}.fk-food{color:#fbbf24}.fk-compound{color:#c4b5fd}.fk-rx{color:#93c5fd}}
+/* ---- /protocol/* — the safety structure, above the recommendations (2026-08-01, W2) -----------
+   Measured hydrated at 390x844 in the default DOM state on all 52 protocol routes before this:
+   a labelled stop-rule element 0/52, a named tracking metric 0/52, and the 🚩 block BELOW the
+   page's first supplement recommendation on 52/52 (median y 11,023 px against 8,914 px).
+   Shared by both documents — build/prerender.js emits the same class names. */
+.safety-first{margin:1.2rem 0 1.4rem}
+.safety-first .plan-reassess{margin-bottom:.9rem}
+.safety-first .plan-ch{font-size:1.02rem}
+.safety-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.9rem}
+.sf-card{border:1px solid var(--line);border-radius:14px;padding:.85rem 1rem;background:var(--panel)}
+.sf-k{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.3rem}
+.sf-v{display:block;font-size:1rem;line-height:1.35;color:var(--head)}
+.sf-src{margin:.45rem 0 0;font-size:.9rem;line-height:1.55;color:var(--ink)}
+.sf-base{margin:.5rem 0 0;font-size:.84rem;line-height:1.5;color:var(--muted)}
+.track-metric{border-color:color-mix(in srgb,#16a34a 30%,var(--line));background:color-mix(in srgb,#16a34a 6%,transparent)}
+.stop-rule{border-color:color-mix(in srgb,#f59e0b 34%,var(--line));background:color-mix(in srgb,#f59e0b 7%,transparent)}
+.safety-first[id]{scroll-margin-top:66px}
 /* Stage 4 — protocol action plan */
 .plan-section{margin:1.6rem 0;padding:1.3rem 1.4rem;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
 .plan-section h2{margin:0 0 .2rem;font-size:1.35rem}
 .plan-sub{margin:0 0 1rem;font-size:.84rem;color:var(--muted);font-style:italic}
-.plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.1rem}
+/* auto-fit, not `1fr 1fr`: the 🚩 card moved out of this grid to the top of the page (W2), so on a
+   protocol page this holds ONE card and a fixed two-column rule would render it at half width with
+   dead space beside it. */
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:1.1rem}
 .plan-card{border-radius:14px;padding:.9rem 1.05rem;border:1px solid var(--line)}
 .plan-working{background:color-mix(in srgb,#16a34a 8%,transparent);border-color:color-mix(in srgb,#16a34a 28%,var(--line))}
 .plan-reassess{background:color-mix(in srgb,#ef4444 7%,transparent);border-color:color-mix(in srgb,#ef4444 30%,var(--line))}
