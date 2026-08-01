@@ -222,6 +222,53 @@ const ASSERTIONS = {
     onlyIfRequestFailed: /^\/api\/rootcause-overlay$/,
     selector: '#p-causes [data-api-absent="rootcause-overlay"]',
     why: 'D42: the root-cause overlay 503s and nothing on the page tells the reader',
+  }, {
+    // D2: hydration used to DELETE safety content the crawler receives. Measured hydrated at
+    // 390x844 with every <details> expanded, on all 52 protocol routes, before the fix:
+    // "Move —" 0/52 · "Fuel —" 0/52 · "Stack —" 0/52 · "Daily nutrient targets" 0/52 ·
+    // "call your local emergency number" 2/52 · "995" 0/52 — against 52/52 for each in the
+    // prerendered document, while the hydrated footer still claimed "Nutrient targets are general
+    // adult guidance with a stated reason". Every number below is read from the SHIPPED DATA at
+    // assertion time, so re-authoring a root cause cannot silently drop a target from the page.
+    // Prove this gate by deleting `${protocolLayers(problem, rc, P)}` from renderProtocol(), or by
+    // deleting the .esc-note <p> from planSection() — each failure names itself.
+    name: 'hydratedProtocolKeepsWhatTheCrawlerGets',
+    why: 'D2: Move/Fuel/Stack, every authored nutrient target, and the emergency-number escalation must survive hydration',
+    evaluate: () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const rc = p.root_causes.find(x => x.id === rcid);
+      const app = document.querySelector('#app');
+      const txt = (app.textContent || '').replace(/\s+/g, ' ');
+      for (const [id, word] of [['p-move', 'Move —'], ['p-fuel', 'Fuel —'], ['p-stack', 'Stack —']]) {
+        if (!document.getElementById(id)) return `no #${id} section`;
+        if (txt.indexOf(word) < 0) return `#${id} exists but the page never says "${word}"`;
+      }
+      // every authored nutrient target, with its number and unit
+      const tg = Object.entries(rc.nutrient_targets || {});
+      if (!tg.length) return 'this root cause authors no nutrient target — pick a different smoke route';
+      if (txt.indexOf('Daily nutrient targets') < 0) return 'no "Daily nutrient targets" block';
+      const missing = tg.filter(([, t]) => txt.indexOf(String(t.target) + (t.unit || '')) < 0);
+      if (missing.length) return `${missing.length} of ${tg.length} nutrient targets are not printed`;
+      // the escalation path, and every number in it
+      const re = document.querySelector('.plan-reassess .esc-note');
+      if (!re) return 'no escalation note inside the red-flag card';
+      const nums = ['999', '911', '112', '995', '000'].filter(x => re.textContent.indexOf(x) < 0);
+      if (nums.length) return `the escalation note omits ${nums.join(', ')}`;
+      // red flags before the first supplement — a stack recommendation must never outrank them
+      const y = el => el.getBoundingClientRect().top + window.scrollY;
+      const card = document.querySelector('#p-stack .st-card');
+      if (card && y(document.querySelector('.plan-reassess')) > y(card))
+        return 'the first supplement card sits ABOVE the red-flag block';
+      // the Stack is what the regulator calls a supplement/OTC, never a prescription medicine
+      const rx = document.querySelectorAll('#p-stack .st-card.rx').length;
+      if (rx) return `${rx} prescription/controlled compound(s) rendered inside the Stack`;
+      // the tab must name the root cause, not just the problem
+      const short = rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase();
+      if (document.title.toLowerCase().indexOf(short.slice(0, 24)) < 0)
+        return `document.title ${JSON.stringify(document.title)} does not name the root cause`;
+      return null;
+    },
   }],
 };
 

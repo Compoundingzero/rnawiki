@@ -5318,13 +5318,90 @@
   // ---- Stage 4: protocol action-plan (timeline · working signals · reassess · context · troubleshooting) ----
   function planSection(problem) {
     const pl = problem.plan; if (!pl) return '';
-    const tl = (Array.isArray(pl.timeline) && pl.timeline.length) ? `<div class="plan-block"><div class="plan-h">📆 What to expect — and when</div><ol class="plan-timeline">${pl.timeline.map(t => `<li><span class="pt-when">${esc(t.when)}</span><span class="pt-what">${mdInline(t.what)}</span></li>`).join('')}</ol></div>` : '';
-    const wk = pl.working ? `<div class="plan-card plan-working"><div class="plan-ch">✅ What “it’s working” looks like</div>${mdBlocks(pl.working, mdInline)}</div>` : '';
-    const re = pl.reassess ? `<div class="plan-card plan-reassess"><div class="plan-ch">🚩 When to reassess or see a doctor</div>${mdBlocks(pl.reassess, mdInline)}</div>` : '';
-    const ctx = (Array.isArray(pl.context) && pl.context.length) ? `<div class="plan-block"><div class="plan-h">👥 Does your situation change it?</div><div class="plan-ctx">${pl.context.map(c => `<div class="pctx"><b>${esc(c.who)}</b><span>${mdInline(c.mod)}</span></div>`).join('')}</div></div>` : '';
+    // D2 (2026-08-01) — these four section titles were <div>s, so a 9,000-word protocol page
+    // hydrated to exactly one h1 and two h2 and nothing else: measured 52/52, h3 count 0. The
+    // prerendered twin marks the same four as <h3>. Promoted to real headings, with the margin the
+    // class does not set carried inline so the rendered geometry is unchanged (h3 has a UA
+    // margin-block-start; .plan-h/.plan-ch set margin-bottom only).
+    const tl = (Array.isArray(pl.timeline) && pl.timeline.length) ? `<div class="plan-block"><h3 class="plan-h" style="margin:0 0 .5rem">📆 What to expect — and when</h3><ol class="plan-timeline">${pl.timeline.map(t => `<li><span class="pt-when">${esc(t.when)}</span><span class="pt-what">${mdInline(t.what)}</span></li>`).join('')}</ol></div>` : '';
+    const wk = pl.working ? `<div class="plan-card plan-working"><h3 class="plan-ch" style="margin:0 0 .35rem">✅ What “it’s working” looks like</h3>${mdBlocks(pl.working, mdInline)}</div>` : '';
+    // The escalation sentence. PRERENDERED 52/52 (build/prerender.js, the `safety` block), HYDRATED
+    // 2/52 before this — and the Singapore number 995 on 0/52 — so the one page in the funnel that
+    // tells a reader to act on their own body carried no way out of it for a JS reader. Wording is
+    // the prerendered wording, so the two documents say the same thing.
+    const re = pl.reassess ? `<div class="plan-card plan-reassess"><h3 class="plan-ch" style="margin:0 0 .35rem">🚩 When to reassess or see a doctor</h3>${mdBlocks(pl.reassess, mdInline)}<p class="esc-note" style="margin:.6rem 0 0">If something is severe, sudden, or getting rapidly worse, do not work through a protocol — <b>call your local emergency number</b> and go to an emergency department. (It is 999 in the UK and much of Asia, 911 in North America, 112 across Europe, 995 in Singapore, 000 in Australia.) A family doctor or general practice is the right first stop for anything persistent.</p></div>` : '';
+    const ctx = (Array.isArray(pl.context) && pl.context.length) ? `<div class="plan-block"><h3 class="plan-h" style="margin:0 0 .5rem">👥 Does your situation change it?</h3><div class="plan-ctx">${pl.context.map(c => `<div class="pctx"><b>${esc(c.who)}</b><span>${mdInline(c.mod)}</span></div>`).join('')}</div></div>` : '';
     const tr = (Array.isArray(pl.troubleshooting) && pl.troubleshooting.length) ? `<details class="plan-trouble"><summary>🔧 Troubleshooting — if it’s not working</summary>${pl.troubleshooting.map(t => `<div class="ptr"><div class="ptr-q">${mdInline(t.issue)}</div><div class="ptr-a">${mdInline(t.fix)}</div></div>`).join('')}</details>` : '';
     if (!tl && !wk && !re && !ctx && !tr) return '';
     return `<section class="plan-section" id="p-plan"><h2>🗺️ Your plan — timeline, signals &amp; troubleshooting</h2><p class="plan-sub">Educational, not medical advice. Timelines are typical, not promises.</p><div class="plan-grid">${wk}${re}</div>${tl}${ctx}${tr}</section>`;
+  }
+  // ---- D2 (2026-08-01): MOVE · FUEL · STACK, restored to the HYDRATED document -----------------
+  // MEASURED BEFORE THIS, hydrated at 390x844 with every <details> expanded and every .chapter
+  // activated, on all 52 /protocol/* routes (out/w2d2_measure.json): "Move —" 0/52, "Fuel —" 0/52,
+  // "Stack —" 0/52, "Daily nutrient targets" 0/52, "call your local emergency number" 2/52, the
+  // Singapore emergency number 995 0/52 — against 52/52 for every one of those in the PRERENDERED
+  // document. Meanwhile the hydrated footer printed "Nutrient targets are general adult guidance
+  // with a stated reason" on 52/52 pages showing zero nutrient targets, and the tab said
+  // "… protocol — Move, Fuel & Stack". The page promised three things it had deleted.
+  // The layers were removed on 2026-07-09 when item-picking moved into the /plan builder. What the
+  // builder never took over is the part that is not picking: the prescription, the 189 authored
+  // nutrient targets, the food list, and the compound list with its regulatory status.
+  //
+  // THREE THINGS THIS DELIBERATELY DOES NOT RENDER:
+  //  1. generateProtocol()'s exercise list. build/prerender.js:protoMove rejected that same tag
+  //     join because it contradicted the page's own prescription on 48 of the 49 protocols that
+  //     rendered one, and `protocol_exercise` is authored on 0 of 52 root causes (measured), so the
+  //     crawler's Move block IS the prescription prose. This matches it. The builder still uses
+  //     P.strengthen / P.stretch to let a reader pick movements.
+  //  2. generateProtocol()'s `stack`. That list backfills from a goal/pathway pool up to six and
+  //     applies no regulatory filter: it adds Statins to /protocol/knee-pain/patellofemoral-pain,
+  //     and BPC-157, MK-677 or clomiphene elsewhere, to root causes that never authored them.
+  //     Printing that under "supplements" would advertise prescription-only medicines to the public
+  //     (Medicines Act 1975 s.51). The Stack here is the AUTHORED rc.compounds only, filtered to
+  //     supplement/OTC by the REGULATOR's classification (regClass), exactly like protoStack().
+  //     Authored items that are not consumer-class are not dropped — they render in their own
+  //     non-recommending block, which is what the crawler already gets.
+  //  3. Any dose for any compound.
+  const isConsumerCpd = (c) => ['supplement', 'otc'].includes(regClass(c));
+  function authoredCompounds(rc) {
+    const out = [], ids = new Set();
+    (rc.compounds || []).forEach(n => { const c = resolveCompound(n); if (c && !ids.has(c.id)) { ids.add(c.id); out.push(c); } });
+    return out;
+  }
+  function protocolLayers(problem, rc, P) {
+    const rx = rc.prescription || {};
+    const authored = authoredCompounds(rc);
+    const stack = authored.filter(isConsumerCpd);
+    const med = authored.filter(c => !isConsumerCpd(c));
+    const foods = P.fuel || [];
+    const tg = Object.entries(rc.nutrient_targets || {});
+    return `<section class="plan-section" id="p-move">
+        <div class="cause-step">THE PROTOCOL · MOVE</div>
+        <h2>🏃 Move — the mechanics that fix it${rx.scheme ? ': ' + esc(rx.scheme) : ''}</h2>
+        ${rx.detail ? `<p>${esc(rx.detail)}</p>` : '<p>No movement prescription is authored for this root cause yet — that is a gap, not a judgement that movement does not matter here.</p>'}
+        <p class="muted">Pick and track individual movements in the plan builder below. This page gives the prescription, not a fixed exercise list.</p>
+      </section>
+      <section class="plan-section" id="p-fuel">
+        <div class="cause-step">THE PROTOCOL · FUEL</div>
+        <h2>🥗 Fuel — foods to fuel it</h2>
+        ${foods.length ? `<div class="fuel-stack-grid">${foods.map(f => `<div class="fs-item"><span><b>${esc(f.name)}</b>${f.serving ? ` <small>${esc(f.serving)}</small>` : ''}</span>${f.sg_local ? '<span class="sg">SG</span>' : ''}</div>`).join('')}</div>` : ''}
+        ${tg.length ? `<h3 class="plan-h" style="margin:.9rem 0 .5rem">Daily nutrient targets</h3>
+          <div class="fuel-stack-grid">${tg.map(([k, t]) => `<div class="fs-item"><span><b>${esc(NUTRIENT_LABEL[k] || k)}</b>${t.why ? `<br><small>${esc(t.why)}</small>` : ''}</span><span><b>${esc(String(t.target))}${esc(t.unit || '')}</b>${t.type ? ` <small>(${esc(t.type)})</small>` : ''}</span></div>`).join('')}</div>
+          <p class="muted">General adult guidance with a stated reason, not a personal prescription. <a href="/fuel/${esc(problem.id)}/${esc(rc.id)}">Open the Fuel Tracker — targets, foods and why each one →</a></p>` : ''}
+      </section>
+      <section class="plan-section" id="p-stack">
+        <div class="cause-step">THE PROTOCOL · STACK</div>
+        <h2>💊 Stack — supplements with human trial evidence for this use</h2>
+        <p class="muted">★ = strength of the human evidence for this use. Nothing here is a recommendation to take anything.</p>
+        ${stack.length ? stack.map(stackCard).join('')
+          : '<p>No supplement has human trial evidence specific to this root cause that belongs on this page. That is the honest answer, not an omission.</p>'}
+      </section>
+      ${med.length ? `<section class="plan-section" id="p-medical">
+        <div class="cause-step">THE PROTOCOL · MEDICAL OPTIONS</div>
+        <h2>🩺 Medical options — discuss with a doctor</h2>
+        <p>These are prescription, pharmacy-only or non-approved medicines. They are listed so you know they exist and can raise them with a clinician — they are not recommendations, they are not ranked, and no doses for them appear here.</p>
+        <div class="fuel-stack-grid">${med.map(c => `<div class="fs-item"><span><a href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b></a><br><span class="pill rx">${esc(sgAvailability(c).tag)}</span></span></div>`).join('')}</div>
+      </section>` : ''}`;
   }
   // ---- Short-form / TikTok export engine: 9:16 screenshot-ready card + auto-generated script ----
   // Generalized across content types (causes, myths, mechanism cascade, molecule journey, did-you-know).
@@ -5559,6 +5636,7 @@
       ${theOneThingHead(problem)}
       ${causesSection(problem, causeIndexForRc(problem, rc))}
       ${planSection(problem)}
+      ${protocolLayers(problem, rc, P)}
       <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">Browse the movements &amp; supplements, keep what fits you, then track it daily on <b>My Plan</b>.</span></div>
       ${rcSwitch}
       ${rc.keystone ? `<div class="keystone-card">
@@ -6342,7 +6420,17 @@
     const t = (s) => `${s} · ${site}`;
     if (parts[0] === 'c' && bySlug[parts[1]]) { const c = bySlug[parts[1]]; title = t(`${c.name}: dosage, evidence & uses`); desc = (c.plain || c.bottom || c.mechanism || '').slice(0, 155); }
     else if (parts[0] === 'goal' && goalById[parts[1]]) { const g = goalById[parts[1]]; title = t(`${g.label} — what actually helps`); desc = `Compounds that help you ${g.label.toLowerCase()}, ranked by strength of human evidence. Plain English, honest verdicts.`; }
-    else if (parts[0] === 'protocol' && problemById[parts[1]]) { const p = problemById[parts[1]]; const rc = p.root_causes.find(r => r.id === parts[2]) || p.root_causes[0]; title = t(`${p.name}${parts[3] === 'stewardship' ? ' — expert stewardship' : ' protocol — Move, Fuel & Stack'}`); desc = `${p.name} (${rc.name}): the exercises to fix it, foods to fuel it, and evidence-ranked compounds — a full protocol. Not medical advice.`; }
+    // D2 (2026-08-01) — the tab title said "<problem> protocol — Move, Fuel & Stack" on every root
+    // cause of a problem. Two defects in one string: it named three sections the hydrated page had
+    // deleted (0/52), and it did not name the root cause, so the 3 knee-pain URLs, the 2
+    // low-testosterone URLs and so on shared one tab title — 41 distinct titles across 52 routes,
+    // and 0/52 matched the prerendered <title>. Now it names the root cause, in the prerendered
+    // document's own form (`<problem>: <root cause>`), so a bookmark, a share and a tab all say
+    // which cause the page is about. It is NOT run through prerender.js:seoTitle's 60-char cap:
+    // that cap truncates 27 of these mid-phrase, 10 of them onto a dangling "/" or "+"
+    // ("Lower Back Pain: weak posterior chain / · RNAwiki"). Copying a truncation to score a parity
+    // metric would put a broken string in the reader's tab. The prerender-side truncation is D8.
+    else if (parts[0] === 'protocol' && problemById[parts[1]]) { const p = problemById[parts[1]]; const rc = p.root_causes.find(r => r.id === parts[2]) || p.root_causes[0]; title = t(parts[3] === 'stewardship' ? `${p.name} — expert stewardship` : `${p.name}: ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()}`); desc = `${p.name} (${rc.name}): the exercises to fix it, foods to fuel it, and evidence-ranked compounds — a full protocol. Not medical advice.`; }
     else if (parts[0] === 'target' && targetBySym[tkey(decodeURIComponent(parts[1] || ''))]) { const tg = targetBySym[tkey(decodeURIComponent(parts[1]))]; title = t(`${tg.sym} — the molecular target and every compound that hits it`); desc = `${tg.sym}: ${(tg.name || '').slice(0, 120)}`; }
     else if (parts[0] === 'pathway' && D.pathways[+parts[1]]) { title = t(`${D.pathways[+parts[1]].shortLabel} pathway explained`); }
     else if (parts[0] === 'compare' && parts[1]) { const i = parts[1].indexOf('-vs-'); const A = i >= 0 && bySlug[parts[1].slice(0, i)], B = i >= 0 && bySlug[parts[1].slice(i + 4)]; if (A && B) { title = t(`${A.name} vs ${B.name} — which works better?`); desc = `${A.name} vs ${B.name}: human evidence, mechanism, safety and availability compared. Plain English, honest verdict.`; } }
