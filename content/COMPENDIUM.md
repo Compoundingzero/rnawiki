@@ -1514,7 +1514,16 @@ Added compounds and four new categories to complete the universe (~220 total).
 
 ---
 
-## Additions to CATEGORY 6 — Endurance/blood doping
+<!-- NOTE (2026-08-01): the NUMBER is what parse.js binds to (build/parse.js numMap); the label after
+     the dash used to be discarded silently. "CATEGORY 6" is "SARMs & SELECTIVE METABOLIC AGENTS",
+     so this heading filed EPO — an erythropoietin-receptor agonist — as a SARM. Because
+     site/interactions.js defaulted that whole category to `hpta_suppressive`, "/stack?ids=c135,c49"
+     rendered "🔻 Compounded testosterone shutdown · EPO (Erythropoietin) + Ostarine" (measured
+     hydrated, 390x844, 2026-08-01). There is no endurance category; CATEGORY 2 is the honest home
+     for a performance drug, and EPO's goal is already overridden to `endurance` in build/parse.js
+     GOAL_OVERRIDES. The label now shares a word with the category it actually files under, because
+     build/parse.js fails the build when it does not. -->
+## Additions to CATEGORY 2 — Performance: endurance and blood doping
 
 ### EPO (Erythropoietin)  🔵/⚫ ⭐⭐⭐⭐⭐ (potent, banned)
 **Technical mechanism:** Binds the **erythropoietin receptor (EPOR)** on marrow progenitors → more red blood cells → higher O₂-carrying capacity and VO₂max. The classic endurance doping agent.

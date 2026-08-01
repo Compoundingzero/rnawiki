@@ -23,7 +23,12 @@ window.RNAWIKI_INTERACTIONS = {
   // tag any rule consumes and therefore CANNOT produce a flag, no matter what they are stacked
   // with. That number is not a target to game: the honest response to it is the "❔ Not enough to
   // check" state in the panel, not a tag invented to make the number look better.
-  coverage: { compounds: 171, reachable: 100, unreachable: 71, unreachableRx: 33 },
+  // 2026-08-01: 100 → 99. EPO (Erythropoietin) was filed under "SARMs & SELECTIVE METABOLIC
+  // AGENTS" by a COMPENDIUM heading that pointed at the wrong category number, and inherited
+  // `hpta_suppressive` from the category default below. Filing it where it belongs removes a tag
+  // its own page never supported, and one compound stops being counted as covered. The number goes
+  // DOWN on purpose: a lower honest figure beats a higher false one.
+  coverage: { compounds: 171, reachable: 99, unreachable: 72, unreachableRx: 34 },
 
   // Category → default tags (broad, safe defaults; refined by nameTags below).
   catTags: {
