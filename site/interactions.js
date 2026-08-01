@@ -8,8 +8,11 @@
  * ~20 rules", which was false on every count: the corpus is 171, and measured hydrated on /stack
  * before 2026-08-01, 94 of them carried a tag some rule consumed and 77 did not — 35 of those 77
  * prescription, controlled or unapproved. The `coverage` block below is the measured truth, it is
- * printed to the reader by interactionPanel() in site/app.js, and assertInteractionCoverage() in
- * build/parse.js fails the build if it drifts from what the corpus actually supports.
+ * read by assertInteractionCoverage() in build/parse.js, which fails the build if it drifts from
+ * what the corpus actually supports. (Corrected 2026-08-02: this header used to say the block was
+ * "printed to the reader by interactionPanel()". It is not — `RXN.coverage` occurs 0 times in
+ * site/app.js. The panel prints PER-STACK coverage, "the 2 of 2 I have pharmacology for",
+ * computed live from RULE_TAGS. A false claim inside the honesty machinery is its own defect.)
  * Each danger/blunt/timing rule carries a plain-English WHY (educate, don't just warn) and,
  * where relevant, a pathway link. Synergies suggest what pairs WELL. Not medical advice.
  *
@@ -30,7 +33,13 @@ window.RNAWIKI_INTERACTIONS = {
   // REDUCES inflammation). The number goes DOWN on purpose: a lower honest figure beats a higher
   // false one, and those four now render "❔ I hold no interaction pharmacology for …" instead of
   // silently inheriting somebody else's mechanism.
-  coverage: { compounds: 171, reachable: 96, unreachable: 75, unreachableRx: 37 },
+  // 2026-08-02: 96 → 95. A rule that CANNOT FIRE against this corpus no longer counts its carrier
+  // as covered. `double_5ar` needs two carriers of `5ar_inhibitor` and the corpus has exactly one
+  // (the bundled "Finasteride / Dutasteride" page), so that compound could never produce a flag
+  // while the panel counted it as checked — measured hydrated at 390x844, /stack?ids=c39,c120
+  // rendered "✅ Nothing flagged between the 2 of 2 I have pharmacology for" when the truth was
+  // 1 of 2. Exactly one rule is unfirable and exactly one compound moves.
+  coverage: { compounds: 171, reachable: 95, unreachable: 76, unreachableRx: 38 },
 
   // catTags MUST STAY EMPTY. It is kept as a field only so compoundTags() in site/app.js and its
   // copy in build/parse.js keep the same shape; assertInteractionCoverage() fails the build if

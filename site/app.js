@@ -2810,9 +2810,25 @@
   // no tag any rule consumes — 35 of those prescription, controlled or unapproved — and a stack of
   // five such compounds rendered "Interaction check ✅ No dangerous interactions flagged" with zero
   // rows. That is a negative safety claim issued from an empty knowledge base.
+  // W3.5 (2026-08-02): only rules that CAN FIRE against this corpus count as coverage. `double_5ar`
+  // needs two distinct carriers of `5ar_inhibitor`; the corpus carries it exactly once (the bundled
+  // "Finasteride / Dutasteride" page), so that rule can never produce a flag — yet its tag made this
+  // panel count the compound as checked. MEASURED hydrated at 390x844 before the change:
+  // /stack?ids=c39,c120 rendered "✅ Nothing flagged between the 2 of 2 I have pharmacology for".
+  // It is 1 of 2, and the honest render is the ❔ state naming the compound.
+  // This is the same arithmetic as coverage.reachable in site/interactions.js, which
+  // assertInteractionCoverage() in build/parse.js recomputes and gates — keep the two definitions
+  // identical or the number the build publishes stops matching what the panel tells the reader.
+  // The rule is NOT deleted: it becomes firable the moment the corpus carries a second
+  // 5-alpha-reductase inhibitor. What changes is that its single carrier stops counting as covered.
   const RULE_TAGS = (function () {
+    const carriers = {};
+    (D.compounds || []).forEach(c => compoundTags(c).forEach(t => { carriers[t] = (carriers[t] || 0) + 1; }));
     const s = new Set();
-    (RXN.rules || []).forEach(r => (r.need || []).forEach(n => s.add(n[0])));
+    (RXN.rules || []).forEach(r => {
+      if (!(r.need || []).every(n => (carriers[n[0]] || 0) >= n[1])) return;
+      (r.need || []).forEach(n => s.add(n[0]));
+    });
     return s;
   })();
   function compoundTags(c) {
