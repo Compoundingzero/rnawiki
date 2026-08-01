@@ -1656,7 +1656,48 @@ ANAT.metabolism.forEach((p) => {
 // exactly 41 had a funnel entry and the other 11 were reachable only from a compound page or the
 // sitemap. Every root cause is its own page with its own protocol, so list them all -- and name the
 // cause, because "Knee pain" three times is not a useful set of links to a crawler or a reader.
-add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: 'Tell us the problem to fix or goal to reach. Get a full Move · Fuel · Stack protocol for the root cause, localised for Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1><p>Pick a problem or goal and get a full protocol — the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds. Each problem is broken into its root causes, because the fix depends on which one you have.</p><p class="where-cta"><a href="/where">🧍 Not sure what it's called? Point to where it hurts →</a></p>${GRAPH.problems.map((p) => `<h2>${esc(p.name)}</h2><ul>${p.root_causes.map((rc) => `<li><a href="/protocol/${p.id}/${rc.id}">${esc(p.name)} — ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>`).join('')}` }));
+// /solve, the funnel entrance, in the CRAWLER document. Two jobs it did not do before:
+//   1. It listed 52 protocol links and ZERO /problem links, so the differential -- the thing that
+//      answers "which of my 4-7 possible causes is it" -- was not reachable from the entrance in
+//      either document. Now every problem leads with /problem/{id}; its protocols nest under it.
+//   2. The home hero is a real <form action="/solve" method="get">, so the ~90% of readers who
+//      never run JS arrive here at /solve?q=<their words>. This page had no field showing what they
+//      typed and no acknowledgement of it: /solve and /solve?q=knee%20pain were byte-identical,
+//      16,222 B each (curl, 2026-08-01). The hidden #q-hits / #q-none blocks below are what
+//      server.js reveals and orders for those readers -- see searchSolve in server.js. They are
+//      authored HERE so the words have one source; the server only injects a <style> and fills two
+//      text slots, exactly as it already does for the newsletter notice on "/".
+// NOTE for anyone editing the strings below: server.js matches `id="q-hits"`, `id="q-none"`,
+// `<em class="q-term"></em>` and the input's attribute run VERBATIM. Reword them there too.
+const solveCardPre = (p) => {
+  const nc = ((p.why && p.why.causes) || []).length;
+  const nr = p.root_causes.length;
+  return `<div class="solve-card" data-kind="${p.kind}" data-pid="${esc(p.id)}">`
+    + `<a class="s-main" href="/problem/${p.id}" data-native>`
+    + `<span class="s-ico" aria-hidden="true">${p.icon || '•'}</span>`
+    + `<span class="s-body"><b>${esc(p.name)}</b>`
+    + `<small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}</small>`
+    + `<span class="s-diff">${nc} possible cause${nc === 1 ? '' : 's'} · ${nr} with a protocol</span>`
+    + `<span class="s-go">See which one fits you →</span></span></a>`
+    + `<div class="s-rcs"><span class="s-rcs-k">Already know the cause?</span>`
+    + p.root_causes.map((rc) => `<a class="s-rc" href="/protocol/${p.id}/${rc.id}">${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a>`).join('')
+    + `</div></div>`;
+};
+const solveCats = [...new Set(GRAPH.problems.map((p) => p.category))];
+add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: `Name the problem or goal. See its likely causes first — ${GRAPH.problems.length} problems, ${GRAPH.problems.reduce((a, p) => a + ((p.why && p.why.causes) || []).length, 0)} documented causes — then one Move · Fuel · Stack protocol for the cause you pick.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1>`
+  + `<p>Name the problem you want to fix or the goal you want to reach. You get the likely causes first — because the same symptom has different causes and they need different fixes — then one protocol for the cause you pick: the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds to support it.</p>`
+  + `<form class="solve-q" action="/solve" method="get" role="search"><label class="sr-only" for="solve-q">Describe the problem or goal in your own words</label>`
+  + `<input id="solve-q" name="q" type="search" value="" autocomplete="off" spellcheck="false" placeholder="In your own words — &quot;sore knee going downstairs&quot;">`
+  + `<button class="cta-primary" type="submit">Find it →</button></form>`
+  + `<p class="where-cta"><a href="/where">🧍 Not sure what it's called? Point to where it hurts →</a></p>`
+  + `<section class="q-panel" id="q-hits"><h2 class="q-h">Closest match for <em class="q-term"></em></h2>`
+  + `<div class="solve-grid q-list">${GRAPH.problems.map(solveCardPre).join('')}</div>`
+  + `<p class="q-all"><a href="#solve-all">Not it? All ${GRAPH.problems.length} problems and goals ↓</a></p></section>`
+  + `<section class="q-panel q-empty" id="q-none"><h2 class="q-h">Nothing here matches <em class="q-term"></em></h2>`
+  + `<p>RNAwiki covers ${GRAPH.problems.length} problems and goals. Yours is not one of them yet. Point to where it hurts and work back from the body, or read the full list below.</p>`
+  + `<p class="q-acts"><a class="q-alt" href="/where">🧍 Point to where it hurts →</a></p></section>`
+  + `<h2 class="solve-all-h" id="solve-all">All ${GRAPH.problems.length} problems and goals</h2>`
+  + solveCats.map((cat) => `<div class="solve-section"><h3>${esc(cat)}</h3><div class="solve-grid">${GRAPH.problems.filter((p) => p.category === cat).map(solveCardPre).join('')}</div></div>`).join('') }));
 
 // ---- THE HOME PAGE: ONE DOCUMENT, ONE SOURCE -------------------------------------------------
 // Written to home.html. server.js serves it for "/", and site/app.js CAPTURES it at boot rather

@@ -3819,9 +3819,97 @@
     return { stretch, strengthen, fuel, stack };
   }
 
+  // ---- /solve?q= RANKING (2026-08-01, W2/D11) --------------------------------------------------
+  // The SAME scoring loop exists in server.js (searchSolve) for the ~90% of readers who never run
+  // JavaScript. Both read graph.solveHay / graph.solveStopwords, authored once in build/parse.js.
+  // If you change a weight here, change it there.
+  // The scoring is deliberately dumb and name-weighted. It was tuned against 25 realistic queries;
+  // the one property that is asserted, not eyeballed, is that all 41 problems rank #1 for their
+  // own name. It never hides the full 41-item list, so a scoring miss costs a scroll, not a page.
+  function solveTokens(q) {
+    const stop = GRAPH.solveStopwords || [];
+    return [...new Set(String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').split(' ')
+      .filter(t => t.length >= 3 && stop.indexOf(t) < 0))].slice(0, 8);
+  }
+  function rankProblems(q) {
+    const T = solveTokens(q);
+    if (!T.length) return [];
+    const sc = GRAPH.problems.map(p => {
+      const n = p.solveName || '', h = p.solveHay || '';
+      let s = 0;
+      T.forEach(t => {
+        const st = t.length >= 6 ? t.slice(0, 5) : null;
+        if (n === ' ' + t + ' ') s += 30;                       // the whole name
+        else if (n.indexOf(' ' + t + ' ') >= 0) s += 18;        // a whole word of the name
+        else if (n.indexOf(t) >= 0) s += 10;                    // inside a word of the name
+        else if (h.indexOf(' ' + t + ' ') >= 0) s += 4;         // a whole word anywhere on the page
+        else if (h.indexOf(t) >= 0) s += 1;
+        else if (st && (n.indexOf(st) >= 0 || h.indexOf(st) >= 0)) s += 1;   // crude stem
+      });
+      return { p, s };
+    }).filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.p.name.length - b.p.name.length);
+    if (!sc.length) return [];
+    const cut = sc[0].s * 0.34;   // relative, so one strong hit suppresses a weak tail
+    return sc.filter(x => x.s >= cut).slice(0, 6);
+  }
+
   // ---------- Solve / intake ----------
-  function solvePage() {
+  // /solve IS THE FUNNEL ENTRANCE, and it was broken three ways, all measured hydrated 2026-08-01:
+  //   D10 — every card linked to `#/protocol/{pid}/{root_causes[0].id}`. The 10 multi-cause
+  //         problems therefore exposed only their FIRST cause: 41 of the 52 protocol URLs and
+  //         ZERO /problem links, against 52 distinct protocol hrefs in the prerendered document.
+  //         11 protocol URLs were unreachable for a JS reader.
+  //   D11 — ?q= was split off in route() and thrown away.
+  //   Sequencing — a protocol answers "what do I do about cause X"; it cannot answer "which cause
+  //         do I have". 31 of 41 problems describe 4-7 causes and ship exactly ONE protocol, so
+  //         sending a reader straight to a protocol silently picks their diagnosis for them.
+  // So the PRIMARY destination of a card is /problem/{id} -- the differential. The root causes are
+  // still one click away as chips, under a label that states the precondition they assume.
+  //
+  // data-native on the /problem link is LOAD-BEARING, not decoration. /problem is in
+  // KEEP_PRERENDERED, so route() returns the KEEP sentinel and never writes #app. Measured: an
+  // intercepted click on /problem/knee-pain from a hydrated /solve leaves location.pathname at
+  // /problem/knee-pain while #app still holds the solve page. With data-native the browser
+  // navigates and the real /problem document loads.
+  function solveCard(p, hit) {
+    // Counts are computed from the shipped data at render time. Never hard-code either number:
+    // they are the honest statement of the gap between 224 authored causes and 52 protocols.
+    const nc = ((p.why && p.why.causes) || []).length;
+    const nr = p.root_causes.length;
+    const chips = p.root_causes.map(rc =>
+      `<a class="s-rc" href="/protocol/${p.id}/${rc.id}">${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a>`).join('');
+    return `<div class="solve-card${hit ? ' is-hit' : ''}" data-kind="${p.kind}" data-pid="${p.id}">
+      <a class="s-main" href="/problem/${p.id}" data-native>
+        <span class="s-ico" aria-hidden="true">${p.icon || '•'}</span>
+        <span class="s-body"><b>${esc(p.name)}</b>
+          <small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}</small>
+          <span class="s-diff">${nc} possible cause${nc === 1 ? '' : 's'} · ${nr} with a protocol</span>
+          <span class="s-go">See which one fits you →</span></span></a>
+      <div class="s-rcs"><span class="s-rcs-k">Already know the cause?</span>${chips}</div>
+    </div>`;
+  }
+  function solveQPanel(q, hits) {
+    if (!q) return '';
+    const t = esc(q);
+    const n = GRAPH.problems.length;
+    if (!hits.length) {
+      return `<section class="q-panel q-empty" id="q-hits" data-on>
+        <h2>Nothing here matches “${t}”</h2>
+        <p>RNAwiki covers ${n} problems and goals. Yours is not one of them yet. Tell me what it is and it goes on the list of what to build next — or point to where it hurts and work back from the body.</p>
+        <p class="q-acts"><button class="cta-primary" id="q-req">Request “${t}”</button>
+        <a class="q-alt" href="#/where">🧍 Point to where it hurts →</a></p>
+        <p class="q-all"><a href="#solve-all">Or read all ${n} below ↓</a></p></section>`;
+    }
+    const strong = hits[0].s >= 18;   // matched the problem's NAME, not just its body text
+    return `<section class="q-panel" id="q-hits" data-on>
+      <h2>${strong ? `Closest match for “${t}”` : `Nothing is named “${t}” — these mention it`}</h2>
+      <div class="solve-grid q-list">${hits.map(h => solveCard(h.p, true)).join('')}</div>
+      <p class="q-all"><a href="#solve-all">Not it? All ${n} problems and goals ↓</a></p></section>`;
+  }
+  function solvePage(q) {
+    q = String(q || '').slice(0, 120);
     const cats = GRAPH.categories;
+    const hits = rankProblems(q);
     const filterBtns = `<div class="solve-filter" id="solve-filter">
         <button data-k="all" class="on">All</button>
         <button data-k="need">Fix a problem</button>
@@ -3829,26 +3917,27 @@
       </div>`;
     const sections = cats.map(cat => {
       const ps = GRAPH.problems.filter(p => p.category === cat);
-      const cards = ps.map(p => {
-        const rc0 = p.root_causes[0];
-        return `<a class="solve-card" data-kind="${p.kind}" href="#/protocol/${p.id}/${rc0.id}">
-          <span class="s-ico">${p.icon || '•'}</span>
-          <span class="s-body"><b>${esc(p.name)}</b>
-          <small>${p.root_causes.length} root cause${p.root_causes.length > 1 ? 's' : ''} · ${p.kind === 'want' ? 'goal' : 'problem'}</small></span></a>`;
-      }).join('');
-      return `<div class="solve-section"><h2>${esc(cat)}</h2><div class="solve-grid">${cards}</div></div>`;
+      return `<div class="solve-section"><h2>${esc(cat)}</h2><div class="solve-grid">${ps.map(p => solveCard(p, false)).join('')}</div></div>`;
     }).join('');
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Solve' }])}
       <section class="solve-hero">
         <div class="kicker">Protocol engine</div>
         <h1>Stop guessing. Start solving.</h1>
-        <p>Tell us the problem you want to fix or the goal you want to reach. We identify the likely root cause and build you one protocol: the <b class="mv">movement</b> to fix it, the <b class="fl">food</b> to fuel it (with a tracker that hits your biological targets), and the evidence-ranked <b class="st">compounds</b> to support it.</p>
+        <p>Name the problem you want to fix or the goal you want to reach. You get the likely causes first — because the same symptom has different causes and they need different fixes — then one protocol for the cause you pick: the <b class="mv">movement</b> to fix it, the <b class="fl">food</b> to fuel it, and the evidence-ranked <b class="st">compounds</b> to support it.</p>
+        <form class="solve-q" action="/solve" method="get" role="search">
+          <label class="sr-only" for="solve-q">Describe the problem or goal in your own words</label>
+          <input id="solve-q" name="q" type="search" value="${esc(q)}" autocomplete="off" spellcheck="false"
+                 placeholder="In your own words — “sore knee going downstairs”">
+          <button class="cta-primary" type="submit">Find it →</button>
+        </form>
         <p class="where-cta"><a href="#/where">🧍 Not sure what it's called? <b>Point to where it hurts →</b></a></p>
       </section>
+      ${solveQPanel(q, hits)}
+      <h2 class="solve-all-h" id="solve-all">All ${GRAPH.problems.length} problems and goals</h2>
       ${filterBtns}
       <div id="solve-list">${sections}</div>
       <div class="request-cta">
-        <div><b>Don’t see your problem or goal?</b> <span>Tell us, and it goes on the list of what to build next.</span></div>
+        <div><b>Don’t see your problem or goal?</b> <span>Tell me, and it goes on the list of what to build next.</span></div>
         <button class="cta-primary" id="req-proto">Request a protocol →</button>
       </div>
       <div id="requests-board"></div>`;
@@ -4003,17 +4092,54 @@
   function bindSolve() {
     const rq = document.getElementById('req-proto'); if (rq) rq.onclick = () => openRequestModal();
     mountRequestsBoard();
+    // The zero-match state's only action.
+    bindSolve._reqOnly();
+
+    // Live refinement. The form is a REAL <form action="/solve" method="get">, so pressing Enter
+    // with JS off does a server round-trip that server.js answers (see searchSolve there). With JS
+    // we re-render in place and replaceState the URL, so the result stays shareable and the Back
+    // button is not filled with keystrokes.
+    const qin = document.getElementById('solve-q');
+    const qform = qin && qin.closest('form');
+    const applyQ = (v, focusOut) => {
+      const q = String(v || '').slice(0, 120);
+      const url = '/solve' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
+      history.replaceState({}, '', url);
+      const panel = document.getElementById('q-hits');
+      const fresh = document.createElement('div');
+      fresh.innerHTML = solveQPanel(q, rankProblems(q));
+      const node = fresh.firstElementChild;
+      if (panel && node) panel.replaceWith(node);
+      else if (panel && !node) panel.remove();
+      else if (node) document.querySelector('.solve-hero').after(node);
+      bindSolve._reqOnly();
+      if (focusOut && node) node.scrollIntoView({ block: 'start' });
+    };
+    if (qform) qform.addEventListener('submit', e => { e.preventDefault(); applyQ(qin.value, true); });
+    if (qin) {
+      let t = null;
+      qin.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => applyQ(qin.value, false), 220); });
+    }
+
+    // ONE hide mechanism. The old code juggled style.display, then read `!== 'none'` back off it to
+    // decide whether a section was empty -- which is false for a card the kind filter had just RESET
+    // to ''. A class plus `display:none!important` in styles.css also survives .solve-card's own
+    // display rule, which a bare [hidden] attribute would not.
     const f = document.getElementById('solve-filter'); if (!f) return;
     f.querySelectorAll('button').forEach(b => b.onclick = () => {
       f.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
       const k = b.dataset.k;
-      document.querySelectorAll('#solve-list .solve-card').forEach(c => { c.style.display = (k === 'all' || c.dataset.kind === k) ? '' : 'none'; });
+      document.querySelectorAll('#solve-list .solve-card').forEach(c => c.classList.toggle('is-off', !(k === 'all' || c.dataset.kind === k)));
       document.querySelectorAll('#solve-list .solve-section').forEach(sec => {
-        const any = [...sec.querySelectorAll('.solve-card')].some(c => c.style.display !== 'none');
-        sec.style.display = any ? '' : 'none';
+        sec.classList.toggle('is-off', ![...sec.querySelectorAll('.solve-card')].some(c => !c.classList.contains('is-off')));
       });
     });
   }
+  // Re-bind only the control that a re-rendered #q-hits destroys.
+  bindSolve._reqOnly = function () {
+    const qreq = document.getElementById('q-req');
+    if (qreq) qreq.onclick = () => openRequestModal((document.getElementById('solve-q') || {}).value || '');
+  };
 
   // ---------- Protocol view ----------
   function protocolLoading() {
@@ -6238,8 +6364,13 @@
   function route() {
     const raw = currentRoute();
     const [pathPart, queryPart] = raw.split('?');
+    // Parse the query ONCE. The old code did `queryPart.indexOf('ids=') === 0`, which is both
+    // position-dependent (`?x=1&ids=…` was ignored) and the reason /solve?q= went nowhere: nothing
+    // downstream of here could see it. Measured before this change: /solve, /solve?q=knee%20pain
+    // and /solve?q=zzzznonsense produced a byte-identical #app, innerHTML 11,797 on all three.
+    const QS = new URLSearchParams(queryPart || '');
     // shared stack link
-    if (queryPart && queryPart.indexOf('ids=') === 0) { const ids = queryPart.slice(4).split(',').filter(Boolean); if (ids.length) setStack(ids); }
+    const _ids = (QS.get('ids') || '').split(',').filter(Boolean); if (_ids.length) setStack(_ids);
     const parts = pathPart.split('/').filter(Boolean);
     let html;
     if (!parts.length) html = home();
@@ -6281,7 +6412,7 @@
     // worse than a soft-404 for both readers and crawlers.
     else if (parts[0] === 'about') html = aboutPage();
     else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u', 'gp'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
-    else if (parts[0] === 'solve') html = solvePage();
+    else if (parts[0] === 'solve') html = solvePage(QS.get('q'));
     // dead: the line above sets parts.length = 0, so parts[0] is undefined by here.
     else if (parts[0] === 'admin') html = adminLoading();
     else if (parts[0] === 'protocol') html = protocolLoading();

@@ -417,11 +417,48 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .solve-section{margin-bottom:1.4rem}
 .solve-section h2{font-size:1.1rem;margin:0 0 .6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
 .solve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.7rem}
-.solve-card{display:flex;align-items:center;gap:.7rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.solve-card:hover{text-decoration:none;border-color:color-mix(in srgb,var(--accent) 40%,var(--line));box-shadow:var(--shadow-lg);transform:translateY(-2px)}
-.solve-card .s-ico{font-size:1.5rem}
-.solve-card .s-body{display:flex;flex-direction:column;line-height:1.25}
-.solve-card small{color:var(--faint);font-size:.76rem}
+/* /solve card, rebuilt 2026-08-01 (W2/D10+D11). The card is no longer a single <a>: its primary
+   destination is /problem/{id} -- the differential -- and its root causes are secondary links, so
+   an <a> wrapper would nest anchors. Two rows: the diagnosis link, then the "I already know" chips. */
+.solve-card{display:flex;flex-direction:column;gap:.55rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+.solve-card:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.solve-card .s-main{display:flex;align-items:flex-start;gap:.7rem;color:var(--ink);text-decoration:none;min-height:44px}
+.solve-card .s-main:hover{text-decoration:none}
+.solve-card .s-ico{font-size:1.5rem;line-height:1.2}
+.solve-card .s-body{display:flex;flex-direction:column;line-height:1.3;gap:.1rem}
+.solve-card small{color:var(--faint);font-size:.8rem}
+/* The honest count. 31 of 41 problems document 4-7 causes and ship exactly ONE protocol; saying so
+   on the card is what makes "pick a cause first" a reasonable instruction rather than a detour. */
+.solve-card .s-diff{color:var(--muted);font-size:.82rem;margin-top:.15rem}
+.solve-card .s-go{color:var(--link);font-weight:600;font-size:.88rem;margin-top:.25rem}
+.solve-card:hover .s-go{text-decoration:underline}
+.s-rcs{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;border-top:1px dashed var(--line);padding-top:.5rem}
+.s-rcs-k{color:var(--faint);font-size:.76rem;margin-right:.15rem}
+.s-rc{display:inline-flex;align-items:center;min-height:32px;padding:.3rem .65rem;border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--link);font-size:.82rem;text-decoration:none}
+.s-rc:hover{border-color:var(--accent);text-decoration:none}
+/* /solve?q= search field. A REAL GET form: pressing Enter with JS off round-trips to the server,
+   which answers it (searchSolve in server.js). 16px minimum so iOS Safari does not zoom on focus. */
+.solve-q{display:flex;gap:.5rem;margin:.9rem 0 .2rem}
+.solve-q input{flex:1;min-width:0;font-size:1rem;padding:.7rem .9rem;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+.solve-q input:focus{outline:none;border-color:var(--accent)}
+.solve-q button{white-space:nowrap;border:none;cursor:pointer;min-height:44px}
+/* The ?q= result panel. Default HIDDEN in both documents: the SPA renders it only when there is a
+   query, and server.js reveals it for a no-JS reader with `data-on`. Without these two rules the
+   crawler and every no-JS reader would see all 41 cards twice. */
+#q-hits,#q-none{display:none}
+#q-hits[data-on],#q-none[data-on]{display:block}
+.q-panel{background:linear-gradient(135deg,#eef4ff,#eafcf3);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1rem .9rem;margin:0 0 1.2rem}
+.q-panel>h2{font-size:1.05rem;margin:0 0 .7rem;color:var(--head)}
+.q-panel .q-term{font-style:normal;font-weight:700}
+.q-list{display:flex;flex-direction:column;gap:.7rem}   /* so server.js `order:` can rank the hits */
+.q-panel .solve-card.is-hit{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.q-all{margin:.7rem 0 0;font-size:.85rem}
+.q-acts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.8rem 0 0}
+.q-acts button{border:none;cursor:pointer;min-height:44px}
+.solve-all-h{font-size:1.15rem;margin:1.4rem 0 .6rem;color:var(--head)}
+/* ONE hide mechanism for the kind filter and any q state. !important because .solve-card and
+   .solve-section both set display themselves, so a bare [hidden] or a class without it loses. */
+.solve-card.is-off,.solve-section.is-off{display:none!important}
 
 /* protocol view */
 .proto-head{display:flex;gap:1rem;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem 1.3rem;margin-bottom:.8rem}
