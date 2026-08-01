@@ -3645,6 +3645,25 @@
       _causeIndex: ci, _cause: cause,
     });
   }
+  // Which of the page's `why.causes` is THIS url's root cause? The join itself is authored in
+  // data/cause_map.json and folded onto each root cause as `cause_key` by build/parse.js (which
+  // fails the build if a root cause is unmapped without a reason, or names a cause that does not
+  // exist). This is the only thing that reads it. It exists because the two taxonomies share no
+  // key: clinical_graph.json's 52 root_causes and cause_learn.json's 224 why.causes give 0 id
+  // matches, so before this the accordion was hard-coded open on index 0 and 20 of 52 protocol
+  // URLs named one cause in the header and expanded a different one below it.
+  //
+  // ORDER IS LOAD-BEARING: a synthesized `wc<n>` cause-protocol carries its own exact index and
+  // must win, because causeAsRc() Object.assigns over a real root cause. Unmapped -> 0, which is
+  // exactly the old behaviour, so the 5 deliberately-unmapped root causes are unchanged.
+  function causeIndexForRc(problem, rc) {
+    if (!rc) return 0;
+    if (rc._causeIndex != null) return rc._causeIndex;
+    if (!rc.cause_key) return 0;
+    const causes = (problem.why && problem.why.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    const i = causes.findIndex(c => c.name === rc.cause_key);
+    return i >= 0 ? i : 0;
+  }
   function findRootCause(pid, rcid) {
     const p = problemById[pid]; if (!p) return null;
     if (/^wc\d+$/.test(rcid || '')) { const rc = causeAsRc(p, +rcid.slice(2)); return rc ? { problem: p, rc } : null; }
@@ -5118,17 +5137,23 @@
     const s = String((c.tell && c.tell.symptoms) || '').replace(/\s*Honest tiering:.*$/i, '').split(/[.;]/)[0].trim();
     return s.length > 96 ? s.slice(0, 94).trim() + '…' : s;
   }
-  function causesSection(problem) {
+  function causesSection(problem, openIdx) {
     const w = problem.why; if (!w) return '';
     const ladder = (Array.isArray(w.ladder) && w.ladder.length) ? `<details class="cause-bigpic"><summary>🧭 The big picture — how one spot forms, surface → root</summary><ol class="cause-ladder">${w.ladder.map(l => `<li>${mdInline(l)}</li>`).join('')}</ol></details>` : '';
     const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
+    // EXACTLY ONE of these may carry `open`. `name="p-cause-acc"` makes them an HTML exclusive
+    // accordion group, and when the parser meets two `open` in one group it keeps the FIRST and
+    // silently drops the rest — so a fix that opened "several" would quietly regress to index 0.
+    // Clamped, so an out-of-range index opens the highest-leverage cause rather than nothing:
+    // any future data or routing bug degrades to the old behaviour, not to an all-closed accordion.
+    const _open = (Number.isInteger(openIdx) && openIdx >= 0 && openIdx < causes.length) ? openIdx : 0;
     const items = causes.map((c, i) => {
       const _fixArr = sortedFixes(c);
       const fixes = _fixArr.map(f => { const ic = FIX_ICO[f.kind] || '•'; const cc = (f.kind === 'compound' && f.ref) ? resolveCompound(f.ref) : null; const inner = cc ? `<a href="#/c/${slug(cc.name)}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li><span class="fix-kind fk-${esc(f.kind || 'x')}">${ic} ${esc(FIX_LBL[f.kind] || 'Other')}</span> ${inner}</li>`; }).join('');
       const suppIds = [...new Set(_fixArr.filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc ? cc.id : null; }).filter(Boolean))];
       const symptoms = mdInline(String((c.tell && c.tell.symptoms) || '').replace(/\s*Honest tiering:.*$/i, '').trim());
       const goDeeper = (c.plain || c.confusedWith) ? `<details class="cause-deeper"><summary>Go deeper — the full mechanism</summary>${c.plain ? `${mdBlocks(c.plain, mdInline)}` : ''}${c.confusedWith ? `<div class="cause-confused">↔️ <b>Often confused with:</b> ${mdInline(c.confusedWith)}</div>` : ''}</details>` : '';
-      return `<details class="cause-acc lev-${esc(c.leverage || 'med')}" name="p-cause-acc"${i === 0 ? ' open' : ''}>
+      return `<details class="cause-acc lev-${esc(c.leverage || 'med')}" name="p-cause-acc" data-cause-index="${i}"${i === _open ? ' open' : ''}>
         <summary class="cause-sum"><span class="cause-rank">${c.rank || i + 1}</span><span class="cs-main"><span class="cs-name">${esc(c.name)}</span>${causeHook(c) ? `<span class="cs-hook">${mdInline(causeHook(c))}</span>` : ''}</span><span class="cs-meta"><span class="cause-lev">${esc(c.leverage || '')} leverage</span></span></summary>
         <div class="cause-body">
           ${keyInsightBlock(c)}
@@ -5403,7 +5428,7 @@
         </div>`;
       })()}
       ${theOneThingHead(problem)}
-      ${causesSection(problem)}
+      ${causesSection(problem, causeIndexForRc(problem, rc))}
       ${planSection(problem)}
       <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">Browse the movements &amp; supplements, keep what fits you, then track it daily on <b>My Plan</b>.</span></div>
       ${rcSwitch}
