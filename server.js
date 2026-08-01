@@ -1412,7 +1412,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'steward' && seg[1] === 'adopt' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (!u.domain_verified) return json(res, 403, { error: 'Only verified experts can steward a protocol. Set your domain and get verified first.' });
+    if (!u.domain_verified) return json(res, 403, { error: 'Protocol stewardship is not enabled for this account.' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60);
     if (!pid || !rcid) return json(res, 400, { error: 'protocol required' });
@@ -1462,7 +1462,7 @@ async function api(req, res, url) {
     return json(res, 200, { foods });
   }
   if (seg[0] === 'foods' && seg[1] === 'pending' && method === 'GET') {
-    const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'Verified dietitians only' });
+    const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'The food queue is not enabled for this account.' });
     const r = await db.query("SELECT f.id,f.name,f.serving,f.data,f.created_at,uu.username AS by FROM user_foods f LEFT JOIN users uu ON uu.id=f.submitted_by WHERE f.status='pending' ORDER BY f.created_at ASC LIMIT 100");
     return json(res, 200, { foods: r.rows });
   }
@@ -1862,7 +1862,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'rootcause-changes' && !seg[1] && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (u.role !== 'admin' && !u.domain_verified) return json(res, 403, { error: 'Only verified experts can propose root-cause changes' });
+    if (u.role !== 'admin' && !u.domain_verified) return json(res, 403, { error: 'Proposing a root-cause change is not enabled for this account.' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const problem_id = clean(b.problem_id, 80), action = b.action === 'remove' ? 'remove' : 'add';
     if (!problem_id) return json(res, 400, { error: 'Missing problem' });
@@ -1888,7 +1888,7 @@ async function api(req, res, url) {
     const panelDomains = Array.isArray(ch.domains) ? ch.domains : [];
     const steward = await db.query('SELECT 1 FROM stewardships WHERE problem_id=$1 AND user_id=$2 LIMIT 1', [ch.problem_id, u.id]);
     const onPanel = isSuper(u) || u.role === 'admin' || steward.rows[0] || (u.domain_verified && (panelDomains.length === 0 || panelDomains.includes(u.domain)));
-    if (!onPanel) return json(res, 403, { error: 'Only the relevant expert panel or a steward of this problem can endorse' });
+    if (!onPanel) return json(res, 403, { error: 'Endorsing this change is not enabled for this account.' });
     await db.query('INSERT INTO rootcause_endorsements(change_id,user_id,domain) VALUES($1,$2,$3) ON CONFLICT (change_id,user_id) DO NOTHING', [id, u.id, u.domain || null]);
     await award(u.id, 'rc_endorse', 'rcc:' + id, 5);
     const cnt = await db.query('SELECT count(*)::int AS n FROM rootcause_endorsements WHERE change_id=$1', [id]);
@@ -2039,7 +2039,7 @@ async function api(req, res, url) {
     return json(res, 200, { experts: experts.rows, partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, members: members.rows, memberCount: memberCount.rows[0].n, clinicians: clinicians.rows, threshold: PANEL_THRESHOLD });
   }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
-    const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'Verified dietitians only' });
+    const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'The food queue is not enabled for this account.' });
     const id = pathId(seg[1]); const b = await readBody(req) || {};
     const status = ['active', 'rejected'].includes(b.status) ? b.status : 'active';
     const r = await db.query('UPDATE user_foods SET status=$1, verified_by=$2 WHERE id=$3 RETURNING id,name,status', [status, u.id, id]);
@@ -2225,9 +2225,16 @@ function serveProfileShell(res, handle) {
       fs.readFile(path.join(DIR, 'index.html'), 'utf8', (e, html) => {
         if (e) return shell();
         const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        // W3.5 (2026-08-02) — this description used to append " (verified expert)" whenever the
+        // account carried the domain_verified flag, and called the page a "clinical contribution
+        // portfolio". It is a server-rendered <meta> and JSON-LD Person description, so it is the
+        // crawlable document: a credential asserted to search engines from a database boolean that
+        // no verification programme sets. There are no verified professionals on this project —
+        // /corrections says so in as many words. The flag still gates permissions; it no longer
+        // prints a credential.
         const domLabel = DOMAIN_LABEL[u.domain] || '';
         const title = `${u.username}${domLabel ? ' — ' + domLabel + ' contributor' : ''} · RNAwiki`;
-        const desc = `${u.username}'s clinical contribution portfolio on RNAwiki${u.domain_verified ? ' (verified expert)' : ''} — ${u.reputation_points || 0} reputation. Stewarded protocols, accepted edits, and professional links.`;
+        const desc = `${u.username}'s contribution record on RNAwiki — ${u.reputation_points || 0} reputation. Stewarded protocols, accepted edits, and professional links.`;
         const purl = `${SITE_URL}/u/${encodeURIComponent(u.username)}`;
         const ld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: u.username, url: purl, description: desc });
         const out = html

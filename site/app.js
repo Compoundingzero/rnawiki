@@ -3239,6 +3239,14 @@
         const rows = cs.length ? cs.map(c => `<tr><td>${esc(c.name)}</td><td>${esc(c.email)}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.note || '—')}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="5" class="muted">No clinician sign-ups yet. Share the “For clinicians” page to start the founding list.</td></tr>';
         body.innerHTML = `<p class="muted">Founding-clinician waitlist — <b>${cs.length}</b> so far. <a class="admin-btn ok" href="/api/admin/export?type=clinicians" download>⤓ Export as CSV</a></p>
           <table class="board"><thead><tr><th>Name</th><th>Email</th><th>Discipline</th><th>Would improve first</th><th>Joined</th></tr></thead><tbody>${rows}</tbody></table>`;
+      // W3.5 (2026-08-02) — the copy in these two queues described a verified-expert review
+      // programme in the present tense ("A verified expert edits a section directly"; "An expert
+      // requests a change … A second relevant expert reviews and approves it"). Both tabs are
+      // pushed onto OPS only when PHASE2 is true, and PHASE2 is false — so the wording was a
+      // description of a programme that has never existed, sitting in the console of the one
+      // person who would have had to build it. The plumbing is kept, because Phase 2 may still
+      // ship; the claim is not, because the copy for a real programme should be written against
+      // a real programme. Same rule as the corpus: state what is, never what would be.
       } else if (tab === 'edits') {
         const props = OV.proposals || [];
         const layerLabel = { move: '🏃 Move', fuel: '🥗 Fuel', stack: '💊 Stack' };
@@ -3249,10 +3257,10 @@
             <td><small>${esc((GRAPH.domains[p.domain] || {}).label || p.domain || '—')}</small></td>
             <td>${p.endorsements || 0} · ${p.by_user ? '@' + esc(p.by_user) : '—'}</td>
             <td><button class="admin-btn ok" data-endorse="${p.id}">Approve &amp; publish</button> <button class="admin-btn" data-reject="${p.id}">Reject</button></td></tr>`;
-        }).join('') : '<tr><td colspan="5" class="muted">No section edits waiting. When a verified expert edits a Move / Fuel / Stack section, it holds here until you or a relevant-domain expert approves it.</td></tr>';
+        }).join('') : '<tr><td colspan="5" class="muted">Nothing here, and nothing can arrive: section editing is Phase 2 and is not launched.</td></tr>';
         const ce = OV.compoundEdits || [];
         const ceHtml = ce.length ? `<h3 style="margin:1.5rem 0 .5rem">Recent compound edits</h3><table class="board"><thead><tr><th>Compound</th><th>Note</th><th>By</th></tr></thead><tbody>${ce.map(e => `<tr><td><b>${esc(e.compound_name || e.compound_id)}</b></td><td>${esc(e.note || '—')}</td><td>@${esc(e.by_user)}</td></tr>`).join('')}</tbody></table>` : '';
-        body.innerHTML = `<p class="muted">A verified expert edits a section directly; the change waits here until a relevant-domain expert or you (superadmin) approves it. <b>Approve &amp; publish</b> makes it public; <b>Reject</b> removes it from the queue.</p>
+        body.innerHTML = `<p class="muted">This queue is plumbing for Phase 2, which is not launched (PHASE2 = false, so this tab is not even offered). No account can edit a section today and nobody has been through any verification, so nothing can land here. <b>Approve &amp; publish</b> makes a row public; <b>Reject</b> removes it. Who may edit and who may approve gets written when there is a real answer.</p>
           <table class="board"><thead><tr><th>Section</th><th>Problem · proposed change</th><th>Domain</th><th>Endorse · by</th><th></th></tr></thead><tbody>${rows}</tbody></table>${ceHtml}`;
         body.querySelectorAll('[data-endorse]').forEach(b => b.onclick = () => act(() => api.endorse(b.dataset.endorse)));
         body.querySelectorAll('[data-reject]').forEach(b => b.onclick = () => act(() => api.flag(b.dataset.reject, 'Rejected by admin')));
@@ -3269,7 +3277,7 @@
             <td>${c.endorsements}/${OV.threshold} · ${c.by_user ? '@' + esc(c.by_user) : '—'}</td>
             <td>${statusLabel}</td><td>${actions}</td></tr>`;
         }).join('') : '<tr><td colspan="6" class="muted">No root-cause changes proposed yet.</td></tr>';
-        body.innerHTML = `<p class="muted">An expert requests a change to a problem’s root causes. A second relevant expert reviews and approves it — then it waits here for <b>your final approval</b> before it goes live. Rows marked <b>✅ peer-approved · awaiting you</b> are the ones on your desk.</p>
+        body.innerHTML = `<p class="muted">This queue is plumbing for Phase 2, which is not launched (PHASE2 = false, so this tab is not even offered). Nothing can be proposed here today. A row that did arrive would still need <b>your final approval</b> before it went live.</p>
           <table class="board"><thead><tr><th>Change</th><th>Root cause</th><th>Panel</th><th>Endorse · by</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table>`;
         body.querySelectorAll('[data-rcc]').forEach(b => b.onclick = () => act(() => api.setRootcauseChange(b.dataset.rcc, b.dataset.to)));
       } else if (tab === 'requests') {
