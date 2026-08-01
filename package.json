@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node build/parse.js && node build/prerender.js && node build/precompress.js",
     "prestart": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs && node build/precompress.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "smoke": "node scripts/smoke.mjs"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
