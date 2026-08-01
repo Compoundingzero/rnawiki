@@ -225,6 +225,11 @@ window.RNAWIKI_INTERACTIONS = {
     { id: "serotonin", tier: "danger", need: [["serotonergic", 2]],
       title: "Serotonin syndrome risk",
       why: "Each of these raises serotonin signalling — by supplying the raw material, by slowing its reuptake, or by acting on the receptor directly. Stacked, serotonin can build up faster than the body clears it and overstimulate receptors.",
+      // exemplars (W4.5): CONDITIONAL ADVICE, not a description of the row. The sentence is
+      // addressed to a reader who is already on a prescribed antidepressant and tells them what to
+      // keep away from it; that is useful on all 10 rows, including the 6 where 5-HTP and SAM-e are
+      // not the two compounds shown. Named on purpose, so assertRuleTextRowTruth is told so.
+      exemplars: ["c108", "c168"],
       action: "Don't combine serotonin-raisers. If you take a prescribed antidepressant, treat 5-HTP / SAM-e / St John's Wort as off-limits without a doctor.", pathway: "/pathway/7" },
     { id: "bleeding", tier: "danger", need: [["blood_thinning", 2]],
       title: "Additive bleeding risk",
@@ -251,10 +256,27 @@ window.RNAWIKI_INTERACTIONS = {
       // unchanged in strength — only the false specificity is gone.
       why: "A PDE-5 drug already widens blood vessels through the NO→cGMP route, and the other blood-flow agent in this stack pushes that same route from the other end. Pushing one lever twice can drop blood pressure far enough to make you faint.",
       action: "Don't stack blood-flow agents on top of a PDE-5 inhibitor — pick one. If you take any blood-pressure medication, this needs a doctor, not a supplement plan.", pathway: "/pathway/4" },
+    // W4.5 (2026-08-02): both strings rewritten so they are true of EVERY row this rule renders.
+    // cns_depressant has 4 carriers — c101 Phenibut, c154 Orexin antagonists, c155 Z-drugs /
+    // Trazodone / Doxylamine, c157 Ketamine — so it renders 6 two-compound rows.
+    //   ACTION: "never combine phenibut with alcohol" printed on 3 of those 6 with PHENIBUT ABSENT.
+    //   Measured hydrated at 390x844, /stack?ids=c154,c155 rendered it under the header "Orexin
+    //   Antagonists (Suvorexant, Lemborexant) + Z-drugs (Zolpidem/Ambien) · Trazodone · Doxylamine
+    //   (brief)". The advice is now stated for whatever is in the row; alcohol is named as a class,
+    //   which every one of the four pages warns about in its own words (c101 whenToUse.items.3,
+    //   c154 bio.contra[3].flag, c155 bio.contra[1].flag, c157 bio.contra[1].flag).
+    //   WHY: "that is the mechanism behind the reported overdoses in this class" is refuted by
+    //   c154's own bio.overdose.line, which says its toxicity "is dominated by heavy, prolonged
+    //   drowsiness and next-day sedation". What all four DO assert is the COMBINATION risk —
+    //   c154 "Additive sedation and breathing suppression"; c101 "additive CNS and respiratory
+    //   depression can cause blackout, coma, or death"; c155 "Combined sedation and respiratory
+    //   depression can be fatal"; c157 "Combination sharply raises the risk of respiratory
+    //   depression". The row now says exactly that, at the same strength. Only the false
+    //   attribution and the false specificity are gone.
     { id: "sedation", tier: "danger", need: [["cns_depressant", 2]],
       title: "Additive sedation / breathing risk",
-      why: "Each of these slows the brain's arousal system by a different route. Stacked, the sedation deepens toward slowed breathing, and that is the mechanism behind the reported overdoses in this class.",
-      action: "Don't layer strong sedatives, and never combine phenibut with alcohol." },
+      why: "Each of these slows the brain's arousal system by a different route, and each one's own page carries the same warning about the combination: stacked with another sedative, the sedation deepens and breathing can be suppressed.",
+      action: "Don't layer strong sedatives. Alcohol counts as one of them — it goes with none of these." },
     { id: "double_statin", tier: "danger", need: [["statin_like", 2]],
       title: "Double statin — muscle-damage risk",
       why: "Red yeast rice *is* a natural statin. Taking it alongside a prescription statin is effectively a double dose, which raises the risk of muscle breakdown (rhabdomyolysis).",
@@ -262,18 +284,37 @@ window.RNAWIKI_INTERACTIONS = {
     { id: "statin_niacin", tier: "danger", need: [["statin_like", 1], ["niacin", 1]],
       title: "Statin + high-dose niacin — myopathy risk",
       why: "High-dose niacin adds to a statin's small risk of muscle injury.",
+      // exemplars (W4.5): "a statin" here is the DRUG CLASS, and it happens to be the name of a
+      // page. The rule's other statin_like carrier is c161 Red Yeast Rice, whose own page opens by
+      // saying it IS a natural statin — so on the one row where c159 is absent, the class noun is
+      // still true of the compound in the row.
+      exemplars: ["c159"],
       action: "Only combine under medical supervision; watch for muscle aches." },
     { id: "stim_stack", tier: "danger", need: [["stimulant", 2]],
       title: "Stacked stimulants — cardiovascular strain",
       why: "Each drives the same fight-or-flight system. Stacked, heart rate and blood pressure compound — the classic ephedrine + caffeine combo is the cautionary example.",
+      // exemplars (W4.5): an EXPLICITLY LABELLED illustration. "the classic ephedrine + caffeine
+      // combo is the cautionary example" tells the reader it is an example, not what is in front of
+      // them, on all 91 rows. Deleting it to satisfy a name check would remove the one line that
+      // makes the mechanism concrete.
+      exemplars: ["c1", "c24", "c25"],
       action: "Use one stimulant at a time; don't layer them." },
     { id: "hypoglycemia", tier: "danger", need: [["hypoglycemic", 2]],
       title: "Additive low-blood-sugar risk",
       why: "Two or more glucose-lowering agents together can drop blood sugar too far — shakiness, confusion, and in severe cases worse. Insulin plus anything else is especially risky.",
+      // exemplars (W4.5): conditional, and the single most consequential sentence in the file.
+      // "Insulin plus anything else is especially risky" / "never self-stack with insulin" is
+      // advice for a reader who takes insulin, and it holds on all 105 rows whether or not one of
+      // the two insulin pages is the compound shown. Kept as written.
+      exemplars: ["c132", "c133"],
       action: "Combine glucose-loweres only under medical supervision; never self-stack with insulin." },
     { id: "liver", tier: "danger", need: [["hepatotoxic", 2]],
       title: "Stacked liver strain",
       why: "The liver clears these and takes strain doing it. Two together (e.g. an oral steroid plus high-dose green-tea extract) stack the load.",
+      // exemplars (W4.5): the "e.g." is doing the work — the sentence marks itself as an example on
+      // all 66 rows. Note the lexicon flattens hyphens, so the nameTag "green tea" is matched by
+      // "green-tea extract"; without that this mention would have slipped the gate.
+      exemplars: ["c30"],
       action: "Don't combine oral hepatotoxic compounds; get bloodwork if unavoidable." },
     { id: "estrogen_crash", tier: "danger", need: [["aromatase_inhibitor", 2]],
       title: "Estrogen crash",
@@ -284,9 +325,13 @@ window.RNAWIKI_INTERACTIONS = {
       why: "DNP uncouples cellular energy production; the effective and lethal doses nearly overlap, and it can cause fatal overheating.",
       action: "There is no safe way to use or combine DNP." },
 
+    // W4.5 (2026-08-02): the why named three compounds and rendered on 3 rows, each containing
+    // exactly one of them — so 2 of every 3 named compounds were absent from the row they were
+    // named in. c70 Rapamycin is the sole mtor_inhibitor, so it IS in all three rows and stays
+    // named; the activator side is now described by its position in the pair instead of guessed.
     { id: "mtor_conflict", tier: "blunt", need: [["mtor_inhibitor", 1], ["mtor_activator", 1]],
       title: "Opposing growth signals",
-      why: "Rapamycin lowers growth signalling for longevity/autophagy; IGF-1 and high leucine (EAAs/HMB) raise it. Run together, each undoes the other's purpose.",
+      why: "Rapamycin lowers growth signalling for longevity and autophagy; the other half of this pair raises it. Run together, each undoes the other's purpose.",
       action: "Separate by goal and timing; don't run them the same day.", pathway: "/pathway/2" },
     { id: "immune_conflict", tier: "blunt", need: [["immunostim", 1], ["immunosuppress", 1]],
       title: "Opposing immune direction",
@@ -299,6 +344,10 @@ window.RNAWIKI_INTERACTIONS = {
     { id: "hpta_stack", tier: "blunt", need: [["hpta_suppressive", 2]],
       title: "Compounded testosterone shutdown",
       why: "Each of these suppresses your natural testosterone. Stacked, the shutdown is deeper and recovery is harder.",
+      // exemplars (W4.5): "your natural testosterone" is the HORMONE, not the page c33 Testosterone
+      // (TRT). The token matches only because a compound page is named after the molecule. True on
+      // all 66 rows; rewriting the sentence to avoid the word would make it worse, not truer.
+      exemplars: ["c33"],
       action: "Understand the suppression and have a recovery plan; this is not casual stacking.", pathway: "/pathway/9" },
     // Wired 2026-08-01: `5ar_inhibitor` and `glp1` were assigned and read by no rule, which is why
     // Finasteride / Dutasteride could never produce a flag at all. Both are duplicate-therapy
@@ -308,27 +357,52 @@ window.RNAWIKI_INTERACTIONS = {
       title: "Two 5-alpha-reductase inhibitors — the same job twice",
       why: "Finasteride and dutasteride both block the enzyme that turns testosterone into DHT. Running both is more of one mechanism, not two mechanisms, and the sexual and mood side-effects people quit over scale with the total blockade.",
       action: "Use one, at the dose it was prescribed at." },
+    // W4.5 (2026-08-02): "These act on the same receptor" was false on 7 of the 10 rows this rule
+    // renders. glp1 has 5 carriers and two of them are not single-receptor drugs by their own
+    // authored mechanism: c20 Tirzepatide is a "Dual agonist of **GIPR (GIP receptor)** and
+    // **GLP1R**" and c21 Retatrutide is a "First-in-class **triple agonist** — **GLP1R + GIPR +
+    // glucagon receptor (GCGR)**". Every row containing either carried a sentence its own page
+    // contradicts. What is true of all five, and therefore of all 10 rows, is the GLP-1 arm — so
+    // that is what the row now claims, and the extra receptors are acknowledged rather than denied.
     { id: "double_glp1", tier: "blunt", need: [["glp1", 2]],
       title: "Two GLP-1 agonists — duplicate therapy",
-      why: "These act on the same receptor. Two together is a bigger dose of one drug class rather than a second angle on the problem, and the nausea, vomiting and slowed stomach emptying scale with it.",
+      why: "Every one of these activates the GLP-1 receptor; the dual and triple agonists among them act on other metabolic-hormone receptors as well, but GLP-1 is the arm they all share. Two together doses that shared arm twice — a bigger dose of one mechanism rather than a second angle on the problem — and the nausea, vomiting and slowed stomach emptying scale with it.",
       action: "Run one GLP-1 at a time, titrated by whoever prescribed it." },
 
     { id: "hypotensive_stack", tier: "timing", need: [["hypotensive", 2]], notIf: ["pde5_vasodilator", "nitrate_pde5"],
       title: "Both of these lower blood pressure",
       why: "Each relaxes blood vessels a little, so the drop adds up. On its own that is usually harmless; the way it shows up is light-headedness when you stand up quickly, especially in the first week.",
       action: "Stand up slowly while you settle in. If you already take blood-pressure medication, ask a pharmacist before adding either." },
+    // W4.5 (2026-08-02): the why named all three carriers (c103 Melatonin, c104 Apigenin, c170
+    // Valerian) on all 3 rows it can render, so every row named a compound that was not in it. It
+    // was also wrong about the one it named first: "all nudge the same wind-down machinery" is
+    // refuted by melatonin's own mechanism, which "shifts the circadian clock **rather than
+    // sedating**". The row now says what is true of any two of the three, including that they are
+    // not interchangeable. Note what the replacement deliberately does NOT say: it makes no claim
+    // that the two in front of the reader share a mechanism, because for one of the three pairs
+    // (melatonin with either of the others) that would be false and for the third I cannot quote a
+    // page that says it. Overlap of PURPOSE is what all three pairs support.
     { id: "mild_sedatives", tier: "timing", need: [["sedative_mild", 2]],
       title: "Two mild sedatives at once",
-      why: "Melatonin, valerian and apigenin all nudge the same wind-down machinery. Stacked, the sedation adds up, and the usual result is a groggy morning rather than deeper sleep.",
+      why: "Each of these is a mild sleep aid, and they overlap in purpose rather than adding a second angle. Taken on the same night they layer and you cannot tell which one did anything — the usual result is a groggy morning rather than deeper sleep.",
       action: "Start with one and give it two weeks before adding anything. If you're also on a strong sedative or drinking alcohol, treat all of these as off-limits." },
 
+    // W4.5 (2026-08-02): the why listed all five minerals on all 28 rows this rule could render.
+    // Measured hydrated at 390x844, /stack?ids=c5,c150 rendered "⏰ Minerals compete — space them
+    // out · Magnesium + Strontium · Silica (brief)" above a sentence naming calcium, iron and zinc
+    // as well — three compounds that were not in the stack. The mechanism is the same for any pair
+    // that carries the tag, so the row states the mechanism and stops enumerating the carriers.
     { id: "mineral", tier: "timing", need: [["divalent_mineral", 2]],
       title: "Minerals compete — space them out",
-      why: "These minerals compete for the same intestinal uptake — calcium, iron, zinc, magnesium and strontium all crowd each other out, and whichever is in excess wins while the other barely absorbs.",
+      why: "These compete for the same intestinal uptake, so whichever is in excess wins while the other barely absorbs. Taken in the same mouthful, one of them is largely wasted.",
       action: "Take competing minerals about 2 hours apart." },
     { id: "thyroid_mineral", tier: "timing", need: [["thyroid", 1], ["divalent_mineral", 1]],
       title: "Minerals block thyroid absorption",
       why: "Minerals bind thyroid hormone in the gut and stop it being absorbed; the thyroid page's own absorption note names coffee, calcium and iron. Space any mineral supplement away from the thyroid dose rather than trying to work out which ones.",
+      // exemplars (W4.5): an ATTRIBUTED QUOTATION. The sentence says whose list it is — c130's own
+      // tech.adme.absorb — and then tells the reader not to rely on the list ("rather than trying
+      // to work out which ones"), which is the opposite of claiming those minerals are in the row.
+      exemplars: ["c79", "c122", "c148", "c149"],
       action: "Take thyroid medication 4 hours away from minerals and coffee." },
     { id: "zinc_copper", tier: "timing", need: [["zinc", 1]],
       title: "Long-term zinc depletes copper",
@@ -337,6 +411,10 @@ window.RNAWIKI_INTERACTIONS = {
     { id: "cyp3a4_statin", tier: "timing", need: [["cyp3a4", 1], ["statin_like", 1]],
       title: "Bergamot may raise statin levels",
       why: "Bergamot (like grapefruit) can slow the gut enzyme that breaks down statins, nudging their levels up.",
+      // exemplars (W4.5): same class noun as statin_niacin. On the one row where c159 is absent the
+      // other half is c161 Red Yeast Rice, which its own page calls a natural statin — so "your
+      // specific statin" is still about the compound in the row.
+      exemplars: ["c159"],
       action: "Be cautious combining; ask a pharmacist about your specific statin." }
   ],
 
