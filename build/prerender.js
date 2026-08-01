@@ -1131,8 +1131,8 @@ GRAPH.problems.forEach((p) => {
             <p class="sf-base">Write down where it is <b>today</b> — that is the baseline you will
             compare against at ${esc(sfy.checkpoint)}.</p>
           </div>
-          <div class="sf-card stop-rule" data-stop-rule data-checkpoint="${esc(sfy.checkpoint)}">
-            <span class="sf-k">The stop rule · ${esc(sfy.checkpoint)}</span>
+          <div class="sf-card stop-rule" data-stop-rule data-horizon="${esc(sfy.stopHorizon || '')}">
+            <span class="sf-k">The stop rule${sfy.stopHorizon ? ' · ' + esc(sfy.stopHorizon) : ''}</span>
             <b class="sf-v">${esc(sfy.stopIssue)}</b>
             <p class="sf-src">${mdSafe(sfy.stopFix)}</p>
           </div>
@@ -2835,6 +2835,17 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     if (iRed > iStack) bad.push(`${pg.route}: the escalation block comes AFTER the supplement stack — this is the defect`);
     if (iMetric >= 0 && iMetric > iStack) bad.push(`${pg.route}: the tracked metric comes after the supplement stack`);
     if (iStop >= 0 && iStop > iStack) bad.push(`${pg.route}: the stop rule comes after the supplement stack`);
+    // The header over the stop rule must name the horizon THE RULE names. It printed a timeline
+    // rung until 2026-08-01: /protocol/skin-aging/* headed "The stop rule · Months 6–12" directly
+    // over "No visible change after 12 weeks", i.e. up to 4x longer before the reader is told to
+    // seek help. parse.js gates the DATA; this gates the RENDERED page, which is the thing a
+    // reader and a crawler actually get.
+    // PROVE IT by reverting the stop-rule header in this file alone: the attribute then carries
+    // the horizon while the text carries the checkpoint, and the build stops on all 52.
+    const mHz = h.match(/data-stop-rule data-horizon="([^"]*)"/);
+    if (mHz && mHz[1] && h.indexOf(`The stop rule · ${mHz[1]}`) < 0) {
+      bad.push(`${pg.route}: the stop-rule header does not name the horizon the rule names ("${mHz[1]}")`);
+    }
   });
   if (bad.length) {
     console.error('\n[prerender] /protocol SPINE ASSERTION FAILED — refusing to build:');

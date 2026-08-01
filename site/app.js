@@ -5351,6 +5351,22 @@
   // build/parse.js: the quote must be verbatim, the checkpoint must be one of the problem's own
   // timeline steps, and the stop rule's action is that troubleshooting entry's own authored `fix`.
   // The label is a condensation, so the sentence it was condensed from is printed under it.
+  //
+  // ---- W2.5 (2026-08-01): THE STOP RULE'S HEADER NAMES THE RULE'S OWN HORIZON ------------------
+  // It used to print `checkpoint`, which is a rung on the problem's TIMELINE — the last one on
+  // 41 of 41 — and had nothing to do with the rule underneath it. MEASURED HYDRATED at 390x844 on
+  // all 52 routes: /protocol/skin-aging/collagen-loss-glycation and /uv-oxidative headed
+  // "⏱️ THE STOP RULE · MONTHS 6–12" over "No visible change after 12 weeks";
+  // /protocol/burnout/hpa-dysregulation headed "WEEKS 6–8" over "after 3–4 weeks";
+  // /protocol/chronic-fatigue/* headed "WEEKS 4-12" over "Two weeks". On 9 of 52 the header told
+  // the reader to wait LONGER than the rule says before seeking help.
+  // `stopHorizon` is a verbatim substring of the rule it heads, gated in build/parse.js. It is
+  // never synthesised: if a rule names no horizon, this renders a bare "The stop rule" and says
+  // nothing, which is the only honest thing to render. build/prerender.js:1134 renders the same
+  // field from the same object, and assertProtocolSpine checks the rendered page on 52/52.
+  // The metric card still reads "compare against at {checkpoint}" — that IS a timeline rung and
+  // that use is correct, so on the 13 problems where the two differ the cards name different
+  // times on purpose: a baseline recheck and a stop rule are not the same date.
   function safetyFirstSection(problem) {
     const pl = problem.plan || {}, s = problem.safety;
     if (!pl.reassess && !s) return '';
@@ -5367,8 +5383,8 @@
           <p class="sf-src">${mdInline(s.metricSource)}</p>
           <p class="sf-base">Write down where it is <b>today</b> — that is the baseline you will compare against at ${esc(s.checkpoint)}.</p>
         </div>
-        <div class="sf-card stop-rule" data-stop-rule data-checkpoint="${esc(s.checkpoint)}">
-          <span class="sf-k">⏱️ The stop rule · ${esc(s.checkpoint)}</span>
+        <div class="sf-card stop-rule" data-stop-rule data-horizon="${esc(s.stopHorizon || '')}">
+          <span class="sf-k">⏱️ The stop rule${s.stopHorizon ? ' · ' + esc(s.stopHorizon) : ''}</span>
           <b class="sf-v">${esc(s.stopIssue)}</b>
           <p class="sf-src">${mdInline(s.stopFix)}</p>
         </div>

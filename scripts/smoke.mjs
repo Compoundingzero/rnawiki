@@ -294,8 +294,17 @@ const ASSERTIONS = {
       if (!stop) return 'no [data-stop-rule] element — nothing states the point at which the answer is to stop';
       if (metric.getAttribute('data-primary-metric') !== s.metric)
         return `the metric on the page is not the one the build promoted (${JSON.stringify(metric.getAttribute('data-primary-metric'))} vs ${JSON.stringify(s.metric)})`;
-      if (stop.getAttribute('data-checkpoint') !== s.checkpoint)
-        return `the stop rule names checkpoint ${JSON.stringify(stop.getAttribute('data-checkpoint'))}, the build promoted ${JSON.stringify(s.checkpoint)}`;
+      // W2.5: the attribute is the stop rule's OWN horizon, not a timeline rung. It used to be
+      // `checkpoint`, which is the last timeline `when` on 41 of 41 problems and agreed with the
+      // rule only by luck — /protocol/skin-aging/* headed "MONTHS 6–12" over "after 12 weeks".
+      // Assert both that the attribute matches the build AND that the visible header prints it,
+      // so a renderer that keeps the attribute and drops the text cannot pass.
+      if (stop.getAttribute('data-horizon') !== (s.stopHorizon || ''))
+        return `the stop rule names horizon ${JSON.stringify(stop.getAttribute('data-horizon'))}, the build promoted ${JSON.stringify(s.stopHorizon)}`;
+      if (s.stopHorizon && stop.textContent.indexOf('The stop rule · ' + s.stopHorizon) < 0)
+        return `the stop rule's header does not print the horizon its own rule names (${JSON.stringify(s.stopHorizon)})`;
+      if (s.stopHorizon && s.stopIssue.indexOf(s.stopHorizon) < 0)
+        return `the horizon on the page (${JSON.stringify(s.stopHorizon)}) is not named by the rule it heads (${JSON.stringify(s.stopIssue)})`;
       const txt = (app.textContent || '').replace(/\s+/g, ' ');
       if (txt.indexOf(s.metricSource.replace(/\*/g, '')) < 0)
         return 'the metric label is printed without the authored sentence it was promoted from';
