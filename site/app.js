@@ -5660,6 +5660,71 @@
       </div>` : '';
     return `<section class="safety-first" id="red-flags">${red}${struct}</section>`;
   }
+  // ---- W4 (2026-08-02): PHASE 1 — ONE FREE THING, FOR 7 DAYS ---------------------------------
+  // MEASURED HYDRATED at 390x844 in the DEFAULT DOM state (nothing clicked, nothing expanded) on
+  // all 52 /protocol/* routes before this — out/w4int_before.json:
+  //   · "Phase 1" / "Phase 2" anywhere on the page                 0/52
+  //   · "$0" / "zero-cost" anywhere on the page                    1/52
+  //   · any instruction to hold everything else constant           0/52
+  //   · the ⭐ keystone card — this page's own free single habit —  median y 17,687 px = 94% of a
+  //     median 18,939 px page on 52/52, and 7,732 px BELOW the page's first supplement link
+  //     (median y 9,698 px, 54%) on 52/52. A median gap of 9.2 phone screens.
+  // The cheapest thing on the page was the last thing on the page.
+  //
+  // NOTHING HERE IS WRITTEN BY THE RENDERER. `rc.phase1` is SELECTED from this root cause's own
+  // keystone / prescription / behaviour fix by data/protocol_phase1.json and gated by
+  // assertPhase1() in build/parse.js. The metric is NOT authored twice — it is
+  // `problem.safety.metric`, the same W2 structure the card above prints, reused. The horizon is
+  // `problem.phase1Signal`, which is timeline[1].when verbatim. On 39 of the 44 routes that have a
+  // Phase 1 that window ends AFTER day 7, so this says the 7 days test whether you can do it
+  // rather than promising a result the timeline does not promise.
+  // On the 8 root causes with no free lever the section says so and gives the authored reason;
+  // inventing one for hair-loss/dht-sensitivity (finasteride and minoxidil) is the fabrication
+  // class W3.5 closed.
+  // build/prerender.js emits the identical markup, and assertProtocolSpine checks the rendered
+  // page on 52/52 — D2/D33 is the class where the two documents say different things.
+  const PHASE1_KEY = 'rnawiki_phase1';
+  // localStorage only. Constraint 3 (anonymous-first): reading, logging and the $0 protocol must
+  // work with no account, and /api/me 503s in the local read-only run mode, so nothing here may
+  // depend on a server. A private-mode browser that throws is caught — Phase 2 still opens for the
+  // session, it just is not remembered.
+  function phase1State(problem, rc) {
+    try { return (JSON.parse(localStorage.getItem(PHASE1_KEY) || '{}'))[`${problem.id}/${rc.id}`] || null; } catch (e) { return null; }
+  }
+  function phase1Section(problem, rc) {
+    const p1 = rc.phase1;
+    if (!p1 && !rc.phase1None) return '';
+    if (!p1) {
+      return `<section class="phase1 phase1-none" id="phase-1" data-phase1-none>
+        <div class="p1-badge p1-badge-none">Phase 1 · there is no $0 version of this one</div>
+        <p class="p1-action">This protocol has no free first step.</p>
+        <p class="p1-quote">${esc(rc.phase1None)}</p>
+        <p class="p1-constant">Every other protocol here opens with one thing that costs nothing. This one does not, and saying otherwise would mean inventing a lever this page’s own sources do not contain. Read the rest, and take it to a doctor or pharmacist before you buy anything.</p>
+      </section>`;
+    }
+    const sig = problem.phase1Signal || '', within = !!problem.phase1SignalWithin7;
+    const metric = (problem.safety || {}).metric || '';
+    const st = phase1State(problem, rc);
+    return `<section class="phase1" id="phase-1" data-phase1-action="${esc(p1.action)}" data-phase1-cost="${esc(p1.cost)}" data-phase1-class="${esc(p1.class)}">
+      <div class="p1-badge">Phase 1 · 7 days · $0 · one thing</div>
+      <p class="p1-action">${esc(p1.action)}</p>
+      <p class="p1-quote">Selected from this protocol’s own plan: “${esc(p1.quote)}”</p>
+      <dl class="p1-facts">
+        <div class="p1-fact"><dt>Watch</dt><dd>${metric ? esc(metric) : 'the one thing this protocol is judged by'} <a href="#red-flags">— why this one ↑</a></dd></div>
+        <div class="p1-fact"><dt>When it moves</dt><dd>${within
+          ? `This protocol’s own timeline puts the first change at <b>${esc(sig)}</b>, inside these 7 days.`
+          : `This protocol’s own timeline does not expect a change until <b>${esc(sig)}</b> — after these 7 days end. So the week is a test of whether you can do it daily, not of whether it works.`}</dd></div>
+        <div class="p1-fact"><dt>A partial result</dt><dd>You did it on most of the 7 days${metric ? ` and the thing you are tracking — “${esc(metric)}” —` : ' and the thing you are tracking'} has not moved. ${within
+          ? `That is a weak signal rather than a failure — ${esc(sig)} is the very end of this week.`
+          : `That is the expected result, because ${esc(sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
+      </dl>
+      <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p>
+      <div class="p1-actions">
+        <button class="cta-primary p1-start" id="phase1-start"${(st && st.started) ? ' disabled' : ''}>${(st && st.started) ? `✓ Started ${esc(st.started)} on this device` : '▶ Start day 1'}</button>
+        <button class="p1-skip" id="phase1-skip">I already do this — open Phase 2</button>
+      </div>
+    </section>`;
+  }
   // ---- D2 (2026-08-01): MOVE · FUEL · STACK, restored to the HYDRATED document -----------------
   // MEASURED BEFORE THIS, hydrated at 390x844 with every <details> expanded and every .chapter
   // activated, on all 52 /protocol/* routes (out/w2d2_measure.json): "Move —" 0/52, "Fuel —" 0/52,
@@ -5700,20 +5765,30 @@
     const med = authored.filter(c => !isConsumerCpd(c));
     const foods = P.fuel || [];
     const tg = Object.entries(rc.nutrient_targets || {});
+    // W4 (2026-08-02): Phase 2 is COLLAPSED until Phase 1 is started or explicitly skipped, and it
+    // is open from the first paint on the 8 root causes that have no Phase 1 — hiding the only
+    // thing those pages have behind a step the reader cannot take would be worse than the defect.
+    // Computed here, not after innerHTML, so the <details> renders in its final state.
+    const p2open = (phase1State(problem, rc) || !rc.phase1) ? ' open' : '';
     return `<section class="plan-section" id="p-move">
         <div class="cause-step">THE PROTOCOL · MOVE</div>
         <h2>🏃 Move — the mechanics that fix it${rx.scheme ? ': ' + esc(rx.scheme) : ''}</h2>
+        <p class="p-maint-note">The full programme, for after the 7 days. Phase 1 is one piece of this, done alone.</p>
         ${rx.detail ? `<p>${esc(rx.detail)}</p>` : '<p>No movement prescription is authored for this root cause yet — that is a gap, not a judgement that movement does not matter here.</p>'}
         <p class="muted">Pick and track individual movements in the plan builder below. This page gives the prescription, not a fixed exercise list.</p>
       </section>
       <section class="plan-section" id="p-fuel">
-        <div class="cause-step">THE PROTOCOL · FUEL</div>
-        <h2>🥗 Fuel — foods to fuel it</h2>
+        <div class="cause-step">MAINTENANCE · NOT PART OF THE 7 DAYS</div>
+        <h2>🥗 Fuel — what to keep eating anyway</h2>
+        <p class="p-maint-note">This is background, not the experiment. Keep eating the way you already eat during Phase 1 — changing your food and your one Phase 1 habit in the same week means the week tells you nothing.</p>
         ${foods.length ? `<div class="fuel-stack-grid">${foods.map(f => `<div class="fs-item"><span><b>${esc(f.name)}</b>${f.serving ? ` <small>${esc(f.serving)}</small>` : ''}</span>${f.sg_local ? '<span class="sg">SG</span>' : ''}</div>`).join('')}</div>` : ''}
         ${tg.length ? `<h3 class="plan-h" style="margin:.9rem 0 .5rem">Daily nutrient targets</h3>
           <div class="fuel-stack-grid">${tg.map(([k, t]) => `<div class="fs-item"><span><b>${esc(NUTRIENT_LABEL[k] || k)}</b>${t.why ? `<br><small>${esc(t.why)}</small>` : ''}</span><span><b>${esc(String(t.target))}${esc(t.unit || '')}</b>${t.type ? ` <small>(${esc(t.type)})</small>` : ''}</span></div>`).join('')}</div>
           <p class="muted">General adult guidance with a stated reason, not a personal prescription. <a href="/fuel/${esc(problem.id)}/${esc(rc.id)}">Open the Fuel Tracker — targets, foods and why each one →</a></p>` : ''}
       </section>
+      <details class="phase2" id="phase-2"${p2open}>
+        <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
+        <div class="p2-body">
       <section class="plan-section" id="p-stack">
         <div class="cause-step">THE PROTOCOL · STACK</div>
         <h2>💊 Stack — supplements with human trial evidence for this use</h2>
@@ -5726,7 +5801,9 @@
         <h2>🩺 Medical options — discuss with a doctor</h2>
         <p>These are prescription, pharmacy-only or non-approved medicines. They are listed so you know they exist and can raise them with a clinician — they are not recommendations, they are not ranked, and no doses for them appear here.</p>
         <div class="fuel-stack-grid">${med.map(c => `<div class="fs-item"><span><a href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b></a><br><span class="pill rx">${esc(sgAvailability(c).tag)}</span></span></div>`).join('')}</div>
-      </section>` : ''}`;
+      </section>` : ''}
+        </div>
+      </details>`;
   }
   // ---- Short-form / TikTok export engine: 9:16 screenshot-ready card + auto-generated script ----
   // Generalized across content types (causes, myths, mechanism cascade, molecule journey, did-you-know).
@@ -5959,11 +6036,12 @@
         </div>`;
       })()}
       ${safetyFirstSection(problem)}
+      ${phase1Section(problem, rc)}
       ${theOneThingHead(problem)}
       ${causesSection(problem, causeIndexForRc(problem, rc))}
       ${planSection(problem)}
       ${protocolLayers(problem, rc, P)}
-      <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">Browse the movements &amp; supplements, keep what fits you, then track it daily on <b>My Plan</b>.</span></div>
+      <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">This is Phase 2 — the full programme. Do Phase 1 first: it is one free thing for 7 days, and it is the only way to know what actually moved.</span></div>
       ${rcSwitch}
       ${rc.keystone ? `<div class="keystone-card">
         <div class="ks-badge">⭐ Your one keystone</div>
@@ -5987,6 +6065,30 @@
     mountAdoption(problem, rc);
     mountPublicOutcome(problem, rc);
     mountSharedProgress(problem, rc);
+    // W4: both Phase-1 buttons reveal Phase 2. State is localStorage only — constraint 3
+    // (anonymous-first): reading, logging and the $0 protocol must work with no account, and
+    // /api/me 503s in the local read-only run mode, so nothing here may depend on a server.
+    // The <details> open state for the FIRST paint is computed inside protocolLayers(), before
+    // app.innerHTML, so Phase 2 never flashes open; these handlers only handle the click.
+    const p1Set = (st) => {
+      try {
+        const s = JSON.parse(localStorage.getItem(PHASE1_KEY) || '{}');
+        s[`${problem.id}/${rc.id}`] = st;
+        localStorage.setItem(PHASE1_KEY, JSON.stringify(s));
+      } catch (e) { /* private mode: Phase 2 still opens for the session, it just is not remembered */ }
+      const d = document.getElementById('phase-2'); if (d) d.open = true;
+    };
+    const p1StartBtn = document.getElementById('phase1-start');
+    if (p1StartBtn) p1StartBtn.onclick = () => {
+      p1Set({ started: new Date().toISOString().slice(0, 10) });
+      p1StartBtn.textContent = '✓ Day 1 — noted on this device. Come back tomorrow.';
+      p1StartBtn.disabled = true;
+    };
+    const p1SkipBtn = document.getElementById('phase1-skip');
+    if (p1SkipBtn) p1SkipBtn.onclick = () => {
+      p1Set({ skipped: true });
+      const d = document.getElementById('phase-2'); if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
     const startBtn = document.getElementById('start-plan');
     if (startBtn) startBtn.onclick = () => {
       const pl = getPlan() || newPlan();

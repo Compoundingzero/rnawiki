@@ -48,6 +48,10 @@ const ROUTES = [
   ['home', '/'],
   ['compound', '/c/creatine-monohydrate'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
+  // W4: the OTHER branch of the $0 split. 8 of 52 root causes have no free first step and say so
+  // instead of inventing one; on those, Phase 2 must render OPEN, because hiding the only thing
+  // the page has behind a step the reader cannot take would be worse than the defect.
+  ['protocol-nophase1', '/protocol/hair-loss/dht-sensitivity'],
   // Same template class again, and the route where resolveCompound() linked the wrong molecule:
   // its "oral butyrate" plan item pointed at HMB (β-Hydroxy β-Methylbutyrate). See the
   // planItemLinksNameTheirOwnRef assertion — the invariant it checks holds on all 52 protocol
@@ -281,7 +285,77 @@ const ASSERTIONS = {
   // must SAY the community cause layer is missing instead of silently showing the built-in list.
   // Gated on the request having actually failed, so this assertion is a no-op — not a false
   // failure — on a machine that runs with a real DATABASE_URL.
+  // W4: the $0 split, on the branch that HAS a Phase 1. Measured hydrated at 390x844 in the
+  // DEFAULT DOM state on all 52 protocol routes before it: "Phase 1"/"Phase 2" 0/52, "$0" 1/52,
+  // any hold-everything-constant instruction 0/52, and the page's own free single habit at
+  // median y 17,687 px = 94% depth, 7,732 px BELOW the first supplement link, on 52/52.
+  // Every value below is read from the SHIPPED DATA at assertion time, so re-selecting a Phase 1
+  // cannot silently leave the page printing the old one.
+  // Prove this gate by moving ${phase1Section(problem, rc)} below ${protocolLayers(...)} in
+  // renderProtocol(), or by deleting the `open` state logic so Phase 2 renders open on a route
+  // that has a Phase 1.
+  '/protocol/hair-loss/dht-sensitivity': [{
+    name: 'phase1SaysSoWhenThereIsNoFreeStep',
+    why: 'W4: 8 of 52 root causes have no $0 first step. They must say so, not invent one — and their Phase 2 must not be hidden behind a step the reader cannot take',
+    evaluate: () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const rc = p.root_causes.find(x => x.id === rcid);
+      const app = document.querySelector('#app');
+      if (rc.phase1) return 'this root cause now carries a Phase 1 — pick a different smoke route for the no-free-step branch';
+      if (!rc.phase1None) return 'no rc.phase1None — build/parse.js should have refused to build';
+      const sec = app.querySelector('#phase-1');
+      if (!sec) return 'no #phase-1 section';
+      if (!sec.hasAttribute('data-phase1-none')) return 'the section does not declare that there is no $0 version of this protocol';
+      if (app.querySelectorAll('.p1-action').length !== 1) return `${app.querySelectorAll('.p1-action').length} .p1-action elements — expected exactly 1`;
+      if ((sec.textContent || '').indexOf(rc.phase1None) < 0) return 'the authored reason is not printed, so the page states a bare refusal';
+      const d = app.querySelector('#phase-2');
+      if (!d) return 'no #phase-2 container';
+      if (!d.open) return 'Phase 2 is COLLAPSED on a route with no Phase 1 — the only thing this page has is hidden behind a step the reader cannot take';
+      return null;
+    },
+  }],
   '/protocol/knee-pain/patellofemoral-pain': [{
+    name: 'phase1IsOneFreeThingAndComesFirst',
+    why: 'W4: the free first step must be one thing, cost nothing, be quoted from the page own plan, come before the stack, and keep Phase 2 collapsed until it is started or skipped',
+    evaluate: () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const rc = p.root_causes.find(x => x.id === rcid);
+      const app = document.querySelector('#app');
+      if (!rc.phase1) return 'this root cause carries no Phase 1 — build/parse.js should have refused to build, or pick a different smoke route';
+      const sec = app.querySelector('#phase-1');
+      if (!sec) return 'no #phase-1 section — nothing on the page names a first step that costs nothing';
+      const acts = app.querySelectorAll('.p1-action');
+      if (acts.length !== 1) return `${acts.length} .p1-action elements — Phase 1 is ONE intervention, not a list`;
+      if (sec.getAttribute('data-phase1-action') !== rc.phase1.action)
+        return `the action on the page is not the one the build selected (${JSON.stringify(sec.getAttribute('data-phase1-action'))} vs ${JSON.stringify(rc.phase1.action)})`;
+      if (acts[0].textContent.trim() !== rc.phase1.action) return 'the printed action is not the selected action';
+      if (sec.getAttribute('data-phase1-cost') !== 'none') return 'Phase 1 does not declare that it costs nothing';
+      const txt = (sec.textContent || '').replace(/\s+/g, ' ');
+      if (txt.indexOf(rc.phase1.quote) < 0) return 'the authored sentence the action was condensed from is not printed';
+      if (!/one variable at a time/i.test(txt)) return 'Phase 1 never tells the reader to hold everything else constant, so the 7 days measure nothing';
+      // the metric is the W2 structure REUSED, not a second one authored here
+      const m = (p.safety || {}).metric;
+      if (!m || txt.indexOf(m) < 0) return 'Phase 1 does not name the same tracked metric the safety card promotes';
+      if (app.querySelectorAll('[data-primary-metric]').length !== 1) return 'more than one primary metric on the page';
+      // ORDER, in DOM terms: free before paid.
+      const order = [...app.querySelectorAll('*')];
+      const stack = app.querySelector('#p-stack');
+      if (!stack) return 'no #p-stack';
+      if (order.indexOf(sec) > order.indexOf(stack)) return 'Phase 1 comes AFTER the supplement stack — the free step must precede the paid one';
+      const firstRec = Math.min(
+        order.indexOf(app.querySelector('.fix-kind.fk-compound')) >>> 0,
+        order.indexOf(app.querySelector('.adopt-plan')) >>> 0,
+        order.indexOf(stack) >>> 0);
+      if (order.indexOf(sec) > firstRec) return 'Phase 1 comes after the first supplement recommendation on the page';
+      // Phase 2 collapsed on a fresh (anonymous, no-localStorage) visit
+      const d = app.querySelector('#phase-2');
+      if (!d) return 'no #phase-2 container — the stack must be behind an optional second phase';
+      if (d.open) return 'Phase 2 is OPEN on a first visit — the split does nothing if the paid half is already unrolled';
+      return null;
+    },
+  }, {
     name: 'rcOverlayNotice',
     onlyIfRequestFailed: /^\/api\/rootcause-overlay$/,
     selector: '#p-causes [data-api-absent="rootcause-overlay"]',
