@@ -916,6 +916,11 @@
     if (!_protoSuggest) _protoSuggest = (GRAPH.problems || []).map(p => ({
       id: p.id, name: p.name, icon: p.icon || '•', kind: p.kind, category: p.category,
       rcCount: p.root_causes.length,
+      // The AUTHORED cause count (why.causes), not root_causes.length. 31 of 41 problems ship
+      // exactly one root cause while describing 4-7 causes, so rcCount was never the number to
+      // show a reader deciding where to go -- and the dropdown used to hide it entirely on those
+      // 31 (`rcCount > 1 ? … : ''`), which is precisely the set where the differential matters.
+      causeCount: ((p.why && p.why.causes) || []).length,
       hay: (p.name + ' ' + p.category + ' ' + p.root_causes.map(rc => rc.name + ' ' + (rc.diagnostic || '')).join(' ')).toLowerCase(),
     }));
     return _protoSuggest;
@@ -1230,7 +1235,7 @@
     //   mountHomeStacks()          -- deleted, see above.
     //   initScrolly('scrolly-how') -- the scrollytelling block is replaced by the static `.wex`
     //                                 worked example. initScrolly() itself STAYS: /pros calls it.
-    const form = document.getElementById('hero-solve');
+    // `const form` is gone with the submit handler below — nothing binds the hero form any more.
     const inp = document.getElementById('hero-solve-input');
     const out = document.getElementById('hero-solve-out');
     if (!inp) return;
@@ -1248,30 +1253,47 @@
         } else { out.hidden = true; out.innerHTML = ''; }
         return;
       }
-      out.innerHTML = list.map((p, i) => `<button type="button" class="funnel-hit" data-pid="${p.id}" data-i="${i}">
+      // Anchors, not buttons (W2.5b, 2026-08-01). These used to call openIntake(), which jumps
+      // straight to /protocol/<p>/<root_causes[0]> whenever a problem has ONE root cause -- 31 of
+      // 41 problems, every one of which describes 4-7 authored causes. A real link to the
+      // differential is the same one tap, and it is shareable, middle-clickable and honest about
+      // where it goes. data-native because /problem is prerender-only (KEEP_PRERENDERED): an
+      // intercepted click would land on notFound().
+      out.innerHTML = list.map((p, i) => `<a class="funnel-hit" href="/problem/${p.id}" data-native data-pid="${p.id}" data-i="${i}">
         <span class="fh-i">${p.icon}</span>
-        <span class="fh-b"><b>${esc(p.name)}</b><small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}${p.rcCount > 1 ? ' · ' + p.rcCount + ' root causes' : ''}</small></span></button>`).join('');
+        <span class="fh-b"><b>${esc(p.name)}</b><small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}${p.causeCount ? ` · ${p.causeCount} possible cause${p.causeCount === 1 ? '' : 's'}` : ''}</small></span></a>`).join('');
       out.hidden = false;
-      out.querySelectorAll('.funnel-hit').forEach(h => h.onclick = () => { out.hidden = true; openIntake(h.dataset.pid); });
     };
+    // CTA #1 NOW GOES WHERE THE FUNNEL GOES (W2.5b, 2026-08-01).
+    // What this replaces: go() called openIntake(list[0]) -- it picked the reader's problem AND,
+    // for the 31 of 41 problems with a single root cause, their diagnosis, then navigated to the
+    // protocol. Measured hydrated on 10 real queries: 5 landed on a protocol having been asked
+    // nothing, 4 opened a modal, 1 reached /solve. That is the exact sequencing defect W2 removed
+    // from /solve, alive on the site's FIRST call to action.
+    // It also ran a THIRD ranking loop. suggestProtocols() here, rankProblems() on /solve,
+    // searchSolve() in server.js -- and they disagree: "hair falling out" returned Hair Loss here
+    // and insomnia on /solve. Letting the form submit deletes this loop as an arbiter of
+    // destination and leaves ONE ranking for both documents. suggestProtocols stays as the
+    // typeahead, because a typeahead that is sometimes wrong costs a glance, not a diagnosis.
+    // Returns true when it handled the key, so the caller knows whether to preventDefault.
     const go = () => {
-      const list = current.length ? current : suggestProtocols(inp.value);
-      if (list.length) openIntake((active >= 0 ? list[active] : list[0]).id);
-      else navigate('/solve');
+      if (active >= 0 && current[active]) { location.assign('/problem/' + current[active].id); return true; }
+      return false;   // fall through: the real <form action="/solve" method="get"> submits
     };
     inp.addEventListener('input', () => paint(suggestProtocols(inp.value)));
     inp.addEventListener('focus', () => { if (inp.value) paint(suggestProtocols(inp.value)); });
     inp.addEventListener('keydown', e => {
       if (e.key === 'ArrowDown') { e.preventDefault(); active = Math.min(active + 1, current.length - 1); }
       else if (e.key === 'ArrowUp') { e.preventDefault(); active = Math.max(active - 1, 0); }
-      else if (e.key === 'Enter') { e.preventDefault(); go(); return; }
+      else if (e.key === 'Enter') { if (go()) e.preventDefault(); return; }   // no selection -> let the form submit to /solve
       else return;
       out.querySelectorAll('.funnel-hit').forEach((h, i) => h.classList.toggle('on', i === active));
     });
-    // The hero is a real <form action="/solve" method="get"> so that CTA #1 exists and functions
-    // with JavaScript off. Binding the FORM (not the button) catches both the click and Enter, and
-    // preventDefault keeps the JS path -- suggestProtocols + openIntake -- exactly as it was.
-    if (form) form.addEventListener('submit', e => { e.preventDefault(); go(); });
+    // NO submit handler. The hero is a real <form action="/solve" method="get"> and it now submits
+    // for everyone, so a JS reader and a no-JS reader land on the same page, ranked by the same
+    // loop. This line used to be `e.preventDefault(); go();`, which meant W2's /solve?q= work
+    // benefited only the ~90% who never run JavaScript -- the ~10% who do were routed past it into
+    // a protocol page (5 of 10 measured queries) or a modal (4 of 10).
     // close the dropdown on outside click — bind the document listener once, resolve the element live
     if (!bindHome._clickBound) {
       bindHome._clickBound = true;
@@ -1280,13 +1302,11 @@
         if (o && !e.target.closest('.funnel-search')) o.hidden = true;
       });
     }
-    // The chips are `<a href="/protocol/{pid}/{rc0}">` now, so a reader without JS gets a real
-    // protocol page instead of a dead <button>. With JS they do what they always did: open the
-    // triage modal. Safe against the global link interceptor, which checks e.defaultPrevented first
-    // and runs on document, i.e. after this handler on the anchor itself.
-    document.querySelectorAll('.seed-chip[data-pid]').forEach(c => c.onclick = e => {
-      e.preventDefault(); openIntake(c.dataset.pid);
-    });
+    // The seed chips are real links and now simply work. This handler used to preventDefault them
+    // into openIntake(), i.e. into the same skip-the-differential path as the hero submit: for a
+    // single-root-cause problem openIntake navigates straight to /protocol/<p>/<rc0>. With
+    // prerender.js pointing the chip at /problem/<id> (same commit), the JS reader and the no-JS
+    // reader now follow the same link to the same page.
     // The worked example's closing link returns the reader to CTA #1. href="#top" + data-scroll
     // (an existing handler) does the scrolling in both documents; this only adds the focus, so the
     // caret is already in the search box when the scroll lands.

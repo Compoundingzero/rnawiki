@@ -2020,7 +2020,11 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal â
   const seedChips = SEEDS
     .map((n) => (GRAPH.problems || []).find((p) => p.name.toLowerCase() === n.toLowerCase()))
     .filter((p) => p && (p.root_causes || []).length)
-    .map((p) => `<a class="seed-chip" data-pid="${esc(p.id)}" href="/protocol/${esc(p.id)}/${esc(p.root_causes[0].id)}">${p.icon || ''} ${esc(p.name)}</a>`)
+    // /problem, not /protocol/<p>/<root_causes[0]>: a chip that names a PROBLEM must not silently
+    // choose which of its 4-7 authored causes the reader has. 31 of the 41 problems ship exactly
+    // one root cause, so `root_causes[0]` was a diagnosis dressed as a shortcut. data-native
+    // because /problem is prerender-only (KEEP_PRERENDERED).
+    .map((p) => `<a class="seed-chip" data-pid="${esc(p.id)}" href="/problem/${esc(p.id)}" data-native>${p.icon || ''} ${esc(p.name)}</a>`)
     .join('');
   const nProblems = (D.meta.counts && D.meta.counts.problems) || (GRAPH.problems || []).length;
 

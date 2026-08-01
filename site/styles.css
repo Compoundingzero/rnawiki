@@ -3569,6 +3569,15 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 a.seed-chip { display: inline-block; text-decoration: none; }
 a.seed-chip:hover { text-decoration: none; }
 
+/* ===== HOME: the hero typeahead rows are anchors now (W2.5b, 2026-08-01) =====================
+   They were <button type="button"> whose click handler called openIntake(), which for the 31 of 41
+   problems with a single root cause navigated straight to a protocol -- picking the reader's cause
+   for them. They are now real links to /problem/<id>, the differential. `.funnel-hit` was written
+   for a <button>, so the anchor needs the underline and the UA link colour removed; `box-sizing`
+   because the rule sets width:100% alongside padding. */
+a.funnel-hit { text-decoration: none; color: inherit; box-sizing: border-box; }
+a.funnel-hit:hover { text-decoration: none; }
+
 /* ===== NEWSLETTER: the no-JS completion state ================================================
    `.nl-done` / `.nl-bad` had NO rules at all -- the SPA rendered a `.nl-done` paragraph that was
    never styled, and the prerendered document did not render one, so a native form post ended on a
