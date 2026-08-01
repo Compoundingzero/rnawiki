@@ -1754,6 +1754,14 @@ a.dp-name:hover{color:var(--accent)}
    be read on. It now carries the same amber the ❔ verdict chip uses, so the caveat and the verdict
    that produced it read as one thing. */
 .ixn-gap{color:var(--ink);font-size:.82rem;line-height:1.5;font-weight:600;margin:.7rem 0 0;padding:.5rem .6rem;border-left:3px solid #9e5c00;background:#fef3e2;border-radius:0 8px 8px 0}
+/* W3.5 (2026-08-02): the checker's verdict printed beside a pathway sibling on a compound page.
+   The colours are the .ixn-verdict pairs already used by the interaction panel, so the same
+   warning reads the same wherever it appears. Deliberately NOT a title attribute: a title never
+   surfaces on touch, and this is the text that stops the list reading as a recommendation. */
+.ds-flag{display:inline-block;font-size:.74rem;font-weight:700;padding:.1rem .45rem;border-radius:999px;white-space:normal}
+.ds-flag.danger{background:#fdeaea;color:#a11}
+.ds-flag.blunt{background:#fef3e2;color:#9e5c00}
+.ds-flag.timing{background:#eef3fe;color:#1e40af}
 
 /* ---- Keystone card (protocol page — the one highest-leverage habit) ---- */
 .keystone-card{background:linear-gradient(135deg,#fff8ec,#fdefd2);border:1px solid #f0d9a8;border-left:4px solid #e0a021;border-radius:14px;padding:1rem 1.2rem;margin:0 0 1rem;box-shadow:var(--shadow)}

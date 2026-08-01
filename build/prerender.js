@@ -190,6 +190,12 @@ const derivedStacks = (c) => {
   const pw = new Set(c.pathwayIds || []); if (!pw.size) return [];
   return D.compounds.filter((o) => o.id !== c.id && !o.isNote && (o.pathwayIds || []).some((i) => pw.has(i))).sort((a, b) => b.stars - a.stars).slice(0, 4);
 };
+// The interaction checker's verdict on a pathway-sibling pair, precomputed by
+// assertInteractionCoverage() in build/parse.js. Read, never recomputed: a third copy of the tag
+// matcher is a third thing that can drift, and the number this site publishes is only true while
+// every copy agrees.
+const TIER_ICON = { danger: '☠️', blunt: '🔻', timing: '⏰' };
+const pairFlag = (a, b) => { const P = D.pairFlags || {}; return P[a.id + '|' + b.id] || P[b.id + '|' + a.id] || null; };
 
 // ---- per-page Open Graph card generator (branded 1200×630 PNG per entity) ----
 // Uses @resvg/resvg-js + a bundled font (works on Railway's minimal container). If either is
@@ -753,8 +759,24 @@ D.compounds.forEach((c) => {
     ${goalLinks ? `<p><b>Helps with:</b> ${goalLinks}</p>` : ''}
     ${c.evidence ? `<h2>The human evidence</h2><p>${esc(String(c.evidence).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, ''))}</p>` : ''}
     ${(() => {
+      // W3.5 (2026-08-02): "often paired with" was a pairing recommendation nobody wrote — a
+      // machine inference from a shared pathway id, printed under the heading "Stacks with" in the
+      // document ~90% of readers get. Measured over the shipped corpus with the site's own
+      // stackInteractions(): 133 of 171 compound pages printed 523 of these and the checker flags
+      // 80, of which 63 are DANGER tier (out/w35h_contra.json). Citrulline recommended PDE-5
+      // inhibitors directly above its own "Avoid combining with … can drop blood pressure
+      // dangerously"; six GLP-1 pages recommended each other under a duplicate-therapy rule; the
+      // DNP page recommended four compounds under a rule titled "DNP — do not use".
+      // The pairing claim is gone, the pathway fact stays, and any pair the checker flags now
+      // carries that flag inline. Verdicts come from D.pairFlags, computed once in build/parse.js,
+      // so this document and the SPA cannot disagree about the same two molecules.
       const sg = sgAvail(c); const d = derivedStacks(c); const strip = (t) => String(t || '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, '');
-      return `${c.stacksWith || d.length ? `<h2>Stacks with</h2>${c.stacksWith ? `<p>${esc(strip(c.stacksWith))}</p>` : ''}${d.length ? `<p>Shares a pathway — often paired with: ${d.map((o) => `<a href="/c/${slug(o.name)}">${esc(o.name)}</a>`).join(', ')}.</p>` : ''}` : ''}
+      const dList = d.map((o) => {
+        const f = pairFlag(c, o);
+        const link = `<a href="/c/${slug(o.name)}">${esc(o.name)}</a>`;
+        return f ? `${link} — ${TIER_ICON[f.tier]} ${esc(f.title)}` : link;
+      }).join(', ');
+      return `${c.stacksWith ? `<h2>Stacks with</h2><p>${esc(strip(c.stacksWith))}</p>` : ''}${d.length ? `<h2>Acts on the same pathway</h2><p>Computed from shared pathways, not a suggestion to combine them: ${dList}.</p>` : ''}
         ${c.avoid ? `<h2>Avoid combining with</h2><p>${esc(strip(c.avoid))}</p>` : ''}
         <h2>Availability &amp; where to buy</h2><p><b>${esc(sg.tag)}.</b> ${sg.body.replace(/<\/?b>/g, '')}${c.cost ? ' ' + esc(strip(c.cost)) : ''}</p>`;
     })()}

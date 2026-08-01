@@ -297,11 +297,18 @@
     }
   }
 
-  // Compounds that share a pathway — plausible synergy partners (the site's existing "⚡ Synergy" concept).
+  // Compounds that share a pathway. NOT a suggestion to combine them — see the W3.5 note at the
+  // stacksBlock in detail(), where 63 of these were rendered as recommendations while the site's
+  // own interaction checker rated the same pair ☠️ danger.
   function derivedStacks(c) {
     const pw = new Set(c.pathwayIds || []); if (!pw.size) return [];
     return D.compounds.filter(o => o.id !== c.id && !o.isNote && (o.pathwayIds || []).some(i => pw.has(i))).sort((a, b) => b.stars - a.stars).slice(0, 4);
   }
+  // The checker's verdict on a pathway-sibling pair, precomputed at build time by
+  // assertInteractionCoverage() in build/parse.js so this document and the prerendered one cannot
+  // print different answers about the same two molecules.
+  const TIER_ICON = { danger: '☠️', blunt: '🔻', timing: '⏰' };
+  function pairFlag(a, b) { const P = D.pairFlags || {}; return P[a.id + '|' + b.id] || P[b.id + '|' + a.id] || null; }
   // Strip markdown to clean plain text for card snippets (bold/italic/links/code → text).
   function mdStrip(s) { return String(s || '').replace(/\*\*(.+?)\*\*/g, '$1').replace(/(^|[^*])\*(?!\*)(.+?)\*(?!\*)/g, '$1$2').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/`([^`]+)`/g, '$1'); }
   function cpdCard(c) {
@@ -1800,7 +1807,40 @@
     const chainHtml = explodedDiagram(c);
     const fact = (window.RNAWIKI_FACTS || []).find(x => x.href === '/c/' + s);
     const didYouKnow = fact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${fact.t}</span> ${shareBtn('fact:' + s)}</div>` : '';
-    const stacksBlock = (() => { const sg = sgAvailability(c); const derived = derivedStacks(c); return `${c.stacksWith || derived.length ? `<div class="section-title">🔗 Stacks with</div>${c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<p class="muted" style="font-size:.88rem">Shares a pathway — often paired with: ${derived.map(o => `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`).join(' · ')}.</p>` : ''}` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`; })();
+    // ---- W3.5 (2026-08-02): THE PAGE RECOMMENDED PAIRINGS ITS OWN CHECKER CALLS DANGEROUS ----
+    // derivedStacks() takes every compound sharing a pathway, sorts by star count and keeps four.
+    // Nobody wrote those pairings; the machine inferred them from a shared pathway id — the same
+    // shape of inference as the category-default tag this wave has just finished deleting from
+    // site/interactions.js. It was then printed under the heading "🔗 Stacks with" as "Shares a
+    // pathway — often paired with: …", which is an empirical claim about what people do that no
+    // one on this project has measured.
+    //
+    // MEASURED over the shipped corpus with the site's own stackInteractions() (out/w35h_contra.mjs,
+    // out/w35h_contra.json): 133 of 171 compound pages printed 523 such recommendations, and the
+    // site's own interaction checker flags 80 of them — 63 at DANGER tier, 10 blunt, 7 timing,
+    // across 38 pages and 64 distinct molecule pairs. /c/l-citrulline-citrulline-malate recommended
+    // PDE-5 Inhibitors two lines above its own "⚠️ Avoid combining with … can drop blood pressure
+    // dangerously", and /stack renders that same pair as "☠️ 1 dangerous combination". Six GLP-1
+    // pages recommended each other under "duplicate therapy"; the DNP page recommended four
+    // compounds under a rule whose title is "DNP — do not use".
+    //
+    // TWO CHANGES, both of which keep the honest half. (1) The computed list gets its own heading
+    // and states only the fact it is computed from — these compounds act on the same pathway —
+    // with the pairing advice removed. (2) Every entry is run through stackInteractions() and any
+    // the checker flags carries that flag inline, at its own tier. Nothing is hidden: a flagged
+    // pair still appears, because dropping it would turn a warning into a silent absence and imply
+    // the rest were checked and cleared. The checker covers 92 of 171 compounds and says so
+    // elsewhere; this list makes no safety claim in either direction.
+    const stacksBlock = (() => {
+      const sg = sgAvailability(c);
+      const derived = derivedStacks(c);
+      const derivedHtml = derived.map(o => {
+        const f = pairFlag(c, o);
+        const link = `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`;
+        return f ? `${link} <span class="ds-flag ${f.tier}">${TIER_ICON[f.tier]} ${esc(f.title)}</span>` : link;
+      }).join(' · ');
+      return `${c.stacksWith ? `<div class="section-title">🔗 Stacks with</div><p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<div class="section-title">🧬 Acts on the same pathway</div><p class="muted" style="font-size:.88rem">Computed from shared pathways, not a suggestion to combine them: ${derivedHtml}.</p>` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`;
+    })();
     const usedIn = (() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })();
     const evidenceBlock = evidenceGlance(c) + (c.evi ? evidenceDeep(c) : (c.evidence ? `<details class="evidence-block" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : ''));
     const exploreBlock = (() => {
