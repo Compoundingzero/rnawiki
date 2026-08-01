@@ -427,8 +427,28 @@ const ASSERTIONS = {
       if (!did) return 'no "did it" tap target';
       did.click();
       await new Promise(r => setTimeout(r, 30));
+      // W4.5 (c): DAY 1 IS THE COMPARISON, so it cannot be compared with itself. The log was started
+      // today, so the direction question must be OFF here. Measured before the fix (qa/out/
+      // w45log_a.json, w45log_c.json): 3 buttons, 0 disabled, pointer-events auto, beside copy that
+      // said "leave it blank" — and on day 5 the day-1 chip was still selectable, the sentence had
+      // vanished, and a tap stored {"did":1,"dir":"better"} against day 1.
+      const dirDay1 = [...document.getElementById('p1-log').querySelectorAll('button[data-p1="dir"]')];
+      if (dirDay1.length !== 3) return `${dirDay1.length} direction controls, expected 3`;
+      if (!dirDay1.every(b => b.disabled)) return 'the direction buttons are live on day 1 — day 1 is the reader\'s own comparison point, so a direction here is a comparison with itself';
+      // Backdate this same log so the direction round-trip below runs on a day that HAS a day 1 to
+      // compare with. Nothing else about the log changes.
+      const back = JSON.parse(localStorage.getItem(KEY));
+      const zp = n => String(n).padStart(2, '0');
+      const bd = new Date(); bd.setDate(bd.getDate() - 2);
+      back.logs[pid + '/' + rcid].started = `${bd.getFullYear()}-${zp(bd.getMonth() + 1)}-${zp(bd.getDate())}`;
+      localStorage.setItem(KEY, JSON.stringify(back));
+      document.querySelectorAll('#p1-log [data-p1="day"]')[0].click();
+      await new Promise(r => setTimeout(r, 40));
+      document.querySelectorAll('#p1-log [data-p1="day"]')[2].click();   // day 3 = today
+      await new Promise(r => setTimeout(r, 40));
       const dir = document.getElementById('p1-log').querySelector('button[data-p1="dir"][data-v="better"]');
       if (!dir) return 'no direction tap target';
+      if (dir.disabled) return 'the direction buttons are locked on day 3 — the lock is meant to cover day 1 only';
       dir.click();
       await new Promise(r => setTimeout(r, 30));
       const L1 = read().logs[pid + '/' + rcid];

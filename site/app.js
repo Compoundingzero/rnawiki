@@ -6012,6 +6012,14 @@
     // Days carrying a direction and no answer on the one thing. They used to be counted as "did it";
     // counting them as "missed it" would be the same lie inverted, so they are counted as themselves.
     const unsaidN = days.filter(d => log.days[d] && log.days[d].did !== 0 && log.days[d].did !== 1).length;
+    // DAY 1 IS THE COMPARISON, so it cannot be compared with itself. The copy said "leave it blank"
+    // and the three buttons were live anyway - and the copy was gated on TODAY, not on the SELECTED
+    // day. MEASURED HYDRATED (qa/out/w45log_c.json): on day 5, tapping the day-1 chip showed the
+    // question with the sentence GONE, 0 of 3 buttons disabled, and a tap stored
+    // {"did":1,"dir":"better"} against day 1 - a day-1-vs-day-1 comparison plus the did:1 default.
+    // Locked on selI. A direction recorded on day 1 by an older build keeps its buttons live so it
+    // can be cleared; a lock that traps existing data is a second defect.
+    const dirLocked = selI === 0 && !(e && e.dir), dirDis = dirLocked ? ' disabled' : '';
     const dirN = { better: 0, same: 0, worse: 0 };
     days.forEach(d => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
     const metric = log.metric || ((problem.safety || {}).metric) || '';
@@ -6036,13 +6044,13 @@
           <button type="button" class="p1-tap${e && e.did === 1 ? ' on' : ''}" data-p1="did" data-v="1" aria-pressed="${!!(e && e.did === 1)}">✔ Did it</button>
           <button type="button" class="p1-tap${e && e.did === 0 ? ' on' : ''}" data-p1="did" data-v="0" aria-pressed="${!!(e && e.did === 0)}">✗ Missed it</button>
         </div>
-        <p class="p1-log-q">${metric ? `“${esc(metric)}”` : 'How it is'}, compared with your own day 1 <span class="p1-log-opt">(optional)</span></p>
+        <p class="p1-log-q">${metric ? `“${esc(metric)}”` : 'How it is'}, compared with your own day 1 <span class="p1-log-opt">${dirLocked ? '(off on day 1)' : '(optional)'}</span></p>
         <div class="p1-log-btns">
-          <button type="button" class="p1-tap${e && e.dir === 'better' ? ' on' : ''}" data-p1="dir" data-v="better" aria-pressed="${!!(e && e.dir === 'better')}">↑ Better</button>
-          <button type="button" class="p1-tap${e && e.dir === 'same' ? ' on' : ''}" data-p1="dir" data-v="same" aria-pressed="${!!(e && e.dir === 'same')}">→ No change</button>
-          <button type="button" class="p1-tap${e && e.dir === 'worse' ? ' on' : ''}" data-p1="dir" data-v="worse" aria-pressed="${!!(e && e.dir === 'worse')}">↓ Worse</button>
+          <button type="button" class="p1-tap${e && e.dir === 'better' ? ' on' : ''}" data-p1="dir" data-v="better"${dirDis} aria-pressed="${!!(e && e.dir === 'better')}">↑ Better</button>
+          <button type="button" class="p1-tap${e && e.dir === 'same' ? ' on' : ''}" data-p1="dir" data-v="same"${dirDis} aria-pressed="${!!(e && e.dir === 'same')}">→ No change</button>
+          <button type="button" class="p1-tap${e && e.dir === 'worse' ? ' on' : ''}" data-p1="dir" data-v="worse"${dirDis} aria-pressed="${!!(e && e.dir === 'worse')}">↓ Worse</button>
         </div>
-        <p class="p1-log-note">The question is always <b>compared with your own day 1</b>, never “how bad is it” — that way it reads the same whether you are trying to reduce something or build something. ${dayGap(log.started, today) < 1 ? 'On day 1 there is nothing to compare with yet, so leave it blank.' : ''}</p>
+        <p class="p1-log-note">The question is always <b>compared with your own day 1</b>, never “how bad is it” — that way it reads the same whether you are trying to reduce something or build something. ${selI === 0 ? (dirLocked ? 'Day 1 <b>is</b> the comparison, so there is nothing to compare it with and these three are off.' : 'Day 1 is the comparison, so there is nothing to compare it with. A direction was recorded here by an older version — tap the one that is on to clear it.') : ''}</p>
       </div>
       ${receiptBlockHTML(problem, rc, log, days, today, dayN)}
       <div class="p1-log-foot">
