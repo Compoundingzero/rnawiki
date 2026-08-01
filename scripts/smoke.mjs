@@ -584,6 +584,78 @@ const ASSERTIONS = {
       if (!document.querySelector('#p1-log button[data-p1="receipt-png"]')) return 'the download is gone — sharing must never be the only way to keep your own week';
       return null;
     },
+  }, {
+    // W4.5 (2026-08-02): THE RECEIPT MAY ONLY ASSERT WHAT WAS RECORDED.
+    // MEASURED in a real browser against the shipped W4 code: app.js
+    // `Object.assign({ did: 1, dir: null }, ...)` defaulted did to 1, so a DIRECTION-ONLY tap wrote
+    // {"did":1,"dir":"worse"}, and the day-7 card printed "DID THE ONE THING ON 1 of the 7 days"
+    // plus an X share text saying "Did it on 1 of the 7 days" — for a reader who said only that it
+    // got worse (qa/out/w45log_a.json). The chips and the sparkline announced the same invention,
+    // and drawing it as "missed it" instead would be the identical lie inverted.
+    // PROVE THIS GATE by restoring `did: 1` in that Object.assign default. It fails by name.
+    // IT MUST STAY LAST in this array: it overwrites rnawiki_track, and the two assertions above it
+    // read the finished week the receipt assertion plants.
+    name: 'aReceiptAssertsOnlyRecordedDays',
+    why: 'W4.5: the card and the share text are the two artefacts that leave the device. Neither may state a fact the reader did not enter',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const key = pid + '/' + rcid;
+      const q = (n) => String(n).padStart(2, '0');
+      const iso = (d) => `${d.getFullYear()}-${q(d.getMonth() + 1)}-${q(d.getDate())}`;
+      const dm = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+      const today = iso(new Date());
+      const put = (log) => localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [key]: log } }));
+      const read = () => JSON.parse(localStorage.getItem('rnawiki_track')).logs[key];
+      // tapping a day chip is the only public way to force a redraw. Index matters: day 1 is the
+      // comparison, so its direction controls are deliberately off (W4.5 (c)) and a direction tap
+      // has to be made on a later day.
+      const redraw = async (i) => {
+        const c = document.querySelectorAll('#p1-log [data-p1="day"]')[i || 0];
+        if (!c) return `no day chip at index ${i || 0} to redraw from`;
+        c.click(); await new Promise(r => setTimeout(r, 40)); return null;
+      };
+      // ---- A. A DIRECTION-ONLY TAP CLAIMS NOTHING ABOUT THE INTERVENTION ----
+      put({ started: dm(-3), action: '', metric: '', sync: false, days: {} });
+      // TWICE, and that is load-bearing: the first tap redraws the panel from the week just planted
+      // (the chips still on screen belong to the previous assertion's week, and their dates would
+      // select the wrong day of the new one); the second selects day 4 of the new week.
+      const e0 = await redraw(0); if (e0) return e0;
+      const e1 = await redraw(3); if (e1) return e1;          // day 4 = today
+      const worse = document.querySelector('#p1-log button[data-p1="dir"][data-v="worse"]');
+      if (!worse) return 'no direction control to tap';
+      if (worse.disabled) return 'the direction buttons are locked on a day that is not day 1';
+      worse.click();
+      await new Promise(r => setTimeout(r, 40));
+      const rec = read().days[today];
+      if (!rec) return 'a direction tap recorded nothing at all';
+      if (rec.did === 1) return `tapping only "worse" stored ${JSON.stringify(rec)} — did:1 is a claim the reader never made, and the card prints it back as "DID THE ONE THING ON N of the 7 days"`;
+      if (rec.did === 0) return `tapping only "worse" stored ${JSON.stringify(rec)} — "missed it" is the same invention inverted`;
+      const sum = (document.querySelector('#p1-log .p1-log-sum') || {}).innerText || '';
+      if (/did it on [1-9]/.test(sum)) return `the summary reads "${sum}" after a direction-only tap`;
+      if (document.querySelector('#p1-log button[data-p1="did"][data-v="1"]').getAttribute('aria-pressed') !== 'false') return '"Did it" reads as pressed after a direction-only tap';
+      const chipA = (document.querySelectorAll('#p1-log .p1-chip')[3].getAttribute('aria-label') || '');
+      // Anchored: the honest label is "…, direction only, you did not say whether you did it", which
+      // contains the substring "did it". Only a label that ENDS on the claim is the fabrication.
+      if (/,\s*(did it|missed it)\s*$/.test(chipA)) return `the day chip announces "${chipA}" for a day the reader only gave a direction for`;
+      const sparkA = document.querySelector('#p1-log .p1-spark').getAttribute('aria-label') || '';
+      if (/day 4 (did it|missed it)/.test(sparkA)) return `the sparkline announces "${sparkA}"`;
+      // ---- A2. THE FINISHED CARD COUNTS ONLY WHAT WAS ANSWERED ----
+      const dd = {};
+      for (let i = 0; i < 7; i++) dd[dm(i - 6)] = i < 3 ? { did: 1, dir: null } : { did: null, dir: 'worse' };
+      put({ started: dm(-6), action: '', metric: '', sync: false, days: dd });
+      const e2 = await redraw(0); if (e2) return e2;
+      const e2b = await redraw(0); if (e2b) return e2b;
+      const card = document.getElementById('rcpt-card');
+      if (!card) return 'a finished week produced no card';
+      const rows = [...card.querySelectorAll('.rcpt-row')].map(r => r.innerText.replace(/\s+/g, ' ').trim());
+      const didRow = rows.find(r => /^Did the one thing on/i.test(r)) || '(missing)';
+      if (!/\b3 of the 7 days\b/.test(didRow)) return `the card says "${didRow}" for a week with 3 recorded "did it" days and 4 days the reader never answered`;
+      if (!rows.some(r => /did not answer/i.test(r))) return 'the card counts 4 unanswered days in "days tapped" and states them nowhere — the two counts silently disagree';
+      const sh = document.querySelector('#p1-log .rcpt-x');
+      if (sh && !/Did it on 3 of the 7 days/.test(decodeURIComponent(sh.getAttribute('href')))) return 'the share text does not carry the same count as the card — it is the copy that travels';
+      localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
+      return null;
+    },
   }],
   // W1 visible degradation (commit 587c056): when /api/rootcause-overlay fails, the protocol page
   // must SAY the community cause layer is missing instead of silently showing the built-in list.

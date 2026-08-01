@@ -3955,6 +3955,11 @@ a.assess-switch { text-align: center; }
 .p1-spark .sp-worse{fill:#b45309;stroke:#b45309}
 .p1-spark .sp-nodir{fill:#4a5766;stroke:#4a5766}
 .p1-spark .sp-miss{fill:#fff;stroke-width:2;stroke-dasharray:3 2}
+/* W4.5: a THIRD state. `did` is yes / no / never answered, and before this the third was drawn as
+   sp-did (solid) and announced as "did it". Solid outline, no fill, no dashes - distinct from sp-did
+   (filled) and sp-miss (dashed). Never colour-only: every bar carries a <title>, the svg carries an
+   aria-label naming all seven days, and .p1-spark-cap states the key in words (D1). */
+.p1-spark .sp-unsaid{fill:#fff;stroke-width:2}
 .p1-spark-cap,.p1-log-note,.p1-log-store,.p1-log-over{margin:.35rem 0 .6rem;font-size:1rem;line-height:1.5;color:#4a5766}
 .p1-log-over{color:#8a4708}
 .p1-chips{display:grid;grid-template-columns:repeat(4,minmax(44px,1fr));gap:4px;margin:.5rem 0 .8rem}
@@ -3966,6 +3971,9 @@ a.assess-switch { text-align: center; }
 .p1-chip{min-height:44px;font-size:1rem;font-weight:700;border:1px solid var(--line);border-radius:10px;background:#f8fafc;color:#4a5766;cursor:pointer}
 .p1-chip.did{background:#ccfbf1;border-color:#5eead4;color:#0b5f59}
 .p1-chip.miss{background:#fff;border-color:#e2b184;color:#8a4708;border-style:dashed}
+/* W4.5: tapped for direction only, no answer on the one thing. Dotted, not dashed (that is .miss),
+   not filled (that is .did) - and it must not look like an untapped chip, which is the default. */
+.p1-chip.unsaid{background:#fff;border-color:#94a3b8;border-style:dotted;color:#4a5766}
 .p1-chip.on{outline:2px solid #0f766e;outline-offset:1px;color:var(--head)}
 .p1-chip[disabled]{opacity:.45;cursor:default}
 .p1-chip:focus-visible,.p1-tap:focus-visible,.p1-mini:focus-visible{outline:2px solid var(--accent);outline-offset:2px}

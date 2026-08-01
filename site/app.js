@@ -5954,7 +5954,13 @@
         const d = dk[j], e = L.days[d];
         if (!TRACK_DAY_RE.test(d)) return { error: `Entry “${k}” has a day key that is not a date: ${JSON.stringify(d)}` };
         if (!e || typeof e !== 'object') return { error: `Entry “${k}” · ${d} is not a record.` };
-        if (e.did !== 0 && e.did !== 1) return { error: `Entry “${k}” · ${d} does not say whether it was done.` };
+        // `did` is 1, 0 or null - null being "gave a direction, never answered the one thing". This
+        // MUST accept null or the reader's own export stops restoring, and null is the only value a
+        // direction-only tap now writes.
+        if (e.did !== 0 && e.did !== 1 && e.did !== null && typeof e.did !== 'undefined') return { error: `Entry “${k}” · ${d} carries a value this page cannot read for whether it was done: ${JSON.stringify(e.did)}` };
+        // A record that says nothing is not a record. This page never writes one, and accepting one
+        // from a file would add a day to the receipt's "days tapped" count that carries no fact.
+        if ((e.did === null || typeof e.did === 'undefined') && !e.dir) return { error: `Entry “${k}” · ${d} records nothing — no answer on the one thing and no direction.` };
         if (e.dir != null && TRACK_DIRS.indexOf(e.dir) < 0) return { error: `Entry “${k}” · ${d} carries a direction this page cannot read: ${JSON.stringify(e.dir)}` };
         days++;
       }
@@ -5973,10 +5979,15 @@
       const x = i * CW + (CW - BW) / 2, e = log.days[d];
       if (!e) return `<rect class="sp-none" x="${x}" y="${BASE - 1}" width="${BW}" height="2"><title>Day ${i + 1} — no tap${isFuture(d, today) ? ' yet' : ''}</title></rect>`;
       const h = e.dir ? TRACK_H[e.dir] : 4;
-      const lbl = `Day ${i + 1} — ${e.did ? 'did it' : 'missed it'}${e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : ', no direction given'}`;
-      return `<rect class="sp-bar sp-${e.dir || 'nodir'} ${e.did ? 'sp-did' : 'sp-miss'}" x="${x}" y="${BASE - h}" width="${BW}" height="${h}" rx="2"><title>${esc(lbl)}</title></rect>`;
+      // THREE STATES. `did` is 1 (said yes), 0 (said no) or null (never answered). `e.did ? ... :
+      // 'missed it'` announced and drew "missed it" for a day the reader only gave a direction for -
+      // the mirror image of the did:1 default, and the same class of invented fact.
+      const didWord = e.did === 1 ? 'did it' : e.did === 0 ? 'missed it' : 'no answer on the one thing';
+      const didCls = e.did === 1 ? 'sp-did' : e.did === 0 ? 'sp-miss' : 'sp-unsaid';
+      const lbl = `Day ${i + 1} — ${didWord}${e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : ', no direction given'}`;
+      return `<rect class="sp-bar sp-${e.dir || 'nodir'} ${didCls}" x="${x}" y="${BASE - h}" width="${BW}" height="${h}" rx="2"><title>${esc(lbl)}</title></rect>`;
     }).join('');
-    return `<svg class="p1-spark" viewBox="0 0 ${TRACK_DAYS * CW} ${H}" width="${TRACK_DAYS * CW}" height="${H}" role="img" aria-label="Seven days. ${esc(days.map((d, i) => { const e = log.days[d]; return `day ${i + 1} ${e ? (e.did ? 'did it' : 'missed it') + (e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : '') : 'no tap'}`; }).join('; '))}.">
+    return `<svg class="p1-spark" viewBox="0 0 ${TRACK_DAYS * CW} ${H}" width="${TRACK_DAYS * CW}" height="${H}" role="img" aria-label="Seven days. ${esc(days.map((d, i) => { const e = log.days[d]; return `day ${i + 1} ${e ? (e.did === 1 ? 'did it' : e.did === 0 ? 'missed it' : 'no answer on the one thing') + (e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : '') : 'no tap'}`; }).join('; '))}.">
       <line class="sp-axis" x1="0" y1="${BASE + 1}" x2="${TRACK_DAYS * CW}" y2="${BASE + 1}"></line>${bars}
     </svg>`;
   }
@@ -5998,20 +6009,25 @@
     const e = log.days[sel] || null;
     const loggedN = days.filter(d => log.days[d]).length;
     const didN = days.filter(d => log.days[d] && log.days[d].did === 1).length;
+    // Days carrying a direction and no answer on the one thing. They used to be counted as "did it";
+    // counting them as "missed it" would be the same lie inverted, so they are counted as themselves.
+    const unsaidN = days.filter(d => log.days[d] && log.days[d].did !== 0 && log.days[d].did !== 1).length;
     const dirN = { better: 0, same: 0, worse: 0 };
     days.forEach(d => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
     const metric = log.metric || ((problem.safety || {}).metric) || '';
     const dirWords = TRACK_DIRS.filter(k => dirN[k]).map(k => `${dirN[k]} ${k === 'same' ? 'no change' : k}`).join(' · ');
     const chips = days.map((d, i) => {
       const future = isFuture(d, today), x = log.days[d];
-      return `<button type="button" class="p1-chip${d === sel ? ' on' : ''}${x ? (x.did ? ' did' : ' miss') : ''}" data-p1="day" data-v="${d}"${future ? ' disabled' : ''} aria-pressed="${d === sel}" aria-label="Day ${i + 1}${future ? ', not yet' : x ? (x.did ? ', did it' : ', missed it') : ', no tap'}">${i + 1}</button>`;
+      const xc = !x ? '' : x.did === 1 ? ' did' : x.did === 0 ? ' miss' : ' unsaid';
+      const xa = future ? ', not yet' : !x ? ', no tap' : x.did === 1 ? ', did it' : x.did === 0 ? ', missed it' : ', direction only, you did not say whether you did it';
+      return `<button type="button" class="p1-chip${d === sel ? ' on' : ''}${xc}" data-p1="day" data-v="${d}"${future ? ' disabled' : ''} aria-pressed="${d === sel}" aria-label="Day ${i + 1}${xa}">${i + 1}</button>`;
     }).join('');
     return `<div class="p1-log-head">
         <b class="p1-day">Day ${dayN} of ${TRACK_DAYS}</b>
-        <span class="p1-log-sum">${loggedN ? `${loggedN} of ${TRACK_DAYS} days tapped · did it on ${didN}${dirWords ? ' · ' + esc(dirWords) : ''}` : 'nothing tapped yet'}</span>
+        <span class="p1-log-sum">${loggedN ? `${loggedN} of ${TRACK_DAYS} days tapped · did it on ${didN}${unsaidN ? ` · ${unsaidN} with no answer on that` : ''}${dirWords ? ' · ' + esc(dirWords) : ''}` : 'nothing tapped yet'}</span>
       </div>
       ${trackSpark(days, log, today)}
-      <p class="p1-spark-cap">Seven taps of your own, drawn. Bar height is the direction you chose, a hollow bar is a day you missed, a flat line is a day with no tap. It is a diary of what you did — not evidence that it worked.</p>
+      <p class="p1-spark-cap">Seven taps of your own, drawn. Bar height is the direction you chose, a dashed hollow bar is a day you missed, a plain outlined bar is a day you gave a direction for without saying whether you did the thing, and a flat line is a day with no tap. It is a diary of what you did — not evidence that it worked.</p>
       <div class="p1-chips" role="group" aria-label="Pick a day to log">${chips}</div>
       ${over ? `<p class="p1-log-over">The 7 days ended on ${esc(days[TRACK_DAYS - 1])}. You can still fill in a day you missed — and then read Phase 2, which is now open.</p>` : ''}
       <div class="p1-log-day">
@@ -6143,6 +6159,9 @@
     const loggedN = days.filter((d) => log.days[d]).length;
     if (!loggedN) return null;                     // nothing was tapped; there is nothing to write up
     const didN = days.filter((d) => log.days[d] && log.days[d].did === 1).length;
+    // Days tapped for direction only, with no answer on the one thing. These used to be counted as
+    // "did it" (the did:1 default), so the headline row asserted days nobody claimed.
+    const unsaidN = days.filter((d) => { const x = log.days[d]; return x && x.did !== 0 && x.did !== 1; }).length;
     const dirN = { better: 0, same: 0, worse: 0 };
     days.forEach((d) => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
     const word = (k) => (k === 'same' ? 'no change' : k);
@@ -6150,6 +6169,10 @@
     const rows = [
       ['Did the one thing on', `${didN} of the 7 days`],
       ['Days tapped', `${loggedN} of 7`],
+      // Printed only when it is not zero, and never folded into either count above: a day with no
+      // answer is neither a "did it" nor a "missed it", and the card has to be able to say so. A
+      // lower honest number beats a higher false one.
+      ...(unsaidN ? [['Days you did not answer that', `${unsaidN} of the ${loggedN} you tapped`]] : []),
       ['Day 1', 'your own starting point — nothing to compare it with yet'],
       ['Day 7, compared with day 1', last && last.dir ? word(last.dir) : 'not recorded'],
       ['Every direction you tapped', TRACK_DIRS.filter((k) => dirN[k]).map((k) => `${dirN[k]} ${word(k)}`).join(' · ') || 'none tapped'],
@@ -6162,7 +6185,7 @@
       action: log.action || rc.phase1.action,
       metric: log.metric || ((problem.safety || {}).metric) || '',
       from: days[0], to: days[TRACK_DAYS - 1],
-      didN, loggedN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
+      didN, loggedN, unsaidN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
       rows,
       // Never efficacy. One person, seven days, no control, no comparison group — and this site
       // publishes no aggregate of anybody's weeks (brief §0.3, and the cohort feature stays dark).
@@ -6373,12 +6396,24 @@
       if (act === 'did' || act === 'dir') {
         trackEdit(problem, rc, (cur) => {
           if (!cur) return cur;
-          const e = Object.assign({ did: 1, dir: null }, cur.days[sel] || {});
-          if (act === 'did') e.did = v === '1' ? 1 : 0;
+          // `did` DEFAULTS TO null - "not said" - never to 1. MEASURED HYDRATED, real taps, fresh
+          // profile, /protocol/cravings/glycemic-swings (qa/out/w45log_a.json): tapping ONLY
+          // "down Worse" on day 1 wrote {"did":1,"dir":"worse"}, flipped "Did it" to
+          // aria-pressed="true", printed "1 of 7 days tapped, did it on 1, 1 worse", and on day 7 the
+          // card's headline row read "DID THE ONE THING ON 1 of the 7 days" and the X share text read
+          // "Did it on 1 of the 7 days". The reader said it got worse and never claimed they did the
+          // intervention.
+          const e = Object.assign({ did: null, dir: null }, cur.days[sel] || {});
+          // Both answers retractable: tapping the one already on clears it. The only way back from a
+          // mis-tap; without it the receipt asserts the mis-tap for ever.
+          if (act === 'did') { const n = v === '1' ? 1 : 0; e.did = (e.did === n) ? null : n; }
           // Tapping the direction you already chose clears it. There is no other way back to "I did
           // not say", and a control you cannot undo teaches people to guess.
           else e.dir = (e.dir === v) ? null : v;
-          cur.days[sel] = e;
+          // Neither answer given = the day was never recorded. An empty record would sit in loggedN
+          // and put a day on the receipt that carries no fact.
+          if (e.did === null && e.dir === null) delete cur.days[sel];
+          else cur.days[sel] = e;
           return cur;
         });
         phase1LogDraw(problem, rc, sel);
