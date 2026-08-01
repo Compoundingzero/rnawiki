@@ -1,0 +1,277 @@
+{
+  "_doc": [
+    "data/protocol_safety.json — the STRUCTURED promotion of two things the protocol pages already say",
+    "in prose, and a build gate that keeps the promotion honest.",
+    "",
+    "Measured hydrated at 390x844 on all 52 /protocol/* routes before this file existed:",
+    "  · a labelled stop-rule element:            0 of 52",
+    "  · a named primary tracking metric element: 0 of 52",
+    "  · the 🚩 reassess block AFTER the first supplement recommendation: 52 of 52",
+    "(the prose versions were there — .plan-working 52/52 and .plan-reassess 52/52 — but as paragraphs,",
+    "so nothing on the page named ONE number to track or ONE point at which the answer is to stop.)",
+    "",
+    "Shape: problem id -> { metric, metricSource, checkpoint, stopIssue }.",
+    "  metric       a short label. PROMOTION ONLY — written with words the problem's own `working`",
+    "               prose already uses. assertProtocolSafety() in build/parse.js rejects any label word",
+    "               (4+ characters, minus a small function-word list) that does not appear in that prose.",
+    "  metricSource the exact sentence the label was promoted from. Must be a VERBATIM substring of",
+    "               data/protocol_plan.json[id].working. It is printed under the label on the page, so a",
+    "               reader always sees the authored sentence, not only the condensation.",
+    "  checkpoint   the `when` of the problem's own honest-checkpoint timeline rung (the last one).",
+    "               Must match a `when` that timeline actually contains, verbatim.",
+    "  stopIssue    which authored troubleshooting entry IS the stop rule. Must match an existing",
+    "               `issue` verbatim; the page renders that entry's authored `fix` as the action.",
+    "",
+    "So no sentence on the page is written here: this file SELECTS authored text and gives it a name.",
+    "Nothing here was reviewed by a clinician or any other authoritative professional, and nothing in it",
+    "may be presented as reviewed by a person. It is an editorial promotion of an authored text corpus."
+  ],
+  "map": {
+    "acne": {
+      "metric": "New inflamed spots, counted week over week",
+      "metricSource": "Fewer *new* inflamed spots week over week (count them — memory lies)",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of a consistent regimen"
+    },
+    "knee-pain": {
+      "metric": "Pain on stairs, kneeling and standing up, week over week",
+      "metricSource": "Less pain on stairs, kneeling, and standing up after sitting — the everyday moments, not just gym days.",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of consistent strengthening"
+    },
+    "low-back-pain": {
+      "metric": "How long you can sit, stand and walk before the ache builds",
+      "metricSource": "You can sit, stand, and walk for longer before the ache builds",
+      "checkpoint": "Weeks 6–8",
+      "stopIssue": "No real change after 6–8 weeks of consistent movement and loading"
+    },
+    "neck-shoulder": {
+      "metric": "Longer to tighten, faster to let go",
+      "metricSource": "Your neck and shoulders take **longer to tighten** through the day and **let go faster** after a reset break",
+      "checkpoint": "Weeks 6-8",
+      "stopIssue": "No real change after 6 to 8 weeks of consistent work"
+    },
+    "hip-mobility": {
+      "metric": "Flare-ups per week, and how long you can lie on the painful side",
+      "metricSource": "how long you can lie on the painful side before it aches, how many flare-ups you get in a week",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of consistent strengthening"
+    },
+    "elbow-wrist": {
+      "metric": "Pain during the session and the morning after, and the weights and reps",
+      "metricSource": "less pain during the session and the morning after**, and you can gradually **handle more load or grip before it complains** — track the actual weights and reps",
+      "checkpoint": "Week 12",
+      "stopIssue": "No improvement after about 12 weeks of consistent loading"
+    },
+    "ankle-foot": {
+      "metric": "Morning first-step ache 0–10, and how far you walked",
+      "metricSource": "how far you walked, how many calf raises, how bad the morning stiffness was on a 0–10 scale",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of consistent loading"
+    },
+    "sarcopenia": {
+      "metric": "Lifting more than a month ago, grip and balance",
+      "metricSource": "You're lifting more than you could a month ago, and daily tasks — stairs, carrying shopping, rising from a low chair — feel easier. Grip and balance improve",
+      "checkpoint": "Week 12",
+      "stopIssue": "No strength gain after 8-12 weeks of consistent training"
+    },
+    "insulin-resistance": {
+      "metric": "Fasting number and after-meal spikes, over weeks",
+      "metricSource": "after-meal spikes that are lower and settle faster**, with your fasting number drifting down over weeks",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of a consistent routine"
+    },
+    "visceral-fat": {
+      "metric": "Waist measurement at the navel, once a month",
+      "metricSource": "A **falling waist measurement** (measure at your navel, same time of day, once a month — memory and the mirror both lie)",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change in waist after 12 consistent weeks"
+    },
+    "chronic-fatigue": {
+      "metric": "Energy out of ten, each morning and mid-afternoon",
+      "metricSource": "rate your energy out of ten each morning and mid-afternoon for a couple of weeks",
+      "checkpoint": "Weeks 4-12",
+      "stopIssue": "Two weeks of genuinely good sleep and I'm still wiped out"
+    },
+    "cravings": {
+      "metric": "Cravings on a normal day — fewer and weaker",
+      "metricSource": "Fewer and weaker cravings on a normal day — you can walk past the snack cupboard without a fight",
+      "checkpoint": "Week 6",
+      "stopIssue": "No real change after 4–6 weeks of a consistent protein-and-fiber base"
+    },
+    "thyroid": {
+      "metric": "TSH, free T3 and ferritin on retest — and how you feel week to week",
+      "metricSource": "On retest the trend is what matters — TSH settling, free T3 rising, ferritin climbing back up",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of eating enough and fixing cofactors"
+    },
+    "blood-pressure": {
+      "metric": "The 7-day average systolic on your home cuff",
+      "metricSource": "A falling **7-day average** on your home cuff — not one lucky reading — is the real sign, especially the top (**systolic**) number easing down",
+      "checkpoint": "Weeks 6–8",
+      "stopIssue": "No meaningful change after 6–8 weeks of genuinely doing the diet and lifestyle changes"
+    },
+    "cholesterol": {
+      "metric": "LDL on a repeat blood test, with triglycerides and HDL",
+      "metricSource": "the only honest scoreboard is a **repeat blood test**, so compare the actual numbers, not how virtuous you feel. Progress looks like a falling **LDL** (the harmful cholesterol), falling **triglycerides** (blood fat that sugar and alcohol drive up), and a slowly rising **HDL** (the protective kind)",
+      "checkpoint": "Week 12",
+      "stopIssue": "LDL barely moved after 12 weeks of genuine diet change"
+    },
+    "brain-fog": {
+      "metric": "Fog 0–10 each night, with your wake time and sleep hours",
+      "metricSource": "each night, rate your fog 0–10 and note your wake time and rough sleep hours",
+      "checkpoint": "Weeks 6–8",
+      "stopIssue": "Sleep is genuinely fixed but the fog hasn't lifted after 6–8 weeks"
+    },
+    "anxiety": {
+      "metric": "Anxiety surges, and a 0-to-10 rating each evening",
+      "metricSource": "fewer and shorter **anxiety surges** week over week, a lower background hum of dread, and being able to actually *switch off* when you rest rather than lying there wired. Track it simply — a 0-to-10 rating each evening",
+      "checkpoint": "Week 6",
+      "stopIssue": "No change after 6 weeks of consistent effort"
+    },
+    "low-mood": {
+      "metric": "Mood once a day, a simple 1-to-10 score",
+      "metricSource": "Track your **mood once a day** with a simple 1-to-10 score and note what you did",
+      "checkpoint": "Weeks 6–8",
+      "stopIssue": "No change after 6–8 weeks of doing the routine consistently"
+    },
+    "adhd-focus": {
+      "metric": "Focused blocks completed a day",
+      "metricSource": "how many focused blocks you complete a day",
+      "checkpoint": "Weeks 8–12",
+      "stopIssue": "No change after 8–12 weeks of consistent sleep, food and structure"
+    },
+    "memory": {
+      "metric": "A one-line daily note on word-finding and what sticks",
+      "metricSource": "when word-finding feels quicker, when new names, plans and where-you-put-things stick more reliably, and when the heavy mid-afternoon fog lifts — most of all on well-slept days. Track it simply, since a one-line daily note",
+      "checkpoint": "Weeks 8–12",
+      "stopIssue": "No change after two to three months of fixing sleep and the basics"
+    },
+    "burnout": {
+      "metric": "A 1-to-10 energy and mood score each morning",
+      "metricSource": "a 1-to-10 energy and mood score each morning beats memory, which always rounds toward",
+      "checkpoint": "Weeks 6–8",
+      "stopIssue": "No improvement after 3–4 weeks of genuinely protected rest"
+    },
+    "insomnia": {
+      "metric": "How long lights-out to asleep takes, week over week",
+      "metricSource": "You fall asleep a little **faster week over week** — track roughly how long lights-out to asleep takes, since memory tends to exaggerate the bad nights",
+      "checkpoint": "Weeks 3–4",
+      "stopIssue": "No change after 3–4 weeks of a consistent routine"
+    },
+    "sleep-maintenance": {
+      "metric": "Nights waking, and how fast you fall back asleep",
+      "metricSource": "**fewer nights waking** and, on the nights you do wake, you **fall back asleep faster** instead of lying there for an hour — jot it down briefly each morning",
+      "checkpoint": "Weeks 4–6",
+      "stopIssue": "No change after 4–6 weeks of a genuinely consistent routine"
+    },
+    "shift-work": {
+      "metric": "Sleep and wake times, and a 1-to-10 alertness score each day",
+      "metricSource": "jot down your actual sleep and wake times and a 1-to-10 alertness score each day",
+      "checkpoint": "Weeks 2-4",
+      "stopIssue": "Two-plus weeks in and nothing has shifted"
+    },
+    "low-testosterone": {
+      "metric": "Morning erections and libido, with two morning readings on retest",
+      "metricSource": "Returning **morning erections** and steadier libido, **energy that holds through the afternoon**, easier recovery from training, and mood and motivation lifting week over week — these day-to-day signs usually move *before* the blood number does. When you retest, look for a genuine upward trend across two morning readings rather than one lucky result",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of honest lifestyle effort"
+    },
+    "menopause": {
+      "metric": "A rough flush count and a sleep note, week to week",
+      "metricSource": "Track it simply week to week (a rough flush count and a sleep note beat memory)",
+      "checkpoint": "Weeks 6–12",
+      "stopIssue": "Still getting flushes or poor sleep after 8–12 weeks on HRT"
+    },
+    "low-libido": {
+      "metric": "Desire showing up on its own, tracked over weeks",
+      "metricSource": "Desire showing up **on its own** — a passing thought, morning arousal, reaching for your partner without having to manufacture it — rather than something you have to force. Track the trend over weeks",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of genuinely better sleep and lower stress"
+    },
+    "bone-density": {
+      "metric": "Lifting heavier month over month, and your DXA scan",
+      "metricSource": "You're lifting **noticeably heavier** month over month, you feel **steadier on your feet** with fewer trips and wobbles, and if your vitamin D or protein was low, those have been corrected. Over the long run, \"working\" means a **stable or improved DXA scan",
+      "checkpoint": "Months 12-24",
+      "stopIssue": "A repeat DXA scan shows no improvement after 1-2 years"
+    },
+    "pcos": {
+      "metric": "Waist measurement, cycle-start dates and training weights",
+      "metricSource": "Track a couple of concrete things (a waist measurement, your cycle-start dates, your training weights)",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of consistent food and training"
+    },
+    "skin-aging": {
+      "metric": "Photos in the same light and angle, every month",
+      "metricSource": "Track it with **photos in the same light and angle every month**",
+      "checkpoint": "Months 6–12",
+      "stopIssue": "No visible change after 12 weeks"
+    },
+    "hair-loss": {
+      "metric": "Hairs you lose in the shower or on the pillow, across a week",
+      "metricSource": "Fewer hairs coming out day to day — try counting what you lose in the shower or on the pillow across a week",
+      "checkpoint": "Months 3–6",
+      "stopIssue": "No visible change after 6 months of consistent treatment"
+    },
+    "longevity": {
+      "metric": "Easy-cardio pace at the same effort, and your waist",
+      "metricSource": "your easy-cardio pace improves at the same effort, you can lift or carry a bit more than a month ago, your waist shrinks even when the scale is stubborn",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of honest, consistent effort"
+    },
+    "inflammation": {
+      "metric": "Energy, bloating and joint stiffness weekly — and CRP if bloods are run",
+      "metricSource": "steadier energy through the day with fewer afternoon crashes, less bloating and joint stiffness, and faster recovery between workouts — track these weekly",
+      "checkpoint": "Week 12",
+      "stopIssue": "No real change after 12 weeks of consistent effort"
+    },
+    "gut-health": {
+      "metric": "Plant-type count, and stools regular and easier to pass",
+      "metricSource": "stools that are **more regular and easier to pass** (not racing to the toilet, not straining), and a widening range of foods you can eat without a reaction. A useful marker is the **plant-type count** creeping up week over week",
+      "checkpoint": "Week 12",
+      "stopIssue": "No change after 12 weeks of a consistent routine"
+    },
+    "immunity": {
+      "metric": "Infections over a season — how often, how long",
+      "metricSource": "Fewer infections over a season, and — just as important — the ones you do catch tend to be **milder and shorter** (a cold that clears in a few days instead of dragging on for weeks)",
+      "checkpoint": "Week 12",
+      "stopIssue": "Still getting sick often after 12 weeks of good sleep and habits"
+    },
+    "hypertrophy": {
+      "metric": "Logbook trend — weight, reps and hard sets over a few weeks",
+      "metricSource": "Your **logbook trend is rising** — over a few weeks you're lifting more weight, getting more reps, or doing more hard sets than before",
+      "checkpoint": "Week 12",
+      "stopIssue": "I did everything and still nothing after 3+ months"
+    },
+    "strength-plateau": {
+      "metric": "Log trend — weight, reps or sets climbing week over week",
+      "metricSource": "Your **log trends up** — not every session, but week over week the weight, reps, or sets are climbing (write it down; memory flatters you)",
+      "checkpoint": "Weeks 6–8",
+      "stopIssue": "No change after 6–8 weeks of consistent training"
+    },
+    "fat-loss-plateau": {
+      "metric": "Weekly-average weight, and your waist measurement",
+      "metricSource": "a **downward trend in your weekly-average weight**, not a lower number every single morning — day-to-day readings bounce with water, salt, sleep and hormones. Real progress also shows up off the scale: your **waist measurement creeping down**, clothes fitting looser",
+      "checkpoint": "Week 4",
+      "stopIssue": "No change after 3–4 weeks of honest logging and holding your steps"
+    },
+    "endurance-plateau": {
+      "metric": "Easy pace at the same heart rate",
+      "metricSource": "your **easy pace getting faster at the same heart rate**, or your heart rate dropping at a pace that used to feel hard",
+      "checkpoint": "Weeks 5–6",
+      "stopIssue": "No change after a clean 4–6 week block and deload"
+    },
+    "pre-workout": {
+      "metric": "A 1-to-10 energy score in your training log",
+      "metricSource": "a 1-to-10 energy score in your training log beats memory, which flatters the good days",
+      "checkpoint": "Week 4",
+      "stopIssue": "No change after 3–4 weeks of eating, hydrating and sleeping well"
+    },
+    "overtraining": {
+      "metric": "Resting heart rate, first thing each morning",
+      "metricSource": "your **resting heart rate** (take it first thing each morning — memory lies, so write it down)",
+      "checkpoint": "Week 2 checkpoint",
+      "stopIssue": "No rebound after a full two-week deload with more food and sleep"
+    }
+  }
+}
