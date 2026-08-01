@@ -6505,11 +6505,26 @@
     }
   }
   // ---------- Tier 1: frictionless voting ----------
+  // W3.5 (2026-08-02) — THE DORMANT EXPERT-REVIEW BADGE. This span read "⚠ Expert review needed"
+  // and shipped in the DOM of all 52 /protocol routes (measured hydrated at 390x844: 52 of 52
+  // render exactly one .vote-badge; revealed it is 150x20 at rgb(194,65,12)). It was `hidden`
+  // only until four readers voted and fewer than half said the page helped — a data condition,
+  // not a decision, so nobody had to approve the claim for it to appear.
+  //
+  // The claim is that an expert review exists and is pending. It does not. There is no verified
+  // expert on this project, no review queue that consumes this signal (grep: the only consumers of
+  // /api/votes are this function and the fork like-count), and no person the badge could be
+  // addressed to. It was the last surviving piece of the expert-marketplace wording that
+  // /methodology already tells readers was removed — a badge that dressed up "some readers said
+  // no" as "a professional is looking at this".
+  //
+  // The replacement states only what was measured — the vote tally that triggered it — and
+  // promises nothing. Same trigger, same element, no credential.
   function voteFoot(pid, rcid, layer) {
     return `<div class="vote-foot" data-target="${pid}:${rcid}:${layer}"><span class="vote-q">Did this help you?</span>
       <span class="vote-btns"><button class="vt up" data-v="1">👍 <span class="c">·</span></button>
       <button class="vt down" data-v="-1">👎 <span class="c">·</span></button></span>
-      <span class="vote-badge" hidden>⚠ Expert review needed</span></div>`;
+      <span class="vote-badge" hidden>⚠ More readers said this did not help than said it did</span></div>`;
   }
   async function mountVotes(targets) {
     const scores = await api.votes(targets);
