@@ -43,6 +43,12 @@ const SETTLE_MS = Number(process.env.SMOKE_SETTLE_MS || 1200);
 const NAV_TIMEOUT = 45000;
 
 // ---------------------------------------------------------------- routes
+// W4 · Loop C: a cohort slug carries its own start date, so the LIVE case has to be computed when
+// the gate runs. A date typed into this file would pass on the day it was written and then quietly
+// start testing the refusal path instead — a gate that changes what it tests as the calendar moves
+// is worse than no gate. The stale case is deliberately fixed in 2020: it must ALWAYS be refused.
+const COHORT_TODAY = (() => { const d = new Date(), p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; })();
+
 // One route per template class. `/` first so a total boot failure is reported against the home page.
 const ROUTES = [
   ['home', '/'],
@@ -60,6 +66,11 @@ const ROUTES = [
   // Same template class, but a route whose correct open cause is NOT the first one. The route
   // above is one of the 32 whose correct index IS 0, so it cannot detect D3 or its regression.
   ['protocol-rc', '/protocol/knee-pain/patellar-tendinopathy'],
+  // W4 · Loop C, all three branches: a live cohort, a cohort whose week is already over, and a
+  // cohort asked for on a protocol with no $0 first step.
+  ['protocol-cohort', `/protocol/insomnia/circadian-misalign?cohort=${COHORT_TODAY}-smoke`],
+  ['protocol-cohort-stale', '/protocol/insomnia/circadian-misalign?cohort=2020-01-01-old'],
+  ['protocol-cohort-rx', `/protocol/hair-loss/dht-sensitivity?cohort=${COHORT_TODAY}-smoke`],
   ['problem', '/problem/knee-pain'],                       // KEEP_PRERENDERED
   ['target', '/target/AR'],
   ['compare-index', '/compare'],                           // KEEP_PRERENDERED + mounted picker
@@ -226,6 +237,72 @@ const ASSERTIONS = {
       }
       if (unmatched) return `${unmatched} of ${lis.length} rendered plan items match no authored fix — the text match this assertion relies on has drifted, so it can no longer see the defect`;
       if (!linked) return `0 of ${lis.length} plan items link to a compound — resolveCompound() has stopped resolving`;
+      return null;
+    },
+  }],
+  // ---- W4 · LOOP C (2026-08-02): COHORTS ----------------------------------------------------
+  // "$0 protocols only. No leaderboard, no competition, no ranking of participants. It is a shared
+  // start date, nothing more." The three route entries above cover the live case, the expired case
+  // and the prescription case. The property that matters most is the one in the middle:
+  //   A COHORT LINK MAY NEVER HAND A READER A FINISHED WEEK.
+  // The Research Receipt unlocks on day 7, so a link dated 8+ days back would mint a write-up for
+  // days nobody did, straight out of a URL. That is why the lower bound exists and why it is gated.
+  // PROVE THESE GATES by raising COHORT_BACK in site/app.js above 6, by printing any count of other
+  // participants into cohortStripHTML(), or by deleting the receiptGuard() call in cohortParse().
+  [`/protocol/insomnia/circadian-misalign?cohort=${COHORT_TODAY}-smoke`]: [{
+    name: 'loopCCohortIsAStartDateAndNothingElse',
+    why: 'W4: a cohort is a shared start date. It must never rank anyone, never count anyone, and never begin a week that is already over',
+    evaluate: () => {
+      const el = document.querySelector('#app .p1-cohort');
+      if (!el) return 'a ?cohort= link rendered no cohort strip at all — a link that does nothing and says nothing makes a reader believe they joined something';
+      if (el.dataset.cohort !== 'ok') return `a cohort starting today was refused: "${(el.innerText || '').slice(0, 120)}"`;
+      const t = (el.innerText || '').replace(/\s+/g, ' ');
+      if (!/day 1 of 7/i.test(t)) return `the cohort strip does not align the day counter — "${t.slice(0, 120)}"`;
+      if (!/no leaderboard/i.test(t)) return 'the cohort strip does not say there is no leaderboard';
+      if (!/no ranking/i.test(t)) return 'the cohort strip does not say there is no ranking';
+      // nothing may count, rank or compare other people
+      if (/\b(\d+)\s+(people|others|participants|readers|members|joined|in this cohort)\b/i.test(t)) return `the cohort strip counts other participants — "${t}". This page cannot see another person's week and must not imply that it can`;
+      if (/(rank|leader ?board|position|streak of the|top \d)/i.test(t.replace(/no leaderboard|no ranking/gi, ''))) return `the cohort strip ranks participants — "${t}"`;
+      if (/\b\d+\s?%/.test(t)) return `the cohort strip carries a statistic — "${t}"`;
+      const btn = document.getElementById('phase1-start');
+      if (!btn) return 'no start button on a live cohort';
+      if (!/join the cohort/i.test(btn.textContent)) return `the start button does not offer to join the cohort — "${btn.textContent.trim()}"`;
+      if (btn.textContent.indexOf(el.getAttribute('data-cohort-start')) < 0) return 'the start button does not name the cohort start date it would adopt';
+      return null;
+    },
+  }],
+  '/protocol/insomnia/circadian-misalign?cohort=2020-01-01-old': [{
+    name: 'loopCCohortCannotHandOverAFinishedWeek',
+    why: 'W4: the receipt unlocks on day 7, so a back-dated cohort link would mint a write-up for days nobody did — straight out of a URL',
+    evaluate: () => {
+      const el = document.querySelector('#app .p1-cohort');
+      if (!el) return 'a stale ?cohort= link was dropped silently — the reader must be told the link did nothing';
+      if (el.dataset.cohort !== 'refused') return `a cohort dated 2020-01-01 was ACCEPTED (state "${el.dataset.cohort}") — that puts the reader past day 7 of a week they never did, and the receipt unlocks on day 7`;
+      if (!/already over/i.test(el.innerText || '')) return 'the refusal does not say why';
+      const btn = document.getElementById('phase1-start');
+      if (btn && /join the cohort/i.test(btn.textContent)) return 'the start button still offers to join a cohort whose week is over';
+      // And the refusal must not have started anything. Scoped to THIS route's key: the smoke
+      // browser keeps one origin and one localStorage across every route, and the receipt
+      // assertion earlier in this run deliberately seeds a finished week under a different
+      // protocol. The first version of this check read the whole `rnawiki_track` object and failed
+      // on that neighbour's data — which is how a gate ends up being switched off rather than
+      // believed.
+      const [, , pid, rcid] = location.pathname.split('/');
+      let t = null; try { t = JSON.parse(localStorage.getItem('rnawiki_track') || 'null'); } catch (e) {}
+      if (t && (t.logs || {})[pid + '/' + rcid]) return 'a refused cohort link created a log for this protocol anyway';
+      return null;
+    },
+  }],
+  [`/protocol/hair-loss/dht-sensitivity?cohort=${COHORT_TODAY}-smoke`]: [{
+    name: 'loopCNoCohortOnAProtocolThatIsNotFree',
+    why: 'W4: "$0 protocols only. Never run a supplement cohort." A cohort on a prescription protocol is a group of strangers told to start a medicine on a date, by a URL',
+    evaluate: () => {
+      const el = document.querySelector('#app .p1-cohort');
+      if (!el) return 'the cohort link was dropped silently on a protocol that has no $0 first step — say so instead';
+      if (el.dataset.cohort !== 'refused') return `a cohort was ACCEPTED on a root cause with no $0 Phase 1 (state "${el.dataset.cohort}") — $0 protocols only`;
+      const t = el.innerText || '';
+      if (!/No cohort runs on this protocol/i.test(t)) return `the refusal does not say a cohort does not run here — "${t.slice(0, 120)}"`;
+      if (!/costs nothing/i.test(t)) return 'the refusal does not give the rule it is applying';
       return null;
     },
   }],

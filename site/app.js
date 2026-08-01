@@ -5704,7 +5704,68 @@
   function phase1State(problem, rc) {
     try { return (JSON.parse(localStorage.getItem(PHASE1_KEY) || '{}'))[`${problem.id}/${rc.id}`] || null; } catch (e) { return null; }
   }
-  function phase1Section(problem, rc) {
+  // ---- W4 · LOOP C (2026-08-02): COHORTS ------------------------------------------------------
+  // "A protocol page must accept a ?cohort=<slug> parameter that sets a shared start date and shows
+  // Day N of 7 aligned to the cohort. $0 protocols only. No leaderboard, no competition, no ranking
+  // of participants. It is a shared start date, nothing more." Measured hydrated before this:
+  // "Day N of 7" from a cohort, 0/4 routes; the parameter was split off in route() and dropped.
+  //
+  // THE SLUG CARRIES ITS OWN DATE — `2026-08-04-knees` — and there is no registry. That is a
+  // deliberate choice with one safety property that a registry would not have given for free:
+  //
+  //   A COHORT LINK CAN NEVER HAND YOU A FINISHED WEEK.
+  //
+  // The start must fall in [today − 6, today + 28]. A link dated further back is refused, by name,
+  // because accepting it would put a reader straight into day 8+ of a week they never did — and
+  // the Research Receipt unlocks on day 7. A link could otherwise mint a write-up out of a URL.
+  // That is the whole reason for the lower bound; the upper bound is only "too far ahead to be
+  // real". Joining late is normal and works: a cohort that began 3 days ago puts you on day 4 with
+  // days 1–3 empty, which is the truth.
+  //
+  // $0 ONLY, enforced by the SAME receiptGuard() the receipt uses — not a second copy of the rule.
+  // A cohort on a prescription protocol is a group of strangers being told to start a medicine on
+  // a date, from a URL. It is refused with the reason printed.
+  //
+  // NOTHING ABOUT ANYBODY ELSE. This code cannot count participants, rank them or reach a server;
+  // there is no cohort endpoint and no cohort table. The strip says so in as many words, and the
+  // gate fails on any wording that implies otherwise. Brief §0.3: no aggregate efficacy statistic
+  // renders anywhere, and the owner discussing his own observations on X is not the site asserting
+  // group efficacy.
+  //
+  // The crawler's document has no cohort: build/prerender.js renders routes, not query strings, and
+  // setPageMeta() keeps the canonical query-free. A shared start date is not a page.
+  const COHORT_RE = /^(\d{4}-\d{2}-\d{2})-([a-z0-9][a-z0-9-]{0,23})$/;
+  const COHORT_BACK = 6, COHORT_AHEAD = 28;
+  function cohortParse(slug, rc) {
+    if (!slug) return null;
+    const s = String(slug).trim().toLowerCase().slice(0, 64);
+    const m = s.match(COHORT_RE);
+    if (!m) return { error: 'A cohort link looks like ?cohort=2026-08-04-knees — a start date, then a short name. This one does not, so it has been ignored and nothing on this page has changed.' };
+    const start = m[1], name = m[2];
+    if (!TRACK_DAY_RE.test(start)) return { error: `“${start}” is not a real date, so this cohort link has been ignored.` };
+    const since = dayGap(start, isoDay());          // days from the cohort's start to today
+    if (since > COHORT_BACK) return { error: `That cohort started ${since} days ago, so its ${TRACK_DAYS} days are already over. A cohort link is never allowed to hand you a finished week — that would be a write-up for days you did not do.` };
+    if (since < -COHORT_AHEAD) return { error: `That cohort starts more than ${COHORT_AHEAD} days from now, which is too far ahead to be a real start date. Ignored.` };
+    const g = receiptGuard(rc);
+    if (!g.ok) return { error: `No cohort runs on this protocol. ${g.why} A cohort is only ever run on a week that costs nothing — never on a supplement and never on a prescription.` };
+    return { slug: s, start, name, since, ahead: since < 0 ? -since : 0, live: since >= 0 };
+  }
+  function cohortStripHTML(problem, rc, cohort) {
+    if (!cohort) return '';
+    if (cohort.error) return `<p class="p1-cohort p1-cohort-no" data-cohort="refused">🗓 ${esc(cohort.error)}</p>`;
+    const log = trackGet(problem, rc);
+    const mine = log && log.started;
+    const dayN = Math.min(TRACK_DAYS, cohort.since + 1);
+    return `<div class="p1-cohort" data-cohort="ok" data-cohort-start="${esc(cohort.start)}">
+      <p class="p1-co-head">🗓 Cohort <b>${esc(cohort.name)}</b> — everyone in it starts on <b>${esc(cohort.start)}</b>.</p>
+      <p class="p1-co-day">${cohort.live
+        ? `That makes today <b>day ${dayN} of ${TRACK_DAYS}</b> for this cohort.${cohort.since > 0 ? ` You are joining on day ${dayN}, so days 1–${cohort.since} will stay empty — they are days you did not do.` : ''}`
+        : `It has not started yet — that is <b>${cohort.ahead} day${cohort.ahead === 1 ? '' : 's'}</b> from now. You can still start on your own today; the cohort only shares a date.`}</p>
+      ${mine ? `<p class="p1-co-note">You already started this on <b>${esc(log.started)}</b>, and a link cannot move a log you have begun. Your day count stays your own.</p>` : ''}
+      <p class="p1-co-note">A shared start date and nothing else. There is no leaderboard, no ranking and no count of anyone else — this page cannot see another person's week, and nothing about yours is published anywhere.</p>
+    </div>`;
+  }
+  function phase1Section(problem, rc, cohort) {
     const p1 = rc.phase1;
     if (!p1 && !rc.phase1None) return '';
     if (!p1) {
@@ -5713,6 +5774,7 @@
         <p class="p1-action">This protocol has no free first step.</p>
         <p class="p1-quote">${esc(rc.phase1None)}</p>
         <p class="p1-constant">Every other protocol here opens with one thing that costs nothing. This one does not, and saying otherwise would mean inventing a lever this page’s own sources do not contain. Read the rest, and take it to a doctor or pharmacist before you buy anything.</p>
+        ${cohortStripHTML(problem, rc, cohort)}
       </section>`;
     }
     const sig = problem.phase1Signal || '', within = !!problem.phase1SignalWithin7;
@@ -5732,8 +5794,9 @@
           : `That is the expected result, because ${esc(sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
       </dl>
       <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p>
+      ${cohortStripHTML(problem, rc, cohort)}
       <div class="p1-actions">
-        <button class="cta-primary p1-start" id="phase1-start"${(st && st.started) ? ' disabled' : ''}>${(st && st.started) ? `✓ Started ${esc(st.started)} on this device` : '▶ Start day 1'}</button>
+        <button class="cta-primary p1-start" id="phase1-start"${(st && st.started) ? ' disabled' : ''}>${(st && st.started) ? `✓ Started ${esc(st.started)} on this device` : (cohort && !cohort.error && cohort.live ? `▶ Join the cohort — start on ${esc(cohort.start)}` : '▶ Start day 1')}</button>
         <button class="p1-skip" id="phase1-skip">I already do this — open Phase 2</button>
       </div>
       <div class="p1-log" id="p1-log"></div>
@@ -5813,11 +5876,15 @@
     if (next) o.logs[k] = next; else delete o.logs[k];
     return { log: next, saved: trackWrite(o) };
   }
-  function trackStart(problem, rc, startedOn) {
+  function trackStart(problem, rc, startedOn, cohortSlug) {
     return trackEdit(problem, rc, (cur) => (cur && cur.started) ? cur : {
       started: (startedOn && TRACK_DAY_RE.test(startedOn)) ? startedOn : isoDay(),
       action: (rc.phase1 || {}).action || '',
       metric: ((problem.safety || {}).metric) || '',
+      // W4 · Loop C: the cohort is recorded so the day count stays aligned once the ?cohort= query
+      // is gone from the URL. It is a label on the reader's OWN log — nothing reads it back from a
+      // server, because there is no server side to a cohort.
+      cohort: cohortSlug || null,
       sync: false,
       days: {},
     }).log;
@@ -6613,11 +6680,15 @@
     ov.querySelector('.share-dl').onclick = () => { const b = ov.querySelector('.share-dl'); b.textContent = 'Rendering…'; shareDownloadPng(built.spec, slug(built.name) + '-' + type, b); };
     ov.querySelector('.share-copy').onclick = () => { const t = ov.querySelector('.share-script'); t.select(); try { navigator.clipboard.writeText(t.value); } catch (e) { document.execCommand('copy'); } const b = ov.querySelector('.share-copy'); b.textContent = '✓ Copied'; setTimeout(() => b.textContent = 'Copy script', 1600); };
   }
-  async function renderProtocol(pid, rcid, clinicHandle) {
+  async function renderProtocol(pid, rcid, clinicHandle, cohortSlug) {
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = `<div class="empty"><h1>Couldn’t load protocol data</h1><p><a href="#/solve">← Back</a></p></div>`; return; }
     const found = findRootCause(pid, rcid);
     if (!found) { app.innerHTML = notFound(); return; }
     const { problem, rc } = found;
+    // W4 · Loop C: ?cohort=<YYYY-MM-DD>-<name>. Parsed here, once, and refused with a stated
+    // reason rather than silently dropped — a link that does nothing and says nothing is how a
+    // reader ends up believing they joined something.
+    const cohort = cohortParse(cohortSlug, rc);
     const P = generateProtocol(rc);
     const others = problem.root_causes.filter(r => r.id !== rc.id);
     const _mv = [...(P.strengthen || []), ...(P.stretch || [])].slice(0, 5).map(e => e.name).filter(Boolean).join(', ');
@@ -6662,7 +6733,7 @@
         </div>`;
       })()}
       ${safetyFirstSection(problem)}
-      ${phase1Section(problem, rc)}
+      ${phase1Section(problem, rc, cohort)}
       ${theOneThingHead(problem)}
       ${causesSection(problem, causeIndexForRc(problem, rc))}
       ${planSection(problem)}
@@ -6720,12 +6791,18 @@
     };
     const p1StartBtn = document.getElementById('phase1-start');
     if (p1StartBtn) p1StartBtn.onclick = () => {
-      p1Set({ started: isoDay() });
+      // W4 · Loop C: joining a LIVE cohort adopts its start date, which is what aligns "Day N of 7"
+      // across everyone in it. cohortParse() has already refused anything that would put the reader
+      // past day 7 on arrival, so this can never begin a week that is already finished.
+      const started = (cohort && !cohort.error && cohort.live) ? cohort.start : isoDay();
+      p1Set({ started });
       // W4: the EXPLICIT start. Nothing is logged until this tap — starting is not doing, so day 1
       // opens empty and the reader still has to say whether they did it.
-      trackStart(problem, rc);
+      trackStart(problem, rc, started, (cohort && !cohort.error) ? cohort.slug : null);
       phase1LogDraw(problem, rc, null);
-      p1StartBtn.textContent = '✓ Day 1 — the 7-day log is open below';
+      p1StartBtn.textContent = (cohort && !cohort.error && cohort.live && started !== isoDay())
+        ? `✓ Joined — the cohort's log is open below`
+        : '✓ Day 1 — the 7-day log is open below';
       p1StartBtn.disabled = true;
     };
     const p1SkipBtn = document.getElementById('phase1-skip');
@@ -7698,7 +7775,7 @@
     if (parts[0] === 'admin') renderAdmin();
     // .then(mountRcOverlayNotice): #p-causes does not exist until renderProtocol has painted, so the
     // notice has to be re-mounted after every protocol render, not only when the overlay settles.
-    if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2]).then(mountRcOverlayNotice);
+    if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2], null, QS.get('cohort')).then(mountRcOverlayNotice);
     if (parts[0] === 'clinic' && parts[3]) renderProtocol(parts[2], parts[3], parts[1]).then(mountRcOverlayNotice);
     if (parts[0] === 's' && parts[1]) renderSharedPlan(parts[1]);
     // community discussion on compound + pathway pages

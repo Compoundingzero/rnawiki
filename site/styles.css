@@ -4024,3 +4024,11 @@ a.assess-switch { text-align: center; }
 .stack-audit .sa-x:hover{background:#0b5f59}
 .stack-audit .sa-x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .stack-audit .sa-scope{margin:0;font-size:1rem;line-height:1.55;color:var(--muted)}
+/* W4 · Loop C — a cohort is a shared start date and nothing else. It reads as a note inside
+   Phase 1, not as a competition: no rank, no count, no other person anywhere.
+   #0a1420 on #f0fdfa = 16.9:1 · refused state #7c3a06 on #fffbeb = 8.1:1. */
+.p1-cohort{margin:.5rem 0 .85rem;padding:.75rem .85rem;border:1px solid #99f6e4;border-radius:12px;background:#f0fdfa}
+.p1-co-head{margin:0 0 .3rem;font-size:1rem;line-height:1.5;color:var(--head)}
+.p1-co-day{margin:0 0 .35rem;font-size:1rem;line-height:1.5;color:var(--ink)}
+.p1-co-note{margin:.25rem 0 0;font-size:1rem;line-height:1.5;color:var(--muted)}
+.p1-cohort-no{border-color:#fed7aa;background:#fffbeb;color:#7c3a06;font-size:1rem;line-height:1.55}
