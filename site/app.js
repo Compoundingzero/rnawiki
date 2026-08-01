@@ -1766,7 +1766,7 @@
         .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
       const cmpCards = cmpPeers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span><span class="cmp-stars">${'★'.repeat(o.stars)}<span class="cmp-dim">${'★'.repeat(5 - o.stars)}</span></span></a>`).join('');
       const myStack = getStack().map(id => byId[id]).filter(Boolean); let chk = '';
-      if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis, { tiers: ['danger', 'timing'] }); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">✅ No dangerous interactions flagged between ${esc(c.name)} and your ${myStack.length}-item stack.</div>`; }
+      if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis, { tiers: ['danger', 'timing'] }); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">❔ ${esc(c.name)} is the only thing in your stack, so there is nothing to cross-check it against yet. Add a second compound and this becomes an interaction check.</div>`; }
       return (cmpCards || chk) ? `<div class="cpd-explore">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
     })();
     const ch1 = hookBox(c) + stakesLine(c) + bigIdeaBanner(c) + analogyBox(c) + takeawaysBox(c) + callout('plain', 'In plain English — start here', c.plain) + moleculeViewer(c) + mythsBox(c, s) + didYouKnow + (!chainHtml && goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '') + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '');
@@ -2769,6 +2769,18 @@
   }
   // ---------- Supplement interaction engine (data: window.RNAWIKI_INTERACTIONS) ----------
   const RXN = window.RNAWIKI_INTERACTIONS || { catTags: {}, nameTags: [], rules: [], synergies: [] };
+  // ---- W3 (2026-08-01): the panel must know what it CANNOT check ------------------------------
+  // The set of tags some rule actually consumes. A compound whose tags miss this set entirely can
+  // never produce a flag, so "nothing flagged" about it is an absence of data, not a clearance.
+  // MEASURED hydrated at 390x844 on /stack (out/w3i/before.json): 171 compounds, 77 of them carry
+  // no tag any rule consumes — 35 of those prescription, controlled or unapproved — and a stack of
+  // five such compounds rendered "Interaction check ✅ No dangerous interactions flagged" with zero
+  // rows. That is a negative safety claim issued from an empty knowledge base.
+  const RULE_TAGS = (function () {
+    const s = new Set();
+    (RXN.rules || []).forEach(r => (r.need || []).forEach(n => s.add(n[0])));
+    return s;
+  })();
   function compoundTags(c) {
     const s = new Set(RXN.catTags[c.category] || []);
     const nm = (c.name || '').toLowerCase();
@@ -2778,13 +2790,19 @@
   function stackInteractions(list) {
     const byTag = {};
     list.forEach(c => compoundTags(c).forEach(t => (byTag[t] = byTag[t] || []).push(c.name)));
-    const flags = [];
+    const fired = [];
     (RXN.rules || []).forEach(rule => {
       if (!rule.need.every(n => (byTag[n[0]] || []).length >= n[1])) return;
       const involved = {};
       rule.need.forEach(n => (byTag[n[0]] || []).forEach(nm => { involved[nm] = 1; }));
-      flags.push({ tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, involved: Object.keys(involved) });
+      fired.push({ id: rule.id, notIf: rule.notIf, tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, involved: Object.keys(involved) });
     });
+    // `notIf` — a broad rule stands down when the specific rule for the same physiology already
+    // fired, so one interaction is never counted twice. Added 2026-08-01 with the hypotensive
+    // rules: beetroot + a PDE-5 inhibitor is ONE blood-pressure interaction, and the verdict line
+    // counts danger rows, so without this it would have read "2 dangerous combinations" for it.
+    const firedIds = {}; fired.forEach(f => { firedIds[f.id] = 1; });
+    const flags = fired.filter(f => !(f.notIf || []).some(id => firedIds[id]));
     const syn = [];
     (RXN.synergies || []).forEach(g => {
       const A = list.find(c => (c.name || '').toLowerCase().indexOf(g.a) >= 0);
@@ -2801,12 +2819,36 @@
     const icon = { danger: '☠️', blunt: '🔻', timing: '⏰' };
     const order = { danger: 0, blunt: 1, timing: 2 };
     r.flags.sort((a, b) => order[a.tier] - order[b.tier]);
+    // ---- W3 (2026-08-01): THE VERDICT MUST STATE ITS OWN COVERAGE ----------------------------
+    // Three things this fixes, each measured hydrated at 390x844 before the change:
+    //  1. FALSE CLEAR. L-Citrulline + PDE-5 Inhibitors rendered "✅ No dangerous interactions
+    //     flagged" (.ixn-verdict.ok) with 0 rule rows, while the same pair's own compendium entry
+    //     says "citrulline + beetroot + ED drugs (PDE-5) + nitrates together can drop blood
+    //     pressure dangerously" (content/COMPENDIUM.md:233). Same for melatonin + valerian, and
+    //     for a five-item stack of prescription/controlled compounds the engine holds nothing on.
+    //  2. NO "I DON'T KNOW" STATE. The panel had exactly two negatives — flagged, or clear. There
+    //     was no way to say "I have no pharmacology for these", which is the true answer for 77 of
+    //     171 compounds. A green tick over an empty knowledge base is the worst of the three.
+    //  3. ORDERING. The "⚠ Overlapping pathways" warning lived in the stack summary at y=1053 on a
+    //     844px screen — 209px BELOW the fold — while the green tick sat at y=486, inside it. The
+    //     reassurance was visible and the warning was not. Overlap now renders inside this panel,
+    //     directly under the verdict, and forces the verdict off green.
+    const covered = list.filter(c => { let ok = false; compoundTags(c).forEach(t => { if (RULE_TAGS.has(t)) ok = true; }); return ok; });
+    const uncovered = list.filter(c => covered.indexOf(c) < 0);
+    const overlaps = (opts && opts.overlaps) || [];
+    const nReview = r.flags.length + (overlaps.length ? 1 : 0);
     const parts = [];
     parts.push(nDanger
       ? `<span class="ixn-verdict bad">☠️ ${nDanger} dangerous combination${nDanger > 1 ? 's' : ''} — read below</span>`
-      : (r.flags.length ? `<span class="ixn-verdict warn">⚠️ ${r.flags.length} thing${r.flags.length > 1 ? 's' : ''} to review</span>`
-        : `<span class="ixn-verdict ok">✅ No dangerous interactions flagged</span>`));
+      : (nReview ? `<span class="ixn-verdict warn">⚠️ ${nReview} thing${nReview > 1 ? 's' : ''} to review</span>`
+        : (covered.length < 2
+          ? `<span class="ixn-verdict warn">❔ Not enough to check — I have interaction pharmacology for ${covered.length} of these ${list.length}</span>`
+          : `<span class="ixn-verdict ok">✅ Nothing flagged between the ${covered.length} of ${list.length} I have pharmacology for</span>`)));
     if (r.synergies.length) parts.push(`<span class="ixn-verdict good">✅ ${r.synergies.length} good pairing${r.synergies.length > 1 ? 's' : ''}</span>`);
+    const lap = overlaps.length ? `<div class="ixn blunt">
+        <div class="ixn-h">🔻 <b>Overlapping pathways</b> <span class="ixn-who">${overlaps.map(o => esc(o.label)).join(' · ')}</span></div>
+        <p class="ixn-why">Two or more of these push the same pathway: ${overlaps.map(o => `${esc(o.label)} ×${o.n}`).join(', ')}. That can mean synergy — or the same effect delivered twice, which is how side-effects add up without the dose on the label going up.</p>
+        <p class="ixn-act"><b>What to do:</b> Treat compounds sharing a pathway as one lever, not two. Add them one at a time so you can tell which is doing what.</p></div>` : '';
     const rows = r.flags.map(f => `<div class="ixn ${f.tier}">
         <div class="ixn-h">${icon[f.tier]} <b>${esc(f.title)}</b> <span class="ixn-who">${f.involved.map(esc).join(' + ')}</span></div>
         <p class="ixn-why">${esc(f.why)}</p>
@@ -2816,7 +2858,8 @@
         <p class="ixn-why">${esc(s.why)}</p></div>`).join('');
     return `<div class="ixn-panel">
       <div class="ixn-top"><b>Interaction check</b> ${parts.join(' ')}</div>
-      ${rows}${syn}
+      ${rows}${lap}${syn}
+      ${uncovered.length ? `<p class="ixn-foot ixn-gap">❔ I hold no interaction pharmacology for ${uncovered.map(c => esc(c.name)).join(', ')} — nothing flagged against ${uncovered.length > 1 ? 'those' : 'that'} is an absence of data, not a clearance.</p>` : ''}
       <p class="ixn-foot">Educational signal from known pharmacology — not a safety clearance. Confirm anything you're unsure of with a pharmacist or doctor.</p>
     </div>`;
   }
@@ -2832,17 +2875,22 @@
       (c.pathwayIds || []).forEach(i => (paths[i] = (paths[i] || []).concat(c.name)));
       (c.targets || []).forEach(t => { const k = t.sym.toUpperCase(); (tgts[k] = tgts[k] || { sym: t.sym, who: [] }).who.push(c.name); });
     });
-    const overlaps = Object.keys(paths).filter(i => paths[i].length > 1);
+    // Overlapping pathways moved INTO the interaction panel (W3, 2026-08-01). Measured hydrated at
+    // 390x844: this warning rendered at y=1053 inside .stack-summary — 209px below the 844px fold —
+    // while the "✅ No dangerous interactions flagged" tick sat at y=486, in the first screenful.
+    // On mobile the reassurance was visible and the warning was not. It is one warning, so it is
+    // rendered once, at the top, and it now forces the verdict off green.
+    const overlaps = Object.keys(paths).filter(i => paths[i].length > 1)
+      .map(i => ({ label: D.pathways[i].shortLabel, n: paths[i].length }));
     const rows = list.map(c => `<div class="stack-row"><a href="#/c/${slug(c.name)}"><b>${c.name}</b></a> <span class="stars" style="font-size:.75rem">${'★'.repeat(c.stars)}</span> <span style="color:var(--faint);font-size:.82rem">${c.category}</span> <button class="stack-x" data-id="${c.id}">remove</button></div>`).join('');
     const sharedTargets = Object.values(tgts).filter(t => t.who.length > 1);
     out.innerHTML = `
-      ${interactionPanel(list)}
+      ${interactionPanel(list, { overlaps })}
       <div class="stack-grid">
         <div class="stack-list">${rows}</div>
         <div class="stack-summary">
           <div class="ss-block"><div class="ss-h">Goals covered (${Object.keys(goals).length})</div>${Object.keys(goals).map(g => `<a class="chip" href="#/goal/${g}">${goalById[g].icon} ${goalById[g].label}</a>`).join(' ') || '—'}</div>
           <div class="ss-block"><div class="ss-h">Pathways hit (${Object.keys(paths).length})</div>${Object.keys(paths).map(i => `<a class="ex-node p" href="#/pathway/${i}">${D.pathways[i].shortLabel}${paths[i].length > 1 ? ' ×' + paths[i].length : ''}</a>`).join(' ') || '—'}</div>
-          ${overlaps.length ? `<div class="ss-block warn-block"><div class="ss-h">⚠ Overlapping pathways</div><p>Two or more of your compounds push the same pathway: ${overlaps.map(i => D.pathways[i].shortLabel).join(', ')}. That can mean synergy — or redundancy and additive side-effects. Check for stacked risk.</p></div>` : ''}
           ${sharedTargets.length ? `<div class="ss-block"><div class="ss-h">Shared molecular targets</div>${sharedTargets.map(t => `<a class="ex-node t" href="#/target/${tkey(t.sym)}">${t.sym} ×${t.who.length}</a>`).join(' ')}</div>` : ''}
           <div class="ss-block"><div class="ss-h">This is not medical advice</div><p style="color:var(--faint);font-size:.85rem">Combined pathway/target overlap is an educational signal, not a safety clearance. Interactions require a clinician.</p></div>
         </div>
