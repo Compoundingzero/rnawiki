@@ -1210,7 +1210,11 @@ GRAPH.problems.forEach((p) => {
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
       ${redflags}
       ${phase1}
-      ${rc.keystone ? `<div class="keystone-card"><div class="ks-badge">⭐ Your one keystone</div><p class="ks-one">${esc(rc.keystone.one)}</p><p class="ks-why">${esc(rc.keystone.why)}</p></div>` : ''}
+      ${/* W4 (2026-08-02): suppressed on the 38 of 52 routes whose Phase 1 was SELECTED FROM THIS
+            VERY KEYSTONE — otherwise the page prints the same authored sentence twice. site/app.js
+            carries the identical condition; if the two drift, a crawler and a reader disagree
+            about whether this card exists, which is the D33 defect class. */''}
+      ${(rc.keystone && !(rc.phase1 && rc.phase1.from === 'keystone')) ? `<div class="keystone-card"><div class="ks-badge">⭐ Your one keystone</div><p class="ks-one">${esc(rc.keystone.one)}</p><p class="ks-why">${esc(rc.keystone.why)}</p></div>` : ''}
       ${causeCascadeSummary(p)}
       <h3>Move — the mechanics that fix it${rc.prescription ? `: ${esc(rc.prescription.scheme)}` : ''}</h3>
       <p class="p-maint-note">The full programme, for after the 7 days. Phase 1 is one piece of this, done alone.</p>

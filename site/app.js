@@ -5527,7 +5527,14 @@
   // The single highest-leverage action, surfaced at the top of a protocol.
   function theOneThingHead(problem) {
     const w = problem.why; if (!w || !w.theOneThing) return '';
-    return `<div class="one-thing-head"><span class="oth-badge">⭐ Start here — the one thing</span>${mdBlocks(w.theOneThing, mdInline)}<a class="oth-jump" data-scroll="p-causes">See the full cause-by-cause plan ↓</a></div>`;
+    // W3.6/W4 (2026-08-02): this badge read "⭐ Start here — the one thing". MEASURED HYDRATED at
+    // 390x844 in the DEFAULT DOM state on all 52 protocol routes: the phrase "one thing" appeared
+    // a MEDIAN OF 3 TIMES per page, in three different senses, on 52/52 — "📏 THE ONE THING TO
+    // TRACK" (y median 1,387), "⭐ START HERE — THE ONE THING" (y median 1,967) and "⭐ YOUR ONE
+    // KEYSTONE … Nail this one thing and the rest compounds" (y median 17,687). Phase 1 made it 4
+    // (median 4, min 4, max 6, on 52/52). Phase 1 is now the one thing to DO, and this block is
+    // orientation prose, so it says what it is instead of competing for the same words.
+    return `<div class="one-thing-head"><span class="oth-badge">⭐ Before you start — what actually matters in this cause</span>${mdBlocks(w.theOneThing, mdInline)}<a class="oth-jump" data-scroll="p-causes">See the full cause-by-cause plan ↓</a></div>`;
   }
   // Short symptom teaser for the accordion header — authored `hook`, else the first clause of the symptoms.
   function causeHook(c) {
@@ -6043,11 +6050,21 @@
       ${protocolLayers(problem, rc, P)}
       <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">This is Phase 2 — the full programme. Do Phase 1 first: it is one free thing for 7 days, and it is the only way to know what actually moved.</span></div>
       ${rcSwitch}
-      ${rc.keystone ? `<div class="keystone-card">
+      ${'' /* W4/W3.6 (2026-08-02): the keystone card is SUPPRESSED on the 38 of 52 routes whose
+             Phase 1 was SELECTED FROM THIS VERY KEYSTONE. MEASURED HYDRATED at 390x844, default
+             DOM, 52/52: this card renders at median y 17,687 px = 94% of a median 18,939 px page,
+             and Phase 1 now renders at median y 1,967 px = 10% — so it was printing the same
+             authored sentence twice, ~19 phone screens apart, under two different "one thing"
+             headings. Where the Phase 1 came from somewhere else (a behaviour fix on 5, the
+             movement prescription on 1) the card still earns its place — it is a DIFFERENT habit
+             — so it renders, minus the phrase that now belongs to Phase 1. build/prerender.js
+             carries the identical condition; if the two drift, the crawler and the reader
+             disagree about whether the card exists, which is the D33 defect class. */}
+      ${(rc.keystone && !(rc.phase1 && rc.phase1.from === 'keystone')) ? `<div class="keystone-card">
         <div class="ks-badge">⭐ Your one keystone</div>
         <p class="ks-one">${esc(rc.keystone.one)}</p>
         <p class="ks-why">${esc(rc.keystone.why)}</p>
-        <p class="ks-note">The highest-impact, lowest-effort habit for this. Nail this one thing and the rest compounds.</p>
+        <p class="ks-note">The highest-impact, lowest-effort habit for this — for after the 7 days, not instead of them.</p>
       </div>` : ''}
       ${'' /* REMOVED 2026-07-28: #community-stacks. It rendered a 232-char empty state on 42 of 52
              protocol pages, and on the other 10 it rendered SEEDED DEMO FORKS attributed to a
