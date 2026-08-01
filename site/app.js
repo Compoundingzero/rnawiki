@@ -5724,12 +5724,25 @@
       ${(e.instructions || []).length ? `<details><summary>How to do it${muscles ? ' · ' + esc(muscles) : ''}</summary><ol>${e.instructions.slice(0, 5).map(i => `<li>${esc(i)}</li>`).join('')}</ol></details>` : ''}</div>
     </div>`;
   }
+  // Card snippet. `.slice(0, 150)` cut the text dead at 150 characters with no ellipsis: measured
+  // on the 178 stack cards the 52 protocol pages now render, 106 ended mid-sentence and several
+  // mid-WORD — "…especially glycinate at night — reliabl", "…recover fas" — so the card read as if
+  // the sentence had finished there. (Same defect class as D8's mid-word meta descriptions, which
+  // truncate cleanly in the prerendered document and not in the hydrated one.) Cut at the last word
+  // boundary and say it was cut. Strip → slice → escape, in that order, so the cut can never land
+  // inside an HTML entity.
+  const cardSnip = (s, n) => {
+    const t = mdStrip(s || '');
+    if (t.length <= n) return esc(t);
+    const cut = t.slice(0, n), i = cut.lastIndexOf(' ');
+    return esc((i > n * 0.6 ? cut.slice(0, i) : cut).replace(/[\s,;:—–-]+$/, '')) + '…';
+  };
   function stackCard(c) {
     return `<div class="st-card${needsDoctor(c) ? ' rx' : ''}">
       <a class="st-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>
       <span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span></a>
       <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
-      <p class="st-plain">${esc(mdStrip(c.plain || c.bottom || c.mechanism || '').slice(0, 150))}</p>
+      <p class="st-plain">${cardSnip(c.plain || c.bottom || c.mechanism, 150)}</p>
       <button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>
     </div>`;
   }
