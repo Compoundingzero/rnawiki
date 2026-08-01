@@ -595,8 +595,8 @@ const ASSERTIONS = {
     // PROVE THIS GATE by restoring `did: 1` in that Object.assign default. It fails by name.
     // IT MUST STAY LAST in this array: it overwrites rnawiki_track, and the two assertions above it
     // read the finished week the receipt assertion plants.
-    name: 'aReceiptAssertsOnlyRecordedDays',
-    why: 'W4.5: the card and the share text are the two artefacts that leave the device. Neither may state a fact the reader did not enter',
+    name: 'aReceiptAssertsOnlyRecordedDaysAndOnlyAfterDay7',
+    why: 'W4.5: the card and the share text are the two artefacts that leave the device. Neither may state a fact the reader did not enter, and neither may exist before the week it describes is over',
     evaluate: async () => {
       const [, , pid, rcid] = location.pathname.split('/');
       const key = pid + '/' + rcid;
@@ -653,6 +653,43 @@ const ASSERTIONS = {
       if (!rows.some(r => /did not answer/i.test(r))) return 'the card counts 4 unanswered days in "days tapped" and states them nowhere — the two counts silently disagree';
       const sh = document.querySelector('#p1-log .rcpt-x');
       if (sh && !/Did it on 3 of the 7 days/.test(decodeURIComponent(sh.getAttribute('href')))) return 'the share text does not carry the same count as the card — it is the copy that travels';
+      // ---- B. THE DAY-7 LOCK. Not paintable: forge the tap. ----
+      // The lock used to live in receiptBlockHTML() only, i.e. it chose MARKUP. Measured on day 3
+      // (qa/out/w45log_bde.json): the visible state was perfect — "Day 3 of 7", pending, no download
+      // and no share control — while an injected <button data-p1="receipt-png"> reached the delegated
+      // handler and wrote rnawiki-7-day-log-…-2026-08-08.png to disk, a card for a window ending four
+      // days after the device's own date.
+      // PROVE by deleting `if (!receiptReady(log, isoDay()).ok) return null;` from receiptModel().
+      put({ started: today, action: '', metric: '', sync: false, days: { [today]: { did: 1, dir: 'better' } } });
+      const e3 = await redraw(0); if (e3) return e3;
+      const e3b = await redraw(0); if (e3b) return e3b;
+      const w = document.querySelector('#p1-log .rcpt');
+      if (!w || w.dataset.receipt !== 'pending') return `on day 1 the receipt state is "${w ? w.dataset.receipt : 'none'}", expected "pending"`;
+      if (document.querySelector('#p1-log button[data-p1="receipt-png"]')) return 'the download control exists on day 1';
+      if (document.querySelector('#p1-log .rcpt-x')) return 'the share control exists on day 1';
+      // The click handler is delegated (host.onclick + closest('button[data-p1]')), so an injected
+      // button is a real client-side route into receiptDownload(). This is the exact forgery that
+      // wrote a future-dated PNG to disk before the lock moved into receiptModel().
+      const proto = HTMLAnchorElement.prototype, realClick = proto.click;
+      let minted = null;
+      proto.click = function () { minted = { href: String(this.href).slice(0, 32), name: this.download }; };
+      const forged = document.createElement('button'); forged.dataset.p1 = 'receipt-png';
+      try { document.getElementById('p1-log').appendChild(forged); forged.click(); await new Promise(r => setTimeout(r, 900)); }
+      finally { proto.click = realClick; forged.remove(); }
+      if (minted) return `a forged tap on day 1 minted a real download (${minted.name}) — the day-7 lock is painted in receiptBlockHTML() and not enforced in receiptModel()`;
+      const said = (document.getElementById('p1-sync-state') || {}).textContent || '';
+      if (!/day 1 of 7/i.test(said)) return `the refusal said "${said}" — it must name the real reason (the week is not over), not "nothing recorded"`;
+      // B2. A start date in the FUTURE is legitimate (a cohort may start up to 28 days ahead) and
+      // must be equally unmintable.
+      const fd = {};
+      for (let i = 0; i < 7; i++) fd[dm(i + 3)] = { did: 1, dir: 'better' };
+      put({ started: dm(3), action: '', metric: '', sync: false, days: fd });
+      let minted2 = null;
+      proto.click = function () { minted2 = this.download; };
+      const forged2 = document.createElement('button'); forged2.dataset.p1 = 'receipt-png';
+      try { document.getElementById('p1-log').appendChild(forged2); forged2.click(); await new Promise(r => setTimeout(r, 900)); }
+      finally { proto.click = realClick; forged2.remove(); }
+      if (minted2) return `a week that has not started yet minted a card (${minted2}) — seven days nobody has lived`;
       localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
       return null;
     },

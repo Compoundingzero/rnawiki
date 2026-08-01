@@ -6147,6 +6147,20 @@
     if (named.length) return { ok: false, why: `This Phase 1 names ${named.slice(0, 3).join(', ')} — a compound, not a free mechanic.` };
     return { ok: true };
   }
+  // THE DAY-7 LOCK, IN THE MODEL. It used to live only in receiptBlockHTML(), i.e. it decided what to
+  // DRAW and nothing else. MEASURED in a real browser, fresh profile (qa/out/w45log_bde.json): a log
+  // started 2026-08-02, clock at day 3, visible state entirely correct - "Day 3 of 7",
+  // data-receipt="pending", no download control, no share control - and an injected
+  // <button data-p1="receipt-png"> reached the delegated handler, ran receiptDownload(), fired the
+  // download anchor and wrote rnawiki-7-day-log-cravings-glycemic-swings-2026-08-08.png to disk: a
+  // card titled "7-day self-observation log" for the window 2026-08-02 -> 2026-08-08, ending four
+  // days after the device's own date. A guard that only chooses markup is painted, not enforced.
+  function receiptReady(log, today) {
+    if (!log || !log.started) return { ok: false, why: 'There is no 7-day log on this device.' };
+    const dayN = Math.min(TRACK_DAYS, Math.max(1, dayGap(log.started, today) + 1));
+    if (dayN < TRACK_DAYS) return { ok: false, dayN, why: `This is day ${dayN} of ${TRACK_DAYS}. The write-up is only made once the ${TRACK_DAYS} days are over — a card dated into the future would be a record of days nobody has lived yet.` };
+    return { ok: true, dayN };
+  }
   // ONE model, two renderers. The card on the page and the PNG are drawn from this same object, so
   // they cannot say different things — the D33 defect class, one level down.
   function receiptModel(problem, rc) {
@@ -6154,6 +6168,10 @@
     if (!g.ok) return null;
     const log = trackGet(problem, rc);
     if (!log || !log.started) return null;
+    // The lock, on the ONLY path that can produce a card, a share text or a PNG. dayN < 7 also covers
+    // a start date in the future (a cohort may legitimately start up to 28 days ahead, app.js:5738),
+    // and once it passes, days[6] <= today by construction, so no counted day can be in the future.
+    if (!receiptReady(log, isoDay()).ok) return null;
     const days = [];
     for (let i = 0; i < TRACK_DAYS; i++) days.push(dayPlus(log.started, i));
     const loggedN = days.filter((d) => log.days[d]).length;
@@ -6214,7 +6232,9 @@
     if (!g.ok) {
       return `<div class="rcpt" data-receipt="refused"><p class="rcpt-refused"><b>No write-up for this one.</b> ${esc(g.why)}</p></div>`;
     }
-    if (dayN < TRACK_DAYS) {
+    // ONE predicate, called from two places, so what is DRAWN and what can be MINTED can never
+    // disagree again. This was the whole defect: this line was correct and it was the only copy.
+    if (!receiptReady(log, today).ok) {
       return `<div class="rcpt" data-receipt="pending"><p class="rcpt-pending">On day ${TRACK_DAYS} this becomes a card you can keep — what you did, on how many days, and what you tapped on the last day against your own first one. Nothing else, because nothing else was recorded.</p></div>`;
     }
     const m = receiptModel(problem, rc);
@@ -6334,7 +6354,11 @@
     // Second refusal, at the point of writing the file. The button cannot exist without a model, so
     // reaching this is either a corrupted log or somebody driving the DOM by hand; either way the
     // answer is no card.
-    if (!m) { say('No write-up was made. ' + (receiptGuard(rc).why || 'There is nothing recorded to write up.')); return; }
+    if (!m) {
+      const g = receiptGuard(rc), r = receiptReady(trackGet(problem, rc), isoDay());
+      say('No write-up was made. ' + (!g.ok ? g.why : (!r.ok ? r.why : 'Nothing has been tapped yet, so there is nothing to write up.')));
+      return;
+    }
     let url = '';
     try {
       const canvas = receiptPNG(m);
