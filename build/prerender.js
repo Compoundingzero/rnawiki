@@ -863,6 +863,44 @@ function causeChainFlat(chain) {
     return `<div class="bjf-step">${lay}${node}${say}</div>`;
   }).join('');
 }
+// ---- a plan item ------------------------------------------------------------------------------
+// Two defects, both measured hydrated on all 41 /problem/* pages on 2026-08-01:
+//
+// 1. NOTHING WAS LINKED. 861 `.cf-fixes li` rendered, 0 of them containing an `a[href]` — while the
+//    SPA's own protocol pages link the identical items (app.js:5281 links kind==='compound' when
+//    resolveCompound() hits). So the crawler document, which is the one ~90% of readers get, named
+//    a compound and offered no way to reach the page about it. This links them with findCpt(), the
+//    resolver already in this file — deliberately NOT app.js's resolveCompound(), whose 5th pass is
+//    a flattened substring match. findCpt resolves 270 of the 283 kind:"compound" items; the other
+//    13 render as plain text rather than as a wrong link (acne "Benzoyl peroxide"; B12 x3 in
+//    brain-fog/low-mood/memory; memory "Folate + B6/B12"; menopause "Fezolinetant" /
+//    "Micronized progesterone" / "Vaginal estrogen"; hair-loss "Ketoconazole"; gut-health
+//    "Butyrate"; immunity "Magnesium glycinate"; pcos "magnesium_mg"; thyroid — no ref at all).
+//
+// 2. THE CHIP DID NOT SAY WHAT THE REGULATOR SAYS. It printed the authored `kind` verbatim, and 20
+//    of the 270 resolvable kind:"compound" items resolve to a compound the regulator does not treat
+//    as a supplement: Semaglutide, Tirzepatide, Estradiol/Menopausal HRT x4, Tretinoin x2, PT-141
+//    x2, Melatonin x3, Red Yeast Rice · Ezetimibe x2 (prescription/pharmacy) and BPC-157 x3,
+//    GHK-Cu x2 (unapproved). The chip is now derived from regClass() of the compound the item
+//    actually resolves to — i.e. from the FDA's or the relevant regulator's current classification,
+//    never from the authored kind and never from anyone's opinion. All 171 compounds now carry an
+//    authored `regulatory_class`, so regClass() reads that field on 171/171 and its legacy name
+//    regexes never fire. Nothing here implies that a person has reviewed anything.
+const REG_CHIP = {
+  supplement: 'Supplement', otc: 'Over the counter', pharmacy: 'Pharmacy medicine',
+  prescription: 'Prescription only', controlled: 'Controlled substance', unapproved: 'Not approved',
+};
+const KIND_CHIP = { behavior: 'Behaviour', behaviour: 'Behaviour', food: 'Food', rx: 'Prescription only', compound: 'Compound', other: 'Other' };
+function fixItemHtml(f) {
+  // kind:"rx" items stay unlinked, for parity with the SPA (app.js:5281 links kind==='compound'
+  // only). 16 of the 93 rx items carry a ref; linking them would be new prescription-medicine link
+  // surface beyond what the protocol pages already ship, which is not this change's concern.
+  const c = (f.kind === 'compound' && f.ref) ? findCpt(f.ref) : null;
+  const cls = c ? regClass(c) : String(f.kind || 'other');
+  const label = c ? (REG_CHIP[cls] || KIND_CHIP.compound) : (KIND_CHIP[cls] || KIND_CHIP.other);
+  const what = mdSafe(f.what || '');
+  return `<li><span class="cf-kind ck-${esc(slug(cls) || 'other')}">${esc(label)}</span> ${c ? `<a href="/c/${slug(c.name)}">${what}</a>` : what}</li>`;
+}
 function causeCascadeFlat(p) {
   const w = CAUSE[p.id]; if (!w || !Array.isArray(w.causes) || !w.causes.length) return '';
   const causes = w.causes.slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
@@ -872,7 +910,7 @@ function causeCascadeFlat(p) {
     const chain = c.chain && c.chain.length ? `<h4>The pathway — step by step</h4>${causeChainFlat(c.chain)}` : '';
     const sym = (c.tell && c.tell.symptoms) ? `<p class="cf-tell"><strong>Is this you?</strong> ${mdSafe(String(c.tell.symptoms).replace(/\s*Honest tiering:.*$/i, '').trim())}</p>` : '';
     const conf = c.evidenceTier ? `<p class="cf-conf"><small>How well established is this mechanism: <b>${esc(tierLabel(c.evidenceTier))}</b> — this rates the causal link, not how much a given fix will help you.</small></p>` : '';
-    const fixes = Array.isArray(c.fixes) && c.fixes.length ? `<h4>Your plan if this is your cause</h4><p class="muted">Work down the list — cheapest and safest first.</p><ul class="cf-fixes">${c.fixes.map((f) => `<li><span class="cf-kind">${esc(f.kind || 'other')}</span> ${mdSafe(f.what || '')}</li>`).join('')}</ul>` : '';
+    const fixes = Array.isArray(c.fixes) && c.fixes.length ? `<h4>Your plan if this is your cause</h4><p class="muted">Work down the list — cheapest and safest first. The tag on each step is the regulator’s current classification, not a recommendation.</p><ul class="cf-fixes">${c.fixes.map(fixItemHtml).join('')}</ul>` : '';
     const deeper = c.plain ? `<div class="cf-deeper"><p><strong>Go deeper — the full mechanism.</strong></p>${mdBlocks(c.plain, mdSafe)}</div>` : '';
     return `<div class="cause-flat-item"><h3>Cause ${c.rank || i + 1}: ${mdSafe(c.name)}</h3>${hook}${ki}${chain}${sym}${conf}${fixes}${deeper}</div>`;
   }).join('');
