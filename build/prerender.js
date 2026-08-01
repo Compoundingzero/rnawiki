@@ -2806,6 +2806,45 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log('[prerender] /problem spine OK — %d pages: escalation, %d tells and a protocol route all above the prose; %d/%d plan items linked.', checked, causesSeen, linkedItems, planItems);
 })();
 
+// ---- build-time assertion: /protocol/* puts the red flags above the recommendations ------------
+// Added 2026-08-01 (W2). The defect: on 52/52 prerendered protocol pages the escalation block was
+// emitted AFTER the Stack and the Medical options — the reader of the document ~90% of traffic gets
+// met a star-ranked supplement list before anything told them which knee pain is not a self-care
+// problem. The same inversion was measured hydrated (median y 11,023 px for the 🚩 card against
+// 8,914 px for the first supplement line, on an 18,430 px page).
+// Prove this gate by moving ${redflags} back below ${med.length ? ... : ''} in the protocol body.
+(function assertProtocolSpine() {
+  const bad = [];
+  let checked = 0;
+  pages.filter((pg) => /^\/protocol\//.test(pg.route)).forEach((pg) => {
+    checked++;
+    const h = pg.html;
+    const at = (re) => { const m = h.match(re); return m ? m.index : -1; };
+    const iRed = at(/id="red-flags"/);
+    // NOT /<h3>Stack — /: anchorHeadings() rewrites every h3 into `<h3 id=…><a class="hanchor">#</a>`
+    // by the time the page is written, so that pattern never matches and the ordering clause below
+    // would be skipped on 52/52 — a gate over an empty set, which always passes. Match the TEXT.
+    const iStack = at(/Stack — supplements with human trial evidence/);
+    const iMetric = at(/data-primary-metric="/);
+    const iStop = at(/data-stop-rule/);
+    if (iRed < 0) { bad.push(`${pg.route}: no #red-flags escalation block`); return; }
+    if (iStack < 0) { bad.push(`${pg.route}: no Stack heading — this assertion can no longer see the thing it orders against`); return; }
+    if (iMetric < 0) bad.push(`${pg.route}: no [data-primary-metric] element — nothing names the one thing this protocol is judged by`);
+    if (iStop < 0) bad.push(`${pg.route}: no [data-stop-rule] element — nothing states the point at which the answer is to stop`);
+    if (!/not medical advice/i.test(h)) bad.push(`${pg.route}: does not say the page is not medical advice`);
+    if (iRed > iStack) bad.push(`${pg.route}: the escalation block comes AFTER the supplement stack — this is the defect`);
+    if (iMetric >= 0 && iMetric > iStack) bad.push(`${pg.route}: the tracked metric comes after the supplement stack`);
+    if (iStop >= 0 && iStop > iStack) bad.push(`${pg.route}: the stop rule comes after the supplement stack`);
+  });
+  if (bad.length) {
+    console.error('\n[prerender] /protocol SPINE ASSERTION FAILED — refusing to build:');
+    bad.slice(0, 20).forEach((m) => console.error('  ✗ ' + m));
+    if (bad.length > 20) console.error(`  … and ${bad.length - 20} more`);
+    process.exit(1);
+  }
+  console.log('[prerender] /protocol spine OK — %d pages: red flags, a named metric and a stop rule all above the stack.', checked);
+})();
+
 // ---- build-time assertion: the internal link graph ---------------------------------------------
 // Added 2026-07-30. Two failures in this one class shipped in a single evening, and neither could be
 // caught by looking at the page that contained the bug:

@@ -269,6 +269,47 @@ const ASSERTIONS = {
         return `document.title ${JSON.stringify(document.title)} does not name the root cause`;
       return null;
     },
+  }, {
+    // W2 safety structure. Measured hydrated at 390x844 in the DEFAULT DOM state on all 52 protocol
+    // routes before this: a labelled stop-rule element 0/52, a named tracking metric 0/52, and the
+    // 🚩 card BELOW the page's first supplement recommendation on 52/52 (median y 11,023 px against
+    // 8,914 px, on an 18,430 px page). Note WHICH recommendation comes first: not the Stack, but the
+    // "💊 Supplement" fix line inside the open cause accordion — the assertion above compares
+    // against #p-stack and so cannot see that, which is why this one exists.
+    // Both structures are promoted from the page's own authored plan by data/protocol_safety.json
+    // and gated in build/parse.js; this checks they survived hydration and stayed in front.
+    // Prove this gate by moving ${safetyFirstSection(problem)} back below
+    // ${causesSection(...)} in renderProtocol(), or by deleting either data attribute.
+    name: 'safetyStructureLeadsTheProtocol',
+    why: 'W2: the red flags, the one tracked metric and the stop rule must come before the first thing the page recommends',
+    evaluate: () => {
+      const [, , pid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const app = document.querySelector('#app');
+      const s = p.safety;
+      if (!s) return `problem ${pid} carries no promoted safety structure — build/parse.js should have refused to build`;
+      const metric = app.querySelector('[data-primary-metric]');
+      const stop = app.querySelector('[data-stop-rule]');
+      if (!metric) return 'no [data-primary-metric] element — nothing names the one thing this protocol is judged by';
+      if (!stop) return 'no [data-stop-rule] element — nothing states the point at which the answer is to stop';
+      if (metric.getAttribute('data-primary-metric') !== s.metric)
+        return `the metric on the page is not the one the build promoted (${JSON.stringify(metric.getAttribute('data-primary-metric'))} vs ${JSON.stringify(s.metric)})`;
+      if (stop.getAttribute('data-checkpoint') !== s.checkpoint)
+        return `the stop rule names checkpoint ${JSON.stringify(stop.getAttribute('data-checkpoint'))}, the build promoted ${JSON.stringify(s.checkpoint)}`;
+      const txt = (app.textContent || '').replace(/\s+/g, ' ');
+      if (txt.indexOf(s.metricSource.replace(/\*/g, '')) < 0)
+        return 'the metric label is printed without the authored sentence it was promoted from';
+      // ORDER is the assertion. The first recommendation on the page is the earliest of: a
+      // "Supplement" fix line in the cause accordion, the "add the supplements" button, or the Stack.
+      const idx = el => (el ? [...app.querySelectorAll('*')].indexOf(el) : Infinity);
+      const red = app.querySelector('.plan-reassess');
+      if (!red) return 'no red-flag block';
+      const firstRec = Math.min(idx(app.querySelector('.fix-kind.fk-compound')), idx(app.querySelector('.adopt-plan')), idx(document.getElementById('p-stack')));
+      if (firstRec === Infinity) return 'no supplement recommendation found on the page — pick a different smoke route';
+      const worst = Math.max(idx(red), idx(metric), idx(stop));
+      if (worst > firstRec) return 'the safety structure comes AFTER the first supplement recommendation — this is the defect';
+      return null;
+    },
   }],
 };
 
