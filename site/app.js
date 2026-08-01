@@ -3634,6 +3634,14 @@
       id: 'wc' + ci, name: cause.name,
       diagnostic: cause.hook || (cause.tell && cause.tell.symptoms) || base.diagnostic || '',
       compounds: compNames.length ? compNames : (base.compounds || []),
+      // A per-cause protocol (the /protocol/<problem>/wc<n> route the cause quiz and the cause
+      // finder seed) IS this cause — so it carries its own join key, and never the one it would
+      // otherwise inherit from `base` through the Object.assign above. build/parse.js writes
+      // `cause_key` onto every real root cause from data/cause_map.json; without this line a wc
+      // route would claim to be about whichever cause its borrowed scaffolding root cause is
+      // about. Overwriting it here means the quiz's exact answer wins over the inherited guess,
+      // whatever order a consumer checks `_causeIndex` and `cause_key` in.
+      cause_key: cause.name,
       _causeIndex: ci, _cause: cause,
     });
   }
