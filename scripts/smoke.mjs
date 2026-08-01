@@ -280,6 +280,104 @@ const ASSERTIONS = {
     name: 'urlRootCauseIsTheOpenCause',
     selector: '#p-causes .cause-acc[data-cause-index="2"][open]',
     why: 'D3: the accordion must open the cause data/cause_map.json binds to this URL, not index 0',
+  }, {
+    // W4 (2026-08-02): THE 1-TAP LOGGER. This assertion DRIVES THE UI — it taps Start, taps a day,
+    // taps a direction — so it MUST STAY LAST in this array and this route must stay the one whose
+    // other assertion is a pure selector check. It deliberately does NOT live on
+    // /protocol/knee-pain/patellofemoral-pain: phase1IsOneFreeThingAndComesFirst there asserts that
+    // Phase 2 is CLOSED on a first visit, and tapping Start opens it.
+    // MEASURED HYDRATED at 390x844 in the DEFAULT DOM state on three protocol routes before this
+    // (out/w4log_before.json): #p1-log 0/3 · a day counter 0/3 · a sparkline 0/3 · export or restore
+    // 0/3 · input[type=range] anywhere on the page 0/3 · localStorage 40 B. The page told a reader to
+    // do one free thing every day for a week and gave them nowhere to record the week.
+    // FIVE THINGS ARE ASSERTED, and each is a rule the logger could quietly lose:
+    //   1. it works with NO ACCOUNT (this smoke run has no database at all — /api/me 503s)
+    //   2. TAP-ONLY: zero range/text/number inputs and zero textareas inside #p1-log
+    //   3. NO HEALTH STATE IN ANY URL: location.href is byte-identical before and after logging
+    //   4. an EXPLICIT start: nothing is stored until Start is tapped
+    //   5. what is stored is exactly what the panel shows, in the format the restore path validates
+    // PROVE IT by reintroducing any of them: render the direction as <input type="range">, or write
+    // the day into location.hash, or store on load instead of on the Start tap. Each fails by name.
+    name: 'phase1LoggerIsOneTapAndLeaksNothing',
+    why: 'W4: the $0 protocol must be loggable with no account, by tapping only, without putting a single health fact into a URL',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const rc = p.root_causes.find(x => x.id === rcid);
+      if (!rc.phase1) return 'this root cause carries no Phase 1 — pick a different smoke route for the logger';
+      const KEY = 'rnawiki_track';
+      const urlBefore = location.href;
+      const read = () => { try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) { return 'UNPARSEABLE'; } };
+      const host = document.getElementById('p1-log');
+      if (!host) return 'no #p1-log — Phase 1 asks for 7 days and offers nowhere to put them';
+      // 4. explicit start
+      if (read()) return 'a log already exists before Start was tapped — logging must never begin on its own';
+      if (host.querySelector('button')) return '#p1-log offers controls before Start was tapped';
+      const start = document.getElementById('phase1-start');
+      if (!start) return 'no #phase1-start button to begin the log';
+      start.click();
+      await new Promise(r => setTimeout(r, 30));
+      const t0 = read();
+      if (!t0 || t0 === 'UNPARSEABLE' || t0.v !== 1) return 'tapping Start wrote no readable v1 log to localStorage';
+      const L0 = t0.logs[pid + '/' + rcid];
+      if (!L0) return 'tapping Start wrote a log under the wrong key';
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(L0.started || '')) return 'the started date is not a plain calendar date';
+      if (Object.keys(L0.days).length) return 'Start pre-filled a day — starting is not doing, and a log that fills itself in is fiction';
+      if (L0.sync !== false) return 'anonymous sync is ON by default — it must be opt-in';
+      // the day counter and the sparkline
+      const txt = (host.innerText || '').replace(/\s+/g, ' ');
+      if (!/Day 1 of 7/.test(txt)) return `no day counter in the log ("${txt.slice(0, 80)}")`;
+      const spark = host.querySelector('.p1-spark');
+      if (!spark) return 'no sparkline';
+      if (spark.querySelectorAll('rect').length !== 7) return `the sparkline draws ${spark.querySelectorAll('rect').length} day marks, expected 7`;
+      if (!spark.getAttribute('aria-label')) return 'the sparkline has no text equivalent — a height-and-colour-only signal is D1';
+      const chips = host.querySelectorAll('.p1-chip');
+      if (chips.length !== 7) return `${chips.length} day chips, expected 7`;
+      if (![...chips].slice(1).every(c => c.disabled)) return 'a future day can be logged — that is inventing data';
+      // 2. TAP-ONLY
+      const typed = host.querySelectorAll('input[type=range],input[type=text],input[type=number],textarea,select');
+      if (typed.length) return `${typed.length} typed/dragged control(s) inside the log — it is one TAP a day, and a slider is a precision claim seven self-reports cannot support`;
+      // 1 + 5. log a day by tapping, with no account
+      if (window.__smokeMe) return 'this assertion assumes a signed-out reader';
+      const did = host.querySelector('button[data-p1="did"][data-v="1"]');
+      if (!did) return 'no "did it" tap target';
+      did.click();
+      await new Promise(r => setTimeout(r, 30));
+      const dir = document.getElementById('p1-log').querySelector('button[data-p1="dir"][data-v="better"]');
+      if (!dir) return 'no direction tap target';
+      dir.click();
+      await new Promise(r => setTimeout(r, 30));
+      const L1 = read().logs[pid + '/' + rcid];
+      const today = Object.keys(L1.days)[0];
+      if (Object.keys(L1.days).length !== 1) return `${Object.keys(L1.days).length} days written by two taps on one day`;
+      if (L1.days[today].did !== 1 || L1.days[today].dir !== 'better') return `the two taps stored ${JSON.stringify(L1.days[today])}`;
+      const spark2 = document.getElementById('p1-log').querySelector('.p1-spark');
+      if (spark2.querySelectorAll('rect.sp-bar').length !== 1) return 'the logged day did not appear in the sparkline';
+      // the direction must be clearable, or the reader can never take back a guess
+      document.getElementById('p1-log').querySelector('button[data-p1="dir"][data-v="better"]').click();
+      await new Promise(r => setTimeout(r, 30));
+      if (read().logs[pid + '/' + rcid].days[today].dir !== null) return 'tapping the chosen direction again does not clear it';
+      // 3. NO HEALTH STATE IN ANY URL
+      if (location.href !== urlBefore) return `logging changed the URL to ${location.href} — a health fact in a URL lands in history, Referer headers and proxy logs`;
+      const exp = document.getElementById('p1-log').querySelector('button[data-p1="export"]');
+      if (!exp) return 'no export control — a device-only log with no way out is a log you lose';
+      if (!document.getElementById('p1-log').querySelector('button[data-p1="restore"]')) return 'no restore control';
+      // The export must hand back a Blob object URL, never a data: URI, which would carry the
+      // reader's own log inside a URL string. THE FIRST VERSION OF THIS CHECK LOOKED FOR
+      // a[href^="data:"] IN THE DOM AND PASSED with a deliberately planted data: URI export — the
+      // anchor is created, clicked and removed synchronously, so it is never in the DOM to find.
+      // A gate that cannot fail is decorative. Capture the click instead, and swallow it so the
+      // smoke browser does not write a stray file.
+      const proto = HTMLAnchorElement.prototype, realClick = proto.click;
+      let href = null;
+      proto.click = function () { href = this.href; };
+      try { exp.click(); } finally { proto.click = realClick; }
+      await new Promise(r => setTimeout(r, 40));
+      if (!href) return 'tapping export produced no download at all';
+      if (href.slice(0, 5) !== 'blob:') return `the export href is "${href.slice(0, 48)}…" — it must be a blob: object URL. A data: URI puts the log itself inside a URL string`;
+      if (location.href !== urlBefore) return `exporting changed the URL to ${location.href}`;
+      return null;
+    },
   }],
   // W1 visible degradation (commit 587c056): when /api/rootcause-overlay fails, the protocol page
   // must SAY the community cause layer is missing instead of silently showing the built-in list.

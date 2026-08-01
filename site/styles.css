@@ -3929,3 +3929,56 @@ a.assess-switch { text-align: center; }
 .phase2>.p2-body{padding:0 1rem 1rem}
 .phase2 .plan-section{margin-top:.6rem}
 .p-maint-note{margin:.2rem 0 .85rem;font-size:1rem;line-height:1.55;color:#4a5766}
+/* ---- W4 (2026-08-02): the 1-tap logger -------------------------------------------------------
+   MEASURED HYDRATED at 390x844 in the DEFAULT DOM state on /protocol/knee-pain/patellofemoral-pain,
+   /protocol/hair-loss/dht-sensitivity and /protocol/insomnia/circadian-misalign before this
+   (out/w4log_before.json): #p1-log 0/3 · a day counter 0/3 · a sparkline 0/3 · export or restore
+   0/3 · input[type=range] 0/3 (the site's only symptom slider is behind an account) · localStorage
+   40 B. Phase 1 asked for 7 days and gave the reader nowhere to put them.
+   EVERY CONTROL HERE IS A BUTTON and every one is >= 44x44 (D25). Contrast computed against each
+   block's own background, all >= AA for text and >= 3:1 for the bars:
+     #283544 on #ffffff 11.5:1 · #4a5766 on #ffffff 7.38:1 · #ffffff on #0f766e 5.47:1 ·
+     bars #0f766e 5.47:1, #64748b 4.76:1, #b45309 5.02:1 on #ffffff.
+   The sparkline is never colour-alone: height carries the direction, fill carries adherence, each
+   bar has a <title>, and the same facts are printed in words directly above and below it. */
+.p1-log{margin:.9rem 0 0;padding:.9rem .9rem 1rem;border:1px solid #99f6e4;border-radius:12px;background:#fff}
+.p1-log:empty{display:none}
+.p1-log-pre{margin:0;font-size:1rem;line-height:1.55;color:#4a5766}
+.p1-log-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem;margin:0 0 .5rem}
+.p1-day{font-size:1.15rem;color:var(--head)}
+.p1-log-sum{font-size:1rem;color:#4a5766}
+.p1-spark{display:block;width:100%;max-width:220px;height:auto;margin:.2rem 0 .35rem}
+.p1-spark .sp-axis{stroke:#cbd5e1;stroke-width:1}
+.p1-spark .sp-none{fill:#cbd5e1}
+.p1-spark .sp-better{fill:#0f766e;stroke:#0f766e}
+.p1-spark .sp-same{fill:#64748b;stroke:#64748b}
+.p1-spark .sp-worse{fill:#b45309;stroke:#b45309}
+.p1-spark .sp-nodir{fill:#4a5766;stroke:#4a5766}
+.p1-spark .sp-miss{fill:#fff;stroke-width:2;stroke-dasharray:3 2}
+.p1-spark-cap,.p1-log-note,.p1-log-store,.p1-log-over{margin:.35rem 0 .6rem;font-size:1rem;line-height:1.5;color:#4a5766}
+.p1-log-over{color:#8a4708}
+.p1-chips{display:grid;grid-template-columns:repeat(4,minmax(44px,1fr));gap:4px;margin:.5rem 0 .8rem}
+/* FOUR COLUMNS, NOT SEVEN, and that is a measurement not a taste. MEASURED hydrated at 390x844:
+   the row of day chips is 292 px wide inside this card, so seven of them came out 38x44 and then
+   40x44 — under the 44 px minimum, i.e. this change would have ADDED to D25 (the site already
+   carries a median 79 sub-44px targets per compound page). Four per row makes every chip ~70x44.
+   Re-measured after: 0 sub-44px targets inside #p1-log. */
+.p1-chip{min-height:44px;font-size:1rem;font-weight:700;border:1px solid var(--line);border-radius:10px;background:#f8fafc;color:#4a5766;cursor:pointer}
+.p1-chip.did{background:#ccfbf1;border-color:#5eead4;color:#0b5f59}
+.p1-chip.miss{background:#fff;border-color:#e2b184;color:#8a4708;border-style:dashed}
+.p1-chip.on{outline:2px solid #0f766e;outline-offset:1px;color:var(--head)}
+.p1-chip[disabled]{opacity:.45;cursor:default}
+.p1-chip:focus-visible,.p1-tap:focus-visible,.p1-mini:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.p1-log-q{margin:.7rem 0 .35rem;font-size:1rem;line-height:1.5;color:var(--ink)}
+.p1-log-opt{color:#4a5766}
+.p1-log-btns{display:flex;flex-wrap:wrap;gap:.4rem}
+.p1-tap{flex:1 1 auto;min-height:44px;min-width:44px;padding:.55rem .7rem;font-size:1rem;font-weight:700;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer}
+.p1-tap.on{background:#0f766e;border-color:#0f766e;color:#fff}
+.p1-log-foot{display:flex;flex-wrap:wrap;gap:.4rem;margin:.9rem 0 .2rem}
+.p1-mini{min-height:44px;min-width:44px;padding:.5rem .8rem;font-size:1rem;border:1px solid var(--line);border-radius:999px;background:#f8fafc;color:#4a5766;cursor:pointer}
+.p1-del{color:#a02020}
+.p1-sync{margin:.6rem 0 0;padding-top:.7rem;border-top:1px solid var(--line)}
+.p1-sync-btn.on{background:#0f766e;border-color:#0f766e;color:#fff}
+.p1-sync-state{margin:.3rem 0 0;font-size:1rem;line-height:1.5;color:#0b5f59}
+.p1-sync-state:empty{display:none}
+@media (max-width:520px){.p1-log{padding:.8rem .7rem .9rem}.p1-tap{flex:1 1 30%}}

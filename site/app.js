@@ -5730,7 +5730,331 @@
         <button class="cta-primary p1-start" id="phase1-start"${(st && st.started) ? ' disabled' : ''}>${(st && st.started) ? `✓ Started ${esc(st.started)} on this device` : '▶ Start day 1'}</button>
         <button class="p1-skip" id="phase1-skip">I already do this — open Phase 2</button>
       </div>
+      <div class="p1-log" id="p1-log"></div>
     </section>`;
+  }
+  // ---- W4 (2026-08-02): THE 1-TAP LOGGER --------------------------------------------------------
+  // MEASURED HYDRATED at 390x844 in the DEFAULT DOM state, on /protocol/knee-pain/patellofemoral-pain,
+  // /protocol/hair-loss/dht-sensitivity and /protocol/insomnia/circadian-misalign
+  // (out/w4log_before.json):
+  //   · #p1-log                                    0/3
+  //   · a day counter ("Day N of 7")               0/3
+  //   · a sparkline                                0/3
+  //   · an export or a restore control             0/3
+  //   · input[type=range] anywhere on the page     0/3 — the site's only 0–10 symptom slider lives
+  //     inside openCheckinModal(), which mountCheckins() gates on `!ME || !CONSENT` (app.js:5013).
+  //     So the whole symptom loop was unreachable without an account, which is a constraint-3 breach:
+  //     reading, LOGGING and the $0 protocol must all work with no account.
+  //   · localStorage held 40 B (rnawiki_voter) on a fresh protocol page — nothing on this site
+  //     recorded what the reader actually did.
+  // Phase 1 tells a reader to do one free thing every day for 7 days and then gave them nowhere to
+  // put the 7 days.
+  //
+  // FIVE RULES, each of which is asserted in scripts/smoke.mjs (phase1LoggerIsOneTapAndLeaksNothing):
+  //  1. TAP-ONLY. Every control is a <button>. Zero input[type=range|text|number] and zero <textarea>
+  //     inside #p1-log. A slider is a precision claim that seven self-reports cannot support.
+  //  2. NO HEALTH STATE IN ANY URL. location.href is byte-identical before and after logging a day.
+  //     The export is a Blob object URL on an <a download>, minted on tap and revoked — never
+  //     navigated to, and deliberately never a data: URI, which would put the reader's own log into
+  //     a string that lands in history, Referer headers and proxy logs.
+  //  3. NO ACCOUNT. localStorage only, under `rnawiki_track`. Everything below works signed out.
+  //  4. POLARITY-NEUTRAL. The direction question is "better / no change / worse COMPARED WITH YOUR
+  //     OWN DAY 1", never "how bad is it". Measured from data/clinical_graph.json: 27 of the 41
+  //     problems are `need` and 14 are `want`; across the 52 protocol routes that is 34 need and 18
+  //     want. A severity scale asks the wrong question on 18 of 52 routes. A change-from-your-own-
+  //     baseline reads correctly on both.
+  //  5. IT IS A DIARY, NOT EVIDENCE. Seven self-reported taps. The panel says exactly that, and it
+  //     never computes a percentage, an effect size or an average — it prints counts of taps.
+  //
+  // The optional sync REUSES the existing endpoints verbatim — POST /api/experiments/start and
+  // POST /api/experiments/checkin. No new table, no new column, no new route. It sends the protocol
+  // id and the fact that a check-in happened today. It does NOT send the direction: the only endpoint
+  // that would take one is /api/experiments/outcome, which feeds the public aggregate ledger, and a
+  // 7-day compliance week is not an outcome. It is OFF until the reader turns it on, because turning
+  // it on is what makes the server mint the anonymous participant cookie (server.js:393 anonMint).
+  //
+  // VERIFIED AGAINST W1'S WRITE GUARD FROM A REAL BROWSER, not assumed (out/w4log_before.json): a
+  // page-context POST to /api/experiments/start returns 503 {"error":"Accounts are not available
+  // right now."} — it CLEARS the cross-origin guard and reaches the db.enabled branch. The identical
+  // POST by curl with no Origin returns 403 {"error":"Cross-origin writes are not accepted."}. The
+  // guard is live and this path passes it.
+  const TRACK_KEY = 'rnawiki_track';
+  const TRACK_DAYS = 7;
+  const TRACK_V = 1;
+  const TRACK_DIRS = ['better', 'same', 'worse'];
+  const TRACK_DAY_RE = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+  // LOCAL calendar days, not UTC: a reader's "today" is the date on their own phone, and a UTC day
+  // boundary would silently move the log across a day for everyone east of Greenwich — which is
+  // everyone this site is written for. Date.UTC() is used only to DIFFERENCE two already-local
+  // dates, where it is exact and immune to daylight saving.
+  const isoDay = (d) => { const x = d || new Date(), p = (n) => String(n).padStart(2, '0'); return `${x.getFullYear()}-${p(x.getMonth() + 1)}-${p(x.getDate())}`; };
+  const dayNum = (iso) => { const a = iso.split('-').map(Number); return Date.UTC(a[0], a[1] - 1, a[2]) / 864e5; };
+  const dayGap = (a, b) => dayNum(b) - dayNum(a);          // days from a to b; negative if b is earlier
+  const isFuture = (d, today) => dayNum(d) > dayNum(today); // named, because dayGap's argument order
+                                                            // was inverted here twice and the smoke
+                                                            // gate caught it by letting day 7 be
+                                                            // logged on day 1 — inventing data
+  const dayPlus = (iso, n) => { const a = iso.split('-').map(Number), x = new Date(a[0], a[1] - 1, a[2]); x.setDate(x.getDate() + n); return isoDay(x); };
+  function trackRead() {
+    try { const o = JSON.parse(localStorage.getItem(TRACK_KEY) || 'null'); if (o && o.v === TRACK_V && o.logs && typeof o.logs === 'object') return o; } catch (e) {}
+    return { v: TRACK_V, logs: {} };
+  }
+  function trackWrite(o) { try { localStorage.setItem(TRACK_KEY, JSON.stringify(o)); return true; } catch (e) { return false; } }
+  const trackKey = (problem, rc) => `${problem.id}/${rc.id}`;
+  function trackGet(problem, rc) { return trackRead().logs[trackKey(problem, rc)] || null; }
+  function trackEdit(problem, rc, fn) {
+    const o = trackRead(), k = trackKey(problem, rc), next = fn(o.logs[k] || null);
+    if (next) o.logs[k] = next; else delete o.logs[k];
+    return { log: next, saved: trackWrite(o) };
+  }
+  function trackStart(problem, rc, startedOn) {
+    return trackEdit(problem, rc, (cur) => (cur && cur.started) ? cur : {
+      started: (startedOn && TRACK_DAY_RE.test(startedOn)) ? startedOn : isoDay(),
+      action: (rc.phase1 || {}).action || '',
+      metric: ((problem.safety || {}).metric) || '',
+      sync: false,
+      days: {},
+    }).log;
+  }
+  // A restore file is UNTRUSTED INPUT. It is read from the reader's own disk, but it can be any file
+  // they tap, so every field is checked before a byte of it reaches localStorage — and the reason a
+  // file is rejected is printed, so "nothing happened" is never the answer.
+  function trackValidate(raw) {
+    if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return { error: 'That file is not a log this page wrote.' };
+    if (raw.v !== TRACK_V) return { error: `That file says format version ${JSON.stringify(raw.v)}. This page writes version ${TRACK_V}.` };
+    const logs = raw.logs;
+    if (!logs || typeof logs !== 'object' || Array.isArray(logs)) return { error: 'That file has no logs block.' };
+    let days = 0;
+    const keys = Object.keys(logs);
+    for (let i = 0; i < keys.length; i++) {
+      const k = keys[i], L = logs[k];
+      if (!L || typeof L !== 'object') return { error: `Entry “${k}” is not a log.` };
+      if (!TRACK_DAY_RE.test(L.started || '')) return { error: `Entry “${k}” has no valid start date.` };
+      if (!L.days || typeof L.days !== 'object') return { error: `Entry “${k}” has no days block.` };
+      const dk = Object.keys(L.days);
+      for (let j = 0; j < dk.length; j++) {
+        const d = dk[j], e = L.days[d];
+        if (!TRACK_DAY_RE.test(d)) return { error: `Entry “${k}” has a day key that is not a date: ${JSON.stringify(d)}` };
+        if (!e || typeof e !== 'object') return { error: `Entry “${k}” · ${d} is not a record.` };
+        if (e.did !== 0 && e.did !== 1) return { error: `Entry “${k}” · ${d} does not say whether it was done.` };
+        if (e.dir != null && TRACK_DIRS.indexOf(e.dir) < 0) return { error: `Entry “${k}” · ${d} carries a direction this page cannot read: ${JSON.stringify(e.dir)}` };
+        days++;
+      }
+    }
+    return { logs, days, protocols: keys.length };
+  }
+  // The sparkline is SEVEN TAPS DRAWN, nothing more. Height is the direction the reader chose, fill
+  // is whether they did the thing, and a day with no tap draws a flat rule rather than a zero — a
+  // gap and a bad day are different facts and a chart that conflates them is lying quietly. Every
+  // bar is also stated in words underneath, because a colour-and-height-only signal is D1, the worst
+  // defect on this site.
+  const TRACK_H = { better: 30, same: 18, worse: 8 };
+  function trackSpark(days, log, today) {
+    const CW = 20, H = 44, BASE = 40, BW = 14;
+    const bars = days.map((d, i) => {
+      const x = i * CW + (CW - BW) / 2, e = log.days[d];
+      if (!e) return `<rect class="sp-none" x="${x}" y="${BASE - 1}" width="${BW}" height="2"><title>Day ${i + 1} — no tap${isFuture(d, today) ? ' yet' : ''}</title></rect>`;
+      const h = e.dir ? TRACK_H[e.dir] : 4;
+      const lbl = `Day ${i + 1} — ${e.did ? 'did it' : 'missed it'}${e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : ', no direction given'}`;
+      return `<rect class="sp-bar sp-${e.dir || 'nodir'} ${e.did ? 'sp-did' : 'sp-miss'}" x="${x}" y="${BASE - h}" width="${BW}" height="${h}" rx="2"><title>${esc(lbl)}</title></rect>`;
+    }).join('');
+    return `<svg class="p1-spark" viewBox="0 0 ${TRACK_DAYS * CW} ${H}" width="${TRACK_DAYS * CW}" height="${H}" role="img" aria-label="Seven days. ${esc(days.map((d, i) => { const e = log.days[d]; return `day ${i + 1} ${e ? (e.did ? 'did it' : 'missed it') + (e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : '') : 'no tap'}`; }).join('; '))}.">
+      <line class="sp-axis" x1="0" y1="${BASE + 1}" x2="${TRACK_DAYS * CW}" y2="${BASE + 1}"></line>${bars}
+    </svg>`;
+  }
+  function phase1LogHTML(problem, rc, focus) {
+    const p1 = rc.phase1;
+    if (!p1) return '';
+    const log = trackGet(problem, rc);
+    if (!log || !log.started) {
+      return `<p class="p1-log-pre">Tap <b>Start day 1</b> and this becomes a 7-day log: <b>one tap a day</b>. No account, no typing, no sliders. It is kept on this device only, and nothing is sent anywhere unless you switch on the anonymous sync inside it.</p>`;
+    }
+    const today = isoDay();
+    const days = [];
+    for (let i = 0; i < TRACK_DAYS; i++) days.push(dayPlus(log.started, i));
+    const elapsed = dayGap(log.started, today);
+    const dayN = Math.min(TRACK_DAYS, Math.max(1, elapsed + 1));
+    const over = elapsed + 1 > TRACK_DAYS;
+    const sel = (focus && days.indexOf(focus) >= 0 && !isFuture(focus, today)) ? focus : days[dayN - 1];
+    const selI = days.indexOf(sel);
+    const e = log.days[sel] || null;
+    const loggedN = days.filter(d => log.days[d]).length;
+    const didN = days.filter(d => log.days[d] && log.days[d].did === 1).length;
+    const dirN = { better: 0, same: 0, worse: 0 };
+    days.forEach(d => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
+    const metric = log.metric || ((problem.safety || {}).metric) || '';
+    const dirWords = TRACK_DIRS.filter(k => dirN[k]).map(k => `${dirN[k]} ${k === 'same' ? 'no change' : k}`).join(' · ');
+    const chips = days.map((d, i) => {
+      const future = isFuture(d, today), x = log.days[d];
+      return `<button type="button" class="p1-chip${d === sel ? ' on' : ''}${x ? (x.did ? ' did' : ' miss') : ''}" data-p1="day" data-v="${d}"${future ? ' disabled' : ''} aria-pressed="${d === sel}" aria-label="Day ${i + 1}${future ? ', not yet' : x ? (x.did ? ', did it' : ', missed it') : ', no tap'}">${i + 1}</button>`;
+    }).join('');
+    return `<div class="p1-log-head">
+        <b class="p1-day">Day ${dayN} of ${TRACK_DAYS}</b>
+        <span class="p1-log-sum">${loggedN ? `${loggedN} of ${TRACK_DAYS} days tapped · did it on ${didN}${dirWords ? ' · ' + esc(dirWords) : ''}` : 'nothing tapped yet'}</span>
+      </div>
+      ${trackSpark(days, log, today)}
+      <p class="p1-spark-cap">Seven taps of your own, drawn. Bar height is the direction you chose, a hollow bar is a day you missed, a flat line is a day with no tap. It is a diary of what you did — not evidence that it worked.</p>
+      <div class="p1-chips" role="group" aria-label="Pick a day to log">${chips}</div>
+      ${over ? `<p class="p1-log-over">The 7 days ended on ${esc(days[TRACK_DAYS - 1])}. You can still fill in a day you missed — and then read Phase 2, which is now open.</p>` : ''}
+      <div class="p1-log-day">
+        <p class="p1-log-q">Day ${selI + 1}${sel === today ? ' · today' : ' · ' + esc(sel)} — <b>${esc(log.action || p1.action)}</b>. Did you do it?</p>
+        <div class="p1-log-btns">
+          <button type="button" class="p1-tap${e && e.did === 1 ? ' on' : ''}" data-p1="did" data-v="1" aria-pressed="${!!(e && e.did === 1)}">✔ Did it</button>
+          <button type="button" class="p1-tap${e && e.did === 0 ? ' on' : ''}" data-p1="did" data-v="0" aria-pressed="${!!(e && e.did === 0)}">✗ Missed it</button>
+        </div>
+        <p class="p1-log-q">${metric ? `“${esc(metric)}”` : 'How it is'}, compared with your own day 1 <span class="p1-log-opt">(optional)</span></p>
+        <div class="p1-log-btns">
+          <button type="button" class="p1-tap${e && e.dir === 'better' ? ' on' : ''}" data-p1="dir" data-v="better" aria-pressed="${!!(e && e.dir === 'better')}">↑ Better</button>
+          <button type="button" class="p1-tap${e && e.dir === 'same' ? ' on' : ''}" data-p1="dir" data-v="same" aria-pressed="${!!(e && e.dir === 'same')}">→ No change</button>
+          <button type="button" class="p1-tap${e && e.dir === 'worse' ? ' on' : ''}" data-p1="dir" data-v="worse" aria-pressed="${!!(e && e.dir === 'worse')}">↓ Worse</button>
+        </div>
+        <p class="p1-log-note">The question is always <b>compared with your own day 1</b>, never “how bad is it” — that way it reads the same whether you are trying to reduce something or build something. ${dayGap(log.started, today) < 1 ? 'On day 1 there is nothing to compare with yet, so leave it blank.' : ''}</p>
+      </div>
+      <div class="p1-log-foot">
+        <button type="button" class="p1-mini" data-p1="export">⤓ Export my log</button>
+        <button type="button" class="p1-mini" data-p1="restore">⤒ Restore from a file</button>
+        <button type="button" class="p1-mini p1-del" data-p1="delete">🗑 Delete this log</button>
+        <input type="file" id="p1-file" accept="application/json,.json" hidden>
+      </div>
+      <p class="p1-log-store">Stored on this device only, in this browser. Clearing your browser data deletes it and there is no copy anywhere — so if it matters to you, export it. The file is plain JSON you can read.</p>
+      <div class="p1-sync">
+        <button type="button" class="p1-mini p1-sync-btn${log.sync ? ' on' : ''}" data-p1="sync" aria-pressed="${!!log.sync}">${log.sync ? '☁️ Anonymous sync is ON' : '☁️ Also save this anonymously — off'}</button>
+        <p class="p1-log-note">${log.sync
+          ? 'Sends two things when you tap a day: which protocol this is, and that you checked in today. Not the direction, not any number, no email and no account — the site gives this browser a random id in a cookie and nothing links it to you.'
+          : 'Off. Nothing about this log has left this device. Turning it on sends which protocol this is and that you checked in today — nothing else, and still no account.'}</p>
+        <p class="p1-sync-state" id="p1-sync-state" role="status"></p>
+      </div>`;
+  }
+  function phase1LogDraw(problem, rc, focus) {
+    const host = document.getElementById('p1-log');
+    if (!host) return;
+    host.dataset.p1day = focus || '';
+    host.innerHTML = phase1LogHTML(problem, rc, focus || null);
+  }
+  function trackSyncNow(problem, rc) {
+    const log = trackGet(problem, rc);
+    const say = (s) => { const el = document.getElementById('p1-sync-state'); if (el) el.textContent = s; };
+    if (!log || !log.sync) return;
+    say('Sending…');
+    api.startExperiment(problem.id, rc.id)
+      .then(() => (log.days[isoDay()] ? api.checkinExperiment(problem.id, rc.id) : null))
+      .then(() => say('Saved to the site anonymously.'))
+      // Failing to reach the server must never look like losing the log, because it is not the same
+      // thing: the tap is already in localStorage before this ever runs.
+      .catch(() => say('Could not reach the site. Nothing left this device — your log is safe here.'));
+  }
+  function mountPhase1Log(problem, rc) {
+    const host = document.getElementById('p1-log');
+    if (!host || !rc.phase1) return;
+    // MIGRATION, and the same two-keys-one-state fix from the other direction: readers who tapped
+    // Start before the logger existed carry `rnawiki_phase1` and no `rnawiki_track`. Their Start
+    // button is already disabled, so without this the log could never open for them. Seeded with the
+    // date they actually started, never today — inventing a start date is inventing data. `skipped`
+    // is deliberately not seeded: they said they already do this.
+    const st0 = phase1State(problem, rc);
+    if (st0 && st0.started && !trackGet(problem, rc)) trackStart(problem, rc, st0.started);
+    phase1LogDraw(problem, rc, null);
+    host.onclick = (ev) => {
+      const b = ev.target.closest('button[data-p1]');
+      if (!b || b.disabled) return;
+      const act = b.dataset.p1, v = b.dataset.v || '';
+      let focus = host.dataset.p1day || null;
+      if (act === 'day') { phase1LogDraw(problem, rc, v); return; }
+      const log = trackGet(problem, rc);
+      if (!log) return;
+      const today = isoDay();
+      const days = [];
+      for (let i = 0; i < TRACK_DAYS; i++) days.push(dayPlus(log.started, i));
+      const dayN = Math.min(TRACK_DAYS, Math.max(1, dayGap(log.started, today) + 1));
+      const sel = (focus && days.indexOf(focus) >= 0 && !isFuture(focus, today)) ? focus : days[dayN - 1];
+      if (act === 'did' || act === 'dir') {
+        trackEdit(problem, rc, (cur) => {
+          if (!cur) return cur;
+          const e = Object.assign({ did: 1, dir: null }, cur.days[sel] || {});
+          if (act === 'did') e.did = v === '1' ? 1 : 0;
+          // Tapping the direction you already chose clears it. There is no other way back to "I did
+          // not say", and a control you cannot undo teaches people to guess.
+          else e.dir = (e.dir === v) ? null : v;
+          cur.days[sel] = e;
+          return cur;
+        });
+        phase1LogDraw(problem, rc, sel);
+        trackSyncNow(problem, rc);
+        return;
+      }
+      if (act === 'sync') {
+        const next = !log.sync;
+        trackEdit(problem, rc, (cur) => { if (cur) cur.sync = next; return cur; });
+        phase1LogDraw(problem, rc, sel);
+        if (next) trackSyncNow(problem, rc);
+        return;
+      }
+      if (act === 'delete') {
+        if (!confirm('Delete this 7-day log from this device? There is no copy anywhere else.')) return;
+        trackEdit(problem, rc, () => null);
+        // Deleting the log also clears the Phase-1 start flag, and it has to. FOUND BY DRIVING THE
+        // REAL UI (out/w4log_after.mjs), not by reading the code: the start flag lives in
+        // `rnawiki_phase1` and the log in `rnawiki_track`, so clearing only the log left
+        // #phase1-start DISABLED with no log on screen — the reader was locked out of their own
+        // protocol with no way back. Two keys, one state: they move together.
+        try {
+          const s = JSON.parse(localStorage.getItem(PHASE1_KEY) || '{}');
+          delete s[`${problem.id}/${rc.id}`];
+          localStorage.setItem(PHASE1_KEY, JSON.stringify(s));
+        } catch (err) {}
+        const sb = document.getElementById('phase1-start');
+        if (sb) { sb.disabled = false; sb.textContent = '▶ Start day 1'; }
+        phase1LogDraw(problem, rc, null);
+        return;
+      }
+      if (act === 'export') {
+        // A Blob object URL, revoked after the download. NOT a data: URI — a data: URI carries the
+        // reader's own log inside a URL string, which is exactly what rule 2 forbids. location.href
+        // is untouched either way; this never navigates.
+        const all = trackRead();
+        const one = { v: TRACK_V, exported: today, logs: {} };
+        one.logs[trackKey(problem, rc)] = all.logs[trackKey(problem, rc)];
+        let url = '';
+        try {
+          url = URL.createObjectURL(new Blob([JSON.stringify(one, null, 2)], { type: 'application/json' }));
+          const a = document.createElement('a');
+          a.href = url; a.download = `rnawiki-log-${problem.id}-${rc.id}-${today}.json`;
+          document.body.appendChild(a); a.click(); a.remove();
+          const el = document.getElementById('p1-sync-state');
+          if (el) el.textContent = 'Exported. That file is the only copy that is not in this browser.';
+        } catch (err) {
+          const el = document.getElementById('p1-sync-state');
+          if (el) el.textContent = 'This browser would not create the file. Nothing was lost.';
+        }
+        if (url) setTimeout(() => { try { URL.revokeObjectURL(url); } catch (err) {} }, 8000);
+        return;
+      }
+      if (act === 'restore') { const f = document.getElementById('p1-file'); if (f) f.click(); return; }
+    };
+    host.onchange = (ev) => {
+      const f = ev.target;
+      if (!f || f.id !== 'p1-file' || !f.files || !f.files[0]) return;
+      const say = (s) => { const el = document.getElementById('p1-sync-state'); if (el) el.textContent = s; };
+      const r = new FileReader();
+      r.onerror = () => say('That file could not be read.');
+      r.onload = () => {
+        let parsed = null;
+        try { parsed = JSON.parse(String(r.result)); } catch (err) { say('That file is not readable JSON, so nothing was changed.'); return; }
+        const v = trackValidate(parsed);
+        if (v.error) { say('Not restored — ' + v.error + ' Nothing on this device was changed.'); return; }
+        const o = trackRead();
+        Object.keys(v.logs).forEach((k) => {
+          const inc = v.logs[k], cur = o.logs[k];
+          if (!cur) { o.logs[k] = inc; return; }
+          cur.days = Object.assign({}, cur.days, inc.days);
+          if (dayNum(inc.started) < dayNum(cur.started)) cur.started = inc.started;
+        });
+        if (!trackWrite(o)) { say('This browser refused to save. Nothing was changed.'); return; }
+        phase1LogDraw(problem, rc, null);
+        say(`Restored ${v.days} logged day${v.days === 1 ? '' : 's'} across ${v.protocols} protocol${v.protocols === 1 ? '' : 's'}.`);
+      };
+      r.readAsText(f.files[0]);
+    };
   }
   // ---- D2 (2026-08-01): MOVE · FUEL · STACK, restored to the HYDRATED document -----------------
   // MEASURED BEFORE THIS, hydrated at 390x844 with every <details> expanded and every .chapter
@@ -6082,6 +6406,9 @@
     mountAdoption(problem, rc);
     mountPublicOutcome(problem, rc);
     mountSharedProgress(problem, rc);
+    // W4: the 1-tap logger lives inside the Phase 1 section, so the place that tells you to do one
+    // free thing for 7 days is the same place you record the 7 days. No account, no server.
+    mountPhase1Log(problem, rc);
     // W4: both Phase-1 buttons reveal Phase 2. State is localStorage only — constraint 3
     // (anonymous-first): reading, logging and the $0 protocol must work with no account, and
     // /api/me 503s in the local read-only run mode, so nothing here may depend on a server.
@@ -6097,8 +6424,12 @@
     };
     const p1StartBtn = document.getElementById('phase1-start');
     if (p1StartBtn) p1StartBtn.onclick = () => {
-      p1Set({ started: new Date().toISOString().slice(0, 10) });
-      p1StartBtn.textContent = '✓ Day 1 — noted on this device. Come back tomorrow.';
+      p1Set({ started: isoDay() });
+      // W4: the EXPLICIT start. Nothing is logged until this tap — starting is not doing, so day 1
+      // opens empty and the reader still has to say whether they did it.
+      trackStart(problem, rc);
+      phase1LogDraw(problem, rc, null);
+      p1StartBtn.textContent = '✓ Day 1 — the 7-day log is open below';
       p1StartBtn.disabled = true;
     };
     const p1SkipBtn = document.getElementById('phase1-skip');
