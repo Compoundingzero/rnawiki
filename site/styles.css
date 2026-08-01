@@ -4009,3 +4009,8 @@ a.assess-switch { text-align: center; }
 .rcpt-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin:.7rem 0 0}
 .rcpt-actions button{min-height:44px;min-width:44px}
 .rcpt-note{margin:.5rem 0 0;font-size:1rem;line-height:1.5;color:var(--muted)}
+/* W4 · Loop A — the share sits BESIDE the download, never in front of it. Sharing is never a
+   precondition for keeping your own week. #0b1418 on #ecfdf5 = 16.6:1; >= 44px tall (D25). */
+.rcpt-x{display:inline-flex;align-items:center;min-height:44px;padding:.55rem 1rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);text-decoration:none;font-size:1rem;line-height:1.3}
+.rcpt-x:hover{border-color:#0f766e;color:#0b5f59}
+.rcpt-x:focus-visible{outline:2px solid var(--accent);outline-offset:2px}

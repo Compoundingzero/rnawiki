@@ -464,6 +464,42 @@ const ASSERTIONS = {
       if (wrap().dataset.receipt !== 'ready') return 'the receipt did not come back after the planted values were removed — the guard is stateful, which it must not be';
       return null;
     },
+  }, {
+    // W4 · LOOP A (2026-08-02). The share is the one thing on this site that travels: it is read by
+    // people who never see the page, so it must carry no claim the card does not, and it must never
+    // post itself. Measured hydrated at 390x844 before it: links to x.com or twitter.com, 0/4 on
+    // four protocol routes (qa/out/w4rl_before.json).
+    // PROVE THIS GATE by dropping rel="noreferrer" from receiptShareHTML(), by putting an efficacy
+    // word into receiptShareText(), or by turning the anchor into a fetch/window.open.
+    name: 'loopAShareIsEditableAndClaimsNothing',
+    why: 'W4: a share is quoted by people who never read the page — it may claim nothing beyond the reader\'s own counts, must never auto-post, and must not hand X the URL that names the reader\'s problem',
+    evaluate: async () => {
+      // runs after the receipt assertion above, which leaves a finished week rendered
+      const a = document.querySelector('#p1-log .rcpt-x');
+      if (!a) return 'no share control on a ready receipt';
+      if (a.tagName !== 'A') return `the share control is a <${a.tagName.toLowerCase()}> — it must be a plain link to X's own composer, so nothing this site runs can post on the reader's behalf`;
+      const href = a.getAttribute('href') || '';
+      if (!/^https:\/\/x\.com\/intent\//.test(href)) return `the share href is "${href.slice(0, 60)}…" — it must open X's intent composer, which is editable and posts nothing on its own`;
+      if (a.target !== '_blank') return 'the share does not open in a new tab, so it would take the reader away from a log they have not finished';
+      const rel = (a.getAttribute('rel') || '');
+      if (!/noreferrer/.test(rel)) return 'the share link has no rel="noreferrer" — X would receive the protocol URL as the Referer, and that URL names the reader\'s problem';
+      if (!/noopener/.test(rel)) return 'the share link has no rel="noopener"';
+      const text = decodeURIComponent((href.match(/[?&]text=([^&]*)/) || [, ''])[1]);
+      if (!text) return 'the share carries no pre-filled text';
+      if (text.length > 240) return `the share text is ${text.length} characters — it will be truncated by X and the sentence that says this is not a result is the part that gets cut`;
+      if (/\d+\s?%/.test(text)) return `the share text prints a percentage — "${text}"`;
+      if (/\d+\s*\/\s*10/.test(text)) return `the share text prints an N/10 score this logger never collected — "${text}"`;
+      if (/\b(cured|healed|fixed it|proven|proves|effective|efficacy|works|worked|treatment for|remedy)\b/i.test(text)) return `the share text makes an efficacy claim — "${text}"`;
+      if (/(of (users|people|readers)|on average|others)/i.test(text)) return `the share text carries an aggregate — "${text}"`;
+      if (!/personal observation, not a result/i.test(text)) return `the share text never says it is a personal observation rather than a result — "${text}"`;
+      if (!/\$0/.test(text)) return 'the share text never says the week cost nothing, which is the whole point of it';
+      const cfgHandle = (((window.RNAWIKI_DATA.site || {}).x) || {}).handle;
+      if (!cfgHandle) return 'no handle in data.site — the config the share reads from is missing';
+      if (text.indexOf('@' + cfgHandle) < 0) return `the share text does not carry @${cfgHandle} from data/site_config.json`;
+      // it must not be a precondition for anything, and it must not be the only way to keep the week
+      if (!document.querySelector('#p1-log button[data-p1="receipt-png"]')) return 'the download is gone — sharing must never be the only way to keep your own week';
+      return null;
+    },
   }],
   // W1 visible degradation (commit 587c056): when /api/rootcause-overlay fails, the protocol page
   // must SAY the community cause layer is missing instead of silently showing the built-in list.

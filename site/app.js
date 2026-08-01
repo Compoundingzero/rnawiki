@@ -6066,9 +6066,44 @@
       ${receiptCardHTML(m)}
       <div class="rcpt-actions">
         <button type="button" class="p1-mini rcpt-dl" data-p1="receipt-png">⤓ Download as an image</button>
+        ${receiptShareHTML(m)}
       </div>
       <p class="rcpt-note">The image is drawn in this browser and never leaves it until you send it somewhere. It carries no percentage, no effect size and no comparison with anybody else — seven taps of your own are not evidence that anything works, and a card that implied otherwise would be the most shareable false claim on this site.</p>
     </div>`;
+  }
+  // ---- W4 · LOOP A: the proof-of-work share ---------------------------------------------------
+  // Measured hydrated at 390x844 before this, on 4 protocol routes (out/w4rl_before.json): links to
+  // x.com or twitter.com, 0/4. There was no way to say you had done the week.
+  //
+  // FOUR RULES, all asserted in scripts/smoke.mjs (loopAShareIsEditableAndClaimsNothing):
+  //  1. NEVER AUTO-POST. It is an <a> to X's own intent composer, which opens with the text filled
+  //     in and the reader's finger still required. Nothing is posted by this site, ever.
+  //  2. THE TEXT IS BUILT FROM THE SAME MODEL AS THE CARD, so it can carry no claim the card does
+  //     not. No percentage, no effect size, no "it worked" — the reader's own two counts and the
+  //     direction they themselves tapped, and the sentence that says what that is worth.
+  //  3. rel="noreferrer" IS LOAD-BEARING, not boilerplate. Without it x.com receives the protocol
+  //     URL as the Referer, and that URL names the reader's problem. The reader chose to post the
+  //     text; they did not choose to tell X which page they came from.
+  //  4. IT IS NEVER A PRECONDITION. It sits beside the download, not in front of it, and the whole
+  //     block only exists when receiptGuard() has already passed — so a prescription protocol has
+  //     no share button for the same reason it has no card.
+  // The handle comes from data/site_config.json (assertHandleFromConfig fails the build on a copy).
+  //
+  // NOT INCLUDED, deliberately: the brief's suggested closing line "Tagging @<handle> for the
+  // Phase 2 stack review". That puts a promise that somebody will review your stack inside a
+  // stranger's own post, where the person making the promise never sees it. The same offer is made
+  // in the owner's own voice, on the page, where he can actually stand behind it.
+  const RCPT_MAX = 240;   // 280 minus X's fixed 23-char t.co URL and a space, with room to spare
+  function receiptShareText(m) {
+    const dir = m.lastDir ? `day 7 vs my own day 1: ${m.lastDir}` : 'day 7 was not recorded';
+    const t = `7-day $0 trial for ${m.target} on RNAwiki. One free thing, nothing bought. Did it on ${m.didN} of the 7 days; ${dir}. A personal observation, not a result.${AT ? ' ' + AT : ''}`;
+    return t.length <= RCPT_MAX ? t : t.slice(0, RCPT_MAX - 1).replace(/\s+\S*$/, '') + '…';
+  }
+  function receiptShareHTML(m) {
+    if (!AT) return '';       // no configured handle, no share surface — never "@undefined"
+    const url = 'https://x.com/intent/post?text=' + encodeURIComponent(receiptShareText(m))
+      + '&url=' + encodeURIComponent((location.origin || 'https://rnawiki.com') + '/protocol/' + m.pid + '/' + m.rcid);
+    return `<a class="p1-mini rcpt-x" href="${esc(url)}" target="_blank" rel="noopener noreferrer">𝕏 Share on X — you can edit it first</a>`;
   }
   // The PNG. Drawn on a first-party <canvas> — see the note above: html2canvas is CSP-blocked on
   // this origin, measured, so the "already loaded" renderer has never run here.
