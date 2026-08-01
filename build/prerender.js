@@ -1132,6 +1132,45 @@ GRAPH.problems.forEach((p) => {
     // rather than writes and is gated by assertProtocolSafety() in build/parse.js. Class names
     // match site/app.js exactly, so the two documents render the same thing.
     const sfy = p.safety;
+    // ---- W4 (2026-08-02): PHASE 1 — ONE FREE THING, FOR 7 DAYS ----------------------------
+    // MEASURED HYDRATED at 390x844 in the DEFAULT DOM state on all 52 /protocol/* routes before
+    // this (out/w4int_before.json): "Phase 1"/"Phase 2" 0/52 · "$0" 1/52 · any instruction to
+    // hold everything else constant 0/52 · the ⭐ keystone card — the page's own free single
+    // habit — at median y 17,687 px = 94% of a median 18,939 px page on 52/52, and 7,732 px
+    // BELOW the first supplement link (median y 9,698 px, 54%) on 52/52.
+    // NOTHING HERE IS WRITTEN BY THIS FILE. rc.phase1 is SELECTED from this root cause's own
+    // keystone / prescription / behaviour fix by data/protocol_phase1.json and gated by
+    // assertPhase1() in build/parse.js. The metric is problem.safety.metric — the same W2
+    // structure printed above, not a second one. The horizon is p.phase1Signal, which is
+    // timeline[1].when verbatim; on 39 of the 44 routes that have a Phase 1 it lands AFTER day 7,
+    // so the copy says the week tests whether you can do it, not whether it works.
+    // On the 8 root causes with no free lever this prints that, with the authored reason.
+    // Inventing one for hair-loss/dht-sensitivity (finasteride and minoxidil) is the fabrication
+    // class W3.5 closed. Class names and data-* attributes match site/app.js exactly, so the two
+    // documents render the same thing — D2/D33 is the class where they do not.
+    const p1 = rc.phase1;
+    const p1Sig = p.phase1Signal || '';
+    const p1In7 = !!p.phase1SignalWithin7;
+    const phase1 = p1 ? `<section class="phase1" id="phase-1" data-phase1-action="${esc(p1.action)}" data-phase1-cost="${esc(p1.cost)}" data-phase1-class="${esc(p1.class)}">
+        <div class="p1-badge">Phase 1 · 7 days · $0 · one thing</div>
+        <p class="p1-action">${esc(p1.action)}</p>
+        <p class="p1-quote">Selected from this protocol’s own plan: “${esc(p1.quote)}”</p>
+        <dl class="p1-facts">
+          <div class="p1-fact"><dt>Watch</dt><dd>${sfy ? esc(sfy.metric) : 'the one thing this protocol is judged by'} <a href="#red-flags">— why this one ↑</a></dd></div>
+          <div class="p1-fact"><dt>When it moves</dt><dd>${p1In7
+            ? `This protocol’s own timeline puts the first change at <b>${esc(p1Sig)}</b>, inside these 7 days.`
+            : `This protocol’s own timeline does not expect a change until <b>${esc(p1Sig)}</b> — after these 7 days end. So the week is a test of whether you can do it daily, not of whether it works.`}</dd></div>
+          <div class="p1-fact"><dt>A partial result</dt><dd>You did it on most of the 7 days${sfy ? ` and the thing you are tracking — “${esc(sfy.metric)}” —` : ' and the thing you are tracking'} has not moved. ${p1In7
+            ? `That is a weak signal rather than a failure — ${esc(p1Sig)} is the very end of this week.`
+            : `That is the expected result, because ${esc(p1Sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
+        </dl>
+        <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p>
+      </section>` : (rc.phase1None ? `<section class="phase1 phase1-none" id="phase-1" data-phase1-none>
+        <div class="p1-badge p1-badge-none">Phase 1 · there is no $0 version of this one</div>
+        <p class="p1-action">This protocol has no free first step.</p>
+        <p class="p1-quote">${esc(rc.phase1None)}</p>
+        <p class="p1-constant">Every other protocol here opens with one thing that costs nothing. This one does not, and saying otherwise would mean inventing a lever this page’s own sources do not contain. Read the rest, and take it to a doctor or pharmacist before you buy anything.</p>
+      </section>` : '');
     const redflags = `
       ${plan.reassess ? `<section class="safety-first" id="red-flags">
         <div class="plan-card plan-reassess">
@@ -1170,21 +1209,31 @@ GRAPH.problems.forEach((p) => {
       <h1>${p.icon || ''} ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
       ${redflags}
+      ${phase1}
       ${rc.keystone ? `<div class="keystone-card"><div class="ks-badge">⭐ Your one keystone</div><p class="ks-one">${esc(rc.keystone.one)}</p><p class="ks-why">${esc(rc.keystone.why)}</p></div>` : ''}
       ${causeCascadeSummary(p)}
       <h3>Move — the mechanics that fix it${rc.prescription ? `: ${esc(rc.prescription.scheme)}` : ''}</h3>
+      <p class="p-maint-note">The full programme, for after the 7 days. Phase 1 is one piece of this, done alone.</p>
       ${rc.prescription ? `<p>${esc(rc.prescription.detail)}</p>` : ''}
       ${move.length ? `<ul>${move.map((e) => `<li>${esc(e.name)}</li>`).join('')}</ul>` : ''}
-      <h3>Fuel — foods to fuel it</h3>
+      <h3>Fuel — what to keep eating anyway</h3>
+      <p class="p-maint-note">Maintenance, not the experiment. Keep eating the way you already eat
+      during Phase 1 — changing your food and your one Phase 1 habit in the same week means the
+      week tells you nothing.</p>
       ${fuel.length ? `<ul>${fuel.map((f) => `<li>${esc(f.name)}${f.sg_local ? ' (sold in SG)' : ''}</li>`).join('')}</ul>` : ''}
       ${nt ? `<p><b>Daily nutrient targets:</b> ${esc(nt)}</p>` : ''}
-      <h3>Stack — supplements with human trial evidence for this use</h3>
-      ${stack.length
-        ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>`
-        : `<p>No supplement has trial evidence specific to this problem that I'd put my name to. That is the honest answer, not an omission.</p>`}
-      ${med.length ? `<h3>Medical options — discuss with a doctor</h3>
-        <p>These are prescription or controlled medicines. I list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and I do not give doses for them here.</p>
-        <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
+      <details class="phase2" id="phase-2"${p1 ? '' : ' open'}>
+        <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
+        <div class="p2-body">
+        <h3>Stack — supplements with human trial evidence for this use</h3>
+        ${stack.length
+          ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>`
+          : `<p>No supplement has trial evidence specific to this problem that I'd put my name to. That is the honest answer, not an omission.</p>`}
+        ${med.length ? `<h3>Medical options — discuss with a doctor</h3>
+          <p>These are prescription or controlled medicines. I list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and I do not give doses for them here.</p>
+          <ul>${med.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>` : ''}
+        </div>
+      </details>
       ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
       <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
@@ -2863,6 +2912,28 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     if (iStop < 0) bad.push(`${pg.route}: no [data-stop-rule] element — nothing states the point at which the answer is to stop`);
     if (!/not medical advice/i.test(h)) bad.push(`${pg.route}: does not say the page is not medical advice`);
     if (iRed > iStack) bad.push(`${pg.route}: the escalation block comes AFTER the supplement stack — this is the defect`);
+    // ---- W4 (2026-08-02): PHASE 1 IS ONE FREE THING, AND IT COMES FIRST ---------------------
+    // build/parse.js gates the DATA. This gates the RENDERED page, which is what a reader and a
+    // crawler actually get. The action-element count is the half of "exactly one intervention"
+    // that a text check on the data cannot prove: a conjunction ban stops a sentence joining two
+    // things, only counting the rendered elements stops the section becoming a list.
+    // PROVE IT by emitting a second <p class="p1-action"> in the phase1 template, or by moving
+    // ${phase1} below the Stack: the build stops and names the route.
+    const iP1 = at(/id="phase-1"/);
+    if (iP1 < 0) bad.push(`${pg.route}: no #phase-1 section — every protocol must state its ONE $0 first step, or state that it has none`);
+    else {
+      if (iP1 > iStack) bad.push(`${pg.route}: Phase 1 comes AFTER the supplement stack — the free step must precede the paid one`);
+      const nAct = (h.match(/class="p1-action"/g) || []).length;
+      if (nAct !== 1) bad.push(`${pg.route}: Phase 1 renders ${nAct} action elements — it is ONE intervention, not a list`);
+      const none = /data-phase1-none/.test(h);
+      if (!none) {
+        if (!/data-phase1-cost="none"/.test(h)) bad.push(`${pg.route}: Phase 1 does not declare that it costs nothing`);
+        if (!/one variable at a time/i.test(h)) bad.push(`${pg.route}: Phase 1 never tells the reader to hold everything else constant, so the 7 days measure nothing`);
+      }
+    }
+    const iP2 = at(/id="phase-2"/);
+    if (iP2 < 0) bad.push(`${pg.route}: no #phase-2 container — the stack must be behind an optional second phase`);
+    else if (iP1 >= 0 && iP2 < iP1) bad.push(`${pg.route}: Phase 2 is emitted before Phase 1`);
     if (iMetric >= 0 && iMetric > iStack) bad.push(`${pg.route}: the tracked metric comes after the supplement stack`);
     if (iStop >= 0 && iStop > iStack) bad.push(`${pg.route}: the stop rule comes after the supplement stack`);
     // The header over the stop rule must name the horizon THE RULE names. It printed a timeline
