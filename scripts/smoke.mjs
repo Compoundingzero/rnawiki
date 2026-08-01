@@ -48,6 +48,9 @@ const ROUTES = [
   ['home', '/'],
   ['compound', '/c/creatine-monohydrate'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
+  // Same template class, but a route whose correct open cause is NOT the first one. The route
+  // above is one of the 32 whose correct index IS 0, so it cannot detect D3 or its regression.
+  ['protocol-rc', '/protocol/knee-pain/patellar-tendinopathy'],
   ['problem', '/problem/knee-pain'],                       // KEEP_PRERENDERED
   ['target', '/target/AR'],
   ['compare-index', '/compare'],                           // KEEP_PRERENDERED + mounted picker
@@ -114,6 +117,19 @@ const CONSOLE_ALLOWLIST = [
 // ----------------------------------------------- per-route DOM assertions
 // Keep these few and load-bearing. Each names the defect it locks down.
 const ASSERTIONS = {
+  // D3 (commit da1e71e): the protocol page must expand the cause its own URL is about. Before the
+  // fix app.js hard-coded `open` on index 0, so this route printed "Patellar tendinopathy (tendon
+  // overload)" in its header and expanded "Hip & quad weakness with patellofemoral pain" — on 20
+  // of 52 protocol URLs. Index 2 is what data/cause_map.json binds knee-pain/patellar-tendinopathy
+  // to ("Training-load error (patellar tendinopathy)"); if that entry is ever re-authored, this
+  // number must move with it. Selector-only, because the runner below tests element presence —
+  // which is why app.js stamps data-cause-index on every accordion. The exclusive-group invariant
+  // means one [open] existing implies no sibling is open.
+  '/protocol/knee-pain/patellar-tendinopathy': [{
+    name: 'urlRootCauseIsTheOpenCause',
+    selector: '#p-causes .cause-acc[data-cause-index="2"][open]',
+    why: 'D3: the accordion must open the cause data/cause_map.json binds to this URL, not index 0',
+  }],
   // W1 visible degradation (commit 587c056): when /api/rootcause-overlay fails, the protocol page
   // must SAY the community cause layer is missing instead of silently showing the built-in list.
   // Gated on the request having actually failed, so this assertion is a no-op — not a false
