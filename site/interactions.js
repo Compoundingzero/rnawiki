@@ -177,7 +177,14 @@ window.RNAWIKI_INTERACTIONS = {
     // `notIf` keeps it from double-counting the nitrate case, which has its own rule above.
     { id: "pde5_vasodilator", tier: "danger", need: [["pde5", 1], ["hypotensive", 2]], notIf: ["nitrate_pde5"],
       title: "PDE-5 inhibitor plus another blood-flow agent",
-      why: "A PDE-5 drug already widens blood vessels through the NO→cGMP route. Citrulline, beetroot and agmatine feed the same route from the other end. Pushing one lever twice can drop blood pressure far enough to make you faint.",
+      // The `why` must be about the compounds in the ROW. Until 2026-08-01 this sentence named
+      // "Citrulline, beetroot and agmatine" — three of the five hypotensive carriers — no matter
+      // which pair actually fired it. Measured hydrated at 390x844: /stack?ids=c116,c8 rendered the
+      // header "PDE-5 Inhibitors (Sildenafil / Tadalafil) + Taurine" directly above an explanation
+      // about three compounds, none of them in the stack. The row now describes the mechanism both
+      // halves share instead of guessing which compound filled the second slot. The warning is
+      // unchanged in strength — only the false specificity is gone.
+      why: "A PDE-5 drug already widens blood vessels through the NO→cGMP route, and the other blood-flow agent in this stack pushes that same route from the other end. Pushing one lever twice can drop blood pressure far enough to make you faint.",
       action: "Don't stack blood-flow agents on top of a PDE-5 inhibitor — pick one. If you take any blood-pressure medication, this needs a doctor, not a supplement plan.", pathway: "/pathway/4" },
     { id: "sedation", tier: "danger", need: [["cns_depressant", 2]],
       title: "Additive sedation / breathing risk",
