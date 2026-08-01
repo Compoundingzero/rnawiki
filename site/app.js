@@ -559,18 +559,63 @@
     getEmailReminders() { return this.call('GET', '/api/email-reminders').catch(() => null); },
     setEmailReminders(b) { return this.call('POST', '/api/email-reminders', b); },
     ledger(pid, rcid) { return this.call('GET', `/api/ledger?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).catch(() => null); },
-    myExperiment(pid, rcid) { return this.call('GET', `/api/experiments/mine?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}&voterKey=${encodeURIComponent(VOTER_KEY)}`).catch(() => ({ experiment: null, streak: 0, checkedToday: false })); },
-    startExperiment(pid, rcid) { return this.call('POST', '/api/experiments/start', { problemId: pid, rootCauseId: rcid, voterKey: VOTER_KEY, ref: localStorage.getItem('rnawiki_ref') || undefined }); },
-    checkinExperiment(pid, rcid) { return this.call('POST', '/api/experiments/checkin', { problemId: pid, rootCauseId: rcid, voterKey: VOTER_KEY }); },
-    reportOutcome(pid, rcid, outcome) { return this.call('POST', '/api/experiments/outcome', { problemId: pid, rootCauseId: rcid, outcome, voterKey: VOTER_KEY }); },
+    // W4.5: &voterKey= removed from the URL. server.js:1736-1739 already refuses to read it —
+    // "read the cookie, never the ?voterKey query param … so: proxy logs, Referer headers" — but
+    // the client was still putting a stable device id in a URL next to the reader's problem id.
+    // That is logger rule 2 (no health state in any URL) applied to a fetch instead of location.
+    // This method has 0 call sites today; the point is that the next caller inherits a clean one.
+    myExperiment(pid, rcid) { return this.call('GET', `/api/experiments/mine?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).catch(() => ({ experiment: null, streak: 0, checkedToday: false })); },
+    // W4.5: `ref` and `voterKey` were REMOVED, and the choice was between removing them and
+    // rewriting the consent copy to admit them. Removing wins: `ref` is the only field that
+    // creates a link between this browser and another account (server.js wrote
+    // referrals(referrer, participant) and awarded the referrer 25 points), and NOTHING in this
+    // file or in build/prerender.js has ever produced a ?ref= link — 0 producers, 1 consumer —
+    // so the feature was unreachable except from a hand-typed URL. `voterKey` was already dead
+    // weight: server.js resolves the participant from the signed rw_pid cookie and never reads
+    // the body (its own comment, server.js:373). Both were on the wire on 100% of opt-ins.
+    // Fields here are fixed by SYNC_MANIFEST; the smoke gate fails the build on any other key.
+    startExperiment(pid, rcid) { return this.call('POST', '/api/experiments/start', { problemId: pid, rootCauseId: rcid }); },
+    checkinExperiment(pid, rcid) { return this.call('POST', '/api/experiments/checkin', { problemId: pid, rootCauseId: rcid }); },
+    reportOutcome(pid, rcid, outcome) { return this.call('POST', '/api/experiments/outcome', { problemId: pid, rootCauseId: rcid, outcome }); },
     stats() { return this.call('GET', '/api/stats').catch(() => null); },
     helped() { return this.call('POST', '/api/helped', { voterKey: VOTER_KEY }).catch(() => null); },
     subscribe(email, source, website) { return this.call('POST', '/api/subscribe', { email, source, website }); },
   };
+  // ---- W4.5 · THE SYNC MANIFEST ---------------------------------------------------------------
+  // MEASURED, hydrated, real browser at 390x844 on /protocol/insomnia/circadian-misalign
+  // (out/w45_consent.json): opting into "anonymous sync" put FOUR fields on the wire —
+  // {problemId, rootCauseId, voterKey, ref} — under copy that read "Sends two things … nothing
+  // else" and "nothing links it to you". `ref` is the one that made it a lie rather than an
+  // omission: server.js:1770-1779 turns it into INSERT INTO referrals(referrer, participant) and a
+  // 25-point award to the referrer. The one control on this site whose entire job is to state what
+  // is shared understated it, and the field it omitted was the one that creates a link to another
+  // account.
+  //
+  // ONE LIST, TWO CONSUMERS. Every field below is (a) the complete set of keys the consented sync
+  // may put in a request body and (b) named in plain words by BOTH consent sentences. The smoke
+  // assertion syncSendsExactlyWhatTheConsentCopySays captures the real POST bodies from a driven
+  // browser and fails on any key not listed here, on any listed key missing from a body, and on
+  // any `plain` phrase missing from either sentence. This is the same rule as the receipt guard:
+  // the list is PUBLISHED rather than retyped, because a second hand-kept copy of a rule is exactly
+  // the drift that produced this defect.
+  //
+  // ADDING A FIELD IS A CONSENT CHANGE. Add it here, add its `plain` to both sentences, in the same
+  // commit — or the build fails.
+  const SYNC_MANIFEST = [
+    { field: 'problemId', plain: 'which protocol this is' },
+    { field: 'rootCauseId', plain: 'which protocol this is' },
+  ];
+  window.RNAWIKI_SYNC_MANIFEST = SYNC_MANIFEST;
   // Tier-1 voting: a stable anonymous voter key so votes need no account.
   const VOTER_KEY = (() => { let k = localStorage.getItem('rnawiki_voter'); if (!k) { k = 'v' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('rnawiki_voter', k); } return k; })();
-  // Referral first-touch: remember the first ?ref token a visitor arrives with; compute my own share key.
-  (function () { try { const rf = new URL(location.href).searchParams.get('ref'); if (rf && rf.length < 90 && !localStorage.getItem('rnawiki_ref') && rf !== 'v:' + VOTER_KEY) localStorage.setItem('rnawiki_ref', rf); } catch (e) {} })();
+  // W4.5: the ?ref first-touch capture was REMOVED, not disabled. It read a token out of the URL
+  // into localStorage, startExperiment put it on the wire, and server.js turned it into a row in
+  // referrals(referrer, participant) plus a 25-point award — under consent copy that said "nothing
+  // links it to you". The comment that used to sit here promised to "compute my own share key";
+  // nothing ever did. grep -a over site/app.js and build/prerender.js: 0 producers of a ?ref= link,
+  // 1 consumer. The whole path was reachable only from a hand-typed URL.
+  // If share-with-attribution is ever built, it comes back here AND in SYNC_MANIFEST AND in both
+  // consent sentences, in one commit — syncSendsExactlyWhatTheConsentCopySays fails otherwise.
   function myVote(targetId) { try { return (JSON.parse(localStorage.getItem('rnawiki_myvotes')) || {})[targetId] || 0; } catch (e) { return 0; } }
   function setMyVote(targetId, v) { let m = {}; try { m = JSON.parse(localStorage.getItem('rnawiki_myvotes')) || {}; } catch (e) {} if (v) m[targetId] = v; else delete m[targetId]; localStorage.setItem('rnawiki_myvotes', JSON.stringify(m)); }
   const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
@@ -5994,7 +6039,7 @@
       <div class="p1-sync">
         <button type="button" class="p1-mini p1-sync-btn${log.sync ? ' on' : ''}" data-p1="sync" aria-pressed="${!!log.sync}">${log.sync ? '☁️ Anonymous sync is ON' : '☁️ Also save this anonymously — off'}</button>
         <p class="p1-log-note">${log.sync
-          ? 'Sends two things when you tap a day: which protocol this is, and that you checked in today. Not the direction, not any number, no email and no account — the site gives this browser a random id in a cookie and nothing links it to you.'
+          ? 'Sends two things when you tap a day: which protocol this is, and that you checked in today. Not the direction, not any number, no email and no account. It is filed under a random id the site puts in a cookie on this browser, and that id is the only thing in the record — it names nobody and points at nobody else. Your IP address reaches the server the way it does on every page you read.'
           : 'Off. Nothing about this log has left this device. Turning it on sends which protocol this is and that you checked in today — nothing else, and still no account.'}</p>
         <p class="p1-sync-state" id="p1-sync-state" role="status"></p>
       </div>`;

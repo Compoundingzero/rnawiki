@@ -71,6 +71,13 @@ const ROUTES = [
   ['protocol-cohort', `/protocol/insomnia/circadian-misalign?cohort=${COHORT_TODAY}-smoke`],
   ['protocol-cohort-stale', '/protocol/insomnia/circadian-misalign?cohort=2020-01-01-old'],
   ['protocol-cohort-rx', `/protocol/hair-loss/dht-sensitivity?cohort=${COHORT_TODAY}-smoke`],
+  // W4.5: the consent gate. Its own route, and the bare form of the URL, because
+  // syncSendsExactlyWhatTheConsentCopySays DRIVES THE UI — it taps Start, taps a day and taps the
+  // sync toggle — exactly like phase1LoggerIsOneTapAndLeaksNothing on /protocol/knee-pain/
+  // patellar-tendinopathy, and two UI-driving assertions must never share a page. The two cohort
+  // variants of this same path above are untouched: their assertions read a rendered date and
+  // would be invalidated by a tap on Start.
+  ['protocol-consent', '/protocol/insomnia/circadian-misalign'],
   ['problem', '/problem/knee-pain'],                       // KEEP_PRERENDERED
   ['target', '/target/AR'],
   ['compare-index', '/compare'],                           // KEEP_PRERENDERED + mounted picker
@@ -591,6 +598,79 @@ const ASSERTIONS = {
   // Prove this gate by moving ${phase1Section(problem, rc)} below ${protocolLayers(...)} in
   // renderProtocol(), or by deleting the `open` state logic so Phase 2 renders open on a route
   // that has a Phase 1.
+  // W4.5 (2026-08-02): THE CONSENT CONTROL MUST DESCRIBE THE REQUEST IT AUTHORISES.
+  // MEASURED HYDRATED, real browser at 390x844 on this route before this gate existed
+  // (out/w45_consent.json): opting into "anonymous sync" POSTed
+  //   /api/experiments/start   {problemId, rootCauseId, voterKey, ref}
+  //   /api/experiments/checkin {problemId, rootCauseId, voterKey}
+  // while the panel in the same DOM read "Sends two things … nothing else" and "nothing links it
+  // to you" — and `ref` is exactly the field that made server.js write
+  // referrals(referrer, participant) and award the referrer 25 points.
+  // The gate reads window.RNAWIKI_SYNC_MANIFEST (published by site/app.js) and checks BOTH
+  // directions: no request may carry a key the manifest does not list, and both consent sentences
+  // must name every key that is listed. It also asserts the two claims with the most at stake:
+  // nothing goes out before the opt-in, and the logger never touches /api/experiments/outcome,
+  // the endpoint that feeds the public aggregate ledger.
+  // IT PLANTS rnawiki_ref ITSELF. That key is only ever set by arriving through a ?ref= link, and
+  // nothing on the site produces one — so without the plant the offending branch is an empty set,
+  // and a gate over an empty set always passes (the W4 lesson).
+  // window.fetch is stubbed for /api/experiments/* so the bodies can be read without a database
+  // and without emitting a POST failure that is not in ALLOWED_REQUEST_FAILURES; it is restored in
+  // a finally block.
+  // PROVE IT by putting `ref: localStorage.getItem('rnawiki_ref') || undefined` back into
+  // api.startExperiment, or by deleting "which protocol this is" from either consent sentence.
+  '/protocol/insomnia/circadian-misalign': [{
+    name: 'syncSendsExactlyWhatTheConsentCopySays',
+    why: 'W4.5: the one control whose entire purpose is to state what is shared. It named two fields and sent four, and the field it omitted is the one that links this browser to another account',
+    evaluate: async () => {
+      const M = window.RNAWIKI_SYNC_MANIFEST;
+      if (!Array.isArray(M) || !M.length) return 'site/app.js publishes no window.RNAWIKI_SYNC_MANIFEST — the consent copy and the request body no longer share one source of truth';
+      localStorage.setItem('rnawiki_ref', 'u:plantedreferrer');
+      const seen = [];
+      const realFetch = window.fetch;
+      window.fetch = (u, o) => {
+        const url = String(u && u.url ? u.url : u);
+        if (/\/api\/experiments\//.test(url)) {
+          seen.push({ url, body: (o && o.body) || null });
+          return Promise.resolve(new Response('{"ok":true,"streak":1,"checkedToday":true}', { status: 200, headers: { 'content-type': 'application/json' } }));
+        }
+        return realFetch(u, o);
+      };
+      try {
+        const start = document.getElementById('phase1-start');
+        if (!start) return 'no #phase1-start — the logger cannot be reached, so its consent control cannot be checked';
+        start.click(); await new Promise(r => setTimeout(r, 60));
+        const did = document.querySelector('#p1-log button[data-p1="did"][data-v="1"]');
+        if (!did) return 'no day tap target inside #p1-log';
+        did.click(); await new Promise(r => setTimeout(r, 200));
+        if (seen.length) return `${seen.length} request(s) left the device with sync OFF, which the panel calls "Nothing about this log has left this device"`;
+        const note = () => (document.querySelector('.p1-sync .p1-log-note') || {}).innerText || '';
+        const copyOff = note();
+        const btn = document.querySelector('.p1-sync-btn');
+        if (!btn) return 'no anonymous-sync control';
+        btn.click();
+        await new Promise(r => setTimeout(r, 600));
+        const copyOn = note();
+        if (!seen.length) return 'opting in sent nothing at all — the control says it syncs';
+        const allowed = M.map((x) => x.field);
+        for (const s of seen) {
+          const path = s.url.replace(location.origin, '');
+          if (/\/api\/experiments\/outcome/.test(path)) return 'the logger POSTed /api/experiments/outcome — that endpoint feeds the public aggregate ledger and the copy says the direction is never sent';
+          let keys = [];
+          try { keys = Object.keys(JSON.parse(s.body || '{}')); } catch (e) { return `a sync request body is not JSON: ${String(s.body).slice(0, 80)}`; }
+          const extra = keys.filter((k) => allowed.indexOf(k) < 0);
+          if (extra.length) return `${path} carries ${JSON.stringify(extra)} — a field the consent copy does not name. \`ref\` makes server.js write referrals(referrer,participant) and award the referrer, under copy that says nothing links it to you`;
+          const missing = allowed.filter((k) => keys.indexOf(k) < 0);
+          if (missing.length) return `${path} does not carry ${JSON.stringify(missing)}, which the consent copy says is sent`;
+        }
+        for (const f of M) {
+          if (copyOn.indexOf(f.plain) < 0) return `the sync-ON copy never says "${f.plain}", but \`${f.field}\` is on the wire`;
+          if (copyOff.indexOf(f.plain) < 0) return `the sync-OFF copy never says "${f.plain}", so a reader deciding whether to turn it on is not told \`${f.field}\` is sent`;
+        }
+        return null;
+      } finally { window.fetch = realFetch; localStorage.removeItem('rnawiki_ref'); }
+    },
+  }],
   '/protocol/hair-loss/dht-sensitivity': [{
     name: 'phase1SaysSoWhenThereIsNoFreeStep',
     why: 'W4: 8 of 52 root causes have no $0 first step. They must say so, not invent one — and their Phase 2 must not be hidden behind a step the reader cannot take',
