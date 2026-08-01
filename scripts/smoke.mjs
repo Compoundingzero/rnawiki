@@ -48,6 +48,11 @@ const ROUTES = [
   ['home', '/'],
   ['compound', '/c/creatine-monohydrate'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
+  // Same template class again, and the route where resolveCompound() linked the wrong molecule:
+  // its "oral butyrate" plan item pointed at HMB (β-Hydroxy β-Methylbutyrate). See the
+  // planItemLinksNameTheirOwnRef assertion — the invariant it checks holds on all 52 protocol
+  // routes (365 linked items measured hydrated), but only this one carries the item that broke it.
+  ['protocol-linkref', '/protocol/gut-health/dysbiosis'],
   // Same template class, but a route whose correct open cause is NOT the first one. The route
   // above is one of the 32 whose correct index IS 0, so it cannot detect D3 or its regression.
   ['protocol-rc', '/protocol/knee-pain/patellar-tendinopathy'],
@@ -158,6 +163,65 @@ const ASSERTIONS = {
       const lis = [...app.querySelectorAll('.cf-fixes li')];
       const linked = lis.filter(li => li.querySelector('a[href^="/c/"]')).length;
       if (!linked) return `0 of ${lis.length} plan items link to the compound they name`;
+      return null;
+    },
+  }],
+  // W2.5 (2026-08-01): a plan item must link to the compound IT NAMES. site/app.js's
+  // resolveCompound() ended in a last-resort pass that flattened both slugs and asked for a bare
+  // substring, so a ref could match a fragment inside a longer chemical word. Measured hydrated at
+  // 390x844 on this route: the item "Daily fermented foods (yoghurt, kefir, kimchi) … oral butyrate
+  // is an optional adjunct" (authored ref "Butyrate") linked to #/c/hmb-hydroxy-methylbutyrate,
+  // because "hmbhydroxymethylbutyrate" contains "butyrate". HMB is a leucine metabolite for muscle.
+  // The prerendered document rendered the same item as plain text (prerender.js:findCpt has no
+  // substring pass), so the two documents disagreed on exactly this item and only a hydrated check
+  // can see it.
+  // This asserts the PROPERTY, not the algorithm: the linked compound's name and the authored ref
+  // must share whole words — either the ref's words appear as a run inside the compound's name
+  // ("B12" inside "B-Complex / B12 / Methylfolate / B6"), or the compound's name appears as a run
+  // inside the ref ("Magnesium" inside "Magnesium glycinate"). Letters inside a longer word are not
+  // a shared name. Verified hydrated over all 52 protocol routes: 1,110 rendered plan items, all
+  // 1,110 matched to their authored fix, 365 of them linked, 0 violations after the fix.
+  // Prove this gate by restoring the old pass 5 in site/app.js —
+  // `|| D.compounds.find(c => flat(slug(c.name)).includes(flat(s)))` with `const flat = x =>
+  // x.split('-').join('')` — and rebuilding: this route fails and names the item.
+  '/protocol/gut-health/dysbiosis': [{
+    name: 'planItemLinksNameTheirOwnRef',
+    why: 'W2.5: a plan item that links to a compound page must link to the compound it names — "Butyrate" linked to HMB',
+    evaluate: () => {
+      const norm = t => String(t).toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+      const sl = t => String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      const run = (hay, ndl) => {
+        for (let i = 0; i + ndl.length <= hay.length; i++) {
+          let ok = true;
+          for (let j = 0; j < ndl.length; j++) if (hay[i + j] !== ndl[j]) { ok = false; break; }
+          if (ok) return true;
+        }
+        return false;
+      };
+      const pid = location.pathname.split('/')[2];
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      if (!p) return `no problem ${pid} in the shipped data`;
+      const fixes = [];
+      ((p.why || {}).causes || []).forEach(c => (c.fixes || []).forEach(f => fixes.push(f)));
+      const lis = [...document.querySelectorAll('#app li')].filter(li => li.querySelector('.fix-kind'));
+      if (!lis.length) return 'no plan items rendered on this protocol page';
+      let linked = 0, unmatched = 0;
+      for (const li of lis) {
+        const t = norm(li.textContent);
+        const f = fixes.find(x => x.what && t.endsWith(norm(x.what)));
+        if (!f) { unmatched++; continue; }
+        const a = li.querySelector('a[href*="/c/"]');
+        if (!a) continue;
+        linked++;
+        const href = a.getAttribute('href');
+        if (!f.ref) return `a plan item links to ${href} while authoring no ref at all: "${li.textContent.trim().slice(0, 70)}"`;
+        const ct = href.replace(/^#?\/c\//, '').split('-');
+        const rt = sl(f.ref).split('-');
+        if (!run(ct, rt) && !run(rt, ct))
+          return `the plan item whose ref is ${JSON.stringify(f.ref)} links to ${href}, whose name does not contain that word — a reader clicking "${li.textContent.trim().slice(0, 60)}" lands on a different molecule`;
+      }
+      if (unmatched) return `${unmatched} of ${lis.length} rendered plan items match no authored fix — the text match this assertion relies on has drifted, so it can no longer see the defect`;
+      if (!linked) return `0 of ${lis.length} plan items link to a compound — resolveCompound() has stopped resolving`;
       return null;
     },
   }],

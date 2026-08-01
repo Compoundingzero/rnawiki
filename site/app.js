@@ -28,15 +28,43 @@
   // JS-executing page. The prerendered document was already correct -- prerender.js:findCpt is a
   // different, ordered resolver. Running the same four clauses as four ORDERED PASSES makes an
   // exact match unbeatable, and only falls through to containment when nothing better exists.
+  // PASS 5 LINKED THE WRONG MOLECULE (fixed 2026-08-01). The last-resort pass flattened both slugs
+  // (dropped every hyphen) and asked for a bare substring, so a ref could match a fragment INSIDE a
+  // longer chemical word. Measured hydrated at 390x844 on /protocol/gut-health/dysbiosis: the plan
+  // item "Daily fermented foods (yoghurt, kefir, kimchi) … oral butyrate is an optional adjunct"
+  // (ref "Butyrate") linked to #/c/hmb-hydroxy-methylbutyrate — because "hmbhydroxymethylbutyrate"
+  // contains "butyrate". HMB is a leucine metabolite for muscle; butyrate is a short-chain fatty
+  // acid the gut makes from fibre. Different molecules, and the site has a page whose own name
+  // carries the word: "Prebiotics (Inulin, GOS, PHGG) & Butyrate". The prerendered document got
+  // this right by accident — prerender.js:findCpt has no substring pass, so it rendered the item as
+  // plain text — which is why the two documents disagreed on exactly this item.
+  // The replacement asks for WHOLE NAME WORDS in order, not letters: the ref's tokens must appear
+  // as a contiguous run of complete tokens in the compound's name. "butyrate" is not a token of
+  // [hmb, hydroxy, methylbutyrate], so HMB can no longer be reached; it IS a token of
+  // [prebiotics, inulin, gos, phgg, butyrate], which is the page the item is about. And an
+  // ambiguous run (2+ compounds) resolves to NOTHING rather than to whichever compound happens to
+  // sit earliest in the array — the same array-order bug the 2026-07-28 fix above removed.
+  // MEASURED over all 544 compound references in the corpus (180 distinct): exactly one resolution
+  // changes, the one above. Pass 5 is the only pass that fires for just 2 refs — "B12", which is a
+  // whole token of "B-Complex / B12 / Methylfolate / B6" and still resolves, and "Butyrate".
   function resolveCompound(ref) {
     if (!ref) return null; const s = slug(ref); if (!s) return null;
     if (bySlug[s]) return bySlug[s];                                     // pass 1: exact slug
-    const flat = x => x.split('-').join('');
-    return D.compounds.find(c => slug(c.name) === s)                     // pass 2: exact name
+    const hit = D.compounds.find(c => slug(c.name) === s)                // pass 2: exact name
       || D.compounds.find(c => slug(c.name).startsWith(s + '-'))         // pass 3: ref is a prefix
-      || D.compounds.find(c => s.startsWith(slug(c.name) + '-'))         // pass 4: name is a prefix
-      || D.compounds.find(c => flat(slug(c.name)).includes(flat(s)))     // pass 5: last-resort substring
-      || null;
+      || D.compounds.find(c => s.startsWith(slug(c.name) + '-'));        // pass 4: name is a prefix
+    if (hit) return hit;
+    const want = s.split('-');                                           // pass 5: whole-word run
+    const runIn = hay => {
+      for (let i = 0; i + want.length <= hay.length; i++) {
+        let ok = true;
+        for (let j = 0; j < want.length; j++) if (hay[i + j] !== want[j]) { ok = false; break; }
+        if (ok) return true;
+      }
+      return false;
+    };
+    const hits = D.compounds.filter(c => runIn(slug(c.name).split('-')));
+    return hits.length === 1 ? hits[0] : null;                           // ambiguous → link nothing
   }
   // Anatomy & physiology reference layer (muscles, energy systems, metabolism)
   const ANAT = D.anatomy || { muscles: [], energy_systems: [], metabolism: [] };
