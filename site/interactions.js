@@ -39,7 +39,25 @@ window.RNAWIKI_INTERACTIONS = {
   // while the panel counted it as checked — measured hydrated at 390x844, /stack?ids=c39,c120
   // rendered "✅ Nothing flagged between the 2 of 2 I have pharmacology for" when the truth was
   // 1 of 2. Exactly one rule is unfirable and exactly one compound moves.
-  coverage: { compounds: 171, reachable: 95, unreachable: 76, unreachableRx: 38 },
+  // 2026-08-02 (second): 95 → 90. `nameTags` matched an UNANCHORED SUBSTRING OF THE COMPOUND
+  // NAME, which is the catTags fabrication engine one level down: a substring asserts a mechanism
+  // for every current AND FUTURE compound whose name contains those letters. Seven assignments
+  // were false and all seven were rendering. Measured hydrated at 390x844 on /stack:
+  //   "myoSTATIN" gave Follistatin / Myostatin inhibitors a statin_like tag and a "Double statin"
+  //   danger row (its record contains 0 standalone "statin" and 0 "HMG-CoA"); "NIACINamide" gave a
+  //   page whose own bio.form.buy says "Choose niacinamide (nicotinamide), NOT niacin/nicotinic
+  //   acid" a "Statin + high-dose niacin" row; "provIRON" gave mesterolone a mineral-competition
+  //   row; the 50 mg cofactor in "Collagen Peptides (+ Vitamin C)" earned an antioxidant row that
+  //   told the reader to keep it away from training, against that page's own "15 g + 50 mg vitamin
+  //   C, 45–60 min pre-exercise" protocol; ketamine, an "NMDA-receptor (GRIN) antagonist", earned
+  //   "Serotonin syndrome risk"; boron, whose page says it "travels as boric acid … without
+  //   needing a transporter", earned "Minerals compete"; and PT-141, whose own biomarker block
+  //   says each dose "transiently raises systolic BP by roughly 6 mmHg and LOWERS heart rate",
+  //   earned "Stacked stimulants — cardiovascular strain".
+  // Tags are now assigned by explicit compound id (`ids`), never by substring, and
+  // assertNameTagAllowlist() in build/parse.js fails the build on any substring collision nobody
+  // has acknowledged. Five compounds go dark and the number goes DOWN on purpose.
+  coverage: { compounds: 171, reachable: 90, unreachable: 81, unreachableRx: 40 },
 
   // catTags MUST STAY EMPTY. It is kept as a field only so compoundTags() in site/app.js and its
   // copy in build/parse.js keep the same shape; assertInteractionCoverage() fails the build if
@@ -62,67 +80,86 @@ window.RNAWIKI_INTERACTIONS = {
   // name substring (lowercased) → tags. All matches apply; order irrelevant.
   nameTags: [
     // serotonergic → serotonin-syndrome risk
-    { m: "5-htp", t: ["serotonergic"] }, { m: "tryptophan", t: ["serotonergic"] },
-    { m: "ssri", t: ["serotonergic"] }, { m: "sertraline", t: ["serotonergic"] }, { m: "escitalopram", t: ["serotonergic"] },
-    { m: "sam-e", t: ["serotonergic"] }, { m: "saffron", t: ["serotonergic"] }, { m: "psilocybin", t: ["serotonergic"] },
-    { m: "ketamine", t: ["serotonergic", "cns_depressant"] },
+    { m: "5-htp", t: ["serotonergic"], ids: ["c108"] }, { m: "tryptophan", t: ["serotonergic"], ids: ["c108"] },
+    { m: "ssri", t: ["serotonergic"], ids: ["c156"] }, { m: "sertraline", t: ["serotonergic"], ids: ["c156"] }, { m: "escitalopram", t: ["serotonergic"], ids: ["c156"] },
+    { m: "sam-e", t: ["serotonergic"], ids: ["c168"] }, { m: "saffron", t: ["serotonergic"], ids: ["c107"] }, { m: "psilocybin", t: ["serotonergic"], ids: ["c158"] },
+    { m: "ketamine", t: ["cns_depressant"], ids: ["c157"] },
     // stimulants → additive cardiovascular strain
-    { m: "caffeine", t: ["stimulant"] }, { m: "ephedrine", t: ["stimulant"] }, { m: "yohimbine", t: ["stimulant"] },
-    { m: "clenbuterol", t: ["stimulant"] }, { m: "synephrine", t: ["stimulant"] }, { m: "higenamine", t: ["stimulant"] },
-    { m: "theacrine", t: ["stimulant"] }, { m: "phentermine", t: ["stimulant"] }, { m: "amphetamine", t: ["stimulant"] },
-    { m: "lisdexamfetamine", t: ["stimulant"] }, { m: "methylphenidate", t: ["stimulant"] }, { m: "modafinil", t: ["stimulant"] },
-    { m: "bromantane", t: ["stimulant"] }, { m: "nicotine", t: ["stimulant"] }, { m: "pt-141", t: ["stimulant"] },
-    { m: "bupropion", t: ["stimulant"] },
+    { m: "caffeine", t: ["stimulant"], ids: ["c1", "c24"] }, { m: "ephedrine", t: ["stimulant"], ids: ["c25"] }, { m: "yohimbine", t: ["stimulant"], ids: ["c26"] },
+    { m: "clenbuterol", t: ["stimulant"], ids: ["c27"] }, { m: "synephrine", t: ["stimulant"], ids: ["c131"] }, { m: "higenamine", t: ["stimulant"], ids: ["c131"] },
+    { m: "theacrine", t: ["stimulant"], ids: ["c127"] }, { m: "phentermine", t: ["stimulant"], ids: ["c32"] }, { m: "amphetamine", t: ["stimulant"], ids: ["c151"] },
+    { m: "lisdexamfetamine", t: ["stimulant"], ids: ["c151"] }, { m: "methylphenidate", t: ["stimulant"], ids: ["c152"] }, { m: "modafinil", t: ["stimulant"], ids: ["c89"] },
+    { m: "bromantane", t: ["stimulant"], ids: ["c100"] }, { m: "nicotine", t: ["stimulant"], ids: ["c98"] },
+    // `pt-141` DELETED 2026-08-02. It matched exactly one compound and that compound's own page
+    // refutes the tag: PT-141 is an "alpha-MSH-derived peptide activating central melanocortin
+    // receptors MC3R/MC4R", and its own biomarker block says each dose "transiently raises
+    // systolic BP by roughly 6 mmHg and LOWERS heart rate". The stim_stack rule it fed says
+    // "Each drives the same fight-or-flight system. Stacked, HEART RATE and blood pressure
+    // compound." Measured hydrated at 390x844, /stack with c115+c1 rendered "☠️ Stacked
+    // stimulants — cardiovascular strain · PT-141 (Bremelanotide / Vyleesi) + Caffeine".
+    // PT-141 now carries no tag and renders the honest "❔ I hold no interaction pharmacology"
+    // state. Its real pressor caution belongs on its page, not in a stimulant rule.
+    { m: "bupropion", t: ["stimulant"], ids: ["c31"] },
     // blood-thinning → additive bleeding
-    { m: "nattokinase", t: ["blood_thinning"] }, { m: "omega-3", t: ["blood_thinning"] }, { m: "ginkgo", t: ["blood_thinning"] },
-    { m: "vitamin e", t: ["blood_thinning"] }, { m: "resveratrol", t: ["blood_thinning"] },
+    { m: "nattokinase", t: ["blood_thinning"], ids: ["c113"] }, { m: "omega-3", t: ["blood_thinning"], ids: ["c3"] }, { m: "ginkgo", t: ["blood_thinning"], ids: ["c153"] },
+    // `vitamin e` DELETED 2026-08-02: it matched 0 of 171 compound names. A rule that can never
+    // match is dead data in a file whose whole job is to be true about what it covers.
+    { m: "resveratrol", t: ["blood_thinning"], ids: ["c74"] },
     // strong CNS depressants → additive sedation / respiratory depression
-    { m: "phenibut", t: ["cns_depressant"] }, { m: "zolpidem", t: ["cns_depressant"] }, { m: "z-drug", t: ["cns_depressant"] },
-    { m: "trazodone", t: ["cns_depressant"] }, { m: "orexin", t: ["cns_depressant"] }, { m: "suvorexant", t: ["cns_depressant"] },
-    { m: "lemborexant", t: ["cns_depressant"] }, { m: "doxylamine", t: ["cns_depressant"] },
+    { m: "phenibut", t: ["cns_depressant"], ids: ["c101"] }, { m: "zolpidem", t: ["cns_depressant"], ids: ["c155"] }, { m: "z-drug", t: ["cns_depressant"], ids: ["c155"] },
+    { m: "trazodone", t: ["cns_depressant"], ids: ["c155"] }, { m: "orexin", t: ["cns_depressant"], ids: ["c154"] }, { m: "suvorexant", t: ["cns_depressant"], ids: ["c154"] },
+    { m: "lemborexant", t: ["cns_depressant"], ids: ["c154"] }, { m: "doxylamine", t: ["cns_depressant"], ids: ["c155"] },
     // mild sedatives → gentle stacking note only
-    { m: "melatonin", t: ["sedative_mild"] }, { m: "valerian", t: ["sedative_mild"] }, { m: "apigenin", t: ["sedative_mild"] },
+    { m: "melatonin", t: ["sedative_mild"], ids: ["c103"] }, { m: "valerian", t: ["sedative_mild"], ids: ["c170"] }, { m: "apigenin", t: ["sedative_mild"], ids: ["c104"] },
     // glucose-lowering → additive hypoglycemia
-    { m: "metformin", t: ["hypoglycemic"] }, { m: "berberine", t: ["hypoglycemic"] }, { m: "acarbose", t: ["hypoglycemic"] },
-    { m: "semaglutide", t: ["hypoglycemic", "glp1"] }, { m: "tirzepatide", t: ["hypoglycemic", "glp1"] }, { m: "retatrutide", t: ["hypoglycemic", "glp1"] },
-    { m: "liraglutide", t: ["hypoglycemic", "glp1"] }, { m: "orforglipron", t: ["hypoglycemic", "glp1"] }, { m: "cagrilintide", t: ["hypoglycemic"] },
-    { m: "sglt2", t: ["hypoglycemic"] }, { m: "insulin", t: ["hypoglycemic"] }, { m: "alpha-lipoic", t: ["hypoglycemic", "antioxidant_hd"] },
-    { m: "myo-inositol", t: ["hypoglycemic"] },
+    { m: "metformin", t: ["hypoglycemic"], ids: ["c71"] }, { m: "berberine", t: ["hypoglycemic"], ids: ["c29"] }, { m: "acarbose", t: ["hypoglycemic"], ids: ["c72"] },
+    { m: "semaglutide", t: ["hypoglycemic", "glp1"], ids: ["c19"] }, { m: "tirzepatide", t: ["hypoglycemic", "glp1"], ids: ["c20"] }, { m: "retatrutide", t: ["hypoglycemic", "glp1"], ids: ["c21"] },
+    { m: "liraglutide", t: ["hypoglycemic", "glp1"], ids: ["c22"] }, { m: "orforglipron", t: ["hypoglycemic", "glp1"], ids: ["c23"] }, { m: "cagrilintide", t: ["hypoglycemic"], ids: ["c128"] },
+    { m: "sglt2", t: ["hypoglycemic"], ids: ["c82"] }, { m: "insulin", t: ["hypoglycemic"], ids: ["c132", "c133"] }, { m: "alpha-lipoic", t: ["hypoglycemic", "antioxidant_hd"], ids: ["c162"] },
+    { m: "myo-inositol", t: ["hypoglycemic"], ids: ["c147"] },
     // blood-pressure lowering / nitrate / PDE-5
-    { m: "beetroot", t: ["hypotensive", "nitrate"] }, { m: "nitrate", t: ["hypotensive", "nitrate"] },
-    { m: "pde-5", t: ["hypotensive", "pde5"] }, { m: "sildenafil", t: ["hypotensive", "pde5"] }, { m: "tadalafil", t: ["hypotensive", "pde5"] },
-    { m: "citrulline", t: ["hypotensive"] }, { m: "agmatine", t: ["hypotensive"] }, { m: "taurine", t: ["hypotensive"] },
+    { m: "beetroot", t: ["hypotensive", "nitrate"], ids: ["c114"] }, { m: "nitrate", t: ["hypotensive", "nitrate"], ids: ["c114"] },
+    { m: "pde-5", t: ["hypotensive", "pde5"], ids: ["c116"] }, { m: "sildenafil", t: ["hypotensive", "pde5"], ids: ["c116"] }, { m: "tadalafil", t: ["hypotensive", "pde5"], ids: ["c116"] },
+    { m: "citrulline", t: ["hypotensive"], ids: ["c13"] }, { m: "agmatine", t: ["hypotensive"], ids: ["c127"] }, { m: "taurine", t: ["hypotensive"], ids: ["c8"] },
     // hepatotoxic (liver strain) — oral AAS + a few others
-    { m: "green tea", t: ["hepatotoxic"] }, { m: "red yeast rice", t: ["statin_like", "hepatotoxic"] },
-    { m: "dnp", t: ["do_not_use", "hepatotoxic"] }, { m: "dinitrophenol", t: ["do_not_use", "hepatotoxic"] },
-    { m: "tamoxifen", t: ["hepatotoxic"] }, { m: "oxandrolone", t: ["hepatotoxic"] }, { m: "stanozolol", t: ["hepatotoxic"] },
-    { m: "winstrol", t: ["hepatotoxic"] }, { m: "dianabol", t: ["hepatotoxic"] }, { m: "methandrostenolone", t: ["hepatotoxic"] },
-    { m: "anadrol", t: ["hepatotoxic"] }, { m: "oxymetholone", t: ["hepatotoxic"] }, { m: "trenbolone", t: ["hepatotoxic"] },
-    { m: "rad-140", t: ["hepatotoxic"] }, { m: "lgd-4033", t: ["hepatotoxic"] }, { m: "s-23", t: ["hepatotoxic"] },
+    { m: "green tea", t: ["hepatotoxic"], ids: ["c30"] }, { m: "red yeast rice", t: ["statin_like", "hepatotoxic"], ids: ["c161"] },
+    { m: "dnp", t: ["do_not_use", "hepatotoxic"], ids: ["c28"] }, { m: "dinitrophenol", t: ["do_not_use", "hepatotoxic"], ids: ["c28"] },
+    { m: "tamoxifen", t: ["hepatotoxic"], ids: ["c37"] }, { m: "oxandrolone", t: ["hepatotoxic"], ids: ["c44"] }, { m: "stanozolol", t: ["hepatotoxic"], ids: ["c45"] },
+    { m: "winstrol", t: ["hepatotoxic"], ids: ["c45"] }, { m: "dianabol", t: ["hepatotoxic"], ids: ["c47"] }, { m: "methandrostenolone", t: ["hepatotoxic"], ids: ["c47"] },
+    { m: "anadrol", t: ["hepatotoxic"], ids: ["c48"] }, { m: "oxymetholone", t: ["hepatotoxic"], ids: ["c48"] }, { m: "trenbolone", t: ["hepatotoxic"], ids: ["c43"] },
+    { m: "rad-140", t: ["hepatotoxic"], ids: ["c51"] }, { m: "lgd-4033", t: ["hepatotoxic"], ids: ["c50"] }, { m: "s-23", t: ["hepatotoxic"], ids: ["c52"] },
     // statin-like
-    { m: "statin", t: ["statin_like"] }, { m: "atorvastatin", t: ["statin_like"] }, { m: "rosuvastatin", t: ["statin_like"] },
+    { m: "statin", t: ["statin_like"], ids: ["c159"], not: ["c63"] }, { m: "atorvastatin", t: ["statin_like"], ids: ["c159"] }, { m: "rosuvastatin", t: ["statin_like"], ids: ["c159"] },
     // niacin (myopathy risk with statins)
-    { m: "niacin", t: ["niacin"] },
+    { m: "niacin", t: ["niacin"], ids: ["c124"], not: ["c145"] },
     // grapefruit-type metabolism
-    { m: "bergamot", t: ["cyp3a4"] },
+    { m: "bergamot", t: ["cyp3a4"], ids: ["c112"] },
     // minerals that compete for absorption
     // `iron` deleted 2026-08-01: no rule consumed it, and everything it was there for is already
     // carried — competition with other minerals by `divalent_mineral`, the vitamin-C absorption
     // pairing by the name-matched synergy below. A tag no rule reads is dead data that reads as
     // coverage, so it goes rather than gets a rule invented for it.
-    { m: "calcium", t: ["divalent_mineral"] }, { m: "iron", t: ["divalent_mineral"] }, { m: "zinc", t: ["divalent_mineral", "zinc"] },
-    { m: "magnesium", t: ["divalent_mineral"] }, { m: "strontium", t: ["divalent_mineral"] }, { m: "boron", t: ["divalent_mineral"] },
+    { m: "calcium", t: ["divalent_mineral"], ids: ["c79", "c148", "c149"] }, { m: "iron", t: ["divalent_mineral"], ids: ["c122", "c148"], not: ["c134"] }, { m: "zinc", t: ["divalent_mineral", "zinc"], ids: ["c6", "c165"] },
+    { m: "magnesium", t: ["divalent_mineral"], ids: ["c5"] }, { m: "strontium", t: ["divalent_mineral"], ids: ["c150"] },
+    // `boron` DELETED 2026-08-02. Boron is a metalloid absorbed as boric acid, and the page says
+    // so in as many words: "It's absorbed almost completely and travels as boric acid — a small,
+    // water-loving molecule that spreads through your total body water WITHOUT NEEDING A
+    // TRANSPORTER." The mineral rule it fed says the opposite: "Calcium, iron, zinc and magnesium
+    // ride the same intestinal transporter and compete." Worse, Boron's own stacksWith line reads
+    // "Vitamin D3 and magnesium (boron supports their metabolism)" while the rule told the reader
+    // to "Take competing minerals about 2 hours apart". Measured hydrated at 390x844, /stack with
+    // c7+c5 rendered "⏰ Minerals compete — space them out · Boron + Magnesium".
     // high-dose antioxidants (can blunt training adaptation)
     // `vitc` deleted 2026-08-01, same reason as `iron`: no rule read it, and vitamin C's two real
     // interactions here are already covered — antioxidant load by `antioxidant_hd`, the iron
     // pairing by the name-matched synergy below.
-    { m: "n-acetylcysteine", t: ["antioxidant_hd"] }, { m: "vitamin c", t: ["antioxidant_hd"] },
-    { m: "astaxanthin", t: ["antioxidant_hd"] },
+    { m: "n-acetylcysteine", t: ["antioxidant_hd"], ids: ["c9"] }, { m: "vitamin c", t: ["antioxidant_hd"], ids: ["c120"], not: ["c109"] },
+    { m: "astaxanthin", t: ["antioxidant_hd"], ids: ["c83"] },
     // mTOR
-    { m: "rapamycin", t: ["mtor_inhibitor", "immunosuppress"] }, { m: "eaas", t: ["mtor_activator"] }, { m: "bcaa", t: ["mtor_activator"] },
-    { m: "hmb", t: ["mtor_activator"] }, { m: "igf-1", t: ["mtor_activator", "hypoglycemic"] },
+    { m: "rapamycin", t: ["mtor_inhibitor", "immunosuppress"], ids: ["c70"] }, { m: "eaas", t: ["mtor_activator"], ids: ["c18"] }, { m: "bcaa", t: ["mtor_activator"], ids: ["c18"] },
+    { m: "hmb", t: ["mtor_activator"], ids: ["c16"] }, { m: "igf-1", t: ["mtor_activator", "hypoglycemic"], ids: ["c62"] },
     // immune direction
-    { m: "beta-glucan", t: ["immunostim"] }, { m: "mushroom", t: ["immunostim"] }, { m: "reishi", t: ["immunostim"] },
+    { m: "beta-glucan", t: ["immunostim"], ids: ["c140"] }, { m: "mushroom", t: ["immunostim"], ids: ["c141"] }, { m: "reishi", t: ["immunostim"], ids: ["c141"] },
     // "thymosin" narrowed to "thymosin alpha" 2026-08-01. A nameTag match is an UNANCHORED
     // SUBSTRING, and the bare string hit two different molecules that do opposite things.
     // Thymosin α-1 is an immunomodulator by its own mechanism ("activating Toll-like receptors
@@ -132,35 +169,35 @@ window.RNAWIKI_INTERACTIONS = {
     // direction · TB-500 (Thymosin Beta-4 fragment) + Rapamycin (Sirolimus)", explained with
     // "Mushrooms / beta-glucans push the immune system up" — a sentence about neither compound in
     // the row. "thymosin alpha" hits exactly one compound in the 171-name corpus.
-    { m: "andrographis", t: ["immunostim"] }, { m: "ll-37", t: ["immunostim"] }, { m: "thymosin alpha", t: ["immunostim"] },
+    { m: "andrographis", t: ["immunostim"], ids: ["c142"] }, { m: "ll-37", t: ["immunostim"], ids: ["c69"] }, { m: "thymosin alpha", t: ["immunostim"], ids: ["c68"] },
     // aromatase inhibitors (estrogen crash)
-    { m: "anastrozole", t: ["aromatase_inhibitor"] }, { m: "exemestane", t: ["aromatase_inhibitor"] },
-    { m: "letrozole", t: ["aromatase_inhibitor"] }, { m: "aromatase", t: ["aromatase_inhibitor"] },
+    { m: "anastrozole", t: ["aromatase_inhibitor"], ids: ["c36"] }, { m: "exemestane", t: ["aromatase_inhibitor"], ids: ["c36"] },
+    { m: "letrozole", t: ["aromatase_inhibitor"], ids: ["c134"] }, { m: "aromatase", t: ["aromatase_inhibitor"], ids: ["c36"] },
     // 5-alpha-reductase inhibitors (redundant if doubled)
-    { m: "finasteride", t: ["5ar_inhibitor"] }, { m: "dutasteride", t: ["5ar_inhibitor"] },
+    { m: "finasteride", t: ["5ar_inhibitor"], ids: ["c39"] }, { m: "dutasteride", t: ["5ar_inhibitor"], ids: ["c39"] },
     // thyroid hormone (mineral-blocked absorption)
-    { m: "t3 / t4", t: ["thyroid"] }, { m: "levothyroxine", t: ["thyroid"] }, { m: "liothyronine", t: ["thyroid"] },
+    { m: "t3 / t4", t: ["thyroid"], ids: ["c130"] }, { m: "levothyroxine", t: ["thyroid"], ids: ["c130"] }, { m: "liothyronine", t: ["thyroid"], ids: ["c130"] },
     // Exogenous androgens → HPTA suppression. ASSERTED PER COMPOUND, never by category (see the
     // catTags note above). Each match string was tested against all 171 lowercased compound names
     // and hits exactly one. The comment on each line is that compound's OWN authored support,
     // quoted from site/data.js — if you cannot quote the page, do not add the line.
-    { m: "testosterone", t: ["hpta_suppressive"] },        // watch: "Testicular shrinkage/infertility (suppresses LH/FSH)"
-    { m: "nandrolone", t: ["hpta_suppressive"] },          // watch: "prolonged HPTA suppression"
-    { m: "oxandrolone", t: ["hpta_suppressive"] },         // watch: "Lipid deterioration, HPTA suppression"
-    { m: "oxymetholone", t: ["hpta_suppressive"] },        // watch: "all suppress natural testosterone"
-    { m: "ostarine", t: ["hpta_suppressive"] },            // watch: "HPTA suppression, liver injury cases"
-    { m: "ligandrol", t: ["hpta_suppressive"] },           // watch: "Marked suppression, hepatotoxicity"
-    { m: "andarine", t: ["hpta_suppressive"] },            // watch: "Minimal human data, strong suppression"
+    { m: "testosterone", t: ["hpta_suppressive"], ids: ["c33"] },        // watch: "Testicular shrinkage/infertility (suppresses LH/FSH)"
+    { m: "nandrolone", t: ["hpta_suppressive"], ids: ["c42"] },          // watch: "prolonged HPTA suppression"
+    { m: "oxandrolone", t: ["hpta_suppressive"], ids: ["c44"] },         // watch: "Lipid deterioration, HPTA suppression"
+    { m: "oxymetholone", t: ["hpta_suppressive"], ids: ["c48"] },        // watch: "all suppress natural testosterone"
+    { m: "ostarine", t: ["hpta_suppressive"], ids: ["c49"] },            // watch: "HPTA suppression, liver injury cases"
+    { m: "ligandrol", t: ["hpta_suppressive"], ids: ["c50"] },           // watch: "Marked suppression, hepatotoxicity"
+    { m: "andarine", t: ["hpta_suppressive"], ids: ["c52"] },            // watch: "Minimal human data, strong suppression"
     // The four below are exogenous androgen-receptor agonists by their own authored MECHANISM;
     // their pages do not use the word "suppression". The tag rests on the mechanism the page
     // states, not on an inference about the molecule's class — which is the line this file now
     // holds everywhere. If Felix would rather these carried the tag only when the page says so,
     // the honest fix is one authored sentence on each page, not a quieter tag.
-    { m: "trenbolone", t: ["hpta_suppressive"] },          // mech: "19-nor with extreme AR binding affinity (higher than testosterone)"
-    { m: "stanozolol", t: ["hpta_suppressive"] },          // mech: "DHT-derived, 17α-alkylated, non-aromatising"
-    { m: "boldenone", t: ["hpta_suppressive"] },           // mech: "Testosterone with a 1,2 double bond"
-    { m: "methandrostenolone", t: ["hpta_suppressive"] },  // mech: "Oral 17α-alkylated, aromatises readily"
-    { m: "testolone", t: ["hpta_suppressive"] }            // mech: "Potent AR agonist designed to mimic testosterone's anabolism"
+    { m: "trenbolone", t: ["hpta_suppressive"], ids: ["c43"] },          // mech: "19-nor with extreme AR binding affinity (higher than testosterone)"
+    { m: "stanozolol", t: ["hpta_suppressive"], ids: ["c45"] },          // mech: "DHT-derived, 17α-alkylated, non-aromatising"
+    { m: "boldenone", t: ["hpta_suppressive"], ids: ["c46"] },           // mech: "Testosterone with a 1,2 double bond"
+    { m: "methandrostenolone", t: ["hpta_suppressive"], ids: ["c47"] },  // mech: "Oral 17α-alkylated, aromatises readily"
+    { m: "testolone", t: ["hpta_suppressive"], ids: ["c51"] }            // mech: "Potent AR agonist designed to mimic testosterone's anabolism"
   ],
 
   // Rules: fire when every `need` [tag, minDistinctCompounds] is satisfied by the stack.
@@ -286,12 +323,12 @@ window.RNAWIKI_INTERACTIONS = {
 
   // Synergies — pairs that work well together (match by name substring; both must be present).
   synergies: [
-    { a: "statin", b: "coq10", title: "Statin + CoQ10", why: "Statins deplete CoQ10; replacing it can ease the muscle aches that make people quit statins." },
-    { a: "caffeine", b: "theanine", title: "Caffeine + L-Theanine", why: "Theanine smooths caffeine's jitter for clean focus without the crash." },
-    { a: "iron", b: "vitamin c", title: "Iron + Vitamin C", why: "Vitamin C converts iron to its absorbable form and multiplies uptake." },
-    { a: "collagen", b: "vitamin c", title: "Collagen + Vitamin C", why: "Vitamin C is the cofactor your body needs to build collagen from the peptides." },
-    { a: "vitamin d", b: "magnesium", title: "Vitamin D + Magnesium", why: "Magnesium is a cofactor for activating vitamin D — low magnesium blunts D's effect." },
-    { a: "glycine", b: "n-acetylcysteine", title: "Glycine + NAC (GlyNAC)", why: "Together they restore glutathione more than either alone." },
-    { a: "creatine", b: "beta-alanine", title: "Creatine + Beta-Alanine", why: "Complementary buffers — creatine fuels short bursts, beta-alanine buffers acid for longer sets." }
+    { a: "statin", b: "coq10", aIds: ["c159"], aNot: ["c63"], bIds: ["c11"], title: "Statin + CoQ10", why: "Statins deplete CoQ10; replacing it can ease the muscle aches that make people quit statins." },
+    { a: "caffeine", b: "theanine", aIds: ["c1", "c24"], bIds: ["c2"], title: "Caffeine + L-Theanine", why: "Theanine smooths caffeine's jitter for clean focus without the crash." },
+    { a: "iron", b: "vitamin c", aIds: ["c122", "c148"], aNot: ["c134"], bIds: ["c120"], bNot: ["c109"], title: "Iron + Vitamin C", why: "Vitamin C converts iron to its absorbable form and multiplies uptake." },
+    { a: "collagen", b: "vitamin c", aIds: ["c109"], bIds: ["c120"], bNot: ["c109"], title: "Collagen + Vitamin C", why: "Vitamin C is the cofactor your body needs to build collagen from the peptides." },
+    { a: "vitamin d", b: "magnesium", aIds: ["c4"], bIds: ["c5"], title: "Vitamin D + Magnesium", why: "Magnesium is a cofactor for activating vitamin D — low magnesium blunts D's effect." },
+    { a: "glycine", b: "n-acetylcysteine", aIds: ["c10"], aNot: ["c14", "c80"], bIds: ["c9"], title: "Glycine + NAC (GlyNAC)", why: "Together they restore glutathione more than either alone." },
+    { a: "creatine", b: "beta-alanine", aIds: ["c0"], bIds: ["c12"], title: "Creatine + Beta-Alanine", why: "Complementary buffers — creatine fuels short bursts, beta-alanine buffers acid for longer sets." }
   ]
 };

@@ -2880,9 +2880,18 @@
     return s;
   })();
   function compoundTags(c) {
+    // W3.6 (2026-08-02): TAGS ARE ASSIGNED BY COMPOUND ID, NEVER BY NAME SUBSTRING.
+    // `nm.indexOf(r.m)` asserted a mechanism for every current AND FUTURE compound whose name
+    // happened to contain the letters — the catTags fabrication engine one level down. It was
+    // live seven times; measured hydrated at 390x844 on /stack, "myoSTATIN" put a ☠️ "Double
+    // statin" row on Follistatin / Myostatin inhibitors, "NIACINamide" put ☠️ "Statin + high-dose
+    // niacin" on a page that says "Choose niacinamide, NOT niacin/nicotinic acid", and "provIRON"
+    // put "⏰ Minerals compete" on mesterolone. `r.m` survives in site/interactions.js only as the
+    // tripwire assertNameTagAllowlist() runs at build time; nothing at runtime reads it.
+    // The identical predicate lives in build/parse.js tagsOf(). Change both or the published
+    // coverage number stops matching what this panel prints — which the build gates.
     const s = new Set(RXN.catTags[c.category] || []);
-    const nm = (c.name || '').toLowerCase();
-    (RXN.nameTags || []).forEach(r => { if (nm.indexOf(r.m) >= 0) r.t.forEach(t => s.add(t)); });
+    (RXN.nameTags || []).forEach(r => { if ((r.ids || []).indexOf(c.id) >= 0) r.t.forEach(t => s.add(t)); });
     return s;
   }
   function stackInteractions(list) {
@@ -2903,8 +2912,16 @@
     const flags = fired.filter(f => !(f.notIf || []).some(id => firedIds[id]));
     const syn = [];
     (RXN.synergies || []).forEach(g => {
-      const A = list.find(c => (c.name || '').toLowerCase().indexOf(g.a) >= 0);
-      const B = list.find(c => (c.name || '').toLowerCase().indexOf(g.b) >= 0);
+      // W3.6 (2026-08-02): id allowlists here too. Substring matching on a SYNERGY is worse than
+      // on a rule, because the output is a green "works well together". Measured hydrated at
+      // 390x844 on /stack: c63+c11 printed "✅ Statin + CoQ10 — Statins deplete CoQ10" for a
+      // myostatin inhibitor, directly above "❔ I hold no interaction pharmacology for CoQ10";
+      // c134+c120 printed "✅ Iron + Vitamin C" for Proviron; c14+c9 printed "✅ Glycine + NAC"
+      // for Betaine (trimethylGLYCINE). The same change also fixes a MISS: `find` matched both
+      // "collagen" and "vitamin c" to c109, so the A !== B guard dropped this site's own authored
+      // Collagen + Vitamin C pairing on the one stack where it matters.
+      const A = list.find(c => (g.aIds || []).indexOf(c.id) >= 0);
+      const B = list.find(c => (g.bIds || []).indexOf(c.id) >= 0);
       if (A && B && A !== B) syn.push({ title: g.title, why: g.why });
     });
     return { flags, synergies: syn };
