@@ -3967,17 +3967,26 @@
   function rankProblems(q) {
     const T = solveTokens(q);
     if (!T.length) return [];
+    const nq = ' ' + String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
     const sc = GRAPH.problems.map(p => {
-      const n = p.solveName || '', h = p.solveHay || '';
+      const n = p.solveName || '', h = p.solveHay || '', al = p.solveAlias || '';
       let s = 0;
+      // Tier 0 — an authored alias PHRASE (data/solve_aliases.json) inside the query. Scored ONCE,
+      // not per phrase, so a problem with a long alias list cannot buy rank with volume. 40 puts a
+      // phrase match above any single name word (18) but below a full name match plus a word.
+      if ((p.solvePhrases || []).some(ph => nq.indexOf(ph.slice(1, -1)) >= 0)) s += 40;
       T.forEach(t => {
         const st = t.length >= 6 ? t.slice(0, 5) : null;
         if (n === ' ' + t + ' ') s += 30;                       // the whole name
         else if (n.indexOf(' ' + t + ' ') >= 0) s += 18;        // a whole word of the name
-        else if (n.indexOf(t) >= 0) s += 10;                    // inside a word of the name
+        else if (al.indexOf(' ' + t + ' ') >= 0) s += 14;       // a whole word of an authored alias
+        // WORD-PREFIX, not substring. This was `n.indexOf(t) >= 0`, which matched anywhere inside
+        // any word: "out" scored 10 against "Burnout" and "Pre-Workout Energy", which is most of
+        // why "hair falling out" returned insomnia.
+        else if (n.indexOf(' ' + t) >= 0) s += 10;              // the start of a word of the name
         else if (h.indexOf(' ' + t + ' ') >= 0) s += 4;         // a whole word anywhere on the page
         else if (h.indexOf(t) >= 0) s += 1;
-        else if (st && (n.indexOf(st) >= 0 || h.indexOf(st) >= 0)) s += 1;   // crude stem
+        else if (st && (n.indexOf(st) >= 0 || al.indexOf(st) >= 0 || h.indexOf(st) >= 0)) s += 1;   // crude stem
       });
       return { p, s };
       // Tie-break on solveName.length, NOT p.name.length: server.js only has the normalised form,

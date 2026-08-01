@@ -619,6 +619,57 @@ try {
     }
   }
 
+  // ------------------------------------------------- /solve?q= ranking: the regression battery
+  // W2.5(d). The parity check above only asserts the two runtimes AGREE — they agreed perfectly
+  // while both were wrong. This asserts they are RIGHT, against the phrasings a reader actually
+  // types. Measured before the fix: 9 of these 20 ranked the wrong problem #1, and not narrowly —
+  // "hair falling out" returned insomnia (its name owns "falling"), "lose weight" returned pcos as
+  // its only hit, "balding" returned nothing at all. Plus the invariant the ranking has always
+  // claimed: every problem is #1 for its own display name.
+  // Both read the server's ranking, which is the ~90% document; app.js is pinned to it by the
+  // parity check. PROVED by reintroduction: cutting data/solve_aliases.json's "hair-loss" list
+  // down to ["hair"] and rebuilding makes this print
+  //   ASSERTION solveBattery FAILED — q="balding" ranks (none) first, expected hair-loss
+  // Measured while proving it: deleting "the" from graph.solveStopwords does NOT fail this gate
+  // any more, because the alias phrase now outscores the spurious name-word hit. The stopword and
+  // word-prefix changes are still right (see build/parse.js) — they are just no longer the thing
+  // holding these 20 up. The alias layer is: without it the battery scores 11/20.
+  {
+    const topOf = async (q) => {
+      const html = await (await fetch(BASE + '/solve?q=' + encodeURIComponent(q))).text();
+      if (/id="q-none" data-on/.test(html)) return '(none)';
+      const hits = [...html.matchAll(/#q-hits \.solve-card\[data-pid="([a-z0-9-]+)"\]\{order:(\d+)\}/g)]
+        .map(m => ({ id: m[1], o: +m[2] })).sort((a, b) => a.o - b.o);
+      return hits.length ? hits[0].id : '(none)';
+    };
+    const BATTERY = [
+      ['hair falling out', 'hair-loss'], ['lose weight', 'fat-loss-plateau'], ['tired all the time', 'chronic-fatigue'],
+      ['knee hurts', 'knee-pain'], ['high blood pressure', 'blood-pressure'], ['cant sleep', 'insomnia'],
+      ['balding', 'hair-loss'], ['belly fat', 'visceral-fat'], ['brain fog', 'brain-fog'], ['cant focus', 'adhd-focus'],
+      ['always exhausted', 'chronic-fatigue'], ['wake up at 3am', 'sleep-maintenance'], ['build muscle', 'hypertrophy'],
+      ['live longer', 'longevity'], ['bloating', 'gut-health'], ['plantar fasciitis', 'ankle-foot'],
+      ['tennis elbow', 'elbow-wrist'], ['low testosterone', 'low-testosterone'], ['keep getting sick', 'immunity'],
+      ['cant lose weight', 'fat-loss-plateau'],
+    ];
+    try {
+      for (const [q, want] of BATTERY) {
+        const top = await topOf(q);
+        if (top !== want) fail.push(`ASSERTION solveBattery FAILED — q=${JSON.stringify(q)} ranks ${top} first, expected ${want} — /solve does not answer the words a reader types`);
+      }
+      // …and nothing at all for a query with no answer, so the ranking cannot pass by matching
+      // everything.
+      const none = await topOf('zzzznonsense');
+      if (none !== '(none)') fail.push(`ASSERTION solveBattery FAILED — a nonsense query ranked ${none} first`);
+      // the invariant: every problem is #1 for its own name
+      const dj = await (await fetch(BASE + '/data.js')).text();
+      const G = JSON.parse(dj.match(/^window\.RNAWIKI_DATA = ([\s\S]*);\s*$/)[1]).graph;
+      for (const p of G.problems) {
+        const top = await topOf(p.name);
+        if (top !== p.id) fail.push(`ASSERTION solveBattery FAILED — the problem "${p.name}" is not the top hit for its own name (got ${top})`);
+      }
+    } catch (e) { fail.push('solveBattery: harness error — ' + (e && e.message ? e.message : String(e))); }
+  }
+
   // ------------------------------------------------- Back button on a KEEP_PRERENDERED route
   // W2.5(a): /problem is in KEEP_PRERENDERED, so route() returns the KEEP sentinel and never
   // writes #app. Before the fix, Back from a protocol restored the URL and left the PROTOCOL on

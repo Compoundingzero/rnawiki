@@ -2391,7 +2391,10 @@ try {
     COMPOUND_ALIASES = _d.compoundAliases || {};
     const _g = _d.graph || {};
     SOLVE_INDEX = {
-      problems: (_g.problems || []).map((p) => ({ id: p.id, name: p.solveName || '', hay: p.solveHay || '' })),
+      problems: (_g.problems || []).map((p) => ({
+        id: p.id, name: p.solveName || '', hay: p.solveHay || '',
+        alias: p.solveAlias || '', phrases: p.solvePhrases || [],
+      })),
       stop: _g.solveStopwords || [],
     };
   }
@@ -2409,16 +2412,22 @@ function searchSolve(q) {
   const T = [...new Set(String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').split(' ')
     .filter((t) => t.length >= 3 && stop.indexOf(t) < 0))].slice(0, 8);
   if (!T.length) return [];
+  const nq = ' ' + String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
   const sc = SOLVE_INDEX.problems.map((p) => {
+    const al = p.alias || '';
     let s = 0;
+    // Tier 0 — an authored alias phrase from data/solve_aliases.json, scored ONCE. Same rule and
+    // same weight as rankProblems() in site/app.js; if you change one, change the other.
+    if ((p.phrases || []).some((ph) => nq.indexOf(ph.slice(1, -1)) >= 0)) s += 40;
     T.forEach((t) => {
       const st = t.length >= 6 ? t.slice(0, 5) : null;
       if (p.name === ' ' + t + ' ') s += 30;
       else if (p.name.indexOf(' ' + t + ' ') >= 0) s += 18;
-      else if (p.name.indexOf(t) >= 0) s += 10;
+      else if (al.indexOf(' ' + t + ' ') >= 0) s += 14;
+      else if (p.name.indexOf(' ' + t) >= 0) s += 10;   // word PREFIX, not substring — see app.js
       else if (p.hay.indexOf(' ' + t + ' ') >= 0) s += 4;
       else if (p.hay.indexOf(t) >= 0) s += 1;
-      else if (st && (p.name.indexOf(st) >= 0 || p.hay.indexOf(st) >= 0)) s += 1;
+      else if (st && (p.name.indexOf(st) >= 0 || al.indexOf(st) >= 0 || p.hay.indexOf(st) >= 0)) s += 1;
     });
     return { id: p.id, s, len: p.name.length };
   }).filter((x) => x.s > 0).sort((a, b) => b.s - a.s || a.len - b.len);
