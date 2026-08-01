@@ -378,6 +378,92 @@ const ASSERTIONS = {
       if (location.href !== urlBefore) return `exporting changed the URL to ${location.href}`;
       return null;
     },
+  }, {
+    // W4 (2026-08-02): THE RESEARCH RECEIPT, AND THE $0 RULE ENFORCED IN CODE.
+    // The build gate (assertPhase1 in build/parse.js) proves the DATA is free. This proves the CARD
+    // is: it plants a prescription, a purchase, a compound name and a non-zero cost into the LIVE
+    // rc.phase1 — i.e. it makes the data lie — and requires the receipt to refuse each time and to
+    // remove the download control with it. All 44 root causes that carry a Phase 1 pass the guard,
+    // so without this the refusal branch would never execute and the gate would be a gate over an
+    // empty set.
+    // PROVE THIS GATE by deleting any one clause of receiptGuard() in site/app.js — e.g. the
+    // `p1.cost !== 'none'` line — or by printing a percentage into receiptModel()'s rows.
+    name: 'receiptIsOnly0DollarAndOnlyWhatWasTapped',
+    why: 'W4: a shareable card is the most quotable thing on the site. It must never be generatable for a prescription, controlled or paid protocol, and must never carry a statistic',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const rc = p.root_causes.find(x => x.id === rcid);
+      if (!rc.phase1) return 'this root cause carries no Phase 1 — pick a different smoke route for the receipt';
+      const urlBefore = location.href;
+      const iso = (d) => { const q = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${q(d.getMonth() + 1)}-${q(d.getDate())}`; };
+      // a finished week: 6 days tapped, one genuinely missed, mixed directions
+      const start = new Date(); start.setDate(start.getDate() - 6);
+      const days = {}, dirs = [null, 'worse', 'same', 'same', 'better', 'better', 'better'];
+      for (let i = 0; i < 7; i++) { if (i === 3) continue; const d = new Date(start); d.setDate(start.getDate() + i); days[iso(d)] = { did: i === 5 ? 0 : 1, dir: dirs[i] }; }
+      localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [pid + '/' + rcid]: { started: iso(start), action: '', metric: '', sync: false, days } } }));
+      // tapping a day chip is the only public way to force a redraw; focus falls back safely when
+      // the chip's date is not in the new week
+      const redraw = async () => { document.querySelector('#p1-log [data-p1="day"]').click(); await new Promise(r => setTimeout(r, 40)); };
+      await redraw();
+      const wrap = () => document.querySelector('#p1-log .rcpt');
+      const dl = () => document.querySelector('#p1-log button[data-p1="receipt-png"]');
+      if (!wrap()) return 'no receipt block in the log at all';
+      if (wrap().dataset.receipt !== 'ready') return `after a finished week the receipt state is "${wrap().dataset.receipt}", expected "ready"`;
+      const card = document.getElementById('rcpt-card');
+      if (!card) return 'the receipt says ready and there is no card';
+      const t = card.innerText.replace(/\s+/g, ' ');
+      // What the card may NOT say. Seven self-reported taps are a diary; anything that reads like a
+      // measurement is the most shareable false claim this site could make.
+      if (/\d+\s?%/.test(t)) return `the card prints a percentage — "${t.match(/.{0,30}\d+\s?%.{0,30}/)[0]}"`;
+      if (/\d+\s*\/\s*10/.test(t)) return 'the card prints an N/10 score — this logger collects no scale, so that number would be invented';
+      if (/(of (users|people|readers)|on average|the average|cohort|other readers|compared with others)/i.test(t)) return 'the card carries an aggregate — no aggregate efficacy statistic may render anywhere';
+      if (!/personal observation, not a clinical result/i.test(t)) return 'the card never says it is a personal observation rather than a clinical result';
+      if (!/\$0/.test(t)) return 'the card never states that the week cost nothing';
+      if (!dl()) return 'no download control — sharing must never be the only way to keep it';
+      const r = dl().getBoundingClientRect();
+      if (r.width < 44 || r.height < 44) return `the download control is ${Math.round(r.width)}x${Math.round(r.height)} — under 44x44 (D25)`;
+      // the PNG must leave as a blob:, exactly like the JSON export
+      const proto = HTMLAnchorElement.prototype, realClick = proto.click;
+      let href = null;
+      proto.click = function () { href = this.href; };
+      try { dl().click(); } finally { setTimeout(() => { proto.click = realClick; }, 1500); }
+      await new Promise(r2 => setTimeout(r2, 500));
+      proto.click = realClick;
+      if (!href) return 'tapping download produced no file at all';
+      if (href.slice(0, 5) !== 'blob:') return `the receipt download href is "${String(href).slice(0, 48)}…" — a data: URI would put the reader's own week inside a URL string`;
+      if (location.href !== urlBefore) return `downloading the receipt changed the URL to ${location.href}`;
+      // ---- THE $0 RULE, FORCED. Make the data lie; the card must still refuse. ----
+      const orig = { action: rc.phase1.action, cost: rc.phase1.cost };
+      const cases = [
+        ['a prescription', { action: 'Take the prescribed dose daily' }],
+        ['a purchase', { action: 'A daily psyllium scoop' }],
+        ['a compound the corpus knows', { action: 'Creatine Monohydrate daily' }],
+        ['a cost that is not zero', { cost: 'some' }],
+      ];
+      for (const [label, patch] of cases) {
+        rc.phase1.action = patch.action || orig.action;
+        rc.phase1.cost = patch.cost || 'none';
+        await redraw();
+        const w = wrap();
+        if (!w || w.dataset.receipt !== 'refused') {
+          rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+          return `a Phase 1 that is ${label} still produced receipt state "${w ? w.dataset.receipt : 'none'}" — the $0 rule must be enforced in code, not only in the data`;
+        }
+        if (dl()) {
+          rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+          return `a Phase 1 that is ${label} was refused but the download control is still on the page`;
+        }
+        if (!(w.innerText || '').trim()) {
+          rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+          return `a Phase 1 that is ${label} was refused silently — the reader must be told why`;
+        }
+      }
+      rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+      await redraw();
+      if (wrap().dataset.receipt !== 'ready') return 'the receipt did not come back after the planted values were removed — the guard is stateful, which it must not be';
+      return null;
+    },
   }],
   // W1 visible degradation (commit 587c056): when /api/rootcause-overlay fails, the protocol page
   // must SAY the community cause layer is missing instead of silently showing the built-in list.

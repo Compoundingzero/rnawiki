@@ -3982,3 +3982,30 @@ a.assess-switch { text-align: center; }
 .p1-sync-state{margin:.3rem 0 0;font-size:1rem;line-height:1.5;color:#0b5f59}
 .p1-sync-state:empty{display:none}
 @media (max-width:520px){.p1-log{padding:.8rem .7rem .9rem}.p1-tap{flex:1 1 30%}}
+/* ---- W4 (2026-08-02): THE RESEARCH RECEIPT -------------------------------------------------
+   The one deliberately dark block on a light site: it is a card to keep and to send, so it has to
+   read as an object rather than as more page. Contrast is computed against the card's OWN
+   background #0a1218, and every pair is >= AA at the size it renders:
+     #f4fbfa on #0a1218 = 17.1:1 · #5eead4 on #0a1218 = 11.7:1 · #9fb4c0 on #0a1218 = 7.5:1
+     #99f6e4 on #0a1218 = 12.6:1
+   Nothing here is smaller than 16px except the two 13px uppercase keys, which are letterspaced
+   and above the 12px floor D25 measures. The download button is >= 44x44 (D25). */
+.rcpt{margin:1rem 0 .2rem}
+.rcpt-lede{margin:0 0 .55rem;font-size:1rem;line-height:1.5;color:var(--ink)}
+.rcpt-pending,.rcpt-refused{margin:.2rem 0 0;padding:.7rem .85rem;border:1px dashed var(--line);border-radius:12px;font-size:1rem;line-height:1.55;color:var(--muted);background:var(--panel2)}
+.rcpt-refused{border-style:solid;border-color:#fed7aa;background:#fffbeb;color:#7c3a06}
+.rcpt-card{background:#0a1218;border-radius:18px;padding:1.2rem 1.15rem 1.1rem;border-top:6px solid #0f766e;color:#f4fbfa;overflow-wrap:anywhere}
+.rcpt-brand{display:flex;justify-content:space-between;align-items:center;gap:.6rem;font-size:1rem;font-weight:800;color:#5eead4}
+.rcpt-free{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#99f6e4}
+.rcpt-title{margin:.7rem 0 .2rem;font-size:1.5rem;line-height:1.2;font-weight:800;color:#f4fbfa}
+.rcpt-target{margin:0 0 .8rem;font-size:1rem;line-height:1.45;color:#9fb4c0}
+.rcpt-action{margin:.8rem 0 .2rem;padding-top:.8rem;border-top:1px solid #12262b;font-size:1.15rem;line-height:1.35;font-weight:700;color:#e6fffa}
+.rcpt-metric,.rcpt-dates{margin:.15rem 0 0;font-size:1rem;line-height:1.45;color:#9fb4c0}
+.rcpt-rows{margin:.9rem 0 0;display:grid;gap:.6rem}
+.rcpt-row dt{font-size:.82rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5eead4}
+.rcpt-row dd{margin:.1rem 0 0;font-size:1.05rem;line-height:1.4;color:#f4fbfa}
+.rcpt-disc{margin:1rem 0 .5rem;padding-top:.8rem;border-top:1px solid #12262b;font-size:1rem;line-height:1.5;color:#9fb4c0}
+.rcpt-foot{margin:0;font-size:1rem;line-height:1.45;font-weight:600;color:#5eead4}
+.rcpt-actions{display:flex;flex-wrap:wrap;gap:.55rem;margin:.7rem 0 0}
+.rcpt-actions button{min-height:44px;min-width:44px}
+.rcpt-note{margin:.5rem 0 0;font-size:1rem;line-height:1.5;color:var(--muted)}

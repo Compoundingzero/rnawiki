@@ -5916,6 +5916,7 @@
         </div>
         <p class="p1-log-note">The question is always <b>compared with your own day 1</b>, never “how bad is it” — that way it reads the same whether you are trying to reduce something or build something. ${dayGap(log.started, today) < 1 ? 'On day 1 there is nothing to compare with yet, so leave it blank.' : ''}</p>
       </div>
+      ${receiptBlockHTML(problem, rc, log, days, today, dayN)}
       <div class="p1-log-foot">
         <button type="button" class="p1-mini" data-p1="export">⤓ Export my log</button>
         <button type="button" class="p1-mini" data-p1="restore">⤒ Restore from a file</button>
@@ -5930,6 +5931,232 @@
           : 'Off. Nothing about this log has left this device. Turning it on sends which protocol this is and that you checked in today — nothing else, and still no account.'}</p>
         <p class="p1-sync-state" id="p1-sync-state" role="status"></p>
       </div>`;
+  }
+  // ---- W4 (2026-08-02): THE RESEARCH RECEIPT ---------------------------------------------------
+  // MEASURED HYDRATED at 390x844 in the default DOM state before this, on
+  // /protocol/knee-pain/patellofemoral-pain, /protocol/insomnia/circadian-misalign,
+  // /protocol/hair-loss/dht-sensitivity and /protocol/low-testosterone/primary-hypogonadism
+  // (out/w4rl_before.json): the word "receipt" 0/4, any share affordance 0/4, any link to x.com or
+  // twitter.com 0/4. A reader who tapped seven days finished the week and the page said nothing.
+  //
+  // THE $0 RULE IS ENFORCED HERE, IN CODE, NOT IN COPY. receiptGuard() re-runs THIS BUILD'S OWN two
+  // patterns — data.phase1Guard, published by assertPhase1() in build/parse.js — against the
+  // action, plus a scan for every compound name the corpus knows, and refuses to produce a model at
+  // all if any of them hits. Three things follow from that:
+  //   · the refusal is not a hidden button, it is the absence of a model, so nothing downstream
+  //     (the card, the PNG, the share text) can be reached by a reader who pokes at the DOM;
+  //   · the word list is PUBLISHED rather than retyped, because a second hand-kept copy of a rule
+  //     is exactly the drift that made the interaction coverage number a lie in W3.6;
+  //   · it FAILS CLOSED. No data.phase1Guard, no receipt. A receipt that cannot prove the week was
+  //     free is precisely the receipt the rule exists to stop.
+  // The build gate proves the DATA is $0; this proves the CARD is. Measured: 44 of 52 root causes
+  // carry a Phase 1 and all 44 pass the guard, so the refusal branch is unreachable from the
+  // shipped corpus — which is why scripts/smoke.mjs plants a prescription action into the live
+  // rc.phase1 and asserts the receipt still refuses. A gate over an empty set always passes.
+  //
+  // WHAT IT DOES NOT DO, and the brief asked for one of them:
+  //   · NO 1–10 numbers. The brief's mock shows "Baseline discomfort 8/10 → Day 7 3/10". This
+  //     logger deliberately collects no scale (rule 1, tap-only; rule 4, polarity-neutral), so
+  //     those numbers do not exist. Printing them would be inventing data. The card shows the two
+  //     things that were actually recorded: how many of the 7 days the reader did the thing, and
+  //     what they tapped on day 7 compared with their own day 1.
+  //   · NO percentage, NO effect size, NO "-62% pain", NO aggregate of any kind. It counts taps.
+  //   · NO html2canvas. The brief says "the site already loads html2canvas". IT DOES NOT — measured
+  //     in a real browser (out/w4rl_csp.json): the shipped CSP is
+  //     `script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://accounts.google.com
+  //     https://static.cloudflareinsights.com`, and appending the cdnjs script tag fires
+  //     "Loading the script … violates the following Content Security Policy directive" with
+  //     window.html2canvas still undefined. loadHtml2canvas() elsewhere in this file has therefore
+  //     been dead since the headers shipped. The card is drawn on a first-party <canvas> instead,
+  //     which also means the reader's own protocol never appears in a Referer header sent to a CDN.
+  const P1G = D.phase1Guard || null;
+  const P1_BUY = P1G && P1G.purchase ? new RegExp(P1G.purchase, 'i') : null;
+  const P1_RX = P1G && P1G.rx ? new RegExp(P1G.rx, 'i') : null;
+  // Every compound the corpus knows, so a "free mechanic" can never turn out to be a molecule.
+  let _cpdNames = null;
+  function corpusCompoundNames() {
+    if (_cpdNames) return _cpdNames;
+    const s = new Set();
+    (D.compounds || []).forEach((c) => { if (c.name) s.add(String(c.name).toLowerCase()); });
+    ((D.graph || {}).problems || []).forEach((p) => (p.root_causes || []).forEach((r) => (r.compounds || []).forEach((n) => s.add(String(n).toLowerCase()))));
+    _cpdNames = [...s].filter((n) => n.length > 3);
+    return _cpdNames;
+  }
+  function receiptGuard(rc) {
+    const p1 = rc.phase1;
+    if (!p1) return { ok: false, why: 'This protocol has no $0 first step, so there is no free week to write up.' };
+    if (!P1_BUY || !P1_RX) return { ok: false, why: 'This build published no $0 rule, so nothing here can show that the week cost nothing.' };
+    if (p1.cost !== 'none') return { ok: false, why: `This Phase 1 is recorded as costing “${String(p1.cost)}”. A write-up is only ever made for a week that cost nothing.` };
+    const a = String(p1.action || '');
+    let m = a.match(P1_RX);
+    if (m) return { ok: false, why: `“${m[0]}” is a prescription, a dose or a clinician. No write-up is made for a prescription, controlled or toxic protocol — take that one to a doctor or pharmacist instead.` };
+    m = a.match(P1_BUY);
+    if (m) return { ok: false, why: `“${m[0]}” is something you buy. A write-up is only ever made for a week that cost nothing.` };
+    const named = corpusCompoundNames().filter((n) => new RegExp('(^|[^a-z])' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^a-z]|$)', 'i').test(a));
+    if (named.length) return { ok: false, why: `This Phase 1 names ${named.slice(0, 3).join(', ')} — a compound, not a free mechanic.` };
+    return { ok: true };
+  }
+  // ONE model, two renderers. The card on the page and the PNG are drawn from this same object, so
+  // they cannot say different things — the D33 defect class, one level down.
+  function receiptModel(problem, rc) {
+    const g = receiptGuard(rc);
+    if (!g.ok) return null;
+    const log = trackGet(problem, rc);
+    if (!log || !log.started) return null;
+    const days = [];
+    for (let i = 0; i < TRACK_DAYS; i++) days.push(dayPlus(log.started, i));
+    const loggedN = days.filter((d) => log.days[d]).length;
+    if (!loggedN) return null;                     // nothing was tapped; there is nothing to write up
+    const didN = days.filter((d) => log.days[d] && log.days[d].did === 1).length;
+    const dirN = { better: 0, same: 0, worse: 0 };
+    days.forEach((d) => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
+    const word = (k) => (k === 'same' ? 'no change' : k);
+    const last = log.days[days[TRACK_DAYS - 1]] || null;
+    const rows = [
+      ['Did the one thing on', `${didN} of the 7 days`],
+      ['Days tapped', `${loggedN} of 7`],
+      ['Day 1', 'your own starting point — nothing to compare it with yet'],
+      ['Day 7, compared with day 1', last && last.dir ? word(last.dir) : 'not recorded'],
+      ['Every direction you tapped', TRACK_DIRS.filter((k) => dirN[k]).map((k) => `${dirN[k]} ${word(k)}`).join(' · ') || 'none tapped'],
+    ];
+    return {
+      pid: problem.id, rcid: rc.id,
+      title: '7-day self-observation log',
+      target: problem.name,
+      cause: rc.name.replace(/\s*\([^)]*\)/g, '').trim(),
+      action: log.action || rc.phase1.action,
+      metric: log.metric || ((problem.safety || {}).metric) || '',
+      from: days[0], to: days[TRACK_DAYS - 1],
+      didN, loggedN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
+      rows,
+      // Never efficacy. One person, seven days, no control, no comparison group — and this site
+      // publishes no aggregate of anybody's weeks (brief §0.3, and the cohort feature stays dark).
+      disclaimer: 'A personal observation, not a clinical result. One person, seven days, no control group and nothing here is compared with anyone else.',
+      foot: AT ? `rnawiki.com/protocol/${problem.id}/${rc.id} · a free wiki by ${AT}` : `rnawiki.com/protocol/${problem.id}/${rc.id}`,
+    };
+  }
+  function receiptRowsHTML(m) {
+    return m.rows.map(([k, v]) => `<div class="rcpt-row"><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
+  }
+  function receiptCardHTML(m) {
+    return `<div class="rcpt-card" id="rcpt-card">
+      <div class="rcpt-brand"><span>🧬 RNAwiki</span><span class="rcpt-free">$0 · no purchase</span></div>
+      <h3 class="rcpt-title">${esc(m.title)}</h3>
+      <p class="rcpt-target">${esc(m.target)} — ${esc(m.cause)}</p>
+      <p class="rcpt-action">${esc(m.action)}</p>
+      ${m.metric ? `<p class="rcpt-metric">Watched: ${esc(m.metric)}</p>` : ''}
+      <p class="rcpt-dates">${esc(m.from)} → ${esc(m.to)}</p>
+      <dl class="rcpt-rows">${receiptRowsHTML(m)}</dl>
+      <p class="rcpt-disc">${esc(m.disclaimer)}</p>
+      <p class="rcpt-foot">${esc(m.foot)}</p>
+    </div>`;
+  }
+  function receiptBlockHTML(problem, rc, log, days, today, dayN) {
+    const g = receiptGuard(rc);
+    if (!g.ok) {
+      return `<div class="rcpt" data-receipt="refused"><p class="rcpt-refused"><b>No write-up for this one.</b> ${esc(g.why)}</p></div>`;
+    }
+    if (dayN < TRACK_DAYS) {
+      return `<div class="rcpt" data-receipt="pending"><p class="rcpt-pending">On day ${TRACK_DAYS} this becomes a card you can keep — what you did, on how many days, and what you tapped on the last day against your own first one. Nothing else, because nothing else was recorded.</p></div>`;
+    }
+    const m = receiptModel(problem, rc);
+    if (!m) return `<div class="rcpt" data-receipt="empty"><p class="rcpt-pending">The 7 days are up and no day was tapped, so there is nothing to write up. Fill in a day above and this becomes a card.</p></div>`;
+    return `<div class="rcpt" data-receipt="ready">
+      <p class="rcpt-lede"><b>Your 7 days.</b> Only what you actually tapped is on it.</p>
+      ${receiptCardHTML(m)}
+      <div class="rcpt-actions">
+        <button type="button" class="p1-mini rcpt-dl" data-p1="receipt-png">⤓ Download as an image</button>
+      </div>
+      <p class="rcpt-note">The image is drawn in this browser and never leaves it until you send it somewhere. It carries no percentage, no effect size and no comparison with anybody else — seven taps of your own are not evidence that anything works, and a card that implied otherwise would be the most shareable false claim on this site.</p>
+    </div>`;
+  }
+  // The PNG. Drawn on a first-party <canvas> — see the note above: html2canvas is CSP-blocked on
+  // this origin, measured, so the "already loaded" renderer has never run here.
+  const RCPT_W = 1080, RCPT_H = 1080;
+  function receiptWrap(ctx, text, maxW) {
+    const words = String(text).split(/\s+/), out = [];
+    let line = '';
+    words.forEach((w) => {
+      const t = line ? line + ' ' + w : w;
+      if (ctx.measureText(t).width > maxW && line) { out.push(line); line = w; } else line = t;
+    });
+    if (line) out.push(line);
+    return out;
+  }
+  // TWO PASSES. The first measures, the second draws, and the canvas is sized from the measurement.
+  // The first version pinned the disclaimer to a fixed offset from the bottom, which is fine until
+  // a longer action or metric wraps one line further and the rows walk into the footer. A card that
+  // silently overlaps its own disclaimer is worse than one that is a little taller.
+  function receiptDraw(x, m, dry) {
+    const PAD = 72, W = RCPT_W - PAD * 2;
+    const F = (px, w) => `${w || 400} ${px}px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
+    const put = (s, px, weight, color, lead) => {
+      x.font = F(px, weight);
+      receiptWrap(x, s, W).forEach((l) => { if (!dry) { x.fillStyle = color; x.fillText(l, PAD, y); } y += lead; });
+    };
+    let y = PAD + 34;
+    x.font = F(30, 700);
+    if (!dry) {
+      x.fillStyle = '#0f766e'; x.fillRect(0, 0, RCPT_W, 10);
+      x.fillStyle = '#5eead4'; x.fillText('🧬 RNAwiki', PAD, y);
+      x.textAlign = 'right'; x.fillStyle = '#99f6e4'; x.font = F(26, 700); x.fillText('$0 · NO PURCHASE', RCPT_W - PAD, y); x.textAlign = 'left';
+    }
+    y += 62;
+    put(m.title, 52, 800, '#f4fbfa', 60);
+    y += 8;
+    put(m.target + ' — ' + m.cause, 30, 500, '#9fb4c0', 40);
+    y += 26;
+    if (!dry) { x.fillStyle = '#12262b'; x.fillRect(PAD, y - 12, W, 4); }
+    y += 44;
+    put(m.action, 40, 700, '#e6fffa', 50);
+    y += 6;
+    if (m.metric) { put('Watched: ' + m.metric, 26, 400, '#9fb4c0', 34); }
+    put(m.from + '  →  ' + m.to, 26, 400, '#7f97a4', 34);
+    y += 22;
+    m.rows.forEach(([k, v]) => {
+      put(String(k).toUpperCase(), 24, 700, '#5eead4', 34);
+      put(v, 34, 500, '#f4fbfa', 42);
+      y += 14;
+    });
+    y += 22;
+    if (!dry) { x.fillStyle = '#12262b'; x.fillRect(PAD, y - 12, W, 2); }
+    y += 26;
+    put(m.disclaimer, 24, 400, '#9fb4c0', 32);
+    y += 12;
+    put(m.foot, 24, 600, '#5eead4', 32);
+    return y + PAD;
+  }
+  function receiptPNG(m) {
+    const probe = document.createElement('canvas').getContext('2d');
+    const h = Math.max(RCPT_H, Math.ceil(receiptDraw(probe, m, true)));
+    const c = document.createElement('canvas');
+    c.width = RCPT_W; c.height = h;
+    const x = c.getContext('2d');
+    x.fillStyle = '#0a1218'; x.fillRect(0, 0, RCPT_W, h);
+    receiptDraw(x, m, false);
+    return c;
+  }
+  function receiptDownload(problem, rc, say) {
+    const m = receiptModel(problem, rc);
+    // Second refusal, at the point of writing the file. The button cannot exist without a model, so
+    // reaching this is either a corrupted log or somebody driving the DOM by hand; either way the
+    // answer is no card.
+    if (!m) { say('No write-up was made. ' + (receiptGuard(rc).why || 'There is nothing recorded to write up.')); return; }
+    let url = '';
+    try {
+      const canvas = receiptPNG(m);
+      canvas.toBlob((blob) => {
+        if (!blob) { say('This browser would not draw the image. Nothing was lost.'); return; }
+        // A blob: object URL on a download anchor, exactly like the JSON export — never a data:
+        // URI, which would put the reader's own week inside a URL string.
+        url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = `rnawiki-7-day-log-${m.pid}-${m.rcid}-${m.to}.png`;
+        document.body.appendChild(a); a.click(); a.remove();
+        say('Saved as an image. It was drawn in this browser and has not been sent anywhere.');
+        setTimeout(() => { try { URL.revokeObjectURL(url); } catch (e) {} }, 8000);
+      }, 'image/png');
+    } catch (e) { say('This browser would not draw the image. Nothing was lost.'); }
   }
   function phase1LogDraw(problem, rc, focus) {
     const host = document.getElementById('p1-log');
@@ -6036,6 +6263,10 @@
         return;
       }
       if (act === 'restore') { const f = document.getElementById('p1-file'); if (f) f.click(); return; }
+      if (act === 'receipt-png') {
+        receiptDownload(problem, rc, (s) => { const el = document.getElementById('p1-sync-state'); if (el) el.textContent = s; });
+        return;
+      }
     };
     host.onchange = (ev) => {
       const f = ev.target;
