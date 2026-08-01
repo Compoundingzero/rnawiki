@@ -319,10 +319,21 @@ const ASSERTIONS = {
       if (!re) return 'no escalation note inside the red-flag card';
       const nums = ['999', '911', '112', '995', '000'].filter(x => re.textContent.indexOf(x) < 0);
       if (nums.length) return `the escalation note omits ${nums.join(', ')}`;
-      // red flags before the first supplement — a stack recommendation must never outrank them
-      const y = el => el.getBoundingClientRect().top + window.scrollY;
+      // red flags before the first supplement — a stack recommendation must never outrank them.
+      // W4 (2026-08-02): this compared getBoundingClientRect().top. #p-stack is about to live
+      // inside <details id="phase-2">, closed by default, so the y-comparison was expected to
+      // read y(card) === 0 and invert on every protocol route.
+      // IT DOES NOT — MEASURED, not assumed (out/w4int_smokeproof.mjs, hydrated 390x844 on both
+      // protocol smoke routes): with #p-stack wrapped in a closed <details>, HeadlessChrome 150
+      // still lays the subtree out (.st-card rect top 16,816 px, height 227 px, display block,
+      // contentVisibility "visible", offsetParent non-null), and the old predicate fired on 0/2.
+      // Four native closed <details> already on the page measure the same way.
+      // The comparison is switched to DOM ORDER anyway, because that is what "above" MEANS here
+      // and it does not depend on a UA's current choice about laying out collapsed content — but
+      // this is a robustness change, not a fix for a live break. Do not cite it as one.
+      const order = [...app.querySelectorAll('*')];
       const card = document.querySelector('#p-stack .st-card');
-      if (card && y(document.querySelector('.plan-reassess')) > y(card))
+      if (card && order.indexOf(document.querySelector('.plan-reassess')) > order.indexOf(card))
         return 'the first supplement card sits ABOVE the red-flag block';
       // the Stack is what the regulator calls a supplement/OTC, never a prescription medicine
       const rx = document.querySelectorAll('#p-stack .st-card.rx').length;
