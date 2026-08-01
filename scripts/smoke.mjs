@@ -107,6 +107,13 @@ const ROUTES = [
   // (#app.innerHTML 11,797 chars on every query), so the unqueried route above cannot detect D11.
   ['solve-q', '/solve?q=knee%20pain'],
   ['stack', '/stack'],
+  // W4.5: the two halves of the duplicate-substance fix, as two routes because each is a different
+  // claim. assertDuplicateSubstances() in build/parse.js gates the DATA and its own copy of the
+  // predicate; site/app.js stackInteractions() carries the second copy, and only a real browser on
+  // a real stack can prove that one. The second route is the positive control — a fix that stopped
+  // the rule firing at all would pass the first assertion and fail this one.
+  ['stack-same-substance', '/stack?ids=c1,c24'],
+  ['stack-two-substances', '/stack?ids=c1,c25'],
   ['where', '/where'],
 ];
 
@@ -118,6 +125,11 @@ const ALLOWED_REQUEST_FAILURES = [
   { status: 503, path: /^\/api\/rootcause-overlay$/, why: 'no DB: community cause overlay unavailable; the protocol page STATES the absence (see the rcOverlayNotice assertion)' },
   { status: 503, path: /^\/api\/edits\/[^/]+$/, why: 'no DB: compound page shows the base text, no community edit layer' },
   { status: 503, path: /^\/api\/explain$/, why: 'no DB: community "explain it" thread unavailable' },
+  // W4.5: first seen when /stack?ids=… entered ROUTES. setStack() (app.js:260) pings this once per
+  // session the first time a stack is non-empty, so the bare /stack route never triggered it. The
+  // call is `.catch(() => null)` and its only consumer is the aggregate `helped` figure in
+  // GET /api/stats — nothing on the page reads the response, so the reader sees no difference.
+  { status: 503, path: /^\/api\/helped$/, why: 'no DB: the anonymous "a stack was built" ping cannot be recorded; it is fire-and-forget and nothing on the page depends on it' },
   { status: 503, path: /^\/api\/comments$/, why: 'no DB: page discussion unavailable' },
   { status: 503, path: /^\/api\/ledger$/, why: 'no DB: protocol adoption ledger unavailable' },
   { status: 503, path: /^\/api\/outcomes\/public$/, why: 'no DB: aggregate outcome stat stays dark (a gated feature anyway)' },
@@ -147,6 +159,59 @@ const CONSOLE_ALLOWLIST = [
 // ----------------------------------------------- per-route DOM assertions
 // Keep these few and load-bearing. Each names the defect it locks down.
 const ASSERTIONS = {
+  // W4.5 (2026-08-02): A ROW MAY NOT ASSERT AN INTERACTION BETWEEN A MOLECULE AND ITSELF.
+  // MEASURED HYDRATED, real browser at 390x844, 0 pageerrors, before this gate existed:
+  //   /stack?ids=c1,c24    "☠️ Stacked stimulants — cardiovascular strain · Caffeine + Caffeine
+  //                         (thermogenic) · Each drives the same fight-or-flight system. Stacked,
+  //                         heart rate and blood pressure compound."
+  //   /stack?ids=c132,c133 "☠️ Additive low-blood-sugar risk · Insulin (prescribed) + Insulin
+  //                         (anabolic misuse) · Two or more glucose-lowering agents together…"
+  //   /c/caffeine-thermogenic rendered the same fabricated danger flag inline in its own
+  //                         "🧬 Acts on the same pathway" list, from build-time data.pairFlags.
+  // Two pages exist for these molecules because they are written for two different readers; the
+  // checker counted the second page as a second drug. The fix makes every `need` count a count of
+  // DISTINCT SUBSTANCES (site/interactions.js `duplicates` + stackInteractions()).
+  // WHY THIS IS A SMOKE ASSERTION AND NOT ONLY A BUILD GATE: there are two copies of the predicate,
+  // one in build/parse.js and one in site/app.js. The build gate can only prove its own. Deleting
+  // the runtime half would ship the fabricated row with a green build.
+  // PROVE IT by deleting the `caffeine` group from site/interactions.js `duplicates`, or by
+  // changing `distinctCarriers` back to a length check in site/app.js.
+  '/stack?ids=c1,c24': [{
+    name: 'oneMoleculeOnTwoPagesIsNotAnInteraction',
+    why: 'W4.5: a danger row naming a molecule against itself is a fabricated interaction, and it is the row a reader is most likely to act on',
+    evaluate: () => {
+      const panel = document.querySelector('.ixn-panel');
+      if (!panel) return 'no interaction panel on a two-compound stack';
+      const rows = [...panel.querySelectorAll('.ixn')].map(d => ({
+        cls: d.className,
+        head: (d.querySelector('.ixn-h') || {}).innerText || '',
+        why: (d.querySelector('.ixn-why') || {}).innerText || '',
+      }));
+      const bad = rows.find(r => /stacked stimulants/i.test(r.head));
+      if (bad) return `"${bad.head.replace(/\s+/g, ' ').trim()}" fired for two pages of caffeine — the checker is counting pages, not substances`;
+      const dupe = rows.find(r => /same substance|same mineral/i.test(r.head));
+      if (!dupe) return 'the duplication is not named at all — silence is not the fix; a reader holding two pages of one molecule is doing something worth saying';
+      if (!/\bdanger\b/.test(dupe.cls)) return `the duplicate row is "${dupe.cls}" — it must inherit the tier of the rule it replaced (stim_stack is danger), or the verdict quietly downgrades`;
+      if (!/one molecule|one dose/i.test(dupe.why)) return `the duplicate row's why does not say it is one molecule: "${dupe.why.slice(0, 120)}"`;
+      const verdict = [...panel.querySelectorAll('.ixn-verdict')].map(s => s.innerText).join(' ');
+      if (!/dangerous combination/.test(verdict)) return `the verdict reads "${verdict}" — replacing the row must not drop it out of the count`;
+      return null;
+    },
+  }],
+  // The positive control. A "fix" that simply stopped stim_stack firing would pass the assertion
+  // above and fail here — a gate over an empty set always passes.
+  '/stack?ids=c1,c25': [{
+    name: 'twoRealSubstancesStillFire',
+    why: 'W4.5: caffeine + ephedrine is the textbook stimulant stack and must still be flagged after the duplicate-substance fix',
+    evaluate: () => {
+      const panel = document.querySelector('.ixn-panel');
+      if (!panel) return 'no interaction panel on a two-compound stack';
+      const heads = [...panel.querySelectorAll('.ixn-h')].map(h => h.innerText.replace(/\s+/g, ' '));
+      if (!heads.some(h => /stacked stimulants/i.test(h))) return `caffeine + ephedrine no longer flags a stimulant stack — the duplicate fix suppressed a real interaction. Rows: ${JSON.stringify(heads)}`;
+      if (heads.some(h => /same substance|same mineral/i.test(h))) return 'two different molecules were called the same substance';
+      return null;
+    },
+  }],
   // D13 (commit 7c832be): /problem/* is the differential-diagnosis hub — where /solve, every
   // protocol and every breadcrumb send a reader to work out which of their 4-7 causes they have.
   // Measured hydrated at 390x844 on all 41 pages before the fix: the first protocol link sat at 98%

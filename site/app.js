@@ -2945,22 +2945,67 @@
     (RXN.nameTags || []).forEach(r => { if ((r.ids || []).indexOf(c.id) >= 0) r.t.forEach(t => s.add(t)); });
     return s;
   }
+  // ---- W4.5 (2026-08-02): A `need` COUNT IS A COUNT OF SUBSTANCES, NOT OF PAGES ---------------
+  // Some molecules have two pages here because they are written for two different readers, and
+  // this function counted the second page as a second drug. Measured hydrated at 390x844:
+  //   /stack?ids=c1,c24    "☠️ Stacked stimulants — cardiovascular strain · Caffeine + Caffeine
+  //                         (thermogenic) · Each drives the same fight-or-flight system."
+  //   /stack?ids=c132,c133 "☠️ Additive low-blood-sugar risk · Insulin (prescribed) + Insulin
+  //                         (anabolic misuse)" — the most dangerous pair on the site, fabricated.
+  // The groups live in site/interactions.js `duplicates` and are build-gated there.
+  // A COMPOUND IN MORE THAN ONE GROUP IS NEVER COLLAPSED: c148 is a bundle page supplying both
+  // calcium AND iron, so Ca-AKG + c148 is a real calcium-against-iron competition and keeps its
+  // row. Collapsing it would delete a true warning to satisfy a rule about duplicates.
+  const DUPE_OF = (function () {
+    const m = {};
+    (RXN.duplicates || []).forEach(g => (g.ids || []).forEach(id => (m[id] = m[id] || []).push(g)));
+    return m;
+  })();
+  function sameSubstance(a, b) {
+    const ga = DUPE_OF[a.id] || [], gb = DUPE_OF[b.id] || [];
+    return ga.length === 1 && gb.length === 1 && ga[0] === gb[0];
+  }
+  // "n DISTINCT substances carry this tag". Exact for n ≤ 2, which is the largest count any rule
+  // needs — for 2 it asks whether some pair of carriers is not two pages of one substance.
+  function distinctCarriers(cs, n) {
+    if (cs.length < n) return false;
+    if (n <= 1) return cs.length >= 1;
+    for (let i = 0; i < cs.length; i++) for (let j = i + 1; j < cs.length; j++) if (!sameSubstance(cs[i], cs[j])) return true;
+    return false;
+  }
   function stackInteractions(list) {
     const byTag = {};
-    list.forEach(c => compoundTags(c).forEach(t => (byTag[t] = byTag[t] || []).push(c.name)));
-    const fired = [];
+    list.forEach(c => compoundTags(c).forEach(t => (byTag[t] = byTag[t] || []).push(c)));
+    const fired = [], collapsed = [];
     (RXN.rules || []).forEach(rule => {
       if (!rule.need.every(n => (byTag[n[0]] || []).length >= n[1])) return;
-      const involved = {};
-      rule.need.forEach(n => (byTag[n[0]] || []).forEach(nm => { involved[nm] = 1; }));
-      fired.push({ id: rule.id, notIf: rule.notIf, tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, involved: Object.keys(involved) });
+      const inv = [];
+      rule.need.forEach(n => (byTag[n[0]] || []).forEach(c => { if (inv.indexOf(c) < 0) inv.push(c); }));
+      const row = { id: rule.id, notIf: rule.notIf, tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, involved: inv.map(c => c.name), members: inv };
+      // Satisfied by pages but not by substances: the rule does not get to claim an interaction,
+      // and the honest row about what actually happened is built below.
+      (rule.need.every(n => distinctCarriers(byTag[n[0]] || [], n[1])) ? fired : collapsed).push(row);
     });
     // `notIf` — a broad rule stands down when the specific rule for the same physiology already
     // fired, so one interaction is never counted twice. Added 2026-08-01 with the hypotensive
     // rules: beetroot + a PDE-5 inhibitor is ONE blood-pressure interaction, and the verdict line
     // counts danger rows, so without this it would have read "2 dangerous combinations" for it.
     const firedIds = {}; fired.forEach(f => { firedIds[f.id] = 1; });
-    const flags = fired.filter(f => !(f.notIf || []).some(id => firedIds[id]));
+    // W4.5: the honest replacement row. It is NOT silence — a reader who has two pages of one
+    // molecule in a stack is doing something worth naming, they are just not doing what the rule
+    // said. Tier is inherited from the strongest rule the duplication collapsed, so
+    // /stack?ids=c132,c133 stays a ☠️ danger row and the verdict still counts it; only the
+    // sentence changes, from "two glucose-lowering agents" to "the same one, counted twice".
+    // The text is authored per group in site/interactions.js and quotable against those pages.
+    const dupeRows = (RXN.duplicates || []).map(g => {
+      const members = list.filter(c => (g.ids || []).indexOf(c.id) >= 0 && (DUPE_OF[c.id] || []).length === 1);
+      if (members.length < 2) return null;
+      const ids = {}; members.forEach(c => { ids[c.id] = 1; });
+      const from = collapsed.filter(r => r.members.every(c => ids[c.id]));
+      const tier = from.some(r => r.tier === 'danger') ? 'danger' : from.some(r => r.tier === 'blunt') ? 'blunt' : 'timing';
+      return { id: 'dupe:' + g.substance, tier, title: g.title, why: g.why, action: g.action, involved: members.map(c => c.name), members };
+    }).filter(Boolean);
+    const flags = dupeRows.concat(fired.filter(f => !(f.notIf || []).some(id => firedIds[id])));
     const syn = [];
     (RXN.synergies || []).forEach(g => {
       // W3.6 (2026-08-02): id allowlists here too. Substring matching on a SYNERGY is worse than

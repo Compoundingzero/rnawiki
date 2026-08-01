@@ -219,6 +219,57 @@ window.RNAWIKI_INTERACTIONS = {
     { m: "testolone", t: ["hpta_suppressive"], ids: ["c51"] }            // mech: "Potent AR agonist designed to mimic testosterone's anabolism"
   ],
 
+  // ---- W4.5 (2026-08-02): TWO PAGES FOR ONE SUBSTANCE ARE NOT TWO COMPOUNDS ------------------
+  // Every `need` count in the rules below is a count of DISTINCT SUBSTANCES, and until this block
+  // existed it was a count of pages. Some molecules have two pages here because they are written
+  // for two different readers, and the checker treated the second page as a second drug. Measured
+  // hydrated at 390x844, 0 pageerrors:
+  //   /stack?ids=c1,c24   → "☠️ Stacked stimulants — cardiovascular strain · Caffeine +
+  //                          Caffeine (thermogenic) · Each drives the same fight-or-flight system."
+  //   /stack?ids=c132,c133→ "☠️ Additive low-blood-sugar risk · Insulin (prescribed) + Insulin
+  //                          (anabolic misuse) · Two or more glucose-lowering agents together…"
+  //   /stack?ids=c6,c165  → "⏰ Minerals compete — space them out · Zinc + Zinc-Carnosine…"
+  //   /stack?ids=c79,c149 → "⏰ Minerals compete — space them out · Ca-AKG + Calcium (+ D3 + K2)"
+  // A danger row that says two things interact when they are one thing is a fabricated interaction,
+  // and it is worse than a missing one: it is the row a reader is most likely to act on.
+  //
+  // A COMPOUND IN MORE THAN ONE GROUP IS NEVER COLLAPSED. c148 is a four-substance bundle page —
+  // "DIM / Calcium-D-Glucarate · Vitex · Iron (brief)" — and its own raw text names BOTH
+  // "**Calcium-D-glucarate**" and "**Iron** (menstrual loss — test ferritin)". So it is listed in
+  // the calcium group AND the iron group, and that is exactly why it must keep its mineral rows:
+  // Ca-AKG + c148 really is calcium against iron. Suppressing those three rows (c79+c148,
+  // c122+c148, c148+c149) would have deleted a TRUE warning to satisfy a rule about duplicates.
+  // The audit that found this defect counted 7 same-molecule rows; 4 of them are, and 3 are not.
+  //
+  // Each group's why/action is authored for that group and quotable against its pages — the same
+  // standard assertRuleTextRowTruth holds the rules to. assertDuplicateSubstances() in
+  // build/parse.js fails the build if any within-group pair still fires a rule that needs two
+  // distinct carriers, if a group's members share no tag (an inert group is dead data), or if a
+  // nameTag matches two compound ids that no group covers — which is the tripwire that would have
+  // caught all four of these the day the second page was written.
+  duplicates: [
+    { substance: "caffeine", ids: ["c1", "c24"],
+      title: "Same substance twice — caffeine",
+      why: "These are two pages about caffeine, written for two different uses. It is one molecule, so this is one dose split over two lines, not two stimulants adding up.",
+      action: "Count them as one and add the two amounts together. The stimulant total that matters is the one you get from both." },
+    { substance: "insulin", ids: ["c132", "c133"],
+      title: "Same substance twice — insulin",
+      why: "These are two pages about insulin — one written for prescribed use, one about its misuse for muscle gain. It is one drug, so this is not two glucose-lowering agents stacking; it is the same one counted twice.",
+      action: "Count them as one. Insulin dosing comes from your own clinician, and the low-blood-sugar danger both pages describe is the danger of that single drug." },
+    { substance: "calcium", ids: ["c79", "c148", "c149"],
+      title: "The same mineral from two sources — calcium",
+      why: "Both of these deliver calcium. Minerals compete with each other for absorption; a mineral does not compete with itself, so this is one calcium intake arriving in two products rather than a timing conflict.",
+      action: "Add up the elemental calcium from both and treat that as your dose. Space it away from your other minerals, not from itself." },
+    { substance: "iron", ids: ["c122", "c148"],
+      title: "The same mineral from two sources — iron",
+      why: "Both of these supply iron. Minerals compete with each other for absorption; iron does not compete with itself, so this is one iron intake arriving in two products rather than a timing conflict.",
+      action: "Add up the elemental iron from both and treat that as your dose. Iron has an upper limit, so two sources is worth totalling rather than spacing out." },
+    { substance: "zinc", ids: ["c6", "c165"],
+      title: "The same mineral from two sources — zinc",
+      why: "Both of these supply zinc. Minerals compete with each other for absorption; zinc does not compete with itself. The zinc-carnosine page's own dosing note says the studied twice-daily regimen already delivers about 34 mg of elemental zinc a day, which exceeds typical upper limits before a second source is added.",
+      action: "Add up the elemental zinc from both. The long-term copper caution applies to that combined amount, not to either page on its own." }
+  ],
+
   // Rules: fire when every `need` [tag, minDistinctCompounds] is satisfied by the stack.
   // tier: danger | blunt | timing.  Each has a plain-English why + action; optional pathway.
   rules: [
