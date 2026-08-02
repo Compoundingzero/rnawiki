@@ -6620,7 +6620,19 @@
           if (act === 'did') { const n = v === '1' ? 1 : 0; e.did = (e.did === n) ? null : n; }
           // Tapping the direction you already chose clears it. There is no other way back to "I did
           // not say", and a control you cannot undo teaches people to guess.
-          else e.dir = (e.dir === v) ? null : v;
+          // W5 · AND DAY 1 CAN NEVER RECEIVE ONE. phase1LogHTML() renders these three buttons with
+          // `disabled` beside the words "(off on day 1)", and the delegated handler above asks only
+          // `if (!b || b.disabled) return;` — it never re-derives dirLocked. So the lock was paint.
+          // MEASURED HYDRATED at 390x844 on /protocol/cravings/glycemic-swings, day 1, fresh profile
+          // (qa/out/w5r_repro.json c_before, c_after): the three buttons rendered disabled:true, and
+          // removing the attribute and clicking "↑ Better" stored {"did":null,"dir":"better"} against
+          // 2026-08-02 and printed "1 of 7 days tapped · did it on 0 · 1 with no answer on that ·
+          // 1 better" — a comparison of day 1 with itself, which is the one thing the whole polarity-
+          // neutral question is built to prevent.
+          // A direction left on day 1 by an older build must still be CLEARABLE, so any tap here
+          // resolves to null: on day 1 this control can only ever remove one, never set one. The
+          // record is then deleted by the line below, so nothing enters loggedN.
+          else e.dir = (sel === days[0] || e.dir === v) ? null : v;
           // Neither answer given = the day was never recorded. An empty record would sit in loggedN
           // and put a day on the receipt that carries no fact.
           if (e.did === null && e.dir === null) delete cur.days[sel];
