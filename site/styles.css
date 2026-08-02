@@ -69,6 +69,7 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .sr-request:hover{text-decoration:underline}
 .topnav{display:flex;gap:1.1rem;font-size:.92rem}
 .topnav a{color:var(--muted)}
+.nav-more{display:none}   /* W5c: A-Z and Browse are in the ☰ drawer only — see the ≤900px block */
 .topnav a:hover{color:var(--head);text-decoration:none}
 .menu-btn{display:none;background:none;border:none;color:var(--head);font-size:1.4rem;cursor:pointer;min-width:44px;min-height:44px}
 .stack-badge{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;background:var(--accent);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:0 5px}
@@ -473,7 +474,13 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .detail-head{flex-direction:column}
   .topnav{display:none}
   .topnav.open{display:flex;position:absolute;top:100%;right:0;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.8rem 1.2rem;gap:.9rem;box-shadow:var(--shadow)}
-  .menu-btn{display:block}
+  .menu-btn{display:flex}
+  /* W5c: the two INDEX pages, drawer-only. See the note in build/prerender.js's shell(). */
+  .topnav.open .nav-more{display:block}
+  /* W5c: and the drawer's own links were 16px tall — the gate that was written for the missing
+     two caught that as well, on all six. A drawer that opens onto six 16px targets is only
+     nominally a menu. */
+  .topnav.open a{display:flex;align-items:center;min-height:44px}
   .hero h1{font-size:1.9rem}
   .compare-cols{grid-template-columns:1fr}
   .az-list{columns:1}

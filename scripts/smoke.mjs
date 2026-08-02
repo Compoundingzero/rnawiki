@@ -391,6 +391,35 @@ const ASSERTIONS = {
   // an anchor or a next step, and 0 of 861 plan items were linked. This asserts the ORDER, which is
   // what the defect actually was. Prove it by moving ${causeCascadeFlat(p)} back above
   // ${problemDifferential(p, causes)} in build/prerender.js — firstProtocolPct jumps back to 98.
+  // ---- W5c (2026-08-02): THE PHONE MENU DID NOT CONTAIN THE SITE'S TWO INDEX PAGES ------------
+  // Measured hydrated at 390x844 on /az (qa/out/w5cdi/before-390.json): clicking ☰ opened a drawer
+  // with exactly four links — /solve, /where, /plan, /learn — and neither /az nor /browse. On
+  // desktop that costs nothing, because the footer is two screens away. On a phone it is the whole
+  // cost: /problem pages have a median height of 29,844px, so "every compound, A–Z" sat 35 phone
+  // screens below a reader on exactly the pages most likely to send them looking for it.
+  // Its own route, because this assertion DRIVES THE UI (it taps ☰).
+  // PROVE IT by deleting the two .nav-more anchors from shell() in build/prerender.js.
+  '/browse': [{
+    name: 'thePhoneMenuReachesEveryIndexPage',
+    why: 'W5c: the ☰ drawer offered 4 links and neither of the site\'s two index pages, on a viewport where the footer is up to 35 screens away',
+    evaluate: async () => {
+      const btn = document.getElementById('menu-btn');
+      if (!btn) return 'no ☰ button in the header';
+      if (getComputedStyle(btn).display === 'none') return 'the ☰ button is display:none at this viewport — this gate runs at 390x844 and is no longer testing the phone menu';
+      btn.click();
+      await new Promise((r) => setTimeout(r, 120));
+      const nav = document.querySelector('.topnav');
+      if (!nav || !nav.classList.contains('open')) return 'tapping ☰ did not open the drawer';
+      const shown = [...nav.querySelectorAll('a')].filter((a) => getComputedStyle(a).display !== 'none');
+      const hrefs = shown.map((a) => a.getAttribute('href'));
+      const missing = ['/az', '/browse', '/solve', '/where'].filter((h) => !hrefs.some((x) => x === h || x === '#' + h));
+      if (missing.length) return `the phone menu is missing ${missing.join(', ')} — it offers ${hrefs.join(', ')}`;
+      const small = shown.filter((a) => a.getBoundingClientRect().height < 24);
+      if (small.length) return `${small.length} of ${shown.length} drawer links are under the 24px minimum`;
+      btn.click();
+      return null;
+    },
+  }],
   '/problem/knee-pain': [{
     name: 'problemPageIsADifferential',
     why: 'D13: escalation, every tell, and a route to a protocol must all come BEFORE the mechanism prose, and every #cause-N must resolve',

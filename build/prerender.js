@@ -458,8 +458,15 @@ ${crumbLd}${ld}
         D.compounds.length. A number a reader can check on the next line down, and it was wrong.
         assertCorpusCountCopy() below fails the build on any served document that disagrees. */ ''}
   <div class="search-wrap"><input id="search" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
+  ${/* W5c (2026-08-02): A-Z AND BROWSE WERE IN THE FOOTER ONLY. Measured hydrated at 390x844 on
+        /az: opening the ☰ drawer gave exactly four links — /solve, /where, /plan, /learn — and
+        neither of the site's two INDEX pages was among them. On desktop that costs nothing: the
+        footer is two screens away. On a phone it is the whole cost, because /problem pages have
+        a median height of 29,844px, so "every compound, A-Z" was 35 phone screens below the
+        reader on the pages most likely to make them want it. They are drawer-only (.nav-more is
+        display:none until .topnav.open) so the desktop bar keeps its four-item shape. */ ''}
   <nav class="topnav">
-    <a href="/solve" class="nav-solve">Solve</a><a href="/where">Where it hurts</a><a href="/plan">My Plan</a><a href="/learn">Learn</a>
+    <a href="/solve" class="nav-solve">Solve</a><a href="/where">Where it hurts</a><a href="/plan">My Plan</a><a href="/learn">Learn</a><a href="/az" class="nav-more">A&ndash;Z</a><a href="/browse" class="nav-more">Browse</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
