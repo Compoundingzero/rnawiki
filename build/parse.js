@@ -2476,6 +2476,29 @@ const CLASS_ADMITS = {
   });
   if (/class="rx-note"/.test(app)) bad.push('site/app.js still renders .rx-note, a SECOND supply carrier that said "Prescription \u2014 needs a doctor" on /c/minoxidil, whose authored class is "pharmacy". One carrier or it is a contradiction waiting.');
 
+  // /legend is the page every star and badge points at, and it said ONE THING TO A CRAWLER AND THE
+  // OPPOSITE TO A READER. Hydrated: "\ud83c\udff7\ufe0f Legal status \u2014 colour = how you can (legally) get it".
+  // Prerendered: "A badge says who has approved a molecule. It is not a statement about where you
+  // can buy it." The hydrated version is the one every human read, and it is the reading that once
+  // printed "available over the counter \u2014 Guardian, Watsons" on seven prescription-only medicines \u2014
+  // the Medicines Act 1975 s.51 exposure, which carries a prior-permit requirement and no
+  // educational exemption. Both renderers are checked, because they are two documents.
+  // Scoped to each renderer's OWN /legend source, not the whole file — the first version of this
+  // check searched app.js entire, and an unrelated copy of the sentence elsewhere on the site kept
+  // it passing while /legend itself lost it. A gate that can be satisfied by a different page is
+  // not a gate on this one.
+  const pre = fs.readFileSync(path.join(ROOT, 'build', 'prerender.js'), 'utf8');
+  const slice = (src, from, to) => { const i = src.indexOf(from); if (i < 0) return ''; const j = src.indexOf(to, i + from.length); return src.slice(i, j < 0 ? src.length : j); };
+  const legendApp = slice(app, 'function legendBlock()', '\n  function goalPage(');
+  const legendPre = slice(pre, "add('/legend', shell({", "add('/methodology'");
+  if (!legendApp || !legendPre) bad.push('the /legend source could not be located in one of the two renderers — this gate is checking nothing, which is worse than failing');
+  [['site/app.js /legend', legendApp], ['build/prerender.js /legend', legendPre]].forEach(([rel, src]) => {
+    const code = src.split('\n').filter((l) => !/^\s*(\/\/|\/\*|\*)/.test(l)).join('\n');
+    if (/colou?r\s*=\s*how you can/i.test(code)) bad.push(`${rel} tells the reader a COLOUR is how they can get a medicine. It is not: a colour is a regulator's call on the molecule, and reading it as a supply route is what put "available over the counter" on prescription-only medicines (CLAUDE.md rule 6, Medicines Act 1975 s.51).`);
+    if (!/not a (shopping instruction|statement about where you can buy)/i.test(code)) bad.push(`${rel} never states that a colour is NOT a statement about where you can buy the thing \u2014 the one sentence /legend exists to carry`);
+    if (!/no clinician has reviewed/i.test(code)) bad.push(`${rel} never states that no clinician has reviewed these pages. A coloured badge next to a star rating reads as a professional's verdict unless the page says otherwise, and there is no authoritative professional on this project.`);
+  });
+
   if (bad.length) {
     console.error('\n[parse] REGULATORY AXES ASSERTION FAILED \u2014 refusing to build:');
     bad.slice(0, 25).forEach((m) => console.error('  \u2717 ' + m));

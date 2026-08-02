@@ -2375,12 +2375,14 @@ let written = 0;
         <li>${stars(2)} — early, small, or animal-only evidence</li>
         <li>${stars(1)} — mechanistic or anecdotal only</li>
       </ul>
-      <h2>Regulatory badges</h2>
-      <p>A badge says who has <em>approved</em> a molecule. <strong>It is not a statement about where you can buy it.</strong> A medicine can be approved and still be prescription-only.</p>
+      <h2>Regulator status — the colours</h2>
+      <p>A colour says what the <strong>FDA, or the relevant regulator for that molecule, currently calls it</strong>. <strong>It is not a statement about where you can buy it</strong>, and it is not anyone here's opinion. A medicine can be approved and still be prescription-only.</p>
       <ul>${Object.entries(D.approvalLabels || {}).map(([b, l]) => `<li><b>${b}</b> — ${esc(l)}</li>`).join('')}</ul>
-      <h2>Availability</h2>
-      <p>Availability is shown separately from approval: over the counter, pharmacy medicine, prescription only, controlled, or not approved. The classification shown is Singapore's, because that is the one regulator I track in full — it is a good guide almost everywhere, but check your own country's rules before assuming. Where a compound is prescription-only the page says so and gives no dose.</p>
-      <p><a href="/about">More about how this site is made →</a></p></div>` }));
+      <h2>How you get it — the separate question</h2>
+      <p>Availability is shown separately from approval, as its own statement on every compound: no prescription needed, over the counter, pharmacy medicine, prescription only, controlled, or not approved for human use. The classification shown is Singapore's, because that is the one regulator I track in full — it is a good guide almost everywhere, but check your own country's rules before assuming. Where a compound is prescription-only the page says so and gives no dose.</p>
+      <h2>Who decides any of this</h2>
+      <p>No clinician has reviewed these pages. Nothing here is a professional's opinion, an endorsement, or medical advice, and no colour or star should be read as one. The stars are an editorial rating of the published <strong>human</strong> evidence, applied by one consistent rule across every compound. The colours are not a judgement at all — they are a regulator's current call on that molecule, recorded rather than formed here. Where the two disagree they are shown disagreeing: a compound can be approved and still have weak evidence for what you want it for, and the reverse.</p>
+      <p><a href="/methodology">How a page here is made →</a> · <a href="/corrections">Corrections →</a> · <a href="/about">More about how this site is made →</a></p></div>` }));
 
   // ---- /methodology and /corrections ---------------------------------------------------------
   // Added 2026-07-30. Every one of the 52 protocol pages ends with the line "Written with AI

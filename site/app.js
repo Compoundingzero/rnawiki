@@ -1454,31 +1454,77 @@
   }
 
   // ---------- legend (what the stars & colours mean) ----------
+  // W5a (2026-08-02) — FELIX'S DECISION, APPLIED. This page said one thing to a crawler and the
+  // opposite to a reader, and the reader's version broke the site's own hardest constraint.
+  //   HYDRATED (what every human got):     "🏷️ Legal status — colour = how you can (legally) get it"
+  //   PRERENDERED (what crawlers got):     "A badge says who has approved a molecule. It is not a
+  //                                         statement about where you can buy it. A medicine can be
+  //                                         approved and still be prescription-only."
+  // app.js's own comment at regClass() records that exactly this misreading once printed "available
+  // over the counter — Guardian, Watsons" on seven prescription-only medicines. Under the Medicines
+  // Act 1975 s.51 and the Medicines (Medical Advertisements) Regulations — prior permit, no
+  // educational exemption — telling the public that a colour tells them how to obtain a
+  // prescription-only medicine is the exposure. /legend is the page every star and badge points at,
+  // so the wrong version was the one every human read. Hydrated was also 128 words against 257
+  // prerendered: the missing half was the Availability section and the method link.
+  //
+  // THE RULE NOW, in one sentence a reader can hold: a colour is what a REGULATOR has decided about
+  // the molecule; how you get it is a separate line; and NOTHING here is a person's opinion — no
+  // clinician has reviewed these pages and the page says so in its own words rather than leaving
+  // the reader to assume. That last part is why the "who decides" block exists at all.
   function legendBlock() {
-    const ev = [
-      ['★★★★★', 'Multiple large human trials, consistent'],
-      ['★★★★', 'Good human trials, minor gaps'],
-      ['★★★', 'Moderate — some trials, mixed or small'],
-      ['★★', 'Mostly animal data or one small study'],
-      ['★', 'Theoretical or anecdotal only'],
+    const ev = [5, 4, 3, 2, 1].map((n) => [n, {
+      5: 'Consistent, replicated human trials',
+      4: 'Good human evidence, some inconsistency',
+      3: 'Mixed or limited human trials',
+      2: 'Early, small, or animal-only evidence',
+      1: 'Mechanistic or anecdotal only',
+    }[n]]);
+    const supply = [
+      ['supplement', 'No prescription needed', 'Sold as a dietary supplement. Legal to buy is not the same as proven to work — that is what the stars are for.'],
+      ['otc', 'Available over the counter', 'A medicine you can buy without seeing anyone.'],
+      ['pharmacy', 'Pharmacy medicine — ask the pharmacist', 'Sold from behind the counter after a pharmacist’s advice, not off the open shelf.'],
+      ['prescription', 'Prescription only — needs a doctor', 'A doctor has to assess you and prescribe it. No page here gives you a way to obtain one.'],
+      ['controlled', 'Controlled substance', 'Illegal to buy, sell or possess without authorisation in most countries, Singapore included.'],
+      ['unapproved', 'Not approved for human use', 'No regulator has approved it for people. Grey-market supply only: dose, purity and legality are all uncertain.'],
     ];
     return `<div class="legend">
       <div class="legend-col">
         <div class="legend-h">⭐ Evidence rating <span>— strength of <b>human</b> evidence</span></div>
-        ${ev.map(([s, t]) => `<div class="legend-row"><span class="stars">${s}</span><span>${t}</span></div>`).join('')}
+        ${ev.map(([n, t]) => `<div class="legend-row">${starHTML(n)}<span>${esc(t)}</span></div>`).join('')}
+        <div class="legend-row"><span class="lg-note">Animal-only evidence is capped at two stars and has to say “animal”. A build check refuses to publish a page that breaks that.</span></div>
       </div>
       <div class="legend-col">
-        <div class="legend-h">🏷️ Legal status <span>— colour = how you can (legally) get it</span></div>
-        ${Object.entries(D.approvalLabels).map(([e, l]) => `<div class="legend-row"><span class="pill ${{ '🟢': 'g', '🟡': 'y', '🔵': 'b', '🟠': 'o', '🔴': 'r', '⚫': 'k' }[e]}">${e} ${l}</span></div>`).join('')}
+        <div class="legend-h">🏷️ Regulator status <span>— what a regulator has decided about the <b>molecule</b></span></div>
+        ${Object.entries(D.approvalLabels).map(([e, l]) => `<div class="legend-row"><span class="pill ${{ '🟢': 'g', '🟡': 'y', '🔵': 'b', '🟠': 'o', '🔴': 'r', '⚫': 'k' }[e]}" data-axis="regulator" aria-label="Regulator status: ${esc(l)}">${e} ${esc(l)}</span></div>`).join('')}
+        <div class="legend-row"><span class="lg-note"><b>A colour is not a shopping instruction.</b> It says what the FDA — or the relevant regulator for that molecule — currently calls it. A medicine can be approved and still be prescription-only.</span></div>
+      </div>
+      <div class="legend-col">
+        <div class="legend-h">🛒 How you get it <span>— the separate question, answered separately</span></div>
+        ${supply.map(([cls, tag, why]) => `<div class="legend-row"><span class="pill supply s-${cls}" data-axis="supply" aria-label="How you get it: ${esc(tag.toLowerCase())}">${({ prescription: '℞', pharmacy: '℞', controlled: '⛔', unapproved: '⛔' })[cls] || '🛒'} ${esc(tag)}</span><span>${esc(why)}</span></div>`).join('')}
+        <div class="legend-row"><span class="lg-note">Where a compound needs a doctor, the page says so and gives no dose. The classification shown is Singapore’s, because that is the one regulator tracked here in full — check your own country’s rules before assuming.</span></div>
       </div>
     </div>`;
   }
   function legendPage() {
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Legend' }])}
-      <h1>What the ratings mean</h1>
-      <p style="color:var(--muted)">Two things appear on every compound: a star rating for how good the evidence is, and a coloured label for its legal status.</p>
+      <h1>How to read RNAwiki</h1>
+      <p class="lede">Three things appear on a compound page, and they answer three different
+      questions. Mixing them up is the mistake this page exists to prevent: <b>how strong the
+      evidence is</b>, <b>what a regulator has decided</b>, and <b>how you would actually get it</b>.</p>
       ${legendBlock()}
-      <p style="color:var(--faint);margin-top:1.5rem">Animal-only compounds are capped at ★★, because what works in mice often doesn't work in people. "OTC supplement" means it's legal to buy — not that it's proven to work.</p>`;
+      <h2>Who decides any of this</h2>
+      <p>No clinician has reviewed these pages. Nothing on this site is a professional’s opinion,
+      an endorsement, or medical advice, and no colour or star here should be read as one. The stars
+      are an editorial rating of the published <b>human</b> evidence, applied by one consistent rule
+      across every compound. The colours are not a judgement at all — they are the current call of
+      the <b>FDA or the relevant global regulator</b> on that molecule, recorded, not formed here.
+      Where the two disagree, they are shown disagreeing rather than reconciled quietly: a compound
+      can be approved by a regulator and still have weak evidence for what you want it for, and the
+      reverse.</p>
+      <p><a href="/methodology" data-native>How a page here is made →</a> ·
+      <a href="/corrections" data-native>Corrections →</a> ·
+      <a href="#/about">About RNAwiki →</a></p>`;
   }
 
   function goalPage(id) {
