@@ -253,6 +253,28 @@ const ASSERTIONS = {
       if (missing.length) return `the contents card links to ${missing.length} section(s) that do not exist: ${missing.join(', ')}`;
       return null;
     },
+  }, {
+    // ---- W5c (2026-08-02): D28 — HALF THE COURSE WAS PAST THE RIGHT EDGE OF THE PHONE --------
+    // Measured hydrated at 390x844 on all 103 /target routes (qa/out/w5cdi/before-390.json): the
+    // four `.ch-step` right edges were 147 / 303 / 472 / 596 px against a 390px viewport, so steps
+    // 3 and 4 were off-screen on 103/103 — and step 3 is "What acts on it", the compound list this
+    // page's own <title> promises. Compound pages carry seven steps in the same strip.
+    // `overflow-x:auto` scrolls, but a touch device draws no scrollbar.
+    // PROVE IT by putting `flex-wrap:nowrap;overflow-x:auto` back on .ch-steps below 640px.
+    name: 'everyChapterStepIsOnScreenAndTappable',
+    why: 'W5c/D28: steps 3 and 4 of a 4-step course sat past the right edge of a 390px viewport on 103 of 103 target pages, in a scroller with no affordance',
+    evaluate: () => {
+      const vw = document.documentElement.clientWidth;
+      const steps = [...document.querySelectorAll('.ch-step')];
+      if (steps.length < 3) return `${steps.length} chapter steps — the course strip has lost its chapters`;
+      const off = steps.filter((s) => s.getBoundingClientRect().right > vw + 1);
+      if (off.length) return `${off.length} of ${steps.length} chapter steps are off-screen at ${vw}px (worst right edge ${Math.round(Math.max(...off.map((s) => s.getBoundingClientRect().right)))}px) — including "${off[0].innerText.replace(/\s+/g, ' ').trim()}"`;
+      const small = steps.filter((s) => s.getBoundingClientRect().height < 44);
+      if (small.length) return `${small.length} of ${steps.length} chapter steps are under the 44px touch minimum (${Math.round(small[0].getBoundingClientRect().height)}px)`;
+      const strip = document.querySelector('.ch-steps');
+      if (strip && strip.scrollWidth > strip.clientWidth + 1) return `the chapter strip still scrolls sideways (${strip.scrollWidth} in ${strip.clientWidth})`;
+      return null;
+    },
   }],
   // ---- W5b (2026-08-02): D33 — the paragraph Google quotes must be the paragraph on the page ---
   // MEASURED across all 123 published pairs, hydrated at 390x844, 0 pageerrors

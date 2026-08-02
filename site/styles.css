@@ -2598,7 +2598,27 @@ a.dp-name:hover{color:var(--accent)}
 .ch-step.active{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 10%,transparent)}
 .ch-step.active .cs-label{color:var(--ink)}
 .ch-steps.mastered{border-color:var(--accent)}
-@media(max-width:640px){.ch-steps{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}}
+/* ---- W5c (2026-08-02): D28 — HALF THE COURSE WAS PAST THE RIGHT EDGE OF THE PHONE -----------
+   Measured hydrated at 390x844 on all 103 /target routes, 0 pageerrors
+   (qa/out/w5cdi/before-390.json): the four `.ch-step` right edges were 147 / 303 / 472 / 596 px
+   against a 390px viewport, so steps 3 and 4 were off-screen on 103/103 — and step 3 is
+   "What acts on it", the compound list the page's own <title> promises. The strip was
+   `flex-wrap:nowrap;overflow-x:auto`, which on a touch device draws no scrollbar, so a reader
+   with no reason to swipe sideways sees a two-step course. Compound pages are worse: seven steps
+   in the same strip, with steps 3-7 (dosing, dialling it in, the evidence, the deep dive, the
+   quiz) past the edge, and their step heights measured 34px against the 44px touch minimum.
+   THE FIX IS THE ONE THIS FILE ALREADY MADE FOR .pagetoc, 60 lines below: on a phone, a scroller
+   the reader has to discover becomes a wrapped block they cannot miss.
+   THE TRADE, STATED. It also stops being sticky below 640px, and that is deliberate rather than
+   incidental: seven wrapped steps at the 44px touch minimum are ~190px, and a permanently pinned
+   strip eating 22% of an 844px viewport while you read is a worse defect than the one being
+   fixed. Sequential movement is unaffected — every chapter ends in its own "Next:" button — and
+   the strip is a short scroll up. .pagetoc made the identical call at 899px. */
+@media(max-width:640px){
+  .ch-steps{position:static;flex-wrap:wrap;overflow-x:visible;row-gap:.4rem;padding:.5rem 0 .6rem}
+  .ch-step{flex:1 1 calc(50% - .25rem);min-height:44px;justify-content:flex-start;padding-right:.6rem}
+  .ch-step .cs-label{white-space:normal;text-align:left;line-height:1.25}
+}
 /* Curiosity hook */
 .hook{margin:.3rem 0 1rem;padding:1rem 1.2rem;border-radius:16px;border:1px dashed color-mix(in srgb,#d97706 45%,var(--line));background:color-mix(in srgb,#d97706 6%,transparent)}
 .hook-h{font-weight:700;margin-bottom:.5rem}
