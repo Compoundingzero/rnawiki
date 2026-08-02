@@ -254,6 +254,38 @@ const ASSERTIONS = {
       return null;
     },
   }],
+  // ---- W5b (2026-08-02): D33 — the paragraph Google quotes must be the paragraph on the page ---
+  // MEASURED across all 123 published pairs, hydrated at 390x844, 0 pageerrors
+  // (qa/out/w5b_verdict_before.json): the verdict was string-equal between the prerendered and the
+  // hydrated document on 0/123, and on the HYDRATED page the FAQPage JSON-LD answer — which
+  // survives in <head>, since hydration only replaces #app — equalled the visible verdict on
+  // 0/123. The prerendered text names the goal and says "comparing them here would be
+  // misleading"; the SPA's copy said "for this use" and dropped that clause. The goal label itself
+  // disagreed on 4/123 (/compare/caffeine-vs-sodium-bicarbonate: "build muscle & strength"
+  // hydrated vs "endurance" prerendered).
+  // A build gate can prove the map holds the string this file emitted. Only a browser can prove
+  // the SPA then uses it, and that the surviving JSON-LD still matches what is on screen.
+  // PROVE IT by replacing the RNAWIKI_VERDICT lookup in renderComparison() with null.
+  '/compare/caffeine-vs-creatine-monohydrate': [{
+    name: 'theVerdictOnScreenIsTheVerdictInTheStructuredData',
+    why: 'W5b/D33: the FAQPage answer an answer engine quotes back was not the paragraph the reader is shown, on 123 of 123 pairs',
+    evaluate: () => {
+      const N = (s) => String(s || '').replace(/\s+/g, ' ').trim();
+      const h2 = [...document.querySelectorAll('#app h2')].find((h) => /Which is better/i.test(h.textContent));
+      if (!h2) return 'no "Which is better" heading on a comparison page';
+      if (/this goal/i.test(h2.textContent)) return `the heading does not name the goal: "${N(h2.textContent)}" — the prerendered document names it, so the two pages ask different questions`;
+      const p = h2.nextElementSibling;
+      if (!p || N(p.textContent).length < 80) return 'the verdict paragraph is missing or empty';
+      let ld = null;
+      [...document.querySelectorAll('script[type="application/ld+json"]')].forEach((s) => {
+        try { [].concat(JSON.parse(s.textContent)).forEach((o) => { if (o && o['@type'] === 'FAQPage') { const q = (o.mainEntity || [])[0]; if (q) ld = N(q.acceptedAnswer && q.acceptedAnswer.text); } }); } catch (e) { }
+      });
+      if (!ld) return 'no FAQPage JSON-LD survives in this document — the rich result it earns has nothing behind it';
+      if (N(p.textContent) !== ld) return `the visible verdict and the FAQPage answer differ.\n  ON SCREEN: ${N(p.textContent).slice(0, 150)}…\n  IN SCHEMA: ${ld.slice(0, 150)}…`;
+      if (!document.querySelector('#app a[href*="/goal/"]')) return 'the intro no longer links the goal both compounds are used for — the prerendered document carries that link on 123/123 and it is the page\'s only goal link';
+      return null;
+    },
+  }],
   '/stack?ids=c1,c24': [{
     name: 'oneMoleculeOnTwoPagesIsNotAnInteraction',
     why: 'W4.5: a danger row naming a molecule against itself is a fabricated interaction, and it is the row a reader is most likely to act on',

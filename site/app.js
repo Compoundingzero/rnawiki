@@ -3338,8 +3338,21 @@
     const A = bySlug[pair.slice(0, idx)], B = bySlug[pair.slice(idx + 4)];
     if (!A || !B) return comparePage();
     const shared = (A.goalIds || []).find(g => (B.goalIds || []).includes(g));
-    const gl = (shared && goalById[shared] ? goalById[shared].label : 'this goal').toLowerCase();
-    const verdict = comparisonVerdict(A, B);
+    // W5b (2026-08-02): D33 — THE PARAGRAPH GOOGLE QUOTES AND THE PARAGRAPH ON THE PAGE.
+    // Measured across all 123 pairs: the verdict was string-equal between the two documents on
+    // 0/123, and on the HYDRATED page the FAQPage JSON-LD answer (which survives in <head>, since
+    // hydration only replaces #app) equalled the visible verdict on 0/123. The prerendered text
+    // names the goal and says "comparing them here would be misleading"; the copy below said "for
+    // this use" and dropped that clause. The goal LABEL itself disagreed on 4/123, because this
+    // renderer re-derives it from the first shared goalId while build/prerender.js uses the pair's
+    // own authored goal. Both are now read from the generated map (site/head.js), which
+    // build/prerender.js writes from the string it actually emitted. comparisonVerdict() stays as
+    // the fallback for an ad-hoc pair the generator never published — a pair a reader assembled in
+    // the picker has no prerendered document and so cannot have a prerendered verdict.
+    const _v = (window.RNAWIKI_VERDICT || {})['/compare/' + pair];
+    const gl = _v ? _v[1] : (shared && goalById[shared] ? goalById[shared].label : 'this goal').toLowerCase();
+    const goalHref = _v && _v[2] ? _v[2] : shared;
+    const verdict = _v ? _v[0] : comparisonVerdict(A, B);
     const row = (k, va, vb) => `<tr><th>${k}</th><td>${va || '—'}</td><td>${vb || '—'}</td></tr>`;
     const faq = faqRender([
       { q: `Is ${A.name} or ${B.name} better for ${gl}?`, a: verdict },
@@ -3347,7 +3360,7 @@
     ]);
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Compare', href: '#/compare' }, { label: `${A.name} vs ${B.name}` }])}
       <div class="detail"><h1>${esc(A.name)} vs ${esc(B.name)}</h1>
-      <p>How they compare on human evidence, mechanism, safety and availability — in plain English.</p>
+      <p>${goalHref ? `Both are used for <a href="#/goal/${esc(goalHref)}">${esc(gl)}</a>. ` : ''}How they compare on human evidence, mechanism, safety and availability — in plain English.</p>
       <div class="cmp-wrap"><table class="cmp-table"><thead><tr><th></th><th><a href="#/c/${slug(A.name)}">${esc(A.name)}</a></th><th><a href="#/c/${slug(B.name)}">${esc(B.name)}</a></th></tr></thead><tbody>
         ${row('Human evidence', starHTML(A.stars), starHTML(B.stars))}
         ${row('Legal status', approvalPills(A), approvalPills(B))}
