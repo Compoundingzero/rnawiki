@@ -1370,6 +1370,54 @@ try {
     } catch (e) { fail.push('solveBattery: harness error — ' + (e && e.message ? e.message : String(e))); }
   }
 
+  // ------------------------------------------------- the home hero typeahead
+  // W4.5 (2026-08-02): THE LIST UNDER THE BOX AND THE PAGE THE BOX SUBMITS TO ARE ONE QUESTION.
+  // The home hero is a real <form action="/solve" method="get">. Its typeahead used to run
+  // suggestProtocols() — a third scoring loop over a third index, with no stopwords and no
+  // data/solve_aliases.json — while the page it submits to runs rankProblems() / searchSolve().
+  // MEASURED HYDRATED, real browser at 390x844, 10 real queries, 0 pageerrors
+  // (qa/out/w45c_before.json): different lists on 10 of 10, different TOP HIT on 2 of 10 —
+  //   "high blood sugar"  hero: blood-pressure …   /solve: insulin-resistance
+  //   "tired after lunch" hero: burnout …          /solve: chronic-fatigue
+  // This drives the real input on the real home page and compares the dropdown against the
+  // SERVER's ranking of the same words, read out of the #q-filter order rules on /solve?q= — so it
+  // closes all three loops at once (hero -> app.js rankProblems -> server.js searchSolve), not just
+  // two. Its queries include both measured disagreements.
+  // PROVE IT by restoring the old suggestProtocols() body in site/app.js — this then prints
+  // 'q="high blood sugar": the hero suggests blood-pressure first, /solve answers
+  //  insulin-resistance'.
+  {
+    const serverRank = async (q) => {
+      const html = await (await fetch(BASE + '/solve?q=' + encodeURIComponent(q))).text();
+      if (/id="q-none" data-on/.test(html)) return [];
+      return [...html.matchAll(/#q-hits \.solve-card\[data-pid="([a-z0-9-]+)"\]\{order:(\d+)\}/g)]
+        .map(m => ({ id: m[1], o: +m[2] })).sort((a, b) => a.o - b.o).map(x => x.id);
+    };
+    const QUERIES = ['high blood sugar', 'tired after lunch', 'hair falling out', 'cant sleep',
+      'knee pain going downstairs', 'belly fat', 'losing muscle', 'brain fog'];
+    try {
+      const page = await browser.newPage();
+      await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });
+      await page.goto(BASE + '/', { waitUntil: 'networkidle2', timeout: NAV_TIMEOUT });
+      await new Promise(r => setTimeout(r, SETTLE_MS));
+      if (!(await page.$('#hero-solve-input'))) fail.push('ASSERTION heroTypeaheadIsTheSolveRanking FAILED — no #hero-solve-input on the home page; the site\'s first call to action is gone');
+      else for (const q of QUERIES) {
+        const hero = await page.evaluate(async (query) => {
+          const i = document.getElementById('hero-solve-input');
+          i.focus(); i.value = query;
+          i.dispatchEvent(new Event('input', { bubbles: true }));
+          await new Promise(r => setTimeout(r, 150));
+          return [...document.querySelectorAll('#hero-solve-out .funnel-hit')].map(a => a.dataset.pid).filter(Boolean);
+        }, q);
+        const srv = await serverRank(q);
+        if (!hero.length) { fail.push(`ASSERTION heroTypeaheadIsTheSolveRanking FAILED — q=${JSON.stringify(q)}: the hero suggests nothing, /solve answers [${srv.join(', ')}]`); continue; }
+        if (hero[0] !== srv[0]) fail.push(`ASSERTION heroTypeaheadIsTheSolveRanking FAILED — q=${JSON.stringify(q)}: the hero suggests ${hero[0]} first, /solve answers ${srv[0]} — one query, two answers, and the reader sees the wrong one before they press Enter`);
+        else if (JSON.stringify(hero) !== JSON.stringify(srv)) fail.push(`ASSERTION heroTypeaheadIsTheSolveRanking FAILED — q=${JSON.stringify(q)}: the hero lists [${hero.join(', ')}] and /solve lists [${srv.join(', ')}] — the same question is being scored twice`);
+      }
+      await page.close();
+    } catch (e) { fail.push('heroTypeaheadIsTheSolveRanking: harness error — ' + (e && e.message ? e.message : String(e))); }
+  }
+
   // ------------------------------------------------- the /compare withdrawal notice
   // W4.5 (2026-08-02): A WITHDRAWAL NOTICE MAY NOT INVENT ITS OWN REASON.
   // MEASURED (curl, localhost:8099, before the fix): the three /compare URLs that were in the

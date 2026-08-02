@@ -969,28 +969,31 @@
 
   // ---------- views ----------
   // ---------- landing funnel: match a typed query to a protocol problem ----------
-  let _protoSuggest = null; // lazy: GRAPH is declared further down the IIFE
-  function protoSuggestIndex() {
-    if (!_protoSuggest) _protoSuggest = (GRAPH.problems || []).map(p => ({
-      id: p.id, name: p.name, icon: p.icon || '•', kind: p.kind, category: p.category,
-      rcCount: p.root_causes.length,
-      // The AUTHORED cause count (why.causes), not root_causes.length. 31 of 41 problems ship
-      // exactly one root cause while describing 4-7 causes, so rcCount was never the number to
-      // show a reader deciding where to go -- and the dropdown used to hide it entirely on those
-      // 31 (`rcCount > 1 ? … : ''`), which is precisely the set where the differential matters.
-      causeCount: ((p.why && p.why.causes) || []).length,
-      hay: (p.name + ' ' + p.category + ' ' + p.root_causes.map(rc => rc.name + ' ' + (rc.diagnostic || '')).join(' ')).toLowerCase(),
-    }));
-    return _protoSuggest;
-  }
+  // W4.5 (2026-08-02): THE HERO TYPEAHEAD AND THE PAGE IT SUBMITS TO ARE NOW ONE RANKING.
+  // What used to be here was `protoSuggestIndex()` + `suggestProtocols()` — a THIRD scoring loop,
+  // over a THIRD index, with its own weights (14/10/7/2, unanchored `includes`, no stopwords, no
+  // authored aliases, top 7 with no relative cut). W2.5b took it off the destination path and left
+  // it as the typeahead with the note "a typeahead that is sometimes wrong costs a glance, not a
+  // diagnosis". Measured, that is not what it cost.
+  // MEASURED HYDRATED, real browser at 390x844, 10 real queries, 0 pageerrors
+  // (qa/out/w45c_before.json): the hero dropdown and /solve?q=<the same words> returned
+  // DIFFERENT LISTS ON 10 OF 10, and disagreed on the TOP HIT on 2 of 10 —
+  //   "high blood sugar"  hero: Blood Pressure, Cravings, Cholesterol …  /solve: Insulin Resistance
+  //   "tired after lunch" hero: Burnout, Knee Pain, Brain Fog …          /solve: Chronic Fatigue
+  // The reader types once. The list under the box and the page the same keystroke submits to are
+  // the same question asked twice, and the site gave two answers — with the worse one on top,
+  // because the hero index has no stopword list and no data/solve_aliases.json.
+  // rankProblems() is the one loop: server.js searchSolve() is pinned to it by the solve-q-parity
+  // gate and both are held to 20 real queries by solveBattery, so unifying here inherits both.
+  // The typeahead needs three fields the raw problem record does not name, so they are derived
+  // here — causeCount is the AUTHORED cause count (why.causes), not root_causes.length: 31 of 41
+  // problems ship exactly one root cause while describing 4-7 causes, which is precisely the set
+  // where the differential matters.
   function suggestProtocols(q) {
-    q = q.trim().toLowerCase(); if (!q) return [];
-    const terms = q.split(/\s+/);
-    return protoSuggestIndex().map(p => {
-      let s = 0; const t = p.name.toLowerCase();
-      terms.forEach(x => { if (t === x) s += 14; else if (t.startsWith(x)) s += 10; else if (t.includes(x)) s += 7; else if (p.hay.includes(x)) s += 2; });
-      return { p, s };
-    }).filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.p.name.length - b.p.name.length).slice(0, 7).map(x => x.p);
+    return rankProblems(q).map(({ p }) => ({
+      id: p.id, name: p.name, icon: p.icon || '•', kind: p.kind, category: p.category,
+      causeCount: ((p.why && p.why.causes) || []).length,
+    }));
   }
 
   // ---------- intake: route to the guided assessment when the problem has one ----------
@@ -1345,8 +1348,14 @@
     // It also ran a THIRD ranking loop. suggestProtocols() here, rankProblems() on /solve,
     // searchSolve() in server.js -- and they disagree: "hair falling out" returned Hair Loss here
     // and insomnia on /solve. Letting the form submit deletes this loop as an arbiter of
-    // destination and leaves ONE ranking for both documents. suggestProtocols stays as the
-    // typeahead, because a typeahead that is sometimes wrong costs a glance, not a diagnosis.
+    // destination and leaves ONE ranking for both documents.
+    // W4.5 (2026-08-02): and now as an arbiter of the LIST too. suggestProtocols() is a thin
+    // adapter over rankProblems(); the third index and the third set of weights are deleted. The
+    // W2.5b note here read "a typeahead that is sometimes wrong costs a glance, not a diagnosis" --
+    // measured hydrated on 10 real queries, it cost more than a glance: the dropdown and
+    // /solve?q=<the same words> returned different lists on 10 of 10 and different TOP HITS on 2,
+    // "high blood sugar" showing Blood Pressure here and Insulin Resistance there. See
+    // heroTypeaheadIsTheSolveRanking in scripts/smoke.mjs.
     // Returns true when it handled the key, so the caller knows whether to preventDefault.
     const go = () => {
       if (active >= 0 && current[active]) { location.assign('/problem/' + current[active].id); return true; }
