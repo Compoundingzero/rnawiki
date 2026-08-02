@@ -263,7 +263,34 @@
   function updateStackBadge() { const b = document.getElementById('stack-badge'); const n = getStack().length; if (b) { b.textContent = n; b.hidden = n === 0; } }
 
   // ---------- helpers ----------
-  const starStr = n => { const m = Math.min(5, Math.max(0, n | 0)); return '★'.repeat(m) + '☆'.repeat(5 - m); };
+  // ---- W5a (2026-08-02): THE RATING IS CARRIED BY ITS TEXT --------------------------------------
+  // The evidence chip used to render `${'★'.repeat(c.stars)}<span class="sc-dim">${'★'.repeat(5 -
+  // c.stars)}</span>` — five FILLED stars, the empty ones told apart only by a paler colour.
+  // Measured hydrated at 390x844 on /c/bpc-157, a ONE-star compound, 0 pageerrors: innerText
+  // "EVIDENCE\n★★★★★ Minimal", .sc-dim computed rgb(233,237,242) on rgb(246,248,250) = 1.10:1.
+  // 148 of 171 compounds carried dim glyphs, so every screen reader, text extractor, LLM crawler
+  // and copy-paste read the site's weakest evidence claim as its strongest.
+  // The table is NOT defined here — build/parse.js owns it and emits it into data.js, and
+  // assertRatingIsTextCarried() fails the build if this file stops reading it, if the empty half of
+  // a rating is ever padded with ★ again, or if two ratings become the same string once the glyphs
+  // are stripped. Every star on the site goes through starHTML().
+  const rateIdx = n => Math.min(5, Math.max(0, n | 0));
+  const starStr = n => D.ratings.glyphs[rateIdx(n)];
+  const rateText = n => D.ratings.text[rateIdx(n)];
+  const rateAria = n => D.ratings.aria[rateIdx(n)];
+  // `scale` shows the full 5-slot scale plus the number in words; `compact` shows filled stars only
+  // (already unambiguous in text — ★★★ is not ★★★★) and carries the number in the accessible name.
+  // Both give the badge role="img" and a real accessible name: 171 star badges shipped with
+  // aria-label = null and role = null, described only by a `title` on a bare <span>, which is not
+  // an accessible name and never surfaces on touch.
+  function starHTML(n, opt) {
+    const o = opt || {}, i = rateIdx(n);
+    const glyph = o.compact ? D.ratings.compact[i] : D.ratings.glyphs[i];
+    const aria = D.ratings.aria[i];
+    const num = i === 0 || o.compact ? '' : ` <b class="stars-n">${esc(D.ratings.text[i])}</b>`;
+    const body = i === 0 ? `<b class="stars-n unrated">${esc(D.ratings.text[0])}</b>` : `${glyph}${num}`;
+    return `<span class="stars${o.cls ? ' ' + o.cls : ''}" role="img" aria-label="${esc(aria)}" title="${esc(aria)}"${o.style ? ` style="${o.style}"` : ''}>${body}</span>`;
+  }
   const STAR_LEGEND = 'Human-evidence strength, 1–5 stars (★). Animal-only data is capped low.';
   // Regulatory class, authored per compound in data/regulatory_class.json and merged into data.js
   // by build/parse.js (2026-07-28). Before that merge existed, every regulatory decision in the SPA
@@ -288,7 +315,7 @@
   // Approval pills carry the legal status accurately (e.g. 🟡 OTC · 🔵 Prescription); a compact
   // "℞" cue flags anything needing a doctor without the old verbose, contradictory block.
   const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (needsDoctor(c) ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">Prescription — needs a doctor</span>' : '');
-  const badgeRow = c => `<div class="badges"><span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span>${approvalPills(c)}</div>`;
+  const badgeRow = c => `<div class="badges">${starHTML(c.stars)}${approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
   function sgAvailability(c) {
@@ -1541,7 +1568,11 @@
     const tier = EV_TIER[c.stars] || EV_TIER[2];
     const chips = [];
     chips.push(`<span class="spec-chip"><span class="sc-k">Class</span><span class="sc-v">${esc((c.category || '').split('/')[0].trim().toLowerCase())}</span></span>`);
-    chips.push(`<span class="spec-chip"><span class="sc-k">Evidence</span><span class="sc-v">${'★'.repeat(c.stars)}<span class="sc-dim">${'★'.repeat(5 - c.stars)}</span> ${tier[0]}</span></span>`);
+    // W5a: was `${'★'.repeat(c.stars)}<span class="sc-dim">${'★'.repeat(5 - c.stars)}</span>` —
+    // five filled stars on every compound, the empty ones separated by colour alone. This chip is
+    // the single string measured hydrated on /c/bpc-157 as "EVIDENCE\n★★★★★ Minimal" for a
+    // ONE-star compound. It now reads "★☆☆☆☆ 1 of 5 · Minimal", and the number survives a strip.
+    chips.push(`<span class="spec-chip"><span class="sc-k">Evidence</span><span class="sc-v">${starHTML(c.stars)}${c.stars ? ` · ${esc(tier[0])}` : ''}</span></span>`);
     if ((c.approvalLabels || []).length) chips.push(`<span class="spec-chip"><span class="sc-k">Status</span><span class="sc-v">${(c.approvals || []).join('')} ${esc(c.approvalLabels[0])}</span></span>`);
     chips.push(`<span class="spec-chip" id="spec-formula" hidden><span class="sc-k">Formula</span><span class="sc-v" id="spec-formula-v"></span></span>`);
     chips.push(`<span class="spec-chip" id="spec-mw" hidden><span class="sc-k">Mol. weight</span><span class="sc-v" id="spec-mw-v"></span></span>`);
@@ -1549,10 +1580,16 @@
     return `<div class="spec-strip" data-lvl="1">${chips.join('')}</div>`;
   }
   function evidenceGlance(c) {
-    const tier = EV_TIER[c.stars] || EV_TIER[2];
+    // W5a: the second colour-only star pad on the page. It rendered `${'★'.repeat(c.stars)}<span
+    // class="evg-dim">${'★'.repeat(5 - c.stars)}</span>` with `.evg-dim{color:var(--line)}` — the
+    // identical defect to the spec chip, on the block whose whole job is to state the evidence.
+    const tier = EV_TIER[c.stars];
+    const body = tier
+      ? `<b>${esc(tier[0])} human evidence</b> — ${esc(tier[1])}.`
+      : `<b>Not yet rated.</b> This entry covers several compounds together and has no single human-evidence rating; read each one's own page for its evidence.`;
     return `<div class="ev-glance" data-lvl="2" id="sec-evidence-glance">
-      <div class="evg-stars" title="${c.stars}/5 human evidence">${'★'.repeat(c.stars)}<span class="evg-dim">${'★'.repeat(5 - c.stars)}</span></div>
-      <div class="evg-body"><b>${tier[0]} human evidence</b> — ${tier[1]}.<span class="evg-note"> Stars measure <b>human</b> evidence only; animal-only data is capped at ★★.</span></div>
+      <div class="evg-stars">${starHTML(c.stars)}</div>
+      <div class="evg-body">${body}<span class="evg-note"> Stars measure <b>human</b> evidence only; animal-only data is capped at ★★.</span></div>
     </div>`;
   }
   function takeawaysBox(c) {
@@ -1906,7 +1943,7 @@
     const exploreBlock = (() => {
       const cmpPeers = D.compounds.filter(x => x.id !== c.id && !x.isNote && Array.isArray(x.goalIds) && x.goalIds.some(g => c.goalIds.includes(g)))
         .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
-      const cmpCards = cmpPeers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span><span class="cmp-stars">${'★'.repeat(o.stars)}<span class="cmp-dim">${'★'.repeat(5 - o.stars)}</span></span></a>`).join('');
+      const cmpCards = cmpPeers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span>${starHTML(o.stars, { compact: true, cls: 'cmp-stars' })}</a>`).join('');
       const myStack = getStack().map(id => byId[id]).filter(Boolean); let chk = '';
       if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">❔ ${esc(c.name)} is the only thing in your stack, so there is nothing to cross-check it against yet. Add a second compound and this becomes an interaction check.</div>`; }
       return (cmpCards || chk) ? `<div class="cpd-explore">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
@@ -2799,7 +2836,7 @@
     list.sort((a, b) => a.name.localeCompare(b.name));
     const groups = {}; list.forEach(c => { const L0 = c.name[0].toUpperCase(); const L = /[A-Z]/.test(L0) ? L0 : '#'; (groups[L] = groups[L] || []).push(c); });
     let html = '';
-    Object.keys(groups).sort().forEach(L => { html += `<div class="az-letter">${L}</div><div class="az-list">` + groups[L].map(c => `<a href="#/c/${slug(c.name)}">${c.name} <span class="stars" style="font-size:.7rem">${'★'.repeat(c.stars)}</span></a>`).join('') + `</div>`; });
+    Object.keys(groups).sort().forEach(L => { html += `<div class="az-letter">${L}</div><div class="az-list">` + groups[L].map(c => `<a href="#/c/${slug(c.name)}">${c.name} ${starHTML(c.stars, { compact: true, style: 'font-size:.7rem' })}</a>`).join('') + `</div>`; });
     const body = document.getElementById('az-body'); if (!body) return;
     // A no-match state must say what was searched and offer a way out, not just "None."
     body.innerHTML = html || `<div class="empty">No compound matches “${esc(needle)}”. <a href="#/az" onclick="var b=document.getElementById('az-q');if(b){b.value='';b.oninput();}">Clear the filter</a> to see all ${D.compounds.length}.</div>`;
@@ -2904,7 +2941,7 @@
     if (!list.length) { el.innerHTML = '<p class="muted">No supplements mapped for this protocol — focus on the food targets below.</p>'; return; }
     el.innerHTML = `<div class="fuel-stack-grid">${list.map(c => {
       const on = inStack(c.id);
-      return `<div class="fs-item"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b><span class="stars" title="${c.stars}/5 human evidence">${starStr(c.stars)}</span></a>
+      return `<div class="fs-item"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>
         <button class="fs-toggle ${on ? 'in' : ''}" data-add="${c.id}">${on ? '✓ In stack' : '+ Add'}</button></div>`;
     }).join('')}</div>`;
     el.querySelectorAll('[data-add]').forEach(b => b.onclick = () => { toggleStack(b.dataset.add); const on = inStack(b.dataset.add); b.classList.toggle('in', on); b.textContent = on ? '✓ In stack' : '+ Add'; });
@@ -3140,7 +3177,7 @@
     // rendered once, at the top, and it now forces the verdict off green.
     // W3.5 (2026-08-02): the overlap computation itself moved INTO interactionPanel(), so all five
     // surfaces get it and not just this one. `paths` is still used by the Pathways-hit block below.
-    const rows = list.map(c => `<div class="stack-row"><a href="#/c/${slug(c.name)}"><b>${c.name}</b></a> <span class="stars" style="font-size:.75rem">${'★'.repeat(c.stars)}</span> <span style="color:var(--faint);font-size:.82rem">${c.category}</span> <button class="stack-x" data-id="${c.id}">remove</button></div>`).join('');
+    const rows = list.map(c => `<div class="stack-row"><a href="#/c/${slug(c.name)}"><b>${c.name}</b></a> ${starHTML(c.stars, { compact: true, style: 'font-size:.75rem' })} <span style="color:var(--faint);font-size:.82rem">${c.category}</span> <button class="stack-x" data-id="${c.id}">remove</button></div>`).join('');
     const sharedTargets = Object.values(tgts).filter(t => t.who.length > 1);
     out.innerHTML = `
       ${interactionPanel(list)}
@@ -3185,7 +3222,7 @@
       <div class="detail"><h1>${esc(A.name)} vs ${esc(B.name)}</h1>
       <p>How they compare on human evidence, mechanism, safety and availability — in plain English.</p>
       <div class="cmp-wrap"><table class="cmp-table"><thead><tr><th></th><th><a href="#/c/${slug(A.name)}">${esc(A.name)}</a></th><th><a href="#/c/${slug(B.name)}">${esc(B.name)}</a></th></tr></thead><tbody>
-        ${row('Human evidence', `<span class="stars">${starStr(A.stars)}</span>`, `<span class="stars">${starStr(B.stars)}</span>`)}
+        ${row('Human evidence', starHTML(A.stars), starHTML(B.stars))}
         ${row('Legal status', approvalPills(A), approvalPills(B))}
         ${row('How it works', mdInline(A.mechanism), mdInline(B.mechanism))}
         ${row('In plain English', mdInline(A.plain), mdInline(B.plain))}
@@ -3211,7 +3248,7 @@
           row('Compound', `<strong>${A.name}</strong>`, `<strong>${B.name}</strong>`) +
           row('Category', A.category, B.category) +
           row('Legal status', approvalPills(A), approvalPills(B)) +
-          row('Human evidence', `<span class="stars">${starStr(A.stars)}</span>`, `<span class="stars">${starStr(B.stars)}</span>`) +
+          row('Human evidence', starHTML(A.stars), starHTML(B.stars)) +
           row('Targets', (A.targets || []).map(t => t.sym).join(', '), (B.targets || []).map(t => t.sym).join(', ')) +
           row('Mechanism', mdInline(A.mechanism), mdInline(B.mechanism)) +
           row('Plain English', mdInline(A.plain), mdInline(B.plain)) +
@@ -3825,7 +3862,7 @@
     const seg = href.replace(/^#/, '').split('?')[0].split('/').filter(Boolean);
     const kind = seg[0], key = decodeURIComponent(seg[1] || '');
     const strip = h => String(h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    if (kind === 'c' && bySlug[key]) { const c = bySlug[key]; return { badge: 'Compound', cls: 'st', title: c.name, extra: `<span class="stars">${starStr(c.stars)}</span>${c.isRx ? '<span class="ep-rx">Prescription</span>' : ''}`, sub: (c.plain || c.bottom || c.mechanism || '').slice(0, 150) }; }
+    if (kind === 'c' && bySlug[key]) { const c = bySlug[key]; return { badge: 'Compound', cls: 'st', title: c.name, extra: `${starHTML(c.stars, { compact: true })}${c.isRx ? '<span class="ep-rx">Prescription</span>' : ''}`, sub: (c.plain || c.bottom || c.mechanism || '').slice(0, 150) }; }
     if (kind === 'target') { const t = targetBySym[tkey(key)]; if (t) return { badge: 'Molecular target', cls: 'tg', title: t.sym, sub: (t.name || '') + (t.compoundIds ? ` · ${t.compoundIds.length} compound${t.compoundIds.length !== 1 ? 's' : ''}` : '') }; }
     if (kind === 'pathway' && D.pathways[+key]) { const p = D.pathways[+key]; return { badge: 'Pathway', cls: 'pw', title: p.shortLabel, sub: (p.oneLine || strip(p.html)).slice(0, 160) }; }
     if (kind === 'muscle' && muscleById[key]) { const m = muscleById[key]; return { badge: 'Muscle', cls: 'mv', title: m.name, sub: (m.overview || '').slice(0, 150) }; }
@@ -4384,7 +4421,7 @@
       <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
       ${f.note ? `<p class="anat-lead">${esc(f.note)}</p>` : ''}
       <div class="section-title">The stack (${cpds.length})</div>
-      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b><span class="stars">${starStr(c.stars)}</span></a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
+      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
       <div class="cstack-actions" style="margin-top:1.2rem">
         <button class="cta-primary cstack-use" id="fork-clone-btn" style="border:none;cursor:pointer">Use this stack →</button>
         <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likes}</span></button>
@@ -7253,7 +7290,7 @@
   function stackCard(c) {
     return `<div class="st-card${needsDoctor(c) ? ' rx' : ''}">
       <a class="st-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>
-      <span class="stars" title="${esc(c.stars)}/5 · ${STAR_LEGEND}">${starStr(c.stars)}</span></a>
+      ${starHTML(c.stars, { compact: true })}</a>
       <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
       <p class="st-plain">${cardSnip(c.plain || c.bottom || c.mechanism, 150)}</p>
       <button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>
@@ -7279,7 +7316,7 @@
     return `<div class="item-modal">
       <button class="modal-x" data-close aria-label="Close">×</button>
       <div class="im-kind">💊 Supplement</div>
-      <h2>${esc(c.name)} <span class="stars" title="${esc(c.stars)}/5">${starStr(c.stars)}</span></h2>
+      <h2>${esc(c.name)} ${starHTML(c.stars, { compact: true })}</h2>
       <div class="im-meta">${approvalPills(c)}</div>
       ${cal('In plain English', c.plain)}
       ${cal('How it works', c.mechanism)}

@@ -2310,7 +2310,13 @@ a.dp-name:hover{color:var(--accent)}
 .spec-chip{display:inline-flex;flex-direction:column;gap:.05rem;padding:.4rem .7rem;border:1px solid var(--line);border-radius:10px;background:var(--panel);line-height:1.2}
 .spec-chip .sc-k{font-size:.64rem;text-transform:uppercase;letter-spacing:.05em;color:var(--faint)}
 .spec-chip .sc-v{font-size:.86rem;font-weight:600;color:var(--ink)}
-.spec-chip .sc-dim{color:var(--line)}
+/* W5a (2026-08-02): `.sc-dim{color:var(--line)}` DELETED. It painted the empty half of the star
+   rating in rgb(233,237,242) on a rgb(246,248,250) card — 1.10:1 — using the SAME ★ character, so
+   the chip's innerText read "★★★★★ Minimal" on a 1-star compound (measured hydrated at 390x844 on
+   /c/bpc-157). The empty half is now a different character and the number is printed as text.
+   build/parse.js assertRatingIsTextCarried() fails the build if either class comes back. */
+.stars-n{font-weight:700;font-size:.86em;letter-spacing:0;margin-left:.35em;color:var(--muted)}
+.stars-n.unrated{margin-left:0;font-weight:600;font-style:italic}
 /* Depth toggle */
 .depth-bar{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;margin:.7rem 0}
 .depth-lbl{font-size:.8rem;color:var(--muted);margin-right:.2rem}
@@ -2342,8 +2348,8 @@ a.dp-name:hover{color:var(--accent)}
 .mol-link{display:inline-block;margin-top:.7rem;font-size:.82rem}
 /* Evidence at a glance */
 .ev-glance{display:flex;gap:.8rem;align-items:flex-start;margin:1.1rem 0;padding:.8rem 1rem;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
-.evg-stars{font-size:1.15rem;color:#f5a623;white-space:nowrap;letter-spacing:1px}
-.evg-dim{color:var(--line)}
+.evg-stars{font-size:1.15rem;white-space:nowrap;letter-spacing:1px}
+/* W5a: `.evg-dim{color:var(--line)}` DELETED — the second colour-only star pad on the page. */
 .evg-body{font-size:.9rem;line-height:1.5}
 .evg-note{color:var(--muted);font-size:.82rem}
 /* Glossary hover-defs */
@@ -2411,8 +2417,9 @@ a.dp-name:hover{color:var(--accent)}
 .cmp-card:hover{border-color:var(--accent)}
 .cmp-vs{font-size:.7rem;font-weight:700;color:var(--faint);text-transform:uppercase}
 .cmp-name{font-weight:600;font-size:.9rem}
-.cmp-stars{font-size:.72rem;color:#f5a623;letter-spacing:.5px}
-.cmp-stars .cmp-dim{color:var(--line)}
+.cmp-stars{font-size:.72rem;letter-spacing:.5px}
+/* W5a: `.cmp-dim{color:var(--line)}` DELETED. This THIRD colour-only star pad was not in the W0
+   baseline — assertRatingIsTextCarried() found it on its first run, on the "compare with" cards. */
 /* Biotech deep-dive */
 .biotech{margin:1.3rem 0;padding:1.1rem 1.2rem;border-radius:16px;border:1px solid color-mix(in srgb,#7c3aed 32%,var(--line));background:color-mix(in srgb,#7c3aed 5%,transparent)}
 .bt-head{display:flex;align-items:baseline;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem}
