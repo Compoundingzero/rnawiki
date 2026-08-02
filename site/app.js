@@ -8099,11 +8099,36 @@
     history.pushState({}, '', path);
     route();
   }
+  // W5b (2026-08-02): THE HEAD IS GENERATED ONCE, BY THE PRERENDERER, AND READ HERE.
+  // This function used to derive its own titles from the corpus, in parallel with build/prerender.js
+  // deriving them from the same corpus. Two generators, one string. Measured over all 620 served
+  // routes in headless Chrome at 1280x900 with a 900 ms settle, 0 pageerrors, 0 non-200:
+  //   · 135 routes finished hydration with document.title === the site default and 151 with the
+  //     homepage description, on pages whose prerendered <title> was correct on 620 of 620 — pure
+  //     hydration loss. Every /problem (41), every /muscle (17), every /fuel (52), /az, /legend,
+  //     /about, /browse, /anatomy, /stack, /plan, /compare, /methodology, /corrections.
+  //   · document.title === the prerendered title on 127/620; description on 69/620.
+  //   · document.title !== og:title IN THE SAME DOCUMENT on 493/620. /target/AR carried three
+  //     different strings at once: <title> "AR — the molecular target and every compound that hits
+  //     it", og:title "AR: the compounds that hit it", and description "AR: AR androgen receptor",
+  //     a hard .slice(0,120) that stopped mid-sentence against an og:description that did not.
+  // window.RNAWIKI_HEAD (site/head.js) is written by build/prerender.js by parsing the <title> and
+  // <meta name=description> back out of the bytes it just wrote for each route, so what is set here
+  // is definitionally what the crawler was served. assertHeadParity() fails the build if the map
+  // loses a route, if app.js stops reading it, or if head.js stops loading before app.js.
+  // og:* and twitter:* are set from the same two strings, because otherwise they keep the LANDING
+  // page's values through every SPA navigation — which is the second half of the defect above.
+  // (A /protocol/…?by= share link is the one case where server.js deliberately writes a different
+  // og:title at send time; that rewrite is for scrapers, which never hydrate, so it is unaffected.)
+  const HEAD = (typeof window !== 'undefined' && window.RNAWIKI_HEAD) || {};
   function setPageMeta(parts) {
     const site = SITE_NAME;
     let title = 'RNAwiki — translate the code of human performance into real results';
     let desc = 'DNA is the blueprint; RNA is the builder. Turn the foundational code of strength, health and longevity into protocols you can use today — ranked by human evidence, in plain English.';
     const t = (s) => `${s} · ${site}`;
+    const generated = HEAD['/' + parts.join('/')];
+    if (generated && generated[0]) { title = generated[0]; desc = generated[1] || desc; }
+    else
     // W5a: `|| c.metaSummary` — the 13 "(brief)" bundles have no plain/bottom/mechanism, so this
     // line produced `content=""` on exactly those 13 hydrated and on 0 of the other 158. An empty
     // description is not a shorter description; it is a page with nothing to say about itself in
@@ -8136,6 +8161,12 @@
     document.title = title;
     let m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'description'); document.head.appendChild(m); }
     m.setAttribute('content', desc);
+    // W5b: keep the share tags on the same two strings. Before this they held whatever the LANDING
+    // route's prerendered head said and never moved again, so after one SPA navigation a document
+    // carried a title for one page and an og:title for another (493/620 measured at boot alone).
+    [['meta[property="og:title"]', title], ['meta[property="og:description"]', desc],
+      ['meta[name="twitter:title"]', title], ['meta[name="twitter:description"]', desc]]
+      .forEach(([sel, val]) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); });
     let l = document.querySelector('link[rel="canonical"]'); if (!l) { l = document.createElement('link'); l.setAttribute('rel', 'canonical'); document.head.appendChild(l); }
     l.setAttribute('href', location.origin + '/' + parts.join('/'));
   }

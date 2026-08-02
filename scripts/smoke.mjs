@@ -1448,6 +1448,11 @@ try {
           inlineOnclick: document.querySelectorAll('[onclick]').length,
           appChildren: (document.getElementById('app')?.children.length) || 0,
           rejections: (window.__smokeRejections || []).slice(0, 10),
+          // W5b: the head, read AFTER hydration has finished with it.
+          title: document.title,
+          desc: document.querySelector('meta[name="description"]')?.content ?? null,
+          ogTitle: document.querySelector('meta[property="og:title"]')?.content ?? null,
+          ogDesc: document.querySelector('meta[property="og:description"]')?.content ?? null,
         };
       });
     } catch (e) { navErr = String(e).slice(0, 200); }
@@ -1490,6 +1495,43 @@ try {
       if (dom.announcer < 1) add('role="status" aria-live="polite" route announcer is gone');
       if (dom.inlineOnclick) add(`${dom.inlineOnclick} inline onclick handler(s) — the site is CSP-clean, keep it that way`);
       if (dom.appChildren === 0) add('#app is empty after hydration');
+    }
+
+    // ---- W5b (2026-08-02): THE HEAD MUST SURVIVE HYDRATION ------------------------------------
+    // This is the only check on the project that sees BOTH documents' <head> on the same URL, and
+    // it is the one that would have caught D7/D8. Measured before it existed, headless Chrome at
+    // 1280x900 with a 900 ms settle, over all 620 served routes, 0 non-200 and 0 pageerrors:
+    //   · 135 routes finished hydration with document.title === "RNAwiki — translate the code of
+    //     human performance into real results" and 151 with the homepage description, on pages
+    //     whose prerendered <title> was correct on 620 of 620. /az served "All 171 compounds A–Z"
+    //     to a crawler and the site slogan to a reader.
+    //   · title === prerendered title on 127/620, description on 69/620.
+    //   · title !== og:title IN THE SAME HYDRATED DOCUMENT on 493/620 — /target/AR carried three
+    //     different strings at once.
+    // build/prerender.js assertHeadParity() proves the map is complete and app.js reads it. It
+    // cannot prove the browser then USES it — a lookup that silently returns undefined, a head.js
+    // that loads after app.js, a later renderer that overwrites document.title, all pass the build.
+    // This is that half. One route per template class is enough because the defect is per-template.
+    // PROVE IT by deleting the RNAWIKI_HEAD lookup from setPageMeta() in site/app.js.
+    if (dom && dom.title) {
+      let pre = null;
+      try {
+        const html = await (await fetch(BASE + route)).text();
+        const un = s => String(s).replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+        const t = html.match(/<title>([\s\S]*?)<\/title>/), d = html.match(/<meta name="description" content="([^"]*)"/);
+        pre = { title: t ? un(t[1]) : null, desc: d ? un(d[1]) : null };
+      } catch (e) { add(`could not fetch the prerendered document to compare heads — ${String(e).slice(0, 120)}`); }
+      // /progress has no prerendered page: it falls through to site/index.html, the SPA shell,
+      // whose <title> IS the site default. Comparing against that would assert the defect.
+      const SHELL_TITLE = 'RNAwiki — translate the code of human performance into real results';
+      if (pre && pre.title && pre.title !== SHELL_TITLE) {
+        if (dom.title !== pre.title) add(`HEAD PARITY — the crawler is served <title> "${pre.title}" and a reader ends hydration on "${dom.title}". Two documents, two identities, one URL (D7/D8).`);
+        if (dom.desc !== pre.desc) add(`HEAD PARITY — the crawler is served description "${String(pre.desc).slice(0, 80)}…" and a reader ends on "${String(dom.desc).slice(0, 80)}…"`);
+      }
+      if (dom.ogTitle !== null && dom.ogTitle !== dom.title) add(`HEAD PARITY — one document, two identities: <title> is "${dom.title}" and og:title is "${dom.ogTitle}". A share card and a tab must not disagree.`);
+      if (dom.ogDesc !== null && dom.ogDesc !== dom.desc) add(`HEAD PARITY — description and og:description differ in the same document: "${String(dom.desc).slice(0, 60)}…" vs "${String(dom.ogDesc).slice(0, 60)}…"`);
+      if (dom.title === SHELL_TITLE && route !== '/progress') add(`HEAD PARITY — hydration ended on the site default title. This page has no identity in a tab, a bookmark, a share or a search result (D7).`);
+      if (!dom.desc) add('HEAD PARITY — no meta description after hydration');
     }
 
     // documented per-route assertions

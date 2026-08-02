@@ -469,6 +469,10 @@ ${crumbLd}${ld}
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
+${/* W5b: the generated route -> [title, description] map. Must load BEFORE app.js, because
+      setPageMeta() runs inside the first route() call. It is written by this same script from
+      the bytes of these very pages — see "ONE HEAD, TWO DOCUMENTS" below. */ ''}
+<script src="/head.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>`;
@@ -554,10 +558,29 @@ function seoTitle(main, max = 60) {
   if (fits(main)) return main + SUFFIX;
   let words = main.split(' ');
   while (words.length > 1 && !fits(words.join(' '))) words.pop();
-  let out = words.join(' ').replace(/[\s,;:\u2014-]+$/, '');
+  let out = tidyTail(words.join(' '));
   // A single word can still be too long (a very long compound name); hard-cut it as a last resort.
   while (out.length > 1 && !fits(out)) out = out.slice(0, -1);
-  return out + SUFFIX;
+  return tidyTail(out) + SUFFIX;
+}
+// W5b (2026-08-02): TRIMMING AT A WORD BOUNDARY IS NOT THE SAME AS ENDING ON A WORD.
+// Measured on the built site, 620 served routes, prerendered document: 49 titles ended on a
+// connector that promised something the title never delivered \u2014 34 on "&"
+// ("2,4-Dinitrophenol (DNP): dosage, evidence & \u00b7 RNAwiki"), 3 on "\u00b7"
+// ("Elderberry \u00b7 Andrographis \u00b7 Lactoferrin \u00b7 \u00b7 RNAwiki"), 9 on an opening bracket with no
+// partner, 3 on "/" or "+". The old tail-strip listed only [\s,;:\u2014-], so every one of those
+// characters survived. These are the exact strings that ship as the <title>, the og:title, the
+// tab, the bookmark and \u2014 from W5b onwards \u2014 the hydrated document too, so a dangling connector
+// is now a defect in both documents at once.
+// An unmatched "(" is dropped WITH the fragment it opened: "Cagrilintide (\u00b1 CagriSema" reads as a
+// truncation error, and "Cagrilintide" is simply true.
+function tidyTail(t) {
+  let out = String(t).replace(/[\s,;:&+/|\u00b7\u2013\u2014-]+$/, '');
+  const depth = (s) => { let d = 0; for (const ch of s) { if (ch === '(') d++; else if (ch === ')') d = Math.max(0, d - 1); } return d; };
+  while (depth(out) > 0 && out.indexOf('(') >= 0) {
+    out = out.slice(0, out.lastIndexOf('(')).replace(/[\s,;:&+/|\u00b7\u2013\u2014-]+$/, '');
+  }
+  return out;
 }
 function seoDesc(text, max = 155) {
   const s2 = stripMd(text).replace(/\s+/g, ' ').trim();
@@ -1353,8 +1376,13 @@ GRAPH.problems.forEach((p) => {
         <p><em>Educational, not medical advice. Nutrient targets are general adult guidance.</em></p>`;
       add(fuelRoute, shell({
         route: fuelRoute, robots: 'noindex,follow',
-        title: `Fuel for ${p.name} — ${rcShort.toLowerCase()} · RNAwiki`,
-        desc: `Daily nutrient targets for ${p.name} (${rcShort.toLowerCase()}), why each one, and the everyday foods that hit them.`,
+        // W5b: these 52 titles were the only ones on the site that hand-appended " · RNAwiki"
+        // instead of going through seoTitle(), so they never met the 60-char budget every other
+        // page is trimmed to — 51 of the 52 were over it, up to 93 chars
+        // ("Fuel for High Blood Pressure — endothelial dysfunction + sodium/potassium imbalance").
+        // Nothing caught it because nothing had ever looked at a <title> until assertHeadParity().
+        title: seoTitle(`Fuel for ${p.name} — ${rcShort.toLowerCase()}`),
+        desc: seoDesc(`Daily nutrient targets for ${p.name} (${rcShort.toLowerCase()}), why each one, and the everyday foods that hit them.`),
         breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel', route: fuelRoute }],
         body: fbody,
       }), { noSitemap: true });
@@ -1706,7 +1734,7 @@ const learnScaffold = (m) => {
 };
 D.modules.forEach((m, i) => {
   const route = '/learn/' + i;
-  add(route, shell({ route, title: `${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')} · RNAwiki Foundations`, desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${foundationsDiagram(i)}${m.html || ''}${learnFlatHtml(m.expand)}${learnScaffold(m)}</div>` }));
+  add(route, shell({ route, title: seoTitle(`${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')}`), desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${foundationsDiagram(i)}${m.html || ''}${learnFlatHtml(m.expand)}${learnScaffold(m)}</div>` }));
 });
 
 // ---- anatomy & physiology: crawlable muscle / energy-system / metabolism pages ----
@@ -1825,7 +1853,7 @@ ANAT.muscles.forEach((m) => {
     <p class="where-lead">Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and see the likely cause, the protocol, and a 3-question cause-finder.</p>
     <div class="where-wrap"><div class="body-where">${D.bodyWhereSvg || ''}</div>${D.bodyWhereIndex}</div>
     <p class="where-foot"><a href="/body">Or explore the muscles in 3D →</a></p></div>`;
-  add('/where', shell({ route: '/where', title: 'Where does it hurt? Find the likely cause and the fix · RNAwiki', desc: 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Where does it hurt?', route: '/where' }], body }));
+  add('/where', shell({ route: '/where', title: seoTitle('Where does it hurt? Find the cause and the fix'), desc: seoDesc('Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.'), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Where does it hurt?', route: '/where' }], body }));
 })();
 function metabolicMill(active) {
   const C = { fat: '#b5533a', carb: '#475569', prot: '#2563eb', mito: '#0d9488', atp: '#d97706', line: '#64748b' };
@@ -1927,7 +1955,7 @@ ANAT.metabolism.forEach((p) => {
     <h2>Muscles</h2><ul>${ANAT.muscles.map((m) => `<li><a href="/muscle/${m.id}">${esc(m.name)}</a></li>`).join('')}</ul>
     <h2>Energy systems</h2><ul>${ANAT.energy_systems.map((e) => `<li><a href="/energy/${e.id}">${esc(e.name)}</a></li>`).join('')}</ul>
     <h2>Metabolism</h2><ul>${ANAT.metabolism.map((p) => `<li><a href="/physiology/${p.id}">${esc(p.name)}</a></li>`).join('')}</ul></div>`;
-  add(route, shell({ route, title: 'Anatomy & physiology — muscles, energy systems & metabolism · RNAwiki', desc: 'The body behind the protocol: every major muscle, the energy systems that fuel movement, and the metabolism behind nutrition and supplements — in plain English.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Anatomy', route }], body }));
+  add(route, shell({ route, title: seoTitle('Anatomy & physiology: muscles, energy, metabolism'), desc: seoDesc('The body behind the protocol: every major muscle, the energy systems that fuel movement, and the metabolism behind nutrition and supplements — in plain English.'), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Anatomy', route }], body }));
 }
 
 // --- hub pages: previously shipped an empty shell (invisible to Google + social) ---
@@ -1942,11 +1970,11 @@ ANAT.metabolism.forEach((p) => {
     <h2>4. Metabolism &amp; physiology</h2><ul>${li(ANAT.metabolism, (p) => `<li><a href="/physiology/${p.id}">${esc(p.name)}</a></li>`)}</ul>
     <h2>5. Muscle anatomy</h2><ul>${li(ANAT.muscles, (m) => `<li><a href="/muscle/${m.id}">${esc(m.name)}</a></li>`)}</ul>
     <h2>6. The systems (advanced)</h2><p>The 16 master <a href="/pathways">pathways</a> and their molecular targets — the deepest layer, for when you want to know <i>why</i>.</p></div>`;
-  add('/learn', shell({ route: '/learn', title: 'Learn — how the body works and how to read RNAwiki', desc: 'A guided primer: start from your goal, follow it down to the movement, food, compound, target and pathway. Energy systems, metabolism and muscle anatomy in plain English.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Learn', route: '/learn' }], body }));
+  add('/learn', shell({ route: '/learn', title: 'Learn — how the body works and how to read RNAwiki', desc: seoDesc('A guided primer: start from your goal, follow it down to the movement, food, compound, target and pathway. Energy systems, metabolism and muscle anatomy in plain English.'), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Learn', route: '/learn' }], body }));
 }
 { // Stack builder
   const top = D.compounds.slice().sort((a, b) => b.stars - a.stars).slice(0, 40);
-  add('/stack', shell({ route: '/stack', title: 'Supplement Stack Builder — combine & check interactions · RNAwiki', desc: 'Build a supplement stack, see combined goal coverage, shared pathways and synergy, and flag prescription vs OTC — then save and share it. Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Stack', route: '/stack' }], body: `<div class="article"><h1>Stack Builder</h1><p>Add compounds from any page, see combined goal coverage, the pathways you're hitting and shared targets, and which items need medical supervision. Your stack saves locally and is shareable by link.</p><h2>Popular compounds to stack</h2><ul>${top.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul></div>` }));
+  add('/stack', shell({ route: '/stack', title: seoTitle('Stack Builder: combine and check interactions'), desc: 'Build a supplement stack, see combined goal coverage, shared pathways and synergy, and flag prescription vs OTC — then save and share it. Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Stack', route: '/stack' }], body: `<div class="article"><h1>Stack Builder</h1><p>Add compounds from any page, see combined goal coverage, the pathways you're hitting and shared targets, and which items need medical supervision. Your stack saves locally and is shareable by link.</p><h2>Popular compounds to stack</h2><ul>${top.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul></div>` }));
 }
 
 // solve hub
@@ -2253,8 +2281,13 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
   // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"
   fs.writeFileSync(path.join(SITE, 'home.html'), shell({
     route: '/', ogType: 'website',
-    title: 'RNAwiki — Stop guessing, start solving. Precision root-cause health protocols',
-    desc: 'Fix the root cause, not the symptom. Get a precision Move · Fuel · Stack protocol for pain, metabolic, sleep, hormonal, cognitive, longevity and performance goals — evidence-ranked, honest, in plain English.',
+    // W5b: was 77 chars — "…Precision root-cause health protocols". It is the one title on the site
+    // that never went through seoTitle(), so it never met the 60-char budget every other page is
+    // trimmed to, and Google cut it after "start solving." — losing the entire half that says what
+    // the site is. Shortened rather than exempted: an exemption on the highest-traffic page is a
+    // gate that does not cover the page that matters most. Same words, same order, 59 chars.
+    title: 'RNAwiki — Stop guessing, start solving. Root-cause protocols',
+    desc: seoDesc('Fix the root cause, not the symptom. Get a precision Move · Fuel · Stack protocol for pain, metabolic, sleep, hormonal, cognitive, longevity and performance goals — evidence-ranked, honest, in plain English.'),
     jsonld: [WEBSITE, ORG],
     breadcrumbs: [{ name: 'Home', route: '/' }],
     body: homeBody,
@@ -2284,7 +2317,7 @@ let written = 0;
 
   add('/about', shell({
     route: '/about', title: 'About RNAwiki — what it is, how it is made, and its limits',
-    desc: 'RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, open to readers anywhere. What is inside, how it is built, how to read it — and what it is not.',
+    desc: seoDesc('RNAwiki is a free, evidence-ranked wiki of compounds, protocols and pathways, open to readers anywhere. What is inside, how it is built, how to read it — and what it is not.'),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'About', route: '/about' }],
     body: `<div class="article"><h1>About RNAwiki</h1>
       <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician. In an emergency, call your local emergency number — <b>999</b>, <b>911</b>, <b>112</b>, <b>995</b> or <b>000</b> depending on where you are — or go to an emergency department.</div>
@@ -2395,7 +2428,7 @@ let written = 0;
   // behind it. These two pages are the credibility spine the trust line was already promising.
   add('/methodology', shell({
     route: '/methodology', title: 'How a page on RNAwiki is made · RNAwiki',
-    desc: 'The full method behind every page: where the writing comes from, what "AI-assisted, human-edited, not clinician-reviewed" actually means, how evidence is rated, and the automated checks that can refuse to publish.',
+    desc: seoDesc('The full method behind every page: where the writing comes from, what "AI-assisted, human-edited, not clinician-reviewed" actually means, how evidence is rated, and the automated checks that can refuse to publish.'),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'How a page is made', route: '/methodology' }],
     body: `<div class="article"><h1>How a page here is made</h1>
       <p class="lede">Most health sites ask you to trust the output. This page describes the process
@@ -2609,7 +2642,7 @@ let written = 0;
     const total = comparePairs.size;
     add('/compare', shell({
       route: '/compare', title: `Head-to-head: ${total} supplement comparisons · RNAwiki`,
-      desc: `Every side-by-side comparison on RNAwiki — ${total} pairs of supplements that are used for the same goal, compared on human evidence, mechanism, safety and availability.`,
+      desc: seoDesc(`Every side-by-side comparison on RNAwiki — ${total} pairs of supplements that are used for the same goal, compared on human evidence, mechanism, safety and availability.`),
       breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }],
       body: `<div class="article"><h1>Head-to-head comparisons</h1>
         <p class="lede">${total} pairs of compounds that people actually weigh against each other,
@@ -2639,7 +2672,7 @@ let written = 0;
   // replaces this the moment it boots, so a reader with a plan never sees it.
   add('/plan', shell({
     route: '/plan', title: 'My Plan — build one plan from your root cause · RNAwiki',
-    desc: 'One plan, built from the root cause of your problem: the movements to fix it, the foods to fuel it, and the compounds with human evidence for it. Free, no account needed.',
+    desc: seoDesc('One plan, built from the root cause of your problem: the movements to fix it, the foods to fuel it, and the compounds with human evidence for it. Free, no account needed.'),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'My Plan', route: '/plan' }],
     body: `<div class="article"><h1>My Plan</h1>
       <p class="lede">One plan, in one place, built from the <em>cause</em> of your problem rather
@@ -2733,7 +2766,7 @@ let written = 0;
 
   add('/pathways', shell({
     route: '/pathways', title: `The ${(D.pathways || []).length} master pathways · RNAwiki`,
-    desc: 'The master signalling pathways behind every compound on RNAwiki — GPCR/cAMP, nuclear receptors, mTOR, AMPK, NO/cGMP and more, each with the compounds that act on it.',
+    desc: seoDesc('The master signalling pathways behind every compound on RNAwiki — GPCR/cAMP, nuclear receptors, mTOR, AMPK, NO/cGMP and more, each with the compounds that act on it.'),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Pathways', route: '/pathways' }],
     body: `<div class="article"><h1>The master pathways</h1>
       <p>Almost every compound here works through one of these. Learning the pathway once explains a whole family of compounds at a time — this is the layer that turns a list into an understanding.</p>
@@ -2750,6 +2783,50 @@ pages.forEach(({ route, html }) => {
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, html); written++;
 });
+
+// ---- W5b (2026-08-02): ONE HEAD, TWO DOCUMENTS -----------------------------------------------
+// THE DEFECT. This site serves a prerendered document to a crawler and a client-rendered one to a
+// reader, and until now each wrote its own <title> and description. Measured hydrated in headless
+// Chrome at 1280x900 with a 900 ms settle over all 620 served routes (0 non-200, 0 pageerrors):
+//   · 135 routes ended hydration with the tab reading "RNAwiki — translate the code of human
+//     performance into real results" and 151 with the homepage description — every one of them
+//     with a correct, specific prerendered <title> (0 of the 135 were generic before hydration).
+//     Pure hydration loss: /az, all 41 /problem, all 17 /muscle, all 52 /fuel, /legend, /about …
+//   · hydrated title == prerendered title on 127/620; description on 69/620.
+//   · title != og:title in the SAME hydrated document on 493/620 — three different strings in one
+//     head. /target/AR: <title> "AR — the molecular target and every compound that hits it",
+//     og:title "AR: the compounds that hit it", description "AR: AR androgen receptor"
+//     (a hard .slice(0,120) that stops mid-sentence) against og:description
+//     "AR: AR androgen receptor. What it does, and every compound that acts on it."
+//
+// WHY A MAP AND NOT A SECOND COPY OF THE RULES. site/app.js used to derive its own titles from the
+// corpus. That is two generators for one string, and they drifted on 493 of 620 routes without one
+// line of either being wrong on its own — the classic two-sources-of-truth split this codebase
+// keeps paying for. The head is now GENERATED ONCE, here, and READ by app.js. The map is not
+// re-derived from the corpus either: it is parsed back out of the bytes that were just written to
+// disk, so what app.js sets is definitionally what the crawler was served. assertHeadParity()
+// below fails the build if any of that stops being true.
+const HEAD_UNESC = (s) => String(s).replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
+const headMap = {};
+const headFrom = (route, html) => {
+  const t = html.match(/<title>([\s\S]*?)<\/title>/);
+  const d = html.match(/<meta name="description" content="([^"]*)"/);
+  headMap[route] = [HEAD_UNESC(t ? t[1] : ''), HEAD_UNESC(d ? d[1] : '')];
+};
+pages.forEach(({ route, html }) => headFrom(route, html));
+// "/" is written straight to home.html (so "/home" never leaks into the sitemap) and is therefore
+// not in `pages`. It is the ONE route where the SPA default and the prerendered head were closest
+// to each other and still not equal: the served home title is "RNAwiki — Stop guessing, start
+// solving. Precision root-cause health protocols" and app.js's built-in default was "RNAwiki —
+// translate the code of human performance into real results". Read it back off disk, same as the
+// lastmod hash does.
+try { headFrom('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { /* assertHeadParity fails loudly below */ }
+fs.writeFileSync(path.join(SITE, 'head.js'),
+  '// GENERATED by build/prerender.js — do not edit. One <title>/description per served route,\n'
+  + '// parsed back out of the prerendered bytes so site/app.js cannot drift from the crawler.\n'
+  + 'window.RNAWIKI_HEAD=' + JSON.stringify(headMap) + ';\n');
+console.log('[prerender] wrote head.js — %d routes, %d KB', Object.keys(headMap).length,
+  Math.round(fs.statSync(path.join(SITE, 'head.js')).size / 1024));
 
 // ---- sweep stale output (Patch 8) ----
 // The generator is otherwise additive-only: unpublishing a page (Patch 7, or the kill-list)
@@ -2955,6 +3032,59 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] corpus counts OK — every served document states ${N} compounds.`);
+})();
+
+// ---- build-time assertion: THE TWO DOCUMENTS MUST AGREE ABOUT WHAT THE PAGE IS ----------------
+// W5b (2026-08-02). Nothing on this project has ever checked the <head>, and the head is the only
+// part of a page that is entirely metadata about itself — nobody notices it is wrong by reading.
+// Measured over all 620 served routes, hydrated Chrome 1280x900, 900 ms settle, 0 pageerrors:
+// 135 tabs read "RNAwiki — translate the code…" on pages whose prerendered title was correct,
+// title == prerendered title on 127/620, title != og:title in the same document on 493/620,
+// 49 prerendered titles ended on a dangling "&" / "·" / "(" / "/", and 103 /target descriptions
+// were a hard .slice(0,120) that stopped mid-sentence.
+//
+// FOUR THINGS, and the first is the load-bearing one:
+//  1. EVERY served route has an entry in site/head.js. A route with no entry is a route where
+//     app.js falls back to the site default — which is precisely defect D7, one page at a time.
+//  2. The map's strings ARE the bytes of the emitted document. The map is parsed out of that HTML,
+//     so this is a check that the parse worked and that no page shipped an empty head, not a
+//     tautology: an empty <title> or a missing description is caught here.
+//  3. No title ends on a connector or an unclosed bracket (tidyTail's job), and none is over the
+//     60-char SERP budget it was trimmed to.
+//  4. site/app.js actually READS the map. A map nothing consumes is 148 KB of dead weight and 620
+//     routes back to the site default; `node --check` cannot see that, so it is asserted here in
+//     the same way the goal-count gate reads app.js.
+// PROVE IT by deleting the RNAWIKI_HEAD lookup from setPageMeta() in site/app.js, or by putting
+// the old tail-strip back in tidyTail() (a title then ships ending in "&" and this gate names it).
+(function assertHeadParity() {
+  const bad = [];
+  const routes = Object.keys(headMap);
+  routes.forEach((r) => {
+    const [t, d] = headMap[r] || [];
+    if (!t || !t.trim()) { bad.push(`${r}: emitted an empty <title>`); return; }
+    if (!d || !d.trim()) bad.push(`${r}: emitted an empty meta description — a page with nothing to say about itself in a search result or a share card`);
+    if (/[&+/|·–—([:;,-]$/.test(t.replace(SUFFIX, '').trim())) bad.push(`${r}: title ends on a dangling connector — "${t}"`);
+    if (esc(t).length > 60) bad.push(`${r}: title is ${esc(t).length} escaped chars against the 60-char budget seoTitle() trimmed it to — "${t}"`);
+    // Descriptions get the same treatment as titles, and for the same reason: the ones that broke
+    // the budget were the hand-written singletons that never went through seoDesc() — /, /about,
+    // /methodology, /learn, /plan, at 170-213 chars. Every generated page already fits.
+    if (d && esc(d).length > 155) bad.push(`${r}: description is ${esc(d).length} escaped chars against seoDesc()'s 155-char budget — wrap it in seoDesc() rather than trimming by eye — "${String(d).slice(0, 90)}…"`);
+  });
+  pages.forEach(({ route }) => { if (!headMap[route]) bad.push(`${route}: is served but has no entry in site/head.js — app.js will fall back to the site default on it, which is D7`); });
+  if (!headMap['/']) bad.push('"/" has no entry in site/head.js — the home page is not in `pages` (it is written to home.html), so it has to be read back off disk explicitly or it is the one route the map silently misses');
+  const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+  if (!/RNAWIKI_HEAD/.test(APP)) bad.push('site/app.js never reads window.RNAWIKI_HEAD — the generated head map reaches no reader, and every route hydrates back to the site default title and description (D7/D8)');
+  const SHELL = fs.readFileSync(path.join(SITE, 'c', slug(D.compounds[0].name) + '.html'), 'utf8');
+  if (SHELL.indexOf('src="/head.js"') < 0) bad.push('the page shell does not load /head.js — the map exists on disk and no document asks for it');
+  if (SHELL.indexOf('src="/head.js"') > SHELL.indexOf('src="/app.js"')) bad.push('/head.js loads AFTER /app.js — setPageMeta() runs inside the first route() call, so the map would be undefined exactly when it is needed');
+  if (bad.length) {
+    console.error('\n[prerender] THE HEAD DOES NOT SURVIVE HYDRATION — refusing to build.');
+    bad.slice(0, 40).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 40) console.error(`    … and ${bad.length - 40} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] head parity OK — ${routes.length} routes carry a title and a description, app.js reads them, 0 dangling titles.`);
 })();
 
 // ---- build-time assertion: structured data ----------------------------------------------------

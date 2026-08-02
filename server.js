@@ -14,14 +14,20 @@ const DIR = path.join(__dirname, 'site');
 const ASSET_VER = (() => {
   try {
     const h = crypto.createHash('sha1');
-    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js', 'interactions.js', 'foods.js', 'exercises.js', 'businesses.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
+    // W5b: head.js is in the hash because it is the route -> <title>/description map every page
+    // now loads. A build that changes a title and not this hash would serve the new HTML with the
+    // previous head map still cached, and the tab would go back to saying the old thing.
+    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js', 'interactions.js', 'head.js', 'foods.js', 'exercises.js', 'businesses.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
     return h.digest('hex').slice(0, 10);
   } catch (e) { return String(Date.now()); }
 })();
 function versionAssets(html) {
   // expose the version so app.js can cache-bust the lazy-loaded datasets (foods/exercises/businesses.js)
   html = String(html).replace('</head>', `<script>window.__V="${ASSET_VER}"</script></head>`);
-  return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
+  // W5b: head.js joins the list. It is regenerated on every build and holds the <title> and
+  // description of all 620 routes, so a stale cached copy would put the previous deploy's titles
+  // back in the tab on every route the SPA renders.
+  return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js|head\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
 }
 function endHtml(res, html, code) {
   // res.req is the request this response belongs to (node >= 12.17) — used so the ~40 endHtml call
