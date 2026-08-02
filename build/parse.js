@@ -2093,7 +2093,17 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
       return;
     }
     checkedRules++; checkedRows += rows.length;
-    const txt = flat(`${rule.why} ${rule.action}`);
+    // W5.5 (2026-08-02): THE TITLE WAS NEVER CHECKED. This check built its text from the why and the
+    // action only, and the title is the largest string on the row and the only part many readers
+    // read. "Bergamot may raise statin levels" is a sentence about a specific compound, and if
+    // Bergamot is absent from the row it is exactly the false specificity the rest of this gate
+    // exists to catch. That instance happens to be caught anyway because the same rule's `why` also
+    // names Bergamot — which is luck, not coverage: a rule whose TITLE names a compound its why does
+    // not would sail straight through.
+    // Measured before adding it: replaying this check over the whole corpus with and without the
+    // title produces an IDENTICAL failure list, so it fails nothing that is not already failing.
+    // This is hardening, and it is labelled as hardening rather than as a live defect.
+    const txt = flat(`${rule.title} ${rule.why} ${rule.action}`);
     const excused = new Set();
     Object.keys(lex).forEach((tok) => {
       if (txt.indexOf(flat(tok)) < 0) return;
