@@ -1,0 +1,5 @@
+{
+  "/compare/creatine-monohydrate-vs-sodium-bicarbonate": ["2026-08-02", "Sodium Bicarbonate fell from rank 8 to rank 9 of the `muscle` goal when EPO was re-filed into MUSCLE/STRENGTH (commit 3dbf586); the comparison generator pairs a goal's top eight, so this pair stopped being generated. Both compounds are supplements and both pages are still published — nothing was withdrawn on editorial or regulatory grounds. serveMissing() answers 404, not 410, for exactly this reason."],
+  "/compare/sodium-bicarbonate-vs-vitamin-d3-k2": ["2026-08-02", "Same cause as the creatine pair above: Sodium Bicarbonate left the `muscle` goal's top eight. Both compounds are supplements, both pages are still published."],
+  "/compare/sodium-bicarbonate-vs-whey-casein-protein": ["2026-08-02", "Same cause as the two pairs above: Sodium Bicarbonate left the `muscle` goal's top eight. Both compounds are supplements, both pages are still published."]
+}

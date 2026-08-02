@@ -2814,6 +2814,70 @@ function lastmodFor(route) {
 
 const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.filter((p) => !p.noSitemap).map((p) => p.route)];
 const uniq = [...new Set(urls)];
+
+// ---- build-time assertion: THE ROUTE UNIVERSE MAY NOT SHRINK BY ACCIDENT ----------------------
+// Added 2026-08-02 (W4.5). Every route on this site is generated, so the published set moves when
+// the CORPUS moves — and nothing was watching that. Three URLs left the sitemap between 2026-08-01
+// and 2026-08-02 with no line of output, no diff anyone would read as a deletion, and no decision:
+//   /compare/creatine-monohydrate-vs-sodium-bicarbonate
+//   /compare/sodium-bicarbonate-vs-vitamin-d3-k2
+//   /compare/sodium-bicarbonate-vs-whey-casein-protein
+// Re-filing EPO out of SARMs and into MUSCLE/STRENGTH (commit 3dbf586, an interaction-tag fix)
+// pushed Sodium Bicarbonate from rank 8 to rank 9 of the `muscle` goal, and the comparison
+// generator pairs a goal's top eight. A tag fix silently unpublished three indexed pages, and the
+// server then answered them 410 Gone with a reason that was not true (commit c873c0c).
+//
+// GROWTH IS NEVER AN ERROR. Only SHRINKAGE is, because a route that disappears is a URL already in
+// Google's index and already in somebody's history that now answers 404 or 410. Every drop must be
+// written down in build/withdrawn.json — route -> [date, reason] — by a human who looked at it.
+// The build does NOT record it for you: a record the build keeps for itself acknowledges nothing.
+//
+// STALE ENTRIES FAIL TOO. A route listed as withdrawn while it is being published is a false line
+// in the one file that exists to be true, and that is exactly what happens when a ranking cut
+// swings back.
+//
+// ORDER MATTERS: this runs BEFORE sitemap.xml and build/lastmod.json are written. lastmod.json is
+// the only memory of what was published last time; overwriting it and then failing would erase the
+// evidence and let the next run pass silently.
+// PROVE IT by adding any route to build/lastmod.json that this build does not emit (or by deleting
+// one of the three entries from build/withdrawn.json).
+const WITHDRAWN_FILE = path.join(ROOT, 'build', 'withdrawn.json');
+(function assertRouteUniverse() {
+  const prev = Object.keys(lastmodPrev);
+  const withdrawn = (() => {
+    try { return JSON.parse(fs.readFileSync(WITHDRAWN_FILE, 'utf8')); } catch (e) { return {}; }
+  })();
+  const nowSet = new Set(uniq);
+  const bad = [];
+  if (prev.length) {
+    const dropped = prev.filter((r) => !nowSet.has(r));
+    const unrecorded = dropped.filter((r) => !withdrawn[r]);
+    if (unrecorded.length) {
+      console.error('\n[prerender] ROUTE UNIVERSE SHRANK — refusing to build.');
+      console.error(`  ${prev.length} routes were published last build, ${uniq.length} are published now, and ${unrecorded.length} of the ${dropped.length} dropped route(s) are not written down.`);
+      console.error('  These URLs are in the published sitemap that shipped, and will start answering 404/410:');
+      unrecorded.slice(0, 20).forEach((r) => console.error('    ✗ ' + r));
+      if (unrecorded.length > 20) console.error(`    … and ${unrecorded.length - 20} more`);
+      console.error('\n  If that is intended, say so in build/withdrawn.json — one line each, with the real reason:');
+      unrecorded.slice(0, 20).forEach((r) => console.error(`    ${JSON.stringify(r)}: [${JSON.stringify(now)}, "why"],`));
+      console.error('  If it is NOT intended, the corpus moved under the generator. Find what changed rank.\n');
+      bad.push('unrecorded');
+    } else if (dropped.length) {
+      console.log(`[prerender] route universe: ${prev.length} -> ${uniq.length}; ${dropped.length} route(s) dropped, all recorded in build/withdrawn.json.`);
+    }
+  }
+  const resurrected = Object.keys(withdrawn).filter((r) => nowSet.has(r));
+  if (resurrected.length) {
+    console.error('\n[prerender] build/withdrawn.json IS STALE — refusing to build.');
+    console.error('  These routes are listed as withdrawn and are being published by this very run:');
+    resurrected.slice(0, 20).forEach((r) => console.error(`    ✗ ${r}  (recorded: ${JSON.stringify(withdrawn[r])})`));
+    console.error('  Delete those lines. A withdrawal record that is not true is worse than no record.\n');
+    bad.push('stale');
+  }
+  if (bad.length) process.exit(1);
+  console.log(`[prerender] route universe OK — ${uniq.length} published, ${Object.keys(withdrawn).length} recorded withdrawal(s), 0 unaccounted drops.`);
+})();
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${uniq.map((u) => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${lastmodFor(u)}</lastmod><changefreq>weekly</changefreq><priority>${u === '/' ? '1.0' : u.startsWith('/protocol') || u.startsWith('/c/') ? '0.8' : '0.6'}</priority></url>`).join('\n')}
