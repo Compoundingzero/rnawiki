@@ -3895,7 +3895,25 @@ a.assess-switch { text-align: center; }
 .body-twin li { break-inside: avoid; margin: .3rem 0; }
 
 /* Move 4 — "Where does it hurt?" reverse funnel */
-.where-page .kicker { color: var(--accent-ink); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .74rem; }
+/* ---- W5c (2026-08-02): --accent-ink IS #ffffff. IT IS THE INK FOR THE ACCENT FILL, AND FIVE
+   RULES USED IT AS A TEXT COLOUR ON A WHITE OR NEAR-WHITE SURFACE. -----------------------------
+   Measured hydrated at 390x844, default DOM state, 0 pageerrors (qa/out/w5cdi/before-390.json):
+     /solve  .where-cta a  color rgb(255,255,255) on background rgb(255,255,255) = EXACTLY 1.00:1,
+             rendered 302x65 px. The link reads "Not sure what it's called? Point to where it
+             hurts →" and it is the only route into /where from the site's main funnel page. It was
+             not dim. It was invisible.
+     /where  .where-page .kicker  rgb(255,255,255) on rgb(246,248,250) = 1.06:1 ("START FROM YOUR
+             BODY").
+     /where  .bw-prob:hover and .bw-find:hover both resolve to white on the white .bw-zone-sec
+             card, so on a desktop pointer the 16 problem links and 15 buttons DISAPPEAR under the
+             cursor — the one moment the reader is certain to be looking at them.
+     /fuel   .sg-chip ("SOLD IN SG") is the same bug in the prerendered document only; the SPA
+             rebuilds those pages and drops the chip, so a JS reader never saw it and a crawler
+             and a no-JS reader got white-on-white. curl /fuel/knee-pain/patellofemoral-pain
+             returns 3 of them.
+   All five now use --link (#0e7c72), which clears 4.5:1 on all three page surfaces.
+   assertAccentInkOnAccent() in build/prerender.js is the gate. */
+.where-page .kicker { color: var(--link); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .74rem; }
 .where-lead { color: var(--muted); max-width: 60ch; line-height: 1.55; }
 .where-wrap { display: grid; grid-template-columns: minmax(240px, 340px) 1fr; gap: 1.6rem; align-items: start; margin: 1.4rem 0; }
 @media (max-width: 720px) { .where-wrap { grid-template-columns: 1fr; } }
@@ -3913,15 +3931,15 @@ a.assess-switch { text-align: center; }
 .bw-zone-sec ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
 .bw-zone-sec li { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
 .bw-prob { text-decoration: none; color: var(--head); }
-.bw-prob:hover { color: var(--accent-ink); }
+.bw-prob:hover { color: var(--link); }
 .bw-find { border: 1px solid var(--line); background: transparent; color: var(--muted); font-size: .74rem; padding: 2px 9px; border-radius: 999px; cursor: pointer; }
-.bw-find:hover { border-color: var(--accent); color: var(--accent-ink); }
+.bw-find:hover { border-color: var(--accent); color: var(--link); }
 .bw-none { color: var(--muted); font-size: .9rem; }
 .where-foot { margin-top: 1.2rem; }
 
 /* Move 4 — "point to where it hurts" entry link on /solve */
 .where-cta{margin:.6rem 0 0}
-.where-cta a{display:inline-block;color:var(--accent-ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;text-decoration:none;font-size:.95rem}
+.where-cta a{display:inline-block;color:var(--link);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.45rem .9rem;text-decoration:none;font-size:.95rem}
 .where-cta a:hover{border-color:var(--accent)}
 
 /* Credibility spine (2026-07-30): the trust line at the foot of every protocol, and the standfirst
@@ -3941,7 +3959,7 @@ a.assess-switch { text-align: center; }
 .fuel-tbl th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding:.35rem .6rem .35rem 0;border-bottom:1px solid var(--line);white-space:nowrap}
 .fuel-tbl td{padding:.5rem .6rem .5rem 0;border-bottom:1px solid var(--line-soft);vertical-align:top;line-height:1.45}
 .fuel-tbl tr:last-child td{border-bottom:none}
-.sg-chip{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--accent-ink);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.05rem .4rem;vertical-align:middle}
+.sg-chip{display:inline-block;font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--link);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:.05rem .4rem;vertical-align:middle}
 
 /* 3D body map — tissue legend + origin/insertion markers (2026-07-31).
    The model rendered every mesh in one flat grey, so muscle and bone were indistinguishable. The

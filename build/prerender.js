@@ -3638,4 +3638,41 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   }
   console.log(`[prerender] contrast tokens OK — ${AS_TEXT.length} text tokens × ${SURFACES.length} surfaces all ≥4.5:1, white-on-accent ${ratio(tok['--accent-ink'], tok['--accent']).toFixed(2)}:1, ${darkBlocks.length} dark-scheme block(s) all set their own background.`);
 })();
+
+// ---- build-time assertion: --accent-ink IS THE INK FOR THE ACCENT FILL, AND NOTHING ELSE ------
+// W5c (2026-08-02). --accent-ink is #ffffff. Five rules used it as a plain text colour on a white
+// or near-white surface, which is not "low contrast", it is INVISIBLE. Measured hydrated at
+// 390x844, default DOM state, 0 pageerrors (qa/out/w5cdi/before-390.json):
+//   /solve  .where-cta a   rgb(255,255,255) on rgb(255,255,255) = EXACTLY 1.00:1, rendered
+//           302x65 px — the only route into /where from the site's main funnel page.
+//   /where  .where-page .kicker  1.06:1 on --bg.
+//   /where  .bw-prob:hover / .bw-find:hover — 31 controls that vanish under a desktop pointer.
+//   /fuel   .sg-chip — the same bug, in the prerendered document only (the SPA drops the chip).
+// This gate does not measure colours; assertContrastTokens() above does that. It enforces the
+// TOKEN'S CONTRACT, which is the thing that actually went wrong: if a rule prints in --accent-ink,
+// the same rule has to say what accent-coloured surface it is printing on. A background of
+// --panel / --bg / --panel2 / white / transparent, or no background at all, is the defect.
+// PROVE IT by putting `color:var(--accent-ink)` back on .where-cta a.
+(function assertAccentInkOnAccent() {
+  const CSS = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
+  const bad = [];
+  let checked = 0;
+  const WHITEISH = /var\(--panel2?\)|var\(--bg\)|var\(--line[a-z-]*\)|#fff\b|#ffffff\b|\bwhite\b|\btransparent\b|\bnone\b/i;
+  [...CSS.matchAll(/([^{}\/]+)\{([^{}]*)\}/g)].forEach((m) => {
+    const sel = m[1].trim().replace(/\s+/g, ' '), decls = m[2];
+    if (!/color\s*:\s*var\(--accent-ink\)/.test(decls)) return;
+    checked++;
+    const bgm = decls.match(/background(?:-color)?\s*:\s*([^;]+)/);
+    if (!bgm) { bad.push(`"${sel.slice(0, 70)}" prints in --accent-ink (#ffffff) and sets no background — it inherits whatever is behind it, and every page surface on this site is white or near-white`); return; }
+    if (WHITEISH.test(bgm[1])) bad.push(`"${sel.slice(0, 70)}" prints in --accent-ink (#ffffff) on background ${bgm[1].trim()} — that is white on white`);
+  });
+  if (!checked) bad.push('no rule uses --accent-ink at all — either the token was renamed (and this gate silently stopped covering anything) or the accent buttons lost their ink');
+  if (bad.length) {
+    console.error('\n[prerender] TEXT IS BEING PRINTED IN THE ACCENT INK ON A WHITE SURFACE — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] accent ink OK — ${checked} rules print in --accent-ink, every one of them on an accent-coloured background.`);
+})();
 console.log(`[prerender] base URL: ${SITE_URL}`);
