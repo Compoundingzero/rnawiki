@@ -1370,6 +1370,65 @@ try {
     } catch (e) { fail.push('solveBattery: harness error — ' + (e && e.message ? e.message : String(e))); }
   }
 
+  // ------------------------------------------------- the /compare withdrawal notice
+  // W4.5 (2026-08-02): A WITHDRAWAL NOTICE MAY NOT INVENT ITS OWN REASON.
+  // MEASURED (curl, localhost:8099, before the fix): the three /compare URLs that were in the
+  // published sitemap at W0 and are not in it now —
+  //   /compare/creatine-monohydrate-vs-sodium-bicarbonate
+  //   /compare/sodium-bicarbonate-vs-vitamin-d3-k2
+  //   /compare/sodium-bicarbonate-vs-whey-casein-protein
+  // each answered HTTP 410 with "I removed the head-to-head comparisons that pitted a prescription
+  // or controlled medicine against a supplement", verbatim. Every one of the six compounds in those
+  // pairs is `regulatory_class: supplement`. Sodium Bicarbonate had fallen from rank 8 to rank 9 of
+  // the `muscle` goal when EPO was re-filed into that category, and the generator pairs a goal's
+  // top eight — so the site printed a reason its own corpus contradicts, under the one status code
+  // that tells Google never to ask again.
+  // NOT A LIST — the pair is derived from /data.js and /sitemap.xml on every run, so it keeps
+  // working when the corpus moves. Outside the per-route runner deliberately: these URLs answer
+  // 404/410 by design, and fetching them from inside a page would register as an undocumented
+  // failed subresource.
+  // PROVE IT by restoring the single hard-coded `gone`/`code`/`body` triple in serveMissing()
+  // (server.js): the supplement pair then answers 410 with the prescription sentence, and both the
+  // status check and the sentence check below fail by name.
+  {
+    const RX_SENTENCE = 'pitted a prescription or controlled medicine against a supplement';
+    try {
+      const dj = await (await fetch(BASE + '/data.js')).text();
+      const C = JSON.parse(dj.match(/^window\.RNAWIKI_DATA = ([\s\S]*);\s*$/)[1]).compounds || [];
+      const sm = await (await fetch(BASE + '/sitemap.xml')).text();
+      const live = new Set([...sm.matchAll(/<loc>[^<]*?(\/compare\/[^<]*)<\/loc>/g)].map(m => m[1]));
+      const sl = n => String(n).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      const consumer = c => ['supplement', 'otc'].includes(c.regulatory_class);
+      const ok = C.filter(consumer), rx = C.filter(c => !consumer(c));
+      const get = async u => { const r = await fetch(BASE + u); return { status: r.status, text: await r.text() }; };
+      // 1. A supplement-vs-supplement address the generator does not publish. This is the exact
+      //    shape of the three URLs above.
+      let benign = null;
+      for (let i = 0; i < ok.length && !benign; i++) for (let j = i + 1; j < ok.length && !benign; j++) {
+        const [a, b] = [ok[i], ok[j]].sort((x, y) => sl(x.name) < sl(y.name) ? -1 : 1);
+        const u = `/compare/${sl(a.name)}-vs-${sl(b.name)}`;
+        if (!live.has(u)) benign = { u, a: a.name, b: b.name };
+      }
+      if (!benign) fail.push('ASSERTION compareWithdrawalIsHonest FAILED — every supplement pair is published, so the branch this gate guards is an empty set (see the W4 lesson: a gate over an empty set always passes)');
+      else {
+        const r = await get(benign.u);
+        if (r.status === 410) fail.push(`ASSERTION compareWithdrawalIsHonest FAILED — ${benign.u} answers 410 Gone. ${benign.a} and ${benign.b} are both regulatory_class supplement, so nothing was withdrawn on policy grounds and nothing about it is permanent — 410 tells Google to drop the URL for good`);
+        else if (r.status !== 404) fail.push(`ASSERTION compareWithdrawalIsHonest FAILED — ${benign.u} answers ${r.status}; an unpublished comparison must answer 404`);
+        if (r.text.indexOf(RX_SENTENCE) >= 0) fail.push(`ASSERTION compareWithdrawalIsHonest FAILED — ${benign.u} tells the reader it was pulled because it "${RX_SENTENCE}". ${benign.a} and ${benign.b} are both regulatory_class supplement — the page is stating a reason the corpus contradicts`);
+        if (r.text.indexOf(benign.a) < 0 || r.text.indexOf(benign.b) < 0) fail.push(`ASSERTION compareWithdrawalIsHonest FAILED — ${benign.u} names neither ${benign.a} nor ${benign.b}, so the reader is not told the two pages they came for are still here`);
+      }
+      // 2. The real policy withdrawal must still be stated. Trading a false reason for no reason
+      //    would be the same defect facing the other way.
+      if (ok.length && rx.length) {
+        const [a, b] = [ok[0], rx[0]].sort((x, y) => sl(x.name) < sl(y.name) ? -1 : 1);
+        const u = `/compare/${sl(a.name)}-vs-${sl(b.name)}`;
+        const r = await get(u);
+        if (r.status !== 410) fail.push(`ASSERTION compareWithdrawalIsHonest FAILED — ${u} answers ${r.status}; a pair containing ${rx[0].name} (${rx[0].regulatory_class}) is a deliberate, permanent editorial withdrawal and 410 is the honest code for it`);
+        if (r.text.indexOf(RX_SENTENCE) < 0) fail.push(`ASSERTION compareWithdrawalIsHonest FAILED — ${u} no longer states why it was withdrawn, and for this pair the policy reason is true`);
+      }
+    } catch (e) { fail.push('compareWithdrawalIsHonest: harness error — ' + (e && e.message ? e.message : String(e))); }
+  }
+
   // ------------------------------------------------- Back button on a KEEP_PRERENDERED route
   // W2.5(a): /problem is in KEEP_PRERENDERED, so route() returns the KEEP sentinel and never
   // writes #app. Before the fix, Back from a protocol restored the URL and left the PROTOCOL on

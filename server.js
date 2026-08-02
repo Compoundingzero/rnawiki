@@ -2385,6 +2385,9 @@ const LEGACY_REDIRECTS = { '/newsletter': '/#newsletter' };
 // name; only unambiguous aliases are kept, plus a small curated set where the automatic rule has to
 // be overruled (see ALIAS_OVERRIDE in build/parse.js — "insulin" must reach the medicine, not the
 // anabolic-misuse entry). 257 aliases, so this whole class of dead end is gone.
+const COMPARE_BY_SLUG = new Map();   // slug(compound name) -> { id, name, slug }
+const COMPARE_RESTRICTED = new Set(); // slugs whose compound may not be ranked against a supplement
+const escHtml = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 let COMPOUND_ALIASES = {};
 // The /solve?q= search index, authored once in build/parse.js. This exists so the ~90% of readers
 // who never run JavaScript get an answer to the query they typed into the home hero's real GET
@@ -2404,9 +2407,19 @@ try {
       })),
       stop: _g.solveStopwords || [],
     };
+    // W4.5: the corpus behind the /compare withdrawal notice (see compareVerdict below). Same slug
+    // rule as build/prerender.js:171 and the same restricted set as its isConsumerRenderable(), so
+    // the notice is derived from the record rather than typed next to it.
+    (_d.compounds || []).forEach((c) => {
+      const sl = String(c.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+      if (!sl) return;
+      COMPARE_BY_SLUG.set(sl, { id: c.id, name: c.name, slug: sl });
+      if (!['supplement', 'otc'].includes(c.regulatory_class)) COMPARE_RESTRICTED.add(sl);
+    });
   }
   console.log('[server] compound aliases loaded:', Object.keys(COMPOUND_ALIASES).length);
   console.log('[server] solve index loaded:', SOLVE_INDEX.problems.length, 'problems');
+  console.log('[server] compare slugs loaded:', COMPARE_BY_SLUG.size, '(' + COMPARE_RESTRICTED.size + ' restricted)');
 } catch (e) { console.warn('[server] no compound aliases:', e.message); }
 
 // The SAME scoring loop as rankProblems() in site/app.js. Both read the index above; the weights
@@ -2444,21 +2457,82 @@ function searchSolve(q) {
 }
 
 const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
+
+// ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
+// Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
+// head-to-head comparisons that pitted a prescription or controlled medicine against a supplement."
+// That sentence is true of the 2026-07-28 policy withdrawal and false of everything else, and
+// "everything else" is not hypothetical. MEASURED (curl, localhost:8099, 2026-08-02): the three
+// URLs that were in the published sitemap at W0 and are not in it now —
+//     /compare/creatine-monohydrate-vs-sodium-bicarbonate
+//     /compare/sodium-bicarbonate-vs-vitamin-d3-k2
+//     /compare/sodium-bicarbonate-vs-whey-casein-protein
+// each returned 410 with that paragraph verbatim. All six compounds involved are
+// `regulatory_class: supplement`. Nothing was withdrawn on policy grounds; Sodium Bicarbonate fell
+// from rank 8 to rank 9 of the `muscle` goal when EPO was re-filed into that category, and the
+// generator only pairs a goal's top eight. So the site told a reader — and told Google, with the
+// one status code that means "never come back" — a reason that its own corpus contradicts.
+//
+// The answer is now DERIVED from the two compound slugs in the URL, so the copy cannot drift from
+// the data. Three cases, three honest answers:
+//   * one side is prescription / controlled / unapproved / pharmacy  -> 410, the policy sentence,
+//     which is now only ever printed when it is TRUE of the pair being asked for.
+//   * both sides are consumer compounds -> 404, and it says what actually happened: the pair is not
+//     currently published, both compounds are still here, and here are their two pages. 404 rather
+//     than 410 because 410 asserts permanence, and a page that a ranking cut removed is a page a
+//     ranking cut can restore. Claiming less is the safe direction.
+//   * either slug is not a compound -> 404, no reason offered, because none is known.
+// Built from site/data.js at boot, next to COMPOUND_ALIASES, so there is no second corpus to keep
+// in step. `pharmacy` is deliberately NOT consumer-renderable — that mirrors isConsumerRenderable()
+// in build/prerender.js, which is the predicate the generator itself uses.
+function compareVerdict(seg) {
+  // seg = ['compare', '<slugA>-vs-<slugB>'] — anything else is not a comparison address at all.
+  if (seg.length !== 2 || !COMPARE_BY_SLUG.size) return null;
+  const s = seg[1];
+  let a = null, b = null;
+  // Split on every "-vs-" and keep the split where BOTH halves are real compounds; a compound name
+  // could in principle slug to something containing "-vs-", so the first split is not assumed.
+  for (let i = s.indexOf('-vs-'); i >= 0; i = s.indexOf('-vs-', i + 1)) {
+    const l = COMPARE_BY_SLUG.get(s.slice(0, i)), r = COMPARE_BY_SLUG.get(s.slice(i + 4));
+    if (l && r) { a = l; b = r; break; }
+  }
+  if (!a || !b) return null;
+  const restricted = [a, b].filter((c) => COMPARE_RESTRICTED.has(c.slug));
+  return { a, b, restricted };
+}
 function serveMissing(res, safe) {
   const seg = String(safe || '').split('/').filter(Boolean);
   if (seg.length && GENERATED_ROUTES.includes(seg[0])) {
-    const gone = seg[0] === 'compare';
-    const code = gone ? 410 : 404;
-    const title = gone ? 'This comparison has been withdrawn' : 'Page not found';
-    const body = gone
-      ? 'I removed the head-to-head comparisons that pitted a prescription or controlled medicine against a supplement. Ranking a medicine you cannot buy against one you can was not a comparison worth publishing, so this page is gone for good rather than temporarily unavailable.'
-      : 'That page does not exist. It may have been renamed.';
+    let code = 404;
+    let title = 'Page not found';
+    let body = 'That page does not exist. It may have been renamed.';
+    let links = '<p><a href="/solve">Browse problems and goals</a> · <a href="/stack">Compound index</a> · <a href="/">Home</a></p>';
+    if (seg[0] === 'compare') {
+      const v = compareVerdict(seg);
+      const pageOf = (c) => `<a href="/c/${escHtml(c.slug)}">${escHtml(c.name)}</a>`;
+      if (v && v.restricted.length) {
+        code = 410;
+        title = 'This comparison has been withdrawn';
+        body = `I removed the head-to-head comparisons that pitted a prescription or controlled medicine against a supplement. ${v.restricted.map((c) => escHtml(c.name)).join(' and ')} ${v.restricted.length > 1 ? 'are' : 'is'} in that group. Ranking a medicine you cannot buy against one you can was not a comparison worth publishing, so this page is gone for good rather than temporarily unavailable.`;
+        links = `<p>Both pages are still here: ${pageOf(v.a)} · ${pageOf(v.b)}</p>`
+          + '<p><a href="/compare">Every comparison that is published</a> · <a href="/solve">Browse problems and goals</a> · <a href="/">Home</a></p>';
+      } else if (v) {
+        title = 'This comparison is not published';
+        body = `Nothing about ${escHtml(v.a.name)} or ${escHtml(v.b.name)} has been withdrawn — both pages are still here. A head-to-head only gets built when the two compounds are both in the top eight by evidence strength for a goal they share, and these two are not, so there is no page at this address right now. That can change when the evidence does.`;
+        links = `<p>Read them instead: ${pageOf(v.a)} · ${pageOf(v.b)}</p>`
+          + '<p><a href="/compare">Every comparison that is published</a> · <a href="/az">Every compound, A–Z</a> · <a href="/">Home</a></p>';
+      } else {
+        title = 'No comparison at this address';
+        body = 'There is no head-to-head at this address, and I cannot tell which two compounds it was meant to name. The full list of published comparisons is below.';
+        links = '<p><a href="/compare">Every comparison that is published</a> · <a href="/az">Every compound, A–Z</a> · <a href="/">Home</a></p>';
+      }
+    }
     return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>${title} · RNAwiki</title><link rel="stylesheet" href="/styles.css">
 </head><body><main class="article" style="max-width:44rem;margin:4rem auto;padding:0 1.25rem">
 <h1>${title}</h1><p>${body}</p>
-<p><a href="/solve">Browse problems and goals</a> · <a href="/stack">Compound index</a> · <a href="/">Home</a></p>
+${links}
 </main></body></html>`, code);
   }
   sendFile(res, path.join(DIR, 'index.html'));
