@@ -321,6 +321,40 @@ const ASSERTIONS = {
       return null;
     },
   }, {
+    // ---- W5d (2026-08-02): D18/D19 — THE VERDICT'S PROMISE, IN THE HYDRATED DOCUMENT ---------
+    // build/prerender.js assertCompareDimensions() proves the prerendered table carries every
+    // dimension the verdict names. This proves the SPA rebuilt the same table — which is exactly
+    // where it went wrong before: the SPA emitted 5 rows and the prerenderer 6, so the sentence
+    // could be true of one document and false of the other. Measured hydrated on all 123 pairs
+    // before the fix (qa/out/w5cdi/before-390.json), OUTSIDE the verdict paragraph: cost 4/123,
+    // interactions 0/123, side-effects 0/123, dose 11/123 — four of five named dimensions were
+    // nowhere on the page, and the verdict said "below" on 123/123 while the table bottom sat
+    // ABOVE the verdict top on 123/123.
+    // PROVE IT by deleting a row from the ROWS array in site/app.js renderComparison().
+    name: 'theVerdictOnlyNamesRowsThisPageHas',
+    why: 'W5d/D18+D19: the verdict named five things to decide on, four of which appeared nowhere on the page, and pointed "below" at a table that is above',
+    evaluate: () => {
+      const h2 = [...document.querySelectorAll('#app h2')].find((h) => /Which is better/i.test(h.textContent));
+      const p = h2 && h2.nextElementSibling;
+      if (!p) return 'no verdict paragraph';
+      const v = p.textContent.replace(/\s+/g, ' ');
+      if (/\bbelow\b/i.test(v)) return `the verdict points the reader "below": "${v.slice(0, 140)}…"`;
+      const m = v.match(/compares them on ([^—]+) — read down/);
+      if (!m) return `the verdict no longer names the dimensions it asks the reader to decide on: "${v.slice(0, 140)}…"`;
+      const dims = m[1].split(/,\s*|\s+and\s+/).map((x) => x.trim().toLowerCase()).filter(Boolean);
+      const heads = [...document.querySelectorAll('.cmp-table tbody th')].map((t) => t.textContent.trim().toLowerCase());
+      const missing = dims.filter((d) => !heads.includes(d));
+      if (missing.length) return `the verdict tells the reader to decide on ${missing.map((x) => `"${x}"`).join(', ')}, and the hydrated table has no such row (it has: ${heads.join(' · ')})`;
+      const extra = heads.filter((h) => h && h !== 'human evidence' && !dims.includes(h));
+      if (extra.length) return `the hydrated table has ${extra.map((x) => `"${x}"`).join(', ')} that the verdict does not mention`;
+      if (dims.length < 4) return `the verdict names only ${dims.length} dimensions — this pair should carry more, and a shrinking list is how this defect comes back`;
+      // and the geometry the word "above" asserts
+      const tbl = document.querySelector('.cmp-table').getBoundingClientRect();
+      const vp = p.getBoundingClientRect();
+      if (tbl.bottom > vp.top) return 'the table is no longer above the verdict, so "the table above" has become the wrong word';
+      return null;
+    },
+  }, {
     // ---- W5c (2026-08-02): D6 — HALF OF A TWO-THING COMPARISON WAS OFF-SCREEN --------------
     // This gate runs at 390x844, which is the whole point: the defect is invisible at any desktop
     // width and invisible to every build-time check, because the markup was never wrong. Measured

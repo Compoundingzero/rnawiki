@@ -884,9 +884,7 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   // and it emitted that answer into FAQPage JSON-LD, which is the part answer engines quote back.
   // Until claims.json carries a per-(compound x indication) grade, the honest answer is that we do
   // not have one, and the page's real value is the side-by-side profile below it.
-  const verdict = `I do not publish an indication-specific evidence grade for ${a.name} or ${b.name} for ${gl}, so I am not going to name a winner. `
-    + `The star ratings shown below are whole-compound summaries across everything each has been studied for — they are not a grade for this use, and comparing them here would be misleading. `
-    + `What actually differs is mechanism, side-effect profile, interactions, availability and cost. Those are compared in full below.`;
+  /* verdict is built below, from the rows this pair actually has — see the W5d block. */
   // W5c (2026-08-02): D6. See the note in site/app.js renderComparison() — the second compound's
   // column had a median right edge of 597px against a 390px viewport on 123/123 pairs, inside an
   // overflow-x:auto wrapper that gives the reader no sign anything is off-screen. The table stacks
@@ -906,17 +904,63 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   const blank = '<span class="cmp-none">Not written up yet</span>';
   const has = (v) => !!(v && String(v).replace(/<[^>]*>/g, '').replace(/[—\s]/g, ''));
   const cmp = (k, va, vb) => (!has(va) && !has(vb)) ? '' : `<tr role="row"><th role="rowheader" scope="row">${esc(k)}</th><td role="cell">${who(a.name)}${has(va) ? va : blank}</td><td role="cell">${who(b.name)}${has(vb) ? vb : blank}</td></tr>`;
+  // ---- W5d (2026-08-02): D18 — THE VERDICT PROMISED FIVE THINGS AND THE PAGE HAD ONE ----------
+  // Measured hydrated at 390x844 on all 123 published pairs (qa/out/w5cdi/before-390.json). The
+  // verdict ended "What actually differs is mechanism, side-effect profile, interactions,
+  // availability and cost." Searching the rest of the page, OUTSIDE the verdict paragraph:
+  //     cost           4 of 123        interactions   0 of 123
+  //     side-effects   0 of 123        dose/dosage   11 of 123
+  // Four of the five named dimensions existed nowhere on the page. Meanwhile the first table row
+  // showed unequal star counts on 78 of 123 (gap >= 2 on 18), so the TABLE ranked while the PROSE
+  // refused to — and the hydrated meta description advertised an "honest verdict".
+  //
+  // THE REFUSAL TO RANK STAYS. It is correct and it is deliberate: the star is a whole-compound
+  // rating across everything a compound has been studied for, not a grade for this indication, and
+  // until claims.json carries a per-(compound x indication) grade there is no honest winner to
+  // name. What was wrong was not the refusal — it was following the refusal with a list of five
+  // things the reader could decide on instead, four of which were not there.
+  //
+  // SO THE PAGE NOW CARRIES THEM. Every one of these fields is authored, per compound, and was
+  // already being rendered on the compound's own page; the comparison simply never asked for them:
+  //     watch  -> "Side effects to watch"        60 of 171 compounds, at least one side on 66/123
+  //     avoid  -> "Don't combine it with"        20 of 171,                                 90/123
+  //     cost   -> "Roughly what it costs"        42 of 171,                                118/123
+  //     supply -> "How you get it"              171 of 171,                                123/123
+  // Nothing is invented: a row appears only where a compound's own record has the field, and the
+  // D40 helper above prints a stated absence rather than a dash where only one side has it.
+  //
+  // AND THE VERDICT IS BUILT FROM THE ROWS THAT WERE ACTUALLY EMITTED, not from a list typed next
+  // to them. That is the whole point — the same class of defect as "Covers all 170 compounds" and
+  // "Search 170 compounds": a sentence that does not have to agree with the thing it describes.
+  // assertCompareDimensions() below fails the build if they ever disagree again.
+  //
+  // D19 IS THE SAME SENTENCE. It said "Those are compared in full below" and "The star ratings
+  // shown below", and the table bottom is ABOVE the verdict top on 123/123 measured hydrated. Both
+  // now say "above", which is where the table is.
+  const ROWS = [
+    ['Human evidence', stars(a.stars), stars(b.stars)],
+    ['Legal status', esc((a.approvalLabels || []).join(', ')), esc((b.approvalLabels || []).join(', '))],
+    ['How you get it', esc(((a.supply || {}).tag) || sgAvail(a).tag), esc(((b.supply || {}).tag) || sgAvail(b).tag)],
+    ['How it works', esc(snip(a.mechanism, 240)), esc(snip(b.mechanism, 240))],
+    ['In plain English', esc(snip(a.plain, 240)), esc(snip(b.plain, 240))],
+    ['Side effects to watch', esc(snip(a.watch, 220)), esc(snip(b.watch, 220))],
+    ["Don't combine it with", esc(snip(a.avoid, 220)), esc(snip(b.avoid, 220))],
+    ['Roughly what it costs', esc(snip(a.cost, 200)), esc(snip(b.cost, 200))],
+    ['Bottom line', esc(snip(a.bottom, 200)), esc(snip(b.bottom, 200))],
+  ];
+  // The dimensions this page ACTUALLY carries, in the order the reader meets them. "Human
+  // evidence" is deliberately not in the list: it is the one row the verdict refuses to decide on.
+  const dims = ROWS.filter(([k, va, vb]) => k !== 'Human evidence' && (has(va) || has(vb))).map(([k]) => k.charAt(0).toLowerCase() + k.slice(1));   // lower only the first letter, or "In plain English" becomes "in plain english"
+  const andList = (xs) => xs.length < 2 ? (xs[0] || '') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
+  const verdict = `I do not publish an indication-specific evidence grade for ${a.name} or ${b.name} for ${gl}, so I am not going to name a winner. `
+    + `The star ratings in the table above are whole-compound summaries across everything each has been studied for — they are not a grade for this use, and ranking them here would be misleading. `
+    + `Decide on the rows instead. For this pair the table above compares them on ${andList(dims)} — read down it and stop at the first row where the difference matters to you. That is your answer, and it is one only you can give.`;
   const table = `<div class="cmp-wrap"><table class="cmp-table" role="table"><thead><tr role="row"><th role="columnheader"></th><th role="columnheader" scope="col"><a href="/c/${slug(a.name)}">${esc(a.name)}</a></th><th role="columnheader" scope="col"><a href="/c/${slug(b.name)}">${esc(b.name)}</a></th></tr></thead><tbody>
-    ${cmp('Human evidence', stars(a.stars), stars(b.stars))}
-    ${cmp('Legal status', esc((a.approvalLabels || []).join(', ') || '—'), esc((b.approvalLabels || []).join(', ') || '—'))}
-    ${cmp('How it works', esc(snip(a.mechanism, 240)), esc(snip(b.mechanism, 240)))}
-    ${cmp('In plain English', esc(snip(a.plain, 240)), esc(snip(b.plain, 240)))}
-    ${cmp('Bottom line', esc(snip(a.bottom || '—', 200)), esc(snip(b.bottom || '—', 200)))}
-    ${cmp('Availability', esc(sgAvail(a).tag), esc(sgAvail(b).tag))}
+    ${ROWS.map(([k, va, vb]) => cmp(k, va, vb)).join('\n    ')}
   </tbody></table></div>`;
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }, { name: `${a.name} vs ${b.name}` }])}
     <div class="detail"><h1>${esc(a.name)} vs ${esc(b.name)}</h1>
-    <p>Both are used for <a href="/goal/${goalId}">${esc(gl)}</a>. Here's how they compare on human evidence, mechanism, safety and availability — in plain English.</p>
+    <p>Both are used for <a href="/goal/${goalId}">${esc(gl)}</a>. Side by side on ${esc(andList(dims))}. No winner is named — the section under the table says why.</p>
     ${table}
     <h2>Which is better for ${esc(gl)}?</h2><p>${esc(verdict)}</p>
     <p>Full breakdowns: <a href="/c/${slug(a.name)}">${esc(a.name)}</a> · <a href="/c/${slug(b.name)}">${esc(b.name)}</a>.</p>
@@ -3700,6 +3744,55 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   }
   console.log(`[prerender] accent ink OK — ${checked} rules print in --accent-ink, every one of them on an accent-coloured background.`);
 })();
+// ---- build-time assertion: THE VERDICT MAY ONLY NAME WHAT THE PAGE ACTUALLY SHOWS -------------
+// W5d (2026-08-02). Measured hydrated at 390x844 on all 123 published pairs
+// (qa/out/w5cdi/before-390.json). The verdict ended "What actually differs is mechanism,
+// side-effect profile, interactions, availability and cost." Searching the page OUTSIDE the
+// verdict paragraph: cost 4/123, interactions 0/123, side-effects 0/123, dose 11/123. Four of the
+// five named dimensions existed nowhere on the page, on essentially every pair — while row 1
+// showed unequal star counts on 78/123, so the table ranked while the prose refused to.
+// The refusal to rank is correct and is untouched. What this gate enforces is the other half: a
+// sentence that lists what to decide on instead must list things that are on the page. It parses
+// the dimensions back OUT OF THE PROSE and matches them against the row headers actually emitted,
+// so it cannot be satisfied by the data structure the prose was supposed to be built from.
+// It also enforces D19 — the same sentence used to say "compared in full below" and "the star
+// ratings shown below" while the table bottom is ABOVE the verdict top on 123/123.
+// PROVE IT by adding a dimension the table does not have, e.g. appending " and cost" to the
+// verdict's dimension list, or by changing "the table above" back to "below".
+(function assertCompareDimensions() {
+  const bad = [];
+  let checked = 0, named = 0;
+  pages.filter((p) => /^\/compare\/.+-vs-/.test(p.route)).forEach((p) => {
+    checked++;
+    const v = (verdictByRoute[p.route] || [])[0] || '';
+    if (!v) { bad.push(`${p.route}: no verdict`); return; }
+    if (/\bbelow\b/i.test(v)) bad.push(`${p.route}: the verdict points the reader "below" — the comparison table is ABOVE it on 123 of 123 pairs measured, and everything below is an FAQ that quotes this paragraph back`);
+    const m = v.match(/compares them on ([^—]+) — read down/);
+    if (!m) { bad.push(`${p.route}: the verdict no longer names the dimensions it is asking the reader to decide on, so this gate cannot check that they exist`); return; }
+    const dims = m[1].split(/,\s*|\s+and\s+/).map((x) => x.trim().toLowerCase()).filter(Boolean);
+    if (!dims.length) { bad.push(`${p.route}: the verdict names zero dimensions`); return; }
+    const tbody = (p.html.split('<tbody>')[1] || '').split('</tbody>')[0];
+    const heads = [...tbody.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/g)].map((x) => x[1].replace(/<[^>]*>/g, '').replace(/&#39;/g, "'").replace(/&amp;/g, '&').trim().toLowerCase());
+    dims.forEach((d) => {
+      named++;
+      if (!heads.includes(d)) bad.push(`${p.route}: the verdict tells the reader to decide on "${d}", and the table has no such row (it has: ${heads.join(' · ')})`);
+    });
+    // ...and the reverse, so a row can't be added and left out of the sentence.
+    heads.filter((h) => h && h !== 'human evidence').forEach((h) => {
+      if (!dims.includes(h)) bad.push(`${p.route}: the table has a "${h}" row the verdict does not mention — the sentence is supposed to be built from the rows, not typed next to them`);
+    });
+  });
+  if (!checked) bad.push('no published comparison pages were checked — this gate is running over an empty set');
+  if (bad.length) {
+    console.error('\n[prerender] THE VERDICT NAMES SOMETHING THE PAGE DOES NOT HAVE — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] comparison verdicts OK — ${checked} pairs, ${named} named dimensions, every one an actual row, 0 pointing "below".`);
+})();
+
 // ---- build-time assertion: A TABLE CELL MUST SAY SOMETHING ------------------------------------
 // W5d (2026-08-02). Measured hydrated at 390x844 on all 123 published pairs
 // (qa/out/w5cdi/before-390.json): 11 routes rendered a tbody cell whose entire content was "—",

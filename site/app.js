@@ -336,9 +336,14 @@
     // user hears "Regulator status: FDA Approved" and then "How you get it: prescription only".
     return `<span class="pill supply s-${esc(s.cls)}" data-axis="supply" aria-label="How you get it: ${esc(String(s.tag).toLowerCase())}" title="${esc(s.why || s.tag)}">${ico} ${esc(s.tag)}</span>`;
   };
-  const approvalPills = c => (c.badges || []).map(a =>
+  // W5d: split out so /compare can render the two axes as two rows — the badge (what a regulator
+  // decided) and the supply tag (how you actually get it) answer different questions, and the
+  // prerendered comparison table has always shown them as two rows while the SPA folded them into
+  // one. Everywhere else still gets both together, unchanged.
+  const regulatorPills = c => (c.badges || []).map(a =>
     `<span class="pill ${APPROVAL_CLASS[a] || 'k'}" data-axis="regulator" aria-label="Regulator status: ${esc(D.approvalLabels[a] || '')}" title="What a regulator has decided about this molecule — not where you can buy it.">${a} ${esc(D.approvalLabels[a] || '')}</span>`
-  ).join('') + supplyPill(c);
+  ).join('');
+  const approvalPills = c => regulatorPills(c) + supplyPill(c);
   const badgeRow = c => `<div class="badges">${starHTML(c.stars)}${approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
@@ -3354,10 +3359,15 @@
   // summary across everything a compound has been studied for, not a grade for the specific use
   // this page asks about, so it cannot name a winner "for {goal}" — and the prerendered twin was
   // emitting exactly that into FAQPage JSON-LD. Both documents now decline to rank.
+  // W5d (2026-08-02): this is only the fallback for an ad-hoc pair the generator never published
+  // (a pair a reader assembled in the picker has no prerendered document and so no generated
+  // verdict). It carried the same defect as the generated one: it named five dimensions and the
+  // page had one, and it said "below" about a table that is above. It now names nothing it cannot
+  // point at, and points in the right direction.
   function comparisonVerdict(A, B) {
     return `I do not publish an indication-specific evidence grade for ${A.name} or ${B.name} for this use, so I am not going to name a winner. `
-      + `The star ratings are whole-compound summaries across everything each has been studied for — not a grade for this use. `
-      + `What actually differs is mechanism, side-effect profile, interactions, availability and cost, compared in full below.`;
+      + `The star ratings in the table above are whole-compound summaries across everything each has been studied for — not a grade for this use. `
+      + `Decide on the rows instead: read down the table above and stop at the first row where the difference matters to you.`;
   }
 
   // static comparison view for /compare/a-vs-b — mirrors the prerendered page so the FAQ schema matches after hydration
@@ -3407,15 +3417,35 @@
       { q: `Is ${A.name} or ${B.name} better for ${gl}?`, a: verdict },
       { q: `What's the difference between ${A.name} and ${B.name}?`, a: `${A.name}: ${faqSnip(A.bottom || A.plain, 130)} — ${B.name}: ${faqSnip(B.bottom || B.plain, 130)}` },
     ]);
+    // W5d (2026-08-02): D18 — THE SAME NINE ROWS AS THE PRERENDERED TWIN, IN THE SAME ORDER.
+    // The verdict paragraph promised "mechanism, side-effect profile, interactions, availability
+    // and cost" and, measured hydrated on all 123 pairs OUTSIDE the verdict itself, the page
+    // carried cost on 4, interactions on 0, side-effects on 0 and dose on 11. Four of five
+    // dimensions were nowhere on the page. The refusal to rank is right and stays; what was wrong
+    // was offering five things to decide on instead and then not showing four of them.
+    // The fields are all authored per compound and already rendered on the compound's own page —
+    // watch (60/171), avoid (20/171), cost (42/171), supply (171/171). Nothing is invented: a row
+    // appears only where a record has the field, and the D40 helper prints a stated absence where
+    // only one side does. `dims` is derived from the rows that were EMITTED, so the sentence
+    // cannot promise a row this pair does not have.
+    const ROWS = [
+      ['Human evidence', starHTML(A.stars), starHTML(B.stars)],
+      ['Legal status', regulatorPills(A), regulatorPills(B)],
+      ['How you get it', supplyPill(A), supplyPill(B)],
+      ['How it works', mdInline(A.mechanism), mdInline(B.mechanism)],
+      ['In plain English', mdInline(A.plain), mdInline(B.plain)],
+      ['Side effects to watch', mdInline(A.watch), mdInline(B.watch)],
+      ["Don't combine it with", mdInline(A.avoid), mdInline(B.avoid)],
+      ['Roughly what it costs', mdInline(A.cost), mdInline(B.cost)],
+      ['Bottom line', mdInline(A.bottom), mdInline(B.bottom)],
+    ];
+    const dims = ROWS.filter(([k, va, vb]) => k !== 'Human evidence' && (has(va) || has(vb))).map(([k]) => k.charAt(0).toLowerCase() + k.slice(1));   // lower only the first letter, or "In plain English" becomes "in plain english"
+    const andList = (xs) => xs.length < 2 ? (xs[0] || '') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Compare', href: '#/compare' }, { label: `${A.name} vs ${B.name}` }])}
       <div class="detail"><h1>${esc(A.name)} vs ${esc(B.name)}</h1>
-      <p>${goalHref ? `Both are used for <a href="#/goal/${esc(goalHref)}">${esc(gl)}</a>. ` : ''}How they compare on human evidence, mechanism, safety and availability — in plain English.</p>
+      <p>${goalHref ? `Both are used for <a href="#/goal/${esc(goalHref)}">${esc(gl)}</a>. ` : ''}Side by side on ${esc(andList(dims))}. No winner is named — the section under the table says why.</p>
       <div class="cmp-wrap"><table class="cmp-table" role="table"><thead><tr role="row"><th role="columnheader"></th><th role="columnheader" scope="col"><a href="#/c/${slug(A.name)}">${esc(A.name)}</a></th><th role="columnheader" scope="col"><a href="#/c/${slug(B.name)}">${esc(B.name)}</a></th></tr></thead><tbody>
-        ${row('Human evidence', starHTML(A.stars), starHTML(B.stars))}
-        ${row('Legal status', approvalPills(A), approvalPills(B))}
-        ${row('How it works', mdInline(A.mechanism), mdInline(B.mechanism))}
-        ${row('In plain English', mdInline(A.plain), mdInline(B.plain))}
-        ${row('Bottom line', mdInline(A.bottom), mdInline(B.bottom))}
+        ${ROWS.map(([k, va, vb]) => row(k, va, vb)).join('\n        ')}
       </tbody></table></div>
       <h2>Which is better for ${esc(gl)}?</h2><p>${esc(verdict)}</p>
       ${faq}
