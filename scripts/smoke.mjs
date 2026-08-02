@@ -1701,6 +1701,15 @@ try {
           // its placeholder rendered as the words "Search 1" out of "Search 171 compounds,
           // protocols, terms…". `searchClipped` catches that second half: a control can be 44px
           // tall and still be too narrow to say what it is for.
+          // W5c (2026-08-02): the SPA moves focus to the new <h1> after every route change, which
+          // is correct — and it was doing it on PAGE LOAD too, which is not the same act. Measured
+          // hydrated before the fix, on arrival at any route with no interaction of any kind: the
+          // <h1> was document.activeElement, matched :focus-visible, and Chrome painted
+          // `outline:2px solid rgb(13,148,136)` around the title (visible in every W0 screenshot).
+          // The ring is the smaller half. The larger one is that the browser had already placed
+          // focus at the top of the document, so moving it into the content skipped the skip link
+          // and the entire header — the first Tab landed in the middle of the page.
+          h1FocusedOnLoad: document.activeElement === document.querySelector('#app h1'),
           header: (() => {
             const g = (sel) => { const e = document.querySelector(sel); if (!e) return null; const r = e.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; };
             const inp = document.getElementById('search');
@@ -1772,6 +1781,9 @@ try {
       // that scrolls sideways on a phone hides content behind a gesture nobody is told to make.
       // PROVE IT by removing `overflow-wrap:anywhere` from the h1,h2,h3,h4 rule in styles.css —
       // /target/MTHFR and /c/statins-atorvastatin-rosuvastatin fail by name.
+      // W5c: focus belongs where the browser put it until the reader moves it.
+      // PROVE IT by removing the `!_firstRender` guard from the h1.focus() call in site/app.js.
+      if (dom.h1FocusedOnLoad) fail.push(`${route}  the <h1> is focused on page LOAD — that paints a focus ring nobody asked for and skips the reader past the skip link and the whole header; focus after an in-app navigation is correct and is a different thing`);
       // W5c: every persistent header control must be tappable, on every route.
       // PROVE IT by removing `min-height:44px` from the #search rule in site/styles.css.
       if (dom.header) {

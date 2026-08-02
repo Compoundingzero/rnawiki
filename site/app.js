@@ -8463,6 +8463,8 @@
   // articles bind nothing at boot (0 inline handlers site-wide, every control is document-
   // delegated), so re-inserting the captured string and letting route() re-run glossarize() gives
   // the page back exactly, with no second renderer anywhere.
+  // W5c: true only until the first route() has finished. See the focus block inside route().
+  let _firstRender = true;
   let KEEP_PATH = (location.pathname || '/').replace(/\.html$/, '');
   let KEEP_HTML = null;   // the prerendered #app for KEEP_PATH -- captured just before route(), below
   let KEEP_LIVE = true;   // is that document still the one in #app?
@@ -8584,7 +8586,21 @@
         live.textContent = '';
         setTimeout(() => { live.textContent = title ? title + ' — page loaded' : 'Page loaded'; }, 60);
       }
-      if (h1) { h1.setAttribute('tabindex', '-1'); h1.focus({ preventScroll: true }); }
+      // W5c (2026-08-02): NOT ON THE FIRST RENDER. Moving focus after an in-app navigation is
+      // correct and stays; doing it on page LOAD is not the same act. Measured hydrated, 0
+      // pageerrors: on arrival at any route the <h1> was document.activeElement and matched
+      // :focus-visible, so Chrome painted `outline:2px solid rgb(13,148,136)` around the title
+      // with no user interaction of any kind — visible in every W0 screenshot. Two things are
+      // wrong with it, and the ring is the smaller one: on load the browser has ALREADY put focus
+      // at the top of the document, and moving it into the content skips past the skip link and
+      // the whole header, so the first Tab lands in the middle of the page. Measured after a real
+      // mouse click on an in-app link at 1440x900, the ring correctly does not paint
+      // (:focus-visible false), which is what the existing #app h1[tabindex="-1"] rules already
+      // handle — so this is the one case those rules cannot reach.
+      // The tabindex is still set: the announcer above needs no focus, but a later route change
+      // does, and so does anything that wants to send focus to the heading.
+      if (h1) { h1.setAttribute('tabindex', '-1'); if (!_firstRender) h1.focus({ preventScroll: true }); }
+      _firstRender = false;
     } catch (e) { }
     closeGlossPop();
     try { glossarize(app); } catch (e) { }
