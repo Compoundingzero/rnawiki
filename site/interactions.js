@@ -437,18 +437,34 @@ window.RNAWIKI_INTERACTIONS = {
       why: "Two or more glucose-lowering agents together can drop blood sugar too far — shakiness, confusion, and in severe cases worse. Insulin plus anything else is especially risky.",
       // exemplars (W4.5): conditional, and the single most consequential sentence in the file.
       // "Insulin plus anything else is especially risky" / "never self-stack with insulin" is
-      // advice for a reader who takes insulin, and it holds on all 105 rows whether or not one of
-      // the two insulin pages is the compound shown. Kept as written.
+      // advice for a reader who takes insulin, and it holds on all 104 rows whether or not one of
+      // the two insulin pages is the compound shown. Kept as written. (Re-measured 2026-08-02: the
+      // row count is 104, not the 105 written here — 15 carriers, C(15,2)=105, minus the one
+      // collapsed insulin pair. The advice is unchanged; the number was not re-derived.)
       exemplars: ["c132", "c133"],
-      action: "Combine glucose-loweres only under medical supervision; never self-stack with insulin." },
+      // 2026-08-02 (W5): "glucose-loweres" → "glucose-lowering agents". The typo rendered on ALL 104
+      // rows this rule can produce, measured hydrated at 390x844 on /stack?ids=c71,c29 under the
+      // header "☠️ Additive low-blood-sugar risk · Metformin + Berberine". The replacement is not a
+      // guess at the intended word: it is the phrase this rule's own `why` already uses one line
+      // above ("Two or more glucose-lowering agents together"), so the row now says the same thing
+      // twice instead of two different things. assertRuleProse() in build/parse.js is the gate.
+      action: "Combine glucose-lowering agents only under medical supervision; never self-stack with insulin." },
     { id: "liver", tier: "danger", need: [["hepatotoxic", 2]],
       title: "Stacked liver strain",
       why: "The liver clears these and takes strain doing it. Two together (e.g. an oral steroid plus high-dose green-tea extract) stack the load.",
       // exemplars (W4.5): the "e.g." is doing the work — the sentence marks itself as an example on
-      // all 66 rows. Note the lexicon flattens hyphens, so the nameTag "green tea" is matched by
-      // "green-tea extract"; without that this mention would have slipped the gate.
+      // all 66 rows (171 as of W5). Note the lexicon flattens hyphens, so the nameTag "green tea" is
+      // matched by "green-tea extract"; without that this mention would have slipped the gate.
       exemplars: ["c30"],
-      action: "Don't combine oral hepatotoxic compounds; get bloodwork if unavoidable." },
+      // 2026-08-02 (W5): "oral" DROPPED from the action. It was already untrue of a shipped carrier
+      // — c43 Trenbolone is injected, and its own page says so ("Injectable trenbolone is less
+      // hepatotoxic than oral 17-alpha-alkylated steroids, but transaminases are still monitored for
+      // injury") — and W5 adds two more non-oral routes, c157 Ketamine / Esketamine (IV and nasal)
+      // and c63's ACE-031 (injected). The rule has never been about the route; it is about two
+      // things the liver has to clear. The `why` above keeps "an oral steroid plus high-dose
+      // green-tea extract" because it is explicitly marked "e.g." and c30 is an acknowledged
+      // exemplar.
+      action: "Don't combine compounds that stress the liver; get bloodwork if unavoidable." },
     { id: "estrogen_crash", tier: "danger", need: [["aromatase_inhibitor", 2]],
       title: "Estrogen crash",
       why: "Aromatase inhibitors shut down estrogen production. Doubled, estrogen can crash — joint pain, crushed libido, mood and bone problems.",
