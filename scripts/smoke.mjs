@@ -63,6 +63,10 @@ const ROUTES = [
   // 620 routes did the same. Its own route because the assertion below reads window.scrollY, which
   // any other assertion that taps something would invalidate.
   ['compound-deeplink', '/c/beta-alanine#bottom-line'],
+  // W5c: the widest h1 on the compound surface — "Statins (Atorvastatin/Rosuvastatin)" measured
+  // 398px in a 390px viewport and took the document to 417px. /c/creatine-monohydrate fits and
+  // cannot detect it.
+  ['compound-longname', '/c/statins-atorvastatin-rosuvastatin'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
   // W4: the OTHER branch of the $0 split. 8 of 52 root causes have no free first step and say so
   // instead of inventing one; on those, Phase 2 must render OPEN, because hiding the only thing
@@ -100,6 +104,11 @@ const ROUTES = [
   ['protocol-consent', '/protocol/insomnia/circadian-misalign'],
   ['problem', '/problem/knee-pain'],                       // KEEP_PRERENDERED
   ['target', '/target/AR'],
+  // W5c: the longest target name in the corpus, and one of exactly three routes of 568 that
+  // pushed the document wider than a 390px viewport (403px). /target/AR cannot detect it — its
+  // h1 is "androgen receptor" and fits. Its own route for the same reason the deep-link case has
+  // one: the defect is a property of this page's content, not of the template.
+  ['target-longname', '/target/MTHFR'],
   ['compare-index', '/compare'],                           // KEEP_PRERENDERED + mounted picker
   ['compare-pair', '/compare/caffeine-vs-creatine-monohydrate'],
   ['muscle', '/muscle/abdominals'],
@@ -1596,6 +1605,32 @@ try {
           announcer: document.querySelectorAll('[role="status"][aria-live="polite"]').length,
           inlineOnclick: document.querySelectorAll('[onclick]').length,
           appChildren: (document.getElementById('app')?.children.length) || 0,
+          // W5c (2026-08-02): this whole gate already runs at 390x844, so it can see the one
+          // defect class no build check can: a page wider than the phone it is being read on.
+          // Measured hydrated over all 568 published routes before the fix
+          // (qa/out/w5cdi/before-390.json), exactly three overflowed, each for a different reason:
+          //   /target/MTHFR                        403px — h1 "methylenetetrahydrofolate reductase"
+          //   /c/statins-atorvastatin-rosuvastatin 417px — h1 "Statins (Atorvastatin/Rosuvastatin)"
+          //   /compare                             454px — the picker's `1fr 1fr` grid floored at
+          //                                        the min-content of a nowrap approval pill
+          // The first two are now covered by `overflow-wrap:anywhere` on headings and the third by
+          // `minmax(0,1fr)`, but the next long compound name would have reopened it silently.
+          // `widest` names the element so the failure is actionable rather than a number.
+          scrollWidth: document.documentElement.scrollWidth,
+          clientWidth: document.documentElement.clientWidth,
+          widest: (() => {
+            const vw = document.documentElement.clientWidth;
+            let worst = null;
+            document.querySelectorAll('#app *, header *, footer *').forEach((el) => {
+              const s = getComputedStyle(el);
+              if (s.position === 'fixed') return;
+              const r = el.getBoundingClientRect();
+              if (r.width > 0 && r.right > vw + 1 && (!worst || r.right > worst.right)) {
+                worst = { right: Math.round(r.right), tag: el.tagName, cls: String(el.className || '').slice(0, 40), txt: (el.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 50) };
+              }
+            });
+            return worst;
+          })(),
           rejections: (window.__smokeRejections || []).slice(0, 10),
           // W5b: the head, read AFTER hydration has finished with it.
           title: document.title,
@@ -1644,6 +1679,14 @@ try {
       if (dom.announcer < 1) add('role="status" aria-live="polite" route announcer is gone');
       if (dom.inlineOnclick) add(`${dom.inlineOnclick} inline onclick handler(s) — the site is CSP-clean, keep it that way`);
       if (dom.appChildren === 0) add('#app is empty after hydration');
+      // W5c: nothing may push the document wider than the viewport it is being read on. A page
+      // that scrolls sideways on a phone hides content behind a gesture nobody is told to make.
+      // PROVE IT by removing `overflow-wrap:anywhere` from the h1,h2,h3,h4 rule in styles.css —
+      // /target/MTHFR and /c/statins-atorvastatin-rosuvastatin fail by name.
+      if (dom.scrollWidth > dom.clientWidth + 1) {
+        const w = dom.widest;
+        add(`the page is ${dom.scrollWidth}px wide in a ${dom.clientWidth}px viewport — it scrolls sideways on a phone${w ? `; widest element is <${w.tag.toLowerCase()}${w.cls ? ' class="' + w.cls + '"' : ''}> ending at ${w.right}px: "${w.txt}"` : ''}`);
+      }
     }
 
     // ---- W5b (2026-08-02): THE HEAD MUST SURVIVE HYDRATION ------------------------------------

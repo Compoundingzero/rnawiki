@@ -38,7 +38,18 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line
 a{color:var(--link);text-decoration:none}
 a:hover{text-decoration:underline}
 code{background:var(--panel2);padding:1px 6px;border-radius:6px;font-size:.88em;color:#0f766e;font-family:var(--mono)}
-h1,h2,h3,h4{line-height:1.25;color:var(--head)}
+/* W5c (2026-08-02): `overflow-wrap:anywhere` — TWO ROUTES PUSHED THE WHOLE PAGE SIDEWAYS.
+   Measured hydrated at 390x844 over all 568 routes (qa/out/w5cdi/before-390.json), exactly three
+   had documentElement.scrollWidth > 390, and two of them were a heading with one unbreakable
+   token in it:
+     /target/MTHFR                        403px — h1 "methylenetetrahydrofolate reductase", 384px
+                                          wide starting at x=19
+     /c/statins-atorvastatin-rosuvastatin 417px — h1 "Statins (Atorvastatin/Rosuvastatin)", 398px
+   `anywhere` rather than `break-word` deliberately: only `anywhere` changes the element's
+   MIN-CONTENT contribution, and it was the min-content of these two h1s that was forcing their
+   flex/grid parent — and therefore the document — wider than the viewport. `break-word` would
+   have wrapped the glyphs and left the page still scrolling sideways. */
+h1,h2,h3,h4{line-height:1.25;color:var(--head);overflow-wrap:anywhere}
 hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 
 /* top bar */
@@ -318,7 +329,14 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .compare-col select{width:100%;padding:.6rem;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:10px;font-size:.95rem}
 .compare-table{margin-top:1.2rem;font-size:.92rem}
-.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+/* W5c: the third of the three overflowing routes. /compare measured documentElement.scrollWidth
+   454 against a 390px viewport — the ad-hoc picker's `1fr 1fr` is `minmax(auto,1fr)`, and `auto`
+   floors each column at its MIN-CONTENT, which here is a `white-space:nowrap` approval pill
+   ("🟡 Regulated as a supplement", 187px). Two of those plus the gap do not fit, so the grid grew
+   and took the document with it. `minmax(0,1fr)` lets the column be smaller than its contents;
+   the pills wrap inside it instead. */
+.compare-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;padding:.8rem 0;border-bottom:1px solid var(--line)}
+@media(max-width:600px){.compare-row .pill{white-space:normal}}
 .compare-row .rk{grid-column:1/-1;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint)}
 .az-letter{margin-top:1.6rem;color:var(--accent);font-weight:800;font-size:1.1rem}
 .az-list{columns:3;column-gap:2rem}
