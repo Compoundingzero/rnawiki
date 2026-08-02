@@ -2156,22 +2156,37 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
     (b.biomarkers || []).forEach((x) => out.push(`${x.marker || ''} ${x.why || ''}`));
     return out.join('  ');
   };
+  // W5.5 (2026-08-02): a signal may declare which text it reads. The DEFAULT IS UNCHANGED — the
+  // safety fields, because a hazard word in a mechanism paragraph is chemistry and the same word in
+  // a contra block is a warning. A signal for a tag that describes a pharmacodynamic IDENTITY rather
+  // than a hazard needs the other one: `mtor_activator`'s three carriers (c16 HMB, c18 EAAs/BCAAs,
+  // c62 IGF-1 LR3) contain the string "mTOR" in their safety fields ZERO times — it is in
+  // `mechanism` ("leucine triggers mTOR") — so on the default text that signal matches nothing at
+  // all. A scan over an empty set reports success no matter what the corpus does, which is exactly
+  // the failure mode the assertion below exists to close.
+  const hzText = (c, sig) => (sig.fields === 'mechanism' ? String(c.mechanism || '') : hzFields(c));
   const hzLive = (c, sig) => {
     const pos = new RegExp(sig.pos, 'i'), neg = new RegExp(sig.neg, 'i');
-    return hzFields(c).split(/(?<=[.;])\s+/).filter((s) => pos.test(s) && !neg.test(s));
+    return hzText(c, sig).split(/(?<=[.;])\s+/).filter((s) => pos.test(s) && !neg.test(s));
   };
   let hzScanned = 0, hzAcked = 0;
   Object.keys(HZ.signals || {}).forEach((tag) => {
     if (!needed.has(tag)) { bad.push(`hazardAudit.signals has "${tag}", which no rule consumes — a hazard scan for a tag nothing reads can only find things it cannot act on`); return; }
+    let hzCarrierHits = 0;
     compounds.forEach((c) => {
       const live = hzLive(c, HZ.signals[tag]);
       if (!live.length) return;
       hzScanned++;
-      if (tagsOf(c).indexOf(tag) >= 0) return;
+      if (tagsOf(c).indexOf(tag) >= 0) { hzCarrierHits++; return; }
       const ack = (HZ.acknowledged || {})[`${c.id}:${tag}`];
       if (ack && String(ack).trim()) { hzAcked++; return; }
       bad.push(`${c.id} ("${c.name}") does NOT carry "${tag}", but its own safety fields say: "${live[0].trim().slice(0, 170)}" — the rule that would catch this cannot fire, so the checker will CLEAR a stack containing it with a green tick. Add the tag against that quote, or write the reason in hazardAudit.acknowledged["${c.id}:${tag}"].`);
     });
+    // W5.5: THE ANTI-EMPTY-SET ASSERTION. A signal that matches none of the compounds that already
+    // CARRY its tag is not detecting the property — it is detecting nothing, and a scan that returns
+    // nothing reports success. That is how a gate gets written, shipped, and never once fails. It is
+    // the same lesson as every other one on this project: look at the output, not the count.
+    if (!hzCarrierHits) bad.push(`the hazardAudit signal for "${tag}" matches NO compound that already carries "${tag}" — it is not detecting that property, it is detecting nothing, and a scan over an empty set reports success no matter how the corpus changes. Fix the pattern against a carrier's own words.`);
   });
   // A stale acknowledgement is worse than none: it is a decision recorded about a page that no
   // longer says what it said. Every key must still point at a real compound that still fires the
