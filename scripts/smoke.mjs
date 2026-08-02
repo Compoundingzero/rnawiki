@@ -57,6 +57,12 @@ const COHORT_BACK6 = (() => { const d = new Date(); d.setDate(d.getDate() - 6); 
 const ROUTES = [
   ['home', '/'],
   ['compound', '/c/creatine-monohydrate'],
+  // W5b: the same template with a fragment Google publishes for it. Measured before the fix,
+  // hydrated at 390x844: /c/creatine-monohydrate#how-it-works left window.scrollY at 0 with
+  // document.getElementById('how-it-works') === null, and 7,339 of 8,080 published fragments across
+  // 620 routes did the same. Its own route because the assertion below reads window.scrollY, which
+  // any other assertion that taps something would invalidate.
+  ['compound-deeplink', '/c/beta-alanine#bottom-line'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
   // W4: the OTHER branch of the $0 split. 8 of 52 root causes have no free first step and say so
   // instead of inventing one; on those, Phase 2 must render OPEN, because hiding the only thing
@@ -190,6 +196,38 @@ const ASSERTIONS = {
   // the runtime half would ship the fabricated row with a green build.
   // PROVE IT by deleting the `caffeine` group from site/interactions.js `duplicates`, or by
   // changing `distinctCarriers` back to a length check in site/app.js.
+  // ---- W5b (2026-08-02): A PUBLISHED DEEP LINK MUST LAND ---------------------------------------
+  // MEASURED HYDRATED at 390x844 over all 620 served routes, 0 pageerrors
+  // (qa/out/w5b_anchors_before.json): 7,339 of 8,080 in-page anchor targets emitted by
+  // build/prerender.js — the ones Google renders as "jump to section" links under a result — did
+  // not exist after the SPA rebuilt #app, on 574 of 620 pages. 13,475 anchor elements point at
+  // them. On this very route, #bottom-line resolved to null and window.scrollY stayed 0. no other assertion touches, so the main document is a fresh 200 and not a 304 off the
+  // compound route above.
+  // THREE SEPARATE THINGS had to be true and this asserts all three, because fixing only the first
+  // is what the first pass at this did: the id has to EXIST (anchorizeHeadings), the chapter it
+  // lives in has to be OPENED (1 of 7 chapters is display:none, so scrollIntoView on a hidden
+  // element does nothing — measured: id present, chapter inactive, scrollY 0), and the page has to
+  // actually MOVE.
+  // PROVE IT by deleting the anchorizeHeadings(app) call from route() in site/app.js, or by
+  // deleting the ANCHOR_ALIASES entry for bottom-line, or by reverting revealAnchor() to only
+  // clicking the chapter tab (whose onclick is not wired yet when route() runs).
+  '/c/beta-alanine#bottom-line': [{
+    name: 'aPublishedDeepLinkResolvesOpensItsChapterAndScrolls',
+    why: 'W5b: every jump-to-section link Google publishes for this page landed on nothing — the id did not survive hydration',
+    evaluate: () => {
+      const el = document.getElementById('bottom-line');
+      if (!el) return 'the fragment #bottom-line, which build/prerender.js publishes on this page, does not exist after hydration';
+      const ch = el.closest('.chapter');
+      if (ch && !ch.classList.contains('active')) return 'the target exists but sits in a display:none chapter that was never opened — scrollIntoView on it does nothing and the reader stays at the top';
+      if (document.querySelectorAll('.chapter.active').length !== 1) return `${document.querySelectorAll('.chapter.active').length} chapters are active at once — opening the target's chapter must not leave two on screen`;
+      if (window.scrollY < 200) return `the page did not move: window.scrollY = ${Math.round(window.scrollY)}`;
+      const top = el.getBoundingClientRect().top;
+      if (top < -20 || top > 220) return `landed ${Math.round(top)}px from the viewport top — the section is off-screen or under the sticky header`;
+      // The alias must not have renamed anything the app queries.
+      if (!document.getElementById('sec-bottom')) return 'the SPA section id #sec-bottom is gone — the alias replaced a name instead of adding one';
+      return null;
+    },
+  }],
   '/stack?ids=c1,c24': [{
     name: 'oneMoleculeOnTwoPagesIsNotAnInteraction',
     why: 'W4.5: a danger row naming a molecule against itself is a fabricated interaction, and it is the row a reader is most likely to act on',

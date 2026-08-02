@@ -3273,6 +3273,14 @@ h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 .hanchor:focus { outline: 2px solid var(--accent, #0d9488); outline-offset: 2px; border-radius: 3px; }
 @media (max-width: 640px) { .hanchor { display: none; } }   /* no hover on touch; it only steals width */
 
+/* W5b (2026-08-02): the alias marker. site/app.js anchorizeHeadings() gives every hydrated <h2>/<h3>
+   the id the prerendered document published for it (7,339 of 8,080 published fragments resolved to
+   nothing after hydration, on 574 of 620 pages). Where the heading already answers to another name
+   that SPA code queries, the crawler's name is parked on this marker instead of renaming anything.
+   It must occupy no space and say nothing — it is an address, not content — but it still has to
+   clear the sticky topbar when it is the thing scrolled to. */
+.anchor-alias { display: block; height: 0; overflow: hidden; scroll-margin-top: 5rem; }
+
 /* Every heading must clear the sticky topbar when jumped to. .topbar is position:sticky;top:0;
    z-index:50 — anything that lands at y=0 lands underneath it. */
 /* superseded by the 180px rule below — 70px did not clear the sticky chapter strip. */

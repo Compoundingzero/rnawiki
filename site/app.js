@@ -8170,6 +8170,215 @@
     let l = document.querySelector('link[rel="canonical"]'); if (!l) { l = document.createElement('link'); l.setAttribute('rel', 'canonical'); document.head.appendChild(l); }
     l.setAttribute('href', location.origin + '/' + parts.join('/'));
   }
+  // ---- W5b (2026-08-02): THE DEEP LINKS GOOGLE PUBLISHES MUST LAND ---------------------------
+  // THE DEFECT, measured hydrated at 390x844 over all 620 served routes, 0 pageerrors
+  // (qa/out/w5b_anchors_before.json): of 8,080 in-page anchor targets published in the prerendered
+  // document — the ones Google turns into "jump to section" links in a result — 7,339 (90.8%)
+  // resolved to nothing once the SPA rebuilt #app, on 574 of 620 pages. 13,475 anchor ELEMENTS
+  // point at them. /c/caffeine publishes 36 and 36 were dead: #in-plain-english, #how-it-works,
+  // #molecular-target-official-sources … Navigating Chrome to /c/creatine-monohydrate#how-it-works
+  // left window.scrollY at 0 with document.getElementById('how-it-works') === null.
+  // (These are TRUE in-page anchors. "#/target/ATP" is SPA hash-ROUTER navigation and is excluded
+  // here — counting those as dead anchors is W0 erratum E1 and it produced a false finding once.)
+  //
+  // THE DECISION, of the two W0 offered — "stabilise the ids across both renderers, or stop
+  // publishing the anchors". STABILISE. Withdrawing them would delete a working feature from the
+  // ~90% of readers who never run JavaScript to spare the 10% a broken one, and Google has already
+  // indexed these fragments; they would go on being clicked and go on landing nowhere.
+  //
+  // THE MECHANISM. build/prerender.js anchorHeadings() slugifies each <h2>/<h3>'s own TEXT. The SPA
+  // renders the same headings with hand-written ids (sec-mechanism, …) or none at all. Nothing was
+  // wrong in either file on its own; they simply never agreed on a name. So the SPA now derives the
+  // id the same way, from the same text, using the rule copied verbatim below — including the
+  // "-2"/"-3" duplicate numbering, because the prerenderer numbers repeats in document order.
+  // It NEVER overwrites an existing id (SPA CSS and query selectors depend on those) and never
+  // takes an id already in the document: it attaches an invisible alias anchor instead.
+  const headSlug = (text) => String(text).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  // The heading rule cannot reach the compound page's six main sections, because the SPA does not
+  // title them with a heading at all — it renders `<div class="callout" id="sec-plain"><span
+  // class="k">In plain English — start here</span>…`, so the label is a <span> and its text is not
+  // the prerendered heading's text ("In plain English"). The sections ARE there; they answer to a
+  // different name. Each pair below is the SAME AUTHORED FIELD in both renderers — that is the
+  // whole admission criterion, and it is why this table cannot point a reader at the wrong place:
+  //   c.plain     build/prerender.js "<h2>In plain English</h2>"  ·  app.js callout('plain', …)
+  //   c.mechanism                    "<h2>How it works</h2>"                 callout('mechanism', …)
+  //   c.protocol                     "<h2>Protocol</h2>"                     callout('protocol', …)
+  //   c.watch                        "<h2>Watch out</h2>"                    callout('watch', …)
+  //   c.bottom                       "<h2>Bottom line</h2>"                  callout('bottom', …)
+  //   c.evidence                     "<h2>The human evidence</h2>"           <details id="sec-evidence">
+  // assertAnchorAliases() in build/prerender.js fails the build if the prerenderer stops emitting
+  // any of these ids, so a heading rename there cannot silently orphan the table.
+  // DELIBERATELY NOT INCLUDED: #molecular-target-official-sources -> #sec-molecule. The prerendered
+  // section is c.target's prose and official links; #sec-molecule is the PubChem structure viewer.
+  // They are near each other and they are not the same section, and an anchor that lands a reader
+  // on the wrong one is worse than an anchor that does not move them.
+  const ANCHOR_ALIASES = {
+    'in-plain-english': 'sec-plain', 'how-it-works': 'sec-mechanism', 'protocol': 'sec-protocol',
+    'watch-out': 'sec-watch', 'bottom-line': 'sec-bottom', 'the-human-evidence': 'sec-evidence',
+  };
+  function anchorizeHeadings(root) {
+    if (!root) return 0;
+    const seen = new Map(); let added = 0;
+    // The prerenderer only slugifies <h2>/<h3>, because that is all its flat article emits. The SPA
+    // titles its sections with three other things, measured on /c/caffeine hydrated at 390x844:
+    // h2:1 h3:6 h4:12 and 6 `div.section-title` ("🔗 Stacks with", "🧬 Acts on the same pathway",
+    // "⚠️ Avoid combining with", "🌐 Availability & where to buy", "🧭 Used in these protocols",
+    // "Common questions"). Those six carry the exact TEXT the prerendered slugs were built from —
+    // #stacks-with, #acts-on-the-same-pathway, #avoid-combining-with, #availability-where-to-buy,
+    // #used-in-these-protocols, #common-questions — and #common-questions alone is published on 333
+    // routes. Same rule, wider net; no alias table, so nothing here can name a section that is not
+    // actually on the page.
+    root.querySelectorAll('h2, h3, h4, .section-title').forEach((h) => {
+      const text = (h.textContent || '').replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      let s = headSlug(text);
+      if (!s) return;
+      const n = (seen.get(s) || 0) + 1; seen.set(s, n);
+      if (n > 1) s = s + '-' + n;
+      if (h.id === s || document.getElementById(s)) return;
+      if (!h.id) { h.id = s; added++; return; }
+      // The heading already answers to another name. Park the crawler's name on a zero-size marker
+      // immediately before it, so the fragment resolves and scrolls to the right place without
+      // renaming anything the app already queries.
+      const a = document.createElement('span');
+      a.id = s; a.className = 'anchor-alias'; a.setAttribute('aria-hidden', 'true');
+      h.parentNode.insertBefore(a, h); added++;
+    });
+    Object.keys(ANCHOR_ALIASES).forEach((slug) => {
+      if (document.getElementById(slug)) return;
+      const el = document.getElementById(ANCHOR_ALIASES[slug]);
+      if (!el || !el.parentNode) return;
+      const a = document.createElement('span');
+      a.id = slug; a.className = 'anchor-alias'; a.setAttribute('aria-hidden', 'true');
+      el.parentNode.insertBefore(a, el); added++;
+    });
+    return added;
+  }
+  // Resolving a fragment is not the same as scrolling to it. Three things were separately broken:
+  //   · the id did not exist (above);
+  //   · the id existed but was inside a `.chapter` that is `display:none` until its tab is tapped,
+  //     so scrollIntoView on it does nothing — 1 of 7 chapters is visible on a compound page;
+  //   · the id existed and was visible and the page still did not move, because the section is
+  //     injected AFTER route() returns. Measured: /protocol/knee-pain/knee-oa#red-flags resolves
+  //     hydrated and scrollY was still 0, because renderProtocol() is awaited and paints later.
+  // So: open every <details> above the target, activate its chapter through the renderer's own tab
+  // button (never by toggling the class — the tab carries the "visited/mastered" bookkeeping), and
+  // retry on a MutationObserver until the late renderers have painted, with a hard stop.
+  function revealAnchor(el) {
+    for (let p = el.parentElement; p; p = p.parentElement) {
+      if (p.tagName === 'DETAILS' && !p.open) p.open = true;
+      if (p.classList && p.classList.contains('chapter') && !p.classList.contains('active')) {
+        const n = p.getAttribute('data-chapter');
+        // Swap the classes DIRECTLY, then click the tab. Clicking alone is not enough and this is
+        // measured, not assumed: route() calls this synchronously, and the tab's onclick is wired
+        // by enhanceDetail() -> wireCompoundLearning() inside a setTimeout(…, 0), so at jump time
+        // the button exists and does nothing. /c/creatine-monohydrate#bottom-line resolved, stayed
+        // in a display:none chapter, and left scrollY at 0. The click still runs afterwards so the
+        // renderer's own visited/mastered bookkeeping is not bypassed; it is idempotent.
+        const box = p.parentElement;
+        if (box) box.querySelectorAll(':scope > .chapter').forEach((sec) => sec.classList.toggle('active', sec === p));
+        document.querySelectorAll('.ch-step').forEach((t) => t.classList.toggle('active', t.getAttribute('data-ch') === n));
+        const tab = document.querySelector('.ch-step[data-ch="' + (window.CSS && CSS.escape ? CSS.escape(n) : n) + '"]');
+        if (tab) tab.click();
+      }
+    }
+  }
+  // LANDING IS NOT THE SAME AS STAYING. Half this page arrives after the jump — the evidence plot,
+  // the comparison grid, the discussion thread — and every block that lands ABOVE the target pushes
+  // it down by its own height. Measured: the same fragment landed 149px from the viewport top on
+  // one run and 2,398px on the next, from nothing but timing. So hold the target in place while the
+  // page is still growing, and stop the instant the reader takes over — a page that keeps yanking
+  // itself back is worse than one that lands short.
+  function holdAnchor(el) {
+    if (!window.MutationObserver) return;
+    const app = document.getElementById('app'); if (!app) return;
+    let done = false, queued = false;
+    const stop = () => {
+      if (done) return; done = true;
+      obs.disconnect(); clearTimeout(timer);
+      ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((e) => window.removeEventListener(e, stop, true));
+    };
+    const obs = new MutationObserver(() => {
+      if (done || queued) return; queued = true;
+      requestAnimationFrame(() => { queued = false; if (!done && el.isConnected) el.scrollIntoView({ block: 'start' }); });
+    });
+    obs.observe(app, { childList: true, subtree: true });
+    const timer = setTimeout(stop, 2500);
+    ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((e) => window.addEventListener(e, stop, true));
+  }
+  let _hashWatch = null;
+  function jumpToHash(watch) {
+    const frag = decodeURIComponent((location.hash || '').replace(/^#/, ''));
+    if (!frag || frag.charAt(0) === '/') return false;           // "#/route" is router navigation
+    const app = document.getElementById('app');
+    if (app) anchorizeHeadings(app);
+    const el = document.getElementById(frag);
+    if (el) {
+      revealAnchor(el);
+      // rAF twice: once for the chapter/details reflow the line above just caused, once for the
+      // layout that reflow produces. One frame reads a stale offset and lands short.
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.scrollIntoView({ block: 'start' }); holdAnchor(el); }));
+      return true;
+    }
+    if (!watch || !app || !window.MutationObserver) return false;
+    if (_hashWatch) { _hashWatch.obs.disconnect(); clearTimeout(_hashWatch.timer); }
+    const obs = new MutationObserver(() => { if (jumpToHash(false)) { obs.disconnect(); clearTimeout(timer); _hashWatch = null; } });
+    obs.observe(app, { childList: true, subtree: true });
+    // 4 s covers the slowest observed path (renderProtocol's second data wave). After that the
+    // fragment genuinely does not exist on this page and silently retrying forever is worse.
+    const timer = setTimeout(() => { obs.disconnect(); _hashWatch = null; }, 4000);
+    _hashWatch = { obs, timer };
+    return false;
+  }
+  // Back/forward and in-page "#section" links inside the SPA. Without this a fragment change did
+  // nothing at all once the router had already rendered the page.
+  window.addEventListener('hashchange', () => { const f = (location.hash || '').replace(/^#/, ''); if (f && f.charAt(0) !== '/') jumpToHash(true); });
+  // Section names are an INVARIANT of what is in #app, not a side effect of one render path.
+  // route() calls anchorizeHeadings() directly, but half this site paints after route() returns —
+  // renderProtocol, renderPlan, mountBody, renderComments, mountExercise — and a heading that
+  // arrives in the second wave needs its name just as much. So: one observer for the document's
+  // lifetime, debounced to a frame, disconnected while the pass runs so its own inserted markers
+  // cannot re-trigger it.
+  (function watchHeadings() {
+    const app = document.getElementById('app');
+    if (!app || !window.MutationObserver) return;
+    let queued = false;
+    const obs = new MutationObserver(() => {
+      if (queued) return; queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        obs.disconnect();
+        try { anchorizeHeadings(app); } catch (e) { }
+        obs.observe(app, { childList: true, subtree: true });
+      });
+    });
+    obs.observe(app, { childList: true, subtree: true });
+  })();
+  // CHAPTER STATE IN THE URL. Measured before this: tapping chapter 3 on /c/creatine-monohydrate
+  // left location.href unchanged, so 6 of a compound page's 7 chapters had no address — they could
+  // not be linked to, bookmarked, or returned to by Back. One delegated listener rather than an
+  // edit to each of the four renderers that build chapter tabs: it runs after their own onclick has
+  // swapped the active section, and names the chapter by its first heading's slug, which is the
+  // same name the prerendered document publishes for that section.
+  document.addEventListener('click', (e) => {
+    const t = e.target.closest && e.target.closest('.ch-step, [data-chgo]');
+    if (!t) return;
+    setTimeout(() => {
+      const sec = document.querySelector('.chapter.active');
+      // Not every chapter opens with a heading — measured on /c/creatine-monohydrate, chapter 3
+      // ("Practical use") contains no h2/h3 at all, only `<div class="callout" id="sec-protocol">`,
+      // so a heading-only lookup left that chapter (and three others) with no address again.
+      // Take whichever addressable section comes first, and prefer an id that already exists so the
+      // URL that is written is one that resolves when it is pasted back in.
+      const h = sec && sec.querySelector('h2, h3, h4, .section-title, [id^="sec-"]');
+      const id = h && (h.id || headSlug((h.textContent || '').replace(/\s+/g, ' ').trim()));
+      // replaceState, not a hash assignment: assigning would fire hashchange, which would scroll
+      // the reader back to the heading they are already looking at, and would push a history entry
+      // per tab tap so Back walked the chapters instead of leaving the page.
+      if (id) history.replaceState(history.state, '', location.pathname + location.search + '#' + id);
+    }, 0);
+  }, false);
+
   // Sentinel meaning "this route's page is the prerendered document — leave #app alone".
   // A plain null/'' would be indistinguishable from a renderer that returned nothing by mistake.
   const KEEP = Symbol('keep-prerendered');
@@ -8282,9 +8491,14 @@
     // rAF so the measurement happens after this write has been laid out -- without it the element's
     // offset is read against a stale layout on first paint. The 60px sticky topbar is cleared by
     // `scroll-margin-top` on the three anchor targets in styles.css, not by arithmetic here.
+    // W5b: the ids first, then the jump. anchorizeHeadings() gives every <h2>/<h3> the same name
+    // the prerendered document published for it, so the 7,339 fragments a crawler is served can
+    // resolve; jumpToHash() then opens the <details> and activates the .chapter the target lives
+    // in, and keeps watching #app until the async renderers have painted (a protocol page's
+    // "#red-flags" resolved and still left scrollY at 0, because renderProtocol paints after this).
+    anchorizeHeadings(app);
     const frag = (location.hash || '').replace(/^#/, '');
-    const anchor = (frag && frag.charAt(0) !== '/') ? document.getElementById(frag) : null;
-    if (anchor) requestAnimationFrame(() => anchor.scrollIntoView({ block: 'start' }));
+    if (frag && frag.charAt(0) !== '/') { if (!jumpToHash(true)) window.scrollTo(0, 0); }
     else window.scrollTo(0, 0);
     setPageMeta(parts);
     document.body.classList.toggle('route-bodymap', parts[0] === 'body'); // hides the Feedback FAB that overlaps the 3D canvas

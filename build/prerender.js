@@ -3087,6 +3087,42 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] head parity OK — ${routes.length} routes carry a title and a description, app.js reads them, 0 dangling titles.`);
 })();
 
+// ---- build-time assertion: THE FRAGMENTS THIS FILE PUBLISHES MUST BE RESOLVABLE ---------------
+// W5b (2026-08-02). Measured hydrated at 390x844 over all 620 served routes, 0 pageerrors
+// (qa/out/w5b_anchors_before.json): 7,339 of 8,080 in-page anchor targets published here — the
+// fragments Google turns into "jump to section" links — resolved to NOTHING once the SPA rebuilt
+// #app, on 574 of 620 pages. 13,475 anchor elements point at them. /c/caffeine published 36 and
+// all 36 were dead.
+// site/app.js anchorizeHeadings() closes most of that by deriving each id from the heading's own
+// text with the same rule anchorHeadings() uses above. The six compound sections it cannot reach —
+// the SPA renders them as `<div class="callout" id="sec-plain">` with the label in a <span>, so
+// there is no heading to slugify — are carried by an explicit alias table in app.js, admitted only
+// where BOTH renderers print the same authored field.
+// THIS GATE IS THE HALF THAT ROTS. Rename a heading here and the alias table in app.js silently
+// stops matching; nothing would report it, and 600-odd fragments would go quietly dead again.
+// PROVE IT by renaming "<h2>Bottom line</h2>" to "<h2>The bottom line</h2>" in the compound body.
+(function assertAnchorAliases() {
+  const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+  const m = APP.match(/const ANCHOR_ALIASES = \{([\s\S]*?)\};/);
+  if (!m) { console.error('\n[prerender] site/app.js has no ANCHOR_ALIASES table — the six compound sections a crawler is given fragments for become unreachable after hydration. Refusing to build.\n'); process.exit(1); }
+  const slugs = [...m[1].matchAll(/'([a-z0-9-]+)'\s*:\s*'([a-z0-9-]+)'/g)].map((x) => ({ pub: x[1], spa: x[2] }));
+  const compoundPages = pages.filter((p) => /^\/c\//.test(p.route));
+  const bad = [];
+  if (!slugs.length) bad.push('ANCHOR_ALIASES parsed to zero entries — the table is there and this gate cannot read it, which is the same as no gate');
+  slugs.forEach(({ pub, spa }) => {
+    const n = compoundPages.filter((p) => p.html.indexOf(`id="${pub}"`) >= 0).length;
+    if (!n) bad.push(`site/app.js aliases "#${pub}" -> "#${spa}", but NO compound page publishes id="${pub}" any more — a heading was renamed here and the alias is now pointing at a fragment nobody links to`);
+    if (!APP.includes(`id="${spa}"`) && !APP.includes(`'${spa}'`) && !APP.includes(`sec-${spa.replace(/^sec-/, '')}`)) bad.push(`site/app.js aliases "#${pub}" -> "#${spa}", but app.js never emits that id`);
+  });
+  if (bad.length) {
+    console.error('\n[prerender] A PUBLISHED DEEP LINK HAS NOTHING TO LAND ON — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] anchor aliases OK — ${slugs.length} published fragments the SPA renders under another id, all still published here.`);
+})();
+
 // ---- build-time assertion: structured data ----------------------------------------------------
 // Added 2026-07-30. Two blocks on the home page shipped without "@context" for months. Google
 // silently discards a block with no @context, so the WebSite and Organization entities -- the two
