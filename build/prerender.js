@@ -451,7 +451,13 @@ ${crumbLd}${ld}
 <div id="route-status" role="status" aria-live="polite" class="sr-only"></div>
 <header class="topbar">
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
-  <div class="search-wrap"><input id="search" type="search" placeholder="Search 170 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
+  ${/* W4.5 (2026-08-02): the count is READ FROM THE CORPUS. It was typed as "170" and the corpus
+        has held 171 since before W0 — measured hydrated at 390x844 on /, /c/creatine-monohydrate
+        and /az: this header printed "Search 170 compounds…" on 3 of 3 while the /az toolbar on the
+        SAME PAGE printed "Filter 171 compounds by name…", because that one interpolates
+        D.compounds.length. A number a reader can check on the next line down, and it was wrong.
+        assertCorpusCountCopy() below fails the build on any served document that disagrees. */ ''}
+  <div class="search-wrap"><input id="search" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
   <nav class="topnav">
     <a href="/solve" class="nav-solve">Solve</a><a href="/where">Where it hurts</a><a href="/plan">My Plan</a><a href="/learn">Learn</a>
   </nav>
@@ -2890,6 +2896,61 @@ fs.writeFileSync(LASTMOD_FILE, '{\n' + Object.keys(lastmodNext).sort()
 
 console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.length} urls) + robots.txt; swept ${swept} stale files`);
 console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmMoved} changed -> ${now}${lmUnknown ? `, ${lmUnknown} with no prerendered output (stamped today)` : ''}`);
+
+// ---- build-time assertion: A COUNT OF THE CORPUS MUST EQUAL THE CORPUS -------------------------
+// Added 2026-08-02 (W4.5). The header search placeholder read "Search 170 compounds, protocols,
+// terms…" on every one of the 568 prerendered documents, and site/index.html read "Search 170
+// compounds, pathways, terms…" — two different sentences, one wrong number. The corpus has held
+// 171 since before W0 (D.compounds.length, site/data.js).
+// MEASURED HYDRATED, real browser at 390x844, 0 pageerrors (qa/out/w45c_before.json): "/",
+// "/c/creatine-monohydrate" and "/az" all printed "Search 170 compounds, protocols, terms…" in the
+// persistent header — and on /az the toolbar directly below it printed "Filter 171 compounds by
+// name…", because THAT one interpolates D.compounds.length. The site contradicted itself about its
+// own size, on the same screen, at the top of every page. Product constraint 5 is "never fabricate
+// counts", and this is the count a reader meets first.
+// The prerendered header is now interpolated. site/index.html is the one served document the build
+// does not generate, so it is checked here rather than trusted: this gate walks every .html under
+// site/ and fails on any corpus count that disagrees with site/data.js, printing the exact string
+// to type. Only sentences that state the SIZE OF THE CORPUS are listed — per-page counts ("3
+// compounds act here") are real measurements of something else and are none of this gate's business.
+// PROVE IT by putting 170 back in either place.
+(function assertCorpusCountCopy() {
+  const N = D.compounds.length;
+  const CLAIMS = [
+    { re: /Search (\d+) compounds/g, what: 'the header search placeholder', fix: (n) => `Search ${n} compounds` },
+    { re: /— (\d+) compounds and full Move/g, what: 'the SPA shell meta description', fix: (n) => `— ${n} compounds and full Move` },
+  ];
+  const bad = [];
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) return walk(p);
+    if (!e.name.endsWith('.html')) return;
+    // HTML comments are stripped first. A comment that QUOTES the old wrong string — which is how
+    // site/index.html records why its number is hand-typed — is a note to the next editor, not a
+    // claim to a reader. Without this the gate fails on its own explanation, which is how it first
+    // behaved.
+    const h = fs.readFileSync(p, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+    CLAIMS.forEach((c) => {
+      c.re.lastIndex = 0;
+      let m;
+      while ((m = c.re.exec(h))) {
+        if (Number(m[1]) !== N) bad.push({ file: path.relative(ROOT, p), what: c.what, saw: m[0], want: c.fix(N) });
+      }
+    });
+  });
+  walk(SITE);
+  if (bad.length) {
+    console.error('\n[prerender] A COUNT OF THE CORPUS DOES NOT MATCH THE CORPUS — refusing to build.');
+    console.error(`  site/data.js holds ${N} compounds. These served documents say otherwise:`);
+    const shown = new Map();
+    bad.forEach((b) => { const k = b.saw + '|' + b.what; shown.set(k, (shown.get(k) || { ...b, n: 0 }));
+      shown.get(k).n++; });
+    [...shown.values()].forEach((b) => console.error(`    ✗ ${b.what}: "${b.saw}" on ${b.n} document(s), e.g. ${b.file}\n        change it to "${b.want}" (or interpolate D.compounds.length)`));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] corpus counts OK — every served document states ${N} compounds.`);
+})();
 
 // ---- build-time assertion: structured data ----------------------------------------------------
 // Added 2026-07-30. Two blocks on the home page shipped without "@context" for months. Google

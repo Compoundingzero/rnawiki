@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RNAwiki — translate the code of human performance into real results</title>
-<meta name="description" content="DNA is the blueprint; RNA is the builder. RNAwiki translates the foundational code of strength, wellness and longevity into actionable protocols — 170 compounds and full Move·Fuel·Stack protocols, ranked by human evidence. Free, worldwide, no paywall.">
+<meta name="description" content="DNA is the blueprint; RNA is the builder. RNAwiki translates the foundational code of strength, wellness and longevity into actionable protocols — 171 compounds and full Move·Fuel·Stack protocols, ranked by human evidence. Free, worldwide, no paywall.">
 <link rel="canonical" href="https://rnawiki.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <!-- geo.region/geo.placename removed 2026-07-31: this site is written for readers anywhere, and
@@ -26,10 +26,18 @@
 <body>
 <a class="skip-link" href="#app">Skip to content</a>
 <div id="route-status" role="status" aria-live="polite" class="sr-only"></div>
+<!-- The two "171"s above and below are the CORPUS SIZE, and this file is the one document the
+     build does not generate. Both were "170" until 2026-08-02 while the corpus held 171 — and the
+     header on this very page printed "Search 170 compounds" directly above an /az toolbar reading
+     "Filter 171 compounds by name…", because that one is interpolated. The placeholder also said
+     "pathways" where every prerendered page said "protocols": two headers, one site.
+     assertCorpusCountCopy() in build/prerender.js now fails the build on any served document whose
+     corpus count disagrees with site/data.js, this file included. When it fails, it prints the
+     exact string to type. -->
 <header class="topbar">
   <a href="#/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap">
-    <input id="search" type="search" placeholder="Search 170 compounds, pathways, terms…" autocomplete="off" spellcheck="false">
+    <input id="search" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false">
     <div id="search-results" class="search-results" hidden></div>
   </div>
   <nav class="topnav">
