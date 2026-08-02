@@ -193,9 +193,15 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
    above are the one in-between case — block-level, but a navigation row rather than buttons — so
    they are taken to the 24px AA floor rather than the 44px AAA one. */
 .brand,.seed-chip,.seed-all,.chip,.cta-primary,.cta-ghost,.learned-btn,.stack-btn-lg,.mol-3d-btn,
-.share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.s-rc,.acct-btn,.menu-btn{
+.share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.s-rc,.acct-btn{
   min-height:44px;display:inline-flex;align-items:center;justify-content:center}
-.st-add,.menu-btn{display:flex}
+.st-add{display:flex}
+/* W5c FOLLOW-UP: .menu-btn is deliberately NOT in the list above. It was, and `display:inline-flex`
+   overrode its own `display:none` at every width — so the ☰ appeared on DESKTOP, next to the full
+   nav it exists to replace. Measured at 1440x900 after that commit: computed display "flex", 44x44.
+   Caught by looking at a screenshot, not by any gate: nothing on this project asserts that a
+   control is ABSENT where it should be. Its sizing now lives inside the ≤900px block with the rest
+   of its behaviour, where `display` is only ever set once. */
 /* W5c: the breadcrumb separator was var(--line) — 1.10:1, the lowest ratio of any text node on the
    site that is not white-on-white. It is a real text node in a real navigation landmark, so it is
    read out and copy-pasted; it is now legible and simply smaller than the links it separates. */
@@ -474,7 +480,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .detail-head{flex-direction:column}
   .topnav{display:none}
   .topnav.open{display:flex;position:absolute;top:100%;right:0;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.8rem 1.2rem;gap:.9rem;box-shadow:var(--shadow)}
-  .menu-btn{display:flex}
+  .menu-btn{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
   /* W5c: the two INDEX pages, drawer-only. See the note in build/prerender.js's shell(). */
   .topnav.open .nav-more{display:block}
   /* W5c: and the drawer's own links were 16px tall — the gate that was written for the missing

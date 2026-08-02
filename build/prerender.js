@@ -3850,6 +3850,44 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] comparison verdicts OK — ${checked} pairs, ${named} named dimensions, every one an actual row, 0 pointing "below".`);
 })();
 
+// ---- build-time assertion: A MOBILE-ONLY CONTROL MUST STAY MOBILE-ONLY ------------------------
+// W5c FOLLOW-UP (2026-08-02). The tap-target commit put `.menu-btn` into a shared rule reading
+// `min-height:44px;display:inline-flex`, which sits AFTER `.menu-btn{display:none}` and therefore
+// overrode it at every width. Measured at 1440x900: computed display "flex", 44x44 — the ☰ was
+// rendering on DESKTOP, beside the full nav bar it exists to replace.
+// Nothing caught it. Every gate on this project asserts that something is PRESENT, correct or
+// large enough; none asserts that a control is ABSENT where it should be, and the smoke run drives
+// a single 390px viewport where the button is supposed to appear. It was found by looking at a
+// screenshot — which is the standing lesson from the /body/leg 3D fix, and it cost a re-render to
+// find that a passing gate suite had already hidden.
+// The rule this enforces is narrow and exact: any control whose base rule hides it may only be
+// un-hidden inside a media query. `display` for such a control is set once, where its behaviour is.
+// PROVE IT by adding `.menu-btn` back to the shared 44px rule.
+(function assertMobileOnlyControls() {
+  const CSS2 = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
+  const bad = [];
+  // Blocks nested inside @media are stripped first, so what is left is the unconditional cascade.
+  let top = CSS2, prev = null;
+  while (top !== prev) { prev = top; top = top.replace(/@media[^{]*\{(?:[^{}]|\{[^{}]*\})*\}/g, ''); }
+  const MOBILE_ONLY = ['.menu-btn'];
+  MOBILE_ONLY.forEach((sel) => {
+    const rules = [...top.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter((m) => m[1].split(',').some((x) => x.trim() === sel || x.trim().endsWith(' ' + sel)));
+    if (!rules.length) { bad.push(`${sel} has no unconditional rule at all — this gate has stopped covering it`); return; }
+    const displays = rules.map((m) => (m[2].match(/(?:^|;)\s*display\s*:\s*([^;]+)/) || [])[1]).filter(Boolean).map((x) => x.trim());
+    if (!displays.length) { bad.push(`${sel} is never hidden outside a media query — it is supposed to be a phone-only control`); return; }
+    displays.forEach((d) => {
+      if (d !== 'none') bad.push(`${sel} is set to display:${d} OUTSIDE a media query — it is a phone-only control, and an unconditional display overrides the "display:none" that keeps it off the desktop header next to the full nav it replaces`);
+    });
+  });
+  if (bad.length) {
+    console.error('\n[prerender] A PHONE-ONLY CONTROL IS SHOWING ON DESKTOP — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] phone-only controls OK — ${MOBILE_ONLY.length} control(s), hidden unconditionally and revealed only inside a media query.`);
+})();
+
 // ---- build-time assertion: ANONYMOUS-FIRST IS A BEHAVIOUR, NOT A SENTENCE ---------------------
 // W5d (2026-08-02). Product constraint 3 is that reading, logging and the $0 protocol must work
 // with NO ACCOUNT, and the site says so out loud in four served places:
