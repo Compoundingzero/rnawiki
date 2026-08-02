@@ -2058,6 +2058,32 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
       fireOn(compounds[i], compounds[j]).forEach((x) => { (rowsByRule[x.id] = rowsByRule[x.id] || []).push(x.inv); });
     }
   }
+  // ---- W5.5 (2026-08-02): A COMPOUND CANNOT INTERACT WITH ITSELF -----------------------------
+  // Every `need` is checked independently — `byTag[tag].length >= n` — so a rule with two needs is
+  // satisfied by ONE compound that happens to carry both tags, and the row it renders lists that
+  // single compound as the whole interaction. Nothing looked at the size of `involved`.
+  // The under-tag audit is about to create the first instance: c112 Citrus Bergamot's own biomarker
+  // block supports BOTH `cyp3a4` ("Residual bergamot furanocoumarins can inhibit CYP3A4
+  // (grapefruit-like)") and `statin_like` ("via HMG-CoA reductase inhibition (a statin-like moiety
+  // in brutieridin/melitidin)"), and with both tags the cyp3a4_statin rule fires on Bergamot ALONE
+  // — 170 rows, one against every other compound in the corpus, e.g. Bergamot + Creatine printing a
+  // timing row whose `involved` is just ["Citrus Bergamot"].
+  // NOTE WHAT THIS DELIBERATELY DOES NOT DO. It does not require the needs to be filled by DISJOINT
+  // compounds. That was measured: a system-of-distinct-representatives predicate takes cyp3a4_statin
+  // from 174 rows to 8 correctly, but it also takes pde5_vasodilator from 2 rows to 0 — killing two
+  // rows that are RIGHT, because c116 legitimately carries `pde5` AND `hypotensive` and "a PDE-5
+  // drug plus another blood-flow agent" is exactly what that rule means. The honest invariant is not
+  // about which compound fills which slot; it is that a rendered interaction must involve two things.
+  // site/app.js stackInteractions() carries the identical filter, or this would pass at build time
+  // while the SPA still rendered the row.
+  // PROVE IT by adding "statin_like" to the bergamot nameTag without the rest of that commit: the
+  // build fails naming the rule and the row count.
+  Object.keys(rowsByRule).forEach((rid) => {
+    const rule = (R.rules || []).find((r) => r.id === rid);
+    if (!rule || (rule.need || []).length < 2) return;
+    const solo = rowsByRule[rid].filter((inv) => inv.size < 2);
+    if (solo.length) bad.push(`rule "${rid}" ("${rule.title}") renders ${solo.length} row(s) involving only ONE compound — it needs ${rule.need.length} tags and a single compound carries them all, so the checker prints a ${rule.tier} row about a compound interacting with itself. Split the rule, or drop one of that compound's tags.`);
+  });
   let checkedRules = 0, checkedRows = 0;
   (R.rules || []).forEach((rule) => {
     const rows = rowsByRule[rule.id] || [];

@@ -3203,6 +3203,14 @@
       if (!rule.need.every(n => (byTag[n[0]] || []).length >= n[1])) return;
       const inv = [];
       rule.need.forEach(n => (byTag[n[0]] || []).forEach(c => { if (inv.indexOf(c) < 0) inv.push(c); }));
+      // W5.5 (2026-08-02): A COMPOUND CANNOT INTERACT WITH ITSELF. Each `need` is counted on its own,
+      // so a rule with two needs is satisfied by ONE compound carrying both tags — and the row then
+      // names that single compound as the whole interaction ("Bergamot may raise statin levels ·
+      // Citrus Bergamot", against every other compound in the corpus). A rule with one `need` may
+      // legitimately involve one compound (dnp, zinc_copper), so only multi-need rules are held to
+      // this. Same invariant as the gate in build/parse.js; both exist because the SPA and the build
+      // must not disagree about what a row is.
+      if ((rule.need || []).length >= 2 && inv.length < 2) return;
       const row = { id: rule.id, notIf: rule.notIf, tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, involved: inv.map(c => c.name), members: inv };
       // Satisfied by pages but not by substances: the rule does not get to claim an interaction,
       // and the honest row about what actually happened is built below.
