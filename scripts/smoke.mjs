@@ -420,6 +420,53 @@ const ASSERTIONS = {
       return null;
     },
   }],
+  // ---- W5c (2026-08-02): THE BODY MAP WAS UNTAPPABLE, UNREACHABLE AND UNNAMED ----------------
+  // Measured hydrated at 390x844 (qa/out/w5cdi/before-390.json):
+  //   · 21 of 25 hotspots under 24x24 CSS px, smallest (Elbow) 16.7x22.2
+  //   · tabindex null on 25/25, role null on 25/25, and 90 real Tab presses focused one ZERO times
+  //   · the <svg> carried role="img", which prunes every descendant from the accessibility tree,
+  //     so the zones did not merely lack a role — they did not exist for AT at all
+  //   · all 15 "find your cause →" buttons had the IDENTICAL accessible name and no aria-label
+  // This is the page a reader arrives at BECAUSE they cannot name their problem, so every one of
+  // those controls is a first tap.
+  // This assertion DRIVES THE UI (it focuses a hotspot and presses Enter), so it owns this route.
+  // PROVE IT by putting role="img" back on the svg in build/parse.js, or by deleting the
+  // role/tabindex/aria-label from the .bw-hit ellipses.
+  '/where': [{
+    name: 'theBodyMapIsTappableReachableAndNamed',
+    why: 'W5c/D26: 21 of 25 hotspots were under 24px, 0 of 25 were keyboard-reachable, and 15 buttons shared one accessible name',
+    evaluate: async () => {
+      const svg = document.querySelector('.body-where-svg');
+      if (!svg) return 'no body map on /where';
+      if (svg.getAttribute('role') === 'img') return 'the body map is role="img" again — that prunes every child from the accessibility tree, so no hotspot inside it exists for a screen reader whatever attributes it carries';
+      const hits = [...document.querySelectorAll('.bw-hit')];
+      if (hits.length < 20) return `${hits.length} hit targets on the body map — the touch layer is missing`;
+      const small = hits.filter((h) => { const r = h.getBoundingClientRect(); return r.width < 24 || r.height < 24; });
+      if (small.length) return `${small.length} of ${hits.length} body-map targets are under 24x24 CSS px (smallest ${small.map((h) => Math.round(Math.min(h.getBoundingClientRect().width, h.getBoundingClientRect().height))).sort((a, b) => a - b)[0]}px)`;
+      const focusable = hits.filter((h) => h.getAttribute('tabindex') === '0');
+      const sections = document.querySelectorAll('.bw-zone-sec').length;
+      if (focusable.length !== sections) return `${focusable.length} keyboard-reachable hotspots for ${sections} zone sections — one focus stop per zone, no more and no fewer`;
+      const unnamed = focusable.filter((h) => !(h.getAttribute('aria-label') || '').trim() || h.getAttribute('role') !== 'button');
+      if (unnamed.length) return `${unnamed.length} focusable hotspots have no role="button" or no accessible name — a shape that takes focus and says nothing is worse than one that cannot take it`;
+      if (new Set(focusable.map((h) => h.getAttribute('aria-label'))).size !== focusable.length) return 'two hotspots share an accessible name — they go to different sections';
+      // A role="button" that does not answer Enter is a lie told to a screen reader.
+      const knee = document.querySelector('.bw-hit[data-zone="knee"][role="button"]');
+      if (!knee) return 'no focusable knee hotspot to test the key handler on';
+      knee.focus();
+      if (document.activeElement !== knee) return 'a hotspot cannot take focus';
+      knee.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      await new Promise((r) => setTimeout(r, 200));
+      if (!document.querySelector('#zone-knee.on')) return 'pressing Enter on a hotspot did nothing — role="button" with no key handler';
+      if (document.activeElement.id !== 'zone-knee') return `Enter moved the page but not focus (activeElement is "${document.activeElement.id || document.activeElement.className}") — a smooth scroll away from the control is invisible to the person who triggered it`;
+      // ...and the 15 cause-finder buttons must say WHICH cause they find.
+      const finds = [...document.querySelectorAll('.bw-find')];
+      const noAria = finds.filter((f) => !(f.getAttribute('aria-label') || '').trim());
+      if (noAria.length) return `${noAria.length} of ${finds.length} "find your cause" buttons have no aria-label — they all read as the same control`;
+      const tiny = finds.filter((f) => f.getBoundingClientRect().height < 44);
+      if (tiny.length) return `${tiny.length} of ${finds.length} "find your cause" buttons are under 44px tall`;
+      return null;
+    },
+  }],
   '/problem/knee-pain': [{
     name: 'problemPageIsADifferential',
     why: 'D13: escalation, every tell, and a route to a protocol must all come BEFORE the mechanism prose, and every #cause-N must resolve',

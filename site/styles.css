@@ -4035,6 +4035,22 @@ a.assess-switch { text-align: center; }
 .bw-sil { fill: var(--line-soft); stroke: var(--line); stroke-width: 1; }
 .bw-flabel { fill: var(--muted); font-size: 12px; font-weight: 600; font-family: var(--font); }
 .bw-zone { fill: var(--accent); fill-opacity: .16; stroke: var(--accent); stroke-width: 1.2; stroke-opacity: .35; transition: fill-opacity .15s, stroke-opacity .15s; }
+/* ---- W5c (2026-08-02): THE TOUCH TARGET IS A SEPARATE, INVISIBLE LAYER ----------------------
+   Measured hydrated at 390x844 (qa/out/w5cdi/before-390.json): 21 of 25 drawn hotspots were under
+   24x24 CSS px, the smallest (Elbow) 16.7x22.2 — and tabindex and role were null on 25/25 inside
+   an <svg role="img">, so 90 real Tab presses focused one ZERO times. `.bw-hit` is the fix:
+   invisible, at least 24.1 CSS px in both axes, painted last so it wins the tap, and carrying the
+   role, the tab stop and the accessible name. The drawn `.bw-zone` keeps its authored size and
+   gives up its pointer events — growing the drawn shapes instead was tried and rejected, because
+   at 390px it merged the neck into the shoulders and the wrists into the hips.
+   The hover and active states move to the hit layer, so a pointer user sees the area they can
+   actually press rather than a smaller shape inside it. */
+.bw-zone { pointer-events: none; }
+.bw-hit { fill: var(--accent); fill-opacity: 0; stroke: none; cursor: pointer; transition: fill-opacity .15s; }
+.bw-hit:hover { fill-opacity: .22; }
+.bw-hit.on { fill-opacity: .3; }
+.bw-hit:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; fill-opacity: .3; }
+.bw-zone-sec:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .bw-zone:hover { fill-opacity: .38; stroke-opacity: .8; }
 .bw-zone.on { fill-opacity: .55; stroke-opacity: 1; }
 .bw-index { display: flex; flex-direction: column; gap: .5rem; }
@@ -4043,9 +4059,12 @@ a.assess-switch { text-align: center; }
 .bw-zone-sec h3 { margin: 0 0 .35rem; font-size: 1rem; color: var(--head); }
 .bw-zone-sec ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .4rem; }
 .bw-zone-sec li { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
-.bw-prob { text-decoration: none; color: var(--head); }
+/* W5c: 16 problem links at 166x26 and 15 buttons at 115x20, measured hydrated at 390x844 — the
+   two smallest control classes on the site after the header. This is the page a reader arrives at
+   BECAUSE they do not know what to call their problem, so every one of these is a first tap. */
+.bw-prob { text-decoration: none; color: var(--head); display: inline-flex; align-items: center; min-height: 44px; }
 .bw-prob:hover { color: var(--link); }
-.bw-find { border: 1px solid var(--line); background: transparent; color: var(--muted); font-size: .74rem; padding: 2px 9px; border-radius: 999px; cursor: pointer; }
+.bw-find { border: 1px solid var(--line); background: transparent; color: var(--muted); font-size: .78rem; padding: 2px 12px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; min-height: 44px; }
 .bw-find:hover { border-color: var(--accent); color: var(--link); }
 .bw-none { color: var(--muted); font-size: .9rem; }
 .where-foot { margin-top: 1.2rem; }

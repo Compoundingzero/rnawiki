@@ -2503,16 +2503,36 @@
   }
   function bindWhere() {
     const svg = document.querySelector('.body-where-svg'); if (!svg) return;
-    svg.querySelectorAll('.bw-zone').forEach((z) => {
+    // W5c (2026-08-02): 90 real Tab presses at 390x844 focused a .bw-zone ZERO times. The hotspots
+    // were bare <ellipse> elements with a click listener — no tabindex, no role, no key handler —
+    // inside an <svg role="img">, which prunes its children from the accessibility tree entirely.
+    // build/parse.js now emits role="button" + tabindex="0" + an aria-label on the first shape of
+    // each zone (one focus stop per zone, not per drawn ellipse; the symmetric twin is
+    // aria-hidden). This is the other half: a role="button" that does not answer Enter and Space
+    // is a lie told to a screen reader. Focus also MOVES to the section, because a smooth scroll
+    // that leaves focus on the map is invisible to the person who triggered it — .bw-zone-sec
+    // carries tabindex="-1" for exactly that.
+    const go = (z) => {
+      const id = z.getAttribute('data-zone');
+      const sec = document.getElementById('zone-' + id); if (!sec) return;
+      svg.querySelectorAll('[data-zone].on').forEach((e) => e.classList.remove('on'));
+      svg.querySelectorAll('[data-zone="' + id + '"]').forEach((e) => e.classList.add('on'));
+      document.querySelectorAll('.bw-zone-sec.on').forEach((s) => s.classList.remove('on'));
+      sec.classList.add('on');
+      sec.setAttribute('tabindex', '-1');
+      sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      try { sec.focus({ preventScroll: true }); } catch (e) { }
+    };
+    // `.bw-hit`, not `.bw-zone`: the drawn shape is decorative and pointer-events:none, and the
+    // invisible hit layer above it is the control (see build/parse.js and the .bw-hit CSS).
+    svg.querySelectorAll('.bw-hit').forEach((z) => {
       z.style.cursor = 'pointer';
-      z.addEventListener('click', () => {
-        const id = z.getAttribute('data-zone');
-        const sec = document.getElementById('zone-' + id); if (!sec) return;
-        svg.querySelectorAll('.bw-zone.on').forEach((e) => e.classList.remove('on'));
-        svg.querySelectorAll('[data-zone="' + id + '"]').forEach((e) => e.classList.add('on'));
-        document.querySelectorAll('.bw-zone-sec.on').forEach((s) => s.classList.remove('on'));
-        sec.classList.add('on');
-        sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      z.addEventListener('click', () => go(z));
+      if (z.getAttribute('role') !== 'button') return;   // the aria-hidden twin gets no key handler
+      z.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+        e.preventDefault();   // Space would otherwise scroll the page out from under the reader
+        go(z);
       });
     });
   }

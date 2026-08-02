@@ -1636,19 +1636,66 @@ if (bodyZones && Array.isArray(bodyZones.zones)) {
   const sil = (ox) => bodyZones.silhouette.map((s) => s.t === 'ellipse'
     ? `<ellipse class="bw-sil" cx="${s.cx + ox}" cy="${s.cy}" rx="${s.rx}" ry="${s.ry}"/>`
     : `<rect class="bw-sil" x="${s.x + ox}" y="${s.y}" width="${s.w}" height="${s.h}" rx="${s.rx || 0}"/>`).join('');
+  // ---- W5c (2026-08-02): THE BODY MAP WAS UNTAPPABLE AND UNREACHABLE BY KEYBOARD -------------
+  // Measured hydrated at 390x844 (qa/out/w5cdi/before-390.json):
+  //   · 21 of 25 hotspots were under 24x24 CSS px. The smallest, Elbow, rendered 16.7x22.2.
+  //   · tabindex was null on 25/25 and role was null on 25/25, and 90 real Tab presses focused a
+  //     .bw-zone ZERO times. The map was mouse-and-touch only, in an <svg role="img"> — and
+  //     role="img" removes every child from the accessibility tree, so a keyboard or screen-reader
+  //     user was not merely unable to activate a zone, the zones did not exist for them.
+  // MIN_R = 13 viewBox units. The map is 380 units wide and renders ~350 CSS px at a 390 viewport
+  // (scale 0.925), so 2 x 13 = 26 units = 24.1 CSS px, which clears WCAG 2.5.8. Verified against
+  // every pair of zones that this does not create a new overlap in either figure.
+  // ONE FOCUS STOP PER ZONE, NOT PER SHAPE. Six zones are drawn as a symmetric pair (both elbows,
+  // both knees…) and both shapes carry the same data-zone, so only the first is focusable and
+  // labelled; the twin is aria-hidden. That gives 15 tab stops for 15 sections, not 25 for 15.
+  // TWO LAYERS, NOT ONE. The drawn ellipse keeps its authored size — the elbow blob has to look
+  // like an elbow, not like a knee — and a SEPARATE, invisible `.bw-hit` ellipse carries the touch
+  // target, the focus stop and the accessible name. Growing the drawn shapes to 26 units was tried
+  // first and rejected: rendered at 390px it merged the neck into the shoulders and the wrists
+  // into the hips, which trades a touch defect for a legibility one.
+  // MIN_R = 13 viewBox units. The map is 380 units wide and renders ~352 CSS px at a 390 viewport
+  // (scale 0.926), so 2 x 13 = 26 units = 24.1 CSS px, which clears WCAG 2.5.8's 24x24 minimum.
+  // ORDER IS THE HIT TEST. SVG has no z-index; the last painted element wins a click, so the hit
+  // layer is emitted after every drawn shape, and within it the SMALLEST zones last — otherwise a
+  // grown elbow target sitting under a hip target would be unreachable exactly where it matters.
+  // ONE FOCUS STOP PER ZONE, NOT PER SHAPE: six zones are drawn as a symmetric pair (both elbows,
+  // both knees), both halves stay tappable, and only the first is focusable and labelled. 15 tab
+  // stops for the 15 sections below, not 25.
+  const MIN_R = 13;
   const zoneEls = bodyZones.zones.map((z) => {
     const ox = (bodyZones.figures[z.view] || { ox: 0 }).ox;
-    return (z.shapes || []).map((sh) => `<ellipse class="bw-zone" data-zone="${eh(z.id)}" cx="${sh.cx + ox}" cy="${sh.cy}" rx="${sh.rx}" ry="${sh.ry}"><title>${eh(z.label)}</title></ellipse>`).join('');
+    return (z.shapes || []).map((sh) => `<ellipse class="bw-zone" data-zone="${eh(z.id)}" aria-hidden="true" focusable="false" cx="${sh.cx + ox}" cy="${sh.cy}" rx="${sh.rx}" ry="${sh.ry}"><title>${eh(z.label)}</title></ellipse>`).join('');
   }).join('');
+  const hitEls = bodyZones.zones
+    .map((z) => ({ z, area: Math.max(...(z.shapes || [{ rx: 0, ry: 0 }]).map((sh) => sh.rx * sh.ry)) }))
+    .sort((a, b2) => b2.area - a.area)          // biggest first => smallest painted last => wins the tap
+    .map(({ z }) => {
+      const ox = (bodyZones.figures[z.view] || { ox: 0 }).ox;
+      return (z.shapes || []).map((sh, i) => {
+        const rx = Math.max(sh.rx, MIN_R), ry = Math.max(sh.ry, MIN_R);
+        const a11y = i === 0
+          ? ` role="button" tabindex="0" aria-label="${eh(z.label)} — jump to what it could be"`
+          : ' aria-hidden="true" focusable="false"';
+        return `<ellipse class="bw-hit" data-zone="${eh(z.id)}"${a11y} cx="${sh.cx + ox}" cy="${sh.cy}" rx="${rx}" ry="${ry}"></ellipse>`;
+      }).join('');
+    }).join('');
   const flabel = (v) => `<text class="bw-flabel" x="${(bodyZones.figures[v].ox) + 80}" y="428" text-anchor="middle">${eh(bodyZones.figures[v].label)}</text>`;
-  bodyWhereSvg = `<svg class="body-where-svg" viewBox="${eh(bodyZones.viewBox)}" role="img" aria-label="A front and back body map. Choose where it hurts from the list below." xmlns="http://www.w3.org/2000/svg">${sil(bodyZones.figures.front.ox)}${sil(bodyZones.figures.back.ox)}${zoneEls}${flabel('front')}${flabel('back')}</svg>`;
+  // role="group", not role="img": role="img" prunes every descendant from the accessibility tree,
+  // which is why 25 hotspots that are now real buttons would still have been invisible to AT.
+  bodyWhereSvg = `<svg class="body-where-svg" viewBox="${eh(bodyZones.viewBox)}" role="group" aria-label="Body map — front and back. Choose where it hurts, or use the list below." xmlns="http://www.w3.org/2000/svg">${sil(bodyZones.figures.front.ox)}${sil(bodyZones.figures.back.ox)}${zoneEls}${flabel('front')}${flabel('back')}${hitEls}</svg>`;
   bodyWhereIndex = '<div class="bw-index">' + bodyZones.zones.map((z) => {
     const probs = (z.problemIds || []).map((pid) => probById[pid]).filter(Boolean);
     let items;
     if (probs.length) {
       items = probs.map((p) => {
         const rc0 = (p.root_causes && p.root_causes[0]) ? p.root_causes[0].id : '';
-        return `<li><a class="bw-prob" href="/protocol/${eh(p.id)}/${eh(rc0)}"><b>${eh(p.name)}</b></a> <button class="bw-find" data-find-cause="${eh(p.id)}" type="button">find your cause &rarr;</button></li>`;
+        // W5c: the 15 "find your cause →" buttons all carried the IDENTICAL accessible name and
+        // no aria-label — measured hydrated, 15 buttons, 1 distinct label. A screen-reader user
+        // listing the controls on this page heard the same sentence fifteen times with nothing to
+        // tell them apart. The visible label stays (it reads correctly beside the problem name it
+        // follows); the accessible name now names the problem, which is WCAG 2.4.6/4.1.2.
+        return `<li><a class="bw-prob" href="/protocol/${eh(p.id)}/${eh(rc0)}"><b>${eh(p.name)}</b></a> <button class="bw-find" data-find-cause="${eh(p.id)}" type="button" aria-label="Find your cause — ${eh(p.name)}">find your cause &rarr;</button></li>`;
       }).join('');
     } else if (z.muscleGroup) {
       items = `<li><a class="bw-prob" href="/muscle/${eh(z.muscleGroup)}">Explore the ${eh(z.label.toLowerCase())} muscles &rarr;</a></li>`;
