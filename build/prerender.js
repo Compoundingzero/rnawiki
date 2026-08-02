@@ -3565,4 +3565,77 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   const thin = [...inbound.entries()].filter(([r, n]) => r !== '/' && n === 1).length;
   console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans (${thin} reachable from a single page).`);
 })();
+
+// ---- build-time assertion: A COLOUR TOKEN MUST BE READABLE ON THE PAGE IT IS PRINTED ON --------
+// W5c (2026-08-02). Contrast was measured, fixed by eye and then re-broken twice in this codebase's
+// history, because nothing checks it. Measured hydrated at 390x844 with chFade disabled and every
+// <details>/.chapter expanded, full alpha-composited TreeWalker over 13 routes
+// (qa/out/w5cdi/before-390.json), 20.7-46.9% of visible text nodes failed WCAG AA — and the top of
+// that list was not 500 mistakes, it was four hex values in :root:
+//     --faint  #8b97a6  2.79:1  ~450 failing nodes      --star   #d97706  2.99:1  209 nodes
+//     --accent #0d9488  3.52:1 as text / 3.74:1 under white text   --green #059669  3.77:1
+// This gate computes the real WCAG 1.4.3 ratio for every token listed below against all three page
+// backgrounds and refuses to build below 4.5:1. It reads site/styles.css, so it cannot be satisfied
+// by a comment.
+// SECOND CHECK, a different defect class, and the one nobody would ever look for: this site HAS NO
+// DARK THEME — no dark :root, and site/app.js never sets data-theme (0 occurrences). Five
+// `prefers-color-scheme:dark` blocks nonetheless lightened TEXT ONLY, leaving the light background
+// underneath. Measured with the OS in dark appearance: .ck-behavior rgb(74,222,128) at 3.44:1 and
+// .fk-compound rgb(196,181,253) at 3.16:1 on the same chips a light-mode reader sees at 5:1+. A
+// dark-scheme block may set a colour only if it also sets the background that colour sits on.
+// PROVE IT by putting --faint:#8b97a6 back, or by adding
+// `@media(prefers-color-scheme:dark){.foo{color:#4ade80}}` — each fails by name.
+(function assertContrastTokens() {
+  const CSS = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
+  const bad = [];
+  const root = CSS.match(/:root\{([\s\S]*?)\n\}/);
+  if (!root) { console.error('\n[prerender] site/styles.css has no :root token block — refusing to build.\n'); process.exit(1); }
+  const tok = {};
+  [...root[1].matchAll(/(--[a-z0-9-]+)\s*:\s*(#[0-9a-fA-F]{3,8})/g)].forEach((m) => { tok[m[1]] = m[2]; });
+  const rgb = (h) => {
+    let s = h.replace('#', '');
+    if (s.length === 3) s = s.split('').map((c) => c + c).join('');
+    return [0, 2, 4].map((i) => parseInt(s.substr(i, 2), 16));
+  };
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
+  const ratio = (a, b) => { const l1 = lum(rgb(a)), l2 = lum(rgb(b)); return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05); };
+  // The three surfaces every one of these tokens is actually printed on.
+  const SURFACES = ['--bg', '--panel', '--panel2'];
+  // Tokens used as TEXT on those surfaces. Each one below was measured failing before W5c; the list
+  // is not decorative — adding a token here is what stops it drifting back.
+  const AS_TEXT = ['--ink', '--head', '--muted', '--faint', '--link', '--star', '--green', '--yellow', '--orange', '--accent'];
+  // Tokens used as a BACKGROUND with --accent-ink (white) printed on them.
+  const AS_FILL = ['--accent'];
+  AS_TEXT.forEach((t) => {
+    if (!tok[t]) { bad.push(`:root has no ${t} — a token this gate is written about has been renamed or deleted, so the check silently stopped covering it`); return; }
+    SURFACES.forEach((s) => {
+      if (!tok[s]) { bad.push(`:root has no ${s}`); return; }
+      const r = ratio(tok[t], tok[s]);
+      if (r < 4.5) bad.push(`${t} (${tok[t]}) on ${s} (${tok[s]}) is ${r.toFixed(2)}:1 — WCAG AA needs 4.5:1 for the body sizes this token is printed at, and the 3:1 large-text exemption needs 18.66px bold or 24px`);
+    });
+  });
+  AS_FILL.forEach((t) => {
+    if (!tok[t] || !tok['--accent-ink']) return;
+    const r = ratio(tok['--accent-ink'], tok[t]);
+    if (r < 4.5) bad.push(`--accent-ink (${tok['--accent-ink']}) on ${t} (${tok[t]}) is ${r.toFixed(2)}:1 — that is every filled button and every numbered step marker on the site`);
+  });
+  // A dark-scheme block may not repaint text and leave the light background it sits on.
+  const darkBlocks = [...CSS.matchAll(/@media\s*\(prefers-color-scheme\s*:\s*dark\)\s*\{([\s\S]*?)\n?\}\s*(?=\n|$)/g)];
+  darkBlocks.forEach((m) => {
+    const body = m[1];
+    [...body.matchAll(/([^{}]+)\{([^{}]*)\}/g)].forEach((r) => {
+      const decls = r[2];
+      if (/(^|;)\s*color\s*:/.test(decls) && !/background/.test(decls)) {
+        bad.push(`@media(prefers-color-scheme:dark) repaints the TEXT of "${r[1].trim().slice(0, 60)}" and sets no background — this site has no dark :root and app.js never sets data-theme, so that light text lands on the light --panel a dark-mode reader still gets`);
+      }
+    });
+  });
+  if (bad.length) {
+    console.error('\n[prerender] A COLOUR TOKEN IS NOT READABLE ON THE PAGE IT IS PRINTED ON — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] contrast tokens OK — ${AS_TEXT.length} text tokens × ${SURFACES.length} surfaces all ≥4.5:1, white-on-accent ${ratio(tok['--accent-ink'], tok['--accent']).toFixed(2)}:1, ${darkBlocks.length} dark-scheme block(s) all set their own background.`);
+})();
 console.log(`[prerender] base URL: ${SITE_URL}`);
