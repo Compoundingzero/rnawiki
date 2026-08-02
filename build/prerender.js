@@ -895,7 +895,17 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   // roles are load-bearing: `display:block` on a table strips its implicit ARIA roles, and the
   // stacked layout clips <thead> instead of display:none so it stays in the accessibility tree.
   const who = (n) => `<span class="cmp-who" aria-hidden="true">${esc(n)}</span>`;
-  const cmp = (k, va, vb) => `<tr role="row"><th role="rowheader" scope="row">${esc(k)}</th><td role="cell">${who(a.name)}${va}</td><td role="cell">${who(b.name)}${vb}</td></tr>`;
+  // W5d (2026-08-02): D40 — A BARE EM-DASH IS NOT AN ANSWER, IT IS A SHRUG.
+  // Measured hydrated at 390x844 on all 123 published pairs (qa/out/w5cdi/before-390.json): 11
+  // routes rendered a tbody cell whose entire content was "—", always the BOTTOM LINE row, always
+  // Iron or Vitamin C (Ascorbate) — the two consumer-renderable compounds of the 34 in the corpus
+  // with an empty `bottom`. On a page that exists to put two things side by side, an em-dash in
+  // one column reads as a statement about the compound ("nothing to say about this one") when it
+  // is a statement about the corpus. `blank()` says which of the two it is; the row disappears
+  // entirely when NEITHER side has the field, because a row of two shrugs is worse than no row.
+  const blank = '<span class="cmp-none">Not written up yet</span>';
+  const has = (v) => !!(v && String(v).replace(/<[^>]*>/g, '').replace(/[—\s]/g, ''));
+  const cmp = (k, va, vb) => (!has(va) && !has(vb)) ? '' : `<tr role="row"><th role="rowheader" scope="row">${esc(k)}</th><td role="cell">${who(a.name)}${has(va) ? va : blank}</td><td role="cell">${who(b.name)}${has(vb) ? vb : blank}</td></tr>`;
   const table = `<div class="cmp-wrap"><table class="cmp-table" role="table"><thead><tr role="row"><th role="columnheader"></th><th role="columnheader" scope="col"><a href="/c/${slug(a.name)}">${esc(a.name)}</a></th><th role="columnheader" scope="col"><a href="/c/${slug(b.name)}">${esc(b.name)}</a></th></tr></thead><tbody>
     ${cmp('Human evidence', stars(a.stars), stars(b.stars))}
     ${cmp('Legal status', esc((a.approvalLabels || []).join(', ') || '—'), esc((b.approvalLabels || []).join(', ') || '—'))}
@@ -3689,5 +3699,41 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] accent ink OK — ${checked} rules print in --accent-ink, every one of them on an accent-coloured background.`);
+})();
+// ---- build-time assertion: A TABLE CELL MUST SAY SOMETHING ------------------------------------
+// W5d (2026-08-02). Measured hydrated at 390x844 on all 123 published pairs
+// (qa/out/w5cdi/before-390.json): 11 routes rendered a tbody cell whose entire content was "—",
+// always the BOTTOM LINE row, always Iron or Vitamin C (Ascorbate) — the two consumer-renderable
+// compounds among the 34 in the corpus with an empty `bottom`. On a page whose whole job is to put
+// two things side by side, an em-dash in one column reads as a statement about that compound when
+// it is a statement about the corpus. This gate covers all 123 published documents, which is 123x
+// the coverage a single smoke route can give; the hydrated twin is covered by
+// `anAbsentValueSaysSoInWords` in scripts/smoke.mjs on /compare/caffeine-vs-iron, the pair that
+// actually has the gap — a gate over an empty set always passes.
+// PROVE IT by putting `${va || '—'}` back in the cmp() helper above.
+(function assertNoBareDashCells() {
+  const bad = [];
+  let cells = 0, pagesChecked = 0;
+  pages.filter((p) => /^\/compare\/.+-vs-/.test(p.route)).forEach((p) => {
+    pagesChecked++;
+    const tbody = p.html.split('<tbody>')[1];
+    if (!tbody) { bad.push(`${p.route}: comparison table has no <tbody>`); return; }
+    [...tbody.split('</tbody>')[0].matchAll(/<td[^>]*>([\s\S]*?)<\/td>/g)].forEach((m) => {
+      cells++;
+      // strip the aria-hidden per-cell compound label and any markup, then ask what is left
+      const txt = m[1].replace(/<span class="cmp-who"[\s\S]*?<\/span>/g, '').replace(/<[^>]*>/g, '').replace(/&[a-z]+;/g, ' ').trim();
+      if (!txt) bad.push(`${p.route}: a comparison cell is empty`);
+      else if (/^[—–-]+$/.test(txt)) bad.push(`${p.route}: a comparison cell reads only "${txt}" — in a two-column comparison that is read as a fact about the compound, and it is a fact about the corpus`);
+    });
+  });
+  if (!pagesChecked) bad.push('no published comparison pages were checked — this gate is running over an empty set and would pass whatever happened');
+  if (bad.length) {
+    console.error('\n[prerender] A COMPARISON CELL SAYS NOTHING — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] comparison cells OK — ${cells} cells across ${pagesChecked} pairs, none empty and none a bare dash.`);
 })();
 console.log(`[prerender] base URL: ${SITE_URL}`);

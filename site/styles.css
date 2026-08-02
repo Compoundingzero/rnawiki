@@ -1834,6 +1834,8 @@ a.dp-name:hover{color:var(--accent)}
    "cell"/"rowheader"/"columnheader" attributes in both renderers are what keep the table a table
    once `display:block` strips its implicit roles. */
 .cmp-who{display:none}
+/* W5d: a stated absence, not a shrug. See build/prerender.js. */
+.cmp-none{color:var(--faint);font-style:italic}
 @media(max-width:600px){
   .cmp-wrap{overflow-x:visible}
   .cmp-table{min-width:0;display:block;width:100%;font-size:.95rem}

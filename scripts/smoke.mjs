@@ -111,6 +111,10 @@ const ROUTES = [
   ['target-longname', '/target/MTHFR'],
   ['compare-index', '/compare'],                           // KEEP_PRERENDERED + mounted picker
   ['compare-pair', '/compare/caffeine-vs-creatine-monohydrate'],
+  // W5d: the pair that actually HAS a missing value. /compare/caffeine-vs-creatine-monohydrate
+  // has a bottom line on both sides, so it cannot detect D40 — a gate over an empty set always
+  // passes. Iron is one of only two consumer-renderable compounds with an empty `bottom`.
+  ['compare-pair-gap', '/compare/caffeine-vs-iron'],
   ['muscle', '/muscle/abdominals'],
   ['pathway', '/pathway/0'],
   ['pathways', '/pathways'],
@@ -345,6 +349,26 @@ const ASSERTIONS = {
       const thead = document.querySelector('.cmp-table thead');
       if (!thead || getComputedStyle(thead).display === 'none') return 'the comparison table header is display:none — clipped is required, not removed, or a screen reader loses the column association for every cell';
       if (document.querySelector('.cmp-table').getAttribute('role') !== 'table') return 'the comparison table has lost role="table" — `display:block` strips a table\'s implicit ARIA roles, so the explicit ones are what keep it a table';
+      return null;
+    },
+  }],
+  // ---- W5d (2026-08-02): D40 — A BARE EM-DASH IS NOT AN ANSWER --------------------------------
+  // Measured hydrated at 390x844 on all 123 pairs (qa/out/w5cdi/before-390.json): 11 routes
+  // rendered a tbody cell whose entire content was "—", always the BOTTOM LINE row, always Iron or
+  // Vitamin C. build/prerender.js assertNoBareDashCells() covers all 123 prerendered documents;
+  // this covers the hydrated twin, on the pair that has the gap.
+  // PROVE IT by putting `${va || '—'}` back in renderComparison()'s row() helper.
+  '/compare/caffeine-vs-iron': [{
+    name: 'anAbsentValueSaysSoInWords',
+    why: 'W5d/D40: a cell containing only an em-dash reads as a fact about the compound, when it is a fact about the corpus',
+    evaluate: () => {
+      const cells = [...document.querySelectorAll('.cmp-table tbody td')];
+      if (!cells.length) return 'no comparison table on this route';
+      const bare = cells.filter((td) => /^[—–-]*$/.test(td.innerText.replace(/^[^\n]*\n/, '').trim()));
+      if (bare.length) return `${bare.length} of ${cells.length} cells contain only a dash`;
+      // ...and this route must keep containing the gap, or the gate stops testing anything.
+      const stated = cells.filter((td) => /not written up yet/i.test(td.innerText));
+      if (!stated.length) return 'no stated absence anywhere on this pair — Iron has been given a bottom line, so this route no longer exercises the defect; retarget it at another pair with a gap';
       return null;
     },
   }],

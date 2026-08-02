@@ -3396,7 +3396,13 @@
     // than with display:none, so it stays in the accessibility tree. The explicit ARIA roles are
     // load-bearing for the same reason: `display:block` on a table strips its implicit roles.
     const who = (n) => `<span class="cmp-who" aria-hidden="true">${esc(n)}</span>`;
-    const row = (k, va, vb) => `<tr role="row"><th role="rowheader" scope="row">${k}</th><td role="cell">${who(A.name)}${va || '—'}</td><td role="cell">${who(B.name)}${vb || '—'}</td></tr>`;
+    // W5d (2026-08-02): D40 — see the note in build/prerender.js. `|| '—'` printed a bare em-dash
+    // as a cell's entire content on 11 of 123 pairs, always the BOTTOM LINE row, always Iron or
+    // Vitamin C. An em-dash in one column of a two-column comparison reads as a fact about that
+    // compound; it is a fact about the corpus. Both renderers now say which.
+    const blank = '<span class="cmp-none">Not written up yet</span>';
+    const has = (v) => !!(v && String(v).replace(/<[^>]*>/g, '').replace(/[—\s]/g, ''));
+    const row = (k, va, vb) => (!has(va) && !has(vb)) ? '' : `<tr role="row"><th role="rowheader" scope="row">${k}</th><td role="cell">${who(A.name)}${has(va) ? va : blank}</td><td role="cell">${who(B.name)}${has(vb) ? vb : blank}</td></tr>`;
     const faq = faqRender([
       { q: `Is ${A.name} or ${B.name} better for ${gl}?`, a: verdict },
       { q: `What's the difference between ${A.name} and ${B.name}?`, a: `${A.name}: ${faqSnip(A.bottom || A.plain, 130)} — ${B.name}: ${faqSnip(B.bottom || B.plain, 130)}` },
