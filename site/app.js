@@ -2138,12 +2138,31 @@
       { n: 3, icon: '💊', label: 'What acts on it', html: ch3 }, { n: 4, icon: '🎓', label: 'Prove it', html: ch4 },
     ].filter(ch => ch.html && ch.html.trim());
     const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, k) => `<button class="ch-step${k === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${k + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
-    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, k) => { const nx = chapterDefs[k + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${k === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
+    // ---- W5b (2026-08-02): D16 — THE STRUCTURE THE CRAWLER GETS AND THE READER DOES NOT --------
+    // Measured on all 103 /target routes: the prerendered document carries 8 <h2 id> plus an
+    // "On this page · N min read" contents card; the hydrated one carried h2 = 0 and h4 = 0 on
+    // 103/103, an H1 -> H3 heading skip on 103/103 (the compound cards below are <h3>), no contents
+    // card and no read-time. 77 of 103 had exactly TWO headings for a 1,340-word page.
+    // The chapters were always the section structure — they were just never headings. Naming each
+    // one <h2> costs no new copy, restores H1 -> H2 -> H3, and gives anchorizeHeadings() something
+    // to name, so the chapter links below are real addresses.
+    // The minutes are computed from THIS document's own words, at 230 wpm — the same rate
+    // build/prerender.js uses on its own. The two documents hold different amounts of text, so the
+    // two numbers legitimately differ; each is true of the page it is printed on, and neither is
+    // copied from the other.
+    const chTitle = (ch) => `<h2 class="ch-title" id="${headSlug(ch.label)}">${ch.icon} ${esc(ch.label)}</h2>`;
+    const _tgWords = chapterDefs.map((ch) => ch.html).join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    const _tgMins = Math.max(1, Math.round(_tgWords / 230));
+    const toc = chapterDefs.length > 1 ? `<nav class="cpd-toc pagetoc" aria-label="Contents">
+      <span class="toc-lbl">On this page · ${_tgMins} min read</span>
+      ${chapterDefs.map((ch) => `<a href="#${headSlug(ch.label)}">${ch.icon} ${esc(ch.label)}</a>`).join('')}
+    </nav>` : '';
+    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, k) => { const nx = chapterDefs[k + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${k === 0 ? ' active' : ''}" data-chapter="${ch.n}">${chTitle(ch)}${ch.html}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
     setTimeout(() => { wirePathwayLearning(pc); }, 0);
     return `<div class="detail lesson-detail" id="tg-detail">${crumb}
       <div class="target-hero"><div class="tsym">${t.sym}</div><div><h1>${cleanName}</h1><span class="pw-badge">🎯 Molecular target · ${list.length} compound${list.length > 1 ? 's' : ''}</span><p><a href="${t.url}" target="_blank" rel="noopener">Official record ↗</a></p></div></div>
       <p class="ch-lead">Learn this target once — then every compound that acts on it makes sense. Tap through from beginner to expert.</p>
-      ${tabs}${sections}</div>`;
+      ${toc}${tabs}${sections}</div>`;
   }
 
   function browsePage() {

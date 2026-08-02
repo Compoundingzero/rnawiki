@@ -228,6 +228,32 @@ const ASSERTIONS = {
       return null;
     },
   }],
+  // ---- W5b (2026-08-02): D16 — /target's heading layer, contents card and read-time -----------
+  // MEASURED on all 103 /target routes: the prerendered document carries 8 <h2 id>, an "On this
+  // page · N min read" contents card and 1,398-1,997 words; the hydrated document carried
+  // h2 = 0 and h4 = 0 on 103/103, an H1 -> H3 skip on 103/103 (the compound cards are <h3>), no
+  // contents card and no read-time. 77 of 103 had exactly two headings for a 1,340-word page.
+  // The chapters were always the structure; they were simply never headings.
+  // PROVE IT by deleting the `chTitle(ch)` call from the `sections` template in targetPage().
+  '/target/AR': [{
+    name: 'targetPageHasAHeadingLayerAContentsCardAndAReadTime',
+    why: 'W5b/D16: the crawler was given eight addressable sections, a contents card and a read-time on this page, and a reader was given none of them',
+    evaluate: () => {
+      const app = document.getElementById('app');
+      const h2 = [...app.querySelectorAll('h2')];
+      if (h2.length < 2) return `${h2.length} <h2> in the hydrated document — the chapters are the section structure and they must be headings, or this page has no outline for a reader, a screen reader or an answer engine`;
+      const seq = [...app.querySelectorAll('h1,h2,h3,h4')].map((h) => +h.tagName[1]);
+      for (let i = 1; i < seq.length; i++) if (seq[i] - seq[i - 1] > 1) return `heading level jumps from h${seq[i - 1]} to h${seq[i]} — the outline skips a level`;
+      const toc = app.querySelector('.pagetoc');
+      if (!toc) return 'no contents card, which the prerendered document has on 103/103';
+      if (!/\d+\s*min read/i.test(toc.innerText)) return `the contents card gives no read-time: "${toc.innerText.replace(/\s+/g, ' ').slice(0, 80)}"`;
+      const links = [...toc.querySelectorAll('a[href^="#"]')];
+      if (links.length < 2) return 'the contents card lists fewer than two sections';
+      const missing = links.map((a) => decodeURIComponent(a.getAttribute('href').slice(1))).filter((id) => !document.getElementById(id));
+      if (missing.length) return `the contents card links to ${missing.length} section(s) that do not exist: ${missing.join(', ')}`;
+      return null;
+    },
+  }],
   '/stack?ids=c1,c24': [{
     name: 'oneMoleculeOnTwoPagesIsNotAnInteraction',
     why: 'W4.5: a danger row naming a molecule against itself is a fabricated interaction, and it is the row a reader is most likely to act on',

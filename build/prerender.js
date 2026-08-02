@@ -1525,8 +1525,29 @@ function partDivider(n, total) {
   // use-before-initialization has bitten this file (DATA_DIR twice, mdWc, GLOSSARY, now this).
   // `node --check` catches none of them; only running the build does.
   const L = ['The big picture', 'The mechanism', 'Going deeper', 'How an expert reasons', 'Prove it'];
-  return `<div class="lf-part" role="separator" aria-label="Part ${n} of ${total}: ${L[n - 1]}">`
-    + `<span class="lf-part-n">Part ${n} of ${total}</span><span class="lf-part-t">${L[n - 1]}</span></div>`;
+  // W5b (2026-08-02): "of 5" WAS A LIE ON 260 DOCUMENTS. Five dividers are written below but four
+  // of them are conditional on the entry actually having that content, and the numbers were
+  // hardcoded 1..5 — so a page carrying only parts 1, 2 and 5 printed "Part 1 of 5", "Part 2 of 5",
+  // "Part 5 of 5" and the reader spent the whole page looking for parts 3 and 4, which do not
+  // exist in that document. Measured in the prerendered document: 103/103 /target and 157/171 /c
+  // = 260 routes. The count is now deferred to renumberParts() below, which counts the dividers
+  // this page actually emitted. Same words, a true number.
+  return `<div class="lf-part" role="separator" data-part-label="${esc(L[n - 1])}">`
+    + `<span class="lf-part-n"></span><span class="lf-part-t">${L[n - 1]}</span></div>`;
+}
+// Second pass, because the total is not knowable until the last conditional block has run.
+// One regex over the whole emitted block, one counter, so the visible label and the accessible
+// name can never disagree — they are written from the same two numbers in the same replacement.
+function renumberParts(html) {
+  const RE = /<div class="lf-part" role="separator" data-part-label="([^"]*)"><span class="lf-part-n"><\/span>/g;
+  const total = (html.match(RE) || []).length;
+  if (!total) return html;
+  let i = 0;
+  return html.replace(RE, (m, label) => {
+    i++;
+    return `<div class="lf-part" role="separator" aria-label="Part ${i} of ${total}: ${label}">`
+      + `<span class="lf-part-n">Part ${i} of ${total}</span>`;
+  });
 }
 
 function learnFlatHtml(e, opts) {
@@ -1672,7 +1693,7 @@ function learnFlatHtml(e, opts) {
     out.push(`<h2>What this connects to</h2><dl class="lf-conn">${e.connections.map((c) =>
       `<dt>${mdSafe(c.to || '')}</dt><dd>${mdSafe(c.why || '')}</dd>`).join('')}</dl>`);
   }
-  return out.length ? `<section class="learn-flat">${out.join('')}</section>` : '';
+  return out.length ? `<section class="learn-flat">${renumberParts(out.join(''))}</section>` : '';
 }
 
 D.pathways.forEach((p, i) => {
@@ -3121,6 +3142,51 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] anchor aliases OK — ${slugs.length} published fragments the SPA renders under another id, all still published here.`);
+})();
+
+// ---- build-time assertion: A COUNT OF THE PARTS MUST EQUAL THE PARTS --------------------------
+// W5b (2026-08-02). learnFlatHtml() writes five part dividers and four of them are conditional on
+// the entry having that content, but the numbers were hardcoded partDivider(1,5) … partDivider(5,5).
+// So a page carrying only parts 1, 2 and 5 printed "Part 1 of 5", "Part 2 of 5", "Part 5 of 5" and
+// sent the reader looking for two parts that are not in that document. Measured in the prerendered
+// document before the fix: 260 routes — 157 of 171 /c and 103 of 103 /target — emitted 3 dividers
+// each while claiming 5, and 45 emitted the full 5. Same defect class as "Covers all 170 compounds"
+// and "Search 170 compounds": a number typed next to content that does not have to agree with it.
+// PROVE IT by putting a literal back — partDivider(5, 5) instead of the renumber pass.
+(function assertPartNumbering() {
+  const bad = [];
+  let files = 0, dividers = 0;
+  const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
+    const p = path.join(d, e.name);
+    if (e.isDirectory()) return walk(p);
+    if (!e.name.endsWith('.html')) return;
+    const h = fs.readFileSync(p, 'utf8');
+    const vis = [...h.matchAll(/<span class="lf-part-n">Part (\d+) of (\d+)<\/span>/g)].map((m) => [+m[1], +m[2]]);
+    if (!vis.length) return;
+    files++; dividers += vis.length;
+    const rel = path.relative(ROOT, p);
+    const total = vis[0][1];
+    if (vis.length !== total) bad.push(`${rel}: prints "of ${total}" but the document contains ${vis.length} part${vis.length === 1 ? '' : 's'} — the reader is sent looking for ${total - vis.length} that are not there`);
+    vis.forEach(([n, tot], i) => {
+      if (n !== i + 1) bad.push(`${rel}: part ${i + 1} is labelled "Part ${n}"`);
+      if (tot !== total) bad.push(`${rel}: one divider says "of ${tot}" and another says "of ${total}"`);
+    });
+    // The accessible name is a second copy of the same two numbers, and a second copy is a second
+    // chance to disagree. Screen-reader users get the aria-label, not the span.
+    const aria = [...h.matchAll(/class="lf-part" role="separator" aria-label="Part (\d+) of (\d+):/g)].map((m) => [+m[1], +m[2]]);
+    if (aria.length !== vis.length || aria.some((a, i) => a[0] !== vis[i][0] || a[1] !== vis[i][1])) {
+      bad.push(`${rel}: the aria-labels and the visible part numbers disagree — ${JSON.stringify(aria)} vs ${JSON.stringify(vis)}`);
+    }
+  });
+  walk(SITE);
+  if (bad.length) {
+    console.error('\n[prerender] A PART COUNT DOES NOT MATCH THE PARTS — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] part numbering OK — ${dividers} dividers across ${files} documents, every one numbered 1..N of its own N.`);
 })();
 
 // ---- build-time assertion: structured data ----------------------------------------------------
