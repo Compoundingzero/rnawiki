@@ -1618,6 +1618,19 @@ try {
           // `widest` names the element so the failure is actionable rather than a number.
           scrollWidth: document.documentElement.scrollWidth,
           clientWidth: document.documentElement.clientWidth,
+          // W5c (2026-08-02): the persistent header is on all 568 routes, so a control too small
+          // to tap there is a defect 568 times over. Measured hydrated at 390x844 before the fix
+          // (qa/out/w5cdi/before-390.json): search input 104x37, "Sign in" 71x30, hamburger 32x29,
+          // brand 97x29 — all four under the 44px touch minimum, and the search box so narrow that
+          // its placeholder rendered as the words "Search 1" out of "Search 171 compounds,
+          // protocols, terms…". `searchClipped` catches that second half: a control can be 44px
+          // tall and still be too narrow to say what it is for.
+          header: (() => {
+            const g = (sel) => { const e = document.querySelector(sel); if (!e) return null; const r = e.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; };
+            const inp = document.getElementById('search');
+            return { search: g('#search'), acct: g('.acct-btn'), menu: g('#menu-btn'), brand: g('.brand'),
+              searchClipped: inp ? inp.scrollWidth > inp.clientWidth + 1 : null };
+          })(),
           widest: (() => {
             const vw = document.documentElement.clientWidth;
             let worst = null;
@@ -1683,6 +1696,15 @@ try {
       // that scrolls sideways on a phone hides content behind a gesture nobody is told to make.
       // PROVE IT by removing `overflow-wrap:anywhere` from the h1,h2,h3,h4 rule in styles.css —
       // /target/MTHFR and /c/statins-atorvastatin-rosuvastatin fail by name.
+      // W5c: every persistent header control must be tappable, on every route.
+      // PROVE IT by removing `min-height:44px` from the #search rule in site/styles.css.
+      if (dom.header) {
+        Object.entries(dom.header).forEach(([k, v]) => {
+          if (!v || typeof v !== 'object') return;
+          if (v.h < 44) fail.push(`${route}  header control "${k}" is ${v.w}x${v.h} px — under the 44px touch minimum, on a control that is on every one of the 568 routes`);
+        });
+        if (dom.header.searchClipped) fail.push(`${route}  the header search box is too narrow for its own placeholder — it renders as a truncated fragment, which reads as a broken string rather than a prompt`);
+      }
       if (dom.scrollWidth > dom.clientWidth + 1) {
         const w = dom.widest;
         add(`the page is ${dom.scrollWidth}px wide in a ${dom.clientWidth}px viewport — it scrolls sideways on a phone${w ? `; widest element is <${w.tag.toLowerCase()}${w.cls ? ' class="' + w.cls + '"' : ''}> ending at ${w.right}px: "${w.txt}"` : ''}`);

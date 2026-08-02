@@ -58,7 +58,7 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .brand{font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.02em}
 .brand span{color:#000}
 .search-wrap{position:relative;flex:1;max-width:520px}
-#search{width:100%;padding:.55rem .9rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:.95rem;outline:none}
+#search{width:100%;min-height:44px;padding:.55rem .9rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:.95rem;outline:none}
 #search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(13,148,136,.12)}
 .search-results{position:absolute;top:110%;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:12px;max-height:60vh;overflow:auto;box-shadow:var(--shadow);padding:.3rem}
 .search-results a{display:block;padding:.5rem .7rem;border-radius:8px;color:var(--ink)}
@@ -70,7 +70,7 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .topnav{display:flex;gap:1.1rem;font-size:.92rem}
 .topnav a{color:var(--muted)}
 .topnav a:hover{color:var(--head);text-decoration:none}
-.menu-btn{display:none;background:none;border:none;color:var(--head);font-size:1.4rem;cursor:pointer}
+.menu-btn{display:none;background:none;border:none;color:var(--head);font-size:1.4rem;cursor:pointer;min-width:44px;min-height:44px}
 .stack-badge{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;background:var(--accent);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:0 5px}
 
 main{max-width:var(--maxw);margin:0 auto;padding:2rem 1.2rem 4rem}
@@ -174,7 +174,27 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
 
 /* breadcrumbs */
 .crumbs{font-size:.82rem;color:var(--faint);margin-bottom:1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
-.crumbs a{color:var(--muted)}
+.crumbs a{color:var(--muted);display:inline-block;padding:.18rem 0;min-height:24px}
+/* ---- W5c (2026-08-02): STANDALONE CONTROLS TO THE 44px TOUCH MINIMUM ------------------------
+   Measured hydrated at 390x844 across 13 routes: /az 165 of 190 controls under 44px, compound
+   pages a median of 79, the homepage 26 of 50. The header was the worst of it and is fixed in its
+   own block above; this rule covers the standalone pill controls — the ones that are buttons or
+   chips rather than words inside a sentence. Every one of them was measured at 25-38px tall:
+     .seed-chip 112x37 (the homepage's first CTA row) · .learned-btn 126x37 · .stack-btn-lg 132x37
+     · .mol-3d-btn 126x37 · .chip 107x35 · .s-rc 140x33 (the search-result rows, 51 of them)
+     · .share-short-btn 239x37 · .cta-primary 250x38 · .cta-ghost 270x36 · .rc-assess 274x35
+     · .st-add 269x28 · .df-link 194x34 · .seed-all 98x34 · .cc-reveal 103x25 · .brand 97x29
+   inline-flex + centring rather than bare min-height, because min-height on a padded pill leaves
+   its label stuck to the top edge.
+   NOT COVERED, and deliberately: links that sit inside a sentence (279 of them at 33x16 in the
+   footer and in body prose, .oth-jump, .wex-back, .linkbtn). WCAG 2.5.8 exempts inline links
+   explicitly, and padding them out would break the line boxes they live in. The breadcrumb links
+   above are the one in-between case — block-level, but a navigation row rather than buttons — so
+   they are taken to the 24px AA floor rather than the 44px AAA one. */
+.brand,.seed-chip,.seed-all,.chip,.cta-primary,.cta-ghost,.learned-btn,.stack-btn-lg,.mol-3d-btn,
+.share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.s-rc,.acct-btn,.menu-btn{
+  min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.st-add,.menu-btn{display:flex}
 /* W5c: the breadcrumb separator was var(--line) — 1.10:1, the lowest ratio of any text node on the
    site that is not white-on-white. It is a real text node in a real navigation landmark, so it is
    read out and copy-pasted; it is now legible and simply smaller than the links it separates. */
@@ -327,7 +347,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 
 /* compare / az / misc */
 .compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.compare-col select{width:100%;padding:.6rem;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:10px;font-size:.95rem}
+.compare-col select{width:100%;min-height:44px;padding:.6rem;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:10px;font-size:.95rem}
 .compare-table{margin-top:1.2rem;font-size:.92rem}
 /* W5c: the third of the three overflowing routes. /compare measured documentElement.scrollWidth
    454 against a 390px viewport — the ad-hoc picker's `1fr 1fr` is `minmax(auto,1fr)`, and `auto`
@@ -340,7 +360,12 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .compare-row .rk{grid-column:1/-1;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint)}
 .az-letter{margin-top:1.6rem;color:var(--accent);font-weight:800;font-size:1.1rem}
 .az-list{columns:3;column-gap:2rem}
-.az-list a{display:block;padding:.2rem 0}
+/* W5c (2026-08-02): 149 of 171 A-Z rows measured 352x32 px at 390x844 — under the 44px touch
+   minimum, on the page whose ONLY job is 171 tap targets (/az had the worst tap-target count on
+   the site, 165 of 190 controls under 44px). .62rem of vertical padding takes each row to 44px.
+   It makes the page ~37% longer, which is the correct trade on a directory: a list you can tap
+   beats a list that fits. */
+.az-list a{display:block;padding:.62rem 0;min-height:44px}
 .disclaimer{background:rgba(220,38,38,.06);border:1px solid rgba(220,38,38,.3);border-radius:12px;padding:1.2rem;color:#991b1b;margin:1.5rem 0}
 .foot{max-width:var(--maxw);margin:0 auto;padding:2rem 1.2rem 3rem;color:var(--faint);font-size:.82rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;border-top:1px solid var(--line)}
 .empty{color:var(--faint);text-align:center;padding:3rem}
@@ -349,7 +374,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .account-slot{display:flex;align-items:center}
 .acct{display:flex;align-items:center;gap:.5rem}
 .acct-name{font-size:.86rem;color:var(--head);font-weight:600}
-.acct-btn{padding:.4rem .8rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:.82rem;cursor:pointer;transition:.12s}
+.acct-btn{padding:.4rem .8rem;min-height:44px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:.82rem;cursor:pointer;transition:.12s}
 .acct-btn:hover{border-color:var(--faint);color:var(--head)}
 .acct-btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
 .acct-btn.primary:hover{filter:brightness(.95);color:#fff}
@@ -454,6 +479,24 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .az-list{columns:1}
   .search-wrap{max-width:none}
 }
+/* ---- W5c (2026-08-02): FIVE CONTROLS DO NOT FIT ON ONE 390px ROW, AND THE SEARCH BOX LOST ----
+   Measured hydrated at 390x844 on /az (qa/out/w5cdi/before-390.json): brand 97x29, search input
+   104x37, "Sign in" 71x30, hamburger 32x29 — every one of them under the 44px touch minimum, and
+   the search box so narrow that its placeholder rendered as the words "Search 1" (the real string
+   is "Search 171 compounds, protocols, terms…"). A truncated number is worse than a truncated
+   sentence: "Search 1" reads as a broken string, on every route, in the first 60px of the page.
+   Below 600px the bar wraps and the search takes the whole second row. THE TRADE, STATED: the
+   sticky header grows from ~58px to ~104px, which is 12.3% of an 844px viewport instead of 6.9%.
+   That is what a usable search box on every page costs, and search is this site's primary
+   discovery tool — the alternative, hiding it behind the ☰, is worse. */
+@media(max-width:600px){
+  .topbar{flex-wrap:wrap;row-gap:.5rem;padding:.6rem 1rem .7rem}
+  .brand{order:1}
+  .account-slot{order:2;margin-left:auto}
+  .menu-btn{order:3}
+  .search-wrap{order:4;flex:1 0 100%;max-width:none}
+  .topnav.open{top:100%}
+}
 
 /* ================= Protocol Engine ================= */
 /* W5c: --fl #16a34a measured 3.10:1 on --bg (Fuel green, used as TEXT on .sg, .hiw-n.fl,
@@ -500,7 +543,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .solve-card:hover .s-go{text-decoration:underline}
 .s-rcs{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;border-top:1px dashed var(--line);padding-top:.5rem}
 .s-rcs-k{color:var(--faint);font-size:.76rem;margin-right:.15rem}
-.s-rc{display:inline-flex;align-items:center;min-height:32px;padding:.3rem .65rem;border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--link);font-size:.82rem;text-decoration:none}
+.s-rc{display:inline-flex;align-items:center;min-height:44px;padding:.3rem .65rem;   /* W5c: was 32px — 51 of these render at 140x33 on a phone */border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--link);font-size:.82rem;text-decoration:none}
 .s-rc:hover{border-color:var(--accent);text-decoration:none}
 /* /solve?q= search field. A REAL GET form: pressing Enter with JS off round-trips to the server,
    which answers it (searchSolve in server.js). 16px minimum so iOS Safari does not zoom on focus. */
