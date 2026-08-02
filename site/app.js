@@ -5976,6 +5976,16 @@
                                                             // gate caught it by letting day 7 be
                                                             // logged on day 1 — inventing data
   const dayPlus = (iso, n) => { const a = iso.split('-').map(Number), x = new Date(a[0], a[1] - 1, a[2]); x.setDate(x.getDate() + n); return isoDay(x); };
+  // W5 · THE ELAPSED-DAY RULE, IN THE MODEL. A day that has not happened is not a tap, whatever
+  // localStorage or a restored file says. Every count, every chip, every sparkline bar and every
+  // receipt row reads a day through this one function, so the panel can no longer say two things
+  // about the same day. MEASURED HYDRATED before it (qa/out/w5r_repro.json b_chips, b_spark): the
+  // day-7 chip carried aria-label "Day 7, not yet" AND class "did" in the same element, and the
+  // sparkline's text equivalent read "day 7 did it, better" on day 1.
+  // This is defence in depth, not the primary guard: trackValidate() now refuses such a file,
+  // but devices that restored one before this shipped still hold it, and a guard that only runs
+  // at the door does nothing for what is already inside.
+  const tapOn = (log, d, today) => (isFuture(d, today) ? null : ((log.days || {})[d] || null));
   function trackRead() {
     try { const o = JSON.parse(localStorage.getItem(TRACK_KEY) || 'null'); if (o && o.v === TRACK_V && o.logs && typeof o.logs === 'object') return o; } catch (e) {}
     return { v: TRACK_V, logs: {} };
@@ -6023,6 +6033,9 @@
   // they tap, so every field is checked before a byte of it reaches localStorage — and the reason a
   // file is rejected is printed, so "nothing happened" is never the answer.
   function trackValidate(raw) {
+    // W5: the device's own date, read once, so every day key in the file is judged against the same
+    // "now". A restore that spans midnight must not accept a day on one line and refuse it on the next.
+    const TODAY = isoDay();
     if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return { error: 'That file is not a log this page wrote.' };
     if (raw.v !== TRACK_V) return { error: `That file says format version ${JSON.stringify(raw.v)}. This page writes version ${TRACK_V}.` };
     const logs = raw.logs;
@@ -6038,6 +6051,20 @@
       for (let j = 0; j < dk.length; j++) {
         const d = dk[j], e = L.days[d];
         if (!TRACK_DAY_RE.test(d)) return { error: `Entry “${k}” has a day key that is not a date: ${JSON.stringify(d)}` };
+        // W5 · A DAY THAT HAS NOT HAPPENED IS NOT A TAP. This loop checked the FORMAT of every key
+        // and never whether the day had occurred. MEASURED HYDRATED at 390x844, real file through
+        // the real <input type=file> (qa/out/w5r_repro.json b_say, b_visible, b_chips, b_spark): a
+        // file whose seven day keys were all in the future restored cleanly — "Restored 7 logged
+        // days across 1 protocol" — and the panel then read "7 of 7 days tapped · did it on 7 · 7
+        // better" on Day 1 of 7, while the chips for days 2–7 carried aria-label "Day N, not yet"
+        // AND class "did" at the same time and the sparkline announced "day 7 did it, better".
+        // The receipt lock did not hold, it DEFERRED: six days later, with nothing further tapped,
+        // the same device rendered data-receipt="ready" and wrote
+        // rnawiki-7-day-log-cravings-glycemic-swings-2026-08-08.png, headline row "DID THE ONE THING
+        // ON 7 of the 7 days" (qa/out/w5r_repro2.json b7, b7_files).
+        // NO FILE THIS PAGE WRITES CAN CONTAIN TOMORROW: future chips render disabled and the click
+        // handler re-derives the day from `days`, so this refuses nothing a reader could have made.
+        if (isFuture(d, TODAY)) return { error: `Entry “${k}” records ${d}, which has not happened yet. A log cannot contain a day that is still in the future.` };
         if (!e || typeof e !== 'object') return { error: `Entry “${k}” · ${d} is not a record.` };
         // `did` is 1, 0 or null - null being "gave a direction, never answered the one thing". This
         // MUST accept null or the reader's own export stops restoring, and null is the only value a
@@ -6061,7 +6088,7 @@
   function trackSpark(days, log, today) {
     const CW = 20, H = 44, BASE = 40, BW = 14;
     const bars = days.map((d, i) => {
-      const x = i * CW + (CW - BW) / 2, e = log.days[d];
+      const x = i * CW + (CW - BW) / 2, e = tapOn(log, d, today);   // W5: a future day draws the flat "no tap" rule, which is what it is
       if (!e) return `<rect class="sp-none" x="${x}" y="${BASE - 1}" width="${BW}" height="2"><title>Day ${i + 1} — no tap${isFuture(d, today) ? ' yet' : ''}</title></rect>`;
       const h = e.dir ? TRACK_H[e.dir] : 4;
       // THREE STATES. `did` is 1 (said yes), 0 (said no) or null (never answered). `e.did ? ... :
@@ -6072,7 +6099,7 @@
       const lbl = `Day ${i + 1} — ${didWord}${e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : ', no direction given'}`;
       return `<rect class="sp-bar sp-${e.dir || 'nodir'} ${didCls}" x="${x}" y="${BASE - h}" width="${BW}" height="${h}" rx="2"><title>${esc(lbl)}</title></rect>`;
     }).join('');
-    return `<svg class="p1-spark" viewBox="0 0 ${TRACK_DAYS * CW} ${H}" width="${TRACK_DAYS * CW}" height="${H}" role="img" aria-label="Seven days. ${esc(days.map((d, i) => { const e = log.days[d]; return `day ${i + 1} ${e ? (e.did === 1 ? 'did it' : e.did === 0 ? 'missed it' : 'no answer on the one thing') + (e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : '') : 'no tap'}`; }).join('; '))}.">
+    return `<svg class="p1-spark" viewBox="0 0 ${TRACK_DAYS * CW} ${H}" width="${TRACK_DAYS * CW}" height="${H}" role="img" aria-label="Seven days. ${esc(days.map((d, i) => { const e = tapOn(log, d, today); return `day ${i + 1} ${e ? (e.did === 1 ? 'did it' : e.did === 0 ? 'missed it' : 'no answer on the one thing') + (e.dir ? ', ' + (e.dir === 'same' ? 'no change' : e.dir) : '') : 'no tap'}`; }).join('; '))}.">
       <line class="sp-axis" x1="0" y1="${BASE + 1}" x2="${TRACK_DAYS * CW}" y2="${BASE + 1}"></line>${bars}
     </svg>`;
   }
@@ -6108,12 +6135,15 @@
     const over = elapsed + 1 > TRACK_DAYS;
     const sel = (focus && days.indexOf(focus) >= 0 && !isFuture(focus, today)) ? focus : days[dayN - 1];
     const selI = days.indexOf(sel);
-    const e = log.days[sel] || null;
-    const loggedN = days.filter(d => log.days[d]).length;
-    const didN = days.filter(d => log.days[d] && log.days[d].did === 1).length;
+    const e = tapOn(log, sel, today);
+    // W5: read through tapOn(), so a day that has not happened cannot be counted as tapped. Measured
+    // before this (qa/out/w5r_repro.json b_visible): "7 of 7 days tapped · did it on 7 · 7 better"
+    // printed under a header reading "Day 1 of 7".
+    const loggedN = days.filter(d => tapOn(log, d, today)).length;
+    const didN = days.filter(d => { const x = tapOn(log, d, today); return x && x.did === 1; }).length;
     // Days carrying a direction and no answer on the one thing. They used to be counted as "did it";
     // counting them as "missed it" would be the same lie inverted, so they are counted as themselves.
-    const unsaidN = days.filter(d => log.days[d] && log.days[d].did !== 0 && log.days[d].did !== 1).length;
+    const unsaidN = days.filter(d => { const x = tapOn(log, d, today); return x && x.did !== 0 && x.did !== 1; }).length;
     // DAY 1 IS THE COMPARISON, so it cannot be compared with itself. The copy said "leave it blank"
     // and the three buttons were live anyway - and the copy was gated on TODAY, not on the SELECTED
     // day. MEASURED HYDRATED (qa/out/w45log_c.json): on day 5, tapping the day-1 chip showed the
@@ -6123,11 +6153,11 @@
     // can be cleared; a lock that traps existing data is a second defect.
     const dirLocked = selI === 0 && !(e && e.dir), dirDis = dirLocked ? ' disabled' : '';
     const dirN = { better: 0, same: 0, worse: 0 };
-    days.forEach(d => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
+    days.forEach(d => { const x = tapOn(log, d, today); if (x && x.dir) dirN[x.dir]++; });   // W5: elapsed days only
     const metric = log.metric || ((problem.safety || {}).metric) || '';
     const dirWords = TRACK_DIRS.filter(k => dirN[k]).map(k => `${dirN[k]} ${k === 'same' ? 'no change' : k}`).join(' · ');
     const chips = days.map((d, i) => {
-      const future = isFuture(d, today), x = log.days[d];
+      const future = isFuture(d, today), x = tapOn(log, d, today);   // W5: one source for the class AND the label — before this, day 7 rendered class "did" under aria-label "Day 7, not yet"
       const xc = !x ? '' : x.did === 1 ? ' did' : x.did === 0 ? ' miss' : ' unsaid';
       const xa = future ? ', not yet' : !x ? ', no tap' : x.did === 1 ? ', did it' : x.did === 0 ? ', missed it' : ', direction only, you did not say whether you did it';
       return `<button type="button" class="p1-chip${d === sel ? ' on' : ''}${xc}" data-p1="day" data-v="${d}"${future ? ' disabled' : ''} aria-pressed="${d === sel}" aria-label="Day ${i + 1}${xa}">${i + 1}</button>`;
@@ -6295,19 +6325,24 @@
     // The lock, on the ONLY path that can produce a card, a share text or a PNG. dayN < 7 also covers
     // a start date in the future (a cohort may legitimately start up to 28 days ahead, app.js:5738),
     // and once it passes, days[6] <= today by construction, so no counted day can be in the future.
-    if (!receiptReady(log, isoDay()).ok) return null;
+    const today = isoDay();
+    if (!receiptReady(log, today).ok) return null;
     const days = [];
     for (let i = 0; i < TRACK_DAYS; i++) days.push(dayPlus(log.started, i));
-    const loggedN = days.filter((d) => log.days[d]).length;
+    // W5: every row on the card is counted through tapOn(), so no day the reader has not lived can
+    // reach the PNG or the share text even if the day-7 lock above is ever weakened again. Once
+    // receiptReady() passes, days[6] <= today by construction and this filter removes nothing — it
+    // is here so that stops being an argument and starts being a check.
+    const loggedN = days.filter((d) => tapOn(log, d, today)).length;
     if (!loggedN) return null;                     // nothing was tapped; there is nothing to write up
-    const didN = days.filter((d) => log.days[d] && log.days[d].did === 1).length;
+    const didN = days.filter((d) => { const x = tapOn(log, d, today); return x && x.did === 1; }).length;
     // Days tapped for direction only, with no answer on the one thing. These used to be counted as
     // "did it" (the did:1 default), so the headline row asserted days nobody claimed.
-    const unsaidN = days.filter((d) => { const x = log.days[d]; return x && x.did !== 0 && x.did !== 1; }).length;
+    const unsaidN = days.filter((d) => { const x = tapOn(log, d, today); return x && x.did !== 0 && x.did !== 1; }).length;
     const dirN = { better: 0, same: 0, worse: 0 };
-    days.forEach((d) => { const x = log.days[d]; if (x && x.dir) dirN[x.dir]++; });
+    days.forEach((d) => { const x = tapOn(log, d, today); if (x && x.dir) dirN[x.dir]++; });
     const word = (k) => (k === 'same' ? 'no change' : k);
-    const last = log.days[days[TRACK_DAYS - 1]] || null;
+    const last = tapOn(log, days[TRACK_DAYS - 1], today);   // W5: the one row that quotes a specific day must not quote a future one
     const rows = [
       ['Did the one thing on', `${didN} of the 7 days`],
       ['Days tapped', `${loggedN} of 7`],
