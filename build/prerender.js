@@ -880,8 +880,16 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   const verdict = `I do not publish an indication-specific evidence grade for ${a.name} or ${b.name} for ${gl}, so I am not going to name a winner. `
     + `The star ratings shown below are whole-compound summaries across everything each has been studied for — they are not a grade for this use, and comparing them here would be misleading. `
     + `What actually differs is mechanism, side-effect profile, interactions, availability and cost. Those are compared in full below.`;
-  const cmp = (k, va, vb) => `<tr><th>${esc(k)}</th><td>${va}</td><td>${vb}</td></tr>`;
-  const table = `<div class="cmp-wrap"><table class="cmp-table"><thead><tr><th></th><th><a href="/c/${slug(a.name)}">${esc(a.name)}</a></th><th><a href="/c/${slug(b.name)}">${esc(b.name)}</a></th></tr></thead><tbody>
+  // W5c (2026-08-02): D6. See the note in site/app.js renderComparison() — the second compound's
+  // column had a median right edge of 597px against a 390px viewport on 123/123 pairs, inside an
+  // overflow-x:auto wrapper that gives the reader no sign anything is off-screen. The table stacks
+  // below 600px; `.cmp-who` is the per-cell label that tells a stacked value which compound it
+  // belongs to, aria-hidden because the column header already carries that for AT. The explicit
+  // roles are load-bearing: `display:block` on a table strips its implicit ARIA roles, and the
+  // stacked layout clips <thead> instead of display:none so it stays in the accessibility tree.
+  const who = (n) => `<span class="cmp-who" aria-hidden="true">${esc(n)}</span>`;
+  const cmp = (k, va, vb) => `<tr role="row"><th role="rowheader" scope="row">${esc(k)}</th><td role="cell">${who(a.name)}${va}</td><td role="cell">${who(b.name)}${vb}</td></tr>`;
+  const table = `<div class="cmp-wrap"><table class="cmp-table" role="table"><thead><tr role="row"><th role="columnheader"></th><th role="columnheader" scope="col"><a href="/c/${slug(a.name)}">${esc(a.name)}</a></th><th role="columnheader" scope="col"><a href="/c/${slug(b.name)}">${esc(b.name)}</a></th></tr></thead><tbody>
     ${cmp('Human evidence', stars(a.stars), stars(b.stars))}
     ${cmp('Legal status', esc((a.approvalLabels || []).join(', ') || '—'), esc((b.approvalLabels || []).join(', ') || '—'))}
     ${cmp('How it works', esc(snip(a.mechanism, 240)), esc(snip(b.mechanism, 240)))}

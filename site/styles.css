@@ -1752,6 +1752,31 @@ a.dp-name:hover{color:var(--accent)}
 .cmp-table thead th a{color:var(--accent)}
 .cmp-table tbody th{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);white-space:nowrap;width:1%;font-weight:700}
 .cmp-table tr:last-child td,.cmp-table tr:last-child th{border-bottom:0}
+/* ---- W5c (2026-08-02): D6 — HALF OF A TWO-THING COMPARISON WAS OFF-SCREEN ON A PHONE ---------
+   Measured hydrated at 390x844 on all 123 published pairs, 0 pageerrors
+   (qa/out/w5cdi/before-390.json): `.cmp-wrap` scrollWidth 520 / clientWidth 350 on 123/123, and
+   the compound-B column header's right edge had a MEDIAN of 597px against a 390px viewport, on
+   123/123. It scrolls — `overflow-x:auto` — but `document.documentElement.scrollWidth` stays 390,
+   so there is no affordance, no cut-off edge and no scrollbar on a touch device. The reader is
+   simply shown one compound on a page whose whole job is to show two.
+   Below 600px the table stacks: row label, then each compound's value under its own name.
+   THE <THEAD> IS CLIPPED, NOT display:none. Clipping keeps it in the accessibility tree, so a
+   screen reader still associates each cell with its column header; `.cmp-who` is therefore
+   aria-hidden and exists only for the sighted stacked layout. The explicit role="table"/"row"/
+   "cell"/"rowheader"/"columnheader" attributes in both renderers are what keep the table a table
+   once `display:block` strips its implicit roles. */
+.cmp-who{display:none}
+@media(max-width:600px){
+  .cmp-wrap{overflow-x:visible}
+  .cmp-table{min-width:0;display:block;width:100%;font-size:.95rem}
+  .cmp-table thead{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+  .cmp-table tbody,.cmp-table tbody tr,.cmp-table tbody th,.cmp-table tbody td{display:block;width:auto}
+  .cmp-table tbody tr{border-bottom:2px solid var(--line);padding:.1rem 0 .5rem}
+  .cmp-table tbody tr:last-child{border-bottom:0}
+  .cmp-table tbody th{white-space:normal;padding:.75rem .95rem .15rem;border-bottom:0;width:auto}
+  .cmp-table tbody td{padding:.15rem .95rem .4rem;border-bottom:0}
+  .cmp-who{display:block;font-weight:700;color:var(--head);font-size:.85rem;margin-bottom:.1rem}
+}
 
 /* ---- Exercise YouTube tutorial link ---- */
 .ex-yt{display:inline-flex;align-items:center;gap:6px;margin:.7rem 0 .2rem;color:#c4302b;font-weight:600;font-size:.9rem;text-decoration:none}

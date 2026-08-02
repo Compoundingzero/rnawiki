@@ -3353,7 +3353,21 @@
     const gl = _v ? _v[1] : (shared && goalById[shared] ? goalById[shared].label : 'this goal').toLowerCase();
     const goalHref = _v && _v[2] ? _v[2] : shared;
     const verdict = _v ? _v[0] : comparisonVerdict(A, B);
-    const row = (k, va, vb) => `<tr><th>${k}</th><td>${va || '—'}</td><td>${vb || '—'}</td></tr>`;
+    // W5c (2026-08-02): D6 — COLUMN B WAS ENTIRELY OFF-SCREEN ON A PHONE, SILENTLY.
+    // Measured hydrated at 390x844 on all 123 published pairs, 0 pageerrors
+    // (qa/out/w5cdi/before-390.json): `.cmp-wrap` scrollWidth 520 against clientWidth 350 on
+    // 123/123, and `thead th:nth-child(3)` — the whole second compound — had a right edge with a
+    // median of 597px against a 390px viewport, on 123/123. `overflow-x:auto` means it scrolls,
+    // but `document.documentElement.scrollWidth` stayed 390, so the page gives no sign that half
+    // of a two-thing comparison is missing.
+    // The fix is CSS (the table stacks below 600px) plus the one thing CSS cannot do: once the
+    // rows are stacked, a value needs to say WHICH COMPOUND IT IS ABOUT. `.cmp-who` is that label.
+    // It is aria-hidden and display:none on desktop, because for AT the association already comes
+    // from the column header — which is why the stacked layout hides <thead> by clipping it rather
+    // than with display:none, so it stays in the accessibility tree. The explicit ARIA roles are
+    // load-bearing for the same reason: `display:block` on a table strips its implicit roles.
+    const who = (n) => `<span class="cmp-who" aria-hidden="true">${esc(n)}</span>`;
+    const row = (k, va, vb) => `<tr role="row"><th role="rowheader" scope="row">${k}</th><td role="cell">${who(A.name)}${va || '—'}</td><td role="cell">${who(B.name)}${vb || '—'}</td></tr>`;
     const faq = faqRender([
       { q: `Is ${A.name} or ${B.name} better for ${gl}?`, a: verdict },
       { q: `What's the difference between ${A.name} and ${B.name}?`, a: `${A.name}: ${faqSnip(A.bottom || A.plain, 130)} — ${B.name}: ${faqSnip(B.bottom || B.plain, 130)}` },
@@ -3361,7 +3375,7 @@
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Compare', href: '#/compare' }, { label: `${A.name} vs ${B.name}` }])}
       <div class="detail"><h1>${esc(A.name)} vs ${esc(B.name)}</h1>
       <p>${goalHref ? `Both are used for <a href="#/goal/${esc(goalHref)}">${esc(gl)}</a>. ` : ''}How they compare on human evidence, mechanism, safety and availability — in plain English.</p>
-      <div class="cmp-wrap"><table class="cmp-table"><thead><tr><th></th><th><a href="#/c/${slug(A.name)}">${esc(A.name)}</a></th><th><a href="#/c/${slug(B.name)}">${esc(B.name)}</a></th></tr></thead><tbody>
+      <div class="cmp-wrap"><table class="cmp-table" role="table"><thead><tr role="row"><th role="columnheader"></th><th role="columnheader" scope="col"><a href="#/c/${slug(A.name)}">${esc(A.name)}</a></th><th role="columnheader" scope="col"><a href="#/c/${slug(B.name)}">${esc(B.name)}</a></th></tr></thead><tbody>
         ${row('Human evidence', starHTML(A.stars), starHTML(B.stars))}
         ${row('Legal status', approvalPills(A), approvalPills(B))}
         ${row('How it works', mdInline(A.mechanism), mdInline(B.mechanism))}

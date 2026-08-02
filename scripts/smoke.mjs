@@ -285,6 +285,37 @@ const ASSERTIONS = {
       if (!document.querySelector('#app a[href*="/goal/"]')) return 'the intro no longer links the goal both compounds are used for — the prerendered document carries that link on 123/123 and it is the page\'s only goal link';
       return null;
     },
+  }, {
+    // ---- W5c (2026-08-02): D6 — HALF OF A TWO-THING COMPARISON WAS OFF-SCREEN --------------
+    // This gate runs at 390x844, which is the whole point: the defect is invisible at any desktop
+    // width and invisible to every build-time check, because the markup was never wrong. Measured
+    // hydrated on all 123 published pairs before the fix (qa/out/w5cdi/before-390.json):
+    // `.cmp-wrap` scrollWidth 520 / clientWidth 350 on 123/123, and the compound-B column's right
+    // edge had a MEDIAN of 597px against a 390px viewport, on 123/123 — the second compound was
+    // entirely off-screen. `overflow-x:auto` scrolls it, but documentElement.scrollWidth stayed
+    // 390, so nothing on the page said so.
+    // PROVE IT by deleting the `@media(max-width:600px)` .cmp-table block from site/styles.css.
+    name: 'bothCompoundsAreOnScreenOnAPhone',
+    why: 'W5c/D6: the second compound of a two-compound comparison sat a median of 597px into a 390px viewport, on 123 of 123 pairs, with no affordance',
+    evaluate: () => {
+      const vw = document.documentElement.clientWidth;
+      const cells = [...document.querySelectorAll('.cmp-table tbody td')];
+      if (cells.length < 8) return `only ${cells.length} data cells in the comparison table — the table has lost rows`;
+      const over = cells.filter((td) => td.getBoundingClientRect().right > vw + 1);
+      if (over.length) return `${over.length} of ${cells.length} table cells extend past the ${vw}px viewport (worst right edge ${Math.round(Math.max(...over.map((t) => t.getBoundingClientRect().right)))}px) — the second compound is off-screen again`;
+      const wrap = document.querySelector('.cmp-wrap');
+      if (wrap && wrap.scrollWidth > wrap.clientWidth + 1) return `.cmp-wrap still scrolls sideways (${wrap.scrollWidth} in ${wrap.clientWidth}) — content is hidden behind an affordance a touch device does not draw`;
+      // Stacked cells lose the visual column header, so each one has to name its own compound.
+      const who = [...document.querySelectorAll('.cmp-table .cmp-who')];
+      const shown = who.filter((e) => getComputedStyle(e).display !== 'none');
+      if (shown.length !== cells.length) return `${shown.length} per-cell compound labels for ${cells.length} stacked cells — a stacked value that does not say which compound it belongs to is worse than a hidden one`;
+      // ...and the header row must stay in the accessibility tree, or AT loses the association
+      // that .cmp-who is aria-hidden precisely because it already had.
+      const thead = document.querySelector('.cmp-table thead');
+      if (!thead || getComputedStyle(thead).display === 'none') return 'the comparison table header is display:none — clipped is required, not removed, or a screen reader loses the column association for every cell';
+      if (document.querySelector('.cmp-table').getAttribute('role') !== 'table') return 'the comparison table has lost role="table" — `display:block` strips a table\'s implicit ARIA roles, so the explicit ones are what keep it a table';
+      return null;
+    },
   }],
   '/stack?ids=c1,c24': [{
     name: 'oneMoleculeOnTwoPagesIsNotAnInteraction',
