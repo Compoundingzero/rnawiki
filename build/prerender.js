@@ -1534,8 +1534,20 @@ GRAPH.problems.forEach((p) => {
 (D.targets || []).forEach((t) => {
   const route = '/target/' + tkey(t.sym);
   const list = t.compoundIds.map((id) => D.compounds.find((c) => c.id === id)).filter(Boolean);
+  // ---- W5d (2026-08-02): D17 — THE TITLE PROMISED A LIST AND 77 PAGES HAD ONE ITEM -----------
+  // Measured hydrated at 390x844 on all 103 /target routes (qa/out/w5cdi/before-390.json). The
+  // <title> read "<SYM>: the compounds that hit it" and the meta description ended "and every
+  // compound that acts on it", on 103 of 103. The actual compound-link count per page:
+  //     1 -> 77 routes · 2 -> 17 · 3 -> 6 · 4 -> 1 · 5 -> 1 · 11 -> 1
+  // So on 77 of 103 pages the search result, the tab and the share card all promised a list, and
+  // the page held one item. The on-page "· N COMPOUNDS" badge was already honest — the counts were
+  // never wrong, only the framing built on top of them. This is the same defect class as
+  // "Covers all 170 compounds" and "Search 170 compounds": a phrase typed next to a number that
+  // did not have to agree with it. The number is now the phrase.
+  const nC = list.length;
+  const nWord = nC === 1 ? 'the one compound' : `all ${nC} compounds`;
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Browse', route: '/browse' }, { name: t.sym }])}
-    <h1>${esc(t.sym)}</h1><p>${esc(t.name)} — the molecular target that ${list.length} compounds in the wiki act on.</p>
+    <h1>${esc(t.sym)}</h1><p>${esc(t.name)} — the molecular target that ${nC === 1 ? 'one compound in the wiki acts on' : `${nC} compounds in the wiki act on`}.</p>
     ${t.pomNotice ? `<div class="pom-notice"><b>⚕️ Prescription-only medicines are named on this page.</b> ${mdSafe(t.pomNotice.text)}</div>` : ''}
     ${t.explainer ? `<div>${t.explainer.html}</div>` : ''}
     ${/* 103 target pages averaged 175 words against 117,232 words of authored target_learn content.
@@ -1544,8 +1556,8 @@ GRAPH.problems.forEach((p) => {
           generated from regulatory_class.json (see parse.js) rather than hand-written, so it cannot
           rot as the corpus grows, and the emission is safe to turn on. */ ''}
     ${learnFlatHtml(t)}
-    <h2>Compounds acting on ${esc(t.sym)}</h2><ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>`;
-  add(route, shell({ route, title: seoTitle(`${t.sym}: the compounds that hit it`), desc: seoDesc(`${t.sym}: ${t.name || ''}. What it does, and every compound that acts on it.`), ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
+    <h2>${nC === 1 ? 'The compound acting on' : `The ${nC} compounds acting on`} ${esc(t.sym)}</h2><ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>`;
+  add(route, shell({ route, title: seoTitle(nC === 1 ? `${t.sym}: the one compound that hits it` : `${t.sym}: the ${nC} compounds that hit it`), desc: seoDesc(`${t.sym}: ${t.name || ''}. What it does, and ${nWord} in the wiki that ${nC === 1 ? 'acts' : 'act'} on it.`), ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
 });
 
 // pathways + learn
@@ -3836,6 +3848,50 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] comparison verdicts OK — ${checked} pairs, ${named} named dimensions, every one an actual row, 0 pointing "below".`);
+})();
+
+// ---- build-time assertion: A COUNT IN A TITLE MUST BE THE COUNT ON THE PAGE -------------------
+// W5d (2026-08-02). Measured hydrated at 390x844 on all 103 /target routes
+// (qa/out/w5cdi/before-390.json): the <title> read "<SYM>: the compounds that hit it" and the
+// description ended "and every compound that acts on it", on 103/103 — while the actual
+// compound-link count per page was 1 on 77 routes, 2 on 17, 3 on 6, 4 on 1, 5 on 1 and 11 on 1.
+// 77 pages promised a list in the search result, the browser tab and the share card, and held one
+// item. The on-page "· N COMPOUNDS" badge was already honest; only the framing built on top of it
+// was not. Same defect class as "Covers all 170 compounds" and "Search 170 compounds".
+// This gate reads the number back out of the emitted <title> and counts the actual /c/ links in
+// the emitted list, so it cannot be satisfied by the variable the title was supposed to use.
+// PROVE IT by putting `seoTitle(`${t.sym}: the compounds that hit it`)` back.
+(function assertTargetCounts() {
+  const bad = [];
+  let checked = 0;
+  pages.filter((p) => /^\/target\//.test(p.route)).forEach((p) => {
+    checked++;
+    const t = (p.html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || '';
+    // split on the heading TEXT, not the whole tag: shell() injects an <a class="hanchor"> into
+    // every h2, so anything anchored to "<h2 ...>" matches nothing and this gate would fail on all
+    // 103 while looking like it had found something.
+    const parts = p.html.split(/compounds? acting on/i);
+    const listBlock = parts.length > 1 ? parts[parts.length - 1] : '';
+    const links = new Set([...listBlock.matchAll(/href="(\/c\/[^"]+)"/g)].map((m) => m[1]));
+    const n = links.size;
+    if (!n) { bad.push(`${p.route}: the compound list is empty or the heading was renamed, so this gate cannot count it`); return; }
+    const claimed = (t.match(/the (\d+) compounds that hit it/) || [])[1];
+    if (claimed === undefined) {
+      if (n !== 1 || !/the one compound that hits it/.test(t)) bad.push(`${p.route}: <title> "${t}" states no compound count, and the page lists ${n}`);
+      return;
+    }
+    if (+claimed !== n) bad.push(`${p.route}: <title> claims ${claimed} compounds and the page lists ${n} — "${t}"`);
+    if (n === 1) bad.push(`${p.route}: <title> uses the plural for a single compound — "${t}"`);
+  });
+  if (!checked) bad.push('no /target pages were checked — this gate is running over an empty set');
+  if (bad.length) {
+    console.error('\n[prerender] A TITLE PROMISES A LIST THE PAGE DOES NOT HAVE — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] target counts OK — ${checked} pages, every <title> count equal to the compounds actually listed.`);
 })();
 
 // ---- build-time assertion: THE COMPARISON CLUSTER MUST BE CONNECTED --------------------------

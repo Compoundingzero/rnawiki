@@ -8271,7 +8271,11 @@
     // ("Lower Back Pain: weak posterior chain / · RNAwiki"). Copying a truncation to score a parity
     // metric would put a broken string in the reader's tab. The prerender-side truncation is D8.
     else if (parts[0] === 'protocol' && problemById[parts[1]]) { const p = problemById[parts[1]]; const rc = p.root_causes.find(r => r.id === parts[2]) || p.root_causes[0]; title = t(parts[3] === 'stewardship' ? `${p.name} — expert stewardship` : `${p.name}: ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()}`); desc = `${p.name} (${rc.name}): the exercises to fix it, foods to fuel it, and evidence-ranked compounds — a full protocol. Not medical advice.`; }
-    else if (parts[0] === 'target' && targetBySym[tkey(decodeURIComponent(parts[1] || ''))]) { const tg = targetBySym[tkey(decodeURIComponent(parts[1]))]; title = t(`${tg.sym} — the molecular target and every compound that hits it`); desc = `${tg.sym}: ${(tg.name || '').slice(0, 120)}`; }
+    // W5d (2026-08-02): D17. This is the fallback for a target route the generated head map does
+    // not cover, and it carried the same promise the generated one did — "every compound that hits
+    // it" on 103 of 103, while the actual per-page compound count was 1 on 77 routes, 2 on 17, 3 on
+    // 6, 4/5/11 on one each. The count is the phrase now, here as well as in build/prerender.js.
+    else if (parts[0] === 'target' && targetBySym[tkey(decodeURIComponent(parts[1] || ''))]) { const tg = targetBySym[tkey(decodeURIComponent(parts[1]))]; const n = (tg.compoundIds || []).length; title = t(n === 1 ? `${tg.sym} — the molecular target and the one compound that hits it` : `${tg.sym} — the molecular target and the ${n} compounds that hit it`); desc = `${tg.sym}: ${(tg.name || '').slice(0, 120)}`; }
     else if (parts[0] === 'pathway' && D.pathways[+parts[1]]) { title = t(`${D.pathways[+parts[1]].shortLabel} pathway explained`); }
     else if (parts[0] === 'compare' && parts[1]) { const i = parts[1].indexOf('-vs-'); const A = i >= 0 && bySlug[parts[1].slice(0, i)], B = i >= 0 && bySlug[parts[1].slice(i + 4)]; if (A && B) { title = t(`${A.name} vs ${B.name} — which works better?`); desc = `${A.name} vs ${B.name}: human evidence, mechanism, safety and availability compared. Plain English, honest verdict.`; } }
     else if (parts[0] === 'solve') { title = t('Solve a problem or reach a goal — protocol engine'); desc = 'Tell me the problem or goal. Get a full Move · Fuel · Stack protocol for the root cause.'; }
