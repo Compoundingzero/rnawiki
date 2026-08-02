@@ -2031,6 +2031,99 @@ try {
     await page.close();
   }
 
+  // ------------------------------------------------- the SAME geometry, at a DESKTOP width
+  // W5.5 (2026-08-02): EVERY VIEWPORT THIS SUITE HAS EVER DRIVEN IS 390x844.
+  // All four setViewport calls in this file were the same phone, so the whole geometry gate —
+  // overflow, the 44px header controls, the focus-on-load check — only ever described one width.
+  // That is not a hypothetical gap. Commit 7a6f9c1 fixed a defect that was INVISIBLE at 390 and
+  // obvious at 1440: `.menu-btn` had been added to the shared 44px tap-target selector list, whose
+  // `display:inline-flex` sits after `.menu-btn{display:none}` and overrode it at every width, so
+  // the ☰ rendered on DESKTOP beside the full nav bar it exists to replace. It was found by looking
+  // at a screenshot, and the note on assertMobileOnlyControls() in build/prerender.js says so.
+  // That build gate is the static half: it reads styles.css as text, for one selector, and only
+  // checks `display` outside a media query. It cannot see a RENDERED result. This is the other half.
+  //
+  // WHY THIS IS NOT JUST `setViewport({width:1280})` ON THE LOOP ABOVE. Measured hydrated over all
+  // 568 published routes at 1280x900 (qa/out/w55_geom_1280.json): #menu-btn is `display:none` there
+  // — the breakpoint is max-width:760px — so getBoundingClientRect() gives {w:0,h:0} and the
+  // existing `if (v.h < 44)` check fails on 568 of 568 routes. A control that is not rendered at
+  // this width is not a control that is too small; it is a control this width does not have. The
+  // pass therefore skips anything with computed display:none and asserts the pair invariant instead.
+  //
+  // BASELINE, so this is understood as a REGRESSION NET and not a bug report: at 1280x900 across
+  // all 568 routes today there is 0 horizontal overflow, 0 h1-focused-on-load, and the header
+  // measures search 520x44 / acct 68x44 / brand 98x44 with the ☰ correctly absent. Also checked at
+  // 768, 1024 and 1440 on a 127-route stratified subset: 0 overflow at every width.
+  // COST, stated so it is a decision and not a surprise: this adds one page load per ROUTES entry,
+  // roughly doubling the wall time of `npm run smoke`.
+  //
+  // PROVE IT by adding `.menu-btn` back to the shared 44px tap-target rule at styles.css:195-197
+  // (the exact bug 7a6f9c1 fixed). At 390 the ☰ is 44x44 and .topnav is display:none, so
+  // BOTH_VISIBLE is false and the mobile pass above stays green — which is precisely why nothing
+  // saw it. At 1280 the ☰ is 44x44 AND .topnav is 279x24, and the pair check below names it.
+  {
+    const DESKTOP = { width: 1280, height: 900 };
+    // The phone control and the desktop control it stands in for. Exactly one may be rendered.
+    const PAIRS = [['#menu-btn, .menu-btn', '.topnav', 'the ☰ menu button', 'the full nav bar']];
+    for (const [, route] of ROUTES) {
+      const page = await browser.newPage();
+      try {
+        await page.setViewport(DESKTOP);
+        const resp = await page.goto(BASE + route, { waitUntil: 'networkidle2', timeout: NAV_TIMEOUT });
+        // 304 is expected and correct here: the pass above already fetched every one of these URLs
+        // in this same browser, so the second visit revalidates and the server says "unchanged".
+        // The document still renders. Only a real error status means there is nothing to measure —
+        // and the pass above is the one that asserts the status is 200 in the first place.
+        const st = resp ? resp.status() : 0;
+        if (st !== 200 && st !== 304) { fail.push(`${route}  [desktop ${DESKTOP.width}px] main document returned ${st}`); await page.close(); continue; }
+        await new Promise(r => setTimeout(r, SETTLE_MS));
+        const d = await page.evaluate((pairs) => {
+          const box = (el) => { if (!el) return null; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return { w: Math.round(r.width), h: Math.round(r.height), disp: s.display, vis: s.display !== 'none' && s.visibility !== 'hidden' && r.width > 0 && r.height > 0 }; };
+          const g = (sel) => box(document.querySelector(sel));
+          const inp = document.getElementById('search');
+          return {
+            scrollWidth: document.documentElement.scrollWidth,
+            clientWidth: document.documentElement.clientWidth,
+            h1FocusedOnLoad: document.activeElement === document.querySelector('#app h1'),
+            searchClipped: inp ? inp.scrollWidth > inp.clientWidth + 1 : null,
+            header: { search: g('#search'), acct: g('.acct-btn'), brand: g('.brand'), menu: g('#menu-btn, .menu-btn') },
+            pairs: pairs.map(([a, b]) => [g(a), g(b)]),
+            widest: (() => {
+              const vw = document.documentElement.clientWidth; let worst = null;
+              document.querySelectorAll('#app *, header *, footer *').forEach((el) => {
+                const s = getComputedStyle(el); if (s.position === 'fixed') return;
+                const r = el.getBoundingClientRect();
+                if (r.width > 0 && r.right > vw + 1 && (!worst || r.right > worst.right)) worst = { right: Math.round(r.right), tag: el.tagName, cls: String(el.className || '').slice(0, 40), txt: (el.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 50) };
+              });
+              return worst;
+            })(),
+          };
+        }, PAIRS.map(p => [p[0], p[1]]));
+
+        const at = m => fail.push(`${route}  [desktop ${DESKTOP.width}px] ${m}`);
+        if (d.scrollWidth > d.clientWidth + 1) {
+          const w = d.widest;
+          at(`the page is ${d.scrollWidth}px wide in a ${d.clientWidth}px viewport — it scrolls sideways${w ? `; widest element is <${w.tag.toLowerCase()}${w.cls ? ' class="' + w.cls + '"' : ''}> ending at ${w.right}px: "${w.txt}"` : ''}`);
+        }
+        if (d.h1FocusedOnLoad) at('the <h1> is focused on page LOAD — a focus ring nobody asked for, and it skips the reader past the skip link and the whole header');
+        if (d.searchClipped) at('the header search box is too narrow for its own placeholder');
+        // ONLY controls this width actually renders. A display:none control is not a small control.
+        Object.entries(d.header).forEach(([k, v]) => {
+          if (!v || !v.vis) return;
+          if (v.h < 44) at(`header control "${k}" is ${v.w}x${v.h} px — under the 44px pointer-target minimum, on a control that is on every one of the 568 routes`);
+        });
+        // THE PAIR INVARIANT — exactly one of a phone control and its desktop replacement.
+        d.pairs.forEach(([a, b], i) => {
+          const [, , an, bn] = PAIRS[i];
+          const av = !!(a && a.vis), bv = !!(b && b.vis);
+          if (av && bv) at(`${an} and ${bn} are BOTH rendered (${a.w}x${a.h} and ${b.w}x${b.h}) — the phone control is showing on desktop beside the nav it exists to replace, which is the defect 7a6f9c1 fixed and no 390px gate can see`);
+          else if (!av && !bv) at(`neither ${an} nor ${bn} is rendered — there is no way to reach the site's navigation at this width`);
+        });
+      } catch (e) { fail.push(`${route}  [desktop ${DESKTOP.width}px] harness error — ${e && e.message ? e.message : String(e)}`); }
+      await page.close();
+    }
+  }
+
   // ------------------------------------------------- /solve?q= cross-document parity
   // The ?q= ranking exists TWICE: rankProblems() in site/app.js for the SPA, and searchSolve() in
   // server.js for the ~90% who never run JavaScript. Both read the same parse.js-authored index, so
