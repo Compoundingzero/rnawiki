@@ -787,8 +787,10 @@ const ASSERTIONS = {
     // got worse (qa/out/w45log_a.json). The chips and the sparkline announced the same invention,
     // and drawing it as "missed it" instead would be the identical lie inverted.
     // PROVE THIS GATE by restoring `did: 1` in that Object.assign default. It fails by name.
-    // IT MUST STAY LAST in this array: it overwrites rnawiki_track, and the two assertions above it
-    // read the finished week the receipt assertion plants.
+    // IT OVERWRITES rnawiki_track, so it must stay AFTER the two assertions above it, which read
+    // the state they plant themselves. W5 (2026-08-02): it is no longer the last entry — the
+    // elapsed-day assertion below runs after it, plants its own weeks from scratch, and clears both
+    // storage keys at the end. Nothing between them is shared.
     name: 'aReceiptAssertsOnlyRecordedDaysAndOnlyAfterDay7',
     why: 'W4.5: the card and the share text are the two artefacts that leave the device. Neither may state a fact the reader did not enter, and neither may exist before the week it describes is over',
     evaluate: async () => {
@@ -884,6 +886,129 @@ const ASSERTIONS = {
       try { document.getElementById('p1-log').appendChild(forged2); forged2.click(); await new Promise(r => setTimeout(r, 900)); }
       finally { proto.click = realClick; forged2.remove(); }
       if (minted2) return `a week that has not started yet minted a card (${minted2}) — seven days nobody has lived`;
+      localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
+      return null;
+    },
+  }, {
+    // ---- W5 (2026-08-02): A LOG MAY ONLY ASSERT DAYS THAT ELAPSED, AND ONLY DATES THIS PAGE WROTE
+    // Three more ways to print a week nobody lived, all measured hydrated at 390x844 on a real
+    // profile, /protocol/cravings/glycemic-swings (qa/out/w5r_BEFORE_repro.json):
+    //  (a) started:"not-a-date" — dayNum() is NaN and EVERY comparison against NaN is false, so
+    //      `dayN < TRACK_DAYS` was false and the day-7 lock returned ok. Panel "Day NaN of 7", card
+    //      "DID THE ONE THING ON 7 of the 7 days" built from ONE stored record (dayPlus returns
+    //      'NaN-NaN-NaN' for all seven days), and a real file:
+    //      rnawiki-7-day-log-cravings-glycemic-swings-NaN-NaN-NaN.png.
+    //  (b) a restore file whose seven day keys were all in the future passed trackValidate, which
+    //      checked the FORMAT of every key and never whether the day had happened. The panel then
+    //      read "7 of 7 days tapped · did it on 7 · 7 better" under "Day 1 of 7", with chips 2-7
+    //      carrying aria-label "Day N, not yet" AND class "did" in the same element.
+    //  (c) the day-1 direction lock was `disabled` on three buttons and nothing else — the delegated
+    //      handler asks only `if (!b || b.disabled) return;`. Stripping the attribute stored
+    //      {"did":null,"dir":"better"} against day 1: a comparison of day 1 with itself.
+    // Each of the three is checked at the layer that has to hold it — the write boundary, the file
+    // boundary, and the read boundary — not at the layer that draws.
+    // PROVE THIS GATE by reintroducing any one: revert the dir branch to
+    // `e.dir = (e.dir === v) ? null : v`, or delete the isFuture clause from trackValidate, or drop
+    // the TRACK_DAY_RE test from receiptReady and trackUsable. Each fails by name.
+    // IT MUST STAY LAST in this array: it plants and then clears rnawiki_track, and it ends on a
+    // log the panel deliberately refuses to draw.
+    name: 'aLogMayOnlyAssertElapsedDaysAndDatesThisPageWrote',
+    why: 'W5: a malformed start date, a future-dated restore file and a stripped `disabled` attribute each produced a week the reader had not lived — two of them on the shareable card',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const key = pid + '/' + rcid;
+      const q = (n) => String(n).padStart(2, '0');
+      const iso = (d) => `${d.getFullYear()}-${q(d.getMonth() + 1)}-${q(d.getDate())}`;
+      const dm = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+      const today = iso(new Date());
+      const put = (log) => localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [key]: log } }));
+      const raw = () => (JSON.parse(localStorage.getItem('rnawiki_track') || 'null') || { logs: {} }).logs[key] || null;
+      // Tapping a day chip is the only public way to force a redraw, and a future day's chip is
+      // disabled — so take the first chip that is not.
+      const redraw = async () => {
+        const c = [...document.querySelectorAll('#p1-log [data-p1="day"]')].find((x) => !x.disabled);
+        if (!c) return 'no enabled day chip to redraw from';
+        c.click(); await new Promise(r => setTimeout(r, 60)); return null;
+      };
+      const sum = () => (document.querySelector('#p1-log .p1-log-sum') || {}).innerText || '';
+
+      // ---- C. DAY 1 CANNOT RECEIVE A DIRECTION, AND `disabled` IS NOT WHAT STOPS IT ----
+      put({ started: today, action: '', metric: '', sync: false, days: {} });
+      const c0 = await redraw(); if (c0) return c0;
+      const c1 = await redraw(); if (c1) return c1;
+      const dirs = [...document.querySelectorAll('#p1-log button[data-p1="dir"]')];
+      if (dirs.length !== 3) return `expected 3 direction controls on day 1, found ${dirs.length}`;
+      if (!dirs.every((b) => b.disabled)) return 'the day-1 direction buttons are not even painted as off';
+      const better = document.querySelector('#p1-log button[data-p1="dir"][data-v="better"]');
+      better.removeAttribute('disabled'); better.disabled = false;
+      better.click();
+      await new Promise(r => setTimeout(r, 80));
+      const recC = (raw() || { days: {} }).days[today];
+      if (recC) return `stripping \`disabled\` recorded ${JSON.stringify(recC)} against day 1 — day 1 IS the comparison, so this is a comparison of day 1 with itself, and it reached the panel as "${sum()}"`;
+      if (/1 of 7 days tapped/.test(sum())) return `the panel counted the day-1 direction anyway: "${sum()}"`;
+
+      // ---- B. A DAY THAT HAS NOT HAPPENED IS NOT A TAP ----
+      const fut = {};
+      for (let i = 0; i < 7; i++) fut[dm(i)] = { did: 1, dir: 'better' };
+      put({ started: today, action: '', metric: '', sync: false, days: fut });
+      const b0 = await redraw(); if (b0) return b0;
+      const b1 = await redraw(); if (b1) return b1;
+      const day = (document.querySelector('#p1-log .p1-day') || {}).innerText || '';
+      if (!/Day 1 of 7/.test(day)) return `expected "Day 1 of 7" for a week starting today, got "${day}"`;
+      if (!/^1 of 7 days tapped/.test(sum())) return `the panel reads "${sum()}" on day 1 of a week whose six remaining days are all still in the future — only today can have been tapped`;
+      const chips = [...document.querySelectorAll('#p1-log .p1-chip')];
+      const lying = chips.filter((c) => /not yet/.test(c.getAttribute('aria-label') || '') && /\b(did|miss|unsaid)\b/.test(c.className));
+      if (lying.length) return `${lying.length} day chip(s) announce "not yet" and render as tapped in the same element — e.g. "${lying[0].getAttribute('aria-label')}" with class "${lying[0].className}"`;
+      const spark = (document.querySelector('#p1-log .p1-spark') || { getAttribute: () => '' }).getAttribute('aria-label') || '';
+      if (/day [2-7] (did it|missed it)/.test(spark)) return `the sparkline's text equivalent announces a day that has not happened: "${spark}"`;
+
+      // ---- B2. AND THE FILE BOUNDARY REFUSES IT, BY NAME, CHANGING NOTHING ----
+      const before = localStorage.getItem('rnawiki_track');
+      const bad = { v: 1, logs: { [key]: { started: today, action: '', metric: '', sync: false, days: { [dm(3)]: { did: 1, dir: 'better' } } } } };
+      const inp = document.getElementById('p1-file');
+      if (!inp) return 'no restore input — the file the export copy tells the reader to keep has nowhere to open';
+      const dt = new DataTransfer();
+      dt.items.add(new File([JSON.stringify(bad)], 'w5.json', { type: 'application/json' }));
+      inp.files = dt.files;
+      inp.dispatchEvent(new Event('change', { bubbles: true }));
+      await new Promise(r => setTimeout(r, 400));
+      const said = (document.getElementById('p1-sync-state') || {}).textContent || '';
+      if (!/has not happened yet/i.test(said)) return `a file recording ${dm(3)} — three days from now — was not refused for that reason. The page said: "${said}"`;
+      if (localStorage.getItem('rnawiki_track') !== before) return 'a refused restore changed the log on this device — "Nothing on this device was changed" is the contract';
+
+      // ---- A. A START DATE THIS PAGE COULD NOT HAVE WRITTEN IS NOT A WEEK ----
+      put({ started: 'not-a-date', action: '', metric: '', sync: false, days: { 'NaN-NaN-NaN': { did: 1, dir: 'better' } } });
+      const a0 = await redraw(); if (a0) return a0;
+      // POSITIVE test, and it has to be. The first version of this check asked only whether the
+      // panel printed "NaN" — and it PASSED with the bug reintroduced, because the broken log made
+      // phase1LogHTML() throw on an undefined selected day, the innerHTML assignment never ran, and
+      // the panel simply kept the previous week on screen. "The bad string is absent" is satisfied
+      // by a render that never happened. The state this page must reach is the pre-start panel: a
+      // log whose start date is not a date is not a week, so the reader is offered Start.
+      const pre = document.querySelector('#p1-log .p1-log-pre');
+      const dayA = (document.querySelector('#p1-log .p1-day') || {}).innerText || '';
+      if (!pre) return `a log started "not-a-date" did not render as "no log on this device" — the panel shows "${dayA || (document.querySelector('#p1-log') || {}).innerText.slice(0, 80)}". Either it counted days from a date this page could not have written, or the render threw and the previous week is still on screen.`;
+      if (dayA) return `the panel counts days from a start date that is not a date: "${dayA}"`;
+      if (document.getElementById('rcpt-card')) return 'a log whose start date is not a date produced a finished card';
+      if (document.querySelector('#p1-log button[data-p1="receipt-png"]')) return 'the download control exists on a log whose start date is not a date';
+      // Not paintable: the delegated handler makes an injected button a live route into
+      // receiptDownload(). This is the forgery that wrote …-NaN-NaN-NaN.png to disk.
+      const proto = HTMLAnchorElement.prototype, realClick = proto.click;
+      let mintedA = null;
+      proto.click = function () { mintedA = this.download; };
+      const forgedA = document.createElement('button'); forgedA.dataset.p1 = 'receipt-png';
+      try { document.getElementById('p1-log').appendChild(forgedA); forgedA.click(); await new Promise(r => setTimeout(r, 900)); }
+      finally { proto.click = realClick; forgedA.remove(); }
+      if (mintedA) return `a forged tap on a log started "not-a-date" minted ${mintedA} — seven days counted from one stored record, because dayPlus() returns the same NaN string for all seven`;
+      // And the reader is not trapped: Start must replace an unreadable log, or the panel offers a
+      // button that hands the same broken object straight back.
+      const sb = document.getElementById('phase1-start');
+      if (!sb) return 'no start button to recover with';
+      if (sb.disabled) { sb.disabled = false; }
+      sb.click();
+      await new Promise(r => setTimeout(r, 150));
+      const after = raw();
+      if (!after || !/^\d{4}-\d{2}-\d{2}$/.test(after.started || '')) return `after tapping Start the log still reads started ${JSON.stringify(after && after.started)} — the reader cannot get out of a corrupted log`;
       localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
       return null;
     },
