@@ -872,6 +872,45 @@ D.compounds.forEach((c) => {
   add(route, shell({ route, title: seoTitle(`${c.name}: dosage, evidence & uses`), desc: seoDesc(c.plain || c.bottom || c.mechanism || c.metaSummary || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism || c.metaSummary, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
 });
 
+// ---- W5d (2026-08-02): D30 — A 123-PAGE CLUSTER WITH ZERO INTERNAL EDGES ---------------------
+// Measured hydrated at 390x844 on all 123 published pairs (qa/out/w5cdi/before-390.json): every
+// page contained exactly two anchors matching /compare/, and both were the breadcrumb. Links to
+// another PAIR: 0 on 123 of 123. A reader who has just decided that neither of these two is right
+// for them has nowhere to go except back to the index; a crawler sees 123 leaves hanging off one
+// hub instead of a connected cluster.
+// The edges are not invented — they are the pairs this generator already published, filtered to
+// the ones sharing a compound with this page, which is exactly the "what else was this compared
+// against" question the reader is holding. Capped at 4 per compound so the block stays a signpost
+// rather than a second index, and ordered by the other compound's evidence strength then its name
+// so the ordering is a stated rule and not the map's insertion order.
+const compareSiblings = (() => {
+  const byCompound = {};
+  comparePairs.forEach(({ a, b }) => {
+    const route = `/compare/${slug(a.name)}-vs-${slug(b.name)}`;
+    (byCompound[a.id] = byCompound[a.id] || []).push({ other: b, route });
+    (byCompound[b.id] = byCompound[b.id] || []).push({ other: a, route });
+  });
+  Object.values(byCompound).forEach((l) => l.sort((x, y) => (y.other.stars - x.other.stars) || x.other.name.localeCompare(y.other.name)));
+  return (a, b, self) => {
+    const seen = new Set([self]);
+    const take = (c) => (byCompound[c.id] || []).filter((x) => !seen.has(x.route) && !seen.has(x.route + '#') && seen.add(x.route)).slice(0, 4);
+    return { a: take(a), b: take(b) };
+  };
+})();
+// The SAME data the prerendered block is built from, published for site/app.js — one generator,
+// like the head map and the verdict map above. The two documents use different href forms
+// (/compare/... vs #/compare/...), so what crosses is the data, not the markup.
+const siblingByRoute = {};
+const siblingBlock = (a, b, self, href) => {
+  const g = compareSiblings(a, b, self);
+  siblingByRoute[self] = [[a.name, g.a.map((x) => [x.other.name, x.route])], [b.name, g.b.map((x) => [x.other.name, x.route])]].filter((c) => c[1].length);
+  const col = (c, list) => list.length
+    ? `<div class="cmp-sib-col"><div class="cmp-sib-h">${esc(c.name)} also compared with</div><ul>${list.map((x) => `<li><a href="${href(x.route)}">${esc(x.other.name)}</a></li>`).join('')}</ul></div>`
+    : '';
+  if (!g.a.length && !g.b.length) return '';
+  return `<div class="cmp-sib"><h2>Other head-to-heads with these two</h2>${col(a, g.a)}${col(b, g.b)}</div>`;
+};
+
 // comparison pages ([A] vs [B]) — high-intent long-tail, non-thin (two full profiles + honest verdict)
 const verdictByRoute = {};
 comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
@@ -963,6 +1002,7 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
     <p>Both are used for <a href="/goal/${goalId}">${esc(gl)}</a>. Side by side on ${esc(andList(dims))}. No winner is named — the section under the table says why.</p>
     ${table}
     <h2>Which is better for ${esc(gl)}?</h2><p>${esc(verdict)}</p>
+    ${siblingBlock(a, b, route, (r) => r)}
     <p>Full breakdowns: <a href="/c/${slug(a.name)}">${esc(a.name)}</a> · <a href="/c/${slug(b.name)}">${esc(b.name)}</a>.</p>
     <div class="page-cta"><a class="cta-primary" href="/solve">🎯 Build your own Move · Fuel · Stack protocol →</a></div></div>`;
   const faq = faqBlock([
@@ -2958,7 +2998,12 @@ fs.writeFileSync(path.join(SITE, 'head.js'),
   + '// The /compare verdict paragraph, its goal label and goal id, per pair. Same reason: it is\n'
   + '// the text of the FAQPage JSON-LD answer AND the paragraph on the page, and two generators\n'
   + '// wrote it differently on 123 of 123 pairs.\n'
-  + 'window.RNAWIKI_VERDICT=' + JSON.stringify(verdictByRoute) + ';\n');
+  + 'window.RNAWIKI_VERDICT=' + JSON.stringify(verdictByRoute) + ';\n'
+  + '// W5d/D30: the sibling comparisons for each pair — [[compoundName, [[otherName, route], …]], …].\n'
+  + '// Every /compare page contained exactly two /compare/ anchors and both were the breadcrumb:\n'
+  + '// links to another PAIR were 0 on 123 of 123. Generated here so both documents draw the same\n'
+  + '// edges from the same rule (top 4 per compound by evidence, then name).\n'
+  + 'window.RNAWIKI_CMPSIB=' + JSON.stringify(siblingByRoute) + ';\n');
 console.log('[prerender] wrote head.js — %d routes, %d KB', Object.keys(headMap).length,
   Math.round(fs.statSync(path.join(SITE, 'head.js')).size / 1024));
 
@@ -3791,6 +3836,46 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] comparison verdicts OK — ${checked} pairs, ${named} named dimensions, every one an actual row, 0 pointing "below".`);
+})();
+
+// ---- build-time assertion: THE COMPARISON CLUSTER MUST BE CONNECTED --------------------------
+// W5d (2026-08-02). Measured hydrated at 390x844 on all 123 published pairs
+// (qa/out/w5cdi/before-390.json): every page contained exactly two anchors matching /compare/, and
+// both were the breadcrumb. Links to another PAIR: 0 on 123 of 123. A 123-page cluster with no
+// internal edges — a reader who has just decided neither of these two is right has nowhere to go
+// but back to the index, and a crawler sees 123 leaves hanging off one hub.
+// assertLinkGraph below already proves no link is dead and no page is an orphan. This proves the
+// stronger thing it cannot: that the edges EXIST, that each page carries exactly the number the
+// generated map says it should (so a rendering bug cannot quietly drop them), and that site/app.js
+// reads the same map — because the SPA replaces #app wholesale, so a block only the prerenderer
+// draws reaches a crawler and not a reader.
+// PROVE IT by deleting the siblingBlock() call from the comparison body, or by removing the
+// RNAWIKI_CMPSIB lookup from site/app.js.
+(function assertCompareCluster() {
+  const bad = [];
+  let checked = 0, edges = 0, isolated = 0;
+  const published = new Set(pages.map((x) => x.route));
+  pages.filter((p) => /^\/compare\/.+-vs-/.test(p.route)).forEach((p) => {
+    checked++;
+    const expect = (siblingByRoute[p.route] || []).reduce((n, c) => n + c[1].length, 0);
+    const got = [...p.html.matchAll(/href="(\/compare\/[^"]*-vs-[^"]*)"/g)].map((m) => m[1]).filter((r) => r !== p.route);
+    if (!expect) { isolated++; return; }
+    if (got.length !== expect) bad.push(`${p.route}: the sibling map holds ${expect} lateral link(s) and the page emitted ${got.length}`);
+    got.forEach((r) => { if (!published.has(r)) bad.push(`${p.route}: links laterally to ${r}, which is not a published comparison`); });
+    edges += got.length;
+  });
+  if (!checked) bad.push('no published comparison pages were checked — this gate is running over an empty set');
+  if (isolated > checked * 0.1) bad.push(`${isolated} of ${checked} comparison pages have no sibling at all — the cluster has come apart, not just this page`);
+  const APP2 = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+  if (!/RNAWIKI_CMPSIB/.test(APP2)) bad.push('site/app.js never reads window.RNAWIKI_CMPSIB — the lateral links reach a crawler and not a reader, which is exactly the split D2/D33 were');
+  if (bad.length) {
+    console.error('\n[prerender] THE COMPARISON CLUSTER HAS NO INTERNAL LINKS — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] comparison cluster OK — ${edges} lateral edges across ${checked} pairs, ${isolated} with no sibling, app.js reads the map.`);
 })();
 
 // ---- build-time assertion: A TABLE CELL MUST SAY SOMETHING ------------------------------------

@@ -3439,7 +3439,19 @@
       ['Roughly what it costs', mdInline(A.cost), mdInline(B.cost)],
       ['Bottom line', mdInline(A.bottom), mdInline(B.bottom)],
     ];
-    const dims = ROWS.filter(([k, va, vb]) => k !== 'Human evidence' && (has(va) || has(vb))).map(([k]) => k.charAt(0).toLowerCase() + k.slice(1));   // lower only the first letter, or "In plain English" becomes "in plain english"
+    const dims = ROWS.filter(([k, va, vb]) => k !== 'Human evidence' && (has(va) || has(vb))).map(([k]) => k.charAt(0).toLowerCase() + k.slice(1));
+    // W5d (2026-08-02): D30 — 123 comparison pages, 0 links between them. Measured hydrated on all
+    // 123: every page contained exactly two anchors matching /compare/, and both were the
+    // breadcrumb. A reader who has just decided neither of these two is right has nowhere to go but
+    // back to the index, and a crawler sees 123 leaves off one hub instead of a cluster.
+    // The edges come from the generated map (site/head.js), written by build/prerender.js from the
+    // pairs it actually published — same reason the verdict and the head do: two generators drawing
+    // "related pages" from the same corpus is how they drift. Nothing is invented; every target is
+    // a page this build emitted.
+    const _sib = (window.RNAWIKI_CMPSIB || {})['/compare/' + pair] || [];
+    const sib = _sib.length
+      ? `<div class="cmp-sib"><h2>Other head-to-heads with these two</h2>${_sib.map(([nm, list]) => `<div class="cmp-sib-col"><div class="cmp-sib-h">${esc(nm)} also compared with</div><ul>${list.map(([on, r]) => `<li><a href="#${esc(r)}">${esc(on)}</a></li>`).join('')}</ul></div>`).join('')}</div>`
+      : '';   // lower only the first letter, or "In plain English" becomes "in plain english"
     const andList = (xs) => xs.length < 2 ? (xs[0] || '') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Compare', href: '#/compare' }, { label: `${A.name} vs ${B.name}` }])}
       <div class="detail"><h1>${esc(A.name)} vs ${esc(B.name)}</h1>
@@ -3449,6 +3461,7 @@
       </tbody></table></div>
       <h2>Which is better for ${esc(gl)}?</h2><p>${esc(verdict)}</p>
       ${faq}
+      ${sib}
       <p>Full breakdowns: <a href="#/c/${slug(A.name)}">${esc(A.name)}</a> · <a href="#/c/${slug(B.name)}">${esc(B.name)}</a> · <a href="#/compare">Compare others →</a></p>
       ${solveCta('🎯 Build your own Move · Fuel · Stack protocol →')}</div>`;
   }

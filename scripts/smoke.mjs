@@ -348,6 +348,16 @@ const ASSERTIONS = {
       const extra = heads.filter((h) => h && h !== 'human evidence' && !dims.includes(h));
       if (extra.length) return `the hydrated table has ${extra.map((x) => `"${x}"`).join(', ')} that the verdict does not mention`;
       if (dims.length < 4) return `the verdict names only ${dims.length} dimensions — this pair should carry more, and a shrinking list is how this defect comes back`;
+      // W5d/D30: and the page must not be a leaf. Measured hydrated on all 123 pairs: every one
+      // contained exactly two /compare/ anchors and both were the breadcrumb — 0 links to another
+      // pair, on 123 of 123. build/prerender.js assertCompareCluster() proves the prerendered
+      // document carries them; this proves the SPA rebuilt them from the same generated map, which
+      // is the half that reaches a reader.
+      const lat = [...document.querySelectorAll('#app a[href*="/compare/"]')]
+        .map((x) => x.getAttribute('href').replace(/^#/, ''))
+        .filter((h) => /-vs-/.test(h) && h !== location.pathname);
+      if (!lat.length) return 'no links to any other comparison — 123 pages hanging off one hub with no edges between them is what D30 was';
+      if (!document.querySelector('#app .cmp-sib')) return 'the lateral links are not in a labelled block, so a reader cannot tell what they are';
       // and the geometry the word "above" asserts
       const tbl = document.querySelector('.cmp-table').getBoundingClientRect();
       const vp = p.getBoundingClientRect();

@@ -1834,6 +1834,14 @@ a.dp-name:hover{color:var(--accent)}
    "cell"/"rowheader"/"columnheader" attributes in both renderers are what keep the table a table
    once `display:block` strips its implicit roles. */
 .cmp-who{display:none}
+/* W5d/D30: the lateral edges between the 123 comparison pages. Two columns on desktop, stacked on
+   a phone; a signpost, not a second index (4 per compound, by evidence then name). */
+.cmp-sib{display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.4rem;margin:1.6rem 0 1.2rem;padding:1rem 1.1rem;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.cmp-sib h2{grid-column:1/-1;margin:0;font-size:1.02rem}
+.cmp-sib-h{font-size:.74rem;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);font-weight:700;margin-bottom:.3rem}
+.cmp-sib ul{margin:0;padding-left:1.05rem;display:flex;flex-direction:column;gap:.15rem}
+.cmp-sib li{line-height:1.45}
+@media(max-width:600px){.cmp-sib{grid-template-columns:1fr}}
 /* W5d: a stated absence, not a shrug. See build/prerender.js. */
 .cmp-none{color:var(--faint);font-style:italic}
 @media(max-width:600px){
