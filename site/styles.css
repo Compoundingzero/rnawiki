@@ -116,6 +116,18 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
 .pill.o{background:rgba(194,65,12,.12);color:var(--orange)}
 .pill.r{background:rgba(220,38,38,.12);color:var(--red)}
 .pill.k{background:rgba(75,85,99,.14);color:var(--black)}
+/* W5a (2026-08-02): the SUPPLY pill. The badge row used to answer "how do you get this" with the
+   regulator badges, which disagreed with the authored `regulatory_class` on 24 of 171 compounds
+   (Vitamin D3 and Iron rendering a blue Prescription pill on an authored `supplement`; 21
+   prescription/pharmacy compounds rendering no supply statement at all). It is deliberately styled
+   as a DIFFERENT KIND OF THING from the coloured regulator dots — outlined, not tinted — because it
+   answers a different question, and colour is not the only carrier: it always states its route in
+   words and its accessible name begins "How you get it:". */
+.pill.supply{background:#fff;border:1px solid var(--line);color:var(--head);font-weight:700}
+.pill.supply.s-prescription,.pill.supply.s-pharmacy{border-color:rgba(37,99,235,.4);color:var(--blue)}
+.pill.supply.s-controlled,.pill.supply.s-unapproved{border-color:rgba(220,38,38,.4);color:var(--red)}
+.pill.supply.s-supplement,.pill.supply.s-otc{border-color:rgba(5,150,105,.35);color:var(--green)}
+.sg-local{margin-top:.55rem;padding-top:.5rem;border-top:1px solid var(--line);font-size:.9rem}
 .mini-targets{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.6rem}
 .mini-t{font-family:var(--mono);font-size:.7rem;color:var(--accent2);background:rgba(37,99,235,.08);border:1px solid rgba(37,99,235,.2);border-radius:6px;padding:1px 6px}
 

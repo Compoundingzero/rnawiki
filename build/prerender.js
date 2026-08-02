@@ -775,7 +775,7 @@ D.compounds.forEach((c) => {
   const pathLink = (c.pathwayIds || []).length && D.pathways[c.pathwayIds[0]] ? `<p><b>How it works:</b> <a href="/pathway/${c.pathwayIds[0]}">the ${esc(D.pathways[c.pathwayIds[0]].shortLabel)} pathway →</a></p>` : '';
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: c.category, route: '/' }, { name: c.name }])}
     <div class="detail"><h1>${esc(c.name)}</h1>
-    <p><b>Evidence:</b> ${stars(c.stars)} · <b>Status:</b> ${(c.approvalLabels || []).join(', ')}</p>
+    <p><b>Evidence:</b> ${stars(c.stars)} ${c.stars ? `(${c.stars} of 5)` : '(not yet rated)'} · <b>Regulator status:</b> ${(c.badgeLabels || []).join(', ') || 'none recorded'} · <b>How you get it:</b> ${esc((c.supply || {}).tag || '')}</p>
     ${cpdFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${cpdFact.t}</span></div>` : ''}
     ${c.plain ? `<h2>In plain English</h2><p>${esc(mds(c.plain))}</p>` : ''}
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
@@ -829,7 +829,10 @@ D.compounds.forEach((c) => {
     (c.bottom || c.plain) ? { q: `Does ${c.name} actually work?`, a: `${snip(c.bottom || c.plain, 260)}` } : null,
     c.protocol ? { q: `How do you take ${c.name}?`, a: snip(c.protocol, 300) } : null,
     c.watch ? { q: `What are the risks or side effects of ${c.name}?`, a: snip(c.watch, 300) } : null,
-    (c.approvalLabels || []).length ? { q: `Is ${c.name} legal or approved?`, a: `Regulatory status: ${(c.approvalLabels || []).join(', ')}.` } : null,
+    // W5a: answers BOTH axes. It used to answer only with the approval badges, which on 24 of 171
+    // compounds contradicted the authored regulatory class — so a crawler was told "OTC Supplement"
+    // for a compound the same build classes prescription-only.
+    ((c.badgeLabels || []).length || (c.supply || {}).tag) ? { q: `Is ${c.name} legal or approved?`, a: `${(c.badgeLabels || []).length ? `Regulator status: ${(c.badgeLabels || []).join(', ')}. ` : ''}How you get it: ${(c.supply || {}).tag || 'check your regulator'}.${(c.supply || {}).why ? ` ${(c.supply || {}).why}` : ''}` } : null,
   ]);
   const jsonld = [{
     '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: c.name,

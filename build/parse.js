@@ -13,10 +13,18 @@ const OUT = path.join(ROOT, 'site', 'data.js');
 const APPROVAL = ['🟢', '🟡', '🔵', '🟠', '🔴', '⚫'];
 const BADGE_CHARS = [...APPROVAL, '⭐', '⚠'];
 
+// W5a (2026-08-02): 🟡 and 🔵 RELABELLED onto the regulator axis. They read "OTC Supplement" and
+// "Prescription" — two shop instructions sitting in a table of regulator decisions, on a site whose
+// authored `regulatory_class` answers that question separately and disagreed with them on 24 of 171
+// compounds. Per Felix's decision, a colour here is the FDA's or the relevant global regulator's
+// current CALL ON THE MOLECULE and nothing else; how you actually get it has its own carrier now
+// (see SUPPLY_BY_CLASS). assertRegulatoryAxes() fails the build if a label goes back to retail
+// wording. "FDA Approved", "Off-Label", "Not Approved" and "Controlled" were already regulator
+// calls and are unchanged.
 const APPROVAL_LABEL = {
   '🟢': 'FDA Approved',
-  '🟡': 'OTC Supplement',
-  '🔵': 'Prescription',
+  '🟡': 'Regulated as a supplement',
+  '🔵': 'Prescription-only medicine',
   '🟠': 'Off-Label',
   '🔴': 'Not Approved',
   '⚫': 'Controlled',
@@ -552,6 +560,77 @@ const REG_BY_NAME = {};
     console.error(`[parse] REGULATORY CLASS ASSERTION FAILED — ${missing.length} compounds have no authored class.`);
     process.exit(1);
   }
+}
+
+// ---- W5a (2026-08-02): TWO AXES, ONE ANSWER EACH ---------------------------------------------
+// FELIX'S DECISION, applied here: a colour on this site is the REGULATOR'S CURRENT CALL on that
+// molecule — the FDA's or the relevant global regulator's — and nothing else. It never implies a
+// human on this project reviewed anything, and it is not a supply classification (CLAUDE.md rule 6,
+// Medicines Act 1975 s.51).
+//
+// WHAT WAS BROKEN. Two authored sources answered "how do you get this", separately, and disagreed
+// on 24 of 171 compounds. Measured HYDRATED at 390x844 by comparing the visible
+// `.detail-head .badges .pill` text against `c.regulatory_class`, 0 pageerrors:
+//   OVER-WARNING (3) — /c/vitamin-d3-k2 and /c/iron are authored `supplement` and rendered a blue
+//     "🔵 Prescription" pill; /c/yohimbine is `unapproved` and rendered 🔵 Prescription AND
+//     🟡 OTC Supplement. out/shot-vitd.png shows Vitamin D3 with a blue Prescription pill and,
+//     directly below it, a STATUS chip reading "🟡🔵 OTC Supplement".
+//   UNDER-LABELLING (21) — /c/ssris-…, /c/statins-…, /c/pde-5-inhibitors-…, /c/minoxidil and 17
+//     more carry a prescription/pharmacy class and rendered only 🟢 FDA Approved or 🟠 Off-Label.
+// The badge came from the markdown badge line; the class came from data/regulatory_class.json,
+// which is the authored, per-compound, human-overridable source with a Singapore status sentence
+// attached — and app.js:275 already stated the rule ("The authored class wins; the badge is only a
+// fallback") without anything enforcing it.
+//
+// THE RULE, stated once and applied the same way to all 171:
+//   · Three badges make a SUPPLY claim: 🟡 (sold as a supplement), 🔵 (prescription-only) and
+//     ⚫ (controlled). Each renders only where the authored class agrees. 🔵 is kept on
+//     `controlled` too, because a controlled medicine is also prescription-only — dropping it
+//     there would delete a true fact.
+//   · 🟢 / 🟠 / 🔴 make no supply claim at all — they are pure regulator-approval facts — so they
+//     are never dropped.
+//   · The SUPPLY answer has exactly one carrier, derived from the authored class, rendered on
+//     171/171, and its long form is the compound's OWN authored `sg_hsa_status` sentence, which
+//     until now existed in the data and was rendered nowhere near the badge.
+// Nothing is invented: every dropped badge is dropped because a human-authored field about that
+// same compound denies it, and every suppression is recorded on the compound in `badgesDropped`.
+const SUPPLY_BY_CLASS = {
+  supplement:   'No prescription needed',
+  otc:          'Available over the counter',
+  pharmacy:     'Pharmacy medicine — ask the pharmacist',
+  prescription: 'Prescription only — needs a doctor',
+  controlled:   'Controlled substance',
+  unapproved:   'Not approved for human use',
+  unknown:      'Status varies — check your regulator',
+};
+// The supply route each supply-claiming badge asserts, and the authored classes that agree with it.
+const BADGE_SUPPLY_OK = {
+  '🟡': ['supplement', 'otc'],
+  '🔵': ['prescription', 'pharmacy', 'controlled'],
+  '⚫': ['controlled'],
+};
+{
+  let dropped = 0, touched = 0;
+  compounds.forEach((c) => {
+    const cls = SUPPLY_BY_CLASS[c.regulatory_class] ? c.regulatory_class : 'unknown';
+    const keep = [], drop = [];
+    (c.approvals || []).forEach((a) => {
+      const ok = BADGE_SUPPLY_OK[a];
+      if (!ok || ok.includes(cls)) keep.push(a);
+      else drop.push({ badge: a, label: APPROVAL_LABEL[a] || '', why: `the authored regulatory class is "${cls}"` });
+    });
+    c.badges = keep;
+    c.badgeLabels = [...new Set(keep.map((a) => APPROVAL_LABEL[a]).filter(Boolean))];
+    c.badgesDropped = drop;
+    c.supply = {
+      cls,
+      tag: SUPPLY_BY_CLASS[cls],
+      aria: `How you get it: ${SUPPLY_BY_CLASS[cls].toLowerCase()}`,
+      why: c.sg_hsa_status || '',
+    };
+    if (drop.length) { dropped += drop.length; touched++; }
+  });
+  console.log(`[parse] regulatory axes reconciled — ${dropped} supply-claiming badge(s) on ${touched} compound(s) withdrawn because the authored class denies them; ${compounds.length}/${compounds.length} now carry exactly one supply statement.`);
 }
 
 function readJSON(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { console.warn('[parse] missing', path.basename(p)); return null; } }
@@ -2312,6 +2391,101 @@ console.log('Wrote', OUT);
   }
   const rated = compounds.filter((c) => c.stars > 0).length;
   console.log(`[parse] rating text-carrier OK \u2014 6 ratings, all distinct with every star glyph stripped; ${rated} rated + ${compounds.length - rated} unrated compounds; no renderer pads with the filled glyph.`);
+})();
+
+// ---- build-time assertion: A COLOUR IS THE REGULATOR'S CALL, AND THE SUPPLY ANSWER IS ONE ------
+// W5a (2026-08-02). Felix's decision is that a colour on this site means the FDA's or the relevant
+// global regulator's current status/call on that molecule \u2014 never that anyone here reviewed it.
+// The defect this gate exists for: TWO authored sources both answered "how do you get this" and
+// disagreed on 24 of 171 compounds, measured hydrated at 390x844 (visible `.badges .pill` text vs
+// `c.regulatory_class`) \u2014 Vitamin D3 and Iron rendering a blue Prescription pill on an authored
+// `supplement`, 21 prescription/pharmacy compounds rendering only \ud83d\udfe2 or \ud83d\udfe0 and no supply statement.
+//
+// It is one carrier or it is a contradiction waiting. So: exactly one supply statement per
+// compound, derived from the authored class; no badge may survive that asserts a supply route the
+// authored class denies; and the approval-label table may not use retail-availability wording,
+// because that is what let "OTC Supplement" be read as this page's answer in the first place.
+//
+// WHAT THIS GATE CANNOT DO, stated rather than hidden: it cannot judge whether the authored class
+// is right. It enforces that ONE authored field answers the question and that nothing else on the
+// page contradicts it. Getting the class itself right is data/regulatory_class.json's job, where
+// `source: "human-override"` and `needs_human_review` are already recorded per row.
+//
+// PROVE IT: put 'OTC Supplement' back as the \ud83d\udfe1 label -> fails on the retail-wording check;
+// add 'controlled' to BADGE_SUPPLY_OK['\ud83d\udfe1'] -> fails by naming the compounds; delete
+// `data-axis="supply"` from site/app.js -> fails on the renderer check.
+// What each supply-claiming badge ASSERTS about how you get the thing, and what each authored class
+// ALLOWS. Deliberately written independently of BADGE_SUPPLY_OK above — the gate's whole job is to
+// check that the reconciler and the rule still agree, and a gate that reads the reconciler's own
+// table cannot do that.
+const BADGE_SUPPLY_CLAIM = { '🟡': 'supplement', '🔵': 'prescription', '⚫': 'controlled' };
+const CLASS_ADMITS = {
+  supplement: ['supplement'],
+  otc: ['supplement'],
+  pharmacy: ['prescription'],                 // still a professional's counter, never a shelf
+  prescription: ['prescription'],
+  controlled: ['prescription', 'controlled'], // a controlled medicine is also prescription-only
+  unapproved: [],                             // nothing legitimate supplies it
+  unknown: [],
+};
+(function assertRegulatoryAxes() {
+  const bad = [];
+  const RETAIL = /\b(otc|over[- ]the[- ]counter|off the shelf|behind the counter|general sale|buy)\b/i;
+  Object.entries(APPROVAL_LABEL).forEach(([b, l]) => {
+    if (RETAIL.test(l)) bad.push(`approval label "${b} ${l}" uses retail-availability wording. A colour is the regulator's call on the molecule, not a shop instruction \u2014 and this is the exact wording that let a badge be read as the page's supply answer while data/regulatory_class.json said something else.`);
+  });
+  const tagSeen = new Map();
+  Object.entries(SUPPLY_BY_CLASS).forEach(([cls, tag]) => {
+    if (!String(tag || '').trim()) bad.push(`SUPPLY_BY_CLASS["${cls}"] is empty`);
+    if (tagSeen.has(tag)) bad.push(`SUPPLY_BY_CLASS gives "${cls}" and "${tagSeen.get(tag)}" the same words ("${tag}") \u2014 the supply statement has to identify the class it came from`);
+    tagSeen.set(tag, cls);
+  });
+  compounds.forEach((c) => {
+    const s = c.supply || {};
+    if (!s.tag || !SUPPLY_BY_CLASS[s.cls] || SUPPLY_BY_CLASS[s.cls] !== s.tag)
+      bad.push(`${c.id} ("${c.name}") has no supply statement derived from its authored regulatory class \u2014 21 compounds shipped with a prescription/pharmacy class and nothing on the badge row saying so`);
+    if (c.regulatory_class && SUPPLY_BY_CLASS[c.regulatory_class] && s.cls !== c.regulatory_class)
+      bad.push(`${c.id} ("${c.name}") renders supply class "${s.cls}" but its authored class is "${c.regulatory_class}"`);
+    // CHECKED AGAINST AN INDEPENDENT STATEMENT OF THE RULE, not against BADGE_SUPPLY_OK. The first
+    // version of this check read the same table the reconciler above writes with, so widening that
+    // table widened the check too and the gate passed while the defect came back \u2014 a tautology, and
+    // the exact "a gate over an empty set always passes" failure this project has hit before.
+    // BADGE_SUPPLY_CLAIM says what each badge ASSERTS; CLASS_ADMITS says what each authored class
+    // ALLOWS. Two tables, written from two directions, that have to agree.
+    (c.badges || []).forEach((a) => {
+      const claim = BADGE_SUPPLY_CLAIM[a];
+      if (!claim) return;                                   // \ud83d\udfe2 / \ud83d\udfe0 / \ud83d\udd34 assert no supply route
+      const admits = CLASS_ADMITS[s.cls] || [];
+      if (!admits.includes(claim)) bad.push(`${c.id} ("${c.name}") renders the "${a} ${APPROVAL_LABEL[a]}" badge, which asserts you get this on a "${claim}" route, but its own authored regulatory class is "${s.cls}", which admits ${admits.length ? admits.map((x) => `"${x}"`).join(' or ') : 'no supply route at all'} \u2014 this is the Vitamin-D3-with-a-blue-Prescription-pill defect`);
+    });
+    (c.badgesDropped || []).forEach((d) => {
+      if ((c.badges || []).includes(d.badge)) bad.push(`${c.id}: badge "${d.badge}" is recorded as withdrawn and is also rendered`);
+      if (!String(d.why || '').trim()) bad.push(`${c.id}: badge "${d.badge}" was withdrawn with no reason recorded \u2014 a suppression with nothing beside it is a silent edit`);
+    });
+  });
+  // The renderers must actually distinguish the two axes. A reader cannot be expected to know that
+  // one pill answers "what has a regulator decided" and the next answers "how do you get it"
+  // unless the page says so; and 197 approval pills shipped with aria-label = null and title = null.
+  const app = fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8');
+  [['data-axis="regulator"', 'the approval pills are not marked as the regulator axis'],
+   ['data-axis="supply"', 'the supply pill is not marked as the supply axis'],
+   ['c.supply', 'site/app.js never reads c.supply \u2014 the authored class would again be invisible on the badge row, which is where the two answers disagreed'],
+   ['aria-label="Regulator status:', 'the approval pills have no accessible name (all 197 shipped with aria-label = null)'],
+   ['aria-label="How you get it:', 'the supply pill has no accessible name']].forEach(([needle, why]) => {
+    if (app.indexOf(needle) < 0) bad.push(`site/app.js is missing ${needle} \u2014 ${why}`);
+  });
+  if (/class="rx-note"/.test(app)) bad.push('site/app.js still renders .rx-note, a SECOND supply carrier that said "Prescription \u2014 needs a doctor" on /c/minoxidil, whose authored class is "pharmacy". One carrier or it is a contradiction waiting.');
+
+  if (bad.length) {
+    console.error('\n[parse] REGULATORY AXES ASSERTION FAILED \u2014 refusing to build:');
+    bad.slice(0, 25).forEach((m) => console.error('  \u2717 ' + m));
+    if (bad.length > 25) console.error(`  \u2026 and ${bad.length - 25} more`);
+    process.exit(1);
+  }
+  const pills = compounds.reduce((n, c) => n + (c.badges || []).length, 0);
+  const withdrawn = compounds.reduce((n, c) => n + (c.badgesDropped || []).length, 0);
+  const sourced = compounds.filter((c) => c.supply && c.supply.why).length;
+  console.log(`[parse] regulatory axes OK \u2014 ${pills} regulator badges (+${withdrawn} withdrawn as contradicting the authored class), ${compounds.length} supply statements, ${sourced} of them carrying the compound's own authored status sentence. 0 contradictions.`);
 })();
 
 // ---- build-time assertion: goal taxonomy ------------------------------------------------------

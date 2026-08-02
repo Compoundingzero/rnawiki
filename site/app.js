@@ -311,22 +311,52 @@
     return 'unknown';
   };
   const needsDoctor = (c) => ['prescription', 'controlled', 'pharmacy'].includes(regClass(c));
-  const rxBadge = c => needsDoctor(c) ? '<span class="pill rx" title="A prescription or controlled drug \u2014 a doctor has to assess you and prescribe it. It is not a supplement.">\u211e Needs a doctor</span>' : '';
-  // Approval pills carry the legal status accurately (e.g. 🟡 OTC · 🔵 Prescription); a compact
-  // "℞" cue flags anything needing a doctor without the old verbose, contradictory block.
-  const approvalPills = c => c.approvals.map(a => `<span class="pill ${APPROVAL_CLASS[a] || 'k'}">${a} ${D.approvalLabels[a] || ''}</span>`).join('') + (needsDoctor(c) ? '<span class="rx-note" title="Prescription or controlled — needs a doctor to assess and prescribe.">Prescription — needs a doctor</span>' : '');
+  const rxBadge = c => needsDoctor(c) ? '<span class="pill rx" data-axis="supply" aria-label="How you get it: needs a doctor" title="A prescription or controlled drug \u2014 a doctor has to assess you and prescribe it. It is not a supplement.">\u211e Needs a doctor</span>' : '';
+  // ---- W5a (2026-08-02): TWO AXES, ONE ANSWER EACH ---------------------------------------------
+  // Felix's decision: a colour on this site is the REGULATOR'S current call on that molecule — the
+  // FDA's or the relevant global regulator's. It never implies that anyone on this project reviewed
+  // it. How you actually GET the thing is a different question with a different, single carrier.
+  //
+  // This row used to answer "how do you get it" TWICE, from two sources that disagreed on 24 of 171
+  // compounds (measured hydrated at 390x844, visible `.pill` text vs `c.regulatory_class`):
+  //   · /c/vitamin-d3-k2 and /c/iron are authored `supplement` and rendered "🔵 Prescription";
+  //     /c/yohimbine is `unapproved` and rendered BOTH 🔵 Prescription and 🟡 OTC Supplement.
+  //   · 21 compounds with a prescription/pharmacy class rendered only 🟢 FDA Approved or 🟠
+  //     Off-Label — /c/ssris-…, /c/statins-…, /c/pde-5-inhibitors-…, /c/minoxidil and 17 more.
+  //   · The one supply cue that did exist, `.rx-note`, printed "Prescription — needs a doctor" on
+  //     /c/minoxidil, whose authored class is `pharmacy`. Wrong word, and a second carrier.
+  // build/parse.js reconciles the two at BUILD time — it withdraws any badge whose supply claim the
+  // authored class denies, records the withdrawal on the compound, and emits exactly one supply
+  // statement — so this renderer cannot reintroduce the contradiction. All 197 approval pills also
+  // shipped with aria-label = null and title = null; every pill now names its own axis.
+  const supplyPill = (c) => {
+    const s = c.supply || { tag: 'Status varies — check your regulator', cls: 'unknown', why: '' };
+    const ico = { prescription: '℞', pharmacy: '℞', controlled: '⛔', unapproved: '⛔', supplement: '🛒', otc: '🛒' }[s.cls] || '•';
+    // The axis is named in the accessible name, not just implied by the styling: a screen-reader
+    // user hears "Regulator status: FDA Approved" and then "How you get it: prescription only".
+    return `<span class="pill supply s-${esc(s.cls)}" data-axis="supply" aria-label="How you get it: ${esc(String(s.tag).toLowerCase())}" title="${esc(s.why || s.tag)}">${ico} ${esc(s.tag)}</span>`;
+  };
+  const approvalPills = c => (c.badges || []).map(a =>
+    `<span class="pill ${APPROVAL_CLASS[a] || 'k'}" data-axis="regulator" aria-label="Regulator status: ${esc(D.approvalLabels[a] || '')}" title="What a regulator has decided about this molecule — not where you can buy it.">${a} ${esc(D.approvalLabels[a] || '')}</span>`
+  ).join('') + supplyPill(c);
   const badgeRow = c => `<div class="badges">${starHTML(c.stars)}${approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
+  // W5a: the TAG is no longer written here. It comes from c.supply, which build/parse.js derives
+  // from the same authored regulatory_class this switch reads — so the badge row and this section
+  // print the identical words, and a change to one cannot leave the other behind. The long bodies
+  // stay, and where the compound has an authored `sg_hsa_status` sentence it is now shown too,
+  // because it is the most specific and most local thing the corpus knows about this question.
   function sgAvailability(c) {
+    const t = (o) => Object.assign(o, { tag: ((c || {}).supply || {}).tag || o.tag, sg: ((c || {}).supply || {}).why || '' });
     switch (regClass(c)) {
-      case 'controlled': return { tag: 'Controlled substance', cls: 'danger', body: 'A controlled substance in most countries, including Singapore (HSA / CNB) \u2014 illegal to buy, sell or possess without authorisation almost everywhere, though the exact schedule differs by country. Listed here for completeness only.' };
-      case 'prescription': return { tag: 'Prescription only', cls: 'rx', body: 'A prescription-only medicine in most countries: dispensed by a licensed pharmacy against a doctor\'s prescription, not sold over the counter. Buying it from an online marketplace or an overseas seller is unsafe, and in many countries unlawful. Classification varies \u2014 check the rules where you live, and speak to a doctor.' };
-      case 'pharmacy': return { tag: 'Pharmacy medicine', cls: 'rx', body: 'A pharmacy-only medicine \u2014 sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' };
-      case 'unapproved': return { tag: 'Not approved', cls: 'warn', body: 'Not approved for human use in most markets, Singapore included. Grey-market supply only: dose, purity and legality are all uncertain wherever you are.' };
+      case 'controlled': return t({ tag: 'Controlled substance', cls: 'danger', body: 'A controlled substance in most countries, including Singapore (HSA / CNB) \u2014 illegal to buy, sell or possess without authorisation almost everywhere, though the exact schedule differs by country. Listed here for completeness only.' });
+      case 'prescription': return t({ tag: 'Prescription only', cls: 'rx', body: 'A prescription-only medicine in most countries: dispensed by a licensed pharmacy against a doctor\'s prescription, not sold over the counter. Buying it from an online marketplace or an overseas seller is unsafe, and in many countries unlawful. Classification varies \u2014 check the rules where you live, and speak to a doctor.' });
+      case 'pharmacy': return t({ tag: 'Pharmacy medicine', cls: 'rx', body: 'A pharmacy-only medicine \u2014 sold from behind the counter after a pharmacist\'s advice, not off the open shelf.' });
+      case 'unapproved': return t({ tag: 'Not approved', cls: 'warn', body: 'Not approved for human use in most markets, Singapore included. Grey-market supply only: dose, purity and legality are all uncertain wherever you are.' });
       case 'supplement':
-      case 'otc': return { tag: 'Available over the counter', cls: 'ok', body: 'Widely available over the counter. Look for a third-party-tested / GMP mark and check the dose per serving.' };
-      default: return { tag: 'Check locally', cls: '', body: 'Availability and legal status vary by country \u2014 check your national regulator (in Singapore, the HSA) before buying.' };
+      case 'otc': return t({ tag: 'Available over the counter', cls: 'ok', body: 'Widely available over the counter. Look for a third-party-tested / GMP mark and check the dose per serving.' });
+      default: return t({ tag: 'Check locally', cls: '', body: 'Availability and legal status vary by country \u2014 check your national regulator (in Singapore, the HSA) before buying.' });
     }
   }
 
@@ -1473,7 +1503,10 @@
     const bar = document.getElementById('goal-filters'); if (!bar) return;
     bar.querySelectorAll('.chip').forEach(chip => chip.onclick = () => {
       bar.querySelectorAll('.chip').forEach(c => c.classList.remove('active')); chip.classList.add('active');
-      const ap = chip.dataset.ap; const f = ap ? list.filter(c => c.approvals.includes(ap)) : list;
+      // W5a: filters on c.badges (what the page actually renders), not c.approvals (the raw
+      // markdown badge line) — otherwise the "🔵 Prescription" filter returns Vitamin D3, whose
+      // blue badge was withdrawn because its authored class is `supplement`.
+      const ap = chip.dataset.ap; const f = ap ? list.filter(c => (c.badges || []).includes(ap)) : list;
       document.getElementById('goal-list').innerHTML = f.length ? f.map(cpdCard).join('') : '<div class="empty">None with that status for this goal.</div>';
     });
   }
@@ -1573,7 +1606,16 @@
     // the single string measured hydrated on /c/bpc-157 as "EVIDENCE\n★★★★★ Minimal" for a
     // ONE-star compound. It now reads "★☆☆☆☆ 1 of 5 · Minimal", and the number survives a strip.
     chips.push(`<span class="spec-chip"><span class="sc-k">Evidence</span><span class="sc-v">${starHTML(c.stars)}${c.stars ? ` · ${esc(tier[0])}` : ''}</span></span>`);
-    if ((c.approvalLabels || []).length) chips.push(`<span class="spec-chip"><span class="sc-k">Status</span><span class="sc-v">${(c.approvals || []).join('')} ${esc(c.approvalLabels[0])}</span></span>`);
+    // W5a / D31: this chip rendered EVERY approval dot and exactly ONE caption — `approvalLabels[0]`.
+    // Measured hydrated at 390x844 on /c/vitamin-d3-k2, whose innerText was "STATUS\n🟡🔵 OTC
+    // Supplement": two coloured dots, one caption, and the caption was the one that omitted the
+    // other badge. 38 of 171 compounds render two or more badges, so 38 pages showed a colour with
+    // no words anywhere. Every badge now carries its own words, and the chip ends with the single
+    // supply statement so the strip and the badge row cannot disagree.
+    if ((c.badgeLabels || []).length || (c.supply || {}).tag) {
+      const reg = (c.badges || []).map(a => `${a} ${esc(D.approvalLabels[a] || '')}`).join(' · ');
+      chips.push(`<span class="spec-chip"><span class="sc-k">Status</span><span class="sc-v">${reg ? reg + ' · ' : ''}${esc((c.supply || {}).tag || '')}</span></span>`);
+    }
     chips.push(`<span class="spec-chip" id="spec-formula" hidden><span class="sc-k">Formula</span><span class="sc-v" id="spec-formula-v"></span></span>`);
     chips.push(`<span class="spec-chip" id="spec-mw" hidden><span class="sc-k">Mol. weight</span><span class="sc-v" id="spec-mw-v"></span></span>`);
     if (c.cost) { const cm = String(c.cost).match(/S?\$[\d,]+(?:[–-]\$?[\d,]+)?\s*(?:\/\s*month|\/mo|per month|a month)?/i); if (cm) chips.push(`<span class="spec-chip"><span class="sc-k">Cost</span><span class="sc-v">${esc(cm[0])}</span></span>`); }
@@ -1936,7 +1978,7 @@
         const link = `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`;
         return f ? `${link} <span class="ds-flag ${f.tier}">${TIER_ICON[f.tier]} ${esc(f.title)}</span>` : link;
       }).join(' · ');
-      return `${c.stacksWith ? `<div class="section-title">🔗 Stacks with</div><p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<div class="section-title">🧬 Acts on the same pathway</div><p class="muted" style="font-size:.88rem">Computed from shared pathways, not a suggestion to combine them: ${derivedHtml}.</p>` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`;
+      return `${c.stacksWith ? `<div class="section-title">🔗 Stacks with</div><p class="field-val">${mdInline(c.stacksWith)}</p>` : ''}${derived.length ? `<div class="section-title">🧬 Acts on the same pathway</div><p class="muted" style="font-size:.88rem">Computed from shared pathways, not a suggestion to combine them: ${derivedHtml}.</p>` : ''}${c.avoid ? `<div class="section-title">⚠️ Avoid combining with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : ''}<div class="section-title">🌐 Availability &amp; where to buy</div><div class="sg-buy ${sg.cls}"><b>${esc(sg.tag)}.</b> ${sg.body}${sg.sg ? `<div class="sg-local"><b>Singapore:</b> ${esc(sg.sg)}</div>` : ''}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`;
     })();
     const usedIn = (() => { const ps = protocolsForCompound(c); return ps.length ? `<div class="cpd-sec"><div class="section-title">🧭 Used in these protocols</div><p style="color:var(--muted);margin-top:-.4rem">Where ${esc(c.name)} is part of a full Move · Fuel · Stack plan.</p><div class="solve-grid">${ps.slice(0, 6).map(x => protoLink(x.p, x.rc)).join('')}</div></div>` : ''; })();
     const evidenceBlock = evidenceGlance(c) + (c.evi ? evidenceDeep(c) : (c.evidence ? `<details class="evidence-block" id="sec-evidence"><summary>🔬 The human evidence <span class="ev-hint">— the actual trials, for the sceptical</span></summary><div class="ev-body">${mdInline(c.evidence)}</div></details>` : ''));
@@ -4421,7 +4463,7 @@
       <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
       ${f.note ? `<p class="anat-lead">${esc(f.note)}</p>` : ''}
       <div class="section-title">The stack (${cpds.length})</div>
-      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>${c.isRx ? '<span class="pill rx">Prescription</span>' : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
+      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>${c.isRx ? `<span class="pill rx" data-axis="supply" aria-label="How you get it: ${esc(String((c.supply || {}).tag || 'needs a doctor').toLowerCase())}">${esc((c.supply || {}).tag || 'Prescription')}</span>` : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
       <div class="cstack-actions" style="margin-top:1.2rem">
         <button class="cta-primary cstack-use" id="fork-clone-btn" style="border:none;cursor:pointer">Use this stack →</button>
         <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likes}</span></button>
@@ -6894,7 +6936,7 @@
         <div class="cause-step">THE PROTOCOL · MEDICAL OPTIONS</div>
         <h2>🩺 Medical options — discuss with a doctor</h2>
         <p>These are prescription, pharmacy-only or non-approved medicines. They are listed so you know they exist and can raise them with a clinician — they are not recommendations, they are not ranked, and no doses for them appear here.</p>
-        <div class="fuel-stack-grid">${med.map(c => `<div class="fs-item"><span><a href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b></a><br><span class="pill rx">${esc(sgAvailability(c).tag)}</span></span></div>`).join('')}</div>
+        <div class="fuel-stack-grid">${med.map(c => `<div class="fs-item"><span><a href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b></a><br><span class="pill rx" data-axis="supply" aria-label="How you get it: ${esc(String(sgAvailability(c).tag).toLowerCase())}">${esc(sgAvailability(c).tag)}</span></span></div>`).join('')}</div>
       </section>` : ''}
         </div>
       </details>`;
@@ -7291,7 +7333,7 @@
     return `<div class="st-card${needsDoctor(c) ? ' rx' : ''}">
       <a class="st-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>
       ${starHTML(c.stars, { compact: true })}</a>
-      <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
+      <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" aria-label="Shares a pathway with another item in this stack" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
       <p class="st-plain">${cardSnip(c.plain || c.bottom || c.mechanism, 150)}</p>
       <button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>
     </div>`;
