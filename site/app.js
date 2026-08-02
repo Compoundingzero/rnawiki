@@ -2013,8 +2013,9 @@
     // pathway — often paired with: …", which is an empirical claim about what people do that no
     // one on this project has measured.
     //
-    // MEASURED over the shipped corpus with the site's own stackInteractions() (out/w35h_contra.mjs,
-    // out/w35h_contra.json): 133 of 171 compound pages printed 523 such recommendations, and the
+    // MEASURED 2026-08-02 over the shipped corpus with the site's own stackInteractions()
+    // (out/w35h_contra.mjs, out/w35h_contra.json) — a record of what W3.5 found on that date, not a
+    // live figure: 133 of 171 compound pages printed 523 such recommendations, and the
     // site's own interaction checker flags 80 of them — 63 at DANGER tier, 10 blunt, 7 timing,
     // across 38 pages and 64 distinct molecule pairs. /c/l-citrulline-citrulline-malate recommended
     // PDE-5 Inhibitors two lines above its own "⚠️ Avoid combining with … can drop blood pressure
@@ -2027,8 +2028,14 @@
     // with the pairing advice removed. (2) Every entry is run through stackInteractions() and any
     // the checker flags carries that flag inline, at its own tier. Nothing is hidden: a flagged
     // pair still appears, because dropping it would turn a warning into a silent absence and imply
-    // the rest were checked and cleared. The checker covers 92 of 171 compounds and says so
-    // elsewhere; this list makes no safety claim in either direction.
+    // the rest were checked and cleared. The checker's coverage is stated ELSEWHERE and is not
+    // repeated here. As of 2026-08-02 this comment said "covers 92 of 171 compounds", which was
+    // already wrong by two when W5a read it (the live figure is site/interactions.js
+    // `coverage.reachable`, which
+    // assertInteractionCoverage() recomputes from the corpus on every build and refuses to build if
+    // it drifts). A number copied into a comment has no gate on it and goes stale silently — the
+    // same defect class as every other one on this project, two records of one fact with nothing
+    // checking them. Read the gated field, not this line. This list makes no safety claim either way.
     const stacksBlock = (() => {
       const sg = sgAvailability(c);
       const derived = derivedStacks(c);

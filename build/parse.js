@@ -2146,6 +2146,28 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   (R.rules || []).forEach((r) => (r.notIf || []).forEach((id) => {
     if (!ids.has(id) && !(R.rules || []).some((x) => x.id === id)) bad.push(`rule "${r.id}" stands down for "${id}", which is not a rule id — it would never stand down`);
   }));
+  // ---- W5a (2026-08-02): A COVERAGE NUMBER COPIED INTO PROSE HAS NO GATE ON IT ----------------
+  // `coverage.reachable` is recomputed from the corpus above and the build refuses to ship if it
+  // drifts. The SENTENCES about it had no such protection, and they had already rotted: site/app.js
+  // said "The checker covers 92 of 171 compounds" while the live figure was 94, and
+  // site/interactions.js said "coverage does not move: 90/171 before and after" with nothing saying
+  // when that was true. Same defect class as every other one on this project — two records of one
+  // fact, kept separately, with nothing checking them.
+  // The rule: a coverage claim in prose must either state the LIVE number, or be dated, so a reader
+  // can tell a current fact from a record of an edit. PROVE IT by putting "covers 92 of 171
+  // compounds" back into site/app.js.
+  ['site/app.js', 'site/interactions.js'].forEach((rel) => {
+    const src = fs.readFileSync(path.join(ROOT, ...rel.split('/')), 'utf8');
+    const re = new RegExp(`(\\d+)\\s*(?:of|/)\\s*${compounds.length}\\b`, 'g');
+    let m;
+    while ((m = re.exec(src))) {
+      const ctx = src.slice(Math.max(0, m.index - 220), m.index + 220);
+      if (!/cover|reachab|checker can|flag/i.test(ctx)) continue;         // not a coverage claim
+      if (Number(m[1]) === measured.reachable) continue;                  // states the live number
+      if (/\b20\d\d-\d\d-\d\d\b/.test(ctx)) continue;                     // dated as history
+      bad.push(`${rel} claims coverage of "${m[0]}" in prose, but the corpus measures ${measured.reachable}/${compounds.length}. Quote the gated field, or date the sentence so a reader can tell a record of an edit from the current number.`);
+    }
+  });
   if (bad.length) {
     console.error('[parse] INTERACTION COVERAGE ASSERTION FAILED — the checker must not overstate what it knows:');
     bad.forEach((b) => console.error('  · ' + b));

@@ -151,7 +151,10 @@ window.RNAWIKI_INTERACTIONS = {
     //                         blood pressure compound."
     // Four rendered rows go: hypotensive_stack 6 → 3 firing 2-compound stacks, pde5_vasodilator
     // 3 → 2. c127 keeps `stimulant`, which its own contra block supports word for word, so it stays
-    // reachable and coverage does not move: 90/171 before and after. A lower honest number beats a
+    // reachable and coverage does not move — it was 90/171 both before and after THAT change, on
+    // 2026-07-31. That is a record of one edit, not the current figure: `coverage.reachable` at the
+    // top of this file is the live number, and assertInteractionCoverage() in build/parse.js
+    // recomputes it from the corpus and fails the build if it drifts. A lower honest number beats a
     // higher false one.
     // hepatotoxic (liver strain) — oral AAS + a few others
     { m: "green tea", t: ["hepatotoxic"], ids: ["c30"] }, { m: "red yeast rice", t: ["statin_like", "hepatotoxic"], ids: ["c161"] },
