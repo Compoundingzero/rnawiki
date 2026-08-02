@@ -3170,6 +3170,125 @@ fs.writeFileSync(LASTMOD_FILE, '{\n' + Object.keys(lastmodNext).sort()
 console.log(`[prerender] wrote ${written} static pages + sitemap.xml (${uniq.length} urls) + robots.txt; swept ${swept} stale files`);
 console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmMoved} changed -> ${now}${lmUnknown ? `, ${lmUnknown} with no prerendered output (stamped today)` : ''}`);
 
+// ---- build-time assertion: ONE PAGEVIEW PER VISIT, AND ONLY EVER A TEMPLATE NAME --------------
+// Added 2026-08-03 (W5.5). The pageview beacon had two properties nothing was watching, and one of
+// them was already false.
+//
+// (1) EXACTLY ONE PAGEVIEW PER VISIT. route() is bound to BOTH `popstate` and `hashchange`, and
+//     Chrome fires both for a single same-document fragment change, so route() ran twice for
+//     something that is not a navigation at all. MEASURED HYDRATED at 390x844 and 1440x900 with
+//     the A_CODE kill switch and the navigator.webdriver suppressor flipped in flight (the repo
+//     was not modified to measure it), 0 pageerrors:
+//       · clicking the SKIP LINK on /c/creatine-monohydrate — the first keyboard action available
+//         on every page on this site — emitted ["/t/compound","/t/compound"];
+//       · one "#red-flags" jump inside /protocol/knee-pain/knee-oa emitted
+//         ["/t/protocol","/t/protocol"];
+//       · with the root-cause overlay endpoint returning rows, ONE document load emitted two
+//         pageviews on every route, because boot does `if (applyRcOverlay(ov)) route();` — that is
+//         the production configuration, so every page on the site counted double;
+//       · one legacy #/ hash-router navigation emitted two.
+//     The fix is the `pathPart !== _aLastPath` guard at the pv call site in site/app.js. This gate
+//     holds it there: exactly one RNA_A.pv() call site, and that call site guarded.
+//
+// (2) A PAGEVIEW MAY NEVER CARRY A URL, ONLY A TEMPLATE NAME. aTemplate() is an ALLOWLIST that
+//     fails closed to /t/other, and that is the whole privacy argument for this beacon: a route
+//     template added tomorrow and forgotten in A_TPL degrades to /t/other, it can never leak
+//     /c/pde-5-inhibitors-… or /problem/erectile-dysfunction. A gate that only read app.js could
+//     not see that, because the thing that has to fail closed is the PUBLISHED ROUTE SET, which
+//     lives here. So this replays aTemplate() over all `uniq` published routes and refuses to
+//     build if any of them resolves to anything that is not a literal public path or /t/<template>.
+//     Today: 568 routes -> 28 distinct values, 0 outside the vocabulary, 0 segments uncovered.
+//     Coverage is reported, never enforced: /t/other is the SAFE answer, so a new segment landing
+//     there is a note to the maintainer, not a build failure. Enforcing coverage would create
+//     pressure to add entries to A_TPL, which is the direction that leaks.
+//
+// PROVE IT by reintroducing either bug: drop the `pathPart !== _aLastPath` guard in site/app.js
+// (check 1a/1b fails), add a second RNA_A.pv() call site (1c), or make aTemplate() return the raw
+// path — e.g. `return '/' + parts.join('/')` — and this refuses to build naming the routes (2).
+(function assertPageviewIntegrity() {
+  const appSrc = fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8');
+  if (appSrc.indexOf('RNA_A') < 0) { console.log('[prerender] pageview gate: no analytics in site/app.js — nothing to check.'); return; }
+  const bad = [];
+
+  // --- (1) one pageview per visit ---
+  const calls = (appSrc.match(/RNA_A\.pv\(/g) || []).length;
+  if (calls !== 1) bad.push(`site/app.js has ${calls} RNA_A.pv() call site(s); there must be exactly 1. A second sender is a second pageview per visit, and nothing downstream can tell the two apart.`);
+  const GUARD = "if (pathPart !== _aLastPath) { _aLastPath = pathPart; try { RNA_A.pv(parts); } catch (e) { } }";
+  if (appSrc.indexOf(GUARD) < 0) bad.push(`the RNA_A.pv() call site is not guarded by the last-path check. route() re-runs on things that are not navigations — a fragment click fires popstate AND hashchange, and the root-cause overlay re-routes at boot — so without the guard one visit is counted two or three times. Restore exactly:\n      ${GUARD}`);
+  const decls = (appSrc.match(/let _aLastPath\b/g) || []).length;
+  if (decls !== 1) bad.push(`expected exactly 1 \`let _aLastPath\` declaration in site/app.js, found ${decls} — the guard's memory must be one variable in route()'s closure, or it resets and stops guarding.`);
+  const listeners = ["window.addEventListener('popstate', route);", "window.addEventListener('hashchange', route);"].filter((s) => appSrc.indexOf(s) >= 0);
+  if (listeners.length !== 2) bad.push(`expected route() to be bound to both popstate and hashchange, found ${listeners.length} of 2 — if that changed, re-measure the double-count before relaxing anything here.`);
+
+  // --- (2) the beacon vocabulary vs the published route set ---
+  // PIN aTemplate() ITSELF FIRST. The route replay below reconstructs aTemplate from A_PUBLIC and
+  // A_TPL, so it can only prove that the VOCABULARY covers the corpus — it is blind to a change in
+  // the function body. Measured: with only the replay in place, rewriting the fallback to
+  // `return p;` (the whole URL, /c/pde-5-inhibitors-… and all) built green. So the three lines that
+  // decide what leaves the browser are pinned verbatim, and the replay checks them against the
+  // corpus. Both halves are needed; neither is sufficient.
+  const ATPL_BODY = [
+    '  function aTemplate(parts) {',
+    "    const p = '/' + (parts || []).join('/');",
+    '    if (A_PUBLIC.indexOf(p) >= 0) return p;',
+    "    if (!parts || !parts.length) return '/';",
+    "    return '/t/' + (A_TPL[parts[0]] || 'other');",
+    '  }',
+  ].join('\n');
+  if (appSrc.indexOf(ATPL_BODY) < 0) bad.push(`aTemplate() in site/app.js is not the function this gate and docs/EVENT_SCHEMA.md describe. It is the single point where a reader's URL is turned into a template name, and every privacy claim about this beacon rests on its last line falling through to /t/other. Restore exactly:\n${ATPL_BODY.split('\n').map((l) => '      ' + l).join('\n')}`);
+  const mPub = appSrc.match(/const A_PUBLIC = \[([\s\S]*?)\];/);
+  const mTpl = appSrc.match(/const A_TPL = \{([\s\S]*?)\};/);
+  if (!mPub || !mTpl) bad.push('could not parse A_PUBLIC / A_TPL out of site/app.js — this gate cannot verify what the beacon sends, so it refuses rather than passing blind.');
+  else {
+    const A_PUBLIC = (mPub[1].match(/'([^']+)'/g) || []).map((s) => s.slice(1, -1));
+    const A_TPL = {};
+    mTpl[1].replace(/\/\/[^\n]*/g, '').split(',').forEach((kv) => {
+      const m = kv.match(/([A-Za-z_$][\w$]*|'[^']+')\s*:\s*'([^']+)'/);
+      if (m) A_TPL[m[1].replace(/'/g, '')] = m[2];
+    });
+    if (!A_PUBLIC.length || !Object.keys(A_TPL).length) bad.push('A_PUBLIC or A_TPL parsed empty — refusing to build rather than declaring a vocabulary check that checked nothing.');
+    // A_PUBLIC IS THE ONE PLACE A REAL URL MAY TRAVEL VERBATIM, so what may go in it is a rule, not
+    // a judgement call. Every entry must be a single-segment path — an index, which names no
+    // compound, condition, muscle or protocol. The moment a second segment is allowed, the list
+    // stops being "routes that encode no health interest" and becomes an exemption anyone can widen
+    // one line at a time, which is how an allowlist quietly becomes a blocklist.
+    A_PUBLIC.filter((p) => p.split('/').filter(Boolean).length > 1).forEach((p) => {
+      bad.push(`A_PUBLIC contains "${p}", which has more than one path segment. A deeper path names a specific compound, condition or protocol, and sending it verbatim discloses the reader's health interest — the exact thing this beacon is built to withhold. Only top-level index routes belong in A_PUBLIC; everything else goes through A_TPL.`);
+    });
+    // aTemplate(), replayed exactly as site/app.js defines it.
+    const aTemplate = (parts) => {
+      const p = '/' + parts.join('/');
+      if (A_PUBLIC.indexOf(p) >= 0) return p;
+      if (!parts.length) return '/';
+      return '/t/' + (A_TPL[parts[0]] || 'other');
+    };
+    const emitted = new Map(), leaks = [], uncovered = new Map();
+    uniq.forEach((r) => {
+      const parts = r.split('?')[0].split('/').filter(Boolean);
+      const t = aTemplate(parts);
+      emitted.set(t, (emitted.get(t) || 0) + 1);
+      if (!(A_PUBLIC.indexOf(t) >= 0 || t === '/' || /^\/t\/[a-z-]+$/.test(t))) leaks.push({ r, t });
+      const seg = parts[0] || '';
+      if (parts.length && A_PUBLIC.indexOf('/' + parts.join('/')) < 0 && !A_TPL[seg]) uncovered.set(seg, (uncovered.get(seg) || 0) + 1);
+    });
+    if (leaks.length) {
+      bad.push(`${leaks.length} published route(s) would send something that is neither a literal public path nor /t/<template> — that is a URL leaving this site attached to a reader, and on this corpus a URL is a health disclosure. First offenders:\n` +
+        leaks.slice(0, 8).map((x) => `      ${x.r}  ->  ${x.t}`).join('\n'));
+    }
+    if (!bad.length) {
+      const cov = [...uncovered.entries()].sort((a, b) => b[1] - a[1]);
+      console.log(`[prerender] pageview integrity OK — 1 guarded pv call site; ${uniq.length} published routes collapse to ${emitted.size} template values, 0 leaks, ${cov.length} segment(s) falling through to /t/other${cov.length ? ': ' + cov.map(([k, v]) => `/${k} x${v}`).join(', ') : ''}.`);
+    }
+  }
+
+  if (bad.length) {
+    console.error('\n[prerender] PAGEVIEW INTEGRITY GATE FAILED — refusing to build:');
+    bad.forEach((m) => console.error('  ✗ ' + m));
+    console.error('  Read docs/EVENT_SCHEMA.md. One visit is one pageview, and only a template name travels.');
+    process.exit(1);
+  }
+})();
+
 // ---- build-time assertion: A COUNT OF THE CORPUS MUST EQUAL THE CORPUS -------------------------
 // Added 2026-08-02 (W4.5). The header search placeholder read "Search 170 compounds, protocols,
 // terms…" on every one of the 568 prerendered documents, and site/index.html read "Search 170

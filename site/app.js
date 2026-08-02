@@ -8723,6 +8723,11 @@
   let KEEP_PATH = (location.pathname || '/').replace(/\.html$/, '');
   let KEEP_HTML = null;   // the prerendered #app for KEEP_PATH -- captured just before route(), below
   let KEEP_LIVE = true;   // is that document still the one in #app?
+  // W5.5 (2026-08-03): THE PATH THE LAST PAGEVIEW WAS SENT FOR. route() is bound to BOTH
+  // `popstate` and `hashchange`, and Chrome fires both for one same-document fragment change --
+  // so every route() run that is not a real navigation used to emit a pageview. See the guard at
+  // the pv call site at the bottom of route() for the measurements.
+  let _aLastPath = null;
   function route() {
     const raw = currentRoute();
     const [pathPart, queryPart] = raw.split('?');
@@ -8887,7 +8892,32 @@
     // Page view LAST, and by TEMPLATE only — aTemplate() collapses /c/ssris-… to /t/compound.
     // `parts` is the router's own already-parsed path with the query string stripped upstream
     // (route() splits on '?'), which is why nothing here can see /solve?q=<symptom>.
-    try { RNA_A.pv(parts); } catch (e) { }
+    //
+    // W5.5 (2026-08-03): AND ONLY WHEN THE PATH ACTUALLY CHANGED. route() is not a navigation
+    // hook — it is "re-render whatever the URL now says", and three things ran it on a path the
+    // reader was already on. MEASURED HYDRATED at 390x844 and 1440x900, 0 pageerrors, with the
+    // A_CODE kill switch and the navigator.webdriver suppressor flipped in flight so the beacons
+    // are observable (the repo was not modified for the measurement):
+    //   · IN-PAGE FRAGMENTS — route() is bound to BOTH `popstate` and `hashchange` (below) and
+    //     Chrome fires BOTH for one same-document hash change. Clicking the SKIP LINK, which is
+    //     the first keyboard action available on every page, sent 2 extra pageviews for
+    //     /t/compound; so did every "#red-flags"-style jump inside a protocol page. A keyboard
+    //     reader was inflating the count of every page they read, and the inflation was largest
+    //     for the readers using the accessibility affordance.
+    //   · THE ROOT-CAUSE OVERLAY — boot does `if (applyRcOverlay(ov)) route();`. With the overlay
+    //     endpoint returning any rows, ONE document load of /protocol/knee-pain/knee-oa emitted
+    //     ["/t/protocol","/t/protocol"] and one of /c/creatine-monohydrate emitted
+    //     ["/t/compound","/t/compound"] — every route on the site double-counted whenever the
+    //     database had an overlay to serve, which is the production configuration.
+    //   · LEGACY #/ HASH-ROUTER LINKS — one navigation to #/target/ATP emitted two pageviews for
+    //     the same reason as the fragment case.
+    // Counting a re-render as a visit is the same class of dishonesty as counting a restored day
+    // as a tapped one: it inflates the only number this site keeps, in the direction that flatters
+    // it. A lower honest number beats a higher false one.
+    // WHAT THIS DELIBERATELY GIVES UP: clicking a link to the route you are already on no longer
+    // counts. That is a re-render, not a second visit. Every genuine navigation still counts once,
+    // including A -> B -> A, because the path changes each time.
+    if (pathPart !== _aLastPath) { _aLastPath = pathPart; try { RNA_A.pv(parts); } catch (e) { } }
   }
   // intercept internal link clicks -> pushState navigation (keeps #/ links working)
   document.addEventListener('click', e => {

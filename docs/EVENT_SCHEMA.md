@@ -160,6 +160,41 @@ This is an **allowlist, not a blocklist**. A route template added tomorrow and f
 degrades to `/t/other`; it can never leak a health-encoding URL by omission. That is the whole
 reason for the shape.
 
+### How many page views one visit sends: exactly one (W5.5, 2026-08-03)
+
+`route()` is **not** a navigation hook. It means "re-render whatever the URL now says", and three
+things ran it on a path the reader was already on. Measured hydrated at 390×844 and 1440×900 over
+all 568 published routes, 0 page errors, with the `A_CODE` kill switch and the `navigator.webdriver`
+suppressor flipped in flight so the beacons were observable:
+
+| what the reader did | page views before | after |
+|---|---|---|
+| load any of the 568 routes | 1 (568/568) | 1 (568/568) |
+| click the **skip link** on `/c/creatine-monohydrate` | 2 extra | 0 extra |
+| jump to `#red-flags` inside a protocol page | 2 extra | 0 extra |
+| load one page with the **root-cause overlay serving rows** | 2 | 1 |
+| one legacy `#/target/ATP` hash-router navigation | 2 | 1 |
+| real navigation A → B → A → back | 4 | 4 |
+
+Two mechanisms. `route()` is bound to **both** `popstate` and `hashchange`, and Chrome fires both
+for one same-document fragment change; and boot does `if (applyRcOverlay(ov)) route();`, which
+re-renders the page it is already on. The overlay case is the production configuration, so every
+page on the site counted double whenever the database had an overlay to serve — and the skip-link
+case inflated the counts of the readers using the accessibility affordance most.
+
+The fix is one guard at the call site: the page view is sent **only when the path changed**
+(`pathPart !== _aLastPath`). What that gives up, deliberately: clicking a link to the route you are
+already on no longer counts. It is a re-render, not a second visit. Counting a re-render as a visit
+inflates the only number this site keeps, in the direction that flatters it.
+
+`assertPageviewIntegrity()` in `build/prerender.js` holds all of it: exactly one `RNA_A.pv()` call
+site, that call site guarded, one `_aLastPath` declaration, `route()` still bound to both listeners,
+`aTemplate()`'s body pinned verbatim, every `A_PUBLIC` entry a single-segment index route, and every
+one of the 568 published routes replayed through `aTemplate()` and required to collapse to a public
+path or `/t/<template>`. Coverage is **reported, never enforced** — `/t/other` is the safe answer,
+and failing the build on it would create pressure to widen `A_TPL`, which is the direction that
+leaks.
+
 ---
 
 ## 3. Transport, and why the CSP needs no change
