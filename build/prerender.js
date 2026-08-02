@@ -3850,6 +3850,64 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] comparison verdicts OK — ${checked} pairs, ${named} named dimensions, every one an actual row, 0 pointing "below".`);
 })();
 
+// ---- build-time assertion: ANONYMOUS-FIRST IS A BEHAVIOUR, NOT A SENTENCE ---------------------
+// W5d (2026-08-02). Product constraint 3 is that reading, logging and the $0 protocol must work
+// with NO ACCOUNT, and the site says so out loud in four served places:
+//   / hero kicker   "Free · no account · nothing here is for sale"
+//   / hero note     "Free · no account · no affiliate links"
+//   /about          "Free, no paywall, no account needed."
+//   /plan lede      "Your plan lives in this browser — there is no account to create"
+// Measured against the code, three things contradicted that:
+//   1. site/app.js opened the SIGN-UP MODAL, unprompted, 500 ms after a reader accepted a shared
+//      protocol into their plan — landing them on /plan, the page that says there is no account to
+//      create. The deleted line's own comment read "client makes an account to keep it", and that
+//      was the false part: the plan is in localStorage and is kept either way. An account only
+//      SYNCS it, which /plan offers on the reader's own initiative.
+//   2. the auth modal said "Sign in to log food, comment and edit pages" and "Create an account to
+//      log your meals" — while the barcode scanner's own modal says "no account or AI needed" and
+//      the 7-day $0 logger is device-local by design. Four surfaces, two answers.
+//   3. the header "Sign in" was `.acct-btn.primary` — the only FILLED accent button in the header,
+//      on all 568 routes, next to the hero kicker above. A filled primary button is a page's main
+//      call to action, and an optional account is not the main call to action of an
+//      anonymous-first site.
+// What an account actually unlocks is short and server-side: /api/plan (sync to another device),
+// /api/comments, /api/edits, /api/profile, /api/checkin, /api/markers, /api/mydata, /api/rep.
+// This gate cannot be a smoke test: the path that opened the modal is the SHARED-protocol view,
+// which needs a database, and the read-only run mode has none. So it is a source assertion, and
+// each of its three checks names a specific regression route rather than a mood.
+// PROVE IT by wrapping any openAuth() call in a setTimeout, by putting `primary` back on the
+// sign-in button, or by deleting "do not need" from the register copy.
+(function assertAnonymousFirst() {
+  const APP3 = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+  const bad = [];
+  // 1. an account prompt the reader did not ask for
+  [...APP3.matchAll(/setTimeout\(([^;]{0,240})/g)].forEach((m) => {
+    if (/openAuth\s*\(/.test(m[1])) bad.push(`site/app.js opens the account modal from inside a setTimeout — "${m[1].replace(/\s+/g, ' ').slice(0, 110)}…". An account prompt the reader did not tap for is the opposite of anonymous-first, whatever the copy underneath it says`);
+  });
+  // 2. the header control must not be the page's primary call to action
+  const si = APP3.match(/id="signin-btn"[^`]*/) || APP3.match(/class="acct-btn[^"]*"[^>]*id="signin-btn"/);
+  const siLine = (APP3.match(/^.*id="signin-btn".*$/m) || [''])[0];
+  if (!siLine) bad.push('site/app.js no longer renders a #signin-btn — this gate has stopped covering the header control');
+  else {
+    if (/class="acct-btn[^"]*\bprimary\b/.test(siLine)) bad.push('the header "Sign in" button carries .primary — the only filled accent button on 568 routes, next to a hero that says "Free · no account". An optional account is not the site\'s main call to action');
+    if (!/aria-label="[^"]*optional/i.test(siLine)) bad.push('the header "Sign in" button does not say in its accessible name that an account is optional — the visible label has no room for it and the surrounding copy is four screens away');
+  }
+  // 3. the modal must lead with what needs no account
+  const modal = (APP3.match(/<p class="modal-sub">([\s\S]{0,700}?)<\/p>/) || [])[1] || '';
+  if (!modal) bad.push('site/app.js has no auth modal sub-copy — this gate has stopped covering what the modal claims');
+  else {
+    if (!/do not need|optional/i.test(modal)) bad.push(`the auth modal does not tell the reader an account is optional: "${modal.replace(/\s+/g, ' ').slice(0, 140)}…"`);
+    if (/log (your meals|food)/i.test(modal)) bad.push('the auth modal still claims an account is needed to log food — the barcode scanner says "no account or AI needed" and the 7-day logger is device-local, so that is two answers on one site');
+  }
+  if (bad.length) {
+    console.error('\n[prerender] THE SITE SAYS "NO ACCOUNT" AND THEN ASKS FOR ONE — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log('[prerender] anonymous-first OK — 0 unprompted account modals, the header control is not the page CTA, and the modal says an account is optional.');
+})();
+
 // ---- build-time assertion: A COUNT IN A TITLE MUST BE THE COUNT ON THE PAGE -------------------
 // W5d (2026-08-02). Measured hydrated at 390x844 on all 103 /target routes
 // (qa/out/w5cdi/before-390.json): the <title> read "<SYM>: the compounds that hit it" and the

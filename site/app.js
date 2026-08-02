@@ -704,7 +704,13 @@
   function renderAccount() {
     const slot = document.getElementById('account-slot'); if (!slot) return;
     if (ME) slot.innerHTML = `<span class="acct"><span class="acct-name">👤 ${esc(ME.username)}</span>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
-    else slot.innerHTML = `<button class="acct-btn primary" id="signin-btn">Sign in</button>`;
+    // W5d: NOT `.primary`. This was the only filled accent button in the header, on all 568
+    // routes, sitting beside a hero that reads "Free · no account · nothing here is for sale" and
+    // a /plan page that reads "there is no account to create". A filled primary button is the
+    // page's main call to action; an optional account is not the main call to action of a site
+    // whose third product constraint is anonymous-first. The label is unchanged — it is honest —
+    // and the accessible name now carries what the visible one has no room for.
+    else slot.innerHTML = `<button class="acct-btn" id="signin-btn" aria-label="Sign in — optional. Reading, your plan and the 7-day log need no account." title="Optional. Reading, your plan and the 7-day log need no account.">Sign in</button>`;
     const lo = document.getElementById('logout-btn'); if (lo) lo.onclick = async () => { await api.logout(); ME = null; CONSENT = null; renderAccount(); route(); };
     const si = document.getElementById('signin-btn'); if (si) si.onclick = () => openAuth('login');
   }
@@ -734,7 +740,16 @@
     const google = CFG.googleClientId ? `<div id="gbtn" class="gbtn-wrap"></div><div class="auth-or"><span>or</span></div>` : '';
     return `<button class="modal-x" onclick="void 0" id="modal-close">✕</button>
       <h2>${login ? 'Welcome back' : 'Join RNAwiki'}</h2>
-      <p class="modal-sub">${login ? 'Sign in to log food, comment and edit pages.' : 'Create an account to log your meals, comment, and improve any page. Free, takes 10 seconds.'}</p>
+      ${/* W5d (2026-08-02): THIS COPY CLAIMED THINGS THAT NEED NO ACCOUNT. It said "Sign in to
+            log food, comment and edit pages" and "Create an account to log your meals" — while
+            the barcode scanner's own modal says "no account or AI needed", the 7-day $0 logger is
+            device-local by design (constraint 3), and /plan says "there is no account to create".
+            Four surfaces, two answers. What an account ACTUALLY unlocks is the server-side set,
+            and it is short: /api/plan (sync), /api/comments, /api/edits, /api/profile,
+            /api/checkin, /api/markers, /api/mydata, /api/rep. Reading, the plan, the 7-day log
+            and the $0 protocol are none of them. The modal now says so first, because the reader
+            most likely to be looking at it is one who arrived here by accident. */ ''}
+      <p class="modal-sub">${login ? 'Signing in is optional. Reading, your plan and the 7-day log all work without one — an account only syncs your plan to another device and credits the contributions you make.' : 'You do not need one to read, to build a plan, or to run the 7-day log — all of that works on this device. An account adds two things: your plan follows you to another device, and any correction or edit you send is credited to you.'}</p>
       ${google}
       <form id="auth-form" class="auth-form">
         <label>Username<input name="username" autocomplete="username" required placeholder="Letters, numbers, underscores"></label>
@@ -5258,7 +5273,16 @@
       // add to the user's plan (merging with any existing protocols) — never wipes their other goals
       p.protocols = planProtocols(p).filter(x => !(x.pid === problem.id && x.rcid === rc.id)).concat(entry);
       p.draft = null; setPlan(p); navigate('/plan');
-      if (!ME) setTimeout(() => { if (typeof openAuth === 'function') openAuth('signup'); }, 500); // client makes an account to keep it
+      // W5d (2026-08-02): THE UNREQUESTED SIGN-UP MODAL IS GONE. This line opened the account
+      // modal 500 ms after a reader added a protocol to their plan — on /plan, whose own
+      // prerendered lede reads "Your plan lives in this browser — there is no account to create
+      // and nothing to pay." The site said that in four places while the act of using the feature
+      // popped a registration form the reader had not asked for. The comment on the deleted line
+      // was "client makes an account to keep it", and that is the part that was false: the plan is
+      // in localStorage and is kept whether or not anyone signs in. An account only adds SYNCING
+      // it to another device, which is offered on /plan itself, on the reader's own initiative.
+      // Constraint 3 is anonymous-first; a modal that interrupts to ask for an account is the
+      // opposite of that, whatever the copy underneath it says.
     };
   }
 
