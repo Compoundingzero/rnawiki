@@ -839,7 +839,7 @@ D.compounds.forEach((c) => {
     about: { '@type': 'Drug', name: c.name }, description: cleanDesc(c.plain || c.bottom || '', 300),
     url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
   }].concat(cqa.ld || []);
-  add(route, shell({ route, title: seoTitle(`${c.name}: dosage, evidence & uses`), desc: seoDesc(c.plain || c.bottom || c.mechanism || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
+  add(route, shell({ route, title: seoTitle(`${c.name}: dosage, evidence & uses`), desc: seoDesc(c.plain || c.bottom || c.mechanism || c.metaSummary || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism || c.metaSummary, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
 });
 
 // comparison pages ([A] vs [B]) — high-intent long-tail, non-thin (two full profiles + honest verdict)

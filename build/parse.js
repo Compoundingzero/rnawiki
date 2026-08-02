@@ -633,6 +633,55 @@ const BADGE_SUPPLY_OK = {
   console.log(`[parse] regulatory axes reconciled — ${dropped} supply-claiming badge(s) on ${touched} compound(s) withdrawn because the authored class denies them; ${compounds.length}/${compounds.length} now carry exactly one supply statement.`);
 }
 
+// ---- W5a (2026-08-02): THE 13 "(brief)" BUNDLES MISREPRESENTED THEMSELVES --------------------
+// Measured: `meta[name=description]` content === '' HYDRATED on exactly these 13 and on 0 of the
+// other 158, because setPageMeta() reads `c.plain || c.bottom || c.mechanism` and a bundle page has
+// none of the three; the PRERENDERED description fell back to `c.name`, i.e. the page's own title
+// repeated back at it. Neither is a description, and one of them is empty.
+// The honest replacement is not written by hand per page — it is DERIVED from what the page
+// demonstrably is: its members (the name, split), its category, and the fact that it is unrated.
+// `members` also lets the renderer say WHICH compound a Formula / Mol. weight chip belongs to:
+// /c/agmatine-glycerol-theacrine-brief renders "FORMULA C5H14N4 · MOL. WEIGHT 130 g/mol ·
+// PubChem CID 199" — agmatine's chemistry alone — under an h1 naming three compounds.
+compounds.forEach((c) => {
+  const base = String(c.name).replace(/\s*\(brief\)\s*$/i, '').trim();
+  const members = base.split(/\s+·\s+/).map((x) => x.trim()).filter(Boolean);
+  c.members = members.length > 1 ? members : [];
+  if (!(c.plain || c.bottom || c.mechanism)) {
+    const cat = String(c.category || '').split('/')[0].trim().toLowerCase();
+    c.metaSummary = c.members.length
+      ? `A short entry covering ${c.members.length} related compounds together${cat ? ` in ${cat}` : ''} — ${c.members.join(', ')}. What each one is, how it is regulated, and why it has no separate evidence rating here.`
+      : `${base}: what it is, how it is regulated, and what the human evidence does and does not show. Plain English, not medical advice.`;
+  }
+});
+// The gate. An empty description is not a shorter description — it is a page with nothing to say
+// about itself in a search result, a share card, or an answer engine, and it shipped on exactly the
+// 13 pages that most needed to explain what they were. PROVE IT by deleting `c.metaSummary` from
+// the assignment above (fails naming all 13) or from either renderer (fails naming the file).
+(function assertEveryCompoundDescribesItself() {
+  const bad = [];
+  compounds.forEach((c) => {
+    const d = c.plain || c.bottom || c.mechanism || c.metaSummary || '';
+    if (!String(d).trim()) bad.push(`${c.id} ("${c.name}") would ship meta[name=description] content="" — measured hydrated on exactly the 13 "(brief)" bundles and 0 of the other 158`);
+    if (c.members.length && c.members.length < 2) bad.push(`${c.id}: members has one entry — it should be empty for a single-compound page`);
+  });
+  const app = fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8');
+  const pre = fs.readFileSync(path.join(ROOT, 'build', 'prerender.js'), 'utf8');
+  if (app.indexOf('c.metaSummary') < 0) bad.push('site/app.js never falls back to c.metaSummary — the 13 bundle pages go back to content=""');
+  if (pre.indexOf('c.metaSummary') < 0) bad.push('build/prerender.js never falls back to c.metaSummary — the crawler goes back to the page title repeated as its own description');
+  // A bundle page shows ONE member's Formula / Mol. weight / CID under an h1 naming several. It has
+  // to say so, and it may not say WHICH by guessing — the name comes from PubChem's own record.
+  if (app.indexOf('MolecularFormula,MolecularWeight,Title') < 0) bad.push('site/app.js no longer fetches PubChem\'s record Title — then a bundle page prints one member\'s chemistry with nothing saying whose it is');
+  if (app.indexOf('spec-mol-of') < 0 || app.indexOf('mol-of') < 0) bad.push('site/app.js does not attribute the molecule on a multi-compound page');
+  if (bad.length) {
+    console.error('\n[parse] COMPOUND SELF-DESCRIPTION ASSERTION FAILED — refusing to build:');
+    bad.slice(0, 20).forEach((m) => console.error('  ✗ ' + m));
+    process.exit(1);
+  }
+  const n = compounds.filter((c) => c.metaSummary).length;
+  console.log(`[parse] meta fallbacks OK — ${n} compound(s) have no plain/bottom/mechanism text and now carry a derived description instead of an empty one; ${compounds.filter((c) => c.members.length).length} multi-compound bundles know their own members; 0 compounds would ship an empty description.`);
+})();
+
 function readJSON(p) { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { console.warn('[parse] missing', path.basename(p)); return null; } }
 const graph = readJSON(path.join(DATA_DIR, 'clinical_graph.json'));
 // "Why this happens" causes layer — keyed by problem id, merged onto each problem as p.why.

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<!-- lang was "en-SG" on all 577 pages while og:locale said "en_US" on 576 of them — the two
+     tags contradicted each other sitewide, and both narrowed a site that is written for
+     readers anywhere. Plain "en" is the honest signal: one language, no country claim. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a page on RNAwiki is made · RNAwiki</title>
+<meta name="description" content="The full method behind every page: where the writing comes from, what &quot;AI-assisted, human-edited, not clinician-reviewed&quot; actually means, how evidence is rated, and the automated checks that can refuse to publish.">
+<link rel="canonical" href="https://rnawiki.com/methodology">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="RNAwiki">
+<meta property="og:locale" content="en">
+<meta property="og:title" content="How a page on RNAwiki is made · RNAwiki">
+<meta property="og:description" content="The full method behind every page: where the writing comes from, what &quot;AI-assisted, human-edited, not clinician-reviewed&quot; actually means, how evidence is rated, and the automated checks that can refuse to publish.">
+<meta property="og:url" content="https://rnawiki.com/methodology">
+<meta property="og:image" content="https://rnawiki.com/og.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://rnawiki.com/og.png">
+<meta name="twitter:title" content="How a page on RNAwiki is made · RNAwiki">
+<meta name="twitter:description" content="The full method behind every page: where the writing comes from, what &quot;AI-assisted, human-edited, not clinician-reviewed&quot; actually means, how evidence is rated, and the automated checks that can refuse to publish.">
+<link rel="stylesheet" href="/styles.css">
+<noscript><style>.reveal,.reveal *{opacity:1!important;transform:none!important}</style></noscript>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rnawiki.com/"},{"@type":"ListItem","position":2,"name":"How a page is made","item":"https://rnawiki.com/methodology"}]}</script>
+</head>
+<body>
+<a class="skip-link" href="#app">Skip to content</a>
+<div id="route-status" role="status" aria-live="polite" class="sr-only"></div>
+<header class="topbar">
+  <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
+  
+  <div class="search-wrap"><input id="search" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
+  <nav class="topnav">
+    <a href="/solve" class="nav-solve">Solve</a><a href="/where">Where it hurts</a><a href="/plan">My Plan</a><a href="/learn">Learn</a>
+  </nav>
+  <span id="account-slot" class="account-slot"></span>
+  <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
+</header>
+<main id="app"><div class="article"><h1>How a page here is made</h1><nav class="cpd-toc pagetoc" aria-label="Contents">
+    <span class="toc-lbl">On this page · 4 min read</span>
+    <a href="#who-writes-it">Who writes it</a><a href="#where-the-words-come-from">Where the words come from</a><a href="#how-evidence-is-rated">How evidence is rated</a><a href="#what-i-will-not-publish">What I will not publish</a><a href="#the-checks-that-can-stop-a-release">The checks that can stop a release</a><a href="#the-limits-you-should-hold-in-mind">The limits you should hold in mind</a><a href="#found-something-wrong">Found something wrong?</a>
+  </nav>
+      <p class="lede">Most health sites ask you to trust the output. This page describes the process
+      instead, so you can judge it — including the parts that should make you cautious.</p>
+
+      <h2 id="who-writes-it"><a class="hanchor" href="#who-writes-it" aria-label="Link to this section">#</a>Who writes it</h2>
+      <p>Pages are drafted with AI assistance and edited by a human. <strong>They are not reviewed by
+      a clinician.</strong> That sentence appears at the foot of every protocol, and it is meant
+      literally: no doctor, physiotherapist or dietitian has signed off on this content. If a page
+      ever claims a professional reviewer, it is stating a fact about a specific named person — and
+      no page does, today.</p>
+      <p>Nothing here is written for a sponsor. Nothing is for sale, there are no affiliate links,
+      and no commercial product or supplement brand is ever named as something to buy. Independent
+      testing standards (NSF, USP, Informed Sport, IFOS) are named, because "look for third-party
+      testing" is advice you can act on without being sold to.</p>
+
+      <h2 id="where-the-words-come-from"><a class="hanchor" href="#where-the-words-come-from" aria-label="Link to this section">#</a>Where the words come from</h2>
+      <p>The site is generated, not hand-maintained page by page. A build step reads the source —
+      markdown for the compound corpus, structured data files for causes, pathways, molecular
+      targets, exercises and protocol plans — and writes every page from it. The consequence worth
+      knowing: <strong>a correction made once propagates everywhere that claim appears</strong>, and
+      an error made once does the same. That is why the automated checks below exist.</p>
+
+      <h2 id="how-evidence-is-rated"><a class="hanchor" href="#how-evidence-is-rated" aria-label="Link to this section">#</a>How evidence is rated</h2>
+      <p>The 1–5 star rating summarises <strong>human</strong> evidence for a compound overall — not
+      for your particular goal, and not how well it will work for you. Animal-only evidence is capped
+      at two stars and has to say "animal" on the page. This is enforced at build time rather than by
+      editorial discipline, because it had previously failed: one compound was showing five stars off
+      rodent data. <a href="/legend">The full scale is on the legend page →</a></p>
+      <p>Where a page cites a trial, the citation is bound to a real record and links out to it —
+      usually PubMed or Europe PMC, where a large share of the papers are free to read in full. A
+      citation here is a pointer you are meant to follow, not a decoration.</p>
+
+      <h2 id="what-i-will-not-publish"><a class="hanchor" href="#what-i-will-not-publish" aria-label="Link to this section">#</a>What I will not publish</h2>
+      <ul class="about-key">
+        <li><strong>No doses for prescription medicines.</strong> Prescription-only and controlled
+        medicines are documented so you know they exist and can raise them with a clinician. They are
+        listed, not ranked, and never recommended.</li>
+        <li><strong>No head-to-head "which is better" comparison involving a prescription medicine.</strong>
+        Ranking a medicine you cannot buy against a supplement you can is not a useful comparison, and
+        in Singapore advertising a prescription-only medicine to the public is prohibited outright —
+        the Medicines Act 1975 and its advertising regulations carry no educational exemption.</li>
+        <li><strong>No diagnosis.</strong> The root-cause questions narrow your reading. They are not
+        a clinical assessment.</li>
+        <li><strong>No certainty I do not have.</strong> Where the honest answer is "no supplement has
+        trial evidence for this", the page says that instead of filling the space.</li>
+      </ul>
+
+      <h2 id="the-checks-that-can-stop-a-release"><a class="hanchor" href="#the-checks-that-can-stop-a-release" aria-label="Link to this section">#</a>The checks that can stop a release</h2>
+      <p>Editorial rules that live only in someone's head get rediscovered as bugs. So the rules that
+      matter most are executable, and a failure blocks publication rather than filing a ticket. The
+      build currently refuses to ship if:</p>
+      <ul class="about-key">
+        <li>an animal-only compound shows more than two stars, or carries a rating badge that does not
+        say "animal";</li>
+        <li>a page names a prescription or controlled substance without stating that it is prescription
+        or controlled;</li>
+        <li>a restricted compound's page would render self-dosing instructions;</li>
+        <li>a dose calculator lacks a machine-readable maximum (a milligram/gram slip once made one
+        calculator understate a dose a thousandfold);</li>
+        <li>a protocol would prescribe a movement that the same page tells you to avoid;</li>
+        <li>an evidence claim is not bound to a record in the claims file;</li>
+        <li>any compound is missing from the goal taxonomy;</li>
+        <li>a machine-readable data block would be emitted in a form search engines silently discard;</li>
+        <li>a page links to a route that does not exist, or a page is published with nothing linking
+        to it;</li>
+        <li>any page would claim a review, a verification or a professional credential — no expert has
+        been verified here and no clinician has reviewed this content, so the build refuses to publish
+        a sentence that says otherwise, and equally refuses to publish if the record of the false
+        credentials this site once displayed is deleted from the corrections log.</li>
+      </ul>
+      <p>Each of these exists because that exact defect shipped at least once.</p>
+
+      <h2 id="the-limits-you-should-hold-in-mind"><a class="hanchor" href="#the-limits-you-should-hold-in-mind" aria-label="Link to this section">#</a>The limits you should hold in mind</h2>
+      <ul class="about-key">
+        <li>No clinician review. This is the largest one.</li>
+        <li>A star rating is a summary of a literature, and summaries lose information. The page body
+        is where the honest detail is; read it before acting on a number.</li>
+        <li>Coverage is uneven. Some compounds have a deep evidence layer, others a short profile.</li>
+        <li>Availability and regulatory status differ between countries and change over time, and this site is a snapshot. Where I state a legal classification it is Singapore's unless I say otherwise.</li>
+      </ul>
+
+      <h2 id="found-something-wrong"><a class="hanchor" href="#found-something-wrong" aria-label="Link to this section">#</a>Found something wrong?</h2>
+      <p>That is the most useful thing you can send. Errors here should be fixed rather than defended.
+      <a href="/corrections" data-native>See what has already been corrected, and how to report one →</a></p>
+      <p><a href="/legend">How to read the stars and badges →</a> · <a href="/about">About RNAwiki →</a></p>
+      </div></main>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/where">Where it hurts</a> · <a href="/#newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<script src="/data.js"></script>
+<script src="/facts.js"></script>
+<script src="/interactions.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

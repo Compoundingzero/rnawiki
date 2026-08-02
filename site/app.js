@@ -887,11 +887,17 @@
     const b3d = document.getElementById('mol-3d-btn');
     if (b3d && cid) b3d.onclick = () => { const wrap = document.getElementById('mol-3d-wrap'); if (!wrap) return; if (wrap.hasChildNodes()) { wrap.hidden = !wrap.hidden; return; } wrap.innerHTML = `<iframe title="3D structure" loading="lazy" src="https://pubchem.ncbi.nlm.nih.gov/compound/${cid}#section=3D-Conformer&embed=true" allowfullscreen></iframe>`; wrap.hidden = false; b3d.textContent = '🔄 3D structure ↓'; };
     // Molecular formula + weight from PubChem REST (real data, fetched lazily; degrades silently)
-    if (cid) fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${cid}/property/MolecularFormula,MolecularWeight/JSON`).then(r => r.ok ? r.json() : null).then(j => {
+    // W5a: `Title` added. On the 13 multi-compound bundle pages the formula belongs to ONE member,
+    // and PubChem's own record title is the only non-invented way to say which.
+    if (cid) fetch(`https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${cid}/property/MolecularFormula,MolecularWeight,Title/JSON`).then(r => r.ok ? r.json() : null).then(j => {
       const p = j && j.PropertyTable && j.PropertyTable.Properties && j.PropertyTable.Properties[0]; if (!p) return;
       const setChip = (id, vid, val) => { const el = document.getElementById(id), v = document.getElementById(vid); if (el && v && val) { v.textContent = val; el.hidden = false; } };
       if (p.MolecularFormula) { const mf = document.getElementById('mol-formula'); if (mf) mf.innerHTML = 'Formula <b>' + esc(p.MolecularFormula) + '</b>'; setChip('spec-formula', 'spec-formula-v', p.MolecularFormula); }
       if (p.MolecularWeight) setChip('spec-mw', 'spec-mw-v', Math.round(+p.MolecularWeight) + ' g/mol');
+      if (p.Title) {
+        const of = document.getElementById('spec-mol-of'); if (of) of.textContent = p.Title;
+        const mo = document.getElementById('mol-of'); if (mo) mo.innerHTML = 'This structure is <b>' + esc(p.Title) + '</b> only — one of the compounds named in the title of this page, not the page as a whole.';
+      }
     }).catch(() => {});
   }
   // Feynman "explain it back" — a PRIVATE active-recall self-test. The reader writes their own
@@ -1635,7 +1641,8 @@
     return `<div class="mol-viewer" data-lvl="1" id="sec-molecule" data-cid="${cid}">
       <div class="mol-2d"><img loading="lazy" alt="2D structure of ${esc(c.name)}" src="https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/cid/${cid}/PNG"></div>
       <div class="mol-side">
-        <div class="mol-title">The actual molecule <span class="mol-cid">PubChem CID ${cid}</span></div>
+        <div class="mol-title">${(c.members || []).length ? 'One molecule on this page' : 'The actual molecule'} <span class="mol-cid">PubChem CID ${cid}</span></div>
+        ${(c.members || []).length ? `<div class="mol-of" id="mol-of">This structure is <b>one</b> of the ${c.members.length} compounds named in the title — the record below says which.</div>` : ''}
         <div class="mol-formula" id="mol-formula">—</div>
         <button class="mol-3d-btn" data-lvl="3" id="mol-3d-btn">🔄 Rotate in 3D</button>
         <div class="mol-3d-wrap" id="mol-3d-wrap" hidden></div>
@@ -1662,7 +1669,13 @@
       const reg = (c.badges || []).map(a => `${a} ${esc(D.approvalLabels[a] || '')}`).join(' · ');
       chips.push(`<span class="spec-chip"><span class="sc-k">Status</span><span class="sc-v">${reg ? reg + ' · ' : ''}${esc((c.supply || {}).tag || '')}</span></span>`);
     }
-    chips.push(`<span class="spec-chip" id="spec-formula" hidden><span class="sc-k">Formula</span><span class="sc-v" id="spec-formula-v"></span></span>`);
+    // W5a: on a bundle page these chips showed ONE member's chemistry under an h1 naming several —
+    // /c/agmatine-glycerol-theacrine-brief printed "FORMULA C5H14N4 · MOL. WEIGHT 130 g/mol ·
+    // PubChem CID 199", which is agmatine alone. The chip key now names the molecule, and the name
+    // comes from PubChem's OWN record title (fetched with the formula), not from a guess about
+    // which member of the bundle the CID belongs to.
+    const molK = (c.members || []).length ? '<span id="spec-mol-of">one compound here</span>' : '';
+    chips.push(`<span class="spec-chip" id="spec-formula" hidden><span class="sc-k">Formula${molK ? ' — ' + molK : ''}</span><span class="sc-v" id="spec-formula-v"></span></span>`);
     chips.push(`<span class="spec-chip" id="spec-mw" hidden><span class="sc-k">Mol. weight</span><span class="sc-v" id="spec-mw-v"></span></span>`);
     if (c.cost) { const cm = String(c.cost).match(/S?\$[\d,]+(?:[–-]\$?[\d,]+)?\s*(?:\/\s*month|\/mo|per month|a month)?/i); if (cm) chips.push(`<span class="spec-chip"><span class="sc-k">Cost</span><span class="sc-v">${esc(cm[0])}</span></span>`); }
     return `<div class="spec-strip" data-lvl="1">${chips.join('')}</div>`;
@@ -8084,7 +8097,12 @@
     let title = 'RNAwiki — translate the code of human performance into real results';
     let desc = 'DNA is the blueprint; RNA is the builder. Turn the foundational code of strength, health and longevity into protocols you can use today — ranked by human evidence, in plain English.';
     const t = (s) => `${s} · ${site}`;
-    if (parts[0] === 'c' && bySlug[parts[1]]) { const c = bySlug[parts[1]]; title = t(`${c.name}: dosage, evidence & uses`); desc = (c.plain || c.bottom || c.mechanism || '').slice(0, 155); }
+    // W5a: `|| c.metaSummary` — the 13 "(brief)" bundles have no plain/bottom/mechanism, so this
+    // line produced `content=""` on exactly those 13 hydrated and on 0 of the other 158. An empty
+    // description is not a shorter description; it is a page with nothing to say about itself in
+    // a search result or a share card. build/parse.js derives the fallback from the page's own
+    // members and category so both renderers print the identical string.
+    if (parts[0] === 'c' && bySlug[parts[1]]) { const c = bySlug[parts[1]]; title = t(`${c.name}: dosage, evidence & uses`); desc = (c.plain || c.bottom || c.mechanism || c.metaSummary || '').slice(0, 300); }
     else if (parts[0] === 'goal' && goalById[parts[1]]) { const g = goalById[parts[1]]; title = t(`${g.label} — what actually helps`); desc = `Compounds that help you ${g.label.toLowerCase()}, ranked by strength of human evidence. Plain English, honest verdicts.`; }
     // D2 (2026-08-01) — the tab title said "<problem> protocol — Move, Fuel & Stack" on every root
     // cause of a problem. Two defects in one string: it named three sections the hydrated page had

@@ -95,6 +95,8 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
    390px viewport. Wrap here, and let the row itself wrap under it on a phone. */
 .legend-row .pill{font-size:.78rem;white-space:normal;flex:0 1 auto}
 .legend-row{align-items:flex-start;flex-wrap:wrap}
+.mol-of{font-size:.82rem;line-height:1.5;color:var(--muted);margin:.35rem 0 .1rem}
+#spec-mol-of{text-transform:none;font-weight:700;color:var(--head)}
 .lg-note{font-size:.8rem;line-height:1.5;color:var(--faint);border-top:1px solid var(--line);padding-top:.55rem;margin-top:.3rem;display:block}
 
 /* learn cards */
