@@ -981,7 +981,12 @@ const ASSERTIONS = {
       const start = new Date(); start.setDate(start.getDate() - 6);
       const days = {}, dirs = [null, 'worse', 'same', 'same', 'better', 'better', 'better'];
       for (let i = 0; i < 7; i++) { if (i === 3) continue; const d = new Date(start); d.setDate(start.getDate() + i); days[iso(d)] = { did: i === 5 ? 0 : 1, dir: dirs[i] }; }
-      localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [pid + '/' + rcid]: { started: iso(start), action: '', metric: '', sync: false, days } } }));
+      // W5.5: a planted week must now look like one this page wrote — every record marked `w:1`
+      // (tapped here, through the UI), `opened` on its own day 1, and a write ledger whose own days
+      // span the seven. Without those the receipt refuses, which is the whole point of the gate
+      // below; this one asserts the HONEST path still produces a card.
+      Object.keys(days).forEach((d) => { days[d].w = 1; });
+      localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [pid + '/' + rcid]: { started: iso(start), opened: iso(start), seen: Object.keys(days).sort(), taps: Object.keys(days).length, action: '', metric: '', sync: false, days } } }));
       // tapping a day chip is the only public way to force a redraw; focus falls back safely when
       // the chip's date is not in the new week
       const redraw = async () => { document.querySelector('#p1-log [data-p1="day"]').click(); await new Promise(r => setTimeout(r, 40)); };
@@ -1042,6 +1047,99 @@ const ASSERTIONS = {
       rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
       await redraw();
       if (wrap().dataset.receipt !== 'ready') return 'the receipt did not come back after the planted values were removed — the guard is stateful, which it must not be';
+      return null;
+    },
+  }, {
+    // W5.5 (2026-08-02): THE RECEIPT GUARDS WERE DATE-BASED AND THE DEVICE CLOCK IS THE ATTACKER'S.
+    // Four bypasses, each of which WROTE A REAL PNG, measured hydrated at 390x844 on fresh profiles
+    // with real UI taps and the real <input type=file> (qa/out/w55r_clock.json, w55r_openedmerge.json):
+    //  9  page clock frozen +7 days, log started today, ONE real tap  -> "2026-08-02 → 2026-08-08 ·
+    //     DID THE ONE THING ON 1 of the 7 days", written by the REAL download button.
+    //  10 the same plus seven pre-written day records restored from a file -> "DID THE ONE THING ON
+    //     7 of the 7 days · DAYS TAPPED 7 of 7", one day elapsed, one day tapped.
+    //  11 `opened` ABSENT read as a pre-W5 log -> the cohort case the rule refuses by name, back in,
+    //     with no devtools at all: the restore control exists before any log does.
+    //  12 `opened` PRESENT but lowered by a restored file (one edited date in a text editor) -> a log
+    //     that read data-receipt="closed" read "ready".
+    // The rule that closes all four: a card asserts only days that were tapped ON THIS DEVICE through
+    // the UI, and the week is measured by the page's own write ledger, never by Date.
+    // PROVE THIS GATE — and these six were RUN, one at a time, each failing this gate by name:
+    // delete the `led.span < TRACK_DAYS` clause from receiptReady() (case b2), delete the `opened`
+    // presence test (case d), delete the `led.first` clause (case f), delete the `led.taps < led.n`
+    // clause (case g), put tapOn() back in place of tapHere() in receiptModel() (case c), or restore
+    // `o.logs[k] = inc` in the restore merge (case e).
+    // ONE CLAUSE IS NOT INDEPENDENTLY PROVABLE AND SAYING SO IS THE POINT: `led.n < 2` cannot be
+    // isolated, because a span of 7 days requires two distinct days, so `led.span < TRACK_DAYS`
+    // catches everything it catches. Measured: deleting `led.n < 2` alone leaves this gate GREEN.
+    // It is kept for the sentence it gives the reader who tapped once, not as a second guard, and it
+    // is not counted as one.
+    // IT LEAVES AN HONEST FINISHED WEEK ON SCREEN, deliberately: the share assertion below reads the
+    // share control off this render, and the assertion after that needs day chips to redraw from.
+    // That final re-plant is also the positive half of this gate — the honest path must still mint.
+    name: 'receiptCountsOnlyDaysThisDeviceWrote',
+    why: 'W5.5: the day-7 lock read a clock the reader controls and fields a text file supplies. A shareable card is the most quotable thing on this site and must assert only days this page itself watched somebody tap',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const K = pid + '/' + rcid;
+      const iso = (d) => { const q = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${q(d.getMonth() + 1)}-${q(d.getDate())}`; };
+      const shift = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+      const redraw = async () => { const c = document.querySelector('#p1-log [data-p1="day"]'); if (c) c.click(); await new Promise(r => setTimeout(r, 60)); };
+      const state = () => { const w = document.querySelector('#p1-log .rcpt'); return w ? w.dataset.receipt : 'none'; };
+      const dl = () => document.querySelector('#p1-log button[data-p1="receipt-png"]');
+      const week = (over) => { const days = {}; for (let i = 0; i < 7; i++) days[shift(i - 6)] = Object.assign({ did: 1, dir: i ? 'better' : null }, over || {}); return days; };
+      const plant = async (log) => { localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [K]: log } })); await redraw(); };
+      const base = { started: shift(-6), action: '', metric: '', sync: false };
+      // (a) a finished week with NO write ledger — bypasses 9, 10 and 11 in their stored form
+      await plant(Object.assign({}, base, { opened: shift(-6), days: week({ w: 1 }) }));
+      if (state() === 'ready') return 'a finished week with no write ledger still produced a card — elapsed days are being read from the clock again, and the clock belongs to the reader';
+      if (dl()) return 'a week with no write ledger was refused and the download control is still on the page';
+      // (b) a ledger that covers ONE day — the frozen-clock case exactly
+      await plant(Object.assign({}, base, { opened: shift(-6), seen: [shift(0)], taps: 1, days: week({ w: 1 }) }));
+      if (state() === 'ready') return 'one day in the write ledger minted a 7-day card — one sitting is one day whatever the clock is set to';
+      // (b2) TWO sittings, one day apart, then the clock jumps to day 7. This is the case that
+      // ISOLATES the span clause: (b) above is caught by `led.n < 2` as well, so without this one no
+      // single reintroduction fails the gate and the "prove it" instruction below would be untrue.
+      await plant(Object.assign({}, base, { opened: shift(-6), seen: [shift(-1), shift(0)], taps: 2, days: week({ w: 1 }) }));
+      if (state() === 'ready') return 'a write ledger covering 2 adjacent days minted a 7-day card — the card is dated across a week the page watched two days of';
+      // (c) a ledger that spans the week, but no record was written HERE
+      await plant(Object.assign({}, base, { opened: shift(-6), seen: [shift(-6), shift(0)], taps: 2, days: week() }));
+      if (state() === 'ready') return 'a card was minted from records this page never wrote — a restored file is the reader\'s data, not seven days of self-observation';
+      if (state() !== 'empty') return `records this page never wrote gave receipt state "${state()}", expected "empty" — the reader must be told there is nothing to write up rather than shown nothing`;
+      // (d) `opened` absent is untrusted, not legacy
+      await plant(Object.assign({}, base, { seen: [shift(-6), shift(0)], taps: 2, days: week({ w: 1 }) }));
+      if (state() === 'ready') return 'a log with no `opened` date minted a card — absent is unknown, and unknown may not be read as a week that was lived';
+      // (f) a ledger that spans 7 days but did not begin until after this log's own week was over.
+      // Span alone would admit it, and the card would print the ORIGINAL week's dates.
+      const old7 = {}; for (let i = 0; i < 7; i++) old7[shift(i - 20)] = { did: 1, dir: i ? 'better' : null, w: 1 };
+      await plant({ started: shift(-20), opened: shift(-20), seen: [shift(-6), shift(0)], taps: 2, action: '', metric: '', sync: false, days: old7 });
+      if (state() === 'ready') return 'a card was minted for a week whose first tap on this device came 14 days after the week had ended — the card would carry the original dates';
+      // (g) more days in the ledger than taps. This page increments taps on every accepted tap, so
+      // it cannot have written this; only a hand-edited store can say it.
+      await plant(Object.assign({}, base, { opened: shift(-6), seen: [shift(-6), shift(0)], taps: 1, days: week({ w: 1 }) }));
+      if (state() === 'ready') return 'a ledger recording more days than taps minted a card — this page cannot have written that, so it is not evidence of anything';
+      // (e) a file may not carry provenance INTO this device
+      const forged = { v: 1, exported: shift(0), logs: { [K]: { started: shift(-6), opened: shift(-6), seen: [shift(-6), shift(0)], taps: 9, action: '', metric: '', sync: false, days: week({ w: 1 }) } } };
+      localStorage.removeItem('rnawiki_track');
+      const input = document.getElementById('p1-file');
+      if (!input) return 'no restore file input to test — the restore path is where three of the four bypasses arrived';
+      const dt = new DataTransfer();
+      dt.items.add(new File([JSON.stringify(forged)], 'log.json', { type: 'application/json' }));
+      input.files = dt.files;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+      await new Promise(r => setTimeout(r, 400));
+      await redraw();
+      const stored = (JSON.parse(localStorage.getItem('rnawiki_track') || '{}').logs || {})[K] || {};
+      if ((stored.seen || []).length) return `a restored file wrote ${JSON.stringify(stored.seen)} into this device's write ledger — a file is days, never a claim about which days this page watched`;
+      if (stored.taps) return `a restored file set taps to ${stored.taps} on this device`;
+      if (Object.keys(stored.days || {}).some((d) => stored.days[d].w === 1)) return 'a restored file kept its records marked as written on this device';
+      if (stored.opened !== shift(0)) return `a restored file set \`opened\` to ${JSON.stringify(stored.opened)} — it must be the day THIS device first held the log, or one edited date in a text file buys a finished week (qa/out/w55r_openedmerge.json)`;
+      if (state() === 'ready') return 'a restored file minted a card on a device that watched none of the week';
+      // ---- AND THE HONEST WEEK STILL MINTS. A guard that refuses everything is not a guard, it is
+      // a broken feature, so the last thing this gate asserts is the path a real reader takes.
+      const honest = week({ w: 1 });
+      await plant(Object.assign({}, base, { opened: shift(-6), seen: Object.keys(honest).sort(), taps: 7, days: honest }));
+      if (state() !== 'ready') return `a week tapped on this device across all 7 days gave receipt state "${state()}", expected "ready" — the ledger tests are refusing the honest path`;
+      if (!dl()) return 'the honest week produced no download control';
       return null;
     },
   }, {
@@ -1139,8 +1237,11 @@ const ASSERTIONS = {
       if (/day 4 (did it|missed it)/.test(sparkA)) return `the sparkline announces "${sparkA}"`;
       // ---- A2. THE FINISHED CARD COUNTS ONLY WHAT WAS ANSWERED ----
       const dd = {};
-      for (let i = 0; i < 7; i++) dd[dm(i - 6)] = i < 3 ? { did: 1, dir: null } : { did: null, dir: 'worse' };
-      put({ started: dm(-6), action: '', metric: '', sync: false, days: dd });
+      // W5.5: `w:1` plus a write ledger spanning the seven days — this is the HONEST path (a week
+      // this page itself watched somebody tap), and it must still mint. The dishonest shapes are
+      // asserted by receiptCountsOnlyDaysThisDeviceWrote above.
+      for (let i = 0; i < 7; i++) dd[dm(i - 6)] = i < 3 ? { did: 1, dir: null, w: 1 } : { did: null, dir: 'worse', w: 1 };
+      put({ started: dm(-6), opened: dm(-6), seen: Object.keys(dd).sort(), taps: 7, action: '', metric: '', sync: false, days: dd });
       const e2 = await redraw(0); if (e2) return e2;
       const e2b = await redraw(0); if (e2b) return e2b;
       const card = document.getElementById('rcpt-card');
@@ -1158,7 +1259,11 @@ const ASSERTIONS = {
       // handler and wrote rnawiki-7-day-log-…-2026-08-08.png to disk, a card for a window ending four
       // days after the device's own date.
       // PROVE by deleting `if (!receiptReady(log, isoDay()).ok) return null;` from receiptModel().
-      put({ started: today, action: '', metric: '', sync: false, days: { [today]: { did: 1, dir: 'better' } } });
+      // W5.5: planted as an HONEST day-1 log — opened today, the record written here, one tap in the
+      // ledger — so what this case exercises is the day-7 lock itself and not the newer `opened`
+      // refusal. On day 1 the ledger tests are not even reached: the day count returns first, which
+      // is what keeps an unfinished week reading "pending" rather than "closed".
+      put({ started: today, opened: today, seen: [today], taps: 1, action: '', metric: '', sync: false, days: { [today]: { did: 1, dir: 'better', w: 1 } } });
       const e3 = await redraw(0); if (e3) return e3;
       const e3b = await redraw(0); if (e3b) return e3b;
       const w = document.querySelector('#p1-log .rcpt');
@@ -1180,8 +1285,9 @@ const ASSERTIONS = {
       // B2. A start date in the FUTURE is legitimate (a cohort may start up to 28 days ahead) and
       // must be equally unmintable.
       const fd = {};
-      for (let i = 0; i < 7; i++) fd[dm(i + 3)] = { did: 1, dir: 'better' };
-      put({ started: dm(3), action: '', metric: '', sync: false, days: fd });
+      for (let i = 0; i < 7; i++) fd[dm(i + 3)] = { did: 1, dir: 'better', w: 1 };
+      // W5.5: `opened` today on a week that starts in three days — legitimate, and still unmintable.
+      put({ started: dm(3), opened: today, seen: [today], taps: 1, action: '', metric: '', sync: false, days: fd });
       let minted2 = null;
       proto.click = function () { minted2 = this.download; };
       const forged2 = document.createElement('button'); forged2.dataset.p1 = 'receipt-png';

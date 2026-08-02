@@ -6287,6 +6287,53 @@
   // but devices that restored one before this shipped still hold it, and a guard that only runs
   // at the door does nothing for what is already inside.
   const tapOn = (log, d, today) => (isFuture(d, today) ? null : ((log.days || {})[d] || null));
+  // W5.5 · THE WRITE LEDGER — ELAPSED DAYS ARE NOT READ FROM THE CLOCK.
+  // Every guard above this line is a date comparison, and every date in it comes from a device the
+  // reader owns and can set. MEASURED HYDRATED at 390x844, fresh profile, real UI taps
+  // (qa/out/w55r_clock.json c9_day1, c9_after, c9_png): a log started today with ONE real tap,
+  // reopened with the page clock frozen seven days forward, rendered data-receipt="ready", a card
+  // headed "2026-08-02 → 2026-08-08 · DID THE ONE THING ON 1 of the 7 days", and the REAL download
+  // button — not an injected one — wrote
+  // rnawiki-7-day-log-cravings-glycemic-swings-2026-08-08.png to disk. Six of those seven days had
+  // not happened. With seven day records restored from a file first, the same one tap gave
+  // "DID THE ONE THING ON 7 of the 7 days · DAYS TAPPED 7 of 7" (c10_after).
+  // So the week is measured by what THIS PAGE WATCHED GO BY:
+  //   `seen` — the distinct days on which this page itself stored a record for this log, appended
+  //            in write order and NEVER out of order. The monotonic rule is load-bearing, not
+  //            tidiness: without it, tap today, set the clock back seven days, tap once more is an
+  //            eight-day span built from two taps in one sitting.
+  //   `taps` — every accepted tap, including a retraction. Only ever incremented.
+  // Neither is ever imported from a file or a URL (see the export and restore paths below), so the
+  // only way to add a day to `seen` is to open this page on a day it has not yet seen and tap.
+  // WHAT THIS DOES NOT DO, stated here so no later agent believes otherwise: localStorage belongs
+  // to the reader and devtools can write any of this. This closes every path that needs no
+  // devtools, and makes the remaining one cost a separate clock change AND a separate tap for each
+  // day the card claims. A lower honest number beats a higher false one.
+  const LEDGER_MAX = 40;
+  const ledgerDays = (log) => (Array.isArray(log && log.seen) ? log.seen : []).filter((d, i, a) => TRACK_DAY_RE.test(String(d)) && a.indexOf(d) === i);
+  function ledgerSpan(log) {
+    const s = ledgerDays(log).sort((a, b) => dayNum(a) - dayNum(b));
+    const taps = (log && typeof log.taps === 'number' && log.taps > 0) ? Math.floor(log.taps) : 0;
+    return s.length
+      ? { n: s.length, first: s[0], last: s[s.length - 1], span: dayGap(s[0], s[s.length - 1]) + 1, taps }
+      : { n: 0, first: null, last: null, span: 0, taps };
+  }
+  // THE ONLY WRITER. Called from trackTap() and nowhere else, so a record can never be stored
+  // without the day it was stored on being recorded beside it.
+  function ledgerStamp(log, today) {
+    if (!log || !TRACK_DAY_RE.test(String(today))) return log;
+    const cur = ledgerSpan(log), s = ledgerDays(log).sort((a, b) => dayNum(a) - dayNum(b));
+    // A day EARLIER than the newest this page has already seen is a clock that moved backwards. The
+    // tap is real and is counted; the span is not widened by it.
+    if (!cur.last || dayNum(today) > dayNum(cur.last)) s.push(today);
+    log.seen = s.slice(-LEDGER_MAX);
+    log.taps = cur.taps + 1;
+    return log;
+  }
+  // A DAY THIS PAGE WROTE, through the UI, on this device. Restored records carry no `w` — the
+  // restore path strips it and the export path never writes it — so they still render in the panel,
+  // because they are the reader's own data, and they are counted on no card.
+  const tapHere = (log, d, today) => { const e = tapOn(log, d, today); return (e && e.w === 1) ? e : null; };
   function trackRead() {
     try { const o = JSON.parse(localStorage.getItem(TRACK_KEY) || 'null'); if (o && o.v === TRACK_V && o.logs && typeof o.logs === 'object') return o; } catch (e) {}
     return { v: TRACK_V, logs: {} };
@@ -6334,7 +6381,35 @@
       // is its only reader.
       opened: (openedOn && TRACK_DAY_RE.test(openedOn)) ? openedOn : isoDay(),
       sync: false,
+      // W5.5 · A FRESH LOG HAS WATCHED NOTHING GO BY. These two are the receipt's only clock, and
+      // they start at zero for everyone — including a cohort join, which is the case that made
+      // `started` untrustworthy in the first place. Nothing but trackTap() ever moves them.
+      seen: [],
+      taps: 0,
       days: {},
+    }).log;
+  }
+  // W5.5 · THE ONE PLACE A DAY RECORD IS STORED. The click handler used to call trackEdit()
+  // directly, which made "stamp the ledger" something a second renderer or a keyboard path could
+  // silently skip — and a guard that one caller can skip is the same class of defect as a guard
+  // that only decides markup (the W4.5 finding). Here the record and the day it was written on are
+  // stored by the same function or not at all, and `w:1` says: written HERE, through the UI.
+  // The caller decides only WHAT the record says; it never decides whether it is provenanced.
+  function trackTap(problem, rc, sel, today, mut) {
+    if (!TRACK_DAY_RE.test(String(sel)) || !TRACK_DAY_RE.test(String(today)) || isFuture(sel, today)) return null;
+    return trackEdit(problem, rc, (cur) => {
+      if (!cur) return cur;
+      const before = JSON.stringify(cur.days[sel] || null);
+      const e = Object.assign({ did: null, dir: null }, cur.days[sel] || {});
+      mut(e);
+      // Neither answer given = the day was never recorded. An empty record would sit in loggedN and
+      // put a day on the receipt that carries no fact.
+      if (e.did === null && e.dir === null) delete cur.days[sel];
+      else { e.w = 1; cur.days[sel] = e; }
+      // A retraction is a real tap on a real day and stamps like any other. What must NOT stamp is a
+      // tap that changed nothing — a re-render or a no-op is not another day gone by.
+      if (JSON.stringify(cur.days[sel] || null) !== before) ledgerStamp(cur, today);
+      return cur;
     }).log;
   }
   // A restore file is UNTRUSTED INPUT. It is read from the reader's own disk, but it can be any file
@@ -6641,21 +6716,52 @@
     // it is that a card may only be made for a week this log was open for ALL of. A late joiner
     // still joins, still gets the shared date and the aligned day count, still sees the empty days;
     // what they do not get is a 7-day write-up for days that were over before their log existed.
-    // `opened` is absent on every log written before W5. Those cannot be judged, and refusing them
-    // would delete real readers' finished weeks, so they pass — the field is written from now on.
     // THIS TEST RUNS BEFORE THE DAY COUNT, and the order is the point. MEASURED HYDRATED with the
     // two the other way round: a reader joining a 3-day-old cohort saw, on day 4,
     // data-receipt="pending" over "On day 7 this becomes a card you can keep" — a promise the same
     // predicate would refuse three days later. `opened` is known on day 1 and never changes; the day
     // count changes daily. A permanent refusal has to be stated the moment it is known, or the page
     // spends the week making an offer it will not honour.
-    if (log.opened && TRACK_DAY_RE.test(String(log.opened)) && dayNum(log.opened) > dayNum(log.started)) {
+    // W5.5 · AND IT IS NOW A POSITIVE REQUIREMENT. It used to read `log.opened && …`, so a log with
+    // the field ABSENT skipped the test entirely and re-admitted, unnamed, the exact cohort case the
+    // clause below refuses by name. MEASURED HYDRATED at 390x844, fresh profile, NO devtools and NO
+    // clock change (qa/out/w55r_clock.json c11_beforeRestore, c11_say, c11_after, c11_png): #p1-file
+    // and the restore control exist BEFORE any log does, so a JSON file with `started` six days back,
+    // one day record and no `opened` line created the log outright — "Restored 1 logged day across 1
+    // protocol" — giving data-receipt="ready", a card dated "2026-07-27 → 2026-08-02", an X share
+    // link, and a written rnawiki-7-day-log-cravings-glycemic-swings-2026-08-02.png. The byte-
+    // identical file WITH `opened` was correctly refused (ctl_after: data-receipt="closed",
+    // ctl_png.files: []). Absent is not legacy. Absent is unknown, and unknown is refused.
+    // The old comment here claimed pre-W5 logs exist in the wild and would lose finished weeks. They
+    // do not: the logger is absent from `main` entirely — `git show main:site/app.js` has 0 hits for
+    // rnawiki_track, receiptReady, phase1LogHTML and data-p1 — so nothing ever deployed writes one.
+    if (!TRACK_DAY_RE.test(String(log.opened || ''))) {
+      return { ok: false, why: `This log carries no record of the day it was opened on this device, so nothing here can show that its ${TRACK_DAYS} days went by while it was here. Your days are safe and still on the page. Start a fresh week today and the card is yours on day ${TRACK_DAYS}.` };
+    }
+    if (dayNum(log.opened) > dayNum(log.started)) {
       const late = dayGap(log.started, log.opened) + 1;
       return { ok: false, why: `This log opened on day ${late} of its own ${TRACK_DAYS} days — the first ${late - 1} were over before it existed on this device. No write-up is made for days you were not here for. Start your own week today and the card is yours on day ${TRACK_DAYS}.` };
     }
     const dayN = Math.min(TRACK_DAYS, Math.max(1, dayGap(log.started, today) + 1));
-    if (!(dayN >= TRACK_DAYS)) return { ok: false, dayN, why: `This is day ${dayN} of ${TRACK_DAYS}. The write-up is only made once the ${TRACK_DAYS} days are over — a card dated into the future would be a record of days nobody has lived yet.` };
-    return { ok: true, dayN };
+    const led = ledgerSpan(log);
+    if (!(dayN >= TRACK_DAYS)) return { ok: false, dayN, led, why: `This is day ${dayN} of ${TRACK_DAYS}. The write-up is only made once the ${TRACK_DAYS} days are over — a card dated into the future would be a record of days nobody has lived yet.` };
+    // W5.5 · THE WEEK IS MEASURED BY WHAT THIS PAGE WATCHED, NOT BY WHAT THE CLOCK SAYS.
+    // Everything above this line is a date comparison and every date in it comes from the reader's
+    // own device. MEASURED HYDRATED, fresh profile, real UI taps (qa/out/w55r_clock.json c9_*, c10_*):
+    // one real tap plus a page clock frozen seven days forward minted a real PNG headed "DID THE ONE
+    // THING ON 1 of the 7 days", and the same tap with seven restored records minted "7 of the 7 days
+    // · DAYS TAPPED 7 of 7". One day had elapsed and one day was tapped.
+    // These four are positive requirements against this page's own write ledger, which is never
+    // imported from a file. They run AFTER the day count deliberately: until the clock says the week
+    // is over, a short ledger is simply a week still in progress and receiptBlockHTML() prints these
+    // numbers in the pending copy rather than promising a card it will refuse. Once the clock says
+    // the week is over, a ledger that never covered it is a PERMANENT refusal and is stated as one
+    // (no dayN in the return, so the block renders "closed", not "pending").
+    if (led.n < 2) return { ok: false, led, why: `This device recorded taps on ${led.n} day${led.n === 1 ? '' : 's'}. A ${TRACK_DAYS}-day card is only ever made from days this page itself watched go by, and one sitting is one day whatever date the clock is set to. Start a week and tap it as it happens.` };
+    if (led.span < TRACK_DAYS) return { ok: false, led, why: `Your taps on this device run from ${led.first} to ${led.last} — ${led.span} day${led.span === 1 ? '' : 's'}, not ${TRACK_DAYS}. A card is made for a week this page was open across, never for one filled in afterwards. Start a fresh week and tap it as the days pass.` };
+    if (dayNum(led.first) > dayNum(dayPlus(log.started, TRACK_DAYS - 1))) return { ok: false, led, why: `The first tap on this device came on ${led.first}, after this log's own ${TRACK_DAYS} days were already over. There is no write-up for a week nobody was here for.` };
+    if (led.taps < led.n) return { ok: false, led, why: 'This log records more days than taps, which this page cannot have written. No card is made from it.' };
+    return { ok: true, dayN, led };
   }
   // ONE model, two renderers. The card on the page and the PNG are drawn from this same object, so
   // they cannot say different things — the D33 defect class, one level down.
@@ -6675,19 +6781,30 @@
     // reach the PNG or the share text even if the day-7 lock above is ever weakened again. Once
     // receiptReady() passes, days[6] <= today by construction and this filter removes nothing — it
     // is here so that stops being an argument and starts being a check.
-    const loggedN = days.filter((d) => tapOn(log, d, today)).length;
-    if (!loggedN) return null;                     // nothing was tapped; there is nothing to write up
-    const didN = days.filter((d) => { const x = tapOn(log, d, today); return x && x.did === 1; }).length;
+    // W5.5 · tapHere(), not tapOn(): a record only counts if THIS page wrote it through the UI
+    // (`w:1`). MEASURED HYDRATED (qa/out/w55r_clock.json c10_after): seven records restored from a
+    // file plus one real tap printed "DID THE ONE THING ON 7 of the 7 days · DAYS TAPPED 7 of 7" and
+    // an X share link saying the same. Six of those days were a text file. The panel above still
+    // shows every record — they are the reader's own data — but the card is what travels, and the
+    // card may only say what this device watched somebody tap.
+    const loggedN = days.filter((d) => tapHere(log, d, today)).length;
+    const restoredN = days.filter((d) => tapOn(log, d, today) && !tapHere(log, d, today)).length;
+    if (!loggedN) return null;                     // nothing was tapped HERE; there is nothing to write up
+    const didN = days.filter((d) => { const x = tapHere(log, d, today); return x && x.did === 1; }).length;
     // Days tapped for direction only, with no answer on the one thing. These used to be counted as
     // "did it" (the did:1 default), so the headline row asserted days nobody claimed.
-    const unsaidN = days.filter((d) => { const x = tapOn(log, d, today); return x && x.did !== 0 && x.did !== 1; }).length;
+    const unsaidN = days.filter((d) => { const x = tapHere(log, d, today); return x && x.did !== 0 && x.did !== 1; }).length;
     const dirN = { better: 0, same: 0, worse: 0 };
-    days.forEach((d) => { const x = tapOn(log, d, today); if (x && x.dir) dirN[x.dir]++; });
+    days.forEach((d) => { const x = tapHere(log, d, today); if (x && x.dir) dirN[x.dir]++; });
     const word = (k) => (k === 'same' ? 'no change' : k);
-    const last = tapOn(log, days[TRACK_DAYS - 1], today);   // W5: the one row that quotes a specific day must not quote a future one
+    const last = tapHere(log, days[TRACK_DAYS - 1], today);   // W5: the one row that quotes a specific day must not quote a future one; W5.5: nor one that arrived in a file
     const rows = [
       ['Did the one thing on', `${didN} of the 7 days`],
       ['Days tapped', `${loggedN} of 7`],
+      // W5.5 · DISCLOSED, NEVER FOLDED IN. A record that arrived in a restore file is the reader's
+      // own data and still renders in the panel, but it is not a day this device watched anybody
+      // tap, so it is named here and counted in nothing above.
+      ...(restoredN ? [['Days restored from a file, not counted here', `${restoredN} — this card is only what was tapped on this device`]] : []),
       // Printed only when it is not zero, and never folded into either count above: a day with no
       // answer is neither a "did it" nor a "missed it", and the card has to be able to say so. A
       // lower honest number beats a higher false one.
@@ -6704,7 +6821,7 @@
       action: log.action || rc.phase1.action,
       metric: log.metric || ((problem.safety || {}).metric) || '',
       from: days[0], to: days[TRACK_DAYS - 1],
-      didN, loggedN, unsaidN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
+      didN, loggedN, unsaidN, restoredN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
       rows,
       // Never efficacy. One person, seven days, no control, no comparison group — and this site
       // publishes no aggregate of anybody's weeks (brief §0.3, and the cohort feature stays dark).
@@ -6744,7 +6861,7 @@
     const rr = receiptReady(log, today);
     if (!rr.ok) {
       return rr.dayN
-        ? `<div class="rcpt" data-receipt="pending"><p class="rcpt-pending">On day ${TRACK_DAYS} this becomes a card you can keep — what you did, on how many days, and what you tapped on the last day against your own first one. Nothing else, because nothing else was recorded.</p></div>`
+        ? `<div class="rcpt" data-receipt="pending"><p class="rcpt-pending">On day ${TRACK_DAYS} this becomes a card you can keep — what you did, on how many days, and what you tapped on the last day against your own first one. Nothing else, because nothing else was recorded. <b>It is made from days this page watched go by: ${(rr.led || {}).n || 0} so far.</b> Tap on the days as they happen and it is yours on day ${TRACK_DAYS}.</p></div>`
         : `<div class="rcpt" data-receipt="closed"><p class="rcpt-pending">${esc(rr.why)}</p></div>`;
     }
     const m = receiptModel(problem, rc);
@@ -6956,8 +7073,10 @@
       const dayN = Math.min(TRACK_DAYS, Math.max(1, dayGap(log.started, today) + 1));
       const sel = (focus && days.indexOf(focus) >= 0 && !isFuture(focus, today)) ? focus : days[dayN - 1];
       if (act === 'did' || act === 'dir') {
-        trackEdit(problem, rc, (cur) => {
-          if (!cur) return cur;
+        // W5.5 · through trackTap(), which is now the only function that stores a day record: it
+        // marks it `w:1` (written HERE, through the UI) and stamps the write ledger with the day it
+        // was stored on. This callback decides only WHAT the record says.
+        trackTap(problem, rc, sel, today, (e) => {
           // `did` DEFAULTS TO null - "not said" - never to 1. MEASURED HYDRATED, real taps, fresh
           // profile, /protocol/cravings/glycemic-swings (qa/out/w45log_a.json): tapping ONLY
           // "down Worse" on day 1 wrote {"did":1,"dir":"worse"}, flipped "Did it" to
@@ -6965,7 +7084,6 @@
           // card's headline row read "DID THE ONE THING ON 1 of the 7 days" and the X share text read
           // "Did it on 1 of the 7 days". The reader said it got worse and never claimed they did the
           // intervention.
-          const e = Object.assign({ did: null, dir: null }, cur.days[sel] || {});
           // Both answers retractable: tapping the one already on clears it. The only way back from a
           // mis-tap; without it the receipt asserts the mis-tap for ever.
           if (act === 'did') { const n = v === '1' ? 1 : 0; e.did = (e.did === n) ? null : n; }
@@ -6984,11 +7102,6 @@
           // resolves to null: on day 1 this control can only ever remove one, never set one. The
           // record is then deleted by the line below, so nothing enters loggedN.
           else e.dir = (sel === days[0] || e.dir === v) ? null : v;
-          // Neither answer given = the day was never recorded. An empty record would sit in loggedN
-          // and put a day on the receipt that carries no fact.
-          if (e.did === null && e.dir === null) delete cur.days[sel];
-          else cur.days[sel] = e;
-          return cur;
         });
         phase1LogDraw(problem, rc, sel);
         trackSyncNow(problem, rc);
@@ -7025,7 +7138,23 @@
         // is untouched either way; this never navigates.
         const all = trackRead();
         const one = { v: TRACK_V, exported: today, logs: {} };
-        one.logs[trackKey(problem, rc)] = all.logs[trackKey(problem, rc)];
+        // W5.5 · A FILE CARRIES DAYS, NEVER PROVENANCE. `seen`, `taps`, `opened` and each record's
+        // `w` are facts about a DEVICE, and this file is about to leave the device. Writing them out
+        // would put a forgeable claim about "which days this page watched" into a text file the
+        // reader can open in any editor — which is exactly how the `opened` rule was defeated:
+        // MEASURED HYDRATED, no devtools (qa/out/w55r_openedmerge.json step1, step2): export, change
+        // the single `opened` date to the start date, restore, and a log that had correctly read
+        // data-receipt="closed" read "ready" and wrote
+        // rnawiki-7-day-log-cravings-glycemic-swings-2026-08-02.png. Nothing is lost: the days, the
+        // start date, the action and the metric — everything the reader would grieve — all travel.
+        const src = all.logs[trackKey(problem, rc)] || null;
+        if (src) {
+          const sd = {};
+          Object.keys(src.days || {}).forEach((d) => { const e = Object.assign({}, src.days[d]); delete e.w; sd[d] = e; });
+          const out = Object.assign({}, src, { days: sd });
+          delete out.seen; delete out.taps; delete out.opened;
+          one.logs[trackKey(problem, rc)] = out;
+        }
         let url = '';
         try {
           url = URL.createObjectURL(new Blob([JSON.stringify(one, null, 2)], { type: 'application/json' }));
@@ -7058,17 +7187,33 @@
         try { parsed = JSON.parse(String(r.result)); } catch (err) { say('That file is not readable JSON, so nothing was changed.'); return; }
         const v = trackValidate(parsed);
         if (v.error) { say('Not restored — ' + v.error + ' Nothing on this device was changed.'); return; }
-        const o = trackRead();
+        const o = trackRead(), NOW = isoDay();
+        // W5.5 · PROVENANCE IS NEVER IMPORTED. A file is the reader's own days; it is not evidence
+        // about a device, and every field that says "this page watched this happen" is therefore
+        // dropped at the door and re-derived here. THE LINE BELOW USED TO BE THE OPPOSITE:
+        // `opened` was taken from the file when it was earlier, on the reasoning that a week begun
+        // on a phone and continued on a laptop was open from the earlier date. MEASURED HYDRATED at
+        // 390x844, fresh profile, NO devtools (qa/out/w55r_openedmerge.json step1, step2, step2_files):
+        // restore a cohort file → data-receipt="closed", correctly refused; open that same file in a
+        // text editor, move the one `opened` date back to the start date, restore again → "ready",
+        // a share link, and rnawiki-7-day-log-cravings-glycemic-swings-2026-08-02.png on disk. One
+        // edited date in a plain text file bought a finished week. A guard over a field the file
+        // supplies is not a guard.
+        // WHAT THE READER LOSES, said plainly rather than engineered around: a week carried to a new
+        // device arrives complete — every day, the start date, the action, the metric — and that
+        // device did not watch it happen, so it will not mint the card. The device that did still
+        // has it. A lower honest number beats a higher false one.
         Object.keys(v.logs).forEach((k) => {
           const inc = v.logs[k], cur = o.logs[k];
-          if (!cur) { o.logs[k] = inc; return; }
-          cur.days = Object.assign({}, cur.days, inc.days);
+          const nd = {};
+          Object.keys(inc.days || {}).forEach((d) => { const e = Object.assign({}, inc.days[d]); delete e.w; nd[d] = e; });
+          if (!cur) { o.logs[k] = Object.assign({}, inc, { days: nd, seen: [], taps: 0, opened: NOW }); return; }
+          // THIS DEVICE'S OWN RECORD WINS. The order used to be the other way round, so a file could
+          // overwrite a day somebody actually tapped here — silently replacing a first-hand record
+          // with a copy, and stripping its `w` on the way past.
+          cur.days = Object.assign({}, nd, cur.days);
           if (dayNum(inc.started) < dayNum(cur.started)) cur.started = inc.started;
-          // W5: `opened` moves with `started`, earliest wins. A week begun on a phone and continued on
-          // a laptop was open, somewhere the reader was, from the earlier of the two dates — and if
-          // this line is missing, the merged log looks like one opened after its own day 1 and the
-          // reader loses a card they earned. This is the mirror of the two-keys-one-state fix above.
-          if (inc.opened && (!cur.opened || dayNum(inc.opened) < dayNum(cur.opened))) cur.opened = inc.opened;
+          // `opened`, `seen` and `taps` are this device's own and are not touched by a file.
         });
         if (!trackWrite(o)) { say('This browser refused to save. Nothing was changed.'); return; }
         // Both keys move together, or the Start button and the log print two different start dates
