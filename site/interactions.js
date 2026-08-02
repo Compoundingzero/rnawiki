@@ -352,6 +352,45 @@ window.RNAWIKI_INTERACTIONS = {
       action: "Add up the elemental zinc from both. The long-term copper caution applies to that combined amount, not to either page on its own." }
   ],
 
+  // ---- W5 (2026-08-02): THE UNDER-TAGGING AUDIT ----------------------------------------------
+  // Read by assertHazardTagCoverage() in build/parse.js, which fails the build on any compound that
+  // survives a signal and is neither tagged nor acknowledged here. `pos`/`neg` are regex SOURCES,
+  // applied per sentence to the SAFETY FIELDS ONLY (watch, avoid, bio.overdose.line,
+  // bio.misuse.line, bio.contra[].flag/advice, bio.biomarkers[].marker/why) — a hazard word in a
+  // mechanism paragraph is chemistry; the same word in a contra block is a warning. `neg` is what
+  // keeps the output a decision list instead of noise: a whole-record scan returns 36 candidates,
+  // this one returns 17 and correctly excludes Boldenone ("skips that particular liver toxicity"),
+  // Berberine ("berberine is not a known hepatotoxin"), Milk Thistle, 17-α-Estradiol ("are not
+  // documented for 17a-estradiol in humans") and c134 ("less hepatotoxic … a general precaution").
+  //
+  // ACKNOWLEDGED IS A DECISION, NOT A DISMISSAL. Each entry is a human assertion with the page's own
+  // words beside it, exactly like `not:` on a nameTag, and flipping any one of them into a tag is a
+  // one-line change. The bar applied to all 171, stated once: TAG when the page states liver injury
+  // as documented or reported IN HUMANS for that compound; ACKNOWLEDGE when it is animal-only, above
+  // the page's own stated dose range, attributed to a different substance, or monitoring-only.
+  hazardAudit: {
+    signals: {
+      hepatotoxic: {
+        pos: "hepatotox|liver injury|drug[- ]induced liver|cholestatic (hepatitis|jaundice)|liver damage|liver strain|peliosis",
+        neg: "not a known hepatotox|less hepatotox|hepatotoxicity is unproven|no human hepatotoxicity data|are not documented for|avoids? that (specific )?(oral[- ]steroid )?liver toxicity|skips that|precaution rather than|extrapolated from"
+      }
+    },
+    acknowledged: {
+      "c41:hepatotoxic": "Fadogia Agrestis — RAT ONLY. Its own overdose line says 'No human liver injury has been formally documented, but the animal liver and kidney signal is a genuine concern.' Product constraint 7 caps animal-only evidence; a danger row asserting human liver strain would go past what the page supports. NEEDS FELIX: its contra block does say 'Existing liver or kidney disease, or use of other hepatotoxic medication/supplements — Avoid', which is the exact interaction the rule renders. If that sentence is authoritative, tag it.",
+      "c102:hepatotoxic": "Dihexa — RODENT ONLY: 'Rodent work also reported hepatotoxicity at doses only modestly above the effective range.' No human statement anywhere on the page.",
+      "c124:hepatotoxic": "Niacin / NADH — ABOVE THE PAGE'S OWN RANGE. Hepatotoxicity is asserted only for gram doses ('High-dose niacin (>1 g/day), especially sustained-release, can be **hepatotoxic**') while the same page's dosing cap reads 'Supplemental **UL for nicotinic acid is 35 mg/day**'. Tagging it would fire a danger row on a 35 mg B-vitamin.",
+      "c72:hepatotoxic": "Acarbose — DOSE-CONDITIONAL AND RARE: 'Dose-related transaminase elevation and rare hepatotoxicity occur, more likely above 50 mg three times daily; monitoring catches it before jaundice.' A prescription drug titrated by a clinician; already rule-reachable via `hypoglycemic`.",
+      "c31:hepatotoxic": "Naltrexone/Bupropion — POTENTIAL, NOT OCCURRENCE: 'Naltrexone carries dose-related hepatotoxicity potential; new abdominal pain, dark urine, or jaundice warrants stopping and testing.' The page states a monitoring trigger, not a documented harm.",
+      "c42:hepatotoxic": "Nandrolone — THE PAGE POINTS BOTH WAYS. Its overdose line reports 'liver strain including reported peliosis hepatis (blood-filled hepatic cysts)', but its biomarker why says 'Chronic use can cause liver strain, though injectable nandrolone is less hepatotoxic than oral 17-alkylated steroids.' NEEDS FELIX: this is the only AAS on the site with a documented hepatic lesion and no tag.",
+      "c66:hepatotoxic": "GHK-Cu — ABOUT COPPER POISONING, NOT THE PEPTIDE AT DOSE: 'Copper overload causes … in more severe toxicity, hemolytic anemia, liver injury (jaundice, rising transaminases) and, in acute copper poisoning, acute kidney injury and multi-organ failure.'",
+      "c76:hepatotoxic": "Quercetin + Dasatinib — MONITORING ONLY. The single hit is a biomarker why: 'Monitors for hepatotoxicity and informs dosing.' No harm is asserted.",
+      "c143:hepatotoxic": "Tretinoin / Retinoids — CAUTION ON ORAL THERAPY, under prescription: 'Significant liver disease or high triglycerides | Oral retinoids can worsen liver injury and lipid levels and are used with caution or avoided.' Its biomarker adds 'Oral retinoids can cause dose-related hepatocellular enzyme elevation' — a monitored lab change, not a documented injury. NEEDS FELIX: 'can worsen liver injury' is a step stronger than this acknowledgement, and the compound this rule would pair it with is exactly a second hepatic load.",
+      "c155:hepatotoxic": "Z-drugs · Trazodone · Doxylamine (brief) — ATTRIBUTED TO ONE OF THREE SUBSTANCES ON A BUNDLE PAGE: 'Trazodone has rare case reports of hepatotoxicity.' Tagging the page asserts it of zolpidem and doxylamine too."
+    },
+    // Words assertRuleProse() may print that the authored corpus has never used. Four, each real.
+    vocab: ["overstimulate", "raisers", "doac", "whoever"]
+  },
+
   // Rules: fire when every `need` [tag, minDistinctCompounds] is satisfied by the stack.
   // tier: danger | blunt | timing.  Each has a plain-English why + action; optional pathway.
   rules: [
