@@ -926,7 +926,28 @@ D.goals.forEach((g) => {
     <p>${(() => { const RX = new Set(['prescription', 'controlled', 'unapproved']);
       const open = list.filter((c) => !RX.has(c.regulatory_class)).length; const rx = list.length - open;
       return rx ? `${open} you can buy and ${rx} that need a prescription` : `${open} compounds`; })()} that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, with honest verdicts.</p>
-    <ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>
+    ${/* W5b (2026-08-02): D36 — THE CRAWLER GOT LESS THAN THE READER, on all 16 of these.
+          Measured over the 68 reference routes, prerendered body words against fully-expanded
+          hydrated words at 1280x900, 0 pageerrors: 17 routes served the crawler under half of what
+          a reader sees, and 16 of the 17 are /goal/* — /goal/hormones 211 vs 1,765 (0.12),
+          /goal/longevity 208 vs 1,623, /goal/muscle 225 vs 1,441, /goal/focus 170 vs 1,150. This
+          is the OPPOSITE direction to D2 and it had exactly one cause: the reader gets a cpdCard
+          per compound (category, the one-line mechanism, the approval badges), and the crawler got
+          a bare name and a star row. Every field below is already on this page's own data and
+          already shown to the reader — nothing new is authored, and no claim is added that the SPA
+          does not make. `mds` is this file's markdown-stripper, `snip` its word-boundary trim. */ ''}
+    <ul class="goal-list">${list.map((c) => {
+      // `metaSummary` last: the 13 "(brief)" bundles carry no mechanism/plain/bottom, and it is the
+      // fallback build/parse.js derives from the entry's own members for exactly this reason (it is
+      // what their <meta description> uses). Without it those entries are a bare name here, which
+      // is the defect this line exists to fix, one row at a time.
+      const line = snip(c.mechanism || c.plain || c.bottom || c.metaSummary || '', 190);
+      const labels = (c.approvalLabels || []).join(', ');
+      return `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}`
+        + `${c.category ? ` · <span class="gl-cat">${esc(c.category)}</span>` : ''}`
+        + `${labels ? ` · ${esc(labels)}` : ''}`
+        + `${line ? `<br><span class="gl-why">${esc(line)}</span>` : ''}</li>`;
+    }).join('')}</ul>
     ${protos.length ? `<h2>Full protocols</h2><ul>${protos.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)} — Move, Fuel &amp; Stack</a></li>`).join('')}</ul>` : ''}`;
   const goalLd = { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${g.label} — what actually helps`, description: `Compounds ranked by human evidence for ${g.label.toLowerCase()}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified };
   add(route, shell({ route, title: seoTitle(`${g.label}: what actually helps`), desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence — plain English, honest verdicts.`, jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
@@ -1982,10 +2003,19 @@ ANAT.metabolism.forEach((p) => {
 });
 {
   const route = '/anatomy';
+  // W5b (2026-08-02): D36, the 17th starved reference route. Measured: 95 prerendered body words
+  // against 370 fully-expanded hydrated (ratio 0.26). The reader's tiles carry the exercise and
+  // stretch counts per muscle, each energy system's duration and intensity, and the one-line plain
+  // English for each metabolism page; the crawler got three lists of bare names. Every field below
+  // is the one the SPA tile already shows — anatomyIndex() in site/app.js — so this adds no claim
+  // the reader is not already given.
   const body = `<div class="article"><h1>Anatomy &amp; physiology</h1><p>The body behind the protocol — muscles, the energy systems that fuel them, and the metabolism behind every food and supplement.</p>
-    <h2>Muscles</h2><ul>${ANAT.muscles.map((m) => `<li><a href="/muscle/${m.id}">${esc(m.name)}</a></li>`).join('')}</ul>
-    <h2>Energy systems</h2><ul>${ANAT.energy_systems.map((e) => `<li><a href="/energy/${e.id}">${esc(e.name)}</a></li>`).join('')}</ul>
-    <h2>Metabolism</h2><ul>${ANAT.metabolism.map((p) => `<li><a href="/physiology/${p.id}">${esc(p.name)}</a></li>`).join('')}</ul></div>`;
+    <h2>Energy systems</h2><p>How muscles are powered, from a one-second max effort to an all-day walk.</p>
+    <ul>${ANAT.energy_systems.map((e) => `<li><a href="/energy/${e.id}">${esc(e.name)}</a>${e.duration ? ` — ${esc(e.duration)}` : ''}${e.intensity ? `, ${esc(e.intensity)}` : ''}${e.fuel ? `. Fuel: ${esc(e.fuel)}` : ''}</li>`).join('')}</ul>
+    <h2>Metabolism &amp; physiology</h2><p>How the body makes and manages its fuel — the science under every nutrition and supplement protocol.</p>
+    <ul>${ANAT.metabolism.map((p) => `<li><a href="/physiology/${p.id}">${esc(p.name)}</a>${p.plain || p.overview ? ` — ${esc(snip(p.plain || p.overview, 180))}` : ''}</li>`).join('')}</ul>
+    <h2>Muscles</h2><p>The anatomy, mechanics and training of every major muscle group.</p>
+    <ul>${ANAT.muscles.map((m) => `<li><a href="/muscle/${m.id}">${esc(m.name)}</a>${m.region ? ` — ${esc(m.region)}` : ''}${m.exercise_count || m.stretch_count ? `, ${m.exercise_count || 0} exercise${(m.exercise_count || 0) === 1 ? '' : 's'} and ${m.stretch_count || 0} stretch${(m.stretch_count || 0) === 1 ? '' : 'es'}` : ''}</li>`).join('')}</ul></div>`;
   add(route, shell({ route, title: seoTitle('Anatomy & physiology: muscles, energy, metabolism'), desc: seoDesc('The body behind the protocol: every major muscle, the energy systems that fuel movement, and the metabolism behind nutrition and supplements — in plain English.'), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Anatomy', route }], body }));
 }
 
@@ -3212,6 +3242,54 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] part numbering OK — ${dividers} dividers across ${files} documents, every one numbered 1..N of its own N.`);
+})();
+
+// ---- build-time assertion: A LIST OF LINKS IS NOT A PAGE -------------------------------------
+// W5b (2026-08-02), D36 — the mirror image of D2, and the one nobody was looking for. D2 is
+// hydration deleting content the crawler has. This is the crawler being handed a stub of a page
+// the reader gets in full. Measured over 68 reference routes, prerendered body words against
+// fully-expanded hydrated words at 1280x900, 0 pageerrors (qa/out/w5b_starve_before.json): 17
+// served the crawler UNDER HALF of what a reader sees — /goal/hormones 211 vs 1,765 (0.12),
+// /goal/longevity 208 vs 1,623, /goal/muscle 225 vs 1,441, /anatomy 95 vs 370. Sixteen of the 17
+// were /goal/*, and the cause was one line: the reader gets a card per compound carrying the
+// category, the one-line mechanism and the approval labels; the crawler got a name and a star row.
+//
+// A build gate cannot measure the hydrated document, so it does not try. It asserts the thing that
+// was actually wrong and is checkable here: on these pages, an entry in a list must SAY SOMETHING
+// about what it links to. Bare-link lists are how a page becomes a stub without anyone deciding it
+// should be one.
+// PROVE IT by deleting the `line` from the /goal list item, or the region and counts from /anatomy.
+(function assertReferencePagesDescribeWhatTheyList() {
+  const bad = [];
+  const check = (route, minDescribed) => {
+    const pg = pages.find((p) => p.route === route);
+    if (!pg) { bad.push(`${route}: no prerendered page`); return; }
+    const main = (pg.html.split('<main id="app">')[1] || '').split('</main>')[0];
+    // Only the page's ENTITY list. /goal also carries a "Full protocols" list whose link TEXT is
+    // the description ("Knee Pain — Move, Fuel & Stack"), which the words-outside-the-link measure
+    // below cannot see and would wrongly fail. Scoping is honest here: the measured defect was the
+    // compound list, and a check that fires on a list that is fine teaches people to widen the
+    // floor until it fires on nothing.
+    const scope = route === '/anatomy' ? main : (main.match(/<ul class="goal-list">[\s\S]*?<\/ul>/) || [''])[0];
+    const items = [...scope.matchAll(/<li>([\s\S]*?)<\/li>/g)].map((m) => m[1]);
+    if (items.length < 3) return;                       // not a list page
+    // Words that are NOT inside the link text — the description, not the name.
+    const described = items.filter((it) => {
+      const noLink = it.replace(/<a\b[^>]*>[\s\S]*?<\/a>/g, ' ').replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/g, ' ');
+      return noLink.split(/\s+/).filter((w) => /[a-z0-9]/i.test(w)).length >= 4;
+    }).length;
+    const pct = described / items.length;
+    if (pct < minDescribed) bad.push(`${route}: ${described} of ${items.length} list entries say anything about what they link to (${Math.round(pct * 100)}%, floor ${Math.round(minDescribed * 100)}%) — the reader is shown a card per entry and the crawler is being handed a bare list of names`);
+  };
+  D.goals.forEach((g) => check('/goal/' + g.id, 0.9));
+  check('/anatomy', 0.9);
+  if (bad.length) {
+    console.error('\n[prerender] A REFERENCE PAGE IS A STUB FOR THE CRAWLER — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] reference pages OK — ${D.goals.length + 1} list pages, every entry describes what it links to.`);
 })();
 
 // ---- build-time assertion: structured data ----------------------------------------------------
