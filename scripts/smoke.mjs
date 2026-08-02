@@ -66,6 +66,11 @@ const ROUTES = [
   // Same template class, but a route whose correct open cause is NOT the first one. The route
   // above is one of the 32 whose correct index IS 0, so it cannot detect D3 or its regression.
   ['protocol-rc', '/protocol/knee-pain/patellar-tendinopathy'],
+  // W5: the third branch of the same join — a root cause data/cause_map.json deliberately does NOT
+  // map, where the accordion opens a DEFAULT. Neither route above can detect it: one is mapped to
+  // index 0, the other to index 2. This one's URL says "Sluggish thyroid / nutrient deficits" and
+  // the page opens "Hashimoto's autoimmune thyroiditis".
+  ['protocol-unmapped', '/protocol/thyroid/subclinical-hypothyroid'],
   // W4 · Loop C, all three branches: a live cohort, a cohort whose week is already over, and a
   // cohort asked for on a protocol with no $0 first step.
   ['protocol-cohort', `/protocol/insomnia/circadian-misalign?cohort=${COHORT_TODAY}-smoke`],
@@ -425,6 +430,40 @@ const ASSERTIONS = {
   // number must move with it. Selector-only, because the runner below tests element presence —
   // which is why app.js stamps data-cause-index on every accordion. The exclusive-group invariant
   // means one [open] existing implies no sibling is open.
+  // ---- W5 (2026-08-02): A DEFAULT IS ALLOWED. A SILENT DEFAULT IS NOT. ------------------------
+  // 5 of 52 root causes are deliberately unmapped in data/cause_map.json, each with an authored
+  // reason the build has always REQUIRED and never rendered. Measured hydrated at 390x844 on all
+  // 52 protocol routes, 0 pageerrors (qa/out/w5int/acc-before.json): the 47 mapped routes open the
+  // mapped cause 47/47, and these 5 open accordion index 0 with nothing on the page saying so. On 3
+  // of the 5 the opened cause makes a materially different claim from the URL's own root cause —
+  // this route displays "Sluggish thyroid / nutrient deficits" and opens "Hashimoto's autoimmune
+  // thyroiditis", which is a different diagnosis, not a narrower one.
+  // Read-only assertion, so it can share a route with nothing else that drives the UI — this route
+  // has no other assertion at all. PROVE IT by deleting the `.cause-fallback` line from
+  // causesSection() in site/app.js, or by passing `rc` no further than causeIndexForRc().
+  '/protocol/thyroid/subclinical-hypothyroid': [{
+    name: 'aDefaultCauseSaysItIsADefault',
+    why: 'W5: on the 5 root causes with no authored cause to open, the page opened one anyway and said nothing — on 3 of them a different claim from the one in the URL',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const p = window.RNAWIKI_DATA.graph.problems.find(x => x.id === pid);
+      const rc = p && p.root_causes.find(x => x.id === rcid);
+      if (!rc) return 'this route names no root cause — retarget this gate';
+      if (rc.cause_key) return `${pid}/${rcid} is now MAPPED to "${rc.cause_key}" — this gate exists to test the unmapped branch and is no longer testing it; move it to another unmapped root cause`;
+      if (!rc.cause_unmapped) return 'the root cause carries no `cause_unmapped` — build/parse.js requires a reason for every null in data/cause_map.json, so it exists; it is simply not reaching the reader';
+      const open = document.querySelector('#p-causes .cause-acc[open]');
+      if (!open) return 'no cause is open at all';
+      const note = document.querySelector('#p-causes .cause-fallback');
+      if (!note) return 'a cause was opened for the reader with nothing saying it is a default — the page shows a selection it did not make and does not disclose that';
+      const t = (note.innerText || '').replace(/\s+/g, ' ').trim();
+      if (t.indexOf(rc.name) < 0) return `the note does not name the URL's own root cause "${rc.name}" — "${t.slice(0, 120)}"`;
+      const idx = +open.getAttribute('data-cause-index');
+      if (t.indexOf('#' + (idx + 1)) < 0) return `the note does not name the cause that is actually open (#${idx + 1}) — a caveat that points at a different row is worse than none`;
+      if (t.indexOf(rc.cause_unmapped.slice(0, 60)) < 0) return 'the note does not quote the authored reason from data/cause_map.json';
+      if (getComputedStyle(note).borderTopWidth === '0px') return 'the note carries no .cause-fallback styling — it reads as more body copy, which is how a caveat stops being one';
+      return null;
+    },
+  }],
   '/protocol/knee-pain/patellar-tendinopathy': [{
     name: 'urlRootCauseIsTheOpenCause',
     selector: '#p-causes .cause-acc[data-cause-index="2"][open]',

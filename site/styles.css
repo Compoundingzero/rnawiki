@@ -2757,6 +2757,12 @@ a.dp-name:hover{color:var(--accent)}
 .cf-txt{flex:1;min-width:240px;line-height:1.55;font-size:.95rem}
 .cf-btn{flex:0 0 auto;white-space:nowrap}
 .cause-list-label{margin:1.3rem 0 .7rem;font-size:.86rem;line-height:1.5;color:var(--muted)}
+/* W5 (2026-08-02): the 5 protocol routes whose root cause is an umbrella open a DEFAULT cause.
+   It has to read as a caveat, not as more body copy — on 3 of the 5 the opened cause makes a
+   different claim from the one in the URL. Colour is not the only carrier: the note opens with a
+   bolded sentence and names the number it opened. --ink (#283544) is the page's darkest body
+   colour, so the note does not add to D23's contrast debt. */
+.cause-fallback{margin:.6rem 0 .9rem;padding:.7rem .85rem;border:1px solid color-mix(in srgb,var(--orange) 35%,var(--line));background:color-mix(in srgb,var(--orange) 8%,transparent);border-radius:var(--r-sm);font-size:.88rem;line-height:1.55;color:var(--ink)}
 .cll-h{font-weight:800;text-transform:uppercase;letter-spacing:.04em;font-size:.74rem;color:var(--ink)}
 .cause-foot{margin-top:1rem}
 .cause-howto{margin:.5rem 0 0}

@@ -5647,7 +5647,19 @@
     const s = String((c.tell && c.tell.symptoms) || '').replace(/\s*Honest tiering:.*$/i, '').split(/[.;]/)[0].trim();
     return s.length > 96 ? s.slice(0, 94).trim() + '…' : s;
   }
-  function causesSection(problem, openIdx) {
+  // W5 (2026-08-02): `rc` ADDED as a third parameter. causeIndexForRc() returns 0 for a root cause
+  // with no `cause_key` — correct behaviour, and until now completely silent. Measured hydrated at
+  // 390x844 on all 52 /protocol routes, 0 pageerrors: 47 open the cause data/cause_map.json names
+  // (47/47 exact), and the 5 deliberately-unmapped ones opened index 0 with nothing said. On 3 of
+  // those 5 the opened cause makes a materially different claim from the URL's root cause —
+  // /protocol/thyroid/subclinical-hypothyroid displays "Sluggish thyroid / nutrient deficits" and
+  // opens "Hashimoto's autoimmune thyroiditis"; /protocol/brain-fog/neuroinflammation displays
+  // "Neuroinflammation / poor metabolic control" and opens "Sleep debt & circadian disruption";
+  // /protocol/low-mood/monoamine-inflammation displays "Low monoamines + inflammation" and opens
+  // "Chronic stress / HPA-axis dysregulation". The section now says that it is a default, and quotes
+  // the authored reason build/parse.js already required and now exports as `cause_unmapped`.
+  // The parameter is optional: every other caller keeps working and simply gets no note.
+  function causesSection(problem, openIdx, rc) {
     const w = problem.why; if (!w) return '';
     const ladder = (Array.isArray(w.ladder) && w.ladder.length) ? `<details class="cause-bigpic"><summary>🧭 The big picture — how one spot forms, surface → root</summary><ol class="cause-ladder">${w.ladder.map(l => `<li>${mdInline(l)}</li>`).join('')}</ol></details>` : '';
     const causes = (w.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
@@ -5685,6 +5697,7 @@
         <button class="cta-primary cf-btn" data-find-cause="${esc(problem.id)}">🔍 Find my cause — 20-second check</button>
       </div>
       <div class="cause-list-label"><span class="cll-h">The ${nC} possible cause${nC !== 1 ? 's' : ''}</span> · ranked by leverage (#1 fixes the most) — <b>open the one that sounds like you</b>. Each is a self-contained explanation and plan; fixes run behaviour → food → supplement → prescription.</div>
+      ${(rc && rc.cause_unmapped && !rc.cause_key) ? `<p class="cause-fallback"><b>Nothing below is selected for you.</b> This page’s root cause — “${esc(rc.name)}” — is an umbrella that no single cause below matches, so I have opened #${_open + 1}, the highest-leverage one, as a starting point and not as an answer. Why there is no match: ${esc(rc.cause_unmapped)} <b>Open the one that sounds like you.</b></p>` : ''}
       <div class="cause-accordion">${items}</div>
       <!-- The cascade now has a canonical page of its own (/problem/<id>) — the prerendered
            root-cause pages link there instead of repeating 7,000 words each. The SPA renders
@@ -6952,7 +6965,7 @@
       ${safetyFirstSection(problem)}
       ${phase1Section(problem, rc, cohort)}
       ${theOneThingHead(problem)}
-      ${causesSection(problem, causeIndexForRc(problem, rc))}
+      ${causesSection(problem, causeIndexForRc(problem, rc), rc)}
       ${planSection(problem)}
       ${protocolLayers(problem, rc, P)}
       ${stackAuditCallout()}
