@@ -5982,14 +5982,32 @@
   }
   function trackWrite(o) { try { localStorage.setItem(TRACK_KEY, JSON.stringify(o)); return true; } catch (e) { return false; } }
   const trackKey = (problem, rc) => `${problem.id}/${rc.id}`;
-  function trackGet(problem, rc) { return trackRead().logs[trackKey(problem, rc)] || null; }
+  // W5 · THE MODEL READ BOUNDARY. Every renderer, every count and the receipt itself read the log
+  // through here, so this is the one place a log that this page could not have written has to stop.
+  // It returns a COPY with the unreadable parts removed and it NEVER writes: a reader's stored bytes
+  // are not deleted by being read, and trackEdit() still sees the raw object.
+  // MEASURED HYDRATED (qa/out/w5r_repro.json a_visible): with started:"not-a-date" the panel
+  // rendered "Day NaN of 7", "7 of 7 days tapped" and a downloadable card. A day key that is not a
+  // date can never be produced by dayPlus() and can never be selected by a chip, so dropping it
+  // removes nothing a real log shows.
+  function trackUsable(L) {
+    if (!L || typeof L !== 'object' || !TRACK_DAY_RE.test(String(L.started || ''))) return null;
+    const days = {};
+    Object.keys(L.days || {}).forEach((d) => { if (TRACK_DAY_RE.test(d) && L.days[d]) days[d] = L.days[d]; });
+    return Object.assign({}, L, { days });
+  }
+  function trackGet(problem, rc) { return trackUsable(trackRead().logs[trackKey(problem, rc)]); }
   function trackEdit(problem, rc, fn) {
     const o = trackRead(), k = trackKey(problem, rc), next = fn(o.logs[k] || null);
     if (next) o.logs[k] = next; else delete o.logs[k];
     return { log: next, saved: trackWrite(o) };
   }
   function trackStart(problem, rc, startedOn, cohortSlug) {
-    return trackEdit(problem, rc, (cur) => (cur && cur.started) ? cur : {
+    // W5: `cur.started` alone tested for PRESENCE, not readability. Once trackGet() refuses a log
+    // whose start date is not a date (above), the panel correctly offers "Start day 1" again — and
+    // this line handed the same broken object straight back, so the reader could never get out. A
+    // log whose start date is not a date is not a week; Start replaces it.
+    return trackEdit(problem, rc, (cur) => (cur && TRACK_DAY_RE.test(String(cur.started || ''))) ? cur : {
       started: (startedOn && TRACK_DAY_RE.test(startedOn)) ? startedOn : isoDay(),
       action: (rc.phase1 || {}).action || '',
       metric: ((problem.safety || {}).metric) || '',
@@ -6249,8 +6267,22 @@
   // days after the device's own date. A guard that only chooses markup is painted, not enforced.
   function receiptReady(log, today) {
     if (!log || !log.started) return { ok: false, why: 'There is no 7-day log on this device.' };
+    // W5 · FAIL CLOSED ON A DATE THIS PAGE COULD NOT HAVE WRITTEN. dayNum() of anything that is not
+    // a calendar date is NaN, and EVERY comparison against NaN is false — so `dayN < TRACK_DAYS`
+    // was false for a broken start date and the lock returned ok:true. MEASURED HYDRATED at 390x844
+    // on /protocol/cravings/glycemic-swings with started:"not-a-date" in rnawiki_track, fresh
+    // profile (qa/out/w5r_repro.json a_visible): the panel read "Day NaN of 7", the block read
+    // data-receipt="ready", and the card asserted "DID THE ONE THING ON 7 of the 7 days" — from ONE
+    // stored record, because dayPlus('not-a-date', i) returns the identical string 'NaN-NaN-NaN' for
+    // all seven days. Tapping download wrote a real file to disk:
+    // rnawiki-7-day-log-cravings-glycemic-swings-NaN-NaN-NaN.png.
+    // Both tests below are POSITIVE requirements. A guard that asks "is it too early?" passes on
+    // NaN; a guard that asks "have seven days gone by?" does not.
+    if (!TRACK_DAY_RE.test(String(log.started)) || !TRACK_DAY_RE.test(String(today))) {
+      return { ok: false, why: 'This log’s start date is not a date this page could have written, so no day can be counted from it. Delete the log and start a fresh week.' };
+    }
     const dayN = Math.min(TRACK_DAYS, Math.max(1, dayGap(log.started, today) + 1));
-    if (dayN < TRACK_DAYS) return { ok: false, dayN, why: `This is day ${dayN} of ${TRACK_DAYS}. The write-up is only made once the ${TRACK_DAYS} days are over — a card dated into the future would be a record of days nobody has lived yet.` };
+    if (!(dayN >= TRACK_DAYS)) return { ok: false, dayN, why: `This is day ${dayN} of ${TRACK_DAYS}. The write-up is only made once the ${TRACK_DAYS} days are over — a card dated into the future would be a record of days nobody has lived yet.` };
     return { ok: true, dayN };
   }
   // ONE model, two renderers. The card on the page and the PNG are drawn from this same object, so
