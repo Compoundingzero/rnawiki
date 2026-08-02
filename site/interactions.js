@@ -70,7 +70,19 @@ window.RNAWIKI_INTERACTIONS = {
   // was the third and is recorded here because a count nobody re-derived is how this file gets
   // wrong.) assertHazardTagCoverage() in build/parse.js is the gate that will not let the gap
   // reopen silently.
-  coverage: { compounds: 171, reachable: 94, unreachable: 77, unreachableRx: 38 },
+  // 2026-08-02 (W5.5): 94 → 101. The second time this number has gone UP, and for the same reason as
+  // the first: not a tag invented to flatter it, but tags pages already supported that nobody had
+  // written down. The under-tagging audit that produced W5's +4 covered ONE of the 26 tags a rule
+  // reads; this wave covers all of them, and 20 compounds gain a tag. Seven were previously
+  // unreachable altogether — c17 Whey / Casein, c80 GlyNAC, c90 Racetams, c97 Methylene Blue, c107
+  // Saffron, c11 CoQ10 and c163's Quercetin. c97 is the starkest: it carried NO tag at all while its
+  // own contra block calls serotonin syndrome with an SSRI "a genuine medical emergency" and "the
+  // single most important caution". Measured hydrated at 390x844, /stack?ids=c97,c156 rendered
+  // "❔ I hold no interaction pharmacology for Methylene Blue" — honest, and a miss.
+  // Every figure here is recomputed by assertInteractionCoverage() and the build fails on drift;
+  // unreachableRx was read off the gate rather than derived by hand, which is how this file has got
+  // numbers wrong before.
+  coverage: { compounds: 171, reachable: 101, unreachable: 70, unreachableRx: 36 },
 
   // catTags MUST STAY EMPTY. It is kept as a field only so compoundTags() in site/app.js and its
   // copy in build/parse.js keep the same shape; assertInteractionCoverage() fails the build if
@@ -94,8 +106,24 @@ window.RNAWIKI_INTERACTIONS = {
   nameTags: [
     // serotonergic → serotonin-syndrome risk
     { m: "5-htp", t: ["serotonergic"], ids: ["c108"] }, { m: "tryptophan", t: ["serotonergic"], ids: ["c108"] },
-    { m: "ssri", t: ["serotonergic"], ids: ["c156"] }, { m: "sertraline", t: ["serotonergic"], ids: ["c156"] }, { m: "escitalopram", t: ["serotonergic"], ids: ["c156"] },
-    { m: "sam-e", t: ["serotonergic"], ids: ["c168"] }, { m: "saffron", t: ["serotonergic"], ids: ["c107"] }, { m: "psilocybin", t: ["serotonergic"], ids: ["c158"] },
+    { m: "ssri", t: ["serotonergic", "blood_thinning"], ids: ["c156"] },   // W5.5 blood_thinning — contra: "SSRIs impair platelet function and raise gastrointestinal bleeding risk"
+    { m: "sertraline", t: ["serotonergic"], ids: ["c156"] }, { m: "escitalopram", t: ["serotonergic"], ids: ["c156"] },
+    { m: "sam-e", t: ["serotonergic"], ids: ["c168"] },
+    // 2026-08-02 (W5.5): THE SINGLE HIGHEST-VALUE LINE IN THIS COMMIT. c97 carried NO tag at all —
+    // measured hydrated at 390x844, 0 pageerrors, /stack?ids=c97,c156 rendered "⚠️ 1 thing to review"
+    // and "❔ I hold no interaction pharmacology for Methylene Blue", which is honest and is a miss:
+    // its own contra block calls this "the single most important caution".
+    { m: "methylene blue", t: ["serotonergic"], ids: ["c97"] },  // contra: "Methylene blue is a potent MAO inhibitor and can precipitate **serotonin syndrome** — a genuine medical emergency — even at low doses. Do not combine; this is the single most important caution."
+    { m: "saffron", t: ["serotonergic", "blood_thinning"], ids: ["c107"] },   // W5.5 blood_thinning — contra: "Saffron has mild **antiplatelet** activity"
+    // W5.5 `stimulant` ADDED, and it is the weakest of the 24 assignments in this commit — NEEDS
+    // FELIX. Psilocybin's page asserts the property of itself, unhedged, in a contra block:
+    // "Sympathomimetic effects and 5-HT2B receptor activity make repeated dosing hazardous for the
+    // heart", and its biomarker adds "Psilocin is mildly sympathomimetic", its overdose line "sharp
+    // rises in heart rate and blood pressure". The stim_stack row it now produces is danger-tier and
+    // says "Each drives the same fight-or-flight system", which is what sympathomimetic means. If
+    // Felix would rather the bar for a DANGER tier row were higher than for a timing one, this is
+    // the line to move — and the bar then has to move for every other tag here too.
+    { m: "psilocybin", t: ["serotonergic", "stimulant"], ids: ["c158"] },
     { m: "ketamine", t: ["cns_depressant"], ids: ["c157"] },
     // stimulants → additive cardiovascular strain
     { m: "caffeine", t: ["stimulant"], ids: ["c1", "c24"] }, { m: "ephedrine", t: ["stimulant"], ids: ["c25"] }, { m: "yohimbine", t: ["stimulant"], ids: ["c26"] },
@@ -118,14 +146,65 @@ window.RNAWIKI_INTERACTIONS = {
     // `vitamin e` DELETED 2026-08-02: it matched 0 of 171 compound names. A rule that can never
     // match is dead data in a file whose whole job is to be true about what it covers.
     { m: "resveratrol", t: ["blood_thinning"], ids: ["c74"] },
+    // 2026-08-02 (W5.5): FIVE MORE BLEEDING CARRIERS (two more are on the saffron, ssri and reishi
+    // lines elsewhere in this array). Same bar as the W5 hepatotoxic pass, stated once and applied
+    // to every candidate the 27 signals surface: TAG when the compound's own SAFETY fields assert
+    // the property OF THAT COMPOUND, in humans, unhedged; acknowledge otherwise, with the page's own
+    // words. It cuts both ways in visible pairs — c107 Saffron "has mild antiplatelet activity" is
+    // tagged, c94 Lion's Mane "may have mild antiplatelet activity" is acknowledged.
+    // `bleeding` is a DANGER-tier rule and this is the largest single move in the commit, so every
+    // line carries the sentence it rests on.
+    // ONE nameTag, BOTH ids, ON PURPOSE: c9 and c80 are two pages of one molecule (GlyNAC IS glycine
+    // plus NAC), and writing them as two entries would evade assertDuplicateSubstances' discovery
+    // tripwire. Written this way, the build demands the duplicates group below — which is the first
+    // time that defect has been caught BEFORE it shipped rather than after.
+    { m: "nac", t: ["blood_thinning", "nitrate_potentiator"], ids: ["c9", "c80"], not: ["c94"] },
+    // ^ c9 contra: "**Anticoagulants / bleeding risk** High-dose NAC has mild antiplatelet activity";
+    //   c80 contra: "NAC has mild antiplatelet activity"; both: "NAC potentiates nitrate vasodilation
+    //   and can cause marked hypotension and severe headache". `not: c94` — "Hericium eriNACeus" is
+    //   the substring-collision this file exists to catch; Lion's Mane is a mushroom, and its own
+    //   antiplatelet sentence says "may have", which is why it is acknowledged rather than tagged.
+    { m: "piracetam", t: ["blood_thinning"], ids: ["c90"] },   // contra: "Blood thinners / upcoming surgery | Piracetam has **antiplatelet/haemorheological activity**"
+    // c163 is a four-substance brief page. The bar applied to every bundle page in this commit: a
+    // hazard firmly asserted of a NAMED component is a hazard of the page, because the page is the
+    // unit a reader adds to a stack. `not: c76` is the other quercetin page — its own safety fields
+    // assert none of these three properties (it returns zero hits for all three signals over all
+    // 171); its warnings are about the dasatinib pulse, not about quercetin's antiplatelet activity.
+    { m: "quercetin", t: ["blood_thinning", "hypotensive", "cyp3a4"], ids: ["c163"], not: ["c76"] },
+    // ^ contra: "Antihypertensive or antiplatelet/anticoagulant medication | Quercetin can modestly
+    //   lower blood pressure and has mild antiplatelet activity"; contra: "**Quercetin inhibits
+    //   CYP3A4 and P-glycoprotein** and can raise levels of drugs such as ciclosporin, some statins".
     // strong CNS depressants → additive sedation / respiratory depression
     { m: "phenibut", t: ["cns_depressant"], ids: ["c101"] }, { m: "zolpidem", t: ["cns_depressant"], ids: ["c155"] }, { m: "z-drug", t: ["cns_depressant"], ids: ["c155"] },
-    { m: "trazodone", t: ["cns_depressant"], ids: ["c155"] }, { m: "orexin", t: ["cns_depressant"], ids: ["c154"] }, { m: "suvorexant", t: ["cns_depressant"], ids: ["c154"] },
+    // W5.5 `hepatotoxic` ADDED, and it REVERSES this page's own shipped acknowledgement, which said
+    // tagging a bundle page asserts the hazard of zolpidem and doxylamine too. Three positions
+    // cannot all be right: c170 Valerian was TAGGED in W5 on "Rare **hepatotoxicity reports**", and
+    // c131's orlistat sentence is stronger than either. The bar is now applied uniformly — a hazard
+    // firmly asserted of a NAMED component of a bundle page is a hazard of the page, because the
+    // page is the unit a reader adds to a stack. Measured hydrated at 390x844, 0 pageerrors, before
+    // this line: /stack?ids=c155,c30 rendered `<span class="ixn-verdict ok">✅ Nothing flagged
+    // between the 2 of 2 I have pharmacology for` with zero rows, over Z-drugs + Green Tea Extract.
+    // If Felix prefers the opposite bar, it has to be applied to c131, c141, c153 and c163 as well,
+    // and it reopens c170.
+    { m: "trazodone", t: ["cns_depressant", "hepatotoxic"], ids: ["c155"] },  // biomarker: "Liver enzymes (ALT/AST) | Trazodone has rare case reports of hepatotoxicity"
+    { m: "orexin", t: ["cns_depressant"], ids: ["c154"] }, { m: "suvorexant", t: ["cns_depressant"], ids: ["c154"] },
     { m: "lemborexant", t: ["cns_depressant"], ids: ["c154"] }, { m: "doxylamine", t: ["cns_depressant"], ids: ["c155"] },
     // mild sedatives → gentle stacking note only
     { m: "melatonin", t: ["sedative_mild"], ids: ["c103"] }, { m: "valerian", t: ["sedative_mild"], ids: ["c170"] }, { m: "apigenin", t: ["sedative_mild"], ids: ["c104"] },
+    // W5.5: two more. Note the rule's `why` was rewritten in the same commit — it used to say "Each
+    // of these is a mild sleep aid", and Bacopa is not one: its own page is about memory
+    // consolidation over 8–12 weeks and only mentions drowsiness as a reason to move the dose to the
+    // evening. The tag is right and the sentence was not, so the sentence changed.
+    { m: "bacopa", t: ["sedative_mild"], ids: ["c95"] },       // contra: "**Sedatives / CNS depressants** | Bacopa can be mildly sedating"
     // glucose-lowering → additive hypoglycemia
-    { m: "metformin", t: ["hypoglycemic"], ids: ["c71"] }, { m: "berberine", t: ["hypoglycemic"], ids: ["c29"] }, { m: "acarbose", t: ["hypoglycemic"], ids: ["c72"] },
+    { m: "metformin", t: ["hypoglycemic"], ids: ["c71"] },
+    // W5.5 `cyp3a4` ADDED — avoid: "It inhibits CYP3A4, so it interacts with many prescriptions
+    // (statins, immunosuppressants, some blood thinners)"; contra: "Berberine inhibits
+    // CYP3A4/CYP2D6 and P-glycoprotein, raising blood levels of many drugs (some statins,
+    // cyclosporine, and others)". Compare c104 Apigenin, acknowledged because its page says the
+    // same thing "in vitro" and "theoretically".
+    { m: "berberine", t: ["hypoglycemic", "cyp3a4"], ids: ["c29"] }, { m: "acarbose", t: ["hypoglycemic"], ids: ["c72"] },
+    { m: "panax", t: ["hypoglycemic"], ids: ["c153"] },        // W5.5 — contra: "Diabetes, blood-pressure medication, or warfarin | **Panax ginseng** can lower blood glucose"
     { m: "semaglutide", t: ["hypoglycemic", "glp1"], ids: ["c19"] }, { m: "tirzepatide", t: ["hypoglycemic", "glp1"], ids: ["c20"] }, { m: "retatrutide", t: ["hypoglycemic", "glp1"], ids: ["c21"] },
     { m: "liraglutide", t: ["hypoglycemic", "glp1"], ids: ["c22"] }, { m: "orforglipron", t: ["hypoglycemic", "glp1"], ids: ["c23"] }, { m: "cagrilintide", t: ["hypoglycemic"], ids: ["c128"] },
     { m: "sglt2", t: ["hypoglycemic"], ids: ["c82"] }, { m: "insulin", t: ["hypoglycemic"], ids: ["c132", "c133"] }, { m: "alpha-lipoic", t: ["hypoglycemic", "antioxidant_hd"], ids: ["c162"] },
@@ -134,6 +213,7 @@ window.RNAWIKI_INTERACTIONS = {
     { m: "beetroot", t: ["hypotensive", "nitrate"], ids: ["c114"] }, { m: "nitrate", t: ["hypotensive", "nitrate"], ids: ["c114"] },
     { m: "pde-5", t: ["hypotensive", "pde5"], ids: ["c116"] }, { m: "sildenafil", t: ["hypotensive", "pde5"], ids: ["c116"] }, { m: "tadalafil", t: ["hypotensive", "pde5"], ids: ["c116"] },
     { m: "citrulline", t: ["hypotensive"], ids: ["c13"] }, { m: "taurine", t: ["hypotensive"], ids: ["c8"] },
+    { m: "coq10", t: ["hypotensive"], ids: ["c11"] },          // W5.5 — contra: "On blood-pressure medication | CoQ10 can modestly lower blood pressure". Compare c83 Astaxanthin, acknowledged because its page says "may".
     // `agmatine` DELETED 2026-08-02. It matched exactly one compound and that compound's whole
     // authored record refutes the tag. c127's agmatine content is "arginine metabolite → NO
     // modulation + neuropathic pain", and its own foodFirst note says "Agmatine's NO/pump claims in
@@ -171,20 +251,37 @@ window.RNAWIKI_INTERACTIONS = {
     // monitoring precaution. Each quote below is verbatim from that compound's own record — if you
     // cannot quote the page, do not add the line.
     { m: "tongkat", t: ["hepatotoxic"], ids: ["c40"] },        // contra: "Existing liver disease or other hepatotoxic meds/supplements | Be cautious … given documented liver-injury case reports"
-    { m: "ashwagandha", t: ["hepatotoxic"], ids: ["c105"] },   // contra: "Liver disease or other hepatotoxic drugs | Rare cases of ashwagandha-associated liver injury are documented"
+    // W5.5 `sedative_mild` ADDED — avoid: "Sedatives and benzodiazepines (additive drowsiness)";
+    // contra: "Sedatives, benzodiazepines, or alcohol | Additive sedation is possible"; its own
+    // mechanism modulates GABA receptors and its plain-English line says it "improves sleep, calm".
+    { m: "ashwagandha", t: ["hepatotoxic", "sedative_mild"], ids: ["c105"] },   // contra: "Liver disease or other hepatotoxic drugs | Rare cases of ashwagandha-associated liver injury are documented"
     { m: "cardarine", t: ["hepatotoxic"], ids: ["c53"] },      // contra: "Avoid — liver injury is among the most reported human effects"; biomarker: "including a documented hepatotoxicity case"
-    { m: "follistatin", t: ["hepatotoxic"], ids: ["c63"] },    // misuse: "carries documented hepatotoxicity"; contra: "YK-11's hepatotoxicity can precipitate serious liver injury"
+    // W5.5 `hpta_suppressive` ADDED — biomarker: "Total testosterone / LH / FSH | YK-11 suppresses
+    // the hypothalamic-pituitary-gonadal axis." Stated flatly, in humans, of a named component.
+    { m: "follistatin", t: ["hepatotoxic", "hpta_suppressive"], ids: ["c63"] },    // misuse: "carries documented hepatotoxicity"; contra: "YK-11's hepatotoxicity can precipitate serious liver injury"
     { m: "ketamine", t: ["hepatotoxic"], ids: ["c157"] },      // misuse: "biliary/liver injury"; biomarker: "Repeated ketamine use is linked to hepatotoxicity and biliary tract dilation/cholangiopathy"
     // c170's own contra names the exact interaction the `liver` rule renders, and the checker was
     // clearing it: measured hydrated at 390x844, /stack?ids=c170,c30 rendered `.ixn-verdict ok`
     // "✅ Nothing flagged between the 2 of 2 I have pharmacology for" with 0 rows.
     { m: "valeriana", t: ["hepatotoxic"], ids: ["c170"] },     // contra: "Liver disease or hepatotoxic medications | Rare **hepatotoxicity reports** (mostly multi-herb products)"
+    // 2026-08-02 (W5.5): the shipped `hepatotoxic` signal could not see this one at all. hzLive(c131,
+    // shipped signal) returned [] — neither "hepatocellular injury" nor "acute liver failure" was in
+    // any pos alternation, so the gate was never given the chance to demand a decision. It is a POS
+    // GAP, not a missing acknowledgement. Measured hydrated at 390x844, 0 pageerrors, before this
+    // line: /stack?ids=c131,c30 rendered "✅ Nothing flagged between the 2 of 2 I have pharmacology
+    // for" with zero rows.
+    { m: "orlistat", t: ["hepatotoxic"], ids: ["c131"] },      // biomarker: "ALT / AST (liver enzymes) | Rare but serious hepatocellular injury and acute liver failure have been reported with orlistat (FDA review: 13 severe cases, 2 deaths, 3 transplants)"
     // statin-like
     { m: "statin", t: ["statin_like"], ids: ["c159"], not: ["c63"] }, { m: "atorvastatin", t: ["statin_like"], ids: ["c159"] }, { m: "rosuvastatin", t: ["statin_like"], ids: ["c159"] },
     // niacin (myopathy risk with statins)
     { m: "niacin", t: ["niacin"], ids: ["c124"], not: ["c145"] },
     // grapefruit-type metabolism
-    { m: "bergamot", t: ["cyp3a4"], ids: ["c112"] },
+    // W5.5 `statin_like` ADDED — biomarker: "LDL-C | Primary and best-supported target — bergamot
+    // reliably lowers **LDL-C** in trials, via HMG-CoA reductase inhibition (a statin-like moiety in
+    // brutieridin/melitidin)". c112 now carries BOTH tags cyp3a4_statin needs, which is what makes
+    // the solo-row gate in build/parse.js load-bearing rather than theoretical: without it this one
+    // line renders 168 rows of Bergamot interacting with itself.
+    { m: "bergamot", t: ["cyp3a4", "statin_like"], ids: ["c112"] },
     // minerals that compete for absorption
     // `iron` deleted 2026-08-01: no rule consumed it, and everything it was there for is already
     // carried — competition with other minerals by `divalent_mineral`, the vitamin-C absorption
@@ -236,8 +333,14 @@ window.RNAWIKI_INTERACTIONS = {
     // mTOR
     { m: "rapamycin", t: ["mtor_inhibitor", "immunosuppress"], ids: ["c70"] }, { m: "eaas", t: ["mtor_activator"], ids: ["c18"] }, { m: "bcaa", t: ["mtor_activator"], ids: ["c18"] },
     { m: "hmb", t: ["mtor_activator"], ids: ["c16"] }, { m: "igf-1", t: ["mtor_activator", "hypoglycemic"], ids: ["c62"] },
+    // W5.5: TWO CARRIERS THE SAFETY-FIELD SCAN COULD NOT HAVE FOUND. mTOR direction is a
+    // pharmacodynamic identity, not a hazard, so it is written in `mechanism` and never restated in
+    // a warning block — which is why those two signals declare `fields: "mechanism"`.
+    { m: "whey", t: ["mtor_activator"], ids: ["c17"] },              // mech: "Complete proteins rich in **leucine**, which activates **mTORC1** to trigger muscle protein synthesis"
+    { m: "insulin (anabolic", t: ["mtor_activator"], ids: ["c133"] },  // mech: "Binds the **insulin receptor (INSR)** → GLUT4 glucose/amino-acid uptake and mTOR activation — powerfully anabolic"
     // immune direction
-    { m: "beta-glucan", t: ["immunostim"], ids: ["c140"] }, { m: "mushroom", t: ["immunostim"], ids: ["c141"] }, { m: "reishi", t: ["immunostim"], ids: ["c141"] },
+    { m: "beta-glucan", t: ["immunostim"], ids: ["c140"] }, { m: "mushroom", t: ["immunostim"], ids: ["c141"] },
+    { m: "reishi", t: ["immunostim", "blood_thinning"], ids: ["c141"] },   // W5.5 blood_thinning — contra: "On anticoagulants / antiplatelets or pre-surgery | **Reishi** can increase bleeding time and has mild antiplatelet activity"
     // "thymosin" narrowed to "thymosin alpha" 2026-08-01. A nameTag match is an UNANCHORED
     // SUBSTRING, and the bare string hit two different molecules that do opposite things.
     // Thymosin α-1 is an immunomodulator by its own mechanism ("activating Toll-like receptors
@@ -352,7 +455,18 @@ window.RNAWIKI_INTERACTIONS = {
     { substance: "zinc", ids: ["c6", "c165"],
       title: "The same mineral from two sources — zinc",
       why: "Both of these supply zinc. Minerals compete with each other for absorption; zinc does not compete with itself. The zinc-carnosine page's own dosing note says the studied twice-daily regimen already delivers about 34 mg of elemental zinc a day, which exceeds typical upper limits before a second source is added.",
-      action: "Add up the elemental zinc from both. The long-term copper caution applies to that combined amount, not to either page on its own." }
+      action: "Add up the elemental zinc from both. The long-term copper caution applies to that combined amount, not to either page on its own." },
+    // 2026-08-02 (W5.5): NAC — THE FIFTH INSTANCE, AND THE FIRST CAUGHT BEFORE IT SHIPPED. The
+    // under-tag audit gives c9 and c80 the same `blood_thinning` tag off the same sentence — c9
+    // "High-dose NAC has mild antiplatelet activity", c80 "NAC has mild antiplatelet activity" — and
+    // GlyNAC IS glycine plus NAC. Without this group the danger-tier `bleeding` rule fires on one
+    // molecule against itself. It was caught because the tag is written as ONE nameTag carrying both
+    // ids, which is exactly what trips assertDuplicateSubstances' discovery check; two separate
+    // nameTags would have evaded it silently.
+    { substance: "n-acetylcysteine", ids: ["c9", "c80"],
+      title: "The same substance twice — NAC",
+      why: "GlyNAC is glycine plus N-acetylcysteine, so both of these deliver the same NAC. The mild antiplatelet activity both pages describe is that one molecule's, arriving in two products — not two blood-thinning agents adding up.",
+      action: "Count the NAC once and add the two amounts together. The pre-surgery and anticoagulant caution applies to that combined amount, not to either page on its own." }
   ],
 
   // ---- W5 (2026-08-02): THE UNDER-TAGGING AUDIT ----------------------------------------------
@@ -372,13 +486,175 @@ window.RNAWIKI_INTERACTIONS = {
   // as documented or reported IN HUMANS for that compound; ACKNOWLEDGE when it is animal-only, above
   // the page's own stated dose range, attributed to a different substance, or monitoring-only.
   hazardAudit: {
+    // ---- W5.5 (2026-08-02): 1 SIGNAL BECOMES 27 — ONE PER RULE-CONSUMED TAG --------------------
+    // Until now this object declared `hepatotoxic` alone, and assertHazardTagCoverage() iterates the
+    // DECLARED signals — so 25 of the 26 tags a rule reads had no under-tag scan at all. The Ostarine
+    // fix was real and the class was still wide open. build/parse.js now demands a signal for every
+    // rule-consumed tag in both directions, so this block cannot fall behind the rules again.
+    //
+    // THE ONE RULE THAT MAKES THE OUTPUT A DECISION LIST INSTEAD OF NOISE: a `pos` must match a
+    // phrase in which THIS COMPOUND is asserted to HAVE the property. It must not match the
+    // COUNTERPARTY — "Anticoagulant / antiplatelet therapy", "On MAOIs", "thyroid medication",
+    // "strong CYP3A4 inhibitors" are the other half of an interaction the page is warning about, and
+    // a compound is not a blood thinner because its page mentions blood thinners. Measured over all
+    // 171: a naive lexicon returns 180 untagged candidates, this one returns 63. The shipped
+    // hepatotoxic signal gets away without the rule only because "hepatotoxic" is nearly
+    // self-attributing — and even it leaks ("or other hepatotoxic meds"), which is what c41's
+    // acknowledgement is for.
+    //
+    // `fields` defaults to the SAFETY fields. Two signals declare "mechanism" and say why on
+    // themselves: a hazard word in a mechanism paragraph is chemistry, but mTOR direction is a
+    // pharmacodynamic IDENTITY, and its carriers' safety fields never restate it.
     signals: {
+      // `acute liver failure` and `hepatocellular injury` ADDED. Everything else here is the shipped
+      // pattern, verbatim. c131's own biomarker block reads "Rare but serious hepatocellular injury
+      // and acute liver failure have been reported with orlistat (FDA review: 13 severe cases, 2
+      // deaths, 3 transplants)" and the shipped signal returned [] on it — the gate was never given
+      // the chance to demand a decision. These two alternations add exactly two candidates
+      // corpus-wide, c131 and c87, and no others.
       hepatotoxic: {
-        pos: "hepatotox|liver injury|drug[- ]induced liver|cholestatic (hepatitis|jaundice)|liver damage|liver strain|peliosis",
+        pos: "hepatotox|liver injury|drug[- ]induced liver|cholestatic (hepatitis|jaundice)|liver damage|liver strain|peliosis|acute liver failure|hepatocellular injury",
         neg: "not a known hepatotox|less hepatotox|hepatotoxicity is unproven|no human hepatotoxicity data|are not documented for|avoids? that (specific )?(oral[- ]steroid )?liver toxicity|skips that|precaution rather than|extrapolated from"
+      },
+      serotonergic: {
+        pos: "(it'?s|is) an? (potent )?MAOI?\\b|is an? (potent )?MAO inhibitor|can precipitate \\*\\*serotonin syndrome|serotonin reuptake inhibit|raises? serotonin|serotonergic (activity|effect)|inhibits? (MAO|monoamine oxidase)",
+        neg: "not an MAOI?|no serotonergic|does not raise serotonin"
+      },
+      stimulant: {
+        pos: "adrenergic stimulant|sympathomimetic (effect|amine|stimulant)|(is|are) (a )?stimulants?\\b|stimulant tox|caffeine[- ]like stimulant|these stimulants",
+        neg: "not a stimulant|non[- ]stimulant|lowers heart rate"
+      },
+      blood_thinning: {
+        pos: "(has|have|having) [^.;]{0,30}antiplatelet|antiplatelet (activity|effects?)|impairs? platelet|potentiates warfarin|increase bleeding time|raised INR and bleeding risk|inhibits? platelet aggregation",
+        neg: "theoretical|may theoretically|no antiplatelet"
+      },
+      cns_depressant: {
+        pos: "respiratory depression|breathing (can be )?suppress|suppress(es|ed|ing)? breathing|additive CNS (and respiratory )?depression|CNS depressant",
+        neg: "no respiratory depression|does not suppress breathing"
+      },
+      sedative_mild: {
+        pos: "(is|are|can be) (mildly )?sedating|sedative (effect|activity)|additive (drowsiness|sedation)|next[- ](day|morning) (grogginess|drowsiness|sedation)|(promotes?|induces?) (sleep|drowsiness)",
+        neg: "not sedating|rather than sedating|non[- ]sedating|poisoning"
+      },
+      hypoglycemic: {
+        pos: "hypoglyc|lower(s|ing)? blood (sugar|glucose)|drops? blood sugar|blood sugar too (low|far)|glucose[- ]lowering",
+        neg: "does not cause hypoglyc|no hypoglyc|hypoglycaemia is rare|raise(s)? blood (sugar|glucose)"
+      },
+      hypotensive: {
+        pos: "(can|may) (mildly |modestly )?lower(s)? (blood pressure|BP)|lowers? (blood pressure|BP)|blood[- ]pressure lowering|potentiates? nitrate vasodilation|cause(s)? (marked )?hypotension|hypotensive (effect|signal)|mmHg (systolic )?(drop|reduction)|reductions in systolic",
+        neg: "overdose|excess |very large boluses|toxicity|raise(s)? blood pressure"
+      },
+      nitrate: {
+        pos: "(dietary|inorganic) nitrate|nitrate source|nitric[- ]oxide donor",
+        neg: "not a nitrate"
+      },
+      // The counterpart of `nitrate`, and the reason c9 is not tagged `hypotensive` — see the
+      // nitrate_potentiator RULE below for the full argument. Both carriers say it in one phrase.
+      nitrate_potentiator: {
+        pos: "potentiates? nitrate vasodilation|potentiates? (the )?vasodilation of nitrates",
+        neg: "does not potentiate"
+      },
+      pde5: {
+        pos: "PDE-?5 (inhibitor|drug)|phosphodiesterase[- ]?5 inhibitor",
+        neg: "not a PDE-?5"
+      },
+      statin_like: {
+        pos: "is a (natural )?statin|monacolin|HMG-?CoA reductase inhibit|statin[- ]like",
+        neg: "not a statin"
+      },
+      niacin: {
+        pos: "(high[- ]dose |gram[- ]level )?(niacin|nicotinic acid) (>|can|is)|niacin flush|nicotinic acid",
+        neg: "NOT niacin|niacinamide \\(nicotinamide\\), NOT|not nicotinic acid"
+      },
+      cyp3a4: {
+        pos: "inhibits? (CYP3A4|CYP ?3A4)|CYP3A4 inhibitor \\(|grapefruit[- ]like|furanocoumarin",
+        neg: "strong CYP3A4 inhibitor|CYP3A4 substrate|concurrent strong|Drugs like|grapefruit juice and strong|raise monacolin"
+      },
+      divalent_mineral: {
+        pos: "compete(s)? (with [^.;]{0,40})?for (the same )?(intestinal )?(uptake|absorption)|competes? with (calcium|iron|zinc|magnesium)",
+        neg: "does not compete|without needing a transporter|rather than by systemic"
+      },
+      zinc: {
+        pos: "elemental zinc|zinc (competes|depletes|supplement)|delivers? [^.;]{0,20}zinc",
+        neg: "not zinc"
+      },
+      thyroid: {
+        pos: "(is|are) (a )?thyroid hormone|thyroid hormone replacement therapy|(levothyroxine|liothyronine) (is|dose|therapy)|over[- ]replacement",
+        neg: "not a thyroid hormone|reduces absorption of|binds levothyroxine|blunt thyroid hormone action"
+      },
+      hpta_suppressive: {
+        pos: "HPTA suppress|suppress(es|ion|ing)?[^.;]{0,25}(natural )?(testosterone|LH|FSH|gonadotropin)|testosterone (shutdown|suppression)|shuts? down (natural )?testosterone|testicular (shrinkage|atrophy)|HPG shutdown|central suppression",
+        neg: "does not suppress|no suppression|without suppress"
+      },
+      aromatase_inhibitor: {
+        pos: "aromatase inhibitor|inhibits? aromatase|crash(es|ing)? estrogen|estrogen (crash|too low)|suppress(es)? (estrogen|oestrogen)",
+        neg: "not an aromatase inhibitor|does not inhibit aromatase"
+      },
+      "5ar_inhibitor": {
+        pos: "5-?alpha-?reductase inhibitor|inhibits? 5-?alpha-?reductase|blocks? (the )?conversion (of testosterone )?to DHT",
+        neg: "not a 5-?alpha"
+      },
+      // fields: "mechanism" — MEASURED, not assumed: the string "mTOR" appears in the SAFETY fields
+      // of c16, c18 and c62 exactly zero times, and in their `mechanism` once each. Left on the
+      // default this signal would match nothing at all, and a scan over an empty set always passes.
+      mtor_activator: {
+        pos: "(stimulates?|triggers?|activates?|fires?|firing) [^.;]{0,40}mTOR|mTOR activation|Akt/mTOR growth",
+        neg: "inhibit[^.;]{0,20}mTOR|dials the",
+        fields: "mechanism"
+      },
+      mtor_inhibitor: {
+        pos: "inhibits? [^.;]{0,20}mTOR|mTOR inhibitor|rapalog|mTORC1 while sparing",
+        neg: "activates? [^.;]{0,20}mTOR",
+        fields: "mechanism"
+      },
+      immunostim: {
+        pos: "immune[- ]stimulating|stimulates? (the )?immune|immune (stimulation|activation)|upregulat(es)? immune|(is|are) (an )?immunomodulat|activat(es|ing) (Toll-like|T-cell)",
+        neg: "reduces inflammation|does not stimulate|immunosuppress"
+      },
+      immunosuppress: {
+        pos: "\\bimmunosuppression\\b|(is|are) (an )?immunosuppress|immunosuppressive (effect|drug)|suppress(es|ing)? (the )?immune (system|response)|blunt(ed|s)? immunity",
+        neg: "take immunosuppress|immunosuppressive therapy|on immunosuppressant|with immunosuppressant|other immunosuppress|immune[- ]stimulating|immune[- ]modulating"
+      },
+      glp1: {
+        pos: "GLP-?1 (receptor )?agonist|activates? (the )?GLP-?1|GLP-?1R",
+        neg: "not a GLP-?1"
+      },
+      antioxidant_hd: {
+        pos: "(it is|is) an antioxidant|antioxidant (dose|load|capacity)|blunt[^.;]{0,40}(adaptive|training|adaptation)|high[- ]dose antioxidant",
+        neg: "pro-?oxidant|not an antioxidant"
+      },
+      do_not_use: {
+        pos: "no safe margin|no safe dose and no medical use|lethal the next|fatal overdose has occurred at amounts",
+        neg: "not fatal"
       }
     },
+    // ACKNOWLEDGED IS A DECISION, NOT A DISMISSAL — and the bar is stated once and applied to all 65
+    // candidate hits the 27 signals surface. TAG when the compound's own safety prose asserts the
+    // property OF THAT COMPOUND, in humans, unhedged. ACKNOWLEDGE when it is hedged ("may", "in
+    // theory", "could plausibly"), animal- rodent- or lab-only, attributed to another substance or
+    // to a class the page then withdraws for this molecule, overdose-only, monitoring-only, or the
+    // COUNTERPARTY — the other half of an interaction the page is warning about. The bar cuts both
+    // ways in visible pairs: c11 CoQ10 "can modestly lower blood pressure" is TAGGED while c83
+    // Astaxanthin "may modestly lower blood pressure" is here; c107 Saffron "has mild antiplatelet
+    // activity" is TAGGED while c94 Lion's Mane "may have" is here.
+    // 10 entries become 41: 9 of the shipped 10 are carried forward verbatim, "c155:hepatotoxic" is
+    // DELETED because c155 is now tagged, and 32 are new — one per candidate the widened scan
+    // surfaces that did not meet the bar. SEVEN carry "NEEDS FELIX", where the page is a step
+    // stronger than the decision I made.
     acknowledged: {
+      "c71:antioxidant_hd": "Metformin — TRUE EFFECT, WRONG MECHANISM. Its watch line does say 'blunts exercise adaptation', but the antioxidant_training rule's why is explicitly about mopping up the oxidative signal, and metformin is not an antioxidant. Tagging it would print a radical-scavenging mechanism this page never claims. NEEDS FELIX: the ACTION (keep it away from the training window) may still be right for metformin — that would be a new rule, not this tag.",
+      "c81:antioxidant_hd": "Sulforaphane — ENDOGENOUS CAPACITY, NOT A HIGH DOSE. The only hit is a biomarker why: 'NRF2 activation supports hepatic detox/antioxidant capacity.' That is the body's own antioxidant system being upregulated, not a mega-dose of an exogenous antioxidant around training.",
+      "c44:blood_thinning": "Oxandrolone — WARFARIN PHARMACOKINETICS, NOT ANTIPLATELET ACTIVITY. 'It also potentiates warfarin (dangerous bleeding).' The bleeding rule's why says each carrier 'independently slows clotting (dissolving fibrin or making platelets less sticky)'; oxandrolone does neither, it raises a warfarin level.",
+      "c75:blood_thinning": "Fisetin — ATTRIBUTED TO THE CLASS, AND HEDGED: 'Flavonoids can have mild antiplatelet effects.' The sentence is about flavonoids generally, not about fisetin.",
+      "c94:blood_thinning": "Lion's Mane — HEDGED: 'Lion's Mane **may** have mild antiplatelet activity — discuss with your doctor.' Compare c107 Saffron, which is tagged because its page says 'has'.",
+      "c110:blood_thinning": "Glucosamine + Chondroitin — SAME SHAPE AS c44. '**Warfarin / anticoagulants** … multiple case reports and pharmacovigilance signals of **raised INR and bleeding risk**.' INR destabilisation on warfarin is a drug-specific interaction, not intrinsic antiplatelet activity. NEEDS FELIX: the human case-report evidence here is stronger than c44's.",
+      "c126:blood_thinning": "Cordyceps — HEDGED: 'Cordyceps **may** have **antiplatelet effects**.' Same bar as c94.",
+      "c95:cns_depressant": "Bacopa — THE FLAG IS THE COUNTERPARTY. The matched sentence is the contra flag '**Sedatives / CNS depressants**'; Bacopa's own assertion in the same entry is 'can be mildly sedating', which is why it is now TAGGED sedative_mild instead. The danger-tier sedation rule would overstate a mild herb.",
+      "c104:cns_depressant": "Apigenin — THEORETICAL: 'It binds the benzodiazepine site of GABA-A receptors **in lab studies**, so a **theoretical additive effect with other CNS depressants** can't be ruled out.' It already carries sedative_mild, which is the honest tier.",
+      "c138:cns_depressant": "DSIP — COUNTERPARTY FLAG PLUS A HEDGE: 'Use of sedatives, opioids or other CNS depressants … Reported drowsiness and blood-pressure lowering **could** compound with these.' NEEDS FELIX: DSIP is a sleep peptide whose overdose line reports excessive drowsiness; sedative_mild may be the right tag and the signal does not currently reach it.",
+      "c170:cns_depressant": "Valerian — IT IS THE MILD HALF OF THAT WARNING. 'Alcohol, benzodiazepines, or other CNS depressants **Additive sedation** — do not stack' names the strong depressant as the counterparty. c170 already carries sedative_mild.",
+      "c104:cyp3a4": "Apigenin — IN VITRO AND THEORETICAL: 'Apigenin can **inhibit CYP3A4 and CYP2C9** **in vitro**, which could **theoretically** alter drug metabolism.' Compare c29 Berberine, tagged because its page states it flatly.",
+      "c87:hepatotoxic": "17-α-Estradiol — A CLASS STATEMENT ABOUT ESTROGENS, WHICH THE PAGE THEN WITHDRAWS FOR THIS MOLECULE: 'Estrogens can cause cholestatic or hepatocellular injury', while the same record says the estrogenic harms 'are not documented for 17a-estradiol in humans'.",
       "c41:hepatotoxic": "Fadogia Agrestis — RAT ONLY. Its own overdose line says 'No human liver injury has been formally documented, but the animal liver and kidney signal is a genuine concern.' Product constraint 7 caps animal-only evidence; a danger row asserting human liver strain would go past what the page supports. NEEDS FELIX: its contra block does say 'Existing liver or kidney disease, or use of other hepatotoxic medication/supplements — Avoid', which is the exact interaction the rule renders. If that sentence is authoritative, tag it.",
       "c102:hepatotoxic": "Dihexa — RODENT ONLY: 'Rodent work also reported hepatotoxicity at doses only modestly above the effective range.' No human statement anywhere on the page.",
       "c124:hepatotoxic": "Niacin / NADH — ABOVE THE PAGE'S OWN RANGE. Hepatotoxicity is asserted only for gram doses ('High-dose niacin (>1 g/day), especially sustained-release, can be **hepatotoxic**') while the same page's dosing cap reads 'Supplemental **UL for nicotinic acid is 35 mg/day**'. Tagging it would fire a danger row on a 35 mg B-vitamin.",
@@ -388,7 +664,25 @@ window.RNAWIKI_INTERACTIONS = {
       "c66:hepatotoxic": "GHK-Cu — ABOUT COPPER POISONING, NOT THE PEPTIDE AT DOSE: 'Copper overload causes … in more severe toxicity, hemolytic anemia, liver injury (jaundice, rising transaminases) and, in acute copper poisoning, acute kidney injury and multi-organ failure.'",
       "c76:hepatotoxic": "Quercetin + Dasatinib — MONITORING ONLY. The single hit is a biomarker why: 'Monitors for hepatotoxicity and informs dosing.' No harm is asserted.",
       "c143:hepatotoxic": "Tretinoin / Retinoids — CAUTION ON ORAL THERAPY, under prescription: 'Significant liver disease or high triglycerides | Oral retinoids can worsen liver injury and lipid levels and are used with caution or avoided.' Its biomarker adds 'Oral retinoids can cause dose-related hepatocellular enzyme elevation' — a monitored lab change, not a documented injury. NEEDS FELIX: 'can worsen liver injury' is a step stronger than this acknowledgement, and the compound this rule would pair it with is exactly a second hepatic load.",
-      "c155:hepatotoxic": "Z-drugs · Trazodone · Doxylamine (brief) — ATTRIBUTED TO ONE OF THREE SUBSTANCES ON A BUNDLE PAGE: 'Trazodone has rare case reports of hepatotoxicity.' Tagging the page asserts it of zolpidem and doxylamine too."
+      "c31:hypoglycemic": "Naltrexone/Bupropion — CAUSED BY THE OTHER DRUG: 'Weight loss can lower glucose and cause hypoglycemia **if insulin or sulfonylureas are not adjusted downward**.' The falling glucose is the un-adjusted insulin's, not Contrave's.",
+      "c32:hypoglycemic": "Phentermine / Qsymia — SAME SHAPE AS c31: 'Weight loss and reduced intake can cause hypoglycemia, **needing diabetes medication adjustment**.'",
+      "c61:hypoglycemic": "Human Growth Hormone — OVERDOSE ONLY, AND THE STEADY STATE POINTS THE OTHER WAY: 'Acute excess can cause hypoglycemia first, then rebound hyperglycemia.' GH's ordinary metabolic effect on this page is insulin resistance.",
+      "c85:hypoglycemic": "MOTS-c — SPECULATIVE, BY ITS OWN WORD: 'an exaggerated response **could plausibly** cause hypoglycaemia'. Nothing is reported to have happened.",
+      "c94:hypoglycemic": "Lion's Mane — HEDGED: '**May** modestly lower blood glucose.'",
+      "c126:hypoglycemic": "Cordyceps — ANIMAL ONLY: 'May **lower blood glucose** **in animal models**.' Product constraint 7.",
+      "c142:hypoglycemic": "Elderberry · Andrographis · Lactoferrin · Colostrum — PRECLINICAL, BY ITS OWN WORD: '**Andrographis may add to these effects** (antiplatelet/hypotensive signals, **mostly preclinical**).' The same sentence is why c142 is acknowledged for hypotensive too.",
+      "c9:hypotensive": "NAC — NOT AN INDEPENDENT BP-LOWERING AGENT, and this is the decision the whole nitrate_potentiator rule exists to record. Its own words are 'NAC **potentiates nitrate vasodilation**' — the hypotension is the nitrate's, amplified. Tagging `hypotensive` would fire hypotensive_stack against taurine and citrulline under a why ('Each relaxes blood vessels a little') this page does not support, and pde5_vasodilator against sildenafil, which it does not say either: three fabricated rows to buy one true one. The real, named, pairwise interaction is carried by `nitrate_potentiator` instead.",
+      "c80:hypotensive": "GlyNAC — identical sentence to c9, identical decision: 'NAC can potentiate nitrate vasodilation and cause marked hypotension and headache.' Carries `nitrate_potentiator`.",
+      "c83:hypotensive": "Astaxanthin — HEDGED: 'Astaxanthin **may** modestly lower blood pressure.' Compare c11 CoQ10, tagged because its page says 'can'.",
+      "c138:hypotensive": "DSIP — HEDGED AND ROUTE-QUALIFIED: 'Reported drowsiness and blood-pressure lowering **could** compound with these', and its overdose line says 'transient drops in blood pressure (**best documented after intravenous use**)'.",
+      "c142:hypotensive": "Elderberry · Andrographis · Lactoferrin · Colostrum — 'mostly preclinical', the same sentence as the hypoglycemic entry above.",
+      "c105:immunostim": "Ashwagandha — IN THEORY, BY ITS OWN WORD: 'Autoimmune conditions **May stimulate immune activity in theory**.' NEEDS FELIX: its avoid line is firmer — 'immunosuppressants (it's immune-stimulating)' — and c105 against c70 Rapamycin is exactly the pair the immune_conflict rule exists for.",
+      "c126:immunosuppress": "Cordyceps — MODELS, THEORETICAL, AND THE WRONG DIRECTION: 'It is **immunomodulatory** in models, which **could theoretically** interfere with immunosuppression.' Immunomodulatory is not immunosuppressive.",
+      "c165:immunosuppress": "Zinc-Carnosine · Akkermansia · S. boulardii · DGL — THE READER'S IMMUNOSUPPRESSION, NOT THE PRODUCT'S. 'Pregnancy / immunosuppression with Akkermansia' is a contra flag describing who should not take it.",
+      "c13:pde5": "L-Citrulline — COUNTERPARTY FLAG: 'On nitrates or PDE5 inhibitors (e.g. …)'. Citrulline is not a PDE-5 inhibitor; it already carries `hypotensive`, which is what the rule needs from it.",
+      "c154:sedative_mild": "Orexin Antagonists — ALREADY CARRIES THE STRONGER TAG. The hit is an overdose description ('Toxicity is dominated by heavy, prolonged drowsiness and next-day sedation') and c154 carries `cns_depressant`. Adding sedative_mild would print a timing row beside a danger row about the same physiology, and would understate a prescription hypnotic.",
+      "c155:sedative_mild": "Z-drugs · Trazodone · Doxylamine — same as c154: carries `cns_depressant`; the hit is a dosing warning ('dangerous next-morning drowsiness and impaired driving').",
+      "c106:serotonergic": "Rhodiola Rosea — LAB STUDIES, BY ITS OWN WORD: 'Has documented MAO-inhibiting and serotonergic activity **in lab studies**.' Not a human assertion, and the serotonin rule is danger-tier."
     },
     // Words assertRuleProse() may print that the authored corpus has never used. Four, each real.
     vocab: ["overstimulate", "raisers", "doac", "whoever"]
@@ -414,6 +708,24 @@ window.RNAWIKI_INTERACTIONS = {
       title: "Nitrate + PDE-5 = blood-pressure crash",
       why: "Nitrates (like beetroot) and PDE-5 drugs (sildenafil / tadalafil) both widen blood vessels through the same NO→cGMP route. Together, blood pressure can drop dangerously.",
       action: "Never combine a nitrate source with a PDE-5 inhibitor.", pathway: "/pathway/4" },
+    // W5.5 (2026-08-02): THE PAIR THIS WAVE WAS OPENED ON. Measured hydrated at 390x844, 0
+    // pageerrors, before this rule existed: /stack?ids=c9,c114 rendered `<span class="ixn-verdict
+    // ok">✅ Nothing flagged between the 2 of 2 I have pharmacology for` with ZERO rows — a
+    // clearance claiming pharmacology for BOTH — over NAC + Beetroot, while NAC's own contra reads
+    // "**Nitroglycerin / nitrate medications** NAC potentiates nitrate vasodilation and can cause
+    // marked hypotension and severe headache".
+    // WHY THIS IS NOT A `hypotensive` TAG ON NAC, which would have been the one-line fix: NAC does
+    // not lower blood pressure. Its page says it POTENTIATES the nitrate's. A `hypotensive` tag
+    // would fire hypotensive_stack against Taurine and L-Citrulline under a why that says "Each
+    // relaxes blood vessels a little" — which NAC's page does not support — and pde5_vasodilator
+    // against Sildenafil, which it does not say either: three fabricated rows to buy one true one.
+    // This rule wires up the sentence the page actually wrote. It renders exactly 2 rows against
+    // this corpus (c114 × c9, c114 × c80) and both are quotable. The decision is reversible in one
+    // line: acknowledge c9/c80 for `nitrate_potentiator` instead and delete this rule.
+    { id: "nitrate_potentiator", tier: "danger", need: [["nitrate", 1], ["nitrate_potentiator", 1]],
+      title: "This makes a nitrate hit harder",
+      why: "One of these is a nitrate source and the other potentiates nitrate vasodilation — it does not lower blood pressure on its own, it makes the nitrate do more. Together the drop in blood pressure can be marked, with severe headache alongside it.",
+      action: "Keep these apart. If you take a nitrate medication such as nitroglycerin, this combination needs a doctor, not a supplement plan.", pathway: "/pathway/4" },
     // Wired 2026-08-01. `hypotensive` was assigned to 8 compounds and read by no rule, so the
     // checker cleared L-Citrulline + PDE-5 Inhibitors with a green tick while this site's own
     // compendium entry for citrulline says the opposite: "Stacking strong blood-flow agents —
@@ -453,9 +765,20 @@ window.RNAWIKI_INTERACTIONS = {
       why: "Each of these slows the brain's arousal system by a different route, and each one's own page carries the same warning about the combination: stacked with another sedative, the sedation deepens and breathing can be suppressed.",
       action: "Don't layer strong sedatives. Alcohol counts as one of them — it goes with none of these." },
     { id: "double_statin", tier: "danger", need: [["statin_like", 2]],
-      title: "Double statin — muscle-damage risk",
-      why: "Red yeast rice *is* a natural statin. Taking it alongside a prescription statin is effectively a double dose, which raises the risk of muscle breakdown (rhabdomyolysis).",
-      action: "Pick one. Never combine red yeast rice with a prescribed statin." },
+      // W5.5 (2026-08-02): the why and the action both named Red Yeast Rice, and the under-tag audit
+      // adds a second statin-like supplement this corpus already documents — c112 Citrus Bergamot,
+      // whose own biomarker block says it "reliably lowers **LDL-C** in trials, via HMG-CoA
+      // reductase inhibition (a statin-like moiety in brutieridin/melitidin)". Rows go 1 -> 3 and
+      // red yeast rice is absent from one of them. The row now states the mechanism all three pairs
+      // share.
+      title: "Two statin mechanisms at once — muscle-damage risk",
+      why: "Each of these blocks HMG-CoA reductase, the same enzyme a prescription statin blocks — one as a supplement, one as a drug, or both as supplements. Doubling that blockade raises the risk of muscle breakdown (rhabdomyolysis).",
+      // exemplars (W5.5): "a prescription statin" is the DRUG CLASS, and it happens to be the name of
+      // a page (c159). Identical to the argument already made on statin_niacin and cyp3a4_statin: on
+      // the rows where c159 is absent the other halves are Red Yeast Rice and Bergamot, both of which
+      // their own pages describe as statin-like — so the class noun is still true of what is in the row.
+      exemplars: ["c159"],
+      action: "Pick one, and never add a statin-like supplement to a prescribed statin without medical review." },
     { id: "statin_niacin", tier: "danger", need: [["statin_like", 1], ["niacin", 1]],
       title: "Statin + high-dose niacin — myopathy risk",
       why: "High-dose niacin adds to a statin's small risk of muscle injury.",
@@ -575,7 +898,17 @@ window.RNAWIKI_INTERACTIONS = {
     // page that says it. Overlap of PURPOSE is what all three pairs support.
     { id: "mild_sedatives", tier: "timing", need: [["sedative_mild", 2]],
       title: "Two mild sedatives at once",
-      why: "Each of these is a mild sleep aid, and they overlap in purpose rather than adding a second angle. Taken on the same night they layer and you cannot tell which one did anything — the usual result is a groggy morning rather than deeper sleep.",
+      // W5.5 (2026-08-02): "Each of these is a mild sleep aid" was true of the three carriers this
+      // rule had and is FALSE of one of the two the under-tag audit adds. Bacopa's own page is about
+      // memory consolidation over 8–12 weeks; the only thing it says about drowsiness is "If it
+      // makes you drowsy or foggy, shift the dose to evening". Tagging it is right — "Bacopa can be
+      // mildly sedating" is its own contra — and the sentence had to stop claiming a shared purpose
+      // it does not have. What IS true of all five carriers, and therefore of all 10 rows, is that
+      // each page names drowsiness of its own and warns about it adding to another sedative's:
+      // c103 "morning hangover and impaired alertness", c104 "theoretical additive effect with other
+      // CNS depressants", c105 "Sedatives and benzodiazepines (additive drowsiness)", c170
+      // "**Additive sedation** — do not stack", c95 "can be mildly sedating".
+      why: "Each of these can leave you drowsy, and each one's own page names additive drowsiness with another sedative as the thing to avoid. Taken on the same night they layer and you cannot tell which one did anything — the usual result is a groggy morning rather than deeper sleep.",
       action: "Start with one and give it two weeks before adding anything. If you're also on a strong sedative or drinking alcohol, treat all of these as off-limits." },
 
     // W4.5 (2026-08-02): the why listed all five minerals on all 28 rows this rule could render.
@@ -600,8 +933,17 @@ window.RNAWIKI_INTERACTIONS = {
       why: "High zinc switches on a gut protein that carries copper out in the stool — over weeks, plenty of zinc can quietly cause copper deficiency.",
       action: "If taking zinc long-term, add ~1 mg copper per 10–15 mg zinc." },
     { id: "cyp3a4_statin", tier: "timing", need: [["cyp3a4", 1], ["statin_like", 1]],
-      title: "Bergamot may raise statin levels",
-      why: "Bergamot (like grapefruit) can slow the gut enzyme that breaks down statins, nudging their levels up.",
+      // W5.5 (2026-08-02): the title and the why both named Bergamot, and the under-tag audit adds
+      // two more CYP3A4 inhibitors this corpus already documents — c29 Berberine ("It inhibits
+      // CYP3A4, so it interacts with many prescriptions (statins, immunosuppressants, some blood
+      // thinners)") and c163's Quercetin ("**Quercetin inhibits CYP3A4 and P-glycoprotein** and can
+      // raise levels of drugs such as ciclosporin, some statins"). Rows go 2 -> 8 and Bergamot is
+      // absent from most of them. The row now describes the mechanism both halves share instead of
+      // naming whichever compound happened to fill the first slot. The warning is unchanged in
+      // strength; only the false specificity is gone. Same repair W4.5 made to pde5_vasodilator,
+      // mineral and sedation — and the title is now checked too, which it was not then.
+      title: "Slows the enzyme that clears statins",
+      why: "The supplement in this pair inhibits CYP3A4, the gut and liver enzyme that breaks statins down. With that enzyme slowed, a normal statin dose behaves like a larger one, and the muscle side-effects scale with the level in your blood.",
       // exemplars (W4.5): same class noun as statin_niacin. On the one row where c159 is absent the
       // other half is c161 Red Yeast Rice, which its own page calls a natural statin — so "your
       // specific statin" is still about the compound in the row.

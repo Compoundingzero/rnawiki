@@ -2018,6 +2018,13 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   const flat = (s) => String(s).toLowerCase().replace(/[‐-―−-]/g, ' ').replace(/\s+/g, ' ');
   const rowsByRule = {};
   // The shipped predicate, exactly: satisfied by pages AND by distinct substances.
+  // W5.5 (2026-08-02): `soloRule` is the third clause of the shipped predicate and the newest — see
+  // the long note under the pair enumeration below. It lives here, beside distinctCarriers, because
+  // this is the MODEL: a guard that only decides whether an assertion fires is a guard one caller
+  // can skip, and there are three callers (this pair sweep, the duplicates effect check, and the
+  // pathway-sibling pairFlags at the bottom of this function).
+  const soloRule = (rule, inv) => (rule.need || []).length >= 2 && inv.size < 2;
+  let soloDropped = 0;
   const fireOn = (a, b) => {
     const byTag = {};
     [a, b].forEach((c) => tagsOf(c).forEach((t) => (byTag[t] = byTag[t] || []).push(c)));
@@ -2025,7 +2032,11 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
     const seen = {}; f.forEach((x) => { seen[x.id] = 1; });
     return f.filter((x) => !(x.notIf || []).some((id) => seen[id])).map((rule) => {
       const inv = new Set(); rule.need.forEach((n) => (byTag[n[0]] || []).forEach((c) => inv.add(c.id)));
-      return { id: rule.id, inv };
+      return { rule, id: rule.id, inv };
+    }).filter((x) => {
+      if (!soloRule(x.rule, x.inv)) return true;
+      soloDropped++;                       // counted and printed, never silently discarded
+      return false;
     });
   };
   // EFFECT CHECK — enumerated, not argued. For every pair inside a duplicates group, no rule that
@@ -2076,13 +2087,18 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   // about which compound fills which slot; it is that a rendered interaction must involve two things.
   // site/app.js stackInteractions() carries the identical filter, or this would pass at build time
   // while the SPA still rendered the row.
-  // PROVE IT by adding "statin_like" to the bergamot nameTag without the rest of that commit: the
-  // build fails naming the rule and the row count.
+  // WHERE THE GUARD LIVES, AND WHY IT IS NOT JUST THIS ASSERTION. c112's two tags are BOTH quotable
+  // from its own page, so "fail the build until somebody deletes one" would delete a true tag to
+  // satisfy a checker. The row is what is wrong, not the tags — so the predicate itself drops it
+  // (soloRule above, and the identical filter in site/app.js stackInteractions()), and this
+  // assertion is the tripwire that fires if either copy is ever removed. Deleting the filter from
+  // fireOn() makes the build fail by name; deleting it from app.js is caught by the hydrated check
+  // recorded in that file's comment.
   Object.keys(rowsByRule).forEach((rid) => {
     const rule = (R.rules || []).find((r) => r.id === rid);
-    if (!rule || (rule.need || []).length < 2) return;
-    const solo = rowsByRule[rid].filter((inv) => inv.size < 2);
-    if (solo.length) bad.push(`rule "${rid}" ("${rule.title}") renders ${solo.length} row(s) involving only ONE compound — it needs ${rule.need.length} tags and a single compound carries them all, so the checker prints a ${rule.tier} row about a compound interacting with itself. Split the rule, or drop one of that compound's tags.`);
+    if (!rule) return;
+    const solo = rowsByRule[rid].filter((inv) => soloRule(rule, inv));
+    if (solo.length) bad.push(`rule "${rid}" ("${rule.title}") renders ${solo.length} row(s) involving only ONE compound — it needs ${rule.need.length} tags and a single compound carries them all, so the checker prints a ${rule.tier} row about a compound interacting with itself. The predicate is supposed to drop these: soloRule() in this file and the same filter in site/app.js stackInteractions(). One of them has been removed.`);
   });
   let checkedRules = 0, checkedRows = 0;
   (R.rules || []).forEach((rule) => {
@@ -2149,6 +2165,18 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   // PROVE IT by deleting "hepatotoxic" from the ostarine nameTag — the build fails, by name.
   const HZ = R.hazardAudit || {};
   if (!HZ.signals || !Object.keys(HZ.signals).length) bad.push('interactions.js has no hazardAudit.signals — the under-tagging scan is what stops a documented hazard being cleared with a green tick');
+  // W5.5 (2026-08-02): "AT LEAST ONE SIGNAL" WAS THE WRONG BAR, AND IT IS WHAT LET THIS GAP STAND.
+  // The file declared `hepatotoxic` alone, this check passed, and 25 of the 26 tags a rule reads had
+  // NO under-tag scan at all — so the Ostarine fix closed one tag and read like it had closed a
+  // class. Every one of those tags is a tag whose absence prints a green tick over something the
+  // page documents, so the bar is COMPLETENESS. The converse is already checked immediately below
+  // (a signal for a tag no rule consumes is rejected), so after this the signal set and the
+  // rule-consumed tag set are pinned equal in both directions.
+  // PROVE IT by deleting any one signal from the block in site/interactions.js: the build fails
+  // naming the tag and the rules that consume it.
+  [...needed].forEach((tag) => {
+    if (!(HZ.signals || {})[tag]) bad.push(`no hazardAudit.signals entry for "${tag}", which ${(R.rules || []).filter((r) => r.need.some((n) => n[0] === tag)).map((r) => `"${r.id}"`).join(' and ')} consume(s) — a rule can only fire on compounds that carry its tag, so a tag with no under-tag scan is a rule that silently skips every compound nobody remembered to tag. Add a signal, or delete the rule.`);
+  });
   const hzFields = (c) => {
     const b = c.bio || {};
     const out = [c.watch || '', c.avoid || '', (b.overdose || {}).line || '', (b.misuse || {}).line || ''];
@@ -2275,6 +2303,7 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
     measured.reachable, measured.compounds, measured.unreachable, measured.unreachableRx, (R.rules || []).length, produced.size);
   console.log('[parse] duplicate substances OK — %d group(s), %d collapsible pair(s), 0 rules still counting two pages of one molecule as two compounds; %d nameTag(s) match >1 id and every such pair is covered',
     (R.duplicates || []).length, dupePairsChecked, (R.nameTags || []).filter((r) => (r.ids || []).length > 1).length);
+  console.log('[parse] self-interaction guard: %d row(s) dropped because one compound carried every tag the rule needed — none reached a reader on any of the three surfaces', soloDropped);
   console.log('[parse] rule-text row truth OK — %d rules × %d rendered rows over all %d two-compound stacks; every compound a why/action names is either in the row or an acknowledged exemplar (%d exemplars on %d rules)',
     checkedRules, checkedRows, (compounds.length * (compounds.length - 1)) / 2,
     (R.rules || []).reduce((n, r) => n + (r.exemplars || []).length, 0), (R.rules || []).filter((r) => (r.exemplars || []).length).length);
@@ -2300,7 +2329,12 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
       // /stack, on a second surface, measured hydrated at 390x844.
       const fired = (R.rules || []).filter((rule) => rule.need.every((n) => distinctCarriers(byTag[n[0]] || [], n[1])));
       const seen = {}; fired.forEach((f) => { seen[f.id] = 1; });
-      const live = fired.filter((f) => !(f.notIf || []).some((id) => seen[id]));
+      // W5.5: soloRule here too — this list is RENDERED beside a pathway sibling on the compound
+      // page, so without it c112 would carry "Slows the enzyme that clears statins" next to every
+      // sibling it shares a pathway with, none of which is in the interaction. Third surface, same
+      // defect: this is why the predicate and not the assertion is the guard.
+      const live = fired.filter((f) => !(f.notIf || []).some((id) => seen[id]))
+        .filter((f) => { const inv = new Set(); f.need.forEach((n) => (byTag[n[0]] || []).forEach((c) => inv.add(c.id))); return !soloRule(f, inv); });
       const worst = live.find((f) => f.tier === 'danger') || live.find((f) => f.tier === 'blunt') || live[0];
       if (worst) pairFlags[a.id + '|' + b.id] = { tier: worst.tier, title: worst.title };
     });
