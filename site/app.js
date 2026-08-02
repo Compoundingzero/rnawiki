@@ -6012,7 +6012,7 @@
     if (next) o.logs[k] = next; else delete o.logs[k];
     return { log: next, saved: trackWrite(o) };
   }
-  function trackStart(problem, rc, startedOn, cohortSlug) {
+  function trackStart(problem, rc, startedOn, cohortSlug, openedOn) {
     // W5: `cur.started` alone tested for PRESENCE, not readability. Once trackGet() refuses a log
     // whose start date is not a date (above), the panel correctly offers "Start day 1" again — and
     // this line handed the same broken object straight back, so the reader could never get out. A
@@ -6025,6 +6025,13 @@
       // is gone from the URL. It is a label on the reader's OWN log — nothing reads it back from a
       // server, because there is no server side to a cohort.
       cohort: cohortSlug || null,
+      // W5 · THE DAY THIS LOG WAS OPENED ON THIS DEVICE. `started` is not that fact: a ?cohort= link
+      // can legitimately backdate it by up to 6 days (COHORT_BACK) or push it 28 days forward, and
+      // the pre-logger migration seeds it from a date months old. `opened` is the reader's own clock
+      // at the moment they tapped Start, and it is the only thing that makes "days that actually
+      // elapsed while this log existed here" checkable at all. Nothing renders it; receiptReady()
+      // is its only reader.
+      opened: (openedOn && TRACK_DAY_RE.test(openedOn)) ? openedOn : isoDay(),
       sync: false,
       days: {},
     }).log;
@@ -6046,6 +6053,13 @@
       const k = keys[i], L = logs[k];
       if (!L || typeof L !== 'object') return { error: `Entry “${k}” is not a log.` };
       if (!TRACK_DAY_RE.test(L.started || '')) return { error: `Entry “${k}” has no valid start date.` };
+      // W5: `opened` is the day the log was created on the device that wrote it, and receiptReady()
+      // refuses a card for a week the log was not open for all of. It is untrusted here like every
+      // other field: it must be a date, and it cannot be a day that has not happened.
+      if (typeof L.opened !== 'undefined' && L.opened !== null) {
+        if (!TRACK_DAY_RE.test(String(L.opened))) return { error: `Entry “${k}” has an opened date that is not a date: ${JSON.stringify(L.opened)}` };
+        if (isFuture(L.opened, TODAY)) return { error: `Entry “${k}” says it was opened on ${L.opened}, which has not happened yet.` };
+      }
       if (!L.days || typeof L.days !== 'object') return { error: `Entry “${k}” has no days block.` };
       const dk = Object.keys(L.days);
       for (let j = 0; j < dk.length; j++) {
@@ -6311,6 +6325,33 @@
     if (!TRACK_DAY_RE.test(String(log.started)) || !TRACK_DAY_RE.test(String(today))) {
       return { ok: false, why: 'This log’s start date is not a date this page could have written, so no day can be counted from it. Delete the log and start a fresh week.' };
     }
+    // W5 · A URL MAY NOT SHORTEN THE WEEK. The cohort block above states the rule in capitals —
+    // "A COHORT LINK CAN NEVER HAND YOU A FINISHED WEEK" — and COHORT_BACK = 6 breaks it by exactly
+    // one day. MEASURED HYDRATED at 390x844, fresh profile, NO devtools and no file
+    // (qa/out/w5r_repro.json d_strip, d_afterTap, d_clicks):
+    // /protocol/cravings/glycemic-swings?cohort=2026-07-27-w5probe printed "That makes today day 7
+    // of 7 for this cohort" and a button reading "Join the cohort — start on 2026-07-27". Join, then
+    // ONE tap on "✔ Did it", gave data-receipt="ready", a card headed "7-day self-observation log"
+    // dated "2026-07-27 → 2026-08-02", an X share link reading "7-day $0 trial … Did it on 1 of the
+    // 7 days", and a written file, rnawiki-7-day-log-cravings-glycemic-swings-2026-08-02.png.
+    // N=7 is refused BY NAME; N=6 was not.
+    // THE BOUNDARY IS NOT THE FIX. Measured across ages (qa/out/w5r_repro2.json d_ages): N=3 arrives
+    // on day 4, N=5 on day 6, N=6 on day 7. Lowering COHORT_BACK buys one tap. The rule that closes
+    // it is that a card may only be made for a week this log was open for ALL of. A late joiner
+    // still joins, still gets the shared date and the aligned day count, still sees the empty days;
+    // what they do not get is a 7-day write-up for days that were over before their log existed.
+    // `opened` is absent on every log written before W5. Those cannot be judged, and refusing them
+    // would delete real readers' finished weeks, so they pass — the field is written from now on.
+    // THIS TEST RUNS BEFORE THE DAY COUNT, and the order is the point. MEASURED HYDRATED with the
+    // two the other way round: a reader joining a 3-day-old cohort saw, on day 4,
+    // data-receipt="pending" over "On day 7 this becomes a card you can keep" — a promise the same
+    // predicate would refuse three days later. `opened` is known on day 1 and never changes; the day
+    // count changes daily. A permanent refusal has to be stated the moment it is known, or the page
+    // spends the week making an offer it will not honour.
+    if (log.opened && TRACK_DAY_RE.test(String(log.opened)) && dayNum(log.opened) > dayNum(log.started)) {
+      const late = dayGap(log.started, log.opened) + 1;
+      return { ok: false, why: `This log opened on day ${late} of its own ${TRACK_DAYS} days — the first ${late - 1} were over before it existed on this device. No write-up is made for days you were not here for. Start your own week today and the card is yours on day ${TRACK_DAYS}.` };
+    }
     const dayN = Math.min(TRACK_DAYS, Math.max(1, dayGap(log.started, today) + 1));
     if (!(dayN >= TRACK_DAYS)) return { ok: false, dayN, why: `This is day ${dayN} of ${TRACK_DAYS}. The write-up is only made once the ${TRACK_DAYS} days are over — a card dated into the future would be a record of days nobody has lived yet.` };
     return { ok: true, dayN };
@@ -6393,8 +6434,17 @@
     }
     // ONE predicate, called from two places, so what is DRAWN and what can be MINTED can never
     // disagree again. This was the whole defect: this line was correct and it was the only copy.
-    if (!receiptReady(log, today).ok) {
-      return `<div class="rcpt" data-receipt="pending"><p class="rcpt-pending">On day ${TRACK_DAYS} this becomes a card you can keep — what you did, on how many days, and what you tapped on the last day against your own first one. Nothing else, because nothing else was recorded.</p></div>`;
+    // W5: two different closed states, and promising a card for the second one would be a new lie in
+    // place of an old one. A week that is simply not over yet still reads "on day 7 this becomes a
+    // card". A week that can NEVER produce one — a log opened after its own day 1 (a cohort link
+    // dated back), or a start date this page could not have written — has to say so, in the words
+    // receiptReady() returns. receiptReady() carries `dayN` only for the first case, so that is the
+    // branch, and it is the same predicate the mint path uses: no second copy of the rule.
+    const rr = receiptReady(log, today);
+    if (!rr.ok) {
+      return rr.dayN
+        ? `<div class="rcpt" data-receipt="pending"><p class="rcpt-pending">On day ${TRACK_DAYS} this becomes a card you can keep — what you did, on how many days, and what you tapped on the last day against your own first one. Nothing else, because nothing else was recorded.</p></div>`
+        : `<div class="rcpt" data-receipt="closed"><p class="rcpt-pending">${esc(rr.why)}</p></div>`;
     }
     const m = receiptModel(problem, rc);
     if (!m) return `<div class="rcpt" data-receipt="empty"><p class="rcpt-pending">The 7 days are up and no day was tapped, so there is nothing to write up. Fill in a day above and this becomes a card.</p></div>`;
@@ -6585,7 +6635,7 @@
     // date they actually started, never today — inventing a start date is inventing data. `skipped`
     // is deliberately not seeded: they said they already do this.
     const st0 = phase1State(problem, rc);
-    if (st0 && st0.started && !trackGet(problem, rc)) trackStart(problem, rc, st0.started);
+    if (st0 && st0.started && !trackGet(problem, rc)) trackStart(problem, rc, st0.started, null, st0.started);   // W5: these readers DID tap Start on that day, in the pre-logger UI — stamping `opened` as today would refuse them a card for a week they actually began
     // ...and the same reconciliation in the other direction, for devices a pre-W4.5 restore already
     // split. phase1Section() rendered the Start button from `rnawiki_phase1` before this ran, so the
     // DOM is corrected here too, not only the storage.
@@ -6713,6 +6763,11 @@
           if (!cur) { o.logs[k] = inc; return; }
           cur.days = Object.assign({}, cur.days, inc.days);
           if (dayNum(inc.started) < dayNum(cur.started)) cur.started = inc.started;
+          // W5: `opened` moves with `started`, earliest wins. A week begun on a phone and continued on
+          // a laptop was open, somewhere the reader was, from the earlier of the two dates — and if
+          // this line is missing, the merged log looks like one opened after its own day 1 and the
+          // reader loses a card they earned. This is the mirror of the two-keys-one-state fix above.
+          if (inc.opened && (!cur.opened || dayNum(inc.opened) < dayNum(cur.opened))) cur.opened = inc.opened;
         });
         if (!trackWrite(o)) { say('This browser refused to save. Nothing was changed.'); return; }
         // Both keys move together, or the Start button and the log print two different start dates

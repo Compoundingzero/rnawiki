@@ -48,6 +48,10 @@ const NAV_TIMEOUT = 45000;
 // start testing the refusal path instead — a gate that changes what it tests as the calendar moves
 // is worse than no gate. The stale case is deliberately fixed in 2020: it must ALWAYS be refused.
 const COHORT_TODAY = (() => { const d = new Date(), p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; })();
+// W5: the OLDEST cohort link cohortParse() still accepts (COHORT_BACK = 6), which lands the reader
+// on day 7 of 7 at arrival — one tap from a downloadable card. Computed for the same reason as the
+// line above: a date typed into this file would silently stop testing the accepted case.
+const COHORT_BACK6 = (() => { const d = new Date(); d.setDate(d.getDate() - 6); const p = (n) => String(n).padStart(2, '0'); return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`; })();
 
 // One route per template class. `/` first so a total boot failure is reported against the home page.
 const ROUTES = [
@@ -76,6 +80,11 @@ const ROUTES = [
   ['protocol-cohort', `/protocol/insomnia/circadian-misalign?cohort=${COHORT_TODAY}-smoke`],
   ['protocol-cohort-stale', '/protocol/insomnia/circadian-misalign?cohort=2020-01-01-old'],
   ['protocol-cohort-rx', `/protocol/hair-loss/dht-sensitivity?cohort=${COHORT_TODAY}-smoke`],
+  // W5: the fourth branch, and the only one of the four that needed no devtools, no file and no
+  // forged DOM. COHORT_BACK = 6 accepts a link dated six days back, which arrives on "Day 7 of 7" —
+  // one tap from a downloadable, X-shareable "7-day self-observation log". Deliberately a protocol
+  // no other assertion touches: this one taps Start, and it clears its own storage at both ends.
+  ['protocol-cohort-day7', `/protocol/cravings/glycemic-swings?cohort=${COHORT_BACK6}-smoke`],
   // W4.5: the consent gate. Its own route, and the bare form of the URL, because
   // syncSendsExactlyWhatTheConsentCopySays DRIVES THE UI — it taps Start, taps a day and taps the
   // sync toggle — exactly like phase1LoggerIsOneTapAndLeaksNothing on /protocol/knee-pain/
@@ -380,6 +389,59 @@ const ASSERTIONS = {
       const t = el.innerText || '';
       if (!/No cohort runs on this protocol/i.test(t)) return `the refusal does not say a cohort does not run here — "${t.slice(0, 120)}"`;
       if (!/costs nothing/i.test(t)) return 'the refusal does not give the rule it is applying';
+      return null;
+    },
+  }],
+  // ---- W5 (2026-08-02): A COHORT LINK MAY NOT SHORTEN THE WEEK --------------------------------
+  // MEASURED HYDRATED at 390x844, fresh profile, NO devtools (qa/out/w5r_repro.json d_strip,
+  // d_afterTap, d_clicks): ?cohort=<today-6>-slug rendered "That makes today day 7 of 7 for this
+  // cohort" and a button reading "Join the cohort — start on 2026-07-27". Join, then ONE tap on
+  // "✔ Did it", produced data-receipt="ready", a card headed "7-day self-observation log" dated
+  // 2026-07-27 → 2026-08-02, an X share link, and a real file:
+  // rnawiki-7-day-log-cravings-glycemic-swings-2026-08-02.png. N=7 is refused by name; N=6 was not.
+  // Boundary sweep (qa/out/w5r_repro2.json d_ages): N=3 arrives on day 4, N=5 on day 6, N=6 on
+  // day 7 — so the fix is the `opened` rule in receiptReady(), not the constant.
+  // PROVE THIS GATE by deleting the `log.opened` clause from receiptReady(), or by dropping the
+  // `opened` field from the object trackStart() writes. Joining still works and the card comes back.
+  [`/protocol/cravings/glycemic-swings?cohort=${COHORT_BACK6}-smoke`]: [{
+    name: 'aCohortLinkCannotMintAWeekTheReaderWasNotHereFor',
+    why: 'W5: a public URL and one tap produced a downloadable, X-shareable "7-day self-observation log" covering six days the reader was not present for — no devtools, no file, no forged DOM',
+    evaluate: async () => {
+      localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
+      const el = document.querySelector('#app .p1-cohort');
+      if (!el) return 'the six-day-old cohort link rendered no strip at all';
+      if (el.dataset.cohort !== 'ok') return `a cohort dated six days back was refused ("${(el.innerText || '').slice(0, 90)}") — joining late is allowed and this gate no longer tests what it was written for; if COHORT_BACK was lowered on purpose, retarget this route`;
+      const start = document.getElementById('phase1-start');
+      if (!start) return 'no start button on a live cohort';
+      start.click();
+      await new Promise(r => setTimeout(r, 120));
+      const L = (JSON.parse(localStorage.getItem('rnawiki_track') || 'null') || { logs: {} }).logs['cravings/glycemic-swings'];
+      if (!L) return 'joining the cohort wrote no log';
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(L.opened || '')) return 'the log records no `opened` date — without the day it was created on this device, a start date handed over by a URL is indistinguishable from a week that was lived';
+      if (L.opened === L.started) return `the log claims it was opened on ${L.opened}, its own day 1, six days before this browser first loaded the page`;
+      const day = (document.querySelector('#p1-log .p1-day') || {}).innerText || '';
+      if (!/Day 7 of 7/.test(day)) return `the joined log reads "${day}" — this gate is written for the day-7 arrival and is no longer testing it`;
+      const did = document.querySelector('#p1-log button[data-p1="did"][data-v="1"]');
+      if (!did) return 'no tap target on the joined day';
+      did.click();
+      await new Promise(r => setTimeout(r, 200));
+      const w = document.querySelector('#p1-log .rcpt');
+      if (!w) return 'no receipt block after the tap';
+      if (w.dataset.receipt === 'ready') return 'one tap on a cohort link dated six days back produced a finished 7-day card — a public URL is not seven days of self-observation';
+      if (document.querySelector('#p1-log button[data-p1="receipt-png"]')) return 'the download control exists on a week the reader joined on its last day';
+      if (document.querySelector('#p1-log .rcpt-x')) return 'the share control exists on a week the reader joined on its last day';
+      if (!/of its own 7 days|were over before it existed/i.test(w.innerText || '')) return `the block does not say why there is no card — "${(w.innerText || '').slice(0, 110)}"`;
+      // AND THE REFUSAL MUST BE REAL, NOT PAINTED. host.onclick is delegated, so an injected button
+      // is a live route into receiptDownload() — this is exactly how the day-7 lock was bypassed in
+      // W4.5, and the same mistake was then made again with the day-1 direction lock.
+      const proto = HTMLAnchorElement.prototype, realClick = proto.click;
+      let minted = null;
+      proto.click = function () { minted = this.download; };
+      const forged = document.createElement('button'); forged.dataset.p1 = 'receipt-png';
+      try { document.getElementById('p1-log').appendChild(forged); forged.click(); await new Promise(r => setTimeout(r, 900)); }
+      finally { proto.click = realClick; forged.remove(); }
+      localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
+      if (minted) return `a forged tap minted ${minted} for a week the reader joined on its last day — the refusal is in the renderer again, not in receiptModel()`;
       return null;
     },
   }],
