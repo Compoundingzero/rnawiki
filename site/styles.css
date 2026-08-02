@@ -152,12 +152,41 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
 .badges{display:flex;gap:.4rem;align-items:center;margin-top:.6rem;flex-wrap:wrap}
 .stars{color:var(--star);letter-spacing:1px;font-size:.82rem}
 .pill{display:inline-block;white-space:nowrap;vertical-align:middle;font-size:.72rem;padding:.15rem .5rem;border-radius:999px;font-weight:600}
-.pill.g{background:rgba(5,150,105,.12);color:var(--green)}
-.pill.y{background:rgba(180,83,9,.12);color:var(--yellow)}
-.pill.b{background:rgba(37,99,235,.12);color:var(--blue)}
-.pill.o{background:rgba(194,65,12,.12);color:var(--orange)}
-.pill.r{background:rgba(220,38,38,.12);color:var(--red)}
-.pill.k{background:rgba(75,85,99,.14);color:var(--black)}
+/* ---- W5.5 (2026-08-02): THE PILL PAINTED ITS OWN COLOUR BEHIND ITS OWN TEXT -----------------
+   Measured hydrated at 390x844 over all 568 published routes, every <details> expanded and all 7
+   .chapter blocks activated with chFade disabled (qa/out/w55_census_390.json): 2,006 of 5,055
+   visible .pill instances failed WCAG AA, on 472 routes, and on 171 of 171 compound pages. The
+   cause was these six lines (plus .pill.rx below): a 12% tint of a hue behind text of the SAME
+   hue, at .72rem/600 = 11.52px (12.48px in .legend-row). That is body text — the 3:1 large-text
+   exemption needs 18.66px bold or 24px — so the threshold is 4.5:1, not 3.0:1. Measured range,
+   worst instance first, hydrated:
+     .pill.r  "🔴 Not Approved"               #dc2626 on #f3dfe1  3.78 → 4.01     206 instances
+     .pill.y  "🟡 Regulated as a supplement"  #b45309 on #eee4dd  4.02 → 4.26   1,256 instances
+     .pill.o  "🟠 Off-Label"                  #c2410c on #f0e2dd  4.10 → 4.35      93 instances
+     .pill.b  "🔵 Prescription-only medicine" #2563eb on #dde6f8  4.13 → 4.37     392 instances
+     .pill.rx "Not approved for human use"    #dc2626 on #fce9e9  4.14            38 instances
+     .pill.g  "🟢 FDA Approved"               #047857 on #d9ece9  4.48 → 4.75      21 instances
+   TWO changes, and only two.
+   (1) THE TINT IS NOW OPAQUE. Same hue, same 12% strength, composited over white ONCE here
+       instead of over whatever the page happens to put behind it. Every one of these classes
+       measured TWO different contrast numbers depending on its container — .pill.g was 4.75 on
+       --panel and 4.48 on --panel2 — so the badge's legibility depended on which card it landed
+       in. It is now one number on every route. That is what closes the defect class, not the hue.
+   (2) THE INK IS THE SAME HUE DARKENED until it clears 4.5:1 on that fixed tint with margin.
+   No hue changes, no meaning changes, the tinted-chip look is unchanged, and the OUTLINED
+   .pill.supply stays a visibly different kind of thing (the W5a decision — colour here is the
+   regulator's call, and it is never the only carrier: every pill states its status in words).
+   .pill.g's tint also stops being the PRE-W5c green rgba(5,150,105): --green was darkened to
+   #047857 in W5c and this rule never followed it.
+   AFTER, measured the same way on the same routes: 0 of 5,055 fail; worst ratio 4.60:1.
+   PROVE IT by putting `background:rgba(180,83,9,.12);color:var(--yellow)` back on .pill.y —
+   1,256 instances on 425 routes fail again. */
+.pill.g{background:#e1efeb;color:#047857}
+.pill.y{background:#f6eae1;color:#ab4f09}
+.pill.b{background:#e5ecfd;color:#2460e3}
+.pill.o{background:#f8e8e2;color:#bb3f0c}
+.pill.r{background:#fbe5e5;color:#ca2323}
+.pill.k{background:#e6e7e9;color:#4b5563}
 /* W5a (2026-08-02): the SUPPLY pill. The badge row used to answer "how do you get this" with the
    regulator badges, which disagreed with the authored `regulatory_class` on 24 of 171 compounds
    (Vitamin D3 and Iron rendering a blue Prescription pill on an authored `supplement`; 21
@@ -2464,7 +2493,10 @@ a.dp-name:hover{color:var(--accent)}
 /* ---- Tighten stack-card badges (were bulky / clashing) ---- */
 .st-card{padding:.85rem 1rem}
 .st-meta{gap:.35rem;align-items:center}
-.pill.rx{background:rgba(220,38,38,.1);color:var(--red);border:1px solid rgba(220,38,38,.25)}
+/* W5.5: same defect, same fix — opaque tint, darkened ink. 38 instances measured at 4.14:1 on
+   #fce9e9 (13.76px/800 is below the 18.66px-bold large-text exemption, so it needs 4.5). Now
+   5.18:1. The 1px border is unchanged; it is decoration, not the text's backdrop. */
+.pill.rx{background:#fce9e9;color:#c02020;border:1px solid rgba(220,38,38,.25)}
 
 /* ---- Compact prescription cue (replaces the verbose "Prescription only" block) ---- */
 .rx-note{font-size:.72rem;font-weight:700;color:var(--red);margin-left:.15rem;white-space:nowrap;vertical-align:middle}
