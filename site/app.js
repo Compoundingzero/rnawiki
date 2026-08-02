@@ -1849,7 +1849,23 @@
     const peers = D.compounds.filter(x => x.category === c.category && !x.isNote).sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name));
     if (peers.length < 3) return '';
     const top = peers.slice(0, 8); const list = top.some(x => x.id === c.id) ? top : top.slice(0, 7).concat([c]);
-    const rows = list.map(x => { const me = x.id === c.id; return `<div class="pos-row ${me ? 'me' : ''}"><a class="pos-name" href="#/c/${slug(x.name)}">${esc(x.name.split('(')[0].trim())}</a><div class="pos-bar"><i style="width:${x.stars / 5 * 100}%"></i></div><span class="pos-stars">${'★'.repeat(x.stars)}</span></div>`; }).join('');
+    // W5.5 (2026-08-02): THE ONE STAR RUN ON THE SITE THAT DID NOT GO THROUGH starHTML().
+    // This row used to build its own widget: `<span class="pos-stars">${'★'.repeat(x.stars)}</span>`.
+    // Measured hydrated at 390x844 over all 568 routes with every .chapter activated
+    // (qa/out/w55_census_390.json): 1,215 .pos-stars elements on 169 of 171 compound pages, and
+    // 1,215 of 1,215 carried aria-label = null AND role = null. Every other star badge on the site
+    // — all 3,245 of them — already had both, because they go through starHTML(). This was W5a's
+    // defect surviving in the one renderer W5a did not reach.
+    // AND 37 OF THEM RENDERED AS AN EMPTY SPAN, because '★'.repeat(0) is ''. The 13 unrated
+    // "(brief)" bundles got a blank cell where their rating goes — which reads as "no rating was
+    // given" only if you already know the row is supposed to have one. starHTML() renders index 0
+    // as the words "Not yet rated", which is the distinction assertRatingIsTextCarried() §2 exists
+    // to protect: UNRATED is not zero-rated, and neither is it nothing at all.
+    // `compact` is the right form here (filled stars only, the number carried in the accessible
+    // name) because it is exactly what this row already drew — so the sighted rendering is
+    // unchanged. `.pos-stars` is declared after `.stars` in styles.css, so it still wins on
+    // font-size, colour and letter-spacing and the row geometry is untouched.
+    const rows = list.map(x => { const me = x.id === c.id; return `<div class="pos-row ${me ? 'me' : ''}"><a class="pos-name" href="#/c/${slug(x.name)}">${esc(x.name.split('(')[0].trim())}</a><div class="pos-bar"><i style="width:${x.stars / 5 * 100}%"></i></div>${starHTML(x.stars, { compact: true, cls: 'pos-stars' })}</div>`; }).join('');
     const rank = peers.findIndex(x => x.id === c.id) + 1;
     return `<div class="positioning" data-lvl="2"><div class="section-title">📊 How it ranks on evidence <span class="pos-sub">in ${esc(c.category.split('/')[0].trim().toLowerCase())} · ${rank} of ${peers.length}</span></div><div class="pos-list">${rows}</div></div>`;
   }

@@ -2581,6 +2581,28 @@ console.log('Wrote', OUT);
     ['sc-dim', 'evg-dim', 'cmp-dim'].forEach((cls) => { if (src.indexOf(cls) >= 0) bad.push(`${rel} still renders "${cls}" \u2014 the colour-only star pad this gate exists to prevent`); });
   });
 
+  // 3b. W5.5 (2026-08-02): AND NO RENDERER IN app.js MAY BUILD A STAR RUN AT ALL.
+  //    \u00a73 above only banned padding with the FILLED glyph \u2014 `'\u2605'.repeat(5 - n)` \u2014 so a renderer that
+  //    drew the filled half BY ITSELF walked straight past it. One did, for the whole of W5a and
+  //    W5c: positioningPlot() emitted `<span class="pos-stars">${'\u2605'.repeat(x.stars)}</span>`.
+  //    Measured hydrated at 390x844 across all 568 routes: 1,215 .pos-stars elements on 169 of 171
+  //    compound pages, EVERY ONE with aria-label = null and role = null, while the 3,245 badges that
+  //    do go through starHTML() had both. 37 of them rendered as an EMPTY span, because
+  //    '\u2605'.repeat(0) is '' \u2014 the 13 unrated bundles got a blank cell instead of "Not yet rated",
+  //    which is the same unrated-is-not-zero-rated distinction \u00a72 protects one level up.
+  //    The invariant is therefore not "don't pad wrongly", it is: in app.js the ONLY thing that
+  //    turns a star count into markup is starHTML(), because that is the single place role="img",
+  //    the accessible name and the index-0 wording are applied. build/prerender.js is deliberately
+  //    NOT held to this \u2014 it has its own stars() helper at prerender.js:173, which is a legitimate
+  //    second renderer for the prerendered document and is covered by \u00a73's pad check.
+  //    PROVE IT by restoring `<span class="pos-stars">${'\u2605'.repeat(x.stars)}</span>` in
+  //    positioningPlot(): the build fails here by name.
+  {
+    const appCode = codeOnly(fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8'));
+    const runs = appCode.match(/['"][\u2605\u2606]+['"]\s*\.repeat\(/g) || [];
+    if (runs.length) bad.push(`site/app.js builds a star run outside starHTML() \u2014 found ${runs.length} \u00d7 ${runs[0].trim()}. Every star on the site must go through starHTML(), which is the only place role="img", the accessible name and the "Not yet rated" wording for index 0 are applied; a hand-rolled run ships a bare <span> with no accessible name, and renders NOTHING at all for an unrated entry.`);
+  }
+
   // 4. THE RENDERER MUST READ THIS TABLE, not keep a private copy that can drift out of it.
   const app = fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8');
   if (!/D\.ratings\.text/.test(app)) bad.push('site/app.js never reads D.ratings.text \u2014 the rating\'s text carrier is emitted and unused, which is how the picture becomes the only carrier again');
