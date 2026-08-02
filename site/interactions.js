@@ -57,7 +57,20 @@ window.RNAWIKI_INTERACTIONS = {
   // Tags are now assigned by explicit compound id (`ids`), never by substring, and
   // assertNameTagAllowlist() in build/parse.js fails the build on any substring collision nobody
   // has acknowledged. Five compounds go dark and the number goes DOWN on purpose.
-  coverage: { compounds: 171, reachable: 90, unreachable: 81, unreachableRx: 40 },
+  // 2026-08-02 (W5): 90 → 94. FOUR COMPOUNDS THAT COULD NEVER PRODUCE A FLAG NOW CAN, and this is
+  // the first time in this file's history the number has gone UP for a good reason rather than down
+  // for an honest one. Every previous move (100→99→97→96→95→90) deleted a tag a page did not
+  // support. This one adds tags seven pages DO support and that were simply never written down —
+  // the inverse defect, and the more dangerous half: an over-tag prints a warning nobody needed, an
+  // under-tag prints a green tick over a documented hazard. Three of the seven were already counted
+  // through another tag — c49 (`hpta_suppressive`), c157 (`cns_depressant`) and c170
+  // (`sedative_mild`) — so seven new hepatotoxic carriers move the number by four: c40 Tongkat Ali,
+  // c53 Cardarine, c63 Follistatin / Myostatin inhibitors, c105 Ashwagandha. Two of those four are
+  // unapproved, so unreachableRx goes 40 → 38. (The handed-over spec said c49 and c170 only; c157
+  // was the third and is recorded here because a count nobody re-derived is how this file gets
+  // wrong.) assertHazardTagCoverage() in build/parse.js is the gate that will not let the gap
+  // reopen silently.
+  coverage: { compounds: 171, reachable: 94, unreachable: 77, unreachableRx: 38 },
 
   // catTags MUST STAY EMPTY. It is kept as a field only so compoundTags() in site/app.js and its
   // copy in build/parse.js keep the same shape; assertInteractionCoverage() fails the build if
@@ -147,6 +160,22 @@ window.RNAWIKI_INTERACTIONS = {
     { m: "winstrol", t: ["hepatotoxic"], ids: ["c45"] }, { m: "dianabol", t: ["hepatotoxic"], ids: ["c47"] }, { m: "methandrostenolone", t: ["hepatotoxic"], ids: ["c47"] },
     { m: "anadrol", t: ["hepatotoxic"], ids: ["c48"] }, { m: "oxymetholone", t: ["hepatotoxic"], ids: ["c48"] }, { m: "trenbolone", t: ["hepatotoxic"], ids: ["c43"] },
     { m: "rad-140", t: ["hepatotoxic"], ids: ["c51"] }, { m: "lgd-4033", t: ["hepatotoxic"], ids: ["c50"] }, { m: "s-23", t: ["hepatotoxic"], ids: ["c52"] },
+    // 2026-08-02 (W5): SIX MORE CARRIERS, from the under-tagging audit that assertHazardTagCoverage()
+    // in build/parse.js now runs against all 171. The bar is stated once and applied the same way to
+    // every compound: TAG when the compound's own SAFETY fields state liver injury as DOCUMENTED OR
+    // REPORTED IN HUMANS for that compound; acknowledge (see hazardAudit.acknowledged) when it is
+    // animal-only, above the page's own stated dose range, about a different substance, or a
+    // monitoring precaution. Each quote below is verbatim from that compound's own record — if you
+    // cannot quote the page, do not add the line.
+    { m: "tongkat", t: ["hepatotoxic"], ids: ["c40"] },        // contra: "Existing liver disease or other hepatotoxic meds/supplements | Be cautious … given documented liver-injury case reports"
+    { m: "ashwagandha", t: ["hepatotoxic"], ids: ["c105"] },   // contra: "Liver disease or other hepatotoxic drugs | Rare cases of ashwagandha-associated liver injury are documented"
+    { m: "cardarine", t: ["hepatotoxic"], ids: ["c53"] },      // contra: "Avoid — liver injury is among the most reported human effects"; biomarker: "including a documented hepatotoxicity case"
+    { m: "follistatin", t: ["hepatotoxic"], ids: ["c63"] },    // misuse: "carries documented hepatotoxicity"; contra: "YK-11's hepatotoxicity can precipitate serious liver injury"
+    { m: "ketamine", t: ["hepatotoxic"], ids: ["c157"] },      // misuse: "biliary/liver injury"; biomarker: "Repeated ketamine use is linked to hepatotoxicity and biliary tract dilation/cholangiopathy"
+    // c170's own contra names the exact interaction the `liver` rule renders, and the checker was
+    // clearing it: measured hydrated at 390x844, /stack?ids=c170,c30 rendered `.ixn-verdict ok`
+    // "✅ Nothing flagged between the 2 of 2 I have pharmacology for" with 0 rows.
+    { m: "valeriana", t: ["hepatotoxic"], ids: ["c170"] },     // contra: "Liver disease or hepatotoxic medications | Rare **hepatotoxicity reports** (mostly multi-herb products)"
     // statin-like
     { m: "statin", t: ["statin_like"], ids: ["c159"], not: ["c63"] }, { m: "atorvastatin", t: ["statin_like"], ids: ["c159"] }, { m: "rosuvastatin", t: ["statin_like"], ids: ["c159"] },
     // niacin (myopathy risk with statins)
@@ -158,7 +187,34 @@ window.RNAWIKI_INTERACTIONS = {
     // carried — competition with other minerals by `divalent_mineral`, the vitamin-C absorption
     // pairing by the name-matched synergy below. A tag no rule reads is dead data that reads as
     // coverage, so it goes rather than gets a rule invented for it.
-    { m: "calcium", t: ["divalent_mineral"], ids: ["c79", "c148", "c149"] }, { m: "iron", t: ["divalent_mineral"], ids: ["c122", "c148"], not: ["c134"] }, { m: "zinc", t: ["divalent_mineral", "zinc"], ids: ["c6", "c165"] },
+    // 2026-08-02 (W5): c148 IS NOT A CALCIUM SOURCE and c165 IS NOT A COMPETING MINERAL. Both were
+    // human allowlist decisions, and both are refuted by the pages they were asserted about.
+    //   c148 "DIM / Calcium-D-Glucarate · Vitex · Iron (brief)": a recursive scan of the WHOLE
+    //     record for mineral-competition language returns ZERO hits. The only thing calcium-D-
+    //     glucarate is ever said to do is estrogen clearance — "**Calcium-D-glucarate** (inhibits
+    //     β-glucuronidase, aids estrogen clearance — ⭐⭐)" — and the page's own timing advice is
+    //     "split calcium-D-glucarate across the day", not space it from your minerals. The word
+    //     "calcium" appears on the page only inside that molecule's name, which is the substring
+    //     fabrication engine W3.6 deleted, surviving inside a hand-written allowlist.
+    //     Measured hydrated at 390x844, 0 pageerrors, /stack?ids=c148,c122 rendered
+    //     "⏰ Minerals compete — space them out · DIM / Calcium-D-Glucarate · Vitex · Iron (brief)
+    //     + Iron" — iron on both sides of a competition row.
+    //     c148 KEEPS `divalent_mineral` through the iron entry below, because its own raw text does
+    //     name "**Iron** (menstrual loss — test ferritin)". Dropping only the calcium half is what
+    //     lets the duplicates machinery finally collapse c122+c148 into the honest
+    //     "same mineral from two sources — iron" row instead of a competition row.
+    //   c165 "Zinc-Carnosine · Akkermansia · S. boulardii · DGL (brief)": its only competition
+    //     statement is zinc↔copper — "Zinc competes with copper for absorption" — which the `zinc`
+    //     tag and the `zinc_copper` rule already carry in full. Against the `mineral` rule's claim
+    //     ("These compete for the same intestinal uptake") the page says the opposite in as many
+    //     words: zinc-carnosine "works largely by adhering to inflamed mucosa RATHER THAN BY
+    //     SYSTEMIC ZINC ABSORPTION, so the intact chelated complex matters more than elemental zinc
+    //     content." Measured hydrated at 390x844: /stack?ids=c165,c150 → "⏰ Minerals compete —
+    //     space them out · Zinc-Carnosine … + Strontium · Silica (brief)"; /stack?ids=c165,c130 →
+    //     "⏰ Minerals block thyroid absorption". Those rows go; the zinc↔copper row and the
+    //     same-substance row against c6 both stay, because both are supported by that page.
+    { m: "calcium", t: ["divalent_mineral"], ids: ["c79", "c149"], not: ["c148"] }, { m: "iron", t: ["divalent_mineral"], ids: ["c122", "c148"], not: ["c134"] },
+    { m: "zinc", t: ["zinc"], ids: ["c6", "c165"] }, { m: "zinc", t: ["divalent_mineral"], ids: ["c6"], not: ["c165"] },
     { m: "magnesium", t: ["divalent_mineral"], ids: ["c5"] }, { m: "strontium", t: ["divalent_mineral"], ids: ["c150"] },
     // `boron` DELETED 2026-08-02. Boron is a metalloid absorbed as boric acid, and the page says
     // so in as many words: "It's absorbed almost completely and travels as boric acid — a small,
@@ -204,7 +260,18 @@ window.RNAWIKI_INTERACTIONS = {
     { m: "nandrolone", t: ["hpta_suppressive"], ids: ["c42"] },          // watch: "prolonged HPTA suppression"
     { m: "oxandrolone", t: ["hpta_suppressive"], ids: ["c44"] },         // watch: "Lipid deterioration, HPTA suppression"
     { m: "oxymetholone", t: ["hpta_suppressive"], ids: ["c48"] },        // watch: "all suppress natural testosterone"
-    { m: "ostarine", t: ["hpta_suppressive"], ids: ["c49"] },            // watch: "HPTA suppression, liver injury cases"
+    // 2026-08-02 (W5): `hepatotoxic` ADDED. This compound produced the false green this wave was
+    // opened on. Measured hydrated at 390x844, 0 pageerrors, /stack?ids=c49,c30 rendered
+    // `<span class="ixn-verdict ok">✅ Nothing flagged between the 2 of 2 I have pharmacology for`
+    // with zero rule rows — a clearance that explicitly claims pharmacology for BOTH compounds —
+    // over Ostarine + Green Tea Extract, while c30 carries `hepatotoxic` and the `liver` rule needs
+    // two carriers. The tag was never written down; nothing about c49's own page is ambiguous:
+    //   contra:  "Existing liver disease or raised liver enzymes | Hepatotoxicity is the primary
+    //             documented harm; layering it onto compromised liver function is dangerous."
+    //   overdose:"higher or prolonged dosing drives drug-induced liver injury — cholestatic
+    //             hepatitis with jaundice … reported even at recreational doses"
+    //   watch:   "HPTA suppression, liver injury cases, positive drug tests."
+    { m: "ostarine", t: ["hpta_suppressive", "hepatotoxic"], ids: ["c49"] }, // watch: "HPTA suppression, liver injury cases"; contra: "Hepatotoxicity is the primary documented harm"
     { m: "ligandrol", t: ["hpta_suppressive"], ids: ["c50"] },           // watch: "Marked suppression, hepatotoxicity"
     { m: "andarine", t: ["hpta_suppressive"], ids: ["c52"] },            // watch: "Minimal human data, strong suppression"
     // The four below are exogenous androgen-receptor agonists by their own authored MECHANISM;
@@ -235,11 +302,16 @@ window.RNAWIKI_INTERACTIONS = {
   //
   // A COMPOUND IN MORE THAN ONE GROUP IS NEVER COLLAPSED. c148 is a four-substance bundle page —
   // "DIM / Calcium-D-Glucarate · Vitex · Iron (brief)" — and its own raw text names BOTH
-  // "**Calcium-D-glucarate**" and "**Iron** (menstrual loss — test ferritin)". So it is listed in
-  // the calcium group AND the iron group, and that is exactly why it must keep its mineral rows:
-  // Ca-AKG + c148 really is calcium against iron. Suppressing those three rows (c79+c148,
-  // c122+c148, c148+c149) would have deleted a TRUE warning to satisfy a rule about duplicates.
-  // The audit that found this defect counted 7 same-molecule rows; 4 of them are, and 3 are not.
+  // "**Calcium-D-glucarate**" and "**Iron** (menstrual loss — test ferritin)". So it was listed in
+  // the calcium group AND the iron group, and the reasoning was that Ca-AKG + c148 really is
+  // calcium against iron.
+  // CORRECTED 2026-08-02 (W5): the second half of that was built on a calcium assertion the page
+  // does not support. c148's whole record contains zero mineral-competition language, and the only
+  // thing calcium-D-glucarate is ever said to do there is estrogen clearance. c148 no longer carries
+  // `divalent_mineral` FROM CALCIUM (it keeps it from its iron, which the page does name), it is now
+  // in the iron group only, and c122+c148 collapses into "the same mineral from two sources — iron"
+  // instead of a competition row that had iron on both sides. Its rows against c79 and c149 survive
+  // and are still true — that is c148's iron against their calcium.
   //
   // Each group's why/action is authored for that group and quotable against its pages — the same
   // standard assertRuleTextRowTruth holds the rules to. assertDuplicateSubstances() in
@@ -256,7 +328,17 @@ window.RNAWIKI_INTERACTIONS = {
       title: "Same substance twice — insulin",
       why: "These are two pages about insulin — one written for prescribed use, one about its misuse for muscle gain. It is one drug, so this is not two glucose-lowering agents stacking; it is the same one counted twice.",
       action: "Count them as one. Insulin dosing comes from your own clinician, and the low-blood-sugar danger both pages describe is the danger of that single drug." },
-    { substance: "calcium", ids: ["c79", "c148", "c149"],
+    // 2026-08-02 (W5): c148 REMOVED. The W4.5 note above this block reasoned that c148 must stay in
+    // BOTH the calcium and the iron group because it supplies both, and that its three mineral rows
+    // were therefore true. Half of that is right and half was built on the calcium assertion the
+    // nameTag above has now withdrawn: c148's record contains zero mineral-competition language and
+    // names calcium only inside "calcium-D-glucarate", whose stated job is estrogen clearance. With
+    // c148 in one group instead of two, sameSubstance() finally collapses c122+c148 — measured by
+    // replaying the shipped predicate, /stack?ids=c148,c122 stops rendering "⏰ Minerals compete —
+    // space them out · … Iron (brief) + Iron" and renders "⏰ The same mineral from two sources —
+    // iron" instead. c148 vs c79 and c148 vs c149 still fire `mineral`, and they should: that is
+    // c148's iron against their calcium, which is a real competition.
+    { substance: "calcium", ids: ["c79", "c149"],
       title: "The same mineral from two sources — calcium",
       why: "Both of these deliver calcium. Minerals compete with each other for absorption; a mineral does not compete with itself, so this is one calcium intake arriving in two products rather than a timing conflict.",
       action: "Add up the elemental calcium from both and treat that as your dose. Space it away from your other minerals, not from itself." },
