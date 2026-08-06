@@ -39,10 +39,23 @@ function endHtml(res, html, code) {
 }
 const PORT = process.env.PORT || 3000;
 const SECRET = process.env.SESSION_SECRET || 'dev-secret-change-me';
+// Anything missing from this map is served as application/octet-stream — "unknown binary file".
+// That is what silently broke search indexing: sitemap.xml and robots.txt are the two files a
+// crawler MUST be able to identify, and neither had an entry. Google Search Console answered
+// "Invalid sitemap address" for a sitemap that was present, valid and listing 564 URLs, because
+// the label on the envelope said binary. robots.txt was mislabelled the same way, for a month.
+// assertServedFileTypes() in build/prerender.js is what stops this returning: the defect is
+// invisible from the page, so nothing short of a build check will catch it.
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8', '.json': 'application/json',
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.png': 'image/png',
+  '.xml': 'application/xml; charset=utf-8',      // sitemap.xml — Google rejects octet-stream
+  '.txt': 'text/plain; charset=utf-8',           // robots.txt — same class of defect
+  '.webmanifest': 'application/manifest+json',
+  '.glb': 'model/gltf-binary',                   // /anatomy/leg.glb
+  '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif',
+  '.woff2': 'font/woff2', '.woff': 'font/woff',
 };
 
 // ---------- transfer: compression + cache validators (W1, 2026-08-01) ----------

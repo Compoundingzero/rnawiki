@@ -3157,6 +3157,43 @@ const WITHDRAWN_FILE = path.join(ROOT, 'build', 'withdrawn.json');
   console.log(`[prerender] route universe OK — ${uniq.length} published, ${Object.keys(withdrawn).length} recorded withdrawal(s), 0 unaccounted drops.`);
 })();
 
+// Every file type this site publishes must be one server.js can name.
+//
+// A missing entry is invisible from the page: the bytes are correct, the status is 200, and nothing
+// in the served document looks wrong. Only the label on the envelope is missing, and it falls back
+// to application/octet-stream — "unknown binary file". That is exactly how sitemap.xml and
+// robots.txt shipped for a month: Google Search Console answered "Invalid sitemap address" for a
+// sitemap that was present, valid, and listing 564 URLs. A crawler cannot use a file it cannot
+// identify, so the whole site stayed unindexed for a reason no page could show.
+(function assertServedFileTypes() {
+  const server = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
+  const block = server.slice(server.indexOf('const TYPES = {'));
+  const known = new Set((block.slice(0, block.indexOf('};')).match(/'(\.[a-z0-9]+)'\s*:/g) || [])
+    .map((s) => s.match(/'(\.[a-z0-9]+)'/)[1]));
+
+  const seen = new Map();                       // extension -> an example file, for the error text
+  (function walk(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, e.name);
+      if (e.isDirectory()) { walk(full); continue; }
+      if (/\.(br|gz)$/.test(e.name)) continue;  // precompressed twins inherit their source's type
+      const ext = path.extname(e.name).toLowerCase();
+      if (ext && !seen.has(ext)) seen.set(ext, path.relative(ROOT, full));
+    }
+  })(SITE);
+
+  const missing = [...seen.entries()].filter(([ext]) => !known.has(ext));
+  if (missing.length) {
+    console.error('\n[prerender] SERVED FILE TYPE ASSERTION FAILED — refusing to build:');
+    missing.forEach(([ext, example]) => console.error(
+      `  ✗ ${example} is published, but server.js TYPES has no '${ext}' entry, so it would be sent as`
+      + ` application/octet-stream. A crawler cannot identify it and the page itself looks fine.`));
+    console.error('  Add the extension to TYPES in server.js. Do not delete the file to silence this.');
+    process.exit(1);
+  }
+  console.log(`[prerender] served file types OK — ${seen.size} extension(s) published, every one named by server.js.`);
+})();
+
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${uniq.map((u) => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${lastmodFor(u)}</lastmod><changefreq>weekly</changefreq><priority>${u === '/' ? '1.0' : u.startsWith('/protocol') || u.startsWith('/c/') ? '0.8' : '0.6'}</priority></url>`).join('\n')}
