@@ -93,6 +93,16 @@
   }
   const tkey = s => s.toUpperCase().replace(/[^A-Z0-9]+/g, '-').replace(/^-|-$/g, '');
   const targetBySym = {}; (D.targets || []).forEach(t => targetBySym[tkey(t.sym)] = t);
+  // W6 (2026-08-06): ONE heading string for a molecular target, shared by both documents.
+  // data.js holds sym "CYP19A1" and name "CYP19A1 aromatase" — the symbol is repeated inside the
+  // name on 84 of 103 records, and on DRD2 / LTF / Cardiolipin what follows it is "gene" or
+  // "overview", which is not a name. Before this, the SPA <h1> was the name alone ("aromatase")
+  // and the prerendered <h1> for the same route was the symbol alone ("CYP19A1"): one page, two
+  // headings, each missing half. These two functions are the same rule as targetName()/`tHead` in
+  // build/prerender.js, and assertTargetCounts() there fails the build if this file stops using
+  // them. They only ever REMOVE text — no name is written here that data.js does not hold.
+  const tgName = t => { const s = String(t.sym || ''); let n = String(t.name || '').replace(/\s+/g, ' ').trim(); if (s && n.toUpperCase().indexOf(s.toUpperCase()) === 0) n = n.slice(s.length).replace(/^[\s:,–—-]+/, ''); if (/^(gene|overview|protein)$/i.test(n)) n = ''; return n === s ? '' : n; };
+  const tgHead = t => { const n = tgName(t); return n ? `${t.sym} (${n})` : String(t.sym || ''); };
   const compoundsByPathway = {}; D.pathways.forEach((p, i) => compoundsByPathway[i] = []);
   D.compounds.forEach(c => (c.pathwayIds || []).forEach(i => compoundsByPathway[i].push(c)));
 
@@ -2145,7 +2155,10 @@
     const list = t.compoundIds.map(id => byId[id]).filter(Boolean).sort((a, b) => b.stars - a.stars);
     const pw = {}; list.forEach(c => (c.pathwayIds || []).forEach(i => pw[i] = (pw[i] || 0) + 1));
     const pwChips = Object.keys(pw).sort((a, b) => pw[b] - pw[a]).slice(0, 4).map(i => `<a class="ex-node p" href="#/pathway/${i}">${D.pathways[i].shortLabel}</a>`).join('');
-    const cleanName = t.name.replace(new RegExp('^' + t.sym + '\\s*', 'i'), '') || t.sym;
+    // W6 (2026-08-06): the <h1> was the full name alone ("aromatase") while the prerendered <h1>
+    // for the same route was the bare symbol ("CYP19A1"). One page, two headings, each missing the
+    // half the other had. tgHead() below is the one string both documents now use; the shape is
+    // pinned by assertTargetCounts() in build/prerender.js.
     const crumb = crumbs([{ label: 'Home', href: '#/' }, { label: 'Browse targets', href: '#/browse' }, { label: t.sym }]);
     const cpdSection = list.length ? `<div class="section-title">Compounds acting on ${esc(t.sym)} (${list.length})</div><div class="card-grid">${list.map(cpdCard).join('')}</div>` : '';
     // The prescription notice is generated in parse.js and MUST render in both documents — this is
@@ -2156,7 +2169,7 @@
     // Legacy render until the learning layer is authored (graceful degradation)
     if (!(t.hook || t.bigIdea || t.mechSteps)) {
       return `<div class="detail">${crumb}
-        <div class="target-hero"><div class="tsym">${t.sym}</div><div><h1>${cleanName}</h1>
+        <div class="target-hero"><div class="tsym">${t.sym}</div><div><h1>${esc(tgHead(t))}</h1>
           <p style="color:var(--muted);margin:.3rem 0"><b>${list.length} compound${list.length > 1 ? 's' : ''}</b> in the wiki act${list.length > 1 ? '' : 's'} on this target. Learn what it does once, and every compound below makes sense.</p>
           <p><a href="${t.url}" target="_blank" rel="noopener">Official record →</a></p>${pwChips ? `<div class="ex-nodes" style="margin-top:.6rem">${pwChips}</div>` : ''}</div></div>
         ${explainerHtml}<div class="suggest-row"><button class="linkbtn" data-suggest="analogy" data-ref="${esc(t.sym)}">💡 Suggest a plain-English analogy</button></div>
@@ -2195,7 +2208,7 @@
     const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, k) => { const nx = chapterDefs[k + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${k === 0 ? ' active' : ''}" data-chapter="${ch.n}">${chTitle(ch)}${ch.html}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
     setTimeout(() => { wirePathwayLearning(pc); }, 0);
     return `<div class="detail lesson-detail" id="tg-detail">${crumb}
-      <div class="target-hero"><div class="tsym">${t.sym}</div><div><h1>${cleanName}</h1><span class="pw-badge">🎯 Molecular target · ${list.length} compound${list.length > 1 ? 's' : ''}</span><p><a href="${t.url}" target="_blank" rel="noopener">Official record ↗</a></p></div></div>
+      <div class="target-hero"><div class="tsym">${t.sym}</div><div><h1>${esc(tgHead(t))}</h1><span class="pw-badge">🎯 Molecular target · ${list.length} compound${list.length > 1 ? 's' : ''}</span><p><a href="${t.url}" target="_blank" rel="noopener">Official record ↗</a></p></div></div>
       <p class="ch-lead">Learn this target once — then every compound that acts on it makes sense. Tap through from beginner to expert.</p>
       ${toc}${tabs}${sections}</div>`;
   }

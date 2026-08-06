@@ -616,6 +616,37 @@ function tidyTail(t) {
   }
   return out;
 }
+// ---- W6 (2026-08-06): the NAME of a molecular target, and a title that carries it -------------
+// data.js holds `sym` ("CYP19A1") and `name` ("CYP19A1 aromatase"). On 84 of 103 records `name`
+// simply repeats the symbol before the real name, which is why the shipped description read
+// "ADORA2A: ADORA2A adenosine A2A receptor" and the shipped <title> and <h1> carried no name at
+// all. Three records — DRD2 ("DRD2 gene"), LTF ("LTF gene"), Cardiolipin ("Cardiolipin overview")
+// — have no name after the symbol is removed, and those three keep the bare symbol rather than a
+// heading that reads "DRD2 (gene)". This function only ever REMOVES text.
+function targetName(t) {
+  const sym = String((t && t.sym) || '');
+  let n = String((t && t.name) || '').replace(/\s+/g, ' ').trim();
+  if (sym && n.toUpperCase().indexOf(sym.toUpperCase()) === 0) n = n.slice(sym.length).replace(/^[\s:,–—-]+/, '');
+  if (/^(gene|overview|protein)$/i.test(n)) n = '';
+  return n === sym ? '' : n;
+}
+// A LADDER, not a trim. The 60-char budget cannot hold "GABRB2 (gamma-aminobutyric acid type A
+// receptor subunit beta2)" AND a compound count, and seoTitle() trims from the RIGHT — so feeding
+// it the full string would delete the count on 89 of 103 and leave a title ending mid-name. The
+// order below is search value: the symbol is the exact-match term, the name is the term an actual
+// human types, and the count is the honesty W5d installed. Measured over all 103 targets:
+//   tier 1 (name + count) 47 · tier 2 (name alone) 50 · tier 3 (sym: name) 1 · tier 4 (sym + count) 5.
+// So 98 of 103 titles gain the name and NONE loses the symbol. A tier-2/3 title states no count,
+// and assertTargetCounts() below requires that such a title also promise no list.
+function targetTitle(sym, full, nC) {
+  const tail = nC === 1 ? '1 compound acts on it' : `${nC} compounds act on it`;
+  const head = full ? `${sym} (${full})` : sym;
+  const fits = (m) => esc(m + SUFFIX).length <= 60;
+  if (fits(`${head}: ${tail}`)) return seoTitle(`${head}: ${tail}`);
+  if (fits(head)) return seoTitle(head);
+  if (full && fits(`${sym}: ${full}`)) return seoTitle(`${sym}: ${full}`);
+  return seoTitle(`${sym}: ${tail}`);
+}
 function seoDesc(text, max = 155) {
   const s2 = stripMd(text).replace(/\s+/g, ' ').trim();
   const fits = (t) => esc(t).length <= max;              // escaped length, same reason as seoTitle
@@ -1572,9 +1603,31 @@ GRAPH.problems.forEach((p) => {
   // "Covers all 170 compounds" and "Search 170 compounds": a phrase typed next to a number that
   // did not have to agree with it. The number is now the phrase.
   const nC = list.length;
-  const nWord = nC === 1 ? 'the one compound' : `all ${nC} compounds`;
+  // ---- W6 (2026-08-06): THE PAGE NEVER SAID WHAT THE THING IS CALLED -------------------------
+  // Measured on the built site, both documents, all 103 /target routes:
+  //   · prerendered <h1> = the bare symbol on 103/103 — "CYP19A1", "ADORA2A", "ESR1".
+  //   · hydrated <h1> = the full name ONLY on 103/103 — "aromatase" (harness, 390x844). Two
+  //     documents, two different headings for the same page, and each was missing the half the
+  //     other had.
+  //   · <title> = the bare symbol on 103/103.
+  //   · description = "ADORA2A: ADORA2A adenosine A2A receptor. What it does, and all 2 compounds…"
+  //     — the symbol printed TWICE, because `t.name` in data.js already begins with the symbol on
+  //     84 of 103 records, and on three of them (DRD2, LTF, Cardiolipin) what follows is "gene" or
+  //     "overview", i.e. no name at all.
+  // Nobody searches CYP19A1. They search aromatase. The name was authored, was already in the
+  // corpus, and reached neither heading. targetName() strips the duplicated symbol and refuses the
+  // three non-names; nothing here writes a name that data.js does not hold.
+  const tFull = targetName(t);
+  const tHead = tFull ? `${t.sym} (${tFull})` : t.sym;
+  // The one-line explainer is authored on 101 of 103 targets and is the plainest English on the
+  // page ("The docking station inside muscle cells that testosterone plugs into…"). It was
+  // rendered inside the page and never in the search result. "What it does, and all N compounds…"
+  // said nothing about what it does.
+  const tOne = (t.explainer && t.explainer.oneLine) ? String(t.explainer.oneLine).replace(/\s+/g, ' ').trim() : '';
+  const tCount = nC === 1 ? '1 compound in the wiki acts on it.' : `${nC} compounds in the wiki act on it.`;
+  const tLead = tOne ? `${tHead} — ${tOne}` : `${tHead} — a molecular target in the wiki.`;
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Browse', route: '/browse' }, { name: t.sym }])}
-    <h1>${esc(t.sym)}</h1><p>${esc(t.name)} — the molecular target that ${nC === 1 ? 'one compound in the wiki acts on' : `${nC} compounds in the wiki act on`}.</p>
+    <h1>${esc(tHead)}</h1><p>A molecular target. ${nC === 1 ? 'One compound in the wiki acts' : `${nC} compounds in the wiki act`} on it — what it does first, then the ${nC === 1 ? 'compound' : 'list'}.</p>
     ${t.pomNotice ? `<div class="pom-notice"><b>⚕️ Prescription-only medicines are named on this page.</b> ${mdSafe(t.pomNotice.text)}</div>` : ''}
     ${t.explainer ? `<div>${t.explainer.html}</div>` : ''}
     ${/* 103 target pages averaged 175 words against 117,232 words of authored target_learn content.
@@ -1584,7 +1637,7 @@ GRAPH.problems.forEach((p) => {
           rot as the corpus grows, and the emission is safe to turn on. */ ''}
     ${learnFlatHtml(t)}
     <h2>${nC === 1 ? 'The compound acting on' : `The ${nC} compounds acting on`} ${esc(t.sym)}</h2><ul>${list.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a></li>`).join('')}</ul>`;
-  add(route, shell({ route, title: seoTitle(nC === 1 ? `${t.sym}: the one compound that hits it` : `${t.sym}: the ${nC} compounds that hit it`), desc: seoDesc(`${t.sym}: ${t.name || ''}. What it does, and ${nWord} in the wiki that ${nC === 1 ? 'acts' : 'act'} on it.`), ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
+  add(route, shell({ route, title: targetTitle(t.sym, tFull, nC), desc: seoDesc(esc(`${tLead} ${tCount}`).length <= 155 ? `${tLead} ${tCount}` : tLead), ogImage: renderOgCard(`og/target/${tkey(t.sym)}.png`, { kind: 'Molecular target', title: t.sym, sub: cleanDesc((t.explainer && t.explainer.html || '').replace(/<[^>]+>/g, ' ').replace(/^\s*In one line:\s*/i, ''), 120) }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: t.sym, route }], body }));
 });
 
 // pathways + learn
@@ -4389,12 +4442,40 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 // This gate reads the number back out of the emitted <title> and counts the actual /c/ links in
 // the emitted list, so it cannot be satisfied by the variable the title was supposed to use.
 // PROVE IT by putting `seoTitle(`${t.sym}: the compounds that hit it`)` back.
+//
+// ---- W6 (2026-08-06): AND THE NAME OF THE THING MUST BE ON THE PAGE --------------------------
+// The count half above was honest and the page still never said what the target IS. Measured on
+// the built site: <h1> was the bare symbol on 103/103 prerendered, and the full name alone on
+// 103/103 hydrated — the same page, two headings, each missing what the other had. The gate now
+// also requires that (a) every /target <h1> and <title> carries the symbol, (b) both carry the
+// authored name wherever data.js holds one, and (c) site/app.js builds its own <h1> from the same
+// two pieces, so the two documents cannot drift apart again.
+// A title that states NO count must also promise no list — that is what keeps tier 2 of
+// targetTitle() honest, and it is checked below rather than assumed.
+// PROVE THE NAME HALF by changing `tHead` back to `t.sym` in the /target renderer.
 (function assertTargetCounts() {
   const bad = [];
   let checked = 0;
+  let withCount = 0, withName = 0;
+  const APPSRC = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+  // The SPA builds its own heading. Pin the expression, for the reason ATPL_BODY is pinned: the
+  // route replay cannot see an edit inside app.js, and this is the string a reader's <h1> is.
+  const TG_H1 = '<h1>${esc(tgHead(t))}</h1>';
+  if (APPSRC.split(TG_H1).length - 1 !== 2) bad.push(`site/app.js no longer builds BOTH /target headings from tgHead(t) (expected 2 occurrences of \`${TG_H1}\`, found ${APPSRC.split(TG_H1).length - 1}). The prerendered <h1> is "CYP19A1 (aromatase)"; if the SPA goes back to the bare name a reader and a crawler read different headings on the same page again.`);
   pages.filter((p) => /^\/target\//.test(p.route)).forEach((p) => {
     checked++;
     const t = (p.html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || '';
+    const h1 = HEAD_UNESC(((p.html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/) || [])[1] || '').replace(/<[^>]+>/g, '').trim());
+    const sym = decodeURIComponent(p.route.replace('/target/', ''));
+    const tgt = (D.targets || []).find((x) => tkey(x.sym) === tkey(sym));
+    if (!tgt) { bad.push(`${p.route}: no target in data.js matches this route`); return; }
+    const full = targetName(tgt);
+    if (h1.indexOf(tgt.sym) < 0) bad.push(`${p.route}: <h1> "${h1}" does not contain the symbol ${tgt.sym} — the exact term this page is searched by`);
+    if (HEAD_UNESC(t).indexOf(tgt.sym) < 0) bad.push(`${p.route}: <title> "${t}" does not contain the symbol ${tgt.sym}`);
+    if (full) {
+      withName++;
+      if (h1.indexOf(full) < 0) bad.push(`${p.route}: data.js names this target "${full}" and the <h1> is "${h1}". The <h1> has no length budget, so there is no reason for the name to be missing from it — that is the defect W6 fixed (nobody searches ${tgt.sym}, they search ${full}).`);
+    }
     // split on the heading TEXT, not the whole tag: shell() injects an <a class="hanchor"> into
     // every h2, so anything anchored to "<h2 ...>" matches nothing and this gate would fail on all
     // 103 while looking like it had found something.
@@ -4403,15 +4484,21 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     const links = new Set([...listBlock.matchAll(/href="(\/c\/[^"]+)"/g)].map((m) => m[1]));
     const n = links.size;
     if (!n) { bad.push(`${p.route}: the compound list is empty or the heading was renamed, so this gate cannot count it`); return; }
-    const claimed = (t.match(/the (\d+) compounds that hit it/) || [])[1];
+    const claimed = (t.match(/(\d+) compounds? acts? on it/) || [])[1];
     if (claimed === undefined) {
-      if (n !== 1 || !/the one compound that hits it/.test(t)) bad.push(`${p.route}: <title> "${t}" states no compound count, and the page lists ${n}`);
+      // Tier 2/3 of targetTitle(): the name displaced the count. Then the title must promise
+      // nothing about a list at all — "compounds" with no number is exactly the D17 defect.
+      if (/compound/i.test(t)) bad.push(`${p.route}: <title> "${t}" mentions compounds without stating how many, and the page lists ${n}. A title may carry the count or say nothing about compounds — never a bare plural.`);
       return;
     }
+    withCount++;
     if (+claimed !== n) bad.push(`${p.route}: <title> claims ${claimed} compounds and the page lists ${n} — "${t}"`);
-    if (n === 1) bad.push(`${p.route}: <title> uses the plural for a single compound — "${t}"`);
+    if (n === 1 && !/1 compound acts on it/.test(t)) bad.push(`${p.route}: <title> uses the plural for a single compound — "${t}"`);
+    if (n > 1 && !/compounds act on it/.test(t)) bad.push(`${p.route}: <title> uses the singular for ${n} compounds — "${t}"`);
   });
   if (!checked) bad.push('no /target pages were checked — this gate is running over an empty set');
+  if (!withCount) bad.push('not one /target <title> states a compound count — the count half of this gate is running over an empty set, and a gate over an empty set always passes');
+  if (!withName) bad.push('not one /target <h1> was checked against an authored name — targetName() returned "" for all 103, so the name half of this gate is running over an empty set');
   if (bad.length) {
     console.error('\n[prerender] A TITLE PROMISES A LIST THE PAGE DOES NOT HAVE — refusing to build.');
     bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
@@ -4419,7 +4506,7 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     console.error('');
     process.exit(1);
   }
-  console.log(`[prerender] target counts OK — ${checked} pages, every <title> count equal to the compounds actually listed.`);
+  console.log(`[prerender] target counts + names OK — ${checked} pages: every <title> count equals the compounds actually listed (${withCount} state one), and ${withName} carry their authored name in the <h1> as well as the symbol.`);
 })();
 
 // ---- build-time assertion: THE COMPARISON CLUSTER MUST BE CONNECTED --------------------------
