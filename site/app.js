@@ -122,7 +122,7 @@
     rc = rc || p.root_causes[0];
     return `<a class="solve-card" data-kind="${p.kind}" href="#/protocol/${p.id}/${rc.id}">
       <span class="s-ico">${p.icon || '•'}</span>
-      <span class="s-body"><b>${esc(p.name)}</b><small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}</small></span></a>`;
+      <span class="s-body"><b>${esc(p.name)}</b><small>${rc && rc.name ? esc(rc.name.replace(/\s*\([^)]*\)/, '').trim()) + ' · ' : ''}${esc(p.category)}</small></span></a>`;
   }
 
   // ---------- stack (localStorage + URL share) ----------
@@ -2594,7 +2594,7 @@
     // tibialis-anterior does not exist and a dead link would fail the assertLinkGraph build gate).
     const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves', 'tibialis-anterior'];
     const legSubs = legGroups.flatMap(g => (structuresByGroup[g] || [])).filter(s => s.fma);
-    const twin = legSubs.map(s => `<li><a href="#/body/${esc(region)}?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ` — ${esc(s.plainName)}` : ''}${muscleById[s.groupId] ? ` <a class="muted" href="#/muscle/${esc(s.groupId)}">(full page)</a>` : ''}</li>`).join('');
+    const twin = legSubs.map(s => `<li><a href="#/body/${esc(region)}?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ` — ${esc(s.plainName)}` : ''}${muscleById[s.groupId] ? ` <a class="muted" href="#/muscle/${esc(s.groupId)}">${esc(muscleById[s.groupId].name)} &mdash; full page</a>` : ''}</li>`).join('');
     return `<div class="body-shell">
       <h1>🧍 Interactive 3D body — the ${esc(region)}</h1>
       <p class="muted bm-intro">Spin the model and tap any muscle to see the bones it attaches to — <b class="bm-o-word">origin in blue</b>, <b class="bm-i-word">insertion in amber</b> — and watch it move. Best on a laptop or a recent phone; the muscle list below is the full no-3D version.</p>
@@ -3492,7 +3492,7 @@
     // a page this build emitted.
     const _sib = (window.RNAWIKI_CMPSIB || {})['/compare/' + pair] || [];
     const sib = _sib.length
-      ? `<div class="cmp-sib"><h2>Other head-to-heads with these two</h2>${_sib.map(([nm, list]) => `<div class="cmp-sib-col"><div class="cmp-sib-h">${esc(nm)} also compared with</div><ul>${list.map(([on, r]) => `<li><a href="#${esc(r)}">${esc(on)}</a></li>`).join('')}</ul></div>`).join('')}</div>`
+      ? `<div class="cmp-sib"><h2>Other head-to-heads with these two</h2>${_sib.map(([nm, list]) => `<div class="cmp-sib-col"><div class="cmp-sib-h">More ${esc(nm)} head-to-heads</div><ul>${list.map(([on, r]) => `<li><a href="#${esc(r)}">${esc(nm)} vs ${esc(on)}</a></li>`).join('')}</ul></div>`).join('')}</div>`
       : '';   // lower only the first letter, or "In plain English" becomes "in plain english"
     const andList = (xs) => xs.length < 2 ? (xs[0] || '') : xs.slice(0, -1).join(', ') + ' and ' + xs[xs.length - 1];
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Compare', href: '#/compare' }, { label: `${A.name} vs ${B.name}` }])}

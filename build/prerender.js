@@ -728,7 +728,10 @@ GRAPH.problems.forEach((p) => p.root_causes.forEach((rc) => {
   const seen = new Set();
   (rc.compounds || []).forEach((n) => {
     const c = findCpt(n);
-    if (c && !seen.has(c.id)) { seen.add(c.id); (compoundProtocols[c.id] = compoundProtocols[c.id] || []).push({ name: p.name, route: `/protocol/${p.id}/${rc.id}` }); }
+    // W6 (2026-08-06): carry the ROOT CAUSE. Measured on the built site: /c/collagen-peptides-
+    // vitamin-c published three links all reading "Knee Pain", to /protocol/knee-pain/
+    // patellofemoral-pain, /patellar-tendinopathy and /knee-oa. One label, three pages.
+    if (c && !seen.has(c.id)) { seen.add(c.id); (compoundProtocols[c.id] = compoundProtocols[c.id] || []).push({ name: p.name, cause: rc.name.replace(/\s*\([^)]*\)/, '').trim(), route: `/protocol/${p.id}/${rc.id}` }); }
   });
 }));
 
@@ -865,7 +868,7 @@ D.compounds.forEach((c) => {
   const cpdFact = factByHref['/c/' + slug(c.name)];
   const goalLinks = (c.goalIds || []).map((g) => `<a href="/goal/${g}">${esc(goalById[g].label)}</a>`).join(' · ');
   const usedIn = compoundProtocols[c.id] || [];
-  const usedInHtml = usedIn.length ? `<h2>Used in these protocols</h2><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}</a></li>`).join('')}</ul>` : '';
+  const usedInHtml = usedIn.length ? `<h2>Used in these protocols</h2><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}${u.cause ? ' — ' + esc(pcCase(u.cause)) : ''}</a></li>`).join('')}</ul>` : '';
   const cmpLinks = compoundCompareLinks[c.id] || [];
   // Cap raised 8 -> 12 (2026-07-30). At 8, a pair that ranked ninth on BOTH of its two compounds
   // had no inbound link anywhere on the site: /compare/magnesium-vs-vitamin-d3-k2 and
@@ -1002,8 +1005,16 @@ const siblingByRoute = {};
 const siblingBlock = (a, b, self, href) => {
   const g = compareSiblings(a, b, self);
   siblingByRoute[self] = [[a.name, g.a.map((x) => [x.other.name, x.route])], [b.name, g.b.map((x) => [x.other.name, x.route])]].filter((c) => c[1].length);
+  // W6 (2026-08-06): THE LINK TEXT NAMED ONE COMPOUND AND THE DESTINATION WAS A PAIR.
+  // Measured over all 621 built pages: on 42 of them two DIFFERENT lateral links carried the
+  // byte-identical text "Omega-3 (EPA/DHA)" — one going to /compare/boron-vs-omega-3-epa-dha and
+  // the other to /compare/glucosamine-chondroitin-vs-omega-3-epa-dha. Same for "Vitamin D3 (+ K2)"
+  // on 37, "Caffeine" on 35, "Creatine Monohydrate" on 21, "Whey / Casein Protein" on 17. The
+  // column heading disambiguated them visually; a link list — which is what a screen reader and an
+  // anchor-text index both see — did not. The destination IS a pair, so the link now says so, and
+  // the anchor text finally matches the title of the page it points at.
   const col = (c, list) => list.length
-    ? `<div class="cmp-sib-col"><div class="cmp-sib-h">${esc(c.name)} also compared with</div><ul>${list.map((x) => `<li><a href="${href(x.route)}">${esc(x.other.name)}</a></li>`).join('')}</ul></div>`
+    ? `<div class="cmp-sib-col"><div class="cmp-sib-h">More ${esc(c.name)} head-to-heads</div><ul>${list.map((x) => `<li><a href="${href(x.route)}">${esc(c.name)} vs ${esc(x.other.name)}</a></li>`).join('')}</ul></div>`
     : '';
   if (!g.a.length && !g.b.length) return '';
   return `<div class="cmp-sib"><h2>Other head-to-heads with these two</h2>${col(a, g.a)}${col(b, g.b)}</div>`;
@@ -1172,6 +1183,9 @@ const tierLabel = (t) => t >= 3 ? 'Well-established mechanism' : t === 2 ? 'Reas
 // page, or an anatomy group id → that page. If a ref doesn't resolve, render plain text (no broken link).
 const STRUCT_BY_ID = {}; (D.structures || []).forEach((s) => { STRUCT_BY_ID[s.id] = s; });
 const MUSCLE_GROUP_IDS = new Set((((D.anatomy || {}).muscles) || []).map((m) => m.id));
+// W6 (2026-08-06): the /body twin list published TWELVE links all reading "(full page)", each
+// going somewhere different. The group's own name is the honest label and it was already here.
+const MUSCLE_GROUP_NAME = {}; (((D.anatomy || {}).muscles) || []).forEach((m) => { MUSCLE_GROUP_NAME[m.id] = m.name; });
 function structureHref(ref) {
   if (!ref) return null;
   if (STRUCT_BY_ID[ref]) return '/muscle/' + STRUCT_BY_ID[ref].groupId;
@@ -2177,7 +2191,7 @@ ANAT.muscles.forEach((m) => {
   // fail assertLinkGraph). No "peel back the layers" — there is no layer control in the UI.
   const legGroups = ['quadriceps', 'hamstrings', 'glutes', 'calves', 'tibialis-anterior'];
   const legSubs = legGroups.reduce((acc, g) => acc.concat((D.structures || []).filter((s) => s.groupId === g)), []).filter((s) => s.fma);
-  const twin = legSubs.map((s) => `<li><a href="/body/leg?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ' — ' + esc(s.plainName) : ''}${MUSCLE_GROUP_IDS.has(s.groupId) ? ` <a href="/muscle/${esc(s.groupId)}">(full page)</a>` : ''}</li>`).join('');
+  const twin = legSubs.map((s) => `<li><a href="/body/leg?fma=${encodeURIComponent(s.fma)}">${esc(s.name)}</a>${s.plainName ? ' — ' + esc(s.plainName) : ''}${MUSCLE_GROUP_IDS.has(s.groupId) ? ` <a href="/muscle/${esc(s.groupId)}">${esc(MUSCLE_GROUP_NAME[s.groupId] || s.groupId)} &mdash; full page</a>` : ''}</li>`).join('');
   const body = `<div class="article body-shell"><h1>Interactive 3D body — the leg</h1>
     <p>Spin a 3D anatomical model of the leg and tap any muscle to see the bones it attaches to — origin and insertion — and watch it move. This page lists every muscle in the model; the interactive 3D above is an enhancement for capable devices.</p>
     <div id="bm-canvas" class="bm-canvas"></div>
@@ -4512,6 +4526,51 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log('[prerender] anonymous-first OK — 0 unprompted account modals, the header control is not the page CTA, and the modal says an account is optional.');
+})();
+
+// ---- build-time assertion: TWO LINKS ON ONE PAGE MUST NOT SAY THE SAME THING -----------------
+// W6 (2026-08-06). Measured across all 621 built pages before this gate: 189 pages published at
+// least two links whose visible text was byte-identical and whose destinations were not.
+//   · 42 /compare pages: two links both reading "Omega-3 (EPA/DHA)", one to
+//     /compare/boron-vs-omega-3-epa-dha and one to /compare/glucosamine-chondroitin-vs-omega-3-
+//     epa-dha. Also "Vitamin D3 (+ K2)" on 37, "Caffeine" on 35, "Creatine Monohydrate" on 21.
+//     A column heading told them apart on screen; a link list — which is what a screen reader and
+//     an anchor-text index both see — did not, and the anchor text named one compound while the
+//     destination was a pair.
+//   · /c/collagen-peptides-vitamin-c: THREE links all reading "Knee Pain", to three different
+//     knee protocols.
+//   · /body and /body/leg: TWELVE links all reading "(full page)", each going somewhere else.
+// In-page fragments are excluded: "#anatomy" and "/anatomy" are legitimately both labelled
+// "Anatomy", one being a jump inside the document and one a destination.
+// PROVE IT by putting `${esc(x.other.name)}` back as the /compare lateral link text.
+(function assertLinkTextDistinct() {
+  const bad = [];
+  let checked = 0, links = 0;
+  pages.forEach(({ route, html }) => {
+    checked++;
+    const stripped = html.replace(/<script[\s\S]*?<\/script>/g, ' ');
+    const byText = {};
+    [...stripped.matchAll(/<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g)].forEach((m) => {
+      const href = m[1];
+      if (!href || href.charAt(0) === '#') return;            // in-page anchor, not a destination
+      const text = HEAD_UNESC(m[2].replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim();
+      if (!text) return;
+      links++;
+      (byText[text] = byText[text] || new Set()).add(href.split('#')[0]);
+    });
+    Object.keys(byText).forEach((t) => {
+      if (byText[t].size > 1) bad.push(`${route}: ${byText[t].size} links all read "${t}" and go to different pages — ${[...byText[t]].slice(0, 3).join(' , ')}. Link text is the whole accessible name and the whole anchor-text signal; identical text for different destinations is unreadable in a link list and useless as an internal link.`);
+    });
+  });
+  if (!checked || !links) bad.push('no pages or no links were checked — this gate is running over an empty set');
+  if (bad.length) {
+    console.error('\n[prerender] TWO LINKS ON ONE PAGE SAY THE SAME THING AND GO SOMEWHERE DIFFERENT — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] link text OK — ${checked} pages, ${links} outbound links, 0 pages where two links read the same and lead somewhere different.`);
 })();
 
 // ---- build-time assertion: A PROTOCOL TITLE MUST END WHERE THE AUTHOR ENDED A PHRASE ---------
