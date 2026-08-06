@@ -8473,6 +8473,30 @@
   // (A /protocol/…?by= share link is the one case where server.js deliberately writes a different
   // og:title at send time; that rewrite is for scrapers, which never hydrate, so it is unaffected.)
   const HEAD = (typeof window !== 'undefined' && window.RNAWIKI_HEAD) || {};
+  // ---- W6 (2026-08-06): THE CANONICAL BASE IS NOT location.origin -----------------------------
+  // MEASURED hydrated: the prerendered document ships <link rel="canonical"
+  // href="https://rnawiki.com/<route>"> and setPageMeta overwrote it with
+  // "http://localhost:8099/<route>" on every route probed — 0 survived. Loading the same page on a
+  // second hostname proved it is the HOST and not the tool. og:url on the SAME document still read
+  // https://rnawiki.com/..., so the page already carried the right absolute base; the canonical had
+  // simply stopped using it. Google renders JavaScript and reads the RENDERED canonical, so any
+  // hostname that serves this app — a *.up.railway.app domain, a preview deploy, a www. variant, an
+  // http:// hit landing before the 301 — self-canonicalises a complete 568-page mirror of the site.
+  // Read the base ONCE, out of the document the server actually sent, before setPageMeta can
+  // overwrite it. app.js is the last script in <body>, so <head> is fully parsed by now and the
+  // prerendered tag is present on 621 of 621 served documents.
+  const CANON_BASE = (function () {
+    try {
+      const el = document.querySelector('link[rel="canonical"]');
+      return new URL(el.getAttribute('href'), location.href).origin;
+    } catch (e) { return location.origin; }
+  })();
+  // Routes whose canonical is NOT their own address. This MIRRORS the `canonical:` override in
+  // build/prerender.js, and assertCanonicalOverrideParity() there fails the build if the two
+  // disagree — without it the SPA silently un-consolidates a duplicate pair the prerenderer
+  // deliberately merged, which is exactly what /body did: hydrated canonical /body while og:url on
+  // the same document said /body/leg. Keys and values are query-free absolute paths.
+  const CANON_OVERRIDE = { '/body': '/body/leg' };
   function setPageMeta(parts) {
     const site = SITE_NAME;
     let title = 'RNAwiki — translate the code of human performance into real results';
@@ -8520,11 +8544,23 @@
     // W5b: keep the share tags on the same two strings. Before this they held whatever the LANDING
     // route's prerendered head said and never moved again, so after one SPA navigation a document
     // carried a title for one page and an og:title for another (493/620 measured at boot alone).
-    [['meta[property="og:title"]', title], ['meta[property="og:description"]', desc],
-      ['meta[name="twitter:title"]', title], ['meta[name="twitter:description"]', desc]]
-      .forEach(([sel, val]) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); });
+    // The canonical is resolved FIRST, because og:url is set from it two lines down. Moving this
+    // block below the array would leave `l` undefined at the point the array is built.
     let l = document.querySelector('link[rel="canonical"]'); if (!l) { l = document.createElement('link'); l.setAttribute('rel', 'canonical'); document.head.appendChild(l); }
-    l.setAttribute('href', location.origin + '/' + parts.join('/'));
+    // `parts` is already query-free (route() splits on '?' before it is built), so a shared
+    // /solve?q=, /stack?ids=, /plan?cohort= or ?utm_source= URL still canonicalises to the clean
+    // path — verified hydrated on all four. CANON_BASE, not location.origin: see the note above.
+    const _cpath = '/' + parts.join('/');
+    l.setAttribute('href', CANON_BASE + (CANON_OVERRIDE[_cpath] || _cpath));
+    // W6 (2026-08-06): og:url JOINS THIS LIST. MEASURED: on a cold load og:url matched the
+    // prerendered value, but after ONE in-app click the document carried the compound page's
+    // <title> and canonical beside the HOME PAGE's og:url. That is the same defect W5b fixed for
+    // og:title, one tag further down, and og:url is the tag share cards and several answer engines
+    // resolve first. It is set from the canonical so the two can never disagree.
+    [['meta[property="og:title"]', title], ['meta[property="og:description"]', desc],
+      ['meta[name="twitter:title"]', title], ['meta[name="twitter:description"]', desc],
+      ['meta[property="og:url"]', l.getAttribute('href')]]
+      .forEach(([sel, val]) => { const el = document.querySelector(sel); if (el) el.setAttribute('content', val); });
   }
   // ---- W5b (2026-08-02): THE DEEP LINKS GOOGLE PUBLISHES MUST LAND ---------------------------
   // THE DEFECT, measured hydrated at 390x844 over all 620 served routes, 0 pageerrors

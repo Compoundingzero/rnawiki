@@ -3402,6 +3402,74 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] head parity OK — ${routes.length} routes carry a title and a description, app.js reads them, 0 dangling titles.`);
 })();
 
+// ---- build-time assertion: THE CANONICAL SURVIVES HYDRATION ----------------------------------
+// W6 (2026-08-06). Head parity above checks the <title> and the description. It never looked at the
+// canonical, and the canonical was the tag that had come apart.
+//
+// TWO DEFECTS, both measured hydrated with Chrome against this repo:
+// 1. setPageMeta() built the href from `location.origin`, so the prerendered
+//    https://rnawiki.com/<route> became http://localhost:8099/<route> on every route probed — 0 of
+//    8 survived, and og:url on the SAME document still said https://rnawiki.com/... Loading an
+//    identical page on a second hostname reproduced it with that hostname, so it is the HOST, not
+//    the tool. Google renders JavaScript and reads the RENDERED canonical: any hostname that serves
+//    this app self-canonicalises a whole mirror of the site.
+// 2. /body is the one route whose canonical is not its own address (it defers to /body/leg, the
+//    twin with the 3D model). Hydrated, /body canonicalised to /body while og:url on the same
+//    document said /body/leg — two tags on one page disagreeing, and the consolidation the
+//    prerenderer deliberately made was undone for every reader who runs JavaScript.
+//
+// This gate reads the EMITTED documents, not this generator's source, so it measures what was
+// actually served; and it reads site/app.js, so the two renderers cannot drift again. PROVE IT by
+// putting `location.origin` back in the canonical line, or by deleting '/body' from CANON_OVERRIDE.
+(function assertCanonicalOverrideParity() {
+  const bad = [];
+  const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+
+  // (a) the base. Pinned as a whole expression: a canonical assembled from anything the BROWSER's
+  //     address bar supplies is the defect, whatever the spelling.
+  const CANON_LINE = "    l.setAttribute('href', CANON_BASE + (CANON_OVERRIDE[_cpath] || _cpath));";
+  if (APP.indexOf(CANON_LINE) < 0) bad.push(`site/app.js no longer sets the canonical from CANON_BASE and the override map. Every hostname that serves this app would publish its own 568-page self-canonicalised mirror. Restore exactly:\n${CANON_LINE}`);
+  if (!/const CANON_BASE = \(function \(\) \{/.test(APP)) bad.push('site/app.js has no CANON_BASE — it must be read ONCE from the canonical the server sent, before setPageMeta can overwrite it.');
+  if (/l\.setAttribute\('href', location\.origin/.test(APP)) bad.push("site/app.js builds the canonical from location.origin again. That is the original defect: a canonical that names whatever host the reader happened to reach.");
+  if (APP.indexOf("['meta[property=\"og:url\"]', l.getAttribute('href')]") < 0) bad.push('site/app.js no longer keeps og:url on the canonical. After one in-app click the document carried the new page’s title and canonical beside the previous page’s og:url.');
+
+  // (b) the override map, derived from the bytes actually emitted.
+  const emitted = {};
+  const scan = (route, html) => {
+    const m = String(html).match(/<link rel="canonical" href="([^"]+)">/);
+    if (!m) { bad.push(`${route}: emitted no <link rel="canonical">`); return; }
+    const want = SITE_URL + route;
+    if (m[1] !== want) emitted[route] = m[1].replace(SITE_URL, '');
+    const og = String(html).match(/<meta property="og:url" content="([^"]+)">/);
+    if (og && og[1] !== m[1]) bad.push(`${route}: og:url is ${og[1]} but the canonical is ${m[1]} — one document, two claims about which URL it is`);
+  };
+  pages.forEach((p) => scan(p.route, p.html));
+  try { scan('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { bad.push('could not read site/home.html to check its canonical'); }
+
+  const spa = {};
+  const mm = APP.match(/const CANON_OVERRIDE = \{([^}]*)\};/);
+  if (!mm) bad.push('site/app.js has no `const CANON_OVERRIDE = { … };` — the SPA cannot mirror a canonical override it does not know about.');
+  else for (const kv of mm[1].matchAll(/'([^']+)'\s*:\s*'([^']+)'/g)) spa[kv[1]] = kv[2];
+
+  Object.keys(emitted).forEach((r) => {
+    if (!spa[r]) bad.push(`${r}: the prerendered document canonicalises to ${emitted[r]}, but site/app.js CANON_OVERRIDE has no entry for it — a reader who runs JavaScript un-consolidates the duplicate pair this build deliberately merged. Add '${r}': '${emitted[r]}'.`);
+    else if (spa[r] !== emitted[r]) bad.push(`${r}: prerendered canonical is ${emitted[r]}, site/app.js says ${spa[r]} — the two renderers publish different canonical URLs for the same route`);
+  });
+  Object.keys(spa).forEach((r) => {
+    if (!emitted[r]) bad.push(`${r}: site/app.js CANON_OVERRIDE points it at ${spa[r]}, but the prerendered document for that route self-canonicalises. The SPA would move a canonical the crawler never moved.`);
+    else if (!pages.some((p) => p.route === spa[r]) && spa[r] !== '/') bad.push(`${r}: CANON_OVERRIDE targets ${spa[r]}, which this build does not publish — a canonical pointing at a URL that does not exist is worse than none`);
+  });
+
+  if (bad.length) {
+    console.error('\n[prerender] THE CANONICAL DOES NOT SURVIVE HYDRATION — refusing to build.');
+    bad.slice(0, 40).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 40) console.error(`    … and ${bad.length - 40} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] canonical parity OK — ${pages.length + 1} documents, every canonical absolute and matching its own og:url, ${Object.keys(emitted).length} deliberate override(s) mirrored in site/app.js.`);
+})();
+
 // ---- build-time assertion: THE FRAGMENTS THIS FILE PUBLISHES MUST BE RESOLVABLE ---------------
 // W5b (2026-08-02). Measured hydrated at 390x844 over all 620 served routes, 0 pageerrors
 // (qa/out/w5b_anchors_before.json): 7,339 of 8,080 in-page anchor targets published here — the
