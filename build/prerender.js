@@ -1550,9 +1550,29 @@ GRAPH.problems.forEach((p) => {
     const moveNames = move.slice(0, 5).map((e) => e.name).join(', ');
     const fuelNames = fuel.slice(0, 5).map((f) => f.name).join(', ');
     const stackNames = stack.slice(0, 5).map((c) => c.name).join(', ');
+    // ---- W6 (2026-08-06): A QUESTION MUST DESCRIBE ITS OWN ANSWER ---------------------------
+    // Measured by parsing the FAQPage JSON-LD out of all 52 built /protocol documents: 51 of 52
+    // published the question "What exercises help <problem>?", and `move` is EMPTY on 52 of 52 in
+    // this document (protoMove() reads rc.protocol_exercise, which no root cause carries), so the
+    // answer was always rc.prescription.detail. On the pages whose authored plan is not movement
+    // that produced, verbatim, in structured data an answer engine is invited to quote:
+    //     "What exercises help hair loss / thinning?"  -> "Finasteride lowers DHT; minoxidil
+    //                                                      stimulates follicles…"
+    //     "What exercises help thyroid slowdown?"      -> "Thyroid meds are prescription…"
+    //     "What exercises help low testosterone?"      -> "TRT/enclomiphene are prescription…"
+    //     "What exercises help acne / skin clarity?"   -> "…zinc; topical retinoid/niacinamide."
+    // Answering an exercise question by naming prescription-only medicines is also the wrong side
+    // of constraint 7. The question now uses the author's OWN label for that answer — the
+    // prescription scheme — so it is true whether the plan is a wall-sit or finasteride.
+    // The second new entry is the $0 first step, which is where the exercise-led and the
+    // supplement-led protocols genuinely differ: 24 of the 52 are a movement, 5 a food swap, 4 a
+    // removal, 3 a measurement, 2 sleep, 2 light, 2 timing, 1 breath, 1 rest — and 8 have none and
+    // now say so, in the authored words, instead of being given one.
     const pqa = faqBlock([
       rc.diagnostic ? { q: `What causes ${p.name.toLowerCase()}?`, a: `${rc.name}. ${snip(rc.diagnostic, 240)}` } : null,
-      (rc.prescription || move.length) ? { q: `What exercises help ${p.name.toLowerCase()}?`, a: `${rc.prescription ? rc.prescription.detail : ''}${move.length ? ` Key movements: ${moveNames}.` : ''}`.trim() } : null,
+      p1 ? { q: `What is the one free thing to do first for ${p.name.toLowerCase()}?`, a: `${p1.action}. It costs nothing, it is the only thing you change for 7 days, and it is selected from this protocol's own plan: "${p1.quote}".${sfy ? ` Watch one thing while you do it: ${sfy.metric}.` : ''}` }
+        : (rc.phase1None ? { q: `Is there a free first step for ${p.name.toLowerCase()}?`, a: `No. ${rc.phase1None}` } : null),
+      rc.prescription ? { q: `What is the plan for ${pcCase(rcShort)}?`, a: `${rc.prescription.scheme}. ${rc.prescription.detail}${move.length ? ` Key movements: ${moveNames}.` : ''}` } : null,
       fuel.length ? { q: `What should you eat for ${p.name.toLowerCase()}?`, a: `Foods that support it: ${fuelNames}.` } : null,
       stack.length ? { q: `What supplements help ${p.name.toLowerCase()}?`, a: `Evidence-ranked options: ${stackNames}.` } : null,
     ]);
@@ -4544,6 +4564,23 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
       noStep++;
       if (!/No \$0 first step exists/.test(desc)) bad.push(`${route}: has no authored $0 first step and its description does not say so — "${desc.slice(0, 100)}…". Inventing one here is the fabrication class W3.5 closed.`);
     }
+    // --- and the FAQPage questions must describe their own answers ----------------------------
+    // 51 of 52 pages published "What exercises help <problem>?" in structured data while this
+    // document lists NO exercises (protoMove() is empty on 52 of 52), so the answer was the
+    // prescription — finasteride, TRT, thyroid medication, a topical retinoid.
+    const ld = [...page.html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)]
+      .map((m) => { try { return JSON.parse(m[1]); } catch (e) { return null; } }).filter(Boolean);
+    const faq = ld.find((j) => j && j['@type'] === 'FAQPage');
+    if (!faq) { bad.push(`${route}: publishes no FAQPage — this gate cannot check the questions against their answers`); return; }
+    const qs = faq.mainEntity || [];
+    const listsExercises = /Key movements:/.test(page.html);
+    qs.forEach((q) => {
+      if (/exercise/i.test(q.name) && !listsExercises) bad.push(`${route}: the FAQPage asks "${q.name}" and this document lists no exercise at all, so the answer is the prescription — "${String(q.acceptedAnswer.text).slice(0, 90)}…". A question in structured data must describe the answer underneath it.`);
+    });
+    const stepQ = qs.find((q) => /free (thing|first step)/i.test(q.name));
+    if (!stepQ) bad.push(`${route}: the FAQPage never asks about the $0 first step, which is the one thing that tells a movement-led protocol from a supplement-led one`);
+    else if (rc.phase1 && rc.phase1.action && String(stepQ.acceptedAnswer.text).indexOf(String(rc.phase1.action).trim()) < 0) bad.push(`${route}: the FAQPage's free-first-step answer does not contain this page's own action "${rc.phase1.action}"`);
+    else if (!rc.phase1 && rc.phase1None && String(stepQ.acceptedAnswer.text).indexOf('No.') !== 0) bad.push(`${route}: has no $0 first step and the FAQPage does not open by saying so`);
   }));
   if (!checked) bad.push('no /protocol pages were checked — this gate is running over an empty set');
   if (!withStep || !noStep) bad.push(`the description half of this gate saw ${withStep} pages with a $0 step and ${noStep} without; both branches must be exercised or half of it is running over an empty set`);
