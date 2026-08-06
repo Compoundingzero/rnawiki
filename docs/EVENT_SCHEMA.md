@@ -4,9 +4,20 @@
 **Gate:** `build/parse.js` → `assertAnalyticsVocabulary()` refuses to build if this document and
 `site/app.js` disagree. This file is the spec; the code is the implementation.
 
-**Currently INERT.** `A_CODE = null` in `site/app.js`, so no request is ever constructed and no
-byte leaves the browser. Setting `A_CODE` to a GoatCounter site code is the single switch that
-turns collection on. Nothing else needs to change — including the CSP (§3).
+**Status, 2026-08-06.** Two senders, one chokepoint (`aSend`), one closed vocabulary.
+
+| sender | switch | state |
+|---|---|---|
+| **GA4** | `A_GA4` in `site/app.js` | **LIVE** — `G-TPLGY5M63B`. Blank or `null` = fully inert. |
+| GoatCounter | `A_CODE` in `site/app.js` | **INERT** — `null`, so no request is ever constructed. Kept because it costs nothing while off; deleting it means changing the endpoint-count gate in the same commit. |
+
+**Neither needs a CSP change** (§3), because both are `<img>` GETs and `img-src 'self' data: https:`
+already permits any https host. Both are suppressed when `navigator.webdriver` is true, so
+`probe.mjs` and `npm run smoke` move no counts.
+
+**Google Analytics has no effect on search rankings.** It reports what happened after an arrival;
+Search Console reports the arrival itself. They are different instruments and neither improves the
+other. Nothing in this file is an SEO measure.
 
 ---
 
@@ -27,6 +38,38 @@ wrong, not the rule.
 **Chosen: GoatCounter, called directly from a ~40-line sender in `site/app.js` via an `<img>` GET.**
 Cookie-free, free, hosted (Felix maintains no server), no third-party script on the page, and
 **no CSP change required** — the existing `img-src 'self' data: https:` already permits it.
+
+### GA4 via `gtag.js` — rejected, with the measurement. We use the endpoint, not the script.
+
+`https://www.googletagmanager.com/gtag/js?id=G-TPLGY5M63B`, fetched 2026-08-06: **HTTP 200,
+497,740 B decoded / 169,053 B gzipped on the wire.** The measurement id appears **19 times**, and
+the inline container configuration Google serves for **this property, today**, contains:
+
+| tag in the served container | what it would do on this site |
+|---|---|
+| `__ccd_em_site_search`, `vtp_searchQueryParams:"q,s,search,query,keyword"` | The home hero is a real `<form action="/solve" method="get" name="q">`. **This reads the reader's own typed symptom text off the URL and sends it.** |
+| `__ccd_em_page_view`, `vtp_historyEvents:true` | This router is `pushState`. It would re-read `location.href` on every navigation and send `/protocol/low-testosterone/primary-hypogonadism` verbatim. |
+| `__ccd_em_outbound_click`, `vtp_includeParams:true` | Sends `link_url` — i.e. the **PMID**. A paper identifies a condition. |
+| `__ccd_em_scroll`, `vtp_autoEmailEnabled:true`, `vtp_isAutoCollectPiiEnabledFlag:true` | Further automatic collection, all server-configured. |
+
+**None of these can be switched off from code.** They are Data-stream settings in the GA4 admin, so
+a privacy property that depended on them would be a property of a web console someone else can
+change, not of this repository. `send_page_view:false` does not govern them.
+
+So, exactly as with GoatCounter's `count.js`: **we call the collect endpoint ourselves** — the same
+request `gtag.js` makes — and send only the fields in §4a. `aGA()` in `site/app.js`, ~25 lines.
+The build refuses to compile a `site/app.js` that mentions `googletagmanager.com` (§7).
+
+Measured in real Chrome against the CSP this server actually serves, 2026-08-06:
+
+| what was attempted | result |
+|---|---|
+| `new Image().src = '…/g/collect?…'` | **allowed, 0 CSP violations** — `img-src 'self' data: https:` |
+| `<script src="…/gtag/js?id=…">` injected into the same page | **refused by `script-src`** |
+| `navigator.sendBeacon()` to the same collect URL | **refused by `connect-src` — and returned `true`** |
+
+That third row is why this file exists: a blocked `sendBeacon` reports success to the page. This
+site has already shipped one beacon that was silently blocked and collected nothing for months.
 
 ### Cloudflare Web Analytics — rejected, with the measurement
 
@@ -251,6 +294,62 @@ can never move a count. Honest-by-default: a driven session is not a reader.
 
 ---
 
+## 4a. GA4 specifically — the fields, the cookies, and the numbers that lie
+
+### The fields
+
+| GA4 param | value sent | worst case |
+|---|---|---|
+| `tid` | `G-TPLGY5M63B` | the property |
+| `dl` (page_location) | `https://rnawiki.com` + **the template** — `/t/compound` | a template name |
+| `dt` (page_title) | **the same template string.** Never `document.title` | a template name |
+| `dr` (referrer) | the **origin** of an *external* referrer; omitted entirely if same-origin | `https://www.reddit.com` |
+| `en` (event) | `page_view`, or the §5 vocabulary flattened to GA4's `[A-Za-z0-9_]` charset | see the mapping below |
+| `cid` / `sid` / `_p` | random, **generated in memory at page load and never stored** | a number that dies with the tab |
+| `ul`, `sr` | browser language, screen size | coarse device bucketing |
+| `_s`, `seg`, `_et`, `_fv`, `_ss` | hit counter, engagement flag, ms between hits, first-hit flags | timing, no content |
+
+The origin in `dl` is **hard-coded to `https://rnawiki.com`**, so a localhost or preview build
+cannot report a second hostname into the property.
+
+Nothing after a `?` is ever sent. `route()` splits the query off before `parts` exists, so
+`/solve?q=<the reader's own words>` can only reach the sender as `/solve`.
+
+**Event-name mapping.** GA4 event names may only contain letters, digits and underscores, so §5's
+vocabulary is flattened at the point of sending — `e/search-chosen/compare-pair` →
+`search_chosen_compare_pair`. No new names are introduced: the string was already validated against
+`A_EVENTS` before it reached the sender, and the whole vocabulary is a small closed set against
+GA4's 500-per-property limit. It needs **no custom dimensions configured in GA** to be readable.
+
+### Cookies — the plain answer
+
+**This install sets no cookies. It writes nothing to the reader's device at all** — no cookie, no
+`localStorage`, no `sessionStorage`. A standard GA4 install writes `_ga` and `_ga_<id>`, first-party,
+**two-year** expiry, containing a random identifier whose entire purpose is to recognise the same
+browser across days. On a site whose URLs disclose a health interest, that is a persistent handle
+attached to a health inference. Because `gtag.js` is never loaded, none of it is created.
+
+So: **reading RNAwiki without an account is completely unchanged.** No banner, no prompt, no stored
+identifier, nothing to opt out of, and nothing that follows anyone to another site.
+
+### The consequence, stated before anyone misreads a dashboard
+
+The identifier lives in a JavaScript variable for the life of one document load. Every SPA
+navigation inside that load shares it (the SPA never reloads the document), and it is gone the
+moment the page is closed or refreshed. Therefore, in the GA4 interface:
+
+- **"Users" means page loads, not people.** A reader who comes back tomorrow is a new user.
+- **"New users" ≈ "Users", and "Returning users" is permanently ~0.** These carry no information.
+- **"Sessions" ≈ page loads.** There is no cross-visit stitching, by design.
+- **"Average engagement time" is time *between* beacons.** It cannot see the last page of a visit,
+  so read it as a floor, never as a measurement.
+- **Campaign attribution (`utm_*`) is absent**, because those live after `?` and the rule is
+  absolute. Channel grouping (Organic Search vs Referral vs Direct) is derived from `dr`, which is
+  sent — confirm that in GA after 24 h rather than assuming it.
+- **Ad blockers and Safari's tracking prevention block the collect host outright.** Every number
+  here is a floor. And ~90% of readers never run JavaScript, so they are invisible to GA entirely —
+  **GA is not a traffic count and must never be quoted as one.** Search Console is.
+
 ## 5. The event vocabulary
 
 Every event is `e/<name>/<suffix>`, and **both halves are closed sets**. `RNA_A.ev(name, suffix)`
@@ -308,7 +407,19 @@ non-zero exit stops the deploy). It fails the build when:
 - **(a)** any `RNA_A.ev(` call passes a non-literal event name;
 - **(b)** an emitted event name is not a key of `A_EVENTS`;
 - **(c)** a declared event is not documented in this file as `e/<name>/`;
-- **(d)** `site/app.js` contains anything other than exactly one `goatcounter.com` endpoint.
+- **(d)** `site/app.js` contains anything other than exactly one `goatcounter.com` endpoint;
+- **(e)** `site/app.js` contains anything other than exactly one `google-analytics.com` collect
+  endpoint, **or mentions `googletagmanager.com` at all** — a build-time proof that the
+  enhanced-measurement leaks measured in §1a can never be switched on by a code edit;
+- **(f)** `A_GA4` is not exactly one declaration, or is neither blank nor a well-formed
+  `G-XXXXXXXXXX` measurement id (a typo there collects nothing, silently).
+
+`build/prerender.js` → `assertPageviewIntegrity()` additionally pins, verbatim, the two lines that
+send `dl` and `dt`, the two lines of `aRefOrigin()` that drop a same-origin referrer, and refuses
+any reference to `document.title`, `location.search`, `location.href`, `location.pathname` or
+`document.referrer` **inside `aGA()`** — which is how the query string and the page title would get
+back in. The route replay proves the vocabulary covers the corpus; it is blind to the sender, and
+these pins are the other half.
 
 Check (a) is the one that matters. It is what makes §0 a build property: a call site cannot be
 edited into `RNA_A.ev(name, compound.name)` without the build refusing.
@@ -335,9 +446,28 @@ Stated plainly so nobody later reads more into a dashboard than is in it:
 
 ## 9. Open, for Felix
 
-1. **Create the GoatCounter site and set `A_CODE`.** Until then this module is dead code that costs
-   one delegated click listener.
-2. **Remove `static.cloudflareinsights.com` from `script-src`?** Cloudflare Web Analytics is off,
+1. **Confirm ingestion — the one thing code cannot prove.** The collect endpoint returns `204` for
+   anything, valid or not, so a successful response is **not** evidence that GA stored the hit.
+   Open **GA4 → Reports → Engagement → Pages and screens**, last 7 days, and look for the marker
+   path **`/t/ga-install-check`**, sent once by `curl` on 2026-08-06 (HTTP 204) with exactly the
+   payload `aGA()` builds. That path exists nowhere else and can only have come from that request.
+   If it appears, the transport is proven end-to-end and nothing further is needed. Real template
+   paths (`/t/compound`, `/solve`, `/t/protocol`) should follow once the branch deploys.
+   **If nothing appears after 48 h**, the payload is being
+   dropped and the fallback is `gtag.js` plus a CSP edit — which costs the enhanced-measurement
+   leaks in §1a and needs a consent decision. Do not conclude "it works" from the 204.
+2. **GA4 Admin → Data streams → Enhanced measurement: turn all of it OFF.** Nothing in this repo
+   loads `gtag.js`, so none of it runs today. Turn it off anyway: it is currently **ON** (measured,
+   §1a), and the day a Google tag reaches these pages by any other route — the Search Console
+   "install your Google tag" prompt, a Tag Manager snippet, a platform auto-injection — the site
+   search / history page_view / outbound-click leaks switch themselves on with no code change and
+   no build failure.
+3. **GA4 Admin → Data collection: Google signals OFF, ads personalisation OFF; data retention 2
+   months.** Page-type data from a health site should never join an advertising profile, and
+   14-month retention buys nothing this property can use.
+4. **`A_CODE` / GoatCounter.** It is inert and free to keep. If it is never going to be used, say so
+   and it can be deleted — but check (d) in §7 must change in the same commit or the build fails.
+5. **Remove `static.cloudflareinsights.com` from `script-src`?** Cloudflare Web Analytics is off,
    but the dashboard toggle exists and would auto-inject the beacon into every HTML response — at
    which point the full URL would be sent and blocked only by the *absence* of the apex host from
    connect-src, i.e. by accident rather than by design. Removing the entry makes it fail closed.

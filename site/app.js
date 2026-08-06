@@ -3850,6 +3850,31 @@
   // connect-src, would be blocked, and would fail silently (the exact way Cloudflare Web Analytics
   // and the PubChem fetch both failed before — see the CSP comments in server.js).
   const A_CODE = null; // ← set to the GoatCounter site code (e.g. 'rnawiki') to switch this on. null = fully inert.
+  // ---- GA4 (2026-08-06). THE ONE SWITCH. '' or null = fully inert: no request is built and no
+  // host is contacted. This is the destination now; the GoatCounter branch above stays wired and
+  // stays off, and both are governed by their own constant alone.
+  const A_GA4 = 'G-TPLGY5M63B';
+  // gtag.js IS DELIBERATELY NOT LOADED, and that is a measurement, not a preference. The container
+  // Google serves for THIS measurement id (fetched 2026-08-06: HTTP 200, 497,740 B decoded /
+  // 169,053 B gzipped, the id appearing 19 times) carries every enhanced-measurement tag switched
+  // ON in its inline config: __ccd_em_site_search with vtp_searchQueryParams "q,s,search,query,
+  // keyword" — and this site's own hero is a real <form action="/solve" method="get" name="q">, so
+  // that tag reads the reader's typed symptom text; __ccd_em_page_view with vtp_historyEvents:true,
+  // which re-reads location.href on every pushState and this router is pushState;
+  // __ccd_em_outbound_click with vtp_includeParams:true, which sends the PMID; plus
+  // __ccd_em_scroll, vtp_autoEmailEnabled:true and vtp_isAutoCollectPiiEnabledFlag:true.
+  // NONE of that can be switched off from code — it is data-stream configuration in a web console.
+  // A privacy guarantee that lives in someone else's dashboard is not a guarantee, so we call the
+  // collect endpoint ourselves, exactly as we do for GoatCounter above, and send only §4a's fields.
+  // ---- IDENTITY: MEMORY ONLY. No cookie, no localStorage, no sessionStorage — nothing is written
+  // to the reader's device, so reading this site with no account is byte-for-byte unchanged and
+  // there is nothing to consent to. One document load = one cid; every SPA navigation inside that
+  // load shares it, because the SPA never reloads the document. The honest cost is written down in
+  // docs/EVENT_SCHEMA.md §4a: in this property "Users" means page loads, not people.
+  const A_GID = (1 + Math.floor(Math.random() * 2147483646)) + '.' + Math.floor(Date.now() / 1000);
+  const A_SESS = Math.floor(Date.now() / 1000);
+  const A_PID = String(1 + Math.floor(Math.random() * 2147483646));
+  let _aHits = 0, _aWhen = Date.now(), _aStart = Date.now(), _aTplNow = '/';
   // ALLOWLIST, not blocklist. Verbatim paths are only the routes that encode no health interest.
   // A route template added tomorrow and forgotten here fails CLOSED to /t/other; it can never leak
   // a health-encoding URL by omission.
@@ -3881,21 +3906,57 @@
     if (!parts || !parts.length) return '/';
     return '/t/' + (A_TPL[parts[0]] || 'other');
   }
-  function aRef() {
-    // Only the ORIGIN of an EXTERNAL referrer. A same-origin referrer is the reader's previous
-    // RNAwiki URL — exactly the health disclosure this module exists to withhold. An external
-    // referrer's PATH is dropped too: a link from a forum thread whose URL names a condition
-    // discloses the reader's health state just as effectively as our own URL would.
+  function aRefOrigin() {
+    // ONE referrer rule, two formatters (GoatCounter `r`, GA4 `dr`). Only the ORIGIN of an EXTERNAL
+    // referrer. A same-origin referrer is the reader's previous RNAwiki URL — exactly the health
+    // disclosure this module exists to withhold. An external referrer's PATH is dropped too: a link
+    // from a forum thread whose URL names a condition discloses the reader's health state just as
+    // effectively as our own URL would. This is byte-for-byte the value gtag.js would put in `dr`
+    // by default, which is the second reason it is not loaded.
     try {
       if (!document.referrer) return '';
       const u = new URL(document.referrer);
       if (u.host === location.host) return '';
-      return '&r=' + encodeURIComponent(u.origin);
+      return u.origin;
     } catch (e) { return ''; }
   }
+  function aRef() { const o = aRefOrigin(); return o ? '&r=' + encodeURIComponent(o) : ''; }
+  // GA4, sent as an <img> GET to the collect endpoint — the same request gtag.js makes, without
+  // gtag.js. TRANSPORT IS img-src, WHICH THE CSP ALREADY PERMITS (`img-src 'self' data: https:`),
+  // so server.js needs no edit; that was proven in a real browser against the CSP this server
+  // actually serves, not reasoned about. Do NOT "upgrade" this to sendBeacon or fetch(): both are
+  // governed by connect-src, both would be blocked, and sendBeacon RETURNS TRUE while blocked —
+  // it fails invisibly, which is exactly how Cloudflare Web Analytics collected nothing. If you
+  // ever need one, add the host to connect-src in server.js IN THE SAME COMMIT.
+  function aGA(p, isEvent) {
+    if (!A_GA4) return;
+    // GA4 event names are [A-Za-z0-9_] only, so the closed vocabulary is flattened:
+    // 'e/search-chosen/compare-pair' -> 'search_chosen_compare_pair'. No new vocabulary is
+    // introduced — every name here is derived from the same string A_EVENTS already validated.
+    const en = isEvent ? p.replace(/^e\//, '').replace(/\//g, '_').replace(/-/g, '_') : 'page_view';
+    if (!isEvent) _aTplNow = p;
+    const now = Date.now(), ref = aRefOrigin();
+    _aHits++;
+    try {
+      new Image().src = 'https://www.google-analytics.com/g/collect'
+        + '?v=2&tid=' + A_GA4
+        + '&cid=' + A_GID + '&sid=' + A_SESS + '&sct=1&_p=' + A_PID
+        + '&seg=' + ((_aHits > 1 || now - _aStart > 10000) ? '1' : '0')
+        + '&en=' + en
+        + '&dl=' + encodeURIComponent('https://rnawiki.com' + _aTplNow)   // the TEMPLATE, never the URL
+        + '&dt=' + encodeURIComponent(_aTplNow)                            // never document.title
+        + '&ul=' + encodeURIComponent((navigator.language || 'en').toLowerCase())
+        + '&sr=' + ((window.screen && screen.width) || 0) + 'x' + ((window.screen && screen.height) || 0)
+        + '&_s=' + _aHits
+        + (_aHits === 1 ? '&_fv=1&_ss=1' : '&_et=' + Math.min(now - _aWhen, 1800000))
+        + (ref ? '&dr=' + encodeURIComponent(ref) : '');
+      _aWhen = now;
+    } catch (e) { }
+  }
   function aSend(p, isEvent) {
-    if (!A_CODE) return;
     if (navigator.webdriver) return;              // headless Chrome / the QA harness must not move the counts
+    aGA(p, isEvent);                              // GA4  — governed by A_GA4 alone
+    if (!A_CODE) return;                          // GoatCounter — governed by A_CODE alone, still inert
     try {
       new Image().src = 'https://' + A_CODE + '.goatcounter.com/count'
         + '?p=' + encodeURIComponent(p)

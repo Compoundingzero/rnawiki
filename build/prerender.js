@@ -3202,6 +3202,34 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     '  }',
   ].join('\n');
   if (appSrc.indexOf(ATPL_BODY) < 0) bad.push(`aTemplate() in site/app.js is not the function this gate and docs/EVENT_SCHEMA.md describe. It is the single point where a reader's URL is turned into a template name, and every privacy claim about this beacon rests on its last line falling through to /t/other. Restore exactly:\n${ATPL_BODY.split('\n').map((l) => '      ' + l).join('\n')}`);
+  // --- (2a) THE GA4 PAYLOAD, PINNED VERBATIM, for exactly the reason ATPL_BODY is pinned ---
+  // The route replay below proves the VOCABULARY covers the corpus. It is blind to the SENDER.
+  // GA4 stores `dl` as page_location and `dt` as page_title, both verbatim, and on this corpus a
+  // title reads "Bremelanotide (PT-141): dosage, evidence & side effects" and a URL reads
+  // /problem/hair-loss. These two lines are therefore the whole privacy claim for the GA install.
+  const GA_BODY = [
+    "        + '&dl=' + encodeURIComponent('https://rnawiki.com' + _aTplNow)   // the TEMPLATE, never the URL",
+    "        + '&dt=' + encodeURIComponent(_aTplNow)                            // never document.title",
+  ].join('\n');
+  if (appSrc.indexOf(GA_BODY) < 0) bad.push(`the GA4 sender in site/app.js no longer sends the template as BOTH dl and dt. GA4 records page_location and page_title verbatim, and on this corpus both name a compound or a condition. Restore exactly:\n${GA_BODY}`);
+  const REF_BODY = [
+    "      if (u.host === location.host) return '';",
+    '      return u.origin;',
+  ].join('\n');
+  if (appSrc.indexOf(REF_BODY) < 0) bad.push(`aRefOrigin() in site/app.js no longer drops a same-origin referrer and reduce an external one to its origin. A same-origin document.referrer on this site is the reader's previous URL — a condition and often its root cause — and it is byte-for-byte what gtag.js would put in \`dr\`. Restore exactly:\n${REF_BODY}`);
+  const gaFrom = appSrc.indexOf('function aGA('), gaTo = appSrc.indexOf('function aSend(');
+  if (gaFrom < 0 || gaTo < gaFrom) bad.push('could not locate aGA() ahead of aSend() in site/app.js — this gate refuses rather than passing blind on the GA4 sender.');
+  else {
+    // GA_BODY is subtracted before scanning, and ONLY GA_BODY. Its `dt` line carries the comment
+    // "never document.title", which the scan below would otherwise flag — the gate's first run did
+    // exactly that. Subtracting it is safe precisely because those two lines are pinned
+    // character-exact three checks above, so nothing can hide inside them.
+    const gaSeg = appSrc.slice(gaFrom, gaTo).split(GA_BODY).join('\n');
+    ['document.title', 'location.search', 'location.href', 'location.pathname', 'document.referrer'].forEach((s) => {
+      if (gaSeg.indexOf(s) >= 0) bad.push(`aGA() in site/app.js references \`${s}\`. The GA4 beacon may only ever see the template string aTemplate() already produced and the origin aRefOrigin() already reduced. Nothing inside the sender may re-read the live URL, the title or the raw referrer — that is precisely how the query string and the page title get back in.`);
+    });
+  }
+
   const mPub = appSrc.match(/const A_PUBLIC = \[([\s\S]*?)\];/);
   const mTpl = appSrc.match(/const A_TPL = \{([\s\S]*?)\};/);
   if (!mPub || !mTpl) bad.push('could not parse A_PUBLIC / A_TPL out of site/app.js — this gate cannot verify what the beacon sends, so it refuses rather than passing blind.');

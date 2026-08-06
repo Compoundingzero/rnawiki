@@ -2940,13 +2940,33 @@ const POM_ENDOGENOUS = /^(insulin|testosterone|estradiol|erythropoietin|epo|mela
   // (d) exactly one outbound analytics endpoint in the whole file
   const eps = (src.match(/goatcounter\.com/g) || []).length;
   if (eps !== 1) fail.push(`expected exactly 1 analytics endpoint in site/app.js, found ${eps} — a second sender would not be covered by the vocabulary checks above`);
+  // (e) GA4: exactly one collect endpoint, and NEVER the tag-manager script.
+  //     MEASURED 2026-08-06 by fetching the container Google serves for this measurement id
+  //     (HTTP 200, 497,740 B decoded, the id appearing 19 times): every enhanced-measurement tag is
+  //     switched ON in its inline config — site search reading "q,s,search,query,keyword" (this
+  //     site's own hero generates /solve?q=<the reader's words>), page_view on history events (it
+  //     re-reads location.href on every pushState), outbound click with includeParams (the PMID),
+  //     scroll, autoEmailEnabled and isAutoCollectPiiEnabledFlag. None of it can be disabled from
+  //     code — it is data-stream configuration. Loading that script would also send document.title
+  //     and document.referrer and set the _ga cookie. So the script must never appear in this file.
+  const gaEps = (src.match(/google-analytics\.com/g) || []).length;
+  if (gaEps !== 1) fail.push(`expected exactly 1 GA4 collect endpoint in site/app.js, found ${gaEps} — a second sender would not be covered by the vocabulary checks above`);
+  const tagMgr = (src.match(/googletagmanager\.com/g) || []).length;
+  if (tagMgr) fail.push(`site/app.js references googletagmanager.com ${tagMgr} time(s). gtag.js must never be loaded on this site: its enhanced-measurement tags read location.href on every pushState, read the "q" query parameter the /solve hero itself generates, send document.title and document.referrer, and set the _ga cookie — none of which can be turned off from code. Send GA4 hits through aGA() instead. See docs/EVENT_SCHEMA.md §1a.`);
+  // (f) the measurement id lives in exactly one config value, and blank switches it off
+  const gaDecl = src.match(/const A_GA4 = ('[^']*'|null);/g) || [];
+  if (gaDecl.length !== 1) fail.push(`expected exactly 1 \`const A_GA4 = …;\` declaration in site/app.js, found ${gaDecl.length} — the measurement id must live in exactly one place that is off when blank`);
+  else {
+    const gaVal = gaDecl[0].replace(/^const A_GA4 = /, '').replace(/;$/, '').replace(/'/g, '');
+    if (gaVal && gaVal !== 'null' && !/^G-[A-Z0-9]{4,12}$/.test(gaVal)) fail.push(`A_GA4 is "${gaVal}", which is neither blank nor a GA4 measurement id (G-XXXXXXXXXX). A typo here collects nothing, silently — the exact failure this project has already shipped once.`);
+  }
   if (fail.length) {
     console.error('\n[parse] ANALYTICS VOCABULARY GATE FAILED — refusing to build:');
     fail.forEach((m) => console.error('  ✗ ' + m));
     console.error('  Read docs/EVENT_SCHEMA.md. Do not widen the vocabulary to silence this.');
     process.exit(1);
   }
-  console.log(`[parse] analytics vocabulary OK — ${declared.size} declared events, ${used.size} emitted, all documented, 1 endpoint.`);
+  console.log(`[parse] analytics vocabulary OK — ${declared.size} declared events, ${used.size} emitted, all documented, 1 GoatCounter endpoint, 1 GA4 collect endpoint, 0 gtag.js references.`);
 })();
 
 // ---------- SHARED: BLANK THE COMMENTS, KEEP THE COPY (W3.5, 2026-08-02) ----------
