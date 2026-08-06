@@ -2008,12 +2008,26 @@ ANAT.muscles.forEach((m) => {
     <p><a href="/anatomy">← All muscle groups</a></p></div>`;
   // /body and /body/leg were byte-identical and each self-canonicalised, so we published two URLs
   // claiming to be the canonical version of the same page. /body/leg is the one with a model behind
-  // it; /body is the hub. Both are emitted (the SPA routes both), but /body/leg carries the canonical
-  // and /body is marked noindex so only one competes.
+  // it; /body is the hub. Both are emitted (the SPA routes both), and /body/leg carries the canonical
+  // so only one competes.
+  //
+  // W6 (2026-08-06): THE noindex IS GONE, and the canonical does the whole job on its own.
+  // MEASURED on the built corpus: 53 documents carried `content="noindex"` — these two lines and
+  // the 52 /fuel pages. The 52 are the clean pattern: noindex + SELF-canonical + `noSitemap: true`,
+  // so they appear in 0 <loc> entries. /body was the only page on the site carrying BOTH a noindex
+  // AND a canonical pointing at a different URL, and the only noindex page listed in sitemap.xml.
+  // Google's own duplicate-handling guidance is not to combine the two, because the noindex can be
+  // consolidated onto the canonical TARGET — and the target here is /body/leg, the site's only
+  // first-party 3D page and the one we are trying to keep. It was also a standing
+  // "Submitted URL marked noindex" error in Search Console, because /body is in the sitemap.
+  // Of the two ways to break the pair up, this is the one that keeps the safe tag and drops the
+  // risky one. The alternative — keep the noindex and drop /body from the sitemap with the
+  // `noSitemap` option the /fuel pages use — takes the route universe from 568 to 567, and
+  // assertRouteUniverse then demands an entry in build/withdrawn.json recording /body as withdrawn
+  // when it still serves. assertNoindexNeverCrossCanonicals() below is the gate.
   ['/body', '/body/leg'].forEach((route) => add(route, shell({
     route,
     canonical: '/body/leg',
-    robots: route === '/body' ? 'noindex,follow' : undefined,
     title: seoTitle('Interactive 3D body: the muscles and how they move'),
     desc: seoDesc('Rotate a 3D leg model and tap any muscle to see the bones it attaches to — origin and insertion — and watch it perform its action, on the body.'),
     breadcrumbs: anatCrumb('Interactive 3D body', '/body/leg'), body })));
@@ -3468,6 +3482,39 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] canonical parity OK — ${pages.length + 1} documents, every canonical absolute and matching its own og:url, ${Object.keys(emitted).length} deliberate override(s) mirrored in site/app.js.`);
+})();
+
+// ---- build-time assertion: A NOINDEX MUST NOT CONTRADICT A CANONICAL OR THE SITEMAP -----------
+// W6 (2026-08-06). Three signals tell Google what to do with a URL — the robots meta, the
+// canonical, and whether the URL is in sitemap.xml — and they were contradicting each other.
+// MEASURED on the built corpus: 53 documents carried content="noindex". 52 of them (/fuel/*) are
+// the clean pattern — noindex + SELF-canonical + absent from the sitemap. The 53rd, /body, carried
+// noindex AND a canonical pointing at /body/leg AND a <loc> entry, i.e. all three signals at once,
+// pointing three ways. Google's duplicate-handling guidance says a noindex can be consolidated onto
+// the canonical target, and here the target is the site's only first-party 3D page.
+// This is a defect class, not one page: the next hub that gets a twin will be written the same way.
+// PROVE IT by restoring `robots: route === '/body' ? 'noindex,follow' : undefined`.
+(function assertNoindexNeverCrossCanonicals() {
+  const bad = [];
+  const sitemap = new Set(urls);
+  let noindexed = 0;
+  const check = (route, html, inSitemap) => {
+    const rb = (String(html).match(/<meta name="robots" content="([^"]*)">/) || [])[1] || '';
+    if (!/\bnoindex\b/.test(rb)) return;
+    noindexed++;
+    const can = (String(html).match(/<link rel="canonical" href="([^"]+)">/) || [])[1] || '';
+    if (can && can !== SITE_URL + route) bad.push(`${route}: is noindex AND canonicalises to ${can}. Google may apply the noindex to the canonical TARGET, so this asks for ${can.replace(SITE_URL, '')} to be dropped from the index too. Pick one: either the noindex (and self-canonicalise) or the canonical (and drop the noindex).`);
+    if (inSitemap) bad.push(`${route}: is noindex and is listed in sitemap.xml. A sitemap is a request to index; this is a request not to. It is a standing "Submitted URL marked noindex" error in Search Console. Emit it with { noSitemap: true }, as the 52 /fuel pages do.`);
+  };
+  pages.forEach((p) => check(p.route, p.html, sitemap.has(p.route)));
+  try { check('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8'), true); } catch (e) { /* canonical parity already fails loudly on an unreadable home.html */ }
+  if (bad.length) {
+    console.error('\n[prerender] A PAGE TELLS GOOGLE TWO DIFFERENT THINGS — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] index directives OK — ${noindexed} noindexed page(s), every one self-canonical and out of the sitemap.`);
 })();
 
 // ---- build-time assertion: THE FRAGMENTS THIS FILE PUBLISHES MUST BE RESOLVABLE ---------------
