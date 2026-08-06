@@ -3777,6 +3777,58 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans (${thin} reachable from a single page).`);
 })();
 
+// ---- build-time assertion: THE SPA'S OWN HASH LINKS MUST RESOLVE TO A route() BRANCH -----------
+// The gate above is the crawler's link graph: it reads the PRERENDERED documents. It is blind to
+// site/app.js, which is where the SPA writes its own `href="#/x"` links — and `#/x` is hash-ROUTER
+// navigation, not an in-page anchor, so a segment route() does not handle falls through to
+// notFound().
+//
+// THE BUG THIS EXISTS FOR, measured in real Chrome at 390x844 on 2026-08-06, BEFORE it was fixed:
+// loading /about and clicking the anchor whose href is exactly `#/newsletter` put the browser on
+// http://localhost:8099/newsletter with an <h1> reading "Not found". route() lost its `newsletter`
+// branch on 2026-07-28 and the link in aboutPage() was left behind, so for over a week every JS
+// reader on /about had a dead link on the page — and `npm run build` was green the whole time,
+// because assertLinkGraph never opens app.js.
+//
+// That was the FIFTH recorded instance of prerendered/SPA drift on this project. The other four
+// were caught by a human reading the file. This one is now caught by the build.
+//
+// The allowed set is read out of route() itself, so it cannot go stale: every `parts[0] === 'x'`
+// comparison plus every string in an `[...].indexOf(parts[0])` membership test. `#/` (bare) is the
+// home route and is always allowed.
+(function assertSpaHashLinks() {
+  const appPath = path.join(ROOT, 'site', 'app.js');
+  const src = fs.readFileSync(appPath, 'utf8');
+  const routeAt = src.indexOf('  function route() {');
+  if (routeAt < 0) {
+    console.error('[prerender] SPA hash links: could not find `function route()` in site/app.js. This gate refuses rather than passing blind.');
+    process.exit(1);
+  }
+  // route() to the end of the file is fine as a search window: every parts[0] test lives inside it.
+  const routeSrc = src.slice(routeAt);
+  const allowed = new Set(['']);                                   // '' === `href="#/"` === home
+  for (const m of routeSrc.matchAll(/parts\[0\]\s*===\s*'([a-z0-9-]+)'/g)) allowed.add(m[1]);
+  for (const m of routeSrc.matchAll(/\[([^\]]*?)\]\.indexOf\(parts\[0\]\)/g)) {
+    for (const s of m[1].matchAll(/'([a-z0-9-]+)'/g)) allowed.add(s[1]);
+  }
+  // KEEP_PRERENDERED is a named array, not an inline one — read it where it is declared.
+  const keep = src.match(/KEEP_PRERENDERED\s*=\s*\[([^\]]*)\]/);
+  if (keep) for (const s of keep[1].matchAll(/'([a-z0-9-]+)'/g)) allowed.add(s[1]);
+
+  const dead = new Map();                                          // segment -> occurrences
+  for (const m of src.matchAll(/href="#\/([a-z0-9-]*)/g)) {
+    if (!allowed.has(m[1])) dead.set(m[1], (dead.get(m[1]) || 0) + 1);
+  }
+  if (dead.size) {
+    console.error(`[prerender] SPA HASH LINKS: ${dead.size} segment(s) in site/app.js link to a route the SPA does not serve.`);
+    [...dead.entries()].forEach(([seg, n]) => console.error(`  ✗ href="#/${seg}" — ${n} occurrence(s). route() has no branch for '${seg}', so clicking it renders notFound().`));
+    console.error('  `#/x` is hash-ROUTER navigation, not an in-page anchor. Either add the branch to route() in the same commit, or remove the link.');
+    process.exit(1);
+  }
+  const used = new Set([...src.matchAll(/href="#\/([a-z0-9-]*)/g)].map((m) => m[1]));
+  console.log(`[prerender] SPA hash links OK — ${used.size} distinct #/ segment(s) in site/app.js, every one handled by route() (${allowed.size} branches).`);
+})();
+
 // ---- build-time assertion: A COLOUR TOKEN MUST BE READABLE ON THE PAGE IT IS PRINTED ON --------
 // W5c (2026-08-02). Contrast was measured, fixed by eye and then re-broken twice in this codebase's
 // history, because nothing checks it. Measured hydrated at 390x844 with chFade disabled and every
