@@ -412,7 +412,34 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
   const img = ogImage || (SITE_URL + '/og.png');
   const url = SITE_URL + (canonical || route);   // canonical overrides self-reference (see /body)
-  const ld = [].concat(jsonld || []).map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('');
+  // W6 (2026-08-06): A DEFAULT PAGE ENTITY, for the pages that had none.
+  // MEASURED over all 568 published documents: 568 carried a BreadcrumbList, 403 a MedicalWebPage,
+  // 333 a FAQPage, 52 a HowTo — and 164 carried NOTHING BUT the breadcrumb. Google was told how to
+  // get to those pages and nothing at all about what they are. The 164 were /target x103,
+  // /muscle x17, /pathway x16, /learn x6, /physiology x4, /energy x3 and 15 singletons (/about
+  // /anatomy /az /body x2 /browse /compare /corrections /legend /methodology /pathways /plan /solve
+  // /stack /where).
+  //
+  // WHAT IT ASSERTS AND WHAT IT DELIBERATELY DOES NOT. Only four things, every one of which is a
+  // string already visible in this same document: the page's name (its own <title>, minus the
+  // brand suffix), its description (its own meta description), its canonical URL, and its language.
+  // Plus the two @id references to the Organization and WebSite declared on the home page.
+  // There is NO author, NO reviewer, NO reviewedBy, NO review, NO aggregateRating and NO
+  // datePublished — nobody has reviewed these pages and no rating exists, and structured data that
+  // says otherwise is a fabrication that ends up quoted in a search result.
+  // There is also NO dateModified: PUB carries the BUILD date, which would assert that all 164
+  // pages changed today. The honest per-page date is build/lastmod.json, and it is not computed
+  // until after every page has been built, so it cannot reach here.
+  // WebPage, not MedicalWebPage: 61 of the 164 are anatomy, physiology and course pages, and a
+  // /learn module about how to read a study is not medical content about a condition.
+  // assertEveryPageDescribesItself() below is the gate.
+  const _pageLd = [].concat(jsonld || []);
+  if (!_pageLd.length) _pageLd.push({
+    '@context': 'https://schema.org', '@type': 'WebPage', '@id': url + '#page',
+    name: String(title).replace(SUFFIX, ''), description: desc, url,
+    inLanguage: 'en', isPartOf: PUB.isPartOf, publisher: PUB.publisher,
+  });
+  const ld = _pageLd.map((j) => `<script type="application/ld+json">${JSON.stringify(j)}</script>`).join('');
   const crumbLd = breadcrumbs ? `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: SITE_URL + b.route })),
@@ -3564,6 +3591,62 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] page headings OK — ${pages.length + 1} documents, every one with exactly one non-empty <h1>.`);
+})();
+
+// ---- build-time assertion: EVERY PAGE SAYS WHAT IT IS, AND NEVER SAYS WHO REVIEWED IT ---------
+// W6 (2026-08-06). Two halves, and the second matters more than the first.
+//
+// (1) COVERAGE. Measured over all 568 published documents: 568 carried a BreadcrumbList and 164
+//     carried nothing else — Google was told how to reach the page and nothing about what it is.
+//     A BreadcrumbList is navigation, not a description; it is not a page-level entity.
+//
+// (2) HONESTY. The rule "never invent an author, a reviewer, a credential or a rating" is a rule a
+//     human has to remember on every edit. Structured data is exactly where that rule gets broken
+//     silently, because a fabricated `reviewedBy` or `aggregateRating` is invisible on the page and
+//     visible in the search result. There are no verified professionals on this site and there is
+//     no rating; measured today, 0 of the 621 emitted documents declare any of these keys. This
+//     makes that a machine-checked property instead of a habit.
+//     PROVE IT by adding `author: { '@type': 'Person', name: 'Felix' }` to the default entity in
+//     shell(), or `aggregateRating` to a compound's JSON-LD — the build must refuse.
+(function assertEveryPageDescribesItself() {
+  const bad = [];
+  // Keys that assert a person, an endorsement or a score. A page-level entity may never carry one
+  // unless a real, named, verifiable source exists — and none does.
+  const BANNED = ['author', 'creator', 'editor', 'contributor', 'review', 'reviews', 'reviewedBy',
+    'reviewRating', 'aggregateRating', 'ratingValue', 'reviewCount', 'ratingCount', 'endorser'];
+  const NAV_ONLY = new Set(['BreadcrumbList', 'SearchAction', 'EntryPoint', 'ListItem']);
+  let described = 0, defaulted = 0;
+  const check = (route, html) => {
+    const blocks = [...String(html).matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+    const types = [];
+    blocks.forEach((m, i) => {
+      let o; try { o = JSON.parse(m[1]); } catch (e) { bad.push(`${route}: JSON-LD block ${i + 1} does not parse`); return; }
+      const walk = (x, path) => {
+        if (Array.isArray(x)) return x.forEach((v, n) => walk(v, `${path}[${n}]`));
+        if (!x || typeof x !== 'object') return;
+        if (x['@type']) [].concat(x['@type']).forEach((t) => types.push(t));
+        Object.keys(x).forEach((k) => {
+          if (BANNED.includes(k)) bad.push(`${route}: JSON-LD declares "${k}" at ${path}. Nobody has reviewed these pages, there are no verified professionals and no rating exists — structured data that says otherwise is a fabrication, and it is the kind that ends up quoted in a search result.`);
+          walk(x[k], `${path}.${k}`);
+        });
+      };
+      walk(o, 'block' + (i + 1));
+    });
+    const pageLevel = types.filter((t) => !NAV_ONLY.has(t));
+    if (!pageLevel.length) bad.push(`${route}: carries no page-level structured data — only ${types.join(', ') || 'nothing'}. Google is told how to reach this page and nothing about what it is.`);
+    else described++;
+    if (types.includes('WebPage')) defaulted++;
+  };
+  pages.forEach((p) => check(p.route, p.html));
+  try { check('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { bad.push('could not read site/home.html to check its structured data'); }
+  if (bad.length) {
+    console.error('\n[prerender] STRUCTURED DATA IS MISSING OR CLAIMS SOMETHING UNTRUE — refusing to build.');
+    bad.slice(0, 40).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 40) console.error(`    … and ${bad.length - 40} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] page entities OK — ${described} documents describe themselves (${defaulted} on the default WebPage), 0 declare an author, reviewer or rating.`);
 })();
 
 // ---- build-time assertion: THE FRAGMENTS THIS FILE PUBLISHES MUST BE RESOLVABLE ---------------
