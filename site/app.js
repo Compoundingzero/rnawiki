@@ -1276,7 +1276,8 @@
   // prerendered one -- the prerendered home had no search input and no seed chips, so the ~90% of
   // traffic that never runs JavaScript could not use the page's FIRST call to action; the SPA had no
   // problem list and no crawlable goal labels. Sixth recorded instance of this exact failure on this
-  // project ("build a prerendered page, forget the hydrated twin" -- see the note above nlForm()).
+  // project ("build a prerendered page, forget the hydrated twin" -- the /newsletter page was the
+  // canonical example; it and its nlForm() were deleted 2026-08-06 with the rest of the newsletter).
   //
   // WHY CAPTURE, AND NOT A SHARED RENDERER MODULE. A shared module is the obvious answer and it is
   // the wrong one: every block of this page is a function of D -- goal counts, regulatory_class
@@ -3578,29 +3579,13 @@
       <p><strong>Found something wrong?</strong> That is the most useful thing you can send. Errors here should be fixed rather than defended.</p>
 
       <h2>Where to go next</h2>
-      <ul><li><a href="#/solve">Solve a problem or reach a goal</a></li><li><a href="#/az">Every compound, A–Z</a></li><li><a href="#/browse">Browse by category</a></li><li><a href="#/pathways">The master pathways</a></li><li><a href="#/newsletter">The weekly newsletter</a></li></ul>
+      <ul><li><a href="#/solve">Solve a problem or reach a goal</a></li><li><a href="#/az">Every compound, A–Z</a></li><li><a href="#/browse">Browse by category</a></li><li><a href="#/pathways">The master pathways</a></li></ul>
     </div>`;
   }
 
-  // ---------- /newsletter ----------
-  // ADDED 2026-07-28. The prerendered page shipped without a matching SPA route, so a hard load of
-  // /newsletter worked (curl 200) while CLICKING the footer link from anywhere inside the app fell
-  // through route() to notFound(). Third instance today of the same class: build a prerendered page,
-  // forget the hydrated twin. Rule of thumb — if prerender.js gains an add('/x'), app.js needs a
-  // route for 'x' in the same commit.
-  function nlForm(source, cta) {
-    return `<form class="nl-form" data-nl data-source="${esc(source)}" novalidate>
-      <label class="sr-only" for="nl-e-${esc(source)}">Your email address</label>
-      <input id="nl-e-${esc(source)}" class="nl-input" type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@example.com">
-      <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="nl-btn" type="submit">${esc(cta)}</button>
-      <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
-      <p class="nl-note">One email a week. Unsubscribe in one click. No spam, ever.</p>
-    </form>`;
-  }
-  // newsletterPage() removed 2026-07-30 — the /newsletter route was folded into the home page
-  // and this function had ZERO call sites (verified: one occurrence in the file, its own
-  // definition). Its loss-framed copy lives on in the home newsletter block.
+  // newsletterPage() removed 2026-07-30, nlForm() removed 2026-08-06 — the whole newsletter is
+  // gone (owner's decision). Both had ZERO call sites at the point of removal; nlForm's only other
+  // occurrence in this file was the comment at ~line 1279, which now names it in the past tense.
   function notFound() { return `<div class="empty"><h1>Not found</h1><p><a href="#/">← Home</a></p></div>`; }
 
   // ---------- contributors showcase ----------

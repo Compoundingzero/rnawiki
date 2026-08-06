@@ -472,7 +472,7 @@ ${crumbLd}${ld}
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/where">Where it hurts</a> · <a href="/#newsletter">Newsletter</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/where">Where it hurts</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
@@ -2174,7 +2174,8 @@ ANAT.metabolism.forEach((p) => {
 //      16,222 B each (curl, 2026-08-01). The hidden #q-hits / #q-none blocks below are what
 //      server.js reveals and orders for those readers -- see searchSolve in server.js. They are
 //      authored HERE so the words have one source; the server only injects a <style> and fills two
-//      text slots, exactly as it already does for the newsletter notice on "/".
+//      text slots. (It used to do the same for the newsletter completion notice on "/"; the
+//      newsletter was removed 2026-08-06, so /solve?q= is now the only place that pattern lives.)
 // NOTE for anyone editing the strings below: server.js matches `id="q-hits"`, `id="q-none"`,
 // `<em class="q-term"></em>` and the input's attribute run VERBATIM. Reword them there too.
 const solveCardPre = (p) => {
@@ -2217,9 +2218,15 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
 // this project of a prerendered page and its hydrated twin drifting apart. There is now no twin:
 // this string is the only definition of the home page that exists.
 //
-// The page is a funnel with exactly two conversion targets and nothing else:
+// The page is a funnel with exactly ONE conversion target and nothing else:
 //   CTA #1  the protocol search in the hero, plus pre-filled chips (which ARE CTA #1, pre-typed)
-//   CTA #2  the newsletter -- the MAIN ask -- stated once in full, once as a closing line
+//
+// It used to have a CTA #2 -- the newsletter, "the MAIN ask", stated once in full and once as a
+// closing line. The whole newsletter was removed on 2026-08-06 (owner's decision), so both
+// placements are gone and the page now terminates on the goal index. THERE IS DELIBERATELY NO
+// REPLACEMENT CLOSING CTA: inventing one would mean writing an ask nobody asked for. If a closing
+// CTA is wanted, /solve is the obvious candidate -- it is already in the topbar and in the footer
+// of every page -- but that is a copy decision, not a mechanical one.
 //
 // Cut from this document, with the reason each cut costs nothing:
 //   * the 7-category / 52-link "Start a protocol" farm -- all 52 hrefs are byte-identical to the
@@ -2356,65 +2363,27 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
     .join('');
   const nProblems = (D.meta.counts && D.meta.counts.problems) || (GRAPH.problems || []).length;
 
-  // ---- the newsletter, defined once and rendered twice ------------------------------------------
-  // `full` carries the loss-framed copy and the Watanabe figures; the close block is a one-line
-  // restatement so the page never terminates without an ask. Two placements of one CTA is not two
-  // CTAs. The copy itself is unchanged -- it is loss-framed, cited to a live PMID, and US$-prefixed
-  // so it cannot be misread as SGD.
-  //
-  // .nl-done / .nl-bad are the NO-JS COMPLETION STATE. /api/subscribe already answers a native form
-  // post with a 303 to /?subscribed=1#newsletter (server.js), but this document had no confirmation
-  // element for it to land on, and the SPA's copy of that message lived only in app.js -- so the
-  // ~90% were redirected to a page that looked exactly as it had before they subscribed. server.js
-  // un-hides the right one when it serves "/" with the query.
-  const nlBlock = (source, full) => `
-    <section class="nl-home${full ? '' : ' nl-close-sec'}"${full ? ' id="newsletter"' : ''}>
-      <div class="nl-home-inner">
-        <p class="nl-done">&#10003; You&rsquo;re in. Check your inbox for a welcome email &mdash; the one-click unsubscribe is in it, so you never have to hunt for one.</p>
-        <p class="nl-bad">That email address didn&rsquo;t look right &mdash; try again.</p>
-        <div class="nl-eyebrow">Free weekly &middot; no spam &middot; one click to leave</div>
-        ${full ? `<h2>Medicine that doesn&rsquo;t work still sends you a bill.</h2>
-        <p class="nl-lede">The evidence on what you were given is public. It just isn&rsquo;t written
-        for you &mdash; so you pay, and you hope. That gap is not an accident of nature; it is the one
-        thing standing between you and a decision you could have made yourself.</p>
-        <div class="nl-cost">
-          <div class="nl-fig"><b>US$2,481</b><span>the average extra cost, per person, when a
-            prescription simply doesn&rsquo;t do its job</span></div>
-          <div class="nl-fig"><b>16%</b><span>of the entire national health bill &mdash; US$528bn a
-            year &mdash; spent on medication that didn&rsquo;t work as intended</span></div>
-        </div>
-        <p class="nl-src">Watanabe, McInnis &amp; Hirsch, <i>Annals of Pharmacotherapy</i> 2018 &middot;
-          <a href="https://pubmed.ncbi.nlm.nih.gov/29577766/" rel="noopener">PMID 29577766</a>
-          &middot; US figures. No Singapore equivalent has been published.</p>
-        <p class="nl-turn">You cannot fix a health system. You can stop being the person it happens to.</p>`
-      : `<h2>One email a week. It might be about something you are taking right now.</h2>`}
-        <form class="nl-form" data-nl data-source="${source}" method="post" action="/api/subscribe" novalidate>
-          <label class="sr-only" for="nl-e-${source}">Your email address</label>
-          <input id="nl-e-${source}" class="nl-input" type="email" name="email" required
-            autocomplete="email" inputmode="email" placeholder="you@example.com">
-          <input type="hidden" name="source" value="${source}">
-          <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <button class="nl-btn" type="submit">Send me the weekly email &rarr;</button>
-          <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
-        </form>
-        <p class="nl-fine">${full
-      ? 'One email a week &mdash; what actually changed in the evidence for a drug or supplement you might be taking, in plain English. Not medical advice, and never a substitute for seeing a clinician.'
-      : 'Unsubscribe in one click. Not medical advice.'}</p>
-      </div>
-    </section>`;
-
   // ---- the daily fact --------------------------------------------------------------------------
   // Kept, moved, relabelled. It is the only actual sample of the product on the page. It used to sit
   // at 17% depth, above the argument, where its job was to send the reader to /c/l-tyrosine -- i.e.
-  // out of the funnel before either CTA. Below the newsletter and relabelled, the same block becomes
-  // evidence of what subscribing gets you. The `.df-text` / `.df-link` hooks are load-bearing:
-  // app.js patches those two nodes in place on hydration, because the stamp below is frozen at
-  // deploy time and the fact is date-derived.
+  // out of the funnel before the page had made its case. It now sits below the worked example.
+  //
+  // 2026-08-06: the kicker used to read "A sample of what lands" / "one like this, free, every
+  // week". Both halves were a promise about a weekly email, and the weekly email is gone -- an
+  // advertised mailing that does not exist is a fabricated offer (constraint 5). The replacement
+  // claims only what is true in BOTH documents: it is one fact from this wiki, and it is free.
+  // Deliberately NOT "a new one every day": dailyFactObj() picks by date at BUILD time, so the
+  // prerendered copy the ~90% see is frozen until the next deploy, and only app.js's
+  // refreshDailyFact() re-picks per day. Promising daily rotation would be true for JS readers
+  // and false for everyone else.
+  //
+  // The `.df-text` / `.df-link` hooks are load-bearing: app.js patches those two nodes in place on
+  // hydration. `.df-kicker` / `.df-meta` are NOT patched, so this string has exactly one source.
   const FACT = dailyFactObj();
   const factBlock = FACT ? `
     <section class="daily-fact">
       <div class="df-card">
-        <div class="df-top"><span class="df-kicker">&#128161; A sample of what lands</span><span class="df-meta">one like this, free, every week</span></div>
+        <div class="df-top"><span class="df-kicker">&#128161; One fact from the wiki</span><span class="df-meta">free, like everything here</span></div>
         <p class="df-text">${FACT.t}</p>
         <a class="df-link" href="${FACT.href}">${esc(FACT.label)}</a>
       </div>
@@ -2447,8 +2416,6 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
 
     ${WEX}
 
-    ${nlBlock('home', true)}
-
     ${factBlock}
 
     <section class="goal-index">
@@ -2456,9 +2423,7 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       <p class="gi-sub">${D.goals.length} goals, ${D.compounds.length} compounds, ranked by the strength of
       the <b>human</b> evidence. Each one says up front what you can actually buy without a prescription.</p>
       <ul class="gi-list">${goalLinks}</ul>
-    </section>
-
-    ${nlBlock('home-close', false)}`;
+    </section>`;
 
   // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"
   fs.writeFileSync(path.join(SITE, 'home.html'), shell({
@@ -2909,42 +2874,6 @@ let written = 0;
     body: `<div class="article"><h1>Browse by category</h1>
       <p>${D.compounds.length} compounds across ${cats.length} categories. Prefer to start from a problem instead? <a href="/solve">Start there →</a></p>
       ${cats.map((cat) => `<h2>${esc(cat)}</h2><ul>${byCat[cat].slice().sort((a, b) => b.stars - a.stars).map(link).join('')}</ul>`).join('')}</div>` }));
-
-  // ---- newsletter landing page ---------------------------------------------------------------
-  // Built for one job: get the email. Conversion decisions, and why each one:
-  //  - ONE ask. No nav bait, no secondary CTA above the form.
-  //  - The form is ABOVE the fold and needs ONE field. Every extra field costs signups, and a name
-  //    is not needed to send a weekly email.
-  //  - The headline promises a SPECIFIC thing, not "subscribe to our newsletter".
-  //  - Objections are answered ON the page (how often, what it is not, how to leave) because the
-  //    unanswered ones are what stop people typing.
-  //  - Credibility is the site's REAL numbers only. No subscriber count, no testimonials, no
-  //    "join N readers" — this site had a fabricated-credibility cluster removed on 2026-07-28 and
-  //    is not getting another one. When there is nothing honest to boast about, boast about the
-  //    work instead.
-  //  - The form is prerendered, so it is visible before any JavaScript runs.
-  const nCompounds = D.compounds.length;
-  const n5 = D.compounds.filter((c) => c.stars === 5).length;
-  const nLow = D.compounds.filter((c) => c.stars <= 2).length;
-  const nAnimal = D.compounds.filter((c) => c.animalOnly).length;
-  const nTrials = (() => { let n = 0; Object.keys(LEARN_RAW).forEach((k) => { const e = LEARN_RAW[k]; if (e && e.evi && Array.isArray(e.evi.trials)) n += e.evi.trials.filter((t) => t && t.ref).length; }); return n; })();
-  const nPmid = (() => { let n = 0; Object.keys(LEARN_RAW).forEach((k) => { const e = LEARN_RAW[k]; if (e && e.evi && Array.isArray(e.evi.trials)) n += e.evi.trials.filter((t) => t && t.pmid).length; }); return n; })();
-  const nProblems = (GRAPH.problems || []).length;
-  const nProtocols = (GRAPH.problems || []).reduce((n, p) => n + (p.root_causes || []).length, 0);
-  const signupForm = (source, cta) => `<form class="nl-form" data-nl data-source="${esc(source)}" novalidate>
-      <label class="sr-only" for="nl-email-${esc(source)}">Your email address</label>
-      <input id="nl-email-${esc(source)}" class="nl-input" type="email" name="email" required
-             autocomplete="email" inputmode="email" placeholder="you@example.com" aria-describedby="nl-note-${esc(source)}">
-      <input class="nl-hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="nl-btn" type="submit">${esc(cta)}</button>
-      <p class="nl-status" data-nl-status role="status" aria-live="polite"></p>
-      <p class="nl-note" id="nl-note-${esc(source)}">One email a week. Unsubscribe in one click. No spam, ever.</p>
-    </form>`;
-
-  // /newsletter RETIRED 2026-07-28. The signup now lives on the home page, which is where the
-  // reader already is. server.js 301s /newsletter -> / so the ~515 footer links and any shared
-  // links keep working; the footer link itself now points at the home anchor.
-
 
   add('/pathways', shell({
     route: '/pathways', title: `The ${(D.pathways || []).length} master pathways · RNAwiki`,
