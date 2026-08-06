@@ -1971,7 +1971,7 @@ function muscle3D(m, legFma, legName) {
       <span class="cta-3d-hero-txt"><b>Open the interactive 3D leg</b><span>Opens on the ${esc((legName || m.name).toLowerCase())} — its origin and insertion bones light up and it moves through its action. Every ${esc(m.name.toLowerCase())} muscle is tappable there too.</span></span>
       <span class="cta-3d-hero-go" aria-hidden="true">▶</span>
     </a>
-    <p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render.</p>`;
+    <p class="fig-credit">A first-party 3D model built from BodyParts3D (© DBCLS, CC-BY-SA), FMA-keyed to the anatomy on this page — not a generic render. Or <a href="/body/leg">open the 3D leg on its own page</a>.</p>`;
   if (!m.model_embed) return `<h2>This muscle in 3D</h2>
     <p class="fig-credit">A 3D model specific to the ${esc(m.name.toLowerCase())} is being added — its origin, insertion and action are detailed below.</p>`;
   return `<h2>This muscle in 3D</h2>
@@ -2190,7 +2190,7 @@ ANAT.metabolism.forEach((p) => {
     <ul>${ANAT.energy_systems.map((e) => `<li><a href="/energy/${e.id}">${esc(e.name)}</a>${e.duration ? ` — ${esc(e.duration)}` : ''}${e.intensity ? `, ${esc(e.intensity)}` : ''}${e.fuel ? `. Fuel: ${esc(e.fuel)}` : ''}</li>`).join('')}</ul>
     <h2>Metabolism &amp; physiology</h2><p>How the body makes and manages its fuel — the science under every nutrition and supplement protocol.</p>
     <ul>${ANAT.metabolism.map((p) => `<li><a href="/physiology/${p.id}">${esc(p.name)}</a>${p.plain || p.overview ? ` — ${esc(snip(p.plain || p.overview, 180))}` : ''}</li>`).join('')}</ul>
-    <h2>Muscles</h2><p>The anatomy, mechanics and training of every major muscle group.</p>
+    <h2>Muscles</h2><p>The anatomy, mechanics and training of every major muscle group. The leg muscles also have a <a href="/body/leg">first-party interactive 3D model</a> — spin it and tap any muscle to see the bones it attaches to and watch it move.</p>
     <ul>${ANAT.muscles.map((m) => `<li><a href="/muscle/${m.id}">${esc(m.name)}</a>${m.region ? ` — ${esc(m.region)}` : ''}${m.exercise_count || m.stretch_count ? `, ${m.exercise_count || 0} exercise${(m.exercise_count || 0) === 1 ? '' : 's'} and ${m.stretch_count || 0} stretch${(m.stretch_count || 0) === 1 ? '' : 'es'}` : ''}</li>`).join('')}</ul></div>`;
   add(route, shell({ route, title: seoTitle('Anatomy & physiology: muscles, energy, metabolism'), desc: seoDesc('The body behind the protocol: every major muscle, the energy systems that fuel movement, and the metabolism behind nutrition and supplements — in plain English.'), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Anatomy', route }], body }));
 }
@@ -4010,8 +4010,13 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 
   const dead = new Map();          // dead target -> Set(pages linking to it)
   const inbound = new Map();       // emitted route -> count of OTHER pages linking to it
-  emitted.forEach((r) => inbound.set(r, 0));
+  // W6 (2026-08-06): the SAME count, restricted to hrefs with NO query string. norm() above strips
+  // "?" before it compares, which is right for deciding whether a link is dead — and it is exactly
+  // why this gate reported "0 orphans" while /body/leg had no clean inbound link at all.
+  const inboundClean = new Map();
+  emitted.forEach((r) => { inbound.set(r, 0); inboundClean.set(r, 0); });
   const seen = new Set();          // "from|to", so one page linking twice still counts once
+  const seenClean = new Set();
 
   const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
     const p = path.join(d, e.name);
@@ -4030,6 +4035,7 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
       }
       const key = from + '|' + to;
       if (inbound.has(to) && !seen.has(key)) { seen.add(key); inbound.set(to, inbound.get(to) + 1); }
+      if (m[1].indexOf('?') < 0 && inboundClean.has(to) && !seenClean.has(key)) { seenClean.add(key); inboundClean.set(to, inboundClean.get(to) + 1); }
     }
   });
   walk(SITE);
@@ -4040,6 +4046,20 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     fail.push(`dead link -> ${to}  (linked from ${srcs.size} page${srcs.size === 1 ? '' : 's'}, e.g. ${[...srcs].slice(0, 3).join(', ')})`);
   });
   orphans.forEach((r) => fail.push(`orphan page ${r} — published, but no other page links to it`));
+  // W6 (2026-08-06): REACHABLE ONLY THROUGH A QUERY STRING is a second kind of orphan, and this
+  // gate was blind to it because norm() strips "?" before comparing. MEASURED over all 620 emitted
+  // documents: exactly one route qualified — /body/leg, which is the canonical target of /body and
+  // the site's only first-party 3D page. Its 5 inbound sources (/body and the 4 leg muscle pages)
+  // linked to it 42 times and every single one of those hrefs carried ?fma=FMA%3A…, so the number
+  // of clean links pointing at the flagship visual page on this site was ZERO. Crawling from "/"
+  // over query-free links alone, it was unreachable at any depth while all 567 other routes sat at
+  // depth 1-3. server.js now sends X-Robots-Tag: noindex,follow on every "?" URL, so those 42 links
+  // are followed but the URLs carrying them are not indexed — which makes a clean link the only
+  // thing standing between this page and its ranking signal.
+  // PROVE IT by deleting the /body/leg link from the /anatomy Muscles paragraph and the one in
+  // muscle3D()'s fig-credit.
+  const queryOnly = [...inboundClean.entries()].filter(([r, n]) => r !== '/' && n === 0 && inbound.get(r) > 0).map(([r]) => r);
+  queryOnly.forEach((r) => fail.push(`${r} — published and linked ${inbound.get(r)} time(s), but EVERY link to it carries a query string. A "?" URL is noindex here, so this page has no clean inbound link at all. Give it one from a real hub page.`));
 
   if (fail.length) {
     console.error('\n[prerender] LINK-GRAPH ASSERTION FAILED — refusing to build:');
@@ -4049,7 +4069,7 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   const thin = [...inbound.entries()].filter(([r, n]) => r !== '/' && n === 1).length;
-  console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans (${thin} reachable from a single page).`);
+  console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans, 0 reachable only through a query string (${thin} reachable from a single page).`);
 })();
 
 // ---- build-time assertion: THE SPA'S OWN HASH LINKS MUST RESOLVE TO A route() BRANCH -----------
