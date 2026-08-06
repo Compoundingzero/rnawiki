@@ -747,52 +747,20 @@ async function emailWinbackTick() {
   } catch (e) { console.error('[email] winback tick:', e.message); }
 }
 async function email6hTick() { await emailNudgeTick(); await emailWinbackTick(); }   // sequential so milestone marks last_checkin_email before winback checks it
-// ===== Newsletter (2026-07-28) =================================================================
-// Subscribers are stored locally AND pushed to a Resend audience. Both, deliberately:
-//  - Resend is what the weekly broadcast actually sends from, so the contact has to exist there;
-//  - the local row is the auditable record of consent (timestamp + which page it came from), which
-//    is what PDPA cares about, and it means a Resend outage cannot silently lose a signup.
-// If the Resend push fails the row is still written with resend_contact_id NULL, so it is
-// retryable rather than lost.
-const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '';
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
-
-async function resendAddContact(email) {
-  if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) return null;
-  try {
-    const r = await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts`, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, unsubscribed: false }),
-      signal: AbortSignal.timeout(10000),
-    });
-    const j = await r.json().catch(() => ({}));
-    return (j && j.id) ? j.id : null;
-  } catch (e) { console.error('[newsletter] resend add failed:', e.message); return null; }
-}
-async function resendUnsubscribe(email) {
-  if (!RESEND_API_KEY || !RESEND_AUDIENCE_ID) return false;
-  try {
-    await fetch(`https://api.resend.com/audiences/${RESEND_AUDIENCE_ID}/contacts/${encodeURIComponent(email)}`, {
-      method: 'PATCH',
-      headers: { Authorization: `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ unsubscribed: true }),
-      signal: AbortSignal.timeout(10000),
-    });
-    return true;
-  } catch (e) { console.error('[newsletter] resend unsub failed:', e.message); return false; }
-}
-function welcomeEmail(unsubUrl) {
-  return `<div style="font-family:system-ui,-apple-system,sans-serif;max-width:540px;margin:0 auto;color:#1a1a1a">
-    <p style="font-size:17px;line-height:1.5">You're in.</p>
-    <p style="font-size:15px;line-height:1.6">Once a week I'll send you one thing from RNAwiki — a mechanism worth understanding, a claim that turned out to be weaker than it looked, or a protocol broken down to its root cause. Written the way the site is: what the evidence actually says, and where it runs out.</p>
-    <p style="font-size:15px;line-height:1.6">No supplement of the month. No affiliate links. If something is uncertain, it will say so.</p>
-    <p style="font-size:15px;line-height:1.6"><a href="${SITE_URL}/solve" style="color:#10b981">Start with a problem you actually have →</a></p>
-    <hr style="border:none;border-top:1px solid #e5e5e5;margin:22px 0">
-    <p style="font-size:12px;color:#777;line-height:1.5">You're getting this because you subscribed at rnawiki.com. Educational only, not medical advice.<br>
-    <a href="${unsubUrl}" style="color:#777">Unsubscribe</a> — one click, no questions.</p>
-  </div>`;
-}
+// ===== Newsletter REMOVED 2026-08-06 ===========================================================
+// The audience half of the email system is gone with the newsletter: RESEND_AUDIENCE_ID,
+// resendAddContact(), resendUnsubscribe(), welcomeEmail() and EMAIL_RE. Caller census taken
+// before deleting — each had exactly ONE call site and every one of those call sites was inside
+// /api/subscribe or /api/unsubscribe, both removed in this same commit.
+//
+// KEPT ON PURPOSE, because it is the machinery a future creator-broadcast feature needs and none
+// of it belonged to the newsletter: sendEmail() (5 call sites before this commit, 4 survive — the
+// deleted one was the welcome email), RESEND_API_KEY (16 occurrences before, 12 after; the 4 that
+// went were the two guards and two Authorization headers inside the deleted Resend-audience
+// helpers), emailNudgeTick(), emailReminderTick(), emailWinbackTick(),
+// sendWinbackEmail(), email6hTick(), emailStartScheduler(), EMAIL_TIMER/EMAIL_REMIND_TIMER, and
+// every users-table email column in db.js. Those send to people who HAVE an account and asked
+// for reminders; the newsletter was a separate opt-in list of strangers.
 
 function emailStartScheduler() {
   if (!db.enabled || EMAIL_TIMER) return;
@@ -960,7 +928,7 @@ async function api(req, res, url) {
       // account — the one that writes a public row rendered on compound and pathway pages — was the
       // only unthrottled one. Its sole limiter was the chokepoint bucket, i.e. ~900 posts/hour/IP.
       // Anonymous posts are now capped by volume rather than by IP (IP is unreliable behind
-      // Railway's proxy), the same shape /api/subscribe already uses. 20/10min is set well above
+      // Railway's proxy), the same shape /api/subscribe used before it was deleted. 20/10min is well above
       // real demand — there are ~20 JS-executing sessions per day sitewide.
       if (u) {
         const rc = (await db.query("SELECT count(*)::int n FROM explain_posts WHERE user_id=$1 AND created_at > now() - interval '10 minutes'", [u.id])).rows[0];
@@ -1664,68 +1632,9 @@ async function api(req, res, url) {
     return json(res, 200, Object.assign({ experiments: 0, improved: 0 }, r.rows[0] || {}, { helped }));
   }
   // record a "stack built" engagement (idempotent per person) for the people-helped counter
-  // --- newsletter ---
-  if (seg[0] === 'subscribe' && method === 'POST') {
-    const b = await readBody(req, 4096); if (!b) return json(res, 400, { error: 'Bad request' });
-    // ---- NO-JS COMPLETION STATE (2026-07-30) --------------------------------------------------
-    // The newsletter is the home page's MAIN call to action, and for the ~90% of traffic that never
-    // runs JavaScript it had no completion state at all: the browser POSTs the form natively, this
-    // endpoint answers application/json, and the subscriber lands on a white page reading
-    // {"ok":true,"alreadySubscribed":false}. They did subscribe — they just have no way to know it,
-    // and no way back. A native form post must end in a redirect, not a payload.
-    const wantsHtml = /x-www-form-urlencoded/i.test(req.headers['content-type'] || '');
-    const done = (ok, msg) => {
-      if (!wantsHtml) return null;
-      const q = ok ? 'subscribed=1' : `suberr=${encodeURIComponent(String(msg || '').slice(0, 120))}`;
-      res.writeHead(303, { Location: `/?${q}#newsletter` });
-      res.end();
-      return true;
-    };
-    // Honeypot: a field no human sees and every naive bot fills. Return 200 so the bot believes it
-    // worked and does not retry with a different shape.
-    if (clean(b.website, 80)) return done(true) || json(res, 200, { ok: true });
-    const email = clean(b.email, 160).toLowerCase();
-    if (!EMAIL_RE.test(email)) return done(false, 'That email address does not look right.') || json(res, 400, { error: 'That email address does not look right.' });
-    const source = clean(b.source, 60) || 'newsletter';
-    try {
-      // Rate limit by volume, not by IP (which is unreliable behind Railway's proxy): if this many
-      // signups have arrived in a minute, something automated is happening.
-      const burst = (await db.query("SELECT count(*)::int n FROM newsletter_subscribers WHERE created_at > now() - interval '1 minute'")).rows[0];
-      if (burst && burst.n > 20) return json(res, 429, { error: 'Too many signups right now — try again in a minute.' });
-
-      const tok = crypto.randomBytes(16).toString('base64url');
-      const ins = await db.query(
-        `INSERT INTO newsletter_subscribers(email, source, unsub_token) VALUES($1,$2,$3)
-           ON CONFLICT (lower(email)) DO UPDATE SET unsubscribed = false
-           RETURNING id, unsub_token, (xmax = 0) AS is_new`,
-        [email, source, tok]);
-      const row = ins.rows[0];
-      const isNew = row && row.is_new;
-      // Push to Resend regardless — a returning subscriber may have been unsubscribed there.
-      const cid = await resendAddContact(email);
-      if (cid) await db.query('UPDATE newsletter_subscribers SET resend_contact_id=$2 WHERE id=$1', [row.id, cid]).catch(() => {});
-      if (isNew) {
-        const unsubUrl = `${SITE_URL}/api/unsubscribe?t=${encodeURIComponent(row.unsub_token || tok)}`;
-        sendEmail(email, 'Welcome to RNAwiki', welcomeEmail(unsubUrl)).catch(() => {});
-      }
-      return done(true) || json(res, 200, { ok: true, alreadySubscribed: !isNew });
-    } catch (e) { console.error('[newsletter]', e.message); return done(false, 'Could not sign you up just now. Try again shortly.') || json(res, 500, { error: 'Could not sign you up just now. Try again shortly.' }); }
-  }
-  if (seg[0] === 'unsubscribe' && method === 'GET') {
-    const t = clean(new URL('http://x/' + url).searchParams.get('t'), 64);
-    let ok = false, email = null;
-    if (t) {
-      const r = await db.query('UPDATE newsletter_subscribers SET unsubscribed=true WHERE unsub_token=$1 RETURNING email', [t]).catch(() => ({ rows: [] }));
-      if (r.rows[0]) { ok = true; email = r.rows[0].email; await resendUnsubscribe(email); }
-    }
-    return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>${ok ? 'Unsubscribed' : 'Link not recognised'} · RNAwiki</title><link rel="stylesheet" href="/styles.css"></head>
-<body><main class="article" style="max-width:38rem;margin:4rem auto;padding:0 1.25rem">
-<h1>${ok ? 'You\'re unsubscribed' : 'That link is not recognised'}</h1>
-<p>${ok ? 'You won\'t get the weekly email again. Nothing else changes — the site stays free and open.' : 'It may already have been used. If you keep receiving emails, reply to one and it will be sorted manually.'}</p>
-<p><a href="/">Back to RNAwiki</a></p></main></body></html>`, ok ? 200 : 404);
-  }
+  // /api/subscribe and /api/unsubscribe REMOVED 2026-08-06 with the newsletter. They were the only
+  // readers of newsletter_subscribers and the only callers of resendAddContact/resendUnsubscribe/
+  // welcomeEmail/EMAIL_RE. Both paths now fall through to the 404 at the end of this dispatcher.
   if (seg[0] === 'helped' && method === 'POST') {
     // helped_people.voter_key is the PRIMARY KEY and feeds the `helped` figure in GET /api/stats —
     // one forged key was one more "person helped". Nothing in the body is trusted; drain and drop.
@@ -2305,7 +2214,8 @@ function serveStatic(req, res, url) {
   //       restore, so no layout knowledge leaks into this file) and `order:`s the matches,
   //   (b) flips #q-hits or #q-none visible with a single id-keyed substitution,
   //   (c) fills <em class="q-term"> and the input's value.
-  // Same pattern as the newsletter completion state on "/" a few lines below. The query is never
+  // Same pattern the newsletter completion state on "/" used until 2026-08-06; this is now the only
+  // place on the site that does it, so treat it as the reference implementation. The query is never
   // logged and never reaches analytics -- it is a symptom description typed by a stranger.
   if (p === '/solve' && (qp.get('q') || '').trim()) {
     const q = String(qp.get('q')).slice(0, 120);
@@ -2338,20 +2248,10 @@ function serveStatic(req, res, url) {
   if (p === '/') {
     return fs.readFile(path.join(DIR, 'home.html'), (e, html) => {
       if (e) return sendFile(res, path.join(DIR, 'index.html'));
-      // ---- NO-JS COMPLETION STATE, PART 2 (2026-07-30) ----------------------------------------
-      // /api/subscribe already 303s a native form post to /?subscribed=1#newsletter. That fixed the
-      // white page reading {"ok":true} -- but it landed the reader on a home page with no
-      // confirmation on it, because the "you're in" message existed only inside site/app.js, i.e.
-      // only for the ~10% who never needed the redirect in the first place. So the MAIN call to
-      // action still had no completion state for the ~90%: they were returned to a page that looked
-      // exactly as it had before they subscribed.
-      // The message itself is authored ONCE, in build/prerender.js, hidden by `.nl-done{display:none}`.
-      // All this does is un-hide it. app.js does the same from location.search on hydration, so the
-      // two paths agree and neither owns a copy of the words.
-      const nl = qp.get('subscribed') ? 'done' : (qp.has('suberr') ? 'bad' : '');
-      if (nl) {
-        html = String(html).replace(`class="nl-${nl}"`, `class="nl-${nl}" style="display:block"`);
-      }
+      // The `?subscribed=1` / `?suberr=` un-hide lived here until 2026-08-06. It revealed the
+      // newsletter's `.nl-done` / `.nl-bad` paragraph for readers without JS. Its only producer was
+      // the 303 in /api/subscribe and its only target was a paragraph in nlBlock(); all three are
+      // gone, so this is now a substitution with nothing to match. "/" serves home.html verbatim.
       endHtml(res, html);
     });
   }
@@ -2393,9 +2293,12 @@ function serveStatic(req, res, url) {
 //   /compare/*  -> 410 Gone      (deliberately withdrawn; tells Google to drop it and stop retrying)
 //   other route -> 404 Not Found
 // Anything else still gets the SPA shell, so client-side routing keeps working.
-// /newsletter was folded into the home page (2026-07-28). Redirect rather than 404: the link is
-// in the footer of every prerendered page already in Google's index, and in the welcome email.
-const LEGACY_REDIRECTS = { '/newsletter': '/#newsletter' };
+// /newsletter was folded into the home page (2026-07-28) and the newsletter was removed entirely
+// (2026-08-06). KEEP the redirect rather than deleting it: the URL sat in the footer of every
+// prerendered page for over a month and is in Google's index, and an unknown top-level path here
+// falls through to the SPA shell at HTTP 200 (measured: /nope -> 200, 4,871 B), i.e. a soft 404.
+// The target moved from '/#newsletter' to '/' because that fragment no longer exists.
+const LEGACY_REDIRECTS = { '/newsletter': '/' };
 
 // ---- COMPOUND SHORT-NAME ALIASES (2026-07-30) ------------------------------------------------
 // "do not ever leave a page as an error." /c/creatine, /c/collagen, /c/testosterone and /c/insulin

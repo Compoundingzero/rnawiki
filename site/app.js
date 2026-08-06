@@ -641,7 +641,6 @@
     reportOutcome(pid, rcid, outcome) { return this.call('POST', '/api/experiments/outcome', { problemId: pid, rootCauseId: rcid, outcome }); },
     stats() { return this.call('GET', '/api/stats').catch(() => null); },
     helped() { return this.call('POST', '/api/helped', { voterKey: VOTER_KEY }).catch(() => null); },
-    subscribe(email, source, website) { return this.call('POST', '/api/subscribe', { email, source, website }); },
   };
   // ---- W4.5 · THE SYNC MANIFEST ---------------------------------------------------------------
   // MEASURED, hydrated, real browser at 390x844 on /protocol/insomnia/circadian-misalign
@@ -1335,20 +1334,10 @@
     if (a) { a.textContent = f.label; a.setAttribute('href', f.href); }
   }
 
-  // The newsletter's completion state. The MESSAGE is authored once, in build/prerender.js, hidden
-  // by default; server.js un-hides it for readers without JS when it serves "/?subscribed=1".
-  // Here we set it from the query on every bind, so a stale "you're in" cannot survive a
-  // client-side navigation back to "/" via the captured string.
-  function syncNlNotice() {
-    const q = new URLSearchParams(location.search);
-    const ok = q.get('subscribed');
-    const err = q.get('suberr');
-    document.querySelectorAll('.nl-done').forEach((e) => { e.style.display = ok ? 'block' : 'none'; });
-    document.querySelectorAll('.nl-bad').forEach((e) => {
-      if (err) e.textContent = err;
-      e.style.display = err ? 'block' : 'none';
-    });
-  }
+  // syncNlNotice() removed 2026-08-06 with the rest of the newsletter. It un-hid the `.nl-done` /
+  // `.nl-bad` completion paragraphs from `?subscribed` / `?suberr`. Both query parameters had
+  // exactly one producer — the 303 in /api/subscribe — and that endpoint is gone in this commit,
+  // as are the paragraphs. Its only caller was bindHome(), removed in the same commit.
 
   // scroll-triggered reveal for landing sections (respects reduced-motion; degrades to visible)
   function revealOnScroll() {
@@ -1383,11 +1372,11 @@
 
   // bindHome() IS BIND-ONLY. It must never create markup: the home page's markup has exactly one
   // source, build/prerender.js. Everything below attaches behaviour to nodes that are already in the
-  // document, or patches a value that is genuinely time-dependent (the daily fact, the newsletter
-  // notice). If you find yourself writing HTML in here, the change belongs in build/prerender.js.
+  // document, or patches a value that is genuinely time-dependent (the daily fact — the newsletter
+  // notice was the other one, gone 2026-08-06). If you find yourself writing HTML in here, the
+  // change belongs in build/prerender.js.
   function bindHome() {
     refreshDailyFact();
-    syncNlNotice();
     // Deliberately NOT called here any more, each with the block it served:
     //   revealOnScroll()           -- the home page emits no `.reveal` at all now. Kept for /gp,
     //                                 /pros and the other SPA-only landing pages that still use it.
@@ -8758,7 +8747,8 @@
     else if (parts[0] === 'plan') html = planLoading();
     else if (parts[0] === 'progress') html = planLoading();
     else if (parts[0] === 'legend') html = legendPage();
-    // /newsletter folded into the home page 2026-07-28; server 301s the old URL.
+    // /newsletter folded into the home page 2026-07-28 and the newsletter itself removed
+    // 2026-08-06; server still 301s the old URL, now to "/". No branch here, by design.
     // FIXED 2026-07-28: this rewrote the URL bar to "/" and rendered the homepage, discarding the
     // fully authored aboutPage() -- which holds the site's ONLY disclaimer -- and leaving /about
     // worse than a soft-404 for both readers and crawlers.
@@ -8796,10 +8786,10 @@
     }
     _firstPaint = false;
     // Do not fight an on-page fragment. This used to be an unconditional window.scrollTo(0, 0),
-    // which silently defeated every anchor into a rendered page -- including `/?subscribed=1#newsletter`,
-    // the landing spot for the newsletter's own 303, and the `/#newsletter` link in the footer of all
-    // 514 pages. Both scrolled to the top of the home page instead of to the form the reader had just
-    // used, so the site's MAIN call to action had no visible completion state for JS readers either.
+    // which silently defeated every anchor into a rendered page. (The two examples that forced the
+    // fix were `/?subscribed=1#newsletter` and the `/#newsletter` footer link; both are gone with
+    // the newsletter, 2026-08-06. The behaviour stays — `#how-it-works` and `#top` on the home page
+    // still depend on it, and so does every heading anchor anchorizeHeadings() publishes.)
     // `#/...` fragments are router paths, not anchors, and must still scroll to top.
     // rAF so the measurement happens after this write has been laid out -- without it the element's
     // offset is read against a stale layout on first paint. The 60px sticky topbar is cleared by
@@ -8961,36 +8951,6 @@
   // Universal cause-finder — present on every protocol.
   document.addEventListener('click', e => { const b = e.target.closest('[data-find-cause]'); if (b) { e.preventDefault(); const p = problemById[b.getAttribute('data-find-cause')]; if (p) openCauseFinder(p); } });
   // Adopt a cause's default plan — seed My Plan's stack with that cause's supplements.
-  // ---------- newsletter signup ----------
-  // The form is prerendered, so it renders and submits meaning even before this runs. This upgrades
-  // it to an inline confirmation: navigating away after a signup is the single easiest way to lose
-  // the second conversion (the click into the site), so nothing here changes the page.
-  document.addEventListener('submit', async (e) => {
-    const f = e.target.closest('form[data-nl]'); if (!f) return;
-    e.preventDefault();
-    const input = f.querySelector('.nl-input');
-    const btn = f.querySelector('.nl-btn');
-    const out = f.querySelector('[data-nl-status]');
-    const email = (input && input.value || '').trim();
-    const website = (f.querySelector('.nl-hp') || {}).value || '';   // honeypot
-    const say = (msg, cls) => { if (out) { out.textContent = msg; out.className = 'nl-status ' + (cls || ''); } };
-    if (!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(email)) { say('That email address does not look right.', 'err'); input && input.focus(); return; }
-    const orig = btn ? btn.textContent : '';
-    if (btn) { btn.disabled = true; btn.textContent = 'Signing you up…'; }
-    try {
-      const r = await api.subscribe(email, f.dataset.source || 'newsletter', website);
-      f.classList.add('done');
-      say(r && r.alreadySubscribed
-        ? 'You are already on the list — nothing to do.'
-        : 'Done. Check your inbox for a short welcome note.', 'ok');
-      if (input) input.value = '';
-      if (btn) { btn.textContent = '✓ Subscribed'; }
-    } catch (err) {
-      say((err && err.message) || 'Could not sign you up just now. Try again shortly.', 'err');
-      if (btn) { btn.disabled = false; btn.textContent = orig; }
-    }
-  });
-
   document.addEventListener('click', e => { const b = e.target.closest('.adopt-plan'); if (b) { e.preventDefault(); const ids = (b.getAttribute('data-adopt') || '').split(',').filter(Boolean); const s = getStack(); let added = 0; ids.forEach(id => { if (!s.includes(id)) { s.push(id); added++; } }); setStack(s); updateStackBadge(); b.classList.add('adopted'); b.textContent = added ? `✓ Added ${added} to your stack — track them on My Plan` : '✓ Already in your stack'; } });
   // ITEM 2 — build a full Move·Fuel·Stack plan for THIS cause (opens the builder seeded from the cause).
   document.addEventListener('click', e => {

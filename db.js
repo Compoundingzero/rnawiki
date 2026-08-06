@@ -259,22 +259,16 @@ CREATE TABLE IF NOT EXISTS scans (
 );
 CREATE INDEX IF NOT EXISTS idx_scans_user_day ON scans(user_id, created_at);
 
--- Newsletter subscribers (2026-07-28). One row per address. This is the local record of consent;
--- the address is ALSO pushed to a Resend audience, which is what the weekly broadcast sends from.
--- Kept locally as well so (a) a Resend outage does not lose a signup, (b) consent has an auditable
--- timestamp and source page for PDPA, and (c) unsubscribes can be honoured on our side too.
--- lower(email) is the unique key so the same person cannot be double-counted or double-mailed.
-CREATE TABLE IF NOT EXISTS newsletter_subscribers (
-  id SERIAL PRIMARY KEY,
-  email TEXT NOT NULL,
-  source TEXT,                                        -- which page/CTA the signup came from
-  resend_contact_id TEXT,                             -- null if the Resend push failed; retryable
-  unsubscribed BOOLEAN NOT NULL DEFAULT false,
-  unsub_token TEXT,                                   -- one-click unsubscribe without an account
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE UNIQUE INDEX IF NOT EXISTS newsletter_email_lower_uniq ON newsletter_subscribers (lower(email));
-CREATE INDEX IF NOT EXISTS idx_newsletter_created ON newsletter_subscribers(created_at DESC);
+-- newsletter_subscribers REMOVED from the DDL 2026-08-06, with the newsletter. Its only readers
+-- were /api/subscribe and /api/unsubscribe, both deleted in the same commit.
+--
+-- THERE IS DELIBERATELY NO DROP TABLE HERE. Removing the CREATE stops the table being recreated
+-- on a fresh database; it does NOT touch rows in the live Postgres. That is on purpose: the row is
+-- the auditable record of consent (address, timestamp, source page), and under PDPA it has to
+-- survive until it has been exported or the people on it have been told the mailing has ended.
+-- Dropping it is Felix's call, and it needs to happen AFTER any final note is sent — note that the
+-- unsubscribe endpoint is already gone, so links in the old welcome email now 404.
+-- To count what is there:  SELECT count(*), min(created_at), max(created_at) FROM newsletter_subscribers;
 
 -- Founding-clinician waitlist (Phase-2 marketplace demand capture). A public, no-account form:
 -- a physio/dietitian/pharmacist/MD registers interest to shape protocols in their field. Surfaced,
