@@ -1136,14 +1136,22 @@ D.goals.forEach((g) => {
   const route = '/goal/' + g.id;
   const list = D.compounds.filter((c) => c.goalIds.includes(g.id)).sort((a, b) => b.stars - a.stars).slice(0, 30);
   const protos = GRAPH.problems.filter((p) => p.root_causes.some((rc) => (rc.goal_ids || []).includes(g.id)));
+  // The goal page had the same defect as the home cards: "18 compounds that help you lose fat"
+  // where 18 of the 18 are prescription-only. Caught by the goal-count gate, not by me.
+  // W6 (2026-08-06): this count is now computed ONCE and used by the paragraph AND the meta
+  // description. The description used to read, on all 16 goal pages, "Compounds and full protocols
+  // that help you <goal>, ranked by human evidence — plain English, honest verdicts" — one
+  // sentence with no number in it, on pages holding anywhere from 4 to 30 compounds. Five of the
+  // 16 are genuinely small (/goal/sexual 292 words, /goal/gut 346, /goal/skin 363, /goal/bone 368,
+  // /goal/immune 381) and the honest thing on a small page is to say how small it is, not to
+  // describe it in the same words as a page with 30 entries.
+  const GRX = new Set(['prescription', 'controlled', 'unapproved']);
+  const gOpen = list.filter((c) => !GRX.has(c.regulatory_class)).length, gRx = list.length - gOpen;
+  const gCount = gRx ? `${gOpen} you can buy and ${gRx} that need a prescription` : `${gOpen} compounds`;
+  const gProto = protos.length ? `, plus ${protos.length} full ${protos.length === 1 ? 'protocol' : 'protocols'}` : '';
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: g.label }])}
     <h1>${g.icon} ${esc(g.label)}</h1>
-    ${/* The goal page had the same defect as the home cards: "18 compounds that help you lose
-          fat" where 18 of the 18 are prescription-only. Caught by the new goal-count gate, not by
-          me — I fixed the home page and never looked here. */ ''}
-    <p>${(() => { const RX = new Set(['prescription', 'controlled', 'unapproved']);
-      const open = list.filter((c) => !RX.has(c.regulatory_class)).length; const rx = list.length - open;
-      return rx ? `${open} you can buy and ${rx} that need a prescription` : `${open} compounds`; })()} that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, with honest verdicts.</p>
+    <p>${gCount} that help you ${esc(g.label.toLowerCase())}, ranked by strength of human evidence — in plain English, with honest verdicts.</p>
     ${/* W5b (2026-08-02): D36 — THE CRAWLER GOT LESS THAN THE READER, on all 16 of these.
           Measured over the 68 reference routes, prerendered body words against fully-expanded
           hydrated words at 1280x900, 0 pageerrors: 17 routes served the crawler under half of what
@@ -1168,7 +1176,7 @@ D.goals.forEach((g) => {
     }).join('')}</ul>
     ${protos.length ? `<h2>Full protocols</h2><ul>${protos.map((p) => `<li><a href="/protocol/${p.id}/${p.root_causes[0].id}">${esc(p.name)} — Move, Fuel &amp; Stack</a></li>`).join('')}</ul>` : ''}`;
   const goalLd = { '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: `${g.label} — what actually helps`, description: `Compounds ranked by human evidence for ${g.label.toLowerCase()}.`, url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified };
-  add(route, shell({ route, title: seoTitle(`${g.label}: what actually helps`), desc: `Compounds and full protocols that help you ${g.label.toLowerCase()}, ranked by human evidence — plain English, honest verdicts.`, jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
+  add(route, shell({ route, title: seoTitle(`${g.label}: what actually helps`), desc: seoDesc(`${gCount} that help you ${g.label.toLowerCase()}${gProto} — ranked by strength of human evidence.`), jsonld: goalLd, ogImage: renderOgCard(`og/goal/${g.id}.png`, { kind: 'Goal', title: g.label, sub: 'What actually helps you ' + g.label.toLowerCase() + ' — ranked by human evidence.' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: g.label, route }], body }));
 });
 
 // FLAT prerender of the cause cascade (Move 1, 2026-07). The 224-cause / 995-step "why" corpus
@@ -1669,6 +1677,18 @@ GRAPH.problems.forEach((p) => {
         evidence-ranked compounds, and when to see a clinician instead.</p>
         <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
         <p><em>Educational, not medical advice. Nutrient targets are general adult guidance.</em></p>`;
+      // ---- W6 (2026-08-06): THE THIN-PAGE DECISION, RE-MEASURED AND KEPT ------------------
+      // These 52 stay `noindex,follow` + `noSitemap`, and here is the measurement behind that
+      // rather than an inherited assumption. Taken on the built site, all 52 pairs:
+      //   · body length 282-347 words, median 305.
+      //   · unique-token overlap with THIS page's own /protocol page: 63.8% - 74.6%, median 68.8%.
+      // They are a genuinely useful reader surface — the nutrient targets, the authored `why`
+      // behind each target, and the foods that hit it, none of which needs JavaScript — but as
+      // search destinations they are 52 near-duplicates of the 52 pages we want ranked, and they
+      // would compete with them for the same queries. Indexing them is a net loss until the
+      // overlap is written down, which is authoring work, not a flag flip.
+      // The title still matters: it is the reader's browser tab and bookmark. It gets the same
+      // whole-clause treatment as the protocol titles rather than being cut mid-phrase.
       add(fuelRoute, shell({
         route: fuelRoute, robots: 'noindex,follow',
         // W5b: these 52 titles were the only ones on the site that hand-appended " · RNAwiki"
@@ -1676,8 +1696,8 @@ GRAPH.problems.forEach((p) => {
         // page is trimmed to — 51 of the 52 were over it, up to 93 chars
         // ("Fuel for High Blood Pressure — endothelial dysfunction + sodium/potassium imbalance").
         // Nothing caught it because nothing had ever looked at a <title> until assertHeadParity().
-        title: seoTitle(`Fuel for ${p.name} — ${rcShort.toLowerCase()}`),
-        desc: seoDesc(`Daily nutrient targets for ${p.name} (${rcShort.toLowerCase()}), why each one, and the everyday foods that hit them.`),
+        title: pcTitle(`Fuel \u00b7 ${p.name}`, rc.name),
+        desc: seoDesc(`Daily nutrient targets for ${p.name} (${pcCase(rcShort)}), why each one, and the everyday foods that hit them.`),
         breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel', route: fuelRoute }],
         body: fbody,
       }), { noSitemap: true });
@@ -4526,6 +4546,45 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log('[prerender] anonymous-first OK — 0 unprompted account modals, the header control is not the page CTA, and the modal says an account is optional.');
+})();
+
+// ---- build-time assertion: A NUMBER IN A GOAL SUMMARY MUST BE THE NUMBER ON THE PAGE ---------
+// W6 (2026-08-06). All 16 /goal descriptions were the same sentence with the label swapped —
+// "Compounds and full protocols that help you <goal>, ranked by human evidence — plain English,
+// honest verdicts" — on pages holding between 5 and 30 compounds and between 1 and 8 protocols.
+// Five of the 16 are genuinely thin (/goal/sexual 292 body words, /goal/gut 346, /goal/skin 363,
+// /goal/bone 368, /goal/immune 381) and describing a 5-item page in the same words as a 30-item
+// one is how a reader clicks through to less than they expected.
+// The counts now come from the page's own lists — and, because this project has shipped
+// "Covers all 170 compounds" next to 171 more than once, they are read back out of the emitted
+// HTML here and compared with the links actually in it.
+// PROVE IT by changing gProto to `, plus ${protos.length + 1} full protocols`.
+(function assertGoalSummaryCounts() {
+  const bad = [];
+  let checked = 0;
+  pages.filter((p) => /^\/goal\//.test(p.route)).forEach((p) => {
+    checked++;
+    const d = HEAD_UNESC(((p.html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || ''));
+    const listBlock = (p.html.split('class="goal-list"')[1] || '').split('</ul>')[0];
+    const cpds = new Set([...listBlock.matchAll(/href="(\/c\/[^"]+)"/g)].map((m) => m[1])).size;
+    const protoBlock = (p.html.split('Full protocols')[1] || '').split('</ul>')[0];
+    const protos = new Set([...protoBlock.matchAll(/href="(\/protocol\/[^"]+)"/g)].map((m) => m[1])).size;
+    const m = d.match(/^(\d+) you can buy and (\d+) that need a prescription|^(\d+) compounds/);
+    if (!m) { bad.push(`${p.route}: the meta description does not open with the compound count — "${d.slice(0, 80)}…". A goal page's whole job is to say how much is on it.`); return; }
+    const said = m[1] !== undefined ? (+m[1]) + (+m[2]) : (+m[3]);
+    if (said !== cpds) bad.push(`${p.route}: the description accounts for ${said} compounds and the page links ${cpds} — "${d.slice(0, 90)}…"`);
+    const pm = d.match(/plus (\d+) full protocols?/);
+    if ((pm ? +pm[1] : 0) !== protos) bad.push(`${p.route}: the description claims ${pm ? pm[1] : 0} full protocol(s) and the page links ${protos}`);
+    if (protos === 1 && /full protocols/.test(d)) bad.push(`${p.route}: the description uses the plural for a single protocol — "${d}"`);
+  });
+  if (!checked) bad.push('no /goal pages were checked — this gate is running over an empty set');
+  if (bad.length) {
+    console.error('\n[prerender] A GOAL SUMMARY COUNTS SOMETHING THE PAGE DOES NOT HAVE — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] goal summaries OK — ${checked} pages, every compound and protocol count in the description equal to the links on the page.`);
 })();
 
 // ---- build-time assertion: TWO LINKS ON ONE PAGE MUST NOT SAY THE SAME THING -----------------
