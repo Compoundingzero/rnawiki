@@ -623,6 +623,46 @@ function tidyTail(t) {
 // all. Three records — DRD2 ("DRD2 gene"), LTF ("LTF gene"), Cardiolipin ("Cardiolipin overview")
 // — have no name after the symbol is removed, and those three keep the bare symbol rather than a
 // heading that reads "DRD2 (gene)". This function only ever REMOVES text.
+// ---- W6 (2026-08-06): /protocol titles — a length budget was eating the root cause ------------
+// Measured on the built site, prerendered document, all 52 /protocol routes: 27 of 52 titles ran
+// past the 60-char budget and seoTitle() trimmed them word-by-word from the RIGHT, so the thing
+// that came off was the second half of the root cause — the only part of the title that tells
+// these 52 pages apart. What shipped:
+//     "Acne / Skin Clarity: sebum"                 (sebum WHAT?)
+//     "Chronic Fatigue / Low Energy: mitochondrial"
+//     "High Cholesterol / Lipids: high ldl / low soluble"
+//     "Brain Fog: neuroinflammation / poor metabolic"
+// Six more were wrecked by `.toLowerCase()` on an authored name that contains an acronym:
+// "high ldl", "low gabaergic tone", "hpa-axis dysregulation", "uv / oxidative damage",
+// "dht-sensitive hair loss", "chronic mtor over-activation".
+// pcTitle() trims by dropping WHOLE authored clauses instead of words, so every title it emits
+// ends where the author ended a phrase. assertProtocolTitles() checks that against data.js.
+const PC_SPLIT = /\s+[/+&]\s+|\s+(?:or|and)\s+/;
+const pcClause = (s) => String(s).split(PC_SPLIT)[0].trim();
+// Lowercase the first letter only — never the whole string, or LDL becomes ldl and mTOR becomes
+// mtor. An acronym-initial name ("HPA-axis dysregulation") is left exactly as authored.
+const pcCase = (s) => { const w = String(s).split(/\s+/)[0] || ''; return /[A-Z].*[A-Z]/.test(w) ? String(s) : String(s).charAt(0).toLowerCase() + String(s).slice(1); };
+const pcOk = (c) => c.split(/\s+/).length >= 2 || c.length >= 12;
+function pcTitle(problem, cause) {
+  const P = String(problem).trim();
+  const Pp = P.replace(/\s*\([^)]*\)/g, '').replace(/\s+/g, ' ').trim();   // "Build Muscle (Plateau)" -> "Build Muscle"
+  const Ph = pcClause(Pp);                                                  // "Belly / Visceral Fat"  -> "Belly"
+  const C = String(cause).replace(/\s*\([^)]*\)/, '').replace(/\s+/g, ' ').trim();
+  const C1 = pcClause(C);
+  const heads = [P, Pp, Ph].filter((h, i, a) => h && a.indexOf(h) === i);
+  const causes = pcOk(C1) && C1 !== C ? [C, C1] : [C];
+  const fits = (m) => esc(m + SUFFIX).length <= 60;
+  // Heads OUTER, causes inner: the problem name is the term people search ("Focus / ADHD"), so it
+  // is the last thing to give up. Reversing these two loops costs "ADHD", "Osteoporosis" and
+  // "Visceral Fat" out of three titles — measured, both ways round, before this order was fixed.
+  for (const h of heads) for (const c of causes) if (fits(`${h}: ${pcCase(c)}`)) return seoTitle(`${h}: ${pcCase(c)}`);
+  // Last complete-clause option: the cause on its own. Only taken when the cause already carries a
+  // real word from the problem ("Chronic low-grade inflammation" holds both of "Chronic
+  // Inflammation"), so the page is still findable by the thing it is about. 3 of 52 land here.
+  const words = P.toLowerCase().match(/[a-z]{5,}/g) || [];
+  for (const c of causes) if (fits(c) && words.some((w) => c.toLowerCase().indexOf(w) >= 0)) return seoTitle(c);
+  return seoTitle(`${P}: ${pcCase(C)}`);   // unreachable on today's corpus; kept so this cannot throw
+}
 function targetName(t) {
   const sym = String((t && t.sym) || '');
   let n = String((t && t.name) || '').replace(/\s+/g, ' ').trim();
@@ -1531,7 +1571,30 @@ GRAPH.problems.forEach((p) => {
       // Re-add both per-page only when a named reviewer actually checks it. dateModified is honest.
       url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
     }].concat(howto || []).concat(pqa.ld || []);
-    add(route, shell({ route, title: seoTitle(`${p.name}: ${rcShort.toLowerCase()}`), desc: seoDesc(`${p.name} — ${rcShort}: the exercises, foods and evidence-ranked compounds for this root cause.`), jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
+    // ---- W6 (2026-08-06): 52 pages, 52 descriptions, ONE sentence ---------------------------
+    // Measured on the built site: every one of the 52 /protocol descriptions ended with the same
+    // 68 characters — "the exercises, foods and evidence-ranked compounds for this root cause."
+    // So the one line Google shows below the title said the same thing on all 52, and said it in
+    // the vocabulary of the site rather than of the reader.
+    // Two authored things were already on the page and in neither document's search result:
+    //   · rc.plain — the root cause in the reader's OWN words ("Belly fat and a bigger waist
+    //     that's pushing my blood sugar up"). Authored on 52 of 52.
+    //   · rc.phase1.action — the ONE free first step, selected from this page's own plan and
+    //     gated by assertPhase1() in build/parse.js. Measured across the 52: movement 24,
+    //     food-swap 5, removal 4, measurement 3, sleep 2, light 2, timing 2, breath 1, rest 1,
+    //     and 8 with none. 36 of 52 open on something physical or behavioural, not a supplement
+    //     — and the description said "compounds" on all 52. Somebody searching "knee pain
+    //     exercises" and somebody searching "creatine dose" are not looking for the same page.
+    // The 8 with no free lever say so, using the authored reason rather than inventing one.
+    const pcPlain = String(rc.plain || rcShort).replace(/\s+/g, ' ').trim().replace(/[.;,]+$/, '');
+    const pcStep = p1
+      ? ` Free first step, $0: ${pcCase(String(p1.action).trim().replace(/[.]+$/, ''))}.`
+      : ' No $0 first step exists for this cause — the page says why.';
+    let pcLead = `${p.name} — ${pcPlain}.`;
+    // The step is the differentiator, so it is the part that must survive the budget: trim the
+    // lead against what is left, never the other way round.
+    if (esc(pcLead + pcStep).length > 155) pcLead = seoDesc(pcLead, Math.max(20, 155 - esc(pcStep).length));
+    add(route, shell({ route, title: pcTitle(p.name, rc.name), desc: pcLead + pcStep, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
 
     // ---- the Fuel Tracker's readable twin ----------------------------------------------------
     // Added 2026-07-30. Every protocol page links to /fuel/<problem>/<cause>, and not one of those
@@ -4429,6 +4492,69 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log('[prerender] anonymous-first OK — 0 unprompted account modals, the header control is not the page CTA, and the modal says an account is optional.');
+})();
+
+// ---- build-time assertion: A PROTOCOL TITLE MUST END WHERE THE AUTHOR ENDED A PHRASE ---------
+// W6 (2026-08-06). Measured on the built site, prerendered document, all 52 /protocol routes:
+// 27 of 52 titles were over the 60-char budget, and seoTitle() trims word-by-word from the RIGHT,
+// so what came off was the second half of the root cause — the ONLY part of the title that tells
+// these 52 pages apart. Shipped examples: "Acne / Skin Clarity: sebum",
+// "Chronic Fatigue / Low Energy: mitochondrial", "Brain Fog: neuroinflammation / poor metabolic",
+// "High Cholesterol / Lipids: high ldl / low soluble". A further 6 had their acronyms destroyed by
+// `.toLowerCase()` — "high ldl", "hpa-axis dysregulation", "chronic mtor over-activation".
+// And all 52 descriptions ended with the SAME 68 characters, so the line Google prints under the
+// title said the same thing about a wall-sit protocol and a finasteride protocol.
+//
+// This gate reads the emitted strings back out of the HTML and checks them against data.js, so it
+// cannot be satisfied by the variable the title was meant to use.
+// PROVE IT by restoring `seoTitle(`${p.name}: ${rcShort.toLowerCase()}`)` at the /protocol add().
+(function assertProtocolHeads() {
+  const bad = [];
+  let checked = 0, withStep = 0, noStep = 0;
+  const seenT = {}, seenD = {};
+  GRAPH.problems.forEach((p) => (p.root_causes || []).forEach((rc) => {
+    const route = `/protocol/${p.id}/${rc.id}`;
+    const page = pages.find((x) => x.route === route);
+    if (!page) return;                       // not every root cause is published; the route universe gate owns that
+    checked++;
+    const title = HEAD_UNESC(((page.html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || '')).replace(SUFFIX, '').trim();
+    const desc = HEAD_UNESC(((page.html.match(/<meta name="description" content="([^"]*)"/) || [])[1] || ''));
+    if (seenT[title]) bad.push(`${route}: <title> "${title}" is byte-identical to ${seenT[title]} — two pages competing on one string`);
+    seenT[title] = route;
+    if (seenD[desc]) bad.push(`${route}: meta description is byte-identical to ${seenD[desc]}`);
+    seenD[desc] = route;
+    // --- the title's cause half must be a WHOLE authored clause, not a trim of one -------------
+    const C = String(rc.name).replace(/\s*\([^)]*\)/, '').replace(/\s+/g, ' ').trim();
+    const allowed = [C, pcClause(C)].map((s) => s.toLowerCase());
+    const said = (title.indexOf(': ') >= 0 ? title.slice(title.indexOf(': ') + 2) : title).toLowerCase();
+    if (allowed.indexOf(said) < 0) {
+      bad.push(`${route}: the cause half of the <title> reads "${said}", which is neither this root cause ("${C}") nor its first authored clause ("${pcClause(C)}"). A length budget has cut the phrase in the middle — that is the defect where 27 of 52 titles ended on "sebum", "mitochondrial" or "poor metabolic".`);
+    }
+    // --- the description must name THIS page's own free first step, or say there is none -------
+    // 36 of the 52 free first steps are physical or behavioural (movement 24, food-swap 5,
+    // removal 4, sleep 2, light 2, timing 2, measurement 3, breath 1, rest 1) and 8 have none.
+    // A description that says "compounds" on all 52 hides that, and it is the difference between
+    // the reader who typed "knee pain exercises" and the reader who typed "creatine dose".
+    if (rc.phase1 && rc.phase1.action) {
+      withStep++;
+      const act = String(rc.phase1.action).trim().replace(/[.]+$/, '');
+      const want = pcCase(act);
+      if (desc.indexOf(want) < 0) bad.push(`${route}: the description does not contain this protocol's own $0 first step "${want}" — it reads "${desc.slice(0, 100)}…". The step is selected from the page's own plan by data/protocol_phase1.json; a description that omits it is the generic sentence all 52 used to share.`);
+    } else {
+      noStep++;
+      if (!/No \$0 first step exists/.test(desc)) bad.push(`${route}: has no authored $0 first step and its description does not say so — "${desc.slice(0, 100)}…". Inventing one here is the fabrication class W3.5 closed.`);
+    }
+  }));
+  if (!checked) bad.push('no /protocol pages were checked — this gate is running over an empty set');
+  if (!withStep || !noStep) bad.push(`the description half of this gate saw ${withStep} pages with a $0 step and ${noStep} without; both branches must be exercised or half of it is running over an empty set`);
+  if (bad.length) {
+    console.error('\n[prerender] A PROTOCOL TITLE OR SUMMARY DOES NOT MATCH ITS OWN PAGE — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] protocol heads OK — ${checked} pages, every title ending on a whole authored clause, ${checked} distinct titles and summaries, ${withStep} naming their own $0 first step and ${noStep} stating they have none.`);
 })();
 
 // ---- build-time assertion: A COUNT IN A TITLE MUST BE THE COUNT ON THE PAGE -------------------
