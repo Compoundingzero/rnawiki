@@ -2314,6 +2314,43 @@ try {
     } catch (e) { fail.push('compareWithdrawalIsHonest: harness error — ' + (e && e.message ? e.message : String(e))); }
   }
 
+  // ------------------------------------------------- A query string is not an indexable page
+  // W6 (2026-08-06). BEFORE: all 8 parameterised URL shapes the codebase can produce answered 200
+  // with robots `index,follow,…` and no X-Robots-Tag, so /solve?q=<anything the reader typed> was
+  // an unbounded family of indexable near-duplicates of /solve under an identical <title>.
+  // This asserts BOTH directions, because a rule that fires on everything is as wrong as one that
+  // fires on nothing: the header must be present on every "?" URL and absent from every clean one.
+  // It also asserts that render resources are NOT tagged — a noindex on /app.js or /styles.css
+  // would be a far worse defect than the one being fixed, and it is one character away.
+  // PROVE THIS GATE by deleting the two `_qs` lines from endHtml() in server.js: it must fail
+  // naming every "?" URL below.
+  try {
+    const hdr = async (u) => {
+      const r = await fetch(BASE + u, { redirect: 'manual' });
+      await r.text();
+      return { status: r.status, xr: r.headers.get('x-robots-tag') };
+    };
+    const dirty = ['/solve?q=knee%20pain', '/az?q=creatine', '/stack?ids=c1,c25', '/plan?cohort=abc',
+      '/body/leg?fma=FMA%3A22430', '/c/creatine-monohydrate?utm_source=x',
+      '/protocol/knee-pain/patellofemoral-pain?by=felix', '/?ref=twitter'];
+    const clean = ['/', '/solve', '/az', '/stack', '/plan', '/body/leg', '/c/creatine-monohydrate',
+      '/protocol/knee-pain/patellofemoral-pain'];
+    const assets = ['/app.js', '/styles.css', '/data.js', '/sitemap.xml', '/robots.txt'];
+    for (const u of dirty) {
+      const h = await hdr(u);
+      if (!/noindex/i.test(h.xr || '')) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} answered ${h.status} with X-Robots-Tag ${JSON.stringify(h.xr)}; a query-string URL is a view of a page, not a page, and every one of these self-canonicalises to its clean twin already`);
+      if ((h.xr || '').indexOf('nofollow') >= 0) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} sends nofollow. These URLs are how a crawler reaches deeper pages (all 42 links to /body/leg carry ?fma=); the directive must be noindex, FOLLOW`);
+    }
+    for (const u of clean) {
+      const h = await hdr(u);
+      if (h.xr) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — the clean route ${u} sends X-Robots-Tag ${JSON.stringify(h.xr)}. It is in sitemap.xml; tagging it deindexes a published page`);
+    }
+    for (const u of assets) {
+      const h = await hdr(u);
+      if (h.xr) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — the render resource ${u} sends X-Robots-Tag ${JSON.stringify(h.xr)}. Googlebot must be able to fetch and use every asset the page needs; this rule is for text/html only`);
+    }
+  } catch (e) { fail.push('queryStringsAreNotIndexable: harness error — ' + (e && e.message ? e.message : String(e))); }
+
   // ------------------------------------------------- Back button on a KEEP_PRERENDERED route
   // W2.5(a): /problem is in KEEP_PRERENDERED, so route() returns the KEEP sentinel and never
   // writes #app. Before the fix, Back from a protocol restored the URL and left the PROTOCOL on

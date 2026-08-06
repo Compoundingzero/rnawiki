@@ -29,7 +29,32 @@ function versionAssets(html) {
   // back in the tab on every route the SPA renders.
   return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js|head\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
 }
+// ---- A QUERY STRING IS NOT A PAGE (2026-08-06) -------------------------------------------------
+// MEASURED with curl against this server on all 8 parameterised URL shapes the codebase can
+// produce — /solve?q= /az?q= /stack?ids= /plan?cohort= /body/leg?fma= /c/<slug>?utm_source=
+// /protocol/<p>/<c>?by= and the bare clean twins: every one answered HTTP 200 carrying
+// `<meta name="robots" content="index,follow,max-image-preview:large,…">`, and none carried an
+// X-Robots-Tag. /solve?q=knee%20pain is 57,258 B against /solve's 55,298 B — a materially DIFFERENT
+// document, offered to Google as indexable under the SAME <title> and the SAME description. `q` is
+// free text typed by the reader (the home hero is a real <form action="/solve" method="get">), so
+// that is an unbounded family of near-identical result pages on a young domain, and each of those
+// URLs is a stranger's symptom description.
+//
+// The self-canonical is already correct on 8 of 8 (they all point at the clean path) — but
+// rel=canonical is a HINT. This is a directive, and unlike a robots.txt Disallow it also removes
+// anything already indexed. DELIBERATELY NOT robots.txt: a disallowed URL is never FETCHED, so a
+// noindex on it is never READ, and Google can still index a disallowed URL title-only from a link.
+//
+// Measured safe against the sitemap: 0 of the 568 <loc> entries contains a "?", so no URL this
+// site asks to be indexed can be hit by this rule.
+//
+// A HEADER, not a <meta>, for two reasons: endHtml() is the single exit for text/html so one line
+// covers every one of the ~40 call sites including the ones that do body surgery, and it needs no
+// template to cooperate. HTML ONLY — /styles.css, /app.js, /data.js, /head.js are served by
+// sendAsset() and are untouched, so Googlebot can still fetch every render resource.
 function endHtml(res, html, code) {
+  const _qs = String((res.req && res.req.url) || '').indexOf('?');
+  if (_qs >= 0) res.setHeader('X-Robots-Tag', 'noindex, follow');
   // res.req is the request this response belongs to (node >= 12.17) — used so the ~40 endHtml call
   // sites do not all have to be rewritten to thread `req` through just to read Accept-Encoding
   // and If-None-Match.
