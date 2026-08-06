@@ -1907,7 +1907,21 @@ const learnScaffold = (m) => {
 };
 D.modules.forEach((m, i) => {
   const route = '/learn/' + i;
-  add(route, shell({ route, title: seoTitle(`${m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '')}`), desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article">${foundationsDiagram(i)}${m.html || ''}${learnFlatHtml(m.expand)}${learnScaffold(m)}</div>` }));
+  // W6 (2026-08-06): THE MISSING <h1> — and, because of it, the missing contents card.
+  // MEASURED across all 568 published documents: 563 carry exactly one <h1> and 5 carry none —
+  // /learn/0 through /learn/4, which are the five LONGEST documents on the site (11,019 / 9,071 /
+  // 10,417 / 9,838 / 10,162 words, 20-24 <h2> each). Hydrated at 390x844 all five render exactly
+  // one <h1>, so this was a crawler-only hole: Google and the ~90% of readers who never run
+  // JavaScript were handed ~10,000 words of a course with no heading naming it.
+  // Second, silent effect: shell() injects the contents card with `.replace(/<\/h1>/, …)`, so with
+  // no </h1> the replace was a no-op and the whole TOC was discarded — measured 0 of 5 /learn/N
+  // pages contained `class="toc` while /c/*, /target/* and /muscle/* all did.
+  // The string is the SAME one this line already derives the <title> from, and the SAME one the SPA
+  // renders — verified byte-identical on 5 of 5 against the hydrated h1. It is deliberately NOT
+  // seoTitle()'s output: that is trimmed to a 60-char budget, so /learn/3's h1 would have lost
+  // "(the real expert skill)" and stopped matching what the reader sees.
+  const h1 = m.title.replace(/^MODULE\s*\d+\s*[—-]\s*/i, '');
+  add(route, shell({ route, title: seoTitle(h1), desc: `Foundations: ${m.title}`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Foundations', route: '/learn' }], body: `<div class="article"><h1>${esc(h1)}</h1>${foundationsDiagram(i)}${m.html || ''}${learnFlatHtml(m.expand)}${learnScaffold(m)}</div>` }));
 });
 
 // ---- anatomy & physiology: crawlable muscle / energy-system / metabolism pages ----
@@ -3515,6 +3529,41 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log(`[prerender] index directives OK — ${noindexed} noindexed page(s), every one self-canonical and out of the sitemap.`);
+})();
+
+// ---- build-time assertion: EVERY PUBLISHED DOCUMENT NAMES ITSELF -----------------------------
+// W6 (2026-08-06). MEASURED across all 568 published documents: 563 carried exactly one <h1> and 5
+// carried none — /learn/0..4, the five LONGEST documents on the site (9,071-11,019 words, 20-24
+// <h2> each). Hydrated, all five rendered one <h1>, so it was a crawler-only hole and nothing on
+// the page could reveal it. It also silently disabled the contents card, because shell() injects
+// the TOC with `.replace(/<\/h1>/, …)` and there was no </h1> to replace — 0 of 5 carried
+// `class="toc` while every other long page did.
+//
+// The population this iterates is EVERY published route, which is the population the defect lives
+// in. A version of this check that only looked at /learn/* would have proved one instance.
+// It also refuses more than one <h1>: two headings both claiming to be the page's subject is the
+// same defect facing the other way, and it is what a careless template edit produces.
+// PROVE IT by deleting `<h1>${esc(h1)}</h1>` from the /learn body above.
+(function assertOneH1PerPage() {
+  const bad = [];
+  const count = (html) => (String(html).match(/<h1[\s>]/gi) || []).length;
+  const text = (html) => ((String(html).match(/<h1[^>]*>([\s\S]*?)<\/h1>/i) || [, ''])[1] || '').replace(/<[^>]+>/g, '').replace(/&[a-z#0-9]+;/gi, ' ').trim();
+  const check = (route, html) => {
+    const n = count(html);
+    if (n === 0) bad.push(`${route}: emits no <h1>. A crawler and a no-JS reader are handed the whole document with no heading naming it — and shell() injects the contents card after the first </h1>, so this page silently loses its TOC as well.`);
+    else if (n > 1) bad.push(`${route}: emits ${n} <h1> elements. Exactly one heading may claim to be the page's subject.`);
+    else if (!text(html)) bad.push(`${route}: emits an empty <h1>.`);
+  };
+  pages.forEach((p) => check(p.route, p.html));
+  try { check('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { bad.push('could not read site/home.html to check its <h1>'); }
+  if (bad.length) {
+    console.error('\n[prerender] A PUBLISHED DOCUMENT DOES NOT NAME ITSELF — refusing to build.');
+    bad.slice(0, 40).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 40) console.error(`    … and ${bad.length - 40} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] page headings OK — ${pages.length + 1} documents, every one with exactly one non-empty <h1>.`);
 })();
 
 // ---- build-time assertion: THE FRAGMENTS THIS FILE PUBLISHES MUST BE RESOLVABLE ---------------
