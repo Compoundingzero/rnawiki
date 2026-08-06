@@ -663,6 +663,27 @@ function pcTitle(problem, cause) {
   for (const c of causes) if (fits(c) && words.some((w) => c.toLowerCase().indexOf(w) >= 0)) return seoTitle(c);
   return seoTitle(`${P}: ${pcCase(C)}`);   // unreachable on today's corpus; kept so this cannot throw
 }
+// ---- W6 (2026-08-06): A "X vs Y" TITLE THAT LOST Y IS A DIFFERENT PAGE'S TITLE ---------------
+// Measured on the built site, prerendered document, all 123 published /compare pages: 3 titles
+// contained no " vs " at all, and all three read exactly "Medicinal Mushrooms (Reishi, Turkey
+// Tail, Chaga) · RNAwiki" — byte-identical to each other AND to the title of
+// /c/medicinal-mushrooms-reishi-turkey-tail-chaga. Four URLs, one title, and three of them named
+// only one of the two things they compare, which is the entire search intent of a /compare page.
+// seoTitle() trims word-by-word from the right, so a long LEFT-hand name eats the whole right one.
+// The fix drops the PARENTHETICAL from each name first — only when that leaves the two names
+// distinct, because "Caffeine" vs "Caffeine (thermogenic)" must keep its bracket or the title
+// reads "Caffeine vs Caffeine", which is worse than the truncation.
+function compareTitle(an, bn) {
+  const full = `${an} vs ${bn}: which works better?`;
+  if (esc(full + SUFFIX).length <= 60) return seoTitle(full);
+  const shortOf = (n) => String(n).replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim();
+  const sa = shortOf(an), sb = shortOf(bn);
+  if (sa && sb && sa !== sb) {
+    if (esc(`${sa} vs ${sb}: which works better?` + SUFFIX).length <= 60) return seoTitle(`${sa} vs ${sb}: which works better?`);
+    return seoTitle(`${sa} vs ${sb}`);
+  }
+  return seoTitle(full);
+}
 function targetName(t) {
   const sym = String((t && t.sym) || '');
   let n = String((t && t.name) || '').replace(/\s+/g, ' ').trim();
@@ -1128,7 +1149,7 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
   // page. The goal label rides along because the <h2> and the FAQ question both name it, and the
   // two generators disagreed about it on 4 of 123.
   verdictByRoute[route] = [verdict, gl, goalId];
-  add(route, shell({ route, title: seoTitle(`${a.name} vs ${b.name}: which works better?`), desc: seoDesc(`${a.name} vs ${b.name} for ${gl}: human evidence, mechanism, safety and availability compared.`), jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }, { name: `${a.name} vs ${b.name}`, route }], body: body + faq.html }));
+  add(route, shell({ route, title: compareTitle(a.name, b.name), desc: seoDesc(`${a.name} vs ${b.name} for ${gl}: human evidence, mechanism, safety and availability compared.`), jsonld, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Compare', route: '/compare' }, { name: `${a.name} vs ${b.name}`, route }], body: body + faq.html }));
 });
 
 // goals
@@ -2049,7 +2070,19 @@ D.pathways.forEach((p, i) => {
   const route = '/pathway/' + i;
   const pwFact = factByHref['/pathway/' + i];
   const pwFactHtml = pwFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${pwFact.t}</span></div>` : '';
-  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: `The ${p.shortLabel} pathway in plain English, and the compounds that pull it.`, ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${pwFactHtml}${p.html || ''}${learnFlatHtml(p.expand, { diagram: pathwayDiagramHtml(p.diagram, p.shortLabel) })}</div>` }));
+  // ---- W6 (2026-08-06): 16 PAGES, ONE SENTENCE ---------------------------------------------
+  // Measured on the built site: all 16 /pathway descriptions were the same 11-word template with
+  // the label swapped — "The mTOR pathway in plain English, and the compounds that pull it." —
+  // 66-84 characters against a 155-character budget, in front of documents holding 7,046-10,512
+  // words each. `oneLine` is authored on 16 of 16 and is the plainest English on the page ("The
+  // master switch that tells cells 'there's plenty of food — grow.'"); it was rendered inside the
+  // document and on the share card, and never in the search result. Same omission as the 103
+  // /target descriptions. The compound count is the page's own list, counted here.
+  const pwN = D.compounds.filter((c) => (c.pathwayIds || []).includes(i)).length;
+  const pwOne = String(p.oneLine || '').replace(/\s+/g, ' ').trim();
+  const pwTail = pwN ? ` ${pwN} compound${pwN === 1 ? '' : 's'} in the wiki pull${pwN === 1 ? 's' : ''} on it.` : '';
+  const pwLead = pwOne ? `${p.shortLabel} — ${pwOne}` : `The ${p.shortLabel} pathway in plain English.`;
+  add(route, shell({ route, title: `${p.shortLabel} pathway explained · RNAwiki`, desc: seoDesc(esc(pwLead + pwTail).length <= 155 ? pwLead + pwTail : pwLead), ogImage: renderOgCard(`og/pathway/${i}.png`, { kind: 'Pathway', title: p.shortLabel, sub: p.oneLine || '' }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: p.shortLabel, route }], body: `<div class="article"><h1>${esc(p.shortLabel)}</h1>${pwFactHtml}${p.html || ''}${learnFlatHtml(p.expand, { diagram: pathwayDiagramHtml(p.diagram, p.shortLabel) })}</div>` }));
 });
 function foundationsDiagram(i) {
   const C = { blue: '#2563eb', teal: '#0d9488', slate: '#475569', red: '#b3261e', amber: '#d97706', line: '#64748b', mut: '#94a3b8', green: '#059669' };
@@ -4546,6 +4579,35 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     process.exit(1);
   }
   console.log('[prerender] anonymous-first OK — 0 unprompted account modals, the header control is not the page CTA, and the modal says an account is optional.');
+})();
+
+// ---- build-time assertion: A COMPARISON TITLE MUST NAME BOTH THINGS IT COMPARES --------------
+// W6 (2026-08-06). Measured on the built site, prerendered document, all 123 published pairs:
+// 3 titles contained no " vs " at all, and all three read exactly "Medicinal Mushrooms (Reishi,
+// Turkey Tail, Chaga) · RNAwiki" — byte-identical to each other and to the title of
+// /c/medicinal-mushrooms-reishi-turkey-tail-chaga. Four URLs published one title, and three of
+// them named one of the two things they compare. seoTitle() trims from the right, so a long LEFT
+// name deletes the whole right one; nothing had ever looked at a <title> against the pair it was
+// built from. PROVE IT by restoring seoTitle(`${a.name} vs ${b.name}: which works better?`).
+(function assertComparisonTitles() {
+  const bad = [];
+  let checked = 0;
+  const seen = {};
+  pages.filter((p) => /^\/compare\/.+-vs-/.test(p.route)).forEach((p) => {
+    checked++;
+    const t = HEAD_UNESC(((p.html.match(/<title>([\s\S]*?)<\/title>/) || [])[1] || ''));
+    if (!/ vs /i.test(t)) bad.push(`${p.route}: the <title> is "${t}" and contains no " vs " — the second compound has been trimmed off, so this page's title names one of the two things it compares.`);
+    if (seen[t]) bad.push(`${p.route}: <title> "${t}" is byte-identical to ${seen[t]}`);
+    seen[t] = p.route;
+  });
+  if (!checked) bad.push('no /compare pairs were checked — this gate is running over an empty set');
+  if (bad.length) {
+    console.error('\n[prerender] A COMPARISON TITLE NAMES ONLY ONE OF ITS TWO COMPOUNDS — refusing to build.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] comparison titles OK — ${checked} pairs, every title naming both compounds, ${Object.keys(seen).length} distinct.`);
 })();
 
 // ---- build-time assertion: A NUMBER IN A GOAL SUMMARY MUST BE THE NUMBER ON THE PAGE ---------
