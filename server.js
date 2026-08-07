@@ -2377,6 +2377,58 @@ function serveStatic(req, res, url) {
       endHtml(res, html);
     });
   }
+  // ---- /interest?state= — THE ANSWER, FOR READERS WITHOUT JAVASCRIPT (2026-08-08) -------------
+  // POST /api/interest 303s back to here with the answer in the query string. This is the same
+  // pattern as /solve?q= above, which the note there calls the reference implementation, and which
+  // is what the newsletter's ?subscribed=1 / ?suberr= did until 2026-08-06.
+  //
+  // NO BODY SURGERY, and the contract with the page is deliberately as small as it can be:
+  //   1. `data-state="<state>"` is stamped on the <html> ELEMENT. Not on a wrapper div — the <html>
+  //      tag is written by the shell, exists on every prerendered document, is the one element
+  //      hydration cannot destroy, and needs no cooperation from the page's body markup at all.
+  //      The page's stylesheet reveals its own panel with html[data-state="ok"] .istate-ok{…}.
+  //   2. On `ok` only: the removal link. <a class="i-rm" href=""></a> gets the href and the visible
+  //      URL. This is the reader's ONLY copy of that token, because nothing sends email yet.
+  //   3. On `remove` only: <input type="hidden" name="t" value=""> gets the token, so the confirm
+  //      panel's button POSTs it. GET NEVER DELETES.
+  // A substitution that finds nothing is logged loudly rather than swallowed, because the failure
+  // it produces — a page that says "here is your link" and shows none — is silent otherwise.
+  //
+  // THE STATES, all seven authored in the page and hidden by its own CSS:
+  //   ok       stored, and here is the link that deletes it
+  //   dupe     that address was already on the list; nothing changed and there is no second row
+  //   bad      that address did not look like an address; NOTHING WAS SAVED
+  //   rate     too many signups from this connection today; nothing was saved
+  //   down     the database is unreachable; nothing was saved, and it is my fault not yours
+  //   remove   are you sure? (a button, not a link)
+  //   removed  that address is not on the list
+  if (p === '/interest' && qp.get('state')) {
+    const STATES = ['ok', 'dupe', 'bad', 'rate', 'down', 'remove', 'removed'];
+    let state = STATES.indexOf(String(qp.get('state'))) >= 0 ? String(qp.get('state')) : '';
+    const tok = /^[A-Za-z0-9_-]{16,48}$/.test(String(qp.get('t') || '')) ? String(qp.get('t')) : '';
+    // A removal URL with no usable token has nothing to confirm, so there is nothing to ask about.
+    // The only true sentence left is the one `removed` already says.
+    if (state === 'remove' && !tok) state = 'removed';
+    if (!state) return sendFile(res, path.join(DIR, 'interest.html'));
+    return fs.readFile(path.join(DIR, 'interest.html'), 'utf8', (e, html) => {
+      // No page yet: fall through to the ordinary static path, which is where every unknown route
+      // on this site already goes. Loud in the log, because this is a redirect target that stopped
+      // existing.
+      if (e) { console.error('[interest] /interest?state=' + state + ' but site/interest.html is missing —', e.code); return serveMissing(res, 'interest'); }
+      const need = (before, after, what) => {
+        if (html.indexOf(before) < 0) { console.error('[interest] the page has no ' + what + ' — /interest?state=' + state + ' cannot fill it in. Expected the literal: ' + before); return; }
+        html = html.split(before).join(after);
+      };
+      if (/<html\b/.test(html)) html = html.replace(/<html\b/, `<html data-state="${state}"`);
+      else console.error('[interest] no <html> element in site/interest.html — the state cannot be stamped.');
+      if (state === 'ok' && tok) {
+        const href = '/interest?state=remove&t=' + tok;
+        need('<a class="i-rm" href=""></a>', `<a class="i-rm" href="${escHtml(href)}">${escHtml(SITE_URL + href)}</a>`, 'removal link (a.i-rm)');
+      }
+      if (state === 'remove') need('<input type="hidden" name="t" value="">', `<input type="hidden" name="t" value="${escHtml(tok)}">`, 'removal token field');
+      endHtml(res, html);
+    });
+  }
   // "/" serves the prerendered crawlable home if present, else the SPA shell
   if (p === '/') {
     return fs.readFile(path.join(DIR, 'home.html'), (e, html) => {
