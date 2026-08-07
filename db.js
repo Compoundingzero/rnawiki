@@ -288,6 +288,43 @@ ALTER TABLE clinician_interest ADD COLUMN IF NOT EXISTS country TEXT;
 ALTER TABLE clinician_interest ADD COLUMN IF NOT EXISTS license_no TEXT;
 ALTER TABLE clinician_interest ADD COLUMN IF NOT EXISTS proof_photo TEXT;
 
+-- The interest list behind /interest (2026-08-08). It replaces the newsletter as the site's one
+-- call to action, and it is a DIFFERENT FEATURE with DIFFERENT CONSENT — see the newsletter note
+-- twenty lines above. newsletter_subscribers is deliberately not reused and deliberately not
+-- recreated: those rows carry consent to a mailing that no longer exists, and attaching old consent
+-- to a new purpose is the thing PDPA exists to stop.
+--
+-- WHAT IS DELIBERATELY NOT HERE: no name, no ip, no user_agent, no referrer, no source page. None of
+-- them is needed to send the two emails the page promises, and the per-IP signup cap that bounds
+-- abuse lives in memory in server.js and is never written down. The only personal datum in this
+-- table is the address the reader typed on purpose.
+--
+--   topic         one of the ids in data/site_config.json -> interest.topics, or NULL. A closed
+--                 vocabulary, enforced in server.js, because this column answers "what do most
+--                 people name" and a count anyone can invent is a fabricated count.
+--   topic_other   free text, stored ONLY when topic = 'other'. A hidden field is still submitted by
+--                 the browser, so the server drops it in every other case.
+--   remove_token  server-minted, 32 chars of base64url over 24 random bytes, UNIQUE and NOT NULL.
+--                 POST /api/interest/remove with this token deletes the row, and it is the only way
+--                 to delete a row. This column is what makes the page's removal sentence a fact
+--                 rather than a promise; without it the page would be claiming something the code
+--                 does not do. NOT NULL so an INSERT that forgets it fails loudly instead of
+--                 creating a row nobody can ever delete.
+--
+-- UNIQUE(email) + ON CONFLICT DO NOTHING is what turns a second submission into an honest "you were
+-- already on the list" instead of a second row and (later) a second email. It also means this table
+-- cannot be inflated by resubmitting one address.
+CREATE TABLE IF NOT EXISTS interest_signups (
+  id SERIAL PRIMARY KEY,
+  email TEXT NOT NULL UNIQUE,
+  topic TEXT,
+  topic_other TEXT,
+  creator BOOLEAN NOT NULL DEFAULT false,
+  remove_token TEXT NOT NULL UNIQUE,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_interest_created ON interest_signups(created_at DESC);
+
 -- The outcome loop (Phase 4). One experiment = one participant running one protocol. participant is
 -- 'u:<user id>' when signed in, else 'v:<anonymous voter key>' so anyone can take part and the ledger
 -- aggregates honestly (one row per participant per protocol = no double counting).
