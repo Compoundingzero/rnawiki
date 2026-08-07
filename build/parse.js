@@ -2366,13 +2366,37 @@ const siteConfig = readJSON(path.join(DATA_DIR, 'site_config.json'));
   } else if (((siteConfig.x || {}).profile || '') !== 'https://x.com/' + h) {
     bad.push(`x.profile is ${JSON.stringify((siteConfig.x || {}).profile)} but the handle is "${h}" — the two disagree, so half the links on the page would point somewhere else.`);
   }
+  // /interest's chips (2026-08-08). This list is a WRITE SCHEMA, not copy: `id` is what goes into
+  // interest_signups.topic and what POST /api/interest matches against, so a typo here is a form
+  // control that silently discards the reader's only answer. It is validated here, and not in
+  // server.js, because server.js reads it at boot from site/data.js — by then the build has already
+  // happened and refusing is no longer an option.
+  const _it = ((siteConfig || {}).interest || {}).topics;
+  if (!Array.isArray(_it) || _it.length < 2) {
+    bad.push('interest.topics must be an array of at least two { id, label } chips — /interest renders its radio group from it and POST /api/interest validates against it');
+  } else {
+    const seen = new Set();
+    _it.forEach((t, i) => {
+      if (!t || typeof t.id !== 'string' || !/^[a-z][a-z0-9-]{1,23}$/.test(t.id)) bad.push(`interest.topics[${i}].id is ${JSON.stringify(t && t.id)} — ids are stored in the database and matched exactly; use lower-case letters, digits and hyphens`);
+      else if (seen.has(t.id)) bad.push(`interest.topics has two chips with id "${t.id}" — a radio group with a duplicated value cannot record which one was chosen`);
+      else seen.add(t.id);
+      if (!t || typeof t.label !== 'string' || !t.label.trim()) bad.push(`interest.topics[${i}] has no label — the reader taps the label, so a chip without one is an invisible control`);
+    });
+    if (!seen.has('other')) bad.push('interest.topics has no chip with id "other" — that chip is what reveals the free-text field, and topic_other is only stored when it is the chosen answer, so without it the field can never be submitted');
+  }
   if (bad.length) {
     console.error('\n[parse] SITE CONFIG FAILED — refusing to build:');
     bad.forEach((b) => console.error('  ✗ ' + b));
     process.exit(1);
   }
-  data.site = { x: { handle: h, profile: siteConfig.x.profile }, links: siteConfig.links || {} };
-  console.log('[parse] site config OK — one owner handle @%s, read from data/site_config.json.', h);
+  data.site = {
+    x: { handle: h, profile: siteConfig.x.profile },
+    links: siteConfig.links || {},
+    // Passed through so there is exactly one definition of the chips. server.js reads
+    // data.site.interest.topics at boot; anything not in it is stored as NULL, never as itself.
+    interest: { topics: _it.map((t) => ({ id: t.id, label: t.label })) },
+  };
+  console.log('[parse] site config OK — one owner handle @%s, %d interest topics, read from data/site_config.json.', h, _it.length);
 })();
 
 data.glossary = readJSON(path.join(DATA_DIR, 'glossary.json')) || {};

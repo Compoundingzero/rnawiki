@@ -28,5 +28,34 @@
   "links": {
     "substack": "https://compoundingzero.substack.com",
     "github": "https://github.com/Compoundingzero"
+  },
+  "interest": {
+    "_doc": [
+      "THE NINE CHIPS ON /interest, and the write schema for interest_signups.topic (2026-08-08).",
+      "",
+      "ONE definition, read twice: build/prerender.js renders the radio group from it, and server.js",
+      "validates POST /api/interest against it (loaded at boot out of site/data.js, the same way the",
+      "compound aliases and the /solve index are). Two hand-kept copies of an allowlist drift; a",
+      "set-membership test against one array cannot. The labels are the owner's own, verbatim from",
+      "his wireframe, in his order.",
+      "",
+      "`id` IS STORED IN THE DATABASE and is matched exactly by the server. Changing a label is safe.",
+      "Changing an id orphans every row already stored under the old one, so do not.",
+      "",
+      "The chip with id `other` is not optional: it is the one that reveals the free-text field, and",
+      "topic_other is only ever stored when it is the chosen answer. parse.js refuses to build",
+      "without it."
+    ],
+    "topics": [
+      { "id": "tiredness", "label": "Tiredness" },
+      { "id": "low-back", "label": "Low back" },
+      { "id": "neck-shoulder", "label": "Neck and shoulder" },
+      { "id": "hip", "label": "Hip" },
+      { "id": "digestion", "label": "Digestion" },
+      { "id": "sleep", "label": "Sleep" },
+      { "id": "brain-fog", "label": "Brain fog" },
+      { "id": "knee", "label": "Knee" },
+      { "id": "other", "label": "Something else" }
+    ]
   }
 }
