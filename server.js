@@ -870,6 +870,37 @@ function countOnce(req, kind, target) {
   CT_SEEN.set(k, now);
   return true;
 }
+// ---- /interest: the topic allowlist and the signup cap ---------------------------------------
+// The nine chips are authored ONCE, in data/site_config.json, and reach this file the same way
+// COMPOUND_ALIASES and SOLVE_INDEX do — parsed out of site/data.js at boot, below. Until that read
+// happens the list is empty, and an empty list FAILS CLOSED: an unrecognised topic is stored as
+// NULL, never as itself. That column answers "what do most people name", so a value a hand-written
+// POST could invent would be a fabricated count.
+let INTEREST_TOPICS = [];
+// The chokepoint's own bucket is 15 writes per burst, shared with every other POST on the site
+// (~15/min sustained = ~21,600 a day from one IP). That is the right shape for a logger and the
+// wrong shape for a signup form, which a real person submits ONCE. Ten STORED addresses per IP per
+// rolling 24h: generous enough that a household, an office or a Singapore CGNAT range never sees
+// it, and three orders of magnitude below what the chokepoint alone allows.
+// Deliberately its own map and not rateAllow(), for the reason already written above CT_SEEN: a
+// flood here must not be able to exhaust a real reader's budget for the logger or the plan builder.
+// Nothing in it is ever written to the database — see the note on interest_signups in db.js.
+const INT_SEEN = new Map();                 // ip -> [timestamps inside the last 24h]
+const INT_PER_DAY = 10;
+const INT_TTL_MS = 24 * 60 * 60 * 1000;
+const INT_MAX_KEYS = 20000;
+function interestAllow(ip) {
+  const now = Date.now();
+  if (INT_SEEN.size >= INT_MAX_KEYS) {
+    for (const [k, v] of INT_SEEN) if (!v.some((t) => now - t < INT_TTL_MS)) INT_SEEN.delete(k);
+    if (INT_SEEN.size >= INT_MAX_KEYS) INT_SEEN.clear();
+  }
+  const a = (INT_SEEN.get(ip) || []).filter((t) => now - t < INT_TTL_MS);
+  INT_SEEN.set(ip, a);
+  if (a.length >= INT_PER_DAY) return false;
+  a.push(now);
+  return true;
+}
 // Returns true if the request was blocked (and the response already sent).
 function writeBlocked(req, res) {
   if (!sameOrigin(req)) { json(res, 403, { error: 'Cross-origin writes are not accepted.' }); return true; }
@@ -919,6 +950,83 @@ async function api(req, res, url) {
       // Only web-uploaded photos (stored inline as a data URL above) are served.
       res.writeHead(404); return res.end();
     } catch (e) { res.writeHead(404); return res.end(); }
+  }
+  // ---- /interest — the interest-capture form (public, no account, WORKS WITH NO JAVASCRIPT) ----
+  // Registered HERE, ABOVE the `if (!db.enabled) return json(res, 503, …)` on the next line, and
+  // that placement is the whole point. This is a real <form method="post">, so a reader whose
+  // browser does not run JavaScript NAVIGATES to whatever it returns.
+  // MEASURED on the shipped code, real headless Chrome at 390x844 with JavaScript DISABLED, a
+  // native form submit to the one public no-account intake endpoint this site already has:
+  //     final URL  http://localhost:8099/api/clinician-interest
+  //     status     503, content-type application/json
+  //     body       {"error":"Accounts are not available right now."}
+  // — no page, no heading, no way back, and a refresh re-posts. ~90% of this site's traffic never
+  // runs JavaScript, so that IS the experience for ~90% of everyone who fills the form in.
+  // Every exit below is therefore a 303 to /interest?state=…, which means the reader always lands
+  // on a real page, a refresh cannot re-post, and endHtml() stamps `X-Robots-Tag: noindex, follow`
+  // on every one of those "?" URLs automatically (see the note above endHtml).
+  //
+  // THE WRITE GUARD NEEDED NO CHANGE, and that was verified rather than assumed. The same measured
+  // submit above carried `origin: http://localhost:8099`, a `referer`, a Chrome user-agent and
+  // `content-type: application/x-www-form-urlencoded`, so sameOrigin() + looksAutomated() +
+  // rateAllow() at the top of api() all pass it, and readBody() already parses that content type.
+  // A bare `curl -d` still gets 403. What the chokepoint does NOT stop is a hand-forged Origin
+  // header — it says so itself ("speed bump only"). The controls that bound the damage HERE are the
+  // closed topic vocabulary, interestAllow()'s ten stored addresses per IP per day, and
+  // UNIQUE(email), which makes a resubmit a no-op rather than another row.
+  if (seg[0] === 'interest' && !seg[1] && req.method === 'POST') {
+    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q, 'Cache-Control': 'no-store' }); res.end(); };
+    const b = await readBody(req, 4e3);              // two questions and an address; nothing here is large
+    if (!b) return see('state=bad');
+    const email = clean(b.email, 160).toLowerCase();
+    const topicIn = clean(b.topic, 24);
+    const topic = INTEREST_TOPICS.indexOf(topicIn) >= 0 ? topicIn : null;
+    // A HIDDEN FIELD IS STILL SUBMITTED. The free-text box is revealed by CSS :checked, and
+    // `display:none` does not stop a control being serialised — measured in Chrome: choose
+    // "Something else", type into it, change your mind and choose "Hip", and the body carries BOTH
+    // `topic=hip` AND the stale words. The reader's answer is "Hip". Keep the words only when they
+    // ARE the answer, rather than storing a second, contradictory answer to the same question.
+    const other = topic === 'other' ? (clean(b.topic_other, 60) || null) : null;
+    const creator = ['1', 'on', 'true'].indexOf(String(b.creator == null ? '' : b.creator).toLowerCase()) >= 0;
+    // Carried back so the page can re-check the chip the reader already chose. The ADDRESS is
+    // deliberately NOT carried back: it would sit in browser history, in the Referer of the next
+    // link they click and in every access log in between, and it is the one field on the form that
+    // is retyped in three seconds.
+    const keep = (topic ? '&topic=' + encodeURIComponent(topic) : '') + (creator ? '&creator=1' : '');
+    // The browser's own `required` + type="email" already refuse an empty field and "not an
+    // address" with JavaScript off. They do NOT refuse "a@b" — measured, that submits. So this is
+    // the check that matters, not a duplicate of one the browser already does.
+    if (!/^[^\s@]+@[^\s@.]+\.[^\s@]{2,}$/.test(email)) return see('state=bad' + keep);
+    if (!db.enabled) return see('state=down' + keep);
+    if (!interestAllow(clientIp(req))) return see('state=rate' + keep);
+    try {
+      const r = await db.query(
+        `INSERT INTO interest_signups(email, topic, topic_other, creator, remove_token)
+         VALUES($1,$2,$3,$4,$5) ON CONFLICT (email) DO NOTHING RETURNING remove_token`,
+        [email, topic, other, creator, crypto.randomBytes(24).toString('base64url')]);
+      // DO NOTHING, not DO UPDATE: a second submission is answered with "you were already on the
+      // list, and your first answer is the one that counts" — which is true, and is why there is no
+      // second row and (later) no second email.
+      if (!r.rows[0]) return see('state=dupe');
+      return see('state=ok&t=' + r.rows[0].remove_token);
+    } catch (e) { console.error('[interest]', e.message); return see('state=down' + keep); }
+  }
+  // Removal. A POST, reached from a button on GET /interest?state=remove&t=…, NOT a GET — a link
+  // that deletes is a row an email link-scanner or a browser prefetcher can remove on the reader's
+  // behalf without them ever seeing the page. The unguessable token IS the authorisation, and the
+  // only thing it can do is delete the one row it belongs to.
+  if (seg[0] === 'interest' && seg[1] === 'remove' && !seg[2] && req.method === 'POST') {
+    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q, 'Cache-Control': 'no-store' }); res.end(); };
+    const b = await readBody(req, 2e3) || {};
+    const tok = clean(b.t, 48);
+    // A malformed token, an unknown token and a token that was already used all get the SAME
+    // answer, and that answer is a true sentence in every one of those cases: the address is not on
+    // the list. Telling them apart would turn this URL into an oracle for probing tokens.
+    if (!/^[A-Za-z0-9_-]{16,48}$/.test(tok)) return see('state=removed');
+    if (!db.enabled) return see('state=down');
+    try { await db.query('DELETE FROM interest_signups WHERE remove_token=$1', [tok]); }
+    catch (e) { console.error('[interest remove]', e.message); return see('state=down'); }
+    return see('state=removed');
   }
   if (!db.enabled) return json(res, 503, { error: 'Accounts are not available right now.' });
   const method = req.method;
@@ -2346,6 +2454,9 @@ try {
   if (m) {
     const _d = JSON.parse(m[1]);
     COMPOUND_ALIASES = _d.compoundAliases || {};
+    // /interest's chips, authored in data/site_config.json and carried here by build/parse.js.
+    // One definition for the page that renders the radios and the endpoint that validates them.
+    INTEREST_TOPICS = ((((_d.site || {}).interest || {}).topics) || []).map((t) => t.id).filter(Boolean);
     const _g = _d.graph || {};
     SOLVE_INDEX = {
       problems: (_g.problems || []).map((p) => ({
@@ -2367,6 +2478,7 @@ try {
   console.log('[server] compound aliases loaded:', Object.keys(COMPOUND_ALIASES).length);
   console.log('[server] solve index loaded:', SOLVE_INDEX.problems.length, 'problems');
   console.log('[server] compare slugs loaded:', COMPARE_BY_SLUG.size, '(' + COMPARE_RESTRICTED.size + ' restricted)');
+  console.log('[server] interest topics loaded:', INTEREST_TOPICS.length, INTEREST_TOPICS.length ? '(' + INTEREST_TOPICS.join(', ') + ')' : '— POST /api/interest will store every topic as NULL');
 } catch (e) { console.warn('[server] no compound aliases:', e.message); }
 
 // The SAME scoring loop as rankProblems() in site/app.js. Both read the index above; the weights
