@@ -3290,7 +3290,22 @@
     // The tracker filtered to tiers:['danger'] — the daily-checklist surface, the one place a
     // mineral-timing warning would actually change behaviour. If the panel is ever too heavy
     // there, collapse the panel; never hide a row the verdict counted.
-    const nDanger = r.flags.filter(f => f.tier === 'danger').length;
+    // ---- W6 (2026-08-08): A ROW ABOUT ONE COMPOUND IS NOT A COMBINATION ----------------------
+    // `dnp` is the one danger rule with a single `need`, and stackInteractions() lets a one-compound
+    // row through on purpose — "this substance should not be used at all" is a real thing to say
+    // about a stack. The verdict then called it a combination. MEASURED hydrated at 390x844, 0
+    // pageerrors, /stack?ids=c28,c0 rendered "☠️ 1 dangerous combination — read below" above a
+    // single row whose `.ixn-who` is just "2,4-Dinitrophenol (DNP)", with a foot note underneath
+    // saying the engine holds no pharmacology for the other compound in the stack. The COUNT was
+    // right and the NOUN was wrong: nothing combined, and a reader who reads the verdict and not
+    // the row is told the danger comes from mixing — which is the one thing they could "fix" by
+    // dropping the other compound. `members` is set on both rule rows and dupe rows above.
+    const dangerRows = r.flags.filter(f => f.tier === 'danger');
+    const nPair = dangerRows.filter(f => (f.members || []).length > 1).length;
+    const nSolo = dangerRows.length - nPair;
+    const nDanger = dangerRows.length;
+    const dangerSays = [nPair ? `${nPair} dangerous combination${nPair > 1 ? 's' : ''}` : '',
+      nSolo ? `${nSolo} of these should not be used at all` : ''].filter(Boolean).join(' and ');
     const icon = { danger: '☠️', blunt: '🔻', timing: '⏰' };
     const order = { danger: 0, blunt: 1, timing: 2 };
     r.flags.sort((a, b) => order[a.tier] - order[b.tier]);
@@ -3329,7 +3344,7 @@
     const notEnough = !nDanger && !nReview && covered.length < 2;
     const parts = [];
     parts.push(nDanger
-      ? `<span class="ixn-verdict bad">☠️ ${nDanger} dangerous combination${nDanger > 1 ? 's' : ''} — read below</span>`
+      ? `<span class="ixn-verdict bad">☠️ ${dangerSays} — read below</span>`
       : (nReview ? `<span class="ixn-verdict warn">⚠️ ${nReview} thing${nReview > 1 ? 's' : ''} to review</span>`
         : (covered.length < 2
           ? `<span class="ixn-verdict warn">❔ Not enough to check — I have interaction pharmacology for ${covered.length} of these ${list.length}</span>`

@@ -2358,6 +2358,32 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
       bad.push(`${rel} claims coverage of "${m[0]}" in prose, but the corpus measures ${measured.reachable}/${compounds.length}. Quote the gated field, or date the sentence so a reader can tell a record of an edit from the current number.`);
     }
   });
+  // ---- W6 (2026-08-08): A ONE-COMPOUND DANGER ROW IS NOT A COMBINATION -----------------------
+  // stackInteractions() deliberately lets a single-`need` rule fire on one compound — "this
+  // substance should not be used at all" is a real thing to say about a stack, and `dnp` is the
+  // only danger rule shaped that way. The VERDICT then counted it and called it a combination.
+  // MEASURED hydrated at 390x844, 0 pageerrors, /stack?ids=c28,c0: "☠️ 1 dangerous combination —
+  // read below" above one row whose .ixn-who is just "2,4-Dinitrophenol (DNP)". The count was
+  // right and the noun was wrong, and the noun is the part a reader acts on — it says the danger
+  // comes from mixing, which invites dropping the other compound as the fix.
+  // This tripwire is the cheap half of that repair: as long as a danger rule exists that CAN
+  // render a one-compound row, site/app.js must still carry the wording that distinguishes it, and
+  // must not have gone back to counting every danger row as a combination. Same read-the-renderer
+  // pattern the analytics, voice and coverage-prose gates above already use.
+  // PROVE IT by putting `${nDanger} dangerous combination` back into site/app.js.
+  {
+    const solo = (R.rules || []).filter((r) => r.tier === 'danger' && (r.need || []).length === 1 && (r.need || [])[0][1] === 1);
+    if (solo.length) {
+      const APP = fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8');
+      const names = solo.map((r) => `"${r.id}"`).join(', ');
+      if (APP.indexOf('should not be used at all') < 0) {
+        bad.push(`rule(s) ${names} render a danger row involving ONE compound (a single need of 1), but site/app.js no longer contains the wording that says so — the verdict is back to calling a one-compound row a "combination", which tells a reader the danger comes from mixing.`);
+      }
+      if (/\$\{nDanger\} dangerous combination/.test(APP)) {
+        bad.push(`site/app.js counts every danger row as a "combination" (\`\${nDanger} dangerous combination\`) while rule(s) ${names} can render a row about a single compound. Split the count, or delete the single-need danger rule.`);
+      }
+    }
+  }
   if (bad.length) {
     console.error('[parse] INTERACTION COVERAGE ASSERTION FAILED — the checker must not overstate what it knows:');
     bad.forEach((b) => console.error('  · ' + b));
