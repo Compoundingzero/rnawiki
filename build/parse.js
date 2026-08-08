@@ -2231,6 +2231,70 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   console.log('[parse] hazard under-tag scan: %d compound-signal hits over %d signal(s); every hit is either tagged or acknowledged with a quote (%d acknowledged)',
     hzScanned, Object.keys(HZ.signals || {}).length, hzAcked);
 
+  // ---- W6 (2026-08-08): THE OTHER HALF — EVERY CARRIER MUST BE VISIBLE TO ITS OWN DETECTOR ----
+  // The scan above walks the corpus looking for compounds that SHOULD carry a tag. Nothing walked
+  // the compounds that already DO. The only carrier-side assertion in this whole function was
+  // `if (!hzCarrierHits)` twenty lines up — ONE carrier per signal, not every carrier — and one is
+  // a bar a broken pattern clears easily.
+  // WHAT THAT COST, MEASURED over all 171 compounds × the 27 rule-consumed tags: 41 of 143 tag
+  // assignments (29%) were invisible to the very signal named after them. `stimulant` saw 4 of its
+  // 15 carriers — it could not see caffeine, ephedrine, yohimbine, clenbuterol, amphetamine or
+  // methylphenidate. `serotonergic` saw 2 of 6, and could not see the SSRIs. `immunostim` saw 1 of
+  // 5. `divalent_mineral` saw 1 of 7.
+  // WHY THAT IS A SAFETY DEFECT AND NOT A TIDINESS ONE. Two reasons, and the second is the one
+  // that reached readers:
+  //   1. A LABEL COULD BE DELETED IN SILENCE. Delete a tag whose signal cannot see it, and this
+  //      whole function still exits 0 — the rows it fed simply stop rendering and nothing says a
+  //      word. Not argued, MEASURED: each of the 41 was deleted in turn in a sandbox copy of the
+  //      repo and the REAL `node build/parse.js` was run on each. Ten exited 0. Deleting
+  //      `serotonergic` from the SSRI nameTag built clean and silently removed the
+  //      serotonin-syndrome rows for SSRIs + 5-HTP and SSRIs + Methylene Blue.
+  //   2. A SIGNAL TOO NARROW TO SEE ITS OWN CARRIERS IS TOO NARROW TO SEE AN UNTAGGED ONE. That is
+  //      one defect wearing two faces, and it is why the gate that found Ostarine walked straight
+  //      past c144 Minoxidil: the page says "Primary effect is lowering BP" and the pattern was
+  //      `lowers? (blood pressure|BP)`. Fixing the carrier side is what surfaced Minoxidil,
+  //      Melanotan II and SGLT2 in the untagged direction.
+  // THE RULE: for every rule-consumed tag, every compound that carries it must EITHER be matched by
+  // that tag's own signal, OR have a sentence from its own page written down in
+  // hazardAudit.carriers["<id>:<tag>"]. No third state, in either direction, exactly like
+  // `acknowledged`. WHAT THIS CANNOT DO, stated rather than hidden: it cannot judge pharmacology. A
+  // wrong quote still passes. The quote is the human assertion and the proof sits beside it.
+  // WHY THE LIST IS NOT EMPTY AND SHOULD NOT BE FORCED TO BE: eight assignments name what a product
+  // IS or CONTAINS rather than something its warnings discuss — six mineral products, mTOR on
+  // IGF-1, antioxidant identity on vitamin C and ALA — and widening a regex until it could see
+  // "this is 20% elemental calcium by weight" would make it match half the corpus.
+  // PROVE IT by deleting `serotonergic` from the ssri/sertraline/escitalopram nameTags (fails
+  // naming c156), or by deleting the strontium nameTag (fails naming the orphaned carriers entry).
+  {
+    const CAR = HZ.carriers || {};
+    let carSeen = 0, carHand = 0;
+    [...needed].forEach((tag) => {
+      const sig = (HZ.signals || {})[tag];
+      if (!sig) return;                                    // already reported by the loop above
+      compounds.forEach((c) => {
+        if (tagsOf(c).indexOf(tag) < 0) return;
+        if (hzLive(c, sig).length) { carSeen++; return; }
+        const q = String(CAR[`${c.id}:${tag}`] || '').trim();
+        if (q) { carHand++; return; }
+        bad.push(`${c.id} ("${c.name}") CARRIES "${tag}" and the hazardAudit signal for "${tag}" cannot see it anywhere in the text it reads — so that label can be deleted and this build will still pass, and the rows it feeds will vanish in silence. Widen the signal against this page's own words, or write the sentence the tag rests on into hazardAudit.carriers["${c.id}:${tag}"].`);
+      });
+    });
+    // A carriers entry rots in four ways, and each one is a decision recorded about a page that no
+    // longer says what it said. The last is the important one: once a signal CAN see a carrier, the
+    // hand-written quote is dead weight that hides a widening nobody noticed.
+    Object.keys(CAR).forEach((k) => {
+      const [id, tag] = String(k).split(':');
+      const c = byId.get(id);
+      if (!c) { bad.push(`hazardAudit.carriers has "${k}", which is not a compound id`); return; }
+      if (!(HZ.signals || {})[tag]) { bad.push(`hazardAudit.carriers has "${k}", but there is no hazard signal for "${tag}"`); return; }
+      if (!String(CAR[k]).trim()) { bad.push(`hazardAudit.carriers["${k}"] has no quote — a tag recorded without the page's own words beside it is the silent gap this block exists to close`); return; }
+      if (tagsOf(c).indexOf(tag) < 0) { bad.push(`hazardAudit.carriers records "${k}" but ${c.id} no longer carries "${tag}" — the tag was deleted and the sentence justifying it was left behind. Restore the tag, or delete this entry.`); return; }
+      if (hzLive(c, HZ.signals[tag]).length) bad.push(`hazardAudit.carriers records "${k}" by hand, but the "${tag}" signal now matches ${c.id} on its own — stale entry, delete it so the hand-written list stays the short list of things a scan genuinely cannot reach`);
+    });
+    console.log('[parse] hazard carrier visibility OK — %d of %d rule-consumed tag assignments matched by their own signal, %d recorded by hand with the sentence they rest on; 0 that could be deleted in silence',
+      carSeen, carSeen + carHand, carHand);
+  }
+
   // ---- W5 (2026-08-02): THE PROSE A DANGER ROW PRINTS IS SHIPPED CONTENT TOO -------------------
   // "Combine glucose-loweres only under medical supervision" rendered on ALL 104 rows the
   // hypoglycemia rule can produce — 15 `hypoglycemic` carriers, C(15,2)=105, minus the collapsed
