@@ -132,6 +132,13 @@ const ROUTES = [
   ['browse', '/browse'],
   ['corrections', '/corrections'],                         // KEEP_PRERENDERED
   ['legend', '/legend'],
+  ['interest', '/interest'],                               // KEEP_PRERENDERED
+  // The same template with the query server.js 303s to. /interest and /interest?state=ok are two
+  // DIFFERENT documents — the second is the first with data-state stamped on <html> and two literal
+  // substitutions made — and only this one exercises the substitutions, the CSS that reveals the
+  // panel, and the removal link. The token matches /^[A-Za-z0-9_-]{16,48}$/, which is what
+  // server.js requires before it will render the state at all.
+  ['interest-ok', '/interest?state=ok&t=smoke-token-0000000000'],
   ['methodology', '/methodology'],                         // KEEP_PRERENDERED
   ['plan', '/plan'],
   ['progress', '/progress'],

@@ -20,6 +20,11 @@
      Nothing here changes a hue, a meaning or a token's job — the star is still amber, the accent is
      still the brand teal. assertContrastTokens() in build/prerender.js is the gate. */
   --ink:#283544; --head:#0a1420; --muted:#5c6a7a; --faint:#64707c;
+  /* 2026-08-08: the escalation red, from the owner's /interest wireframe. Its own token rather than
+     --red #dc2626, which measures 4.38:1 on --panel2 and fails assertContrastTokens.
+     #a8341f: 6.21 / 6.61 / 5.99 on --bg / --panel / --panel2, and 6.61 for white on it. It is in
+     that gate's AS_TEXT list, so it cannot drift back. */
+  --warn:#a8341f;
   --accent:#0f766e; --accent-ink:#ffffff; --accent2:#2563eb; --link:#0e7c72;
   --green:#047857; --yellow:#b45309; --blue:#2563eb; --orange:#c2410c; --red:#dc2626; --black:#4b5563;
   --star:#a35a00; --purple:#7c3aed;
@@ -4255,3 +4260,248 @@ a.assess-switch { text-align: center; }
 .p1-co-day{margin:0 0 .35rem;font-size:1rem;line-height:1.5;color:var(--ink)}
 .p1-co-note{margin:.25rem 0 0;font-size:1rem;line-height:1.5;color:var(--muted)}
 .p1-cohort-no{border-color:#fed7aa;background:#fffbeb;color:#7c3a06;font-size:1rem;line-height:1.55}
+/* ================================================================================================
+   /interest — the interest-capture landing page.  W7 (2026-08-08).
+
+   EVERY SELECTOR IS SCOPED TO .ipage AND EVERY CLASS IS PREFIXED `i-`. The owner's wireframe styles
+   bare `form`, `button`, `svg`, `h1`, `h2`, `input[type=email]`, `section`, `footer`, `a` and
+   `*{margin:0;padding:0}`; pasted in as written, those rules would repaint the topbar search box,
+   the menu button, every icon on 569 routes and the whole box model of the site. The `i-` prefix
+   closes the other half of the same problem: five of the wireframe's class names ALREADY EXIST in
+   styles.css and would have half-applied through the cascade — `.chip` (8 rules, including the
+   44px tap-target list and a 999px pill radius), `.reveal` (15 rules, and site/app.js:1354 adds
+   `.armed` to every `.reveal` inside #app, which sets opacity:0 until it scrolls into view),
+   `.kicker` (4), `.opt` (3), `.step` (1).
+
+   IT INHERITS RATHER THAN REDECLARES. The wireframe's palette is this site's palette: --bg, --panel,
+   --ink, --head, --muted, --accent, --font and --mono are already in :root. Only two tokens differed:
+     --edge #7c8896  DROPPED. rgb(124,136,150) at 14px on rgb(246,248,250) is 3.39:1 — it was the
+                     fill of the five words that give the hook drawing its meaning, and it fails
+                     WCAG AA. Replaced everywhere by --faint #64707c (4.75 / 5.06 / 4.59), already
+                     in assertContrastTokens' AS_TEXT list, so it cannot drift back.
+     --warn #a8341f  KEPT. Added to :root AND to AS_TEXT: 6.21 / 6.61 / 5.99 on the three page
+                     surfaces. The existing --red #dc2626 measures 4.38:1 on --panel2 and would not
+                     have passed the gate.
+   ================================================================================================ */
+.ipage{--i-frame:680px;--i-gutter:20px;--i-sp:72px;--i-r:10px;
+  --i-micro:12px;--i-small:15px;--i-body:17px;--i-lead:20px;--i-h1:32px;
+  max-width:calc(var(--i-frame) + var(--i-gutter) * 2);margin:0 auto;padding:0 var(--i-gutter);
+  font-size:var(--i-body);line-height:1.55;color:var(--ink)}
+@media(min-width:760px){.ipage{--i-body:18px;--i-lead:23px;--i-h1:46px;--i-sp:104px}}
+.ipage .i-wrap{padding:var(--i-sp) 0 0}
+.ipage .i-first{padding-top:8px}
+.ipage h1{font-size:min(var(--i-h1),8.6vw);font-weight:700;line-height:1.1;letter-spacing:-.024em;
+  color:var(--head);text-wrap:balance;margin:14px 0 0}
+@media(min-width:760px){.ipage h1{font-size:var(--i-h1)}}
+.ipage h2{font-size:var(--i-lead);font-weight:700;line-height:1.25;letter-spacing:-.012em;
+  color:var(--head);text-wrap:balance;margin:0}
+.ipage .i-kick{font-family:var(--mono);font-size:var(--i-micro);letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);margin:0}
+.ipage .i-mean{font-size:var(--i-lead);font-weight:700;line-height:1.3;letter-spacing:-.012em;
+  color:var(--head);max-width:22em;margin:0 0 36px}
+.ipage p{max-width:32em}
+.ipage .i-fig{margin:28px 0 0}
+.ipage .i-cap{font-size:var(--i-body);line-height:1.5;color:var(--muted);margin-top:18px;max-width:32em}
+.ipage .i-cap b{color:var(--head);font-weight:700}
+/* Links live in their own paragraph, never inside a figcaption. MEASURED at 390x844 with the
+   "read all 6" link inline in the caption: `display:inline-block` + 11px padding (which the link
+   needs to clear 44px) opened a 22px gap in the middle of a wrapped sentence and left the caption's
+   last two lines 22px further apart than the rest. A block-level link keeps the tap target and
+   leaves the prose alone. */
+.ipage .i-more{margin:18px 0 0}
+.ipage .i-more a{color:var(--link);font-weight:700;text-decoration:underline;text-underline-offset:3px;
+  display:inline-flex;align-items:center;min-height:44px}
+
+/* ---- the drawings are inert: no pointer target, no selection, no focus stop ------------------- */
+.ipage svg{display:block;width:100%;height:auto;pointer-events:none;user-select:none}
+.ipage .i-draw,.ipage .i-hook{stroke:var(--faint);fill:none;stroke-width:1.4;
+  stroke-linecap:round;stroke-linejoin:round}
+.ipage .i-hook{color:var(--faint);stroke-width:2}
+.ipage .i-pane{opacity:.55}
+.ipage .i-when{font-family:Georgia,serif;font-size:14px;fill:var(--muted);stroke:none}
+.ipage .i-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+  fill:var(--muted)}
+/* A MARK, NOT TEXT — so the bar is WCAG 1.4.11 (3:1 for a meaningful graphic), not 1.4.3 (4.5:1).
+   This IS the owner's --edge #7c8896: 3.39 / 3.61 / 3.27 on the three page surfaces, which clears
+   3:1 everywhere and is why the token is right here and wrong for the five words in the hook
+   drawing, where it measured 3.39 against a 4.5 requirement. The first value tried, #8f9daa,
+   MEASURED 2.61:1 on --bg and would have failed even the non-text bar. Both numbers the drawing
+   carries are stated in words in its own <title>, so nothing is available by colour alone. */
+.ipage .i-lib-off{stroke:#7c8896;stroke-width:4;stroke-linecap:round}
+.ipage .i-lib-on{stroke:var(--accent);stroke-width:4;stroke-linecap:round}
+.ipage .i-box,.ipage .i-head,.ipage .i-abox{fill:var(--panel);stroke:var(--accent);stroke-width:1}
+.ipage .i-head,.ipage .i-abox{stroke:var(--head);stroke-width:1.6}
+.ipage .i-tx{font-family:var(--font);font-size:13px;fill:var(--ink)}
+.ipage .i-hd{font-weight:700;fill:var(--head);font-size:15px}
+.ipage .i-join{stroke:var(--accent);stroke-width:1;fill:none}
+.ipage .i-join1{stroke:var(--faint);stroke-width:1.4}
+.ipage .i-red{stroke:var(--warn);stroke-dasharray:4 3}
+.ipage .i-redt{fill:var(--warn)}
+.ipage .i-acc{stroke:var(--accent)}
+/* --line #e9edf2 on --bg #f6f8fa is 1.09:1 — MEASURED as a screenshot, the dashed floor the six
+   chairs are meant to sit around was simply not there, and the drawing read as scattered furniture.
+   --faint at .5 composites to about #b0b8c0, 2.0:1: visible, and deliberately below the chairs. */
+.ipage .i-floor{fill:none;stroke:var(--faint);opacity:.5;stroke-dasharray:2 6}
+.ipage .i-yours{stroke-dasharray:4 4;opacity:.8}
+.ipage .i-bdash{stroke-width:1;stroke-dasharray:3 3}
+.ipage .i-rule{stroke-width:1}
+.ipage .i-note{fill:var(--panel2);stroke:var(--line)}
+
+/* ---- scroll-driven, and ONLY EVER ADDITIVE ----------------------------------------------------
+   THE FALLBACK IS THAT THERE IS NOTHING TO FALL BACK FROM. `.i-rise` and `.i-swipe` carry no
+   opacity, transform or clip of their own: every declaration that could hide anything lives inside
+   `@supports (animation-timeline: view())`, so a browser that fails that query never sees one.
+   MEASURED, Chrome 151.0.7922.77 at 390x844, all five figures, at load / scrolled to the bottom /
+   scrolled back to the top:
+     · with the animation live          opacity 1, clip none or inset(0 0 0 0), 0 hidden of 15
+     · with prefers-reduced-motion:reduce, which switches every one of these rules off exactly the
+       way a browser with no animation-timeline does   opacity 1, clip none, transform none, 15/15
+   `forwards`, NOT `both`: `both` applies the FROM keyframe before the range starts, and at 390x844
+   that left the below-the-fold figure at clip-path:inset(0 100% 0 0) — 100% clipped, invisible — at
+   load, again after scrolling back to the top, and in print. */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .ipage .i-rise{animation:i-rise linear forwards;animation-timeline:view();animation-range:entry 5% cover 26%}
+    @keyframes i-rise{from{opacity:.25;transform:translateY(14px)}to{opacity:1;transform:none}}
+    .ipage .i-swipe{animation:i-swipe linear forwards;animation-timeline:view();animation-range:entry 10% cover 34%}
+    @keyframes i-swipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+  }
+}
+
+/* ---- the form: the only bounded zone on the page, so it reads as the thing you do ------------- */
+.ipage .i-form{margin-top:32px;background:var(--panel2);border:1px solid var(--line);
+  border-top:3px solid var(--accent);border-radius:14px;padding:24px 18px 26px}
+@media(min-width:760px){.ipage .i-form{padding:32px 28px 34px}}
+.ipage .i-formtop{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 6px}
+.ipage .i-mut{color:var(--muted)}
+.ipage .i-formlede{font-size:var(--i-small);color:var(--muted);margin:0 0 26px}
+.ipage .i-step{display:flex;gap:12px;align-items:baseline}
+.ipage .i-stepn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent);
+  color:var(--accent-ink);font-family:var(--mono);font-size:13px;font-weight:700;display:flex;
+  align-items:center;justify-content:center;line-height:1;transform:translateY(2px)}
+.ipage .i-q{font-size:var(--i-lead);font-weight:700;color:var(--head);line-height:1.3;margin:0}
+.ipage .i-help{font-size:var(--i-small);color:var(--muted);margin:8px 0 0;max-width:32em}
+.ipage .i-help0{margin-top:0}
+.ipage .i-opt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--faint);border-radius:999px;padding:3px 9px;
+  margin-left:8px;vertical-align:middle;white-space:nowrap}
+.ipage .i-chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;grid-auto-rows:minmax(52px,auto);
+  margin-top:16px;position:relative}
+@media(min-width:760px){.ipage .i-chips{grid-template-columns:1fr 1fr 1fr}}
+.ipage .i-wide,.ipage .i-escape{grid-column:1/-1}
+/* THE RADIO KEEPS A REAL BOX. `clip-path:inset(50%)` and `display:none` both remove the box, and
+   Chrome then cannot anchor a validation bubble to a `required` control it cannot show: measured
+   with the radios clipped, a reader who filled in their email and pressed "Count me in" got
+   NOTHING — no submission, no bubble, no console error, form.reportValidity() false, and the same
+   dead button with JavaScript off. With a 1px opacity:0 box pinned inside the chip grid the same
+   test reports "Please select one of these options." and submits as soon as a chip is chosen.
+   pointer-events:none so the invisible box never steals a tap from the label above it. */
+.ipage .i-o{position:absolute;left:16px;top:10px;width:1px;height:1px;opacity:0;margin:0;border:0;
+  pointer-events:none}
+.ipage .i-chip{display:flex;align-items:center;min-height:52px;padding:10px 14px;background:var(--panel);
+  border:1px solid var(--faint);border-radius:var(--i-r);font-size:var(--i-small);line-height:1.3;
+  color:var(--ink);cursor:pointer}
+.ipage .i-o:checked + .i-chip{box-shadow:inset 0 0 0 2px var(--head);color:var(--head);font-weight:700}
+.ipage .i-o:focus-visible + .i-chip,.ipage .i-o:focus-visible + .i-ck{outline:2px solid var(--head);outline-offset:2px}
+/* THE FREE-TEXT FIELD IS DISPLAY:NONE UNTIL ITS CHIP IS CHOSEN, which is what keeps it out of the
+   tab order while it is hidden — `visibility:hidden` or `opacity:0` would leave a focusable control
+   nobody can see. Measured: with "Something else" unchosen the tab order runs chips -> creator
+   checkbox -> email -> button and never lands on it; choosing the chip by keyboard (Down-arrow from
+   any chip, no click) puts it in the order immediately after, and typing into it submits
+   `topic=other&topic_other=…`. */
+.ipage .i-escape{display:none;margin-top:4px}
+.ipage .i-escape label{display:block;font-size:var(--i-small);color:var(--muted);margin-bottom:6px}
+.ipage #i-f-other:checked ~ .i-escape{display:block}
+.ipage input[type=text],.ipage input[type=email]{width:100%;height:52px;padding:0 14px;
+  background:var(--panel);border:1px solid var(--faint);border-radius:var(--i-r);
+  font-family:var(--font);font-size:var(--i-body);color:var(--ink)}
+.ipage input::placeholder{color:var(--muted)}
+.ipage input:focus-visible,.ipage button:focus-visible,.ipage .i-states:focus-visible{outline:2px solid var(--head);outline-offset:2px}
+.ipage .i-field{margin-top:28px}
+.ipage .i-field input[type=email]{margin-top:14px}
+.ipage .i-creator{position:relative;margin-top:28px;padding-top:28px;border-top:1px solid var(--line)}
+.ipage .i-ck{display:flex;gap:14px;align-items:flex-start;margin-top:16px;padding:18px;
+  border-radius:var(--i-r);cursor:pointer;min-height:56px;font-size:var(--i-body);line-height:1.45;
+  color:var(--head);font-weight:700;background:var(--panel);border:2px solid var(--accent);
+  box-shadow:0 2px 0 rgba(15,118,110,.16)}
+.ipage .i-ck:hover{background:rgba(15,118,110,.05)}
+.ipage .i-ckflag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:2px}
+.ipage .i-ck::before{content:"";width:24px;height:24px;flex:none;margin-top:2px;
+  border:2px solid var(--accent);border-radius:6px;background:var(--panel)}
+.ipage #i-f-ck:checked ~ .i-ck{background:var(--panel2)}
+.ipage #i-f-ck:checked ~ .i-ck::before{background:var(--head);border-color:var(--head);
+  background-image:linear-gradient(45deg,transparent 44%,#fff 44%,#fff 56%,transparent 56%),
+                   linear-gradient(-45deg,transparent 44%,#fff 44%,#fff 56%,transparent 56%);
+  background-size:10px 2.5px,15px 2.5px;background-position:4px 13px,7px 11px;background-repeat:no-repeat}
+.ipage .i-creveal{min-height:50px;display:flex;align-items:center;visibility:hidden;
+  font-size:var(--i-small);color:var(--head);margin:0}
+.ipage #i-f-ck:checked ~ .i-creveal{visibility:visible}
+.ipage .i-form button{width:100%;min-height:60px;margin-top:8px;background:var(--accent);
+  color:var(--accent-ink);border:0;border-radius:var(--i-r);font-family:var(--font);
+  font-size:var(--i-lead);font-weight:700;cursor:pointer;box-shadow:0 3px 0 rgba(10,20,32,.18)}
+.ipage .i-form button:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(10,20,32,.18)}
+.ipage .i-micro{font-size:var(--i-small);color:var(--muted);margin:14px 0 0}
+
+/* ---- footer ---------------------------------------------------------------------------------- */
+.ipage .i-foot{margin-top:var(--i-sp);border-top:1px solid var(--line);padding:28px 0 var(--i-sp)}
+.ipage .i-foot p{font-size:var(--i-small);color:var(--muted);margin:0}
+.ipage .i-foot p + p{margin-top:10px}
+/* Two rows, not one sentence with separators. MEASURED at 390x844 with all three links in one
+   paragraph joined by "&nbsp;&middot;&nbsp;": the line broke after the first link and left a
+   dangling middot at the end of the row. */
+.ipage .i-meta{display:flex;flex-wrap:wrap;gap:0 22px;margin-top:4px}
+.ipage .i-foot a{color:var(--head);text-decoration:underline;text-decoration-color:var(--faint);
+  text-underline-offset:3px;display:inline-flex;align-items:center;min-height:44px}   /* D25 */
+
+/* ---- the seven answers ------------------------------------------------------------------------
+   Authored in the prerendered document; revealed by the one attribute server.js stamps ON THE
+   <html> ELEMENT (server.js:2422), which is why these start `html[data-state=…]` and not
+   `.ipage[data-state=…]`. The <html> tag is written by shell(), exists on every prerendered
+   document, and is the one element hydration cannot destroy. No JavaScript on any path.
+   The block sits IMMEDIATELY ABOVE THE FORM, not at the top of the page: on ok / dupe / removed the
+   form is hidden and the answer takes its place, and on bad / rate / down the answer sits directly
+   above the form the reader has to use again. server.js 303s to …#answer, so the browser lands on
+   it and moves focus to it (tabindex="-1") without a line of script. */
+.ipage .i-states{outline:none}
+.ipage .i-state{display:none}
+html[data-state="ok"] .i-s-ok,
+html[data-state="dupe"] .i-s-dupe,
+html[data-state="bad"] .i-s-bad,
+html[data-state="rate"] .i-s-rate,
+html[data-state="down"] .i-s-down,
+html[data-state="remove"] .i-s-remove,
+html[data-state="removed"] .i-s-removed{display:block;margin:24px 0 8px;padding:20px 18px;
+  border-radius:14px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--accent)}
+html[data-state="bad"] .i-s-bad,
+html[data-state="rate"] .i-s-rate,
+html[data-state="down"] .i-s-down,
+html[data-state="remove"] .i-s-remove{border-left-color:var(--warn)}
+.ipage .i-state h2{font-size:var(--i-lead);margin:0 0 8px}
+.ipage .i-state p{font-size:var(--i-small);color:var(--ink);margin:0 0 10px;max-width:32em}
+.ipage .i-state p:last-child{margin-bottom:0}
+.ipage .i-state a{color:var(--link);text-decoration:underline;text-underline-offset:3px;
+  display:inline-block;min-height:44px;line-height:44px;overflow-wrap:anywhere}
+/* The removal link's text is a full URL, which is the one string on this page that cannot wrap at a
+   space. Without `overflow-wrap:anywhere` above it pushed the document to 431px at 390 (measured). */
+.ipage .i-rmform{margin:6px 0 12px}
+.ipage .i-rmform button{min-height:52px;padding:0 22px;background:var(--warn);color:var(--accent-ink);
+  border:0;border-radius:var(--i-r);font-family:var(--font);font-size:var(--i-body);font-weight:700;
+  cursor:pointer}
+/* A reader who has just been answered must not be shown the form again on the three states where
+   filling it in would be wrong. */
+html[data-state="ok"] .i-form,
+html[data-state="dupe"] .i-form,
+html[data-state="remove"] .i-form,
+html[data-state="removed"] .i-form{display:none}
+
+/* ---- the home page's closing CTA, which is the one clean inbound link to /interest ------------
+   Its own three classes rather than the site's `.kicker` (styled only inside .hero and .intake, so
+   it would have rendered as plain body text here) and `.cta-ghost` (a purple --st pill belonging to
+   the stack feature). The link carries the 44px tap-target minimum the site gates on. */
+.home-interest{margin:2.2rem 0 0;padding-top:1.6rem;border-top:1px solid var(--line)}
+.hi-kick{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 .5rem}
+.home-interest h2{margin:0;color:var(--head);line-height:1.25}
+.hi-sub{margin:.5rem 0 0;color:var(--muted)}
+.hi-cta{display:inline-flex;align-items:center;min-height:44px;color:var(--link);font-weight:700;text-decoration:underline;text-underline-offset:3px}

@@ -3892,7 +3892,10 @@
   // A route template added tomorrow and forgotten here fails CLOSED to /t/other; it can never leak
   // a health-encoding URL by omission.
   const A_PUBLIC = ['/', '/about', '/anatomy', '/az', '/body', '/browse', '/compare', '/corrections',
-    '/learn', '/legend', '/methodology', '/pathways', '/plan', '/solve', '/stack', '/where'];
+    // '/interest' added 2026-08-08. It is a top-level route that encodes no health interest — the
+    // topic the reader picks is a form field, never a path segment — so the verbatim path is safe
+    // to send. Without it the beacon reports /interest as /t/other, which prerender.js prints.
+    '/interest', '/learn', '/legend', '/methodology', '/pathways', '/plan', '/solve', '/stack', '/where'];
   const A_TPL = {
     c: 'compound', compare: 'compare-pair', target: 'target', pathway: 'pathway',
     protocol: 'protocol', clinic: 'protocol', problem: 'problem', goal: 'goal', muscle: 'muscle',
@@ -8787,7 +8790,13 @@
   // Sentinel meaning "this route's page is the prerendered document — leave #app alone".
   // A plain null/'' would be indistinguishable from a renderer that returned nothing by mistake.
   const KEEP = Symbol('keep-prerendered');
-  const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem'];
+  // 'interest' added 2026-08-08, for the reason above and one more: /interest is a real
+  // <form method="post"> whose seven answer panels are revealed by an attribute server.js stamps on
+  // <html>. A client-side re-render would throw all of that away and replace it with notFound().
+  // Every inbound link to it carries data-native, so in-app navigation is a real page load and the
+  // server serves the article. assertInterestPage() in build/prerender.js fails the build if this
+  // string is missing, so the page and its SPA answer can no longer be committed apart.
+  const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem', 'interest'];
   // THE BACK BUTTON LIED ON 41 OF 41 /problem ROUTES (measured hydrated 2026-08-01, 390x844).
   // KEEP means "the prerendered document IS the page, do not write #app". That is true at boot and
   // false the moment any SPA render has overwritten #app -- and nothing tracked the difference.

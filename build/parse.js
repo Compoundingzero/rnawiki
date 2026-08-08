@@ -3055,7 +3055,10 @@ function blankComments(src) {
 // PROVE IT by putting one of the originals back, e.g. change the /compare index line in
 // build/prerender.js to "We do not publish a" and re-run `node build/parse.js`. It must exit 1.
 (function assertSingleVoice() {
-  const FILES = ['site/app.js', 'build/prerender.js', 'server.js'];
+  // build/interest.js added 2026-08-08: it is the fourth file that generates reader-facing copy
+  // (all of /interest), and a gate that does not read the newest renderer has stopped covering the
+  // newest copy.
+  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
   // "us" is matched lower-case only, so "US dollars" and "US$" survive; 'We' with no following
   // lower-case word survives too, which is what keeps the ['Su','Mo','Tu','We'] day labels legal.
   const PATTERNS = [
@@ -3122,7 +3125,10 @@ function blankComments(src) {
 // `<span class="vote-badge" hidden>⚠ Expert review needed</span>` in site/app.js — and re-run
 // `node build/parse.js`. It must exit 1 naming that file, line and phrase.
 (function assertNoCredentialClaims() {
-  const FILES = ['site/app.js', 'build/prerender.js', 'server.js'];
+  // build/interest.js added 2026-08-08: it is the fourth file that generates reader-facing copy
+  // (all of /interest), and a gate that does not read the newest renderer has stopped covering the
+  // newest copy.
+  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
   const CLAIMS = [
     [/verified\s+(expert|clinician|doctor|physician|pharmacist|dietit|physio|nutritionist|professional|reviewer)/i, 'verified <professional>'],
     [/(expert|clinical|clinician|medical|professional|specialist|physician)[- ]review/i, '<professional> review'],
@@ -3203,7 +3209,10 @@ function blankComments(src) {
 // `placeholder="e.g. hyrox_felix"` in site/app.js — and re-run `node build/parse.js`. It must
 // exit 1 naming the file and line.
 (function assertHandleFromConfig() {
-  const FILES = ['site/app.js', 'build/prerender.js', 'server.js'];
+  // build/interest.js added 2026-08-08: it is the fourth file that generates reader-facing copy
+  // (all of /interest), and a gate that does not read the newest renderer has stopped covering the
+  // newest copy.
+  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
   const handle = data.site.x.handle;
   const bad = [];
   // Usernames that belong to a real person and must never be shipped as an example. Felix's own

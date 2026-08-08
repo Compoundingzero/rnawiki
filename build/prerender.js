@@ -380,6 +380,10 @@ function tocHtml(heads, minutes) {
 // page leaves 16 and none are. You cannot fix that by shortening — only by attaching a meaning at
 // the point of use.
 const { glossify: _glossify, compile: _compileGloss } = require('./glossify.js');
+// /interest, the interest-capture landing page (2026-08-08). Its own file because it is the one
+// page on this site that is AUTHORED COPY rather than generated from the corpus — see the note at
+// the top of build/interest.js. This file gains this require, one add() and one gate.
+const INTEREST = require('./interest.js');
 const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
 const GLOSS_COMPILED = _compileGloss(GLOSSARY);
 let _glossLinks = 0;
@@ -406,7 +410,13 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   // whose whole job is two CTAs it lands between the headline and the lead, stays pinned for the
   // entire scroll at >=900px, and offers 12 competing destinations on top of the primary ask.
   // Also excluded from the index pages, which are already lists of links.
-  const _noToc = route === '/' || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
+  // /interest joins this list for the reason given just above for "/": it is a landing page whose
+  // whole job is one ask. Its emitted body is over the 700-word threshold and carries eleven <h2>
+  // elements — the four section headings AND the seven answer panels, which are display:none until
+  // server.js stamps data-state. Without this line the contents card lands between the headline and
+  // the first drawing, offering "You are on the list." and "That address is not on the list." as
+  // destinations on a page nobody has submitted yet.
+  const _noToc = route === '/' || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn', '/interest'].includes(route);
   const _toc = (!_noToc && _words > 700) ? tocHtml(_an.heads, _mins) : '';
   // Insert after the first </h1> so the reader gets title -> what's in here -> content.
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
@@ -2681,6 +2691,21 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       <p class="gi-sub">${D.goals.length} goals, ${D.compounds.length} compounds, ranked by the strength of
       the <b>human</b> evidence. Each one says up front what you can actually buy without a prescription.</p>
       <ul class="gi-list">${goalLinks}</ul>
+    </section>
+
+    ${/* 2026-08-08: THE CLOSING CTA SLOT, FILLED. The note at the top of this block records that
+          the newsletter went on 2026-08-06 and that no replacement closing CTA was invented,
+          because inventing one would mean writing an ask nobody asked for. /interest IS the ask the
+          owner wrote, and every string below is his, verbatim from his wireframe: the kicker, the
+          H1, and the form's two opening lines. data-native because /interest is prerender-only
+          (KEEP_PRERENDERED): without it a reader with JavaScript would get notFound(). It is also
+          the ONLY clean inbound link to that page — assertLinkGraph counts query-free links
+          separately for exactly this reason, so do not replace it with one carrying a "?". */ ''}
+    <section class="home-interest">
+      <p class="hi-kick">Being built in the open</p>
+      <h2>Turned away, priced out, or told it was nothing.</h2>
+      <p class="hi-sub">Nothing is built yet. This is how you get told when it is.</p>
+      <p><a class="hi-cta" href="/interest" data-native>Two questions. That is the whole thing &rarr;</a></p>
     </section>`;
 
   // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"
@@ -3145,6 +3170,38 @@ let written = 0;
         return `<li><a href="/pathway/${i}">${esc(nm)}</a>${n ? ` — ${n} compound${n === 1 ? '' : 's'}` : ''}</li>`;
       }).join('')}</ul>
       <p><a href="/learn">Start from the beginning →</a> · <a href="/about">About RNAwiki →</a></p></div>` }));
+}
+
+// ---- /interest — the interest-capture landing page (2026-08-08) -------------------------------
+// EMITTED LAST, ON PURPOSE. Its library drawing is one mark per published route, so it cannot be
+// built until every other add() has run. The `iTotal` expression below reproduces the `urls`
+// expression under "sitemap + robots" exactly, plus this page (which is not in `pages` yet at the
+// moment it is evaluated); assertInterestPage() re-derives all four numbers from `uniq` afterwards
+// and refuses to build on a disagreement, so the reproduction cannot rot.
+//
+// The newsletter was the home page's main call to action until it was deleted on 2026-08-06, and
+// the note above homeBody says plainly that no replacement was invented, because inventing one
+// would mean writing an ask nobody asked for. This is the ask the owner did write.
+{
+  const iTotal = new Set(['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', '/interest',
+    ...pages.filter((p) => !p.noSitemap).map((p) => p.route)]).size;
+  const iProblems = pages.filter((p) => p.route.startsWith('/problem/')).length;
+  const iProtocols = pages.filter((p) => p.route.startsWith('/protocol/')).length;
+  const iTopics = ((D.site || {}).interest || {}).topics || [];
+  add('/interest', shell({
+    route: '/interest', ogType: 'website',
+    // The owner's own H1. seoTitle() trims it to the 60-char escaped budget if it ever grows.
+    title: seoTitle('Turned away, priced out, or told it was nothing.'),
+    // Every clause is a sentence from his wireframe.
+    desc: seoDesc('Turned away, priced out, or told it was nothing. Nothing is built yet — this is how you get told when it is. Two questions. That is the whole thing.'),
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Being built in the open', route: '/interest' }],
+    body: INTEREST.interestBody({
+      total: iTotal, filled: iProblems + iProtocols, nProblems: iProblems, nProtocols: iProtocols,
+      topics: iTopics,
+      causeRows: INTEREST.causeRows((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes),
+      symptom: (iTopics.find((t) => t.id === INTEREST.CAUSE_CHIP) || {}).label,
+    }),
+  }));
 }
 
 pages.forEach(({ route, html }) => {
@@ -4275,6 +4332,109 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans, 0 reachable only through a query string (${thin} reachable from a single page).`);
 })();
 
+// ---- build-time assertion: /interest MAY NOT PRINT A NUMBER IT CANNOT COUNT, A CHIP THE ENDPOINT
+//      DISCARDS, OR AN ANSWER THE SERVER CANNOT PRODUCE -------------------------------------------
+// 2026-08-08. /interest is the one AUTHORED page on this site, and it has five ways to start lying
+// quietly — three of which the owner's wireframe was already doing:
+//   1. THE NUMBERS. "568 marks, 93 filled" and "One of the 41" were all true the day they were
+//      drawn and all three would be false on the first build that publishes a page. Same defect
+//      class as assertCorpusCountCopy, which exists because "Search 170 compounds…" shipped in the
+//      header of 568 documents while /az on the same page said 171.
+//   2. THE WRITE SCHEMA. In the wireframe no chip carried a `value`, so all nine radios serialised
+//      to `topic=on` and choosing "Tiredness" produced a byte-identical body to choosing "Knee";
+//      and the chip LABELLED "Knee" carried the id `f-tired`.
+//   3. THE ANSWERS. server.js can 303 this page into SEVEN states and makes two literal
+//      substitutions into its markup. A state with no panel is a reader who filled in a form and
+//      landed on a page that says nothing happened. A renamed literal is a page that says "here is
+//      your link" and shows none. server.js's need() logs that, but nobody reads a log.
+//   4. THE SPA ANSWER. Without 'interest' in KEEP_PRERENDERED a crawler gets the page and every
+//      reader with JavaScript gets notFound().
+//   5. THE OWNER'S CAUSE WORDING. build/interest.js keys his five plainer cause lines by the
+//      corpus's exact cause name. If a cause is renamed the key stops matching, his line silently
+//      disappears, and the drawing swaps to the corpus name with nothing said.
+// Everything below is re-derived from the EMITTED BYTES and from server.js's, app.js's and
+// styles.css's own source — never from the values interestBody() was handed.
+// PROVE IT by hard-coding a number into the marks() call, by dropping `value=` off one chip, by
+// deleting any one of the seven .i-s-* panels, by removing 'interest' from KEEP_PRERENDERED, or by
+// misspelling a key in CAUSE_WORDS.
+(function assertInterestPage() {
+  const page = pages.find((p) => p.route === '/interest');
+  if (!page) { console.error('\n[prerender] /interest was not emitted — refusing to build.\n'); process.exit(1); }
+  const H = page.html, bad = [];
+  const SRV = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
+  const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
+  const CSS = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
+
+  // 1. the two numbers, counted out of the paths that were actually drawn
+  const nOn = (((H.match(/class="i-lib-on" d="([^"]*)"/) || [, ''])[1]).match(/M/g) || []).length;
+  const nOff = (((H.match(/class="i-lib-off" d="([^"]*)"/) || [, ''])[1]).match(/M/g) || []).length;
+  const realTotal = uniq.length;
+  const realProb = uniq.filter((r) => r.startsWith('/problem/')).length;
+  const realProt = uniq.filter((r) => r.startsWith('/protocol/')).length;
+  const realFilled = realProb + realProt;
+  if (nOn + nOff !== realTotal) bad.push(`the library drawing has ${nOn + nOff} marks and ${realTotal} routes are published — the page is counting something that stopped being true`);
+  if (nOn !== realFilled) bad.push(`the library drawing fills ${nOn} marks and ${realFilled} routes carry a plan (${realProb} problems + ${realProt} protocols)`);
+  if (H.indexOf(`>${realTotal} marks, one for every page published here. ${realFilled} of them are filled in`) < 0) bad.push(`the library drawing's <title> does not state ${realTotal} and ${realFilled} — the two numbers a screen-reader user is given have come apart from the two the drawing shows`);
+  if (H.indexOf(`>One of the ${realProb}<`) < 0) bad.push(`the kicker does not read "One of the ${realProb}" — that is how many /problem pages are published`);
+  if (H.indexOf(`Read any of the ${realProb} now<`) < 0) bad.push(`the footer does not offer "Read any of the ${realProb} now" — that is how many /problem pages are published`);
+
+  // 2. the chips ARE the write schema POST /api/interest validates against
+  const ids = (((D.site || {}).interest || {}).topics || []).map((t) => t.id);
+  const emittedChips = [...H.matchAll(/<input class="i-o[^"]*" type="radio" name="topic" id="([^"]+)" value="([^"]+)" required>/g)];
+  if (emittedChips.length !== ids.length) bad.push(`/interest renders ${emittedChips.length} topic radios and data/site_config.json declares ${ids.length} chips`);
+  emittedChips.forEach(([, id, val]) => {
+    if (ids.indexOf(val) < 0) bad.push(`/interest renders a chip with value "${val}", which is not in interest.topics — server.js stores anything else as NULL, so the reader's only answer is discarded`);
+    if (id !== 'i-f-' + val) bad.push(`/interest has a chip whose id is "${id}" and whose value is "${val}" — the wireframe shipped exactly this defect (id \`f-tired\` on the chip labelled "Knee")`);
+  });
+  if (!/name="topic_other" maxlength="60"/.test(H)) bad.push('the free-text field is missing or is not capped at 60 — server.js does clean(b.topic_other, 60)');
+  if (!/name="email"[^>]*required/.test(H)) bad.push('the email field is not required');
+  if (H.indexOf('action="/api/interest"') < 0) bad.push('the form does not post to /api/interest');
+
+  // 3. one panel per state, read out of server.js's own STATES array
+  const st = SRV.match(/const STATES = \[([^\]]*)\]/);
+  if (!st) bad.push('server.js no longer declares a STATES array for /interest — this gate cannot check the page against it and refuses to pass blind');
+  else [...st[1].matchAll(/'([a-z]+)'/g)].map((m) => m[1]).forEach((s) => {
+    if (H.indexOf(`class="i-state i-s-${s}"`) < 0) bad.push(`server.js can 303 to /interest?state=${s} and the page has no .i-s-${s} panel — that reader submits a form and lands on a page that says nothing happened`);
+    if (CSS.indexOf(`html[data-state="${s}"] .i-s-${s}`) < 0) bad.push(`nothing in styles.css reveals .i-s-${s} — server.js stamps data-state on the <html> ELEMENT, so the panel stays display:none and the state is invisible`);
+  });
+
+  // 4. the two substitution literals, byte for byte, in BOTH files
+  [['<a class="i-rm" href=""></a>', 'the removal link'],
+    ['<input type="hidden" name="t" value="">', 'the removal token field']].forEach(([lit, what]) => {
+    if (H.indexOf(lit) < 0) bad.push(`/interest does not contain ${what} exactly as server.js looks for it: ${lit}`);
+    if (SRV.indexOf(lit) < 0) bad.push(`server.js no longer substitutes into ${what} — the contract moved and this page is still carrying the placeholder`);
+  });
+
+  // 5. the SPA answer
+  if (!/KEEP_PRERENDERED = \[[^\]]*'interest'/.test(APP)) bad.push("site/app.js's KEEP_PRERENDERED does not contain 'interest' — route() falls through to notFound() and overwrites the prerendered page for every reader with JavaScript");
+
+  // 6. the drawings, the heading, the causes, and the owner's wording for them
+  // The page's OWN drawings only: `<svg class="i-…">`. A bare /<svg/ count picks up the brand mark
+  // shell() puts in the topbar of all 621 documents, which is not one of these five and does not
+  // want an aria-labelledby.
+  const svgs = (H.match(/<svg class="i-[a-z]+"/g) || []).length;
+  const titles = (H.match(/<title id="i-t-[a-z]+">/g) || []).length;
+  const labelled = (H.match(/<svg class="i-[a-z]+"[^>]*aria-labelledby="i-t-[a-z]+"/g) || []).length;
+  if (svgs !== 5 || titles !== 5 || labelled !== 5) bad.push(`${svgs} drawings, ${titles} <title> elements and ${labelled} of them wired up with aria-labelledby — every drawing needs one or a screen reader is told "image"`);
+  if ((H.match(/<h1/g) || []).length !== 1) bad.push('/interest does not have exactly one <h1>');
+  const causeList = ((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes || []);
+  if (!causeList.length) bad.push(`data/cause_learn.json has no causes for "${INTEREST.CAUSE_PROBLEM}" — drawing 3 draws a fan with nothing in it`);
+  else if (H.indexOf(`data-causes="${causeList.length}"`) < 0) bad.push(`drawing 3 does not draw ${causeList.length} causes, which is what /problem/${INTEREST.CAUSE_PROBLEM} publishes`);
+  const published = new Set(causeList.map((c) => c.name));
+  Object.keys(INTEREST.CAUSE_WORDS).forEach((k) => {
+    if (!published.has(k)) bad.push(`build/interest.js has the owner's wording for a cause called "${k}" and /problem/${INTEREST.CAUSE_PROBLEM} no longer publishes one by that name — his line would have vanished from the drawing without a word`);
+  });
+  if (!ids.includes(INTEREST.CAUSE_CHIP)) bad.push(`drawing 3 is headed by the "${INTEREST.CAUSE_CHIP}" chip and no chip with that id exists`);
+
+  if (bad.length) {
+    console.error('\n[prerender] /interest FAILED — refusing to build:');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] /interest OK — ${realTotal} marks (${realFilled} filled) counted from the published set, ${ids.length} chips matching the POST /api/interest allowlist, ${causeList.length} causes from /problem/${INTEREST.CAUSE_PROBLEM} (${Object.keys(INTEREST.CAUSE_WORDS).length} in the owner's wording), all 7 answer states present and both server.js substitution targets intact.`);
+})();
+
 // ---- build-time assertion: THE SPA'S OWN HASH LINKS MUST RESOLVE TO A route() BRANCH -----------
 // The gate above is the crawler's link graph: it reads the PRERENDERED documents. It is blind to
 // site/app.js, which is where the SPA writes its own `href="#/x"` links — and `#/x` is hash-ROUTER
@@ -4364,7 +4524,11 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   const SURFACES = ['--bg', '--panel', '--panel2'];
   // Tokens used as TEXT on those surfaces. Each one below was measured failing before W5c; the list
   // is not decorative — adding a token here is what stops it drifting back.
-  const AS_TEXT = ['--ink', '--head', '--muted', '--faint', '--link', '--star', '--green', '--yellow', '--orange', '--accent'];
+  // --warn added 2026-08-08. It is printed as TEXT: the "Severe, sudden, or getting worse. Be seen."
+  // row in /interest's cause drawing and the "stop here" box in its builder drawing. The existing
+  // --red #dc2626 measures 4.38:1 on --panel2 and would not have passed this gate, which is why the
+  // escalation colour on that page is its own token and not the one already in :root.
+  const AS_TEXT = ['--ink', '--head', '--muted', '--faint', '--link', '--star', '--green', '--yellow', '--orange', '--accent', '--warn'];
   // Tokens used as a BACKGROUND with --accent-ink (white) printed on them.
   const AS_FILL = ['--accent'];
   AS_TEXT.forEach((t) => {
