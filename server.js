@@ -2606,6 +2606,16 @@ function searchSolve(q) {
 
 const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
 
+// Routes site/app.js route() answers but build/prerender.js does not emit a file for. They must
+// still get the SPA shell at 200; everything NOT in this list and not in GENERATED_ROUTES is a real
+// 404. Read off every `parts[0] === '…'` branch in app.js — keep it in step with that, or a working
+// page starts answering 404. `progress` is the one the smoke test caught when this list was missing.
+const SPA_ONLY_ROUTES = [
+  'about', 'admin', 'anatomy', 'az', 'body', 'browse', 'clinic', 'exercise', 'fork', 'fuel',
+  'legend', 'pathways', 'plan', 'pro', 'progress', 'pros', 's', 'solve', 'stack', 'stewardship',
+  'u', 'where',
+];
+
 // ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
 // Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
 // head-to-head comparisons that pitted a prescription or controlled medicine against a supplement."
@@ -2683,7 +2693,35 @@ function serveMissing(res, safe) {
 ${links}
 </main></body></html>`, code);
   }
-  sendFile(res, path.join(DIR, 'index.html'));
+  // Routes the SPA genuinely serves but the build does not prerender — /progress is the live
+  // example, and the smoke test caught it when the first version of this block 404'd it.
+  // Derived from every `parts[0] === '…'` branch in site/app.js route(); the prerendered prefixes
+  // are already handled above, so only the SPA-only ones belong here.
+  if (seg.length && SPA_ONLY_ROUTES.includes(seg[0])) {
+    return sendFile(res, path.join(DIR, 'index.html'));
+  }
+
+  // Anything else is a SOFT 404: the SPA shell at HTTP 200, carrying
+  // `robots: index,follow`, which then hydrates to an <h1> reading "Not found".
+  //
+  // Measured before this change:
+  //   GET /this-does-not-exist  -> 200, index,follow,max-image-preview:large
+  //   GET /c/not-a-compound     -> 404, noindex          (correct, because 'c' is a known prefix)
+  //
+  // So a typo, a stale inbound link or a crawler probing a guessed path all invited Google to index
+  // a "Not found" page as a real one. On a four-week-old domain fighting to get indexed at all, soft
+  // 404s are actively harmful: they spend crawl budget and dilute the set of pages Google trusts.
+  // There is no legitimate unknown route to protect — assertLinkGraph keeps the SPA-only allowlist
+  // EMPTY, so nothing on this site links to a path that serves a blank shell.
+  res.setHeader('X-Robots-Tag', 'noindex');
+  endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Page not found · RNAwiki</title><link rel="stylesheet" href="/styles.css">
+</head><body><main class="article" style="max-width:44rem;margin:4rem auto;padding:0 1.25rem">
+<h1>Page not found</h1><p>There is nothing at this address. It may have been renamed, or the link that
+sent you here may be wrong.</p>
+<p><a href="/">Start from the beginning</a> · <a href="/solve">Browse problems and goals</a> · <a href="/az">Every compound, A–Z</a></p>
+</main></body></html>`, 404);
 }
 
 // Added 2026-07-28. The server set no security headers at all: no CSP, HSTS,
