@@ -3249,7 +3249,16 @@ function blankComments(src) {
   // newest copy.
   const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
   const CLAIMS = [
-    [/verified\s+(expert|clinician|doctor|physician|pharmacist|dietit|physio|nutritionist|professional|reviewer)/i, 'verified <professional>'],
+    // 2026-08-08 — WIDENED. This pattern required the professional noun to be the VERY NEXT WORD,
+    // so server.js's live 403 body — "Compound pages are maintained by verified pharmacology
+    // experts (pharmacist / MD / biomedical researcher). Apply for that role in your Pro
+    // dashboard." — walked straight through the gate for months on the strength of one intervening
+    // word, and reached any signed-in account that clicked Edit on a compound page. A gate a
+    // single adjective defeats is worse than no gate, because it certifies the defect as absent.
+    // Up to two words may now sit between "verified" and the noun, and the nouns are pluralised.
+    // PROVE IT by pasting that exact 403 body back into server.js and running
+    // `node build/parse.js`: it must exit 1 naming the file, the line and 'verified <professional>'.
+    [/verified\s+(?:[\w-]+\s+){0,2}(experts?|clinicians?|doctors?|physicians?|pharmacists?|dietit|physios?|physiotherapists?|nutritionists?|professionals?|reviewers?)/i, 'verified <professional>'],
     [/(expert|clinical|clinician|medical|professional|specialist|physician)[- ]review/i, '<professional> review'],
     [/peer[- ]review/i, 'peer review'],
     [/(medically|clinically|professionally|expert)[- ]?(reviewed|checked|verified|approved|vetted)/i, 'medically / clinically reviewed'],
