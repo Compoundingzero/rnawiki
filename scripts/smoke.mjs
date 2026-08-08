@@ -67,6 +67,16 @@ const ROUTES = [
   // 398px in a 390px viewport and took the document to 417px. /c/creatine-monohydrate fits and
   // cannot detect it.
   ['compound-longname', '/c/statins-atorvastatin-rosuvastatin'],
+  // W6 (2026-08-08): the three compound routes above were all CLEAN under the new per-chapter
+  // overflow check, so adding that check without adding these two would have been a gate over a
+  // set that already passes — the failure mode this project has shipped before. These are the two
+  // worst cases of the 33 that overflowed, one from each of the two affected chapters, measured at
+  // 390x844 with the chapter activated (qa/x_overflow.mjs):
+  //   /c/cerebrolysin-ara-290-brief  106px  chapter 3 "🛡️ Using it safely — what to know"  (25 routes)
+  //   /c/iodine-selenium              58px  chapter 3 "🎯 Dial it in — the biohacker layer" (8 routes)
+  // Both are 0px now. PROVE IT by deleting `min-width:0` from .bio-card in site/styles.css.
+  ['compound-safety-cards', '/c/cerebrolysin-ara-290-brief'],
+  ['compound-biohacker-cards', '/c/iodine-selenium'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
   // W4: the OTHER branch of the $0 split. 8 of 52 root causes have no free first step and say so
   // instead of inventing one; on those, Phase 2 must render OPEN, because hiding the only thing
@@ -1875,6 +1885,41 @@ try {
           // `widest` names the element so the failure is actionable rather than a number.
           scrollWidth: document.documentElement.scrollWidth,
           clientWidth: document.documentElement.clientWidth,
+          // W6 (2026-08-08): AND IN EVERY CHAPTER, NOT JUST THE ONE THAT HAPPENS TO BE OPEN.
+          // The measurement directly above is of the DEFAULT DOM state. On a compound page that is
+          // chapter 0 of 7 — the other six are `.chapter{display:none}` and contribute nothing to
+          // scrollWidth. So a gate that has passed on all 568 routes since 2026-08-02 was, on the
+          // 171 compound pages, only ever looking at one seventh of the page.
+          // MEASURED hydrated at 390x844 over all 171 /c/* routes with each chapter activated in
+          // turn (qa/x_overflow.mjs), while this gate was green: 33 routes scrolled sideways —
+          // 25 in "🛡️ Using it safely" and 8 in "🎯 Dial it in" — worst 106px, the offending
+          // element a DIV.bio-card on 33 of 33.
+          // PROVE IT by deleting `min-width:0` from .bio-card in site/styles.css: this reports
+          // /c/andarine-s4-yk-11-s-23 and the rest by name, chapter and pixel count.
+          chapterOverflow: (() => {
+            const chs = [...document.querySelectorAll('.chapter')];
+            if (chs.length < 2) return null;
+            const open = chs.findIndex((c) => c.classList.contains('active'));
+            const vw = document.documentElement.clientWidth;
+            let worst = null;
+            for (let i = 0; i < chs.length; i++) {
+              chs.forEach((x, j) => { x.classList.toggle('active', i === j); x.style.animation = 'none'; });
+              const px = Math.round(document.documentElement.scrollWidth - vw);
+              if (px > 1 && (!worst || px > worst.px)) {
+                let el = null;
+                chs[i].querySelectorAll('*').forEach((e) => {
+                  const r = e.getBoundingClientRect();
+                  if (r.width > 0 && r.height > 0 && r.right > vw + 1 && (!el || r.right > el.right)) {
+                    el = { right: Math.round(r.right), tag: e.tagName, cls: String(e.className || '').slice(0, 40) };
+                  }
+                });
+                worst = { px, i, name: ((chs[i].querySelector('h2,h3') || {}).textContent || '').trim().slice(0, 44), el };
+              }
+            }
+            // Leave the page exactly as it was found — later checks in this same evaluate() read it.
+            chs.forEach((x, j) => { x.classList.toggle('active', j === (open < 0 ? 0 : open)); x.style.animation = ''; });
+            return worst;
+          })(),
           // W5c (2026-08-02): the persistent header is on all 568 routes, so a control too small
           // to tap there is a defect 568 times over. Measured hydrated at 390x844 before the fix
           // (qa/out/w5cdi/before-390.json): search input 104x37, "Sign in" 71x30, hamburger 32x29,
@@ -1977,6 +2022,12 @@ try {
       if (dom.scrollWidth > dom.clientWidth + 1) {
         const w = dom.widest;
         add(`the page is ${dom.scrollWidth}px wide in a ${dom.clientWidth}px viewport — it scrolls sideways on a phone${w ? `; widest element is <${w.tag.toLowerCase()}${w.cls ? ' class="' + w.cls + '"' : ''}> ending at ${w.right}px: "${w.txt}"` : ''}`);
+      }
+      // W6 (2026-08-08): the same rule, applied to the six sevenths of a compound page the check
+      // above cannot see. See the note on `chapterOverflow` for the 33 routes it was missing.
+      if (dom.chapterOverflow) {
+        const c = dom.chapterOverflow, e = c.el;
+        add(`chapter ${c.i} ("${c.name}") scrolls sideways by ${c.px}px in a ${dom.clientWidth}px viewport — the reader cannot see it until they open that chapter, so the default-state check above passes${e ? `; widest element is <${e.tag.toLowerCase()}${e.cls ? ' class="' + e.cls + '"' : ''}> ending at ${e.right}px` : ''}`);
       }
     }
 

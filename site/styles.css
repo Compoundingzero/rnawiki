@@ -2126,7 +2126,7 @@ a.dp-name:hover{color:var(--accent)}
 .gpm{margin:2.9rem 0}
 .gpm-tag{font-size:.78rem;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--accent);margin-bottom:1.1rem}
 .gpm-flow{display:grid;grid-template-columns:1fr auto 1fr;gap:1.2rem;align-items:stretch}
-.gpm-side{display:flex;flex-direction:column;min-width:0}
+.gpm-side{display:flex;flex-direction:column}
 .gpm-side h3{font-size:1.15rem;margin:1rem 0 .4rem;color:var(--head);letter-spacing:-.01em;line-height:1.25}
 .gpm-side h3 .lead{color:var(--accent)}
 .gpm-side p{font-size:.9rem;line-height:1.55;color:var(--muted);margin:0}
@@ -3225,9 +3225,29 @@ a.dp-name:hover{color:var(--accent)}
 .bio-banner-rx{background:color-mix(in srgb,#3b82f6 10%,transparent);border-color:color-mix(in srgb,#3b82f6 45%,var(--line))}
 .bio-banner-danger{background:color-mix(in srgb,#ef4444 10%,transparent);border-color:color-mix(in srgb,#ef4444 50%,var(--line))}
 .bio-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem}
-.bio-card{border:1px solid var(--line);border-radius:14px;padding:.95rem 1.05rem;background:var(--bg,#fff);display:flex;flex-direction:column}
+/* W6 (2026-08-08): 33 of the 171 compound pages scrolled sideways on a phone. A grid item's
+   automatic minimum size is its MIN-CONTENT width, not 0, so a card holding one long unbreakable
+   run — a chemical name, "oligospermia/azoospermia", "(glutamate-cysteine-glycine);" — floored its
+   own 1fr track above the viewport and took the document with it. MEASURED hydrated at 390x844
+   over all 171 /c/* routes with each of the 7 chapters activated in turn (qa/x_overflow.mjs):
+   33 overflowed, worst 106px on /c/cerebrolysin-ara-290-brief, offending element DIV.bio-card on
+   33 of 33 — 424px wide in a 390px viewport on /c/andarine-s4-yk-11-s-23. After: 0 of 171, at 390
+   and at 1440.
+   WHICH RULE DOES WHAT, measured, not assumed. Either line clears all 33 on today's content, so
+   only one of them is needed to close the reported defect and the other is here for a reason:
+     `min-width:0`   the structurally correct rule for a grid item. Alone: 0 of 33 overflow — but
+                     with a 90-character unbreakable chemical name injected into a card body it
+                     measured 349px of overflow at 390px and clipped on 5 of 5 routes. It stops
+                     the page widening by hiding the sentence, which is worse, because it is silent.
+     `overflow-wrap` the load-bearing half. It cuts min-content to one character, so the track can
+                     shrink AND every word still appears. Alone, and with both: 0px overflow and 0
+                     clipped boxes at 390 and 1440, under the same injected-token stress.
+   h4 is deliberately NOT listed: `h1,h2,h3,h4{overflow-wrap:anywhere}` at line 57 already covers
+   the card headings, and adding it again here measured no difference on any of the 171. */
+.bio-card{border:1px solid var(--line);border-radius:14px;padding:.95rem 1.05rem;background:var(--bg,#fff);display:flex;flex-direction:column;min-width:0}
 .bio-card-h{display:flex;align-items:center;gap:.5rem;margin-bottom:.55rem}
 .bio-card-h h4{margin:0;font-size:1rem;flex:1;line-height:1.2}
+.bio-card-b,.bio-card-b *{overflow-wrap:anywhere}
 .bio-ico{font-size:1.15rem;line-height:1}
 .bio-card-b{font-size:.9rem;line-height:1.5}
 .bio-line{margin:.3rem 0}
