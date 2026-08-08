@@ -3316,6 +3316,62 @@ function blankComments(src) {
   console.log('[parse] no-credential gate OK — %d renderer files, 0 unclaimed credentials, %d pinned disclosures intact.', FILES.length, ALLOW.length);
 })();
 
+// ---------- ONE-ACCOUNT-TYPE GATE (2026-08-08) ----------
+// RNAwiki has ONE kind of account. Everyone reads, everyone creates, and the only distinction the
+// site recognises is "is this the owner's own control room" (users.role, elevated in memory only).
+//
+// This gate exists because the previous deletion did not hold. In July the verified-expert system
+// was "removed"; what was actually removed was its front end. On 2026-08-08 the following were all
+// still live and reachable by curl: POST /api/profile/domain (apply to become an expert),
+// POST /api/admin/verify-domain (grant the badge), GET /api/contributors (publish a self-declared
+// credential to anyone, no auth), three /api/steward endpoints, POST /api/clinician-interest
+// (accept a licence number and a photograph of a credential document, no account), a Control Room
+// table with Approve / Reject / Revoke, a second invisible copy of that same table, a
+// crawlable Person JSON-LD advertising "Stewarded protocols … and professional links", and
+// addBadge(user, 'verified-expert') writing that literal string into users.badges.
+// Every one of those had ZERO client call sites. Being unreachable is not the same as being gone,
+// and this project has now proved that twice.
+//
+// SCOPE: server.js and site/app.js — what an account IS and what it may do is decided in those two
+// files. db.js is deliberately NOT scanned: the tier COLUMNS survive there on purpose for one
+// release (dropping a column is irreversible), with a tombstone comment saying so.
+// Comments are blanked first, so the tombstones above may name what they buried.
+//
+// PROVE IT by putting any one of them back — e.g. paste
+// `const DOMAIN_LAYER = { physio: 'move' };` into site/app.js — and run `node build/parse.js`.
+// It must exit 1 naming the file, the line and the thing.
+(function assertOneAccountType() {
+  const FILES = ['server.js', 'site/app.js'];
+  const BANNED = [
+    [/domain_verified/i, 'users.domain_verified — the professional-tier flag. Nothing may read it and nothing may grant it.'],
+    [/requested_domain|application_status|role_backlink/i, 'the expert-application columns. There is no application, because there is no second tier to apply for.'],
+    [/addBadge\s*\(/, "addBadge() — the badge-granting helper. Its only callers granted 'verified-expert'. A badge may only assert something this site can itself observe (\"logged 30 days\"), never what a person IS."],
+    [/['"`]verified-expert['"`]/, "the 'verified-expert' badge string"],
+    [/verify-domain/, 'the /api/admin/verify-domain grant endpoint — the only thing that ever set domain_verified = true'],
+    [/profile\/domain/, 'the POST /api/profile/domain "apply for an expert role" endpoint'],
+    [/clinician-interest/, 'the POST /api/clinician-interest licence-number + credential-photograph intake. (Reading the clinician_interest TABLE is still allowed — that is the archive of what was already collected.)'],
+    [/\/api\/steward|seg\[0\]\s*===\s*['"]steward['"]/, 'the adopt-a-protocol stewardship endpoints. A protocol belongs to no one.'],
+    [/DOMAIN_LAYER|DOMAIN_LABEL|LAYER_DOMAIN/, 'a profession -> permission lookup table. This is a second account type in seed form.'],
+    [/\bu\.domain\b|\bME\.domain\b/, 'the account-level `domain` (profession) field. GRAPH.domains — which discipline addresses a root cause — is corpus content and is fine; an account carrying one is not.'],
+  ];
+  const bad = [];
+  FILES.forEach((rel) => {
+    blankComments(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split('\n').forEach((raw, i) => {
+      BANNED.forEach(([re, why]) => { if (re.test(raw)) bad.push(`${rel}:${i + 1} — ${why}\n      …${raw.trim().slice(0, 110)}…`); });
+    });
+  });
+  if (bad.length) {
+    console.error('\n[parse] ONE-ACCOUNT-TYPE GATE FAILED — refusing to build. This site has one kind of account:');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  There are no verified professionals here, no programme that verifies anyone, and no tier');
+    console.error('  to promote an account into (see /corrections). If you are adding a permission and reaching');
+    console.error('  for one of these, you are adding a second account type. Use users.role, which means');
+    console.error('  "the owner" and nothing else, or do not gate it at all.');
+    process.exit(1);
+  }
+  console.log('[parse] one-account-type gate OK — %d files, 0 professional-tier surfaces (%d banned patterns).', FILES.length, BANNED.length);
+})();
+
 // ---------- HANDLE-FROM-CONFIG GATE (W4, 2026-08-02) ----------
 // The owner's X handle lives in data/site_config.json and nowhere else. Before this gate it was
 // typed into build/prerender.js:494 — the Organization JSON-LD `sameAs`, which is emitted into

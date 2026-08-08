@@ -696,8 +696,10 @@
   // consent sentences, in one commit — syncSendsExactlyWhatTheConsentCopySays fails otherwise.
   function myVote(targetId) { try { return (JSON.parse(localStorage.getItem('rnawiki_myvotes')) || {})[targetId] || 0; } catch (e) { return 0; } }
   function setMyVote(targetId, v) { let m = {}; try { m = JSON.parse(localStorage.getItem('rnawiki_myvotes')) || {}; } catch (e) {} if (v) m[targetId] = v; else delete m[targetId]; localStorage.setItem('rnawiki_myvotes', JSON.stringify(m)); }
-  const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
-  const LAYER_DOMAIN = { move: 'physio', fuel: 'dietitian', stack: 'pharmacist' };
+  // DOMAIN_LAYER and LAYER_DOMAIN REMOVED 2026-08-08 — ONE ACCOUNT TYPE. Two readerless lookup
+  // tables mapping a profession to the protocol layer it was allowed to own, and back again. Their
+  // server twin went with the "apply for an expert role" endpoint. assertOneAccountType() in
+  // build/parse.js now fails the build if either name reappears.
   // Phase 2 (the expert marketplace: verified-expert editing, the /pro dashboard, adopt/steward,
   // "open for review" strips) is NOT launched yet — there are no verified experts. Gate all of that
   // UI on this flag so nothing implies the wiki is expert-editable. Flip to true when Phase 2 ships.
