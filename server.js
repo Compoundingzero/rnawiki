@@ -1505,10 +1505,11 @@ async function api(req, res, url) {
     const rp = (await db.query('SELECT reputation_points FROM users WHERE id=$1', [u.id])).rows[0];
     return json(res, 200, { ok: true, reputation_points: rp ? rp.reputation_points : 0 });
   }
-  // --- public expert profile / portfolio (backlink + prestige asset) ---
+  // --- public profile: what this account has actually done here. Not a portfolio, not a
+  // credential, and not a profession — one account type. ---
   if (seg[0] === 'u' && seg[1] && method === 'GET') {
     const handle = clean(seg[1], 24);
-    const ur = await db.query('SELECT id,username,domain,domain_verified,reputation_points,socials,badges,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
+    const ur = await db.query('SELECT id,username,reputation_points,socials,badges,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
     const uu = ur.rows[0];
     if (!uu) return json(res, 404, { error: 'No such user' });
     // /u/:handle is DELIBERATELY crawlable — serveProfileShell injects Person JSON-LD and OG tags
@@ -1522,55 +1523,29 @@ async function api(req, res, url) {
       (SELECT COUNT(*)::int FROM proposals WHERE user_id=$1 AND status='endorsed') AS accepted,
       (SELECT COUNT(*)::int FROM edits WHERE user_id=$1) AS edits,
       (SELECT COUNT(*)::int FROM comments WHERE user_id=$1) AS comments`, [uu.id])).rows[0];
-    const stewarded = await db.query('SELECT problem_id, root_cause_id, adopted_at FROM stewardships WHERE user_id=$1 ORDER BY adopted_at DESC', [uu.id]);
+    // 2026-08-08: `stewarded` (the list of protocols this account had adopted) is gone with the
+    // stewardship endpoints, and so are `domain` and `domain_verified` — nothing can set them and
+    // a public profile that carries a profession field is a profession field waiting to be filled.
     return json(res, 200, {
       user: {
-        username: uu.username, domain: uu.domain, domain_verified: uu.domain_verified,
+        username: uu.username,
         reputation_points: uu.reputation_points, socials: uu.socials || {}, badges: uu.badges || [],
         created_at: uu.created_at,
       },
-      counts, accepted: accepted.rows, stewarded: stewarded.rows,
+      counts, accepted: accepted.rows, stewarded: [],
     });
   }
-  // --- protocol stewardship (adopt-a-protocol lead-gen) ---
-  if (seg[0] === 'steward' && !seg[1] && method === 'GET') {
-    const q = new URL('http://x/' + url).searchParams;
-    const pid = clean(q.get('problem'), 60), rcid = clean(q.get('rc'), 60);
-    if (!pid || !rcid) return json(res, 400, { error: 'problem & rc required' });
-    const r = await db.query(`SELECT s.adopted_at, s.last_active_at, u.username, u.domain, u.domain_verified, u.socials
-      FROM stewardships s JOIN users u ON u.id=s.user_id WHERE s.problem_id=$1 AND s.root_cause_id=$2`, [pid, rcid]);
-    const s = r.rows[0];
-    const steward = s ? {
-      username: s.username, domain: s.domain, domain_verified: s.domain_verified, socials: s.socials || {},
-      adopted_at: s.adopted_at, stale: (Date.now() - new Date(s.last_active_at).getTime()) > 60 * 86400000,
-    } : null;
-    return json(res, 200, { steward });
-  }
-  if (seg[0] === 'steward' && seg[1] === 'adopt' && method === 'POST') {
-    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (!u.domain_verified) return json(res, 403, { error: 'Protocol stewardship is not enabled for this account.' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60);
-    if (!pid || !rcid) return json(res, 400, { error: 'protocol required' });
-    const cur = (await db.query('SELECT user_id, last_active_at FROM stewardships WHERE problem_id=$1 AND root_cause_id=$2', [pid, rcid])).rows[0];
-    if (cur) {
-      if (cur.user_id === u.id) return json(res, 200, { ok: true, already: true });
-      const stale = (Date.now() - new Date(cur.last_active_at).getTime()) > 60 * 86400000;
-      if (!stale) return json(res, 409, { error: 'This protocol already has an active steward. It can only be challenged after 60 days of steward inactivity.' });
-      await db.query('UPDATE stewardships SET user_id=$1, domain=$2, adopted_at=now(), last_active_at=now() WHERE problem_id=$3 AND root_cause_id=$4', [u.id, u.domain, pid, rcid]);
-    } else {
-      await db.query('INSERT INTO stewardships(problem_id,root_cause_id,user_id,domain) VALUES($1,$2,$3,$4) ON CONFLICT (problem_id,root_cause_id) DO NOTHING', [pid, rcid, u.id, u.domain]);
-    }
-    await award(u.id, 'steward', pid + ':' + rcid, 25);
-    return json(res, 200, { ok: true });
-  }
-  if (seg[0] === 'steward' && seg[1] === 'release' && method === 'POST') {
-    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60);
-    await db.query('DELETE FROM stewardships WHERE problem_id=$1 AND root_cause_id=$2 AND user_id=$3', [pid, rcid, u.id]);
-    return json(res, 200, { ok: true });
-  }
+  // The three /api/steward endpoints (GET /api/steward, POST /api/steward/adopt,
+  // POST /api/steward/release) were REMOVED 2026-08-08 — ONE ACCOUNT TYPE.
+  // Stewardship let one account "own" a protocol page and put their clinic and booking link on
+  // top of it, and it was gated on `if (!u.domain_verified)` — the flag that can no longer be
+  // granted at all. A protocol belongs to no one; site/app.js has said exactly that in a comment
+  // since July while this file served the opposite. api.steward, api.adoptProtocol and
+  // api.releaseProtocol all had ZERO call sites, so no reader could reach these; a signed-in curl
+  // could, and /api/steward (GET) needed no account whatsoever.
+  // The `stewardships` table is left in db.js for now. Once this has shipped and nothing 500s,
+  // remove its CREATE so a fresh database never has it and DROP it by hand — the discipline
+  // db.js already applies to newsletter_subscribers and telegram_*.
   // --- local partners (backlink-verified lead-gen) ---
   if (seg[0] === 'partners' && method === 'GET') {
     const cat = clean(new URL('http://x/' + url).searchParams.get('category'), 60);
@@ -2217,7 +2192,7 @@ async function api(req, res, url) {
       await award(pr.user_id, 'merged', id);
       await award(u.id, 'merged', 'endorse:' + id);
     }
-    await db.query('UPDATE stewardships SET last_active_at=now() WHERE user_id=$1', [u.id]).catch(() => {});
+    // (the "reviewing keeps your stewardships alive" write went with the stewardship endpoints)
     return json(res, 200, { ok: true });
   }
   if (seg[0] === 'proposals' && seg[1] && seg[2] === 'flag' && method === 'POST') {

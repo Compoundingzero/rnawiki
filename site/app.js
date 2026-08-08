@@ -576,9 +576,9 @@
     profile(handle) { return this.call('GET', '/api/u/' + encodeURIComponent(handle)); },
     saveProfile(socials) { return this.call('POST', '/api/profile', { socials }); },
     rep(kind) { return this.call('POST', '/api/rep', { kind }).catch(() => null); },
-    steward(pid, rcid) { return this.call('GET', `/api/steward?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).then(d => d.steward).catch(() => null); },
-    adoptProtocol(problemId, rootCauseId) { return this.call('POST', '/api/steward/adopt', { problemId, rootCauseId }); },
-    releaseProtocol(problemId, rootCauseId) { return this.call('POST', '/api/steward/release', { problemId, rootCauseId }); },
+    // api.steward / api.adoptProtocol / api.releaseProtocol REMOVED 2026-08-08 — the three
+    // /api/steward endpoints are deleted. Stewardship let one account "own" a protocol page and
+    // put a clinic and a booking link on top of it. A protocol belongs to no one.
     partners(category) { return this.call('GET', '/api/partners' + (category ? '?category=' + encodeURIComponent(category) : '')).then(d => d.partners).catch(() => []); },
     submitPartner(b) { return this.call('POST', '/api/partners', b); },
     protocolRequests() { return this.call('GET', '/api/protocol-requests').then(d => d.requests).catch(() => []); },
@@ -8407,9 +8407,11 @@
     badge.hidden = !(total >= 4 && (score.up || 0) / total < 0.5);
   }
 
-  // ---------- Micro-bounty Board (global stewardship hub) ----------
-  const BOUNTY_DOMAIN = { scaling: 'physio', 'food-verify': 'dietitian', safety: 'pharmacist' };
-  const BOUNTY_VERB = { scaling: 'Add an easier + harder variation', 'food-verify': 'Verify the macros & micros', safety: 'Add safety / interaction notes' };
+  // The Micro-bounty Board constants (BOUNTY_DOMAIN, BOUNTY_VERB) were REMOVED 2026-08-08. They
+  // mapped a bounty kind to a profession — {scaling:'physio', 'food-verify':'dietitian',
+  // safety:'pharmacist'} — for a /stewardship board whose route redirects to the home page. Two
+  // readerless constants, but a readerless table of professions is a second account type in seed
+  // form, and this codebase has now shown twice that seeds germinate.
 
   // Edit affordance for content pages (exercises, muscles). Rewritten 2026-07-30: this used to run
   // through expertGate(), which told the reader the page was "kept accurate by verified physio
@@ -8623,7 +8625,7 @@
     // that cap truncates 27 of these mid-phrase, 10 of them onto a dangling "/" or "+"
     // ("Lower Back Pain: weak posterior chain / · RNAwiki"). Copying a truncation to score a parity
     // metric would put a broken string in the reader's tab. The prerender-side truncation is D8.
-    else if (parts[0] === 'protocol' && problemById[parts[1]]) { const p = problemById[parts[1]]; const rc = p.root_causes.find(r => r.id === parts[2]) || p.root_causes[0]; title = t(parts[3] === 'stewardship' ? `${p.name} — expert stewardship` : `${p.name}: ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()}`); desc = `${p.name} (${rc.name}): the exercises to fix it, foods to fuel it, and evidence-ranked compounds — a full protocol. Not medical advice.`; }
+    else if (parts[0] === 'protocol' && problemById[parts[1]]) { const p = problemById[parts[1]]; const rc = p.root_causes.find(r => r.id === parts[2]) || p.root_causes[0]; title = t(`${p.name}: ${rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase()}`);   /* the `parts[3] === 'stewardship' ? p.name + ' — expert stewardship'` branch went with the stewardship endpoints, 2026-08-08 */ desc = `${p.name} (${rc.name}): the exercises to fix it, foods to fuel it, and evidence-ranked compounds — a full protocol. Not medical advice.`; }
     // W5d (2026-08-02): D17. This is the fallback for a target route the generated head map does
     // not cover, and it carried the same promise the generated one did — "every compound that hits
     // it" on 103 of 103, while the actual per-page compound count was 1 on 77 routes, 2 on 17, 3 on
@@ -8632,7 +8634,11 @@
     else if (parts[0] === 'pathway' && D.pathways[+parts[1]]) { title = t(`${D.pathways[+parts[1]].shortLabel} pathway explained`); }
     else if (parts[0] === 'compare' && parts[1]) { const i = parts[1].indexOf('-vs-'); const A = i >= 0 && bySlug[parts[1].slice(0, i)], B = i >= 0 && bySlug[parts[1].slice(i + 4)]; if (A && B) { title = t(`${A.name} vs ${B.name} — which works better?`); desc = `${A.name} vs ${B.name}: human evidence, mechanism, safety and availability compared. Plain English, honest verdict.`; } }
     else if (parts[0] === 'solve') { title = t('Solve a problem or reach a goal — protocol engine'); desc = 'Tell me the problem or goal. Get a full Move · Fuel · Stack protocol for the root cause.'; }
-    else if (parts[0] === 'stewardship') { title = t('Expert micro-bounties — the bounty board'); desc = 'Solve a 2-minute clinical micro-bounty in your domain — add an exercise variation, verify a local dish, or add a safety note. Permanent attribution.'; }
+    /* the /stewardship head branch ("Expert micro-bounties — the bounty board" · "Solve a 2-minute
+       clinical micro-bounty in your domain") was removed 2026-08-08. The route redirects to the
+       home page, so this <title> described a board nobody could open, for a tier that no longer
+       exists. Three sibling branches — /pros, /pro and /u/:handle — are the same class of defect
+       and go with serveProfileShell. */
     else if (parts[0] === 'pros') { title = t('For health professionals — contribute, get featured, get leads'); desc = 'Physiotherapists, dietitians, nutritionists and pharmacists: improve the protocols in your field and get featured on them — profile, booking link and local leads. Free.'; }
     else if (parts[0] === 'pro') { title = t('Pro dashboard — contribute & get featured on RNAwiki'); desc = 'For clinicians and businesses: improve protocols, track your leads, and manage your branded patient protocol links on RNAwiki.'; }
     else if (parts[0] === 'u' && parts[1]) { title = t('@' + parts[1] + ' — contribution portfolio'); desc = `@${parts[1]}'s clinical contribution portfolio on RNAwiki — reputation, accepted edits, and professional links.`; }
