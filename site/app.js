@@ -8649,9 +8649,13 @@
        home page, so this <title> described a board nobody could open, for a tier that no longer
        exists. Three sibling branches — /pros, /pro and /u/:handle — are the same class of defect
        and go with serveProfileShell. */
-    else if (parts[0] === 'pros') { title = t('For health professionals — contribute, get featured, get leads'); desc = 'Physiotherapists, dietitians, nutritionists and pharmacists: improve the protocols in your field and get featured on them — profile, booking link and local leads. Free.'; }
-    else if (parts[0] === 'pro') { title = t('Pro dashboard — contribute & get featured on RNAwiki'); desc = 'For clinicians and businesses: improve protocols, track your leads, and manage your branded patient protocol links on RNAwiki.'; }
-    else if (parts[0] === 'u' && parts[1]) { title = t('@' + parts[1] + ' — contribution portfolio'); desc = `@${parts[1]}'s clinical contribution portfolio on RNAwiki — reputation, accepted edits, and professional links.`; }
+    /* Three head branches removed 2026-08-08 — /pros ("For health professionals — contribute, get
+       featured, get leads" · "Physiotherapists, dietitians, nutritionists and pharmacists … profile,
+       booking link and local leads"), /pro ("Pro dashboard … track your leads") and /u/:handle
+       ("@x — contribution portfolio" · "clinical contribution portfolio … professional links").
+       All three routes redirect to the home page, so these titles described a tier nobody could
+       reach; and their server-side twin, serveProfileShell, WAS reaching a crawler with the same
+       sentence until this commit. A <title> for a page that does not exist is still a claim. */
     else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model and tap any muscle to see the bones it attaches to — origin and insertion — and watch it perform its action, on the body.'; }
     else if (parts[0] === 'where') { title = t('Where does it hurt? Find the likely cause and the fix'); desc = 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.'; }
     else if (parts[0] === 'clinic' && problemById[parts[2]]) { const p = problemById[parts[2]]; title = t(`${p.name} — home-care protocol from @${parts[1]}`); desc = `A clinician-issued ${p.name} home-care protocol from @${parts[1]} on RNAwiki — movement, stack, and Singapore food targets.`; }

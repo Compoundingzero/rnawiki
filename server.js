@@ -252,7 +252,9 @@ const EDITABLE = ['mechanism', 'target', 'plain', 'protocol', 'watch', 'bottom']
 // one protocol layer that account was allowed to edit ({physio:'move', dietitian:'fuel',
 // pharmacist:'stack'}), and its last reader was the "apply for an expert role" endpoint that went
 // with it. A lookup table of professions is how a second account type grows back.
-const DOMAIN_LABEL = { physio: 'Movement', dietitian: 'Nutrition', pharmacist: 'Pharmacology' };
+// DOMAIN_LABEL REMOVED 2026-08-08 — ONE ACCOUNT TYPE. It turned an account's `domain` into a
+// public-facing job title ("Movement contributor", "Pharmacology contributor") and its last reader
+// was serveProfileShell, deleted below with the rest of the crawlable professional portfolio.
 const SITE_URL = (process.env.SITE_URL || 'https://rnawiki.com').replace(/\/$/, '');
 // AI food-photo scanner (opt-in: does nothing until ANTHROPIC_API_KEY is set).
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';   // enables Gmail sign-in when set
@@ -1516,9 +1518,9 @@ async function api(req, res, url) {
     const ur = await db.query('SELECT id,username,reputation_points,socials,badges,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
     const uu = ur.rows[0];
     if (!uu) return json(res, 404, { error: 'No such user' });
-    // /u/:handle is DELIBERATELY crawlable — serveProfileShell injects Person JSON-LD and OG tags
-    // precisely so search engines fetch it — so this number was dominated by bots, and the SPA
-    // called this API again on every route into the profile.
+    // profile_views was dominated by bots when /u/:handle carried server-injected Person JSON-LD
+    // and OG tags to attract them; that injection (serveProfileShell) is gone as of 2026-08-08.
+    // countOnce still stands because the SPA called this API again on every route into a profile.
     if (countOnce(req, 'profileview', uu.id)) db.query('UPDATE users SET profile_views = profile_views + 1 WHERE id=$1', [uu.id]).catch(() => {});
     const accepted = await db.query(`SELECT problem_id,root_cause_id,layer,domain,change,created_at
       FROM proposals WHERE user_id=$1 AND status='endorsed' ORDER BY created_at DESC LIMIT 30`, [uu.id]);
@@ -2305,49 +2307,28 @@ function sendFile(res, file, code) {
     sendAsset(res.req, res, file, st, ext, code);
   });
 }
-// /u/:handle — serve the SPA shell but inject profile-specific title/meta/OG + Person JSON-LD,
-// so a shared profile link previews well and Google can index the expert (backlink value).
-function serveProfileShell(res, handle) {
-  const shell = () => sendFile(res, path.join(DIR, 'index.html'));
-  if (!db.enabled) return shell();
-  db.query('SELECT username,domain,domain_verified,reputation_points FROM users WHERE lower(username)=lower($1)', [clean(handle, 24)])
-    .then((r) => {
-      const u = r.rows[0];
-      if (!u) return shell();
-      fs.readFile(path.join(DIR, 'index.html'), 'utf8', (e, html) => {
-        if (e) return shell();
-        const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        // W3.5 (2026-08-02) — this description used to append " (verified expert)" whenever the
-        // account carried the domain_verified flag, and called the page a "clinical contribution
-        // portfolio". It is a server-rendered <meta> and JSON-LD Person description, so it is the
-        // crawlable document: a credential asserted to search engines from a database boolean that
-        // no verification programme sets. There are no verified professionals on this project —
-        // /corrections says so in as many words. The flag still gates permissions; it no longer
-        // prints a credential.
-        const domLabel = DOMAIN_LABEL[u.domain] || '';
-        const title = `${u.username}${domLabel ? ' — ' + domLabel + ' contributor' : ''} · RNAwiki`;
-        const desc = `${u.username}'s contribution record on RNAwiki — ${u.reputation_points || 0} reputation. Stewarded protocols, accepted edits, and professional links.`;
-        const purl = `${SITE_URL}/u/${encodeURIComponent(u.username)}`;
-        const ld = JSON.stringify({ '@context': 'https://schema.org', '@type': 'Person', name: u.username, url: purl, description: desc });
-        const out = html
-          .replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(title)}</title>`)
-          .replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${esc(desc)}">`)
-          .replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${esc(purl)}">`)
-          .replace(/<meta property="og:type"[^>]*>/, `<meta property="og:type" content="profile">`)
-          .replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${esc(title)}">`)
-          .replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${esc(desc)}">`)
-          .replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${esc(purl)}">`)
-          .replace('</head>', `<script type="application/ld+json">${ld}</script></head>`);
-        endHtml(res, out);
-      });
-    })
-    .catch(() => shell());
-}
+// serveProfileShell() REMOVED 2026-08-08. /u/:handle now serves the plain SPA shell, like every
+// other route the build does not prerender.
+//
+// MEASURED, both documents, against a DB-enabled server (Postgres 16, scratch db):
+//   PRERENDERED (curl /u/ownerfelix): <title>ownerfelix · RNAwiki</title>,
+//     <meta name="description" content="ownerfelix's contribution record on RNAwiki — 1375
+//     reputation. Stewarded protocols, accepted edits, and professional links.">,
+//     <link rel="canonical" href="https://rnawiki.com/u/ownerfelix">, and a JSON-LD Person
+//     carrying the same sentence.
+//   HYDRATED (headless Chrome, /u/felix): the HOME PAGE — title "RNAwiki — translate the code of
+//     human performance into real results", h1 "Turned away, priced out, or told it was nothing.",
+//     1,029 words — because site/app.js redirects the retired /u route to "/".
+// So this function was injecting a crawlable claim of "stewarded protocols" and "professional
+// links" into a document that, for anybody running JavaScript, is the landing page. ~90% of this
+// site's traffic never runs JavaScript, so the crawler's copy is the one that mattered, and it
+// asserted the one thing the owner has banned twice. A previous fix stripped the literal
+// " (verified expert)" from this same string and left the rest of the sentence standing; the
+// sentence was the claim.
+// Both documents now say the same thing, which is what the two-document rule is for.
 function serveStatic(req, res, url) {
   let p = decodeURIComponent(url.split('?')[0]);
   const qp = new URLSearchParams(url.split('?')[1] || '');
-  // profile pages get server-injected meta for sharing + SEO
-  if (/^\/u\/[^/]+\/?$/.test(p)) return serveProfileShell(res, p.split('/')[2]);
   // Proof-of-Progress share links: a protocol opened via ?by=/?log= gets a share-flavoured preview
   if (/^\/protocol\//.test(p) && (qp.get('by') || qp.get('s'))) {
     return fs.readFile(path.join(DIR, p.replace(/^\//, '') + '.html'), 'utf8', (e, html) => {
