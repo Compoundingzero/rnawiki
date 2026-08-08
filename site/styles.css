@@ -4361,9 +4361,18 @@ a.assess-switch { text-align: center; }
    load, again after scrolling back to the top, and in print. */
 @supports (animation-timeline: view()){
   @media (prefers-reduced-motion: no-preference){
-    .ipage .i-rise{animation:i-rise linear forwards;animation-timeline:view();animation-range:entry 5% cover 26%}
+    /* THE ANIMATED ELEMENT IS THE DRAWING, NEVER THE <figure>. Rendered at 390x844 with the rule on
+       `.i-rise` / `.i-swipe` themselves: the clip and the fade take the FIGCAPTION with them,
+       because it is inside the figure. Screenshotted mid-entry, the library section read
+         "Every mark is ⏎ away, n ⏎ or waiti ⏎ not goi"
+       — 65% of a paragraph of authored body copy clipped off the right-hand side while it was on
+       screen, and `i-rise` put every other caption at opacity .25 for the same stretch, which is
+       body text at a quarter of its contrast dressed up as a progressive enhancement. Scoping both
+       to `svg` leaves the captions completely alone: measured after, the caption is 312px wide and
+       fully opaque at every scroll position, and the drawings still wipe and rise. */
+    .ipage .i-rise svg{animation:i-rise linear forwards;animation-timeline:view();animation-range:entry 5% cover 26%}
     @keyframes i-rise{from{opacity:.25;transform:translateY(14px)}to{opacity:1;transform:none}}
-    .ipage .i-swipe{animation:i-swipe linear forwards;animation-timeline:view();animation-range:entry 10% cover 34%}
+    .ipage .i-swipe svg{animation:i-swipe linear forwards;animation-timeline:view();animation-range:entry 10% cover 34%}
     @keyframes i-swipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
   }
 }
