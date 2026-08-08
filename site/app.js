@@ -615,7 +615,11 @@
     cloneFork(id) { return this.call('POST', `/api/forks/${id}/clone`, { voterKey: VOTER_KEY }); },
     submitFeedback(b) { return this.call('POST', '/api/feedback', b); },
     setFeedback(id, status) { return this.call('POST', '/api/admin/feedback/' + id, { status }); },
-    submitClinicianInterest(b) { return this.call('POST', '/api/clinician-interest', b); },
+    // api.submitClinicianInterest REMOVED 2026-08-08 with its endpoint. It POSTed a name, an email,
+    // a profession, a country, a professional licence number and a base64 photo of a credential
+    // document to a public, unauthenticated path, and it had zero call sites — the /gp intake page
+    // was removed on 2026-07-30. A method that can still address a live identity-document
+    // collector is not harmless just because nothing calls it today.
     sharePlan(pid, rcid, plan) { return this.call('POST', '/api/share-plan', { pid, rcid, plan }); },
     sharedPlan(code) { return this.call('GET', '/api/shared-plan?code=' + encodeURIComponent(code)).catch(() => null); },
     // outcome-data moat
@@ -3649,7 +3653,11 @@
       // GP-only model: all provider queues merged into GP/Clinics; feedback + requests merged.
       const OPS = [
         ['members', '👥', 'Members', 'Everyone who signed up — emails, join dates & roles'],
-        ['gps', '🩺', 'Professional applications', 'Health professionals worldwide applying to contribute + clinics to feature'],
+        // 2026-08-08: was "Professional applications" / "Health professionals worldwide applying to
+        // contribute + clinics to feature" — present-tense copy for a programme that was abolished
+        // and whose intake page was deleted on 2026-07-30. This tab is now an ARCHIVE: it shows the
+        // rows that arrived before the form was taken down, so they can be exported and dealt with.
+        ['gps', '🗄', 'Closed: clinician list', 'Rows collected before the clinician form was closed, plus clinics that asked to be listed'],
         ['feedback', '💬', 'Feedback & requests', 'Ideas, bug reports and features users asked for'],
         ['foods', '🥗', 'Food submissions', 'User-submitted foods awaiting your approval'],
       ];
@@ -3685,7 +3693,7 @@
       const body = app.querySelector('#adm-body'); if (!OV) return;
       if (tab === 'gps') {   // GP-only: interest (from /gp) + verified-badge applications + clinics to feature
         const ci = OV.clinicians || [];
-        const ciRows = ci.length ? ci.map(c => `<tr><td>${esc(c.name)}<br><span class="muted" style="font-size:.8rem">${esc(c.email)}</span>${c.note ? `<br><span class="muted" style="font-size:.78rem">“${esc(c.note)}”</span>` : ''}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.country || '—')}</td><td>${esc(c.license_no || '—')}</td><td>${c.has_proof ? `<a class="admin-btn" href="/api/clinician-photo?id=${c.id}" target="_blank" rel="noopener">View proof↗</a>` : '<span class="muted">none</span>'}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">No applications — the clinician recruitment page was removed on 2026-07-30.</td></tr>';
+        const ciRows = ci.length ? ci.map(c => `<tr><td>${esc(c.name)}<br><span class="muted" style="font-size:.8rem">${esc(c.email)}</span>${c.note ? `<br><span class="muted" style="font-size:.78rem">“${esc(c.note)}”</span>` : ''}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.country || '—')}</td><td>${esc(c.license_no || '—')}</td><td>${c.has_proof ? `<a class="admin-btn" href="/api/clinician-photo?id=${c.id}" target="_blank" rel="noopener">View proof↗</a>` : '<span class="muted">none</span>'}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">Nothing was collected. The clinician recruitment page was removed on 2026-07-30 and the endpoint behind it was closed on 2026-08-08.</td></tr>';
         // 2026-08-08: the "✅ Verified-badge applications" table was REMOVED from here — ONE
         // ACCOUNT TYPE. It rendered Approve / Reject / Revoke buttons wired to
         // POST /api/admin/verify-domain, the endpoint that granted the badge. That endpoint is
@@ -3693,8 +3701,8 @@
         // kind of account on this site and no tier to promote anybody into.
         const pt = OV.partners || [];
         const ptRows = pt.length ? pt.map(p => `<tr><td>${esc(p.name)}</td><td>${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">site</a>` : '—'}${p.backlink_url ? ` · <a href="${esc(p.backlink_url)}" target="_blank" rel="noopener">backlink↗</a>` : ''}</td><td>${esc(p.status)}</td><td>${p.status !== 'active' ? `<button class="admin-btn ok" data-partner="${p.id}" data-to="active">Approve</button> ` : ''}${p.status !== 'rejected' ? `<button class="admin-btn" data-partner="${p.id}" data-to="rejected">Reject</button>` : ''}</td></tr>`).join('') : '<tr><td colspan="4" class="muted">No clinics listed yet.</td></tr>';
-        body.innerHTML = `<p class="muted">Health professionals worldwide. <a class="admin-btn ok" href="/api/admin/export?type=clinicians" download>⤓ Export applications (CSV)</a></p>
-          <h3 class="adm-sub-h">🩺 Contributor applications — from the /gp page</h3><div class="ao-table-wrap"><table class="board"><thead><tr><th>Name</th><th>Profession</th><th>Country</th><th>Licence no.</th><th>Proof</th><th>When</th></tr></thead><tbody>${ciRows}</tbody></table></div>
+        body.innerHTML = `<p class="muted">Closed lists, kept so you can export them and act on them. Nothing new can arrive: the /gp intake page was removed on 2026-07-30 and its endpoint was closed on 2026-08-08. The rows below include licence numbers and photographs of credential documents — decide what happens to them, tell the people on the list, then delete them. <a class="admin-btn ok" href="/api/admin/export?type=clinicians" download>⤓ Export as CSV</a></p>
+          <h3 class="adm-sub-h">🗄 Collected before the form was closed</h3><div class="ao-table-wrap"><table class="board"><thead><tr><th>Name</th><th>Profession</th><th>Country</th><th>Licence no.</th><th>Proof</th><th>When</th></tr></thead><tbody>${ciRows}</tbody></table></div>
           <h3 class="adm-sub-h">🏥 Clinics to feature</h3><div class="ao-table-wrap"><table class="board"><thead><tr><th>Clinic</th><th>Links</th><th>Status</th><th></th></tr></thead><tbody>${ptRows}</tbody></table></div>`;
         body.querySelectorAll('[data-partner]').forEach(b => b.onclick = () => act(() => api.adminSetPartner(b.dataset.partner, b.dataset.to)));
       // The `accounts` tab was REMOVED here on 2026-08-08. It was a SECOND copy of the same

@@ -1717,29 +1717,21 @@ async function api(req, res, url) {
     if (u) await award(u.id, 'feedback', 'fb:' + Date.now(), 2);
     return json(res, 200, { ok: true });
   }
-  // --- founding-clinician waitlist (public, no account needed) ---
-  if (seg[0] === 'clinician-interest' && method === 'POST') {
-    // 1.6e6 (was 6e6) ~= a 1.2 MB image once base64-expanded — ample for a phone photo of a licence,
-    // and now the largest body any UNAUTHENTICATED endpoint accepts. At 6e6 a single IP could push
-    // ~90 MB of base64 through Node's string buffer and into Postgres inside one 15-request burst,
-    // on a path with no account and no email verification. The three size limits also disagreed with
-    // each other: 6e6 read cap, a 5e6 store slice, and a message saying "~4 MB". Now two, and they
-    // agree. Verified no UX cost: `submitClinicianInterest` is declared at app.js:499 and CALLED
-    // NOWHERE — there is no intake form in the client today, so nothing can bounce.
-    const b = await readBody(req, 1.6e6); if (!b) return json(res, 400, { error: 'That was too large — please attach a smaller photo (under ~1 MB).' });
-    const name = clean(b.name, 120), email = clean(b.email, 160).toLowerCase();
-    const discipline = clean(b.discipline, 60), note = clean(b.note, 600);
-    const country = clean(b.country, 60), license_no = clean(b.license_no, 100);
-    const proof = (typeof b.proof_photo === 'string' && /^data:image\/[\w+.-]+;base64,/.test(b.proof_photo)) ? b.proof_photo.slice(0, 5e6) : null;
-    if (!name) return json(res, 400, { error: 'Please add your name' });
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return json(res, 400, { error: 'Please add a valid email' });
-    try {
-      await db.query(`INSERT INTO clinician_interest(name,email,discipline,note,country,license_no,proof_photo) VALUES($1,$2,$3,$4,$5,$6,$7)
-        ON CONFLICT (email) DO UPDATE SET name=EXCLUDED.name, discipline=EXCLUDED.discipline, note=EXCLUDED.note, country=EXCLUDED.country, license_no=EXCLUDED.license_no, proof_photo=COALESCE(EXCLUDED.proof_photo, clinician_interest.proof_photo)`,
-        [name, email, discipline || null, note || null, country || null, license_no || null, proof]);
-      return json(res, 200, { ok: true });
-    } catch (e) { console.error('[clinician-interest]', e.message); return json(res, 500, { error: 'Could not save — please try again' }); }
-  }
+  // POST /api/clinician-interest CLOSED 2026-08-08 — the handler is deleted, so the path falls
+  // through to the 404 at the end of this dispatcher.
+  // It accepted, with NO ACCOUNT and NO EMAIL VERIFICATION, a name, an email, a profession, a
+  // country, a PROFESSIONAL LICENCE NUMBER and a base64 PHOTOGRAPH OF A CREDENTIAL DOCUMENT (up to
+  // ~1.2 MB). Its intake page (/gp) was removed on 2026-07-30 and api.submitClinicianInterest in
+  // site/app.js had ZERO call sites, so for over a month the only thing that could reach it was a
+  // hand-written request. An earlier audit noticed exactly that and responded by shrinking the
+  // size cap from 6e6 to 1.6e6 — it made the open door narrower instead of shutting it. Collecting
+  // government identity documents for a verification programme that has been abolished is the
+  // largest data liability on this site, and it is now shut.
+  // The clinician_interest ROWS ARE DELIBERATELY NOT DROPPED and GET /api/clinician-photo stays,
+  // so the owner can still see and export what was already collected. Those are somebody's licence
+  // photographs; deleting them is Felix's decision and should follow telling the people on the
+  // list, not happen as a side effect of a code change. See the newsletter_subscribers note in
+  // db.js for the same discipline.
   // super-admin only: view a professional's uploaded credential proof (data URL stored on the row)
   if (seg[0] === 'clinician-photo' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) { res.writeHead(403); return res.end(); }
