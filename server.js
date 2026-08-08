@@ -975,7 +975,14 @@ async function api(req, res, url) {
   // closed topic vocabulary, interestAllow()'s ten stored addresses per IP per day, and
   // UNIQUE(email), which makes a resubmit a no-op rather than another row.
   if (seg[0] === 'interest' && !seg[1] && req.method === 'POST') {
-    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q, 'Cache-Control': 'no-store' }); res.end(); };
+    // #answer: the answer panels sit immediately above the form, not at the top of the page, so
+    // that bad / rate / down put the explanation directly above the form the reader has to use
+    // again. Measured at 390x844 on the built page: it is ~4,400 px tall with the form in the last
+    // section, so without the fragment a reader who has just submitted is returned to the headline
+    // and has to scroll five screens to find out what happened. The target carries tabindex="-1",
+    // so the browser moves FOCUS there as well as scrolling — the announcement a screen-reader user
+    // needs, with no JavaScript anywhere on the path.
+    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q + '#answer', 'Cache-Control': 'no-store' }); res.end(); };
     const b = await readBody(req, 4e3);              // two questions and an address; nothing here is large
     if (!b) return see('state=bad');
     const email = clean(b.email, 160).toLowerCase();
@@ -1016,7 +1023,7 @@ async function api(req, res, url) {
   // behalf without them ever seeing the page. The unguessable token IS the authorisation, and the
   // only thing it can do is delete the one row it belongs to.
   if (seg[0] === 'interest' && seg[1] === 'remove' && !seg[2] && req.method === 'POST') {
-    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q, 'Cache-Control': 'no-store' }); res.end(); };
+    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q + '#answer', 'Cache-Control': 'no-store' }); res.end(); };
     const b = await readBody(req, 2e3) || {};
     const tok = clean(b.t, 48);
     // A malformed token, an unknown token and a token that was already used all get the SAME
@@ -2423,9 +2430,29 @@ function serveStatic(req, res, url) {
       else console.error('[interest] no <html> element in site/interest.html — the state cannot be stamped.');
       if (state === 'ok' && tok) {
         const href = '/interest?state=remove&t=' + tok;
-        need('<a class="i-rm" href=""></a>', `<a class="i-rm" href="${escHtml(href)}">${escHtml(SITE_URL + href)}</a>`, 'removal link (a.i-rm)');
+        // The href carries #answer for the same reason the 303s above do; the visible text does
+        // not, because this string is the reader's ONLY copy of that URL (nothing sends email yet)
+        // and it is the one they may write down or paste. A trailing #answer in printed link text
+        // is noise.
+        need('<a class="i-rm" href=""></a>', `<a class="i-rm" href="${escHtml(href)}#answer">${escHtml(SITE_URL + href)}</a>`, 'removal link (a.i-rm)');
       }
       if (state === 'remove') need('<input type="hidden" name="t" value="">', `<input type="hidden" name="t" value="${escHtml(tok)}">`, 'removal token field');
+      // THE CHIP THE READER ALREADY CHOSE. The POST handler above builds `keep` precisely so the
+      // form they land on is the form they left, and until this block existed nothing read it: the
+      // browser ended on /interest?state=down&topic=hip&creator=1 with every control back at its
+      // default, so a reader whose address had a typo re-answered question 1 from scratch. There is
+      // no JavaScript on this page, so `checked` has to be written into the markup, and this
+      // handler is the only thing that knows. Validated against the SAME INTEREST_TOPICS list
+      // POST /api/interest matched it against, so a hand-typed ?topic= cannot pre-check an answer
+      // the write path would discard. Deliberately NOT done for the address — see the note in the
+      // POST handler on why that one is not carried back.
+      const back = String(qp.get('topic') || '');
+      if (back && INTEREST_TOPICS.indexOf(back) >= 0) {
+        need(`id="i-f-${back}" value="${back}" required`, `id="i-f-${back}" value="${back}" required checked`, `the "${back}" chip`);
+      }
+      if (qp.get('creator') === '1') {
+        need('<input class="i-o" type="checkbox" name="creator" id="i-f-ck" value="1">', '<input class="i-o" type="checkbox" name="creator" id="i-f-ck" value="1" checked>', 'the creator checkbox');
+      }
       endHtml(res, html);
     });
   }
