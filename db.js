@@ -68,9 +68,15 @@ CREATE TABLE IF NOT EXISTS votes (
 );
 CREATE INDEX IF NOT EXISTS idx_votes_target ON votes(target_id);
 
--- Tier 2: domain-isolated expert stewardship.
--- domain = the GRANTED role (only an admin sets it, by approving an application). A user cannot
--- self-assign it — they set requested_domain via an application, admin approval promotes it.
+-- Tier 2: domain-isolated expert stewardship. DISMANTLED 2026-08-08 — RNAwiki has ONE ACCOUNT
+-- TYPE, so these six columns no longer mean anything and nothing writes them.
+--   · the application path (POST /api/profile/domain) is deleted, so requested_domain, credential,
+--     application_status and role_backlink can never be set again;
+--   · the grant path (POST /api/admin/verify-domain) is deleted, so domain_verified can never
+--     become true again — it is false on every row and now permanently so.
+-- The columns are kept for one release, not forever: dropping a column is irreversible, and this
+-- repo already handles that discipline twice (newsletter_subscribers below, telegram_*). Drop them
+-- by hand once this has shipped and nothing 500s.
 ALTER TABLE users ADD COLUMN IF NOT EXISTS domain TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS credential TEXT;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS domain_verified BOOLEAN NOT NULL DEFAULT false;

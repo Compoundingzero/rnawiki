@@ -248,8 +248,10 @@ function sendAsset(req, res, file, st, ext, code) {
   });
 }
 const EDITABLE = ['mechanism', 'target', 'plain', 'protocol', 'watch', 'bottom'];
-// Hard domain isolation for stewardship: each expert domain owns exactly one layer.
-const DOMAIN_LAYER = { physio: 'move', dietitian: 'fuel', pharmacist: 'stack' };
+// DOMAIN_LAYER REMOVED 2026-08-08 — ONE ACCOUNT TYPE. It mapped an account's expert domain to the
+// one protocol layer that account was allowed to edit ({physio:'move', dietitian:'fuel',
+// pharmacist:'stack'}), and its last reader was the "apply for an expert role" endpoint that went
+// with it. A lookup table of professions is how a second account type grows back.
 const DOMAIN_LABEL = { physio: 'Movement', dietitian: 'Nutrition', pharmacist: 'Pharmacology' };
 const SITE_URL = (process.env.SITE_URL || 'https://rnawiki.com').replace(/\/$/, '');
 // AI food-photo scanner (opt-in: does nothing until ANTHROPIC_API_KEY is set).
@@ -1224,7 +1226,11 @@ async function api(req, res, url) {
       return json(res, 200, { ok: true, enabled: on, hour });
     }
   }
-  if (seg[0] === 'profile') {
+  // `!seg[1]` added 2026-08-08. This branch matched EVERY /api/profile/* path, so after the
+  // deletion of POST /api/profile/domain the old expert-application URL still answered 200 {ok:true}
+  // and quietly wrote an empty demographics row. A deleted endpoint that still says yes is worse
+  // than one that says no; it now falls through to the 404 at the end of this handler.
+  if (seg[0] === 'profile' && !seg[1]) {
     const u = await currentUser(req); if (!u) return json(res, method === 'GET' ? 200 : 401, method === 'GET' ? { profile: null } : { error: 'Sign in' });
     if (method === 'GET') { const r = await db.query('SELECT age_band, sex, ethnicity, conditions, height_cm, meds FROM user_profile WHERE user_id=$1', [u.id]); return json(res, 200, { profile: r.rows[0] || null }); }
     if (method === 'POST') {
@@ -1462,19 +1468,17 @@ async function api(req, res, url) {
     return json(res, 200, { score: { up: r.rows[0].up || 0, down: r.rows[0].down || 0 } });
   }
 
-  // --- apply for an expert role (you CANNOT self-assign; an admin grants it) ---
-  if (seg[0] === 'profile' && seg[1] === 'domain' && method === 'POST') {
-    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const domain = clean(b.domain, 20), credential = clean(b.credential, 200), backlink = safeUrl(b.backlink_url);
-    if (u.domain_verified) return json(res, 400, { error: 'You already hold a verified role. Ask the admin to change it.' });
-    if (!DOMAIN_LAYER[domain]) return json(res, 400, { error: 'Choose a domain to apply for.' });
-    if (!credential) return json(res, 400, { error: 'Add your registration/credential so I can verify you.' });
-    if (!backlink) return json(res, 400, { error: 'Add the URL of a page on your site or socials that links back to rnawiki.com — that link exchange is how I verify experts.' });
-    // sets a PENDING application only — domain stays null until an admin approves it.
-    await db.query("UPDATE users SET requested_domain=$1, credential=$2, role_backlink=$3, application_status='pending' WHERE id=$4", [domain, credential, backlink, u.id]);
-    return json(res, 200, { ok: true, application_status: 'pending', requested_domain: domain });
-  }
+  // POST /api/profile/domain REMOVED 2026-08-08 — ONE ACCOUNT TYPE.
+  // It let any signed-in account apply to become a second, higher kind of account: it wrote
+  // requested_domain, a free-text credential and a backlink, and set application_status='pending'.
+  // Its own error copy said "that link exchange is how I verify experts" — a verification
+  // programme that does not exist and that /corrections publishes as a past mistake.
+  // api.setDomain in site/app.js had ZERO call sites, so nothing in a browser could reach it; a
+  // signed-in curl could. There is now no way for an account to ask to become a different kind of
+  // account, which is the point.
+  // The users.domain / domain_verified / credential / requested_domain / application_status /
+  // role_backlink columns are deliberately left in db.js: dropping a column is irreversible and
+  // every one of them is null or false today. Drop them in a later, deliberate commit.
   // --- profile: update your public socials / booking link ---
   if (seg[0] === 'profile' && !seg[1] && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
@@ -1909,9 +1913,12 @@ async function api(req, res, url) {
       return csvExport(res, 'rnawiki-wearables.csv', ['subject', 'day', 'steps', 'sleep_min', 'resting_hr', 'weight_kg', 'waist_cm'],
         r.rows.map(x => [anonId(x.user_id), x.day, x.steps, x.sleep_min, x.resting_hr, x.weight_kg, x.waist_cm]));
     }
-    const r = await db.query('SELECT username,email,role,domain,domain_verified,reputation_points,created_at FROM users ORDER BY created_at DESC');
-    return csvExport(res, 'rnawiki-members.csv', ['username', 'email', 'role', 'domain', 'domain_verified', 'reputation', 'joined'],
-      r.rows.map(x => [x.username, x.email, x.role, x.domain, x.domain_verified, x.reputation_points, x.created_at && x.created_at.toISOString()]));
+    // 2026-08-08: the role / domain / domain_verified columns are out of this export. They were
+    // three columns that read 'user', empty and false on every row ever written, and a CSV with a
+    // "domain_verified" header invites the reader to believe some row could say true.
+    const r = await db.query('SELECT username,email,reputation_points,created_at FROM users ORDER BY created_at DESC');
+    return csvExport(res, 'rnawiki-members.csv', ['username', 'email', 'reputation', 'joined'],
+      r.rows.map(x => [x.username, x.email, x.reputation_points, x.created_at && x.created_at.toISOString()]));
   }
   if (seg[0] === 'admin' && seg[1] === 'feedback' && seg[2] && method === 'POST') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
@@ -2093,8 +2100,12 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'admin' && seg[1] === 'overview' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
-    const [experts, partners, foods, requests, rcc, feedback, proposals, cedits, members, memberCount, clinicians] = await Promise.all([
-      db.query("SELECT id,username,domain,requested_domain,domain_verified,application_status,credential,role_backlink,reputation_points FROM users WHERE domain IS NOT NULL OR requested_domain IS NOT NULL ORDER BY (application_status='pending') DESC, domain_verified ASC, created_at ASC"),
+    // 2026-08-08: the `experts` query is gone from this payload — ONE ACCOUNT TYPE. It selected
+    // every account with a domain or a requested_domain, and fed the Control Room's
+    // "Verified-badge applications" table, which is deleted. Nothing can write those columns now,
+    // so the query could only ever have returned an empty array; shipping an empty array under
+    // the key `experts` is how the table gets rebuilt.
+    const [partners, foods, requests, rcc, feedback, proposals, cedits, members, memberCount, clinicians] = await Promise.all([
       db.query('SELECT id,name,type,location,link,backlink_url,serves,status,created_at FROM partners ORDER BY status ASC, created_at DESC LIMIT 200'),
       db.query("SELECT f.id,f.name,f.serving,f.data,f.status,f.created_at,u.username AS by_user FROM user_foods f LEFT JOIN users u ON u.id=f.submitted_by WHERE f.status='pending' ORDER BY f.created_at ASC LIMIT 200"),
       db.query("SELECT id,request,detail,votes,status,created_at FROM protocol_requests ORDER BY (status='open') DESC, votes DESC, created_at DESC LIMIT 100"),
@@ -2106,11 +2117,20 @@ async function api(req, res, url) {
         (SELECT COUNT(*)::int FROM proposal_actions a WHERE a.proposal_id=p.id AND a.action='endorse') AS endorsements
         FROM proposals p JOIN users u ON u.id=p.user_id WHERE p.status='pending' ORDER BY p.created_at ASC LIMIT 100`),
       db.query("SELECT e.id,e.compound_id,e.compound_name,e.note,e.created_at,u.username AS by_user FROM edits e JOIN users u ON u.id=e.user_id ORDER BY e.created_at DESC LIMIT 60"),
-      db.query("SELECT username,email,role,domain,domain_verified,reputation_points,created_at FROM users ORDER BY created_at DESC LIMIT 500"),
+      // 2026-08-08: was `SELECT username,email,role,domain,domain_verified,…`. Those three told the
+      // Control Room's Members table what KIND of account each row was, and all three are dead
+      // letters — role is 'user' on every row including the owner's (it is only ever elevated in
+      // memory), domain is null and domain_verified is false. Rendering them produced a Role
+      // column that read "member" for everybody, the owner included. is_owner is computed with the
+      // same isSuper() the request path uses, so the one distinction that exists is the one shown.
+      db.query('SELECT id,username,email,google_sub,reputation_points,created_at FROM users ORDER BY created_at DESC LIMIT 500'),
       db.query('SELECT count(*)::int AS n FROM users'),
       db.query('SELECT id,name,email,discipline,country,license_no,note,(proof_photo IS NOT NULL) AS has_proof,created_at FROM clinician_interest ORDER BY created_at DESC LIMIT 500'),
     ]);
-    return json(res, 200, { experts: experts.rows, partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, members: members.rows, memberCount: memberCount.rows[0].n, clinicians: clinicians.rows, threshold: PANEL_THRESHOLD });
+    // google_sub is used to decide is_owner and then dropped — it is an identity secret, not a
+    // column the Control Room needs to see.
+    const memberRows = members.rows.map(m => ({ username: m.username, email: m.email, reputation_points: m.reputation_points, created_at: m.created_at, is_owner: isSuper(m) }));
+    return json(res, 200, { partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, members: memberRows, memberCount: memberCount.rows[0].n, clinicians: clinicians.rows, threshold: PANEL_THRESHOLD });
   }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
     const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'The food queue is not enabled for this account.' });
@@ -2266,23 +2286,12 @@ async function api(req, res, url) {
     return json(res, 200, { contributors: r.rows });
   }
 
-  // --- admin: credential verification for stewardship ---
-  if (seg[0] === 'admin' && seg[1] === 'experts' && method === 'GET') {
-    const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'Admin only' });
-    const r = await db.query("SELECT username, domain, requested_domain, application_status, credential, role_backlink, domain_verified, created_at FROM users WHERE domain IS NOT NULL OR requested_domain IS NOT NULL ORDER BY (application_status='pending') DESC, domain_verified ASC, created_at ASC");
-    return json(res, 200, { experts: r.rows });
-  }
-  if (seg[0] === 'admin' && seg[1] === 'verify-domain' && method === 'POST') {
-    const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const username = clean(b.username, 24); const verified = b.verified !== false;
-    // approve = grant the requested (or current) domain + verified; reject/unverify = revoke it.
-    const r = verified
-      ? await db.query("UPDATE users SET domain=COALESCE(requested_domain, domain), domain_verified=true, application_status='approved', requested_domain=null WHERE username=$1 RETURNING username, domain, domain_verified", [username])
-      : await db.query("UPDATE users SET domain_verified=false, domain=null, application_status='rejected' WHERE username=$1 RETURNING username, domain, domain_verified", [username]);
-    if (!r.rows[0]) return json(res, 404, { error: 'No such user' });
-    return json(res, 200, { ok: true, user: r.rows[0] });
-  }
+  // GET /api/admin/experts and POST /api/admin/verify-domain REMOVED 2026-08-08 — ONE ACCOUNT TYPE.
+  // These two were the ONLY code paths in the repo that ever set users.domain_verified = true.
+  // With them gone the flag cannot be granted by anyone, including the owner, so every account on
+  // this site is provably the same kind of account. That is a stronger guarantee than a policy:
+  // there is no button, and there is no endpoint behind where the button was.
+  // PROVE IT: `/usr/bin/grep -an "domain_verified *= *true" server.js` must return nothing.
 
   return json(res, 404, { error: 'Not found' });
 }
