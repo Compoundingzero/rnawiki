@@ -380,9 +380,10 @@ function tocHtml(heads, minutes) {
 // page leaves 16 and none are. You cannot fix that by shortening — only by attaching a meaning at
 // the point of use.
 const { glossify: _glossify, compile: _compileGloss } = require('./glossify.js');
-// /interest, the interest-capture landing page (2026-08-08). Its own file because it is the one
-// page on this site that is AUTHORED COPY rather than generated from the corpus — see the note at
-// the top of build/interest.js. This file gains this require, one add() and one gate.
+// The interest-capture landing copy (2026-08-08), folded into the home page the same day it shipped
+// at /interest. Its own file because it is the one part of this site that is AUTHORED COPY rather
+// than generated from the corpus — see the note at the top of build/interest.js. This file gains
+// this require, four placeholders in homeBody, and one gate.
 const INTEREST = require('./interest.js');
 const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
 const GLOSS_COMPILED = _compileGloss(GLOSSARY);
@@ -410,13 +411,12 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   // whose whole job is two CTAs it lands between the headline and the lead, stays pinned for the
   // entire scroll at >=900px, and offers 12 competing destinations on top of the primary ask.
   // Also excluded from the index pages, which are already lists of links.
-  // /interest joins this list for the reason given just above for "/": it is a landing page whose
-  // whole job is one ask. Its emitted body is over the 700-word threshold and carries eleven <h2>
-  // elements — the four section headings AND the seven answer panels, which are display:none until
-  // server.js stamps data-state. Without this line the contents card lands between the headline and
-  // the first drawing, offering "You are on the list." and "That address is not on the list." as
-  // destinations on a page nobody has submitted yet.
-  const _noToc = route === '/' || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn', '/interest'].includes(route);
+  // 2026-08-08: '/interest' used to be listed here for the same reason. That page is now part of "/"
+  // — which is already excluded by name on the line below — and the exclusion matters MORE after the
+  // merge, not less: the folded-in body carries eleven <h2> elements, four section headings plus the
+  // seven answer panels that are display:none until server.js stamps data-state, so a contents card
+  // here would offer "You are on the list." as a destination to somebody who has submitted nothing.
+  const _noToc = route === '/' || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
   const _toc = (!_noToc && _words > 700) ? tocHtml(_an.heads, _mins) : '';
   // Insert after the first </h1> so the reader gets title -> what's in here -> content.
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
@@ -2507,6 +2507,13 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
 //     one thing, and the concrete one wins.
 //   * `#home-stat` (empty renderer) and `.home-stacks-sec` (/api/forks/popular returns [] since the
 //     demo forks were deleted; measured 0px tall). Both rendered nothing in either document.
+//
+// 2026-08-08: ONE LANDING PAGE, NOT TWO. /interest was merged in here on the owner's instruction.
+// The body is assembled below with four `<!--I-…-->` placeholders in it and the finished shell
+// arguments are stashed in HOME_SHELL rather than written; the block that used to emit /interest,
+// far below, substitutes the real blocks in and writes home.html. It has to be deferred because the
+// library drawing is ONE MARK PER PUBLISHED ROUTE and cannot be counted until every add() has run.
+let HOME_SHELL = null;
 {
   const RX_CLASS = new Set(['prescription', 'controlled', 'unapproved']);
 
@@ -2600,8 +2607,15 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
   })();
 
   // ---- the goal index -------------------------------------------------------------------------
-  // Unlike the 52 protocol links, these 16 cannot be cut: there is no /goals index page, and /az
-  // and /browse carry zero /goal/ links (verified), so home is the only hub these 16 pages have.
+  // 2026-08-08, correcting this comment while deciding whether the block survived the merge: /az and
+  // /browse do carry zero /goal/ links and there is still no /goals index page, but the conclusion
+  // drawn from that -- "home is the only hub these 16 pages have" -- was never measured and is
+  // false. MEASURED over every .html under site/: 312 documents carry an href="/goal/…", and every
+  // one of the 16 goals has 6-51 inbound links EXCLUDING home (skin 6 is the fewest), from the
+  // compound pages, which name their goals. Cutting this block would NOT orphan anything and
+  // assertLinkGraph would NOT have caught it. It is kept on two merits that do hold: it is the
+  // second entry mode for a reader who arrives with a goal rather than a symptom, and 16 outbound
+  // links from the site's highest-authority document is link equity nothing else can give them.
   const goalLinks = D.goals.map((g) => {
     const inGoal = D.compounds.filter((c) => (c.goalIds || []).includes(g.id));
     const open = inGoal.filter((c) => !RX_CLASS.has(c.regulatory_class)).length;
@@ -2657,10 +2671,49 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       </div>
     </section>` : '';
 
+  // ---- THE MERGE (2026-08-08) -------------------------------------------------------------------
+  // The owner's instruction, verbatim: "there will no longer be 2 landing pages, just the home page
+  // acting as the landing page with the main header as [/interest's] header."
+  //
+  // THE ORDER, AND WHY EACH THING IS WHERE IT IS.
+  //   1  <!--I-HOOK-->   his H1, his drawing, his caption. First, because that is the instruction.
+  //   2  the hero        CTA #1. The only functional entry to the corpus that works with no
+  //                      JavaScript (a real GET /solve form), and scripts/smoke.mjs asserts
+  //                      #hero-solve-input on "/" by name. It stays near the top of the page.
+  //   3  <!--I-STORY-->  library -> causes -> room. His beats 2-4, in his order, untouched.
+  //   4  WEX             the worked example. Here, between the room and the ask, because it is the
+  //                      concrete instance of what the three drawings argue in the abstract, and it
+  //                      is what earns "what took you years to work out could save somebody theirs".
+  //   5  <!--I-ASK-->    the builder drawing, the seven answer panels, the form. #answer is the
+  //                      fragment POST /api/interest 303s to, and the panels sit directly above the
+  //                      form so bad/rate/down explain themselves over the control to use again.
+  //   6  the daily fact  kept: the only element on the page that differs between two visits.
+  //   7  the goal index  kept: 16 crawlable links from the site's highest-authority document.
+  //   8  <!--I-FOOT-->   not-medical-advice + /solve, /methodology, /corrections. Last, where a
+  //                      disclaimer belongs, and now the home page's only link to the first two.
+  //
+  // THE HEAD IS NOT TOUCHED, DELIBERATELY. The visible headline and the Google title are different
+  // jobs. The new H1 is emotionally strong and carries no search terms — nobody types "turned away,
+  // priced out" into a search box — so the keyword-bearing <title> and description below stay
+  // exactly as they were, and so does every keyword-bearing element in the body: `.hero-lead` (the
+  // only prose carrying "root cause underneath it / movement / food / compounds / human evidence"),
+  // the worked example's "knee pain going downstairs", and the 16-item goal index.
+  //
+  // WHAT WAS DROPPED: one thing. `<section class="home-interest">` — 523 bytes teasing /interest
+  // with its kicker, its H1 as an <h2> and the form's two opening lines. That page is now this page,
+  // so the teaser linked to itself and said the new H1's sentence a second time. Nothing else on the
+  // home page was removed: the old headline is DEMOTED to this section's <h2>, in the same place,
+  // with its words intact, because it is the owner's copy and it is the reader's reason to use the
+  // search box directly beneath it.
   const homeBody = `
+    <!--I-HOOK-->
+
     <section class="hero funnel-hero" id="top">
       <div class="kicker">Free &middot; no account &middot; nothing here is for sale</div>
-      <h1>You know what you were told to take.<br><span class="lead">You were never shown what it&rsquo;s for.</span></h1>
+      ${/* Was the <h1> until 2026-08-08, when the owner's line took the H1. Same words, same place,
+            one step down. `.hero .lead{color:var(--accent)}` still colours the second line; the four
+            hero heading-size rules in styles.css gained `.hero-h2` alongside `h1`. */ ''}
+      <h2 class="hero-h2">You know what you were told to take.<br><span class="lead">You were never shown what it&rsquo;s for.</span></h2>
       <p class="hero-lead">Start from the other end. Name the problem &mdash; I&rsquo;ll show you the
       <b>root cause underneath it</b>, then the movement, the food and the compounds that act on
       <i>that cause</i>, each one ranked by how good the human evidence actually is. Not a shopping
@@ -2682,7 +2735,11 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       <p class="hero-note">Free &middot; no account &middot; <b>no affiliate links</b> &middot; says so out loud when the evidence is thin</p>
     </section>
 
+    <!--I-STORY-->
+
     ${WEX}
+
+    <!--I-ASK-->
 
     ${factBlock}
 
@@ -2693,23 +2750,13 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
       <ul class="gi-list">${goalLinks}</ul>
     </section>
 
-    ${/* 2026-08-08: THE CLOSING CTA SLOT, FILLED. The note at the top of this block records that
-          the newsletter went on 2026-08-06 and that no replacement closing CTA was invented,
-          because inventing one would mean writing an ask nobody asked for. /interest IS the ask the
-          owner wrote, and every string below is his, verbatim from his wireframe: the kicker, the
-          H1, and the form's two opening lines. data-native because /interest is prerender-only
-          (KEEP_PRERENDERED): without it a reader with JavaScript would get notFound(). It is also
-          the ONLY clean inbound link to that page — assertLinkGraph counts query-free links
-          separately for exactly this reason, so do not replace it with one carrying a "?". */ ''}
-    <section class="home-interest">
-      <p class="hi-kick">Being built in the open</p>
-      <h2>Turned away, priced out, or told it was nothing.</h2>
-      <p class="hi-sub">Nothing is built yet. This is how you get told when it is.</p>
-      <p><a class="hi-cta" href="/interest" data-native>Two questions. That is the whole thing &rarr;</a></p>
-    </section>`;
+    <!--I-FOOT-->`;
 
-  // write directly (not via add()) so "/home" never leaks into the sitemap; canonical is "/"
-  fs.writeFileSync(path.join(SITE, 'home.html'), shell({
+  // STASHED, NOT WRITTEN (2026-08-08). The four placeholders above are filled and home.html is
+  // written by the block far below that used to emit /interest — after every add() has run, because
+  // the library drawing is one mark per published route. Still written directly rather than through
+  // add(), so "/home" never leaks into the sitemap; canonical is "/".
+  HOME_SHELL = ({
     route: '/', ogType: 'website',
     // W5b: was 77 chars — "…Precision root-cause health protocols". It is the one title on the site
     // that never went through seoTitle(), so it never met the 60-char budget every other page is
@@ -2721,7 +2768,7 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
     jsonld: [WEBSITE, ORG],
     breadcrumbs: [{ name: 'Home', route: '/' }],
     body: homeBody,
-  }));
+  });
 }
 
 // ---- write files ----
@@ -3172,36 +3219,41 @@ let written = 0;
       <p><a href="/learn">Start from the beginning →</a> · <a href="/about">About RNAwiki →</a></p></div>` }));
 }
 
-// ---- /interest — the interest-capture landing page (2026-08-08) -------------------------------
-// EMITTED LAST, ON PURPOSE. Its library drawing is one mark per published route, so it cannot be
-// built until every other add() has run. The `iTotal` expression below reproduces the `urls`
-// expression under "sitemap + robots" exactly, plus this page (which is not in `pages` yet at the
-// moment it is evaluated); assertInterestPage() re-derives all four numbers from `uniq` afterwards
-// and refuses to build on a disagreement, so the reproduction cannot rot.
+// ---- THE HOME PAGE, WRITTEN LAST — with the interest landing page folded into it (2026-08-08) --
+// This block used to `add('/interest', …)`. There is one landing page now, not two: the owner's
+// instruction was "there will no longer be 2 landing pages, just the home page acting as the landing
+// page with the main header as [the interest page's] header". /interest is unpublished, 301s to "/"
+// with its query intact (server.js LEGACY_REDIRECTS) and is recorded in build/withdrawn.json.
 //
-// The newsletter was the home page's main call to action until it was deleted on 2026-08-06, and
-// the note above homeBody says plainly that no replacement was invented, because inventing one
-// would mean writing an ask nobody asked for. This is the ask the owner did write.
+// IT IS STILL WRITTEN LAST, AND FOR THE SAME REASON: the library drawing is one mark per published
+// route, so it cannot be built until every other add() has run. homeBody stashed its shell arguments
+// in HOME_SHELL with four `<!--I-…-->` placeholders in the body; they are filled here.
+//
+// The `iTotal` expression reproduces the `urls` expression under "sitemap + robots" exactly. '/' is
+// already in that seed list; '/interest' is NOT, because that route no longer exists and a 301
+// target must not be counted twice. assertInterestPage() re-derives all four numbers from `uniq`
+// afterwards and refuses to build on a disagreement, so the reproduction cannot rot.
 {
-  const iTotal = new Set(['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', '/interest',
+  const iTotal = new Set(['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend',
     ...pages.filter((p) => !p.noSitemap).map((p) => p.route)]).size;
   const iProblems = pages.filter((p) => p.route.startsWith('/problem/')).length;
   const iProtocols = pages.filter((p) => p.route.startsWith('/protocol/')).length;
   const iTopics = ((D.site || {}).interest || {}).topics || [];
-  add('/interest', shell({
-    route: '/interest', ogType: 'website',
-    // The owner's own H1. seoTitle() trims it to the 60-char escaped budget if it ever grows.
-    title: seoTitle('Turned away, priced out, or told it was nothing.'),
-    // Every clause is a sentence from his wireframe.
-    desc: seoDesc('Turned away, priced out, or told it was nothing. Nothing is built yet — this is how you get told when it is. Two questions. That is the whole thing.'),
-    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Being built in the open', route: '/interest' }],
-    body: INTEREST.interestBody({
-      total: iTotal, filled: iProblems + iProtocols, nProblems: iProblems, nProtocols: iProtocols,
-      topics: iTopics,
-      causeRows: INTEREST.causeRows((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes),
-      symptom: (iTopics.find((t) => t.id === INTEREST.CAUSE_CHIP) || {}).label,
-    }),
-  }));
+  const I = INTEREST.interestParts({
+    total: iTotal, filled: iProblems + iProtocols, nProblems: iProblems, nProtocols: iProtocols,
+    topics: iTopics,
+    causeRows: INTEREST.causeRows((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes),
+    symptom: (iTopics.find((t) => t.id === INTEREST.CAUSE_CHIP) || {}).label,
+  });
+  if (!HOME_SHELL) { console.error('\n[prerender] the home page was never assembled — refusing to build.\n'); process.exit(1); }
+  const filled = ['hook', 'story', 'ask', 'foot'].reduce((body, k) => {
+    const mark = `<!--I-${k.toUpperCase()}-->`;
+    // A placeholder that does not match is the whole merge silently not landing, on the one document
+    // ~90% of readers get. Refuse rather than write a home page with a comment where the form was.
+    if (body.indexOf(mark) < 0) { console.error(`\n[prerender] homeBody has no ${mark} — refusing to build.\n`); process.exit(1); }
+    return body.split(mark).join(I[k]);
+  }, HOME_SHELL.body);
+  fs.writeFileSync(path.join(SITE, 'home.html'), shell(Object.assign({}, HOME_SHELL, { body: filled })));
 }
 
 pages.forEach(({ route, html }) => {
@@ -4332,10 +4384,11 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans, 0 reachable only through a query string (${thin} reachable from a single page).`);
 })();
 
-// ---- build-time assertion: /interest MAY NOT PRINT A NUMBER IT CANNOT COUNT, A CHIP THE ENDPOINT
-//      DISCARDS, OR AN ANSWER THE SERVER CANNOT PRODUCE -------------------------------------------
-// 2026-08-08. /interest is the one AUTHORED page on this site, and it has five ways to start lying
-// quietly — three of which the owner's wireframe was already doing:
+// ---- build-time assertion: THE LANDING COPY MAY NOT PRINT A NUMBER IT CANNOT COUNT, A CHIP THE
+//      ENDPOINT DISCARDS, OR AN ANSWER THE SERVER CANNOT PRODUCE ----------------------------------
+// 2026-08-08. The interest landing copy is the one AUTHORED page on this site. It shipped at
+// /interest in the morning and was merged into the home page the same day; it has five ways to start
+// lying quietly — three of which the owner's wireframe was already doing:
 //   1. THE NUMBERS. "568 marks, 93 filled" and "One of the 41" were all true the day they were
 //      drawn and all three would be false on the first build that publishes a page. Same defect
 //      class as assertCorpusCountCopy, which exists because "Search 170 compounds…" shipped in the
@@ -4347,20 +4400,29 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 //      substitutions into its markup. A state with no panel is a reader who filled in a form and
 //      landed on a page that says nothing happened. A renamed literal is a page that says "here is
 //      your link" and shows none. server.js's need() logs that, but nobody reads a log.
-//   4. THE SPA ANSWER. Without 'interest' in KEEP_PRERENDERED a crawler gets the page and every
-//      reader with JavaScript gets notFound().
+//   4. THE SPA ANSWER. "/" is not a KEEP_PRERENDERED route and does not need to be — app.js
+//      CAPTURES the prerendered <main> at boot (HOME_HTML), home() replays that captured string, and
+//      route() skips the #app write entirely on the first paint of "/". If any one of those three
+//      lines is rewritten, a reader with JavaScript loses the form, the seven answer panels and the
+//      five drawings and gets a second, hand-written home page instead. All three are pinned below.
 //   5. THE OWNER'S CAUSE WORDING. build/interest.js keys his five plainer cause lines by the
 //      corpus's exact cause name. If a cause is renamed the key stops matching, his line silently
 //      disappears, and the drawing swaps to the corpus name with nothing said.
 // Everything below is re-derived from the EMITTED BYTES and from server.js's, app.js's and
-// styles.css's own source — never from the values interestBody() was handed.
+// styles.css's own source — never from the values interestParts() was handed.
 // PROVE IT by hard-coding a number into the marks() call, by dropping `value=` off one chip, by
-// deleting any one of the seven .i-s-* panels, by removing 'interest' from KEEP_PRERENDERED, or by
-// misspelling a key in CAUSE_WORDS.
+// deleting any one of the seven .i-s-* panels, by deleting the `_firstPaint` clause from route()'s
+// #app write guard in site/app.js, or by misspelling a key in CAUSE_WORDS.
+// 2026-08-08: THE PAGE MOVED, THE GATE DID NOT. /interest no longer exists — its content IS the home
+// page and the old URL 301s to "/". Everything this function checks is still as true and as
+// invisible as it was; it now reads site/home.html, which is written straight to disk rather than
+// through add(), the same way assertCanonicalParity, assertOneH1PerPage and the lastmod hash already
+// read it. The function keeps its name so the comments citing it elsewhere stay accurate.
 (function assertInterestPage() {
-  const page = pages.find((p) => p.route === '/interest');
-  if (!page) { console.error('\n[prerender] /interest was not emitted — refusing to build.\n'); process.exit(1); }
-  const H = page.html, bad = [];
+  let H = null;
+  try { H = fs.readFileSync(path.join(SITE, 'home.html'), 'utf8'); } catch (e) { H = null; }
+  if (!H) { console.error('\n[prerender] site/home.html was not written — refusing to build.\n'); process.exit(1); }
+  const bad = [];
   const SRV = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
   const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
   const CSS = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
@@ -4381,10 +4443,10 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   // 2. the chips ARE the write schema POST /api/interest validates against
   const ids = (((D.site || {}).interest || {}).topics || []).map((t) => t.id);
   const emittedChips = [...H.matchAll(/<input class="i-o[^"]*" type="radio" name="topic" id="([^"]+)" value="([^"]+)" required>/g)];
-  if (emittedChips.length !== ids.length) bad.push(`/interest renders ${emittedChips.length} topic radios and data/site_config.json declares ${ids.length} chips`);
+  if (emittedChips.length !== ids.length) bad.push(`the home page renders ${emittedChips.length} topic radios and data/site_config.json declares ${ids.length} chips`);
   emittedChips.forEach(([, id, val]) => {
-    if (ids.indexOf(val) < 0) bad.push(`/interest renders a chip with value "${val}", which is not in interest.topics — server.js stores anything else as NULL, so the reader's only answer is discarded`);
-    if (id !== 'i-f-' + val) bad.push(`/interest has a chip whose id is "${id}" and whose value is "${val}" — the wireframe shipped exactly this defect (id \`f-tired\` on the chip labelled "Knee")`);
+    if (ids.indexOf(val) < 0) bad.push(`the home page renders a chip with value "${val}", which is not in interest.topics — server.js stores anything else as NULL, so the reader's only answer is discarded`);
+    if (id !== 'i-f-' + val) bad.push(`the home page has a chip whose id is "${id}" and whose value is "${val}" — the wireframe shipped exactly this defect (id \`f-tired\` on the chip labelled "Knee")`);
   });
   if (!/name="topic_other" maxlength="60"/.test(H)) bad.push('the free-text field is missing or is not capped at 60 — server.js does clean(b.topic_other, 60)');
   if (!/name="email"[^>]*required/.test(H)) bad.push('the email field is not required');
@@ -4392,21 +4454,49 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 
   // 3. one panel per state, read out of server.js's own STATES array
   const st = SRV.match(/const STATES = \[([^\]]*)\]/);
-  if (!st) bad.push('server.js no longer declares a STATES array for /interest — this gate cannot check the page against it and refuses to pass blind');
+  if (!st) bad.push('server.js no longer declares a STATES array for the ?state= answer — this gate cannot check the page against it and refuses to pass blind');
   else [...st[1].matchAll(/'([a-z]+)'/g)].map((m) => m[1]).forEach((s) => {
-    if (H.indexOf(`class="i-state i-s-${s}"`) < 0) bad.push(`server.js can 303 to /interest?state=${s} and the page has no .i-s-${s} panel — that reader submits a form and lands on a page that says nothing happened`);
+    if (H.indexOf(`class="i-state i-s-${s}"`) < 0) bad.push(`server.js can 303 to /?state=${s} and the page has no .i-s-${s} panel — that reader submits a form and lands on a page that says nothing happened`);
     if (CSS.indexOf(`html[data-state="${s}"] .i-s-${s}`) < 0) bad.push(`nothing in styles.css reveals .i-s-${s} — server.js stamps data-state on the <html> ELEMENT, so the panel stays display:none and the state is invisible`);
   });
 
   // 4. the two substitution literals, byte for byte, in BOTH files
   [['<a class="i-rm" href=""></a>', 'the removal link'],
     ['<input type="hidden" name="t" value="">', 'the removal token field']].forEach(([lit, what]) => {
-    if (H.indexOf(lit) < 0) bad.push(`/interest does not contain ${what} exactly as server.js looks for it: ${lit}`);
+    if (H.indexOf(lit) < 0) bad.push(`the home page does not contain ${what} exactly as server.js looks for it: ${lit}`);
     if (SRV.indexOf(lit) < 0) bad.push(`server.js no longer substitutes into ${what} — the contract moved and this page is still carrying the placeholder`);
   });
 
-  // 5. the SPA answer
-  if (!/KEEP_PRERENDERED = \[[^\]]*'interest'/.test(APP)) bad.push("site/app.js's KEEP_PRERENDERED does not contain 'interest' — route() falls through to notFound() and overwrites the prerendered page for every reader with JavaScript");
+  // 5. THE SPA ANSWER — three lines, and if any one of them is rewritten a reader with JavaScript
+  //    loses the form, the seven answer panels and the five drawings and gets a second, hand-written
+  //    home page instead. "/" is not a KEEP_PRERENDERED route: it is protected by a different
+  //    mechanism — app.js CAPTURES the prerendered <main> at boot (HOME_HTML), home() replays that
+  //    captured string rather than rendering anything, and route() skips the #app write entirely on
+  //    the first paint of "/". Each is pinned verbatim, because a rewrite of any of them is invisible
+  //    until somebody actually submits the form.
+  //    PROVE IT by deleting `_firstPaint && !parts.length && HOME_HTML` from route()'s write guard,
+  //    or by replacing home()'s first line with a hand-written hero — the build must refuse.
+  [['if (HOME_HTML) return HOME_HTML;',
+    'home() no longer replays the captured prerendered document — it is rendering a second home page'],
+  ['if (html !== KEEP && !(_firstPaint && !parts.length && HOME_HTML)) app.innerHTML = html;',
+    'route() no longer skips the #app write on the first paint of "/" — the prerendered form and its seven answer panels are overwritten before the reader can see them'],
+  ["if (!currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;",
+    'the boot capture of the prerendered home is gone, so home() has nothing to replay']].forEach(([lit, what]) => {
+    if (APP.indexOf(lit) < 0) bad.push(`${what}. site/app.js must contain, verbatim:  ${lit}`);
+  });
+  if (/KEEP_PRERENDERED = \[[^\]]*'interest'/.test(APP)) bad.push('site/app.js\'s KEEP_PRERENDERED still lists \'interest\', and no page serves that route any more — /interest 301s to "/". Remove it.');
+  //    THE STATE ATTRIBUTE MUST BE CLEARED ON ANY OTHER NAVIGATION. server.js stamps data-state on
+  //    <html>, and on "/" — unlike /interest, whose every inbound link carried data-native — a reader
+  //    with JavaScript can navigate away and back with no page load, which would leave "You are on
+  //    the list." revealed over a landing page they asked for.
+  //    It has to read location.search, NOT the router's own parsed query: currentRoute() returns a
+  //    bare "/" for the home page and appends location.search only when the pathname is something
+  //    else, so the router's QS is empty on "/?state=ok". Measured hydrated at 390x844 with the QS
+  //    version in place: data-state null, .i-s-ok display:none and the form back on screen on the
+  //    one paint that was meant to show the answer. Pinned so that regression cannot come back.
+  if (APP.indexOf("if (!new URLSearchParams(location.search || '').get('state')) document.documentElement.removeAttribute('data-state');") < 0) {
+    bad.push('site/app.js route() does not clear data-state from location.search on a navigation with no ?state= — either a reader who signed up sees the confirmation panel every time they return to "/" in the same session, or (if it was rewritten to read the router\'s QS, which is empty on "/") the answer is wiped on the very paint that was meant to show it');
+  }
 
   // 6. the drawings, the heading, the causes, and the owner's wording for them
   // The page's OWN drawings only: `<svg class="i-…">`. A bare /<svg/ count picks up the brand mark
@@ -4416,7 +4506,7 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   const titles = (H.match(/<title id="i-t-[a-z]+">/g) || []).length;
   const labelled = (H.match(/<svg class="i-[a-z]+"[^>]*aria-labelledby="i-t-[a-z]+"/g) || []).length;
   if (svgs !== 5 || titles !== 5 || labelled !== 5) bad.push(`${svgs} drawings, ${titles} <title> elements and ${labelled} of them wired up with aria-labelledby — every drawing needs one or a screen reader is told "image"`);
-  if ((H.match(/<h1/g) || []).length !== 1) bad.push('/interest does not have exactly one <h1>');
+  if ((H.match(/<h1/g) || []).length !== 1) bad.push("the home page does not have exactly one <h1>");
   const causeList = ((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes || []);
   if (!causeList.length) bad.push(`data/cause_learn.json has no causes for "${INTEREST.CAUSE_PROBLEM}" — drawing 3 draws a fan with nothing in it`);
   else if (H.indexOf(`data-causes="${causeList.length}"`) < 0) bad.push(`drawing 3 does not draw ${causeList.length} causes, which is what /problem/${INTEREST.CAUSE_PROBLEM} publishes`);
@@ -4427,12 +4517,12 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   if (!ids.includes(INTEREST.CAUSE_CHIP)) bad.push(`drawing 3 is headed by the "${INTEREST.CAUSE_CHIP}" chip and no chip with that id exists`);
 
   if (bad.length) {
-    console.error('\n[prerender] /interest FAILED — refusing to build:');
+    console.error('\n[prerender] the landing copy on "/" FAILED — refusing to build:');
     bad.forEach((b) => console.error('  ✗ ' + b));
     console.error('');
     process.exit(1);
   }
-  console.log(`[prerender] /interest OK — ${realTotal} marks (${realFilled} filled) counted from the published set, ${ids.length} chips matching the POST /api/interest allowlist, ${causeList.length} causes from /problem/${INTEREST.CAUSE_PROBLEM} (${Object.keys(INTEREST.CAUSE_WORDS).length} in the owner's wording), all 7 answer states present and both server.js substitution targets intact.`);
+  console.log(`[prerender] the landing copy on "/" OK — ${realTotal} marks (${realFilled} filled) counted from the published set, ${ids.length} chips matching the POST /api/interest allowlist, ${causeList.length} causes from /problem/${INTEREST.CAUSE_PROBLEM} (${Object.keys(INTEREST.CAUSE_WORDS).length} in the owner's wording), all 7 answer states present and both server.js substitution targets intact.`);
 })();
 
 // ---- build-time assertion: THE SPA'S OWN HASH LINKS MUST RESOLVE TO A route() BRANCH -----------

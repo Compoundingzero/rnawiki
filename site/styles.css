@@ -851,6 +851,16 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 /* ================= Conversion landing (funnel hero, steps, personas, intake) ================= */
 .funnel-hero{background:radial-gradient(1200px 400px at 50% -80px,#eafcf3 0,transparent 70%),radial-gradient(900px 360px at 50% -40px,#eef4ff 0,transparent 65%);border-radius:20px;padding:3rem 1rem 2rem}
 .funnel-hero h1{font-size:3rem}
+/* 2026-08-08: the hero's <h1> became an <h2> when the interest page's header took the H1 on the
+   merged landing page. Same words, same place, one step down. `.hero{text-align:center}` still
+   centres it and `.hero .lead{color:var(--accent)}` (line 89) still colours its second line.
+   A rule of its own rather than four `,.hero-h2` additions, because the three existing size rules
+   are element-selective on h1 (.hero h1 2.5rem, .funnel-hero h1 3rem, and two mobile overrides) and
+   a demoted <h2> with no rule at all falls back to the browser default 1.5em — SMALLER than
+   `.hero-lead`'s 1.18rem. Sized to stay clearly under the new H1 at both breakpoints: `.ipage h1` is
+   min(46px,8.6vw) at >=760px and min(32px,8.6vw) below it, so 2rem/1.55rem reads subordinate to it
+   and dominant over the lead everywhere. */
+.hero .hero-h2{font-size:2rem;letter-spacing:-.03em;line-height:1.15;margin:.2rem 0;color:var(--head)}
 .hero-lead{font-size:1.18rem!important;max-width:640px}
 .funnel{display:flex;gap:.6rem;justify-content:center;align-items:stretch;max-width:720px;margin:1.6rem auto 0;flex-wrap:wrap}
 .funnel-search{position:relative;flex:1;min-width:280px;text-align:left}
@@ -911,6 +921,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 
 @media(max-width:720px){
   .funnel-hero h1{font-size:2rem}
+  .hero .hero-h2{font-size:1.55rem}
   .hero-lead{font-size:1.02rem!important}
   .funnel-btn{width:100%}
   .steps-3{grid-template-columns:1fr}

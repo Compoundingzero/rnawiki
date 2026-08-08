@@ -962,7 +962,7 @@ async function api(req, res, url) {
   //     body       {"error":"Accounts are not available right now."}
   // — no page, no heading, no way back, and a refresh re-posts. ~90% of this site's traffic never
   // runs JavaScript, so that IS the experience for ~90% of everyone who fills the form in.
-  // Every exit below is therefore a 303 to /interest?state=…, which means the reader always lands
+  // Every exit below is therefore a 303 to /?state=…, which means the reader always lands
   // on a real page, a refresh cannot re-post, and endHtml() stamps `X-Robots-Tag: noindex, follow`
   // on every one of those "?" URLs automatically (see the note above endHtml).
   //
@@ -982,7 +982,7 @@ async function api(req, res, url) {
     // and has to scroll five screens to find out what happened. The target carries tabindex="-1",
     // so the browser moves FOCUS there as well as scrolling — the announcement a screen-reader user
     // needs, with no JavaScript anywhere on the path.
-    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q + '#answer', 'Cache-Control': 'no-store' }); res.end(); };
+    const see = (q) => { res.writeHead(303, { Location: '/?' + q + '#answer', 'Cache-Control': 'no-store' }); res.end(); };
     const b = await readBody(req, 4e3);              // two questions and an address; nothing here is large
     if (!b) return see('state=bad');
     const email = clean(b.email, 160).toLowerCase();
@@ -1018,12 +1018,12 @@ async function api(req, res, url) {
       return see('state=ok&t=' + r.rows[0].remove_token);
     } catch (e) { console.error('[interest]', e.message); return see('state=down' + keep); }
   }
-  // Removal. A POST, reached from a button on GET /interest?state=remove&t=…, NOT a GET — a link
+  // Removal. A POST, reached from a button on GET /?state=remove&t=…, NOT a GET — a link
   // that deletes is a row an email link-scanner or a browser prefetcher can remove on the reader's
   // behalf without them ever seeing the page. The unguessable token IS the authorisation, and the
   // only thing it can do is delete the one row it belongs to.
   if (seg[0] === 'interest' && seg[1] === 'remove' && !seg[2] && req.method === 'POST') {
-    const see = (q) => { res.writeHead(303, { Location: '/interest?' + q + '#answer', 'Cache-Control': 'no-store' }); res.end(); };
+    const see = (q) => { res.writeHead(303, { Location: '/?' + q + '#answer', 'Cache-Control': 'no-store' }); res.end(); };
     const b = await readBody(req, 2e3) || {};
     const tok = clean(b.t, 48);
     // A malformed token, an unknown token and a token that was already used all get the SAME
@@ -2384,7 +2384,12 @@ function serveStatic(req, res, url) {
       endHtml(res, html);
     });
   }
-  // ---- /interest?state= — THE ANSWER, FOR READERS WITHOUT JAVASCRIPT (2026-08-08) -------------
+  // ---- /?state= — THE ANSWER, FOR READERS WITHOUT JAVASCRIPT (2026-08-08) ---------------------
+  // Was /interest?state= for part of one day. The interest page was merged into the home page on the
+  // owner's instruction ("there will no longer be 2 landing pages"), so the form, the seven panels
+  // and both substitution targets are in home.html now and this handler follows them. /interest and
+  // any query on it 301s here — see LEGACY_REDIRECTS — so a URL already handed to a reader still
+  // lands on the answer it was minted for.
   // POST /api/interest 303s back to here with the answer in the query string. This is the same
   // pattern as /solve?q= above, which the note there calls the reference implementation, and which
   // is what the newsletter's ?subscribed=1 / ?suberr= did until 2026-08-06.
@@ -2409,27 +2414,28 @@ function serveStatic(req, res, url) {
   //   down     the database is unreachable; nothing was saved, and it is my fault not yours
   //   remove   are you sure? (a button, not a link)
   //   removed  that address is not on the list
-  if (p === '/interest' && qp.get('state')) {
+  if (p === '/' && qp.get('state')) {
     const STATES = ['ok', 'dupe', 'bad', 'rate', 'down', 'remove', 'removed'];
     let state = STATES.indexOf(String(qp.get('state'))) >= 0 ? String(qp.get('state')) : '';
     const tok = /^[A-Za-z0-9_-]{16,48}$/.test(String(qp.get('t') || '')) ? String(qp.get('t')) : '';
     // A removal URL with no usable token has nothing to confirm, so there is nothing to ask about.
     // The only true sentence left is the one `removed` already says.
     if (state === 'remove' && !tok) state = 'removed';
-    if (!state) return sendFile(res, path.join(DIR, 'interest.html'));
-    return fs.readFile(path.join(DIR, 'interest.html'), 'utf8', (e, html) => {
-      // No page yet: fall through to the ordinary static path, which is where every unknown route
-      // on this site already goes. Loud in the log, because this is a redirect target that stopped
-      // existing.
-      if (e) { console.error('[interest] /interest?state=' + state + ' but site/interest.html is missing —', e.code); return serveMissing(res, 'interest'); }
+    // An unrecognised ?state= is not an error, it is somebody's stale bookmark or a hand-typed
+    // query: fall through to the ordinary home page rather than 404ing the site's front door.
+    if (!state) return fs.readFile(path.join(DIR, 'home.html'), (e, html) => (e ? sendFile(res, path.join(DIR, 'index.html')) : endHtml(res, html)));
+    return fs.readFile(path.join(DIR, 'home.html'), 'utf8', (e, html) => {
+      // No page: fall back to the SPA shell, which is what "/" itself does when home.html is
+      // missing. Loud in the log, because this is a redirect target that stopped existing.
+      if (e) { console.error('[interest] /?state=' + state + ' but site/home.html is missing —', e.code); return sendFile(res, path.join(DIR, 'index.html')); }
       const need = (before, after, what) => {
-        if (html.indexOf(before) < 0) { console.error('[interest] the page has no ' + what + ' — /interest?state=' + state + ' cannot fill it in. Expected the literal: ' + before); return; }
+        if (html.indexOf(before) < 0) { console.error('[interest] the page has no ' + what + ' — /?state=' + state + ' cannot fill it in. Expected the literal: ' + before); return; }
         html = html.split(before).join(after);
       };
       if (/<html\b/.test(html)) html = html.replace(/<html\b/, `<html data-state="${state}"`);
-      else console.error('[interest] no <html> element in site/interest.html — the state cannot be stamped.');
+      else console.error('[interest] no <html> element in site/home.html — the state cannot be stamped.');
       if (state === 'ok' && tok) {
-        const href = '/interest?state=remove&t=' + tok;
+        const href = '/?state=remove&t=' + tok;
         // The href carries #answer for the same reason the 303s above do; the visible text does
         // not, because this string is the reader's ONLY copy of that URL (nothing sends email yet)
         // and it is the one they may write down or paste. A trailing #answer in printed link text
@@ -2439,7 +2445,7 @@ function serveStatic(req, res, url) {
       if (state === 'remove') need('<input type="hidden" name="t" value="">', `<input type="hidden" name="t" value="${escHtml(tok)}">`, 'removal token field');
       // THE CHIP THE READER ALREADY CHOSE. The POST handler above builds `keep` precisely so the
       // form they land on is the form they left, and until this block existed nothing read it: the
-      // browser ended on /interest?state=down&topic=hip&creator=1 with every control back at its
+      // browser ended on ?state=down&topic=hip&creator=1 with every control back at its
       // default, so a reader whose address had a typo re-answered question 1 from scratch. There is
       // no JavaScript on this page, so `checked` has to be written into the markup, and this
       // handler is the only thing that knows. Validated against the SAME INTEREST_TOPICS list
@@ -2510,7 +2516,11 @@ function serveStatic(req, res, url) {
 // prerendered page for over a month and is in Google's index, and an unknown top-level path here
 // falls through to the SPA shell at HTTP 200 (measured: /nope -> 200, 4,871 B), i.e. a soft 404.
 // The target moved from '/#newsletter' to '/' because that fragment no longer exists.
-const LEGACY_REDIRECTS = { '/newsletter': '/' };
+// /interest was folded into the home page on 2026-08-08 for the same reason and by the same route:
+// the URL was published, is in the sitemap that shipped, and every removal link handed out so far
+// is on that host path. It may never 404, and an unknown top-level path here falls through to the
+// SPA shell at HTTP 200 — i.e. a soft 404, which is worse.
+const LEGACY_REDIRECTS = { '/newsletter': '/', '/interest': '/' };
 
 // ---- COMPOUND SHORT-NAME ALIASES (2026-07-30) ------------------------------------------------
 // "do not ever leave a page as an error." /c/creatine, /c/collagen, /c/testosterone and /c/insulin
@@ -2722,7 +2732,12 @@ const server = http.createServer((req, res) => {
   for (const [k, v] of Object.entries(SECURITY_HEADERS)) res.setHeader(k, v);
   const url = req.url;
   const _redir = LEGACY_REDIRECTS[url.split('?')[0].replace(/\/+$/, '') || '/'];
-  if (_redir) { res.writeHead(301, { Location: _redir }); res.end(); return; }
+  // THE QUERY STRING TRAVELS WITH IT (2026-08-08), and that is not tidiness. At the moment this
+  // deploys, a reader mid-submit is 303'd by the OLD container to /interest?state=ok&t=<token>, and
+  // that URL is the only copy of their removal token that will ever exist — nothing on this site
+  // sends email. Dropping the query would delete it in front of them. /?state=ok&t=… is rendered by
+  // the handler in serveStatic, so the redirect lands them exactly where they were going.
+  if (_redir) { const _q = url.indexOf('?'); res.writeHead(301, { Location: _redir + (_q >= 0 ? url.slice(_q) : '') }); res.end(); return; }
   const _cm = url.split('?')[0].match(/^\/c\/([^/]+)\/?$/);
   if (_cm) {
     const _target = COMPOUND_ALIASES[decodeURIComponent(_cm[1]).toLowerCase()];

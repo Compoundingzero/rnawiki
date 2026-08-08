@@ -132,13 +132,13 @@ const ROUTES = [
   ['browse', '/browse'],
   ['corrections', '/corrections'],                         // KEEP_PRERENDERED
   ['legend', '/legend'],
-  ['interest', '/interest'],                               // KEEP_PRERENDERED
-  // The same template with the query server.js 303s to. /interest and /interest?state=ok are two
-  // DIFFERENT documents — the second is the first with data-state stamped on <html> and two literal
-  // substitutions made — and only this one exercises the substitutions, the CSS that reveals the
-  // panel, and the removal link. The token matches /^[A-Za-z0-9_-]{16,48}$/, which is what
-  // server.js requires before it will render the state at all.
-  ['interest-ok', '/interest?state=ok&t=smoke-token-0000000000'],
+  // "/" and "/?state=ok" are two DIFFERENT documents — the second is the first with data-state
+  // stamped on <html> and two literal substitutions made — and only this one exercises the
+  // substitutions, the CSS that reveals the answer panel, and the removal link. The token matches
+  // /^[A-Za-z0-9_-]{16,48}$/, which is what server.js requires before it will render the state at
+  // all. /interest was merged into "/" on 2026-08-08; its 301 is checked below, OUTSIDE the
+  // per-route runner, because page.goto() follows a redirect and would report the home page's 200.
+  ['home-ok', '/?state=ok&t=smoke-token-0000000000'],
   ['methodology', '/methodology'],                         // KEEP_PRERENDERED
   ['plan', '/plan'],
   ['progress', '/progress'],
@@ -2260,6 +2260,30 @@ try {
       }
       await page.close();
     } catch (e) { fail.push('heroTypeaheadIsTheSolveRanking: harness error — ' + (e && e.message ? e.message : String(e))); }
+  }
+
+  // ------------------------------------------------- /interest -> "/" (merged 2026-08-08)
+  // OUTSIDE THE PER-ROUTE RUNNER, deliberately: page.goto() follows a 301 and reports the home
+  // page's 200, so a browser route here would prove nothing. /interest was published, is in the
+  // sitemap that shipped, and an unknown top-level path on this server falls through to the SPA
+  // shell at HTTP 200 (a soft 404) — so "it 404s" is not the failure to watch for, "it 200s with the
+  // wrong page" is.
+  // The second check is the one that is easy to lose: at the moment this deploys, a reader mid-
+  // submit is 303'd by the OLD container to /interest?state=ok&t=<token>, and that URL is the only
+  // copy of their removal token that will ever exist, because nothing here sends email.
+  // PROVE IT by deleting the '/interest' entry from LEGACY_REDIRECTS (server.js) — the first check
+  // then reports 200 — or by dropping the query passthrough — the second then reports Location "/".
+  {
+    const r1 = await fetch(BASE + '/interest', { redirect: 'manual' });
+    if (r1.status !== 301) fail.push(`ASSERTION interestMergedIntoHome FAILED — /interest answers ${r1.status}, expected 301. It is an indexed URL, and an unknown path here answers 200 with the SPA shell, which is a soft 404.`);
+    if ((r1.headers.get('location') || '') !== '/') fail.push(`ASSERTION interestMergedIntoHome FAILED — /interest redirects to ${JSON.stringify(r1.headers.get('location'))}, expected "/"`);
+    const tokUrl = '/interest?state=ok&t=smoke-token-0000000000';
+    const r2 = await fetch(BASE + tokUrl, { redirect: 'manual' });
+    if ((r2.headers.get('location') || '') !== '/?state=ok&t=smoke-token-0000000000') fail.push(`ASSERTION interestMergedIntoHome FAILED — ${tokUrl} redirects to ${JSON.stringify(r2.headers.get('location'))}; the query must travel with it or a reader mid-deploy loses the only copy of their removal token`);
+    const home = await (await fetch(BASE + '/')).text();
+    for (const [lit, what] of [['action="/api/interest"', 'the form'], ['class="i-state i-s-ok"', 'the "you are on the list" panel'], ['<a class="i-rm" href=""></a>', "server.js's removal-link substitution target"], ['data-total=', 'the library drawing']]) {
+      if (home.indexOf(lit) < 0) fail.push(`ASSERTION interestMergedIntoHome FAILED — the home page does not contain ${what} (${lit}). The merge did not land, and the crawler's copy is the one ~90% of readers get.`);
+    }
   }
 
   // ------------------------------------------------- the /compare withdrawal notice

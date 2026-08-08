@@ -3907,10 +3907,10 @@
   // A route template added tomorrow and forgotten here fails CLOSED to /t/other; it can never leak
   // a health-encoding URL by omission.
   const A_PUBLIC = ['/', '/about', '/anatomy', '/az', '/body', '/browse', '/compare', '/corrections',
-    // '/interest' added 2026-08-08. It is a top-level route that encodes no health interest — the
-    // topic the reader picks is a form field, never a path segment — so the verbatim path is safe
-    // to send. Without it the beacon reports /interest as /t/other, which prerender.js prints.
-    '/interest', '/learn', '/legend', '/methodology', '/pathways', '/plan', '/solve', '/stack', '/where'];
+    // '/interest' was added here on 2026-08-08 and removed the same day, with the page: it is now
+    // part of "/", which is already the first entry above. An allowlist entry for a route nothing
+    // serves can never be produced, and a stale entry is how an allowlist quietly widens.
+    '/learn', '/legend', '/methodology', '/pathways', '/plan', '/solve', '/stack', '/where'];
   const A_TPL = {
     c: 'compound', compare: 'compare-pair', target: 'target', pathway: 'pathway',
     protocol: 'protocol', clinic: 'protocol', problem: 'problem', goal: 'goal', muscle: 'muscle',
@@ -8805,13 +8805,14 @@
   // Sentinel meaning "this route's page is the prerendered document — leave #app alone".
   // A plain null/'' would be indistinguishable from a renderer that returned nothing by mistake.
   const KEEP = Symbol('keep-prerendered');
-  // 'interest' added 2026-08-08, for the reason above and one more: /interest is a real
-  // <form method="post"> whose seven answer panels are revealed by an attribute server.js stamps on
-  // <html>. A client-side re-render would throw all of that away and replace it with notFound().
-  // Every inbound link to it carries data-native, so in-app navigation is a real page load and the
-  // server serves the article. assertInterestPage() in build/prerender.js fails the build if this
-  // string is missing, so the page and its SPA answer can no longer be committed apart.
-  const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem', 'interest'];
+  // 'interest' was added here on 2026-08-08 and removed the same day: the interest page was merged
+  // into the home page, and "/" is not a KEEP route and does not need to be. The same content is
+  // protected on "/" by a different mechanism — the HOME_HTML boot capture, home() replaying it, and
+  // route() skipping the #app write on the first paint of "/" — and assertInterestPage() in
+  // build/prerender.js now pins all three of those lines verbatim. Leaving 'interest' here would be
+  // worse than dead: route() would return the KEEP sentinel for a path nothing serves and never
+  // write #app at all, so the reader would keep whatever was on screen under a /interest URL.
+  const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem'];
   // THE BACK BUTTON LIED ON 41 OF 41 /problem ROUTES (measured hydrated 2026-08-01, 390x844).
   // KEEP means "the prerendered document IS the page, do not write #app". That is true at boot and
   // false the moment any SPA render has overwritten #app -- and nothing tracked the difference.
@@ -8844,6 +8845,22 @@
     // downstream of here could see it. Measured before this change: /solve, /solve?q=knee%20pain
     // and /solve?q=zzzznonsense produced a byte-identical #app, innerHTML 11,797 on all three.
     const QS = new URLSearchParams(queryPart || '');
+    // THE ANSWER IS FOR ONE ARRIVAL, NOT FOR THE SESSION (2026-08-08). server.js stamps data-state
+    // on the <html> ELEMENT when it answers a form submit at /?state=…, and site/styles.css reveals
+    // the matching .i-s-* panel from that attribute alone. On /interest the attribute could never
+    // outlive its URL, because every inbound link to that page carried data-native and so every
+    // navigation was a real page load. On "/" it can: the brand mark, the topbar and the footer are
+    // ordinary SPA links, so a reader who signs up and then clicks Home stays in the same document
+    // with "You are on the list." still revealed over a landing page they asked for. Clear it on any
+    // route() run that is not itself carrying a state.
+    // NOT `QS`, and this was measured rather than reasoned: currentRoute() returns a bare "/" for
+    // the home page and only appends location.search when the pathname is something else, so QS is
+    // EMPTY on "/?state=ok" and the first version of this line deleted the attribute on the very
+    // paint that was meant to keep it — measured hydrated at 390x844, JS on: data-state null,
+    // .i-s-ok display:none, the form back on screen, and the reader's removal token nowhere. The
+    // address bar is the only thing that knows. Every SPA navigation away from here goes through
+    // navigate() -> pushState, which replaces the whole URL, so location.search empties by itself.
+    if (!new URLSearchParams(location.search || '').get('state')) document.documentElement.removeAttribute('data-state');
     // shared stack link
     const _ids = (QS.get('ids') || '').split(',').filter(Boolean); if (_ids.length) setStack(_ids);
     const parts = pathPart.split('/').filter(Boolean);

@@ -1,8 +1,14 @@
-// build/interest.js — /interest, the interest-capture landing page.  (2026-08-08)
+// build/interest.js — the interest-capture landing copy.  (2026-08-08)
+//
+// MERGED INTO THE HOME PAGE, same day it shipped. It was published at /interest for part of one day;
+// the owner's instruction was "there will no longer be 2 landing pages, just the home page acting as
+// the landing page with the main header as [this page's] header". Nothing here was deleted — the
+// four blocks below are composed into "/" by build/prerender.js, /interest 301s there with its query
+// intact, and build/withdrawn.json records the route drop. Read `interestParts()` at the bottom.
 //
 // WHY IT IS ITS OWN FILE. build/prerender.js is 4,900+ lines and every other page in it is GENERATED
 // from the corpus. This one is AUTHORED COPY — the owner's, word for word, from his own wireframe —
-// plus five inline drawings. Keeping it here means prerender.js gains one require, one add() and one
+// plus five inline drawings. Keeping it here means prerender.js gains one require, one call and one
 // gate, and the words can be edited without opening the generator.
 //
 // NOTHING ON THIS PAGE IS TYPED THAT SOMETHING ELSE ALREADY KNOWS.
@@ -243,20 +249,42 @@ function causeRows(causes) {
 }
 
 /**
- * interestBody(o) -> the <main id="app"> body for /interest.
- * o.total       published routes, counted from the sitemap set INCLUDING this page
+ * interestParts(o) -> the FOUR blocks the HOME PAGE composes. There is no /interest route any more.
+ *
+ * 2026-08-08, the owner's instruction, verbatim: "there will no longer be 2 landing pages, just the
+ * home page acting as the landing page with the main header as [the interest page's] header". So
+ * this file renders INTO build/prerender.js's homeBody instead of into a route of its own. Not one
+ * reader-facing byte below has changed: every heading, kicker, caption, label and footer line is the
+ * same string this page served as /interest.
+ *
+ * EACH BLOCK CARRIES ITS OWN `.ipage` CONTAINER, and that is the whole reason site/styles.css needs
+ * no rescoping. Every rule for this content is scoped `.ipage …` (styles.css:4286+) precisely so it
+ * cannot reach the rest of the site — and the home page's hero is why that matters here:
+ * `.ipage input[type=text]` sets a 52px boxed field and the hero search box is `type="text"`. The
+ * hero, the worked example, the daily fact and the goal index sit BETWEEN these containers as
+ * siblings, outside `.ipage`, and are not restyled by one byte.
+ *
+ *   hook   the kicker, the H1 and the search-box-repeated-across-years drawing. The page's one <h1>.
+ *   story  the library, the causes and the room — his beats 2-4, in his order, contiguous.
+ *   ask    the builder drawing, the seven answer panels and the form.
+ *   foot   the not-medical-advice line and the three links.
+ *
+ * o.total       published routes, counted from the sitemap set (this page is no longer one of them)
  * o.filled      routes that carry a plan (= o.nProblems + o.nProtocols)
  * o.nProblems   /problem/* count       o.nProtocols  /protocol/* count
  * o.symptom     the chip label for CAUSE_CHIP        o.causeRows  one line per published cause
  * o.topics      data/site_config.json -> interest.topics, via D.site.interest.topics
  */
-function interestBody(o) {
-  return `<div class="ipage">
+function interestParts(o) {
+  return {
+    hook: `<div class="ipage">
 <section class="i-wrap i-first">
   <p class="i-kick">Being built in the open</p>
   <h1>Turned away, priced out, or told it was nothing.</h1>
   <figure class="i-fig i-rise">${hookFigure()}<figcaption class="i-cap"><b>You were never going to find it that way. What is wrong with you has a name, and somebody already knows it.</b></figcaption></figure>
 </section>
+</div>`,
+    story: `<div class="ipage">
 <section class="i-wrap">
   <h2>You will never be priced out of this one.</h2>
   <figure class="i-fig i-swipe">${libraryFigure(o.total, o.filled, o.nProblems, o.nProtocols)}<figcaption class="i-cap">Every mark is already written and given away, never behind a payment, account or waiting list. <b>That is the part that is not going to change.</b></figcaption></figure>
@@ -271,17 +299,22 @@ function interestBody(o) {
   <h2>Next time it flares up at 2am, somebody is awake.</h2>
   <figure class="i-fig i-rise">${roomFigure()}<figcaption class="i-cap"><b>Every chair is empty today. Whoever sits down first decides what it feels like to walk in.</b></figcaption></figure>
 </section>
+</div>`,
+    ask: `<div class="ipage">
 <section class="i-wrap">
   <h2>What took you years to work out could save somebody theirs.</h2>
   <figure class="i-fig i-rise">${builderFigure()}</figure>
 ${statesHtml()}
 ${formHtml(o.topics)}
 </section>
+</div>`,
+    foot: `<div class="ipage">
 <div class="i-foot">
   <p>Information, not medical advice. If something is getting worse fast or frightening you, see someone in person today.</p>
   <p class="i-meta"><a href="/solve">Read any of the ${o.nProblems} now</a><a href="/methodology" data-native>How a page is made</a><a href="/corrections" data-native>Corrections</a></p>
 </div>
-</div>`;
+</div>`,
+  };
 }
 
-module.exports = { interestBody, causeRows, CAUSE_PROBLEM, CAUSE_CHIP, CAUSE_WORDS, RED_FLAG, PER_ROW };
+module.exports = { interestParts, causeRows, CAUSE_PROBLEM, CAUSE_CHIP, CAUSE_WORDS, RED_FLAG, PER_ROW };
