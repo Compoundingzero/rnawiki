@@ -17,6 +17,17 @@ CREATE TABLE IF NOT EXISTS users (
   username TEXT UNIQUE NOT NULL,
   email TEXT,
   pass TEXT NOT NULL,
+  -- role: 'user' | 'admin'. THIS IS NOT AN ACCOUNT TYPE AND IT IS NEVER WRITTEN. No INSERT or
+  -- UPDATE anywhere in server.js sets it (the two account-creating INSERTs, at server.js ~1115 and
+  -- ~1358, do not name the column), so every row in this table holds the literal 'user'.
+  -- 'admin' is assigned IN MEMORY ONLY, in currentUser(), from the ADMIN_USER env var or from
+  -- isSuper() — which keys on the SERIAL primary key or the Google subject, both immutable and
+  -- neither choosable by a registrant. (Keying it on email once was a one-request privilege
+  -- escalation; see the note above SUPERADMIN_ID in server.js. Never key it on email again.)
+  -- RNAwiki has ONE ACCOUNT TYPE. Everyone reads, everyone creates. The only distinction the site
+  -- recognises is "is this the owner's own control room", and this column is that distinction.
+  -- If you are adding a permission and reaching for this column, you are probably adding a
+  -- second account type. Do not.
   role TEXT NOT NULL DEFAULT 'user',
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
