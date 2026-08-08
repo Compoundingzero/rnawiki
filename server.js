@@ -377,10 +377,11 @@ async function award(userId, kind, ref, pts) {
     if (r.rows[0]) await db.query('UPDATE users SET reputation_points = reputation_points + $1 WHERE id=$2', [points, userId]);
   } catch (e) { console.error('[award]', e.message); }
 }
-async function addBadge(userId, badge) {
-  try { await db.query(`UPDATE users SET badges = (CASE WHEN badges ? $2 THEN badges ELSE badges || to_jsonb($2::text) END) WHERE id=$1`, [userId, badge]); }
-  catch (e) { console.error('[badge]', e.message); }
-}
+// addBadge() REMOVED 2026-08-08. Its only two callers granted 'verified-expert', and a general
+// badge-granting helper sitting in the file is an invitation to grant the next one. If RNAwiki
+// ever awards a badge again it must be for something the site can itself observe and prove —
+// "logged 30 days", not "is a pharmacist" — and that will need its own function, written then.
+// users.badges is left in db.js and still read by /api/u/:handle; it is [] on every row.
 function safeUrl(s, max) {
   const v = clean(s, max || 200);
   if (!v) return '';
@@ -1409,9 +1410,13 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'edits' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in to edit' });
-    // Compound pages = the pharmacology knowledge base: only verified pharmacist/MD/biomedical
-    // researchers (or admin) may edit them.
-    if (u.role !== 'admin' && !(u.domain === 'pharmacist' && u.domain_verified)) return json(res, 403, { error: 'Compound pages are maintained by verified pharmacology experts (pharmacist / MD / biomedical researcher). Apply for that role in your Pro dashboard.' });
+    // 2026-08-08 · ONE ACCOUNT TYPE. The second half of this condition used to be
+    // `u.domain === 'pharmacist' && u.domain_verified` — the professional tier riding on the
+    // super-admin check — and the 403 body asserted a credential for a programme that does not
+    // exist. site/app.js already told the reader the honest version; client and server now agree.
+    // `u.role` is left alone: it is only ever 'admin' for the owner, and that is the only
+    // distinction this site has.
+    if (u.role !== 'admin') return json(res, 403, { error: 'Compound pages are edited by the site maintainer. Use the Feedback button to send a correction — corrections are welcome and wanted.' });
     // 6 EDITABLE fields x 6000 chars + note ~= 36 KB — the one default-cap handler that legitimately
     // exceeds the 16 KB default. Authenticated and role-gated, so a larger ceiling is acceptable.
     const b = await readBody(req, 5e4); if (!b) return json(res, 400, { error: 'Bad request' });
@@ -1589,7 +1594,7 @@ async function api(req, res, url) {
     return json(res, 200, { foods });
   }
   if (seg[0] === 'foods' && seg[1] === 'pending' && method === 'GET') {
-    const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'The food queue is not enabled for this account.' });
+    const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'The food queue is not enabled for this account.' });
     const r = await db.query("SELECT f.id,f.name,f.serving,f.data,f.created_at,uu.username AS by FROM user_foods f LEFT JOIN users uu ON uu.id=f.submitted_by WHERE f.status='pending' ORDER BY f.created_at ASC LIMIT 100");
     return json(res, 200, { foods: r.rows });
   }
@@ -1930,7 +1935,8 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'rootcause-changes' && !seg[1] && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (u.role !== 'admin' && !u.domain_verified) return json(res, 403, { error: 'Proposing a root-cause change is not enabled for this account.' });
+    // 2026-08-08 · ONE ACCOUNT TYPE — `|| !u.domain_verified` removed (see users.role in db.js).
+    if (u.role !== 'admin') return json(res, 403, { error: 'Proposing a root-cause change is not enabled for this account.' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const problem_id = clean(b.problem_id, 80), action = b.action === 'remove' ? 'remove' : 'add';
     if (!problem_id) return json(res, 400, { error: 'Missing problem' });
@@ -1952,10 +1958,10 @@ async function api(req, res, url) {
     const cr = await db.query('SELECT * FROM rootcause_changes WHERE id=$1', [id]);
     const ch = cr.rows[0]; if (!ch) return json(res, 404, { error: 'No such change' });
     if (ch.status !== 'pending') return json(res, 400, { error: 'Already decided' });
-    // the panel = verified experts whose domain is required by this root cause (or a steward of the problem, or the superadmin)
-    const panelDomains = Array.isArray(ch.domains) ? ch.domains : [];
-    const steward = await db.query('SELECT 1 FROM stewardships WHERE problem_id=$1 AND user_id=$2 LIMIT 1', [ch.problem_id, u.id]);
-    const onPanel = isSuper(u) || u.role === 'admin' || steward.rows[0] || (u.domain_verified && (panelDomains.length === 0 || panelDomains.includes(u.domain)));
+    // 2026-08-08 · ONE ACCOUNT TYPE. This used to admit a "panel" — accounts carrying
+    // domain_verified whose domain the root cause names — alongside the owner. There is no tier
+    // and no panel; the only distinction the site recognises is the owner's own control room.
+    const onPanel = isSuper(u) || u.role === 'admin';
     if (!onPanel) return json(res, 403, { error: 'Endorsing this change is not enabled for this account.' });
     await db.query('INSERT INTO rootcause_endorsements(change_id,user_id,domain) VALUES($1,$2,$3) ON CONFLICT (change_id,user_id) DO NOTHING', [id, u.id, u.domain || null]);
     await award(u.id, 'rc_endorse', 'rcc:' + id, 5);
@@ -2107,7 +2113,7 @@ async function api(req, res, url) {
     return json(res, 200, { experts: experts.rows, partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, members: members.rows, memberCount: memberCount.rows[0].n, clinicians: clinicians.rows, threshold: PANEL_THRESHOLD });
   }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
-    const u = await currentUser(req); if (!u || !(u.role === 'admin' || (u.domain === 'dietitian' && u.domain_verified))) return json(res, 403, { error: 'The food queue is not enabled for this account.' });
+    const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'The food queue is not enabled for this account.' });
     const id = pathId(seg[1]); const b = await readBody(req) || {};
     const status = ['active', 'rejected'].includes(b.status) ? b.status : 'active';
     const r = await db.query('UPDATE user_foods SET status=$1, verified_by=$2 WHERE id=$3 RETURNING id,name,status', [status, u.id, id]);
@@ -2139,17 +2145,25 @@ async function api(req, res, url) {
        WHERE p.problem_id=$1 AND p.root_cause_id=$2 ORDER BY p.created_at DESC LIMIT 100`, [pid, rcid]);
     return json(res, 200, { proposals: r.rows });
   }
-  if (seg[0] === 'proposals' && method === 'POST') {
+  // `!seg[1]` added 2026-08-08. Without it this branch swallowed /api/proposals/<id>/endorse and
+  // /api/proposals/<id>/flag, whose own handlers sit 20 lines below and never ran — measured:
+  // POST /api/proposals/1/endorse returned THIS handler's 403 body. That made both of those gates
+  // unreadable as evidence of anything, which matters when the gate is the thing under audit.
+  if (seg[0] === 'proposals' && !seg[1] && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    if (!u.domain) return json(res, 403, { error: 'Set your expert domain first (physio / dietitian / pharmacist).' });
+    // 2026-08-08 · ONE ACCOUNT TYPE. Three gates stood here — "Set your expert domain first
+    // (physio / dietitian / pharmacist)", "Get your expert role verified first (Pro dashboard) to
+    // edit protocols", and a per-domain layer lock that told the caller which kind of expert they
+    // were. All three described a second account type, and the middle one asserted a verification
+    // programme that does not exist. Section editing is Phase 2 and is not launched (PHASE2 =
+    // false in site/app.js, and api.addProposal has zero call sites), so the honest gate is the
+    // one the rest of the site uses: the owner, and nobody else, until there is a real answer to
+    // "who may edit a protocol".
+    if (u.role !== 'admin') return json(res, 403, { error: 'Editing a protocol section is not enabled for this account. Use the Feedback button to send a correction — corrections are welcome and wanted.' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60), layer = clean(b.layer, 12);
     const change = clean(b.change, 4000), evidence = clean(b.evidence, 500);
     if (!pid || !rcid || !change) return json(res, 400, { error: 'Describe the change' });
-    // Any VERIFIED domain expert may edit their layer on any protocol (dietitian→fuel/nutrition,
-    // pharmacist→stack, physio→move); the protocol's steward + a same-domain peer review it.
-    if (u.role !== 'admin' && !u.domain_verified) return json(res, 403, { error: 'Get your expert role verified first (Pro dashboard) to edit protocols.' });
-    if (u.domain && DOMAIN_LAYER[u.domain] !== layer) return json(res, 403, { error: `A ${(({ physio: 'movement', dietitian: 'nutrition', pharmacist: 'pharmacology' })[u.domain]) || u.domain} expert may only edit the ${DOMAIN_LAYER[u.domain]} layer.` });
     const r = await db.query(
       `INSERT INTO proposals(problem_id,root_cause_id,layer,domain,user_id,change,evidence)
        VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id,created_at`, [pid, rcid, layer, u.domain, u.id, change, evidence || null]);
@@ -2158,35 +2172,43 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'proposals' && seg[1] && seg[2] === 'endorse' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    const sup = isSuper(u); // superadmin (Felix) can approve any pending edit, regardless of domain
-    if (!sup && !u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
+    // 2026-08-08 · ONE ACCOUNT TYPE. Three gates stood here and all three described a tier: an
+    // account had to hold a `domain`, could not approve its own row, and could only approve a row
+    // whose domain matched its own ("Only another physio … Cross-domain experts may Flag
+    // instead"). Nobody holds a domain and nobody can be granted one, so the honest gate is the
+    // owner's, and the queue that feeds it is Phase-2 plumbing that is not launched.
+    if (!isSuper(u) && u.role !== 'admin') return json(res, 403, { error: 'Approving a proposed edit is not enabled for this account.' });
     const id = pathId(seg[1]); if (!id) return json(res, 400, { error: 'bad id' });
     const pr = (await db.query('SELECT domain,user_id FROM proposals WHERE id=$1', [id])).rows[0];
     if (!pr) return json(res, 404, { error: 'Proposal not found' });
-    // STRICT peer review: a same-domain expert (not the author) approves — OR the superadmin.
-    if (!sup && pr.user_id === u.id) return json(res, 403, { error: 'You cannot endorse your own proposal.' });
-    if (!sup && pr.domain !== u.domain) return json(res, 403, { error: `Only another ${pr.domain} or the RNAwiki admin can approve this. Cross-domain experts may Flag instead.` });
     const ins = await db.query(`INSERT INTO proposal_actions(proposal_id,user_id,action) VALUES($1,$2,'endorse')
       ON CONFLICT (proposal_id,user_id,action) DO NOTHING RETURNING id`, [id, u.id]);
     await db.query(`UPDATE proposals SET status='endorsed' WHERE id=$1 AND status!='flagged'`, [id]);
-    // merged (peer-reviewed): +200 to both author and endorser, and the Verified Expert badge.
+    // 2026-08-08 · THE BADGE IS GONE. These two lines called addBadge(<user>, 'verified-expert')
+    // and wrote that literal string into users.badges — the site minting a professional credential
+    // for a person nobody has verified, which is the exact thing /corrections publishes as a past
+    // mistake. MEASURED: against Postgres 16 on a scratch database, one authenticated
+    // POST /api/proposals/2/endorse left `SELECT badges FROM users` reading ["verified-expert"].
+    // On the shipped site it could not be reached, but only because a routing shadow (fixed in
+    // this same commit) swallowed the endorse route — an accident, not a decision, and the fix
+    // would have switched the badge on. The award of points stays: points count what somebody
+    // did, which is true. A badge asserts what somebody IS, which nothing here can establish.
     if (ins.rows[0]) {
-      await award(pr.user_id, 'merged', id); await addBadge(pr.user_id, 'verified-expert');
-      await award(u.id, 'merged', 'endorse:' + id); await addBadge(u.id, 'verified-expert');
+      await award(pr.user_id, 'merged', id);
+      await award(u.id, 'merged', 'endorse:' + id);
     }
-    // reviewing keeps any protocols this expert stewards "active" (challenge clock resets)
     await db.query('UPDATE stewardships SET last_active_at=now() WHERE user_id=$1', [u.id]).catch(() => {});
     return json(res, 200, { ok: true });
   }
   if (seg[0] === 'proposals' && seg[1] && seg[2] === 'flag' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    const sup = isSuper(u); // superadmin (Felix) can reject any pending edit
-    if (!sup && !u.domain) return json(res, 403, { error: 'Set your expert domain first.' });
+    // 2026-08-08 · ONE ACCOUNT TYPE — same reasoning as the endorse handler above. The old rule
+    // ("Same-domain experts endorse, not flag") sorted accounts into professions to decide who
+    // could object to what. There are no professions here.
+    if (!isSuper(u) && u.role !== 'admin') return json(res, 403, { error: 'Rejecting a proposed edit is not enabled for this account.' });
     const id = pathId(seg[1]); if (!id) return json(res, 400, { error: 'bad id' });
     const pr = (await db.query('SELECT domain FROM proposals WHERE id=$1', [id])).rows[0];
     if (!pr) return json(res, 404, { error: 'Proposal not found' });
-    // Cross-domain conflict review: only a DIFFERENT domain can flag — OR the superadmin.
-    if (!sup && pr.domain === u.domain) return json(res, 403, { error: 'Same-domain experts endorse, not flag. Flags are for cross-domain conflicts.' });
     const b = await readBody(req) || {};
     await db.query(`INSERT INTO proposal_actions(proposal_id,user_id,action,note) VALUES($1,$2,'flag',$3)
       ON CONFLICT (proposal_id,user_id,action) DO UPDATE SET note=$3`, [id, u.id, clean(b.note, 500) || null]);

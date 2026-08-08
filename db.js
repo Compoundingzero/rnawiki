@@ -250,6 +250,14 @@ CREATE TABLE IF NOT EXISTS proposals (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 CREATE INDEX IF NOT EXISTS idx_proposals_protocol ON proposals(problem_id, root_cause_id, created_at DESC);
+-- 2026-08-08 · ONE ACCOUNT TYPE. proposals.domain recorded WHICH KIND OF EXPERT wrote the row,
+-- copied off users.domain. Nobody holds a domain, nobody can be granted one, and the gate that
+-- required one before an INSERT is gone — so this column is now always null and the NOT NULL that
+-- guarded it would turn the owner's own write into a 500. Verified against Postgres 16: without
+-- this line, INSERT ... VALUES(..., null, ...) fails with
+-- "null value in column domain of relation proposals violates not-null constraint".
+-- The column itself stays: six readers still SELECT it, and dropping a column is irreversible.
+ALTER TABLE proposals ALTER COLUMN domain DROP NOT NULL;
 
 CREATE TABLE IF NOT EXISTS proposal_actions (
   id SERIAL PRIMARY KEY,
