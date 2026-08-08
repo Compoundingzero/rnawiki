@@ -6779,6 +6779,41 @@
     if (m) return { ok: false, why: `“${m[0]}” is something you buy. A write-up is only ever made for a week that cost nothing.` };
     const named = corpusCompoundNames().filter((n) => new RegExp('(^|[^a-z])' + n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '([^a-z]|$)', 'i').test(a));
     if (named.length) return { ok: false, why: `This Phase 1 names ${named.slice(0, 3).join(', ')} — a compound, not a free mechanic.` };
+    // W6 (2026-08-08) · THE STRUCTURE, WHICH IS NOT A WORD LIST.
+    // MEASURED HYDRATED at 390x844 on /protocol/cravings/glycemic-swings with the live
+    // rc.phase1.action swapped in page memory (qa/w6_dollar.mjs): 8 of 8 synonyms for a purchase, a
+    // dose or a clinician walked through every line above this one and minted a real card, a real
+    // PNG and a real X share link, all of them saying "One free thing, nothing bought" —
+    // "Take 500 milligrams of it before bed" (evades \bmg\b), "Two grams before bed", "One softgel
+    // with your evening meal", "One stick pack each morning", "Get your bloods done first", "Ask at
+    // the polyclinic", "Ask a nurse first", "Pick up a chest belt". The two known-word controls were
+    // correctly refused, so the layer above is not broken — it is just not the layer that matters.
+    // A word list can always be paraphrased. So instead of judging the prose again, re-run the check
+    // build/parse.js ALREADY makes for all 44 published Phase 1s: that the action is a condensation
+    // of its own authored quote, adding no content word the author did not write, and that its
+    // class and source are enumerated values. The vocabulary then stops mattering. VERIFIED IN BOTH
+    // DIRECTIONS before shipping: 44 of 44 real actions pass, 8 of 8 evasions fail.
+    // FAILS CLOSED, exactly like the two patterns above: a build that published no structural rule
+    // gets no card.
+    if (!P1G || !Array.isArray(P1G.classes) || !P1G.classes.length || !Array.isArray(P1G.stem)) {
+      return { ok: false, why: 'This build published no structural $0 rule, so nothing here can show that the week cost nothing.' };
+    }
+    if (P1G.classes.indexOf(p1.class) < 0) {
+      return { ok: false, why: `This Phase 1 is filed as “${String(p1.class)}”, which is not one of the free classes this build publishes. No write-up is made for a week this page cannot show was free.` };
+    }
+    if ((P1G.from || []).indexOf(p1.from) < 0) {
+      return { ok: false, why: 'This Phase 1 does not say which authored text it was taken from, so nothing here can check it against the page it came from.' };
+    }
+    const p1stem = (t) => (P1G.stem || []).reduce((s, pr) => s.replace(new RegExp(pr[0]), pr[1]), t);
+    const p1words = (s) => String(s || '').toLowerCase().split(/[^a-z0-9À-ɏ]+/).filter(Boolean);
+    const FNW = {};
+    (P1G.fn || []).forEach((w) => { FNW[w] = 1; });
+    const q = {};
+    p1words(p1.quote).forEach((w) => { q[w] = 1; q[p1stem(w)] = 1; });
+    const added = p1words(a).filter((w) => !FNW[w] && !q[w] && !q[p1stem(w)]);
+    if (!p1.quote || added.length) {
+      return { ok: false, why: `This Phase 1 reads “${a}”, which is not the wording this protocol published (${added.slice(0, 3).map((w) => `“${w}”`).join(', ') || 'it quotes nothing'}). A write-up is only ever made for the free step the page itself authored.` };
+    }
     return { ok: true };
   }
   // THE DAY-7 LOCK, IN THE MODEL. It used to live only in receiptBlockHTML(), i.e. it decided what to

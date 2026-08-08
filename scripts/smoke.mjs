@@ -1036,32 +1036,55 @@ const ASSERTIONS = {
       if (href.slice(0, 5) !== 'blob:') return `the receipt download href is "${String(href).slice(0, 48)}…" — a data: URI would put the reader's own week inside a URL string`;
       if (location.href !== urlBefore) return `downloading the receipt changed the URL to ${location.href}`;
       // ---- THE $0 RULE, FORCED. Make the data lie; the card must still refuse. ----
-      const orig = { action: rc.phase1.action, cost: rc.phase1.cost };
+      const orig = { action: rc.phase1.action, cost: rc.phase1.cost, cls: rc.phase1.class, from: rc.phase1.from };
+      const restore = () => { rc.phase1.action = orig.action; rc.phase1.cost = orig.cost; rc.phase1.class = orig.cls; rc.phase1.from = orig.from; };
       const cases = [
         ['a prescription', { action: 'Take the prescribed dose daily' }],
         ['a purchase', { action: 'A daily psyllium scoop' }],
         ['a compound the corpus knows', { action: 'Creatine Monohydrate daily' }],
         ['a cost that is not zero', { cost: 'some' }],
+        // W6 (2026-08-08): THE EIGHT THAT GOT THROUGH. Every one of these was MEASURED hydrated at
+        // 390x844 on /protocol/cravings/glycemic-swings, by this exact technique, minting a
+        // finished card, a real PNG and an X share link saying "One free thing, nothing bought"
+        // (qa/w6_dollar.mjs). Not one of them contains a word from the two published patterns —
+        // that is the point. They are refused now because the action is no longer judged as prose:
+        // it must be a condensation of the protocol's OWN authored quote, which build/parse.js
+        // already proves for all 44 published Phase 1s.
+        // PROVE THESE by deleting the structural block at the end of receiptGuard() in site/app.js.
+        ['a dose spelled out in words', { action: 'Take 500 milligrams of it before bed' }],
+        ['a dose in a unit the pattern does not list', { action: 'Two grams before bed' }],
+        ['a dose form nobody typed into the word list', { action: 'One softgel with your evening meal' }],
+        ['a thing you buy, in packaging words', { action: 'One stick pack each morning' }],
+        ['a paid lab test, phrased colloquially', { action: 'Get your bloods done first' }],
+        ['a clinic, under a Singapore name', { action: 'Ask at the polyclinic' }],
+        ['a clinician the word list does not name', { action: 'Ask a nurse first' }],
+        ['a device, phrased as an errand', { action: 'Pick up a chest belt' }],
+        // And the two enumerated fields the structural check reads, so neither can be blanked to
+        // slip past it.
+        ['filed under a class this build does not publish', { cls: 'purchase' }],
+        ['sourced from no authored text at all', { from: '' }],
       ];
       for (const [label, patch] of cases) {
         rc.phase1.action = patch.action || orig.action;
         rc.phase1.cost = patch.cost || 'none';
+        rc.phase1.class = ('cls' in patch) ? patch.cls : orig.cls;
+        rc.phase1.from = ('from' in patch) ? patch.from : orig.from;
         await redraw();
         const w = wrap();
         if (!w || w.dataset.receipt !== 'refused') {
-          rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+          restore();
           return `a Phase 1 that is ${label} still produced receipt state "${w ? w.dataset.receipt : 'none'}" — the $0 rule must be enforced in code, not only in the data`;
         }
         if (dl()) {
-          rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+          restore();
           return `a Phase 1 that is ${label} was refused but the download control is still on the page`;
         }
         if (!(w.innerText || '').trim()) {
-          rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+          restore();
           return `a Phase 1 that is ${label} was refused silently — the reader must be told why`;
         }
       }
-      rc.phase1.action = orig.action; rc.phase1.cost = orig.cost;
+      restore();
       await redraw();
       if (wrap().dataset.receipt !== 'ready') return 'the receipt did not come back after the planted values were removed — the guard is stateful, which it must not be';
       return null;

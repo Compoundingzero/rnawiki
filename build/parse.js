@@ -1512,12 +1512,41 @@ let phase1GuardSrc = null;
   // interaction coverage number a lie in W3.6. One list, two consumers. If data.phase1Guard is
   // absent, receiptGuard() refuses: the receipt fails CLOSED, because a receipt that cannot prove
   // the week was free is exactly the receipt this rule exists to stop.
-  phase1GuardSrc = { purchase: PURCHASE.source, rx: RX.source };
   // The exact class that makes 34 of the 52 authored keystones more than one intervention.
   const LISTY = /(,|;|\+|&| and | plus | then | also | as well as | while | along with )/i;
   const ACTION_MAX = 72;
-  const FN = new Set(('a an the of to for with in on at your you it its and or is are be as this that from by per each every one').split(' '));
-  const p1stem = (t) => t.replace(/ies$/, 'y').replace(/(sses|shes|ches|xes)$/, '').replace(/([^aeiou])ed$/, '$1').replace(/([^aeiou])ing$/, '$1').replace(/e?s$/, '').replace(/e$/, '');
+  const FN = ('a an the of to for with in on at your you it its and or is are be as this that from by per each every one').split(' ');
+  const FN_SET = new Set(FN);
+  // W6 (2026-08-08): THE STEMMER IS NOW DATA, so the browser can run the identical one instead of a
+  // hand-typed second copy. Rewritten from the inline arrow it replaces and verified byte-for-byte
+  // equivalent over every word in every published action and quote (241 distinct words,
+  // 0 disagreements) before it was allowed to ship.
+  const P1_STEM = [['ies$', 'y'], ['(sses|shes|ches|xes)$', ''], ['([^aeiou])ed$', '$1'], ['([^aeiou])ing$', '$1'], ['e?s$', ''], ['e$', '']];
+  const p1stem = (t) => P1_STEM.reduce((s, pr) => s.replace(new RegExp(pr[0]), pr[1]), t);
+  // W6 (2026-08-08): AND THE STRUCTURE, NOT ONLY THE WORDS. The two patterns above are a word list,
+  // and a word list loses. MEASURED HYDRATED at 390x844 on /protocol/cravings/glycemic-swings with
+  // the LIVE rc.phase1.action swapped in page memory — the same technique scripts/smoke.mjs already
+  // uses — 8 of 8 synonyms produced a finished card, a real PNG and an X share link, every one of
+  // them reading "One free thing, nothing bought" (qa/w6_dollar.mjs):
+  //   "Take 500 milligrams of it before bed"  (evades \bmg\b)   "Two grams before bed"
+  //   "One softgel with your evening meal"    "One stick pack each morning"
+  //   "Get your bloods done first"            "Ask at the polyclinic"
+  //   "Ask a nurse first"                     "Pick up a chest belt"
+  // Both known-word controls ("A daily psyllium scoop", "Take the prescribed dose daily") were
+  // correctly refused, so the existing layer works — it is just not the layer that matters.
+  // The answer is not more words. This gate ALREADY proves, for all 44 published Phase 1s, that the
+  // action is a condensation of its own authored quote and that its class, cost and source are
+  // enumerated values. So the browser's job is not to re-judge the prose; it is to confirm the
+  // prose is the prose this gate judged. Everything that check needs is published here rather than
+  // retyped in site/app.js — one list, two consumers, the same principle as the two patterns.
+  // VERIFIED IN BOTH DIRECTIONS before shipping: 44 of 44 published Phase 1s pass the derivation
+  // rule, and 8 of 8 evasions fail it against the real quote for cravings/glycemic-swings
+  // ("A protein-forward breakfast — no naked carbs"). Not a gate over an empty set.
+  phase1GuardSrc = {
+    purchase: PURCHASE.source, rx: RX.source,
+    classes: [...CLASSES], from: ['keystone', 'prescription', 'fix'],
+    fn: FN, stem: P1_STEM, actionMax: ACTION_MAX, listy: LISTY.source,
+  };
   const p1words = (s) => String(s || '').toLowerCase().split(/[^a-z0-9À-ɏ]+/).filter(Boolean);
   // Every compound the corpus knows, so a Phase 1 can never name a molecule to acquire.
   const CPD = new Set();
@@ -1573,7 +1602,7 @@ let phase1GuardSrc = null;
       if (!src) { bad.push(`${key}: from="${e.from}" resolves to nothing authored`); return; }
       if (!String(src).includes(e.quote)) bad.push(`${key}: quote is not a verbatim substring of its ${e.from} source`);
       const q = new Set(); p1words(e.quote).forEach((w) => { q.add(w); q.add(p1stem(w)); });
-      const miss = p1words(e.action).filter((w) => !FN.has(w) && !q.has(w) && !q.has(p1stem(w)));
+      const miss = p1words(e.action).filter((w) => !FN_SET.has(w) && !q.has(w) && !q.has(p1stem(w)));
       if (miss.length) bad.push(`${key}: action uses ${JSON.stringify(miss)} — not in its own quote. A Phase 1 may condense authored text, never add to it`);
       if (LISTY.test(e.action)) bad.push(`${key}: action "${e.action}" joins two things — Phase 1 is ONE intervention, not a list. 34 of the 52 authored keystones fail here, which is why this check exists`);
       if (e.action.length > ACTION_MAX) bad.push(`${key}: action is ${e.action.length} chars (max ${ACTION_MAX}) — too long to be one commitment`);
