@@ -570,7 +570,24 @@ function stackAuditCallout() {
 }
 
 // ---- SEO entities & structured-data helpers ----
-const BUILD_DATE = new Date().toISOString().slice(0, 10); // real freshness signal for dateModified/lastReviewed
+const BUILD_DATE = new Date().toISOString().slice(0, 10);
+// W6 (2026-08-08): dateModified USED TO BE BUILD_DATE, AND THAT WAS THE SAME BUG THE SITEMAP'S
+// lastmod HAD BEEN FIXED FOR ON 2026-08-01, still live in the other field.
+// MEASURED on the built site before this change: 403 pages carry a JSON-LD dateModified and 399 of
+// them disagreed with their own <lastmod> in sitemap.xml — 167 /c, 123 /compare, 52 /protocol,
+// 41 /problem, 16 /goal. Every one read "2026-08-08", the date of that build, while the sitemap
+// said "2026-08-06" for the same URL. The four that agreed only agreed because their content really
+// had changed that day. site/ is regenerated on every Railway boot, so a container restart with no
+// commit behind it re-stamped all 403 as revised today — the precise noise the lastmod work was
+// undertaken to stop, told to the same crawler, about the same pages, in a second field.
+// It cannot simply be set to lastmodFor(route): that function needs the page's finished HTML to
+// hash, so it does not exist until long after these entities are built. So the entity carries a
+// token, and the token is resolved in one pass immediately before the files are written, once each
+// route's real date is known. lmHash() already normalises "dateModified" out of the content hash,
+// so the token and the date it becomes hash identically and this cannot feed back on itself.
+// assertDateModifiedIsLastmod() below refuses to build on any disagreement, or on any surviving
+// token. PROVE IT by setting LASTMOD_TOKEN's replacement back to BUILD_DATE.
+const LASTMOD_TOKEN = '@@LASTMOD@@';
 // The publisher entity (E-E-A-T). Referenced by @id from every clinical page; defined in full on home.
 // W4 (2026-08-02): sameAs is read from data/site_config.json via data.site, not typed here. This
 // object is emitted into every prerendered page, so a hard-coded handle here was the widest-reach
@@ -585,7 +602,7 @@ const WEBSITE = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': S
   // which is the only reason this belongs here. Google crawls '/' -> home.html, so declaring it
   // only in the index.html shell put it on a document the canonical home never serves.
   potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: SITE_URL + '/az?q={search_term_string}' }, 'query-input': 'required name=search_term_string' } };
-const PUB = { publisher: { '@id': SITE_URL + '/#org' }, isPartOf: { '@id': SITE_URL + '/#website' }, dateModified: BUILD_DATE };
+const PUB = { publisher: { '@id': SITE_URL + '/#org' }, isPartOf: { '@id': SITE_URL + '/#website' }, dateModified: LASTMOD_TOKEN };
 // ---- SEO length budgets (2026-07-31) ---------------------------------------------------------
 // Measured across the built site: 100% of /protocol titles ran to ~101 chars and 100% of their
 // descriptions to ~178, against Google's ~60 / ~155 display budgets. So on the flagship page type
@@ -3256,6 +3273,107 @@ let written = 0;
   fs.writeFileSync(path.join(SITE, 'home.html'), shell(Object.assign({}, HOME_SHELL, { body: filled })));
 }
 
+// PER-PAGE lastmod (2026-08-01). Until now every one of the 564 <url> entries carried the SAME
+// value -- `new Date()` read at build time -- so the sitemap asserted that all 564 pages had
+// changed, on every single build. Measured before the fix: with ZERO content edited and the build
+// clock moved forward 9 days, all 564 lastmod values moved to 2026-08-09. `site/` is ephemeral on
+// Railway (prestart regenerates it on every boot), so a container restart with no commit behind it
+// re-stamped all 564 as well. Google's own documentation says it ignores lastmod on a site where
+// the value is not consistently accurate, so this field was not merely useless here -- it was
+// spending the one crawl-prioritisation signal a static site gets, on noise.
+//
+// A page's lastmod is now the date its own OUTPUT last changed. `build/lastmod.json` is the
+// committed record of route -> [content hash, date]. If this build's hash matches the record, the
+// recorded date is reused; if it differs, or the route is new, today is stamped and the record
+// updated. COMMIT build/lastmod.json alongside any content change -- it is the only part of this
+// that survives the ephemeral container. If it goes stale the failure mode is the OLD behaviour
+// (a page restamped as changed when it was not), never a page claiming to be older than it is.
+//
+// TWO fields are normalised out of the hash. Both are stamped by the clock rather than authored,
+// and leaving either in would make every page hash-different every day -- reinstating the exact
+// bug this replaces:
+//   1. JSON-LD "dateModified", which is BUILD_DATE (see line ~485) on every clinical page.
+//   2. The home page's <section class="daily-fact">, which rotates on Date.now()/864e5. app.js
+//      already re-patches .df-text/.df-link in place on hydration precisely because the build's
+//      copy goes stale, so the build's copy is not treated as the document's content anywhere else
+//      either. Rotating trivia is not a content revision.
+const now = new Date().toISOString().slice(0, 10);
+const LASTMOD_FILE = path.join(ROOT, 'build', 'lastmod.json');
+const lastmodPrev = (() => {
+  try { return JSON.parse(fs.readFileSync(LASTMOD_FILE, 'utf8')); } catch (e) { return {}; }
+})();
+const lastmodNext = {};
+const lmHash = (html) => crypto.createHash('sha256').update(String(html)
+  .replace(/"dateModified":"[^"]*"/g, '"dateModified":"@"')
+  .replace(/<section class="daily-fact">[\s\S]*?<\/section>/, '<section class="daily-fact">@</section>'))
+  .digest('hex').slice(0, 16);
+
+const htmlByRoute = new Map(pages.map(({ route, html }) => [route, html]));
+// "/" is written straight to home.html rather than via add() (so "/home" never leaks into the
+// sitemap), which means it is not in `pages`. Read it back off disk -- it was written this run.
+try { htmlByRoute.set('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { /* handled by the lmUnknown branch */ }
+
+let lmKept = 0, lmMoved = 0, lmUnknown = 0;
+// W6 (2026-08-08): MEMOISED, because it is now called twice for most routes — once to resolve the
+// JSON-LD token below and once to write the <lastmod> in the sitemap. Without the memo the second
+// call would count the route into lmKept/lmMoved a second time and print doubled totals.
+const lmMemo = new Map();
+function lastmodFor(route) {
+  if (lmMemo.has(route)) return lmMemo.get(route);
+  const html = htmlByRoute.get(route);
+  if (html === undefined) { lmUnknown++; lmMemo.set(route, now); return now; } // no output to compare against: stamp today, which is the old behaviour
+  const h = lmHash(html);
+  const prev = lastmodPrev[route];
+  const unchanged = !!(prev && prev[0] === h && /^\d{4}-\d{2}-\d{2}$/.test(prev[1]));
+  const date = unchanged ? prev[1] : now;
+  unchanged ? lmKept++ : lmMoved++;
+  lastmodNext[route] = [h, date];
+  lmMemo.set(route, date);
+  return date;
+}
+
+const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.filter((p) => !p.noSitemap).map((p) => p.route)];
+const uniq = [...new Set(urls)];
+
+// ---- W6 (2026-08-08): RESOLVE THE dateModified TOKEN, NOW THAT EACH ROUTE'S DATE IS KNOWN ------
+// One pass, immediately before the bytes hit disk. See the note above LASTMOD_TOKEN at the top of
+// this file for why the entity could not carry the real date when it was built.
+//
+// A TOKEN ON A ROUTE THAT IS NOT IN THE SITEMAP IS A REFUSAL, NOT A FALLBACK. lastmodFor() records
+// every route it is asked about into lastmodNext, which becomes build/lastmod.json, which
+// assertRouteUniverse() compares against `uniq` on the NEXT build. Resolving a token on a
+// `noSitemap` page would therefore write 52 /fuel routes into that record and make tomorrow's build
+// refuse with "ROUTE UNIVERSE SHRANK". Today no noSitemap page emits dateModified at all — measured
+// over the built site: all 403 pages that carry one are in the sitemap, and lastmod.json holds
+// exactly the 568 sitemap routes and no /fuel key. This turns that measurement into a rule.
+{
+  const inSitemap = new Set(uniq);
+  const offenders = pages.filter((p) => p.noSitemap && p.html.indexOf(LASTMOD_TOKEN) >= 0).map((p) => p.route);
+  if (offenders.length) {
+    console.error('\n[prerender] a page that is NOT in the sitemap emitted a JSON-LD dateModified — refusing to build.');
+    console.error('  There is no honest date to give it: its lastmod is never published, and recording one would');
+    console.error('  add it to build/lastmod.json and make the next build report the route universe as shrunk.');
+    offenders.slice(0, 20).forEach((r) => console.error('    ✗ ' + r));
+    console.error('  Either publish the route, or drop dateModified from its entity.\n');
+    process.exit(1);
+  }
+  let resolved = 0;
+  pages.forEach((p) => {
+    if (p.html.indexOf(LASTMOD_TOKEN) < 0) return;
+    p.html = p.html.split(LASTMOD_TOKEN).join(lastmodFor(p.route));
+    resolved++;
+  });
+  const homeHtml = htmlByRoute.get('/');
+  if (homeHtml && homeHtml.indexOf(LASTMOD_TOKEN) >= 0) {
+    const fixed = homeHtml.split(LASTMOD_TOKEN).join(lastmodFor('/'));
+    htmlByRoute.set('/', fixed);
+    fs.writeFileSync(path.join(SITE, 'home.html'), fixed);
+    resolved++;
+  }
+  if (!inSitemap.size) { console.error('\n[prerender] the sitemap set is empty — refusing to build.\n'); process.exit(1); }
+  console.log(`[prerender] dateModified: ${resolved} page(s) stamped with their own sitemap lastmod, not the build date.`);
+}
+
 pages.forEach(({ route, html }) => {
   const file = path.join(SITE, route.replace(/^\//, '') + '.html');
   fs.mkdirSync(path.dirname(file), { recursive: true });
@@ -3334,61 +3452,6 @@ let swept = 0;
 
 // sitemap + robots
 //
-// PER-PAGE lastmod (2026-08-01). Until now every one of the 564 <url> entries carried the SAME
-// value -- `new Date()` read at build time -- so the sitemap asserted that all 564 pages had
-// changed, on every single build. Measured before the fix: with ZERO content edited and the build
-// clock moved forward 9 days, all 564 lastmod values moved to 2026-08-09. `site/` is ephemeral on
-// Railway (prestart regenerates it on every boot), so a container restart with no commit behind it
-// re-stamped all 564 as well. Google's own documentation says it ignores lastmod on a site where
-// the value is not consistently accurate, so this field was not merely useless here -- it was
-// spending the one crawl-prioritisation signal a static site gets, on noise.
-//
-// A page's lastmod is now the date its own OUTPUT last changed. `build/lastmod.json` is the
-// committed record of route -> [content hash, date]. If this build's hash matches the record, the
-// recorded date is reused; if it differs, or the route is new, today is stamped and the record
-// updated. COMMIT build/lastmod.json alongside any content change -- it is the only part of this
-// that survives the ephemeral container. If it goes stale the failure mode is the OLD behaviour
-// (a page restamped as changed when it was not), never a page claiming to be older than it is.
-//
-// TWO fields are normalised out of the hash. Both are stamped by the clock rather than authored,
-// and leaving either in would make every page hash-different every day -- reinstating the exact
-// bug this replaces:
-//   1. JSON-LD "dateModified", which is BUILD_DATE (see line ~485) on every clinical page.
-//   2. The home page's <section class="daily-fact">, which rotates on Date.now()/864e5. app.js
-//      already re-patches .df-text/.df-link in place on hydration precisely because the build's
-//      copy goes stale, so the build's copy is not treated as the document's content anywhere else
-//      either. Rotating trivia is not a content revision.
-const now = new Date().toISOString().slice(0, 10);
-const LASTMOD_FILE = path.join(ROOT, 'build', 'lastmod.json');
-const lastmodPrev = (() => {
-  try { return JSON.parse(fs.readFileSync(LASTMOD_FILE, 'utf8')); } catch (e) { return {}; }
-})();
-const lastmodNext = {};
-const lmHash = (html) => crypto.createHash('sha256').update(String(html)
-  .replace(/"dateModified":"[^"]*"/g, '"dateModified":"@"')
-  .replace(/<section class="daily-fact">[\s\S]*?<\/section>/, '<section class="daily-fact">@</section>'))
-  .digest('hex').slice(0, 16);
-
-const htmlByRoute = new Map(pages.map(({ route, html }) => [route, html]));
-// "/" is written straight to home.html rather than via add() (so "/home" never leaks into the
-// sitemap), which means it is not in `pages`. Read it back off disk -- it was written this run.
-try { htmlByRoute.set('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { /* handled by the lmUnknown branch */ }
-
-let lmKept = 0, lmMoved = 0, lmUnknown = 0;
-function lastmodFor(route) {
-  const html = htmlByRoute.get(route);
-  if (html === undefined) { lmUnknown++; return now; } // no output to compare against: stamp today, which is the old behaviour
-  const h = lmHash(html);
-  const prev = lastmodPrev[route];
-  const unchanged = !!(prev && prev[0] === h && /^\d{4}-\d{2}-\d{2}$/.test(prev[1]));
-  const date = unchanged ? prev[1] : now;
-  unchanged ? lmKept++ : lmMoved++;
-  lastmodNext[route] = [h, date];
-  return date;
-}
-
-const urls = ['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend', ...pages.filter((p) => !p.noSitemap).map((p) => p.route)];
-const uniq = [...new Set(urls)];
 
 // ---- build-time assertion: THE ROUTE UNIVERSE MAY NOT SHRINK BY ACCIDENT ----------------------
 // Added 2026-08-02 (W4.5). Every route on this site is generated, so the published set moves when
@@ -3538,6 +3601,58 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 // PROVE IT by reintroducing either bug: drop the `pathPart !== _aLastPath` guard in site/app.js
 // (check 1a/1b fails), add a second RNA_A.pv() call site (1c), or make aTemplate() return the raw
 // path — e.g. `return '/' + parts.join('/')` — and this refuses to build naming the routes (2).
+// ---- W6 (2026-08-08): A PAGE MAY NOT TELL GOOGLE TWO DIFFERENT DATES FOR ITSELF ---------------
+// The site publishes each page's freshness twice — as <lastmod> in sitemap.xml and as
+// "dateModified" in the page's own JSON-LD — and until today those two came from different places:
+// lastmod from the page's content hash, dateModified from `new Date()`. MEASURED before the fix,
+// on the built site: 403 pages carry a dateModified and 399 of them contradicted their own sitemap
+// entry (167 /c, 123 /compare, 52 /protocol, 41 /problem, 16 /goal), every one claiming to have
+// been revised on the day of the build.
+//
+// This reads the BYTES, both of them — the sitemap that was just written and the HTML files that
+// were just written — rather than the intentions that produced them. That matters: the resolution
+// pass mutates `pages[].html` in memory, and a gate that re-read the same objects would agree with
+// itself no matter what reached disk.
+//
+// PROVE IT by putting the bug back: replace `lastmodFor(p.route)` with `BUILD_DATE` in the
+// resolution pass above, rebuild, and this refuses, naming the pages and both dates.
+(function assertDateModifiedIsLastmod() {
+  const sm = fs.readFileSync(path.join(SITE, 'sitemap.xml'), 'utf8');
+  const smDate = new Map([...sm.matchAll(/<loc>([^<]*)<\/loc><lastmod>([^<]*)<\/lastmod>/g)]
+    .map((m) => [m[1].replace(SITE_URL, '') || '/', m[2]]));
+  const bad = [];
+  let checked = 0, withDate = 0;
+  const check = (route, html) => {
+    checked++;
+    if (html.indexOf(LASTMOD_TOKEN) >= 0) {
+      bad.push(`${route}: an unresolved ${LASTMOD_TOKEN} reached disk — this page would tell Google its revision date is the literal string "${LASTMOD_TOKEN}"`);
+      return;
+    }
+    const dates = [...new Set([...html.matchAll(/"dateModified"\s*:\s*"([^"]*)"/g)].map((m) => m[1]))];
+    if (!dates.length) return;
+    withDate++;
+    const want = smDate.get(route);
+    if (want === undefined) {
+      bad.push(`${route}: publishes a JSON-LD dateModified (${dates.join(', ')}) but has no <lastmod> in sitemap.xml — one of the two is lying about a page nobody can cross-check`);
+      return;
+    }
+    const wrong = dates.filter((d) => d !== want);
+    if (wrong.length) bad.push(`${route}: JSON-LD says dateModified ${wrong.map((d) => JSON.stringify(d)).join(', ')} but sitemap.xml says lastmod ${JSON.stringify(want)} for the same URL`);
+  };
+  pages.forEach((p) => check(p.route, fs.readFileSync(path.join(SITE, p.route.replace(/^\//, '') + '.html'), 'utf8')));
+  try { check('/', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { bad.push('/: site/home.html could not be read'); }
+  if (bad.length) {
+    console.error('\n[prerender] A PAGE CONTRADICTS ITS OWN SITEMAP ENTRY — refusing to build.');
+    console.error('  Google ignores lastmod on a site where it is not consistently accurate. Two fields');
+    console.error('  disagreeing about the same URL is exactly that inconsistency, published twice.');
+    bad.slice(0, 20).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 20) console.error(`    … and ${bad.length - 20} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] dateModified OK — ${withDate} of ${checked} page(s) publish one, every one equal to that URL's own sitemap lastmod, 0 unresolved tokens.`);
+})();
+
 (function assertPageviewIntegrity() {
   const appSrc = fs.readFileSync(path.join(ROOT, 'site', 'app.js'), 'utf8');
   if (appSrc.indexOf('RNA_A') < 0) { console.log('[prerender] pageview gate: no analytics in site/app.js — nothing to check.'); return; }
