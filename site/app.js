@@ -6415,7 +6415,29 @@
   // A DAY THIS PAGE WROTE, through the UI, on this device. Restored records carry no `w` — the
   // restore path strips it and the export path never writes it — so they still render in the panel,
   // because they are the reader's own data, and they are counted on no card.
-  const tapHere = (log, d, today) => { const e = tapOn(log, d, today); return (e && e.w === 1) ? e : null; };
+  // W6 (2026-08-08) · AND ON THE DAY IT RECORDS. `w:1` proved the record was written HERE, through
+  // the UI. It did not prove it was written ON the day it claims, and that was the whole remaining
+  // loophole — including the one the note above claimed cost "a separate clock change AND a
+  // separate tap for each day the card claims". It cost ONE clock change.
+  // MEASURED HYDRATED at 390x844 on /protocol/cravings/glycemic-swings, fresh browser profile, NO
+  // devtools, NO restore file, NO localStorage edit — only real clicks through the real UI
+  // (qa/w6_skew.mjs): tap "Did it" once on day 1, reopen with the page clock +7 days, tap the seven
+  // day chips in one sitting. Result: data-receipt="ready", card rows "DID THE ONE THING ON 7 of
+  // the 7 days" / "DAYS TAPPED 7 of 7", the real download button wrote
+  // rnawiki-7-day-log-cravings-glycemic-swings-2026-08-14.png, and the X share text said the same.
+  // The stored ledger afterwards was seen:["2026-08-08","2026-08-15"], taps:7 — n=2, span=8 — so
+  // all four ledger guards in receiptReady() passed. The ledger constrained the WEEK and nothing
+  // constrained a DAY RECORD to the day it was written on.
+  // `seen` is the only witness this page has that a day went by while it was here, and it is never
+  // imported from a file or a URL. So a day counts on the CARD only if this page was open on it.
+  // Backfilling yesterday still records the day and still renders in the panel — it is the reader's
+  // own data — it is simply named on the card instead of counted.
+  // PROVE IT by deleting the ledgerDays() clause and re-running qa/w6_skew.mjs: the card goes
+  // straight back to "7 of the 7 days".
+  const tapHere = (log, d, today) => {
+    const e = tapOn(log, d, today);
+    return (e && e.w === 1 && ledgerDays(log).indexOf(d) >= 0) ? e : null;
+  };
   function trackRead() {
     try { const o = JSON.parse(localStorage.getItem(TRACK_KEY) || 'null'); if (o && o.v === TRACK_V && o.logs && typeof o.logs === 'object') return o; } catch (e) {}
     return { v: TRACK_V, logs: {} };
@@ -6870,7 +6892,11 @@
     // shows every record — they are the reader's own data — but the card is what travels, and the
     // card may only say what this device watched somebody tap.
     const loggedN = days.filter((d) => tapHere(log, d, today)).length;
-    const restoredN = days.filter((d) => tapOn(log, d, today) && !tapHere(log, d, today)).length;
+    // W6 (2026-08-08) · SPLIT IN TWO, because `!tapHere()` used to mean exactly one thing — it came
+    // from a restore file — and now means two. Calling a day the reader really did tap "restored
+    // from a file" would be a NEW false sentence, in the row that exists to keep the card true.
+    const restoredN = days.filter((d) => { const x = tapOn(log, d, today); return x && x.w !== 1; }).length;
+    const backfillN = days.filter((d) => { const x = tapOn(log, d, today); return x && x.w === 1 && !tapHere(log, d, today); }).length;
     if (!loggedN) return null;                     // nothing was tapped HERE; there is nothing to write up
     const didN = days.filter((d) => { const x = tapHere(log, d, today); return x && x.did === 1; }).length;
     // Days tapped for direction only, with no answer on the one thing. These used to be counted as
@@ -6887,6 +6913,10 @@
       // own data and still renders in the panel, but it is not a day this device watched anybody
       // tap, so it is named here and counted in nothing above.
       ...(restoredN ? [['Days restored from a file, not counted here', `${restoredN} — this card is only what was tapped on this device`]] : []),
+      // W6 · Tapped here, but not on the day it records. Same principle as the row above: named,
+      // never folded in, and never called something it is not. Without this row the days the card
+      // stops counting would simply vanish from it with no explanation.
+      ...(backfillN ? [['Days filled in afterwards, not counted here', `${backfillN} — this card counts only days this page was open on`]] : []),
       // Printed only when it is not zero, and never folded into either count above: a day with no
       // answer is neither a "did it" nor a "missed it", and the card has to be able to say so. A
       // lower honest number beats a higher false one.
@@ -6903,7 +6933,7 @@
       action: log.action || rc.phase1.action,
       metric: log.metric || ((problem.safety || {}).metric) || '',
       from: days[0], to: days[TRACK_DAYS - 1],
-      didN, loggedN, unsaidN, restoredN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
+      didN, loggedN, unsaidN, restoredN, backfillN, dirN, lastDir: last && last.dir ? word(last.dir) : null,
       rows,
       // Never efficacy. One person, seven days, no control, no comparison group — and this site
       // publishes no aggregate of anybody's weeks (brief §0.3, and the cohort feature stays dark).

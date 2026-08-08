@@ -1160,6 +1160,57 @@ const ASSERTIONS = {
       return null;
     },
   }, {
+    // W6 (2026-08-08) · THE CARD MAY NOT COUNT A DAY THIS PAGE WAS NOT OPEN ON.
+    // The gate above proves the WEEK was watched. It did not prove each DAY RECORD was written on
+    // the day it claims, and that gap was worth six days.
+    // MEASURED HYDRATED at 390x844 on /protocol/cravings/glycemic-swings in a fresh browser
+    // profile, with NO devtools, NO restore file and NO localStorage edit — only real clicks
+    // through the real UI (qa/w6_skew.mjs): tap "Did it" once on day 1, reopen with the page clock
+    // seven days forward, tap the seven day chips in one sitting. Out came data-receipt="ready",
+    // "DID THE ONE THING ON 7 of the 7 days", a real downloaded PNG
+    // (rnawiki-7-day-log-cravings-glycemic-swings-2026-08-14.png) and an X share link saying the
+    // same. Every one of the four ledger guards above passed: seen had 2 days, span 8, taps 7.
+    // This plants that exact stored shape — seven w:1 records, a ledger of two days — and requires
+    // the card to count ONE and to NAME the six it drops. A number a card silently omits is a
+    // number it is lying about.
+    // PROVE THIS GATE by deleting the ledgerDays() clause from tapHere() in site/app.js.
+    name: 'theCardCountsOnlyDaysThisPageWasOpenOn',
+    why: 'W6: one device-clock change and seven chip taps in one sitting minted a shareable PNG claiming a full calendar week',
+    evaluate: async () => {
+      const [, , pid, rcid] = location.pathname.split('/');
+      const K = pid + '/' + rcid;
+      const iso = (d) => { const q = n => String(n).padStart(2, '0'); return `${d.getFullYear()}-${q(d.getMonth() + 1)}-${q(d.getDate())}`; };
+      const shift = (n) => { const d = new Date(); d.setDate(d.getDate() + n); return iso(d); };
+      const redraw = async () => { const c = document.querySelector('#p1-log [data-p1="day"]'); if (c) c.click(); await new Promise(r => setTimeout(r, 80)); };
+      // Seven records this page really did write (w:1), on a device the page was only ever open on
+      // TWO days — the first day of the week, and one day after the week ended. That is byte for
+      // byte the store the measured attack produced: seen:[started, started+7], taps > 7, seven
+      // w:1 day records. The second ledger day is deliberately OUTSIDE the seven, because that is
+      // what a clock jumped forward past the end of the week looks like from in here, and it is
+      // what makes the honest count 1 rather than 2.
+      const days = {};
+      for (let i = 0; i < 7; i++) days[shift(i - 7)] = { did: 1, dir: i ? 'better' : null, w: 1 };
+      localStorage.setItem('rnawiki_track', JSON.stringify({ v: 1, logs: { [K]: {
+        started: shift(-7), opened: shift(-7), action: '', metric: '', sync: false,
+        seen: [shift(-7), shift(0)], taps: 8, days } } }));
+      await redraw();
+      const card = document.getElementById('rcpt-card');
+      const t = card ? card.innerText.replace(/\s+/g, ' ') : '';
+      const share = document.querySelector('#p1-log a[href*="x.com/intent"]');
+      const shareText = share ? decodeURIComponent((share.getAttribute('href').match(/[?&]text=([^&]*)/) || [, ''])[1].replace(/\+/g, ' ')) : '';
+      localStorage.removeItem('rnawiki_track'); localStorage.removeItem('rnawiki_phase1');
+      // Refusing outright is stricter than counting one, and is a legitimate answer.
+      if (!card) return null;
+      if (/on 7 of the 7 days/i.test(t)) return `the card claims "7 of the 7 days" from a log this page was only ever open on 2 days — "${t.slice(0, 160)}"`;
+      if (/DAYS TAPPED 7 of 7/i.test(t)) return `the card claims 7 of 7 days tapped from a 2-day write ledger — "${t.slice(0, 160)}"`;
+      if (!/1 of the 7 days/i.test(t)) return `the card neither refused nor counted the one witnessed day — "${t.slice(0, 160)}"`;
+      if (!/filled in afterwards/i.test(t)) return `the six days the card stopped counting are not named on it — a number a card drops must be stated, not dropped: "${t.slice(0, 160)}"`;
+      // The share text travels further than the card and is generated separately, so it is checked
+      // separately: it carried "Did it on 7 of the 7 days" in the measured attack.
+      if (shareText && /on 7 of the 7 days/i.test(shareText)) return `the card says 1 but the X share text still says 7 — "${shareText.slice(0, 160)}"`;
+      return null;
+    },
+  }, {
     // W4 · LOOP A (2026-08-02). The share is the one thing on this site that travels: it is read by
     // people who never see the page, so it must carry no claim the card does not, and it must never
     // post itself. Measured hydrated at 390x844 before it: links to x.com or twitter.com, 0/4 on
