@@ -505,7 +505,11 @@ const PANEL_THRESHOLD = 1;
 async function currentUser(req) {
   const sid = parseCookies(req).sid;
   if (!sid || !db.enabled) return null;
-  const r = await db.query('SELECT u.id, u.username, u.email, u.google_sub, u.role, u.domain, u.credential, u.domain_verified, u.requested_domain, u.application_status, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
+  // 2026-08-08 · ONE ACCOUNT TYPE. domain, credential, domain_verified, requested_domain and
+  // application_status are no longer selected here. Nothing writes them, no gate reads them, and
+  // the session object is what becomes `ME` in the browser — so while they were on it, every page
+  // in the SPA could branch on "what kind of professional is this". Now none can.
+  const r = await db.query('SELECT u.id, u.username, u.email, u.google_sub, u.role, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
   const u = r.rows[0];
   if (u && ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
   if (u && isSuper(u)) u.role = 'admin';           // the superadmin always has admin powers
@@ -1130,13 +1134,13 @@ async function api(req, res, url) {
   if (seg[0] === 'login' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const username = clean(b.username, 24), password = String(b.password || '');
-    const r = await db.query('SELECT id,username,email,role,pass,domain,credential,domain_verified FROM users WHERE username=$1', [username]);
+    const r = await db.query('SELECT id,username,email,role,pass FROM users WHERE username=$1', [username]);
     const u = r.rows[0];
     if (!u || !verifyPassword(password, u.pass)) return json(res, 401, { error: 'Wrong username or password' });
     const token = crypto.randomBytes(24).toString('hex');
     await db.query('INSERT INTO sessions(token,user_id,expires_at) VALUES($1,$2, now()+interval \'30 days\')', [token, u.id]);
     setSessionCookie(res, token);
-    return json(res, 200, { user: { id: u.id, username: u.username, role: u.role, email: u.email, domain: u.domain, credential: u.credential, domain_verified: u.domain_verified, is_super: isSuper(u) } });
+    return json(res, 200, { user: { id: u.id, username: u.username, role: u.role, email: u.email, is_super: isSuper(u) } });
   }
   if (seg[0] === 'logout' && method === 'POST') {
     const sid = parseCookies(req).sid; if (sid) await db.query('DELETE FROM sessions WHERE token=$1', [sid]);
@@ -1351,7 +1355,7 @@ async function api(req, res, url) {
       // attacker-created account. Always prefer the google_sub match; email is only a
       // first-time link hint.
       let u = (await db.query(
-        `SELECT id,username,role,domain,credential,domain_verified,google_sub FROM users
+        `SELECT id,username,role,google_sub FROM users
           WHERE google_sub=$1 OR (email=$2 AND email IS NOT NULL)
           ORDER BY (google_sub=$1) DESC, id ASC LIMIT 1`, [sub, email || '\x00'])).rows[0];
       if (u) {
@@ -1362,7 +1366,7 @@ async function api(req, res, url) {
         let uname = base, tries = 0;
         while (true) {
           try {
-            u = (await db.query('INSERT INTO users(username,email,google_sub) VALUES($1,$2,$3) RETURNING id,username,role,domain,credential,domain_verified', [uname, email || null, sub])).rows[0];
+            u = (await db.query('INSERT INTO users(username,email,google_sub) VALUES($1,$2,$3) RETURNING id,username,role', [uname, email || null, sub])).rows[0];
             break;
           } catch (e) { if (e.code === '23505' && tries < 8) { tries++; uname = base + Math.floor(1000 + Math.random() * 8999); } else throw e; }
         }
@@ -1649,7 +1653,7 @@ async function api(req, res, url) {
     if (!problem || !rc) return json(res, 200, { forks: [] });
     // Auto-swap: show demo/seed stacks only while NO real stack exists for this exact problem+cause.
     // The moment a real user shares one here, every demo for this cause drops out automatically.
-    const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.created_at,u.username AS by_user,u.domain,u.domain_verified FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.problem_id=$1 AND f.root_cause_id=$2 AND (f.is_demo = false OR NOT EXISTS (SELECT 1 FROM protocol_forks r WHERE r.problem_id=$1 AND r.root_cause_id=$2 AND r.is_demo = false)) ORDER BY f.clones DESC, f.created_at DESC LIMIT 30", [problem, rc]);
+    const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.created_at,u.username AS by_user FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.problem_id=$1 AND f.root_cause_id=$2 AND (f.is_demo = false OR NOT EXISTS (SELECT 1 FROM protocol_forks r WHERE r.problem_id=$1 AND r.root_cause_id=$2 AND r.is_demo = false)) ORDER BY f.clones DESC, f.created_at DESC LIMIT 30", [problem, rc]);
     return json(res, 200, { forks: r.rows });
   }
   if (seg[0] === 'forks' && !seg[1] && method === 'POST') {
@@ -1676,7 +1680,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'forks' && seg[1] && method === 'GET') {
     const id = pathId(seg[1]); if (!id) return json(res, 404, { error: 'No such fork' });
-    const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.problem_id,f.root_cause_id,f.created_at,u.username AS by_user,u.domain,u.domain_verified FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.id=$1", [id]);
+    const r = await db.query("SELECT f.id,f.title,f.note,f.stack,f.clones,f.problem_id,f.root_cause_id,f.created_at,u.username AS by_user FROM protocol_forks f LEFT JOIN users u ON u.id=f.user_id WHERE f.id=$1", [id]);
     if (!r.rows[0]) return json(res, 404, { error: 'No such fork' });
     return json(res, 200, { fork: r.rows[0] });
   }
@@ -1684,9 +1688,13 @@ async function api(req, res, url) {
   if (seg[0] === 'pulse' && method === 'GET') {
     const q = (sql) => db.query(sql).then((r) => r.rows).catch(() => []);
     const [forks, edits, comments, foods] = await Promise.all([
-      q("SELECT f.id, f.title, f.problem_id, f.root_cause_id, f.created_at AS at, u.username AS actor, u.domain, u.domain_verified AS verified FROM protocol_forks f JOIN users u ON u.id=f.user_id ORDER BY f.created_at DESC LIMIT 8"),
-      q("SELECT p.problem_id, p.root_cause_id, p.layer, p.created_at AS at, u.username AS actor, u.domain, u.domain_verified AS verified FROM proposals p JOIN users u ON u.id=p.user_id WHERE p.status='endorsed' ORDER BY p.created_at DESC LIMIT 8"),
-      q("SELECT c.goal_id, c.created_at AS at, u.username AS actor, u.domain, u.domain_verified AS verified FROM comments c JOIN users u ON u.id=c.user_id ORDER BY c.created_at DESC LIMIT 8"),
+      // 2026-08-08: all three of these carried `u.domain, u.domain_verified AS verified` — a feed
+      // item was going to say WHICH KIND OF PROFESSIONAL did the thing, and `verified` was going
+      // out over the wire as a per-item boolean. Both columns are dead and this endpoint has no
+      // caller in site/app.js; the feed now reports the act and who did it, which is all it knows.
+      q("SELECT f.id, f.title, f.problem_id, f.root_cause_id, f.created_at AS at, u.username AS actor FROM protocol_forks f JOIN users u ON u.id=f.user_id ORDER BY f.created_at DESC LIMIT 8"),
+      q("SELECT p.problem_id, p.root_cause_id, p.layer, p.created_at AS at, u.username AS actor FROM proposals p JOIN users u ON u.id=p.user_id WHERE p.status='endorsed' ORDER BY p.created_at DESC LIMIT 8"),
+      q("SELECT c.goal_id, c.created_at AS at, u.username AS actor FROM comments c JOIN users u ON u.id=c.user_id ORDER BY c.created_at DESC LIMIT 8"),
       q("SELECT f.name, f.created_at AS at, u.username AS actor FROM user_foods f JOIN users u ON u.id=f.submitted_by WHERE f.status='active' ORDER BY f.created_at DESC LIMIT 5"),
     ]);
     const items = []
@@ -1945,7 +1953,7 @@ async function api(req, res, url) {
     // and no panel; the only distinction the site recognises is the owner's own control room.
     const onPanel = isSuper(u) || u.role === 'admin';
     if (!onPanel) return json(res, 403, { error: 'Endorsing this change is not enabled for this account.' });
-    await db.query('INSERT INTO rootcause_endorsements(change_id,user_id,domain) VALUES($1,$2,$3) ON CONFLICT (change_id,user_id) DO NOTHING', [id, u.id, u.domain || null]);
+    await db.query('INSERT INTO rootcause_endorsements(change_id,user_id,domain) VALUES($1,$2,$3) ON CONFLICT (change_id,user_id) DO NOTHING', [id, u.id, null]);   /* `u.domain` -> null, 2026-08-08: the session no longer carries a profession */
     await award(u.id, 'rc_endorse', 'rcc:' + id, 5);
     const cnt = await db.query('SELECT count(*)::int AS n FROM rootcause_endorsements WHERE change_id=$1', [id]);
     let status = ch.status;
@@ -2133,7 +2141,7 @@ async function api(req, res, url) {
     const pid = clean(sp.get('problem'), 60), rcid = clean(sp.get('rc'), 60);
     if (!pid || !rcid) return json(res, 400, { error: 'problem & rc required' });
     const r = await db.query(
-      `SELECT p.id,p.layer,p.domain,p.change,p.evidence,p.status,p.created_at,u.username,u.credential,u.domain_verified,
+      `SELECT p.id,p.layer,p.domain,p.change,p.evidence,p.status,p.created_at,u.username,
         (SELECT COUNT(*)::int FROM proposal_actions a WHERE a.proposal_id=p.id AND a.action='endorse') AS endorsements,
         (SELECT COUNT(*)::int FROM proposal_actions a WHERE a.proposal_id=p.id AND a.action='flag') AS flags
        FROM proposals p JOIN users u ON u.id=p.user_id
@@ -2161,7 +2169,7 @@ async function api(req, res, url) {
     if (!pid || !rcid || !change) return json(res, 400, { error: 'Describe the change' });
     const r = await db.query(
       `INSERT INTO proposals(problem_id,root_cause_id,layer,domain,user_id,change,evidence)
-       VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id,created_at`, [pid, rcid, layer, u.domain, u.id, change, evidence || null]);
+       VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING id,created_at`, [pid, rcid, layer, null, u.id, change, evidence || null]);   /* `u.domain` -> null, 2026-08-08 (the column is nullable now; see db.js) */
     await award(u.id, 'proposal', r.rows[0].id);
     return json(res, 200, { ok: true, id: r.rows[0].id });
   }
@@ -2228,9 +2236,16 @@ async function api(req, res, url) {
     } catch (e) { console.error('[scan]', e.message); return json(res, 502, { error: 'Could not analyse the image right now.' }); }
   }
 
-  // --- public contributor showcase (attribution incentive) ---
+  // --- public contributor showcase: counts of things people actually did here ---
   if (seg[0] === 'contributors' && method === 'GET') {
-    const experts = await db.query("SELECT username, domain, credential FROM users WHERE domain_verified = true ORDER BY username");
+    // 2026-08-08: the `experts` query was REMOVED. It was
+    //   SELECT username, domain, credential FROM users WHERE domain_verified = true
+    // on a PUBLIC, UNAUTHENTICATED endpoint — so a free-text credential that a user typed about
+    // THEMSELVES would have been published to anyone who asked for it, the moment a badge was
+    // granted. It returned an empty array only because its WHERE clause matched nothing, and a
+    // query that is safe only because nothing satisfies it is not safe. The key is kept as a
+    // constant empty array so any cached client still parses the response shape.
+    const experts = { rows: [] };
     const board = await db.query(`SELECT u.username,
         (SELECT COUNT(*)::int FROM edits e WHERE e.user_id=u.id) AS edits,
         (SELECT COUNT(*)::int FROM comments c WHERE c.user_id=u.id) AS comments,
@@ -2240,7 +2255,9 @@ async function api(req, res, url) {
         (SELECT COUNT(*) FROM comments c WHERE c.user_id=u.id) +
         (SELECT COUNT(*) FROM proposals p WHERE p.user_id=u.id)) DESC LIMIT 25`);
     const leaderboard = board.rows.filter(r => (r.edits + r.comments + r.proposals) > 0);
-    const top = await db.query(`SELECT username, domain, domain_verified, reputation_points, socials
+    // `domain, domain_verified` dropped from this SELECT 2026-08-08: they are null/false on every
+    // row and cannot become anything else, so shipping them told the client a profession existed.
+    const top = await db.query(`SELECT username, reputation_points, socials
       FROM users WHERE reputation_points > 0 ORDER BY reputation_points DESC, username ASC LIMIT 5`);
     return json(res, 200, { experts: experts.rows, leaderboard, top: top.rows });
   }
@@ -2251,13 +2268,22 @@ async function api(req, res, url) {
     const pid = clean(q.get('problem'), 60), rcid = clean(q.get('rc'), 60);
     if (!pid || !rcid) return json(res, 400, { error: 'problem & rc required' });
     const key = `p:${pid}:${rcid}`;
-    const r = await db.query(`SELECT u.username, u.domain, u.domain_verified, u.reputation_points, u.socials,
-        (SELECT COUNT(*)::int FROM comments c WHERE c.user_id=u.id AND c.goal_id=$3) AS comments,
-        (SELECT COUNT(*)::int FROM proposals p WHERE p.user_id=u.id AND p.problem_id=$1 AND p.root_cause_id=$2) AS edits
-      FROM users u
-      WHERE u.id IN (SELECT user_id FROM comments WHERE goal_id=$3
-                     UNION SELECT user_id FROM proposals WHERE problem_id=$1 AND root_cause_id=$2)
-      ORDER BY (comments + edits) DESC, u.reputation_points DESC LIMIT 3`, [pid, rcid, key]);
+    // `u.domain, u.domain_verified` dropped 2026-08-08 — same reason as /api/contributors above.
+    // ALSO FIXED HERE, and it is not a consequence of that: this query ended
+    // `ORDER BY (comments + edits) DESC`, and Postgres accepts an output alias in ORDER BY only as
+    // a bare name, never inside an expression. So the statement failed to parse and THIS ENDPOINT
+    // HAS ALWAYS RETURNED 500 — reproduced verbatim in psql against the pre-change SQL:
+    // `ERROR: column "comments" does not exist`. It had zero callers in site/app.js, which is the
+    // only reason nobody found out. Wrapping the projection in a subselect makes the aliases real
+    // columns, which is the smallest change that makes the intended ordering legal.
+    const r = await db.query(`SELECT * FROM (
+        SELECT u.username, u.reputation_points, u.socials,
+          (SELECT COUNT(*)::int FROM comments c WHERE c.user_id=u.id AND c.goal_id=$3) AS comments,
+          (SELECT COUNT(*)::int FROM proposals p WHERE p.user_id=u.id AND p.problem_id=$1 AND p.root_cause_id=$2) AS edits
+        FROM users u
+        WHERE u.id IN (SELECT user_id FROM comments WHERE goal_id=$3
+                       UNION SELECT user_id FROM proposals WHERE problem_id=$1 AND root_cause_id=$2)
+      ) t ORDER BY (t.comments + t.edits) DESC, t.reputation_points DESC LIMIT 3`, [pid, rcid, key]);
     return json(res, 200, { contributors: r.rows });
   }
 

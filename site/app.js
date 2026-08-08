@@ -4721,7 +4721,9 @@
   function openSharePrompt(what) {
     if (!ME) return;
     const profile = (location.origin || 'https://rnawiki.com') + '/u/' + ME.username;
-    const dom = (GRAPH.domains[ME.domain] || {}).label || 'health';
+    // 2026-08-08: was `(GRAPH.domains[ME.domain] || {}).label || 'health'` — the caption named the
+    // sharer's professional domain. The session no longer carries one, because there is none.
+    const dom = 'health';
     const caption = `Just contributed to an open, evidence-based health protocol on RNAwiki${what ? ' — ' + what : ''}. 🧬\n\nI'm helping keep the ${dom.toLowerCase()} guidance accurate so people can fix the root cause, not just the symptom.\n\nSee all my contributions 👉 ${profile}\n(search "${ME.username} rnawiki")\n\n#RNAwiki #Health`;
     const m = modal(`<div class="partner-modal"><h2>📣 Nice work — share it</h2>
       <p class="muted">Your contribution is live. Post this to your socials to build your profile — every view is a potential lead. The link isn’t clickable on most platforms, so there is a search hint too.</p>
