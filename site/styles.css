@@ -3851,6 +3851,15 @@ a.assess-switch { text-align: center; }
    when the newsletter was removed on 2026-08-06, but the two that remain are live ids on the home
    page and both were checked in a real browser after the removal. */
 #top, #how-it-works { scroll-margin-top: 4.5rem; }
+/* #answer is where POST /api/interest 303s the reader back to, and it is the ONLY feedback a reader
+   without JavaScript gets. MEASURED hydrated with JS disabled on /?state=ok&t=… before this rule,
+   at three widths: the browser scrolled #answer to viewport top 0 while `.topbar` is
+   position:sticky and 118 / 67 / 67 px tall at 390 / 760 / 1440 — so the heading "You are on the
+   list." and the whole top of the panel sat behind the header, and the reader landed in the middle
+   of their own confirmation. Screenshotted, not inferred. Two values because the topbar is two rows
+   below 760px and one above it; each leaves ~10px of clearance. */
+#answer { scroll-margin-top: 76px; }
+@media(max-width:760px){ #answer { scroll-margin-top: 128px; } }
 
 /* ===== PARTS IN THE FLAT DOCUMENT (2026-07-30) ================================================
    The static course page is ~9,500 words in one scroll where the app shows six chapters. These
