@@ -377,7 +377,16 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .article ul,.article ol{padding-left:1.3rem}
 .article li{margin:.35rem 0}
 .article a{border-bottom:1px dotted var(--faint)}
-.article code{white-space:nowrap}
+/* W6 (2026-08-08): `white-space:nowrap` here existed for a set of three, and it broke one of them.
+   MEASURED over every <code> in the corpus — 1 in the prerendered HTML, 3 in site/data.js, and
+   NONE of them contains a space, so nowrap was buying nothing: `hpta_suppressive` (16 chars) and
+   `endurance` (9) fit on any line on their own. The third is BPC-157's amino-acid chain,
+   `Gly-Glu-Pro-…-Leu-Val`, 59 characters. MEASURED hydrated at 390x844 with JavaScript OFF on
+   /learn/0: it rendered 512px wide and took the document to 531px — the reader's phone scrolled
+   sideways and the sequence ended, visibly cut, at "…Gly-Leu-Val" past the right edge.
+   `overflow-wrap:anywhere` breaks a run only when it does not fit, so the two short ones are
+   unchanged and the long one wraps. After: /learn/0 is 390px in a 390px viewport. */
+.article code{overflow-wrap:anywhere}
 .prevnext{display:flex;justify-content:space-between;gap:1rem;margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1.2rem}
 .prevnext a{padding:.7rem 1rem;background:#fff;border:1px solid var(--line);border-radius:10px;flex:1;font-size:.9rem;box-shadow:var(--shadow)}
 .prevnext a:hover{border-color:var(--accent);text-decoration:none}
@@ -3280,6 +3289,33 @@ a.dp-name:hover{color:var(--accent)}
 .bio-dose-out b{color:var(--accent)}
 .bio-dose-cap{font-size:.78rem;color:var(--muted);font-weight:400}
 @media(max-width:560px){.bio-cards{grid-template-columns:1fr}}
+
+/* ---- the PRERENDERED twin of the block above (build/prerender.js bioFlatHtml) ---------------- */
+/* W6 (2026-08-08): `.biof-tbl` had no rule anywhere in this file — the biomarker table went out to
+   the crawler and to the ~90% of readers who run no JavaScript as a bare, unstyled <table>, which
+   sizes to its content and therefore to whatever its widest cell needs.
+   MEASURED at 390x844 with JavaScript OFF, all 568 published routes: 20 compound pages scrolled
+   sideways and TABLE.biof-tbl was the unclipped cause on every one of the 20 —
+   /c/fadogia-agrestis and /c/cerebrolysin-ara-290-brief 95px, /c/andarine-s4-yk-11-s-23 67px,
+   /c/rapamycin-sirolimus 53px, /c/iodine-selenium 46px, down to /c/trenbolone 16px.
+   It is not a cosmetic overflow: screenshotted on /c/iodine-selenium, the third column ran off the
+   right edge and "µg/L (avoid…", "toxicity risk" and "below lab cutoff" — the target ranges, which
+   are the entire point of a biomarker table — were cut off the screen.
+   `table-layout:fixed` is what makes it impossible to recur: the column widths stop depending on
+   the content, so no future biomarker range can push the page out again. The three widths are
+   set to the shape of the data (a short marker name, a sentence, a range). The rest of the
+   declarations are copied from `.bio-tbl` above, so the two documents now render the same table. */
+.biof-tbl{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.84rem;margin:.4rem 0}
+.biof-tbl th,.biof-tbl td{text-align:left;padding:.45rem .5rem .45rem 0;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.4;overflow-wrap:anywhere}
+.biof-tbl th{font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.biof-tbl tr:last-child td{border-bottom:none}
+/* 32% is not a round number, it is the narrowest first column that does not split a marker name
+   down the middle. MEASURED at 390x844 on /c/iodine-selenium: at 28% the widest marker on the page,
+   "Serum/plasma selenium", rendered as "Serum/plasm | a selenium"; at 32% it breaks at the space. */
+.biof-tbl th:nth-child(1),.biof-tbl td:nth-child(1){width:32%}
+.biof-tbl th:nth-child(2),.biof-tbl td:nth-child(2){width:42%}
+.biof-tbl th:nth-child(3),.biof-tbl td:nth-child(3){width:26%}
+.biof-tbl small{color:var(--muted);font-size:.74rem;display:block;margin-top:.15rem}
 
 /* share modal overlay (no generic .modal-ov existed) */
 .share-ov{position:fixed;inset:0;z-index:2000;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;padding:1rem;overflow-y:auto}

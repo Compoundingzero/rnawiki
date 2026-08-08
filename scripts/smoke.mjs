@@ -2182,6 +2182,76 @@ try {
     }
   }
 
+  // ------------------------------------------------- W6 (2026-08-08): THE PRERENDERED DOCUMENT
+  // MUST FIT ON A PHONE TOO.
+  // Every geometry check in this file runs with JavaScript ON. That measures the SPA's document.
+  // ~90% of this site's traffic never runs JavaScript and gets a DIFFERENT document — the one
+  // build/prerender.js wrote — and nothing has ever measured its width.
+  //
+  // MEASURED at 390x844 with JavaScript disabled over all 568 published routes, while every
+  // existing geometry gate was green: 28 routes scrolled sideways. Three separate causes, and the
+  // first two were cutting text off the right-hand edge of the phone, not merely adding a scrollbar:
+  //   20 /c/*    TABLE.biof-tbl, the biomarker table, which had NO rule in site/styles.css at all
+  //              and so sized to its content. Worst 95px (/c/fadogia-agrestis,
+  //              /c/cerebrolysin-ara-290-brief). Screenshotted on /c/iodine-selenium: the whole
+  //              third column — the target ranges, the point of the table — ran off the screen.
+  //    1 /learn/0  a 59-character BPC-157 amino-acid sequence in <code>, held on one line by
+  //              `.article code{white-space:nowrap}`. 141px, the sequence visibly cut mid-chain.
+  //    7 /muscle/*  FORM.w.wsort, the CSS-only sort widget. 2-20px, and NOT fixed — screenshotted
+  //              at 390x844 and nothing is cut off or unreachable; it is a scrollbar, not lost
+  //              content, and it is a different concern from the two above.
+  //
+  // SO THIS GATE IS A RATCHET, NOT A CLEAN SWEEP. `KNOWN` records exactly what is still wrong,
+  // with the pixel count measured today. A route not in KNOWN may not overflow at all; a route in
+  // KNOWN may not get WORSE. Recording it here is the only honest alternative to either shipping a
+  // gate with a silent carve-out or claiming a fix that was not made.
+  // PROVE IT by deleting the `.biof-tbl` block from site/styles.css and rebuilding (the rebuild
+  // matters — server.js serves styles.css.br): /c/cerebrolysin-ara-290-brief and /c/iodine-selenium
+  // both report, by name and pixel count.
+  {
+    const KNOWN = {
+      // route: [px measured 2026-08-08, why it is still here]
+      '/muscle/abdominals': [5, 'FORM.w.wsort, the CSS-only sort widget — a scrollbar, nothing cut off (screenshotted); 7 /muscle routes share it, 2-20px'],
+    };
+    for (const [cls, route] of ROUTES) {
+      if (route.includes('?')) continue;   // the ?state= and ?cohort= variants are the same document
+      const page = await browser.newPage();
+      try {
+        await page.setJavaScriptEnabled(false);
+        await page.setViewport({ width: 390, height: 844 });
+        await page.goto(BASE + route, { waitUntil: 'domcontentloaded', timeout: 45000 });
+        await new Promise(r => setTimeout(r, 250));
+        const m = await page.evaluate(() => {
+          const vw = document.documentElement.clientWidth;
+          // The widest element that is NOT inside something that clips or scrolls it — otherwise
+          // the report names a <b> sitting happily inside an overflow-x:auto box.
+          const boxed = (e) => { let n = e.parentElement; while (n && n !== document.body) { if (getComputedStyle(n).overflowX !== 'visible') return true; n = n.parentElement; } return false; };
+          let w = null;
+          document.querySelectorAll('body *').forEach((e) => {
+            if (getComputedStyle(e).position === 'fixed') return;
+            const r = e.getBoundingClientRect();
+            if (r.width > 0 && r.height > 0 && r.right > vw + 1 && !boxed(e) && (!w || r.right > w.right)) {
+              w = { right: Math.round(r.right), tag: e.tagName, cls: String(e.className || '').slice(0, 34), txt: (e.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 46) };
+            }
+          });
+          return { px: Math.max(0, Math.round(document.documentElement.scrollWidth - vw)), vw, w };
+        });
+        const known = KNOWN[route];
+        const el = m.w ? `; widest unclipped element is <${m.w.tag.toLowerCase()}${m.w.cls ? ` class="${m.w.cls}"` : ''}> ending at ${m.w.right}px: "${m.w.txt}"` : '';
+        if (m.px > 1 && !known) {
+          fail.push(`${route}  [no-JS ${m.vw}px] the PRERENDERED document is ${m.vw + m.px}px wide in a ${m.vw}px viewport — it scrolls sideways for the ~90% of readers who never run JavaScript, and for the crawler${el}`);
+        } else if (known && m.px > known[0] + 1) {
+          fail.push(`${route}  [no-JS ${m.vw}px] the prerendered document overflows by ${m.px}px, worse than the ${known[0]}px recorded in KNOWN on 2026-08-08 (${known[1]})${el}`);
+        } else if (known && m.px <= 1) {
+          fail.push(`${route}  [no-JS] no longer overflows — good, now delete its KNOWN entry in scripts/smoke.mjs so the ratchet keeps its teeth`);
+        }
+      } catch (e) {
+        fail.push(`${route}  [no-JS 390px] harness error (${cls}) — ${e && e.message ? e.message : String(e)}`);
+      }
+      await page.close();
+    }
+  }
+
   // ------------------------------------------------- /solve?q= cross-document parity
   // The ?q= ranking exists TWICE: rankProblems() in site/app.js for the SPA, and searchSolve() in
   // server.js for the ~90% who never run JavaScript. Both read the same parse.js-authored index, so
