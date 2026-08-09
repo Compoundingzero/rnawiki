@@ -555,11 +555,23 @@ const EMAIL_FROM = process.env.EMAIL_FROM || 'RNAwiki <hello@rnawiki.com>';
 // through COMPOUND_BY_ID below. The interaction engine (interactions.js) was only ever read
 // by the bot's /stack command and is no longer loaded here.
 let SITE_DATA = null;
+// W7 (2026-08-09): exercises.js, foods.js and interactions.js join the SAME load. The Protocol
+// Studio's save-time engine has to be able to answer "is this a real exercise id" and "is this a
+// real food id" — POST /api/share-plan currently trims an arbitrary string to 80 characters, stores
+// it as a move id, and GET /api/shared-plan echoes it publicly — and it has to be able to run the
+// interaction matcher. ONE sandbox, not four: a second loader is a second corpus, which is the
+// defect class this codebase has caught repeatedly.
+let SITE_EXERCISES = null, SITE_FOODS = null, SITE_IXN = null;
 try {
   const vm = require('vm');
   const sb = { window: {} };
-  vm.runInNewContext(fs.readFileSync(path.join(DIR, 'data.js'), 'utf8'), sb);
+  for (const f of ['data.js', 'exercises.js', 'foods.js', 'interactions.js']) {
+    vm.runInNewContext(fs.readFileSync(path.join(DIR, f), 'utf8'), sb, { filename: f });
+  }
   SITE_DATA = sb.window.RNAWIKI_DATA;
+  SITE_EXERCISES = sb.window.RNAWIKI_EXERCISES;
+  SITE_FOODS = sb.window.RNAWIKI_FOODS;
+  SITE_IXN = sb.window.RNAWIKI_INTERACTIONS;
 } catch (e) { console.error('[data] catalogue load failed:', e.message); }
 // compound id -> {name, isRx, badge} — used to attribute reported side-effects in the Control Room
 const COMPOUND_BY_ID = {};
@@ -607,6 +619,38 @@ const PLAN_FUNCTIONS = [
   { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder', how: '10 min of morning light sets your clock — a reminder within an hour of waking.', match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'] },
 ];
 function fnById(id) { return PLAN_FUNCTIONS.find(f => f.id === id); }
+
+// ===== THE PROTOCOL STUDIO — the save-time safety engine (W7, 2026-08-09) =====================
+// A user-built protocol is user-generated MEDICAL content. Every gate that makes the authored
+// corpus honest runs in build/parse.js and build/prerender.js, at BUILD time, over files on disk.
+// A user protocol is written afterwards, by somebody else, into a database row no build will ever
+// see. So the same rules run again at SAVE, out of ONE module (./studio-safety.js) that
+// build/parse.js also loads — see assertStudioSafetyMirrorsBuildGates(), which fails the build if a
+// build gate in the safety family ever loses its save-time twin.
+//
+// It is initialised HERE, once, from the SAME vm sandbox the rest of this file reads, and from
+// PLAN_FUNCTIONS above rather than from a retyped list of tool ids. If the corpus failed to load,
+// STUDIO_READY is false and every Studio endpoint answers with that, in words — a validator that
+// cannot see the corpus must never return "ok".
+const STUDIO = require('./studio-safety.js');
+let STUDIO_READY = false;
+try {
+  STUDIO.init({
+    data: SITE_DATA, interactions: SITE_IXN, exercises: SITE_EXERCISES, foods: SITE_FOODS,
+    functionIds: PLAN_FUNCTIONS.map(f => f.id),
+  });
+  STUDIO_READY = true;
+  console.log('[studio] save-time safety ready — %d rules, %d compounds, %d exercises, %d foods, %d tools.',
+    STUDIO.RULES.length, (SITE_DATA.compounds || []).length, (SITE_EXERCISES.exercises || []).length,
+    (SITE_FOODS.foods || []).length, PLAN_FUNCTIONS.length);
+} catch (e) { console.error('[studio] save-time safety UNAVAILABLE:', e.message); }
+// The one answer a broken validator is allowed to give.
+function studioDown(res) {
+  return json(res, 503, { error: 'The safety checker could not load its own corpus, so nothing can be checked and nothing will be saved. That is a fault at this end, not a problem with your protocol.', refusals: [], warn: [], coverage: null });
+}
+// A protocol code: base64url over 6 random bytes, minted here. Same shape and same minting as
+// shared_plans.code — never derived from the title, never enumerable.
+function studioCode() { return crypto.randomBytes(6).toString('base64url'); }
 async function sendEmail(to, subject, html) {
   if (!RESEND_API_KEY) return false;
   try {
@@ -1059,6 +1103,33 @@ async function api(req, res, url) {
     catch (e) { console.error('[interest remove]', e.message); return see('state=down'); }
     return see('state=removed');
   }
+  // ---- POST /api/protocols/check — the Studio DRY RUN ----------------------------------------
+  // Registered HERE, ABOVE the `if (!db.enabled)` line below, and that placement is the point. This
+  // is the call the builder makes on every change so the reader sees a refusal WHILE assembling,
+  // not after they tap Publish. It reads the corpus and writes nothing, so it has no business
+  // needing a database — and "a user must not publish a dangerous pairing without it being shown"
+  // cannot be true if the SHOWING goes dark whenever Postgres does. Same engine, same answer, no
+  // write, no account.
+  if (seg[0] === 'protocols' && seg[1] === 'check' && !seg[2] && req.method === 'POST') {
+    if (!STUDIO_READY) return studioDown(res);
+    if (!sameOrigin(req)) return json(res, 403, { error: 'Bad origin' });
+    const b = await readBody(req, 2e5) || {};
+    let v;
+    try {
+      v = STUDIO.validate({ spec: b.spec, base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null, publish: b.status === 'published' });
+    } catch (e) { console.error('[studio check]', e.message); return studioDown(res); }
+    // validate() short-circuits on a malformed spec and returns WITHOUT a `safety` key — the shape
+    // refusal at studio-safety.js:225 is the live example. Reading v.safety.says unguarded turned
+    // every badly-shaped request into a 500 "Server error", so the one message that tells the user
+    // what is wrong with their protocol never reached them. Measured: POST with {items:[…]} instead
+    // of {spec:{v:1,items:[…]}} -> TypeError: Cannot read properties of undefined (reading 'says').
+    return json(res, 200, {
+      ok: v.ok, refusals: v.refusals, warn: v.warn, coverage: v.coverage,
+      says: v.safety ? v.safety.says : null,
+      engine: v.safety ? v.safety.engine : null,
+    });
+  }
+
   if (!db.enabled) return json(res, 503, { error: 'Accounts are not available right now.' });
   const method = req.method;
 
@@ -1658,6 +1729,113 @@ async function api(req, res, url) {
     await db.query('UPDATE protocol_requests SET status=$1 WHERE id=$2', [status, id]);
     return json(res, 200, { ok: true });
   }
+  // ===== THE PROTOCOL STUDIO (W7, 2026-08-09) ================================================
+  // Everything here goes through STUDIO.validate() — the same five rules the build enforces over
+  // the authored corpus, run again over a row the build will never see. The dry-run twin of this
+  // (POST /api/protocols/check) is registered further up, above the database guard, so the reader
+  // is shown a refusal while assembling even when Postgres is down.
+  //
+  // ANONYMOUS BUILD AND SAVE, AN ACCOUNT ONLY TO PUBLISH. Reading, assembling, saving a draft and
+  // running a protocol all work with no account. Publishing puts a name and a date on a document
+  // other people will read, and "built by nobody" is the fabricated-account defect.
+  if (seg[0] === 'protocols' && !seg[1] && method === 'POST') {
+    if (!STUDIO_READY) return studioDown(res);
+    const u = await currentUser(req);
+    const b = await readBody(req, 2e5); if (!b) return json(res, 400, { error: 'Bad request' });
+    const title = clean(b.title, 90); if (!title) return json(res, 400, { error: 'Name your protocol' });
+    const publish = b.status === 'published';
+    if (publish && !u) return json(res, 401, { error: 'Publishing puts your name on it, so publishing needs an account. Building one, saving it and running it do not.' });
+    let v;
+    try { v = STUDIO.validate({ spec: b.spec, base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null, publish }); }
+    catch (e) { console.error('[studio save]', e.message); return studioDown(res); }
+    // The 422 body carries the ENGINE'S OWN text and nothing the caller sent, so the client cannot
+    // dress a refusal up in a friendlier sentence and it cannot become a reflected-content sink.
+    if (!v.ok) return json(res, 422, { error: 'This protocol was not saved.', refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says });
+    const code = studioCode();
+    await db.query(`INSERT INTO studio_protocols(code,user_id,parent_code,depth,base_pid,base_rcid,title,spec,safety,status,published_at)
+      VALUES($1,$2,NULL,0,$3,$4,$5,$6,$7,$8,$9)`,
+    [code, u ? u.id : null, v.base_pid, v.base_rcid, title, JSON.stringify(v.spec), JSON.stringify(v.safety),
+      publish ? 'published' : 'draft', publish ? new Date() : null]);
+    return json(res, 200, { code, url: `${SITE_URL}/p/${code}`, status: publish ? 'published' : 'draft', warn: v.warn, coverage: v.coverage, says: v.safety.says });
+  }
+  // A REMIX STORES ONLY ITS DIFFERENCES. The client sends the resolved spec it edited; the server
+  // diffs it against the resolved PARENT and stores the patch. The diff happens here and not in the
+  // browser deliberately: a remix tab can sit open for an hour while its parent changes, and only
+  // the server can diff against what the parent is now.
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'remix' && method === 'POST') {
+    if (!STUDIO_READY) return studioDown(res);
+    const u = await currentUser(req);
+    const b = await readBody(req, 2e5); if (!b) return json(res, 400, { error: 'Bad request' });
+    const parent = (await db.query("SELECT * FROM studio_protocols WHERE code=$1 AND status='published'", [clean(seg[1], 16)])).rows[0];
+    if (!parent) return json(res, 404, { error: 'No such protocol' });
+    if (parent.depth >= STUDIO.MAX_DEPTH) return json(res, 422, { error: `This remix chain is already ${STUDIO.MAX_DEPTH} deep. Start a fresh protocol instead — past that, nobody can tell what changed from what.` });
+    const base = await STUDIO.resolve(parent, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(r => r.rows[0]));
+    if (!base.ok) return json(res, 422, { error: base.error });
+    const publish = b.status === 'published';
+    if (publish && !u) return json(res, 401, { error: 'Publishing puts your name on it, so publishing needs an account.' });
+    // Validated as the FULLY RESOLVED protocol, not as the patch. A change that is harmless on its
+    // own can resolve into a danger pairing with something it inherited.
+    let v;
+    try { v = STUDIO.validate({ spec: b.spec, base_pid: parent.base_pid, base_rcid: parent.base_rcid, publish }); }
+    catch (e) { console.error('[studio remix]', e.message); return studioDown(res); }
+    if (!v.ok) return json(res, 422, { error: 'This remix was not saved.', refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says });
+    const patch = STUDIO.diff(base.spec, v.spec);
+    const code = studioCode();
+    await db.query(`INSERT INTO studio_protocols(code,user_id,parent_code,depth,base_pid,base_rcid,title,spec,safety,status,published_at)
+      VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
+    [code, u ? u.id : null, parent.code, parent.depth + 1, parent.base_pid, parent.base_rcid,
+      clean(b.title, 90) || ('Remix of ' + parent.title), JSON.stringify(patch), JSON.stringify(v.safety),
+      publish ? 'published' : 'draft', publish ? new Date() : null]);
+    return json(res, 200, { code, url: `${SITE_URL}/p/${code}`, storedBytes: JSON.stringify(patch).length, warn: v.warn, coverage: v.coverage, says: v.safety.says });
+  }
+  // MOST USED. Never "works best". Sorted by clone count, which counts whether people STARTED it.
+  // `means` travels with the list so no surface can relabel it on its own.
+  if (seg[0] === 'protocols' && seg[1] === 'used' && !seg[2] && method === 'GET') {
+    const r = await db.query(`SELECT p.code,p.title,p.base_pid,p.base_rcid,p.clones,p.published_at,u.username AS by_user
+      FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id
+      WHERE p.status='published' AND p.clones > 0 ORDER BY p.clones DESC, p.published_at DESC LIMIT 12`);
+    return json(res, 200, { protocols: r.rows, label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.' });
+  }
+  // One clone per browser, no account. The fork_clones pattern, minus the reputation award: that
+  // award embedded the CALLER's voter key in its idempotency ref, which made public reputation
+  // unbounded. Nothing here writes to a leaderboard about a person.
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'clone' && method === 'POST') {
+    const code = clean(seg[1], 16); await readBody(req, 512);
+    const part = await resolveParticipant(req, res); const voterKey = part.key;
+    if (!code || !voterKey) return json(res, 400, { error: 'Missing' });
+    const r = (await db.query("SELECT * FROM studio_protocols WHERE code=$1 AND status='published'", [code])).rows[0];
+    if (!r) return json(res, 404, { error: 'No such protocol' });
+    const ins = await db.query('INSERT INTO studio_clones(code,voter_key) VALUES($1,$2) ON CONFLICT (code,voter_key) DO NOTHING RETURNING id', [code, voterKey]);
+    if (ins.rows[0]) await db.query('UPDATE studio_protocols SET clones=clones+1 WHERE code=$1', [code]);
+    return json(res, 200, { ok: true, code, counted: !!ins.rows[0] });
+  }
+  // Read one. Resolves the remix chain, and REVALIDATES against the corpus as it is TODAY — the
+  // stored verdict says what was true when it was saved, and a compound can be re-rated or
+  // reclassified afterwards. Both are returned, labelled, so a reader can see the difference rather
+  // than being handed a stale clearance.
+  if (seg[0] === 'protocols' && seg[1] && !seg[2] && method === 'GET') {
+    const code = clean(seg[1], 16);
+    const row = (await db.query('SELECT p.*, u.username AS by_user FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id WHERE p.code=$1', [code])).rows[0];
+    if (!row || row.status === 'draft') return json(res, 404, { error: 'No such protocol' });
+    if (row.status === 'withdrawn') {
+      // Kept, not 404ed: people linked to this, and remixes of it still resolve through it.
+      return json(res, 200, { code, status: 'withdrawn', title: row.title, by_user: row.by_user || null, spec: null, says: 'The person who wrote this withdrew it.' });
+    }
+    const r = await STUDIO.resolve(row, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(x => x.rows[0]));
+    if (!r.ok) return json(res, 200, { code, status: 'unresolvable', title: row.title, spec: null, says: r.error });
+    let now = null;
+    if (STUDIO_READY) {
+      try { const v = STUDIO.validate({ spec: r.spec, base_pid: row.base_pid, base_rcid: row.base_rcid, publish: false }); now = { refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says, at: v.safety.at }; }
+      catch (e) { console.error('[studio read]', e.message); }
+    }
+    return json(res, 200, {
+      code, status: row.status, title: row.title, by_user: row.by_user || null,
+      base_pid: row.base_pid, base_rcid: row.base_rcid, parent_code: row.parent_code, depth: row.depth,
+      clones: row.clones, published_at: row.published_at, spec: r.spec,
+      safetyWhenSaved: row.safety, safetyNow: now,
+    });
+  }
+
   // --- protocol forks (community variations — UGC engine) ---
   if (seg[0] === 'forks' && seg[1] === 'popular' && method === 'GET') {
     // real stacks rank above demo fixtures; as real ones accumulate they push demos past the limit

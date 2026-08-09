@@ -506,6 +506,61 @@ const ASSERTIONS = {
   //      supply sentence. A "fix" that emptied the search entirely would pass 1 and 2.
   // PROVE IT by deleting the `consumer_renderable !== false` filter in catalogSearch()
   // (site/app.js) — 1 fails; or by dropping the heldHTML concat in the results renderer — 2 fails.
+  // ---- W7 (2026-08-09): A USER MAY NOT PUBLISH A DANGER PAIRING WITHOUT IT BEING SHOWN --------
+  // Every honesty gate on this site runs at BUILD time, over files on disk. A user-built protocol
+  // is written afterwards, into a database row no build will ever read, so the same rules run again
+  // at SAVE out of studio-safety.js — and assertStudioSafetyMirrorsBuildGates() in build/parse.js
+  // proves the two halves stay paired. What the BUILD cannot prove is that the engine is actually
+  // WIRED to a request. That is this.
+  //
+  // AND IT RUNS WITH NO DATABASE ON PURPOSE. This smoke run has no DATABASE_URL, so every write
+  // endpoint 503s — which is exactly the condition under which "the reader is shown the danger"
+  // must still be true. POST /api/protocols/check is registered ABOVE the db.enabled guard for that
+  // reason: it reads the corpus, writes nothing, needs no account, and if the showing went dark
+  // whenever Postgres did, the rule this gate is named after would be false half the time.
+  //
+  // FOUR THINGS, and the last is the one that makes the other three mean anything:
+  //   1. a danger pairing is refused, and the refusal carries the interaction row's OWN text
+  //   2. a restricted substance is refused at publish
+  //   3. coverage is always reported — an empty warn list over 0 checked compounds is the ❔ state
+  //   4. THE POSITIVE CONTROL: an ordinary protocol is accepted. An engine that refused everything
+  //      would pass 1-3 and be useless.
+  // PROVE IT by downgrading the citrulline/PDE-5 rule's tier from danger to blunt in
+  // site/interactions.js, or by deleting the r5 call from studio-safety.js validate().
+  '/stack': [{
+    name: 'aUserCannotPublishADangerPairingWithoutBeingShownIt',
+    why: 'W7: a user-built protocol is written after the build, so the build gates never see it; the save-time engine is the only thing between a reader and a published instruction to combine two things this site itself calls dangerous',
+    evaluate: async () => {
+      const post = async (spec, status) => {
+        const r = await fetch('/api/protocols/check', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ spec, status }),
+        });
+        if (r.status !== 200) return { _status: r.status };
+        return r.json();
+      };
+      // 1 + 2 — citrulline + a PDE-5 inhibitor. The site's own compendium says this pairing can
+      // drop blood pressure dangerously, and /stack renders it ☠️ today.
+      const d = await post({ v: 1, items: [{ k: 'c', id: 'c13' }, { k: 'c', id: 'c116' }] }, 'published');
+      if (d._status) return `POST /api/protocols/check answered ${d._status} — the safety check is not reachable. It is registered above the database guard precisely so that it works when nothing else does.`;
+      if (d.ok !== false) return 'the save-time engine accepted citrulline + a PDE-5 inhibitor for publication. /stack renders that pair ☠️ "PDE-5 inhibitor plus another blood-pressure-lowering agent" — a reader would be handed a public instruction to combine two things this site itself calls dangerous.';
+      const danger = (d.refusals || []).find(x => x.rule === 'danger-interaction');
+      if (!danger) return `the pairing was refused but not for being dangerous: ${JSON.stringify((d.refusals || []).map(x => x.rule))}. A refusal that names the wrong reason teaches the reader the wrong thing.`;
+      if (!/blood.pressure/i.test(danger.message)) return `the danger refusal does not carry the interaction row's own words: "${String(danger.message).slice(0, 140)}". The client must not be able to dress this up in a friendlier sentence of its own.`;
+      if (!(d.refusals || []).some(x => x.rule === 'restricted-substance')) return 'a prescription-only medicine was not refused at publish — a published protocol is the advertising surface (CLAUDE.md rule 7)';
+      // 3 — coverage, always, and the ❔ sentence with it.
+      if (!d.coverage || typeof d.coverage.checked !== 'number' || typeof d.coverage.of !== 'number') return 'the verdict carries no coverage. An empty warning list can mean "nothing found" or "nothing checkable", and those are not the same sentence.';
+      if (!d.says) return 'the verdict carries no sentence a reader can be shown';
+      const blind = await post({ v: 1, items: [{ k: 'c', id: 'c0' }, { k: 'c', id: 'c4' }] }, 'published');
+      if (blind.coverage && blind.coverage.checked === 0 && !/absence of data|not enough to check/i.test(blind.says || '')) {
+        return `a protocol the engine holds no firable pharmacology for reported "${blind.says}" — 0 of ${blind.coverage.of} checked is the ❔ state, and it must never read as a clearance`;
+      }
+      // 4 — THE POSITIVE CONTROL.
+      const ok = await post({ v: 1, items: [{ k: 'c', id: 'c0', dose: 5 }, { k: 'x', id: '3_4_Sit-Up', sets: 4, reps: '6-8' }, { k: 'f', id: 'f0' }] }, 'published');
+      if (ok.ok !== true) return `an ordinary protocol (creatine at a dose on its own published ladder, one exercise, one food) was REFUSED: ${JSON.stringify((ok.refusals || []).map(x => x.rule + ': ' + String(x.message).slice(0, 90)))}. An engine that refuses everything proves nothing.`;
+      return null;
+    },
+  }],
   '/plan': [{
     name: 'theStudioListNeverOffersAConsumerUnrenderableCompound',
     why: 'W7: 95 of 171 compounds are authored consumer_renderable:false because their own page refuses to render self-dosing; a plan builder that hands out a "+ Add" for them is the same instruction by another route (CLAUDE.md rules 6 and 7)',
