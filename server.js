@@ -2823,9 +2823,25 @@ const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'musc
 // page starts answering 404. `progress` is the one the smoke test caught when this list was missing.
 const SPA_ONLY_ROUTES = [
   'about', 'admin', 'anatomy', 'az', 'body', 'browse', 'clinic', 'exercise', 'fork', 'fuel',
-  'legend', 'pathways', 'plan', 'pro', 'progress', 'pros', 's', 'solve', 'stack', 'stewardship',
-  'u', 'where',
+  'legend', 'p', 'pathways', 'plan', 'pro', 'progress', 'pros', 's', 'solve', 'stack',
+  'stewardship', 'studio', 'u', 'where',
 ];
+// W7 C7 (2026-08-10): 'studio' and 'p'.
+// MEASURED before this: `curl localhost:8099/studio` -> 404 and `curl localhost:8099/p/abc` -> 404,
+// while POST /api/protocols has been minting `${SITE_URL}/p/${code}` as the share URL since
+// 2026-08-09. The one endpoint whose whole job is to hand somebody a link was handing out a link
+// this server answers 404 to.
+// Neither is prerendered, and that is deliberate: both are interactive views over live database
+// rows, so a prerendered twin would be a stale document with somebody else's protocol in it.
+// assertLinkGraph stays green because nothing in an emitted .html links to either path — every
+// inbound link is `#/studio` or `#/p/<code>`, and norm() in prerender.js returns null for an href
+// beginning with '#'. The cost, stated rather than hidden: a crawler and a no-JS reader cannot
+// reach the Studio. That is the correct trade for a builder, and it is why the Studio is NOT in
+// the global nav — a nav link that does nothing for 90% of traffic is worse than no link.
+// 'p' is safe as a one-letter prefix: the prerendered-file lookup runs BEFORE this list, and the
+// only root paths beginning with p are pathway/, pathways.html, physiology/, plan.html, problem/
+// and protocol/ — all matched as whole segments. 'u' is the existing precedent for a one-letter
+// live route.
 
 // ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
 // Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
