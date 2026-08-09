@@ -3492,6 +3492,67 @@ function blankComments(src) {
   console.log('[parse] one interaction matcher OK — %d functions, 1 definition each in %s, %d reader(s) loading it.', FNS.length, OWNER, present.length);
 })();
 
+// ---------- SAVE-TIME SAFETY MIRRORS BUILD-TIME SAFETY (W7, 2026-08-09) ----------
+// THE PROBLEM THIS GATE EXISTS FOR, stated once: every safety rule on this site is enforced by a
+// function in this file or in build/prerender.js, running over files on disk, before a deploy. A
+// user-built protocol is written by somebody else, AFTER the deploy, into a database row that no
+// build will ever read. So each of those rules needs a twin that runs at SAVE.
+//
+// And the failure mode is not that a twin is wrong. It is that somebody adds a SIXTH build gate
+// next year and never writes its twin. Nothing would fail. The Protocol Studio would just quietly
+// stop enforcing one more rule than it used to, and nobody would find out from the build.
+//
+// So studio-safety.js exports RULES — {id, mirrors, says} — and this checks BOTH directions:
+//   forward  · every `mirrors` names a function that actually exists in this file or prerender.js
+//   backward · every build gate listed in SAFETY_FAMILY has a save-time twin
+// SAFETY_FAMILY is written HERE, by hand, deliberately. It is the list of build gates whose subject
+// matter a user protocol can reproduce. Hand-maintaining it is the thing this gate prevents
+// elsewhere, and it is accepted here because the alternative — auto-detecting which gates are
+// "safety" — is a heuristic, and a heuristic gate is worse than a list somebody has to think about.
+//
+// PROVE IT by deleting one entry from studio-safety.js's RULES: this must exit 1 naming the
+// orphaned build gate. Then point one `mirrors` at a function that does not exist: it must exit 1
+// naming that too.
+(function assertStudioSafetyMirrorsBuildGates() {
+  const SAFETY_FAMILY = ['assertAvoidMovements', 'assertDoseCalculators', 'assertRegulatoryAxes', 'assertHumanEvidenceStars', 'assertInteractionCoverage'];
+  const bad = [];
+  let RULES;
+  try { RULES = require(path.join(ROOT, 'studio-safety.js')).RULES; }
+  catch (e) { console.error('\n[parse] SAVE-TIME SAFETY GATE FAILED — studio-safety.js did not load: ' + e.message); process.exit(1); }
+  if (!Array.isArray(RULES) || !RULES.length) {
+    console.error('\n[parse] SAVE-TIME SAFETY GATE FAILED — studio-safety.js exports no RULES. A gate over an empty set always passes.');
+    process.exit(1);
+  }
+  const here = fs.readFileSync(__filename, 'utf8');
+  const pre = fs.readFileSync(path.join(ROOT, 'build', 'prerender.js'), 'utf8');
+  const defined = (fn) => here.indexOf('function ' + fn + '(') >= 0 || pre.indexOf('function ' + fn + '(') >= 0;
+  const mirrored = new Set();
+  RULES.forEach((r) => {
+    if (!r || !r.id) { bad.push('a rule in studio-safety.js has no id'); return; }
+    if (!r.says) bad.push(`save-time rule "${r.id}" states no rule in words — a refusal a reader cannot be told the reason for is not a rule, it is a bug`);
+    if (!r.mirrors) { bad.push(`save-time rule "${r.id}" names no build gate. Every save-time rule exists because a build gate exists; one that mirrors nothing is a rule nobody can audit.`); return; }
+    if (!defined(r.mirrors)) bad.push(`save-time rule "${r.id}" says it mirrors ${r.mirrors}(), which is not defined in build/parse.js or build/prerender.js`);
+    mirrored.add(r.mirrors);
+  });
+  SAFETY_FAMILY.forEach((fn) => {
+    if (!defined(fn)) bad.push(`SAFETY_FAMILY names ${fn}(), which no longer exists — this gate has stopped covering it`);
+    if (!mirrored.has(fn)) bad.push(`${fn}() refuses this at BUILD time and nothing refuses it at SAVE time. A user protocol is written after the build, so that rule is not enforced against user protocols at all. Add a rule to studio-safety.js RULES with mirrors:'${fn}'.`);
+  });
+  // studio-safety.js must stay PURE — build/parse.js require()s it, so a side effect there becomes
+  // a side effect of the build, and a module that reached for DATABASE_URL would break the build on
+  // any machine without one.
+  const src = blankComments(fs.readFileSync(path.join(ROOT, 'studio-safety.js'), 'utf8'));
+  [[/require\(['"]pg['"]\)/, "require('pg')"], [/require\(['"]node:fs['"]\)|require\(['"]fs['"]\)/, "require('fs')"],
+    [/DATABASE_URL/, 'DATABASE_URL'], [/require\(['"]\.\/db(\.js)?['"]\)/, "require('./db.js')"], [/\bfetch\s*\(/, 'fetch()']]
+    .forEach(([re, what]) => { if (re.test(src)) bad.push(`studio-safety.js reaches for ${what}. build/parse.js require()s this module inside this gate, so it must be pure — no database, no filesystem, no network.`); });
+  if (bad.length) {
+    console.error('\n[parse] SAVE-TIME SAFETY GATE FAILED — refusing to build:');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    process.exit(1);
+  }
+  console.log('[parse] save-time safety OK — %d build gates in the safety family, %d save-time rules, every one paired.', SAFETY_FAMILY.length, RULES.length);
+})();
+
 // ---------- HANDLE-FROM-CONFIG GATE (W4, 2026-08-02) ----------
 // The owner's X handle lives in data/site_config.json and nowhere else. Before this gate it was
 // typed into build/prerender.js:494 — the Organization JSON-LD `sameAs`, which is emitted into
