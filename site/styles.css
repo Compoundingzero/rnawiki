@@ -63,6 +63,10 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .brand{font-weight:800;font-size:1.15rem;color:var(--accent);letter-spacing:-.02em}
 .brand span{color:#000}
 .search-wrap{position:relative;flex:1;max-width:520px}
+/* The topbar search is a real <form action="/solve" method="get"> as of 2026-08-09; before that it
+   was an <input> in a bare <div> and pressing Enter did nothing, on every page, for every reader.
+   The form is layout-transparent so the wrap keeps behaving exactly as it did. */
+.tb-search{display:block;margin:0}
 #search{width:100%;min-height:44px;padding:.55rem .9rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:.95rem;outline:none}
 #search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(13,148,136,.12)}
 .search-results{position:absolute;top:110%;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:12px;max-height:60vh;overflow:auto;box-shadow:var(--shadow);padding:.3rem}
@@ -4606,8 +4610,10 @@ html[data-state="removed"] .i-form{display:none}
    by arithmetic.
 
    THREE PIECES OF SITE CHROME ARE SUPPRESSED ON THIS PAGE AT PHONE WIDTH, and only here:
-     .search-wrap  the topbar search — a DUPLICATE of the control 350px below it, and worth 52px of
-                   the only screen that matters. Desktop keeps it.
+     .search-wrap  the topbar search. It is now a real <form action="/solve"> on all 620 documents
+                   (it used to be an <input> in a bare <div> — dead for the ~90% who never run JS),
+                   so this is not hiding a broken control: it is hiding a DUPLICATE of the control
+                   350px below it. Worth 52px of the only screen that matters. Desktop keeps it.
      .account-slot "Sign in" sat 126px above a headline on a page that promises "no account, ever".
                    It is the second-most prominent control on the first screen and it contradicts
                    the page. It is JS-rendered and it is present on all 567 other pages.

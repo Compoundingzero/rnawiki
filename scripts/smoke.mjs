@@ -2504,6 +2504,13 @@ try {
     for (const [lit, what] of [['/api/interest', 'the interest form'], ['type="email"', 'an email field'], ['Count me in', "the interest form's submit button"], ['Show me the root cause', 'the singular root-cause promise']]) {
       if (main.indexOf(lit) >= 0) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page still contains ${what} (${lit}); that is the second call to action growing back.`);
     }
+    // THE TOPBAR SEARCH IS A REAL FORM ON EVERY PAGE (2026-08-09). It used to be an <input> in a
+    // bare <div> with no <form> anywhere above it, so for the ~90% of traffic that never runs
+    // JavaScript the site's most prominent-looking control did nothing at all, on all 620 documents.
+    for (const r of ['/', '/solve', '/c/creatine-monohydrate']) {
+      const h = await (await fetch(BASE + r)).text();
+      if (!/<form class="tb-search" action="\/solve" method="get"[^>]*>\s*<input id="search" name="q"/.test(h)) fail.push(`ASSERTION landingPageIsOneCta FAILED — ${r} serves a topbar search that is not inside a real GET form; with JavaScript off it cannot be submitted.`);
+    }
   }
 
   // ------------------------------------------------- the /compare withdrawal notice

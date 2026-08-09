@@ -493,7 +493,16 @@ ${crumbLd}${ld}
         SAME PAGE printed "Filter 171 compounds by name…", because that one interpolates
         D.compounds.length. A number a reader can check on the next line down, and it was wrong.
         assertCorpusCountCopy() below fails the build on any served document that disagrees. */ ''}
-  <div class="search-wrap"><input id="search" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"><div id="search-results" class="search-results" hidden></div></div>
+  ${/* 2026-08-09: A REAL FORM, ON ALL 620 DOCUMENTS. This was an <input id="search"> inside a bare
+        <div> with no <form> anywhere above it — measured in hydrated Chrome,
+        `document.querySelector('#search').closest('form') === null`. It is the topmost interactive
+        element on every page of this site and, for the ~90% of traffic that never runs JavaScript,
+        it did nothing at all: there was no way to submit it. Wrapping it in a GET form to /solve
+        costs one element and makes Enter work in both documents, for every reader, on every page.
+        server.js's searchSolve() already filters /solve?q= server-side with no script.
+        The JS path is unchanged: app.js binds `input` and `focus` on #search and paints
+        #search-results; nothing binds submit, so Enter now navigates instead of doing nothing. */ ''}
+  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"></form><div id="search-results" class="search-results" hidden></div></div>
   ${/* W5c (2026-08-02): A-Z AND BROWSE WERE IN THE FOOTER ONLY. Measured hydrated at 390x844 on
         /az: opening the ☰ drawer gave exactly four links — /solve, /where, /plan, /learn — and
         neither of the site's two INDEX pages was among them. On desktop that costs nothing: the
