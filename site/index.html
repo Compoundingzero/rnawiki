@@ -64,6 +64,12 @@
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
+<!-- W7 (2026-08-09): THE interaction matcher, one definition, three readers (app.js here,
+     build/parse.js and studio-safety.js under node). It must load AFTER data.js and
+     interactions.js and BEFORE app.js: app.js calls RNAWIKI_IXN_ENGINE.init(D, RXN) at module
+     scope. If it 404s, interactionPanel() prints the ❔ "checker did not load" state rather than
+     a clearance it never computed. -->
+<script src="/ixn-engine.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>

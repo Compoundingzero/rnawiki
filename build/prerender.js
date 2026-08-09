@@ -525,6 +525,10 @@ ${/* W5b: the generated route -> [title, description] map. Must load BEFORE app.
       setPageMeta() runs inside the first route() call. It is written by this same script from
       the bytes of these very pages — see "ONE HEAD, TWO DOCUMENTS" below. */ ''}
 <script src="/head.js"></script>
+${/* W7 (2026-08-09): THE interaction matcher — one definition, three readers. After data.js and
+      interactions.js, before app.js, because app.js calls RNAWIKI_IXN_ENGINE.init(D, RXN) at
+      module scope. site/index.html and site/home.html carry the same tag. */ ''}
+<script src="/ixn-engine.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>`;

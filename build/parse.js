@@ -1830,17 +1830,15 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   const R = sandbox.window.RNAWIKI_INTERACTIONS;
   if (!R) { console.error('[parse] site/interactions.js did not define window.RNAWIKI_INTERACTIONS'); process.exit(1); }
   const bad = [];
-  // app.js's compoundTags(), reproduced exactly — if these two ever diverge the number is a lie.
-  // W3.6 (2026-08-02): both copies now key on the compound ID, not on a substring of its name.
-  // That is deliberately a SET MEMBERSHIP test rather than a string algorithm: two hand-synced
-  // copies of an algorithm can drift in behaviour, two copies of `indexOf(c.id) >= 0` cannot.
-  // `r.m` and `r.not` are build-time-only from here on — assertNameTagAllowlist() below is the
-  // only thing that reads them, and nothing at runtime does.
-  const tagsOf = (c) => {
-    const s = new Set((R.catTags || {})[c.category] || []);
-    (R.nameTags || []).forEach((r) => { if ((r.ids || []).indexOf(c.id) >= 0) r.t.forEach((t) => s.add(t)); });
-    return [...s];
-  };
+  // W7 (2026-08-09): NOT A COPY ANY MORE. This used to be app.js's compoundTags() reproduced by
+  // hand, with a comment saying "if these two ever diverge the number is a lie" — and save-time
+  // safety for user-built protocols was about to need it a third time, on the server. The matcher
+  // now has exactly one definition, in site/ixn-engine.js, and this is a spread of that call.
+  // assertOneInteractionMatcher() below fails the build if any reader defines its own again.
+  // `r.m` and `r.not` are build-time-only — assertNameTagAllowlist() below is the only thing that
+  // reads them, and nothing at runtime does.
+  const IXN = require(path.join(ROOT, 'site', 'ixn-engine.js')).init({ compounds }, R);
+  const tagsOf = (c) => [...IXN.compoundTags(c)];
   const needed = new Set(); (R.rules || []).forEach((r) => r.need.forEach((n) => needed.add(n[0])));
   const rows = compounds.map((c) => ({ name: c.name, cls: c.regulatory_class, tags: tagsOf(c) }));
   const produced = new Set(); rows.forEach((r) => r.tags.forEach((t) => produced.add(t)));
@@ -1998,18 +1996,11 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   // site/app.js stackInteractions() carries the identical predicate; this copy is what fireOn()
   // below and the pathway-sibling pairFlags at the bottom of this function use, so the compound
   // page and the /stack page cannot disagree about the same two molecules.
+  // W7 (2026-08-09): both of these moved to site/ixn-engine.js with the rest of the matcher, and
+  // are read from there. `dupeOf` stays only because assertDuplicateSubstances() below inspects
+  // the grouping itself rather than asking a question about a pair.
   const dupeOf = {};
   (R.duplicates || []).forEach((g) => (g.ids || []).forEach((id) => (dupeOf[id] = dupeOf[id] || []).push(g)));
-  const sameSubstance = (a, b) => {
-    const ga = dupeOf[a.id] || [], gb = dupeOf[b.id] || [];
-    return ga.length === 1 && gb.length === 1 && ga[0] === gb[0];
-  };
-  const distinctCarriers = (cs, n) => {
-    if (cs.length < n) return false;
-    if (n <= 1) return cs.length >= 1;
-    for (let i = 0; i < cs.length; i++) for (let j = i + 1; j < cs.length; j++) if (!sameSubstance(cs[i], cs[j])) return true;
-    return false;
-  };
   // ---- assertDuplicateSubstances -------------------------------------------------------------
   // Three checks, in the order they would each have caught the shipped defect:
   //  1. DISCOVERY. Any nameTag whose `ids` name two compounds is, by construction, two pages the
@@ -2057,7 +2048,7 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   const fireOn = (a, b) => {
     const byTag = {};
     [a, b].forEach((c) => tagsOf(c).forEach((t) => (byTag[t] = byTag[t] || []).push(c)));
-    const f = (R.rules || []).filter((rule) => rule.need.every((n) => distinctCarriers(byTag[n[0]] || [], n[1])));
+    const f = (R.rules || []).filter((rule) => rule.need.every((n) => IXN.distinctCarriers(byTag[n[0]] || [], n[1])));
     const seen = {}; f.forEach((x) => { seen[x.id] = 1; });
     return f.filter((x) => !(x.notIf || []).some((id) => seen[id])).map((rule) => {
       const inv = new Set(); rule.need.forEach((n) => (byTag[n[0]] || []).forEach((c) => inv.add(c.id)));
@@ -2446,7 +2437,7 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
       // /c/caffeine-thermogenic rendered "Caffeine ☠️ Stacked stimulants — cardiovascular strain"
       // inside its own "🧬 Acts on the same pathway" list — the same fabricated interaction as on
       // /stack, on a second surface, measured hydrated at 390x844.
-      const fired = (R.rules || []).filter((rule) => rule.need.every((n) => distinctCarriers(byTag[n[0]] || [], n[1])));
+      const fired = (R.rules || []).filter((rule) => rule.need.every((n) => IXN.distinctCarriers(byTag[n[0]] || [], n[1])));
       const seen = {}; fired.forEach((f) => { seen[f.id] = 1; });
       // W5.5: soloRule here too — this list is RENDERED beside a pathway sibling on the compound
       // page, so without it c112 would carry "Slows the enzyme that clears statins" next to every
@@ -3370,6 +3361,52 @@ function blankComments(src) {
     process.exit(1);
   }
   console.log('[parse] one-account-type gate OK — %d files, 0 professional-tier surfaces (%d banned patterns).', FILES.length, BANNED.length);
+})();
+
+// ---------- ONE INTERACTION MATCHER (W7, 2026-08-09) ----------
+// This file used to carry a hand-written second copy of site/app.js's compoundTags(), under the
+// name tagsOf(), with a comment saying "if these two ever diverge the number is a lie" — and the
+// pathway-sibling block below said out loud what a third copy would cost. Save-time safety for
+// user-built protocols (studio-safety.js) needs the same verdict a THIRD time, on the server.
+// Three hand-synced copies of the predicate that decides "is this pair dangerous" is not a risk,
+// it is a scheduled defect. So the matcher lives in site/ixn-engine.js and all three read it.
+//
+// The gate checks two things per reader: it does not DEFINE any of the four matcher functions, and
+// it does LOAD the owner. The second half matters more than the first — a reader that quietly
+// stopped loading the shared file and started answering the question some other way would leave
+// four absent definitions and a clean pass.
+//
+// PROVE IT by pasting `function compoundTags(c) { … }` back into site/app.js, or a second
+// `function stackInteractions(` into server.js: this must exit 1 naming the file and the line.
+(function assertOneInteractionMatcher() {
+  const OWNER = 'site/ixn-engine.js';
+  const FNS = ['compoundTags', 'stackInteractions', 'distinctCarriers', 'sameSubstance'];
+  const READERS = ['site/app.js', 'server.js', 'build/parse.js', 'studio-safety.js'];
+  const bad = [];
+  if (!fs.existsSync(path.join(ROOT, OWNER))) {
+    console.error(`\n[parse] ONE-INTERACTION-MATCHER GATE FAILED — ${OWNER} does not exist, so this gate is checking nothing, which is worse than failing.`);
+    process.exit(1);
+  }
+  // The owner must define all four, or the gate is enforcing that nobody has the matcher at all.
+  const own = blankComments(fs.readFileSync(path.join(ROOT, OWNER), 'utf8'));
+  FNS.forEach((fn) => { if (own.indexOf('function ' + fn + '(') < 0) bad.push(`${OWNER} does not define ${fn}() — it is supposed to be the ONE definition`); });
+  READERS.forEach((rel) => {
+    const p = path.join(ROOT, rel);
+    if (!fs.existsSync(p)) return;                       // studio-safety.js lands in a later commit
+    const src = blankComments(fs.readFileSync(p, 'utf8'));
+    FNS.forEach((fn) => {
+      const re = new RegExp('(function\\s+' + fn + '\\s*\\(|(?:const|let|var)\\s+' + fn + '\\s*=)', 'g');
+      let m; while ((m = re.exec(src))) bad.push(`${rel}:${src.slice(0, m.index).split('\n').length} defines ${fn}() — the interaction matcher lives in ${OWNER} and is READ from there. A second definition is a second answer to "is this pair dangerous".`);
+    });
+    if (src.indexOf('ixn-engine') < 0) bad.push(`${rel} never loads ${OWNER} — a reader that does not read the shared matcher is running its own`);
+  });
+  if (bad.length) {
+    console.error('\n[parse] ONE-INTERACTION-MATCHER GATE FAILED — refusing to build:');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    process.exit(1);
+  }
+  const present = READERS.filter((r) => fs.existsSync(path.join(ROOT, r)));
+  console.log('[parse] one interaction matcher OK — %d functions, 1 definition each in %s, %d reader(s) loading it.', FNS.length, OWNER, present.length);
 })();
 
 // ---------- HANDLE-FROM-CONFIG GATE (W4, 2026-08-02) ----------

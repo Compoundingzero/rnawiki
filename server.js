@@ -29,7 +29,10 @@ const ASSET_VER = (() => {
     // W5b: head.js is in the hash because it is the route -> <title>/description map every page
     // now loads. A build that changes a title and not this hash would serve the new HTML with the
     // previous head map still cached, and the tab would go back to saying the old thing.
-    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js', 'interactions.js', 'head.js', 'foods.js', 'exercises.js', 'businesses.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
+    // W7: ixn-engine.js is in the hash for the same reason head.js is — it is THE interaction
+    // matcher, loaded by every page, and a stale cached copy would give a reader a different
+    // safety verdict from the one this deploy's data.js and interactions.js were gated against.
+    for (const f of ['app.js', 'styles.css', 'data.js', 'facts.js', 'interactions.js', 'ixn-engine.js', 'head.js', 'foods.js', 'exercises.js', 'businesses.js']) { try { h.update(fs.readFileSync(path.join(DIR, f))); } catch (e) {} }
     return h.digest('hex').slice(0, 10);
   } catch (e) { return String(Date.now()); }
 })();
@@ -39,7 +42,7 @@ function versionAssets(html) {
   // W5b: head.js joins the list. It is regenerated on every build and holds the <title> and
   // description of all 620 routes, so a stale cached copy would put the previous deploy's titles
   // back in the tab on every route the SPA renders.
-  return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js|head\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
+  return html.replace(/((?:src|href)=")(\/?(?:app\.js|styles\.css|data\.js|facts\.js|interactions\.js|ixn-engine\.js|head\.js))(?:\?v=[^"]*)?(")/g, (m, a, b, c) => a + b + '?v=' + ASSET_VER + c);
 }
 // ---- A QUERY STRING IS NOT A PAGE (2026-08-06) -------------------------------------------------
 // MEASURED with curl against this server on all 8 parameterised URL shapes the codebase can
