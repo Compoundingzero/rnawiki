@@ -3174,10 +3174,10 @@ function blankComments(src) {
 // PROVE IT by putting one of the originals back, e.g. change the /compare index line in
 // build/prerender.js to "We do not publish a" and re-run `node build/parse.js`. It must exit 1.
 (function assertSingleVoice() {
-  // build/interest.js added 2026-08-08: it is the fourth file that generates reader-facing copy
+  // build/landing.js (was build/interest.js) added 2026-08-08: it is the fourth file that generates reader-facing copy
   // (all of /interest), and a gate that does not read the newest renderer has stopped covering the
   // newest copy.
-  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
+  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/landing.js'];
   // "us" is matched lower-case only, so "US dollars" and "US$" survive; 'We' with no following
   // lower-case word survives too, which is what keeps the ['Su','Mo','Tu','We'] day labels legal.
   const PATTERNS = [
@@ -3244,10 +3244,10 @@ function blankComments(src) {
 // `<span class="vote-badge" hidden>⚠ Expert review needed</span>` in site/app.js — and re-run
 // `node build/parse.js`. It must exit 1 naming that file, line and phrase.
 (function assertNoCredentialClaims() {
-  // build/interest.js added 2026-08-08: it is the fourth file that generates reader-facing copy
+  // build/landing.js (was build/interest.js) added 2026-08-08: it is the fourth file that generates reader-facing copy
   // (all of /interest), and a gate that does not read the newest renderer has stopped covering the
   // newest copy.
-  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
+  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/landing.js'];
   const CLAIMS = [
     // 2026-08-08 — WIDENED. This pattern required the professional noun to be the VERY NEXT WORD,
     // so server.js's live 403 body — "Compound pages are maintained by verified pharmacology
@@ -3393,10 +3393,10 @@ function blankComments(src) {
 // `placeholder="e.g. hyrox_felix"` in site/app.js — and re-run `node build/parse.js`. It must
 // exit 1 naming the file and line.
 (function assertHandleFromConfig() {
-  // build/interest.js added 2026-08-08: it is the fourth file that generates reader-facing copy
+  // build/landing.js (was build/interest.js) added 2026-08-08: it is the fourth file that generates reader-facing copy
   // (all of /interest), and a gate that does not read the newest renderer has stopped covering the
   // newest copy.
-  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/interest.js'];
+  const FILES = ['site/app.js', 'build/prerender.js', 'server.js', 'build/landing.js'];
   const handle = data.site.x.handle;
   const bad = [];
   // Usernames that belong to a real person and must never be shipped as an example. Felix's own

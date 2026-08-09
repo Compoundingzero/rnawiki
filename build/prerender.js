@@ -380,11 +380,10 @@ function tocHtml(heads, minutes) {
 // page leaves 16 and none are. You cannot fix that by shortening — only by attaching a meaning at
 // the point of use.
 const { glossify: _glossify, compile: _compileGloss } = require('./glossify.js');
-// The interest-capture landing copy (2026-08-08), folded into the home page the same day it shipped
-// at /interest. Its own file because it is the one part of this site that is AUTHORED COPY rather
-// than generated from the corpus — see the note at the top of build/interest.js. This file gains
-// this require, four placeholders in homeBody, and one gate.
-const INTEREST = require('./interest.js');
+// The landing copy on "/" (build/landing.js, 2026-08-09 — supersedes build/interest.js). Its own
+// file because it is the one part of this site that is AUTHORED COPY rather than generated from the
+// corpus. This file gains this require, four placeholders in homeBody, and one gate.
+const LANDING = require('./landing.js');
 const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
 const GLOSS_COMPILED = _compileGloss(GLOSSARY);
 let _glossLinks = 0;
@@ -2495,106 +2494,126 @@ add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal �
 
 // ---- THE HOME PAGE: ONE DOCUMENT, ONE SOURCE -------------------------------------------------
 // Written to home.html. server.js serves it for "/", and site/app.js CAPTURES it at boot rather
-// than rendering a second copy (see HOME_HTML there). Until 2026-07-30 there were TWO
-// hand-maintained home pages -- `homeBody` here and `home()` in app.js -- and they had drifted
-// into genuinely different pages: this one had no search input and no seed chips, so the ~90% of
-// traffic that never runs JavaScript could not use the page's FIRST call to action at all, while
-// the SPA had no problem list and no crawlable goal labels. That is the sixth recorded instance on
-// this project of a prerendered page and its hydrated twin drifting apart. There is now no twin:
-// this string is the only definition of the home page that exists.
+// than rendering a second copy (see HOME_HTML there). There is no hydrated twin: this string is the
+// only definition of the home page that exists.
 //
-// The page is a funnel with exactly ONE conversion target and nothing else:
-//   CTA #1  the protocol search in the hero, plus pre-filled chips (which ARE CTA #1, pre-typed)
+// 2026-08-09 — THE FULL LANDING OVERHAUL. The owner's brief, verbatim: "the landing page looks
+// horrible right now. the copywrite does not flow. i just need 1 CTA: search and protocol. You can
+// remove all the expression of interest portion. optimize the landing page based on 'Turned away,
+// priced out, or told it was nothing from the healthcare system'."
 //
-// It used to have a CTA #2 -- the newsletter, "the MAIN ask", stated once in full and once as a
-// closing line. The whole newsletter was removed on 2026-08-06 (owner's decision), so both
-// placements are gone and the page now terminates on the goal index. THERE IS DELIBERATELY NO
-// REPLACEMENT CLOSING CTA: inventing one would mean writing an ask nobody asked for. If a closing
-// CTA is wanted, /solve is the obvious candidate -- it is already in the topbar and in the footer
-// of every page -- but that is a copy decision, not a mechanical one.
+// WHAT THE PAGE NOW DOES, IN ORDER: this is about me -> nobody worked it out with you -> here are
+// six things you can tap, and none of them has one cause -> (below the fold) the recognition, the
+// six real causes of tiredness as six real links, the receipt, the honest limit, the worked
+// example, the limits of the site, and the same one call to action again.
 //
-// Cut from this document, with the reason each cut costs nothing:
-//   * the 7-category / 52-link "Start a protocol" farm -- all 52 hrefs are byte-identical to the
-//     ones on /solve (verified: 0 links on home are absent from /solve), and /solve is in the
-//     topbar nav AND the footer of all 514 pages, so every protocol page stays 2 hops from home.
-//   * `.why-rna` -- 108 words of brand etymology. It answers "why is this site called RNAwiki?",
-//     which is nobody's reason for arriving. Moved verbatim to /about, which is prerendered and
-//     already holds the site's disclaimer. Nothing is destroyed.
-//   * `.how-3` -- the same three steps as the worked example, told abstractly. One explanation of
-//     one thing, and the concrete one wins.
-//   * `#home-stat` (empty renderer) and `.home-stacks-sec` (/api/forks/popular returns [] since the
-//     demo forks were deleted; measured 0px tall). Both rendered nothing in either document.
+// EXACTLY ONE CALL TO ACTION. Both <form> elements on the page are the SAME control rendered by the
+// SAME function (build/landing.js tapGrid) — GET /solve with a field named q — once on the first
+// screen and once at the close. assertLandingPage() below refuses to build if any form on this page
+// points anywhere else, which is what makes the owner's "1 CTA" permanent rather than a decision
+// that erodes.
 //
-// 2026-08-08: ONE LANDING PAGE, NOT TWO. /interest was merged in here on the owner's instruction.
-// The body is assembled below with four `<!--I-…-->` placeholders in it and the finished shell
-// arguments are stashed in HOME_SHELL rather than written; the block that used to emit /interest,
-// far below, substitutes the real blocks in and writes home.html. It has to be deferred because the
-// library drawing is ONE MARK PER PUBLISHED ROUTE and cannot be counted until every add() has run.
+// MEASURED, before -> after, hydrated Chrome at 390x844 (and identical with JavaScript disabled):
+//   document height        8,109px  ->  see the build log
+//   first call to action   1,044px  ->  on the first screen, no scroll
+//   <form> elements on /         3  ->  2, both /solve GET
+//
+// CUT IN THIS COMMIT, each with the reason:
+//   * THE INTEREST FORM (formHtml + statesHtml, 1,420px at 57% depth, the page's SECOND submit
+//     button). The owner's instruction. It asked a person who came looking for an answer tonight
+//     for an email address, to be told later about something that does not exist yet.
+//   * THE SECOND HEADLINE `.hero-h2` ("You know what you were told to take"). Two headlines mean
+//     neither lands, and this one addresses somebody who WAS given a prescription. Its
+//     keyword-bearing sibling `.hero-lead` is NOT cut — it moves verbatim into the payoff section,
+//     directly above a demonstration of the sentence it makes.
+//   * THE ROOM DRAWING and the BUILDER DRAWING. The first sells a community whose own caption says
+//     "Every chair is empty today"; the second illustrates the deleted form's question flow.
+//   * THE KNEE-PAIN WORKED EXAMPLE, repointed to chronic-fatigue / iron-anemia so the page tells
+//     ONE story. It also carried a measured defect: it rendered "Knee Pain has 3 root causes"
+//     because it counted root_causes (causes WITH a protocol) while /problem/knee-pain publishes 6
+//     — the block whose job was to prove the differential halved it. The new block counts
+//     why.causes.length and assertLandingPage() gates it.
+//   * THE FILL BARS. `FILL = [82, 64, 95, 71]` and "The percentages in step 3 are an example day,
+//     not data." were the only numbers on this site that were neither counted nor sourced. A
+//     disclaimer whose job is to explain that your data is not data is the tell that the numbers
+//     should not exist. Deleted rather than relocated.
+//   * "Someone typed knee pain going downstairs" — an unverifiable micro-testimonial on an evidence
+//     site. Replaced by "Tap Always tired", which is a statement about the page's own behaviour
+//     that the reader can check in one tap.
+//   * THE DAILY FACT CARD. Its only link routed the reader to /c/<compound>, out of the funnel,
+//     before they had found their cause. refreshDailyFact() in site/app.js already null-guards
+//     itself (`if (!card || !F.length) return;`), so nothing breaks.
+//   * THE 16-CARD GOAL GRID as a grid (1,116px on a phone). All 16 hrefs survive, and so does the
+//     Medicines Act "N you can buy · N prescription-only" split, as VISIBLE text — a safeguard that
+//     lives in a title attribute is invisible on touch. Only the geometry changed.
+//   * THE SIX SEED CHIPS. Superseded by the six tap targets, which carry a counted cause number.
+//   * THE KICKER "Being built in the open" from the top of the page. It is about the builder, and
+//     it was the first thing a dismissed person read. Demoted to the footer.
+//
+// THE HEAD IS NOT TOUCHED, DELIBERATELY. The visible headline and the Google title are different
+// jobs, and the H1 carries no search terms. `<title>` stays "RNAwiki — Stop guessing, start solving.
+// Root-cause protocols" (59 chars) and the meta description stays as-is.
+//
+// The body is assembled with four `<!--I-…-->` placeholders and the shell arguments are stashed in
+// HOME_SHELL rather than written; the block far below fills them and writes home.html. It has to be
+// deferred because the library drawing is ONE MARK PER PUBLISHED ROUTE and cannot be counted until
+// every add() has run.
 let HOME_SHELL = null;
 {
   const RX_CLASS = new Set(['prescription', 'controlled', 'unapproved']);
 
-  // ---- the worked example ---------------------------------------------------------------------
-  // Replaces the `.scrolly` scrollytelling block. Measured at 1440x900 before removal: 1800px, or
-  // 40% of a 4,549px page, for 160 words and zero calls to action. It revealed nothing on scroll,
-  // because `.sy-step{opacity:.62}` dims steps rather than hiding them -- every word was already
-  // legible at first paint, so two screens of scrolling changed only the opacity. Its height was
-  // `200vh`, a function of the viewport rather than of its content. Below 820px
-  // `.scrolly-stage{display:none}` removed the phone mock, which was its only explanatory element,
-  // so on a phone it explained nothing. And it lived only in app.js, so 90% of readers never saw
-  // the site's single best argument at all.
-  //
-  // `/pros` still uses .scrolly / .scrolly-track / .scrolly-stage / .sy-step / .sy-frame / .sy-bar /
-  // .sy-dots / .phone / .pf-bar. NONE of those rules are touched. This block is namespaced `.wex-`.
-  //
-  // EVERY FIGURE HERE IS READ FROM THE RECORD THAT RENDERS /protocol/knee-pain/patellofemoral-pain.
-  // The old mock hard-coded "Protein 1.6 g/kg" while the protocol page says 100 g -- a fabricated
-  // number in the demo of an evidence site. The fix is not to correct the constant, it is to stop
-  // having a constant: rc.prescription, rc.nutrient_targets, rc.keystone and protoStack(rc) are the
-  // same accessors the protocol page uses, so the demo cannot contradict the product. If the record
-  // changes, this block changes with it.
-  const WEX = (() => {
-    const p = GRAPH.problems.find((x) => x.id === 'knee-pain');
-    const rc = p && (p.root_causes || []).find((r) => r.id === 'patellofemoral-pain');
+  // ---- the six tap targets ----------------------------------------------------------------------
+  // The ids are the one authored judgement on the first screen; everything printed on a tile is read
+  // from the corpus. The label is the problem's own `name` unless build/landing.js overrides it
+  // (exactly one does), and the count is that problem's own documented cause count — NOT
+  // root_causes, which is causes-with-a-protocol and is what the old worked example got wrong.
+  const TAPS = LANDING.TAP_IDS.map((id) => {
+    const p = (GRAPH.problems || []).find((x) => x.id === id);
+    const causes = ((CAUSE[id] || {}).causes || []).length;
+    if (!p || !causes) {
+      console.error(`[prerender] FATAL: the landing page's tap target "${id}" is not a published `
+        + 'problem with documented causes. Repair the record, or edit TAP_IDS in build/landing.js.');
+      process.exit(1);
+    }
+    return { id, label: LANDING.TAP_WORDS[id] || p.name, causes };
+  });
+
+  // ---- the payoff -------------------------------------------------------------------------------
+  // The worked example, repointed from knee-pain to the first tap target's own protocol so the page
+  // tells one story from headline to plan. EVERY FIGURE IS READ FROM THE RECORD THAT RENDERS
+  // /protocol/chronic-fatigue/iron-anemia — rc.prescription, rc.nutrient_targets, rc.keystone and
+  // protoStack(rc) are the same accessors the protocol page uses, so the demo cannot contradict the
+  // product. protoStack() already excludes prescription / controlled / unapproved compounds, so this
+  // block can never advertise a prescription-only medicine.
+  const PAYOFF = (() => {
+    const p = GRAPH.problems.find((x) => x.id === LANDING.CAUSE_PROBLEM);
+    const rc = p && (p.root_causes || []).find((r) => r.id === 'iron-anemia');
     if (!p || !rc || !rc.prescription || !rc.nutrient_targets || !rc.keystone) {
-      // Hard gate, deliberately. This is the home page's central explanatory block; dropping it
-      // silently would leave a landing page that asks for an email having demonstrated nothing.
-      // package.json prestart is `node build/parse.js && node build/prerender.js` with no
-      // `|| echo`, so exiting here stops the deploy -- which is the correct outcome.
-      console.error('[prerender] FATAL: the home worked example requires knee-pain / '
-        + 'patellofemoral-pain to carry prescription, nutrient_targets and keystone. '
-        + 'Repair the record, or repoint WEX at another root cause.');
+      // Hard gate, deliberately. This is the landing page's central explanatory block; dropping it
+      // silently would leave a page that argues for a protocol having demonstrated none.
+      console.error('[prerender] FATAL: the landing payoff requires chronic-fatigue / iron-anemia '
+        + 'to carry prescription, nutrient_targets and keystone. Repair the record, or repoint it.');
       process.exit(1);
     }
     const short = (s) => esc(String(s).replace(/\s*\([^)]*\)/, ''));
-    // The three options are this problem's real root causes, in data order.
-    const opts = p.root_causes.map((r) => `<li${r.id === rc.id ? ' class="on"' : ''}>${short(r.name)}${r.id === rc.id ? '<b>&#10003;</b>' : ''}</li>`).join('');
-    // protoStack() already excludes prescription / controlled / unapproved compounds, so this block
-    // can never advertise a prescription-only medicine no matter what is authored into rc.compounds.
+    // The options are the SIX DOCUMENTED CAUSES, in rank order — the same six the doors above list,
+    // so the page cannot show a reader six causes and then demonstrate on three.
+    const why = ((CAUSE[p.id] || {}).causes || []).slice().sort((a, b) => (a.rank || 99) - (b.rank || 99));
+    const opts = why.map((c, i) => `<li${i === 1 ? ' class="on"' : ''}>${short(c.name)}${i === 1 ? '<b>&#10003;</b>' : ''}</li>`).join('');
     const stack = protoStack(rc);
     const stackLine = stack.map((c) => `${esc(c.name)} ${stars(c.stars)}`).join(' &middot; ');
     const T = Object.entries(rc.nutrient_targets);
     const foods = protoFuel(rc).slice(0, 3).map((f) => f.name).join(', ');
-    // Illustrative fill levels for the tracker. Labelled as an example day in .wex-fine below --
-    // they are the one thing on this block that is not read from the corpus, so they are named.
-    const FILL = [82, 64, 95, 71];
-    // Name, TARGET VALUE, an example fill, and the authored reason the target exists. The target
-    // value is the number the old hard-coded mock got wrong, so it is rendered straight from
-    // rc.nutrient_targets and it appears exactly once on the page -- here, next to its reason.
-    const bars = T.map(([k, t], i) => {
-      const w = FILL[i % FILL.length];
-      return `<li><span>${nutrientLabel(k)} <b>${t.target}${t.unit}</b></span><em>${w}%</em>`
-        + `<i class="wex-bar" style="--w:${w}%"></i><small>${esc(t.why || '')}</small></li>`;
-    }).join('');
+    // Name, TARGET VALUE and the authored reason the target exists. NO example percentages: the
+    // four illustrative fill bars that used to sit here were the only uncounted numbers on the site.
+    const targets = T.map(([k, t]) => `<li><span>${nutrientLabel(k)} <b>${t.target}${t.unit}</b></span>`
+      + `<small>${esc(t.why || '')}</small></li>`).join('');
     return `
-    <section class="wex" id="how-it-works" aria-labelledby="wex-h">
-      <p class="wex-kick">One real search, start to finish</p>
-      <h2 id="wex-h">Someone typed <span class="wex-q">knee pain going downstairs</span>.<br>This is everything the site handed back.</h2>
       <ol class="wex-chain">
         <li class="wex-card">
           <span class="wex-n">1</span>
           <h3>One question &mdash; not a diagnosis</h3>
-          <p class="wex-ask">${esc(p.name)} has ${p.root_causes.length} root causes. Which one fits?</p>
+          <p class="wex-ask" data-pid="${esc(p.id)}" data-cc="${why.length}">${esc(p.name)} has ${why.length} documented causes. Which one fits?</p>
           <ul class="wex-opts">${opts}</ul>
           <p class="wex-out"><span>Root cause</span><b>${esc(rc.name)}</b></p>
           <p class="wex-ks"><b>&#11088; If you do one thing:</b> ${esc(rc.keystone.one)}</p>
@@ -2604,175 +2623,59 @@ let HOME_SHELL = null;
           <h3>The protocol for <em>that</em> cause</h3>
           <p class="wex-line"><span class="pf-l mv">Move</span><b>${esc(rc.prescription.scheme)}</b><small>${esc(rc.prescription.detail)}</small></p>
           <p class="wex-line"><span class="pf-l st">Stack</span><b>${stackLine}</b><small>stars = strength of the <i>human</i> evidence for this use</small></p>
-          ${/* The numbers deliberately do NOT appear here: they are stated once, in card 3, next to
-                the reason each one exists. Listing them twice cost ~60px of duplicated list on a
-                phone and said nothing the second time. */ ''}
           <p class="wex-line"><span class="pf-l fl">Fuel</span><b>${T.length} daily nutrient targets</b><small>hit from local food${foods ? ` &mdash; ${esc(foods)}` : ''}</small></p>
         </li>
         <li class="wex-card">
           <span class="wex-n">3</span>
           <h3>And <em>why</em> every number is there</h3>
-          <ul class="wex-bars">${bars}</ul>
-          <p class="wex-out"><span>What changes</span><b>You stop taking things on faith and start watching a number move.</b></p>
+          <ul class="wex-targets">${targets}</ul>
         </li>
       </ol>
-      <p class="wex-foot">No account, no payment, nothing to buy. One sentence and one tap.
-        <a class="wex-back" href="#top" data-scroll="top" data-focus-search>Do it with yours &rarr;</a></p>
-      <p class="wex-fine">A real protocol from this site &mdash; <a href="/protocol/${p.id}/${rc.id}">read the whole thing</a>.
-        The percentages in step 3 are an example day, not data. Educational, not medical advice.</p>
-    </section>`;
+      <p class="lp-links"><a href="/protocol/${p.id}/${rc.id}">Read the whole protocol &rarr;</a></p>
+      <p class="wex-fine">A real protocol from this site. Educational, not medical advice.</p>`;
   })();
 
-  // ---- the goal index -------------------------------------------------------------------------
-  // 2026-08-08, correcting this comment while deciding whether the block survived the merge: /az and
-  // /browse do carry zero /goal/ links and there is still no /goals index page, but the conclusion
-  // drawn from that -- "home is the only hub these 16 pages have" -- was never measured and is
-  // false. MEASURED over every .html under site/: 312 documents carry an href="/goal/…", and every
-  // one of the 16 goals has 6-51 inbound links EXCLUDING home (skin 6 is the fewest), from the
-  // compound pages, which name their goals. Cutting this block would NOT orphan anything and
-  // assertLinkGraph would NOT have caught it. It is kept on two merits that do hold: it is the
-  // second entry mode for a reader who arrives with a goal rather than a symptom, and 16 outbound
-  // links from the site's highest-authority document is link equity nothing else can give them.
+  // ---- the goal list ----------------------------------------------------------------------------
+  // MEASURED over every .html under site/: 312 documents carry an href="/goal/…", and every one of
+  // the 16 goals has 6-51 inbound links EXCLUDING home. So this block is not what keeps them out of
+  // orphanhood — it is kept because 16 outbound links from the site's highest-authority document is
+  // link equity nothing else gives them, and because it is the second entry mode for a reader who
+  // arrives with a goal rather than a symptom. What changed on 2026-08-09 is only the geometry: a
+  // 16-card grid with icons measured 1,116px on a phone, immediately below the closing call to
+  // action. It is now a two-column list.
   const goalLinks = D.goals.map((g) => {
     const inGoal = D.compounds.filter((c) => (c.goalIds || []).includes(g.id));
     const open = inGoal.filter((c) => !RX_CLASS.has(c.regulatory_class)).length;
     const rx = inGoal.length - open;
-    // MEDICINES ACT 1975 s.51 -- this split is not decoration. A bare "18 compounds" under Lose Fat
-    // when most of them are prescription-only is a promotional count for medicines the reader cannot
-    // legally obtain, on the site's most promotional surface. It used to be computed twice, in two
-    // slightly different wordings; now there is one definition and it reaches both documents.
+    // MEDICINES ACT 1975 s.51 -- this split is not decoration, and it stays VISIBLE. A bare "18
+    // compounds" under Lose Fat when most of them are prescription-only is a promotional count for
+    // medicines the reader cannot legally obtain, on the site's most promotional surface.
     const label = rx ? `${open} you can buy &middot; ${rx} prescription-only`
       : `${open} compound${open === 1 ? '' : 's'}`;
-    return `<li><a href="/goal/${g.id}"><span class="gi-i">${g.icon}</span><span class="gi-b">${esc(g.label)}</span><span class="gi-n">${label}</span></a></li>`;
+    return `<li><a href="/goal/${g.id}"><b>${esc(g.label)}</b><small>${label}</small></a></li>`;
   }).join('');
 
-  // ---- seed chips ------------------------------------------------------------------------------
-  // Real anchors to a real protocol page, so they work with JavaScript off -- that is the whole
-  // reason they now live in this document. bindHome() upgrades them to the triage modal when JS is
-  // running (preventDefault), which is what they did before, for the 10%.
-  const SEEDS = ['Knee Pain', 'Trouble Falling Asleep', 'Brain Fog', 'Belly / Visceral Fat', 'Low Testosterone', 'Longevity / Healthspan'];
-  const seedChips = SEEDS
-    .map((n) => (GRAPH.problems || []).find((p) => p.name.toLowerCase() === n.toLowerCase()))
-    .filter((p) => p && (p.root_causes || []).length)
-    // /problem, not /protocol/<p>/<root_causes[0]>: a chip that names a PROBLEM must not silently
-    // choose which of its 4-7 authored causes the reader has. 31 of the 41 problems ship exactly
-    // one root cause, so `root_causes[0]` was a diagnosis dressed as a shortcut. data-native
-    // because /problem is prerender-only (KEEP_PRERENDERED).
-    .map((p) => `<a class="seed-chip" data-pid="${esc(p.id)}" href="/problem/${esc(p.id)}" data-native>${p.icon || ''} ${esc(p.name)}</a>`)
-    .join('');
   const nProblems = (D.meta.counts && D.meta.counts.problems) || (GRAPH.problems || []).length;
 
-  // ---- the daily fact --------------------------------------------------------------------------
-  // Kept, moved, relabelled. It is the only actual sample of the product on the page. It used to sit
-  // at 17% depth, above the argument, where its job was to send the reader to /c/l-tyrosine -- i.e.
-  // out of the funnel before the page had made its case. It now sits below the worked example.
-  //
-  // 2026-08-06: the kicker used to read "A sample of what lands" / "one like this, free, every
-  // week". Both halves were a promise about a weekly email, and the weekly email is gone -- an
-  // advertised mailing that does not exist is a fabricated offer (constraint 5). The replacement
-  // claims only what is true in BOTH documents: it is one fact from this wiki, and it is free.
-  // Deliberately NOT "a new one every day": dailyFactObj() picks by date at BUILD time, so the
-  // prerendered copy the ~90% see is frozen until the next deploy, and only app.js's
-  // refreshDailyFact() re-picks per day. Promising daily rotation would be true for JS readers
-  // and false for everyone else.
-  //
-  // The `.df-text` / `.df-link` hooks are load-bearing: app.js patches those two nodes in place on
-  // hydration. `.df-kicker` / `.df-meta` are NOT patched, so this string has exactly one source.
-  const FACT = dailyFactObj();
-  const factBlock = FACT ? `
-    <section class="daily-fact">
-      <div class="df-card">
-        <div class="df-top"><span class="df-kicker">&#128161; One fact from the wiki</span><span class="df-meta">free, like everything here</span></div>
-        <p class="df-text">${FACT.t}</p>
-        <a class="df-link" href="${FACT.href}">${esc(FACT.label)}</a>
-      </div>
-    </section>` : '';
+  // ---- the corpus-wide counts the copy quotes ---------------------------------------------------
+  // Counted here, printed once, and re-derived from the emitted bytes by assertLandingPage().
+  const causeCounts = Object.keys(CAUSE).map((k) => ((CAUSE[k] || {}).causes || []).length).filter(Boolean);
+  const nCauses = causeCounts.reduce((a, b) => a + b, 0);
+  const minCauses = Math.min.apply(null, causeCounts);
 
-  // ---- THE MERGE (2026-08-08) -------------------------------------------------------------------
-  // The owner's instruction, verbatim: "there will no longer be 2 landing pages, just the home page
-  // acting as the landing page with the main header as [/interest's] header."
-  //
-  // THE ORDER, AND WHY EACH THING IS WHERE IT IS.
-  //   1  <!--I-HOOK-->   his H1, his drawing, his caption. First, because that is the instruction.
-  //   2  the hero        CTA #1. The only functional entry to the corpus that works with no
-  //                      JavaScript (a real GET /solve form), and scripts/smoke.mjs asserts
-  //                      #hero-solve-input on "/" by name. It stays near the top of the page.
-  //   3  <!--I-STORY-->  library -> causes -> room. His beats 2-4, in his order, untouched.
-  //   4  WEX             the worked example. Here, between the room and the ask, because it is the
-  //                      concrete instance of what the three drawings argue in the abstract, and it
-  //                      is what earns "what took you years to work out could save somebody theirs".
-  //   5  <!--I-ASK-->    the builder drawing, the seven answer panels, the form. #answer is the
-  //                      fragment POST /api/interest 303s to, and the panels sit directly above the
-  //                      form so bad/rate/down explain themselves over the control to use again.
-  //   6  the daily fact  kept: the only element on the page that differs between two visits.
-  //   7  the goal index  kept: 16 crawlable links from the site's highest-authority document.
-  //   8  <!--I-FOOT-->   not-medical-advice + /solve, /methodology, /corrections. Last, where a
-  //                      disclaimer belongs, and now the home page's only link to the first two.
-  //
-  // THE HEAD IS NOT TOUCHED, DELIBERATELY. The visible headline and the Google title are different
-  // jobs. The new H1 is emotionally strong and carries no search terms — nobody types "turned away,
-  // priced out" into a search box — so the keyword-bearing <title> and description below stay
-  // exactly as they were, and so does every keyword-bearing element in the body: `.hero-lead` (the
-  // only prose carrying "root cause underneath it / movement / food / compounds / human evidence"),
-  // the worked example's "knee pain going downstairs", and the 16-item goal index.
-  //
-  // WHAT WAS DROPPED: one thing. `<section class="home-interest">` — 523 bytes teasing /interest
-  // with its kicker, its H1 as an <h2> and the form's two opening lines. That page is now this page,
-  // so the teaser linked to itself and said the new H1's sentence a second time. Nothing else on the
-  // home page was removed: the old headline is DEMOTED to this section's <h2>, in the same place,
-  // with its words intact, because it is the owner's copy and it is the reader's reason to use the
-  // search box directly beneath it.
   const homeBody = `
-    <!--I-HOOK-->
-
-    <section class="hero funnel-hero" id="top">
-      <div class="kicker">Free &middot; no account &middot; nothing here is for sale</div>
-      ${/* Was the <h1> until 2026-08-08, when the owner's line took the H1. Same words, same place,
-            one step down. `.hero .lead{color:var(--accent)}` still colours the second line; the four
-            hero heading-size rules in styles.css gained `.hero-h2` alongside `h1`. */ ''}
-      <h2 class="hero-h2">You know what you were told to take.<br><span class="lead">You were never shown what it&rsquo;s for.</span></h2>
-      <p class="hero-lead">Start from the other end. Name the problem &mdash; I&rsquo;ll show you the
-      <b>root cause underneath it</b>, then the movement, the food and the compounds that act on
-      <i>that cause</i>, each one ranked by how good the human evidence actually is. Not a shopping
-      list. The reasoning you were never handed.</p>
-      ${/* A REAL <form>, so CTA #1 exists for the ~90%: GET /solve?q=... lands on the prerendered
-            52-link protocol index. bindHome() preventDefaults it and runs the existing
-            suggestProtocols() / openIntake() path when JS is available. */ ''}
-      <form class="funnel" id="hero-solve" action="/solve" method="get" role="search">
-        <div class="funnel-search">
-          <span class="fs-ico">&#128269;</span>
-          <input id="hero-solve-input" name="q" type="text" autocomplete="off"
-            placeholder="What&rsquo;s wrong, or what do you want to fix?"
-            aria-label="What is wrong, or what do you want to fix?">
-          <div id="hero-solve-out" class="funnel-out" hidden></div>
-        </div>
-        <button id="hero-solve-btn" class="cta-primary funnel-btn" type="submit">Show me the root cause &rarr;</button>
-      </form>
-      <div class="seed-row">${seedChips}<a class="seed-all" href="/solve">or see all ${nProblems} &rarr;</a></div>
-      <p class="hero-note">Free &middot; no account &middot; <b>no affiliate links</b> &middot; says so out loud when the evidence is thin</p>
-    </section>
+    <!--I-FOLD-->
 
     <!--I-STORY-->
 
-    ${WEX}
+    <!--I-PROOF-->
 
-    <!--I-ASK-->
+    <!--I-CLOSE-->`;
 
-    ${factBlock}
-
-    <section class="goal-index">
-      <h2>Or start from a goal</h2>
-      <p class="gi-sub">${D.goals.length} goals, ${D.compounds.length} compounds, ranked by the strength of
-      the <b>human</b> evidence. Each one says up front what you can actually buy without a prescription.</p>
-      <ul class="gi-list">${goalLinks}</ul>
-    </section>
-
-    <!--I-FOOT-->`;
-
-  // STASHED, NOT WRITTEN (2026-08-08). The four placeholders above are filled and home.html is
-  // written by the block far below that used to emit /interest — after every add() has run, because
-  // the library drawing is one mark per published route. Still written directly rather than through
-  // add(), so "/home" never leaks into the sitemap; canonical is "/".
+  // STASHED, NOT WRITTEN. The four placeholders above are filled and home.html is written by the
+  // block far below — after every add() has run, because the library drawing is one mark per
+  // published route. Still written directly rather than through add(), so "/home" never leaks into
+  // the sitemap; canonical is "/".
   HOME_SHELL = ({
     route: '/', ogType: 'website',
     // W5b: was 77 chars — "…Precision root-cause health protocols". It is the one title on the site
@@ -2785,6 +2688,7 @@ let HOME_SHELL = null;
     jsonld: [WEBSITE, ORG],
     breadcrumbs: [{ name: 'Home', route: '/' }],
     body: homeBody,
+    landing: { taps: TAPS, payoff: PAYOFF, goalList: goalLinks, nProblems, nCauses, minCauses },
   });
 }
 
@@ -3236,37 +3140,33 @@ let written = 0;
       <p><a href="/learn">Start from the beginning →</a> · <a href="/about">About RNAwiki →</a></p></div>` }));
 }
 
-// ---- THE HOME PAGE, WRITTEN LAST — with the interest landing page folded into it (2026-08-08) --
-// This block used to `add('/interest', …)`. There is one landing page now, not two: the owner's
-// instruction was "there will no longer be 2 landing pages, just the home page acting as the landing
-// page with the main header as [the interest page's] header". /interest is unpublished, 301s to "/"
-// with its query intact (server.js LEGACY_REDIRECTS) and is recorded in build/withdrawn.json.
-//
-// IT IS STILL WRITTEN LAST, AND FOR THE SAME REASON: the library drawing is one mark per published
-// route, so it cannot be built until every other add() has run. homeBody stashed its shell arguments
-// in HOME_SHELL with four `<!--I-…-->` placeholders in the body; they are filled here.
+// ---- THE HOME PAGE, WRITTEN LAST ---------------------------------------------------------------
+// IT IS WRITTEN LAST FOR ONE REASON: the library drawing is one mark per published route, so it
+// cannot be built until every other add() has run. homeBody stashed its shell arguments in
+// HOME_SHELL with four `<!--I-…-->` placeholders in the body; they are filled here.
 //
 // The `iTotal` expression reproduces the `urls` expression under "sitemap + robots" exactly. '/' is
-// already in that seed list; '/interest' is NOT, because that route no longer exists and a 301
-// target must not be counted twice. assertInterestPage() re-derives all four numbers from `uniq`
-// afterwards and refuses to build on a disagreement, so the reproduction cannot rot.
+// already in that seed list; '/interest' is NOT, because that route no longer exists (it 301s to
+// "/" with its query intact) and a 301 target must not be counted twice. assertLandingPage()
+// re-derives all four numbers from `uniq` afterwards and refuses to build on a disagreement, so the
+// reproduction cannot rot.
 {
   const iTotal = new Set(['/', '/solve', '/browse', '/az', '/about', '/learn', '/pathways', '/legend',
     ...pages.filter((p) => !p.noSitemap).map((p) => p.route)]).size;
   const iProblems = pages.filter((p) => p.route.startsWith('/problem/')).length;
   const iProtocols = pages.filter((p) => p.route.startsWith('/protocol/')).length;
-  const iTopics = ((D.site || {}).interest || {}).topics || [];
-  const I = INTEREST.interestParts({
-    total: iTotal, filled: iProblems + iProtocols, nProblems: iProblems, nProtocols: iProtocols,
-    topics: iTopics,
-    causeRows: INTEREST.causeRows((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes),
-    symptom: (iTopics.find((t) => t.id === INTEREST.CAUSE_CHIP) || {}).label,
-  });
   if (!HOME_SHELL) { console.error('\n[prerender] the home page was never assembled — refusing to build.\n'); process.exit(1); }
-  const filled = ['hook', 'story', 'ask', 'foot'].reduce((body, k) => {
+  const LP = HOME_SHELL.landing;
+  const I = LANDING.landingParts({
+    total: iTotal, filled: iProblems + iProtocols, nProblems: iProblems, nProtocols: iProtocols,
+    nCauses: LP.nCauses, minCauses: LP.minCauses,
+    taps: LP.taps, payoff: LP.payoff, goalList: LP.goalList,
+    causes: (CAUSE[LANDING.CAUSE_PROBLEM] || {}).causes || [],
+  });
+  const filled = ['fold', 'story', 'proof', 'close'].reduce((body, k) => {
     const mark = `<!--I-${k.toUpperCase()}-->`;
-    // A placeholder that does not match is the whole merge silently not landing, on the one document
-    // ~90% of readers get. Refuse rather than write a home page with a comment where the form was.
+    // A placeholder that does not match is the whole landing page silently not landing, on the one
+    // document ~90% of readers get. Refuse rather than write a home page with a comment in it.
     if (body.indexOf(mark) < 0) { console.error(`\n[prerender] homeBody has no ${mark} — refusing to build.\n`); process.exit(1); }
     return body.split(mark).join(I[k]);
   }, HOME_SHELL.body);
@@ -4499,137 +4399,141 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] link graph OK — ${emitted.size} routes, 0 dead links, 0 orphans, 0 reachable only through a query string (${thin} reachable from a single page).`);
 })();
 
-// ---- build-time assertion: THE LANDING COPY MAY NOT PRINT A NUMBER IT CANNOT COUNT, A CHIP THE
-//      ENDPOINT DISCARDS, OR AN ANSWER THE SERVER CANNOT PRODUCE ----------------------------------
-// 2026-08-08. The interest landing copy is the one AUTHORED page on this site. It shipped at
-// /interest in the morning and was merged into the home page the same day; it has five ways to start
-// lying quietly — three of which the owner's wireframe was already doing:
-//   1. THE NUMBERS. "568 marks, 93 filled" and "One of the 41" were all true the day they were
-//      drawn and all three would be false on the first build that publishes a page. Same defect
-//      class as assertCorpusCountCopy, which exists because "Search 170 compounds…" shipped in the
-//      header of 568 documents while /az on the same page said 171.
-//   2. THE WRITE SCHEMA. In the wireframe no chip carried a `value`, so all nine radios serialised
-//      to `topic=on` and choosing "Tiredness" produced a byte-identical body to choosing "Knee";
-//      and the chip LABELLED "Knee" carried the id `f-tired`.
-//   3. THE ANSWERS. server.js can 303 this page into SEVEN states and makes two literal
-//      substitutions into its markup. A state with no panel is a reader who filled in a form and
-//      landed on a page that says nothing happened. A renamed literal is a page that says "here is
-//      your link" and shows none. server.js's need() logs that, but nobody reads a log.
-//   4. THE SPA ANSWER. "/" is not a KEEP_PRERENDERED route and does not need to be — app.js
-//      CAPTURES the prerendered <main> at boot (HOME_HTML), home() replays that captured string, and
-//      route() skips the #app write entirely on the first paint of "/". If any one of those three
-//      lines is rewritten, a reader with JavaScript loses the form, the seven answer panels and the
-//      five drawings and gets a second, hand-written home page instead. All three are pinned below.
-//   5. THE OWNER'S CAUSE WORDING. build/interest.js keys his five plainer cause lines by the
-//      corpus's exact cause name. If a cause is renamed the key stops matching, his line silently
-//      disappears, and the drawing swaps to the corpus name with nothing said.
-// Everything below is re-derived from the EMITTED BYTES and from server.js's, app.js's and
-// styles.css's own source — never from the values interestParts() was handed.
-// PROVE IT by hard-coding a number into the marks() call, by dropping `value=` off one chip, by
-// deleting any one of the seven .i-s-* panels, by deleting the `_firstPaint` clause from route()'s
-// #app write guard in site/app.js, or by misspelling a key in CAUSE_WORDS.
-// 2026-08-08: THE PAGE MOVED, THE GATE DID NOT. /interest no longer exists — its content IS the home
-// page and the old URL 301s to "/". Everything this function checks is still as true and as
-// invisible as it was; it now reads site/home.html, which is written straight to disk rather than
-// through add(), the same way assertCanonicalParity, assertOneH1PerPage and the lastmod hash already
-// read it. The function keeps its name so the comments citing it elsewhere stay accurate.
-(function assertInterestPage() {
+// ---- build-time assertion: THE LANDING PAGE MAY NOT PRINT A NUMBER IT CANNOT COUNT, A TAP TARGET
+//      THAT DOES NOT RESOLVE, OR A SECOND CALL TO ACTION ------------------------------------------
+// 2026-08-09, replacing assertInterestPage(). The landing copy on "/" is the one AUTHORED page on
+// this site, and it now has SIX ways to start lying quietly:
+//   1. THE NUMBERS. "568 marks, 93 filled", "all 41", "224 causes", "the fewest is 4" were all true
+//      the day they were written and every one would be false on the first build that publishes a
+//      page. Same defect class as assertCorpusCountCopy, which exists because "Search 170
+//      compounds…" shipped in the header of 568 documents while /az on the same page said 171.
+//   2. THE ONE CALL TO ACTION. The owner's instruction was "i just need 1 CTA: search and
+//      protocol". A landing page grows a second ask the moment somebody has an idea. Every <form>
+//      on this page must be the same GET /solve control, and nothing on it may post anywhere.
+//   3. THE TAP TARGETS. A tile that prints a cause count is making a promise about the page it
+//      opens. The OLD worked example printed "Knee Pain has 3 root causes" because it counted
+//      root_causes — causes WITH a protocol — while /problem/knee-pain publishes 6 and /solve
+//      correctly said "6 possible causes · 3 with a protocol". The block whose job was to prove
+//      the differential halved it. Any cause count printed here must equal that problem's own
+//      why.causes.length.
+//   4. THE FRAGMENTS. The six doors are `/problem/chronic-fatigue#cause-N`. assertLinkGraph checks
+//      ROUTES, never fragments, so a renamed heading id would silently land the reader at the top
+//      of a 70 kB page instead of on their own cause. Each id is checked in the EMITTED bytes of
+//      the target page.
+//   5. THE TELLS. Each door's one-line tell is the corpus's own `hook` for that cause, byte for
+//      byte. If one is edited here it stops being the corpus's sentence and becomes mine.
+//   6. THE OWNER'S CAUSE WORDING and THE SPA ANSWER. build/landing.js keys his five plainer cause
+//      lines by the corpus's exact cause name; a renamed cause makes his line vanish without a
+//      word. And "/" is not a KEEP_PRERENDERED route — it is protected by the HOME_HTML boot
+//      capture, home() replaying it, and route() skipping the #app write on the first paint. If any
+//      one of those three lines is rewritten, a reader with JavaScript gets a second, hand-written
+//      home page instead of this one.
+// Everything below is re-derived from the EMITTED BYTES and from site/app.js's own source — never
+// from the values landingParts() was handed.
+// PROVE IT by hard-coding a number into the marks() call, by pointing a TAP_ID at a problem that
+// does not exist, by editing one door's tell, by renaming a #cause-N id, by adding a second
+// <form action="/api/anything"> to the page, or by deleting the `_firstPaint` clause from route()'s
+// #app write guard in site/app.js. The build must refuse in every case.
+(function assertLandingPage() {
   let H = null;
   try { H = fs.readFileSync(path.join(SITE, 'home.html'), 'utf8'); } catch (e) { H = null; }
   if (!H) { console.error('\n[prerender] site/home.html was not written — refusing to build.\n'); process.exit(1); }
   const bad = [];
-  const SRV = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
   const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
-  const CSS = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
+  const MAIN = (H.match(/<main id="app">([\s\S]*)<\/main>/) || [, ''])[1];
+  if (!MAIN) bad.push('site/home.html has no <main id="app"> — this gate reads the page body out of it and refuses to pass blind');
 
-  // 1. the two numbers, counted out of the paths that were actually drawn
+  // 1. THE NUMBERS, counted out of the paths that were actually drawn and the routes actually built
   const nOn = (((H.match(/class="i-lib-on" d="([^"]*)"/) || [, ''])[1]).match(/M/g) || []).length;
   const nOff = (((H.match(/class="i-lib-off" d="([^"]*)"/) || [, ''])[1]).match(/M/g) || []).length;
   const realTotal = uniq.length;
   const realProb = uniq.filter((r) => r.startsWith('/problem/')).length;
   const realProt = uniq.filter((r) => r.startsWith('/protocol/')).length;
   const realFilled = realProb + realProt;
+  const causeCounts = Object.keys(CAUSE).map((k) => ((CAUSE[k] || {}).causes || []).length).filter(Boolean);
+  const realCauses = causeCounts.reduce((a, b) => a + b, 0);
+  const realMin = Math.min.apply(null, causeCounts);
   if (nOn + nOff !== realTotal) bad.push(`the library drawing has ${nOn + nOff} marks and ${realTotal} routes are published — the page is counting something that stopped being true`);
   if (nOn !== realFilled) bad.push(`the library drawing fills ${nOn} marks and ${realFilled} routes carry a plan (${realProb} problems + ${realProt} protocols)`);
   if (H.indexOf(`>${realTotal} marks, one for every page published here. ${realFilled} of them are filled in`) < 0) bad.push(`the library drawing's <title> does not state ${realTotal} and ${realFilled} — the two numbers a screen-reader user is given have come apart from the two the drawing shows`);
-  if (H.indexOf(`>One of the ${realProb}<`) < 0) bad.push(`the kicker does not read "One of the ${realProb}" — that is how many /problem pages are published`);
+  if (H.indexOf(`To read all ${realTotal}<`) < 0) bad.push(`the receipt does not say "To read all ${realTotal}" — that is how many routes are published`);
+  if (H.indexOf(`<b>All ${realProb} problems and goals</b>`) < 0) bad.push(`the all-problems row does not read "All ${realProb} problems and goals" — that is how many /problem pages are published`);
   if (H.indexOf(`Read any of the ${realProb} now<`) < 0) bad.push(`the footer does not offer "Read any of the ${realProb} now" — that is how many /problem pages are published`);
+  if (H.indexOf(`Not one of the ${realProb} problems here has a single cause. The fewest is\n  ${realMin}. There are ${realCauses} written down`) < 0) bad.push(`the counted paragraph does not read "${realProb} problems … the fewest is ${realMin} … ${realCauses} written down" — those are the corpus's own totals`);
+  if (H.indexOf(`All ${realCauses} causes here say what to do about them. ${realProt} of`) < 0) bad.push(`the honest-limit line does not read "All ${realCauses} causes … ${realProt} of them carry a full … protocol" — 224 causes carry fixes and only ${realProt} carry a protocol, and saying otherwise overclaims the corpus`);
 
-  // 2. the chips ARE the write schema POST /api/interest validates against
-  const ids = (((D.site || {}).interest || {}).topics || []).map((t) => t.id);
-  const emittedChips = [...H.matchAll(/<input class="i-o[^"]*" type="radio" name="topic" id="([^"]+)" value="([^"]+)" required>/g)];
-  if (emittedChips.length !== ids.length) bad.push(`the home page renders ${emittedChips.length} topic radios and data/site_config.json declares ${ids.length} chips`);
-  emittedChips.forEach(([, id, val]) => {
-    if (ids.indexOf(val) < 0) bad.push(`the home page renders a chip with value "${val}", which is not in interest.topics — server.js stores anything else as NULL, so the reader's only answer is discarded`);
-    if (id !== 'i-f-' + val) bad.push(`the home page has a chip whose id is "${id}" and whose value is "${val}" — the wireframe shipped exactly this defect (id \`f-tired\` on the chip labelled "Knee")`);
+  // 2. THE ONE CALL TO ACTION. Both forms on this page are the SAME control rendered twice by the
+  //    same function; what may never happen is a form that asks for something else.
+  const forms = [...MAIN.matchAll(/<form\b[^>]*>/g)].map((m) => m[0]);
+  if (!forms.length) bad.push('the home page has no <form> at all — the site\'s only call to action is gone');
+  forms.forEach((f) => {
+    if (!/action="\/solve"/.test(f) || !/method="get"/.test(f)) bad.push(`the home page carries a <form> that is not the one call to action: ${f} — the owner's instruction is "i just need 1 CTA: search and protocol", so every form here must be action="/solve" method="get"`);
   });
-  if (!/name="topic_other" maxlength="60"/.test(H)) bad.push('the free-text field is missing or is not capped at 60 — server.js does clean(b.topic_other, 60)');
-  if (!/name="email"[^>]*required/.test(H)) bad.push('the email field is not required');
-  if (H.indexOf('action="/api/interest"') < 0) bad.push('the form does not post to /api/interest');
+  if (!/<input id="hero-solve-input" name="q"/.test(MAIN)) bad.push('the first form has no <input id="hero-solve-input" name="q"> — scripts/smoke.mjs asserts that id on "/" by name, and site/app.js binds the typeahead to it');
+  if (!/<input id="close-solve-input" name="q"/.test(MAIN)) bad.push('the closing form has no <input id="close-solve-input" name="q">');
+  ['/api/interest', 'type="email"', 'name="topic"', 'Count me in'].forEach((lit) => {
+    if (MAIN.indexOf(lit) >= 0) bad.push(`the home page still contains ${JSON.stringify(lit)} — the interest form was removed on the owner's instruction and this is the second call to action growing back`);
+  });
+  if (MAIN.indexOf('Show me the root cause') >= 0) bad.push('the button says "Show me the root cause" (singular). The site has not decided which cause it is — that is the entire point of the page — so the promise on the button must be plural: "Show me the causes".');
+  if ((MAIN.match(/Show me the causes/g) || []).length !== forms.length) bad.push(`${(MAIN.match(/Show me the causes/g) || []).length} submit buttons read "Show me the causes" and there are ${forms.length} forms`);
 
-  // 3. one panel per state, read out of server.js's own STATES array
-  const st = SRV.match(/const STATES = \[([^\]]*)\]/);
-  if (!st) bad.push('server.js no longer declares a STATES array for the ?state= answer — this gate cannot check the page against it and refuses to pass blind');
-  else [...st[1].matchAll(/'([a-z]+)'/g)].map((m) => m[1]).forEach((s) => {
-    if (H.indexOf(`class="i-state i-s-${s}"`) < 0) bad.push(`server.js can 303 to /?state=${s} and the page has no .i-s-${s} panel — that reader submits a form and lands on a page that says nothing happened`);
-    if (CSS.indexOf(`html[data-state="${s}"] .i-s-${s}`) < 0) bad.push(`nothing in styles.css reveals .i-s-${s} — server.js stamps data-state on the <html> ELEMENT, so the panel stays display:none and the state is invisible`);
+  // 3. THE TAP TARGETS. Every printed cause count is checked against the corpus, not against what
+  //    the renderer was handed. This is the gate the old "Knee Pain has 3 root causes" needed.
+  const taps = [...MAIN.matchAll(/<a class="lp-tap" href="\/problem\/([a-z0-9-]+)" data-pid="[a-z0-9-]+" data-cc="(\d+)"[^>]*>(?:<b>)([^<]*)<\/b><span>(\d+) causes<\/span>/g)];
+  if (taps.length !== LANDING.TAP_IDS.length * 2) bad.push(`the page renders ${taps.length} tap targets and build/landing.js declares ${LANDING.TAP_IDS.length} in two placements (${LANDING.TAP_IDS.length * 2}) — the fold grid and the closing grid must come from one function`);
+  taps.forEach(([, id, cc, label, shown]) => {
+    const real = ((CAUSE[id] || {}).causes || []).length;
+    if (!real) bad.push(`a tap target points at /problem/${id} and data/cause_learn.json publishes no causes for it`);
+    if (uniq.indexOf('/problem/' + id) < 0) bad.push(`a tap target points at /problem/${id} and no page serves that route`);
+    if (+cc !== real || +shown !== real) bad.push(`the tap target for ${id} prints ${shown} causes (data-cc=${cc}) and /problem/${id} publishes ${real} — a tile may not promise more or fewer causes than the page it opens`);
+    const p = (GRAPH.problems || []).find((x) => x.id === id);
+    const want = LANDING.TAP_WORDS[id] || (p && p.name);
+    if (label !== esc(want)) bad.push(`the tap target for ${id} is labelled "${label}" and the corpus calls it "${want}" — a label override must live in TAP_WORDS, where this gate can see it`);
   });
 
-  // 4. the two substitution literals, byte for byte, in BOTH files
-  [['<a class="i-rm" href=""></a>', 'the removal link'],
-    ['<input type="hidden" name="t" value="">', 'the removal token field']].forEach(([lit, what]) => {
-    if (H.indexOf(lit) < 0) bad.push(`the home page does not contain ${what} exactly as server.js looks for it: ${lit}`);
-    if (SRV.indexOf(lit) < 0) bad.push(`server.js no longer substitutes into ${what} — the contract moved and this page is still carrying the placeholder`);
+  // 4 + 5. THE SIX DOORS: the fragments must exist in the EMITTED target page, and every tell must
+  //        be the corpus's own `hook` byte for byte.
+  const causeList = ((CAUSE[LANDING.CAUSE_PROBLEM] || {}).causes || []).slice()
+    .sort((a, b) => (a.rank || 99) - (b.rank || 99));
+  if (!causeList.length) bad.push(`data/cause_learn.json has no causes for "${LANDING.CAUSE_PROBLEM}" — the six doors open on nothing`);
+  const doors = [...MAIN.matchAll(/<a class="lp-door" href="\/problem\/([a-z0-9-]+)#(cause-\d+)"[^>]*>.*?<b>([^<]*)<\/b><small>([^<]*)<\/small>/g)];
+  if (doors.length !== causeList.length) bad.push(`the page draws ${doors.length} doors and /problem/${LANDING.CAUSE_PROBLEM} publishes ${causeList.length} causes`);
+  const target = (pages.find((p) => p.route === '/problem/' + LANDING.CAUSE_PROBLEM) || {}).html || '';
+  if (!target) bad.push(`/problem/${LANDING.CAUSE_PROBLEM} was not emitted, so the six doors cannot be checked against it`);
+  doors.forEach(([, pid, frag, title, tell], i) => {
+    const c = causeList[i];
+    if (!c) return;
+    if (pid !== LANDING.CAUSE_PROBLEM) bad.push(`door ${i + 1} points at /problem/${pid}, not /problem/${LANDING.CAUSE_PROBLEM}`);
+    if (target && target.indexOf(`id="${frag}"`) < 0) bad.push(`door ${i + 1} links to #${frag} and no element with that id exists in the emitted /problem/${LANDING.CAUSE_PROBLEM} — assertLinkGraph does not check fragments, so nothing else would have caught this`);
+    if (tell !== esc(c.hook || '')) bad.push(`door ${i + 1}'s tell is "${tell}" and the corpus's own hook for "${c.name}" is "${c.hook}" — the tells on this page are the corpus's sentences, not mine`);
+    const want = LANDING.CAUSE_WORDS[c.name] || c.name;
+    if (title !== esc(want)) bad.push(`door ${i + 1} is titled "${title}" and should be "${want}"`);
+  });
+  if (MAIN.indexOf(esc(LANDING.RED_FLAG)) < 0) bad.push(`the escalation row does not say "${LANDING.RED_FLAG}" — it is the one safety-critical element on the landing page`);
+  if (target && !/id="first-when-this-is-not-a-self-care-problem"/.test(target)) bad.push(`the escalation row links to #first-when-this-is-not-a-self-care-problem and /problem/${LANDING.CAUSE_PROBLEM} no longer has that id`);
+  // The rank numbers are LEVERAGE, not likelihood, and this page prints them. The corpus's own
+  // disclaimer has to travel with them or the numbers read as an ordering of how likely each cause
+  // is to be the reader's — an implied diagnosis, and the page's largest regulatory exposure.
+  if (MAIN.indexOf('not an order of likelihood') < 0) bad.push('the six doors print rank numbers and the page does not carry the corpus\'s own "ranked by leverage … not a diagnosis, and not an order of likelihood" note beside them');
+  Object.keys(LANDING.CAUSE_WORDS).forEach((k) => {
+    if (!causeList.some((c) => c.name === k)) bad.push(`build/landing.js has the owner's wording for a cause called "${k}" and /problem/${LANDING.CAUSE_PROBLEM} no longer publishes one by that name — his line would have vanished without a word`);
   });
 
-  // 5. THE SPA ANSWER — three lines, and if any one of them is rewritten a reader with JavaScript
-  //    loses the form, the seven answer panels and the five drawings and gets a second, hand-written
-  //    home page instead. "/" is not a KEEP_PRERENDERED route: it is protected by a different
-  //    mechanism — app.js CAPTURES the prerendered <main> at boot (HOME_HTML), home() replays that
-  //    captured string rather than rendering anything, and route() skips the #app write entirely on
-  //    the first paint of "/". Each is pinned verbatim, because a rewrite of any of them is invisible
-  //    until somebody actually submits the form.
-  //    PROVE IT by deleting `_firstPaint && !parts.length && HOME_HTML` from route()'s write guard,
-  //    or by replacing home()'s first line with a hand-written hero — the build must refuse.
+  // 6. THE DRAWINGS, THE H1 AND THE SPA ANSWER
+  const svgs = (H.match(/<svg class="i-[a-z]+"/g) || []).length;
+  const titles = (H.match(/<title id="i-t-[a-z]+">/g) || []).length;
+  const labelled = (H.match(/<svg class="i-[a-z]+"[^>]*aria-labelledby="i-t-[a-z]+"/g) || []).length;
+  if (svgs !== 2 || titles !== 2 || labelled !== 2) bad.push(`${svgs} drawings, ${titles} <title> elements and ${labelled} of them wired up with aria-labelledby — every drawing needs one or a screen reader is told "image"`);
+  if ((H.match(/<h1/g) || []).length !== 1) bad.push('the home page does not have exactly one <h1>');
+  if (H.indexOf('<h1>Turned away, priced out, or told it was nothing.</h1>') < 0) bad.push("the owner's headline is gone from the home page");
   [['if (HOME_HTML) return HOME_HTML;',
     'home() no longer replays the captured prerendered document — it is rendering a second home page'],
   ['if (html !== KEEP && !(_firstPaint && !parts.length && HOME_HTML)) app.innerHTML = html;',
-    'route() no longer skips the #app write on the first paint of "/" — the prerendered form and its seven answer panels are overwritten before the reader can see them'],
+    'route() no longer skips the #app write on the first paint of "/" — the prerendered landing page is overwritten before the reader can see it'],
   ["if (!currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;",
     'the boot capture of the prerendered home is gone, so home() has nothing to replay']].forEach(([lit, what]) => {
     if (APP.indexOf(lit) < 0) bad.push(`${what}. site/app.js must contain, verbatim:  ${lit}`);
   });
-  if (/KEEP_PRERENDERED = \[[^\]]*'interest'/.test(APP)) bad.push('site/app.js\'s KEEP_PRERENDERED still lists \'interest\', and no page serves that route any more — /interest 301s to "/". Remove it.');
-  //    THE STATE ATTRIBUTE MUST BE CLEARED ON ANY OTHER NAVIGATION. server.js stamps data-state on
-  //    <html>, and on "/" — unlike /interest, whose every inbound link carried data-native — a reader
-  //    with JavaScript can navigate away and back with no page load, which would leave "You are on
-  //    the list." revealed over a landing page they asked for.
-  //    It has to read location.search, NOT the router's own parsed query: currentRoute() returns a
-  //    bare "/" for the home page and appends location.search only when the pathname is something
-  //    else, so the router's QS is empty on "/?state=ok". Measured hydrated at 390x844 with the QS
-  //    version in place: data-state null, .i-s-ok display:none and the form back on screen on the
-  //    one paint that was meant to show the answer. Pinned so that regression cannot come back.
-  if (APP.indexOf("if (!new URLSearchParams(location.search || '').get('state')) document.documentElement.removeAttribute('data-state');") < 0) {
-    bad.push('site/app.js route() does not clear data-state from location.search on a navigation with no ?state= — either a reader who signed up sees the confirmation panel every time they return to "/" in the same session, or (if it was rewritten to read the router\'s QS, which is empty on "/") the answer is wiped on the very paint that was meant to show it');
-  }
-
-  // 6. the drawings, the heading, the causes, and the owner's wording for them
-  // The page's OWN drawings only: `<svg class="i-…">`. A bare /<svg/ count picks up the brand mark
-  // shell() puts in the topbar of all 621 documents, which is not one of these five and does not
-  // want an aria-labelledby.
-  const svgs = (H.match(/<svg class="i-[a-z]+"/g) || []).length;
-  const titles = (H.match(/<title id="i-t-[a-z]+">/g) || []).length;
-  const labelled = (H.match(/<svg class="i-[a-z]+"[^>]*aria-labelledby="i-t-[a-z]+"/g) || []).length;
-  if (svgs !== 5 || titles !== 5 || labelled !== 5) bad.push(`${svgs} drawings, ${titles} <title> elements and ${labelled} of them wired up with aria-labelledby — every drawing needs one or a screen reader is told "image"`);
-  if ((H.match(/<h1/g) || []).length !== 1) bad.push("the home page does not have exactly one <h1>");
-  const causeList = ((CAUSE[INTEREST.CAUSE_PROBLEM] || {}).causes || []);
-  if (!causeList.length) bad.push(`data/cause_learn.json has no causes for "${INTEREST.CAUSE_PROBLEM}" — drawing 3 draws a fan with nothing in it`);
-  else if (H.indexOf(`data-causes="${causeList.length}"`) < 0) bad.push(`drawing 3 does not draw ${causeList.length} causes, which is what /problem/${INTEREST.CAUSE_PROBLEM} publishes`);
-  const published = new Set(causeList.map((c) => c.name));
-  Object.keys(INTEREST.CAUSE_WORDS).forEach((k) => {
-    if (!published.has(k)) bad.push(`build/interest.js has the owner's wording for a cause called "${k}" and /problem/${INTEREST.CAUSE_PROBLEM} no longer publishes one by that name — his line would have vanished from the drawing without a word`);
-  });
-  if (!ids.includes(INTEREST.CAUSE_CHIP)) bad.push(`drawing 3 is headed by the "${INTEREST.CAUSE_CHIP}" chip and no chip with that id exists`);
 
   if (bad.length) {
     console.error('\n[prerender] the landing copy on "/" FAILED — refusing to build:');
@@ -4637,7 +4541,7 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     console.error('');
     process.exit(1);
   }
-  console.log(`[prerender] the landing copy on "/" OK — ${realTotal} marks (${realFilled} filled) counted from the published set, ${ids.length} chips matching the POST /api/interest allowlist, ${causeList.length} causes from /problem/${INTEREST.CAUSE_PROBLEM} (${Object.keys(INTEREST.CAUSE_WORDS).length} in the owner's wording), all 7 answer states present and both server.js substitution targets intact.`);
+  console.log(`[prerender] the landing copy on "/" OK — ${realTotal} marks (${realFilled} filled) counted from the published set, ${forms.length} forms and all of them GET /solve, ${taps.length} tap targets with counts matching the corpus, ${doors.length} doors resolving to real #cause-N ids on /problem/${LANDING.CAUSE_PROBLEM} with the corpus's own tells.`);
 })();
 
 // ---- build-time assertion: THE SPA'S OWN HASH LINKS MUST RESOLVE TO A route() BRANCH -----------

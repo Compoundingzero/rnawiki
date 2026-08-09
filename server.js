@@ -8,6 +8,18 @@ const zlib = require('node:zlib');
 const db = require('./db');
 
 const DIR = path.join(__dirname, 'site');
+// Does the built landing page still carry the interest form's seven answer panels? Read once, at
+// boot, off the page that was actually built — never assumed in either direction. The panels were
+// removed on 2026-08-09 with the form, so the `/?state=` handler far below is dark; if they are ever
+// restored it starts working again with no edit. See the note at that handler.
+let _hasPanels = null;
+function HAS_ANSWER_PANELS() {
+  if (_hasPanels === null) {
+    try { _hasPanels = fs.readFileSync(path.join(DIR, 'home.html'), 'utf8').indexOf('class="i-state i-s-ok"') >= 0; }
+    catch (e) { _hasPanels = false; }
+  }
+  return _hasPanels;
+}
 // Cache-busting: a short hash of the built assets, recomputed on each boot (i.e. each deploy).
 // Injected as ?v=<hash> into every HTML response so browsers always fetch the current build —
 // no hard-refresh needed — while HTML/JS/CSS are served no-cache so the CDN can't pin them.
@@ -2419,7 +2431,20 @@ function serveStatic(req, res, url) {
   //   down     the database is unreachable; nothing was saved, and it is my fault not yours
   //   remove   are you sure? (a button, not a link)
   //   removed  that address is not on the list
-  if (p === '/' && qp.get('state')) {
+  //
+  // 2026-08-09 — THIS BRANCH IS NOW DARK, AND DELIBERATELY LEFT IN PLACE. The interest form and its
+  // seven answer panels were removed from the landing page on the owner's instruction ("i just need
+  // 1 CTA: search and protocol"). POST /api/interest, POST /api/interest/remove and the table are
+  // untouched and still work — nothing was dropped — but there is no longer a panel on "/" for an
+  // answer to be revealed in, so stamping data-state would produce a page with a state on it and
+  // nothing to show, and both substitutions would log a miss on every hit. `HAS_ANSWER_PANELS` reads
+  // the page that was actually built rather than assuming either way, so if the panels ever come
+  // back this handler starts working again with no edit. An arrival with ?state= (a stale bookmark,
+  // or a /interest?state=ok&t=… redirect) is served the ordinary landing page at 200 — which is what
+  // an unrecognised ?state= has always been served.
+  // LEFT BEHIND, for the record: a reader who was handed a removal link before today can no longer
+  // press it from the page. The endpoint still accepts the POST. See the commit message.
+  if (p === '/' && qp.get('state') && HAS_ANSWER_PANELS()) {
     const STATES = ['ok', 'dupe', 'bad', 'rate', 'down', 'remove', 'removed'];
     let state = STATES.indexOf(String(qp.get('state'))) >= 0 ? String(qp.get('state')) : '';
     const tok = /^[A-Za-z0-9_-]{16,48}$/.test(String(qp.get('t') || '')) ? String(qp.get('t')) : '';

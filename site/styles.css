@@ -4590,3 +4590,191 @@ html[data-state="removed"] .i-form{display:none}
 .home-interest h2{margin:0;color:var(--head);line-height:1.25}
 .hi-sub{margin:.5rem 0 0;color:var(--muted)}
 .hi-cta{display:inline-flex;align-items:center;min-height:44px;color:var(--link);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+
+/* ================================================================================================
+   THE LANDING PAGE ON "/"  (.lp, 2026-08-09)
+   ------------------------------------------------------------------------------------------------
+   The full overhaul. The owner's brief: one call to action — search, leading to a protocol — aimed
+   at somebody who was turned away, priced out, or told it was nothing.
+
+   THE ONE MEASUREMENT THIS BLOCK EXISTS TO SATISFY. Before: the page's only working call to action
+   (#hero-solve-input) sat at 1,044px on a 390x844 phone — 200px BELOW the fold, 1.24 viewports down
+   — behind a headline, a drawing, a caption and a SECOND headline. A reader had to scroll to
+   discover that the page did anything. Everything here is sized so that the complete call to action
+   — six tap targets, the all-problems row, the field and the submit button — finishes above 844px
+   at zero scroll. Every value below was set by rendering the page and reading the pixels back, not
+   by arithmetic.
+
+   THREE PIECES OF SITE CHROME ARE SUPPRESSED ON THIS PAGE AT PHONE WIDTH, and only here:
+     .search-wrap  the topbar search — a DUPLICATE of the control 350px below it, and worth 52px of
+                   the only screen that matters. Desktop keeps it.
+     .account-slot "Sign in" sat 126px above a headline on a page that promises "no account, ever".
+                   It is the second-most prominent control on the first screen and it contradicts
+                   the page. It is JS-rendered and it is present on all 567 other pages.
+     .feedback-fab a fixed bubble pinned bottom-right, measured at y=788 — directly over the submit
+                   button and the "Free · no account" line, i.e. the exact band this whole redesign
+                   is built to protect. `body.route-bodymap .feedback-fab{display:none}` is the
+                   existing precedent for suppressing it on one route.
+   `html:has(.lp-fold)` rather than a stamped attribute, deliberately: the landing page is the only
+   document that contains .lp-fold, the selector needs no JavaScript to stay correct, and it cannot
+   drift out of sync on an SPA navigation the way a data- attribute on <html> can.
+   ================================================================================================ */
+@media(max-width:900px){
+  html:has(.lp-fold) .topbar .search-wrap,
+  html:has(.lp-fold) .account-slot,
+  html:has(.lp-fold) .feedback-fab{display:none}
+}
+
+.lp{--lp-gap:8px}
+.lp .lp-fold{padding:6px 0 0}
+/* THE FOLD IS TWO SENTENCES AND THEN THE CONTROL. Nothing else. The five-years drawing is not here:
+   measured, it costs 167px plus a 160px caption, which is 39% of the available first screen and
+   pushes the field back below the fold — the exact defect this page exists to fix. It is the first
+   thing BELOW the fold instead, where it is the reward for the first scroll rather than the toll. */
+.lp h1{margin:0}
+.lp .lp-turn{font-size:var(--i-lead);line-height:1.35;font-weight:600;color:var(--head);
+  max-width:24em;margin:10px 0 0;text-wrap:pretty}
+.lp .lp-lead{font-size:var(--i-small);color:var(--muted);margin:10px 0 0;max-width:30em}
+
+/* ---- the six tap targets: the call to action, pre-typed ---------------------------------------
+   An exhausted person who has been dismissed will not compose a query into an empty box, so the
+   primary control is six buttons in their own words and the field is the fallback below them.
+   No emoji: the corpus icon for Lower Back Pain draws a literal BACK arrow, and six emoji make a
+   menu look like a game on a page for somebody who wants to be taken seriously. */
+.lp .lp-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--lp-gap);margin-top:10px;
+  grid-auto-rows:minmax(58px,1fr)}
+.lp .lp-tap{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:58px;
+  padding:8px 11px;background:var(--panel);border:1px solid var(--faint);border-radius:12px;
+  text-decoration:none;color:var(--head);box-shadow:0 1px 0 rgba(10,20,32,.05)}
+.lp .lp-tap:hover{border-color:var(--accent);background:#fff}
+.lp .lp-tap b{font-size:15px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+/* THE COUNT IS THE ARGUMENT, AND THE REPETITION IS THE POINT. Five of these read "6 causes" and one
+   reads "7". Set as a mono numeral column it reads as a table of counts — the site's whole thesis,
+   stated six times, before anything is tapped — which is why the line above the grid names the
+   repetition ("Not one of these has a single cause") rather than leaving it to look like wallpaper.
+   The alternative was each problem's own 57-character tell under its label; measured, six
+   full-width rows carrying a tell is 544px and puts the search field off the screen. The tells are
+   on the six doors below instead, where they fit. */
+.lp .lp-tap span{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--accent);
+  font-weight:700}
+/* THE ESCAPE FOR THE OTHER 35 PROBLEMS IS A FULL-WIDTH ROW, NOT A WHISPER. Six doors and no door
+   for you is the shape of the thing that already happened to this reader. */
+.lp .lp-all{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:46px;
+  margin-top:var(--lp-gap);padding:0 13px;border:1px dashed var(--faint);border-radius:12px;
+  text-decoration:none;color:var(--head);font-size:14.5px}
+.lp .lp-all b{font-weight:700}
+.lp .lp-all:hover{border-color:var(--accent);border-style:solid}
+
+/* ---- the one form ------------------------------------------------------------------------------
+   A real <form action="/solve" method="get">. /solve?q= is filtered server-side (server.js
+   searchSolve injects a <style> and fills two text slots), so the whole path runs with no
+   JavaScript. bindHome() upgrades #hero-solve-input to the typeahead for the ~10% who have it. */
+.lp .lp-form{margin-top:12px}
+.lp .lp-lab{display:block;font-size:14px;color:var(--muted);margin-bottom:6px}
+.lp .lp-search{position:relative}
+.lp .lp-form input[type=text],.lp #hero-solve-input{width:100%;height:52px;padding:0 14px;
+  background:var(--panel);border:1px solid var(--faint);border-radius:var(--i-r);box-shadow:none;
+  font-family:var(--font);font-size:var(--i-body);color:var(--ink)}
+.lp .lp-form input[type=text]:focus,.lp #hero-solve-input:focus{outline:2px solid var(--head);
+  outline-offset:2px;border-color:var(--faint)}
+.lp .lp-go{display:block;width:100%;min-height:52px;margin-top:8px;background:var(--accent);
+  color:var(--accent-ink);border:0;border-radius:var(--i-r);font-family:var(--font);
+  font-size:var(--i-lead);font-weight:700;cursor:pointer;box-shadow:0 3px 0 rgba(10,20,32,.18)}
+.lp .lp-go:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(10,20,32,.18)}
+.lp .lp-fine{font-size:13.5px;color:var(--muted);margin:10px 0 0}
+
+/* ---- the six doors -----------------------------------------------------------------------------
+   This replaces causeFigure(), which drew six inert <text> boxes in an SVG. The drawing argued that
+   a differential exists; the list IS one. Every row is a real link to /problem/chronic-fatigue
+   #cause-N — a genuine in-page fragment, not SPA hash-router navigation — and the tell under each
+   title is that cause's own `hook` string out of data/cause_learn.json, byte for byte. */
+.lp .lp-arg{font-size:var(--i-body);line-height:1.55;margin:16px 0 0;max-width:34em}
+.lp .lp-doors{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:8px;counter-reset:none}
+.lp .lp-door{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
+  padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  text-decoration:none;color:var(--head)}
+.lp .lp-door:hover{border-color:var(--accent);background:#fff}
+.lp .lp-dn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--head);color:#fff;
+  font-family:var(--mono);font-size:13px;font-weight:700;display:flex;align-items:center;
+  justify-content:center}
+.lp .lp-db{display:flex;flex-direction:column;gap:3px;min-width:0}
+.lp .lp-db b{font-size:15.5px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.lp .lp-db small{font-size:13px;line-height:1.4;color:var(--muted)}
+.lp .lp-da{color:var(--faint);font-size:18px}
+/* THE ESCALATION ROW IS OUTSIDE THE <ol> AND IT IS A REAL LINK. An earlier prototype put it in an
+   unstyled <li> inside the list: rendered at 390px it wrapped to one word per line across eight
+   lines and lost its --warn colour to the list's default ink. It is the one safety-critical element
+   on this page, so it is its own block-level element, it keeps the warn colour, and it goes to the
+   problem page's own red-flag section rather than being decoration. */
+.lp .lp-red{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;
+  margin-top:10px;padding:10px 14px;border:1.5px solid var(--warn);border-radius:12px;
+  background:#fff;text-decoration:none;color:var(--warn)}
+.lp .lp-red b{font-size:15px;font-weight:700;line-height:1.3}
+.lp .lp-red:hover{background:#fdf3f1}
+.lp .lp-rank{font-size:13.5px;line-height:1.5;color:var(--muted);margin:14px 0 0;max-width:36em}
+.lp .lp-counted{font-size:var(--i-small);line-height:1.55;color:var(--ink);margin:18px 0 0;
+  max-width:34em}
+
+/* ---- the receipt -------------------------------------------------------------------------------
+   Not a "FREE" badge, which is a claim. An itemised, unemotional statement of what this page will
+   and will not ask for. Flat and specific on purpose: somebody who has been priced out does not
+   distrust "free", they distrust "free FOR NOW", and specificity answers that where enthusiasm
+   does not. Every number in it is counted at build time. */
+.lp .lp-receipt{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
+.lp .lp-receipt li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
+  gap:4px 16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
+.lp .lp-receipt li span{color:var(--ink)}
+.lp .lp-receipt li b{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--head);
+  text-align:right}
+.lp .lp-receipt li b{white-space:nowrap}
+.lp .lp-receipt-foot{font-size:var(--i-small);line-height:1.55;color:var(--muted);margin:14px 0 0}
+.lp .lp-links{display:flex;flex-wrap:wrap;gap:0 24px;margin:14px 0 0}
+.lp .lp-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--link);
+  font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.lp .lp-receipt-foot b{color:var(--head)}
+/* THE HONEST LIMIT. The only sentence on the page that gives a priced-out reader something with
+   cash value, and the reason the "free" claim above cannot be misread as covering the DOING as well
+   as the READING — /protocol/chronic-fatigue/iron-anemia says in its own words that every
+   intervention on it is a purchase or a lab test. It names no medicine, claims no efficacy,
+   promises no outcome, and points AT the clinician rather than away from them. */
+.lp .lp-limit{font-size:var(--i-body);line-height:1.6;color:var(--head);margin:24px 0 0;
+  padding-left:16px;border-left:3px solid var(--accent);max-width:34em}
+
+/* ---- the payoff --------------------------------------------------------------------------------
+   The worked example, repointed from knee pain to the first tap target's own protocol so the page
+   tells one story from headline to plan. The four illustrative percentage bars that used to sit in
+   card 3 are gone: they were the only numbers on this site that were neither counted nor sourced. */
+.lp .lp-q{background:var(--panel2);border:1px dashed var(--line);border-radius:8px;padding:0 .3rem}
+.lp .lp-lede{font-size:var(--i-body);line-height:1.6;margin:14px 0 0;max-width:34em}
+.lp .wex-chain{grid-template-columns:1fr;gap:1.3rem;margin-top:1.6rem}
+.lp .wex-targets{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
+.lp .wex-targets li{display:grid;gap:.22rem;font-size:.8rem;color:var(--head)}
+.lp .wex-targets li > span b{font-family:var(--mono);font-weight:700;color:var(--accent)}
+.lp .wex-targets small{font-size:.74rem;line-height:1.4;color:var(--faint)}
+.lp .wex-fine{text-align:left;margin:1.1rem 0 0}
+@media(min-width:760px){.lp .wex-chain{grid-template-columns:repeat(3,1fr);gap:1rem}}
+
+/* ---- the close and the goal list ---------------------------------------------------------------
+   The goal index used to be a 16-card grid measuring 1,116px on a phone, sitting where a tired
+   reader decides to leave. All 16 hrefs survive and so does the Medicines Act "N you can buy · N
+   prescription-only" split, as VISIBLE text — a prescription-only distinction that lives in a title
+   attribute is invisible on touch, which is close to not existing. Only the geometry changed. */
+.lp .lp-close{border-top:1px solid var(--line)}
+.lp .lp-goals{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:2px}
+.lp .lp-goals a{display:flex;flex-direction:column;gap:2px;min-height:48px;justify-content:center;
+  padding:6px 0;text-decoration:none;color:var(--head)}
+.lp .lp-goals a:hover b{text-decoration:underline}
+.lp .lp-goals b{font-size:15px;font-weight:700}
+.lp .lp-goals small{font-size:12.5px;color:var(--muted)}
+@media(min-width:560px){.lp .lp-goals{grid-template-columns:1fr 1fr;gap:2px 24px}}
+.lp .lp-open{margin-top:14px;font-size:13px;color:var(--faint)}
+
+/* ---- desktop ------------------------------------------------------------------------------------
+   The fold is a phone problem; on a 1440x900 screen there is room for three columns of taps and the
+   whole call to action is above the fold with no help. */
+@media(min-width:760px){
+  .lp .lp-grid{grid-template-columns:repeat(3,1fr)}
+  .lp .lp-tap{min-height:70px}
+  .lp .lp-tap b{font-size:16.5px}
+  .lp .lp-turn{margin-top:18px}
+}

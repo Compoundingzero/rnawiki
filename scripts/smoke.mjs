@@ -2011,10 +2011,18 @@ try {
           // and the entire header — the first Tab landed in the middle of the page.
           h1FocusedOnLoad: document.activeElement === document.querySelector('#app h1'),
           header: (() => {
-            const g = (sel) => { const e = document.querySelector(sel); if (!e) return null; const r = e.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; };
+            // `vis` added 2026-08-09, matching the desktop pass, which has always carried it: ONLY
+            // controls this width actually renders. A display:none control is not a small control.
+            // The landing page suppresses the topbar search and the account slot at <=900px — the
+            // search because the hero carries the same control 350px below it and the duplicate
+            // costs 52px of the only screen that matters, the account slot because "Sign in" sat
+            // 126px above a headline on a page promising "no account, ever". Both are present, and
+            // still gated at 44px, on all 567 other routes.
+            const g = (sel) => { const e = document.querySelector(sel); if (!e) return null; const r = e.getBoundingClientRect(); const st = getComputedStyle(e); return { w: Math.round(r.width), h: Math.round(r.height), vis: st.display !== 'none' && st.visibility !== 'hidden' && r.width > 0 && r.height > 0 }; };
             const inp = document.getElementById('search');
+            const iv = inp && getComputedStyle(inp).display !== 'none';
             return { search: g('#search'), acct: g('.acct-btn'), menu: g('#menu-btn'), brand: g('.brand'),
-              searchClipped: inp ? inp.scrollWidth > inp.clientWidth + 1 : null };
+              searchClipped: (inp && iv) ? inp.scrollWidth > inp.clientWidth + 1 : null };
           })(),
           widest: (() => {
             const vw = document.documentElement.clientWidth;
@@ -2089,6 +2097,7 @@ try {
       if (dom.header) {
         Object.entries(dom.header).forEach(([k, v]) => {
           if (!v || typeof v !== 'object') return;
+          if (!v.vis) return;   // a display:none control is not a small control — same rule as the desktop pass
           if (v.h < 44) fail.push(`${route}  header control "${k}" is ${v.w}x${v.h} px — under the 44px touch minimum, on a control that is on every one of the 568 routes`);
         });
         if (dom.header.searchClipped) fail.push(`${route}  the header search box is too narrow for its own placeholder — it renders as a truncated fragment, which reads as a broken string rather than a prompt`);
@@ -2457,27 +2466,43 @@ try {
     } catch (e) { fail.push('heroTypeaheadIsTheSolveRanking: harness error — ' + (e && e.message ? e.message : String(e))); }
   }
 
-  // ------------------------------------------------- /interest -> "/" (merged 2026-08-08)
+  // ------------------------------------------------- the landing page on "/" (overhauled 2026-08-09)
   // OUTSIDE THE PER-ROUTE RUNNER, deliberately: page.goto() follows a 301 and reports the home
-  // page's 200, so a browser route here would prove nothing. /interest was published, is in the
-  // sitemap that shipped, and an unknown top-level path on this server falls through to the SPA
-  // shell at HTTP 200 (a soft 404) — so "it 404s" is not the failure to watch for, "it 200s with the
-  // wrong page" is.
-  // The second check is the one that is easy to lose: at the moment this deploys, a reader mid-
-  // submit is 303'd by the OLD container to /interest?state=ok&t=<token>, and that URL is the only
-  // copy of their removal token that will ever exist, because nothing here sends email.
+  // page's 200, so a browser route would prove nothing about /interest. That URL was published, is
+  // in a sitemap that shipped, and an unknown top-level path on this server falls through to the
+  // SPA shell at HTTP 200 (a soft 404) — so "it 404s" is not the failure to watch for, "it 200s
+  // with the wrong page" is.
+  //
+  // WHAT CHANGED ON 2026-08-09. The interest FORM is gone from the page on the owner's instruction
+  // ("i just need 1 CTA: search and protocol"). POST /api/interest, its removal endpoint and its
+  // table all stay — they are simply not reachable from any document — so /interest must still 301
+  // with its query intact for anyone holding a removal token, and this block still proves that.
+  // What it no longer asserts is the form, the seven answer panels and the removal-link
+  // substitution target, because a page that still carried them would be the defect.
   // PROVE IT by deleting the '/interest' entry from LEGACY_REDIRECTS (server.js) — the first check
   // then reports 200 — or by dropping the query passthrough — the second then reports Location "/".
   {
     const r1 = await fetch(BASE + '/interest', { redirect: 'manual' });
-    if (r1.status !== 301) fail.push(`ASSERTION interestMergedIntoHome FAILED — /interest answers ${r1.status}, expected 301. It is an indexed URL, and an unknown path here answers 200 with the SPA shell, which is a soft 404.`);
-    if ((r1.headers.get('location') || '') !== '/') fail.push(`ASSERTION interestMergedIntoHome FAILED — /interest redirects to ${JSON.stringify(r1.headers.get('location'))}, expected "/"`);
+    if (r1.status !== 301) fail.push(`ASSERTION landingPageIsOneCta FAILED — /interest answers ${r1.status}, expected 301. It is an indexed URL, and an unknown path here answers 200 with the SPA shell, which is a soft 404.`);
+    if ((r1.headers.get('location') || '') !== '/') fail.push(`ASSERTION landingPageIsOneCta FAILED — /interest redirects to ${JSON.stringify(r1.headers.get('location'))}, expected "/"`);
     const tokUrl = '/interest?state=ok&t=smoke-token-0000000000';
     const r2 = await fetch(BASE + tokUrl, { redirect: 'manual' });
-    if ((r2.headers.get('location') || '') !== '/?state=ok&t=smoke-token-0000000000') fail.push(`ASSERTION interestMergedIntoHome FAILED — ${tokUrl} redirects to ${JSON.stringify(r2.headers.get('location'))}; the query must travel with it or a reader mid-deploy loses the only copy of their removal token`);
+    if ((r2.headers.get('location') || '') !== '/?state=ok&t=smoke-token-0000000000') fail.push(`ASSERTION landingPageIsOneCta FAILED — ${tokUrl} redirects to ${JSON.stringify(r2.headers.get('location'))}; the query must travel with it or a reader holding a removal token loses the only copy of it`);
     const home = await (await fetch(BASE + '/')).text();
-    for (const [lit, what] of [['action="/api/interest"', 'the form'], ['class="i-state i-s-ok"', 'the "you are on the list" panel'], ['<a class="i-rm" href=""></a>', "server.js's removal-link substitution target"], ['data-total=', 'the library drawing']]) {
-      if (home.indexOf(lit) < 0) fail.push(`ASSERTION interestMergedIntoHome FAILED — the home page does not contain ${what} (${lit}). The merge did not land, and the crawler's copy is the one ~90% of readers get.`);
+    const main = (home.match(/<main id="app">([\s\S]*)<\/main>/) || [, ''])[1];
+    // THE ONE CALL TO ACTION, checked on the SERVED document rather than on the emitted file. Both
+    // forms are the same control rendered twice by the same function; what may never appear is a
+    // form that asks for something else.
+    const forms = [...main.matchAll(/<form\b[^>]*>/g)].map(m => m[0]);
+    if (!forms.length) fail.push('ASSERTION landingPageIsOneCta FAILED — the served home page has no <form> at all; the site\'s only call to action is gone');
+    for (const f of forms) {
+      if (!/action="\/solve"/.test(f) || !/method="get"/.test(f)) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page carries a <form> that is not the one call to action: ${f}`);
+    }
+    for (const [lit, what] of [['id="hero-solve-input" name="q"', "the first call to action's field"], ['<a class="lp-tap"', 'the one-tap problem targets'], ['<a class="lp-door"', 'the six live cause doors'], ['class="lp-red"', 'the escalation row'], ['data-total=', 'the library drawing'], ['Severe, sudden, or getting worse. Be seen.', 'the escalation copy']]) {
+      if (main.indexOf(lit) < 0) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page does not contain ${what} (${lit}). The crawler's copy is the one ~90% of readers get.`);
+    }
+    for (const [lit, what] of [['/api/interest', 'the interest form'], ['type="email"', 'an email field'], ['Count me in', "the interest form's submit button"], ['Show me the root cause', 'the singular root-cause promise']]) {
+      if (main.indexOf(lit) >= 0) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page still contains ${what} (${lit}); that is the second call to action growing back.`);
     }
   }
 
