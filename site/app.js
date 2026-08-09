@@ -4937,8 +4937,29 @@
     q = (q || '').trim().toLowerCase(); if (q.length < 2) return [];
     const ex = new Set(excludeIds);
     if (bucket === 'stack') {
-      return D.compounds.filter(c => !ex.has(c.id) && (c.name.toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q)))
+      // ---- W7 (2026-08-09): THE ASSEMBLY CATALOGUE IS NOT THE WIKI CATALOGUE ------------------
+      // MEASURED hydrated at 390x844, 0 pageerrors, on the Supplements step of /#/plan for
+      // knee-pain/patellofemoral-pain (qa/st_c2_before.mjs): typing "dinitro", "semaglutide",
+      // "clenbuterol" and "trenbolone" each returned one .build-res row ending in "+ Add", and
+      // .br-meta printed the CATEGORY only ("FAT LOSS") — the regulator pill and the supply pill
+      // that the compound CARD carries were both absent from the result row. The one surface on
+      // this site that turns a molecule into an instruction to take it was the one surface that
+      // said nothing about its legal status.
+      // 95 of 171 compounds are authored consumer_renderable:false (prescription 38, unapproved
+      // 34, controlled 22, pharmacy 1) precisely because their own page refuses to render
+      // self-dosing. READING IS UNTOUCHED: every /c/ page still exists, is still linked, and is
+      // still reachable with no account. What changes is that a plan builder cannot hand one out.
+      // NOT SILENTLY. A filter that hides rows without saying so is its own honesty defect — the
+      // reader types a real name, gets nothing, and concludes the site does not cover it. The
+      // withheld matches are counted and returned alongside, and the renderer prints them with a
+      // link to the pages. Same discipline as interactionPanel()'s ❔ state.
+      const all = D.compounds.filter(c => !ex.has(c.id) && (c.name.toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q)));
+      const out = all.filter(c => c.consumer_renderable !== false)
         .sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, 6);
+      out.withheld = all.filter(c => c.consumer_renderable === false).slice(0, 6)
+        .map(c => ({ id: c.id, slug: slug(c.name), name: c.name, tag: (c.supply || {}).tag || 'Not a general-sale substance' }));
+      out.withheldTotal = all.filter(c => c.consumer_renderable === false).length;
+      return out;
     }
     const EX = window.RNAWIKI_EXERCISES; if (!EX) return [];
     const wantStretch = bucket === 'stretch';
@@ -5148,8 +5169,26 @@
     const search = document.getElementById('build-search'); const results = document.getElementById('build-results');
     if (search) search.oninput = () => {
       const hits = catalogSearch(bucket, search.value, dispItems.map(x => x.id));
-      if (!hits.length) { results.innerHTML = search.value.trim().length >= 2 ? '<p class="build-nohit">No matches — try another name.</p>' : ''; return; }
-      results.innerHTML = hits.map(h => `<button class="build-res" data-add-id="${esc(h.id)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${bucket === 'stack' ? esc(h.category || '') : esc((h.primaryMuscles || []).slice(0, 2).join(', '))}</span><span class="br-add">+ Add</span></button>`).join('');
+      // W7: the WITHHELD line is rendered even when there are zero addable hits — which is exactly
+      // the DNP / clenbuterol / semaglutide / trenbolone case. Returning the old bare "No matches"
+      // there would be the silent-filter defect the restriction above exists to avoid: the reader
+      // typed a name this site really does document, and "no matches" is not true of the site.
+      const held = hits.withheld || [];
+      // W7: .br-meta now carries the SUPPLY axis rather than the category. `c.supply.tag` is the
+      // authored, build-gated sentence (assertRegulatoryAxes) and it is the only thing in the row
+      // a reader can act on. The category was decoration — "FAT LOSS" is what DNP and a fibre
+      // supplement had in common.
+      const meta = h => bucket === 'stack'
+        ? ((h.supply || {}).tag || h.category || '')
+        : ((h.primaryMuscles || []).slice(0, 2).join(', '));
+      const heldHTML = held.length
+        ? `<p class="build-held">${held.length}${hits.withheldTotal > held.length ? ' of ' + hits.withheldTotal : ''} match${held.length > 1 ? 'es are' : ' is'} not offered here — ${held.map(w => `<a href="#/c/${esc(w.slug)}">${esc(w.name)}</a> <span class="muted">(${esc(w.tag)})</span>`).join(', ')}. RNAwiki documents ${held.length > 1 ? 'them' : 'it'} in full and those pages are open to anyone; a plan builder is just not the place to hand out a dose for ${held.length > 1 ? 'them' : 'it'}.</p>`
+        : '';
+      if (!hits.length) {
+        results.innerHTML = heldHTML || (search.value.trim().length >= 2 ? '<p class="build-nohit">No matches — try another name.</p>' : '');
+        return;
+      }
+      results.innerHTML = hits.map(h => `<button class="build-res" data-add-id="${esc(h.id)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(meta(h))}</span><span class="br-add">+ Add</span></button>`).join('') + heldHTML;
       results.querySelectorAll('[data-add-id]').forEach(b => b.onclick = () => addExtra(b.dataset.addId));
     };
     const updCount = () => { const el = app.querySelector('.build-count'); if (!el) return; const n = dispItems.filter(it => (step.kind === 'move' ? selMoves() : selSupps()).includes(it.id)).length; el.innerHTML = '<b>' + n + '</b> of ' + dispItems.length + ' kept'; };

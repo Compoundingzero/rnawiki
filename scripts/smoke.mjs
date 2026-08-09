@@ -484,6 +484,79 @@ const ASSERTIONS = {
   // screens below a reader on exactly the pages most likely to send them looking for it.
   // Its own route, because this assertion DRIVES THE UI (it taps ☰).
   // PROVE IT by deleting the two .nav-more anchors from shell() in build/prerender.js.
+  // ---- W7 (2026-08-09): THE ASSEMBLY CATALOGUE IS NOT THE WIKI CATALOGUE ----------------------
+  // The Protocol Studio's assembly surface is the one place on this site that turns a molecule into
+  // an instruction to take it. Before this, it was also the one place that said nothing about a
+  // molecule's legal status.
+  // MEASURED HYDRATED at 390x844, 0 pageerrors, on the Supplements step of the knee-pain/
+  // patellofemoral-pain builder (qa/st_c2_before.mjs) BEFORE the fix:
+  //   "dinitro"     -> 1 .build-res  "2,4-Dinitrophenol (DNP) | FAT LOSS | + Add"
+  //   "semaglutide" -> 1 .build-res  "Semaglutide (Ozempic / Wegovy / Rybelsus) | FAT LOSS | + Add"
+  //   "clenbuterol" -> 1 .build-res  "Clenbuterol | FAT LOSS | + Add"
+  //   "trenbolone"  -> 1 .build-res  "Trenbolone | ANABOLIC-ANDROGENIC STEROIDS | + Add"
+  // .br-meta printed the CATEGORY only — the supply pill the compound CARD carries was absent.
+  // AFTER: 0 .build-res and a .build-held line naming the page and the reason, on all four.
+  //
+  // THIS ASSERTS BOTH HALVES, because each without the other is its own defect:
+  //   1. no restricted compound is ADDABLE (the safety half)
+  //   2. the reader is TOLD, with a working link to the page (the honesty half). A filter that
+  //      hides rows silently makes the site look like it does not cover a substance it covers in
+  //      full — the same defect class as a green tick over an empty knowledge base.
+  //   3. the positive control: an ordinary supplement is still addable and its row now carries the
+  //      supply sentence. A "fix" that emptied the search entirely would pass 1 and 2.
+  // PROVE IT by deleting the `consumer_renderable !== false` filter in catalogSearch()
+  // (site/app.js) — 1 fails; or by dropping the heldHTML concat in the results renderer — 2 fails.
+  '/plan': [{
+    name: 'theStudioListNeverOffersAConsumerUnrenderableCompound',
+    why: 'W7: 95 of 171 compounds are authored consumer_renderable:false because their own page refuses to render self-dosing; a plan builder that hands out a "+ Add" for them is the same instruction by another route (CLAUDE.md rules 6 and 7)',
+    evaluate: async () => {
+      const tick = (ms) => new Promise(r => setTimeout(r, ms));
+      const D = window.RNAWIKI_DATA;
+      // Drive the REAL builder: seed a draft the way setDraft() writes one, then re-route.
+      localStorage.setItem('rnawiki_plan', JSON.stringify({
+        v: 2, protocols: [], log: {}, fnWeek: {}, tools: {},
+        draft: { pid: 'knee-pain', rcid: 'patellofemoral-pain', moves: null, supps: null, functions: [], extra: {}, step: 2 },
+      }));
+      location.hash = '#/stack'; await tick(250);
+      location.hash = '#/plan'; await tick(600);
+      const search = document.getElementById('build-search');
+      if (!search) return 'the Supplements step of the builder has no #build-search — this gate is checking nothing, which is worse than failing';
+      const type = async (q) => {
+        search.value = q; search.dispatchEvent(new Event('input', { bubbles: true })); await tick(120);
+        return {
+          rows: [...document.querySelectorAll('.build-res')].map(b => ({
+            id: b.dataset.addId,
+            name: (b.querySelector('.br-name') || {}).innerText || '',
+            meta: (b.querySelector('.br-meta') || {}).innerText || '',
+          })),
+          held: document.querySelector('.build-held'),
+        };
+      };
+      // 1 + 2 — the four names measured above, each a real page on this site.
+      for (const q of ['dinitro', 'semaglutide', 'clenbuterol', 'trenbolone']) {
+        const r = await type(q);
+        const offered = r.rows.filter(x => (D.compounds.find(c => c.id === x.id) || {}).consumer_renderable === false);
+        if (offered.length) return `typing "${q}" offers a "+ Add" for ${JSON.stringify(offered.map(o => o.name))} — the builder is handing a reader an instruction to take a compound whose own page refuses to print a dose for it`;
+        if (r.rows.length) return `typing "${q}" returned ${r.rows.length} addable row(s) — expected none; the filter is matching the wrong field`;
+        if (!r.held) return `typing "${q}" returned nothing at all and said nothing. The reader typed a name RNAwiki documents in full and the site behaved as though it had never heard of it — a silent filter is its own honesty defect`;
+        const txt = r.held.innerText || '';
+        const link = r.held.querySelector('a[href^="#/c/"]');
+        if (!link) return `the withheld line for "${q}" names no page to read instead: "${txt.slice(0, 120)}"`;
+        const sl = link.getAttribute('href').replace('#/c/', '');
+        if (!D.compounds.some(c => String(c.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === sl)) {
+          return `the withheld line for "${q}" links to #/c/${sl}, which resolves to no compound — detail() looks up by SLUG, so an id here would land on notFound()`;
+        }
+      }
+      // 3 — the positive control.
+      const ok = await type('creatine');
+      if (!ok.rows.length) return 'typing "creatine" offers nothing — the restriction has emptied the assembly catalogue instead of narrowing it';
+      const cre = ok.rows.find(x => x.id === 'c0');
+      if (!cre) return `typing "creatine" no longer offers Creatine Monohydrate: ${JSON.stringify(ok.rows.map(r => r.name))}`;
+      const supply = ((D.compounds.find(c => c.id === 'c0') || {}).supply || {}).tag;
+      if (supply && cre.meta !== supply) return `the result row for Creatine Monohydrate reads "${cre.meta}" — it must carry its supply status ("${supply}"), not its category. "FAT LOSS" is what DNP and a fibre supplement had in common.`;
+      return null;
+    },
+  }],
   '/browse': [{
     name: 'thePhoneMenuReachesEveryIndexPage',
     why: 'W5c: the ☰ drawer offered 4 links and neither of the site\'s two index pages, on a viewport where the footer is up to 35 screens away',
