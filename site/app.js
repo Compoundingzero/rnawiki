@@ -9175,6 +9175,15 @@
     else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model and tap any muscle to see the bones it attaches to — origin and insertion — and watch it perform its action, on the body.'; }
     else if (parts[0] === 'where') { title = t('Where does it hurt? Find the likely cause and the fix'); desc = 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.'; }
     else if (parts[0] === 'clinic' && problemById[parts[2]]) { const p = problemById[parts[2]]; title = t(`${p.name} — home-care protocol from @${parts[1]}`); desc = `A clinician-issued ${p.name} home-care protocol from @${parts[1]} on RNAwiki — movement, stack, and Singapore food targets.`; }
+    // W7 C7. Caught by the smoke gate the moment /studio joined the route set: hydration ended on
+    // the site default title, so the Studio had no identity in a tab, a bookmark or a share (D7).
+    // Neither route is prerendered, so this is the ONLY head either one gets.
+    else if (parts[0] === 'studio') { title = t('Protocol Studio — build a protocol and have it checked'); desc = 'Assemble compounds, movements, Singapore foods and daily tools into one protocol, and see every dangerous pairing as you build it. No account needed to build, keep or run it.'; }
+    // /p/<code> is one reader's own document. The title is deliberately generic and the description
+    // says nothing about what is in it: the row is fetched after this runs, and a head that named
+    // a compound it had not yet read would be a fabricated one. renderPublished() does not restamp
+    // it either — a protocol somebody else wrote is not a page this site is claiming.
+    else if (parts[0] === 'p' && parts[1]) { title = t('A protocol somebody built'); desc = 'A protocol built and published by a reader on RNAwiki, re-checked against the corpus as it is today. Reading it needs no account.'; }
     document.title = title;
     let m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'description'); document.head.appendChild(m); }
     m.setAttribute('content', desc);

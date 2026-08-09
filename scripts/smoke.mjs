@@ -165,6 +165,9 @@ const ROUTES = [
   ['stack-same-substance', '/stack?ids=c1,c24'],
   ['stack-two-substances', '/stack?ids=c1,c25'],
   ['where', '/where'],
+  // W7 C7: the Studio. Its own template class — nothing else on the site renders a live safety
+  // verdict from a POST, and the /stack assertion below tests the ENDPOINT, not the rendering.
+  ['studio', '/studio'],
 ];
 
 // ------------------------------------------------- documented failure allowlist
@@ -527,6 +530,66 @@ const ASSERTIONS = {
   //      would pass 1-3 and be useless.
   // PROVE IT by downgrading the citrulline/PDE-5 rule's tier from danger to blunt in
   // site/interactions.js, or by deleting the r5 call from studio-safety.js validate().
+  '/studio': [{
+    name: 'aDangerRowIsRenderedAndNotMerelyReturned',
+    why: 'W7 C7: measured on this branch, POST /api/protocols/check for citrulline + a PDE-5 inhibitor returns ok:true in DRAFT mode with the danger row in `warn`. A builder that keys its verdict off `ok` paints a green tick over a documented fainting hazard, and one that never reads `warn` paints nothing at all. The endpoint being correct is not the same claim as the reader being told, and only a real browser can prove the second — this project has already shipped a dead 3D page that looked correct in code.',
+    evaluate: async () => {
+      const tick = (ms) => new Promise(r => setTimeout(r, ms));
+      const prev = localStorage.getItem('rnawiki_studio_draft');
+      const done = (v) => {
+        if (prev === null) localStorage.removeItem('rnawiki_studio_draft');
+        else localStorage.setItem('rnawiki_studio_draft', prev);
+        return v;
+      };
+      // Drive the REAL Studio: seed the device draft the way stSave() writes one, then re-route.
+      // renderStudio() re-reads localStorage on every entry, which is what makes this possible.
+      const seed = (items) => {
+        localStorage.setItem('rnawiki_studio_draft', JSON.stringify({
+          title: 'smoke', items, base_pid: null, base_rcid: null, remixOf: null,
+        }));
+        window.dispatchEvent(new PopStateEvent('popstate'));
+      };
+      const verdict = async () => {
+        // 400ms debounce + the round trip + paint. Poll rather than sleep a fixed time so a slow
+        // machine costs seconds, not a false failure; the assertions below never weaken.
+        for (let i = 0; i < 40; i++) {
+          await tick(150);
+          const v = document.getElementById('st-verdict');
+          if (v && v.innerText.trim() && !/^Checking…/.test(v.innerText.trim())) return v.innerText;
+        }
+        const v = document.getElementById('st-verdict');
+        return v ? v.innerText : null;
+      };
+
+      seed([{ k: 'c', id: 'c13' }, { k: 'c', id: 'c116' }]);
+      const t = await verdict();
+      if (t === null) return done('the Studio rendered no #st-verdict region — a check result has nowhere to go');
+      if (!/citrulline/i.test(t) && !/PDE-5/i.test(t)) return done(`nothing about either compound reached the page. #st-verdict reads: "${t.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (!/blood.pressure/i.test(t)) return done(`the danger row's own words are not on the page — the engine returned them and the builder did not print them. #st-verdict reads: "${t.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (!/what to do/i.test(t)) return done("the danger card omits the row's own action. A hazard with no instruction is half a warning.");
+      if (!/prescription only/i.test(t)) return done('the prescription-only note was returned by the engine and is not rendered');
+      if (!/❔|Checked the/.test(t)) return done('the coverage sentence is missing. "Nothing flagged" without it reads as a clearance, and interactionPanel() has shipped that exact bug twice.');
+      // The reader must also be told WHICH rows. A page-level warning over an eight-item protocol
+      // that never says which two items are the pair is not an actionable warning.
+      if (!document.querySelector('.st-row.danger')) return done('the verdict named a dangerous pairing and no row was marked — nothing on the page says which two items it is about');
+
+      // THE POSITIVE CONTROL. A verdict panel that shouts at everything proves nothing.
+      seed([{ k: 'c', id: 'c1' }, { k: 'c', id: 'c5' }]);
+      const t2 = await verdict();
+      if (t2 === null) return done('the clean protocol rendered no #st-verdict region');
+      if (/Dangerous together/i.test(t2)) return done(`caffeine + magnesium is clean at the endpoint (measured: warn:[], coverage 2 of 2) and the builder flagged it anyway: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
+      if (!/Nothing flagged/i.test(t2)) return done(`a clean protocol did not say so: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
+      if (!/Checked the 2 of 2/i.test(t2)) return done('a clean verdict printed no coverage sentence — that is the false-clearance state');
+      if (document.querySelector('.st-row.danger')) return done('a clean protocol left a row marked dangerous — the row flags are not cleared between checks');
+
+      // DOSES ARE CHOSEN, NEVER TYPED. assertDoseCalculators() fails the BUILD over an uncapped
+      // dose control; this is the same rule on the surface a reader actually touches.
+      if (document.querySelector('#app input[type=number], #app input[type=range]')) {
+        return done('the Studio offers a typed or dragged dose control. 164 of 171 compounds publish no machine-readable ceiling, so a typed dose is an uncapped dose calculator.');
+      }
+      return done(null);
+    },
+  }],
   '/stack': [{
     name: 'aUserCannotPublishADangerPairingWithoutBeingShownIt',
     why: 'W7: a user-built protocol is written after the build, so the build gates never see it; the save-time engine is the only thing between a reader and a published instruction to combine two things this site itself calls dangerous',
