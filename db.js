@@ -505,6 +505,94 @@ CREATE TABLE IF NOT EXISTS explain_posts (
 );
 CREATE INDEX IF NOT EXISTS idx_explain_slug ON explain_posts(slug, created_at);
 CREATE INDEX IF NOT EXISTS idx_explain_parent ON explain_posts(parent_id);
+
+-- ===== THE PROTOCOL STUDIO (W7, 2026-08-09) ==================================================
+-- A protocol somebody assembled themselves, out of the locked master library.
+--
+-- ONE ACCOUNT TYPE. There is no author tier, no reviewer, no badge; the only thing this table
+-- records about a person is which row they wrote. There is deliberately NO is_demo column —
+-- protocol_forks has one because it exists to retire launch FIXTURES, and a seeded row written by
+-- nobody is the fabricated-account defect. Starter protocols here are the owner's own rows under
+-- his own user_id, and a row written by a real person never needs retiring.
+--
+-- WHY A NEW TABLE RATHER THAN WIDENING protocol_forks: forks.stack is an array of compound ids and
+-- nothing else — no exercises, no foods, no dose, no frequency, no parent. Widening it would
+-- silently reinterpret 100% of its existing rows. forks stays exactly what it is.
+--
+--   code         base64url over 6 random bytes, minted server-side — same shape and same minting
+--                as shared_plans.code, so a URL cannot be walked. NEVER derived from the title.
+--   parent_code  the protocol this was remixed from, NULL for an original.
+--   depth        DENORMALISED remix depth (0 for an original). Stored so the resolver can refuse a
+--                too-deep chain in one read instead of discovering it by walking, and so a cycle —
+--                which ON DELETE SET NULL alone does not prevent — is bounded. CHECK caps it at 8:
+--                eight diffs is already more indirection than a reader can hold in their head.
+--   base_pid /
+--   base_rcid    the corpus protocol this was started from (graph.problems[].id and its
+--                root_causes[].id), or NULL for a blank build. NOT a foreign key — the corpus is a
+--                build artefact, not a table — so the server validates it against the loaded
+--                corpus on every write and the renderer degrades to "started from scratch" if a
+--                root cause is ever retired.
+--   spec         THE WHOLE POINT. When parent_code IS NULL this is a FULL spec:
+--                  {"v":1,"items":[{"k":"c","id":"c0","dose":5,"days":[1,3,5]},
+--                                  {"k":"x","id":"Barbell_Squat","sets":4,"reps":"6-8"},
+--                                  {"k":"f","id":"f0"},{"k":"fn","id":"walk","target":15}],
+--                   "note":null}
+--                "k" is the kind: c = compound (171), x = exercise (873 slug ids), f = food (656),
+--                fn = plan function (PLAN_FUNCTIONS in site/app.js).
+--                EVERY KEY OTHER THAN k AND id IS AN OVERRIDE, AND ABSENCE MEANS INHERITANCE.
+--                No name, no dose text, no instruction and no evidence star is ever stored here.
+--                That is what lets one protocol render Creatine at 5 g without touching the master
+--                entry — and it is also what makes a CORRECTION to the master reach every protocol
+--                that used it, which a wiki needs and a copy-on-write store would silently prevent.
+--                When parent_code IS NOT NULL this is a DIFF and holds only the differences:
+--                  {"v":1,"add":[…],"drop":["c:c0"],"set":{"x:Barbell_Squat":{"sets":5}},
+--                   "move":[["c:c1",0]]}
+--                Resolution = resolve(parent), then drop, then set, then add, then move. A remix
+--                that changes one dose therefore stores a few dozen bytes.
+--   safety       THE VERDICT THE SAVE-TIME ENGINE RETURNED, STORED WITH THE ROW:
+--                  {"engine":"<the corpus it ran against>","at":"<iso>","refusals":[],
+--                   "warn":[…],"coverage":{"checked":4,"of":6},"says":"…"}
+--                Stored rather than recomputed on read for one reason: the reader has to be able to
+--                see WHEN it was checked and against WHAT. "coverage" is mandatory and is the ❔
+--                state — an empty "warn" over 0 checked compounds is not a clearance, and
+--                interactionPanel() has already had that exact bug fixed twice.
+--   status       draft | published | withdrawn. Only "published" is servable.
+--                A withdrawn protocol KEEPS its row so existing remixes still resolve; the renderer
+--                says it was withdrawn instead of 404ing a page people linked to.
+CREATE TABLE IF NOT EXISTS studio_protocols (
+  code TEXT PRIMARY KEY,
+  user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  parent_code TEXT REFERENCES studio_protocols(code) ON DELETE SET NULL,
+  depth INTEGER NOT NULL DEFAULT 0 CHECK (depth >= 0 AND depth <= 8),
+  base_pid TEXT,
+  base_rcid TEXT,
+  title TEXT NOT NULL,
+  spec JSONB NOT NULL DEFAULT '{}',
+  safety JSONB NOT NULL DEFAULT '{}',
+  status TEXT NOT NULL DEFAULT 'draft',
+  clones INTEGER NOT NULL DEFAULT 0,
+  published_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_studio_user ON studio_protocols(user_id, updated_at DESC);
+CREATE INDEX IF NOT EXISTS idx_studio_parent ON studio_protocols(parent_code);
+CREATE INDEX IF NOT EXISTS idx_studio_base ON studio_protocols(base_pid, base_rcid, status);
+-- "MOST USED", never "works best". This index sorts by clone count and by nothing else, and the
+-- column it sorts on counts one clone per browser — whether people STARTED it. There is no
+-- efficacy column in this table and there must not be one: with the number of real experiments
+-- this site holds, any ranking by outcome is noise, and in Singapore it is a health claim.
+CREATE INDEX IF NOT EXISTS idx_studio_used ON studio_protocols(status, clones DESC, published_at DESC);
+-- One clone per browser per protocol — verbatim the fork_clones pattern above, keyed on the same
+-- anonymous participant cookie the 7-day logger uses. A clone count cannot be inflated by
+-- re-tapping, and no account is needed to clone.
+CREATE TABLE IF NOT EXISTS studio_clones (
+  id SERIAL PRIMARY KEY,
+  code TEXT NOT NULL REFERENCES studio_protocols(code) ON DELETE CASCADE,
+  voter_key TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(code, voter_key)
+);
 `;
 
 async function init() {
