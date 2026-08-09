@@ -2114,6 +2114,124 @@ a.dp-name:hover{color:var(--accent)}
 .build-held{font-size:.82rem;line-height:1.5;color:var(--muted);margin:.55rem 0 0;padding-top:.55rem;border-top:1px dashed var(--line)}
 .build-held a{color:var(--accent);font-weight:600}
 .build-held .muted{font-size:.78rem}
+/* ===== THE PROTOCOL STUDIO (W7 C7, 2026-08-10) ==============================================
+   Designed at 390x844 first. Every control a finger uses is >=44px in both axes: the smoke gate
+   already fails a chapter step under 44px and this surface is nothing but controls.
+   No dark-scheme block: THIS SITE HAS NO DARK THEME (see the note at line ~748) — every surface
+   stays --bg/--panel whatever the OS says, so a lightened ink here would sit on a light
+   background, which is the one combination that cannot work.
+   Every foreground/background pair below was computed before it was written; the lowest is
+   #5c6a7a on --panel2 at 5.01:1 and the lowest new ink is #b45309 on #fff at 5.02:1. */
+.st-hd{margin:.4rem 0 1rem}
+.st-acct{font-size:.88rem;line-height:1.5;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.7rem .85rem;margin:.6rem 0}
+.st-title-l{display:block;font-weight:600;font-size:.9rem;color:var(--head);margin:.8rem 0 .35rem}
+.st-title{width:100%;min-height:44px;padding:.6rem .8rem;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--panel);color:var(--head)}
+.st-title:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,118,110,.16)}
+.st-empty{border:1px dashed var(--line);border-radius:12px;padding:1.1rem;background:var(--panel)}
+.st-list{display:flex;flex-direction:column;gap:.55rem;margin:.8rem 0}
+.st-row{border:1px solid var(--line);border-radius:12px;background:#fff;padding:.6rem .7rem}
+.st-row.danger{border-color:#b91c1c;border-left-width:4px}
+.st-row.rx{border-color:#a16207;border-left-width:4px}
+.st-row.blocked{border-color:#b45309;border-left-width:4px}
+.st-row.flash{animation:stFlash 1.4s ease-out}
+@keyframes stFlash{0%{background:rgba(15,118,110,.18)}100%{background:#fff}}
+.st-row-top{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.55rem}
+.st-kind{font-size:1.15rem;line-height:1}
+.st-row-mid{min-width:0}
+.st-nm{display:block;font-size:.98rem;color:var(--head);line-height:1.3;overflow-wrap:anywhere}
+.st-sum{display:block;font-size:.8rem;color:var(--muted);line-height:1.4;margin-top:.1rem}
+.st-move{display:flex;flex-direction:column;gap:.2rem}
+.st-mv{width:44px;height:44px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--head);font-size:.85rem;cursor:pointer}
+.st-mv:disabled{opacity:.32;cursor:default}
+.st-gone{font-size:.82rem;color:#b45309;margin:.4rem 0 0;line-height:1.45}
+.st-flags{display:flex;flex-wrap:wrap;gap:.3rem}
+.st-flags:not(:empty){margin-top:.45rem}
+.st-chip{display:inline-block;font-size:.74rem;font-weight:700;padding:.2rem .5rem;border-radius:999px;background:var(--panel2);color:var(--head)}
+.st-chip-d{background:#fee2e2;color:#7f1d1d}
+.st-chip-rx{background:#fef3c7;color:#78350f}
+.st-chip-b{background:#ffedd5;color:#7c2d12}
+.st-adj{margin-top:.5rem;border-top:1px dashed var(--line);padding-top:.4rem}
+.st-adj>summary{min-height:44px;display:flex;align-items:center;font-size:.86rem;font-weight:600;color:var(--accent);cursor:pointer}
+.st-adj-b{margin:.7rem 0}
+.st-adj-k{font-size:.78rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:.35rem}
+.st-step{display:flex;align-items:center;gap:.5rem}
+.st-sb{width:44px;height:44px;flex:0 0 44px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--head);font-size:1.15rem;line-height:1;cursor:pointer}
+.st-sb:disabled{opacity:.32;cursor:default}
+.st-sv{min-width:5.5rem;text-align:center;font-weight:700;font-size:1rem;color:var(--head)}
+.st-why{font-size:.8rem;line-height:1.5;color:var(--muted);margin:.35rem 0 0}
+.st-sched{font-size:.82rem;line-height:1.5;color:#7c2d12;background:#ffedd5;border-radius:8px;padding:.4rem .55rem;margin:.4rem 0 0}
+.st-dose-locked{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:.6rem .7rem}
+.st-clear-f{margin-top:.45rem;min-height:44px;padding:.4rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--head);font-size:.82rem;cursor:pointer}
+/* SEVEN ACROSS DOES NOT FIT A PHONE, AND THE 44px FLOOR IS NOT NEGOTIABLE. Measured hydrated:
+   at a 360px viewport the .st-day-row container is 297.25px, so seven buttons are 39.0px wide even
+   at zero gap — 297/7 = 42.4px is the ceiling. The first version shipped them at 43x44 at 390px
+   and the browser caught it; nothing in the code looked wrong. Below 420px the week wraps to
+   4 + 3, which keeps reading order and gives each day ~71px. The threshold is derived, not
+   guessed: seven need 7x44 + 6x4 = 332px, and the container is viewport - 62.8px of padding and
+   border, so seven only fit from ~395px up. 420 leaves margin. */
+.st-day-row{display:grid;grid-template-columns:repeat(7,1fr);gap:.25rem}
+@media(max-width:420px){.st-day-row{grid-template-columns:repeat(4,1fr)}}
+.st-day{min-width:0;height:44px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--head);font-size:.85rem;font-weight:700;cursor:pointer}
+.st-day.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.st-note{width:100%;padding:.55rem .7rem;border:1px solid var(--line);border-radius:10px;font-family:inherit;font-size:.92rem;background:var(--panel);color:var(--head);resize:vertical}
+.st-cc{font-weight:400;text-transform:none;letter-spacing:0}
+.st-remove{margin-top:.6rem;width:100%;min-height:44px;border:1px solid #fecaca;border-radius:10px;background:#fff1f2;color:#991b1b;font-size:.88rem;font-weight:600;cursor:pointer}
+.st-add-open{width:100%;min-height:52px;border:1px dashed var(--line);border-radius:12px;background:var(--panel);color:var(--head);font-size:1rem;font-weight:700;cursor:pointer}
+.st-add-open:disabled{opacity:.5;cursor:default}
+.st-verdict{margin:.9rem 0;display:flex;flex-direction:column;gap:.5rem}
+.st-flag{border:1px solid var(--line);border-radius:12px;padding:.75rem .85rem;background:#fff}
+.st-flag-k{font-size:.78rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase;margin-bottom:.25rem}
+.st-flag-t{display:block;font-size:1rem;line-height:1.35;color:var(--head);margin-bottom:.2rem}
+.st-flag p{font-size:.88rem;line-height:1.55;margin:.3rem 0 0;color:var(--ink)}
+.st-danger{background:#fff1f2;border-color:#b91c1c}
+.st-danger .st-flag-k{color:#7f1d1d}
+.st-danger .st-flag-who{font-weight:700;color:#7f1d1d}
+.st-danger .st-flag-no{font-weight:700;color:#7f1d1d}
+.st-rx{background:#fffbeb;border-color:#a16207}
+.st-rx .st-flag-k{color:#78350f}
+.st-anim{background:var(--panel2)}
+.st-anim .st-flag-k{color:var(--head)}
+.st-block,.st-down{background:#fff7ed;border-color:#c2410c}
+.st-block .st-flag-k,.st-down .st-flag-k{color:#7c2d12}
+.st-clean{background:#ecfdf5;border-color:#047857}
+.st-clean .st-flag-k{color:#065f46}
+.st-cov{font-size:.84rem;line-height:1.55;color:var(--muted);margin:.2rem 0 0}
+.st-then{border-top:1px dashed var(--line);padding-top:.5rem}
+.st-pubwarn{font-size:.86rem;line-height:1.5;font-weight:600;color:#7f1d1d;margin:.2rem 0 0}
+.st-pub-no{font-size:.95rem;line-height:1.5;color:#7f1d1d;margin:.2rem 0 .6rem}
+.st-pub-keep{font-size:.86rem;line-height:1.55;color:var(--muted);margin:.6rem 0 0}
+.st-goto{margin-top:.5rem;min-height:44px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--head);font-size:.84rem;font-weight:600;cursor:pointer}
+.st-bar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;position:sticky;bottom:0;background:var(--bg);padding:.6rem 0;border-top:1px solid var(--line);margin-top:.6rem}
+/* THE FEEDBACK BUBBLE SAT ON TOP OF "PUBLISH" — MEASURED, NOT SUSPECTED. Hydrated at 390x844:
+   .feedback-fab at x=272 y=788 (105.8x44), #st-publish at x=269 y=790 (101.5x44), and
+   document.elementFromPoint() at the CENTRE of the Publish button returned the feedback-fab.
+   The primary action of this page was not clickable. This is the third time this bubble has
+   landed on a submit control on this site — the stylesheet already records it at y=788 over the
+   landing page's submit, and body.route-bodymap hides it over the 3D canvas.
+   Lifted, not hidden: feedback stays reachable and so does Publish. `html:has(.st-bar)` follows
+   the .lp-fold precedent — the sticky bar is the thing that causes the collision, so the selector
+   keys off the bar itself and cannot drift out of sync on an SPA navigation the way a stamped
+   data- attribute can. It covers /p/<code> too, which has the same bar. 84px clears the measured
+   64.2px bar plus the bubble's own 12-16px offset. */
+html:has(.st-bar) .feedback-fab{bottom:84px}
+.st-bar .cta-primary,.st-bar .cta-ghost{min-height:44px;display:inline-flex;align-items:center}
+.st-bar .cta-primary:disabled{opacity:.45;cursor:default}
+.st-count{font-size:.86rem;color:var(--muted);margin-right:auto}
+.st-saved{font-size:.78rem;color:var(--faint);margin:.4rem 0 2rem}
+.st-entry{font-size:.9rem;line-height:1.55;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.75rem .9rem;margin:.7rem 0}
+.st-entry a{color:var(--accent);font-weight:700}
+/* the Add sheet: at 390px the modal is the screen */
+#modal-bg .modal:has(.st-tabs){max-width:100%;padding:1.1rem}
+.st-tabs{display:flex;gap:.3rem;overflow-x:auto;margin:.5rem 0 .6rem;-webkit-overflow-scrolling:touch}
+.st-tab{flex:0 0 auto;min-height:44px;padding:.4rem .7rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--head);font-size:.84rem;font-weight:600;white-space:nowrap;cursor:pointer}
+.st-tab.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.st-tab-n{font-size:.72rem;opacity:.75}
+.st-res{margin-top:.55rem;max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:.3rem}
+.st-res-h{font-size:.78rem;color:var(--muted);margin:0 0 .2rem}
+.st-res-row{min-height:52px;align-items:center}
+.st-res-row.added{border-color:var(--accent);background:rgba(15,118,110,.07)}
+.st-res-row .br-add{font-size:1.05rem}
+@media(min-width:760px){.st-row-top{gap:.8rem}.st-move{flex-direction:row}}
 .build-nav{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin:1.2rem 0 .5rem;position:sticky;bottom:.6rem;background:var(--bg);padding:.5rem 0}
 .build-count{font-size:.85rem;color:var(--muted)}
 @media(max-width:560px){

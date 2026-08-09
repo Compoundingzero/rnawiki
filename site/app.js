@@ -3076,6 +3076,7 @@
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Stack Builder' }])}
       <h1>Stack Builder</h1>
       <p style="color:var(--muted)">Add compounds from any page (the <b>+ Add to stack</b> button), or below. See combined goal coverage, the pathways you're hitting, and shared targets. Your stack saves locally and is shareable by link.</p>
+      <p class="st-entry">A stack is a list of compounds. <a href="#/studio">The Protocol Studio</a> builds the whole thing — movements, Singapore foods and daily tools alongside the compounds — checks every pairing as you assemble it, and works with no account.</p>
       <div class="toolbar"><select id="stack-add" class="stack-select"><option value="">+ Add a compound…</option>${D.compounds.slice().sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</select>
       <button id="stack-share" class="chip">🔗 Share link</button>
       <button id="stack-wrapped" class="chip">📊 Share as image</button>
@@ -8539,6 +8540,540 @@
     const h = location.hash || '';
     return (h.startsWith('#/') ? h.slice(1) : '/');
   }
+  // ===== THE PROTOCOL STUDIO — the phone interface (W7 · C7, 2026-08-10) ========================
+  // MEASURED BEFORE THIS EXISTED, both documents:
+  //   PRERENDERED  curl localhost:8099/studio          -> HTTP 404, "Page not found" shell
+  //   HYDRATED     /#/studio at 390x844                -> one <h1> reading "Not found", 4 words
+  //   /usr/bin/grep -a -c -i studio site/app.js        -> 0
+  // The engine (ixn-engine.js, studio-safety.js, five endpoints, the ladders, the withheld
+  // catalogue) all shipped in C1-C6 with nothing on the other end of it. This is the other end.
+  //
+  // THE VERDICT IS NEVER KEYED OFF `ok`. Measured against the live endpoint on this branch:
+  //   POST /api/protocols/check {items:[c13 citrulline, c116 PDE-5]}, NO status
+  //     -> {"ok":true, warn:[restricted-substance/note, danger-interaction/danger + row]}
+  //   the SAME body with status:"published"
+  //     -> {"ok":false, refusals:[restricted-substance, danger-interaction]}
+  //   `ok:true` over a documented fainting hazard is CORRECT (a private draft may hold it) and is
+  //   exactly the trap that would paint a green tick over it. Everything below reads `warn` and
+  //   `refusals`. `ok` is not read anywhere in this block.
+  //
+  // THERE IS NO DRAG HANDLE. HTML5 drag-and-drop does not fire on touch, and a Pointer Events
+  // reimplementation fights vertical scroll on a 390px screen and the iOS left-edge back gesture.
+  // Reordering is two 44px buttons per row that announce the new position through the existing
+  // #route-status live region. Removal is a button inside the row, not a swipe: a swipe is
+  // undiscoverable, unannounceable and unreachable by keyboard.
+  //
+  // THE DRAFT LIVES ON THE DEVICE. GET /api/protocols/:code 404s on a draft and there is no list
+  // endpoint, so a server-saved draft can never be read back — it is write-only. localStorage is
+  // therefore not a shortcut, it is the only place a draft can survive. It also keeps constraint 3
+  // true: build, save and run need no account.
+  const ST_KEY = 'rnawiki_studio_draft';
+  const ST_MAX = 60;                       // mirrors studio-safety.js MAX_ITEMS; the server decides
+  const ST_DAY_S = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+  const ST_DAY_N = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const ST_KIND = { c: 'compound', x: 'movement', f: 'food', fn: 'tool' };
+  const ST_ICON = { c: '💊', x: '💪', f: '🍚', fn: '🧩' };
+  let ST = null, ST_V = null, ST_STATE = 'idle', ST_SEQ = 0, ST_TIMER = null;
+  let ST_TAB = 'c', ST_Q = '', ST_FOCUS = null;
+  const ST_EXBY = {}, ST_FDBY = {}; let ST_INDEXED = false;
+
+  function stLoad() { try { const d = JSON.parse(localStorage.getItem(ST_KEY) || 'null'); if (d && Array.isArray(d.items)) return d; } catch (e) {} return null; }
+  function stSave() { try { localStorage.setItem(ST_KEY, JSON.stringify(ST)); } catch (e) {} }
+  function stKey(it) { return it.k + ':' + it.id; }      // the SAME key studio-safety.js mints
+  function stSpec() { return { v: 1, items: ST.items.map(it => Object.assign({}, it)) }; }
+  function stEx() { const E = window.RNAWIKI_EXERCISES; return (E && E.exercises) || []; }
+  function stFd() { const F = window.RNAWIKI_FOODS; return (F && F.foods) || []; }
+  function stIndex() { if (ST_INDEXED) return; stEx().forEach(e => { ST_EXBY[e.id] = e; }); stFd().forEach(f => { ST_FDBY[f.id] = f; }); ST_INDEXED = !!(stEx().length && stFd().length); }
+  function stObj(it) { return it.k === 'c' ? (byId[it.id] || null) : it.k === 'x' ? (ST_EXBY[it.id] || null) : it.k === 'f' ? (ST_FDBY[it.id] || null) : (fnById(it.id) || null); }
+  function stName(it) { const o = stObj(it); return (o && o.name) || it.id; }
+  function stLad(id) { return (D.doseLadders || {})[id] || null; }
+  function stSay(msg) { const l = document.getElementById('route-status'); if (l) { l.textContent = ''; setTimeout(() => { l.textContent = msg; }, 60); } }
+  // THE ADD SHEET COUNTS WHAT CAN ACTUALLY BE ADDED, NOT WHAT THE CORPUS HOLDS. RNAwiki documents
+  // 171 compounds and 95 of them are authored consumer_renderable:false. "Search all 171" over a
+  // catalogue that will only ever offer 76 of them is a promise the code does not keep, so the tab
+  // count is the addable number and the 95 are disclosed in words underneath.
+  function stAddableC() { return D.compounds.filter(c => c.consumer_renderable !== false); }
+  function stWithheldC() { return D.compounds.length - stAddableC().length; }
+
+  // ---- the check: debounced, sequence-guarded, and it never fails silently -------------------
+  function stCheckSoon() { clearTimeout(ST_TIMER); ST_STATE = 'checking'; stPaintVerdict(); ST_TIMER = setTimeout(stCheckNow, 400); }
+  async function stCheckNow() {
+    const seq = ++ST_SEQ;
+    if (!ST || !ST.items.length) { ST_V = null; ST_STATE = 'idle'; return stPaintVerdict(); }
+    const d = await api.checkProtocol(stSpec(), null);
+    if (seq !== ST_SEQ) return;   // a later edit already asked; this answer is about a protocol
+                                  // that is no longer on screen, and painting it is a stale verdict
+    if (d._status !== 200) { ST_V = d; ST_STATE = 'down'; return stPaintVerdict(); }
+    ST_V = d; ST_STATE = 'shown'; stPaintVerdict(); stPaintRowFlags();
+  }
+  function stTouch() { stSave(); stPaint(); stCheckSoon(); }
+
+  // ---- render ---------------------------------------------------------------------------------
+  function studioLoading() { return '<div class="empty"><h1>Loading the Studio…</h1></div>'; }
+
+  async function renderStudio(code) {
+    try { await ensureProtocolData(); } catch (e) {}
+    stIndex();
+    // ALWAYS re-read the device copy. stSave() writes on every mutation, so localStorage is the
+    // truth and an in-memory copy can only be staler than it.
+    ST = stLoad() || { title: '', items: [], base_pid: null, base_rcid: null, remixOf: null };
+    if (!Array.isArray(ST.items)) ST.items = [];
+    if (code && ST.remixOf !== code) {
+      const src = await api.readProtocol(code);
+      if (src._status !== 200 || !src.spec) {
+        app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
+          + '<div class="empty"><h1>That protocol could not be opened</h1><p>' + esc(src.error || src.says || 'No published protocol has that code.') + '</p><p><a href="#/studio">Start a new one →</a></p></div>';
+        return;
+      }
+      ST = { title: 'Remix of ' + src.title, items: (src.spec.items || []).map(x => Object.assign({}, x)), base_pid: src.base_pid || null, base_rcid: src.base_rcid || null, remixOf: code };
+      stSave();
+    }
+    stPaint(); stCheckSoon();
+  }
+
+  function stEmpty() {
+    return '<div class="st-empty"><p><b>Nothing in it yet.</b></p><p class="muted">A protocol is a list of things you actually do: compounds, movements, foods and small tools. Add one and this page starts checking it against the same rules the site’s own pages are held to.</p></div>';
+  }
+
+  function stPaint() {
+    if (!ST) return;
+    const n = ST.items.length;
+    app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
+      + '<section class="st-hd">'
+      + '<div class="kicker">Protocol Studio' + (ST.remixOf ? ' · remix' : '') + '</div>'
+      + '<h1>Build a protocol</h1>'
+      + '<p class="st-acct">No account needed to build this, keep it, or run it — it saves on this device. <b>Publishing</b> it, so that it sits at a link anyone can open, needs one: a protocol other people read has to say who wrote it.</p>'
+      + '<label class="st-title-l" for="st-title">Name it</label>'
+      + '<input id="st-title" class="st-title" type="text" maxlength="90" value="' + esc(ST.title) + '" placeholder="e.g. My morning stack" autocomplete="off">'
+      + '</section>'
+      + '<div class="st-list" id="st-list">' + (n ? ST.items.map(stRow).join('') : stEmpty()) + '</div>'
+      + '<button class="st-add-open" id="st-add-open"' + (n >= ST_MAX ? ' disabled' : '') + '>＋ Add something</button>'
+      + (n >= ST_MAX ? '<p class="st-why">A protocol tops out at ' + ST_MAX + ' items. Past that nobody does it, and a stated limit is more honest than an unbounded store.</p>' : '')
+      + '<div class="st-verdict" id="st-verdict" aria-live="polite"></div>'
+      + '<div class="st-bar"><span class="st-count"><b>' + n + '</b> item' + (n === 1 ? '' : 's') + '</span>'
+      + '<button class="cta-ghost" id="st-clear">Clear</button>'
+      + '<button class="cta-primary" id="st-publish">Publish…</button></div>'
+      + '<p class="st-saved">Saved on this device. It is not on a server and nobody else can see it.</p>';
+    stPaintVerdict(); stPaintRowFlags(); stWire(); stRefocus();
+  }
+
+  function stRow(it, i) {
+    const o = stObj(it), nm = (o && o.name) || it.id, n = ST.items.length, k = stKey(it);
+    // An id the corpus no longer holds is NOT dressed up as a name. R1 refuses it; the row says so.
+    const gone = o ? '' : '<p class="st-gone">RNAwiki no longer holds a ' + esc(ST_KIND[it.k] || 'thing') + ' with the id “' + esc(it.id) + '”. Remove it — it cannot be saved.</p>';
+    return '<div class="st-row" data-row="' + esc(k) + '">'
+      + '<div class="st-row-top"><span class="st-kind" aria-hidden="true">' + (ST_ICON[it.k] || '•') + '</span>'
+      + '<div class="st-row-mid"><b class="st-nm">' + esc(nm) + '</b><span class="st-sum">' + esc(stSummary(it)) + '</span></div>'
+      + '<div class="st-move">'
+      + '<button class="st-mv" data-mv="up" data-key="' + esc(k) + '" data-stfocus="up|' + esc(k) + '"' + (i === 0 ? ' disabled' : '') + ' aria-label="Move ' + esc(nm) + ' up. Currently ' + (i + 1) + ' of ' + n + '">▲</button>'
+      + '<button class="st-mv" data-mv="down" data-key="' + esc(k) + '" data-stfocus="down|' + esc(k) + '"' + (i === n - 1 ? ' disabled' : '') + ' aria-label="Move ' + esc(nm) + ' down. Currently ' + (i + 1) + ' of ' + n + '">▼</button>'
+      + '</div></div>' + gone
+      + '<div class="st-flags" data-flags="' + esc(k) + '"></div>'
+      + '<details class="st-adj"><summary>Adjust</summary>' + stAdjust(it)
+      + '<button class="st-remove" data-rm="' + esc(k) + '">Remove ' + esc(nm) + '</button></details></div>';
+  }
+
+  // The row's own line states every override in words, so nothing that changes what a person
+  // swallows is hidden behind a disclosure triangle.
+  function stSummary(it) {
+    const b = [];
+    if (it.k === 'c') { const l = stLad(it.id); b.push(it.dose !== undefined && l && !l.locked ? it.dose + l.unit : 'the dose its own page publishes'); }
+    if (it.k === 'x') b.push((it.sets === undefined ? 3 : it.sets) + ' × ' + (it.reps === undefined ? 10 : it.reps));
+    if (it.k === 'fn') { const f = fnById(it.id); if (f && f.target) b.push((it.target === undefined ? f.target : it.target) + ' ' + (f.unit || '')); }
+    b.push(Array.isArray(it.days) ? it.days.slice().sort((x, y) => x - y).map(d => ST_DAY_N[d].slice(0, 3)).join('/') : 'every day');
+    if (it.note) b.push('your note');
+    return b.filter(Boolean).join(' · ');
+  }
+
+  function stAdjust(it) {
+    const k = stKey(it); let head = '';
+    if (it.k === 'c') head = stDose(it);
+    else if (it.k === 'x') head = stStep(k, 'sets', it.sets === undefined ? 3 : Number(it.sets) || 3, 1, 10, 1, 'Sets', '')
+      + stStep(k, 'reps', it.reps === undefined ? 10 : Number(it.reps) || 10, 1, 30, 1, 'Reps', '');
+    else if (it.k === 'fn') { const f = fnById(it.id) || {}; head = f.target ? stStep(k, 'target', it.target === undefined ? f.target : Number(it.target) || f.target, f.step || 1, f.target * 4, f.step || 1, 'Target', f.unit || '') : '<p class="st-why">This tool has nothing to set.</p>'; }
+    return head + stDays(it) + stNote(it);
+  }
+
+  function stStep(k, field, v, min, max, step, label, unit) {
+    return '<div class="st-adj-b"><div class="st-adj-k">' + esc(label) + '</div><div class="st-step">'
+      + '<button class="st-sb" data-num="' + field + '|dn" data-key="' + esc(k) + '" data-stfocus="' + field + 'dn|' + esc(k) + '"' + (v <= min ? ' disabled' : '') + ' aria-label="Fewer ' + esc(label.toLowerCase()) + '">−</button>'
+      + '<output class="st-sv">' + esc(v + (unit ? ' ' + unit : '')) + '</output>'
+      + '<button class="st-sb" data-num="' + field + '|up" data-key="' + esc(k) + '" data-stfocus="' + field + 'up|' + esc(k) + '"' + (v >= max ? ' disabled' : '') + ' aria-label="More ' + esc(label.toLowerCase()) + '">+</button>'
+      + '</div></div>';
+  }
+
+  // ---- THE DOSE LADDER, AND THE 164 THAT SAY WHY NOT -------------------------------------------
+  // 7 of 171 compounds carry an open ladder (measured off site/data.js doseLadders). The other 164
+  // each carry the specific reason they do not, written at BUILD time by build/parse.js from that
+  // compound's own capValue/capUnit. That reason is printed VERBATIM and NO control is offered —
+  // not a disabled one, not a text box, not an "advanced" escape hatch. A typed dose is an uncapped
+  // dose calculator and assertDoseCalculators() fails the build over exactly that; studio-safety.js
+  // R3 refuses it again at save.
+  function stDose(it) {
+    const lad = stLad(it.id), c = byId[it.id], k = stKey(it), sl = c ? slug(c.name) : '';
+    if (!lad || lad.locked) {
+      return '<div class="st-adj-b st-dose-locked"><div class="st-adj-k">🔒 No dose control here</div>'
+        + '<p class="st-why">' + esc((lad && lad.why) || 'RNAwiki publishes no machine-readable dose ceiling for this one, so a dose here could not be checked against anything.') + '</p>'
+        + (c ? '<p class="st-why">This protocol shows the dose <a href="#/c/' + esc(sl) + '">' + esc(c.name) + '</a>’s own page publishes, and it follows that page when it is corrected.</p>' : '') + '</div>';
+    }
+    const r = lad.rungs, i = it.dose === undefined ? -1 : r.indexOf(it.dose);
+    return '<div class="st-adj-b"><div class="st-adj-k">Dose</div><div class="st-step">'
+      + '<button class="st-sb" data-dose="dn" data-key="' + esc(k) + '" data-stfocus="dosedn|' + esc(k) + '"' + (i <= 0 ? ' disabled' : '') + ' aria-label="Lower the dose">−</button>'
+      + '<output class="st-sv">' + (i < 0 ? 'not set' : esc(r[i] + lad.unit)) + '</output>'
+      + '<button class="st-sb" data-dose="up" data-key="' + esc(k) + '" data-stfocus="doseup|' + esc(k) + '"' + (i === r.length - 1 ? ' disabled' : '') + ' aria-label="Raise the dose">+</button></div>'
+      + '<p class="st-why">' + (i === r.length - 1
+        ? 'Top of the ladder — ' + esc(lad.cap + lad.unit) + ' is the ceiling RNAwiki publishes for this compound. There is no step above it.'
+        : 'Steps come from this compound’s own published ladder, ' + esc(r[0] + lad.unit) + ' to ' + esc(lad.cap + lad.unit) + '. Doses are chosen, never typed.') + '</p>'
+      + (lad.schedule ? '<p class="st-sched">⚠️ ' + esc(lad.schedule) + '</p>' : '')
+      + (lad.flat ? '<p class="st-why">Its page publishes ' + esc(lad.flat) + '.</p>' : '')
+      + (i >= 0 ? '<button class="st-clear-f" data-dose="clear" data-key="' + esc(k) + '">Clear — use the page’s own dose</button>' : '') + '</div>';
+  }
+
+  function stDays(it) {
+    const k = stKey(it), on = Array.isArray(it.days) ? it.days : null;
+    return '<div class="st-adj-b"><div class="st-adj-k">Days per week</div>'
+      + '<div class="st-day-row" role="group" aria-label="Days of the week">'
+      + ST_DAY_S.map((s, d) => '<button class="st-day' + (on && on.indexOf(d) >= 0 ? ' on' : '') + '" data-day="' + d + '" data-key="' + esc(k) + '" data-stfocus="day' + d + '|' + esc(k) + '" aria-pressed="' + (on && on.indexOf(d) >= 0 ? 'true' : 'false') + '"><span aria-hidden="true">' + s + '</span><span class="sr-only">' + ST_DAY_N[d] + '</span></button>').join('')
+      + '</div>'
+      + '<p class="st-why">' + (on ? esc(on.slice().sort((a, b) => a - b).map(d => ST_DAY_N[d]).join(', ')) : 'No schedule set — this reads as every day.') + '</p>'
+      + (on ? '<button class="st-clear-f" data-day="clear" data-key="' + esc(k) + '">Every day</button>' : '') + '</div>';
+  }
+
+  function stNote(it) {
+    const k = stKey(it), v = it.note || '';
+    return '<div class="st-adj-b"><label class="st-adj-k" for="stn-' + esc(k) + '">Your note <span class="st-cc">' + v.length + '/240</span></label>'
+      + '<textarea id="stn-' + esc(k) + '" class="st-note" data-note="' + esc(k) + '" maxlength="240" rows="2" placeholder="Why this is in your protocol">' + esc(v) + '</textarea>'
+      + '<p class="st-why">A protocol stores ids and adjustments, never its own copy of a compound’s text — that is what makes a correction to the master reach everybody running it.</p></div>';
+  }
+
+  // ---- WHAT COMES BACK IS SHOWN ---------------------------------------------------------------
+  // A danger row that is returned and not rendered is worse than no check: the reader now has a
+  // builder that looked at the pairing and said nothing. Worst first, and the ❔ coverage
+  // sentence prints on EVERY outcome including a clean one — an empty warn list can mean
+  // "nothing found" or "nothing checkable", and interactionPanel() has had that exact bug twice.
+  function stFlagCard(f, refusal) {
+    const r = f.row;
+    if (f.tier === 'danger' || f.rule === 'danger-interaction') {
+      return '<div class="st-flag st-danger" role="alert"><div class="st-flag-k">⛔ Dangerous together</div>'
+        + '<b class="st-flag-t">' + esc(r ? r.title : f.message) + '</b>'
+        + (r && r.involved ? '<p class="st-flag-who">' + esc(r.involved.join(' + ')) + '</p>' : '')
+        + (r && r.why ? '<p class="st-flag-why">' + esc(r.why) + '</p>' : '')
+        + (r && r.action ? '<p class="st-flag-do"><b>What to do:</b> ' + esc(r.action) + '</p>' : '')
+        + '<p class="st-flag-no">' + (refusal ? 'This is why it was not published.' : 'A protocol carrying this cannot be published. It stays in your own copy.') + '</p></div>';
+    }
+    if (f.rule === 'restricted-substance') return '<div class="st-flag st-rx"><div class="st-flag-k">℞ ' + (refusal ? 'Not publishable' : 'Stays in your own copy') + '</div><p>' + esc(f.message) + '</p></div>';
+    if (f.rule === 'animal-only-evidence') return '<div class="st-flag st-anim"><div class="st-flag-k">🐭 Animal evidence only</div><p>' + esc(f.message) + '</p></div>';
+    if (f.rule === 'interaction') return '<div class="st-flag st-anim"><div class="st-flag-k">' + (f.tier === 'timing' ? '⏱️ Time these apart' : '🔎 Worth knowing') + '</div><p>' + esc(f.message) + '</p></div>';
+    return '<div class="st-flag st-block" role="alert"><div class="st-flag-k">✋ ' + (refusal ? 'Not publishable' : 'Not saveable yet') + '</div><p>' + esc(f.message) + '</p>'
+      + (f.item ? '<button class="st-goto" data-goto="' + esc(f.item) + '">Show me</button>' : '') + '</div>';
+  }
+  const ST_ORDER = f => (f.tier === 'danger' || f.rule === 'danger-interaction') ? 0 : f.rule === 'restricted-substance' ? 1 : (f.rule === 'shape' || f.rule === 'unknown-entity' || f.rule === 'uncapped-dose' || f.rule === 'contraindicated-move') ? 2 : f.rule === 'interaction' ? 3 : 4;
+
+  function stPaintVerdict() {
+    const el = document.getElementById('st-verdict'); if (!el || !ST) return;
+    const pub = document.getElementById('st-publish');
+    const setPub = (on, label) => { if (pub) { pub.disabled = !on; pub.textContent = label; } };
+    if (!ST.items.length) { el.innerHTML = '<p class="st-cov">Nothing in this protocol yet, so there is nothing to check.</p>'; return setPub(false, 'Publish…'); }
+    if (ST_STATE === 'checking') { el.innerHTML = '<p class="st-cov">Checking…</p>'; return setPub(false, 'Publish…'); }
+    if (ST_STATE === 'down' || !ST_V) {
+      // A checker that cannot answer must never read as a pass.
+      el.innerHTML = '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Not checked</div><p>'
+        + esc((ST_V && ST_V.error) || 'The safety checker could not be reached, so nothing in this protocol has been checked. That is a fault at this end — it is not a clearance.') + '</p></div>';
+      return setPub(false, 'Cannot publish — not checked');
+    }
+    const all = (ST_V.warn || []).slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b));
+    const html = all.length ? all.map(f => stFlagCard(f, false)) : ['<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged</div></div>'];
+    html.push('<p class="st-cov">❔ ' + esc(ST_V.says || '') + '</p>');
+    const blocking = all.filter(f => f.tier === 'danger' || f.rule === 'restricted-substance');
+    if (blocking.length) html.push('<p class="st-pubwarn">Publishing this will be refused. It is yours to keep and to run — it is not yours to hand to a stranger.</p>');
+    el.innerHTML = html.join('');
+    el.querySelectorAll('[data-goto]').forEach(b => { b.onclick = () => stGoto(b.dataset.goto); });
+    // The button is NOT disabled from this inference. The draft-mode verdict answers "may I keep
+    // this?"; only the server, in publish mode, answers "may this be published?", and letting the
+    // client decide is precisely what studio-safety.js exists to prevent. The tap goes to the
+    // server and the server's own words come back.
+    setPub(true, 'Publish…');
+  }
+
+  // Mark WHICH rows a flag is about. Item-scoped rules carry `item` ("c:c116"); an interaction row
+  // carries names in `row.involved` instead, because a pairing belongs to no single item.
+  function stPaintRowFlags() {
+    if (!ST) return;
+    app.querySelectorAll('.st-row').forEach(r => r.classList.remove('danger', 'rx', 'blocked'));
+    app.querySelectorAll('[data-flags]').forEach(el => { el.innerHTML = ''; });
+    if (!ST_V) return;
+    const all = (ST_V.warn || []).concat(ST_V.refusals || []);
+    ST.items.forEach(it => {
+      const k = stKey(it), nm = stName(it);
+      let host = null;
+      app.querySelectorAll('[data-flags]').forEach(e => { if (e.getAttribute('data-flags') === k) host = e; });
+      if (!host) return;
+      const row = host.closest('.st-row'), chips = [];
+      all.forEach(f => {
+        const mine = f.item === k || (f.row && Array.isArray(f.row.involved) && f.row.involved.indexOf(nm) >= 0);
+        if (!mine) return;
+        if (f.tier === 'danger' || f.rule === 'danger-interaction') { chips.push('<span class="st-chip st-chip-d">⛔ in a dangerous pair</span>'); if (row) row.classList.add('danger'); }
+        else if (f.rule === 'restricted-substance') { chips.push('<span class="st-chip st-chip-rx">℞ cannot be published</span>'); if (row) row.classList.add('rx'); }
+        else if (f.rule === 'uncapped-dose') { chips.push('<span class="st-chip st-chip-b">✋ this dose was not accepted</span>'); if (row) row.classList.add('blocked'); }
+        else if (f.rule === 'animal-only-evidence') chips.push('<span class="st-chip">🐭 animal evidence only</span>');
+        else if (f.rule === 'contraindicated-move' || f.rule === 'unknown-entity' || f.rule === 'shape') { chips.push('<span class="st-chip st-chip-b">✋ not saveable</span>'); if (row) row.classList.add('blocked'); }
+      });
+      host.innerHTML = chips.filter((c, i, a) => a.indexOf(c) === i).join('');
+    });
+  }
+
+  function stGoto(k) {
+    let el = null; app.querySelectorAll('.st-row').forEach(r => { if (r.getAttribute('data-row') === k) el = r; });
+    if (!el) return;
+    el.scrollIntoView({ block: 'center' }); el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 1400);
+  }
+
+  // ---- mutations ------------------------------------------------------------------------------
+  function stFind(k) { return ST.items.findIndex(it => stKey(it) === k); }
+  function stAdd(k, id) {
+    if (ST.items.length >= ST_MAX) return false;
+    if (stFind(k + ':' + id) >= 0) return false;
+    ST.items.push({ k: k, id: id }); stSave(); return true;
+  }
+  function stMove(k, dir) {
+    const i = stFind(k); if (i < 0) return;
+    const j = dir === 'up' ? i - 1 : i + 1; if (j < 0 || j >= ST.items.length) return;
+    const [it] = ST.items.splice(i, 1); ST.items.splice(j, 0, it);
+    ST_FOCUS = dir + '|' + k;
+    stSay(stName(it) + ' moved to position ' + (j + 1) + ' of ' + ST.items.length + '.');
+    stTouch();   // order changes the diff a remix stores; it does not change the safety verdict,
+                 // but re-checking costs one debounced request and keeps ONE code path.
+  }
+  function stRemove(k) {
+    const i = stFind(k); if (i < 0) return;
+    const [it] = ST.items.splice(i, 1);
+    stSay('Removed ' + stName(it) + '.'); toast('Removed ' + stName(it));
+    stTouch();
+  }
+  function stSetNum(k, field, dir) {
+    const i = stFind(k); if (i < 0) return; const it = ST.items[i];
+    const f = it.k === 'fn' ? (fnById(it.id) || {}) : {};
+    const bounds = field === 'sets' ? [1, 10, 1] : field === 'reps' ? [1, 30, 1] : [f.step || 1, (f.target || 1) * 4, f.step || 1];
+    const cur = it[field] === undefined ? (field === 'sets' ? 3 : field === 'reps' ? 10 : (f.target || bounds[0])) : Number(it[field]) || bounds[0];
+    const next = Math.max(bounds[0], Math.min(bounds[1], cur + (dir === 'up' ? bounds[2] : -bounds[2])));
+    it[field] = next; ST_FOCUS = field + dir + '|' + k; stTouch();
+  }
+  function stSetDose(k, act) {
+    const i = stFind(k); if (i < 0) return; const it = ST.items[i];
+    const lad = stLad(it.id); if (!lad || lad.locked) return;
+    if (act === 'clear') { delete it.dose; ST_FOCUS = null; return stTouch(); }
+    const cur = it.dose === undefined ? -1 : lad.rungs.indexOf(it.dose);
+    // Not set + "+" starts at the FIRST rung, never in the middle and never at the ceiling.
+    const next = cur < 0 ? (act === 'up' ? 0 : -1) : Math.max(0, Math.min(lad.rungs.length - 1, cur + (act === 'up' ? 1 : -1)));
+    if (next < 0) { delete it.dose; } else { it.dose = lad.rungs[next]; }
+    ST_FOCUS = 'dose' + (act === 'up' ? 'up' : 'dn') + '|' + k; stTouch();
+  }
+  function stToggleDay(k, d) {
+    const i = stFind(k); if (i < 0) return; const it = ST.items[i];
+    if (d === 'clear') { delete it.days; ST_FOCUS = null; return stTouch(); }
+    d = Number(d);
+    const cur = Array.isArray(it.days) ? it.days.slice() : [0, 1, 2, 3, 4, 5, 6];
+    const at = cur.indexOf(d); if (at >= 0) cur.splice(at, 1); else cur.push(d);
+    // MEASURED: {k:'c',id:'c1',days:[]} -> refusal "Days must be a list of distinct weekday
+    // numbers, 0 (Sunday) to 6." An empty array is not "no days", it is an invalid protocol. The
+    // key is DELETED instead, which is the inheritance the schema means by absence.
+    if (!cur.length) delete it.days; else it.days = cur.sort((a, b) => a - b);
+    ST_FOCUS = 'day' + d + '|' + k; stTouch();
+  }
+  function stRefocus() {
+    if (!ST_FOCUS) return;
+    let el = null; app.querySelectorAll('[data-stfocus]').forEach(b => { if (b.getAttribute('data-stfocus') === ST_FOCUS) el = b; });
+    // A full re-render destroys the button that was tapped, so the row's <details> has to be
+    // reopened and focus put back, or every dose step closes the panel and drops the keyboard user
+    // at the top of the document.
+    if (el) { const d = el.closest('details'); if (d) d.open = true; if (!el.disabled) el.focus({ preventScroll: true }); }
+    ST_FOCUS = null;
+  }
+
+  // ---- the Add sheet: 76 addable / 873 / 656 / 21 on a 390px screen ---------------------------
+  function stMeta(k, o) {
+    if (k === 'c') return (o.supply || {}).tag || o.category || '';
+    if (k === 'x') return [(o.primaryMuscles || []).slice(0, 2).join(', '), o.equipment].filter(Boolean).join(' · ');
+    if (k === 'f') return [o.serving, o.kcal ? o.kcal + ' kcal' : '', o.sg_local ? 'Singapore' : ''].filter(Boolean).join(' · ');
+    return o.desc || '';
+  }
+  function stTotal(tab) { return tab === 'c' ? stAddableC().length : tab === 'x' ? stEx().length : tab === 'f' ? stFd().length : PLAN_FUNCTIONS.length; }
+  function stResults() {
+    const el = document.getElementById('st-res'); if (!el) return;
+    const have = ST.items.filter(it => it.k === ST_TAB).map(it => it.id);
+    const q = ST_Q.trim();
+    let hits, browsing = false;
+    if (q.length < 2) {
+      // NEVER an empty box. Below two characters this is a browse surface, not a dead end.
+      browsing = true;
+      const ex = new Set(have);
+      hits = ST_TAB === 'c' ? stAddableC().filter(c => !ex.has(c.id)).sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, 24)
+        : ST_TAB === 'x' ? stEx().filter(e => !ex.has(e.id)).slice(0, 24)
+          : ST_TAB === 'f' ? stFd().filter(f => !ex.has(f.id)).sort((a, b) => (b.sg_local ? 1 : 0) - (a.sg_local ? 1 : 0)).slice(0, 24)
+            : PLAN_FUNCTIONS.filter(f => !ex.has(f.id));
+    } else {
+      hits = catalogSearch(ST_TAB === 'c' ? 'stack' : ST_TAB === 'x' ? 'xall' : ST_TAB === 'f' ? 'food' : 'tool', q, have, 24);
+    }
+    // The withheld line renders even when there are ZERO addable hits — the DNP / clenbuterol /
+    // semaglutide / trenbolone case. "No matches" would be false of this site: it documents all
+    // four in full, and those pages are open to anyone with no account.
+    const held = hits.withheld || [];
+    const heldHTML = held.length
+      ? '<p class="build-held">' + held.length + (hits.withheldTotal > held.length ? ' of ' + hits.withheldTotal : '') + ' match' + (held.length > 1 ? 'es are' : ' is') + ' not offered here — '
+        + held.map(w => '<a href="#/c/' + esc(w.slug) + '">' + esc(w.name) + '</a> <span class="muted">(' + esc(w.tag) + ')</span>').join(', ')
+        + '. RNAwiki documents ' + (held.length > 1 ? 'them' : 'it') + ' in full and those pages are open to anyone; a protocol builder is just not the place to hand out a dose for ' + (held.length > 1 ? 'them' : 'it') + '.</p>'
+      : '';
+    const total = stTotal(ST_TAB);
+    const head = browsing
+      ? '<p class="st-res-h">' + (ST_TAB === 'c' ? 'Strongest human evidence first — type to search all ' + total + ' that can be added here'
+        : ST_TAB === 'f' ? 'Singapore foods first — type to search all ' + total
+          : ST_TAB === 'fn' ? 'All ' + total + ' tools'
+            : 'Type two letters to search all ' + total) + '</p>'
+        + (ST_TAB === 'c' ? '<p class="build-held">RNAwiki documents ' + D.compounds.length + ' compounds. The other ' + stWithheldC() + ' are not general-sale substances, so a builder does not hand out a dose for them — their pages are open to anyone, with no account.</p>' : '')
+      : '<p class="st-res-h">' + hits.length + (hits.length === 24 ? '+' : '') + ' of ' + total + ' match “' + esc(q) + '”</p>';
+    if (!hits.length) { el.innerHTML = '<p class="st-res-h">0 of ' + total + ' match “' + esc(q) + '”</p>' + heldHTML + (heldHTML ? '' : '<p class="build-nohit">No matches — try another name.</p>'); return; }
+    el.innerHTML = head + hits.map(h => '<button class="build-res st-res-row" data-add="' + esc(h.id) + '"><span class="br-name">' + esc(h.name) + '</span><span class="br-meta">' + esc(stMeta(ST_TAB, h)) + '</span><span class="br-add">＋</span></button>').join('') + heldHTML;
+    el.querySelectorAll('[data-add]').forEach(b => b.onclick = () => {
+      if (!stAdd(ST_TAB, b.dataset.add)) return;
+      // The sheet STAYS OPEN. Adding three things should be three taps, not three round trips
+      // through a closing animation.
+      b.classList.add('added'); b.querySelector('.br-add').textContent = '✓';
+      const n = document.getElementById('st-done-n'); if (n) n.textContent = String(ST.items.length);
+      stSay(b.querySelector('.br-name').textContent + ' added. ' + ST.items.length + ' in your protocol.');
+    });
+  }
+  function stAddSheet() {
+    const tabs = [['c', '💊', 'Compounds'], ['x', '💪', 'Movements'], ['f', '🍚', 'Foods'], ['fn', '🧩', 'Tools']];
+    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Add to your protocol</h2>'
+      + '<div class="st-tabs" role="tablist">' + tabs.map(t => '<button class="st-tab' + (ST_TAB === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '" role="tab" aria-selected="' + (ST_TAB === t[0]) + '">' + t[1] + ' ' + t[2] + ' <span class="st-tab-n">' + stTotal(t[0]) + '</span></button>').join('') + '</div>'
+      // NOT autofocused. On a 390px screen the soft keyboard covers the tab row, and a reader who
+      // opened this to browse a category would never see that Movements and Foods exist.
+      + '<input id="st-q" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="Search…" value="' + esc(ST_Q) + '">'
+      + '<div id="st-res" class="st-res"></div>'
+      + '<div class="modal-actions"><button class="primary" id="st-done">Done · <b id="st-done-n">' + ST.items.length + '</b> in your protocol</button></div>');
+    m.querySelector('#modal-close').onclick = () => { closeModal(); stTouch(); };
+    m.querySelector('#st-done').onclick = () => { closeModal(); stTouch(); };
+    m.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { ST_TAB = b.dataset.tab; ST_Q = ''; closeModal(); stAddSheet(); });
+    const q = m.querySelector('#st-q');
+    let t = null; q.oninput = () => { ST_Q = q.value; clearTimeout(t); t = setTimeout(stResults, 120); };
+    stResults();
+  }
+
+  // ---- publish --------------------------------------------------------------------------------
+  async function stPublish() {
+    if (!ST.items.length) return;
+    const ti = document.getElementById('st-title');
+    ST.title = String((ti && ti.value) || ST.title || '').slice(0, 90); stSave();
+    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Publish this protocol?</h2><p class="modal-sub">Checking it against the same rules this site’s own pages are held to…</p><div id="st-pb"></div>');
+    m.querySelector('#modal-close').onclick = closeModal;
+    const body = m.querySelector('#st-pb');
+    // THE AUTHORITY IS THE SERVER, IN PUBLISH MODE. The verdict on the page behind this sheet
+    // answered a different question. Measured: the same two items return ok:true with warns in
+    // draft mode and ok:false with refusals with status:'published'.
+    const d = await api.checkProtocol(stSpec(), 'published');
+    if (d._status !== 200) { body.innerHTML = '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Not checked</div><p>' + esc(d.error || 'The safety checker could not be reached. Nothing has been published.') + '</p></div>'; return; }
+    const ref = (d.refusals || []).slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b));
+    if (ref.length) {
+      // NO OVERRIDE. There is no "publish anyway", no acknowledgement checkbox and no second
+      // button. Do not add one: the server refuses it regardless, so the only thing an override
+      // could ever do is teach a reader that the refusal is negotiable.
+      body.innerHTML = '<p class="st-pub-no"><b>This protocol has not been published. Nothing was sent.</b></p>'
+        + ref.map(r => stFlagCard(r, true)).join('')
+        + '<p class="st-cov">❔ ' + esc(d.says || '') + '</p>'
+        + '<p class="st-pub-keep">Your protocol is untouched and still saved on this device — you can keep running it. Change or remove what is named above to publish it.</p>';
+      body.querySelectorAll('[data-goto]').forEach(b => b.onclick = () => { closeModal(); stGoto(b.dataset.goto); });
+      return;
+    }
+    body.innerHTML = '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged</div></div><p class="st-cov">❔ ' + esc(d.says || '') + '</p>'
+      + '<p class="modal-sub">Published means anyone with the link can open it and remix it, and your username goes on it.</p>'
+      + '<div class="modal-actions"><button class="ghost" id="st-pc">Not yet</button><button class="primary" id="st-pg">Publish</button></div>';
+    body.querySelector('#st-pc').onclick = closeModal;
+    body.querySelector('#st-pg').onclick = async () => {
+      const go = body.querySelector('#st-pg'); go.disabled = true; go.textContent = 'Publishing…';
+      // The title is sent AS TYPED. It is not defaulted to "Untitled protocol": the server answers
+      // 400 "Name your protocol" for an empty one, and its sentence is the one shown. A default
+      // would put a name on somebody's document that they never chose.
+      const payload = { title: ST.title, spec: stSpec(), status: 'published', base_pid: ST.base_pid, base_rcid: ST.base_rcid };
+      const r = ST.remixOf ? await api.remixProtocol(ST.remixOf, payload) : await api.saveProtocol(payload);
+      if (r._status === 401) {
+        // The account line, at the moment it actually applies — never on arrival.
+        body.innerHTML = '<p>' + esc(r.error || 'Publishing puts your name on it, so publishing needs an account. Building one, saving it and running it do not.') + '</p>'
+          + '<p class="modal-sub">Nothing you have built is lost — it is on this device. Sign in and tap Publish again.</p>'
+          + '<div class="modal-actions"><button class="ghost" id="st-ac">Not now</button><button class="primary" id="st-ag">Create an account or sign in</button></div>';
+        body.querySelector('#st-ac').onclick = closeModal;
+        body.querySelector('#st-ag').onclick = () => openAuth('register');
+        return;
+      }
+      if (r._status === 422) {
+        // The check and the save are two requests. A compound can be re-rated or reclassified
+        // between them, and the save is the one that counts.
+        body.innerHTML = '<p class="st-pub-no"><b>' + esc(r.error || 'It was not saved.') + '</b></p>' + (r.refusals || []).map(x => stFlagCard(x, true)).join('');
+        return;
+      }
+      if (!r._ok) { go.disabled = false; go.textContent = 'Publish'; body.insertAdjacentHTML('beforeend', '<p class="st-pub-no">' + esc(r.error || 'It was not published.') + '</p>'); return; }
+      closeModal(); toast('Published 🔗'); navigate('/p/' + r.code);
+    };
+  }
+
+  function stWire() {
+    const t = document.getElementById('st-title');
+    // The title does not change the verdict, so it does not trigger a check.
+    if (t) t.oninput = () => { ST.title = t.value.slice(0, 90); stSave(); };
+    const add = document.getElementById('st-add-open'); if (add) add.onclick = stAddSheet;
+    const pub = document.getElementById('st-publish'); if (pub) pub.onclick = stPublish;
+    const cl = document.getElementById('st-clear');
+    if (cl) cl.onclick = () => { if (!ST.items.length) return; if (!confirm('Empty this protocol? It is only on this device, so this cannot be undone.')) return; ST.items = []; ST.remixOf = null; stTouch(); };
+    app.querySelectorAll('[data-mv]').forEach(b => b.onclick = () => stMove(b.dataset.key, b.dataset.mv));
+    app.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => stRemove(b.dataset.rm));
+    app.querySelectorAll('[data-dose]').forEach(b => b.onclick = () => stSetDose(b.dataset.key, b.dataset.dose));
+    app.querySelectorAll('[data-day]').forEach(b => b.onclick = () => stToggleDay(b.dataset.key, b.dataset.day));
+    app.querySelectorAll('[data-num]').forEach(b => b.onclick = () => { const p = b.dataset.num.split('|'); stSetNum(b.dataset.key, p[0], p[1]); });
+    app.querySelectorAll('[data-note]').forEach(a => {
+      // A note does not affect any safety rule beyond its 240-char cap, so it saves on input and
+      // re-checks only on blur. Re-rendering the page under a caret is how you lose a sentence.
+      a.oninput = () => { const i = stFind(a.dataset.note); if (i < 0) return; const v = a.value.slice(0, 240); if (v) ST.items[i].note = v; else delete ST.items[i].note; stSave(); const cc = a.parentNode.querySelector('.st-cc'); if (cc) cc.textContent = v.length + '/240'; };
+      a.onblur = () => stCheckSoon();
+    });
+  }
+
+  // ---- /p/<code> — the published protocol -------------------------------------------------
+  async function renderPublished(code) {
+    try { await ensureProtocolData(); } catch (e) {}
+    stIndex();
+    const d = await api.readProtocol(code);
+    const crumb = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol' }]);
+    if (d._status !== 200) { app.innerHTML = crumb + '<div class="empty"><h1>That protocol is not here</h1><p>' + esc(d.error || 'No published protocol has the code “' + code + '”.') + '</p><p><a href="#/studio">Build one →</a></p></div>'; return; }
+    if (!d.spec) { app.innerHTML = crumb + '<div class="empty"><h1>' + esc(d.title || 'This protocol') + '</h1><p>' + esc(d.says || 'It cannot be shown.') + '</p><p><a href="#/studio">Build your own →</a></p></div>'; return; }
+    const items = d.spec.items || [];
+    const now = d.safetyNow, saved = d.safetyWhenSaved || {};
+    const nowFlags = now ? (now.refusals || []).concat(now.warn || []) : [];
+    app.innerHTML = crumb
+      + '<section class="st-hd"><div class="kicker">A protocol somebody built</div><h1>' + esc(d.title) + '</h1>'
+      + '<p class="muted">' + (d.by_user ? 'By ' + esc(d.by_user) : 'By an account that has since been removed') + (d.published_at ? ' · ' + esc(String(d.published_at).slice(0, 10)) : '') + (d.depth ? ' · remix, ' + d.depth + ' deep' : '') + '</p>'
+      // MOST USED, never "works best", and no count at all when there is nothing real to count.
+      + (d.clones > 0 ? '<p class="muted">Started by ' + d.clones + ' ' + (d.clones === 1 ? 'person' : 'people') + '. That counts starts, not results — nothing here measures whether it worked.</p>' : '')
+      + '<p class="st-acct">Reading this needs no account.</p></section>'
+      + '<div class="st-list">' + items.map(it => {
+        const o = stObj(it), nm = (o && o.name) || it.id;
+        const link = it.k === 'c' && o ? '<a href="#/c/' + esc(slug(o.name)) + '">' + esc(nm) + '</a>' : esc(nm);
+        return '<div class="st-row"><div class="st-row-top"><span class="st-kind" aria-hidden="true">' + (ST_ICON[it.k] || '•') + '</span>'
+          + '<div class="st-row-mid"><b class="st-nm">' + link + '</b><span class="st-sum">' + esc(stSummary(it)) + '</span>'
+          + (it.note ? '<span class="st-sum">“' + esc(it.note) + '”</span>' : '') + '</div></div></div>';
+      }).join('') + '</div>'
+      // BOTH verdicts, labelled. The stored one says what was true when it was written; a compound
+      // can be re-rated or reclassified afterwards, and handing somebody a stale clearance is the
+      // failure this endpoint already returns two objects to prevent.
+      + '<div class="st-verdict">'
+      + (now ? (nowFlags.length ? nowFlags.slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b)).map(f => stFlagCard(f, false)).join('') : '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged, checked just now</div></div>')
+        + '<p class="st-cov">❔ ' + esc(now.says || '') + '</p>'
+        : '<div class="st-flag st-down"><div class="st-flag-k">⚠️ Not re-checked</div><p>This protocol could not be re-checked against the corpus as it is today. What is shown below is what was true when it was written.</p></div>')
+      + '<p class="st-cov st-then">When it was published: ' + esc(saved.says || 'no verdict was stored.') + '</p></div>'
+      + '<div class="st-bar"><a class="cta-ghost" href="#/studio">Build my own</a><button class="cta-primary" id="st-remix">Remix this</button></div>'
+      + '<p class="st-saved">Remixing opens a copy in your Studio. Your changes stay yours — the original is untouched.</p>';
+    const rx = document.getElementById('st-remix');
+    if (rx) rx.onclick = () => { api.cloneProtocol(code); navigate('/studio/' + code); };
+  }
+
   function navigate(path) {
     if (path.startsWith('#/')) path = path.slice(1);
     if (path === location.pathname + location.search) { route(); return; }
@@ -8965,6 +9500,10 @@
     // mount the ad-hoc picker into it, rather than replacing the list with the picker.
     else if (parts[0] === 'compare') html = parts[1] ? renderComparison(parts[1]) : (document.getElementById('cmp-tool') ? KEEP : comparePage());
     else if (parts[0] === 'stack') html = stackPage();
+    // W7 C7. Both are async views over live rows, so route() paints a shell and the renderer below
+    // fills it — the /plan and /protocol pattern. /studio/<code> opens a remix of a published one.
+    else if (parts[0] === 'studio') html = studioLoading();
+    else if (parts[0] === 'p' && parts[1]) html = studioLoading();
     else if (parts[0] === 'fuel') html = fuelPage(parts[1], parts[2]);
     else if (parts[0] === 'plan') html = planLoading();
     else if (parts[0] === 'progress') html = planLoading();
@@ -9068,6 +9607,8 @@
     if (parts[0] === 'solve') bindSolve();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan();
+    if (parts[0] === 'studio') renderStudio(parts[1] || null);
+    if (parts[0] === 'p' && parts[1]) renderPublished(parts[1]);
     if (parts[0] === 'progress') renderProgress();
     // dead: /pros is retired above and parts is emptied, so this never fires.
     if (parts[0] === 'admin') renderAdmin();
