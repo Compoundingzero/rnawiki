@@ -2509,6 +2509,89 @@ const siteConfig = readJSON(path.join(DATA_DIR, 'site_config.json'));
   console.log('[parse] site config OK — one owner handle @%s, %d interest topics, read from data/site_config.json.', h, _it.length);
 })();
 
+// ---- W7 (2026-08-09): THE DOSE LADDER --------------------------------------------------------
+// The Protocol Studio lets someone say "Collagen Peptides, 15 g in MY version". The obvious control
+// is a number field. It must not be one: a free number field over 171 compounds is 171 uncapped
+// dose calculators, which is exactly what assertDoseCalculators() above refuses to let the SITE
+// ship. So a dose override is a STEPPER over a ladder generated HERE, and the ladder's last rung is
+// the compound's own authored ceiling. Generating it into data.js means the browser and the server
+// read the SAME ladder, which turns "the user cannot type raw data" from a UI convention into a
+// server-enforced invariant — studio-safety.js refuses a dose that is not on a rung.
+//
+// THE HONEST NUMBER, measured off data/bio_learn.json rather than assumed: 170 entries, 85 with a
+// `dosing` object at all, 80 with a ceiling written in PROSE, and 11 with a machine-readable
+// ceiling (8 capValue, 3 capPerKg-only). Of those 11, this emits an open ladder for 7. The other
+// 164 are dose-LOCKED: they can still be in a protocol, they render the dose the compound's own
+// page publishes, and the builder prints the specific reason the control is not offered. A missing
+// control that explains itself is an answer; a missing control that says nothing is a bug.
+//
+// THREE THINGS ARE REFUSED A LADDER, each for its own reason and each named to the reader:
+//  · NO MACHINE-READABLE CEILING (159). The prose is deliberately NOT parsed. Running a regex over
+//    "General population: keep total daily intake at or under ~400 mg, and single doses around
+//    200 mg; pregnancy under 200 mg/day" produces a safety ceiling nobody authored — and
+//    assertDoseCalculators() exists because parseFloat() over exactly this kind of sentence once
+//    shipped a 1,000x under-dose on HMB.
+//  · A PER-KILOGRAM CEILING (3: sodium-bicarbonate 0.3 g/kg, whey 2.2 g/kg, glyNAC 100 mg/kg). A
+//    protocol does not know the reader's bodyweight and must not guess one. Picking 70 kg to make
+//    the ladder work would print a number nobody authored, on a ceiling.
+//  · A CEILING THAT BELONGS TO A DIFFERENT MOLECULE (1). `dosing.molecule` marks a bundle page
+//    whose cap is attributed to one constituent — agmatine-glycerol-theacrine-brief carries
+//    capValue 100 g, and that 100 g is GLYCEROL for hyperhydration; its own note says agmatine is
+//    dosed flat at ~500-1000 mg. A ladder topping out at 100 g on that page would be off by a
+//    factor of a hundred. `molecule` is already the marker assertDoseCalculators() uses for this
+//    exact case, so this is the established convention here, not a new heuristic.
+//
+// Raising 7 toward 170 is AUTHORING work in data/bio_learn.json — capValue + capUnit on entries
+// that already state a ceiling in words — not code. Every entry authored unlocks an override free.
+(function buildDoseLadders() {
+  const ladders = {};
+  let joined = 0, open = 0;
+  const locked = (why) => ({ locked: true, why });
+  compounds.forEach((c) => {
+    const B = bioLearn[_cslug(c.name)];
+    if (B) joined++;
+    const d = B && B.dosing;
+    if (!d) { ladders[c.id] = locked('RNAwiki holds no machine-readable dose for this one, so there would be no ceiling to check a change against. Its page publishes what is known.'); return; }
+    if (d.molecule) { ladders[c.id] = locked(`The dose ceiling on this page belongs to ${d.molecule} specifically, not to the page as a whole, so it cannot be used as a ladder for the whole entry.`); return; }
+    if (d.capValue == null) {
+      ladders[c.id] = locked(d.capPerKg != null
+        ? 'This compound’s ceiling is set per kilogram of bodyweight. A protocol does not know your bodyweight, and guessing one would put a number nobody authored on a safety ceiling.'
+        : 'This compound’s dose ceiling is written in words, not as a number, so nothing could check a change against it.');
+      return;
+    }
+    const unit = String(d.capUnit || '').trim();
+    // A ladder with no unit renders "15" next to a medicine, which is worse than no ladder.
+    if (!unit) { ladders[c.id] = locked('RNAwiki publishes a dose ceiling for this one but not the unit it is measured in, so a number here would be meaningless.'); return; }
+    const cap = Number(d.capValue);
+    if (!isFinite(cap) || cap <= 0) { ladders[c.id] = locked('The published dose ceiling for this one is not a usable number.'); return; }
+    // Ten rungs from a tenth of the ceiling up to it, rounded to something a person would say.
+    const round = (x) => x >= 100 ? Math.round(x / 25) * 25 : x >= 10 ? Math.round(x) : Math.round(x * 10) / 10;
+    const rungs = [];
+    for (let i = 1; i <= 10; i++) { const v = round(cap * i / 10); if (v > 0 && rungs[rungs.length - 1] !== v) rungs.push(v); }
+    if (rungs[rungs.length - 1] !== cap) rungs.push(cap);
+    ladders[c.id] = { locked: false, unit, cap, rungs,
+      why: 'The top of this ladder is the ceiling RNAwiki already publishes for this compound.',
+      // Carried, not invented: fisetin's ceiling is a research dose taken 2 days a month, and a
+      // ladder that printed it beside a 7-day frequency picker without saying so would be wrong.
+      schedule: d.schedule || null, flat: d.flat || null };
+    open++;
+  });
+  data.doseLadders = ladders;
+  // FAIL THE BUILD IF THE JOIN COLLAPSES. If _cslug ever stops matching bio_learn's keys, every
+  // ladder silently locks, the builder silently loses every dose control, and nothing says a word.
+  // 170 of 171 join today (the corpus has one more compound than bio_learn has entries).
+  const MIN_JOIN = 169;
+  if (joined < MIN_JOIN) {
+    console.error(`\n[parse] DOSE LADDER GATE FAILED — bio_learn joined only ${joined} of ${compounds.length} compounds (floor ${MIN_JOIN}).`);
+    console.error('  The slug join between compound names and data/bio_learn.json keys has broken. Every dose ladder would silently lock and the builder would silently lose every dose control.');
+    process.exit(1);
+  }
+  const lockReasons = {};
+  Object.values(ladders).forEach((l) => { if (l.locked) lockReasons[l.why.slice(0, 34)] = (lockReasons[l.why.slice(0, 34)] || 0) + 1; });
+  console.log('[parse] dose ladders: %d of %d compounds can carry a dose override; %d are dose-locked and each says why (bio_learn joined %d).',
+    open, compounds.length, compounds.length - open, joined);
+})();
+
 data.glossary = readJSON(path.join(DATA_DIR, 'glossary.json')) || {};
 console.log('[parse] glossary exposed to the SPA:', Object.keys(data.glossary).length, 'terms');
 fs.writeFileSync(OUT, 'window.RNAWIKI_DATA = ' + JSON.stringify(data) + ';\n');
