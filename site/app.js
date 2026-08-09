@@ -614,6 +614,29 @@
     getFork(id) { return this.call('GET', '/api/forks/' + id).then(d => d.fork).catch(() => null); },
     cloneFork(id) { return this.call('POST', `/api/forks/${id}/clone`, { voterKey: VOTER_KEY }); },
     submitFeedback(b) { return this.call('POST', '/api/feedback', b); },
+    // ---- THE PROTOCOL STUDIO (W7 C7) --------------------------------------------------------
+    // raw() instead of call(): server.js returns the ENGINE'S OWN refusals in the body of a 422
+    // and a 503 studioDown() body carries the sentence a reader has to be shown. call() throws
+    // everything but `error` away, which is right for every other endpoint on this object and
+    // wrong for these. Nothing here ever invents a message — the client renders the server's words.
+    async raw(method, url, body) {
+      const opt = { method, headers: {} };
+      if (body) { opt.headers['Content-Type'] = 'application/json'; opt.body = JSON.stringify(body); }
+      let r, d = {};
+      try { r = await fetch(url, opt); } catch (e) { return { _status: 0, _ok: false, error: null }; }
+      try { d = await r.json(); } catch (e) { d = {}; }
+      d._status = r.status; d._ok = r.ok;
+      return d;
+    },
+    // `status` is OMITTED for the draft check. That is not a detail: with no status the engine
+    // returns a danger pairing as a WARN carrying the interaction row (title/why/action/involved),
+    // which is what somebody assembling needs on screen; with status:'published' the same pairing
+    // comes back as a REFUSAL. Measured on this branch, citrulline (c13) + PDE-5 (c116).
+    checkProtocol(spec, status) { return this.raw('POST', '/api/protocols/check', status ? { spec, status } : { spec }); },
+    saveProtocol(b) { return this.raw('POST', '/api/protocols', b); },
+    remixProtocol(code, b) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/remix', b); },
+    readProtocol(code) { return this.raw('GET', '/api/protocols/' + encodeURIComponent(code)); },
+    cloneProtocol(code) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/clone', {}); },
     setFeedback(id, status) { return this.call('POST', '/api/admin/feedback/' + id, { status }); },
     // api.submitClinicianInterest REMOVED 2026-08-08 with its endpoint. It POSTed a name, an email,
     // a profession, a country, a professional licence number and a base64 photo of a credential
@@ -4932,10 +4955,24 @@
     if (bucket === 'stack') return byId[id];
     const EX = window.RNAWIKI_EXERCISES; return EX && EX.exercises.find(e => e.id === id);
   }
-  // Search the full catalogue for a build section, excluding what's already listed
-  function catalogSearch(bucket, q, excludeIds) {
+  // Search the full catalogue for a build section, excluding what's already listed.
+  // W7 C7: gained `limit` (default 6 — the plan builder's) and the buckets 'xall' (every movement,
+  // not split stretch/strength), 'food' and 'tool'. The Studio's Add sheet calls THIS function.
+  // A second search function in the Studio would be a second assembly catalogue, and the 'stack'
+  // branch below is the only place on this site where the 95 consumer_renderable:false compounds
+  // are withheld AND named. Duplicating it is how DNP gets a "+ Add" button back.
+  function catalogSearch(bucket, q, excludeIds, limit) {
+    limit = limit || 6;
     q = (q || '').trim().toLowerCase(); if (q.length < 2) return [];
     const ex = new Set(excludeIds);
+    if (bucket === 'food') {
+      const F = window.RNAWIKI_FOODS; if (!F) return [];
+      // Singapore-local foods first: this site is written for readers here and "chicken rice"
+      // must not rank below a generic entry that merely shares a word.
+      return (F.foods || []).filter(f => !ex.has(f.id) && ((f.hay || f.name || '').toLowerCase().includes(q)))
+        .sort((a, b) => (b.sg_local ? 1 : 0) - (a.sg_local ? 1 : 0)).slice(0, limit);
+    }
+    if (bucket === 'tool') return PLAN_FUNCTIONS.filter(f => !ex.has(f.id) && ((f.name + ' ' + (f.desc || '')).toLowerCase().includes(q))).slice(0, limit);
     if (bucket === 'stack') {
       // ---- W7 (2026-08-09): THE ASSEMBLY CATALOGUE IS NOT THE WIKI CATALOGUE ------------------
       // MEASURED hydrated at 390x844, 0 pageerrors, on the Supplements step of /#/plan for
@@ -4955,16 +4992,28 @@
       // link to the pages. Same discipline as interactionPanel()'s ❔ state.
       const all = D.compounds.filter(c => !ex.has(c.id) && (c.name.toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q)));
       const out = all.filter(c => c.consumer_renderable !== false)
-        .sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, 6);
-      out.withheld = all.filter(c => c.consumer_renderable === false).slice(0, 6)
+        .sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, limit);
+      // The withheld list stays capped at 6 regardless of `limit`: it is a disclosure line inside
+      // a paragraph, not a result list, and 24 withheld names in one sentence is unreadable.
+      // `withheldTotal` carries the true count, so the copy stays honest at any cap.
+      out.withheld = all.filter(c => c.consumer_renderable === false).slice(0, Math.min(limit, 6))
         .map(c => ({ id: c.id, slug: slug(c.name), name: c.name, tag: (c.supply || {}).tag || 'Not a general-sale substance' }));
       out.withheldTotal = all.filter(c => c.consumer_renderable === false).length;
       return out;
     }
     const EX = window.RNAWIKI_EXERCISES; if (!EX) return [];
+    // 'xall' — the Studio is not building a protocol's stretch section, it is assembling anything,
+    // so it must not have the stretch/strength split imposed on it. It also matches on equipment,
+    // because a reader typing "dumbbell" or "kettlebell" is searching by equipment and the two
+    // branches below cannot match that.
+    if (bucket === 'xall') {
+      return EX.exercises.filter(e => !ex.has(e.id)
+        && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q)
+          || (e.equipment || '').toLowerCase().includes(q))).slice(0, limit);
+    }
     const wantStretch = bucket === 'stretch';
     return EX.exercises.filter(e => !ex.has(e.id) && (wantStretch ? e.kind === 'stretch' : e.kind !== 'stretch')
-      && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, 6);
+      && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, limit);
   }
 
   // ---- Protocol functions: small interactive tools, each matched to a root problem ----
