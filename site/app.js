@@ -903,7 +903,25 @@
   }
   function renderAccount() {
     const slot = document.getElementById('account-slot'); if (!slot) return;
-    if (ME) slot.innerHTML = `<span class="acct"><span class="acct-name">👤 ${esc(ME.username)}</span>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
+    // THE WAY IN TO /me, AND WHEN IT APPEARS (2026-08-10).
+    // Signed in, the handle itself becomes the link — an account has a page by definition.
+    // Signed OUT, the link appears ONLY when this device already has something on that page: a
+    // plan, a started 7-day log, or a Studio draft. A permanent "Your page" control in the header
+    // of all 568 routes, pointing at an empty page, on a site whose hero says "no account", is the
+    // day-one problem in miniature — a promise of activity that has not happened. It appears the
+    // moment the reader creates the first thing it would list, which is also the moment it becomes
+    // useful. `#/me`, not `/me`: an href beginning with '#' is invisible to assertLinkGraph's
+    // norm(), so no emitted page ever links to a route the build does not prerender.
+    // try/catch because a quota-exceeded or storage-disabled browser throws on the READ.
+    const hasOwnStuff = (() => {
+      try {
+        if (planProtocols(getPlan()).length) return true;
+        if (Object.keys(trackRead().logs || {}).length) return true;
+        const d = stLoad(); return !!(d && d.items && d.items.length);
+      } catch (e) { return false; }
+    })();
+    if (ME) slot.innerHTML = `<span class="acct"><a class="acct-btn acct-name" href="#/me" title="Your page — your plan, your logged days, and the protocols you built">👤 ${esc(ME.username)}</a>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
+    else if (hasOwnStuff) slot.innerHTML = `<span class="acct"><a class="acct-btn" href="#/me" title="Your plan and your logged days. On this device, no account.">📓 Your page</a> <button class="acct-btn" id="signin-btn" aria-label="Sign in — optional. Reading, your plan and the 7-day log need no account." title="Optional. Reading, your plan and the 7-day log need no account.">Sign in</button></span>`;
     // W5d: NOT `.primary`. This was the only filled accent button in the header, on all 568
     // routes, sitting beside a hero that reads "Free · no account · nothing here is for sale" and
     // a /plan page that reads "there is no account to create". A filled primary button is the
