@@ -1597,34 +1597,63 @@ async function api(req, res, url) {
     const rp = (await db.query('SELECT reputation_points FROM users WHERE id=$1', [u.id])).rows[0];
     return json(res, 200, { ok: true, reputation_points: rp ? rp.reputation_points : 0 });
   }
-  // --- public profile: what this account has actually done here. Not a portfolio, not a
+  // --- public profile: ONLY what this account deliberately published. Not a portfolio, not a
   // credential, and not a profession — one account type. ---
   if (seg[0] === 'u' && seg[1] && method === 'GET') {
     const handle = clean(seg[1], 24);
-    const ur = await db.query('SELECT id,username,reputation_points,socials,badges,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
+    const ur = await db.query('SELECT id,username,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
     const uu = ur.rows[0];
     if (!uu) return json(res, 404, { error: 'No such user' });
-    // profile_views was dominated by bots when /u/:handle carried server-injected Person JSON-LD
-    // and OG tags to attract them; that injection (serveProfileShell) is gone as of 2026-08-08.
-    // countOnce still stands because the SPA called this API again on every route into a profile.
-    if (countOnce(req, 'profileview', uu.id)) db.query('UPDATE users SET profile_views = profile_views + 1 WHERE id=$1', [uu.id]).catch(() => {});
-    const accepted = await db.query(`SELECT problem_id,root_cause_id,layer,domain,change,created_at
-      FROM proposals WHERE user_id=$1 AND status='endorsed' ORDER BY created_at DESC LIMIT 30`, [uu.id]);
-    const counts = (await db.query(`SELECT
-      (SELECT COUNT(*)::int FROM proposals WHERE user_id=$1) AS proposals,
-      (SELECT COUNT(*)::int FROM proposals WHERE user_id=$1 AND status='endorsed') AS accepted,
-      (SELECT COUNT(*)::int FROM edits WHERE user_id=$1) AS edits,
-      (SELECT COUNT(*)::int FROM comments WHERE user_id=$1) AS comments`, [uu.id])).rows[0];
-    // 2026-08-08: `stewarded` (the list of protocols this account had adopted) is gone with the
-    // stewardship endpoints, and so are `domain` and `domain_verified` — nothing can set them and
-    // a public profile that carries a profession field is a profession field waiting to be filled.
+    // ---- WHAT A STRANGER MAY SEE, AND WHY EACH ONE IS ON THE LIST (2026-08-10) -----------------
+    //   username    the handle THEY chose. RNAwiki asks for no real name anywhere and holds no
+    //               photograph — there is no avatar/photo/real-name column in users, and
+    //               assertProfileDisclosesOnlyPublished() in build/parse.js keeps it that way.
+    //   joined      the MONTH, never the day. A join date to the day is a correlation key against
+    //               everything else somebody signed up to that afternoon.
+    //   published   the protocols this account PUBLISHED. Publishing is the one deliberately
+    //               public act an account can perform here: it needs an account, and the publish
+    //               sheet in site/app.js itemises what becomes public before the tap. A DRAFT IS
+    //               NEVER LISTED, and neither is a withdrawn one.
+    //   clones      how many people STARTED each one. "MOST USED", never "works best" — nothing
+    //               on this site measures how well anything worked and no column here could.
+    //
+    // ---- WHAT IS DELIBERATELY GONE. THIS IS THE POINT OF THE ENDPOINT. -------------------------
+    //   reputation_points / socials / badges — all three were still on the wire into a page that
+    //     had already been deleted.
+    //     · badges is [] on every row (addBadge() was deleted 2026-08-08).
+    //     · socials is {} on every row AND CAN NEVER BE ANYTHING ELSE — the writer that filled it
+    //       was unreachable twice over (see the note where it used to be, below). It carried
+    //       `booking_link`, lead-gen plumbing for the professional tier abolished 2026-08-08, and
+    //       an Instagram handle printed beside somebody's health protocols is a de-anonymisation
+    //       key. A public field nothing can fill is a public field waiting to be filled.
+    //     · reputation_points is a ledger of self-reported taps: POST /api/rep accepts kind ∈
+    //       {food_log, share} and nothing else, because PHASE2 is false. Publishing a score built
+    //       from "I tapped a button today" as standing, to an audience of three accounts, is a
+    //       status fiction. It stays in the database and comes off the wire.
+    //   counts / accepted — proposal, edit and comment counts. Proposals and edits cannot be
+    //     created at all while PHASE2 is false; comments can, on a GOAL page, and "3 comments on
+    //     Lose fat" under a handle is a disclosure the commenter never agreed to publish here.
+    //   profile_views — the UPDATE goes with the payload. The comment it replaces says the number
+    //     was bot-dominated, and a counter nothing renders is a write with no reader.
+    //
+    // ---- AND NOTHING THIS ACCOUNT FOLLOWS. THERE IS NO FIELD FOR IT TO APPEAR IN. --------------
+    // A plan, a 7-day log and a clone are the three ways somebody follows a protocol here. The
+    // first two never leave the device (PLAN_KEY / TRACK_KEY in localStorage) and the third is
+    // keyed to an anonymous browser key in studio_clones(code, voter_key) — no user_id — so "which
+    // protocols does @alice follow" is not merely unrendered, it is not answerable in SQL. Keep it
+    // that way. "@alice follows the herpes protocol" is a health disclosure about a named person.
+    // DO NOT ADD ONE BEHIND A TOGGLE: a toggle is a thing somebody flips before they understand
+    // what it publishes, and the person who flips it is the person least able to afford the leak.
+    const pub = await db.query(`SELECT code,title,clones,published_at FROM studio_protocols
+      WHERE user_id=$1 AND status='published' ORDER BY published_at DESC LIMIT 50`, [uu.id]);
     return json(res, 200, {
       user: {
         username: uu.username,
-        reputation_points: uu.reputation_points, socials: uu.socials || {}, badges: uu.badges || [],
-        created_at: uu.created_at,
+        joined: uu.created_at ? new Date(uu.created_at).toISOString().slice(0, 7) : null,
       },
-      counts, accepted: accepted.rows, stewarded: [],
+      published: pub.rows,
+      clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
+      shows: 'Only what this account published on purpose. Nothing it reads, plans, logs or follows.',
     });
   }
   // The three /api/steward endpoints (GET /api/steward, POST /api/steward/adopt,
