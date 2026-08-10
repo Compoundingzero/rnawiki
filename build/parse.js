@@ -3606,3 +3606,91 @@ function blankComments(src) {
   }
   console.log('[parse] handle gate OK — @%s appears in data/site_config.json only, 0 copies across %d renderer files.', handle, FILES.length);
 })();
+
+// ---------- THE PROFILE DISCLOSES ONLY WHAT SOMEBODY PUBLISHED (2026-08-10) ----------
+// A public page listing a named person's health protocols is the one surface on this site where a
+// mistake is a DISCLOSURE rather than an inaccuracy. Three things are checked, and each exists
+// because the shipped code got it wrong:
+//
+//  (1) THE PUBLIC PAYLOAD. GET /api/u/:handle was still returning reputation_points, socials and
+//      badges — into a page that had been deleted five weeks earlier. The gate reads that one
+//      handler's body and fails on any of those, and on anything that could only come from the
+//      FOLLOW side: user_plans, outcome_checkins, experiments, studio_clones, user_profile. None
+//      of those may be joined to a username by any code path. `conditions` and `meds` in
+//      user_profile are the two most sensitive columns in the database.
+//  (2) NO REAL NAME AND NO PHOTOGRAPH. There is no avatar/photo/real-name column in users today
+//      (grep: 0 hits across server.js, site/app.js, db.js) and this keeps it that way, because the
+//      publish sheet and both profile pages now state it as a fact to the reader.
+//      clinician_interest.proof_photo is exempt BY NAME: it is the archive of what was collected
+//      before that form was closed, it is admin-only, and it is not a profile field.
+//  (3) THE TWO ROUTE LISTS AGREE. NOINDEX_ROUTES in server.js and PRIVATE_ROUTES in site/app.js
+//      are one set written twice, in two files, because the prerendered and the hydrated document
+//      each need the directive and neither can read the other. A hand-synced pair of lists is how
+//      this repo has produced the same defect more than once; if they diverge, one document says
+//      index and the other says noindex for the same URL.
+//
+// PROVE IT three ways: put `socials: uu.socials` back into the /api/u/:handle payload; add
+// `avatar_url` to the users DDL; delete one entry from either route list. Each must exit 1.
+(function assertProfileDisclosesOnlyPublished() {
+  const bad = [];
+  const server = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
+  const app = fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8');
+
+  // ---- (1) the public payload ----
+  // The handler runs from `seg[0] === 'u'` to the closing `}` of its `return json(...)`. Comments
+  // are blanked first so the note explaining WHY reputation_points is gone may name it.
+  const src = blankComments(server);
+  const start = src.indexOf("seg[0] === 'u' && seg[1] && method === 'GET'");
+  if (start < 0) {
+    bad.push('server.js — the GET /api/u/:handle handler could not be found. If it was renamed, retarget this gate; if it was deleted, delete this block. A gate that cannot find its subject passes vacuously.');
+  } else {
+    const body = src.slice(start, src.indexOf('\n  }\n', start) + 1);
+    const PAYLOAD_BANNED = [
+      [/reputation_points/, 'reputation_points — a ledger of self-reported taps (POST /api/rep accepts only food_log and share). Publishing it as standing is a status fiction.'],
+      [/\bsocials\b/, 'socials — {} on every row, and it carried booking_link. An Instagram handle beside somebody\'s health protocols is a de-anonymisation key.'],
+      [/\bbadges\b/, 'badges — [] on every row. A badge may only assert something this site observes, never what a person IS.'],
+      [/profile_views|booking_clicks/, 'a view or click counter. The file\'s own note says profile_views was bot-dominated, and booking_clicks is lead-gen for the abolished professional tier.'],
+      [/user_plans|outcome_checkins|\bexperiments\b|studio_clones/, 'a table that records what somebody FOLLOWS. "@alice follows the herpes protocol" is a health disclosure about a named person. There must be no code path from a handle to it.'],
+      [/user_profile|\bconditions\b|\bmeds\b/, 'user_profile — self-declared demographics behind research consent, including conditions and meds. It is not a social profile and must never be rendered publicly.'],
+      [/FROM proposals|FROM comments|FROM edits/, 'proposal, edit or comment activity. Two of those cannot occur while PHASE2 is false, and "3 comments on Lose fat" under a handle is a disclosure the commenter never agreed to publish here.'],
+    ];
+    PAYLOAD_BANNED.forEach(([re, why]) => { if (re.test(body)) bad.push('server.js GET /api/u/:handle — ' + why); });
+  }
+
+  // ---- (2) no real name, no photograph ----
+  const IDENTITY = /avatar|profile_pic|profile_photo|\bheadshot\b|real_name|realname|full_name|legal_name|display_name/i;
+  ['server.js', 'site/app.js', 'db.js'].forEach((rel) => {
+    blankComments(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split('\n').forEach((raw, i) => {
+      if (!IDENTITY.test(raw)) return;
+      bad.push(`${rel}:${i + 1} — an avatar, photograph or real-name field. RNAwiki asks for no real name and holds no photograph, and the publish sheet and both profile pages now say so to the reader.\n      …${raw.trim().slice(0, 110)}…`);
+    });
+  });
+  // proof_photo is the closed clinician_interest archive, admin-only, not a profile field. It is
+  // matched by nothing above; this line records the exemption so nobody widens IDENTITY into it.
+
+  // ---- (3) the two route lists agree ----
+  const one = (re, s) => { const m = re.exec(s); return m ? m[1].split(',').map((x) => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : null; };
+  const noindex = one(/const NOINDEX_ROUTES = \[([^\]]*)\]/, src);
+  const priv = one(/const PRIVATE_ROUTES = \[([^\]]*)\]/, blankComments(app));
+  if (!noindex || !priv) {
+    bad.push('the private-route lists could not be read — NOINDEX_ROUTES in server.js and PRIVATE_ROUTES in site/app.js must each stay a single-line array literal, because that is what this gate parses.');
+  } else {
+    const miss = (a, b) => a.filter((x) => b.indexOf(x) < 0);
+    const onlyServer = miss(noindex, priv), onlyApp = miss(priv, noindex);
+    if (onlyServer.length || onlyApp.length) {
+      bad.push('the private-route lists disagree, so one document would say noindex and the other index for the same URL.'
+        + (onlyServer.length ? '\n      server.js NOINDEX_ROUTES only: ' + onlyServer.join(', ') : '')
+        + (onlyApp.length ? '\n      site/app.js PRIVATE_ROUTES only: ' + onlyApp.join(', ') : ''));
+    }
+  }
+
+  if (bad.length) {
+    console.error('\n[parse] PROFILE DISCLOSURE GATE FAILED — refusing to build. A profile shows what somebody PUBLISHED:');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  Nothing a person reads, plans, logs or follows may appear on a page anyone else can open,');
+    console.error('  and there is no toggle for it — a toggle is a thing people flip before they understand what');
+    console.error('  it publishes. If you need a new public field, say what it is in the publish sheet first.');
+    process.exit(1);
+  }
+  console.log('[parse] profile disclosure gate OK — GET /api/u/:handle carries %d banned pattern(s) 0 times, 0 avatar/real-name fields in 3 files, and the 2 private-route lists match on %d routes.', 7, (noindex || []).length);
+})();
