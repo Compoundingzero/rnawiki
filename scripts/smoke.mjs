@@ -675,6 +675,75 @@ const ASSERTIONS = {
       return null;
     },
   }],
+  // W8 · THE STREAK IS A CLAIM ABOUT WHAT SOMEBODY DID, AND IT MUST NOT BE SETTABLE.
+  // MEASURED HYDRATED at 390x844, fresh profile, ONE localStorage write and ZERO taps
+  // (qa/w8_streak.mjs, qa/out/w8_after.json): 95 backdated day records rendered
+  //   /plan      "🔥 95-day streak"
+  //   /progress  "🔥 95 CURRENT · 🏆 95 LONGEST · 📅 7/7 THIS WEEK · ✅ 100% 30-DAY ADHERENCE"
+  // planStreak/longestStreak/daysShown/adherencePct read plan.log[date] straight — no proof this
+  // page ever saw those days go by. That number is the one any future leaderboard would rank on.
+  // The four tiles on this page are computed by three different functions, so the gate reads all
+  // four: fixing planStreak alone would leave 🏆 and ✅ printing the forged figure beside an honest
+  // 🔥, which is the two-documents-about-one-day defect with the documents side by side.
+  // It runs HERE and not on /plan because /plan already carries a UI-driving assertion that seeds a
+  // draft and re-routes, and two assertions driving one page fight over the same localStorage.
+  // PROVE IT by replacing planLoggedDay()'s body in site/app.js with a raw
+  // `((plan && plan.log) || {})[key] || null` — done, and this gate fails with all four numbers back.
+  '/progress': [{
+    name: 'theStreakCountsOnlyDaysThisPageWatchedGoBy',
+    why: 'W8: 95 backdated day records written in one localStorage call, with zero taps, rendered a 95-day streak, a 95-day longest, 7/7 days this week and 100% adherence. A streak that can be set by moving a date is a fabricated number, and it is the number the leaderboards are meant to rank on',
+    evaluate: async () => {
+      const tick = (ms) => new Promise((r) => setTimeout(r, ms));
+      const p = (x) => String(x).padStart(2, '0');
+      const iso = (d) => d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());
+      const PID = 'knee-pain', RCID = 'patellofemoral-pain';
+      const seed = (n, withProvenance) => {
+        const log = {}, seen = [];
+        for (let i = n - 1; i >= 0; i--) {
+          const d = new Date(); d.setDate(d.getDate() - i); const k = iso(d);
+          log[k] = { keystones: { [PID + '/' + RCID]: true }, done: [], sets: {}, food: [], fn: {} };
+          if (withProvenance) { log[k].w = 1; seen.push(k); }
+        }
+        const st = new Date(); st.setDate(st.getDate() - (n - 1));
+        const plan = { v: 2, draft: null, fnWeek: {}, tools: {},
+          protocols: [{ pid: PID, rcid: RCID, moves: [], supps: [], functions: [], startedAt: iso(st) }],
+          log, milestones: [] };
+        if (withProvenance) { plan.seen = seen; plan.taps = n; }
+        localStorage.setItem('rnawiki_plan', JSON.stringify(plan));
+      };
+      const tiles = async () => {
+        location.hash = '#/stack'; await tick(200);
+        location.hash = '#/progress'; await tick(700);
+        return [...document.querySelectorAll('.pstat')].map((x) => (x.innerText || '').replace(/\s+/g, ' ').trim());
+      };
+      const before = localStorage.getItem('rnawiki_plan');
+      try {
+        // 1 — THE FORGERY. Backdated records with no witness must count for nothing.
+        seed(95, false);
+        const forged = await tiles();
+        if (forged.length !== 4) return `expected 4 .pstat tiles on /progress, found ${forged.length}: ${JSON.stringify(forged)}. This gate is checking nothing.`;
+        const nums = forged.map((t) => { const m = t.match(/(\d+)/); return m ? +m[1] : null; });
+        if (nums.some((n) => n === null)) return `a /progress tile prints no number: ${JSON.stringify(forged)}`;
+        if (nums.some((n) => n > 0)) return `95 backdated day records, written in ONE localStorage call with ZERO taps, produced ${JSON.stringify(forged)}. Every one of those numbers is a claim that somebody showed up on a day this page never saw.`;
+        // 2 — THE READER'S OWN RECORD IS STILL THERE. A guard that deletes the reader's data to
+        //     make the number honest has traded one defect for a worse one.
+        const kept = JSON.parse(localStorage.getItem('rnawiki_plan') || '{}');
+        if (Object.keys((kept.log) || {}).length !== 95) return `the 95 day records are no longer in the log (${Object.keys(kept.log || {}).length} left) — not counting a day must never mean deleting it`;
+        // 3 — THE POSITIVE CONTROL. Witnessed days MUST still count, or the gate above passes for
+        //     the trivial reason that the streak is always zero.
+        seed(30, true);
+        const real = await tiles();
+        const rn = real.map((t) => { const m = t.match(/(\d+)/); return m ? +m[1] : 0; });
+        if (rn[0] < 30) return `30 days each carrying w:1 and each in the write ledger produced "${real[0]}" — the counter has stopped counting real days, which is a worse number than the one it replaced`;
+        if (rn[1] < 30) return `LONGEST STREAK reads "${real[1]}" over 30 witnessed days — longestStreak() is not reading the same boundary as planStreak()`;
+        if (rn[2] < 7) return `DAYS THIS WEEK reads "${real[2]}" over 30 witnessed days — daysShown() is not reading the same boundary`;
+        if (rn[3] < 100) return `30-DAY ADHERENCE reads "${real[3]}" over 30 witnessed days — adherencePct() is not reading the same boundary`;
+        return null;
+      } finally {
+        if (before) localStorage.setItem('rnawiki_plan', before); else localStorage.removeItem('rnawiki_plan');
+      }
+    },
+  }],
   '/browse': [{
     name: 'thePhoneMenuReachesEveryIndexPage',
     why: 'W5c: the ☰ drawer offered 4 links and neither of the site\'s two index pages, on a viewport where the footer is up to 35 screens away',
