@@ -168,6 +168,15 @@ const ROUTES = [
   // W7 C7: the Studio. Its own template class — nothing else on the site renders a live safety
   // verdict from a POST, and the /stack assertion below tests the ENDPOINT, not the rendering.
   ['studio', '/studio'],
+  // 2026-08-10: the two profile routes. Both are new template classes and both are SPA-only, so
+  // this is what catches them 404ing (how /progress was caught when SPA_ONLY_ROUTES was written)
+  // and what catches them ending hydration on the shell title (D7 — how /studio was caught).
+  // /me is the anonymous state, which is the state that must never break: the whole page above
+  // "Your account" is rendered from this device and makes no request at all.
+  ['me', '/me'],
+  // /u/<handle> with no database answers "No page at that name" plus the server's own sentence,
+  // which is the honest degradation. Before 2026-08-10 it silently drew the HOME page instead.
+  ['profile', '/u/smoke-nobody'],
 ];
 
 // ------------------------------------------------- documented failure allowlist
@@ -196,6 +205,12 @@ const ALLOWED_REQUEST_FAILURES = [
   { status: 503, path: /^\/api\/pulse$/, why: 'no DB: site activity pulse unavailable' },
   { status: 503, path: /^\/api\/contributors$/, why: 'no DB: contributor leaderboard unavailable' },
   { status: 503, path: /^\/api\/rootcause-changes$/, why: 'no DB: proposed cause changes unavailable' },
+  // 2026-08-10 · the public profile. With no database it 503s and renderPublicProfile() prints the
+  // server's own sentence under an h1 reading "No page at that name" — the honest degradation, and
+  // the reason /u is in ROUTES. It must NOT fall back to the home page, which is what it did
+  // before this date. GET /api/protocols/mine is NOT here: /me only calls it when signed in, and a
+  // smoke run has no session.
+  { status: 503, path: /^\/api\/u\/[^/]+$/, why: 'no DB: /u/<handle> says "No page at that name" and prints the server\'s sentence' },
 ];
 
 // Console errors that are allowed AT ALL. The 503 line is additionally budget-capped below: Chrome

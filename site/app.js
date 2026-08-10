@@ -789,6 +789,12 @@
     saveProtocol(b) { return this.raw('POST', '/api/protocols', b); },
     remixProtocol(code, b) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/remix', b); },
     readProtocol(code) { return this.raw('GET', '/api/protocols/' + encodeURIComponent(code)); },
+    // ---- /me (2026-08-10) ---------------------------------------------------------------------
+    // myProtocols() is the ONLY reader anywhere that may see status='draft'. It catches rather than
+    // throws because /me must render in full for a signed-out reader with no network at all — the
+    // whole page above the account section comes from this device.
+    myProtocols() { return this.raw('GET', '/api/protocols/mine').then(d => (d._ok ? d : { protocols: [], signedIn: false })).catch(() => ({ protocols: [], signedIn: false })); },
+    withdrawProtocol(code) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/withdraw', {}); },
     cloneProtocol(code) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/clone', {}); },
     setFeedback(id, status) { return this.call('POST', '/api/admin/feedback/' + id, { status }); },
     // api.submitClinicianInterest REMOVED 2026-08-08 with its endpoint. It POSTed a name, an email,
@@ -8891,6 +8897,142 @@
       + '<section class="me-sec me-acct"><p class="muted me-why">RNAwiki has one kind of account. This is not a credential, a profession or a rating, and there is no score on it. A username is the only thing the site knows about the person who wrote these — no real name, no photograph.</p></section>';
   }
 
+  // ===== /me — THE PRIVATE PAGE (2026-08-10) ====================================================
+  // TWO PAGES, AND THE SPLIT IS THE WHOLE DESIGN.
+  //   /me          YOUR page: what you follow AND what you made. Private BY CONSTRUCTION, not by a
+  //                setting — it is rendered from this device's localStorage plus your own rows, it
+  //                is noindex in both documents, and there is no URL at which anybody else can open
+  //                it. /me resolves to whoever is holding the phone.
+  //   /u/<handle>  the public page, above: only what that account published.
+  //
+  // IT WORKS WITH NO ACCOUNT, ABSOLUTELY. A signed-out reader's /me makes no network call at all —
+  // the plan, the 7-day logs and the Studio draft are all on this device. An account adds exactly
+  // one thing to this page and the copy says so.
+  //
+  // DAY ONE IS THE DEFAULT CASE. Every number here starts at zero, so the page is designed for
+  // that state rather than degrading into it:
+  //   · NO zeroed hero tiles. "🔥 0" and "0 days" read as a verdict on somebody who arrived today.
+  //   · NO rank, percentile, level, badge or reputation score. POST /api/rep accepts only
+  //     {food_log, share} while PHASE2 is false, so that ledger counts self-reported taps;
+  //     publishing it as standing, to a handful of accounts, is a status fiction.
+  //   · NO placeholder protocol, sample streak, demo profile or "people like you also…".
+  //   · WHAT STANDS IN THEIR PLACE: three named, unstarted rows that say plainly it has not
+  //     happened, name the exact next tap, and carry a CORPUS number — 41 problems, 171 compounds.
+  //     Those are facts about the site, not claims about the reader, and on day one they are the
+  //     only numbers on the page.
+  function meLoading() { return '<div class="empty"><h1>Loading your page…</h1></div>'; }
+
+  // Every number this page prints, and why it is allowed to be here. Nothing may be added without
+  // answering both questions: can the site OBSERVE it, and is it true with three accounts?
+  //   daysLogged      ledgerDays() over TRACK_KEY — days that ELAPSED and were TAPPED on THIS
+  //                   device. Reuses the 7-day logger's hardened counter rather than counting keys,
+  //                   which is why an import or a backfill cannot inflate it.
+  //   protocolsLogged how many of those logs have at least one such day.
+  //   streak/longest  planStreak()/longestStreak() — the same witnessed-day boundary /plan uses.
+  //   published/draft counts of the reader's OWN studio_protocols rows.
+  //   joined          the join MONTH, never the day.
+  async function renderMe() {
+    try { await ensureProtocolData(); } catch (e) {}
+    const plan = getPlan();
+    const M = planProtocols(plan).length ? mergedPlan(plan) : null;
+    const logs = (trackRead().logs) || {};
+    const logged = Object.keys(logs)
+      .map((k) => ({ k, n: ledgerDays(trackUsable(logs[k]) || {}).length }))
+      .filter((x) => x.n > 0);
+    const daysLogged = logged.reduce((a, b) => a + b.n, 0);
+    const draft = stLoad();
+    // ONE request, and only when there is an account to ask about.
+    const mine = ME ? await api.myProtocols() : { protocols: [], signedIn: false };
+    const rows = mine.protocols || [];
+    const pub = rows.filter((p) => p.status === 'published');
+    const drafts = rows.filter((p) => p.status === 'draft');
+    const gone = rows.filter((p) => p.status === 'withdrawn');
+    const nProblems = ((GRAPH && GRAPH.problems) || []).length;
+    const nCompounds = (D.meta.counts || {}).compounds || 0;
+    const row = (icon, head, body, cta) => '<div class="me-row"><div class="me-row-i" aria-hidden="true">' + icon
+      + '</div><div class="me-row-b"><b>' + head + '</b><p>' + body + '</p>' + (cta || '') + '</div></div>';
+
+    // ---- FOLLOWING ----------------------------------------------------------------------------
+    const following = M
+      ? '<div class="me-stats">'
+        + '<div class="pstat"><span class="pstat-n">🔥 ' + planStreak(plan) + '</span><span class="pstat-l">Day streak</span></div>'
+        + '<div class="pstat"><span class="pstat-n">🏆 ' + longestStreak(plan, M) + '</span><span class="pstat-l">Longest</span></div>'
+        + '<div class="pstat"><span class="pstat-n">' + M.resolved.length + '</span><span class="pstat-l">Protocol' + (M.resolved.length === 1 ? '' : 's') + '</span></div>'
+        + '</div>'
+        + '<p class="muted me-since">Since ' + esc(planStartDate(plan)) + ' · <a href="#/plan">Today’s checklist</a> · <a href="#/progress">Progress</a></p>'
+      : row('🧭', 'You are not following a protocol yet.',
+        'RNAwiki holds ' + nProblems + ' problems with a root-cause protocol behind each one. Name yours and the plan builds itself. No account, nothing to pay.',
+        '<a class="cta-primary" href="#/solve">Find your protocol →</a>');
+
+    // ---- LOGGED -------------------------------------------------------------------------------
+    const loggedBlock = daysLogged
+      ? '<p class="me-line"><b>' + daysLogged + '</b> day' + (daysLogged === 1 ? '' : 's') + ' logged across <b>' + logged.length + '</b> protocol' + (logged.length === 1 ? '' : 's') + '.</p>'
+        + '<p class="muted me-why">A day counts here only if it went by while this page was open and you tapped it on this device. Nothing imported and nothing backfilled counts — which is why this number is lower than the number of days since you started, and why it is worth something. It is a diary, not evidence.</p>'
+      : row('📓', 'You have not logged a day yet.',
+        'The 7-day log is one tap a day, on this device, with no account and nothing to pay. It is the only thing here that can tell you whether something moved for you.',
+        '<a class="cta-ghost" href="#/solve">Pick a protocol to log →</a>');
+
+    // ---- BUILT --------------------------------------------------------------------------------
+    let made = '';
+    if (draft && draft.items && draft.items.length) {
+      made += row('✏️', 'A protocol in progress on this device.',
+        esc(draft.title || 'Untitled') + ' — ' + draft.items.length + ' item' + (draft.items.length === 1 ? '' : 's') + '. It is saved here and nobody else can see it.',
+        '<a class="cta-ghost" href="#/studio">Open the Studio →</a>');
+    }
+    if (pub.length) {
+      made += '<h3 class="me-sub">Published</h3>'
+        + '<p class="muted me-why">Public at a link, listed on <a href="#/u/' + esc(ME.username) + '">your public page</a>, and kept out of Google. You can withdraw any of them.</p>'
+        + pub.map((p) => '<div class="me-p"><a href="#/p/' + esc(p.code) + '"><b>' + esc(p.title) + '</b></a>'
+          + '<span class="me-p-n">' + startedBy(p.clones) + '</span>'
+          + '<button class="me-wd" data-withdraw="' + esc(p.code) + '">Withdraw</button></div>').join('')
+        // The count is printed and the RANK is not. "2 people started this" is a fact about a row;
+        // "#1 most used" over a handful of accounts is a fabricated ranking, and "works best" is a
+        // health claim in Singapore. mine.clonesMean is the server's own sentence, printed verbatim
+        // so no surface can relabel it on its own.
+        + '<p class="muted me-why">' + esc(mine.clonesMean || '') + '</p>';
+    }
+    if (drafts.length) {
+      made += '<h3 class="me-sub">Drafts</h3><p class="muted me-why">Saved to your account and visible to nobody but you.</p>'
+        + drafts.map((p) => '<div class="me-p"><b>' + esc(p.title) + '</b><span class="me-p-n">Draft</span></div>').join('');
+    }
+    if (gone.length) {
+      made += '<h3 class="me-sub">Withdrawn</h3><p class="muted me-why">Off your public page and off Most Used. The old link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.</p>'
+        + gone.map((p) => '<div class="me-p"><b>' + esc(p.title) + '</b><span class="me-p-n">Withdrawn</span></div>').join('');
+    }
+    if (!made) {
+      made = row('🧪', 'You have not built a protocol yet.',
+        'The Studio puts ' + nCompounds + ' compounds, the movements and the Singapore foods into one list and checks every pairing as you add it. Building one, keeping it and running it need no account.',
+        '<a class="cta-ghost" href="#/studio">Open the Studio →</a>');
+    }
+
+    // ---- THE PAGE -----------------------------------------------------------------------------
+    // The account line is stated ONCE, at the bottom, as a fact about this page rather than as a
+    // prompt: what an account adds here is a list of what you published, on another device, and
+    // nothing else. Everything above it already worked without one.
+    app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Your page' }])
+      + '<section class="me-hd"><div class="kicker">Your page</div><h1>What you follow, and what you built</h1>'
+      + '<p class="me-priv">🔒 This page is yours. It is not published, it is not indexed, and there is no address at which anybody else can open it.'
+      + (ME ? ' Your public page — the protocols you chose to publish, and nothing else — is <a href="#/u/' + esc(ME.username) + '">rnawiki.com/u/' + esc(ME.username) + '</a>.' : '')
+      + '</p></section>'
+      + '<section class="me-sec"><h2>Following</h2>' + following + '</section>'
+      + '<section class="me-sec"><h2>Logged</h2>' + loggedBlock + '</section>'
+      + '<section class="me-sec"><h2>Built</h2>' + made + '</section>'
+      + '<section class="me-sec me-acct"><h2>Your account</h2>'
+      + (ME
+        ? '<p>Signed in as <b>@' + esc(ME.username) + '</b>' + (joinMonth(mine.joined) ? ', here since ' + esc(joinMonth(mine.joined)) : '') + '. RNAwiki has never asked you for your real name and holds no photograph of you.</p>'
+        : '<p>You are not signed in, and everything above is on this device. An account adds exactly one thing to this page: the protocols you published show up on it from any device. Your plan and your logged days stay here either way.</p>')
+      + '<p class="muted me-why">There is no score on this page, no rank and no badge. This site has a handful of accounts; a leaderboard over that is a number I would be inventing, and “most used” is the only ranking anything here is allowed to carry.</p></section>';
+
+    app.querySelectorAll('[data-withdraw]').forEach((b) => {
+      b.onclick = async () => {
+        if (!confirm('Withdraw this protocol? It comes off your public page and off Most Used. The link keeps working and says you withdrew it, because other people may have remixed it.')) return;
+        b.disabled = true;
+        const r = await api.withdrawProtocol(b.dataset.withdraw);
+        if (r && r._ok) { toast('Withdrawn'); renderMe(); } else { b.disabled = false; alert((r && r.error) || 'It was not withdrawn. Nothing changed.'); }
+      };
+    });
+  }
+
   function studioLoading() { return '<div class="empty"><h1>Loading the Studio…</h1></div>'; }
 
   async function renderStudio(code) {
@@ -9414,7 +9556,7 @@
   // this repo has produced the same defect more than once, so assertPrivateRoutesAgree() in
   // build/parse.js diffs them and fails the build if they part company. Keep it on ONE line, in
   // this order — that is what the gate parses.
-  const PRIVATE_ROUTES = ['admin', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+  const PRIVATE_ROUTES = ['admin', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
   let ROBOTS_WAS = null;
   function setPageMeta(parts) {
     const site = SITE_NAME;
@@ -9479,6 +9621,9 @@
     // disclosure in the preview of a link somebody pasted into a group chat. The route is not
     // prerendered, so this is the only head it gets, and the smoke gate fails any route that ends
     // hydration on the shell title (D7).
+    // /me deliberately says nothing about its contents — the head is written before anything has
+    // been read, so the description has to be true of an empty page and of a full one.
+    else if (parts[0] === 'me') { title = t('Your page — what you follow and what you built'); desc = 'Your plan, your logged days and the protocols you built. It works with no account, it is not indexed, and nothing on it is public.'; }
     else if (parts[0] === 'u' && parts[1]) { title = t('@' + String(parts[1]).slice(0, 24)); desc = 'The protocols this person published on RNAwiki. Nothing they read, plan, log or follow appears here.'; }
     document.title = title;
     // ROBOTS, IN THE HYDRATED DOCUMENT TOO (2026-08-10). MEASURED, hydrated, qa/probe.mjs at
@@ -9845,6 +9990,7 @@
     // renders now is one thing: the protocols that account chose to publish. A BARE /u WITH NO
     // HANDLE STAYS RETIRED, on the line below, because there is no index of people here and there
     // must not be one. This branch must PRECEDE the retired list or the retired list swallows it.
+    else if (parts[0] === 'me') html = meLoading();
     else if (parts[0] === 'u' && parts[1]) html = profileLoading();
     else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u', 'gp'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
     else if (parts[0] === 'solve') html = solvePage(QS.get('q'));
@@ -9940,6 +10086,7 @@
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan();
     if (parts[0] === 'studio') renderStudio(parts[1] || null);
+    if (parts[0] === 'me') renderMe();
     if (parts[0] === 'u' && parts[1]) renderPublicProfile(parts[1]);
     if (parts[0] === 'p' && parts[1]) renderPublished(parts[1]);
     if (parts[0] === 'progress') renderProgress();

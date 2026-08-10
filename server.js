@@ -2899,7 +2899,7 @@ const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'musc
 // page starts answering 404. `progress` is the one the smoke test caught when this list was missing.
 const SPA_ONLY_ROUTES = [
   'about', 'admin', 'anatomy', 'az', 'body', 'browse', 'clinic', 'exercise', 'fork', 'fuel',
-  'legend', 'p', 'pathways', 'plan', 'pro', 'progress', 'pros', 's', 'solve', 'stack',
+  'legend', 'me', 'p', 'pathways', 'plan', 'pro', 'progress', 'pros', 's', 'solve', 'stack',
   'stewardship', 'studio', 'u', 'where',
 ];
 // W7 C7 (2026-08-10): 'studio' and 'p'.
@@ -2940,7 +2940,7 @@ const SPA_ONLY_ROUTES = [
 //
 // site/app.js holds the same list as PRIVATE_ROUTES, because the HYDRATED document needs the same
 // directive; assertPrivateRoutesAgree() in build/parse.js fails the build if the two ever diverge.
-const NOINDEX_ROUTES = ['admin', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+const NOINDEX_ROUTES = ['admin', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
 
 // ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
 // Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
