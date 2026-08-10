@@ -5959,7 +5959,25 @@
     const training = isTrainingDay(plan, today());
     const hasStrength = M.moves.some(e => e.kind !== 'stretch');
     const todayMoves = M.moves.filter(e => e.kind === 'stretch' || training);
-    const rows = [...todayMoves.map(moveRow), ...M.supps.map(suppRow)].join('');
+    // W8 · THE LAYERS THE REST OF THE SITE IS BUILT AROUND, AS TICK-BOXES. Measured hydrated before
+    // this: ONE undifferentiated "Today's checklist 0/12" with movements and supplements run
+    // together — while every protocol page, /solve, the home page and the tab strip name the same
+    // three layers Move · Fuel · Stack.
+    // Every row is a checkbox over an id the corpus holds. NOTHING HERE IS TYPED: the only text
+    // fields in this panel are the pre-existing weight/reps numbers inside the set logger, which
+    // belong to a movement the reader already picked and are not part of the tick.
+    // ORDER IS THE PAGE'S OWN ORDER — Move, then Stack — because /about states why ("Movement and
+    // food change more, more cheaply and more safely, than any supplement. The Stack is last because
+    // it should be.") and a dashboard that reorders it contradicts the site.
+    // FUEL IS NOT DUPLICATED HERE. It already has its own tab and its own tracker
+    // (mountFuelTracker), which counts grams against the protocol's nutrient targets — a second,
+    // simpler Fuel tick-list would be two widgets disagreeing about the same meal.
+    const LAYERS = [['🏃 Move', 'move', todayMoves, moveRow], ['💊 Stack', 'stack', M.supps, suppRow]]
+      .filter(l => l[2].length);
+    const layerDone = (items) => items.filter(x => dayLog.done.includes(x.id)).length;
+    const rows = LAYERS.map(([title, id, items, rowFn]) => `<div class="trk-layer" data-layer="${id}">
+        <div class="trk-sec-h trk-layer-h"><h4>${title}</h4><span class="trk-prog" data-layer-prog="${id}">${layerDone(items)}/${items.length}</span></div>
+        <div class="trk-list">${items.map(rowFn).join('')}</div></div>`).join('');
     const totalItems = todayMoves.length + M.supps.length;
     const doneItems = [...todayMoves, ...M.supps].filter(x => dayLog.done.includes(x.id)).length;
     const restBanner = (hasStrength && !training) ? `<div class="rest-banner">😴 <b>Rest day</b> — recovery. Your keystone, mobility${M.supps.length ? ' and supplements' : ''} still count.${nextTrainingLabel(plan) ? ` Next session: <b>${nextTrainingLabel(plan)}</b>.` : ''}</div>` : '';
@@ -5978,9 +5996,9 @@
     const ixWrap = danger ? `<details class="trk-fold"><summary><span class="trk-fold-t">🔬 Interaction &amp; safety check</span><span class="trk-fold-hint">tap to view</span></summary><div class="trk-fold-body">${danger}</div></details>` : '';
     // Priority order: the keystone (the ONE action) is the hero, then the checklist; check-in prompt + interaction check sit below.
     const todayPanel = `${keystoneCards}
-      ${totalItems ? `<div class="trk-sec-h"><h3>Today's checklist</h3><span class="trk-prog">${doneItems}/${totalItems}</span></div>` : ''}
+      ${totalItems ? `<div class="trk-sec-h"><h3>Today's checklist</h3><span class="trk-prog" data-layer-prog="all">${doneItems}/${totalItems}</span></div>` : ''}
       ${restBanner}
-      ${totalItems ? `<div class="trk-list">${rows}</div>` : ''}
+      ${totalItems ? `<div id="trk-today">${rows}</div>` : ''}
       ${daysEditor}
       <div id="checkin-slot"></div>
       ${ixWrap}
@@ -6012,7 +6030,11 @@
     });
     const byExId = {}; M.moves.forEach(e => byExId[e.id] = e);
     const byCId = {}; M.supps.forEach(c => byCId[c.id] = c);
-    wireItemModals('.trk-list', byExId, byCId);
+    // W8 · '#trk-today', not '.trk-list'. wireItemModals() does app.querySelector(sel) and binds ONE
+    // host; with the checklist split into a Move list and a Stack list, '.trk-list' would have wired
+    // Move and silently left every Details link in the Stack navigating away from the plan instead of
+    // opening its modal.
+    wireItemModals('#trk-today', byExId, byCId);
     // keystone toggles (one per protocol)
     app.querySelectorAll('[data-ks]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); const key = b.dataset.ks; d.keystones[key] = !d.keystones[key]; setPlan(pl); renderPlan(); });
     // training-days editor: toggle which weekdays strength is scheduled
@@ -6024,7 +6046,19 @@
     // plan is mirrored to the account and this is a fact about one device's history, not about the
     // reader. Storing it in the plan would clear the note on a device that has not been told yet.
     const ln = document.getElementById('ledger-note-x'); if (ln) ln.onclick = () => { try { localStorage.setItem(PLAN_LEDGER_NOTE_KEY, today()); } catch (e) {} const b = ln.closest('#ledger-note'); if (b) b.remove(); };
-    const refreshProg = () => { const d = planDay(getPlan()); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...M.moves, ...M.supps].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } };
+    // W8 · EVERY counter updates, not just the first one on the page. The old line did
+    // `app.querySelector('.trk-prog')` — a single-selector lookup that, now there are three of them,
+    // would have written the TOTAL into the Move heading and left the others frozen at their
+    // paint-time values. A number that stops matching the boxes under it is the same defect class as
+    // two documents about one day, so the counters are keyed and updated together.
+    // It also read `M.moves` where the list renders `todayMoves`: on a rest day the total counted
+    // strength work that is not on the page, so ticking every visible box could never reach N/N.
+    const refreshProg = () => {
+      const d = planDay(getPlan());
+      LAYERS.forEach(([, id, items]) => { const el = app.querySelector(`.trk-prog[data-layer-prog="${id}"]`); if (el) el.textContent = items.filter(x => d.done.includes(x.id)).length + '/' + items.length; });
+      const all = app.querySelector('.trk-prog[data-layer-prog="all"]');
+      if (all) all.textContent = [...todayMoves, ...M.supps].filter(x => d.done.includes(x.id)).length + '/' + totalItems;
+    };
     // W8 · the live update reads the SAME boundary the initial paint does, off the plan as it is now
     // stored — setPlan() has already stamped by the time this runs. Reading the in-memory day record
     // here instead would let the cell say one thing and a reload say another about the same day.
