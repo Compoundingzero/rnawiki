@@ -9347,6 +9347,14 @@
   // deliberately merged, which is exactly what /body did: hydrated canonical /body while og:url on
   // the same document said /body/leg. Keys and values are query-free absolute paths.
   const CANON_OVERRIDE = { '/body': '/body/leg' };
+  // ---- THE PRIVATE ROUTE SET (2026-08-10) ------------------------------------------------------
+  // The same list as NOINDEX_ROUTES in server.js, written twice because the two documents need the
+  // same directive and neither can read the other. A hand-synced pair of lists in two files is how
+  // this repo has produced the same defect more than once, so assertPrivateRoutesAgree() in
+  // build/parse.js diffs them and fails the build if they part company. Keep it on ONE line, in
+  // this order — that is what the gate parses.
+  const PRIVATE_ROUTES = ['admin', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+  let ROBOTS_WAS = null;
   function setPageMeta(parts) {
     const site = SITE_NAME;
     let title = 'RNAwiki — translate the code of human performance into real results';
@@ -9406,6 +9414,27 @@
     // it either — a protocol somebody else wrote is not a page this site is claiming.
     else if (parts[0] === 'p' && parts[1]) { title = t('A protocol somebody built'); desc = 'A protocol built and published by a reader on RNAwiki, re-checked against the corpus as it is today. Reading it needs no account.'; }
     document.title = title;
+    // ROBOTS, IN THE HYDRATED DOCUMENT TOO (2026-08-10). MEASURED, hydrated, qa/probe.mjs at
+    // 390x844 on this branch: setPageMeta set title, description, canonical and the four share tags
+    // and NEVER touched robots — so after hydration /u/*, /p/*, /studio and /progress still carried
+    // the shell's `index,follow,max-image-preview:large`, while server.js now sends noindex for the
+    // same URL. Two documents, one URL, opposite directives, which is exactly what the
+    // two-document rule exists to stop. Googlebot renders JavaScript; it would read this one.
+    //
+    // ONLY THE PRIVATE BRANCH ASSERTS A VALUE, and the previous value is restored on the way out.
+    // The prerendered heads are NOT uniform — measured: /plan carries
+    // "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" and the SPA shell
+    // carries "index,follow,max-image-preview:large" — so writing one hard-coded string back on
+    // every non-private route would silently DOWNGRADE the richer pages after one SPA navigation.
+    {
+      const priv = PRIVATE_ROUTES.indexOf(parts[0]) >= 0;
+      let rb = document.querySelector('meta[name="robots"]');
+      if (priv) {
+        if (!rb) { rb = document.createElement('meta'); rb.setAttribute('name', 'robots'); document.head.appendChild(rb); }
+        if (ROBOTS_WAS === null) ROBOTS_WAS = rb.getAttribute('content');
+        rb.setAttribute('content', 'noindex,nofollow');
+      } else if (ROBOTS_WAS !== null && rb) { rb.setAttribute('content', ROBOTS_WAS); ROBOTS_WAS = null; }
+    }
     let m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'description'); document.head.appendChild(m); }
     m.setAttribute('content', desc);
     // W5b: keep the share tags on the same two strings. Before this they held whatever the LANDING

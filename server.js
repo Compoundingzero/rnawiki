@@ -2919,6 +2919,29 @@ const SPA_ONLY_ROUTES = [
 // and protocol/ — all matched as whole segments. 'u' is the existing precedent for a one-letter
 // live route.
 
+// ---- THE PRIVATE SHELL SET (2026-08-10) -------------------------------------------------------
+// Of the routes above, these render ONE PERSON: their own page, somebody else's, or a document one
+// reader wrote. MEASURED, PRERENDERED document, curl against localhost:8099 on this branch:
+//     GET /u/felix   -> 200, <meta name="robots" content="index,follow,max-image-preview:large">
+//     GET /p/abc123  -> 200, the same
+//     GET /studio    -> 200, the same
+//     GET /progress  -> 200, the same
+// All four fall through serveMissing() to site/index.html, whose head is the HOME PAGE's head — so
+// every one of them invited Google to index it, and /p/<code> is the URL POST /api/protocols has
+// been minting as the share link since 2026-08-09. The one endpoint whose whole job is to hand
+// somebody a link was handing out an indexable one.
+//
+// A page listing a named person's health protocols does not belong in a search index. Publishing
+// is a link you hand out, not a listing you get found by.
+//
+// DELIBERATELY NOT robots.txt — see the note at the top of this file: a disallowed URL is never
+// FETCHED, so the noindex inside it is never read, and anything already indexed stays indexed. A
+// directive is the only thing that removes it.
+//
+// site/app.js holds the same list as PRIVATE_ROUTES, because the HYDRATED document needs the same
+// directive; assertPrivateRoutesAgree() in build/parse.js fails the build if the two ever diverge.
+const NOINDEX_ROUTES = ['admin', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+
 // ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
 // Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
 // head-to-head comparisons that pitted a prescription or controlled medicine against a supplement."
@@ -3001,7 +3024,24 @@ ${links}
   // Derived from every `parts[0] === '…'` branch in site/app.js route(); the prerendered prefixes
   // are already handled above, so only the SPA-only ones belong here.
   if (seg.length && SPA_ONLY_ROUTES.includes(seg[0])) {
-    return sendFile(res, path.join(DIR, 'index.html'));
+    if (!NOINDEX_ROUTES.includes(seg[0])) return sendFile(res, path.join(DIR, 'index.html'));
+    // TWO DIRECTIVES, DELIBERATELY, AND THEY ARE NOT REDUNDANT.
+    //   · the HEADER is what a crawler that never parses the body obeys, and it is the one that
+    //     applies to a HEAD request;
+    //   · the META REWRITE stops the served BYTES contradicting the header. Google resolves a
+    //     conflict by taking the most restrictive, so either alone would work — but a document
+    //     that says index in its head and noindex in its headers is one document saying two
+    //     things, which is the defect class this file keeps finding.
+    // nofollow as well as noindex: the links out of a personal page are that person's protocols,
+    // and a crawler should not be walking from a handle to the pages that handle touched.
+    // (endHtml() overwrites the header with "noindex, follow" when the URL carries a query string.
+    // Still noindex, and the meta tag in the bytes still says nofollow, so the restrictive reading
+    // holds either way.)
+    res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+    return fs.readFile(path.join(DIR, 'index.html'), 'utf8', (e, html) => {
+      if (e) { res.writeHead(404); return res.end('Not found'); }
+      endHtml(res, html.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex,nofollow">'));
+    });
   }
 
   // Anything else is a SOFT 404: the SPA shell at HTTP 200, carrying
