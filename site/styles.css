@@ -2199,6 +2199,14 @@ a.dp-name:hover{color:var(--accent)}
 .st-then{border-top:1px dashed var(--line);padding-top:.5rem}
 .st-pubwarn{font-size:.86rem;line-height:1.5;font-weight:600;color:#7f1d1d;margin:.2rem 0 0}
 .st-pub-no{font-size:.95rem;line-height:1.5;color:#7f1d1d;margin:.2rem 0 .6rem}
+/* 2026-08-10 · the publish sheet's disclosure list. It is the last thing somebody reads before a
+   tap that puts a health condition, under a handle, at a URL — so it is body text, not fine print,
+   and it wraps rather than scrolling: the modal is narrow and the URL string in it is long. */
+.st-pub-what{margin:.6rem 0 .2rem}
+.st-pub-what p{font-size:.9rem;line-height:1.55;margin:.2rem 0}
+.st-pub-what ul{margin:.35rem 0 .5rem;padding-left:1.15rem}
+.st-pub-what li{font-size:.9rem;line-height:1.55;margin:.25rem 0;overflow-wrap:anywhere}
+.st-pub-what .st-why{margin:.5rem 0 0}
 .st-pub-keep{font-size:.86rem;line-height:1.55;color:var(--muted);margin:.6rem 0 0}
 .st-goto{margin-top:.5rem;min-height:44px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--head);font-size:.84rem;font-weight:600;cursor:pointer}
 .st-bar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;position:sticky;bottom:0;background:var(--bg);padding:.6rem 0;border-top:1px solid var(--line);margin-top:.6rem}

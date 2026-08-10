@@ -9427,7 +9427,23 @@
       return;
     }
     body.innerHTML = '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged</div></div><p class="st-cov">❔ ' + esc(d.says || '') + '</p>'
-      + '<p class="modal-sub">Published means anyone with the link can open it and remix it, and your username goes on it.</p>'
+      // WHAT PUBLISHING ACTUALLY DOES, ITEM BY ITEM (2026-08-10). The sentence this replaces named
+      // two of the four consequences. A protocol title is something a person writes about their own
+      // body, and the page it lands on also names the RNAwiki protocol it was started from — so one
+      // tap can put a health condition, under a handle, at a URL, on a public page. That is a real
+      // disclosure, and it is stated in full BEFORE the tap rather than discovered after it.
+      // The last line is a FACT, not a promise: POST /api/protocols/:code/withdraw exists and /me
+      // carries the button. Before that endpoint was written this sheet could not have said it, and
+      // it must never say it again if the endpoint is ever removed.
+      + '<div class="st-pub-what"><p><b>Publishing makes four things public, at a link anyone can open:</b></p><ul>'
+      + '<li>the <b>name you typed</b>, exactly as you typed it;</li>'
+      + '<li>everything <b>in</b> it — each compound, movement, food and tool, with your doses, your days, and any note you wrote on a row;</li>'
+      + '<li>the RNAwiki protocol you <b>started from</b>, if you started from one;</li>'
+      + '<li>your <b>username</b>, plus a line for this protocol on your public page at rnawiki.com/u/' + esc((ME && ME.username) || 'yourname') + '.</li>'
+      + '</ul>'
+      + '<p class="st-why">Your username is the only thing about you that goes with it. RNAwiki asks for no real name and holds no photograph. <b>Nothing you plan, log or follow is published</b> — not by this and not by anything else. That stays on this device.</p>'
+      + '<p class="st-why">These pages are kept out of Google. Publishing is a link you hand out, not a listing you get found by.</p>'
+      + '<p class="st-why">You can withdraw it later from <a href="#/me">your page</a>. The link keeps working and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.</p></div>'
       + '<div class="modal-actions"><button class="ghost" id="st-pc">Not yet</button><button class="primary" id="st-pg">Publish</button></div>';
     body.querySelector('#st-pc').onclick = closeModal;
     body.querySelector('#st-pg').onclick = async () => {
