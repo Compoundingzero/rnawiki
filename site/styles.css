@@ -4933,3 +4933,44 @@ html[data-state="removed"] .i-form{display:none}
   .lp .lp-tap b{font-size:16.5px}
   .lp .lp-turn{margin-top:18px}
 }
+
+/* ---- The profile: /u/<handle> (public) and /me (private). 2026-08-10 ----
+   One set of classes for both pages, because they are two views of the same idea and a second
+   stylesheet for the private one is how the two drift apart. Everything here is a token already
+   defined above — no new colour, no colour-only signal. Measured at 390x844 and 1440x900. */
+.me-hd{margin:.4rem 0 1.4rem}
+.me-hd h1{margin:.3rem 0 .5rem}
+.me-hd .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.me-since{margin:.2rem 0 .6rem;font-size:.9rem}
+/* The privacy line is a statement of fact about the page, so it reads as part of the page rather
+   than as a warning. No red, no alarm icon: nothing has gone wrong. */
+.me-priv{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+  border-radius:10px;padding:.7rem .85rem;margin:.6rem 0 0;font-size:.92rem;line-height:1.5}
+.me-sec{margin:1.6rem 0}
+.me-sec h2{font-size:1.05rem;margin:0 0 .7rem}
+.me-sub{font-size:.95rem;margin:1.1rem 0 .35rem}
+.me-why{font-size:.85rem;line-height:1.55;margin:.45rem 0 0}
+.me-line{margin:.2rem 0 .35rem}
+.me-line b{color:var(--head);font-variant-numeric:tabular-nums}
+.me-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin:.4rem 0 .6rem}
+/* An unstarted row: the true sentence, the exact next tap, and a corpus number that is a fact
+   about the site rather than a claim about the reader. Never a zeroed tile. */
+.me-row{display:flex;gap:.8rem;align-items:flex-start;background:var(--panel);border:1px solid var(--line);
+  border-radius:12px;padding:.9rem .95rem;margin:.5rem 0}
+.me-row-i{font-size:1.4rem;line-height:1.2;flex:0 0 auto}
+.me-row-b{min-width:0}
+.me-row-b b{display:block;color:var(--head);margin-bottom:.25rem}
+.me-row-b p{margin:0 0 .6rem;font-size:.9rem;line-height:1.55}
+.me-row-b .cta-primary,.me-row-b .cta-ghost{display:inline-block}
+.me-p{display:flex;flex-wrap:wrap;gap:.4rem .7rem;align-items:center;justify-content:space-between;
+  background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:.7rem .85rem;margin:.4rem 0}
+.me-p>a,.me-p>b{min-width:0;overflow-wrap:anywhere}
+.me-p-n{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.me-wd{min-height:44px;padding:.5rem .9rem;border-radius:9px;border:1px solid var(--line);
+  background:transparent;color:var(--muted);font:inherit;font-size:.85rem;cursor:pointer}
+.me-wd:hover{color:var(--head);border-color:var(--head)}
+.me-acct p{font-size:.9rem;line-height:1.6}
+@media(max-width:560px){
+  .me-stats{grid-template-columns:1fr 1fr}
+  .me-p{justify-content:flex-start}
+}

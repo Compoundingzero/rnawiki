@@ -8830,6 +8830,67 @@
   function stTouch() { stSave(); stPaint(); stCheckSoon(); }
 
   // ---- render ---------------------------------------------------------------------------------
+  // ===== THE PUBLIC PROFILE (2026-08-10) ========================================================
+  // /u/<handle> IS A REAL PAGE AGAIN, AND IT IS NOT THE PAGE THAT WAS RETIRED. What went on
+  // 2026-08-08 was a professional PORTFOLIO — stewarded protocols, a profession, a booking link,
+  // "1375 reputation". MEASURED HYDRATED before this (qa/probe.mjs, 390x844, /u/felix): the route
+  // did history.replaceState(null,'','/') and drew the HOME page — title "RNAwiki — translate the
+  // code of human performance into real results", h1 "Turned away, priced out, or told it was
+  // nothing.", canonical https://rnawiki.com/. A link somebody shared to their own profile looked
+  // like the site did not know who they were, while GET /api/u/:handle stayed live throughout.
+  //
+  // WHAT IT SHOWS: the protocols this account PUBLISHED. That is the one deliberately public act an
+  // account can perform here. It shows nothing the person reads, plans, logs or follows — see the
+  // note over GET /api/u/:handle in server.js for why that is absent rather than merely off.
+  //
+  // WHAT IT DOES NOT SHOW, ON DAY ONE OR EVER: no rank, no percentile, no level, no badge, no
+  // score. This site has a handful of accounts; any ranking over that is one I would be inventing,
+  // and studio_protocols has no efficacy column by deliberate design. "MOST USED" is the only
+  // ranking anything here is allowed to carry, and even the per-protocol number is printed with the
+  // server's own sentence saying what it is not.
+  function profileLoading() { return '<div class="empty"><h1>Loading…</h1></div>'; }
+  // "0 people have started it" is true and reads like a scoreboard with a nil on it. Say the same
+  // fact in words instead. This is the ONLY per-protocol number either profile prints, and the
+  // server's own `clonesMean` sentence is printed underneath every list that uses it.
+  const startedBy = (n) => (n > 0
+    ? n + ' ' + (n === 1 ? 'person has' : 'people have') + ' started it'
+    : 'Nobody has started it yet');
+  // The server sends the join MONTH as "YYYY-MM" and never the day. Printed as "June 2026", not
+  // "2026-06": the truncation is a privacy decision and it should not read like a database column.
+  // Anything that is not a month falls through as null rather than as "Invalid Date".
+  const joinMonth = (s) => {
+    const m = /^(\d{4})-(\d{2})$/.exec(String(s || '')); if (!m) return null;
+    const i = +m[2] - 1; if (i < 0 || i > 11) return null;
+    return ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][i] + ' ' + m[1];
+  };
+
+  // Renders exactly what GET /api/u/:handle returns and never more. If a field appears in that
+  // payload that is not one of these four, assertProfileDisclosesOnlyPublished() in build/parse.js
+  // fails the build rather than this function quietly printing it.
+  async function renderPublicProfile(handle) {
+    const d = await api.profile(handle).catch((e) => ({ error: (e && e.message) || 'Nobody here has that username.' }));
+    if (!d || d.error) {
+      app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Profile' }])
+        + '<div class="empty"><h1>No page at that name</h1><p class="muted">' + esc((d && d.error) || 'Nobody here has that username.') + '</p><p><a href="#/">← Home</a></p></div>';
+      return;
+    }
+    const u = d.user || {}, pub = d.published || [];
+    // A profile with nothing published is not an error and is not dressed up as one. It says the
+    // true thing and offers nothing else about the person — no zeroed tiles, no "0 protocols", no
+    // placeholder row. "0" printed large reads as a verdict on somebody who opened an account once.
+    const list = pub.length
+      ? pub.map((p) => '<div class="me-p"><a href="#/p/' + esc(p.code) + '"><b>' + esc(p.title) + '</b></a>'
+          + '<span class="me-p-n">' + startedBy(p.clones) + '</span></div>').join('')
+        + '<p class="muted me-why">' + esc(d.clonesMean || '') + '</p>'
+      : '<p class="muted">This account has not published a protocol.</p>';
+    app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: '@' + esc(u.username || handle) }])
+      + '<section class="me-hd"><div class="kicker">Published protocols</div><h1>@' + esc(u.username || handle) + '</h1>'
+      + (joinMonth(u.joined) ? '<p class="muted me-since">Here since ' + esc(joinMonth(u.joined)) + '.</p>' : '')
+      + '<p class="me-priv">' + esc(d.shows || 'Only what this account published on purpose.') + '</p></section>'
+      + '<section class="me-sec">' + list + '</section>'
+      + '<section class="me-sec me-acct"><p class="muted me-why">RNAwiki has one kind of account. This is not a credential, a profession or a rating, and there is no score on it. A username is the only thing the site knows about the person who wrote these — no real name, no photograph.</p></section>';
+  }
+
   function studioLoading() { return '<div class="empty"><h1>Loading the Studio…</h1></div>'; }
 
   async function renderStudio(code) {
@@ -9413,6 +9474,12 @@
     // a compound it had not yet read would be a fabricated one. renderPublished() does not restamp
     // it either — a protocol somebody else wrote is not a page this site is claiming.
     else if (parts[0] === 'p' && parts[1]) { title = t('A protocol somebody built'); desc = 'A protocol built and published by a reader on RNAwiki, re-checked against the corpus as it is today. Reading it needs no account.'; }
+    // /u/<handle> names the handle and NOTHING ELSE. Not the protocol titles, not the count: a
+    // share card reading "@alice — 3 protocols including Rosacea flare control" would put the
+    // disclosure in the preview of a link somebody pasted into a group chat. The route is not
+    // prerendered, so this is the only head it gets, and the smoke gate fails any route that ends
+    // hydration on the shell title (D7).
+    else if (parts[0] === 'u' && parts[1]) { title = t('@' + String(parts[1]).slice(0, 24)); desc = 'The protocols this person published on RNAwiki. Nothing they read, plan, log or follow appears here.'; }
     document.title = title;
     // ROBOTS, IN THE HYDRATED DOCUMENT TOO (2026-08-10). MEASURED, hydrated, qa/probe.mjs at
     // 390x844 on this branch: setPageMeta set title, description, canonical and the four share tags
@@ -9773,6 +9840,12 @@
     // fully authored aboutPage() -- which holds the site's ONLY disclaimer -- and leaving /about
     // worse than a soft-404 for both readers and crawlers.
     else if (parts[0] === 'about') html = aboutPage();
+    // /u/<handle> LEAVES THE RETIRED LIST (2026-08-10). It was swept in with the expert system and
+    // the sweep was right at the time — the page it rendered was a professional portfolio. What
+    // renders now is one thing: the protocols that account chose to publish. A BARE /u WITH NO
+    // HANDLE STAYS RETIRED, on the line below, because there is no index of people here and there
+    // must not be one. This branch must PRECEDE the retired list or the retired list swallows it.
+    else if (parts[0] === 'u' && parts[1]) html = profileLoading();
     else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u', 'gp'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
     else if (parts[0] === 'solve') html = solvePage(QS.get('q'));
     // dead: the line above sets parts.length = 0, so parts[0] is undefined by here.
@@ -9867,6 +9940,7 @@
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan();
     if (parts[0] === 'studio') renderStudio(parts[1] || null);
+    if (parts[0] === 'u' && parts[1]) renderPublicProfile(parts[1]);
     if (parts[0] === 'p' && parts[1]) renderPublished(parts[1]);
     if (parts[0] === 'progress') renderProgress();
     // dead: /pros is retired above and parts is emptied, so this never fires.
