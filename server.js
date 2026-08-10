@@ -1828,6 +1828,50 @@ async function api(req, res, url) {
       WHERE p.status='published' AND p.clones > 0 ORDER BY p.clones DESC, p.published_at DESC LIMIT 12`);
     return json(res, 200, { protocols: r.rows, label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.' });
   }
+  // WHAT YOU MADE (2026-08-10). Registered ABOVE the read-one branch on purpose: that branch
+  // matches `seg[1] && !seg[2]`, so /api/protocols/mine would otherwise resolve as code='mine' and
+  // 404. Before this, POST /api/protocols handed back a code and the author never saw a list of
+  // their own work again — there was no way to find out what you had published, and therefore no
+  // way to take any of it down.
+  // DRAFTS ARE INCLUDED HERE AND NOWHERE ELSE. This is the only reader in the codebase that may
+  // see status='draft', because a draft is a private document and /me is the only private page.
+  // `joined` travels with it so /me can print the join MONTH without a second request; it is the
+  // month, never the day, for the same reason GET /api/u/:handle truncates it.
+  if (seg[0] === 'protocols' && seg[1] === 'mine' && !seg[2] && method === 'GET') {
+    const u = await currentUser(req); if (!u) return json(res, 200, { protocols: [], signedIn: false });
+    const r = await db.query(`SELECT code,title,status,clones,base_pid,base_rcid,parent_code,published_at,updated_at
+      FROM studio_protocols WHERE user_id=$1 ORDER BY updated_at DESC LIMIT 100`, [u.id]);
+    // Read separately: currentUser() deliberately does not select created_at, and its row is what
+    // becomes `ME` in every browser. Reading it here keeps the join date to the one page that
+    // prints it instead of putting it on every session object on the site.
+    const jr = await db.query('SELECT created_at FROM users WHERE id=$1', [u.id]);
+    const joinedAt = jr.rows[0] && jr.rows[0].created_at;
+    return json(res, 200, {
+      protocols: r.rows, signedIn: true,
+      joined: joinedAt ? new Date(joinedAt).toISOString().slice(0, 7) : null,
+      clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
+    });
+  }
+  // WITHDRAW. studio_protocols.status has supported 'withdrawn' since the table was written and
+  // the read-one branch below already renders that state — but NOTHING COULD EVER SET IT.
+  // Publishing was irreversible from the site. That is the privacy defect, not a missing nicety: a
+  // protocol title is something a person writes about their own body, and "you can take it down"
+  // has to be a fact before the publish sheet is allowed to say it.
+  // The row is KEPT, not deleted, exactly as the DDL comment specifies: remixes of it still have to
+  // resolve through it, and people linked to it. The page then says it was withdrawn instead of
+  // 404ing an address somebody shared.
+  // user_id is IN THE WHERE CLAUSE rather than checked afterwards — the only account that can
+  // withdraw a protocol is the one that wrote it, and there is no owner override. ONE ACCOUNT TYPE.
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'withdraw' && !seg[3] && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to withdraw a protocol.' });
+    await readBody(req, 512);
+    const r = await db.query("UPDATE studio_protocols SET status='withdrawn', updated_at=now() WHERE code=$1 AND user_id=$2 AND status='published' RETURNING code", [clean(seg[1], 16), u.id]);
+    if (!r.rows[0]) return json(res, 404, { error: 'No published protocol of yours has that code.' });
+    return json(res, 200, {
+      ok: true, code: r.rows[0].code, status: 'withdrawn',
+      says: 'Withdrawn. It is off your public page and off Most Used. The link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.',
+    });
+  }
   // One clone per browser, no account. The fork_clones pattern, minus the reputation award: that
   // award embedded the CALLER's voter key in its idempotency ref, which made public reputation
   // unbounded. Nothing here writes to a leaderboard about a person.
