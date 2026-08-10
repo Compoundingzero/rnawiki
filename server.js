@@ -1571,21 +1571,24 @@ async function api(req, res, url) {
   // The users.domain / domain_verified / credential / requested_domain / application_status /
   // role_backlink columns are deliberately left in db.js: dropping a column is irreversible and
   // every one of them is null or false today. Drop them in a later, deliberate commit.
-  // --- profile: update your public socials / booking link ---
-  if (seg[0] === 'profile' && !seg[1] && method === 'POST') {
-    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });
-    const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
-    const s = b.socials || {};
-    const socials = {
-      instagram: clean(s.instagram, 40).replace(/^@/, ''),
-      twitter: clean(s.twitter, 40).replace(/^@/, ''),
-      linkedin: safeUrl(s.linkedin),
-      website: safeUrl(s.website),
-      booking_link: safeUrl(s.booking_link),
-    };
-    await db.query('UPDATE users SET socials=$1 WHERE id=$2', [JSON.stringify(socials), u.id]);
-    return json(res, 200, { ok: true, socials });
-  }
+  // The "update your public socials / booking link" writer was REMOVED 2026-08-10, and it was
+  // DEAD TWICE OVER. Both deaths are recorded because each is a pattern this repo has been bitten
+  // by before:
+  //   1. UNREACHABLE ON THE SERVER. `if (seg[0] === 'profile' && !seg[1])` — the demographics
+  //      branch ~250 lines above — matches the identical path, handles POST and RETURNS. This
+  //      branch could never run. (Verified by reading the if/return chain; it could not be
+  //      exercised locally because db.enabled is false with no DATABASE_URL.)
+  //   2. UNREACHABLE IN THE BROWSER. site/app.js defined `saveProfile` TWICE in one object
+  //      literal — the socials one, then the demographics one ~75 lines later — and in a JS object
+  //      literal the later key wins. All three call sites send demographics.
+  // So users.socials is {} on every row and always was. It carried `booking_link`, lead-gen
+  // plumbing for the professional tier abolished on 2026-08-08, and GET /api/u/:handle was still
+  // PUBLISHING it — an Instagram handle beside somebody's health protocols. A public field nothing
+  // can fill is a public field waiting to be filled, and a signed-in curl could still fill this one
+  // if the shadowing above it were ever removed.
+  // The users.socials COLUMN stays in db.js: dropping a column is irreversible and this repo
+  // applies that discipline deliberately (see newsletter_subscribers, telegram_*). Drop it by hand
+  // once this has shipped and nothing 500s.
   // --- reputation: client-driven awards (login required, daily-idempotent) ---
   if (seg[0] === 'rep' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Please sign in' });

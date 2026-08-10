@@ -721,7 +721,13 @@
     contributors() { return this.call('GET', '/api/contributors').catch(() => ({ experts: [], leaderboard: [] })); },
     protocolContributors(pid, rcid) { return this.call('GET', `/api/protocol-contributors?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).then(d => d.contributors).catch(() => []); },
     profile(handle) { return this.call('GET', '/api/u/' + encodeURIComponent(handle)); },
-    saveProfile(socials) { return this.call('POST', '/api/profile', { socials }); },
+    // saveProfile(socials) REMOVED 2026-08-10 — it was dead twice over. A SECOND `saveProfile(p)`
+    // is defined ~75 lines below in this same object literal, and in a JS object literal the later
+    // key wins, so `api.saveProfile` has always been the demographics one (all three call sites
+    // send demographics). Its endpoint was unreachable regardless: server.js registers the
+    // demographics branch for POST /api/profile ~250 lines above the socials branch, and returns.
+    // The server-side writer went in the same commit. Two shadowed keys with the same name is a
+    // defect a 10,000-line object literal should not be able to hold silently.
     rep(kind) { return this.call('POST', '/api/rep', { kind }).catch(() => null); },
     // api.steward / api.adoptProtocol / api.releaseProtocol REMOVED 2026-08-08 — the three
     // /api/steward endpoints are deleted. Stewardship let one account "own" a protocol page and
