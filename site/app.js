@@ -382,8 +382,30 @@
   }
   function dayVolume(dl) { if (!dl || !dl.sets) return 0; let v = 0; Object.keys(dl.sets).forEach(k => (dl.sets[k] || []).forEach(s => { if (s && s.reps) v += (s.w || 0) * s.reps; })); return v; }
   // ---- Retention hooks (deterministic) ----
-  const STREAK_MILESTONES = [3, 7, 14, 30, 60, 90, 180, 365];
-  function milestoneMsg(m) { return ({ 3: "3 days — it's becoming a habit.", 7: 'a full week! 🎉', 14: 'two weeks strong 💪', 30: '30 days — this is who you are now.', 60: '60 days. Unstoppable.', 90: '90 days — a real streak.', 180: 'half a year!', 365: 'one year. Legendary.' })[m] || m + ' days!'; }
+  // W8 · 7 / 30 / 90. The old ladder had eight rungs [3,7,14,30,60,90,180,365] and the top four could
+  // not honestly fire: the ledger that evidences these numbers recorded its first witnessed day
+  // today, so a 365 rung is a celebration nobody on this site can have reached. Three rungs, each
+  // reachable, each awarded only from planTapped() days.
+  const STREAK_MILESTONES = [7, 30, 90];
+  // Each message names what the number IS: days this page was open on and the reader ticked
+  // something. It is not evidence the protocol worked — nothing on this site measures that — and the
+  // copy never implies it does. Same rule as the 7-day receipt: it is a diary, not a result.
+  // The number is already in the toast prefix ("🔥 30-day streak — "), so these do not repeat it.
+  function milestoneMsg(m) { return ({ 7: 'a full week of days you showed up for. 🎉', 30: 'a month of days you were here and ticked something. 💪', 90: 'that is a habit now, not a streak.' })[m] || m + ' days!'; }
+  // W8 · THE MIGRATION, SAID OUT LOUD, ONCE. Before this branch the streak counted any date present
+  // in the plan's log — including days restored from an account and days written by hand. It now
+  // counts only days this page itself watched go by. Anybody who had a streak will see it drop, and
+  // being told nothing is how a product looks like it lost your data. Dismissed per device, because
+  // the drop is a per-device fact.
+  const PLAN_LEDGER_NOTE_KEY = 'rnawiki_plan_ledger_note';
+  function planLedgerNoteHtml(plan) {
+    let dismissed = false; try { dismissed = !!localStorage.getItem(PLAN_LEDGER_NOTE_KEY); } catch (e) {}
+    if (dismissed) return '';
+    const n = Object.keys((plan && plan.log) || {}).filter((d) => !planTapped(plan, d)).length;
+    if (!n) return '';
+    const one = n === 1;
+    return `<div class="miss-banner" id="ledger-note">📓 Your streak now counts only the days this page was open and you ticked something on it. <b>${n}</b> earlier day${one ? '' : 's'} ${one ? 'is' : 'are'} still in your log and still shown in the week strip, ringed with a dashed circle — ${one ? 'it is' : 'they are'} simply not counted, because nothing here can show ${one ? 'it' : 'they'} happened while this page was watching. A lower honest number beats a higher false one. <button class="miss-x" id="ledger-note-x" aria-label="Dismiss">✕</button></div>`;
+  }
   // tiny inline bar sparkline (values → bars scaled to max)
   function sparkline(vals) {
     const max = Math.max(1, ...vals);
@@ -5962,7 +5984,7 @@
       ${daysEditor}
       <div id="checkin-slot"></div>
       ${ixWrap}
-      ${recapCard}${missBanner}`;
+      ${recapCard}${missBanner}${planLedgerNoteHtml(plan)}`;
     const fuelPanel = hasFuel ? `<p class="pt-sub">Log what you eat — your protocol's targets fill as you go.</p><div id="fuel-tracker"></div>` : '';
     const toolsPanel = `<div id="plan-functions"></div>`;
     const planPanel = `${manage}`;
@@ -5998,6 +6020,10 @@
     // dismiss retention banners
     const md = document.getElementById('miss-dismiss'); if (md) md.onclick = () => { const pl = getPlan(); pl.dismissedNudge = today(); setPlan(pl); const b = md.closest('.miss-banner'); if (b) b.remove(); };
     const rd = document.getElementById('recap-dismiss'); if (rd) rd.onclick = () => { const pl = getPlan(); pl.recapWeek = weekKey(); setPlan(pl); const b = rd.closest('.recap-card'); if (b) b.remove(); };
+    // W8 · the ledger note. Dismissed to localStorage, NOT to plan.milestones or any plan field: the
+    // plan is mirrored to the account and this is a fact about one device's history, not about the
+    // reader. Storing it in the plan would clear the note on a device that has not been told yet.
+    const ln = document.getElementById('ledger-note-x'); if (ln) ln.onclick = () => { try { localStorage.setItem(PLAN_LEDGER_NOTE_KEY, today()); } catch (e) {} const b = ln.closest('#ledger-note'); if (b) b.remove(); };
     const refreshProg = () => { const d = planDay(getPlan()); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...M.moves, ...M.supps].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } };
     // W8 · the live update reads the SAME boundary the initial paint does, off the plan as it is now
     // stored — setPlan() has already stamped by the time this runs. Reading the in-memory day record
