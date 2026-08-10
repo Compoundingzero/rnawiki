@@ -173,6 +173,25 @@
   }
   let _planSaveTimer = null;
   function setPlan(p) {
+    // W8 · THE STAMP IS TAKEN HERE, NOT AT THE CALL SITES. `grep -a -n "planDay(" site/app.js` finds
+    // 22 sites — the keystone button, the checklist checkboxes, the set logger and ten tool widgets —
+    // every one of them shaped `const pl = getPlan(); const d = planDay(pl); …; setPlan(pl)`. Making
+    // any of them responsible for provenance is a guard one caller can skip, which is the same class
+    // of defect as W4.5's painted lock and W5.5's second renderer. This is the chokepoint they all
+    // already pass through.
+    // Paths that are not day records at all (dismissedNudge, recapWeek, trainingDays, draft edits,
+    // protocol add/remove) call getPlan() fresh, so p.log[today] is absent or empty and
+    // planDayHasContent() is false — no stamp.
+    if (p) {
+      const k = today(), cur = (p.log || {})[k];
+      if (planDayHasContent(cur)) {
+        let prevRaw = null; try { prevRaw = JSON.parse(localStorage.getItem(PLAN_KEY) || 'null'); } catch (e) {}
+        const before = JSON.stringify((((prevRaw || {}).log) || {})[k] || null);
+        const stamped = Object.assign({}, cur, { w: 1 });
+        // A write that changes nothing is a re-render, not another day gone by.
+        if (JSON.stringify(stamped) !== before) { p.log[k] = stamped; planStamp(p, k); }
+      }
+    }
     if (p) localStorage.setItem(PLAN_KEY, JSON.stringify(p)); else localStorage.removeItem(PLAN_KEY);
     // localStorage is the immediate source of truth; debounce the account mirror so rapid ticks don't spam the server
     if (ME && p) { clearTimeout(_planSaveTimer); _planSaveTimer = setTimeout(() => api.savePlan(p), 700); }
@@ -190,6 +209,61 @@
     } catch (e) {}
   }
   function planDay(plan) { plan.log = plan.log || {}; const k = today(); const d = plan.log[k] = plan.log[k] || {}; d.keystones = d.keystones || {}; d.done = d.done || []; d.sets = d.sets || {}; d.food = d.food || []; d.fn = d.fn || {}; return d; }
+  // ==== W8 (2026-08-10) · THE PLAN GETS THE 7-DAY LOGGER'S WRITE LEDGER ==========================
+  // The rules and the names are deliberately identical to rnawiki_track's (ledgerDays / ledgerSpan /
+  // ledgerStamp / tapHere, ~line 6390), because this is the SAME guard over a second store, not a
+  // second guard that can drift from the first.
+  //   `plan.seen` — the distinct days on which THIS PAGE stored a plan day record. Append-only and
+  //                 MONOTONIC: a day earlier than the newest already seen is a clock that moved
+  //                 backwards, so the tap counts but the span is not widened by it.
+  //   `plan.taps` — every accepted write. Only ever incremented.
+  //   `log[d].w`  — this record was written HERE, through the UI.
+  // None of the three is ever imported from a file or from the account mirror (see syncPlanOnLogin).
+  //
+  // WHY. MEASURED HYDRATED at 390x844, fresh profile, ONE localStorage write and ZERO taps
+  // (qa/out/w8_before.json): 95 backdated day records rendered "🔥 95-day streak" on /plan and
+  // "🔥 95 CURRENT STREAK · 🏆 95 LONGEST STREAK · 📅 7/7 DAYS THIS WEEK · ✅ 100% 30-DAY ADHERENCE"
+  // on /progress. planStreak/longestStreak/daysShown/adherencePct read plan.log[date] straight —
+  // no `w`, no witness list, no elapsed-day test. A streak that can be set by moving a date is a
+  // fabricated number.
+  //
+  // WHAT THIS DOES NOT DO, said here so no later agent believes otherwise: localStorage belongs to
+  // the reader and devtools can write any of this. This closes every path that needs no devtools,
+  // and makes the remaining one cost a separate clock change AND a separate sitting for each day
+  // the streak claims, because planStamp() refuses to widen the span backwards and adds at most one
+  // new day per sitting. A lower honest number beats a higher false one.
+  function planSeen(plan) { return (Array.isArray(plan && plan.seen) ? plan.seen : []).filter((d, i, a) => TRACK_DAY_RE.test(String(d)) && a.indexOf(d) === i); }
+  // THE ONLY WRITER. Called from setPlan() and nowhere else.
+  function planStamp(plan, day) {
+    if (!plan || !TRACK_DAY_RE.test(String(day))) return plan;
+    const s = planSeen(plan).sort((a, b) => dayNum(a) - dayNum(b)), last = s[s.length - 1];
+    if (!last || dayNum(day) > dayNum(last)) s.push(day);
+    plan.seen = s.slice(-LEDGER_MAX);
+    plan.taps = ((typeof plan.taps === 'number' && plan.taps > 0) ? Math.floor(plan.taps) : 0) + 1;
+    return plan;
+  }
+  // A day only carries content if the reader put something in it. planDay() mints an empty shell on
+  // READ — on every render of /plan and inside ten tool widgets — and stamping that would make
+  // OPENING the page count as doing the protocol.
+  function planDayHasContent(d) {
+    if (!d || typeof d !== 'object') return false;
+    const some = (o) => !!o && Object.keys(o).some((k) => o[k] !== null && o[k] !== undefined && o[k] !== false && o[k] !== '');
+    return some(d.keystones)
+      || (Array.isArray(d.done) && d.done.length > 0)
+      || (!!d.sets && Object.keys(d.sets).some((k) => (d.sets[k] || []).some((s) => s && (s.reps != null || s.w != null))))
+      || (Array.isArray(d.food) && d.food.length > 0)
+      || some(d.fn) || some(d.bp) || some(d.eat) || some(d.sleep);
+  }
+  // THE COUNTING BOUNDARY. Renderers keep reading plan.log directly, so a reader always sees every
+  // tick they ever made. Anything that COUNTS — the streak, the week strip, adherence, the
+  // milestones — reads through here, and here a day exists only if this page wrote it, through the
+  // UI, on the day it names, and that day has happened.
+  // WHAT THIS GIVES UP, stated rather than engineered around: days recorded before this shipped, and
+  // days that arrived from the account mirror, carry no `w` and are in no witness list. They stay in
+  // the log, they stay visible in the week strip, and they stop being counted — the same trade the
+  // 7-day restore path already makes.
+  function planTapped(plan, key) { const e = ((plan && plan.log) || {})[key]; return !!(e && e.w === 1 && !isFuture(key, today()) && planSeen(plan).indexOf(key) >= 0); }
+  function planLoggedDay(plan, key) { return planTapped(plan, key) ? plan.log[key] : null; }
   // ---- Weekly structure: strength trains on chosen days; keystone/mobility/supps/tools stay daily ----
   function planTrainingDays(plan) { return (plan && Array.isArray(plan.trainingDays)) ? plan.trainingDays : [1, 3, 5]; } // default Mon/Wed/Fri
   function isTrainingDay(plan, date) { const wd = new Date(date + 'T00:00:00').getDay(); return planTrainingDays(plan).includes(wd); }
