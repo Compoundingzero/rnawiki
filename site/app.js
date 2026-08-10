@@ -6388,7 +6388,14 @@
   // to the reader and devtools can write any of this. This closes every path that needs no
   // devtools, and makes the remaining one cost a separate clock change AND a separate tap for each
   // day the card claims. A lower honest number beats a higher false one.
-  const LEDGER_MAX = 40;
+  // W8 (2026-08-10) · 40 -> 400. 40 was sized for a 7-day log. The daily dashboard's streak and its
+  // 90-day milestone are counted from THIS SAME LEDGER (planSeen/planStamp above reuse the rule and
+  // the constant), and a 90-day streak cannot be evidenced by a witness list that only remembers
+  // the last 40 days: the ledger would quietly start refusing days the reader really did tap here.
+  // That error runs in the honest direction and is still a wrong number.
+  // 400 ISO dates is ~4.8 KB against a ~5 MB localStorage budget. Widening is lossless —
+  // `slice(-LEDGER_MAX)` keeps every entry an older device already stored.
+  const LEDGER_MAX = 400;
   const ledgerDays = (log) => (Array.isArray(log && log.seen) ? log.seen : []).filter((d, i, a) => TRACK_DAY_RE.test(String(d)) && a.indexOf(d) === i);
   function ledgerSpan(log) {
     const s = ledgerDays(log).sort((a, b) => dayNum(a) - dayNum(b));
