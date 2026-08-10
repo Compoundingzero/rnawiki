@@ -3023,7 +3023,15 @@ ${links}
   // example, and the smoke test caught it when the first version of this block 404'd it.
   // Derived from every `parts[0] === '…'` branch in site/app.js route(); the prerendered prefixes
   // are already handled above, so only the SPA-only ones belong here.
+  // Depth matters. /me takes no segment after it and /u takes exactly one, so /me/x used to render
+  // the whole private page and /u/ used to render the HOME page under a /u/ URL — both HTTP 200,
+  // both soft 404s. Measured on this branch before the guard. The others are prefix routes whose
+  // own renderer decides what a bad id means, so they keep the shell.
+  const SPA_EXACT = { me: 1, progress: 1, plan: 1, studio: 1, solve: 1, stack: 1, az: 1, browse: 1, where: 1, about: 1, legend: 1, anatomy: 1, pathways: 1 };
+  const SPA_ONE_ARG = { u: 1, p: 1 };
   if (seg.length && SPA_ONLY_ROUTES.includes(seg[0])) {
+    if (SPA_EXACT[seg[0]] && seg.length > 1) return notFoundPage(res);
+    if (SPA_ONE_ARG[seg[0]] && seg.length !== 2) return notFoundPage(res);
     if (!NOINDEX_ROUTES.includes(seg[0])) return sendFile(res, path.join(DIR, 'index.html'));
     // TWO DIRECTIVES, DELIBERATELY, AND THEY ARE NOT REDUNDANT.
     //   · the HEADER is what a crawler that never parses the body obeys, and it is the one that
@@ -3056,8 +3064,13 @@ ${links}
   // 404s are actively harmful: they spend crawl budget and dilute the set of pages Google trusts.
   // There is no legitimate unknown route to protect — assertLinkGraph keeps the SPA-only allowlist
   // EMPTY, so nothing on this site links to a path that serves a blank shell.
+  return notFoundPage(res);
+}
+
+// One 404 page, so the SPA-depth guard above and the unknown-path fallback cannot drift apart.
+function notFoundPage(res) {
   res.setHeader('X-Robots-Tag', 'noindex');
-  endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
+  return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>Page not found · RNAwiki</title><link rel="stylesheet" href="/styles.css">
 </head><body><main class="article" style="max-width:44rem;margin:4rem auto;padding:0 1.25rem">

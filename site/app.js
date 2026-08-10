@@ -401,7 +401,14 @@
   function planLedgerNoteHtml(plan) {
     let dismissed = false; try { dismissed = !!localStorage.getItem(PLAN_LEDGER_NOTE_KEY); } catch (e) {}
     if (dismissed) return '';
-    const n = Object.keys((plan && plan.log) || {}).filter((d) => !planTapped(plan, d)).length;
+    // TODAY IS NOT AN EARLIER DAY. A freshly created plan seeds today's row, and today has not been
+    // tapped yet, so counting it made this banner announce "1 earlier day is still in your log and
+    // still shown in the week strip, ringed with a dashed circle" to a reader whose log was empty
+    // and whose strip had no ring — the honesty banner printing an invented count, on every new
+    // plan. With 3 genuinely untapped days it said 4. Off by exactly one, always.
+    const _today = today();
+    const n = Object.keys((plan && plan.log) || {})
+      .filter((d) => d < _today && !planTapped(plan, d)).length;
     if (!n) return '';
     const one = n === 1;
     return `<div class="miss-banner" id="ledger-note">📓 Your streak now counts only the days this page was open and you ticked something on it. <b>${n}</b> earlier day${one ? '' : 's'} ${one ? 'is' : 'are'} still in your log and still shown in the week strip, ringed with a dashed circle — ${one ? 'it is' : 'they are'} simply not counted, because nothing here can show ${one ? 'it' : 'they'} happened while this page was watching. A lower honest number beats a higher false one. <button class="miss-x" id="ledger-note-x" aria-label="Dismiss">✕</button></div>`;
