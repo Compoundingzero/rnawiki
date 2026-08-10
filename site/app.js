@@ -204,7 +204,23 @@
     try {
       const serverPlan = await api.getPlan();
       const local = getPlan();
-      if (serverPlan) localStorage.setItem(PLAN_KEY, JSON.stringify(migratePlan(serverPlan)));
+      // W8 · PROVENANCE IS NEVER IMPORTED — the same rule the 7-day restore path already applies to
+      // a file, applied to the account mirror. setPlan() sends the WHOLE plan, log included, to
+      // POST /api/plan, and server.js stores the client-supplied JSON verbatim; this line then wrote
+      // whatever came back straight into localStorage. So a `seen` list, a `taps` count and a set of
+      // `w:1` records could make one round trip through the server and land on a device that watched
+      // none of it — which is exactly how the `opened` guard was defeated in W5.5
+      // (qa/out/w55r_openedmerge.json). `seen` is the only witness this page has, and a witness that
+      // can be posted to a server and read back is not a witness.
+      // WHAT THE READER LOSES, said plainly: a plan carried to a second device arrives complete —
+      // every protocol, every day record, every set — and that device did not watch it happen, so it
+      // starts its own streak there. The device that did watch it still has it.
+      if (serverPlan) {
+        const sp = migratePlan(serverPlan) || {};
+        Object.keys(sp.log || {}).forEach((d) => { if (sp.log[d] && typeof sp.log[d] === 'object') delete sp.log[d].w; });
+        delete sp.seen; delete sp.taps;
+        localStorage.setItem(PLAN_KEY, JSON.stringify(sp));
+      }
       else if (local) api.savePlan(local);
     } catch (e) {}
   }
