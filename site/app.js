@@ -307,9 +307,26 @@
     const M = mergedPlan(plan);
     if (!M.keystones.length && !M.moves.length && !M.supps.length) return 0;
     let s = 0; const d = new Date();
-    const showed = () => { const key = localISO(d); return planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed; };
-    if (!showed()) d.setDate(d.getDate() - 1); // grace — a still-pending today doesn't break the streak
-    for (; ;) { if (showed()) { s++; d.setDate(d.getDate() - 1); } else break; }
+    // W8 · TWO CHANGES, BOTH LOAD-BEARING.
+    // 1. A day counts only if THIS PAGE WATCHED IT GO BY — planLoggedDay() returns null for any day
+    //    that carries no `w:1`, is in no witness list, or has not happened. Before this, 95 backdated
+    //    records written in one localStorage call rendered a 95-day streak with zero taps.
+    // 2. A day with NOTHING SCHEDULED is neither a break nor a day counted. A rest day is not a miss,
+    //    and calling it one puts a false zero in the reader's own record. `null` means "walk past it".
+    const state = (key) => {
+      const ids = scheduledIds(M, plan, key);
+      if (!ids.length && !M.keystones.length) return null;
+      return planDayStats(M, planLoggedDay(plan, key), ids).showed;
+    };
+    if (state(localISO(d)) === false) d.setDate(d.getDate() - 1); // grace — a still-pending today doesn't break the streak
+    // Hard-capped like longestStreak's walk: an all-rest-day plan (no keystone, no daily item, no
+    // training day chosen) would otherwise walk backwards for ever looking for a day to judge.
+    for (let g = 0; g < 3700; g++) {
+      const v = state(localISO(d));
+      if (v === false) break;
+      if (v === true) s++;
+      d.setDate(d.getDate() - 1);
+    }
     return s;
   }
   // 7 cells (last week → today), each miss / partial / full — the "am I consistent?" glance
@@ -317,17 +334,31 @@
     M = M || mergedPlan(plan); const tk = today(); const cells = [];
     for (let i = 6; i >= 0; i--) {
       const dd = new Date(); dd.setDate(dd.getDate() - i);
-      const key = localISO(dd); const st = planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key));
-      const cls = st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss');
+      // W8 · TWO READS, DELIBERATELY. `st` is what COUNTS (witnessed days only); `raw` is what the
+      // reader actually recorded. A day the reader ticked that this page cannot witness — restored
+      // from an account, or recorded before the ledger shipped — is drawn as its OWN state, not as a
+      // miss. Redrawing a real tick as a miss would tell somebody they skipped a day they did.
+      const key = localISO(dd); const ids = scheduledIds(M, plan, key);
+      const st = planDayStats(M, planLoggedDay(plan, key), ids);
+      const raw = planDayStats(M, (plan.log || {})[key], ids);
+      const cls = st.full ? 'full' : (st.done > 0 ? 'partial' : (raw.done > 0 ? 'uncounted' : 'miss'));
       const lbl = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'][dd.getDay()];
-      cells.push(`<div class="ws-day ${cls}${key === tk ? ' today' : ''}" title="${key} · ${st.done}/${st.total} done"><span class="ws-dot"></span><span class="ws-lbl">${lbl}</span></div>`);
+      const say = cls === 'uncounted'
+        ? `${key} · ${raw.done}/${raw.total} ticked — not counted, this page did not see the day go by`
+        : `${key} · ${st.done}/${st.total} done`;
+      cells.push(`<div class="ws-day ${cls}${key === tk ? ' today' : ''}" title="${esc(say)}" aria-label="${esc(say)}"><span class="ws-dot" aria-hidden="true"></span><span class="ws-lbl">${lbl}</span></div>`);
     }
     return `<div class="week-strip">${cells.join('')}</div>`;
   }
   // ---- Progress-dashboard stats (all derived from plan.log; deterministic) ----
   function dISO(offset) { const d = new Date(); if (offset) d.setDate(d.getDate() - offset); return localISO(d); }
   function planStartDate(plan) { const ps = planProtocols(plan).map(p => p.startedAt).filter(Boolean).sort(); return ps[0] || today(); }
-  function daysShown(plan, M, N) { let c = 0; for (let i = 0; i < N; i++) { const key = dISO(i); if (planDayStats(M, (plan.log || {})[key], scheduledIds(M, plan, key)).showed) c++; } return c; }
+  // W8 · through planLoggedDay(), like the streak. Two numbers about the same day, computed from two
+  // different sources, is the W5 defect that had one element carrying aria-label "Day 7, not yet" and
+  // class "did" at the same time. /progress prints CURRENT STREAK, LONGEST STREAK, DAYS THIS WEEK and
+  // 30-DAY ADHERENCE from planStreak/longestStreak/daysShown — all three now read one boundary, so
+  // /plan and /progress can never disagree about the same day.
+  function daysShown(plan, M, N) { let c = 0; for (let i = 0; i < N; i++) { const key = dISO(i); if (planDayStats(M, planLoggedDay(plan, key), scheduledIds(M, plan, key)).showed) c++; } return c; }
   function longestStreak(plan, M) {
     const log = plan.log || {}; const keys = Object.keys(log).sort(); if (!keys.length) return 0;
     let best = 0, cur = 0; const end = new Date(today() + 'T00:00:00');
@@ -337,7 +368,11 @@
     // page. Bail on invalid bounds and hard-cap the iterations at ~10 years.
     if (isNaN(new Date(keys[0] + 'T00:00:00')) || isNaN(end)) return 0;   // longestStreak returns a number
     let _guard = 0;
-    for (let d = new Date(keys[0] + 'T00:00:00'); d <= end && _guard++ < 3700; d.setDate(d.getDate() + 1)) { const key = localISO(d); if (planDayStats(M, log[key], scheduledIds(M, plan, key)).showed) { cur++; best = Math.max(best, cur); } else cur = 0; }
+    // W8 · the same counting boundary. longestStreak is the only counter that walks FORWARD from the
+    // first logged date, so leaving it on the raw log would keep the 🏆 tile printing the forged
+    // number next to a 🔥 tile that had stopped. `log` above is still the source of the walk BOUNDS
+    // (the reader's own first record) — only the judgement of a day goes through planLoggedDay().
+    for (let d = new Date(keys[0] + 'T00:00:00'); d <= end && _guard++ < 3700; d.setDate(d.getDate() + 1)) { const key = localISO(d); if (planDayStats(M, planLoggedDay(plan, key), scheduledIds(M, plan, key)).showed) { cur++; best = Math.max(best, cur); } else cur = 0; }
     return best;
   }
   function adherencePct(plan, M, N) {
@@ -5865,12 +5900,21 @@
     // Gentle non-guilt nudge if yesterday was a scheduled miss (and today's not done yet)
     const yKey = dISO(1);
     const beenAround = new Date(planStartDate(plan) + 'T00:00:00') <= new Date(yKey + 'T00:00:00');
+    // W8 · THE NUDGE DELIBERATELY READS THE RAW LOG, NOT THE COUNTING BOUNDARY. Every other reader of
+    // plan.log in this function now counts only witnessed days — but this one ACCUSES. "You missed
+    // yesterday" over a day the reader really did tick, and which merely arrived from their other
+    // device, is the product calling somebody a liar about their own behaviour. The asymmetry is the
+    // point: a number may be lower than the reader expects, a reproach may never be wrong.
     const yShowed = planDayStats(M, (plan.log || {})[yKey], scheduledIds(M, plan, yKey)).showed;
     const todayShowed = planDayStats(M, dayLog, scheduledIds(M, plan, today())).showed;
     const missBanner = (beenAround && !yShowed && !todayShowed && plan.dismissedNudge !== today())
       ? `<div class="miss-banner">🌱 You missed yesterday — no stress. Do today's keystone and you're right back on track. <button class="miss-x" id="miss-dismiss" aria-label="Dismiss">✕</button></div>` : '';
     // Once-a-week recap of the last 7 days
-    let rShown = 0, rSessions = 0; for (let i = 1; i <= 7; i++) { const key = dISO(i); const dl = (plan.log || {})[key]; if (planDayStats(M, dl, scheduledIds(M, plan, key)).showed) rShown++; if (dl && dl.sets && Object.keys(dl.sets).some(k => (dl.sets[k] || []).some(s => s && s.reps != null))) rSessions++; }
+    // W8 · THE RECAP READS THE SAME BOUNDARY. Caught by LOOKING at it: with 10 uncounted days seeded,
+    // the pulse said "🔥 0-day streak" and two centimetres below it this card said "you showed up 7/7
+    // days · Strong week — keep it rolling." Two numbers about the same seven days, from two sources
+    // — the W5 defect again, in a new place.
+    let rShown = 0, rSessions = 0; for (let i = 1; i <= 7; i++) { const key = dISO(i); const dl = planLoggedDay(plan, key); if (planDayStats(M, dl, scheduledIds(M, plan, key)).showed) rShown++; if (dl && dl.sets && Object.keys(dl.sets).some(k => (dl.sets[k] || []).some(s => s && s.reps != null))) rSessions++; }
     const hasPriorWeek = new Date(planStartDate(plan) + 'T00:00:00') <= new Date(dISO(7) + 'T00:00:00');
     const recapCard = (plan.recapWeek !== weekKey() && hasPriorWeek)
       ? `<div class="recap-card">📊 <b>Last 7 days:</b> you showed up <b>${rShown}/7</b> days${rSessions ? ` and logged <b>${rSessions}</b> strength session${rSessions === 1 ? '' : 's'}` : ''}. ${rShown >= 5 ? 'Strong week — keep it rolling.' : rShown >= 3 ? "Solid — let's build on it." : 'Fresh start this week. 💪'} <button class="miss-x" id="recap-dismiss" aria-label="Dismiss">✕</button></div>` : '';
@@ -5955,12 +5999,26 @@
     const md = document.getElementById('miss-dismiss'); if (md) md.onclick = () => { const pl = getPlan(); pl.dismissedNudge = today(); setPlan(pl); const b = md.closest('.miss-banner'); if (b) b.remove(); };
     const rd = document.getElementById('recap-dismiss'); if (rd) rd.onclick = () => { const pl = getPlan(); pl.recapWeek = weekKey(); setPlan(pl); const b = rd.closest('.recap-card'); if (b) b.remove(); };
     const refreshProg = () => { const d = planDay(getPlan()); const pr = app.querySelector('.trk-prog'); if (pr) { const dn = [...M.moves, ...M.supps].filter(x => d.done.includes(x.id)).length; pr.textContent = dn + '/' + totalItems + ' done'; } };
-    const refreshPulse = d => {
-      const st = planDayStats(M, d, scheduledIds(M, plan, today()));
-      const tc = app.querySelector('.week-strip .today'); if (tc) { tc.classList.remove('miss', 'partial', 'full'); tc.classList.add(st.full ? 'full' : (st.done > 0 ? 'partial' : 'miss')); tc.title = today() + ' · ' + st.done + '/' + st.total + ' done'; }
-      const ps = app.querySelector('.pulse-streak b'); if (ps) ps.textContent = planStreak(getPlan());
+    // W8 · the live update reads the SAME boundary the initial paint does, off the plan as it is now
+    // stored — setPlan() has already stamped by the time this runs. Reading the in-memory day record
+    // here instead would let the cell say one thing and a reload say another about the same day.
+    const refreshPulse = () => {
+      const pl = getPlan() || plan; const k = today(); const ids = scheduledIds(M, pl, k);
+      const st = planDayStats(M, planLoggedDay(pl, k), ids);
+      const raw = planDayStats(M, (pl.log || {})[k], ids);
+      const tc = app.querySelector('.week-strip .today');
+      if (tc) {
+        tc.classList.remove('miss', 'partial', 'full', 'uncounted');
+        const cls = st.full ? 'full' : (st.done > 0 ? 'partial' : (raw.done > 0 ? 'uncounted' : 'miss'));
+        tc.classList.add(cls);
+        const say = cls === 'uncounted'
+          ? `${k} · ${raw.done}/${raw.total} ticked — not counted, this page did not see the day go by`
+          : `${k} · ${st.done}/${st.total} done`;
+        tc.title = say; tc.setAttribute('aria-label', say);
+      }
+      const ps = app.querySelector('.pulse-streak b'); if (ps) ps.textContent = planStreak(pl);
     };
-    app.querySelectorAll('.trk-list [data-done]').forEach(cb => cb.onchange = () => { const pl = getPlan(); const d = planDay(pl); const id = cb.dataset.done; const i = d.done.indexOf(id); if (cb.checked && i < 0) d.done.push(id); else if (!cb.checked && i >= 0) d.done.splice(i, 1); setPlan(pl); const item = cb.closest('.trk-item'); if (item) item.classList.toggle('done', cb.checked); refreshProg(); refreshPulse(d); });
+    app.querySelectorAll('.trk-list [data-done]').forEach(cb => cb.onchange = () => { const pl = getPlan(); const d = planDay(pl); const id = cb.dataset.done; const i = d.done.indexOf(id); if (cb.checked && i < 0) d.done.push(id); else if (!cb.checked && i >= 0) d.done.splice(i, 1); setPlan(pl); const item = cb.closest('.trk-item'); if (item) item.classList.toggle('done', cb.checked); refreshProg(); refreshPulse(); });
     // Expand/collapse the per-exercise set logger
     app.querySelectorAll('[data-logtoggle]').forEach(b => b.onclick = () => { const id = b.dataset.logtoggle; const p = app.querySelector('.ex-log[data-exlog="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]'); if (p) { p.hidden = !p.hidden; b.classList.toggle('open', !p.hidden); } });
     // Log weight × reps; auto-complete the exercise once all prescribed sets have reps
@@ -5974,7 +6032,7 @@
       const filled = (d.sets[ex] || []).filter(s => s && s.reps != null).length;
       const item = inp.closest('.trk-item'); const cb = item && item.querySelector('[data-done]');
       if (filled >= need && !d.done.includes(ex)) { d.done.push(ex); if (cb) cb.checked = true; if (item) item.classList.add('done'); }
-      setPlan(pl); refreshProg(); refreshPulse(d);
+      setPlan(pl); refreshProg(); refreshPulse();
     });
     // per-protocol manage actions
     app.querySelectorAll('[data-edit-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.editProto.split('/'); const pl = getPlan(); const pr = planProtocols(pl).find(x => x.pid === pid && x.rcid === rcid); if (!pr) return; pl.draft = { pid, rcid, moves: pr.moves, supps: pr.supps, functions: pr.functions, extra: {}, step: 0 }; setPlan(pl); renderPlan(); });

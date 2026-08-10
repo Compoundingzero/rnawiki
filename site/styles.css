@@ -2551,6 +2551,14 @@ html:has(.st-bar) .feedback-fab{bottom:84px}
 .ws-day.partial .ws-dot{background:#f5b301;border-color:#f5b301}
 .ws-day.full .ws-dot{background:var(--accent);border-color:var(--accent)}
 .ws-day.today .ws-dot{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+/* W8 · "you ticked this, and it is not counted". A day restored from an account, or recorded before
+   the write ledger shipped, carries no proof this page saw it go by — so it stops counting, but it
+   must NOT be redrawn as a miss: that would tell somebody they skipped a day they did.
+   The signal is a DASHED RING, not a colour. Every other state on this strip is a solid ring or a
+   fill, so the difference survives greyscale and colour blindness — D1 is the worst defect this site
+   has had and a new colour-only state would be the same mistake again. The cell also carries an
+   aria-label spelling the state out in words. */
+.ws-day.uncounted .ws-dot{background:transparent;border-style:dashed;border-color:var(--muted)}
 .ws-lbl{font-size:.64rem;color:var(--muted);text-transform:uppercase;letter-spacing:.02em}
 .ws-day.today .ws-lbl{color:var(--accent);font-weight:700}
 /* ---- Progress dashboard ---- */
