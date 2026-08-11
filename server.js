@@ -3160,15 +3160,33 @@ sent you here may be wrong.</p>
 const SECURITY_HEADERS = {
   'Content-Security-Policy': [
     "default-src 'self'",
-    // static.cloudflareinsights.com is Cloudflare Web Analytics, which Cloudflare auto-injects.
-    // It was CSP-blocked from the day the headers shipped, so it had collected nothing. Enabled
-    // deliberately: Search Console only sees the SEARCH side (impressions, queries, position) and
-    // goes blind the moment a reader lands. This is the only source for which pages actually get
-    // read and where non-search traffic comes from. Cookieless, so it needs no consent banner.
+    // ---- static.cloudflareinsights.com REMOVED FROM THIS LINE 2026-08-11 (D-21) ----------------
+    // Cloudflare Web Analytics is auto-injected by the CDN. It was CSP-blocked from the day these
+    // headers shipped and was allowlisted deliberately later, on the argument that Search Console
+    // only sees the SEARCH side and goes blind the moment a reader lands.
+    //
+    // What its beacon sends is `location.href` and `document.title`. On this site those two strings
+    // are: `/solve?q=<the symptoms the reader just typed>` and the name of a compound. A reader
+    // typing "blood in stool" into a health site is the single most sensitive string this product
+    // ever handles, and it was being handed to a third party with their IP beside it.
+    //
+    // Those are the TWO EXACT CHANNELS site/app.js's own analytics module was engineered to avoid,
+    // 130 lines of it: an ALLOWLIST that reduces every URL to a route template ('/t/compound'), a
+    // closed event vocabulary that fails shut, referrer reduced to an external origin, no cookie,
+    // no localStorage, nothing written to the device. It reports which pages get read — the exact
+    // job the Cloudflare beacon was allowlisted for — without ever seeing a query string or a
+    // compound name. It is live (GA4, A_GA4 in app.js) and its payload is documented in
+    // docs/EVENT_SCHEMA.md.
+    //
+    // So the beacon was not buying anything the site did not already have, and it was paying for it
+    // with the reader's typed symptoms. Blocking it at the CSP stops the script executing.
+    // Cloudflare will keep injecting the tag until it is switched off in the dashboard, which needs
+    // an account login — that step is Felix's, and it is belt to this brace, not a substitute.
+    //
     // 'wasm-unsafe-eval' lets the self-hosted meshopt decoder (site/vendor/three/meshopt_decoder) run its
     // tiny WASM to decompress the 3D body-map GLBs. It permits WebAssembly only — NOT JS eval() — so it is
     // materially narrower than 'unsafe-eval'. Without it the 3D model never decodes (CSP blocks the decode).
-    "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://accounts.google.com https://static.cloudflareinsights.com",
+    "script-src 'self' 'wasm-unsafe-eval' 'unsafe-inline' https://accounts.google.com",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     // pubchem.ncbi.nlm.nih.gov is fetched by app.js:744 for the molecular formula / weight chips on

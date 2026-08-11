@@ -3215,7 +3215,39 @@ const POM_ENDOGENOUS = /^(insulin|testosterone|estradiol|erythropoietin|epo|mela
     console.error('  Read docs/EVENT_SCHEMA.md. Do not widen the vocabulary to silence this.');
     process.exit(1);
   }
-  console.log(`[parse] analytics vocabulary OK — ${declared.size} declared events, ${used.size} emitted, all documented, 1 GoatCounter endpoint, 1 GA4 collect endpoint, 0 gtag.js references.`);
+  // ---- (D-21, 2026-08-11) NO THIRD-PARTY SCRIPT MAY READ THE URL BAR ---------------------------
+  // The analytics module above spends 130 lines making sure a route template goes out instead of a
+  // URL, and a closed event vocabulary instead of a compound name. All of that is worth nothing the
+  // moment a third-party <script> is allowed to run on the page, because a beacon reads
+  // location.href and document.title for itself — which is exactly what Cloudflare Web Analytics
+  // did here until it was removed from the CSP. On this site location.href includes
+  // /solve?q=<the symptoms the reader typed>.
+  //
+  // So the script-src allowlist is the real boundary, and it is asserted here rather than left to
+  // whoever next edits a header. accounts.google.com is the ONE permitted third party: it is
+  // sign-in, it is user-initiated, and it is not an observer.
+  // Matched to the CLOSING DOUBLE QUOTE, not to any quote: the directive's own value is full of
+  // single quotes ('self', 'unsafe-inline'), and a [^"'`]+ class stops dead at the first one. That
+  // version of this line found nothing and failed the build claiming the directive had moved.
+  const csp = (/"script-src ([^"]+)"/.exec(blankComments(fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8'))) || [])[1];
+  if (!csp) {
+    console.error('\n[parse] ANALYTICS GATE FAILED — no script-src directive found in server.js. The allowlist is the boundary this gate exists to hold; if it moved, retarget this check.\n');
+    process.exit(1);
+  }
+  const ALLOWED_SCRIPT_ORIGINS = ['https://accounts.google.com'];
+  const origins = csp.split(/\s+/).filter((t) => /^https?:\/\//.test(t));
+  const rogue = origins.filter((o) => ALLOWED_SCRIPT_ORIGINS.indexOf(o) < 0);
+  if (rogue.length) {
+    console.error('\n[parse] ANALYTICS GATE FAILED — refusing to build.');
+    console.error('  script-src allows a third-party origin that is not sign-in: ' + rogue.join(', '));
+    console.error('  A script running on this page reads location.href and document.title for itself.');
+    console.error('  On RNAwiki that is /solve?q=<the symptoms the reader typed> and the name of a');
+    console.error('  compound — the two exact channels site/app.js\'s analytics module exists to avoid.');
+    console.error('  If a new third party genuinely must run here, add it to ALLOWED_SCRIPT_ORIGINS in');
+    console.error('  this gate deliberately, and write down what it is permitted to see.\n');
+    process.exit(1);
+  }
+  console.log(`[parse] analytics vocabulary OK — ${declared.size} declared events, ${used.size} emitted, all documented, 1 GoatCounter endpoint, 1 GA4 collect endpoint, 0 gtag.js references, ${origins.length} third-party script origin (sign-in only).`);
 })();
 
 // ---------- SHARED: BLANK THE COMMENTS, KEEP THE COPY (W3.5, 2026-08-02) ----------
