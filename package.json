@@ -4,10 +4,15 @@
   "private": true,
   "description": "RNAwiki — translate the code of human performance into real results. Drug, supplement & longevity wiki with root-cause protocols and community editing.",
   "scripts": {
-    "build": "node build/parse.js && node build/prerender.js && node build/precompress.js",
+    "build": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs && node build/precompress.js",
     "prestart": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs && node build/precompress.js",
     "start": "node server.js",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "containment": "node scripts/containment.mjs",
+    "test:safety": "node scripts/studio-safety.test.mjs",
+    "test:privacy": "node scripts/privacy-security.test.mjs",
+    "test:guidance": "node scripts/solve-guidance.test.mjs",
+    "gate": "npm run prestart && npm run containment && npm run test:safety && npm run test:privacy && npm run test:guidance"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",

@@ -28,7 +28,7 @@
  *      npm i --no-save puppeteer-core
  *
  * RUN:      npm run smoke
- * FULL:     npm run gate          (build && smoke)
+ * FULL:     npm run gate && npm run smoke
  * NOT in prestart — Railway must never need Chrome to boot.
  */
 import { spawn } from 'node:child_process';
@@ -156,14 +156,20 @@ const ROUTES = [
   // Same template class, with a query. /solve?q= used to render byte-identically to /solve
   // (#app.innerHTML 11,797 chars on every query), so the unqueried route above cannot detect D11.
   ['solve-q', '/solve?q=knee%20pain'],
+  // Safety-sensitive words must bypass approximate matching in the real hydrated journey. These
+  // two routes exercise both fail-closed destinations, not merely the pure pattern helper.
+  ['solve-urgent', '/solve?q=chest%20pain'],
+  ['solve-review', '/solve?q=pregnant%20and%20tired'],
   ['stack', '/stack'],
   // W4.5: the two halves of the duplicate-substance fix, as two routes because each is a different
   // claim. assertDuplicateSubstances() in build/parse.js gates the DATA and its own copy of the
   // predicate; site/app.js stackInteractions() carries the second copy, and only a real browser on
   // a real stack can prove that one. The second route is the positive control — a fix that stopped
   // the rule firing at all would pass the first assertion and fail this one.
-  ['stack-same-substance', '/stack?ids=c1,c24'],
-  ['stack-two-substances', '/stack?ids=c1,c25'],
+  // Seeded into localStorage by the runner below. Compound selections are deliberately NOT in the
+  // URL: that was the privacy bug this release removes.
+  ['stack-same-substance', '/stack#smoke-same-substance'],
+  ['stack-two-substances', '/stack#smoke-two-substances'],
   ['where', '/where'],
   // W7 C7: the Studio. Its own template class — nothing else on the site renders a live safety
   // verdict from a POST, and the /stack assertion below tests the ENDPOINT, not the rendering.
@@ -451,7 +457,7 @@ const ASSERTIONS = {
       return null;
     },
   }],
-  '/stack?ids=c1,c24': [{
+  '/stack#smoke-same-substance': [{
     name: 'oneMoleculeOnTwoPagesIsNotAnInteraction',
     why: 'W4.5: a danger row naming a molecule against itself is a fabricated interaction, and it is the row a reader is most likely to act on',
     evaluate: () => {
@@ -475,7 +481,7 @@ const ASSERTIONS = {
   }],
   // The positive control. A "fix" that simply stopped stim_stack firing would pass the assertion
   // above and fail here — a gate over an empty set always passes.
-  '/stack?ids=c1,c25': [{
+  '/stack#smoke-two-substances': [{
     name: 'twoRealSubstancesStillFire',
     why: 'W4.5: caffeine + ephedrine is the textbook stimulant stack and must still be flagged after the duplicate-substance fix',
     evaluate: () => {
@@ -583,29 +589,38 @@ const ASSERTIONS = {
       if (!/blood.pressure/i.test(t)) return done(`the danger row's own words are not on the page — the engine returned them and the builder did not print them. #st-verdict reads: "${t.replace(/\s+/g, ' ').slice(0, 220)}"`);
       if (!/what to do/i.test(t)) return done("the danger card omits the row's own action. A hazard with no instruction is half a warning.");
       if (!/prescription only/i.test(t)) return done('the prescription-only note was returned by the engine and is not rendered');
-      if (!/❔|Checked the/.test(t)) return done('the coverage sentence is missing. "Nothing flagged" without it reads as a clearance, and interactionPanel() has shipped that exact bug twice.');
+      if (!/exact pair|pair guidance|authored guidance/i.test(t)) return done('the exact-pair coverage sentence is missing. A compound-level count is not evidence about a combination.');
       // The reader must also be told WHICH rows. A page-level warning over an eight-item protocol
       // that never says which two items are the pair is not an actionable warning.
       if (!document.querySelector('.st-row.danger')) return done('the verdict named a dangerous pairing and no row was marked — nothing on the page says which two items it is about');
 
-      // THE POSITIVE CONTROL. A verdict panel that shouts at everything proves nothing.
+      // THE FALSE-GREEN REGRESSION. Both compounds carry tags used by rules elsewhere, but no
+      // authored rule covers this exact pair. It must be unknown, never “2 of 2 covered”.
       seed([{ k: 'c', id: 'c1' }, { k: 'c', id: 'c5' }]);
       const t2 = await verdict();
-      if (t2 === null) return done('the clean protocol rendered no #st-verdict region');
-      if (/Dangerous together/i.test(t2)) return done(`caffeine + magnesium is clean at the endpoint (measured: warn:[], coverage 2 of 2) and the builder flagged it anyway: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
-      if (!/Nothing flagged/i.test(t2)) return done(`a clean protocol did not say so: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
-      // 2026-08-11 (P0-S6): the coverage numbers used to arrive as a separate `.st-cov` sentence
-      // BELOW a bare "✅ Nothing flagged" ("Checked the 2 of 2…"). A footnote under a green tick is
-      // not a qualified verdict — the audit caught a published /p/<code> headlining that tick over a
-      // coverage of 0 of N — so the numbers are now IN the verdict line and the ❔ branch replaces
-      // the tick entirely below two checkable items. This asserts the property, not the old string:
-      // a clean verdict must carry its own "N of M" wherever it puts it.
-      // Case-insensitive: .st-flag-k is text-transform:uppercase and innerText returns the
-      // TRANSFORMED text, so the verdict arrives here as "2 OF 2".
-      if (!/\b2 of 2\b/i.test(t2)) return done(`a clean verdict did not state its own coverage — that is the false-clearance state: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
-      // And the ❔ state must not be reachable while the ✅ is showing: one verdict, not two.
-      if (/Nothing flagged/i.test(t2) && /Not enough to check/i.test(t2)) return done(`the clean verdict and the "not enough to check" verdict rendered together: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
+      if (t2 === null) return done('the unknown-pair protocol rendered no #st-verdict region');
+      if (/Dangerous together/i.test(t2)) return done(`caffeine + magnesium was falsely labelled dangerous: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
+      if (!/\b0 of 1\b/i.test(t2) || !/unknown|no pair guidance/i.test(t2)) return done(`caffeine + magnesium did not render as an unknown exact pair: "${t2.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (/Nothing flagged/i.test(t2) || document.querySelector('#st-verdict .st-clean')) return done(`caffeine + magnesium rendered a green clearance: "${t2.replace(/\s+/g, ' ').slice(0, 220)}"`);
       if (document.querySelector('.st-row.danger')) return done('a clean protocol left a row marked dangerous — the row flags are not cleared between checks');
+
+      // THE PARTIAL-COVERAGE REGRESSION. The old renderer inferred “enough” from checked >= 2,
+      // so individually covered compounds received a green tick. Magnesium + zinc has one authored
+      // timing rule; neither exact pair involving creatine does. One of three must stay unknown.
+      seed([{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }, { k: 'c', id: 'c0' }]);
+      const t3 = await verdict();
+      if (t3 === null) return done('the partial-coverage protocol rendered no #st-verdict region');
+      if (!/\b1 of 3\b/i.test(t3)) return done(`the partial verdict lost its exact-pair coverage count: "${t3.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (!/incomplete|unknown/i.test(t3)) return done(`2/3 coverage did not identify the result as incomplete or unknown: "${t3.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (/Nothing flagged/i.test(t3) || document.querySelector('#st-verdict .st-clean')) return done(`2/3 coverage rendered a green clearance: "${t3.replace(/\s+/g, ' ').slice(0, 220)}"`);
+
+      // POSITIVE CONTROL: magnesium + zinc has an authored timing rule that names both members.
+      seed([{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }]);
+      const t4 = await verdict();
+      if (t4 === null) return done('the authored-pair protocol rendered no #st-verdict region');
+      if (!/\b1 of 1\b/i.test(t4) || !/authored guidance/i.test(t4)) return done(`an authored exact pair did not carry its 1 of 1 neutral coverage statement: "${t4.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (!/time these apart|minerals compete/i.test(t4)) return done(`the authored pair's own timing action did not reach the page: "${t4.replace(/\s+/g, ' ').slice(0, 220)}"`);
+      if (/Nothing flagged/i.test(t4) || document.querySelector('#st-verdict .st-clean')) return done(`an authored pair was converted into a broad green safety clearance: "${t4.replace(/\s+/g, ' ').slice(0, 220)}"`);
 
       // DOSES ARE CHOSEN, NEVER TYPED. assertDoseCalculators() fails the BUILD over an uncapped
       // dose control; this is the same rule on the surface a reader actually touches.
@@ -639,13 +654,30 @@ const ASSERTIONS = {
       // 3 — coverage, always, and the ❔ sentence with it.
       if (!d.coverage || typeof d.coverage.checked !== 'number' || typeof d.coverage.of !== 'number') return 'the verdict carries no coverage. An empty warning list can mean "nothing found" or "nothing checkable", and those are not the same sentence.';
       if (!d.says) return 'the verdict carries no sentence a reader can be shown';
-      const blind = await post({ v: 1, items: [{ k: 'c', id: 'c0' }, { k: 'c', id: 'c4' }] }, 'published');
-      if (blind.coverage && blind.coverage.checked === 0 && !/absence of data|not enough to check/i.test(blind.says || '')) {
-        return `a protocol the engine holds no firable pharmacology for reported "${blind.says}" — 0 of ${blind.coverage.of} checked is the ❔ state, and it must never read as a clearance`;
-      }
-      // 4 — THE POSITIVE CONTROL.
+      const blind = await post({ v: 1, items: [{ k: 'c', id: 'c1' }, { k: 'c', id: 'c5' }] }, 'published');
+      if (blind.ok !== false) return 'the publish checker accepted a two-compound protocol with 0/N interaction coverage';
+      if (!blind.coverage || blind.coverage.state !== 'none' || blind.coverage.checked !== 0 || blind.coverage.of !== 1 || blind.coverage.unit !== 'pairs') return `0/1 exact-pair coverage has no explicit "none" state: ${JSON.stringify(blind.coverage)}`;
+      if (!(blind.refusals || []).some(x => x.rule === 'interaction-coverage')) return `0/1 coverage was refused for the wrong reason(s): ${JSON.stringify((blind.refusals || []).map(x => x.rule))}`;
+      if (!/unknown|not safe/i.test(blind.says || '')) return `a protocol the engine cannot cover reported "${blind.says}" — 0 of ${blind.coverage.of} is unknown, never a clearance`;
+
+      // 4 — PARTIAL pair coverage is not “enough”: magnesium + zinc is authored; both pairs with
+      // creatine are not.
+      const partial = await post({ v: 1, items: [{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }, { k: 'c', id: 'c0' }] }, 'published');
+      if (partial.ok !== false) return 'the publish checker accepted a three-compound protocol with only 1/3 exact-pair coverage';
+      if (!partial.coverage || partial.coverage.state !== 'partial' || partial.coverage.checked !== 1 || partial.coverage.of !== 3) return `1/3 coverage has no explicit "partial" state: ${JSON.stringify(partial.coverage)}`;
+      if (!(partial.refusals || []).some(x => x.rule === 'interaction-coverage')) return `1/3 coverage was refused for the wrong reason(s): ${JSON.stringify((partial.refusals || []).map(x => x.rule))}`;
+
+      // 5 — COMPLETE-COVERAGE POSITIVE CONTROL. A rule that refuses every multi-compound
+      // protocol would make the site safer only by making it useless.
+      const full = await post({ v: 1, items: [{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }] }, 'published');
+      if (full.ok !== true) return `a fully authored 1/1 exact pair was refused: ${JSON.stringify((full.refusals || []).map(x => x.rule))}`;
+      if (!full.coverage || full.coverage.state !== 'complete' || full.coverage.checked !== 1 || full.coverage.of !== 1) return `1/1 exact-pair coverage has no explicit "complete" state: ${JSON.stringify(full.coverage)}`;
+
+      // 6 — ONE-COMPOUND POSITIVE CONTROL. There is no pair to check, which is distinct from no
+      // data about a pair and must not be treated as either a refusal or a green pair clearance.
       const ok = await post({ v: 1, items: [{ k: 'c', id: 'c0', dose: 5 }, { k: 'x', id: '3_4_Sit-Up', sets: 4, reps: '6-8' }, { k: 'f', id: 'f0' }] }, 'published');
       if (ok.ok !== true) return `an ordinary protocol (creatine at a dose on its own published ladder, one exercise, one food) was REFUSED: ${JSON.stringify((ok.refusals || []).map(x => x.rule + ': ' + String(x.message).slice(0, 90)))}. An engine that refuses everything proves nothing.`;
+      if (!ok.coverage || ok.coverage.state !== 'not_applicable' || ok.coverage.of !== 0 || ok.coverage.compound_of !== 1) return `a one-compound protocol did not report the explicit no-pair state: ${JSON.stringify(ok.coverage)}`;
       return null;
     },
   }],
@@ -862,8 +894,12 @@ const ASSERTIONS = {
       const app = document.querySelector('#app') || document.body;
       const H = document.documentElement.scrollHeight;
       const y = el => Math.round(el.getBoundingClientRect().top + window.scrollY);
-      if (!document.getElementById('red-flags')) return 'no #red-flags escalation block';
-      if (!/not medical advice/i.test(app.innerText)) return '#red-flags does not say the page is not medical advice';
+      const redFlags = document.getElementById('red-flags');
+      if (!redFlags) return 'no #red-flags escalation block';
+      // The panel is deliberately closed until requested; innerText is empty for content inside a
+      // closed <details>, while textContent proves the authored warning remains in the document and
+      // accessibility tree.
+      if (!/not medical advice/i.test(redFlags.textContent || '')) return '#red-flags does not say the page is not medical advice';
       const dx = document.getElementById('which-one');
       if (!dx) return 'no #which-one differential block';
       const rows = dx.querySelectorAll('.dx-row');
@@ -1067,26 +1103,24 @@ const ASSERTIONS = {
       return null;
     },
   }],
-  // D10 (commit e7a19ef): /solve is the funnel entrance. It used to link every card to
-  // `#/protocol/{pid}/{root_causes[0].id}`, so a JS reader saw 41 of the 52 protocol URLs and 0
-  // /problem URLs while the crawler document had all 52 — 11 protocol URLs unreachable. Prove this
-  // gate by reverting solveCard() to a single <a href="#/protocol/${p.id}/${p.root_causes[0].id}">.
-  // The data-native clause is separate and just as load-bearing: /problem is KEEP_PRERENDERED, so a
-  // /problem link without it leaves the /solve DOM sitting under a /problem URL.
+  // /solve is the assessment entrance. Every card must lead to the problem's possible-reasons page,
+  // never directly to a protocol. The complete directory stays in the DOM for crawling and no-JS,
+  // but is a closed disclosure so a newcomer does not face all 41 choices at once.
   '/solve': [{
-    name: 'solveReachesEveryProtocolAndProblem',
-    why: 'D10: /solve must reach all 52 protocol URLs and all 41 problem URLs, and every /problem link must carry data-native',
+    name: 'solveStartsWithAssessment',
+    why: '/solve must expose all 41 problem assessments without bypassing them through root-cause protocol chips',
     evaluate: () => {
       const G = window.RNAWIKI_DATA.graph;
-      const want = [];
-      G.problems.forEach(p => p.root_causes.forEach(rc => want.push('/protocol/' + p.id + '/' + rc.id)));
       const A = [...document.querySelectorAll('#app a[href]')].map(a => a.getAttribute('href').replace(/^#/, ''));
-      const missP = want.filter(u => A.indexOf(u) < 0);
-      if (missP.length) return `${missP.length} of ${want.length} protocol URLs unreachable, e.g. ${missP.slice(0, 3).join(', ')}`;
       const missProb = G.problems.map(p => '/problem/' + p.id).filter(u => A.indexOf(u) < 0);
       if (missProb.length) return `${missProb.length} of ${G.problems.length} problem URLs unreachable, e.g. ${missProb.slice(0, 3).join(', ')}`;
       const noNative = [...document.querySelectorAll('#app a[href^="/problem/"]')].filter(a => !a.hasAttribute('data-native')).length;
       if (noNative) return `${noNative} /problem link(s) missing data-native — KEEP_PRERENDERED means the click would leave the /solve DOM in place under a /problem URL`;
+      const bypass = [...document.querySelectorAll('#app a[href^="/protocol/"]')].length;
+      if (bypass) return `${bypass} direct protocol link(s) bypass the possible-reasons assessment`;
+      const directory = document.getElementById('solve-directory');
+      if (!directory || directory.tagName !== 'DETAILS') return 'the complete topic directory is not a semantic <details> disclosure';
+      if (directory.open) return 'the 41-topic directory opens by default and recreates the choice overload';
       return null;
     },
   }],
@@ -1101,8 +1135,34 @@ const ASSERTIONS = {
       if (inp.value !== 'knee pain') return `#solve-q value is ${JSON.stringify(inp.value)}, expected "knee pain"`;
       const hits = document.querySelector('#q-hits');
       if (!hits || !hits.querySelector('.solve-card')) return 'no ranked matches rendered for q=knee pain';
+      const shown = hits.querySelectorAll('.solve-card').length;
+      if (shown > 3) return `${shown} ranked matches rendered; the first decision may show at most 3`;
       const first = hits.querySelector('.solve-card').dataset.pid;
       if (first !== 'knee-pain') return `top match is ${first}, expected knee-pain`;
+      return null;
+    },
+  }],
+  '/solve?q=chest%20pain': [{
+    name: 'urgentSearchNeverApproximatesAProtocol',
+    why: 'an emergency-shaped query must stop before fuzzy matching rather than turn the shared word “pain” into a knee, back or ankle protocol',
+    evaluate: () => {
+      const panel = document.querySelector('#q-urgent[data-on]');
+      if (!panel) return 'the urgent guidance panel is not active';
+      if (!/get urgent help now/i.test(panel.textContent || '')) return 'the urgent route does not name the next action';
+      if (document.querySelector('#q-hits[data-on], #q-none[data-on], #q-review[data-on]')) return 'another search-result state is active beside the urgent route';
+      if (panel.querySelector('.solve-card')) return 'an urgent route contains a protocol card';
+      return null;
+    },
+  }],
+  '/solve?q=pregnant%20and%20tired': [{
+    name: 'professionalReviewSearchNeverApproximatesAProtocol',
+    why: 'pregnancy, children and medicine-combination queries must route to professional review rather than inherit a generic self-care match',
+    evaluate: () => {
+      const panel = document.querySelector('#q-review[data-on]');
+      if (!panel) return 'the professional-review guidance panel is not active';
+      if (!/clinician or pharmacist/i.test(panel.textContent || '')) return 'the review route does not name the next action';
+      if (document.querySelector('#q-hits[data-on], #q-none[data-on], #q-urgent[data-on]')) return 'another search-result state is active beside the professional-review route';
+      if (panel.querySelector('.solve-card')) return 'a professional-review route contains a protocol card';
       return null;
     },
   }],
@@ -1139,12 +1199,20 @@ const ASSERTIONS = {
       if (!open) return 'no cause is open at all';
       const note = document.querySelector('#p-causes .cause-fallback');
       if (!note) return 'a cause was opened for the reader with nothing saying it is a default — the page shows a selection it did not make and does not disclose that';
-      const t = (note.innerText || '').replace(/\s+/g, ' ').trim();
+      // The complete reasoning now lives behind the page's single progressive-disclosure control.
+      // `innerText` is intentionally empty while a <details> ancestor is closed, even though the
+      // authored disclosure remains in the DOM for readers, crawlers and assistive technology.
+      // Read the authored value here, then prove that the enclosing disclosure is reachable.
+      const t = (note.textContent || '').replace(/\s+/g, ' ').trim();
       if (t.indexOf(rc.name) < 0) return `the note does not name the URL's own root cause "${rc.name}" — "${t.slice(0, 120)}"`;
       const idx = +open.getAttribute('data-cause-index');
       if (t.indexOf('#' + (idx + 1)) < 0) return `the note does not name the cause that is actually open (#${idx + 1}) — a caveat that points at a different row is worse than none`;
       if (t.indexOf(rc.cause_unmapped.slice(0, 60)) < 0) return 'the note does not quote the authored reason from data/cause_map.json';
       if (getComputedStyle(note).borderTopWidth === '0px') return 'the note carries no .cause-fallback styling — it reads as more body copy, which is how a caveat stops being one';
+      const full = document.getElementById('protocol-full');
+      if (!full || full.tagName !== 'DETAILS' || !full.contains(note)) return 'the default-cause explanation is not inside the full-protocol disclosure';
+      const summary = full.querySelector(':scope > summary');
+      if (!summary || !/review the full protocol/i.test(summary.textContent || '')) return 'the disclosure containing the default-cause explanation has no clear entry label';
       return null;
     },
   }],
@@ -1966,17 +2034,20 @@ const ASSERTIONS = {
     // W4 · LOOP B (2026-08-02). build/prerender.js gates the crawler's copy on all 52 routes; this
     // gates the READER's, because the two documents saying different things is the defect class
     // (D2/D33) this branch has already fixed four times. The offer is one person's, so it must
-    // read as one person's, must state that it is not from a clinician, and must be visible
-    // WITHOUT opening the Phase 2 drawer — the reader it is aimed at already takes a stack.
+    // read as one person's and state that it is not from a clinician. The redesigned protocol
+    // deliberately places this secondary offer inside the single “Review the full protocol”
+    // disclosure, while keeping it outside the more deeply nested Phase 2 supplement drawer.
     // PROVE THIS GATE by deleting ${stackAuditCallout()} from renderProtocol(), by moving it
     // inside protocolLayers()' <details>, or by dropping the "not a clinician" sentence.
     name: 'loopBStackAuditIsOnePersonAndSaysItsScope',
-    why: 'W4: an open offer to go through a stranger\'s supplements must be visible, must be in one person\'s voice, and must state in the same breath that it is not a clinician and not medical advice',
+    why: 'W4: the optional stack-audit offer must stay reachable through the full-protocol disclosure, use one person\'s voice, and state in the same breath that it is not a clinician and not medical advice',
     evaluate: () => {
       const app = document.getElementById('app');
       const el = app.querySelector('.stack-audit');
       if (!el) return 'no stack-audit callout in the hydrated document — the crawler gets one and the reader does not';
-      const t = (el.innerText || '').replace(/\s+/g, ' ');
+      // `innerText` is empty while its intentional <details> ancestor is closed. The copy contract
+      // concerns the authored content, so read textContent and separately test reveal + geometry.
+      const t = (el.textContent || '').replace(/\s+/g, ' ');
       if (!/supplement stack right now/i.test(t)) return `the callout does not open with the question it exists to ask — "${t.slice(0, 70)}…"`;
       if (!/not a clinician/i.test(t)) return 'the callout never says it is not from a clinician';
       if (!/not medical advice/i.test(t)) return 'the callout never says it is not medical advice';
@@ -1987,12 +2058,21 @@ const ASSERTIONS = {
       const h = (((window.RNAWIKI_DATA.site || {}).x) || {}).handle;
       if (!h) return 'no handle in data.site';
       if (a.getAttribute('href') !== 'https://x.com/' + h) return `the callout links to "${a.getAttribute('href')}" instead of the configured profile for @${h}`;
-      const r = a.getBoundingClientRect();
-      if (r.height < 44) return `the callout link is ${Math.round(r.height)}px tall — under 44 (D25)`;
-      // visible without opening Phase 2
+      const full = app.querySelector('#protocol-full');
+      if (!full || full.tagName !== 'DETAILS' || !full.contains(el)) return 'the optional offer is not inside the full-protocol disclosure';
+      const fullSummary = full.querySelector(':scope > summary');
+      if (!fullSummary || !/review the full protocol/i.test(fullSummary.textContent || '')) return 'the disclosure containing the optional offer has no clear entry label';
+      // It remains outside Phase 2, so opening the one clearly labelled full-protocol disclosure
+      // is sufficient to reach it; the reader does not face another nested decision first.
       const d2 = app.querySelector('#phase-2');
       if (d2 && d2.contains(el)) return 'the callout is inside the collapsed Phase 2 drawer, so the reader who already takes a stack never sees it';
-      if (!el.offsetParent && getComputedStyle(el).position !== 'fixed') return 'the callout is not rendered';
+      const wasOpen = full.open;
+      full.open = true;
+      const r = a.getBoundingClientRect();
+      const rendered = !!el.offsetParent || getComputedStyle(el).position === 'fixed';
+      full.open = wasOpen;
+      if (!rendered) return 'the callout is not rendered when the full-protocol disclosure is opened';
+      if (r.height < 44) return `the callout link is ${Math.round(r.height)}px tall when revealed — under 44 (D25)`;
       return null;
     },
   }, {
@@ -2202,6 +2282,12 @@ try {
   for (const [cls, route] of ROUTES) {
     const page = await browser.newPage();
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });
+    await page.setCacheEnabled(false);
+    // Test interaction rendering without putting a person's compound choices in the address.
+    // evaluateOnNewDocument runs on the destination origin before app.js reads localStorage.
+    if (cls === 'stack') await page.evaluateOnNewDocument(() => localStorage.removeItem('rnawiki_stack'));
+    if (cls === 'stack-same-substance') await page.evaluateOnNewDocument(() => localStorage.setItem('rnawiki_stack', JSON.stringify(['c1', 'c24'])));
+    if (cls === 'stack-two-substances') await page.evaluateOnNewDocument(() => localStorage.setItem('rnawiki_stack', JSON.stringify(['c1', 'c25'])));
 
     const consoleErrors = [];
     const pageErrors = [];
@@ -2889,12 +2975,17 @@ try {
     const hdr = async (u) => {
       const r = await fetch(BASE + u, { redirect: 'manual' });
       await r.text();
-      return { status: r.status, xr: r.headers.get('x-robots-tag') };
+      return { status: r.status, xr: r.headers.get('x-robots-tag'), location: r.headers.get('location'), cache: r.headers.get('cache-control') };
     };
-    const dirty = ['/solve?q=knee%20pain', '/az?q=creatine', '/stack?ids=c1,c25', '/plan?cohort=abc',
+    const dirty = ['/solve?q=knee%20pain', '/az?q=creatine', '/plan?cohort=abc',
       '/body/leg?fma=FMA%3A22430', '/c/creatine-monohydrate?utm_source=x',
-      '/protocol/knee-pain/patellofemoral-pain?by=felix', '/?ref=twitter'];
-    const clean = ['/', '/solve', '/az', '/stack', '/plan', '/body/leg', '/c/creatine-monohydrate',
+      '/?ref=twitter'];
+    const scrubbed = [
+      ['/stack?ids=c1,c25', '/stack'],
+      ['/protocol/knee-pain/patellofemoral-pain?by=felix', '/protocol/knee-pain/patellofemoral-pain'],
+      ['/protocol/knee-pain/patellofemoral-pain?log=base64-health-state', '/protocol/knee-pain/patellofemoral-pain'],
+    ];
+    const clean = ['/', '/solve', '/az', '/stack', '/body/leg', '/c/creatine-monohydrate',
       '/protocol/knee-pain/patellofemoral-pain'];
     const assets = ['/app.js', '/styles.css', '/data.js', '/sitemap.xml', '/robots.txt'];
     for (const u of dirty) {
@@ -2902,10 +2993,28 @@ try {
       if (!/noindex/i.test(h.xr || '')) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} answered ${h.status} with X-Robots-Tag ${JSON.stringify(h.xr)}; a query-string URL is a view of a page, not a page, and every one of these self-canonicalises to its clean twin already`);
       if ((h.xr || '').indexOf('nofollow') >= 0) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} sends nofollow. These URLs are how a crawler reaches deeper pages (all 42 links to /body/leg carry ?fma=); the directive must be noindex, FOLLOW`);
     }
+    for (const [u, cleanLocation] of scrubbed) {
+      const h = await hdr(u);
+      if (h.status !== 302) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} answered ${h.status}; legacy health-state URLs must redirect before rendering`);
+      if (h.location !== cleanLocation) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} redirects to ${JSON.stringify(h.location)}, expected clean ${cleanLocation}`);
+      if (!/no-store/i.test(h.cache || '')) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — ${u} redirect is cacheable (${JSON.stringify(h.cache)})`);
+    }
     for (const u of clean) {
       const h = await hdr(u);
       if (h.xr) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — the clean route ${u} sends X-Robots-Tag ${JSON.stringify(h.xr)}. It is in sitemap.xml; tagging it deindexes a published page`);
     }
+    // /plan is the intentional clean-route exception: it is a per-browser utility, not a public
+    // editorial page. It remains a real 200 URL with a self-canonical and followable links, while
+    // both the header and markup say noindex and the sitemap omits it.
+    const planRes = await fetch(BASE + '/plan', { redirect: 'manual' });
+    const planHtml = await planRes.text();
+    const planXr = planRes.headers.get('x-robots-tag') || '';
+    if (planRes.status !== 200) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — /plan answers ${planRes.status}; the private utility must remain usable at HTTP 200`);
+    if (!/^noindex\s*,\s*follow$/i.test(planXr)) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — /plan sends X-Robots-Tag ${JSON.stringify(planXr)}; expected noindex, follow`);
+    if (!/<meta name="robots" content="noindex,follow">/.test(planHtml)) fail.push('ASSERTION queryStringsAreNotIndexable FAILED — /plan markup does not carry meta robots noindex,follow');
+    if (!/<link rel="canonical" href="https:\/\/rnawiki\.com\/plan">/.test(planHtml)) fail.push('ASSERTION queryStringsAreNotIndexable FAILED — /plan is not self-canonical');
+    const sitemapText = await (await fetch(BASE + '/sitemap.xml')).text();
+    if (/<loc>https:\/\/rnawiki\.com\/plan<\/loc>/.test(sitemapText)) fail.push('ASSERTION queryStringsAreNotIndexable FAILED — /plan is still listed in sitemap.xml despite being noindex');
     for (const u of assets) {
       const h = await hdr(u);
       if (h.xr) fail.push(`ASSERTION queryStringsAreNotIndexable FAILED — the render resource ${u} sends X-Robots-Tag ${JSON.stringify(h.xr)}. Googlebot must be able to fetch and use every asset the page needs; this rule is for text/html only`);

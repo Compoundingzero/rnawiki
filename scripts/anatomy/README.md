@@ -60,11 +60,12 @@ against `server.js` (`script-src 'self'`, `connect-src 'self'`).
 ## 4. Ship the GLBs (site/ is ephemeral)
 
 `site/` is regenerated at boot, so GLBs can't live there as source. Commit them under `assets/anatomy/*.glb`
-and copy them into `site/anatomy/` in **`prestart`** (repo-root `package.json`), alongside the existing
-`parse.js`/`prerender.js` steps:
+and copy them into `site/anatomy/` in both **`build` and `prestart`** (repo-root `package.json`),
+alongside the existing `parse.js`/`prerender.js` steps. `build` makes local/CI smoke tests exercise
+the complete served tree; `prestart` restages it on every production boot:
 
 ```jsonc
-// prestart, appended:  && node scripts/anatomy/copy-assets.mjs
+// build + prestart, appended:  && node scripts/anatomy/copy-assets.mjs
 // (a 3-line cpSync of assets/anatomy/*.glb + site/vendor/**  →  site/)
 ```
 The engine fetches `/anatomy/leg.glb` and `/vendor/three/*` — both then served statically by `server.js`.

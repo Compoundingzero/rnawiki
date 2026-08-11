@@ -5,7 +5,7 @@
      alpha-composited TreeWalker over 13 routes (qa/out/w5cdi/before-390.json). The two worst
      offenders were not 500 separate mistakes, they were two hex values:
        --faint #8b97a6  →  2.79:1 on --bg, 2.97:1 on --panel, ~450 failing text nodes across the
-                           sample (.cat, .sc-k, .k, .s-rcs-k, .bj-kind, .mstage-lbl, .gi-n, .crumbs…)
+                           sample (.cat, .sc-k, .k, .bj-kind, .mstage-lbl, .gi-n, .crumbs…)
        --star   #d97706 →  2.99:1, 209 failing nodes — every .stars badge on every compound page
        --accent #0d9488 →  3.52:1 as TEXT (.az-letter, .ch-next-btn, .mc-reveal, .cbl) and 3.74:1
                            the other way round, white on it (.mc-n, .mj-num, .cta-primary at 13.3px
@@ -78,7 +78,7 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .sr-request:hover{text-decoration:underline}
 .topnav{display:flex;gap:1.1rem;font-size:.92rem}
 .topnav a{color:var(--muted)}
-.nav-more{display:none}   /* W5c: A-Z and Browse are in the ☰ drawer only — see the ≤900px block */
+.nav-more{display:none}   /* Secondary discovery routes live in the ☰ drawer — see the ≤900px block */
 .topnav a:hover{color:var(--head);text-decoration:none}
 .menu-btn{display:none;background:none;border:none;color:var(--head);font-size:1.4rem;cursor:pointer;min-width:44px;min-height:44px}
 .stack-badge{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;background:var(--accent);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:0 5px}
@@ -220,7 +220,7 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
    own block above; this rule covers the standalone pill controls — the ones that are buttons or
    chips rather than words inside a sentence. Every one of them was measured at 25-38px tall:
      .seed-chip 112x37 (the homepage's first CTA row) · .learned-btn 126x37 · .stack-btn-lg 132x37
-     · .mol-3d-btn 126x37 · .chip 107x35 · .s-rc 140x33 (the search-result rows, 51 of them)
+     · .mol-3d-btn 126x37 · .chip 107x35
      · .share-short-btn 239x37 · .cta-primary 250x38 · .cta-ghost 270x36 · .rc-assess 274x35
      · .st-add 269x28 · .df-link 194x34 · .seed-all 98x34 · .cc-reveal 103x25 · .brand 97x29
    inline-flex + centring rather than bare min-height, because min-height on a padded pill leaves
@@ -231,7 +231,7 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
    above are the one in-between case — block-level, but a navigation row rather than buttons — so
    they are taken to the 24px AA floor rather than the 44px AAA one. */
 .brand,.seed-chip,.seed-all,.chip,.cta-primary,.cta-ghost,.learned-btn,.stack-btn-lg,.mol-3d-btn,
-.share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.s-rc,.acct-btn{
+.share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.acct-btn{
   min-height:44px;display:inline-flex;align-items:center;justify-content:center}
 .st-add{display:flex}
 /* W5c FOLLOW-UP: .menu-btn is deliberately NOT in the list above. It was, and `display:inline-flex`
@@ -447,6 +447,8 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .modal{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:0 30px 70px rgba(12,21,34,.3);width:100%;max-width:460px;padding:1.8rem}
 .modal h2{margin:.2rem 0 .3rem}
 .modal-sub{color:var(--muted);font-size:.92rem;margin:.2rem 0 1.2rem}
+.adult-confirm{display:flex;align-items:center;gap:.65rem;min-height:48px;padding:.65rem .75rem;margin:0 0 .8rem;border:1px solid var(--line);border-radius:12px;color:var(--head);font-size:.9rem;cursor:pointer}
+.adult-confirm input{width:20px;height:20px;accent-color:var(--accent);flex:0 0 auto}
 .modal-x{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.1rem;color:var(--faint);cursor:pointer;line-height:1}
 .modal-x:hover{color:var(--head)}
 /* Mini-window item detail (builder + tracker) */
@@ -537,7 +539,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .topnav{display:none}
   .topnav.open{display:flex;position:absolute;top:100%;right:0;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.8rem 1.2rem;gap:.9rem;box-shadow:var(--shadow)}
   .menu-btn{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
-  /* W5c: the two INDEX pages, drawer-only. See the note in build/prerender.js's shell(). */
+  /* W5c: secondary discovery routes, drawer-only. See build/prerender.js's shell(). */
   .topnav.open .nav-more{display:block}
   /* W5c: and the drawer's own links were 16px tall — the gate that was written for the missing
      two caught that as well, on all six. A drawer that opens onto six 16px targets is only
@@ -572,7 +574,6 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
    .solve-hero .fl, .step3 .s3-tag.fl and more). Same hue at #14783a = 5.22:1. --mv and --st
    already pass (4.85 and 5.35). */
 :root{--mv:#2563eb;--fl:#14783a;--st:#7c3aed}
-.nav-solve{color:var(--accent)!important;font-weight:700}
 .hero-cta{margin-top:1.3rem;display:flex;flex-direction:column;gap:.35rem}
 .cta-primary{display:inline-block;align-self:flex-start;background:var(--accent);color:#fff;padding:.7rem 1.25rem;border-radius:999px;font-weight:700;box-shadow:0 2px 8px color-mix(in srgb,var(--accent) 28%,transparent);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;border:none;cursor:pointer}
 .cta-primary:hover{text-decoration:none;filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 34%,transparent)}
@@ -584,21 +585,16 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .hiw-n{font-weight:800;font-size:1.05rem}
 .hiw-n.mv{color:var(--mv)}.hiw-n.fl{color:var(--fl)}.hiw-n.st{color:var(--st)}
 
-/* solve page */
-.solve-hero{background:linear-gradient(135deg,#eef4ff,#eafcf3);border:1px solid var(--line);border-radius:var(--radius);padding:1.6rem 1.5rem;margin-bottom:1.2rem}
-.solve-hero h1{font-size:2rem;margin:.2rem 0 .5rem}
+/* Find: one question first; the complete directory stays one deliberate reveal away. */
+.solve-hero{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(1.25rem,3vw,2.2rem);margin-bottom:1.2rem;box-shadow:0 16px 42px -34px rgba(15,23,42,.45)}
+.solve-hero h1{font-size:clamp(2rem,5vw,3.15rem);letter-spacing:-.045em;line-height:1.02;margin:.25rem 0 .7rem;max-width:13ch}
 .solve-hero .mv{color:var(--mv)}.solve-hero .fl{color:var(--fl)}.solve-hero .st{color:var(--st)}
-.solve-hero p{color:var(--ink);max-width:70ch;margin:0}
-.solve-filter{display:flex;gap:.5rem;margin:0 0 1.2rem}
-.solve-filter button{border:1px solid var(--line);background:#fff;color:var(--muted);padding:.4rem .9rem;border-radius:999px;cursor:pointer;font-size:.88rem}
-.solve-filter button.on{background:var(--head);color:#fff;border-color:var(--head)}
+.solve-hero p{color:var(--muted);max-width:58ch;margin:0;line-height:1.6}
 .solve-section{margin-bottom:1.4rem}
-.solve-section h2{font-size:1.1rem;margin:0 0 .6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.solve-section h2,.solve-section h3{font-size:.82rem;margin:0 0 .65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:750}
 .solve-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.7rem}
-/* /solve card, rebuilt 2026-08-01 (W2/D10+D11). The card is no longer a single <a>: its primary
-   destination is /problem/{id} -- the differential -- and its root causes are secondary links, so
-   an <a> wrapper would nest anchors. Two rows: the diagnosis link, then the "I already know" chips. */
-.solve-card{display:flex;flex-direction:column;gap:.55rem;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.8rem .9rem;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
+/* One card, one decision: compare this topic's possible reasons before opening a protocol. */
+.solve-card{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:.85rem .95rem;color:var(--ink);transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
 .solve-card:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));box-shadow:var(--shadow-lg);transform:translateY(-2px)}
 .solve-card .s-main{display:flex;align-items:flex-start;gap:.7rem;color:var(--ink);text-decoration:none;min-height:44px}
 .solve-card .s-main:hover{text-decoration:none}
@@ -608,12 +604,8 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 /* The honest count. 31 of 41 problems document 4-7 causes and ship exactly ONE protocol; saying so
    on the card is what makes "pick a cause first" a reasonable instruction rather than a detour. */
 .solve-card .s-diff{color:var(--muted);font-size:.82rem;margin-top:.15rem}
-.solve-card .s-go{color:var(--link);font-weight:600;font-size:.88rem;margin-top:.25rem}
+.solve-card .s-go{color:var(--link);font-weight:650;font-size:.88rem;margin-top:.3rem}
 .solve-card:hover .s-go{text-decoration:underline}
-.s-rcs{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;border-top:1px dashed var(--line);padding-top:.5rem}
-.s-rcs-k{color:var(--faint);font-size:.76rem;margin-right:.15rem}
-.s-rc{display:inline-flex;align-items:center;min-height:44px;padding:.3rem .65rem;   /* W5c: was 32px — 51 of these render at 140x33 on a phone */border:1px solid var(--line);border-radius:999px;background:var(--panel2);color:var(--link);font-size:.82rem;text-decoration:none}
-.s-rc:hover{border-color:var(--accent);text-decoration:none}
 /* /solve?q= search field. A REAL GET form: pressing Enter with JS off round-trips to the server,
    which answers it (searchSolve in server.js). 16px minimum so iOS Safari does not zoom on focus. */
 .solve-q{display:flex;gap:.5rem;margin:.9rem 0 .2rem}
@@ -623,20 +615,39 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 /* The ?q= result panel. Default HIDDEN in both documents: the SPA renders it only when there is a
    query, and server.js reveals it for a no-JS reader with `data-on`. Without these two rules the
    crawler and every no-JS reader would see all 41 cards twice. */
-#q-hits,#q-none{display:none}
-#q-hits[data-on],#q-none[data-on]{display:block}
+#q-hits,#q-none,#q-urgent,#q-review{display:none}
+#q-hits[data-on],#q-none[data-on],#q-urgent[data-on],#q-review[data-on]{display:block}
 .q-panel{background:linear-gradient(135deg,#eef4ff,#eafcf3);border:1px solid var(--line);border-radius:var(--radius);padding:1rem 1rem .9rem;margin:0 0 1.2rem}
 .q-panel>h2{font-size:1.05rem;margin:0 0 .7rem;color:var(--head)}
 .q-panel .q-term{font-style:normal;font-weight:700}
 .q-list{display:flex;flex-direction:column;gap:.7rem}   /* so server.js `order:` can rank the hits */
 .q-panel .solve-card.is-hit{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.q-guidance{padding:1.15rem 1.2rem;background:var(--panel)}
+.q-guidance>h2{font-size:1.55rem;margin:.2rem 0 .45rem}
+.q-guidance>p{margin:0;max-width:66ch;line-height:1.58}
+.q-urgent{border-color:#d8a3a0;background:#fff8f7}
+.q-urgent .kicker{color:#8b1e18}
+.q-review{border-color:#e5c582;background:#fffbf2}
+.q-review .kicker{color:#7a4a00}
 .q-all{margin:.7rem 0 0;font-size:.85rem}
 .q-acts{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;margin:.8rem 0 0}
 .q-acts button{border:none;cursor:pointer;min-height:44px}
-.solve-all-h{font-size:1.15rem;margin:1.4rem 0 .6rem;color:var(--head)}
-/* ONE hide mechanism for the kind filter and any q state. !important because .solve-card and
-   .solve-section both set display themselves, so a bare [hidden] or a class without it loses. */
-.solve-card.is-off,.solve-section.is-off{display:none!important}
+.solve-directory{margin:1rem 0 1.3rem;border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
+.solve-directory>summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:64px;padding:.9rem 1.05rem;cursor:pointer;list-style:none;color:var(--head)}
+.solve-directory>summary::-webkit-details-marker{display:none}
+.solve-directory>summary span:first-child{display:flex;flex-direction:column;gap:.12rem}
+.solve-directory>summary small{color:var(--muted);font-size:.8rem;font-weight:400}
+.solve-directory-mark{display:grid;place-items:center;width:32px;height:32px;border-radius:999px;background:var(--panel2);font-size:1.25rem;transition:transform .18s ease}
+.solve-directory[open] .solve-directory-mark{transform:rotate(45deg)}
+.solve-directory-body{border-top:1px solid var(--line);padding:1rem}
+@media(max-width:600px){
+  .solve-hero{padding:1.15rem}
+  .solve-hero h1{font-size:2.15rem}
+  .solve-q{align-items:stretch}
+  .solve-q button{padding-inline:1rem}
+  .solve-directory-body{padding:.85rem}
+}
+@media(min-width:900px){.q-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}}
 
 /* protocol view */
 .proto-head{display:flex;gap:1rem;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:1.2rem 1.3rem;margin-bottom:.8rem}
@@ -1488,13 +1499,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .io-clin{display:inline-block;margin-top:.3rem;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:.1rem .45rem}
 .intake-opt .io-b b{font-size:1rem;line-height:1.35}
 
-/* Feedback FAB + share prompt + attribution label */
-.feedback-fab{position:fixed;right:16px;bottom:16px;z-index:150;display:inline-flex;align-items:center;min-height:44px;background:var(--head,#0e1420);color:#fff;border:none;border-radius:24px;padding:.6rem 1rem;font-size:.85rem;font-weight:700;cursor:pointer;box-shadow:0 8px 24px -8px rgba(0,0,0,.4);opacity:.9}
-.feedback-fab:hover{opacity:1;transform:translateY(-1px)}
-@media(max-width:640px){.feedback-fab{right:12px;bottom:12px;padding:.5rem .9rem;font-size:.78rem}}
-/* The 3D body page uses the canvas's lower-right for its own HUD + the insertion pin; the fixed
-   Feedback pill overlaps that touch area. Hide it while a 3D body map is on screen. */
-body.route-bodymap .feedback-fab{display:none}
+/* Contextual feedback, share prompts and attribution labels remain; the global floating button is gone. */
 .sp-row{display:flex;gap:.6rem;align-items:center;margin-top:.6rem}
 .sp-row .cta-primary{flex:1}
 .bl-label{display:block;font-size:.78rem;color:var(--muted);line-height:1.5;margin:.5rem 0 .3rem}
@@ -2229,18 +2234,6 @@ a.dp-name:hover{color:var(--accent)}
 .st-pub-keep{font-size:.86rem;line-height:1.55;color:var(--muted);margin:.6rem 0 0}
 .st-goto{margin-top:.5rem;min-height:44px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--head);font-size:.84rem;font-weight:600;cursor:pointer}
 .st-bar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;position:sticky;bottom:0;background:var(--bg);padding:.6rem 0;border-top:1px solid var(--line);margin-top:.6rem}
-/* THE FEEDBACK BUBBLE SAT ON TOP OF "PUBLISH" — MEASURED, NOT SUSPECTED. Hydrated at 390x844:
-   .feedback-fab at x=272 y=788 (105.8x44), #st-publish at x=269 y=790 (101.5x44), and
-   document.elementFromPoint() at the CENTRE of the Publish button returned the feedback-fab.
-   The primary action of this page was not clickable. This is the third time this bubble has
-   landed on a submit control on this site — the stylesheet already records it at y=788 over the
-   landing page's submit, and body.route-bodymap hides it over the 3D canvas.
-   Lifted, not hidden: feedback stays reachable and so does Publish. `html:has(.st-bar)` follows
-   the .lp-fold precedent — the sticky bar is the thing that causes the collision, so the selector
-   keys off the bar itself and cannot drift out of sync on an SPA navigation the way a stamped
-   data- attribute can. It covers /p/<code> too, which has the same bar. 84px clears the measured
-   64.2px bar plus the bubble's own 12-16px offset. */
-html:has(.st-bar) .feedback-fab{bottom:84px}
 .st-bar .cta-primary,.st-bar .cta-ghost{min-height:44px;display:inline-flex;align-items:center}
 .st-bar .cta-primary:disabled{opacity:.45;cursor:default}
 .st-count{font-size:.86rem;color:var(--muted);margin-right:auto}
@@ -2461,6 +2454,18 @@ html:has(.st-bar) .feedback-fab{bottom:84px}
 .pt-panel{animation:ptfade .18s ease}
 @keyframes ptfade{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 .pt-sub{color:var(--muted);font-size:.86rem;margin:0 0 1rem}
+/* Today is deliberately one-action-first. The queue exists, but it does not compete with the
+   keystone until the reader asks for it. */
+.today-queue{margin:1rem 0;border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
+.today-queue>summary{list-style:none;min-height:58px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
+.today-queue>summary::-webkit-details-marker{display:none}
+.today-queue>summary>span:first-child{display:flex;flex-direction:column;gap:.12rem}
+.today-queue>summary small{font-size:.76rem;font-weight:400;color:var(--muted)}
+.today-queue>summary::after{content:'›';font-size:1.4rem;color:var(--muted);transform:rotate(90deg);transition:transform .15s ease}
+.today-queue[open]>summary::after{transform:rotate(-90deg)}
+.today-queue .trk-prog{margin-left:auto;color:var(--muted);font-variant-numeric:tabular-nums}
+.today-queue-body{padding:0 1rem 1rem;border-top:1px solid var(--line)}
+.today-queue-body .trk-layer:first-child{margin-top:1rem}
 /* Unified plan sections — one clear, well-spaced block each (Apple: clear hierarchy, grouped content) */
 .trk-sec{margin:1.9rem 0 0}
 .trk-sec-h{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;margin-bottom:.8rem}
@@ -3344,6 +3349,14 @@ html:has(.st-bar) .feedback-fab{bottom:84px}
 .safety-first{margin:1.2rem 0 1.4rem}
 .safety-first .plan-reassess{margin-bottom:.9rem}
 .safety-first .plan-ch{font-size:1.02rem}
+.safety-first details.plan-reassess{padding:0;overflow:hidden;background:#fff;border-color:var(--line)}
+.safety-first details.plan-reassess>summary{list-style:none;min-height:58px;padding:.72rem .9rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
+.safety-first details.plan-reassess>summary::-webkit-details-marker{display:none}
+.safety-first details.plan-reassess>summary>span:first-child{display:flex;flex-direction:column;gap:.12rem}
+.safety-first details.plan-reassess>summary small{font-size:.78rem;font-weight:400;color:var(--muted)}
+.safety-first details.plan-reassess[open]>summary>span:last-child{transform:rotate(90deg)}
+.safety-detail{padding:.1rem .9rem .9rem;border-top:1px solid var(--line)}
+.safety-detail .esc-note{margin:.6rem 0 0}
 .safety-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.9rem}
 .sf-card{border:1px solid var(--line);border-radius:14px;padding:.85rem 1rem;background:var(--panel)}
 .sf-k{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.3rem}
@@ -3353,6 +3366,15 @@ html:has(.st-bar) .feedback-fab{bottom:84px}
 .track-metric{border-color:color-mix(in srgb,#16a34a 30%,var(--line));background:color-mix(in srgb,#16a34a 6%,transparent)}
 .stop-rule{border-color:color-mix(in srgb,#f59e0b 34%,var(--line));background:color-mix(in srgb,#f59e0b 7%,transparent)}
 .safety-first[id]{scroll-margin-top:66px}
+.protocol-fit-link{margin:.1rem 0 1rem;font-size:.88rem}
+.protocol-full{margin:1.2rem 0 1.5rem;border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
+.protocol-full>summary{list-style:none;min-height:64px;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
+.protocol-full>summary::-webkit-details-marker{display:none}
+.protocol-full>summary>span:first-child{display:flex;flex-direction:column;gap:.15rem}
+.protocol-full>summary small{font-size:.78rem;font-weight:400;color:var(--muted)}
+.protocol-full>summary>span:last-child{font-size:1.4rem;color:var(--muted);transition:transform .15s ease}
+.protocol-full[open]>summary>span:last-child{transform:rotate(90deg)}
+.protocol-full-body{padding:0 1rem 1rem;border-top:1px solid var(--line)}
 /* Stage 4 — protocol action plan */
 .plan-section{margin:1.6rem 0;padding:1.3rem 1.4rem;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
 .plan-section h2{margin:0 0 .2rem;font-size:1.35rem}
@@ -4124,25 +4146,35 @@ a.assess-switch { text-align: center; }
    Measured before: median page height 29,844px, the first protocol link at 98% of it on 41/41, and
    the 224 tells spread from y=5,137 (cause #1) to y=31,797 (cause #6). These three blocks put the
    escalation layer, every tell, and the way out above the mechanism prose. */
-.prob-redflags { margin: 1.4rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r-lg, 14px); }
-.prob-redflags > h2 { font-size: 1.2rem; margin: 0 0 .5rem; color: var(--head); }
+.problem-intro{max-width:760px;margin:1rem 0 1.15rem}
+.problem-intro h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.03;letter-spacing:-.045em;margin:.28rem 0 .65rem;max-width:18ch}
+.problem-intro p{font-size:1.04rem;line-height:1.6;color:var(--muted);max-width:60ch;margin:0}
+.prob-redflags { margin: 1rem 0; border: 1px solid var(--line); border-radius: 14px; background:var(--panel); overflow:hidden; }
+.prob-redflags > summary,.prob-route > summary{list-style:none;min-height:62px;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
+.prob-redflags > summary::-webkit-details-marker,.prob-route > summary::-webkit-details-marker{display:none}
+.prob-redflags > summary span:first-child,.prob-route > summary span:first-child{display:flex;flex-direction:column;gap:.12rem}
+.prob-redflags > summary small,.prob-route > summary small{font-size:.78rem;font-weight:400;color:var(--muted)}
+.prob-redflags > summary span:last-child,.prob-route > summary span:last-child{font-size:1.35rem;color:var(--muted);transition:transform .15s ease}
+.prob-redflags[open] > summary span:last-child,.prob-route[open] > summary span:last-child{transform:rotate(90deg)}
+.prob-redflags-body,.prob-route-body{padding:.15rem 1rem 1rem;border-top:1px solid var(--line)}
 .prob-redflags .esc-note { font-size: .92rem; color: var(--ink); margin: .6rem 0 0; }
-.prob-dx { margin: 1.6rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r-lg, 14px); background: var(--panel); }
-.prob-dx > h2 { font-size: 1.25rem; margin: 0 0 .4rem; color: var(--head); }
-.dx-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: .9rem; }
-.dx-row { border-top: 1px solid var(--line); padding-top: .9rem; }
-.dx-row:first-child { border-top: 0; padding-top: 0; }
-.dx-name { margin: 0 0 .15rem; font-size: 1.02rem; line-height: 1.35; }
-.dx-name a { color: var(--head); text-decoration: none; }
-.dx-name a:hover { text-decoration: underline; }
+.prob-dx { margin: 1.05rem 0 1.2rem; padding: 1.1rem; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
+.prob-dx > h2 { font-size:clamp(1.55rem,3vw,2rem);letter-spacing:-.025em;margin:.2rem 0 .35rem;color:var(--head)}
+.dx-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem; }
+.dx-row { border:1px solid var(--line);border-radius:14px;padding:1rem;display:flex;flex-direction:column;min-width:0;background:#fff; }
+.dx-name { margin: 0 0 .45rem; font-size: 1.02rem; line-height: 1.35; color:var(--head) }
 .dx-hook { margin: 0 0 .45rem; color: var(--muted); }
-.dx-tell, .dx-conf, .dx-lab { margin: .35rem 0; font-size: .94rem; line-height: 1.5; }
+.dx-tell, .dx-conf, .dx-lab { margin: 0 0 .6rem; font-size: .92rem; line-height: 1.5; color:var(--muted) }
 .dx-lbl { display: inline-block; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--line-soft); padding: 1px 7px; border-radius: 6px; margin-right: .3rem; vertical-align: 1px; }
 .dx-lab { color: var(--muted); }
-.dx-go { margin: .5rem 0 0; }
-.dx-go a { display: inline-flex; align-items: center; min-height: 44px; color: var(--link); font-weight: 600; font-size: .92rem; }
-.prob-route { margin: 1.4rem 0; padding: 1rem 1.2rem; border: 1px solid var(--line); border-radius: var(--r-lg, 14px); background: var(--panel2); }
-.prob-route > h2 { font-size: 1.15rem; margin: 0 0 .4rem; color: var(--head); }
+.dx-more{margin:.05rem 0 .45rem}
+.dx-more>summary{cursor:pointer;color:var(--link);font-size:.84rem;font-weight:650;min-height:36px;display:flex;align-items:center}
+.dx-more>div{padding:.15rem 0 .1rem;color:var(--muted);font-size:.88rem;line-height:1.5}
+.dx-more p{margin:.35rem 0}
+.dx-go { margin: auto 0 0; padding-top:.35rem }
+.dx-go a { display: inline-flex; align-items: center; justify-content:center;min-height:44px;width:100%;padding:.55rem .75rem;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.9rem;text-decoration:none }
+.dx-go a:hover{text-decoration:none;filter:brightness(1.04)}
+.prob-route { margin: 1rem 0 1.3rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel2); overflow:hidden }
 .prob-route-honest { color: var(--muted); font-size: .92rem; margin: .5rem 0 0; }
 .cf-next { margin-top: .9rem; padding-top: .7rem; border-top: 1px dashed var(--line); }
 .cf-next p { margin: .3rem 0; }
@@ -4152,10 +4184,15 @@ a.assess-switch { text-align: center; }
    target underneath it. Verified by clicking a shipped .hanchor: the target landed at rectTop 56px. */
 .cause-flat-item[id], .prob-dx[id], .prob-redflags[id], .prob-route[id] { scroll-margin-top: 66px; }
 
-.cause-flat { margin: 2rem 0; }
+.cause-flat { margin: 1.6rem 0; }
 .cause-flat > h2 { font-size: 1.35rem; margin: 0 0 .3rem; color: var(--head); }
-.cause-flat-item { border: 1px solid var(--line); border-radius: var(--r-lg, 14px); padding: 1rem 1.2rem; margin: 1rem 0; background: var(--panel); }
-.cause-flat-item > h3 { font-size: 1.12rem; margin: 0 0 .5rem; color: var(--head); }
+.cause-flat-item { border: 1px solid var(--line); border-radius: 14px; margin: .7rem 0; background: var(--panel); overflow:hidden }
+.cause-flat-item>summary{list-style:none;min-height:68px;padding:.8rem 1rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.75rem;cursor:pointer;color:var(--head)}
+.cause-flat-item>summary::-webkit-details-marker{display:none}
+.cf-number{font-size:.7rem;font-weight:750;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);white-space:nowrap}
+.cf-open{font-size:1.35rem;color:var(--muted);transition:transform .15s ease}
+.cause-flat-item[open] .cf-open{transform:rotate(90deg)}
+.cause-flat-body{padding:.2rem 1rem 1rem;border-top:1px solid var(--line)}
 .cause-flat-item h4 { font-size: .8rem; margin: 1rem 0 .4rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
 .cf-hook { color: var(--muted); margin: 0 0 .6rem; }
 .cf-key { background: var(--panel); border-left: 3px solid var(--accent); padding: .5rem .85rem; border-radius: 0 8px 8px 0; }
@@ -4164,6 +4201,16 @@ a.assess-switch { text-align: center; }
 .cf-fixes { margin: .3rem 0; padding-left: 1.15rem; }
 .cf-fixes li { margin: .4rem 0; }
 .cf-kind { font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; background: var(--line-soft); color: var(--muted); padding: 1px 7px; border-radius: 6px; margin-right: .35rem; white-space: nowrap; font-weight: 700; }
+@media(max-width:700px){
+  .problem-intro h1{font-size:2.25rem}
+  .dx-list{grid-template-columns:1fr}
+  .prob-dx{padding:.9rem}
+  .dx-row{padding:.9rem}
+  .cause-flat-item>summary{grid-template-columns:1fr auto;gap:.2rem .7rem}
+  .cause-flat-item>summary .cf-number{grid-column:1}
+  .cause-flat-item>summary b{grid-column:1}
+  .cause-flat-item>summary .cf-open{grid-column:2;grid-row:1 / span 2}
+}
 /* The plan-item chip in the CRAWLER document. Its colour mirrors the SPA's .fk-* palette (2860)
    so the two documents read the same, but for a compound the class comes from regClass() — the
    regulator's current classification of the compound the item resolves to — not from the authored
@@ -4795,7 +4842,7 @@ html[data-state="removed"] .i-form{display:none}
    at zero scroll. Every value below was set by rendering the page and reading the pixels back, not
    by arithmetic.
 
-   THREE PIECES OF SITE CHROME ARE SUPPRESSED ON THIS PAGE AT PHONE WIDTH, and only here:
+   TWO PIECES OF SITE CHROME ARE SUPPRESSED ON THIS PAGE AT PHONE WIDTH, and only here:
      .search-wrap  the topbar search. It is now a real <form action="/solve"> on all 620 documents
                    (it used to be an <input> in a bare <div> — dead for the ~90% who never run JS),
                    so this is not hiding a broken control: it is hiding a DUPLICATE of the control
@@ -4803,18 +4850,13 @@ html[data-state="removed"] .i-form{display:none}
      .account-slot "Sign in" sat 126px above a headline on a page that promises "no account, ever".
                    It is the second-most prominent control on the first screen and it contradicts
                    the page. It is JS-rendered and it is present on all 567 other pages.
-     .feedback-fab a fixed bubble pinned bottom-right, measured at y=788 — directly over the submit
-                   button and the "Free · no account" line, i.e. the exact band this whole redesign
-                   is built to protect. `body.route-bodymap .feedback-fab{display:none}` is the
-                   existing precedent for suppressing it on one route.
    `html:has(.lp-fold)` rather than a stamped attribute, deliberately: the landing page is the only
    document that contains .lp-fold, the selector needs no JavaScript to stay correct, and it cannot
    drift out of sync on an SPA navigation the way a data- attribute on <html> can.
    ================================================================================================ */
 @media(max-width:900px){
   html:has(.lp-fold) .topbar .search-wrap,
-  html:has(.lp-fold) .account-slot,
-  html:has(.lp-fold) .feedback-fab{display:none}
+  html:has(.lp-fold) .account-slot{display:none}
 }
 
 .lp{--lp-gap:8px}

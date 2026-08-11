@@ -723,7 +723,8 @@
   // (both come from /api/me). The email fallback guarantees the button can never silently vanish.
   const SUPER_EMAIL = 'felix360506@gmail.com';
   function canAdmin() { return !!(ME && (ME.is_super || (ME.email || '').toLowerCase() === SUPER_EMAIL)); }
-  let CFG = { googleClientId: null };
+  let CFG = { googleClientId: null, features: { sharedPlans: false } };
+  const featureOn = (name) => !!(CFG && CFG.features && CFG.features[name] === true);
   const api = {
     async call(method, url, body) {
       const opt = { method, headers: {} };
@@ -737,7 +738,8 @@
     getPlan() { return this.call('GET', '/api/plan').then(d => d.plan).catch(() => null); },
     savePlan(plan) { return this.call('POST', '/api/plan', { plan }).catch(() => null); },
     config() { return this.call('GET', '/api/config').catch(() => ({ googleClientId: null })); },
-    googleAuth(credential) { return this.call('POST', '/api/auth/google', { credential }); },
+    googleAuth(credential, adultConfirmed) { return this.call('POST', '/api/auth/google', { credential, adultConfirmed: !!adultConfirmed }); },
+    googleLink(credential) { return this.call('POST', '/api/auth/google/link', { credential }); },
     register(b) { return this.call('POST', '/api/register', b); },
     login(b) { return this.call('POST', '/api/login', b); },
     logout() { return this.call('POST', '/api/logout'); },
@@ -864,6 +866,7 @@
     getWearables() { return this.call('GET', '/api/wearable').then(d => d.wearables || []).catch(() => []); },
     exportMyData() { return this.call('GET', '/api/mydata'); },
     deleteMyData() { return this.call('DELETE', '/api/mydata'); },
+    deleteAccount() { return this.call('DELETE', '/api/account', { confirm: 'DELETE' }); },
     getEmailReminders() { return this.call('GET', '/api/email-reminders').catch(() => null); },
     setEmailReminders(b) { return this.call('POST', '/api/email-reminders', b); },
     ledger(pid, rcid) { return this.call('GET', `/api/ledger?problem=${encodeURIComponent(pid)}&rc=${encodeURIComponent(rcid)}`).catch(() => null); },
@@ -968,8 +971,8 @@
         const d = stLoad(); return !!(d && d.items && d.items.length);
       } catch (e) { return false; }
     })();
-    if (ME) slot.innerHTML = `<span class="acct"><a class="acct-btn acct-name" href="#/me" title="Your page — your plan, your logged days, and the protocols you built">👤 ${esc(ME.username)}</a>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
-    else if (hasOwnStuff) slot.innerHTML = `<span class="acct"><a class="acct-btn" href="#/me" title="Your plan and your logged days. On this device, no account.">📓 Your page</a> <button class="acct-btn" id="signin-btn" aria-label="Sign in — optional. Reading, your plan and the 7-day log need no account." title="Optional. Reading, your plan and the 7-day log need no account.">Sign in</button></span>`;
+    if (ME) slot.innerHTML = `<span class="acct"><a class="acct-btn acct-name" href="#/me" title="Profile for @${esc(ME.username)} — your plan, logged days, and protocols">Profile</a>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
+    else if (hasOwnStuff) slot.innerHTML = `<span class="acct"><a class="acct-btn" href="#/me" title="Your plan and logged days on this device">Profile</a> <button class="acct-btn" id="signin-btn" aria-label="Sign in — optional. Reading, your plan and the 7-day log need no account." title="Optional. Reading, your plan and the 7-day log need no account.">Sign in</button></span>`;
     // W5d: NOT `.primary`. This was the only filled accent button in the header, on all 568
     // routes, sitting beside a hero that reads "Free · no account · nothing here is for sale" and
     // a /plan page that reads "there is no account to create". A filled primary button is the
@@ -1016,12 +1019,12 @@
             and the $0 protocol are none of them. The modal now says so first, because the reader
             most likely to be looking at it is one who arrived here by accident. */ ''}
       <p class="modal-sub">${login ? 'Signing in is optional. Reading, your plan and the 7-day log all work without one — an account only syncs your plan to another device and credits the contributions you make.' : 'You do not need one to read, to build a plan, or to run the 7-day log — all of that works on this device. An account adds two things: your plan follows you to another device, and any correction or edit you send is credited to you.'}</p>
+      <label class="adult-confirm"><input id="adult-confirm" type="checkbox"> <span>I confirm I am 18 or older.</span></label>
       ${google}
       <form id="auth-form" class="auth-form">
         <label>Username<input name="username" autocomplete="username" required placeholder="Letters, numbers, underscores"></label>
         ${login ? '' : '<label>Email <span class="opt">(optional, for recovery)</span><input name="email" type="email" autocomplete="email" placeholder="you@example.com"></label>'}
         <label>Password<input name="password" type="password" autocomplete="${login ? 'current-password' : 'new-password'}" required placeholder="${login ? 'Your password' : 'At least 8 characters'}"></label>
-        ${login ? '' : `<div class="auth-demo"><label>Age <select name="age_band"><option value="">—</option>${AGE_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label><label>Sex <select name="sex"><option value="">—</option>${SEX_OPTS.map(o => `<option value="${o[0]}">${o[1]}</option>`).join('')}</select></label></div><p class="auth-demo-why">Optional — so I can show you what actually works for people like you.</p>`}
         <div class="auth-err" id="auth-err" hidden></div>
         <button type="submit" class="btn-primary" id="auth-submit">${login ? 'Sign in' : 'Create account'}</button>
       </form>
@@ -1034,13 +1037,12 @@
     form.onsubmit = async (e) => {
       e.preventDefault(); err.hidden = true; btn.disabled = true; btn.textContent = 'Please wait…';
       const b = Object.fromEntries(new FormData(form));
+      b.adultConfirmed = !!(m.querySelector('#adult-confirm') && m.querySelector('#adult-confirm').checked);
       try {
         const d = mode === 'login' ? await api.login(b) : await api.register(b);
         // Re-fetch the full user (login/register responses omit is_super) so the super-admin
         // Control room link never disappears after signing in.
         ME = (await api.me()) || d.user;
-        // seed demographics captured at sign-up (fire-and-forget; session cookie is already set)
-        if (mode !== 'login' && (b.age_band || b.sex)) api.saveProfile({ age_band: b.age_band || null, sex: b.sex || null }).catch(() => {});
         closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
       } catch (ex) { err.textContent = ex.message; err.hidden = false; btn.disabled = false; btn.textContent = mode === 'login' ? 'Sign in' : 'Create account'; }
     };
@@ -1064,12 +1066,31 @@
       client_id: CFG.googleClientId,
       callback: async (resp) => {
         try {
-          const d = await api.googleAuth(resp.credential);
+          const adult = document.getElementById('adult-confirm');
+          if (!adult || !adult.checked) throw new Error('Confirm that you are 18 or older to sign in.');
+          const d = await api.googleAuth(resp.credential, true);
           ME = (await api.me()) || d.user; closeModal(); renderAccount(); route(); syncPlanOnLogin(); loadConsent();
         } catch (ex) { if (errEl) { errEl.textContent = ex.message; errEl.hidden = false; } }
       },
     });
     window.google.accounts.id.renderButton(container, { theme: 'outline', size: 'large', width: 320, text: 'continue_with' });
+  }
+  async function mountGoogleLinkButton(container, hintEl) {
+    if (!container) return;
+    try { await loadGis(); } catch (e) { container.remove(); return; }
+    window.google.accounts.id.initialize({
+      client_id: CFG.googleClientId,
+      callback: async (resp) => {
+        try {
+          const d = await api.googleLink(resp.credential);
+          ME = d.user || await api.me();
+          container.remove();
+          if (hintEl) hintEl.textContent = 'Google sign-in is linked to this account.';
+          if (typeof toast === 'function') toast('Google sign-in linked ✓');
+        } catch (ex) { if (hintEl) hintEl.textContent = ex.message; }
+      },
+    });
+    window.google.accounts.id.renderButton(container, { theme: 'outline', size: 'large', width: 280, text: 'continue_with' });
   }
   // ---------- comments ----------
   function commentItem(c) {
@@ -1350,8 +1371,9 @@
   // ---------- intake: route to the guided assessment when the problem has one ----------
   function openIntake(pid) {
     const p = problemById[pid]; if (!p) { navigate('/solve'); return; }
-    // single root cause -> no question needed, go straight in
-    if (p.root_causes.length === 1) { navigate('/protocol/' + p.id + '/' + p.root_causes[0].id); return; }
+    // One protocol record does not mean one possible reason. Most of these pages explain several
+    // contributors, so the problem overview must come before any protocol recommendation.
+    if (p.root_causes.length === 1) { navigate('/problem/' + p.id); return; }
     // a clinician-authored triage (data/assessments.json) takes precedence over the plain picker
     if (p.assessment && p.assessment.questions && p.assessment.questions.length) return openAssessment(p);
     return openIntakeBasic(p);
@@ -1418,11 +1440,11 @@
           const chosen = A.questions.map(q => answers[q.id] != null ? q.options[answers[q.id]].label : null).filter(Boolean);
           box.innerHTML = `<div class="assess-top"><button class="assess-back" data-back>←</button><span></span><button class="assess-x" data-x aria-label="Close">✕</button></div>
             <div class="assess-result"><div class="assess-kicker">Your quick check</div>
-              <h2>Most likely: ${esc(rc.name.replace(/\s*\([^)]*\)\s*$/, ''))}</h2>
+              <h2>Closest match: ${esc(rc.name.replace(/\s*\([^)]*\)\s*$/, ''))}</h2>
               ${chosen.length ? `<p class="assess-why">Based on your answers — <b>${chosen.map(esc).join('</b> · <b>')}</b> — this most closely matches ${esc(rc.name)}.</p>` : ''}
               ${rc.plain ? `<p class="assess-plain">${esc(rc.plain)}</p>` : ''}
               ${nearTie ? `<p class="assess-alt">It could also be <b>${esc(second.name)}</b> — you can switch on the next screen.</p>` : ''}
-              <div class="assess-actions"><button class="assess-go2 primary" data-go="${rc.id}">See your protocol →</button><button class="assess-switch" data-switch>Show me the other causes</button></div>
+              <div class="assess-actions"><button class="assess-go2 primary" data-go="${rc.id}">Review this protocol →</button><button class="assess-switch" data-switch>Compare the other reasons</button></div>
               <p class="assess-disclaimer">${esc(A.notMedicalAdvice || 'Educational self-check, not a diagnosis.')}</p></div>`;
         }
         const go = box.querySelector('[data-go]'); if (go) go.onclick = () => { closeModal(); navigate('/protocol/' + p.id + '/' + go.dataset.go); };
@@ -1451,7 +1473,7 @@
         <div class="intake-head">
           <span class="kicker">${p.kind === 'want' ? 'Reach a goal' : 'Fix a problem'} · ${esc(p.category)}</span>
           <h2>${p.icon} ${esc(p.name)}</h2>
-          <p>Which sounds most like you? Pick the closest — it just points your protocol at ${p.kind === 'want' ? 'the <b>right lever</b>' : 'the <b>root cause</b>'}, and you can switch anytime.</p>
+          <p>Which sounds most like you? Pick the closest possible reason. This narrows what to read next; it is not a diagnosis, and you can switch at any time.</p>
         </div>
         <div class="intake-opts">${opts}</div>
         <button class="intake-skip" data-rc="${p.root_causes[0].id}">Not sure — show me the most common one</button>
@@ -1678,7 +1700,7 @@
       // intercepted click would land on notFound().
       out.innerHTML = list.map((p, i) => `<a class="funnel-hit" href="/problem/${p.id}" data-native data-pid="${p.id}" data-i="${i}">
         <span class="fh-i">${p.icon}</span>
-        <span class="fh-b"><b>${esc(p.name)}</b><small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}${p.causeCount ? ` · ${p.causeCount} possible cause${p.causeCount === 1 ? '' : 's'}` : ''}</small></span></a>`).join('');
+        <span class="fh-b"><b>${esc(p.name)}</b><small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}${p.causeCount ? ` · ${p.causeCount} possible reason${p.causeCount === 1 ? '' : 's'}` : ''}</small></span></a>`).join('');
       out.hidden = false;
     };
     // CTA #1 NOW GOES WHERE THE FUNNEL GOES (W2.5b, 2026-08-01).
@@ -2300,7 +2322,7 @@
       const cards = rc.filter(Boolean);
       const banner = bioBanner(b);
       if (!banner && !cards.length) return '';
-      return `<section class="bio-section" id="sec-bio"><div class="bio-head"><h2>🛡️ Using it safely — what to know</h2><p class="bio-sub">This is a ${rx ? 'prescription medicine' : 'compound not approved for human use'}. The notes below are educational, not medical advice — always follow a qualified professional.</p></div>${banner}<div class="bio-cards">${cards.join('')}</div></section>`;
+      return `<section class="bio-section" id="sec-bio"><div class="bio-head"><h2>${rx ? '🛡️ Using it safely — what to know' : '⛔ Why this is not for self-use'}</h2><p class="bio-sub">${rx ? 'This is a prescription medicine. The notes below are educational, not medical advice — always follow a qualified professional.' : 'This compound is not approved for human use. The notes below explain the documented harms; they are not instructions for taking it.'}</p></div>${banner}<div class="bio-cards">${cards.join('')}</div></section>`;
     }
     const cards = [];
     if (b.form) cards.push(bioCard('💊', 'Form & bioavailability', [
@@ -2402,7 +2424,7 @@
     const chapterDefs = [
       { n: 1, icon: '🌱', label: 'Start here', html: ch1, check: 'start' }, { n: 2, icon: '⚙️', label: 'How it works', html: ch2, check: 'how' },
       { n: 3, icon: _tui.icon, label: _tui.label, html: ch3, check: 'use' },
-      { n: 7, icon: _bioAccess ? '🛡️' : '🎯', label: _bioAccess ? 'Using it safely' : 'Dial it in', html: chBio },
+      { n: 7, icon: _bioAccess ? (c.bio.access === 'unapproved' ? '⛔' : '🛡️') : '🎯', label: _bioAccess ? (c.bio.access === 'unapproved' ? 'Why not to use it' : 'Using it safely') : 'Dial it in', html: chBio },
       { n: 4, icon: '📊', label: 'The evidence', html: ch4, check: 'evidence' },
       { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 }, { n: 6, icon: '🎓', label: 'Prove it', html: ch6 },
     ].filter(ch => ch.html && ch.html.trim());
@@ -3330,7 +3352,7 @@
     setTimeout(bindStack, 0);
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Stack Builder' }])}
       <h1>Stack Builder</h1>
-      <p style="color:var(--muted)">Add compounds from any page (the <b>+ Add to stack</b> button), or below. See combined goal coverage, the pathways you're hitting, and shared targets. Your stack saves locally and is shareable by link.</p>
+      <p style="color:var(--muted)">Add compounds from any page (the <b>+ Add to stack</b> button), or below. See combined goal coverage, the pathways you're hitting, and shared targets. Your stack stays on this device.</p>
       <p class="st-entry">A stack is a list of compounds. <a href="#/studio">The Protocol Studio</a> builds the whole thing — movements, Singapore foods and daily tools alongside the compounds — checks every pairing as you assemble it, and works with no account.</p>
       ${/* The dropdown listed all 171 compounds as equals, so Adderall, EPO, Trenbolone and insulin
             were each one keystroke from a person's daily list. D-19 (2026-08-11): all 171 are still
@@ -3342,8 +3364,6 @@
       <div class="toolbar"><select id="stack-add" class="stack-select"><option value="">+ Add a compound…</option>
         <optgroup label="You can add these">${D.compounds.filter(isConsumerCpd).sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</optgroup>
         <optgroup label="Prescription, controlled or not approved — open the page to read about them">${D.compounds.filter(c => !isConsumerCpd(c)).sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}" disabled>${c.name} — ${esc((c.supply || {}).tag || 'needs a doctor')}</option>`).join('')}</optgroup></select>
-      <button id="stack-share" class="chip">🔗 Share link</button>
-      <button id="stack-wrapped" class="chip">📊 Share as image</button>
       <button id="stack-clear" class="chip">Clear</button></div>
       <div id="stack-out"></div>
       <div id="popular-forks"></div>`;
@@ -3361,16 +3381,6 @@
     const add = document.getElementById('stack-add');
     if (add) add.onchange = () => { if (add.value) { const s = getStack(); if (!s.includes(add.value)) { s.push(add.value); setStack(s); } add.value = ''; renderStack(); } };
     mountPopularForks();
-    const wrapped = document.getElementById('stack-wrapped');
-    if (wrapped) wrapped.onclick = () => { if (!getStack().length) { alert('Add a compound to your stack first.'); return; } openWrapped(); };
-    const share = document.getElementById('stack-share');
-    if (share) share.onclick = async () => {
-      if (!getStack().length) { alert('Add a compound to your stack first.'); return; }
-      const url = location.origin + location.pathname + '#/stack?ids=' + getStack().join(',');
-      const text = 'My supplement stack on RNAwiki — see the goals, pathways and overlaps it covers.';
-      try { if (navigator.share) await navigator.share({ title: 'My RNAwiki stack', text, url }); else { await navigator.clipboard.writeText(url); share.textContent = '✓ Copied'; setTimeout(() => share.textContent = '🔗 Share my stack', 1500); } } catch (e) {}
-      if (ME) api.rep('share');
-    };
     const clr = document.getElementById('stack-clear');
     if (clr) clr.onclick = () => { setStack([]); renderStack(); };
     renderStack();
@@ -3531,8 +3541,11 @@
     //     844px screen — 209px BELOW the fold — while the green tick sat at y=486, inside it. The
     //     reassurance was visible and the warning was not. Overlap now renders inside this panel,
     //     directly under the verdict, and forces the verdict off green.
-    const covered = IXN.covered(list);
-    const uncovered = list.filter(c => covered.indexOf(c) < 0);
+    // Safety coverage belongs to exact pairs. Two compounds that are individually reachable by
+    // unrelated rules are not a checked combination (caffeine + magnesium was the concrete false
+    // green state). pairCoverage() counts only a rule row that names both members of a pair.
+    const pairCov = IXN.pairCoverage(list);
+    const unknownPairs = pairCov.pairs.filter(p => !p.covered);
     // Pathway overlap is computed HERE, not passed in. It used to arrive only from renderStack()
     // below, which is why it forced the verdict off green on /stack and nowhere else: hydrated at
     // 390x844, /stack?ids=c13,c116 rendered "🔻 Overlapping pathways · Nitric oxide / cGMP" while
@@ -3546,17 +3559,17 @@
         .map(i => ({ label: D.pathways[i].shortLabel, n: paths[i].length }));
     })();
     const nReview = r.flags.length + (overlaps.length ? 1 : 0);
-    // True exactly when the verdict below takes its ❔ branch: nothing dangerous, nothing to
-    // review, and fewer than two of these compounds are checkable at all. Kept in step with the
-    // ternary by construction — if that ternary changes, this line changes with it.
-    const notEnough = !nDanger && !nReview && covered.length < 2;
+    const unknownSuffix = pairCov.unknown
+      ? ` · ${pairCov.unknown} exact pair${pairCov.unknown === 1 ? '' : 's'} still unknown`
+      : '';
     const parts = [];
     parts.push(nDanger
-      ? `<span class="ixn-verdict bad">☠️ ${dangerSays} — read below</span>`
-      : (nReview ? `<span class="ixn-verdict warn">⚠️ ${nReview} thing${nReview > 1 ? 's' : ''} to review</span>`
-        : (covered.length < 2
-          ? `<span class="ixn-verdict warn">❔ Not enough to check — I have interaction pharmacology for ${covered.length} of these ${list.length}</span>`
-          : `<span class="ixn-verdict ok">✅ Nothing flagged between the ${covered.length} of ${list.length} I have pharmacology for</span>`)));
+      ? `<span class="ixn-verdict bad">☠️ ${dangerSays} — read below${unknownSuffix}</span>`
+      : (nReview
+        ? `<span class="ixn-verdict warn">⚠️ ${nReview} known item${nReview > 1 ? 's' : ''} to review${unknownSuffix}</span>`
+        : (pairCov.total === 0
+          ? '<span class="ixn-verdict">Only one compound here, so there is no pairing to check.</span>'
+          : `<span class="ixn-verdict warn">❔ No authored guidance for these ${pairCov.total} exact pair${pairCov.total === 1 ? '' : 's'} — unknown, not safe</span>`)));
     // W3.5 (2026-08-02): this is a VERDICT chip — same shape, same row, same weight as the ✅/⚠️/☠️
     // chip beside it. In the ❔ state it puts a green tick next to an explicit statement that
     // nothing could be checked. MEASURED hydrated: /stack?ids=c0,c12 (Creatine + Beta-Alanine)
@@ -3565,7 +3578,6 @@
     // 390x844 (y=486 / y=538), both above the fold. The synergy is authored data and stays — it
     // still renders as an .ixn good ROW below, where it reads as information rather than as a
     // clearance. What goes is the chip that reads as a second verdict.
-    if (r.synergies.length && !notEnough) parts.push(`<span class="ixn-verdict good">✅ ${r.synergies.length} good pairing${r.synergies.length > 1 ? 's' : ''}</span>`);
     const lap = overlaps.length ? `<div class="ixn blunt">
         <div class="ixn-h">🔻 <b>Overlapping pathways</b> <span class="ixn-who">${overlaps.map(o => esc(o.label)).join(' · ')}</span></div>
         <p class="ixn-why">Two or more of these push the same pathway: ${overlaps.map(o => `${esc(o.label)} ×${o.n}`).join(', ')}. That can mean synergy — or the same effect delivered twice, which is how side-effects add up without the dose on the label going up.</p>
@@ -3575,7 +3587,7 @@
         <p class="ixn-why">${esc(f.why)}</p>
         <p class="ixn-act"><b>What to do:</b> ${esc(f.action)}${f.pathway ? ` · <a href="#${f.pathway}">the biology →</a>` : ''}</p></div>`).join('');
     const syn = r.synergies.map(s => `<div class="ixn good">
-        <div class="ixn-h">✅ <b>${esc(s.title)}</b> — works well together</div>
+        <div class="ixn-h">ℹ️ <b>${esc(s.title)}</b> — complementary rationale</div>
         <p class="ixn-why">${esc(s.why)}</p></div>`).join('');
     // ---- THE PANEL DECLARES ITS OWN VERDICT (2026-08-11, P0-S7) -------------------------------
     // `data-verdict` exists so a surface that WRAPS this panel can tell how bad it is without
@@ -3585,12 +3597,14 @@
     // do better, because the severity lived only inside this string.
     // A second copy of the verdict is exactly what W3.5 removed from five surfaces; this is one
     // attribute set at the point the verdict is decided, and read as an attribute.
-    const verdictTier = nDanger ? 'bad' : (nReview ? 'warn' : (notEnough ? 'unknown' : 'ok'));
+    const verdictTier = nDanger ? 'bad' : (nReview ? 'warn' : (pairCov.total === 0 ? 'single' : 'unknown'));
+    const unknownNames = unknownPairs.slice(0, 3).map(p => p.names.map(esc).join(' + '));
+    const unknownMore = unknownPairs.length > 3 ? ` and ${unknownPairs.length - 3} more` : '';
     return `<div class="ixn-panel" data-verdict="${verdictTier}">
       <div class="ixn-top"><b>Interaction check</b> ${parts.join(' ')}</div>
       ${rows}${lap}${syn}
-      ${uncovered.length ? `<p class="ixn-foot ixn-gap">❔ I hold no interaction pharmacology for ${uncovered.map(c => esc(c.name)).join(', ')} — nothing flagged against ${uncovered.length > 1 ? 'those' : 'that'} is an absence of data, not a clearance.</p>` : ''}
-      <p class="ixn-foot">Educational signal from known pharmacology — not a safety clearance. Confirm anything you're unsure of with a pharmacist or doctor.</p>
+      ${unknownPairs.length ? `<p class="ixn-foot ixn-gap">❔ No authored combination rule covers ${unknownNames.join('; ')}${unknownMore}. No warning for an unknown pair is not a clearance.</p>` : ''}
+      ${pairCov.total ? `<p class="ixn-foot">Narrow authored guidance covers ${pairCov.authored} of ${pairCov.total} exact pair${pairCov.total === 1 ? '' : 's'}. This is not a broad safety clearance. Confirm the full combination with a pharmacist or doctor.</p>` : ''}
     </div>`;
   }
 
@@ -4820,7 +4834,44 @@
     return [...new Set(String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').split(' ')
       .filter(t => t.length >= 3 && stop.indexOf(t) < 0))].slice(0, 8);
   }
+  // Safety-sensitive searches never fall through to fuzzy topic matching. A query such as
+  // "chest pain" used to inherit the generic word "pain" and return knee, back and ankle cards.
+  // That is not merely a poor result: it is an unsafe invitation to self-manage. Keep this small,
+  // explicit route ahead of ranking; the server carries the same patterns for no-JS readers.
+  function solveGuidance(q) {
+    const s = String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').replace(/\s+/g, ' ').trim();
+    if (!s) return null;
+    const urgent = [
+      /\bchest ?pains?\b/, /\bchest (pressure|tightness|discomfort)\b/, /\b(my )?chest (hurts?|aches?|is tight)\b/,
+      /\b(pain|ache|pressure|tightness|discomfort) (in|across) (my |the )?chest\b/, /\bheart attack\b/, /\bstroke\b/,
+      /\bface droop\b/, /\bone sided (weakness|numbness)\b/, /\b(weakness|numbness) (on|down) (my |the )?(left|right|one) side\b/,
+      /\bthunderclap headache\b/, /\b(sudden|new) (slurred speech|speech difficulty|confusion|one sided weakness)\b/,
+      /\b(cannot|can't|cant|can not|unable to) breathe\b/, /\b(cannot|can't|cant|can not|unable to) catch (my )?breath\b/,
+      /\b(trouble|difficulty|hard|struggl\w*) (to )?breath(e|ing)\b/, /\bshortness of breath\b/, /\bbreathless\b/, /\banaphyla\w*\b/,
+      /\boverdose\b/, /\bpoison(ed|ing)?\b/,
+      /\b(unconscious|unresponsive|passed out|fainted|fainting)\b/, /\bseizures?\b/, /\bsevere bleeding\b/,
+      /\bsuicid\w*\b/, /\bsuicdal\b/, /\bself harm\w*\b/, /\bself injur\w*\b/, /\b(kill\w*|hurt\w*) myself\b/,
+      /\b(want to die|end my life|take my own life|don't want to live|dont want to live|better off dead|no reason to live)\b/,
+    ];
+    if (urgent.some(re => re.test(s))) return 'urgent';
+    const review = [
+      /\b(pregnan\w*|pregn\w*|pregant|pregancy|pregnacy|pregnet|pregnent|pregenan\w*|pregrant)\b/,
+      /\bbreast ?feed\w*\b/, /\b(infant|child|children|teenager|under 18)\b/,
+      /\b(warfarin|anticoagulant|blood thinner|lithium|digoxin)\b/,
+      /\b(drug|medicine|medication) interaction\b/, /\bcombine (my )?(drugs|medicines|medications)\b/,
+      /\bcombine (a |my )?(supplement|compound)s? with (a |my )?(drug|medicine|medication)s?\b/,
+    ];
+    if (review.some(re => re.test(s))) return 'professional_review';
+    const interactionIntent = /\b(take|taking|use|using|mix|mixing|combine|combining|stack|stacking|pair|pairing)\b(?:\s+[a-z0-9']+){1,10}\s+\b(with|and|plus|alongside|together with)\b(?:\s+[a-z0-9']+){1,10}\b/;
+    const namedMedicine = /\b(warfarin|coumadin|sertraline|zoloft|fluoxetine|prozac|escitalopram|lexapro|lithium|digoxin|metformin|semaglutide|ozempic|wegovy|tirzepatide|mounjaro|insulin|levothyroxine|ibuprofen|naproxen|aspirin|paracetamol|acetaminophen|statins?|atorvastatin|antidepressants?|antibiotics?|birth control|ephedrine)\b/;
+    const namedSupplement = /\b(creatine|magnesium|zinc|melatonin|ashwagandha|berberine|turmeric|curcumin|caffeine|fish oil|omega ?3|vitamin ?[a-k]|multivitamin|st john'?s wort|protein powder|supplements?|herbals?|herbs?)\b/;
+    const joiningWord = /\b(with|and|plus|alongside|together with)\b/;
+    return interactionIntent.test(s) || (namedMedicine.test(s) && namedSupplement.test(s) && joiningWord.test(s))
+      ? 'professional_review'
+      : null;
+  }
   function rankProblems(q) {
+    if (solveGuidance(q)) return [];
     const T = solveTokens(q);
     if (!T.length) return [];
     const nq = ' ' + String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').replace(/\s+/g, ' ').trim() + ' ';
@@ -4851,7 +4902,7 @@
     }).filter(x => x.s > 0).sort((a, b) => b.s - a.s || (a.p.solveName || '').length - (b.p.solveName || '').length);
     if (!sc.length) return [];
     const cut = sc[0].s * 0.34;   // relative, so one strong hit suppresses a weak tail
-    return sc.filter(x => x.s >= cut).slice(0, 6);
+    return sc.filter(x => x.s >= cut).slice(0, 3);
   }
 
   // ---------- Solve / intake ----------
@@ -4864,8 +4915,8 @@
   //   Sequencing — a protocol answers "what do I do about cause X"; it cannot answer "which cause
   //         do I have". 31 of 41 problems describe 4-7 causes and ship exactly ONE protocol, so
   //         sending a reader straight to a protocol silently picks their diagnosis for them.
-  // So the PRIMARY destination of a card is /problem/{id} -- the differential. The root causes are
-  // still one click away as chips, under a label that states the precondition they assume.
+  // So the ONLY destination of a card is /problem/{id} -- the assessment. A direct protocol chip
+  // skipped that assessment and asked a newcomer to identify a clinical contributor unaided.
   //
   // data-native on the /problem link is LOAD-BEARING, not decoration. /problem is in
   // KEEP_PRERENDERED, so route() returns the KEEP sentinel and never writes #app. Measured: an
@@ -4873,70 +4924,69 @@
   // /problem/knee-pain while #app still holds the solve page. With data-native the browser
   // navigates and the real /problem document loads.
   function solveCard(p, hit) {
-    // Counts are computed from the shipped data at render time. Never hard-code either number:
-    // they are the honest statement of the gap between 224 authored causes and 52 protocols.
+    // The count comes from the authored educational differential, not the number of protocol rows.
+    // A single protocol row can still describe several possible contributors.
     const nc = ((p.why && p.why.causes) || []).length;
-    const nr = p.root_causes.length;
-    const chips = p.root_causes.map(rc =>
-      `<a class="s-rc" href="/protocol/${p.id}/${rc.id}">${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a>`).join('');
     return `<div class="solve-card${hit ? ' is-hit' : ''}" data-kind="${p.kind}" data-pid="${p.id}">
       <a class="s-main" href="/problem/${p.id}" data-native>
         <span class="s-ico" aria-hidden="true">${p.icon || '•'}</span>
         <span class="s-body"><b>${esc(p.name)}</b>
           <small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}</small>
-          <span class="s-diff">${nc} possible cause${nc === 1 ? '' : 's'} · ${nr} with a protocol</span>
-          <span class="s-go">See which one fits you →</span></span></a>
-      <div class="s-rcs"><span class="s-rcs-k">Already know the cause?</span>${chips}</div>
+          <span class="s-diff">${nc} possible reason${nc === 1 ? '' : 's'}</span>
+          <span class="s-go">Compare the reasons →</span></span></a>
     </div>`;
   }
-  function solveQPanel(q, hits) {
+  function solveQPanel(q, hits, guidance) {
     if (!q) return '';
     const t = esc(q);
     const n = GRAPH.problems.length;
+    if (guidance === 'urgent') return `<section class="q-panel q-guidance q-urgent" id="q-urgent" data-on role="alert">
+      <div class="kicker">Do not use a protocol for this</div><h2>Get urgent help now</h2>
+      <p>Some words in this search can describe an emergency. Stop here and contact your local emergency service now. If you may hurt yourself, move away from anything you could use and contact emergency or crisis support now. Do not wait for an online answer.</p></section>`;
+    if (guidance === 'professional_review') return `<section class="q-panel q-guidance q-review" id="q-review" data-on>
+      <div class="kicker">Extra care needed</div><h2>Ask a clinician or pharmacist first</h2>
+      <p>This search may involve pregnancy, a child, or medicine interactions. RNAwiki will not approximate a self-care protocol. Bring the exact products and medicines to a qualified professional.</p></section>`;
     if (!hits.length) {
       return `<section class="q-panel q-empty" id="q-hits" data-on>
         <h2>Nothing here matches “${t}”</h2>
-        <p>RNAwiki covers ${n} problems and goals. Yours is not one of them yet. Tell me what it is and it goes on the list of what to build next — or point to where it hurts and work back from the body.</p>
+        <p>RNAwiki covers ${n} problems and goals. Yours is not one of them yet. Show where it hurts, browse the full directory, or request it.</p>
         <p class="q-acts"><button class="cta-primary" id="q-req">Request “${t}”</button>
-        <a class="q-alt" href="#/where">🧍 Point to where it hurts →</a></p>
-        <p class="q-all"><a href="#solve-all">Or read all ${n} below ↓</a></p></section>`;
+        <a class="q-alt" href="#/where">Show me on the body →</a></p>
+        <p class="q-all"><a href="#solve-directory">Browse all ${n} topics ↓</a></p></section>`;
     }
     const strong = hits[0].s >= 18;   // matched the problem's NAME, not just its body text
     return `<section class="q-panel" id="q-hits" data-on>
       <h2>${strong ? `Closest match for “${t}”` : `Nothing is named “${t}” — these mention it`}</h2>
       <div class="solve-grid q-list">${hits.map(h => solveCard(h.p, true)).join('')}</div>
-      <p class="q-all"><a href="#solve-all">Not it? All ${n} problems and goals ↓</a></p></section>`;
+      <p class="q-all"><a href="#solve-directory">Not it? Browse all ${n} topics ↓</a></p></section>`;
   }
   function solvePage(q) {
     q = String(q || '').slice(0, 120);
     const cats = GRAPH.categories;
+    const guidance = solveGuidance(q);
     const hits = rankProblems(q);
-    const filterBtns = `<div class="solve-filter" id="solve-filter">
-        <button data-k="all" class="on">All</button>
-        <button data-k="need">Fix a problem</button>
-        <button data-k="want">Reach a goal</button>
-      </div>`;
     const sections = cats.map(cat => {
       const ps = GRAPH.problems.filter(p => p.category === cat);
       return `<div class="solve-section"><h2>${esc(cat)}</h2><div class="solve-grid">${ps.map(p => solveCard(p, false)).join('')}</div></div>`;
     }).join('');
-    return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Solve' }])}
+    return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Find' }])}
       <section class="solve-hero">
-        <div class="kicker">Protocol engine</div>
-        <h1>Stop guessing. Start solving.</h1>
-        <p>Name the problem you want to fix or the goal you want to reach. You get the likely causes first — because the same symptom has different causes and they need different fixes — then one protocol for the cause you pick: the <b class="mv">movement</b> to fix it, the <b class="fl">food</b> to fuel it, and the evidence-ranked <b class="st">compounds</b> to support it.</p>
+        <div class="kicker">Find your next step</div>
+        <h1>What do you want help with?</h1>
+        <p>Search a symptom or goal. Compare possible reasons, check what matters first, then review the relevant protocol. This is a reading aid, not a diagnosis.</p>
         <form class="solve-q" action="/solve" method="get" role="search">
           <label class="sr-only" for="solve-q">Describe the problem or goal in your own words</label>
           <input id="solve-q" name="q" type="search" value="${esc(q)}" autocomplete="off" spellcheck="false"
-                 placeholder="In your own words — “sore knee going downstairs”">
-          <button class="cta-primary" type="submit">Find it →</button>
+                 placeholder="e.g. knee pain on stairs">
+          <button class="cta-primary" type="submit">Find</button>
         </form>
-        <p class="where-cta"><a href="#/where">🧍 Not sure what it's called? <b>Point to where it hurts →</b></a></p>
+        <p class="where-cta"><a href="#/where">Not sure what it is called? <b>Show me on the body →</b></a></p>
       </section>
-      ${solveQPanel(q, hits)}
-      <h2 class="solve-all-h" id="solve-all">All ${GRAPH.problems.length} problems and goals</h2>
-      ${filterBtns}
-      <div id="solve-list">${sections}</div>
+      ${solveQPanel(q, hits, guidance)}
+      <details class="solve-directory" id="solve-directory">
+        <summary><span><b>Browse all ${GRAPH.problems.length} topics</b><small>Problems and goals, grouped by area</small></span><span class="solve-directory-mark" aria-hidden="true">+</span></summary>
+        <div class="solve-directory-body"><div id="solve-list">${sections}</div></div>
+      </details>
       <div class="request-cta">
         <div><b>Don’t see your problem or goal?</b> <span>Tell me, and it goes on the list of what to build next.</span></div>
         <button class="cta-primary" id="req-proto">Request a protocol →</button>
@@ -5126,24 +5176,14 @@
       qin.addEventListener('input', () => { clearTimeout(t); t = setTimeout(() => applyQ(qin.value, false), 220); });
     }
 
-    // ONE hide mechanism. The old code juggled style.display, then read `!== 'none'` back off it to
-    // decide whether a section was empty -- which is false for a card the kind filter had just RESET
-    // to ''. A class plus `display:none!important` in styles.css also survives .solve-card's own
-    // display rule, which a bare [hidden] attribute would not.
-    const f = document.getElementById('solve-filter'); if (!f) return;
-    f.querySelectorAll('button').forEach(b => b.onclick = () => {
-      f.querySelectorAll('button').forEach(x => x.classList.remove('on')); b.classList.add('on');
-      const k = b.dataset.k;
-      document.querySelectorAll('#solve-list .solve-card').forEach(c => c.classList.toggle('is-off', !(k === 'all' || c.dataset.kind === k)));
-      document.querySelectorAll('#solve-list .solve-section').forEach(sec => {
-        sec.classList.toggle('is-off', ![...sec.querySelectorAll('.solve-card')].some(c => !c.classList.contains('is-off')));
-      });
-    });
   }
   // Re-bind only the control that a re-rendered #q-hits destroys.
   bindSolve._reqOnly = function () {
     const qreq = document.getElementById('q-req');
     if (qreq) qreq.onclick = () => openRequestModal((document.getElementById('solve-q') || {}).value || '');
+    document.querySelectorAll('a[href="#solve-directory"]').forEach((a) => {
+      a.onclick = () => { const d = document.getElementById('solve-directory'); if (d) d.open = true; };
+    });
   };
 
   // ---------- Protocol view ----------
@@ -5253,12 +5293,12 @@
   // ---------- My Plan — the personal execution page (the "kitchen") ----------
   function planLoading() { return `<div class="empty"><h1>Loading your plan…</h1></div>`; }
   function emptyPlan() {
-    return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan' }])}
+    return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Today' }])}
       <section class="plan-empty">
-        <div class="plan-empty-ico">🧪</div>
-        <h1>You haven't started a plan yet</h1>
-        <p class="hero-lead">Find your root cause, then tap <b>“Start this plan”</b> — this is where you'll pick your movements and supplements and track your food, day by day. One place, one plan.</p>
-        <a class="cta-primary" href="#/solve">Find my root cause →</a>
+        <div class="plan-empty-ico" aria-hidden="true">○</div>
+        <h1>Nothing scheduled today.</h1>
+        <p>Find a problem or goal, review what fits, then start only the plan you want to follow.</p>
+        <a class="cta-primary" href="#/solve">Find a protocol</a>
       </section>`;
   }
   // done = is this protocol's keystone done today; key = "pid/rcid"; label = protocol name (shown only when >1 protocol)
@@ -5693,14 +5733,9 @@
   // ---- Tracking: the finalised protocol — selected items + Fuel (revealed here only) ----
   // Share a self-built protocol (used by the discreet button + the completion popup)
   async function sharePlan(problem, rc) {
-    const pl = getPlan();
-    let url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id;
-    // Share the exact built selections so a client gets THIS plan (mints a share code)
-    const entry = planProtocols(pl).find(x => x.pid === problem.id && x.rcid === rc.id);
-    if (entry) {
-      try { const r = await api.sharePlan(problem.id, rc.id, { moves: entry.moves, supps: entry.supps, functions: entry.functions }); if (r && r.url) url = r.url; } catch (e) {}
-    }
-    const txt = 'I built a ' + problem.name + ' protocol on RNAwiki 💪 — here it is, ready to use:';
+    if (!featureOn('sharedPlans')) return;
+    const url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id;
+    const txt = 'Read the ' + problem.name + ' protocol on RNAwiki:';
     if (navigator.share) navigator.share({ title: 'RNAwiki', text: txt, url }).catch(() => {});
     else { if (navigator.clipboard) navigator.clipboard.writeText(txt + ' ' + url); if (typeof toast === 'function') toast('Link copied — send it to anyone 🔗'); }
   }
@@ -5757,15 +5792,13 @@
   }
 
   // ===== Outcome-data moat: consent + profile + PDPA data rights =====
-  const CONSENT_NOTICE_VERSION = 'v1-2026-07';
+  const CONSENT_NOTICE_VERSION = 'v2-2026-08-explicit';
   const AGE_OPTS = [['18-24', '18–24'], ['25-34', '25–34'], ['35-44', '35–44'], ['45-54', '45–54'], ['55-64', '55–64'], ['65+', '65+']];
   const SEX_OPTS = [['male', 'Male'], ['female', 'Female'], ['other', 'Other'], ['prefer_not', 'Prefer not to say']];
   const ETH_OPTS = [['chinese', 'Chinese'], ['malay', 'Malay'], ['indian', 'Indian'], ['other', 'Other'], ['prefer_not', 'Prefer not to say']];
   const COND_OPTS = [['diabetes', 'Diabetes / pre-diabetes'], ['hypertension', 'High blood pressure'], ['high_cholesterol', 'High cholesterol'], ['pcos', 'PCOS'], ['thyroid', 'Thyroid condition'], ['heart', 'Heart condition'], ['autoimmune', 'Autoimmune condition'], ['none', 'None of these']];
-  let CONSENT = null; // null unknown · true tracked (default) · false explicitly withdrawn
-  // Tracking is ON by default (users can withdraw/delete anytime via "Your data"). Only an explicit withdrawal turns it off.
-  async function loadConsent() { if (!ME) { CONSENT = null; return; } try { const d = await api.getConsent(); CONSENT = (d && d.consent && d.consent.consent_research === false) ? false : true; } catch (e) { CONSENT = true; } }
-   // no opt-in card — capture by default; withdrawal lives in "Your data"
+  let CONSENT = null; // null means no explicit choice; only an affirmative current record is true
+  async function loadConsent() { if (!ME) { CONSENT = null; return; } try { const d = await api.getConsent(); CONSENT = !!(d && d.collectionEnabled && d.consent && d.consent.consent_research === true); } catch (e) { CONSENT = null; } }
   function wireConsentCard() {
     const a = document.getElementById('consent-open'); if (a) a.onclick = openConsentModal;
     const b = document.getElementById('consent-skip'); if (b) b.onclick = () => { localStorage.setItem('rnawiki_consent_dismiss', '1'); const c = document.querySelector('.consent-card'); if (c) c.remove(); };
@@ -5800,9 +5833,13 @@
   }
   function openDataModal() {
     const hrs = []; for (let h = 5; h <= 22; h++) { const lbl = h === 12 ? '12 pm' : h < 12 ? h + ' am' : (h - 12) + ' pm'; hrs.push(`<option value="${h}">${lbl}</option>`); }
+    const googleLink = CFG.googleClientId && ME && !ME.google_sub
+      ? `<div class="dm-remind" id="md-google"><b>Google sign-in</b><p class="muted" id="md-google-hint">Link Google only after signing in to this account. Matching email addresses are never linked automatically.</p><div id="md-google-button"></div></div>`
+      : '';
     const m = modal(`<button class="modal-x" data-close aria-label="Close">×</button>
       <h2>Your data & privacy</h2>
       <p class="muted">You're in control. Everything is anonymised in aggregate; here's your own copy.</p>
+      ${googleLink}
       <div class="dm-remind" id="md-remind" style="display:none">
         <label class="dm-rem-top"><input type="checkbox" id="md-rem-on"> 📧 <b>Email me my daily plan reminder</b></label>
         <div class="dm-rem-when" id="md-rem-when" style="display:none">Send it at <select id="md-rem-hr" class="pf-in">${hrs.join('')}</select> <span class="muted">your time</span></div>
@@ -5813,7 +5850,9 @@
         <button class="cta-ghost" id="md-export">⤓ Export my data (JSON)</button>
         <button class="cta-ghost" id="md-profile">✎ Edit my profile</button>
         <button class="cta-ghost danger" id="md-delete">🗑 Delete my research data</button>
+        <button class="cta-ghost danger" id="md-delete-account">Delete my account</button>
       </div>`);
+    if (googleLink) mountGoogleLinkButton(m.querySelector('#md-google-button'), m.querySelector('#md-google-hint'));
     // daily-reminder opt-in (only shown to signed-in users with an email on file)
     (async () => {
       const st = await api.getEmailReminders(); if (!st) return;
@@ -5835,7 +5874,8 @@
     m.querySelector('[data-close]').onclick = closeModal;
     m.querySelector('#md-profile').onclick = () => { closeModal(); openProfileModal(); };
     m.querySelector('#md-export').onclick = async () => { try { const d = await api.exportMyData(); const blob = new Blob([JSON.stringify(d, null, 2)], { type: 'application/json' }); const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'rnawiki-my-data.json'; a.click(); } catch (e) { alert(e.message); } };
-    m.querySelector('#md-delete').onclick = async () => { if (!confirm('Delete your research data (check-ins, markers, wearables, profile) and withdraw consent? Your account and tracker stay.')) return; try { await api.deleteMyData(); CONSENT = false; closeModal(); if (typeof toast === 'function') toast('Deleted — consent withdrawn'); } catch (e) { alert(e.message); } };
+    m.querySelector('#md-delete').onclick = async () => { if (!confirm('Delete your research data (personal observations, check-ins, markers, wearables and profile) and withdraw consent? Your account and tracker stay.')) return; try { await api.deleteMyData(); CONSENT = false; closeModal(); if (typeof toast === 'function') toast('Deleted — consent withdrawn'); } catch (e) { alert(e.message); } };
+    m.querySelector('#md-delete-account').onclick = async () => { if (!confirm('Permanently delete your RNAwiki account and withdraw your published protocols? This cannot be undone.')) return; try { await api.deleteAccount(); ME = null; CONSENT = null; closeModal(); renderAccount(); route(); } catch (e) { alert(e.message); } };
   }
   const MARKERS = [['hba1c', 'HbA1c', '%'], ['fasting_glucose', 'Fasting glucose', 'mmol/L'], ['ldl', 'LDL cholesterol', 'mmol/L'], ['hdl', 'HDL cholesterol', 'mmol/L'], ['triglycerides', 'Triglycerides', 'mmol/L'], ['total_chol', 'Total cholesterol', 'mmol/L'], ['bp_sys', 'Blood pressure (systolic)', 'mmHg'], ['bp_dia', 'Blood pressure (diastolic)', 'mmHg'], ['testosterone', 'Testosterone', 'nmol/L'], ['shbg', 'SHBG', 'nmol/L'], ['tsh', 'TSH', 'mIU/L'], ['ft4', 'Free T4', 'pmol/L'], ['ferritin', 'Ferritin', 'µg/L'], ['crp', 'CRP', 'mg/L'], ['vit_d', 'Vitamin D', 'nmol/L'], ['apob', 'ApoB', 'g/L'], ['lpa', 'Lipoprotein(a)', 'nmol/L'], ['fasting_insulin', 'Fasting insulin', 'mIU/L'], ['homa_ir', 'HOMA-IR', ''], ['estradiol', 'Estradiol', 'pmol/L'], ['dhea_s', 'DHEA-S', 'µmol/L'], ['uric_acid', 'Uric acid', 'µmol/L'], ['alt', 'ALT (liver)', 'U/L'], ['egfr', 'eGFR (kidney)', 'mL/min']];
   const MARKER_LABEL = {}, MARKER_UNIT = {}; MARKERS.forEach(m => { MARKER_LABEL[m[0]] = m[1]; MARKER_UNIT[m[0]] = m[2]; });
@@ -5953,6 +5993,7 @@
 
   // The share MOMENT — a celebratory popup shown once, right after the protocol is built
   function buildCelebrateModal(problem, rc) {
+    if (!featureOn('sharedPlans')) return;
     const m = modal(`<div class="build-celebrate">
       <div class="bc-emo">🎉</div>
       <h2>Your protocol is built.</h2>
@@ -6345,7 +6386,7 @@
     // Per-protocol manage list + "add another goal" — the merged plan's control centre
     const manage = `<section class="trk-sec trk-manage"><div class="trk-sec-h"><h2>Your protocols</h2></div>${M.resolved.map(r => `
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
-        <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button> · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button> · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
+        <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button>${featureOn('sharedPlans') ? ` · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button>` : ''} · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
       <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="health-link">🩸 Track health data</button> · <button class="linkbtn" id="mydata-link">🔒 Your data</button>' : ''}</section>`;
     // ---- WHAT MAY BE FOLDED (2026-08-11, P0-S7) ----------------------------------------------
     // This was unconditional: every interaction verdict, including ☠️, went into a <details> closed
@@ -6367,10 +6408,11 @@
         : `<div class="trk-fold trk-fold-open">${danger}</div>`;
     // Priority order: the keystone (the ONE action) is the hero, then the checklist; check-in prompt + interaction check sit below.
     const todayPanel = `${keystoneCards}
-      ${totalItems ? `<div class="trk-sec-h"><h3>Today's checklist</h3><span class="trk-prog" data-layer-prog="all">${doneItems}/${totalItems}</span></div>` : ''}
       ${restBanner}
-      ${totalItems ? `<div id="trk-today">${rows}</div>` : ''}
-      ${daysEditor}
+      ${totalItems ? `<details class="today-queue" id="trk-today">
+        <summary><span><b>${Math.max(totalItems - doneItems, 0)} more today</b><small>Movement and supplements</small></span><span class="trk-prog" data-layer-prog="all">${doneItems}/${totalItems}</span></summary>
+        <div class="today-queue-body">${rows}${daysEditor}</div>
+      </details>` : ''}
       <div id="checkin-slot"></div>
       ${ixWrap}
       ${recapCard}${missBanner}${planLedgerNoteHtml(plan)}`;
@@ -6381,10 +6423,10 @@
     if (hasFuel) T.push(['fuel', '🍽️ Fuel', fuelPanel]);
     if (M.functions.length) T.push(['tools', '🧩 Tools', toolsPanel]);
     T.push(['plan', '⚙️ Plan', planPanel]);
-    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'My Plan' }])}
-      <section class="plan-hd trk-hd"><div><div class="kicker">My Plan</div><h1>Today</h1><p class="muted">${subtitle}</p></div>
-        <div class="plan-hd-actions"><a class="cta-ghost" href="#/progress">📊 Progress</a></div></section>
-      <section class="plan-pulse"><div class="pulse-streak">🔥 <b>${streak}</b>-day streak</div>${weekStripHtml(plan, M)}</section>
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Today' }])}
+      <section class="plan-hd trk-hd"><div><div class="kicker">Today</div><h1>Your next action</h1><p class="muted">${subtitle}</p></div>
+        <div class="plan-hd-actions"><a class="cta-ghost" href="#/progress">Progress</a></div></section>
+      <section class="plan-pulse" aria-label="Consistency"><div class="pulse-streak"><b>${streak}</b> active day${streak === 1 ? '' : 's'}</div>${weekStripHtml(plan, M)}</section>
       <div class="pt-seg" id="pt-seg">${T.map((t, i) => `<button data-pt="${t[0]}" class="pt-${t[0]}${i === 0 ? ' on' : ''}">${t[1]}</button>`).join('')}</div>
       ${T.map((t, i) => `<div class="pt-panel" data-panel="${t[0]}"${i === 0 ? '' : ' hidden'}>${t[2]}</div>`).join('')}`;
     if (hasFuel) mountFuelTracker(null, null, M.fuel, M.supps);
@@ -6470,7 +6512,7 @@
     app.querySelectorAll('[data-share-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.shareProto.split('/'); const found = findRootCause(pid, rcid); if (found) sharePlan(found.problem, found.rc); });
     app.querySelectorAll('[data-remove-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.removeProto.split('/'); const found = findRootCause(pid, rcid); const nm = found ? found.problem.name : 'this protocol'; if (!confirm('Remove ' + nm + ' from your plan? Your tracking history stays.')) return; const pl = getPlan(); pl.protocols = planProtocols(pl).filter(x => !(x.pid === pid && x.rcid === rcid)); setPlan(pl); renderPlan(); });
     // The share moment — celebration popup, once, right after a protocol is built
-    if (plan.justBuilt && plan.justBuilt.pid) { const pl = getPlan(); const jb = pl.justBuilt; delete pl.justBuilt; setPlan(pl); const f = findRootCause(jb.pid, jb.rcid); if (f) buildCelebrateModal(f.problem, f.rc); }
+    if (plan.justBuilt && plan.justBuilt.pid) { const pl = getPlan(); const jb = pl.justBuilt; delete pl.justBuilt; setPlan(pl); const f = findRootCause(jb.pid, jb.rcid); if (f && featureOn('sharedPlans')) buildCelebrateModal(f.problem, f.rc); }
   }
 
   // ---- Progress: the consistency dashboard — showing up, adherence, strength & tool trends ----
@@ -6727,12 +6769,13 @@
   function safetyFirstSection(problem) {
     const pl = problem.plan || {}, s = problem.safety;
     if (!pl.reassess && !s) return '';
-    const red = pl.reassess ? `<div class="plan-card plan-reassess">
-        <h2 class="plan-ch" style="margin:0 0 .35rem">🚩 First — when this is not a self-care problem</h2>
-        ${mdBlocks(pl.reassess, mdInline)}
-        <p class="esc-note" style="margin:.6rem 0 0">If something is severe, sudden, or getting rapidly worse, do not work through a protocol — <b>call your local emergency number</b> and go to an emergency department. (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America, 112 across Europe, 000 in Australia.) For anything persistent, a family doctor or polyclinic is the right first stop.</p>
-        <p class="esc-note" style="margin:.4rem 0 0"><b>This page is information, not medical advice.</b> No clinician has reviewed it, and nothing on it is a diagnosis.</p>
-      </div>` : '';
+    const red = pl.reassess ? `<details class="plan-card plan-reassess">
+        <summary><span><b>Before you start</b><small>Who should not self-manage this</small></span><span aria-hidden="true">›</span></summary>
+        <div class="safety-detail">${mdBlocks(pl.reassess, mdInline)}
+          <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work through a protocol — <b>call your local emergency number</b> and go to an emergency department. (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America, 112 across Europe, 000 in Australia.) For anything persistent, a family doctor or polyclinic is the right first stop.</p>
+          <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has reviewed it, and nothing on it is a diagnosis.</p>
+        </div>
+      </details>` : '';
     const struct = s ? `<div class="safety-grid">
         <div class="sf-card track-metric" data-primary-metric="${esc(s.metric)}">
           <span class="sf-k">📏 The one thing to track</span>
@@ -8267,26 +8310,19 @@
       </section>
       <div id="adoption-panel" class="adopt-panel"></div>
       <div id="outcome-stat"></div>
-      ${(() => {
-        const pw = (rc.pathway_ids || []).map(i => D.pathways[i]).filter(Boolean)[0];
-        const pwI = (rc.pathway_ids || [])[0];
-        const moveN = (P.strengthen || []).length + (P.stretch || []).length;
-        const ntN = Object.keys(rc.nutrient_targets || {}).length;
-        return `<div class="proto-summary">
-          <div class="ps-cell"><span class="ps-k">🎯 Goal</span><b>${esc(problem.kind === 'want' ? 'Reach: ' + problem.name : 'Fix: ' + problem.name)}</b></div>
-          ${pw ? `<div class="ps-cell"><span class="ps-k">Mechanism</span><a href="#/pathway/${pwI}">${esc(pw.shortLabel)} pathway →</a></div>` : ''}
-          <div class="ps-cell"><span class="ps-k">This protocol</span><b>${moveN ? moveN + ' move' + (moveN !== 1 ? 's' : '') + ' · ' : ''}${P.stack.length} supplement${P.stack.length !== 1 ? 's' : ''}${ntN ? ' · ' + ntN + ' food target' + (ntN !== 1 ? 's' : '') : ''}</b></div>
-        </div>`;
-      })()}
+      <p class="protocol-fit-link"><a href="/problem/${problem.id}" data-native>Not sure this reason fits? Check the problem first</a></p>
       ${safetyFirstSection(problem)}
       ${phase1Section(problem, rc, cohort)}
-      ${theOneThingHead(problem)}
-      ${causesSection(problem, causeIndexForRc(problem, rc), rc)}
-      ${planSection(problem)}
-      ${protocolLayers(problem, rc, P)}
-      ${stackAuditCallout()}
-      <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">▶ Start building my plan</button><span class="start-plan-note">This is Phase 2 — the full programme. Do Phase 1 first: it is one free thing for 7 days, and it is the only way to know what actually moved.</span></div>
-      ${rcSwitch}
+      <details class="protocol-full" id="protocol-full">
+        <summary><span><b>Review the full protocol</b><small>Reasoning, movement, food, supplements and sources</small></span><span aria-hidden="true">›</span></summary>
+        <div class="protocol-full-body">
+          ${theOneThingHead(problem)}
+          ${causesSection(problem, causeIndexForRc(problem, rc), rc)}
+          ${planSection(problem)}
+          ${protocolLayers(problem, rc, P)}
+          ${stackAuditCallout()}
+          <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">Start the full plan</button><span class="start-plan-note">The full programme changes several things. Try the one-action first step above before adding more.</span></div>
+          ${rcSwitch}
       ${'' /* W4/W3.6 (2026-08-02): the keystone card is SUPPRESSED on the 38 of 52 routes whose
              Phase 1 was SELECTED FROM THIS VERY KEYSTONE. MEASURED HYDRATED at 390x844, default
              DOM, 52/52: this card renders at median y 17,687 px = 94% of a median 18,939 px page,
@@ -8297,12 +8333,14 @@
              — so it renders, minus the phrase that now belongs to Phase 1. build/prerender.js
              carries the identical condition; if the two drift, the crawler and the reader
              disagree about whether the card exists, which is the D33 defect class. */}
-      ${(rc.keystone && !(rc.phase1 && rc.phase1.from === 'keystone')) ? `<div class="keystone-card">
+          ${(rc.keystone && !(rc.phase1 && rc.phase1.from === 'keystone')) ? `<div class="keystone-card">
         <div class="ks-badge">⭐ Your one keystone</div>
         <p class="ks-one">${esc(rc.keystone.one)}</p>
         <p class="ks-why">${esc(rc.keystone.why)}</p>
         <p class="ks-note">The highest-impact, lowest-effort habit for this — for after the 7 days, not instead of them.</p>
       </div>` : ''}
+        </div>
+      </details>
       ${'' /* REMOVED 2026-07-28: #community-stacks. It rendered a 232-char empty state on 42 of 52
              protocol pages, and on the other 10 it rendered SEEDED DEMO FORKS attributed to a
              fabricated "verified physiotherapist" — the FTC fake-expert surface. Those forks and
@@ -8354,6 +8392,7 @@
     const p1SkipBtn = document.getElementById('phase1-skip');
     if (p1SkipBtn) p1SkipBtn.onclick = () => {
       p1Set({ skipped: true });
+      const full = document.getElementById('protocol-full'); if (full) full.open = true;
       const d = document.getElementById('phase-2'); if (d) d.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
     const startBtn = document.getElementById('start-plan');
@@ -8665,14 +8704,13 @@
   }
   function resolveItem(it) { return it.food || foodById(it.id); }   // scanned foods carry it.food inline
 
-  // ---------- Proof-of-Progress: shareable log link + "Target crushed" card ----------
-  function encodeLog(items) { try { const c = (items || []).filter(it => it.id).map(it => [it.id, it.n]).slice(0, 25); return c.length ? btoa(unescape(encodeURIComponent(JSON.stringify(c)))) : ''; } catch (e) { return ''; } }
-  function decodeLog(str) { try { return JSON.parse(decodeURIComponent(escape(atob(str)))).map(x => ({ id: x[0], n: x[1] })); } catch (e) { return null; } }
+  // ---------- Proof-of-Progress: contained until the sharing/privacy contract is approved -------
   async function shareProgress(problem, rc) {
-    const enc = encodeLog(getFuelLog().items);
-    const handle = ME ? ME.username : '';
-    const url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id + (handle ? '?by=' + encodeURIComponent(handle) : '?s=1') + (enc ? '&log=' + encodeURIComponent(enc) : '');
-    const text = `My ${problem.name} protocol on RNAwiki — my exact stack & Singapore food log.`;
+    if (!featureOn('sharedPlans')) return;
+    // A shared URL identifies only the public protocol. It never carries a handle, food log,
+    // medicine, symptom, outcome or other health state in its query string.
+    const url = (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id;
+    const text = `A ${problem.name} protocol on RNAwiki.`;
     try { if (navigator.share) await navigator.share({ title: 'RNAwiki', text, url }); else { await navigator.clipboard.writeText(url); alert('Progress link copied — paste it in WhatsApp / Telegram.'); } } catch (e) {}
     if (ME) api.rep('share');
   }
@@ -8695,6 +8733,7 @@
     </div>`;
   }
   function openProgressCard(problem, rc, hitLabel) {
+    if (!featureOn('sharedPlans')) return;
     const m = modal(`<div class="celebrate">
       <h2>🎯 ${hitLabel ? esc(hitLabel) + ' target crushed!' : 'Nice progress!'}</h2>
       <p class="muted">Share it — premium look, one tap, no cheese.</p>
@@ -8736,6 +8775,7 @@
       <div class="wr-foot">rnawiki.com · name a problem, get the protocol</div></div>`;
   }
   function openWrapped() {
+    if (!featureOn('sharedPlans')) return;
     const m = modal(`<div class="celebrate"><h2>📊 Your stack, wrapped</h2>
       <p class="muted">A clean card of your stack — share it and look optimised.</p>
       <div class="pcard-wrap">${wrappedCardHtml()}</div>
@@ -8759,14 +8799,11 @@
   function mountSharedProgress(problem, rc) {
     const el = document.getElementById('shared-progress'); if (!el) return;
     const qp = new URLSearchParams((currentRoute().split('?')[1] || ''));
-    const logStr = qp.get('log'); const by = qp.get('by');
-    if (!logStr && !qp.get('s')) return;
-    const items = logStr ? decodeLog(logStr) : [];
-    const foods = (items || []).map(it => foodById(it.id)).filter(Boolean);
-    el.innerHTML = `<div class="shared-prog">
-      <div class="sp-l"><b>📤 ${by ? '@' + esc(by) : 'Someone'} shared their ${esc(problem.name)} progress</b>
-        <span>${foods.length ? 'Their food log: ' + foods.slice(0, 4).map(f => esc(f.name)).join(', ') + (foods.length > 4 ? '…' : '') + '. ' : ''}This is the exact protocol they followed — start yours below.</span></div>
-      <a class="cta-primary" href="#/protocol/${problem.id}/${rc.id}">Start my own →</a></div>`;
+    if (!qp.has('log') && !qp.has('by') && !qp.has('s')) return;
+    // Old pre-containment links are scrubbed on arrival. The server redirects them before this
+    // normally runs; this is the client-side backstop for cached SPA navigation.
+    history.replaceState(null, '', location.pathname + location.hash);
+    el.innerHTML = '';
   }
 
   let _fuelRerender = null;
@@ -8892,11 +8929,11 @@
         ${macroHtml}
         <div id="ai-interest-note" class="ai-interest" hidden></div>
         ${ME && log.items.length ? `<div class="fuel-foot">
-          <button id="fuel-share" class="fuel-share-btn">📸 Share ${hitGoals.length ? `— ${hitGoals.length} target${hitGoals.length > 1 ? 's' : ''} hit today 🎯` : 'my day'}</button>
+          ${featureOn('sharedPlans') ? `<button id="fuel-share" class="fuel-share-btn">Share this protocol</button>` : ''}
           <button id="fuel-reset" class="fuel-clear-btn" title="Remove everything you logged today and start over">Clear today's log</button>
         </div>` : ''}`;
       wire();
-      if (celebrate) {
+      if (celebrate && featureOn('sharedPlans')) {
         const fresh = hitGoals.find(k => !wasCelebrated(problem.id + ':' + rc.id + ':' + k));
         if (fresh) { markCelebrated(problem.id + ':' + rc.id + ':' + fresh); setTimeout(() => openProgressCard(problem, rc, NUTRIENT_LABEL[fresh] || fresh), 300); }
       }
@@ -9403,7 +9440,7 @@
     }
     if (pub.length) {
       made += '<h3 class="me-sub">Published</h3>'
-        + '<p class="muted me-why">Public at a link, listed on <a href="#/u/' + esc(ME.username) + '">your public page</a>, and kept out of Google. You can withdraw any of them.</p>'
+        + '<p class="muted me-why">Each protocol has a public link anyone with the address can open. It is kept out of Google, and you can withdraw it here.</p>'
         + pub.map((p) => '<div class="me-p"><a href="#/p/' + esc(p.code) + '"><b>' + esc(p.title) + '</b></a>'
           + '<span class="me-p-n">' + startedBy(p.clones) + '</span>'
           + '<button class="me-wd" data-withdraw="' + esc(p.code) + '">Withdraw</button></div>').join('')
@@ -9418,7 +9455,7 @@
         + drafts.map((p) => '<div class="me-p"><b>' + esc(p.title) + '</b><span class="me-p-n">Draft</span></div>').join('');
     }
     if (gone.length) {
-      made += '<h3 class="me-sub">Withdrawn</h3><p class="muted me-why">Off your public page and off Most Used. The old link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.</p>'
+      made += '<h3 class="me-sub">Withdrawn</h3><p class="muted me-why">No longer startable and off Most Used. The old link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.</p>'
         + gone.map((p) => '<div class="me-p"><b>' + esc(p.title) + '</b><span class="me-p-n">Withdrawn</span></div>').join('');
     }
     if (!made) {
@@ -9433,9 +9470,7 @@
     // nothing else. Everything above it already worked without one.
     app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Your page' }])
       + '<section class="me-hd"><div class="kicker">Your page</div><h1>What you follow, and what you built</h1>'
-      + '<p class="me-priv">🔒 This page is yours. It is not published, it is not indexed, and there is no address at which anybody else can open it.'
-      + (ME ? ' Your public page — the protocols you chose to publish, and nothing else — is <a href="#/u/' + esc(ME.username) + '">rnawiki.com/u/' + esc(ME.username) + '</a>.' : '')
-      + '</p></section>'
+      + '<p class="me-priv">🔒 This page is yours. It is not published, it is not indexed, and there is no address at which anybody else can open it. A protocol you publish gets its own public link; this account page stays private.</p></section>'
       + '<section class="me-sec"><h2>Following</h2>' + following + '</section>'
       + '<section class="me-sec"><h2>Logged</h2>' + loggedBlock + '</section>'
       + '<section class="me-sec"><h2>Built</h2>' + made + '</section>'
@@ -9447,7 +9482,7 @@
 
     app.querySelectorAll('[data-withdraw]').forEach((b) => {
       b.onclick = async () => {
-        if (!confirm('Withdraw this protocol? It comes off your public page and off Most Used. The link keeps working and says you withdrew it, because other people may have remixed it.')) return;
+        if (!confirm('Withdraw this protocol? Nobody new can start it and it comes off Most Used. The link keeps working and says you withdrew it, because other people may have remixed it.')) return;
         b.disabled = true;
         const r = await api.withdrawProtocol(b.dataset.withdraw);
         if (r && r._ok) { toast('Withdrawn'); renderMe(); } else { b.disabled = false; alert((r && r.error) || 'It was not withdrawn. Nothing changed.'); }
@@ -9488,9 +9523,10 @@
       + '<section class="st-hd">'
       + '<div class="kicker">Protocol Studio' + (ST.remixOf ? ' · remix' : '') + '</div>'
       + '<h1>Build a protocol</h1>'
-      + '<p class="st-acct">No account needed to build this, keep it, or run it — it saves on this device. <b>Publishing</b> it, so that it sits at a link anyone can open, needs one: a protocol other people read has to say who wrote it.</p>'
-      + '<label class="st-title-l" for="st-title">Name it</label>'
-      + '<input id="st-title" class="st-title" type="text" maxlength="90" value="' + esc(ST.title) + '" placeholder="e.g. My morning stack" autocomplete="off">'
+      + '<p class="st-acct">Build and run a private draft without an account. It stays on this device. To publish a page other people can open, sign in and confirm you wrote it.</p>'
+      + '<label class="st-title-l" for="st-title">Name your private draft</label>'
+      + '<input id="st-title" class="st-title" type="text" maxlength="90" value="' + esc(ST.title) + '" placeholder="e.g. My knee routine" autocomplete="off">'
+      + '<p class="st-why">When you publish, RNAwiki uses a neutral title from the reviewed problem and pattern. Your draft name stays private.</p>'
       + '</section>'
       + '<div class="st-list" id="st-list">' + (n ? ST.items.map(stRow).join('') : stEmpty()) + '</div>'
       + '<button class="st-add-open" id="st-add-open"' + (n >= ST_MAX ? ' disabled' : '') + '>＋ Add something</button>'
@@ -9589,7 +9625,7 @@
     const k = stKey(it), v = it.note || '';
     return '<div class="st-adj-b"><label class="st-adj-k" for="stn-' + esc(k) + '">Your note <span class="st-cc">' + v.length + '/240</span></label>'
       + '<textarea id="stn-' + esc(k) + '" class="st-note" data-note="' + esc(k) + '" maxlength="240" rows="2" placeholder="Why this is in your protocol">' + esc(v) + '</textarea>'
-      + '<p class="st-why">A protocol stores ids and adjustments, never its own copy of a compound’s text — that is what makes a correction to the master reach everybody running it.</p></div>';
+      + '<p class="st-why">This note stays in your private draft. To publish the reviewed blocks now, leave it empty; public creator copy will require human review.</p></div>';
   }
 
   // ---- WHAT COMES BACK IS SHOWN ---------------------------------------------------------------
@@ -9607,13 +9643,33 @@
         + (r && r.action ? '<p class="st-flag-do"><b>What to do:</b> ' + esc(r.action) + '</p>' : '')
         + '<p class="st-flag-no">' + (refusal ? 'This is why it was not published.' : 'A protocol carrying this cannot be published. It stays in your own copy.') + '</p></div>';
     }
+    if (f.rule === 'checker-unavailable') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Unable to check</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'restricted-substance') return '<div class="st-flag st-rx"><div class="st-flag-k">℞ ' + (refusal ? 'Not publishable' : 'Stays in your own copy') + '</div><p>' + esc(f.message) + '</p></div>';
+    if (f.rule === 'unreviewed-creator-copy') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">✍️ Creator copy needs review</div><p>' + esc(f.message) + '</p></div>';
+    if (f.rule === 'interaction-coverage') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">❔ Interaction coverage incomplete</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'animal-only-evidence') return '<div class="st-flag st-anim"><div class="st-flag-k">🐭 Animal evidence only</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'interaction') return '<div class="st-flag st-anim"><div class="st-flag-k">' + (f.tier === 'timing' ? '⏱️ Time these apart' : '🔎 Worth knowing') + '</div><p>' + esc(f.message) + '</p></div>';
     return '<div class="st-flag st-block" role="alert"><div class="st-flag-k">✋ ' + (refusal ? 'Not publishable' : 'Not saveable yet') + '</div><p>' + esc(f.message) + '</p>'
       + (f.item ? '<button class="st-goto" data-goto="' + esc(f.item) + '">Show me</button>' : '') + '</div>';
   }
-  const ST_ORDER = f => (f.tier === 'danger' || f.rule === 'danger-interaction') ? 0 : f.rule === 'restricted-substance' ? 1 : (f.rule === 'shape' || f.rule === 'unknown-entity' || f.rule === 'uncapped-dose' || f.rule === 'contraindicated-move') ? 2 : f.rule === 'interaction' ? 3 : 4;
+  const ST_ORDER = f => (f.tier === 'danger' || f.rule === 'danger-interaction') ? 0 : f.rule === 'restricted-substance' ? 1 : f.rule === 'interaction-coverage' ? 2 : (f.rule === 'shape' || f.rule === 'unknown-entity' || f.rule === 'uncapped-dose' || f.rule === 'contraindicated-move') ? 3 : f.rule === 'interaction' ? 4 : 5;
+
+  // The server owns the coverage STATE. Never reconstruct a clearance from `checked >= 2`: 2/3
+  // used to satisfy that inference and paint a green tick over an unchecked compound. A response
+  // from an older or malformed server has no `state`, so this deliberately fails closed too.
+  function stCoverageVerdict(cov, says, fresh) {
+    const c = cov || {};
+    if (c.state === 'complete' && c.of >= 1 && c.checked === c.of) {
+      return '<div class="st-flag st-anim"><div class="st-flag-k">Authored guidance · ' + c.checked + ' of ' + c.of + ' exact pairs' + (fresh ? ' · checked just now' : '') + '</div><p>' + esc(says || '') + '</p></div>';
+    }
+    if (c.state === 'not_applicable') {
+      return '<div class="st-flag st-anim"><div class="st-flag-k">— No compound pair to check</div><p>' + esc(says || 'This protocol contains fewer than two compounds.') + '</p></div>';
+    }
+    const label = c.state === 'partial' ? 'Interaction coverage incomplete' : 'No interaction coverage';
+    const count = typeof c.checked === 'number' && typeof c.of === 'number' ? ' · ' + c.checked + ' of ' + c.of + ' exact pairs' : '';
+    return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">❔ ' + label + count + '</div><p>'
+      + esc(says || 'RNAwiki could not establish complete interaction coverage. Missing data is unknown, not safe.') + '</p></div>';
+  }
 
   function stPaintVerdict() {
     const el = document.getElementById('st-verdict'); if (!el || !ST) return;
@@ -9642,17 +9698,16 @@
     // numbers (studio-safety.js r5 -> `coverage {checked, of}`) and already writes the honest
     // sentence in `says`; only this renderer was overriding it with a tick.
     const cov = ST_V.coverage || null;
-    const enough = cov && cov.checked >= 2;
-    const clean = enough
-      ? '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged between the ' + cov.checked + ' of ' + cov.of + ' RNAwiki holds pharmacology for</div></div>'
-      : '<div class="st-flag st-down" role="alert"><div class="st-flag-k">❔ Not enough to check</div><p>'
-        + esc(ST_V.says || 'RNAwiki holds interaction pharmacology for fewer than two of these, so nothing was checked between them. That is an absence of data, not a clearance.') + '</p></div>';
+    const clean = stCoverageVerdict(cov, ST_V.says, false);
     const html = all.length ? all.map(f => stFlagCard(f, false)) : [clean];
     // The coverage sentence still prints under a FLAGGED verdict, where it says what the flags do
     // and do not cover. Under the clean verdict it is now IN the verdict, so printing it twice
     // would be the footnote all over again.
-    if (all.length) html.push('<p class="st-cov">❔ ' + esc(ST_V.says || '') + '</p>');
-    const blocking = all.filter(f => f.tier === 'danger' || f.rule === 'restricted-substance');
+    if (all.length) html.push('<p class="st-cov">Pair guidance: <b>'
+      + (cov && typeof cov.checked === 'number' ? cov.checked : 0) + ' of '
+      + (cov && typeof cov.of === 'number' ? cov.of : 0) + ' exact pairs</b>. '
+      + esc(ST_V.says || '') + '</p>');
+    const blocking = all.filter(f => f.tier === 'danger' || f.rule === 'restricted-substance' || f.rule === 'interaction-coverage');
     if (blocking.length) html.push('<p class="st-pubwarn">Publishing this will be refused. It is yours to keep and to run — it is not yours to hand to a stranger.</p>');
     el.innerHTML = html.join('');
     el.querySelectorAll('[data-goto]').forEach(b => { b.onclick = () => stGoto(b.dataset.goto); });
@@ -9852,20 +9907,20 @@
       body.querySelectorAll('[data-goto]').forEach(b => b.onclick = () => { closeModal(); stGoto(b.dataset.goto); });
       return;
     }
-    body.innerHTML = '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged</div></div><p class="st-cov">❔ ' + esc(d.says || '') + '</p>'
+    body.innerHTML = stCoverageVerdict(d.coverage, d.says, false)
       // WHAT PUBLISHING ACTUALLY DOES, ITEM BY ITEM (2026-08-10). The sentence this replaces named
-      // two of the four consequences. A protocol title is something a person writes about their own
-      // body, and the page it lands on also names the RNAwiki protocol it was started from — so one
-      // tap can put a health condition, under a handle, at a URL, on a public page. That is a real
-      // disclosure, and it is stated in full BEFORE the tap rather than discovered after it.
+      // two of the consequences. The public protocol page names its author and the RNAwiki
+      // protocol it was started from, so the disclosure is stated in full BEFORE the tap rather
+      // than discovered after it. Public account profiles remain unavailable until a separate,
+      // reversible profile-consent lifecycle exists; this copy must never imply otherwise.
       // The last line is a FACT, not a promise: POST /api/protocols/:code/withdraw exists and /me
       // carries the button. Before that endpoint was written this sheet could not have said it, and
       // it must never say it again if the endpoint is ever removed.
-      + '<div class="st-pub-what"><p><b>Publishing makes four things public, at a link anyone can open:</b></p><ul>'
-      + '<li>the <b>name you typed</b>, exactly as you typed it;</li>'
-      + '<li>everything <b>in</b> it — each compound, movement, food and tool, with your doses, your days, and any note you wrote on a row;</li>'
+      + '<div class="st-pub-what"><p><b>Publishing makes four things public on this protocol’s link:</b></p><ul>'
+      + '<li>a <b>neutral title</b> made from the reviewed problem and pattern;</li>'
+      + '<li>everything <b>in</b> it — each reviewed compound, movement, food and tool, with governed adjustments and days;</li>'
       + '<li>the RNAwiki protocol you <b>started from</b>, if you started from one;</li>'
-      + '<li>your <b>username</b>, plus a line for this protocol on your public page at rnawiki.com/u/' + esc((ME && ME.username) || 'yourname') + '.</li>'
+      + '<li>your <b>username</b> as the protocol’s author.</li>'
       + '</ul>'
       + '<p class="st-why">Your username is the only thing about you that goes with it. RNAwiki asks for no real name and holds no photograph. <b>Nothing you plan, log or follow is published</b> — not by this and not by anything else. That stays on this device.</p>'
       + '<p class="st-why">These pages are kept out of Google. Publishing is a link you hand out, not a listing you get found by.</p>'
@@ -9927,7 +9982,18 @@
     const d = await api.readProtocol(code);
     const crumb = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol' }]);
     if (d._status !== 200) { app.innerHTML = crumb + '<div class="empty"><h1>That protocol is not here</h1><p>' + esc(d.error || 'No published protocol has the code “' + code + '”.') + '</p><p><a href="#/studio">Build one →</a></p></div>'; return; }
-    if (!d.spec) { app.innerHTML = crumb + '<div class="empty"><h1>' + esc(d.title || 'This protocol') + '</h1><p>' + esc(d.says || 'It cannot be shown.') + '</p><p><a href="#/studio">Build your own →</a></p></div>'; return; }
+    if (!d.spec) {
+      const review = d.status === 'review_required';
+      const reasons = review && d.safetyNow && Array.isArray(d.safetyNow.refusals)
+        ? d.safetyNow.refusals.slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b)).map(f => stFlagCard(f, true)).join('')
+        : '';
+      app.innerHTML = crumb + '<div class="empty"><div class="kicker">' + (review ? 'Protocol unavailable' : 'Protocol') + '</div><h1>' + esc(d.title || 'This protocol') + '</h1><p' + (review ? ' role="alert"' : '') + '>' + esc(d.says || 'It cannot be shown.') + '</p>'
+        + reasons
+        + (review
+          ? '<p class="muted">No steps, start control or remix control are shown while this review is required.</p><p><a href="#/solve">Browse RNAwiki →</a></p>'
+          : '<p><a href="#/studio">Build your own →</a></p>') + '</div>';
+      return;
+    }
     const items = d.spec.items || [];
     const now = d.safetyNow, saved = d.safetyWhenSaved || {};
     const nowFlags = now ? (now.refusals || []).concat(now.warn || []) : [];
@@ -9948,14 +10014,22 @@
       // can be re-rated or reclassified afterwards, and handing somebody a stale clearance is the
       // failure this endpoint already returns two objects to prevent.
       + '<div class="st-verdict">'
-      + (now ? (nowFlags.length ? nowFlags.slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b)).map(f => stFlagCard(f, false)).join('') : '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged, checked just now</div></div>')
-        + '<p class="st-cov">❔ ' + esc(now.says || '') + '</p>'
+      + (now ? (nowFlags.length ? nowFlags.slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b)).map(f => stFlagCard(f, false)).join('') + '<p class="st-cov">❔ ' + esc(now.says || '') + '</p>' : stCoverageVerdict(now.coverage, now.says, true))
         : '<div class="st-flag st-down"><div class="st-flag-k">⚠️ Not re-checked</div><p>This protocol could not be re-checked against the corpus as it is today. What is shown below is what was true when it was written.</p></div>')
       + '<p class="st-cov st-then">When it was published: ' + esc(saved.says || 'no verdict was stored.') + '</p></div>'
       + '<div class="st-bar"><a class="cta-ghost" href="#/studio">Build my own</a><button class="cta-primary" id="st-remix">Remix this</button></div>'
       + '<p class="st-saved">Remixing opens a copy in your Studio. Your changes stay yours — the original is untouched.</p>';
     const rx = document.getElementById('st-remix');
-    if (rx) rx.onclick = () => { api.cloneProtocol(code); navigate('/studio/' + code); };
+    if (rx) rx.onclick = async () => {
+      rx.disabled = true; rx.textContent = 'Checking…';
+      const cloned = await api.cloneProtocol(code);
+      if (!cloned || !cloned._ok) {
+        rx.disabled = false; rx.textContent = 'Remix this';
+        alert((cloned && cloned.error) || 'This protocol could not be remixed. Nothing was added.');
+        return;
+      }
+      navigate('/studio/' + code);
+    };
   }
 
   function navigate(path) {
@@ -10025,6 +10099,7 @@
   // and for what `@N` means (a shell only BELOW N segments — /fuel/<problem>/<root-cause> has a
   // prerendered document of its own saying `noindex,follow`, and this must not overwrite it).
   const SHELL_NOINDEX_ROUTES = ['exercise', 'fork', 'fuel@3'];
+  const UTILITY_NOINDEX_ROUTES = ['plan'];
   const isShellNoindex = (parts) => SHELL_NOINDEX_ROUTES.some((e) => {
     const at = e.indexOf('@');
     return at < 0 ? e === parts[0] : e.slice(0, at) === parts[0] && parts.length < +e.slice(at + 1);
@@ -10063,7 +10138,7 @@
     else if (parts[0] === 'target' && targetBySym[tkey(decodeURIComponent(parts[1] || ''))]) { const tg = targetBySym[tkey(decodeURIComponent(parts[1]))]; const n = (tg.compoundIds || []).length; title = t(n === 1 ? `${tg.sym} — the molecular target and the one compound that hits it` : `${tg.sym} — the molecular target and the ${n} compounds that hit it`); desc = `${tg.sym}: ${(tg.name || '').slice(0, 120)}`; }
     else if (parts[0] === 'pathway' && D.pathways[+parts[1]]) { title = t(`${D.pathways[+parts[1]].shortLabel} pathway explained`); }
     else if (parts[0] === 'compare' && parts[1]) { const i = parts[1].indexOf('-vs-'); const A = i >= 0 && bySlug[parts[1].slice(0, i)], B = i >= 0 && bySlug[parts[1].slice(i + 4)]; if (A && B) { title = t(`${A.name} vs ${B.name} — which works better?`); desc = `${A.name} vs ${B.name}: human evidence, mechanism, safety and availability compared. Plain English, honest verdict.`; } }
-    else if (parts[0] === 'solve') { title = t('Solve a problem or reach a goal — protocol engine'); desc = 'Tell me the problem or goal. Get a full Move · Fuel · Stack protocol for the root cause.'; }
+    else if (parts[0] === 'solve') { title = t('Find a protocol for a problem or goal'); desc = 'Search a symptom or goal, compare possible reasons, then review the relevant movement, food and compound protocol.'; }
     /* the /stewardship head branch ("Expert micro-bounties — the bounty board" · "Solve a 2-minute
        clinical micro-bounty in your domain") was removed 2026-08-08. The route redirects to the
        home page, so this <title> described a board nobody could open, for a tier that no longer
@@ -10113,11 +10188,16 @@
     // every non-private route would silently DOWNGRADE the richer pages after one SPA navigation.
     {
       const priv = PRIVATE_ROUTES.indexOf(parts[0]) >= 0 || isShellNoindex(parts);
+      const utility = UTILITY_NOINDEX_ROUTES.indexOf(parts[0]) >= 0;
       let rb = document.querySelector('meta[name="robots"]');
       if (priv) {
         if (!rb) { rb = document.createElement('meta'); rb.setAttribute('name', 'robots'); document.head.appendChild(rb); }
         if (ROBOTS_WAS === null) ROBOTS_WAS = rb.getAttribute('content');
         rb.setAttribute('content', 'noindex,nofollow');
+      } else if (utility) {
+        if (!rb) { rb = document.createElement('meta'); rb.setAttribute('name', 'robots'); document.head.appendChild(rb); }
+        if (ROBOTS_WAS === null) ROBOTS_WAS = rb.getAttribute('content');
+        rb.setAttribute('content', 'noindex,follow');
       } else if (ROBOTS_WAS !== null && rb) { rb.setAttribute('content', ROBOTS_WAS); ROBOTS_WAS = null; }
     }
     let m = document.querySelector('meta[name="description"]'); if (!m) { m = document.createElement('meta'); m.setAttribute('name', 'description'); document.head.appendChild(m); }
@@ -10411,8 +10491,16 @@
     // address bar is the only thing that knows. Every SPA navigation away from here goes through
     // navigate() -> pushState, which replaces the whole URL, so location.search empties by itself.
     if (!new URLSearchParams(location.search || '').get('state')) document.documentElement.removeAttribute('data-state');
-    // shared stack link
-    const _ids = (QS.get('ids') || '').split(',').filter(Boolean); if (_ids.length) setStack(_ids);
+    // Legacy shared-stack links encoded compound choices in the address. Never import that health
+    // state. Remove it before any rendering so it cannot remain in history, Referer headers or a
+    // copied link; the person's existing local stack is left untouched.
+    if (QS.has('ids')) {
+      QS.delete('ids');
+      const cleanQuery = QS.toString();
+      const cleanRoute = pathPart + (cleanQuery ? '?' + cleanQuery : '');
+      if ((location.pathname || '/') === '/' && (location.hash || '').startsWith('#/')) history.replaceState(history.state, '', location.pathname + location.search + '#' + cleanRoute);
+      else history.replaceState(history.state, '', location.pathname + (cleanQuery ? '?' + cleanQuery : '') + location.hash);
+    }
     const parts = pathPart.split('/').filter(Boolean);
     let html;
     if (!parts.length) html = home();
@@ -10520,7 +10608,6 @@
     if (frag && frag.charAt(0) !== '/') { if (!jumpToHash(true)) window.scrollTo(0, 0); }
     else window.scrollTo(0, 0);
     setPageMeta(parts);
-    document.body.classList.toggle('route-bodymap', parts[0] === 'body'); // hides the Feedback FAB that overlaps the 3D canvas
     // ACCESSIBILITY (2026-07-28). route() replaces the ENTIRE page body on every navigation, and
     // nothing announced it: aria-live 0, role="status" 0, no focus move, no skip link. So a
     // screen-reader user who clicked any in-app link heard NOTHING — focus stayed on the
@@ -10655,12 +10742,6 @@
     if (applyRcOverlay(ov)) route();
     mountRcOverlayNotice();
   }).catch(() => { RC_OVERLAY_STATE = 'offline'; mountRcOverlayNotice(); });
-  // Always-available feedback button, bottom-right.
-  const fbBtn = document.createElement('button');
-  fbBtn.className = 'feedback-fab'; fbBtn.type = 'button'; fbBtn.title = 'Suggest an improvement';
-  fbBtn.innerHTML = '💬 Feedback';
-  fbBtn.onclick = () => openFeedbackModal();
-  document.body.appendChild(fbBtn);
   bindEntityPopovers();
   document.addEventListener('click', e => { const b = e.target.closest('[data-suggest]'); if (b) { e.preventDefault(); openSuggestModal(b.dataset.suggest, b.dataset.ref); } });
   document.addEventListener('click', e => { if (e.target.closest('[data-mastery-map]')) { e.preventDefault(); masteryMapModal(); } });
