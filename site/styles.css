@@ -2107,10 +2107,21 @@ a.dp-name:hover{color:var(--accent)}
 .build-res .br-meta:empty{display:none}
 .build-res .br-add{grid-column:2;grid-row:1/span 2;align-self:center;flex:0 0 auto;font-size:.78rem;font-weight:700;color:var(--accent);white-space:nowrap}
 .build-nohit{font-size:.85rem;color:var(--muted);margin:.5rem 0 0}
+/* D-19 (2026-08-11): a restricted compound IS a result row now, so it needs to read as a row you
+   can open and not as a row you can add. Three signals, none of them colour alone: the dashed
+   border says "different kind of thing", the greyed name says "not a candidate here", and .br-add
+   reads "🩺 Read the page →" instead of "+ Add". No hover accent — hover on a .build-res promises
+   the click adds it. Contrast is held by --muted and --line, the tokens assertContrastTokens()
+   already measures on this surface. */
+.build-res.held{border-style:dashed;cursor:pointer}
+.build-res.held:hover{border-color:var(--muted);background:transparent}
+.build-res.held .br-name{color:var(--muted);font-weight:600}
+.build-res.held .br-add{color:var(--muted);font-weight:600}
 /* W7 (2026-08-09): the withheld-matches disclosure under the builder's Add-your-own search. It is
    deliberately NOT a .build-res — it must not read as another addable row — so it takes a rule of
    its own: a top border separating it from the results above, muted body ink at the same AA token
-   the rest of the page uses, and normal-weight links to the pages themselves. */
+   the rest of the page uses, and normal-weight links to the pages themselves.
+   Since D-19 it explains why the dashed rows above cannot be added, rather than listing them. */
 .build-held{font-size:.82rem;line-height:1.5;color:var(--muted);margin:.55rem 0 0;padding-top:.55rem;border-top:1px dashed var(--line)}
 .build-held a{color:var(--accent);font-weight:600}
 .build-held .muted{font-size:.78rem}

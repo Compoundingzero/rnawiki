@@ -3817,9 +3817,10 @@ function blankComments(src) {
     [/function stackControl\(c, added\) \{[\s\S]*?if \(!isConsumerCpd\(c\)\)/, 'stackControl() — the "+ Add to stack" control on every /c/ page'],
     [/<button class="st-add \$\{inStack\(c\.id\) \? 'in' : ''\}"/, 'stackCard() — the compound card used by search, /goal, /pathway and the builder'],
     [/isConsumerCpd\(c\)\s*\n\s*\? `<button class="st-add/, 'stackCard() — the card no longer chooses its control by the predicate'],
-    [/D\.compounds\.filter\(isConsumerCpd\)\.sort\(\(a, b\) => a\.name\.localeCompare\(b\.name\)\)/, "the /stack “+ Add a compound…” dropdown"],
+    [/<optgroup label="Prescription, controlled or not approved[^"]*">\$\{D\.compounds\.filter\(c => !isConsumerCpd\(c\)\)[\s\S]{0,200}?disabled>/, 'the /stack "+ Add a compound…" dropdown — D-19 keeps all 171 LISTED and marks the restricted 96 `disabled`, so the browser refuses the selection with no JavaScript involved'],
     [/f\.kind === 'compound' && f\.ref[\s\S]{0,120}isConsumerCpd\(cc\)/, 'the cause page\'s "just add the supplements to my stack" button (suppIds)'],
-    [/const out = all\.filter\(c => c\.consumer_renderable !== false\)/, 'catalogSearch() — the Studio and plan-builder assembly catalogue'],
+    [/const addable = all\.filter\(c => c\.consumer_renderable !== false\)[\s\S]{0,400}?addable: false/, 'catalogSearch() — the Studio and plan-builder assembly catalogue. D-19 returns the restricted matches as rows carrying `addable: false` rather than hiding them into a footnote; the flag is what the renderer keys on.'],
+    [/h\.addable === false\s*\n?\s*\? `<a class="build-res held"/, 'the assembly search renderer — a row with addable:false must render as a LINK to the compound page, never as a button that adds it'],
   ];
   OFFER_SURFACES.forEach(([re, what]) => { if (!re.test(app)) bad.push(`site/app.js — ${what} no longer gates on the consumer predicate.`); });
 

@@ -3323,10 +3323,16 @@
       <h1>Stack Builder</h1>
       <p style="color:var(--muted)">Add compounds from any page (the <b>+ Add to stack</b> button), or below. See combined goal coverage, the pathways you're hitting, and shared targets. Your stack saves locally and is shareable by link.</p>
       <p class="st-entry">A stack is a list of compounds. <a href="#/studio">The Protocol Studio</a> builds the whole thing — movements, Singapore foods and daily tools alongside the compounds — checks every pairing as you assemble it, and works with no account.</p>
-      ${/* The dropdown listed all 171 compounds, so Adderall, EPO, Trenbolone and insulin were each
-            one keystroke from a person's daily list. It now offers the 75 setStack() will accept —
-            an option the store refuses is a broken control, not a safety layer. */''}
-      <div class="toolbar"><select id="stack-add" class="stack-select"><option value="">+ Add a compound…</option>${D.compounds.filter(isConsumerCpd).sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</select>
+      ${/* The dropdown listed all 171 compounds as equals, so Adderall, EPO, Trenbolone and insulin
+            were each one keystroke from a person's daily list. D-19 (2026-08-11): all 171 are still
+            LISTED — Felix asked for the prescription drugs to stay in the drug list — and the 96
+            that need a doctor are `disabled`, which the browser renders greyed and refuses to
+            select, with no JavaScript involved. That is the literal shape of the instruction:
+            present, readable, unselectable. Grouped so the two halves are obvious rather than
+            interleaved, and the restricted half names why in its label. */''}
+      <div class="toolbar"><select id="stack-add" class="stack-select"><option value="">+ Add a compound…</option>
+        <optgroup label="You can add these">${D.compounds.filter(isConsumerCpd).sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</optgroup>
+        <optgroup label="Prescription, controlled or not approved — open the page to read about them">${D.compounds.filter(c => !isConsumerCpd(c)).sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}" disabled>${c.name} — ${esc((c.supply || {}).tag || 'needs a doctor')}</option>`).join('')}</optgroup></select>
       <button id="stack-share" class="chip">🔗 Share link</button>
       <button id="stack-wrapped" class="chip">📊 Share as image</button>
       <button id="stack-clear" class="chip">Clear</button></div>
@@ -5287,18 +5293,36 @@
       // self-dosing. READING IS UNTOUCHED: every /c/ page still exists, is still linked, and is
       // still reachable with no account. What changes is that a plan builder cannot hand one out.
       // NOT SILENTLY. A filter that hides rows without saying so is its own honesty defect — the
-      // reader types a real name, gets nothing, and concludes the site does not cover it. The
-      // withheld matches are counted and returned alongside, and the renderer prints them with a
-      // link to the pages. Same discipline as interactionPanel()'s ❔ state.
+      // reader types a real name, gets nothing, and concludes the site does not cover it.
+      //
+      // ---- 2026-08-11, D-19: THEY ARE IN THE LIST, THEY ARE JUST NOT SELECTABLE ------------------
+      // Felix: "i want you to still put the prescription drug in our supplement and drug list, but i
+      // don't want you to allow someone to be able to select it when building any protocol (even
+      // remove it from the default one)."
+      // Until today the restricted matches were pulled OUT of the results and summarised in a
+      // sentence underneath ("3 matches are not offered here — …"). That is a footnote, and a
+      // footnote is not the list. They are now rows in the same ranked list, carrying the same
+      // information as every other row, with the add control replaced by what you CAN do with them:
+      // open the page. `addable: false` is the whole difference, and the renderer is what honours it.
+      //
+      // Addable rows rank first regardless of stars, so the thing a person can act on leads. Within
+      // each group it is still evidence order. `limit` applies per group rather than to the total,
+      // so a search that matches four prescription drugs and two supplements does not lose the
+      // supplements — that inversion was the old behaviour's other failure mode.
       const all = D.compounds.filter(c => !ex.has(c.id) && (c.name.toLowerCase().includes(q) || (c.category || '').toLowerCase().includes(q)));
-      const out = all.filter(c => c.consumer_renderable !== false)
-        .sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, limit);
-      // The withheld list stays capped at 6 regardless of `limit`: it is a disclosure line inside
-      // a paragraph, not a result list, and 24 withheld names in one sentence is unreadable.
-      // `withheldTotal` carries the true count, so the copy stays honest at any cap.
-      out.withheld = all.filter(c => c.consumer_renderable === false).slice(0, Math.min(limit, 6))
-        .map(c => ({ id: c.id, slug: slug(c.name), name: c.name, tag: (c.supply || {}).tag || 'Not a general-sale substance' }));
+      const byStars = (a, b) => (b.stars || 0) - (a.stars || 0);
+      const addable = all.filter(c => c.consumer_renderable !== false).sort(byStars).slice(0, limit);
+      const held = all.filter(c => c.consumer_renderable === false).sort(byStars).slice(0, limit);
+      const out = addable.map(c => Object.assign({ addable: true }, c))
+        .concat(held.map(c => Object.assign({}, c, {
+          addable: false,
+          slug: slug(c.name),
+          tag: (c.supply || {}).tag || 'Not a general-sale substance',
+        })));
+      // Kept so the renderer can say "showing 6 of 11" without recounting. `withheldTotal` is every
+      // restricted match, not just the ones that fitted.
       out.withheldTotal = all.filter(c => c.consumer_renderable === false).length;
+      out.addableCount = addable.length;
       return out;
     }
     const EX = window.RNAWIKI_EXERCISES; if (!EX) return [];
@@ -5518,26 +5542,29 @@
     const search = document.getElementById('build-search'); const results = document.getElementById('build-results');
     if (search) search.oninput = () => {
       const hits = catalogSearch(bucket, search.value, dispItems.map(x => x.id));
-      // W7: the WITHHELD line is rendered even when there are zero addable hits — which is exactly
-      // the DNP / clenbuterol / semaglutide / trenbolone case. Returning the old bare "No matches"
-      // there would be the silent-filter defect the restriction above exists to avoid: the reader
-      // typed a name this site really does document, and "no matches" is not true of the site.
-      const held = hits.withheld || [];
-      // W7: .br-meta now carries the SUPPLY axis rather than the category. `c.supply.tag` is the
+      // W7: .br-meta carries the SUPPLY axis rather than the category. `c.supply.tag` is the
       // authored, build-gated sentence (assertRegulatoryAxes) and it is the only thing in the row
       // a reader can act on. The category was decoration — "FAT LOSS" is what DNP and a fibre
       // supplement had in common.
       const meta = h => bucket === 'stack'
         ? ((h.supply || {}).tag || h.category || '')
         : ((h.primaryMuscles || []).slice(0, 2).join(', '));
-      const heldHTML = held.length
-        ? `<p class="build-held">${held.length}${hits.withheldTotal > held.length ? ' of ' + hits.withheldTotal : ''} match${held.length > 1 ? 'es are' : ' is'} not offered here — ${held.map(w => `<a href="#/c/${esc(w.slug)}">${esc(w.name)}</a> <span class="muted">(${esc(w.tag)})</span>`).join(', ')}. RNAwiki documents ${held.length > 1 ? 'them' : 'it'} in full and those pages are open to anyone; a plan builder is just not the place to hand out a dose for ${held.length > 1 ? 'them' : 'it'}.</p>`
-        : '';
       if (!hits.length) {
-        results.innerHTML = heldHTML || (search.value.trim().length >= 2 ? '<p class="build-nohit">No matches — try another name.</p>' : '');
+        results.innerHTML = search.value.trim().length >= 2 ? '<p class="build-nohit">No matches — try another name.</p>' : '';
         return;
       }
-      results.innerHTML = hits.map(h => `<button class="build-res" data-add-id="${esc(h.id)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(meta(h))}</span><span class="br-add">+ Add</span></button>`).join('') + heldHTML;
+      // D-19 (2026-08-11): a restricted compound is a ROW, not a footnote. Same list, same rank
+      // order, same information — a <a> to its page instead of a <button> that adds it, and the
+      // control says what you can do with it rather than what you cannot. `addable === false` is
+      // set by catalogSearch(); nothing here re-derives it, so there is one answer to the question.
+      // A <button> that refuses on click would be worse than either: it teaches the reader that the
+      // interface is broken rather than that the substance is restricted.
+      results.innerHTML = hits.map(h => h.addable === false
+        ? `<a class="build-res held" href="#/c/${esc(h.slug)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(h.tag)}</span><span class="br-add">🩺 Read the page →</span></a>`
+        : `<button class="build-res" data-add-id="${esc(h.id)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(meta(h))}</span><span class="br-add">+ Add</span></button>`).join('')
+        + (hits.withheldTotal
+          ? `<p class="build-held">${hits.withheldTotal === 1 ? 'One match needs' : hits.withheldTotal + ' matches need'} a prescription or ${hits.withheldTotal === 1 ? 'is' : 'are'} not approved for human use, so ${hits.withheldTotal === 1 ? 'it is' : 'they are'} listed here but cannot be added to a protocol. RNAwiki documents ${hits.withheldTotal === 1 ? 'it' : 'them'} in full and ${hits.withheldTotal === 1 ? 'that page is' : 'those pages are'} open to anyone.</p>`
+          : '');
       results.querySelectorAll('[data-add-id]').forEach(b => b.onclick = () => addExtra(b.dataset.addId));
     };
     const updCount = () => { const el = app.querySelector('.build-count'); if (!el) return; const n = dispItems.filter(it => (step.kind === 'move' ? selMoves() : selSupps()).includes(it.id)).length; el.innerHTML = '<b>' + n + '</b> of ' + dispItems.length + ' kept'; };
