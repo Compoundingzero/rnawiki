@@ -594,7 +594,17 @@ const ASSERTIONS = {
       if (t2 === null) return done('the clean protocol rendered no #st-verdict region');
       if (/Dangerous together/i.test(t2)) return done(`caffeine + magnesium is clean at the endpoint (measured: warn:[], coverage 2 of 2) and the builder flagged it anyway: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
       if (!/Nothing flagged/i.test(t2)) return done(`a clean protocol did not say so: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
-      if (!/Checked the 2 of 2/i.test(t2)) return done('a clean verdict printed no coverage sentence — that is the false-clearance state');
+      // 2026-08-11 (P0-S6): the coverage numbers used to arrive as a separate `.st-cov` sentence
+      // BELOW a bare "✅ Nothing flagged" ("Checked the 2 of 2…"). A footnote under a green tick is
+      // not a qualified verdict — the audit caught a published /p/<code> headlining that tick over a
+      // coverage of 0 of N — so the numbers are now IN the verdict line and the ❔ branch replaces
+      // the tick entirely below two checkable items. This asserts the property, not the old string:
+      // a clean verdict must carry its own "N of M" wherever it puts it.
+      // Case-insensitive: .st-flag-k is text-transform:uppercase and innerText returns the
+      // TRANSFORMED text, so the verdict arrives here as "2 OF 2".
+      if (!/\b2 of 2\b/i.test(t2)) return done(`a clean verdict did not state its own coverage — that is the false-clearance state: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
+      // And the ❔ state must not be reachable while the ✅ is showing: one verdict, not two.
+      if (/Nothing flagged/i.test(t2) && /Not enough to check/i.test(t2)) return done(`the clean verdict and the "not enough to check" verdict rendered together: "${t2.replace(/\s+/g, ' ').slice(0, 200)}"`);
       if (document.querySelector('.st-row.danger')) return done('a clean protocol left a row marked dangerous — the row flags are not cleared between checks');
 
       // DOSES ARE CHOSEN, NEVER TYPED. assertDoseCalculators() fails the BUILD over an uncapped

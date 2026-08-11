@@ -2449,6 +2449,9 @@ html:has(.st-bar) .feedback-fab{bottom:84px}
 .pt-plan.on{color:#475569;box-shadow:0 1px 3px rgba(0,0,0,.08),inset 0 -2.5px 0 #94a3b8}
 /* W5c: dark-mode colour-only override deleted — see the note at .fbar-supp. */
 .trk-fold{border:1px solid var(--line);border-radius:14px;background:var(--panel);margin:1.1rem 0;overflow:hidden}
+/* 2026-08-11 (P0-S7): a verdict that is not clean is not folded. Same frame as the <details> it
+   replaces so the checklist keeps one visual rhythm, with the padding the <summary> used to supply. */
+.trk-fold-open{padding:.85rem 1rem}
 .trk-fold>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:.6rem;padding:.85rem 1rem;font-weight:600;color:var(--head)}
 .trk-fold>summary::-webkit-details-marker{display:none}
 .trk-fold-hint{font-size:.78rem;color:var(--muted);font-weight:400}

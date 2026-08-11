@@ -3991,3 +3991,69 @@ function blankComments(src) {
   console.log('[parse] movement data OK — %d movements (%d strengthen · %d static stretch · %d dynamic mobility), 0 invented prescriptions, 0 ladder edges, %d alternative edges all sharing a primary muscle.',
     ex.length, k.strengthen || 0, k.stretch || 0, k.mobility || 0, edges);
 })();
+
+// ---- assertSafetySignalsReachTheReader (2026-08-11) · P0-S6 · P0-S7 · P0-S9 · P0-S10 -----------
+// A family of four defects with one shape: the safety check RAN, produced the right answer, and
+// then the answer did not reach the reader. Every one of them looks fine in a code review of the
+// checker, because the checker was never the broken part.
+//
+//   S6  the Studio printed "✅ Nothing flagged" whenever the warn list was empty — including over a
+//       coverage of 0 of N — and demoted the coverage sentence to a footnote underneath.
+//   S7  the daily checklist wrapped EVERY interaction verdict, ☠️ included, in a <details> closed by
+//       default whose summary read "tap to view". Computed, then muted.
+//   S9  studio-safety.js R2 (contraindicated movement) took its avoid-list from the protocol's root
+//       cause, and the client never sent base_pid/base_rcid — so the rule returned 0 every time it
+//       was ever called, on every protocol, since it was written.
+//   S10 the plan builder's movement search applied no eligibility filter at all, so a rotator-cuff
+//       protocol would offer a Military Press and add it silently.
+//
+// These are all one-line reversions. Each clause below names the line.
+(function assertSafetySignalsReachTheReader() {
+  const app = blankComments(fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8'));
+  const bad = [];
+
+  // S9 — the check must carry the protocol it is a protocol FOR.
+  if (!/checkProtocol\(spec, status, base\)[\s\S]{0,200}Object\.assign\(\{ spec \}/.test(app)) {
+    bad.push('site/app.js api.checkProtocol() no longer takes and forwards the protocol base. studio-safety.js r2() reads avoid_movements off the root cause named by base_pid/base_rcid; with no base the rule cannot fire, and a rule that cannot fire is not a rule.');
+  }
+  // NOT /api\.checkProtocol\([^)]*\)/ — the first argument is `stSpec()`, so a non-greedy run to the
+  // first ')' captures "api.checkProtocol(stSpec()" and every call looks like it sends no base.
+  // That version of this line failed the build against correct code. A fixed window is enough here:
+  // both calls fit inside it and neither spans a line.
+  const calls = app.match(/api\.checkProtocol\(.{0,160}/g) || [];
+  if (!calls.length) bad.push('site/app.js — no call to api.checkProtocol() found at all. If the Studio stopped checking, this gate has no subject.');
+  calls.forEach((c) => { if (!/base_pid/.test(c)) bad.push(`site/app.js — a call to checkProtocol() sends no base_pid: ${c.slice(0, 90)}`); });
+
+  // S6 — the clean verdict is conditional on coverage.
+  if (!/const enough = cov && cov\.checked >= 2;/.test(app) || !/const clean = enough/.test(app)) {
+    bad.push('site/app.js stPaintVerdict() no longer conditions its clean verdict on coverage. An empty warn list means "checked and fine" OR "I hold pharmacology for none of these", and only one of those is a ✅. /stack has drawn this distinction since W3.');
+  }
+
+  // S7 — only a clean verdict may be folded away.
+  if (!/const ixFoldable = ixTier && ixTier\[1\] === 'ok';/.test(app)) {
+    bad.push('site/app.js — the tracker\'s interaction fold is no longer conditional on the verdict. A ☠️ row behind a closed <details> labelled "tap to view" is the owner\'s own rule ("if drugs overlap, warn") built and then muted, on the one surface where it would change what somebody swallows this morning.');
+  }
+  if (!/data-verdict="\$\{verdictTier\}"/.test(app)) {
+    bad.push('site/app.js interactionPanel() no longer stamps data-verdict on its root. That attribute is how a wrapping surface learns the severity WITHOUT computing the verdict a second time — and a second copy of the verdict is what W3.5 spent a round deleting from five surfaces.');
+  }
+
+  // S10 — the builder's movement search filters on the cause's own avoid-list.
+  if (!/function catalogSearch\(bucket, q, excludeIds, limit, rc\)/.test(app)) {
+    bad.push('site/app.js catalogSearch() no longer receives the root cause, so the movement search cannot know what this protocol says to avoid.');
+  }
+  if (!/const markMoves = \(arr\)/.test(app) || !/rc\.avoid_movements/.test(app)) {
+    bad.push('site/app.js — the movement search no longer marks contraindicated results. They must be LISTED and unselectable, not hidden: a reader who types "military press" and gets nothing concludes the site has never heard of it.');
+  }
+  if (!/const hits = catalogSearch\(bucket, search\.value, dispItems\.map\(x => x\.id\), 6, rc\);/.test(app)) {
+    bad.push('site/app.js — the plan builder calls catalogSearch() without passing rc, so the filter above is armed and never given a target. This is the same failure as S9: the rule exists and the caller starves it.');
+  }
+
+  if (bad.length) {
+    console.error('\n[parse] SAFETY-SIGNAL GATE FAILED — refusing to build.');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  A check that runs and does not reach the reader is worse than no check: the reader');
+    console.error('  now has a builder that looked at the problem and said nothing.');
+    process.exit(1);
+  }
+  console.log('[parse] safety signals reach the reader OK — %d checkProtocol call(s) carry the protocol base, the clean verdict states its coverage, only a clean verdict may be folded, and the movement search filters on the cause\'s own avoid-list.', calls.length);
+})();

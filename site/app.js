@@ -823,7 +823,16 @@
     // returns a danger pairing as a WARN carrying the interaction row (title/why/action/involved),
     // which is what somebody assembling needs on screen; with status:'published' the same pairing
     // comes back as a REFUSAL. Measured on this branch, citrulline (c13) + PDE-5 (c116).
-    checkProtocol(spec, status) { return this.raw('POST', '/api/protocols/check', status ? { spec, status } : { spec }); },
+    // ---- base_pid / base_rcid ARE PART OF THE CHECK (2026-08-11, P0-S9) -----------------------
+    // This used to send `{spec}` and nothing else. server.js:1119 reads b.base_pid and b.base_rcid
+    // to look up the root cause, and studio-safety.js r2() takes its avoid_movements from that root
+    // cause — so with no base the rc was always null, `avoid` was always empty, and R2
+    // (contraditicated-move) RETURNED 0 EVERY TIME IT WAS EVER CALLED. A rule that has never once
+    // been able to fire is not a rule.
+    // The SAVE path (POST /api/protocols) had always sent them, which is why this survived: the
+    // published protocol was checked against its root cause and the live draft was not — so the
+    // builder said nothing while you assembled it and the server refused at the end.
+    checkProtocol(spec, status, base) { return this.raw('POST', '/api/protocols/check', Object.assign({ spec }, status ? { status } : {}, base || {})); },
     saveProtocol(b) { return this.raw('POST', '/api/protocols', b); },
     remixProtocol(code, b) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/remix', b); },
     readProtocol(code) { return this.raw('GET', '/api/protocols/' + encodeURIComponent(code)); },
@@ -3470,7 +3479,7 @@
     // W7: the ❔ state, extended to cover the matcher itself not being here. A missing
     // /ixn-engine.js is an absence of the checker, and the one thing this panel may never do is
     // print a clearance it did not compute — the same rule that produced the coverage sentence.
-    if (!IXN) return `<div class="ixn-panel"><span class="ixn-verdict warn">❔ The interaction checker did not load</span>
+    if (!IXN) return `<div class="ixn-panel" data-verdict="unknown"><span class="ixn-verdict warn">❔ The interaction checker did not load</span>
       <p class="ixn-foot">This page could not load /ixn-engine.js, so nothing was checked between these ${list.length} compounds. That is not a clearance. Reload the page, and read each compound's own page in the meantime.</p></div>`;
     const r = IXN.stackInteractions(list);
     // ---- W3.5 (2026-08-02): ONE VERDICT, THE SAME ON ALL FIVE SURFACES -----------------------
@@ -3568,7 +3577,16 @@
     const syn = r.synergies.map(s => `<div class="ixn good">
         <div class="ixn-h">✅ <b>${esc(s.title)}</b> — works well together</div>
         <p class="ixn-why">${esc(s.why)}</p></div>`).join('');
-    return `<div class="ixn-panel">
+    // ---- THE PANEL DECLARES ITS OWN VERDICT (2026-08-11, P0-S7) -------------------------------
+    // `data-verdict` exists so a surface that WRAPS this panel can tell how bad it is without
+    // computing the verdict a second time. The tracker used to fold the whole panel into a closed
+    // <details> labelled "tap to view" whatever it said, so a ☠️ danger row was rendered and then
+    // hidden — the owner's own rule, "if drugs overlap, warn", built and then muted. It could not
+    // do better, because the severity lived only inside this string.
+    // A second copy of the verdict is exactly what W3.5 removed from five surfaces; this is one
+    // attribute set at the point the verdict is decided, and read as an attribute.
+    const verdictTier = nDanger ? 'bad' : (nReview ? 'warn' : (notEnough ? 'unknown' : 'ok'));
+    return `<div class="ixn-panel" data-verdict="${verdictTier}">
       <div class="ixn-top"><b>Interaction check</b> ${parts.join(' ')}</div>
       ${rows}${lap}${syn}
       ${uncovered.length ? `<p class="ixn-foot ixn-gap">❔ I hold no interaction pharmacology for ${uncovered.map(c => esc(c.name)).join(', ')} — nothing flagged against ${uncovered.length > 1 ? 'those' : 'that'} is an absence of data, not a clearance.</p>` : ''}
@@ -5267,7 +5285,16 @@
   // A second search function in the Studio would be a second assembly catalogue, and the 'stack'
   // branch below is the only place on this site where the 95 consumer_renderable:false compounds
   // are withheld AND named. Duplicating it is how DNP gets a "+ Add" button back.
-  function catalogSearch(bucket, q, excludeIds, limit) {
+  // `rc` added 2026-08-11 (P0-S10). The builder's Add-your-own search returned any movement in the
+  // corpus, so a rotator-cuff-impingement plan — a page whose own prescription says to avoid
+  // painful overhead loading — would happily offer a Military Press and add it silently. The
+  // server-side rule for exactly this (studio-safety.js R2) existed the whole time and could not
+  // fire, because the client never sent the protocol's base; that is fixed above. This is the same
+  // rule on the way IN, so the reader never assembles the refusal in the first place.
+  // Contraindicated movements are LISTED and not selectable, the same shape D-19 uses for
+  // prescription compounds: hiding them would teach the reader the site has never heard of a
+  // military press.
+  function catalogSearch(bucket, q, excludeIds, limit, rc) {
     limit = limit || 6;
     q = (q || '').trim().toLowerCase(); if (q.length < 2) return [];
     const ex = new Set(excludeIds);
@@ -5326,18 +5353,35 @@
       return out;
     }
     const EX = window.RNAWIKI_EXERCISES; if (!EX) return [];
+    // One predicate, matched the way studio-safety.js R2 matches, so the client and the server
+    // agree on what "contraindicated" means for the same protocol.
+    const avoid = (rc && Array.isArray(rc.avoid_movements)) ? rc.avoid_movements.map(a => String(a).toLowerCase()) : [];
+    const contraHit = (e) => {
+      if (!avoid.length) return null;
+      const hay = ((e.name || '') + ' ' + (e.move_tags || []).join(' ') + ' ' + (e.primaryMuscles || []).join(' ')).toLowerCase().replace(/_/g, ' ');
+      return avoid.find(a => hay.includes(a)) || null;
+    };
+    const markMoves = (arr) => {
+      const out = arr.map((e) => {
+        const hit = contraHit(e);
+        return hit ? Object.assign({}, e, { addable: false, heldHref: '#/exercise/' + e.id, tag: `this protocol says to avoid "${hit}"` }) : Object.assign({ addable: true }, e);
+      });
+      out.sort((a, b) => (a.addable === false) - (b.addable === false));
+      out.withheldTotal = out.filter(x => x.addable === false).length;
+      return out;
+    };
     // 'xall' — the Studio is not building a protocol's stretch section, it is assembling anything,
     // so it must not have the stretch/strength split imposed on it. It also matches on equipment,
     // because a reader typing "dumbbell" or "kettlebell" is searching by equipment and the two
     // branches below cannot match that.
     if (bucket === 'xall') {
-      return EX.exercises.filter(e => !ex.has(e.id)
+      return markMoves(EX.exercises.filter(e => !ex.has(e.id)
         && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q)
-          || (e.equipment || '').toLowerCase().includes(q))).slice(0, limit);
+          || (e.equipment || '').toLowerCase().includes(q))).slice(0, limit));
     }
     const wantStretch = bucket === 'stretch';
-    return EX.exercises.filter(e => !ex.has(e.id) && (wantStretch ? isDailyMove(e) : e.kind === 'strengthen')
-      && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, limit);
+    return markMoves(EX.exercises.filter(e => !ex.has(e.id) && (wantStretch ? isDailyMove(e) : e.kind === 'strengthen')
+      && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, limit));
   }
 
   // ---- Protocol functions: small interactive tools, each matched to a root problem ----
@@ -5552,7 +5596,7 @@
     };
     const search = document.getElementById('build-search'); const results = document.getElementById('build-results');
     if (search) search.oninput = () => {
-      const hits = catalogSearch(bucket, search.value, dispItems.map(x => x.id));
+      const hits = catalogSearch(bucket, search.value, dispItems.map(x => x.id), 6, rc);
       // W7: .br-meta carries the SUPPLY axis rather than the category. `c.supply.tag` is the
       // authored, build-gated sentence (assertRegulatoryAxes) and it is the only thing in the row
       // a reader can act on. The category was decoration — "FAT LOSS" is what DNP and a fibre
@@ -5571,10 +5615,12 @@
       // A <button> that refuses on click would be worse than either: it teaches the reader that the
       // interface is broken rather than that the substance is restricted.
       results.innerHTML = hits.map(h => h.addable === false
-        ? `<a class="build-res held" href="#/c/${esc(h.slug)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(h.tag)}</span><span class="br-add">🩺 Read the page →</span></a>`
+        ? `<a class="build-res held" href="${esc(h.heldHref || ('#/c/' + h.slug))}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(h.tag)}</span><span class="br-add">${h.heldHref ? '⛔ Read the page →' : '🩺 Read the page →'}</span></a>`
         : `<button class="build-res" data-add-id="${esc(h.id)}"><span class="br-name">${esc(h.name)}</span><span class="br-meta">${esc(meta(h))}</span><span class="br-add">+ Add</span></button>`).join('')
         + (hits.withheldTotal
-          ? `<p class="build-held">${hits.withheldTotal === 1 ? 'One match needs' : hits.withheldTotal + ' matches need'} a prescription or ${hits.withheldTotal === 1 ? 'is' : 'are'} not approved for human use, so ${hits.withheldTotal === 1 ? 'it is' : 'they are'} listed here but cannot be added to a protocol. RNAwiki documents ${hits.withheldTotal === 1 ? 'it' : 'them'} in full and ${hits.withheldTotal === 1 ? 'that page is' : 'those pages are'} open to anyone.</p>`
+          ? (bucket === 'stack'
+            ? `<p class="build-held">${hits.withheldTotal === 1 ? 'One match needs' : hits.withheldTotal + ' matches need'} a prescription or ${hits.withheldTotal === 1 ? 'is' : 'are'} not approved for human use, so ${hits.withheldTotal === 1 ? 'it is' : 'they are'} listed here but cannot be added to a protocol. RNAwiki documents ${hits.withheldTotal === 1 ? 'it' : 'them'} in full and ${hits.withheldTotal === 1 ? 'that page is' : 'those pages are'} open to anyone.</p>`
+            : `<p class="build-held">${hits.withheldTotal === 1 ? 'One movement is' : hits.withheldTotal + ' movements are'} greyed out because this protocol's own plan says to avoid exactly that pattern. ${hits.withheldTotal === 1 ? 'Its page is' : 'Their pages are'} still open — what changes is that this builder will not put ${hits.withheldTotal === 1 ? 'it' : 'them'} in a plan for <b>this</b> cause.</p>`)
           : '');
       results.querySelectorAll('[data-add-id]').forEach(b => b.onclick = () => addExtra(b.dataset.addId));
     };
@@ -6301,9 +6347,24 @@
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
         <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button> · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button> · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
       <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="health-link">🩸 Track health data</button> · <button class="linkbtn" id="mydata-link">🔒 Your data</button>' : ''}</section>`;
-    // Tabbed layout — one focused panel at a time (Apple: reduce what's on screen; progressive disclosure).
-    // interaction/safety check is reference info — collapse it so it doesn't crowd the primary action
-    const ixWrap = danger ? `<details class="trk-fold"><summary><span class="trk-fold-t">🔬 Interaction &amp; safety check</span><span class="trk-fold-hint">tap to view</span></summary><div class="trk-fold-body">${danger}</div></details>` : '';
+    // ---- WHAT MAY BE FOLDED (2026-08-11, P0-S7) ----------------------------------------------
+    // This was unconditional: every interaction verdict, including ☠️, went into a <details> closed
+    // by default whose summary read "🔬 Interaction & safety check · tap to view". The count was
+    // nowhere in the summary. So on the DAILY CHECKLIST — the one surface where a mineral-timing or
+    // danger row would actually change what somebody swallows this morning — the site computed the
+    // warning and then hid it behind a tap, under a label that gives no reason to tap.
+    // The comment above it said "interaction/safety check is reference info". A danger row is not
+    // reference info.
+    //
+    // Now: only a CLEAN verdict may be folded, because "nothing found" is the one state where
+    // hiding the detail costs the reader nothing. Anything else — danger, review, or "not enough to
+    // check" — renders open, and the summary carries the verdict rather than the word "check".
+    const ixTier = /data-verdict="([a-z]+)"/.exec(danger || '');
+    const ixFoldable = ixTier && ixTier[1] === 'ok';
+    const ixWrap = !danger ? ''
+      : ixFoldable
+        ? `<details class="trk-fold"><summary><span class="trk-fold-t">🔬 Interaction check — nothing flagged</span><span class="trk-fold-hint">tap for detail</span></summary><div class="trk-fold-body">${danger}</div></details>`
+        : `<div class="trk-fold trk-fold-open">${danger}</div>`;
     // Priority order: the keystone (the ONE action) is the hero, then the checklist; check-in prompt + interaction check sit below.
     const todayPanel = `${keystoneCards}
       ${totalItems ? `<div class="trk-sec-h"><h3>Today's checklist</h3><span class="trk-prog" data-layer-prog="all">${doneItems}/${totalItems}</span></div>` : ''}
@@ -9188,7 +9249,7 @@
   async function stCheckNow() {
     const seq = ++ST_SEQ;
     if (!ST || !ST.items.length) { ST_V = null; ST_STATE = 'idle'; return stPaintVerdict(); }
-    const d = await api.checkProtocol(stSpec(), null);
+    const d = await api.checkProtocol(stSpec(), null, { base_pid: ST && ST.base_pid, base_rcid: ST && ST.base_rcid });
     if (seq !== ST_SEQ) return;   // a later edit already asked; this answer is about a protocol
                                   // that is no longer on screen, and painting it is a stale verdict
     if (d._status !== 200) { ST_V = d; ST_STATE = 'down'; return stPaintVerdict(); }
@@ -9567,8 +9628,30 @@
       return setPub(false, 'Cannot publish — not checked');
     }
     const all = (ST_V.warn || []).slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b));
-    const html = all.length ? all.map(f => stFlagCard(f, false)) : ['<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged</div></div>'];
-    html.push('<p class="st-cov">❔ ' + esc(ST_V.says || '') + '</p>');
+    // ---- THE CLEAN VERDICT IS CONDITIONAL ON COVERAGE (2026-08-11, P0-S6) ---------------------
+    // This printed a plain "✅ Nothing flagged" whenever the warn list came back empty, and pushed
+    // the coverage sentence underneath as a small ❔ footnote. An empty warn list has two entirely
+    // different meanings — "I checked these and they are fine" and "I hold pharmacology for none of
+    // these" — and the headline said the first over both. MEASURED by the audit at 1440×900: a
+    // published /p/<code> headlined the green tick over a coverage of 0 of N, reachable with five
+    // ordinary supplements.
+    //
+    // /stack has been right about this since W3 and is copied here deliberately rather than
+    // reinvented: below two checkable items the verdict is ❔, not ✅, and the ✅ itself names its
+    // own coverage inline instead of leaving it to a footnote. The server already computes both
+    // numbers (studio-safety.js r5 -> `coverage {checked, of}`) and already writes the honest
+    // sentence in `says`; only this renderer was overriding it with a tick.
+    const cov = ST_V.coverage || null;
+    const enough = cov && cov.checked >= 2;
+    const clean = enough
+      ? '<div class="st-flag st-clean"><div class="st-flag-k">✅ Nothing flagged between the ' + cov.checked + ' of ' + cov.of + ' RNAwiki holds pharmacology for</div></div>'
+      : '<div class="st-flag st-down" role="alert"><div class="st-flag-k">❔ Not enough to check</div><p>'
+        + esc(ST_V.says || 'RNAwiki holds interaction pharmacology for fewer than two of these, so nothing was checked between them. That is an absence of data, not a clearance.') + '</p></div>';
+    const html = all.length ? all.map(f => stFlagCard(f, false)) : [clean];
+    // The coverage sentence still prints under a FLAGGED verdict, where it says what the flags do
+    // and do not cover. Under the clean verdict it is now IN the verdict, so printing it twice
+    // would be the footnote all over again.
+    if (all.length) html.push('<p class="st-cov">❔ ' + esc(ST_V.says || '') + '</p>');
     const blocking = all.filter(f => f.tier === 'danger' || f.rule === 'restricted-substance');
     if (blocking.length) html.push('<p class="st-pubwarn">Publishing this will be refused. It is yours to keep and to run — it is not yours to hand to a stranger.</p>');
     el.innerHTML = html.join('');
@@ -9755,7 +9838,7 @@
     // THE AUTHORITY IS THE SERVER, IN PUBLISH MODE. The verdict on the page behind this sheet
     // answered a different question. Measured: the same two items return ok:true with warns in
     // draft mode and ok:false with refusals with status:'published'.
-    const d = await api.checkProtocol(stSpec(), 'published');
+    const d = await api.checkProtocol(stSpec(), 'published', { base_pid: ST && ST.base_pid, base_rcid: ST && ST.base_rcid });
     if (d._status !== 200) { body.innerHTML = '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Not checked</div><p>' + esc(d.error || 'The safety checker could not be reached. Nothing has been published.') + '</p></div>'; return; }
     const ref = (d.refusals || []).slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b));
     if (ref.length) {
