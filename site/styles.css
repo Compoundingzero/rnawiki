@@ -969,9 +969,17 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .ex-rx{margin:.4rem 0 .1rem;font-size:.82rem;color:var(--head);background:var(--panel2);border-radius:8px;padding:.35rem .55rem;font-variant-numeric:tabular-nums}
 .ex-rx i{color:var(--muted);font-style:italic}
 .rx-def{margin-left:.4rem;font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);border:1px solid var(--line);border-radius:5px;padding:.02rem .3rem;vertical-align:middle}
-.ex-scale{display:flex;gap:.4rem;margin:.45rem 0 .1rem}
-.ex-sc{flex:1;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:.35rem .5rem;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s}
-.ex-sc.easier:hover,.ex-sc.harder:hover{border-color:var(--accent);color:var(--accent)}
+/* 2026-08-11: this row used to hold exactly two buttons, "← Easier" and "Harder →", off a level
+   ladder that linked Ab Crunch Machine to Atlas Stones. It now holds the movements that train the
+   SAME primary muscle with different equipment, so it wraps and the buttons carry names rather than
+   directions — a name needs room, and there can be two of them. .ex-sc-k labels what the row is,
+   because a bare pair of movement names beside a movement means nothing on its own. */
+.ex-scale{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin:.45rem 0 .1rem}
+.ex-sc-k{font-size:.72rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);flex:0 0 auto}
+.ex-sc{flex:1 1 8rem;min-width:0;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:8px;padding:.35rem .5rem;font-size:.8rem;font-weight:700;cursor:pointer;transition:.15s;text-align:left}
+.ex-sc.alt{font-weight:600}
+.ex-sc-eq{display:block;font-size:.7rem;font-weight:600;color:var(--muted);text-transform:lowercase}
+.ex-sc.easier:hover,.ex-sc.harder:hover,.ex-sc.alt:hover{border-color:var(--accent);color:var(--accent)}
 .ex-sc.suggest{color:var(--st);border-style:dashed;border-color:#e9d5ff;background:#faf5ff}
 .ex-sc.suggest:hover{background:#f3e8ff}
 

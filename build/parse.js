@@ -3878,3 +3878,84 @@ function blankComments(src) {
   const n = compounds.filter(consumer).length;
   console.log('[parse] Rx action surface OK — %d of %d compounds are offerable (%d withheld), one predicate in 3 files, %d generated stacks checked, %d leaking.', n, compounds.length, compounds.length - n, stacksChecked, offered);
 })();
+
+// ---- assertMovementDataIsNotInvented (2026-08-11) · P0-S11 · P0-S12 · P0-S14 · D-17 · D-18 ------
+// Felix: "remove anything that requires a clinician and try to make it up by replacing it with
+// higher quality higher value information."
+//
+// Three things in the movement layer required a clinician and were generated instead. This gate
+// keeps them gone, because each one came back once already — the file that produced them,
+// scripts/enrich-exercises.js, runs by hand and its output is committed, so nothing else would
+// notice a regeneration under the old rules.
+//
+//   (1) 873 of 873 prescriptions were `source:'default'` — sets, reps, tempo and rest from a table
+//       keyed on training level. Every stretch on the site read "2 × 30s hold" because a constant
+//       said so.
+//   (2) 1,007 Easier/Harder edges, chained inside move_tags[0] by level with no reference to
+//       muscles: 276 between movements sharing no primary muscle (Ab Crunch Machine --harder-->
+//       Atlas Stones), 100 "easier" swaps that raised equipment demand.
+//   (3) `kind` from the upstream library category alone, so all 123 records shelved under
+//       "stretching" became static stretches — Frog Hops, a plyometric jump, among them.
+//
+// What replaced them asserts nothing a clinician would have to sign: which muscles a movement
+// trains, what equipment it needs, and which other movements train the same muscle another way.
+(function assertMovementDataIsNotInvented() {
+  const ex = (exercisesData && exercisesData.exercises) || [];
+  if (!ex.length) {
+    console.error('\n[parse] MOVEMENT DATA GATE FAILED — data/clinical_exercises.json has no exercises. A gate with no subject passes vacuously.\n');
+    process.exit(1);
+  }
+  const byId = {}; ex.forEach((e) => { byId[e.id] = e; });
+  const bad = [];
+  const EXPLOSIVE_RE = /\b(jump|jumps|jumping|jumped|hop|hops|hopping|bound|bounds|bounding|leap|leaps|plyo\w*|explod\w*|ballistic|snatch|clean and jerk|jerk|sprint|sprints|throw|throws|slam|slams|kip|kipping|depth drop)\b/i;
+  const EXPLOSIVE_ALT = (e) => EXPLOSIVE_RE.test(String(e.name || '')) || String(e.category || '').toLowerCase() === 'plyometrics';
+
+  // (1) no fabricated prescription, and no fabricated FALLBACK either — the renderer's old default
+  //     literals made the invention invisible when the field was absent.
+  const defaulted = ex.filter((e) => e.prescription && e.prescription.source === 'default');
+  if (defaulted.length) bad.push(`${defaulted.length} movement(s) carry prescription.source "default" — sets and reps nobody measured, printed beside a movement. A prescription needs a prescriber; delete the field or author it per movement.`);
+  const app = fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8');
+  if (/rx\.sets \|\| 3|rx\.reps \|\| '8–12'|rx\.hold \|\| '30s'/.test(blankComments(app))) {
+    bad.push("site/app.js rxLine() has a hard-coded sets/reps/hold fallback again. That fallback is what made the invented prescription invisible: the field said '3 × 8–12' and so did the code path for a record without one.");
+  }
+
+  // (2) the ladder is gone, and every alternative edge is TRUE — same primary muscle, and the same
+  //     force and mechanic wherever both records state them.
+  const ladder = ex.filter((e) => e.regression_id || e.progression_id || e.needs_scaling_bounty);
+  if (ladder.length) bad.push(`${ladder.length} movement(s) carry regression_id / progression_id / needs_scaling_bounty. "Easier" and "harder" are judgements about a person and this dataset knows no person; if the relation is wanted it has to be authored per pair.`);
+  let edges = 0; const broken = [];
+  ex.forEach((e) => (e.alternatives || []).forEach((id) => {
+    edges++;
+    const t = byId[id];
+    if (!t) return broken.push(`${e.name} -> ${id} (no such movement)`);
+    const mine = new Set(e.primaryMuscles || []);
+    if (!(t.primaryMuscles || []).some((m) => mine.has(m))) broken.push(`${e.name} [${[...mine].join('/')}] -> ${t.name} [${(t.primaryMuscles || []).join('/')}] share no primary muscle`);
+    else if (e.force && t.force && e.force !== t.force) broken.push(`${e.name} (${e.force}) -> ${t.name} (${t.force}) — a push is not an alternative to a pull`);
+    else if (e.kind !== t.kind) broken.push(`${e.name} (${e.kind}) -> ${t.name} (${t.kind}) — a stretch is not an alternative to a lift`);
+    else if ((e.category || '') !== (t.category || '')) broken.push(`${e.name} (${e.category}) -> ${t.name} (${t.category}) — a swap must be like-for-like`);
+    // Never swap UP into a ballistic movement. This clause exists because the first hydrated check
+    // of the feature offered "Bench Jump" as a swap for a dumbbell lunge on the patellofemoral
+    // knee-pain protocol: same muscle, same force, same mechanic, less equipment, and still wrong.
+    // The narrow regex is the one in scripts/enrich-exercises.js; keep them in step.
+    else if (EXPLOSIVE_ALT(t) && !EXPLOSIVE_ALT(e)) broken.push(`${e.name} -> ${t.name} introduces a ballistic movement the original is not. Taking demand off a joint is the safe direction; adding it is not.`);
+  }));
+  if (broken.length) bad.push(`${broken.length} of ${edges} alternative edge(s) are not true by construction:\n      ` + broken.slice(0, 5).join('\n      ') + (broken.length > 5 ? `\n      … and ${broken.length - 5} more` : ''));
+
+  // (3) a movement whose own name or steps describe a jump may not be served as a static hold.
+  const DYNAMIC = /\b(jump|jumps|jumping|hop|hops|hopping|bound|bounds|leap|skip|skipping|swing|swings|swinging|throw|throws|sprint|explod\w*|plyo\w*)\b/i;
+  const mislabelled = ex.filter((e) => e.kind === 'stretch'
+    && (DYNAMIC.test(String(e.name || '')) || DYNAMIC.test((e.instructions || []).join(' '))));
+  if (mislabelled.length) bad.push(`${mislabelled.length} movement(s) classed 'stretch' describe a jump, hop, swing or throw: ${mislabelled.slice(0, 4).map((e) => e.name).join(', ')}. This is how Frog Hops reached a knee-pain protocol under "🧘 Stretches" as a 30-second hold.`);
+
+  if (bad.length) {
+    console.error('\n[parse] MOVEMENT DATA GATE FAILED — refusing to build.');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  This layer may state what a movement IS — muscles, equipment, pattern, level —');
+    console.error('  and may not state what a reader should DO with it. Regenerate with');
+    console.error('  scripts/enrich-exercises.js; do not hand-edit the JSON.');
+    process.exit(1);
+  }
+  const k = ex.reduce((a, e) => { a[e.kind] = (a[e.kind] || 0) + 1; return a; }, {});
+  console.log('[parse] movement data OK — %d movements (%d strengthen · %d static stretch · %d dynamic mobility), 0 invented prescriptions, 0 ladder edges, %d alternative edges all sharing a primary muscle.',
+    ex.length, k.strengthen || 0, k.stretch || 0, k.mobility || 0, edges);
+})();

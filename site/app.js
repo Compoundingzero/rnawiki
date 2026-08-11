@@ -286,7 +286,7 @@
   // items actually scheduled on `date`: stretches + supps every day; strength only on training days
   function scheduledIds(M, plan, date) {
     const training = isTrainingDay(plan, date);
-    return M.moves.filter(e => e.kind === 'stretch' || training).map(e => e.id).concat(M.supps.map(c => c.id));
+    return M.moves.filter(e => isDailyMove(e) || training).map(e => e.id).concat(M.supps.map(c => c.id));
   }
   function nextTrainingLabel(plan) {
     const days = planTrainingDays(plan); if (!days.length) return null;
@@ -4688,7 +4688,7 @@
       const inRegion = e => (!rel || (e.primaryMuscles || []).some(m => rel.has(m))) && notContra(e);
       // STRENGTHEN: round-robin across the loading tags, taking loading (non-stretch) exercises
       const seen = new Set();
-      const lists = strengthenTags.map(t => (EX.byTag[t] || []).filter(id => { const e = exById[id]; return e && e.kind !== 'stretch' && inRegion(e); }));
+      const lists = strengthenTags.map(t => (EX.byTag[t] || []).filter(id => { const e = exById[id]; return e && e.kind === 'strengthen' && inRegion(e); }));
       // For strength / hypertrophy GOALS (experienced lifters, not rehab), rank each tag's candidates so
       // heavy compound, intermediate/expert, free-weight lifts come first — no beginner-isolation "newbie"
       // moves at the top. Rehab/pain protocols keep their specific corrective picks (no strength tag).
@@ -5336,7 +5336,7 @@
           || (e.equipment || '').toLowerCase().includes(q))).slice(0, limit);
     }
     const wantStretch = bucket === 'stretch';
-    return EX.exercises.filter(e => !ex.has(e.id) && (wantStretch ? e.kind === 'stretch' : e.kind !== 'stretch')
+    return EX.exercises.filter(e => !ex.has(e.id) && (wantStretch ? isDailyMove(e) : e.kind === 'strengthen')
       && ((e.name || '').toLowerCase().includes(q) || (e.primaryMuscles || []).join(' ').toLowerCase().includes(q))).slice(0, limit);
   }
 
@@ -6077,7 +6077,11 @@
   }
 
   // ---- Set/rep logging helpers (progressive overload built into the checklist) ----
-  function prescribedSets(e) { const n = parseInt((e.prescription || {}).sets, 10); return n > 0 ? n : (e.kind === 'stretch' ? 2 : 3); }
+  // How many tick-boxes the tracker draws for one movement. This is a UI count, not a
+  // prescription: it is never printed as guidance and it says nothing about load or reps. It falls
+  // back to a fixed number because a checklist needs SOME number of rows; the authored value wins
+  // when one exists.
+  function prescribedSets(e) { const rx = e.prescription || {}; const n = rx.source && rx.source !== 'default' ? parseInt(rx.sets, 10) : 0; return n > 0 ? n : (isDailyMove(e) ? 2 : 3); }
   // most recent PRIOR day that has logged sets for this exercise — the number to beat
   function lastSets(plan, exId) {
     const log = plan.log || {}; const tk = today();
@@ -6121,9 +6125,9 @@
       ? `<div class="recap-card">📊 <b>Last 7 days:</b> you showed up <b>${rShown}/7</b> days${rSessions ? ` and logged <b>${rSessions}</b> strength session${rSessions === 1 ? '' : 's'}` : ''}. ${rShown >= 5 ? 'Strong week — keep it rolling.' : rShown >= 3 ? "Solid — let's build on it." : 'Fresh start this week. 💪'} <button class="miss-x" id="recap-dismiss" aria-label="Dismiss">✕</button></div>` : '';
     const moveRow = e => {
       const on = dayLog.done.includes(e.id); const cue = (e.prescription || {}).cue; const sub = [rxLine(e), cue].filter(Boolean).join(' · ');
-      const label = `<label class="trk-row"><input type="checkbox" class="plan-cb" data-done="${esc(e.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(e.name)} done"><span class="trk-txt"><span class="trk-name">${e.kind === 'stretch' ? '🧘' : '💪'} ${esc(e.name)}</span>${sub ? `<span class="trk-sub">${sub}</span>` : ''}</span><a class="trk-i" href="#/exercise/${esc(e.id)}" aria-label="Details about ${esc(e.name)}">Details</a></label>`;
+      const label = `<label class="trk-row"><input type="checkbox" class="plan-cb" data-done="${esc(e.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(e.name)} done"><span class="trk-txt"><span class="trk-name">${e.kind === 'stretch' ? '🧘' : e.kind === 'mobility' ? '🤸' : '💪'} ${esc(e.name)}</span>${sub ? `<span class="trk-sub">${sub}</span>` : ''}</span><a class="trk-i" href="#/exercise/${esc(e.id)}" aria-label="Details about ${esc(e.name)}">Details</a></label>`;
       // stretches: simple checkbox. strength: add an optional set/rep logger for progressive overload.
-      if (e.kind === 'stretch') return `<div class="trk-item ${on ? 'done' : ''}">${label}</div>`;
+      if (isDailyMove(e)) return `<div class="trk-item ${on ? 'done' : ''}">${label}</div>`;
       const nSets = prescribedSets(e); const todaySets = (dayLog.sets && dayLog.sets[e.id]) || []; const last = lastSets(plan, e.id);
       const setRows = Array.from({ length: nSets }, (_, i) => { const s = todaySets[i] || {};
         return `<div class="ex-setrow"><span class="ex-setn">Set ${i + 1}</span><input class="ex-in" type="number" inputmode="decimal" placeholder="kg" value="${s.w != null ? esc(String(s.w)) : ''}" data-ex="${esc(e.id)}" data-i="${i}" data-field="w" aria-label="Set ${i + 1} weight"><span class="ex-x">×</span><input class="ex-in" type="number" inputmode="numeric" placeholder="reps" value="${s.reps != null ? esc(String(s.reps)) : ''}" data-ex="${esc(e.id)}" data-i="${i}" data-field="r" aria-label="Set ${i + 1} reps"></div>`; }).join('');
@@ -6136,8 +6140,8 @@
       return `<div class="trk-item ${on ? 'done' : ''}"><label class="trk-row"><input type="checkbox" class="plan-cb" data-done="${esc(c.id)}" ${on ? 'checked' : ''} aria-label="Mark ${esc(c.name)} taken"><span class="trk-txt"><span class="trk-name">💊 ${esc(c.name)}</span>${sub ? `<span class="trk-sub">${esc(sub)}</span>` : ''}</span><a class="trk-i" href="#/c/${slug(c.name)}" aria-label="Details about ${esc(c.name)}">Details</a></label></div>`; };
     // Weekly structure: strength only shows on training days; stretches + supps are daily
     const training = isTrainingDay(plan, today());
-    const hasStrength = M.moves.some(e => e.kind !== 'stretch');
-    const todayMoves = M.moves.filter(e => e.kind === 'stretch' || training);
+    const hasStrength = M.moves.some(e => e.kind === 'strengthen');
+    const todayMoves = M.moves.filter(e => isDailyMove(e) || training);
     // W8 · THE LAYERS THE REST OF THE SITE IS BUILT AROUND, AS TICK-BOXES. Measured hydrated before
     // this: ONE undifferentiated "Today's checklist 0/12" with movements and supplements run
     // together — while every protocol page, /solve, the home page and the tab strip name the same
@@ -6289,7 +6293,7 @@
     const M = mergedPlan(plan);
     const streak = planStreak(plan); const longest = longestStreak(plan, M);
     const wk = daysShown(plan, M, 7); const adh = adherencePct(plan, M, 30);
-    const hasStrength = M.moves.some(e => e.kind !== 'stretch');
+    const hasStrength = M.moves.some(e => e.kind === 'strengthen');
     const stats = `<div class="prog-stats">
       <div class="pstat"><span class="pstat-n">🔥 ${streak}</span><span class="pstat-l">Current streak</span></div>
       <div class="pstat"><span class="pstat-n">🏆 ${longest}</span><span class="pstat-l">Longest streak</span></div>
@@ -8201,10 +8205,54 @@
     bindScale();
     try { glossarize(app); } catch (e) {}
   }
+  // ---- rxLine: WHAT THIS MOVEMENT IS, NOT HOW MANY OF IT TO DO (2026-08-11) --------------------
+  // It used to print "3 sets × 8–12 reps · tempo 3-1-1 · rest 90s", falling back to those literals
+  // whenever the record had no prescription. Every record had one and all 873 were
+  // `source:'default'` — a level table, not a clinician. So the fallback and the field said the
+  // same invented thing, and the fallback made the invention invisible.
+  //
+  // scripts/enrich-exercises.js deletes those. `prescription` now exists only where a human wrote
+  // one, which is nowhere yet, and this line renders what the DATASET actually knows: the movement
+  // pattern, the equipment and the training level. All three are fields, all three are checkable,
+  // and none of them is a claim about a reader nobody has met.
+  const KIND_LABEL = { stretch: 'Static stretch', mobility: 'Dynamic mobility drill', strengthen: '' };
   function rxLine(e) {
     const rx = e.prescription || {};
-    if (e.kind === 'stretch') return `${rx.sets || 2} × ${rx.hold || '30s'} hold · rest ${rx.rest || '20s'}`;
-    return `${rx.sets || 3} sets × ${rx.reps || '8–12'} reps${rx.tempo ? ' · tempo ' + rx.tempo : ''} · rest ${rx.rest || '90s'}`;
+    // An authored prescription still wins — that is the whole point of keeping the field. It is
+    // rendered FIELD BY FIELD with no fallbacks: a half-authored prescription must look
+    // half-authored. The old code filled the gaps with '3', '8–12', '30s' and '90s', which is
+    // exactly how 873 invented prescriptions stayed invisible for months — the field and the
+    // fallback printed the same sentence, so nobody could tell which they were reading.
+    if (rx.source && rx.source !== 'default') {
+      const p = [];
+      if (rx.sets && rx.hold) p.push(`${rx.sets} × ${rx.hold} hold`);
+      else if (rx.sets && rx.reps) p.push(`${rx.sets} sets × ${rx.reps} reps`);
+      else if (rx.hold) p.push(`${rx.hold} hold`);
+      if (rx.tempo) p.push(`tempo ${rx.tempo}`);
+      if (rx.rest) p.push(`rest ${rx.rest}`);
+      if (p.length) return p.join(' · ');
+    }
+    const bits = [];
+    if (KIND_LABEL[e.kind]) bits.push(KIND_LABEL[e.kind]);
+    else if (e.mechanic && e.force) bits.push(`${e.mechanic} ${e.force}`);
+    else if (e.mechanic) bits.push(e.mechanic);
+    if (e.equipment && e.equipment !== 'body only') bits.push(e.equipment);
+    else if (e.equipment === 'body only') bits.push('no equipment');
+    if (e.level) bits.push(e.level);
+    return bits.join(' · ');
+  }
+  // Movements you do on any day (stretch, mobility) vs the ones tied to a training day.
+  const isDailyMove = (e) => e && e.kind !== 'strengthen';
+  // ONE movement lookup, memoised on the exercise payload. generateProtocol() builds its own local
+  // exById inside a closure; the card renderer and the /exercise page needed the same map and had
+  // no access to it, and three `EX.exercises.find(...)` scans per card is how a 873-record list
+  // becomes a scroll jank. Rebuilt if the payload object is ever swapped.
+  let _exIdx = null, _exIdxSrc = null;
+  function exerciseById(id) {
+    const EX = window.RNAWIKI_EXERCISES;
+    if (!EX || !EX.exercises) return null;
+    if (_exIdxSrc !== EX) { _exIdx = {}; EX.exercises.forEach(x => { _exIdx[x.id] = x; }); _exIdxSrc = EX; }
+    return _exIdx[id] || null;
   }
   function exerciseCard(e) {
     if (!e) return '';
@@ -8213,11 +8261,17 @@
     const muscleLinks = (e.primaryMuscles || []).filter(mn => muscleByName[mn]).slice(0, 3)
       .map(mn => { const m = muscleByName[mn]; return `<a class="ex-muscle" href="#/muscle/${m.id}">${esc(m.name)} →</a>`; }).join('');
     const rx = e.prescription || {};
-    // Easier/Harder only appear when a real variation exists (a patient-facing swap). Adding
-    // missing variations is a Pro action, moved to /pro — not shown here.
-    const easier = e.kind !== 'stretch' && e.regression_id ? `<button class="ex-sc easier" data-scale="${esc(e.regression_id)}">← Easier</button>` : '';
-    const harder = e.kind !== 'stretch' && e.progression_id ? `<button class="ex-sc harder" data-scale="${esc(e.progression_id)}">Harder →</button>` : '';
-    const scale = (easier || harder) ? `<div class="ex-scale">${easier}${harder}</div>` : '';
+    // ← Easier / Harder → REPLACED 2026-08-11 by "same muscle, other kit".
+    // The ladder behind those two buttons was chained by training level inside move_tags[0] with no
+    // reference to muscles: 1,007 edges, 276 of them between movements sharing no primary muscle,
+    // 100 "easier" swaps that RAISED equipment demand. Easier and harder are judgements about a
+    // person; nothing in this dataset knows the person. What it does know is which movements train
+    // the same primary muscle with different equipment — which is the question somebody standing in
+    // a gym with no free barbell is actually asking. See scripts/enrich-exercises.js.
+    const alts = (e.alternatives || []).map(exerciseById).filter(a => a && a.equipment !== e.equipment).slice(0, 2);
+    const scale = alts.length
+      ? `<div class="ex-scale"><span class="ex-sc-k">Same target:</span>${alts.map(a => `<button class="ex-sc alt" data-scale="${esc(a.id)}">${esc(a.name)} <span class="ex-sc-eq">${esc(a.equipment || '')}</span></button>`).join('')}</div>`
+      : '';
     return `<div class="ex-card" data-exid="${esc(e.id)}">
       ${e.image ? `<img loading="lazy" src="${e.image}" alt="${esc(e.name)}" onerror="this.onerror=null;this.style.display='none'">` : '<div class="ex-noimg">🏋️</div>'}
       <div class="ex-body"><a class="ex-name" href="#/exercise/${esc(e.id)}">${esc(e.name)}</a>
@@ -8854,8 +8908,9 @@
     const prim = (e.primaryMuscles || []).map(mLink).join('');
     const sec = (e.secondaryMuscles || []).map(mLink).join('');
     const scale = [];
-    if (e.regression_id) scale.push(`<a class="tag-chip" href="#/exercise/${esc(e.regression_id)}">← Easier variation</a>`);
-    if (e.progression_id) scale.push(`<a class="tag-chip" href="#/exercise/${esc(e.progression_id)}">Harder variation →</a>`);
+    // Was "← Easier variation" / "Harder variation →" off the deleted level ladder. Now every
+    // alternative this movement actually has, each one sharing a primary muscle with it.
+    (e.alternatives || []).forEach(id => { const a = exerciseById(id); if (a) scale.push(`<a class="tag-chip" href="#/exercise/${esc(a.id)}">${esc(a.name)}${a.equipment ? ` · ${esc(a.equipment)}` : ''}</a>`); });
     const kindLabel = e.kind === 'stretch' ? 'Stretch / mobility' : 'Strengthening';
     app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Learn', href: '#/learn' }, { label: e.name }])}
       <div class="anat-head"><span class="anat-region">${esc(kindLabel)}${e.level ? ' · ' + esc(e.level) : ''}</span>
