@@ -2928,7 +2928,14 @@
   function mountBody(region) {
     region = region || 'leg';
     const canvas = document.getElementById('bm-canvas'); if (!canvas) return;
-    const fail = (msg) => { canvas.innerHTML = `<div class="bm-fallback"><p>${msg}</p></div>`; }; // replaces the loading state wholesale
+    // A machine-readable terminal state keeps the UI and the release gate on the same contract.
+    // `unsupported` means progressive enhancement was honestly unavailable on this device;
+    // `failed` means an asset/import/mount broke and must never be mistaken for that fallback.
+    canvas.dataset.bmState = 'loading';
+    const fail = (msg, state) => {
+      canvas.dataset.bmState = state || 'failed';
+      canvas.innerHTML = `<div class="bm-fallback"><p>${msg}</p></div>`;
+    }; // replaces the loading state wholesale
     // A loading state, added 2026-07-31 because Felix reported the model "does not load on the
     // laptop/desktop version". It does load — but it is an 800 KB model plus the Three.js modules
     // behind a lazy import, and until the first frame renders the box was simply EMPTY. An empty
@@ -2957,11 +2964,11 @@
       if (rb) rb.onclick = () => { if (ctrlRef.c) ctrlRef.c.playAction(f); };
     };
     import('/bodymap.js').then(m => {
-      if (!m.canRun3D()) return fail('<b>Your device can’t show the interactive 3D model</b> (older browser, low memory, data-saver, or reduced-motion is on). The muscle list below has everything, and each muscle page carries an animated 2D figure of the action.');
+      if (!m.canRun3D()) return fail('<b>Your device can’t show the interactive 3D model</b> (older browser, low memory, data-saver, or reduced-motion is on). The muscle list below has everything, and each muscle page carries an animated 2D figure of the action.', 'unsupported');
       m.mountBodyMap(canvas, { region, focusFma: fma || undefined, autoplayAction: !!fma, onSelect: (f, st) => { renderStructurePanel(st, f, ctrlRef); updateHud(f, st); } })
-        .then((c) => { ctrlRef.c = c; clearLoading(); })
-        .catch(() => fail('The 3D model couldn’t load. The muscle list below still works, and each muscle page has an animated 2D figure.'));
-    }).catch(() => fail('The 3D model couldn’t load. The muscle list below still works.'));
+        .then((c) => { ctrlRef.c = c; clearLoading(); canvas.dataset.bmState = 'ready'; })
+        .catch(() => fail('The 3D model couldn’t load. The muscle list below still works, and each muscle page has an animated 2D figure.', 'failed'));
+    }).catch(() => fail('The 3D model couldn’t load. The muscle list below still works.', 'failed'));
   }
   // Map an in-model muscle NAME (lowercased) -> its fma, so a muscle's "works with"/"opposes"
   // chips can deep-link to that muscle on the same 3D model. Built once from the registry.

@@ -51,6 +51,31 @@ const NAV_TIMEOUT = 45000;
 const navigationReady = (route) => /^\/body(?:\/|$)/.test(new URL(route, 'https://rnawiki.test').pathname)
   ? 'domcontentloaded'
   : 'networkidle2';
+async function bodyProgressiveOutcome(page, route) {
+  if (navigationReady(route) !== 'domcontentloaded') return null;
+  try {
+    await page.waitForFunction(() => {
+      const host = document.getElementById('bm-canvas');
+      return !!(host && /^(ready|unsupported|failed)$/.test(host.dataset.bmState || ''));
+    }, { timeout: 15000 });
+  } catch (e) {
+    return 'the 3D region did not reach ready, unsupported or failed within 15 seconds';
+  }
+  return page.evaluate(() => {
+    const shell = document.querySelector('.body-shell');
+    const host = document.getElementById('bm-canvas');
+    const list = document.querySelectorAll('.body-twin a[href]').length;
+    if (!shell || !host) return 'the crawlable body shell or 3D host is missing';
+    if (list < 10) return `the no-3D muscle index has only ${list} links`;
+    const state = host.dataset.bmState;
+    const fallback = host.querySelector('.bm-fallback');
+    const says = ((fallback && fallback.textContent) || '').replace(/\s+/g, ' ').trim();
+    if (state === 'failed') return `the 3D engine or model failed to load — "${says.slice(0, 140)}"`;
+    if (state === 'unsupported') return fallback ? null : 'the device was marked unsupported without an explicit fallback';
+    if (state !== 'ready') return `the 3D route ended in unknown state "${state || 'none'}"`;
+    return host.querySelector('canvas') ? null : 'the 3D route says ready but contains no canvas';
+  });
+}
 
 // ---------------------------------------------------------------- routes
 // W4 · Loop C: a cohort slug carries its own start date, so the LIVE case has to be computed when
@@ -847,24 +872,6 @@ const ASSERTIONS = {
       const small = shown.filter((a) => a.getBoundingClientRect().height < 24);
       if (small.length) return `${small.length} of ${shown.length} drawer links are under the 24px minimum`;
       btn.click();
-      return null;
-    },
-  }],
-  '/body': [{
-    name: 'bodyMapKeepsAUsableProgressiveFallback',
-    why: 'the 3D body is an enhancement over a complete muscle index: readers must get either the loaded model or an explicit fallback, never an empty or permanent loading box',
-    evaluate: async () => {
-      const shell = document.querySelector('.body-shell');
-      const host = document.getElementById('bm-canvas');
-      const list = document.querySelectorAll('.body-twin a[href]').length;
-      if (!shell || !host) return 'the crawlable body shell or 3D host is missing';
-      if (list < 10) return `the no-3D muscle index has only ${list} links`;
-      const until = Date.now() + 10000;
-      while (Date.now() < until && host.querySelector('.bm-loading')) {
-        await new Promise((r) => setTimeout(r, 100));
-      }
-      if (host.querySelector('.bm-loading')) return 'the 3D region stayed in its loading state for more than 10 seconds';
-      if (!host.querySelector('canvas') && !host.querySelector('.bm-fallback')) return 'the loading state disappeared without either a 3D canvas or an explicit fallback';
       return null;
     },
   }],
@@ -2352,6 +2359,8 @@ try {
     try {
       const resp = await page.goto(BASE + route, { waitUntil: navigationReady(route), timeout: NAV_TIMEOUT });
       status = resp ? resp.status() : 0;
+      const bodyIssue = await bodyProgressiveOutcome(page, route);
+      if (bodyIssue) fail.push(`${route}  3D progressive enhancement failed — ${bodyIssue}`);
       await new Promise(r => setTimeout(r, SETTLE_MS));
       dom = await page.evaluate(() => {
         const h1s = [...document.querySelectorAll('h1')];
@@ -2634,6 +2643,8 @@ try {
         // and the pass above is the one that asserts the status is 200 in the first place.
         const st = resp ? resp.status() : 0;
         if (st !== 200 && st !== 304) { fail.push(`${route}  [desktop ${DESKTOP.width}px] main document returned ${st}`); await page.close(); continue; }
+        const bodyIssue = await bodyProgressiveOutcome(page, route);
+        if (bodyIssue) fail.push(`${route}  [desktop ${DESKTOP.width}px] 3D progressive enhancement failed — ${bodyIssue}`);
         await new Promise(r => setTimeout(r, SETTLE_MS));
         const d = await page.evaluate((pairs) => {
           const box = (el) => { if (!el) return null; const r = el.getBoundingClientRect(); const s = getComputedStyle(el); return { w: Math.round(r.width), h: Math.round(r.height), disp: s.display, vis: s.display !== 'none' && s.visibility !== 'hidden' && r.width > 0 && r.height > 0 }; };
