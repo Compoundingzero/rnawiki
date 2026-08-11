@@ -418,7 +418,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   // merge, not less: the folded-in body carries eleven <h2> elements, four section headings plus the
   // seven answer panels that are display:none until server.js stamps data-state, so a contents card
   // here would offer "You are on the list." as a destination to somebody who has submitted nothing.
-  const _noToc = route === '/' || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
+  const _noToc = route === '/' || route.startsWith('/problem/') || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
   const _toc = (!_noToc && _words > 700) ? tocHtml(_an.heads, _mins) : '';
   // Insert after the first </h1> so the reader gets title -> what's in here -> content.
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
@@ -506,21 +506,21 @@ ${crumbLd}${ld}
         The JS path is unchanged: app.js binds `input` and `focus` on #search and paints
         #search-results; nothing binds submit, so Enter now navigates instead of doing nothing. */ ''}
   <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"></form><div id="search-results" class="search-results" hidden></div></div>
-  ${/* W5c (2026-08-02): A-Z AND BROWSE WERE IN THE FOOTER ONLY. Measured hydrated at 390x844 on
+  ${/* W5c (2026-08-02): SECONDARY FIND ROUTES BELONG IN THE MENU. Measured hydrated at 390x844 on
         /az: opening the ☰ drawer gave exactly four links — /solve, /where, /plan, /learn — and
         neither of the site's two INDEX pages was among them. On desktop that costs nothing: the
         footer is two screens away. On a phone it is the whole cost, because /problem pages have
         a median height of 29,844px, so "every compound, A-Z" was 35 phone screens below the
         reader on the pages most likely to make them want it. They are drawer-only (.nav-more is
-        display:none until .topnav.open) so the desktop bar keeps its four-item shape. */ ''}
+        display:none until .topnav.open) so the desktop bar keeps its three primary destinations. */ ''}
   <nav class="topnav">
-    <a href="/solve" class="nav-solve">Solve</a><a href="/where">Where it hurts</a><a href="/plan">My Plan</a><a href="/learn">Learn</a><a href="/az" class="nav-more">A&ndash;Z</a><a href="/browse" class="nav-more">Browse</a>
+    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/learn">Learn</a><a href="/where" class="nav-more">Where it hurts</a><a href="/az" class="nav-more">A&ndash;Z</a><a href="/browse" class="nav-more">Browse</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
   <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Solve</a> · <a href="/where">Where it hurts</a> · <a href="/plan">My Plan</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Find</a> · <a href="/plan">Today</a> · <a href="/learn">Learn</a> · <a href="/where">Where it hurts</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
@@ -867,8 +867,8 @@ function bioFlatHtml(c) {
       contra('Who must not take it'),
     ].filter(Boolean);
     if (!cards.length && !b.accessNote) return '';
-    return `<section class="biof"><h2>🛡️ Using it safely — what to know</h2>
-      <p class="biof-sub">This is a ${rx ? 'prescription-only medicine' : 'compound not approved for human use'}. The notes below are educational, not medical advice — always follow a qualified professional.</p>
+    return `<section class="biof"><h2>${rx ? '🛡️ Using it safely — what to know' : '⛔ Why this is not for self-use'}</h2>
+      <p class="biof-sub">${rx ? 'This is a prescription-only medicine. The notes below are educational, not medical advice — always follow a qualified professional.' : 'This compound is not approved for human use. The notes below explain the documented harms; they are not instructions for taking it.'}</p>
       ${b.accessNote ? `<p class="biof-access">${mdSafe(b.accessNote)}</p>` : ''}
       <div class="biof-cards">${cards.join('')}</div></section>`;
   }
@@ -1325,9 +1325,13 @@ function causeCascadeFlat(p) {
     // id="cause-N" is what the differential index above jumps to. N is the sorted position, which
     // equals c.rank on 224/224 causes (checked against data/cause_learn.json), so the number in the
     // index, the number in this heading and the fragment are the same number.
-    return `<div class="cause-flat-item" id="cause-${i + 1}"><h3>Cause ${c.rank || i + 1}: ${mdSafe(c.name)}</h3>${hook}${ki}${chain}${sym}${conf}${fixes}${deeper}${causeNext(p, c, causes.length)}</div>`;
+    return `<details class="cause-flat-item" id="cause-${i + 1}">
+      <summary><span class="cf-number">Reason ${c.rank || i + 1}</span><b>${mdSafe(c.name)}</b><span class="cf-open" aria-hidden="true">›</span></summary>
+      <div class="cause-flat-body">${hook}${ki}${chain}${sym}${conf}${fixes}${deeper}${causeNext(p, c, causes.length)}</div>
+    </details>`;
   }).join('');
-  return `<section class="cause-flat"><h2>What’s actually causing this — the ${causes.length} common cause${causes.length !== 1 ? 's' : ''} in full</h2>${w.intro ? mdBlocks(w.intro, mdSafe) : ''}<p class="muted">Ranked by leverage (#1 fixes the most). Each is a self-contained explanation and plan. If you have not read the side-by-side tells yet, <a href="#which-one">start there</a> — it is much faster.</p>${items}</section>`;
+  return `<section class="cause-flat"><h2>Understand each possible reason</h2>
+    <p class="muted">Open only the explanation you want. Each one keeps the mechanism, signs, evidence and available next steps together.</p>${items}</section>`;
 }
 
 // ---- the three blocks that turn /problem into a differential ----------------------------------
@@ -1351,17 +1355,20 @@ function causeCascadeFlat(p) {
 function problemRedFlags(p) {
   const plan = PLAN[p.id] || {};
   if (!plan.reassess) return '';
-  return `<section class="prob-redflags plan-reassess" id="red-flags">
-    <h2>First — when this is not a self-care problem</h2>
-    ${mdBlocks(plan.reassess, mdSafe)}
-    <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
-    through a protocol — <b>call your local emergency number</b> and go to an emergency department.
-    (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America, 112 across
-    Europe, 000 in Australia.) For anything persistent, a family doctor or polyclinic is the right
-    first stop.</p>
-    <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has
-    reviewed it, and nothing on it is a diagnosis.</p>
-  </section>`;
+  return `<span id="first-when-this-is-not-a-self-care-problem" class="fragment-alias" aria-hidden="true"></span>
+  <details class="prob-redflags plan-reassess" id="red-flags">
+    <summary><span><b>Check before choosing</b><small>When this needs professional care</small></span><span aria-hidden="true">›</span></summary>
+    <div class="prob-redflags-body">
+      <h2 class="sr-only">When this is not a self-care problem</h2>
+      ${mdBlocks(plan.reassess, mdSafe)}
+      <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
+      through a protocol — <b>call your local emergency number</b> and go to an emergency department.
+      For anything persistent, a family doctor or other qualified professional is the right first
+      stop.</p>
+      <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has
+      reviewed it, and nothing on it is a diagnosis.</p>
+    </div>
+  </details>`;
 }
 
 // 2. The differential: every cause's discriminating text in one block, in reading order.
@@ -1370,23 +1377,30 @@ function problemDifferential(p, causes) {
     const n = i + 1;
     const tell = (c.tell && c.tell.symptoms) ? String(c.tell.symptoms).replace(/\s*Honest tiering:.*$/i, '').trim() : '';
     const lab = (c.tell && c.tell.labMarker) ? String(c.tell.labMarker).trim() : '';
+    const rc = (p.root_causes || []).find((r) => r.cause_key === c.name);
+    const nextHref = rc ? `/protocol/${p.id}/${rc.id}` : `#cause-${n}`;
+    // Keep the visible action short, but give every link a distinct accessible name. Several
+    // problem pages have two or three protocol destinations, so identical "Review this protocol"
+    // links are ambiguous in a screen-reader link list and weak internal-link signals.
+    const nextCopy = rc
+      ? `Review this protocol<span class="sr-only"> for ${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</span>`
+      : 'Understand this reason';
     return `<li class="dx-row">
-      <p class="dx-name"><a href="#cause-${n}"><b>${n}. ${mdSafe(c.name)}</b></a></p>
-      ${c.hook ? `<p class="dx-hook">${mdSafe(c.hook)}</p>` : ''}
-      ${tell ? `<p class="dx-tell"><span class="dx-lbl">The tell</span> ${mdSafe(tell)}</p>` : ''}
-      ${c.confusedWith ? `<p class="dx-conf"><span class="dx-lbl">Often mistaken for</span> ${mdSafe(c.confusedWith)}</p>` : ''}
-      ${lab ? `<p class="dx-lab"><span class="dx-lbl">What a test would show</span> ${mdSafe(lab)}</p>` : ''}
-      <p class="dx-go"><a href="#cause-${n}">The mechanism and the plan for cause ${n} →</a></p></li>`;
+      <p class="dx-name"><b>${n}. ${mdSafe(c.name)}</b></p>
+      <p class="dx-tell">${mdSafe(snip(tell || c.hook || 'Open this reason to compare the full pattern.', 190))}</p>
+      ${(c.hook || c.confusedWith || lab) ? `<details class="dx-more"><summary>Why this might fit</summary>
+        <div>${c.hook ? `<p>${mdSafe(c.hook)}</p>` : ''}${c.confusedWith ? `<p><span class="dx-lbl">Often confused with</span> ${mdSafe(c.confusedWith)}</p>` : ''}${lab ? `<p><span class="dx-lbl">A professional may check</span> ${mdSafe(lab)}</p>` : ''}</div>
+      </details>` : ''}
+      <p class="dx-go"><a href="${nextHref}">${nextCopy} →</a></p></li>`;
   }).join('');
   // The <h2> stays BARE. anchorHeadings() (prerender.js:331) only matches `<h([23])>` with no
   // attributes, so an authored id here would silently drop the heading out of the contents card and
   // lose its # anchor. The jump target lives on the <section> instead.
   return `<section class="prob-dx" id="which-one" aria-label="Which cause is yours">
-    <h2>Which one is you? — the ${causes.length} causes side by side</h2>
-    <p class="muted">Ranked by leverage: #1 is the cause that, fixed, changes the most for the most
-    people. Read the tells, pick the closest, jump straight to it. More than one can be true at
-    once, and this is a reading aid rather than a diagnosis — the “what a test would show” lines
-    say what a doctor would order, not what you should conclude on your own.</p>
+    <div class="kicker">Possible reasons</div>
+    <h2>Which feels closest?</h2>
+    <p class="muted">Choose by the pattern, not the label. More than one may fit, and you can come
+    back at any time. This narrows what to read; it does not diagnose you.</p>
     <ol class="dx-list">${rows}</ol></section>`;
 }
 
@@ -1404,13 +1418,15 @@ function protocolRoute(p, causes) {
   const bound = rcs.filter((rc) => rc.cause_key).length;
   const nC = causes.length;
   const head = rcs.length === 1
-    ? `${esc(p.name)} has <b>one</b> full protocol — the movements, the food and the compounds — written around the root cause ${links}.`
-    : `${esc(p.name)} has <b>${rcs.length}</b> full protocols — the movements, the food and the compounds — each written around one root cause: ${links}.`;
+    ? `${esc(p.name)} has <b>one</b> full protocol, written around this possible reason: ${links}.`
+    : `${esc(p.name)} has <b>${rcs.length}</b> full protocols, each written around a different possible reason: ${links}.`;
   const honest = bound
-    ? `${bound} of the ${nC} cause${nC === 1 ? '' : 's'} below ${bound === 1 ? 'is' : 'are'} matched to ${rcs.length === 1 ? 'it' : 'one of them'}. For the ${nC - bound} that ${nC - bound === 1 ? 'is' : 'are'} not, the step-by-step plan inside the cause is what this site has — there is no separate protocol to send you to, and pretending otherwise would be worse than saying so.`
-    : `None of the ${nC} causes below is matched to ${rcs.length === 1 ? 'it' : 'one of them'} individually: ${rcs.length === 1 ? 'that root cause is' : 'those root causes are'} an umbrella over several of them. The step-by-step plan inside each cause is what this site has for that cause.`;
-  return `<section class="prob-route" id="the-plan">
-    <h2>Where the full plan lives</h2><p>${head}</p><p class="prob-route-honest">${honest}</p></section>`;
+    ? `${bound} of the ${nC} possible reason${nC === 1 ? '' : 's'} below ${bound === 1 ? 'has' : 'have'} a directly matched protocol. The others still have an explanation and practical next steps, but not a separate full protocol.`
+    : `These protocols cover the problem broadly rather than mapping one-to-one to the ${nC} possible reasons below. Each reason still has its own explanation and practical next steps.`;
+  return `<details class="prob-route" id="the-plan">
+    <summary><span><b>See every protocol for this problem</b><small>${rcs.length} available</small></span><span aria-hidden="true">›</span></summary>
+    <div class="prob-route-body"><h2 class="sr-only">Where the full plan lives</h2><p>${head}</p><p class="prob-route-honest">${honest}</p></div>
+  </details>`;
 }
 
 // The footer of one cause: the protocol authored for THIS cause if there is one, and the way back.
@@ -1463,11 +1479,11 @@ GRAPH.problems.forEach((p) => {
   // the 30,000 px of mechanism prose that used to come first. The old bottom-of-page "The full
   // protocols" list is gone because protocolRoute() carries the same links near the top and every
   // cause block now carries them again at the point of decision.
-  const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name }])}
-    <h1>${p.icon || ''} Why ${esc(p.name.toLowerCase())} happens</h1>
-    <p class="lede">The same symptom has different causes, and they need different fixes — so this
-    page starts with the ${causes.length} cause${causes.length === 1 ? '' : 's'} side by side and how to
-    tell them apart, then gives the mechanism and the plan for each.</p>
+  const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }, { name: p.name }])}
+    <div class="problem-intro"><div class="kicker">One problem, different patterns</div>
+    <h1>${p.icon || ''} What might be behind your ${esc(p.name.toLowerCase())}?</h1>
+    <p>Start with what sounds most like you. RNAwiki will show the most relevant reading and the
+    available protocol without asking you to understand the science first.</p></div>
     ${problemRedFlags(p)}
     ${problemDifferential(p, causes)}
     ${protocolRoute(p, causes)}
@@ -1480,7 +1496,7 @@ GRAPH.problems.forEach((p) => {
     jsonld: [{ '@context': 'https://schema.org', '@type': 'MedicalWebPage', inLanguage: 'en',
       name: `Why ${p.name} happens`, about: { '@type': 'MedicalCondition', name: p.name },
       url: SITE_URL + route, publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified }],
-    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }],
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }, { name: p.name, route }],
     body,
   }));
 });
@@ -1561,17 +1577,18 @@ GRAPH.problems.forEach((p) => {
       </section>` : '');
     const redflags = `
       ${plan.reassess ? `<section class="safety-first" id="red-flags">
-        <div class="plan-card plan-reassess">
-          <h3>First — when this is not a self-care problem</h3>
-          ${mdBlocks(plan.reassess, mdSafe)}
-          <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
-          through a protocol — <b>call your local emergency number</b> and go to an emergency
-          department. (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America,
-          112 across Europe, 000 in Australia.) For anything persistent, a family doctor or
-          polyclinic is the right first stop.</p>
-          <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has
-          reviewed it, and nothing on it is a diagnosis.</p>
-        </div>
+        <details class="plan-card plan-reassess">
+          <summary><span><b>Before you start</b><small>Who should not self-manage this</small></span><span aria-hidden="true">›</span></summary>
+          <div class="safety-detail">${mdBlocks(plan.reassess, mdSafe)}
+            <p class="esc-note">If something is severe, sudden, or getting rapidly worse, do not work
+            through a protocol — <b>call your local emergency number</b> and go to an emergency
+            department. (It is 995 in Singapore, 999 in the UK and much of Asia, 911 in North America,
+            112 across Europe, 000 in Australia.) For anything persistent, a family doctor or
+            polyclinic is the right first stop.</p>
+            <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has
+            reviewed it, and nothing on it is a diagnosis.</p>
+          </div>
+        </details>
         ${sfy ? `<div class="safety-grid">
           <div class="sf-card track-metric" data-primary-metric="${esc(sfy.metric)}">
             <span class="sf-k">The one thing to track</span>
@@ -1593,11 +1610,15 @@ GRAPH.problems.forEach((p) => {
       ${siblings.length ? `<h3>Other root causes of ${esc(p.name)}</h3>
         <p class="muted">If the description above does not sound like you, it is probably one of these.</p>
         <ul>${siblings.map((s) => `<li><a href="/protocol/${p.id}/${s.id}">${esc(s.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>` : ''}`;
-    const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name }])}
+    const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }, { name: p.name }])}
       <h1>${p.icon || ''} ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
       ${rc.diagnostic ? `<p>${esc(rc.diagnostic)}</p>` : ''}
+      <p class="protocol-fit-link"><a href="/problem/${p.id}">Not sure this reason fits? Check the problem first</a></p>
       ${redflags}
       ${phase1}
+      <details class="protocol-full" id="protocol-full">
+        <summary><span><b>Review the full protocol</b><small>Reasoning, movement, food, supplements and sources</small></span><span aria-hidden="true">›</span></summary>
+        <div class="protocol-full-body">
       ${/* W4 (2026-08-02): suppressed on the 38 of 52 routes whose Phase 1 was SELECTED FROM THIS
             VERY KEYSTONE — otherwise the page prints the same authored sentence twice. site/app.js
             carries the identical condition; if the two drift, a crawler and a reader disagree
@@ -1629,6 +1650,8 @@ GRAPH.problems.forEach((p) => {
       ${stackAuditCallout()}
       ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
+        </div>
+      </details>
       <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
     const rcShort = rc.name.replace(/\s*\([^)]*\)/, '');
@@ -1699,7 +1722,7 @@ GRAPH.problems.forEach((p) => {
     // The step is the differentiator, so it is the part that must survive the budget: trim the
     // lead against what is left, never the other way round.
     if (esc(pcLead + pcStep).length > 155) pcLead = seoDesc(pcLead, Math.max(20, 155 - esc(pcStep).length));
-    add(route, shell({ route, title: pcTitle(p.name, rc.name), desc: pcLead + pcStep, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
+    add(route, shell({ route, title: pcTitle(p.name, rc.name), desc: pcLead + pcStep, jsonld: protoLd, ogImage: renderOgCard(`og/protocol/${p.id}/${rc.id}.png`, { kind: 'Protocol · ' + (p.category || ''), title: p.name, sub: rc.plain || rc.diagnostic || rc.name }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }, { name: p.name, route }], body: body + pqa.html }));
 
     // ---- the Fuel Tracker's readable twin ----------------------------------------------------
     // Added 2026-07-30. Every protocol page links to /fuel/<problem>/<cause>, and not one of those
@@ -1716,7 +1739,7 @@ GRAPH.problems.forEach((p) => {
       const cols = tgts.map(([k]) => k).filter((k) => k !== 'kcal').slice(0, 5);
       const num = (v) => (v === null || v === undefined || v === '' ? '—' : v);
       const fuelRoute = `/fuel/${p.id}/${rc.id}`;
-      const fbody = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel' }])}
+      const fbody = `${crumbHtml([{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }, { name: p.name, route }, { name: 'Fuel' }])}
         <h1>Fuel — ${esc(p.name)}</h1><h2>${esc(rc.name)}</h2>
         <p class="lede">What to eat for this cause, how much of it, and why each target is the
         target. The day-by-day log needs JavaScript; everything below does not.</p>
@@ -1761,7 +1784,7 @@ GRAPH.problems.forEach((p) => {
         // Nothing caught it because nothing had ever looked at a <title> until assertHeadParity().
         title: pcTitle(`Fuel \u00b7 ${p.name}`, rc.name),
         desc: seoDesc(`Daily nutrient targets for ${p.name} (${pcCase(rcShort)}), why each one, and the everyday foods that hit them.`),
-        breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }, { name: p.name, route }, { name: 'Fuel', route: fuelRoute }],
+        breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }, { name: p.name, route }, { name: 'Fuel', route: fuelRoute }],
         body: fbody,
       }), { noSitemap: true });
     }
@@ -2477,36 +2500,38 @@ ANAT.metabolism.forEach((p) => {
 //      text slots. (It used to do the same for the newsletter completion notice on "/"; the
 //      newsletter was removed 2026-08-06, so /solve?q= is now the only place that pattern lives.)
 // NOTE for anyone editing the strings below: server.js matches `id="q-hits"`, `id="q-none"`,
+// `id="q-urgent"`, `id="q-review"`,
 // `<em class="q-term"></em>` and the input's attribute run VERBATIM. Reword them there too.
 const solveCardPre = (p) => {
   const nc = ((p.why && p.why.causes) || []).length;
-  const nr = p.root_causes.length;
   return `<div class="solve-card" data-kind="${p.kind}" data-pid="${esc(p.id)}">`
     + `<a class="s-main" href="/problem/${p.id}" data-native>`
     + `<span class="s-ico" aria-hidden="true">${p.icon || '•'}</span>`
     + `<span class="s-body"><b>${esc(p.name)}</b>`
     + `<small>${esc(p.category)} · ${p.kind === 'want' ? 'goal' : 'problem'}</small>`
-    + `<span class="s-diff">${nc} possible cause${nc === 1 ? '' : 's'} · ${nr} with a protocol</span>`
-    + `<span class="s-go">See which one fits you →</span></span></a>`
-    + `<div class="s-rcs"><span class="s-rcs-k">Already know the cause?</span>`
-    + p.root_causes.map((rc) => `<a class="s-rc" href="/protocol/${p.id}/${rc.id}">${esc(rc.name.replace(/\s*\([^)]*\)/, ''))}</a>`).join('')
-    + `</div></div>`;
+    + `<span class="s-diff">${nc} possible reason${nc === 1 ? '' : 's'}</span>`
+    + `<span class="s-go">Compare the reasons →</span></span></a></div>`;
 };
 const solveCats = [...new Set(GRAPH.problems.map((p) => p.category))];
-add('/solve', shell({ route: '/solve', title: 'Solve a problem or reach a goal — protocol engine · RNAwiki', desc: `Name the problem or goal. See its likely causes first — ${GRAPH.problems.length} problems, ${GRAPH.problems.reduce((a, p) => a + ((p.why && p.why.causes) || []).length, 0)} documented causes — then one Move · Fuel · Stack protocol for the cause you pick.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Solve', route: '/solve' }], body: `<h1>Stop guessing. Start solving.</h1>`
-  + `<p>Name the problem you want to fix or the goal you want to reach. You get the likely causes first — because the same symptom has different causes and they need different fixes — then one protocol for the cause you pick: the movement to fix it, Singapore foods to fuel it, and evidence-ranked compounds to support it.</p>`
+add('/solve', shell({ route: '/solve', title: 'Find a protocol for a problem or goal · RNAwiki', desc: `Search ${GRAPH.problems.length} health and performance topics. Compare possible reasons, check what matters first, then review the relevant movement, food and compound protocol.`, breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Find', route: '/solve' }], body: `<section class="solve-hero"><div class="kicker">Find your next step</div><h1>What do you want help with?</h1>`
+  + `<p>Search a symptom or goal. Compare possible reasons, check what matters first, then review the relevant protocol. This is a reading aid, not a diagnosis.</p>`
   + `<form class="solve-q" action="/solve" method="get" role="search"><label class="sr-only" for="solve-q">Describe the problem or goal in your own words</label>`
-  + `<input id="solve-q" name="q" type="search" value="" autocomplete="off" spellcheck="false" placeholder="In your own words — &quot;sore knee going downstairs&quot;">`
-  + `<button class="cta-primary" type="submit">Find it →</button></form>`
-  + `<p class="where-cta"><a href="/where">🧍 Not sure what it's called? Point to where it hurts →</a></p>`
+  + `<input id="solve-q" name="q" type="search" value="" autocomplete="off" spellcheck="false" placeholder="e.g. knee pain on stairs">`
+  + `<button class="cta-primary" type="submit">Find</button></form>`
+  + `<p class="where-cta"><a href="/where">Not sure what it is called? Show me on the body →</a></p></section>`
   + `<section class="q-panel" id="q-hits"><h2 class="q-h">Closest match for <em class="q-term"></em></h2>`
   + `<div class="solve-grid q-list">${GRAPH.problems.map(solveCardPre).join('')}</div>`
-  + `<p class="q-all"><a href="#solve-all">Not it? All ${GRAPH.problems.length} problems and goals ↓</a></p></section>`
+  + `<p class="q-all"><a href="#solve-directory">Not it? Browse all ${GRAPH.problems.length} topics ↓</a></p></section>`
   + `<section class="q-panel q-empty" id="q-none"><h2 class="q-h">Nothing here matches <em class="q-term"></em></h2>`
-  + `<p>RNAwiki covers ${GRAPH.problems.length} problems and goals. Yours is not one of them yet. Point to where it hurts and work back from the body, or read the full list below.</p>`
-  + `<p class="q-acts"><a class="q-alt" href="/where">🧍 Point to where it hurts →</a></p></section>`
-  + `<h2 class="solve-all-h" id="solve-all">All ${GRAPH.problems.length} problems and goals</h2>`
-  + solveCats.map((cat) => `<div class="solve-section"><h3>${esc(cat)}</h3><div class="solve-grid">${GRAPH.problems.filter((p) => p.category === cat).map(solveCardPre).join('')}</div></div>`).join('') }));
+  + `<p>RNAwiki covers ${GRAPH.problems.length} problems and goals. Yours is not one of them yet. Show where it hurts, or browse the full directory.</p>`
+  + `<p class="q-acts"><a class="q-alt" href="/where">Show me on the body →</a></p><p class="q-all"><a href="#solve-directory">Browse all ${GRAPH.problems.length} topics ↓</a></p></section>`
+  + `<section class="q-panel q-guidance q-urgent" id="q-urgent" role="alert"><div class="kicker">Do not use a protocol for this</div><h2>Get urgent help now</h2>`
+  + `<p>Some words in this search can describe an emergency. Stop here and contact your local emergency service now. If you may hurt yourself, move away from anything you could use and contact emergency or crisis support now. Do not wait for an online answer.</p></section>`
+  + `<section class="q-panel q-guidance q-review" id="q-review"><div class="kicker">Extra care needed</div><h2>Ask a clinician or pharmacist first</h2>`
+  + `<p>This search may involve pregnancy, a child, or medicine interactions. RNAwiki will not approximate a self-care protocol. Bring the exact products and medicines to a qualified professional.</p></section>`
+  + `<details class="solve-directory" id="solve-directory"><summary><span><b>Browse all ${GRAPH.problems.length} topics</b><small>Problems and goals, grouped by area</small></span><span class="solve-directory-mark" aria-hidden="true">+</span></summary><div class="solve-directory-body">`
+  + solveCats.map((cat) => `<div class="solve-section"><h3>${esc(cat)}</h3><div class="solve-grid">${GRAPH.problems.filter((p) => p.category === cat).map(solveCardPre).join('')}</div></div>`).join('')
+  + `</div></details>` }));
 
 // ---- THE HOME PAGE: ONE DOCUMENT, ONE SOURCE -------------------------------------------------
 // Written to home.html. server.js serves it for "/", and site/app.js CAPTURES it at boot rather
@@ -3085,46 +3110,18 @@ let written = 0;
   // everyone else: what a plan is, and how to start one, is ordinary explainable content. The SPA
   // replaces this the moment it boots, so a reader with a plan never sees it.
   add('/plan', shell({
-    route: '/plan', title: 'My Plan — build one plan from your root cause · RNAwiki',
-    desc: seoDesc('One plan, built from the root cause of your problem: the movements to fix it, the foods to fuel it, and the compounds with human evidence for it. Free, no account needed.'),
-    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'My Plan', route: '/plan' }],
-    body: `<div class="article"><h1>My Plan</h1>
-      <p class="lede">One plan, in one place, built from the <em>cause</em> of your problem rather
-      than its name. Your plan lives in this browser — there is no account to create and nothing to
-      pay.</p>
-      <p><strong>If you already have a plan, it will appear here in a moment.</strong> It is stored
-      on your own device, so it loads when the page does. If you are reading with JavaScript turned
-      off, this page cannot show it — everything else below works either way.</p>
-
-      <h2>How a plan gets built</h2>
-      <ol class="about-steps">
-        <li><strong>Name the problem or the goal.</strong> Start at <a href="/solve">Solve</a>, or
-        <a href="/where">point to where it hurts</a> if you do not know what it is called.</li>
-        <li><strong>Find which cause you actually have.</strong> Most problems here have several,
-        and the fix is different for each — the same knee pain has a different answer depending on
-        whether the tendon, the joint surface or the hip is driving it. Each protocol opens with a
-        short set of questions that narrows it.</li>
-        <li><strong>Start the plan.</strong> That pulls the movements, the foods and the
-        evidence-ranked compounds for <em>that cause</em> into one list.</li>
-        <li><strong>Work it, then reassess.</strong> Every protocol states how long to give it
-        before you judge it, what "working" looks like, and the point at which the answer is a
-        clinician rather than another supplement.</li>
-      </ol>
-
-      <h2>Start from something concrete</h2>
-      <ul>
-        <li><a href="/solve">Every problem and goal, with its root causes</a></li>
-        <li><a href="/where">Point to where it hurts</a> — for pain you cannot name</li>
-        <li><a href="/stack">The compound index</a> — if you already know what you are looking at</li>
-        <li><a href="/az">All ${D.compounds.length} compounds, A–Z</a></li>
-      </ul>
-
-      <h2>What a plan is not</h2>
-      <p>It is not a prescription and not a diagnosis. It is a reading list with an order, built
-      from the same evidence the rest of the site shows you. Prescription and controlled medicines
-      are never added to a plan and never dosed here. <a href="/methodology" data-native>How these
-      pages are made →</a></p>
-      </div>` }));
+    route: '/plan', title: 'Today — your next RNAwiki action',
+    desc: seoDesc('Open the one action due today from your saved RNAwiki protocol. Your plan stays on this device and does not require an account.'),
+    robots: 'noindex,follow',
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Today', route: '/plan' }],
+    body: `<section class="plan-empty">
+      <div class="plan-empty-ico" aria-hidden="true">○</div>
+      <h1>Nothing scheduled today.</h1>
+      <p>If you already have a plan, it will appear here when this page finishes loading. Otherwise, find a problem or goal and review what fits before you start.</p>
+      <a class="cta-primary" href="/solve">Find a protocol</a>
+      <p class="muted">Your plan is private to this browser. RNAwiki is information, not a diagnosis or prescription.</p>
+      <p><a href="/where">Show me on the body</a> · <a href="/methodology" data-native>How RNAwiki works</a></p>
+      </section>` }), { noSitemap: true });
 
   add('/az', shell({
     route: '/az', title: `All ${D.compounds.length} compounds A–Z · RNAwiki`,

@@ -3538,7 +3538,7 @@ function blankComments(src) {
 // `function stackInteractions(` into server.js: this must exit 1 naming the file and the line.
 (function assertOneInteractionMatcher() {
   const OWNER = 'site/ixn-engine.js';
-  const FNS = ['compoundTags', 'stackInteractions', 'distinctCarriers', 'sameSubstance'];
+  const FNS = ['compoundTags', 'stackInteractions', 'distinctCarriers', 'sameSubstance', 'pairCoverage'];
   const READERS = ['site/app.js', 'server.js', 'build/parse.js', 'studio-safety.js'];
   const bad = [];
   if (!fs.existsSync(path.join(ROOT, OWNER))) {
@@ -3589,7 +3589,7 @@ function blankComments(src) {
 // orphaned build gate. Then point one `mirrors` at a function that does not exist: it must exit 1
 // naming that too.
 (function assertStudioSafetyMirrorsBuildGates() {
-  const SAFETY_FAMILY = ['assertAvoidMovements', 'assertDoseCalculators', 'assertRegulatoryAxes', 'assertHumanEvidenceStars', 'assertInteractionCoverage'];
+  const SAFETY_FAMILY = ['assertAvoidMovements', 'assertDoseCalculators', 'assertRegulatoryAxes', 'assertHumanEvidenceStars', 'assertInteractionCoverage', 'assertClaimTextIntact'];
   const bad = [];
   let RULES;
   try { RULES = require(path.join(ROOT, 'studio-safety.js')).RULES; }
@@ -4024,9 +4024,45 @@ function blankComments(src) {
   if (!calls.length) bad.push('site/app.js — no call to api.checkProtocol() found at all. If the Studio stopped checking, this gate has no subject.');
   calls.forEach((c) => { if (!/base_pid/.test(c)) bad.push(`site/app.js — a call to checkProtocol() sends no base_pid: ${c.slice(0, 90)}`); });
 
-  // S6 — the clean verdict is conditional on coverage.
-  if (!/const enough = cov && cov\.checked >= 2;/.test(app) || !/const clean = enough/.test(app)) {
-    bad.push('site/app.js stPaintVerdict() no longer conditions its clean verdict on coverage. An empty warn list means "checked and fine" OR "I hold pharmacology for none of these", and only one of those is a ✅. /stack has drawn this distinction since W3.');
+  // S6 — even complete exact-pair coverage is a neutral statement about narrow authored rules,
+  // never a broad green clearance. `checked >= 2` was itself the defect once the count described
+  // individually tagged compounds rather than exact combinations.
+  if (!/function stCoverageVerdict\(cov, says, fresh\)/.test(app)
+      || !/c\.state === 'complete' && c\.of >= 1 && c\.checked === c\.of/.test(app)
+      || !/const clean = stCoverageVerdict\(cov, ST_V\.says, false\)/.test(app)) {
+    bad.push('site/app.js stPaintVerdict() no longer reads the server\'s explicit exact-pair coverage state before drawing its neutral guidance verdict. 0/N and partial N/M are unknown, never safe.');
+  }
+  if (/Nothing flagged/.test(app) || /st-flag st-clean/.test(app)) {
+    bad.push('site/app.js has restored a broad green interaction clearance. The hand-authored matcher may name known rules and unknown pairs; it cannot prove that an unflagged combination is safe.');
+  }
+  if (/const enough = cov && cov\.checked >= 2/.test(app)) {
+    bad.push('site/app.js has restored the `checked >= 2` coverage inference. That paints 2/3 green and is the exact partial-coverage false clearance this gate exists to prevent.');
+  }
+
+  // Public protocols are living instructions. Revalidate them with PUBLIC rules at read and clone,
+  // then suppress the resolved spec when those rules fail. A stored verdict is an audit record,
+  // not permission to keep serving steps after the corpus changes.
+  const server = blankComments(fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8'));
+  const readAnchor = "if (seg[0] === 'protocols' && seg[1] && !seg[2] && method === 'GET')";
+  const readAt = server.indexOf(readAnchor);
+  const readEnd = readAt < 0 ? -1 : server.indexOf("if (seg[0] === 'forks'", readAt);
+  const publicRead = readAt < 0 ? '' : server.slice(readAt, readEnd < 0 ? readAt + 12000 : readEnd);
+  if (!/STUDIO\.validate\(\{ spec: r\.spec, base_pid: row\.base_pid, base_rcid: row\.base_rcid, publish: true \}\)/.test(publicRead)) {
+    bad.push('server.js GET /api/protocols/:code no longer revalidates the resolved protocol with publish:true. Draft-mode notes are not sufficient for a page instructing strangers.');
+  }
+  if (!/status: 'review_required'/.test(publicRead) || !/spec: null/.test(publicRead) || !/if \(!v\.ok\) return json/.test(publicRead)) {
+    bad.push('server.js GET /api/protocols/:code no longer returns review_required with spec:null when current publication checks fail. A refusal with an actionable spec beside it is still an instruction.');
+  }
+  const cloneAnchor = "if (seg[0] === 'protocols' && seg[1] && seg[2] === 'clone' && method === 'POST')";
+  const cloneAt = server.indexOf(cloneAnchor);
+  const cloneEnd = cloneAt < 0 ? -1 : server.indexOf(readAnchor, cloneAt);
+  const clone = cloneAt < 0 ? '' : server.slice(cloneAt, cloneEnd < 0 ? cloneAt + 8000 : cloneEnd);
+  if (!/STUDIO\.validate\(\{ spec: resolved\.spec, base_pid: r\.base_pid, base_rcid: r\.base_rcid, publish: true \}\)/.test(clone)
+      || !/if \(!current\.ok\) return json/.test(clone)) {
+    bad.push('server.js clone endpoint no longer applies the current publish rules before counting or opening a remix. A direct API call must not bypass review_required containment.');
+  }
+  if (!/d\.status === 'review_required'/.test(app) || !/No steps, start control or remix control are shown/.test(app)) {
+    bad.push('site/app.js no longer renders the review_required public state without steps/start/remix controls. The endpoint may hide the spec, but the reader must also be told why the action disappeared.');
   }
 
   // S7 — only a clean verdict may be folded away.

@@ -569,9 +569,9 @@
   {
    "id": "c28",
    "name": "2,4-Dinitrophenol (DNP)",
-   "regulatory_class": "controlled",
+   "regulatory_class": "unapproved",
    "consumer_renderable": false,
-   "sg_hsa_status": "Controlled substance in Singapore (HSA / CNB, or WADA-prohibited for athletes).",
+   "sg_hsa_status": "Not approved for human use. DNP is a toxic industrial chemical with no safe dose for weight loss; do not buy or use it.",
    "approvals": [
     {
      "badge": "⚫",

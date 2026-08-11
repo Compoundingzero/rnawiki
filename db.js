@@ -91,6 +91,11 @@ ALTER TABLE users ADD COLUMN IF NOT EXISTS socials JSONB NOT NULL DEFAULT '{}'; 
 ALTER TABLE users ADD COLUMN IF NOT EXISTS badges JSONB NOT NULL DEFAULT '[]';
 ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_views INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS booking_clicks INTEGER NOT NULL DEFAULT 0;
+-- Public identity is an explicit, reversible publication decision. Existing accounts stay private
+-- after this migration; merely having a username or publishing a protocol never flips this field.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS public_profile_enabled BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS public_profile_disclosure_version TEXT;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS public_profile_published_at TIMESTAMPTZ;
 -- Points ledger. UNIQUE(user,kind,ref) makes every award idempotent (no double-counting).
 CREATE TABLE IF NOT EXISTS rep_events (
   id SERIAL PRIMARY KEY,
@@ -412,6 +417,19 @@ CREATE TABLE IF NOT EXISTS user_consent (
   consented_at TIMESTAMPTZ,
   withdrawn_at TIMESTAMPTZ
 );
+-- Append-only proof of an explicit choice. Legacy user_consent rows are not accepted as proof:
+-- password registration used to insert true automatically and the old schema recorded no source.
+CREATE TABLE IF NOT EXISTS consent_records (
+  id BIGSERIAL PRIMARY KEY,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  purpose TEXT NOT NULL,
+  version TEXT NOT NULL,
+  decision BOOLEAN NOT NULL,
+  source TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_consent_records_user_purpose
+  ON consent_records(user_id, purpose, created_at DESC, id DESC);
 -- Self-declared demographics — all optional, stored as coarse bands (no birthdate, no NRIC).
 CREATE TABLE IF NOT EXISTS user_profile (
   user_id INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
@@ -582,12 +600,55 @@ CREATE TABLE IF NOT EXISTS studio_clones (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(code, voter_key)
 );
+
+-- Research reads fail closed at the database boundary. The append-only record is the authority:
+-- a legacy user_consent=true row is not proof, and a later withdrawal immediately removes every
+-- row from these views without deleting the participant's own copy. Server-side aggregate,
+-- reminder and export queries use only these views; account access/deletion uses the base tables.
+CREATE OR REPLACE VIEW current_research_consent AS
+  SELECT DISTINCT ON (user_id) user_id, decision, version, created_at
+  FROM consent_records
+  WHERE purpose='research'
+  ORDER BY user_id, created_at DESC, id DESC;
+CREATE OR REPLACE VIEW research_user_profile AS
+  SELECT p.* FROM user_profile p
+  JOIN current_research_consent c ON c.user_id=p.user_id AND c.decision=true;
+CREATE OR REPLACE VIEW research_outcome_checkins AS
+  SELECT o.* FROM outcome_checkins o
+  JOIN current_research_consent c ON c.user_id=o.user_id AND c.decision=true;
+CREATE OR REPLACE VIEW research_blood_markers AS
+  SELECT b.* FROM blood_markers b
+  JOIN current_research_consent c ON c.user_id=b.user_id AND c.decision=true;
+CREATE OR REPLACE VIEW research_wearable_daily AS
+  SELECT w.* FROM wearable_daily w
+  JOIN current_research_consent c ON c.user_id=w.user_id AND c.decision=true;
+CREATE OR REPLACE VIEW research_experiments AS
+  SELECT e.* FROM experiments e
+  JOIN current_research_consent c ON c.user_id=e.user_id AND c.decision=true;
 `;
+
+async function transaction(work) {
+  if (!pool) throw new Error('Database is not enabled');
+  const client = await pool.connect();
+  try {
+    await client.query('BEGIN');
+    const value = await work((text, params) => client.query(text, params));
+    await client.query('COMMIT');
+    return value;
+  } catch (e) {
+    try { await client.query('ROLLBACK'); } catch (_) { /* preserve the original failure */ }
+    throw e;
+  } finally {
+    client.release();
+  }
+}
 
 async function init() {
   if (!enabled) { console.log('[db] DATABASE_URL not set — running read-only (no accounts).'); return; }
-  await pool.query(SCHEMA);
+  // A partially applied schema is harder to detect than a failed boot. Run the idempotent DDL as
+  // one transaction and let the caller refuse to listen if any statement fails.
+  await transaction(q => q(SCHEMA));
   console.log('[db] schema ready.');
 }
 
-module.exports = { enabled, pool, query, init };
+module.exports = { enabled, pool, query, transaction, init };

@@ -174,7 +174,7 @@
       // Collagen + Vitamin C pairing on the one stack where it matters.
       const A = list.find(c => (g.aIds || []).indexOf(c.id) >= 0);
       const B = list.find(c => (g.bIds || []).indexOf(c.id) >= 0);
-      if (A && B && A !== B) syn.push({ title: g.title, why: g.why });
+      if (A && B && A !== B) syn.push({ title: g.title, why: g.why, involved: [A.name, B.name], members: [A, B] });
     });
     return { flags, synergies: syn };
   }
@@ -189,8 +189,43 @@
     });
   }
 
+  // Coverage is a property of an exact PAIR, not of two individually tagged compounds. The old
+  // `covered(list)` count could call caffeine + magnesium "2 of 2 covered" even though no authored
+  // rule described that combination. This enumerates every pair and counts it only when a rule row
+  // explicitly involves both members. Positive synergy copy is not safety coverage: it can explain
+  // complementary intent, but it cannot rule out an interaction.
+  function pairCoverage(list) {
+    const xs = list || [], pairs = [];
+    for (let i = 0; i < xs.length; i += 1) {
+      for (let j = i + 1; j < xs.length; j += 1) {
+        const a = xs[i], b = xs[j];
+        const result = stackInteractions([a, b]);
+        const rules = (result.flags || []).filter(function (row) {
+          const members = row.members || [];
+          return members.some(function (c) { return c.id === a.id; })
+            && members.some(function (c) { return c.id === b.id; });
+        });
+        pairs.push({
+          ids: [a.id, b.id],
+          names: [a.name, b.name],
+          covered: rules.length > 0,
+          ruleIds: rules.map(function (row) { return row.id; }),
+        });
+      }
+    }
+    const authored = pairs.filter(function (p) { return p.covered; }).length;
+    const total = pairs.length;
+    return {
+      authored,
+      total,
+      unknown: total - authored,
+      state: total === 0 ? 'not_applicable' : authored === total ? 'complete' : authored === 0 ? 'none' : 'partial',
+      pairs,
+    };
+  }
+
   const api = {
-    init, stamp, compoundTags, sameSubstance, distinctCarriers, stackInteractions, covered,
+    init, stamp, compoundTags, sameSubstance, distinctCarriers, stackInteractions, covered, pairCoverage,
     get ruleTags() { return RULE_TAGS; },
   };
   return api;

@@ -5,7 +5,8 @@
 //   The region GLBs are COMMITTED under assets/anatomy/*.glb (assets/ is git-tracked, so they ship to
 //   Railway), but the engine fetches them from '/anatomy/<region>.glb' — i.e. site/anatomy/. That
 //   site/ subfolder is build output, not committed, so it must be (re)created on every boot. This
-//   script does that copy. It is meant to run in `prestart`, alongside parse.js / prerender.js.
+//   script does that copy. It runs in both `build` (so CI/smoke inspect the complete served tree)
+//   and `prestart` (so every production boot restages the ignored output directory).
 //
 //   The vendored Three.js (site/vendor/three/*) is committed source that ALREADY lives inside the
 //   served tree (site/), so it needs no copy — it is served in place at /vendor/three/*. This script
@@ -15,7 +16,7 @@
 // FAIL-LOUD: if assets/anatomy holds no GLB, or a vendored Three.js file is missing, exit(1) so the
 // deploy stops rather than shipping a body route that 404s its geometry or its loader.
 //
-// RUN:  node scripts/anatomy/copy-assets.mjs         (from repo root, as prestart does)
+// RUN:  node scripts/anatomy/copy-assets.mjs         (from repo root, as build/prestart do)
 
 import { readdirSync, existsSync, mkdirSync, cpSync, statSync, readFileSync } from 'node:fs';
 import path from 'node:path';

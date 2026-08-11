@@ -38,15 +38,15 @@ data/*.json          the content sidecars (see below)
 content/*.md         upstream markdown source, read by parse.js at build time
 ```
 
-**Deploy:** `git push origin main` → Railway. The Railway service is named **`RNAwiki`**
+**Deploy:** merge to `main` → Railway. The Railway service is named **`RNAwiki`**
 (capital R-N-A) — `railway variable list --service RNAwiki`.
 **`site/` is ephemeral** — a fresh container, no volume. Everything under `site/` is regenerated
 at boot by `prestart`.
 
-**`parse.js` is already a hard deploy gate.** `prestart` is
-`node build/parse.js && (node build/prerender.js || echo …)` — the `|| echo` is scoped to the
-parenthesised prerender group, so a `process.exit(1)` in `parse.js` stops the deploy today.
-Only `prerender.js` failures are swallowed. No CI file is needed for this.
+**The build is a hard deploy gate.** `prestart` runs parse, prerender, anatomy-asset copy and
+precompression with `&&`; a failure stops the deploy. `.github/workflows/release-gates.yml` repeats
+the full build, containment, Studio safety, privacy, safety-query and rendered-browser checks before
+merge. Do not weaken either gate to make a deploy pass.
 
 **Database:** Railway Postgres. Use `DATABASE_PUBLIC_URL`, not the internal one, from your machine.
 Query it by writing a script in the repo root (where `pg` is installed) and running
@@ -140,10 +140,11 @@ reader with JavaScript gets `notFound()`. Use the `KEEP` sentinel in `app.js`'s 
 
 ## Current state of the work
 
-The authoritative plan is `~/Downloads/RNAwiki_Anatomical_Framework_Plan_v6.md` (supersedes v5/v4).
-Live execution state — what has actually shipped — is `~/Downloads/RNAwiki_EXECUTION_STATE.md`.
-**Read the state file, then v6 §5 (resume point), before starting anything.**
+The authoritative repository-local state is
+[`docs/PRODUCTION_REVAMP_STATE.md`](docs/PRODUCTION_REVAMP_STATE.md). Read it before changing the
+navigation, Find, Today, protocols, consent, public profiles, community, sharing or Studio safety.
+External Downloads documents are historical context, not the source of truth for shipped code.
 
-The organising insight from five rounds of audit: **every layer is authored well and connected to
-nothing.** The writing is good; the machinery between the writing and the reader is where the
-defects are. Phase 1 is joins, not authoring.
+The current product spine is **Find → possible reasons → first action → Today → optional full
+protocol**. The writing remains valuable; the active work is making its sequence obvious while
+keeping safety, evidence and privacy fail-closed.

@@ -6,6 +6,7 @@ const path = require('path');
 const crypto = require('crypto');
 const zlib = require('node:zlib');
 const db = require('./db');
+const { clientIp } = require('./request-ip');
 
 const DIR = path.join(__dirname, 'site');
 // Does the built landing page still carry the interest form's seven answer panels? Read once, at
@@ -78,7 +79,19 @@ function endHtml(res, html, code) {
   });
 }
 const PORT = process.env.PORT || 3000;
-const SECRET = process.env.SESSION_SECRET || 'dev-secret-change-me';
+const CONFIGURED_SECRET = String(process.env.SESSION_SECRET || '');
+// Read-only/local mode gets an ephemeral key. Account-enabled deployments must provide their own
+// long random secret and are refused at boot below if they do not.
+const SECRET = CONFIGURED_SECRET || crypto.randomBytes(32).toString('hex');
+// Containment flags are fail-closed. Features that publish health-adjacent activity or make
+// aggregate efficacy claims are not available merely because their old tables still exist.
+const FEATURES = Object.freeze({
+  researchCollection: process.env.RESEARCH_COLLECTION === '1',
+  publicCommunity: process.env.PUBLIC_COMMUNITY === '1',
+  publicProfiles: process.env.PUBLIC_PROFILES === '1',
+  publicOutcomeAggregates: process.env.PUBLIC_OUTCOME_AGGREGATES === '1',
+  sharedPlans: process.env.SHARED_PLANS === '1',
+});
 // Anything missing from this map is served as application/octet-stream — "unknown binary file".
 // That is what silently broke search indexing: sitemap.xml and robots.txt are the two files a
 // crawler MUST be able to identify, and neither had an entry. Google Search Console answered
@@ -386,7 +399,9 @@ function csvExport(res, filename, headers, rows) {
 // award twice (re-voting, re-sharing the same day, re-merging the same proposal, etc.).
 const REWARDS = { vote: 2, comment: 3, edit: 10, proposal: 50, merged: 200, food_log: 5, share: 10 };
 async function award(userId, kind, ref, pts) {
-  if (!userId || !db.enabled) return;
+  // The ledger is part of the contained community/reward product, not a side effect that should
+  // keep accumulating while its UI and anti-abuse contract are switched off.
+  if (!FEATURES.publicCommunity || !userId || !db.enabled) return;
   const points = pts != null ? pts : (REWARDS[kind] || 0);
   if (!points) return;
   try {
@@ -503,7 +518,7 @@ const isSuper = u => !!(u && (
   (SUPERADMIN_GOOGLE_SUB && u.google_sub && String(u.google_sub) === SUPERADMIN_GOOGLE_SUB)
 ));
 // Outcome-data moat: consent-notice version + validation allow-lists (reject anything off-list)
-const CONSENT_VERSION = 'v1-2026-07';
+const CONSENT_VERSION = 'v2-2026-08-explicit';
 const AGE_BANDS = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
 const SEXES = ['male', 'female', 'other', 'prefer_not'];
 const ETHNICITIES = ['chinese', 'malay', 'indian', 'other', 'prefer_not'];
@@ -532,6 +547,31 @@ async function currentUser(req) {
   if (u && isSuper(u)) u.role = 'admin';           // the superadmin always has admin powers
   if (u) u.is_super = isSuper(u);
   return u || null;
+}
+async function hasExplicitResearchConsent(userId) {
+  if (!FEATURES.researchCollection || !userId) return false;
+  const r = await db.query(`SELECT decision FROM consent_records
+    WHERE user_id=$1 AND purpose='research' ORDER BY created_at DESC, id DESC LIMIT 1`, [userId]);
+  return !!(r.rows[0] && r.rows[0].decision === true);
+}
+async function verifyGoogleIdentity(credential) {
+  if (!GOOGLE_CLIENT_ID) return { status: 503, error: 'Google sign-in is not enabled on this server.' };
+  if (!credential) return { status: 400, error: 'Missing Google credential' };
+  let p;
+  try {
+    const vr = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(credential), { signal: AbortSignal.timeout(10000) });
+    if (!vr.ok) throw new Error('tokeninfo ' + vr.status);
+    p = await vr.json();
+  } catch (_) { return { status: 401, error: 'Could not verify Google sign-in' }; }
+  if (p.aud !== GOOGLE_CLIENT_ID) return { status: 401, error: 'Google token was issued for a different app' };
+  if (!(p.iss === 'accounts.google.com' || p.iss === 'https://accounts.google.com')) return { status: 401, error: 'Bad token issuer' };
+  if (p.email_verified === false || p.email_verified === 'false') return { status: 401, error: 'Your Google email is not verified' };
+  if (!p.sub) return { status: 401, error: 'Google sign-in did not provide an account identifier' };
+  return {
+    sub: String(p.sub),
+    email: String(p.email || '').trim().toLowerCase(),
+    name: String(p.name || ''),
+  };
 }
 function setSessionCookie(res, token) {
   const days = 30;
@@ -651,6 +691,14 @@ function studioDown(res) {
 // A protocol code: base64url over 6 random bytes, minted here. Same shape and same minting as
 // shared_plans.code — never derived from the title, never enumerable.
 function studioCode() { return crypto.randomBytes(6).toString('base64url'); }
+// Public Studio titles are never caller-written copy. A 90-character limit does not review a
+// medical claim, and titles appear on profile pages and public protocol pages. Prefer the governed
+// problem/pattern labels already in the corpus; a rootless collection gets a deliberately neutral
+// name. The creator's chosen title remains useful only on their private draft.
+function publicProtocolTitle(pid, rcid) {
+  const p = pid && rcid ? PROTO_INDEX[pid + '/' + rcid] : null;
+  return p ? `${p.problem} — ${p.rc} protocol` : 'Custom RNAwiki protocol';
+}
 async function sendEmail(to, subject, html) {
   if (!RESEND_API_KEY) return false;
   try {
@@ -700,13 +748,13 @@ function computeDuePhase(plan, doneHas, today) {
 }
 // Which consented users have a milestone check-in due (d30/d90) — computed in 2 queries, then in JS.
 async function listDueCheckins() {
-  if (!db.enabled) return [];
+  if (!db.enabled || !FEATURES.researchCollection) return [];
   const today = new Date().toISOString().slice(0, 10);
   const users = (await db.query(`SELECT u.id, u.email, u.username, u.last_checkin_email, u.email_nudge_hour, p.plan
-    FROM users u JOIN user_consent c ON c.user_id=u.id AND c.consent_research
+    FROM users u JOIN current_research_consent c ON c.user_id=u.id AND c.decision=true
     JOIN user_plans p ON p.user_id=u.id WHERE u.email IS NOT NULL AND u.email_off IS NOT TRUE`)).rows;
   if (!users.length) return [];
-  const done = (await db.query('SELECT user_id, pid, rcid, phase FROM outcome_checkins WHERE user_id = ANY($1)', [users.map(u => u.id)])).rows;
+  const done = (await db.query('SELECT user_id, pid, rcid, phase FROM research_outcome_checkins WHERE user_id = ANY($1)', [users.map(u => u.id)])).rows;
   const doneKey = new Set(done.map(d => d.user_id + '|' + d.pid + '|' + d.rcid + '|' + d.phase));
   const out = [];
   for (const u of users) {
@@ -786,7 +834,9 @@ async function emailReminderTick() {
     for (const u of rows) {
       const localMin = (((nowUtcMin + (u.email_tz_offset ?? 480)) % 1440) + 1440) % 1440;  // ?? not || — a real 0 (UTC) must stay 0
       if (Math.floor(localMin / 60) !== u.email_nudge_hour) continue;                   // not this user's hour yet
-      const done = (await db.query('SELECT pid, rcid, phase FROM outcome_checkins WHERE user_id=$1', [u.id])).rows;
+      const done = FEATURES.researchCollection
+        ? (await db.query('SELECT pid, rcid, phase FROM research_outcome_checkins WHERE user_id=$1', [u.id])).rows
+        : [];
       const doneSet = new Set(done.map(d => d.pid + '|' + d.rcid + '|' + d.phase));
       const due = computeDuePhase(u.plan, (pid, rcid, ph) => doneSet.has(pid + '|' + rcid + '|' + ph), today);
       const mail = buildReminderEmail(u.plan, due);
@@ -874,10 +924,6 @@ const RL_BURST = 15;                   // burst allowance per IP
 const RL_REFILL_MS = 4000;             // +1 token per 4s (~15/min sustained)
 const RL_MAX_KEYS = 5000;              // bound memory; evict oldest when exceeded
 
-function clientIp(req) {
-  const xf = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
-  return xf || (req.socket && req.socket.remoteAddress) || 'unknown';
-}
 function rateAllow(ip) {
   const now = Date.now();
   let b = RL_BUCKETS.get(ip);
@@ -986,7 +1032,17 @@ async function api(req, res, url) {
   const parts = url.split('?')[0].split('/').filter(Boolean); // ['api', ...]
   const seg = parts.slice(1);
   // public client config (works even if the DB is down, so the UI can adapt)
-  if (seg[0] === 'config' && req.method === 'GET') return json(res, 200, { googleClientId: GOOGLE_CLIENT_ID || null, dbEnabled: db.enabled });
+  if (seg[0] === 'config' && req.method === 'GET') return json(res, 200, {
+    googleClientId: GOOGLE_CLIENT_ID || null,
+    dbEnabled: db.enabled,
+    features: {
+      researchCollection: FEATURES.researchCollection,
+      publicCommunity: FEATURES.publicCommunity,
+      publicProfiles: FEATURES.publicProfiles,
+      publicOutcomeAggregates: FEATURES.publicOutcomeAggregates,
+      sharedPlans: FEATURES.sharedPlans,
+    },
+  });
   // lightweight lead tracking (fire-and-forget beacon) — always 204, no-ops without a DB
   if (seg[0] === 'track' && req.method === 'GET') {
     const q = new URL('http://x/' + url).searchParams;
@@ -1001,17 +1057,19 @@ async function api(req, res, url) {
   // Public photo proxy for user-submitted food images: serves the inline data-URL upload. (The
   // bot token is never exposed in a public URL. <img src="/api/foodphoto?id=123"> works on the website.
   if (seg[0] === 'foodphoto' && req.method === 'GET') {
-    if (!db.enabled) { res.writeHead(404); return res.end(); }
+    // This route sits above the generic community gate, so it MUST carry its own. Without it a
+    // sequential id exposed pending/private uploads even while every community screen was off.
+    if (!FEATURES.publicCommunity || !db.enabled) { res.writeHead(404); return res.end(); }
     const id = +clean(new URL('http://x/' + url).searchParams.get('id'), 12);
     if (!id) { res.writeHead(404); return res.end(); }
     try {
-      const fr = (await db.query('SELECT data FROM user_foods WHERE id=$1', [id])).rows[0]; const d = fr && fr.data;
+      const fr = (await db.query("SELECT data FROM user_foods WHERE id=$1 AND status='active'", [id])).rows[0]; const d = fr && fr.data;
       // web-uploaded photo: a data URL stored inline — decode and serve directly
       if (d && typeof d.photo_data === 'string') {
-        const mm = d.photo_data.match(/^data:(image\/[\w+.-]+);base64,(.*)$/);
+        const mm = d.photo_data.match(/^data:(image\/(?:png|jpeg|webp));base64,(.*)$/);
         if (!mm) { res.writeHead(404); return res.end(); }
         const buf = Buffer.from(mm[2], 'base64');
-        res.writeHead(200, { 'Content-Type': mm[1], 'Cache-Control': 'public, max-age=86400' });
+        res.writeHead(200, { 'Content-Type': mm[1], 'Cache-Control': 'private, no-store', 'X-Content-Type-Options': 'nosniff' });
         return res.end(buf);
       }
       // Bot photo uploads are gone with the Telegram integration (removed 2026-07-28).
@@ -1135,6 +1193,23 @@ async function api(req, res, url) {
 
   if (method !== 'GET' && !sameOrigin(req)) return json(res, 403, { error: 'Bad origin' });
 
+  // These routes used to become public simply because a dormant table and handler existed. Keep
+  // them unavailable until moderation, consent, review and deletion contracts are independently
+  // approved. A 404 avoids advertising a half-launched social surface.
+  const communityRoots = new Set([
+    'explain', 'comments', 'votes', 'rep', 'forks', 'pulse', 'helped',
+    'edits', 'proposals', 'contributors', 'protocol-contributors',
+    'rootcause-changes', 'rootcause-overlay', 'foods', 'protocol-requests',
+  ]);
+  if (!FEATURES.publicCommunity && communityRoots.has(seg[0])) return json(res, 404, { error: 'Community is not available yet.' });
+  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'used') return json(res, 404, { error: 'Community is not available yet.' });
+  if (!FEATURES.publicProfiles && seg[0] === 'u') return json(res, 404, { error: 'Public profiles are not available yet.' });
+  if (!FEATURES.publicOutcomeAggregates && seg[0] === 'outcomes' && seg[1] === 'public') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
+  if (!FEATURES.publicOutcomeAggregates && seg[0] === 'ledger') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
+  if (!FEATURES.sharedPlans && (seg[0] === 'share-plan' || seg[0] === 'shared-plan')) return json(res, 404, { error: 'Plan sharing is not available yet.' });
+  if (!FEATURES.researchCollection && seg[0] === 'experiments') return json(res, 404, { error: 'Personal observations are not available yet.' });
+  if (!FEATURES.researchCollection && seg[0] === 'admin' && ['outcomes', 'signals', 'research'].includes(seg[1])) return json(res, 404, { error: 'Research reporting is not available.' });
+
   // --- "Explain it back" community discussion (compound / pathway pages) ---
   if (seg[0] === 'explain') {
     const q = new URL('http://x/' + url).searchParams;
@@ -1203,6 +1278,7 @@ async function api(req, res, url) {
       return json(res, 403, { error: 'Password sign-up is closed. Please use "Continue with Google".' });
     }
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    if (b.adultConfirmed !== true) return json(res, 400, { error: 'RNAwiki accounts are currently available only to people aged 18 or older.' });
     const username = clean(b.username, 24), email = clean(b.email, 120), password = String(b.password || '');
     if (!/^[a-zA-Z0-9_.-]{3,24}$/.test(username)) return json(res, 400, { error: 'Username: 3–24 letters, numbers, _ . -' });
     if (password.length < 8) return json(res, 400, { error: 'Password must be at least 8 characters' });
@@ -1210,8 +1286,6 @@ async function api(req, res, url) {
       const r = await db.query('INSERT INTO users(username,email,pass) VALUES($1,$2,$3) RETURNING id,username,role,email', [username, email || null, hashPassword(password)]);
       const u = r.rows[0]; const token = crypto.randomBytes(24).toString('hex');
       await db.query('INSERT INTO sessions(token,user_id,expires_at) VALUES($1,$2, now()+interval \'30 days\')', [token, u.id]);
-      // tracking on by default (withdrawable anytime under "Your data")
-      await db.query(`INSERT INTO user_consent(user_id,consent_research,version,consented_at) VALUES($1,true,$2,now()) ON CONFLICT(user_id) DO NOTHING`, [u.id, CONSENT_VERSION]).catch(() => {});
       setSessionCookie(res, token);
       return json(res, 200, { user: { id: u.id, username: u.username, role: u.role, email: u.email, is_super: isSuper(u) } });
     } catch (e) {
@@ -1221,6 +1295,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'login' && method === 'POST') {
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
+    if (b.adultConfirmed !== true) return json(res, 400, { error: 'Confirm that you are 18 or older to sign in.' });
     const username = clean(b.username, 24), password = String(b.password || '');
     const r = await db.query('SELECT id,username,email,role,pass FROM users WHERE username=$1', [username]);
     const u = r.rows[0];
@@ -1237,6 +1312,41 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'me' && method === 'GET') {
     const u = await currentUser(req); return json(res, 200, { user: u });
+  }
+  if (seg[0] === 'account' && !seg[1] && method === 'DELETE') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    const b = await readBody(req, 1024) || {};
+    if (b.confirm !== 'DELETE') return json(res, 400, { error: 'Type DELETE to confirm account deletion.' });
+    const participant = 'u:' + u.id;
+    // Account erasure is one all-or-nothing unit. SET NULL foreign keys deliberately preserve
+    // community rows during an ordinary user deletion, so every authored/public row and every
+    // pseudonymous participant key must be removed explicitly here. Published Studio rows stay as
+    // non-identifying tombstones because remixes may depend on their internal immutable spec.
+    await db.transaction(async q => {
+      await q('UPDATE explain_posts SET parent_id=NULL WHERE parent_id IN (SELECT id FROM explain_posts WHERE user_id=$1)', [u.id]);
+      await q('DELETE FROM explain_posts WHERE user_id=$1', [u.id]);
+      await q('DELETE FROM protocol_forks WHERE user_id=$1', [u.id]);
+      await q('DELETE FROM shared_plans WHERE author_user_id=$1', [u.id]);
+      await q('DELETE FROM partners WHERE submitted_by=$1', [u.id]);
+      await q('DELETE FROM user_foods WHERE submitted_by=$1', [u.id]);
+      await q('DELETE FROM protocol_requests WHERE submitted_by=$1', [u.id]);
+      await q('DELETE FROM rootcause_changes WHERE submitted_by=$1', [u.id]);
+      await q(`DELETE FROM feedback WHERE user_id=$1 OR
+        ($2::text <> '' AND contact IS NOT NULL AND lower(contact)=lower($2))`, [u.id, u.email || '']);
+      await q(`DELETE FROM interest_signups WHERE $1::text <> '' AND lower(email)=lower($1)`, [u.email || '']);
+      await q('DELETE FROM experiments WHERE user_id=$1 OR participant=$2', [u.id, participant]);
+      await q('DELETE FROM votes WHERE voter_key=$1', [participant]);
+      await q('DELETE FROM fork_clones WHERE voter_key=$1', [participant]);
+      await q('DELETE FROM studio_clones WHERE voter_key=$1', [participant]);
+      await q('DELETE FROM helped_people WHERE voter_key=$1', [participant]);
+      await q('DELETE FROM referrals WHERE participant=$1 OR referrer=$1', [participant]);
+      await q("DELETE FROM studio_protocols WHERE user_id=$1 AND status='draft'", [u.id]);
+      await q(`UPDATE studio_protocols SET user_id=NULL, status='withdrawn', title='Withdrawn protocol', updated_at=now()
+        WHERE user_id=$1`, [u.id]);
+      await q('DELETE FROM users WHERE id=$1', [u.id]);
+    });
+    res.setHeader('Set-Cookie', 'sid=; HttpOnly; Path=/; Max-Age=0; SameSite=Lax; Secure');
+    return json(res, 200, { ok: true, deleted: true });
   }
   // Unified plan object (the omnichannel spine). GET returns the account's saved plan; POST saves it.
   // Anonymous users keep the plan in localStorage and merge it up here on login (client-side).
@@ -1276,7 +1386,7 @@ async function api(req, res, url) {
     const q = new URL('http://x/' + url).searchParams; const pid = clean(q.get('pid'), 64), rcid = clean(q.get('rcid'), 64);
     if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const r = (await db.query(`SELECT COUNT(DISTINCT user_id) AS n, COUNT(DISTINCT user_id) FILTER (WHERE improvement>=1) AS better
-      FROM outcome_checkins WHERE pid=$1 AND rcid=$2 AND phase IN ('d30','d90') AND improvement IS NOT NULL`, [pid, rcid])).rows[0];
+      FROM research_outcome_checkins WHERE pid=$1 AND rcid=$2 AND phase IN ('d30','d90') AND improvement IS NOT NULL`, [pid, rcid])).rows[0];
     const n = +r.n; if (n < 20) return json(res, 200, { stat: null }); // k-anonymity floor
     return json(res, 200, { stat: { n, pct: Math.round(+r.better / n * 100) } });
   }
@@ -1284,15 +1394,26 @@ async function api(req, res, url) {
   // ===== Outcome-data moat: consent / profile / check-ins / markers / wearables / my-data =====
   if (seg[0] === 'consent') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
-    if (method === 'GET') { const r = await db.query('SELECT consent_research, version, consented_at FROM user_consent WHERE user_id=$1', [u.id]); return json(res, 200, { consent: r.rows[0] || null, version: CONSENT_VERSION }); }
+    if (method === 'GET') {
+      const r = await db.query(`SELECT decision AS consent_research, version, created_at AS consented_at
+        FROM consent_records WHERE user_id=$1 AND purpose='research'
+        ORDER BY created_at DESC, id DESC LIMIT 1`, [u.id]);
+      return json(res, 200, { consent: r.rows[0] || null, version: CONSENT_VERSION, collectionEnabled: FEATURES.researchCollection });
+    }
     if (method === 'POST') {
-      const b = await readBody(req) || {}; const on = !!b.research;
-      await db.query(`INSERT INTO user_consent(user_id,consent_research,version,consented_at,withdrawn_at)
-        VALUES($1,$2,$3, CASE WHEN $2 THEN now() END, CASE WHEN $2 THEN NULL ELSE now() END)
-        ON CONFLICT(user_id) DO UPDATE SET consent_research=$2, version=$3,
-          consented_at=CASE WHEN $2 THEN COALESCE(user_consent.consented_at, now()) ELSE user_consent.consented_at END,
-          withdrawn_at=CASE WHEN $2 THEN NULL ELSE now() END`, [u.id, on, CONSENT_VERSION]);
-      return json(res, 200, { ok: true, research: on });
+      const b = await readBody(req) || {};
+      if (typeof b.research !== 'boolean') return json(res, 400, { error: 'research must be true or false.' });
+      const on = b.research;
+      await db.transaction(async q => {
+        await q(`INSERT INTO consent_records(user_id,purpose,version,decision,source)
+          VALUES($1,'research',$2,$3,'user_action')`, [u.id, CONSENT_VERSION, on]);
+        await q(`INSERT INTO user_consent(user_id,consent_research,version,consented_at,withdrawn_at)
+          VALUES($1,$2,$3, CASE WHEN $2 THEN now() END, CASE WHEN $2 THEN NULL ELSE now() END)
+          ON CONFLICT(user_id) DO UPDATE SET consent_research=$2, version=$3,
+            consented_at=CASE WHEN $2 THEN COALESCE(user_consent.consented_at, now()) ELSE user_consent.consented_at END,
+            withdrawn_at=CASE WHEN $2 THEN NULL ELSE now() END`, [u.id, on, CONSENT_VERSION]);
+      });
+      return json(res, 200, { ok: true, research: on, collectionEnabled: FEATURES.researchCollection });
     }
   }
   // Opt-in daily reminder email (keystone + selected nudge tools) — service feature, no research consent needed
@@ -1326,6 +1447,7 @@ async function api(req, res, url) {
     const u = await currentUser(req); if (!u) return json(res, method === 'GET' ? 200 : 401, method === 'GET' ? { profile: null } : { error: 'Sign in' });
     if (method === 'GET') { const r = await db.query('SELECT age_band, sex, ethnicity, conditions, height_cm, meds FROM user_profile WHERE user_id=$1', [u.id]); return json(res, 200, { profile: r.rows[0] || null }); }
     if (method === 'POST') {
+      if (!(await hasExplicitResearchConsent(u.id))) return json(res, 403, { error: 'Explicit research consent is required before health profile data can be stored.' });
       const b = await readBody(req) || {};
       const age = inList(b.age_band, AGE_BANDS), sex = inList(b.sex, SEXES), eth = inList(b.ethnicity, ETHNICITIES);
       const conds = Array.isArray(b.conditions) ? b.conditions.filter(c => typeof c === 'string').map(c => clean(c, 40)).slice(0, 20) : [];
@@ -1345,9 +1467,7 @@ async function api(req, res, url) {
       return json(res, 200, { done: r.rows.map(x => x.phase) });
     }
     if (method === 'POST') {
-      // Tracking is on by default — only an explicit withdrawal blocks it.
-      const cr = await db.query('SELECT consent_research FROM user_consent WHERE user_id=$1', [u.id]);
-      if (cr.rows[0] && cr.rows[0].consent_research === false) return json(res, 403, { error: 'Tracking withdrawn' });
+      if (!(await hasExplicitResearchConsent(u.id))) return json(res, 403, { error: 'Explicit research consent is required before check-in data can be stored.' });
       const b = await readBody(req) || {};
       const pid = clean(b.pid, 64), rcid = clean(b.rcid, 64), phase = inList(b.phase, CHECKIN_PHASES);
       if (!pid || !rcid || !phase) return json(res, 400, { error: 'Missing pid/rcid/phase' });
@@ -1365,6 +1485,7 @@ async function api(req, res, url) {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
     if (method === 'GET') { const r = await db.query('SELECT id, marker, value, unit, taken_on FROM blood_markers WHERE user_id=$1 ORDER BY taken_on DESC NULLS LAST, id DESC LIMIT 200', [u.id]); return json(res, 200, { markers: r.rows }); }
     if (method === 'POST') {
+      if (!(await hasExplicitResearchConsent(u.id))) return json(res, 403, { error: 'Explicit research consent is required before marker data can be stored.' });
       const b = await readBody(req) || {}; const marker = inList(b.marker, BLOOD_MARKERS);
       const value = (b.value != null && Number.isFinite(+b.value)) ? +b.value : null;
       if (!marker || value == null) return json(res, 400, { error: 'Missing marker/value' });
@@ -1380,6 +1501,7 @@ async function api(req, res, url) {
   }
   if (seg[0] === 'wearable' && method === 'POST') {
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    if (!(await hasExplicitResearchConsent(u.id))) return json(res, 403, { error: 'Explicit research consent is required before wearable data can be stored.' });
     const b = await readBody(req) || {}; const day = /^\d{4}-\d{2}-\d{2}$/.test(b.day || '') ? b.day : null; if (!day) return json(res, 400, { error: 'Bad day' });
     const waist = (b.waist_cm != null && +b.waist_cm >= 40 && +b.waist_cm <= 200) ? +b.waist_cm : null;
     await db.query(`INSERT INTO wearable_daily(user_id,day,steps,sleep_min,resting_hr,weight_kg,waist_cm,source) VALUES($1,$2,$3,$4,$5,$6,$7,$8)
@@ -1390,23 +1512,38 @@ async function api(req, res, url) {
   if (seg[0] === 'mydata') { // PDPA access + deletion rights over one's own research data
     const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
     if (method === 'GET') {
-      const [c, p, ck, bm, wd] = await Promise.all([
+      const [c, consentHistory, p, ck, bm, wd, observations, observationCheckins] = await Promise.all([
         db.query('SELECT consent_research,version,consented_at,withdrawn_at FROM user_consent WHERE user_id=$1', [u.id]),
+        db.query(`SELECT purpose,version,decision,source,created_at FROM consent_records
+          WHERE user_id=$1 ORDER BY created_at ASC,id ASC`, [u.id]),
         db.query('SELECT age_band,sex,ethnicity,conditions,height_cm,meds FROM user_profile WHERE user_id=$1', [u.id]),
         db.query('SELECT pid,rcid,phase,symptom_0_10,improvement,adherence_pct,still_on,note,stop_reason,side_effects,extra,created_at FROM outcome_checkins WHERE user_id=$1', [u.id]),
         db.query('SELECT marker,value,unit,taken_on FROM blood_markers WHERE user_id=$1', [u.id]),
         db.query('SELECT day,steps,sleep_min,resting_hr,weight_kg,waist_cm FROM wearable_daily WHERE user_id=$1', [u.id]),
+        db.query('SELECT id,problem_id,root_cause_id,status,outcome,started_at,outcome_at FROM experiments WHERE user_id=$1 ORDER BY started_at ASC,id ASC', [u.id]),
+        db.query(`SELECT c.experiment_id,c.day,c.created_at FROM experiment_checkins c
+          JOIN experiments e ON e.id=c.experiment_id WHERE e.user_id=$1 ORDER BY c.day ASC,c.id ASC`, [u.id]),
       ]);
-      return json(res, 200, { account: { username: u.username, email: u.email }, consent: c.rows[0] || null, profile: p.rows[0] || null, checkins: ck.rows, markers: bm.rows, wearables: wd.rows });
+      return json(res, 200, {
+        account: { username: u.username, email: u.email }, consent: c.rows[0] || null,
+        consentHistory: consentHistory.rows, profile: p.rows[0] || null, checkins: ck.rows,
+        markers: bm.rows, wearables: wd.rows, personalObservations: observations.rows,
+        personalObservationCheckins: observationCheckins.rows,
+      });
     }
     if (method === 'DELETE') { // erase research data, keep the account + their tracker
-      await Promise.all([
-        db.query('DELETE FROM outcome_checkins WHERE user_id=$1', [u.id]),
-        db.query('DELETE FROM blood_markers WHERE user_id=$1', [u.id]),
-        db.query('DELETE FROM wearable_daily WHERE user_id=$1', [u.id]),
-        db.query('DELETE FROM user_profile WHERE user_id=$1', [u.id]),
-        db.query('UPDATE user_consent SET consent_research=false, withdrawn_at=now() WHERE user_id=$1', [u.id]),
-      ]);
+      await db.transaction(async q => {
+        await q(`INSERT INTO consent_records(user_id,purpose,version,decision,source)
+          VALUES($1,'research',$2,false,'data_deletion')`, [u.id, CONSENT_VERSION]);
+        await q('DELETE FROM experiments WHERE user_id=$1 OR participant=$2', [u.id, 'u:' + u.id]);
+        await q('DELETE FROM outcome_checkins WHERE user_id=$1', [u.id]);
+        await q('DELETE FROM blood_markers WHERE user_id=$1', [u.id]);
+        await q('DELETE FROM wearable_daily WHERE user_id=$1', [u.id]);
+        await q('DELETE FROM user_profile WHERE user_id=$1', [u.id]);
+        await q(`INSERT INTO user_consent(user_id,consent_research,version,withdrawn_at)
+          VALUES($1,false,$2,now()) ON CONFLICT(user_id) DO UPDATE SET consent_research=false,
+          version=$2, withdrawn_at=now()`, [u.id, CONSENT_VERSION]);
+      });
       return json(res, 200, { ok: true });
     }
   }
@@ -1422,48 +1559,82 @@ async function api(req, res, url) {
     if (row.author_user_id) { try { const a = (await db.query('SELECT username FROM users WHERE id=$1', [row.author_user_id])).rows[0]; author = a ? a.username : null; } catch (e) {} }
     return json(res, 200, { pid: row.pid, rcid: row.rcid, plan: row.plan || {}, author });
   }
-  if (seg[0] === 'auth' && seg[1] === 'google' && method === 'POST') {
-    if (!GOOGLE_CLIENT_ID) return json(res, 503, { error: 'Google sign-in is not enabled on this server.' });
-    const b = await readBody(req); if (!b || !b.credential) return json(res, 400, { error: 'Missing Google credential' });
-    // Verify the ID token with Google (no crypto lib needed).
-    let p;
+  // Explicit linking is deliberately a separate, authenticated action. A Google token that happens
+  // to carry the same email as an unlinked password account is never proof of ownership of that
+  // RNAwiki account: legacy registration did not verify email addresses.
+  if (seg[0] === 'auth' && seg[1] === 'google' && seg[2] === 'link' && !seg[3] && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in with your RNAwiki password before linking Google.' });
+    const b = await readBody(req) || {};
+    const identity = await verifyGoogleIdentity(b.credential);
+    if (identity.error) return json(res, identity.status, { error: identity.error });
+    if (u.google_sub && u.google_sub !== identity.sub) return json(res, 409, { error: 'This RNAwiki account is already linked to a different Google account.' });
+    const owner = (await db.query('SELECT id FROM users WHERE google_sub=$1', [identity.sub])).rows[0];
+    if (owner && owner.id !== u.id) return json(res, 409, { error: 'That Google account is already linked to another RNAwiki account.' });
+    let emailToStore = null;
+    if (!u.email && identity.email) {
+      const emailOwner = (await db.query('SELECT id FROM users WHERE lower(email)=lower($1)', [identity.email])).rows[0];
+      if (!emailOwner || emailOwner.id === u.id) emailToStore = identity.email;
+    }
+    let linked;
     try {
-      const vr = await fetch('https://oauth2.googleapis.com/tokeninfo?id_token=' + encodeURIComponent(b.credential), { signal: AbortSignal.timeout(10000) });
-      if (!vr.ok) throw new Error('tokeninfo ' + vr.status);
-      p = await vr.json();
-    } catch (e) { return json(res, 401, { error: 'Could not verify Google sign-in' }); }
-    if (p.aud !== GOOGLE_CLIENT_ID) return json(res, 401, { error: 'Google token was issued for a different app' });
-    if (!(p.iss === 'accounts.google.com' || p.iss === 'https://accounts.google.com')) return json(res, 401, { error: 'Bad token issuer' });
-    if (p.email_verified === false || p.email_verified === 'false') return json(res, 401, { error: 'Your Google email is not verified' });
-    const sub = String(p.sub), email = String(p.email || '').toLowerCase();
+      linked = (await db.query(`UPDATE users SET google_sub=$1, email=COALESCE(email,$2)
+        WHERE id=$3 AND (google_sub IS NULL OR google_sub=$1) RETURNING id`, [identity.sub, emailToStore, u.id])).rows[0];
+    } catch (e) {
+      if (e.code === '23505') return json(res, 409, { error: 'That Google account or email is already linked to another RNAwiki account.' });
+      throw e;
+    }
+    if (!linked) return json(res, 409, { error: 'This RNAwiki account was linked elsewhere before this request completed. Reload and try again.' });
+    return json(res, 200, { ok: true, user: await currentUser(req) });
+  }
+  if (seg[0] === 'auth' && seg[1] === 'google' && !seg[2] && method === 'POST') {
+    const b = await readBody(req) || {};
+    if (b.adultConfirmed !== true) return json(res, 400, { error: 'Confirm that you are 18 or older to sign in.' });
+    const identity = await verifyGoogleIdentity(b.credential);
+    if (identity.error) return json(res, identity.status, { error: identity.error });
+    const { sub, email } = identity;
     try {
-      // SECURITY (2026-07-28): this matched `google_sub OR email` with an unordered LIMIT 1.
-      // Because a password account could be registered with anyone's email address, a matching
-      // email row could win the race and bind a victim's verified Google identity to an
-      // attacker-created account. Always prefer the google_sub match; email is only a
-      // first-time link hint.
-      let u = (await db.query(
-        `SELECT id,username,role,google_sub FROM users
-          WHERE google_sub=$1 OR (email=$2 AND email IS NOT NULL)
-          ORDER BY (google_sub=$1) DESC, id ASC LIMIT 1`, [sub, email || '\x00'])).rows[0];
-      if (u) {
-        await db.query('UPDATE users SET google_sub=$1 WHERE id=$2 AND google_sub IS NULL', [sub, u.id]);
-      } else {
-        let base = (email.split('@')[0] || String(p.name || 'user')).toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, 20) || 'user';
-        if (base.length < 3) base = base + 'user';
-        let uname = base, tries = 0;
-        while (true) {
+      // Sign-in resolves by Google's immutable subject only. Matching an unverified legacy email
+      // returns a recoverable conflict and asks the person to authenticate that RNAwiki account;
+      // this endpoint never mutates google_sub on an existing password account.
+      let u = (await db.query('SELECT id,username,role,email,google_sub FROM users WHERE google_sub=$1', [sub])).rows[0];
+      if (!u && email) {
+        const emailOwner = (await db.query('SELECT id FROM users WHERE lower(email)=lower($1)', [email])).rows[0];
+        if (emailOwner) return json(res, 409, {
+          error: 'An RNAwiki account already uses this email. Sign in with its password, then link Google from your account settings.',
+          code: 'explicit_link_required',
+        });
+      }
+      if (!u) {
+        let base = (email.split('@')[0] || identity.name || 'user').toLowerCase().replace(/[^a-z0-9_.-]/g, '').slice(0, 20) || 'user';
+        if (base.length < 3) base += 'user';
+        let uname = base;
+        for (let tries = 0; !u && tries <= 8; tries++) {
           try {
-            u = (await db.query('INSERT INTO users(username,email,google_sub) VALUES($1,$2,$3) RETURNING id,username,role', [uname, email || null, sub])).rows[0];
-            break;
-          } catch (e) { if (e.code === '23505' && tries < 8) { tries++; uname = base + Math.floor(1000 + Math.random() * 8999); } else throw e; }
+            u = (await db.query(`INSERT INTO users(username,email,google_sub) VALUES($1,$2,$3)
+              RETURNING id,username,role,email,google_sub`, [uname, email || null, sub])).rows[0];
+          } catch (e) {
+            if (e.code !== '23505') throw e;
+            // Concurrent callbacks for the same Google subject converge on the one row. An email
+            // collision still requires explicit linking; only a username collision is retried.
+            u = (await db.query('SELECT id,username,role,email,google_sub FROM users WHERE google_sub=$1', [sub])).rows[0];
+            if (u) break;
+            if (email) {
+              const emailOwner = (await db.query('SELECT id FROM users WHERE lower(email)=lower($1)', [email])).rows[0];
+              if (emailOwner) return json(res, 409, {
+                error: 'An RNAwiki account already uses this email. Sign in with its password, then link Google from your account settings.',
+                code: 'explicit_link_required',
+              });
+            }
+            if (tries === 8) throw e;
+            uname = base + Math.floor(1000 + Math.random() * 9000);
+          }
         }
       }
       if (ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
       const token = crypto.randomBytes(24).toString('hex');
       await db.query('INSERT INTO sessions(token,user_id,expires_at) VALUES($1,$2, now()+interval \'30 days\')', [token, u.id]);
       setSessionCookie(res, token);
-      u.email = email; u.is_super = isSuper(u);
+      u.is_super = isSuper(u);
       return json(res, 200, { user: u });
     } catch (e) { console.error('[google-auth]', e.message); return json(res, 500, { error: 'Sign-in failed' }); }
   }
@@ -1514,7 +1685,7 @@ async function api(req, res, url) {
     // exist. site/app.js already told the reader the honest version; client and server now agree.
     // `u.role` is left alone: it is only ever 'admin' for the owner, and that is the only
     // distinction this site has.
-    if (u.role !== 'admin') return json(res, 403, { error: 'Compound pages are edited by the site maintainer. Use the Feedback button to send a correction — corrections are welcome and wanted.' });
+    if (u.role !== 'admin') return json(res, 403, { error: 'Compound pages are edited by the site maintainer. Use Suggest an edit on the page to send a correction — corrections are welcome and wanted.' });
     // 6 EDITABLE fields x 6000 chars + note ~= 36 KB — the one default-cap handler that legitimately
     // exceeds the 16 KB default. Authenticated and role-gated, so a larger ceiling is acceptable.
     const b = await readBody(req, 5e4); if (!b) return json(res, 400, { error: 'Bad request' });
@@ -1604,7 +1775,11 @@ async function api(req, res, url) {
   // credential, and not a profession — one account type. ---
   if (seg[0] === 'u' && seg[1] && method === 'GET') {
     const handle = clean(seg[1], 24);
-    const ur = await db.query('SELECT id,username,created_at FROM users WHERE lower(username)=lower($1)', [handle]);
+    // Fail closed for legacy accounts. A username, an account, and even a published protocol do
+    // not constitute consent to a public identity page; only the explicit profile-publication
+    // decision can satisfy this query.
+    const ur = await db.query(`SELECT id,username,created_at FROM users
+      WHERE lower(username)=lower($1) AND public_profile_enabled=true`, [handle]);
     const uu = ur.rows[0];
     if (!uu) return json(res, 404, { error: 'No such user' });
     // ---- WHAT A STRANGER MAY SEE, AND WHY EACH ONE IS ON THE LIST (2026-08-10) -----------------
@@ -1647,14 +1822,14 @@ async function api(req, res, url) {
     // that way. "@alice follows the herpes protocol" is a health disclosure about a named person.
     // DO NOT ADD ONE BEHIND A TOGGLE: a toggle is a thing somebody flips before they understand
     // what it publishes, and the person who flips it is the person least able to afford the leak.
-    const pub = await db.query(`SELECT code,title,clones,published_at FROM studio_protocols
+    const pub = await db.query(`SELECT code,title,base_pid,base_rcid,clones,published_at FROM studio_protocols
       WHERE user_id=$1 AND status='published' ORDER BY published_at DESC LIMIT 50`, [uu.id]);
     return json(res, 200, {
       user: {
         username: uu.username,
         joined: uu.created_at ? new Date(uu.created_at).toISOString().slice(0, 7) : null,
       },
-      published: pub.rows,
+      published: pub.rows.map((p) => Object.assign({}, p, { title: publicProtocolTitle(p.base_pid, p.base_rcid) })),
       clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
       shows: 'Only what this account published on purpose. Nothing it reads, plans, logs or follows.',
     });
@@ -1725,8 +1900,9 @@ async function api(req, res, url) {
     if (photo) data.photo_data = photo;
     // a correction to an existing food carries its id — once approved it overrides that food
     const corrects = clean(b.corrects, 40); if (corrects) data.corrects = corrects;
-    // new foods go live instantly (like the bot); corrections stay pending so a dietitian confirms the change before it overrides an existing food
-    const status = corrects ? 'pending' : 'active';
+    // Every user submission is pending. A new food is still a nutrition claim and an uploaded
+    // photo; "not a correction" is not a review state.
+    const status = 'pending';
     const r = await db.query('INSERT INTO user_foods(name,serving,data,submitted_by,status) VALUES($1,$2,$3,$4,$5) RETURNING id', [name, serving || null, JSON.stringify(data), u.id, status]);
     await award(u.id, 'food_submit', 'food:' + r.rows[0].id, 20);
     return json(res, 200, { ok: true, id: r.rows[0].id, status });
@@ -1774,8 +1950,9 @@ async function api(req, res, url) {
     if (!STUDIO_READY) return studioDown(res);
     const u = await currentUser(req);
     const b = await readBody(req, 2e5); if (!b) return json(res, 400, { error: 'Bad request' });
-    const title = clean(b.title, 90); if (!title) return json(res, 400, { error: 'Name your protocol' });
     const publish = b.status === 'published';
+    const draftTitle = clean(b.title, 90);
+    if (!publish && !draftTitle) return json(res, 400, { error: 'Name your private draft' });
     if (publish && !u) return json(res, 401, { error: 'Publishing puts your name on it, so publishing needs an account. Building one, saving it and running it do not.' });
     let v;
     try { v = STUDIO.validate({ spec: b.spec, base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null, publish }); }
@@ -1784,6 +1961,7 @@ async function api(req, res, url) {
     // dress a refusal up in a friendlier sentence and it cannot become a reflected-content sink.
     if (!v.ok) return json(res, 422, { error: 'This protocol was not saved.', refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says });
     const code = studioCode();
+    const title = publish ? publicProtocolTitle(v.base_pid, v.base_rcid) : draftTitle;
     await db.query(`INSERT INTO studio_protocols(code,user_id,parent_code,depth,base_pid,base_rcid,title,spec,safety,status,published_at)
       VALUES($1,$2,NULL,0,$3,$4,$5,$6,$7,$8,$9)`,
     [code, u ? u.id : null, v.base_pid, v.base_rcid, title, JSON.stringify(v.spec), JSON.stringify(v.safety),
@@ -1813,10 +1991,12 @@ async function api(req, res, url) {
     if (!v.ok) return json(res, 422, { error: 'This remix was not saved.', refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says });
     const patch = STUDIO.diff(base.spec, v.spec);
     const code = studioCode();
+    const title = publish ? publicProtocolTitle(parent.base_pid, parent.base_rcid)
+      : (clean(b.title, 90) || ('Remix of ' + parent.title));
     await db.query(`INSERT INTO studio_protocols(code,user_id,parent_code,depth,base_pid,base_rcid,title,spec,safety,status,published_at)
       VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
     [code, u ? u.id : null, parent.code, parent.depth + 1, parent.base_pid, parent.base_rcid,
-      clean(b.title, 90) || ('Remix of ' + parent.title), JSON.stringify(patch), JSON.stringify(v.safety),
+      title, JSON.stringify(patch), JSON.stringify(v.safety),
       publish ? 'published' : 'draft', publish ? new Date() : null]);
     return json(res, 200, { code, url: `${SITE_URL}/p/${code}`, storedBytes: JSON.stringify(patch).length, warn: v.warn, coverage: v.coverage, says: v.safety.says });
   }
@@ -1826,7 +2006,7 @@ async function api(req, res, url) {
     const r = await db.query(`SELECT p.code,p.title,p.base_pid,p.base_rcid,p.clones,p.published_at,u.username AS by_user
       FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id
       WHERE p.status='published' AND p.clones > 0 ORDER BY p.clones DESC, p.published_at DESC LIMIT 12`);
-    return json(res, 200, { protocols: r.rows, label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.' });
+    return json(res, 200, { protocols: r.rows.map((p) => Object.assign({}, p, { title: publicProtocolTitle(p.base_pid, p.base_rcid) })), label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.' });
   }
   // WHAT YOU MADE (2026-08-10). Registered ABOVE the read-one branch on purpose: that branch
   // matches `seg[1] && !seg[2]`, so /api/protocols/mine would otherwise resolve as code='mine' and
@@ -1847,7 +2027,7 @@ async function api(req, res, url) {
     const jr = await db.query('SELECT created_at FROM users WHERE id=$1', [u.id]);
     const joinedAt = jr.rows[0] && jr.rows[0].created_at;
     return json(res, 200, {
-      protocols: r.rows, signedIn: true,
+      protocols: r.rows.map((p) => p.status === 'published' ? Object.assign({}, p, { title: publicProtocolTitle(p.base_pid, p.base_rcid) }) : p), signedIn: true,
       joined: joinedAt ? new Date(joinedAt).toISOString().slice(0, 7) : null,
       clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
     });
@@ -1869,7 +2049,7 @@ async function api(req, res, url) {
     if (!r.rows[0]) return json(res, 404, { error: 'No published protocol of yours has that code.' });
     return json(res, 200, {
       ok: true, code: r.rows[0].code, status: 'withdrawn',
-      says: 'Withdrawn. It is off your public page and off Most Used. The link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.',
+      says: 'Withdrawn. Nobody new can start it and it is off Most Used. The link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.',
     });
   }
   // One clone per browser, no account. The fork_clones pattern, minus the reputation award: that
@@ -1877,10 +2057,26 @@ async function api(req, res, url) {
   // unbounded. Nothing here writes to a leaderboard about a person.
   if (seg[0] === 'protocols' && seg[1] && seg[2] === 'clone' && method === 'POST') {
     const code = clean(seg[1], 16); await readBody(req, 512);
-    const part = await resolveParticipant(req, res); const voterKey = part.key;
-    if (!code || !voterKey) return json(res, 400, { error: 'Missing' });
+    if (!code) return json(res, 400, { error: 'Missing' });
     const r = (await db.query("SELECT * FROM studio_protocols WHERE code=$1 AND status='published'", [code])).rows[0];
     if (!r) return json(res, 404, { error: 'No such protocol' });
+    // A clone is a self-directed action, not an analytics-only tap. Re-run the CURRENT publish
+    // rules before recording it: a protocol that was publishable last month may now contain a
+    // reclassified substance or an incompletely covered compound set. The read page hides its
+    // spec in that state; this prevents a direct API call from bypassing the same containment.
+    if (!STUDIO_READY) return studioDown(res);
+    const resolved = await STUDIO.resolve(r, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(x => x.rows[0]));
+    if (!resolved.ok) return json(res, 422, { error: resolved.error, status: 'review_required' });
+    let current;
+    try { current = STUDIO.validate({ spec: resolved.spec, base_pid: r.base_pid, base_rcid: r.base_rcid, publish: true }); }
+    catch (e) { console.error('[studio clone]', e.message); return studioDown(res); }
+    if (!current.ok) return json(res, 422, {
+      error: 'This protocol needs review before anybody can start or remix it.', status: 'review_required',
+      refusals: current.refusals, warn: current.warn, coverage: current.coverage,
+      says: current.safety ? current.safety.says : null,
+    });
+    const part = await resolveParticipant(req, res); const voterKey = part.key;
+    if (!voterKey) return json(res, 400, { error: 'Missing' });
     const ins = await db.query('INSERT INTO studio_clones(code,voter_key) VALUES($1,$2) ON CONFLICT (code,voter_key) DO NOTHING RETURNING id', [code, voterKey]);
     if (ins.rows[0]) await db.query('UPDATE studio_protocols SET clones=clones+1 WHERE code=$1', [code]);
     return json(res, 200, { ok: true, code, counted: !!ins.rows[0] });
@@ -1893,19 +2089,53 @@ async function api(req, res, url) {
     const code = clean(seg[1], 16);
     const row = (await db.query('SELECT p.*, u.username AS by_user FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id WHERE p.code=$1', [code])).rows[0];
     if (!row || row.status === 'draft') return json(res, 404, { error: 'No such protocol' });
+    const publicTitle = publicProtocolTitle(row.base_pid, row.base_rcid);
     if (row.status === 'withdrawn') {
       // Kept, not 404ed: people linked to this, and remixes of it still resolve through it.
-      return json(res, 200, { code, status: 'withdrawn', title: row.title, by_user: row.by_user || null, spec: null, says: 'The person who wrote this withdrew it.' });
+      return json(res, 200, { code, status: 'withdrawn', title: publicTitle, by_user: row.by_user || null, spec: null, says: 'The person who wrote this withdrew it.' });
     }
     const r = await STUDIO.resolve(row, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(x => x.rows[0]));
-    if (!r.ok) return json(res, 200, { code, status: 'unresolvable', title: row.title, spec: null, says: r.error });
-    let now = null;
-    if (STUDIO_READY) {
-      try { const v = STUDIO.validate({ spec: r.spec, base_pid: row.base_pid, base_rcid: row.base_rcid, publish: false }); now = { refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says, at: v.safety.at }; }
-      catch (e) { console.error('[studio read]', e.message); }
+    if (!r.ok) return json(res, 200, { code, status: 'unresolvable', title: publicTitle, spec: null, says: r.error });
+    // Revalidate as PUBLIC content. Draft mode intentionally turns some hard stops into notes so
+    // the owner can keep editing a private copy; using it here let a once-published protocol keep
+    // exposing steps after the current publish contract would refuse them. If the checker cannot
+    // complete, or the current rules refuse the resolved spec, the public endpoint returns no
+    // actionable spec at all. The stored verdict remains for audit, never as a fallback clearance.
+    const checkedAt = new Date().toISOString();
+    if (!STUDIO_READY) return json(res, 200, {
+      code, status: 'review_required', previous_status: row.status, title: publicTitle,
+      by_user: row.by_user || null, spec: null, reviewRequired: true,
+      says: 'This protocol is temporarily unavailable because RNAwiki could not run its current publication checks. No steps or remix are available.',
+      safetyWhenSaved: row.safety,
+      safetyNow: { refusals: [{ rule: 'checker-unavailable', message: 'Current publication checks could not run.', item: null, row: null }], warn: [], coverage: null, says: 'Current publication checks could not run.', at: checkedAt },
+    });
+    let v;
+    try { v = STUDIO.validate({ spec: r.spec, base_pid: row.base_pid, base_rcid: row.base_rcid, publish: true }); }
+    catch (e) {
+      console.error('[studio read]', e.message);
+      return json(res, 200, {
+        code, status: 'review_required', previous_status: row.status, title: publicTitle,
+        by_user: row.by_user || null, spec: null, reviewRequired: true,
+        says: 'This protocol is temporarily unavailable because RNAwiki could not run its current publication checks. No steps or remix are available.',
+        safetyWhenSaved: row.safety,
+        safetyNow: { refusals: [{ rule: 'checker-unavailable', message: 'Current publication checks could not run.', item: null, row: null }], warn: [], coverage: null, says: 'Current publication checks could not run.', at: checkedAt },
+      });
     }
+    const now = {
+      refusals: v.refusals, warn: v.warn, coverage: v.coverage,
+      says: v.safety ? v.safety.says : ((v.refusals[0] && v.refusals[0].message) || 'Current publication checks did not pass.'),
+      at: v.safety ? v.safety.at : checkedAt,
+    };
+    if (!v.ok) return json(res, 200, {
+      code, status: 'review_required', previous_status: row.status, title: publicTitle,
+      by_user: row.by_user || null, base_pid: row.base_pid, base_rcid: row.base_rcid,
+      parent_code: row.parent_code, depth: row.depth, clones: row.clones,
+      published_at: row.published_at, spec: null, reviewRequired: true,
+      says: 'This protocol no longer passes RNAwiki\'s current publication checks. Its steps and remix control are hidden until it is reviewed.',
+      safetyWhenSaved: row.safety, safetyNow: now,
+    });
     return json(res, 200, {
-      code, status: row.status, title: row.title, by_user: row.by_user || null,
+      code, status: row.status, title: publicTitle, by_user: row.by_user || null,
       base_pid: row.base_pid, base_rcid: row.base_rcid, parent_code: row.parent_code, depth: row.depth,
       clones: row.clones, published_at: row.published_at, spec: r.spec,
       safetyWhenSaved: row.safety, safetyNow: now,
@@ -2052,11 +2282,11 @@ async function api(req, res, url) {
     const pid = clean(q.get('problem'), 80), rcid = clean(q.get('rc'), 80);
     if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const r = await db.query(`SELECT count(*)::int AS total,
-        count(*) FILTER (WHERE status='running')::int AS running,
-        count(*) FILTER (WHERE outcome='better')::int AS better,
-        count(*) FILTER (WHERE outcome='same')::int AS same,
-        count(*) FILTER (WHERE outcome='worse')::int AS worse
-      FROM experiments WHERE problem_id=$1 AND root_cause_id=$2`, [pid, rcid]);
+      count(*) FILTER (WHERE status='running')::int AS running,
+      count(*) FILTER (WHERE outcome='better')::int AS better,
+      count(*) FILTER (WHERE outcome='same')::int AS same,
+      count(*) FILTER (WHERE outcome='worse')::int AS worse
+      FROM research_experiments WHERE problem_id=$1 AND root_cause_id=$2`, [pid, rcid]);
     return json(res, 200, r.rows[0]);
   }
   // my state for one protocol (running? streak? checked today? outcome?)
@@ -2078,7 +2308,7 @@ async function api(req, res, url) {
     // cohort: people who started THIS protocol in my start week (or the current week if I haven't started)
     const wkExpr = exp ? '(SELECT started_at FROM experiments WHERE id=$3)' : 'now()';
     const cr = await db.query(`SELECT count(*)::int AS n, to_char(date_trunc('week', ${wkExpr}), 'IYYY-"W"IW') AS wk
-      FROM experiments WHERE problem_id=$1 AND root_cause_id=$2 AND date_trunc('week', started_at)=date_trunc('week', ${wkExpr})`, exp ? [pid, rcid, exp.id] : [pid, rcid]);
+      FROM research_experiments WHERE problem_id=$1 AND root_cause_id=$2 AND date_trunc('week', started_at)=date_trunc('week', ${wkExpr})`, exp ? [pid, rcid, exp.id] : [pid, rcid]);
     const cohortSize = cr.rows[0].n, weekLabel = cr.rows[0].wk;
     const onboarded = (await db.query('SELECT count(*)::int AS n FROM referrals WHERE referrer=$1', [part.key])).rows[0].n;
     if (!exp) return json(res, 200, Object.assign({}, blank, { level, completedTotal, runningTotal, cohortSize, weekLabel, onboarded }));
@@ -2092,6 +2322,7 @@ async function api(req, res, url) {
     const pid = clean(b.problemId, 80), rcid = clean(b.rootCauseId, 80);
     const part = await resolveParticipant(req, res);
     if (!part.key) return json(res, 400, { error: 'Could not identify you — enable cookies or sign in' });
+    if (!part.user || !(await hasExplicitResearchConsent(part.user.id))) return json(res, 403, { error: 'Sign in and explicitly opt in before storing a personal observation.' });
     if (!pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
     const exp = await getOrCreateExperiment(part, pid, rcid);
     await db.query("UPDATE experiments SET status='running' WHERE id=$1", [exp.id]);
@@ -2114,6 +2345,7 @@ async function api(req, res, url) {
     const pid = clean(b.problemId, 80), rcid = clean(b.rootCauseId, 80);
     const part = await resolveParticipant(req, res);
     if (!part.key || !pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
+    if (!part.user || !(await hasExplicitResearchConsent(part.user.id))) return json(res, 403, { error: 'Sign in and explicitly opt in before storing a personal observation.' });
     const exp = await getOrCreateExperiment(part, pid, rcid);
     const day = todayUTC();
     await db.query('INSERT INTO experiment_checkins(experiment_id,day) VALUES($1,$2) ON CONFLICT (experiment_id,day) DO NOTHING', [exp.id, day]);
@@ -2131,6 +2363,7 @@ async function api(req, res, url) {
     // rows is precisely what product constraint 5 forbids.
     const part = await resolveParticipant(req, res);
     if (!part.key || !pid || !rcid) return json(res, 400, { error: 'Missing protocol' });
+    if (!part.user || !(await hasExplicitResearchConsent(part.user.id))) return json(res, 403, { error: 'Sign in and explicitly opt in before storing a personal observation.' });
     const exp = await getOrCreateExperiment(part, pid, rcid);
     await db.query("UPDATE experiments SET outcome=$1, status='completed', outcome_at=now() WHERE id=$2", [outcome, exp.id]);
     if (part.user) await award(part.user.id, 'outcome', 'oc:' + exp.id, 15);
@@ -2140,6 +2373,10 @@ async function api(req, res, url) {
   if (seg[0] === 'admin' && seg[1] === 'export' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
     const type = clean(new URL('http://x/' + url).searchParams.get('type'), 20);
+    const researchExportTypes = new Set(['checkins', 'markers', 'wearables']);
+    if (researchExportTypes.has(type) && !FEATURES.researchCollection) {
+      return json(res, 404, { error: 'Research exports are not available.' });
+    }
     // `type=clinicians` REMOVED 2026-08-11 with the table (D-5). It exported name, email,
     // profession, country, licence number and whether a credential photograph was on file.
     // It falls through to the 400 at the end of this handler.
@@ -2149,18 +2386,18 @@ async function api(req, res, url) {
     if (type === 'checkins') {   // the core outcome dataset, joined to demographics — no identity, only pseudonym + demographics + outcomes
       const r = await db.query(`SELECT c.user_id, c.pid, c.rcid, c.phase, c.symptom_0_10, c.improvement, c.adherence_pct, c.still_on, c.stop_reason, c.side_effects, c.extra,
         p.age_band, p.sex, p.ethnicity, p.conditions, p.height_cm, p.meds, to_char(c.created_at,'YYYY-MM-DD"T"HH24:MI:SSZ') AS created_at
-        FROM outcome_checkins c LEFT JOIN user_profile p ON p.user_id=c.user_id ORDER BY c.user_id, c.created_at`);
+        FROM research_outcome_checkins c LEFT JOIN research_user_profile p ON p.user_id=c.user_id ORDER BY c.user_id, c.created_at`);
       return csvExport(res, 'rnawiki-checkins.csv',
         ['subject', 'pid', 'rcid', 'phase', 'symptom_0_10', 'improvement', 'adherence_pct', 'still_on', 'stop_reason', 'side_effects', 'extra', 'age_band', 'sex', 'ethnicity', 'conditions', 'height_cm', 'meds', 'created_at'],
         r.rows.map(x => [anonId(x.user_id), x.pid, x.rcid, x.phase, x.symptom_0_10, x.improvement, x.adherence_pct, x.still_on, x.stop_reason, x.side_effects, x.extra ? JSON.stringify(x.extra) : '', x.age_band, x.sex, x.ethnicity, Array.isArray(x.conditions) ? x.conditions.join('|') : '', x.height_cm, Array.isArray(x.meds) ? x.meds.join('|') : '', x.created_at]));
     }
     if (type === 'markers') {
-      const r = await db.query(`SELECT user_id, marker, value, unit, to_char(taken_on,'YYYY-MM-DD') AS taken_on FROM blood_markers ORDER BY user_id, marker, taken_on`);
+      const r = await db.query(`SELECT user_id, marker, value, unit, to_char(taken_on,'YYYY-MM-DD') AS taken_on FROM research_blood_markers ORDER BY user_id, marker, taken_on`);
       return csvExport(res, 'rnawiki-markers.csv', ['subject', 'marker', 'value', 'unit', 'taken_on'],
         r.rows.map(x => [anonId(x.user_id), x.marker, x.value, x.unit, x.taken_on]));
     }
     if (type === 'wearables') {
-      const r = await db.query(`SELECT user_id, to_char(day,'YYYY-MM-DD') AS day, steps, sleep_min, resting_hr, weight_kg, waist_cm FROM wearable_daily ORDER BY user_id, day`);
+      const r = await db.query(`SELECT user_id, to_char(day,'YYYY-MM-DD') AS day, steps, sleep_min, resting_hr, weight_kg, waist_cm FROM research_wearable_daily ORDER BY user_id, day`);
       return csvExport(res, 'rnawiki-wearables.csv', ['subject', 'day', 'steps', 'sleep_min', 'resting_hr', 'weight_kg', 'waist_cm'],
         r.rows.map(x => [anonId(x.user_id), x.day, x.steps, x.sleep_min, x.resting_hr, x.weight_kg, x.waist_cm]));
     }
@@ -2253,38 +2490,38 @@ async function api(req, res, url) {
         COUNT(*) FILTER (WHERE phase='d30' AND improvement>=1) AS d30_imp,
         COUNT(*) FILTER (WHERE phase='d90' AND improvement>=1) AS d90_imp,
         ROUND(AVG(adherence_pct) FILTER (WHERE phase IN ('d30','d90'))) AS avg_adh
-      FROM outcome_checkins GROUP BY pid, rcid
+      FROM research_outcome_checkins GROUP BY pid, rcid
       ORDER BY d90_n DESC, d30_n DESC, baseline_n DESC`)).rows;
     const delta = (await db.query(`
-      WITH base AS (SELECT user_id,pid,rcid,symptom_0_10 s FROM outcome_checkins WHERE phase='baseline' AND symptom_0_10 IS NOT NULL),
+      WITH base AS (SELECT user_id,pid,rcid,symptom_0_10 s FROM research_outcome_checkins WHERE phase='baseline' AND symptom_0_10 IS NOT NULL),
            lastc AS (SELECT DISTINCT ON (user_id,pid,rcid) user_id,pid,rcid,symptom_0_10 s
-                     FROM outcome_checkins WHERE phase IN ('d30','d90') AND symptom_0_10 IS NOT NULL
+                     FROM research_outcome_checkins WHERE phase IN ('d30','d90') AND symptom_0_10 IS NOT NULL
                      ORDER BY user_id,pid,rcid,(phase='d90') DESC)
       SELECT b.pid,b.rcid, ROUND(AVG(b.s-l.s)::numeric,1) AS delta, COUNT(*) AS n
       FROM base b JOIN lastc l USING(user_id,pid,rcid) GROUP BY b.pid,b.rcid`)).rows;
     const dmap = {}; delta.forEach(d => { dmap[d.pid + '/' + d.rcid] = { delta: d.delta, n: d.n }; });
     rows.forEach(r => { const d = dmap[r.pid + '/' + r.rcid]; r.symptom_delta = d ? d.delta : null; r.delta_n = d ? d.n : 0; });
     const totals = (await db.query(`SELECT
-      (SELECT COUNT(*) FROM user_consent WHERE consent_research) AS consented,
-      (SELECT COUNT(*) FROM outcome_checkins) AS checkins,
-      (SELECT COUNT(*) FROM (SELECT DISTINCT pid,rcid FROM outcome_checkins) t) AS protocols`)).rows[0];
+      (SELECT COUNT(*) FROM current_research_consent WHERE decision=true) AS consented,
+      (SELECT COUNT(*) FROM research_outcome_checkins) AS checkins,
+      (SELECT COUNT(*) FROM (SELECT DISTINCT pid,rcid FROM research_outcome_checkins) t) AS protocols`)).rows[0];
     return json(res, 200, { rows, totals });
   }
   // High-value signal breakdowns for the Control Room — super-admin only (owner's own dataset, no k-anon floor)
   if (seg[0] === 'admin' && seg[1] === 'signals' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
     const [stopReasons, sideFx, sideFxSamples, whtr, waistN, medsUsers, topMeds, extras] = await Promise.all([
-      db.query(`SELECT stop_reason, COUNT(*)::int n FROM outcome_checkins WHERE stop_reason IS NOT NULL GROUP BY stop_reason ORDER BY n DESC`),
-      db.query(`SELECT COUNT(*)::int n, COUNT(DISTINCT user_id)::int users FROM outcome_checkins WHERE side_effects IS NOT NULL`),
-      db.query(`SELECT pid, side_effects FROM outcome_checkins WHERE side_effects IS NOT NULL ORDER BY created_at DESC LIMIT 15`),
-      db.query(`WITH lastw AS (SELECT DISTINCT ON (user_id) user_id, waist_cm FROM wearable_daily WHERE waist_cm IS NOT NULL ORDER BY user_id, day DESC)
+      db.query(`SELECT stop_reason, COUNT(*)::int n FROM research_outcome_checkins WHERE stop_reason IS NOT NULL GROUP BY stop_reason ORDER BY n DESC`),
+      db.query(`SELECT COUNT(*)::int n, COUNT(DISTINCT user_id)::int users FROM research_outcome_checkins WHERE side_effects IS NOT NULL`),
+      db.query(`SELECT pid, side_effects FROM research_outcome_checkins WHERE side_effects IS NOT NULL ORDER BY created_at DESC LIMIT 15`),
+      db.query(`WITH lastw AS (SELECT DISTINCT ON (user_id) user_id, waist_cm FROM research_wearable_daily WHERE waist_cm IS NOT NULL ORDER BY user_id, day DESC)
         SELECT COUNT(*)::int n, ROUND(AVG(w.waist_cm / p.height_cm)::numeric,3) AS avg_whtr,
           COUNT(*) FILTER (WHERE w.waist_cm / p.height_cm >= 0.5)::int AS at_risk
-        FROM lastw w JOIN user_profile p ON p.user_id=w.user_id AND p.height_cm IS NOT NULL`),
-      db.query(`SELECT COUNT(DISTINCT user_id)::int n FROM wearable_daily WHERE waist_cm IS NOT NULL`),
-      db.query(`SELECT COUNT(*)::int n FROM user_profile WHERE jsonb_array_length(meds) > 0`),
-      db.query(`SELECT lower(trim(m.med)) AS med, COUNT(*)::int AS n FROM user_profile p, jsonb_array_elements_text(p.meds) AS m(med) WHERE jsonb_array_length(p.meds) > 0 GROUP BY 1 ORDER BY n DESC LIMIT 15`),
-      db.query(`SELECT e.k AS key, ROUND(AVG(e.v::numeric),2) AS avg, COUNT(*)::int AS n FROM outcome_checkins oc, jsonb_each_text(oc.extra) AS e(k,v) WHERE oc.extra IS NOT NULL GROUP BY e.k ORDER BY n DESC`),
+        FROM lastw w JOIN research_user_profile p ON p.user_id=w.user_id AND p.height_cm IS NOT NULL`),
+      db.query(`SELECT COUNT(DISTINCT user_id)::int n FROM research_wearable_daily WHERE waist_cm IS NOT NULL`),
+      db.query(`SELECT COUNT(*)::int n FROM research_user_profile WHERE jsonb_array_length(meds) > 0`),
+      db.query(`SELECT lower(trim(m.med)) AS med, COUNT(*)::int AS n FROM research_user_profile p, jsonb_array_elements_text(p.meds) AS m(med) WHERE jsonb_array_length(p.meds) > 0 GROUP BY 1 ORDER BY n DESC LIMIT 15`),
+      db.query(`SELECT e.k AS key, ROUND(AVG(e.v::numeric),2) AS avg, COUNT(*)::int AS n FROM research_outcome_checkins oc, jsonb_each_text(oc.extra) AS e(k,v) WHERE oc.extra IS NOT NULL GROUP BY e.k ORDER BY n DESC`),
     ]);
     const due = await listDueCheckins().catch(() => []);
     const nudgesSent = (await db.query('SELECT COUNT(*)::int n FROM users WHERE last_checkin_email IS NOT NULL')).rows[0].n;
@@ -2303,7 +2540,7 @@ async function api(req, res, url) {
         SELECT user_id, marker,
           (array_agg(value ORDER BY taken_on ASC NULLS FIRST, id ASC))[1] AS v0,
           (array_agg(value ORDER BY taken_on DESC NULLS LAST, id DESC))[1] AS v1
-        FROM blood_markers WHERE value IS NOT NULL
+        FROM research_blood_markers WHERE value IS NOT NULL
         GROUP BY user_id, marker HAVING COUNT(*) >= 2)
       SELECT marker, COUNT(*)::int AS users, ROUND(AVG(v1 - v0)::numeric, 2) AS avg_delta,
         COUNT(*) FILTER (WHERE v1 < v0)::int AS fell, COUNT(*) FILTER (WHERE v1 > v0)::int AS rose
@@ -2311,13 +2548,13 @@ async function api(req, res, url) {
     // 2) Responder phenotype — % reporting improvement, split by demographic dimension
     const phenotype = (await db.query(`
       SELECT dim, k, COUNT(*)::int n, COUNT(*) FILTER (WHERE improvement>=1)::int better FROM (
-        SELECT 'age' dim, p.age_band k, oc.improvement FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.age_band IS NOT NULL
-        UNION ALL SELECT 'sex', p.sex, oc.improvement FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.sex IS NOT NULL
-        UNION ALL SELECT 'ethnicity', p.ethnicity, oc.improvement FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.ethnicity IS NOT NULL
+        SELECT 'age' dim, p.age_band k, oc.improvement FROM research_outcome_checkins oc JOIN research_user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.age_band IS NOT NULL
+        UNION ALL SELECT 'sex', p.sex, oc.improvement FROM research_outcome_checkins oc JOIN research_user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.sex IS NOT NULL
+        UNION ALL SELECT 'ethnicity', p.ethnicity, oc.improvement FROM research_outcome_checkins oc JOIN research_user_profile p ON p.user_id=oc.user_id WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL AND p.ethnicity IS NOT NULL
       ) t GROUP BY dim, k ORDER BY dim, n DESC`)).rows;
     const byCondition = (await db.query(`
       SELECT cond AS k, COUNT(*)::int n, COUNT(*) FILTER (WHERE oc.improvement>=1)::int better
-      FROM outcome_checkins oc JOIN user_profile p ON p.user_id=oc.user_id, jsonb_array_elements_text(p.conditions) AS cond
+      FROM research_outcome_checkins oc JOIN research_user_profile p ON p.user_id=oc.user_id, jsonb_array_elements_text(p.conditions) AS cond
       WHERE oc.phase IN ('d30','d90') AND oc.improvement IS NOT NULL GROUP BY cond ORDER BY n DESC`)).rows;
     // 3) What's NOT working — negative results by protocol
     const negativeResults = (await db.query(`
@@ -2325,10 +2562,10 @@ async function api(req, res, url) {
         COUNT(*) FILTER (WHERE improvement <= 0)::int no_improve,
         COUNT(*) FILTER (WHERE stop_reason='didnt_work')::int didnt_work,
         ROUND(AVG(improvement)::numeric,2) avg_imp
-      FROM outcome_checkins WHERE phase IN ('d30','d90')
+      FROM research_outcome_checkins WHERE phase IN ('d30','d90')
       GROUP BY pid, rcid HAVING COUNT(*) >= 1 ORDER BY didnt_work DESC, no_improve DESC LIMIT 20`)).rows;
     // 4) Adverse events attributed to the compounds the user was taking (association, not causation)
-    const sfxRows = (await db.query(`SELECT user_id, pid, rcid FROM outcome_checkins WHERE side_effects IS NOT NULL`)).rows;
+    const sfxRows = (await db.query(`SELECT user_id, pid, rcid FROM research_outcome_checkins WHERE side_effects IS NOT NULL`)).rows;
     const adverseByCompound = [];
     if (sfxRows.length) {
       const uids = [...new Set(sfxRows.map(r => r.user_id))];
@@ -2431,7 +2668,7 @@ async function api(req, res, url) {
     // false in site/app.js, and api.addProposal has zero call sites), so the honest gate is the
     // one the rest of the site uses: the owner, and nobody else, until there is a real answer to
     // "who may edit a protocol".
-    if (u.role !== 'admin') return json(res, 403, { error: 'Editing a protocol section is not enabled for this account. Use the Feedback button to send a correction — corrections are welcome and wanted.' });
+    if (u.role !== 'admin') return json(res, 403, { error: 'Editing a protocol section is not enabled for this account. Use Suggest an edit on the page to send a correction — corrections are welcome and wanted.' });
     const b = await readBody(req); if (!b) return json(res, 400, { error: 'Bad request' });
     const pid = clean(b.problemId, 60), rcid = clean(b.rootCauseId, 60), layer = clean(b.layer, 12);
     const change = clean(b.change, 4000), evidence = clean(b.evidence, 500);
@@ -2604,23 +2841,18 @@ function sendFile(res, file, code) {
 function serveStatic(req, res, url) {
   let p = decodeURIComponent(url.split('?')[0]);
   const qp = new URLSearchParams(url.split('?')[1] || '');
-  // Proof-of-Progress share links: a protocol opened via ?by=/?log= gets a share-flavoured preview
-  if (/^\/protocol\//.test(p) && (qp.get('by') || qp.get('s'))) {
-    return fs.readFile(path.join(DIR, p.replace(/^\//, '') + '.html'), 'utf8', (e, html) => {
-      if (e) return sendFile(res, path.join(DIR, 'index.html'));
-      const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-      const by = clean(qp.get('by'), 24);
-      const nm = html.match(/<title>([^—<]+)/);
-      const problemName = nm ? nm[1].trim() : 'their protocol';
-      const t = `${by ? '@' + by : 'Someone'} shared their ${problemName} progress on RNAwiki`;
-      const desc = `See the exact movement, stack, and Singapore food log for ${problemName} — then start your own. Stop guessing, start solving.`;
-      const out = html
-        .replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${esc(t)}">`)
-        .replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${esc(desc)}">`)
-        .replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${esc(t)}">`)
-        .replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${esc(desc)}">`);
-      endHtml(res, out);
-    });
+  // /plan is a device-specific utility page, not a public search result. It remains followable so
+  // a crawler can discover its links to the public wiki, while the page itself stays out of the
+  // index. The matching meta directive is authored in build/prerender.js and site/app.js.
+  if (p === '/plan' || p === '/plan/') res.setHeader('X-Robots-Tag', 'noindex, follow');
+  // Retired progress links encoded a handle and food log directly in the URL. Never render,
+  // preview or preserve those parameters: redirects keep the public protocol route while removing
+  // health state from browser history, Referer headers, proxy logs and social crawlers.
+  if ((/^\/protocol\//.test(p) && (qp.has('by') || qp.has('s') || qp.has('log'))) || (/^\/stack\/?$/.test(p) && qp.has('ids'))) {
+    res.statusCode = 302;
+    res.setHeader('Location', p);
+    res.setHeader('Cache-Control', 'no-store');
+    return res.end();
   }
   // ---- /solve?q= FOR READERS WITHOUT JAVASCRIPT (2026-08-01, W2/D11) --------------------------
   // The home hero is a REAL <form action="/solve" method="get">, so the site's FIRST call to action
@@ -2642,10 +2874,14 @@ function serveStatic(req, res, url) {
     return fs.readFile(path.join(DIR, 'solve.html'), 'utf8', (e, html) => {
       if (e) return sendFile(res, path.join(DIR, 'index.html'));
       const esc = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-      const hits = searchSolve(q);
+      const guidance = solveGuidance(q);
+      const hits = guidance ? [] : searchSolve(q);
       const ids = hits.map((h) => h.id);
       let css;
-      if (ids.length) {
+      if (guidance) {
+        css = '';
+        html = html.replace(`id="q-${guidance === 'urgent' ? 'urgent' : 'review'}"`, `id="q-${guidance === 'urgent' ? 'urgent' : 'review'}" data-on`);
+      } else if (ids.length) {
         const off = SOLVE_INDEX.problems.map((x) => x.id).filter((id) => ids.indexOf(id) < 0);
         css = '#q-hits .solve-card{order:99}'
           + ids.map((id, i) => `#q-hits .solve-card[data-pid="${id}"]{order:${i}}`).join('')
@@ -2863,12 +3099,49 @@ try {
   console.log('[server] interest topics loaded:', INTEREST_TOPICS.length, INTEREST_TOPICS.length ? '(' + INTEREST_TOPICS.join(', ') + ')' : '— POST /api/interest will store every topic as NULL');
 } catch (e) { console.warn('[server] no compound aliases:', e.message); }
 
+// Safety-sensitive searches are routed before fuzzy matching. Keep these patterns identical to
+// solveGuidance() in site/app.js: the no-JS document and hydrated page must never disagree about
+// whether a query is safe to approximate.
+function solveGuidance(q) {
+  const s = String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').replace(/\s+/g, ' ').trim();
+  if (!s) return null;
+  const urgent = [
+    /\bchest ?pains?\b/, /\bchest (pressure|tightness|discomfort)\b/, /\b(my )?chest (hurts?|aches?|is tight)\b/,
+    /\b(pain|ache|pressure|tightness|discomfort) (in|across) (my |the )?chest\b/, /\bheart attack\b/, /\bstroke\b/,
+    /\bface droop\b/, /\bone sided (weakness|numbness)\b/, /\b(weakness|numbness) (on|down) (my |the )?(left|right|one) side\b/,
+    /\bthunderclap headache\b/, /\b(sudden|new) (slurred speech|speech difficulty|confusion|one sided weakness)\b/,
+    /\b(cannot|can't|cant|can not|unable to) breathe\b/, /\b(cannot|can't|cant|can not|unable to) catch (my )?breath\b/,
+    /\b(trouble|difficulty|hard|struggl\w*) (to )?breath(e|ing)\b/, /\bshortness of breath\b/, /\bbreathless\b/, /\banaphyla\w*\b/,
+    /\boverdose\b/, /\bpoison(ed|ing)?\b/,
+    /\b(unconscious|unresponsive|passed out|fainted|fainting)\b/, /\bseizures?\b/, /\bsevere bleeding\b/,
+    /\bsuicid\w*\b/, /\bsuicdal\b/, /\bself harm\w*\b/, /\bself injur\w*\b/, /\b(kill\w*|hurt\w*) myself\b/,
+    /\b(want to die|end my life|take my own life|don't want to live|dont want to live|better off dead|no reason to live)\b/,
+  ];
+  if (urgent.some(re => re.test(s))) return 'urgent';
+  const review = [
+    /\b(pregnan\w*|pregn\w*|pregant|pregancy|pregnacy|pregnet|pregnent|pregenan\w*|pregrant)\b/,
+    /\bbreast ?feed\w*\b/, /\b(infant|child|children|teenager|under 18)\b/,
+    /\b(warfarin|anticoagulant|blood thinner|lithium|digoxin)\b/,
+    /\b(drug|medicine|medication) interaction\b/, /\bcombine (my )?(drugs|medicines|medications)\b/,
+    /\bcombine (a |my )?(supplement|compound)s? with (a |my )?(drug|medicine|medication)s?\b/,
+  ];
+  if (review.some(re => re.test(s))) return 'professional_review';
+  const interactionIntent = /\b(take|taking|use|using|mix|mixing|combine|combining|stack|stacking|pair|pairing)\b(?:\s+[a-z0-9']+){1,10}\s+\b(with|and|plus|alongside|together with)\b(?:\s+[a-z0-9']+){1,10}\b/;
+  const namedMedicine = /\b(warfarin|coumadin|sertraline|zoloft|fluoxetine|prozac|escitalopram|lexapro|lithium|digoxin|metformin|semaglutide|ozempic|wegovy|tirzepatide|mounjaro|insulin|levothyroxine|ibuprofen|naproxen|aspirin|paracetamol|acetaminophen|statins?|atorvastatin|antidepressants?|antibiotics?|birth control|ephedrine)\b/;
+  const namedSupplement = /\b(creatine|magnesium|zinc|melatonin|ashwagandha|berberine|turmeric|curcumin|caffeine|fish oil|omega ?3|vitamin ?[a-k]|multivitamin|st john'?s wort|protein powder|supplements?|herbals?|herbs?)\b/;
+  const joiningWord = /\b(with|and|plus|alongside|together with)\b/;
+  return interactionIntent.test(s) || (namedMedicine.test(s) && namedSupplement.test(s) && joiningWord.test(s))
+    ? 'professional_review'
+    : null;
+}
+
 // The SAME scoring loop as rankProblems() in site/app.js. Both read the index above; the weights
 // and the 0.34 relative cut must stay identical or the crawler document and the hydrated document
 // answer the same query differently. scripts/smoke.mjs asserts they do not (solve-q-parity).
 // A boolean substring filter was tried first and measured useless: "low testosterone" matched
 // 37 of 41 problems, "cant sleep" 28. This ranks, and it never hides the full list.
 function searchSolve(q) {
+  if (solveGuidance(q)) return [];
   const stop = SOLVE_INDEX.stop;
   const T = [...new Set(String(q || '').toLowerCase().replace(/[^a-z0-9']+/g, ' ').split(' ')
     .filter((t) => t.length >= 3 && stop.indexOf(t) < 0))].slice(0, 8);
@@ -2894,7 +3167,7 @@ function searchSolve(q) {
   }).filter((x) => x.s > 0).sort((a, b) => b.s - a.s || a.len - b.len);
   if (!sc.length) return [];
   const cut = sc[0].s * 0.34;
-  return sc.filter((x) => x.s >= cut).slice(0, 6);
+  return sc.filter((x) => x.s >= cut).slice(0, 3);
 }
 
 const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'muscle', 'goal', 'learn', 'physiology', 'energy'];
@@ -3233,14 +3506,23 @@ const server = http.createServer((req, res) => {
   serveStatic(req, res, url);
 });
 
-db.init().catch(e => console.error('[db] init failed:', e.message)).finally(() => {
+db.init().then(() => {
   // The anonymous participant cookie is only as good as SECRET. With the built-in default, the
   // HMAC key is a public constant in a public repo, anyone can forge `rw_pid`, and the fix above
   // is theatre. Same key also pseudonymises the research export, so an unset value makes that
   // "non-reversible" id reversible by anyone with the repo. Say so loudly at boot.
-  if (db.enabled && SECRET === 'dev-secret-change-me') {
-    console.warn('[security] SESSION_SECRET is UNSET — participant cookies are forgeable and the research-export pseudonym is reversible. Set a 32-byte random value.');
+  if (db.enabled && CONFIGURED_SECRET.length < 32) {
+    console.error('[security] refusing to start: SESSION_SECRET must contain at least 32 characters when accounts are enabled.');
+    process.exitCode = 1;
+    return;
   }
   server.listen(PORT, () => console.log('RNAwiki serving on :' + PORT + (db.enabled ? ' (accounts on)' : ' (read-only)')));
   if (db.enabled) emailStartScheduler();
+}).catch(e => {
+  // A process serving API routes against a partially initialized schema is not a degraded mode;
+  // it is a privacy and integrity failure. Railway can restart a failed process after Postgres
+  // recovers, but it must never receive traffic before the schema transaction succeeds.
+  console.error('[db] init failed; server not started:', e.message);
+  process.exitCode = 1;
+  if (db.pool) db.pool.end().catch(() => {});
 });
