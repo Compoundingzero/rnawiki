@@ -272,6 +272,13 @@ function regClass(c) {
 // and the hydrated document must withhold the SAME compounds, and assertRxActionSurface() in
 // build/parse.js fails the build if the three definitions drift apart.
 const isConsumerRenderable = (c) => !!c && c.consumer_renderable !== false && ['supplement', 'otc'].includes(regClass(c));
+const isToxicNoSafeDose = (c) => !!c && !!c.risk_policy && c.risk_policy.tier === 'toxic_no_safe_dose';
+// A toxic/no-safe-dose entry remains discoverable, but its list marker is its risk contract —
+// never an efficacy score. A row that says "two stars" next to a lethal agent turns evidence of
+// effect into a product comparison, exactly what show_evidence_score:false forbids.
+const compoundEvidence = (c) => isToxicNoSafeDose(c)
+  ? '<strong class="toxic-list-label">Toxic · no safe dose</strong>'
+  : stars(c.stars);
 // Explicit nutrient labels. The old /_\w+$/ regex ate the type suffix AND the discriminator
 // ('_c' / '_d'), collapsing vitamin_c_mg and vitamin_d_iu both to "vitamin". A map fails
 // visibly on an unknown key instead of silently mislabelling.
@@ -391,7 +398,7 @@ const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
 const GLOSS_COMPILED = _compileGloss(GLOSSARY);
 let _glossLinks = 0;
 
-function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType, robots, canonical }) {
+function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType, robots, canonical, skipToc }) {
   // Anchor every heading and build the contents card from what we actually emitted, so the TOC can
   // never list a section that is not there (or miss one that is).
   // Gloss BEFORE anchoring so heading ids are computed from clean text, and never inside a heading.
@@ -418,7 +425,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
   // merge, not less: the folded-in body carries eleven <h2> elements, four section headings plus the
   // seven answer panels that are display:none until server.js stamps data-state, so a contents card
   // here would offer "You are on the list." as a destination to somebody who has submitted nothing.
-  const _noToc = route === '/' || route.startsWith('/problem/') || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
+  const _noToc = !!skipToc || route === '/' || route.startsWith('/problem/') || ['/solve', '/browse', '/az', '/pathways', '/legend', '/learn'].includes(route);
   const _toc = (!_noToc && _words > 700) ? tocHtml(_an.heads, _mins) : '';
   // Insert after the first </h1> so the reader gets title -> what's in here -> content.
   body = _toc ? _an.html.replace(/<\/h1>/, `</h1>${_toc}`) : _an.html;
@@ -928,6 +935,52 @@ function bioFlatHtml(c) {
 // compounds
 D.compounds.forEach((c) => {
   const route = '/c/' + slug(c.name);
+  if (isToxicNoSafeDose(c)) {
+    const p = c.risk_policy || {};
+    const t = c.tech || {};
+    const overdose = c.bio && c.bio.overdose && c.bio.overdose.line;
+    const safeSteps = (c.mechSteps || []).filter((_, i, a) => i < 2 || i === a.length - 1);
+    const stepHtml = safeSteps.length ? `<ol class="toxic-steps">${safeSteps.map((x) => `<li><h3>${esc(x.t)}</h3><p>${mdSafe(x.d)}</p></li>`).join('')}</ol>` : '';
+    const adme = t.adme ? [
+      ['Absorption', t.adme.absorb], ['Distribution', t.adme.distribute],
+      ['Metabolism', t.adme.metabolise], ['Persistence', t.adme.excrete],
+    ].filter((x) => x[1]).map((x) => `<li><b>${x[0]}:</b> ${mdSafe(x[1])}</li>`).join('') : '';
+    const numericDose = /\b\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s*(?:mg|mcg|µg|g)(?:\s*\/\s*(?:kg|day))?\b/i;
+    const safeTrials = ((c.evi && c.evi.trials) || []).filter((x) => x && x.finding && !numericDose.test(x.finding));
+    const trialHtml = safeTrials.length ? `<ul class="toxic-evidence">${safeTrials.map((x) => `<li>${mdSafe(x.finding)}${x.ref ? ` <span class="bt-ref">— ${esc(x.ref)}</span>` : ''}${x.pmid ? ` <a href="https://pubmed.ncbi.nlm.nih.gov/${esc(x.pmid)}/" rel="noopener">PMID ${esc(x.pmid)}</a>` : ''}</li>`).join('')}</ul>` : '';
+    const refs = (c.refs || []).filter((x) => x && x.label && x.url);
+    const refHtml = refs.length ? `<ul class="toxic-refs">${refs.map((x) => `<li><a href="${esc(x.url)}" rel="noopener">${esc(x.label)}</a></li>`).join('')}</ul>` : '';
+    const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: c.category, route: '/' }, { name: c.name }])}
+      <div class="detail toxic-detail" id="cpd-detail" data-risk-tier="toxic_no_safe_dose"><h1>${esc(c.name)}</h1>
+      <section class="toxic-stop" role="alert" aria-labelledby="toxic-stop-title"><div class="toxic-kicker">TOXIC · NO SAFE DOSE</div><h2 id="toxic-stop-title">Do not use ${esc(c.name)}</h2><p>${esc(p.public_summary || 'This compound is toxic, is not approved for human use and can be fatal.')}</p><p class="toxic-status">${esc(c.sg_hsa_status || 'Not approved for human use.')}</p></section>
+      <section class="toxic-emergency" aria-labelledby="toxic-emergency-title"><div class="toxic-kicker">IF EXPOSURE MAY HAVE HAPPENED</div><h2 id="toxic-emergency-title">Get emergency help now</h2><p>${esc(p.emergency_guidance || 'Call local emergency services or a poison centre now. Do not try to manage this at home.')}</p></section>
+      ${overdose ? `<section class="toxic-section" id="sec-warning"><h2>Warning signs and what can happen</h2><p>${mdSafe(overdose)}</p></section>` : ''}
+      <section class="toxic-section" id="sec-mechanism"><h2>How ${esc(c.name)} harms the body</h2>${t.signaling ? `<p>${mdSafe(t.signaling)}</p>` : ''}${stepHtml}${adme ? `<h3>What happens after exposure</h3><ul>${adme}</ul>` : ''}</section>
+      <section class="toxic-section" id="sec-evidence"><h2>Why the danger is established</h2><p>Published toxicology reports document a consistent pattern of fatal overheating, organ injury and death. Randomised exposure trials would be unethical; the safety conclusion comes from the understood mechanism, poisoning cases and fatality reviews.</p>${trialHtml}</section>
+      <section class="toxic-section" id="sec-bottom"><h2>Bottom line</h2><p>${mdSafe(c.bottom || 'Do not use. There is no safe dose.')}</p></section>
+      ${refHtml ? `<section class="toxic-section" id="sec-references"><h2>References</h2>${refHtml}</section>` : ''}</div>`;
+    const cqa = faqBlock([
+      { q: `Why is ${c.name} dangerous?`, a: snip(p.public_summary, 300) },
+      { q: `What should I do if ${c.name} exposure may have happened?`, a: snip(p.emergency_guidance, 300) },
+      { q: `Is ${c.name} approved for human use?`, a: snip(c.sg_hsa_status || 'No. It is not approved for human use.', 300) },
+    ]);
+    const jsonld = [{
+      '@context': 'https://schema.org', '@type': 'MedicalWebPage', name: c.name,
+      about: { '@type': 'ChemicalSubstance', name: c.name }, description: cleanDesc(p.public_summary, 300),
+      url: SITE_URL + route, inLanguage: 'en', publisher: PUB.publisher, isPartOf: PUB.isPartOf, dateModified: PUB.dateModified,
+    }].concat(cqa.ld || []);
+    add(route, shell({
+      route,
+      skipToc: true,
+      title: seoTitle(`${c.name}: toxicity, emergency signs and why not to use it`),
+      desc: seoDesc(p.public_summary || c.sg_hsa_status || c.name),
+      jsonld,
+      ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Toxicity warning', title: c.name, sub: cleanDesc(p.public_summary, 120) }),
+      breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }],
+      body: body + cqa.html,
+    }));
+    return;
+  }
   const cpdFact = factByHref['/c/' + slug(c.name)];
   const goalLinks = (c.goalIds || []).map((g) => `<a href="/goal/${g}">${esc(goalById[g].label)}</a>`).join(' · ');
   const usedIn = compoundProtocols[c.id] || [];
@@ -969,7 +1022,7 @@ D.compounds.forEach((c) => {
   const pathLink = (c.pathwayIds || []).length && D.pathways[c.pathwayIds[0]] ? `<p><b>How it works:</b> <a href="/pathway/${c.pathwayIds[0]}">the ${esc(D.pathways[c.pathwayIds[0]].shortLabel)} pathway →</a></p>` : '';
   const body = `${crumbHtml([{ name: 'Home', route: '/' }, { name: c.category, route: '/' }, { name: c.name }])}
     <div class="detail"><h1>${esc(c.name)}</h1>
-    <p><b>Evidence:</b> ${stars(c.stars)} ${c.stars ? `(${c.stars} of 5)` : '(not yet rated)'} · <b>Regulator status:</b> ${(c.badgeLabels || []).join(', ') || 'none recorded'} · <b>How you get it:</b> ${esc((c.supply || {}).tag || '')}</p>
+    <p><b>Evidence:</b> ${compoundEvidence(c)} ${isToxicNoSafeDose(c) ? '' : (c.stars ? `(${c.stars} of 5)` : '(not yet rated)')} · <b>Regulator status:</b> ${(c.badgeLabels || []).join(', ') || 'none recorded'} · <b>How you get it:</b> ${esc((c.supply || {}).tag || '')}</p>
     ${cpdFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${cpdFact.t}</span></div>` : ''}
     ${c.plain ? `<h2>In plain English</h2><p>${esc(mds(c.plain))}</p>` : ''}
     ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
@@ -1035,6 +1088,43 @@ D.compounds.forEach((c) => {
   }].concat(cqa.ld || []);
   add(route, shell({ route, title: seoTitle(`${c.name}: dosage, evidence & uses`), desc: seoDesc(c.plain || c.bottom || c.mechanism || c.metaSummary || c.name), jsonld, ogImage: renderOgCard(`og/c/${slug(c.name)}.png`, { kind: 'Compound · ' + (c.category || ''), title: c.name, sub: cleanDesc(c.plain || c.bottom || c.mechanism || c.metaSummary, 120), starN: c.stars, rx: c.isRx }), breadcrumbs: [{ name: 'Home', route: '/' }, { name: c.name, route }], body: body + cqa.html }));
 });
+
+// The toxic policy is enforced on emitted bytes, not merely trusted in the template above. This
+// catches a future refactor that accidentally routes DNP back through the ordinary compound page,
+// or a new toxic record whose authored copy contains an actionable amount.
+{
+  const toxic = D.compounds.filter(isToxicNoSafeDose);
+  const bad = [];
+  const numericDose = /\b\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s*(?:mg|mcg|µg|g)(?:\s*\/\s*(?:kg|day))?\b/i;
+  const banned = [
+    ['class="stars', 'evidence stars'], ['★', 'evidence star glyphs'], ['☆', 'empty evidence star glyphs'],
+    ['Make a short', 'social-generation control'], ['Add to stack', 'stack action'], ['Used in these protocols', 'protocol-use action'],
+    ['Compare ', 'comparison module'], ['Stacks with', 'stacking advice'], ['Acts on the same pathway', 'derived optimisation links'],
+    ['Availability &amp; where to buy', 'sourcing module'], ['Quality &amp; sourcing', 'sourcing module'],
+    ['Cost per', 'purchase optimisation'], ['Dose–response', 'dose comparison'], ['How to take', 'self-use instructions'],
+    ['How to use', 'self-use instructions'], ['<button', 'action control'],
+  ];
+  toxic.forEach((c) => {
+    const route = '/c/' + slug(c.name);
+    const page = pages.find((x) => x.route === route);
+    if (!page) { bad.push(`${c.name}: no prerendered page`); return; }
+    const main = (page.html.match(/<main id="app">([\s\S]*?)<\/main>/) || [, ''])[1];
+    if (!main) bad.push(`${c.name}: no #app document to inspect`);
+    banned.forEach(([needle, why]) => { if (main.includes(needle)) bad.push(`${c.name}: emits ${why} ("${needle}")`); });
+    if (numericDose.test(main)) bad.push(`${c.name}: emits a numeric dosing amount or range`);
+    if (/href="(?:#)?\/stack/i.test(main)) bad.push(`${c.name}: links to the stack`);
+    if (/<title>[^<]*(?:dosage|evidence\s*&amp;\s*uses)/i.test(page.html)) bad.push(`${c.name}: uses ordinary compound SEO framing`);
+    [['data-risk-tier="toxic_no_safe_dose"', 'risk marker'], ['NO SAFE DOSE', 'no-safe-dose warning'], ['emergency', 'emergency route'], ['fatal', 'fatality warning']]
+      .forEach(([needle, why]) => { if (!main.toLowerCase().includes(needle.toLowerCase())) bad.push(`${c.name}: missing ${why}`); });
+  });
+  if (!toxic.length || bad.length) {
+    console.error('[prerender] TOXIC PAGE ASSERTION FAILED — refusing to publish:');
+    if (!toxic.length) console.error('  ✗ no toxic_no_safe_dose page exists');
+    bad.forEach((x) => console.error('  ✗ ' + x));
+    process.exit(1);
+  }
+  console.log(`[prerender] toxic pages: ${toxic.length} emitted with safety education only`);
+}
 
 // ---- W5d (2026-08-02): D30 — A 123-PAGE CLUSTER WITH ZERO INTERNAL EDGES ---------------------
 // Measured hydrated at 390x844 on all 123 published pairs (qa/out/w5cdi/before-390.json): every
@@ -1197,7 +1287,10 @@ comparePairs.forEach(({ a, b, goalLabel, goalId }) => {
 // goals
 D.goals.forEach((g) => {
   const route = '/goal/' + g.id;
-  const list = D.compounds.filter((c) => c.goalIds.includes(g.id)).sort((a, b) => b.stars - a.stars).slice(0, 30);
+  // A goal page is an efficacy/selection surface ("help you", "ranked"). Toxic/no-safe-dose
+  // records remain discoverable through A–Z and Browse, but may never appear here as a lower-ranked
+  // option: replacing the star glyph alone would still compare and optimise the lethal agent.
+  const list = D.compounds.filter((c) => c.goalIds.includes(g.id) && !isToxicNoSafeDose(c)).sort((a, b) => b.stars - a.stars).slice(0, 30);
   const protos = GRAPH.problems.filter((p) => p.root_causes.some((rc) => (rc.goal_ids || []).includes(g.id)));
   // The goal page had the same defect as the home cards: "18 compounds that help you lose fat"
   // where 18 of the 18 are prescription-only. Caught by the goal-count gate, not by me.
@@ -1231,8 +1324,8 @@ D.goals.forEach((g) => {
       // what their <meta description> uses). Without it those entries are a bare name here, which
       // is the defect this line exists to fix, one row at a time.
       const line = snip(c.mechanism || c.plain || c.bottom || c.metaSummary || '', 190);
-      const labels = (c.approvalLabels || []).join(', ');
-      return `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}`
+      const labels = isToxicNoSafeDose(c) ? '' : (c.approvalLabels || []).join(', ');
+      return `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${compoundEvidence(c)}`
         + `${c.category ? ` · <span class="gl-cat">${esc(c.category)}</span>` : ''}`
         + `${labels ? ` · ${esc(labels)}` : ''}`
         + `${line ? `<br><span class="gl-why">${esc(line)}</span>` : ''}</li>`;
@@ -1558,17 +1651,19 @@ GRAPH.problems.forEach((p) => {
     const phase1 = p1 ? `<section class="phase1" id="phase-1" data-phase1-action="${esc(p1.action)}" data-phase1-cost="${esc(p1.cost)}" data-phase1-class="${esc(p1.class)}">
         <div class="p1-badge">Phase 1 · 7 days · $0 · one thing</div>
         <p class="p1-action">${esc(p1.action)}</p>
-        <p class="p1-quote">Selected from this protocol’s own plan: “${esc(p1.quote)}”</p>
-        <dl class="p1-facts">
-          <div class="p1-fact"><dt>Watch</dt><dd>${sfy ? esc(sfy.metric) : 'the one thing this protocol is judged by'} <a href="#red-flags">— why this one ↑</a></dd></div>
-          <div class="p1-fact"><dt>When it moves</dt><dd>${p1In7
-            ? `This protocol’s own timeline puts the first change at <b>${esc(p1Sig)}</b>, inside these 7 days.`
-            : `This protocol’s own timeline does not expect a change until <b>${esc(p1Sig)}</b> — after these 7 days end. So the week is a test of whether you can do it daily, not of whether it works.`}</dd></div>
-          <div class="p1-fact"><dt>A partial result</dt><dd>You did it on most of the 7 days${sfy ? ` and the thing you are tracking — “${esc(sfy.metric)}” —` : ' and the thing you are tracking'} has not moved. ${p1In7
-            ? `That is a weak signal rather than a failure — ${esc(p1Sig)} is the very end of this week.`
-            : `That is the expected result, because ${esc(p1Sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
-        </dl>
-        <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p>
+        <details class="p1-more">
+          <summary>How this 7-day check works</summary>
+          <div class="p1-more-body"><p class="p1-quote">Selected from this protocol’s own plan: “${esc(p1.quote)}”</p><dl class="p1-facts">
+            <div class="p1-fact"><dt>Watch</dt><dd>${sfy ? esc(sfy.metric) : 'the one thing this protocol is judged by'} <a href="#protocol-boundaries">— why this one ↓</a></dd></div>
+            <div class="p1-fact"><dt>When it moves</dt><dd>${p1In7
+              ? `This protocol’s own timeline puts the first change at <b>${esc(p1Sig)}</b>, inside these 7 days.`
+              : `This protocol’s own timeline does not expect a change until <b>${esc(p1Sig)}</b> — after these 7 days end. So the week is a test of whether you can do it daily, not of whether it works.`}</dd></div>
+            <div class="p1-fact"><dt>A partial result</dt><dd>You did it on most of the 7 days${sfy ? ` and the thing you are tracking — “${esc(sfy.metric)}” —` : ' and the thing you are tracking'} has not moved. ${p1In7
+              ? `That is a weak signal rather than a failure — ${esc(p1Sig)} is the very end of this week.`
+              : `That is the expected result, because ${esc(p1Sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
+          </dl>
+          <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p></div>
+        </details>
       </section>` : (rc.phase1None ? `<section class="phase1 phase1-none" id="phase-1" data-phase1-none>
         <div class="p1-badge p1-badge-none">Phase 1 · there is no $0 version of this one</div>
         <p class="p1-action">This protocol has no free first step.</p>
@@ -1589,7 +1684,10 @@ GRAPH.problems.forEach((p) => {
             reviewed it, and nothing on it is a diagnosis.</p>
           </div>
         </details>
-        ${sfy ? `<div class="safety-grid">
+      </section>` : ''}`;
+    const boundaries = sfy ? `<details class="protocol-boundaries" id="protocol-boundaries">
+      <summary><span><b>What to track and when to stop</b><small>Your baseline and review point</small></span><span aria-hidden="true">›</span></summary>
+      <div class="protocol-boundaries-body"><div class="safety-grid">
           <div class="sf-card track-metric" data-primary-metric="${esc(sfy.metric)}">
             <span class="sf-k">The one thing to track</span>
             <b class="sf-v">${esc(sfy.metric)}</b>
@@ -1602,8 +1700,8 @@ GRAPH.problems.forEach((p) => {
             <b class="sf-v">${esc(sfy.stopIssue)}</b>
             <p class="sf-src">${mdSafe(sfy.stopFix)}</p>
           </div>
-        </div>` : ''}
-      </section>` : ''}`;
+        </div></div>
+      </details>` : '';
     const safety = `
       ${timeline.length ? `<h3>What to expect, and by when</h3>
         <ul>${timeline.map((t) => `<li><b>${esc(t.when)}</b> — ${mdSafe(t.what)}</li>`).join('')}</ul>` : ''}
@@ -1616,6 +1714,7 @@ GRAPH.problems.forEach((p) => {
       <p class="protocol-fit-link"><a href="/problem/${p.id}">Not sure this reason fits? Check the problem first</a></p>
       ${redflags}
       ${phase1}
+      ${boundaries}
       <details class="protocol-full" id="protocol-full">
         <summary><span><b>Review the full protocol</b><small>Reasoning, movement, food, supplements and sources</small></span><span aria-hidden="true">›</span></summary>
         <div class="protocol-full-body">
@@ -1640,7 +1739,7 @@ GRAPH.problems.forEach((p) => {
         <div class="p2-body">
         <h3>Stack — supplements with human trial evidence for this use</h3>
         ${stack.length
-          ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul>`
+          ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${compoundEvidence(c)}</li>`).join('')}</ul>`
           : `<p>No supplement has trial evidence specific to this problem that I'd put my name to. That is the honest answer, not an omission.</p>`}
         ${med.length ? `<h3>Medical options — discuss with a doctor</h3>
           <p>These are prescription or controlled medicines. I list them so you know they exist and can raise them with a clinician. They are not recommendations, they are not ranked, and I do not give doses for them here.</p>
@@ -2479,7 +2578,7 @@ ANAT.metabolism.forEach((p) => {
 }
 { // Stack builder
   const top = D.compounds.slice().sort((a, b) => b.stars - a.stars).slice(0, 40);
-  add('/stack', shell({ route: '/stack', title: seoTitle('Stack Builder: combine and check interactions'), desc: 'Build a supplement stack, see combined goal coverage, shared pathways and synergy, and flag prescription vs OTC — then save and share it. Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Stack', route: '/stack' }], body: `<div class="article"><h1>Stack Builder</h1><p>Add compounds from any page, see combined goal coverage, the pathways you're hitting and shared targets, and which items need medical supervision. Your stack saves locally and is shareable by link.</p><h2>Popular compounds to stack</h2><ul>${top.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`).join('')}</ul></div>` }));
+  add('/stack', shell({ route: '/stack', title: seoTitle('Stack Builder: combine and check interactions'), desc: 'Build a supplement stack, see combined goal coverage, shared pathways and synergy, and flag prescription vs OTC — then save and share it. Singapore.', breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Stack', route: '/stack' }], body: `<div class="article"><h1>Stack Builder</h1><p>Add compounds from any page, see combined goal coverage, the pathways you're hitting and shared targets, and which items need medical supervision. Your stack saves locally and is shareable by link.</p><h2>Popular compounds to stack</h2><ul>${top.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${compoundEvidence(c)}</li>`).join('')}</ul></div>` }));
 }
 
 // solve hub
@@ -2591,9 +2690,9 @@ add('/solve', shell({ route: '/solve', title: 'Find a protocol for a problem or 
 //   * THE KICKER "Being built in the open" from the top of the page. It is about the builder, and
 //     it was the first thing a dismissed person read. Demoted to the footer.
 //
-// THE HEAD IS NOT TOUCHED, DELIBERATELY. The visible headline and the Google title are different
-// jobs, and the H1 carries no search terms. `<title>` stays "RNAwiki — Stop guessing, start solving.
-// Root-cause protocols" (59 chars) and the meta description stays as-is.
+// The visible headline and the Google title are different jobs, and the H1 carries no search
+// terms. The head states the evidence-to-action promise without claiming that the assessment
+// diagnoses or "fixes" a root cause.
 //
 // The body is assembled with four `<!--I-…-->` placeholders and the shell arguments are stashed in
 // HOME_SHELL rather than written; the block far below fills them and writes home.html. It has to be
@@ -2642,7 +2741,7 @@ let HOME_SHELL = null;
     const why = ((CAUSE[p.id] || {}).causes || []).slice().sort((a, b) => (a.rank || 99) - (b.rank || 99));
     const opts = why.map((c, i) => `<li${i === 1 ? ' class="on"' : ''}>${short(c.name)}${i === 1 ? '<b>&#10003;</b>' : ''}</li>`).join('');
     const stack = protoStack(rc);
-    const stackLine = stack.map((c) => `${esc(c.name)} ${stars(c.stars)}`).join(' &middot; ');
+    const stackLine = stack.map((c) => `${esc(c.name)} ${compoundEvidence(c)}`).join(' &middot; ');
     const T = Object.entries(rc.nutrient_targets);
     const foods = protoFuel(rc).slice(0, 3).map((f) => f.name).join(', ');
     // Name, TARGET VALUE and the authored reason the target exists. NO example percentages: the
@@ -2719,13 +2818,8 @@ let HOME_SHELL = null;
   // the sitemap; canonical is "/".
   HOME_SHELL = ({
     route: '/', ogType: 'website',
-    // W5b: was 77 chars — "…Precision root-cause health protocols". It is the one title on the site
-    // that never went through seoTitle(), so it never met the 60-char budget every other page is
-    // trimmed to, and Google cut it after "start solving." — losing the entire half that says what
-    // the site is. Shortened rather than exempted: an exemption on the highest-traffic page is a
-    // gate that does not cover the page that matters most. Same words, same order, 59 chars.
-    title: 'RNAwiki — Stop guessing, start solving. Root-cause protocols',
-    desc: seoDesc('Fix the root cause, not the symptom. Get a precision Move · Fuel · Stack protocol for pain, metabolic, sleep, hormonal, cognitive, longevity and performance goals — evidence-ranked, honest, in plain English.'),
+    title: 'RNAwiki — Understand the evidence before you act',
+    desc: seoDesc('Compare possible reasons for 41 health and performance topics, check safety limits, and start one practical movement, food or supplement step. Free, in plain English.'),
     jsonld: [WEBSITE, ORG],
     breadcrumbs: [{ name: 'Home', route: '/' }],
     body: homeBody,
@@ -2752,7 +2846,7 @@ let written = 0;
   const letterOf = (n) => { const ch = n.replace(/^[^A-Za-z0-9]+/, '').charAt(0).toUpperCase(); return /[A-Z]/.test(ch) ? ch : '#'; };
   const byLetter = {};
   azSorted.forEach((c) => { (byLetter[letterOf(c.name)] = byLetter[letterOf(c.name)] || []).push(c); });
-  const link = (c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${stars(c.stars)}</li>`;
+  const link = (c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${compoundEvidence(c)}</li>`;
 
   add('/about', shell({
     route: '/about', title: 'About RNAwiki — what it is, how it is made, and its limits',

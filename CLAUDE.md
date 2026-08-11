@@ -94,6 +94,20 @@ different documents and both are broken in places.**
 8. **Verify before asserting.** Across five rounds of audit, agent findings that did not reproduce
    appeared in *every single round*. Re-run the check yourself before acting on it. Cite
    `file:line` or a live URL, and label findings verified / inferred / could-not-check.
+9. **A toxic/no-safe-dose record is a different document, not an ordinary compound with a red
+   badge.** Its `RiskPolicy` must drive a dedicated education-and-emergency page. It may explain
+   toxicity and cite sources, but it must not render an evidence score, numeric dose, dose
+   comparison, sourcing, cost, stack/protocol action, social-generation control, or optimisation
+   link. Neutral directories keep it findable and replace stars and ordinary approval shorthand
+   with **Toxic · no safe dose**; goal, efficacy, comparison and optimisation lists exclude it.
+   The prerendered page must put its stop and emergency guidance before any navigation or
+   supporting content. Legacy local or imported stack state is quarantined before every ordinary
+   interaction/goal/pathway calculation and receives only remove/open-toxicity actions. Enforce
+   the rule in both the prerendered bytes and the hydrated DOM.
+10. **Today never silently becomes setup.** `/plan` is the execution surface. An unfinished draft
+    may appear there as one calm **Continue setup** choice, but the multi-step builder opens only
+    through the explicit `/plan?mode=edit` route. If an active protocol also exists, its one next
+    action wins and the draft remains secondary management state.
 
 ## The build gates — a fix without a gate is a fix that gets rediscovered
 
@@ -146,5 +160,7 @@ navigation, Find, Today, protocols, consent, public profiles, community, sharing
 External Downloads documents are historical context, not the source of truth for shipped code.
 
 The current product spine is **Find → possible reasons → first action → Today → optional full
-protocol**. The writing remains valuable; the active work is making its sequence obvious while
-keeping safety, evidence and privacy fail-closed.
+protocol**. On protocol pages, the order is: compact **Before you start** disclosure → first action
+and Start control → compact tracking/stopping disclosure → optional full protocol. The writing
+remains valuable; the active work is making its sequence obvious while keeping safety, evidence
+and privacy fail-closed.

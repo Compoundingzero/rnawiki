@@ -3279,6 +3279,46 @@ const isShellNoindex = (seg) => NOINDEX_SHELL_ROUTES.some((e) => {
 });
 const isNoindexRoute = (seg) => NOINDEX_ROUTES.includes(seg[0]) || isShellNoindex(seg);
 
+// Private SPA routes still need an honest first document. Without this rewrite, a crawler or link
+// unfurler receives the landing page title and description until JavaScript runs, while a reader
+// ends on the route-specific identity below. The browser smoke gate compares both documents and
+// fails if these strings drift from setPageMeta() in site/app.js.
+function spaShellMeta(seg) {
+  const suffix = ' · RNAwiki';
+  if (seg[0] === 'studio') return {
+    title: 'Protocol Studio — build a protocol and have it checked' + suffix,
+    description: 'Assemble compounds, movements, Singapore foods and daily tools into one protocol, and see every dangerous pairing as you build it. No account needed to build, keep or run it.',
+  };
+  if (seg[0] === 'me') return {
+    title: 'Your page — what you follow and what you built' + suffix,
+    description: 'Your plan, your logged days and the protocols you built. It works with no account, it is not indexed, and nothing on it is public.',
+  };
+  if (seg[0] === 'p' && seg[1]) return {
+    title: 'A protocol somebody built' + suffix,
+    description: 'A protocol built and published by a reader on RNAwiki, re-checked against the corpus as it is today. Reading it needs no account.',
+  };
+  if (seg[0] === 'u' && seg[1]) return {
+    title: '@' + String(seg[1]).slice(0, 24) + suffix,
+    description: 'The protocols this person published on RNAwiki. Nothing they read, plan, log or follow appears here.',
+  };
+  return null;
+}
+function rewriteSpaShellHead(html, seg) {
+  const meta = spaShellMeta(seg);
+  if (!meta) return html;
+  const title = escHtml(meta.title);
+  const description = escHtml(meta.description);
+  const canonical = 'https://rnawiki.com/' + seg.map((part) => encodeURIComponent(part)).join('/');
+  return String(html)
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`)
+    .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${description}">`)
+    .replace(/<link rel="canonical" href="[^"]*">/, `<link rel="canonical" href="${canonical}">`)
+    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${title}">`)
+    .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${description}">`)
+    .replace(/<meta property="og:url" content="[^"]*">/, `<meta property="og:url" content="${canonical}">`)
+    .replace('<meta name="twitter:image"', `<meta name="twitter:title" content="${title}">\n<meta name="twitter:description" content="${description}">\n<meta name="twitter:image"`);
+}
+
 // ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
 // Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
 // head-to-head comparisons that pitted a prescription or controlled medicine against a supplement."
@@ -3392,6 +3432,7 @@ ${links}
     res.setHeader('X-Robots-Tag', 'noindex, nofollow');
     return fs.readFile(path.join(DIR, 'index.html'), 'utf8', (e, html) => {
       if (e) { res.writeHead(404); return res.end('Not found'); }
+      html = rewriteSpaShellHead(html, seg);
       endHtml(res, html.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex,nofollow">'));
     });
   }

@@ -436,11 +436,12 @@
   // not the compound cards (stackCard), not the /stack dropdown, not the generated protocol stack
   // (generateProtocol), not /plan's pre-ticked checklist, not the "just add the supplements"
   // button, not the Studio catalogue (catalogSearch). A list a PERSON supplies — their own additions,
-  // a shared `?ids=` link, a cloned community stack — is taken as given and CHECKED, because that
-  // is the only way the checking is worth anything.
+  // a person's existing non-toxic medication list — is taken as given and CHECKED, because that
+  // is the only way the checking is worth anything. Toxic/no-safe-dose is the one harder boundary:
+  // legacy entries are quarantined, and new imports or toggles cannot add them.
   function setStack(a) { localStorage.setItem(STACK_KEY, JSON.stringify(a)); updateStackBadge(); if (a && a.length && !window._rnaHelpedPinged) { window._rnaHelpedPinged = true; try { api.helped(); } catch (e) {} } }
   function inStack(id) { return getStack().includes(id); }
-  function toggleStack(id) { const s = getStack(); const i = s.indexOf(id); if (i >= 0) s.splice(i, 1); else s.push(id); setStack(s); }
+  function toggleStack(id) { const s = getStack(); const i = s.indexOf(id); if (i >= 0) s.splice(i, 1); else { const c = byId[id]; if (c && isToxicNoSafeDose(c)) { navigate('/c/' + slug(c.name)); return; } s.push(id); } setStack(s); }
   function updateStackBadge() { const b = document.getElementById('stack-badge'); const n = getStack().length; if (b) { b.textContent = n; b.hidden = n === 0; } }
 
   // ---------- helpers ----------
@@ -506,6 +507,13 @@
   // class does not carry; `regClass` is the floor and holds even for a compound with no authored
   // row. Either one saying no is a no.
   const isConsumerCpd = (c) => !!c && c.consumer_renderable !== false && ['supplement', 'otc'].includes(regClass(c));
+  const isToxicNoSafeDose = (c) => !!c && !!c.risk_policy && c.risk_policy.tier === 'toxic_no_safe_dose';
+  // Discovery keeps toxic entries visible, but replaces the efficacy score with the only signal
+  // that matters at this decision point. "Two stars" beside a lethal agent reads like a weak
+  // product option; it must instead read as a hard risk boundary everywhere the name is listed.
+  const compoundEvidence = (c, opt) => isToxicNoSafeDose(c)
+    ? '<strong class="toxic-list-label">Toxic · no safe dose</strong>'
+    : starHTML(c.stars, opt);
   const rxBadge = c => needsDoctor(c) ? '<span class="pill rx" data-axis="supply" aria-label="How you get it: needs a doctor" title="A prescription or controlled drug \u2014 a doctor has to assess you and prescribe it. It is not a supplement.">\u211e Needs a doctor</span>' : '';
   // ---- W5a (2026-08-02): TWO AXES, ONE ANSWER EACH ---------------------------------------------
   // Felix's decision: a colour on this site is the REGULATOR'S current call on that molecule — the
@@ -539,7 +547,7 @@
     `<span class="pill ${APPROVAL_CLASS[a] || 'k'}" data-axis="regulator" aria-label="Regulator status: ${esc(D.approvalLabels[a] || '')}" title="What a regulator has decided about this molecule — not where you can buy it.">${a} ${esc(D.approvalLabels[a] || '')}</span>`
   ).join('');
   const approvalPills = c => regulatorPills(c) + supplyPill(c);
-  const badgeRow = c => `<div class="badges">${starHTML(c.stars)}${approvalPills(c)}</div>`;
+  const badgeRow = c => `<div class="badges">${compoundEvidence(c)}${isToxicNoSafeDose(c) ? '' : approvalPills(c)}</div>`;
   // Singapore availability, derived from approval status — the localisation moat, accurate for all
   // compounds, and a safety + (future) monetisation surface. Curated cost detail layers on top.
   // W5a: the TAG is no longer written here. It comes from c.supply, which build/parse.js derives
@@ -1836,7 +1844,9 @@
 
   function goalPage(id) {
     const g = goalById[id]; if (!g) return notFound();
-    let list = D.compounds.filter(c => c.goalIds.includes(id)).sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name));
+    // Goal pages are explicitly ranked selection surfaces. A toxic/no-safe-dose record remains
+    // findable in A–Z and Browse, but cannot sit inside copy that says entries "help" this goal.
+    let list = D.compounds.filter(c => c.goalIds.includes(id) && !isToxicNoSafeDose(c)).sort((a, b) => b.stars - a.stars || a.name.localeCompare(b.name));
     setTimeout(() => { bindGoalFilters(list); renderGoalComments(id); }, 0);
     const approvals = ['🟢', '🟡', '🔵', '🟠', '🔴', '⚫'];
     const protos = protocolsForGoal(id);
@@ -1959,7 +1969,7 @@
     // five filled stars on every compound, the empty ones separated by colour alone. This chip is
     // the single string measured hydrated on /c/bpc-157 as "EVIDENCE\n★★★★★ Minimal" for a
     // ONE-star compound. It now reads "★☆☆☆☆ 1 of 5 · Minimal", and the number survives a strip.
-    chips.push(`<span class="spec-chip"><span class="sc-k">Evidence</span><span class="sc-v">${starHTML(c.stars)}${c.stars ? ` · ${esc(tier[0])}` : ''}</span></span>`);
+    if (!isToxicNoSafeDose(c)) chips.push(`<span class="spec-chip"><span class="sc-k">Evidence</span><span class="sc-v">${starHTML(c.stars)}${c.stars ? ` · ${esc(tier[0])}` : ''}</span></span>`);
     // W5a / D31: this chip rendered EVERY approval dot and exactly ONE caption — `approvalLabels[0]`.
     // Measured hydrated at 390x844 on /c/vitamin-d3-k2, whose innerText was "STATUS\n🟡🔵 OTC
     // Supplement": two coloured dots, one caption, and the caption was the one that omitted the
@@ -1978,10 +1988,11 @@
     const molK = (c.members || []).length ? '<span id="spec-mol-of">one compound here</span>' : '';
     chips.push(`<span class="spec-chip" id="spec-formula" hidden><span class="sc-k">Formula${molK ? ' — ' + molK : ''}</span><span class="sc-v" id="spec-formula-v"></span></span>`);
     chips.push(`<span class="spec-chip" id="spec-mw" hidden><span class="sc-k">Mol. weight</span><span class="sc-v" id="spec-mw-v"></span></span>`);
-    if (c.cost) { const cm = String(c.cost).match(/S?\$[\d,]+(?:[–-]\$?[\d,]+)?\s*(?:\/\s*month|\/mo|per month|a month)?/i); if (cm) chips.push(`<span class="spec-chip"><span class="sc-k">Cost</span><span class="sc-v">${esc(cm[0])}</span></span>`); }
+    if (!isToxicNoSafeDose(c) && c.cost) { const cm = String(c.cost).match(/S?\$[\d,]+(?:[–-]\$?[\d,]+)?\s*(?:\/\s*month|\/mo|per month|a month)?/i); if (cm) chips.push(`<span class="spec-chip"><span class="sc-k">Cost</span><span class="sc-v">${esc(cm[0])}</span></span>`); }
     return `<div class="spec-strip" data-lvl="1">${chips.join('')}</div>`;
   }
   function evidenceGlance(c) {
+    if (isToxicNoSafeDose(c)) return '';
     // W5a: the second colour-only star pad on the page. It rendered `${'★'.repeat(c.stars)}<span
     // class="evg-dim">${'★'.repeat(5 - c.stars)}</span>` with `.evg-dim{color:var(--line)}` — the
     // identical defect to the spec chip, on the block whose whole job is to state the evidence.
@@ -2006,6 +2017,7 @@
   // the "when to use" header and the add-to-stack control so the page never invites use of a
   // prescription, controlled/non-approved, or outright lethal compound.
   function compoundTier(c) {
+    if (isToxicNoSafeDose(c)) return 'DANGER';
     if (c.brief) return 'brief';
     const L = (c.approvalLabels || []).join(',');
     if (/death|fatal|lethal|deadly|do not use/i.test((c.watch || '') + (c.bottom || ''))) return 'DANGER';
@@ -2039,6 +2051,7 @@
   // person is supposed to learn what semaglutide is. It is the ACTION that moves behind the gate,
   // and the replacement chip says why and where to go instead, rather than just disappearing.
   function stackControl(c, added) {
+    if (isToxicNoSafeDose(c)) return '';
     if (compoundTier(c) === 'DANGER') return '<span class="stack-btn-lg danger-chip" title="Not for human use">⚠️ Not for use</span>';
     if (!isConsumerCpd(c)) {
       const cls = regClass(c);
@@ -2346,8 +2359,54 @@
     return `<section class="bio-section" id="sec-bio"><div class="bio-head"><h2>🎯 Dial it in — the biohacker layer</h2><p class="bio-sub">Form, dose, timing, biomarkers and quality — how to actually get the result, not just swallow the molecule. Each card is tagged by how strong the evidence is.</p></div><div class="bio-cards">${cards.join('')}</div></section>`;
   }
 
+  // Toxic/no-safe-dose compounds are not ordinary compound lessons with a darker badge. They are
+  // a separate, risk-policy-driven document: no evidence score, dosing, shopping, comparison,
+  // optimisation, stack, protocol, sharing or gamified learning controls. The useful material that
+  // remains is the danger, emergency route, mechanism and attributable toxicology evidence.
+  function toxicDetail(c) {
+    const p = c.risk_policy || {};
+    const t = c.tech || {};
+    const overdose = c.bio && c.bio.overdose && c.bio.overdose.line;
+    const safeSteps = (c.mechSteps || []).filter((_, i, a) => i < 2 || i === a.length - 1);
+    const steps = safeSteps.length ? `<ol class="toxic-steps">${safeSteps.map((x) => `<li><h3>${esc(x.t)}</h3><p>${mdInline(x.d)}</p></li>`).join('')}</ol>` : '';
+    const adme = t.adme ? [
+      ['Absorption', t.adme.absorb], ['Distribution', t.adme.distribute],
+      ['Metabolism', t.adme.metabolise], ['Persistence', t.adme.excrete],
+    ].filter((x) => x[1]).map((x) => `<li><b>${x[0]}:</b> ${mdInline(x[1])}</li>`).join('') : '';
+    const trials = ((c.evi && c.evi.trials) || []).filter((x) => x && x.finding && !/\b\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s*(?:mg|mcg|µg|g)(?:\s*\/\s*(?:kg|day))?\b/i.test(x.finding));
+    const trialList = trials.length ? `<ul class="toxic-evidence">${trials.map((x) => `<li>${mdInline(x.finding)}${x.ref ? ` <span class="bt-ref">— ${esc(x.ref)}</span>` : ''}${x.pmid ? ` <a href="https://pubmed.ncbi.nlm.nih.gov/${esc(x.pmid)}/" target="_blank" rel="noopener">PMID ${esc(x.pmid)}</a>` : ''}</li>`).join('')}</ul>` : '';
+    const refs = (c.refs || []).filter((x) => x && x.label && x.url);
+    const refList = refs.length ? `<ul class="toxic-refs">${refs.map((x) => `<li><a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.label)}</a></li>`).join('')}</ul>` : '';
+    return `<div class="detail toxic-detail" id="cpd-detail" data-risk-tier="toxic_no_safe_dose">
+      ${crumbs([{ label: 'Home', href: '#/' }, { label: c.category }, { label: c.name }])}
+      <div class="detail-head toxic-head"><div><h1>${esc(c.name)}</h1><div class="badges">${approvalPills(c)}</div></div></div>
+      <section class="toxic-stop" role="alert" aria-labelledby="toxic-stop-title">
+        <div class="toxic-kicker">TOXIC · NO SAFE DOSE</div>
+        <h2 id="toxic-stop-title">Do not use ${esc(c.name)}</h2>
+        <p>${esc(p.public_summary || 'This compound is toxic, is not approved for human use and can be fatal.')}</p>
+        <p class="toxic-status">${esc(c.sg_hsa_status || 'Not approved for human use.')}</p>
+      </section>
+      <section class="toxic-emergency" aria-labelledby="toxic-emergency-title">
+        <div class="toxic-kicker">IF EXPOSURE MAY HAVE HAPPENED</div>
+        <h2 id="toxic-emergency-title">Get emergency help now</h2>
+        <p>${esc(p.emergency_guidance || 'Call local emergency services or a poison centre now. Do not try to manage this at home.')}</p>
+      </section>
+      ${overdose ? `<section class="toxic-section" id="sec-warning"><h2>Warning signs and what can happen</h2><p>${mdInline(overdose)}</p></section>` : ''}
+      <section class="toxic-section" id="sec-mechanism"><h2>How ${esc(c.name)} harms the body</h2>
+        ${t.signaling ? `<p>${mdInline(t.signaling)}</p>` : ''}${steps}
+        ${adme ? `<h3>What happens after exposure</h3><ul>${adme}</ul>` : ''}
+      </section>
+      <section class="toxic-section" id="sec-evidence"><h2>Why the danger is established</h2>
+        <p>Published toxicology reports document a consistent pattern of fatal overheating, organ injury and death. Randomised exposure trials would be unethical; the safety conclusion comes from the understood mechanism, poisoning cases and fatality reviews.</p>${trialList}
+      </section>
+      <section class="toxic-section" id="sec-bottom"><h2>Bottom line</h2><p>${mdInline(c.bottom || 'Do not use. There is no safe dose.')}</p></section>
+      ${refList ? `<section class="toxic-section" id="sec-references"><h2>References</h2>${refList}</section>` : ''}
+    </div>`;
+  }
+
   function detail(s) {
     const c = bySlug[s]; if (!c) return notFound();
+    if (isToxicNoSafeDose(c)) return toxicDetail(c);
     setTimeout(() => {
       const b = document.getElementById('stack-btn'); if (b) b.onclick = () => { toggleStack(c.id); route(); };
       const mh = document.querySelector('[data-mechhelp]'); if (mh) mh.onclick = () => { const g = document.getElementById('mech-guide'); if (g) { g.hidden = !g.hidden; mh.classList.toggle('open', !g.hidden); } };
@@ -3349,7 +3408,7 @@
     list.sort((a, b) => a.name.localeCompare(b.name));
     const groups = {}; list.forEach(c => { const L0 = c.name[0].toUpperCase(); const L = /[A-Z]/.test(L0) ? L0 : '#'; (groups[L] = groups[L] || []).push(c); });
     let html = '';
-    Object.keys(groups).sort().forEach(L => { html += `<div class="az-letter">${L}</div><div class="az-list">` + groups[L].map(c => `<a href="#/c/${slug(c.name)}">${c.name} ${starHTML(c.stars, { compact: true, style: 'font-size:.7rem' })}</a>`).join('') + `</div>`; });
+    Object.keys(groups).sort().forEach(L => { html += `<div class="az-letter">${L}</div><div class="az-list">` + groups[L].map(c => `<a href="#/c/${slug(c.name)}">${c.name} ${compoundEvidence(c, { compact: true, style: 'font-size:.7rem' })}</a>`).join('') + `</div>`; });
     const body = document.getElementById('az-body'); if (!body) return;
     // A no-match state must say what was searched and offer a way out, not just "None."
     body.innerHTML = html || `<div class="empty">No compound matches “${esc(needle)}”. <a href="#/az" onclick="var b=document.getElementById('az-q');if(b){b.value='';b.oninput();}">Clear the filter</a> to see all ${D.compounds.length}.</div>`;
@@ -3470,7 +3529,7 @@
     }
     el.innerHTML = `<div class="fuel-stack-grid">${list.map(c => {
       const on = inStack(c.id);
-      return `<div class="fs-item"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>
+      return `<div class="fs-item"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${compoundEvidence(c, { compact: true })}</a>
         <button class="fs-toggle ${on ? 'in' : ''}" data-add="${c.id}">${on ? '✓ In stack' : '+ Add'}</button></div>`;
     }).join('')}</div>${medHtml}`;
     el.querySelectorAll('[data-add]').forEach(b => b.onclick = () => { toggleStack(b.dataset.add); const on = inStack(b.dataset.add); b.classList.toggle('in', on); b.textContent = on ? '✓ In stack' : '+ Add'; });
@@ -3617,8 +3676,32 @@
 
   function renderStack() {
     const out = document.getElementById('stack-out'); if (!out) return;
-    const list = getStack().map(id => byId[id]).filter(Boolean);
-    if (!list.length) { out.innerHTML = '<div class="empty">Your stack is empty. Add compounds to see combined coverage.</div>'; return; }
+    const saved = getStack().map(id => byId[id]).filter(Boolean);
+    const toxic = saved.filter(isToxicNoSafeDose);
+    // Toxic/no-safe-dose records can survive in old localStorage or arrive in old community data.
+    // They are quarantined before *every* ordinary calculation — interaction, goal, pathway and
+    // target overlap — and receive only two actions: remove the saved entry or open the dedicated
+    // toxicity/emergency page.
+    const toxicHtml = toxic.map((c) => {
+      const p = c.risk_policy || {};
+      return `<section class="stack-toxic-quarantine" role="alert" data-toxic-id="${esc(c.id)}">
+        <div class="toxic-kicker">TOXIC ENTRY · NOT ANALYSED AS A STACK ITEM</div>
+        <h2>${esc(c.name)} has no safe dose</h2>
+        <p>${esc(p.public_summary || 'This is a toxic compound and is not a self-directed option.')}</p>
+        <p class="stack-toxic-emergency"><b>If exposure may have happened:</b> ${esc(p.emergency_guidance || 'Call local emergency services or a poison centre now.')}</p>
+        <div class="stack-toxic-actions"><a href="#/c/${slug(c.name)}">Open toxicity guidance</a><button type="button" class="stack-toxic-remove" data-remove-toxic="${esc(c.id)}">Remove saved entry</button></div>
+      </section>`;
+    }).join('');
+    const bindToxicRemoval = () => out.querySelectorAll('[data-remove-toxic]').forEach((b) => { b.onclick = () => {
+      setStack(getStack().filter((id) => id !== b.dataset.removeToxic)); renderStack();
+    }; });
+    const list = saved.filter((c) => !isToxicNoSafeDose(c));
+    if (!saved.length) { out.innerHTML = '<div class="empty">Your stack is empty. Add compounds to see combined coverage.</div>'; return; }
+    if (!list.length) {
+      out.innerHTML = `${toxicHtml}<div class="empty">No ordinary compounds remain to analyse.</div>`;
+      bindToxicRemoval();
+      return;
+    }
     // aggregate
     const goals = {}, paths = {}, tgts = {};
     list.forEach(c => {
@@ -3633,9 +3716,10 @@
     // rendered once, at the top, and it now forces the verdict off green.
     // W3.5 (2026-08-02): the overlap computation itself moved INTO interactionPanel(), so all five
     // surfaces get it and not just this one. `paths` is still used by the Pathways-hit block below.
-    const rows = list.map(c => `<div class="stack-row"><a href="#/c/${slug(c.name)}"><b>${c.name}</b></a> ${starHTML(c.stars, { compact: true, style: 'font-size:.75rem' })} <span style="color:var(--faint);font-size:.82rem">${c.category}</span> <button class="stack-x" data-id="${c.id}">remove</button></div>`).join('');
+    const rows = list.map(c => `<div class="stack-row"><a href="#/c/${slug(c.name)}"><b>${c.name}</b></a> ${compoundEvidence(c, { compact: true, style: 'font-size:.75rem' })} <span style="color:var(--faint);font-size:.82rem">${c.category}</span> <button class="stack-x" data-id="${c.id}">remove</button></div>`).join('');
     const sharedTargets = Object.values(tgts).filter(t => t.who.length > 1);
     out.innerHTML = `
+      ${toxicHtml}
       ${interactionPanel(list)}
       <div class="stack-grid">
         <div class="stack-list">${rows}</div>
@@ -3647,6 +3731,7 @@
         </div>
       </div>`;
     out.querySelectorAll('.stack-x').forEach(b => b.onclick = () => { const s = getStack(); const i = s.indexOf(b.dataset.id); if (i >= 0) s.splice(i, 1); setStack(s); renderStack(); });
+    bindToxicRemoval();
   }
 
   // honest, data-driven verdict — never fabricates a winner; higher stars = stronger human evidence
@@ -3800,7 +3885,7 @@
       <div class="disclaimer"><strong>Not medical advice.</strong> Everything here is educational. Nothing on this site recommends taking any substance. Prescription, controlled and non-approved compounds are documented for completeness, and documenting something is not endorsing it. If you have a health problem, see a clinician. In an emergency, call your local emergency number — <b>999</b>, <b>911</b>, <b>112</b>, <b>995</b> or <b>000</b> depending on where you are — or go to an emergency department.</div>
 
       <h2>What is inside</h2>
-      <p><strong>${c.compounds} compounds</strong> across <strong>${c.categories} categories</strong>, <strong>${nP} problems</strong> broken down into <strong>${nR} root-cause protocols</strong>, and ${(D.pathways || []).length} master pathways with their molecular targets. Free, no paywall, no account needed.</p>
+      <p><strong>${c.compounds} compounds</strong> across <strong>${c.categories} categories</strong>, <strong>${nP} problems</strong> explored through <strong>${nR} possible-contributor protocols</strong>, and ${(D.pathways || []).length} master pathways with their molecular targets. Free, no paywall, no account needed.</p>
 
       <h2>How to use this site — start here</h2>
       <p><strong>Start from what you want to change, not from a compound.</strong> That is the one instruction that matters. Searching "ashwagandha" tells you about a plant. Starting from "I can't fall asleep" tells you which of the several different things causing that you actually have — and the fix is different for each.</p>
@@ -4441,7 +4526,7 @@
     const seg = href.replace(/^#/, '').split('?')[0].split('/').filter(Boolean);
     const kind = seg[0], key = decodeURIComponent(seg[1] || '');
     const strip = h => String(h || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-    if (kind === 'c' && bySlug[key]) { const c = bySlug[key]; return { badge: 'Compound', cls: 'st', title: c.name, extra: `${starHTML(c.stars, { compact: true })}${c.isRx ? '<span class="ep-rx">Prescription</span>' : ''}`, sub: (c.plain || c.bottom || c.mechanism || '').slice(0, 150) }; }
+    if (kind === 'c' && bySlug[key]) { const c = bySlug[key]; return { badge: 'Compound', cls: 'st', title: c.name, extra: `${compoundEvidence(c, { compact: true })}${c.isRx ? '<span class="ep-rx">Prescription</span>' : ''}`, sub: (c.plain || c.bottom || c.mechanism || '').slice(0, 150) }; }
     if (kind === 'target') { const t = targetBySym[tkey(key)]; if (t) return { badge: 'Molecular target', cls: 'tg', title: t.sym, sub: (t.name || '') + (t.compoundIds ? ` · ${t.compoundIds.length} compound${t.compoundIds.length !== 1 ? 's' : ''}` : '') }; }
     if (kind === 'pathway' && D.pathways[+key]) { const p = D.pathways[+key]; return { badge: 'Pathway', cls: 'pw', title: p.shortLabel, sub: (p.oneLine || strip(p.html)).slice(0, 160) }; }
     if (kind === 'muscle' && muscleById[key]) { const m = muscleById[key]; return { badge: 'Muscle', cls: 'mv', title: m.name, sub: (m.overview || '').slice(0, 150) }; }
@@ -4954,11 +5039,11 @@
       <div class="kicker">Extra care needed</div><h2>Ask a clinician or pharmacist first</h2>
       <p>This search may involve pregnancy, a child, or medicine interactions. RNAwiki will not approximate a self-care protocol. Bring the exact products and medicines to a qualified professional.</p></section>`;
     if (!hits.length) {
+      const request = featureOn('publicCommunity') ? `<button class="cta-primary" id="q-req">Request “${t}”</button>` : '';
       return `<section class="q-panel q-empty" id="q-hits" data-on>
         <h2>Nothing here matches “${t}”</h2>
-        <p>RNAwiki covers ${n} problems and goals. Yours is not one of them yet. Show where it hurts, browse the full directory, or request it.</p>
-        <p class="q-acts"><button class="cta-primary" id="q-req">Request “${t}”</button>
-        <a class="q-alt" href="#/where">Show me on the body →</a></p>
+        <p>RNAwiki covers ${n} problems and goals. Yours is not one of them yet. Show where it hurts or browse the full directory.</p>
+        <p class="q-acts">${request}<a class="q-alt" href="#/where">Show me on the body →</a></p>
         <p class="q-all"><a href="#solve-directory">Browse all ${n} topics ↓</a></p></section>`;
     }
     const strong = hits[0].s >= 18;   // matched the problem's NAME, not just its body text
@@ -4976,6 +5061,10 @@
       const ps = GRAPH.problems.filter(p => p.category === cat);
       return `<div class="solve-section"><h2>${esc(cat)}</h2><div class="solve-grid">${ps.map(p => solveCard(p, false)).join('')}</div></div>`;
     }).join('');
+    const requestBlock = featureOn('publicCommunity') ? `<div class="request-cta">
+        <div><b>Don’t see your problem or goal?</b> <span>Tell me, and it goes on the list of what to build next.</span></div>
+        <button class="cta-primary" id="req-proto">Request a protocol →</button>
+      </div><div id="requests-board"></div>` : '';
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Find' }])}
       <section class="solve-hero">
         <div class="kicker">Find your next step</div>
@@ -4994,11 +5083,7 @@
         <summary><span><b>Browse all ${GRAPH.problems.length} topics</b><small>Problems and goals, grouped by area</small></span><span class="solve-directory-mark" aria-hidden="true">+</span></summary>
         <div class="solve-directory-body"><div id="solve-list">${sections}</div></div>
       </details>
-      <div class="request-cta">
-        <div><b>Don’t see your problem or goal?</b> <span>Tell me, and it goes on the list of what to build next.</span></div>
-        <button class="cta-primary" id="req-proto">Request a protocol →</button>
-      </div>
-      <div id="requests-board"></div>`;
+      ${requestBlock}`;
   }
   // Anyone can suggest an improvement or flag something wrong — collected for the admin.
   function openFeedbackModal(prefill) {
@@ -5067,7 +5152,7 @@
       <p class="muted">by ${f.by_user ? '@' + esc(f.by_user) : 'someone'}${f.clones ? ' · ' + f.clones + ' using' : ''} · a take on <a href="${base}">${esc(p ? p.name : f.problem_id)}</a></p>
       ${f.note ? `<p class="anat-lead">${esc(f.note)}</p>` : ''}
       <div class="section-title">The stack (${cpds.length})</div>
-      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>${c.isRx ? `<span class="pill rx" data-axis="supply" aria-label="How you get it: ${esc(String((c.supply || {}).tag || 'needs a doctor').toLowerCase())}">${esc((c.supply || {}).tag || 'Prescription')}</span>` : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
+      <div class="fuel-stack-grid">${cpds.map(c => `<div class="fs-item${needsDoctor(c) ? ' rx' : ''}"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${compoundEvidence(c, { compact: true })}</a>${c.isRx ? `<span class="pill rx" data-axis="supply" aria-label="How you get it: ${esc(String((c.supply || {}).tag || 'needs a doctor').toLowerCase())}">${esc((c.supply || {}).tag || 'Prescription')}</span>` : ''}</div>`).join('') || '<p class="muted">No compounds.</p>'}</div>
       <div class="cstack-actions" style="margin-top:1.2rem">
         <button class="cta-primary cstack-use" id="fork-clone-btn" style="border:none;cursor:pointer">Use this stack →</button>
         <button class="cstack-like${liked ? ' on' : ''}" data-like="${f.id}" title="Like this stack"><span class="cstack-heart">${liked ? '❤️' : '🤍'}</span> <span class="cstack-likec">${likes}</span></button>
@@ -5082,11 +5167,14 @@
   async function cloneForkTo(id) {
     try {
       const r = await api.cloneFork(id); const forkStack = (r.stack || []).filter(Boolean);
-      const cur = getStack(); const added = forkStack.filter(x => !cur.includes(x));
+      const toxic = forkStack.map((x) => byId[x]).filter((c) => c && isToxicNoSafeDose(c));
+      const safeForkStack = forkStack.filter((x) => !isToxicNoSafeDose(byId[x]));
+      const cur = getStack(); const added = safeForkStack.filter(x => !cur.includes(x));
       setStack(cur.concat(added));   // merge, never wipe the user's existing stack
-      // A cloned community stack is somebody else's list, so it is taken as given and checked — see
-      // the note on setStack(). The count is therefore still the count.
-      alert(added.length ? `Added ${added.length} compound${added.length !== 1 ? 's' : ''} to your stack. Opening the Stack Builder…` : 'You already have all of these — opening your stack.');
+      // Toxic/no-safe-dose entries are never imported into an ordinary stack. Name the refusal;
+      // silently dropping somebody else's item would make the resulting list look complete.
+      const refused = toxic.length ? ` ${toxic.map((c) => c.name).join(', ')} ${toxic.length === 1 ? 'was' : 'were'} not imported because ${toxic.length === 1 ? 'it has' : 'they have'} no safe dose; open ${toxic.length === 1 ? 'its' : 'their'} toxicity page for emergency guidance.` : '';
+      alert((added.length ? `Added ${added.length} compound${added.length !== 1 ? 's' : ''} to your stack.` : 'No ordinary compound needed adding.') + refused + ' Opening the Stack Builder…');
       navigate('/stack');
     } catch (e) { alert(e.message); }
   }
@@ -5126,6 +5214,7 @@
     try { if (navigator.share) await navigator.share({ title: 'RNAwiki', text, url }); else { await navigator.clipboard.writeText(text + '\n' + url); alert('Copied — paste it into WhatsApp / Telegram / X.'); } } catch (e) {}
   }
   function openRequestModal(prefill) {
+    if (!featureOn('publicCommunity')) return;
     if (!ME) return openAuth('login');
     const m = modal(`<div class="partner-modal"><h2>Request a protocol</h2>
       <p class="muted">Tell me the problem or goal you want solved. Others can upvote it, and the most-wanted ones get built first.</p>
@@ -5140,6 +5229,7 @@
     };
   }
   async function mountRequestsBoard() {
+    if (!featureOn('publicCommunity')) return;
     const el = document.getElementById('requests-board'); if (!el) return;
     let reqs = []; try { reqs = await api.protocolRequests(); } catch (e) { return; }
     if (!reqs.length) return;
@@ -5153,7 +5243,7 @@
   }
   function bindSolve() {
     const rq = document.getElementById('req-proto'); if (rq) rq.onclick = () => openRequestModal();
-    mountRequestsBoard();
+    if (featureOn('publicCommunity')) mountRequestsBoard();
     // The zero-match state's only action.
     bindSolve._reqOnly();
 
@@ -5164,16 +5254,27 @@
     const qin = document.getElementById('solve-q');
     const qform = qin && qin.closest('form');
     const applyQ = (v, focusOut) => {
+      // A debounce belongs to the Find page that created it. If somebody types and immediately
+      // follows a nav link, the old input remains in this closure for 220 ms after its DOM has
+      // been replaced. Do not let that stale callback rewrite the new page's URL or insert beside
+      // a `.solve-hero` that no longer exists.
+      const hero = document.querySelector('.solve-hero');
+      if (currentRoute().split('?')[0] !== '/solve' || !qin || !qin.isConnected || !hero) return;
       const q = String(v || '').slice(0, 120);
       const url = '/solve' + (q.trim() ? '?q=' + encodeURIComponent(q.trim()) : '');
       history.replaceState({}, '', url);
-      const panel = document.getElementById('q-hits');
+      // Every result type owns the same single slot. Selecting only #q-hits allowed an urgent
+      // panel to survive a cleared field, then accumulate beside review or ordinary results.
+      const panel = document.querySelector('.q-panel[data-on]');
       const fresh = document.createElement('div');
-      fresh.innerHTML = solveQPanel(q, rankProblems(q));
+      // Live typing must pass through the same safety router as a direct /solve?q= URL. Ranking
+      // deliberately returns no matches for urgent/review queries; omitting this third argument
+      // turned that safe empty list into the ordinary “Nothing here matches” state.
+      fresh.innerHTML = solveQPanel(q, rankProblems(q), solveGuidance(q));
       const node = fresh.firstElementChild;
       if (panel && node) panel.replaceWith(node);
       else if (panel && !node) panel.remove();
-      else if (node) document.querySelector('.solve-hero').after(node);
+      else if (node) hero.after(node);
       bindSolve._reqOnly();
       if (focusOut && node) node.scrollIntoView({ block: 'start' });
     };
@@ -5187,7 +5288,7 @@
   // Re-bind only the control that a re-rendered #q-hits destroys.
   bindSolve._reqOnly = function () {
     const qreq = document.getElementById('q-req');
-    if (qreq) qreq.onclick = () => openRequestModal((document.getElementById('solve-q') || {}).value || '');
+    if (qreq && featureOn('publicCommunity')) qreq.onclick = () => openRequestModal((document.getElementById('solve-q') || {}).value || '');
     document.querySelectorAll('a[href="#solve-directory"]').forEach((a) => {
       a.onclick = () => { const d = document.getElementById('solve-directory'); if (d) d.open = true; };
     });
@@ -5307,6 +5408,30 @@
         <p>Find a problem or goal, review what fits, then start only the plan you want to follow.</p>
         <a class="cta-primary" href="#/solve">Find a protocol</a>
       </section>`;
+  }
+  function currentPlanMode() {
+    const raw = currentRoute();
+    const query = raw.indexOf('?') >= 0 ? raw.slice(raw.indexOf('?') + 1) : '';
+    return new URLSearchParams(query).get('mode') || '';
+  }
+  function renderPausedDraft(plan) {
+    const found = findRootCause(plan.draft.pid, plan.draft.rcid);
+    if (!found) { plan.draft = null; setPlan(plan); app.innerHTML = emptyPlan(); return; }
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Today' }])}
+      <section class="plan-empty plan-draft-pause">
+        <div class="plan-empty-ico" aria-hidden="true">◐</div>
+        <div class="kicker">Draft saved</div>
+        <h1>Nothing scheduled yet.</h1>
+        <p>Finish setting up <b>${esc(found.problem.name)}</b>. Today will show one next action after you confirm the plan.</p>
+        <a class="cta-primary" href="/plan?mode=edit">Continue setup</a>
+        <button class="linkbtn plan-draft-discard" id="discard-plan-draft">Discard this draft</button>
+      </section>`;
+    const discard = document.getElementById('discard-plan-draft');
+    if (discard) discard.onclick = () => {
+      if (!confirm('Discard this unfinished plan? Your active protocols and history stay.')) return;
+      const pl = getPlan(); if (!pl) return;
+      pl.draft = null; setPlan(pl); renderPlan('');
+    };
   }
   // done = is this protocol's keystone done today; key = "pid/rcid"; label = protocol name (shown only when >1 protocol)
   function keystoneCardHtml(rc, done, key, label) {
@@ -5567,16 +5692,22 @@
     return 'Tighten your window: go to bed 15 min later, keep the same wake time.';
   }
 
-  async function renderPlan() {
+  async function renderPlan(mode) {
+    mode = mode == null ? currentPlanMode() : mode;
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = emptyPlan(); return; }
     const plan = getPlan();
     if (!plan) { app.innerHTML = emptyPlan(); return; }
-    // A protocol is being built → show the builder for the draft
+    // "Today" is an execution surface, never an implicit builder. A draft opens only through the
+    // explicit setup URL; ordinary returns to /plan either show the next action or one calm resume
+    // card. This keeps an unfinished wizard from hijacking the page labelled Today.
     if (plan.draft && plan.draft.pid) {
       const found = findRootCause(plan.draft.pid, plan.draft.rcid);
       if (!found) { plan.draft = null; setPlan(plan); return renderPlan(); }
-      const { problem, rc } = found; const P = generateProtocol(rc);
-      return renderPlanBuilder(plan, problem, rc, P);
+      if (mode === 'edit') {
+        const { problem, rc } = found; const P = generateProtocol(rc);
+        return renderPlanBuilder(plan, problem, rc, P);
+      }
+      if (!planProtocols(plan).length) return renderPausedDraft(plan);
     }
     // Otherwise the merged daily tracker across every protocol they run
     if (planProtocols(plan).length) return renderPlanTracking(plan);
@@ -5733,7 +5864,7 @@
       const entry = { pid: d.pid, rcid: d.rcid, moves: d.moves, supps: d.supps, functions: fns, startedAt: (prev && prev.startedAt) || today() };
       p.protocols = planProtocols(p).filter(x => !(x.pid === d.pid && x.rcid === d.rcid)).concat(entry);
       p.draft = null; p.justBuilt = prev ? null : { pid: d.pid, rcid: d.rcid }; // celebrate a new protocol only, not an edit
-      setPlan(p); renderPlan();
+      setPlan(p); navigate('/plan');
     };
   }
 
@@ -6391,7 +6522,10 @@
     const subtitle = multi ? `${M.resolved.length} protocols · ${esc(M.resolved.map(r => r.problem.name).join(' · '))}` : esc(M.resolved[0].rc.name);
     const hasFuel = Object.keys(M.fuel).length > 0; // hide Fuel entirely when no protocol has food targets
     // Per-protocol manage list + "add another goal" — the merged plan's control centre
-    const manage = `<section class="trk-sec trk-manage"><div class="trk-sec-h"><h2>Your protocols</h2></div>${M.resolved.map(r => `
+    const draftFound = plan.draft && plan.draft.pid ? findRootCause(plan.draft.pid, plan.draft.rcid) : null;
+    const draftManage = draftFound ? `<div class="tpm-row tpm-draft"><span class="tpm-name">◐ ${esc(draftFound.problem.name)} <em>Draft</em></span>
+        <span class="tpm-acts"><a class="linkbtn" href="/plan?mode=edit">Continue setup</a> · <button class="linkbtn danger" data-discard-draft>Discard</button></span></div>` : '';
+    const manage = `<section class="trk-sec trk-manage"><div class="trk-sec-h"><h2>Your protocols</h2></div>${draftManage}${M.resolved.map(r => `
       <div class="tpm-row"><span class="tpm-name">${r.problem.icon || ''} ${esc(r.problem.name)} <em>${esc(r.rc.name.split('(')[0].trim())}</em></span>
         <span class="tpm-acts"><button class="linkbtn" data-edit-proto="${r.pr.pid}/${r.pr.rcid}">Edit</button>${featureOn('sharedPlans') ? ` · <button class="linkbtn" data-share-proto="${r.pr.pid}/${r.pr.rcid}">Share</button>` : ''} · <button class="linkbtn danger" data-remove-proto="${r.pr.pid}/${r.pr.rcid}">Remove</button></span></div>`).join('')}
       <a class="tpm-add" href="#/solve">＋ Add another goal</a>${ME && CONSENT ? ' · <button class="linkbtn" id="health-link">🩸 Track health data</button> · <button class="linkbtn" id="mydata-link">🔒 Your data</button>' : ''}</section>`;
@@ -6515,7 +6649,8 @@
       setPlan(pl); refreshProg(); refreshPulse();
     });
     // per-protocol manage actions
-    app.querySelectorAll('[data-edit-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.editProto.split('/'); const pl = getPlan(); const pr = planProtocols(pl).find(x => x.pid === pid && x.rcid === rcid); if (!pr) return; pl.draft = { pid, rcid, moves: pr.moves, supps: pr.supps, functions: pr.functions, extra: {}, step: 0 }; setPlan(pl); renderPlan(); });
+    app.querySelectorAll('[data-edit-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.editProto.split('/'); const pl = getPlan(); const pr = planProtocols(pl).find(x => x.pid === pid && x.rcid === rcid); if (!pr) return; pl.draft = { pid, rcid, moves: pr.moves, supps: pr.supps, functions: pr.functions, extra: {}, step: 0 }; setPlan(pl); navigate('/plan?mode=edit'); });
+    app.querySelectorAll('[data-discard-draft]').forEach(b => b.onclick = () => { if (!confirm('Discard this unfinished plan? Your active protocols and history stay.')) return; const pl = getPlan(); if (!pl) return; pl.draft = null; setPlan(pl); renderPlan(''); });
     app.querySelectorAll('[data-share-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.shareProto.split('/'); const found = findRootCause(pid, rcid); if (found) sharePlan(found.problem, found.rc); });
     app.querySelectorAll('[data-remove-proto]').forEach(b => b.onclick = () => { const [pid, rcid] = b.dataset.removeProto.split('/'); const found = findRootCause(pid, rcid); const nm = found ? found.problem.name : 'this protocol'; if (!confirm('Remove ' + nm + ' from your plan? Your tracking history stays.')) return; const pl = getPlan(); pl.protocols = planProtocols(pl).filter(x => !(x.pid === pid && x.rcid === rcid)); setPlan(pl); renderPlan(); });
     // The share moment — celebration popup, once, right after a protocol is built
@@ -6783,7 +6918,12 @@
           <p class="esc-note"><b>This page is information, not medical advice.</b> No clinician has reviewed it, and nothing on it is a diagnosis.</p>
         </div>
       </details>` : '';
-    const struct = s ? `<div class="safety-grid">
+    return red ? `<section class="safety-first" id="red-flags">${red}</section>` : '';
+  }
+  function safetyFollowupSection(problem) {
+    const s = problem.safety;
+    if (!s) return '';
+    const struct = `<div class="safety-grid">
         <div class="sf-card track-metric" data-primary-metric="${esc(s.metric)}">
           <span class="sf-k">📏 The one thing to track</span>
           <b class="sf-v">${esc(s.metric)}</b>
@@ -6795,8 +6935,11 @@
           <b class="sf-v">${esc(s.stopIssue)}</b>
           <p class="sf-src">${mdInline(s.stopFix)}</p>
         </div>
-      </div>` : '';
-    return `<section class="safety-first" id="red-flags">${red}${struct}</section>`;
+      </div>`;
+    return `<details class="protocol-boundaries" id="protocol-boundaries">
+      <summary><span><b>What to track and when to stop</b><small>Your baseline and review point</small></span><span aria-hidden="true">›</span></summary>
+      <div class="protocol-boundaries-body">${struct}</div>
+    </details>`;
   }
   // ---- W4 (2026-08-02): PHASE 1 — ONE FREE THING, FOR 7 DAYS ---------------------------------
   // MEASURED HYDRATED at 390x844 in the DEFAULT DOM state (nothing clicked, nothing expanded) on
@@ -6908,22 +7051,24 @@
     return `<section class="phase1" id="phase-1" data-phase1-action="${esc(p1.action)}" data-phase1-cost="${esc(p1.cost)}" data-phase1-class="${esc(p1.class)}">
       <div class="p1-badge">Phase 1 · 7 days · $0 · one thing</div>
       <p class="p1-action">${esc(p1.action)}</p>
-      <p class="p1-quote">Selected from this protocol’s own plan: “${esc(p1.quote)}”</p>
-      <dl class="p1-facts">
-        <div class="p1-fact"><dt>Watch</dt><dd>${metric ? esc(metric) : 'the one thing this protocol is judged by'} <a href="#red-flags">— why this one ↑</a></dd></div>
-        <div class="p1-fact"><dt>When it moves</dt><dd>${within
-          ? `This protocol’s own timeline puts the first change at <b>${esc(sig)}</b>, inside these 7 days.`
-          : `This protocol’s own timeline does not expect a change until <b>${esc(sig)}</b> — after these 7 days end. So the week is a test of whether you can do it daily, not of whether it works.`}</dd></div>
-        <div class="p1-fact"><dt>A partial result</dt><dd>You did it on most of the 7 days${metric ? ` and the thing you are tracking — “${esc(metric)}” —` : ' and the thing you are tracking'} has not moved. ${within
-          ? `That is a weak signal rather than a failure — ${esc(sig)} is the very end of this week.`
-          : `That is the expected result, because ${esc(sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
-      </dl>
-      <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p>
       ${cohortStripHTML(problem, rc, cohort)}
       <div class="p1-actions">
         <button class="cta-primary p1-start" id="phase1-start"${(st && st.started) ? ' disabled' : ''}>${(st && st.started) ? `✓ Started ${esc(st.started)} on this device` : (cohort && !cohort.error && cohort.live ? `▶ Join the cohort — start on ${esc(cohort.start)}` : '▶ Start day 1')}</button>
         <button class="p1-skip" id="phase1-skip">I already do this — open Phase 2</button>
       </div>
+      <details class="p1-more">
+        <summary>How this 7-day check works</summary>
+        <div class="p1-more-body"><p class="p1-quote">Selected from this protocol’s own plan: “${esc(p1.quote)}”</p><dl class="p1-facts">
+          <div class="p1-fact"><dt>Watch</dt><dd>${metric ? esc(metric) : 'the one thing this protocol is judged by'} <a href="#protocol-boundaries">— why this one ↓</a></dd></div>
+          <div class="p1-fact"><dt>When it moves</dt><dd>${within
+            ? `This protocol’s own timeline puts the first change at <b>${esc(sig)}</b>, inside these 7 days.`
+            : `This protocol’s own timeline does not expect a change until <b>${esc(sig)}</b> — after these 7 days end. So the week is a test of whether you can do it daily, not of whether it works.`}</dd></div>
+          <div class="p1-fact"><dt>A partial result</dt><dd>You did it on most of the 7 days${metric ? ` and the thing you are tracking — “${esc(metric)}” —` : ' and the thing you are tracking'} has not moved. ${within
+            ? `That is a weak signal rather than a failure — ${esc(sig)} is the very end of this week.`
+            : `That is the expected result, because ${esc(sig)} is after this week ends.`} If you could not do it on most days, that is the useful answer too: make it smaller and run the week again.</dd></div>
+        </dl>
+        <p class="p1-constant"><b>Change nothing else for the 7 days.</b> Not the supplements you already take, not your training, not your diet. One variable at a time — change two things and you will not know which one did it, and the week tells you nothing.</p></div>
+      </details>
       <div class="p1-log" id="p1-log"></div>
     </section>`;
   }
@@ -8320,6 +8465,7 @@
       <p class="protocol-fit-link"><a href="/problem/${problem.id}" data-native>Not sure this reason fits? Check the problem first</a></p>
       ${safetyFirstSection(problem)}
       ${phase1Section(problem, rc, cohort)}
+      ${safetyFollowupSection(problem)}
       <details class="protocol-full" id="protocol-full">
         <summary><span><b>Review the full protocol</b><small>Reasoning, movement, food, supplements and sources</small></span><span aria-hidden="true">›</span></summary>
         <div class="protocol-full-body">
@@ -8412,7 +8558,7 @@
         : { pid: problem.id, rcid: rc.id, moves: [...(P.strengthen || []), ...(P.stretch || [])].map(e => e.id), supps: (P.stack || []).map(c => c.id), functions: undefined, extra: {}, step: 0 };
       // adoption is tracked by the build action (idempotent per voterKey), not a separate "experiment" button
       api.startExperiment(problem.id, rc.id).catch(() => {});
-      setPlan(pl); navigate('/plan');
+      setPlan(pl); navigate('/plan?mode=edit');
     };
     const assessBtn = document.getElementById('assess-trigger');
     if (assessBtn) assessBtn.onclick = () => openAssessment(problem);
@@ -8531,10 +8677,12 @@
   function stackCard(c) {
     return `<div class="st-card${needsDoctor(c) ? ' rx' : ''}">
       <a class="st-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>
-      ${starHTML(c.stars, { compact: true })}</a>
-      <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" aria-label="Shares a pathway with another item in this stack" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
+      ${compoundEvidence(c, { compact: true })}</a>
+      <div class="st-meta">${isToxicNoSafeDose(c) ? '' : approvalPills(c)}${!isToxicNoSafeDose(c) && c._synergy ? '<span class="pill syn" aria-label="Shares a pathway with another item in this stack" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
       <p class="st-plain">${cardSnip(c.plain || c.bottom || c.mechanism, 150)}</p>
-      ${isConsumerCpd(c)
+      ${isToxicNoSafeDose(c)
+        ? '<span class="st-add rx-chip">Open for toxicity guidance</span>'
+        : isConsumerCpd(c)
         ? `<button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>`
         // The card is reached from search, /goal, /pathway and the builder catalogue, so it is the
         // other place the button was offered on a compound setStack() will now refuse. A card that
@@ -8563,7 +8711,7 @@
     return `<div class="item-modal">
       <button class="modal-x" data-close aria-label="Close">×</button>
       <div class="im-kind">💊 Supplement</div>
-      <h2>${esc(c.name)} ${starHTML(c.stars, { compact: true })}</h2>
+      <h2>${esc(c.name)} ${compoundEvidence(c, { compact: true })}</h2>
       <div class="im-meta">${approvalPills(c)}</div>
       ${cal('In plain English', c.plain)}
       ${cal('How it works', c.mechanism)}
@@ -9069,6 +9217,7 @@
       <span class="vote-badge" hidden>⚠ More readers said this did not help than said it did</span></div>`;
   }
   async function mountVotes(targets) {
+    if (!featureOn('publicCommunity')) return;
     const scores = await api.votes(targets);
     targets.forEach(t => {
       const el = app.querySelector(`.vote-foot[data-target="${t}"]`); if (!el) return;
@@ -10114,8 +10263,8 @@
   let ROBOTS_WAS = null;
   function setPageMeta(parts) {
     const site = SITE_NAME;
-    let title = 'RNAwiki — translate the code of human performance into real results';
-    let desc = 'DNA is the blueprint; RNA is the builder. Turn the foundational code of strength, health and longevity into protocols you can use today — ranked by human evidence, in plain English.';
+    let title = 'RNAwiki — Understand the evidence before you act';
+    let desc = 'Compare possible reasons for 41 health and performance topics, check safety limits, and start one practical movement, food or supplement step. Free, in plain English.';
     const t = (s) => `${s} · ${site}`;
     const generated = HEAD['/' + parts.join('/')];
     if (generated && generated[0]) { title = generated[0]; desc = generated[1] || desc; }
@@ -10655,7 +10804,7 @@
     if (!parts.length) bindHome();
     if (parts[0] === 'solve') bindSolve();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
-    if (parts[0] === 'plan') renderPlan();
+    if (parts[0] === 'plan') renderPlan(QS.get('mode'));
     if (parts[0] === 'studio') renderStudio(parts[1] || null);
     if (parts[0] === 'me') renderMe();
     if (parts[0] === 'u' && parts[1]) renderPublicProfile(parts[1]);
@@ -10742,8 +10891,23 @@
   // freshly-loaded one rather than double-glossarized.
   if (KEEP_PRERENDERED.indexOf((KEEP_PATH.split('/').filter(Boolean)[0] || '')) >= 0) KEEP_HTML = app.innerHTML;
   route();
-  api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (location.hash.startsWith('#/plan')) renderPlan(); }); } }).catch(() => { renderAccount(); });
-  api.config().then(c => { if (c) CFG = c; });
+  api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (currentRoute().split('?')[0] === '/plan') renderPlan(); }); } }).catch(() => { renderAccount(); });
+  api.config().then(c => {
+    if (!c) return;
+    const communityWasOn = featureOn('publicCommunity');
+    CFG = c;
+    const communityOn = featureOn('publicCommunity');
+    document.documentElement.toggleAttribute('data-community-on', communityOn);
+    // Request controls are not merely disabled: they are absent while the product is contained.
+    // If an approved deployment turns the flag on, rerender Find once the server-owned config
+    // arrives so the controls and board appear together instead of leaving a dead placeholder.
+    if (communityOn !== communityWasOn && currentRoute().split('?')[0] === '/solve') route();
+    if (communityOn) {
+      const targets = [...document.querySelectorAll('.vote-foot[data-target]')].map((el) => el.dataset.target).filter(Boolean);
+      if (targets.length) mountVotes(targets);
+      if (currentRoute().split('?')[0] === '/solve') mountRequestsBoard();
+    }
+  });
   api.rootcauseOverlay().then(ov => {
     RC_OVERLAY_STATE = ov === null ? 'offline' : 'live';
     if (applyRcOverlay(ov)) route();
@@ -10774,7 +10938,7 @@
         ? { pid, rcid: rc.id, moves: existing.moves, supps: existing.supps, functions: existing.functions, extra: {}, step: 0 }
         : { pid, rcid: rc.id, moves: [...(P.strengthen || []), ...(P.stretch || [])].map(x => x.id), supps: (P.stack || []).map(c => c.id), functions: undefined, extra: {}, step: 0 };
       api.startExperiment(pid, rc.id).catch(() => {});
-      setPlan(pl); navigate('/plan');
+      setPlan(pl); navigate('/plan?mode=edit');
     }).catch(() => { b.disabled = false; b.textContent = orig; });
   });
   // Personalized per-kg dose calculator (biohacker layer)

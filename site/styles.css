@@ -244,6 +244,10 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
    site that is not white-on-white. It is a real text node in a real navigation landmark, so it is
    read out and copy-pasted; it is now legible and simply smaller than the links it separates. */
 .crumbs .sep{color:var(--faint);font-size:.9em}
+@media (max-width:900px){
+  .crumbs a{min-height:44px;display:inline-flex;align-items:center}
+  .protocol-fit-link a{min-height:44px;display:flex;align-items:center}
+}
 
 /* detail page */
 .detail{max-width:780px;margin:0 auto}
@@ -402,6 +406,14 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .stack-row{display:flex;align-items:center;gap:.6rem;padding:.7rem .9rem;background:#fff;border:1px solid var(--line);border-radius:10px;flex-wrap:wrap;box-shadow:var(--shadow)}
 .stack-x{margin-left:auto;background:none;border:none;color:var(--red);cursor:pointer;font-size:.8rem}
 .stack-summary{display:flex;flex-direction:column;gap:.8rem}
+.stack-toxic-quarantine{margin:0 0 1rem;padding:1.15rem 1.25rem;border:2px solid #b42318;border-radius:16px;background:#fff5f5;color:#4a1511}
+.stack-toxic-quarantine h2{margin:.2rem 0 .45rem;color:#4a1511}
+.stack-toxic-quarantine p{margin:.4rem 0;line-height:1.55}
+.stack-toxic-emergency{padding:.75rem .85rem;border-radius:10px;background:#fff;border:1px solid #e7aaa4}
+.stack-toxic-actions{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;margin-top:.85rem}
+.stack-toxic-actions a,.stack-toxic-remove{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:.55rem .8rem;border-radius:10px;font:inherit;font-weight:750;cursor:pointer}
+.stack-toxic-actions a{background:#8a1c13;color:#fff;text-decoration:none}
+.stack-toxic-remove{border:1px solid #b42318;background:#fff;color:#8a1c13}
 .ss-block{background:#fff;border:1px solid var(--line);border-radius:10px;padding:.9rem;box-shadow:var(--shadow)}
 .ss-block.warn-block{border-color:rgba(194,65,12,.4);background:rgba(194,65,12,.04)}
 .ss-h{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin-bottom:.6rem}
@@ -567,6 +579,10 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .menu-btn{order:3}
   .search-wrap{order:4;flex:1 0 100%;max-width:none}
   .topnav.open{top:100%}
+  /* The title already carries this context on a phone. Keep breadcrumbs in the document for
+     desktop, search engines and structured data, but remove the duplicate visual row here so the
+     first decision arrives sooner. */
+  #app>.crumbs,.detail>.crumbs{display:none}
 }
 
 /* ================= Protocol Engine ================= */
@@ -770,7 +786,8 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 @media(max-width:820px){.proto-grid{grid-template-columns:1fr}.how-it-works{grid-template-columns:1fr}.proto-head{flex-direction:column}}
 
 /* ---- Tier 1 voting ---- */
-.vote-foot{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:.9rem;padding-top:.7rem;border-top:1px dashed var(--line);font-size:.82rem}
+.vote-foot{display:none;align-items:center;gap:.6rem;flex-wrap:wrap;margin-top:.9rem;padding-top:.7rem;border-top:1px dashed var(--line);font-size:.82rem}
+html[data-community-on] .vote-foot{display:flex}
 .vote-q{color:var(--muted)}
 .vote-btns{display:flex;gap:.4rem}
 .vt{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.25rem .6rem;cursor:pointer;font-size:.82rem;color:var(--ink)}
@@ -3367,6 +3384,15 @@ a.dp-name:hover{color:var(--accent)}
 .stop-rule{border-color:color-mix(in srgb,#f59e0b 34%,var(--line));background:color-mix(in srgb,#f59e0b 7%,transparent)}
 .safety-first[id]{scroll-margin-top:66px}
 .protocol-fit-link{margin:.1rem 0 1rem;font-size:.88rem}
+.protocol-boundaries{margin:1rem 0 1.4rem;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;scroll-margin-top:66px}
+.protocol-boundaries>summary{list-style:none;min-height:58px;padding:.72rem .9rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
+.protocol-boundaries>summary::-webkit-details-marker{display:none}
+.protocol-boundaries>summary>span:first-child{display:flex;flex-direction:column;gap:.12rem}
+.protocol-boundaries>summary small{font-size:.78rem;font-weight:400;color:var(--muted)}
+.protocol-boundaries>summary>span:last-child{font-size:1.25rem;color:var(--muted);transition:transform .15s ease}
+.protocol-boundaries[open]>summary>span:last-child{transform:rotate(90deg)}
+.protocol-boundaries-body{padding:0 .9rem .9rem;border-top:1px solid var(--line)}
+.protocol-boundaries-body .safety-grid{padding-top:.9rem}
 .protocol-full{margin:1.2rem 0 1.5rem;border:1px solid var(--line);border-radius:16px;background:var(--panel);overflow:hidden}
 .protocol-full>summary{list-style:none;min-height:64px;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
 .protocol-full>summary::-webkit-details-marker{display:none}
@@ -4448,6 +4474,13 @@ a.assess-switch { text-align: center; }
 .p1-skip{background:#fff;border:1px solid var(--line);border-radius:999px;padding:.55rem 1rem;color:#4a5766}
 .p1-actions button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .p1-actions button[disabled]{opacity:1;cursor:default}
+.p1-more{margin:.85rem 0 0;border-top:1px solid #99f6e4}
+.p1-more>summary{list-style:none;min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:700;color:#0b5f59}
+.p1-more>summary::-webkit-details-marker{display:none}
+.p1-more>summary::after{content:'›';margin-left:auto;font-size:1.2rem;transition:transform .15s ease}
+.p1-more[open]>summary::after{transform:rotate(90deg)}
+.p1-more-body{padding:.35rem 0 0}
+.plan-draft-pause .plan-draft-discard{display:block;margin:.8rem auto 0}
 .phase1-none{border-color:#fed7aa;border-left-color:#8a4708;background:linear-gradient(160deg,#fffbeb,#fff7ed)}
 .phase1-none .p1-constant{border-color:#fed7aa}
 @media (max-width:520px){.p1-fact{grid-template-columns:1fr;gap:.15rem}.p1-action{font-size:1.35rem}}
@@ -5076,3 +5109,26 @@ html[data-state="removed"] .i-form{display:none}
 .fn-alarm{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin:.4rem 0 .2rem}
 .fn-alarm .alarm-t{flex:0 0 7rem}
 .fn-alarm-note{font-size:.76rem;color:var(--muted);margin:.15rem 0 0}
+
+/* Toxic/no-safe-dose compound pages are a calm emergency document, not a gamified compound
+   lesson. One strong stop card, one distinct action card, then plain educational sections. */
+.toxic-detail{max-width:900px;margin:0 auto}
+.toxic-list-label{display:inline-flex;align-items:center;min-height:1.7rem;padding:.2rem .55rem;border:1px solid #b42318;border-radius:999px;background:#fff5f5;color:#8a1c13;font-size:.72rem;font-weight:800;line-height:1.2;letter-spacing:.02em;vertical-align:middle}
+.toxic-head{margin-bottom:1rem}
+.toxic-stop,.toxic-emergency,.toxic-section{border-radius:18px;padding:1.25rem 1.35rem;margin:0 0 1rem}
+.toxic-stop{background:#fff5f5;border:2px solid #b42318;color:#4a1511}
+.toxic-emergency{background:#fff8eb;border:2px solid #b54708;color:#4b2604}
+.toxic-section{background:var(--panel);border:1px solid var(--line);color:var(--ink)}
+.toxic-stop h2,.toxic-emergency h2,.toxic-section h2{margin:.15rem 0 .55rem;color:inherit}
+.toxic-stop p,.toxic-emergency p,.toxic-section p{font-size:1rem;line-height:1.65;margin:.35rem 0}
+.toxic-kicker{font-size:.76rem;font-weight:800;letter-spacing:.12em}
+.toxic-status{font-weight:700}
+.toxic-steps{margin:.8rem 0 0;padding-left:1.35rem}
+.toxic-steps li{padding:.35rem 0 .55rem .2rem}
+.toxic-steps h3{margin:0 0 .2rem;font-size:1rem;color:var(--head)}
+.toxic-steps p{margin:0}
+.toxic-evidence,.toxic-refs{padding-left:1.25rem}
+.toxic-evidence li,.toxic-refs li{margin:.45rem 0;line-height:1.55}
+@media(max-width:560px){
+  .toxic-stop,.toxic-emergency,.toxic-section{border-radius:14px;padding:1rem}
+}
