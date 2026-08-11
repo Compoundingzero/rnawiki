@@ -68,21 +68,14 @@ CREATE TABLE IF NOT EXISTS votes (
 );
 CREATE INDEX IF NOT EXISTS idx_votes_target ON votes(target_id);
 
--- Tier 2: domain-isolated expert stewardship. DISMANTLED 2026-08-08 — RNAwiki has ONE ACCOUNT
--- TYPE, so these six columns no longer mean anything and nothing writes them.
---   · the application path (POST /api/profile/domain) is deleted, so requested_domain, credential,
---     application_status and role_backlink can never be set again;
---   · the grant path (POST /api/admin/verify-domain) is deleted, so domain_verified can never
---     become true again — it is false on every row and now permanently so.
--- The columns are kept for one release, not forever: dropping a column is irreversible, and this
--- repo already handles that discipline twice (newsletter_subscribers below, telegram_*). Drop them
--- by hand once this has shipped and nothing 500s.
-ALTER TABLE users ADD COLUMN IF NOT EXISTS domain TEXT;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS credential TEXT;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS domain_verified BOOLEAN NOT NULL DEFAULT false;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS requested_domain TEXT;
-ALTER TABLE users ADD COLUMN IF NOT EXISTS application_status TEXT; -- null | pending | approved | rejected
-ALTER TABLE users ADD COLUMN IF NOT EXISTS role_backlink TEXT;      -- their site/socials page that links back to rnawiki.com (admin checks it)
+-- Tier 2: domain-isolated expert stewardship. DISMANTLED 2026-08-08, and the six columns it left
+-- behind (domain, credential, domain_verified, requested_domain, application_status, role_backlink)
+-- were DROPPED on 2026-08-11 by scripts/drop-professional-tier.js. The note that stood here said
+-- they were "kept for one release ... drop them by hand once this has shipped and nothing 500s".
+-- It shipped, nothing did, and MEASURED before the drop: 0 non-null values across all six —
+-- domain_verified was false on all 16 rows.
+-- They are not re-added here, and they cannot come back by accident: assertOneAccountType() in
+-- build/parse.js reads db.js as of the same day and fails the build on any of these names.
 -- Google (Gmail) sign-in: google_sub links the Google account; pass is now optional.
 ALTER TABLE users ADD COLUMN IF NOT EXISTS google_sub TEXT UNIQUE;
 ALTER TABLE users ALTER COLUMN pass DROP NOT NULL;
@@ -295,23 +288,19 @@ CREATE INDEX IF NOT EXISTS idx_scans_user_day ON scans(user_id, created_at);
 -- unsubscribe endpoint is already gone, so links in the old welcome email now 404.
 -- To count what is there:  SELECT count(*), min(created_at), max(created_at) FROM newsletter_subscribers;
 
--- Founding-clinician waitlist (Phase-2 marketplace demand capture). A public, no-account form:
--- a physio/dietitian/pharmacist/MD registers interest to shape protocols in their field. Surfaced,
--- with a one-click CSV export, in the super-admin control room. UNIQUE(email) keeps it de-duped.
-CREATE TABLE IF NOT EXISTS clinician_interest (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  email TEXT NOT NULL UNIQUE,
-  discipline TEXT,
-  note TEXT,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-);
-CREATE INDEX IF NOT EXISTS idx_clinician_created ON clinician_interest(created_at DESC);
--- Widened from Singapore-GP-only to any healthcare professional worldwide: country, professional
--- registration/licence number, and a photo proof of credentials (stored as a data URL) for verification.
-ALTER TABLE clinician_interest ADD COLUMN IF NOT EXISTS country TEXT;
-ALTER TABLE clinician_interest ADD COLUMN IF NOT EXISTS license_no TEXT;
-ALTER TABLE clinician_interest ADD COLUMN IF NOT EXISTS proof_photo TEXT;
+-- clinician_interest DROPPED 2026-08-11 (D-5).
+-- It held name, email, discipline, country, professional registration/licence number and a
+-- PHOTOGRAPH OF A CREDENTIAL DOCUMENT (base64 data URL), for a verification programme abolished on
+-- 2026-07-30. Felix: "delete. i do not need to collect any licence number and credentials."
+-- MEASURED in production immediately before the DROP: 2 rows (2026-07-07, 2026-07-12), 0 licence
+-- numbers and 0 photographs ever submitted — the columns that made this the site's largest data
+-- liability were never once filled.
+-- The DROP is executed by scripts/drop-clinician-interest.js, not from here, because this file is
+-- idempotent DDL that runs on EVERY boot: a DROP in here would be a loaded gun pointed at any table
+-- somebody later recreated. The reason it may not come back is that there is one kind of account on
+-- this site — assertOneAccountType() in build/parse.js fails the build on a professional-tier
+-- surface, and assertNoCredentialIntake() (added the same day) fails it on a schema that asks for a
+-- licence number or a credential photograph again.
 
 -- The interest list behind /interest (2026-08-08). It replaces the newsletter as the site's one
 -- call to action, and it is a DIFFERENT FEATURE with DIFFERENT CONSENT — see the newsletter note

@@ -1998,22 +1998,21 @@ async function api(req, res, url) {
   // size cap from 6e6 to 1.6e6 — it made the open door narrower instead of shutting it. Collecting
   // government identity documents for a verification programme that has been abolished is the
   // largest data liability on this site, and it is now shut.
-  // The clinician_interest ROWS ARE DELIBERATELY NOT DROPPED and GET /api/clinician-photo stays,
-  // so the owner can still see and export what was already collected. Those are somebody's licence
-  // photographs; deleting them is Felix's decision and should follow telling the people on the
-  // list, not happen as a side effect of a code change. See the newsletter_subscribers note in
-  // db.js for the same discipline.
-  // super-admin only: view a professional's uploaded credential proof (data URL stored on the row)
-  if (seg[0] === 'clinician-photo' && method === 'GET') {
-    const u = await currentUser(req); if (!isSuper(u)) { res.writeHead(403); return res.end(); }
-    const id = +clean(new URL('http://x/' + url).searchParams.get('id'), 12); if (!id) { res.writeHead(404); return res.end(); }
-    const row = (await db.query('SELECT proof_photo FROM clinician_interest WHERE id=$1', [id])).rows[0];
-    const m = row && row.proof_photo && String(row.proof_photo).match(/^data:(image\/[\w+.-]+);base64,(.*)$/);
-    if (!m) { res.writeHead(404); return res.end(); }
-    const buf = Buffer.from(m[2], 'base64');
-    res.writeHead(200, { 'Content-Type': m[1], 'Cache-Control': 'private, max-age=60' });
-    return res.end(buf);
-  }
+  // ---- clinician_interest AND GET /api/clinician-photo REMOVED 2026-08-11 (D-5, P0-P3) ----------
+  // The note that used to sit here said the rows were deliberately kept so the owner could see and
+  // export them, and that deleting them was Felix's decision. He made it: "delete. i do not need to
+  // collect any licence number and credentials."
+  //
+  // So the whole thing is gone — the endpoint, both admin tables, the CSV export, the DDL and the
+  // table itself (dropped from production the same day). MEASURED before dropping: 2 rows, from
+  // 2026-07-07 and 2026-07-12, 0 photographs and 0 licence numbers ever submitted. The column that
+  // made this "the largest data liability on this site" was never once filled — the form was
+  // closed before anybody used it that way.
+  //
+  // Nothing replaces it. There is no professional tier, no verification programme and no reason for
+  // this site to hold anybody's government identity document; assertOneAccountType() in
+  // build/parse.js already fails the build on a professional-tier surface, and the intake pattern
+  // is banned there by name. The right amount of somebody else's licence number to store is none.
   // ---------- the outcome loop: experiments · check-ins · results ledger ----------
   // ---- GET /api/stats REMOVED 2026-08-11 (P0-P12) ----------------------------------------------
   // MEASURED against production on the day it was removed:
@@ -2141,11 +2140,9 @@ async function api(req, res, url) {
   if (seg[0] === 'admin' && seg[1] === 'export' && method === 'GET') {
     const u = await currentUser(req); if (!isSuper(u)) return json(res, 403, { error: 'Super-admin only' });
     const type = clean(new URL('http://x/' + url).searchParams.get('type'), 20);
-    if (type === 'clinicians') {
-      const r = await db.query('SELECT name,email,discipline,country,license_no,note,(proof_photo IS NOT NULL) AS has_proof,created_at FROM clinician_interest ORDER BY created_at DESC');
-      return csvExport(res, 'rnawiki-professionals.csv', ['name', 'email', 'profession', 'country', 'licence_no', 'proof_uploaded', 'note', 'joined'],
-        r.rows.map(x => [x.name, x.email, x.discipline, x.country, x.license_no, x.has_proof ? 'yes' : 'no', x.note, x.created_at && x.created_at.toISOString()]));
-    }
+    // `type=clinicians` REMOVED 2026-08-11 with the table (D-5). It exported name, email,
+    // profession, country, licence number and whether a credential photograph was on file.
+    // It falls through to the 400 at the end of this handler.
     // --- Research dataset exports (anonymous: pseudonymous user_id join key, no name/email) ---
     // Stable, non-reversible pseudonym so the exported dataset can't be joined back to a real identity.
     const anonId = uid => 'S' + crypto.createHmac('sha256', SECRET).update('anon:' + uid).digest('hex').slice(0, 12);
@@ -2359,7 +2356,7 @@ async function api(req, res, url) {
     // "Verified-badge applications" table, which is deleted. Nothing can write those columns now,
     // so the query could only ever have returned an empty array; shipping an empty array under
     // the key `experts` is how the table gets rebuilt.
-    const [partners, foods, requests, rcc, feedback, proposals, cedits, members, memberCount, clinicians] = await Promise.all([
+    const [partners, foods, requests, rcc, feedback, proposals, cedits, members, memberCount] = await Promise.all([
       db.query('SELECT id,name,type,location,link,backlink_url,serves,status,created_at FROM partners ORDER BY status ASC, created_at DESC LIMIT 200'),
       db.query("SELECT f.id,f.name,f.serving,f.data,f.status,f.created_at,u.username AS by_user FROM user_foods f LEFT JOIN users u ON u.id=f.submitted_by WHERE f.status='pending' ORDER BY f.created_at ASC LIMIT 200"),
       db.query("SELECT id,request,detail,votes,status,created_at FROM protocol_requests ORDER BY (status='open') DESC, votes DESC, created_at DESC LIMIT 100"),
@@ -2379,12 +2376,13 @@ async function api(req, res, url) {
       // same isSuper() the request path uses, so the one distinction that exists is the one shown.
       db.query('SELECT id,username,email,google_sub,reputation_points,created_at FROM users ORDER BY created_at DESC LIMIT 500'),
       db.query('SELECT count(*)::int AS n FROM users'),
-      db.query('SELECT id,name,email,discipline,country,license_no,note,(proof_photo IS NOT NULL) AS has_proof,created_at FROM clinician_interest ORDER BY created_at DESC LIMIT 500'),
+      // The clinician_interest query was the tenth element here until 2026-08-11 (D-5). The table
+      // is dropped; the Control Room has no clinician tab to feed.
     ]);
     // google_sub is used to decide is_owner and then dropped — it is an identity secret, not a
     // column the Control Room needs to see.
     const memberRows = members.rows.map(m => ({ username: m.username, email: m.email, reputation_points: m.reputation_points, created_at: m.created_at, is_owner: isSuper(m) }));
-    return json(res, 200, { partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, members: memberRows, memberCount: memberCount.rows[0].n, clinicians: clinicians.rows, threshold: PANEL_THRESHOLD });
+    return json(res, 200, { partners: partners.rows, foods: foods.rows, requests: requests.rows, rootcauseChanges: rcc.rows, feedback: feedback.rows, proposals: proposals.rows, compoundEdits: cedits.rows, members: memberRows, memberCount: memberCount.rows[0].n, threshold: PANEL_THRESHOLD });
   }
   if (seg[0] === 'foods' && seg[1] && seg[2] === 'verify' && method === 'POST') {
     const u = await currentUser(req); if (!u || u.role !== 'admin') return json(res, 403, { error: 'The food queue is not enabled for this account.' });
@@ -2906,10 +2904,24 @@ const GENERATED_ROUTES = ['c', 'compare', 'protocol', 'target', 'pathway', 'musc
 // 404. Read off every `parts[0] === '…'` branch in app.js — keep it in step with that, or a working
 // page starts answering 404. `progress` is the one the smoke test caught when this list was missing.
 const SPA_ONLY_ROUTES = [
-  'about', 'admin', 'anatomy', 'az', 'body', 'browse', 'clinic', 'exercise', 'fork', 'fuel',
-  'legend', 'me', 'p', 'pathways', 'plan', 'pro', 'progress', 'pros', 's', 'solve', 'stack',
-  'stewardship', 'studio', 'u', 'where',
+  'about', 'admin', 'anatomy', 'az', 'body', 'browse', 'exercise', 'fork', 'fuel',
+  'legend', 'me', 'p', 'pathways', 'plan', 'progress', 's', 'solve', 'stack',
+  'studio', 'u', 'where',
 ];
+// ---- 'clinic', 'pro', 'pros', 'stewardship' LEFT THIS LIST ON 2026-08-11 -----------------------
+// All four were surfaces of the abolished professional/clinician tier, and all four were RETIRED
+// INSIDE app.js route() — the branch is
+//     ['pros','pro','stewardship','contributors','for-clinicians','clinic','u','gp'] -> home()
+// with a `history.replaceState(null, '', '/')`. So each answered HTTP 200 and rendered the LANDING
+// PAGE under its own self-canonical URL, then quietly rewrote the address bar. Four more copies of
+// the home page, and the deeper /clinic branches below that one (`parts[0] === 'clinic' && parts[3]`
+// at app.js:10180 and :10278) were unreachable dead code — the retired branch sets parts.length = 0
+// first, and the file's own comment on the next line says "dead:".
+//
+// Being in this list is what turned that into an indexable duplicate: without it, an unknown root
+// segment is a real 404. Felix asked for everything requiring a clinician to be removed, and a
+// retired route that impersonates the home page is worse than a 404 for a reader, a crawler and
+// anybody reading this file. They 404 now.
 // W7 C7 (2026-08-10): 'studio' and 'p'.
 // MEASURED before this: `curl localhost:8099/studio` -> 404 and `curl localhost:8099/p/abc` -> 404,
 // while POST /api/protocols has been minting `${SITE_URL}/p/${code}` as the share URL since
@@ -2953,7 +2965,7 @@ const SPA_ONLY_ROUTES = [
 // Part (4) of the same gate is the one that would have caught /clinic, /exercise and /fork: it
 // requires every SPA-only route with no prerendered file to be classified into one of the two
 // noindex lists.
-const NOINDEX_ROUTES = ['admin', 'clinic', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+const NOINDEX_ROUTES = ['admin', 'me', 'p', 'progress', 's', 'studio', 'u'];
 
 // `clinic` ADDED 2026-08-11 (P0-P2). MEASURED on production that morning:
 //     curl -D- https://rnawiki.com/clinic  ->  200, no X-Robots-Tag at all, 1,148 words of the
@@ -3081,13 +3093,12 @@ ${links}
   // own renderer decides what a bad id means, so they keep the shell.
   const SPA_EXACT = { me: 1, progress: 1, plan: 1, studio: 1, solve: 1, stack: 1, az: 1, browse: 1, where: 1, about: 1, legend: 1, anatomy: 1, pathways: 1 };
   const SPA_ONE_ARG = { u: 1, p: 1 };
-  // clinic ADDED 2026-08-11, and it is the /u/ bug again on another route. The only address the SPA
-  // can render is /clinic/<handle>/<problem>/<root-cause> — app.js:9650 and :10041 both require
-  // parts[3]. MEASURED, HYDRATED, before this line: bare /clinic returned 200 and rendered the
-  // LANDING PAGE, h1 "Turned away, priced out, or told it was nothing" — a 1,148-word duplicate of
-  // the home page living at a second, self-canonical URL. noindex alone would have hidden that from
-  // a crawler while still serving a reader the wrong page; 404 is what it is.
-  const SPA_N_ARGS = { clinic: 4 };
+  // SPA_N_ARGS held { clinic: 4 } for about an hour on 2026-08-11. Then the hydrated check showed
+  // /clinic/<handle>/<problem>/<rc> rendering the HOME page too — the route is retired in app.js and
+  // its deeper branches are dead code — so the whole prefix left SPA_ONLY_ROUTES and 404s at the
+  // top of this function instead. The map stays, empty, because the next route with a fixed arity
+  // should use it rather than inventing a third mechanism beside SPA_EXACT and SPA_ONE_ARG.
+  const SPA_N_ARGS = {};
   if (seg.length && SPA_ONLY_ROUTES.includes(seg[0])) {
     if (SPA_EXACT[seg[0]] && seg.length > 1) return notFoundPage(res);
     if (SPA_ONE_ARG[seg[0]] && seg.length !== 2) return notFoundPage(res);

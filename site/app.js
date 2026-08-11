@@ -3866,7 +3866,7 @@
       // pending counts on the tab chips (GP-only: gps = clinician interest + expert apps + partners; feedback = feedback + open requests)
       // 2026-08-08: `OV.experts.filter(e => e.application_status === 'pending').length` dropped —
       // there are no expert applications, because the endpoint that created them is deleted.
-      const gpPending = (OV.partners.filter(p => p.status === 'pending').length) + ((OV.clinicians || []).length);
+      const gpPending = OV.partners.filter(p => p.status === 'pending').length;
       const pend = { gps: gpPending, feedback: ((OV.feedback || []).length) + (OV.requests.filter(r => r.status === 'open').length), edits: (OV.proposals || []).length, rootcauses: OV.rootcauseChanges.filter(c => c.status === 'pending').length, foods: OV.foods.length };
       for (const k in pend) { const el = document.getElementById('c-' + k); if (el) el.textContent = pend[k] || ''; if (el) el.classList.toggle('hot', pend[k] > 0); }
       const cm = document.getElementById('c-members'); if (cm) cm.textContent = OV.memberCount || (OV.members || []).length || '';
@@ -3876,8 +3876,10 @@
     function paintAdmin(tab) {
       const body = app.querySelector('#adm-body'); if (!OV) return;
       if (tab === 'gps') {   // GP-only: interest (from /gp) + verified-badge applications + clinics to feature
-        const ci = OV.clinicians || [];
-        const ciRows = ci.length ? ci.map(c => `<tr><td>${esc(c.name)}<br><span class="muted" style="font-size:.8rem">${esc(c.email)}</span>${c.note ? `<br><span class="muted" style="font-size:.78rem">“${esc(c.note)}”</span>` : ''}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.country || '—')}</td><td>${esc(c.license_no || '—')}</td><td>${c.has_proof ? `<a class="admin-btn" href="/api/clinician-photo?id=${c.id}" target="_blank" rel="noopener">View proof↗</a>` : '<span class="muted">none</span>'}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="6" class="muted">Nothing was collected. The clinician recruitment page was removed on 2026-07-30 and the endpoint behind it was closed on 2026-08-08.</td></tr>';
+        // The "collected before the form was closed" table was REMOVED on 2026-08-11 (D-5), along
+        // with the clinician_interest table it read, the CSV export beside it and
+        // GET /api/clinician-photo. Felix: "delete. i do not need to collect any licence number
+        // and credentials." A screen that renders somebody's licence number is a copy of it.
         // 2026-08-08: the "✅ Verified-badge applications" table was REMOVED from here — ONE
         // ACCOUNT TYPE. It rendered Approve / Reject / Revoke buttons wired to
         // POST /api/admin/verify-domain, the endpoint that granted the badge. That endpoint is
@@ -3885,8 +3887,7 @@
         // kind of account on this site and no tier to promote anybody into.
         const pt = OV.partners || [];
         const ptRows = pt.length ? pt.map(p => `<tr><td>${esc(p.name)}</td><td>${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">site</a>` : '—'}${p.backlink_url ? ` · <a href="${esc(p.backlink_url)}" target="_blank" rel="noopener">backlink↗</a>` : ''}</td><td>${esc(p.status)}</td><td>${p.status !== 'active' ? `<button class="admin-btn ok" data-partner="${p.id}" data-to="active">Approve</button> ` : ''}${p.status !== 'rejected' ? `<button class="admin-btn" data-partner="${p.id}" data-to="rejected">Reject</button>` : ''}</td></tr>`).join('') : '<tr><td colspan="4" class="muted">No clinics listed yet.</td></tr>';
-        body.innerHTML = `<p class="muted">Closed lists, kept so you can export them and act on them. Nothing new can arrive: the /gp intake page was removed on 2026-07-30 and its endpoint was closed on 2026-08-08. The rows below include licence numbers and photographs of credential documents — decide what happens to them, tell the people on the list, then delete them. <a class="admin-btn ok" href="/api/admin/export?type=clinicians" download>⤓ Export as CSV</a></p>
-          <h3 class="adm-sub-h">🗄 Collected before the form was closed</h3><div class="ao-table-wrap"><table class="board"><thead><tr><th>Name</th><th>Profession</th><th>Country</th><th>Licence no.</th><th>Proof</th><th>When</th></tr></thead><tbody>${ciRows}</tbody></table></div>
+        body.innerHTML = `<p class="muted">Clinics that asked to be listed. The clinician credential list that used to sit above this table — names, emails, professions, countries, licence numbers and photographs of credential documents — was <b>deleted on 2026-08-11</b>, together with its export, its endpoint and its database table. There is no professional tier on this site and no verification programme, so there is nothing here to verify anybody for.</p>
           <h3 class="adm-sub-h">🏥 Clinics to feature</h3><div class="ao-table-wrap"><table class="board"><thead><tr><th>Clinic</th><th>Links</th><th>Status</th><th></th></tr></thead><tbody>${ptRows}</tbody></table></div>`;
         body.querySelectorAll('[data-partner]').forEach(b => b.onclick = () => act(() => api.adminSetPartner(b.dataset.partner, b.dataset.to)));
       // The `accounts` tab was REMOVED here on 2026-08-08. It was a SECOND copy of the same
@@ -3902,11 +3903,11 @@
         const rows = ms.length ? ms.map(m => `<tr><td>${esc(m.email || '—')}</td><td>@${esc(m.username)}</td><td>${m.created_at ? esc(String(m.created_at).slice(0, 10)) : '—'}</td><td>${m.is_owner ? 'you (owner)' : 'member'}</td><td>✦ ${m.reputation_points || 0}</td></tr>`).join('') : '<tr><td colspan="5" class="muted">No members yet.</td></tr>';
         body.innerHTML = `<p class="muted">Everyone who signed up. <b>${OV.memberCount || ms.length}</b> total${ms.length >= 500 ? ' (showing latest 500 — export for the full list)' : ''}. <a class="admin-btn ok" href="/api/admin/export?type=members" download>⤓ Export all as CSV</a></p>
           <table class="board"><thead><tr><th>Email</th><th>User</th><th>Joined</th><th>Role</th><th>Rep</th></tr></thead><tbody>${rows}</tbody></table>`;
-      } else if (tab === 'clinicians') {
-        const cs = OV.clinicians || [];
-        const rows = cs.length ? cs.map(c => `<tr><td>${esc(c.name)}</td><td>${esc(c.email)}</td><td>${esc(c.discipline || '—')}</td><td>${esc(c.note || '—')}</td><td>${c.created_at ? esc(String(c.created_at).slice(0, 10)) : '—'}</td></tr>`).join('') : '<tr><td colspan="5" class="muted">No clinician sign-ups yet. Share the “For clinicians” page to start the founding list.</td></tr>';
-        body.innerHTML = `<p class="muted">Founding-clinician waitlist — <b>${cs.length}</b> so far. <a class="admin-btn ok" href="/api/admin/export?type=clinicians" download>⤓ Export as CSV</a></p>
-          <table class="board"><thead><tr><th>Name</th><th>Email</th><th>Discipline</th><th>Would improve first</th><th>Joined</th></tr></thead><tbody>${rows}</tbody></table>`;
+      // The `clinicians` tab was REMOVED on 2026-08-11 (D-5). It rendered a second copy of the
+      // same waitlist — name, email, discipline — with its own CSV export, and it was already
+      // unreachable: 'clinicians' is not in the OPS menu, so this branch could never be painted.
+      // Two copies of a list of other people's identities, one of them invisible, is exactly how
+      // deleted data survives a deletion.
       // W3.5 (2026-08-02) — the copy in these two queues described a verified-expert review
       // programme in the present tense ("A verified expert edits a section directly"; "An expert
       // requests a change … A second relevant expert reviews and approves it"). Both tabs are
@@ -9723,7 +9724,7 @@
   // this repo has produced the same defect more than once, so part (3) of
   // assertProfileDisclosesOnlyPublished() in build/parse.js diffs them and fails the build if they
   // part company. Keep BOTH lists on ONE line each, in this order — that is what the gate parses.
-  const PRIVATE_ROUTES = ['admin', 'clinic', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+  const PRIVATE_ROUTES = ['admin', 'me', 'p', 'progress', 's', 'studio', 'u'];
   // The mirror of NOINDEX_SHELL_ROUTES in server.js: routes that are not private but whose
   // prerendered document is an empty shell, so neither document may say index. Googlebot renders
   // JavaScript and would read the hydrated head; without this line the server would say noindex and
@@ -9785,7 +9786,8 @@
        sentence until this commit. A <title> for a page that does not exist is still a claim. */
     else if (parts[0] === 'body') { title = t('Interactive 3D body — see the muscles and how they move'); desc = 'Rotate a 3D anatomical model and tap any muscle to see the bones it attaches to — origin and insertion — and watch it perform its action, on the body.'; }
     else if (parts[0] === 'where') { title = t('Where does it hurt? Find the likely cause and the fix'); desc = 'Point to where it hurts — knee, lower back, neck, hip, shoulder, ankle, elbow — and get the likely cause, the protocol, and a 3-question cause-finder. Free.'; }
-    else if (parts[0] === 'clinic' && problemById[parts[2]]) { const p = problemById[parts[2]]; title = t(`${p.name} — home-care protocol from @${parts[1]}`); desc = `A clinician-issued ${p.name} home-care protocol from @${parts[1]} on RNAwiki — movement, stack, and Singapore food targets.`; }
+    // The /clinic title branch ("<problem> — home-care protocol from @<handle>") went with the
+    // route on 2026-08-11. It described a clinician-issued protocol, which this site does not have.
     // W7 C7. Caught by the smoke gate the moment /studio joined the route set: hydration ended on
     // the site default title, so the Studio had no identity in a tab, a bookmark or a share (D7).
     // Neither route is prerendered, so this is the ONLY head either one gets.
@@ -10171,12 +10173,16 @@
     // must not be one. This branch must PRECEDE the retired list or the retired list swallows it.
     else if (parts[0] === 'me') html = meLoading();
     else if (parts[0] === 'u' && parts[1]) html = profileLoading();
-    else if (['pros', 'pro', 'stewardship', 'contributors', 'for-clinicians', 'clinic', 'u', 'gp'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
+    // 'pros', 'pro', 'stewardship' and 'clinic' left this list on 2026-08-11 and left
+    // SPA_ONLY_ROUTES in server.js with it, so they are real 404s now rather than the home page
+    // wearing their URL. What remains here is reachable only by in-page hash navigation from an
+    // old link, where rendering home beats rendering nothing; the server answers 404 on a fresh
+    // load either way, so no crawler sees a duplicate.
+    else if (['contributors', 'for-clinicians', 'gp', 'u'].indexOf(parts[0]) >= 0) { history.replaceState(null, '', '/'); parts.length = 0; html = home(); } // retired expert/community system → home
     else if (parts[0] === 'solve') html = solvePage(QS.get('q'));
     // dead: the line above sets parts.length = 0, so parts[0] is undefined by here.
     else if (parts[0] === 'admin') html = adminLoading();
     else if (parts[0] === 'protocol') html = protocolLoading();
-    else if (parts[0] === 'clinic' && parts[3]) html = protocolLoading();
     else if (parts[0] === 's' && parts[1]) html = '<div class="empty"><h1>Loading shared protocol…</h1></div>';
     else html = notFound();
     // FIRST PAINT OF "/" (2026-07-30). The prerendered home is already in the DOM and HOME_HTML is
@@ -10274,7 +10280,6 @@
     // .then(mountRcOverlayNotice): #p-causes does not exist until renderProtocol has painted, so the
     // notice has to be re-mounted after every protocol render, not only when the overlay settles.
     if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2], null, QS.get('cohort')).then(mountRcOverlayNotice);
-    if (parts[0] === 'clinic' && parts[3]) renderProtocol(parts[2], parts[3], parts[1]).then(mountRcOverlayNotice);
     if (parts[0] === 's' && parts[1]) renderSharedPlan(parts[1]);
     // community discussion on compound + pathway pages
     if (parts[0] === 'c' && bySlug[parts[1]]) renderComments('c:' + bySlug[parts[1]].id, bySlug[parts[1]].name);

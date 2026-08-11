@@ -3447,7 +3447,17 @@ function blankComments(src) {
 // `const DOMAIN_LAYER = { physio: 'move' };` into site/app.js — and run `node build/parse.js`.
 // It must exit 1 naming the file, the line and the thing.
 (function assertOneAccountType() {
-  const FILES = ['server.js', 'site/app.js'];
+  // db.js joined this list on 2026-08-11: the licence-number and credential-photograph columns
+  // lived in the SCHEMA, so a gate that only read the two renderer files could not have stopped them.
+  //
+  // db.js is JavaScript wrapping SQL, and blankComments() only understands JS comments. Every note
+  // in the schema is a SQL `--` line, so on the first run this gate flagged its OWN tombstones —
+  // the comments that say WHY domain_verified may never come back. A gate that cannot tell a
+  // banned thing from an explanation of why it is banned makes the codebase quieter, not safer, so
+  // SQL line comments are blanked too. Only leading `--` (optionally indented) counts, which is
+  // every comment in db.js and cannot swallow a `--` inside a string.
+  const FILES = ['server.js', 'site/app.js', 'db.js'];
+  const blankSql = (src) => src.split('\n').map((l) => (/^\s*--/.test(l) ? '' : l)).join('\n');
   const BANNED = [
     [/domain_verified/i, 'users.domain_verified — the professional-tier flag. Nothing may read it and nothing may grant it.'],
     [/requested_domain|application_status|role_backlink/i, 'the expert-application columns. There is no application, because there is no second tier to apply for.'],
@@ -3455,14 +3465,15 @@ function blankComments(src) {
     [/['"`]verified-expert['"`]/, "the 'verified-expert' badge string"],
     [/verify-domain/, 'the /api/admin/verify-domain grant endpoint — the only thing that ever set domain_verified = true'],
     [/profile\/domain/, 'the POST /api/profile/domain "apply for an expert role" endpoint'],
-    [/clinician-interest/, 'the POST /api/clinician-interest licence-number + credential-photograph intake. (Reading the clinician_interest TABLE is still allowed — that is the archive of what was already collected.)'],
+    [/clinician-interest|clinician_interest|clinician-photo/, 'the clinician licence-number + credential-photograph list. The intake endpoint was closed on 2026-08-08, and on 2026-08-11 the table, both admin tables, the CSV export and GET /api/clinician-photo were all deleted (D-5). Nothing may read it, write it or recreate it. The right amount of somebody else\'s government identity document to hold is none.'],
+    [/license_no|licence_no|proof_photo|credential[_-]?photo/i, 'a professional licence number or a photograph of a credential document. There is no verification programme on this site to need one.'],
     [/\/api\/steward|seg\[0\]\s*===\s*['"]steward['"]/, 'the adopt-a-protocol stewardship endpoints. A protocol belongs to no one.'],
     [/DOMAIN_LAYER|DOMAIN_LABEL|LAYER_DOMAIN/, 'a profession -> permission lookup table. This is a second account type in seed form.'],
     [/\bu\.domain\b|\bME\.domain\b/, 'the account-level `domain` (profession) field. GRAPH.domains — which discipline addresses a root cause — is corpus content and is fine; an account carrying one is not.'],
   ];
   const bad = [];
   FILES.forEach((rel) => {
-    blankComments(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split('\n').forEach((raw, i) => {
+    blankSql(blankComments(fs.readFileSync(path.join(ROOT, rel), 'utf8'))).split('\n').forEach((raw, i) => {
       BANNED.forEach(([re, why]) => { if (re.test(raw)) bad.push(`${rel}:${i + 1} — ${why}\n      …${raw.trim().slice(0, 110)}…`); });
     });
   });
@@ -3653,8 +3664,9 @@ function blankComments(src) {
 //  (2) NO REAL NAME AND NO PHOTOGRAPH. There is no avatar/photo/real-name column in users today
 //      (grep: 0 hits across server.js, site/app.js, db.js) and this keeps it that way, because the
 //      publish sheet and both profile pages now state it as a fact to the reader.
-//      clinician_interest.proof_photo is exempt BY NAME: it is the archive of what was collected
-//      before that form was closed, it is admin-only, and it is not a profile field.
+//      There is no exemption. clinician_interest.proof_photo used to be one, on the grounds that it
+//      was an admin-only archive rather than a profile field; the table was deleted on 2026-08-11
+//      (D-5) and the exemption went with it.
 //  (3) THE TWO ROUTE LISTS AGREE. NOINDEX_ROUTES in server.js and PRIVATE_ROUTES in site/app.js
 //      are one set written twice, in two files, because the prerendered and the hydrated document
 //      each need the directive and neither can read the other. A hand-synced pair of lists is how
@@ -3705,8 +3717,8 @@ function blankComments(src) {
       bad.push(`${rel}:${i + 1} — an avatar, photograph or real-name field. RNAwiki asks for no real name and holds no photograph, and the publish sheet and both profile pages now say so to the reader.\n      …${raw.trim().slice(0, 110)}…`);
     });
   });
-  // proof_photo is the closed clinician_interest archive, admin-only, not a profile field. It is
-  // matched by nothing above; this line records the exemption so nobody widens IDENTITY into it.
+  // The proof_photo exemption that used to be recorded here is gone with the table (2026-08-11).
+  // `credential[_-]?photo` and `proof_photo` are now BANNED outright by assertOneAccountType().
 
   // ---- (3) the route lists agree, BOTH pairs ----
   const one = (re, s) => { const m = re.exec(s); return m ? m[1].split(',').map((x) => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : null; };
