@@ -41,6 +41,16 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SETTLE_MS = Number(process.env.SMOKE_SETTLE_MS || 1200);
 const NAV_TIMEOUT = 45000;
+// /body is a crawlable HTML muscle index first and a progressively enhanced 3D canvas second.
+// Waiting for Puppeteer's global `networkidle2` there couples document validation to Three.js,
+// software WebGL and an 807 KB GLB. On GitHub's shared runner both /body aliases reached a fully
+// rendered page but the navigation promise stayed open for 45 seconds; all same-origin responses,
+// console errors and promise rejections are already collected independently below. Wait for the
+// document on those two routes, then let the normal settle/DOM checks verify the usable shell.
+// Every other route keeps the stronger network-idle boundary.
+const navigationReady = (route) => /^\/body(?:\/|$)/.test(new URL(route, 'https://rnawiki.test').pathname)
+  ? 'domcontentloaded'
+  : 'networkidle2';
 
 // ---------------------------------------------------------------- routes
 // W4 · Loop C: a cohort slug carries its own start date, so the LIVE case has to be computed when
@@ -837,6 +847,24 @@ const ASSERTIONS = {
       const small = shown.filter((a) => a.getBoundingClientRect().height < 24);
       if (small.length) return `${small.length} of ${shown.length} drawer links are under the 24px minimum`;
       btn.click();
+      return null;
+    },
+  }],
+  '/body': [{
+    name: 'bodyMapKeepsAUsableProgressiveFallback',
+    why: 'the 3D body is an enhancement over a complete muscle index: readers must get either the loaded model or an explicit fallback, never an empty or permanent loading box',
+    evaluate: async () => {
+      const shell = document.querySelector('.body-shell');
+      const host = document.getElementById('bm-canvas');
+      const list = document.querySelectorAll('.body-twin a[href]').length;
+      if (!shell || !host) return 'the crawlable body shell or 3D host is missing';
+      if (list < 10) return `the no-3D muscle index has only ${list} links`;
+      const until = Date.now() + 10000;
+      while (Date.now() < until && host.querySelector('.bm-loading')) {
+        await new Promise((r) => setTimeout(r, 100));
+      }
+      if (host.querySelector('.bm-loading')) return 'the 3D region stayed in its loading state for more than 10 seconds';
+      if (!host.querySelector('canvas') && !host.querySelector('.bm-fallback')) return 'the loading state disappeared without either a 3D canvas or an explicit fallback';
       return null;
     },
   }],
@@ -2322,7 +2350,7 @@ try {
 
     let status = 0, dom = null, navErr = null;
     try {
-      const resp = await page.goto(BASE + route, { waitUntil: 'networkidle2', timeout: NAV_TIMEOUT });
+      const resp = await page.goto(BASE + route, { waitUntil: navigationReady(route), timeout: NAV_TIMEOUT });
       status = resp ? resp.status() : 0;
       await new Promise(r => setTimeout(r, SETTLE_MS));
       dom = await page.evaluate(() => {
@@ -2599,7 +2627,7 @@ try {
       const page = await browser.newPage();
       try {
         await page.setViewport(DESKTOP);
-        const resp = await page.goto(BASE + route, { waitUntil: 'networkidle2', timeout: NAV_TIMEOUT });
+        const resp = await page.goto(BASE + route, { waitUntil: navigationReady(route), timeout: NAV_TIMEOUT });
         // 304 is expected and correct here: the pass above already fetched every one of these URLs
         // in this same browser, so the second visit revalidates and the server says "unchanged".
         // The document still renders. Only a real error status means there is nothing to measure —
