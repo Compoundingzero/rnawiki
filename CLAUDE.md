@@ -43,6 +43,10 @@ content/*.md         upstream markdown source, read by parse.js at build time
 **`site/` is ephemeral** — a fresh container, no volume. Everything under `site/` is regenerated
 at boot by `prestart`.
 
+`railway.toml` makes `/` the deployment health check with a 120-second timeout. Keep that readiness
+gate: `prestart` regenerates and compresses the public site before `server.js` listens, so Railway
+must leave the previous deployment serving until the new homepage returns HTTP 200.
+
 **The build is a hard deploy gate.** `prestart` runs parse, prerender, anatomy-asset copy and
 precompression with `&&`; a failure stops the deploy. `.github/workflows/release-gates.yml` repeats
 the full build, containment, Studio safety, privacy, safety-query and rendered-browser checks before
