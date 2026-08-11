@@ -11,6 +11,7 @@ const app = read('site/app.js');
 const styles = read('site/styles.css');
 const plan = read('site/plan.html');
 const sitemap = read('site/sitemap.xml');
+const railway = read('railway.toml');
 const discoveryDocs = ['site/az.html', 'site/browse.html'].map((file) => [file, read(file)]);
 const fatLossGoalDoc = read('site/goal/fatloss.html');
 const toxicDoc = read('site/c/2-4-dinitrophenol-dnp.html');
@@ -111,9 +112,15 @@ forbidText(app, 'id="stack-wrapped"', 'Stack still exposes a personal share-imag
 requireText(read('site/index.html'), '>Find</a>', 'application shell has no Find entry');
 requireText(read('site/index.html'), '>Today</a>', 'application shell has no Today entry');
 
+// Railway otherwise considers a new container active before npm's prestart has finished building
+// the public site and before server.js is listening. Keep the previous deployment serving until
+// the new homepage proves that the complete reader-facing application is ready.
+requireText(railway, 'healthcheckPath = "/"', 'Railway has no homepage readiness check');
+requireText(railway, 'healthcheckTimeout = 120', 'Railway readiness timeout no longer covers the production prestart');
+
 if (failures.length) {
   console.error('\nContainment gate failed:');
   failures.forEach((f) => console.error('  - ' + f));
   process.exit(1);
 }
-console.log('Containment gate passed — explicit consent, private defaults, secret checks, Today indexing and release navigation are intact.');
+console.log('Containment gate passed — explicit consent, private defaults, secret checks, Today indexing, release navigation and deploy readiness are intact.');
