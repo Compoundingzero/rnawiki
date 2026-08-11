@@ -3731,37 +3731,22 @@ function blankComments(src) {
   pair('server.js NOINDEX_SHELL_ROUTES', shellSrv, 'site/app.js SHELL_NOINDEX_ROUTES', shellApp,
     'the shell-noindex lists disagree, so one document would say noindex and the other index for the same URL. They are compared as WRITTEN, `@N` qualifier included — a depth in one file and not the other is the same divergence.');
 
-  // ---- (4) every SPA-only route without a prerendered document is classified ----
-  // ADDED 2026-08-11. This is the gate that was missing when /clinic, /exercise and /fork shipped
-  // index-eligible, and it found /fuel on its first run. The mechanism, stated plainly: a route in
-  // SPA_ONLY_ROUTES that build/prerender.js emits no file for is served as the SPA SHELL — the home
-  // page's head, self-canonical to a URL whose crawler-visible body says nothing about it. If it is
-  // not in one of the two noindex lists, that shell goes out at `index,follow`.
+  // ---- (4) MOVED to assertSpaOnlyRoutesClassified() in build/prerender.js on 2026-08-11 ----------
+  // It lived here for about forty minutes and it FAILED THE RAILWAY DEPLOY, which is the only reason
+  // this note exists rather than a silent edit.
   //
-  // The test is DERIVED, not a fourth hand-maintained list: it asks the filesystem whether
-  // `site/<route>.html` exists. So a route stops needing a classification the moment it starts
-  // emitting a real document, and needs one again the moment it stops — no list to remember.
+  // The check asks "does site/<route>.html exist" to decide whether a route needs a noindex
+  // classification. parse.js runs BEFORE prerender.js, so at this point `site/` holds the PREVIOUS
+  // build's output — and I wrote a comment here asserting that was fine on Railway. It is not.
+  // .gitignore covers site/*.html, the container is fresh with no volume, and on the first parse of
+  // a new container those files do not exist yet. Locally they were left over from earlier builds,
+  // so the gate passed on my machine and failed in production naming five perfectly correct routes
+  // (anatomy, body, solve, stack, where).
   //
-  // Run order matters: build/parse.js runs BEFORE build/prerender.js, so `site/` here holds the
-  // PREVIOUS build's output. That is sound on a machine that has built once and on Railway (the
-  // container runs parse -> prerender -> serve, and any route this gate is asked about was emitted
-  // by the prerender of the commit before). It is deliberately conservative in the dangerous
-  // direction: a file that does not exist yet is treated as absent, which demands a classification
-  // rather than waiving one.
-  if (!spaOnly) {
-    bad.push('server.js SPA_ONLY_ROUTES could not be read; part (4) of this gate has no subject and would pass vacuously.');
-  } else {
-    const base = (e) => { const at = e.indexOf('@'); return at < 0 ? e : e.slice(0, at); };
-    const classified = (noindex || []).concat((shellSrv || []).map(base));
-    const unclassified = spaOnly.filter((r) => classified.indexOf(r) < 0 && !fs.existsSync(path.join(ROOT, 'site', r + '.html')));
-    if (unclassified.length) {
-      bad.push('SPA-only route(s) with no prerendered document and no noindex classification: ' + unclassified.join(', ')
-        + '\n      Each is served as the SPA shell carrying the HOME page\'s head at index,follow, self-canonical to a URL'
-        + '\n      whose crawler-visible bytes are about something else. Put it in NOINDEX_ROUTES (it renders one person),'
-        + '\n      or in NOINDEX_SHELL_ROUTES (it is a placeholder until a real document exists), or give it a prerendered'
-        + '\n      page — and mirror the list into site/app.js, because Googlebot reads the hydrated head too.');
-    }
-  }
+  // This is verbatim the trap CLAUDE.md records for assertLinkGraph: "it trusted 'a file of that
+  // name exists' and site/ is never wiped between builds." A gate whose answer depends on what a
+  // previous build left on disk is not a gate. Its home is the end of prerender.js, after the files
+  // this build actually emitted have been written — and prerender.js is a hard deploy gate too.
 
   if (bad.length) {
     console.error('\n[parse] PROFILE DISCLOSURE GATE FAILED — refusing to build. A profile shows what somebody PUBLISHED:');
@@ -3771,7 +3756,7 @@ function blankComments(src) {
     console.error('  it publishes. If you need a new public field, say what it is in the publish sheet first.');
     process.exit(1);
   }
-  console.log('[parse] profile disclosure gate OK — GET /api/u/:handle carries %d banned pattern(s) 0 times, 0 avatar/real-name fields in 3 files, the route lists match on %d private + %d shell routes, and all %d SPA-only routes are classified or prerendered.', 7, (noindex || []).length, (shellSrv || []).length, (spaOnly || []).length);
+  console.log('[parse] profile disclosure gate OK — GET /api/u/:handle carries %d banned pattern(s) 0 times, 0 avatar/real-name fields in 3 files, and the route lists match on %d private + %d shell routes. (Classification of the %d SPA-only routes is asserted in prerender.js — see part (4).)', 7, (noindex || []).length, (shellSrv || []).length, (spaOnly || []).length);
 })();
 
 // ---- assertRxActionSurface (2026-08-11) · P0-S1 · P0-S2 · P0-S3 · P0-S4 · P0-S5 ----------------

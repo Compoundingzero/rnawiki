@@ -5217,4 +5217,51 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   }
   console.log(`[prerender] comparison cells OK — ${cells} cells across ${pagesChecked} pairs, none empty and none a bare dash.`);
 })();
+// ---- assertSpaOnlyRoutesClassified (2026-08-11) · P0-P2 --------------------------------------
+// THE GATE THAT WAS MISSING WHEN /clinic, /exercise AND /fork SHIPPED INDEX-ELIGIBLE.
+//
+// A route in server.js's SPA_ONLY_ROUTES that this build emitted no file for is served as the SPA
+// SHELL: the HOME page's head, self-canonical to a URL whose crawler-visible bytes say nothing
+// about it. Unless the route is in NOINDEX_ROUTES (it renders one person) or NOINDEX_SHELL_ROUTES
+// (a placeholder until a real document exists), that shell goes out at `index,follow`. /clinic went
+// out that way as a 1,148-word duplicate of the landing page, and nothing noticed for weeks.
+//
+// IT LIVES HERE, NOT IN parse.js, AND THE REASON IS WORTH THE PARAGRAPH. Its first version ran in
+// build/parse.js, which executes BEFORE this file — so `site/` still held the PREVIOUS build's
+// output. On my machine those files were lying around from earlier builds and it passed. On Railway
+// the container is fresh, .gitignore covers site/*.html, and it failed the deploy naming five
+// correct routes (anatomy, body, solve, stack, where). That is exactly the trap CLAUDE.md records
+// for assertLinkGraph — "it trusted 'a file of that name exists' and site/ is never wiped between
+// builds". Run at the END of the prerenderer, the question becomes "did THIS build emit it", which
+// is the question that was always meant.
+//
+// PROVE IT by deleting 'clinic' from BOTH NOINDEX_ROUTES and PRIVATE_ROUTES: the list-agreement
+// gate in parse.js stays green (they still agree) and this must still exit 1.
+(function assertSpaOnlyRoutesClassified() {
+  const srv = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
+  const list = (re) => { const m = re.exec(srv); return m ? m[1].split(',').map((x) => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : null; };
+  const spaOnly = list(/const SPA_ONLY_ROUTES = \[([\s\S]*?)\]/);
+  const noindex = list(/const NOINDEX_ROUTES = \[([^\]]*)\]/);
+  const shell = list(/const NOINDEX_SHELL_ROUTES = \[([^\]]*)\]/);
+  if (!spaOnly || !noindex || !shell) {
+    console.error('\n[prerender] SPA-ROUTE CLASSIFICATION GATE FAILED — one of SPA_ONLY_ROUTES / NOINDEX_ROUTES / NOINDEX_SHELL_ROUTES could not be read out of server.js. A gate that cannot find its subject passes vacuously, so this is a failure, not a skip.\n');
+    process.exit(1);
+  }
+  const base = (e) => { const at = e.indexOf('@'); return at < 0 ? e : e.slice(0, at); };
+  const classified = noindex.concat(shell.map(base));
+  const emitted = (r) => fs.existsSync(path.join(SITE, r + '.html'));
+  const unclassified = spaOnly.filter((r) => classified.indexOf(r) < 0 && !emitted(r));
+  if (unclassified.length) {
+    console.error('\n[prerender] SPA-ROUTE CLASSIFICATION GATE FAILED — refusing to build.');
+    console.error('  Unclassified SPA-only route(s) with no prerendered document: ' + unclassified.join(', '));
+    console.error('  Each is served as the SPA shell carrying the HOME page\'s head at index,follow,');
+    console.error('  self-canonical to a URL whose crawler-visible bytes are about something else.');
+    console.error('  Put it in NOINDEX_ROUTES (it renders one person), or in NOINDEX_SHELL_ROUTES (a');
+    console.error('  placeholder until a real document exists), or emit a page for it — and mirror the');
+    console.error('  list into site/app.js, because Googlebot reads the hydrated head too.\n');
+    process.exit(1);
+  }
+  console.log('[prerender] SPA route classification OK — %d SPA-only routes: %d prerendered by this build, %d noindexed (%d private + %d thin shell).',
+    spaOnly.length, spaOnly.filter(emitted).length, spaOnly.filter((r) => classified.indexOf(r) >= 0).length, noindex.length, shell.length);
+})();
 console.log(`[prerender] base URL: ${SITE_URL}`);
