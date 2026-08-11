@@ -421,6 +421,23 @@
 
   const STACK_KEY = 'rnawiki_stack';
   function getStack() { try { return JSON.parse(localStorage.getItem(STACK_KEY)) || []; } catch (e) { return []; } }
+  // ---- WHERE THE REGULATORY LINE IS, AND WHERE IT IS NOT (2026-08-11, P0-S1…S5) -----------------
+  // The line is what this site OFFERS, not what a person's stack may CONTAIN.
+  //
+  // The first version of this fix filtered here, in the store, so that no prescription, controlled
+  // or unapproved compound could be in a stack at all. The smoke test refused it, and it was right:
+  // `twoRealSubstancesStillFire` asserts that caffeine + ephedrine still raises an interaction
+  // warning, and a store that drops ephedrine makes that stack unrepresentable. It would have
+  // disabled the interaction engine on precisely the compounds most likely to interact — the
+  // person on prescribed sertraline adding St John's Wort is the case that engine exists for.
+  // Withholding a warning is not a safer failure than withholding a button.
+  //
+  // So: nothing on this site OFFERS a non-consumer compound — not the /c/ control (stackControl),
+  // not the compound cards (stackCard), not the /stack dropdown, not the generated protocol stack
+  // (generateProtocol), not /plan's pre-ticked checklist, not the "just add the supplements"
+  // button, not the Studio catalogue (catalogSearch). A list a PERSON supplies — their own additions,
+  // a shared `?ids=` link, a cloned community stack — is taken as given and CHECKED, because that
+  // is the only way the checking is worth anything.
   function setStack(a) { localStorage.setItem(STACK_KEY, JSON.stringify(a)); updateStackBadge(); if (a && a.length && !window._rnaHelpedPinged) { window._rnaHelpedPinged = true; try { api.helped(); } catch (e) {} } }
   function inStack(id) { return getStack().includes(id); }
   function toggleStack(id) { const s = getStack(); const i = s.indexOf(id); if (i >= 0) s.splice(i, 1); else s.push(id); setStack(s); }
@@ -475,6 +492,20 @@
     return 'unknown';
   };
   const needsDoctor = (c) => ['prescription', 'controlled', 'pharmacy'].includes(regClass(c));
+  // THE ONE PREDICATE THAT DECIDES WHETHER A COMPOUND MAY BE OFFERED AS AN ACTION.
+  // Moved here 2026-08-11 from its second home beside protocolLayers(), so that the /c/ button, the
+  // generated stack, the daily checklist and the crawler's protocol page all ask the same question
+  // of the same authored field. It is NOT the same question as needsDoctor(): `unapproved` (34
+  // compounds — SARMs, DNP, yohimbine, peptides) needs no doctor because no regulator will license
+  // it for anybody, and it is the class that least belongs behind a one-tap "+ Add".
+  // Consumer-renderable means: a person in Singapore can lawfully buy this and decide about it
+  // themselves. Everything else may be READ ABOUT here and may never be handed over as an action.
+  //
+  // BOTH terms, deliberately. `consumer_renderable` is build-derived (parse.js makes it an AND with
+  // the class, so it can only narrow) and lets an editor withhold a supplement for a reason the
+  // class does not carry; `regClass` is the floor and holds even for a compound with no authored
+  // row. Either one saying no is a no.
+  const isConsumerCpd = (c) => !!c && c.consumer_renderable !== false && ['supplement', 'otc'].includes(regClass(c));
   const rxBadge = c => needsDoctor(c) ? '<span class="pill rx" data-axis="supply" aria-label="How you get it: needs a doctor" title="A prescription or controlled drug \u2014 a doctor has to assess you and prescribe it. It is not a supplement.">\u211e Needs a doctor</span>' : '';
   // ---- W5a (2026-08-02): TWO AXES, ONE ANSWER EACH ---------------------------------------------
   // Felix's decision: a colour on this site is the REGULATOR'S current call on that molecule — the
@@ -1959,6 +1990,36 @@
     brief: { icon: '💊', label: 'How to use it', protoH: 'How to take it', wuH: '🎯 When should <i>you</i> take it?' },
   };
   function tierUI(c) { return TIER_UI[compoundTier(c)] || TIER_UI.OTC; }
+  // ---- WHO GETS A "+ Add to stack" (2026-08-11, P0-S1) -----------------------------------------
+  // Until today this read `compoundTier(c) === 'DANGER'`, and compoundTier's DANGER test is a REGEX
+  // OVER FREE PROSE: /death|fatal|lethal|deadly|do not use/ against c.watch + c.bottom. So which
+  // compounds lost the button was decided by whether an editor happened to use one of five words.
+  //
+  // MEASURED: 96 of 171 compounds are prescription, controlled, unapproved or pharmacy class, and
+  // 88 of them shipped a one-tap "+ Add to stack" — Trenbolone, Nandrolone, Clenbuterol, HGH, EPO,
+  // Testosterone, Ketamine, Adderall, Methylphenidate, Psilocybin, Semaglutide, RAD-140, HRT.
+  //
+  // The button is now decided by the authored regulatory class, which is what the class is for. The
+  // prose regex keeps ONE job it is actually good at — distinguishing "you need a doctor" from
+  // "this kills people at the doses on this page" — and that only changes the wording, never
+  // whether the action is offered.
+  //
+  // The page is unchanged in every other respect. This is deliberate: the reading page is where a
+  // person is supposed to learn what semaglutide is. It is the ACTION that moves behind the gate,
+  // and the replacement chip says why and where to go instead, rather than just disappearing.
+  function stackControl(c, added) {
+    if (compoundTier(c) === 'DANGER') return '<span class="stack-btn-lg danger-chip" title="Not for human use">⚠️ Not for use</span>';
+    if (!isConsumerCpd(c)) {
+      const cls = regClass(c);
+      const why = cls === 'controlled'
+        ? 'A controlled drug. Possession without a prescription is an offence in Singapore — this page explains what it does, and that is all it can do.'
+        : cls === 'unapproved'
+          ? 'No regulator has approved this for human use, so there is no dose anyone can stand behind. This page documents it; it does not offer it.'
+          : 'A prescription medicine. A doctor has to assess you before this is a decision you get to make — so this page will not put it on a checklist for you.';
+      return `<span class="stack-btn-lg rx-chip" title="${esc(why)}">🩺 ${cls === 'unapproved' ? 'Not approved for use' : 'Needs a prescription'}</span>`;
+    }
+    return `<button id="stack-btn" class="stack-btn-lg ${added ? 'in' : ''}">${added ? '✓ In your stack' : '+ Add to stack'}</button>`;
+  }
   function learnedBtn(c) { const done = isLearned(c.id); return `<button id="learned-btn" class="learned-btn ${done ? 'on' : ''}">${done ? '✓ Learned' : '＋ Mark learned'}</button>`; }
   function getLearned() { try { return JSON.parse(localStorage.getItem('rnawiki_learned') || '[]'); } catch (e) { return []; } }
   function isLearned(id) { return getLearned().includes(id); }
@@ -2354,7 +2415,7 @@
         <div class="detail-actions">
           ${learnedBtn(c)}
           ${PHASE2 ? '<button id="edit-btn" class="edit-btn" title="Improve this page">✎ Edit page</button>' : ''}
-          ${compoundTier(c) === 'DANGER' ? '<span class="stack-btn-lg danger-chip" title="Not for human use">⚠️ Not for use</span>' : `<button id="stack-btn" class="stack-btn-lg ${added ? 'in' : ''}">${added ? '✓ In your stack' : '+ Add to stack'}</button>`}
+          ${stackControl(c, added)}
         </div>
       </div>
       ${specStrip(c)}
@@ -3262,7 +3323,10 @@
       <h1>Stack Builder</h1>
       <p style="color:var(--muted)">Add compounds from any page (the <b>+ Add to stack</b> button), or below. See combined goal coverage, the pathways you're hitting, and shared targets. Your stack saves locally and is shareable by link.</p>
       <p class="st-entry">A stack is a list of compounds. <a href="#/studio">The Protocol Studio</a> builds the whole thing — movements, Singapore foods and daily tools alongside the compounds — checks every pairing as you assemble it, and works with no account.</p>
-      <div class="toolbar"><select id="stack-add" class="stack-select"><option value="">+ Add a compound…</option>${D.compounds.slice().sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</select>
+      ${/* The dropdown listed all 171 compounds, so Adderall, EPO, Trenbolone and insulin were each
+            one keystroke from a person's daily list. It now offers the 75 setStack() will accept —
+            an option the store refuses is a broken control, not a safety layer. */''}
+      <div class="toolbar"><select id="stack-add" class="stack-select"><option value="">+ Add a compound…</option>${D.compounds.filter(isConsumerCpd).sort((a, b) => a.name.localeCompare(b.name)).map(c => `<option value="${c.id}">${c.name}</option>`).join('')}</select>
       <button id="stack-share" class="chip">🔗 Share link</button>
       <button id="stack-wrapped" class="chip">📊 Share as image</button>
       <button id="stack-clear" class="chip">Clear</button></div>
@@ -3353,12 +3417,30 @@
   function renderFuelStack(P) {
     const el = document.getElementById('fuel-stack'); if (!el) return;
     const list = P.stack || [];
-    if (!list.length) { el.innerHTML = '<p class="muted">No supplements mapped for this protocol — focus on the food targets below.</p>'; return; }
+    // ---- THE WITHHELD BLOCK (2026-08-11) --------------------------------------------------------
+    // P.medical is what the regulatory gate in generateProtocol() held back: compounds THIS root
+    // cause authored by name, which a reader cannot lawfully act on alone. It is printed rather
+    // than dropped, for the same reason catalogSearch() prints its withheld matches — a filter that
+    // silently removes authored content teaches the reader that the site does not cover it. It
+    // names the gate and links the page; it offers no button and no dose.
+    const med = (P.medical || []);
+    // Built from classes this page already ships (.section-title, .muted, .fuel-stack-grid,
+    // .fs-item, .pill.rx) rather than a new pair of selectors — a block that only appears on the
+    // 24 root causes with a withheld compound is the last block anyone would notice going unstyled.
+    const medHtml = med.length ? `<div class="fs-med">
+      <div class="section-title">🩺 ${med.length === 1 ? 'One option here is' : `${med.length} options here are`} prescription-only</div>
+      <p class="muted" style="font-size:.9rem">Named on this protocol because ${med.length === 1 ? 'it is' : 'they are'} part of the real clinical picture — not because you should take ${med.length === 1 ? 'it' : 'them'}. A doctor has to assess you first, so ${med.length === 1 ? 'it is' : 'they are'} not on the list above and cannot be added to a stack here.</p>
+      <div class="fuel-stack-grid">${med.map(c => `<div class="fs-item"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b></a><span class="pill rx" data-axis="supply">${esc((c.supply || {}).tag || 'Needs a doctor')}</span></div>`).join('')}</div>
+    </div>` : '';
+    if (!list.length) {
+      el.innerHTML = `<p class="muted">No supplement on this site addresses this root cause${med.length ? ' — the compounds that do are prescription-only' : ''}. Focus on the food targets below${med.length ? ', and take the list underneath to a doctor' : ''}.</p>${medHtml}`;
+      return;
+    }
     el.innerHTML = `<div class="fuel-stack-grid">${list.map(c => {
       const on = inStack(c.id);
       return `<div class="fs-item"><a class="fs-main" href="#/c/${slug(c.name)}"><b>${esc(c.name)}</b>${starHTML(c.stars, { compact: true })}</a>
         <button class="fs-toggle ${on ? 'in' : ''}" data-add="${c.id}">${on ? '✓ In stack' : '+ Add'}</button></div>`;
-    }).join('')}</div>`;
+    }).join('')}</div>${medHtml}`;
     el.querySelectorAll('[data-add]').forEach(b => b.onclick = () => { toggleStack(b.dataset.add); const on = inStack(b.dataset.add); b.classList.toggle('in', on); b.textContent = on ? '✓ In stack' : '+ Add'; });
   }
   // ---------- Supplement interaction engine ----------
@@ -4655,9 +4737,36 @@
         .slice(0, 6).map(x => x.f);
     }
     // --- STACK: resolve hero compounds by name, backfill from goals/pathways, rank by evidence ---
+    // ---- THE REGULATORY GATE (2026-08-11, P0-S2/S3/S4) -------------------------------------------
+    // `stack` is not a reading list. It is the list that /fuel auto-adds to a reader's stack, that
+    // /plan PRE-TICKS onto a daily "mark taken" checklist, and that the builder counts as "kept".
+    // Everything in it is being handed over as an action, so nothing may be in it that a person
+    // cannot lawfully act on alone.
+    //
+    // MEASURED over site/data.js before this gate: 39 of 52 root causes produced a six-item stack
+    // containing at least one prescription, controlled or unapproved compound. It put Statins on
+    // patellofemoral knee pain, and TRT, EPO, methylphenidate, clomiphene, MK-677 and BPC-157 on
+    // root causes that never authored them — because the backfill ranks the whole corpus by star
+    // and the star says nothing about who is allowed to take the thing. Under Medicines Act 1975
+    // s.51 that is advertising a prescription-only medicine to the public, and there is no
+    // educational exemption.
+    //
+    // The rule is `isConsumerCpd`, the same predicate protoStack() in build/prerender.js has used
+    // since 2026-08-02 — so the two documents now tell the same story, which they did not.
+    //
+    // AUTHORED Rx COMPOUNDS ARE NOT SILENTLY DROPPED. They come back as `medical`: real editorial
+    // content, rendered in a block that names the gate instead of offering the product. Dropping
+    // them without saying so would make a page quietly smaller than its author meant it to be —
+    // which is the failure mode that makes a safety filter untrustworthy.
+    //
+    // 24 of 52 root causes author at least one; exactly ONE (low-testosterone/primary-hypogonadism,
+    // whose three authored compounds are TRT, HCG and clomiphene) is left with an empty stack, and
+    // an empty stack there is the honest answer — there is no supplement for primary hypogonadism,
+    // and the page has a clinician-escalation layer that says so.
     const picked = [], pickedIds = new Set();
-    const add = c => { if (c && !pickedIds.has(c.id)) { pickedIds.add(c.id); picked.push(c); } };
-    (rc.compounds || []).forEach(name => add(findCpt(name)));
+    const add = c => { if (c && isConsumerCpd(c) && !pickedIds.has(c.id)) { pickedIds.add(c.id); picked.push(c); } };
+    const authored = (rc.compounds || []).map(findCpt).filter(Boolean);
+    authored.forEach(add);
     // backfill pool: compounds sharing a goal or pathway, best evidence first
     const pool = D.compounds.filter(c =>
       (rc.goal_ids || []).some(g => (c.goalIds || []).includes(g)) ||
@@ -4665,11 +4774,13 @@
     pool.sort((a, b) => b.stars - a.stars);
     pool.forEach(add);
     const stack = picked.slice(0, 6);
+    // The authored ones the gate held back, de-duplicated, in authored order.
+    const medical = authored.filter((c, i, a) => !isConsumerCpd(c) && a.findIndex(x => x.id === c.id) === i);
     // synergy: compounds sharing a pathway with another in the stack
     const pathCount = {};
     stack.forEach(c => (c.pathwayIds || []).forEach(p => pathCount[p] = (pathCount[p] || 0) + 1));
     stack.forEach(c => { c._synergy = (c.pathwayIds || []).some(p => pathCount[p] > 1); });
-    return { stretch, strengthen, fuel, stack };
+    return { stretch, strengthen, fuel, stack, medical };
   }
 
   // ---- /solve?q= RANKING (2026-08-01, W2/D11) --------------------------------------------------
@@ -4891,6 +5002,8 @@
       const r = await api.cloneFork(id); const forkStack = (r.stack || []).filter(Boolean);
       const cur = getStack(); const added = forkStack.filter(x => !cur.includes(x));
       setStack(cur.concat(added));   // merge, never wipe the user's existing stack
+      // A cloned community stack is somebody else's list, so it is taken as given and checked — see
+      // the note on setStack(). The count is therefore still the count.
       alert(added.length ? `Added ${added.length} compound${added.length !== 1 ? 's' : ''} to your stack. Opening the Stack Builder…` : 'You already have all of these — opening your stack.');
       navigate('/stack');
     } catch (e) { alert(e.message); }
@@ -6298,7 +6411,11 @@
     const items = causes.map((c, i) => {
       const _fixArr = sortedFixes(c);
       const fixes = _fixArr.map(f => { const ic = FIX_ICO[f.kind] || '•'; const cc = (f.kind === 'compound' && f.ref) ? resolveCompound(f.ref) : null; const inner = cc ? `<a href="#/c/${slug(cc.name)}">${mdInline(f.what)}</a>` : mdInline(f.what); return `<li><span class="fix-kind fk-${esc(f.kind || 'x')}">${ic} ${esc(FIX_LBL[f.kind] || 'Other')}</span> ${inner}</li>`; }).join('');
-      const suppIds = [...new Set(_fixArr.filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc ? cc.id : null; }).filter(Boolean))];
+      // Filtered through the same gate as every other add surface (2026-08-11). The button's own
+      // label counts these ("＋ Just add the 4 supplements to my stack"), so an unfiltered list
+      // would promise a number setStack() then refuses. The fix rows themselves are untouched —
+      // the reader still sees every compound this cause names, and can still open its page.
+      const suppIds = [...new Set(_fixArr.filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc && isConsumerCpd(cc) ? cc.id : null; }).filter(Boolean))];
       const symptoms = mdInline(String((c.tell && c.tell.symptoms) || '').replace(/\s*Honest tiering:.*$/i, '').trim());
       const goDeeper = (c.plain || c.confusedWith) ? `<details class="cause-deeper"><summary>Go deeper — the full mechanism</summary>${c.plain ? `${mdBlocks(c.plain, mdInline)}` : ''}${c.confusedWith ? `<div class="cause-confused">↔️ <b>Often confused with:</b> ${mdInline(c.confusedWith)}</div>` : ''}</details>` : '';
       return `<details class="cause-acc lev-${esc(c.leverage || 'med')}" name="p-cause-acc" data-cause-index="${i}"${i === _open ? ' open' : ''}>
@@ -7652,7 +7769,9 @@
   //     Authored items that are not consumer-class are not dropped — they render in their own
   //     non-recommending block, which is what the crawler already gets.
   //  3. Any dose for any compound.
-  const isConsumerCpd = (c) => ['supplement', 'otc'].includes(regClass(c));
+  // isConsumerCpd used to be redeclared here. It now lives once, beside regClass — since 2026-08-11
+  // the generated stack and the /c/ button ask it too, and two copies of a safety predicate is one
+  // copy too many.
   function authoredCompounds(rc) {
     const out = [], ids = new Set();
     (rc.compounds || []).forEach(n => { const c = resolveCompound(n); if (c && !ids.has(c.id)) { ids.add(c.id); out.push(c); } });
@@ -8099,7 +8218,13 @@
       ${starHTML(c.stars, { compact: true })}</a>
       <div class="st-meta">${approvalPills(c)}${c._synergy ? '<span class="pill syn" aria-label="Shares a pathway with another item in this stack" title="Shares a pathway with another item in this stack">⚡ Synergy</span>' : ''}</div>
       <p class="st-plain">${cardSnip(c.plain || c.bottom || c.mechanism, 150)}</p>
-      <button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>
+      ${isConsumerCpd(c)
+        ? `<button class="st-add ${inStack(c.id) ? 'in' : ''}" data-add="${c.id}">${inStack(c.id) ? '✓ In stack' : '+ Add to stack'}</button>`
+        // The card is reached from search, /goal, /pathway and the builder catalogue, so it is the
+        // other place the button was offered on a compound setStack() will now refuse. A card that
+        // renders a button the store rejects is a card that lies twice: once by offering, once by
+        // appearing to have worked. See stackControl() for the same decision on the /c/ page.
+        : '<span class="st-add rx-chip">🩺 Needs a prescription</span>'}
     </div>`;
   }
 
@@ -10248,6 +10373,8 @@
   // Universal cause-finder — present on every protocol.
   document.addEventListener('click', e => { const b = e.target.closest('[data-find-cause]'); if (b) { e.preventDefault(); const p = problemById[b.getAttribute('data-find-cause')]; if (p) openCauseFinder(p); } });
   // Adopt a cause's default plan — seed My Plan's stack with that cause's supplements.
+  // data-adopt is filtered where it is BUILT (suppIds), because this button is the site making an
+  // offer and its label counts the offer. Nothing further is needed here.
   document.addEventListener('click', e => { const b = e.target.closest('.adopt-plan'); if (b) { e.preventDefault(); const ids = (b.getAttribute('data-adopt') || '').split(',').filter(Boolean); const s = getStack(); let added = 0; ids.forEach(id => { if (!s.includes(id)) { s.push(id); added++; } }); setStack(s); updateStackBadge(); b.classList.add('adopted'); b.textContent = added ? `✓ Added ${added} to your stack — track them on My Plan` : '✓ Already in your stack'; } });
   // ITEM 2 — build a full Move·Fuel·Stack plan for THIS cause (opens the builder seeded from the cause).
   document.addEventListener('click', e => {

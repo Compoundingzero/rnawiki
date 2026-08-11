@@ -547,10 +547,42 @@ const REG_BY_NAME = {};
     const r = REG_BY_NAME[String(c.name).trim().toLowerCase()];
     if (r && r.regulatory_class) {
       c.regulatory_class = r.regulatory_class;
-      c.consumer_renderable = r.consumer_renderable !== false;
+      // ---- consumer_renderable MAY NARROW THE CLASS. IT MAY NOT WIDEN IT (2026-08-11, P0-S5) ----
+      // It used to be copied straight from the authored row, which made it a SECOND, independent
+      // answer to "may this be handed to a reader as an action" — and two independent answers to a
+      // safety question is one too many. MEASURED: they disagreed on exactly one compound, and it
+      // was the worst possible one. `Insulin (prescribed)` is authored regulatory_class
+      // "prescription" AND consumer_renderable true, so catalogSearch()'s Studio gate — which keys
+      // on the flag — let insulin through while every class-based check refused it. That is the
+      // whole of P0-S5: insulin addable on /studio with no account.
+      // The flag is now an AND. A hand-authored `false` can still withhold a supplement (that is a
+      // real editorial power, e.g. a supplement with a Singapore-specific restriction); a
+      // hand-authored `true` can no longer promote a prescription, controlled or unapproved
+      // molecule into an offerable one. The class is the floor.
+      const CONSUMER_CLASSES = ['supplement', 'otc'];
+      c.consumer_renderable = r.consumer_renderable !== false && CONSUMER_CLASSES.includes(c.regulatory_class);
       if (r.sg_hsa_status) c.sg_hsa_status = r.sg_hsa_status;
       merged++;
     } else missing.push(c.name);
+    // ---- isRx IS RE-DERIVED HERE, FROM THE CLASS, NOT FROM THE BADGE EMOJI (2026-08-11, P0-S5) --
+    // It was set 250 lines above as `approvals.some(a => a === '🔵' || a === '⚫' || a === '🟠')`,
+    // i.e. from the colour of the approval badge. A colour is the REGULATOR'S call on the molecule
+    // and a green 🟢 badge means "some regulator approved this", which is true of statins, SSRIs,
+    // finasteride, PDE-5 inhibitors and insulin. So `isRx` was false on all of them.
+    //
+    // MEASURED over site/data.js the day this was written: the emoji rule and the authored class
+    // DISAGREE on 19 of 171 compounds, in both directions —
+    //   false when it should be true : Insulin (prescribed), Finasteride/Dutasteride, PDE-5
+    //                                  Inhibitors, Contrave, Tesamorelin, PT-141, Setmelanotide …
+    //   true when it should be false : Vitamin D3 (+ K2), Iron  (both authored `supplement`)
+    // Insulin is the one that matters most: c132 is why the Studio let a person add insulin under a
+    // green "✅ NOTHING FLAGGED".
+    //
+    // The authored class wins; the emoji survives only as the fallback for a compound with no row,
+    // which the assertion below caps at 8. `pharmacy` counts as Rx for this flag: a pharmacy-only
+    // medicine still needs somebody qualified between the reader and the box.
+    const RX_CLASSES = ['prescription', 'controlled', 'pharmacy'];
+    if (c.regulatory_class) c.isRx = RX_CLASSES.includes(c.regulatory_class);
   });
   console.log(`[parse] regulatory_class merged onto ${merged}/${compounds.length} compounds` +
     (missing.length ? ` (no row for: ${missing.slice(0, 6).join(', ')}${missing.length > 6 ? ` +${missing.length - 6} more` : ''})` : ''));
@@ -3740,4 +3772,111 @@ function blankComments(src) {
     process.exit(1);
   }
   console.log('[parse] profile disclosure gate OK — GET /api/u/:handle carries %d banned pattern(s) 0 times, 0 avatar/real-name fields in 3 files, the route lists match on %d private + %d shell routes, and all %d SPA-only routes are classified or prerendered.', 7, (noindex || []).length, (shellSrv || []).length, (spaOnly || []).length);
+})();
+
+// ---- assertRxActionSurface (2026-08-11) · P0-S1 · P0-S2 · P0-S3 · P0-S4 · P0-S5 ----------------
+// THE RULE: a compound a person cannot lawfully act on alone may be READ ABOUT anywhere on this
+// site and may never be OFFERED as an action anywhere on it. Reading is untouched — all 171 /c/
+// pages exist, are linked, and need no account. What is gated is the button, the pre-ticked
+// checklist row, the generated stack and the assembly catalogue.
+//
+// WHY A GATE AND NOT JUST THE FIX. Every defect this closes was a SECOND definition of "consumer"
+// disagreeing with the first:
+//   · compoundTier() decided the /c/ button with a regex over prose (/death|fatal|lethal/), so 88
+//     of 96 restricted compounds kept "+ Add to stack";
+//   · generateProtocol() applied no filter at all, so 39 of 52 protocols pre-ticked a prescription
+//     or controlled compound onto a daily checklist;
+//   · `consumer_renderable` was copied from the authored row rather than derived, so it disagreed
+//     with the class on Insulin (prescribed) — and the Studio catalogue keys on the flag.
+// One more copy of the predicate and one of them drifts again. This gate asserts there is one.
+(function assertRxActionSurface() {
+  const bad = [];
+  const app = fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8');
+  const pre = fs.readFileSync(path.join(ROOT, 'build/prerender.js'), 'utf8');
+  const CONSUMER = ['supplement', 'otc'];
+  const consumer = (c) => c.consumer_renderable !== false && CONSUMER.includes(c.regulatory_class);
+
+  // (1) The derived flag can only narrow the class, never widen it. This is the insulin case.
+  compounds.forEach((c) => {
+    if (c.consumer_renderable === true && !CONSUMER.includes(c.regulatory_class)) {
+      bad.push(`${c.id} ("${c.name}") is regulatory_class "${c.regulatory_class}" and consumer_renderable true. The flag may withhold a supplement; it may not promote a prescription, controlled or unapproved molecule into something a builder can hand out. Fix the merge in this file, not the data row.`);
+    }
+  });
+
+  // (2) The three definitions of the predicate are one definition. Compared as source text, because
+  //     "they compute the same thing today" is exactly what was true of the pair that drifted.
+  const DEF = /!!c && c\.consumer_renderable !== false && \['supplement', 'otc'\]\.includes\(regClass\(c\)\)/;
+  if (!DEF.test(app)) bad.push('site/app.js — isConsumerCpd() no longer matches the canonical predicate (both terms, class floor + derived flag). If the predicate is meant to change, change it in all three files and update this gate deliberately.');
+  if (!DEF.test(pre)) bad.push('build/prerender.js — isConsumerRenderable() no longer matches the canonical predicate. The prerendered and hydrated documents would withhold different compounds, and ~90% of readers only ever see the prerendered one.');
+  if ((app.match(/const isConsumerCpd = /g) || []).length !== 1) bad.push('site/app.js declares isConsumerCpd more than once (or not at all). A safety predicate with two homes is the defect this gate exists to prevent.');
+
+  // (2b) Every OFFER surface still asks the predicate.
+  //     The line this gate defends is what the site OFFERS, not what a stack may CONTAIN — the
+  //     store deliberately does NOT filter, because a stack that cannot hold ephedrine cannot be
+  //     warned about caffeine + ephedrine, and scripts/smoke.mjs asserts that warning still fires.
+  //     That makes the offer surfaces the whole of the enforcement, so each one is named here. Add
+  //     a new way to put a compound in front of a reader as an action, and add it to this list.
+  const OFFER_SURFACES = [
+    [/function stackControl\(c, added\) \{[\s\S]*?if \(!isConsumerCpd\(c\)\)/, 'stackControl() — the "+ Add to stack" control on every /c/ page'],
+    [/<button class="st-add \$\{inStack\(c\.id\) \? 'in' : ''\}"/, 'stackCard() — the compound card used by search, /goal, /pathway and the builder'],
+    [/isConsumerCpd\(c\)\s*\n\s*\? `<button class="st-add/, 'stackCard() — the card no longer chooses its control by the predicate'],
+    [/D\.compounds\.filter\(isConsumerCpd\)\.sort\(\(a, b\) => a\.name\.localeCompare\(b\.name\)\)/, "the /stack “+ Add a compound…” dropdown"],
+    [/f\.kind === 'compound' && f\.ref[\s\S]{0,120}isConsumerCpd\(cc\)/, 'the cause page\'s "just add the supplements to my stack" button (suppIds)'],
+    [/const out = all\.filter\(c => c\.consumer_renderable !== false\)/, 'catalogSearch() — the Studio and plan-builder assembly catalogue'],
+  ];
+  OFFER_SURFACES.forEach(([re, what]) => { if (!re.test(app)) bad.push(`site/app.js — ${what} no longer gates on the consumer predicate.`); });
+
+  // (3a) The generator in site/app.js still applies the predicate.
+  //     THIS LINE EXISTS BECAUSE THE FIRST VERSION OF THIS GATE PASSED WITHOUT IT. Proving a gate
+  //     by reintroducing the original bug is the rule in this repo, and when the filter was deleted
+  //     from generateProtocol()'s add(), part (3b) below still reported "0 leaking" — because (3b)
+  //     re-runs the algorithm over the DATA and never reads the code that ships. A gate that
+  //     re-implements the thing it is checking is measuring itself. (3b) proves the corpus cannot
+  //     produce a leak under the correct algorithm; this proves the correct algorithm is the one
+  //     the SPA runs.
+  const gp = app.slice(app.indexOf('function generateProtocol(rc)'));
+  const gpBody = gp.slice(0, gp.indexOf('\n  }\n'));
+  if (!/const add = c => \{ if \(c && isConsumerCpd\(c\) &&/.test(gpBody)) {
+    bad.push('site/app.js generateProtocol() — the stack accumulator no longer filters through isConsumerCpd(). That one clause is what keeps a prescription or controlled compound off /fuel\'s auto-added stack and off /plan\'s pre-ticked daily checklist; without it, 39 of 52 protocols leak.');
+  }
+
+  // (3b) No generated stack may contain a non-consumer compound. This re-runs generateProtocol()'s
+  //     ACTUAL algorithm — authored heroes, then the goal/pathway backfill ranked by star, capped
+  //     at six — over every root cause, so the corpus itself cannot produce a leak.
+  //     Before the filter this reported 39 of 52.
+  const byName = {};
+  compounds.forEach((c) => { byName[c.name.trim().toLowerCase()] = c; });
+  const findC = (n) => byName[String(n || '').trim().toLowerCase()]
+    || compounds.find((c) => c.name.toLowerCase().indexOf(String(n || '').trim().toLowerCase()) === 0);
+  let stacksChecked = 0, offered = 0;
+  (graph.problems || []).forEach((p) => (p.root_causes || []).forEach((rc) => {
+    stacksChecked++;
+    const ids = new Set(), picked = [];
+    const addC = (c) => { if (c && consumer(c) && !ids.has(c.id)) { ids.add(c.id); picked.push(c); } };
+    (rc.compounds || []).forEach((n) => addC(findC(n)));
+    const pool = compounds.filter((c) =>
+      (rc.goal_ids || []).some((g) => (c.goalIds || []).includes(g))
+      || (rc.pathway_ids || []).some((x) => (c.pathwayIds || []).includes(x)));
+    pool.sort((a, b) => (b.stars || 0) - (a.stars || 0));
+    pool.forEach(addC);
+    const stack = picked.slice(0, 6);
+    const leak = stack.filter((c) => !consumer(c));
+    if (leak.length) {
+      offered++;
+      bad.push(`/protocol/${p.id}/${rc.id} — the generated stack offers ${leak.map((c) => `${c.name} (${c.regulatory_class})`).join(', ')}. /fuel auto-adds this list to the reader's stack and /plan pre-ticks it onto a daily "mark taken" checklist.`);
+    }
+  }));
+
+  if (bad.length) {
+    console.error('\n[parse] Rx ACTION-SURFACE GATE FAILED — refusing to build.');
+    bad.slice(0, 12).forEach((b) => console.error('  ✗ ' + b));
+    if (bad.length > 12) console.error(`  … and ${bad.length - 12} more`);
+    console.error('  A prescription, controlled or unapproved compound may be read about on this site.');
+    console.error('  It may not be offered as an action: no "+ Add", no pre-ticked checklist row, no');
+    console.error('  generated stack, no assembly catalogue. Medicines Act 1975 s.51 has no');
+    console.error('  educational exemption for advertising a prescription-only medicine to the public.');
+    process.exit(1);
+  }
+  const n = compounds.filter(consumer).length;
+  console.log('[parse] Rx action surface OK — %d of %d compounds are offerable (%d withheld), one predicate in 3 files, %d generated stacks checked, %d leaking.', n, compounds.length, compounds.length - n, stacksChecked, offered);
 })();

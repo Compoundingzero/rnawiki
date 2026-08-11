@@ -3101,6 +3101,13 @@ html:has(.st-bar) .feedback-fab{bottom:84px}
 
 /* ---- Tier-aware safety states (RESEARCH/DANGER compounds) ---- */
 .danger-chip{background:color-mix(in srgb,#dc2626 12%,transparent)!important;color:#dc2626!important;border:1px solid color-mix(in srgb,#dc2626 40%,var(--line))!important;cursor:not-allowed;display:inline-flex;align-items:center;font-weight:600}
+/* .rx-chip (2026-08-11) stands where "+ Add to stack" stands on the 96 compounds a person cannot
+   lawfully act on alone. Deliberately NOT red: this is a gate, not a hazard — the hazard chip is
+   .danger-chip above and the two must not read as the same thing. Built from --head on --panel2
+   with --line, three tokens assertContrastTokens() already measures on this surface, rather than a
+   fourth hard-coded hue nothing checks. cursor:help because the chip carries the reason in its
+   title; not-allowed would blame the reader for a rule that is not about them. */
+.rx-chip{background:var(--panel2)!important;color:var(--head)!important;border:1px solid var(--line)!important;cursor:help;display:inline-flex;align-items:center;gap:.35em;font-weight:600}
 .whenuse.danger{background:color-mix(in srgb,#dc2626 6%,transparent);border-color:color-mix(in srgb,#dc2626 35%,var(--line))}
 .whenuse.danger .wu-h{color:#dc2626}
 .whenuse.caution{background:color-mix(in srgb,#d97706 5%,transparent);border-color:color-mix(in srgb,#d97706 28%,var(--line))}

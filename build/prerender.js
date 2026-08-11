@@ -268,7 +268,10 @@ function regClass(c) {
   if (ap.includes('🟢')) return 'otc';
   return 'unknown';
 }
-const isConsumerRenderable = (c) => ['supplement', 'otc'].includes(regClass(c));
+// Both terms since 2026-08-11, matching isConsumerCpd() in site/app.js exactly — the prerendered
+// and the hydrated document must withhold the SAME compounds, and assertRxActionSurface() in
+// build/parse.js fails the build if the three definitions drift apart.
+const isConsumerRenderable = (c) => !!c && c.consumer_renderable !== false && ['supplement', 'otc'].includes(regClass(c));
 // Explicit nutrient labels. The old /_\w+$/ regex ate the type suffix AND the discriminator
 // ('_c' / '_d'), collapsing vitamin_c_mg and vitamin_d_iu both to "vitamin". A map fails
 // visibly on an unknown key instead of silently mislabelling.
