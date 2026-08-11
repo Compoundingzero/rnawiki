@@ -4352,7 +4352,7 @@
   const searchBox = document.getElementById('search');
   const searchOut = document.getElementById('search-results');
   const index = [
-    ...D.compounds.map(c => ({ kind: 'Compound', title: c.name, sub: c.category, href: '#/c/' + slug(c.name), hay: (c.name + ' ' + c.goals.join(' ') + ' ' + c.mechanism + ' ' + c.plain + ' ' + (c.targets || []).map(t => t.sym).join(' ')).toLowerCase() })),
+    ...D.compounds.map(c => ({ kind: 'Compound', title: c.name, sub: isToxicNoSafeDose(c) ? 'Toxic · no safe dose' : c.category, href: '#/c/' + slug(c.name), hay: (c.name + ' ' + c.goals.join(' ') + ' ' + c.mechanism + ' ' + c.plain + ' ' + (c.targets || []).map(t => t.sym).join(' ')).toLowerCase() })),
     ...(D.targets || []).map(t => ({ kind: 'Target', title: t.sym, sub: t.name + ' · ' + t.compoundIds.length + ' compounds', href: '#/target/' + tkey(t.sym), hay: (t.sym + ' ' + t.name).toLowerCase() })),
     ...D.pathways.map((p, i) => ({ kind: 'Pathway', title: p.shortLabel, sub: 'Master pathway', href: '#/pathway/' + i, hay: p.title.toLowerCase() + ' ' + p.html.toLowerCase() })),
     ...D.modules.map((m, i) => ({ kind: 'Learn', title: stripNum(m.title), sub: 'Foundations', href: '#/learn/' + i, hay: m.title.toLowerCase() + ' ' + m.html.toLowerCase() })),

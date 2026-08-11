@@ -1000,6 +1000,23 @@ const ASSERTIONS = {
       btn.click();
       return null;
     },
+  }, {
+    name: 'toxicCompoundsStayDiscoverableWithoutLookingLikeGoalOptions',
+    why: 'DNP must remain findable from the universal search, but a goal category beside its name makes a lethal agent look like an ordinary fat-loss option',
+    evaluate: async () => {
+      const box = document.getElementById('search');
+      const out = document.getElementById('search-results');
+      if (!box || !out) return 'the universal search controls are missing';
+      box.value = 'DNP';
+      box.dispatchEvent(new Event('input', { bubbles: true }));
+      await new Promise((r) => setTimeout(r, 120));
+      const row = [...out.querySelectorAll('a')].find((a) => /2,4-Dinitrophenol \(DNP\)/i.test(a.innerText || ''));
+      if (!row) return 'DNP is no longer discoverable from universal search';
+      const text = (row.innerText || '').replace(/\s+/g, ' ').trim();
+      if (!/Toxic · no safe dose/i.test(text)) return `the DNP result reads "${text}" instead of carrying the toxic/no-safe-dose boundary`;
+      if (/FAT LOSS/i.test(text)) return `the DNP result still advertises its old goal category: "${text}"`;
+      return null;
+    },
   }],
   // ---- W5c (2026-08-02): THE BODY MAP WAS UNTAPPABLE, UNREACHABLE AND UNNAMED ----------------
   // Measured hydrated at 390x844 (qa/out/w5cdi/before-390.json):
