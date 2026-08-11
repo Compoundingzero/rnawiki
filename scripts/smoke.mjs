@@ -656,35 +656,53 @@ const ASSERTIONS = {
       if (!search) return 'the Supplements step of the builder has no #build-search — this gate is checking nothing, which is worse than failing';
       const type = async (q) => {
         search.value = q; search.dispatchEvent(new Event('input', { bubbles: true })); await tick(120);
+        const row = (b) => ({
+          id: b.dataset.addId || null,
+          held: b.classList.contains('held'),
+          tag: b.tagName,
+          href: b.getAttribute('href') || '',
+          name: (b.querySelector('.br-name') || {}).innerText || '',
+          meta: (b.querySelector('.br-meta') || {}).innerText || '',
+          add: (b.querySelector('.br-add') || {}).innerText || '',
+        });
+        const all = [...document.querySelectorAll('.build-res')].map(row);
         return {
-          rows: [...document.querySelectorAll('.build-res')].map(b => ({
-            id: b.dataset.addId,
-            name: (b.querySelector('.br-name') || {}).innerText || '',
-            meta: (b.querySelector('.br-meta') || {}).innerText || '',
-          })),
-          held: document.querySelector('.build-held'),
+          addable: all.filter(x => !x.held),
+          restricted: all.filter(x => x.held),
+          note: document.querySelector('.build-held'),
         };
       };
-      // 1 + 2 — the four names measured above, each a real page on this site.
+      // D-19 (2026-08-11) CHANGED THE SHAPE THIS ASSERTS, NOT THE PROPERTY.
+      // Felix: "still put the prescription drug in our supplement and drug list, but ... don't
+      // allow someone to be able to select it when building any protocol." So a restricted match is
+      // now a ROW in the results, where it used to be a name in a sentence underneath. The thing
+      // that must never happen is unchanged and is checked first: no restricted compound may carry
+      // an add control. The rest of this checks it is genuinely LISTED and genuinely inert, because
+      // "listed but unselectable" fails in both directions — a silent filter is a lie about
+      // coverage, and a live "+ Add" is an instruction to take it.
       for (const q of ['dinitro', 'semaglutide', 'clenbuterol', 'trenbolone']) {
         const r = await type(q);
-        const offered = r.rows.filter(x => (D.compounds.find(c => c.id === x.id) || {}).consumer_renderable === false);
+        const offered = r.addable.filter(x => (D.compounds.find(c => c.id === x.id) || {}).consumer_renderable === false);
         if (offered.length) return `typing "${q}" offers a "+ Add" for ${JSON.stringify(offered.map(o => o.name))} — the builder is handing a reader an instruction to take a compound whose own page refuses to print a dose for it`;
-        if (r.rows.length) return `typing "${q}" returned ${r.rows.length} addable row(s) — expected none; the filter is matching the wrong field`;
-        if (!r.held) return `typing "${q}" returned nothing at all and said nothing. The reader typed a name RNAwiki documents in full and the site behaved as though it had never heard of it — a silent filter is its own honesty defect`;
-        const txt = r.held.innerText || '';
-        const link = r.held.querySelector('a[href^="#/c/"]');
-        if (!link) return `the withheld line for "${q}" names no page to read instead: "${txt.slice(0, 120)}"`;
-        const sl = link.getAttribute('href').replace('#/c/', '');
-        if (!D.compounds.some(c => String(c.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === sl)) {
-          return `the withheld line for "${q}" links to #/c/${sl}, which resolves to no compound — detail() looks up by SLUG, so an id here would land on notFound()`;
+        if (r.addable.length) return `typing "${q}" returned ${r.addable.length} addable row(s) — expected none; the filter is matching the wrong field`;
+        if (!r.restricted.length) return `typing "${q}" returned nothing at all. The reader typed a name RNAwiki documents in full and the site behaved as though it had never heard of it — a silent filter is its own honesty defect, and D-19 requires these to stay in the list`;
+        for (const x of r.restricted) {
+          if (x.id) return `the restricted row for "${x.name}" carries data-add-id="${x.id}" — the click handler binds on that attribute, so this row adds the compound`;
+          if (x.tag !== 'A') return `the restricted row for "${x.name}" is a <${x.tag}>, not a link. A button that refuses on click teaches the reader the interface is broken rather than that the substance is restricted`;
+          if (!/^#\/c\//.test(x.href)) return `the restricted row for "${x.name}" links to "${x.href}" — it must open that compound's own page, which is the one thing a reader CAN do with it`;
+          const sl = x.href.replace('#/c/', '');
+          if (!D.compounds.some(c => String(c.name).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') === sl)) {
+            return `the restricted row for "${x.name}" links to #/c/${sl}, which resolves to no compound — detail() looks up by SLUG, so an id here would land on notFound()`;
+          }
+          if (/\+\s*Add/i.test(x.add)) return `the restricted row for "${x.name}" reads "${x.add}" in its action slot — it must say what the reader can do (open the page), not offer what they cannot`;
         }
+        if (!r.note) return `typing "${q}" listed a restricted row but never said WHY it cannot be added — the row is greyed and the reader is left to guess`;
       }
       // 3 — the positive control.
       const ok = await type('creatine');
-      if (!ok.rows.length) return 'typing "creatine" offers nothing — the restriction has emptied the assembly catalogue instead of narrowing it';
-      const cre = ok.rows.find(x => x.id === 'c0');
-      if (!cre) return `typing "creatine" no longer offers Creatine Monohydrate: ${JSON.stringify(ok.rows.map(r => r.name))}`;
+      if (!ok.addable.length) return 'typing "creatine" offers nothing — the restriction has emptied the assembly catalogue instead of narrowing it';
+      const cre = ok.addable.find(x => x.id === 'c0');
+      if (!cre) return `typing "creatine" no longer offers Creatine Monohydrate: ${JSON.stringify(ok.addable.map(r => r.name))}`;
       const supply = ((D.compounds.find(c => c.id === 'c0') || {}).supply || {}).tag;
       if (supply && cre.meta !== supply) return `the result row for Creatine Monohydrate reads "${cre.meta}" — it must carry its supply status ("${supply}"), not its category. "FAT LOSS" is what DNP and a fibre supplement had in common.`;
       return null;
