@@ -572,6 +572,18 @@
    "regulatory_class": "unapproved",
    "consumer_renderable": false,
    "sg_hsa_status": "Not approved for human use. DNP is a toxic industrial chemical with no safe dose for weight loss; do not buy or use it.",
+   "risk_policy": {
+    "tier": "toxic_no_safe_dose",
+    "self_directed_eligible": false,
+    "show_evidence_score": false,
+    "show_dose_details": false,
+    "show_social_generation": false,
+    "show_comparisons": false,
+    "show_sourcing": false,
+    "show_optimization": false,
+    "public_summary": "DNP is a toxic industrial chemical that disrupts mitochondrial energy production. It can trigger uncontrolled heat production, organ failure and death, and it has no safe dose for weight loss.",
+    "emergency_guidance": "If DNP exposure may have happened, or the person is hot, sweating heavily, breathing fast, agitated, confused or unwell, call local emergency services or a poison centre now. Do not wait for symptoms to worsen or try to manage this at home."
+   },
    "approvals": [
     {
      "badge": "⚫",

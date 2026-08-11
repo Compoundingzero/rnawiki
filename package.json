@@ -2,7 +2,7 @@
   "name": "rnawiki",
   "version": "1.0.0",
   "private": true,
-  "description": "RNAwiki — translate the code of human performance into real results. Drug, supplement & longevity wiki with root-cause protocols and community editing.",
+  "description": "RNAwiki — understand the evidence before you act. Plain-English health and performance evidence, safety boundaries, and practical next steps.",
   "scripts": {
     "build": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs && node build/precompress.js",
     "prestart": "node build/parse.js && node build/prerender.js && node scripts/anatomy/copy-assets.mjs && node build/precompress.js",

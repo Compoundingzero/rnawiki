@@ -8,8 +8,12 @@ const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const server = read('server.js');
 const db = read('db.js');
 const app = read('site/app.js');
+const styles = read('site/styles.css');
 const plan = read('site/plan.html');
 const sitemap = read('site/sitemap.xml');
+const discoveryDocs = ['site/az.html', 'site/browse.html'].map((file) => [file, read(file)]);
+const fatLossGoalDoc = read('site/goal/fatloss.html');
+const toxicDoc = read('site/c/2-4-dinitrophenol-dnp.html');
 const failures = [];
 const requireText = (text, needle, label) => {
   if (!text.includes(needle)) failures.push(label);
@@ -29,9 +33,38 @@ for (const pair of [
 requireText(server, "!FEATURES.researchCollection && seg[0] === 'experiments'", 'legacy personal-observation writes remain live when research is off');
 requireText(server, "!FEATURES.publicOutcomeAggregates && seg[0] === 'ledger'", 'legacy result-ledger aggregates remain public when outcome aggregates are off');
 requireText(server, 'if (!FEATURES.publicCommunity || !userId || !db.enabled) return;', 'reward ledger still accrues while the community product is off');
+requireText(app, "if (!featureOn('publicCommunity')) return;", 'the client still requests or wires public voting while community is off');
+if ((app.match(/if \(!featureOn\('publicCommunity'\)\) return;/g) || []).length < 3) failures.push('one or more protocol-request entry points bypass the public-community kill switch');
+requireText(app, "const requestBlock = featureOn('publicCommunity')", 'Find still renders the protocol-request module while community is off');
+requireText(app, "const request = featureOn('publicCommunity')", 'the zero-match state still renders a protocol-request button while community is off');
+requireText(app, 'solveQPanel(q, rankProblems(q), solveGuidance(q))', 'live Find input bypasses urgent and professional-review routing');
+requireText(app, "document.querySelector('.q-panel[data-on]')", 'live Find states can accumulate instead of replacing the previous result');
+requireText(styles, '.vote-foot{display:none;', 'the contained community vote strip is visible before config is known');
+requireText(styles, 'html[data-community-on] .vote-foot{display:flex}', 'the vote strip has no explicit server-configured reveal state');
 for (const rootName of ['edits', 'proposals', 'rootcause-changes', 'foods', 'protocol-requests']) {
   requireText(server, `'${rootName}'`, `${rootName} is absent from the fail-closed community surface`);
 }
+
+// Discoverability is allowed for a toxic/no-safe-dose record; product-like evidence scoring is
+// not. Lock the actual generated documents because the compound detail page can be correct while
+// an index or goal page quietly reintroduces the stars.
+for (const [file, html] of discoveryDocs) {
+  const start = html.indexOf('/c/2-4-dinitrophenol-dnp');
+  if (start < 0) { failures.push(`${file} no longer keeps DNP discoverable`); continue; }
+  const end = html.indexOf('</li>', start);
+  const row = html.slice(start, end < 0 ? start + 600 : end + 5);
+  if (!/Toxic · no safe dose/i.test(row)) failures.push(`${file} does not replace DNP's score with its toxic/no-safe-dose risk label`);
+  if (/[★☆]/.test(row)) failures.push(`${file} still renders an efficacy-star score for DNP`);
+  if (/Controlled/i.test(row)) failures.push(`${file} still reduces DNP to a generic Controlled label`);
+}
+if (fatLossGoalDoc.includes('/c/2-4-dinitrophenol-dnp')) failures.push('the fat-loss efficacy ranking still presents DNP as a goal option');
+requireText(app, 'const list = saved.filter((c) => !isToxicNoSafeDose(c));', 'legacy toxic stack entries still enter ordinary combination analysis');
+requireText(app, 'class="stack-toxic-quarantine" role="alert"', 'legacy toxic stack entries have no exposure/emergency quarantine');
+requireText(app, 'const safeForkStack = forkStack.filter((x) => !isToxicNoSafeDose(byId[x]));', 'community-stack cloning can still import toxic/no-safe-dose entries');
+if (/class="[^"]*pagetoc/.test(toxicDoc)) failures.push('the prerendered toxic page inserts generic navigation before emergency guidance');
+const toxicStopAt = toxicDoc.indexOf('class="toxic-stop"');
+const toxicEmergencyAt = toxicDoc.indexOf('class="toxic-emergency"');
+if (toxicStopAt < 0 || toxicEmergencyAt < 0 || toxicStopAt > toxicEmergencyAt) failures.push('the prerendered toxic page does not lead with stop guidance followed by emergency action');
 
 // A public repository must never contain a usable production session fallback.
 forbidText(server, "'dev-secret-change-me'", 'the forgeable development session secret returned');

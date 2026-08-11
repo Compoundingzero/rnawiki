@@ -562,6 +562,10 @@ const REG_BY_NAME = {};
       const CONSUMER_CLASSES = ['supplement', 'otc'];
       c.consumer_renderable = r.consumer_renderable !== false && CONSUMER_CLASSES.includes(c.regulatory_class);
       if (r.sg_hsa_status) c.sg_hsa_status = r.sg_hsa_status;
+      // Risk behaviour is authored beside the regulatory class so every renderer, action gate and
+      // regression test reads the same decision. Never infer a toxic/no-safe-dose page from its
+      // title or from whether an editor happened to use the word "fatal" in prose.
+      if (r.risk_policy) c.risk_policy = JSON.parse(JSON.stringify(r.risk_policy));
       merged++;
     } else missing.push(c.name);
     // ---- isRx IS RE-DERIVED HERE, FROM THE CLASS, NOT FROM THE BADGE EMOJI (2026-08-11, P0-S5) --
@@ -592,6 +596,28 @@ const REG_BY_NAME = {};
     console.error(`[parse] REGULATORY CLASS ASSERTION FAILED — ${missing.length} compounds have no authored class.`);
     process.exit(1);
   }
+
+  // A toxic/no-safe-dose page is an educational emergency surface, never a lower-scored version
+  // of an ordinary compound page. Fail the build if any policy can leak a score, dosing, sharing,
+  // comparison, sourcing or optimisation surface back in through a future data edit.
+  const toxic = compounds.filter((c) => c.risk_policy && c.risk_policy.tier === 'toxic_no_safe_dose');
+  const toxicBad = [];
+  toxic.forEach((c) => {
+    const p = c.risk_policy;
+    if (c.consumer_renderable !== false) toxicBad.push(`${c.name}: consumer_renderable must be false`);
+    if (p.self_directed_eligible !== false) toxicBad.push(`${c.name}: self_directed_eligible must be false`);
+    ['show_evidence_score', 'show_dose_details', 'show_social_generation', 'show_comparisons', 'show_sourcing', 'show_optimization']
+      .forEach((k) => { if (p[k] !== false) toxicBad.push(`${c.name}: ${k} must be false`); });
+    if (!p.public_summary || !/toxic|fatal|death/i.test(p.public_summary)) toxicBad.push(`${c.name}: public_summary must state the danger plainly`);
+    if (!p.emergency_guidance || !/emergency|poison/i.test(p.emergency_guidance)) toxicBad.push(`${c.name}: emergency_guidance is missing`);
+  });
+  if (!toxic.length || toxicBad.length) {
+    console.error('[parse] TOXIC RISK POLICY ASSERTION FAILED — refusing to build:');
+    if (!toxic.length) console.error('  ✗ no compound is governed by toxic_no_safe_dose');
+    toxicBad.forEach((x) => console.error('  ✗ ' + x));
+    process.exit(1);
+  }
+  console.log(`[parse] toxic risk policy: ${toxic.length} no-safe-dose page${toxic.length === 1 ? '' : 's'} fail closed`);
 }
 
 // ---- W5a (2026-08-02): TWO AXES, ONE ANSWER EACH ---------------------------------------------

@@ -92,6 +92,9 @@ const COHORT_BACK6 = (() => { const d = new Date(); d.setDate(d.getDate() - 6); 
 const ROUTES = [
   ['home', '/'],
   ['compound', '/c/creatine-monohydrate'],
+  // A toxic/no-safe-dose compound is a different product surface: education + emergency route,
+  // never the ordinary scored, dose-oriented, shareable compound lesson.
+  ['compound-toxic', '/c/2-4-dinitrophenol-dnp'],
   // W5b: the same template with a fragment Google publishes for it. Measured before the fix,
   // hydrated at 390x844: /c/creatine-monohydrate#how-it-works left window.scrollY at 0 with
   // document.getElementById('how-it-works') === null, and 7,339 of 8,080 published fragments across
@@ -268,6 +271,45 @@ const CONSOLE_ALLOWLIST = [
 // ----------------------------------------------- per-route DOM assertions
 // Keep these few and load-bearing. Each names the defect it locks down.
 const ASSERTIONS = {
+  '/c/creatine-monohydrate': [{
+    name: 'ordinaryCompoundKeepsItsNormalEvidenceAndActionSurface',
+    why: 'positive control: the toxic policy must narrow only governed compounds, not silently strip the ordinary compound template',
+    evaluate: () => {
+      const root = document.getElementById('cpd-detail');
+      if (!root) return 'no compound detail document';
+      if (root.dataset.riskTier === 'toxic_no_safe_dose') return 'creatine was incorrectly projected as toxic/no-safe-dose';
+      if (!root.querySelector('.stars')) return 'ordinary compound lost its evidence rating';
+      if (!root.querySelector('#stack-btn')) return 'ordinary self-directed compound lost its add-to-stack action';
+      if (!root.querySelector('.spec-strip')) return 'ordinary compound lost its summary specification strip';
+      if (!root.querySelector('.ch-steps')) return 'ordinary compound lost its learning chapters';
+      return null;
+    },
+  }],
+  '/c/2-4-dinitrophenol-dnp': [{
+    name: 'toxicCompoundFailsClosedToEducationAndEmergencyGuidance',
+    why: 'DNP previously rendered stars, lethal-vs-used dose comparisons, stack/compare links and social-generation controls on the same page that said it can kill',
+    evaluate: () => {
+      const root = document.getElementById('cpd-detail');
+      if (!root) return 'no compound detail document';
+      if (root.dataset.riskTier !== 'toxic_no_safe_dose') return `the page is not marked with its risk policy (got "${root.dataset.riskTier || 'none'}")`;
+      const prohibited = root.querySelectorAll('.stars,.ev-glance,.positioning,.cmp-card,.dosesim,.share-short-btn,#stack-btn,.detail-actions,.spec-strip,.related-fold,.ch-steps,.j-ribbon,button');
+      if (prohibited.length) return `${prohibited.length} prohibited score, action, comparison, sharing, lesson or optimisation controls rendered; first is ${prohibited[0].tagName.toLowerCase()}.${prohibited[0].className || prohibited[0].id}`;
+      const localLinks = [...root.querySelectorAll('a[href]')].map((a) => a.getAttribute('href') || '');
+      const actionLink = localLinks.find((h) => /(?:^#?\/)(?:stack|protocol|compare)(?:\/|$)/i.test(h));
+      if (actionLink) return `links into an action/optimisation surface: ${actionLink}`;
+      const text = root.innerText.replace(/\s+/g, ' ').trim();
+      const bannedCopy = text.match(/Make a short|Add to stack|Used in these protocols|Stacks with|where to buy|Cost per|Dose[–-]response|How to take|How to use|Mark learned|Evidence:\s*[★☆]/i);
+      if (bannedCopy) return `renders prohibited copy: "${bannedCopy[0]}"`;
+      const amount = text.match(/\b\d+(?:\.\d+)?(?:\s*[–-]\s*\d+(?:\.\d+)?)?\s*(?:mg|mcg|µg|g)(?:\s*\/\s*(?:kg|day))?\b/i);
+      if (amount) return `renders a numeric dosing amount/range: "${amount[0]}"`;
+      if (/[★☆]/.test(text)) return 'renders an evidence-star glyph';
+      if (/dosage|evidence\s*&\s*uses/i.test(document.title)) return `ordinary compound SEO title leaked: "${document.title}"`;
+      for (const [re, label] of [[/no safe dose/i, 'no-safe-dose warning'], [/emergency/i, 'emergency action'], [/fatal/i, 'fatality warning'], [/no antidote/i, 'no-antidote warning']]) {
+        if (!re.test(text)) return `missing ${label}`;
+      }
+      return null;
+    },
+  }],
   // W4.5 (2026-08-02): A ROW MAY NOT ASSERT AN INTERACTION BETWEEN A MOLECULE AND ITSELF.
   // MEASURED HYDRATED, real browser at 390x844, 0 pageerrors, before this gate existed:
   //   /stack?ids=c1,c24    "☠️ Stacked stimulants — cardiovascular strain · Caffeine + Caffeine
@@ -715,8 +757,88 @@ const ASSERTIONS = {
       if (!ok.coverage || ok.coverage.state !== 'not_applicable' || ok.coverage.of !== 0 || ok.coverage.compound_of !== 1) return `a one-compound protocol did not report the explicit no-pair state: ${JSON.stringify(ok.coverage)}`;
       return null;
     },
+  }, {
+    name: 'legacyToxicStackEntriesAreQuarantinedBeforeAnalysis',
+    why: 'a toxic entry saved by an older release must lead to exposure guidance, never goals, pathways, targets or a reassuring one-item interaction state',
+    evaluate: async () => {
+      const key = 'rnawiki_stack';
+      const before = localStorage.getItem(key);
+      try {
+        localStorage.setItem(key, JSON.stringify(['c28', 'c0']));
+        history.replaceState({}, '', '/stack');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        await new Promise(r => setTimeout(r, 500));
+        const warning = document.querySelector('.stack-toxic-quarantine[data-toxic-id="c28"]');
+        if (!warning) return 'the legacy DNP entry has no quarantine warning';
+        const text = (warning.innerText || '').replace(/\s+/g, ' ');
+        if (!/no safe dose/i.test(text) || !/emergency|poison centre/i.test(text)) return `the quarantine omits its no-safe-dose or emergency action: “${text.slice(0, 180)}”`;
+        if (/[★☆]/.test(text)) return 'the quarantine renders an efficacy score';
+        if (/\b\d+(?:\.\d+)?\s*(?:mg|mcg|µg|g)\b/i.test(text)) return 'the quarantine renders a numeric dose';
+        const actions = [...warning.querySelectorAll('a,button')];
+        if (actions.length !== 2) return `the quarantine offers ${actions.length} actions instead of only open guidance and remove`;
+        if (!warning.querySelector('a[href="#/c/2-4-dinitrophenol-dnp"]') || !warning.querySelector('button[data-remove-toxic="c28"]')) return 'the quarantine actions are not exactly open toxicity guidance and remove';
+        if ([...document.querySelectorAll('.stack-row')].some((row) => /Dinitrophenol|DNP/i.test(row.innerText || ''))) return 'DNP still enters the ordinary stack list';
+        if (/Dinitrophenol|DNP/i.test((document.querySelector('.ixn-panel') || {}).innerText || '')) return 'DNP still enters interaction analysis';
+        if (/Dinitrophenol|DNP/i.test((document.querySelector('.stack-summary') || {}).innerText || '')) return 'DNP still enters goal, pathway or target optimisation';
+        warning.querySelector('[data-remove-toxic]').click();
+        await new Promise(r => setTimeout(r, 100));
+        const stored = JSON.parse(localStorage.getItem(key) || '[]');
+        if (stored.includes('c28')) return 'Remove saved entry did not remove DNP';
+        if (!stored.includes('c0')) return 'removing DNP also removed the ordinary compound';
+        return null;
+      } finally {
+        if (before == null) localStorage.removeItem(key); else localStorage.setItem(key, before);
+        history.replaceState({}, '', '/stack');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        await new Promise(r => setTimeout(r, 200));
+      }
+    },
   }],
   '/plan': [{
+    name: 'todayNeverSilentlyResumesTheBuilder',
+    why: 'Today is the execution surface. An unfinished draft may be resumed, but it must never replace the one-action page merely because it exists in local storage.',
+    evaluate: async () => {
+      const tick = (ms) => new Promise(r => setTimeout(r, ms));
+      const before = localStorage.getItem('rnawiki_plan');
+      try {
+        localStorage.setItem('rnawiki_plan', JSON.stringify({
+          v: 2, protocols: [], log: {}, fnWeek: {}, tools: {},
+          draft: { pid: 'knee-pain', rcid: 'patellofemoral-pain', moves: null, supps: null, functions: [], extra: {}, step: 1 },
+        }));
+        history.replaceState({}, '', '/plan');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        await tick(600);
+        if (document.getElementById('build-search')) return 'opening Today silently resumed the multi-stage builder';
+        const resume = document.querySelector('a[href="/plan?mode=edit"]');
+        if (!resume) return 'Today hid the saved draft instead of offering one explicit Continue setup action';
+        if (!/nothing scheduled yet/i.test((document.querySelector('main') || document.body).innerText || '')) return 'the draft-only Today state does not explain that execution begins after setup';
+        resume.click(); await tick(600);
+        if (!document.getElementById('build-search')) return 'the explicit Continue setup route did not open the builder';
+
+        // A saved draft must remain secondary when there is already something to do. This is a
+        // different state from draft-only: Today shows the active protocol first and exposes the
+        // draft only inside protocol management.
+        localStorage.setItem('rnawiki_plan', JSON.stringify({
+          v: 2,
+          protocols: [{ pid: 'knee-pain', rcid: 'patellofemoral-pain', moves: null, supps: 'none', functions: [], startedAt: new Date().toISOString().slice(0, 10) }],
+          log: {}, fnWeek: {}, tools: {},
+          draft: { pid: 'knee-pain', rcid: 'patellofemoral-pain', moves: null, supps: null, functions: [], extra: {}, step: 1 },
+        }));
+        history.replaceState({}, '', '/plan');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        await tick(600);
+        if (document.getElementById('build-search')) return 'an unfinished draft replaced Today even though an active protocol exists';
+        if (!/your next action/i.test((document.querySelector('.trk-hd h1') || {}).innerText || '')) return 'the active protocol did not remain the primary Today state';
+        if (!document.querySelector('.tpm-draft a[href="/plan?mode=edit"]')) return 'Today hid the secondary draft instead of keeping one explicit Continue setup action in protocol management';
+        return null;
+      } finally {
+        if (before) localStorage.setItem('rnawiki_plan', before); else localStorage.removeItem('rnawiki_plan');
+        history.replaceState({}, '', '/plan');
+        window.dispatchEvent(new PopStateEvent('popstate'));
+        await tick(250);
+      }
+    },
+  }, {
     name: 'theStudioListNeverOffersAConsumerUnrenderableCompound',
     why: 'W7: 95 of 171 compounds are authored consumer_renderable:false because their own page refuses to render self-dosing; a plan builder that hands out a "+ Add" for them is the same instruction by another route (CLAUDE.md rules 6 and 7)',
     evaluate: async () => {
@@ -727,8 +849,12 @@ const ASSERTIONS = {
         v: 2, protocols: [], log: {}, fnWeek: {}, tools: {},
         draft: { pid: 'knee-pain', rcid: 'patellofemoral-pain', moves: null, supps: null, functions: [], extra: {}, step: 2 },
       }));
-      location.hash = '#/stack'; await tick(250);
-      location.hash = '#/plan'; await tick(600);
+      history.replaceState({}, '', '/plan');
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      await tick(600);
+      const resume = document.querySelector('a[href="/plan?mode=edit"]');
+      if (!resume) return 'the saved plan draft has no explicit Continue setup action';
+      resume.click(); await tick(600);
       const search = document.getElementById('build-search');
       if (!search) return 'the Supplements step of the builder has no #build-search — this gate is checking nothing, which is worse than failing';
       const type = async (q) => {
@@ -1157,6 +1283,62 @@ const ASSERTIONS = {
       if (!directory || directory.tagName !== 'DETAILS') return 'the complete topic directory is not a semantic <details> disclosure';
       if (directory.open) return 'the 41-topic directory opens by default and recreates the choice overload';
       return null;
+    },
+  }, {
+    name: 'liveSafetyQueriesNeverFallIntoTheGenericNoMatchState',
+    why: 'the primary Find interaction is typing on an already-open page; it must use the same urgent/professional route as a direct query URL',
+    evaluate: async () => {
+      const input = document.getElementById('solve-q');
+      if (!input) return 'no Find input to exercise';
+      const cases = [
+        ['chest pain', '#q-urgent', /get urgent help now/i],
+        ['I want to end my life', '#q-urgent', /get urgent help now/i],
+        ['pregnant and tired', '#q-review', /clinician or pharmacist/i],
+        ['can I take creatine with warfarin', '#q-review', /clinician or pharmacist/i],
+      ];
+      for (const [query, selector, nextAction] of cases) {
+        input.value = query;
+        input.dispatchEvent(new Event('input', { bubbles: true }));
+        await new Promise(r => setTimeout(r, 450));
+        const panel = document.querySelector(selector + '[data-on]');
+        if (!panel) return `typing “${query}” did not activate ${selector}`;
+        if (!nextAction.test(panel.innerText || '')) return `typing “${query}” did not name the safe next action`;
+        const active = [...document.querySelectorAll('.q-panel[data-on]')];
+        if (active.length !== 1 || active[0] !== panel) return `typing “${query}” left ${active.length} current result panels instead of replacing the prior state`;
+        if (document.querySelector('.q-panel .solve-card, #q-req, #requests-board')) return `typing “${query}” exposed a protocol or community-request state beside ${selector}`;
+      }
+      input.value = 'knee pain';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      await new Promise(r => setTimeout(r, 450));
+      const ordinary = [...document.querySelectorAll('.q-panel[data-on]')];
+      if (ordinary.length !== 1 || ordinary[0].id !== 'q-hits' || !ordinary[0].querySelector('.solve-card')) return 'an ordinary query did not replace the preceding safety panel with exactly one ranked-result panel';
+      if (document.querySelector('#q-urgent,#q-review')) return 'a stale urgent or professional-review panel survived the transition to an ordinary query';
+      input.value = '';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      await new Promise(r => setTimeout(r, 300));
+      if (document.querySelector('.q-panel[data-on]')) return 'clearing Find left a stale safety or result panel on screen';
+      return null;
+    },
+  }, {
+    name: 'findDebounceCannotRewriteTheNextRoute',
+    why: 'a delayed Find update belongs to the page that scheduled it; it must not corrupt an immediate SPA navigation',
+    evaluate: async () => {
+      const input = document.getElementById('solve-q');
+      const where = document.querySelector('header a[href="/where"]');
+      if (!input || !where) return 'Find input or Where it hurts navigation is missing';
+      input.value = 'knee';
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      where.click();
+      await new Promise(r => setTimeout(r, 420));
+      const issues = [];
+      if (location.pathname !== '/where' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
+      const heading = (document.querySelector('#app h1') || {}).textContent || '';
+      if (!/where does it hurt/i.test(heading)) issues.push(`the destination heading is ${JSON.stringify(heading.trim())}, not Where does it hurt`);
+      if (!/where does it hurt/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}`);
+      // Restore the route this assertion owns so the runner's generic /solve checks remain valid.
+      const find = document.querySelector('header a[href="/solve"]');
+      if (find) { find.click(); await new Promise(r => setTimeout(r, 120)); }
+      return issues.length ? issues.join('; ') : null;
     },
   }],
   // D11 (commits e7a19ef + d6df0f8): the query must change the page and round-trip into the field.

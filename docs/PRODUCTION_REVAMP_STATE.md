@@ -29,10 +29,12 @@ Every visible change must still obey the two-document rule in `CLAUDE.md`:
 - `site/index.html` owns the SPA shell.
 - Shell and route labels, copy, order and safety states must be updated in every applicable twin.
 
-The protocol page deliberately uses progressive disclosure. The first action and stop rule remain
-visible. Broader triage sits under **Before you start**. Mechanisms and the complete Move/Fuel/
-compound plan sit under **Review the full protocol**. Hiding a section visually is never permission
-to omit it from the prerendered document or accessibility tree.
+The protocol page deliberately uses progressive disclosure. The resting order is **Before you
+start** (collapsed triage) → the first action and **Start day 1** → **What to track and when to
+stop** (collapsed) → **Review the full protocol** (collapsed Move/Fuel/compound reasoning and
+sources). The emergency boundary remains present and reachable without competing visually with
+the action. Hiding a section visually is never permission to omit it from the prerendered document
+or accessibility tree.
 
 The problem page is now an assessment rather than a 30,000-pixel article. It leads with a compact
 **Which feels closest?** comparison, keeps urgent-care guidance in a clearly labelled disclosure,
@@ -43,10 +45,36 @@ mechanism by default.
 Find routes safety-sensitive language before fuzzy ranking. Emergency-shaped terms use `urgent`;
 pregnancy, children and medicine-combination terms use `professional_review`. Those states must
 show no approximate protocol cards. Keep `solveGuidance()` identical in `server.js` and
-`site/app.js`, and extend `scripts/solve-guidance.test.mjs` whenever the corpus changes.
+`site/app.js`, invoke it for direct URLs and live input/submit updates, and extend
+`scripts/solve-guidance.test.mjs` whenever the corpus changes.
 
 `/plan` is the device-specific **Today** utility. It is served at HTTP 200, self-canonical,
 `noindex,follow`, and excluded from the sitemap. It must not become an indexed empty/personal page.
+It also must not silently resume setup: an unfinished draft with no active protocol renders one
+**Continue setup** action, whose explicit route is `/plan?mode=edit`. If an active protocol exists,
+Today renders that protocol's next action and leaves the draft as secondary management state.
+
+## Toxic/no-safe-dose document contract
+
+A record with `risk_policy.tier === "toxic_no_safe_dose"` does not pass through the ordinary
+compound lesson. Its dedicated document may contain only: an unmistakable no-safe-dose warning,
+an emergency/poison-centre route, non-actionable mechanism and harm education, attributable
+toxicology evidence, regulatory status, and references.
+
+Both `build/prerender.js` and `site/app.js` must withhold evidence stars or scores, numeric dose or
+range copy, dose-response comparisons, how-to-use content, sourcing, cost, protocol/stack links,
+comparison/optimisation modules, social-generation controls and gamified learning actions. The
+build inspects emitted prerendered bytes, and the browser smoke test inspects the hydrated DOM.
+Keep an ordinary low-risk compound as a positive control so the toxic policy cannot erase the wiki
+experience for every compound. Neutral A–Z and Browse rows keep the record findable, but render
+**Toxic · no safe dose** instead of stars or generic product-like status shorthand. Goal, efficacy,
+comparison and optimisation lists exclude the record entirely: inclusion under copy such as “help
+you” is a recommendation even without a star glyph. On the prerendered detail page, stop guidance
+and emergency action precede contents or supporting education; a generic table of contents is
+deliberately suppressed. A toxic entry left in legacy local storage is quarantined before ordinary
+stack interaction, goal, pathway or target analysis. Its quarantine shows exposure/emergency
+guidance and only **Open toxicity guidance** and **Remove saved entry**. Community-stack imports
+refuse toxic IDs and name the refusal instead of silently dropping them.
 
 ## Containment and privacy defaults
 
@@ -60,6 +88,13 @@ surface:
 | `PUBLIC_PROFILES` | `/api/u/:handle` public identity projection |
 | `PUBLIC_OUTCOME_AGGREGATES` | uncontrolled self-report outcome percentages |
 | `SHARED_PLANS` | health-state-bearing share codes |
+
+Contained capabilities are absent from the visible task flow, not merely backed by endpoints that
+return an error. In particular, the protocol vote strip remains hidden and makes no vote request
+while `PUBLIC_COMMUNITY=0`; it becomes visible and interactive only after the server config says
+the community capability is on. Find's protocol-request button, zero-result request action and
+request board follow the same contract: they are not rendered and make no request while the flag
+is off.
 
 Research storage requires the latest explicit `consent_records` decision for purpose `research`.
 Legacy `user_consent` rows are not proof because signup previously wrote consent automatically.
