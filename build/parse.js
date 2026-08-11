@@ -3627,10 +3627,18 @@ function blankComments(src) {
 //      are one set written twice, in two files, because the prerendered and the hydrated document
 //      each need the directive and neither can read the other. A hand-synced pair of lists is how
 //      this repo has produced the same defect more than once; if they diverge, one document says
-//      index and the other says noindex for the same URL.
+//      index and the other says noindex for the same URL. Since 2026-08-11 there are TWO such
+//      pairs: the private set (NOINDEX_ROUTES / PRIVATE_ROUTES) and the thin-shell set
+//      (NOINDEX_SHELL_ROUTES / SHELL_NOINDEX_ROUTES).
+//  (4) EVERY SPA-ONLY ROUTE IS CLASSIFIED. A route in SPA_ONLY_ROUTES with no `site/<route>.html`
+//      is served as the SPA shell; if it is in neither noindex list, that shell goes out at
+//      index,follow with the home page's head. /clinic, /exercise and /fork shipped that way and
+//      were live for weeks. The check is derived from the filesystem, not from a fourth list.
 //
-// PROVE IT three ways: put `socials: uu.socials` back into the /api/u/:handle payload; add
-// `avatar_url` to the users DDL; delete one entry from either route list. Each must exit 1.
+// PROVE IT four ways: put `socials: uu.socials` back into the /api/u/:handle payload; add
+// `avatar_url` to the users DDL; delete one entry from either route list; delete 'clinic' from
+// NOINDEX_ROUTES and PRIVATE_ROUTES together (part (3) then passes and part (4) must still exit 1,
+// which is the whole point of adding it). Each must exit 1.
 (function assertProfileDisclosesOnlyPublished() {
   const bad = [];
   const server = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
@@ -3668,19 +3676,58 @@ function blankComments(src) {
   // proof_photo is the closed clinician_interest archive, admin-only, not a profile field. It is
   // matched by nothing above; this line records the exemption so nobody widens IDENTITY into it.
 
-  // ---- (3) the two route lists agree ----
+  // ---- (3) the route lists agree, BOTH pairs ----
   const one = (re, s) => { const m = re.exec(s); return m ? m[1].split(',').map((x) => x.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean) : null; };
+  const appSrc = blankComments(app);
   const noindex = one(/const NOINDEX_ROUTES = \[([^\]]*)\]/, src);
-  const priv = one(/const PRIVATE_ROUTES = \[([^\]]*)\]/, blankComments(app));
-  if (!noindex || !priv) {
-    bad.push('the private-route lists could not be read — NOINDEX_ROUTES in server.js and PRIVATE_ROUTES in site/app.js must each stay a single-line array literal, because that is what this gate parses.');
+  const priv = one(/const PRIVATE_ROUTES = \[([^\]]*)\]/, appSrc);
+  const shellSrv = one(/const NOINDEX_SHELL_ROUTES = \[([^\]]*)\]/, src);
+  const shellApp = one(/const SHELL_NOINDEX_ROUTES = \[([^\]]*)\]/, appSrc);
+  const spaOnly = one(/const SPA_ONLY_ROUTES = \[([\s\S]*?)\]/, src);
+  const miss = (a, b) => a.filter((x) => b.indexOf(x) < 0);
+  const pair = (aName, a, bName, b, why) => {
+    if (!a || !b) return bad.push(`${aName} / ${bName} could not be read — each must stay a single-line array literal, because that is what this gate parses.`);
+    const onlyA = miss(a, b), onlyB = miss(b, a);
+    if (onlyA.length || onlyB.length) {
+      bad.push(why
+        + (onlyA.length ? `\n      ${aName} only: ` + onlyA.join(', ') : '')
+        + (onlyB.length ? `\n      ${bName} only: ` + onlyB.join(', ') : ''));
+    }
+  };
+  pair('server.js NOINDEX_ROUTES', noindex, 'site/app.js PRIVATE_ROUTES', priv,
+    'the private-route lists disagree, so one document would say noindex and the other index for the same URL.');
+  pair('server.js NOINDEX_SHELL_ROUTES', shellSrv, 'site/app.js SHELL_NOINDEX_ROUTES', shellApp,
+    'the shell-noindex lists disagree, so one document would say noindex and the other index for the same URL. They are compared as WRITTEN, `@N` qualifier included — a depth in one file and not the other is the same divergence.');
+
+  // ---- (4) every SPA-only route without a prerendered document is classified ----
+  // ADDED 2026-08-11. This is the gate that was missing when /clinic, /exercise and /fork shipped
+  // index-eligible, and it found /fuel on its first run. The mechanism, stated plainly: a route in
+  // SPA_ONLY_ROUTES that build/prerender.js emits no file for is served as the SPA SHELL — the home
+  // page's head, self-canonical to a URL whose crawler-visible body says nothing about it. If it is
+  // not in one of the two noindex lists, that shell goes out at `index,follow`.
+  //
+  // The test is DERIVED, not a fourth hand-maintained list: it asks the filesystem whether
+  // `site/<route>.html` exists. So a route stops needing a classification the moment it starts
+  // emitting a real document, and needs one again the moment it stops — no list to remember.
+  //
+  // Run order matters: build/parse.js runs BEFORE build/prerender.js, so `site/` here holds the
+  // PREVIOUS build's output. That is sound on a machine that has built once and on Railway (the
+  // container runs parse -> prerender -> serve, and any route this gate is asked about was emitted
+  // by the prerender of the commit before). It is deliberately conservative in the dangerous
+  // direction: a file that does not exist yet is treated as absent, which demands a classification
+  // rather than waiving one.
+  if (!spaOnly) {
+    bad.push('server.js SPA_ONLY_ROUTES could not be read; part (4) of this gate has no subject and would pass vacuously.');
   } else {
-    const miss = (a, b) => a.filter((x) => b.indexOf(x) < 0);
-    const onlyServer = miss(noindex, priv), onlyApp = miss(priv, noindex);
-    if (onlyServer.length || onlyApp.length) {
-      bad.push('the private-route lists disagree, so one document would say noindex and the other index for the same URL.'
-        + (onlyServer.length ? '\n      server.js NOINDEX_ROUTES only: ' + onlyServer.join(', ') : '')
-        + (onlyApp.length ? '\n      site/app.js PRIVATE_ROUTES only: ' + onlyApp.join(', ') : ''));
+    const base = (e) => { const at = e.indexOf('@'); return at < 0 ? e : e.slice(0, at); };
+    const classified = (noindex || []).concat((shellSrv || []).map(base));
+    const unclassified = spaOnly.filter((r) => classified.indexOf(r) < 0 && !fs.existsSync(path.join(ROOT, 'site', r + '.html')));
+    if (unclassified.length) {
+      bad.push('SPA-only route(s) with no prerendered document and no noindex classification: ' + unclassified.join(', ')
+        + '\n      Each is served as the SPA shell carrying the HOME page\'s head at index,follow, self-canonical to a URL'
+        + '\n      whose crawler-visible bytes are about something else. Put it in NOINDEX_ROUTES (it renders one person),'
+        + '\n      or in NOINDEX_SHELL_ROUTES (it is a placeholder until a real document exists), or give it a prerendered'
+        + '\n      page — and mirror the list into site/app.js, because Googlebot reads the hydrated head too.');
     }
   }
 
@@ -3692,5 +3739,5 @@ function blankComments(src) {
     console.error('  it publishes. If you need a new public field, say what it is in the publish sheet first.');
     process.exit(1);
   }
-  console.log('[parse] profile disclosure gate OK — GET /api/u/:handle carries %d banned pattern(s) 0 times, 0 avatar/real-name fields in 3 files, and the 2 private-route lists match on %d routes.', 7, (noindex || []).length);
+  console.log('[parse] profile disclosure gate OK — GET /api/u/:handle carries %d banned pattern(s) 0 times, 0 avatar/real-name fields in 3 files, the route lists match on %d private + %d shell routes, and all %d SPA-only routes are classified or prerendered.', 7, (noindex || []).length, (shellSrv || []).length, (spaOnly || []).length);
 })();

@@ -845,7 +845,8 @@
     startExperiment(pid, rcid) { return this.call('POST', '/api/experiments/start', { problemId: pid, rootCauseId: rcid }); },
     checkinExperiment(pid, rcid) { return this.call('POST', '/api/experiments/checkin', { problemId: pid, rootCauseId: rcid }); },
     reportOutcome(pid, rcid, outcome) { return this.call('POST', '/api/experiments/outcome', { problemId: pid, rootCauseId: rcid, outcome }); },
-    stats() { return this.call('GET', '/api/stats').catch(() => null); },
+    // stats() DELETED 2026-08-11 with GET /api/stats (P0-P12). It had zero call sites; the endpoint
+    // published a site-wide efficacy ratio (1 improved / 20 experiments) to anyone who asked.
     helped() { return this.call('POST', '/api/helped', { voterKey: VOTER_KEY }).catch(() => null); },
   };
   // ---- W4.5 · THE SYNC MANIFEST ---------------------------------------------------------------
@@ -9594,10 +9595,22 @@
   // ---- THE PRIVATE ROUTE SET (2026-08-10) ------------------------------------------------------
   // The same list as NOINDEX_ROUTES in server.js, written twice because the two documents need the
   // same directive and neither can read the other. A hand-synced pair of lists in two files is how
-  // this repo has produced the same defect more than once, so assertPrivateRoutesAgree() in
-  // build/parse.js diffs them and fails the build if they part company. Keep it on ONE line, in
-  // this order — that is what the gate parses.
-  const PRIVATE_ROUTES = ['admin', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+  // this repo has produced the same defect more than once, so part (3) of
+  // assertProfileDisclosesOnlyPublished() in build/parse.js diffs them and fails the build if they
+  // part company. Keep BOTH lists on ONE line each, in this order — that is what the gate parses.
+  const PRIVATE_ROUTES = ['admin', 'clinic', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+  // The mirror of NOINDEX_SHELL_ROUTES in server.js: routes that are not private but whose
+  // prerendered document is an empty shell, so neither document may say index. Googlebot renders
+  // JavaScript and would read the hydrated head; without this line the server would say noindex and
+  // the hydrated document would say index for the same URL — one document saying two things, which
+  // is the defect class this pair of lists exists to prevent. See server.js for the measurements
+  // and for what `@N` means (a shell only BELOW N segments — /fuel/<problem>/<root-cause> has a
+  // prerendered document of its own saying `noindex,follow`, and this must not overwrite it).
+  const SHELL_NOINDEX_ROUTES = ['exercise', 'fork', 'fuel@3'];
+  const isShellNoindex = (parts) => SHELL_NOINDEX_ROUTES.some((e) => {
+    const at = e.indexOf('@');
+    return at < 0 ? e === parts[0] : e.slice(0, at) === parts[0] && parts.length < +e.slice(at + 1);
+  });
   let ROBOTS_WAS = null;
   function setPageMeta(parts) {
     const site = SITE_NAME;
@@ -9680,7 +9693,7 @@
     // carries "index,follow,max-image-preview:large" — so writing one hard-coded string back on
     // every non-private route would silently DOWNGRADE the richer pages after one SPA navigation.
     {
-      const priv = PRIVATE_ROUTES.indexOf(parts[0]) >= 0;
+      const priv = PRIVATE_ROUTES.indexOf(parts[0]) >= 0 || isShellNoindex(parts);
       let rb = document.querySelector('meta[name="robots"]');
       if (priv) {
         if (!rb) { rb = document.createElement('meta'); rb.setAttribute('name', 'robots'); document.head.appendChild(rb); }

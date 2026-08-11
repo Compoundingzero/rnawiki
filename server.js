@@ -2015,24 +2015,32 @@ async function api(req, res, url) {
     return res.end(buf);
   }
   // ---------- the outcome loop: experiments · check-ins · results ledger ----------
-  // collective counter for the home page (movement heartbeat)
-  if (seg[0] === 'stats' && method === 'GET') {
-    const r = await db.query("SELECT count(*)::int AS experiments, count(*) FILTER (WHERE outcome='better')::int AS improved FROM experiments");
-    // "people helped" = distinct people who started a protocol OR built a stack
-    let helped = 0;
-    try {
-      const h = await db.query("SELECT count(*)::int AS n FROM (SELECT participant AS k FROM experiments UNION SELECT voter_key FROM helped_people) t");
-      helped = (h.rows[0] && h.rows[0].n) || 0;
-    } catch (e) { helped = (r.rows[0] && r.rows[0].experiments) || 0; }
-    return json(res, 200, Object.assign({ experiments: 0, improved: 0 }, r.rows[0] || {}, { helped }));
-  }
+  // ---- GET /api/stats REMOVED 2026-08-11 (P0-P12) ----------------------------------------------
+  // MEASURED against production on the day it was removed:
+  //     curl https://rnawiki.com/api/stats  ->  {"experiments":20,"improved":1,"helped":19}
+  // Unauthenticated, and `improved/experiments` is a site-wide EFFICACY RATIO — 1 in 20. Product
+  // constraint 5 and AGENT_RULES both forbid publishing one: n=20 self-selected, self-reported,
+  // uncontrolled check-ins is not a result, and any number shaped like a success rate is read as
+  // one. The forged-key path documented at server.js:429 moved this same figure, so it was also a
+  // number an anonymous caller could set.
+  //
+  // Nothing rendered it. `api.stats()` in site/app.js had ZERO call sites (measured: one match for
+  // `stats(` in 10,286 lines, the definition itself), so this endpoint had no reader but a crawler
+  // or a scraper. The wrapper is deleted with it — a client method for a route that 404s is the
+  // next person's twenty minutes.
+  //
+  // Deliberately NOT replaced with a gated/aggregated version. The honest home-page counter is the
+  // one the site already renders: how many people are RUNNING a protocol, which claims nothing
+  // about whether it worked. `helped_people` and the `helped` figure keep their own uses below.
   // record a "stack built" engagement (idempotent per person) for the people-helped counter
   // /api/subscribe and /api/unsubscribe REMOVED 2026-08-06 with the newsletter. They were the only
   // readers of newsletter_subscribers and the only callers of resendAddContact/resendUnsubscribe/
   // welcomeEmail/EMAIL_RE. Both paths now fall through to the 404 at the end of this dispatcher.
   if (seg[0] === 'helped' && method === 'POST') {
-    // helped_people.voter_key is the PRIMARY KEY and feeds the `helped` figure in GET /api/stats —
-    // one forged key was one more "person helped". Nothing in the body is trusted; drain and drop.
+    // helped_people.voter_key is the PRIMARY KEY, and one forged key was one more "person helped"
+    // in the aggregate GET /api/stats served until 2026-08-11 (removed; see the tombstone above).
+    // The table is kept because it is the idempotency record for this ping, not a published figure.
+    // Nothing in the body is trusted; drain and drop.
     await readBody(req, 512);
     const part = await resolveParticipant(req, res); const voterKey = part.key;
     if (!voterKey) return json(res, 400, { error: 'Missing' });
@@ -2939,8 +2947,52 @@ const SPA_ONLY_ROUTES = [
 // directive is the only thing that removes it.
 //
 // site/app.js holds the same list as PRIVATE_ROUTES, because the HYDRATED document needs the same
-// directive; assertPrivateRoutesAgree() in build/parse.js fails the build if the two ever diverge.
-const NOINDEX_ROUTES = ['admin', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+// directive; part (3) of assertProfileDisclosesOnlyPublished() in build/parse.js fails the build if
+// the two ever diverge. (That comment named a function `assertPrivateRoutesAgree()` that has never
+// existed under that name — corrected 2026-08-11 so nobody goes looking for a gate by grepping it.)
+// Part (4) of the same gate is the one that would have caught /clinic, /exercise and /fork: it
+// requires every SPA-only route with no prerendered file to be classified into one of the two
+// noindex lists.
+const NOINDEX_ROUTES = ['admin', 'clinic', 'me', 'p', 'pro', 'progress', 'pros', 's', 'stewardship', 'studio', 'u'];
+
+// `clinic` ADDED 2026-08-11 (P0-P2). MEASURED on production that morning:
+//     curl -D- https://rnawiki.com/clinic  ->  200, no X-Robots-Tag at all, 1,148 words of the
+//     LANDING PAGE, self-canonical to /clinic.
+// It belongs in THIS list rather than the shell list below because of what the route actually
+// renders once JavaScript runs: `/clinic/<handle>/<problem>/<root-cause>` is one named clinician's
+// home-care protocol for one named health problem (app.js:9650 writes the title
+// "<problem> — home-care protocol from @<handle>"). That is the same disclosure class as /u and /p —
+// a handle joined to a health condition — and it is the exact join the profile-disclosure gate
+// exists to keep out of a search index.
+
+// ---- THIN SPA SHELLS (2026-08-11, P0-P2) ------------------------------------------------------
+// These are NOT private. They are noindexed because of what the PRERENDERED document contains:
+// nothing. The build emits no file for them, so a crawler gets the SPA shell — the HOME page's
+// head, self-canonical to the thin URL — and the hydrated body is a two-word placeholder
+// ("Loading exercise…" app.js:9998, "Loading variation…" app.js:9999). ~90% of traffic never runs
+// JavaScript, so for almost every requester these URLs are duplicate-content soft 404s.
+//   · exercise, fork — MEASURED live 2026-08-11: 200, no X-Robots-Tag.
+//   · fuel@3 — the same defect, found by the gate below rather than by any audit. `site/fuel/` holds
+//     41 problem directories and no `fuel.html`, so the CHOOSER at bare /fuel fell through to the
+//     shell while all 52 `/fuel/<problem>/<root-cause>` children are correctly `noindex,follow`.
+//     Noindexing the parent costs nothing: none of the children are in the sitemap either (D-7).
+//
+// `@N` MEANS: a shell only at fewer than N segments; at N or more this route HAS a prerendered
+// document and must keep the directive that document carries. Without it the hydrated /fuel/<p>/<rc>
+// would be rewritten to `noindex,nofollow` while its own prerendered bytes say `noindex,follow` —
+// one document saying two things, the defect this whole block exists to prevent. Server-side the
+// qualifier is belt-and-braces (the prerendered-file lookup runs first), but the two lists must stay
+// TEXTUALLY IDENTICAL to the mirror in site/app.js, because that is what the build gate diffs.
+//
+// The honest fix for all three is a prerendered document with real content. Until one exists, the
+// document that IS served must not invite indexing. Remove a route from this list at the moment it
+// starts emitting a file — the gate in build/parse.js will then require it to be classified again.
+const NOINDEX_SHELL_ROUTES = ['exercise', 'fork', 'fuel@3'];
+const isShellNoindex = (seg) => NOINDEX_SHELL_ROUTES.some((e) => {
+  const at = e.indexOf('@');
+  return at < 0 ? e === seg[0] : e.slice(0, at) === seg[0] && seg.length < +e.slice(at + 1);
+});
+const isNoindexRoute = (seg) => NOINDEX_ROUTES.includes(seg[0]) || isShellNoindex(seg);
 
 // ---- W4.5 (2026-08-02) · A WITHDRAWAL NOTICE MUST NOT INVENT ITS OWN REASON -------------------
 // Every unknown /compare/* URL used to answer HTTP 410 with ONE hard-coded sentence: "I removed the
@@ -3029,10 +3081,18 @@ ${links}
   // own renderer decides what a bad id means, so they keep the shell.
   const SPA_EXACT = { me: 1, progress: 1, plan: 1, studio: 1, solve: 1, stack: 1, az: 1, browse: 1, where: 1, about: 1, legend: 1, anatomy: 1, pathways: 1 };
   const SPA_ONE_ARG = { u: 1, p: 1 };
+  // clinic ADDED 2026-08-11, and it is the /u/ bug again on another route. The only address the SPA
+  // can render is /clinic/<handle>/<problem>/<root-cause> — app.js:9650 and :10041 both require
+  // parts[3]. MEASURED, HYDRATED, before this line: bare /clinic returned 200 and rendered the
+  // LANDING PAGE, h1 "Turned away, priced out, or told it was nothing" — a 1,148-word duplicate of
+  // the home page living at a second, self-canonical URL. noindex alone would have hidden that from
+  // a crawler while still serving a reader the wrong page; 404 is what it is.
+  const SPA_N_ARGS = { clinic: 4 };
   if (seg.length && SPA_ONLY_ROUTES.includes(seg[0])) {
     if (SPA_EXACT[seg[0]] && seg.length > 1) return notFoundPage(res);
     if (SPA_ONE_ARG[seg[0]] && seg.length !== 2) return notFoundPage(res);
-    if (!NOINDEX_ROUTES.includes(seg[0])) return sendFile(res, path.join(DIR, 'index.html'));
+    if (SPA_N_ARGS[seg[0]] && seg.length !== SPA_N_ARGS[seg[0]]) return notFoundPage(res);
+    if (!isNoindexRoute(seg)) return sendFile(res, path.join(DIR, 'index.html'));
     // TWO DIRECTIVES, DELIBERATELY, AND THEY ARE NOT REDUNDANT.
     //   · the HEADER is what a crawler that never parses the body obeys, and it is the one that
     //     applies to a HEAD request;
