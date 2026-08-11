@@ -5398,8 +5398,8 @@
       how: 'Tap when you take your first bite and when you close the kitchen. Aim to keep eating inside a 10-hour window.',
       match: ['insulin', 'glucose', 'visceral', 'belly', 'fat', 'metabolic', 'fasting', 'blood sugar'] },
     { id: 'bp', icon: '🩺', name: 'Home blood-pressure log', kind: 'bp',
-      desc: 'Home readings predict outcomes better than the clinic — and seeing the number is what drives it down.',
-      how: 'Log a reading (rest 5 min first). I show your 7-day average and flag when it needs a doctor.',
+      desc: 'Home readings predict outcomes better than clinic readings — and most home readings are taken in a way that makes the number meaningless.',
+      how: 'Log what you measure. This page keeps your readings and shows you the published categories; it does not grade you.',
       match: ['blood pressure', 'hypertension', 'bp', 'cardiovascular', 'cholesterol'] },
     { id: 'deload', icon: '🔄', name: 'Deload advisor', kind: 'deload',
       desc: 'Planned recovery weeks are how you break plateaus — 3 weeks push, 1 week back off.',
@@ -5427,13 +5427,24 @@
       desc: 'The core insomnia fix (CBT-I sleep restriction): match your time in bed to time actually asleep, and sleep gets deeper and faster.',
       how: 'Each morning, log when you got in bed, roughly fell asleep, and woke. It tracks your sleep efficiency and tells you when to shift your bedtime.',
       match: ['sleep', 'insomnia', 'fall asleep', 'waking', 'awake', 'circadian', 'tired', 'jet lag', 'restless'], tg: true },
-    { id: 'wake', icon: '⏰', name: 'Fixed wake-time reminder', kind: 'reminder',
-      desc: 'A constant wake time anchors your body clock — the biggest lever for sleep.',
-      how: 'Set one wake time; the bot nudges you nightly to protect your wind-down.',
+    // ---- THE BOT THESE TWO PROMISED WAS DELETED ON 2026-07-28 (P0-S16) -------------------------
+    // They were `kind: 'reminder'`, whose entire renderer was a heading and the sentence below it:
+    //   'Set one wake time; the bot nudges you nightly to protect your wind-down.'
+    //   'The bot reminds you to get outside within an hour of waking.'
+    // No control, no input, nothing to tap — and no bot, for two weeks. A tool that describes a
+    // service that does not exist is worse than a missing tool: the reader ticks it off their list.
+    //
+    // They are `kind: 'alarm'` now, and the button does the only thing this site can honestly do
+    // about a time of day: hand you a calendar event your own phone will fire. One .ics file, built
+    // in the browser, no account, no server, no notification permission, works offline and keeps
+    // working if RNAwiki disappears. That last property is the point.
+    { id: 'wake', icon: '⏰', name: 'Fixed wake time', kind: 'alarm', hour: 7, summary: 'Wake — same time today',
+      desc: 'A constant wake time anchors your body clock — the biggest lever for sleep. The wake time is the anchor, not the bedtime: fix it first and the bedtime follows within a week or two.',
+      how: 'Pick your time and add it to your calendar as a daily event. Your phone does the reminding.',
       match: ['sleep', 'insomnia', 'circadian', 'tired', 'wake', 'jet lag'] },
-    { id: 'sunlight', icon: '☀️', name: 'Morning-sunlight reminder', kind: 'reminder',
-      desc: '10 minutes of morning light sets your clock and lifts daytime mood.',
-      how: 'The bot reminds you to get outside within an hour of waking.',
+    { id: 'sunlight', icon: '☀️', name: 'Morning light, within an hour of waking', kind: 'alarm', hour: 8, summary: 'Get outside — 10 min daylight',
+      desc: '10 minutes of outdoor light shortly after waking is the strongest everyday signal your body clock gets. Outdoors on an overcast day still beats a bright room indoors, by a wide margin.',
+      how: 'Pick a time and add it to your calendar as a daily event. Your phone does the reminding.',
       match: ['mood', 'vitamin d', 'seasonal', 'depress', 'low energy', 'winter'] },
   ];
   function fnById(id) { return PLAN_FUNCTIONS.find(f => f.id === id); }
@@ -5917,7 +5928,14 @@
       const plan = getPlan(); const M = mergedPlan(plan); const sel = M.functions; if (!sel.length) { host.innerHTML = ''; return; }
       const tg = M.protos[0] || {}; const wk = weekKey();
       const widget = f => {
-        if (f.kind === 'reminder') return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b></div><p class="fn-w-sub">${esc(f.how)}</p></div>`;
+        if (f.kind === 'alarm') {
+          const saved = ((plan.tools || {})[f.id] || {}).at || String(f.hour).padStart(2, '0') + ':00';
+          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b></div>
+            <p class="fn-w-sub">${esc(f.how)}</p>
+            <div class="fn-alarm"><input class="ex-in alarm-t" type="time" value="${esc(saved)}" data-alarm-t="${esc(f.id)}" aria-label="Time for ${esc(f.name)}">
+            <button class="fn-step add" data-alarm="${esc(f.id)}">📅 Add to my calendar</button></div>
+            <p class="fn-alarm-note">Downloads a calendar file. Nothing is sent anywhere and this works with no account.</p></div>`;
+        }
         if (f.kind === 'counter') {
           const store = f.period === 'week' ? ((plan.fnWeek || {})[wk] || {}) : (planDay(plan).fn || {});
           const v = store[f.id] || 0; const pct = Math.min(100, Math.round(v / f.target * 100));
@@ -5939,17 +5957,7 @@
             <p class="fn-w-sub">${last ? 'Last: <b>' + esc(last.text) + '</b> · ' + esc(last.date) : esc(f.how)}</p>
             <div class="fn-log-row"><input class="fn-log-in" data-fn-log="${f.id}" placeholder="e.g. 60kg × 8" autocomplete="off"><button class="fn-step add" data-log-save="${f.id}">Log</button></div></div>`;
         }
-        if (f.kind === 'bp') {
-          const b = planDay(plan).bp || {};
-          // 7-day average (readings stored per day)
-          let ss = 0, ds = 0, n = 0; for (let i = 0; i < 7; i++) { const dl = (plan.log || {})[dISO(i)]; if (dl && dl.bp && dl.bp.sys) { ss += dl.bp.sys; ds += dl.bp.dia || 0; n++; } }
-          const avgS = n ? Math.round(ss / n) : 0, avgD = n ? Math.round(ds / n) : 0;
-          const guide = !n ? '' : (avgS >= 160 || avgD >= 100) ? '🔴 High — please see a doctor soon.' : (avgS >= 140 || avgD >= 90) ? '🟠 Above target — keep at the plan; recheck weekly.' : (avgS >= 130 || avgD >= 80) ? '🟡 Slightly raised — you\'re on the right track.' : '🟢 In a healthy range — nice.';
-          return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b>${n ? `<span class="fn-w-val">7-day avg ${avgS}/${avgD}</span>` : ''}</div>
-            <p class="fn-w-sub">${esc(f.how)}</p>
-            <div class="bp-row"><input class="ex-in" type="number" inputmode="numeric" placeholder="sys" value="${b.sys != null ? esc(String(b.sys)) : ''}" data-bp="sys" aria-label="Systolic"><span class="ex-x">/</span><input class="ex-in" type="number" inputmode="numeric" placeholder="dia" value="${b.dia != null ? esc(String(b.dia)) : ''}" data-bp="dia" aria-label="Diastolic"><span class="bp-unit">mmHg</span></div>
-            ${guide ? `<p class="triage-guide ${avgS >= 140 ? 'red' : avgS >= 130 ? 'yellow' : 'green'}">${guide}</p>` : ''}</div>`;
-        }
+        if (f.kind === 'bp') return bpTool(f, plan);
         if (f.kind === 'deload') {
           const days = Math.max(0, Math.round((new Date(today() + 'T00:00:00') - new Date(planStartDate(plan) + 'T00:00:00')) / 86400000));
           const wk = Math.floor(days / 7); const pos = wk % 4; const isDeload = pos === 3;
@@ -6026,6 +6034,46 @@
       host.querySelectorAll('[data-eat]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.eat = d.eat || {}; d.eat[b.dataset.eat] = nowHM(); setPlan(pl); render(); });
       // blood pressure: store today's reading, refresh the 7-day average + guidance
       host.querySelectorAll('[data-bp]').forEach(inp => inp.onchange = () => { const pl = getPlan(); const d = planDay(pl); d.bp = d.bp || {}; const n = parseInt(inp.value, 10); d.bp[inp.dataset.bp] = (n > 0 && n < 300) ? n : null; setPlan(pl); render(); });
+      // ---- the calendar event that replaced the two bot reminders (2026-08-11, P0-S16) ----------
+      // Built here rather than fetched: one daily RRULE, a Blob, an object URL revoked straight
+      // after the click. No server, no account, no notification permission, and it keeps working
+      // if this site goes away — which is the whole argument for a calendar file over a bot.
+      // DTSTART is written in LOCAL time with no Z and no TZID: a phone reads a floating time as
+      // "07:00 wherever you are", which is what a wake-time anchor means. A UTC stamp would fire at
+      // 3pm for a reader who travels, and travel is exactly when a body-clock anchor matters most.
+      host.querySelectorAll('[data-alarm-t]').forEach(inp => inp.onchange = () => {
+        const pl = getPlan(); pl.tools = pl.tools || {};
+        pl.tools[inp.dataset.alarmT] = Object.assign({}, pl.tools[inp.dataset.alarmT], { at: inp.value });
+        setPlan(pl);
+      });
+      host.querySelectorAll('[data-alarm]').forEach(btn => btn.onclick = () => {
+        const f = fnById(btn.dataset.alarm); if (!f) return;
+        const row = btn.closest('.fn-alarm');
+        const at = ((row && row.querySelector('[data-alarm-t]')) || {}).value || (String(f.hour).padStart(2, '0') + ':00');
+        const [hh, mm] = at.split(':');
+        const d = new Date(); const p2 = (x) => String(x).padStart(2, '0');
+        const start = `${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}T${p2(hh)}${p2(mm)}00`;
+        // Line-fold at 75 octets is part of RFC 5545; these lines are short, but the CRLF endings
+        // are not optional — some calendar clients reject an .ics with bare newlines.
+        const ics = [
+          'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//RNAwiki//EN', 'CALSCALE:GREGORIAN',
+          'BEGIN:VEVENT',
+          `UID:rnawiki-${f.id}-${start}@rnawiki.com`,
+          `DTSTAMP:${start}`,
+          `DTSTART:${start}`,
+          'DURATION:PT10M',
+          'RRULE:FREQ=DAILY',
+          `SUMMARY:${String(f.summary || f.name).replace(/[,;\\]/g, '')}`,
+          `DESCRIPTION:${String(f.desc || '').replace(/[,;\\]/g, '').slice(0, 200)}`,
+          'BEGIN:VALARM', 'TRIGGER:PT0M', 'ACTION:DISPLAY', `DESCRIPTION:${String(f.summary || f.name).replace(/[,;\\]/g, '')}`, 'END:VALARM',
+          'END:VEVENT', 'END:VCALENDAR',
+        ].join('\r\n');
+        const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar' }));
+        const a = document.createElement('a'); a.href = url; a.download = `rnawiki-${f.id}.ics`;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 2000);
+        btn.textContent = '✓ Downloaded — open it to add it';
+      });
       // daily-dose adherence tap + monthly photo stamp
       host.querySelectorAll('[data-adhere]').forEach(b => b.onclick = () => { const pl = getPlan(); const d = planDay(pl); d.fn = d.fn || {}; d.fn[b.dataset.adhere] = !d.fn[b.dataset.adhere]; setPlan(pl); render(); });
       host.querySelectorAll('[data-photo]').forEach(b => b.onclick = () => { const pl = getPlan(); pl.tools = pl.tools || {}; pl.tools[b.dataset.photo] = pl.tools[b.dataset.photo] || {}; pl.tools[b.dataset.photo].lastPhoto = today(); setPlan(pl); if (typeof toast === 'function') toast('📸 Logged — keep it in your album'); render(); });
@@ -6081,6 +6129,85 @@
   // prescription: it is never printed as guidance and it says nothing about load or reps. It falls
   // back to a fixed number because a checklist needs SOME number of rows; the authored value wins
   // when one exists.
+  // ================= THE HOME BLOOD-PRESSURE LOG (rebuilt 2026-08-11, D-4 / P0-S15) =============
+  // WHAT IT DID BEFORE, measured from source:
+  //   const guide = (avgS >= 160 || avgD >= 100) ? '🔴 High — please see a doctor soon.'
+  //               : (avgS >= 140 || avgD >= 90)  ? '🟠 Above target — keep at the plan…'
+  //               : (avgS >= 130 || avgD >= 80)  ? '🟡 Slightly raised — you\'re on the right track.'
+  //               :                                '🟢 In a healthy range — nice.';
+  // Three things wrong with those four lines, and they compound:
+  //   · it triaged on the SEVEN-DAY MEAN ONLY, so one reading of 200/125 inside an otherwise
+  //     ordinary week averaged away and the page printed a reassuring adjective over it;
+  //   · there was NO URGENT TIER at all — the worst thing it could say was "soon";
+  //   · the thresholds were inline literals with no source, and "you're on the right track" is a
+  //     clinical judgement about a person nobody has examined.
+  //
+  // Felix: "remove anything that requires a clinician and replace it with higher quality higher
+  // value information." So the verdict is gone. What replaces it is worth more than the verdict was:
+  //
+  //   1. HOW TO MEASURE. This is the highest-value thing on the whole tool and almost nobody knows
+  //      it. A cuff over clothing, feet dangling, back unsupported, talking, or in the ten minutes
+  //      after coffee reads high enough to move somebody a whole category. Getting the technique
+  //      right changes the number more than anything else on this site does.
+  //   2. THE READER'S OWN READINGS — all of them, with the HIGHEST one named. A mean cannot hide a
+  //      spike if the spike is printed beside it.
+  //   3. THE PUBLISHED CATEGORY TABLE, cited, for the reader to read themselves. It states where a
+  //      number sits. It says nothing about whether the person is fine.
+  //   4. AN UNCONDITIONAL EMERGENCY LINE keyed on the highest SINGLE reading, never the mean.
+  //
+  // Sources, both verified against Europe PMC on 2026-08-11 rather than remembered:
+  //   · Muntner P, Shimbo D, Carey RM, et al. "Measurement of Blood Pressure in Humans: A
+  //     Scientific Statement From the American Heart Association." Hypertension, 2019.
+  //     PMID 30827125 — the measurement technique below.
+  //   · Whelton PK, Carey RM, Aronow WS, et al. "2017 ACC/AHA/AAPA/… Guideline for the Prevention,
+  //     Detection, Evaluation, and Management of High Blood Pressure in Adults." JACC, 2018.
+  //     PMID 29146535 — the category thresholds and the ≥180/≥120 crisis threshold below.
+  // Categories are for ADULTS and are not a diagnosis: a diagnosis needs readings on separate
+  // occasions and a clinician. The copy says so rather than implying it.
+  const BP_BANDS = [
+    { name: 'Normal', test: (s, d) => s < 120 && d < 80, range: 'under 120 and under 80' },
+    { name: 'Elevated', test: (s, d) => s >= 120 && s <= 129 && d < 80, range: '120–129 and under 80' },
+    { name: 'Stage 1', test: (s, d) => (s >= 130 && s <= 139) || (d >= 80 && d <= 89), range: '130–139 or 80–89' },
+    { name: 'Stage 2', test: (s, d) => (s >= 140 && s <= 179) || (d >= 90 && d <= 119), range: '140 or higher, or 90 or higher' },
+    { name: 'Crisis range', test: (s, d) => s >= 180 || d >= 120, range: 'over 180 or over 120' },
+  ];
+  const bpBand = (sys, dia) => BP_BANDS.slice().reverse().find(b => b.test(sys, dia || 0)) || BP_BANDS[0];
+  function bpTool(f, plan) {
+    const b = planDay(plan).bp || {};
+    // Every reading in the window, not a mean over them. `peak` is the single highest systolic and
+    // the diastolic recorded with it — the reading a mean would have swallowed.
+    const reads = [];
+    for (let i = 0; i < 14; i++) { const dl = (plan.log || {})[dISO(i)]; if (dl && dl.bp && dl.bp.sys) reads.push({ d: dISO(i), s: dl.bp.sys, dia: dl.bp.dia || 0 }); }
+    const n = reads.length;
+    const peak = n ? reads.slice().sort((x, y) => (y.s - x.s) || (y.dia - x.dia))[0] : null;
+    const avgS = n ? Math.round(reads.reduce((a, r) => a + r.s, 0) / n) : 0;
+    const avgD = n ? Math.round(reads.reduce((a, r) => a + r.dia, 0) / n) : 0;
+    // The one thing this tool asserts, and it asserts it about a NUMBER, not about a person.
+    const crisis = peak && (peak.s >= 180 || peak.dia >= 120);
+    const band = peak ? bpBand(peak.s, peak.dia) : null;
+    const table = `<table class="bp-tbl"><thead><tr><th>Category</th><th>Systolic / diastolic (mmHg)</th></tr></thead><tbody>${
+      BP_BANDS.map(x => `<tr${band && band.name === x.name ? ' class="on"' : ''}><td>${esc(x.name)}</td><td>${esc(x.range)}</td></tr>`).join('')}</tbody></table>`;
+    return `<div class="fn-w"><div class="fn-w-h"><span class="fn-ico">${f.icon}</span><b>${esc(f.name)}</b>${n ? `<span class="fn-w-val">${n} reading${n > 1 ? 's' : ''}</span>` : ''}</div>
+      <p class="fn-w-sub">${esc(f.how)}</p>
+      <div class="bp-row"><input class="ex-in" type="number" inputmode="numeric" placeholder="sys" value="${b.sys != null ? esc(String(b.sys)) : ''}" data-bp="sys" aria-label="Systolic"><span class="ex-x">/</span><input class="ex-in" type="number" inputmode="numeric" placeholder="dia" value="${b.dia != null ? esc(String(b.dia)) : ''}" data-bp="dia" aria-label="Diastolic"><span class="bp-unit">mmHg</span></div>
+      ${crisis ? `<p class="triage-guide red"><b>A reading of ${peak.s}/${peak.dia} is in the range the ACC/AHA guideline calls a hypertensive crisis (over 180 or over 120).</b> If you have chest pain, breathlessness, weakness, trouble speaking or changes in vision, call <b>995</b> or go to an A&amp;E now. If you have none of those, repeat the reading after resting five minutes, and if it is still that high contact a doctor today.</p>` : ''}
+      ${n ? `<div class="bp-stats"><span><b>Highest</b> ${peak.s}/${peak.dia}<small>${esc(peak.d)}</small></span><span><b>Average of ${n}</b> ${avgS}/${avgD}<small>last 14 days</small></span></div>` : ''}
+      <details class="bp-fold"${n && !crisis ? '' : ' open'}><summary>📏 How to take a reading that means anything</summary>
+        <ol class="bp-how">
+          <li>Empty your bladder. No coffee, no cigarette and no exercise for <b>30 minutes</b> first.</li>
+          <li>Sit still and quiet for <b>5 minutes</b> before the first reading. Do not use the time to scroll.</li>
+          <li>Back supported, <b>feet flat on the floor</b>, legs uncrossed.</li>
+          <li>Cuff on a <b>bare upper arm</b>, not over a sleeve, supported at <b>heart level</b>.</li>
+          <li><b>Do not talk</b> during the reading — talking alone can add about 10 mmHg.</li>
+          <li>Take <b>two readings a minute apart</b> and record both. Morning and evening, for seven days.</li>
+        </ol>
+        <p class="bp-src">Technique: Muntner et al., <i>Measurement of Blood Pressure in Humans</i>, AHA Scientific Statement, <i>Hypertension</i> 2019 (<a href="https://pubmed.ncbi.nlm.nih.gov/30827125/" target="_blank" rel="noopener">PMID 30827125</a>). A cuff over clothing, an unsupported arm or talking can each move a reading enough to change which row of the table below it lands in — which is why this section is here and a verdict is not.</p>
+      </details>
+      <details class="bp-fold"><summary>📊 What the published categories are</summary>
+        ${table}
+        <p class="bp-src">Adult categories from the 2017 ACC/AHA guideline (Whelton et al., <i>JACC</i> 2018, <a href="https://pubmed.ncbi.nlm.nih.gov/29146535/" target="_blank" rel="noopener">PMID 29146535</a>). ${band ? `Your highest reading falls in the <b>${esc(band.name)}</b> row.` : ''} This is where a number sits on a published table. It is not a diagnosis — that needs readings on separate occasions, and a doctor. RNAwiki does not tell you whether you are fine.</p>
+      </details></div>`;
+  }
   function prescribedSets(e) { const rx = e.prescription || {}; const n = rx.source && rx.source !== 'default' ? parseInt(rx.sets, 10) : 0; return n > 0 ? n : (isDailyMove(e) ? 2 : 3); }
   // most recent PRIOR day that has logged sets for this exercise — the number to beat
   function lastSets(plan, exId) {

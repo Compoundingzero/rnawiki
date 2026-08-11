@@ -5008,3 +5008,26 @@ html[data-state="removed"] .i-form{display:none}
   .me-stats{grid-template-columns:1fr 1fr}
   .me-p{justify-content:flex-start}
 }
+
+/* 2026-08-11 · the rebuilt blood-pressure log (D-4) and the calendar-event tools (P0-S16).
+   .bp-stats prints the HIGHEST single reading beside the average, because a mean that hides a
+   spike is the defect this replaced. .bp-tbl marks the row a reading falls in with a border rather
+   than colour alone — colour alone would be a verdict, and a verdict is the thing that was removed.
+   All ink is --ink / --muted on --panel2, tokens assertContrastTokens() already measures. */
+.bp-stats{display:flex;gap:.6rem;margin:.5rem 0 .35rem;flex-wrap:wrap}
+.bp-stats span{flex:1 1 8rem;background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:.4rem .55rem;font-size:.9rem;color:var(--ink)}
+.bp-stats b{display:block;font-size:.7rem;font-weight:700;letter-spacing:.02em;text-transform:uppercase;color:var(--muted)}
+.bp-stats small{display:block;font-size:.7rem;color:var(--muted)}
+.bp-fold{margin-top:.5rem;border-top:1px dashed var(--line);padding-top:.4rem}
+.bp-fold>summary{cursor:pointer;font-size:.85rem;font-weight:700;color:var(--head);padding:.15rem 0}
+.bp-how{margin:.45rem 0 .35rem;padding-left:1.15rem;font-size:.86rem;line-height:1.55;color:var(--ink)}
+.bp-how li{margin-bottom:.2rem}
+.bp-src{font-size:.78rem;line-height:1.5;color:var(--muted);margin:.35rem 0 .2rem}
+.bp-src a{color:var(--link)}
+.bp-tbl{width:100%;border-collapse:collapse;font-size:.84rem;margin:.35rem 0}
+.bp-tbl th{text-align:left;font-size:.72rem;text-transform:uppercase;letter-spacing:.02em;color:var(--muted);padding:.25rem .4rem;border-bottom:1px solid var(--line)}
+.bp-tbl td{padding:.3rem .4rem;border-bottom:1px solid var(--line);color:var(--ink)}
+.bp-tbl tr.on td{font-weight:700;box-shadow:inset 3px 0 0 var(--accent)}
+.fn-alarm{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin:.4rem 0 .2rem}
+.fn-alarm .alarm-t{flex:0 0 7rem}
+.fn-alarm-note{font-size:.76rem;color:var(--muted);margin:.15rem 0 0}
