@@ -1,6 +1,6 @@
 # RNAwiki production revamp state
 
-Last updated: 2026-08-12
+Last updated: 2026-08-13
 
 This file is the repository-local handoff for the current production architecture. Read it before
 changing the navigation, Find, Today, protocol rendering, account consent, public identity,
@@ -143,6 +143,46 @@ Studio titles are generated from the governed problem/root-cause labels (or the 
 RNAwiki protocol” fallback). Any non-empty creator note makes publication fail closed until a real
 human review and `ReviewRecord` workflow exists. Existing public protocols are revalidated and
 their stored custom titles are never returned on public surfaces.
+
+## Protocol Studio: one problem, N causes, N plans
+
+A reader arrives with a **symptom**. What they can act on is one of the **root causes** under it —
+10 of 41 problems publish more than one, and knee pain publishes three. What you do about a tendon
+being overloaded is not what you do about cartilage wear, so those are separate plans, not one plan
+with options.
+
+The Studio draft is therefore `{v:2, title, pid, causes:[{rcid, items, code}], open, remixOf}` in
+`localStorage` under `rnawiki_studio_draft`. One `pid` chosen once; one entry per root cause, each
+with its own item list, its own safety verdict and its own published code. `stMigrate()` converts a
+v1 draft (`{title, items, base_pid, base_rcid}`) into a single-cause v2 draft rather than dropping
+it; a draft that arrives with no problem keeps its plans visible under the problem picker.
+
+- **Publishing publishes one cause.** Each is its own `studio_protocols` row keyed
+  `(base_pid, base_rcid)` — the pair `idx_studio_base` and the variants rail already group by, and
+  the pair `publicProtocolTitle()` builds the neutral public title from. A plan with no cause is
+  refused in the client with the reason, before the server's shape refusal.
+- **A creator never names a cause.** Every cause offered comes from the governed graph, so
+  `base_rcid` always resolves in `studio-safety.js`. Overlay `_stub` causes (an approved
+  root-cause change not yet in `site/data.js`) are excluded, because they build and then refuse.
+  The route for a cause RNAwiki does not publish is the moderated `POST /api/rootcause-changes`
+  queue; it is linked, never reimplemented as a text field.
+- **Every cause is checked, not just the open one.** `stCheckAllCauses()` runs the same
+  corpus-only `POST /api/protocols/check` per non-empty cause and paints the result on its card. A
+  cause whose request fails renders as *not checked*, never as clean, and a checked cause with
+  nothing to say prints so — an empty strip must not be mistakable for an unchecked one.
+- **The branch that is not a plan.** The spine renders the problem's own authored
+  `plan.reassess` prose, unfolded. It is collapsed on the reading page because the reader is
+  deciding for themselves; in the Studio somebody is authoring a plan strangers will run.
+- **No canvas.** Every control is a full-width block with a ≥44px target; nothing is dragged,
+  connected or positioned. A pointer-driven canvas on a 390px screen fights vertical scroll and the
+  iOS left-edge back gesture — the same reason item rows have no drag handle.
+- `/studio` and `/studio/<code>` both serve the SPA shell (`SPA_MAX_ARGS`, noindex). `/studio/<code>`
+  answered 404 on direct load until 2026-08-13 although `app.js` navigates there itself after a
+  remix.
+
+Gates: `assertStudioAuthorsEveryRootCause()` in `build/parse.js` (source), the multi-root-cause
+base block in `scripts/studio-safety.test.mjs` (validator), and
+`oneProblemAuthorsAPlanPerRootCause` in `scripts/smoke.mjs` (rendered browser).
 
 ## Account and deletion contract
 

@@ -706,6 +706,92 @@ const ASSERTIONS = {
       }
       return done(null);
     },
+  }, {
+    name: 'oneProblemAuthorsAPlanPerRootCause',
+    why: 'The founder\'s own description of the defect: somebody searches a SYMPTOM ("knee pain") and the thing they can act on is one of several ROOT CAUSES under it — a tight muscle, a weak muscle, a tendon being overloaded. Until 2026-08-13 the Studio draft was a flat items array with one optional base pair that nothing in the client ever set, so a creator could author exactly one cause per symptom and every protocol published as an unbound "Custom RNAwiki protocol". build/parse.js asserts the source and scripts/studio-safety.test.mjs asserts the validator; only a browser can prove a creator can actually reach the second cause. PROVE IT by deleting the #st-add-cause control from stAddCauseControl(), or by making stAddRootCause() return false.',
+    evaluate: async () => {
+      const tick = (ms) => new Promise(r => setTimeout(r, ms));
+      const prev = localStorage.getItem('rnawiki_studio_draft');
+      const done = (v) => {
+        if (prev === null) localStorage.removeItem('rnawiki_studio_draft');
+        else localStorage.setItem('rnawiki_studio_draft', prev);
+        return v;
+      };
+      const settle = async (sel) => { for (let i = 0; i < 40; i++) { await tick(120); if (document.querySelector(sel)) return true; } return false; };
+
+      // NOTHING IS HARDCODED. The problem and its causes come out of the corpus the page loaded,
+      // so this assertion follows the graph rather than pinning knee-pain's three ids.
+      const D = window.RNAWIKI_DATA || {};
+      const probs = ((D.graph || {}).problems || []).filter((p) => (p.root_causes || []).filter((r) => !r._stub).length > 1);
+      if (!probs.length) return done('no problem in the corpus publishes more than one root cause, so this assertion has no subject');
+      const P = probs[0], RCS = P.root_causes.filter((r) => !r._stub);
+
+      // (1) THE MIGRATION. Real devices hold v1 drafts — {title, items, base_pid, base_rcid}. A
+      // creator's unfinished protocol must survive the upgrade, not be silently emptied.
+      localStorage.setItem('rnawiki_studio_draft', JSON.stringify({
+        title: 'smoke v1', items: [{ k: 'c', id: 'c0' }], base_pid: P.id, base_rcid: RCS[1].id, remixOf: null,
+      }));
+      window.dispatchEvent(new PopStateEvent('popstate'));
+      if (!await settle('#st-list .st-row')) return done('a v1 draft did not survive the upgrade — its item list is gone from the plan screen');
+      const back = document.getElementById('st-back');
+      if (!back) return done('a migrated v1 draft opened with no way back to the problem it belongs to');
+
+      // (2) THE SPINE. Back out of the plan and the problem must show every cause it publishes.
+      back.click();
+      if (!await settle('.st-spine-line')) return done('the Studio spine did not render for a draft that names a problem');
+      const line = document.querySelector('.st-spine-line').innerText;
+      if (line.indexOf(String(RCS.length)) < 0) {
+        return done(`the spine does not state how many causes this problem publishes (${RCS.length}): "${line}"`);
+      }
+      const cards = () => Array.from(document.querySelectorAll('.st-cause-n')).map((e) => e.innerText.trim());
+      if (cards().length !== 1) return done(`a one-cause draft rendered ${cards().length} plan cards`);
+
+      // Each card must say WHICH cause, in plain language, and how a reader would recognise it.
+      if (!document.querySelector('.st-cause-p') || !document.querySelector('.st-cause-d')) {
+        return done('a cause card carries no plain-language line or no "how you would know it is this one" line — a creator choosing between three causes is choosing between three pieces of jargon');
+      }
+
+      // (3) THE BRANCH THAT IS NOT A PLAN, unfolded. It is the problem's own authored escalation
+      // prose, and a creator writing a plan strangers will run has to see it without opening it.
+      const route = document.querySelector('section.st-route .st-route-b');
+      if (!route) return done('the Studio spine shows no escalation branch, or has put it behind a disclosure');
+      if (route.innerText.trim().length < 80) return done('the escalation branch rendered but is essentially empty');
+
+      // (4) THE addRootCause PATH — THE DEFECT ITSELF.
+      const addBtn = document.getElementById('st-add-cause');
+      if (!addBtn) return done('there is no control to add a second cause. This is the defect: one symptom, several causes, and a builder that can hold exactly one of them.');
+      addBtn.click();
+      if (!await settle('[data-rc]')) return done('the add-a-cause control opened nothing');
+      const offered = Array.from(document.querySelectorAll('[data-rc]')).map((b) => b.getAttribute('data-rc'));
+      if (offered.length !== RCS.length - 1) {
+        return done(`the picker offered ${offered.length} causes; the problem publishes ${RCS.length} and one already has a plan, so it should offer ${RCS.length - 1}`);
+      }
+      if (offered.indexOf(RCS[1].id) >= 0) return done('the picker re-offered a cause that already has a plan in this draft');
+      document.querySelector('[data-rc]').click();
+      for (let i = 0; i < 40; i++) { await tick(120); if (cards().length === 2) break; }
+      const two = cards();
+      if (two.length !== 2) return done(`adding a second cause left ${two.length} plan card(s) on the spine`);
+      if (two[0] === two[1]) return done('two plans in one draft name the same cause');
+
+      // (5) THE PLANS ARE SEPARATE. Two causes must not share one item list — that was the old
+      // model, and under it publishing one would publish the others.
+      const counts = Array.from(document.querySelectorAll('.st-cause-c')).map((e) => e.innerText.trim());
+      if (counts.length !== 2) return done('a cause card lost its item count');
+      if (counts[0] === counts[1]) {
+        return done(`both plans report the same contents ("${counts[0]}") after only one of them was given an item — they are sharing a list`);
+      }
+      // And the cards are numbered in the corpus's own order, so "Cause 2 of 3" is not above
+      // "Cause 1 of 3".
+      // textContent, NOT innerText: .st-cause-k is text-transform:uppercase, and innerText returns
+      // the STYLED string — "CAUSE 1 OF 3". The first version of this line read innerText and failed
+      // against a correct page, which is the false positive every new gate has to be checked for.
+      const pos = Array.from(document.querySelectorAll('.st-cause-k')).map((e) => {
+        const m = /Cause (\d+) of (\d+)/.exec(e.textContent); return m ? Number(m[1]) : 0;
+      });
+      if (pos.some((n) => !n)) return done('a cause card does not say which of the problem\'s causes it is');
+      if (pos[0] > pos[1]) return done(`the plan cards are out of the corpus's own order: they read Cause ${pos[0]} then Cause ${pos[1]}`);
+      return done(null);
+    },
   }],
   '/stack': [{
     name: 'aUserCannotPublishADangerPairingWithoutBeingShownIt',

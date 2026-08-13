@@ -114,4 +114,52 @@ assert.ok(restricted, 'the corpus must still hold a restricted compound for this
 assert.equal(restricted.ok, false, 'a restricted substance must still refuse to publish');
 assert.ok(restricted.refusals.some((x) => x.rule === 'restricted-substance'));
 
+// ---- ONE PROBLEM, N CAUSES, N PLANS (2026-08-13) ---------------------------------------------
+// The Studio can now author a separate plan for each root cause under one symptom, and each one
+// saves as its own row keyed (base_pid, base_rcid). That makes the base pair load-bearing in a way
+// it never was while nothing in the client ever set it, so the validator's half of the contract is
+// asserted here: the pair must be accepted per cause, and a pair the graph does not hold must be
+// refused rather than quietly stored as an unbound "Custom RNAwiki protocol".
+const graph = context.window.RNAWIKI_DATA.graph;
+const multiCause = (graph.problems || []).filter((p) => (p.root_causes || []).length > 1);
+assert.ok(multiCause.length, 'the corpus must publish at least one problem with more than one root cause, or nothing here is being tested');
+
+const bound = (pid, rcid) => safety.validate({
+  spec: { v: 1, items: [{ k: 'c', id: 'c0' }] }, base_pid: pid, base_rcid: rcid, publish: true,
+});
+
+// Every cause of every multi-cause problem is independently bindable. This is the defect: before
+// 2026-08-13 a creator could reach exactly one of these, so a symptom with three causes could be
+// given one plan and the other two were unreachable.
+let boundPairs = 0;
+for (const p of multiCause) {
+  for (const rc of p.root_causes) {
+    const v = bound(p.id, rc.id);
+    assert.ok(!v.refusals.some((x) => x.rule === 'shape'), `${p.id}/${rc.id} must be a bindable base for a protocol`);
+    assert.equal(v.base_pid, p.id);
+    assert.equal(v.base_rcid, rc.id);
+    boundPairs++;
+  }
+}
+assert.ok(boundPairs >= 2 * multiCause.length, 'each multi-cause problem must expose every one of its causes as a distinct base');
+
+// Two causes of the SAME problem are two different protocols, not one with a switch. Their stored
+// bases must differ, because that pair is what /api/protocols/variants groups by and what
+// publicProtocolTitle() builds the public name from.
+const sample = multiCause[0];
+const a = bound(sample.id, sample.root_causes[0].id);
+const b = bound(sample.id, sample.root_causes[1].id);
+assert.notEqual(a.base_rcid, b.base_rcid, 'two causes under one problem must not collapse to one base');
+
+// A cause that is not under this problem is refused. The Studio only ever offers governed causes,
+// but the client is not the authority — a hand-posted body must not be stored unbound.
+const foreign = bound(sample.id, 'not-a-real-root-cause');
+assert.equal(foreign.ok, false);
+assert.ok(foreign.refusals.some((x) => x.rule === 'shape'), 'an unknown root cause must refuse, not fall through as an unbound protocol');
+const otherProblem = (graph.problems || []).find((p) => p.id !== sample.id && (p.root_causes || []).length);
+const crossed = bound(sample.id, otherProblem.root_causes[0].id);
+assert.equal(crossed.ok, false, 'a real root cause borrowed from a DIFFERENT problem must still refuse');
+
 console.log('[studio-safety] overlap-repercussion contract OK — multi-compound publishes, unknown pairs warn, danger warns with a citation, restricted still refuses');
+console.log('[studio-safety] multi-root-cause bases OK — %d problems with >1 cause, %d distinct (problem, cause) bases all bindable, unknown and cross-problem causes refused',
+  multiCause.length, boundPairs);

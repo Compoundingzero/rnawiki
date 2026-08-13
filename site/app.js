@@ -1077,7 +1077,7 @@
       try {
         if (planProtocols(getPlan()).length) return true;
         if (Object.keys(trackRead().logs || {}).length) return true;
-        const d = stLoad(); return !!(d && d.items && d.items.length);
+        const d = stLoad(); return !!(d && d.causes.some(c => c.items.length));
       } catch (e) { return false; }
     })();
     if (ME) slot.innerHTML = `<span class="acct"><a class="acct-btn acct-name" href="#/me" title="Profile for @${esc(ME.username)} — your plan, logged days, and protocols">Profile</a>${canAdmin() ? ' <a class="acct-btn super" href="#/admin" title="Super-admin control room">⚙ Control room</a>' : ''} <button class="acct-btn" id="logout-btn">Sign out</button></span>`;
@@ -8389,6 +8389,16 @@
             an alternative, which is the state today: an empty "other versions" heading on a health
             page invites a reader to go looking for something that is not there. */ ''}
       <div id="variants-rail" data-variants-rail hidden></div>
+      ${/* THE READING INTERFACE IS THE CONTRIBUTING INTERFACE. The Studio used to be reachable from
+            /stack, /me and a published protocol page and from nowhere else — never from the page a
+            reader is actually on when they think "this is not quite my version". The link carries
+            the problem AND this root cause, so the builder opens on the plan they were reading
+            rather than on an empty problem picker.
+            A HASH href on purpose: /studio is not prerendered, and assertLinkGraph's norm() ignores
+            '#' hrefs precisely so no emitted page ever links to a route the build does not serve.
+            It is therefore also absent from the prerendered twin, which is correct rather than a
+            drift — a builder link that does nothing without JavaScript is worse than no link. */ ''}
+      <p class="st-entry">Your version is not this one? <a href="#/studio?for=${esc(problem.id)}&amp;cause=${esc(rc.id)}">Write a plan for ${esc(rc.name.replace(/\s*\([^)]*\)/, '').toLowerCase())} in the Protocol Studio</a> — it checks every pairing as you assemble it, and building, keeping and running it need no account.</p>
       <details class="phase2" id="phase-2"${p2open}>
         <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
         <div class="p2-body">
@@ -9609,11 +9619,85 @@
   let ST = null, ST_V = null, ST_STATE = 'idle', ST_SEQ = 0, ST_TIMER = null;
   let ST_TAB = 'c', ST_Q = '', ST_FOCUS = null;
   const ST_EXBY = {}, ST_FDBY = {}; let ST_INDEXED = false;
+  const ST_CV = {};                        // rcid -> that cause's own last verdict, for the spine
+  let ST_CSEQ = 0;
 
-  function stLoad() { try { const d = JSON.parse(localStorage.getItem(ST_KEY) || 'null'); if (d && Array.isArray(d.items)) return d; } catch (e) {} return null; }
+  // ===== ONE PROBLEM, N CAUSES, N PLANS (2026-08-13) ==========================================
+  // THE DEFECT THIS FIXES, IN THE FOUNDER'S OWN WORDS: somebody searches a SYMPTOM — "knee pain".
+  // The thing they actually need to act on is one of several ROOT CAUSES sitting under it: a tight
+  // muscle, a weak muscle, a tendon being asked for more than it has been built for. What you do
+  // about a tight muscle is not what you do about a worn joint, so those are not one plan with
+  // options — they are different plans. Until now the Studio could not say that. A draft was a flat
+  // `items` array with ONE optional (base_pid, base_rcid), and nothing in this file ever SET that
+  // pair except a remix inheriting it, so every protocol built here published as
+  // "Custom RNAwiki protocol" bound to no cause at all. There was no addRootCause path. This is it.
+  //
+  // THE MODEL IS A SPINE, NOT A GRAPH. ST.pid is the problem, chosen once. ST.causes is one entry
+  // per root cause, each holding its OWN item list, its OWN safety verdict and its OWN published
+  // code. Publishing publishes one cause: one studio_protocols row per (base_pid, base_rcid), which
+  // is the pair the schema has been indexed on since it was written.
+  //
+  // DELIBERATELY NOT A CANVAS. The reference concept video draws this as a node graph on a
+  // 1920-wide desktop with drag-connected edges. A pointer-driven canvas on a 390px screen fights
+  // vertical scroll and the iOS left-edge back gesture — the same reason there is no drag handle on
+  // an item row (see the note above). The narrative the video tells is worth taking; its editor is
+  // not. What is taken: one problem opens into its causes, each cause opens into its own plan, and
+  // one branch is not a plan at all but a route to a clinician.
+  //
+  // A CREATOR NEVER NAMES A CAUSE. Every cause offered here comes from the governed graph, so
+  // base_rcid always resolves in studio-safety.js (`RNAwiki has no root cause x/y to build this on`
+  // is a refusal, not a warning) and publicProtocolTitle() always has real labels to build a
+  // neutral public title from. Creator prose still cannot cross the public boundary — r6 refuses
+  // it — and inventing a root cause is prose. The moderated route for a cause RNAwiki does not yet
+  // publish is POST /api/rootcause-changes, which is a review queue, and it is linked rather than
+  // reimplemented.
+  function stBlank() { return { v: 2, title: '', pid: null, causes: [], open: null, remixOf: null }; }
+  function stNewCause(rcid) { return { rcid: rcid || null, items: [], code: null }; }
+
+  // Real devices are holding v1 drafts right now: {title, items:[…], base_pid, base_rcid, remixOf}.
+  // A v1 draft is exactly a v2 draft with one cause in it, so it is CONVERTED rather than dropped —
+  // silently emptying somebody's unfinished protocol on upgrade is the worst thing this could do.
+  // It opens straight into its plan, because that is the screen its author left it on.
+  function stMigrate(d) {
+    if (!d || typeof d !== 'object' || Array.isArray(d)) return null;
+    if (d.v === 2) {
+      if (!Array.isArray(d.causes)) return null;
+      d.causes = d.causes.filter(c => c && typeof c === 'object' && Array.isArray(c.items));
+      if (!(typeof d.open === 'number' && d.open >= 0 && d.open < d.causes.length)) d.open = null;
+      if (typeof d.title !== 'string') d.title = '';
+      return d;
+    }
+    if (!Array.isArray(d.items)) return null;
+    const m = stBlank();
+    m.title = typeof d.title === 'string' ? d.title : '';
+    m.pid = d.base_pid || null;
+    m.remixOf = d.remixOf || null;
+    const c = stNewCause(d.base_rcid || null); c.items = d.items;
+    m.causes = [c]; m.open = 0;
+    return m;
+  }
+  function stLoad() { try { return stMigrate(JSON.parse(localStorage.getItem(ST_KEY) || 'null')); } catch (e) {} return null; }
   function stSave() { try { localStorage.setItem(ST_KEY, JSON.stringify(ST)); } catch (e) {} }
   function stKey(it) { return it.k + ':' + it.id; }      // the SAME key studio-safety.js mints
-  function stSpec() { return { v: 1, items: ST.items.map(it => Object.assign({}, it)) }; }
+
+  function stProblem() { return ST && ST.pid ? (problemById[ST.pid] || null) : null; }
+  // ONLY the causes the SERVER's graph also holds. An approved root-cause change is applied to this
+  // browser's copy as a runtime overlay (applyRcOverlay, `_stub:true`) and studio-safety.js reads
+  // site/data.js, which does not have it until the next build. Offering a `_stub` here would hand
+  // the creator a cause that builds fine and then refuses at publish with a shape error.
+  function stCauses(p) { return p ? (p.root_causes || []).filter(rc => rc && !rc._stub) : []; }
+  function stRcOf(rcid) { return stCauses(stProblem()).find(rc => rc.id === rcid) || null; }
+  function stRcPos(rcid) { return stCauses(stProblem()).findIndex(rc => rc.id === rcid) + 1; }
+  function stCur() { return ST && typeof ST.open === 'number' && ST.causes[ST.open] ? ST.causes[ST.open] : null; }
+  function stItems() { const c = stCur(); return c ? c.items : []; }
+  function stSpec() { return { v: 1, items: stItems().map(it => Object.assign({}, it)) }; }
+  // The base pair travels with EVERY check and EVERY save. r2 uses it to refuse a movement the
+  // cause's own page contraindicates, so sending it is a safety input, not a label.
+  function stBase(c) { return { base_pid: (ST && ST.pid) || null, base_rcid: (c && c.rcid) || null }; }
+  function stTitleOf(c) {
+    const rc = c && c.rcid ? stRcOf(c.rcid) : null, p = stProblem();
+    return rc && p ? p.name + ' — ' + rc.name.replace(/\s*\([^)]*\)/, '') : (ST && ST.title) || 'Untitled';
+  }
   function stEx() { const E = window.RNAWIKI_EXERCISES; return (E && E.exercises) || []; }
   function stFd() { const F = window.RNAWIKI_FOODS; return (F && F.foods) || []; }
   function stIndex() { if (ST_INDEXED) return; stEx().forEach(e => { ST_EXBY[e.id] = e; }); stFd().forEach(f => { ST_FDBY[f.id] = f; }); ST_INDEXED = !!(stEx().length && stFd().length); }
@@ -9632,12 +9716,34 @@
   function stCheckSoon() { clearTimeout(ST_TIMER); ST_STATE = 'checking'; stPaintVerdict(); ST_TIMER = setTimeout(stCheckNow, 400); }
   async function stCheckNow() {
     const seq = ++ST_SEQ;
-    if (!ST || !ST.items.length) { ST_V = null; ST_STATE = 'idle'; return stPaintVerdict(); }
-    const d = await api.checkProtocol(stSpec(), null, { base_pid: ST && ST.base_pid, base_rcid: ST && ST.base_rcid });
+    const c = stCur();
+    if (!c || !c.items.length) { ST_V = null; ST_STATE = 'idle'; return stPaintVerdict(); }
+    const d = await api.checkProtocol(stSpec(), null, stBase(c));
     if (seq !== ST_SEQ) return;   // a later edit already asked; this answer is about a protocol
                                   // that is no longer on screen, and painting it is a stale verdict
     if (d._status !== 200) { ST_V = d; ST_STATE = 'down'; return stPaintVerdict(); }
-    ST_V = d; ST_STATE = 'shown'; stPaintVerdict(); stPaintRowFlags();
+    ST_V = d; ST_STATE = 'shown';
+    if (c.rcid) ST_CV[c.rcid] = d;   // the spine reads the SAME answer; it does not compute its own
+    stPaintVerdict(); stPaintRowFlags();
+  }
+  // EVERY CAUSE IS CHECKED, NOT JUST THE OPEN ONE. A creator with three plans is looking at a list
+  // of three, and a builder that has seen a danger pair in plan two and printed nothing on the
+  // screen the creator is actually on is worse than no check at all — it is a page that looked and
+  // stayed quiet. This is the same endpoint the open plan uses (corpus only, no database, no
+  // account), one request per non-empty cause, and a cause whose request fails is painted as
+  // unchecked rather than as clean.
+  async function stCheckAllCauses() {
+    if (!ST || !ST.causes.length) return;
+    const seq = ++ST_CSEQ;
+    const jobs = ST.causes.filter(c => c.rcid && c.items.length).map(async (c) => {
+      const d = await api.checkProtocol({ v: 1, items: c.items.map(it => Object.assign({}, it)) }, null, stBase(c));
+      return { rcid: c.rcid, d };
+    });
+    if (!jobs.length) return;
+    const out = await Promise.all(jobs);
+    if (seq !== ST_CSEQ) return;
+    out.forEach(({ rcid, d }) => { ST_CV[rcid] = d && d._status === 200 ? d : null; });
+    if (ST && ST.open === null) stPaintSpineFlags();
   }
   function stTouch() { stSave(); stPaint(); stCheckSoon(); }
 
@@ -9846,9 +9952,15 @@
 
     // ---- BUILT --------------------------------------------------------------------------------
     let made = '';
-    if (draft && draft.items && draft.items.length) {
+    // A draft is now one problem with a plan per cause, so this counts both — "3 items" over a
+    // draft holding three separate plans would understate what is waiting on this device.
+    const dCauses = draft ? draft.causes.filter(c => c.items.length) : [];
+    const dItems = dCauses.reduce((n, c) => n + c.items.length, 0);
+    if (dItems) {
+      const dp = draft.pid ? problemById[draft.pid] : null;
       made += row('✏️', 'A protocol in progress on this device.',
-        esc(draft.title || 'Untitled') + ' — ' + draft.items.length + ' item' + (draft.items.length === 1 ? '' : 's') + '. It is saved here and nobody else can see it.',
+        esc(draft.title || (dp ? dp.name : 'Untitled')) + ' — ' + dCauses.length + ' plan' + (dCauses.length === 1 ? '' : 's')
+          + ' across ' + dItems + ' item' + (dItems === 1 ? '' : 's') + '. It is saved here and nobody else can see it.',
         '<a class="cta-ghost" href="#/studio">Open the Studio →</a>');
     }
     if (pub.length) {
@@ -9912,13 +10024,25 @@
 
   function studioLoading() { return '<div class="empty"><h1>Loading the Studio…</h1></div>'; }
 
-  async function renderStudio(code) {
+  // `forPid`/`forRcid` arrive from /studio?for=<problem>&cause=<root cause> — the link a reader
+  // follows off the protocol page they are already reading. THE READING INTERFACE IS THE
+  // CONTRIBUTING INTERFACE: somebody who has just read the kneecap-tracking protocol should not have
+  // to find a builder and re-pick the problem they arrived on. It seeds an EMPTY draft only; it
+  // never rewrites one that already has work in it, because a shared link must not be able to throw
+  // away what is on somebody's device.
+  async function renderStudio(code, forPid, forRcid) {
     try { await ensureProtocolData(); } catch (e) {}
     stIndex();
     // ALWAYS re-read the device copy. stSave() writes on every mutation, so localStorage is the
     // truth and an in-memory copy can only be staler than it.
-    ST = stLoad() || { title: '', items: [], base_pid: null, base_rcid: null, remixOf: null };
-    if (!Array.isArray(ST.items)) ST.items = [];
+    ST = stLoad() || stBlank();
+    if (!code && forPid && problemById[forPid] && !ST.causes.some(c => c.items.length)) {
+      ST = stBlank(); ST.pid = forPid;
+      const seed = stCauses(problemById[forPid]);
+      const pick = forRcid && seed.some(rc => rc.id === forRcid) ? forRcid : (seed.length === 1 ? seed[0].id : null);
+      if (pick) ST.causes = [stNewCause(pick)];
+      stSave();
+    }
     if (code && ST.remixOf !== code) {
       const src = await api.readProtocol(code);
       if (src._status !== 200 || !src.spec) {
@@ -9926,10 +10050,19 @@
           + '<div class="empty"><h1>That protocol could not be opened</h1><p>' + esc(src.error || src.says || 'No published protocol has that code.') + '</p><p><a href="#/studio">Start a new one →</a></p></div>';
         return;
       }
-      ST = { title: 'Remix of ' + src.title, items: (src.spec.items || []).map(x => Object.assign({}, x)), base_pid: src.base_pid || null, base_rcid: src.base_rcid || null, remixOf: code };
+      // A remix is one published plan, so it arrives as one cause under its own problem. The
+      // creator can add the problem's other causes to it afterwards like any other draft.
+      ST = stBlank();
+      ST.title = 'Remix of ' + src.title;
+      ST.pid = src.base_pid || null;
+      ST.remixOf = code;
+      const c = stNewCause(src.base_rcid || null);
+      c.items = (src.spec.items || []).map(x => Object.assign({}, x));
+      ST.causes = [c]; ST.open = 0;
       stSave();
     }
-    stPaint(); stCheckSoon();
+    stPaint();
+    if (ST.open === null) stCheckAllCauses(); else stCheckSoon();
   }
 
   function stEmpty() {
@@ -9938,17 +10071,238 @@
 
   function stPaint() {
     if (!ST) return;
-    const n = ST.items.length;
-    app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
-      + '<section class="st-hd">'
-      + '<div class="kicker">Protocol Studio' + (ST.remixOf ? ' · remix' : '') + '</div>'
+    if (ST.open === null) return stPaintSpine();
+    return stPaintPlan();
+  }
+
+  // ---- THE SPINE: one problem, its causes, one plan under each --------------------------------
+  // The whole screen is a vertical list of 44px-plus targets. Nothing here is dragged, connected,
+  // zoomed or positioned; a phone can do all of it with a thumb.
+  function stPaintSpine() {
+    const p = stProblem(), rcs = stCauses(p), n = rcs.length;
+    const head = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
+      + '<section class="st-hd"><div class="kicker">Protocol Studio' + (ST.remixOf ? ' · remix' : '') + '</div>'
       + '<h1>Build a protocol</h1>'
       + '<p class="st-acct">Build and run a private draft without an account. It stays on this device. To publish a page other people can open, sign in and confirm you wrote it.</p>'
       + '<label class="st-title-l" for="st-title">Name your private draft</label>'
-      + '<input id="st-title" class="st-title" type="text" maxlength="90" value="' + esc(ST.title) + '" placeholder="e.g. My knee routine" autocomplete="off">'
-      + '<p class="st-why">When you publish, RNAwiki uses a neutral title from the reviewed problem and pattern. Your draft name stays private.</p>'
+      + '<input id="st-title" class="st-title" type="text" maxlength="90" value="' + esc(ST.title) + '" placeholder="e.g. My knee work" autocomplete="off">'
+      + '<p class="st-why">When you publish, RNAwiki uses a neutral title from the reviewed problem and cause. Your draft name stays private.</p>'
+      + '</section>';
+    // NO PROBLEM ON THE DRAFT YET. The picker is the screen — EXCEPT when the draft already holds
+    // work, and that is the COMMON case rather than the odd one: every v1 draft on a real device
+    // migrates in with no problem on it, because nothing in the old Studio ever set base_pid. Going
+    // straight to a search box would show somebody an empty page where their protocol used to be.
+    // The plans render underneath it, still openable, saying the one thing they are missing.
+    if (!p) {
+      const built = ST.causes.filter(c => c.items.length).length;
+      app.innerHTML = head + stPickProblem()
+        + (built
+          ? '<section class="st-spine"><h2 class="st-orphan-h">Already in this draft</h2>'
+            + '<p class="st-why">This was built before RNAwiki asked which problem a protocol is for, and it is still here. It runs exactly as it did. Pick the problem above and it gets a cause, a public title and a page of its own.</p>'
+            + '<div class="st-causes">' + ST.causes.map(stCauseCard).join('') + '</div></section>'
+          : '');
+      stPaintSpineFlags(); stWireSpine();
+      return;
+    }
+
+    // The count comes from the graph on every render. Nothing about "how many causes" is typed
+    // into this file — 31 of 41 problems publish exactly one, and this line has to be true of
+    // those too.
+    const causeWord = n === 1 ? 'cause' : 'causes';
+    const spine = '<section class="st-spine">'
+      + '<div class="st-prob"><div class="st-prob-h"><span class="st-prob-n">' + esc(p.name) + '</span>'
+      + '<button class="linkbtn" id="st-prob-change">Change</button></div>'
+      + '<p class="st-spine-line"><b>One problem. ' + n + ' ' + causeWord + '. ' + n + ' different plan' + (n === 1 ? '' : 's') + '.</b></p>'
+      + '<p class="st-why">RNAwiki publishes ' + n + ' ' + causeWord + ' under ' + esc(p.name) + '. They get separate plans because what you do about a tight muscle is not what you do about a worn joint. Write the ones you know something about and leave the rest.</p></div>'
+      + (ST.causes.length
+        ? '<div class="st-causes">' + ST.causes.map(stCauseCard).join('') + '</div>'
+        : '<div class="st-empty"><p><b>No plan in this draft yet.</b></p><p class="muted">Pick the cause you want to write for. Each one you add opens its own plan — its own movements, foods, compounds and daily tools, checked on its own.</p></div>')
+      + stAddCauseControl(p, rcs)
+      + stSafetyRoute(p)
       + '</section>'
-      + '<div class="st-list" id="st-list">' + (n ? ST.items.map(stRow).join('') : stEmpty()) + '</div>'
+      + '<p class="st-saved">Saved on this device. It is not on a server and nobody else can see it.</p>';
+    app.innerHTML = head + spine;
+    stPaintSpineFlags();
+    stWireSpine();
+  }
+
+  // One card per authored cause. It states the cause in the corpus's own plain words, then how a
+  // reader would know it is theirs, then what is in the plan and what the checker said about it.
+  function stCauseCard(c, i) {
+    const rc = c.rcid ? stRcOf(c.rcid) : null;
+    const pos = c.rcid ? stRcPos(c.rcid) : 0, of = stCauses(stProblem()).length;
+    const nm = rc ? rc.name : 'A plan with no cause';
+    // A draft that carried a cause the corpus has since dropped must SAY so, exactly like a row
+    // whose compound was withdrawn. It cannot publish, and pretending otherwise wastes the tap.
+    const gone = c.rcid && !rc
+      ? '<p class="st-gone">RNAwiki no longer publishes a cause with the id “' + esc(c.rcid) + '” under this problem. This plan cannot be published — remove it, or move its items into one of the causes above.</p>' : '';
+    return '<article class="st-cause" data-cause="' + i + '">'
+      + '<div class="st-cause-k">' + (pos ? 'Cause ' + pos + ' of ' + of : 'No cause chosen') + '</div>'
+      + '<h2 class="st-cause-n">' + esc(nm) + '</h2>'
+      + (rc && rc.plain ? '<p class="st-cause-p">' + esc(rc.plain) + '</p>' : '')
+      + (rc && rc.diagnostic ? '<p class="st-cause-d"><b>How you would know it is this one:</b> ' + esc(rc.diagnostic) + '</p>' : '')
+      + gone
+      + '<p class="st-cause-c">' + (c.items.length
+        ? '<b>' + c.items.length + '</b> thing' + (c.items.length === 1 ? '' : 's') + ' in this plan'
+        : 'Nothing in this plan yet') + '</p>'
+      + '<div class="st-cause-f" data-cflags="' + i + '"></div>'
+      + (c.code ? '<p class="st-cause-pub">Published · <a href="#/p/' + esc(c.code) + '">open its page</a></p>' : '')
+      + '<div class="st-cause-a"><button class="cta-primary st-open" data-open="' + i + '">'
+      + (c.items.length ? 'Open this plan' : 'Start this plan') + ' →</button>'
+      + '<button class="linkbtn danger" data-cdrop="' + i + '">Remove</button></div>'
+      + '</article>';
+  }
+
+  // The verdict strip on each card, painted from the SAME response the plan screen shows. Worst
+  // first, and an unchecked cause says "not checked" rather than nothing — see stCheckAllCauses().
+  function stPaintSpineFlags() {
+    if (!ST || ST.open !== null) return;
+    app.querySelectorAll('[data-cflags]').forEach((host) => {
+      const c = ST.causes[Number(host.getAttribute('data-cflags'))];
+      if (!c) return;
+      if (!c.items.length) { host.innerHTML = ''; return; }
+      if (!c.rcid) { host.innerHTML = '<span class="st-chip st-chip-b">✋ no cause chosen — cannot be published</span>'; return; }
+      const d = ST_CV[c.rcid];
+      if (d === undefined) { host.innerHTML = '<span class="st-chip">Checking…</span>'; return; }
+      if (!d) { host.innerHTML = '<span class="st-chip st-chip-b">⚠️ not checked — that is a fault at this end, not a clearance</span>'; return; }
+      const w = d.warn || [], chips = [];
+      if (w.some(f => f.tier === 'danger' || f.rule === 'danger-interaction')) chips.push('<span class="st-chip st-chip-d">⛔ a dangerous pair in this plan</span>');
+      if (w.some(f => f.rule === 'restricted-substance')) chips.push('<span class="st-chip st-chip-rx">℞ cannot be published</span>');
+      const cov = d.coverage || {};
+      if (cov.state === 'partial' || cov.state === 'none') chips.push('<span class="st-chip st-chip-b">❔ ' + (cov.checked || 0) + ' of ' + (cov.of || 0) + ' pairs have authored guidance</span>');
+      else if (cov.state === 'complete') chips.push('<span class="st-chip">Authored guidance · ' + cov.checked + ' of ' + cov.of + ' pairs</span>');
+      // not_applicable is fewer than two compounds — nothing to cross-check. It still prints,
+      // because an EMPTY strip after a check has run is indistinguishable from one that has not,
+      // and this whole row exists to tell those two states apart.
+      else if (cov.state === 'not_applicable') chips.push('<span class="st-chip">Checked · no compound pairing in this plan</span>');
+      host.innerHTML = chips.join('');
+    });
+  }
+
+  // ---- picking the problem --------------------------------------------------------------------
+  // A search box over the graph, not a 41-row <select>. The same catalogue the rest of the site
+  // uses, and the list is never empty: below two characters it browses.
+  function stPickProblem() {
+    return '<section class="st-pick"><h2>Which problem is this for?</h2>'
+      + '<p class="st-why">Pick the symptom or goal somebody would arrive with. The causes underneath it are what you write plans for, and RNAwiki uses the problem and the cause to write the public title.</p>'
+      + '<input id="st-pq" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="Search ' + (GRAPH.problems || []).length + ' problems and goals…">'
+      + '<div id="st-pres" class="st-res"></div></section>';
+  }
+  function stProblemResults() {
+    const el = document.getElementById('st-pres'); if (!el) return;
+    const q = String((document.getElementById('st-pq') || {}).value || '').trim().toLowerCase();
+    const all = (GRAPH.problems || []);
+    const hits = (q.length < 2 ? all : all.filter(p => (p.name + ' ' + p.category + ' ' + (p.root_causes || []).map(r => r.name + ' ' + (r.plain || '')).join(' ')).toLowerCase().indexOf(q) >= 0)).slice(0, 40);
+    if (!hits.length) { el.innerHTML = '<p class="st-res-h">Nothing here matches “' + esc(q) + '”. RNAwiki holds ' + all.length + ' problems and goals; a new one is a request, not something a builder can invent.</p>'; return; }
+    el.innerHTML = '<p class="st-res-h">' + (q.length < 2 ? 'All ' + hits.length + ' — type to narrow' : hits.length + ' match “' + esc(q) + '”') + '</p>'
+      + hits.map(p => { const n = stCauses(p).length; return '<button class="build-res st-res-row" data-pick="' + esc(p.id) + '">'
+        + '<span class="br-name">' + esc(p.name) + '</span>'
+        + '<span class="br-meta">' + esc(p.category) + ' · ' + n + ' cause' + (n === 1 ? '' : 's') + '</span>'
+        + '<span class="br-add">→</span></button>'; }).join('');
+    el.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => stSetProblem(b.dataset.pick));
+  }
+  function stSetProblem(pid) {
+    const p = problemById[pid]; if (!p) return;
+    ST.pid = pid;
+    // Choosing the problem does not choose a cause. A one-cause problem has exactly one answer, so
+    // it is opened rather than presented as a choice of one — 31 of 41 problems are that shape.
+    const rcs = stCauses(p);
+    if (!ST.causes.length && rcs.length === 1) { ST.causes = [stNewCause(rcs[0].id)]; }
+    else if (ST.causes.length === 1 && !ST.causes[0].rcid && rcs.length === 1) { ST.causes[0].rcid = rcs[0].id; }
+    stSave(); stPaint(); stCheckAllCauses();
+  }
+
+  // ---- THE addRootCause PATH — the thing that did not exist ----------------------------------
+  function stAddCauseControl(p, rcs) {
+    const used = new Set(ST.causes.map(c => c.rcid).filter(Boolean));
+    const left = rcs.filter(rc => !used.has(rc.id));
+    // A draft carrying a plan with no cause on it — every migrated v1 draft — is not being asked to
+    // add ANOTHER cause. It is being asked to say which cause the plan it already has is for, and
+    // stAddRootCause() adopts the orphan rather than growing a second card. The label has to say
+    // that, or the one control that unblocks publishing reads as irrelevant.
+    const orphan = ST.causes.some(c => !c.rcid);
+    if (left.length) {
+      return '<button class="st-add-open" id="st-add-cause">＋ ' + (orphan ? 'Choose the cause for this plan' : 'Add another cause') + '</button>'
+        + '<p class="st-why">' + (orphan
+          ? 'A plan needs a cause before it can be published: the public title is written from the reviewed problem and cause. Choosing one here names the plan you already have.'
+          : left.length + ' of the ' + rcs.length + ' cause' + (rcs.length === 1 ? '' : 's') + ' RNAwiki publishes under ' + esc(p.name) + ' ' + (left.length === 1 ? 'has' : 'have') + ' no plan in this draft yet.') + '</p>';
+    }
+    // Every governed cause is authored. The honest next line is not "add another" — it is what the
+    // route to a cause RNAwiki does not publish actually is, and that route is a review queue.
+    return '<p class="st-why st-all-causes">Every cause RNAwiki publishes under ' + esc(p.name) + ' — all ' + rcs.length + ' of them — has a plan in this draft.'
+      + (featureOn('publicCommunity')
+        ? ' If you think a cause is missing, <a href="#/problem/' + esc(p.id) + '">propose it on the problem page</a>. A proposed cause is read by a person before it appears, so it is not something this builder can add for you.'
+        : ' A cause RNAwiki does not publish cannot be added here: the public title of a protocol is written from the reviewed problem and cause, so inventing one would publish unreviewed copy under a reviewed-looking name.') + '</p>';
+  }
+  function stAddRootCause(rcid) {
+    if (!ST || !ST.pid) return false;
+    if (!stRcOf(rcid)) return false;                                   // never a cause the graph lacks
+    if (ST.causes.some(c => c.rcid === rcid)) return false;            // never the same cause twice
+    // A draft that started with no cause chosen adopts this one rather than growing an orphan.
+    const orphan = ST.causes.findIndex(c => !c.rcid);
+    if (orphan >= 0) ST.causes[orphan].rcid = rcid; else ST.causes.push(stNewCause(rcid));
+    // KEPT IN THE CORPUS'S OWN ORDER, not the order they were added. The cards are numbered
+    // "Cause 2 of 3" from the graph, so a list that reads 2, 1, 3 is a list whose own numbering
+    // contradicts its order — measured in a real browser at 390px after adding the second cause.
+    // The open index is re-found by identity afterwards, never carried across the sort.
+    const open = stCur();
+    const order = stCauses(stProblem()).map(rc => rc.id);
+    ST.causes.sort((a, b) => order.indexOf(a.rcid) - order.indexOf(b.rcid));
+    ST.open = open ? ST.causes.indexOf(open) : ST.open;
+    if (ST.open < 0) ST.open = null;
+    stSave();
+    return true;
+  }
+  function stCausePicker() {
+    const p = stProblem(); if (!p) return;
+    const rcs = stCauses(p), used = new Set(ST.causes.map(c => c.rcid).filter(Boolean));
+    const left = rcs.filter(rc => !used.has(rc.id));
+    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Add a cause of ' + esc(p.name) + '</h2>'
+      + '<p class="modal-sub">Each one opens its own plan. Pick the one you can write about.</p>'
+      + '<div class="st-res">' + left.map(rc => '<button class="build-res st-rc-row" data-rc="' + esc(rc.id) + '">'
+        + '<span class="br-name">' + esc(rc.name) + '</span>'
+        + (rc.plain ? '<span class="br-meta">' + esc(rc.plain) + '</span>' : '')
+        + '<span class="br-add">＋</span></button>').join('') + '</div>');
+    m.querySelector('#modal-close').onclick = closeModal;
+    m.querySelectorAll('[data-rc]').forEach(b => b.onclick = () => {
+      if (!stAddRootCause(b.dataset.rc)) return;
+      closeModal();
+      stSay('Added ' + b.querySelector('.br-name').textContent + '. ' + ST.causes.length + ' plan' + (ST.causes.length === 1 ? '' : 's') + ' in this draft.');
+      stPaint(); stCheckAllCauses();
+    });
+  }
+
+  // ---- THE BRANCH THAT IS NOT A PLAN ----------------------------------------------------------
+  // The reference video's best idea, and the only one taken whole: one path out of the problem is
+  // not a protocol at all — it ends and says be seen. NOTHING HERE IS WRITTEN BY THIS RENDERER.
+  // It is the problem's own authored `plan.reassess`, the same prose /protocol/<p>/<rc> puts above
+  // its first recommendation, and on knee pain it already opens with "locks, catches, or gives
+  // way" — which is exactly the red branch the video draws. It renders OPEN, not behind a
+  // disclosure: on the reading page it is collapsed because the reader is deciding for themselves,
+  // and here somebody is writing a plan that strangers will run.
+  function stSafetyRoute(p) {
+    const pl = p.plan || {};
+    if (!pl.reassess) return '';
+    return '<section class="st-route"><div class="st-route-k">⚠️ When it is not one of these</div>'
+      + '<div class="st-route-b">' + mdBlocks(pl.reassess, mdInline) + '</div>'
+      + '<p class="st-route-w">Do not write a plan for any of the above. There is no protocol on this site for them, and there should not be one in yours — the honest branch ends here and says be seen.</p></section>';
+  }
+
+  // ---- ONE CAUSE'S PLAN: the builder as it was, operating on the open cause -------------------
+  function stPaintPlan() {
+    const c = stCur(); if (!c) { ST.open = null; return stPaintSpine(); }
+    const items = c.items, n = items.length;
+    const p = stProblem(), rc = c.rcid ? stRcOf(c.rcid) : null;
+    const pos = c.rcid ? stRcPos(c.rcid) : 0, of = stCauses(p).length;
+    app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
+      + '<button class="st-back" id="st-back">← ' + esc(p ? p.name : 'All plans') + '</button>'
+      + '<section class="st-hd">'
+      + '<div class="kicker">' + (pos ? 'Cause ' + pos + ' of ' + of : 'Protocol Studio') + '</div>'
+      + '<h1>' + esc(rc ? rc.name : 'Build a protocol') + '</h1>'
+      + (rc && rc.plain ? '<p class="st-cause-p">' + esc(rc.plain) + '</p>' : '')
+      + (rc ? '' : '<p class="st-acct">This plan is not attached to a cause. Publishing needs one, because the public title is written from the reviewed problem and cause. Go back and pick one.</p>')
+      + '</section>'
+      + '<div class="st-list" id="st-list">' + (n ? items.map(stRow).join('') : stEmpty()) + '</div>'
       + '<button class="st-add-open" id="st-add-open"' + (n >= ST_MAX ? ' disabled' : '') + '>＋ Add something</button>'
       + (n >= ST_MAX ? '<p class="st-why">A protocol tops out at ' + ST_MAX + ' items. Past that nobody does it, and a stated limit is more honest than an unbounded store.</p>' : '')
       + '<div class="st-verdict" id="st-verdict" aria-live="polite"></div>'
@@ -9960,7 +10314,7 @@
   }
 
   function stRow(it, i) {
-    const o = stObj(it), nm = (o && o.name) || it.id, n = ST.items.length, k = stKey(it);
+    const o = stObj(it), nm = (o && o.name) || it.id, n = stItems().length, k = stKey(it);
     // An id the corpus no longer holds is NOT dressed up as a name. R1 refuses it; the row says so.
     const gone = o ? '' : '<p class="st-gone">RNAwiki no longer holds a ' + esc(ST_KIND[it.k] || 'thing') + ' with the id “' + esc(it.id) + '”. Remove it — it cannot be saved.</p>';
     return '<div class="st-row" data-row="' + esc(k) + '">'
@@ -10095,7 +10449,7 @@
     const el = document.getElementById('st-verdict'); if (!el || !ST) return;
     const pub = document.getElementById('st-publish');
     const setPub = (on, label) => { if (pub) { pub.disabled = !on; pub.textContent = label; } };
-    if (!ST.items.length) { el.innerHTML = '<p class="st-cov">Nothing in this protocol yet, so there is nothing to check.</p>'; return setPub(false, 'Publish…'); }
+    if (!stItems().length) { el.innerHTML = '<p class="st-cov">Nothing in this protocol yet, so there is nothing to check.</p>'; return setPub(false, 'Publish…'); }
     if (ST_STATE === 'checking') { el.innerHTML = '<p class="st-cov">Checking…</p>'; return setPub(false, 'Publish…'); }
     if (ST_STATE === 'down' || !ST_V) {
       // A checker that cannot answer must never read as a pass.
@@ -10146,7 +10500,7 @@
     app.querySelectorAll('[data-flags]').forEach(el => { el.innerHTML = ''; });
     if (!ST_V) return;
     const all = (ST_V.warn || []).concat(ST_V.refusals || []);
-    ST.items.forEach(it => {
+    stItems().forEach(it => {
       const k = stKey(it), nm = stName(it);
       let host = null;
       app.querySelectorAll('[data-flags]').forEach(e => { if (e.getAttribute('data-flags') === k) host = e; });
@@ -10172,29 +10526,32 @@
   }
 
   // ---- mutations ------------------------------------------------------------------------------
-  function stFind(k) { return ST.items.findIndex(it => stKey(it) === k); }
+  function stFind(k) { return stItems().findIndex(it => stKey(it) === k); }
   function stAdd(k, id) {
-    if (ST.items.length >= ST_MAX) return false;
+    // FAIL CLOSED WITH NO OPEN PLAN. stItems() returns a fresh [] when no cause is open, so a push
+    // would land in a throwaway array and the tap would report success having stored nothing.
+    const c = stCur(); if (!c) return false;
+    if (c.items.length >= ST_MAX) return false;
     if (stFind(k + ':' + id) >= 0) return false;
-    ST.items.push({ k: k, id: id }); stSave(); return true;
+    c.items.push({ k: k, id: id }); stSave(); return true;
   }
   function stMove(k, dir) {
     const i = stFind(k); if (i < 0) return;
-    const j = dir === 'up' ? i - 1 : i + 1; if (j < 0 || j >= ST.items.length) return;
-    const [it] = ST.items.splice(i, 1); ST.items.splice(j, 0, it);
+    const j = dir === 'up' ? i - 1 : i + 1; if (j < 0 || j >= stItems().length) return;
+    const [it] = stItems().splice(i, 1); stItems().splice(j, 0, it);
     ST_FOCUS = dir + '|' + k;
-    stSay(stName(it) + ' moved to position ' + (j + 1) + ' of ' + ST.items.length + '.');
+    stSay(stName(it) + ' moved to position ' + (j + 1) + ' of ' + stItems().length + '.');
     stTouch();   // order changes the diff a remix stores; it does not change the safety verdict,
                  // but re-checking costs one debounced request and keeps ONE code path.
   }
   function stRemove(k) {
     const i = stFind(k); if (i < 0) return;
-    const [it] = ST.items.splice(i, 1);
+    const [it] = stItems().splice(i, 1);
     stSay('Removed ' + stName(it) + '.'); toast('Removed ' + stName(it));
     stTouch();
   }
   function stSetNum(k, field, dir) {
-    const i = stFind(k); if (i < 0) return; const it = ST.items[i];
+    const i = stFind(k); if (i < 0) return; const it = stItems()[i];
     const f = it.k === 'fn' ? (fnById(it.id) || {}) : {};
     const bounds = field === 'sets' ? [1, 10, 1] : field === 'reps' ? [1, 30, 1] : [f.step || 1, (f.target || 1) * 4, f.step || 1];
     const cur = it[field] === undefined ? (field === 'sets' ? 3 : field === 'reps' ? 10 : (f.target || bounds[0])) : Number(it[field]) || bounds[0];
@@ -10202,7 +10559,7 @@
     it[field] = next; ST_FOCUS = field + dir + '|' + k; stTouch();
   }
   function stSetDose(k, act) {
-    const i = stFind(k); if (i < 0) return; const it = ST.items[i];
+    const i = stFind(k); if (i < 0) return; const it = stItems()[i];
     const lad = stLad(it.id); if (!lad || lad.locked) return;
     if (act === 'clear') { delete it.dose; ST_FOCUS = null; return stTouch(); }
     const cur = it.dose === undefined ? -1 : lad.rungs.indexOf(it.dose);
@@ -10212,7 +10569,7 @@
     ST_FOCUS = 'dose' + (act === 'up' ? 'up' : 'dn') + '|' + k; stTouch();
   }
   function stToggleDay(k, d) {
-    const i = stFind(k); if (i < 0) return; const it = ST.items[i];
+    const i = stFind(k); if (i < 0) return; const it = stItems()[i];
     if (d === 'clear') { delete it.days; ST_FOCUS = null; return stTouch(); }
     d = Number(d);
     const cur = Array.isArray(it.days) ? it.days.slice() : [0, 1, 2, 3, 4, 5, 6];
@@ -10243,7 +10600,7 @@
   function stTotal(tab) { return tab === 'c' ? stAddableC().length : tab === 'x' ? stEx().length : tab === 'f' ? stFd().length : PLAN_FUNCTIONS.length; }
   function stResults() {
     const el = document.getElementById('st-res'); if (!el) return;
-    const have = ST.items.filter(it => it.k === ST_TAB).map(it => it.id);
+    const have = stItems().filter(it => it.k === ST_TAB).map(it => it.id);
     const q = ST_Q.trim();
     let hits, browsing = false;
     if (q.length < 2) {
@@ -10281,8 +10638,8 @@
       // The sheet STAYS OPEN. Adding three things should be three taps, not three round trips
       // through a closing animation.
       b.classList.add('added'); b.querySelector('.br-add').textContent = '✓';
-      const n = document.getElementById('st-done-n'); if (n) n.textContent = String(ST.items.length);
-      stSay(b.querySelector('.br-name').textContent + ' added. ' + ST.items.length + ' in your protocol.');
+      const n = document.getElementById('st-done-n'); if (n) n.textContent = String(stItems().length);
+      stSay(b.querySelector('.br-name').textContent + ' added. ' + stItems().length + ' in your protocol.');
     });
   }
   function stAddSheet() {
@@ -10293,7 +10650,7 @@
       // opened this to browse a category would never see that Movements and Foods exist.
       + '<input id="st-q" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="Search…" value="' + esc(ST_Q) + '">'
       + '<div id="st-res" class="st-res"></div>'
-      + '<div class="modal-actions"><button class="primary" id="st-done">Done · <b id="st-done-n">' + ST.items.length + '</b> in your protocol</button></div>');
+      + '<div class="modal-actions"><button class="primary" id="st-done">Done · <b id="st-done-n">' + stItems().length + '</b> in your protocol</button></div>');
     m.querySelector('#modal-close').onclick = () => { closeModal(); stTouch(); };
     m.querySelector('#st-done').onclick = () => { closeModal(); stTouch(); };
     m.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { ST_TAB = b.dataset.tab; ST_Q = ''; closeModal(); stAddSheet(); });
@@ -10303,27 +10660,40 @@
   }
 
   // ---- publish --------------------------------------------------------------------------------
+  // PUBLISHING PUBLISHES ONE CAUSE. Three causes under one problem are three studio_protocols
+  // rows, each with its own (base_pid, base_rcid) — the pair idx_studio_base has been indexed on
+  // since the table was written, and the pair the variants rail groups by. Bundling them into one
+  // row would hand a reader with a tendon problem a plan written for a worn joint.
   async function stPublish() {
-    if (!ST.items.length) return;
+    const cur = stCur();
+    if (!cur || !cur.items.length) return;
     const ti = document.getElementById('st-title');
-    ST.title = String((ti && ti.value) || ST.title || '').slice(0, 90); stSave();
-    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Publish this protocol?</h2><p class="modal-sub">Checking it against the same rules this site’s own pages are held to…</p><div id="st-pb"></div>');
+    if (ti) { ST.title = String(ti.value || ST.title || '').slice(0, 90); stSave(); }
+    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Publish this plan?</h2><p class="modal-sub">Checking it against the same rules this site’s own pages are held to…</p><div id="st-pb"></div>');
     m.querySelector('#modal-close').onclick = closeModal;
     const body = m.querySelector('#st-pb');
+    // A plan with no cause has no reviewed labels to build a public title from, so it stops here
+    // rather than at the server with a shape refusal the creator cannot act on.
+    if (!cur.rcid) {
+      body.innerHTML = '<p class="st-pub-no"><b>This plan has not been published. Nothing was sent.</b></p>'
+        + '<p>It is not attached to a cause. RNAwiki writes the public title from the reviewed problem and cause, so a plan with neither has no title it is allowed to publish under.</p>'
+        + '<p class="st-pub-keep">Go back, pick the cause this plan is for, and publish it from there. Nothing you have built is lost.</p>';
+      return;
+    }
     // THE AUTHORITY IS THE SERVER, IN PUBLISH MODE. The verdict on the page behind this sheet
     // answered a different question. Measured: the same two items return ok:true with warns in
     // draft mode and ok:false with refusals with status:'published'.
-    const d = await api.checkProtocol(stSpec(), 'published', { base_pid: ST && ST.base_pid, base_rcid: ST && ST.base_rcid });
+    const d = await api.checkProtocol(stSpec(), 'published', stBase(cur));
     if (d._status !== 200) { body.innerHTML = '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Not checked</div><p>' + esc(d.error || 'The safety checker could not be reached. Nothing has been published.') + '</p></div>'; return; }
     const ref = (d.refusals || []).slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b));
     if (ref.length) {
       // NO OVERRIDE. There is no "publish anyway", no acknowledgement checkbox and no second
       // button. Do not add one: the server refuses it regardless, so the only thing an override
       // could ever do is teach a reader that the refusal is negotiable.
-      body.innerHTML = '<p class="st-pub-no"><b>This protocol has not been published. Nothing was sent.</b></p>'
+      body.innerHTML = '<p class="st-pub-no"><b>This plan has not been published. Nothing was sent.</b></p>'
         + ref.map(r => stFlagCard(r, true)).join('')
         + '<p class="st-cov">❔ ' + esc(d.says || '') + '</p>'
-        + '<p class="st-pub-keep">Your protocol is untouched and still saved on this device — you can keep running it. Change or remove what is named above to publish it.</p>';
+        + '<p class="st-pub-keep">This plan is untouched and still saved on this device — you can keep running it. The other plans in this draft are unaffected: each one publishes on its own. Change or remove what is named above to publish this one.</p>';
       body.querySelectorAll('[data-goto]').forEach(b => b.onclick = () => { closeModal(); stGoto(b.dataset.goto); });
       return;
     }
@@ -10336,12 +10706,18 @@
       // The last line is a FACT, not a promise: POST /api/protocols/:code/withdraw exists and /me
       // carries the button. Before that endpoint was written this sheet could not have said it, and
       // it must never say it again if the endpoint is ever removed.
+      // "plan" is what a cause holds inside the draft; "protocol" is what it becomes once it has a
+      // public link, which is the site's own vocabulary on /p/<code> — and the sentence naming the
+      // four public things is pinned verbatim by scripts/containment.mjs, so it stays as written.
       + '<div class="st-pub-what"><p><b>Publishing makes four things public on this protocol’s link:</b></p><ul>'
-      + '<li>a <b>neutral title</b> made from the reviewed problem and pattern;</li>'
+      + '<li>a <b>neutral title</b> made from the reviewed problem and cause — this one publishes as “' + esc(stTitleOf(cur)) + ' protocol”;</li>'
       + '<li>everything <b>in</b> it — each reviewed compound, movement, food and tool, with governed adjustments and days;</li>'
-      + '<li>the RNAwiki protocol you <b>started from</b>, if you started from one;</li>'
+      + '<li>the RNAwiki problem and cause it is <b>for</b>;</li>'
       + '<li>your <b>username</b> as the protocol’s author.</li>'
       + '</ul>'
+      // The other plans in the draft are named as NOT going, because a creator looking at a spine of
+      // three has no way to tell from a sheet headed "Publish" that it means one of them.
+      + (ST.causes.length > 1 ? '<p class="st-why"><b>Only this plan is published.</b> The other ' + (ST.causes.length - 1) + ' in this draft stay on this device until you publish each one from its own screen.</p>' : '')
       + '<p class="st-why">Your username is the only thing about you that goes with it. RNAwiki asks for no real name and holds no photograph. <b>Nothing you plan, log or follow is published</b> — not by this and not by anything else. That stays on this device.</p>'
       + '<p class="st-why">These pages are kept out of Google. Publishing is a link you hand out, not a listing you get found by.</p>'
       + '<p class="st-why">You can withdraw it later from <a href="#/me">your page</a>. The link keeps working and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.</p></div>'
@@ -10352,8 +10728,12 @@
       // The title is sent AS TYPED. It is not defaulted to "Untitled protocol": the server answers
       // 400 "Name your protocol" for an empty one, and its sentence is the one shown. A default
       // would put a name on somebody's document that they never chose.
-      const payload = { title: ST.title, spec: stSpec(), status: 'published', base_pid: ST.base_pid, base_rcid: ST.base_rcid };
-      const r = ST.remixOf ? await api.remixProtocol(ST.remixOf, payload) : await api.saveProtocol(payload);
+      const payload = Object.assign({ title: ST.title, spec: stSpec(), status: 'published' }, stBase(cur));
+      // A remix is a diff against ONE parent. Only the cause that was remixed can be sent as one;
+      // a cause added to the draft afterwards is a new protocol of its own, not a patch of somebody
+      // else's, and sending it as a remix would store it as a diff against a spec it never saw.
+      const asRemix = ST.remixOf && ST.causes.indexOf(cur) === 0;
+      const r = asRemix ? await api.remixProtocol(ST.remixOf, payload) : await api.saveProtocol(payload);
       if (r._status === 401) {
         // The account line, at the moment it actually applies — never on arrival.
         body.innerHTML = '<p>' + esc(r.error || 'Publishing puts your name on it, so publishing needs an account. Building one, saving it and running it do not.') + '</p>'
@@ -10370,18 +10750,57 @@
         return;
       }
       if (!r._ok) { go.disabled = false; go.textContent = 'Publish'; body.insertAdjacentHTML('beforeend', '<p class="st-pub-no">' + esc(r.error || 'It was not published.') + '</p>'); return; }
+      cur.code = r.code; stSave();   // the spine links straight to it afterwards
       closeModal(); toast('Published 🔗'); navigate('/p/' + r.code);
     };
   }
 
-  function stWire() {
+  function stWireSpine() {
     const t = document.getElementById('st-title');
-    // The title does not change the verdict, so it does not trigger a check.
     if (t) t.oninput = () => { ST.title = t.value.slice(0, 90); stSave(); };
+    const pq = document.getElementById('st-pq');
+    if (pq) { let d = null; pq.oninput = () => { clearTimeout(d); d = setTimeout(stProblemResults, 120); }; stProblemResults(); }
+    const ch = document.getElementById('st-prob-change');
+    // Changing the problem does not silently delete the plans written under the old one. Nothing
+    // here has a server copy, so a confirm is the only undo there is.
+    if (ch) ch.onclick = () => {
+      const authored = ST.causes.filter(c => c.items.length).length;
+      if (authored && !confirm('Change the problem? The ' + authored + ' plan' + (authored === 1 ? '' : 's') + ' written under this one will be removed. It is only on this device, so this cannot be undone.')) return;
+      ST.pid = null; ST.causes = []; ST.open = null; ST.remixOf = null;
+      Object.keys(ST_CV).forEach(k => delete ST_CV[k]);
+      stSave(); stPaint();
+    };
+    const ac = document.getElementById('st-add-cause'); if (ac) ac.onclick = stCausePicker;
+    app.querySelectorAll('[data-open]').forEach(b => b.onclick = () => {
+      ST.open = Number(b.dataset.open); ST_V = null; ST_STATE = 'idle';
+      stSave(); stPaint(); stCheckSoon();
+      window.scrollTo(0, 0);
+    });
+    app.querySelectorAll('[data-cdrop]').forEach(b => b.onclick = () => {
+      const i = Number(b.dataset.cdrop), c = ST.causes[i]; if (!c) return;
+      if (c.items.length && !confirm('Remove this plan and the ' + c.items.length + ' thing' + (c.items.length === 1 ? '' : 's') + ' in it? The other plans stay. It is only on this device, so this cannot be undone.')) return;
+      if (c.rcid) delete ST_CV[c.rcid];
+      ST.causes.splice(i, 1); ST.open = null;
+      stSay('Plan removed. ' + ST.causes.length + ' left in this draft.');
+      stSave(); stPaint();
+    });
+  }
+
+  function stWire() {
+    const back = document.getElementById('st-back');
+    if (back) back.onclick = () => { ST.open = null; stSave(); stPaint(); stCheckAllCauses(); window.scrollTo(0, 0); };
     const add = document.getElementById('st-add-open'); if (add) add.onclick = stAddSheet;
     const pub = document.getElementById('st-publish'); if (pub) pub.onclick = stPublish;
     const cl = document.getElementById('st-clear');
-    if (cl) cl.onclick = () => { if (!ST.items.length) return; if (!confirm('Empty this protocol? It is only on this device, so this cannot be undone.')) return; ST.items = []; ST.remixOf = null; stTouch(); };
+    // Clear empties THIS plan, never the draft. A creator with three plans who taps Clear on one of
+    // them has not asked to lose the other two, and a device-only store has no undo to fall back on.
+    if (cl) cl.onclick = () => {
+      const c = stCur(); if (!c || !c.items.length) return;
+      if (!confirm('Empty this plan? The other plans in this draft are untouched. It is only on this device, so this cannot be undone.')) return;
+      c.items.length = 0; if (c.rcid) delete ST_CV[c.rcid];
+      if (ST.causes.length === 1) ST.remixOf = null;
+      stTouch();
+    };
     app.querySelectorAll('[data-mv]').forEach(b => b.onclick = () => stMove(b.dataset.key, b.dataset.mv));
     app.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => stRemove(b.dataset.rm));
     app.querySelectorAll('[data-dose]').forEach(b => b.onclick = () => stSetDose(b.dataset.key, b.dataset.dose));
@@ -10390,7 +10809,7 @@
     app.querySelectorAll('[data-note]').forEach(a => {
       // A note does not affect any safety rule beyond its 240-char cap, so it saves on input and
       // re-checks only on blur. Re-rendering the page under a caret is how you lose a sentence.
-      a.oninput = () => { const i = stFind(a.dataset.note); if (i < 0) return; const v = a.value.slice(0, 240); if (v) ST.items[i].note = v; else delete ST.items[i].note; stSave(); const cc = a.parentNode.querySelector('.st-cc'); if (cc) cc.textContent = v.length + '/240'; };
+      a.oninput = () => { const i = stFind(a.dataset.note); if (i < 0) return; const v = a.value.slice(0, 240); if (v) stItems()[i].note = v; else delete stItems()[i].note; stSave(); const cc = a.parentNode.querySelector('.st-cc'); if (cc) cc.textContent = v.length + '/240'; };
       a.onblur = () => stCheckSoon();
     });
   }
@@ -11076,7 +11495,7 @@
     if (parts[0] === 'solve') bindSolve();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan(QS.get('mode'));
-    if (parts[0] === 'studio') renderStudio(parts[1] || null);
+    if (parts[0] === 'studio') renderStudio(parts[1] || null, QS.get('for'), QS.get('cause'));
     if (parts[0] === 'me') renderMe();
     if (parts[0] === 'u' && parts[1]) renderPublicProfile(parts[1]);
     if (parts[0] === 'p' && parts[1]) renderPublished(parts[1]);

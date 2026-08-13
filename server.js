@@ -3614,8 +3614,16 @@ ${links}
   // the whole private page and /u/ used to render the HOME page under a /u/ URL — both HTTP 200,
   // both soft 404s. Measured on this branch before the guard. The others are prefix routes whose
   // own renderer decides what a bad id means, so they keep the shell.
-  const SPA_EXACT = { me: 1, progress: 1, plan: 1, studio: 1, solve: 1, stack: 1, az: 1, browse: 1, where: 1, about: 1, legend: 1, anatomy: 1, pathways: 1 };
+  const SPA_EXACT = { me: 1, progress: 1, plan: 1, solve: 1, stack: 1, az: 1, browse: 1, where: 1, about: 1, legend: 1, anatomy: 1, pathways: 1 };
   const SPA_ONE_ARG = { u: 1, p: 1 };
+  // A RANGE, because /studio takes an OPTIONAL code and the two fixed-arity maps could not say so.
+  // `studio` sat in SPA_EXACT, so /studio/<code> — the address site/app.js navigates to itself the
+  // moment somebody taps "Remix this", and the only address a remix in progress has — answered 404
+  // on any direct load, reload or shared link. Measured on this branch before the change:
+  //   GET /studio          200      GET /studio/abc123   404
+  // Bounded rather than open: /studio/a/b is still a 404, so this does not reopen the unbounded
+  // indexable space that /fuel/<anything>/<anything> was. Both are noindex either way.
+  const SPA_MAX_ARGS = { studio: 2 };
   // SPA_N_ARGS held { clinic: 4 } for about an hour on 2026-08-11. Then the hydrated check showed
   // /clinic/<handle>/<problem>/<rc> rendering the HOME page too — the route is retired in app.js and
   // its deeper branches are dead code — so the whole prefix left SPA_ONLY_ROUTES and 404s at the
@@ -3632,6 +3640,7 @@ ${links}
     if (SPA_EXACT[seg[0]] && seg.length > 1) return notFoundPage(res);
     if (SPA_ONE_ARG[seg[0]] && seg.length !== 2) return notFoundPage(res);
     if (SPA_N_ARGS[seg[0]] && seg.length !== SPA_N_ARGS[seg[0]]) return notFoundPage(res);
+    if (SPA_MAX_ARGS[seg[0]] && seg.length > SPA_MAX_ARGS[seg[0]]) return notFoundPage(res);
     if (!isNoindexRoute(seg)) return sendFile(res, path.join(DIR, 'index.html'));
     // TWO DIRECTIVES, DELIBERATELY, AND THEY ARE NOT REDUNDANT.
     //   · the HEADER is what a crawler that never parses the body obeys, and it is the one that

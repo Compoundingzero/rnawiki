@@ -51,7 +51,30 @@
   <span id="account-slot" class="account-slot"></span>
 </header>
 
-<main id="app"><!-- rendered by app.js --></main>
+<main id="app"><!-- rendered by app.js -->
+<!-- THE ONLY DOCUMENT A READER WITH NO JAVASCRIPT GETS AT THESE ADDRESSES (2026-08-13).
+     This file is served for the routes the build does NOT prerender — /studio, /me, /p/<code>,
+     /progress, /u/<handle>, /admin — every one of which is drawn in the browser by app.js. With
+     scripting off, #app stayed EMPTY: a page that answered HTTP 200 with a header, a footer and
+     nothing in between. ~90% of traffic here never runs JavaScript.
+     The reading half of this site is a different story and this block says so rather than
+     apologising: all ~620 documents are prerendered and need no script at all, so the honest
+     answer is not "enable JavaScript" but "here is the door that works".
+     app.js overwrites #app on its first route(), so this costs a reader with scripting on
+     nothing. It is INSIDE #app deliberately for that reason. -->
+<noscript>
+  <section class="empty">
+    <h1>This page is built in your browser</h1>
+    <p>The Protocol Studio, your own page and a protocol somebody published are assembled by a
+    script, so with JavaScript turned off there is nothing here to show you. That is a limit of
+    this page, not a paywall — RNAwiki has no paywall and no account requirement.</p>
+    <p><strong>Everything you can read works without JavaScript.</strong> Every protocol, compound,
+    movement and food page on this site is a plain document.</p>
+    <p><a href="/solve">Start from a problem or a goal</a> · <a href="/goals">Browse by goal</a> ·
+    <a href="/az">Every compound, A&ndash;Z</a> · <a href="/">Home</a></p>
+  </section>
+</noscript>
+</main>
 
 <!-- The footer is the global disclaimer plus three links, matching shell(). The old version of this
      one carried a 💡 tip about underlined words and then repeated eleven nav links — and said

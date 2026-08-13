@@ -4175,10 +4175,24 @@ function blankComments(src) {
   // NOT /api\.checkProtocol\([^)]*\)/ — the first argument is `stSpec()`, so a non-greedy run to the
   // first ')' captures "api.checkProtocol(stSpec()" and every call looks like it sends no base.
   // That version of this line failed the build against correct code. A fixed window is enough here:
-  // both calls fit inside it and neither spans a line.
-  const calls = app.match(/api\.checkProtocol\(.{0,160}/g) || [];
+  // the calls fit inside it and none spans a line.
+  //
+  // 2026-08-13, THE MULTI-CAUSE DRAFT: the pair is no longer written out at each call site. A draft
+  // now holds one plan per root cause, so the pair is (ST.pid, thatCause.rcid) and the call sites
+  // pass one helper, stBase(cause). That is STRONGER than the literal string this clause used to
+  // look for — there is exactly one place the pair is built, so three call sites cannot drift from
+  // each other — but only while BOTH halves hold, so both are asserted: every call forwards a base,
+  // and stBase() really does build it from the draft's problem and that cause's root cause. Accept
+  // either form so a future call that writes the pair inline is still legal.
+  const calls = app.match(/api\.checkProtocol\(.{0,200}/g) || [];
   if (!calls.length) bad.push('site/app.js — no call to api.checkProtocol() found at all. If the Studio stopped checking, this gate has no subject.');
-  calls.forEach((c) => { if (!/base_pid/.test(c)) bad.push(`site/app.js — a call to checkProtocol() sends no base_pid: ${c.slice(0, 90)}`); });
+  calls.forEach((c) => { if (!/base_pid/.test(c) && !/stBase\(/.test(c)) bad.push(`site/app.js — a call to checkProtocol() sends no base: ${c.slice(0, 90)}`); });
+  const stBase = /function stBase\((.{0,240})/.exec(app);
+  if (!stBase) {
+    bad.push('site/app.js — stBase() is gone. Every checkProtocol() and every save builds its (base_pid, base_rcid) pair from it; without it each call site invents the pair again, which is how S9 shipped a rule that could never fire.');
+  } else if (!/base_pid/.test(stBase[1]) || !/base_rcid/.test(stBase[1]) || !/ST\.pid/.test(stBase[1]) || !/\.rcid/.test(stBase[1])) {
+    bad.push('site/app.js stBase() no longer reads the draft\'s problem and that plan\'s root cause into base_pid/base_rcid. A base that is not the plan\'s own base is worse than none: r2() would check the avoid-list of a different root cause and report a pass.');
+  }
 
   // S6 — even complete exact-pair coverage is a neutral statement about narrow authored rules,
   // never a broad green clearance. `checked >= 2` was itself the defect once the count described
@@ -4248,4 +4262,92 @@ function blankComments(src) {
     process.exit(1);
   }
   console.log('[parse] safety signals reach the reader OK — %d checkProtocol call(s) carry the protocol base, the clean verdict states its coverage, only a clean verdict may be folded, and the movement search filters on the cause\'s own avoid-list.', calls.length);
+})();
+
+// ---- ONE PROBLEM, N CAUSES, N PLANS ----------------------------------------------------------
+// THE DEFECT, AND WHY IT NEEDS A GATE RATHER THAN A NOTE. A reader arrives with a SYMPTOM — "knee
+// pain". The thing they can act on is one of the root causes under it, and this corpus publishes
+// three for that one: kneecap tracking, tendon overload, early osteoarthritis. What you do about a
+// tendon being overloaded is not what you do about cartilage wear, so those are three plans, not
+// one plan with options.
+//
+// Until 2026-08-13 the Studio could not express that. A draft was a flat `items` array with ONE
+// optional (base_pid, base_rcid) pair, and nothing in site/app.js ever SET that pair except a remix
+// inheriting it — so every protocol built here published as "Custom RNAwiki protocol", bound to no
+// cause, and a creator who wanted to write for a second cause had nowhere to put it.
+//
+// This is the `root_causes[0]` family of bug and this repository has shipped it four times already:
+// every /solve card linked to root_causes[0] (D10), the muscle and target pages linked to
+// root_causes[0], and the intake modal opened index 0 on all 52. It is a one-character reversion in
+// every case, which is exactly why it belongs in a gate. Reintroduce any clause below and the build
+// stops.
+(function assertStudioAuthorsEveryRootCause() {
+  const raw = fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8');
+  const app = blankComments(raw);
+  const bad = [];
+  // The Studio block, so a `root_causes[0]` that is CORRECT elsewhere on the site (an A–Z row that
+  // deliberately opens the first cause) cannot fail this gate. Bounded by its own two landmarks.
+  const from = app.indexOf('const ST_KEY');
+  const to = app.indexOf('async function renderPublished(');
+  if (from < 0 || to < 0 || to <= from) {
+    bad.push('build/parse.js could not find the Studio block in site/app.js (const ST_KEY … renderPublished). If it moved, retarget this gate; if it was deleted, delete this block. A gate that cannot find its subject passes vacuously.');
+  } else {
+    const st = app.slice(from, to);
+
+    // (1) THE PATH THAT DID NOT EXIST. A creator must be able to add a second cause.
+    if (!/function stAddRootCause\(/.test(st)) {
+      bad.push('site/app.js — stAddRootCause() is gone. Without it a draft can hold exactly one root cause, which is the defect this gate was written for: a symptom with three causes could only ever be given one plan.');
+    }
+    if (!/id="st-add-cause"/.test(st) || !/function stCausePicker\(/.test(st)) {
+      bad.push('site/app.js — nothing on the Studio spine opens the cause picker. An addRootCause() with no control that reaches it is the same defect with a function name on it.');
+    }
+
+    // (2) ONE PLAN PER CAUSE, not one list shared by all of them.
+    if (/\bST\.items\b/.test(st)) {
+      bad.push('site/app.js — the Studio draft holds a single top-level `items` array again. Then every cause shares one plan, the item list of the cause on screen is the item list of all of them, and publishing one publishes the others.');
+    }
+    if (!/function stNewCause\(/.test(st) || !/ST\.causes/.test(st)) {
+      bad.push('site/app.js — the draft no longer keeps a `causes` list. One problem with N causes is N item lists, N verdicts and N published rows.');
+    }
+
+    // (3) NEVER INDEX 0. The picker and the spine enumerate; they do not assume the first one.
+    const idx0 = st.match(/root_causes\s*\[\s*0\s*\]/g) || [];
+    if (idx0.length) {
+      bad.push(`site/app.js — the Studio reads root_causes[0] ${idx0.length} time(s). That is the reversion this gate exists for: it silently picks the first cause of a problem that publishes several, and the creator is never told which one they are writing for.`);
+    }
+
+    // (4) A CAUSE THE SERVER'S GRAPH DOES NOT HOLD IS NOT OFFERED. An approved root-cause change is
+    // applied to the browser as a `_stub` overlay; studio-safety.js reads site/data.js and refuses
+    // an unknown pair with a shape error. Offering a stub builds a plan that cannot be published.
+    if (!/function stCauses\(/.test(st) || !/_stub/.test(st)) {
+      bad.push('site/app.js — stCauses() no longer filters overlay `_stub` causes out of what the Studio offers. studio-safety.js refuses a base_rcid its own copy of the graph does not hold, so a stub is a plan the creator can build for an hour and never publish.');
+    }
+
+    // (5) THE BRANCH THAT IS NOT A PLAN. The corpus authors escalation prose for all 41 problems;
+    // a builder that never shows it invites somebody to write a self-care plan for a locked knee.
+    if (!/function stSafetyRoute\(/.test(st) || !/plan\.reassess|pl\.reassess/.test(st)) {
+      bad.push('site/app.js — the Studio no longer renders the problem\'s own authored escalation prose. A creator choosing between causes has to be told which presentations are not a cause at all.');
+    }
+    if (/<details[^>]*class="st-route/.test(st)) {
+      bad.push('site/app.js — the Studio\'s escalation block has been put behind a disclosure. It is collapsed on the reading page because the reader is deciding for themselves; here somebody is authoring a plan strangers will run, and a closed <details> is how the overlap warning shipped invisible on 2026-08-13.');
+    }
+  }
+
+  // (6) THE CORPUS ACTUALLY HAS MULTI-CAUSE PROBLEMS. If it ever stops, this gate is guarding
+  // nothing and should say so out loud rather than passing quietly.
+  const allProblems = (graph.problems || []);
+  const multi = allProblems.filter((p) => (p.root_causes || []).length > 1);
+  if (!multi.length) {
+    bad.push('data/clinical_graph.json — no problem publishes more than one root cause any more, so nothing in this build can exercise the multi-cause path. Either the graph regressed or this gate is obsolete.');
+  }
+
+  if (bad.length) {
+    console.error('\n[parse] MULTI-ROOT-CAUSE GATE FAILED — refusing to build.');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  One problem, N causes, N plans. A builder that can only hold one of them sends');
+    console.error('  the reader with a tendon problem a plan written for a worn joint.');
+    process.exit(1);
+  }
+  console.log('[parse] multi-root-cause builder OK — %d of %d problems publish more than one cause (max %d), the Studio enumerates them, offers an addRootCause path, keeps one plan per cause and shows the escalation branch unfolded.',
+    multi.length, allProblems.length, multi.reduce((n, p) => Math.max(n, p.root_causes.length), 0));
 })();
