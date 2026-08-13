@@ -4264,6 +4264,142 @@ function blankComments(src) {
   console.log('[parse] safety signals reach the reader OK — %d checkProtocol call(s) carry the protocol base, the clean verdict states its coverage, only a clean verdict may be folded, and the movement search filters on the cause\'s own avoid-list.', calls.length);
 })();
 
+// ---- A REQUEST HANDLER MUST READ ITS OWN BODY ------------------------------------------------
+// POST /api/avatar shipped on 2026-08-13 referencing `b.item` without ever declaring `b`. Every
+// other POST branch in api() opens with its own `const b = await readBody(req, …)`; that one did
+// not, `b` is not in scope in api(), and so the reference threw and EVERY avatar purchase answered
+// 500 from the hour the shop launched. Nothing caught it: `node --check` cannot see an unresolved
+// identifier, the branch needs both a database and a signed-in session to reach, and the client
+// turns a failed buy into a toast that reads like "you cannot afford this".
+//
+// This is a whole class — a handler that reads a name nothing in its scope defines — and it is
+// mechanically detectable, so it gets a gate rather than a note.
+(function assertHandlersDeclareTheirBody() {
+  const src = blankComments(fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8'));
+  const lines = src.split('\n');
+  const bad = [];
+  let checked = 0;
+  // Every handler in api() is a two-space-indented `if (...) {` whose body closes on a
+  // two-space-indented `}`. Walk each one and read only the lines it owns.
+  for (let i = 0; i < lines.length; i++) {
+    if (!/^ {2}if \(/.test(lines[i])) continue;
+    if (!/\{\s*$/.test(lines[i])) continue;
+    // ONLY BODY-BEARING METHODS. `b` is also a SQL table alias (`FROM base b` in the research
+    // aggregate) and a conventional sort argument, and the first two versions of this gate failed
+    // the build against correct code on both. A GET handler has no body to read, so the rule that
+    // catches the avatar defect does not apply to one — narrowing to the methods that DO take a
+    // body removes every false positive without weakening the thing being asserted.
+    if (!/method === '(?:POST|PUT|PATCH)'/.test(lines[i])) continue;
+    let end = i + 1;
+    while (end < lines.length && !/^ {2}\}/.test(lines[end])) end++;
+    const own = lines.slice(i, end);
+    const block = own.join('\n');
+    // `b` IS ALSO THE CONVENTIONAL SECOND SORT ARGUMENT, and the first version of this gate failed
+    // against correct code because of it: `.sort((a, b) => new Date(b.at) - new Date(a.at))` in the
+    // /api/pulse handler reads `b.at` off a callback parameter, not off a request body. So a line
+    // that BINDS `b` as a parameter is not a line that reads one. Checked line by line rather than
+    // per block, so a handler may legitimately contain both.
+    const uses = own
+      .map((ln, k) => ({ ln, no: i + k + 1 }))
+      .filter(({ ln }) => /\bb\.[A-Za-z_$]/.test(ln) || /\bb\s*&&/.test(ln))
+      .filter(({ ln }) => !/[(,]\s*b\s*[,)]/.test(ln));
+    if (!uses.length) continue;
+    checked++;
+    if (/\b(?:const|let|var)\s+b\b/.test(block)) continue;
+    const head = lines[i].trim().slice(0, 96);
+    bad.push(`server.js:${uses[0].no} — this handler reads \`b\` and never declares it. Every other branch in api() opens with \`const b = await readBody(req, …)\`.\n      handler: ${head}\n      line:    ${uses[0].ln.trim().slice(0, 96)}`);
+  }
+  if (checked < 5) {
+    bad.push(`build/parse.js found only ${checked} body-reading POST handler(s) in server.js. There are dozens. If api()'s shape or indentation changed, retarget this gate — a gate that cannot find its subject passes vacuously.`);
+  }
+  if (bad.length) {
+    console.error('\n[parse] HANDLER BODY GATE FAILED — refusing to build.');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  A handler that reads a name nothing in its scope defines answers 500 to every');
+    console.error('  caller, and node --check cannot see it. POST /api/avatar did exactly that.');
+    process.exit(1);
+  }
+  console.log('[parse] handler bodies OK — %d request handler(s) read a body, every one of them declares its own.', checked);
+})();
+
+// ---- A PUBLIC PROTOCOL LIST IS AN ALLOWLIST, AND CARRIES NO SCORE ----------------------------
+// Two defects found on 2026-08-14, both dormant behind PUBLIC_COMMUNITY=0 and both due to ship the
+// moment it turned on:
+//
+//   · GET /api/protocols/variants selected `u.reputation_points AS rep` and site/app.js printed it
+//     as "N points from contributing" in the variants rail — on all 52 /protocol/<pid>/<rcid>
+//     pages, beside the thing a reader is choosing to put in their body. assertGamificationConfine-
+//     ment() keeps points off every prerendered health document; this one arrived in the HYDRATED
+//     document through an endpoint and so walked around it entirely.
+//   · /variants and /new both returned `p.title`, the RAW STORED COLUMN, while every other public
+//     projection derives it through publicProtocolTitle(). Creator prose cannot cross the public
+//     boundary — studio-safety.js r6 refuses a note for exactly that reason — and a stored title is
+//     creator prose.
+//
+// The general rule both violate: a public projection built by SPREADING a database row is not an
+// allowlist. It publishes whatever the SELECT happens to carry, so the next column added to the
+// query reaches the wire with nobody deciding that it should.
+(function assertPublicProtocolListsAreAllowlists() {
+  const src = blankComments(fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8'));
+  const app = blankComments(fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8'));
+  const lines = src.split('\n');
+  const bad = [];
+  // The three PUBLIC list endpoints. /mine is deliberately absent: it is the author's own page and
+  // may return a draft's own title to the person who typed it.
+  const PUBLIC_LISTS = [
+    ["seg[1] === 'variants'", 'the variants rail on every protocol page'],
+    ["seg[1] === 'new'", 'the "new from the community" strip'],
+    ["seg[1] === 'used'", 'the MOST USED list'],
+  ];
+  let found = 0;
+  PUBLIC_LISTS.forEach(([needle, what]) => {
+    // The HANDLER, not the flag guard. Each of these routes also has a one-line
+    // `if (!FEATURES.publicCommunity && … ) return json(res, 404, …)` above it, which contains the
+    // same needle; the first version of this gate matched those and reported three failures against
+    // correct code. A handler opens a block and names its method.
+    const at = lines.findIndex((l) => /^ {2}if \(/.test(l) && l.indexOf(needle) >= 0
+      && /method === 'GET'/.test(l) && /\{\s*$/.test(l));
+    if (at < 0) {
+      bad.push(`server.js — could not find the handler for ${what} (${needle}). If it was renamed, retarget this gate; if it was deleted, delete this clause.`);
+      return;
+    }
+    found++;
+    let end = at + 1;
+    while (end < lines.length && !/^ {2}\}/.test(lines[end])) end++;
+    const block = lines.slice(at, end).join('\n');
+    if (/reputation_points/.test(block)) {
+      bad.push(`server.js:${at + 1} — ${what} selects reputation_points. A lifetime contribution score has no business on a page where somebody is deciding what to take, and an endpoint is not a place the confinement gate can see.`);
+    }
+    if (/Object\.assign\(\s*\{\s*\}\s*,/.test(block) || /\.\.\.[a-z]\b/.test(block)) {
+      bad.push(`server.js:${at + 1} — ${what} builds its payload by spreading a database row. Name the fields: a spread publishes whatever the SELECT carries, so the next column added to the query reaches the wire with nobody deciding it should.`);
+    }
+    if (!/publicProtocolTitle\(/.test(block)) {
+      bad.push(`server.js:${at + 1} — ${what} does not derive its titles through publicProtocolTitle(). The stored title column is creator prose, and creator prose does not cross the public boundary.`);
+    }
+    if (/\btitle:\s*[a-z]\.title\b/.test(block)) {
+      bad.push(`server.js:${at + 1} — ${what} returns the raw stored title column.`);
+    }
+  });
+  // The client half. The rail is the surface the score actually reached a reader through.
+  if (/points from contributing/.test(app)) {
+    bad.push('site/app.js — "points from contributing" is back on the variants rail. That is a reputation score rendered beside a protocol somebody is choosing between.');
+  }
+  if (/\bv\.rep\b/.test(app)) {
+    bad.push('site/app.js — the variants rail reads a `rep` field again.');
+  }
+  if (found !== PUBLIC_LISTS.length) {
+    bad.push(`build/parse.js located only ${found} of ${PUBLIC_LISTS.length} public protocol-list handlers.`);
+  }
+  if (bad.length) {
+    console.error('\n[parse] PUBLIC PROTOCOL LIST GATE FAILED — refusing to build.');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  A public projection built by spreading a row is not an allowlist, and a score');
+    console.error('  beside a protocol is gamification on the page where it is least allowed.');
+    process.exit(1);
+  }
+  console.log('[parse] public protocol lists OK — %d list endpoint(s), all named-field projections, all deriving governed titles, none carrying a contribution score.', found);
+})();
+
 // ---- ONE PROBLEM, N CAUSES, N PLANS ----------------------------------------------------------
 // THE DEFECT, AND WHY IT NEEDS A GATE RATHER THAN A NOTE. A reader arrives with a SYMPTOM — "knee
 // pain". The thing they can act on is one of the root causes under it, and this corpus publishes

@@ -986,6 +986,13 @@
     ul.hidden = false;
     if (empty) empty.remove();
     wrap.setAttribute('data-on', '1');
+    // ---- AND PUT THE FILLED STRIP BACK INTO THE CACHED HOME (2026-08-14) -----------------------
+    // home() replays HOME_HTML — the string captured from the prerendered document at boot, before
+    // this function has run. Without this line the strip fills once and then vanishes the moment
+    // the reader navigates away and back, because the cached copy is the empty one. Re-captured
+    // only after a successful fill, so a failed or gated fetch still leaves the honest empty state
+    // in the cache rather than a half-written one.
+    if (HOME_HTML && !currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;
   }
 
   // Mirrors overlapWarnings() in build/prerender.js. Both call IXN.stackInteractions/pairCoverage,
@@ -1048,12 +1055,20 @@
     // The server already ordered by likes DESC — the "default to the highest-liked" rule lives in
     // one place (idx_studio_variants), not re-sorted here where it could drift.
     const top = vs[0], rest = vs.slice(1);
+    // ---- NO POINTS ON A PAGE WHERE SOMEBODY IS DECIDING WHAT TO TAKE (2026-08-14) --------------
+    // This printed `(v.rep || 0) + ' points from contributing'` beside every variant, on all 52
+    // /protocol/<pid>/<rcid> pages. That is an author's lifetime reputation score rendered next to
+    // the thing a reader is choosing between — the exact placement assertGamificationConfinement()
+    // exists to prevent, and the exact rule the founder states as "gamification never appears on a
+    // page where someone decides what to take". It was invisible only because PUBLIC_COMMUNITY was
+    // off; turning the flag on published it. The score is gone from the payload too — see the note
+    // over /api/protocols/variants in server.js. What is left is the ONE ranking anything here is
+    // allowed to carry, and it says in words what it is not.
     const card = (v, isTop) => '<li class="vr-item' + (isTop ? ' vr-top' : '') + '">'
       + '<a href="/p/' + encodeURIComponent(v.code) + '">'
       + '<b>' + esc(v.title || 'Untitled protocol') + '</b>'
       + '<span class="vr-meta">' + (v.handle ? '@' + esc(v.handle) : 'anonymous')
-      + ' · ' + (v.likes || 0) + ' found this useful'
-      + ' · ' + (v.rep || 0) + ' points from contributing</span></a></li>';
+      + ' · ' + (v.likes || 0) + ' found this useful</span></a></li>';
     wrap.innerHTML = '<section class="variants"><h3 class="vr-h">Other people have written this one too</h3>'
       + '<p class="vr-sub">RNAwiki\u2019s own version is above. These are protocols other readers published for the same '
       + 'root cause, most-found-useful first. That count is about the write-up, not about whether it worked.</p>'
@@ -11581,6 +11596,18 @@
   //     never renders a spinner, an error, or a fabricated example
   //   · it is additive to a document that is already complete, so the ~90% of readers who never run
   //     JavaScript lose nothing except a list that is empty today anyway
+  //
+  // ---- AND IT COULD NEVER ONCE HAVE RUN (fixed 2026-08-14) -----------------------------------
+  // This call sits ~20 lines ABOVE `api.config().then(...)`, which is the only thing that ever
+  // populates CFG. CFG is initialised to `{ googleClientId: null, features: { sharedPlans: false } }`,
+  // so `featureOn('publicCommunity')` inside mountCommunityStrip() was ALWAYS false here and the
+  // function returned at its first guard on every single page load. Measured in Chrome with the
+  // config forced on: /api/protocols/new was never requested and the strip stayed data-on="0".
+  // The whole "new from the community" surface — step six of the contribution loop, the one the
+  // landing page's third row is about — was dead code, and flipping PUBLIC_COMMUNITY=1 would not
+  // have woken it. The real call is now in the config handler below, where the flag is known.
+  // This one stays as a no-op documenting why it cannot work here; deleting it would drop the
+  // `if (!featureOn('publicCommunity')) return;` count that scripts/containment.mjs pins.
   mountCommunityStrip();
   const cc = D.meta.counts;
   document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
@@ -11611,6 +11638,9 @@
     // arrives so the controls and board appear together instead of leaving a dead placeholder.
     if (communityOn !== communityWasOn && currentRoute().split('?')[0] === '/solve') route();
     if (communityOn) {
+      // THE REAL CALL. See the long note over the boot-time call above: this is the first moment
+      // featureOn('publicCommunity') can be true, so it is the first moment the strip can fill.
+      mountCommunityStrip();
       const targets = [...document.querySelectorAll('.vote-foot[data-target]')].map((el) => el.dataset.target).filter(Boolean);
       if (targets.length) mountVotes(targets);
       if (currentRoute().split('?')[0] === '/solve') mountRequestsBoard();

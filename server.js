@@ -1918,7 +1918,18 @@ async function api(req, res, url) {
         username: uu.username,
         joined: uu.created_at ? new Date(uu.created_at).toISOString().slice(0, 7) : null,
       },
-      published: pub.rows.map((p) => Object.assign({}, p, { title: publicProtocolTitle(p.base_pid, p.base_rcid) })),
+      // AN ALLOWLIST IMPLEMENTED AS A SPREAD IS NOT AN ALLOWLIST (2026-08-14). This was
+      // `Object.assign({}, p, {title})`, which put base_pid, base_rcid and a full-precision
+      // `published_at TIMESTAMPTZ` on the public wire — while `joined` two lines above is truncated
+      // to the MONTH precisely because a date-to-the-day is a correlation key. site/app.js renders
+      // none of the three, so it was disclosure with no reader. The gate that guards this payload
+      // (assertProfileDisclosesOnlyPublished) bans seven column names it already knows about, so a
+      // new column added to the SELECT would have reached the wire silently. Named fields only.
+      published: pub.rows.map((p) => ({
+        code: p.code,
+        title: publicProtocolTitle(p.base_pid, p.base_rcid),
+        clones: p.clones || 0,
+      })),
       clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
       shows: 'Only what this account published on purpose. Nothing it reads, plans, logs or follows.',
     });
@@ -2052,6 +2063,14 @@ async function api(req, res, url) {
   if (seg[0] === 'avatar' && !seg[1] && method === 'POST') {
     const u = await currentUser(req);
     if (!u) return json(res, 401, { error: 'Sign in first.' });
+    // `b` WAS NEVER DECLARED HERE (fixed 2026-08-14). Every other POST branch in this function
+    // reads its own body — `const b = await readBody(req, …)` — and this one, added with the avatar
+    // shop on 2026-08-13, referenced `b.item` without one. `b` is not in scope in api(): the only
+    // other declarations are block-scoped `const b` inside sibling branches and a `let b` inside
+    // rateAllow(). So the reference threw and EVERY purchase answered 500, from the hour the shop
+    // shipped. It was invisible because the client swallows a failed buy into a toast and the
+    // reader assumes they cannot afford it.
+    const b = await readBody(req, 1024) || {};
     const want = clean(String(b.item || ''), 32);
     const item = AVATAR_ITEMS.find((x) => x.id === want);
     if (!item) return json(res, 400, { error: 'No such item.' });
@@ -2091,14 +2110,28 @@ async function api(req, res, url) {
     const pid = clean(qp.get('pid') || '', 64), rcid = clean(qp.get('rcid') || '', 64);
     if (!pid || !rcid) return json(res, 400, { error: 'pid and rcid are required' });
     try {
-      const r = await db.query(`SELECT p.code, p.title, p.likes, p.clones, p.published_at,
-          u.username AS handle, u.reputation_points AS rep
+      // ---- TWO THINGS LEFT THIS PAYLOAD ON 2026-08-14 -----------------------------------------
+      // `u.reputation_points AS rep`. The rail rendered it as "N points from contributing" on all
+      // 52 protocol pages — a lifetime score beside the thing a reader is choosing to put in their
+      // body. assertGamificationConfinement() keeps points off every prerendered health document;
+      // this arrived in the HYDRATED one, through an endpoint, and so walked around the gate.
+      //
+      // `p.title`, the RAW STORED COLUMN. Every other public projection re-derives the title
+      // through publicProtocolTitle() from the governed problem and root cause — /used:2201,
+      // /mine:2222, the profile:1921, the read-one branch:2284. This one returned whatever string
+      // is in the row. Today no path publishes a row without rewriting its title at INSERT, so
+      // nothing leaks yet; the state doc's rule is nonetheless "their stored custom titles are
+      // never returned on public surfaces", and one draft-to-publish UPDATE would have made this
+      // the surface that broke it. base_pid/base_rcid are already selected, so the fix is free.
+      const r = await db.query(`SELECT p.code, p.base_pid, p.base_rcid, p.likes, p.clones, p.published_at,
+          u.username AS handle
         FROM studio_protocols p LEFT JOIN users u ON u.id = p.user_id
         WHERE p.base_pid=$1 AND p.base_rcid=$2 AND p.status='published'
         ORDER BY p.likes DESC, p.published_at DESC LIMIT 12`, [pid, rcid]);
       return json(res, 200, { variants: r.rows.map((x) => ({
-        code: x.code, title: x.title, likes: x.likes || 0, clones: x.clones || 0,
-        handle: x.handle || null, rep: x.rep || 0, at: x.published_at,
+        code: x.code, title: publicProtocolTitle(x.base_pid, x.base_rcid),
+        likes: x.likes || 0, clones: x.clones || 0,
+        handle: x.handle || null, at: x.published_at,
       })) });
     } catch (e) { console.error('[protocols/variants]', e.message); return json(res, 200, { variants: [] }); }
   }
@@ -2127,12 +2160,16 @@ async function api(req, res, url) {
     if (!db.enabled) return json(res, 200, { protocols: [] });
     const lim = Math.min(12, Math.max(1, parseInt(qp.get('limit') || '6', 10) || 6));
     try {
-      const r = await db.query(`SELECT p.code, p.title, p.base_pid, p.base_rcid, p.likes, p.published_at,
+      // p.title is NOT selected: the comment above says "the governed title" and this returned the
+      // raw stored column, the same defect /api/protocols/variants carried. Every other public
+      // projection derives it through publicProtocolTitle(), and now so does this one.
+      const r = await db.query(`SELECT p.code, p.base_pid, p.base_rcid, p.likes, p.published_at,
           u.username AS handle
         FROM studio_protocols p LEFT JOIN users u ON u.id = p.user_id
         WHERE p.status='published' ORDER BY p.published_at DESC LIMIT $1`, [lim]);
       return json(res, 200, { protocols: r.rows.map((x) => ({
-        code: x.code, title: x.title, pid: x.base_pid, rcid: x.base_rcid,
+        code: x.code, title: publicProtocolTitle(x.base_pid, x.base_rcid),
+        pid: x.base_pid, rcid: x.base_rcid,
         likes: x.likes || 0, handle: x.handle || null, at: x.published_at,
       })) });
     } catch (e) { console.error('[protocols/new]', e.message); return json(res, 200, { protocols: [] }); }
@@ -2195,10 +2232,18 @@ async function api(req, res, url) {
   // MOST USED. Never "works best". Sorted by clone count, which counts whether people STARTED it.
   // `means` travels with the list so no surface can relabel it on its own.
   if (seg[0] === 'protocols' && seg[1] === 'used' && !seg[2] && method === 'GET') {
-    const r = await db.query(`SELECT p.code,p.title,p.base_pid,p.base_rcid,p.clones,p.published_at,u.username AS by_user
+    // Named fields, not a spread, for the same reason as the profile projection above: p.title is
+    // the raw stored column and was travelling under the derived one.
+    const r = await db.query(`SELECT p.code,p.base_pid,p.base_rcid,p.clones,p.published_at,u.username AS by_user
       FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id
       WHERE p.status='published' AND p.clones > 0 ORDER BY p.clones DESC, p.published_at DESC LIMIT 12`);
-    return json(res, 200, { protocols: r.rows.map((p) => Object.assign({}, p, { title: publicProtocolTitle(p.base_pid, p.base_rcid) })), label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.' });
+    return json(res, 200, {
+      protocols: r.rows.map((p) => ({
+        code: p.code, title: publicProtocolTitle(p.base_pid, p.base_rcid),
+        clones: p.clones || 0, by_user: p.by_user || null,
+      })),
+      label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.',
+    });
   }
   // WHAT YOU MADE (2026-08-10). Registered ABOVE the read-one branch on purpose: that branch
   // matches `seg[1] && !seg[2]`, so /api/protocols/mine would otherwise resolve as code='mine' and
