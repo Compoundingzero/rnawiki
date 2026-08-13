@@ -137,7 +137,13 @@
       // this. Same invariant as the gate in build/parse.js; both exist because the SPA and the build
       // must not disagree about what a row is.
       if ((rule.need || []).length >= 2 && inv.length < 2) return;
-      const row = { id: rule.id, notIf: rule.notIf, tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, involved: inv.map(c => c.name), members: inv };
+      // src / srcLabel / srcQuote / conf / plain ADDED 2026-08-13. This object is hand-copied field
+      // by field rather than spread, so a field added to the rule data reaches nobody until it is
+      // named here — which is exactly what happened: all 25 rules gained a citation and every
+      // consumer still saw `src: undefined`. The founder's rule is that every warning cites its
+      // source, and this row IS the warning, in all three readers.
+      // `plain` is the one-sentence, no-jargon version of `why`, per the site-wide jargon rule.
+      const row = { id: rule.id, notIf: rule.notIf, tier: rule.tier, title: rule.title, why: rule.why, action: rule.action, pathway: rule.pathway, src: rule.src || '', srcLabel: rule.srcLabel || '', srcQuote: rule.srcQuote || '', conf: rule.conf || 'none', plain: rule.plain || '', involved: inv.map(c => c.name), members: inv };
       // Satisfied by pages but not by substances: the rule does not get to claim an interaction,
       // and the honest row about what actually happened is built below.
       (rule.need.every(n => distinctCarriers(byTag[n[0]] || [], n[1])) ? fired : collapsed).push(row);
@@ -159,7 +165,11 @@
       const ids = {}; members.forEach(c => { ids[c.id] = 1; });
       const from = collapsed.filter(r => r.members.every(c => ids[c.id]));
       const tier = from.some(r => r.tier === 'danger') ? 'danger' : from.some(r => r.tier === 'blunt') ? 'blunt' : 'timing';
-      return { id: 'dupe:' + g.substance, tier, title: g.title, why: g.why, action: g.action, involved: members.map(c => c.name), members };
+      // A duplicate row is this site's own arithmetic about its own pages — "these two entries are
+      // the same molecule" — not a claim from the literature, so it carries no external citation and
+      // says so rather than borrowing one from the rule it collapsed. `plain` is still required:
+      // the jargon rule applies to every sentence a reader meets, whatever its provenance.
+      return { id: 'dupe:' + g.substance, tier, title: g.title, why: g.why, action: g.action, src: '', srcLabel: '', srcQuote: '', conf: 'internal', plain: g.plain || ('These are two pages for the same substance, so this counts once, not twice.'), involved: members.map(c => c.name), members };
     }).filter(Boolean);
     const flags = dupeRows.concat(fired.filter(f => !(f.notIf || []).some(id => firedIds[id])));
     const syn = [];

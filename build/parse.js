@@ -1881,6 +1881,65 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
 // check" state in the panel. It demands that the PUBLISHED number be TRUE, that no rule depend on
 // a tag no compound carries, and that no tag be assigned that no rule consumes.
 // Prove it by changing any number in `coverage`, or by misspelling a tag in either direction.
+// ---- build-time assertion: EVERY WARNING CITES ITS SOURCE, AND SAYS IT WITHOUT JARGON ----------
+// NEW 2026-08-13, from two founder directives that land on the same object:
+//   "Every warning must cite its source."
+//   "Every technical/medical term gets a one-line plain-language explainer. NO JARGON EXPLAINED BY
+//    MORE JARGON. Cap at one sentence per term."
+// These rules stopped being an internal detail the day R5 changed from refusing a dangerous
+// combination to publishing it with a warning. The warning is now the only thing between a
+// documented interaction and a reader, so it has to carry a real reference and be readable by the
+// person it is warning.
+//
+// THE THRESHOLD IS TIERED, DELIBERATELY. A `danger` row MUST carry a source: it is the tier that
+// can send someone to hospital, and an unsourced danger claim is either unverifiable or wrong.
+// `blunt` and `timing` rows MAY be unsourced — two of them are, honestly, because the verification
+// pass could not find a source that actually supported the generic claim rather than a narrower
+// one. Those render as "no source recorded" rather than borrowing a citation that does not fit.
+// PROVE IT by deleting a `src` from any danger rule in site/interactions.js, or by putting the word
+// "additive" back into a `plain` line.
+(function assertInteractionSources() {
+  const IX_PATH = path.join(ROOT, 'site', 'interactions.js');
+  const sandbox = { window: {} };
+  vm.runInNewContext(fs.readFileSync(IX_PATH, 'utf8'), sandbox, { filename: IX_PATH });
+  const R = sandbox.window.RNAWIKI_INTERACTIONS;
+  const bad = [];
+  // Words a person with no science education does not know, and which the corpus kept using to
+  // explain the very thing they were confused by. Each one has a plain replacement in use already.
+  const JARGON = ['additive', 'serotonergic', 'hypotensive', 'myopathy', 'rhabdomyolysis',
+    'contraindicat', 'concomitant', 'potentiat', 'vasodilat', 'cyp3a4', 'pharmacokinetic',
+    'pharmacodynamic', 'agonist', 'antagonist', 'metabolit', 'bioavailab', 'synerg'];
+  let sourced = 0, unsourced = [];
+  (R.rules || []).forEach((r) => {
+    const has = !!(r.src && String(r.src).trim());
+    if (has) {
+      sourced += 1;
+      if (!/^https:\/\//.test(r.src)) bad.push(`rule "${r.id}" has a src that is not an https URL: ${r.src}`);
+      if (!r.srcLabel) bad.push(`rule "${r.id}" cites a URL with no human-readable label — a bare link is not a citation`);
+      if (!r.srcQuote) bad.push(`rule "${r.id}" cites a source without the sentence that supports it, so nobody can check the claim without reading the whole paper`);
+    } else {
+      unsourced.push(r.id);
+      if (r.tier === 'danger') bad.push(`DANGER rule "${r.id}" carries no source. A danger warning is the only thing standing between a documented interaction and a reader now that it no longer refuses the publish; it may not be unverifiable.`);
+      if (r.conf !== 'none') bad.push(`rule "${r.id}" has no src but claims confidence "${r.conf}" — an unsourced rule is confidence "none"`);
+    }
+    // THE JARGON RULE, on every rule regardless of tier.
+    if (!r.plain) { bad.push(`rule "${r.id}" has no plain-language line. Every warning a reader meets needs one sentence they can actually read.`); return; }
+    const words = String(r.plain).trim().split(/\s+/).length;
+    if (words > 26) bad.push(`rule "${r.id}"'s plain line is ${words} words. The cap is one sentence — if it needs more, the sentence is still explaining jargon with jargon.`);
+    if (/[.!?].+[.!?]/.test(String(r.plain).trim())) bad.push(`rule "${r.id}"'s plain line is more than one sentence`);
+    if (/!/.test(r.plain)) bad.push(`rule "${r.id}"'s plain line contains an exclamation mark`);
+    const hit = JARGON.find((j) => String(r.plain).toLowerCase().includes(j));
+    if (hit) bad.push(`rule "${r.id}"'s plain line contains "${hit}" — that is the jargon it exists to replace, so this line explains jargon with more jargon`);
+  });
+  if (bad.length) {
+    console.error('\n[parse] AN INTERACTION WARNING IS UNSOURCED OR UNREADABLE — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[parse] interaction sources OK — ${sourced} of ${(R.rules || []).length} rules cite a source, every danger rule among them, every rule carrying a one-sentence plain-language line${unsourced.length ? ` (honestly unsourced: ${unsourced.join(', ')})` : ''}.`);
+})();
+
 (function assertInteractionCoverage() {
   const IX_PATH = path.join(ROOT, 'site', 'interactions.js');
   const sandbox = { window: {} };

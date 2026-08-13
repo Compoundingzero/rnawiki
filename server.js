@@ -92,6 +92,32 @@ const FEATURES = Object.freeze({
   publicOutcomeAggregates: process.env.PUBLIC_OUTCOME_AGGREGATES === '1',
   sharedPlans: process.env.SHARED_PLANS === '1',
 });
+
+// ---- REFUSE TO SERVE A HOME PAGE THAT CONTRADICTS THE RUNNING CONFIGURATION (2026-08-13) --------
+// The landing page prints the state of the contribution loop as three NOW / NOT YET rows, and those
+// rows are baked at BUILD time from the emitted documents (see CAPS in build/prerender.js). Feature
+// flags are read HERE, at BOOT. Those are two different clocks: setting PUBLIC_COMMUNITY=1 on
+// Railway without a rebuild would leave every reader on the front door being told there are no
+// comments and no votes while the API happily serves both.
+//
+// ONE-DIRECTIONAL, deliberately. Understating what the site can do is the safe failure — a reader
+// is never harmed by being told a feature is missing when it works. Overstating is the one this
+// project has been bitten by, so only that direction refuses to boot.
+if (FEATURES.publicCommunity) {
+  try {
+    const homeDoc = fs.readFileSync(path.join(__dirname, 'site', 'home.html'), 'utf8');
+    if (homeDoc.indexOf('No comments, no votes, no points') >= 0) {
+      console.error('[server] PUBLIC_COMMUNITY=1 but site/home.html still tells every reader there are '
+        + 'no comments, no votes and no points. The landing page states the loop from the built '
+        + 'documents, not from this flag. Rebuild (npm run prestart) before serving.');
+      process.exit(1);
+    }
+  } catch (e) {
+    console.error('[server] PUBLIC_COMMUNITY=1 and site/home.html could not be read to check that the '
+      + 'landing page agrees with it —', e.code);
+    process.exit(1);
+  }
+}
 // Anything missing from this map is served as application/octet-stream — "unknown binary file".
 // That is what silently broke search indexing: sitemap.xml and robots.txt are the two files a
 // crawler MUST be able to identify, and neither had an entry. Google Search Console answered
@@ -1203,6 +1229,13 @@ async function api(req, res, url) {
   ]);
   if (!FEATURES.publicCommunity && communityRoots.has(seg[0])) return json(res, 404, { error: 'Community is not available yet.' });
   if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'used') return json(res, 404, { error: 'Community is not available yet.' });
+  // /api/protocols/new — THE MISSING BRIDGE (added 2026-08-13). Until now a creator could publish a
+  // protocol and NOTHING on this site listed it: /api/protocols/used had no render path and no
+  // caller, so "create a protocol so the next person finds it" ended nowhere. That is step 6 of the
+  // founder's customer flow, and it was the only step with no code behind it at all.
+  // Gated with the rest of the community surface, and it returns an EMPTY LIST rather than an error
+  // when nothing is published, so the landing strip can render an honest empty state either way.
+  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'new') return json(res, 404, { error: 'Community is not available yet.' });
   if (!FEATURES.publicProfiles && seg[0] === 'u') return json(res, 404, { error: 'Public profiles are not available yet.' });
   if (!FEATURES.publicOutcomeAggregates && seg[0] === 'outcomes' && seg[1] === 'public') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
   if (!FEATURES.publicOutcomeAggregates && seg[0] === 'ledger') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
@@ -1946,6 +1979,24 @@ async function api(req, res, url) {
   // ANONYMOUS BUILD AND SAVE, AN ACCOUNT ONLY TO PUBLISH. Reading, assembling, saving a draft and
   // running a protocol all work with no account. Publishing puts a name and a date on a document
   // other people will read, and "built by nobody" is the fabricated-account defect.
+  // Recently published protocols, newest first. Reads only what a public projection may carry: the
+  // code, the governed title, what it is built on, its like count and its author's handle. No spec,
+  // no note, no user id — the same allowlist discipline the profile projection uses.
+  if (seg[0] === 'protocols' && seg[1] === 'new' && !seg[2] && method === 'GET') {
+    if (!db.enabled) return json(res, 200, { protocols: [] });
+    const lim = Math.min(12, Math.max(1, parseInt(qp.get('limit') || '6', 10) || 6));
+    try {
+      const r = await db.query(`SELECT p.code, p.title, p.base_pid, p.base_rcid, p.likes, p.published_at,
+          u.username AS handle
+        FROM studio_protocols p LEFT JOIN users u ON u.id = p.user_id
+        WHERE p.status='published' ORDER BY p.published_at DESC LIMIT $1`, [lim]);
+      return json(res, 200, { protocols: r.rows.map((x) => ({
+        code: x.code, title: x.title, pid: x.base_pid, rcid: x.base_rcid,
+        likes: x.likes || 0, handle: x.handle || null, at: x.published_at,
+      })) });
+    } catch (e) { console.error('[protocols/new]', e.message); return json(res, 200, { protocols: [] }); }
+  }
+
   if (seg[0] === 'protocols' && !seg[1] && method === 'POST') {
     if (!STUDIO_READY) return studioDown(res);
     const u = await currentUser(req);
@@ -3049,7 +3100,11 @@ function serveStatic(req, res, url) {
 // the URL was published, is in the sitemap that shipped, and every removal link handed out so far
 // is on that host path. It may never 404, and an unknown top-level path here falls through to the
 // SPA shell at HTTP 200 — i.e. a soft 404, which is worse.
-const LEGACY_REDIRECTS = { '/newsletter': '/', '/interest': '/' };
+// /corrections was deleted on 2026-08-13 and its full log moved, verbatim, to /methodology under
+// "What has already been wrong". The route was in the published sitemap and carried the site's
+// public error record, so it 301s to where that record now lives rather than 404ing. Not a 410:
+// nothing was withdrawn, it moved. build/withdrawn.json carries the same reason.
+const LEGACY_REDIRECTS = { '/newsletter': '/', '/interest': '/', '/corrections': '/methodology' };
 
 // ---- COMPOUND SHORT-NAME ALIASES (2026-07-30) ------------------------------------------------
 // "do not ever leave a page as an error." /c/creatine, /c/collagen, /c/testosterone and /c/insulin

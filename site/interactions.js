@@ -876,7 +876,7 @@ window.RNAWIKI_INTERACTIONS = {
   // Rules: fire when every `need` [tag, minDistinctCompounds] is satisfied by the stack.
   // tier: danger | blunt | timing.  Each has a plain-English why + action; optional pathway.
   rules: [
-    { id: "serotonin", tier: "danger", need: [["serotonergic", 2]],
+    { id: "serotonin", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6734608/", srcLabel: "Scotton et al., Int J Tryptophan Res 2019, PMID 31523132 (PMC6734608)", srcKind: "review", srcQuote: "The main drug classes classically implicated in SS can be divided into serotonin precursors, inhibitors of serotonin reuptake from the synaptic cleft, inhibitors of serotonin metabolism, direct serotonin receptor agonists, and drugs that sensitise serotonin receptors ... Severe SS is only usually precipitated by the simultaneous initiation of 2 or more serotonergic drugs", conf: "high", plain: "Several things that each raise serotonin can push it too high, which can make you seriously ill.", tier: "danger", need: [["serotonergic", 2]],
       title: "Serotonin syndrome risk",
       why: "Each of these raises serotonin signalling — by supplying the raw material, by slowing its reuptake, or by acting on the receptor directly. Stacked, serotonin can build up faster than the body clears it and overstimulate receptors.",
       // exemplars (W4.5): CONDITIONAL ADVICE, not a description of the row. The sentence is
@@ -885,7 +885,7 @@ window.RNAWIKI_INTERACTIONS = {
       // not the two compounds shown. Named on purpose, so assertRuleTextRowTruth is told so.
       exemplars: ["c108", "c168"],
       action: "Don't combine serotonin-raisers. If you take a prescribed antidepressant, treat 5-HTP / SAM-e / St John's Wort as off-limits without a doctor.", pathway: "/pathway/7" },
-    { id: "bleeding", tier: "danger", need: [["blood_thinning", 2]],
+    { id: "bleeding", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9586694/", srcLabel: "Hatfield et al., Proc (Bayl Univ Med Cent) 2022, PMID 36304597 (PMC9586694)", srcKind: "review", srcQuote: "These supplements alter bleeding through (1) direct antiplatelet or anticoagulant effects, and/or (2) interaction with anticoagulant drugs, often through cytochrome P450 enzymes.", conf: "medium", plain: "Each of these makes blood clot less easily, so together they can make bleeding harder to stop.", tier: "danger", need: [["blood_thinning", 2]],
       title: "Additive bleeding risk",
       // W6 (2026-08-08): "independently slows clotting" stopped being true of every carrier the
       // moment c63 joined this rule. ACE-031 does not slow clotting — its own page says the
@@ -894,7 +894,7 @@ window.RNAWIKI_INTERACTIONS = {
       // what is true of every carrier instead of one carrier's mechanism.
       why: "Each of these independently raises bleeding risk — by dissolving fibrin, by making platelets less sticky, or by weakening the vessel wall itself. Stacked, the effects add up.",
       action: "Avoid stacking blood-thinners; if you're on a prescribed anticoagulant (warfarin, a DOAC, aspirin), don't add these without medical advice." },
-    { id: "nitrate_pde5", tier: "danger", need: [["nitrate", 1], ["pde5", 1]],
+    { id: "nitrate_pde5", src: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/021134s010lbl.pdf", srcLabel: "FDA prescribing information, NITROSTAT (nitroglycerin), NDA 021134, sections 4.1 and 7.1", srcKind: "regulator", srcQuote: "NITROSTAT is contraindicated in patients who are using a selective inhibitor of cyclic guanosine monophosphate (cGMP)-specific phosphodiesterase type 5 (PDE-5).", conf: "high", plain: "Both open blood vessels the same way, so together blood pressure can fall dangerously low.", tier: "danger", need: [["nitrate", 1], ["pde5", 1]],
       title: "Nitrate + PDE-5 = blood-pressure crash",
       why: "Nitrates (like beetroot) and PDE-5 drugs (sildenafil / tadalafil) both widen blood vessels through the same NO→cGMP route. Together, blood pressure can drop dangerously.",
       action: "Never combine a nitrate source with a PDE-5 inhibitor.", pathway: "/pathway/4" },
@@ -912,7 +912,7 @@ window.RNAWIKI_INTERACTIONS = {
     // This rule wires up the sentence the page actually wrote. It renders exactly 2 rows against
     // this corpus (c114 × c9, c114 × c80) and both are quotable. The decision is reversible in one
     // line: acknowledge c9/c80 for `nitrate_potentiator` instead and delete this rule.
-    { id: "nitrate_potentiator", tier: "danger", need: [["nitrate", 1], ["nitrate_potentiator", 1]],
+    { id: "nitrate_potentiator", src: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2018/021134s010lbl.pdf", srcLabel: "FDA prescribing information, NITROSTAT (nitroglycerin) sublingual tablets, NDA 021134, sections 4.1, 7.1 and 12.1", srcKind: "regulator", srcQuote: "NITROSTAT is contraindicated in patients who are using a selective inhibitor of cyclic guanosine monophosphate (cGMP)-specific phosphodiesterase type 5 (PDE-5). PDE-5-Inhibitors such as avanafil, sildenafil, vardenafil, and tadalafil have been shown to potentiate the hypotensive effects of organic nitrates.", conf: "high", plain: "Both open blood vessels the same way, so blood pressure can drop far enough to cause fainting.", tier: "danger", need: [["nitrate", 1], ["nitrate_potentiator", 1]],
       title: "This makes a nitrate hit harder",
       why: "One of these is a nitrate source and the other potentiates nitrate vasodilation — it does not lower blood pressure on its own, it makes the nitrate do more. Together the drop in blood pressure can be marked, with severe headache alongside it.",
       action: "Keep these apart. If you take a nitrate medication such as nitroglycerin, this combination needs a doctor, not a supplement plan.", pathway: "/pathway/4" },
@@ -922,7 +922,7 @@ window.RNAWIKI_INTERACTIONS = {
     // citrulline + beetroot + ED drugs (PDE-5) + nitrates together can drop blood pressure
     // dangerously" (content/COMPENDIUM.md:233). This rule wires up what was already written down.
     // `notIf` keeps it from double-counting the nitrate case, which has its own rule above.
-    { id: "pde5_vasodilator", tier: "danger", need: [["pde5", 1], ["hypotensive", 2]], notIf: ["nitrate_pde5"],
+    { id: "pde5_vasodilator", src: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/020895s049lbl.pdf", srcLabel: "FDA prescribing information, VIAGRA (sildenafil citrate) tablets, NDA 020895, sections 5.5, 7.2 and 7.3", srcKind: "regulator", srcQuote: "Use caution when co-administering alpha-blockers with VIAGRA because of potential additive blood pressure-lowering effects.", conf: "high", plain: "Two different ways of lowering blood pressure add up, so it can fall too far.", tier: "danger", need: [["pde5", 1], ["hypotensive", 2]], notIf: ["nitrate_pde5"],
       // W6 (2026-08-08): "blood-flow agent" and "pushes that same route from the other end" were
       // both true of the five carriers this rule had (citrulline, beetroot, taurine, CoQ10, NAC's
       // nitrate case) and are false of the four it has now. A diuretic-like fluid loss (c82), a
@@ -957,11 +957,11 @@ window.RNAWIKI_INTERACTIONS = {
     //   depression can be fatal"; c157 "Combination sharply raises the risk of respiratory
     //   depression". The row now says exactly that, at the same strength. Only the false
     //   attribution and the false specificity are gone.
-    { id: "sedation", tier: "danger", need: [["cns_depressant", 2]],
+    { id: "sedation", src: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2023/018276s059lbl.pdf", srcLabel: "FDA prescribing information, XANAX (alprazolam) tablets, NDA 018276, boxed warning and section 7.1", srcKind: "regulator", srcQuote: "The concomitant use of benzodiazepines and opioids increases the risk of respiratory depression because of actions at different receptor sites in the CNS that control respiration.", conf: "high", plain: "Two things that both slow the brain can together slow breathing enough to be dangerous.", tier: "danger", need: [["cns_depressant", 2]],
       title: "Additive sedation / breathing risk",
       why: "Each of these slows the brain's arousal system by a different route, and each one's own page carries the same warning about the combination: stacked with another sedative, the sedation deepens and breathing can be suppressed.",
       action: "Don't layer strong sedatives. Alcohol counts as one of them — it goes with none of these." },
-    { id: "double_statin", tier: "danger", need: [["statin_like", 2]],
+    { id: "double_statin", src: "https://www.ncbi.nlm.nih.gov/books/NBK584311/", srcLabel: "NCBI Bookshelf NBK584311, \"Red Yeast Rice\", in Prevention and Treatment of Atherosclerosis: The Use of Nutraceuticals and Functional Foods (Springer, 2022)", srcKind: "reference-text", srcQuote: "the co-administration of statins and RYR should be avoided for pharmacodynamic reasons (both have the same mechanism of action) and comparable side effects", conf: "high", plain: "Two things that lower cholesterol the same way add up, which can make muscle damage more likely.", tier: "danger", need: [["statin_like", 2]],
       // W5.5 (2026-08-02): the why and the action both named Red Yeast Rice, and the under-tag audit
       // adds a second statin-like supplement this corpus already documents — c112 Citrus Bergamot,
       // whose own biomarker block says it "reliably lowers **LDL-C** in trials, via HMG-CoA
@@ -976,7 +976,7 @@ window.RNAWIKI_INTERACTIONS = {
       // their own pages describe as statin-like — so the class noun is still true of what is in the row.
       exemplars: ["c159"],
       action: "Pick one, and never add a statin-like supplement to a prescribed statin without medical review." },
-    { id: "statin_niacin", tier: "danger", need: [["statin_like", 1], ["niacin", 1]],
+    { id: "statin_niacin", src: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=92b3ec1d-0dc7-4bde-9817-57b1bdf7f0b9", srcLabel: "FDA-approved label, niacin extended-release tablets, section 5.2 Skeletal Muscle (DailyMed, US National Library of Medicine)", srcKind: "regulator", srcQuote: "Cases of rhabdomyolysis have been associated with concomitant administration of lipid-altering doses (≥1 g/day) of niacin and statins.", conf: "high", plain: "Taking high-dose niacin together with a statin has caused serious muscle damage in some people.", tier: "danger", need: [["statin_like", 1], ["niacin", 1]],
       title: "Statin + high-dose niacin — myopathy risk",
       why: "High-dose niacin adds to a statin's small risk of muscle injury.",
       // exemplars (W4.5): "a statin" here is the DRUG CLASS, and it happens to be the name of a
@@ -985,7 +985,7 @@ window.RNAWIKI_INTERACTIONS = {
       // still true of the compound in the row.
       exemplars: ["c159"],
       action: "Only combine under medical supervision; watch for muscle aches." },
-    { id: "stim_stack", tier: "danger", need: [["stimulant", 2]],
+    { id: "stim_stack", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC12348313/", srcLabel: "Dobrek L, \"The Review on Adverse Effects of Energy Drinks and Their Potential Drug Interactions\", Nutrients 2025, PMID 40806020 / PMC12348313", srcKind: "review", srcQuote: "A synergistic reaction, expressed as an increase in psychostimulant and cardiovascular stimulant effects, is observed with the combined use of caffeine and sympathomimetics (adrenergic drugs), amphetamine-derived agents, and cocaine.", conf: "high", plain: "Two stimulants at once push the heart harder than one, raising heart rate and blood pressure.", tier: "danger", need: [["stimulant", 2]],
       title: "Stacked stimulants — cardiovascular strain",
       why: "Each drives the same fight-or-flight system. Stacked, heart rate and blood pressure compound — the classic ephedrine + caffeine combo is the cautionary example.",
       // exemplars (W4.5): an EXPLICITLY LABELLED illustration. "the classic ephedrine + caffeine
@@ -994,7 +994,7 @@ window.RNAWIKI_INTERACTIONS = {
       // makes the mechanism concrete.
       exemplars: ["c1", "c24", "c25"],
       action: "Use one stimulant at a time; don't layer them." },
-    { id: "hypoglycemia", tier: "danger", need: [["hypoglycemic", 2]],
+    { id: "hypoglycemia", src: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2024/021995Orig1s053lbl.pdf", srcLabel: "FDA approved label, JANUVIA (sitagliptin), NDA 021995, Jan 2024 revision", srcKind: "regulator", srcQuote: "Low blood sugar (hypoglycemia). If you take JANUVIA with another medicine that can cause low blood sugar, such as a sulfonylurea or insulin, your risk of getting low blood sugar is higher.", conf: "high", plain: "Two things that each lower blood sugar can push it too low, leaving you shaky, confused or faint.", tier: "danger", need: [["hypoglycemic", 2]],
       title: "Additive low-blood-sugar risk",
       why: "Two or more glucose-lowering agents together can drop blood sugar too far — shakiness, confusion, and in severe cases worse. Insulin plus anything else is especially risky.",
       // exemplars (W4.5): conditional, and the single most consequential sentence in the file.
@@ -1011,7 +1011,7 @@ window.RNAWIKI_INTERACTIONS = {
       // above ("Two or more glucose-lowering agents together"), so the row now says the same thing
       // twice instead of two different things. assertRuleProse() in build/parse.js is the gate.
       action: "Combine glucose-lowering agents only under medical supervision; never self-stack with insulin." },
-    { id: "liver", tier: "danger", need: [["hepatotoxic", 2]],
+    { id: "liver", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9936988/", srcLabel: "AASLD practice guidance on drug, herbal, and dietary supplement-induced liver injury, Hepatology 2023, PMID 35899384 (PMC9936988)", srcKind: "guideline", srcQuote: "Concomitant administration of multiple hepatotoxic drugs has also been associated with an increased risk of DILI in several studies.", conf: "high", plain: "Taking two things that can each harm the liver at the same time raises the chance of liver damage.", tier: "danger", need: [["hepatotoxic", 2]],
       title: "Stacked liver strain",
       why: "The liver clears these and takes strain doing it. Two together (e.g. an oral steroid plus high-dose green-tea extract) stack the load.",
       // exemplars (W4.5): the "e.g." is doing the work — the sentence marks itself as an example on
@@ -1027,11 +1027,11 @@ window.RNAWIKI_INTERACTIONS = {
       // green-tea extract" because it is explicitly marked "e.g." and c30 is an acknowledged
       // exemplar.
       action: "Don't combine compounds that stress the liver; get bloodwork if unavoidable." },
-    { id: "estrogen_crash", tier: "danger", need: [["aromatase_inhibitor", 2]],
+    { id: "estrogen_crash", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8353230/", srcLabel: "Hyder T et al., Front Endocrinol 2021, PMID 34385978 (PMC8353230)", srcKind: "review", srcQuote: "Similar to AI-induced bone loss, estrogen deprivation has been proposed as a cause for the development of arthralgias.", conf: "medium", plain: "Pushing estrogen very low can make joints ache and can slowly weaken bones.", tier: "danger", need: [["aromatase_inhibitor", 2]],
       title: "Estrogen crash",
       why: "Aromatase inhibitors shut down estrogen production. Doubled, estrogen can crash — joint pain, crushed libido, mood and bone problems.",
       action: "Use one AI, dosed to bloodwork; don't zero out estrogen." },
-    { id: "dnp", tier: "danger", need: [["do_not_use", 1]],
+    { id: "dnp", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3550200/", srcLabel: "Grundlingh et al., \"2,4-dinitrophenol (DNP): a weight loss agent with significant acute toxicity and risk of death\", J Med Toxicol 2011, PMID 21739343, PMC3550200, doi:10.1007/s13181-011-0162-6", srcKind: "review", srcQuote: "It causes uncoupling of oxidative phosphorylation; the classic symptom complex associated with toxicity of phenol-based products such as DNP is a combination of hyperthermia, tachycardia, diaphoresis and tachypnoea, eventually leading to death. [...] To date, there have been 62 published deaths in the medical literature attributed to DNP. [...] There is a small margin between the beneficial effects and the toxic effects of DNP.", conf: "high", plain: "DNP makes the body burn energy as heat, there is no safe amount, and people have died.", tier: "danger", need: [["do_not_use", 1]],
       title: "DNP — do not use",
       why: "DNP uncouples cellular energy production; the effective and lethal doses nearly overlap, and it can cause fatal overheating.",
       action: "There is no safe way to use or combine DNP." },
@@ -1040,19 +1040,19 @@ window.RNAWIKI_INTERACTIONS = {
     // exactly one of them — so 2 of every 3 named compounds were absent from the row they were
     // named in. c70 Rapamycin is the sole mtor_inhibitor, so it IS in all three rows and stays
     // named; the activator side is now described by its position in the pair instead of guessed.
-    { id: "mtor_conflict", tier: "blunt", need: [["mtor_inhibitor", 1], ["mtor_activator", 1]],
+    { id: "mtor_conflict", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2678224/", srcLabel: "Drummond et al., \"Rapamycin administration in humans blocks the contraction-induced increase in skeletal muscle protein synthesis\", J Physiol 2009, PMID 19188252, PMC2678224, doi:10.1113/jphysiol.2008.163816", srcKind: "review", srcQuote: "rapamycin treatment blocks the early (1-2 h) acute contraction-induced increase (~40%) in human muscle protein synthesis [...] the mTORC1 signalling pathway is mechanistically important in regulating the contraction-induced increase in muscle protein synthesis", conf: "high", plain: "One thing tells muscle to grow while the other blocks that same signal, so growth stalls.", tier: "blunt", need: [["mtor_inhibitor", 1], ["mtor_activator", 1]],
       title: "Opposing growth signals",
       why: "Rapamycin lowers growth signalling for longevity and autophagy; the other half of this pair raises it. Run together, each undoes the other's purpose.",
       action: "Separate by goal and timing; don't run them the same day.", pathway: "/pathway/2" },
-    { id: "immune_conflict", tier: "blunt", need: [["immunostim", 1], ["immunosuppress", 1]],
+    { id: "immune_conflict", src: "", srcLabel: "", srcKind: "none", srcQuote: "", conf: "none", plain: "One of these switches your immune system up and the other switches it down.", tier: "blunt", need: [["immunostim", 1], ["immunosuppress", 1]],
       title: "Opposing immune direction",
       why: "One of these pushes immune activity up and the other pushes it down. Run together each is working against the other's purpose, and what you end up with is whichever is stronger on the day — not something you can dose for.",
       action: "Pick a direction for your goal." },
-    { id: "antioxidant_training", tier: "blunt", need: [["antioxidant_hd", 2]],
+    { id: "antioxidant_training", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13113188/", srcLabel: "Mănescu et al., Antioxidants (Basel) 2026;15(4):456, PMID 42072098, PMC13113188", srcKind: "review", srcQuote: "Exercise-derived reactive oxygen species (ROS) are required for mitochondrial and hypertrophic adaptations... Across trials, chronic high-dose vitamins C/E taken close to key sessions are most consistently associated with attenuation of redox-sensitive signaling... When the goal is adaptation, preserve the signal: avoid high-dose, peri-exercise scavengers that flatten redox transients.", conf: "high", plain: "Large vitamin C or E doses taken near training can mute the stress signal your body uses to adapt.", tier: "blunt", need: [["antioxidant_hd", 2]],
       title: "May blunt training adaptation",
       why: "The brief oxidative stress of a hard workout is the signal that tells muscle and mitochondria to adapt. Mega-dosing antioxidants around training can mop up that signal.",
       action: "Get antioxidants from food; keep high doses away from your workout window.", pathway: "/pathway/11" },
-    { id: "hpta_stack", tier: "blunt", need: [["hpta_suppressive", 2]],
+    { id: "hpta_stack", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10620455/", srcLabel: "Grant et al., Endocrine Connections 2023;12(12):e230358, PMID 37855241, PMC10620455", srcKind: "review", srcQuote: "Most symptoms of ASIH can be understood through prolonged feedback inhibition (if not long-term suppression) of gonadotropin-releasing hormone (GnRH) and therefore luteinising hormone (LH) and follicle-stimulating hormone (FSH)... The suppression of gonadotropins is dose dependent and is also dependent on the type of androgen used... The severity of ASIH depends on the type, combination, timeframe and dosages of AAS being abused... Up to 90% may combine various forms of AAS, otherwise known as 'stacking'.", conf: "high", plain: "Each one tells the body to stop making its own testosterone, so together the shutdown goes deeper.", tier: "blunt", need: [["hpta_suppressive", 2]],
       title: "Compounded testosterone shutdown",
       why: "Each of these suppresses your natural testosterone. Stacked, the shutdown is deeper and recovery is harder.",
       // exemplars (W4.5): "your natural testosterone" is the HORMONE, not the page c33 Testosterone
@@ -1064,7 +1064,7 @@ window.RNAWIKI_INTERACTIONS = {
     // Finasteride / Dutasteride could never produce a flag at all. Both are duplicate-therapy
     // rules — the same receptor or enzyme hit twice — which is the same shape as the
     // double_statin rule above, one tier softer because neither is acutely dangerous.
-    { id: "double_5ar", tier: "blunt", need: [["5ar_inhibitor", 2]],
+    { id: "double_5ar", src: "", srcLabel: "", srcKind: "none", srcQuote: "", conf: "none", plain: "Both hair-loss drugs work the same way, so taking two mainly doubles the sexual side effects.", tier: "blunt", need: [["5ar_inhibitor", 2]],
       title: "Two 5-alpha-reductase inhibitors — the same job twice",
       why: "Finasteride and dutasteride both block the enzyme that turns testosterone into DHT. Running both is more of one mechanism, not two mechanisms, and the sexual and mood side-effects people quit over scale with the total blockade.",
       action: "Use one, at the dose it was prescribed at." },
@@ -1075,12 +1075,12 @@ window.RNAWIKI_INTERACTIONS = {
     // glucagon receptor (GCGR)**". Every row containing either carried a sentence its own page
     // contradicts. What is true of all five, and therefore of all 10 rows, is the GLP-1 arm — so
     // that is what the row now claims, and the extra receptors are acknowledged rather than denied.
-    { id: "double_glp1", tier: "blunt", need: [["glp1", 2]],
+    { id: "double_glp1", src: "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/215256s033lbl.pdf", srcLabel: "FDA Prescribing Information, WEGOVY (semaglutide), NDA 215256, Limitations of Use / Section 12.1", srcKind: "regulator", srcQuote: "Concomitant use of WEGOVY (semaglutide) tablets or WEGOVY (semaglutide) injection with other semaglutide-containing products or with any other GLP-1 receptor agonist is not recommended.", conf: "high", plain: "Both medicines act the same way in the body, so the official label says do not use them together.", tier: "blunt", need: [["glp1", 2]],
       title: "Two GLP-1 agonists — duplicate therapy",
       why: "Every one of these activates the GLP-1 receptor; the dual and triple agonists among them act on other metabolic-hormone receptors as well, but GLP-1 is the arm they all share. Two together doses that shared arm twice — a bigger dose of one mechanism rather than a second angle on the problem — and the nausea, vomiting and slowed stomach emptying scale with it.",
       action: "Run one GLP-1 at a time, titrated by whoever prescribed it." },
 
-    { id: "hypotensive_stack", tier: "timing", need: [["hypotensive", 2]], notIf: ["pde5_vasodilator", "nitrate_pde5"],
+    { id: "hypotensive_stack", src: "https://www.ncbi.nlm.nih.gov/books/NBK448192/", srcLabel: "Ringer M, Hashmi MF, Lappin SL. Orthostatic Hypotension. StatPearls, NCBI Bookshelf, NBK448192", srcKind: "reference-text", srcQuote: "The total number of antihypertensive medications prescribed may be a better predictor of orthostatic hypotension than any single drug class.", conf: "high", plain: "The more things you take that lower blood pressure, the more likely you feel dizzy standing up.", tier: "timing", need: [["hypotensive", 2]], notIf: ["pde5_vasodilator", "nitrate_pde5"],
       title: "Both of these lower blood pressure",
       // W6 (2026-08-08): "Each relaxes blood vessels a little" became false the moment c82 SGLT2,
       // c113 Nattokinase and c74 Resveratrol joined this rule. SGLT2 inhibitors do not relax
@@ -1101,7 +1101,7 @@ window.RNAWIKI_INTERACTIONS = {
     // that the two in front of the reader share a mechanism, because for one of the three pairs
     // (melatonin with either of the others) that would be false and for the third I cannot quote a
     // page that says it. Overlap of PURPOSE is what all three pairs support.
-    { id: "mild_sedatives", tier: "timing", need: [["sedative_mild", 2]],
+    { id: "mild_sedatives", src: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2884d2dc-2d4a-4ca6-ab73-688a80b428eb", srcLabel: "FDA OTC Drug Facts label, BENADRYL (diphenhydramine HCl), DailyMed SPL 2884d2dc-2d4a-4ca6-ab73-688a80b428eb", srcKind: "regulator", srcQuote: "alcohol, sedatives, and tranquilizers may increase drowsiness", conf: "high", plain: "Things that make you sleepy add up, so taking two together can leave you unexpectedly drowsy.", tier: "timing", need: [["sedative_mild", 2]],
       title: "Two mild sedatives at once",
       // W5.5 (2026-08-02): "Each of these is a mild sleep aid" was true of the three carriers this
       // rule had and is FALSE of one of the two the under-tag audit adds. Bacopa's own page is about
@@ -1121,11 +1121,11 @@ window.RNAWIKI_INTERACTIONS = {
     // out · Magnesium + Strontium · Silica (brief)" above a sentence naming calcium, iron and zinc
     // as well — three compounds that were not in the stack. The mechanism is the same for any pair
     // that carries the tag, so the row states the mechanism and stops enumerating the carriers.
-    { id: "mineral", tier: "timing", need: [["divalent_mineral", 2]],
+    { id: "mineral", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6722515/", srcLabel: "Kondaiah P et al., Nutrients 2019;11(8):1885, PMID 31412634 (PMC6722515)", srcKind: "review", srcQuote: "Together, these studies suggest competitive interaction between iron and zinc during intestinal absorption.", conf: "medium", plain: "Large iron and zinc doses taken together on an empty stomach compete, so you take in less zinc.", tier: "timing", need: [["divalent_mineral", 2]],
       title: "Minerals compete — space them out",
       why: "These compete for the same intestinal uptake, so whichever is in excess wins while the other barely absorbs. Taken in the same mouthful, one of them is largely wasted.",
       action: "Take competing minerals about 2 hours apart." },
-    { id: "thyroid_mineral", tier: "timing", need: [["thyroid", 1], ["divalent_mineral", 1]],
+    { id: "thyroid_mineral", src: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1e11ad30-1041-4520-10b0-8f9d30d30fcc", srcLabel: "FDA Prescribing Information, SYNTHROID (levothyroxine sodium), NDA 021402, Section 7.1 Table 5, via DailyMed (NLM)", srcKind: "regulator", srcQuote: "Table 5. Drugs That May Decrease T4 Absorption (Hypothyroidism). Potential impact: Concurrent use may reduce the efficacy of SYNTHROID by binding and delaying or preventing absorption, potentially resulting in hypothyroidism. [...] Phosphate Binders (e.g., calcium carbonate, ferrous sulfate, sevelamer, lanthanum) [...] Phosphate binders may bind to levothyroxine. Administer SYNTHROID at least 4 hours apart from these agents.", conf: "high", plain: "Calcium and iron stick to thyroid medicine in the gut, so less of the medicine gets into you.", tier: "timing", need: [["thyroid", 1], ["divalent_mineral", 1]],
       title: "Minerals block thyroid absorption",
       why: "Minerals bind thyroid hormone in the gut and stop it being absorbed; the thyroid page's own absorption note names coffee, calcium and iron. Space any mineral supplement away from the thyroid dose rather than trying to work out which ones.",
       // exemplars (W4.5): an ATTRIBUTED QUOTATION. The sentence says whose list it is — c130's own
@@ -1133,11 +1133,11 @@ window.RNAWIKI_INTERACTIONS = {
       // to work out which ones"), which is the opposite of claiming those minerals are in the row.
       exemplars: ["c79", "c122", "c148", "c149"],
       action: "Take thyroid medication 4 hours away from minerals and coffee." },
-    { id: "zinc_copper", tier: "timing", need: [["zinc", 1]],
+    { id: "zinc_copper", src: "https://www.ncbi.nlm.nih.gov/books/NBK554548/", srcLabel: "Agnew UM, Slesinger TL. Zinc Toxicity. StatPearls, NCBI Bookshelf NBK554548", srcKind: "reference-text", srcQuote: "Oral zinc is primarily absorbed in the jejunum. A metallothionein protein complex in the villi of the enterocytes primarily facilitates absorption... The body's response to excess zinc is to produce more metallothionein to decrease free zinc concentrations. However, as copper is the metal with the highest affinity to metallothionein, this inadvertently leads to decreased copper levels instead. By this mechanism, a high level of zinc always lowers the level of copper... Zinc toxicity also impairs copper metabolism, causing anemia.", conf: "high", plain: "Taking a lot of zinc for months pushes your copper down, which can leave you anaemic.", tier: "timing", need: [["zinc", 1]],
       title: "Long-term zinc depletes copper",
       why: "High zinc switches on a gut protein that carries copper out in the stool — over weeks, plenty of zinc can quietly cause copper deficiency.",
       action: "If taking zinc long-term, add ~1 mg copper per 10–15 mg zinc." },
-    { id: "cyp3a4_statin", tier: "timing", need: [["cyp3a4", 1], ["statin_like", 1]],
+    { id: "cyp3a4_statin", src: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8f55d5de-5a4f-4a39-8c84-c53976dd6af9", srcLabel: "FDA prescribing information, ZOCOR (simvastatin), NDA 019766, Drug Interactions 7.1 (DailyMed/NLM, SPL set id 8f55d5de-5a4f-4a39-8c84-c53976dd6af9, rev. 2025-03-28)", srcKind: "regulator", srcQuote: "Simvastatin is a substrate of CYP3A4. Concomitant use of strong CYP3A4 inhibitors with ZOCOR increases simvastatin exposure and increases the risk of myopathy and rhabdomyolysis, particularly with higher ZOCOR dosages.", conf: "high", plain: "Some substances slow how the body clears statins, so the cholesterol drug builds up and can damage muscle.", tier: "timing", need: [["cyp3a4", 1], ["statin_like", 1]],
       // W5.5 (2026-08-02): the title and the why both named Bergamot, and the under-tag audit adds
       // two more CYP3A4 inhibitors this corpus already documents — c29 Berberine ("It inhibits
       // CYP3A4, so it interacts with many prescriptions (statins, immunosuppressants, some blood

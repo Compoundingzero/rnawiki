@@ -178,7 +178,7 @@ const ROUTES = [
   ['anatomy', '/anatomy'],
   ['az', '/az'],
   ['browse', '/browse'],
-  ['corrections', '/corrections'],                         // KEEP_PRERENDERED
+  ['goals', '/goals'],                                     // the new second entry mode
   ['legend', '/legend'],
   // "/" and "/?state=ok" are two DIFFERENT documents — the second is the first with data-state
   // stamped on <html> and two literal substitutions made — and only this one exercises the
@@ -719,39 +719,57 @@ const ASSERTIONS = {
         if (r.status !== 200) return { _status: r.status };
         return r.json();
       };
-      // 1 + 2 — citrulline + a PDE-5 inhibitor. The site's own compendium says this pairing can
-      // drop blood pressure dangerously, and /stack renders it ☠️ today.
+      // ---- THE OVERLAP-REPERCUSSION CONTRACT, over HTTP (rewritten 2026-08-13) --------------
+      // This assertion used to require a REFUSAL for a dangerous pairing and for any uncovered
+      // pair. On the founder's instruction both are warnings now: a creator may combine as many
+      // compounds as they like, and what used to block the save travels with the protocol to the
+      // reader instead. So what this checks changed shape but not purpose — the save-time engine is
+      // still the only thing between a reader and a published instruction to combine two things
+      // this site itself calls dangerous, and it must never go QUIET about one.
+
+      // 1 — citrulline + a PDE-5 inhibitor. The site's own compendium calls this pairing a
+      // blood-pressure danger. It is refused, but for R4 (the PDE-5 inhibitor is prescription-only)
+      // — and the danger must still be REPORTED alongside that refusal, with its citation.
       const d = await post({ v: 1, items: [{ k: 'c', id: 'c13' }, { k: 'c', id: 'c116' }] }, 'published');
       if (d._status) return `POST /api/protocols/check answered ${d._status} — the safety check is not reachable. It is registered above the database guard precisely so that it works when nothing else does.`;
-      if (d.ok !== false) return 'the save-time engine accepted citrulline + a PDE-5 inhibitor for publication. /stack renders that pair ☠️ "PDE-5 inhibitor plus another blood-pressure-lowering agent" — a reader would be handed a public instruction to combine two things this site itself calls dangerous.';
-      const danger = (d.refusals || []).find(x => x.rule === 'danger-interaction');
-      if (!danger) return `the pairing was refused but not for being dangerous: ${JSON.stringify((d.refusals || []).map(x => x.rule))}. A refusal that names the wrong reason teaches the reader the wrong thing.`;
-      if (!/blood.pressure/i.test(danger.message)) return `the danger refusal does not carry the interaction row's own words: "${String(danger.message).slice(0, 140)}". The client must not be able to dress this up in a friendlier sentence of its own.`;
+      const dangerRow = (d.warn || []).find(x => x.rule === 'danger-interaction');
+      if (!dangerRow) return `the engine reported no danger row for citrulline + a PDE-5 inhibitor: warns were ${JSON.stringify((d.warn || []).map(x => x.rule))}. /stack renders that pair as a danger today; going quiet about it is the one thing this engine may not do.`;
+      if (!/blood.pressure/i.test(dangerRow.message)) return `the danger warning does not carry the interaction row's own words: "${String(dangerRow.message).slice(0, 140)}". The client must not be able to dress this up in a friendlier sentence of its own.`;
+      if (!dangerRow.row || !dangerRow.row.src) return 'the danger warning carries no source. Every warning must cite its source, and a danger warning is the one that most has to.';
+      if (!dangerRow.row.plain) return 'the danger warning carries no plain-language line — the reader it is warning has to be able to read it.';
+      // R4 IS UNMOVED: a prescription-only medicine still refuses at publish (CLAUDE.md rule 7).
       if (!(d.refusals || []).some(x => x.rule === 'restricted-substance')) return 'a prescription-only medicine was not refused at publish — a published protocol is the advertising surface (CLAUDE.md rule 7)';
-      // 3 — coverage, always, and the ❔ sentence with it.
+
+      // 2 — coverage, always, and the unknown sentence with it.
       if (!d.coverage || typeof d.coverage.checked !== 'number' || typeof d.coverage.of !== 'number') return 'the verdict carries no coverage. An empty warning list can mean "nothing found" or "nothing checkable", and those are not the same sentence.';
       if (!d.says) return 'the verdict carries no sentence a reader can be shown';
+
+      // 3 — ZERO COVERAGE PUBLISHES NOW, and says out loud that it is unchecked. That sentence is
+      // the entire fail-safe: silence from an empty knowledge base is not a clearance.
       const blind = await post({ v: 1, items: [{ k: 'c', id: 'c1' }, { k: 'c', id: 'c5' }] }, 'published');
-      if (blind.ok !== false) return 'the publish checker accepted a two-compound protocol with 0/N interaction coverage';
+      if (blind.ok !== true) return `a two-compound protocol with no authored pair guidance was refused: ${JSON.stringify((blind.refusals || []).map(x => x.rule))}. A creator may add as many compounds as they want.`;
       if (!blind.coverage || blind.coverage.state !== 'none' || blind.coverage.checked !== 0 || blind.coverage.of !== 1 || blind.coverage.unit !== 'pairs') return `0/1 exact-pair coverage has no explicit "none" state: ${JSON.stringify(blind.coverage)}`;
-      if (!(blind.refusals || []).some(x => x.rule === 'interaction-coverage')) return `0/1 coverage was refused for the wrong reason(s): ${JSON.stringify((blind.refusals || []).map(x => x.rule))}`;
-      if (!/unknown|not safe/i.test(blind.says || '')) return `a protocol the engine cannot cover reported "${blind.says}" — 0 of ${blind.coverage.of} is unknown, never a clearance`;
+      const unknownRow = (blind.warn || []).find(x => x.rule === 'interaction-unknown');
+      if (!unknownRow) return `0/1 coverage produced no unchecked warning: ${JSON.stringify((blind.warn || []).map(x => x.rule))}. An uncovered pair that says nothing is indistinguishable from a cleared one.`;
+      if (!/not the same as safe/i.test(unknownRow.message)) return `the unchecked warning does not say that unknown is not safe: "${String(unknownRow.message).slice(0, 140)}"`;
 
-      // 4 — PARTIAL pair coverage is not “enough”: magnesium + zinc is authored; both pairs with
-      // creatine are not.
+      // 4 — PARTIAL coverage publishes and names exactly which pairs are unknown.
       const partial = await post({ v: 1, items: [{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }, { k: 'c', id: 'c0' }] }, 'published');
-      if (partial.ok !== false) return 'the publish checker accepted a three-compound protocol with only 1/3 exact-pair coverage';
+      if (partial.ok !== true) return 'a three-compound protocol with 1/3 authored pairs was refused';
       if (!partial.coverage || partial.coverage.state !== 'partial' || partial.coverage.checked !== 1 || partial.coverage.of !== 3) return `1/3 coverage has no explicit "partial" state: ${JSON.stringify(partial.coverage)}`;
-      if (!(partial.refusals || []).some(x => x.rule === 'interaction-coverage')) return `1/3 coverage was refused for the wrong reason(s): ${JSON.stringify((partial.refusals || []).map(x => x.rule))}`;
+      if ((partial.coverage.unknown_pairs || []).length !== 2) return `1/3 coverage did not name its 2 unknown pairs: ${JSON.stringify(partial.coverage.unknown_pairs)}`;
 
-      // 5 — COMPLETE-COVERAGE POSITIVE CONTROL. A rule that refuses every multi-compound
-      // protocol would make the site safer only by making it useless.
+      // 5 — MANY COMPOUNDS IS THE POINT. Five freely-available supplements must publish.
+      const many = await post({ v: 1, items: ['c0', 'c2', 'c4', 'c5', 'c6'].map(id => ({ k: 'c', id })) }, 'published');
+      if (many.ok !== true) return `a five-compound protocol was refused: ${JSON.stringify((many.refusals || []).map(x => x.rule))}. The 2-compound ceiling was deleted deliberately.`;
+      if (!many.coverage || many.coverage.of !== 10) return `a five-compound protocol did not enumerate all 10 exact pairs: ${JSON.stringify(many.coverage)}`;
+
+      // 6 — COMPLETE-COVERAGE POSITIVE CONTROL.
       const full = await post({ v: 1, items: [{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }] }, 'published');
       if (full.ok !== true) return `a fully authored 1/1 exact pair was refused: ${JSON.stringify((full.refusals || []).map(x => x.rule))}`;
       if (!full.coverage || full.coverage.state !== 'complete' || full.coverage.checked !== 1 || full.coverage.of !== 1) return `1/1 exact-pair coverage has no explicit "complete" state: ${JSON.stringify(full.coverage)}`;
 
-      // 6 — ONE-COMPOUND POSITIVE CONTROL. There is no pair to check, which is distinct from no
-      // data about a pair and must not be treated as either a refusal or a green pair clearance.
+      // 7 — ONE-COMPOUND POSITIVE CONTROL. No pair to check is distinct from no data about a pair.
       const ok = await post({ v: 1, items: [{ k: 'c', id: 'c0', dose: 5 }, { k: 'x', id: '3_4_Sit-Up', sets: 4, reps: '6-8' }, { k: 'f', id: 'f0' }] }, 'published');
       if (ok.ok !== true) return `an ordinary protocol (creatine at a dose on its own published ladder, one exercise, one food) was REFUSED: ${JSON.stringify((ok.refusals || []).map(x => x.rule + ': ' + String(x.message).slice(0, 90)))}. An engine that refuses everything proves nothing.`;
       if (!ok.coverage || ok.coverage.state !== 'not_applicable' || ok.coverage.of !== 0 || ok.coverage.compound_of !== 1) return `a one-compound protocol did not report the explicit no-pair state: ${JSON.stringify(ok.coverage)}`;
@@ -981,23 +999,27 @@ const ASSERTIONS = {
     },
   }],
   '/browse': [{
-    name: 'thePhoneMenuReachesEveryIndexPage',
-    why: 'W5c: the ☰ drawer offered 4 links and neither of the site\'s two index pages, on a viewport where the footer is up to 35 screens away',
+    // REPLACES thePhoneMenuReachesEveryIndexPage (2026-08-13). That test drove the ☰ drawer and
+    // asserted which links were inside it. The drawer is gone, and so is the reason it existed.
+    //
+    // WHY IT HAD TO BE REWRITTEN IN THE SAME COMMIT: it would have failed four independent ways —
+    // no #menu-btn, no click handler, no .open class, and a link list that no longer matches — and
+    // it runs at release-gates.yml AFTER `npm run gate` is already green, so nothing earlier in the
+    // pipeline catches it. The failure would have named /browse, a route this rewrite never touched.
+    // Its own comment said "PROVE IT by deleting the two .nav-more anchors from shell()", which is
+    // precisely what happened.
+    name: 'theNavWorksWithNoJavaScript',
+    why: 'BLOCKER 2026-08-13: at 390x844 with JS off the header was the brand, an inert ☰ and nothing else, on ~620 documents — and ~90% of traffic never runs JavaScript',
     evaluate: async () => {
-      const btn = document.getElementById('menu-btn');
-      if (!btn) return 'no ☰ button in the header';
-      if (getComputedStyle(btn).display === 'none') return 'the ☰ button is display:none at this viewport — this gate runs at 390x844 and is no longer testing the phone menu';
-      btn.click();
-      await new Promise((r) => setTimeout(r, 120));
-      const nav = document.querySelector('.topnav');
-      if (!nav || !nav.classList.contains('open')) return 'tapping ☰ did not open the drawer';
-      const shown = [...nav.querySelectorAll('a')].filter((a) => getComputedStyle(a).display !== 'none');
-      const hrefs = shown.map((a) => a.getAttribute('href'));
-      const missing = ['/az', '/browse', '/solve', '/where'].filter((h) => !hrefs.some((x) => x === h || x === '#' + h));
-      if (missing.length) return `the phone menu is missing ${missing.join(', ')} — it offers ${hrefs.join(', ')}`;
-      const small = shown.filter((a) => a.getBoundingClientRect().height < 24);
-      if (small.length) return `${small.length} of ${shown.length} drawer links are under the 24px minimum`;
-      btn.click();
+      const nav = document.querySelector('header .topnav');
+      if (!nav) return 'there is no <nav class="topnav"> in the header';
+      if (document.getElementById('menu-btn')) return 'the ☰ button is back — global navigation must not depend on a control that only JavaScript can operate';
+      const links = [...nav.querySelectorAll('a')].filter((a) => getComputedStyle(a).display !== 'none');
+      if (links.length !== 3) return `the header offers ${links.length} visible nav links (${links.map((a) => a.textContent.trim()).join(', ')}); the doctrine budget is exactly 3`;
+      const small = links.filter((a) => { const r = a.getBoundingClientRect(); return r.height < 44 || r.width < 44; });
+      if (small.length) return `${small.length} of 3 nav links are under 44x44: ${small.map((a) => `${a.textContent.trim()} ${Math.round(a.getBoundingClientRect().width)}x${Math.round(a.getBoundingClientRect().height)}`).join(', ')}`;
+      const hrefs = links.map((a) => a.getAttribute('href')).join(',');
+      if (hrefs !== '/solve,/goals,/az') return `the header nav is ${hrefs}`;
       return null;
     },
   }, {
@@ -1339,19 +1361,27 @@ const ASSERTIONS = {
   }, {
     name: 'findDebounceCannotRewriteTheNextRoute',
     why: 'a delayed Find update belongs to the page that scheduled it; it must not corrupt an immediate SPA navigation',
+    // RETARGETED 2026-08-13, twice: from "Where it hurts" to "Today", then to "A-Z" when the nav settled on
+    // Problems / Goals / A-Z. It must be a route WITHOUT data-native: /goals is a KEEP_PRERENDERED
+    // route whose link forces a full page load, which destroys the execution context mid-assertion
+    // and tests nothing about a client-side debounce. The behaviour under test
+    // is unchanged and still worth having — a debounced Find update must not rewrite the URL of a
+    // navigation that has already happened. Only the trigger moved, because the global nav went
+    // from six items to three and /where is no longer one of them. Today is the right substitute:
+    // it is a real SPA route with no data-native attribute, so clicking it exercises the same
+    // client-side navigation path the old assertion did. (/corrections carries data-native and
+    // would be a full page load, which tests nothing about the debounce.)
     evaluate: async () => {
       const input = document.getElementById('solve-q');
-      const where = document.querySelector('header a[href="/where"]');
-      if (!input || !where) return 'Find input or Where it hurts navigation is missing';
+      const today = document.querySelector('header a[href="/az"]');
+      if (!input || !today) return 'Find input or A-Z navigation is missing';
       input.value = 'knee';
       input.dispatchEvent(new Event('input', { bubbles: true }));
-      where.click();
+      today.click();
       await new Promise(r => setTimeout(r, 420));
       const issues = [];
-      if (location.pathname !== '/where' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
-      const heading = (document.querySelector('#app h1') || {}).textContent || '';
-      if (!/where does it hurt/i.test(heading)) issues.push(`the destination heading is ${JSON.stringify(heading.trim())}, not Where does it hurt`);
-      if (!/where does it hurt/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}`);
+      if (location.pathname !== '/az' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
+      if (!/a.z|every compound/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}, not the A-Z index`);
       // Restore the route this assertion owns so the runner's generic /solve checks remain valid.
       const find = document.querySelector('header a[href="/solve"]');
       if (find) { find.click(); await new Promise(r => setTimeout(r, 120)); }

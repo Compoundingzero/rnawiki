@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>RNAwiki — Understand the evidence before you act</title>
-<meta name="description" content="Compare possible reasons for 41 health and performance topics, check safety limits, and start one practical movement, food or supplement step. Free, in plain English.">
+<meta name="description" content="Compare possible reasons for 41 health and performance topics, then start one movement, food or supplement step. Free, in plain English.">
 <link rel="canonical" href="https://rnawiki.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <!-- geo.region/geo.placename removed 2026-07-31: this site is written for readers anywhere, and
@@ -21,7 +21,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="/styles.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"RNAwiki","url":"https://rnawiki.com/","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://rnawiki.com/az?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"RNAwiki","url":"https://rnawiki.com/","inLanguage":"en","potentialAction":{"@type":"SearchAction","target":"https://rnawiki.com/solve?q={search_term_string}","query-input":"required name=search_term_string"}}</script>
 </head>
 <body>
 <a class="skip-link" href="#app">Skip to content</a>
@@ -37,25 +37,29 @@
 <header class="topbar">
   <a href="#/" class="brand">🧬 RNA<span>wiki</span></a>
   <div class="search-wrap">
-    <form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"></form>
+    <form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form>
     <div id="search-results" class="search-results" hidden></div>
   </div>
-  <nav class="topnav">
-    <a href="/solve" class="nav-solve">Find</a>
-    <a href="/plan">Today</a>
-    <a href="/learn">Learn</a>
-    <a href="/where" class="nav-more">Where it hurts</a>
-    <a href="/az" class="nav-more">A&ndash;Z</a>
-    <a href="/browse" class="nav-more">Browse</a>
+  <!-- THIS NAV MUST STAY BYTE-IDENTICAL TO THE ONE build/prerender.js shell() EMITS, modulo
+       whitespace and the aria-current attribute a static file cannot carry. assertShellParity()
+       fails the build on any drift — this file had already drifted from the generated shell in four
+       separate ways before that gate existed. The ☰ and the three .nav-more anchors were deleted on
+       2026-08-13; see site/styles.css for why. -->
+  <nav class="topnav" aria-label="Main">
+    <a href="/solve" class="nav-solve">Problems</a><a href="/goals" data-native>Goals</a><a href="/az">A&ndash;Z</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
-  <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 
 <main id="app"><!-- rendered by app.js --></main>
 
+<!-- The footer is the global disclaimer plus three links, matching shell(). The old version of this
+     one carried a 💡 tip about underlined words and then repeated eleven nav links — and said
+     "not medical advice" in different words from the generated shell, on the one line where the two
+     documents least ought to disagree. assertGlobalDisclaimer() now pins the sentence. -->
 <footer class="foot">
-  <div>💡 Tip: tap any <span style="border-bottom:1px dotted var(--accent2)">underlined word</span> for a plain-English definition.<br>RNAwiki · not medical advice · <a href="/solve">Find</a> · <a href="/plan">Today</a> · <a href="/learn">Learn</a> · <a href="/where">Where it hurts</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div>
+  <div>Information, not medical advice. No clinician has reviewed these pages and nothing on them is a diagnosis. If something is severe, sudden or getting worse, call your local emergency number &mdash; <b>995</b> in Singapore, or 999, 911, 112 or 000 depending on where you are &mdash; and be seen.</div>
+  <div class="foot-links"><a href="/about">About</a> &middot; <a href="/methodology" data-native>How a page is made</a> &middot; <a href="/az">Everything A&ndash;Z</a></div>
   <div class="foot-stats" id="foot-stats"></div>
 </footer>
 

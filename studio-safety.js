@@ -57,8 +57,10 @@ const RULES = [
     says: 'A dose override is accepted only where RNAwiki publishes a machine-readable ceiling, only from that compound’s own ladder, and never above the ceiling.' },
   { id: 'restricted-substance', mirrors: 'assertRegulatoryAxes',
     says: 'A published protocol may not instruct anyone to take a prescription-only, controlled or unapproved substance.' },
-  { id: 'interaction-coverage', mirrors: 'assertInteractionCoverage',
-    says: 'A public protocol containing two or more compounds requires an authored rule for every exact pair. Individually tagged compounds are not pair coverage; missing coverage is unknown, never safe.' },
+  { id: 'interaction-unknown', mirrors: 'assertInteractionCoverage',
+    says: 'A protocol may hold as many compounds as its creator wants. Every exact pair is checked against the interaction rules, and any pair no rule reaches is reported to the creator and to every reader as UNCHECKED — which is not the same as safe. Individually tagged compounds are not pair coverage.' },
+  { id: 'danger-interaction', mirrors: 'assertInteractionSources',
+    says: 'A combination the rules flag as dangerous publishes with a warning that cannot be dismissed, carries its own citation, and renders above the protocol rather than inside it. It is no longer a refusal.' },
   { id: 'unreviewed-creator-copy', mirrors: 'assertClaimTextIntact',
     says: 'Free-text titles and notes may be kept in a private draft, but they cannot become public health copy until a human review workflow approves them.' },
   { id: 'animal-only-evidence', mirrors: 'assertHumanEvidenceStars',
@@ -182,11 +184,29 @@ function r4(items, publish, refuse, warn) {
   });
 }
 
-// R5 — the interaction engine may not SILENTLY ACCEPT a pairing it flags as dangerous.
-// The verdict comes from site/ixn-engine.js, the same matcher interactionPanel() renders from.
-// A danger row refuses the publish and carries the row's own title/why/action, so the client
-// cannot invent a friendlier message. blunt and timing rows do NOT refuse — they are recorded and
-// printed on the protocol.
+// R5 — THE OVERLAP-REPERCUSSION CHECKER. Rewritten 2026-08-13 on the founder's instruction:
+//
+//   "A creator can add as many compounds as they want. INSTEAD: build a backend overlap-repercussion
+//    checker. When a creator adds compounds, the backend cross-checks an interaction/contraindication
+//    DB. If there is a health repercussion to the overlap, the UI pings the user inline with a
+//    warning. This warning must also be visible to readers on the published protocol.
+//    Fail-safe: if uncertain, show the warning. Every warning must cite its source."
+//
+// WHAT CHANGED, EXACTLY. This rule used to REFUSE a publish twice: once when any exact pair lacked
+// an authored rule, and once for any danger-tier row. Both refusals are now WARNINGS that travel
+// with the protocol and render to readers. Nothing about the DETECTION changed — the matcher is
+// still site/ixn-engine.js, the same one interactionPanel() renders from, so a creator and a reader
+// cannot be shown different pharmacology.
+//
+// THIS IS A DELIBERATE INCREASE IN RISK AND IT IS RECORDED HERE AS ONE. A documented dangerous
+// combination can now be published. What stands between that and a reader is no longer a refusal;
+// it is a warning that cannot be dismissed, carries its own citation, and renders ABOVE the
+// protocol rather than inside it. Two things did NOT move, and must not:
+//   · R4 still hard-refuses prescription / controlled / unapproved substances on a public protocol.
+//     CLAUDE.md: "Do not add an override button around a refusal."
+//   · An UNKNOWN pair is still reported as unknown, never as safe. That is the fail-safe clause:
+//     silence from an empty knowledge base is not a clearance, and the copy says so in those words.
+//
 // AND COVERAGE IS RECORDED, ALWAYS. A compound the engine holds no firable pharmacology for can
 // never produce a flag, so an empty warn list can mean "nothing found" or "nothing checkable", and
 // those are not the same sentence. interactionPanel() has had that exact bug fixed twice.
@@ -209,20 +229,30 @@ function r5(items, publish, refuse, warn) {
   // published when an authored rule reaches EVERY pair. Previously caffeine + magnesium passed as
   // “2 of 2 compounds covered” merely because each carried a tag used somewhere else in the
   // corpus. That is not evidence about their pairing. Missing pair data is unknown, not safe.
-  if (publish && cov.state !== 'complete') {
-    refuse('interaction-coverage',
-      `Pair guidance is ${cov.state === 'none' ? 'absent' : 'incomplete'}: RNAwiki has an authored rule for ${cov.checked} of ${cov.of} exact pair${cov.of === 1 ? '' : 's'}. A public protocol with more than one compound needs a rule for every pair. Missing coverage is unknown, not safe; remove an unknown pairing or keep this as a private draft.`);
+  // THE FAIL-SAFE CLAUSE, and it is the reason an uncovered pair is not silence. A pair no authored
+  // rule reaches produces no flag, and "no flag" is indistinguishable from "checked and clear"
+  // unless something says otherwise. This is that something, and it now warns instead of refusing.
+  if (cov.state !== 'complete' && cov.of > 0) {
+    warn('interaction-unknown', 'unknown',
+      `Not checked: ${cov.unknown} of ${cov.of} pairing${cov.of === 1 ? '' : 's'} here ${cov.unknown === 1 ? 'has' : 'have'} no rule written for ${cov.unknown === 1 ? 'it' : 'them'} yet. That is not the same as safe — it means nobody has written down what happens when these are taken together.`,
+      null, { id: 'unknown-pairs', tier: 'unknown', title: 'Some of these combinations have not been checked', unknown: cov.unknown_pairs });
   }
   const r = ENGINE.stackInteractions(list);
   (r.flags || []).forEach((f) => {
     const who = (f.involved || []).join(' + ');
     const msg = `${f.title}${who ? ' — ' + who : ''}. ${f.why || ''}${f.action ? ' What to do: ' + f.action : ''}`.trim();
-    if (f.tier === 'danger') {
-      if (publish) refuse('danger-interaction', msg, null, { id: f.id, tier: f.tier, title: f.title, why: f.why, action: f.action, involved: f.involved });
-      else warn('danger-interaction', 'danger', msg, null, { id: f.id, tier: f.tier, title: f.title, why: f.why, action: f.action, involved: f.involved });
-    } else {
-      warn('interaction', f.tier, msg, null, { id: f.id, tier: f.tier, title: f.title, why: f.why, action: f.action, involved: f.involved });
-    }
+    // EVERY ROW CARRIES ITS SOURCE onto the stored verdict, so the warning a reader eventually sees
+    // on the published protocol cites the same reference the creator was shown at save time.
+    // `plain` is the one-sentence, no-jargon version; assertInteractionSources() requires both.
+    const row = {
+      id: f.id, tier: f.tier, title: f.title, why: f.why, action: f.action, involved: f.involved,
+      src: f.src || '', srcLabel: f.srcLabel || '', srcQuote: f.srcQuote || '',
+      conf: f.conf || 'none', plain: f.plain || '',
+    };
+    // NO LONGER A REFUSAL, on the founder's instruction. A danger row publishes and travels with
+    // the protocol as a warning the reader cannot dismiss. The tier is preserved exactly so the
+    // reading surface can render danger differently from timing.
+    warn(f.tier === 'danger' ? 'danger-interaction' : 'interaction', f.tier, msg, null, row);
   });
   return cov;
 }

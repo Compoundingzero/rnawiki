@@ -590,6 +590,31 @@ CREATE INDEX IF NOT EXISTS idx_studio_base ON studio_protocols(base_pid, base_rc
 -- efficacy column in this table and there must not be one: with the number of real experiments
 -- this site holds, any ranking by outcome is noise, and in Singapore it is a health claim.
 CREATE INDEX IF NOT EXISTS idx_studio_used ON studio_protocols(status, clones DESC, published_at DESC);
+
+-- ---- LIKES (2026-08-13) -----------------------------------------------------------------------
+-- The founder's requirement: when several creators publish a protocol for the same root cause, the
+-- route resolves to a comparison and "defaults to the highest-liked protocol", showing the others
+-- with "Creator Handle, Like Count, and Reputation".
+--
+-- A LIKE IS NOT AN EFFICACY SIGNAL AND THIS SCHEMA MUST NEVER LET IT BECOME ONE. It counts how many
+-- people found a WRITE-UP useful. It does not count whether anything worked, and the comment above
+-- idx_studio_used applies here with equal force: there is no outcome column in this table, and
+-- ranking health protocols by reported outcome would be noise at this sample size and a health
+-- claim in Singapore. The reading surface must label this column with what it actually counts.
+ALTER TABLE studio_protocols ADD COLUMN IF NOT EXISTS likes INTEGER NOT NULL DEFAULT 0;
+-- One like per browser per protocol, and idempotent by construction — verbatim the studio_clones
+-- and fork_clones pattern, on the same anonymous participant key, so liking needs no account and
+-- cannot be inflated by re-tapping. UNIQUE is what makes the counter honest.
+CREATE TABLE IF NOT EXISTS protocol_likes (
+  id SERIAL PRIMARY KEY,
+  code TEXT NOT NULL REFERENCES studio_protocols(code) ON DELETE CASCADE,
+  voter_key TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  UNIQUE(code, voter_key)
+);
+CREATE INDEX IF NOT EXISTS idx_protolikes_code ON protocol_likes(code);
+-- The comparison view's own index: every published variant of one root cause, best-liked first.
+CREATE INDEX IF NOT EXISTS idx_studio_variants ON studio_protocols(base_pid, base_rcid, status, likes DESC, published_at DESC);
 -- One clone per browser per protocol — verbatim the fork_clones pattern above, keyed on the same
 -- anonymous participant cookie the 7-day logger uses. A clone count cannot be inflated by
 -- re-tapping, and no account is needed to clone.

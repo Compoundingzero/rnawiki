@@ -960,6 +960,71 @@
     const legend = C.systems.map((s, i) => `<rect x="${72 + i * 190}" y="300" width="26" height="4" rx="2" fill="${s.color}" opacity="${s.id === activeId ? 1 : 0.45}"/><text x="${104 + i * 190}" y="305" font-size="13" font-weight="${s.id === activeId ? 700 : 400}" fill="${s.id === activeId ? '#e2e8f0' : '#94a3b8'}">${s.name}${s.id === activeId ? ' — this page' : ''}</text>`).join('');
     return `<figure class="learn-fig"><svg viewBox="0 0 660 340" role="img" aria-label="Relative power of the three energy systems over time; ${esc(activeId)} highlighted."><text x="70" y="26" font-size="14" font-weight="700" fill="#cbd5e1">Relative power output over time</text><line x1="70" y1="${y0}" x2="620" y2="${y0}" stroke="#334155" stroke-width="1.5"/><line x1="70" y1="40" x2="70" y2="${y0}" stroke="#334155" stroke-width="1.5"/><text x="30" y="150" font-size="12" fill="#64748b" transform="rotate(-90 30 150)" text-anchor="middle">power →</text>${grid}${curves}${legend}</svg></figure><p class="fig-credit">Every all-out effort recruits all three at once — this shows which one <em>dominates</em> as the seconds tick by.</p>`;
   }
+  // Fills #lp-comm-list from /api/protocols/new. Fails silent and leaves the honest empty state.
+  async function mountCommunityStrip() {
+    const wrap = document.querySelector('[data-community-strip]');
+    if (!wrap) return;
+    if (!featureOn('publicCommunity')) return;
+    let list = [];
+    try {
+      const r = await fetch('/api/protocols/new?limit=6', { headers: { accept: 'application/json' } });
+      if (!r.ok) return;
+      list = (await r.json()).protocols || [];
+    } catch (e) { return; }
+    if (!list.length) return;
+    const ul = document.getElementById('lp-comm-list');
+    const empty = document.getElementById('lp-comm-empty');
+    if (!ul) return;
+    ul.innerHTML = list.map((p) => {
+      // "N found this useful", never "N liked it works". The count is about the WRITE-UP.
+      // See the comment on protocol_likes in db.js — there is no outcome column and there must not be.
+      const meta = [p.handle ? '@' + esc(p.handle) : 'anonymous',
+        (p.likes || 0) + ' found this useful'].join(' · ');
+      return '<li><a href="/p/' + encodeURIComponent(p.code) + '"><b>' + esc(p.title || 'Untitled protocol')
+        + '</b><span class="lp-comm-meta">' + meta + '</span></a></li>';
+    }).join('');
+    ul.hidden = false;
+    if (empty) empty.remove();
+    wrap.setAttribute('data-on', '1');
+  }
+
+  // Mirrors overlapWarnings() in build/prerender.js. Both call IXN.stackInteractions/pairCoverage,
+  // so a reader with JavaScript and a reader without are shown the same pharmacology in the same
+  // order with the same citations. If these two ever diverge, the site tells two stories about
+  // whether two things are safe to take together.
+  function overlapWarningsHtml(stack) {
+    const list = (stack || []).filter(Boolean);
+    if (list.length < 2) return '';
+    let r, cov;
+    try { r = IXN.stackInteractions(list); cov = IXN.pairCoverage(list); }
+    catch (e) { return ''; }
+    const W = { danger: 0, blunt: 1, timing: 2 };
+    const flags = (r.flags || []).slice().sort((a, b) => (W[a.tier] == null ? 3 : W[a.tier]) - (W[b.tier] == null ? 3 : W[b.tier]));
+    const unknown = cov.unknown || 0;
+    if (!flags.length && !unknown) return '';
+    const label = { danger: 'Do not combine', blunt: 'Works against itself', timing: 'Space these apart' };
+    const rows = flags.map((f) => {
+      const who = (f.involved || []).map(esc).join(' + ');
+      const cite = f.src
+        ? '<p class="ov-src">Source: <a href="' + esc(f.src) + '" rel="nofollow noopener" target="_blank">' + esc(f.srcLabel || f.src) + '</a>' + (f.srcQuote ? ' — &ldquo;' + esc(f.srcQuote) + '&rdquo;' : '') + '</p>'
+        : '<p class="ov-src ov-nosrc">No source recorded for this one yet. Treat it as a flag to check, not as a finding.</p>';
+      return '<li class="ov-row ov-' + esc(f.tier) + '">'
+        + '<p class="ov-k">' + esc(label[f.tier] || 'Check this') + '</p>'
+        + '<p class="ov-who">' + who + '</p>'
+        + '<p class="ov-plain">' + esc(f.plain || f.why || '') + '</p>'
+        + (f.action ? '<p class="ov-do"><b>What to do:</b> ' + esc(f.action) + '</p>' : '')
+        + cite + '</li>';
+    }).join('');
+    const unknownRow = unknown ? '<li class="ov-row ov-unknown"><p class="ov-k">Not checked</p>'
+      + '<p class="ov-plain">' + unknown + ' of the ' + cov.total + ' possible pairings here '
+      + (unknown === 1 ? 'has' : 'have') + ' no rule written for ' + (unknown === 1 ? 'it' : 'them')
+      + ' yet. That is not the same as safe — it means nobody has written down what happens when these are taken together.</p></li>' : '';
+    return '<section class="overlap" data-worst="' + esc(flags.length ? flags[0].tier : 'unknown')
+      + '" aria-label="What happens if you take these together">'
+      + '<h4 class="ov-h">If you take these together</h4>'
+      + '<ul class="ov-list">' + rows + unknownRow + '</ul></section>';
+  }
+
   function renderAccount() {
     const slot = document.getElementById('account-slot'); if (!slot) return;
     // THE WAY IN TO /me, AND WHEN IT APPEARS (2026-08-10).
@@ -1838,7 +1903,6 @@
       can be approved by a regulator and still have weak evidence for what you want it for, and the
       reverse.</p>
       <p><a href="/methodology" data-native>How a page here is made →</a> ·
-      <a href="/corrections" data-native>Corrections →</a> ·
       <a href="#/about">About RNAwiki →</a></p>`;
   }
 
@@ -4233,7 +4297,7 @@
   // ALLOWLIST, not blocklist. Verbatim paths are only the routes that encode no health interest.
   // A route template added tomorrow and forgotten here fails CLOSED to /t/other; it can never leak
   // a health-encoding URL by omission.
-  const A_PUBLIC = ['/', '/about', '/anatomy', '/az', '/body', '/browse', '/compare', '/corrections',
+  const A_PUBLIC = ['/', '/about', '/anatomy', '/az', '/body', '/browse', '/compare',
     // '/interest' was added here on 2026-08-08 and removed the same day, with the page: it is now
     // part of "/", which is already the first entry above. An allowlist entry for a route nothing
     // serves can never be produced, and a stale entry is how an allowlist quietly widens.
@@ -8220,6 +8284,15 @@
           <div class="fuel-stack-grid">${tg.map(([k, t]) => `<div class="fs-item"><span><b>${esc(NUTRIENT_LABEL[k] || k)}</b>${t.why ? `<br><small>${esc(t.why)}</small>` : ''}</span><span><b>${esc(String(t.target))}${esc(t.unit || '')}</b>${t.type ? ` <small>(${esc(t.type)})</small>` : ''}</span></div>`).join('')}</div>
           <p class="muted">General adult guidance with a stated reason, not a personal prescription. <a href="/fuel/${esc(problem.id)}/${esc(rc.id)}">Open the Fuel Tracker — targets, foods and why each one →</a></p>` : ''}
       </section>
+      ${/* THE OVERLAP WARNING, IN THE HYDRATED DOCUMENT TOO (2026-08-13). build/prerender.js emits
+            this onto 50 of 52 protocol pages; renderProtocol() is a SECOND, independent
+            implementation of the same page, so without this line the ~10% of readers who run
+            JavaScript had the block replaced out from under them and saw no interaction warnings at
+            all. Caught by querying .overlap in a real browser with scripting on and getting null —
+            the two-document rule, exactly as CLAUDE.md describes it.
+            OUTSIDE the Phase 2 disclosure, for the same reason as in the prerenderer: that
+            <details> is closed by default on 44 of 52 protocols. */ ''}
+      ${overlapWarningsHtml(stack)}
       <details class="phase2" id="phase-2"${p2open}>
         <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
         <div class="p2-body">
@@ -8504,7 +8577,7 @@
         ${voteFoot(problem.id, rc.id, 'protocol')}
         ${pfaq}
         <div id="goal-comments" class="page-discuss"></div>
-        <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
+        <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a class="flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Flag this &rarr;</a></p>
         <p class="proto-foot muted">Educational protocol, not medical advice. Nutrient targets are general adult guidance with a stated reason. · <button class="linkbtn" id="cite-proto">Cite this protocol</button></p>
       </div>`;
     mountAdoption(problem, rc);
@@ -10264,7 +10337,11 @@
   function setPageMeta(parts) {
     const site = SITE_NAME;
     let title = 'RNAwiki — Understand the evidence before you act';
-    let desc = 'Compare possible reasons for 41 health and performance topics, check safety limits, and start one practical movement, food or supplement step. Free, in plain English.';
+    // KEPT BYTE-IDENTICAL TO build/prerender.js's HOME_SHELL desc. This is the SPA's fallback for a
+    // route site/head.js has no entry for, and assertHeadParity / the smoke run compare the two
+    // documents: when the prerendered description changed on 2026-08-13 and this did not, /progress
+    // served the crawler one sentence and the reader another. Edit both or neither.
+    let desc = 'Compare possible reasons for 41 health and performance topics, then start one movement, food or supplement step. Free, in plain English.';
     const t = (s) => `${s} · ${site}`;
     const generated = HEAD['/' + parts.join('/')];
     if (generated && generated[0]) { title = generated[0]; desc = generated[1] || desc; }
@@ -10598,7 +10675,10 @@
   // build/prerender.js now pins all three of those lines verbatim. Leaving 'interest' here would be
   // worse than dead: route() would return the KEEP sentinel for a path nothing serves and never
   // write #app at all, so the reader would keep whatever was on screen under a /interest URL.
-  const KEEP_PRERENDERED = ['methodology', 'corrections', 'problem'];
+  // /goals joined this list on 2026-08-13. It is a prerendered index with no SPA renderer, so
+  // without the sentinel a reader with JavaScript got notFound() while a crawler got the page —
+  // the exact split CLAUDE.md warns about. Its inbound links carry data-native to match.
+  const KEEP_PRERENDERED = ['methodology', 'problem', 'goals'];
   // THE BACK BUTTON LIED ON 41 OF 41 /problem ROUTES (measured hydrated 2026-08-01, 390x844).
   // KEEP means "the prerendered document IS the page, do not write #app". That is true at boot and
   // false the moment any SPA render has overwritten #app -- and nothing tracked the difference.
@@ -10873,7 +10953,25 @@
   });
   window.addEventListener('popstate', route);
   window.addEventListener('hashchange', route);
-  document.getElementById('menu-btn').onclick = () => document.querySelector('.topnav').classList.toggle('open');
+  // THE ☰ HANDLER WAS DELETED HERE ON 2026-08-13, in the same commit as the button, and the order
+  // matters: this line had NO NULL GUARD, so shipping the markup change without this one would
+  // throw a TypeError on every page load and kill everything below it — the footer stats, the stack
+  // badge, and the HOME_HTML capture that assertLandingPage() requires by name. `node --check`
+  // would not have caught it, because the syntax was always fine.
+  //
+  // What it did: toggle a class that was the ONLY way to reveal .topnav at ≤760px. So the site's
+  // entire navigation depended on this one line running, on a site where ~90% of traffic never runs
+  // any JavaScript at all. The nav is now three real anchors, visible at every width, in both
+  // documents, with no script involved.
+  // ---- NEW FROM THE COMMUNITY (2026-08-13) ---------------------------------------------------
+  // The landing strip ships prerendered EMPTY with an honest explanation, and this fills it when
+  // there is something real to show. Three deliberate properties:
+  //   · it only ever runs on "/", so no other route pays for it
+  //   · a failed or gated fetch leaves the prerendered empty state exactly as it was — the strip
+  //     never renders a spinner, an error, or a fabricated example
+  //   · it is additive to a document that is already complete, so the ~90% of readers who never run
+  //     JavaScript lose nothing except a list that is empty today anyway
+  mountCommunityStrip();
   const cc = D.meta.counts;
   document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
   updateStackBadge();
