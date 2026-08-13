@@ -5319,3 +5319,24 @@ html[data-state="removed"] .i-form{display:none}
 .overlap .ov-clear::before{background:var(--accent);opacity:.35}
 .overlap .ov-clear .ov-k{color:var(--muted)}
 .overlap .ov-clear .ov-plain{color:var(--muted);font-size:.9rem}
+
+/* ===== WHAT THIS COMPOUND INTERACTS WITH (2026-08-13) =========================================
+   Computed from the same matcher the protocol pages and /stack use, so the page ABOUT a compound
+   and the page that RECOMMENDS it cannot disagree. Severity is carried by a stripe and by the
+   row's own words, never by colour alone. */
+.cixn{margin:1rem 0;padding:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.cixn .ci-h{margin:0;padding:.7rem .95rem .3rem;font-size:.95rem;font-weight:750;color:var(--head)}
+.cixn .ci-sub{margin:0;padding:0 .95rem .7rem;font-size:.82rem;line-height:1.5;color:var(--muted);border-bottom:1px solid var(--line)}
+.cixn .ci-list{list-style:none;margin:0;padding:0}
+.cixn .ci-row{position:relative;padding:.7rem .95rem .75rem 1.1rem;border-bottom:1px solid var(--line-soft)}
+.cixn .ci-row:last-child{border-bottom:0}
+.cixn .ci-row::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--faint)}
+.cixn .ci-danger::before{background:var(--warn)}
+.cixn .ci-blunt::before{background:var(--yellow)}
+.cixn .ci-timing::before{background:var(--accent)}
+.cixn .ci-k{margin:0;font-family:var(--mono);font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.cixn .ci-danger .ci-k{color:var(--warn)}
+.cixn .ci-who{margin:.15rem 0 0;font-size:.9rem;font-weight:700}
+.cixn .ci-plain{margin:.25rem 0 0;font-size:.9rem;line-height:1.5;color:var(--ink)}
+.cixn .ci-src{margin:.3rem 0 0;font-size:.76rem;color:var(--muted)}
+.cixn .ci-more{margin:0;padding:.6rem .95rem;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line-soft)}

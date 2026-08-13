@@ -370,6 +370,57 @@ function overlapWarnings(stack) {
   </section>`;
 }
 
+// ---- WHAT THIS ONE INTERACTS WITH, ON THE COMPOUND PAGE (new 2026-08-13) ----------------------
+// MEASURED: compound pages carry an authored "Cofactors & interactions" card from
+// data/bio_learn.json — hand-written prose — and NOTHING from the interaction engine. So the 25
+// sourced rules and the 5 pair verdicts that now warn a reader on a protocol page were invisible on
+// the page ABOUT the compound doing the interacting. Somebody reading /c/caffeine to decide whether
+// to take it saw none of it.
+//
+// It is computed by running the same matcher against this compound and every other consumer-visible
+// one, so it cannot disagree with the protocol pages or with /stack. Restricted compounds are
+// excluded from the OTHER side of each pair for the same reason protoStack() excludes them: naming
+// a prescription-only medicine as something to combine with is an instruction to obtain it.
+function compoundInteractions(c) {
+  if (!c || !isConsumerRenderable(c)) return '';
+  const others = (D.compounds || []).filter((x) => x && x.id !== c.id && isConsumerRenderable(x));
+  const rows = [];
+  const seen = new Set();
+  others.forEach((x) => {
+    const r = IXN_ENGINE.stackInteractions([c, x]);
+    (r.flags || []).forEach((f) => {
+      // Only rows this compound is actually a member of. A rule satisfied by the OTHER compound
+      // alone is not a fact about this page's subject.
+      if (!(f.members || []).some((m) => m.id === c.id)) return;
+      // DUPLICATE ROWS ARE NOT PAIRINGS. `dupe:` rows exist because the corpus holds two PAGES for
+      // one molecule, and they inherit the tier of whatever rule that duplication collapsed — so on
+      // a compound page the first row read "Do not combine — Caffeine (thermogenic)" and then
+      // explained that the two are the same substance. That is a contradiction, and it is advice
+      // about this site's page structure rather than about anything a reader would take. They still
+      // fire on /stack and on protocols, where a reader really has put both in one list.
+      if (String(f.id || '').indexOf('dupe:') === 0) return;
+      const k = f.id + '|' + x.id;
+      if (seen.has(k)) return; seen.add(k);
+      rows.push({ tier: f.tier, other: x, title: f.title, plain: f.plain || f.why || '',
+        action: f.action || '', src: f.src || '', srcLabel: f.srcLabel || '' });
+    });
+  });
+  if (!rows.length) return '';
+  const W = { danger: 0, blunt: 1, timing: 2 };
+  rows.sort((a, b2) => (W[a.tier] == null ? 3 : W[a.tier]) - (W[b2.tier] == null ? 3 : W[b2.tier]));
+  const label = { danger: 'Do not combine', blunt: 'Works against it', timing: 'Space apart' };
+  const li = rows.slice(0, 12).map((r) => `<li class="ci-row ci-${esc(r.tier)}">
+      <p class="ci-k">${esc(label[r.tier] || 'Check')}</p>
+      <p class="ci-who"><a href="/c/${slug(r.other.name)}">${esc(r.other.name)}</a></p>
+      <p class="ci-plain">${esc(r.plain)}</p>
+      ${r.src ? `<p class="ci-src"><a href="${esc(r.src)}" rel="nofollow noopener" target="_blank">${esc(r.srcLabel || r.src)}</a></p>` : ''}
+    </li>`).join('');
+  const more = rows.length > 12 ? `<p class="ci-more">${rows.length - 12} more pairing${rows.length - 12 === 1 ? '' : 's'} are flagged in the <a href="/stack">Stack Builder</a>, which checks a whole list at once.</p>` : '';
+  return `<section class="cixn"><h3 class="ci-h">If you take this with something else</h3>
+    <p class="ci-sub">Combinations this site has an authored rule for. A pairing that is not listed here has not been checked, which is not the same as safe.</p>
+    <ul class="ci-list">${li}</ul>${more}</section>`;
+}
+
 function protoStack(rc) {
   const picked = [], ids = new Set();
   (rc.compounds || []).forEach((n) => {
@@ -1033,6 +1084,7 @@ function bioFlatHtml(c) {
     marks('Biomarkers to track'),
     b.cofactors ? card('🔗', 'Cofactors & interactions', ['needs', 'depletes', 'antagonists'].map((k) => Array.isArray(b.cofactors[k]) && b.cofactors[k].length
       ? `<p><b>${k === 'needs' ? 'Needs alongside it' : k === 'depletes' ? 'It depletes' : 'Works against it'}:</b></p><ul>${b.cofactors[k].map((x) => `<li><b>${mdSafe(x.nutrient || x.name || '')}</b> — ${mdSafe(x.role || x.why || '')}</li>`).join('')}</ul>` : '').join('')) : '',
+    compoundInteractions(c),
     b.foodFirst ? card('🥗', 'Food first', mdSafe(b.foodFirst.line) + (b.foodFirst.note ? `<p class="biof-note">${mdSafe(b.foodFirst.note)}</p>` : '')) : '',
     b.dosing ? card('⚖️', 'Dose', (b.dosing.flat ? `<p>${mdSafe(b.dosing.flat)}</p>` : '') + (b.dosing.perKg ? `<p><b>${mdSafe(String(b.dosing.perKg))} ${mdSafe(b.dosing.unit || '')}</b> per kg of bodyweight${b.dosing.capValue ? `, capped at ${mdSafe(String(b.dosing.capValue))} ${mdSafe(b.dosing.capUnit || b.dosing.unit || '')}` : ''}.</p>` : '') + (b.dosing.note ? `<p class="biof-note">${mdSafe(b.dosing.note)}</p>` : '')) : '',
     b.timing ? card('⏰', 'Timing', mdSafe(b.timing.line)) : '',
