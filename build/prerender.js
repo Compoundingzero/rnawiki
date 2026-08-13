@@ -5302,6 +5302,68 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log('[prerender] navigation OK — 3 items, present in both shells, no display:none, no drawer, no script needed.');
 })();
 
+// ---- build-time assertion: GAMIFICATION MAY NOT TOUCH A HEALTH DECISION -----------------------
+// NEW 2026-08-13. This is the whole answer to "does the avatar economy detract from the journey".
+//
+// THE RISK, STATED PLAINLY. A reader deciding whether to take two supplements together is doing the
+// most consequential thing this site supports. If a point total, a balance, a level or an avatar is
+// anywhere on that page, the decision acquires a second motive that has nothing to do with their
+// health — and every one of those surfaces reached protocol pages on this project before, which is
+// why the old REWARDS table paid 2 points for a vote and 5 for logging your own food.
+//
+// The founder's rule is confinement: "Avatar cosmetics live ONLY on the user's Profile. Gamification
+// NEVER appears on protocol reading pages where health decisions are made." A rule like that
+// survives exactly as long as the next person who edits a template remembers it, so it is a gate.
+//
+// SCOPE: every emitted document EXCEPT the profile route. The profile is where this belongs.
+// PROVE IT by printing a points total into the protocol footer, or an avatar into a compound page.
+(function assertGamificationConfinement() {
+  // Tokens that only ever appear because something is being gamified. Deliberately narrow: this
+  // must fire on a score and not on the ordinary English word "point" in a sentence about a
+  // clinician, so each needle carries its gamification context with it.
+  const TOKENS = [
+    [/\bavatar\b/i, 'an avatar'],
+    [/\breputation[ _-]?points?\b/i, 'a reputation score'],
+    [/\+\s*\d+\s*points?\b/i, 'a points award'],
+    [/\bpoints? balance\b/i, 'a points balance'],
+    [/\bleaderboard\b/i, 'a leaderboard'],
+    [/\bstreak\b/i, 'a streak counter'],
+    [/\bbadge[s]? earned\b/i, 'an earned-badge display'],
+    [/\blevel\s*\d+\b/i, 'a level'],
+    [/\bearn(s|ed|ing)?\s+points?\b/i, 'an invitation to earn points'],
+  ];
+  // The surfaces where a reader makes a health decision. Everything under these prefixes is health
+  // reading; /u/* is the profile and is exempt by design.
+  const HEALTH = ['/protocol/', '/problem/', '/c/', '/goal/', '/fuel/', '/compare/', '/target/', '/pathway/'];
+  const bad = [];
+  let checked = 0;
+  pages.forEach((pg) => {
+    if (!HEALTH.some((h) => pg.route.startsWith(h))) return;
+    checked += 1;
+    // Text only: a class name or an href is not something a reader reads.
+    const text = String(pg.html || '').replace(/<script[\s\S]*?<\/script>/g, ' ')
+      .replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
+    TOKENS.forEach(([re, what]) => {
+      const m = text.match(re);
+      if (m) bad.push(`${pg.route} shows ${what} (${JSON.stringify(m[0])}) — this is a page where somebody decides what to put in their body, and a score on it gives that decision a second motive`);
+    });
+  });
+  // AND THE REWARD TABLE ITSELF may not go back to paying for actions a person can repeat alone.
+  const SRV = fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8');
+  const tbl = (SRV.match(/const REWARDS = \{([^}]*)\}/) || [, ''])[1];
+  ['vote', 'comment', 'share', 'food_log', 'edit'].forEach((k) => {
+    if (new RegExp('\\b' + k + '\\s*:').test(tbl)) bad.push(`server.js REWARDS pays for "${k}" — that is an action somebody can repeat alone, so pricing it turns the community into a farm and the signal it exists to produce into noise. Points are minted only when a second person accepts or is helped by what you did.`);
+  });
+  if (bad.length) {
+    console.error('\n[prerender] GAMIFICATION HAS REACHED A HEALTH DECISION — refusing to build.');
+    bad.slice(0, 12).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 12) console.error(`    … and ${bad.length - 12} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] gamification confinement OK — ${checked} health documents, 0 carrying a score, a balance, a streak or an avatar; the reward table pays only for contributions someone else accepted.`);
+})();
+
 // ---- build-time assertion: THE TWO SHELLS MAY NOT DRIFT ----------------------------------------
 // NEW 2026-08-13. There are two hand-maintained copies of this site's header: the one shell() emits
 // onto ~620 prerendered documents, and the one in site/index.html, which server.js serves for every

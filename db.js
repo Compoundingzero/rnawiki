@@ -89,6 +89,19 @@ CREATE UNIQUE INDEX IF NOT EXISTS users_email_lower_uniq ON users (lower(email))
 ALTER TABLE users ADD COLUMN IF NOT EXISTS reputation_points INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS socials JSONB NOT NULL DEFAULT '{}';   -- {instagram,twitter,linkedin,website,booking_link}
 ALTER TABLE users ADD COLUMN IF NOT EXISTS badges JSONB NOT NULL DEFAULT '[]';
+-- ---- THE AVATAR (2026-08-13) -----------------------------------------------------------------
+-- Cosmetics, and the reason they are three columns rather than a table is that they are meant to
+-- stay small. avatar is the equipped pair (ring, mark); avatar_owned is what has been bought.
+--
+-- avatar_spent IS SEPARATE FROM reputation_points ON PURPOSE. reputation_points is a lifetime
+-- record of contribution other people accepted, and it must never go down — buying a colour cannot
+-- erase the fact that somebody fixed an error. The spendable balance is the difference between the
+-- two. There is no way to add to the balance except by contributing: no purchase path, no transfer
+-- between users, no cash-out. That is what keeps this cosmetics rather than a currency, and it is
+-- the line docs/PRODUCTION_REVAMP_STATE.md draws when it rules out a redeemable currency.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar JSONB NOT NULL DEFAULT '{}';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar_owned JSONB NOT NULL DEFAULT '[]';
+ALTER TABLE users ADD COLUMN IF NOT EXISTS avatar_spent INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS profile_views INTEGER NOT NULL DEFAULT 0;
 ALTER TABLE users ADD COLUMN IF NOT EXISTS booking_clicks INTEGER NOT NULL DEFAULT 0;
 -- Public identity is an explicit, reversible publication decision. Existing accounts stay private

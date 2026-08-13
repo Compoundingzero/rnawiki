@@ -9729,6 +9729,72 @@
   //   streak/longest  planStreak()/longestStreak() — the same witnessed-day boundary /plan uses.
   //   published/draft counts of the reader's OWN studio_protocols rows.
   //   joined          the join MONTH, never the day.
+  // ---- THE AVATAR, AND THE ONLY PLACE IT EXISTS (2026-08-13) ---------------------------------
+  // A ring colour and a small mark. That is the whole thing, deliberately: the concept video showed
+  // a jacket-and-trainers shop, and items that look like physical goods imply a shop that ships
+  // them. This is identity without commerce — nothing here can be bought with money, sold,
+  // transferred or cashed out, and the only way to a balance is a contribution somebody else
+  // accepted. assertGamificationConfinement() in build/prerender.js fails the build if any of this
+  // reaches a page where a reader is deciding what to put in their body.
+  const AV_RING = { 'ring-slate': '#5c6a7a', 'ring-teal': '#0f766e', 'ring-amber': '#a35a00', 'ring-violet': '#7c3aed' };
+  function avatarSvg(av, handle) {
+    const a = av || {};
+    const ring = AV_RING[a.ring] || AV_RING['ring-slate'];
+    const initial = String(handle || '?').replace(/^@/, '').charAt(0).toUpperCase() || '?';
+    const mark = a.mark === 'mark-dot' ? `<circle cx="34" cy="34" r="4" fill="${ring}"/>`
+      : a.mark === 'mark-bar' ? `<rect x="27" y="32" width="14" height="4" rx="2" fill="${ring}"/>`
+      : a.mark === 'mark-helix' ? `<path d="M27 27c7 4 7 10 14 14M41 27c-7 4-7 10-14 14" stroke="${ring}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`
+      : '';
+    return `<svg class="av" viewBox="0 0 68 76" role="img" aria-label="Your avatar">
+      <circle cx="34" cy="22" r="17" fill="none" stroke="${ring}" stroke-width="3"/>
+      <text x="34" y="29" text-anchor="middle" font-size="18" font-weight="700" fill="${ring}">${esc(initial)}</text>
+      ${mark}</svg>`;
+  }
+
+  async function mountAvatarShop() {
+    const host = document.getElementById('avatar-shop');
+    if (!host || !ME) return;
+    let st;
+    try {
+      const r = await fetch('/api/avatar', { headers: { accept: 'application/json' } });
+      if (!r.ok) return;
+      st = await r.json();
+    } catch (e) { return; }
+    const draw = () => {
+      const bySlot = { ring: [], mark: [] };
+      (st.items || []).forEach((it) => { (bySlot[it.slot] || (bySlot[it.slot] = [])).push(it); });
+      const row = (it) => {
+        const owned = (st.owned || []).indexOf(it.id) >= 0;
+        const on = st.avatar && st.avatar[it.slot] === it.id;
+        const afford = owned || st.balance >= it.cost;
+        return `<li><button class="av-item${on ? ' av-on' : ''}" data-item="${esc(it.id)}"${afford ? '' : ' disabled'}>`
+          + `<b>${esc(it.label)}</b>`
+          + `<span>${on ? 'wearing' : owned ? 'owned' : it.cost === 0 ? 'free' : it.cost + ' points'}</span></button></li>`;
+      };
+      host.innerHTML = `<div class="av-head">${avatarSvg(st.avatar, ME && ME.username)}
+          <div class="av-bal"><b>${st.balance}</b><span>points to spend</span>
+          <small>${st.earned} earned in total, ${st.spent} spent. Earning never goes down &mdash; what you contributed stays on your record whatever you buy.</small></div>
+        </div>
+        <p class="av-how">Points come from things other people accepted: an edit that got merged, a
+        comment somebody marked useful, a protocol of yours somebody found useful. Nothing here is
+        earned by voting, posting or sharing &mdash; those do not mint points, on purpose.</p>
+        <ul class="av-list">${bySlot.ring.map(row).join('')}${bySlot.mark.map(row).join('')}</ul>`;
+      host.querySelectorAll('[data-item]').forEach((b) => {
+        b.onclick = async () => {
+          b.disabled = true;
+          try {
+            const r = await fetch('/api/avatar', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ item: b.getAttribute('data-item') }) });
+            const j = await r.json();
+            if (!r.ok) { toast(j.error || 'Could not do that.'); b.disabled = false; return; }
+            st = j; draw();
+          } catch (e) { b.disabled = false; }
+        };
+      });
+    };
+    draw();
+  }
+
   async function renderMe() {
     try { await ensureProtocolData(); } catch (e) {}
     const plan = getPlan();
@@ -9813,11 +9879,18 @@
       + '<section class="me-sec"><h2>Following</h2>' + following + '</section>'
       + '<section class="me-sec"><h2>Logged</h2>' + loggedBlock + '</section>'
       + '<section class="me-sec"><h2>Built</h2>' + made + '</section>'
+      // THE ONLY SURFACE THE AVATAR EXISTS ON. Signed-in readers only — a signed-out reader has no
+      // contributions, so a shop would be a display case with nothing in it and a price list they
+      // cannot pay. assertGamificationConfinement() keeps every one of these tokens off the pages
+      // where somebody is deciding what to take.
+      + (ME ? '<section class="me-sec"><h2>Your mark</h2><div id="avatar-shop"></div></section>' : '')
       + '<section class="me-sec me-acct"><h2>Your account</h2>'
       + (ME
         ? '<p>Signed in as <b>@' + esc(ME.username) + '</b>' + (joinMonth(mine.joined) ? ', here since ' + esc(joinMonth(mine.joined)) : '') + '. RNAwiki has never asked you for your real name and holds no photograph of you.</p>'
         : '<p>You are not signed in, and everything above is on this device. An account adds exactly one thing to this page: the protocols you published show up on it from any device. Your plan and your logged days stay here either way.</p>')
-      + '<p class="muted me-why">There is no score on this page, no rank and no badge. This site has a handful of accounts; a leaderboard over that is a number I would be inventing, and “most used” is the only ranking anything here is allowed to carry.</p></section>';
+      + '<p class="muted me-why">There is no rank here and no leaderboard. This site has a handful of accounts; a ranking over that is a number I would be inventing, and “most used” is the only ordering anything here is allowed to carry. The points above are not a score either — they are a count of the times somebody else accepted something you sent, and the only thing they buy is a colour on this page. They appear nowhere near a page where you are deciding what to take.</p></section>';
+
+    mountAvatarShop();
 
     app.querySelectorAll('[data-withdraw]').forEach((b) => {
       b.onclick = async () => {

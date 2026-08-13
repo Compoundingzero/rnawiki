@@ -3827,9 +3827,23 @@ function blankComments(src) {
   }
 
   // ---- (2) no real name, no photograph ----
-  const IDENTITY = /avatar|profile_pic|profile_photo|\bheadshot\b|real_name|realname|full_name|legal_name|display_name/i;
+  // NARROWED 2026-08-13, and narrowed toward the thing this rule actually protects.
+  // It banned the bare word "avatar" because on this project "avatar" had always meant an UPLOADED
+  // PHOTOGRAPH. The cosmetic avatar added on 2026-08-13 is not one: it is a generated SVG of a ring
+  // colour, a geometric mark and the first letter of a handle the reader chose for themselves.
+  // There is no upload path, no image column, no file endpoint and no real name anywhere in it.
+  // A string ban is also the weaker test — it can be walked around by calling the field
+  // profile_image_2 — so the bare word comes out and AVATAR_UPLOAD below goes in, which bans the
+  // capability rather than the noun. The photograph and real-name halves are untouched.
+  const IDENTITY = /profile_pic|profile_photo|\bheadshot\b|real_name|realname|full_name|legal_name|display_name/i;
+  // An avatar may be a shape this site draws. It may never be a picture a person sends.
+  const AVATAR_UPLOAD = /avatar_(url|image|img|photo|file|upload|src)|avatar[^\n]{0,40}(multipart|formdata|\.png|\.jpe?g|\.webp|readFile|createReadStream)/i;
   ['server.js', 'site/app.js', 'db.js'].forEach((rel) => {
     blankComments(fs.readFileSync(path.join(ROOT, rel), 'utf8')).split('\n').forEach((raw, i) => {
+      if (AVATAR_UPLOAD.test(raw)) {
+        bad.push(`${rel}:${i + 1} — an avatar that carries an image. The avatar here is drawn by this site from a colour and a shape; the moment it can hold a file or a URL it becomes a photograph of a person, which is the thing this gate exists to prevent.\n      …${raw.trim().slice(0, 110)}…`);
+        return;
+      }
       if (!IDENTITY.test(raw)) return;
       bad.push(`${rel}:${i + 1} — an avatar, photograph or real-name field. RNAwiki asks for no real name and holds no photograph, and the publish sheet and both profile pages now say so to the reader.\n      …${raw.trim().slice(0, 110)}…`);
     });

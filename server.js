@@ -423,11 +423,65 @@ function csvExport(res, filename, headers, rows) {
 // ---------- reputation ----------
 // Points per action. Idempotent via rep_events UNIQUE(user,kind,ref): the same action can never
 // award twice (re-voting, re-sharing the same day, re-merging the same proposal, etc.).
-const REWARDS = { vote: 2, comment: 3, edit: 10, proposal: 50, merged: 200, food_log: 5, share: 10 };
+// ---- POINTS ARE PAID FOR WHAT SOMEBODY ELSE ACCEPTED, NOT FOR WHAT YOU DID (2026-08-13) -------
+// The old table paid on ACTION: vote 2, comment 3, edit 10, food_log 5, share 10. Every one of
+// those is a thing you can do to yourself, alone, as many times as you like. Once points buy avatar
+// items, that table stops being a reward and becomes a PRICE LIST for flooding the community — and
+// the cheapest strategy is to upvote everything, comment on everything and share everything.
+//
+// On a health site the signal that gets destroyed by that is the only one worth having: which
+// protocol actually helped somebody. So the rule is now that a point is minted only when a SECOND
+// PERSON has accepted or been helped by what you did:
+//   merged      an edit you suggested was accepted into the corpus
+//   helpful     someone else marked your comment or flag as useful
+//   liked       someone else found a protocol you published useful
+//   proposal    a change you proposed was taken up
+// Nothing pays for volume. vote, comment, share and food_log are deliberately ZERO — you may still
+// do all four, they simply do not mint currency. food_log paid people to enter health data about
+// themselves, which was the worst of the seven.
+// assertGamificationConfinement() checks the shape of this table; do not add an action-priced row.
+const REWARDS = { merged: 200, proposal: 50, helpful: 10, liked: 5 };
+const REWARDS_UNPAID = ['vote', 'comment', 'share', 'food_log', 'edit'];
+
+// ---- THE AVATAR CATALOGUE ---------------------------------------------------------------------
+// Eight items, two slots, no merchandise. Deliberately NOT the jacket-and-trainers shop from the
+// concept video: items that look like physical goods imply a shop that ships them, and
+// docs/PRODUCTION_REVAMP_STATE.md rules out a marketplace and a redeemable currency for reasons
+// that have not changed. A ring colour and a small shape are identity without commerce — they
+// cannot be bought with money, cannot be sold, cannot be transferred, and buy nothing but themselves.
+// The costs are set so the cheapest item needs one accepted contribution, not one afternoon of clicking.
+const AVATAR_ITEMS = [
+  { id: 'ring-slate',  slot: 'ring', cost: 0,   label: 'Slate ring' },
+  { id: 'ring-teal',   slot: 'ring', cost: 10,  label: 'Teal ring' },
+  { id: 'ring-amber',  slot: 'ring', cost: 50,  label: 'Amber ring' },
+  { id: 'ring-violet', slot: 'ring', cost: 200, label: 'Violet ring' },
+  { id: 'mark-none',   slot: 'mark', cost: 0,   label: 'No mark' },
+  { id: 'mark-dot',    slot: 'mark', cost: 10,  label: 'Dot' },
+  { id: 'mark-bar',    slot: 'mark', cost: 50,  label: 'Bar' },
+  { id: 'mark-helix',  slot: 'mark', cost: 200, label: 'Helix' },
+];
+function avatarState(u) {
+  const av = (u && u.avatar) || {};
+  const owned = Array.isArray(u && u.avatar_owned) ? u.avatar_owned : [];
+  const free = AVATAR_ITEMS.filter((x) => x.cost === 0).map((x) => x.id);
+  const all = free.concat(owned.filter((x) => free.indexOf(x) < 0));
+  const earned = (u && u.reputation_points) || 0;
+  const spent = (u && u.avatar_spent) || 0;
+  return {
+    avatar: { ring: av.ring || 'ring-slate', mark: av.mark || 'mark-none' },
+    owned: all, earned, spent, balance: Math.max(0, earned - spent),
+    items: AVATAR_ITEMS,
+  };
+}
 async function award(userId, kind, ref, pts) {
   // The ledger is part of the contained community/reward product, not a side effect that should
   // keep accumulating while its UI and anti-abuse contract are switched off.
   if (!FEATURES.publicCommunity || !userId || !db.enabled) return;
+  // An UNPAID kind is a deliberate no-op, not a missing price. Call sites for vote/comment/edit
+  // still exist and still fire; they simply mint nothing, because paying for an action somebody
+  // can repeat alone is what turns a reward into a farm. If you are here because points "stopped
+  // working" for one of these, that is the fix working — do not add a row to REWARDS.
+  if (REWARDS_UNPAID.indexOf(kind) >= 0) return;
   const points = pts != null ? pts : (REWARDS[kind] || 0);
   if (!points) return;
   try {
@@ -1981,6 +2035,42 @@ async function api(req, res, url) {
   // ANONYMOUS BUILD AND SAVE, AN ACCOUNT ONLY TO PUBLISH. Reading, assembling, saving a draft and
   // running a protocol all work with no account. Publishing puts a name and a date on a document
   // other people will read, and "built by nobody" is the fabricated-account defect.
+  // ---- THE AVATAR (2026-08-13) ---------------------------------------------------------------
+  // Cosmetics only, and they exist on ONE surface: the reader's own profile. See
+  // assertGamificationConfinement() in build/prerender.js, which fails the build if a point, a
+  // balance or an avatar token appears in any protocol, problem or compound document. That gate is
+  // the actual product decision here — the cosmetics themselves are deliberately small.
+  //
+  // SPENDING DOES NOT REDUCE YOUR STANDING. `reputation_points` is a lifetime record of what you
+  // contributed and it never goes down; `avatar_spent` is a separate counter, and the balance is
+  // the difference. Buying a colour must not erase the fact that you fixed something.
+  if (seg[0] === 'avatar' && !seg[1] && method === 'GET') {
+    const u = await currentUser(req);
+    if (!u) return json(res, 401, { error: 'Sign in to see your avatar.' });
+    return json(res, 200, avatarState(u));
+  }
+  if (seg[0] === 'avatar' && !seg[1] && method === 'POST') {
+    const u = await currentUser(req);
+    if (!u) return json(res, 401, { error: 'Sign in first.' });
+    const want = clean(String(b.item || ''), 32);
+    const item = AVATAR_ITEMS.find((x) => x.id === want);
+    if (!item) return json(res, 400, { error: 'No such item.' });
+    const st = avatarState(u);
+    const owned = st.owned.indexOf(item.id) >= 0;
+    if (!owned && st.balance < item.cost) {
+      return json(res, 422, { error: `That costs ${item.cost} points and you have ${st.balance}. Points come from things other people found useful — see your profile for where yours came from.` });
+    }
+    const nextOwned = owned ? st.owned : st.owned.concat([item.id]);
+    const nextSpent = owned ? (u.avatar_spent || 0) : (u.avatar_spent || 0) + item.cost;
+    const av = Object.assign({}, st.avatar, { [item.slot]: item.id });
+    try {
+      await db.query('UPDATE users SET avatar=$1, avatar_owned=$2, avatar_spent=$3 WHERE id=$4',
+        [JSON.stringify(av), JSON.stringify(nextOwned), nextSpent, u.id]);
+    } catch (e) { console.error('[avatar]', e.message); return json(res, 500, { error: 'Could not save that.' }); }
+    const fresh = await currentUser(req);
+    return json(res, 200, avatarState(fresh || u));
+  }
+
   // ---- CREATOR VARIANTS FOR ONE ROOT CAUSE (2026-08-13) --------------------------------------
   // The founder's requirement: "When a user searches /protocol/chronic-fatigue/iron-anemia and
   // multiple creators have made overlapping protocols, the route must resolve to a comparison view.
@@ -2317,7 +2407,11 @@ async function api(req, res, url) {
     const kind = ['idea', 'wrong', 'other'].includes(b.kind) ? b.kind : 'idea';
     await db.query('INSERT INTO feedback(body,page,kind,user_id,contact) VALUES($1,$2,$3,$4,$5)',
       [body, clean(b.page, 200) || null, kind, u ? u.id : null, clean(b.contact, 120) || null]);
-    if (u) await award(u.id, 'feedback', 'fb:' + Date.now(), 2);
+    // WAS: award(u.id, 'feedback', 'fb:' + Date.now(), 2) — a millisecond timestamp is unique on every
+    // call, so UNIQUE(user_id,kind,ref) could never fire and the ledger's own idempotency promise did
+    // not hold on the one surface with no account-age check and no content check. It is not awarded
+    // at all now: sending feedback is an action you take alone, and those do not mint points. The
+    // point for it arrives as 'helpful' if somebody else acts on it.
     return json(res, 200, { ok: true });
   }
   // POST /api/clinician-interest CLOSED 2026-08-08 — the handler is deleted, so the path falls
