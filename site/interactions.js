@@ -875,6 +875,81 @@ window.RNAWIKI_INTERACTIONS = {
 
   // Rules: fire when every `need` [tag, minDistinctCompounds] is satisfied by the stack.
   // tier: danger | blunt | timing.  Each has a plain-English why + action; optional pathway.
+
+  // ---- PAIR VERDICTS (2026-08-13) --------------------------------------------------------------
+  // What the `rules` above CANNOT say: "somebody examined this exact combination and there is
+  // nothing to act on". Without that, 243 of 257 pairings across the 52 protocols rendered to
+  // readers as "not checked yet" — magnesium with fish oil, collagen with vitamin C — which made a
+  // genuinely unstudied pair look identical to an ordinary one.
+  //
+  // A CLEARANCE MUST REST ON A REPORTED FINDING, NOT ON SILENCE. Eighteen recurring pairs were
+  // researched and adversarially verified; only these five survived, and the ones that did not are
+  // worth recording because they are the standard:
+  //   · Collagen + Omega-3 — the trial co-administered them, but has NO adverse-event section at
+  //     all. "Nothing came up" was an inference from a paper that never looked. Dropped to nothing.
+  //   · Glucosamine/Chondroitin + Vitamin C — the cited arm was "manganese ascorbate", which is not
+  //     vitamin C to a reader (it also delivers manganese, which has an intake ceiling), and the
+  //     quoted sentence said the arm formed no closed loops in the network — the OPPOSITE of a
+  //     clearance. Dropped.
+  //   · Caffeine + Creatine — one acute trial at 35 mg caffeine, about a third of a cup of coffee,
+  //     which does not address the question a reader actually has (does caffeine blunt creatine
+  //     loading). Dropped.
+  //   · Ashwagandha + Magnesium, Berberine + Myo-Inositol — no co-administration study found.
+  // Those five stay UNCHECKED on the page, which is the honest render and the whole point of having
+  // the state. assertPairVerdicts() in build/parse.js refuses any clear without a cited source.
+  pairVerdicts: [
+    { ids: ["c109", "c120"], tier: "clear",
+      title: "Taken together for four months, nothing reported",
+      plain: "A four-month trial gave these two together every day and recorded no side effects in anyone.",
+      action: "",
+      src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11206740/",
+      srcLabel: "Nutrients (2024) — randomised, double-blind, placebo-controlled trial of 5 g hydrolysed collagen with 80 mg vitamin C over 16 weeks",
+      srcQuote: "Throughout the study, no adverse events or side effects were documented." },
+
+    { ids: ["c5", "c3"], tier: "clear",
+      title: "Handled well in one supplement",
+      plain: "Over 800 children took both in one supplement for 12 weeks and most doctors said they handled it fine.",
+      action: "",
+      src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC2955638/",
+      // MANUFACTURER-SPONSORED AND OBSERVATIONAL, and the label says so rather than hiding it. The
+      // product also carried zinc and an omega-6 fat, and its magnesium dose is 80 mg — about a
+      // fifth of what somebody taking a magnesium tablet uses. The verdict is that the pairing was
+      // examined and tolerated, which is all it claims.
+      srcLabel: "Lipids in Health and Disease (2010) — manufacturer-sponsored observational cohort of 810 children on a combined product, 12 weeks",
+      srcQuote: "The observing physicians assessed the tolerability of PUFA in combination with magnesium and zinc to be very good or good in 711 children (87.8%), moderate in 45 children (5.6%), and poor in 11 children (1.4%)." },
+
+    { ids: ["c3", "c120"], tier: "clear",
+      title: "Tested together in a four-way trial",
+      plain: "People took both together for two months with nothing that needed changing.",
+      action: "",
+      src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3705155/",
+      srcLabel: "Journal of Clinical Biochemistry and Nutrition (2013) — randomised trial with a group taking omega-3 and vitamin C together",
+      srcQuote: "Group 1 were on 2 omega-3 soft gels and 2 vitamin C pills daily regimen, group 2 were on 2 omega-3 soft gels and 2 vitamin C placebo pills daily regimen, group 3 were on 2 vitamin C pills and 2 omega-3 placebo soft gels and group 4 were on 2 omega-3 placebo soft gels and 2 vitamin C placebo pills daily regimen." },
+
+    { ids: ["c2", "c5"], tier: "clear",
+      title: "Taken together for 28 days",
+      plain: "People took both in one daily tablet for 28 days and had no more side effects than the dummy pill.",
+      action: "",
+      src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9102162/",
+      // The tablet also held B6, B9, B12 and rhodiola, and its theanine dose is 50 mg — below what a
+      // reader taking theanine alone would use. Named in the label so the verdict is not read wider
+      // than the trial it rests on.
+      srcLabel: "Nutrients (2022) — randomised placebo-controlled trial of a multi-ingredient tablet containing magnesium and 50 mg L-theanine, 100 chronically stressed adults",
+      srcQuote: "The effect of a combination of magnesium, vitamins B6, B9, B12, rhodiola and green tea/L-theanine (Mg-Teadiola) on stress was evaluated in chronically stressed, otherwise healthy individuals." },
+
+    { ids: ["c12", "c1"], tier: "clear",
+      // THE PLAIN LINE NAMES THE THING THAT DID HAPPEN. The first draft said "nothing came up",
+      // which contradicted the very paper it cited — three participants reported skin tingling. A
+      // clearance that omits the one reported effect is not a clearance, it is a summary with the
+      // inconvenient half removed.
+      title: "Taken together in one drink",
+      plain: "In a controlled test people drank both together; the only thing reported was harmless skin tingling from beta-alanine.",
+      action: "",
+      src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11163698/",
+      srcLabel: "BMC Sports Science, Medicine and Rehabilitation (2024) — randomised, crossover, single-blind trial of a pre-workout drink containing 3,000 mg beta-alanine and 290 mg caffeine alongside three other ingredients",
+      srcQuote: "Three participants from SUP group reported paresthesia in the lower extremities, i.e. skin tingling (an effect of beta alanine). The participants did not report any other side effects after consuming the dietary supplement." },
+  ],
+
   rules: [
     { id: "serotonin", src: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6734608/", srcLabel: "Scotton et al., Int J Tryptophan Res 2019, PMID 31523132 (PMC6734608)", srcKind: "review", srcQuote: "The main drug classes classically implicated in SS can be divided into serotonin precursors, inhibitors of serotonin reuptake from the synaptic cleft, inhibitors of serotonin metabolism, direct serotonin receptor agonists, and drugs that sensitise serotonin receptors ... Severe SS is only usually precipitated by the simultaneous initiation of 2 or more serotonergic drugs", conf: "high", plain: "Several things that each raise serotonin can push it too high, which can make you seriously ill.", tier: "danger", need: [["serotonergic", 2]],
       title: "Serotonin syndrome risk",
