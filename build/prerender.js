@@ -1871,11 +1871,17 @@ GRAPH.problems.forEach((p) => {
       week tells you nothing.</p>
       ${fuel.length ? `<ul>${fuel.map((f) => `<li>${esc(f.name)}${f.sg_local ? ' (sold in SG)' : ''}</li>`).join('')}</ul>` : ''}
       ${nt ? `<p><b>Daily nutrient targets:</b> ${esc(nt)}</p>` : ''}
+      ${/* THE OVERLAP WARNING SITS OUTSIDE THE PHASE 2 DISCLOSURE, and that is a fix rather than a
+            layout preference. Its first home was inside it — and <details class="phase2"> is CLOSED
+            by default on the 44 protocols that have a Phase 1, so with JavaScript off the warning
+            rendered as an empty box. Caught by screenshotting it at 390px with JS disabled, which
+            is the standing lesson on this page: the red-flag block failed the same way, and a gate
+            that checks a string is present cannot tell you a reader could not see it. */ ''}
+      ${overlapWarnings(stack)}
       <details class="phase2" id="phase-2"${p1 ? '' : ' open'}>
         <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
         <div class="p2-body">
         <h3>Stack — supplements with human trial evidence for this use</h3>
-        ${overlapWarnings(stack)}
         ${stack.length
           ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${compoundEvidence(c)}</li>`).join('')}</ul>`
           : `<p>No supplement has trial evidence specific to this problem that I'd put my name to. That is the honest answer, not an omission.</p>`}

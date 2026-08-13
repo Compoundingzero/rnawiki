@@ -988,6 +988,43 @@
     wrap.setAttribute('data-on', '1');
   }
 
+  // Mirrors overlapWarnings() in build/prerender.js. Both call IXN.stackInteractions/pairCoverage,
+  // so a reader with JavaScript and a reader without are shown the same pharmacology in the same
+  // order with the same citations. If these two ever diverge, the site tells two stories about
+  // whether two things are safe to take together.
+  function overlapWarningsHtml(stack) {
+    const list = (stack || []).filter(Boolean);
+    if (list.length < 2) return '';
+    let r, cov;
+    try { r = IXN.stackInteractions(list); cov = IXN.pairCoverage(list); }
+    catch (e) { return ''; }
+    const W = { danger: 0, blunt: 1, timing: 2 };
+    const flags = (r.flags || []).slice().sort((a, b) => (W[a.tier] == null ? 3 : W[a.tier]) - (W[b.tier] == null ? 3 : W[b.tier]));
+    const unknown = cov.unknown || 0;
+    if (!flags.length && !unknown) return '';
+    const label = { danger: 'Do not combine', blunt: 'Works against itself', timing: 'Space these apart' };
+    const rows = flags.map((f) => {
+      const who = (f.involved || []).map(esc).join(' + ');
+      const cite = f.src
+        ? '<p class="ov-src">Source: <a href="' + esc(f.src) + '" rel="nofollow noopener" target="_blank">' + esc(f.srcLabel || f.src) + '</a>' + (f.srcQuote ? ' — &ldquo;' + esc(f.srcQuote) + '&rdquo;' : '') + '</p>'
+        : '<p class="ov-src ov-nosrc">No source recorded for this one yet. Treat it as a flag to check, not as a finding.</p>';
+      return '<li class="ov-row ov-' + esc(f.tier) + '">'
+        + '<p class="ov-k">' + esc(label[f.tier] || 'Check this') + '</p>'
+        + '<p class="ov-who">' + who + '</p>'
+        + '<p class="ov-plain">' + esc(f.plain || f.why || '') + '</p>'
+        + (f.action ? '<p class="ov-do"><b>What to do:</b> ' + esc(f.action) + '</p>' : '')
+        + cite + '</li>';
+    }).join('');
+    const unknownRow = unknown ? '<li class="ov-row ov-unknown"><p class="ov-k">Not checked</p>'
+      + '<p class="ov-plain">' + unknown + ' of the ' + cov.total + ' possible pairings here '
+      + (unknown === 1 ? 'has' : 'have') + ' no rule written for ' + (unknown === 1 ? 'it' : 'them')
+      + ' yet. That is not the same as safe — it means nobody has written down what happens when these are taken together.</p></li>' : '';
+    return '<section class="overlap" data-worst="' + esc(flags.length ? flags[0].tier : 'unknown')
+      + '" aria-label="What happens if you take these together">'
+      + '<h4 class="ov-h">If you take these together</h4>'
+      + '<ul class="ov-list">' + rows + unknownRow + '</ul></section>';
+  }
+
   function renderAccount() {
     const slot = document.getElementById('account-slot'); if (!slot) return;
     // THE WAY IN TO /me, AND WHEN IT APPEARS (2026-08-10).
@@ -8247,6 +8284,15 @@
           <div class="fuel-stack-grid">${tg.map(([k, t]) => `<div class="fs-item"><span><b>${esc(NUTRIENT_LABEL[k] || k)}</b>${t.why ? `<br><small>${esc(t.why)}</small>` : ''}</span><span><b>${esc(String(t.target))}${esc(t.unit || '')}</b>${t.type ? ` <small>(${esc(t.type)})</small>` : ''}</span></div>`).join('')}</div>
           <p class="muted">General adult guidance with a stated reason, not a personal prescription. <a href="/fuel/${esc(problem.id)}/${esc(rc.id)}">Open the Fuel Tracker — targets, foods and why each one →</a></p>` : ''}
       </section>
+      ${/* THE OVERLAP WARNING, IN THE HYDRATED DOCUMENT TOO (2026-08-13). build/prerender.js emits
+            this onto 50 of 52 protocol pages; renderProtocol() is a SECOND, independent
+            implementation of the same page, so without this line the ~10% of readers who run
+            JavaScript had the block replaced out from under them and saw no interaction warnings at
+            all. Caught by querying .overlap in a real browser with scripting on and getting null —
+            the two-document rule, exactly as CLAUDE.md describes it.
+            OUTSIDE the Phase 2 disclosure, for the same reason as in the prerenderer: that
+            <details> is closed by default on 44 of 52 protocols. */ ''}
+      ${overlapWarningsHtml(stack)}
       <details class="phase2" id="phase-2"${p2open}>
         <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
         <div class="p2-body">
