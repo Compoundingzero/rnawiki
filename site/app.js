@@ -1001,7 +1001,7 @@
     const W = { danger: 0, blunt: 1, timing: 2 };
     const flags = (r.flags || []).slice().sort((a, b) => (W[a.tier] == null ? 3 : W[a.tier]) - (W[b.tier] == null ? 3 : W[b.tier]));
     const unknown = cov.unknown || 0;
-    if (!flags.length && !unknown) return '';
+    if (!flags.length && !unknown && !(r.cleared || []).length) return '';
     const label = { danger: 'Do not combine', blunt: 'Works against itself', timing: 'Space these apart' };
     const rows = flags.map((f) => {
       const who = (f.involved || []).map(esc).join(' + ');
@@ -1015,6 +1015,14 @@
         + (f.action ? '<p class="ov-do"><b>What to do:</b> ' + esc(f.action) + '</p>' : '')
         + cite + '</li>';
     }).join('');
+    // Mirrors the prerenderer's cleared block — one matcher, two documents, same words.
+    const clearedRows = (r.cleared || []).map(function (c) {
+      return '<li class="ov-row ov-clear"><p class="ov-k">Checked, nothing to do</p>'
+        + '<p class="ov-who">' + (c.involved || []).map(esc).join(' + ') + '</p>'
+        + '<p class="ov-plain">' + esc(c.plain || '') + '</p>'
+        + (c.src ? '<p class="ov-src">Source: <a href="' + esc(c.src) + '" rel="nofollow noopener" target="_blank">' + esc(c.srcLabel || c.src) + '</a></p>' : '')
+        + '</li>';
+    }).join('');
     const unknownRow = unknown ? '<li class="ov-row ov-unknown"><p class="ov-k">Not checked</p>'
       + '<p class="ov-plain">' + unknown + ' of the ' + cov.total + ' possible pairings here '
       + (unknown === 1 ? 'has' : 'have') + ' no rule written for ' + (unknown === 1 ? 'it' : 'them')
@@ -1022,7 +1030,7 @@
     return '<section class="overlap" data-worst="' + esc(flags.length ? flags[0].tier : 'unknown')
       + '" aria-label="What happens if you take these together">'
       + '<h4 class="ov-h">If you take these together</h4>'
-      + '<ul class="ov-list">' + rows + unknownRow + '</ul></section>';
+      + '<ul class="ov-list">' + rows + clearedRows + unknownRow + '</ul></section>';
   }
 
   // Fills #variants-rail from /api/protocols/variants. Absent unless there is a real alternative.

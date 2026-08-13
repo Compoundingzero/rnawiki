@@ -29,7 +29,7 @@
 })(typeof window !== 'undefined' ? window : null, function () {
   'use strict';
 
-  let D = null, RXN = null, RULE_TAGS = new Set(), DUPE_OF = {}, STAMP = '';
+  let D = null, RXN = null, RULE_TAGS = new Set(), DUPE_OF = {}, STAMP = '', PAIRV = {};
 
   // init(data, interactions) — both already loaded by the caller.
   //   browser : init(window.RNAWIKI_DATA, window.RNAWIKI_INTERACTIONS)
@@ -84,7 +84,27 @@
       (RXN.duplicates || []).forEach(g => (g.ids || []).forEach(id => (m[id] = m[id] || []).push(g)));
       return m;
     })();
+    // ---- PAIR VERDICTS (2026-08-13) ------------------------------------------------------------
+    // The rules above can only describe a PROBLEM: danger, blunt, timing. There was no way to say
+    // "somebody examined this exact combination and there is nothing to do about it", so a pair no
+    // rule reached rendered to readers as "not checked yet" — 243 of 257 pairings across the 52
+    // protocols, including magnesium with fish oil. That made a genuinely unstudied pair
+    // indistinguishable from an ordinary one, on the page where somebody decides what to take.
+    //
+    // A pair verdict is keyed on the EXACT PAIR OF COMPOUND IDS, not on tags, because that is what
+    // "this combination was examined" means. `clear` is the highest bar in this file: it asserts
+    // that a source looked at the two TOGETHER, which is why assertPairVerdicts() in build/parse.js
+    // refuses to build a `clear` without one. Absence of evidence is still not a clearance.
+    PAIRV = (function () {
+      const m = {};
+      (RXN.pairVerdicts || []).forEach(function (v) {
+        const ids = (v.ids || []).slice().sort();
+        if (ids.length === 2) m[ids[0] + '|' + ids[1]] = v;
+      });
+      return m;
+    })();
     STAMP = 'compounds:' + ((D.compounds || []).length) + ' rules:' + ((RXN.rules || []).length)
+      + ' pairs:' + Object.keys(PAIRV).length
       + ' dupes:' + ((RXN.duplicates || []).length) + ' firable-tags:' + RULE_TAGS.size;
     return api;
   }
@@ -119,6 +139,12 @@
     if (n <= 1) return cs.length >= 1;
     for (let i = 0; i < cs.length; i++) for (let j = i + 1; j < cs.length; j++) if (!sameSubstance(cs[i], cs[j])) return true;
     return false;
+  }
+
+  // The authored verdict for one exact pair, or null.
+  function pairVerdict(a, b) {
+    const ids = [a.id, b.id].sort();
+    return PAIRV[ids[0] + '|' + ids[1]] || null;
   }
 
   function stackInteractions(list) {
@@ -186,7 +212,23 @@
       const B = list.find(c => (g.bIds || []).indexOf(c.id) >= 0);
       if (A && B && A !== B) syn.push({ title: g.title, why: g.why, involved: [A.name, B.name], members: [A, B] });
     });
-    return { flags, synergies: syn };
+    // Pair verdicts for every exact pair present. `clear` rows go in their own bucket: a flag means
+    // "something to act on", and a clearance is the opposite of that. timing/blunt/danger verdicts
+    // join the flags, because those DO need acting on and a reader should not have to know which
+    // mechanism happened to be expressible as a tag rule.
+    const cleared = [], pairFlags = [];
+    for (let i = 0; i < list.length; i += 1) {
+      for (let j = i + 1; j < list.length; j += 1) {
+        const v = pairVerdict(list[i], list[j]);
+        if (!v) continue;
+        const row = { id: 'pair:' + [list[i].id, list[j].id].sort().join('-'), tier: v.tier,
+          title: v.title, why: v.plain, action: v.action || '', src: v.src || '',
+          srcLabel: v.srcLabel || '', srcQuote: v.srcQuote || '', conf: v.src ? 'high' : 'none',
+          plain: v.plain || '', involved: [list[i].name, list[j].name], members: [list[i], list[j]] };
+        (v.tier === 'clear' ? cleared : pairFlags).push(row);
+      }
+    }
+    return { flags: flags.concat(pairFlags), synergies: syn, cleared };
   }
 
   // The compounds in `list` that some FIRABLE rule can actually reach. Everything else is the ❔
@@ -215,10 +257,16 @@
           return members.some(function (c) { return c.id === a.id; })
             && members.some(function (c) { return c.id === b.id; });
         });
+        // COVERED means "somebody examined this exact combination", which an authored pair verdict
+        // is by definition — including a clearance. Before pair verdicts existed, the only way to be
+        // covered was to have a PROBLEM, so an ordinary safe combination could never be anything but
+        // unknown, and 95% of this site's pairings sat in that state.
+        const pv = pairVerdict(a, b);
         pairs.push({
           ids: [a.id, b.id],
           names: [a.name, b.name],
-          covered: rules.length > 0,
+          covered: rules.length > 0 || !!pv,
+          verdict: pv ? pv.tier : null,
           ruleIds: rules.map(function (row) { return row.id; }),
         });
       }
@@ -235,7 +283,7 @@
   }
 
   const api = {
-    init, stamp, compoundTags, sameSubstance, distinctCarriers, stackInteractions, covered, pairCoverage,
+    init, stamp, compoundTags, sameSubstance, distinctCarriers, stackInteractions, covered, pairCoverage, pairVerdict,
     get ruleTags() { return RULE_TAGS; },
   };
   return api;

@@ -1940,6 +1940,63 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
   console.log(`[parse] interaction sources OK — ${sourced} of ${(R.rules || []).length} rules cite a source, every danger rule among them, every rule carrying a one-sentence plain-language line${unsourced.length ? ` (honestly unsourced: ${unsourced.join(', ')})` : ''}.`);
 })();
 
+// ---- build-time assertion: A CLEARANCE IS THE STRICTEST CLAIM IN THIS FILE ---------------------
+// NEW 2026-08-13, with the pair-verdict layer. "danger" tells a reader to be careful and the worst
+// case of being wrong is that they were careful for nothing. "clear" tells them there is nothing to
+// think about, and the worst case of being wrong is that they combine two things they should not
+// have. So it carries the higher bar, not the lower one:
+//   · every clear MUST cite a source. There is no honestly-unsourced clearance, the way there is an
+//     honestly-unsourced blunt rule — an unsourced clearance is just a guess with a calm voice.
+//   · the source must be a URL, with a label and a supporting quote, like every other citation here.
+//   · the plain line obeys the same jargon rule as everything else a reader meets.
+//   · both ids must be real compounds, and a pair may not be listed twice.
+// PROVE IT by deleting the src from any clear verdict in site/interactions.js.
+(function assertPairVerdicts() {
+  const IX_PATH = path.join(ROOT, 'site', 'interactions.js');
+  const sandbox = { window: {} };
+  vm.runInNewContext(fs.readFileSync(IX_PATH, 'utf8'), sandbox, { filename: IX_PATH });
+  const R = sandbox.window.RNAWIKI_INTERACTIONS;
+  const list = R.pairVerdicts || [];
+  const bad = [];
+  const byId = {}; compounds.forEach((c) => { byId[c.id] = c; });
+  const seen = new Set();
+  const TIERS = ['clear', 'timing', 'blunt', 'danger'];
+  const JARGON = ['additive', 'synergis', 'bioavailab', 'chelat', 'pharmacokinetic', 'antagonist',
+    'agonist', 'potentiat', 'contraindicat', 'absorption kinetics'];
+  list.forEach((v, i) => {
+    const at = `pairVerdicts[${i}]`;
+    const ids = (v.ids || []).slice().sort();
+    if (ids.length !== 2) { bad.push(`${at} does not name exactly two compounds`); return; }
+    ids.forEach((id) => { if (!byId[id]) bad.push(`${at} names ${id}, which is not a compound in this corpus`); });
+    const k = ids.join('|');
+    if (seen.has(k)) bad.push(`${at} is a second verdict for ${ids.join(' + ')} — one pair, one verdict`);
+    seen.add(k);
+    if (TIERS.indexOf(v.tier) < 0) bad.push(`${at} has tier "${v.tier}", which is not one of ${TIERS.join(', ')}`);
+    if (!v.plain) bad.push(`${at} has no plain-language line`);
+    else {
+      const w = String(v.plain).trim().split(/\s+/).length;
+      if (w > 26) bad.push(`${at}'s plain line is ${w} words; the cap is one sentence`);
+      const hit = JARGON.find((j) => String(v.plain).toLowerCase().includes(j));
+      if (hit) bad.push(`${at}'s plain line contains "${hit}" — jargon explained with jargon`);
+    }
+    // THE CLEARANCE BAR.
+    if (v.tier === 'clear') {
+      if (!v.src) bad.push(`${at} is a CLEARANCE with no source. Telling a reader two things are fine together is the one claim here that has to be backed, because being wrong about it is the reader combining something they should not have. An unsourced clearance is a guess in a calm voice — make it a "none" and let the page say it is unchecked.`);
+      if (v.src && !/^https:\/\//.test(v.src)) bad.push(`${at} cites a src that is not an https URL`);
+      if (v.src && !v.srcQuote) bad.push(`${at} is a clearance citing a source with no supporting quote — nobody can check it`);
+    }
+  });
+  if (bad.length) {
+    console.error('\n[parse] A PAIR VERDICT IS UNSOUND — refusing to build.');
+    bad.forEach((b) => console.error('    ✗ ' + b));
+    console.error('');
+    process.exit(1);
+  }
+  const n = { clear: 0, timing: 0, blunt: 0, danger: 0 };
+  list.forEach((v) => { if (n[v.tier] != null) n[v.tier] += 1; });
+  console.log(`[parse] pair verdicts OK — ${list.length} exact pairs examined (${n.clear} clear, ${n.timing} timing, ${n.blunt} blunt, ${n.danger} danger), every clearance carrying a cited source.`);
+})();
+
 (function assertInteractionCoverage() {
   const IX_PATH = path.join(ROOT, 'site', 'interactions.js');
   const sandbox = { window: {} };

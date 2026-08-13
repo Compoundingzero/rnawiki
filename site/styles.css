@@ -5311,3 +5311,8 @@ html[data-state="removed"] .i-form{display:none}
 #avatar-shop .av-item span{font-family:var(--mono);font-size:11px;color:var(--muted)}
 /* Equipped is marked in form as well as colour. */
 #avatar-shop .av-on{border-color:var(--accent);border-left-width:3px}
+/* A cleared pair is the quietest row in the block, deliberately: it is the absence of a problem,
+   and it must never compete for attention with the rows that are one. */
+.overlap .ov-clear::before{background:var(--accent);opacity:.35}
+.overlap .ov-clear .ov-k{color:var(--muted)}
+.overlap .ov-clear .ov-plain{color:var(--muted);font-size:.9rem}

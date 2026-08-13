@@ -331,7 +331,7 @@ function overlapWarnings(stack) {
     return (w[a.tier] == null ? 3 : w[a.tier]) - (w[b.tier] == null ? 3 : w[b.tier]);
   });
   const unknown = cov.unknown || 0;
-  if (!flags.length && !unknown) return '';
+  if (!flags.length && !unknown && !(r.cleared || []).length) return '';
   const label = { danger: 'Do not combine', blunt: 'Works against itself', timing: 'Space these apart' };
   const rows = flags.map((f) => {
     const who = (f.involved || []).map(esc).join(' + ');
@@ -349,6 +349,16 @@ function overlapWarnings(stack) {
       ${cite}
     </li>`;
   }).join('');
+  // CLEARED PAIRS, AFTER THE PROBLEMS AND IN A QUIETER VOICE. These are combinations a source
+  // examined and found nothing to act on. They exist so that "not checked" can go back to meaning
+  // genuinely not checked — before pair verdicts, an ordinary safe pairing and an unstudied one
+  // rendered identically, which made the honest warning less useful the more of it there was.
+  const clearedRows = (r.cleared || []).map((c) => `<li class="ov-row ov-clear">
+      <p class="ov-k">Checked, nothing to do</p>
+      <p class="ov-who">${(c.involved || []).map(esc).join(' + ')}</p>
+      <p class="ov-plain">${esc(c.plain || '')}</p>
+      ${c.src ? `<p class="ov-src">Source: <a href="${esc(c.src)}" rel="nofollow noopener" target="_blank">${esc(c.srcLabel || c.src)}</a></p>` : ''}
+    </li>`).join('');
   const unknownRow = unknown ? `<li class="ov-row ov-unknown">
       <p class="ov-k">Not checked</p>
       <p class="ov-plain">${unknown} of the ${cov.total} possible pairings here ${unknown === 1 ? 'has' : 'have'} no rule written for ${unknown === 1 ? 'it' : 'them'} yet. That is not the same as safe — it means nobody has written down what happens when these are taken together.</p>
@@ -356,7 +366,7 @@ function overlapWarnings(stack) {
   const worst = flags.length ? flags[0].tier : 'unknown';
   return `<section class="overlap" data-worst="${esc(worst)}" aria-label="What happens if you take these together">
     <h4 class="ov-h">If you take these together</h4>
-    <ul class="ov-list">${rows}${unknownRow}</ul>
+    <ul class="ov-list">${rows}${clearedRows}${unknownRow}</ul>
   </section>`;
 }
 
