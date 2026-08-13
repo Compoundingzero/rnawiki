@@ -1236,6 +1236,8 @@ async function api(req, res, url) {
   // Gated with the rest of the community surface, and it returns an EMPTY LIST rather than an error
   // when nothing is published, so the landing strip can render an honest empty state either way.
   if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'new') return json(res, 404, { error: 'Community is not available yet.' });
+  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'variants') return json(res, 404, { error: 'Community is not available yet.' });
+  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[2] === 'like') return json(res, 404, { error: 'Community is not available yet.' });
   if (!FEATURES.publicProfiles && seg[0] === 'u') return json(res, 404, { error: 'Public profiles are not available yet.' });
   if (!FEATURES.publicOutcomeAggregates && seg[0] === 'outcomes' && seg[1] === 'public') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
   if (!FEATURES.publicOutcomeAggregates && seg[0] === 'ledger') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
@@ -1979,6 +1981,55 @@ async function api(req, res, url) {
   // ANONYMOUS BUILD AND SAVE, AN ACCOUNT ONLY TO PUBLISH. Reading, assembling, saving a draft and
   // running a protocol all work with no account. Publishing puts a name and a date on a document
   // other people will read, and "built by nobody" is the fabricated-account defect.
+  // ---- CREATOR VARIANTS FOR ONE ROOT CAUSE (2026-08-13) --------------------------------------
+  // The founder's requirement: "When a user searches /protocol/chronic-fatigue/iron-anemia and
+  // multiple creators have made overlapping protocols, the route must resolve to a comparison view.
+  // Default to the highest-liked protocol. Show alternative creator versions in a secondary rail
+  // with: Creator Handle, Like Count, and Reputation."
+  //
+  // ORDERED BY likes DESC, published_at DESC — the "default to the highest-liked" clause, done in
+  // the index (idx_studio_variants) rather than in the client, so the default cannot drift between
+  // the two documents.
+  //
+  // WHAT A LIKE COUNTS, AND WHAT IT MUST NEVER BE READ AS. It counts people who found a WRITE-UP
+  // useful. It is not an outcome, and there is no outcome column in studio_protocols — see the
+  // comment on protocol_likes in db.js. Every surface that prints this number has to say what it
+  // counts, because "highest-liked protocol" one word short of its meaning becomes "the one that
+  // works best", which at this sample size is noise and in Singapore is a health claim.
+  if (seg[0] === 'protocols' && seg[1] === 'variants' && !seg[2] && method === 'GET') {
+    if (!db.enabled) return json(res, 200, { variants: [] });
+    const pid = clean(qp.get('pid') || '', 64), rcid = clean(qp.get('rcid') || '', 64);
+    if (!pid || !rcid) return json(res, 400, { error: 'pid and rcid are required' });
+    try {
+      const r = await db.query(`SELECT p.code, p.title, p.likes, p.clones, p.published_at,
+          u.username AS handle, u.reputation_points AS rep
+        FROM studio_protocols p LEFT JOIN users u ON u.id = p.user_id
+        WHERE p.base_pid=$1 AND p.base_rcid=$2 AND p.status='published'
+        ORDER BY p.likes DESC, p.published_at DESC LIMIT 12`, [pid, rcid]);
+      return json(res, 200, { variants: r.rows.map((x) => ({
+        code: x.code, title: x.title, likes: x.likes || 0, clones: x.clones || 0,
+        handle: x.handle || null, rep: x.rep || 0, at: x.published_at,
+      })) });
+    } catch (e) { console.error('[protocols/variants]', e.message); return json(res, 200, { variants: [] }); }
+  }
+
+  // One like per browser per protocol. UNIQUE(code, voter_key) is what makes the counter honest —
+  // re-tapping cannot inflate it, and no account is needed to like, the same contract cloning has.
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'like' && method === 'POST') {
+    if (!db.enabled) return json(res, 503, { error: 'Not available.' });
+    const code = clean(seg[1], 16);
+    // The same anonymous participant cookie the 7-day logger and studio_clones use — resolved
+    // through resolveParticipant(), not invented here, so one browser is one identity everywhere.
+    const part = await resolveParticipant(req, res);
+    try {
+      const ins = await db.query('INSERT INTO protocol_likes(code,voter_key) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING id', [code, part.key]);
+      if (ins.rows.length) await db.query('UPDATE studio_protocols SET likes = likes + 1 WHERE code=$1', [code]);
+      const r = await db.query('SELECT likes FROM studio_protocols WHERE code=$1', [code]);
+      if (!r.rows.length) return json(res, 404, { error: 'No such protocol' });
+      return json(res, 200, { likes: r.rows[0].likes || 0, counted: ins.rows.length > 0 });
+    } catch (e) { console.error('[protocols/like]', e.message); return json(res, 500, { error: 'Could not record that.' }); }
+  }
+
   // Recently published protocols, newest first. Reads only what a public projection may carry: the
   // code, the governed title, what it is built on, its like count and its author's handle. No spec,
   // no note, no user id — the same allowlist discipline the profile projection uses.

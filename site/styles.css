@@ -5255,3 +5255,36 @@ html[data-state="removed"] .i-form{display:none}
    one — see the comment on protocol_likes in db.js. */
 .lp .lp-comm-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
 .lp .lp-comm-empty{margin:10px 0 0;font-size:var(--i-small);line-height:1.55;color:var(--muted);max-width:34em}
+
+/* ===== THE ACCOUNT GATE (2026-08-13) =========================================================
+   Shown when a reader starts a protocol or tries to write, never when they read. It is a PROMPT,
+   not a wall: declining leaves the 7-day log running on this device exactly as before, which is
+   the promise the site has kept since it launched. The primary button is the account because at
+   this moment the reader has already chosen to act; the header's own sign-in control stays
+   non-primary and labelled optional, because THAT one is about reading. */
+.acct-gate h2{font-size:1.25rem;margin:0 0 .4rem;letter-spacing:-.02em}
+.acct-gate-sub{margin:0 0 1rem;color:var(--muted);line-height:1.55;font-size:.94rem}
+.acct-gate-actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.acct-gate-actions .cta-primary{min-height:44px}
+.acct-gate-actions .linkbtn{min-height:44px;color:var(--muted)}
+.acct-gate-fine{margin:.9rem 0 0;font-size:.8rem;color:var(--faint)}
+
+/* ===== CREATOR VARIANTS RAIL (2026-08-13) ====================================================
+   Alternative published protocols for the same root cause, most-found-useful first. Absent
+   entirely when there are none — an empty "other versions" heading on a health page sends a reader
+   looking for something that does not exist.
+   THE COUNT IS LABELLED WITH WHAT IT COUNTS. "found this useful" is about the write-up. There is
+   no outcome column in studio_protocols and this rail must never imply one. */
+.variants{margin:1.1rem 0 1.4rem;padding-top:1rem;border-top:1px solid var(--line)}
+.variants .vr-h{font-size:1rem;font-weight:750;margin:0;color:var(--head);letter-spacing:-.01em}
+.variants .vr-sub{margin:.3rem 0 .7rem;font-size:.87rem;line-height:1.5;color:var(--muted);max-width:52ch}
+.variants .vr-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.variants .vr-item a{display:flex;flex-direction:column;gap:3px;min-height:56px;justify-content:center;
+  padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--head)}
+.variants .vr-item a:hover{border-color:var(--accent);text-decoration:none}
+/* The default pick is marked in FORM as well as position, so it survives a reader who lands
+   mid-list or reads with a screen reader. */
+.variants .vr-top a{border-left:3px solid var(--accent)}
+.variants .vr-item b{font-size:14.5px;font-weight:700}
+.variants .vr-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.45}
+@media(min-width:640px){.variants .vr-list{grid-template-columns:1fr 1fr}}

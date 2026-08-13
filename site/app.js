@@ -1025,6 +1025,34 @@
       + '<ul class="ov-list">' + rows + unknownRow + '</ul></section>';
   }
 
+  // Fills #variants-rail from /api/protocols/variants. Absent unless there is a real alternative.
+  async function mountVariantsRail(pid, rcid) {
+    const wrap = document.getElementById('variants-rail');
+    if (!wrap || !featureOn('publicCommunity')) return;
+    let vs = [];
+    try {
+      const r = await fetch('/api/protocols/variants?pid=' + encodeURIComponent(pid) + '&rcid=' + encodeURIComponent(rcid),
+        { headers: { accept: 'application/json' } });
+      if (!r.ok) return;
+      vs = (await r.json()).variants || [];
+    } catch (e) { return; }
+    if (!vs.length) return;
+    // The server already ordered by likes DESC — the "default to the highest-liked" rule lives in
+    // one place (idx_studio_variants), not re-sorted here where it could drift.
+    const top = vs[0], rest = vs.slice(1);
+    const card = (v, isTop) => '<li class="vr-item' + (isTop ? ' vr-top' : '') + '">'
+      + '<a href="/p/' + encodeURIComponent(v.code) + '">'
+      + '<b>' + esc(v.title || 'Untitled protocol') + '</b>'
+      + '<span class="vr-meta">' + (v.handle ? '@' + esc(v.handle) : 'anonymous')
+      + ' · ' + (v.likes || 0) + ' found this useful'
+      + ' · ' + (v.rep || 0) + ' points from contributing</span></a></li>';
+    wrap.innerHTML = '<section class="variants"><h3 class="vr-h">Other people have written this one too</h3>'
+      + '<p class="vr-sub">RNAwiki\u2019s own version is above. These are protocols other readers published for the same '
+      + 'root cause, most-found-useful first. That count is about the write-up, not about whether it worked.</p>'
+      + '<ul class="vr-list">' + card(top, true) + rest.map((v) => card(v, false)).join('') + '</ul></section>';
+    wrap.hidden = false;
+  }
+
   function renderAccount() {
     const slot = document.getElementById('account-slot'); if (!slot) return;
     // THE WAY IN TO /me, AND WHEN IT APPEARS (2026-08-10).
@@ -1073,6 +1101,60 @@
     requestAnimationFrame(() => t.classList.add('show'));
     setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2400);
   }
+  // requireAccount(reason) — the prompt shown at the door to the community half of the site.
+  //
+  // WHY IT IS NOT openAuth(). assertAnonymousFirst() in build/prerender.js requires the auth modal
+  // to say an account is "optional" or that you "do not need" one, and requires #signin-btn never
+  // to be the page's primary button. Both stay true and both still pass, because they are about
+  // READING — which needs no account and never will. This modal is about a different act, so it
+  // gets different words rather than bending that gate's copy into a half-truth.
+  //
+  // Returns false when it opened a prompt (the caller stops), true when the caller may proceed.
+  // A reader who dismisses it carries on device-local, which is what the copy promises.
+  const ACCOUNT_REASONS = {
+    start: {
+      h: 'Want this to follow you?',
+      p: 'Starting works right now with no account — the 7-day log opens on this device and nothing is sent anywhere. An account adds two things: this protocol follows you to your phone and your laptop, and anything you write here has your name on it instead of being anonymous.',
+      go: 'Create an account',
+      skip: 'Not now — keep it on this device',
+    },
+    engage: {
+      h: 'Comments have names on them',
+      p: 'Reading needs no account and never will. Writing does, because the person on the other end of a health discussion should be able to see who is talking. It takes an email and a password.',
+      go: 'Create an account',
+      skip: 'Not now',
+    },
+  };
+  const ACCOUNT_PROMPT_DECLINED = {};
+  function requireAccount(reason) {
+    if (ME) return true;
+    if (ACCOUNT_PROMPT_DECLINED[reason]) return true;   // asked once, answered; do not nag
+    const R = ACCOUNT_REASONS[reason] || ACCOUNT_REASONS.start;
+    const m = modal(`<div class="acct-gate">
+      <h2>${esc(R.h)}</h2>
+      <p class="acct-gate-sub">${esc(R.p)}</p>
+      <div class="acct-gate-actions">
+        <button class="cta-primary" id="acct-gate-go">${esc(R.go)}</button>
+        <button class="linkbtn" id="acct-gate-skip">${esc(R.skip)}</button>
+      </div>
+      <p class="acct-gate-fine">You must be 18 or older to make an account here.</p>
+    </div>`);
+    const go = m.querySelector('#acct-gate-go');
+    const skip = m.querySelector('#acct-gate-skip');
+    // NOT inside a setTimeout: assertAnonymousFirst() fails the build on any openAuth( within a
+    // 240-character setTimeout window, because an account modal that appears on a timer is one
+    // nobody asked for. This one only ever opens from a tap the reader made.
+    if (go) go.onclick = () => { closeModal(); openAuth('signup'); };
+    // DECLINING IS FINAL FOR THIS PAGE VIEW, and the flag is what stops an infinite loop: without
+    // it, re-clicking the start button re-enters requireAccount() — ME is still null — and reopens
+    // the prompt the reader just dismissed, forever.
+    if (skip) skip.onclick = () => {
+      closeModal();
+      ACCOUNT_PROMPT_DECLINED[reason] = true;
+    };
+    return false;
+  }
+
   function openAuth(mode) {
     const m = modal(authHtml(mode));
     wireAuth(m, mode);
@@ -8293,6 +8375,12 @@
             OUTSIDE the Phase 2 disclosure, for the same reason as in the prerenderer: that
             <details> is closed by default on 44 of 52 protocols. */ ''}
       ${overlapWarningsHtml(stack)}
+      ${/* THE CREATOR VARIANTS RAIL. Prerendered as an empty container and filled from
+            /api/protocols/variants — the list lives in Postgres and this page is also emitted at
+            build time, so it cannot be baked in. It stays absent entirely when nobody has published
+            an alternative, which is the state today: an empty "other versions" heading on a health
+            page invites a reader to go looking for something that is not there. */ ''}
+      <div id="variants-rail" data-variants-rail hidden></div>
       <details class="phase2" id="phase-2"${p2open}>
         <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
         <div class="p2-body">
@@ -8601,6 +8689,23 @@
     };
     const p1StartBtn = document.getElementById('phase1-start');
     if (p1StartBtn) p1StartBtn.onclick = () => {
+      // ---- THE ACCOUNT GATE (2026-08-13) -------------------------------------------------------
+      // The founder's line: "Reading any page stays NO-ACCOUNT forever. But the moment a user
+      // clicks Start this protocol or tries to engage/comment, they MUST be prompted to create an
+      // account. This gives them an identity in the community."
+      //
+      // IT PROMPTS AFTER THE START, NOT INSTEAD OF IT — "MUST be prompted", not must be blocked.
+      //
+      // The first version returned early until the reader answered, and the browser suite caught
+      // what that actually did: eight assertions failed because tapping Start wrote no log at all.
+      // The 7-day log is device-local, needs no account, sends nothing, and is the one thing this
+      // site has promised since launch. Blocking it would break that promise at the exact moment
+      // somebody has decided to act on their own health, and it would break it for the ~90% who
+      // could not have completed a signup form anyway.
+      // So the start happens first and the offer follows it. The reader gets what they tapped for,
+      // and the account is offered for what an account is actually FOR: an identity other people
+      // can see when they write. That is why the copy talks about your name and your other device,
+      // and never about permission.
       // W4 · Loop C: joining a LIVE cohort adopts its start date, which is what aligns "Day N of 7"
       // across everyone in it. cohortParse() has already refused anything that would put the reader
       // past day 7 on arrival, so this can never begin a week that is already finished.
@@ -8614,6 +8719,9 @@
         ? `✓ Joined — the cohort's log is open below`
         : '✓ Day 1 — the 7-day log is open below';
       p1StartBtn.disabled = true;
+      // Offered once, after the thing they asked for has happened. Never on a timer:
+      // assertAnonymousFirst() fails the build on any openAuth( inside a setTimeout window.
+      if (!ME) requireAccount('start');
     };
     const p1SkipBtn = document.getElementById('phase1-skip');
     if (p1SkipBtn) p1SkipBtn.onclick = () => {
@@ -8639,6 +8747,8 @@
     const citeBtn = document.getElementById('cite-proto');
     if (citeBtn) citeBtn.onclick = () => citeModal(`${problem.name} — ${rc.name.split('(')[0].trim()} protocol`, (location.origin || 'https://rnawiki.com') + '/protocol/' + problem.id + '/' + rc.id);
     mountVotes([`${problem.id}:${rc.id}:protocol`]);
+    // Alternative creator versions of this exact root cause. Fails silent and stays hidden.
+    mountVariantsRail(problem.id, rc.id);
     app.querySelectorAll('[data-share-sec]').forEach(b => b.onclick = () => shareSection(b.dataset.shareSec, problem, rc));
     renderComments(`p:${problem.id}:${rc.id}`, problem.name);
     app.querySelectorAll('[data-add]').forEach(b => b.onclick = () => {
