@@ -218,6 +218,33 @@ function stateRows(caps) {
   ).join('') + `</ul>`;
 }
 
+// ============ NEW FROM THE COMMUNITY =============================================================
+// The founder's requirement: "The homepage must include a 'New from the community' strip showcasing
+// recently created protocols. This is the entry point for the cycle to continue."
+//
+// IT IS PRERENDERED EMPTY AND FILLED BY app.js FROM /api/protocols/new, and that split is forced by
+// the architecture rather than chosen: this page is built once, at deploy time, with no database
+// connection, while what it lists lives in Postgres and changes by the hour. Server-substituting it
+// per request was the alternative and was rejected — "/" is Railway's health check and the site's
+// most-hit document, and it is currently served as a static file.
+//
+// THE EMPTY STATE IS THE HONEST ONE AND IT IS WHAT SHIPS TODAY. Nothing is published yet, so the
+// strip does not pretend otherwise and does not print a fake example. What it does instead is name
+// the actual reason — the site had no way to list anyone's work until 2026-08-13 — because a strip
+// reading "nothing here yet" with no explanation reads as a broken feature rather than an honest one.
+// assertLandingPage() checks the pair: while CAPS.discover is false this block may not claim a
+// count, and the moment the site can list published work it must stop saying it cannot.
+function communityStrip(caps) {
+  const on = !!(caps && caps.discover);
+  return `<section class="lp-comm" data-community-strip data-on="${on ? 1 : 0}">
+  <p class="i-kick">New from the community</p>
+  <ul class="lp-comm-list" id="lp-comm-list" hidden></ul>
+  <p class="lp-comm-empty" id="lp-comm-empty">Nobody has published one here yet. Until today this site
+  had no way to list what anyone had built, which is a reason and not an excuse &mdash; the page that
+  lists them is the next thing being built.</p>
+</section>`;
+}
+
 /**
  * landingParts(o) -> the FOUR blocks the home page composes.
  *
@@ -307,7 +334,12 @@ function landingParts(o) {
   to track and when to stop. The other ${noPlan} causes above have the mechanism and how to tell
   whether it is yours, and no plan written yet.</p>
   <p class="lp-fine">Both are real protocols from this site, in their own words. Educational, not medical advice.</p>
-  <p class="lp-links"><a class="lp-fix" href="/corrections" data-native>Something here is wrong &rarr;</a></p>
+  ${/* THE CONTRIBUTION VERB, IN THE READING SURFACE. It was a link to /corrections; that route no
+        longer exists, because reporting a wrong sentence belongs ON the sentence rather than on a
+        page you have to go and find. This is the same "Flag this" control that now sits on every
+        protocol page, in the same slot a one-tap report form will occupy once there is a POST path
+        with a CSRF answer. A mailto works today for everyone: no account, no JavaScript. */ ''}
+  <p class="lp-links"><a class="lp-fix flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Something here is wrong &rarr;</a></p>
 </section>
 </div>`,
 
@@ -322,7 +354,8 @@ function landingParts(o) {
   <p class="lp-body">${o.nCorrections} claims on this site have already been wrong. Each one is in
   the log, with what was wrong and what replaced it. If you find the ${o.nCorrections + 1}th, write
   to me and I will fix it at the source, so it changes on every page that repeats it.</p>
-  <p class="lp-links"><a class="lp-fix" href="/corrections" data-native>Every correction, and how to report one &rarr;</a></p>
+  <p class="lp-links"><a class="lp-fix" href="/methodology" data-native>Read every one of them &rarr;</a></p>
+  ${communityStrip(o.caps)}
   ${stateRows(o.caps)}
   ${/* THE HONEST LIMIT. The paragraph that answers "priced out" with dignity rather than charity,
         and the reason the free claim above cannot be read as covering the DOING as well as the

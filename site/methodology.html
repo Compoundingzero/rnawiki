@@ -38,13 +38,13 @@
   <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form><div id="search-results" class="search-results" hidden></div></div>
   
   <nav class="topnav" aria-label="Main">
-    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/corrections" data-native>Corrections</a>
+    <a href="/solve" class="nav-solve">Problems</a><a href="/goals" data-native>Goals</a><a href="/az">A&ndash;Z</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
 </header>
 <main id="app"><div class="article"><h1>How a page here is made</h1><nav class="cpd-toc pagetoc" aria-label="Contents">
-    <span class="toc-lbl">On this page · 4 min read</span>
-    <a href="#who-writes-it">Who writes it</a><a href="#where-the-words-come-from">Where the words come from</a><a href="#how-evidence-is-rated">How evidence is rated</a><a href="#what-i-will-not-publish">What I will not publish</a><a href="#the-checks-that-can-stop-a-release">The checks that can stop a release</a><a href="#the-limits-you-should-hold-in-mind">The limits you should hold in mind</a><a href="#found-something-wrong">Found something wrong?</a>
+    <span class="toc-lbl">On this page · 8 min read</span>
+    <a href="#who-writes-it">Who writes it</a><a href="#where-the-words-come-from">Where the words come from</a><a href="#how-evidence-is-rated">How evidence is rated</a><a href="#what-i-will-not-publish">What I will not publish</a><a href="#the-checks-that-can-stop-a-release">The checks that can stop a release</a><a href="#the-limits-you-should-hold-in-mind">The limits you should hold in mind</a><a href="#found-something-wrong">Found something wrong?</a><a href="#what-has-already-been-wrong">What has already been wrong</a><a href="#corrections-made">Corrections made</a>
   </nav>
       <p class="lede">Most health sites ask you to trust the output. This page describes the process
       instead, so you can judge it — including the parts that should make you cautious.</p>
@@ -127,10 +127,102 @@
       </ul>
 
       <h2 id="found-something-wrong"><a class="hanchor" href="#found-something-wrong" aria-label="Link to this section">#</a>Found something wrong?</h2>
-      <p>That is the most useful thing you can send. Errors here should be fixed rather than defended.
-      <a href="/corrections" data-native>See what has already been corrected, and how to report one →</a></p>
-      <p><a href="/legend">How to read the stars and badges →</a> · <a href="/about">About RNAwiki →</a></p>
-      </div></main>
+      <p>That is the most useful thing you can send, and there is a <b>Flag this</b> control on every
+      protocol page — on the section that is wrong, so I know which sentence you mean. It needs no
+      account and no reason. Errors here get fixed rather than defended.</p>
+      <p><a href="/legend">How to read the stars and badges &rarr;</a> &middot; <a href="/about">About RNAwiki &rarr;</a></p>
+
+      <h2 id="what-has-already-been-wrong"><a class="hanchor" href="#what-has-already-been-wrong" aria-label="Link to this section">#</a>What has already been wrong</h2>
+
+      <p class="lede">A site with no corrections is not a site with no errors. Below is every substantive
+      correction to a published health claim here — what was wrong, and what replaced it.</p>
+
+      <h2 id="corrections-made"><a class="hanchor" href="#corrections-made" aria-label="Link to this section">#</a>Corrections made</h2>
+      <p>This log begins on 27 July 2026, when the site was first audited end to end. It covers
+      corrections to published claims; routine editing and code changes are not listed.</p>
+
+      <h3 id="a-trial-figure-attributed-to-the-wrong-study"><a class="hanchor" href="#a-trial-figure-attributed-to-the-wrong-study" aria-label="Link to this section">#</a>A trial figure attributed to the wrong study</h3>
+      <p>The clenbuterol page repeated a widely quoted "+39% fat oxidation" and attached it to the
+      randomised controlled trial in healthy humans. The controlled trial reports no such thing — it
+      measured a fat-mass change of 0.00 kg. The 39% comes from a separate open-label, uncontrolled
+      study of six men, measured 140 minutes after a single dose. The number is now shown with its
+      real source and its real design, next to the controlled result it was being used to dress up.</p>
+
+      <h3 id="animal-data-was-earning-human-evidence-ratings"><a class="hanchor" href="#animal-data-was-earning-human-evidence-ratings" aria-label="Link to this section">#</a>Animal data was earning human evidence ratings</h3>
+      <p>The star rating was taking the highest evidence grade on a compound regardless of species, so
+      compounds with strong rodent data and thin human data could display a high human-evidence rating.
+      Rapamycin was the clearest case at five stars; it now shows three, which is what its human
+      evidence supports. Animal-only compounds are capped at two stars and labelled, and the build
+      refuses to publish if that is ever violated again.</p>
+
+      <h3 id="prescription-medicines-described-as-available-over-the-count"><a class="hanchor" href="#prescription-medicines-described-as-available-over-the-count" aria-label="Link to this section">#</a>Prescription medicines described as available over the counter</h3>
+      <p>The site was reading a regulatory approval badge as if it were a supply classification. Seven
+      prescription-only medicines consequently displayed as available from ordinary retailers, while a
+      common vitamin displayed as prescription-only. Approval and availability are now separate fields
+      and are stated separately.</p>
+
+      <h3 id="a-protocol-prescribing-the-movement-it-told-you-to-avoid"><a class="hanchor" href="#a-protocol-prescribing-the-movement-it-told-you-to-avoid" aria-label="Link to this section">#</a>A protocol prescribing the movement it told you to avoid</h3>
+      <p>The rotator-cuff protocol listed an overhead press, on a page whose own advice was to avoid
+      overhead loading. The exercise tags behind it had been assigned by muscle group rather than by
+      function. Tags are now derived from the movement itself, and a protocol that would prescribe a
+      movement it contraindicates fails the build.</p>
+
+      <h3 id="a-dose-calculator-returning-milligrams-where-grams-were-corr"><a class="hanchor" href="#a-dose-calculator-returning-milligrams-where-grams-were-corr" aria-label="Link to this section">#</a>A dose calculator returning milligrams where grams were correct</h3>
+      <p>One calculator produced a result a thousand times too small. Every calculator now carries a
+      machine-readable maximum and is checked at build time.</p>
+
+      <h3 id="anxiety-listing-no-first-line-treatment"><a class="hanchor" href="#anxiety-listing-no-first-line-treatment" aria-label="Link to this section">#</a>Anxiety listing no first-line treatment</h3>
+      <p>The anxiety protocol discussed supplements without naming cognitive behavioural therapy or
+      SSRIs — the treatments with the strongest evidence for the condition. Omitting them made the
+      supplement evidence look stronger by comparison than it is. Both are now named.</p>
+
+      <h3 id="a-bone-health-claim-stated-backwards"><a class="hanchor" href="#a-bone-health-claim-stated-backwards" aria-label="Link to this section">#</a>A bone-health claim stated backwards</h3>
+      <p>The menopause protocol inverted the direction of an effect on bone density. Corrected.</p>
+
+      <h3 id="a-triage-questionnaire-with-no-cardiac-red-flag"><a class="hanchor" href="#a-triage-questionnaire-with-no-cardiac-red-flag" aria-label="Link to this section">#</a>A triage questionnaire with no cardiac red flag</h3>
+      <p>The neck-and-shoulder questionnaire screened for nerve and structural warning signs but not
+      for the cardiac presentation its own escalation text opened with. It now screens for it, and
+      withholds the protocol in favour of emergency advice when it fires.</p>
+
+      <h3 id="a-trial-cited-to-the-wrong-journal"><a class="hanchor" href="#a-trial-cited-to-the-wrong-journal" aria-label="Link to this section">#</a>A trial cited to the wrong journal</h3>
+      <p>A phenibut trial was credited to <em>Drug Testing and Analysis</em>; it was published in
+      <em>Pharmacopsychiatry</em>. The page body had the right journal in the text while the citation
+      had the wrong one — the page was contradicting itself.</p>
+
+      <h3 id="microdosing-conclusions-drawn-from-full-dose-trials"><a class="hanchor" href="#microdosing-conclusions-drawn-from-full-dose-trials" aria-label="Link to this section">#</a>Microdosing conclusions drawn from full-dose trials</h3>
+      <p>The psilocybin entry presented five trials together under a microdosing heading. Four used
+      full 10–25 mg doses with psychological support; the one genuine microdosing trial — self-blinded,
+      placebo-controlled, 191 completers — found the microdose and placebo groups improved equally.
+      Nothing on the page distinguished them, so four strong full-dose results read as support for
+      microdosing. The entry now states the distinction before the results.</p>
+
+      <h3 id="compounds-ranked-against-the-wrong-goals"><a class="hanchor" href="#compounds-ranked-against-the-wrong-goals" aria-label="Link to this section">#</a>Compounds ranked against the wrong goals</h3>
+      <p>72 of 387 goal assignments were wrong, including a wakefulness-promoting drug ranked first
+      under "Sleep Better". The taxonomy was rebuilt and is now checked at build time.</p>
+
+      <h3 id="reviewer-credentials-that-were-not-real"><a class="hanchor" href="#reviewer-credentials-that-were-not-real" aria-label="Link to this section">#</a>Reviewer credentials that were not real</h3>
+      <p>This is the worst one, and it is published here because a corrections log that leaves out
+      its worst entry is not a corrections log.</p>
+      <p>The site displayed community protocols attributed to a <em>"verified physiotherapist"</em>,
+      alongside other named contributor accounts. None of those people existed. The accounts and
+      their content were seeded demonstration data, and the verification badge was not backed by any
+      check — there was no verification process behind it at all. Everything in that cluster has
+      been deleted.</p>
+      <p>The wording around it went too. The site said verified clinicians stewarded protocols in
+      their field, that a verified dietitian checked corrections to food data, that a verified
+      physiotherapist could attach anatomy models, and that a verified expert would build a
+      requested protocol. None of that was happening. There are no verified professionals here, no
+      programme that verifies anyone, and no clinician has reviewed this content — which is what the
+      line at the foot of every protocol page has always said, and is now the only thing the site
+      says on the subject.</p>
+
+      <h3 id="citations-audited-end-to-end"><a class="hanchor" href="#citations-audited-end-to-end" aria-label="Link to this section">#</a>Citations audited end to end</h3>
+      <p>Every citation in the corpus was checked against its record. Across two passes, 244
+      citations were bound to verified sources, 58 claims were corrected to match what the source
+      actually reports, and 8 were rejected outright and removed. Where no source could be found for a
+      claim, the claim was removed rather than left standing.</p>
+
+            </div></main>
 
 <footer class="foot"><div>Information, not medical advice. No clinician has reviewed these pages and nothing on them is a diagnosis. If something is severe, sudden or getting worse, call your local emergency number &mdash; <b>995</b> in Singapore, or 999, 911, 112 or 000 depending on where you are &mdash; and be seen.</div><div class="foot-links"><a href="/about">About</a> &middot; <a href="/methodology" data-native>How a page is made</a> &middot; <a href="/az">Everything A&ndash;Z</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>

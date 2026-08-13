@@ -5205,3 +5205,53 @@ html[data-state="removed"] .i-form{display:none}
 @media(max-width:560px){
   .toxic-stop,.toxic-emergency,.toxic-section{border-radius:14px;padding:1rem}
 }
+
+/* ===== THE OVERLAP-REPERCUSSION WARNING (2026-08-13) =========================================
+   Rendered by overlapWarnings() in build/prerender.js onto 50 of 52 protocol pages, directly ABOVE
+   the stack it qualifies. Before this, all 52 recommended a multi-compound stack and none of them
+   said anything about taking those compounds together.
+   SEVERITY IS ENCODED IN FORM AS WELL AS COLOUR — a left stripe of different weight per tier plus
+   the tier's own words ("Do not combine" / "Space these apart" / "Not checked"), so nothing here is
+   carried by hue alone. Nothing in this block needs JavaScript to reveal: the least flattering
+   sentences on a protocol page do not get to hide behind a click. */
+.overlap{margin:1rem 0 1.2rem;border:1px solid var(--line);border-radius:12px;background:var(--panel);overflow:hidden}
+.overlap .ov-h{margin:0;padding:.7rem .95rem;font-size:.95rem;font-weight:750;color:var(--head);
+  background:var(--panel2);border-bottom:1px solid var(--line)}
+.overlap .ov-list{list-style:none;margin:0;padding:0}
+.overlap .ov-row{padding:.8rem .95rem .85rem 1.1rem;border-bottom:1px solid var(--line-soft);position:relative}
+.overlap .ov-row:last-child{border-bottom:0}
+.overlap .ov-row::before{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--faint)}
+.overlap .ov-danger::before{background:var(--warn)}
+.overlap .ov-blunt::before{background:var(--yellow)}
+.overlap .ov-timing::before{background:var(--accent)}
+.overlap .ov-unknown::before{background:var(--faint);opacity:.55}
+.overlap .ov-k{margin:0;font-family:var(--mono);font-size:.68rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--muted)}
+.overlap .ov-danger .ov-k{color:var(--warn)}
+.overlap .ov-who{margin:.2rem 0 0;font-size:.9rem;font-weight:700;color:var(--head)}
+/* THE PLAIN LINE LEADS, and it is the largest text in the row on purpose: it is the one sentence a
+   reader with no science background is guaranteed to understand. The mechanism and the citation are
+   supporting detail underneath it, not the other way round. */
+.overlap .ov-plain{margin:.3rem 0 0;font-size:.95rem;line-height:1.5;color:var(--ink)}
+.overlap .ov-do{margin:.4rem 0 0;font-size:.87rem;line-height:1.5;color:var(--ink)}
+.overlap .ov-do b{color:var(--head)}
+.overlap .ov-src{margin:.4rem 0 0;font-size:.78rem;line-height:1.45;color:var(--muted)}
+.overlap .ov-src a{color:var(--link)}
+/* An unsourced row says so rather than borrowing a citation that does not fit it. */
+.overlap .ov-nosrc{font-style:italic}
+@media(max-width:600px){.overlap .ov-row{padding-left:1rem}}
+
+/* ===== NEW FROM THE COMMUNITY (2026-08-13) ==================================================
+   Prerendered empty, filled by app.js from /api/protocols/new. The empty state is not a
+   placeholder to be styled away — it is what ships today and it is the honest render. */
+.lp .lp-comm{margin:22px 0 0;padding-top:18px;border-top:1px solid var(--line)}
+.lp .lp-comm-list{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:8px}
+@media(min-width:640px){.lp .lp-comm-list{grid-template-columns:1fr 1fr}}
+.lp .lp-comm-list a{display:flex;flex-direction:column;gap:3px;min-height:56px;justify-content:center;
+  padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--head)}
+.lp .lp-comm-list a:hover{border-color:var(--accent);text-decoration:none}
+.lp .lp-comm-list b{font-size:14.5px;font-weight:700}
+/* The like count says what it counts. It is not an efficacy signal and the label must never imply
+   one — see the comment on protocol_likes in db.js. */
+.lp .lp-comm-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.lp .lp-comm-empty{margin:10px 0 0;font-size:var(--i-small);line-height:1.55;color:var(--muted);max-width:34em}

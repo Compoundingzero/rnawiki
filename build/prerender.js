@@ -128,6 +128,16 @@ const SITE_URL = (process.env.SITE_URL || 'https://rnawiki.com').replace(/\/$/, 
 global.window = {};
 require(path.join(SITE, 'data.js'));
 const D = global.window.RNAWIKI_DATA;
+// ---- THE INTERACTION MATCHER, in the prerenderer (added 2026-08-13) --------------------------
+// site/ixn-engine.js is dual-loaded: under node it also sets module.exports, and it reads no files
+// and holds no state beyond what init() is handed. This is the FOURTH reader of the one matcher —
+// site/app.js, build/parse.js and studio-safety.js are the other three — and it exists so the
+// overlap warnings printed onto all 52 prerendered protocol pages come from the same rules a
+// creator is shown at save time and a reader is shown on /stack. Any other arrangement lets the
+// page that hands somebody a list of supplements disagree with the page that checks them.
+require(path.join(SITE, 'interactions.js'));
+const RXN = global.window.RNAWIKI_INTERACTIONS;
+const IXN_ENGINE = require(path.join(SITE, 'ixn-engine.js')).init(D, RXN);
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { return null; } };
 const EX = readJSON(path.join(ROOT, 'data', 'clinical_exercises.json'));
 const FO = readJSON(path.join(ROOT, 'data', 'foods.json'));
@@ -289,6 +299,67 @@ const NUTRIENT_LABEL = {
   potassium_mg: 'potassium', sodium_mg: 'sodium', glycine_g: 'glycine', choline_mg: 'choline',
 };
 const nutrientLabel = (k) => NUTRIENT_LABEL[k] || k.replace(/_(mg|g|iu|kcal|mcg|ug)$/i, '').replace(/_/g, ' ');
+// ---- THE OVERLAP-REPERCUSSION WARNING, ON THE READING SURFACE (new 2026-08-13) -----------------
+// The founder's directive: "If there is a health repercussion to the overlap, the UI pings the user
+// inline with a warning. This warning must also be visible to READERS on the published protocol.
+// Fail-safe: if uncertain, show the warning. Every warning must cite its source."
+//
+// MEASURED BEFORE THIS EXISTED: all 52 prerendered protocol pages recommend a multi-compound stack,
+// and 0 of 52 said anything about what happens when those compounds are taken together. The
+// interaction engine, its 25 rules and a /stack page that checks combinations had all existed for
+// weeks — none of it reached the page that actually hands somebody a list of things to take.
+//
+// It runs the SAME matcher as /stack and as save-time Studio validation (site/ixn-engine.js, one
+// definition, three readers), so a reader, a creator and the build cannot be shown different
+// pharmacology about the same two compounds.
+//
+// THREE THINGS IT DELIBERATELY DOES:
+//   1. Renders ABOVE the list, not below it. The 2026-08-01 lesson on this page was that safety
+//      text under the recommendation it qualifies is safety text nobody reads.
+//   2. Leads with the plain-language sentence and keeps the mechanism as secondary detail. The
+//      jargon rule: a person with no science background reads the first line and understands it.
+//   3. Names UNCHECKED pairs as unchecked. Silence from an empty knowledge base is not a
+//      clearance, and this is the only place that distinction gets made to a reader.
+// Nothing here needs JavaScript.
+function overlapWarnings(stack) {
+  const list = (stack || []).filter(Boolean);
+  if (list.length < 2) return '';
+  const r = IXN_ENGINE.stackInteractions(list);
+  const cov = IXN_ENGINE.pairCoverage(list);
+  const flags = (r.flags || []).slice().sort((a, b) => {
+    const w = { danger: 0, blunt: 1, timing: 2 };
+    return (w[a.tier] == null ? 3 : w[a.tier]) - (w[b.tier] == null ? 3 : w[b.tier]);
+  });
+  const unknown = cov.unknown || 0;
+  if (!flags.length && !unknown) return '';
+  const label = { danger: 'Do not combine', blunt: 'Works against itself', timing: 'Space these apart' };
+  const rows = flags.map((f) => {
+    const who = (f.involved || []).map(esc).join(' + ');
+    // THE CITATION. A danger row without one cannot exist — assertInteractionSources() in
+    // build/parse.js fails the build — so the fallback line below is only ever reached by a
+    // lower-tier rule whose source could not be verified, and it says exactly that.
+    const cite = f.src
+      ? `<p class="ov-src">Source: <a href="${esc(f.src)}" rel="nofollow noopener" target="_blank">${esc(f.srcLabel || f.src)}</a>${f.srcQuote ? ` — &ldquo;${esc(f.srcQuote)}&rdquo;` : ''}</p>`
+      : '<p class="ov-src ov-nosrc">No source recorded for this one yet. Treat it as a flag to check, not as a finding.</p>';
+    return `<li class="ov-row ov-${esc(f.tier)}">
+      <p class="ov-k">${esc(label[f.tier] || 'Check this')}</p>
+      <p class="ov-who">${who}</p>
+      <p class="ov-plain">${esc(f.plain || f.why || '')}</p>
+      ${f.action ? `<p class="ov-do"><b>What to do:</b> ${esc(f.action)}</p>` : ''}
+      ${cite}
+    </li>`;
+  }).join('');
+  const unknownRow = unknown ? `<li class="ov-row ov-unknown">
+      <p class="ov-k">Not checked</p>
+      <p class="ov-plain">${unknown} of the ${cov.total} possible pairings here ${unknown === 1 ? 'has' : 'have'} no rule written for ${unknown === 1 ? 'it' : 'them'} yet. That is not the same as safe — it means nobody has written down what happens when these are taken together.</p>
+    </li>` : '';
+  const worst = flags.length ? flags[0].tier : 'unknown';
+  return `<section class="overlap" data-worst="${esc(worst)}" aria-label="What happens if you take these together">
+    <h4 class="ov-h">If you take these together</h4>
+    <ul class="ov-list">${rows}${unknownRow}</ul>
+  </section>`;
+}
+
 function protoStack(rc) {
   const picked = [], ids = new Set();
   (rc.compounds || []).forEach((n) => {
@@ -544,9 +615,15 @@ ${crumbLd}${ld}
         that needs no account, no credential and no JavaScript — and it was reachable from nothing
         but a footer. Putting a health site's own error log in global navigation says more in one
         word than a paragraph of trust copy, and it lands on ~620 documents rather than on one.
-        Find and Today are additionally pinned by name in scripts/containment.mjs. */ ''}
+        WHY THESE THREE (revised 2026-08-13 on the founder's direction). Problems and Goals are the
+        two ways a person arrives: something is wrong, or something is a target. A-Z is the third
+        because a reader who already knows the name of the thing should not have to pretend they
+        have a symptom. Everything else is contextual — /plan is linked from /goals and from every
+        protocol, /stack from /browse, /methodology and /about from the footer.
+        CORRECTIONS IS NOT HERE, and its route no longer exists: reporting a wrong sentence belongs
+        ON the sentence, so it is an inline control on the protocol page instead of a destination.  */ ''}
   <nav class="topnav" aria-label="Main">
-    <a href="/solve" class="nav-solve"${cur('/solve')}>Find</a><a href="/plan"${cur('/plan')}>Today</a><a href="/corrections" data-native${cur('/corrections')}>Corrections</a>
+    <a href="/solve" class="nav-solve"${cur('/solve')}>Problems</a><a href="/goals" data-native${cur('/goals')}>Goals</a><a href="/az"${cur('/az')}>A&ndash;Z</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
 </header>
@@ -798,6 +875,18 @@ function targetTitle(sym, full, nC) {
   if (full && fits(`${sym}: ${full}`)) return seoTitle(`${sym}: ${full}`);
   return seoTitle(`${sym}: ${tail}`);
 }
+// THE CORRECTION LOG, SLICED OUT OF /methodology. One definition, two readers: the home-page
+// composer counts it, and assertLandingPage re-counts it out of the emitted bytes. When the two
+// disagree the build stops, so this function is the only place the boundary is decided.
+// SLICE ON THE HEADING TEXT, NOT THE WHOLE TAG. anchorHeadings() rewrites every attribute-free
+// <h2>/<h3> into `<h2 id="…"><a class="hanchor">#</a>…`, so a needle containing `<h2>` matches the
+// SOURCE and never the emitted document. build/prerender.js already carries this lesson once, in
+// the comment above the protocol splitter; this is the second place to learn it.
+function correctionLog(html) {
+  const i = String(html || '').indexOf('What has already been wrong');
+  return i < 0 ? '' : String(html).slice(i);
+}
+
 function seoDesc(text, max = 155) {
   const s2 = stripMd(text).replace(/\s+/g, ' ').trim();
   const fits = (t) => esc(t).length <= max;              // escaped length, same reason as seoTitle
@@ -1629,7 +1718,7 @@ GRAPH.problems.forEach((p) => {
     ${problemDifferential(p, causes)}
     ${protocolRoute(p, causes)}
     ${causeCascadeFlat(p)}
-    <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>`;
+    <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a class="flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Flag this &rarr;</a></p>`;
   add(route, shell({
     route,
     title: seoTitle(`Why ${p.name.toLowerCase()} happens: every cause`),
@@ -1786,6 +1875,7 @@ GRAPH.problems.forEach((p) => {
         <summary><span class="p2-k">Phase 2 · optional</span> The targeted stack — only after Phase 1</summary>
         <div class="p2-body">
         <h3>Stack — supplements with human trial evidence for this use</h3>
+        ${overlapWarnings(stack)}
         ${stack.length
           ? `<ul>${stack.map((c) => `<li><a href="/c/${slug(c.name)}">${esc(c.name)}</a> — ${compoundEvidence(c)}</li>`).join('')}</ul>`
           : `<p>No supplement has trial evidence specific to this problem that I'd put my name to. That is the honest answer, not an omission.</p>`}
@@ -1799,7 +1889,7 @@ GRAPH.problems.forEach((p) => {
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
         </div>
       </details>
-      <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
+      <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a class="flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Flag this &rarr;</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
     const rcShort = rc.name.replace(/\s*\([^)]*\)/, '');
     const moveNames = move.slice(0, 5).map((e) => e.name).join(', ');
@@ -1908,7 +1998,7 @@ GRAPH.problems.forEach((p) => {
         on the protocol page rather than this one.</p>
         <p><a href="${route}">← Back to the full ${esc(p.name)} protocol</a> — the movements, the
         evidence-ranked compounds, and when to see a clinician instead.</p>
-        <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p>
+        <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a class="flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Flag this &rarr;</a></p>
         <p><em>Educational, not medical advice. Nutrient targets are general adult guidance.</em></p>`;
       // ---- W6 (2026-08-06): THE THIN-PAGE DECISION, RE-MEASURED AND KEPT ------------------
       // These 52 stay `noindex,follow` + `noSitemap`, and here is the measurement behind that
@@ -2997,7 +3087,7 @@ let written = 0;
       <p>Availability is shown separately from approval, as its own statement on every compound: no prescription needed, over the counter, pharmacy medicine, prescription only, controlled, or not approved for human use. The classification shown is Singapore's, because that is the one regulator I track in full — it is a good guide almost everywhere, but check your own country's rules before assuming. Where a compound is prescription-only the page says so and gives no dose.</p>
       <h2>Who decides any of this</h2>
       <p>No clinician has reviewed these pages. Nothing here is a professional's opinion, an endorsement, or medical advice, and no colour or star should be read as one. The stars are an editorial rating of the published <strong>human</strong> evidence, applied by one consistent rule across every compound. The colours are not a judgement at all — they are a regulator's current call on that molecule, recorded rather than formed here. Where the two disagree they are shown disagreeing: a compound can be approved and still have weak evidence for what you want it for, and the reverse.</p>
-      <p><a href="/methodology">How a page here is made →</a> · <a href="/corrections">Corrections →</a> · <a href="/about">More about how this site is made →</a></p></div>` }));
+      <p><a href="/methodology">How a page here is made, and what it has got wrong →</a> · <a href="/about">More about how this site is made →</a></p></div>` }));
 
   // ---- /methodology and /corrections ---------------------------------------------------------
   // Added 2026-07-30. Every one of the 52 protocol pages ends with the line "Written with AI
@@ -3094,33 +3184,15 @@ let written = 0;
       </ul>
 
       <h2>Found something wrong?</h2>
-      <p>That is the most useful thing you can send. Errors here should be fixed rather than defended.
-      <a href="/corrections" data-native>See what has already been corrected, and how to report one →</a></p>
-      <p><a href="/legend">How to read the stars and badges →</a> · <a href="/about">About RNAwiki →</a></p>
-      </div>` }));
+      <p>That is the most useful thing you can send, and there is a <b>Flag this</b> control on every
+      protocol page — on the section that is wrong, so I know which sentence you mean. It needs no
+      account and no reason. Errors here get fixed rather than defended.</p>
+      <p><a href="/legend">How to read the stars and badges &rarr;</a> &middot; <a href="/about">About RNAwiki &rarr;</a></p>
 
-  add('/corrections', shell({
-    route: '/corrections', title: 'Corrections — what RNAwiki got wrong, and fixed · RNAwiki',
-    desc: 'A public log of substantive corrections to published claims on RNAwiki, and how to report an error you have found.',
-    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Corrections', route: '/corrections' }],
-    body: `<div class="article"><h1>Corrections</h1>
-      <p class="lede">A site with no corrections page is not a site with no errors. This is the log of
-      substantive corrections to published health claims — what was wrong, and what replaced it.</p>
+      <h2>What has already been wrong</h2>
 
-      ${/* TWO FIXES, 2026-08-13, both MANDATORY in the commit that put Corrections into the global
-            nav — promoting this page onto ~620 documents amplifies anything false on it 620-fold.
-            1. It said "Use the feedback link on any page". THERE IS NO FEEDBACK LINK ON ANY
-               PRERENDERED PAGE. The global feedback button was removed; the only in-page report
-               control that survives is on /exercise/*, needs JavaScript, and posts to the feedback
-               table rather than to anything on this page. The first instruction on the site's
-               error-reporting page pointed at a control that does not exist.
-            2. "usually within a day" was an unenforceable service-level promise made by one person
-               with no queue, no rota and no cover. The sentence now ends where the true part ends. */ ''}
-      <h2>How to report one</h2>
-      <p>Write to <a href="mailto:hello@rnawiki.com">hello@rnawiki.com</a>. The most useful report
-      names the page, quotes the sentence, and says what the source actually shows. You do not need
-      to be polite about it and you do not need a credential.</p>
-      <p>Claims are corrected at their source, so a fix propagates to every page that repeats it.</p>
+      <p class="lede">A site with no corrections is not a site with no errors. Below is every substantive
+      correction to a published health claim here — what was wrong, and what replaced it.</p>
 
       <h2>Corrections made</h2>
       <p>This log begins on 27 July 2026, when the site was first audited end to end. It covers
@@ -3207,8 +3279,7 @@ let written = 0;
       actually reports, and 8 were rejected outright and removed. Where no source could be found for a
       claim, the claim was removed rather than left standing.</p>
 
-      <p><a href="/methodology" data-native>How a page here is made →</a> · <a href="/legend">How to read the stars →</a></p>
-      </div>` }));
+            </div>` }));
 
   // ---- /compare index ------------------------------------------------------------------------
   // Added 2026-07-30. Every one of the 119 comparison pages carried a breadcrumb to "/compare" —
@@ -3296,6 +3367,51 @@ let written = 0;
       <p>${D.compounds.length} compounds across ${cats.length} categories. Prefer to start from a problem instead? <a href="/solve">Start there →</a> Putting several together? <a href="/stack">Open the Stack Builder →</a></p>
       ${cats.map((cat) => `<h2>${esc(cat)}</h2><ul>${byCat[cat].slice().sort((a, b) => b.stars - a.stars).map(link).join('')}</ul>`).join('')}</div>` }));
 
+  // ---- /goals — THE SECOND ENTRY MODE, AND A GLOBAL NAV ITEM (new 2026-08-13) -------------------
+  // The 16 goal pages existed with no index. "Goals" is one of the three global nav items now, so
+  // it needs a route, and that route has to be a real prerendered document rather than a redirect.
+  //
+  // THE REGULATORY SPLIT IS FOUR BUCKETS HERE, NOT TWO, AND THAT IS THE WHOLE POINT.
+  // The home page used to print "N you can buy · N prescription-only" and computed the second half
+  // as everything-that-is-not-a-supplement. The corpus actually holds four restricted classes:
+  //   prescription 39 · unapproved 35 · controlled 21 · supplement 75 · pharmacy 1
+  // so 56 compounds that are CONTROLLED BY LAW or NOT APPROVED FOR HUMAN USE were being described
+  // to readers as "prescription-only" — which tells them a pharmacy would hand it over with a
+  // doctor's note. It would not. That block was deleted rather than fixed; this one reads the class
+  // and says what each actually means, in words with no jargon in them.
+  const GOAL_BUCKETS = [
+    ['supplement', 'you can buy'],
+    ['pharmacy', 'you can buy'],
+    ['prescription', 'a doctor has to prescribe'],
+    ['controlled', 'controlled by law'],
+    ['unapproved', 'not approved for people'],
+  ];
+  add('/goals', shell({
+    route: '/goals', title: `Start from a goal — all ${(D.goals || []).length} · RNAwiki`,
+    desc: seoDesc(`The ${(D.goals || []).length} goals on RNAwiki, each with the compounds that act on it and what you can actually get hold of. Free, in plain English.`),
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Goals', route: '/goals' }],
+    body: `<div class="article"><h1>Start from a goal</h1>
+      <p>Most people arrive with a problem. Some arrive with a target instead. These are the ${(D.goals || []).length} targets this site has compounds for.</p>
+      <p>Under each one is what you could actually get hold of, and what you could not. That second number is usually the larger one, and it is the part most sites leave out.</p>
+      <ul class="goal-index">${(D.goals || []).map((g) => {
+    const inGoal = D.compounds.filter((c) => (c.goalIds || []).includes(g.id));
+    const counts = {};
+    inGoal.forEach((c) => {
+      const b = (GOAL_BUCKETS.find((x) => x[0] === c.regulatory_class) || [, 'you can buy'])[1];
+      counts[b] = (counts[b] || 0) + 1;
+    });
+    // "you can buy" always leads; the restricted buckets follow in a fixed order so the reader
+    // learns one shape and reads all 16 the same way.
+    const order = ['you can buy', 'a doctor has to prescribe', 'controlled by law', 'not approved for people'];
+    const parts = order.filter((k) => counts[k]).map((k) => `${counts[k]} ${k}`);
+    return `<li><a href="/goal/${esc(g.id)}"><b>${esc(g.label)}</b><small>${parts.join(' &middot; ')}</small></a></li>`;
+  }).join('')}</ul>
+      <p>Not sure which fits? <a href="/solve">Start from what is actually wrong &rarr;</a></p>
+      ${/* /plan lost its global nav slot when the bar went to three items. This is its inbound link:
+            assertLinkGraph counts a route with none as an orphan and stops the build, and a link
+            from the index a goal-led reader lands on is a truer place for it than a global bar. */ ''}
+      <p class="goal-index-foot">Picked something? What you decide to do next is kept on <a href="/plan">Today</a>, on this device only.</p></div>` }));
+
   add('/pathways', shell({
     route: '/pathways', title: `The ${(D.pathways || []).length} master pathways · RNAwiki`,
     desc: seoDesc('The master signalling pathways behind every compound on RNAwiki — GPCR/cAMP, nuclear receptors, mTOR, AMPK, NO/cGMP and more, each with the compounds that act on it.'),
@@ -3332,8 +3448,13 @@ let written = 0;
   // This block runs after every add(), so `pages` already holds /corrections. Counting the <h3>
   // entries in the DOCUMENT rather than in a variable means the landing page's "N claims have
   // already been wrong" cannot drift from the log it points at.
-  const CORR_HTML = (pages.find((p) => p.route === '/corrections') || {}).html || '';
-  const nCorrections = (CORR_HTML.match(/<h3/g) || []).length;
+  // SCOPED TO THE LOG SECTION, not to the whole document. /corrections was deleted on 2026-08-13
+  // and its log moved under <h2>What has already been wrong</h2> on /methodology, which carries
+  // other <h3> headings of its own — counting them all would inflate the number the landing page
+  // prints. correctionLog() slices from that heading to the end and is used by the gate too, so the
+  // two can never disagree about what counts as a logged correction.
+  const METH_HTML = (pages.find((p) => p.route === '/methodology') || {}).html || '';
+  const nCorrections = correctionLog(METH_HTML).match(/<h3/g) ? correctionLog(METH_HTML).match(/<h3/g).length : 0;
 
   // ---- THE CAPABILITIES, COMPUTED FROM THE EMITTED BYTES ----------------------------------------
   // NOT FROM process.env, and this is the single most important decision on the page.
@@ -3351,7 +3472,10 @@ let written = 0;
   CAPS = {
     // /corrections is a real prerendered document with logged errors and a mailto: — no account, no
     // JavaScript, no credential. This is the one contribution verb that is complete end to end.
-    correct: /mailto:/.test(CORR_HTML) && nCorrections > 0,
+    // The report path is now the inline "Flag this" control on the reading surfaces, not a
+    // destination page — so the capability is "a reader can report an error from where the error
+    // is", and the honest test for that is a reachable mailto plus a log that is actually published.
+    correct: /mailto:/.test(ALL_HTML) && nCorrections > 0,
     // false today: comments are a table and four endpoints with no rendering path at all.
     discuss: /id="cm-list"|class="comment-/.test(ALL_HTML),
     // false today: the vote strip is never prerendered onto any document.
@@ -4808,15 +4932,15 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   if (FLAT.indexOf(`The other ${noPlan} causes above have the mechanism`) < 0) bad.push(`the plan block does not say that ${noPlan} of the ${causeList.length} causes have no plan written — /problem/${LANDING.CAUSE_PROBLEM} publishes ${causeList.length} causes and ${(probRec.root_causes || []).length} carry a protocol, and a front door may not imply the other ${noPlan} do`);
 
   // 9. THE CORRECTIONS COUNT, DERIVED FROM THE EMITTED LOG.
-  const CORRH = (pages.find((p) => p.route === '/corrections') || {}).html || '';
-  const nCorr = (CORRH.match(/<h3/g) || []).length;
-  if (!nCorr) bad.push('/corrections publishes no logged corrections and the landing page counts them');
-  if (CORRH.indexOf('mailto:') < 0) bad.push('/corrections carries no mailto: — the landing page tells a reader they can write to me, and the page it sends them to would give them nowhere to write');
-  if (FLAT.indexOf(`${nCorr} claims on this site have already been wrong`) < 0) bad.push(`the landing page prints a corrections count that is not the ${nCorr} entries in the emitted /corrections log`);
+  const METHH = (pages.find((p) => p.route === '/methodology') || {}).html || '';
+  const nCorr = (correctionLog(METHH).match(/<h3/g) || []).length;
+  if (!nCorr) bad.push('/methodology publishes no logged corrections under "What has already been wrong" and the landing page counts them');
+  if (MAIN.indexOf('mailto:') < 0) bad.push('the landing page offers no way to report an error. /corrections was deleted deliberately, so the report path is the inline Flag this control — if that is gone too, the page has no contribution verb at all');
+  if (FLAT.indexOf(`${nCorr} claims on this site have already been wrong`) < 0) bad.push(`the landing page prints a corrections count that is not the ${nCorr} entries in the emitted /methodology log`);
   // AND MAY NOT ATTRIBUTE THEM TO READERS. Every logged entry is a self-audit finding; saying or
   // implying that readers reported them manufactures a community that has not happened yet.
   ['corrected that way', 'readers have', 'people have reported', 'readers found', 'you told me'].forEach((lit) => {
-    if (TEXT.toLowerCase().indexOf(lit) >= 0) bad.push(`the landing copy contains ${JSON.stringify(lit)}, implying the logged corrections came from readers — every entry in /corrections is a self-audit finding`);
+    if (TEXT.toLowerCase().indexOf(lit) >= 0) bad.push(`the landing copy contains ${JSON.stringify(lit)}, implying the logged corrections came from readers — every entry in the log is a self-audit finding`);
   });
 
   // 10. THE CAPABILITY TRUTH PAIRS — BIDIRECTIONAL, AND KEYED ON EMITTED BYTES.
