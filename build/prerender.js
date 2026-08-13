@@ -463,6 +463,11 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: breadcrumbs.map((b, i) => ({ '@type': 'ListItem', position: i + 1, name: b.name, item: SITE_URL + b.route })),
   })}</script>` : '';
+  // "YOU ARE HERE" IN THE NAV. Measured before this: 0 of ~620 documents carried aria-current
+  // anywhere, so a screen-reader user moving through a three-item nav was never told which of the
+  // three they were already on. site/index.html is a static file and can never carry it, so
+  // assertShellParity() strips this attribute before comparing the two shells.
+  const cur = (r) => (route === r ? ' aria-current="page"' : '');
   return `<!DOCTYPE html>
 <!-- lang was "en-SG" on all 577 pages while og:locale said "en_US" on 576 of them — the two
      tags contradicted each other sitewide, and both narrowed a site that is written for
@@ -512,22 +517,52 @@ ${crumbLd}${ld}
         server.js's searchSolve() already filters /solve?q= server-side with no script.
         The JS path is unchanged: app.js binds `input` and `focus` on #search and paints
         #search-results; nothing binds submit, so Enter now navigates instead of doing nothing. */ ''}
-  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"></form><div id="search-results" class="search-results" hidden></div></div>
-  ${/* W5c (2026-08-02): SECONDARY FIND ROUTES BELONG IN THE MENU. Measured hydrated at 390x844 on
-        /az: opening the ☰ drawer gave exactly four links — /solve, /where, /plan, /learn — and
-        neither of the site's two INDEX pages was among them. On desktop that costs nothing: the
-        footer is two screens away. On a phone it is the whole cost, because /problem pages have
-        a median height of 29,844px, so "every compound, A-Z" was 35 phone screens below the
-        reader on the pages most likely to make them want it. They are drawer-only (.nav-more is
-        display:none until .topnav.open) so the desktop bar keeps its three primary destinations. */ ''}
-  <nav class="topnav">
-    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/learn">Learn</a><a href="/where" class="nav-more">Where it hurts</a><a href="/az" class="nav-more">A&ndash;Z</a><a href="/browse" class="nav-more">Browse</a>
+  ${/* THE LABEL GOES AFTER THE INPUT, and that ordering is load-bearing twice over. `for=`
+        associates by id, not by DOM order, so the accessible name is correct either way — but
+        scripts/smoke.mjs asserts /<form class="tb-search" …>\s*<input id="search" name="q"/ on
+        three routes, and `\s*` matches whitespace, not an element. A label placed first turns a
+        WCAG 3.3.2 fix into a red release gate. */ ''}
+  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search ${D.compounds.length} compounds, protocols, terms…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form><div id="search-results" class="search-results" hidden></div></div>
+  ${/* THREE ITEMS, AND NO ☰ (2026-08-13). This replaces six anchors, three of which carried
+        .nav-more and were PERMANENTLY INVISIBLE DEAD DOM on ~620 documents, plus a hamburger.
+
+        THE DEFECT THIS FIXES IS THE WORST ONE ON THE SITE. At ≤760px .topnav was display:none and
+        the .open class that reveals it was added by exactly one line of JavaScript
+        (site/app.js:10876). The ☰ was a <button> with no href and no inline handler. Measured in
+        Chrome with JavaScript disabled at 390x844: six links hidden, topnav display:none, and on
+        "/" the topbar search is hidden too — so the no-JS phone header was the brand, an inert
+        glyph, and nothing else. ~90% of traffic never runs JavaScript, and /problem pages have a
+        median height of 29,844px, so the footer was ~35 screens away. There was no way out.
+
+        The nav is now three real anchors that are visible at every width with no script. What it
+        costs is stated plainly in site/styles.css beside the ≤600px rule: the sticky header grows
+        by ~44px on a phone. That is the price of working navigation, and the alternative was none.
+
+        WHY THESE THREE. Find is step 1 and the only problem→protocol entry that exists as a real
+        prerendered document. Today is the return surface, device-local, no account. Corrections is
+        the ONE contribution verb that is complete end to end — a logged error list and a mailto:
+        that needs no account, no credential and no JavaScript — and it was reachable from nothing
+        but a footer. Putting a health site's own error log in global navigation says more in one
+        word than a paragraph of trust copy, and it lands on ~620 documents rather than on one.
+        Find and Today are additionally pinned by name in scripts/containment.mjs. */ ''}
+  <nav class="topnav" aria-label="Main">
+    <a href="/solve" class="nav-solve"${cur('/solve')}>Find</a><a href="/plan"${cur('/plan')}>Today</a><a href="/corrections" data-native${cur('/corrections')}>Corrections</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
-  <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app">${body}</main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Find</a> · <a href="/plan">Today</a> · <a href="/learn">Learn</a> · <a href="/where">Where it hurts</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+${/* THE FOOTER IS THE GLOBAL DISCLAIMER PLUS THREE LINKS. It was eleven links, six of whose labels
+      repeated the header verbatim, prefixed by a 💡 — one of exactly two non-logo emoji in the
+      prerendered document, decorating the one legally load-bearing line on ~620 documents.
+
+      THE ESCALATION NUMBERS ARE NEW HERE AND THE REASON IS MEASURED: the word "emergency" occurred
+      ZERO times on the live home page and no emergency number appeared anywhere on it, while
+      CLAUDE.md rule 5 requires "a real escalation path, not just a disclaimer" on every page. The
+      numbers are copied verbatim from the set the site already publishes at :2856, reordered to put
+      995 first because the site is written for Singapore. assertGlobalDisclaimer() gates it.
+
+      #foot-stats STAYS as an empty element: site/app.js:10878 writes into it with no null guard. */ ''}
+<footer class="foot"><div>Information, not medical advice. No clinician has reviewed these pages and nothing on them is a diagnosis. If something is severe, sudden or getting worse, call your local emergency number &mdash; <b>995</b> in Singapore, or 999, 911, 112 or 000 depending on where you are &mdash; and be seen.</div><div class="foot-links"><a href="/about">About</a> &middot; <a href="/methodology" data-native>How a page is made</a> &middot; <a href="/az">Everything A&ndash;Z</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>
@@ -623,7 +658,13 @@ const WEBSITE = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': S
   // promised Google a search that dropped the query. app.js now reads the parameter (see azQuery),
   // which is the only reason this belongs here. Google crawls '/' -> home.html, so declaring it
   // only in the index.html shell put it on a document the canonical home never serves.
-  potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: SITE_URL + '/az?q={search_term_string}' }, 'query-input': 'required name=search_term_string' } };
+  // THE SITELINKS SEARCH BOX POINTS AT /solve, NOT /az (fixed 2026-08-13). /az ignores ?q= entirely
+  // — its document is byte-identical with and without one — so a granted Google sitelinks searchbox
+  // was landing a reader who had just typed a symptom on an unfiltered A-Z index of 171 compounds.
+  // /solve?q= is filtered server-side by searchSolve() with no JavaScript, and routes
+  // emergency-shaped terms through solveGuidance() before it ranks anything. It is also where every
+  // <form> on the site already submits, so the structured data now agrees with the product.
+  potentialAction: { '@type': 'SearchAction', target: { '@type': 'EntryPoint', urlTemplate: SITE_URL + '/solve?q={search_term_string}' }, 'query-input': 'required name=search_term_string' } };
 const PUB = { publisher: { '@id': SITE_URL + '/#org' }, isPartOf: { '@id': SITE_URL + '/#website' }, dateModified: LASTMOD_TOKEN };
 // ---- SEO length budgets (2026-07-31) ---------------------------------------------------------
 // Measured across the built site: 100% of /protocol titles ran to ~101 chars and 100% of their
@@ -1449,7 +1490,14 @@ function problemRedFlags(p) {
   const plan = PLAN[p.id] || {};
   if (!plan.reassess) return '';
   return `<span id="first-when-this-is-not-a-self-care-problem" class="fragment-alias" aria-hidden="true"></span>
-  <details class="prob-redflags plan-reassess" id="red-flags">
+  ${/* OPEN BY DEFAULT (2026-08-13). This is where the landing page's one safety-critical link — the
+        .lp-red "Severe, sudden, or getting worse. Be seen." row — actually lands, via the
+        #first-when-this-is-not-a-self-care-problem alias directly above. It was a CLOSED accordion
+        in both documents, so the single most urgent affordance on the front door delivered the
+        reader to a collapsed summary reading "Check before choosing" and made them tap again.
+        A red-flag list is not progressive-disclosure material. `open` costs vertical space on a
+        page that has plenty and is inert without JavaScript, which is the point. */ ''}
+  <details class="prob-redflags plan-reassess" id="red-flags" open>
     <summary><span><b>Check before choosing</b><small>When this needs professional care</small></span><span aria-hidden="true">›</span></summary>
     <div class="prob-redflags-body">
       <h2 class="sr-only">When this is not a self-care problem</h2>
@@ -2699,9 +2747,11 @@ add('/solve', shell({ route: '/solve', title: 'Find a protocol for a problem or 
 // deferred because the library drawing is ONE MARK PER PUBLISHED ROUTE and cannot be counted until
 // every add() has run.
 let HOME_SHELL = null;
+// THE CAPABILITY MAP, hoisted to module scope because assertLandingPage() — 1,800 lines below —
+// checks the landing copy against it in both directions. Assigned in the home-page block once every
+// add() has run, because it is computed from the EMITTED documents rather than from process.env.
+let CAPS = null;
 {
-  const RX_CLASS = new Set(['prescription', 'controlled', 'unapproved']);
-
   // ---- the six tap targets ----------------------------------------------------------------------
   // The ids are the one authored judgement on the first screen; everything printed on a tile is read
   // from the corpus. The label is the problem's own `name` unless build/landing.js overrides it
@@ -2718,82 +2768,72 @@ let HOME_SHELL = null;
     return { id, label: LANDING.TAP_WORDS[id] || p.name, causes };
   });
 
-  // ---- the payoff -------------------------------------------------------------------------------
-  // The worked example, repointed from knee-pain to the first tap target's own protocol so the page
-  // tells one story from headline to plan. EVERY FIGURE IS READ FROM THE RECORD THAT RENDERS
-  // /protocol/chronic-fatigue/iron-anemia — rc.prescription, rc.nutrient_targets, rc.keystone and
-  // protoStack(rc) are the same accessors the protocol page uses, so the demo cannot contradict the
-  // product. protoStack() already excludes prescription / controlled / unapproved compounds, so this
-  // block can never advertise a prescription-only medicine.
-  const PAYOFF = (() => {
+  // ---- the plans ---------------------------------------------------------------------------------
+  // REPLACES the three-card worked example of 2026-08-09, which was 161 AUTHORED words simulating
+  // the protocol page instead of showing it — a fake question card with a pre-ticked answer, a stack
+  // line carrying twelve ★ and three ☆ as literal text, a ⭐ entity, and the caption "stars =
+  // strength of the human evidence for this use", which contradicts /legend, /about, /methodology
+  // and /compare. All of it is gone. What ships instead is the two root causes this problem
+  // ACTUALLY publishes, printed from the record.
+  //
+  // THIS IS ALSO A RELOCATION. A quarter of the landing page's authored words used to live in this
+  // 5,300-line generator rather than in build/landing.js, which is the file a copy pass opens. The
+  // words moved; only the lookup stayed.
+  //
+  // rc.prescription and protoStack(rc) are the same accessors /protocol/* uses, so these cards
+  // cannot contradict the pages they link to. protoStack() already excludes prescription /
+  // controlled / unapproved compounds, so this block can never advertise a prescription-only
+  // medicine.
+  const ROOT_CAUSES = (() => {
     const p = GRAPH.problems.find((x) => x.id === LANDING.CAUSE_PROBLEM);
-    const rc = p && (p.root_causes || []).find((r) => r.id === 'iron-anemia');
-    if (!p || !rc || !rc.prescription || !rc.nutrient_targets || !rc.keystone) {
-      // Hard gate, deliberately. This is the landing page's central explanatory block; dropping it
-      // silently would leave a page that argues for a protocol having demonstrated none.
-      console.error('[prerender] FATAL: the landing payoff requires chronic-fatigue / iron-anemia '
+    const rc0 = p && (p.root_causes || []).find((r) => r.id === 'iron-anemia');
+    // KEPT IN FULL from the block this replaces. nutrient_targets and keystone are still required:
+    // the foot line below claims every plan carries daily food targets, and dropping the assertion
+    // because this block stopped PRINTING them is how a page starts making claims nothing checks.
+    if (!p || !rc0 || !rc0.prescription || !rc0.nutrient_targets || !rc0.keystone) {
+      console.error('[prerender] FATAL: the landing plans require chronic-fatigue / iron-anemia '
         + 'to carry prescription, nutrient_targets and keystone. Repair the record, or repoint it.');
       process.exit(1);
     }
-    const short = (s) => esc(String(s).replace(/\s*\([^)]*\)/, ''));
-    // The options are the SIX DOCUMENTED CAUSES, in rank order — the same six the doors above list,
-    // so the page cannot show a reader six causes and then demonstrate on three.
-    const why = ((CAUSE[p.id] || {}).causes || []).slice().sort((a, b) => (a.rank || 99) - (b.rank || 99));
-    const opts = why.map((c, i) => `<li${i === 1 ? ' class="on"' : ''}>${short(c.name)}${i === 1 ? '<b>&#10003;</b>' : ''}</li>`).join('');
-    const stack = protoStack(rc);
-    const stackLine = stack.map((c) => `${esc(c.name)} ${compoundEvidence(c)}`).join(' &middot; ');
-    const T = Object.entries(rc.nutrient_targets);
-    const foods = protoFuel(rc).slice(0, 3).map((f) => f.name).join(', ');
-    // Name, TARGET VALUE and the authored reason the target exists. NO example percentages: the
-    // four illustrative fill bars that used to sit here were the only uncounted numbers on the site.
-    const targets = T.map(([k, t]) => `<li><span>${nutrientLabel(k)} <b>${t.target}${t.unit}</b></span>`
-      + `<small>${esc(t.why || '')}</small></li>`).join('');
-    return `
-      <ol class="wex-chain">
-        <li class="wex-card">
-          <span class="wex-n">1</span>
-          <h3>One question &mdash; not a diagnosis</h3>
-          <p class="wex-ask" data-pid="${esc(p.id)}" data-cc="${why.length}">${esc(p.name)} has ${why.length} documented causes. Which one fits?</p>
-          <ul class="wex-opts">${opts}</ul>
-          <p class="wex-out"><span>Root cause</span><b>${esc(rc.name)}</b></p>
-          <p class="wex-ks"><b>&#11088; If you do one thing:</b> ${esc(rc.keystone.one)}</p>
-        </li>
-        <li class="wex-card">
-          <span class="wex-n">2</span>
-          <h3>The protocol for <em>that</em> cause</h3>
-          <p class="wex-line"><span class="pf-l mv">Move</span><b>${esc(rc.prescription.scheme)}</b><small>${esc(rc.prescription.detail)}</small></p>
-          <p class="wex-line"><span class="pf-l st">Stack</span><b>${stackLine}</b><small>stars = strength of the <i>human</i> evidence for this use</small></p>
-          <p class="wex-line"><span class="pf-l fl">Fuel</span><b>${T.length} daily nutrient targets</b><small>hit from local food${foods ? ` &mdash; ${esc(foods)}` : ''}</small></p>
-        </li>
-        <li class="wex-card">
-          <span class="wex-n">3</span>
-          <h3>And <em>why</em> every number is there</h3>
-          <ul class="wex-targets">${targets}</ul>
-        </li>
-      </ol>
-      <p class="lp-links"><a href="/protocol/${p.id}/${rc.id}">Read the whole protocol &rarr;</a></p>
-      <p class="wex-fine">A real protocol from this site. Educational, not medical advice.</p>`;
+    // The contrast needs TWO root causes carrying a prescription. With one, the heading "Two causes.
+    // Two different first moves." is false and the block argues nothing.
+    const withRx = (p.root_causes || []).filter((r) => r && r.prescription
+      && r.prescription.scheme && r.prescription.detail && r.plain);
+    if (withRx.length < 2) {
+      console.error(`[prerender] FATAL: the landing page contrasts two causes and ${LANDING.CAUSE_PROBLEM} `
+        + `publishes ${withRx.length} root cause(s) carrying a prescription and a plain-language line. `
+        + 'Repair the record, or repoint it.');
+      process.exit(1);
+    }
+    return withRx.slice(0, 2).map((rc) => ({
+      id: rc.id,
+      name: rc.name,
+      plain: rc.plain,
+      scheme: rc.prescription.scheme,
+      detail: rc.prescription.detail,
+      // NO EVIDENCE STARS. The names only. The star's meaning contradicts itself across four
+      // surfaces and its key lives on a separate URL; a front door does not get to teach a
+      // five-glyph scale in a caption.
+      stack: protoStack(rc).map((c) => c.name),
+    }));
   })();
 
-  // ---- the goal list ----------------------------------------------------------------------------
-  // MEASURED over every .html under site/: 312 documents carry an href="/goal/…", and every one of
-  // the 16 goals has 6-51 inbound links EXCLUDING home. So this block is not what keeps them out of
-  // orphanhood — it is kept because 16 outbound links from the site's highest-authority document is
-  // link equity nothing else gives them, and because it is the second entry mode for a reader who
-  // arrives with a goal rather than a symptom. What changed on 2026-08-09 is only the geometry: a
-  // 16-card grid with icons measured 1,116px on a phone, immediately below the closing call to
-  // action. It is now a two-column list.
-  const goalLinks = D.goals.map((g) => {
-    const inGoal = D.compounds.filter((c) => (c.goalIds || []).includes(g.id));
-    const open = inGoal.filter((c) => !RX_CLASS.has(c.regulatory_class)).length;
-    const rx = inGoal.length - open;
-    // MEDICINES ACT 1975 s.51 -- this split is not decoration, and it stays VISIBLE. A bare "18
-    // compounds" under Lose Fat when most of them are prescription-only is a promotional count for
-    // medicines the reader cannot legally obtain, on the site's most promotional surface.
-    const label = rx ? `${open} you can buy &middot; ${rx} prescription-only`
-      : `${open} compound${open === 1 ? '' : 's'}`;
-    return `<li><a href="/goal/${g.id}"><b>${esc(g.label)}</b><small>${label}</small></a></li>`;
-  }).join('');
+  // ---- the goal list is GONE (2026-08-13) --------------------------------------------------------
+  // It was a second entry mode competing with the page's one call to action, 126 words below the
+  // closing block. Two reasons it went rather than moved:
+  //
+  //  1. THREE OF ITS SIXTEEN ROWS WERE WRONG IN A WAY THAT MATTERS. The label read "N you can buy ·
+  //     N prescription-only", and `prescription-only` was printed for compounds whose regulatory
+  //     class is CONTROLLED or UNAPPROVED — substances with no lawful consumer supply route at all.
+  //     Telling a reader that a never-approved research chemical is "prescription-only" invents a
+  //     pharmacy that would dispense it. That is CLAUDE.md rule 6 ("a badge is not a supply
+  //     classification") failing on the site's most promotional surface, and nothing gated it:
+  //     assertGoalSummaryCounts covers /goal/* meta descriptions, never this list.
+  //  2. Orphanhood is not a risk. MEASURED over every .html under site/: 312 documents carry an
+  //     href="/goal/…" and each of the 16 goals keeps 6-51 inbound links EXCLUDING home.
+  //
+  // If a goal entry point returns, it returns with a regulatory class it reads rather than infers,
+  // and a gate.
 
   const nProblems = (D.meta.counts && D.meta.counts.problems) || (GRAPH.problems || []).length;
 
@@ -2819,11 +2859,20 @@ let HOME_SHELL = null;
   HOME_SHELL = ({
     route: '/', ogType: 'website',
     title: 'RNAwiki — Understand the evidence before you act',
-    desc: seoDesc('Compare possible reasons for 41 health and performance topics, check safety limits, and start one practical movement, food or supplement step. Free, in plain English.'),
+    // TWO DEFECTS FIXED HERE, 2026-08-13, and both were invisible to assertLandingPage because it
+    // scopes itself to <main id="app"> and this string lives in <head>:
+    //   1. "41" was TYPED. It was the last hardcoded corpus count on the home page, and nothing
+    //      failed when the corpus grew — the body would have said 42 while the SERP snippet said 41.
+    //      assertCorpusCountCopy now carries a third CLAIMS regex for this exact sentence.
+    //   2. The old string was 191 characters, so seoDesc() cut it at 155 and shipped
+    //      "…Free, in…" — the site's most important meta description ending on a dangling
+    //      preposition. This one is under 155 and survives whole.
+    desc: seoDesc(`Compare possible reasons for ${nProblems} health and performance topics, then start one `
+      + 'movement, food or supplement step. Free, in plain English.'),
     jsonld: [WEBSITE, ORG],
     breadcrumbs: [{ name: 'Home', route: '/' }],
     body: homeBody,
-    landing: { taps: TAPS, payoff: PAYOFF, goalList: goalLinks, nProblems, nCauses, minCauses },
+    landing: { taps: TAPS, rootCauses: ROOT_CAUSES, nProblems, nCauses, minCauses },
   });
 }
 
@@ -3058,13 +3107,20 @@ let written = 0;
       <p class="lede">A site with no corrections page is not a site with no errors. This is the log of
       substantive corrections to published health claims — what was wrong, and what replaced it.</p>
 
+      ${/* TWO FIXES, 2026-08-13, both MANDATORY in the commit that put Corrections into the global
+            nav — promoting this page onto ~620 documents amplifies anything false on it 620-fold.
+            1. It said "Use the feedback link on any page". THERE IS NO FEEDBACK LINK ON ANY
+               PRERENDERED PAGE. The global feedback button was removed; the only in-page report
+               control that survives is on /exercise/*, needs JavaScript, and posts to the feedback
+               table rather than to anything on this page. The first instruction on the site's
+               error-reporting page pointed at a control that does not exist.
+            2. "usually within a day" was an unenforceable service-level promise made by one person
+               with no queue, no rota and no cover. The sentence now ends where the true part ends. */ ''}
       <h2>How to report one</h2>
-      <p>Use the feedback link on any page, or write to
-      <a href="mailto:hello@rnawiki.com">hello@rnawiki.com</a>. The most useful report names the page,
-      quotes the sentence, and says what the source actually shows. You do not need to be polite about
-      it and you do not need a credential.</p>
-      <p>Claims are corrected at their source, so a fix propagates to every page that repeats it —
-      usually within a day.</p>
+      <p>Write to <a href="mailto:hello@rnawiki.com">hello@rnawiki.com</a>. The most useful report
+      names the page, quotes the sentence, and says what the source actually shows. You do not need
+      to be polite about it and you do not need a credential.</p>
+      <p>Claims are corrected at their source, so a fix propagates to every page that repeats it.</p>
 
       <h2>Corrections made</h2>
       <p>This log begins on 27 July 2026, when the site was first audited end to end. It covers
@@ -3230,7 +3286,14 @@ let written = 0;
     desc: `Browse all ${D.compounds.length} compounds by category — nootropics, longevity, hormones, performance, recovery and more, each evidence-ranked.`,
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Browse', route: '/browse' }],
     body: `<div class="article"><h1>Browse by category</h1>
-      <p>${D.compounds.length} compounds across ${cats.length} categories. Prefer to start from a problem instead? <a href="/solve">Start there →</a></p>
+      ${/* THE /stack LINK IS LOAD-BEARING, not decoration (2026-08-13). Before the footer shrank
+            from eleven links to three, `href="/stack"` occurred EXACTLY ONCE in this entire
+            5,300-line generator — in that footer. Dropping it orphaned the route and
+            assertLinkGraph exited 1 inside prestart, which on Railway means the deploy never
+            happens and the previous build keeps serving. A route reachable only from a global
+            footer was never really reachable; this is where somebody assembling several compounds
+            actually is. */ ''}
+      <p>${D.compounds.length} compounds across ${cats.length} categories. Prefer to start from a problem instead? <a href="/solve">Start there →</a> Putting several together? <a href="/stack">Open the Stack Builder →</a></p>
       ${cats.map((cat) => `<h2>${esc(cat)}</h2><ul>${byCat[cat].slice().sort((a, b) => b.stars - a.stars).map(link).join('')}</ul>`).join('')}</div>` }));
 
   add('/pathways', shell({
@@ -3264,10 +3327,50 @@ let written = 0;
   const iProtocols = pages.filter((p) => p.route.startsWith('/protocol/')).length;
   if (!HOME_SHELL) { console.error('\n[prerender] the home page was never assembled — refusing to build.\n'); process.exit(1); }
   const LP = HOME_SHELL.landing;
+
+  // ---- THE CORRECTIONS COUNT, READ OUT OF THE EMITTED LOG ---------------------------------------
+  // This block runs after every add(), so `pages` already holds /corrections. Counting the <h3>
+  // entries in the DOCUMENT rather than in a variable means the landing page's "N claims have
+  // already been wrong" cannot drift from the log it points at.
+  const CORR_HTML = (pages.find((p) => p.route === '/corrections') || {}).html || '';
+  const nCorrections = (CORR_HTML.match(/<h3/g) || []).length;
+
+  // ---- THE CAPABILITIES, COMPUTED FROM THE EMITTED BYTES ----------------------------------------
+  // NOT FROM process.env, and this is the single most important decision on the page.
+  //
+  // The obvious implementation keys the landing page's community copy on PUBLIC_COMMUNITY. That
+  // would be wrong, and provably so: flipping PUBLIC_COMMUNITY=1 produces NO COMMENT BOX ANYWHERE —
+  // the `comments` table has four endpoints and zero UI in site/app.js. The flag is not the truth
+  // signal. What the built site actually CONTAINS is.
+  //
+  // So each capability is a search over the documents this build just emitted. A surface that does
+  // not exist in the bytes cannot be advertised on the front door, whatever any environment
+  // variable says, and the moment one starts existing assertLandingPage fails the build until the
+  // copy catches up. Both directions. See the PAIRS block in assertLandingPage().
+  const ALL_HTML = pages.map((p) => p.html || '').join('');
+  CAPS = {
+    // /corrections is a real prerendered document with logged errors and a mailto: — no account, no
+    // JavaScript, no credential. This is the one contribution verb that is complete end to end.
+    correct: /mailto:/.test(CORR_HTML) && nCorrections > 0,
+    // false today: comments are a table and four endpoints with no rendering path at all.
+    discuss: /id="cm-list"|class="comment-/.test(ALL_HTML),
+    // false today: the vote strip is never prerendered onto any document.
+    vote: /vote-foot/.test(ALL_HTML),
+    // false today: /api/protocols/used 404s and no route lists what anyone has published, so a
+    // created protocol has nowhere to be found. This is the missing bridge in the whole loop.
+    //
+    // `pages`, NOT `uniq` — uniq is a const declared at :3374, below this block, so reading it here
+    // is a temporal-dead-zone ReferenceError that would take the whole build down. `pages` is fully
+    // populated by now (every add() has run) and carries the same route set.
+    // The trailing slash in '/p/' matters: without it this would match /pathway, /plan, /problem
+    // and /protocol, and the page would claim a discovery surface that does not exist.
+    discover: pages.some((p) => p.route === '/p' || p.route.startsWith('/p/')),
+  };
+
   const I = LANDING.landingParts({
     total: iTotal, filled: iProblems + iProtocols, nProblems: iProblems, nProtocols: iProtocols,
     nCauses: LP.nCauses, minCauses: LP.minCauses,
-    taps: LP.taps, payoff: LP.payoff, goalList: LP.goalList,
+    taps: LP.taps, rootCauses: LP.rootCauses, nCorrections, caps: CAPS,
     causes: (CAUSE[LANDING.CAUSE_PROBLEM] || {}).causes || [],
   });
   const filled = ['fold', 'story', 'proof', 'close'].reduce((body, k) => {
@@ -3791,9 +3894,19 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 // PROVE IT by putting 170 back in either place.
 (function assertCorpusCountCopy() {
   const N = D.compounds.length;
+  // EACH CLAIM NAMES THE NUMBER IT IS ABOUT. Until 2026-08-13 every claim here was compared against
+  // the compound count, which was fine while every claim was about compounds. The home page's meta
+  // description states a PROBLEM count, so a claim now carries its own `n`.
+  const NPROB = (D.meta.counts && D.meta.counts.problems) || (GRAPH.problems || []).length;
   const CLAIMS = [
-    { re: /Search (\d+) compounds/g, what: 'the header search placeholder', fix: (n) => `Search ${n} compounds` },
-    { re: /— (\d+) compounds and full Move/g, what: 'the SPA shell meta description', fix: (n) => `— ${n} compounds and full Move` },
+    { re: /Search (\d+) compounds/g, n: N, what: 'the header search placeholder', fix: (n) => `Search ${n} compounds` },
+    { re: /— (\d+) compounds and full Move/g, n: N, what: 'the SPA shell meta description', fix: (n) => `— ${n} compounds and full Move` },
+    // THE HOME PAGE'S META DESCRIPTION. It read "41 health and performance topics" as a TYPED
+    // number for four days, in <head>, where assertLandingPage cannot look — it scopes itself to
+    // <main id="app">. So the one count on the home page that nothing re-derived was the one a
+    // search engine reads first, and it would have kept saying 41 while the body said 42.
+    // site/index.html carries the same sentence and is checked by the same walk.
+    { re: /for (\d+) health and performance topics/g, n: NPROB, what: 'the home page meta description', fix: (n) => `for ${n} health and performance topics` },
   ];
   const bad = [];
   const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => {
@@ -3809,7 +3922,8 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
       c.re.lastIndex = 0;
       let m;
       while ((m = c.re.exec(h))) {
-        if (Number(m[1]) !== N) bad.push({ file: path.relative(ROOT, p), what: c.what, saw: m[0], want: c.fix(N) });
+        const want = c.n == null ? N : c.n;
+        if (Number(m[1]) !== want) bad.push({ file: path.relative(ROOT, p), what: c.what, saw: m[0], want: c.fix(want) });
       }
     });
   });
@@ -4549,6 +4663,15 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   const APP = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8');
   const MAIN = (H.match(/<main id="app">([\s\S]*)<\/main>/) || [, ''])[1];
   if (!MAIN) bad.push('site/home.html has no <main id="app"> — this gate reads the page body out of it and refuses to pass blind');
+  // WHITESPACE-NORMALISED, and this is a real fix rather than a convenience. The needles this gate
+  // used to carry embedded a literal newline and two spaces, and matched only because
+  // build/landing.js happened to wrap that sentence at that exact column. Re-flowing a paragraph
+  // failed the build for a reason that had nothing to do with whether the page was true. Prose
+  // assertions run against FLAT; structural ones stay on MAIN, where whitespace is meaningful.
+  const FLAT = MAIN.replace(/\s+/g, ' ');
+  // Text only. Every ban below has to be able to say "the READER sees this", and an href or a class
+  // name is not something a reader sees — `/learn` in a link must not trip the "earn points" ban.
+  const TEXT = FLAT.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
 
   // 1. THE NUMBERS, counted out of the paths that were actually drawn and the routes actually built
   const nOn = (((H.match(/class="i-lib-on" d="([^"]*)"/) || [, ''])[1]).match(/M/g) || []).length;
@@ -4563,21 +4686,27 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   if (nOn + nOff !== realTotal) bad.push(`the library drawing has ${nOn + nOff} marks and ${realTotal} routes are published — the page is counting something that stopped being true`);
   if (nOn !== realFilled) bad.push(`the library drawing fills ${nOn} marks and ${realFilled} routes carry a plan (${realProb} problems + ${realProt} protocols)`);
   if (H.indexOf(`>${realTotal} marks, one for every page published here. ${realFilled} of them are filled in`) < 0) bad.push(`the library drawing's <title> does not state ${realTotal} and ${realFilled} — the two numbers a screen-reader user is given have come apart from the two the drawing shows`);
-  if (H.indexOf(`To read all ${realTotal}<`) < 0) bad.push(`the receipt does not say "To read all ${realTotal}" — that is how many routes are published`);
-  if (H.indexOf(`<b>All ${realProb} problems and goals</b>`) < 0) bad.push(`the all-problems row does not read "All ${realProb} problems and goals" — that is how many /problem pages are published`);
-  if (H.indexOf(`Read any of the ${realProb} now<`) < 0) bad.push(`the footer does not offer "Read any of the ${realProb} now" — that is how many /problem pages are published`);
-  if (H.indexOf(`Not one of the ${realProb} problems here has a single cause. The fewest is\n  ${realMin}. There are ${realCauses} written down`) < 0) bad.push(`the counted paragraph does not read "${realProb} problems … the fewest is ${realMin} … ${realCauses} written down" — those are the corpus's own totals`);
-  if (H.indexOf(`All ${realCauses} causes here say what to do about them. ${realProt} of`) < 0) bad.push(`the honest-limit line does not read "All ${realCauses} causes … ${realProt} of them carry a full … protocol" — 224 causes carry fixes and only ${realProt} carry a protocol, and saying otherwise overclaims the corpus`);
+  // "All N problems" — NOT "problems and goals". /solve publishes N /problem/ links and ZERO
+  // /goal/ links, so the old wording promised a directory of goals that the destination does not
+  // contain. This gate froze that false statement as a BUILD REQUIREMENT for four days.
+  if (H.indexOf(`<b>All ${realProb} problems</b>`) < 0) bad.push(`the all-problems row does not read "All ${realProb} problems" — that is how many /problem pages are published, and /solve publishes no /goal links, so this row may not promise goals`);
+  // ONE counted sentence replaces four. Run against FLAT so re-wrapping the paragraph is not a
+  // build failure; every figure in it is still re-derived from the published route set.
+  if (FLAT.indexOf(`All ${realTotal} pages are free to read. ${realCauses} causes are written down; ${realProt} carry a full plan. The fewest on any one problem is ${realMin}.`) < 0) bad.push(`the counted line does not read "All ${realTotal} pages are free to read. ${realCauses} causes are written down; ${realProt} carry a full plan. The fewest on any one problem is ${realMin}." — those are the corpus's own totals and the page may not round any of them`);
 
-  // 2. THE ONE CALL TO ACTION. Both forms on this page are the SAME control rendered twice by the
-  //    same function; what may never happen is a form that asks for something else.
+  // 2. THE ONE CALL TO ACTION. There is now exactly one form on this page; what may never happen is
+  //    a form that asks for something else.
   const forms = [...MAIN.matchAll(/<form\b[^>]*>/g)].map((m) => m[0]);
   if (!forms.length) bad.push('the home page has no <form> at all — the site\'s only call to action is gone');
   forms.forEach((f) => {
     if (!/action="\/solve"/.test(f) || !/method="get"/.test(f)) bad.push(`the home page carries a <form> that is not the one call to action: ${f} — the owner's instruction is "i just need 1 CTA: search and protocol", so every form here must be action="/solve" method="get"`);
   });
   if (!/<input id="hero-solve-input" name="q"/.test(MAIN)) bad.push('the first form has no <input id="hero-solve-input" name="q"> — scripts/smoke.mjs asserts that id on "/" by name, and site/app.js binds the typeahead to it');
-  if (!/<input id="close-solve-input" name="q"/.test(MAIN)) bad.push('the closing form has no <input id="close-solve-input" name="q">');
+  // ONE FORM, ONE GRID (2026-08-13). The closing duplicate is gone: 838 bytes emitted twice,
+  // byte-identical, and only the hero copy carried a #hero-solve-out div — so solveGuidance()'s
+  // live emergency-term routing fired in one of the two identical-looking boxes and not the other.
+  if (forms.length !== 1) bad.push(`the home page carries ${forms.length} forms — there is one call to action and it is emitted once, in the fold`);
+  if (MAIN.indexOf('close-solve-input') >= 0) bad.push('the closing search box is back. It was byte-identical to the hero form but had no typeahead output element, so the live safety routing that reroutes emergency-shaped queries never fired in it — two controls that look the same and behave differently');
   ['/api/interest', 'type="email"', 'name="topic"', 'Count me in'].forEach((lit) => {
     if (MAIN.indexOf(lit) >= 0) bad.push(`the home page still contains ${JSON.stringify(lit)} — the interest form was removed on the owner's instruction and this is the second call to action growing back`);
   });
@@ -4587,7 +4716,7 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   // 3. THE TAP TARGETS. Every printed cause count is checked against the corpus, not against what
   //    the renderer was handed. This is the gate the old "Knee Pain has 3 root causes" needed.
   const taps = [...MAIN.matchAll(/<a class="lp-tap" href="\/problem\/([a-z0-9-]+)" data-pid="[a-z0-9-]+" data-cc="(\d+)"[^>]*>(?:<b>)([^<]*)<\/b><span>(\d+) causes<\/span>/g)];
-  if (taps.length !== LANDING.TAP_IDS.length * 2) bad.push(`the page renders ${taps.length} tap targets and build/landing.js declares ${LANDING.TAP_IDS.length} in two placements (${LANDING.TAP_IDS.length * 2}) — the fold grid and the closing grid must come from one function`);
+  if (taps.length !== LANDING.TAP_IDS.length) bad.push(`the page renders ${taps.length} tap targets and build/landing.js declares ${LANDING.TAP_IDS.length} — they are emitted once, in the fold`);
   taps.forEach(([, id, cc, label, shown]) => {
     const real = ((CAUSE[id] || {}).causes || []).length;
     if (!real) bad.push(`a tap target points at /problem/${id} and data/cause_learn.json publishes no causes for it`);
@@ -4622,15 +4751,27 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   // disclaimer has to travel with them or the numbers read as an ordering of how likely each cause
   // is to be the reader's — an implied diagnosis, and the page's largest regulatory exposure.
   if (MAIN.indexOf('not an order of likelihood') < 0) bad.push('the six doors print rank numbers and the page does not carry the corpus\'s own "ranked by leverage … not a diagnosis, and not an order of likelihood" note beside them');
+  // BIDIRECTIONAL, as of 2026-08-13. The first half is the original: a plainer wording whose cause
+  // stopped being published means the owner's line vanished silently. The second half is new and it
+  // closes the hole that let door 6 ship reading "Mitochondrial inefficiency & cofactor depletion"
+  // beside five plain sentences — landing.js's own comment called that out and then did it anyway,
+  // because `CAUSE_WORDS[c.name] || c.name` falls back to corpus jargon without complaint. A cause
+  // with no plainer wording now FAILS THE BUILD until somebody writes one.
   Object.keys(LANDING.CAUSE_WORDS).forEach((k) => {
     if (!causeList.some((c) => c.name === k)) bad.push(`build/landing.js has the owner's wording for a cause called "${k}" and /problem/${LANDING.CAUSE_PROBLEM} no longer publishes one by that name — his line would have vanished without a word`);
   });
+  causeList.forEach((c, i) => {
+    if (!(c.name in LANDING.CAUSE_WORDS)) bad.push(`/problem/${LANDING.CAUSE_PROBLEM} publishes a cause called "${c.name}" and build/landing.js has no plainer wording for it, so door ${i + 1} would print corpus jargon beside ${causeList.length - 1} plain-English lines. Write the line in CAUSE_WORDS, or take the cause off this page.`);
+  });
 
-  // 6. THE DRAWINGS, THE H1 AND THE SPA ANSWER
+  // 6. THE DRAWING, THE H1 AND THE SPA ANSWER
+  // ONE drawing now, not two. hookFigure() — the search box with five repeated scribbles — is gone:
+  // it argued that the reader's past searching was futile, which is a feeling rather than a step,
+  // and its own <title> hardcoded "five times" against an array no gate read.
   const svgs = (H.match(/<svg class="i-[a-z]+"/g) || []).length;
   const titles = (H.match(/<title id="i-t-[a-z]+">/g) || []).length;
   const labelled = (H.match(/<svg class="i-[a-z]+"[^>]*aria-labelledby="i-t-[a-z]+"/g) || []).length;
-  if (svgs !== 2 || titles !== 2 || labelled !== 2) bad.push(`${svgs} drawings, ${titles} <title> elements and ${labelled} of them wired up with aria-labelledby — every drawing needs one or a screen reader is told "image"`);
+  if (svgs !== 1 || titles !== 1 || labelled !== 1) bad.push(`${svgs} drawings, ${titles} <title> elements and ${labelled} of them wired up with aria-labelledby — the landing page carries exactly one drawing and it needs its accessible name, or a screen reader is told "image"`);
   if ((H.match(/<h1/g) || []).length !== 1) bad.push('the home page does not have exactly one <h1>');
   if (H.indexOf('<h1>Turned away, priced out, or told it was nothing.</h1>') < 0) bad.push("the owner's headline is gone from the home page");
   [['if (HOME_HTML) return HOME_HTML;',
@@ -4641,6 +4782,108 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
     'the boot capture of the prerendered home is gone, so home() has nothing to replay']].forEach(([lit, what]) => {
     if (APP.indexOf(lit) < 0) bad.push(`${what}. site/app.js must contain, verbatim:  ${lit}`);
   });
+
+  // ================================================================================================
+  // 7. THE PLANS ARE THE RECORD. Same discipline the door tells have had since 2026-08-08: the two
+  //    prescriptions printed on this page are the corpus's sentences, and the gate re-reads them out
+  //    of the emitted document rather than trusting what the renderer was handed.
+  const probRec = (GRAPH.problems || []).find((x) => x.id === LANDING.CAUSE_PROBLEM) || {};
+  const rcList = (probRec.root_causes || []).filter((r) => r && r.prescription && r.prescription.scheme && r.prescription.detail && r.plain).slice(0, 2);
+  if (rcList.length !== 2) bad.push(`the landing page contrasts two causes and ${LANDING.CAUSE_PROBLEM} publishes ${rcList.length} root cause(s) carrying a prescription and a plain-language line`);
+  rcList.forEach((rc) => {
+    [rc.name, rc.plain, rc.prescription.scheme, rc.prescription.detail].forEach((s) => {
+      if (MAIN.indexOf(esc(s)) < 0) bad.push(`the plan block does not print ${JSON.stringify(s)} byte for byte — the two plans on this page are the corpus's sentences, not mine`);
+    });
+    protoStack(rc).forEach((c) => {
+      if (MAIN.indexOf(esc(c.name)) < 0) bad.push(`the ${rc.id} stack on the landing page omits ${c.name}, which /protocol/${LANDING.CAUSE_PROBLEM}/${rc.id} lists — the front door may not show a shorter stack than the page it opens`);
+    });
+  });
+
+  // 8. THE ARITHMETIC OF WHAT IS MISSING, SUBTRACTED AND NEVER TYPED.
+  //    /problem/chronic-fatigue publishes six causes and two of them carry a protocol. An earlier
+  //    draft of this page headed the block "Each cause opens its own plan" — overstating the corpus
+  //    by a factor of three on the site's front door. The page now says how many have none, and the
+  //    number is a subtraction, so it cannot rot when a protocol is written.
+  const noPlan = causeList.length - (probRec.root_causes || []).length;
+  if (FLAT.indexOf(`The other ${noPlan} causes above have the mechanism`) < 0) bad.push(`the plan block does not say that ${noPlan} of the ${causeList.length} causes have no plan written — /problem/${LANDING.CAUSE_PROBLEM} publishes ${causeList.length} causes and ${(probRec.root_causes || []).length} carry a protocol, and a front door may not imply the other ${noPlan} do`);
+
+  // 9. THE CORRECTIONS COUNT, DERIVED FROM THE EMITTED LOG.
+  const CORRH = (pages.find((p) => p.route === '/corrections') || {}).html || '';
+  const nCorr = (CORRH.match(/<h3/g) || []).length;
+  if (!nCorr) bad.push('/corrections publishes no logged corrections and the landing page counts them');
+  if (CORRH.indexOf('mailto:') < 0) bad.push('/corrections carries no mailto: — the landing page tells a reader they can write to me, and the page it sends them to would give them nowhere to write');
+  if (FLAT.indexOf(`${nCorr} claims on this site have already been wrong`) < 0) bad.push(`the landing page prints a corrections count that is not the ${nCorr} entries in the emitted /corrections log`);
+  // AND MAY NOT ATTRIBUTE THEM TO READERS. Every logged entry is a self-audit finding; saying or
+  // implying that readers reported them manufactures a community that has not happened yet.
+  ['corrected that way', 'readers have', 'people have reported', 'readers found', 'you told me'].forEach((lit) => {
+    if (TEXT.toLowerCase().indexOf(lit) >= 0) bad.push(`the landing copy contains ${JSON.stringify(lit)}, implying the logged corrections came from readers — every entry in /corrections is a self-audit finding`);
+  });
+
+  // 10. THE CAPABILITY TRUTH PAIRS — BIDIRECTIONAL, AND KEYED ON EMITTED BYTES.
+  //     This is the assertion that stops the front door from lying in either direction. While a
+  //     capability does not exist in the built site, the page must SAY it does not. The moment it
+  //     starts existing, that sentence must go and a way in must appear.
+  //
+  //     Keyed on the emitted documents rather than on PUBLIC_COMMUNITY, deliberately: flipping that
+  //     flag produces no comment box anywhere, because `comments` is a table with four endpoints
+  //     and zero rendering path. An env var is a statement of intent; the bytes are the product.
+  [[CAPS.discuss || CAPS.vote, 'No comments, no votes, no points, and no moderators'],
+    [CAPS.discover, 'Nothing here lists what other people have built']].forEach(([on, negative]) => {
+    if (!on && FLAT.indexOf(negative) < 0) bad.push(`the capability behind "${negative}" does not exist anywhere in the emitted site and the landing page no longer says so — a front door may not go quiet about a thing it cannot do`);
+    if (on && FLAT.indexOf(negative) >= 0) bad.push(`the landing page still says "${negative}" and the emitted site now contains that surface — the words and the system have come apart, in the direction that makes the site look worse than it is`);
+    if (on && MAIN.indexOf('class="lp-fix"') < 0) bad.push('a contribution surface now exists in the emitted site and the landing page offers no way into it');
+  });
+
+  // 11. NO UNBUILT PROMISE. award() returns before writing at server.js:404 while the community
+  //     capability is off, and no rank, ladder or role exists anywhere in the product. Shipped UI
+  //     elsewhere on this site already tells readers "+2 points" and "+20 points" for writes that
+  //     never land; the front door does not get to join in.
+  //     Run against TEXT, not FLAT: `points.` inside the negative sentence above is legitimate, and
+  //     an href containing "/learn" must not read as "earn".
+  [/\+\s*\d+\s*points?\b/i, /\bearn(s|ed|ing)?\s+points?\b/i, /\bleaderboard\b/i, /\breputation\b/i,
+    /\bbadge ladder\b/i, /\bsteward/i].forEach((re) => {
+    const m = TEXT.match(re);
+    if (m) bad.push(`the landing copy contains ${JSON.stringify(m[0])} — award() returns before writing while the community capability is off, and no ladder, rank or role exists in this product`);
+  });
+
+  // 12. NO SPELLED-OUT COUNTS. Every count on this page is read from the corpus; a number typed as a
+  //     word cannot be re-derived and rots in silence. This is the gate the old "your six causes"
+  //     line needed — it was the last hardcoded count in the body and nothing caught it.
+  const SPELLED = TEXT.match(/\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(causes|problems|protocols|plans|pages|marks|corrections)\b/i);
+  if (SPELLED) bad.push(`the landing copy types the count "${SPELLED[0]}" — every count on this page is read from the corpus, and a spelled-out number cannot be re-derived and will rot silently`);
+
+  // 13. NO STARS. The star's meaning contradicts itself across /legend, /about, /methodology and
+  //     /compare, its key lives on a separate URL, and the old worked example rendered twelve of
+  //     them as literal authored text with no accessible name. A front door does not teach a
+  //     five-glyph scale in a caption.
+  ['★', '☆', '⭐', '&#11088;'].forEach((g) => {
+    if (MAIN.indexOf(g) >= 0) bad.push(`the landing page renders ${g} — the evidence star's meaning is not consistent across this site and this page no longer teaches it`);
+  });
+
+  // 14. THE LEGALLY LOAD-BEARING LITERALS, both of which were UNGATED on this page until now.
+  [['Written with AI assistance and edited by one person &mdash; me. <b>Not yet reviewed by a clinician.</b>', 'the AI-authorship and no-clinician-review disclosure'],
+    ['Both are real protocols from this site, in their own words. Educational, not medical advice.', 'the educational-not-medical-advice line under the two plans']]
+    .forEach(([lit, what]) => { if (MAIN.indexOf(lit) < 0) bad.push(`${what} is missing from the landing page. It must appear verbatim: ${lit}`); });
+
+  // 15. THE :has() COUPLING. site/styles.css does product work off .lp-fold — it is what suppresses
+  //     the duplicate topbar search and the account slot on this page below 900px. Nothing in CI
+  //     stood behind that selector, so deleting the class would silently put a second search box and
+  //     a "Sign in" control above the headline.
+  if (MAIN.indexOf('class="lp-fold"') < 0) bad.push('site/styles.css suppresses the duplicate topbar search and the account control on this page with a :has(.lp-fold) selector, and that class is gone from the document — a second search box and a "Sign in" control have silently reappeared above the headline');
+
+  // 16. THE "#" LEAK. anchorHeadings() matches /<h([23])>/ — ATTRIBUTE-FREE ONLY — and rewrites the
+  //     heading to inject <a class="hanchor">#</a>. That anchor is opacity:0 and display:none under
+  //     640px, so no sighted reader ever saw it; but the "#" is a real text node, and reader mode,
+  //     the clipboard and every answer engine that reads this document receive it verbatim in front
+  //     of the heading. Ten shipped on this page. Giving each heading a class is the whole fix.
+  //
+  //     THIS CHECKS FOR THE OUTPUT, NOT THE INPUT, and the first version got that wrong. It looked
+  //     for an attribute-free <h2> in MAIN — but anchorHeadings() runs BEFORE this gate reads
+  //     home.html off disk, so by now every such heading has already been rewritten to carry an id.
+  //     The gate passed while the bug was reintroduced. What is actually diagnostic is the hanchor
+  //     itself: if one is in the landing MAIN, a heading leaked.
+  const leaked = (MAIN.match(/<a class="hanchor"/g) || []).length;
+  if (leaked) bad.push(`${leaked} heading(s) on the landing page carry no attribute, so anchorHeadings() rewrote them and leaked ${leaked} literal "#" text node(s) into the document. No sighted reader sees them — the anchor is opacity:0 and display:none under 640px — but reader mode, the clipboard and every answer engine that reads this page receive them verbatim in front of the heading. Give each heading a class.`);
 
   if (bad.length) {
     console.error('\n[prerender] the landing copy on "/" FAILED — refusing to build:');
@@ -4865,42 +5108,128 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   console.log(`[prerender] comparison verdicts OK — ${checked} pairs, ${named} named dimensions, every one an actual row, 0 pointing "below".`);
 })();
 
-// ---- build-time assertion: A MOBILE-ONLY CONTROL MUST STAY MOBILE-ONLY ------------------------
-// W5c FOLLOW-UP (2026-08-02). The tap-target commit put `.menu-btn` into a shared rule reading
-// `min-height:44px;display:inline-flex`, which sits AFTER `.menu-btn{display:none}` and therefore
-// overrode it at every width. Measured at 1440x900: computed display "flex", 44x44 — the ☰ was
-// rendering on DESKTOP, beside the full nav bar it exists to replace.
-// Nothing caught it. Every gate on this project asserts that something is PRESENT, correct or
-// large enough; none asserts that a control is ABSENT where it should be, and the smoke run drives
-// a single 390px viewport where the button is supposed to appear. It was found by looking at a
-// screenshot — which is the standing lesson from the /body/leg 3D fix, and it cost a re-render to
-// find that a passing gate suite had already hidden.
-// The rule this enforces is narrow and exact: any control whose base rule hides it may only be
-// un-hidden inside a media query. `display` for such a control is set once, where its behaviour is.
-// PROVE IT by adding `.menu-btn` back to the shared 44px rule.
-(function assertMobileOnlyControls() {
-  const CSS2 = fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8');
+// ---- build-time assertion: THE GLOBAL NAVIGATION MAY NOT DEPEND ON JAVASCRIPT -----------------
+// REPLACES assertMobileOnlyControls() (2026-08-13), which policed whether the ☰ was correctly
+// hidden on desktop. That gate was green for eleven days while the defect underneath it was the
+// worst on the site, and the replacement is the lesson: the old gate could only ever have caught a
+// control APPEARING where it should not. It had no opinion about whether the reader could navigate.
+//
+// WHAT IT MISSED. site/styles.css set `.topnav{display:none}` at ≤760px and revealed it only on a
+// `.open` class that exactly one line of JavaScript (site/app.js) could add; the ☰ was a <button>
+// with no href and no inline handler. Measured in Chrome with JavaScript disabled at 390x844 on /,
+// /az and /problem/insomnia: all six nav links hidden, topnav computed display "none", and on "/"
+// the topbar search hidden too — so the header was the brand, an inert glyph, and nothing else.
+// ~90% of this site's traffic never runs JavaScript, and /problem pages have a median height of
+// 29,844px, so the footer was roughly 35 screens below the reader. There was no way out of the page.
+//
+// The gate now asserts the thing that actually matters, in the negative, across BOTH documents:
+// nothing may hide .topnav at any breakpoint, the .open drawer may not come back, and no script may
+// toggle it. PROVE IT by restoring `.topnav{display:none}` inside the ≤760px block.
+(function assertNavIsAlwaysReachable() {
+  // COMMENTS ARE STRIPPED FIRST, in both files, and that is not tidiness. The first version of this
+  // gate scanned the raw bytes and immediately failed on its own documentation: the comments in
+  // site/styles.css that record WHY `.topnav{display:none}` was deleted contain that exact string.
+  // A gate that cannot survive being explained is a gate somebody deletes.
+  const strip = (s) => s.replace(/\/\*[\s\S]*?\*\//g, ' ');
+  const CSS2 = strip(fs.readFileSync(path.join(SITE, 'styles.css'), 'utf8'));
+  const APP2 = strip(fs.readFileSync(path.join(SITE, 'app.js'), 'utf8')).replace(/(^|\n)\s*\/\/[^\n]*/g, '$1');
+  const IDX = fs.readFileSync(path.join(SITE, 'index.html'), 'utf8');
   const bad = [];
-  // Blocks nested inside @media are stripped first, so what is left is the unconditional cascade.
-  let top = CSS2, prev = null;
-  while (top !== prev) { prev = top; top = top.replace(/@media[^{]*\{(?:[^{}]|\{[^{}]*\})*\}/g, ''); }
-  const MOBILE_ONLY = ['.menu-btn'];
-  MOBILE_ONLY.forEach((sel) => {
-    const rules = [...top.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter((m) => m[1].split(',').some((x) => x.trim() === sel || x.trim().endsWith(' ' + sel)));
-    if (!rules.length) { bad.push(`${sel} has no unconditional rule at all — this gate has stopped covering it`); return; }
-    const displays = rules.map((m) => (m[2].match(/(?:^|;)\s*display\s*:\s*([^;]+)/) || [])[1]).filter(Boolean).map((x) => x.trim());
-    if (!displays.length) { bad.push(`${sel} is never hidden outside a media query — it is supposed to be a phone-only control`); return; }
-    displays.forEach((d) => {
-      if (d !== 'none') bad.push(`${sel} is set to display:${d} OUTSIDE a media query — it is a phone-only control, and an unconditional display overrides the "display:none" that keeps it off the desktop header next to the full nav it replaces`);
-    });
+
+  // 1. NOTHING MAY HIDE THE NAV, at any width, conditional or not.
+  const hidden = [...CSS2.matchAll(/(^|[\s,{}])(\.topnav)\s*\{([^}]*)\}/g)]
+    .filter((m) => /(?:^|;)\s*display\s*:\s*none/.test(m[3]));
+  if (hidden.length) bad.push(`site/styles.css hides .topnav (${hidden.length} rule(s) setting display:none). At ≤760px this is what left a phone with no JavaScript with no navigation at all, on ~620 documents.`);
+
+  // 2. THE JAVASCRIPT-ONLY DRAWER MAY NOT COME BACK, in either file.
+  //    The app.js test is scoped to a toggle ON THE NAV. An earlier draft banned every
+  //    `classList.toggle('open')` in the file and fired on the glossary's definition popovers,
+  //    which have nothing to do with navigation — a gate with a false positive that loud gets
+  //    switched off rather than obeyed.
+  if (/\.topnav\.open/.test(CSS2)) bad.push('site/styles.css still has a .topnav.open selector — a nav that is only visible once a class is added is a nav that only the ~10% of readers running JavaScript can open');
+  if (/topnav[^\n]{0,80}classList\.(toggle|add)\(/.test(APP2)) bad.push("site/app.js adds or toggles a class on .topnav — the global navigation may not depend on a script running");
+  if (/id="menu-btn"/.test(APP2) || /id="menu-btn"/.test(IDX)) bad.push('the ☰ menu button is back. It was a <button> with no href, so it did nothing at all without JavaScript; the nav is three real anchors now and needs no control to reveal it.');
+
+  // 3. AND THE NAV MUST ACTUALLY BE THERE, in both shells, with the doctrine's three items.
+  //    Checking the EMITTED bytes rather than the generator, because the generator is not what a
+  //    reader receives.
+  const HOMEH = (() => { try { return fs.readFileSync(path.join(SITE, 'home.html'), 'utf8'); } catch (e) { return ''; } })();
+  [['site/home.html', HOMEH], ['site/index.html', IDX]].forEach(([what, doc]) => {
+    const nav = (doc.match(/<nav class="topnav"[^>]*>([\s\S]*?)<\/nav>/) || [, ''])[1];
+    if (!nav) { bad.push(`${what} has no <nav class="topnav">`); return; }
+    const links = [...nav.matchAll(/<a\s[^>]*href="([^"]+)"/g)].map((m) => m[1]);
+    if (links.length !== 3) bad.push(`${what} offers ${links.length} global nav links (${links.join(', ')}) — the doctrine budget is exactly 3`);
+    if (/nav-more/.test(nav)) bad.push(`${what} still carries .nav-more, which is display:none unconditionally — permanently invisible dead DOM in the header of every document`);
   });
+
   if (bad.length) {
-    console.error('\n[prerender] A PHONE-ONLY CONTROL IS SHOWING ON DESKTOP — refusing to build.');
+    console.error('\n[prerender] THE GLOBAL NAVIGATION IS HIDDEN BEHIND JAVASCRIPT — refusing to build.');
+    console.error('  ~90% of this site\'s traffic never runs it.');
     bad.forEach((b) => console.error('    ✗ ' + b));
     console.error('');
     process.exit(1);
   }
-  console.log(`[prerender] phone-only controls OK — ${MOBILE_ONLY.length} control(s), hidden unconditionally and revealed only inside a media query.`);
+  console.log('[prerender] navigation OK — 3 items, present in both shells, no display:none, no drawer, no script needed.');
+})();
+
+// ---- build-time assertion: THE TWO SHELLS MAY NOT DRIFT ----------------------------------------
+// NEW 2026-08-13. There are two hand-maintained copies of this site's header: the one shell() emits
+// onto ~620 prerendered documents, and the one in site/index.html, which server.js serves for every
+// SPA-only route. docs/PRODUCTION_REVAMP_STATE.md states they must agree. NOTHING ENFORCED IT, and
+// they had already drifted four ways: the brand href ("/" vs "#/"), the footer text, the presence
+// of /head.js, and a search placeholder typed as "Search 171 compounds…" in one and interpolated
+// from the corpus in the other.
+// This gate covers the nav specifically, because the nav is what just changed and a nav that says
+// three different things in two documents is worse than the six-item one it replaced.
+// aria-current is stripped before comparing: index.html is a static file and can never carry it.
+// PROVE IT by changing one nav label in either file.
+(function assertShellParity() {
+  const IDX = fs.readFileSync(path.join(SITE, 'index.html'), 'utf8');
+  const HOMEH = (() => { try { return fs.readFileSync(path.join(SITE, 'home.html'), 'utf8'); } catch (e) { return ''; } })();
+  const grab = (doc) => (doc.match(/<nav class="topnav"[^>]*>([\s\S]*?)<\/nav>/) || [, ''])[1]
+    .replace(/\saria-current="page"/g, '').replace(/\s+/g, ' ').trim();
+  const a = grab(HOMEH), b = grab(IDX);
+  if (!a || !b || a !== b) {
+    console.error('\n[prerender] THE TWO SHELLS DISAGREE ABOUT THE NAVIGATION — refusing to build.');
+    console.error(`    prerendered: ${a || '(none)'}`);
+    console.error(`    index.html : ${b || '(none)'}`);
+    console.error('    Both are hand-maintained copies of the same header. Edit both, or neither.\n');
+    process.exit(1);
+  }
+  console.log('[prerender] shell parity OK — the generated header and site/index.html publish the same navigation.');
+})();
+
+// ---- build-time assertion: EVERY DOCUMENT CARRIES THE DISCLAIMER AND A WAY TO ESCALATE ----------
+// NEW 2026-08-13. CLAUDE.md rule 5 is "Not medical advice, on every page — and a real escalation
+// path, not just a disclaimer." The second half was not true anywhere: MEASURED on the live home
+// page, the word "emergency" occurred ZERO times and no emergency number appeared at all, while the
+// footer said "💡 Not medical advice" — a lightbulb, the graphic vocabulary of a tip, in front of
+// the one legally load-bearing sentence on ~620 documents.
+// assertLandingPage() checks a lot about the landing page and never checked this; nothing else did
+// either, so every disclaimer on the site could have been deleted with a green build.
+// PROVE IT by removing the escalation clause from shell()'s footer.
+(function assertGlobalDisclaimer() {
+  const NEED = 'No clinician has reviewed these pages and nothing on them is a diagnosis';
+  const bad = [];
+  let checked = 0;
+  const inspect = (what, doc) => {
+    if (!doc) { bad.push(`${what} could not be read`); return; }
+    checked++;
+    if (doc.indexOf(NEED) < 0) bad.push(`${what} does not carry the global disclaimer`);
+    // The escalation path has to be a NUMBER a reader can dial, not the word "urgent".
+    if (!/>995</.test(doc) && doc.indexOf('995') < 0) bad.push(`${what} names no emergency number — a disclaimer without an escalation route is the half of CLAUDE.md rule 5 that does not help anyone`);
+  };
+  pages.forEach((p) => inspect(p.route, p.html));
+  try { inspect('site/home.html', fs.readFileSync(path.join(SITE, 'home.html'), 'utf8')); } catch (e) { bad.push('site/home.html could not be read'); }
+  try { inspect('site/index.html', fs.readFileSync(path.join(SITE, 'index.html'), 'utf8')); } catch (e) { bad.push('site/index.html could not be read'); }
+  if (bad.length) {
+    console.error('\n[prerender] A DOCUMENT SHIPS WITHOUT THE DISCLAIMER OR WITHOUT AN ESCALATION ROUTE — refusing to build.');
+    bad.slice(0, 15).forEach((b) => console.error('    ✗ ' + b));
+    if (bad.length > 15) console.error(`    … and ${bad.length - 15} more`);
+    console.error('');
+    process.exit(1);
+  }
+  console.log(`[prerender] global disclaimer OK — ${checked} documents, every one carrying the not-medical-advice line and a dialable emergency number.`);
 })();
 
 // ---- build-time assertion: ANONYMOUS-FIRST IS A BEHAVIOUR, NOT A SENTENCE ---------------------

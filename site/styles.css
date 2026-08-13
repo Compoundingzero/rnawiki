@@ -28,6 +28,13 @@
   --accent:#0f766e; --accent-ink:#ffffff; --accent2:#2563eb; --link:#0e7c72;
   --green:#047857; --yellow:#b45309; --blue:#2563eb; --orange:#c2410c; --red:#dc2626; --black:#4b5563;
   --star:#a35a00; --purple:#7c3aed;
+  /* MOVE / FUEL / STACK — the three layer colours. Moved here from a second :root at ~line 600 on
+     2026-08-13 so assertContrastTokens() can actually see them; its regex is first-:root-only.
+     W5c measured: --fl #16a34a was 3.10:1 on --bg as TEXT (.sg, .hiw-n.fl, .solve-hero .fl,
+     .step3 .s3-tag.fl); the same hue at #14783a is 5.22:1. --mv 4.85 and --st 5.35 already passed.
+     Every one of the three is used as a text colour somewhere, including the landing page's plan
+     cards, so all three belong in the gate's AS_TEXT reach. */
+  --mv:#2563eb; --fl:#14783a; --st:#7c3aed;
   /* refined tiered elevation — quiet, consistent, content-first */
   --shadow-xs:0 1px 2px rgba(16,30,54,.05);
   --shadow-sm:0 1px 3px rgba(16,30,54,.06),0 1px 2px rgba(16,30,54,.04);
@@ -76,11 +83,19 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
 .sr-empty{padding:.75rem .85rem;font-size:.9rem;line-height:1.5;color:var(--muted)}
 .sr-request{background:none;border:none;color:var(--accent);font-weight:600;cursor:pointer;padding:0;font-size:.9rem}
 .sr-request:hover{text-decoration:underline}
+/* THE NAV IS THREE LINKS AND IT IS VISIBLE AT EVERY WIDTH, WITH OR WITHOUT JAVASCRIPT (2026-08-13).
+   What was here before: six anchors, three of them carrying .nav-more{display:none} — permanently
+   invisible dead DOM on ~620 documents — plus .menu-btn, plus a ≤760px block that set
+   .topnav{display:none} and revealed it only on a .open class that exactly one line of JavaScript
+   could add. Measured in Chrome with JavaScript disabled at 390x844: six links hidden, and on "/"
+   the search box hidden too, so the header was the brand, an inert ☰, and nothing else. ~90% of
+   this site's traffic never runs JavaScript. That was the worst defect on the site and it lived in
+   four CSS rules. assertNavIsAlwaysReachable() in build/prerender.js now fails the build if any of
+   them comes back. */
 .topnav{display:flex;gap:1.1rem;font-size:.92rem}
 .topnav a{color:var(--muted)}
-.nav-more{display:none}   /* Secondary discovery routes live in the ☰ drawer — see the ≤900px block */
 .topnav a:hover{color:var(--head);text-decoration:none}
-.menu-btn{display:none;background:none;border:none;color:var(--head);font-size:1.4rem;cursor:pointer;min-width:44px;min-height:44px}
+.topnav a[aria-current="page"]{color:var(--head);font-weight:700}
 .stack-badge{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;background:var(--accent);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:0 5px}
 
 main{max-width:var(--maxw);margin:0 auto;padding:2rem 1.2rem 4rem}
@@ -234,12 +249,14 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
 .share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.acct-btn{
   min-height:44px;display:inline-flex;align-items:center;justify-content:center}
 .st-add{display:flex}
-/* W5c FOLLOW-UP: .menu-btn is deliberately NOT in the list above. It was, and `display:inline-flex`
-   overrode its own `display:none` at every width — so the ☰ appeared on DESKTOP, next to the full
-   nav it exists to replace. Measured at 1440x900 after that commit: computed display "flex", 44x44.
-   Caught by looking at a screenshot, not by any gate: nothing on this project asserts that a
-   control is ABSENT where it should be. Its sizing now lives inside the ≤900px block with the rest
-   of its behaviour, where `display` is only ever set once. */
+/* W5c FOLLOW-UP, KEPT AS A RECORD (the control it describes was deleted on 2026-08-13): .menu-btn
+   was deliberately NOT in the 44px list above, because `display:inline-flex` there overrode its own
+   `display:none` at every width — so the ☰ appeared on DESKTOP, next to the full nav it existed to
+   replace. Caught by looking at a screenshot, not by any gate: nothing on this project asserted
+   that a control is ABSENT where it should be.
+   The hamburger is gone entirely now and the nav is three always-visible links, so neither that bug
+   nor the far worse one underneath it — a nav that only JavaScript could open — can return.
+   assertNavIsAlwaysReachable() in build/prerender.js is the gate that says so. */
 /* W5c: the breadcrumb separator was var(--line) — 1.10:1, the lowest ratio of any text node on the
    site that is not white-on-white. It is a real text node in a real navigation landmark, so it is
    read out and copy-pasted; it is now legible and simply smaller than the links it separates. */
@@ -548,15 +565,9 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .stack-grid{grid-template-columns:1fr}
   .target-hero{flex-direction:column}
   .detail-head{flex-direction:column}
-  .topnav{display:none}
-  .topnav.open{display:flex;position:absolute;top:100%;right:0;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:12px;padding:.8rem 1.2rem;gap:.9rem;box-shadow:var(--shadow)}
-  .menu-btn{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px}
-  /* W5c: secondary discovery routes, drawer-only. See build/prerender.js's shell(). */
-  .topnav.open .nav-more{display:block}
-  /* W5c: and the drawer's own links were 16px tall — the gate that was written for the missing
-     two caught that as well, on all six. A drawer that opens onto six 16px targets is only
-     nominally a menu. */
-  .topnav.open a{display:flex;align-items:center;min-height:44px}
+  /* .topnav{display:none} AND THE WHOLE .open DRAWER WERE DELETED HERE ON 2026-08-13. See the
+     base .topnav rule for why. The nav now stays in flow at every width; the ≤600px block below
+     gives it its own full-width row with 44px targets. */
   .hero h1{font-size:1.9rem}
   .compare-cols{grid-template-columns:1fr}
   .az-list{columns:1}
@@ -576,9 +587,16 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
   .topbar{flex-wrap:wrap;row-gap:.5rem;padding:.6rem 1rem .7rem}
   .brand{order:1}
   .account-slot{order:2;margin-left:auto}
-  .menu-btn{order:3}
   .search-wrap{order:4;flex:1 0 100%;max-width:none}
-  .topnav.open{top:100%}
+  /* THE NAV GETS ITS OWN ROW, AND flex:1 IS LOAD-BEARING RATHER THAN DECORATION. min-height alone
+     leaves "Find" about 34px wide, and .topnav a is not covered by the shared 44px rule further up
+     this file. Three equal ~116x44 targets on a 390px screen.
+     THE TRADE, STATED, in the same register as the W5c comment above and larger than it: at ≤600px
+     the sticky header grows by ~44px — on "/" from ~58px to ~102px, and on every other route from
+     ~104px to ~154px. That is what working navigation on a phone with no JavaScript costs. What it
+     cost before was that ~90% of traffic had none at all. */
+  .topnav{order:5;flex:1 0 100%;gap:0;border-top:1px solid var(--line);font-size:.9rem}
+  .topnav a{flex:1;display:flex;align-items:center;justify-content:center;min-height:44px}
   /* The title already carries this context on a phone. Keep breadcrumbs in the document for
      desktop, search engines and structured data, but remove the duplicate visual row here so the
      first decision arrives sooner. */
@@ -586,10 +604,12 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 }
 
 /* ================= Protocol Engine ================= */
-/* W5c: --fl #16a34a measured 3.10:1 on --bg (Fuel green, used as TEXT on .sg, .hiw-n.fl,
-   .solve-hero .fl, .step3 .s3-tag.fl and more). Same hue at #14783a = 5.22:1. --mv and --st
-   already pass (4.85 and 5.35). */
-:root{--mv:#2563eb;--fl:#14783a;--st:#7c3aed}
+/* --mv / --fl / --st MOVED INTO THE FIRST :root BLOCK on 2026-08-13 — see the top of this file.
+   They lived in a SECOND :root here, and assertContrastTokens() reads
+   `CSS.match(/:root\{([\s\S]*?)\n\}/)` — non-greedy, first match only — so these three colours were
+   invisible to every colour gate on the project. That was survivable while they were decoration;
+   the landing page's two plan cards now use --mv and --st as the Move and Stack labels, so they had
+   to become gated tokens rather than a second declaration nothing checked. */
 .hero-cta{margin-top:1.3rem;display:flex;flex-direction:column;gap:.35rem}
 .cta-primary{display:inline-block;align-self:flex-start;background:var(--accent);color:#fff;padding:.7rem 1.25rem;border-radius:999px;font-weight:700;box-shadow:0 2px 8px color-mix(in srgb,var(--accent) 28%,transparent);transition:transform .15s ease,box-shadow .15s ease,filter .15s ease;border:none;cursor:pointer}
 .cta-primary:hover{text-decoration:none;filter:brightness(1.05);transform:translateY(-1px);box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 34%,transparent)}
@@ -1011,18 +1031,18 @@ html[data-community-on] .vote-foot{display:flex}
 .ex-sc.suggest{color:var(--st);border-style:dashed;border-color:#e9d5ff;background:#faf5ff}
 .ex-sc.suggest:hover{background:#f3e8ff}
 
+/* LOCAL PARTNERS. `.lp-` here means LOCAL PARTNERS; `.lp-` in the landing block near the bottom of
+   this file means LANDING PAGE. Two unrelated components sharing one prefix, which is how a bare
+   `.lp-grid{grid-template-columns:repeat(3,1fr)}` written for partner cards ended up also matching
+   the landing page's six tap targets. It was harmless only because every landing rule is scoped
+   `.lp .lp-*` and outranks it. Six rules below were dead — .lp-card, .lp-card:hover, .lp-ico,
+   .lp-body, .lp-body b, .lp-body small, .lp-blurb and the bare .lp-grid pair had ZERO references in
+   build/prerender.js, site/app.js and build/landing.js — and are deleted. What site/app.js actually
+   emits for this component is .lp-tag, .lp-note, .lp-btn and .lp-in. If this component is touched
+   again, rename it .partner-* and end the collision. */
 .local-partners{margin:1.6rem 0 .5rem}
 .lp-tag{font-size:.62rem;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:.05rem .35rem}
-.lp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem}
-.lp-card{display:flex;gap:.6rem;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.85rem .9rem;color:var(--ink);transition:.15s}
-.lp-card:hover{box-shadow:var(--shadow);border-color:var(--accent);text-decoration:none}
-.lp-ico{font-size:1.4rem;line-height:1}
-.lp-body{display:flex;flex-direction:column}
-.lp-body b{color:var(--head);font-size:.95rem}
-.lp-body small{color:var(--faint);font-size:.76rem;text-transform:capitalize}
-.lp-blurb{color:var(--muted);font-size:.82rem;margin-top:.25rem;line-height:1.4}
 .lp-note{color:var(--faint);font-size:.78rem;margin:.7rem 0 0}
-@media(max-width:820px){ .lp-grid{grid-template-columns:1fr} }
 
 /* ================= Scroll reveal + merged-About landing sections ================= */
 /* REVEAL IS NOW OPT-IN, AND THAT IS THE WHOLE POINT (2026-07-30) ------------------------------
@@ -3581,7 +3601,7 @@ a.dp-name:hover{color:var(--accent)}
 /* Print (added 2026-07-28): the cause chain is the thing people actually print or hand to a
    clinician, so make it legible and drop the app furniture. */
 @media print{
-  .topbar,.foot,.menu-btn,.skip-link,.cta-primary,.assess-continue,#community-stacks,
+  .topbar,.foot,.skip-link,.cta-primary,.assess-continue,#community-stacks,
   .share-row,.vote-foot,.plan-tabs{display:none !important}
   body{background:#fff;color:#000;font-size:11pt}
   a{color:#000;text-decoration:underline}
@@ -4209,6 +4229,29 @@ a.assess-switch { text-align: center; }
 /* .topbar is position:sticky;top:0 and 58px tall, so a fragment landing at scroll-top would put the
    target underneath it. Verified by clicking a shipped .hanchor: the target landed at rectTop 56px. */
 .cause-flat-item[id], .prob-dx[id], .prob-redflags[id], .prob-route[id] { scroll-margin-top: 66px; }
+/* .fragment-alias HAD NO RULE AT ALL, AND THAT IS A PRE-EXISTING SAFETY DEFECT (found 2026-08-13).
+   It is the empty <span> that carries #first-when-this-is-not-a-self-care-problem — the target of
+   the landing page's .lp-red "Severe, sudden, or getting worse. Be seen." row, which is the single
+   most safety-critical affordance on the front door, pinned by assertLandingPage AND by
+   scripts/smoke.mjs. MEASURED in Chrome: computed scroll-margin-top "0px" at 390px AND at 1440px,
+   under a sticky header of 171px and 67px respectively. So a reader in trouble who tapped that row
+   was deposited with the escalation text underneath the header, at every width, and had been since
+   the alias was introduced. Two gates guarded the link's existence and its wording; nothing
+   measured where it landed. */
+.fragment-alias{display:block;height:0;overflow:hidden;scroll-margin-top:76px}
+
+/* MANDATORY CONSEQUENCE OF THE ≤600px NAV ROW (2026-08-13). Every scroll-margin value in this file
+   was tuned to a 58-66px header. Giving the nav its own row makes the sticky header MEASURED at
+   119px on "/" and 171px on /problem/* at 390px — so without this block the six #cause-N doors and
+   the escalation link, the primary and the safety-critical affordances of the front door, land
+   their targets underneath the header the reader just scrolled past.
+   184px, not the 160px first written here: 160 was derived arithmetic and the real header measured
+   171. Derived numbers are how anchors end up 11px under a header. */
+@media(max-width:600px){
+  .cause-flat-item[id], .prob-dx[id], .prob-redflags[id], .prob-route[id],
+  .safety-first[id], .protocol-boundaries, .anchor-alias, .fragment-alias,
+  #top, #how-it-works, #answer, #p-move, #p-stack, #p-fuel { scroll-margin-top: 184px; }
+}
 
 .cause-flat { margin: 1.6rem 0; }
 .cause-flat > h2 { font-size: 1.35rem; margin: 0 0 .3rem; color: var(--head); }
@@ -4673,7 +4716,12 @@ a.assess-switch { text-align: center; }
    drawing, where it measured 3.39 against a 4.5 requirement. The first value tried, #8f9daa,
    MEASURED 2.61:1 on --bg and would have failed even the non-text bar. Both numbers the drawing
    carries are stated in words in its own <title>, so nothing is available by colour alone. */
-.ipage .i-lib-off{stroke:#7c8896;stroke-width:4;stroke-linecap:round}
+/* DASHED, NOT JUST PALER. Filled and unfilled marks measured 1.52:1 against each other, so the
+   only thing distinguishing "has a plan" from "does not" was colour — WCAG 1.4.1. The dash makes
+   the difference a matter of FORM, which survives greyscale, low vision and a bad phone screen.
+   The <title> states both numbers in words, so nothing the drawing says is available by sight
+   alone either. */
+.ipage .i-lib-off{stroke:#7c8896;stroke-width:4;stroke-linecap:round;stroke-dasharray:1 3}
 .ipage .i-lib-on{stroke:var(--accent);stroke-width:4;stroke-linecap:round}
 .ipage .i-box,.ipage .i-head,.ipage .i-abox{fill:var(--panel);stroke:var(--accent);stroke-width:1}
 .ipage .i-head,.ipage .i-abox{stroke:var(--head);stroke-width:1.6}
@@ -5021,20 +5069,45 @@ html[data-state="removed"] .i-form{display:none}
 .lp .wex-fine{text-align:left;margin:1.1rem 0 0}
 @media(min-width:760px){.lp .wex-chain{grid-template-columns:repeat(3,1fr);gap:1rem}}
 
-/* ---- the close and the goal list ---------------------------------------------------------------
-   The goal index used to be a 16-card grid measuring 1,116px on a phone, sitting where a tired
-   reader decides to leave. All 16 hrefs survive and so does the Medicines Act "N you can buy · N
-   prescription-only" split, as VISIBLE text — a prescription-only distinction that lives in a title
-   attribute is invisible on touch, which is close to not existing. Only the geometry changed. */
+/* ---- the close ----------------------------------------------------------------------------------
+   THE 16-GOAL LIST WAS DELETED FROM THIS PAGE ON 2026-08-13 and its rules went with it. It was a
+   second entry mode competing with the page's one call to action, and three of its sixteen rows
+   labelled CONTROLLED or NEVER-APPROVED substances "prescription-only" — inventing a lawful supply
+   route that does not exist. See build/prerender.js where the generator used to be. */
 .lp .lp-close{border-top:1px solid var(--line)}
-.lp .lp-goals{list-style:none;margin:20px 0 0;padding:0;display:grid;grid-template-columns:1fr;gap:2px}
-.lp .lp-goals a{display:flex;flex-direction:column;gap:2px;min-height:48px;justify-content:center;
-  padding:6px 0;text-decoration:none;color:var(--head)}
-.lp .lp-goals a:hover b{text-decoration:underline}
-.lp .lp-goals b{font-size:15px;font-weight:700}
-.lp .lp-goals small{font-size:12.5px;color:var(--muted)}
-@media(min-width:560px){.lp .lp-goals{grid-template-columns:1fr 1fr;gap:2px 24px}}
 .lp .lp-open{margin-top:14px;font-size:13px;color:var(--faint)}
+.lp .lp-body{font-size:var(--i-body);line-height:1.6;color:var(--head);margin:14px 0 0;max-width:34em}
+
+/* ---- the two plans ------------------------------------------------------------------------------
+   REPLACES .wex-chain, the three-card simulation of a protocol page. These are the real root causes
+   this problem publishes, and every string in them except the two headings is corpus bytes.
+   Each card's HEADING is the link — one anchor per card, labelled with the corpus's own root-cause
+   name, so there is no duplicate anchor text and no authored label to drift. */
+.lp .lp-plan{display:grid;gap:12px;margin-top:18px}
+.lp .lp-plan-c{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
+.lp .lp-h3{font-size:15.5px;font-weight:700;margin:0;letter-spacing:-.01em}
+.lp .lp-h3 a{color:var(--head)}
+.lp .lp-plain{margin:2px 0 10px;font-size:13px;line-height:1.45;color:var(--muted)}
+.lp .lp-plan-foot{font-size:var(--i-small);line-height:1.55;color:var(--ink);margin:14px 0 0;max-width:36em}
+@media(min-width:760px){.lp .lp-plan{grid-template-columns:1fr 1fr}}
+
+/* ---- the loop, printed as state -----------------------------------------------------------------
+   A STATUS TABLE, NOT A FEATURE LIST, and the distinction is the whole design. Three rows, each
+   either NOW or NOT YET, rendered from capabilities that build/prerender.js computes from the
+   EMITTED BYTES rather than from an environment flag. No <details>, no toggle, no tooltip, no
+   modal — nothing here needs JavaScript to reveal, because the page's least flattering sentences
+   are the ones a reader most needs and they do not get to hide behind a click. */
+.lp .lp-state{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
+.lp .lp-state li{display:grid;grid-template-columns:5.6em 1fr;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--line);font-size:var(--i-small);line-height:1.5;color:var(--ink)}
+.lp .lp-state .lp-st{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:700;color:var(--muted)}
+.lp .lp-state li[data-on="1"] .lp-st{color:var(--accent)}
+/* The contribution verb, in the reading surface rather than in a section about contributing. */
+.lp .lp-fix{display:inline-flex;align-items:center;min-height:44px}
+/* The visible label on the one search field. It replaced an aria-label that disagreed with the
+   visible text, which is a WCAG 2.5.3 Label-in-Name failure. */
+.lp .lp-lab{display:block;font-size:var(--i-small);font-weight:700;color:var(--head);margin:18px 0 6px}
 
 /* ---- desktop ------------------------------------------------------------------------------------
    The fold is a phone problem; on a 1440x900 screen there is room for three columns of taps and the

@@ -981,23 +981,27 @@ const ASSERTIONS = {
     },
   }],
   '/browse': [{
-    name: 'thePhoneMenuReachesEveryIndexPage',
-    why: 'W5c: the ☰ drawer offered 4 links and neither of the site\'s two index pages, on a viewport where the footer is up to 35 screens away',
+    // REPLACES thePhoneMenuReachesEveryIndexPage (2026-08-13). That test drove the ☰ drawer and
+    // asserted which links were inside it. The drawer is gone, and so is the reason it existed.
+    //
+    // WHY IT HAD TO BE REWRITTEN IN THE SAME COMMIT: it would have failed four independent ways —
+    // no #menu-btn, no click handler, no .open class, and a link list that no longer matches — and
+    // it runs at release-gates.yml AFTER `npm run gate` is already green, so nothing earlier in the
+    // pipeline catches it. The failure would have named /browse, a route this rewrite never touched.
+    // Its own comment said "PROVE IT by deleting the two .nav-more anchors from shell()", which is
+    // precisely what happened.
+    name: 'theNavWorksWithNoJavaScript',
+    why: 'BLOCKER 2026-08-13: at 390x844 with JS off the header was the brand, an inert ☰ and nothing else, on ~620 documents — and ~90% of traffic never runs JavaScript',
     evaluate: async () => {
-      const btn = document.getElementById('menu-btn');
-      if (!btn) return 'no ☰ button in the header';
-      if (getComputedStyle(btn).display === 'none') return 'the ☰ button is display:none at this viewport — this gate runs at 390x844 and is no longer testing the phone menu';
-      btn.click();
-      await new Promise((r) => setTimeout(r, 120));
-      const nav = document.querySelector('.topnav');
-      if (!nav || !nav.classList.contains('open')) return 'tapping ☰ did not open the drawer';
-      const shown = [...nav.querySelectorAll('a')].filter((a) => getComputedStyle(a).display !== 'none');
-      const hrefs = shown.map((a) => a.getAttribute('href'));
-      const missing = ['/az', '/browse', '/solve', '/where'].filter((h) => !hrefs.some((x) => x === h || x === '#' + h));
-      if (missing.length) return `the phone menu is missing ${missing.join(', ')} — it offers ${hrefs.join(', ')}`;
-      const small = shown.filter((a) => a.getBoundingClientRect().height < 24);
-      if (small.length) return `${small.length} of ${shown.length} drawer links are under the 24px minimum`;
-      btn.click();
+      const nav = document.querySelector('header .topnav');
+      if (!nav) return 'there is no <nav class="topnav"> in the header';
+      if (document.getElementById('menu-btn')) return 'the ☰ button is back — global navigation must not depend on a control that only JavaScript can operate';
+      const links = [...nav.querySelectorAll('a')].filter((a) => getComputedStyle(a).display !== 'none');
+      if (links.length !== 3) return `the header offers ${links.length} visible nav links (${links.map((a) => a.textContent.trim()).join(', ')}); the doctrine budget is exactly 3`;
+      const small = links.filter((a) => { const r = a.getBoundingClientRect(); return r.height < 44 || r.width < 44; });
+      if (small.length) return `${small.length} of 3 nav links are under 44x44: ${small.map((a) => `${a.textContent.trim()} ${Math.round(a.getBoundingClientRect().width)}x${Math.round(a.getBoundingClientRect().height)}`).join(', ')}`;
+      const hrefs = links.map((a) => a.getAttribute('href')).join(',');
+      if (hrefs !== '/solve,/plan,/corrections') return `the header nav is ${hrefs}`;
       return null;
     },
   }, {
@@ -1339,19 +1343,24 @@ const ASSERTIONS = {
   }, {
     name: 'findDebounceCannotRewriteTheNextRoute',
     why: 'a delayed Find update belongs to the page that scheduled it; it must not corrupt an immediate SPA navigation',
+    // RETARGETED 2026-08-13 from the "Where it hurts" nav link to "Today". The behaviour under test
+    // is unchanged and still worth having — a debounced Find update must not rewrite the URL of a
+    // navigation that has already happened. Only the trigger moved, because the global nav went
+    // from six items to three and /where is no longer one of them. Today is the right substitute:
+    // it is a real SPA route with no data-native attribute, so clicking it exercises the same
+    // client-side navigation path the old assertion did. (/corrections carries data-native and
+    // would be a full page load, which tests nothing about the debounce.)
     evaluate: async () => {
       const input = document.getElementById('solve-q');
-      const where = document.querySelector('header a[href="/where"]');
-      if (!input || !where) return 'Find input or Where it hurts navigation is missing';
+      const today = document.querySelector('header a[href="/plan"]');
+      if (!input || !today) return 'Find input or Today navigation is missing';
       input.value = 'knee';
       input.dispatchEvent(new Event('input', { bubbles: true }));
-      where.click();
+      today.click();
       await new Promise(r => setTimeout(r, 420));
       const issues = [];
-      if (location.pathname !== '/where' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
-      const heading = (document.querySelector('#app h1') || {}).textContent || '';
-      if (!/where does it hurt/i.test(heading)) issues.push(`the destination heading is ${JSON.stringify(heading.trim())}, not Where does it hurt`);
-      if (!/where does it hurt/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}`);
+      if (location.pathname !== '/plan' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
+      if (!/today/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}, not Today`);
       // Restore the route this assertion owns so the runner's generic /solve checks remain valid.
       const find = document.querySelector('header a[href="/solve"]');
       if (find) { find.click(); await new Promise(r => setTimeout(r, 120)); }

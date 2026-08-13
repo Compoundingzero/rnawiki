@@ -10264,7 +10264,11 @@
   function setPageMeta(parts) {
     const site = SITE_NAME;
     let title = 'RNAwiki — Understand the evidence before you act';
-    let desc = 'Compare possible reasons for 41 health and performance topics, check safety limits, and start one practical movement, food or supplement step. Free, in plain English.';
+    // KEPT BYTE-IDENTICAL TO build/prerender.js's HOME_SHELL desc. This is the SPA's fallback for a
+    // route site/head.js has no entry for, and assertHeadParity / the smoke run compare the two
+    // documents: when the prerendered description changed on 2026-08-13 and this did not, /progress
+    // served the crawler one sentence and the reader another. Edit both or neither.
+    let desc = 'Compare possible reasons for 41 health and performance topics, then start one movement, food or supplement step. Free, in plain English.';
     const t = (s) => `${s} · ${site}`;
     const generated = HEAD['/' + parts.join('/')];
     if (generated && generated[0]) { title = generated[0]; desc = generated[1] || desc; }
@@ -10873,7 +10877,16 @@
   });
   window.addEventListener('popstate', route);
   window.addEventListener('hashchange', route);
-  document.getElementById('menu-btn').onclick = () => document.querySelector('.topnav').classList.toggle('open');
+  // THE ☰ HANDLER WAS DELETED HERE ON 2026-08-13, in the same commit as the button, and the order
+  // matters: this line had NO NULL GUARD, so shipping the markup change without this one would
+  // throw a TypeError on every page load and kill everything below it — the footer stats, the stack
+  // badge, and the HOME_HTML capture that assertLandingPage() requires by name. `node --check`
+  // would not have caught it, because the syntax was always fine.
+  //
+  // What it did: toggle a class that was the ONLY way to reveal .topnav at ≤760px. So the site's
+  // entire navigation depended on this one line running, on a site where ~90% of traffic never runs
+  // any JavaScript at all. The nav is now three real anchors, visible at every width, in both
+  // documents, with no script involved.
   const cc = D.meta.counts;
   document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
   updateStackBadge();

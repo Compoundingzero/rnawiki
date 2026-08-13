@@ -34,13 +34,13 @@
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   
   
-  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"></form><div id="search-results" class="search-results" hidden></div></div>
   
-  <nav class="topnav">
-    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/learn">Learn</a><a href="/where" class="nav-more">Where it hurts</a><a href="/az" class="nav-more">A&ndash;Z</a><a href="/browse" class="nav-more">Browse</a>
+  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form><div id="search-results" class="search-results" hidden></div></div>
+  
+  <nav class="topnav" aria-label="Main">
+    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/corrections" data-native>Corrections</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
-  <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app"><div class="article"><h1>How to read RNAwiki</h1>
       <h2 id="evidence-stars"><a class="hanchor" href="#evidence-stars" aria-label="Link to this section">#</a>Evidence stars</h2>
@@ -60,7 +60,8 @@
       <h2 id="who-decides-any-of-this"><a class="hanchor" href="#who-decides-any-of-this" aria-label="Link to this section">#</a>Who decides any of this</h2>
       <p>No clinician has reviewed these pages. Nothing here is a professional's opinion, an endorsement, or medical advice, and no colour or star should be read as one. The stars are an editorial rating of the published <strong>human</strong> evidence, applied by one consistent rule across every compound. The colours are not a judgement at all — they are a regulator's current call on that molecule, recorded rather than formed here. Where the two disagree they are shown disagreeing: a compound can be approved and still have weak evidence for what you want it for, and the reverse.</p>
       <p><a href="/methodology">How a page here is made →</a> · <a href="/corrections">Corrections →</a> · <a href="/about">More about how this site is made →</a></p></div></main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Find</a> · <a href="/plan">Today</a> · <a href="/learn">Learn</a> · <a href="/where">Where it hurts</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+
+<footer class="foot"><div>Information, not medical advice. No clinician has reviewed these pages and nothing on them is a diagnosis. If something is severe, sudden or getting worse, call your local emergency number &mdash; <b>995</b> in Singapore, or 999, 911, 112 or 000 depending on where you are &mdash; and be seen.</div><div class="foot-links"><a href="/about">About</a> &middot; <a href="/methodology" data-native>How a page is made</a> &middot; <a href="/az">Everything A&ndash;Z</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>

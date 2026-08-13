@@ -92,6 +92,32 @@ const FEATURES = Object.freeze({
   publicOutcomeAggregates: process.env.PUBLIC_OUTCOME_AGGREGATES === '1',
   sharedPlans: process.env.SHARED_PLANS === '1',
 });
+
+// ---- REFUSE TO SERVE A HOME PAGE THAT CONTRADICTS THE RUNNING CONFIGURATION (2026-08-13) --------
+// The landing page prints the state of the contribution loop as three NOW / NOT YET rows, and those
+// rows are baked at BUILD time from the emitted documents (see CAPS in build/prerender.js). Feature
+// flags are read HERE, at BOOT. Those are two different clocks: setting PUBLIC_COMMUNITY=1 on
+// Railway without a rebuild would leave every reader on the front door being told there are no
+// comments and no votes while the API happily serves both.
+//
+// ONE-DIRECTIONAL, deliberately. Understating what the site can do is the safe failure — a reader
+// is never harmed by being told a feature is missing when it works. Overstating is the one this
+// project has been bitten by, so only that direction refuses to boot.
+if (FEATURES.publicCommunity) {
+  try {
+    const homeDoc = fs.readFileSync(path.join(__dirname, 'site', 'home.html'), 'utf8');
+    if (homeDoc.indexOf('No comments, no votes, no points') >= 0) {
+      console.error('[server] PUBLIC_COMMUNITY=1 but site/home.html still tells every reader there are '
+        + 'no comments, no votes and no points. The landing page states the loop from the built '
+        + 'documents, not from this flag. Rebuild (npm run prestart) before serving.');
+      process.exit(1);
+    }
+  } catch (e) {
+    console.error('[server] PUBLIC_COMMUNITY=1 and site/home.html could not be read to check that the '
+      + 'landing page agrees with it —', e.code);
+    process.exit(1);
+  }
+}
 // Anything missing from this map is served as application/octet-stream — "unknown binary file".
 // That is what silently broke search indexing: sitemap.xml and robots.txt are the two files a
 // crawler MUST be able to identify, and neither had an entry. Google Search Console answered

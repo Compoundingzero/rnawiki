@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="/styles.css">
 <noscript><style>.reveal,.reveal *{opacity:1!important;transform:none!important}</style></noscript>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rnawiki.com/"},{"@type":"ListItem","position":2,"name":"Find","item":"https://rnawiki.com/solve"},{"@type":"ListItem","position":3,"name":"Anxiety","item":"https://rnawiki.com/problem/anxiety"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","inLanguage":"en","name":"Why Anxiety happens","about":{"@type":"MedicalCondition","name":"Anxiety"},"url":"https://rnawiki.com/problem/anxiety","publisher":{"@id":"https://rnawiki.com/#org"},"isPartOf":{"@id":"https://rnawiki.com/#website"},"dateModified":"2026-08-11"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://rnawiki.com/"},{"@type":"ListItem","position":2,"name":"Find","item":"https://rnawiki.com/solve"},{"@type":"ListItem","position":3,"name":"Anxiety","item":"https://rnawiki.com/problem/anxiety"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"MedicalWebPage","inLanguage":"en","name":"Why Anxiety happens","about":{"@type":"MedicalCondition","name":"Anxiety"},"url":"https://rnawiki.com/problem/anxiety","publisher":{"@id":"https://rnawiki.com/#org"},"isPartOf":{"@id":"https://rnawiki.com/#website"},"dateModified":"2026-08-13"}</script>
 </head>
 <body>
 <a class="skip-link" href="#app">Skip to content</a>
@@ -34,13 +34,13 @@
   <a href="/" class="brand">🧬 RNA<span>wiki</span></a>
   
   
-  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"></form><div id="search-results" class="search-results" hidden></div></div>
   
-  <nav class="topnav">
-    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/learn">Learn</a><a href="/where" class="nav-more">Where it hurts</a><a href="/az" class="nav-more">A&ndash;Z</a><a href="/browse" class="nav-more">Browse</a>
+  <div class="search-wrap"><form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form><div id="search-results" class="search-results" hidden></div></div>
+  
+  <nav class="topnav" aria-label="Main">
+    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/corrections" data-native>Corrections</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
-  <button id="menu-btn" class="menu-btn" aria-label="Menu">☰</button>
 </header>
 <main id="app"><div class="crumbs"><a href="/">Home</a><span class="sep">›</span><a href="/solve">Find</a><span class="sep">›</span><span>Anxiety</span></div>
     <div class="problem-intro"><div class="kicker">One problem, different patterns</div>
@@ -48,7 +48,8 @@
     <p>Start with what sounds most like you. RNAwiki will show the most relevant reading and the
     available protocol without asking you to understand the science first.</p></div>
     <span id="first-when-this-is-not-a-self-care-problem" class="fragment-alias" aria-hidden="true"></span>
-  <details class="prob-redflags plan-reassess" id="red-flags">
+  
+  <details class="prob-redflags plan-reassess" id="red-flags" open>
     <summary><span><b>Check before choosing</b><small>When this needs professional care</small></span><span aria-hidden="true">›</span></summary>
     <div class="prob-redflags-body">
       <h2 class="sr-only">When this is not a self-care problem</h2>
@@ -135,7 +136,8 @@
     2-step plan above is what this site has for it. Anxiety's protocol is written around a different root cause: <a href="/protocol/anxiety/gaba-deficit">Low GABAergic tone / over-arousal</a>.</p><p class="cf-next-up"><a href="#which-one">↑ Back to the 6 causes side by side</a></p></div></div>
     </details></section>
     <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a href="/corrections" data-native>Corrections</a></p></main>
-<footer class="foot"><div>💡 Not medical advice · <a href="/solve">Find</a> · <a href="/plan">Today</a> · <a href="/learn">Learn</a> · <a href="/where">Where it hurts</a> · <a href="/stack">Stack</a> · <a href="/browse">Browse</a> · <a href="/anatomy">Anatomy</a> · <a href="/pathways">Pathways</a> · <a href="/az">A–Z</a> · <a href="/legend">Legend</a> · <a href="/about">About</a></div><div class="foot-stats" id="foot-stats"></div></footer>
+
+<footer class="foot"><div>Information, not medical advice. No clinician has reviewed these pages and nothing on them is a diagnosis. If something is severe, sudden or getting worse, call your local emergency number &mdash; <b>995</b> in Singapore, or 999, 911, 112 or 000 depending on where you are &mdash; and be seen.</div><div class="foot-links"><a href="/about">About</a> &middot; <a href="/methodology" data-native>How a page is made</a> &middot; <a href="/az">Everything A&ndash;Z</a></div><div class="foot-stats" id="foot-stats"></div></footer>
 <script src="/data.js"></script>
 <script src="/facts.js"></script>
 <script src="/interactions.js"></script>

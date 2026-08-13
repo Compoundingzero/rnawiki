@@ -108,9 +108,14 @@ if ((app.match(/if \(!featureOn\('sharedPlans'\)\) return;/g) || []).length < 4)
 forbidText(app, 'id="stack-share"', 'Stack still exposes a personal share-link control');
 forbidText(app, 'id="stack-wrapped"', 'Stack still exposes a personal share-image control');
 
-// The release navigation has one plain-language entry for discovery and one for execution.
+// The release navigation is exactly three plain-language entries: one for discovery, one for
+// execution, and one for the single contribution surface that is complete end to end today.
+// Corrections was added on 2026-08-13 when the nav went from six items to three. It is the only
+// place on the site where a reader can act on something being wrong without an account, without a
+// credential and without JavaScript, and until then it was reachable from nothing but the footer.
 requireText(read('site/index.html'), '>Find</a>', 'application shell has no Find entry');
 requireText(read('site/index.html'), '>Today</a>', 'application shell has no Today entry');
+requireText(read('site/index.html'), '>Corrections</a>', 'application shell has no entry for the one contribution surface that works');
 
 // Railway otherwise considers a new container active before npm's prestart has finished building
 // the public site and before server.js is listening. Keep the previous deployment serving until
