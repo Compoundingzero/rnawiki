@@ -3781,6 +3781,9 @@ a.dp-name:hover{color:var(--accent)}
    possible anywhere on the site. Added as one pass in shell(); see build/prerender.js. */
 .hanchor { float: left; margin-left: -1.05em; padding-right: .25em; color: var(--muted, #94a3b8);
   text-decoration: none; opacity: 0; font-weight: 400; }
+/* The glyph is PAINTED, not written. As a text node it reached every answer engine and every
+   reader-mode extraction of ~620 documents while being invisible to the people using the site. */
+.hanchor::before { content: "#"; }
 h2:hover > .hanchor, h3:hover > .hanchor, .hanchor:focus { opacity: 1; }
 .hanchor:focus { outline: 2px solid var(--accent, #0d9488); outline-offset: 2px; border-radius: 3px; }
 @media (max-width: 640px) { .hanchor { display: none; } }   /* no hover on touch; it only steals width */

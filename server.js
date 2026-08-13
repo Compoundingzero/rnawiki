@@ -3381,6 +3381,16 @@ const SPA_ONLY_ROUTES = [
   'legend', 'me', 'p', 'pathways', 'plan', 'progress', 's', 'solve', 'stack',
   'studio', 'u', 'where',
 ];
+// ---- ROUTES WHOSE CHILDREN ARE A CLOSED SET (2026-08-13) -------------------------------------
+// MEASURED LIVE: https://rnawiki.com/fuel/zzz/qqq answered 200 with
+// <meta name="robots" content="index,follow"> and a canonical to itself. So did every other
+// invented pair — /fuel/<anything>/<anything> was an UNBOUNDED INDEXABLE URL SPACE, which is one of
+// the concrete reasons a site "doesn't show up on Google": a crawler that can generate infinite
+// distinct 200s spends its budget there instead of on the 567 real pages.
+// `fuel` is in SPA_ONLY_ROUTES because /fuel itself is an SPA index — but its CHILDREN are exactly
+// the 52 emitted /fuel/<pid>/<rcid> documents and nothing else. Anything under one of these
+// prefixes that the build did not emit is a real 404, not a shell.
+const CLOSED_CHILD_ROUTES = new Set(['fuel', 'problem', 'protocol', 'goal', 'compare', 'target', 'pathway', 'muscle']);
 // ---- 'clinic', 'pro', 'pros', 'stewardship' LEFT THIS LIST ON 2026-08-11 -----------------------
 // All four were surfaces of the abolished professional/clinician tier, and all four were RETIRED
 // INSIDE app.js route() — the branch is
@@ -3613,6 +3623,12 @@ ${links}
   // should use it rather than inventing a third mechanism beside SPA_EXACT and SPA_ONE_ARG.
   const SPA_N_ARGS = {};
   if (seg.length && SPA_ONLY_ROUTES.includes(seg[0])) {
+    // A CLOSED-CHILD ROUTE'S CHILDREN ARE THE EMITTED DOCUMENTS AND NOTHING ELSE. Reaching here
+    // with more than one segment means the static-file lookup above already MISSED — the build
+    // emitted no such page — so this is an invented URL, and answering it with the SPA shell at 200
+    // is what turned /fuel/<anything>/<anything> into an unbounded indexable space. The bare prefix
+    // (/fuel with no children) still gets its shell, because that one is a real SPA index.
+    if (CLOSED_CHILD_ROUTES.has(seg[0]) && seg.length > 1) return notFoundPage(res);
     if (SPA_EXACT[seg[0]] && seg.length > 1) return notFoundPage(res);
     if (SPA_ONE_ARG[seg[0]] && seg.length !== 2) return notFoundPage(res);
     if (SPA_N_ARGS[seg[0]] && seg.length !== SPA_N_ARGS[seg[0]]) return notFoundPage(res);

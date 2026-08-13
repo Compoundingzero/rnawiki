@@ -434,7 +434,14 @@ function anchorHeadings(html) {
     seen.set(slug, n);
     if (n > 1) slug = `${slug}-${n}`;
     heads.push({ level: +lvl, text, slug });
-    return `<h${lvl} id="${slug}"><a class="hanchor" href="#${slug}" aria-label="Link to this section">#</a>${inner}</h${lvl}>`;
+    // THE "#" IS NO LONGER A TEXT NODE (2026-08-13). It used to be the anchor's own content, and
+    // the anchor is opacity:0 / display:none under 640px — so no sighted reader ever saw it, while
+    // reader mode, the clipboard and EVERY ANSWER ENGINE received a literal "#" immediately before
+    // each heading, on ~620 documents. That is a direct answer to "nothing shows up in AI agents":
+    // the text a model extracts from this site was peppered with hashes it had to parse around.
+    // The glyph is now painted by CSS (.hanchor::before), which is invisible to text extraction,
+    // and the link keeps its aria-label so a screen reader is unaffected.
+    return `<h${lvl} id="${slug}"><a class="hanchor" href="#${slug}" aria-label="Link to this section"></a>${inner}</h${lvl}>`;
   });
   return { html: out, heads };
 }
@@ -575,7 +582,7 @@ function shell({ route, title, desc, jsonld, body, breadcrumbs, ogImage, ogType,
 <meta name="twitter:description" content="${esc(desc)}">
 <link rel="stylesheet" href="/styles.css">
 <noscript><style>.reveal,.reveal *{opacity:1!important;transform:none!important}</style></noscript>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%A7%AC%3C/text%3E%3C/svg%3E">
 ${crumbLd}${ld}
 </head>
 <body>
