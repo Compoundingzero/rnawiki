@@ -3175,6 +3175,12 @@ function serveStatic(req, res, url) {
   // carries no X-Robots-Tag at all. Followable, so a crawler can still walk from it into the public
   // wiki, but not indexed: it is a frame whose contents are drawn from a database at read time.
   if (p === '/p' || p === '/p/') res.setHeader('X-Robots-Tag', 'noindex, follow');
+  // /exercise and its 873 children, for the same reason: they emit real documents now, so the
+  // static lookup answers before NOINDEX_SHELL_ROUTES is consulted and the header would be absent.
+  // Followable so a crawler can walk from a movement into the muscle and protocol pages it links —
+  // which is the entire point of prerendering them — but not indexed while the prose is still the
+  // open free-exercise-db dataset. Flip both this and the shell()'s `robots` together.
+  if (p === '/exercise' || p.startsWith('/exercise/')) res.setHeader('X-Robots-Tag', 'noindex, follow');
   // Retired progress links encoded a handle and food log directly in the URL. Never render,
   // preview or preserve those parameters: redirects keep the public protocol route while removing
   // health state from browser history, Referer headers, proxy logs and social crawlers.
@@ -3524,7 +3530,12 @@ const SPA_ONLY_ROUTES = [
 // `fuel` is in SPA_ONLY_ROUTES because /fuel itself is an SPA index — but its CHILDREN are exactly
 // the 52 emitted /fuel/<pid>/<rcid> documents and nothing else. Anything under one of these
 // prefixes that the build did not emit is a real 404, not a shell.
-const CLOSED_CHILD_ROUTES = new Set(['fuel', 'problem', 'protocol', 'goal', 'compare', 'target', 'pathway', 'muscle']);
+// 'exercise' JOINED THIS SET on 2026-08-14, the moment it started emitting documents. Its children
+// are now exactly the 873 files build/prerender.js writes, so anything else at /exercise/<x> is an
+// invented URL — and answering one with the SPA shell at HTTP 200 is the soft 404 that made
+// /fuel/<anything>/<anything> an unbounded indexable space. Measured before the change:
+// /exercise/nope -> 200.
+const CLOSED_CHILD_ROUTES = new Set(['fuel', 'problem', 'protocol', 'goal', 'compare', 'target', 'pathway', 'muscle', 'exercise']);
 // ---- 'clinic', 'pro', 'pros', 'stewardship' LEFT THIS LIST ON 2026-08-11 -----------------------
 // All four were surfaces of the abolished professional/clinician tier, and all four were RETIRED
 // INSIDE app.js route() — the branch is
@@ -3600,7 +3611,12 @@ const NOINDEX_ROUTES = ['admin', 'me', 'p', 'progress', 's', 'studio', 'u'];
 // head, self-canonical to the thin URL — and the hydrated body is a two-word placeholder
 // ("Loading exercise…" app.js:9998, "Loading variation…" app.js:9999). ~90% of traffic never runs
 // JavaScript, so for almost every requester these URLs are duplicate-content soft 404s.
-//   · exercise, fork — MEASURED live 2026-08-11: 200, no X-Robots-Tag.
+//   · fork — MEASURED live 2026-08-11: 200, no X-Robots-Tag.
+//   · exercise LEFT THIS LIST on 2026-08-14, under the rule stated at the bottom of this comment:
+//     build/prerender.js now emits site/exercise.html plus 873 site/exercise/<id>.html documents
+//     with the muscles worked, the steps, the alternatives and the protocols that use the movement.
+//     They carry their own noindex,follow in their bytes and an X-Robots-Tag is set for them in
+//     serveStatic(), because the static-file lookup answers before this list is ever consulted.
 //   · fuel@3 — the same defect, found by the gate below rather than by any audit. `site/fuel/` holds
 //     41 problem directories and no `fuel.html`, so the CHOOSER at bare /fuel fell through to the
 //     shell while all 52 `/fuel/<problem>/<root-cause>` children are correctly `noindex,follow`.
@@ -3616,7 +3632,7 @@ const NOINDEX_ROUTES = ['admin', 'me', 'p', 'progress', 's', 'studio', 'u'];
 // The honest fix for all three is a prerendered document with real content. Until one exists, the
 // document that IS served must not invite indexing. Remove a route from this list at the moment it
 // starts emitting a file — the gate in build/parse.js will then require it to be classified again.
-const NOINDEX_SHELL_ROUTES = ['exercise', 'fork', 'fuel@3'];
+const NOINDEX_SHELL_ROUTES = ['fork', 'fuel@3'];
 const isShellNoindex = (seg) => NOINDEX_SHELL_ROUTES.some((e) => {
   const at = e.indexOf('@');
   return at < 0 ? e === seg[0] : e.slice(0, at) === seg[0] && seg.length < +e.slice(at + 1);

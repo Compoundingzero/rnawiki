@@ -9620,15 +9620,21 @@
     const img0 = e.image || '';
     const img1 = img0.replace(/\/0\.jpg$/i, '/1.jpg');
     const hasAnim = img1 && img1 !== img0;
-    const ytUrl = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(e.name + ' exercise proper form');
-    const demo = (img0
-      ? `<div class="ex-demo${hasAnim ? ' anim' : ''}">
-           <img class="exd exd-0" src="${img0}" alt="${esc(e.name)} — start position" loading="lazy" onerror="this.style.display='none';this.closest('.ex-demo').classList.add('noimg')">
-           ${hasAnim ? `<img class="exd exd-1" src="${img1}" alt="${esc(e.name)} — end position" loading="lazy" onerror="this.remove();this.closest('.ex-demo').classList.remove('anim')">` : ''}
-           ${hasAnim ? '<span class="ex-demo-cap">▶ the movement (start ⇄ end)</span>' : ''}
-         </div>`
-      : '<div class="ex-demo noimg">🏋️</div>')
-      + `<a class="ex-yt" href="${ytUrl}" target="_blank" rel="noopener">▶ Watch a form tutorial on YouTube</a>`;
+    // ---- TWO STILLS, NO ANIMATION, AND NO YOUTUBE (2026-08-14) --------------------------------
+    // THE LINK IS GONE. It ran a YouTube SEARCH for "<name> exercise proper form" and handed the
+    // reader whatever ranked first — unvetted video, from a page held to citation standards, on a
+    // site whose stated constraint is no camera and no video. The founder's answer when asked was
+    // "no youtube, do the body diagram".
+    // THE FLIP IS GONE TOO. `.ex-demo.anim .exd-1` ran an infinite 2s CSS animation, and
+    // site/styles.css carries 17 prefers-reduced-motion blocks of which zero covered it —
+    // audit/v19/exercise_block_audit.md logged that and it stayed open. Start and end, side by
+    // side, labelled: the same information with nothing moving.
+    const demo = img0
+      ? `<figure class="ex-frames">
+           <img src="${img0}" alt="${esc(e.name)} — starting position" loading="lazy" onerror="this.style.display='none'">
+           ${hasAnim ? `<img src="${img1}" alt="${esc(e.name)} — end position" loading="lazy" onerror="this.remove()">` : ''}
+           <figcaption>Start and end of the movement.</figcaption></figure>`
+      : '';
     const mLink = mn => muscleByName[mn] ? `<a class="tag-chip" href="#/muscle/${muscleByName[mn].id}">${esc(muscleByName[mn].name)}</a>` : `<span class="tag-chip static">${esc(mn)}</span>`;
     const prim = (e.primaryMuscles || []).map(mLink).join('');
     const sec = (e.secondaryMuscles || []).map(mLink).join('');
@@ -9636,18 +9642,32 @@
     // Was "← Easier variation" / "Harder variation →" off the deleted level ladder. Now every
     // alternative this movement actually has, each one sharing a primary muscle with it.
     (e.alternatives || []).forEach(id => { const a = exerciseById(id); if (a) scale.push(`<a class="tag-chip" href="#/exercise/${esc(a.id)}">${esc(a.name)}${a.equipment ? ` · ${esc(a.equipment)}` : ''}</a>`); });
-    const kindLabel = e.kind === 'stretch' ? 'Stretch / mobility' : 'Strengthening';
-    app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Learn', href: '#/learn' }, { label: e.name }])}
-      <div class="anat-head"><span class="anat-region">${esc(kindLabel)}${e.level ? ' · ' + esc(e.level) : ''}</span>
+    // ---- ONE TAG, TWO OPPOSITE MEANINGS (2026-08-14) -----------------------------------------
+    // `kindLabel` read "Stretch / mobility" off `e.kind`, and the heading over the muscles said
+    // "Muscles worked" on every page. On the 750 strengthen rows primaryMuscles is the muscle
+    // PRODUCING the force; on 80 of the 123 category='stretching' rows it is the muscle being
+    // LENGTHENED; on 14 foam-rolling rows the tissue is being PRESSED and is doing neither. One
+    // heading across all three is false on 123 pages with the sign inverted on 80 — on
+    // Calf_Stretch_Hands_Against_Wall the calf is not working, it is being pulled long.
+    // `e.kind` cannot decide this: it is a mixed shelf that files Superman, Split_Squats and a
+    // shrug as 'mobility'. The partition is over category/force/equipment and it is exhaustive:
+    // measured 14 + 80 + 27 + 2 = 123, no remainder. build/prerender.js exKind() is the twin.
+    const _roll = /foam roll/i.test(e.equipment || '') || /SMR/i.test(e.id || '');
+    const K = e.category !== 'stretching' ? { label: 'Strengthening', verb: 'Works' }
+      : _roll ? { label: 'Foam rolling', verb: 'Where the roller goes' }
+        : e.force === 'static' ? { label: 'Stretch', verb: 'Lengthens' }
+          : { label: 'Mobility drill', verb: 'Works, through range' };
+    app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Movements', href: '#/exercise' }, { label: e.name }])}
+      <div class="anat-head"><span class="anat-region">${esc(K.label)}${e.level ? ' · ' + esc(e.level) : ''}</span>
         <div class="lyr-head"><h1>${esc(e.name)}</h1><button class="sec-edit" id="ex-edit" title="Suggest an edit">✎ Edit</button></div></div>
       ${demo}
       <div class="ex-rx-line">${rxLine(e)}${e.equipment ? ' · ' + esc(e.equipment) : ''}${e.mechanic ? ' · ' + esc(e.mechanic) : ''}${e.force ? ' · ' + esc(e.force) : ''}</div>
-      ${scale.length ? `<div class="tag-row">${scale.join('')}</div>` : ''}
-      <div class="section-title">Muscles worked</div>
+      <div class="section-title">${esc(K.verb)}</div>
       <p class="muted" style="font-size:.9rem">Tap a muscle for its anatomy, how it contracts, and the energy systems that fuel it.</p>
-      ${prim ? `<div class="ex-mgroup"><span class="ex-mk">Primary</span><div class="tag-row">${prim}</div></div>` : ''}
-      ${sec ? `<div class="ex-mgroup"><span class="ex-mk">Secondary</span><div class="tag-row">${sec}</div></div>` : ''}
+      ${prim ? `<div class="ex-mgroup"><span class="ex-mk">Mainly</span><div class="tag-row">${prim}</div></div>` : ''}
+      ${sec ? `<div class="ex-mgroup"><span class="ex-mk">Also</span><div class="tag-row">${sec}</div></div>` : ''}
       ${(e.instructions || []).length ? `<div class="section-title">How to do it</div><ol class="anat-steps">${e.instructions.map(i => `<li>${esc(i)}</li>`).join('')}</ol>` : ''}
+      ${scale.length ? `<div class="section-title">Other ways to train the same muscle</div><div class="tag-row">${scale.join('')}</div>` : ''}
       ${solveCta('Find a protocol that uses this →')}
       <div id="goal-comments" class="page-discuss"></div></div>`;
     const eb = document.getElementById('ex-edit'); if (eb) eb.onclick = () => openEditContent('exercise', e.name, 'physio');
@@ -11135,7 +11155,7 @@
   // is the defect class this pair of lists exists to prevent. See server.js for the measurements
   // and for what `@N` means (a shell only BELOW N segments — /fuel/<problem>/<root-cause> has a
   // prerendered document of its own saying `noindex,follow`, and this must not overwrite it).
-  const SHELL_NOINDEX_ROUTES = ['exercise', 'fork', 'fuel@3'];
+  const SHELL_NOINDEX_ROUTES = ['fork', 'fuel@3'];
   const UTILITY_NOINDEX_ROUTES = ['plan'];
   const isShellNoindex = (parts) => SHELL_NOINDEX_ROUTES.some((e) => {
     const at = e.indexOf('@');

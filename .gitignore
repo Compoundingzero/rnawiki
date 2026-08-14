@@ -31,6 +31,10 @@ site/stack.html
 site/pros.html
 site/compare/
 site/for-clinicians.html
+# 873 movement documents + their index, emitted by build/prerender.js from
+# data/clinical_exercises.json. Generated, like site/c/ and site/protocol/.
+site/exercise.html
+site/exercise/
 # Emitted only when the deployment sets PUBLIC_COMMUNITY=1 (build/prerender.js). Committing it
 # would put a page in the repo that a flag-off build does not produce, and site/ is regenerated at
 # boot on Railway anyway.

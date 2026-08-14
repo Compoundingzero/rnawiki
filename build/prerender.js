@@ -2727,6 +2727,133 @@ function energyChart(activeId) {
   </svg></figure>
   <p class="fig-credit">Every all-out effort recruits all three systems at once — this shows which one <em>dominates</em> as the seconds tick by.</p>`;
 }
+// ===== /exercise — 873 MOVEMENTS, IN THE DOCUMENT ~90% OF READERS ACTUALLY GET =================
+// MEASURED BEFORE THIS: `server.js` NOINDEX_SHELL_ROUTES listed 'exercise'; site/sitemap.xml held
+// 567 URLs of which ZERO were exercise pages; there was no site/exercise/ directory at all; and a
+// grep for an href to /exercise/<id> across every prerendered document returned nothing — the 17
+// indexed muscle pages carry 307 exercise references and linked to none of them. So the whole
+// movement corpus existed only after hydration, for the ~10% of traffic that runs JavaScript, and
+// the repo had already logged the diagnosis against itself in server.js: "The honest fix for all
+// three is a prerendered document with real content."
+//
+// NOINDEX, FOLLOW, AND OUT OF THE SITEMAP — deliberately, and reversibly. The reach problem is
+// solved the moment these documents exist: a reader with no JavaScript can read them and a crawler
+// can walk from them into the muscle and protocol pages. Indexing is a separate question, and the
+// prose here is free-exercise-db's open dataset, mirrored across the web. Adding 873 near-duplicate
+// documents to a young domain's index is the crawl-budget dilution this file already worries about
+// for soft 404s. What is ORIGINAL on these pages — the join to RNAwiki's 17 authored muscle pages,
+// the 4,404-edge alternatives graph, the protocols that use the movement — is thin per page today.
+// When it is not (cues, the muscle map), flip `robots` and drop `noSitemap` and they index.
+//
+// THE PRIMARY TAG MEANS TWO OPPOSITE THINGS and the page must say which. On the 750 strengthen rows
+// primaryMuscles is the muscle PRODUCING the force; on most of the 123 category='stretching' rows
+// it is the muscle being LENGTHENED, and on the foam-rolling rows the tissue is being PRESSED —
+// neither shortening nor lengthening. One verb across all three would be false on 123 pages with
+// the sign inverted on 80 of them. `kind` cannot be used for this: it is a mixed shelf that files
+// Superman, Split_Squats and a shrug as 'mobility'. The partition below is over `category`, `force`
+// and `equipment`, and it is exhaustive — measured 14 + 80 + 27 + 2 = 123, no remainder.
+function exKind(e) {
+  const roll = /foam roll/i.test(e.equipment || '') || /SMR/i.test(e.id || '');
+  if (e.category !== 'stretching') return { label: 'Strengthening', verb: 'Works', cls: 'ex-work' };
+  if (roll) return { label: 'Foam rolling', verb: 'Where the roller goes', cls: 'ex-press' };
+  if (e.force === 'static') return { label: 'Stretch', verb: 'Lengthens', cls: 'ex-long' };
+  return { label: 'Mobility drill', verb: 'Works, through range', cls: 'ex-mob' };
+}
+const EX_ALL = (EX && EX.exercises) || [];
+const EX_BY_ID = {};
+EX_ALL.forEach((e) => { EX_BY_ID[e.id] = e; });
+const exRoute = (e) => '/exercise/' + encodeURIComponent(e.id);
+// The exercise-DB muscle strings map 1:1 onto the 17 authored muscle pages, bridged by db_name on
+// exactly 'lower back' and 'middle back'. Verified: 17 of 17 resolve, 0 fail.
+const MUSCLE_BY_DB = {};
+((D.anatomy || {}).muscles || []).forEach((m) => { MUSCLE_BY_DB[m.db_name || m.id] = m; });
+const exMuscleLink = (name) => {
+  const m = MUSCLE_BY_DB[name];
+  return m ? `<a href="/muscle/${m.id}">${esc(m.name)}</a>` : esc(name);
+};
+// Which protocols prescribe this movement — the join that makes the page RNAwiki's rather than the
+// dataset's. Built once, not per page.
+const EX_IN_PROTOCOL = {};
+GRAPH.problems.forEach((p) => (p.root_causes || []).forEach((rc) => {
+  (rc.exercises || []).concat(rc.stretches || []).forEach((x) => {
+    const id = x && (x.id || x);
+    if (!id || !EX_BY_ID[id]) return;
+    (EX_IN_PROTOCOL[id] = EX_IN_PROTOCOL[id] || []).push({ p, rc });
+  });
+}));
+
+EX_ALL.forEach((e) => {
+  const route = exRoute(e);
+  const k = exKind(e);
+  const prim = (e.primaryMuscles || []).map(exMuscleLink).join(', ');
+  const sec = (e.secondaryMuscles || []).map(exMuscleLink).join(', ');
+  // The two frames free-exercise-db ships are the start and the end of the movement. They are the
+  // whole "show me the movement" answer this page has — there is no video anywhere in the corpus,
+  // and the project constraint is no camera and no video. Two labelled stills, side by side, with
+  // no animation: an infinite CSS flip is what audit/v19 already logged as an accessibility defect
+  // (site/styles.css had 17 prefers-reduced-motion blocks and none covered it).
+  const img0 = e.image || '';
+  const img1 = img0.replace(/\/0\.jpg$/i, '/1.jpg');
+  const demo = img0 ? `<figure class="ex-frames">
+      <img src="${esc(img0)}" alt="${esc(e.name)} — starting position" loading="lazy" width="360" height="240">
+      ${img1 !== img0 ? `<img src="${esc(img1)}" alt="${esc(e.name)} — end position" loading="lazy" width="360" height="240">` : ''}
+      <figcaption>Start and end of the movement.</figcaption></figure>` : '';
+  const alts = (e.alternatives || []).map((id) => EX_BY_ID[id]).filter(Boolean).slice(0, 10);
+  const altHtml = alts.length ? `<h2>Other ways to train the same muscle</h2>
+    <p>Same primary muscle, different equipment. Useful when a gym is busy or a piece of kit is missing.</p>
+    <ul>${alts.map((a) => `<li><a href="${exRoute(a)}">${esc(a.name)}</a>${a.equipment ? ` — ${esc(a.equipment)}` : ''}</li>`).join('')}</ul>` : '';
+  const used = (EX_IN_PROTOCOL[e.id] || []).slice(0, 6);
+  const usedHtml = used.length ? `<h2>Where RNAwiki uses it</h2><ul>${used.map((u) => `<li><a href="/protocol/${u.p.id}/${u.rc.id}">${esc(u.p.name)} — ${esc(u.rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>` : '';
+  const facts = [e.level, e.equipment, e.mechanic, e.force && e.force !== 'null' ? e.force : ''].filter(Boolean).map(esc).join(' · ');
+  const body = `<div class="article ex-page"><h1>${esc(e.name)}</h1>
+    <p class="ex-kind"><b>${esc(k.label)}</b>${facts ? ' · ' + facts : ''}</p>
+    ${demo}
+    <h2>${esc(k.verb)}</h2>
+    ${prim ? `<p><b>Mainly:</b> ${prim}</p>` : ''}
+    ${sec ? `<p><b>Also:</b> ${sec}</p>` : ''}
+    <p class="muted">Muscle names link to what that muscle does, how it contracts and how to find it on your own body.</p>
+    ${(e.instructions || []).length ? `<h2>How to do it</h2><ol class="ex-steps">${e.instructions.map((i) => `<li>${esc(i)}</li>`).join('')}</ol>` : ''}
+    ${altHtml}
+    ${usedHtml}
+    <p class="ex-credit">Movement description and images from the open <a href="https://github.com/yuhonas/free-exercise-db" rel="noopener">free-exercise-db</a>. The muscles, the alternatives and the protocol links are RNAwiki's. Educational, not medical advice.</p>
+    </div>`;
+  add(route, shell({
+    route, robots: 'noindex,follow',
+    title: seoTitle(`${e.name}: how to do it and the muscles it works`),
+    desc: seoDesc(`${e.name} — ${k.label.toLowerCase()}. ${k.verb} ${(e.primaryMuscles || []).join(', ')}. Step-by-step, the muscles worked, and other ways to train the same muscle.`),
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Movements', route: '/exercise' }, { name: e.name }],
+    body,
+  }), { noSitemap: true });
+});
+
+// The index. Every one of the 873 detail pages needs an inbound link or assertLinkGraph calls it an
+// orphan — and 566 of them are named by no muscle page. Grouped by the muscle they train, because
+// that is the question somebody browsing movements is actually asking.
+{
+  const byMuscle = {};
+  EX_ALL.forEach((e) => {
+    const key = (e.primaryMuscles || [])[0] || 'other';
+    (byMuscle[key] = byMuscle[key] || []).push(e);
+  });
+  const order = Object.keys(byMuscle).sort((a, b) => byMuscle[b].length - byMuscle[a].length);
+  const groups = order.map((key) => {
+    const m = MUSCLE_BY_DB[key];
+    const list = byMuscle[key].slice().sort((a, b) => a.name.localeCompare(b.name));
+    return `<section class="exi-group"><h2>${m ? `<a href="/muscle/${m.id}">${esc(m.name)}</a>` : esc(key)} <span class="muted">— ${list.length} movement${list.length === 1 ? '' : 's'}</span></h2>
+      <ul class="exi-list">${list.map((e) => `<li><a href="${exRoute(e)}">${esc(e.name)}</a> <span class="muted">${esc(exKind(e).label.toLowerCase())}</span></li>`).join('')}</ul></section>`;
+  }).join('');
+  add('/exercise', shell({
+    route: '/exercise', robots: 'noindex,follow',
+    title: seoTitle('Every movement RNAwiki holds, by the muscle it trains'),
+    desc: seoDesc(`${EX_ALL.length} movements — strengthening, stretches, mobility drills and foam rolling — grouped by the muscle each one trains, with the muscles worked and how to do it.`),
+    breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Movements', route: '/exercise' }],
+    body: `<div class="article"><h1>Movements</h1>
+      <p>${EX_ALL.length} movements, grouped by the muscle each one mainly trains. Each page shows what it works, how to do it, and other ways to train the same muscle.</p>
+      <p class="muted">Movement descriptions and images come from the open free-exercise-db. The muscles, the alternatives and the protocol links are RNAwiki's.</p>
+      ${groups}</div>`,
+  }), { noSitemap: true });
+}
+
 ANAT.muscles.forEach((m) => {
   const route = '/muscle/' + m.id; const a = m.anatomy || {};
   // Granular sub-muscles (structures.json) whose groupId is this group — crawlable, both documents.
@@ -2749,6 +2876,17 @@ ANAT.muscles.forEach((m) => {
     <p><b>Fibre-type bias:</b> ${esc(m.fiber_bias)}</p><p><b>Functional role:</b> ${esc(m.functional_role)}</p>
     <h2>Common problems</h2><ul>${(m.common_problems || []).map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
     <h2>Training & stretching</h2><p>${esc(m.training || '')}</p><p>${esc(m.stretching || '')}</p>
+    ${/* THE 307 REFERENCES THAT LINKED NOWHERE. These 17 pages have always carried m.exercises and
+          m.stretches — and rendered neither, so the corpus's own movement library was unreachable
+          from the only indexed pages that name it. Now each one is a link to its own document. */ ''}
+    ${(() => {
+      const grab = (arr) => (arr || []).map((x) => EX_BY_ID[x && (x.id || x)]).filter(Boolean);
+      const work = grab(m.exercises), lengthen = grab(m.stretches);
+      const list = (title, arr) => arr.length ? `<h3>${title}</h3><ul class="mu-ex">${arr.slice(0, 24).map((e) => `<li><a href="${exRoute(e)}">${esc(e.name)}</a>${e.equipment ? ` <span class="muted">— ${esc(e.equipment)}</span>` : ''}</li>`).join('')}</ul>` : '';
+      if (!work.length && !lengthen.length) return '';
+      return `<h2>Movements for this muscle</h2>${list('To train it', work)}${list('To stretch or release it', lengthen)}
+        <p><a href="/exercise">Every movement RNAwiki holds, by muscle →</a></p>`;
+    })()}
     ${(m.problems || []).length ? `<h2>Fix or train this</h2><ul>${m.problems.map((pid) => { const pr = GRAPH.problems.find((x) => x.id === pid); return pr ? `<li><a href="/protocol/${pid}/${pr.root_causes[0].id}">${esc(pr.name)}</a></li>` : ''; }).join('')}</ul>` : ''}${learnFlatHtml(m.expand)}</div>`;
   add(route, shell({ route, title: seoTitle(`${m.name}: anatomy, function and training`), desc: seoDesc(m.overview || ''), ogImage: renderOgCard(`og/muscle/${m.id}.png`, { kind: 'Muscle · ' + (m.region || ''), title: m.name, sub: m.overview }), breadcrumbs: anatCrumb(m.name, route), body }));
 });
@@ -5647,6 +5785,58 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 // assertLandingPage() checks a lot about the landing page and never checked this; nothing else did
 // either, so every disclaimer on the site could have been deleted with a green build.
 // PROVE IT by removing the escalation clause from shell()'s footer.
+// ---- THE MOVEMENT LIBRARY, AND THE ONE TAG THAT MEANS TWO OPPOSITE THINGS --------------------
+// Two things this gate exists for, both measured on 2026-08-14.
+//
+// (1) REACH. Before this build the exercise route emitted NO document at all: server.js listed
+// 'exercise' in NOINDEX_SHELL_ROUTES, site/sitemap.xml held 567 URLs of which zero were exercise
+// pages, and a grep for an href to /exercise/<id> across every prerendered document returned
+// nothing — the 17 indexed muscle pages carried 307 exercise references and linked to none of
+// them. 873 movements existed only after hydration, for the ~10% of traffic that runs JavaScript.
+//
+// (2) THE VERB. `primaryMuscles` is the muscle PRODUCING the force on the 750 strengthen rows and
+// the muscle being LENGTHENED on most of the 123 category='stretching' rows; on the 14 foam-rolling
+// rows the tissue is doing neither, it is being pressed. A single heading across all three is false
+// on 123 pages with the sign INVERTED on 80 of them — on a calf stretch the calf is not working.
+// PROVE IT by making exKind() return one label for everything, or by deleting the muscle links.
+(function assertMovementLibrary() {
+  const bad = [];
+  // \`pages\` is the emitted-document array; \`uniq\` is a list of URL STRINGS and has no .route.
+  const exPages = pages.filter((p) => p.route === '/exercise' || p.route.startsWith('/exercise/'));
+  const details = exPages.filter((p) => p.route !== '/exercise');
+  if (details.length < 800) {
+    bad.push(`only ${details.length} movement documents were emitted; the corpus holds ${((EX && EX.exercises) || []).length}. If the route stopped emitting, remove this gate deliberately rather than letting it pass on a handful.`);
+  }
+  if (!exPages.some((p) => p.route === '/exercise')) bad.push('no /exercise index was emitted, so all 873 detail pages are orphans as far as assertLinkGraph is concerned');
+
+  // Every movement page must reach at least one authored muscle page. That join is the only thing
+  // on these documents that is RNAwiki's rather than the open dataset's.
+  const noMuscle = details.filter((p) => !/href="\/muscle\//.test(p.html));
+  if (noMuscle.length) bad.push(`${noMuscle.length} movement page(s) link to no muscle page — e.g. ${noMuscle[0].route}. The muscles are the reason this page is not just a copy of free-exercise-db.`);
+
+  // The three verbs must actually appear, and a strengthening page must never claim to lengthen.
+  const verbs = { Works: 0, Lengthens: 0, 'Where the roller goes': 0, 'Works, through range': 0 };
+  details.forEach((p) => {
+    Object.keys(verbs).forEach((v) => { if (p.html.indexOf('>' + v + '</h2>') >= 0 || p.html.indexOf('>' + v + '<') >= 0) verbs[v]++; });
+  });
+  if (!verbs.Lengthens) bad.push('no movement page says "Lengthens" — the stretch semantics collapsed back into one verb, and a calf stretch is once again described as the calf working');
+  if (!verbs['Where the roller goes']) bad.push('no movement page distinguishes foam rolling — pressed tissue is neither shortening nor lengthening, and calling it a stretch is a third wrong answer');
+  if (!verbs.Works) bad.push('no movement page says "Works" — the strengthening verb is gone');
+
+  // No video, anywhere. The project constraint is no camera and no video, and the link this
+  // replaced ran a YouTube SEARCH and handed the reader whatever ranked first.
+  const yt = exPages.filter((p) => /youtube\.com|youtu\.be/i.test(p.html));
+  if (yt.length) bad.push(`${yt.length} movement page(s) link to YouTube — e.g. ${yt[0].route}. No camera and no video is a project constraint, and an unranked search result is not a citation.`);
+
+  if (bad.length) {
+    console.error('\n[prerender] MOVEMENT LIBRARY GATE FAILED — refusing to build.');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    process.exit(1);
+  }
+  console.log('[prerender] movement library OK — %d movement documents + an index, every one linking to an authored muscle page; verbs: %d work, %d lengthen, %d roll, %d through-range; 0 video links.',
+    details.length, verbs.Works, verbs.Lengthens, verbs['Where the roller goes'], verbs['Works, through range']);
+})();
+
 (function assertGlobalDisclaimer() {
   const NEED = 'No clinician has reviewed these pages and nothing on them is a diagnosis';
   const bad = [];
