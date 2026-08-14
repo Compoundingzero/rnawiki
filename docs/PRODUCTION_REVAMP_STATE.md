@@ -210,6 +210,35 @@ For visible changes, also boot the local server and inspect the real hydrated an
 documents at phone and desktop widths. `scripts/smoke.mjs` is a required Chrome-backed release
 gate; locally it needs `puppeteer-core@25.6.0` available without changing the production lockfile.
 
+## The movement library's muscle tags (2026-08-15)
+
+873 movement documents are prerendered and indexed. Their muscle tags come from the open
+free-exercise-db, and **fourteen of them do not survive a reading of the movement's own
+instruction text**. `EX_TAG_AUDIT` — defined identically in `build/prerender.js` and
+`site/app.js` — records a verdict per movement, and the two copies are gated against drift by
+`assertTagAuditTwinsAgree()` in `build/parse.js`.
+
+| verdict | n | what it means | what the page does |
+|---|---|---|---|
+| `false` | 9 | the tag names a muscle that is not doing the work — antagonist, wrong compartment, wrong limb segment, wrong body part | states the tag is wrong and what does the work; links the tagged muscle nowhere; `noindex`; out of the sitemap; no `associatedAnatomy`; excluded from the muscle pages, the alternatives graph, and grouped separately on `/exercise` |
+| `deep` | 2 | the tag is **correct**, the muscle is just too deep to draw | unchanged, indexed, plus a sentence explaining the missing figure |
+| `incomplete` | 3 | not untrue, but not the whole movement | claim kept and qualified, indexed |
+
+The verdicts came from five independent reviewers reading only each movement's instruction text
+under different lenses — unanimous on thirteen, 4-1 on `Knee_Circles`.
+
+**Do not "simplify" this into one list.** The first attempt printed one blanket sentence on all
+fourteen, which was itself false on the five that are correctly tagged. Telling a reader a correct
+record is wrong is the same failure as publishing a wrong one, and it ships just as widely.
+
+**Re-indexing a `false` page requires correcting the tag in the source data**, not editing
+`EX_TAG_AUDIT`. Its withdrawal is written in `build/withdrawn.json` and `assertRouteUniverse`
+enforces that.
+
+`assertMovementLibrary()` checks all four surfaces from emitted bytes — the movement page, the 17
+muscle pages, the `/exercise` index and the alternatives graph — because the first fix corrected
+the movement page and left the other three still asserting the claim.
+
 ## Deliberately not launched in this release
 
 The marketplace, redeemable currency, engagement multipliers, avatar body transformations,
