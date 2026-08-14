@@ -595,9 +595,68 @@ CREATE TABLE IF NOT EXISTS studio_protocols (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+-- Canonical provenance. base_pid/base_rcid remain legacy aliases for existing official protocol
+-- URLs and reminder jobs; new creator branches are keyed by Topic -> Route even when that route has
+-- no official root-cause protocol. Existing rows are resolved through the generated route registry
+-- at read time, so this migration never guesses a route id from a display name.
+ALTER TABLE studio_protocols ADD COLUMN IF NOT EXISTS topic_id TEXT;
+ALTER TABLE studio_protocols ADD COLUMN IF NOT EXISTS route_id TEXT;
+-- Discovery is a separate publication decision from making a link. Adding this column with an
+-- unlisted default is the migration: every row published before this choice existed remains
+-- reachable at its exact /p/<code> link and is absent from every index. Nothing infers consent
+-- from status='published', a username, clone count, or an existing public-profile setting.
+ALTER TABLE studio_protocols ADD COLUMN IF NOT EXISTS visibility TEXT NOT NULL DEFAULT 'unlisted';
+DO $studio_visibility$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM pg_constraint WHERE conname='studio_protocols_visibility_check'
+      AND conrelid='studio_protocols'::regclass
+  ) THEN
+    ALTER TABLE studio_protocols ADD CONSTRAINT studio_protocols_visibility_check
+      CHECK (visibility IN ('unlisted','public'));
+  END IF;
+END
+$studio_visibility$;
 CREATE INDEX IF NOT EXISTS idx_studio_user ON studio_protocols(user_id, updated_at DESC);
 CREATE INDEX IF NOT EXISTS idx_studio_parent ON studio_protocols(parent_code);
 CREATE INDEX IF NOT EXISTS idx_studio_base ON studio_protocols(base_pid, base_rcid, status);
+CREATE INDEX IF NOT EXISTS idx_studio_route ON studio_protocols(topic_id, route_id, status, published_at DESC);
+CREATE INDEX IF NOT EXISTS idx_studio_route_public ON studio_protocols(topic_id, route_id, published_at DESC)
+  WHERE status='published' AND visibility='public';
+-- A published row is an immutable version. Starts, Today snapshots and discussion context point at
+-- its code; changing the instructions or provenance in place would make their history lie. Likes,
+-- start counts, withdrawal state and account erasure metadata may still change.
+CREATE OR REPLACE FUNCTION protect_published_studio_version() RETURNS trigger AS $$
+BEGIN
+  IF OLD.status IN ('published','withdrawn') AND (
+    NEW.parent_code IS DISTINCT FROM OLD.parent_code OR
+    NEW.depth IS DISTINCT FROM OLD.depth OR
+    NEW.topic_id IS DISTINCT FROM OLD.topic_id OR
+    NEW.route_id IS DISTINCT FROM OLD.route_id OR
+    NEW.base_pid IS DISTINCT FROM OLD.base_pid OR
+    NEW.base_rcid IS DISTINCT FROM OLD.base_rcid OR
+    (NEW.visibility IS DISTINCT FROM OLD.visibility AND NOT (
+      OLD.visibility='public' AND NEW.visibility='unlisted'
+    )) OR
+    NEW.spec IS DISTINCT FROM OLD.spec OR
+    NEW.safety IS DISTINCT FROM OLD.safety OR
+    NEW.published_at IS DISTINCT FROM OLD.published_at OR
+    NEW.created_at IS DISTINCT FROM OLD.created_at
+  ) THEN
+    RAISE EXCEPTION 'published Studio versions are immutable';
+  END IF;
+  IF OLD.status = 'withdrawn' AND NEW.status <> 'withdrawn' THEN
+    RAISE EXCEPTION 'withdrawn Studio versions cannot be republished in place';
+  END IF;
+  IF OLD.status = 'published' AND NEW.status NOT IN ('published','withdrawn') THEN
+    RAISE EXCEPTION 'published Studio versions may only stay published or be withdrawn';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+DROP TRIGGER IF EXISTS studio_published_version_immutable ON studio_protocols;
+CREATE TRIGGER studio_published_version_immutable BEFORE UPDATE ON studio_protocols
+FOR EACH ROW EXECUTE FUNCTION protect_published_studio_version();
 -- "MOST USED", never "works best". This index sorts by clone count and by nothing else, and the
 -- column it sorts on counts one clone per browser — whether people STARTED it. There is no
 -- efficacy column in this table and there must not be one: with the number of real experiments
@@ -638,6 +697,54 @@ CREATE TABLE IF NOT EXISTS studio_clones (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE(code, voter_key)
 );
+
+-- ---- BRANCH-BOUND ACCOUNTABILITY -------------------------------------------------------------
+-- These tables deliberately attach every membership and post to the immutable published Studio
+-- row a person started. protocol_code and version_code are the same value for today's v1
+-- rows; keeping both columns makes the provenance contract explicit and lets a future stable
+-- branch point at version 2 without rewriting old check-ins or conversations.
+CREATE TABLE IF NOT EXISTS protocol_memberships (
+  protocol_code TEXT NOT NULL REFERENCES studio_protocols(code) ON DELETE CASCADE,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  role TEXT NOT NULL DEFAULT 'member' CHECK (role IN ('member','moderator','owner')),
+  disclosure_version TEXT,
+  joined_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY(protocol_code, user_id)
+);
+ALTER TABLE protocol_memberships ADD COLUMN IF NOT EXISTS disclosure_version TEXT;
+CREATE INDEX IF NOT EXISTS idx_protocol_memberships_user ON protocol_memberships(user_id, updated_at DESC);
+
+CREATE TABLE IF NOT EXISTS protocol_posts (
+  id BIGSERIAL PRIMARY KEY,
+  protocol_code TEXT NOT NULL REFERENCES studio_protocols(code) ON DELETE CASCADE,
+  version_code TEXT NOT NULL REFERENCES studio_protocols(code) ON DELETE RESTRICT,
+  context_kind TEXT NOT NULL DEFAULT 'general' CHECK (context_kind IN ('general','step','day','checkin')),
+  context_key TEXT,
+  parent_id BIGINT REFERENCES protocol_posts(id) ON DELETE SET NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  body TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'active' CHECK (status IN ('active','removed')),
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_protocol_posts_context ON protocol_posts(protocol_code, version_code, context_kind, context_key, created_at DESC);
+
+-- Role changes and moderation are auditable. A removed post stays as a tombstone so replies do not
+-- lose their thread and a moderator cannot erase the fact that an action occurred.
+CREATE TABLE IF NOT EXISTS protocol_community_events (
+  id BIGSERIAL PRIMARY KEY,
+  protocol_code TEXT NOT NULL REFERENCES studio_protocols(code) ON DELETE CASCADE,
+  -- Keep the fact that moderation occurred after an actor closes their account, without retaining
+  -- the deleted identity. CASCADE here would silently erase the audit trail itself.
+  actor_user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  target_user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+  post_id BIGINT REFERENCES protocol_posts(id) ON DELETE SET NULL,
+  kind TEXT NOT NULL CHECK (kind IN ('role_granted','role_revoked','post_removed','post_restored')),
+  detail JSONB NOT NULL DEFAULT '{}',
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS idx_protocol_community_events_code ON protocol_community_events(protocol_code, created_at DESC);
 
 -- Research reads fail closed at the database boundary. The append-only record is the authority:
 -- a legacy user_consent=true row is not proof, and a later withdrawal immediately removes every

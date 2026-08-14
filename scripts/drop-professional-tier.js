@@ -20,9 +20,10 @@
 // RUN:  railway run --service Postgres node ./scripts/drop-professional-tier.js
 //       (add --apply to actually execute; without it this only reports)
 //
-// Postgres here has NO PITR. The only backup is the 6-hourly GitHub Action to the private
-// Compoundingzero/rnawiki-backups repo. This script therefore PRINTS what it is about to destroy,
-// with row counts, before it destroys anything — and it deliberately does NOT write an export file.
+// The GitHub public-signal job is manual-only and cannot restore this schema or any private row.
+// A read-only Railway check on 2026-08-15 found PITR and scheduled volume backups off. Before using
+// --apply, independently verify an approved Postgres recovery point or full logical backup and its
+// retention. This script PRINTS what it will destroy and deliberately writes no export file.
 // Felix's instruction was to delete the data, and a script that quietly leaves a CSV of licence
 // numbers on somebody's laptop has not deleted it.
 

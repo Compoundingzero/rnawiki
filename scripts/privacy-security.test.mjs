@@ -95,7 +95,9 @@ assert.match(server, /function publicProtocolTitle\(pid, rcid\)/);
 const studioCreate = between(server,
   "if (seg[0] === 'protocols' && !seg[1] && method === 'POST')",
   '// A REMIX STORES ONLY ITS DIFFERENCES');
-assert.match(studioCreate, /publish \? publicProtocolTitle\(v\.base_pid, v\.base_rcid\) : draftTitle/);
+assert.match(studioCreate, /publish \? publicProtocolTitle\(v\.topic_id, v\.route_id\) : draftTitle/);
+assert.match(studioCreate, /topic_id:\s*clean\(b\.topic_id/);
+assert.match(studioCreate, /route_id:\s*clean\(b\.route_id/);
 assert.doesNotMatch(studioCreate, /publish[^\n]+\btitle\b[^\n]+clean\(b\.title/);
 
 // Proxy-aware throttling must identify a visitor without trusting a spoofable forwarding header.

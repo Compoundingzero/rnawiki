@@ -128,11 +128,12 @@
   // ---------- stack (localStorage + URL share) ----------
   // ---------- Unified plan object (the spine: the web tracker and sharing both read this) ----------
   // v2 shape — ONE plan holds every protocol the user runs, merged into one daily experience:
-  //   { v:2, protocols:[{pid,rcid,moves,supps,functions,startedAt}], draft:{pid,rcid,moves,supps,functions,extra,step}|null,
+  //   { v:2, protocols:[{pid,rcid,moves,supps,functions,startedAt}], exactEnrollments:[{topic_id,route_id,branch_id,version_id,steps,startedAt,log}],
+  //     activeExactId, draft:{pid,rcid,moves,supps,functions,extra,step}|null,
   //     log:{ [date]:{ keystones:{"pid/rcid":bool}, done:[itemId], sets:{exId:[{w,reps}]}, food:[], fn:{fid:n} } },
   //     fnWeek:{[wk]:{fid:n}}, tools:{...} }
   const PLAN_KEY = 'rnawiki_plan';
-  function newPlan() { return { v: 2, protocols: [], draft: null, log: {}, fnWeek: {}, tools: {} }; }
+  function newPlan() { return { v: 2, protocols: [], exactEnrollments: [], activeExactId: null, draft: null, log: {}, fnWeek: {}, tools: {} }; }
   // Upgrade any older single-protocol plan to v2 without losing tracking history.
   function migratePlan(p) {
     if (!p || p.v === 2) return p;
@@ -158,6 +159,15 @@
     p.protocols = Array.isArray(p.protocols)
       ? p.protocols.filter((x) => x && typeof x === 'object' && x.pid)
       : [];
+    // EXACT-BRANCH INVARIANT: an enrollment is kept only when its full provenance chain and its
+    // frozen authored steps are present. It is never coerced into `protocols`, because doing that
+    // would send it through mergedPlan() and silently substitute catalogue content for the branch
+    // the reader actually started.
+    p.exactEnrollments = Array.isArray(p.exactEnrollments)
+      ? p.exactEnrollments.filter((x) => x && typeof x === 'object'
+        && x.topic_id && x.route_id && x.branch_id && x.version_id && Array.isArray(x.steps))
+      : [];
+    if (p.activeExactId != null && typeof p.activeExactId !== 'string') p.activeExactId = null;
     p.log = obj(p.log); p.tools = obj(p.tools); p.fnWeek = obj(p.fnWeek);
     if (p.draft && (typeof p.draft !== 'object' || Array.isArray(p.draft))) delete p.draft;
     // a log keyed by anything that is not a YYYY-MM-DD date can hang date loops downstream
@@ -219,7 +229,41 @@
         const sp = migratePlan(serverPlan) || {};
         Object.keys(sp.log || {}).forEach((d) => { if (sp.log[d] && typeof sp.log[d] === 'object') delete sp.log[d].w; });
         delete sp.seen; delete sp.taps;
+        // Signing in must not erase the exact branch the reader just started on this device. Merge
+        // immutable enrollments by their full provenance key; where both devices know the same
+        // version, keep both day logs and let this device's just-written record win for a duplicate
+        // day. Legacy generated plans remain account-owned exactly as before.
+        const sx = Array.isArray(sp.exactEnrollments) ? sp.exactEnrollments.slice() : [];
+        const byExact = new Map(sx.map((x, i) => [exactEnrollmentId(x), i]));
+        const syncConflicts = Array.isArray(sp.exactSyncConflicts) ? sp.exactSyncConflicts.slice(-19) : [];
+        ((local && local.exactEnrollments) || []).forEach((lx) => {
+          const key = exactEnrollmentId(lx), at = byExact.get(key);
+          if (at == null) { byExact.set(key, sx.length); sx.push(lx); return; }
+          const old = sx[at] || {};
+          // EXACT-SNAPSHOT SYNC INVARIANT: the provenance tuple identifies a version, but old
+          // clients did not enforce content-addressed snapshots. If two devices present the same
+          // tuple with different non-empty hashes, the account copy wins and ONLY day logs merge.
+          // Copying local fields over it would silently replace the authored actions while keeping
+          // the server's version label. Keep a small local conflict ledger so this does not vanish
+          // as an invisible data choice; a legacy hashless side may still use the old full merge.
+          const hashConflict = old.snapshot_hash && lx.snapshot_hash && old.snapshot_hash !== lx.snapshot_hash;
+          if (hashConflict) {
+            sx[at] = Object.assign({}, old, { log: Object.assign({}, old.log || {}, lx.log || {}) });
+            syncConflicts.push({ exact_id: key, server_hash: old.snapshot_hash, local_hash: lx.snapshot_hash, detected_at: new Date().toISOString() });
+            console.warn('[plan] exact snapshot conflict; kept account snapshot:', key);
+            return;
+          }
+          const starts = [old.startedAt, lx.startedAt].filter((x) => /^\d{4}-\d{2}-\d{2}$/.test(String(x || ''))).sort();
+          sx[at] = Object.assign({}, old, lx, {
+            startedAt: starts[0] || lx.startedAt || old.startedAt,
+            log: Object.assign({}, old.log || {}, lx.log || {}),
+          });
+        });
+        sp.exactEnrollments = sx;
+        if (syncConflicts.length) sp.exactSyncConflicts = syncConflicts.slice(-20);
+        if (local && local.activeExactId && byExact.has(local.activeExactId)) sp.activeExactId = local.activeExactId;
         localStorage.setItem(PLAN_KEY, JSON.stringify(sp));
+        if (local && (local.exactEnrollments || []).length) api.savePlan(sp);
       }
       else if (local) api.savePlan(local);
     } catch (e) {}
@@ -855,13 +899,29 @@
     saveProtocol(b) { return this.raw('POST', '/api/protocols', b); },
     remixProtocol(code, b) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/remix', b); },
     readProtocol(code) { return this.raw('GET', '/api/protocols/' + encodeURIComponent(code)); },
+    creatorRouteIndex(topicId, routeIds) {
+      const q = new URLSearchParams(); q.set('topic_id', topicId);
+      (routeIds || []).forEach((routeId) => q.append('route_id', routeId));
+      return this.raw('GET', '/api/protocols/route-index?' + q.toString());
+    },
     // ---- /me (2026-08-10) ---------------------------------------------------------------------
     // myProtocols() is the ONLY reader anywhere that may see status='draft'. It catches rather than
     // throws because /me must render in full for a signed-out reader with no network at all — the
     // whole page above the account section comes from this device.
     myProtocols() { return this.raw('GET', '/api/protocols/mine').then(d => (d._ok ? d : { protocols: [], signedIn: false })).catch(() => ({ protocols: [], signedIn: false })); },
     withdrawProtocol(code) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/withdraw', {}); },
-    cloneProtocol(code) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/clone', {}); },
+    unlistProtocol(code) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/visibility', { visibility: 'unlisted' }); },
+    cloneProtocol(code, snapshotHash) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/clone', { snapshot_hash: snapshotHash }); },
+    protocolCommunity(code, context, key) {
+      const q = new URLSearchParams(); if (context) q.set('context', context); if (key) q.set('key', key);
+      return this.raw('GET', '/api/protocols/' + encodeURIComponent(code) + '/community' + (q.toString() ? '?' + q.toString() : ''));
+    },
+    joinProtocolCommunity(code, versionId) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/community/join', { version_id: versionId, disclosure_version: 'protocol-community-v1' }); },
+    leaveProtocolCommunity(code) { return this.raw('DELETE', '/api/protocols/' + encodeURIComponent(code) + '/community/leave'); },
+    protocolMembers(code) { return this.raw('GET', '/api/protocols/' + encodeURIComponent(code) + '/members'); },
+    setProtocolMemberRole(code, username, role) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/members/' + encodeURIComponent(username) + '/role', { role }); },
+    postProtocolCommunity(code, body) { return this.raw('POST', '/api/protocols/' + encodeURIComponent(code) + '/community', body); },
+    delProtocolCommunity(code, id) { return this.raw('DELETE', '/api/protocols/' + encodeURIComponent(code) + '/community/' + encodeURIComponent(id)); },
     setFeedback(id, status) { return this.call('POST', '/api/admin/feedback/' + id, { status }); },
     // api.submitClinicianInterest REMOVED 2026-08-08 with its endpoint. It POSTed a name, an email,
     // a profession, a country, a professional licence number and a base64 photo of a credential
@@ -973,7 +1033,7 @@
   async function mountCommunityStrip() {
     const wrap = document.querySelector('[data-community-strip]');
     if (!wrap) return;
-    if (!featureOn('publicCommunity')) return;
+    if (!featureOn('creatorDiscovery')) return;
     let list = [];
     try {
       const r = await fetch('/api/protocols/new?limit=6', { headers: { accept: 'application/json' } });
@@ -1017,7 +1077,7 @@
   async function mountPublishedIndex() {
     const ul = document.getElementById('p-idx-list');
     if (!ul) return;
-    if (!featureOn('publicCommunity')) return;
+    if (!featureOn('creatorDiscovery')) return;
     let list = [];
     try {
       const r = await fetch('/api/protocols/new?limit=12', { headers: { accept: 'application/json' } });
@@ -1029,6 +1089,51 @@
     ul.hidden = false;
     const empty = document.getElementById('p-idx-empty');
     if (empty) empty.remove();
+  }
+
+  // One request per topic, never one request per route. The server accepts only the canonical
+  // topic/route ids already stamped into the page and returns only branches whose creator chose
+  // public discovery. A failed or disabled request leaves the static RNAwiki availability copy
+  // untouched; it never falls back to a different root or an older link-only row.
+  async function mountCreatorRouteIndex(topicId) {
+    if (!topicId || !featureOn('creatorDiscovery')) return;
+    const hosts = [...document.querySelectorAll('.creator-route-index[data-topic-id][data-route-id]')]
+      .filter((host) => host.dataset.topicId === topicId);
+    if (!hosts.length || hosts.every((host) => host.dataset.discoveryState === 'loaded' || host.dataset.discoveryState === 'loading')) return;
+    const routeIds = [...new Set(hosts.map((host) => host.dataset.routeId).filter(Boolean))];
+    if (!routeIds.length) return;
+    hosts.forEach((host) => { host.dataset.discoveryState = 'loading'; });
+    const d = await api.creatorRouteIndex(topicId, routeIds);
+    if (!d || !d._ok || d.topic_id !== topicId) {
+      hosts.forEach((host) => { delete host.dataset.discoveryState; });
+      return;
+    }
+    const byRoute = {};
+    (d.branches || []).forEach((branch) => {
+      if (branch.topic_id !== topicId || routeIds.indexOf(branch.route_id) < 0 || !branch.code) return;
+      (byRoute[branch.route_id] || (byRoute[branch.route_id] = [])).push(branch);
+    });
+    hosts.forEach((host) => {
+      if (!host.isConnected) return;
+      const routeId = host.dataset.routeId, branches = byRoute[routeId] || [];
+      const create = '#/studio?for=' + encodeURIComponent(topicId) + '&amp;cause=' + encodeURIComponent(routeId);
+      if (branches.length) {
+        host.innerHTML = '<div class="cri-head"><b>' + branches.length + ' creator plan' + (branches.length === 1 ? '' : 's') + '</b><a href="' + create + '">Create one</a></div>'
+          + '<ul class="cri-list">' + branches.map((branch) => {
+            const by = branch.handle
+              ? (branch.profile_visible ? '<a class="cri-profile" href="/u/' + encodeURIComponent(branch.handle) + '">@' + esc(branch.handle) + '</a>' : '<span>@' + esc(branch.handle) + '</span>')
+              : '<span>Creator account removed</span>';
+            return '<li><span class="cri-by">' + by + '</span><a class="cri-open" href="/p/' + encodeURIComponent(branch.code) + '">Open plan<small>'
+              + (branch.clones ? ' · ' + branch.clones + ' start' + (branch.clones === 1 ? '' : 's') : '')
+              + '</small></a></li>';
+          }).join('') + '</ul>';
+      } else {
+        host.innerHTML = '<p class="cri-empty"><span>' + (host.dataset.official === '1' ? 'No creator branch yet.' : 'No plan yet.')
+          + '</span> <a href="' + create + '">Create one</a></p>';
+      }
+      host.hidden = false;
+      host.dataset.discoveryState = 'loaded';
+    });
   }
 
   // Mirrors overlapWarnings() in build/prerender.js. Both call IXN.stackInteractions/pairCoverage,
@@ -1079,7 +1184,7 @@
   // Fills #variants-rail from /api/protocols/variants. Absent unless there is a real alternative.
   async function mountVariantsRail(pid, rcid) {
     const wrap = document.getElementById('variants-rail');
-    if (!wrap || !featureOn('publicCommunity')) return;
+    if (!wrap || !featureOn('creatorDiscovery')) return;
     let vs = [];
     try {
       const r = await fetch('/api/protocols/variants?pid=' + encodeURIComponent(pid) + '&rcid=' + encodeURIComponent(rcid),
@@ -1126,7 +1231,7 @@
     // try/catch because a quota-exceeded or storage-disabled browser throws on the READ.
     const hasOwnStuff = (() => {
       try {
-        if (planProtocols(getPlan()).length) return true;
+        const pl = getPlan(); if (planProtocols(pl).length || (pl && pl.exactEnrollments && pl.exactEnrollments.length)) return true;
         if (Object.keys(trackRead().logs || {}).length) return true;
         const d = stLoad(); return !!(d && d.causes.some(c => c.items.length));
       } catch (e) { return false; }
@@ -1320,6 +1425,104 @@
     // since, and it still described a discussion where "verified experts and stewards reply" —
     // a claim about people who never existed. Deleted 2026-07-30 rather than left to be found.
     const box = document.getElementById('goal-comments'); if (box) box.innerHTML = '';
+  }
+  // Branch discussion is deliberately narrower than the retired site-wide comment boxes above.
+  // The server owns membership and binds every post to code===version_id plus an optional day/step
+  // context. This UI cannot make a generic forum post or move one between versions.
+  async function renderBranchDiscussion(code, versionId, label, hostId, contextKind, contextKey) {
+    const box = document.getElementById(hostId || 'branch-comments'); if (!box) return;
+    if (!featureOn('protocolCommunity') || !code || versionId !== code) { box.remove(); return; }
+    const response = await api.protocolCommunity(code, contextKind || 'general', contextKey || '');
+    if (!response || !response._ok) { box.remove(); return; }
+    let rows = response.posts || [];
+    const canModerate = response.role === 'owner' || response.role === 'moderator';
+    const item = p => {
+      const user = p.profile_visible
+        ? '<a class="comment-user" href="#/u/' + encodeURIComponent(p.username) + '">👤 ' + esc(p.username) + '</a>'
+        : '<span class="comment-user">👤 ' + esc(p.username) + '</span>';
+      return '<div class="comment" data-id="' + p.id + '"><div class="comment-head">' + user
+        + (p.role === 'owner' ? '<span class="st-chip">creator</span>' : p.role === 'moderator' ? '<span class="st-chip">moderator</span>' : '')
+        + '<span class="comment-time">' + ago(p.created_at) + '</span>'
+        + ((ME && ME.username === p.username) || canModerate ? '<button class="comment-del" data-del="' + p.id + '">delete</button>' : '')
+        + '</div><div class="comment-body">' + userText(p.body) + '</div></div>';
+    };
+    const onToday = (contextKind || '') === 'day';
+    const discussionOpen = response.status === 'published';
+    const composer = !discussionOpen
+      ? '<p class="muted"><b>This branch was withdrawn.</b> Its existing messages remain readable, but nobody can join or post.</p>'
+      : response.can_post
+      ? '<div class="comment-form"><p class="muted">Posting as <b>@' + esc(response.viewer || (ME && ME.username) || '') + '</b>. Everyone can read your username, message, and that it belongs to this plan version.</p><textarea id="branch-comment-body" rows="3" maxlength="1600" placeholder="What happened when you tried today’s action?"></textarea>'
+        + '<button class="cta-primary" id="branch-comment-send">Post</button><span class="muted" id="branch-comment-state"></span></div>'
+      : onToday && ME
+        ? '<div class="comment-form"><p><b>Join this discussion as @' + esc(ME.username) + '?</b></p><p class="muted">The creator and moderators will see your username and that you joined this health plan. Everyone can read messages you post. Your private Today checks are not shared.</p><button class="cta-primary" id="branch-community-join">Join discussion</button><span class="muted" id="branch-comment-state"></span></div>'
+        : '<p class="muted">' + (onToday ? 'Sign in to choose whether to join. Reading stays public; your private Today checks are never posted.' : 'Start this exact plan to choose whether to join its discussion.') + '</p>';
+    const membership = response.role === 'owner'
+      ? '<div class="branch-membership"><p class="muted">' + (discussionOpen
+        ? 'You created this branch, so you remain its owner while it is published. Withdraw the protocol to close it to new activity.'
+        : 'You created this branch and remain the owner of its read-only discussion history.') + '</p>'
+        + (discussionOpen ? '<button class="cta-ghost" id="branch-members-manage">Manage members</button><div id="branch-members-panel"></div>' : '') + '</div>'
+      : response.role
+        ? '<div class="branch-membership"><button class="linkbtn danger" id="branch-community-leave">Leave discussion</button><p class="muted">Leaving removes your membership and posting access. Messages you already posted stay public.</p></div>'
+        : '';
+    box.innerHTML = '<div class="section-title">Discussion for this plan</div>'
+      + '<p class="muted">Check in or ask about <b>' + esc(label || 'this plan') + '</b>. This thread stays with the exact plan people followed.</p>'
+      + membership + composer + '<div id="branch-comment-list">' + (rows.length ? rows.map(item).join('') : '<p class="muted">No check-ins yet.</p>') + '</div>';
+    const list = box.querySelector('#branch-comment-list');
+    const wireDeletes = () => list.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+      if (!confirm('Delete this message?')) return;
+      const r = await api.delProtocolCommunity(code, b.dataset.del); if (r && r._ok) load();
+    });
+    const load = async () => {
+      const d = await api.protocolCommunity(code, contextKind || 'general', contextKey || '');
+      rows = d && d._ok ? (d.posts || []) : rows;
+      list.innerHTML = rows.length ? rows.map(item).join('') : '<p class="muted">No check-ins yet.</p>';
+      wireDeletes();
+    };
+    wireDeletes();
+    const join = box.querySelector('#branch-community-join');
+    if (join) join.onclick = async () => {
+      join.disabled = true;
+      const state = box.querySelector('#branch-comment-state'); if (state) state.textContent = 'Joining…';
+      const r = await api.joinProtocolCommunity(code, versionId);
+      if (r && r._ok) return renderBranchDiscussion(code, versionId, label, hostId, contextKind, contextKey);
+      if (state) state.textContent = (r && r.error) || 'The discussion was not joined.';
+      join.disabled = false;
+    };
+    const leave = box.querySelector('#branch-community-leave');
+    if (leave) leave.onclick = async () => {
+      if (!confirm('Leave this discussion? Your existing public messages will remain, but your membership and posting access will be removed.')) return;
+      leave.disabled = true;
+      const r = await api.leaveProtocolCommunity(code);
+      if (r && r._ok) return renderBranchDiscussion(code, versionId, label, hostId, contextKind, contextKey);
+      alert((r && r.error) || 'You were not removed. Nothing changed.'); leave.disabled = false;
+    };
+    const manage = box.querySelector('#branch-members-manage'), panel = box.querySelector('#branch-members-panel');
+    const loadMembers = async () => {
+      if (!panel) return;
+      panel.innerHTML = '<p class="muted">Loading members…</p>';
+      const d = await api.protocolMembers(code);
+      if (!d || !d._ok) { panel.innerHTML = '<p class="muted">' + esc((d && d.error) || 'Members could not be loaded.') + '</p>'; return; }
+      panel.innerHTML = '<ul class="branch-member-list">' + (d.members || []).map((member) => '<li><span>@' + esc(member.username) + ' · ' + esc(member.role) + '</span>'
+        + (member.role === 'member' ? '<button class="linkbtn" data-member-role="moderator" data-member-name="' + esc(member.username) + '">Make moderator</button>' : '')
+        + (member.role === 'moderator' ? '<button class="linkbtn danger" data-member-role="member" data-member-name="' + esc(member.username) + '">Remove moderator</button>' : '')
+        + '</li>').join('') + '</ul>';
+      panel.querySelectorAll('[data-member-role]').forEach((button) => { button.onclick = async () => {
+        button.disabled = true;
+        const r = await api.setProtocolMemberRole(code, button.dataset.memberName, button.dataset.memberRole);
+        if (r && r._ok) return loadMembers();
+        alert((r && r.error) || 'That role did not change.'); button.disabled = false;
+      }; });
+    };
+    if (manage) manage.onclick = () => { manage.hidden = true; loadMembers(); };
+    const send = box.querySelector('#branch-comment-send'), body = box.querySelector('#branch-comment-body'), state = box.querySelector('#branch-comment-state');
+    if (send) send.onclick = async () => {
+      const value = body.value.trim(); if (!value) { state.textContent = 'Write something first.'; return; }
+      send.disabled = true; state.textContent = 'Posting…';
+      const r = await api.postProtocolCommunity(code, { version_id: versionId, context_kind: contextKind || 'general', context_key: contextKey || null, body: value });
+      if (r && r._ok) { body.value = ''; state.textContent = ''; await load(); }
+      else state.textContent = (r && r.error) || 'It was not posted.';
+      send.disabled = false;
+    };
   }
   async function loadComments(key) {
     const list = document.getElementById('cm-list'); if (!list) return;
@@ -4635,7 +4838,9 @@
     ...(ANAT.muscles || []).map(m => ({ kind: 'Muscle', title: m.name, sub: m.region, href: '#/muscle/' + m.id, hay: (m.name + ' ' + (m.aka || []).join(' ') + ' ' + m.group + ' ' + m.overview + ' ' + (m.common_problems || []).join(' ')).toLowerCase() })),
     ...(ANAT.energy_systems || []).map(e => ({ kind: 'Energy system', title: e.name.split('(')[0].trim(), sub: e.duration, href: '#/energy/' + e.id, hay: (e.name + ' ' + (e.aka || []).join(' ') + ' ' + e.overview).toLowerCase() })),
     ...(ANAT.metabolism || []).map(p => ({ kind: 'Physiology', title: p.name, sub: 'Metabolism', href: '#/physiology/' + p.id, hay: (p.name + ' ' + p.overview + ' ' + (p.plain || '')).toLowerCase() })),
-    ...(D.graph.problems || []).map(p => ({ kind: 'Protocol', title: p.name, sub: p.category + ' · ' + (p.kind === 'want' ? 'goal' : 'problem'), href: '#/protocol/' + p.id + '/' + p.root_causes[0].id, hay: (p.name + ' ' + p.category + ' ' + p.root_causes.map(rc => rc.name + ' ' + rc.diagnostic).join(' ')).toLowerCase() })),
+    // Search identifies the topic, never the reader's route. A topic result must stop at the
+    // route-choice page; choosing root_causes[0] here was a diagnosis-by-autocomplete.
+    ...(D.graph.problems || []).map(p => ({ kind: 'Protocol', title: p.name, sub: p.category + ' · ' + (p.kind === 'want' ? 'goal' : 'problem'), href: '/problem/' + p.id, native: true, hay: (p.name + ' ' + p.category + ' ' + ((p.routes && p.routes.length ? p.routes : p.root_causes) || []).map(rc => rc.name + ' ' + (rc.diagnostic || (rc.fit && rc.fit.symptoms) || '')).join(' ')).toLowerCase() })),
   ];
   function runSearch(q) {
     const rawQ = q.trim(); q = rawQ.toLowerCase(); if (!q) { searchOut.hidden = true; return; }
@@ -4643,7 +4848,7 @@
     const scored = index.map(it => { let s = 0; const t = it.title.toLowerCase(); terms.forEach(x => { if (t === x) s += 14; else if (t.startsWith(x)) s += 10; else if (t.includes(x)) s += 6; else if (it.hay.includes(x)) s += 2; }); return { it, s }; })
       .filter(x => x.s > 0).sort((a, b) => b.s - a.s || a.it.title.length - b.it.title.length).slice(0, 12);
     searchOut.innerHTML = scored.length
-      ? scored.map(x => `<a href="${x.it.href}" data-k="${A_KIND[x.it.kind] || 'other'}"><span class="sr-kind">${x.it.kind}</span> ${x.it.title} <span style="color:var(--faint);font-size:.82rem">· ${x.it.sub}</span></a>`).join('')
+      ? scored.map(x => `<a href="${x.it.href}"${x.it.native ? ' data-native' : ''} data-k="${A_KIND[x.it.kind] || 'other'}"><span class="sr-kind">${x.it.kind}</span> ${x.it.title} <span style="color:var(--faint);font-size:.82rem">· ${x.it.sub}</span></a>`).join('')
       : `<div class="sr-empty">Can’t find <b>“${esc(rawQ)}”</b>? <button type="button" class="sr-request">Request it or leave feedback →</button></div>`;
     searchOut.hidden = false;
     const rq = searchOut.querySelector('.sr-request');
@@ -4922,48 +5127,9 @@
     const p = problemById[pid]; const rc = resolveRc(p, rcid);
     return p ? p.name + (rc ? ' — ' + rc.name.split('(')[0].trim() : '') : pid;
   }
-  // ITEM 2 — per-cause protocols: synthesize a why.cause into a root-cause the whole engine understands.
-  // Move/Fuel scaffolding is borrowed from the best-matching real root_cause; Stack (and identity) come
-  // from the cause itself, so each cause you identify gets its own Move·Fuel·Stack plan.
-  // Map a why.cause to the real root_cause whose Move/Fuel scaffolding fits best (scored on shared clinical
-  // words + a few synonyms). Returns null when nothing matches well, so the caller falls back to the primary rc.
-  function alignRootCause(cause, rcs) {
-    if (!rcs || !rcs.length) return null;
-    const hay = (String(cause.name) + ' ' + (cause.hook || '') + ' ' + ((cause.tell && cause.tell.symptoms) || '')).toLowerCase();
-    let best = null, bestScore = 0;
-    rcs.forEach(r => {
-      const toks = (r.id + ' ' + r.name).toLowerCase().split(/[^a-z0-9]+/).filter(t => t.length > 2);
-      let sc = 0; toks.forEach(t => { if (hay.includes(t)) sc += t.length; });
-      const rk = (r.id + ' ' + r.name).toLowerCase();
-      if (/osteoarthritis|cartilage/.test(hay) && /\boa\b|osteoarthritis/.test(rk)) sc += 8;
-      if (/iliotibial|it band/.test(hay) && /\bit\b|iliotibial|lateral/.test(rk)) sc += 6;
-      if (sc > bestScore) { bestScore = sc; best = r; }
-    });
-    return bestScore >= 4 ? best : null;
-  }
-  function causeAsRc(problem, ci) {
-    const causes = (problem.why && problem.why.causes || []).slice().sort((a, b) => (a.rank || 9) - (b.rank || 9));
-    const cause = causes[ci]; const rcs = problem.root_causes || [];
-    if (!cause) return rcs[0];
-    let base = alignRootCause(cause, rcs);                              // best clinical-name match
-    if (!base && rcs.length === causes.length) base = rcs[ci];          // else align by index when counts match
-    base = base || rcs[0] || {};                                       // else the primary root_cause
-    const compNames = (cause.fixes || []).filter(f => f.kind === 'compound' && f.ref).map(f => { const cc = resolveCompound(f.ref); return cc ? cc.name : f.ref; });
-    return Object.assign({}, base, {
-      id: 'wc' + ci, name: cause.name,
-      diagnostic: cause.hook || (cause.tell && cause.tell.symptoms) || base.diagnostic || '',
-      compounds: compNames.length ? compNames : (base.compounds || []),
-      // A per-cause protocol (the /protocol/<problem>/wc<n> route the cause quiz and the cause
-      // finder seed) IS this cause — so it carries its own join key, and never the one it would
-      // otherwise inherit from `base` through the Object.assign above. build/parse.js writes
-      // `cause_key` onto every real root cause from data/cause_map.json; without this line a wc
-      // route would claim to be about whichever cause its borrowed scaffolding root cause is
-      // about. Overwriting it here means the quiz's exact answer wins over the inherited guess,
-      // whatever order a consumer checks `_causeIndex` and `cause_key` in.
-      cause_key: cause.name,
-      _causeIndex: ci, _cause: cause,
-    });
-  }
+  // Unmapped authored reasons are never converted into a made-up `wcN` root cause. A route with no
+  // protocol is an honest empty state and a creator opportunity; borrowing another root's moves or
+  // compounds would turn uncertainty into a confidently wrong plan.
   // Which of the page's `why.causes` is THIS url's root cause? The join itself is authored in
   // data/cause_map.json and folded onto each root cause as `cause_key` by build/parse.js (which
   // fails the build if a root cause is unmapped without a reason, or names a cause that does not
@@ -4972,17 +5138,12 @@
   // matches, so before this the accordion was hard-coded open on index 0 and 20 of 52 protocol
   // URLs named one cause in the header and expanded a different one below it.
   //
-  // ORDER IS LOAD-BEARING: a synthesized `wc<n>` cause-protocol carries its own exact index and
-  // must win, because causeAsRc() Object.assigns over a real root cause. Unmapped -> 0, which is
-  // exactly the old behaviour, so the 5 deliberately-unmapped root causes are unchanged.
   // The inverse of causeIndexForRc: where does an authored why.cause actually LIVE?
   // 47 of the 224 authored causes have a root-cause protocol of their own (data/cause_map.json
   // binds 47 of 52 root causes to a cause name, folded on as `cause_key` by build/parse.js). The
   // other 177 do not, and there is no protocol URL to send anyone to.
-  // DO NOT synthesize /protocol/<p>/wc<n> here. causeAsRc() mints that id for in-memory use, but
-  // it is not a servable route -- measured, `curl /protocol/knee-pain/wc3` returns 404, because
-  // server.js routes /protocol/* through GENERATED_ROUTES -> serveMissing. A quiz result the
-  // reader reloads or shares would be a dead page.
+  // DO NOT synthesize /protocol/<p>/wc<n>. An uncovered route stays on the topic page until an
+  // actual creator branch exists.
   // The 177 have a real destination: the prerendered /problem document carries id="cause-N" on
   // every cause (build/prerender.js:918, N = sorted position + 1). Verified hydrated:
   // /problem/knee-pain#cause-3 lands with the target present.
@@ -5008,14 +5169,12 @@
   }
   function findRootCause(pid, rcid) {
     const p = problemById[pid]; if (!p) return null;
-    if (/^wc\d+$/.test(rcid || '')) { const rc = causeAsRc(p, +rcid.slice(2)); return rc ? { problem: p, rc } : null; }
-    const rc = p.root_causes.find(r => r.id === rcid) || p.root_causes[0];
+    const rc = p.root_causes.find(r => r.id === rcid);
     return rc ? { problem: p, rc } : null;
   }
-  // Resolve a root-cause id (real OR a 'wc<n>' cause key) to its rc object — for name lookups everywhere.
+  // Resolve only a real authored root-cause id. Invalid ids do not become the first branch.
   function resolveRc(p, rcid) {
     if (!p) return null;
-    if (/^wc\d+$/.test(rcid || '')) return causeAsRc(p, +rcid.slice(2));
     return (p.root_causes || []).find(r => r.id === rcid) || null;
   }
   const NUTRIENT_LABEL = {
@@ -5387,7 +5546,7 @@
       if (!body.trim()) return alert('Please write your feedback first.');
       try {
         await api.submitFeedback({ body, kind: (document.getElementById('fb-kind') || {}).value, page, contact: (document.getElementById('fb-contact') || {}).value || '' });
-        closeModal(); alert('Thank you — your feedback helps everyone. 🙏' + (ME ? ' +2 points.' : ''));
+        closeModal(); alert('Thank you — your feedback is in the review queue.');
       } catch (e) { alert(e.message); }
     };
   }
@@ -5420,7 +5579,7 @@
     m.querySelector('#sg-save').onclick = async () => {
       const body = (document.getElementById('sg-body') || {}).value || '';
       if (!body.trim()) return alert('Write your suggestion first.');
-      try { await api.submitFeedback({ body: `[${isA ? 'ANALOGY' : 'SIMPLIFY'} · ${ref}] ${body}`, kind: 'idea', page: location.pathname + location.hash }); closeModal(); alert('Thank you — it’s in the review queue. If accepted it’s credited to you. +2 points.'); }
+      try { await api.submitFeedback({ body: `[${isA ? 'ANALOGY' : 'SIMPLIFY'} · ${ref}] ${body}`, kind: 'idea', page: location.pathname + location.hash }); closeModal(); alert('Thank you — it’s in the review queue.'); }
       catch (e) { alert(e.message); }
     };
   }
@@ -5998,11 +6157,279 @@
     return 'Tighten your window: go to bed 15 min later, keep the same wake time.';
   }
 
+  // ---- exact branch execution ---------------------------------------------------------------
+  // A published branch is an immutable document, not a suggestion to rebuild a nearby generic
+  // plan. These helpers freeze the labels, order, schedule and provenance the reader saw at Start.
+  // Nothing below calls generateProtocol(), buildSteps() or mergedPlan().
+  // Enrollment identity is the complete immutable provenance tuple. Branch/version codes are
+  // currently globally unique, but topic/route remain part of the key so future storage or import
+  // changes can never make a started plan appear under a different route.
+  function exactEnrollmentId(x) { return [x.topic_id, x.route_id, x.branch_id, x.version_id].join('|'); }
+  function activeExactEnrollment(plan) {
+    const xs = (plan && plan.exactEnrollments) || [];
+    if (!xs.length) return null;
+    return xs.find(x => exactEnrollmentId(x) === plan.activeExactId) || xs[xs.length - 1];
+  }
+  function enrollExact(snapshot) {
+    if (!snapshot || !snapshot.topic_id || !snapshot.route_id || !snapshot.branch_id || !snapshot.version_id || !Array.isArray(snapshot.steps)) return null;
+    const plan = getPlan() || newPlan(); plan.exactEnrollments = plan.exactEnrollments || [];
+    const id = exactEnrollmentId(snapshot);
+    let row = plan.exactEnrollments.find(x => exactEnrollmentId(x) === id);
+    if (!row) {
+      // JSON-compatible fields only. Once written, this snapshot is never replaced from the live
+      // corpus: a correction creates a later version; it does not rewrite what somebody started.
+      row = Object.assign({}, snapshot, {
+        steps: snapshot.steps.map(s => Object.assign({}, s, { days: Array.isArray(s.days) ? s.days.slice() : null })),
+        startedAt: today(), log: {},
+      });
+      plan.exactEnrollments.push(row);
+    }
+    plan.activeExactId = id; setPlan(plan); return row;
+  }
+  function exactContentHash(value) {
+    const text = JSON.stringify(value); let a = 0x811c9dc5, b = 0x9e3779b9;
+    for (let i = 0; i < text.length; i++) {
+      const n = text.charCodeAt(i); a = Math.imul(a ^ n, 0x01000193); b = Math.imul(b ^ n, 0x85ebca6b);
+    }
+    const hex = (n) => ('00000000' + (n >>> 0).toString(16)).slice(-8);
+    return hex(a) + hex(b);
+  }
+  function officialExactSnapshot(problem, rc) {
+    if (!problem || !rc) return null;
+    const routeId = rc.route_id || rc.id, branch = 'official:' + problem.id + ':' + routeId;
+    const steps = [], seen = new Set();
+    const add = (id, kind, name, summary, href) => {
+      const text = String(name || '').trim(); if (!text || seen.has(text.toLowerCase())) return;
+      seen.add(text.toLowerCase()); steps.push({ id: branch + ':' + id, kind, name: text,
+        summary: String(summary || ''), href: href || '', days: null });
+    };
+    const phase = rc.phase1 || {}, keystone = rc.keystone || {}, prescription = rc.prescription || {};
+    add('phase-1', phase.class || 'action', phase.action || phase.quote, keystone.why, '');
+    add('keystone', 'action', keystone.one, keystone.why, '');
+    add('movement-prescription', 'movement', prescription.scheme, prescription.detail, '');
+    (rc.anchor_exercises || []).forEach((id) => {
+      const exercise = exerciseById(id); if (exercise) add('movement-' + id, 'movement', exercise.name, prescription.detail, '#/exercise/' + id);
+    });
+    (rc.compounds || []).forEach((name) => {
+      const compound = resolveCompound(name); if (compound) add('compound-' + compound.id, 'compound', compound.name, '', '#/c/' + slug(compound.name));
+    });
+    Object.entries(rc.nutrient_targets || {}).forEach(([key, target]) => {
+      if (!target || target.target == null) return;
+      add('target-' + key, 'nutrition target', (NUTRIENT_LABEL[key] || key.replace(/_/g, ' ')) + ': ' + target.target + (target.unit || ''), target.why, '');
+    });
+    if (!steps.length) return null;
+    // The version is the authored content itself. A corpus change mints a new exact enrollment;
+    // it never rewrites a version already frozen in somebody's Today plan.
+    const hash = exactContentHash({ topic_id: problem.id, route_id: routeId, root_id: rc.id, steps });
+    return {
+      source_kind: 'official', topic_id: problem.id, route_id: routeId,
+      branch_id: branch, version_id: branch + ':' + hash, snapshot_hash: hash,
+      title: problem.name + ' — ' + rc.name.replace(/\s*\([^)]*\)/, ''),
+      topic_name: problem.name, route_name: rc.name, creator: 'RNAwiki',
+      source_href: '#/protocol/' + problem.id + '/' + rc.id, steps,
+    };
+  }
+  function creatorStepSnapshot(it, i) {
+    const o = stObj(it), name = (o && o.name) || it.id;
+    const href = it.k === 'c' && o ? '#/c/' + slug(o.name)
+      : it.k === 'x' && o ? '#/exercise/' + o.id : '';
+    return {
+      id: stKey(it) + ':' + i, kind: ST_KIND[it.k] || 'item', name: String(name),
+      summary: stSummary(it), note: it.note ? String(it.note) : '',
+      days: Array.isArray(it.days) ? it.days.slice().sort((a, b) => a - b) : null,
+      href, authored_item: Object.assign({}, it),
+    };
+  }
+  function executionGuideHtml(guide, primary, showStart) {
+    if (!guide) return '';
+    const fit = guide.fit || {}, check = guide.check_in || {}, stop = guide.stop || {};
+    const primaryLine = primary && showStart
+      ? '<section class="st-verdict exact-guide"><h2>Start here</h2><p><b>' + esc(primary.name || primary) + '</b>' + (primary.summary ? ' · ' + esc(primary.summary) : '') + '</p></section>' : '';
+    return (fit.summary ? '<section class="st-verdict exact-guide"><h2>This route may fit if</h2><p>' + esc(fit.summary) + '</p>'
+      + (fit.confused_with ? '<details><summary>Easy to confuse with</summary><p>' + esc(fit.confused_with) + '</p></details>' : '') + '</section>' : '')
+      + (fit.lab || fit.limits ? '<section class="st-verdict exact-guide"><h2>Confirm before starting</h2>'
+        + (fit.lab ? '<p>' + esc(fit.lab) + '</p>' : '')
+        + (fit.limits ? '<p>' + esc(fit.limits) + '</p>' : '') + '</section>' : '')
+      + primaryLine
+      + (check.metric || check.checkpoint ? '<section class="st-verdict exact-guide"><h2>Track one thing</h2>'
+        + (check.metric ? '<p>' + esc(check.metric) + '</p>' : '')
+        + (check.checkpoint ? '<p><b>Review:</b> ' + esc(check.checkpoint) + '</p>' : '') + '</section>' : '')
+      + (stop.issue || stop.action || stop.red_flags ? '<section class="st-verdict exact-guide"><h2>Stop and reassess</h2>'
+        + (stop.issue ? '<p><b>' + esc(stop.horizon || 'If this happens') + ':</b> ' + esc(stop.issue) + '</p>' : '')
+        + (stop.action ? '<p>' + esc(stop.action) + '</p>' : '')
+      + (stop.red_flags ? '<details><summary>Get help sooner if</summary><p>' + esc(stop.red_flags) + '</p></details>' : '') + '</section>' : '');
+  }
+  function exactSnapshotValue(value) {
+    if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
+    if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+    if (Array.isArray(value)) return value.map((entry) => exactSnapshotValue(entry));
+    if (!value || typeof value !== 'object') return null;
+    const out = {};
+    Object.keys(value).sort().forEach((name) => {
+      if (value[name] !== undefined && typeof value[name] !== 'function') out[name] = exactSnapshotValue(value[name]);
+    });
+    return out;
+  }
+  function exactWarningProjection(value) {
+    const warn = (value && Array.isArray(value.warn) ? value.warn : [])
+      .map((warning) => exactSnapshotValue(warning))
+      .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+    return { warn };
+  }
+  function creatorExactSnapshot(d, code, problem, route) {
+    const checked = d.safetyNow || {};
+    // Freeze the exact warning rows shown on the read page at Start. Later online checks may stop
+    // execution, but they never rewrite this record of what the starter actually saw.
+    const safetySnapshot = JSON.parse(JSON.stringify({
+      at: checked.at || null, says: checked.says || '', coverage: checked.coverage || null,
+      warn: Array.isArray(checked.warn) ? checked.warn : [],
+    }));
+    const guide = d.guide ? JSON.parse(JSON.stringify(d.guide)) : null;
+    const steps = ((d.spec && d.spec.items) || []).map(creatorStepSnapshot);
+    const primaryAt = guide && guide.primary
+      ? steps.findIndex((step) => step.authored_item && stKey(step.authored_item) === guide.primary) : -1;
+    if (primaryAt > 0) steps.unshift(steps.splice(primaryAt, 1)[0]);
+    return {
+      source_kind: 'creator', topic_id: d.topic_id || d.base_pid,
+      route_id: d.route_id || (route && route.id) || d.base_rcid,
+      branch_id: d.branch_id || code, version_id: d.version_id || code,
+      snapshot_hash: d.snapshot_hash || null,
+      snapshot_contract: d.snapshot_contract || null,
+      snapshot_safety: JSON.parse(JSON.stringify(d.snapshot_safety || exactWarningProjection(checked))),
+      title: d.title || 'Creator protocol', topic_name: problem ? problem.name : (d.topic_id || d.base_pid),
+      route_name: route ? route.name : (d.route_id || d.base_rcid), creator: d.by_user || 'Deleted account',
+      source_href: '#/p/' + code,
+      safety_snapshot: safetySnapshot,
+      guide,
+      steps,
+    };
+  }
+  function exactDayNumber(e) {
+    const a = new Date(String(e.startedAt || today()) + 'T00:00:00');
+    const b = new Date(today() + 'T00:00:00');
+    return Math.max(1, Math.floor((b - a) / 86400000) + 1);
+  }
+  function exactStepRow(step, done, main) {
+    const icon = step.kind === 'compound' ? '💊' : step.kind === 'movement' ? '💪' : step.kind === 'food' ? '🍚' : step.kind === 'tool' ? '🧩' : '✓';
+    const details = [step.summary, step.note].filter(Boolean).join(' · ');
+    const name = step.href ? '<a href="' + esc(step.href) + '">' + esc(step.name) + '</a>' : esc(step.name);
+    if (main) return '<label class="keystone-card exact-main"><input type="checkbox" class="plan-cb" data-exact-done="' + esc(step.id) + '" ' + (done ? 'checked' : '') + ' aria-label="Mark ' + esc(step.name) + ' done">'
+      + '<span class="ks-badge">Do this first</span><span class="ks-one">' + icon + ' ' + name + '</span>'
+      + (details ? '<span class="ks-why">' + esc(details) + '</span>' : '') + '</label>';
+    return '<div class="trk-item ' + (done ? 'done' : '') + '"><label class="trk-row"><input type="checkbox" class="plan-cb" data-exact-done="' + esc(step.id) + '" ' + (done ? 'checked' : '') + ' aria-label="Mark ' + esc(step.name) + ' done">'
+      + '<span class="trk-txt"><span class="trk-name">' + icon + ' ' + name + '</span>'
+      + (details ? '<span class="trk-sub">' + esc(details) + '</span>' : '') + '</span></label></div>';
+  }
+  const EXACT_RECHECK = {};
+  function exactSafetySnapshotHtml(enrollment) {
+    if (enrollment.source_kind !== 'creator') return '';
+    const snapshot = enrollment.safety_snapshot || {}, warnings = Array.isArray(snapshot.warn) ? snapshot.warn : [];
+    if (!warnings.length) return '<div id="exact-safety" hidden></div>';
+    return '<section class="st-verdict exact-safety" id="exact-safety"><h2>Safety guidance saved when you started</h2>'
+      + warnings.slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b)).map((warning) => stFlagCard(warning, false)).join('')
+      + (snapshot.says ? '<p class="st-cov">' + esc(snapshot.says) + '</p>' : '') + '</section>';
+  }
+  async function mountExactSafetyRecheck(enrollment) {
+    if (enrollment.source_kind !== 'creator') return;
+    const host = document.getElementById('exact-safety'); if (!host) return;
+    // Cache the live answer for this tab. Checkbox taps rerender Today; they must not turn into a
+    // fresh network request or replace the immutable Start-time warning rows below this banner.
+    const code = enrollment.branch_id;
+    const live = await (EXACT_RECHECK[code] || (EXACT_RECHECK[code] = api.readProtocol(code)));
+    if (!host.isConnected) return;
+    const controls = [...app.querySelectorAll('[data-exact-done]')];
+    const currentWarnings = exactWarningProjection((live && live.snapshot_safety) || (live && live.safetyNow));
+    const startedWarnings = exactWarningProjection(enrollment.snapshot_safety || enrollment.safety_snapshot);
+    const startedWarningKeys = new Set(startedWarnings.warn.map((warning) => JSON.stringify(warning)));
+    const newWarnings = currentWarnings.warn.filter((warning) => !startedWarningKeys.has(JSON.stringify(warning)));
+    const sameCurrentSnapshot = !!(live && enrollment.snapshot_contract
+      && enrollment.snapshot_contract === live.snapshot_contract
+      && enrollment.snapshot_hash && enrollment.snapshot_hash === live.snapshot_hash);
+    // Enrollments saved before execution-safety-v2 carry the old spec+guide hash. The server
+    // returns that address only as a migration witness: unchanged content may keep running, but a
+    // warning added since Start still pauses below and is rendered before any control can enable.
+    const sameLegacySnapshot = !!(live && !enrollment.snapshot_contract && enrollment.snapshot_hash
+      && enrollment.snapshot_hash === live.legacy_snapshot_hash);
+    if (live && live._ok && live.spec && live.status === 'published'
+      && (sameCurrentSnapshot || sameLegacySnapshot) && !newWarnings.length) {
+      app.dataset.exactSourceValid = '1';
+      controls.forEach((control) => { control.disabled = false; control.removeAttribute('aria-disabled'); });
+      return;
+    }
+    // CURRENT-SAFETY INVARIANT: a frozen snapshot explains what the person started; it is not
+    // permission to keep checking off a source that is withdrawn, unavailable or review-required.
+    // Controls start disabled and stay disabled here, and the handler below repeats the guard so a
+    // scripted change event cannot write a completion around this asynchronous check.
+    app.dataset.exactSourceValid = '0';
+    controls.forEach((control) => { control.disabled = true; control.setAttribute('aria-disabled', 'true'); });
+    host.hidden = false;
+    const update = document.createElement('div'); update.className = 'exact-live-update'; update.setAttribute('role', 'alert');
+    const changedButAvailable = live && live._ok && live.spec && live.status === 'published';
+    const message = newWarnings.length
+      ? 'RNAwiki found safety guidance that was not in the snapshot you started.'
+      : changedButAvailable
+        ? 'This plan or its guidance is no longer the exact snapshot you started.'
+        : ((live && (live.says || live.error)) || 'RNAwiki could not confirm that this source is still available and passes current publication checks.');
+    update.innerHTML = '<div class="st-flag st-danger exact-live-block"><div class="st-flag-k">⛔ Pause this plan</div><p>' + esc(message) + '</p>'
+      + '<p><a href="' + esc(enrollment.source_href) + '">Review the source before doing the next action</a></p></div>'
+      + (newWarnings.length ? '<h3>Current safety guidance</h3>' + newWarnings.map((warning) => stFlagCard(warning, false)).join('') : '');
+    host.insertBefore(update, host.firstChild);
+  }
+  function renderExactToday(plan, enrollment) {
+    const wd = new Date().getDay();
+    const scheduled = enrollment.steps.filter(s => !Array.isArray(s.days) || s.days.indexOf(wd) >= 0);
+    enrollment.log = enrollment.log && typeof enrollment.log === 'object' ? enrollment.log : {};
+    const dl = enrollment.log[today()] && typeof enrollment.log[today()] === 'object' ? enrollment.log[today()] : { done: [] };
+    dl.done = Array.isArray(dl.done) ? dl.done : [];
+    const shown = scheduled.slice(0, 4), later = scheduled.slice(4);
+    const byline = enrollment.source_kind === 'creator'
+      ? 'By @' + enrollment.creator : 'By ' + enrollment.creator;
+    app.dataset.exactSourceValid = enrollment.source_kind === 'creator' ? '0' : '1';
+    app.innerHTML = `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Today' }])}
+      <section class="plan-hd trk-hd"><div><div class="kicker">Day ${exactDayNumber(enrollment)} · Today</div><h1>Your next action</h1>
+        <p class="muted">${esc(enrollment.title)}</p></div><div class="plan-hd-actions"><a class="cta-ghost" href="${esc(enrollment.source_href)}">Review source</a></div></section>
+      <section class="st-route exact-provenance"><div class="st-route-k">Exact plan</div>
+        <div class="st-route-b"><b>${esc(enrollment.topic_name)}</b> → ${esc(enrollment.route_name)}</div>
+        <p class="st-route-w">${esc(byline)} · <a href="${esc(enrollment.source_href)}">Open plan</a></p></section>
+      ${exactSafetySnapshotHtml(enrollment)}
+      ${shown.length ? exactStepRow(shown[0], dl.done.indexOf(shown[0].id) >= 0, true) : '<div class="st-empty"><p><b>Nothing is scheduled today.</b></p><p class="muted">This is the schedule its creator published. RNAwiki has not filled the gap with a generic task.</p></div>'}
+      ${shown.length > 1 ? '<section class="trk-sec"><div class="trk-sec-h"><h2>Then</h2></div><div class="trk-list">' + shown.slice(1).map(s => exactStepRow(s, dl.done.indexOf(s.id) >= 0, false)).join('') + '</div></section>' : ''}
+      ${later.length ? '<details class="today-queue"><summary><span><b>' + later.length + ' more scheduled</b><small>From this exact version</small></span></summary><div class="today-queue-body"><div class="trk-list">' + later.map(s => exactStepRow(s, dl.done.indexOf(s.id) >= 0, false)).join('') + '</div></div></details>' : ''}
+      ${enrollment.source_kind === 'creator' ? '<details class="exact-today-guide"><summary>Plan details and safety</summary>' + executionGuideHtml(enrollment.guide, shown[0] || enrollment.steps[0], false) + '</details>' : ''}
+      <section class="page-discuss" id="branch-comments"></section>`;
+    app.querySelectorAll('[data-exact-done]').forEach(cb => {
+      if (enrollment.source_kind === 'creator') { cb.disabled = true; cb.setAttribute('aria-disabled', 'true'); }
+      cb.onchange = () => {
+      if (enrollment.source_kind === 'creator' && app.dataset.exactSourceValid !== '1') {
+        cb.checked = dl.done.indexOf(cb.getAttribute('data-exact-done')) >= 0;
+        return;
+      }
+      const fresh = getPlan(); const ex = fresh && activeExactEnrollment(fresh); if (!ex) return;
+      ex.log = ex.log || {}; const day = ex.log[today()] = ex.log[today()] || { done: [] };
+      day.done = Array.isArray(day.done) ? day.done : [];
+      const id = cb.getAttribute('data-exact-done');
+      if (cb.checked && day.done.indexOf(id) < 0) day.done.push(id);
+      if (!cb.checked) day.done = day.done.filter(x => x !== id);
+      setPlan(fresh); renderExactToday(fresh, ex);
+      };
+    });
+    if (enrollment.source_kind === 'creator') {
+      mountExactSafetyRecheck(enrollment);
+      renderBranchDiscussion(enrollment.branch_id, enrollment.version_id, enrollment.route_name, 'branch-comments', 'day', today());
+    } else {
+      const discussion = document.getElementById('branch-comments'); if (discussion) discussion.remove();
+    }
+  }
+
   async function renderPlan(mode) {
     mode = mode == null ? currentPlanMode() : mode;
     try { await ensureProtocolData(); } catch (e) { app.innerHTML = emptyPlan(); return; }
     const plan = getPlan();
     if (!plan) { app.innerHTML = emptyPlan(); return; }
+    // Exact starts win on Today. `mode=edit` remains the one explicit escape into the legacy
+    // personal builder; an ordinary visit can never merge or replace an authored branch.
+    const exact = activeExactEnrollment(plan);
+    if (exact && mode !== 'edit') return renderExactToday(plan, exact);
     // "Today" is an execution surface, never an implicit builder. A draft opens only through the
     // explicit setup URL; ordinary returns to /plan either show the next action or one calm resume
     // card. This keeps an unfinished wizard from hijacking the page labelled Today.
@@ -7136,7 +7563,7 @@
           ${symptoms ? `<div class="cause-tell"><span class="cbl">Is this you?</span> ${symptoms}</div>` : ''}
           ${confidenceMeter(c)}
           ${(c.tell && c.tell.labMarker) ? `<div class="cause-lab">🩸 <b>Confirm it:</b> ${mdInline(c.tell.labMarker)}</div>` : ''}
-          ${fixes ? `<div class="cause-fix"><div class="cf-plan-h"><span class="cbl">✅ Your plan if this is your cause</span><span class="fix-order-note">work down the list — cheapest &amp; safest first</span></div><ul class="fix-list">${fixes}</ul><div class="cause-plan-cta"><button class="cta-primary build-cause-btn" data-build-cause="${esc(problem.id)}#${i}">▶ Build my plan for this cause →</button>${suppIds.length ? `<button class="adopt-plan" data-adopt="${suppIds.join(',')}">＋ Just add the ${suppIds.length === 1 ? 'supplement' : suppIds.length + ' supplements'} to my stack</button>` : ''}</div></div>` : ''}
+          ${fixes ? `<div class="cause-fix"><div class="cf-plan-h"><span class="cbl">What can help if this fits</span><span class="fix-order-note">work down the list — cheapest &amp; safest first</span></div><ul class="fix-list">${fixes}</ul>${suppIds.length ? `<div class="cause-plan-cta"><button class="adopt-plan" data-adopt="${suppIds.join(',')}">＋ Add the ${suppIds.length === 1 ? 'supplement' : suppIds.length + ' supplements'} to my stack</button></div>` : ''}</div>` : ''}
           ${goDeeper}
         </div>
       </details>`;
@@ -8805,7 +9232,7 @@
           ${planSection(problem)}
           ${protocolLayers(problem, rc, P)}
           ${stackAuditCallout()}
-          <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">Start the full plan</button><span class="start-plan-note">The full programme changes several things. Try the one-action first step above before adding more.</span></div>
+          <div class="start-plan-row"><button class="cta-primary start-plan" id="start-plan">Start this protocol</button><span class="start-plan-note">Today will keep this route’s complete authored version: its actions, prescription, named compounds and nutrient targets. It will not add catalogue movements, foods or supplements.</span></div>
           ${rcSwitch}
       ${'' /* W4/W3.6 (2026-08-02): the keystone card is SUPPRESSED on the 38 of 52 routes whose
              Phase 1 was SELECTED FROM THIS VERY KEYSTONE. MEASURED HYDRATED at 390x844, default
@@ -8881,6 +9308,9 @@
       // past day 7 on arrival, so this can never begin a week that is already finished.
       const started = (cohort && !cohort.error && cohort.live) ? cohort.start : isoDay();
       p1Set({ started });
+      // The 7-day button and Today now point at the same immutable official branch. The logger
+      // remains here; Today receives the complete route-authored snapshot and no generated catalog.
+      enrollExact(officialExactSnapshot(problem, rc));
       // W4: the EXPLICIT start. Nothing is logged until this tap — starting is not doing, so day 1
       // opens empty and the reader still has to say whether they did it.
       trackStart(problem, rc, started, (cohort && !cohort.error) ? cohort.slug : null);
@@ -8901,15 +9331,13 @@
     };
     const startBtn = document.getElementById('start-plan');
     if (startBtn) startBtn.onclick = () => {
-      const pl = getPlan() || newPlan();
-      // If they already run this protocol, open it for editing; otherwise start a fresh draft with all selected.
-      const existing = planProtocols(pl).find(x => x.pid === problem.id && x.rcid === rc.id);
-      pl.draft = existing
-        ? { pid: problem.id, rcid: rc.id, moves: existing.moves, supps: existing.supps, functions: existing.functions, extra: {}, step: 0 }
-        : { pid: problem.id, rcid: rc.id, moves: [...(P.strengthen || []), ...(P.stretch || [])].map(e => e.id), supps: (P.stack || []).map(c => c.id), functions: undefined, extra: {}, step: 0 };
-      // adoption is tracked by the build action (idempotent per voterKey), not a separate "experiment" button
+      const snapshot = officialExactSnapshot(problem, rc);
+      if (!snapshot) { alert('This protocol has no authored route actions to start yet.'); return; }
+      enrollExact(snapshot);
+      // Official starts retain the existing adoption count, but no generated catalogue is written
+      // into the reader's plan.
       api.startExperiment(problem.id, rc.id).catch(() => {});
-      setPlan(pl); navigate('/plan?mode=edit');
+      navigate('/plan');
     };
     const assessBtn = document.getElementById('assess-trigger');
     if (assessBtn) assessBtn.onclick = () => openAssessment(problem);
@@ -9427,7 +9855,7 @@
           <button class="scan-btn" id="add-food" type="button">＋ Add or fix a food</button>
         </div>
         ${interestBtn}
-        <p class="fuel-contribute">💡 Anyone can help: spotted a missing dish or a wrong nutrition number? <button class="linkbtn" id="add-food-2">Add or fix it →</button> It goes into a queue and is approved before everyone can log it. You earn +20 points.</p>
+        <p class="fuel-contribute">Spotted a missing dish or a wrong nutrition number? <button class="linkbtn" id="add-food-2">Add or fix it</button> It goes into a review queue before everyone can log it.</p>
         <ul class="fuel-log">${logHtml}</ul>`
         : `<div class="fuel-signin"><b>🔒 Sign in to log your meals.</b> Logging is for members — track what you eat against this protocol's biological targets. It's free and takes ten seconds.
              <button class="btn-primary" id="fuel-signin-btn">Sign in / create account</button></div>`;
@@ -9903,12 +10331,13 @@
   const ST_MAX = 60;                       // mirrors studio-safety.js MAX_ITEMS; the server decides
   const ST_DAY_S = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   const ST_DAY_N = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const ST_ALL_DAYS = [0, 1, 2, 3, 4, 5, 6];
   const ST_KIND = { c: 'compound', x: 'movement', f: 'food', fn: 'tool' };
   const ST_ICON = { c: '💊', x: '💪', f: '🍚', fn: '🧩' };
   let ST = null, ST_V = null, ST_STATE = 'idle', ST_SEQ = 0, ST_TIMER = null;
   let ST_TAB = 'c', ST_Q = '', ST_FOCUS = null;
   const ST_EXBY = {}, ST_FDBY = {}; let ST_INDEXED = false;
-  const ST_CV = {};                        // rcid -> that cause's own last verdict, for the spine
+  const ST_CV = {};                        // route_id -> that branch's own last verdict, for the spine
   let ST_CSEQ = 0;
 
   // ===== ONE PROBLEM, N CAUSES, N PLANS (2026-08-13) ==========================================
@@ -9941,7 +10370,7 @@
   // publish is POST /api/rootcause-changes, which is a review queue, and it is linked rather than
   // reimplemented.
   function stBlank() { return { v: 2, title: '', pid: null, causes: [], open: null, remixOf: null }; }
-  function stNewCause(rcid) { return { rcid: rcid || null, items: [], code: null }; }
+  function stNewCause(routeId) { return { route_id: routeId || null, items: [], code: null }; }
 
   // Real devices are holding v1 drafts right now: {title, items:[…], base_pid, base_rcid, remixOf}.
   // A v1 draft is exactly a v2 draft with one cause in it, so it is CONVERTED rather than dropped —
@@ -9954,38 +10383,81 @@
       d.causes = d.causes.filter(c => c && typeof c === 'object' && Array.isArray(c.items));
       if (!(typeof d.open === 'number' && d.open >= 0 && d.open < d.causes.length)) d.open = null;
       if (typeof d.title !== 'string') d.title = '';
-      return d;
+      return stNormalizeDraftRoutes(d);
     }
     if (!Array.isArray(d.items)) return null;
     const m = stBlank();
     m.title = typeof d.title === 'string' ? d.title : '';
     m.pid = d.base_pid || null;
     m.remixOf = d.remixOf || null;
-    const c = stNewCause(d.base_rcid || null); c.items = d.items;
+    const c = stNewCause(null); c.rcid = d.base_rcid || null; c.items = d.items;
     m.causes = [c]; m.open = 0;
-    return m;
+    return stNormalizeDraftRoutes(m);
   }
   function stLoad() { try { return stMigrate(JSON.parse(localStorage.getItem(ST_KEY) || 'null')); } catch (e) {} return null; }
   function stSave() { try { localStorage.setItem(ST_KEY, JSON.stringify(ST)); } catch (e) {} }
   function stKey(it) { return it.k + ':' + it.id; }      // the SAME key studio-safety.js mints
 
   function stProblem() { return ST && ST.pid ? (problemById[ST.pid] || null) : null; }
-  // ONLY the causes the SERVER's graph also holds. An approved root-cause change is applied to this
-  // browser's copy as a runtime overlay (applyRcOverlay, `_stub:true`) and studio-safety.js reads
-  // site/data.js, which does not have it until the next build. Offering a `_stub` here would hand
-  // the creator a cause that builds fine and then refuses at publish with a shape error.
-  function stCauses(p) { return p ? (p.root_causes || []).filter(rc => rc && !rc._stub) : []; }
-  function stRcOf(rcid) { return stCauses(stProblem()).find(rc => rc.id === rcid) || null; }
-  function stRcPos(rcid) { return stCauses(stProblem()).findIndex(rc => rc.id === rcid) + 1; }
+  // Canonical builds expose every governed route in p.routes. The root_causes fallback exists only
+  // so an older cached data.js can still open a draft; it is never used to invent a route.
+  function stCauses(p) {
+    if (!p) return [];
+    const routes = Array.isArray(p.routes) && p.routes.length ? p.routes : (p.root_causes || []);
+    return routes.filter(r => r && !r._stub);
+  }
+  function stRouteFromLegacy(p, rcid) {
+    if (!p || !rcid) return null;
+    return stCauses(p).find(r => r.id === rcid || (Array.isArray(r.official_rcids) && r.official_rcids.indexOf(rcid) >= 0)) || null;
+  }
+  function stNormalizeDraftRoutes(d) {
+    const p = d && d.pid ? problemById[d.pid] : null;
+    if (!d || !Array.isArray(d.causes) || !p) return d;
+    d.causes.forEach(c => {
+      if (!c.route_id && c.rcid) { const r = stRouteFromLegacy(p, c.rcid); if (r) c.route_id = r.id; }
+      // On an old build the route id and root id are the same; on a canonical build only the route
+      // id drives identity. Keep rcid solely as migration evidence, never as a fallback choice.
+    });
+    if (d.remixOf && d.causes[0] && !d.causes.some(c => c.parent_code)) d.causes[0].parent_code = d.remixOf;
+    return d;
+  }
+  function stRouteId(c) { return c && (c.route_id || null); }
+  function stRcOf(routeId) { return stCauses(stProblem()).find(r => r.id === routeId) || null; }
   function stCur() { return ST && typeof ST.open === 'number' && ST.causes[ST.open] ? ST.causes[ST.open] : null; }
   function stItems() { const c = stCur(); return c ? c.items : []; }
   function stSpec() { return { v: 1, items: stItems().map(it => Object.assign({}, it)) }; }
+  // Publication keeps the editor the creator already knows. The first ordered row is the first
+  // action; absence of a day selection already reads as "every day" in the editor, and is expanded
+  // here so the immutable public row never depends on an unstated scheduling default.
+  function stPublishSpec() {
+    const items = stItems().map((it) => Object.assign({}, it, {
+      days: Array.isArray(it.days) ? it.days.slice().sort((a, b) => a - b) : ST_ALL_DAYS.slice(),
+    }));
+    return { v: 1, items, execution: { v: 1, primary: items.length ? stKey(items[0]) : '' } };
+  }
   // The base pair travels with EVERY check and EVERY save. r2 uses it to refuse a movement the
   // cause's own page contraindicates, so sending it is a safety input, not a label.
-  function stBase(c) { return { base_pid: (ST && ST.pid) || null, base_rcid: (c && c.rcid) || null }; }
+  function stBase(c) {
+    const topic = (ST && ST.pid) || null, routeId = stRouteId(c), route = routeId ? stRcOf(routeId) : null;
+    const legacy = route && Array.isArray(route.official_rcids) && route.official_rcids.length === 1
+      ? route.official_rcids[0]
+      : route && !(stProblem() && Array.isArray(stProblem().routes)) ? route.id : null;
+    // New routes travel as topic_id/route_id. The legacy pair is sent only when it identifies the
+    // same single official root; an empty route never borrows one to satisfy the old field name.
+    return Object.assign({ topic_id: topic, route_id: routeId }, legacy ? { base_pid: topic, base_rcid: legacy } : {});
+  }
   function stTitleOf(c) {
-    const rc = c && c.rcid ? stRcOf(c.rcid) : null, p = stProblem();
+    const rc = stRouteId(c) ? stRcOf(stRouteId(c)) : null, p = stProblem();
     return rc && p ? p.name + ' — ' + rc.name.replace(/\s*\([^)]*\)/, '') : (ST && ST.title) || 'Untitled';
+  }
+  function stRouteNoun(route, p) {
+    if (route && route.route_kind === 'starting_point' || (!route && p && p.kind === 'want')) return 'starting point';
+    if (route && (route.route_kind === 'possible_cause' || route.route_kind === 'possible_reason')) return 'possible reason';
+    if (route && route.route_kind === 'umbrella') return 'umbrella route';
+    return 'route';
+  }
+  function stRouteFit(route) {
+    return route && ((route.fit && (route.fit.symptoms || route.fit.diagnostic)) || route.diagnostic || route.plain || '');
   }
   function stEx() { const E = window.RNAWIKI_EXERCISES; return (E && E.exercises) || []; }
   function stFd() { const F = window.RNAWIKI_FOODS; return (F && F.foods) || []; }
@@ -10012,7 +10484,7 @@
                                   // that is no longer on screen, and painting it is a stale verdict
     if (d._status !== 200) { ST_V = d; ST_STATE = 'down'; return stPaintVerdict(); }
     ST_V = d; ST_STATE = 'shown';
-    if (c.rcid) ST_CV[c.rcid] = d;   // the spine reads the SAME answer; it does not compute its own
+    if (stRouteId(c)) ST_CV[stRouteId(c)] = d;   // the spine reads the SAME answer; it does not compute its own
     stPaintVerdict(); stPaintRowFlags();
   }
   // EVERY CAUSE IS CHECKED, NOT JUST THE OPEN ONE. A creator with three plans is looking at a list
@@ -10024,14 +10496,14 @@
   async function stCheckAllCauses() {
     if (!ST || !ST.causes.length) return;
     const seq = ++ST_CSEQ;
-    const jobs = ST.causes.filter(c => c.rcid && c.items.length).map(async (c) => {
+    const jobs = ST.causes.filter(c => stRouteId(c) && c.items.length).map(async (c) => {
       const d = await api.checkProtocol({ v: 1, items: c.items.map(it => Object.assign({}, it)) }, null, stBase(c));
-      return { rcid: c.rcid, d };
+      return { routeId: stRouteId(c), d };
     });
     if (!jobs.length) return;
     const out = await Promise.all(jobs);
     if (seq !== ST_CSEQ) return;
-    out.forEach(({ rcid, d }) => { ST_CV[rcid] = d && d._status === 200 ? d : null; });
+    out.forEach(({ routeId, d }) => { ST_CV[routeId] = d && d._status === 200 ? d : null; });
     if (ST && ST.open === null) stPaintSpineFlags();
   }
   function stTouch() { stSave(); stPaint(); stCheckSoon(); }
@@ -10222,9 +10694,9 @@
           + '<p class="muted me-why">' + esc(d.shows || '') + '</p>'
           + '<button class="cta-ghost" id="pp-off">Make it private again</button>'
           + '<p class="muted me-why">Turning it off takes the page down for everyone immediately. What you published stays published at its own link — this is about the page that lists you, not about the protocols.</p>'
-        : '<p>You can have a page at <b>/u/' + handle + '</b> that lists the protocols you published. It does not exist until you say so.</p>'
+        : '<p>You can have a page at <b>/u/' + handle + '</b> that lists only protocols you explicitly chose to list for discovery. Link-only protocols stay off it. The page does not exist until you say so.</p>'
           + '<p class="muted me-why">' + esc(d.shows || '') + '</p>'
-          + '<label class="adult-confirm pp-confirm"><input type="checkbox" id="pp-agree"> <span>I want a public page at /u/' + handle + ', showing what I published.</span></label>'
+          + '<label class="adult-confirm pp-confirm"><input type="checkbox" id="pp-agree"> <span>I want a public page at /u/' + handle + ', showing the protocols I explicitly listed.</span></label>'
           + '<button class="cta-primary" id="pp-on" disabled>Make my page public</button>'
           + '<p class="muted me-why">You can switch it off here at any time. It is kept out of Google either way, and nothing you read, plan, log or follow ever appears on it.</p>';
       const agree = document.getElementById('pp-agree'), on = document.getElementById('pp-on');
@@ -10254,6 +10726,7 @@
     try { await ensureProtocolData(); } catch (e) {}
     const plan = getPlan();
     const M = planProtocols(plan).length ? mergedPlan(plan) : null;
+    const exact = activeExactEnrollment(plan);
     const logs = (trackRead().logs) || {};
     const logged = Object.keys(logs)
       .map((k) => ({ k, n: ledgerDays(trackUsable(logs[k]) || {}).length }))
@@ -10272,7 +10745,11 @@
       + '</div><div class="me-row-b"><b>' + head + '</b><p>' + body + '</p>' + (cta || '') + '</div></div>';
 
     // ---- FOLLOWING ----------------------------------------------------------------------------
-    const following = M
+    const following = exact
+      ? row('☀️', 'Running ' + esc(exact.title),
+        esc(exact.topic_name) + ' → ' + esc(exact.route_name) + ' · exact version ' + esc(exact.version_id),
+        '<a class="cta-ghost" href="#/plan">Open Today →</a>')
+      : M
       ? '<div class="me-stats">'
         + '<div class="pstat"><span class="pstat-n">🔥 ' + planStreak(plan) + '</span><span class="pstat-l">Day streak</span></div>'
         + '<div class="pstat"><span class="pstat-n">🏆 ' + longestStreak(plan, M) + '</span><span class="pstat-l">Longest</span></div>'
@@ -10280,7 +10757,7 @@
         + '</div>'
         + '<p class="muted me-since">Since ' + esc(planStartDate(plan)) + ' · <a href="#/plan">Today’s checklist</a> · <a href="#/progress">Progress</a></p>'
       : row('🧭', 'You are not following a protocol yet.',
-        'RNAwiki holds ' + nProblems + ' problems with a root-cause protocol behind each one. Name yours and the plan builds itself. No account, nothing to pay.',
+        'Find the topic, choose the route that fits, then start its exact plan. No account is needed to run it on this device.',
         '<a class="cta-primary" href="#/solve">Find your protocol →</a>');
 
     // ---- LOGGED -------------------------------------------------------------------------------
@@ -10306,9 +10783,10 @@
     }
     if (pub.length) {
       made += '<h3 class="me-sub">Published</h3>'
-        + '<p class="muted me-why">Each protocol has a public link anyone with the address can open. It is kept out of Google, and you can withdraw it here.</p>'
+        + '<p class="muted me-why">Each protocol has a public link anyone with the address can open. “Listed” also appears on its exact topic route. You can remove that listing without breaking the link, or withdraw the protocol completely.</p>'
         + pub.map((p) => '<div class="me-p"><a href="#/p/' + esc(p.code) + '"><b>' + esc(p.title) + '</b></a>'
-          + '<span class="me-p-n">' + startedBy(p.clones) + '</span>'
+          + '<span class="me-p-n">' + (p.visibility === 'public' ? 'Listed · ' : 'Link-only · ') + startedBy(p.clones) + '</span>'
+          + (p.visibility === 'public' ? '<button class="me-wd" data-unlist="' + esc(p.code) + '">Remove from topic</button>' : '')
           + '<button class="me-wd" data-withdraw="' + esc(p.code) + '">Withdraw</button></div>').join('')
         // The count is printed and the RANK is not. "2 people started this" is a fact about a row;
         // "#1 most used" over a handful of accounts is a fabricated ranking, and "works best" is a
@@ -10367,11 +10845,22 @@
         if (r && r._ok) { toast('Withdrawn'); renderMe(); } else { b.disabled = false; alert((r && r.error) || 'It was not withdrawn. Nothing changed.'); }
       };
     });
+    app.querySelectorAll('[data-unlist]').forEach((b) => {
+      b.onclick = async () => {
+        if (!confirm('Remove this protocol from topic pages and creator lists? Its direct link will keep working. It cannot be relisted in place; listing it again requires a new published version.')) return;
+        b.disabled = true;
+        const r = await api.unlistProtocol(b.dataset.unlist);
+        if (r && r._ok) { toast('Removed from discovery'); renderMe(); }
+        else { b.disabled = false; alert((r && r.error) || 'It was not removed. Nothing changed.'); }
+      };
+    });
   }
 
   function studioLoading() { return '<div class="empty"><h1>Loading the Studio…</h1></div>'; }
 
-  // `forPid`/`forRcid` arrive from /studio?for=<problem>&cause=<root cause> — the link a reader
+  // `forPid`/`forRcid` also accepts the old /studio?for=<problem>&cause=<root cause> link. A legacy
+  // root id is mapped only through that root's declared route_id; it is never used as another
+  // route's scaffold.
   // follows off the protocol page they are already reading. THE READING INTERFACE IS THE
   // CONTRIBUTING INTERFACE: somebody who has just read the kneecap-tracking protocol should not have
   // to find a builder and re-pick the problem they arrived on. It seeds an EMPTY draft only; it
@@ -10386,7 +10875,8 @@
     if (!code && forPid && problemById[forPid] && !ST.causes.some(c => c.items.length)) {
       ST = stBlank(); ST.pid = forPid;
       const seed = stCauses(problemById[forPid]);
-      const pick = forRcid && seed.some(rc => rc.id === forRcid) ? forRcid : (seed.length === 1 ? seed[0].id : null);
+      const linked = forRcid ? stRouteFromLegacy(problemById[forPid], forRcid) : null;
+      const pick = linked ? linked.id : (seed.length === 1 ? seed[0].id : null);
       if (pick) ST.causes = [stNewCause(pick)];
       stSave();
     }
@@ -10401,9 +10891,12 @@
       // creator can add the problem's other causes to it afterwards like any other draft.
       ST = stBlank();
       ST.title = 'Remix of ' + src.title;
-      ST.pid = src.base_pid || null;
+      ST.pid = src.topic_id || src.base_pid || null;
       ST.remixOf = code;
-      const c = stNewCause(src.base_rcid || null);
+      const p = ST.pid ? problemById[ST.pid] : null;
+      const oldRoute = p && src.base_rcid ? stRouteFromLegacy(p, src.base_rcid) : null;
+      const c = stNewCause(src.route_id || (oldRoute && oldRoute.id) || null);
+      c.parent_code = code;
       c.items = (src.spec.items || []).map(x => Object.assign({}, x));
       ST.causes = [c]; ST.open = 0;
       stSave();
@@ -10413,7 +10906,7 @@
   }
 
   function stEmpty() {
-    return '<div class="st-empty"><p><b>Nothing in it yet.</b></p><p class="muted">A protocol is a list of things you actually do: compounds, movements, foods and small tools. Add one and this page starts checking it against the same rules the site’s own pages are held to.</p></div>';
+    return '<div class="st-empty"><p><b>Add the first step.</b></p><p class="muted">Nothing is added for you.</p></div>';
   }
 
   function stPaint() {
@@ -10430,10 +10923,6 @@
     const head = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
       + '<section class="st-hd"><div class="kicker">Protocol Studio' + (ST.remixOf ? ' · remix' : '') + '</div>'
       + '<h1>Build a protocol</h1>'
-      + '<p class="st-acct">Build and run a private draft without an account. It stays on this device. To publish a page other people can open, sign in and confirm you wrote it.</p>'
-      + '<label class="st-title-l" for="st-title">Name your private draft</label>'
-      + '<input id="st-title" class="st-title" type="text" maxlength="90" value="' + esc(ST.title) + '" placeholder="e.g. My knee work" autocomplete="off">'
-      + '<p class="st-why">When you publish, RNAwiki uses a neutral title from the reviewed problem and cause. Your draft name stays private.</p>'
       + '</section>';
     // NO PROBLEM ON THE DRAFT YET. The picker is the screen — EXCEPT when the draft already holds
     // work, and that is the COMMON case rather than the odd one: every v1 draft on a real device
@@ -10445,7 +10934,7 @@
       app.innerHTML = head + stPickProblem()
         + (built
           ? '<section class="st-spine"><h2 class="st-orphan-h">Already in this draft</h2>'
-            + '<p class="st-why">This was built before RNAwiki asked which problem a protocol is for, and it is still here. It runs exactly as it did. Pick the problem above and it gets a cause, a public title and a page of its own.</p>'
+            + '<p class="st-why">This was built before RNAwiki asked what it helps with, and it is still here. Pick the topic above, then choose its route. Nothing in the draft is guessed.</p>'
             + '<div class="st-causes">' + ST.causes.map(stCauseCard).join('') + '</div></section>'
           : '');
       stPaintSpineFlags(); stWireSpine();
@@ -10455,15 +10944,15 @@
     // The count comes from the graph on every render. Nothing about "how many causes" is typed
     // into this file — 31 of 41 problems publish exactly one, and this line has to be true of
     // those too.
-    const causeWord = n === 1 ? 'cause' : 'causes';
     const spine = '<section class="st-spine">'
       + '<div class="st-prob"><div class="st-prob-h"><span class="st-prob-n">' + esc(p.name) + '</span>'
       + '<button class="linkbtn" id="st-prob-change">Change</button></div>'
-      + '<p class="st-spine-line"><b>One problem. ' + n + ' ' + causeWord + '. ' + n + ' different plan' + (n === 1 ? '' : 's') + '.</b></p>'
-      + '<p class="st-why">RNAwiki publishes ' + n + ' ' + causeWord + ' under ' + esc(p.name) + '. They get separate plans because what you do about a tight muscle is not what you do about a worn joint. Write the ones you know something about and leave the rest.</p></div>'
+      + '<h2>Where does this plan belong?</h2>'
+      + '<p class="st-spine-line"><b>One topic. ' + n + ' route' + (n === 1 ? '' : 's') + '. Each route can have its own plan.</b></p>'
+      + '<p class="st-why">Pick only the route this plan was written for. You can build another branch without mixing their steps.</p></div>'
       + (ST.causes.length
         ? '<div class="st-causes">' + ST.causes.map(stCauseCard).join('') + '</div>'
-        : '<div class="st-empty"><p><b>No plan in this draft yet.</b></p><p class="muted">Pick the cause you want to write for. Each one you add opens its own plan — its own movements, foods, compounds and daily tools, checked on its own.</p></div>')
+        : '<div class="st-empty"><p><b>No route chosen yet.</b></p><p class="muted">Choose where this plan belongs. Every route stays a separate checked branch.</p></div>')
       + stAddCauseControl(p, rcs)
       + stSafetyRoute(p)
       + '</section>'
@@ -10476,24 +10965,22 @@
   // One card per authored cause. It states the cause in the corpus's own plain words, then how a
   // reader would know it is theirs, then what is in the plan and what the checker said about it.
   function stCauseCard(c, i) {
-    const rc = c.rcid ? stRcOf(c.rcid) : null;
-    const pos = c.rcid ? stRcPos(c.rcid) : 0, of = stCauses(stProblem()).length;
-    const nm = rc ? rc.name : 'A plan with no cause';
+    const routeId = stRouteId(c), rc = routeId ? stRcOf(routeId) : null;
+    const nm = rc ? rc.name : 'A plan with no route';
     // A draft that carried a cause the corpus has since dropped must SAY so, exactly like a row
     // whose compound was withdrawn. It cannot publish, and pretending otherwise wastes the tap.
-    const gone = c.rcid && !rc
-      ? '<p class="st-gone">RNAwiki no longer publishes a cause with the id “' + esc(c.rcid) + '” under this problem. This plan cannot be published — remove it, or move its items into one of the causes above.</p>' : '';
-    return '<article class="st-cause" data-cause="' + i + '">'
-      + '<div class="st-cause-k">' + (pos ? 'Cause ' + pos + ' of ' + of : 'No cause chosen') + '</div>'
+    const gone = routeId && !rc
+      ? '<p class="st-gone">RNAwiki no longer holds the route “' + esc(routeId) + '” under this topic. This plan cannot be published — remove it or choose a governed route.</p>' : '';
+    return '<article class="st-cause" data-cause="' + i + '" data-route="' + esc(routeId || '') + '">'
+      + '<div class="st-cause-k">' + (routeId ? esc(stRouteNoun(rc, stProblem())) : 'No route chosen') + '</div>'
       + '<h2 class="st-cause-n">' + esc(nm) + '</h2>'
-      + (rc && rc.plain ? '<p class="st-cause-p">' + esc(rc.plain) + '</p>' : '')
-      + (rc && rc.diagnostic ? '<p class="st-cause-d"><b>How you would know it is this one:</b> ' + esc(rc.diagnostic) + '</p>' : '')
+      + (stRouteFit(rc) ? '<p class="st-cause-d"><b>Who this route may fit:</b> ' + esc(stRouteFit(rc)) + '</p>' : '')
       + gone
       + '<p class="st-cause-c">' + (c.items.length
         ? '<b>' + c.items.length + '</b> thing' + (c.items.length === 1 ? '' : 's') + ' in this plan'
         : 'Nothing in this plan yet') + '</p>'
       + '<div class="st-cause-f" data-cflags="' + i + '"></div>'
-      + (c.code ? '<p class="st-cause-pub">Published · <a href="#/p/' + esc(c.code) + '">open its page</a></p>' : '')
+      + (c.code ? '<p class="st-cause-pub">Published · ' + (c.visibility === 'public' ? 'listed' : 'link-only') + ' · <a href="#/p/' + esc(c.code) + '">open its page</a></p>' : '')
       + '<div class="st-cause-a"><button class="cta-primary st-open" data-open="' + i + '">'
       + (c.items.length ? 'Open this plan' : 'Start this plan') + ' →</button>'
       + '<button class="linkbtn danger" data-cdrop="' + i + '">Remove</button></div>'
@@ -10508,8 +10995,8 @@
       const c = ST.causes[Number(host.getAttribute('data-cflags'))];
       if (!c) return;
       if (!c.items.length) { host.innerHTML = ''; return; }
-      if (!c.rcid) { host.innerHTML = '<span class="st-chip st-chip-b">✋ no cause chosen — cannot be published</span>'; return; }
-      const d = ST_CV[c.rcid];
+      if (!stRouteId(c)) { host.innerHTML = '<span class="st-chip st-chip-b">✋ no route chosen — cannot be published</span>'; return; }
+      const d = ST_CV[stRouteId(c)];
       if (d === undefined) { host.innerHTML = '<span class="st-chip">Checking…</span>'; return; }
       if (!d) { host.innerHTML = '<span class="st-chip st-chip-b">⚠️ not checked — that is a fault at this end, not a clearance</span>'; return; }
       const w = d.warn || [], chips = [];
@@ -10530,71 +11017,67 @@
   // A search box over the graph, not a 41-row <select>. The same catalogue the rest of the site
   // uses, and the list is never empty: below two characters it browses.
   function stPickProblem() {
-    return '<section class="st-pick"><h2>Which problem is this for?</h2>'
-      + '<p class="st-why">Pick the symptom or goal somebody would arrive with. The causes underneath it are what you write plans for, and RNAwiki uses the problem and the cause to write the public title.</p>'
-      + '<input id="st-pq" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="Search ' + (GRAPH.problems || []).length + ' problems and goals…">'
+    return '<section class="st-pick"><h2>What are you helping with?</h2>'
+      + '<p class="st-why">Name the problem or goal people arrive with. You will choose its route next.</p>'
+      + '<input id="st-pq" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="e.g. tired all the time">'
       + '<div id="st-pres" class="st-res"></div></section>';
   }
   function stProblemResults() {
     const el = document.getElementById('st-pres'); if (!el) return;
     const q = String((document.getElementById('st-pq') || {}).value || '').trim().toLowerCase();
     const all = (GRAPH.problems || []);
-    const hits = (q.length < 2 ? all : all.filter(p => (p.name + ' ' + p.category + ' ' + (p.root_causes || []).map(r => r.name + ' ' + (r.plain || '')).join(' ')).toLowerCase().indexOf(q) >= 0)).slice(0, 40);
+    if (q.length < 2) { el.innerHTML = '<p class="st-res-h">Type at least two letters. Nothing is selected for you.</p>'; return; }
+    const hits = all.filter(p => (p.name + ' ' + p.category + ' ' + stCauses(p).map(r => r.name + ' ' + stRouteFit(r)).join(' ')).toLowerCase().indexOf(q) >= 0).slice(0, 12);
     if (!hits.length) { el.innerHTML = '<p class="st-res-h">Nothing here matches “' + esc(q) + '”. RNAwiki holds ' + all.length + ' problems and goals; a new one is a request, not something a builder can invent.</p>'; return; }
-    el.innerHTML = '<p class="st-res-h">' + (q.length < 2 ? 'All ' + hits.length + ' — type to narrow' : hits.length + ' match “' + esc(q) + '”') + '</p>'
+    el.innerHTML = '<p class="st-res-h">' + hits.length + ' match “' + esc(q) + '”</p>'
       + hits.map(p => { const n = stCauses(p).length; return '<button class="build-res st-res-row" data-pick="' + esc(p.id) + '">'
         + '<span class="br-name">' + esc(p.name) + '</span>'
-        + '<span class="br-meta">' + esc(p.category) + ' · ' + n + ' cause' + (n === 1 ? '' : 's') + '</span>'
+        + '<span class="br-meta">' + esc(p.category) + ' · ' + n + ' route' + (n === 1 ? '' : 's') + '</span>'
         + '<span class="br-add">→</span></button>'; }).join('');
     el.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => stSetProblem(b.dataset.pick));
   }
   function stSetProblem(pid) {
     const p = problemById[pid]; if (!p) return;
     ST.pid = pid;
-    // Choosing the problem does not choose a cause. A one-cause problem has exactly one answer, so
-    // it is opened rather than presented as a choice of one — 31 of 41 problems are that shape.
-    const rcs = stCauses(p);
-    if (!ST.causes.length && rcs.length === 1) { ST.causes = [stNewCause(rcs[0].id)]; }
-    else if (ST.causes.length === 1 && !ST.causes[0].rcid && rcs.length === 1) { ST.causes[0].rcid = rcs[0].id; }
+    stNormalizeDraftRoutes(ST);
+    // Choosing the topic never chooses its route, even when only one exists. The next screen says
+    // where the plan belongs and requires that explicit tap.
     stSave(); stPaint(); stCheckAllCauses();
   }
 
   // ---- THE addRootCause PATH — the thing that did not exist ----------------------------------
   function stAddCauseControl(p, rcs) {
-    const used = new Set(ST.causes.map(c => c.rcid).filter(Boolean));
+    const used = new Set(ST.causes.map(stRouteId).filter(Boolean));
     const left = rcs.filter(rc => !used.has(rc.id));
     // A draft carrying a plan with no cause on it — every migrated v1 draft — is not being asked to
     // add ANOTHER cause. It is being asked to say which cause the plan it already has is for, and
     // stAddRootCause() adopts the orphan rather than growing a second card. The label has to say
     // that, or the one control that unblocks publishing reads as irrelevant.
-    const orphan = ST.causes.some(c => !c.rcid);
+    const orphan = ST.causes.some(c => !stRouteId(c));
     if (left.length) {
-      return '<button class="st-add-open" id="st-add-cause">＋ ' + (orphan ? 'Choose the cause for this plan' : 'Add another cause') + '</button>'
+      return '<button class="st-add-open" id="st-add-cause">＋ ' + (orphan ? 'Choose the route for this plan' : 'Build another route') + '</button>'
         + '<p class="st-why">' + (orphan
-          ? 'A plan needs a cause before it can be published: the public title is written from the reviewed problem and cause. Choosing one here names the plan you already have.'
-          : left.length + ' of the ' + rcs.length + ' cause' + (rcs.length === 1 ? '' : 's') + ' RNAwiki publishes under ' + esc(p.name) + ' ' + (left.length === 1 ? 'has' : 'have') + ' no plan in this draft yet.') + '</p>';
+          ? 'A plan needs a governed route before it can be published. Choosing one attaches the plan you already have; it does not change its steps.'
+          : left.length + ' of ' + rcs.length + ' routes under ' + esc(p.name) + ' have no plan in this draft.') + '</p>';
     }
     // Every governed cause is authored. The honest next line is not "add another" — it is what the
     // route to a cause RNAwiki does not publish actually is, and that route is a review queue.
-    return '<p class="st-why st-all-causes">Every cause RNAwiki publishes under ' + esc(p.name) + ' — all ' + rcs.length + ' of them — has a plan in this draft.'
-      + (featureOn('publicCommunity')
-        ? ' If you think a cause is missing, <a href="#/problem/' + esc(p.id) + '">propose it on the problem page</a>. A proposed cause is read by a person before it appears, so it is not something this builder can add for you.'
-        : ' A cause RNAwiki does not publish cannot be added here: the public title of a protocol is written from the reviewed problem and cause, so inventing one would publish unreviewed copy under a reviewed-looking name.') + '</p>';
+    return '<p class="st-why st-all-causes">All ' + rcs.length + ' governed routes under ' + esc(p.name) + ' have a plan in this draft. A missing route is proposed on the <a href="/problem/' + esc(p.id) + '" data-native>topic page</a>; this builder never invents one.</p>';
   }
-  function stAddRootCause(rcid) {
+  function stAddRootCause(routeId) {
     if (!ST || !ST.pid) return false;
-    if (!stRcOf(rcid)) return false;                                   // never a cause the graph lacks
-    if (ST.causes.some(c => c.rcid === rcid)) return false;            // never the same cause twice
+    if (!stRcOf(routeId)) return false;                                // never a route the graph lacks
+    if (ST.causes.some(c => stRouteId(c) === routeId)) return false;   // never the same route twice
     // A draft that started with no cause chosen adopts this one rather than growing an orphan.
-    const orphan = ST.causes.findIndex(c => !c.rcid);
-    if (orphan >= 0) ST.causes[orphan].rcid = rcid; else ST.causes.push(stNewCause(rcid));
+    const orphan = ST.causes.findIndex(c => !stRouteId(c));
+    if (orphan >= 0) ST.causes[orphan].route_id = routeId; else ST.causes.push(stNewCause(routeId));
     // KEPT IN THE CORPUS'S OWN ORDER, not the order they were added. The cards are numbered
     // "Cause 2 of 3" from the graph, so a list that reads 2, 1, 3 is a list whose own numbering
     // contradicts its order — measured in a real browser at 390px after adding the second cause.
     // The open index is re-found by identity afterwards, never carried across the sort.
     const open = stCur();
     const order = stCauses(stProblem()).map(rc => rc.id);
-    ST.causes.sort((a, b) => order.indexOf(a.rcid) - order.indexOf(b.rcid));
+    ST.causes.sort((a, b) => order.indexOf(stRouteId(a)) - order.indexOf(stRouteId(b)));
     ST.open = open ? ST.causes.indexOf(open) : ST.open;
     if (ST.open < 0) ST.open = null;
     stSave();
@@ -10602,13 +11085,13 @@
   }
   function stCausePicker() {
     const p = stProblem(); if (!p) return;
-    const rcs = stCauses(p), used = new Set(ST.causes.map(c => c.rcid).filter(Boolean));
+    const rcs = stCauses(p), used = new Set(ST.causes.map(stRouteId).filter(Boolean));
     const left = rcs.filter(rc => !used.has(rc.id));
-    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Add a cause of ' + esc(p.name) + '</h2>'
-      + '<p class="modal-sub">Each one opens its own plan. Pick the one you can write about.</p>'
+    const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Where does this plan belong?</h2>'
+      + '<p class="modal-sub">Each route is a separate branch. Pick only the one these steps were written for.</p>'
       + '<div class="st-res">' + left.map(rc => '<button class="build-res st-rc-row" data-rc="' + esc(rc.id) + '">'
         + '<span class="br-name">' + esc(rc.name) + '</span>'
-        + (rc.plain ? '<span class="br-meta">' + esc(rc.plain) + '</span>' : '')
+        + '<span class="br-meta">' + esc(stRouteNoun(rc, p)) + (stRouteFit(rc) ? ' · ' + esc(stRouteFit(rc)) : '') + '</span>'
         + '<span class="br-add">＋</span></button>').join('') + '</div>');
     m.querySelector('#modal-close').onclick = closeModal;
     m.querySelectorAll('[data-rc]').forEach(b => b.onclick = () => {
@@ -10639,15 +11122,14 @@
   function stPaintPlan() {
     const c = stCur(); if (!c) { ST.open = null; return stPaintSpine(); }
     const items = c.items, n = items.length;
-    const p = stProblem(), rc = c.rcid ? stRcOf(c.rcid) : null;
-    const pos = c.rcid ? stRcPos(c.rcid) : 0, of = stCauses(p).length;
+    const p = stProblem(), routeId = stRouteId(c), rc = routeId ? stRcOf(routeId) : null;
     app.innerHTML = crumbs([{ label: 'Home', href: '#/' }, { label: 'Protocol Studio' }])
       + '<button class="st-back" id="st-back">← ' + esc(p ? p.name : 'All plans') + '</button>'
       + '<section class="st-hd">'
-      + '<div class="kicker">' + (pos ? 'Cause ' + pos + ' of ' + of : 'Protocol Studio') + '</div>'
+      + '<div class="kicker">' + (routeId ? esc(stRouteNoun(rc, p)) : 'Protocol Studio') + '</div>'
       + '<h1>' + esc(rc ? rc.name : 'Build a protocol') + '</h1>'
-      + (rc && rc.plain ? '<p class="st-cause-p">' + esc(rc.plain) + '</p>' : '')
-      + (rc ? '' : '<p class="st-acct">This plan is not attached to a cause. Publishing needs one, because the public title is written from the reviewed problem and cause. Go back and pick one.</p>')
+      + (stRouteFit(rc) ? '<p class="st-cause-p">' + esc(stRouteFit(rc)) + '</p>' : '')
+      + (rc ? '' : '<p class="st-acct">This plan is not attached to a route. Go back and choose where it belongs before publishing.</p>')
       + '</section>'
       + '<div class="st-list" id="st-list">' + (n ? items.map(stRow).join('') : stEmpty()) + '</div>'
       + '<button class="st-add-open" id="st-add-open"' + (n >= ST_MAX ? ' disabled' : '') + '>＋ Add something</button>'
@@ -10681,7 +11163,10 @@
   function stSummary(it) {
     const b = [];
     if (it.k === 'c') { const l = stLad(it.id); b.push(it.dose !== undefined && l && !l.locked ? it.dose + l.unit : 'the dose its own page publishes'); }
-    if (it.k === 'x') b.push((it.sets === undefined ? 3 : it.sets) + ' × ' + (it.reps === undefined ? 10 : it.reps));
+    if (it.k === 'x') b.push(it.sets === undefined || it.reps === undefined
+      ? 'Set sets and reps before publishing'
+      : it.sets + ' × ' + it.reps);
+    if (it.k === 'f') { const f = ST_FDBY[it.id]; if (f && f.serving) b.push(f.serving); }
     if (it.k === 'fn') { const f = fnById(it.id); if (f && f.target) b.push((it.target === undefined ? f.target : it.target) + ' ' + (f.unit || '')); }
     b.push(Array.isArray(it.days) ? it.days.slice().sort((x, y) => x - y).map(d => ST_DAY_N[d].slice(0, 3)).join('/') : 'every day');
     if (it.note) b.push('your note');
@@ -10691,17 +11176,18 @@
   function stAdjust(it) {
     const k = stKey(it); let head = '';
     if (it.k === 'c') head = stDose(it);
-    else if (it.k === 'x') head = stStep(k, 'sets', it.sets === undefined ? 3 : Number(it.sets) || 3, 1, 10, 1, 'Sets', '')
-      + stStep(k, 'reps', it.reps === undefined ? 10 : Number(it.reps) || 10, 1, 30, 1, 'Reps', '');
+    else if (it.k === 'x') head = stStep(k, 'sets', it.sets === undefined ? null : Number(it.sets), 1, 10, 1, 'Sets', '')
+      + stStep(k, 'reps', it.reps === undefined ? null : Number(it.reps), 1, 30, 1, 'Reps', '');
     else if (it.k === 'fn') { const f = fnById(it.id) || {}; head = f.target ? stStep(k, 'target', it.target === undefined ? f.target : Number(it.target) || f.target, f.step || 1, f.target * 4, f.step || 1, 'Target', f.unit || '') : '<p class="st-why">This tool has nothing to set.</p>'; }
     return head + stDays(it) + stNote(it);
   }
 
   function stStep(k, field, v, min, max, step, label, unit) {
+    const unset = v == null || !Number.isFinite(v);
     return '<div class="st-adj-b"><div class="st-adj-k">' + esc(label) + '</div><div class="st-step">'
-      + '<button class="st-sb" data-num="' + field + '|dn" data-key="' + esc(k) + '" data-stfocus="' + field + 'dn|' + esc(k) + '"' + (v <= min ? ' disabled' : '') + ' aria-label="Fewer ' + esc(label.toLowerCase()) + '">−</button>'
-      + '<output class="st-sv">' + esc(v + (unit ? ' ' + unit : '')) + '</output>'
-      + '<button class="st-sb" data-num="' + field + '|up" data-key="' + esc(k) + '" data-stfocus="' + field + 'up|' + esc(k) + '"' + (v >= max ? ' disabled' : '') + ' aria-label="More ' + esc(label.toLowerCase()) + '">+</button>'
+      + '<button class="st-sb" data-num="' + field + '|dn" data-key="' + esc(k) + '" data-stfocus="' + field + 'dn|' + esc(k) + '"' + (unset || v <= min ? ' disabled' : '') + ' aria-label="Fewer ' + esc(label.toLowerCase()) + '">−</button>'
+      + '<output class="st-sv">' + (unset ? 'Not set' : esc(v + (unit ? ' ' + unit : ''))) + '</output>'
+      + '<button class="st-sb" data-num="' + field + '|up" data-key="' + esc(k) + '" data-stfocus="' + field + 'up|' + esc(k) + '"' + (!unset && v >= max ? ' disabled' : '') + ' aria-label="' + (unset ? 'Set ' : 'More ') + esc(label.toLowerCase()) + '">+</button>'
       + '</div></div>';
   }
 
@@ -10767,13 +11253,13 @@
     if (f.rule === 'checker-unavailable') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Unable to check</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'restricted-substance') return '<div class="st-flag st-rx"><div class="st-flag-k">℞ ' + (refusal ? 'Not publishable' : 'Stays in your own copy') + '</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'unreviewed-creator-copy') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">✍️ Creator copy needs review</div><p>' + esc(f.message) + '</p></div>';
-    if (f.rule === 'interaction-coverage') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">❔ Interaction coverage incomplete</div><p>' + esc(f.message) + '</p></div>';
+    if (f.rule === 'interaction-unknown') return '<div class="st-flag st-down" role="alert"><div class="st-flag-k">❔ Interaction coverage incomplete</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'animal-only-evidence') return '<div class="st-flag st-anim"><div class="st-flag-k">🐭 Animal evidence only</div><p>' + esc(f.message) + '</p></div>';
     if (f.rule === 'interaction') return '<div class="st-flag st-anim"><div class="st-flag-k">' + (f.tier === 'timing' ? '⏱️ Time these apart' : '🔎 Worth knowing') + '</div><p>' + esc(f.message) + '</p></div>';
     return '<div class="st-flag st-block" role="alert"><div class="st-flag-k">✋ ' + (refusal ? 'Not publishable' : 'Not saveable yet') + '</div><p>' + esc(f.message) + '</p>'
       + (f.item ? '<button class="st-goto" data-goto="' + esc(f.item) + '">Show me</button>' : '') + '</div>';
   }
-  const ST_ORDER = f => (f.tier === 'danger' || f.rule === 'danger-interaction') ? 0 : f.rule === 'restricted-substance' ? 1 : f.rule === 'interaction-coverage' ? 2 : (f.rule === 'shape' || f.rule === 'unknown-entity' || f.rule === 'uncapped-dose' || f.rule === 'contraindicated-move') ? 3 : f.rule === 'interaction' ? 4 : 5;
+  const ST_ORDER = f => (f.tier === 'danger' || f.rule === 'danger-interaction') ? 0 : f.rule === 'restricted-substance' ? 1 : f.rule === 'interaction-unknown' ? 2 : (f.rule === 'shape' || f.rule === 'unknown-entity' || f.rule === 'uncapped-dose' || f.rule === 'contraindicated-move') ? 3 : f.rule === 'interaction' ? 4 : 5;
 
   // The server owns the coverage STATE. Never reconstruct a clearance from `checked >= 2`: 2/3
   // used to satisfy that inference and paint a green tick over an unchecked compound. A response
@@ -10828,7 +11314,7 @@
       + (cov && typeof cov.checked === 'number' ? cov.checked : 0) + ' of '
       + (cov && typeof cov.of === 'number' ? cov.of : 0) + ' exact pairs</b>. '
       + esc(ST_V.says || '') + '</p>');
-    const blocking = all.filter(f => f.tier === 'danger' || f.rule === 'restricted-substance' || f.rule === 'interaction-coverage');
+    const blocking = all.filter(f => f.tier === 'danger' || f.rule === 'restricted-substance' || f.rule === 'interaction-unknown');
     if (blocking.length) html.push('<p class="st-pubwarn">Publishing this will be refused. It is yours to keep and to run — it is not yours to hand to a stranger.</p>');
     el.innerHTML = html.join('');
     el.querySelectorAll('[data-goto]').forEach(b => { b.onclick = () => stGoto(b.dataset.goto); });
@@ -10901,8 +11387,9 @@
     const i = stFind(k); if (i < 0) return; const it = stItems()[i];
     const f = it.k === 'fn' ? (fnById(it.id) || {}) : {};
     const bounds = field === 'sets' ? [1, 10, 1] : field === 'reps' ? [1, 30, 1] : [f.step || 1, (f.target || 1) * 4, f.step || 1];
-    const cur = it[field] === undefined ? (field === 'sets' ? 3 : field === 'reps' ? 10 : (f.target || bounds[0])) : Number(it[field]) || bounds[0];
-    const next = Math.max(bounds[0], Math.min(bounds[1], cur + (dir === 'up' ? bounds[2] : -bounds[2])));
+    const missing = it[field] === undefined;
+    const cur = missing ? (field === 'target' ? (f.target || bounds[0]) : bounds[0]) : Number(it[field]) || bounds[0];
+    const next = missing ? bounds[0] : Math.max(bounds[0], Math.min(bounds[1], cur + (dir === 'up' ? bounds[2] : -bounds[2])));
     it[field] = next; ST_FOCUS = field + dir + '|' + k; stTouch();
   }
   function stSetDose(k, act) {
@@ -10949,18 +11436,12 @@
     const el = document.getElementById('st-res'); if (!el) return;
     const have = stItems().filter(it => it.k === ST_TAB).map(it => it.id);
     const q = ST_Q.trim();
-    let hits, browsing = false;
+    let hits;
     if (q.length < 2) {
-      // NEVER an empty box. Below two characters this is a browse surface, not a dead end.
-      browsing = true;
-      const ex = new Set(have);
-      hits = ST_TAB === 'c' ? stAddableC().filter(c => !ex.has(c.id)).sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, 24)
-        : ST_TAB === 'x' ? stEx().filter(e => !ex.has(e.id)).slice(0, 24)
-          : ST_TAB === 'f' ? stFd().filter(f => !ex.has(f.id)).sort((a, b) => (b.sg_local ? 1 : 0) - (a.sg_local ? 1 : 0)).slice(0, 24)
-            : PLAN_FUNCTIONS.filter(f => !ex.has(f.id));
-    } else {
-      hits = catalogSearch(ST_TAB === 'c' ? 'stack' : ST_TAB === 'x' ? 'xall' : ST_TAB === 'f' ? 'food' : 'tool', q, have, 24);
+      el.innerHTML = '<div class="st-empty"><p><b>Search to add one exact item.</b></p><p class="muted">Type at least two letters. Nothing is preselected and no generic catalogue rows are added to this branch.</p></div>';
+      return;
     }
+    hits = catalogSearch(ST_TAB === 'c' ? 'stack' : ST_TAB === 'x' ? 'xall' : ST_TAB === 'f' ? 'food' : 'tool', q, have, 24);
     // The withheld line renders even when there are ZERO addable hits — the DNP / clenbuterol /
     // semaglutide / trenbolone case. "No matches" would be false of this site: it documents all
     // four in full, and those pages are open to anyone with no account.
@@ -10971,13 +11452,7 @@
         + '. RNAwiki documents ' + (held.length > 1 ? 'them' : 'it') + ' in full and those pages are open to anyone; a protocol builder is just not the place to hand out a dose for ' + (held.length > 1 ? 'them' : 'it') + '.</p>'
       : '';
     const total = stTotal(ST_TAB);
-    const head = browsing
-      ? '<p class="st-res-h">' + (ST_TAB === 'c' ? 'Strongest human evidence first — type to search all ' + total + ' that can be added here'
-        : ST_TAB === 'f' ? 'Singapore foods first — type to search all ' + total
-          : ST_TAB === 'fn' ? 'All ' + total + ' tools'
-            : 'Type two letters to search all ' + total) + '</p>'
-        + (ST_TAB === 'c' ? '<p class="build-held">RNAwiki documents ' + D.compounds.length + ' compounds. The other ' + stWithheldC() + ' are not general-sale substances, so a builder does not hand out a dose for them — their pages are open to anyone, with no account.</p>' : '')
-      : '<p class="st-res-h">' + hits.length + (hits.length === 24 ? '+' : '') + ' of ' + total + ' match “' + esc(q) + '”</p>';
+    const head = '<p class="st-res-h">' + hits.length + (hits.length === 24 ? '+' : '') + ' of ' + total + ' match “' + esc(q) + '”</p>';
     if (!hits.length) { el.innerHTML = '<p class="st-res-h">0 of ' + total + ' match “' + esc(q) + '”</p>' + heldHTML + (heldHTML ? '' : '<p class="build-nohit">No matches — try another name.</p>'); return; }
     el.innerHTML = head + hits.map(h => '<button class="build-res st-res-row" data-add="' + esc(h.id) + '"><span class="br-name">' + esc(h.name) + '</span><span class="br-meta">' + esc(stMeta(ST_TAB, h)) + '</span><span class="br-add">＋</span></button>').join('') + heldHTML;
     el.querySelectorAll('[data-add]').forEach(b => b.onclick = () => {
@@ -10990,12 +11465,10 @@
     });
   }
   function stAddSheet() {
-    const tabs = [['c', '💊', 'Compounds'], ['x', '💪', 'Movements'], ['f', '🍚', 'Foods'], ['fn', '🧩', 'Tools']];
+    const tabs = [['c', 'Compounds'], ['x', 'Movements'], ['f', 'Foods'], ['fn', 'Tools']];
     const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Add to your protocol</h2>'
-      + '<div class="st-tabs" role="tablist">' + tabs.map(t => '<button class="st-tab' + (ST_TAB === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '" role="tab" aria-selected="' + (ST_TAB === t[0]) + '">' + t[1] + ' ' + t[2] + ' <span class="st-tab-n">' + stTotal(t[0]) + '</span></button>').join('') + '</div>'
-      // NOT autofocused. On a 390px screen the soft keyboard covers the tab row, and a reader who
-      // opened this to browse a category would never see that Movements and Foods exist.
-      + '<input id="st-q" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="Search…" value="' + esc(ST_Q) + '">'
+      + '<div class="st-tabs" role="tablist">' + tabs.map(t => '<button class="st-tab' + (ST_TAB === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '" role="tab" aria-selected="' + (ST_TAB === t[0]) + '">' + t[1] + '</button>').join('') + '</div>'
+      + '<input id="st-q" class="build-search" type="search" inputmode="search" autocomplete="off" placeholder="Search by exact name…" value="' + esc(ST_Q) + '">'
       + '<div id="st-res" class="st-res"></div>'
       + '<div class="modal-actions"><button class="primary" id="st-done">Done · <b id="st-done-n">' + stItems().length + '</b> in your protocol</button></div>');
     m.querySelector('#modal-close').onclick = () => { closeModal(); stTouch(); };
@@ -11014,23 +11487,22 @@
   async function stPublish() {
     const cur = stCur();
     if (!cur || !cur.items.length) return;
-    const ti = document.getElementById('st-title');
-    if (ti) { ST.title = String(ti.value || ST.title || '').slice(0, 90); stSave(); }
     const m = modal('<button class="modal-x" id="modal-close">✕</button><h2>Publish this plan?</h2><p class="modal-sub">Checking it against the same rules this site’s own pages are held to…</p><div id="st-pb"></div>');
     m.querySelector('#modal-close').onclick = closeModal;
     const body = m.querySelector('#st-pb');
-    // A plan with no cause has no reviewed labels to build a public title from, so it stops here
+    // A plan with no governed route has no provenance, so it stops here
     // rather than at the server with a shape refusal the creator cannot act on.
-    if (!cur.rcid) {
+    if (!stRouteId(cur)) {
       body.innerHTML = '<p class="st-pub-no"><b>This plan has not been published. Nothing was sent.</b></p>'
-        + '<p>It is not attached to a cause. RNAwiki writes the public title from the reviewed problem and cause, so a plan with neither has no title it is allowed to publish under.</p>'
-        + '<p class="st-pub-keep">Go back, pick the cause this plan is for, and publish it from there. Nothing you have built is lost.</p>';
+        + '<p>It is not attached to a route. Go back, choose where this plan belongs, and publish it from there.</p>'
+        + '<p class="st-pub-keep">Nothing you built is lost.</p>';
       return;
     }
     // THE AUTHORITY IS THE SERVER, IN PUBLISH MODE. The verdict on the page behind this sheet
     // answered a different question. Measured: the same two items return ok:true with warns in
     // draft mode and ok:false with refusals with status:'published'.
-    const d = await api.checkProtocol(stSpec(), 'published', stBase(cur));
+    const publishSpec = stPublishSpec();
+    const d = await api.checkProtocol(publishSpec, 'published', stBase(cur));
     if (d._status !== 200) { body.innerHTML = '<div class="st-flag st-down" role="alert"><div class="st-flag-k">⚠️ Not checked</div><p>' + esc(d.error || 'The safety checker could not be reached. Nothing has been published.') + '</p></div>'; return; }
     const ref = (d.refusals || []).slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b));
     if (ref.length) {
@@ -11057,30 +11529,44 @@
       // public link, which is the site's own vocabulary on /p/<code> — and the sentence naming the
       // four public things is pinned verbatim by scripts/containment.mjs, so it stays as written.
       + '<div class="st-pub-what"><p><b>Publishing makes four things public on this protocol’s link:</b></p><ul>'
-      + '<li>a <b>neutral title</b> made from the reviewed problem and cause — this one publishes as “' + esc(stTitleOf(cur)) + ' protocol”;</li>'
+      + '<li>a <b>neutral title</b> made from the governed topic and route — this one publishes as “' + esc(stTitleOf(cur)) + ' protocol”;</li>'
       + '<li>everything <b>in</b> it — each reviewed compound, movement, food and tool, with governed adjustments and days;</li>'
-      + '<li>the RNAwiki problem and cause it is <b>for</b>;</li>'
+      + '<li>the RNAwiki topic and route it is <b>for</b>;</li>'
       + '<li>your <b>username</b> as the protocol’s author.</li>'
       + '</ul>'
       // The other plans in the draft are named as NOT going, because a creator looking at a spine of
       // three has no way to tell from a sheet headed "Publish" that it means one of them.
       + (ST.causes.length > 1 ? '<p class="st-why"><b>Only this plan is published.</b> The other ' + (ST.causes.length - 1) + ' in this draft stay on this device until you publish each one from its own screen.</p>' : '')
       + '<p class="st-why">Your username is the only thing about you that goes with it. RNAwiki asks for no real name and holds no photograph. <b>Nothing you plan, log or follow is published</b> — not by this and not by anything else. That stays on this device.</p>'
-      + '<p class="st-why">These pages are kept out of Google. Publishing is a link you hand out, not a listing you get found by.</p>'
-      + '<p class="st-why">You can withdraw it later from <a href="#/me">your page</a>. The link keeps working and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.</p></div>'
-      + '<div class="modal-actions"><button class="ghost" id="st-pc">Not yet</button><button class="primary" id="st-pg">Publish</button></div>';
+      + '<fieldset class="st-vis"><legend>Who should find this protocol?</legend>'
+      + '<label class="st-vis-choice"><input type="radio" name="st-visibility" value="unlisted"><span><b>Only people with the link</b><small>It stays off topic pages, creator lists and your public profile.</small></span></label>'
+      + (featureOn('creatorDiscovery')
+        ? '<label class="st-vis-choice"><input type="radio" name="st-visibility" value="public"><span><b>List it on this topic</b><small>It can appear under this exact route and in creator lists, beside your username.</small></span></label>'
+        : '<p class="st-why">Topic listing is not available on this deployment. You can still publish a link-only version.</p>')
+      + '</fieldset>'
+      + '<p class="st-why">Both choices create the same public link and keep it out of search-engine indexing. Listing is the extra permission to help people find it inside RNAwiki.</p>'
+      + '<p class="st-why">From <a href="#/me">your page</a>, you can remove a listed plan from discovery without breaking its link, or withdraw it completely. A withdrawn link stays as a tombstone because remixes may depend on it.</p></div>'
+      + '<div class="modal-actions"><button class="ghost" id="st-pc">Not yet</button><button class="primary" id="st-pg" disabled>Choose who can find it</button></div>';
     body.querySelector('#st-pc').onclick = closeModal;
+    const visibilityChoices = [...body.querySelectorAll('input[name="st-visibility"]')];
+    visibilityChoices.forEach((choice) => { choice.onchange = () => {
+      const go = body.querySelector('#st-pg'); if (!go) return;
+      go.disabled = false; go.textContent = choice.value === 'public' ? 'Publish and list' : 'Publish link-only';
+    }; });
     body.querySelector('#st-pg').onclick = async () => {
+      const selected = body.querySelector('input[name="st-visibility"]:checked');
+      if (!selected) return;
+      const visibility = selected.value;
       const go = body.querySelector('#st-pg'); go.disabled = true; go.textContent = 'Publishing…';
-      // The title is sent AS TYPED. It is not defaulted to "Untitled protocol": the server answers
-      // 400 "Name your protocol" for an empty one, and its sentence is the one shown. A default
-      // would put a name on somebody's document that they never chose.
-      const payload = Object.assign({ title: ST.title, spec: stSpec(), status: 'published' }, stBase(cur));
+      // Public naming is governed by the selected topic and route. Do not make the creator invent
+      // a second title before the plan has provenance, or let medical claims leak through a label.
+      const payload = Object.assign({ title: stTitleOf(cur), spec: publishSpec, status: 'published', visibility }, stBase(cur));
       // A remix is a diff against ONE parent. Only the cause that was remixed can be sent as one;
       // a cause added to the draft afterwards is a new protocol of its own, not a patch of somebody
       // else's, and sending it as a remix would store it as a diff against a spec it never saw.
-      const asRemix = ST.remixOf && ST.causes.indexOf(cur) === 0;
-      const r = asRemix ? await api.remixProtocol(ST.remixOf, payload) : await api.saveProtocol(payload);
+      // Parent provenance belongs to the branch, not its array position. Route-order sorting can
+      // move a remixed branch away from index zero after another route is added.
+      const r = cur.parent_code ? await api.remixProtocol(cur.parent_code, payload) : await api.saveProtocol(payload);
       if (r._status === 401) {
         // The account line, at the moment it actually applies — never on arrival.
         body.innerHTML = '<p>' + esc(r.error || 'Publishing puts your name on it, so publishing needs an account. Building one, saving it and running it do not.') + '</p>'
@@ -11097,14 +11583,19 @@
         return;
       }
       if (!r._ok) { go.disabled = false; go.textContent = 'Publish'; body.insertAdjacentHTML('beforeend', '<p class="st-pub-no">' + esc(r.error || 'It was not published.') + '</p>'); return; }
-      cur.code = r.code; stSave();   // the spine links straight to it afterwards
-      closeModal(); toast('Published 🔗'); navigate('/p/' + r.code);
+      cur.code = r.code; cur.visibility = r.visibility; stSave();
+      // Publishing one route must not eject the creator from the multi-route draft. The plan is
+      // already linked from the spine; viewing it is a deliberate next choice, not a redirect.
+      const publishedRoute = stRouteId(cur) ? stRcOf(stRouteId(cur)) : null;
+      body.innerHTML = '<div class="st-pub-done"><p class="kicker">Published</p><h2>' + esc((publishedRoute && publishedRoute.name) || stTitleOf(cur)) + ' is live.</h2>'
+        + '<p class="modal-sub">The other plans in this topic are still on this device.</p>'
+        + '<div class="modal-actions"><button class="ghost" id="st-pstay">Continue in Studio</button><button class="primary" id="st-pview">View plan</button></div></div>';
+      body.querySelector('#st-pstay').onclick = () => { closeModal(); stPaint(); };
+      body.querySelector('#st-pview').onclick = () => { closeModal(); navigate('/p/' + r.code); };
     };
   }
 
   function stWireSpine() {
-    const t = document.getElementById('st-title');
-    if (t) t.oninput = () => { ST.title = t.value.slice(0, 90); stSave(); };
     const pq = document.getElementById('st-pq');
     if (pq) { let d = null; pq.oninput = () => { clearTimeout(d); d = setTimeout(stProblemResults, 120); }; stProblemResults(); }
     const ch = document.getElementById('st-prob-change');
@@ -11126,7 +11617,7 @@
     app.querySelectorAll('[data-cdrop]').forEach(b => b.onclick = () => {
       const i = Number(b.dataset.cdrop), c = ST.causes[i]; if (!c) return;
       if (c.items.length && !confirm('Remove this plan and the ' + c.items.length + ' thing' + (c.items.length === 1 ? '' : 's') + ' in it? The other plans stay. It is only on this device, so this cannot be undone.')) return;
-      if (c.rcid) delete ST_CV[c.rcid];
+      if (stRouteId(c)) delete ST_CV[stRouteId(c)];
       ST.causes.splice(i, 1); ST.open = null;
       stSay('Plan removed. ' + ST.causes.length + ' left in this draft.');
       stSave(); stPaint();
@@ -11136,7 +11627,7 @@
   function stWire() {
     const back = document.getElementById('st-back');
     if (back) back.onclick = () => { ST.open = null; stSave(); stPaint(); stCheckAllCauses(); window.scrollTo(0, 0); };
-    const add = document.getElementById('st-add-open'); if (add) add.onclick = stAddSheet;
+    const add = document.getElementById('st-add-open'); if (add) add.onclick = () => { ST_Q = ''; stAddSheet(); };
     const pub = document.getElementById('st-publish'); if (pub) pub.onclick = stPublish;
     const cl = document.getElementById('st-clear');
     // Clear empties THIS plan, never the draft. A creator with three plans who taps Clear on one of
@@ -11144,7 +11635,7 @@
     if (cl) cl.onclick = () => {
       const c = stCur(); if (!c || !c.items.length) return;
       if (!confirm('Empty this plan? The other plans in this draft are untouched. It is only on this device, so this cannot be undone.')) return;
-      c.items.length = 0; if (c.rcid) delete ST_CV[c.rcid];
+      c.items.length = 0; if (stRouteId(c)) delete ST_CV[stRouteId(c)];
       if (ST.causes.length === 1) ST.remixOf = null;
       stTouch();
     };
@@ -11162,6 +11653,18 @@
   }
 
   // ---- /p/<code> — the published protocol -------------------------------------------------
+  function setPublishedMeta(title, topicName, routeName) {
+    const fullTitle = title + ' · ' + SITE_NAME;
+    const desc = 'Creator plan for ' + topicName + ': ' + routeName + '. Fit, steps, check-in and safety guidance.';
+    document.title = fullTitle;
+    const set = (selector, value) => { const node = document.querySelector(selector); if (node) node.setAttribute('content', value); };
+    set('meta[name="description"]', desc);
+    set('meta[property="og:title"]', fullTitle);
+    set('meta[property="og:description"]', desc);
+    set('meta[name="twitter:title"]', fullTitle);
+    set('meta[name="twitter:description"]', desc);
+    set('meta[name="robots"]', 'noindex,follow');
+  }
   async function renderPublished(code) {
     try { await ensureProtocolData(); } catch (e) {}
     stIndex();
@@ -11183,39 +11686,74 @@
     const items = d.spec.items || [];
     const now = d.safetyNow, saved = d.safetyWhenSaved || {};
     const nowFlags = now ? (now.refusals || []).concat(now.warn || []) : [];
+    const topicId = d.topic_id || d.base_pid, problem = topicId ? problemById[topicId] : null;
+    const route = problem ? (d.route_id ? stCauses(problem).find(r => r.id === d.route_id) : stRouteFromLegacy(problem, d.base_rcid)) : null;
+    const routeName = (route && route.name) || d.route_name || d.route_id || d.base_rcid || 'Unspecified route';
+    setPublishedMeta(d.title, (problem && problem.name) || topicId || 'this topic', routeName);
+    const versionId = d.version_id || code;
+    const primaryItem = d.guide && d.guide.primary
+      ? items.find((it) => it && stKey(it) === d.guide.primary) : items[0];
+    const primaryObject = primaryItem ? stObj(primaryItem) : null;
+    const primaryView = primaryItem ? {
+      name: (primaryObject && primaryObject.name) || primaryItem.id,
+      summary: stSummary(primaryItem),
+    } : null;
+    const author = d.by_user
+      ? (d.profile_visible ? '<a href="#/u/' + encodeURIComponent(d.by_user) + '">@' + esc(d.by_user) + '</a>' : '@' + esc(d.by_user))
+      : 'an account that has since been removed';
+    const remainingItems = primaryItem ? items.filter((it) => it !== primaryItem) : items;
     app.innerHTML = crumb
-      + '<section class="st-hd"><div class="kicker">A protocol somebody built</div><h1>' + esc(d.title) + '</h1>'
-      + '<p class="muted">' + (d.by_user ? 'By ' + esc(d.by_user) : 'By an account that has since been removed') + (d.published_at ? ' · ' + esc(String(d.published_at).slice(0, 10)) : '') + (d.depth ? ' · remix, ' + d.depth + ' deep' : '') + '</p>'
+      + '<section class="st-hd"><div class="kicker">Creator plan</div><h1>' + esc(d.title) + '</h1>'
+      + '<p class="muted">By ' + author + (d.published_at ? ' · ' + esc(String(d.published_at).slice(0, 10)) : '') + (d.depth ? ' · remix, ' + d.depth + ' deep' : '') + '</p>'
+      + '<p class="muted"><b>For:</b> ' + (problem ? '<a href="/problem/' + esc(problem.id) + '" data-native>' + esc(problem.name) + '</a>' : esc(topicId || 'Unknown topic'))
+      + ' → ' + esc(routeName) + '</p>'
       // MOST USED, never "works best", and no count at all when there is nothing real to count.
       + (d.clones > 0 ? '<p class="muted">Started by ' + d.clones + ' ' + (d.clones === 1 ? 'person' : 'people') + '. That counts starts, not results — nothing here measures whether it worked.</p>' : '')
-      + '<p class="st-acct">Reading this needs no account.</p></section>'
-      + '<div class="st-list">' + items.map(it => {
+      + '</section>'
+      + executionGuideHtml(d.guide, primaryView, true)
+      + (remainingItems.length ? '<section><h2>Then</h2><div class="st-list">' + remainingItems.map(it => {
         const o = stObj(it), nm = (o && o.name) || it.id;
         const link = it.k === 'c' && o ? '<a href="#/c/' + esc(slug(o.name)) + '">' + esc(nm) + '</a>' : esc(nm);
         return '<div class="st-row"><div class="st-row-top"><span class="st-kind" aria-hidden="true">' + (ST_ICON[it.k] || '•') + '</span>'
           + '<div class="st-row-mid"><b class="st-nm">' + link + '</b><span class="st-sum">' + esc(stSummary(it)) + '</span>'
           + (it.note ? '<span class="st-sum">“' + esc(it.note) + '”</span>' : '') + '</div></div></div>';
-      }).join('') + '</div>'
+      }).join('') + '</div></section>' : '')
       // BOTH verdicts, labelled. The stored one says what was true when it was written; a compound
       // can be re-rated or reclassified afterwards, and handing somebody a stale clearance is the
       // failure this endpoint already returns two objects to prevent.
       + '<div class="st-verdict">'
       + (now ? (nowFlags.length ? nowFlags.slice().sort((a, b) => ST_ORDER(a) - ST_ORDER(b)).map(f => stFlagCard(f, false)).join('') + '<p class="st-cov">❔ ' + esc(now.says || '') + '</p>' : stCoverageVerdict(now.coverage, now.says, true))
         : '<div class="st-flag st-down"><div class="st-flag-k">⚠️ Not re-checked</div><p>This protocol could not be re-checked against the corpus as it is today. What is shown below is what was true when it was written.</p></div>')
-      + '<p class="st-cov st-then">When it was published: ' + esc(saved.says || 'no verdict was stored.') + '</p></div>'
-      + '<div class="st-bar"><a class="cta-ghost" href="#/studio">Build my own</a><button class="cta-primary" id="st-remix">Remix this</button></div>'
-      + '<p class="st-saved">Remixing opens a copy in your Studio. Your changes stay yours — the original is untouched.</p>';
-    const rx = document.getElementById('st-remix');
-    if (rx) rx.onclick = async () => {
-      rx.disabled = true; rx.textContent = 'Checking…';
-      const cloned = await api.cloneProtocol(code);
+      + (saved.says ? '<details class="st-cov st-then"><summary>At publication</summary><p>' + esc(saved.says) + '</p></details>' : '') + '</div>'
+      + '<div class="st-bar"><button class="cta-primary" id="st-start">Start this plan</button><button class="cta-ghost" id="st-remix">Remix</button></div>'
+      + '<p class="st-saved">Starting keeps these exact steps in Today.</p>'
+      + '<section class="page-discuss" id="branch-comments"></section>';
+    const start = document.getElementById('st-start');
+    if (start) start.onclick = async () => {
+      start.disabled = true; start.textContent = 'Starting…';
+      const cloned = await api.cloneProtocol(code, d.snapshot_hash);
       if (!cloned || !cloned._ok) {
-        rx.disabled = false; rx.textContent = 'Remix this';
-        alert((cloned && cloned.error) || 'This protocol could not be remixed. Nothing was added.');
+        start.disabled = false; start.textContent = 'Start this plan';
+        alert((cloned && cloned.error) || 'This plan could not be started. Nothing was added.');
         return;
       }
-      navigate('/studio/' + code);
+      if ((cloned.branch_id || code) !== (d.branch_id || code) || (cloned.version_id || code) !== versionId) {
+        start.disabled = false; start.textContent = 'Start this plan';
+        alert('This plan changed while it was open. Reload it before starting. Nothing was added.');
+        return;
+      }
+      if (!cloned.snapshot_hash || cloned.snapshot_hash !== d.snapshot_hash
+        || !cloned.snapshot_contract || cloned.snapshot_contract !== d.snapshot_contract) {
+        start.disabled = false; start.textContent = 'Start this plan';
+        alert('This plan, its guidance, or its safety information changed while it was open. Reload it before starting. Nothing was added.');
+        return;
+      }
+      const snapshot = creatorExactSnapshot(d, code, problem, route || { id: d.route_id || d.base_rcid, name: routeName });
+      enrollExact(snapshot); navigate('/plan');
     };
+    const rx = document.getElementById('st-remix');
+    if (rx) rx.onclick = () => navigate('/studio/' + code);
+    renderBranchDiscussion(code, versionId, routeName, 'branch-comments', 'general', '');
   }
 
   function navigate(path) {
@@ -11348,7 +11886,7 @@
     // W7 C7. Caught by the smoke gate the moment /studio joined the route set: hydration ended on
     // the site default title, so the Studio had no identity in a tab, a bookmark or a share (D7).
     // Neither route is prerendered, so this is the ONLY head either one gets.
-    else if (parts[0] === 'studio') { title = t('Protocol Studio — build a protocol and have it checked'); desc = 'Assemble compounds, movements, Singapore foods and daily tools into one protocol, and see every dangerous pairing as you build it. No account needed to build, keep or run it.'; }
+    else if (parts[0] === 'studio') { title = t('Protocol Studio — create a protocol'); desc = 'Build a protocol for one problem and route, check every pairing, preview the first day, and publish when ready. No account needed to start.'; }
     // /p/<code> is one reader's own document. The title is deliberately generic and the description
     // says nothing about what is in it: the row is fetched after this runs, and a head that named
     // a compound it had not yet read would be a fabricated one. renderPublished() does not restamp
@@ -11861,6 +12399,7 @@
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan(QS.get('mode'));
     if (parts[0] === 'studio') renderStudio(parts[1] || null, QS.get('for'), QS.get('cause'));
+    if (parts[0] === 'problem' && parts[1]) mountCreatorRouteIndex(parts[1]);
     // Also fill on ARRIVAL, not only in the config handler: that one runs once at boot, so a reader
     // who lands anywhere else and navigates to /p afterwards would otherwise get the empty frame.
     if (parts[0] === 'p' && !parts[1]) mountPublishedIndex();
@@ -11953,22 +12492,22 @@
   // ---- AND IT COULD NEVER ONCE HAVE RUN (fixed 2026-08-14) -----------------------------------
   // This call sits ~20 lines ABOVE `api.config().then(...)`, which is the only thing that ever
   // populates CFG. CFG is initialised to `{ googleClientId: null, features: { sharedPlans: false } }`,
-  // so `featureOn('publicCommunity')` inside mountCommunityStrip() was ALWAYS false here and the
+  // so `featureOn('creatorDiscovery')` inside mountCommunityStrip() is ALWAYS false here and the
   // function returned at its first guard on every single page load. Measured in Chrome with the
   // config forced on: /api/protocols/new was never requested and the strip stayed data-on="0".
   // The whole "new from the community" surface — step six of the contribution loop, the one the
   // landing page's third row is about — was dead code, and flipping PUBLIC_COMMUNITY=1 would not
   // have woken it. The real call is now in the config handler below, where the flag is known.
-  // This one stays as a no-op documenting why it cannot work here; deleting it would drop the
-  // `if (!featureOn('publicCommunity')) return;` count that scripts/containment.mjs pins.
+  // This one stays as a no-op documenting why it cannot work here; the real call is below.
   mountCommunityStrip();
-  const cc = D.meta.counts;
-  document.getElementById('foot-stats').textContent = `${cc.compounds} compounds · ${cc.targets} targets · ${cc.pathways} pathways · ${cc.geneLinks} gene links`;
+  // Inventory totals are reference metadata, not a reason to trust or use a plan. They used to
+  // follow every reader through the footer and turned the last line of a focused journey into a
+  // database advert. Keep the shell target empty for parity with the no-JavaScript document.
   updateStackBadge();
   // CAPTURE THE PRERENDERED HOME BEFORE ANYTHING CAN TOUCH IT. This must run before route(), which
   // is the only thing that writes to #app. Nothing above this line writes into #app --
-  // updateStackBadge() addresses `#stack-badge` and the footer stats live outside <main> -- so the
-  // captured string is exactly what build/prerender.js emitted.
+  // updateStackBadge() addresses `#stack-badge`, outside <main>, so the captured string is exactly
+  // what build/prerender.js emitted.
   // currentRoute() returns "/" for the home page in both the path form and the legacy #/ form, so
   // this is exact and does not fire on any other route.
   if (!currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;
@@ -11983,24 +12522,43 @@
   // exactly what happened: /me awaited a promise that did not exist yet.
   ME_READY = api.me();
   route();
-  ME_READY.then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (currentRoute().split('?')[0] === '/plan') renderPlan(); }); } }).catch(() => { renderAccount(); });
+  ME_READY.then(u => {
+    ME = u; renderAccount();
+    if (u) {
+      syncPlanOnLogin();
+      const p = currentRoute().split('?')[0];
+      if (/^\/p\/[^/]+$/.test(p)) { _silentRoute = true; route(); }
+      loadConsent().then(() => { if (currentRoute().split('?')[0] === '/plan') renderPlan(); });
+    }
+  }).catch(() => { renderAccount(); });
   api.config().then(c => {
     if (!c) return;
     const communityWasOn = featureOn('publicCommunity');
+    const protocolCommunityWasOn = featureOn('protocolCommunity');
+    const discoveryWasOn = featureOn('creatorDiscovery');
     CFG = c;
     const communityOn = featureOn('publicCommunity');
+    const protocolCommunityOn = featureOn('protocolCommunity');
+    const discoveryOn = featureOn('creatorDiscovery');
     document.documentElement.toggleAttribute('data-community-on', communityOn);
+    document.documentElement.toggleAttribute('data-creator-discovery-on', discoveryOn);
     // Request controls are not merely disabled: they are absent while the product is contained.
     // If an approved deployment turns the flag on, rerender Find once the server-owned config
     // arrives so the controls and board appear together instead of leaving a dead placeholder.
     // Silent: this is the config landing on a page the reader is already looking at, not a
     // navigation they performed. See the note over _silentRoute.
     if (communityOn !== communityWasOn && currentRoute().split('?')[0] === '/solve') { _silentRoute = true; route(); }
-    if (communityOn) {
-      // THE REAL CALL. See the long note over the boot-time call above: this is the first moment
-      // featureOn('publicCommunity') can be true, so it is the first moment either list can fill.
+    const livePath = currentRoute().split('?')[0];
+    if (protocolCommunityOn !== protocolCommunityWasOn && (livePath === '/plan' || /^\/p\/[^/]+$/.test(livePath))) { _silentRoute = true; route(); }
+    if (discoveryOn) {
       mountCommunityStrip();
       mountPublishedIndex();
+      const problemMatch = livePath.match(/^\/problem\/([^/]+)$/);
+      if (problemMatch && (discoveryOn !== discoveryWasOn || document.querySelector('.creator-route-index:not([data-discovery-state="loaded"])'))) {
+        mountCreatorRouteIndex(decodeURIComponent(problemMatch[1]));
+      }
+    }
+    if (communityOn) {
       const targets = [...document.querySelectorAll('.vote-foot[data-target]')].map((el) => el.dataset.target).filter(Boolean);
       if (targets.length) mountVotes(targets);
       if (currentRoute().split('?')[0] === '/solve') mountRequestsBoard();
@@ -12023,22 +12581,6 @@
   // data-adopt is filtered where it is BUILT (suppIds), because this button is the site making an
   // offer and its label counts the offer. Nothing further is needed here.
   document.addEventListener('click', e => { const b = e.target.closest('.adopt-plan'); if (b) { e.preventDefault(); const ids = (b.getAttribute('data-adopt') || '').split(',').filter(Boolean); const s = getStack(); let added = 0; ids.forEach(id => { if (!s.includes(id)) { s.push(id); added++; } }); setStack(s); updateStackBadge(); b.classList.add('adopted'); b.textContent = added ? `✓ Added ${added} to your stack — track them on My Plan` : '✓ Already in your stack'; } });
-  // ITEM 2 — build a full Move·Fuel·Stack plan for THIS cause (opens the builder seeded from the cause).
-  document.addEventListener('click', e => {
-    const b = e.target.closest('[data-build-cause]'); if (!b) return; e.preventDefault();
-    const [pid, ciStr] = b.getAttribute('data-build-cause').split('#'); const p = problemById[pid]; if (!p) return;
-    b.disabled = true; const orig = b.textContent; b.textContent = 'Loading…';
-    ensureProtocolData().then(() => {
-      const rc = causeAsRc(p, +ciStr); const P = generateProtocol(rc);
-      const pl = getPlan() || newPlan();
-      const existing = planProtocols(pl).find(x => x.pid === pid && x.rcid === rc.id);
-      pl.draft = existing
-        ? { pid, rcid: rc.id, moves: existing.moves, supps: existing.supps, functions: existing.functions, extra: {}, step: 0 }
-        : { pid, rcid: rc.id, moves: [...(P.strengthen || []), ...(P.stretch || [])].map(x => x.id), supps: (P.stack || []).map(c => c.id), functions: undefined, extra: {}, step: 0 };
-      api.startExperiment(pid, rc.id).catch(() => {});
-      setPlan(pl); navigate('/plan?mode=edit');
-    }).catch(() => { b.disabled = false; b.textContent = orig; });
-  });
   // Personalized per-kg dose calculator (biohacker layer)
   document.addEventListener('input', e => {
     // FIXED 2026-07-28. This used to do `parseFloat(d.cap)` on a human sentence. parseFloat

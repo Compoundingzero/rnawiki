@@ -1,43 +1,34 @@
-name: Backup community data
+name: Verify public snapshot readiness
 
-# Durably versions all community-generated data (comments, compound edits,
-# votes, stewardship proposals, expert domains) from Railway Postgres into the
-# PRIVATE repo Compoundingzero/rnawiki-backups.
+# MANUAL ONLY. This workflow is intentionally unscheduled until all external controls below exist
+# and a Postgres recovery policy has been approved. It snapshots only rounded, thresholded public
+# vote totals from a dedicated read-only view. It is not a database backup.
 #
-# SECURITY (changed 2026-07-28): this job used to commit the snapshot to a
-# `community-backups` branch of THIS repository, which is PUBLIC. Community
-# content — usernames, comment bodies, proposed edits — would have been
-# published permanently, and git history is unreachable by the /api/mydata
-# erasure path, so a deletion request could never have been honoured. The
-# destination is now a private repository. Do not point this back at `origin`.
+# Required setup is documented in docs/BACKUP_RECOVERY.md:
+#   - PUBLIC_SNAPSHOT_DATABASE_URL: dedicated role, exact view only (never the app DATABASE_URL)
+#   - optional PUBLIC_SNAPSHOT_DB_CA: CA bundle when the platform certificate needs one
+#   - vars.PUBLIC_SNAPSHOT_REPO: a NEW private owner/repo, never the legacy rnawiki-backups repo
+#   - PUBLIC_SNAPSHOT_REPO_TOKEN: fine-grained token limited to that repo, metadata read + contents write
 #
-# Setup (already done; recorded here so it can be rebuilt):
-#   1. Railway Postgres: public networking on, PUBLIC connection string
-#      (host ends .proxy.rlwy.net) stored as the repo secret DATABASE_URL.
-#   2. Private repo Compoundingzero/rnawiki-backups exists.
-#   3. An ed25519 deploy key with WRITE access is installed on that repo, and
-#      its private half is stored here as the secret BACKUP_DEPLOY_KEY.
-# If either secret is missing the job fails loudly — it must never silently
-# stop backing up, because Postgres has no PITR and this is the only backup.
+# The job verifies the destination is private, rejects the legacy destination, requires a policy
+# marker on every non-empty destination, and refuses extra branches or tags. It cannot prove GitHub
+# has garbage-collected deleted legacy objects; use a fresh repository and rotate the old key.
 
 on:
-  schedule:
-    - cron: '17 */6 * * *'   # every 6 hours
-  workflow_dispatch: {}       # manual "Run workflow" button
+  workflow_dispatch: {}
 
 permissions:
-  contents: read              # no longer needs write — nothing is pushed here
+  contents: read
 
 concurrency:
-  group: community-backup
+  group: public-snapshot-readiness
   cancel-in-progress: false
 
-env:
-  BACKUP_REPO: git@github.com:Compoundingzero/rnawiki-backups.git
-
 jobs:
-  backup:
+  verify-and-snapshot:
     runs-on: ubuntu-latest
+    env:
+      SNAPSHOT_REPO: ${{ vars.PUBLIC_SNAPSHOT_REPO }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -45,54 +36,68 @@ jobs:
           node-version: '20'
       - run: npm ci
 
-      - name: Check required secrets
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          BACKUP_DEPLOY_KEY: ${{ secrets.BACKUP_DEPLOY_KEY }}
-        run: |
-          missing=0
-          [ -z "$DATABASE_URL" ] && { echo "::error::DATABASE_URL secret is not set."; missing=1; }
-          [ -z "$BACKUP_DEPLOY_KEY" ] && { echo "::error::BACKUP_DEPLOY_KEY secret is not set."; missing=1; }
-          if [ "$missing" = "1" ]; then
-            echo "::error::Refusing to run. This is the only backup of community data (Postgres has no PITR)."
-            exit 1
-          fi
+      - name: Enforce public-snapshot privacy contract
+        run: npm run test:backup
 
-      - name: Export community data from Postgres
+      - name: Check dedicated credentials
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          CI: 'true'
-        run: node scripts/backup-community.js
-
-      - name: Push snapshot to the PRIVATE backup repo
-        env:
-          BACKUP_DEPLOY_KEY: ${{ secrets.BACKUP_DEPLOY_KEY }}
+          PUBLIC_SNAPSHOT_DATABASE_URL: ${{ secrets.PUBLIC_SNAPSHOT_DATABASE_URL }}
+          PUBLIC_SNAPSHOT_REPO_TOKEN: ${{ secrets.PUBLIC_SNAPSHOT_REPO_TOKEN }}
         run: |
           set -euo pipefail
-          if [ ! -d backups ]; then echo "::error::No backups produced."; exit 1; fi
+          [ -n "$PUBLIC_SNAPSHOT_DATABASE_URL" ] || { echo "::error::Dedicated PUBLIC_SNAPSHOT_DATABASE_URL is not configured."; exit 1; }
+          [ -n "$PUBLIC_SNAPSHOT_REPO_TOKEN" ] || { echo "::error::Fine-grained PUBLIC_SNAPSHOT_REPO_TOKEN is not configured."; exit 1; }
+          [[ "$SNAPSHOT_REPO" =~ ^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]] || { echo "::error::PUBLIC_SNAPSHOT_REPO must be owner/repo."; exit 1; }
+          [ "$SNAPSHOT_REPO" != "$GITHUB_REPOSITORY" ] || { echo "::error::The public application repo cannot hold snapshots."; exit 1; }
+          [ "$SNAPSHOT_REPO" != "Compoundingzero/rnawiki-backups" ] || { echo "::error::The legacy destination may retain sensitive history. Use a fresh private repo and rotate its key."; exit 1; }
 
-          mkdir -p ~/.ssh
-          printf '%s\n' "$BACKUP_DEPLOY_KEY" > ~/.ssh/backup_key
-          chmod 600 ~/.ssh/backup_key
-          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts 2>/dev/null
-          export GIT_SSH_COMMAND="ssh -i ~/.ssh/backup_key -o IdentitiesOnly=yes"
+      - name: Verify fresh private destination
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_SNAPSHOT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          visibility="$(gh api "repos/$SNAPSHOT_REPO" --jq '.visibility')"
+          archived="$(gh api "repos/$SNAPSHOT_REPO" --jq '.archived')"
+          [ "$visibility" = "private" ] || { echo "::error::Snapshot destination visibility is not private."; exit 1; }
+          [ "$archived" = "false" ] || { echo "::error::Snapshot destination is archived."; exit 1; }
+          branches="$(gh api --paginate "repos/$SNAPSHOT_REPO/branches" --jq '.[].name')"
+          tags="$(gh api --paginate "repos/$SNAPSHOT_REPO/tags" --jq '.[].name')"
+          [ -z "$tags" ] || { echo "::error::Snapshot destination has tags; use a fresh policy-v1 repository."; exit 1; }
+          [ -z "$branches" ] || [ "$branches" = "main" ] || { echo "::error::Snapshot destination has unexpected branches."; exit 1; }
 
-          tmp="$(mktemp -d)"
-          cp -r backups/* "$tmp"/
+      - name: Export coarse public signal
+        env:
+          PUBLIC_SNAPSHOT_DATABASE_URL: ${{ secrets.PUBLIC_SNAPSHOT_DATABASE_URL }}
+          PUBLIC_SNAPSHOT_DB_CA: ${{ secrets.PUBLIC_SNAPSHOT_DB_CA }}
+        run: node scripts/backup-community.js
 
+      - name: Push verified snapshot
+        env:
+          GH_TOKEN: ${{ secrets.PUBLIC_SNAPSHOT_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh auth setup-git
           dest="$(mktemp -d)"
-          git clone --depth 50 "$BACKUP_REPO" "$dest" 2>/dev/null || {
-            mkdir -p "$dest" && git -C "$dest" init -b main && git -C "$dest" remote add origin "$BACKUP_REPO"
-          }
-          cd "$dest"
-          git config user.name "rnawiki-backup-bot"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          rm -rf backups && mkdir -p backups && cp -r "$tmp"/* backups/
-          git add -f backups
-          if git diff --cached --quiet; then
-            echo "No community changes since last backup."
+          git clone --depth 50 "https://github.com/$SNAPSHOT_REPO.git" "$dest"
+          marker="$dest/.rnawiki-public-snapshot-v1"
+          if git -C "$dest" rev-parse --verify HEAD >/dev/null 2>&1; then
+            [ -f "$marker" ] && [ "$(tr -d '\r\n' < "$marker")" = "public-snapshot-policy-v1" ] || {
+              echo "::error::Non-empty destination lacks the public-snapshot-v1 policy marker. Use a fresh repo."; exit 1;
+            }
           else
-            git commit -m "Community backup $(date -u +%FT%TZ)"
-            git push origin HEAD:main
-            echo "Pushed community backup to the private repo."
+            git -C "$dest" symbolic-ref HEAD refs/heads/main
+            printf '%s\n' 'public-snapshot-policy-v1' > "$marker"
+          fi
+          git -C "$dest" config user.name "rnawiki-public-snapshot-bot"
+          git -C "$dest" config user.email "github-actions[bot]@users.noreply.github.com"
+          rm -rf "$dest/backups"
+          mkdir -p "$dest/backups"
+          cp backups/README.md backups/manifest.json backups/vote_totals.json "$dest/backups/"
+          git -C "$dest" add -f .rnawiki-public-snapshot-v1 backups
+          if git -C "$dest" diff --cached --quiet; then
+            echo "No coarse public-signal changes."
+          else
+            git -C "$dest" commit -m "Coarse public signal snapshot $(date -u +%FT%TZ)"
+            git -C "$dest" push origin HEAD:main
+            echo "Pushed verified coarse public-signal snapshot."
           fi

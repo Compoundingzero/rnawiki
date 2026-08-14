@@ -93,7 +93,7 @@ hr{border:none;border-top:1px solid var(--line);margin:1.4rem 0}
    four CSS rules. assertNavIsAlwaysReachable() in build/prerender.js now fails the build if any of
    them comes back. */
 .topnav{display:flex;gap:1.1rem;font-size:.92rem}
-.topnav a{color:var(--muted)}
+.topnav a{display:inline-flex;align-items:center;min-height:44px;color:var(--muted)}
 .topnav a:hover{color:var(--head);text-decoration:none}
 .topnav a[aria-current="page"]{color:var(--head);font-weight:700}
 .stack-badge{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;background:var(--accent);color:#fff;border-radius:999px;font-size:.72rem;font-weight:800;padding:0 5px}
@@ -576,9 +576,8 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 /* ---- W5c (2026-08-02): FIVE CONTROLS DO NOT FIT ON ONE 390px ROW, AND THE SEARCH BOX LOST ----
    Measured hydrated at 390x844 on /az (qa/out/w5cdi/before-390.json): brand 97x29, search input
    104x37, "Sign in" 71x30, hamburger 32x29 — every one of them under the 44px touch minimum, and
-   the search box so narrow that its placeholder rendered as the words "Search 1" (the real string
-   is "Search 171 compounds, protocols, terms…"). A truncated number is worse than a truncated
-   sentence: "Search 1" reads as a broken string, on every route, in the first 60px of the page.
+   the search box so narrow that its placeholder became unreadable. Below 600px the field now
+   wraps to a full row, preserving the topic-focused prompt without truncating it into noise.
    Below 600px the bar wraps and the search takes the whole second row. THE TRADE, STATED: the
    sticky header grows from ~58px to ~104px, which is 12.3% of an 844px viewport instead of 6.9%.
    That is what a usable search box on every page costs, and search is this site's primary
@@ -1288,6 +1287,14 @@ html[data-community-on] .vote-foot{display:flex}
 .comment-signin{background:#eef7ff;border:1px solid #c7d2fe;border-radius:12px;padding:.9rem 1.1rem;font-size:.92rem}
 .comment-user{color:var(--head);font-weight:700;text-decoration:none}
 .comment-user:hover{color:var(--accent)}
+.branch-membership{margin:.7rem 0;padding:.65rem .75rem;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.branch-membership p{margin:.1rem 0 .45rem;line-height:1.5}
+.branch-member-list{list-style:none;margin:.55rem 0 0;padding:0;display:grid;gap:.4rem}
+.branch-member-list li{display:flex;align-items:center;justify-content:space-between;gap:.6rem;min-height:44px;border-top:1px solid var(--line-soft);padding-top:.35rem}
+.branch-member-list .linkbtn{min-height:44px;flex:0 0 auto}
+.exact-live-block{margin-bottom:.35rem}
+#app[data-exact-source-valid="0"] [data-exact-done]{cursor:not-allowed}
+#app[data-exact-source-valid="0"] .exact-main,#app[data-exact-source-valid="0"] .trk-row{opacity:.62}
 .proto-contributors,#proto-contributors:empty{margin:0}
 .pc-title{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--faint);margin:1.2rem 0 .5rem}
 .pc-row{display:flex;flex-wrap:wrap;gap:.5rem}
@@ -2044,10 +2051,10 @@ a.dp-name:hover{color:var(--accent)}
 .ds-flag.timing{background:#eef3fe;color:#1e40af}
 
 /* ---- Keystone card (protocol page — the one highest-leverage habit) ---- */
-.keystone-card{background:linear-gradient(135deg,#fff8ec,#fdefd2);border:1px solid #f0d9a8;border-left:4px solid #e0a021;border-radius:14px;padding:1rem 1.2rem;margin:0 0 1rem;box-shadow:var(--shadow)}
+.keystone-card{display:block;background:linear-gradient(135deg,#fff8ec,#fdefd2);border:1px solid #f0d9a8;border-left:4px solid #e0a021;border-radius:14px;padding:1rem 1.2rem;margin:0 0 1rem;box-shadow:var(--shadow)}
 .ks-badge{font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#9a6a00}
-.ks-one{font-size:1.12rem;font-weight:700;color:#3a2a05;margin:.35rem 0 .3rem;line-height:1.35}
-.ks-why{font-size:.9rem;color:#6b5320;margin:0 0 .4rem}
+.ks-one{display:block;font-size:1.12rem;font-weight:700;color:#3a2a05;margin:.35rem 0 .3rem;line-height:1.35}
+.ks-why{display:block;font-size:.9rem;color:#6b5320;margin:0 0 .4rem}
 .ks-note{font-size:.78rem;color:#95803f;margin:0}
 
 /* ---- Protocol journey rail (frames Move·Stack·Fuel as one sequence) ---- */
@@ -2183,9 +2190,6 @@ a.dp-name:hover{color:var(--accent)}
    #5c6a7a on --panel2 at 5.01:1 and the lowest new ink is #b45309 on #fff at 5.02:1. */
 .st-hd{margin:.4rem 0 1rem}
 .st-acct{font-size:.88rem;line-height:1.5;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.7rem .85rem;margin:.6rem 0}
-.st-title-l{display:block;font-weight:600;font-size:.9rem;color:var(--head);margin:.8rem 0 .35rem}
-.st-title{width:100%;min-height:44px;padding:.6rem .8rem;border:1px solid var(--line);border-radius:10px;font-size:1rem;background:var(--panel);color:var(--head)}
-.st-title:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(15,118,110,.16)}
 .st-empty{border:1px dashed var(--line);border-radius:12px;padding:1.1rem;background:var(--panel)}
 .st-list{display:flex;flex-direction:column;gap:.55rem;margin:.8rem 0}
 .st-row{border:1px solid var(--line);border-radius:12px;background:#fff;padding:.6rem .7rem}
@@ -2267,6 +2271,14 @@ a.dp-name:hover{color:var(--accent)}
 .st-pub-what li{font-size:.9rem;line-height:1.55;margin:.25rem 0;overflow-wrap:anywhere}
 .st-pub-what .st-why{margin:.5rem 0 0}
 .st-pub-keep{font-size:.86rem;line-height:1.55;color:var(--muted);margin:.6rem 0 0}
+.st-vis{border:1px solid var(--line);border-radius:12px;padding:.7rem;margin:.85rem 0 .55rem;background:var(--panel)}
+.st-vis legend{padding:0 .3rem;font-size:.85rem;font-weight:750;color:var(--head)}
+.st-vis-choice{display:flex;align-items:flex-start;gap:.65rem;min-height:52px;padding:.65rem;border:1px solid var(--line);border-radius:10px;background:var(--bg);cursor:pointer}
+.st-vis-choice+.st-vis-choice{margin-top:.5rem}
+.st-vis-choice input{margin:.2rem 0 0;flex:0 0 auto}
+.st-vis-choice span{display:flex;flex-direction:column;gap:.15rem;line-height:1.35}
+.st-vis-choice small{color:var(--muted);font-size:.78rem;line-height:1.45}
+.st-vis-choice:has(input:checked){border-color:var(--accent);box-shadow:inset 3px 0 0 var(--accent)}
 .st-goto{margin-top:.5rem;min-height:44px;padding:.4rem .9rem;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--head);font-size:.84rem;font-weight:600;cursor:pointer}
 .st-bar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;position:sticky;bottom:0;background:var(--bg);padding:.6rem 0;border-top:1px solid var(--line);margin-top:.6rem}
 .st-bar .cta-primary,.st-bar .cta-ghost{min-height:44px;display:inline-flex;align-items:center}
@@ -2311,12 +2323,20 @@ a.dp-name:hover{color:var(--accent)}
 .st-route-b p{font-size:.9rem;line-height:1.6;color:var(--ink);margin:.35rem 0}
 .st-route-b strong,.st-route-b b{color:#7f1d1d}
 .st-route-w{font-size:.86rem;line-height:1.55;font-weight:600;color:#7f1d1d;margin:.6rem 0 0;border-top:1px solid #fecaca;padding-top:.55rem}
+.st-route.exact-provenance{border-color:var(--line);border-left-color:var(--accent);background:var(--panel)}
+.st-route.exact-provenance .st-route-k,.st-route.exact-provenance .st-route-w{color:var(--accent)}
+.st-route.exact-provenance .st-route-b strong,.st-route.exact-provenance .st-route-b b{color:var(--head)}
+.st-route.exact-provenance .st-route-w{border-top-color:var(--line)}
+.exact-today-guide{margin:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.exact-today-guide>summary{min-height:44px;display:flex;align-items:center;font-weight:700;color:var(--head);cursor:pointer}
+.exact-today-guide>.exact-guide{margin:.7rem 0}
 /* ---- picking the problem, and the back edge of a plan --------------------------------------- */
 .st-pick{margin:.4rem 0 1rem}
 .st-pick h2{font-size:1.05rem;margin:0 0 .3rem}
 .st-pick .st-res{max-height:none}
 .st-back{min-height:44px;padding:.4rem .8rem;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--head);font-size:.86rem;font-weight:600;cursor:pointer;margin:.2rem 0 .6rem}
-.st-rc-row{min-height:52px}
+.st-rc-row{min-height:52px;flex:0 0 auto}
+.st-rc-row .br-meta{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
 .st-all-causes{background:var(--panel2);border-radius:10px;padding:.6rem .7rem}
 .st-orphan-h{font-size:1.05rem;margin:1.2rem 0 .3rem}
 /* the Add sheet: at 390px the modal is the screen */
@@ -2324,7 +2344,6 @@ a.dp-name:hover{color:var(--accent)}
 .st-tabs{display:flex;gap:.3rem;overflow-x:auto;margin:.5rem 0 .6rem;-webkit-overflow-scrolling:touch}
 .st-tab{flex:0 0 auto;min-height:44px;padding:.4rem .7rem;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--head);font-size:.84rem;font-weight:600;white-space:nowrap;cursor:pointer}
 .st-tab.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.st-tab-n{font-size:.72rem;opacity:.75}
 .st-res{margin-top:.55rem;max-height:52vh;overflow-y:auto;display:flex;flex-direction:column;gap:.3rem}
 .st-res-h{font-size:.78rem;color:var(--muted);margin:0 0 .2rem}
 .st-res-row{min-height:52px;align-items:center}
@@ -4237,36 +4256,52 @@ a.assess-switch { text-align: center; }
    Measured before: median page height 29,844px, the first protocol link at 98% of it on 41/41, and
    the 224 tells spread from y=5,137 (cause #1) to y=31,797 (cause #6). These three blocks put the
    escalation layer, every tell, and the way out above the mechanism prose. */
-.problem-intro{max-width:760px;margin:1rem 0 1.15rem}
-.problem-intro h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.03;letter-spacing:-.045em;margin:.28rem 0 .65rem;max-width:18ch}
-.problem-intro p{font-size:1.04rem;line-height:1.6;color:var(--muted);max-width:60ch;margin:0}
+.problem-intro{max-width:680px;margin:1rem 0 1.15rem}
+.problem-intro h1{font-size:clamp(2rem,5vw,3.35rem);line-height:1.03;letter-spacing:-.045em;margin:.28rem 0 .65rem;max-width:19ch}
+.problem-intro p{font-size:1.04rem;line-height:1.55;color:var(--muted);max-width:56ch;margin:0}
 .prob-redflags { margin: 1rem 0; border: 1px solid var(--line); border-radius: 14px; background:var(--panel); overflow:hidden; }
-.prob-redflags > summary,.prob-route > summary{list-style:none;min-height:62px;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;color:var(--head)}
-.prob-redflags > summary::-webkit-details-marker,.prob-route > summary::-webkit-details-marker{display:none}
-.prob-redflags > summary span:first-child,.prob-route > summary span:first-child{display:flex;flex-direction:column;gap:.12rem}
-.prob-redflags > summary small,.prob-route > summary small{font-size:.78rem;font-weight:400;color:var(--muted)}
-.prob-redflags > summary span:last-child,.prob-route > summary span:last-child{font-size:1.35rem;color:var(--muted);transition:transform .15s ease}
-.prob-redflags[open] > summary span:last-child,.prob-route[open] > summary span:last-child{transform:rotate(90deg)}
-.prob-redflags-body,.prob-route-body{padding:.15rem 1rem 1rem;border-top:1px solid var(--line)}
-.prob-redflags .esc-note { font-size: .92rem; color: var(--ink); margin: .6rem 0 0; }
+.prob-redflags-urgent{padding:.85rem 1rem}
+.prob-redflags-urgent h2{font-size:1rem;letter-spacing:-.01em;margin:0 0 .35rem;color:var(--head)}
+.prob-redflags-urgent p{font-size:.9rem;line-height:1.45;margin:.25rem 0;color:var(--ink)}
+.prob-redflags-urgent p:last-child{color:var(--muted)}
+.prob-redflags-more{border-top:1px solid var(--line)}
+.prob-redflags-more>summary{min-height:44px;padding:.55rem 1rem;cursor:pointer;color:var(--link);font-size:.88rem;font-weight:700}
+.prob-redflags-body{padding:.2rem 1rem .9rem}
+.prob-redflags-body p{font-size:.92rem;line-height:1.5}
+.prob-redflags .esc-note { color: var(--ink); margin: .6rem 0 0; }
 .prob-dx { margin: 1.05rem 0 1.2rem; padding: 1.1rem; border: 1px solid var(--line); border-radius: 18px; background: var(--panel); }
 .prob-dx > h2 { font-size:clamp(1.55rem,3vw,2rem);letter-spacing:-.025em;margin:.2rem 0 .35rem;color:var(--head)}
 .dx-list { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem; }
 .dx-row { border:1px solid var(--line);border-radius:14px;padding:1rem;display:flex;flex-direction:column;min-width:0;background:#fff; }
-.dx-name { margin: 0 0 .45rem; font-size: 1.02rem; line-height: 1.35; color:var(--head) }
-.dx-hook { margin: 0 0 .45rem; color: var(--muted); }
-.dx-tell, .dx-conf, .dx-lab { margin: 0 0 .6rem; font-size: .92rem; line-height: 1.5; color:var(--muted) }
+.dx-name { margin: 0 0 .45rem; font-size: 1.02rem; line-height: 1.35; color:var(--head);display:flex;flex-direction:column;gap:.2rem }
+.dx-kind,.cf-route-label{font-size:.68rem;font-weight:750;text-transform:uppercase;letter-spacing:.06em;color:var(--accent)}
+.dx-tell { margin: 0 0 .6rem; font-size: .92rem; line-height: 1.5; color:var(--muted) }
 .dx-lbl { display: inline-block; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); background: var(--line-soft); padding: 1px 7px; border-radius: 6px; margin-right: .3rem; vertical-align: 1px; }
-.dx-lab { color: var(--muted); }
 .dx-more{margin:.05rem 0 .45rem}
-.dx-more>summary{cursor:pointer;color:var(--link);font-size:.84rem;font-weight:650;min-height:36px;display:flex;align-items:center}
+.dx-more>summary{cursor:pointer;color:var(--link);font-size:.84rem;font-weight:650;min-height:44px;display:flex;align-items:center}
 .dx-more>div{padding:.15rem 0 .1rem;color:var(--muted);font-size:.88rem;line-height:1.5}
 .dx-more p{margin:.35rem 0}
 .dx-go { margin: auto 0 0; padding-top:.35rem }
 .dx-go a { display: inline-flex; align-items: center; justify-content:center;min-height:44px;width:100%;padding:.55rem .75rem;border-radius:999px;background:var(--accent);color:#fff;font-weight:700;font-size:.9rem;text-decoration:none }
 .dx-go a:hover{text-decoration:none;filter:brightness(1.04)}
-.prob-route { margin: 1rem 0 1.3rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel2); overflow:hidden }
-.prob-route-honest { color: var(--muted); font-size: .92rem; margin: .5rem 0 0; }
+.prob-route { margin: 1rem 0 1.3rem; padding:1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--panel2); }
+.prob-route h2{font-size:1rem;margin:0 0 .5rem;color:var(--head)}
+.prob-route-links{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem .9rem}
+.prob-route-links a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+.prob-route-honest { color: var(--muted); font-size: .92rem; line-height:1.5;margin: .45rem 0 0;max-width:72ch }
+/* Creator discovery sits inside the exact canonical route card. It has no global rail and no
+   fallback row: when this block appears, every link came from the one batched topic/route query. */
+.creator-route-index{margin:.7rem 0 0;padding:.65rem .7rem;border-top:1px solid var(--line-soft);font-size:.84rem}
+.creator-route-index[hidden]{display:none}
+.cri-head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.35rem}
+.cri-head>a,.cri-empty>a{display:inline-flex;align-items:center;min-height:44px;font-weight:700}
+.cri-list{list-style:none;margin:0;padding:0;display:grid;gap:.35rem}
+.cri-list li{display:flex;align-items:center;justify-content:space-between;gap:.65rem;min-width:0}
+.cri-by{min-width:0;overflow-wrap:anywhere;color:var(--muted)}
+.cri-open{display:flex;align-items:flex-end;flex-direction:column;justify-content:center;min-height:44px;flex:0 0 auto;font-weight:700}
+.cri-open small{font-size:.68rem;color:var(--muted);font-weight:500}
+.cri-empty{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin:0;color:var(--muted)}
+.prob-route-links .creator-route-index{flex:1 1 100%}
 .cf-next { margin-top: .9rem; padding-top: .7rem; border-top: 1px dashed var(--line); }
 .cf-next p { margin: .3rem 0; }
 .cf-next-up { font-size: .9rem; }
@@ -4274,15 +4309,7 @@ a.assess-switch { text-align: center; }
 /* .topbar is position:sticky;top:0 and 58px tall, so a fragment landing at scroll-top would put the
    target underneath it. Verified by clicking a shipped .hanchor: the target landed at rectTop 56px. */
 .cause-flat-item[id], .prob-dx[id], .prob-redflags[id], .prob-route[id] { scroll-margin-top: 66px; }
-/* .fragment-alias HAD NO RULE AT ALL, AND THAT IS A PRE-EXISTING SAFETY DEFECT (found 2026-08-13).
-   It is the empty <span> that carries #first-when-this-is-not-a-self-care-problem — the target of
-   the landing page's .lp-red "Severe, sudden, or getting worse. Be seen." row, which is the single
-   most safety-critical affordance on the front door, pinned by assertLandingPage AND by
-   scripts/smoke.mjs. MEASURED in Chrome: computed scroll-margin-top "0px" at 390px AND at 1440px,
-   under a sticky header of 171px and 67px respectively. So a reader in trouble who tapped that row
-   was deposited with the escalation text underneath the header, at every width, and had been since
-   the alias was introduced. Two gates guarded the link's existence and its wording; nothing
-   measured where it landed. */
+/* Legacy safety fragments can still be shared directly. Keep their target below the sticky header. */
 .fragment-alias{display:block;height:0;overflow:hidden;scroll-margin-top:76px}
 
 /* MANDATORY CONSEQUENCE OF THE ≤600px NAV ROW (2026-08-13). Every scroll-margin value in this file
@@ -4301,11 +4328,10 @@ a.assess-switch { text-align: center; }
 .cause-flat { margin: 1.6rem 0; }
 .cause-flat > h2 { font-size: 1.35rem; margin: 0 0 .3rem; color: var(--head); }
 .cause-flat-item { border: 1px solid var(--line); border-radius: 14px; margin: .7rem 0; background: var(--panel); overflow:hidden }
-.cause-flat-item>summary{list-style:none;min-height:68px;padding:.8rem 1rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.75rem;cursor:pointer;color:var(--head)}
+.cause-flat-item>summary{list-style:none;min-height:68px;padding:.8rem 3rem .8rem 1rem;display:grid;grid-template-columns:auto 1fr;align-items:center;gap:.75rem;cursor:pointer;color:var(--head);position:relative}
 .cause-flat-item>summary::-webkit-details-marker{display:none}
-.cf-number{font-size:.7rem;font-weight:750;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);white-space:nowrap}
-.cf-open{font-size:1.35rem;color:var(--muted);transition:transform .15s ease}
-.cause-flat-item[open] .cf-open{transform:rotate(90deg)}
+.cause-flat-item>summary::after{content:'+';position:absolute;right:1rem;top:50%;transform:translateY(-50%);font-size:1.2rem;font-weight:400;color:var(--muted)}
+.cause-flat-item[open]>summary::after{content:'−'}
 .cause-flat-body{padding:.2rem 1rem 1rem;border-top:1px solid var(--line)}
 .cause-flat-item h4 { font-size: .8rem; margin: 1rem 0 .4rem; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
 .cf-hook { color: var(--muted); margin: 0 0 .6rem; }
@@ -4315,15 +4341,15 @@ a.assess-switch { text-align: center; }
 .cf-fixes { margin: .3rem 0; padding-left: 1.15rem; }
 .cf-fixes li { margin: .4rem 0; }
 .cf-kind { font-size: .66rem; text-transform: uppercase; letter-spacing: .05em; background: var(--line-soft); color: var(--muted); padding: 1px 7px; border-radius: 6px; margin-right: .35rem; white-space: nowrap; font-weight: 700; }
+.cf-mechanism,.cf-evidence{margin:.65rem 0;border-top:1px solid var(--line)}
+.cf-mechanism>summary,.cf-evidence>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:var(--link);font-size:.9rem;font-weight:700}
+.cf-mechanism>div,.cf-evidence>div{padding:0 0 .35rem}
 @media(max-width:700px){
   .problem-intro h1{font-size:2.25rem}
   .dx-list{grid-template-columns:1fr}
   .prob-dx{padding:.9rem}
   .dx-row{padding:.9rem}
-  .cause-flat-item>summary{grid-template-columns:1fr auto;gap:.2rem .7rem}
-  .cause-flat-item>summary .cf-number{grid-column:1}
-  .cause-flat-item>summary b{grid-column:1}
-  .cause-flat-item>summary .cf-open{grid-column:2;grid-row:1 / span 2}
+  .cause-flat-item>summary{grid-template-columns:1fr;gap:.2rem}
 }
 /* The plan-item chip in the CRAWLER document. Its colour mirrors the SPA's .fk-* palette (2860)
    so the two documents read the same, but for a compound the class comes from regClass() — the
@@ -4339,7 +4365,6 @@ a.assess-switch { text-align: center; }
 /* W5c: dark-mode colour-only override deleted — see the note at .fbar-supp. Measured before
    this, OS in dark appearance, hydrated 390x844 on /problem/insomnia: .ck-behavior
    rgb(74,222,128) at 3.44:1 on the same pale-green chip a light reader sees at 5.15:1. */
-.cf-deeper { margin-top: .8rem; padding-top: .6rem; border-top: 1px dashed var(--line); }
 .bjf-step { padding: .6rem 0; border-top: 1px solid var(--line-soft); }
 .bjf-step:first-child { border-top: 0; }
 .bjf-lay { margin: 0 0 .2rem; color: var(--head); }
@@ -4954,214 +4979,47 @@ html[data-state="removed"] .i-form{display:none}
 .hi-sub{margin:.5rem 0 0;color:var(--muted)}
 .hi-cta{display:inline-flex;align-items:center;min-height:44px;color:var(--link);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
-/* ================================================================================================
-   THE LANDING PAGE ON "/"  (.lp, 2026-08-09)
-   ------------------------------------------------------------------------------------------------
-   The full overhaul. The owner's brief: one call to action — search, leading to a protocol — aimed
-   at somebody who was turned away, priced out, or told it was nothing.
+/* Landing page. The labelled search is the only form; three examples are supporting shortcuts.
+   :has(.lp-fold) removes the duplicate header search in both server and hydrated documents while
+   leaving sign-in/profile available. */
+html:has(.lp-fold) .topbar .search-wrap{display:none}
 
-   THE ONE MEASUREMENT THIS BLOCK EXISTS TO SATISFY. Before: the page's only working call to action
-   (#hero-solve-input) sat at 1,044px on a 390x844 phone — 200px BELOW the fold, 1.24 viewports down
-   — behind a headline, a drawing, a caption and a SECOND headline. A reader had to scroll to
-   discover that the page did anything. Everything here is sized so that the complete call to action
-   — six tap targets, the all-problems row, the field and the submit button — finishes above 844px
-   at zero scroll. Every value below was set by rendering the page and reading the pixels back, not
-   by arithmetic.
-
-   TWO PIECES OF SITE CHROME ARE SUPPRESSED ON THIS PAGE AT PHONE WIDTH, and only here:
-     .search-wrap  the topbar search. It is now a real <form action="/solve"> on all 620 documents
-                   (it used to be an <input> in a bare <div> — dead for the ~90% who never run JS),
-                   so this is not hiding a broken control: it is hiding a DUPLICATE of the control
-                   350px below it. Worth 52px of the only screen that matters. Desktop keeps it.
-     .account-slot "Sign in" sat 126px above a headline on a page that promises "no account, ever".
-                   It is the second-most prominent control on the first screen and it contradicts
-                   the page. It is JS-rendered and it is present on all 567 other pages.
-   `html:has(.lp-fold)` rather than a stamped attribute, deliberately: the landing page is the only
-   document that contains .lp-fold, the selector needs no JavaScript to stay correct, and it cannot
-   drift out of sync on an SPA navigation the way a data- attribute on <html> can.
-   ================================================================================================ */
-@media(max-width:900px){
-  html:has(.lp-fold) .topbar .search-wrap,
-  html:has(.lp-fold) .account-slot{display:none}
-}
-
-.lp{--lp-gap:8px}
-.lp .lp-fold{padding:6px 0 0}
-/* THE FOLD IS TWO SENTENCES AND THEN THE CONTROL. Nothing else. The five-years drawing is not here:
-   measured, it costs 167px plus a 160px caption, which is 39% of the available first screen and
-   pushes the field back below the fold — the exact defect this page exists to fix. It is the first
-   thing BELOW the fold instead, where it is the reward for the first scroll rather than the toll. */
-.lp h1{margin:0}
-.lp .lp-turn{font-size:var(--i-lead);line-height:1.35;font-weight:600;color:var(--head);
-  max-width:24em;margin:10px 0 0;text-wrap:pretty}
-.lp .lp-lead{font-size:var(--i-small);color:var(--muted);margin:10px 0 0;max-width:30em}
-
-/* ---- the six tap targets: the call to action, pre-typed ---------------------------------------
-   An exhausted person who has been dismissed will not compose a query into an empty box, so the
-   primary control is six buttons in their own words and the field is the fallback below them.
-   No emoji: the corpus icon for Lower Back Pain draws a literal BACK arrow, and six emoji make a
-   menu look like a game on a page for somebody who wants to be taken seriously. */
-.lp .lp-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--lp-gap);margin-top:10px;
-  grid-auto-rows:minmax(58px,1fr)}
-.lp .lp-tap{display:flex;flex-direction:column;justify-content:center;gap:2px;min-height:58px;
-  padding:8px 11px;background:var(--panel);border:1px solid var(--faint);border-radius:12px;
-  text-decoration:none;color:var(--head);box-shadow:0 1px 0 rgba(10,20,32,.05)}
-.lp .lp-tap:hover{border-color:var(--accent);background:#fff}
-.lp .lp-tap b{font-size:15px;font-weight:700;line-height:1.2;letter-spacing:-.01em}
-/* THE COUNT IS THE ARGUMENT, AND THE REPETITION IS THE POINT. Five of these read "6 causes" and one
-   reads "7". Set as a mono numeral column it reads as a table of counts — the site's whole thesis,
-   stated six times, before anything is tapped — which is why the line above the grid names the
-   repetition ("Not one of these has a single cause") rather than leaving it to look like wallpaper.
-   The alternative was each problem's own 57-character tell under its label; measured, six
-   full-width rows carrying a tell is 544px and puts the search field off the screen. The tells are
-   on the six doors below instead, where they fit. */
-.lp .lp-tap span{font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;color:var(--accent);
-  font-weight:700}
-/* THE ESCAPE FOR THE OTHER 35 PROBLEMS IS A FULL-WIDTH ROW, NOT A WHISPER. Six doors and no door
-   for you is the shape of the thing that already happened to this reader. */
-.lp .lp-all{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:46px;
-  margin-top:var(--lp-gap);padding:0 13px;border:1px dashed var(--faint);border-radius:12px;
-  text-decoration:none;color:var(--head);font-size:14.5px}
-.lp .lp-all b{font-weight:700}
-.lp .lp-all:hover{border-color:var(--accent);border-style:solid}
-
-/* ---- the one form ------------------------------------------------------------------------------
-   A real <form action="/solve" method="get">. /solve?q= is filtered server-side (server.js
-   searchSolve injects a <style> and fills two text slots), so the whole path runs with no
-   JavaScript. bindHome() upgrades #hero-solve-input to the typeahead for the ~10% who have it. */
-.lp .lp-form{margin-top:12px}
-.lp .lp-lab{display:block;font-size:14px;color:var(--muted);margin-bottom:6px}
-.lp .lp-search{position:relative}
-.lp .lp-form input[type=text],.lp #hero-solve-input{width:100%;height:52px;padding:0 14px;
-  background:var(--panel);border:1px solid var(--faint);border-radius:var(--i-r);box-shadow:none;
-  font-family:var(--font);font-size:var(--i-body);color:var(--ink)}
-.lp .lp-form input[type=text]:focus,.lp #hero-solve-input:focus{outline:2px solid var(--head);
-  outline-offset:2px;border-color:var(--faint)}
-.lp .lp-go{display:block;width:100%;min-height:52px;margin-top:8px;background:var(--accent);
-  color:var(--accent-ink);border:0;border-radius:var(--i-r);font-family:var(--font);
-  font-size:var(--i-lead);font-weight:700;cursor:pointer;box-shadow:0 3px 0 rgba(10,20,32,.18)}
-.lp .lp-go:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(10,20,32,.18)}
-.lp .lp-fine{font-size:13.5px;color:var(--muted);margin:10px 0 0}
-
-/* ---- the six doors -----------------------------------------------------------------------------
-   This replaces causeFigure(), which drew six inert <text> boxes in an SVG. The drawing argued that
-   a differential exists; the list IS one. Every row is a real link to /problem/chronic-fatigue
-   #cause-N — a genuine in-page fragment, not SPA hash-router navigation — and the tell under each
-   title is that cause's own `hook` string out of data/cause_learn.json, byte for byte. */
-.lp .lp-arg{font-size:var(--i-body);line-height:1.55;margin:16px 0 0;max-width:34em}
-.lp .lp-doors{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:8px;counter-reset:none}
-.lp .lp-door{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;
-  padding:12px 14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;
-  text-decoration:none;color:var(--head)}
-.lp .lp-door:hover{border-color:var(--accent);background:#fff}
-.lp .lp-dn{flex:none;width:26px;height:26px;border-radius:50%;background:var(--head);color:#fff;
-  font-family:var(--mono);font-size:13px;font-weight:700;display:flex;align-items:center;
-  justify-content:center}
-.lp .lp-db{display:flex;flex-direction:column;gap:3px;min-width:0}
-.lp .lp-db b{font-size:15.5px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
-.lp .lp-db small{font-size:13px;line-height:1.4;color:var(--muted)}
-.lp .lp-da{color:var(--faint);font-size:18px}
-/* THE ESCALATION ROW IS OUTSIDE THE <ol> AND IT IS A REAL LINK. An earlier prototype put it in an
-   unstyled <li> inside the list: rendered at 390px it wrapped to one word per line across eight
-   lines and lost its --warn colour to the list's default ink. It is the one safety-critical element
-   on this page, so it is its own block-level element, it keeps the warn colour, and it goes to the
-   problem page's own red-flag section rather than being decoration. */
-.lp .lp-red{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;
-  margin-top:10px;padding:10px 14px;border:1.5px solid var(--warn);border-radius:12px;
-  background:#fff;text-decoration:none;color:var(--warn)}
-.lp .lp-red b{font-size:15px;font-weight:700;line-height:1.3}
-.lp .lp-red:hover{background:#fdf3f1}
-.lp .lp-rank{font-size:13.5px;line-height:1.5;color:var(--muted);margin:14px 0 0;max-width:36em}
-.lp .lp-counted{font-size:var(--i-small);line-height:1.55;color:var(--ink);margin:18px 0 0;
-  max-width:34em}
-
-/* ---- the receipt -------------------------------------------------------------------------------
-   Not a "FREE" badge, which is a claim. An itemised, unemotional statement of what this page will
-   and will not ask for. Flat and specific on purpose: somebody who has been priced out does not
-   distrust "free", they distrust "free FOR NOW", and specificity answers that where enthusiasm
-   does not. Every number in it is counted at build time. */
-.lp .lp-receipt{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
-.lp .lp-receipt li{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;
-  gap:4px 16px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.4}
-.lp .lp-receipt li span{color:var(--ink)}
-.lp .lp-receipt li b{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--head);
-  text-align:right}
-.lp .lp-receipt li b{white-space:nowrap}
-.lp .lp-receipt-foot{font-size:var(--i-small);line-height:1.55;color:var(--muted);margin:14px 0 0}
-.lp .lp-links{display:flex;flex-wrap:wrap;gap:0 24px;margin:14px 0 0}
-.lp .lp-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--link);
-  font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.lp .lp-receipt-foot b{color:var(--head)}
-/* THE HONEST LIMIT. The only sentence on the page that gives a priced-out reader something with
-   cash value, and the reason the "free" claim above cannot be misread as covering the DOING as well
-   as the READING — /protocol/chronic-fatigue/iron-anemia says in its own words that every
-   intervention on it is a purchase or a lab test. It names no medicine, claims no efficacy,
-   promises no outcome, and points AT the clinician rather than away from them. */
-.lp .lp-limit{font-size:var(--i-body);line-height:1.6;color:var(--head);margin:24px 0 0;
-  padding-left:16px;border-left:3px solid var(--accent);max-width:34em}
-
-/* ---- the payoff --------------------------------------------------------------------------------
-   The worked example, repointed from knee pain to the first tap target's own protocol so the page
-   tells one story from headline to plan. The four illustrative percentage bars that used to sit in
-   card 3 are gone: they were the only numbers on this site that were neither counted nor sourced. */
-.lp .lp-q{background:var(--panel2);border:1px dashed var(--line);border-radius:8px;padding:0 .3rem}
-.lp .lp-lede{font-size:var(--i-body);line-height:1.6;margin:14px 0 0;max-width:34em}
-.lp .wex-chain{grid-template-columns:1fr;gap:1.3rem;margin-top:1.6rem}
-.lp .wex-targets{list-style:none;margin:0;padding:0;display:grid;gap:.7rem}
-.lp .wex-targets li{display:grid;gap:.22rem;font-size:.8rem;color:var(--head)}
-.lp .wex-targets li > span b{font-family:var(--mono);font-weight:700;color:var(--accent)}
-.lp .wex-targets small{font-size:.74rem;line-height:1.4;color:var(--faint)}
-.lp .wex-fine{text-align:left;margin:1.1rem 0 0}
-@media(min-width:760px){.lp .wex-chain{grid-template-columns:repeat(3,1fr);gap:1rem}}
-
-/* ---- the close ----------------------------------------------------------------------------------
-   THE 16-GOAL LIST WAS DELETED FROM THIS PAGE ON 2026-08-13 and its rules went with it. It was a
-   second entry mode competing with the page's one call to action, and three of its sixteen rows
-   labelled CONTROLLED or NEVER-APPROVED substances "prescription-only" — inventing a lawful supply
-   route that does not exist. See build/prerender.js where the generator used to be. */
-.lp .lp-close{border-top:1px solid var(--line)}
-.lp .lp-open{margin-top:14px;font-size:13px;color:var(--faint)}
-.lp .lp-body{font-size:var(--i-body);line-height:1.6;color:var(--head);margin:14px 0 0;max-width:34em}
-
-/* ---- the two plans ------------------------------------------------------------------------------
-   REPLACES .wex-chain, the three-card simulation of a protocol page. These are the real root causes
-   this problem publishes, and every string in them except the two headings is corpus bytes.
-   Each card's HEADING is the link — one anchor per card, labelled with the corpus's own root-cause
-   name, so there is no duplicate anchor text and no authored label to drift. */
-.lp .lp-plan{display:grid;gap:12px;margin-top:18px}
-.lp .lp-plan-c{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px}
-.lp .lp-h3{font-size:15.5px;font-weight:700;margin:0;letter-spacing:-.01em}
-.lp .lp-h3 a{color:var(--head)}
-.lp .lp-plain{margin:2px 0 10px;font-size:13px;line-height:1.45;color:var(--muted)}
-.lp .lp-plan-foot{font-size:var(--i-small);line-height:1.55;color:var(--ink);margin:14px 0 0;max-width:36em}
-@media(min-width:760px){.lp .lp-plan{grid-template-columns:1fr 1fr}}
-
-/* ---- the loop, printed as state -----------------------------------------------------------------
-   A STATUS TABLE, NOT A FEATURE LIST, and the distinction is the whole design. Three rows, each
-   either NOW or NOT YET, rendered from capabilities that build/prerender.js computes from the
-   EMITTED BYTES rather than from an environment flag. No <details>, no toggle, no tooltip, no
-   modal — nothing here needs JavaScript to reveal, because the page's least flattering sentences
-   are the ones a reader most needs and they do not get to hide behind a click. */
-.lp .lp-state{list-style:none;margin:22px 0 0;padding:0;border-top:1px solid var(--line)}
-.lp .lp-state li{display:grid;grid-template-columns:5.6em 1fr;gap:12px;padding:12px 0;
-  border-bottom:1px solid var(--line);font-size:var(--i-small);line-height:1.5;color:var(--ink)}
-.lp .lp-state .lp-st{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
-  text-transform:uppercase;font-weight:700;color:var(--muted)}
-.lp .lp-state li[data-on="1"] .lp-st{color:var(--accent)}
-/* The contribution verb, in the reading surface rather than in a section about contributing. */
-.lp .lp-fix{display:inline-flex;align-items:center;min-height:44px}
-/* The visible label on the one search field. It replaced an aria-label that disagreed with the
-   visible text, which is a WCAG 2.5.3 Label-in-Name failure. */
-.lp .lp-lab{display:block;font-size:var(--i-small);font-weight:700;color:var(--head);margin:18px 0 6px}
-
-/* ---- desktop ------------------------------------------------------------------------------------
-   The fold is a phone problem; on a 1440x900 screen there is room for three columns of taps and the
-   whole call to action is above the fold with no help. */
-@media(min-width:760px){
-  .lp .lp-grid{grid-template-columns:repeat(3,1fr)}
-  .lp .lp-tap{min-height:70px}
-  .lp .lp-tap b{font-size:16.5px}
-  .lp .lp-turn{margin-top:18px}
+/* Zero-slop home: one question, one search, three examples, one directory escape. */
+.lp .lp-fold{max-width:680px;margin:0 auto;padding:clamp(32px,8vh,84px) 0 24px}
+.lp h1{max-width:12em;margin:0;font-size:clamp(2.25rem,7vw,4.4rem);line-height:1.02;letter-spacing:-.045em}
+.lp .lp-turn{max-width:31em;margin:20px 0 0;font-size:clamp(1.05rem,2.2vw,1.28rem);font-weight:500;
+  line-height:1.48;color:var(--muted);text-wrap:pretty}
+.lp .lp-form{margin:34px 0 0}
+.lp .lp-lab{margin:0 0 9px;font-size:.94rem;font-weight:750;color:var(--head)}
+.lp .lp-form-row{display:flex;align-items:stretch;gap:8px}
+.lp .lp-search{position:relative;flex:1;min-width:0}
+.lp #hero-solve-input{width:100%;min-height:56px;padding:0 16px;border:1px solid var(--faint);
+  border-radius:12px;background:#fff;color:var(--ink);font:inherit;font-size:1rem;box-shadow:none}
+.lp #hero-solve-input:focus{outline:3px solid color-mix(in srgb,var(--accent) 22%,transparent);
+  outline-offset:1px;border-color:var(--accent)}
+.lp .lp-go{flex:0 0 auto;width:auto;min-width:112px;min-height:56px;margin:0;padding:0 22px;
+  border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font:inherit;
+  font-weight:750;cursor:pointer;box-shadow:none}
+.lp .lp-go:hover{filter:brightness(1.04)}
+.lp .lp-go:active{transform:none;box-shadow:none;filter:brightness(.97)}
+.lp .lp-examples{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lp .lp-example{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;
+  border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--head);
+  font-size:.9rem;font-weight:650;text-decoration:none}
+.lp .lp-example:hover{border-color:var(--accent);background:#fff}
+.lp .lp-example:focus-visible,.lp .lp-all:focus-visible{outline:2px solid var(--head);outline-offset:2px}
+.lp .lp-all{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:8px 0 0;
+  padding:0;color:var(--link);border:0;border-radius:0;font-size:.9rem;font-weight:700;text-decoration:underline;
+  text-underline-offset:3px}
+.lp .lp-all:hover{border:0}
+.lp .lp-trust{margin:22px 0 0;padding-top:16px;border-top:1px solid var(--line-soft);
+  color:var(--muted);font-size:.86rem;line-height:1.45}
+@media(max-width:560px){
+  .lp .lp-fold{padding-top:28px}
+  .lp .lp-form-row{flex-direction:column}
+  .lp .lp-go{width:100%}
+  .lp .lp-examples{display:grid;grid-template-columns:1fr 1fr}
+  .lp .lp-example:last-child{grid-column:1/-1}
 }
 
 /* ---- The profile: /u/<handle> (public) and /me (private). 2026-08-10 ----

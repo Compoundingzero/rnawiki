@@ -735,8 +735,8 @@ const ASSERTIONS = {
       return done(null);
     },
   }, {
-    name: 'oneProblemAuthorsAPlanPerRootCause',
-    why: 'The founder\'s own description of the defect: somebody searches a SYMPTOM ("knee pain") and the thing they can act on is one of several ROOT CAUSES under it — a tight muscle, a weak muscle, a tendon being overloaded. Until 2026-08-13 the Studio draft was a flat items array with one optional base pair that nothing in the client ever set, so a creator could author exactly one cause per symptom and every protocol published as an unbound "Custom RNAwiki protocol". build/parse.js asserts the source and scripts/studio-safety.test.mjs asserts the validator; only a browser can prove a creator can actually reach the second cause. PROVE IT by deleting the #st-add-cause control from stAddCauseControl(), or by making stAddRootCause() return false.',
+    name: 'oneTopicAuthorsSeparatePlansForEveryCanonicalRoute',
+    why: 'A topic may have several possible reasons or starting points, including routes with no official protocol yet. Studio must expose the entire canonical route catalog and keep each route plan separate. The browser is the only place that proves a creator can migrate an old official-root draft, see uncovered routes, and add a second independent branch.',
     evaluate: async () => {
       const tick = (ms) => new Promise(r => setTimeout(r, ms));
       const prev = localStorage.getItem('rnawiki_studio_draft');
@@ -747,36 +747,43 @@ const ASSERTIONS = {
       };
       const settle = async (sel) => { for (let i = 0; i < 40; i++) { await tick(120); if (document.querySelector(sel)) return true; } return false; };
 
-      // NOTHING IS HARDCODED. The problem and its causes come out of the corpus the page loaded,
-      // so this assertion follows the graph rather than pinning knee-pain's three ids.
+      // Choose a topic where the canonical registry exposes more routes than the legacy official
+      // protocol list. That is the exact supply gap this revamp is meant to unblock.
       const D = window.RNAWIKI_DATA || {};
-      const probs = ((D.graph || {}).problems || []).filter((p) => (p.root_causes || []).filter((r) => !r._stub).length > 1);
-      if (!probs.length) return done('no problem in the corpus publishes more than one root cause, so this assertion has no subject');
-      const P = probs[0], RCS = P.root_causes.filter((r) => !r._stub);
+      const probs = ((D.graph || {}).problems || []).filter((p) => {
+        const routes = (p.routes || []).filter((r) => !r._stub);
+        const roots = (p.root_causes || []).filter((r) => !r._stub);
+        return routes.length > 1 && roots.length > 0 && routes.length > roots.length;
+      });
+      if (!probs.length) return done('no topic exposes an uncovered canonical route, so the creator-supply assertion has no subject');
+      const P = probs[0], RCS = P.routes.filter((r) => !r._stub);
+      const legacy = P.root_causes.filter((r) => !r._stub)[0];
 
       // (1) THE MIGRATION. Real devices hold v1 drafts — {title, items, base_pid, base_rcid}. A
       // creator's unfinished protocol must survive the upgrade, not be silently emptied.
       localStorage.setItem('rnawiki_studio_draft', JSON.stringify({
-        title: 'smoke v1', items: [{ k: 'c', id: 'c0' }], base_pid: P.id, base_rcid: RCS[1].id, remixOf: null,
+        title: 'smoke v1', items: [{ k: 'c', id: 'c0' }], base_pid: P.id, base_rcid: legacy.id, remixOf: null,
       }));
       window.dispatchEvent(new PopStateEvent('popstate'));
       if (!await settle('#st-list .st-row')) return done('a v1 draft did not survive the upgrade — its item list is gone from the plan screen');
       const back = document.getElementById('st-back');
       if (!back) return done('a migrated v1 draft opened with no way back to the problem it belongs to');
 
-      // (2) THE SPINE. Back out of the plan and the problem must show every cause it publishes.
+      // (2) THE SPINE. Back out of the plan and the topic must state every canonical route,
+      // including routes with no official protocol.
       back.click();
       if (!await settle('.st-spine-line')) return done('the Studio spine did not render for a draft that names a problem');
       const line = document.querySelector('.st-spine-line').innerText;
       if (line.indexOf(String(RCS.length)) < 0) {
-        return done(`the spine does not state how many causes this problem publishes (${RCS.length}): "${line}"`);
+        return done(`the spine does not state how many canonical routes this topic publishes (${RCS.length}): "${line}"`);
       }
       const cards = () => Array.from(document.querySelectorAll('.st-cause-n')).map((e) => e.innerText.trim());
       if (cards().length !== 1) return done(`a one-cause draft rendered ${cards().length} plan cards`);
 
-      // Each card must say WHICH cause, in plain language, and how a reader would recognise it.
-      if (!document.querySelector('.st-cause-p') || !document.querySelector('.st-cause-d')) {
-        return done('a cause card carries no plain-language line or no "how you would know it is this one" line — a creator choosing between three causes is choosing between three pieces of jargon');
+      // Each card must say WHICH route, in plain language, and how a reader would recognise it.
+      const fitLine = document.querySelector('.st-cause-d');
+      if (!fitLine || fitLine.innerText.replace(/\s+/g, ' ').trim().length < 24) {
+        return done('a route card carries no plain-language fit line — a creator choosing between routes must not be choosing between unexplained labels');
       }
 
       // (3) THE BRANCH THAT IS NOT A PLAN, unfolded. It is the problem's own authored escalation
@@ -785,39 +792,38 @@ const ASSERTIONS = {
       if (!route) return done('the Studio spine shows no escalation branch, or has put it behind a disclosure');
       if (route.innerText.trim().length < 80) return done('the escalation branch rendered but is essentially empty');
 
-      // (4) THE addRootCause PATH — THE DEFECT ITSELF.
+      // (4) THE add-route path — THE DEFECT ITSELF.
       const addBtn = document.getElementById('st-add-cause');
-      if (!addBtn) return done('there is no control to add a second cause. This is the defect: one symptom, several causes, and a builder that can hold exactly one of them.');
+      if (!addBtn) return done('there is no control to add a second route. This is the defect: one topic, several routes, and a builder that can hold exactly one of them.');
       addBtn.click();
-      if (!await settle('[data-rc]')) return done('the add-a-cause control opened nothing');
+      if (!await settle('[data-rc]')) return done('the add-a-route control opened nothing');
       const offered = Array.from(document.querySelectorAll('[data-rc]')).map((b) => b.getAttribute('data-rc'));
       if (offered.length !== RCS.length - 1) {
-        return done(`the picker offered ${offered.length} causes; the problem publishes ${RCS.length} and one already has a plan, so it should offer ${RCS.length - 1}`);
+        return done(`the picker offered ${offered.length} routes; the topic publishes ${RCS.length} and one already has a plan, so it should offer ${RCS.length - 1}`);
       }
-      if (offered.indexOf(RCS[1].id) >= 0) return done('the picker re-offered a cause that already has a plan in this draft');
+      const migratedRoute = (P.routes || []).find((r) => (r.official_rcids || []).indexOf(legacy.id) >= 0);
+      if (!migratedRoute) return done('the legacy official root has no canonical route mapping');
+      if (offered.indexOf(migratedRoute.id) >= 0) return done('the picker re-offered a route that already has a plan in this draft');
       document.querySelector('[data-rc]').click();
       for (let i = 0; i < 40; i++) { await tick(120); if (cards().length === 2) break; }
       const two = cards();
-      if (two.length !== 2) return done(`adding a second cause left ${two.length} plan card(s) on the spine`);
-      if (two[0] === two[1]) return done('two plans in one draft name the same cause');
+      if (two.length !== 2) return done(`adding a second route left ${two.length} plan card(s) on the spine`);
+      if (two[0] === two[1]) return done('two plans in one draft name the same route');
 
-      // (5) THE PLANS ARE SEPARATE. Two causes must not share one item list — that was the old
+      // (5) THE PLANS ARE SEPARATE. Two routes must not share one item list — that was the old
       // model, and under it publishing one would publish the others.
       const counts = Array.from(document.querySelectorAll('.st-cause-c')).map((e) => e.innerText.trim());
       if (counts.length !== 2) return done('a cause card lost its item count');
       if (counts[0] === counts[1]) {
         return done(`both plans report the same contents ("${counts[0]}") after only one of them was given an item — they are sharing a list`);
       }
-      // And the cards are numbered in the corpus's own order, so "Cause 2 of 3" is not above
-      // "Cause 1 of 3".
-      // textContent, NOT innerText: .st-cause-k is text-transform:uppercase, and innerText returns
-      // the STYLED string — "CAUSE 1 OF 3". The first version of this line read innerText and failed
-      // against a correct page, which is the false positive every new gate has to be checked for.
-      const pos = Array.from(document.querySelectorAll('.st-cause-k')).map((e) => {
-        const m = /Cause (\d+) of (\d+)/.exec(e.textContent); return m ? Number(m[1]) : 0;
-      });
-      if (pos.some((n) => !n)) return done('a cause card does not say which of the problem\'s causes it is');
-      if (pos[0] > pos[1]) return done(`the plan cards are out of the corpus's own order: they read Cause ${pos[0]} then Cause ${pos[1]}`);
+      // And the cards stay in the corpus's own order, without putting taxonomy numbers in front of
+      // creators. Stable route IDs carry the ordering assertion; the visible label stays only the
+      // contextual noun (Possible reason, Starting point, Constraint or Approach).
+      const routeIds = Array.from(document.querySelectorAll('.st-cause')).map((e) => e.getAttribute('data-route'));
+      const pos = routeIds.map((id) => RCS.findIndex((r) => r.id === id));
+      if (pos.some((n) => n < 0)) return done('a route card is not bound to a canonical route id');
+      if (pos[0] > pos[1]) return done(`the plan cards are out of the corpus's own order: they resolve to route indexes ${pos[0]} then ${pos[1]}`);
       return done(null);
     },
   }],
@@ -825,30 +831,42 @@ const ASSERTIONS = {
     name: 'aUserCannotPublishADangerPairingWithoutBeingShownIt',
     why: 'W7: a user-built protocol is written after the build, so the build gates never see it; the save-time engine is the only thing between a reader and a published instruction to combine two things this site itself calls dangerous',
     evaluate: async () => {
+      const problems = (((window.RNAWIKI_DATA || {}).graph || {}).problems || []);
+      const topic = problems.find((p) => (p.routes || []).some((r) => (r.official_rcids || []).length));
+      const route = topic && (topic.routes || []).find((r) => (r.official_rcids || []).length);
+      if (!topic || !route) return 'the canonical route catalog has no official-backed route for the HTTP safety boundary test';
+      const publicSpec = (items) => {
+        const scheduled = items.map((item) => Object.assign({}, item, {
+          days: Array.isArray(item.days) && item.days.length ? item.days : [0, 1, 2, 3, 4, 5, 6],
+        }));
+        return {
+          v: 1,
+          items: scheduled,
+          execution: { v: 1, primary: scheduled[0].k + ':' + scheduled[0].id },
+        };
+      };
       const post = async (spec, status) => {
         const r = await fetch('/api/protocols/check', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ spec, status }),
+          body: JSON.stringify({ spec, status, topic_id: topic.id, route_id: route.id }),
         });
         if (r.status !== 200) return { _status: r.status };
         return r.json();
       };
-      // ---- THE OVERLAP-REPERCUSSION CONTRACT, over HTTP (rewritten 2026-08-13) --------------
-      // This assertion used to require a REFUSAL for a dangerous pairing and for any uncovered
-      // pair. On the founder's instruction both are warnings now: a creator may combine as many
-      // compounds as they like, and what used to block the save travels with the protocol to the
-      // reader instead. So what this checks changed shape but not purpose — the save-time engine is
-      // still the only thing between a reader and a published instruction to combine two things
-      // this site itself calls dangerous, and it must never go QUIET about one.
+      // ---- THE FAIL-CLOSED PUBLICATION CONTRACT, over HTTP ----------------------------------
+      // Private drafts may hold unresolved work and show warnings. Publication is a different
+      // boundary: known-danger and unknown exact pairs are refused, with the exact row/count kept
+      // in the response so the creator can fix the plan rather than guess.
 
       // 1 — citrulline + a PDE-5 inhibitor. The site's own compendium calls this pairing a
-      // blood-pressure danger. It is refused, but for R4 (the PDE-5 inhibitor is prescription-only)
-      // — and the danger must still be REPORTED alongside that refusal, with its citation.
-      const d = await post({ v: 1, items: [{ k: 'c', id: 'c13' }, { k: 'c', id: 'c116' }] }, 'published');
+      // blood-pressure danger. Both the prescription restriction and the interaction danger must
+      // be present in refusals; neither may be demoted to a warning at the public boundary.
+      const d = await post(publicSpec([{ k: 'c', id: 'c13' }, { k: 'c', id: 'c116' }]), 'published');
       if (d._status) return `POST /api/protocols/check answered ${d._status} — the safety check is not reachable. It is registered above the database guard precisely so that it works when nothing else does.`;
-      const dangerRow = (d.warn || []).find(x => x.rule === 'danger-interaction');
-      if (!dangerRow) return `the engine reported no danger row for citrulline + a PDE-5 inhibitor: warns were ${JSON.stringify((d.warn || []).map(x => x.rule))}. /stack renders that pair as a danger today; going quiet about it is the one thing this engine may not do.`;
-      if (!/blood.pressure/i.test(dangerRow.message)) return `the danger warning does not carry the interaction row's own words: "${String(dangerRow.message).slice(0, 140)}". The client must not be able to dress this up in a friendlier sentence of its own.`;
+      if (d.ok !== false) return 'a known-danger pairing crossed the public publication boundary';
+      const dangerRow = (d.refusals || []).find(x => x.rule === 'danger-interaction');
+      if (!dangerRow) return `the engine reported no danger refusal for citrulline + a PDE-5 inhibitor: refusals were ${JSON.stringify((d.refusals || []).map(x => x.rule))}.`;
+      if (!/blood.pressure/i.test(String((dangerRow.row && dangerRow.row.plain) || dangerRow.message))) return `the danger refusal does not carry the interaction row's own words: "${String(dangerRow.message).slice(0, 140)}".`;
       if (!dangerRow.row || !dangerRow.row.src) return 'the danger warning carries no source. Every warning must cite its source, and a danger warning is the one that most has to.';
       if (!dangerRow.row.plain) return 'the danger warning carries no plain-language line — the reader it is warning has to be able to read it.';
       // R4 IS UNMOVED: a prescription-only medicine still refuses at publish (CLAUDE.md rule 7).
@@ -858,34 +876,34 @@ const ASSERTIONS = {
       if (!d.coverage || typeof d.coverage.checked !== 'number' || typeof d.coverage.of !== 'number') return 'the verdict carries no coverage. An empty warning list can mean "nothing found" or "nothing checkable", and those are not the same sentence.';
       if (!d.says) return 'the verdict carries no sentence a reader can be shown';
 
-      // 3 — ZERO COVERAGE PUBLISHES NOW, and says out loud that it is unchecked. That sentence is
-      // the entire fail-safe: silence from an empty knowledge base is not a clearance.
-      const blind = await post({ v: 1, items: [{ k: 'c', id: 'c1' }, { k: 'c', id: 'c5' }] }, 'published');
-      if (blind.ok !== true) return `a two-compound protocol with no authored pair guidance was refused: ${JSON.stringify((blind.refusals || []).map(x => x.rule))}. A creator may add as many compounds as they want.`;
+      // 3 — ZERO COVERAGE IS REFUSED. Unknown is not consent and not a clearance.
+      const blind = await post(publicSpec([{ k: 'c', id: 'c1' }, { k: 'c', id: 'c5' }]), 'published');
+      if (blind.ok !== false) return 'a two-compound protocol with no authored exact-pair guidance crossed the public boundary';
       if (!blind.coverage || blind.coverage.state !== 'none' || blind.coverage.checked !== 0 || blind.coverage.of !== 1 || blind.coverage.unit !== 'pairs') return `0/1 exact-pair coverage has no explicit "none" state: ${JSON.stringify(blind.coverage)}`;
-      const unknownRow = (blind.warn || []).find(x => x.rule === 'interaction-unknown');
-      if (!unknownRow) return `0/1 coverage produced no unchecked warning: ${JSON.stringify((blind.warn || []).map(x => x.rule))}. An uncovered pair that says nothing is indistinguishable from a cleared one.`;
-      if (!/not the same as safe/i.test(unknownRow.message)) return `the unchecked warning does not say that unknown is not safe: "${String(unknownRow.message).slice(0, 140)}"`;
+      const unknownRow = (blind.refusals || []).find(x => x.rule === 'interaction-unknown');
+      if (!unknownRow) return `0/1 coverage produced no unknown-pair refusal: ${JSON.stringify((blind.refusals || []).map(x => x.rule))}.`;
+      if (!/unknown is not safe/i.test(unknownRow.message)) return `the refusal does not say that unknown is not safe: "${String(unknownRow.message).slice(0, 140)}"`;
 
-      // 4 — PARTIAL coverage publishes and names exactly which pairs are unknown.
-      const partial = await post({ v: 1, items: [{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }, { k: 'c', id: 'c0' }] }, 'published');
-      if (partial.ok !== true) return 'a three-compound protocol with 1/3 authored pairs was refused';
+      // 4 — PARTIAL coverage is refused and names exactly which pairs remain unknown.
+      const partial = await post(publicSpec([{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }, { k: 'c', id: 'c0' }]), 'published');
+      if (partial.ok !== false) return 'a three-compound protocol with only 1/3 authored pairs crossed the public boundary';
       if (!partial.coverage || partial.coverage.state !== 'partial' || partial.coverage.checked !== 1 || partial.coverage.of !== 3) return `1/3 coverage has no explicit "partial" state: ${JSON.stringify(partial.coverage)}`;
       if ((partial.coverage.unknown_pairs || []).length !== 2) return `1/3 coverage did not name its 2 unknown pairs: ${JSON.stringify(partial.coverage.unknown_pairs)}`;
 
-      // 5 — MANY COMPOUNDS IS THE POINT. Five freely-available supplements must publish.
-      const many = await post({ v: 1, items: ['c0', 'c2', 'c4', 'c5', 'c6'].map(id => ({ k: 'c', id })) }, 'published');
-      if (many.ok !== true) return `a five-compound protocol was refused: ${JSON.stringify((many.refusals || []).map(x => x.rule))}. The 2-compound ceiling was deleted deliberately.`;
+      // 5 — MANY COMPOUNDS MAY STAY IN A DRAFT, BUT PUBLICATION STILL REQUIRES ALL PAIRS.
+      const many = await post(publicSpec(['c0', 'c2', 'c4', 'c5', 'c6'].map(id => ({ k: 'c', id }))), 'published');
+      if (many.ok !== false) return 'a five-compound protocol with unresolved exact pairs crossed the public boundary';
       if (!many.coverage || many.coverage.of !== 10) return `a five-compound protocol did not enumerate all 10 exact pairs: ${JSON.stringify(many.coverage)}`;
+      if (!(many.refusals || []).some(x => x.rule === 'interaction-unknown')) return 'the many-compound refusal did not identify unknown exact pairs';
 
       // 6 — COMPLETE-COVERAGE POSITIVE CONTROL.
-      const full = await post({ v: 1, items: [{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }] }, 'published');
+      const full = await post(publicSpec([{ k: 'c', id: 'c5' }, { k: 'c', id: 'c6' }]), 'published');
       if (full.ok !== true) return `a fully authored 1/1 exact pair was refused: ${JSON.stringify((full.refusals || []).map(x => x.rule))}`;
       if (!full.coverage || full.coverage.state !== 'complete' || full.coverage.checked !== 1 || full.coverage.of !== 1) return `1/1 exact-pair coverage has no explicit "complete" state: ${JSON.stringify(full.coverage)}`;
 
       // 7 — ONE-COMPOUND POSITIVE CONTROL. No pair to check is distinct from no data about a pair.
-      const ok = await post({ v: 1, items: [{ k: 'c', id: 'c0', dose: 5 }, { k: 'x', id: '3_4_Sit-Up', sets: 4, reps: '6-8' }, { k: 'f', id: 'f0' }] }, 'published');
-      if (ok.ok !== true) return `an ordinary protocol (creatine at a dose on its own published ladder, one exercise, one food) was REFUSED: ${JSON.stringify((ok.refusals || []).map(x => x.rule + ': ' + String(x.message).slice(0, 90)))}. An engine that refuses everything proves nothing.`;
+      const ok = await post(publicSpec([{ k: 'c', id: 'c0', dose: 5 }, { k: 'f', id: 'f0' }]), 'published');
+      if (ok.ok !== true) return `an ordinary protocol (creatine at a dose on its own published ladder and one food) was REFUSED: ${JSON.stringify((ok.refusals || []).map(x => x.rule + ': ' + String(x.message).slice(0, 90)))}. An engine that refuses everything proves nothing.`;
       if (!ok.coverage || ok.coverage.state !== 'not_applicable' || ok.coverage.of !== 0 || ok.coverage.compound_of !== 1) return `a one-compound protocol did not report the explicit no-pair state: ${JSON.stringify(ok.coverage)}`;
       return null;
     },
@@ -1133,7 +1151,9 @@ const ASSERTIONS = {
       const small = links.filter((a) => { const r = a.getBoundingClientRect(); return r.height < 44 || r.width < 44; });
       if (small.length) return `${small.length} of 3 nav links are under 44x44: ${small.map((a) => `${a.textContent.trim()} ${Math.round(a.getBoundingClientRect().width)}x${Math.round(a.getBoundingClientRect().height)}`).join(', ')}`;
       const hrefs = links.map((a) => a.getAttribute('href')).join(',');
-      if (hrefs !== '/solve,/goals,/az') return `the header nav is ${hrefs}`;
+      const names = links.map((a) => a.textContent.trim()).join(',');
+      if (hrefs !== '/solve,/plan,/studio' || names !== 'Find,Today,Create') return `the header nav is ${names} (${hrefs}), expected Find, Today, Create (/solve,/plan,/studio)`;
+      if (links.some((a) => /^(Problems|Goals|A[–-]Z)$/i.test(a.textContent.trim()) || ['/problems', '/goals', '/az'].includes(a.getAttribute('href')))) return 'the competing Problems / Goals / A-Z shell is back';
       return null;
     },
   }, {
@@ -1475,27 +1495,19 @@ const ASSERTIONS = {
   }, {
     name: 'findDebounceCannotRewriteTheNextRoute',
     why: 'a delayed Find update belongs to the page that scheduled it; it must not corrupt an immediate SPA navigation',
-    // RETARGETED 2026-08-13, twice: from "Where it hurts" to "Today", then to "A-Z" when the nav settled on
-    // Problems / Goals / A-Z. It must be a route WITHOUT data-native: /goals is a KEEP_PRERENDERED
-    // route whose link forces a full page load, which destroys the execution context mid-assertion
-    // and tests nothing about a client-side debounce. The behaviour under test
-    // is unchanged and still worth having — a debounced Find update must not rewrite the URL of a
-    // navigation that has already happened. Only the trigger moved, because the global nav went
-    // from six items to three and /where is no longer one of them. Today is the right substitute:
-    // it is a real SPA route with no data-native attribute, so clicking it exercises the same
-    // client-side navigation path the old assertion did. (/corrections carries data-native and
-    // would be a full page load, which tests nothing about the debounce.)
+    // Today is a real SPA route with no data-native attribute, so clicking it keeps the execution
+    // context alive long enough to prove that Find's delayed update cannot rewrite the next page.
     evaluate: async () => {
       const input = document.getElementById('solve-q');
-      const today = document.querySelector('header a[href="/az"]');
-      if (!input || !today) return 'Find input or A-Z navigation is missing';
+      const today = document.querySelector('header a[href="/plan"]');
+      if (!input || !today) return 'Find input or Today navigation is missing';
       input.value = 'knee';
       input.dispatchEvent(new Event('input', { bubbles: true }));
       today.click();
       await new Promise(r => setTimeout(r, 420));
       const issues = [];
-      if (location.pathname !== '/az' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
-      if (!/a.z|every compound/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}, not the A-Z index`);
+      if (location.pathname !== '/plan' || location.search) issues.push(`the delayed query rewrote the destination to ${location.pathname}${location.search}`);
+      if (!/today|your plan/i.test(document.title || '')) issues.push(`the destination title is ${JSON.stringify(document.title)}, not Today`);
       // Restore the route this assertion owns so the runner's generic /solve checks remain valid.
       const find = document.querySelector('header a[href="/solve"]');
       if (find) { find.click(); await new Promise(r => setTimeout(r, 120)); }
@@ -2767,8 +2779,7 @@ try {
           // to tap there is a defect 568 times over. Measured hydrated at 390x844 before the fix
           // (qa/out/w5cdi/before-390.json): search input 104x37, "Sign in" 71x30, hamburger 32x29,
           // brand 97x29 — all four under the 44px touch minimum, and the search box so narrow that
-          // its placeholder rendered as the words "Search 1" out of "Search 171 compounds,
-          // protocols, terms…". `searchClipped` catches that second half: a control can be 44px
+          // its placeholder became unreadable. `searchClipped` catches that second half: a control can be 44px
           // tall and still be too narrow to say what it is for.
           // W5c (2026-08-02): the SPA moves focus to the new <h1> after every route change, which
           // is correct — and it was doing it on PAGE LOAD too, which is not the same act. Measured
@@ -2782,11 +2793,9 @@ try {
           header: (() => {
             // `vis` added 2026-08-09, matching the desktop pass, which has always carried it: ONLY
             // controls this width actually renders. A display:none control is not a small control.
-            // The landing page suppresses the topbar search and the account slot at <=900px — the
-            // search because the hero carries the same control 350px below it and the duplicate
-            // costs 52px of the only screen that matters, the account slot because "Sign in" sat
-            // 126px above a headline on a page promising "no account, ever". Both are present, and
-            // still gated at 44px, on all 567 other routes.
+            // The landing page suppresses only the duplicate topbar search: its labeled hero search
+            // is the page task. Sign-in/profile remains available as a quiet shell control. Both
+            // controls are present, and still gated at 44px, on every non-home route.
             const g = (sel) => { const e = document.querySelector(sel); if (!e) return null; const r = e.getBoundingClientRect(); const st = getComputedStyle(e); return { w: Math.round(r.width), h: Math.round(r.height), vis: st.display !== 'none' && st.visibility !== 'hidden' && r.width > 0 && r.height > 0 }; };
             const inp = document.getElementById('search');
             const iv = inp && getComputedStyle(inp).display !== 'none';
@@ -3219,6 +3228,29 @@ try {
       await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });
       await page.goto(BASE + '/', { waitUntil: 'networkidle2', timeout: NAV_TIMEOUT });
       await new Promise(r => setTimeout(r, SETTLE_MS));
+      const hydratedHome = await page.evaluate(() => {
+        const app = document.getElementById('app');
+        const visible = (el) => {
+          if (!el) return false;
+          const r = el.getBoundingClientRect(), s = getComputedStyle(el);
+          return s.display !== 'none' && s.visibility !== 'hidden' && r.width > 0 && r.height > 0;
+        };
+        return {
+          folds: document.querySelectorAll('#app .lp-fold').length,
+          forms: app ? app.querySelectorAll('form').length : 0,
+          searches: app ? app.querySelectorAll('input[type="search"][name="q"]').length : 0,
+          examples: app ? app.querySelectorAll('a.lp-example').length : 0,
+          headline: (app && app.querySelector('h1') ? app.querySelector('h1').textContent : '').trim(),
+          visibleSearches: [...document.querySelectorAll('input[type="search"]')].filter(visible).length,
+          topbarSearchVisible: visible(document.querySelector('.topbar .search-wrap')),
+        };
+      });
+      if (hydratedHome.folds !== 1 || hydratedHome.forms !== 1 || hydratedHome.searches !== 1) {
+        fail.push(`ASSERTION homeHydratesWithoutDuplicatingHero FAILED — hydrated home has ${hydratedHome.folds} hero folds, ${hydratedHome.forms} main forms and ${hydratedHome.searches} main search fields; each must be exactly one`);
+      }
+      if (hydratedHome.examples !== 3) fail.push(`ASSERTION homeHydratesWithoutDuplicatingHero FAILED — hydrated home has ${hydratedHome.examples} examples, expected 3`);
+      if (hydratedHome.headline !== 'Turned away, priced out, or told it was nothing?') fail.push(`ASSERTION homeHydratesWithoutDuplicatingHero FAILED — hydrated headline is ${JSON.stringify(hydratedHome.headline)}`);
+      if (hydratedHome.visibleSearches !== 1 || hydratedHome.topbarSearchVisible) fail.push(`ASSERTION homeHydratesWithoutDuplicatingHero FAILED — home exposes ${hydratedHome.visibleSearches} visible search fields and topbar visibility=${hydratedHome.topbarSearchVisible}; only the hero search may be visible`);
       if (!(await page.$('#hero-solve-input'))) fail.push('ASSERTION heroTypeaheadIsTheSolveRanking FAILED — no #hero-solve-input on the home page; the site\'s first call to action is gone');
       else for (const q of QUERIES) {
         const hero = await page.evaluate(async (query) => {
@@ -3237,7 +3269,7 @@ try {
     } catch (e) { fail.push('heroTypeaheadIsTheSolveRanking: harness error — ' + (e && e.message ? e.message : String(e))); }
   }
 
-  // ------------------------------------------------- the landing page on "/" (overhauled 2026-08-09)
+  // ------------------------------------------------- the zero-slop landing page on "/" (2026-08-15)
   // OUTSIDE THE PER-ROUTE RUNNER, deliberately: page.goto() follows a 301 and reports the home
   // page's 200, so a browser route would prove nothing about /interest. That URL was published, is
   // in a sitemap that shipped, and an unknown top-level path on this server falls through to the
@@ -3261,24 +3293,49 @@ try {
     if ((r2.headers.get('location') || '') !== '/?state=ok&t=smoke-token-0000000000') fail.push(`ASSERTION landingPageIsOneCta FAILED — ${tokUrl} redirects to ${JSON.stringify(r2.headers.get('location'))}; the query must travel with it or a reader holding a removal token loses the only copy of it`);
     const home = await (await fetch(BASE + '/')).text();
     const main = (home.match(/<main id="app">([\s\S]*)<\/main>/) || [, ''])[1];
-    // THE ONE CALL TO ACTION, checked on the SERVED document rather than on the emitted file. Both
-    // forms are the same control rendered twice by the same function; what may never appear is a
-    // form that asks for something else.
+    const flat = main.replace(/\s+/g, ' ');
+    const visibleText = flat.replace(/<[^>]*>/g, ' ').replace(/&rsquo;|&#39;/g, "'")
+      .replace(/&amp;/g, '&').replace(/&[^;]+;/g, ' ').replace(/\s+/g, ' ').trim();
+    const words = visibleText ? visibleText.split(/\s+/).length : 0;
+
+    // One section, one form, one search, one button. This counts the served bytes; the hydrated
+    // assertion above separately proves app.js does not append a second copy of the same hero.
+    if ((main.match(/<section\b/g) || []).length !== 1 || (main.match(/class="lp-fold"/g) || []).length !== 1) fail.push('ASSERTION landingPageIsOneCta FAILED — the served home page must contain exactly one hero section');
+    if ((main.match(/<h1\b/g) || []).length !== 1 || !main.includes('<h1>Turned away, priced out, or told it was nothing?</h1>')) fail.push('ASSERTION landingPageIsOneCta FAILED — the emotional headline changed or was duplicated');
+    if (!flat.includes('<p class="lp-turn">The same problem can look different. Find the path that matches what you’re experiencing.</p>')) fail.push('ASSERTION landingPageIsOneCta FAILED — the single same-problem/different-route support line changed or disappeared');
     const forms = [...main.matchAll(/<form\b[^>]*>/g)].map(m => m[0]);
-    if (!forms.length) fail.push('ASSERTION landingPageIsOneCta FAILED — the served home page has no <form> at all; the site\'s only call to action is gone');
-    for (const f of forms) {
-      if (!/action="\/solve"/.test(f) || !/method="get"/.test(f)) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page carries a <form> that is not the one call to action: ${f}`);
-    }
-    for (const [lit, what] of [['id="hero-solve-input" name="q"', "the first call to action's field"], ['<a class="lp-tap"', 'the one-tap problem targets'], ['<a class="lp-door"', 'the six live cause doors'], ['class="lp-red"', 'the escalation row'], ['data-total=', 'the library drawing'], ['Severe, sudden, or getting worse. Be seen.', 'the escalation copy']]) {
-      if (main.indexOf(lit) < 0) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page does not contain ${what} (${lit}). The crawler's copy is the one ~90% of readers get.`);
-    }
-    for (const [lit, what] of [['/api/interest', 'the interest form'], ['type="email"', 'an email field'], ['Count me in', "the interest form's submit button"], ['Show me the root cause', 'the singular root-cause promise']]) {
-      if (main.indexOf(lit) >= 0) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page still contains ${what} (${lit}); that is the second call to action growing back.`);
-    }
+    if (forms.length !== 1) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page has ${forms.length} forms; it must have exactly one`);
+    if (forms[0] && (!/class="lp-form"/.test(forms[0]) || !/action="\/solve"/.test(forms[0]) || !/method="get"/.test(forms[0]) || !/role="search"/.test(forms[0]))) fail.push(`ASSERTION landingPageIsOneCta FAILED — the only form is not the GET /solve search: ${forms[0]}`);
+    if ((main.match(/<input\b/g) || []).length !== 1 || (main.match(/id="hero-solve-input"/g) || []).length !== 1 || !/<input id="hero-solve-input" name="q" type="search"/.test(main)) fail.push('ASSERTION landingPageIsOneCta FAILED — the served hero must have exactly one q search field');
+    if (!/<label class="lp-lab" for="hero-solve-input">What do you want help with\?<\/label>/.test(main)) fail.push('ASSERTION landingPageIsOneCta FAILED — the search field lost its visible associated label');
+    if ((main.match(/<button\b/g) || []).length !== 1 || !/<button class="lp-go" id="hero-solve-btn" type="submit">Search<\/button>/.test(main)) fail.push('ASSERTION landingPageIsOneCta FAILED — the only button must be the plain Search submit');
+
+    const examples = [...main.matchAll(/<a class="lp-example" href="([^"]+)" data-pid="([^"]+)" data-native>([^<]+)<\/a>/g)]
+      .map((m) => `${m[1]}|${m[2]}|${m[3]}`);
+    const expectedExamples = [
+      '/problem/chronic-fatigue|chronic-fatigue|Tired all the time',
+      '/problem/knee-pain|knee-pain|Knee pain',
+      "/problem/insomnia|insomnia|Can't fall asleep",
+    ];
+    if (examples.length !== 3 || JSON.stringify(examples) !== JSON.stringify(expectedExamples)) fail.push(`ASSERTION landingPageIsOneCta FAILED — examples are ${JSON.stringify(examples)}, expected exactly ${JSON.stringify(expectedExamples)}`);
+    if ((main.match(/>Browse all<\/a>/g) || []).length !== 1 || !main.includes('<a class="lp-all" href="/solve">Browse all</a>')) fail.push('ASSERTION landingPageIsOneCta FAILED — home must have one plain Browse all link to /solve');
+    if (!flat.includes('<p class="lp-trust">Free to search and read. No account needed.</p>')) fail.push('ASSERTION landingPageIsOneCta FAILED — the compact trust line changed or disappeared');
+    if (words > 55) fail.push(`ASSERTION landingPageIsOneCta FAILED — home has ${words} visible words; the zero-slop budget is 55`);
+
+    const forbidden = [
+      ['lp-tap', 'old problem chips'], ['lp-door', 'old cause tree'], ['lp-red', 'old escalation row'],
+      ['data-total=', 'old library drawing'], ['<h2', 'a competing second heading'], ['<details', 'a disclosure'],
+      ['<svg', 'a decorative diagram'], ['/api/interest', 'the interest form'], ['type="email"', 'an email field'],
+      ['Count me in', 'the old interest submit'], ['Show me the root cause', 'the singular root-cause promise'],
+      ['Written with AI assistance', 'the repeated authorship disclosure'], ['How this page changes', 'the correction essay'],
+    ];
+    for (const [lit, what] of forbidden) if (main.includes(lit)) fail.push(`ASSERTION landingPageIsOneCta FAILED — the served home page contains ${what} (${lit})`);
+
     // THE TOPBAR SEARCH IS A REAL FORM ON EVERY PAGE (2026-08-09). It used to be an <input> in a
     // bare <div> with no <form> anywhere above it, so for the ~90% of traffic that never runs
-    // JavaScript the site's most prominent-looking control did nothing at all, on all 620 documents.
-    for (const r of ['/', '/solve', '/c/creatine-monohydrate']) {
+    // JavaScript the site's most prominent-looking control did nothing at all. Home deliberately
+    // hides this duplicate and uses the real hero form checked above; reading pages keep it.
+    for (const r of ['/solve', '/c/creatine-monohydrate']) {
       const h = await (await fetch(BASE + r)).text();
       if (!/<form class="tb-search" action="\/solve" method="get"[^>]*>\s*<input id="search" name="q"/.test(h)) fail.push(`ASSERTION landingPageIsOneCta FAILED — ${r} serves a topbar search that is not inside a real GET form; with JavaScript off it cannot be submitted.`);
     }

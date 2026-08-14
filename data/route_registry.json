@@ -1,0 +1,470 @@
+{
+  "_doc": [
+    "Canonical stable Topic to Route ids. Names are exact authored join keys: a rename fails build until this registry is updated without changing the id.",
+    "Route is generic: need topics render possible_cause; want topics render starting_point. Five composite official roots remain explicit umbrella routes instead of falling back to another route."
+  ],
+  "version": 1,
+  "topics": {
+    "knee-pain": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Hip & quad weakness with patellofemoral pain": "knee-pain--r01",
+        "Cartilage degeneration (early osteoarthritis)": "knee-pain--r02",
+        "Training-load error (patellar tendinopathy)": "knee-pain--r03",
+        "Excess body weight & metabolic-inflammatory load": "knee-pain--r04",
+        "IT band syndrome (lateral overload)": "knee-pain--r05",
+        "Meniscal / structural injury": "knee-pain--r06"
+      }
+    },
+    "low-back-pain": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Deconditioning + all-day sitting (weak posterior chain, tight hips)": "low-back-pain--r01",
+        "Poor motor control / core stability (the back that 'tweaks')": "low-back-pain--r02",
+        "Discogenic / radicular pain (disc degeneration or herniation)": "low-back-pain--r03",
+        "Facet (zygapophyseal) joint pain - the extension-pattern back": "low-back-pain--r04",
+        "Central sensitisation + poor sleep/stress (chronic, amplified pain)": "low-back-pain--r05",
+        "Vitamin D deficiency / nutritional contributor (minor modifier)": "low-back-pain--r06"
+      }
+    },
+    "neck-shoulder": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Sustained static neck/shoulder loading ('tech neck')": "neck-shoulder--r01",
+        "Stress-driven sustained trapezius tension": "neck-shoulder--r02",
+        "Myofascial trigger points (taut bands / knots)": "neck-shoulder--r03",
+        "Cervical facet (zygapophyseal) joint pain": "neck-shoulder--r04",
+        "Rotator-cuff related shoulder pain (impingement / tendinopathy)": "neck-shoulder--r05",
+        "Cervical radiculopathy / spondylosis (compressed nerve root)": "neck-shoulder--r06"
+      }
+    },
+    "hip-mobility": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Gluteal tendinopathy (greater trochanteric pain syndrome)": "hip-mobility--r01",
+        "Hip osteoarthritis": "hip-mobility--r02",
+        "Hip-flexor dominance & glute weakness from sitting": "hip-mobility--r03",
+        "Femoroacetabular impingement (FAI) / labral tear": "hip-mobility--r04",
+        "Referred pain from the lumbar spine": "hip-mobility--r05",
+        "Inflammatory arthritis (axial spondyloarthritis / sacroiliitis)": "hip-mobility--r06"
+      }
+    },
+    "elbow-wrist": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Load-capacity mismatch (overuse spike / deconditioned tendon)": "elbow-wrist--r01",
+        "Strain-concentrating technique & ergonomics": "elbow-wrist--r02",
+        "Inadequate recovery substrate (protein / vitamin C / sleep deficit)": "elbow-wrist--r03",
+        "Metabolic glycation (insulin resistance / type 2 diabetes / high sugar)": "elbow-wrist--r04",
+        "Drug- or hormone-driven collagen fragility (fluoroquinolones, low estrogen)": "elbow-wrist--r05"
+      }
+    },
+    "ankle-foot": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Plantar fasciopathy (plantar fasciitis)": "ankle-foot--r01",
+        "Chronic ankle instability (recurrent sprain)": "ankle-foot--r02",
+        "Achilles tendinopathy": "ankle-foot--r03",
+        "Osteoarthritis of the foot/ankle joint (incl. first-MTP hallux rigidus)": "ankle-foot--r04",
+        "Gout / crystal arthropathy": "ankle-foot--r05",
+        "Peripheral (metabolic/diabetic) neuropathy": "ankle-foot--r06"
+      }
+    },
+    "sarcopenia": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Physical inactivity & disuse (mechanical unloading)": "sarcopenia--r01",
+        "Anabolic resistance & inadequate protein/energy": "sarcopenia--r02",
+        "Neuromuscular junction degeneration & motor-unit loss": "sarcopenia--r03",
+        "Chronic low-grade inflammation ('inflammaging')": "sarcopenia--r04",
+        "Low vitamin D & anabolic hormone decline": "sarcopenia--r05"
+      }
+    },
+    "insulin-resistance": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Visceral & ectopic fat (fat spilling into liver and muscle)": "insulin-resistance--r01",
+        "Physical inactivity (the muscle glucose sink powered down)": "insulin-resistance--r02",
+        "Liquid sugar & fructose (fatty liver from the inside)": "insulin-resistance--r03",
+        "Short or fragmented sleep (incl. sleep apnea)": "insulin-resistance--r04",
+        "Chronic stress (cortisol-driven)": "insulin-resistance--r05"
+      }
+    },
+    "visceral-fat": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Chronic energy surplus": "visceral-fat--r01",
+        "Refined-carb / hyperinsulinemia-driven visceral & liver fat": "visceral-fat--r02",
+        "Sex-hormone shift (andropause in men / menopause in women)": "visceral-fat--r03",
+        "Cortisol / chronic-stress-driven storage": "visceral-fat--r04",
+        "Short sleep / circadian disruption": "visceral-fat--r05"
+      }
+    },
+    "chronic-fatigue": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Sleep debt & circadian disruption": "chronic-fatigue--r01",
+        "Iron deficiency (with or without anemia)": "chronic-fatigue--r02",
+        "Depression, chronic stress & burnout": "chronic-fatigue--r03",
+        "Blood-sugar swings & insulin resistance": "chronic-fatigue--r04",
+        "Hypothyroidism (overt; subclinical is contested)": "chronic-fatigue--r05",
+        "Mitochondrial inefficiency & cofactor depletion": "chronic-fatigue--r06"
+      }
+    },
+    "cravings": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Blood-sugar swings (reactive glucose dips)": "cravings--r01",
+        "Sleep debt (ghrelin up, reward drive up)": "cravings--r02",
+        "Chronic stress (cortisol-driven hedonic eating)": "cravings--r03",
+        "Under-eating protein (protein leverage)": "cravings--r04",
+        "Hyperpalatable food & reward conditioning (hedonic hunger)": "cravings--r05",
+        "Luteal-phase / premenstrual cravings (cyclical)": "cravings--r06"
+      }
+    },
+    "thyroid": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Hashimoto's autoimmune thyroiditis": "thyroid--r01",
+        "Iodine deficiency (or excess)": "thyroid--r02",
+        "Selenium deficiency — impaired T4-to-T3 conversion": "thyroid--r03",
+        "Iron / ferritin deficiency — impaired TPO synthesis": "thyroid--r04",
+        "Under-eating / chronic stress — functional low-T3 (non-thyroidal)": "thyroid--r05"
+      }
+    },
+    "blood-pressure": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Salt-sensitivity: high sodium, low potassium + endothelial nitric-oxide deficit": "blood-pressure--r01",
+        "Insulin resistance / metabolic syndrome (hyperinsulinemia)": "blood-pressure--r02",
+        "Obstructive sleep apnea & chronic sympathetic overdrive": "blood-pressure--r03",
+        "Aldosterone / RAAS overactivation (obesity-linked and primary aldosteronism)": "blood-pressure--r04",
+        "Arterial stiffness of aging (accelerated by alcohol & inactivity) → isolated systolic hypertension": "blood-pressure--r05"
+      }
+    },
+    "cholesterol": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Saturated-fat-heavy, low-soluble-fibre diet": "cholesterol--r01",
+        "Insulin resistance / metabolic dyslipidemia (visceral fat + sugar + alcohol)": "cholesterol--r02",
+        "Hypothyroidism (underactive thyroid)": "cholesterol--r03",
+        "Familial hypercholesterolemia (inherited receptor defect)": "cholesterol--r04",
+        "Menopausal estrogen decline": "cholesterol--r05"
+      }
+    },
+    "brain-fog": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Sleep debt & circadian disruption": "brain-fog--r01",
+        "Chronic stress, anxiety & depression": "brain-fog--r02",
+        "Blood-sugar swings / post-meal crashes": "brain-fog--r03",
+        "Nutrient deficiency (iron / B12 — plus weaker D / omega-3)": "brain-fog--r04",
+        "Chronic / post-viral neuroinflammation": "brain-fog--r05",
+        "Low thyroid / hormonal": "brain-fog--r06"
+      }
+    },
+    "anxiety": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Chronic stress / HPA-axis overdrive": "anxiety--r01",
+        "Stimulant load & substance rebound (caffeine, alcohol, nicotine)": "anxiety--r02",
+        "Blood-sugar instability / reactive hypoglycemia": "anxiety--r03",
+        "Sleep debt / short sleep": "anxiety--r04",
+        "Low GABAergic tone / magnesium-glutamate imbalance": "anxiety--r05",
+        "Dysfunctional breathing / chronic over-breathing (hypocapnia)": "anxiety--r06"
+      }
+    },
+    "low-mood": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Chronic stress / HPA-axis dysregulation": "low-mood--r01",
+        "Poor sleep / circadian disruption": "low-mood--r02",
+        "Social disconnection / behavioral withdrawal & inactivity": "low-mood--r03",
+        "Inflammatory / 'sickness-behavior' depression": "low-mood--r04",
+        "Nutrient deficiency (B12/folate, iron, omega-3, vitamin D)": "low-mood--r05",
+        "Hypothyroidism (overt)": "low-mood--r06"
+      }
+    },
+    "adhd-focus": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Intrinsic catecholamine dysregulation (heritable ADHD trait)": "adhd-focus--r01",
+        "Sleep debt / fragmented sleep (including sleep apnea)": "adhd-focus--r02",
+        "Underactive thyroid (hypothyroidism)": "adhd-focus--r03",
+        "Blood-sugar swings / post-meal glucose crashes": "adhd-focus--r04",
+        "Iron / ferritin deficiency": "adhd-focus--r05",
+        "Chronic stress / stress-driven catecholamine overshoot": "adhd-focus--r06"
+      }
+    },
+    "memory": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Cerebrovascular decline & chronic hypoperfusion": "memory--r01",
+        "Poor sleep quality & untreated sleep apnea": "memory--r02",
+        "Insulin resistance / metabolic ('type-3-diabetes' brain fuel failure)": "memory--r03",
+        "Chronic stress & cortisol overload": "memory--r04",
+        "Medication burden (anticholinergics & sedatives)": "memory--r05",
+        "Reversible deficiency: B12 / folate / thyroid": "memory--r06"
+      }
+    },
+    "burnout": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Unrecovered chronic stress load (HPA-axis dysregulation)": "burnout--r01",
+        "Chronic sleep debt and circadian misalignment": "burnout--r02",
+        "Low-grade inflammation (cytokine-driven sickness behaviour)": "burnout--r03",
+        "Iron / magnesium depletion (cellular-energy shortfall)": "burnout--r04"
+      }
+    },
+    "insomnia": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Cognitive-somatic hyperarousal (stress / racing mind)": "insomnia--r01",
+        "Circadian delay from evening light (late chronotype / DSPD)": "insomnia--r02",
+        "Caffeine and stimulants (blocked sleep pressure)": "insomnia--r03",
+        "Too little sleep pressure (bedtime before your sleep drive is ready)": "insomnia--r04",
+        "Warm body / bedroom (blunted core-temperature drop)": "insomnia--r05",
+        "Restless legs syndrome (iron-dopamine, urge to move)": "insomnia--r06",
+        "Conditioned (psychophysiological) arousal — 'trying' to sleep": "insomnia--r07"
+      }
+    },
+    "sleep-maintenance": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Stress-driven hyperarousal (HPA axis + sympathetic tone)": "sleep-maintenance--r01",
+        "Evening alcohol (rebound after it clears)": "sleep-maintenance--r02",
+        "Nocturnal glucose / counter-regulatory swing": "sleep-maintenance--r03",
+        "Obstructive sleep apnea": "sleep-maintenance--r04",
+        "Perimenopausal vasomotor waking (night sweats)": "sleep-maintenance--r05",
+        "Depression-linked early-morning (terminal) awakening": "sleep-maintenance--r06"
+      }
+    },
+    "shift-work": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Central clock (SCN) misalignment from mistimed light": "shift-work--r01",
+        "Fragmented daytime sleep (circadian-homeostatic opposition)": "shift-work--r02",
+        "Suppressed / delayed melatonin from light at night": "shift-work--r03",
+        "Peripheral clock desync from eating at night": "shift-work--r04",
+        "Mistimed caffeine and alcohol": "shift-work--r05"
+      }
+    },
+    "low-testosterone": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Visceral obesity / metabolic syndrome (obesity-related secondary hypogonadism)": "low-testosterone--r01",
+        "Chronic sleep debt and obstructive sleep apnea": "low-testosterone--r02",
+        "Chronic stress and overtraining / low energy availability (cortisol-driven)": "low-testosterone--r03",
+        "Micronutrient deficiency (zinc, vitamin D, magnesium) or chronic underfuelling": "low-testosterone--r04",
+        "Testicular or pituitary failure, incl. anabolic-steroid-induced (clinical primary or organic secondary hypogonadism)": "low-testosterone--r05"
+      }
+    },
+    "menopause": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Vasomotor instability (hot flushes & night sweats) — hypothalamic KNDy hyperactivity": "menopause--r01",
+        "Brain estrogen withdrawal — low mood, irritability & brain fog": "menopause--r02",
+        "Progesterone / allopregnanolone withdrawal — perimenopausal anxiety & insomnia": "menopause--r03",
+        "Genitourinary syndrome of menopause (GSM) — vaginal & urinary atrophy": "menopause--r04",
+        "Accelerated bone loss — estrogen-deprivation osteoporosis": "menopause--r05",
+        "Musculoskeletal syndrome of menopause — joint aches, stiffness & muscle loss": "menopause--r06"
+      }
+    },
+    "low-libido": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Chronic stress / elevated cortisol": "low-libido--r01",
+        "Sleep debt / poor sleep (incl. sleep apnea)": "low-libido--r02",
+        "Sex-hormone deficiency (metabolic low-T in men; menopause/OCP in women)": "low-libido--r03",
+        "Medication side effect (SSRIs, hormonal contraceptives, finasteride, beta-blockers)": "low-libido--r04",
+        "Depression / psychological & relationship factors": "low-libido--r05"
+      }
+    },
+    "bone-density": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Estrogen deficiency (post-menopausal bone loss)": "bone-density--r01",
+        "Vitamin-D / calcium deficiency (secondary hyperparathyroidism)": "bone-density--r02",
+        "Mechanical unloading + sarcopenia (disuse)": "bone-density--r03",
+        "Inadequate dietary protein (matrix substrate shortfall)": "bone-density--r04",
+        "Glucocorticoid-induced bone loss (long-term steroids / Cushing's)": "bone-density--r05",
+        "Sex-hormone deficiency in men (low testosterone / estradiol)": "bone-density--r06"
+      }
+    },
+    "pcos": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Insulin resistance & compensatory hyperinsulinemia": "pcos--r01",
+        "Neuroendocrine drive — elevated LH / GnRH pulse frequency": "pcos--r02",
+        "Adrenal androgen excess (DHEA-S predominant)": "pcos--r03",
+        "Chronic low-grade inflammation": "pcos--r04"
+      }
+    },
+    "skin-aging": {
+      "route_kind": "starting_point",
+      "routes": {
+        "UV photoaging": "skin-aging--r01",
+        "Intrinsic chronological aging (fibroblast senescence)": "skin-aging--r02",
+        "Dietary glycation (AGE cross-linking)": "skin-aging--r03",
+        "Repetitive facial expression (dynamic to static wrinkles)": "skin-aging--r04",
+        "Estrogen decline (perimenopause and menopause)": "skin-aging--r05",
+        "Smoking and air pollution (oxidative/AhR load)": "skin-aging--r06"
+      }
+    },
+    "acne": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Insulin / IGF-1 diet axis (high-glycemic carbs + dairy)": "acne--r01",
+        "Androgen-driven (hormonal / jawline) acne": "acne--r02",
+        "Follicular plugging + C. acnes inflammation": "acne--r03",
+        "Cosmetic / mechanical (acne cosmetica & barrier damage)": "acne--r04",
+        "Stress / cortisol / poor sleep": "acne--r05"
+      }
+    },
+    "hair-loss": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Androgenetic (DHT-sensitive, pattern) hair loss": "hair-loss--r01",
+        "Telogen effluvium (systemic stressor / drug-induced shedding)": "hair-loss--r02",
+        "Iron / ferritin (and protein) deficiency": "hair-loss--r03",
+        "Thyroid dysfunction": "hair-loss--r04",
+        "Scalp microinflammation / seborrheic dermatitis": "hair-loss--r05"
+      }
+    },
+    "longevity": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Insulin resistance & metabolic dysfunction": "longevity--r01",
+        "Low cardiorespiratory fitness & sarcopenia (physical inactivity)": "longevity--r02",
+        "Chronic low-grade inflammation (inflammaging)": "longevity--r03",
+        "Chronic mTOR over-activation & impaired autophagy (over-nutrition)": "longevity--r04",
+        "Mitochondrial decline, NAD+ depletion & cellular senescence": "longevity--r05"
+      }
+    },
+    "inflammation": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Visceral adiposity (metabolic inflammation)": "inflammation--r01",
+        "High-sugar / ultra-processed diet (glucose spikes & AGEs)": "inflammation--r02",
+        "Physical inactivity / sedentary behaviour (myokine loss)": "inflammation--r03",
+        "Gut dysbiosis / metabolic endotoxemia (leaky gut)": "inflammation--r04",
+        "Chronic stress & short sleep (glucocorticoid resistance)": "inflammation--r05",
+        "Inflammaging (senescent-cell burden)": "inflammation--r06"
+      }
+    },
+    "gut-health": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Dysbiosis / low fibre diversity": "gut-health--r01",
+        "Stress / gut-brain axis dysregulation (IBS spectrum)": "gut-health--r02",
+        "Food intolerance (FODMAPs / lactose)": "gut-health--r03",
+        "SIBO / impaired motility": "gut-health--r04",
+        "Bile-acid malabsorption (chronic-diarrhoea subtype)": "gut-health--r05",
+        "Medication & lifestyle disruptors": "gut-health--r06"
+      }
+    },
+    "immunity": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Chronic short sleep": "immunity--r01",
+        "Micronutrient gaps (vitamin D, zinc, vitamin C)": "immunity--r02",
+        "Chronic psychological stress": "immunity--r03",
+        "Poor metabolic health / high blood sugar": "immunity--r04",
+        "Gut dysbiosis / low-fiber diet": "immunity--r05"
+      }
+    },
+    "hypertrophy": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Stalled progressive overload (stimulus no longer increasing)": "hypertrophy--r01",
+        "Under-eating — inadequate energy availability or protein": "hypertrophy--r02",
+        "Under-recovery and poor sleep": "hypertrophy--r03",
+        "Insufficient training volume (too few hard sets per muscle)": "hypertrophy--r04",
+        "Age-related anabolic resistance": "hypertrophy--r05"
+      }
+    },
+    "strength-plateau": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Stalled progressive overload (stimulus habituation)": "strength-plateau--r01",
+        "Accumulated fatigue masking fitness (no deload / overreaching)": "strength-plateau--r02",
+        "Under-fuelling / low energy availability": "strength-plateau--r03",
+        "Sleep debt (impaired recovery, catabolic tilt)": "strength-plateau--r04",
+        "Rep-level substrate & buffering ceiling": "strength-plateau--r05"
+      }
+    },
+    "fat-loss-plateau": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Adherence drift / calorie creep (the deficit quietly closed)": "fat-loss-plateau--r01",
+        "NEAT suppression (you unconsciously move less)": "fat-loss-plateau--r02",
+        "Metabolic adaptation (adaptive thermogenesis — resting burn dialed down)": "fat-loss-plateau--r03",
+        "Cortisol-driven water retention (fat is leaving; the scale is lying)": "fat-loss-plateau--r04",
+        "Muscle loss lowering resting metabolism": "fat-loss-plateau--r05"
+      }
+    },
+    "endurance-plateau": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Stale, monotonous training (gray-zone drift + no progressive overload)": "endurance-plateau--r01",
+        "Under-recovery / non-functional overreaching": "endurance-plateau--r02",
+        "Low energy / carbohydrate availability (under-fueling, RED-S)": "endurance-plateau--r03",
+        "Iron deficiency / low ferritin": "endurance-plateau--r04",
+        "Missing high-intensity stimulus (lactate-buffering / VO2max ceiling)": "endurance-plateau--r05"
+      }
+    },
+    "pre-workout": {
+      "route_kind": "starting_point",
+      "routes": {
+        "Under-fuelling / depleted glycogen": "pre-workout--r01",
+        "Sleep debt": "pre-workout--r02",
+        "Under-recovery / accumulated training fatigue (overreaching)": "pre-workout--r03",
+        "Caffeine tolerance / dependence": "pre-workout--r04",
+        "Dehydration": "pre-workout--r05",
+        "Iron deficiency (low ferritin)": "pre-workout--r06"
+      }
+    },
+    "overtraining": {
+      "route_kind": "possible_cause",
+      "routes": {
+        "Low energy availability / under-fuelling (RED-S)": "overtraining--r01",
+        "Autonomic imbalance from training-load monotony (no deload / no periodisation)": "overtraining--r02",
+        "Sleep debt / poor sleep quality": "overtraining--r03",
+        "Cumulative life stress / high allostatic load": "overtraining--r04",
+        "Systemic inflammation from muscle damage (cytokine overload)": "overtraining--r05"
+      }
+    }
+  },
+  "legacy": {
+    "thyroid/subclinical-hypothyroid": {
+      "id": "thyroid--legacy-subclinical-hypothyroid",
+      "route_kind": "umbrella",
+      "name": "Sluggish thyroid / nutrient deficits",
+      "branchable": true
+    },
+    "brain-fog/neuroinflammation": {
+      "id": "brain-fog--legacy-neuroinflammation",
+      "route_kind": "umbrella",
+      "name": "Neuroinflammation / poor metabolic control",
+      "branchable": true
+    },
+    "low-mood/monoamine-inflammation": {
+      "id": "low-mood--legacy-monoamine-inflammation",
+      "route_kind": "umbrella",
+      "name": "Low monoamines + inflammation",
+      "branchable": true
+    },
+    "inflammation/low-grade-inflammation": {
+      "id": "inflammation--legacy-low-grade-inflammation",
+      "route_kind": "umbrella",
+      "name": "Chronic low-grade inflammation",
+      "branchable": true
+    },
+    "pre-workout/low-readiness": {
+      "id": "pre-workout--legacy-low-readiness",
+      "route_kind": "umbrella",
+      "name": "Low training readiness",
+      "branchable": true
+    }
+  }
+}

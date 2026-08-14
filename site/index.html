@@ -26,18 +26,12 @@
 <body>
 <a class="skip-link" href="#app">Skip to content</a>
 <div id="route-status" role="status" aria-live="polite" class="sr-only"></div>
-<!-- The two "171"s above and below are the CORPUS SIZE, and this file is the one document the
-     build does not generate. Both were "170" until 2026-08-02 while the corpus held 171 — and the
-     header on this very page printed "Search 170 compounds" directly above an /az toolbar reading
-     "Filter 171 compounds by name…", because that one is interpolated. The placeholder also said
-     "pathways" where every prerendered page said "protocols": two headers, one site.
-     assertCorpusCountCopy() in build/prerender.js now fails the build on any served document whose
-     corpus count disagrees with site/data.js, this file included. When it fails, it prints the
-     exact string to type. -->
+<!-- This is the one shell the build does not generate. Header wording must stay in parity with the
+     generated shell below; the build gate compares both documents and fails on drift. -->
 <header class="topbar">
-  <a href="#/" class="brand">🧬 RNA<span>wiki</span></a>
+  <a href="#/" class="brand"><span aria-hidden="true">🧬</span> RNA<span>wiki</span></a>
   <div class="search-wrap">
-    <form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search 171 compounds, protocols, terms…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form>
+    <form class="tb-search" action="/solve" method="get" role="search"><input id="search" name="q" type="search" placeholder="Search problems, goals, or protocols…" autocomplete="off" spellcheck="false"><label class="sr-only" for="search">Search RNAwiki</label></form>
     <div id="search-results" class="search-results" hidden></div>
   </div>
   <!-- THIS NAV MUST STAY BYTE-IDENTICAL TO THE ONE build/prerender.js shell() EMITS, modulo
@@ -46,7 +40,7 @@
        separate ways before that gate existed. The ☰ and the three .nav-more anchors were deleted on
        2026-08-13; see site/styles.css for why. -->
   <nav class="topnav" aria-label="Main">
-    <a href="/solve" class="nav-solve">Problems</a><a href="/goals" data-native>Goals</a><a href="/az">A&ndash;Z</a>
+    <a href="/solve" class="nav-solve">Find</a><a href="/plan">Today</a><a href="/studio">Create</a>
   </nav>
   <span id="account-slot" class="account-slot"></span>
 </header>
@@ -83,7 +77,6 @@
 <footer class="foot">
   <div>Information, not medical advice. No clinician has reviewed these pages and nothing on them is a diagnosis. If something is severe, sudden or getting worse, call your local emergency number &mdash; <b>995</b> in Singapore, or 999, 911, 112 or 000 depending on where you are &mdash; and be seen.</div>
   <div class="foot-links"><a href="/about">About</a> &middot; <a href="/methodology" data-native>How a page is made</a> &middot; <a href="/az">Everything A&ndash;Z</a></div>
-  <div class="foot-stats" id="foot-stats"></div>
 </footer>
 
 <!-- Absolute, not relative (fixed 2026-07-30). With src="data.js", any SPA route with two or

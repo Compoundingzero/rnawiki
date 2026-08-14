@@ -12,7 +12,12 @@
     "test:safety": "node scripts/studio-safety.test.mjs",
     "test:privacy": "node scripts/privacy-security.test.mjs",
     "test:guidance": "node scripts/solve-guidance.test.mjs",
-    "gate": "npm run prestart && npm run containment && npm run test:safety && npm run test:privacy && npm run test:guidance"
+    "test:rewards": "node scripts/reward-confinement.test.mjs",
+    "test:community": "node scripts/protocol-community.test.mjs",
+    "test:discovery": "node scripts/creator-discovery.test.mjs",
+    "test:backup": "node scripts/backup-contract.test.mjs",
+    "test:release-db": "node scripts/release-db.test.mjs",
+    "gate": "npm run prestart && npm run containment && npm run test:safety && npm run test:privacy && npm run test:guidance && npm run test:rewards && npm run test:community && npm run test:discovery && npm run test:backup"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",

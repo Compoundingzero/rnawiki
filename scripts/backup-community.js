@@ -1,64 +1,259 @@
 #!/usr/bin/env node
-// Export all community-generated data from Postgres to backups/*.json so it is
-// durably versioned in GitHub (see .github/workflows/backup-community.yml).
+// Snapshot a deliberately coarse, non-identifying public signal from a dedicated read-only view.
+// This is not a database backup. Git history is permanent and cannot honour row-level erasure, so
+// creator protocols, free text, accounts, raw votes and health/accountability records stay out.
+// Encrypted Postgres PITR is still required; see docs/BACKUP_RECOVERY.md.
 //
-// What it backs up: comments, compound edits (+ full history), Tier-1 votes,
-// Tier-2 stewardship proposals + endorsements/flags, and expert-domain info.
-// It deliberately EXCLUDES password hashes and emails (secrets/PII) — only the
-// public contribution data is exported.
-//
-// Idempotent: rows are ordered by id so unchanged data produces an identical file
-// (the CI job commits only when something actually changed).
-//
-// Run: DATABASE_URL=postgres://... node scripts/backup-community.js
+// Run with the dedicated URL, never the application URL:
+//   PUBLIC_SNAPSHOT_DATABASE_URL=postgres://rnawiki_public_snapshot_v1:... node scripts/backup-community.js
 
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { Pool } = require('pg');
 
-const URL = process.env.DATABASE_URL;
-if (!URL) { console.error('[backup] DATABASE_URL not set — nothing to back up.'); process.exit(process.env.CI ? 0 : 1); }
-
 const OUT = path.join(__dirname, '..', 'backups');
-const pool = new Pool({ connectionString: URL, ssl: process.env.PGSSL === '0' ? false : { rejectUnauthorized: false }, max: 3 });
+const EXPECTED_DB_ROLE = 'rnawiki_public_snapshot_v1';
+const EXPECTED_VIEW = 'public_git_vote_snapshot_v1';
 
-// table -> SQL (ordered for stable diffs; no secrets)
-const EXPORTS = {
-  users: `SELECT id, username, role, domain, credential, domain_verified, created_at
-          FROM users ORDER BY id`,
-  comments: `SELECT c.id, c.goal_id, c.body, c.created_at, u.username
-             FROM comments c JOIN users u ON u.id=c.user_id ORDER BY c.id`,
-  edits: `SELECT e.id, e.compound_id, e.compound_name, e.fields, e.note, e.created_at, u.username
-          FROM edits e JOIN users u ON u.id=e.user_id ORDER BY e.id`,
-  votes: `SELECT target_id, value, created_at FROM votes ORDER BY target_id, created_at`,
-  proposals: `SELECT p.id, p.problem_id, p.root_cause_id, p.layer, p.domain, p.change, p.evidence,
-                     p.status, p.created_at, u.username
-              FROM proposals p JOIN users u ON u.id=p.user_id ORDER BY p.id`,
-  proposal_actions: `SELECT a.id, a.proposal_id, a.action, a.note, a.created_at, u.username
-                     FROM proposal_actions a JOIN users u ON u.id=a.user_id ORDER BY a.id`,
-};
+// The view, not this client, owns aggregation and suppression. It exposes only targets with at
+// least ten votes in one displayed direction, rounded down to tens. Runtime validation below
+// repeats that contract so a drifted or replaced view fails before any file is written.
+const PUBLIC_EXPORTS = Object.freeze({
+  vote_totals: `SELECT target_id, up_bucket, down_bucket
+                FROM public.public_git_vote_snapshot_v1
+                ORDER BY target_id`,
+});
 
-(async () => {
-  fs.mkdirSync(OUT, { recursive: true });
-  const manifest = { generated_at: new Date().toISOString(), counts: {} };
-  for (const [name, sql] of Object.entries(EXPORTS)) {
-    try {
-      const r = await pool.query(sql);
-      fs.writeFileSync(path.join(OUT, name + '.json'), JSON.stringify(r.rows, null, 2) + '\n');
-      manifest.counts[name] = r.rowCount;
-      console.log(`[backup] ${name}: ${r.rowCount} rows`);
-    } catch (e) {
-      // a table may not exist yet on a fresh DB — record it and continue
-      manifest.counts[name] = null;
-      console.warn(`[backup] ${name}: skipped (${e.message})`);
+const ROLE_SQL = `SELECT current_user AS role, r.rolsuper, r.rolcreaterole, r.rolcreatedb,
+                         r.rolreplication, r.rolbypassrls,
+                         EXISTS (SELECT 1 FROM pg_auth_members m WHERE m.member=r.oid) AS has_memberships
+                  FROM pg_roles r WHERE r.rolname=current_user`;
+
+// Check effective privileges, including grants inherited through another role or PUBLIC. The
+// snapshot credential may read exactly one view and may not mutate any relation in public.
+const PRIVILEGE_SQL = `SELECT n.nspname AS schema_name, c.relname AS relation_name,
+                              has_table_privilege(current_user,c.oid,'SELECT') AS can_select,
+                              has_table_privilege(current_user,c.oid,'INSERT') AS can_insert,
+                              has_table_privilege(current_user,c.oid,'UPDATE') AS can_update,
+                              has_table_privilege(current_user,c.oid,'DELETE') AS can_delete,
+                              has_table_privilege(current_user,c.oid,'TRUNCATE') AS can_truncate,
+                              has_table_privilege(current_user,c.oid,'REFERENCES') AS can_references,
+                              has_table_privilege(current_user,c.oid,'TRIGGER') AS can_trigger
+                       FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace
+                       WHERE n.nspname='public' AND c.relkind IN ('r','p','v','m','f') AND (
+                         has_table_privilege(current_user,c.oid,'SELECT') OR
+                         has_table_privilege(current_user,c.oid,'INSERT') OR
+                         has_table_privilege(current_user,c.oid,'UPDATE') OR
+                         has_table_privilege(current_user,c.oid,'DELETE') OR
+                         has_table_privilege(current_user,c.oid,'TRUNCATE') OR
+                         has_table_privilege(current_user,c.oid,'REFERENCES') OR
+                         has_table_privilege(current_user,c.oid,'TRIGGER'))
+                       ORDER BY n.nspname,c.relname`;
+
+const SNAPSHOT_README = `# RNAwiki coarse public-signal snapshot
+
+This directory is generated by \`scripts/backup-community.js\`. It contains only rounded vote
+totals for official protocol-layer ids with at least ten votes in one displayed direction. Totals
+are rounded down to tens. Creator-stack/request targets, raw votes, voter keys, timestamps, account
+fields, free text, creator protocols, memberships, discussion posts, moderation events, plans,
+experiments, check-ins, biomarkers, wearable data and other health/accountability records stay out.
+
+This is not a database backup. It cannot recover accounts, ownership, protocols, private content,
+relational history or a runnable database, and this job does not test a Postgres restore. Those
+records depend on encrypted Postgres point-in-time recovery, a defined retention period and
+periodic restore drills. See \`docs/BACKUP_RECOVERY.md\` in the application repository.
+`;
+
+function jsonText(value) {
+  return JSON.stringify(value, null, 2) + '\n';
+}
+
+function digest(text) {
+  return crypto.createHash('sha256').update(text).digest('hex');
+}
+
+function assertDedicatedRole(roleRows, privilegeRows) {
+  if (!Array.isArray(roleRows) || roleRows.length !== 1) {
+    throw new Error('could not verify the dedicated snapshot database role');
+  }
+  const role = roleRows[0];
+  if (role.role !== EXPECTED_DB_ROLE || role.rolsuper || role.rolcreaterole || role.rolcreatedb
+      || role.rolreplication || role.rolbypassrls || role.has_memberships) {
+    throw new Error(`database role is not the restricted ${EXPECTED_DB_ROLE} role`);
+  }
+  if (!Array.isArray(privilegeRows) || privilegeRows.length !== 1) {
+    throw new Error('snapshot role must have privileges on exactly one public relation');
+  }
+  const grant = privilegeRows[0];
+  if (grant.schema_name !== 'public' || grant.relation_name !== EXPECTED_VIEW || !grant.can_select
+      || grant.can_insert || grant.can_update || grant.can_delete || grant.can_truncate
+      || grant.can_references || grant.can_trigger) {
+    throw new Error(`snapshot role may only SELECT public.${EXPECTED_VIEW}`);
+  }
+}
+
+function validateRows(name, input) {
+  if (name !== 'vote_totals' || !Array.isArray(input)) throw new Error(`unknown export ${name}`);
+  const seen = new Set();
+  return input.map((row, index) => {
+    if (!row || typeof row !== 'object' || Array.isArray(row)
+        || JSON.stringify(Object.keys(row).sort()) !== JSON.stringify(['down_bucket', 'target_id', 'up_bucket'])) {
+      throw new Error(`vote_totals row ${index} has fields outside the public schema`);
+    }
+    const target = row.target_id;
+    const up = row.up_bucket;
+    const down = row.down_bucket;
+    if (typeof target !== 'string'
+        || !/^[a-z0-9][a-z0-9_-]{0,63}:[a-z0-9][a-z0-9_-]{0,79}:(?:move|fuel|stack)$/.test(target)) {
+      throw new Error(`vote_totals row ${index} has a non-canonical target id`);
+    }
+    if (!Number.isInteger(up) || !Number.isInteger(down) || up < 0 || down < 0
+        || up % 10 !== 0 || down % 10 !== 0 || up + down < 10) {
+      throw new Error(`vote_totals row ${index} is not a suppressed ten-vote bucket`);
+    }
+    if (seen.has(target)) throw new Error(`vote_totals repeats target ${target}`);
+    seen.add(target);
+    return { target_id: target, up_bucket: up, down_bucket: down };
+  });
+}
+
+function verifySnapshot(outDir = OUT) {
+  const expectedFiles = [
+    ...Object.keys(PUBLIC_EXPORTS).map((name) => `${name}.json`),
+    'README.md',
+    'manifest.json',
+  ].sort();
+  const actualFiles = fs.readdirSync(outDir, { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name)
+    .sort();
+  if (JSON.stringify(actualFiles) !== JSON.stringify(expectedFiles)) {
+    throw new Error(`snapshot file set is not allowlisted: ${actualFiles.join(', ')}`);
+  }
+  const manifest = JSON.parse(fs.readFileSync(path.join(outDir, 'manifest.json'), 'utf8'));
+  if (manifest.schema_version !== 3 || manifest.scope !== 'coarse-public-signals') {
+    throw new Error('snapshot manifest policy is missing or out of date');
+  }
+  if (JSON.stringify(manifest.exports) !== JSON.stringify(Object.keys(PUBLIC_EXPORTS))) {
+    throw new Error('snapshot manifest export list is incomplete');
+  }
+  for (const name of Object.keys(PUBLIC_EXPORTS)) {
+    const file = `${name}.json`;
+    const body = fs.readFileSync(path.join(outDir, file), 'utf8');
+    const parsed = validateRows(name, JSON.parse(body));
+    if (manifest.counts[name] !== parsed.length) {
+      throw new Error(`${file} count does not match its manifest`);
+    }
+    if (manifest.sha256[file] !== digest(body)) {
+      throw new Error(`${file} checksum does not match its manifest`);
     }
   }
-  fs.writeFileSync(path.join(OUT, 'manifest.json'), JSON.stringify(manifest, null, 2) + '\n');
-  fs.writeFileSync(path.join(OUT, 'README.md'),
-    '# Community backup\n\nAutomated JSON snapshots of PBswiki community data (comments, edits, ' +
-    'votes, stewardship proposals, expert domains). Written by `scripts/backup-community.js` via ' +
-    'GitHub Actions. Password hashes and emails are intentionally excluded.\n\n' +
-    'To restore, load these JSON rows back into the matching Postgres tables (schema in `db.js`).\n');
-  await pool.end();
-  console.log('[backup] wrote', OUT, JSON.stringify(manifest.counts));
-})().catch((e) => { console.error('[backup] FAILED', e.message); process.exit(1); });
+  return manifest;
+}
+
+async function exportPublicSnapshot({ url, outDir = OUT, poolFactory, ca } = {}) {
+  if (!url) throw new Error('PUBLIC_SNAPSHOT_DATABASE_URL is required');
+  if (/sslmode=(?:disable|allow|prefer|require|no-verify)/i.test(url)) {
+    throw new Error('snapshot database URL must not weaken TLS verification with sslmode');
+  }
+  const makePool = poolFactory || ((connectionString) => new Pool({
+    connectionString,
+    ssl: { rejectUnauthorized: true, ...(ca ? { ca } : {}) },
+    application_name: 'rnawiki-public-snapshot-v1',
+    max: 1,
+  }));
+  const pool = makePool(url);
+  let client;
+  const rows = {};
+
+  try {
+    client = await pool.connect();
+    await client.query('BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY');
+    await client.query("SET LOCAL statement_timeout = '120s'");
+    const role = await client.query(ROLE_SQL);
+    const privileges = await client.query(PRIVILEGE_SQL);
+    assertDedicatedRole(role.rows, privileges.rows);
+    for (const [name, sql] of Object.entries(PUBLIC_EXPORTS)) {
+      try {
+        const result = await client.query(sql);
+        rows[name] = validateRows(name, result.rows);
+        console.log(`[snapshot] ${name}: ${rows[name].length} coarse rows`);
+      } catch (error) {
+        throw new Error(`required export ${name} failed: ${error.message}`, { cause: error });
+      }
+    }
+    await client.query('COMMIT');
+  } catch (error) {
+    if (client) await client.query('ROLLBACK').catch(() => {});
+    throw error;
+  } finally {
+    if (client) client.release();
+    await pool.end();
+  }
+
+  const stage = path.join(path.dirname(outDir), `.${path.basename(outDir)}-stage-${process.pid}`);
+  const previous = path.join(path.dirname(outDir), `.${path.basename(outDir)}-previous-${process.pid}`);
+  fs.rmSync(stage, { recursive: true, force: true });
+  fs.rmSync(previous, { recursive: true, force: true });
+  fs.mkdirSync(stage, { recursive: true });
+  try {
+    const counts = {};
+    const sha256 = {};
+    for (const name of Object.keys(PUBLIC_EXPORTS)) {
+      const body = jsonText(rows[name]);
+      fs.writeFileSync(path.join(stage, `${name}.json`), body);
+      counts[name] = rows[name].length;
+      sha256[`${name}.json`] = digest(body);
+    }
+    fs.writeFileSync(path.join(stage, 'README.md'), SNAPSHOT_README);
+    fs.writeFileSync(path.join(stage, 'manifest.json'), jsonText({
+      schema_version: 3,
+      scope: 'coarse-public-signals',
+      exports: Object.keys(PUBLIC_EXPORTS),
+      counts,
+      sha256,
+    }));
+    if (fs.existsSync(outDir)) fs.renameSync(outDir, previous);
+    try {
+      fs.renameSync(stage, outDir);
+      fs.rmSync(previous, { recursive: true, force: true });
+    } catch (error) {
+      if (!fs.existsSync(outDir) && fs.existsSync(previous)) fs.renameSync(previous, outDir);
+      throw error;
+    }
+  } catch (error) {
+    fs.rmSync(stage, { recursive: true, force: true });
+    throw error;
+  }
+
+  console.log('[snapshot] wrote complete coarse public snapshot', outDir);
+}
+
+async function main() {
+  await exportPublicSnapshot({
+    url: process.env.PUBLIC_SNAPSHOT_DATABASE_URL,
+    ca: process.env.PUBLIC_SNAPSHOT_DB_CA || undefined,
+  });
+  verifySnapshot();
+}
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error('[snapshot] FAILED', error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = {
+  EXPECTED_DB_ROLE,
+  EXPECTED_VIEW,
+  PUBLIC_EXPORTS,
+  ROLE_SQL,
+  PRIVILEGE_SQL,
+  SNAPSHOT_README,
+  assertDedicatedRole,
+  validateRows,
+  exportPublicSnapshot,
+  verifySnapshot,
+};
