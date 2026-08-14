@@ -774,10 +774,9 @@
   // ME starts null, and null also means "signed out", so any renderer that branches on ME before
   // api.me() has answered treats every signed-in reader as signed out. MEASURED against the real
   // database: a DIRECT load of /me rendered Following, Logged, Built and Your account — and NOT
-  // "Your mark" or "Your public page", because both are gated on ME. Navigating to /me from inside
-  // the app rendered both. So the avatar shop has been invisible to anyone who bookmarked, refreshed
-  // or followed a link to /me, which is every way you actually arrive there. Same class as
-  // mountCommunityStrip() running before api.config(); this promise is the fix for that class.
+  // “Your public page”, because it is gated on ME. Navigating to /me from inside the app rendered
+  // it. Same class as mountCommunityStrip() running before api.config(); this promise is the fix
+  // for that class.
   let ME_READY = null;   // set at boot to the api.me() promise, awaited by anything that reads ME
   let FUEL_TARGETS = null; // the current protocol's nutrient_targets — lets "add a food" highlight what THIS protocol tracks
   // Super-admin (Control Room) access — robust: is_super from the server OR the owner's own email
@@ -7515,7 +7514,7 @@
     // KEYSTONE … Nail this one thing and the rest compounds" (y median 17,687). Phase 1 made it 4
     // (median 4, min 4, max 6, on 52/52). Phase 1 is now the one thing to DO, and this block is
     // orientation prose, so it says what it is instead of competing for the same words.
-    return `<div class="one-thing-head"><span class="oth-badge">⭐ Before you start — what actually matters in this cause</span>${mdBlocks(w.theOneThing, mdInline)}<a class="oth-jump" data-scroll="p-causes">See the full cause-by-cause plan ↓</a></div>`;
+    return `<div class="one-thing-head"><span class="oth-badge">⭐ Before you start — what actually matters in this cause</span>${mdBlocks(w.theOneThing, mdInline)}<a class="oth-jump" href="#p-causes" data-scroll="p-causes">See the full cause-by-cause plan ↓</a></div>`;
   }
   // Short symptom teaser for the accordion header — authored `hook`, else the first clause of the symptoms.
   function causeHook(c) {
@@ -9263,7 +9262,7 @@
         ${pfaq}
         <div id="goal-comments" class="page-discuss"></div>
         <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a class="flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Flag this &rarr;</a></p>
-        <p class="proto-foot muted">Educational protocol, not medical advice. Nutrient targets are general adult guidance with a stated reason. · <button class="linkbtn" id="cite-proto">Cite this protocol</button></p>
+        <p class="proto-foot muted">Educational protocol, not medical advice. Nutrient targets are general adult guidance with a stated reason. · <button type="button" class="linkbtn" id="cite-proto">Cite this protocol</button></p>
       </div>`;
     mountAdoption(problem, rc);
     mountPublicOutcome(problem, rc);
@@ -10604,72 +10603,6 @@
   //   streak/longest  planStreak()/longestStreak() — the same witnessed-day boundary /plan uses.
   //   published/draft counts of the reader's OWN studio_protocols rows.
   //   joined          the join MONTH, never the day.
-  // ---- THE AVATAR, AND THE ONLY PLACE IT EXISTS (2026-08-13) ---------------------------------
-  // A ring colour and a small mark. That is the whole thing, deliberately: the concept video showed
-  // a jacket-and-trainers shop, and items that look like physical goods imply a shop that ships
-  // them. This is identity without commerce — nothing here can be bought with money, sold,
-  // transferred or cashed out, and the only way to a balance is a contribution somebody else
-  // accepted. assertGamificationConfinement() in build/prerender.js fails the build if any of this
-  // reaches a page where a reader is deciding what to put in their body.
-  const AV_RING = { 'ring-slate': '#5c6a7a', 'ring-teal': '#0f766e', 'ring-amber': '#a35a00', 'ring-violet': '#7c3aed' };
-  function avatarSvg(av, handle) {
-    const a = av || {};
-    const ring = AV_RING[a.ring] || AV_RING['ring-slate'];
-    const initial = String(handle || '?').replace(/^@/, '').charAt(0).toUpperCase() || '?';
-    const mark = a.mark === 'mark-dot' ? `<circle cx="34" cy="34" r="4" fill="${ring}"/>`
-      : a.mark === 'mark-bar' ? `<rect x="27" y="32" width="14" height="4" rx="2" fill="${ring}"/>`
-      : a.mark === 'mark-helix' ? `<path d="M27 27c7 4 7 10 14 14M41 27c-7 4-7 10-14 14" stroke="${ring}" stroke-width="2.4" fill="none" stroke-linecap="round"/>`
-      : '';
-    return `<svg class="av" viewBox="0 0 68 76" role="img" aria-label="Your avatar">
-      <circle cx="34" cy="22" r="17" fill="none" stroke="${ring}" stroke-width="3"/>
-      <text x="34" y="29" text-anchor="middle" font-size="18" font-weight="700" fill="${ring}">${esc(initial)}</text>
-      ${mark}</svg>`;
-  }
-
-  async function mountAvatarShop() {
-    const host = document.getElementById('avatar-shop');
-    if (!host || !ME) return;
-    let st;
-    try {
-      const r = await fetch('/api/avatar', { headers: { accept: 'application/json' } });
-      if (!r.ok) return;
-      st = await r.json();
-    } catch (e) { return; }
-    const draw = () => {
-      const bySlot = { ring: [], mark: [] };
-      (st.items || []).forEach((it) => { (bySlot[it.slot] || (bySlot[it.slot] = [])).push(it); });
-      const row = (it) => {
-        const owned = (st.owned || []).indexOf(it.id) >= 0;
-        const on = st.avatar && st.avatar[it.slot] === it.id;
-        const afford = owned || st.balance >= it.cost;
-        return `<li><button class="av-item${on ? ' av-on' : ''}" data-item="${esc(it.id)}"${afford ? '' : ' disabled'}>`
-          + `<b>${esc(it.label)}</b>`
-          + `<span>${on ? 'wearing' : owned ? 'owned' : it.cost === 0 ? 'free' : it.cost + ' points'}</span></button></li>`;
-      };
-      host.innerHTML = `<div class="av-head">${avatarSvg(st.avatar, ME && ME.username)}
-          <div class="av-bal"><b>${st.balance}</b><span>points to spend</span>
-          <small>${st.earned} earned in total, ${st.spent} spent. Earning never goes down &mdash; what you contributed stays on your record whatever you buy.</small></div>
-        </div>
-        <p class="av-how">Points come from things other people accepted: an edit that got merged, a
-        comment somebody marked useful, a protocol of yours somebody found useful. Nothing here is
-        earned by voting, posting or sharing &mdash; those do not mint points, on purpose.</p>
-        <ul class="av-list">${bySlot.ring.map(row).join('')}${bySlot.mark.map(row).join('')}</ul>`;
-      host.querySelectorAll('[data-item]').forEach((b) => {
-        b.onclick = async () => {
-          b.disabled = true;
-          try {
-            const r = await fetch('/api/avatar', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ item: b.getAttribute('data-item') }) });
-            const j = await r.json();
-            if (!r.ok) { toast(j.error || 'Could not do that.'); b.disabled = false; return; }
-            st = j; draw();
-          } catch (e) { b.disabled = false; }
-        };
-      });
-    };
-    draw();
-  }
-
   // ---- MAKING YOUR PAGE PUBLIC, AND UNMAKING IT ------------------------------------------------
   // AN UNCHECKED BOX WITH THE CONSEQUENCES BESIDE IT, not a switch with a label. The reader is
   // deciding whether a URL exists with their handle on it, so what appears there is itemised in
@@ -10818,11 +10751,6 @@
       + '<section class="me-sec"><h2>Following</h2>' + following + '</section>'
       + '<section class="me-sec"><h2>Logged</h2>' + loggedBlock + '</section>'
       + '<section class="me-sec"><h2>Built</h2>' + made + '</section>'
-      // THE ONLY SURFACE THE AVATAR EXISTS ON. Signed-in readers only — a signed-out reader has no
-      // contributions, so a shop would be a display case with nothing in it and a price list they
-      // cannot pay. assertGamificationConfinement() keeps every one of these tokens off the pages
-      // where somebody is deciding what to take.
-      + (ME ? '<section class="me-sec"><h2>Your mark</h2><div id="avatar-shop"></div></section>' : '')
       // ---- THE ONE DELIBERATELY PUBLIC ACT AN ACCOUNT CAN PERFORM (2026-08-14) -----------------
       // Rendered only when the server says public profiles exist, because
       // docs/PRODUCTION_REVAMP_STATE.md is explicit that a contained capability is ABSENT from the
@@ -10832,9 +10760,8 @@
       + (ME
         ? '<p>Signed in as <b>@' + esc(ME.username) + '</b>' + (joinMonth(mine.joined) ? ', here since ' + esc(joinMonth(mine.joined)) : '') + '. RNAwiki has never asked you for your real name and holds no photograph of you.</p>'
         : '<p>You are not signed in, and everything above is on this device. An account adds exactly one thing to this page: the protocols you published show up on it from any device. Your plan and your logged days stay here either way.</p>')
-      + '<p class="muted me-why">There is no rank here and no leaderboard. This site has a handful of accounts; a ranking over that is a number I would be inventing, and “most used” is the only ordering anything here is allowed to carry. The points above are not a score either — they are a count of the times somebody else accepted something you sent, and the only thing they buy is a colour on this page. They appear nowhere near a page where you are deciding what to take.</p></section>';
+      + '<p class="muted me-why">There is no rank, level or leaderboard here. “Most used” is the only ordering anything on RNAwiki carries, and it counts starts rather than results.</p></section>';
 
-    mountAvatarShop();
     mountPublicProfileToggle();
 
     app.querySelectorAll('[data-withdraw]').forEach((b) => {
@@ -12200,6 +12127,37 @@
   // re-route — so the rendered browser suite found it the first time the flag was ever set in a
   // test run, on all four /solve routes at both widths.
   let _silentRoute = false;
+  // Async routes paint a temporary heading first. The route transition is not complete until the
+  // renderer replaces that shell, so the live region and focus must read the heading that is
+  // actually left on the page. A sequence guard prevents a slow renderer from announcing after a
+  // newer navigation has already won.
+  let _routeRenderSeq = 0;
+  function announceRenderedRoute(seq, shouldFocus) {
+    if (seq !== _routeRenderSeq) return;
+    try {
+      const h1 = app.querySelector('h1');
+      const live = document.getElementById('route-status');
+      if (live) {
+        const title = (h1 && h1.textContent.trim()) || document.title.split('·')[0].trim();
+        live.textContent = '';
+        setTimeout(() => {
+          if (seq === _routeRenderSeq) live.textContent = title ? title + ' — page loaded' : 'Page loaded';
+        }, 60);
+      }
+      if (h1) {
+        h1.setAttribute('tabindex', '-1');
+        if (shouldFocus) h1.focus({ preventScroll: true });
+      }
+    } catch (e) { }
+  }
+  function waitForRouteRenders(seq, shouldFocus, jobs) {
+    if (!jobs.length) return announceRenderedRoute(seq, shouldFocus);
+    let left = jobs.length;
+    const done = () => { left -= 1; if (!left) announceRenderedRoute(seq, shouldFocus); };
+    // Ignore the promise returned by finally(), not the renderer's failure: a rejected renderer
+    // stays an unhandled rejection for the browser smoke gate while this completion hook still runs.
+    jobs.forEach((job) => { Promise.resolve(job).finally(done); });
+  }
   let KEEP_PATH = (location.pathname || '/').replace(/\.html$/, '');
   let KEEP_HTML = null;   // the prerendered #app for KEEP_PATH -- captured just before route(), below
   let KEEP_LIVE = true;   // is that document still the one in #app?
@@ -12209,6 +12167,11 @@
   // the pv call site at the bottom of route() for the measurements.
   let _aLastPath = null;
   function route() {
+    const routeSeq = ++_routeRenderSeq;
+    const shouldFocusFinalHeading = !_firstRender && !_silentRoute;
+    _firstRender = false;
+    _silentRoute = false;
+    const routeRenders = [];
     const raw = currentRoute();
     const [pathPart, queryPart] = raw.split('?');
     // Parse the query ONCE. The old code did `queryPart.indexOf('ids=') === 0`, which is both
@@ -12356,39 +12319,8 @@
     if (frag && frag.charAt(0) !== '/') { if (!jumpToHash(true)) window.scrollTo(0, 0); }
     else window.scrollTo(0, 0);
     setPageMeta(parts);
-    // ACCESSIBILITY (2026-07-28). route() replaces the ENTIRE page body on every navigation, and
-    // nothing announced it: aria-live 0, role="status" 0, no focus move, no skip link. So a
-    // screen-reader user who clicked any in-app link heard NOTHING — focus stayed on the
-    // now-destroyed link and the new <h1> was never read. For a single-page app that is the core
-    // accessibility failure; it removes the experience rather than degrading it.
-    // Announce the new page title, then move focus to the new heading so the next thing read is
-    // the content, not the top of the document.
-    try {
-      const h1 = app.querySelector('h1');
-      const live = document.getElementById('route-status');
-      if (live) {
-        const title = (h1 && h1.textContent.trim()) || document.title.split('·')[0].trim();
-        // clear first — re-setting identical text does not re-announce in some screen readers
-        live.textContent = '';
-        setTimeout(() => { live.textContent = title ? title + ' — page loaded' : 'Page loaded'; }, 60);
-      }
-      // W5c (2026-08-02): NOT ON THE FIRST RENDER. Moving focus after an in-app navigation is
-      // correct and stays; doing it on page LOAD is not the same act. Measured hydrated, 0
-      // pageerrors: on arrival at any route the <h1> was document.activeElement and matched
-      // :focus-visible, so Chrome painted `outline:2px solid rgb(13,148,136)` around the title
-      // with no user interaction of any kind — visible in every W0 screenshot. Two things are
-      // wrong with it, and the ring is the smaller one: on load the browser has ALREADY put focus
-      // at the top of the document, and moving it into the content skips past the skip link and
-      // the whole header, so the first Tab lands in the middle of the page. Measured after a real
-      // mouse click on an in-app link at 1440x900, the ring correctly does not paint
-      // (:focus-visible false), which is what the existing #app h1[tabindex="-1"] rules already
-      // handle — so this is the one case those rules cannot reach.
-      // The tabindex is still set: the announcer above needs no focus, but a later route change
-      // does, and so does anything that wants to send focus to the heading.
-      if (h1) { h1.setAttribute('tabindex', '-1'); if (!_firstRender && !_silentRoute) h1.focus({ preventScroll: true }); }
-      _firstRender = false;
-      _silentRoute = false;
-    } catch (e) { }
+    // Accessibility completion happens after the route-specific renderers below. Announcing here
+    // would describe the temporary “Loading…” heading on every async route.
     closeGlossPop();
     try { glossarize(app); } catch (e) { }
     const nav = document.querySelector('.topnav'); if (nav) nav.classList.remove('open');
@@ -12397,32 +12329,33 @@
     if (!parts.length) bindHome();
     if (parts[0] === 'solve') bindSolve();
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
-    if (parts[0] === 'plan') renderPlan(QS.get('mode'));
-    if (parts[0] === 'studio') renderStudio(parts[1] || null, QS.get('for'), QS.get('cause'));
+    if (parts[0] === 'plan') routeRenders.push(renderPlan(QS.get('mode')));
+    if (parts[0] === 'studio') routeRenders.push(renderStudio(parts[1] || null, QS.get('for'), QS.get('cause')));
     if (parts[0] === 'problem' && parts[1]) mountCreatorRouteIndex(parts[1]);
     // Also fill on ARRIVAL, not only in the config handler: that one runs once at boot, so a reader
     // who lands anywhere else and navigates to /p afterwards would otherwise get the empty frame.
     if (parts[0] === 'p' && !parts[1]) mountPublishedIndex();
-    if (parts[0] === 'me') renderMe();
-    if (parts[0] === 'u' && parts[1]) renderPublicProfile(parts[1]);
-    if (parts[0] === 'p' && parts[1]) renderPublished(parts[1]);
-    if (parts[0] === 'progress') renderProgress();
+    if (parts[0] === 'me') routeRenders.push(renderMe());
+    if (parts[0] === 'u' && parts[1]) routeRenders.push(renderPublicProfile(parts[1]));
+    if (parts[0] === 'p' && parts[1]) routeRenders.push(renderPublished(parts[1]));
+    if (parts[0] === 'progress') routeRenders.push(renderProgress());
     // dead: /pros is retired above and parts is emptied, so this never fires.
-    if (parts[0] === 'admin') renderAdmin();
+    if (parts[0] === 'admin') routeRenders.push(renderAdmin());
     // .then(mountRcOverlayNotice): #p-causes does not exist until renderProtocol has painted, so the
     // notice has to be re-mounted after every protocol render, not only when the overlay settles.
-    if (parts[0] === 'protocol') renderProtocol(parts[1], parts[2], null, QS.get('cohort')).then(mountRcOverlayNotice);
-    if (parts[0] === 's' && parts[1]) renderSharedPlan(parts[1]);
+    if (parts[0] === 'protocol') routeRenders.push(renderProtocol(parts[1], parts[2], null, QS.get('cohort')).then(mountRcOverlayNotice));
+    if (parts[0] === 's' && parts[1]) routeRenders.push(renderSharedPlan(parts[1]));
     // community discussion on compound + pathway pages
     if (parts[0] === 'c' && bySlug[parts[1]]) renderComments('c:' + bySlug[parts[1]].id, bySlug[parts[1]].name);
     if (parts[0] === 'pathway' && D.pathways[+parts[1]]) renderComments('pw:' + (+parts[1]), D.pathways[+parts[1]].shortLabel || 'this pathway');
     if (parts[0] === 'muscle' && muscleById[parts[1]]) { renderComments('mu:' + parts[1], muscleById[parts[1]].name); const mb = document.getElementById('mu-edit'); if (mb) mb.onclick = () => openEditContent('muscle', muscleById[parts[1]].name, 'physio'); }
     if (parts[0] === 'body') mountBody(parts[1]);
     if (parts[0] === 'where') bindWhere();
-    if (parts[0] === 'exercise' && parts[1]) mountExercise(parts[1]);
-    if (parts[0] === 'fork' && parts[1]) mountForkPage(parts[1]);
+    if (parts[0] === 'exercise' && parts[1]) routeRenders.push(mountExercise(parts[1]));
+    if (parts[0] === 'fork' && parts[1]) routeRenders.push(mountForkPage(parts[1]));
     if (parts[0] === 'energy' && energyById[parts[1]]) renderComments('en:' + parts[1], energyById[parts[1]].name);
     if (parts[0] === 'physiology' && physioById[parts[1]]) renderComments('ph:' + parts[1], physioById[parts[1]].name);
+    waitForRouteRenders(routeSeq, shouldFocusFinalHeading, routeRenders);
     // Page view LAST, and by TEMPLATE only — aTemplate() collapses /c/ssris-… to /t/compound.
     // `parts` is the router's own already-parsed path with the query string stripped upstream
     // (route() splits on '?'), which is why nothing here can see /solve?q=<symptom>.
