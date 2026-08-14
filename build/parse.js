@@ -4275,6 +4275,54 @@ function blankComments(src) {
 //     cannot follow; the jargon rule on this site is that a technical term gets a plain-language
 //     explainer, and a cue is too short to carry one. So it may not contain the term at all.
 //   · NEVER a benefit or a medical claim. A cue says what to do, not what it will do for you.
+// ---- THE TAG AUDIT LIVES IN TWO FILES AND MUST SAY THE SAME THING IN BOTH -------------------
+// build/prerender.js owns the crawler's document, site/app.js owns the reader's. Both carry
+// EX_TAG_AUDIT — the per-movement verdict on whether the corpus's muscle tag is false, correct but
+// undrawable, or incomplete. A copy-paste pair with no gate is a pair that drifts, and drift here
+// means a reader is told a tag is fine while Google is told it is wrong, or the reverse. The whole
+// point of the audit is that the two documents agree about anatomy.
+//
+// PROVE IT by changing one verdict in either file, or by deleting an entry from one of them.
+(function assertTagAuditTwinsAgree() {
+  const read = (rel) => {
+    const src = fs.readFileSync(path.join(ROOT, rel), 'utf8');
+    const start = src.indexOf('EX_TAG_AUDIT = {');
+    if (start < 0) return null;
+    const open = src.indexOf('{', start);
+    let depth = 0, end = -1;
+    for (let i = open; i < src.length; i++) {
+      if (src[i] === '{') depth++;
+      else if (src[i] === '}') { depth--; if (!depth) { end = i + 1; break; } }
+    }
+    if (end < 0) return null;
+    const out = {};
+    src.slice(open, end).split(/\n/).forEach((line) => {
+      const m = line.match(/^\s*'?([A-Za-z0-9_-]+)'?:\s*\{\s*v:\s*'(false|deep|incomplete)'/);
+      if (m) out[m[1]] = m[2];
+    });
+    return out;
+  };
+  const a = read('build/prerender.js'), b = read('site/app.js');
+  const bad = [];
+  if (!a) bad.push('build/prerender.js no longer defines EX_TAG_AUDIT — the crawler\'s document has lost the audit.');
+  if (!b) bad.push('site/app.js no longer defines EX_TAG_AUDIT — the reader\'s document has lost the audit.');
+  if (a && b) {
+    const keys = new Set(Object.keys(a).concat(Object.keys(b)));
+    keys.forEach((k) => {
+      if (!(k in a)) bad.push(`${k} is audited in site/app.js but not in build/prerender.js, so the crawler still gets the unaudited claim.`);
+      else if (!(k in b)) bad.push(`${k} is audited in build/prerender.js but not in site/app.js, so a reader with JavaScript still gets the unaudited claim.`);
+      else if (a[k] !== b[k]) bad.push(`${k} is '${a[k]}' to the crawler and '${b[k]}' to the reader. One of those two documents is telling somebody the wrong thing about a muscle.`);
+    });
+    if (Object.keys(a).length !== 14) bad.push(`the audit covers ${Object.keys(a).length} movements, not the 14 whose figure is suppressed. Every suppressed movement needs a stated reason, or its page falls back to a sentence that is false for it.`);
+  }
+  if (bad.length) {
+    console.error('[parse] TAG AUDIT TWIN GATE FAILED — refusing to build.');
+    bad.forEach((x) => console.error('  \u2717 ' + x));
+    process.exit(1);
+  }
+  console.log(`[parse] tag audit twins agree \u2014 ${Object.keys(a).length} movements, same verdict in both documents.`);
+})();
+
 (function assertMovementCues() {
   const cues = (readJSON(path.join(ROOT, 'data', 'exercise_cues.json')) || {}).cues || {};
   // parse.js calls it exercisesData; build/prerender.js calls the same file EX.

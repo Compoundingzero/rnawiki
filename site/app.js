@@ -9634,13 +9634,68 @@
     'Anterior_Tibialis-SMR', 'Peroneals-SMR', 'Peroneals_Stretch', 'Posterior_Tibialis_Stretch',
     'Foot-SMR', 'Dumbbell_Lying_Pronation', 'Dumbbell_Lying_Supination', 'Band_Hip_Adductions',
     'Balance_Board', 'Ankle_Circles', 'Knee_Circles', 'Stomach_Vacuum']);
+  // WHY EACH OF THE 14 HAS NO FIGURE, WHICH IS NOT THE SAME REASON FOR ALL OF THEM. The twin of
+  // EX_TAG_AUDIT in build/prerender.js — five independent reviewers re-read each movement's own
+  // instruction text: nine tags are FALSE (the muscle named is not the one working), two are
+  // CORRECT and merely too deep to draw, three are INCOMPLETE. Saying "the tag is wrong" on a
+  // correctly-tagged page would be a fresh false claim made while fixing one, so the reason is
+  // per-page. If this and the prerenderer's copy ever disagree, the reader and the crawler are
+  // told different things about the same muscle — which is the whole failure this exists to stop.
+  const EX_TAG_AUDIT = {
+    Smith_Machine_Reverse_Calf_Raises: { v: 'false',
+      why: 'the heels stay on the platform and the toes lift, which bends the ankle upwards — the opposite action to a calf raise',
+      truth: 'the tibialis anterior, the muscle down the front of the shin' },
+    'Anterior_Tibialis-SMR': { v: 'false',
+      why: 'the roller goes on the front of the shin, not the back of the leg — as the movement\u2019s own name says',
+      truth: 'the tibialis anterior, the muscle down the front of the shin' },
+    'Peroneals-SMR': { v: 'false',
+      why: 'the roller goes on the outside of the lower leg, which is a different compartment from the calf',
+      truth: 'the peroneals, down the outside of the lower leg' },
+    Peroneals_Stretch: { v: 'false',
+      why: 'the belt pulls the foot inwards, and a stretch lengthens the muscles that do the opposite — here the ones on the outside of the leg',
+      truth: 'the peroneals, down the outside of the lower leg' },
+    'Foot-SMR': { v: 'false',
+      why: 'the roller goes under the arch of the foot, not on the leg at all',
+      truth: 'the sole of the foot — the plantar fascia and the small muscles under the arch' },
+    Dumbbell_Lying_Pronation: { v: 'false',
+      why: 'the elbow stays bent at a right angle throughout and the whole arm turns at the shoulder, so the forearm only goes along for the ride',
+      truth: 'the small muscles at the back of the shoulder that turn the arm outwards', link: 'shoulders' },
+    Dumbbell_Lying_Supination: { v: 'false',
+      why: 'the elbow stays bent at a right angle throughout and the whole arm turns at the shoulder, so the forearm only goes along for the ride',
+      truth: 'the small muscles at the back of the shoulder that turn the arm outwards', link: 'shoulders' },
+    Band_Hip_Adductions: { v: 'false',
+      why: 'step 4 says to raise the leg out to the side, which is the exact opposite of what the tag names',
+      truth: 'the muscles on the outside of the hip that take the leg away from the body', link: 'abductors' },
+    Knee_Circles: { v: 'false',
+      why: 'circling the knees is not a calf action; the movement happens at the knee and hip',
+      truth: 'mostly the thigh — the quadriceps and hamstrings already listed here as secondary are nearer the mark', link: 'quadriceps' },
+    Posterior_Tibialis_Stretch: { v: 'deep',
+      truth: 'the tibialis posterior, the deepest muscle at the back of the lower leg' },
+    Stomach_Vacuum: { v: 'deep',
+      truth: 'the transversus abdominis, the deepest of the abdominal muscles' },
+    Rocking_Standing_Calf_Raise: { v: 'incomplete',
+      why: 'the movement rocks both ways — the heels lift, then the toes lift — so the calves do only the first half and the front of the shin does the second' },
+    Balance_Board: { v: 'incomplete',
+      why: 'standing and balancing has no one muscle driving it; everything from the foot upwards makes small corrections' },
+    Ankle_Circles: { v: 'incomplete',
+      why: 'circling the ankle uses every muscle around the joint in turn rather than any one of them' },
+  };
+  const exTagFalse = id => (EX_TAG_AUDIT[id] || {}).v === 'false';
   const EX_DEEP_SHOULDER = new Set(['External_Rotation', 'External_Rotation_with_Band',
     'External_Rotation_with_Cable', 'Cable_Internal_Rotation', 'Internal_Rotation_with_Band',
     'Reverse_Flyes_With_External_Rotation', 'Cuban_Press']);
   function exFigureHtml(e, K, cls) {
     const BZ = D.bodyZones, MZ = (BZ && BZ.muscleZones) || [];
     if (!BZ || !MZ.length) return '';
-    if (EX_NO_FIGURE.has(e.id)) return '<p class="bm-none">RNAwiki does not draw a body map for this one: the muscle it is filed under is not the muscle doing the work, and a confident wrong picture is worse than none. The steps below are unaffected.</p>';
+    if (EX_NO_FIGURE.has(e.id)) {
+      const v = (EX_TAG_AUDIT[e.id] || {}).v;
+      const because = v === 'deep'
+        ? 'the muscle it works lies too deep to have an outline on the surface, so there is nothing honest to shade'
+        : v === 'incomplete'
+          ? 'no single muscle drives this one, and shading one would say otherwise'
+          : 'the muscle it is filed under is not the muscle doing the work, and a confident wrong picture is worse than none';
+      return `<p class="bm-none">RNAwiki does not draw a body map for this one: ${because}. The steps below are unaffected.</p>`;
+    }
     const prim = new Set(e.primaryMuscles || []);
     const sec = new Set((e.secondaryMuscles || []).filter(m => !prim.has(m)));
     const sil = ox => BZ.silhouette.map(s => s.t === 'ellipse'
@@ -9695,7 +9750,9 @@
     const scale = [];
     // Was "← Easier variation" / "Harder variation →" off the deleted level ladder. Now every
     // alternative this movement actually has, each one sharing a primary muscle with it.
-    (e.alternatives || []).forEach(id => { const a = exerciseById(id); if (a) scale.push(`<a class="tag-chip" href="#/exercise/${esc(a.id)}">${esc(a.name)}${a.equipment ? ` · ${esc(a.equipment)}` : ''}</a>`); });
+    // Not from, and not to, a movement whose tag is false — "the same muscle" is exactly the claim
+    // being retracted. The twin of the alts filter in build/prerender.js.
+    if (!exTagFalse(e.id)) (e.alternatives || []).forEach(id => { const a = exerciseById(id); if (a && !exTagFalse(a.id)) scale.push(`<a class="tag-chip" href="#/exercise/${esc(a.id)}">${esc(a.name)}${a.equipment ? ` · ${esc(a.equipment)}` : ''}</a>`); });
     // ---- ONE TAG, TWO OPPOSITE MEANINGS (2026-08-14) -----------------------------------------
     // `kindLabel` read "Stretch / mobility" off `e.kind`, and the heading over the muscles said
     // "Muscles worked" on every page. On the 750 strengthen rows primaryMuscles is the muscle
@@ -9718,9 +9775,18 @@
       <div class="ex-rx-line">${rxLine(e)}${e.equipment ? ' · ' + esc(e.equipment) : ''}${e.mechanic ? ' · ' + esc(e.mechanic) : ''}${e.force ? ' · ' + esc(e.force) : ''}</div>
       <div class="section-title">${esc(K.verb)}</div>
       ${exFigureHtml(e, K, K.cls)}
-      <p class="muted" style="font-size:.9rem">Tap a muscle for its anatomy, how it contracts, and the energy systems that fuel it.</p>
+      ${(() => {
+        const a = EX_TAG_AUDIT[e.id];
+        const plain = `<p class="muted" style="font-size:.9rem">Tap a muscle for its anatomy, how it contracts, and the energy systems that fuel it.</p>
       ${prim ? `<div class="ex-mgroup"><span class="ex-mk">Mainly</span><div class="tag-row">${prim}</div></div>` : ''}
-      ${sec ? `<div class="ex-mgroup"><span class="ex-mk">Also</span><div class="tag-row">${sec}</div></div>` : ''}
+      ${sec ? `<div class="ex-mgroup"><span class="ex-mk">Also</span><div class="tag-row">${sec}</div></div>` : ''}`;
+        if (!a) return plain;
+        if (a.v === 'deep') return `${plain}<p class="muted"><b>Why there is no picture here.</b> The muscle doing the work is ${esc(a.truth)}. It sits underneath other muscles and has no outline on the surface, so there is nothing honest to shade. The tag above is right; only the drawing is impossible.</p>`;
+        if (a.v === 'incomplete') return `${plain}<p class="muted"><b>The tag names part of this, not all of it.</b> Here, ${esc(a.why)}. Treat the muscles above as one part of the movement rather than the answer to what it works.</p>`;
+        const link = a.link ? ` RNAwiki's page on that is <a href="#/muscle/${a.link}">here</a>.` : '';
+        return `<p class="warn-line"><b>This movement is filed under ${esc((e.primaryMuscles || []).join(', '))}, and that is wrong.</b> Reading the steps below, ${esc(a.why)}. The work is actually done by ${esc(a.truth)}.${link}</p>
+      <p class="muted">The tag comes from the open dataset RNAwiki imports movements from, and it is left visible rather than quietly corrected so the error can be checked against the steps by anyone who wants to. Because the record is wrong, this page is kept out of search results and states no muscle of its own.</p>`;
+      })()}
       ${(() => {
         // The twin of the cue block in build/prerender.js. Cues first, steps second.
         const cu = (D.exerciseCues || {})[e.id];

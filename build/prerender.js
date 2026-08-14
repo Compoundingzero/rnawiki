@@ -588,7 +588,14 @@ const COMMUNITY_BUILD = process.env.PUBLIC_COMMUNITY === '1';
 // would make the next build report the route universe as shrunk. So the decision lives here, once.
 // It was false while these pages carried only free-exercise-db's open prose. It is true now that
 // each carries authored technique cues, a muscle map, the muscles joined to RNAwiki's own 17
-// anatomy pages, an alternatives graph and the protocols that prescribe it.
+// anatomy pages, and an alternatives graph.
+//
+// CORRECTION, 2026-08-14. An earlier version of this comment — and the commit message that shipped
+// it, 858f872 — also claimed "the protocols that prescribe it". That was false and was never true.
+// EX_IN_PROTOCOL is built from rc.exercises and rc.stretches, and those arrays are EMPTY on all 52
+// root causes, so the map is {} and the protocol block renders on 0 of 873 pages. The claim was
+// never checked against a built page before being used to argue these pages deserve indexing.
+// assertMovementLibrary now measures the block instead of trusting this sentence.
 const EX_INDEXABLE = true;
 // PER PAGE, NOT PER ROUTE. Five movements carry NO instructions at all in the upstream dataset —
 // Iron_Cross, One-Arm_Kettlebell_Swings, Push_Press, Side_Bridge, Side_Jackknife — and the cue
@@ -599,7 +606,16 @@ const EX_INDEXABLE = true;
 // crawlable — a reader who lands on one still gets the muscles and the alternatives — and out of
 // both the index and the sitemap.
 const exIndexable = (e) => EX_INDEXABLE
-  && ((EX_CUES[e.id] || []).length > 0 || (e.instructions || []).length >= 3);
+  && ((EX_CUES[e.id] || []).length > 0 || (e.instructions || []).length >= 3)
+  // AND NEVER A PAGE WHOSE MUSCLE TAG THIS BUILD HAS JUDGED FALSE. Nine of the fourteen
+  // figure-suppressed movements name a muscle that is not doing the work (see EX_TAG_AUDIT).
+  // Publishing that to a search engine and to answer engines is the confident wrong answer the
+  // whole diagram audit existed to prevent, at the one moment it is hardest to take back. They
+  // stay served, linked and crawlable — and they now say what is wrong with the record — but they
+  // are not offered as answers. The other five are NOT excluded: two are correctly tagged and only
+  // undrawable, three are incomplete rather than untrue, and demoting a correct page would be the
+  // same error pointing the other way.
+  && !exTagFalse(e.id);
 function voteFootHtml(pid, rcid, layer) {
   if (!COMMUNITY_BUILD) return '';
   return `
@@ -2814,6 +2830,104 @@ const EX_NO_FIGURE = new Set([
   'Knee_Circles',                       // neither calf action drives it
   'Stomach_Vacuum',                     // transversus abdominis: deepest layer, no surface footprint
 ]);
+
+// ---- AND WHAT, EXACTLY, IS WRONG WITH EACH ONE ----------------------------------------------
+// Suppressing the DRAWING was only half the job. The page still asserted the tagged muscle in its
+// "Mainly:" line, hyperlinked to that muscle's anatomy page, in its meta description and in its
+// structured data — so the claim went to readers, to Google and to answer engines exactly as
+// before, just without a picture.
+//
+// The first attempt at fixing that printed one blanket sentence on all fourteen: "that filing
+// looks wrong". THAT WAS ITSELF FALSE ON SOME OF THEM, and falsely calling a correct record wrong
+// is the same failure as the one being fixed, pointing the other way. Posterior_Tibialis_Stretch
+// really does stretch the tibialis posterior, and Stomach_Vacuum really does work the transversus
+// abdominis — both correctly tagged, both merely too deep to have a surface outline to shade.
+//
+// So each was re-read by five independent reviewers working from the movement's own instruction
+// text under different lenses (kinesiology, literal reading, physiotherapy, dataset provenance,
+// and a skeptic told to default to "the tag is fine"). They were unanimous on thirteen of the
+// fourteen and 4-1 on Knee_Circles. Three verdicts came out of it:
+//
+//   'false'       The tag names a muscle that is not doing the work — the antagonist, another
+//                 compartment, another segment of the limb, or another body part. A reader who
+//                 believed it would be misinformed. These state no muscle, carry no anatomy in
+//                 their structured data, and stay out of the index and the sitemap.
+//   'deep'        The tag is CORRECT and only undrawable. Nothing is wrong with the claim, so the
+//                 claim stays, the page stays indexed, and the note explains the missing picture.
+//   'incomplete'  Not false, but not the whole answer: no single prime mover, or the movement
+//                 alternates between opposing muscles and the tag names one side. A reader would
+//                 be under-informed rather than misinformed, so the claim stays and is qualified.
+//
+// `truth` is written for someone with no anatomy vocabulary, and links to one of RNAwiki's own 17
+// anatomy pages only where one genuinely covers the right muscle — three of the nine do. The rest
+// are named in words rather than pointed at a page that would be wrong a second time.
+const EX_TAG_AUDIT = {
+  Smith_Machine_Reverse_Calf_Raises: { v: 'false',
+    why: 'the heels stay on the platform and the toes lift, which bends the ankle upwards — the opposite action to a calf raise',
+    truth: 'the tibialis anterior, the muscle down the front of the shin' },
+  'Anterior_Tibialis-SMR': { v: 'false',
+    why: 'the roller goes on the front of the shin, not the back of the leg — as the movement\u2019s own name says',
+    truth: 'the tibialis anterior, the muscle down the front of the shin' },
+  'Peroneals-SMR': { v: 'false',
+    why: 'the roller goes on the outside of the lower leg, which is a different compartment from the calf',
+    truth: 'the peroneals, down the outside of the lower leg' },
+  Peroneals_Stretch: { v: 'false',
+    why: 'the belt pulls the foot inwards, and a stretch lengthens the muscles that do the opposite — here the ones on the outside of the leg',
+    truth: 'the peroneals, down the outside of the lower leg' },
+  'Foot-SMR': { v: 'false',
+    why: 'the roller goes under the arch of the foot, not on the leg at all',
+    truth: 'the sole of the foot — the plantar fascia and the small muscles under the arch' },
+  Dumbbell_Lying_Pronation: { v: 'false',
+    why: 'the elbow stays bent at a right angle throughout and the whole arm turns at the shoulder, so the forearm only goes along for the ride',
+    truth: 'the small muscles at the back of the shoulder that turn the arm outwards', link: 'shoulders' },
+  Dumbbell_Lying_Supination: { v: 'false',
+    why: 'the elbow stays bent at a right angle throughout and the whole arm turns at the shoulder, so the forearm only goes along for the ride',
+    truth: 'the small muscles at the back of the shoulder that turn the arm outwards', link: 'shoulders' },
+  Band_Hip_Adductions: { v: 'false',
+    why: 'step 4 says to raise the leg out to the side, which is the exact opposite of what the tag names',
+    truth: 'the muscles on the outside of the hip that take the leg away from the body', link: 'abductors' },
+  Knee_Circles: { v: 'false',
+    why: 'circling the knees is not a calf action; the movement happens at the knee and hip',
+    truth: 'mostly the thigh — the quadriceps and hamstrings already listed here as secondary are nearer the mark', link: 'quadriceps' },
+
+  Posterior_Tibialis_Stretch: { v: 'deep',
+    truth: 'the tibialis posterior, the deepest muscle at the back of the lower leg' },
+  Stomach_Vacuum: { v: 'deep',
+    truth: 'the transversus abdominis, the deepest of the abdominal muscles' },
+
+  Rocking_Standing_Calf_Raise: { v: 'incomplete',
+    why: 'the movement rocks both ways — the heels lift, then the toes lift — so the calves do only the first half and the front of the shin does the second' },
+  Balance_Board: { v: 'incomplete',
+    why: 'standing and balancing has no one muscle driving it; everything from the foot upwards makes small corrections' },
+  Ankle_Circles: { v: 'incomplete',
+    why: 'circling the ankle uses every muscle around the joint in turn rather than any one of them' },
+};
+const exTagFalse = (id) => (EX_TAG_AUDIT[id] || {}).v === 'false';
+
+// The muscle paragraph. Ordinary movements state the muscle plainly and link it. The fourteen
+// audited ones say what the record holds AND what is wrong with it, in that order, because a
+// reader who arrived from a search for the tagged muscle needs to know why this page is not the
+// answer before anything else. A 'false' page never states the tagged muscle as fact and never
+// hyperlinks it — following that link would carry the error onto a second page.
+function exTagAuditHtml(e, prim, sec) {
+  const a = EX_TAG_AUDIT[e.id];
+  const tagged = esc((e.primaryMuscles || []).join(', '));
+  const plain = `${prim ? `<p><b>Mainly:</b> ${prim}</p>` : ''}
+    ${sec ? `<p><b>Also:</b> ${sec}</p>` : ''}
+    <p class="muted">Muscle names link to what that muscle does, how it contracts and how to find it on your own body.</p>`;
+  if (!a) return plain;
+  if (a.v === 'deep') {
+    return `${plain}
+    <p class="muted"><b>Why there is no picture here.</b> The muscle doing the work is ${esc(a.truth)}. It sits underneath other muscles and has no outline on the surface, so there is nothing honest to shade — any shape drawn would be pointing at the muscle on top of it. The tag above is right; only the drawing is impossible.</p>`;
+  }
+  if (a.v === 'incomplete') {
+    return `${plain}
+    <p class="muted"><b>The tag names part of this, not all of it.</b> Here, ${esc(a.why)}. Treat the muscles above as one part of the movement rather than the answer to what it works.</p>`;
+  }
+  const link = a.link ? ` RNAwiki's page on that is <a href="/muscle/${a.link}">here</a>.` : '';
+  return `<p class="warn-line"><b>This movement is filed under ${tagged}, and that is wrong.</b> Reading the steps below, ${esc(a.why)}. The work is actually done by ${esc(a.truth)}.${link}</p>
+    <p class="muted">The tag comes from the open dataset RNAwiki imports movements from, and it is left visible rather than quietly corrected so the error can be checked against the steps by anyone who wants to. Because the record is wrong, this page is kept out of search results and states no muscle of its own.</p>`;
+}
 // Seven rotator-cuff movements get the figure at reduced emphasis plus a sentence, never a fill.
 // Subscapularis sits on the rib-facing surface of the shoulder blade; infraspinatus and teres minor
 // sit in the posterior fossae under the deltoid. There is no honest pixel for any of them on a body
@@ -2828,7 +2942,15 @@ const MUSCLE_ZONES = (BZ && BZ.muscleZones) || [];
 function exFigure(e, k) {
   if (!BZ || !MUSCLE_ZONES.length) return '';
   if (EX_NO_FIGURE.has(e.id)) {
-    return `<p class="bm-none">RNAwiki does not draw a body map for this one: the muscle it is filed under is not the muscle doing the work, and a confident wrong picture is worse than none. The steps below are unaffected.</p>`;
+    // Three different reasons, three different sentences. Saying "the tag is wrong" on a page whose
+    // tag is right would be a fresh false claim in the same breath as fixing one. See EX_TAG_AUDIT.
+    const v = (EX_TAG_AUDIT[e.id] || {}).v;
+    const because = v === 'deep'
+      ? 'the muscle it works lies too deep to have an outline on the surface, so there is nothing honest to shade'
+      : v === 'incomplete'
+        ? 'no single muscle drives this one, and shading one would say otherwise'
+        : 'the muscle it is filed under is not the muscle doing the work, and a confident wrong picture is worse than none';
+    return `<p class="bm-none">RNAwiki does not draw a body map for this one: ${because}. The steps below are unaffected.</p>`;
   }
   const prim = new Set(e.primaryMuscles || []);
   const sec = new Set((e.secondaryMuscles || []).filter((m) => !prim.has(m)));   // primary wins a tie
@@ -2895,7 +3017,11 @@ EX_ALL.forEach((e) => {
       <img src="${esc(img0)}" alt="${esc(e.name)} — starting position" loading="lazy" width="360" height="240">
       ${img1 !== img0 ? `<img src="${esc(img1)}" alt="${esc(e.name)} — end position" loading="lazy" width="360" height="240">` : ''}
       <figcaption>Start and end of the movement.</figcaption></figure>` : '';
-  const alts = (e.alternatives || []).map((id) => EX_BY_ID[id]).filter(Boolean).slice(0, 10);
+  // A movement whose own tag is false cannot be offered as "another way to train the same muscle" —
+  // it is not the same muscle, which is the entire finding. Filtered on BOTH sides: a false-tagged
+  // page shows no alternatives either, because its list was built from the wrong muscle.
+  const alts = exTagFalse(e.id) ? []
+    : (e.alternatives || []).map((id) => EX_BY_ID[id]).filter((a) => a && !exTagFalse(a.id)).slice(0, 10);
   const altHtml = alts.length ? `<h2>Other ways to train the same muscle</h2>
     <p>Same primary muscle, different equipment. Useful when a gym is busy or a piece of kit is missing.</p>
     <ul>${alts.map((a) => `<li><a href="${exRoute(a)}">${esc(a.name)}</a>${a.equipment ? ` — ${esc(a.equipment)}` : ''}</li>`).join('')}</ul>` : '';
@@ -2908,29 +3034,32 @@ EX_ALL.forEach((e) => {
   // it wants the muscles. Both are on the page as prose; this makes them machine-readable without
   // duplicating a single claim — every value below is read from the same fields the page renders,
   // so the markup cannot drift from the visible text.
-  // ExerciseAction is the honest schema.org type for "a person performing a physical activity"
-  // and carries the muscle as `target`. HowTo carries the ordered steps. Both are emitted; Google
-  // treats neither as a rich result today, and that is fine — this is for the machines that read
-  // the graph rather than the ones that draw a card.
+  // ExercisePlan carries the muscles worked as `associatedAnatomy`, typed Muscle. The first version
+  // of this used ExerciseAction with the muscle in `target`, which is wrong: `target` expects an
+  // EntryPoint or a URL — it is the thing an action is performed ON in a software sense, not the
+  // anatomy. HowTo carries the ordered steps. Google treats neither as a rich result today (HowTo
+  // rich results were deprecated in 2023, FAQ removed entirely in May 2026), and that is fine —
+  // this is for the machines that read the graph rather than the ones that draw a card, which is
+  // also why nothing here is duplicated as an on-page FAQ written to court a card that no longer
+  // exists. Every value is read from the fields the page renders, so the markup cannot drift.
   const ldSteps = (e.instructions || []).map((t, n) => ({ '@type': 'HowToStep', position: n + 1, text: t }));
-  const ldFaq = faqBlock([
-    { q: `What muscles does ${e.name} work?`, a: `${k.verb} ${(e.primaryMuscles || []).join(' and ')}${(e.secondaryMuscles || []).length ? `, and also involves ${e.secondaryMuscles.join(', ')}` : ''}.` },
-    (EX_CUES[e.id] || []).length ? { q: `How do you do ${e.name} properly?`, a: (EX_CUES[e.id] || []).join('. ') + '.' } : null,
-    alts.length ? { q: `What can I do instead of ${e.name}?`, a: `${alts.slice(0, 4).map((a) => a.name).join(', ')} train the same primary muscle with different equipment.` } : null,
-    { q: `Is ${e.name} a stretch or a strengthening exercise?`, a: `${k.label}. ${k.verb} ${(e.primaryMuscles || []).join(' and ')}.` },
-  ]);
+  // ExercisePlan, NOT ExerciseAction. Both are valid schema.org, but Action.target expects an
+  // EntryPoint or a URL — it is where a machine goes to PERFORM the action, not the body part it
+  // acts on. Putting muscles there is wrong about the property, not merely about the value.
+  // ExercisePlan inherits `associatedAnatomy` from PhysicalActivity, and `Muscle` is a real
+  // AnatomicalStructure subtype, so the muscles worked have an exact home.
+  const anatomy = (e.primaryMuscles || []).concat(e.secondaryMuscles || [])
+    .map((m) => ({ '@type': 'Muscle', name: (MUSCLE_BY_DB[m] || {}).name || m }));
   const jsonld = [
     {
-      '@context': 'https://schema.org', '@type': 'ExerciseAction',
+      '@context': 'https://schema.org', '@type': 'ExercisePlan',
       name: e.name,
-      description: cleanDesc(`${k.label}. ${k.verb} ${(e.primaryMuscles || []).join(' and ')}.`, 300),
+      description: cleanDesc(exTagFalse(e.id)
+        ? `${k.label}. The muscle this movement is filed under is not the muscle doing the work, so no muscle is asserted here.`
+        : `${k.label}. ${k.verb} ${(e.primaryMuscles || []).join(' and ')}.`, 300),
       url: SITE_URL + route, inLanguage: 'en',
-      // `target` is the body part the action acts on — the one field that makes this type worth
-      // emitting over a bare WebPage.
-      target: (e.primaryMuscles || []).concat(e.secondaryMuscles || []).map((m) => ({
-        '@type': 'EntryPoint', name: (MUSCLE_BY_DB[m] || {}).name || m,
-      })),
-      ...(e.equipment ? { instrument: { '@type': 'Thing', name: e.equipment } } : {}),
+      ...(anatomy.length && !exTagFalse(e.id) ? { associatedAnatomy: anatomy } : {}),
+      ...(e.equipment ? { exerciseType: e.equipment } : {}),
     },
     ...(ldSteps.length ? [{
       '@context': 'https://schema.org', '@type': 'HowTo',
@@ -2943,15 +3072,20 @@ EX_ALL.forEach((e) => {
       publisher: PUB.publisher, isPartOf: PUB.isPartOf,
       ...(exIndexable(e) ? { dateModified: PUB.dateModified } : {}),
     }] : []),
-  ].concat(ldFaq.ld || []);
+  ];
+  // NO TEMPLATED FAQ. A first version added a four-question FAQ block to every page — 3,468 Q&A
+  // pairs from four templates, 77,079 words across the corpus, every one of them restating
+  // something the page already said in its own words. FAQ rich results were removed from Google
+  // search entirely in May 2026, so it bought nothing, and volume assembled from a template is the
+  // scaled-content pattern this whole corpus is trying to earn its way clear of. The page already
+  // answers those four questions under its own headings: Works / Do it well / How to do it /
+  // Other ways to train the same muscle.
   const body = `<div class="article ex-page"><h1>${esc(e.name)}</h1>
     <p class="ex-kind"><b>${esc(k.label)}</b>${facts ? ' · ' + facts : ''}</p>
     ${demo}
     <h2>${esc(k.verb)}</h2>
     ${exFigure(e, k)}
-    ${prim ? `<p><b>Mainly:</b> ${prim}</p>` : ''}
-    ${sec ? `<p><b>Also:</b> ${sec}</p>` : ''}
-    <p class="muted">Muscle names link to what that muscle does, how it contracts and how to find it on your own body.</p>
+    ${exTagAuditHtml(e, prim, sec)}
     ${(() => {
       // THE CUES COME BEFORE THE STEPS. A step list tells you the order; a cue is the two or three
       // things that decide whether it is done well — what a coach says from across the room.
@@ -2964,12 +3098,13 @@ EX_ALL.forEach((e) => {
     ${altHtml}
     ${usedHtml}
     <p class="ex-credit">Movement description and images from the open <a href="https://github.com/yuhonas/free-exercise-db" rel="noopener">free-exercise-db</a>. The muscles, the alternatives and the protocol links are RNAwiki's. Educational, not medical advice.</p>
-    ${ldFaq.html}
     </div>`;
   add(route, shell({
     route, jsonld, ...(exIndexable(e) ? {} : { robots: 'noindex,follow' }),
     title: seoTitle(`${e.name}: how to do it and the muscles it works`),
-    desc: seoDesc(`${e.name} — ${k.label.toLowerCase()}. ${k.verb} ${(e.primaryMuscles || []).join(', ')}. Step-by-step, the muscles worked, and other ways to train the same muscle.`),
+    desc: seoDesc(exTagFalse(e.id)
+      ? `${e.name} — ${k.label.toLowerCase()}. Step-by-step, and why the muscle this is filed under is not the one doing the work.`
+      : `${e.name} — ${k.label.toLowerCase()}. ${k.verb} ${(e.primaryMuscles || []).join(', ')}. Step-by-step, the muscles worked, and other ways to train the same muscle.`),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Movements', route: '/exercise' }, { name: e.name }],
     body,
   }), { noSitemap: !exIndexable(e) });
@@ -2979,8 +3114,15 @@ EX_ALL.forEach((e) => {
 // orphan — and 566 of them are named by no muscle page. Grouped by the muscle they train, because
 // that is the question somebody browsing movements is actually asking.
 {
+  // GROUPED BY THE TAG — SO THE NINE FALSE TAGS CANNOT BE GROUPED BY IT. Listing
+  // Anterior_Tibialis-SMR under the "Calves" heading republishes the exact claim its own page
+  // exists to retract, on the index that Google crawls first. They get their own group instead,
+  // which keeps every one of them linked (assertLinkGraph counts an unlinked page as an orphan)
+  // without filing any of them under a muscle they do not train.
   const byMuscle = {};
+  const misfiled = [];
   EX_ALL.forEach((e) => {
+    if (exTagFalse(e.id)) { misfiled.push(e); return; }
     const key = (e.primaryMuscles || [])[0] || 'other';
     (byMuscle[key] = byMuscle[key] || []).push(e);
   });
@@ -2990,15 +3132,17 @@ EX_ALL.forEach((e) => {
     const list = byMuscle[key].slice().sort((a, b) => a.name.localeCompare(b.name));
     return `<section class="exi-group"><h2>${m ? `<a href="/muscle/${m.id}">${esc(m.name)}</a>` : esc(key)} <span class="muted">— ${list.length} movement${list.length === 1 ? '' : 's'}</span></h2>
       <ul class="exi-list">${list.map((e) => `<li><a href="${exRoute(e)}">${esc(e.name)}</a> <span class="muted">${esc(exKind(e).label.toLowerCase())}</span></li>`).join('')}</ul></section>`;
-  }).join('');
+  }).join('') + (misfiled.length ? `<section class="exi-group"><h2>Filed under the wrong muscle <span class="muted">— ${misfiled.length} movement${misfiled.length === 1 ? '' : 's'}</span></h2>
+      <p class="muted">The open dataset RNAwiki imports movements from tags each of these with a muscle that is not the one doing the work — usually the muscle on the other side of the joint. Each page says which muscle it should be and why. They are listed here rather than under a muscle heading, because putting them under one would repeat the mistake.</p>
+      <ul class="exi-list">${misfiled.slice().sort((a, b) => a.name.localeCompare(b.name)).map((e) => `<li><a href="${exRoute(e)}">${esc(e.name)}</a> <span class="muted">${esc(exKind(e).label.toLowerCase())}</span></li>`).join('')}</ul></section>` : '');
   add('/exercise', shell({
     route: '/exercise', ...(EX_INDEXABLE ? {} : { robots: 'noindex,follow' }),
     title: seoTitle('Every movement RNAwiki holds, by the muscle it trains'),
     desc: seoDesc(`${EX_ALL.length} movements — strengthening, stretches, mobility drills and foam rolling — grouped by the muscle each one trains, with the muscles worked and how to do it.`),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Movements', route: '/exercise' }],
     body: `<div class="article"><h1>Movements</h1>
-      <p>${EX_ALL.length} movements, grouped by the muscle each one mainly trains. Each page shows what it works, how to do it, and other ways to train the same muscle.</p>
-      <p class="muted">Movement descriptions and images come from the open free-exercise-db. The muscles, the alternatives and the protocol links are RNAwiki's.</p>
+      <p>${EX_ALL.length} movements, grouped by the muscle each one mainly trains${misfiled.length ? ` — except the last ${misfiled.length}, whose muscle tag is wrong and which are grouped separately for that reason` : ''}. Each page shows what it works, how to do it, and other ways to train the same muscle.</p>
+      <p class="muted">Movement descriptions and images come from the open free-exercise-db. The technique cues, the muscle maps, the alternatives and the corrections to its muscle tags are RNAwiki's.</p>
       ${groups}</div>`,
   }), { noSitemap: !EX_INDEXABLE });
 }
@@ -3029,7 +3173,13 @@ ANAT.muscles.forEach((m) => {
           m.stretches — and rendered neither, so the corpus's own movement library was unreachable
           from the only indexed pages that name it. Now each one is a link to its own document. */ ''}
     ${(() => {
-      const grab = (arr) => (arr || []).map((x) => EX_BY_ID[x && (x.id || x)]).filter(Boolean);
+      // ...minus the ones whose tag is false. /muscle/calves listed Anterior_Tibialis-SMR,
+      // Foot-SMR, Peroneals_Stretch, Smith_Machine_Reverse_Calf_Raises and Knee_Circles as calf
+      // movements, and /muscle/adductors listed Band_Hip_Adductions. These 17 pages are indexed and
+      // are RNAwiki's own authored anatomy — the wrong claim was louder here than on the movement
+      // page it came from.
+      const grab = (arr) => (arr || []).map((x) => EX_BY_ID[x && (x.id || x)])
+        .filter((e) => e && !exTagFalse(e.id));
       const work = grab(m.exercises), lengthen = grab(m.stretches);
       const list = (title, arr) => arr.length ? `<h3>${title}</h3><ul class="mu-ex">${arr.slice(0, 24).map((e) => `<li><a href="${exRoute(e)}">${esc(e.name)}</a>${e.equipment ? ` <span class="muted">— ${esc(e.equipment)}</span>` : ''}</li>`).join('')}</ul>` : '';
       if (!work.length && !lengthen.length) return '';
@@ -5960,8 +6110,39 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
 
   // Every movement page must reach at least one authored muscle page. That join is the only thing
   // on these documents that is RNAwiki's rather than the open dataset's.
-  const noMuscle = details.filter((p) => !/href="\/muscle\//.test(p.html));
+  //
+  // EXCEPT on a page whose tag is false, where linking the tagged muscle is precisely the bug: the
+  // link carried the wrong claim onto a second, indexed page. Five of the nine have no RNAwiki
+  // anatomy page for the muscle that IS working (there is no tibialis anterior or peroneals page),
+  // so they honestly link to none. Their RNAwiki contribution is the correction, and that is what
+  // this gate demands from them instead — checked as emitted bytes, not assumed.
+  const idOf = (r) => decodeURIComponent(r.replace('/exercise/', ''));
+  const noMuscle = details.filter((p) => !/href="\/muscle\//.test(p.html) && !exTagFalse(idOf(p.route)));
   if (noMuscle.length) bad.push(`${noMuscle.length} movement page(s) link to no muscle page — e.g. ${noMuscle[0].route}. The muscles are the reason this page is not just a copy of free-exercise-db.`);
+
+  // ---- THE NINE FALSE TAGS MUST BE RETRACTED EVERYWHERE, NOT JUST WHERE THEY WERE NOTICED ------
+  // The first fix suppressed the drawing and left the claim. The second fixed the movement page and
+  // left /muscle/calves, /muscle/adductors, the /exercise index and the alternatives graph still
+  // asserting it — four more surfaces, three of them indexed, one of them RNAwiki's own authored
+  // anatomy. So the gate checks every surface rather than the one that was looked at.
+  const falseIds = Object.keys(EX_TAG_AUDIT).filter(exTagFalse);
+  if (falseIds.length !== 9) bad.push(`EX_TAG_AUDIT now marks ${falseIds.length} tags false, not the 9 that five reviewers judged. Re-run the classification rather than editing the count.`);
+  falseIds.forEach((id) => {
+    const pg = details.find((p) => idOf(p.route) === id);
+    if (!pg) { bad.push(`${id} is marked false but emitted no page.`); return; }
+    if (!/and that is wrong\.<\/b>/.test(pg.html)) bad.push(`/exercise/${id} is marked false but does not tell the reader so.`);
+    if (/name="robots" content="index/.test(pg.html)) bad.push(`/exercise/${id} asserts a muscle its own build calls false and is still asking to be indexed.`);
+    if (/"associatedAnatomy"/.test(pg.html)) bad.push(`/exercise/${id} still publishes the false muscle as structured data, which is the copy an answer engine reads.`);
+  });
+  const leaks = pages.filter((p) => /^\/muscle\//.test(p.route) || p.route === '/exercise' || /^\/exercise\//.test(p.route))
+    .map((p) => ({ route: p.route, hit: falseIds.find((id) => p.html.indexOf(`href="/exercise/${id}"`) >= 0 && p.route !== `/exercise/${id}`) }))
+    .filter((x) => x.hit && !(x.route === '/exercise'));
+  if (leaks.length) bad.push(`${leaks.length} page(s) still list a false-tagged movement as a movement for that muscle — e.g. ${leaks[0].route} links ${leaks[0].hit}. That republishes the claim the movement page retracts.`);
+  const idx = pages.find((p) => p.route === '/exercise');
+  if (idx && falseIds.some((id) => idx.html.indexOf(`href="/exercise/${id}"`) < 0)) {
+    bad.push('a false-tagged movement is linked from nowhere. They must stay reachable from the index — retracting a claim is not the same as hiding the page.');
+  }
+  if (idx && !/Filed under the wrong muscle/.test(idx.html)) bad.push('the /exercise index no longer separates the mis-tagged movements, so it is filing them under a muscle they do not train.');
 
   // The three verbs must actually appear, and a strengthening page must never claim to lengthen.
   const verbs = { Works: 0, Lengthens: 0, 'Where the roller goes': 0, 'Works, through range': 0 };
@@ -5976,6 +6157,19 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   // replaced ran a YouTube SEARCH and handed the reader whatever ranked first.
   const yt = exPages.filter((p) => /youtube\.com|youtu\.be/i.test(p.html));
   if (yt.length) bad.push(`${yt.length} movement page(s) link to YouTube — e.g. ${yt[0].route}. No camera and no video is a project constraint, and an unranked search result is not a citation.`);
+
+  // THE PROTOCOL BLOCK IS MEASURED, NOT ASSUMED. The argument for indexing these pages listed
+  // "the protocols that prescribe it" among the things that make them RNAwiki's own work. That was
+  // false: EX_IN_PROTOCOL is keyed off rc.exercises and rc.stretches, both empty on all 52 root
+  // causes, so the block renders nowhere. Nobody caught it because the claim lived in a comment
+  // and a commit message, where nothing checks it. So count it. If the graph is ever populated the
+  // block must actually appear; while it is empty the count must be honestly zero, and either way
+  // the number comes from the emitted bytes rather than from a sentence someone wrote.
+  const protoKeys = Object.keys(EX_IN_PROTOCOL).length;
+  const protoPages = details.filter((p) => /Where RNAwiki uses it/.test(p.html)).length;
+  if (protoKeys !== protoPages) {
+    bad.push(`EX_IN_PROTOCOL names ${protoKeys} movement(s) but ${protoPages} page(s) render the block. The map and the emitted pages disagree, so one of them is lying about what a reader gets.`);
+  }
 
 
   // ---- THE MUSCLE MAP ------------------------------------------------------------------------
