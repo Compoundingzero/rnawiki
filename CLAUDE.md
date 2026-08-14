@@ -54,9 +54,12 @@ merge. Do not weaken either gate to make a deploy pass.
 
 **Database:** Railway Postgres. Use `DATABASE_PUBLIC_URL`, not the internal one, from your machine.
 Query it by writing a script in the repo root (where `pg` is installed) and running
-`railway run --service Postgres node ./x.js`. **Postgres has no PITR.** The only backup is the
-GitHub Action in `.github/workflows/`, which pushes to the **private** repo
-`Compoundingzero/rnawiki-backups`. Never point it back at this repo — this one is public.
+`railway run --service Postgres node ./x.js`. The GitHub public-signal snapshot workflow is
+**manual-only and not configured**: it excludes creator protocols and private data, and it has no
+verified destination. It is not a database backup. A read-only Railway check on 2026-08-15 found
+production Postgres PITR and scheduled volume backups both off. Accounts, ownership and all
+private/health records require an approved encrypted recovery policy, bounded retention and real
+restore drills. Follow `docs/BACKUP_RECOVERY.md`; never claim recovery exists from the Git job.
 
 ## The two-document rule — internalise this before making any claim
 

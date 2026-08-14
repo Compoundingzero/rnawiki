@@ -91,7 +91,26 @@ const FEATURES = Object.freeze({
   publicProfiles: process.env.PUBLIC_PROFILES === '1',
   publicOutcomeAggregates: process.env.PUBLIC_OUTCOME_AGGREGATES === '1',
   sharedPlans: process.env.SHARED_PLANS === '1',
+  protocolCommunity: process.env.PROTOCOL_COMMUNITY === '1',
+  // Listing a health-adjacent creator plan is a separate disclosure from making its direct link
+  // readable. It is intentionally fail-closed and cannot be implied by PUBLIC_COMMUNITY.
+  creatorDiscovery: process.env.CREATOR_DISCOVERY === '1',
 });
+
+async function healthz(res) {
+  const routeCount = SITE_DATA && SITE_DATA.graph
+    ? (SITE_DATA.graph.problems || []).reduce((n, p) => n + ((p.routes || p.root_causes || []).length), 0)
+    : 0;
+  let database = false;
+  if (db.enabled) {
+    try { await db.query('SELECT 1'); database = true; } catch (e) { database = false; }
+  }
+  const ok = database && STUDIO_READY && routeCount > 0;
+  return json(res, ok ? 200 : 503, {
+    ok, database, safety: STUDIO_READY, routes: routeCount,
+    says: ok ? 'ready' : 'not ready',
+  }, { 'Cache-Control': 'no-store' });
+}
 
 // ---- REFUSE TO SERVE A HOME PAGE THAT CONTRADICTS THE RUNNING CONFIGURATION (2026-08-13) --------
 // The landing page prints the state of the contribution loop as three NOW / NOT YET rows, and those
@@ -500,7 +519,12 @@ async function award(userId, kind, ref, pts) {
   // can repeat alone is what turns a reward into a farm. If you are here because points "stopped
   // working" for one of these, that is the fix working — do not add a row to REWARDS.
   if (REWARDS_UNPAID.indexOf(kind) >= 0) return;
-  const points = pts != null ? pts : (REWARDS[kind] || 0);
+  // A caller-supplied number must never turn an unknown event into a paid event. Several legacy
+  // call sites still pass explicit values for self-authored actions (requests, check-ins, forks).
+  // The allowlist is the authority; `pts` may only lower/override the value of an allowlisted
+  // receipt whose meaning already requires another person's acceptance.
+  if (!Object.prototype.hasOwnProperty.call(REWARDS, kind)) return;
+  const points = pts != null ? pts : REWARDS[kind];
   if (!points) return;
   try {
     const r = await db.query(
@@ -644,7 +668,7 @@ async function currentUser(req) {
   // application_status are no longer selected here. Nothing writes them, no gate reads them, and
   // the session object is what becomes `ME` in the browser — so while they were on it, every page
   // in the SPA could branch on "what kind of professional is this". Now none can.
-  const r = await db.query('SELECT u.id, u.username, u.email, u.google_sub, u.role, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
+  const r = await db.query('SELECT u.id, u.username, u.email, u.google_sub, u.role, u.reputation_points, u.socials, u.badges, u.profile_views, u.booking_clicks, u.public_profile_enabled AS profile_visible FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token=$1 AND s.expires_at > now()', [sid]);
   const u = r.rows[0];
   if (u && ADMIN_USER && u.username.toLowerCase() === ADMIN_USER) u.role = 'admin';
   if (u && isSuper(u)) u.role = 'admin';           // the superadmin always has admin powers
@@ -728,11 +752,42 @@ function htmlEsc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').r
 // buildReminderLines() reads it to compose the daily reminder EMAIL. Deleting it with the bot
 // would have silently emptied every reminder email. Kept, renamed.
 const PROTO_INDEX = {};
+const LEGACY_ROUTE_ID = {};
 try {
-  const g = require('./data/clinical_graph.json'); const ks = require('./data/keystones.json');
-  g.problems.forEach(p => p.root_causes.forEach(rc => {
-    PROTO_INDEX[p.id + '/' + rc.id] = { problem: p.name, rc: rc.name.replace(/\s*\([^)]*\)/, ''), keystone: ks[rc.id] || null, nt: rc.nutrient_targets || {} };
-  }));
+  const g = (SITE_DATA && SITE_DATA.graph) || require('./data/clinical_graph.json');
+  const ks = require('./data/keystones.json');
+  (g.problems || []).forEach((p) => {
+    const roots = p.root_causes || [];
+    roots.forEach((rc) => {
+      const routeId = rc.route_id || rc.id;
+      LEGACY_ROUTE_ID[p.id + '/' + rc.id] = routeId;
+      PROTO_INDEX[p.id + '/' + rc.id] = {
+        problem: p.name, rc: rc.name.replace(/\s*\([^)]*\)/, ''), routeDisplay: rc.name, keystone: ks[rc.id] || null,
+        nt: rc.nutrient_targets || {}, routeKind: 'possible_reason', officialRcid: rc.id, routeId,
+      };
+    });
+    // Creator branches may attach to a documented route that has no official protocol yet. The
+    // generated graph is the authority for those routes; legacy root-cause ids remain aliases for
+    // reminder emails and existing URLs. A route name is governed corpus copy, so public titles do
+    // not need to accept a creator-written medical claim.
+    (p.routes || []).forEach((route) => {
+      const id = route.route_id || route.id;
+      if (!id) return;
+      const officialIds = Array.isArray(route.official_rcids) ? route.official_rcids
+        : [route.official_rcid || route.root_cause_id].filter(Boolean);
+      const official = roots.find((rc) => officialIds.indexOf(rc.id) >= 0);
+      const routeDisplay = String(route.name || route.label || (official && official.name) || id);
+      PROTO_INDEX[p.id + '/' + id] = {
+        problem: p.name,
+        rc: routeDisplay.replace(/\s*\([^)]*\)/, ''), routeDisplay,
+        keystone: official ? (ks[official.id] || null) : null,
+        nt: official ? (official.nutrient_targets || {}) : {},
+        routeKind: route.route_kind || 'possible_reason',
+        officialRcid: officialIds.length === 1 ? officialIds[0] : null, routeId: id,
+      };
+      if (official) LEGACY_ROUTE_ID[p.id + '/' + official.id] = id;
+    });
+  });
 } catch (e) { console.error('[proto] index load failed:', e.message); }
 // ---- Protocol functions (mirrors site/app.js PLAN_FUNCTIONS — keep the two in sync) ----
 // Same story: read by the reminder email, not only by the bot. The two entries that used to
@@ -780,7 +835,7 @@ let STUDIO_READY = false;
 try {
   STUDIO.init({
     data: SITE_DATA, interactions: SITE_IXN, exercises: SITE_EXERCISES, foods: SITE_FOODS,
-    functionIds: PLAN_FUNCTIONS.map(f => f.id),
+    functions: PLAN_FUNCTIONS,
   });
   STUDIO_READY = true;
   console.log('[studio] save-time safety ready — %d rules, %d compounds, %d exercises, %d foods, %d tools.',
@@ -790,6 +845,15 @@ try {
 // The one answer a broken validator is allowed to give.
 function studioDown(res) {
   return json(res, 503, { error: 'The safety checker could not load its own corpus, so nothing can be checked and nothing will be saved. That is a fault at this end, not a problem with your protocol.', refusals: [], warn: [], coverage: null });
+}
+const STUDIO_SNAPSHOT_CONTRACT = 'execution-safety-v2';
+function studioExecutionSnapshot(checked) {
+  const safety = STUDIO.snapshotSafety(checked);
+  const legacyHash = crypto.createHash('sha256')
+    .update(JSON.stringify({ spec: checked.spec, guide: checked.guide })).digest('base64url');
+  const hash = crypto.createHash('sha256')
+    .update(JSON.stringify({ spec: checked.spec, guide: checked.guide, safety })).digest('base64url');
+  return { contract: STUDIO_SNAPSHOT_CONTRACT, safety, hash, legacyHash };
 }
 // A protocol code: base64url over 6 random bytes, minted here. Same shape and same minting as
 // shared_plans.code — never derived from the title, never enumerable.
@@ -801,6 +865,30 @@ function studioCode() { return crypto.randomBytes(6).toString('base64url'); }
 function publicProtocolTitle(pid, rcid) {
   const p = pid && rcid ? PROTO_INDEX[pid + '/' + rcid] : null;
   return p ? `${p.problem} — ${p.rc} protocol` : 'Custom RNAwiki protocol';
+}
+function studioProvenance(row) {
+  const topicId = row && (row.topic_id || row.base_pid) || null;
+  const routeId = row && (row.route_id || (row.base_pid && row.base_rcid ? LEGACY_ROUTE_ID[row.base_pid + '/' + row.base_rcid] : null)) || null;
+  const legacy = row && row.base_pid && row.base_rcid ? PROTO_INDEX[row.base_pid + '/' + row.base_rcid] : null;
+  const route = topicId && routeId ? PROTO_INDEX[topicId + '/' + routeId] : null;
+  return { topicId, routeId, legacyPid: row && row.base_pid || null, legacyRcid: row && row.base_rcid || null, meta: route || legacy || null };
+}
+function publicProtocolTitleFor(row) {
+  const p = studioProvenance(row);
+  return p.topicId && p.routeId ? publicProtocolTitle(p.topicId, p.routeId)
+    : publicProtocolTitle(p.legacyPid, p.legacyRcid);
+}
+function studioValidationProvenance(row) {
+  const p = studioProvenance(row);
+  return { topic_id: p.topicId, route_id: p.routeId, base_pid: p.legacyPid, base_rcid: p.legacyRcid };
+}
+async function protocolCommunityRole(code, userId) {
+  if (!userId) return null;
+  const r = (await db.query(`SELECT CASE WHEN p.user_id=$2 THEN 'owner' ELSE m.role END AS role
+    FROM studio_protocols p LEFT JOIN protocol_memberships m
+      ON m.protocol_code=p.code AND m.user_id=$2
+    WHERE p.code=$1`, [code, userId])).rows[0];
+  return r && r.role ? r.role : null;
 }
 async function sendEmail(to, subject, html) {
   if (!RESEND_API_KEY) return false;
@@ -1144,6 +1232,8 @@ async function api(req, res, url) {
       publicProfiles: FEATURES.publicProfiles,
       publicOutcomeAggregates: FEATURES.publicOutcomeAggregates,
       sharedPlans: FEATURES.sharedPlans,
+      protocolCommunity: FEATURES.protocolCommunity,
+      creatorDiscovery: FEATURES.creatorDiscovery,
     },
   });
   // lightweight lead tracking (fire-and-forget beacon) — always 204, no-ops without a DB
@@ -1277,7 +1367,13 @@ async function api(req, res, url) {
     const b = await readBody(req, 2e5) || {};
     let v;
     try {
-      v = STUDIO.validate({ spec: b.spec, base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null, publish: b.status === 'published' });
+      v = STUDIO.validate({
+        spec: b.spec,
+        topic_id: clean(b.topic_id, 64) || null, route_id: clean(b.route_id, 80) || null,
+        base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null,
+        publish: b.status === 'published',
+        require_execution: b.status === 'published',
+      });
     } catch (e) { console.error('[studio check]', e.message); return studioDown(res); }
     // validate() short-circuits on a malformed spec and returns WITHOUT a `safety` key — the shape
     // refusal at studio-safety.js:225 is the live example. Reading v.safety.says unguarded turned
@@ -1305,15 +1401,12 @@ async function api(req, res, url) {
     'rootcause-changes', 'rootcause-overlay', 'foods', 'protocol-requests',
   ]);
   if (!FEATURES.publicCommunity && communityRoots.has(seg[0])) return json(res, 404, { error: 'Community is not available yet.' });
-  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'used') return json(res, 404, { error: 'Community is not available yet.' });
-  // /api/protocols/new — THE MISSING BRIDGE (added 2026-08-13). Until now a creator could publish a
-  // protocol and NOTHING on this site listed it: /api/protocols/used had no render path and no
-  // caller, so "create a protocol so the next person finds it" ended nowhere. That is step 6 of the
-  // founder's customer flow, and it was the only step with no code behind it at all.
-  // Gated with the rest of the community surface, and it returns an EMPTY LIST rather than an error
-  // when nothing is published, so the landing strip can render an honest empty state either way.
-  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'new') return json(res, 404, { error: 'Community is not available yet.' });
-  if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[1] === 'variants') return json(res, 404, { error: 'Community is not available yet.' });
+  // Creator discovery has its own kill switch. Direct GET /api/protocols/:code is deliberately
+  // outside this guard: an unlisted link remains readable, while every index/list stays dark.
+  const discoveryRoutes = new Set(['route-index', 'new', 'variants', 'used']);
+  if (!FEATURES.creatorDiscovery && seg[0] === 'protocols' && discoveryRoutes.has(seg[1])) {
+    return json(res, 404, { error: 'Creator plan discovery is not available.' });
+  }
   if (!FEATURES.publicCommunity && seg[0] === 'protocols' && seg[2] === 'like') return json(res, 404, { error: 'Community is not available yet.' });
   if (!FEATURES.publicProfiles && seg[0] === 'u') return json(res, 404, { error: 'Public profiles are not available yet.' });
   if (!FEATURES.publicOutcomeAggregates && seg[0] === 'outcomes' && seg[1] === 'public') return json(res, 404, { error: 'Public outcome aggregates are not available.' });
@@ -1450,6 +1543,7 @@ async function api(req, res, url) {
       await q('DELETE FROM votes WHERE voter_key=$1', [participant]);
       await q('DELETE FROM fork_clones WHERE voter_key=$1', [participant]);
       await q('DELETE FROM studio_clones WHERE voter_key=$1', [participant]);
+      await q('DELETE FROM protocol_likes WHERE voter_key=$1', [participant]);
       await q('DELETE FROM helped_people WHERE voter_key=$1', [participant]);
       await q('DELETE FROM referrals WHERE participant=$1 OR referrer=$1', [participant]);
       await q("DELETE FROM studio_protocols WHERE user_id=$1 AND status='draft'", [u.id]);
@@ -1575,7 +1669,7 @@ async function api(req, res, url) {
       available: FEATURES.publicProfiles,
       handle: u.username,
       // Printed by the client verbatim, so no surface can restate the scope in its own words.
-      shows: 'Your username, the month you joined, and the protocols you chose to publish. Nothing you read, plan, log or follow.',
+      shows: 'Your username, the month you joined, and only protocols you explicitly listed for discovery. Link-only protocols stay off this page. Nothing you read, plan, log or follow.',
     });
   }
   // Opt-in daily reminder email (keystone + selected nudge tools) — service feature, no research consent needed
@@ -1984,8 +2078,8 @@ async function api(req, res, url) {
     // that way. "@alice follows the herpes protocol" is a health disclosure about a named person.
     // DO NOT ADD ONE BEHIND A TOGGLE: a toggle is a thing somebody flips before they understand
     // what it publishes, and the person who flips it is the person least able to afford the leak.
-    const pub = await db.query(`SELECT code,title,base_pid,base_rcid,clones,published_at FROM studio_protocols
-      WHERE user_id=$1 AND status='published' ORDER BY published_at DESC LIMIT 50`, [uu.id]);
+    const pub = await db.query(`SELECT code,title,topic_id,route_id,base_pid,base_rcid,clones,published_at FROM studio_protocols
+      WHERE user_id=$1 AND status='published' AND visibility='public' ORDER BY published_at DESC LIMIT 50`, [uu.id]);
     return json(res, 200, {
       user: {
         username: uu.username,
@@ -2000,11 +2094,11 @@ async function api(req, res, url) {
       // new column added to the SELECT would have reached the wire silently. Named fields only.
       published: pub.rows.map((p) => ({
         code: p.code,
-        title: publicProtocolTitle(p.base_pid, p.base_rcid),
+        title: publicProtocolTitleFor(p),
         clones: p.clones || 0,
       })),
       clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
-      shows: 'Only what this account published on purpose. Nothing it reads, plans, logs or follows.',
+      shows: 'Only protocols this account explicitly listed for discovery. Link-only protocols and everything it reads, plans, logs or follows stay off this page.',
     });
   }
   // The three /api/steward endpoints (GET /api/steward, POST /api/steward/adopt,
@@ -2163,6 +2257,44 @@ async function api(req, res, url) {
     return json(res, 200, avatarState(fresh || u));
   }
 
+  // ---- CREATOR BRANCHES FOR CANONICAL TOPIC ROUTES -------------------------------------------
+  // One topic page asks once for every route it actually renders. Each requested route must be a
+  // canonical topic/route pair from the generated registry; legacy root ids are not aliases here.
+  // The visibility predicate is the consent boundary. Existing and link-only rows have the schema
+  // default `unlisted`, so no code, title or username from them can enter this response.
+  if (seg[0] === 'protocols' && seg[1] === 'route-index' && !seg[2] && method === 'GET') {
+    const qp = new URL('http://x/' + url).searchParams;
+    const topicId = clean(qp.get('topic_id'), 64);
+    const routeIds = [...new Set(qp.getAll('route_id').map((id) => clean(id, 80)).filter(Boolean))];
+    if (!topicId || !routeIds.length) return json(res, 400, { error: 'topic_id and route_id are required' });
+    if (routeIds.length > 32) return json(res, 400, { error: 'Too many routes in one request' });
+    const invalid = routeIds.find((routeId) => {
+      const meta = PROTO_INDEX[topicId + '/' + routeId];
+      return !meta || meta.routeId !== routeId;
+    });
+    if (invalid) return json(res, 404, { error: 'RNAwiki has no such topic route' });
+    if (!db.enabled) return json(res, 200, { topic_id: topicId, branches: [] });
+    try {
+      const r = await db.query(`WITH ranked AS (
+        SELECT p.code,p.topic_id,p.route_id,p.base_pid,p.base_rcid,p.clones,u.username AS handle,
+          COALESCE(u.public_profile_enabled,false) AS profile_visible,
+          ROW_NUMBER() OVER (PARTITION BY p.route_id ORDER BY p.published_at DESC,p.code) AS route_pos
+        FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id
+        WHERE p.status='published' AND p.visibility='public'
+          AND p.topic_id=$1 AND p.route_id=ANY($2::text[])
+      ) SELECT code,topic_id,route_id,base_pid,base_rcid,clones,handle,profile_visible
+        FROM ranked WHERE route_pos<=6 ORDER BY route_id,route_pos`, [topicId, routeIds]);
+      return json(res, 200, { topic_id: topicId, branches: r.rows.map((row) => ({
+        code: row.code, title: publicProtocolTitleFor(row),
+        topic_id: row.topic_id, route_id: row.route_id,
+        handle: row.handle || null, profile_visible: row.profile_visible === true, clones: row.clones || 0,
+      })) });
+    } catch (e) {
+      console.error('[protocols/route-index]', e.message);
+      return json(res, 200, { topic_id: topicId, branches: [] });
+    }
+  }
+
   // ---- CREATOR VARIANTS FOR ONE ROOT CAUSE (2026-08-13) --------------------------------------
   // The founder's requirement: "When a user searches /protocol/chronic-fatigue/iron-anemia and
   // multiple creators have made overlapping protocols, the route must resolve to a comparison view.
@@ -2188,8 +2320,12 @@ async function api(req, res, url) {
     // no reader could reach the body, and the browser suite runs with no Postgres, which returns
     // 503 above this line. It surfaced within a minute of the flag going on in production.
     const qp = new URL('http://x/' + url).searchParams;
-    const pid = clean(qp.get('pid') || '', 64), rcid = clean(qp.get('rcid') || '', 64);
-    if (!pid || !rcid) return json(res, 400, { error: 'pid and rcid are required' });
+    const pid = clean(qp.get('topic_id') || qp.get('pid') || '', 64);
+    const rcid = clean(qp.get('route_id') || qp.get('rcid') || '', 80);
+    if (!pid || !rcid) return json(res, 400, { error: 'topic_id and route_id are required' });
+    const routeMeta = PROTO_INDEX[pid + '/' + rcid] || null;
+    const canonicalRouteId = routeMeta && routeMeta.routeId ? routeMeta.routeId : rcid;
+    const legacyRcid = routeMeta && routeMeta.officialRcid ? routeMeta.officialRcid : rcid;
     try {
       // ---- TWO THINGS LEFT THIS PAYLOAD ON 2026-08-14 -----------------------------------------
       // `u.reputation_points AS rep`. The rail rendered it as "N points from contributing" on all
@@ -2204,15 +2340,17 @@ async function api(req, res, url) {
       // nothing leaks yet; the state doc's rule is nonetheless "their stored custom titles are
       // never returned on public surfaces", and one draft-to-publish UPDATE would have made this
       // the surface that broke it. base_pid/base_rcid are already selected, so the fix is free.
-      const r = await db.query(`SELECT p.code, p.base_pid, p.base_rcid, p.likes, p.clones, p.published_at,
-          u.username AS handle
+      const r = await db.query(`SELECT p.code,p.topic_id,p.route_id,p.base_pid,p.base_rcid,p.likes,p.clones,p.published_at,
+          u.username AS handle,COALESCE(u.public_profile_enabled,false) AS profile_visible
         FROM studio_protocols p LEFT JOIN users u ON u.id = p.user_id
-        WHERE p.base_pid=$1 AND p.base_rcid=$2 AND p.status='published'
-        ORDER BY p.likes DESC, p.published_at DESC LIMIT 12`, [pid, rcid]);
+        WHERE p.status='published' AND p.visibility='public' AND ((p.topic_id=$1 AND p.route_id=$2)
+          OR (p.base_pid=$1 AND p.base_rcid=$3))
+        ORDER BY p.likes DESC, p.published_at DESC LIMIT 12`, [pid, canonicalRouteId, legacyRcid]);
       return json(res, 200, { variants: r.rows.map((x) => ({
-        code: x.code, title: publicProtocolTitle(x.base_pid, x.base_rcid),
+        code: x.code, title: publicProtocolTitleFor(x),
+        topic_id: studioProvenance(x).topicId, route_id: studioProvenance(x).routeId,
         likes: x.likes || 0, clones: x.clones || 0,
-        handle: x.handle || null, at: x.published_at,
+        handle: x.handle || null, profile_visible: x.profile_visible === true, at: x.published_at,
       })) });
     } catch (e) { console.error('[protocols/variants]', e.message); return json(res, 200, { variants: [] }); }
   }
@@ -2226,11 +2364,19 @@ async function api(req, res, url) {
     // through resolveParticipant(), not invented here, so one browser is one identity everywhere.
     const part = await resolveParticipant(req, res);
     try {
-      const ins = await db.query('INSERT INTO protocol_likes(code,voter_key) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING id', [code, part.key]);
-      if (ins.rows.length) await db.query('UPDATE studio_protocols SET likes = likes + 1 WHERE code=$1', [code]);
-      const r = await db.query('SELECT likes FROM studio_protocols WHERE code=$1', [code]);
-      if (!r.rows.length) return json(res, 404, { error: 'No such protocol' });
-      return json(res, 200, { likes: r.rows[0].likes || 0, counted: ins.rows.length > 0 });
+      const result = await db.transaction(async (q) => {
+        // Lock and validate the live row before inserting the dependent vote. This keeps the
+        // existence/status check, idempotency row and displayed counter in one commit: a withdraw
+        // cannot land between them and leave a like attached to a non-live protocol.
+        const live = (await q("SELECT likes FROM studio_protocols WHERE code=$1 AND status='published' FOR UPDATE", [code])).rows[0];
+        if (!live) return null;
+        const ins = await q('INSERT INTO protocol_likes(code,voter_key) VALUES($1,$2) ON CONFLICT DO NOTHING RETURNING id', [code, part.key]);
+        if (!ins.rows.length) return { likes: live.likes || 0, counted: false };
+        const updated = (await q('UPDATE studio_protocols SET likes=likes+1 WHERE code=$1 RETURNING likes', [code])).rows[0];
+        return { likes: updated.likes || 0, counted: true };
+      });
+      if (!result) return json(res, 404, { error: 'No live protocol has that code' });
+      return json(res, 200, result);
     } catch (e) { console.error('[protocols/like]', e.message); return json(res, 500, { error: 'Could not record that.' }); }
   }
 
@@ -2245,14 +2391,15 @@ async function api(req, res, url) {
       // p.title is NOT selected: the comment above says "the governed title" and this returned the
       // raw stored column, the same defect /api/protocols/variants carried. Every other public
       // projection derives it through publicProtocolTitle(), and now so does this one.
-      const r = await db.query(`SELECT p.code, p.base_pid, p.base_rcid, p.likes, p.published_at,
-          u.username AS handle
+      const r = await db.query(`SELECT p.code,p.topic_id,p.route_id,p.base_pid,p.base_rcid,p.likes,p.published_at,
+          u.username AS handle,COALESCE(u.public_profile_enabled,false) AS profile_visible
         FROM studio_protocols p LEFT JOIN users u ON u.id = p.user_id
-        WHERE p.status='published' ORDER BY p.published_at DESC LIMIT $1`, [lim]);
+        WHERE p.status='published' AND p.visibility='public' ORDER BY p.published_at DESC LIMIT $1`, [lim]);
       return json(res, 200, { protocols: r.rows.map((x) => ({
-        code: x.code, title: publicProtocolTitle(x.base_pid, x.base_rcid),
+        code: x.code, title: publicProtocolTitleFor(x),
+        topic_id: studioProvenance(x).topicId, route_id: studioProvenance(x).routeId,
         pid: x.base_pid, rcid: x.base_rcid,
-        likes: x.likes || 0, handle: x.handle || null, at: x.published_at,
+        likes: x.likes || 0, handle: x.handle || null, profile_visible: x.profile_visible === true, at: x.published_at,
       })) });
     } catch (e) { console.error('[protocols/new]', e.message); return json(res, 200, { protocols: [] }); }
   }
@@ -2262,22 +2409,43 @@ async function api(req, res, url) {
     const u = await currentUser(req);
     const b = await readBody(req, 2e5); if (!b) return json(res, 400, { error: 'Bad request' });
     const publish = b.status === 'published';
+    const visibility = publish && (b.visibility === 'unlisted' || b.visibility === 'public') ? b.visibility : 'unlisted';
     const draftTitle = clean(b.title, 90);
     if (!publish && !draftTitle) return json(res, 400, { error: 'Name your private draft' });
     if (publish && !u) return json(res, 401, { error: 'Publishing puts your name on it, so publishing needs an account. Building one, saving it and running it do not.' });
+    if (publish && b.visibility !== 'unlisted' && b.visibility !== 'public') return json(res, 400, { error: 'Choose whether this protocol is listed or link-only.' });
+    if (publish && visibility === 'public' && !FEATURES.creatorDiscovery) return json(res, 404, { error: 'Creator plan discovery is not available. Choose link-only instead.' });
     let v;
-    try { v = STUDIO.validate({ spec: b.spec, base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null, publish }); }
+    try { v = STUDIO.validate({
+      spec: b.spec,
+      topic_id: clean(b.topic_id, 64) || null, route_id: clean(b.route_id, 80) || null,
+      base_pid: clean(b.base_pid, 64) || null, base_rcid: clean(b.base_rcid, 64) || null,
+      publish,
+      require_execution: publish,
+    }); }
     catch (e) { console.error('[studio save]', e.message); return studioDown(res); }
     // The 422 body carries the ENGINE'S OWN text and nothing the caller sent, so the client cannot
     // dress a refusal up in a friendlier sentence and it cannot become a reflected-content sink.
     if (!v.ok) return json(res, 422, { error: 'This protocol was not saved.', refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says });
     const code = studioCode();
-    const title = publish ? publicProtocolTitle(v.base_pid, v.base_rcid) : draftTitle;
-    await db.query(`INSERT INTO studio_protocols(code,user_id,parent_code,depth,base_pid,base_rcid,title,spec,safety,status,published_at)
-      VALUES($1,$2,NULL,0,$3,$4,$5,$6,$7,$8,$9)`,
-    [code, u ? u.id : null, v.base_pid, v.base_rcid, title, JSON.stringify(v.spec), JSON.stringify(v.safety),
-      publish ? 'published' : 'draft', publish ? new Date() : null]);
-    return json(res, 200, { code, url: `${SITE_URL}/p/${code}`, status: publish ? 'published' : 'draft', warn: v.warn, coverage: v.coverage, says: v.safety.says });
+    const title = publish ? publicProtocolTitle(v.topic_id, v.route_id) : draftTitle;
+    const insertSql = `INSERT INTO studio_protocols(code,user_id,parent_code,depth,topic_id,route_id,base_pid,base_rcid,title,spec,safety,status,visibility,published_at)
+      VALUES($1,$2,NULL,0,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)`;
+    const insertArgs = [code, u ? u.id : null, v.topic_id, v.route_id, v.base_pid, v.base_rcid, title, JSON.stringify(v.spec), JSON.stringify(v.safety),
+      publish ? 'published' : 'draft', visibility, publish ? new Date() : null];
+    if (publish && u) {
+      // A public branch without its owner membership would have no accountable community owner.
+      // Commit the immutable version and owner edge together or neither exists.
+      await db.transaction(async (q) => {
+        await q(insertSql, insertArgs);
+        await q(`INSERT INTO protocol_memberships(protocol_code,user_id,role)
+          VALUES($1,$2,'owner') ON CONFLICT(protocol_code,user_id) DO UPDATE SET role='owner',updated_at=now()`, [code, u.id]);
+      });
+    } else await db.query(insertSql, insertArgs);
+    return json(res, 200, { code, branch_id: code, version_id: code, version_no: 1,
+      topic_id: v.topic_id, route_id: v.route_id, base_pid: v.base_pid, base_rcid: v.base_rcid,
+      url: `${SITE_URL}/p/${code}`, status: publish ? 'published' : 'draft', visibility,
+      warn: v.warn, coverage: v.coverage, says: v.safety.says });
   }
   // A REMIX STORES ONLY ITS DIFFERENCES. The client sends the resolved spec it edited; the server
   // diffs it against the resolved PARENT and stores the patch. The diff happens here and not in the
@@ -2293,36 +2461,50 @@ async function api(req, res, url) {
     const base = await STUDIO.resolve(parent, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(r => r.rows[0]));
     if (!base.ok) return json(res, 422, { error: base.error });
     const publish = b.status === 'published';
+    const visibility = publish && (b.visibility === 'unlisted' || b.visibility === 'public') ? b.visibility : 'unlisted';
     if (publish && !u) return json(res, 401, { error: 'Publishing puts your name on it, so publishing needs an account.' });
+    if (publish && b.visibility !== 'unlisted' && b.visibility !== 'public') return json(res, 400, { error: 'Choose whether this protocol is listed or link-only.' });
+    if (publish && visibility === 'public' && !FEATURES.creatorDiscovery) return json(res, 404, { error: 'Creator plan discovery is not available. Choose link-only instead.' });
     // Validated as the FULLY RESOLVED protocol, not as the patch. A change that is harmless on its
     // own can resolve into a danger pairing with something it inherited.
     let v;
-    try { v = STUDIO.validate({ spec: b.spec, base_pid: parent.base_pid, base_rcid: parent.base_rcid, publish }); }
+    try { v = STUDIO.validate(Object.assign({ spec: b.spec, publish, require_execution: publish }, studioValidationProvenance(parent))); }
     catch (e) { console.error('[studio remix]', e.message); return studioDown(res); }
     if (!v.ok) return json(res, 422, { error: 'This remix was not saved.', refusals: v.refusals, warn: v.warn, coverage: v.coverage, says: v.safety.says });
     const patch = STUDIO.diff(base.spec, v.spec);
     const code = studioCode();
-    const title = publish ? publicProtocolTitle(parent.base_pid, parent.base_rcid)
+    const title = publish ? publicProtocolTitleFor(parent)
       : (clean(b.title, 90) || ('Remix of ' + parent.title));
-    await db.query(`INSERT INTO studio_protocols(code,user_id,parent_code,depth,base_pid,base_rcid,title,spec,safety,status,published_at)
-      VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11)`,
-    [code, u ? u.id : null, parent.code, parent.depth + 1, parent.base_pid, parent.base_rcid,
-      title, JSON.stringify(patch), JSON.stringify(v.safety),
-      publish ? 'published' : 'draft', publish ? new Date() : null]);
-    return json(res, 200, { code, url: `${SITE_URL}/p/${code}`, storedBytes: JSON.stringify(patch).length, warn: v.warn, coverage: v.coverage, says: v.safety.says });
+    const insertSql = `INSERT INTO studio_protocols(code,user_id,parent_code,depth,topic_id,route_id,base_pid,base_rcid,title,spec,safety,status,visibility,published_at)
+      VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)`;
+    const insertArgs = [code, u ? u.id : null, parent.code, parent.depth + 1, v.topic_id, v.route_id,
+      v.base_pid, v.base_rcid, title, JSON.stringify(patch), JSON.stringify(v.safety),
+      publish ? 'published' : 'draft', visibility, publish ? new Date() : null];
+    if (publish && u) {
+      await db.transaction(async (q) => {
+        await q(insertSql, insertArgs);
+        await q(`INSERT INTO protocol_memberships(protocol_code,user_id,role)
+          VALUES($1,$2,'owner') ON CONFLICT(protocol_code,user_id) DO UPDATE SET role='owner',updated_at=now()`, [code, u.id]);
+      });
+    } else await db.query(insertSql, insertArgs);
+    return json(res, 200, { code, branch_id: code, version_id: code, version_no: 1,
+      topic_id: v.topic_id, route_id: v.route_id, base_pid: v.base_pid, base_rcid: v.base_rcid,
+      url: `${SITE_URL}/p/${code}`, visibility, storedBytes: JSON.stringify(patch).length,
+      warn: v.warn, coverage: v.coverage, says: v.safety.says });
   }
   // MOST USED. Never "works best". Sorted by clone count, which counts whether people STARTED it.
   // `means` travels with the list so no surface can relabel it on its own.
   if (seg[0] === 'protocols' && seg[1] === 'used' && !seg[2] && method === 'GET') {
     // Named fields, not a spread, for the same reason as the profile projection above: p.title is
     // the raw stored column and was travelling under the derived one.
-    const r = await db.query(`SELECT p.code,p.base_pid,p.base_rcid,p.clones,p.published_at,u.username AS by_user
+    const r = await db.query(`SELECT p.code,p.topic_id,p.route_id,p.base_pid,p.base_rcid,p.clones,p.published_at,u.username AS by_user,
+        COALESCE(u.public_profile_enabled,false) AS profile_visible
       FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id
-      WHERE p.status='published' AND p.clones > 0 ORDER BY p.clones DESC, p.published_at DESC LIMIT 12`);
+      WHERE p.status='published' AND p.visibility='public' AND p.clones > 0 ORDER BY p.clones DESC, p.published_at DESC LIMIT 12`);
     return json(res, 200, {
       protocols: r.rows.map((p) => ({
-        code: p.code, title: publicProtocolTitle(p.base_pid, p.base_rcid),
-        clones: p.clones || 0, by_user: p.by_user || null,
+        code: p.code, title: publicProtocolTitleFor(p),
+        clones: p.clones || 0, by_user: p.by_user || null, profile_visible: p.profile_visible === true,
       })),
       label: 'MOST USED', means: 'How many people started it. Not how well it worked — nothing here measures that.',
     });
@@ -2338,7 +2520,7 @@ async function api(req, res, url) {
   // month, never the day, for the same reason GET /api/u/:handle truncates it.
   if (seg[0] === 'protocols' && seg[1] === 'mine' && !seg[2] && method === 'GET') {
     const u = await currentUser(req); if (!u) return json(res, 200, { protocols: [], signedIn: false });
-    const r = await db.query(`SELECT code,title,status,clones,base_pid,base_rcid,parent_code,published_at,updated_at
+    const r = await db.query(`SELECT code,title,status,visibility,clones,topic_id,route_id,base_pid,base_rcid,parent_code,published_at,updated_at
       FROM studio_protocols WHERE user_id=$1 ORDER BY updated_at DESC LIMIT 100`, [u.id]);
     // Read separately: currentUser() deliberately does not select created_at, and its row is what
     // becomes `ME` in every browser. Reading it here keeps the join date to the one page that
@@ -2346,10 +2528,23 @@ async function api(req, res, url) {
     const jr = await db.query('SELECT created_at FROM users WHERE id=$1', [u.id]);
     const joinedAt = jr.rows[0] && jr.rows[0].created_at;
     return json(res, 200, {
-      protocols: r.rows.map((p) => p.status === 'published' ? Object.assign({}, p, { title: publicProtocolTitle(p.base_pid, p.base_rcid) }) : p), signedIn: true,
+      protocols: r.rows.map((p) => p.status === 'published' ? Object.assign({}, p, { title: publicProtocolTitleFor(p) }) : p), signedIn: true,
       joined: joinedAt ? new Date(joinedAt).toISOString().slice(0, 7) : null,
       clonesMean: 'How many people started it. Not how well it worked — nothing here measures that.',
     });
+  }
+  // Removing a branch from discovery is not withdrawal: its exact link, starts, remixes and
+  // discussion keep working. The immutable-row trigger permits this one-way privacy transition
+  // and no other visibility edit; relisting requires publishing a new version with fresh consent.
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'visibility' && !seg[3] && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to change where this protocol appears.' });
+    const b = await readBody(req, 1000); if (!b) return json(res, 400, { error: 'Bad request' });
+    if (b.visibility !== 'unlisted') return json(res, 400, { error: 'A published version may only be removed from discovery. Publish a new version to list it again.' });
+    const r = await db.query(`UPDATE studio_protocols SET visibility='unlisted',updated_at=now()
+      WHERE code=$1 AND user_id=$2 AND status='published' RETURNING code,visibility`, [clean(seg[1], 16), u.id]);
+    if (!r.rows[0]) return json(res, 404, { error: 'No published protocol of yours has that code.' });
+    return json(res, 200, { ok: true, code: r.rows[0].code, visibility: r.rows[0].visibility,
+      says: 'Removed from topic pages and creator lists. Its direct link still works.' });
   }
   // WITHDRAW. studio_protocols.status has supported 'withdrawn' since the table was written and
   // the read-one branch below already renders that state — but NOTHING COULD EVER SET IT.
@@ -2371,11 +2566,155 @@ async function api(req, res, url) {
       says: 'Withdrawn. Nobody new can start it and it is off Most Used. The link still opens and says you withdrew it, because other people may have remixed it and their copies have to keep resolving.',
     });
   }
+  // Branch discussion is a narrow accountability surface, separate from the retired generic
+  // comments/forum feature. Every row names the exact immutable version and optional step/day
+  // context. Reading is public; writing requires an account that started this branch (or its
+  // creator). The creator may delegate moderation, and every role/removal action is audited.
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'community' && !seg[3] && method === 'GET') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16);
+    const exists = (await db.query("SELECT code,status FROM studio_protocols WHERE code=$1 AND status IN ('published','withdrawn')", [code])).rows[0];
+    if (!exists) return json(res, 404, { error: 'No such protocol' });
+    const q = new URL('http://x/' + url).searchParams;
+    const kinds = new Set(['general', 'step', 'day', 'checkin']);
+    const contextKind = kinds.has(q.get('context')) ? q.get('context') : '';
+    const contextKey = clean(q.get('key'), 120);
+    const r = await db.query(`SELECT pp.id,pp.version_code,pp.context_kind,pp.context_key,pp.parent_id,
+      pp.body,pp.created_at,u.username,COALESCE(u.public_profile_enabled,false) AS profile_visible,
+      CASE WHEN sp.user_id=pp.user_id THEN 'owner' ELSE COALESCE(pm.role,'member') END AS role
+      FROM protocol_posts pp
+      JOIN users u ON u.id=pp.user_id
+      JOIN studio_protocols sp ON sp.code=pp.protocol_code
+      LEFT JOIN protocol_memberships pm ON pm.protocol_code=pp.protocol_code AND pm.user_id=pp.user_id
+      WHERE pp.protocol_code=$1 AND pp.version_code=$1 AND pp.status='active'
+        AND ($2='' OR pp.context_kind=$2) AND ($3='' OR pp.context_key=$3)
+      ORDER BY pp.created_at DESC LIMIT 200`, [code, contextKind, contextKey]);
+    const u = await currentUser(req);
+    const role = u ? await protocolCommunityRole(code, u.id) : null;
+    return json(res, 200, {
+      code, version_id: code, status: exists.status, posts: r.rows, role,
+      can_post: exists.status === 'published' && !!role,
+      viewer: u ? u.username : null,
+    });
+  }
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'community' && !seg[3] && method === 'POST') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16);
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to join this plan discussion.' });
+    const live = (await db.query("SELECT code FROM studio_protocols WHERE code=$1 AND status='published'", [code])).rows[0];
+    if (!live) return json(res, 409, { error: 'This plan is no longer open for new discussion posts.' });
+    const role = await protocolCommunityRole(code, u.id);
+    if (!role) return json(res, 403, { error: 'Start this plan before posting in its discussion.' });
+    const b = await readBody(req, 5000); if (!b) return json(res, 400, { error: 'Bad request' });
+    const version = clean(b.version_id, 16);
+    if (version !== code) return json(res, 409, { error: 'This discussion belongs to a different plan version. Reload before posting.' });
+    const kinds = new Set(['general', 'step', 'day', 'checkin']);
+    const contextKind = kinds.has(b.context_kind) ? b.context_kind : 'general';
+    const contextKey = clean(b.context_key, 120) || null;
+    const body = clean(b.body, 1600);
+    if (!body) return json(res, 400, { error: 'Write something first.' });
+    const parentId = b.parent_id == null ? null : pathId(b.parent_id);
+    if (b.parent_id != null && !parentId) return json(res, 400, { error: 'Bad reply target.' });
+    if (parentId) {
+      const parent = (await db.query("SELECT id FROM protocol_posts WHERE id=$1 AND protocol_code=$2 AND version_code=$2 AND status='active'", [parentId, code])).rows[0];
+      if (!parent) return json(res, 409, { error: 'That message is no longer in this discussion.' });
+    }
+    const r = (await db.query(`INSERT INTO protocol_posts(protocol_code,version_code,context_kind,context_key,parent_id,user_id,body)
+      VALUES($1,$1,$2,$3,$4,$5,$6)
+      RETURNING id,version_code,context_kind,context_key,parent_id,body,created_at`,
+    [code, contextKind, contextKey, parentId, u.id, body])).rows[0];
+    return json(res, 200, { post: Object.assign(r, { username: u.username, role, profile_visible: u.profile_visible === true }) });
+  }
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'community' && seg[3] === 'join' && !seg[4] && method === 'POST') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16);
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to join this plan discussion.' });
+    const b = await readBody(req, 1000); if (!b) return json(res, 400, { error: 'Bad request' });
+    if (clean(b.version_id, 16) !== code) return json(res, 409, { error: 'This discussion belongs to a different plan version. Reload before joining.' });
+    if (b.disclosure_version !== 'protocol-community-v1') return json(res, 400, { error: 'Read and confirm the discussion privacy note before joining.' });
+    const joined = await db.transaction(async (q) => {
+      // Joining makes an account's health-plan relationship visible to the creator and moderators.
+      // Prove the same account first used Start on this exact immutable version; a local Today
+      // snapshot or a Start by another browser/account is not authority to expose that relationship.
+      // Lock the live row so withdrawal cannot land between this proof and the membership write.
+      const live = (await q("SELECT code FROM studio_protocols WHERE code=$1 AND status='published' FOR UPDATE", [code])).rows[0];
+      if (!live) return { state: 'closed' };
+      const started = (await q('SELECT 1 FROM studio_clones WHERE code=$1 AND voter_key=$2', [code, `u:${u.id}`])).rows[0];
+      if (!started) return { state: 'not_started' };
+      const membership = (await q(`INSERT INTO protocol_memberships(protocol_code,user_id,role,disclosure_version)
+        VALUES($1,$2,'member',$3) ON CONFLICT(protocol_code,user_id) DO UPDATE
+        SET disclosure_version=COALESCE(protocol_memberships.disclosure_version,EXCLUDED.disclosure_version),updated_at=now()
+        RETURNING role`, [code, u.id, b.disclosure_version])).rows[0];
+      return { state: 'joined', role: membership.role };
+    });
+    if (joined.state === 'closed') return json(res, 409, { error: 'This plan is no longer open for new community members.' });
+    if (joined.state === 'not_started') return json(res, 403, { error: 'Start this exact plan before joining its discussion.' });
+    return json(res, 200, { ok: true, code, version_id: code, role: joined.role, username: u.username });
+  }
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'community' && seg[3] === 'leave' && !seg[4] && method === 'DELETE') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16);
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to leave this discussion.' });
+    const role = await protocolCommunityRole(code, u.id);
+    if (!role) return json(res, 404, { error: 'You have not joined this discussion.' });
+    if (role === 'owner') return json(res, 409, { error: 'The plan creator owns this discussion and cannot leave it. Withdraw the protocol to close it to new activity.' });
+    await db.query('DELETE FROM protocol_memberships WHERE protocol_code=$1 AND user_id=$2', [code, u.id]);
+    return json(res, 200, { ok: true, code, left: true,
+      says: 'You left this discussion. Your existing public messages remain; you can rejoin later after reading the privacy note again.' });
+  }
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'community' && seg[3] && !seg[4] && method === 'DELETE') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16), id = pathId(seg[3]);
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in to moderate this discussion.' });
+    if (!id) return json(res, 400, { error: 'Bad post id.' });
+    const post = (await db.query("SELECT id,user_id FROM protocol_posts WHERE id=$1 AND protocol_code=$2 AND status='active'", [id, code])).rows[0];
+    if (!post) return json(res, 404, { error: 'No such message.' });
+    const role = await protocolCommunityRole(code, u.id);
+    if (post.user_id !== u.id && role !== 'owner' && role !== 'moderator') return json(res, 403, { error: 'Only the author or this plan’s moderators can remove that message.' });
+    await db.transaction(async (q) => {
+      await q("UPDATE protocol_posts SET status='removed',body='[removed]',updated_at=now() WHERE id=$1", [id]);
+      if (post.user_id !== u.id) await q(`INSERT INTO protocol_community_events(protocol_code,actor_user_id,target_user_id,post_id,kind)
+        VALUES($1,$2,$3,$4,'post_removed')`, [code, u.id, post.user_id, id]);
+    });
+    return json(res, 200, { ok: true });
+  }
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'members' && !seg[3] && method === 'GET') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16), u = await currentUser(req);
+    if (!u) return json(res, 401, { error: 'Sign in to manage this community.' });
+    const role = await protocolCommunityRole(code, u.id);
+    if (role !== 'owner' && role !== 'moderator') return json(res, 403, { error: 'Only this plan’s owner or moderators can see its member roles.' });
+    const r = await db.query(`SELECT u.username,m.role,m.joined_at FROM protocol_memberships m
+      JOIN users u ON u.id=m.user_id WHERE m.protocol_code=$1 ORDER BY
+      CASE m.role WHEN 'owner' THEN 0 WHEN 'moderator' THEN 1 ELSE 2 END,u.username`, [code]);
+    return json(res, 200, { members: r.rows, role });
+  }
+  if (seg[0] === 'protocols' && seg[1] && seg[2] === 'members' && seg[3] && seg[4] === 'role' && !seg[5] && method === 'POST') {
+    if (!FEATURES.protocolCommunity) return json(res, 404, { error: 'Protocol discussion is not available yet.' });
+    const code = clean(seg[1], 16), username = clean(decodeURIComponent(seg[3]), 24);
+    const owner = await currentUser(req); if (!owner) return json(res, 401, { error: 'Sign in to manage this community.' });
+    if (await protocolCommunityRole(code, owner.id) !== 'owner') return json(res, 403, { error: 'Only the plan creator can change moderator roles.' });
+    const b = await readBody(req, 1000); if (!b) return json(res, 400, { error: 'Bad request' });
+    const next = b.role === 'moderator' ? 'moderator' : b.role === 'member' ? 'member' : null;
+    if (!next) return json(res, 400, { error: 'Role must be member or moderator.' });
+    const target = (await db.query('SELECT id FROM users WHERE lower(username)=lower($1)', [username])).rows[0];
+    if (!target) return json(res, 404, { error: 'No account has that username.' });
+    const before = await protocolCommunityRole(code, target.id);
+    if (!before) return json(res, 409, { error: 'That person has not started this plan.' });
+    if (before === 'owner') return json(res, 409, { error: 'The plan creator remains its owner.' });
+    await db.transaction(async (q) => {
+      await q(`UPDATE protocol_memberships SET role=$3,updated_at=now() WHERE protocol_code=$1 AND user_id=$2`, [code, target.id, next]);
+      await q(`INSERT INTO protocol_community_events(protocol_code,actor_user_id,target_user_id,kind,detail)
+        VALUES($1,$2,$3,$4,$5)`, [code, owner.id, target.id, next === 'moderator' ? 'role_granted' : 'role_revoked', JSON.stringify({ from: before, to: next })]);
+    });
+    return json(res, 200, { ok: true, username, role: next });
+  }
   // One clone per browser, no account. The fork_clones pattern, minus the reputation award: that
   // award embedded the CALLER's voter key in its idempotency ref, which made public reputation
   // unbounded. Nothing here writes to a leaderboard about a person.
   if (seg[0] === 'protocols' && seg[1] && seg[2] === 'clone' && method === 'POST') {
-    const code = clean(seg[1], 16); await readBody(req, 512);
+    const code = clean(seg[1], 16);
+    const b = await readBody(req, 512) || {};
     if (!code) return json(res, 400, { error: 'Missing' });
     const r = (await db.query("SELECT * FROM studio_protocols WHERE code=$1 AND status='published'", [code])).rows[0];
     if (!r) return json(res, 404, { error: 'No such protocol' });
@@ -2387,18 +2726,35 @@ async function api(req, res, url) {
     const resolved = await STUDIO.resolve(r, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(x => x.rows[0]));
     if (!resolved.ok) return json(res, 422, { error: resolved.error, status: 'review_required' });
     let current;
-    try { current = STUDIO.validate({ spec: resolved.spec, base_pid: r.base_pid, base_rcid: r.base_rcid, publish: true }); }
+    try { current = STUDIO.validate(Object.assign({ spec: resolved.spec, publish: true }, studioValidationProvenance(r))); }
     catch (e) { console.error('[studio clone]', e.message); return studioDown(res); }
     if (!current.ok) return json(res, 422, {
       error: 'This protocol needs review before anybody can start or remix it.', status: 'review_required',
       refusals: current.refusals, warn: current.warn, coverage: current.coverage,
       says: current.safety ? current.safety.says : null,
     });
+    const currentSnapshot = studioExecutionSnapshot(current);
+    if (!b.snapshot_hash || b.snapshot_hash !== currentSnapshot.hash) {
+      return json(res, 409, { error: 'This plan or its guidance changed while it was open. Reload before starting. Nothing was added.' });
+    }
     const part = await resolveParticipant(req, res); const voterKey = part.key;
     if (!voterKey) return json(res, 400, { error: 'Missing' });
-    const ins = await db.query('INSERT INTO studio_clones(code,voter_key) VALUES($1,$2) ON CONFLICT (code,voter_key) DO NOTHING RETURNING id', [code, voterKey]);
-    if (ins.rows[0]) await db.query('UPDATE studio_protocols SET clones=clones+1 WHERE code=$1', [code]);
-    return json(res, 200, { ok: true, code, counted: !!ins.rows[0] });
+    const result = await db.transaction(async (q) => {
+      // Re-lock after the potentially long resolve/check. Only a still-published immutable row may
+      // receive a start, and the idempotency row plus displayed count commit as one unit.
+      const live = (await q("SELECT clones FROM studio_protocols WHERE code=$1 AND status='published' FOR UPDATE", [code])).rows[0];
+      if (!live) return null;
+      const ins = await q('INSERT INTO studio_clones(code,voter_key) VALUES($1,$2) ON CONFLICT (code,voter_key) DO NOTHING RETURNING id', [code, voterKey]);
+      if (!ins.rows[0]) return { counted: false, clones: live.clones || 0 };
+      const updated = (await q('UPDATE studio_protocols SET clones=clones+1 WHERE code=$1 RETURNING clones', [code])).rows[0];
+      return { counted: true, clones: updated.clones || 0 };
+    });
+    if (!result) return json(res, 409, { error: 'This protocol was withdrawn while it was being checked. Nothing was started.' });
+    return json(res, 200, {
+      ok: true, code, branch_id: code, version_id: code,
+      snapshot_hash: currentSnapshot.hash, snapshot_contract: currentSnapshot.contract,
+      counted: result.counted, clones: result.clones,
+    });
   }
   // Read one. Resolves the remix chain, and REVALIDATES against the corpus as it is TODAY — the
   // stored verdict says what was true when it was saved, and a compound can be re-rated or
@@ -2406,15 +2762,21 @@ async function api(req, res, url) {
   // than being handed a stale clearance.
   if (seg[0] === 'protocols' && seg[1] && !seg[2] && method === 'GET') {
     const code = clean(seg[1], 16);
-    const row = (await db.query('SELECT p.*, u.username AS by_user FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id WHERE p.code=$1', [code])).rows[0];
+    const row = (await db.query('SELECT p.*, u.username AS by_user, COALESCE(u.public_profile_enabled,false) AS profile_visible FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id WHERE p.code=$1', [code])).rows[0];
     if (!row || row.status === 'draft') return json(res, 404, { error: 'No such protocol' });
-    const publicTitle = publicProtocolTitle(row.base_pid, row.base_rcid);
+    const provenance = studioProvenance(row);
+    const publicTitle = publicProtocolTitleFor(row);
+    const publicRoute = provenance.meta;
     if (row.status === 'withdrawn') {
       // Kept, not 404ed: people linked to this, and remixes of it still resolve through it.
-      return json(res, 200, { code, status: 'withdrawn', title: publicTitle, by_user: row.by_user || null, spec: null, says: 'The person who wrote this withdrew it.' });
+      return json(res, 200, { code, branch_id: code, version_id: code, version_no: 1,
+        topic_id: provenance.topicId, route_id: provenance.routeId,
+        status: 'withdrawn', title: publicTitle, by_user: row.by_user || null, spec: null, says: 'The person who wrote this withdrew it.' });
     }
     const r = await STUDIO.resolve(row, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then(x => x.rows[0]));
-    if (!r.ok) return json(res, 200, { code, status: 'unresolvable', title: publicTitle, spec: null, says: r.error });
+    if (!r.ok) return json(res, 200, { code, branch_id: code, version_id: code,
+      topic_id: provenance.topicId, route_id: provenance.routeId,
+      status: 'unresolvable', title: publicTitle, spec: null, says: r.error });
     // Revalidate as PUBLIC content. Draft mode intentionally turns some hard stops into notes so
     // the owner can keep editing a private copy; using it here let a once-published protocol keep
     // exposing steps after the current publish contract would refuse them. If the checker cannot
@@ -2423,17 +2785,21 @@ async function api(req, res, url) {
     const checkedAt = new Date().toISOString();
     if (!STUDIO_READY) return json(res, 200, {
       code, status: 'review_required', previous_status: row.status, title: publicTitle,
+      branch_id: code, version_id: code, version_no: 1,
+      topic_id: provenance.topicId, route_id: provenance.routeId,
       by_user: row.by_user || null, spec: null, reviewRequired: true,
       says: 'This protocol is temporarily unavailable because RNAwiki could not run its current publication checks. No steps or remix are available.',
       safetyWhenSaved: row.safety,
       safetyNow: { refusals: [{ rule: 'checker-unavailable', message: 'Current publication checks could not run.', item: null, row: null }], warn: [], coverage: null, says: 'Current publication checks could not run.', at: checkedAt },
     });
     let v;
-    try { v = STUDIO.validate({ spec: r.spec, base_pid: row.base_pid, base_rcid: row.base_rcid, publish: true }); }
+    try { v = STUDIO.validate(Object.assign({ spec: r.spec, publish: true }, studioValidationProvenance(row))); }
     catch (e) {
       console.error('[studio read]', e.message);
       return json(res, 200, {
         code, status: 'review_required', previous_status: row.status, title: publicTitle,
+        branch_id: code, version_id: code, version_no: 1,
+        topic_id: provenance.topicId, route_id: provenance.routeId,
         by_user: row.by_user || null, spec: null, reviewRequired: true,
         says: 'This protocol is temporarily unavailable because RNAwiki could not run its current publication checks. No steps or remix are available.',
         safetyWhenSaved: row.safety,
@@ -2447,16 +2813,25 @@ async function api(req, res, url) {
     };
     if (!v.ok) return json(res, 200, {
       code, status: 'review_required', previous_status: row.status, title: publicTitle,
+      branch_id: code, version_id: code, version_no: 1,
+      topic_id: provenance.topicId, route_id: provenance.routeId,
       by_user: row.by_user || null, base_pid: row.base_pid, base_rcid: row.base_rcid,
+      route_name: publicRoute ? publicRoute.rc : null, route_kind: publicRoute ? publicRoute.routeKind : null,
       parent_code: row.parent_code, depth: row.depth, clones: row.clones,
       published_at: row.published_at, spec: null, reviewRequired: true,
       says: 'This protocol no longer passes RNAwiki\'s current publication checks. Its steps and remix control are hidden until it is reviewed.',
       safetyWhenSaved: row.safety, safetyNow: now,
     });
+    const executionSnapshot = studioExecutionSnapshot(v);
     return json(res, 200, {
-      code, status: row.status, title: publicTitle, by_user: row.by_user || null,
+      code, branch_id: code, version_id: code, version_no: 1,
+      snapshot_hash: executionSnapshot.hash, snapshot_contract: executionSnapshot.contract,
+      snapshot_safety: executionSnapshot.safety, legacy_snapshot_hash: executionSnapshot.legacyHash,
+      status: row.status, title: publicTitle, by_user: row.by_user || null, profile_visible: row.profile_visible === true,
+      topic_id: provenance.topicId, route_id: provenance.routeId,
       base_pid: row.base_pid, base_rcid: row.base_rcid, parent_code: row.parent_code, depth: row.depth,
-      clones: row.clones, published_at: row.published_at, spec: r.spec,
+      route_name: publicRoute ? publicRoute.rc : null, route_kind: publicRoute ? publicRoute.routeKind : null,
+      clones: row.clones, published_at: row.published_at, spec: v.spec, guide: v.guide,
       safetyWhenSaved: row.safety, safetyNow: now,
     });
   }
@@ -3126,6 +3501,127 @@ async function api(req, res, url) {
   return json(res, 404, { error: 'Not found' });
 }
 
+// A creator protocol is a reading document before it is an interactive app. The old /p/:code
+// response was the generic SPA shell, so a no-script reader received the home header and an empty
+// main element even though the database held a published protocol. This projection resolves the
+// exact immutable row and re-runs today's publication rules, just like the JSON reader. Browser
+// JavaScript may hydrate it with Start/Remix/community controls; it is not needed to read the plan.
+function publicStudioItem(it) {
+  if (!it || !it.k || !it.id) return null;
+  let o = null, detail = '', href = '';
+  if (it.k === 'c') {
+    o = SITE_DATA && (SITE_DATA.compounds || []).find((x) => x.id === it.id);
+    const lad = SITE_DATA && SITE_DATA.doseLadders && SITE_DATA.doseLadders[it.id];
+    if (o) href = '/c/' + String(o.name || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    if (typeof it.dose === 'number' && lad && lad.unit) detail = it.dose + lad.unit;
+    else detail = 'the dose its own page publishes';
+  } else if (it.k === 'x') {
+    o = SITE_EXERCISES && (SITE_EXERCISES.exercises || []).find((x) => x.id === it.id);
+    if (o) href = '/exercise/' + encodeURIComponent(o.id);
+    if (Number.isInteger(it.sets) && Number.isInteger(it.reps)) detail = it.sets + ' × ' + it.reps;
+  } else if (it.k === 'f') {
+    o = SITE_FOODS && (SITE_FOODS.foods || []).find((x) => x.id === it.id);
+    if (o && o.serving) detail = o.serving;
+  } else if (it.k === 'fn') {
+    o = fnById(it.id);
+    const target = it.target === undefined && o ? o.target : it.target;
+    if (target !== undefined) detail = String(target) + (o && o.unit ? ' ' + o.unit : '');
+  }
+  if (!o) return null;
+  if (Array.isArray(it.days)) {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    detail += (detail ? ' · ' : '') + it.days.map((d) => days[d]).filter(Boolean).join(', ');
+  } else detail += (detail ? ' · ' : '') + 'Every day';
+  return { key: it.k + ':' + it.id, name: o.name || it.id, detail, href };
+}
+
+function publicStudioGuide(guide, items) {
+  if (!guide) return '';
+  const fit = guide.fit || {}, check = guide.check_in || {}, stop = guide.stop || {};
+  const primary = (items || []).find((it) => it.key === guide.primary) || (items || [])[0] || null;
+  return `${fit.summary ? `<section class="st-verdict" aria-label="Who this route may fit"><h2>This route may fit if</h2><p>${escHtml(fit.summary)}</p>${fit.confused_with ? `<details><summary>Easy to confuse with</summary><p>${escHtml(fit.confused_with)}</p></details>` : ''}</section>` : ''}
+${fit.lab || fit.limits ? `<section class="st-verdict" aria-label="What to confirm before starting"><h2>Confirm before starting</h2>${fit.lab ? `<p>${escHtml(fit.lab)}</p>` : ''}${fit.limits ? `<p>${escHtml(fit.limits)}</p>` : ''}</section>` : ''}
+${primary ? `<section class="st-verdict" aria-label="First action"><h2>Start here</h2><p><b>${escHtml(primary.name)}</b>${primary.detail ? ` · ${escHtml(primary.detail)}` : ''}</p></section>` : ''}
+${check.metric || check.checkpoint ? `<section class="st-verdict" aria-label="Check-in"><h2>Track one thing</h2>${check.metric ? `<p>${escHtml(check.metric)}</p>` : ''}${check.checkpoint ? `<p><b>Review:</b> ${escHtml(check.checkpoint)}</p>` : ''}</section>` : ''}
+${stop.issue || stop.action || stop.red_flags ? `<section class="st-verdict" aria-label="Stop guidance"><h2>Stop and reassess</h2>${stop.issue ? `<p><b>${escHtml(stop.horizon || 'If this happens')}:</b> ${escHtml(stop.issue)}</p>` : ''}${stop.action ? `<p>${escHtml(stop.action)}</p>` : ''}${stop.red_flags ? `<details><summary>Get help sooner if</summary><p>${escHtml(stop.red_flags)}</p></details>` : ''}</section>` : ''}`;
+}
+
+function publicStudioWarnings(checked) {
+  const warnings = checked && Array.isArray(checked.warn) ? checked.warn : [];
+  if (!warnings.length) return '';
+  return `<section class="st-verdict" aria-label="Safety guidance"><h2>Read before starting</h2><ul class="st-warning-list">${warnings.map((warning) => {
+    const row = warning.row || {};
+    const title = row.title || (warning.tier === 'danger' ? 'Do not combine' : 'Safety guidance');
+    const explanation = row.plain || warning.message || '';
+    const action = row.action || '';
+    const source = /^https:\/\//.test(String(row.src || ''))
+      ? ` <a href="${escHtml(row.src)}" target="_blank" rel="noopener">${escHtml(row.srcLabel || 'Source')}</a>` : '';
+    return `<li><b>${escHtml(title)}</b>${explanation ? `<span>${escHtml(explanation)}</span>` : ''}${action ? `<span><b>What to do:</b> ${escHtml(action)}</span>` : ''}${source}</li>`;
+  }).join('')}</ul></section>`;
+}
+
+async function servePublishedProtocol(req, res, code) {
+  res.setHeader('X-Robots-Tag', 'noindex, follow');
+  let row;
+  try {
+    row = (await db.query('SELECT p.*, u.username AS by_user, COALESCE(u.public_profile_enabled,false) AS profile_visible FROM studio_protocols p LEFT JOIN users u ON u.id=p.user_id WHERE p.code=$1', [code])).rows[0];
+  } catch (e) {
+    console.error('[published document]', e.message);
+    return serviceUnavailablePage(res, 'This protocol could not be loaded right now. Nothing has been removed; please try again in a moment.');
+  }
+  if (!row || row.status === 'draft') return notFoundPage(res);
+  const provenance = studioProvenance(row);
+  const title = publicProtocolTitleFor(row);
+  const route = provenance.meta;
+  let body = '';
+  if (row.status === 'withdrawn') {
+    body = `<section class="empty"><div class="kicker">Withdrawn protocol</div><h1>${escHtml(title)}</h1><p>The person who wrote this withdrew it. Nobody new can start it.</p><p><a href="/solve">Find another plan</a></p></section>`;
+  } else if (!STUDIO_READY) {
+    body = `<section class="empty"><div class="kicker">Protocol unavailable</div><h1>${escHtml(title)}</h1><p>RNAwiki could not run its current publication checks, so no steps are shown.</p><p><a href="/solve">Find another plan</a></p></section>`;
+  } else {
+    const resolved = await STUDIO.resolve(row, (c) => db.query('SELECT * FROM studio_protocols WHERE code=$1', [c]).then((x) => x.rows[0]));
+    let checked = null;
+    if (resolved.ok) {
+      try { checked = STUDIO.validate(Object.assign({ spec: resolved.spec, publish: true }, studioValidationProvenance(row))); }
+      catch (e) { console.error('[published document check]', e.message); }
+    }
+    if (!resolved.ok || !checked || !checked.ok) {
+      body = `<section class="empty"><div class="kicker">Protocol needs review</div><h1>${escHtml(title)}</h1><p>This plan no longer passes RNAwiki's current publication checks. Its steps are hidden until it is reviewed.</p><p><a href="/solve">Find another plan</a></p></section>`;
+    } else {
+      const publicSpec = checked.spec || resolved.spec;
+      const items = (publicSpec.items || []).map(publicStudioItem).filter(Boolean);
+      const primaryKey = checked.guide && checked.guide.primary;
+      const remainingItems = primaryKey ? items.filter((it) => it.key !== primaryKey) : items.slice(1);
+      const author = row.by_user
+        ? `By ${row.profile_visible ? `<a href="/u/${encodeURIComponent(row.by_user)}">@${escHtml(row.by_user)}</a>` : '@' + escHtml(row.by_user)}`
+        : 'By an account that has since been removed';
+      const publishedDate = row.published_at ? new Date(row.published_at).toISOString().slice(0, 10) : '';
+      body = `<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>›</span><a href="/problem/${encodeURIComponent(provenance.topicId || row.base_pid || '')}">${escHtml((route && route.problem) || 'Topic')}</a><span>›</span><span>Protocol</span></nav>
+<article class="st-public-document"><header class="st-hd"><div class="kicker">Creator plan</div><h1>${escHtml(title)}</h1><p class="muted">${author}${publishedDate ? ' · ' + escHtml(publishedDate) : ''}</p><p class="muted"><b>For:</b> ${escHtml((route && route.problem) || provenance.topicId || row.base_pid || 'Topic')} → ${escHtml((route && (route.routeDisplay || route.rc)) || provenance.routeId || row.base_rcid || 'Route')}</p></header>
+${publicStudioGuide(checked.guide, items)}
+${remainingItems.length ? `<section><h2>Then</h2><ol class="st-list">${remainingItems.map((it) => `<li class="st-row"><b>${it.href ? `<a href="${escHtml(it.href)}">${escHtml(it.name)}</a>` : escHtml(it.name)}</b>${it.detail ? `<span class="st-sum">${escHtml(it.detail)}</span>` : ''}</li>`).join('')}</ol></section>` : ''}
+${publicStudioWarnings(checked)}
+<section class="st-verdict" aria-label="Publication checks"><h2>Safety check</h2><p>${escHtml((checked.safety && checked.safety.says) || 'The current publication checks passed.')}</p></section>
+<div class="st-bar"><button class="cta-primary" id="st-start" type="button">Start this plan</button><a class="cta-ghost" href="/studio/${encodeURIComponent(code)}">Remix</a></div>
+<p class="st-saved">Starting keeps these exact steps in Today.</p>
+<noscript><p class="st-saved">The full plan is readable here. Starting a private Today checklist requires JavaScript because it is saved on this device.</p></noscript></article>`;
+    }
+  }
+  let shell;
+  try { shell = fs.readFileSync(path.join(DIR, 'index.html'), 'utf8'); }
+  catch (e) { return endHtml(res, `<!doctype html><html><head><meta charset="utf-8"><title>${escHtml(title)}</title></head><body><main>${body}</main></body></html>`); }
+  shell = rewriteSpaShellHead(shell, ['p', code])
+    .replace(/<title>[\s\S]*?<\/title>/, `<title>${escHtml(title)} · RNAwiki</title>`)
+    .replace(/<meta name="description" content="[^"]*">/, `<meta name="description" content="${escHtml(`Creator plan for ${(route && route.problem) || 'this topic'}: ${(route && (route.routeDisplay || route.rc)) || 'exact route'}. Fit, steps, check-in and safety guidance.`)}">`)
+    .replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex,follow">')
+    .replace(/<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escHtml(title)} · RNAwiki">`)
+    .replace(/<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escHtml(`Creator plan for ${(route && route.problem) || 'this topic'}: ${(route && (route.routeDisplay || route.rc)) || 'exact route'}. Fit, steps, check-in and safety guidance.`)}">`)
+    .replace(/<meta name="twitter:title" content="[^"]*">/, `<meta name="twitter:title" content="${escHtml(title)} · RNAwiki">`)
+    .replace(/<meta name="twitter:description" content="[^"]*">/, `<meta name="twitter:description" content="${escHtml(`Creator plan for ${(route && route.problem) || 'this topic'}: ${(route && (route.routeDisplay || route.rc)) || 'exact route'}. Fit, steps, check-in and safety guidance.`)}">`)
+    .replace(/<main id="app">[\s\S]*?<\/main>/, `<main id="app">${body}</main>`);
+  return endHtml(res, shell);
+}
+
 // ---------- static ----------
 function sendFile(res, file, code) {
   const ext = path.extname(file);
@@ -3556,13 +4052,10 @@ const CLOSED_CHILD_ROUTES = new Set(['fuel', 'problem', 'protocol', 'goal', 'com
 // while POST /api/protocols has been minting `${SITE_URL}/p/${code}` as the share URL since
 // 2026-08-09. The one endpoint whose whole job is to hand somebody a link was handing out a link
 // this server answers 404 to.
-// Neither is prerendered, and that is deliberate: both are interactive views over live database
-// rows, so a prerendered twin would be a stale document with somebody else's protocol in it.
-// assertLinkGraph stays green because nothing in an emitted .html links to either path — every
-// inbound link is `#/studio` or `#/p/<code>`, and norm() in prerender.js returns null for an href
-// beginning with '#'. The cost, stated rather than hidden: a crawler and a no-JS reader cannot
-// reach the Studio. That is the correct trade for a builder, and it is why the Studio is NOT in
-// the global nav — a nav link that does nothing for 90% of traffic is worse than no link.
+// Studio now has a truthful static no-JS document and is linked from the global shell. Published
+// /p/<code> pages are projected from the database into real readable HTML on each request; only
+// starting, remixing and community actions require JavaScript. This keeps the document/action
+// parity rule without baking somebody else's live protocol into a generated file.
 // 'p' is safe as a one-letter prefix: the prerendered-file lookup runs BEFORE this list, and the
 // only root paths beginning with p are pathway/, pathways.html, physiology/, plan.html, problem/
 // and protocol/ — all matched as whole segments. 'u' is the existing precedent for a one-letter
@@ -3647,8 +4140,8 @@ const isNoindexRoute = (seg) => NOINDEX_ROUTES.includes(seg[0]) || isShellNoinde
 function spaShellMeta(seg) {
   const suffix = ' · RNAwiki';
   if (seg[0] === 'studio') return {
-    title: 'Protocol Studio — build a protocol and have it checked' + suffix,
-    description: 'Assemble compounds, movements, Singapore foods and daily tools into one protocol, and see every dangerous pairing as you build it. No account needed to build, keep or run it.',
+    title: 'Protocol Studio — create a protocol' + suffix,
+    description: 'Build a protocol for one problem and route, check every pairing, preview the first day, and publish when ready. No account needed to start.',
   };
   if (seg[0] === 'me') return {
     title: 'Your page — what you follow and what you built' + suffix,
@@ -3841,6 +4334,18 @@ sent you here may be wrong.</p>
 </main></body></html>`, 404);
 }
 
+function serviceUnavailablePage(res, message) {
+  res.setHeader('X-Robots-Tag', 'noindex');
+  res.setHeader('Retry-After', '30');
+  return endHtml(res, `<!doctype html><html lang="en-SG"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Temporarily unavailable · RNAwiki</title><link rel="stylesheet" href="/styles.css">
+</head><body><main class="article" style="max-width:44rem;margin:4rem auto;padding:0 1.25rem">
+<h1>Temporarily unavailable</h1><p>${escHtml(message || 'This page could not be loaded right now. Please try again in a moment.')}</p>
+<p><a href="">Try again</a> · <a href="/">Home</a></p>
+</main></body></html>`, 503);
+}
+
 // Added 2026-07-28. The server set no security headers at all: no CSP, HSTS,
 // X-Content-Type-Options or Referrer-Policy anywhere. Five res.setHeader calls, no new dependency
 // (helmet would be a third npm dep for this). The CSP is deliberately permissive on inline
@@ -3916,8 +4421,20 @@ const server = http.createServer((req, res) => {
     const _target = COMPOUND_ALIASES[decodeURIComponent(_cm[1]).toLowerCase()];
     if (_target) { res.writeHead(301, { Location: '/c/' + _target }); res.end(); return; }
   }
+  if (url.split('?')[0] === '/healthz' && (req.method === 'GET' || req.method === 'HEAD')) {
+    healthz(res).catch((e) => { console.error('[healthz]', e.message); json(res, 503, { ok: false, says: 'not ready' }); });
+    return;
+  }
   if (url.startsWith('/api/')) {
     api(req, res, url).catch(e => { console.error(e); json(res, 500, { error: 'Server error' }); });
+    return;
+  }
+  const _published = url.split('?')[0].match(/^\/p\/([A-Za-z0-9_-]{1,16})\/?$/);
+  if (_published && (req.method === 'GET' || req.method === 'HEAD')) {
+    servePublishedProtocol(req, res, _published[1]).catch((e) => {
+      console.error('[published document]', e);
+      if (!res.headersSent) serviceUnavailablePage(res, 'This protocol could not be loaded right now. Nothing has been removed; please try again in a moment.');
+    });
     return;
   }
   serveStatic(req, res, url);

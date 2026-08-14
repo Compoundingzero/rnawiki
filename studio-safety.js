@@ -41,6 +41,29 @@ const OVERRIDE_KEYS = {
 const MAX_ITEMS = 60;
 const MAX_DEPTH = 8;
 
+// The execution snapshot deliberately excludes validation timestamps and prose summaries that can
+// change without changing an instruction. It does include every field of every CURRENT warning:
+// if a corpus edit adds or changes a warning, Start must see a different content address. Sorting
+// object keys and warning rows makes the address independent of implementation-only key/order
+// changes while preserving every value the reader can be shown.
+function snapshotValue(value) {
+  if (value === null || typeof value === 'string' || typeof value === 'boolean') return value;
+  if (typeof value === 'number') return Number.isFinite(value) ? value : null;
+  if (Array.isArray(value)) return value.map((entry) => snapshotValue(entry));
+  if (!value || typeof value !== 'object') return null;
+  const out = {};
+  Object.keys(value).sort().forEach((name) => {
+    if (value[name] !== undefined && typeof value[name] !== 'function') out[name] = snapshotValue(value[name]);
+  });
+  return out;
+}
+function snapshotSafety(result) {
+  const warn = (result && Array.isArray(result.warn) ? result.warn : [])
+    .map((warning) => snapshotValue(warning))
+    .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
+  return { warn };
+}
+
 // EVERY SAVE-TIME RULE NAMES THE BUILD GATE IT MIRRORS.
 // assertStudioSafetyMirrorsBuildGates() in build/parse.js checks this list in BOTH directions:
 // forward (the named gate exists) and backward (every gate in its SAFETY_FAMILY appears here).
@@ -58,18 +81,20 @@ const RULES = [
   { id: 'restricted-substance', mirrors: 'assertRegulatoryAxes',
     says: 'A published protocol may not instruct anyone to take a prescription-only, controlled or unapproved substance.' },
   { id: 'interaction-unknown', mirrors: 'assertInteractionCoverage',
-    says: 'A protocol may hold as many compounds as its creator wants. Every exact pair is checked against the interaction rules, and any pair no rule reaches is reported to the creator and to every reader as UNCHECKED — which is not the same as safe. Individually tagged compounds are not pair coverage.' },
+    says: 'A private draft may hold as many compounds as its creator wants. Public publication fails closed until an authored rule reaches every exact pair. Individually tagged compounds are not pair coverage.' },
   { id: 'danger-interaction', mirrors: 'assertInteractionSources',
-    says: 'A combination the rules flag as dangerous publishes with a warning that cannot be dismissed, carries its own citation, and renders above the protocol rather than inside it. It is no longer a refusal.' },
+    says: 'A combination the rules flag as dangerous stays in a private draft with its cited warning, but public publication is refused.' },
   { id: 'unreviewed-creator-copy', mirrors: 'assertClaimTextIntact',
     says: 'Free-text titles and notes may be kept in a private draft, but they cannot become public health copy until a human review workflow approves them.' },
   { id: 'animal-only-evidence', mirrors: 'assertHumanEvidenceStars',
     says: 'A compound whose evidence is animal-only carries that label, rendered live from the master entry.' },
 ];
 
-// init({data, interactions, exercises, foods, functionIds})
+// init({data, interactions, exercises, foods, functions})
 function init(corpora) {
   const D = corpora.data, EX = corpora.exercises, FD = corpora.foods;
+  const functions = Array.isArray(corpora.functions) ? corpora.functions
+    : (corpora.functionIds || []).map((id) => ({ id }));
   if (!D) throw new Error('studio-safety.init needs the compound corpus (site/data.js)');
   if (!EX || !FD) throw new Error('studio-safety.init needs exercises and foods too — server.js historically loaded ONLY data.js into its vm sandbox. Add the other two to the SAME load; a second loader is a second corpus.');
   C = {
@@ -79,7 +104,8 @@ function init(corpora) {
     exById: Object.fromEntries((EX.exercises || []).map((e) => [e.id, e])),
     foodById: Object.fromEntries((FD.foods || []).map((f) => [f.id, f])),
     ladders: D.doseLadders || {},
-    fnIds: new Set(corpora.functionIds || []),
+    fnIds: new Set(functions.map((f) => f.id)),
+    fnById: Object.fromEntries(functions.map((f) => [f.id, f])),
   };
   ENGINE.init(D, corpora.interactions);
   return C;
@@ -89,9 +115,92 @@ function ready() { return !!C; }
 
 const key = (it) => it.k + ':' + it.id;
 
+function problem(pid) {
+  return C.problems.find((x) => x.id === pid) || null;
+}
+
 function rootCause(pid, rcid) {
-  const p = C.problems.find((x) => x.id === pid); if (!p) return null;
+  const p = problem(pid); if (!p) return null;
   return (p.root_causes || []).find((x) => x.id === rcid) || null;
+}
+
+function canonicalRoute(pid, rid) {
+  const p = problem(pid); if (!p) return null;
+  return (p.routes || []).find((x) => x.id === rid) || null;
+}
+
+function plainCorpusText(value) {
+  return String(value || '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/[*_`#]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// A public branch needs one explicit first action and an explicit weekly rhythm. The creator still
+// builds with the same ordered item list; this small object merely makes the execution contract
+// machine-readable. It deliberately carries no prose: fit, tracking and stop guidance come from
+// the governed Topic -> Route corpus below, so a correction reaches every branch that uses it.
+function validateExecution(spec, requireExecution, refuse) {
+  const execution = spec && spec.execution;
+  if (execution == null) {
+    if (requireExecution) refuse('shape', 'Choose the first action and confirm the weekly schedule before publishing.');
+    return null;
+  }
+  if (typeof execution !== 'object' || Array.isArray(execution)) {
+    refuse('shape', 'Protocol execution must name one first action.');
+    return null;
+  }
+  const extra = Object.keys(execution).filter((k) => k !== 'v' && k !== 'primary');
+  if (execution.v !== 1 || extra.length || typeof execution.primary !== 'string') {
+    refuse('shape', 'Protocol execution is {v:1, primary:"kind:id"}; it carries no creator-written health copy.');
+    return null;
+  }
+  const itemKeys = (spec.items || []).filter((it) => it && typeof it === 'object').map(key);
+  if (itemKeys.filter((k) => k === execution.primary).length !== 1) {
+    refuse('shape', 'The first action must be one item in this protocol.');
+  }
+  (spec.items || []).forEach((it) => {
+    if (it && typeof it === 'object' && it.days === undefined) {
+      refuse('shape', 'Confirm the days for every item before publishing. Choose Every day or specific weekdays.', it);
+    }
+  });
+  return { v: 1, primary: execution.primary };
+}
+
+function executionGuide(topicId, routeId, spec, execution) {
+  const p = topicId ? problem(topicId) : null;
+  const route = p && routeId ? canonicalRoute(topicId, routeId) : null;
+  if (!p || !route) return null;
+  const safety = p.safety || {}, plan = p.plan || {};
+  const first = execution && execution.primary
+    ? execution.primary
+    : ((spec.items || [])[0] ? key(spec.items[0]) : null);
+  return {
+    v: 1,
+    contract: execution ? 'execution-v1' : 'legacy-v1',
+    primary: first,
+    fit: {
+      summary: (route.fit && (route.fit.symptoms || route.fit.diagnostic)) || route.diagnostic || route.plain || '',
+      lab: (route.fit && route.fit.labMarker) || '',
+      confused_with: (route.fit && route.fit.confusedWith) || '',
+      limits: (route.fit && route.fit.limits) || '',
+    },
+    check_in: {
+      metric: safety.metric || '',
+      checkpoint: safety.checkpoint || '',
+    },
+    stop: {
+      // Topic-level troubleshooting often names one specific route (for example, sleep) and must
+      // never be copied onto another creator branch (for example, iron). The authored reassessment
+      // block is the shared safety boundary; the visible instruction only tells the reader how to
+      // use that boundary and invents no clinical timing or claim.
+      issue: 'Any warning sign below appears',
+      horizon: 'Stop now',
+      action: 'Stop this plan and follow the care guidance below.',
+      red_flags: plainCorpusText(plan.reassess || ''),
+    },
+  };
 }
 
 // ---- THE FIVE RULES ---------------------------------------------------------------------------
@@ -101,7 +210,7 @@ function rootCause(pid, rcid) {
 // each element to 80 characters and stores it, and GET /api/shared-plan echoes it verbatim to
 // anyone holding the code: an unauthenticated, publicly readable, arbitrary-text store. An id that
 // does not resolve is not a typo to tolerate, it is text somebody chose.
-function r1(items, refuse) {
+function r1(items, publish, refuse) {
   items.forEach((it) => {
     if (!it || typeof it !== 'object') return refuse('unknown-entity', 'An item in this protocol is not an item.');
     if (!KINDS[it.k]) return refuse('unknown-entity', `"${String(it.k).slice(0, 24)}" is not a kind of thing this site holds.`, it);
@@ -123,6 +232,32 @@ function r1(items, refuse) {
     }
     if (it.note !== undefined && (typeof it.note !== 'string' || it.note.length > 240)) {
       refuse('unknown-entity', 'A per-item note is a short string or nothing.', it);
+    }
+    if (it.k === 'x') {
+      // A public movement is an instruction somebody will execute. Missing volume cannot inherit
+      // 3×10 from a renderer because no governed record chose those numbers. Private drafts may
+      // remain incomplete; publication requires the creator to make both bounded choices.
+      if (publish && (it.sets === undefined || it.reps === undefined)) {
+        refuse('unknown-entity', 'Set both movement sets and reps before publishing. RNAwiki does not fill missing movement volume with 3 × 10.', it);
+      }
+      if (it.sets !== undefined && (!Number.isInteger(it.sets) || it.sets < 1 || it.sets > 10)) {
+        refuse('unknown-entity', 'Movement sets must be a whole number from 1 to 10.', it);
+      }
+      if (it.reps !== undefined && (!Number.isInteger(it.reps) || it.reps < 1 || it.reps > 30)) {
+        refuse('unknown-entity', 'Movement reps must be a whole number from 1 to 30.', it);
+      }
+    }
+    if (it.k === 'fn' && it.target !== undefined) {
+      const fn = C.fnById[it.id] || {};
+      const min = Number(fn.step) || 1;
+      const max = Number(fn.target) * 4;
+      const value = it.target;
+      const aligned = Number.isFinite(value) && Math.abs((value / min) - Math.round(value / min)) < 1e-9;
+      if (!Number.isFinite(max) || max <= 0) {
+        refuse('unknown-entity', 'This tool has no governed numeric target to override.', it);
+      } else if (!Number.isFinite(value) || value < min || value > max || !aligned) {
+        refuse('unknown-entity', `This tool's target must be a number from ${min} to ${max} in steps of ${min}.`, it);
+      }
     }
   });
 }
@@ -159,7 +294,7 @@ function r3(items, refuse) {
     if (!lad || lad.locked) {
       return refuse('uncapped-dose', `RNAwiki publishes no machine-readable dose ceiling for ${nm}, so a dose here could not be checked against anything. ${lad ? lad.why + ' ' : ''}The protocol can still include it — it will show the dose the compound's own page publishes.`, it);
     }
-    const v = (it.dose && typeof it.dose === 'object') ? it.dose.v : it.dose;
+    const v = it.dose;
     if (typeof v !== 'number' || !isFinite(v)) return refuse('uncapped-dose', `A dose has to be a number chosen from the ladder ${nm} publishes.`, it);
     if (!lad.rungs.includes(v)) return refuse('uncapped-dose', `${v}${lad.unit} is not one of the steps offered for ${nm}. Doses are chosen from a ladder, not typed — a typed dose is an uncapped dose calculator, and this site refuses to publish one of those.`, it);
     if (v > lad.cap) refuse('uncapped-dose', `${v}${lad.unit} is above the ${lad.cap}${lad.unit} ceiling RNAwiki publishes for ${nm}.`, it);
@@ -184,32 +319,15 @@ function r4(items, publish, refuse, warn) {
   });
 }
 
-// R5 — THE OVERLAP-REPERCUSSION CHECKER. Rewritten 2026-08-13 on the founder's instruction:
+// R5 — THE OVERLAP-REPERCUSSION CHECKER.
+// A creator can keep any number of compounds in a PRIVATE draft and see every known/unknown row.
+// Publication is a different boundary: an uncovered exact pair is uncertainty about the proposed
+// combination, and a danger row is a known health repercussion. Both fail closed. A warning is not
+// informed consent for strangers who never spoke to the creator.
 //
-//   "A creator can add as many compounds as they want. INSTEAD: build a backend overlap-repercussion
-//    checker. When a creator adds compounds, the backend cross-checks an interaction/contraindication
-//    DB. If there is a health repercussion to the overlap, the UI pings the user inline with a
-//    warning. This warning must also be visible to readers on the published protocol.
-//    Fail-safe: if uncertain, show the warning. Every warning must cite its source."
-//
-// WHAT CHANGED, EXACTLY. This rule used to REFUSE a publish twice: once when any exact pair lacked
-// an authored rule, and once for any danger-tier row. Both refusals are now WARNINGS that travel
-// with the protocol and render to readers. Nothing about the DETECTION changed — the matcher is
-// still site/ixn-engine.js, the same one interactionPanel() renders from, so a creator and a reader
-// cannot be shown different pharmacology.
-//
-// THIS IS A DELIBERATE INCREASE IN RISK AND IT IS RECORDED HERE AS ONE. A documented dangerous
-// combination can now be published. What stands between that and a reader is no longer a refusal;
-// it is a warning that cannot be dismissed, carries its own citation, and renders ABOVE the
-// protocol rather than inside it. Two things did NOT move, and must not:
-//   · R4 still hard-refuses prescription / controlled / unapproved substances on a public protocol.
-//     CLAUDE.md: "Do not add an override button around a refusal."
-//   · An UNKNOWN pair is still reported as unknown, never as safe. That is the fail-safe clause:
-//     silence from an empty knowledge base is not a clearance, and the copy says so in those words.
-//
-// AND COVERAGE IS RECORDED, ALWAYS. A compound the engine holds no firable pharmacology for can
-// never produce a flag, so an empty warn list can mean "nothing found" or "nothing checkable", and
-// those are not the same sentence. interactionPanel() has had that exact bug fixed twice.
+// Coverage is recorded even for a refusal. An empty warn list can mean "nothing found" or "nothing
+// checkable", and those are not the same sentence. Detection remains site/ixn-engine.js, the same
+// matcher the builder and reader use.
 function r5(items, publish, refuse, warn) {
   const list = items.filter((it) => it.k === 'c').map((it) => C.byId[it.id]).filter(Boolean);
   const pairs = ENGINE.pairCoverage(list);
@@ -223,19 +341,20 @@ function r5(items, publish, refuse, warn) {
     compound_of: list.length,
     unknown_pairs: pairs.pairs.filter((p) => !p.covered).map((p) => p.names),
   };
+  cov.unknown = cov.unknown_pairs.length;
   if (list.length < 2) return cov;
 
   // A public multi-compound protocol is an instruction to combine exact pairs. It may only be
   // published when an authored rule reaches EVERY pair. Previously caffeine + magnesium passed as
   // “2 of 2 compounds covered” merely because each carried a tag used somewhere else in the
   // corpus. That is not evidence about their pairing. Missing pair data is unknown, not safe.
-  // THE FAIL-SAFE CLAUSE, and it is the reason an uncovered pair is not silence. A pair no authored
-  // rule reaches produces no flag, and "no flag" is indistinguishable from "checked and clear"
-  // unless something says otherwise. This is that something, and it now warns instead of refusing.
+  // THE FAIL-SAFE CLAUSE. A pair no authored rule reaches produces no flag, and "no flag" is
+  // indistinguishable from "checked and clear" unless the boundary refuses to call it publishable.
   if (cov.state !== 'complete' && cov.of > 0) {
-    warn('interaction-unknown', 'unknown',
-      `Not checked: ${cov.unknown} of ${cov.of} pairing${cov.of === 1 ? '' : 's'} here ${cov.unknown === 1 ? 'has' : 'have'} no rule written for ${cov.unknown === 1 ? 'it' : 'them'} yet. That is not the same as safe — it means nobody has written down what happens when these are taken together.`,
-      null, { id: 'unknown-pairs', tier: 'unknown', title: 'Some of these combinations have not been checked', unknown: cov.unknown_pairs });
+    const message = `Not checked: ${cov.unknown} of ${cov.of} exact pairing${cov.of === 1 ? '' : 's'} here ${cov.unknown === 1 ? 'has' : 'have'} no authored rule. Unknown is not safe.`;
+    const row = { id: 'unknown-pairs', tier: 'unknown', title: 'Some of these combinations have not been checked', unknown: cov.unknown_pairs };
+    if (publish) refuse('interaction-unknown', message, null, row);
+    else warn('interaction-unknown', 'unknown', message, null, row);
   }
   const r = ENGINE.stackInteractions(list);
   (r.flags || []).forEach((f) => {
@@ -249,10 +368,8 @@ function r5(items, publish, refuse, warn) {
       src: f.src || '', srcLabel: f.srcLabel || '', srcQuote: f.srcQuote || '',
       conf: f.conf || 'none', plain: f.plain || '',
     };
-    // NO LONGER A REFUSAL, on the founder's instruction. A danger row publishes and travels with
-    // the protocol as a warning the reader cannot dismiss. The tier is preserved exactly so the
-    // reading surface can render danger differently from timing.
-    warn(f.tier === 'danger' ? 'danger-interaction' : 'interaction', f.tier, msg, null, row);
+    if (f.tier === 'danger' && publish) refuse('danger-interaction', msg, null, row);
+    else warn(f.tier === 'danger' ? 'danger-interaction' : 'interaction', f.tier, msg, null, row);
   });
   return cov;
 }
@@ -281,7 +398,7 @@ function r6(spec, publish, refuse, warn) {
 }
 
 // ---- validate ---------------------------------------------------------------------------------
-function validate({ spec, base_pid, base_rcid, publish }) {
+function validate({ spec, base_pid, base_rcid, topic_id, route_id, publish, require_execution }) {
   if (!C) throw new Error('studio-safety.validate() called before init()');
   const refusals = [], warns = [];
   const refuse = (rule, message, item, row) => refusals.push({ rule, message, item: item ? key(item) : null, row: row || null });
@@ -295,12 +412,81 @@ function validate({ spec, base_pid, base_rcid, publish }) {
   const seen = new Set();
   spec.items.forEach((it) => { if (!it || typeof it !== 'object') return; const k = key(it); if (seen.has(k)) refuse('shape', `${k} is in this protocol twice.`, it); seen.add(k); });
 
-  const rc = (base_pid && base_rcid) ? rootCause(base_pid, base_rcid) : null;
-  if (base_pid && !rc) refuse('shape', `RNAwiki has no root cause ${base_pid}/${base_rcid} to build this on.`);
+  let resolvedTopicId = topic_id || null;
+  let resolvedRouteId = route_id || null;
+  let rc = null;
+  let route = null;
+  let routeRoots = [];
 
-  r1(spec.items, refuse);
+  // New rows bind directly to Topic → Route. Legacy rows may still arrive as (base_pid, base_rcid);
+  // every official root emitted by parse.js now carries route_id, so the old pair resolves to the
+  // same canonical route. When both forms are present they must agree — no silent fallback, no
+  // borrowing a root cause from another route to obtain its plan blocks.
+  if (!!base_pid !== !!base_rcid) {
+    refuse('shape', 'A legacy protocol base needs both base_pid and base_rcid, or neither.');
+  } else if (base_pid && base_rcid) {
+    rc = rootCause(base_pid, base_rcid);
+    if (!rc) {
+      refuse('shape', `RNAwiki has no official root ${base_pid}/${base_rcid} to build this on.`);
+    } else if (!rc.route_id) {
+      refuse('shape', `Official root ${base_pid}/${base_rcid} has no canonical route_id. Publication fails closed until the route registry is rebuilt.`);
+    } else {
+      if (resolvedTopicId && resolvedTopicId !== base_pid) {
+        refuse('shape', `Topic ${resolvedTopicId} does not match legacy base topic ${base_pid}.`);
+      }
+      if (resolvedRouteId && resolvedRouteId !== rc.route_id) {
+        refuse('shape', `Route ${resolvedRouteId} does not match ${base_pid}/${base_rcid}, which belongs to ${rc.route_id}.`);
+      }
+      resolvedTopicId = resolvedTopicId || base_pid;
+      resolvedRouteId = resolvedRouteId || rc.route_id;
+    }
+  }
+
+  if (!!resolvedTopicId !== !!resolvedRouteId) {
+    refuse('shape', 'A protocol route needs both topic_id and route_id, or neither.');
+  } else if (resolvedTopicId && resolvedRouteId) {
+    route = canonicalRoute(resolvedTopicId, resolvedRouteId);
+    if (!route) {
+      refuse('shape', `RNAwiki has no route ${resolvedTopicId}/${resolvedRouteId} to build this on.`);
+    } else if (route.branchable !== true) {
+      refuse('shape', `Route ${resolvedTopicId}/${resolvedRouteId} is not open for creator branches.`);
+    }
+
+    // A route may have no legacy official root at all; that is why routes exist. Where one or more
+    // roots do attach, carry every avoid-movement term into R2 rather than choosing root_causes[0].
+    if (route) {
+      const p = problem(resolvedTopicId);
+      const roots = (p.root_causes || []).filter((x) => x.route_id === resolvedRouteId);
+      routeRoots = roots;
+      if (!rc) {
+        if (roots.length === 1) rc = roots[0];
+        else if (roots.length > 1) rc = {
+          avoid_movements: [...new Set(roots.flatMap((x) => Array.isArray(x.avoid_movements) ? x.avoid_movements : []))],
+        };
+      }
+    }
+  }
+
+  // Private drafts may exist before their author decides where they belong. A public medical
+  // instruction may not: without a canonical Topic -> Route binding it cannot be discovered,
+  // checked against route-specific rules, enrolled exactly, or discussed without context.
+  if (publish && (!resolvedTopicId || !resolvedRouteId)) {
+    refuse('shape', 'Choose the topic and route this protocol belongs to before publishing it.');
+  }
+
+  const execution = validateExecution(spec, !!require_execution, refuse);
+  r1(spec.items, !!publish, refuse);
   if (spec.note !== undefined && (typeof spec.note !== 'string' || spec.note.length > 500)) {
     refuse('shape', 'A protocol note is a short string or nothing.');
+  }
+  // An uncovered route is a legitimate creator opportunity, but it has no inherited movement
+  // contraindication record. Until that route receives an explicit movement-safety review, a
+  // private draft may hold movements with a visible warning and public publication fails closed.
+  const hasMovement = spec.items.some((it) => it && it.k === 'x');
+  if (route && !routeRoots.length && hasMovement) {
+    const message = 'This route has no reviewed movement-safety record yet. Keep the movement in your private draft or submit the route for safety review before publishing it.';
+    if (publish) refuse('contraindicated-move', message);
+    else warn('contraindicated-move', 'unknown', message);
   }
   const avoidTermsChecked = r2(spec.items, rc, refuse);
   r3(spec.items, refuse);
@@ -321,14 +507,27 @@ function validate({ spec, base_pid, base_rcid, publish }) {
         ? `Pair guidance is incomplete: RNAwiki has an authored rule for ${coverage.checked} of ${coverage.of} exact pairs. Every remaining pair is unknown, not safe.`
         : `No pair guidance: RNAwiki has an authored rule for 0 of ${coverage.of} exact pairs. An empty result is unknown, not safe.`;
 
+  const cleanItems = spec.items.map((it) => {
+    if (!it || typeof it !== 'object' || Array.isArray(it)) return it;
+    const copy = Object.assign({}, it);
+    if (Array.isArray(copy.days)) copy.days = copy.days.slice().sort((a, b) => a - b);
+    return copy;
+  });
+  const cleanSpec = { v: 1, items: cleanItems };
+  if (typeof spec.note === 'string') cleanSpec.note = spec.note.slice(0, 500);
+  if (execution) cleanSpec.execution = execution;
+  const guide = executionGuide(resolvedTopicId, resolvedRouteId, cleanSpec, execution);
   return {
     ok: refusals.length === 0,
     refusals,
     warn: warns,
     coverage,
+    topic_id: resolvedTopicId,
+    route_id: resolvedRouteId,
     base_pid: base_pid || null,
     base_rcid: base_rcid || null,
-    spec: { v: 1, items: spec.items, note: typeof spec.note === 'string' ? spec.note.slice(0, 500) : null },
+    spec: cleanSpec,
+    guide,
     safety: {
       engine: ENGINE.stamp(),
       at: new Date().toISOString(),
@@ -373,7 +572,12 @@ function apply(base, patch) {
     const [it] = items.splice(i, 1);
     items.splice(Math.max(0, Math.min(items.length, to)), 0, it);
   });
-  return { v: 1, items, note: patch.note !== undefined ? patch.note : base.note };
+  const out = { v: 1, items };
+  const note = patch.note !== undefined ? patch.note : base.note;
+  const execution = Object.prototype.hasOwnProperty.call(patch, 'execution') ? patch.execution : base.execution;
+  if (note !== undefined && note !== null) out.note = note;
+  if (execution !== undefined && execution !== null) out.execution = execution;
+  return out;
 }
 
 // diff(base, next) -> the smallest patch that turns base into next. Computed on the SERVER, not in
@@ -401,9 +605,12 @@ function diff(base, next) {
     if (survivors[i] !== k && bk.has(k)) patch.move.push([k, i]);
   });
   if (next.note !== base.note) patch.note = next.note === undefined ? null : next.note;
+  if (JSON.stringify(next.execution) !== JSON.stringify(base.execution)) {
+    patch.execution = next.execution === undefined ? null : next.execution;
+  }
   ['add', 'drop', 'move'].forEach((k) => { if (!patch[k].length) delete patch[k]; });
   if (!Object.keys(patch.set).length) delete patch.set;
   return patch;
 }
 
-module.exports = { RULES, KINDS, OVERRIDE_KEYS, MAX_ITEMS, MAX_DEPTH, init, ready, validate, resolve, apply, diff };
+module.exports = { RULES, KINDS, OVERRIDE_KEYS, MAX_ITEMS, MAX_DEPTH, init, ready, validate, resolve, apply, diff, snapshotSafety };

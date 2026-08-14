@@ -1109,6 +1109,178 @@ const causeMap = readJSON(path.join(DATA_DIR, 'cause_map.json')) || {};
   console.log('[parse] cause map: %d root causes joined to a named cause, %d deliberately unmapped', joined, unmapped);
 })();
 
+// ---- ONE CANONICAL TOPIC → ROUTE REGISTRY (2026-08-15) ---------------------------------------
+// A `root_cause` is an old page/plan scaffold. It is not the route catalogue: 52 roots cover only
+// 47 of the 224 authored reasons in cause_learn.json, and five roots are composites that deliberately
+// map to no single reason. The Studio used to enumerate those 52 roots and silently borrowed a
+// different root's plan blocks for every uncovered reason. That makes a route look publishable when
+// the stored base actually names something else.
+//
+// data/route_registry.json gives every authored reason an explicit, stable id. Names are join keys,
+// never ids: editing or re-ordering prose cannot repoint an existing protocol. `Route` is deliberately
+// generic. A need topic presents it as a possible cause; a want topic presents it as a starting point.
+// The five legacy composites remain explicit umbrella routes instead of falling back to rank one.
+// Consumers use p.routes. Existing URLs and rows keep root_causes, now attached to their route_id.
+const routeRegistry = readJSON(path.join(DATA_DIR, 'route_registry.json')) || {};
+(function assertCanonicalRouteRegistry() {
+  if (!graph || !graph.problems) return;
+  const TOPICS = routeRegistry.topics || {};
+  const LEGACY = routeRegistry.legacy || {};
+  const bad = [];
+  const ids = new Set();
+  const seenTopics = new Set();
+  const seenLegacy = new Set();
+  let authored = 0, legacy = 0, official = 0;
+
+  function acceptId(id, where) {
+    if (typeof id !== 'string' || !id.trim()) {
+      bad.push(`${where}: route id must be a non-empty string`);
+      return false;
+    }
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*--[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || id.length > 64) {
+      bad.push(`${where}: route id "${id}" must be a lowercase stable id no longer than 64 characters`);
+      return false;
+    }
+    if (ids.has(id)) {
+      bad.push(`${where}: route id "${id}" is already used — route ids are globally unique`);
+      return false;
+    }
+    ids.add(id);
+    return true;
+  }
+
+  if (routeRegistry.version !== 1) bad.push(`data/route_registry.json version must be 1, got ${String(routeRegistry.version)}`);
+
+  graph.problems.forEach((p) => {
+    seenTopics.add(p.id);
+    const reg = TOPICS[p.id];
+    const causes = ((p.why && p.why.causes) || []);
+    const expectedKind = p.kind === 'want' ? 'starting_point' : 'possible_cause';
+    const names = new Set();
+    p.routes = [];
+
+    if (!reg || typeof reg !== 'object' || Array.isArray(reg)) {
+      bad.push(`${p.id}: data/route_registry.json has no topic entry`);
+    } else {
+      if (reg.route_kind !== expectedKind) {
+        bad.push(`${p.id}: route_kind must be "${expectedKind}" for a ${p.kind} topic, got "${String(reg.route_kind)}"`);
+      }
+      const registered = reg.routes || {};
+      causes.forEach((cause, index) => {
+        const name = cause && cause.name;
+        if (typeof name !== 'string' || !name.trim()) {
+          bad.push(`${p.id}: authored reason ${index + 1} has no name`);
+          return;
+        }
+        if (names.has(name)) {
+          bad.push(`${p.id}: authored reason name "${name}" occurs twice; names are registry join keys`);
+          return;
+        }
+        names.add(name);
+        if (!Object.prototype.hasOwnProperty.call(registered, name)) {
+          bad.push(`${p.id}: authored reason "${name}" has no stable id in data/route_registry.json`);
+          return;
+        }
+        const id = registered[name];
+        if (!acceptId(id, `${p.id} / ${name}`)) return;
+        if (!id.startsWith(`${p.id}--`)) bad.push(`${p.id} / ${name}: route id "${id}" must stay in its topic namespace`);
+
+        const tell = cause.tell && typeof cause.tell === 'object' && !Array.isArray(cause.tell)
+          ? Object.assign({}, cause.tell) : {};
+        if (cause.confusedWith) tell.confusedWith = cause.confusedWith;
+        cause.route_id = id;
+        cause.route_kind = expectedKind;
+        p.routes.push({
+          id,
+          name,
+          route_kind: expectedKind,
+          rank: Number.isFinite(cause.rank) ? cause.rank : index + 1,
+          source: 'authored_reason',
+          branchable: true,
+          cause_key: name,
+          official_rcids: [],
+          fit: tell,
+        });
+        authored++;
+      });
+      Object.keys(registered).forEach((name) => {
+        if (!names.has(name)) bad.push(`${p.id}: route registry entry "${name}" is stale or belongs to another topic`);
+      });
+    }
+
+    // Fold every official root onto the route it describes. The five deliberately-unmapped roots
+    // get their own umbrella route; none may inherit the first authored reason as a silent default.
+    (p.root_causes || []).forEach((rc) => {
+      const rootKey = `${p.id}/${rc.id}`;
+      let route = null;
+      if (rc.cause_key) {
+        route = p.routes.find((r) => r.cause_key === rc.cause_key) || null;
+        if (!route) bad.push(`${rootKey}: cause_key "${rc.cause_key}" has no canonical route`);
+      } else {
+        const leg = LEGACY[rootKey];
+        seenLegacy.add(rootKey);
+        if (!leg || typeof leg !== 'object' || Array.isArray(leg)) {
+          bad.push(`${rootKey}: deliberately-unmapped official root has no explicit legacy route`);
+        } else {
+          if (leg.route_kind !== 'umbrella') bad.push(`${rootKey}: legacy route_kind must be "umbrella"`);
+          if (leg.name !== rc.name) bad.push(`${rootKey}: legacy route name must exactly match official root name "${rc.name}"`);
+          if (typeof leg.branchable !== 'boolean') bad.push(`${rootKey}: legacy route must explicitly declare branchable true or false`);
+          if (acceptId(leg.id, rootKey)) {
+            if (!leg.id.startsWith(`${p.id}--`)) bad.push(`${rootKey}: route id "${leg.id}" must stay in its topic namespace`);
+            route = {
+              id: leg.id,
+              name: leg.name,
+              route_kind: 'umbrella',
+              rank: null,
+              source: 'legacy_official_root',
+              branchable: leg.branchable,
+              cause_key: null,
+              official_rcids: [],
+              fit: {
+                symptoms: rc.plain || '',
+                diagnostic: rc.diagnostic || '',
+                limits: rc.cause_unmapped || '',
+              },
+            };
+            p.routes.push(route);
+            legacy++;
+          }
+        }
+      }
+      if (!route) return;
+      rc.route_id = route.id;
+      rc.route_kind = route.route_kind;
+      route.official_rcids.push(rc.id);
+      official++;
+    });
+  });
+
+  Object.keys(TOPICS).forEach((pid) => {
+    if (!seenTopics.has(pid)) bad.push(`data/route_registry.json topic "${pid}" does not exist in clinical_graph.json`);
+  });
+  Object.keys(LEGACY).forEach((key) => {
+    if (!seenLegacy.has(key)) bad.push(`data/route_registry.json legacy route "${key}" is stale or is no longer deliberately unmapped`);
+  });
+
+  const authoredExpected = graph.problems.reduce((n, p) => n + (((p.why && p.why.causes) || []).length), 0);
+  const officialExpected = graph.problems.reduce((n, p) => n + ((p.root_causes || []).length), 0);
+  const legacyExpected = Object.keys(causeMap.unmapped || {}).length;
+  if (authored !== authoredExpected) bad.push(`only ${authored} of ${authoredExpected} authored reasons received a route`);
+  if (official !== officialExpected) bad.push(`only ${official} of ${officialExpected} official roots received a route_id`);
+  if (legacy !== legacyExpected) bad.push(`only ${legacy} of ${legacyExpected} deliberately-unmapped roots received an umbrella route`);
+
+  if (bad.length) {
+    console.error('\n[parse] CANONICAL ROUTE REGISTRY FAILED — refusing to build:');
+    bad.forEach((b) => console.error('  ✗ ' + b));
+    console.error('  Every authored reason is a route. An uncovered official root is an explicit');
+    console.error('  umbrella route, never permission to borrow another route\'s protocol.');
+    process.exit(1);
+  }
+  graph.route_registry_version = routeRegistry.version;
+  console.log('[parse] canonical routes: %d authored reasons + %d legacy umbrellas = %d stable routes; %d/%d official roots attached',
+    authored, legacy, ids.size, official, officialExpected);
+})();
+
 // ---- THE SAFETY STRUCTURE, PROMOTED AND GATED (2026-08-01, W2) --------------------------------
 // Measured hydrated at 390x844 on all 52 /protocol/* routes before this:
 //   · a labelled stop-rule element            0/52
@@ -4158,9 +4330,10 @@ function blankComments(src) {
 //       coverage of 0 of N — and demoted the coverage sentence to a footnote underneath.
 //   S7  the daily checklist wrapped EVERY interaction verdict, ☠️ included, in a <details> closed by
 //       default whose summary read "tap to view". Computed, then muted.
-//   S9  studio-safety.js R2 (contraindicated movement) took its avoid-list from the protocol's root
-//       cause, and the client never sent base_pid/base_rcid — so the rule returned 0 every time it
-//       was ever called, on every protocol, since it was written.
+//   S9  studio-safety.js R2 (contraindicated movement) took its avoid-list from the protocol's
+//       governed route, and the client once sent no provenance — so the rule returned 0 every time
+//       it was ever called. New routes use topic_id/route_id; an attached old root may additionally
+//       travel as a complete base_pid/base_rcid pair, never as a half-pair or invented fallback.
 //   S10 the plan builder's movement search applied no eligibility filter at all, so a rotator-cuff
 //       protocol would offer a Military Press and add it silently.
 //
@@ -4171,28 +4344,40 @@ function blankComments(src) {
 
   // S9 — the check must carry the protocol it is a protocol FOR.
   if (!/checkProtocol\(spec, status, base\)[\s\S]{0,200}Object\.assign\(\{ spec \}/.test(app)) {
-    bad.push('site/app.js api.checkProtocol() no longer takes and forwards the protocol base. studio-safety.js r2() reads avoid_movements off the root cause named by base_pid/base_rcid; with no base the rule cannot fire, and a rule that cannot fire is not a rule.');
+    bad.push('site/app.js api.checkProtocol() no longer takes and forwards protocol provenance. studio-safety.js resolves movement avoid-lists from topic_id/route_id; with no route the rule cannot fire, and a rule that cannot fire is not a rule.');
   }
   // NOT /api\.checkProtocol\([^)]*\)/ — the first argument is `stSpec()`, so a non-greedy run to the
   // first ')' captures "api.checkProtocol(stSpec()" and every call looks like it sends no base.
   // That version of this line failed the build against correct code. A fixed window is enough here:
   // the calls fit inside it and none spans a line.
   //
-  // 2026-08-13, THE MULTI-CAUSE DRAFT: the pair is no longer written out at each call site. A draft
-  // now holds one plan per root cause, so the pair is (ST.pid, thatCause.rcid) and the call sites
-  // pass one helper, stBase(cause). That is STRONGER than the literal string this clause used to
-  // look for — there is exactly one place the pair is built, so three call sites cannot drift from
-  // each other — but only while BOTH halves hold, so both are asserted: every call forwards a base,
-  // and stBase() really does build it from the draft's problem and that cause's root cause. Accept
-  // either form so a future call that writes the pair inline is still legal.
+  // The route is no longer written out at each call site. A draft holds one plan per canonical
+  // route, so every check passes stBase(cause). stBase must read ST.pid + that cause's route_id.
+  // A legacy base is optional because 177 authored routes have no old official root. Where it is
+  // sent, both legacy fields must be conditional on the same declared mapping; base_pid by itself
+  // would turn a valid route into a malformed legacy pair, while a borrowed base_rcid would check
+  // another route's avoid-list.
   const calls = app.match(/api\.checkProtocol\(.{0,200}/g) || [];
   if (!calls.length) bad.push('site/app.js — no call to api.checkProtocol() found at all. If the Studio stopped checking, this gate has no subject.');
-  calls.forEach((c) => { if (!/base_pid/.test(c) && !/stBase\(/.test(c)) bad.push(`site/app.js — a call to checkProtocol() sends no base: ${c.slice(0, 90)}`); });
-  const stBase = /function stBase\((.{0,240})/.exec(app);
+  calls.forEach((c) => { if (!/topic_id/.test(c) && !/stBase\(/.test(c)) bad.push(`site/app.js — a call to checkProtocol() sends no canonical route: ${c.slice(0, 90)}`); });
+  const stBaseAt = app.indexOf('function stBase(');
+  const stBaseEnd = stBaseAt < 0 ? -1 : app.indexOf('\n  function stTitleOf(', stBaseAt);
+  const stBase = stBaseAt < 0 || stBaseEnd < 0 ? '' : app.slice(stBaseAt, stBaseEnd);
   if (!stBase) {
-    bad.push('site/app.js — stBase() is gone. Every checkProtocol() and every save builds its (base_pid, base_rcid) pair from it; without it each call site invents the pair again, which is how S9 shipped a rule that could never fire.');
-  } else if (!/base_pid/.test(stBase[1]) || !/base_rcid/.test(stBase[1]) || !/ST\.pid/.test(stBase[1]) || !/\.rcid/.test(stBase[1])) {
-    bad.push('site/app.js stBase() no longer reads the draft\'s problem and that plan\'s root cause into base_pid/base_rcid. A base that is not the plan\'s own base is worse than none: r2() would check the avoid-list of a different root cause and report a pass.');
+    bad.push('site/app.js — stBase() is gone or unbounded. Every checkProtocol() and every save must derive one topic_id/route_id pair from the open plan.');
+  } else {
+    if (!/topic_id\s*:\s*topic/.test(stBase) || !/route_id\s*:\s*routeId/.test(stBase)
+        || !/ST\s*&&\s*ST\.pid/.test(stBase) || !/stRouteId\(c\)/.test(stBase)) {
+      bad.push('site/app.js stBase() no longer derives topic_id from ST.pid and route_id from the plan being checked. A route may not be inferred from root_causes[0] or another open card.');
+    }
+    const basePids = (stBase.match(/\bbase_pid\b/g) || []).length;
+    const baseRcids = (stBase.match(/\bbase_rcid\b/g) || []).length;
+    const conditionalLegacy = /legacy\s*\?\s*\{\s*base_pid\s*:\s*topic\s*,\s*base_rcid\s*:\s*legacy\s*\}\s*:\s*\{\s*\}/.test(stBase);
+    if (basePids || baseRcids) {
+      if (basePids !== 1 || baseRcids !== 1 || !conditionalLegacy) {
+        bad.push('site/app.js stBase() may send legacy provenance only as `legacy ? {base_pid: topic, base_rcid: legacy} : {}`. An uncovered canonical route must send neither legacy field and must never borrow a root id.');
+      }
+    }
   }
 
   // S6 — even complete exact-pair coverage is a neutral statement about narrow authored rules,
@@ -4218,8 +4403,8 @@ function blankComments(src) {
   const readAt = server.indexOf(readAnchor);
   const readEnd = readAt < 0 ? -1 : server.indexOf("if (seg[0] === 'forks'", readAt);
   const publicRead = readAt < 0 ? '' : server.slice(readAt, readEnd < 0 ? readAt + 12000 : readEnd);
-  if (!/STUDIO\.validate\(\{ spec: r\.spec, base_pid: row\.base_pid, base_rcid: row\.base_rcid, publish: true \}\)/.test(publicRead)) {
-    bad.push('server.js GET /api/protocols/:code no longer revalidates the resolved protocol with publish:true. Draft-mode notes are not sufficient for a page instructing strangers.');
+  if (!/STUDIO\.validate\(Object\.assign\(\{ spec: r\.spec, publish: true \}, studioValidationProvenance\(row\)\)\)/.test(publicRead)) {
+    bad.push('server.js GET /api/protocols/:code must revalidate the resolved protocol with publish:true and studioValidationProvenance(row). Legacy-only validation silently unbinds canonical routes that have no old root.');
   }
   if (!/status: 'review_required'/.test(publicRead) || !/spec: null/.test(publicRead) || !/if \(!v\.ok\) return json/.test(publicRead)) {
     bad.push('server.js GET /api/protocols/:code no longer returns review_required with spec:null when current publication checks fail. A refusal with an actionable spec beside it is still an instruction.');
@@ -4228,9 +4413,15 @@ function blankComments(src) {
   const cloneAt = server.indexOf(cloneAnchor);
   const cloneEnd = cloneAt < 0 ? -1 : server.indexOf(readAnchor, cloneAt);
   const clone = cloneAt < 0 ? '' : server.slice(cloneAt, cloneEnd < 0 ? cloneAt + 8000 : cloneEnd);
-  if (!/STUDIO\.validate\(\{ spec: resolved\.spec, base_pid: r\.base_pid, base_rcid: r\.base_rcid, publish: true \}\)/.test(clone)
+  if (!/STUDIO\.validate\(Object\.assign\(\{ spec: resolved\.spec, publish: true \}, studioValidationProvenance\(r\)\)\)/.test(clone)
       || !/if \(!current\.ok\) return json/.test(clone)) {
-    bad.push('server.js clone endpoint no longer applies the current publish rules before counting or opening a remix. A direct API call must not bypass review_required containment.');
+    bad.push('server.js clone endpoint must apply current publish rules with the stored canonical route before counting or opening a remix. A direct API call must not bypass review_required containment or lose route provenance.');
+  }
+
+  const publishedAt = server.indexOf('async function servePublishedProtocol(');
+  const published = publishedAt < 0 ? '' : server.slice(publishedAt, publishedAt + 14000);
+  if (!/STUDIO\.validate\(Object\.assign\(\{ spec: resolved\.spec, publish: true \}, studioValidationProvenance\(row\)\)\)/.test(published)) {
+    bad.push('server.js servePublishedProtocol() must revalidate with studioValidationProvenance(row). The no-JavaScript document may not lose a route that the API document preserves.');
   }
   if (!/d\.status === 'review_required'/.test(app) || !/No steps, start control or remix control are shown/.test(app)) {
     bad.push('site/app.js no longer renders the review_required public state without steps/start/remix controls. The endpoint may hide the spec, but the reader must also be told why the action disappeared.');
@@ -4262,7 +4453,7 @@ function blankComments(src) {
     console.error('  now has a builder that looked at the problem and said nothing.');
     process.exit(1);
   }
-  console.log('[parse] safety signals reach the reader OK — %d checkProtocol call(s) carry the protocol base, the clean verdict states its coverage, only a clean verdict may be folded, and the movement search filters on the cause\'s own avoid-list.', calls.length);
+  console.log('[parse] safety signals reach the reader OK — %d checkProtocol call(s) carry the canonical route, legacy provenance is paired and conditional, public read/clone documents revalidate that route, the clean verdict states its coverage, and movement search filters on the route\'s own avoid-list.', calls.length);
 })();
 
 // ---- WHAT A CUE MAY AND MAY NOT SAY -----------------------------------------------------------
@@ -4483,9 +4674,10 @@ function blankComments(src) {
 //     ment() keeps points off every prerendered health document; this one arrived in the HYDRATED
 //     document through an endpoint and so walked around it entirely.
 //   · /variants and /new both returned `p.title`, the RAW STORED COLUMN, while every other public
-//     projection derives it through publicProtocolTitle(). Creator prose cannot cross the public
-//     boundary — studio-safety.js r6 refuses a note for exactly that reason — and a stored title is
-//     creator prose.
+//     projection derives it through publicProtocolTitle(). Canonical route rows use the narrow
+//     publicProtocolTitleFor(row) adapter, which resolves row provenance and then calls that same
+//     governed title function. Creator prose cannot cross the public boundary — studio-safety.js
+//     r6 refuses a note for exactly that reason — and a stored title is creator prose.
 //
 // The general rule both violate: a public projection built by SPREADING a database row is not an
 // allowlist. It publishes whatever the SELECT happens to carry, so the next column added to the
@@ -4495,6 +4687,12 @@ function blankComments(src) {
   const app = blankComments(fs.readFileSync(path.join(ROOT, 'site/app.js'), 'utf8'));
   const lines = src.split('\n');
   const bad = [];
+  const titleForAt = src.indexOf('function publicProtocolTitleFor(row)');
+  const titleForEnd = titleForAt < 0 ? -1 : src.indexOf('\nfunction studioValidationProvenance(', titleForAt);
+  const titleFor = titleForAt < 0 || titleForEnd < 0 ? '' : src.slice(titleForAt, titleForEnd);
+  if (!/studioProvenance\(row\)/.test(titleFor) || !/publicProtocolTitle\(/.test(titleFor)) {
+    bad.push('server.js publicProtocolTitleFor(row) must resolve canonical/legacy provenance and then call publicProtocolTitle(). A wrapper that returns row.title is still raw creator prose.');
+  }
   // The three PUBLIC list endpoints. /mine is deliberately absent: it is the author's own page and
   // may return a draft's own title to the person who typed it.
   const PUBLIC_LISTS = [
@@ -4524,8 +4722,8 @@ function blankComments(src) {
     if (/Object\.assign\(\s*\{\s*\}\s*,/.test(block) || /\.\.\.[a-z]\b/.test(block)) {
       bad.push(`server.js:${at + 1} — ${what} builds its payload by spreading a database row. Name the fields: a spread publishes whatever the SELECT carries, so the next column added to the query reaches the wire with nobody deciding it should.`);
     }
-    if (!/publicProtocolTitle\(/.test(block)) {
-      bad.push(`server.js:${at + 1} — ${what} does not derive its titles through publicProtocolTitle(). The stored title column is creator prose, and creator prose does not cross the public boundary.`);
+    if (!/publicProtocolTitle(?:For)?\(/.test(block)) {
+      bad.push(`server.js:${at + 1} — ${what} does not derive its titles through publicProtocolTitle() or its gated route-aware adapter publicProtocolTitleFor(). The stored title column is creator prose, and creator prose does not cross the public boundary.`);
     }
     if (/\btitle:\s*[a-z]\.title\b/.test(block)) {
       bad.push(`server.js:${at + 1} — ${what} returns the raw stored title column.`);

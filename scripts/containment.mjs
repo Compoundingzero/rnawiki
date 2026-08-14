@@ -12,6 +12,8 @@ const styles = read('site/styles.css');
 const plan = read('site/plan.html');
 const sitemap = read('site/sitemap.xml');
 const railway = read('railway.toml');
+const indexShell = read('site/index.html');
+const homeDoc = read('site/home.html');
 const discoveryDocs = ['site/az.html', 'site/browse.html'].map((file) => [file, read(file)]);
 const fatLossGoalDoc = read('site/goal/fatloss.html');
 const toxicDoc = read('site/c/2-4-dinitrophenol-dnp.html');
@@ -108,11 +110,23 @@ if ((app.match(/if \(!featureOn\('sharedPlans'\)\) return;/g) || []).length < 4)
 forbidText(app, 'id="stack-share"', 'Stack still exposes a personal share-link control');
 forbidText(app, 'id="stack-wrapped"', 'Stack still exposes a personal share-image control');
 
-// The release navigation is exactly three plain-language entries, and they are the two ways a
-// person arrives plus the index for somebody who already knows the name of the thing:
-// Problems (something is wrong) · Goals (something is a target) · A-Z.
-// Revised 2026-08-13. /corrections is deliberately NOT among them and no longer exists as a route:
-// reporting a wrong sentence is an inline control on the sentence, not a destination.
+// The release navigation is exactly the journey spine: find something, do it today, or create it.
+// Check both the SPA fallback shell and the generated homepage. build/prerender.js also enforces
+// byte parity, but this gate pins the product decision itself so both renderers cannot drift back
+// together to the old Problems / Goals / A-Z taxonomy and still pass.
+for (const [label, html] of [['site/index.html', indexShell], ['site/home.html', homeDoc]]) {
+  const nav = (html.match(/<nav class="topnav"[^>]*>([\s\S]*?)<\/nav>/) || [, ''])[1];
+  if (!nav) { failures.push(`${label} has no primary navigation`); continue; }
+  const links = [...nav.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)]
+    .map((m) => ({ href: m[1], text: m[2].replace(/&ndash;/g, '–').trim() }));
+  const got = links.map((x) => `${x.text}:${x.href}`).join('|');
+  const want = 'Find:/solve|Today:/plan|Create:/studio';
+  if (got !== want) failures.push(`${label} primary navigation is ${got || '(empty)'}, expected ${want}`);
+  if (links.some((x) => /^(Problems|Goals|A[–-]Z)$/i.test(x.text) || ['/problems', '/goals', '/az'].includes(x.href))) {
+    failures.push(`${label} restored the competing Problems / Goals / A-Z shell`);
+  }
+}
+
 // ---- THE PUBLIC PROFILE IS A DECISION, NOT A SETTING (2026-08-14) ----------------------------
 // build/parse.js's assertProfileDisclosesOnlyPublished() inspects server.js only between the
 // bounds of the GET /api/u/:handle handler, so it covers the READ payload and nothing else. The
@@ -128,19 +142,19 @@ forbidText(server, 'if (!FEATURES.publicProfiles) return json(res, 404, { error:
 requireText(app, 'id="pp-agree"', 'the public-profile control no longer requires an explicit, unchecked confirmation before a page with somebody\'s handle on it comes into existence');
 requireText(app, "featureOn('publicProfiles') ? '<section class=\"me-sec\"><h2>Your public page</h2>", 'the public-profile control is rendered while the capability is contained — a contained capability is absent from the visible task flow, not present and erroring');
 
-requireText(read('site/index.html'), '>Problems</a>', 'application shell has no Problems entry');
-requireText(read('site/index.html'), '>Goals</a>', 'application shell has no Goals entry');
-requireText(read('site/index.html'), '>A&ndash;Z</a>', 'application shell has no A-Z entry');
-
 // Railway otherwise considers a new container active before npm's prestart has finished building
-// the public site and before server.js is listening. Keep the previous deployment serving until
-// the new homepage proves that the complete reader-facing application is ready.
-requireText(railway, 'healthcheckPath = "/"', 'Railway has no homepage readiness check');
+// the public site, the route registry and Studio safety rules, and before the database answers.
+// `/` can be healthy while any of those are missing; /healthz is the readiness contract.
+requireText(railway, 'healthcheckPath = "/healthz"', 'Railway is not using the readiness endpoint');
+forbidText(railway, 'healthcheckPath = "/"', 'Railway readiness regressed to a homepage-only check');
 requireText(railway, 'healthcheckTimeout = 120', 'Railway readiness timeout no longer covers the production prestart');
+requireText(server, "url.split('?')[0] === '/healthz'", 'the configured Railway readiness route is not served');
+requireText(server, 'const ok = database && STUDIO_READY && routeCount > 0;', '/healthz no longer waits for the database, Studio safety and canonical routes');
+requireText(server, "says: ok ? 'ready' : 'not ready'", '/healthz no longer reports an explicit readiness state');
 
 if (failures.length) {
   console.error('\nContainment gate failed:');
   failures.forEach((f) => console.error('  - ' + f));
   process.exit(1);
 }
-console.log('Containment gate passed — explicit consent, private defaults, secret checks, Today indexing, release navigation and deploy readiness are intact.');
+console.log('Containment gate passed — explicit consent, private defaults, secret checks, Today indexing, Find/Today/Create navigation and /healthz readiness are intact.');
