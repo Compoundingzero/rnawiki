@@ -726,6 +726,15 @@
 
   // ---------- accounts + API ----------
   let ME = null;
+  // ---- "SIGNED OUT" AND "NOT ASKED YET" ARE DIFFERENT STATES (2026-08-14) --------------------
+  // ME starts null, and null also means "signed out", so any renderer that branches on ME before
+  // api.me() has answered treats every signed-in reader as signed out. MEASURED against the real
+  // database: a DIRECT load of /me rendered Following, Logged, Built and Your account — and NOT
+  // "Your mark" or "Your public page", because both are gated on ME. Navigating to /me from inside
+  // the app rendered both. So the avatar shop has been invisible to anyone who bookmarked, refreshed
+  // or followed a link to /me, which is every way you actually arrive there. Same class as
+  // mountCommunityStrip() running before api.config(); this promise is the fix for that class.
+  let ME_READY = null;   // set at boot to the api.me() promise, awaited by anything that reads ME
   let FUEL_TARGETS = null; // the current protocol's nutrient_targets — lets "add a food" highlight what THIS protocol tracks
   // Super-admin (Control Room) access — robust: is_super from the server OR the owner's own email
   // (both come from /api/me). The email fallback guarantees the button can never silently vanish.
@@ -10168,6 +10177,9 @@
   }
 
   async function renderMe() {
+    // Wait for the account answer before deciding what this page contains. Without it a direct load
+    // of /me silently drops the two signed-in blocks — see the note over ME_READY.
+    if (ME_READY) { try { await ME_READY; } catch (e) {} }
     try { await ensureProtocolData(); } catch (e) {}
     const plan = getPlan();
     const M = planProtocols(plan).length ? mergedPlan(plan) : null;
@@ -11895,8 +11907,12 @@
   // glossarize(app) on every render including the restore, so a restored page is identical to a
   // freshly-loaded one rather than double-glossarized.
   if (KEEP_PRERENDERED.indexOf((KEEP_PATH.split('/').filter(Boolean)[0] || '')) >= 0) KEEP_HTML = app.innerHTML;
+  // STARTED BEFORE route(), NOT AFTER. The request has to be in flight before the first render, or
+  // anything awaiting ME_READY finds it still null and carries on without an answer — which is
+  // exactly what happened: /me awaited a promise that did not exist yet.
+  ME_READY = api.me();
   route();
-  api.me().then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (currentRoute().split('?')[0] === '/plan') renderPlan(); }); } }).catch(() => { renderAccount(); });
+  ME_READY.then(u => { ME = u; renderAccount(); if (u) { syncPlanOnLogin(); loadConsent().then(() => { if (currentRoute().split('?')[0] === '/plan') renderPlan(); }); } }).catch(() => { renderAccount(); });
   api.config().then(c => {
     if (!c) return;
     const communityWasOn = featureOn('publicCommunity');
