@@ -1716,6 +1716,7 @@ if (exercisesData && exercisesData.exercises) {
 // in the prerendered and hydrated documents (no twin drift). Text index is the crawlable/a11y core;
 // the SVG is an aria-hidden visual enhancement that scrolls to the matching index section. ----
 const bodyZones = readJSON(path.join(DATA_DIR, 'body_zones.json')) || null;
+const exerciseCues = (readJSON(path.join(DATA_DIR, 'exercise_cues.json')) || {}).cues || {};
 let bodyWhereSvg = '', bodyWhereIndex = '';
 if (bodyZones && Array.isArray(bodyZones.zones)) {
   const eh = (s) => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -1805,7 +1806,7 @@ const data = {
   pathways: pathwayList,
   anatomy,
   structures,
-  bodyZones, bodyWhereSvg, bodyWhereIndex,
+  bodyZones, bodyWhereSvg, bodyWhereIndex, exerciseCues,
   graph: graph || { problems: [], categories: [], domains: {} },
 };
 // W4: the $0 rule's own word lists, published so the Research Receipt can re-run THIS BUILD'S rule
@@ -4262,6 +4263,56 @@ function blankComments(src) {
     process.exit(1);
   }
   console.log('[parse] safety signals reach the reader OK — %d checkProtocol call(s) carry the protocol base, the clean verdict states its coverage, only a clean verdict may be folded, and the movement search filters on the cause\'s own avoid-list.', calls.length);
+})();
+
+// ---- WHAT A CUE MAY AND MAY NOT SAY -----------------------------------------------------------
+// Cues are the one thing on a movement page that TELLS SOMEBODY WHAT TO DO WITH THEIR BODY, so
+// they carry rules the rest of the page does not. Three in particular:
+//   · NEVER a dose. This site does not prescribe sets, reps, load or duration anywhere — the whole
+//     873-movement prescription layer was deleted on 2026-08-11 because it was invented — and a cue
+//     is exactly where one would creep back in.
+//   · NEVER jargon. "Maintain a neutral spine" and "brace your core" are instructions a beginner
+//     cannot follow; the jargon rule on this site is that a technical term gets a plain-language
+//     explainer, and a cue is too short to carry one. So it may not contain the term at all.
+//   · NEVER a benefit or a medical claim. A cue says what to do, not what it will do for you.
+(function assertMovementCues() {
+  const cues = (readJSON(path.join(ROOT, 'data', 'exercise_cues.json')) || {}).cues || {};
+  // parse.js calls it exercisesData; build/prerender.js calls the same file EX.
+  const ids = new Set((((typeof exercisesData !== 'undefined' && exercisesData) || {}).exercises || []).map((e) => e.id));
+  const bad = [];
+  const JARGON = ['neutral spine', 'scapular', 'retract', 'posterior pelvic', 'hip hinge',
+    'brace your core', 'proprocept', 'proprioception', 'eccentric', 'concentric', 'valgus',
+    'midline', 'engage your', 'activate your', 'recruit', 'stabilise', 'stabilize', 'alignment',
+    'kinetic', 'anterior', 'posterior', 'lateral chain'];
+  const DOSE = /\b\d+\s*(reps?|sets?|seconds?|secs?|minutes?|mins?|kg|lbs?|%|times)\b|\bfor \d+\b|\bhold for\b|\b\d+\s*x\s*\d+\b/i;
+  const CLAIM = /\b(prevents?|protects?|cures?|heals?|treats?|reduces? (?:your )?risk|builds? more|burns? (?:more )?fat|fixes?)\b/i;
+  let n = 0, movements = 0;
+  Object.keys(cues).forEach((id) => {
+    if (!ids.has(id)) { bad.push(`data/exercise_cues.json has cues for "${id}", which is not a movement in this corpus`); return; }
+    const list = cues[id];
+    if (!Array.isArray(list)) { bad.push(`${id}: cues must be an array`); return; }
+    if (list.length > 3) bad.push(`${id}: ${list.length} cues. Three is the cap — past that it is a step list, and the step list is already below it.`);
+    if (list.length) movements++;
+    list.forEach((c) => {
+      n++;
+      const t = String(c);
+      const words = t.trim().split(/\s+/).length;
+      if (words > 12) bad.push(`${id}: "${t.slice(0, 60)}…" is ${words} words. A cue is something you can hear once and act on.`);
+      const j = JARGON.find((x) => t.toLowerCase().includes(x));
+      if (j) bad.push(`${id}: cue contains "${j}" — a beginner cannot act on it, and a cue is too short to carry an explainer.`);
+      if (DOSE.test(t)) bad.push(`${id}: "${t.slice(0, 60)}…" prescribes a dose. This site prescribes no sets, reps, load or duration; the invented prescription layer was deleted for exactly this reason.`);
+      if (CLAIM.test(t)) bad.push(`${id}: "${t.slice(0, 60)}…" makes a benefit or medical claim. A cue says what to do, never what it will do for you.`);
+      if (/[!]/.test(t)) bad.push(`${id}: cue contains an exclamation mark.`);
+    });
+  });
+  if (bad.length) {
+    console.error('\n[parse] MOVEMENT CUE GATE FAILED — refusing to build.');
+    bad.slice(0, 25).forEach((b) => console.error('  ✗ ' + b));
+    if (bad.length > 25) console.error(`  … and ${bad.length - 25} more`);
+    process.exit(1);
+  }
+  console.log('[parse] movement cues OK — %d cues across %d of %d movements, none prescribing a dose, none in jargon, none claiming a benefit.',
+    n, movements, ids.size);
 })();
 
 // ---- A REQUEST HANDLER MUST READ ITS OWN BODY ------------------------------------------------

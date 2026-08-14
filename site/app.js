@@ -9721,6 +9721,11 @@
       <p class="muted" style="font-size:.9rem">Tap a muscle for its anatomy, how it contracts, and the energy systems that fuel it.</p>
       ${prim ? `<div class="ex-mgroup"><span class="ex-mk">Mainly</span><div class="tag-row">${prim}</div></div>` : ''}
       ${sec ? `<div class="ex-mgroup"><span class="ex-mk">Also</span><div class="tag-row">${sec}</div></div>` : ''}
+      ${(() => {
+        // The twin of the cue block in build/prerender.js. Cues first, steps second.
+        const cu = (D.exerciseCues || {})[e.id];
+        return (cu && cu.length) ? `<div class="section-title">Do it well</div><ul class="ex-cues">${cu.map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+      })()}
       ${(e.instructions || []).length ? `<div class="section-title">How to do it</div><ol class="anat-steps">${e.instructions.map(i => `<li>${esc(i)}</li>`).join('')}</ol>` : ''}
       ${scale.length ? `<div class="section-title">Other ways to train the same muscle</div><div class="tag-row">${scale.join('')}</div>` : ''}
       ${solveCta('Find a protocol that uses this →')}

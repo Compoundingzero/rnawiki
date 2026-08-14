@@ -5457,3 +5457,7 @@ html[data-state="removed"] .i-form{display:none}
 .ex-press .bm-s{fill:none;stroke:var(--orange,#a35a00);stroke-width:1;stroke-dasharray:2 4}
 .bm-faint .bm-p{fill-opacity:.28}
 .bm-deep,.bm-none{font-size:.86rem;line-height:1.55;color:var(--muted);background:var(--panel2);border-radius:10px;padding:.6rem .75rem;margin:.6rem 0}
+
+/* Technique cues — what a coach says from across the room, above the step list. */
+.ex-cues{margin:.5rem 0 1rem;padding-left:1.15rem}
+.ex-cues li{margin:.35rem 0;line-height:1.5;font-weight:600;color:var(--head)}

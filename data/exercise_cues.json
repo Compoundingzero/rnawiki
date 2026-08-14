@@ -1,0 +1,4325 @@
+{
+ "_note": "Technique cues per movement, keyed by exercise id. Authored from each movement OWN instructions[] plus, where it is uncontroversial, the single most common way people do it badly. NEVER sets, reps, load or duration — a build gate refuses those. An empty array is a legitimate answer and is better than filler.",
+ "cues": {
+  "Chair_Squat": [
+   "Keep your chest up and look straight ahead",
+   "Sit down until your knees pass ninety degrees",
+   "Push the floor away through your heels"
+  ],
+  "Chair_Upper_Body_Stretch": [
+   "Grip the chair back and straighten your arms",
+   "Lean your chest forward until you feel a stretch",
+   "Ease off if it turns sharp"
+  ],
+  "Chest_And_Front_Of_Shoulder_Stretch": [
+   "Hold the pole wider than your shoulders",
+   "Lift it slowly up and behind your head",
+   "Stop where it gets tight, not sharp"
+  ],
+  "Chest_Push_from_3_point_stance": [
+   "Start low with your back flat, one hand down",
+   "Pull the ball to your chest on the first step",
+   "Throw hard as the second foot lands"
+  ],
+  "Chest_Push_multiple_response": [
+   "Hold the ball tight against your chest",
+   "Drive your hips forward as you push",
+   "Catch yourself with your hands, then get upright"
+  ],
+  "Chest_Push_single_response": [
+   "Hold the ball tight against your chest",
+   "Drive your hips forward and push for distance",
+   "Catch yourself with your hands as you fall"
+  ],
+  "Chest_Push_with_Run_Release": [
+   "Start with knees bent, hips back, back flat",
+   "Draw the ball in on the first step",
+   "Push hard, then sprint straight after it"
+  ],
+  "Chest_Stretch_on_Stability_Ball": [
+   "Keep your elbow resting on top of the ball",
+   "Lower your chest slowly toward the floor",
+   "Back off when the stretch turns sharp"
+  ],
+  "Childs_Pose": [
+   "Sit your hips back onto your heels",
+   "Let your arms stay long on the floor",
+   "Rest your forehead down and breathe slowly"
+  ],
+  "Chin-Up": [
+   "Grip with palms facing you, hands closer than shoulders",
+   "Keep your elbows close to your body",
+   "Lower slowly until your arms are straight"
+  ],
+  "Chin_To_Chest_Stretch": [
+   "Sit tall with fingers laced behind your head",
+   "Let your chin sink slowly toward your chest",
+   "Stop where the stretch turns sharp"
+  ],
+  "Circus_Bell": [
+   "Grip the thick handle with both hands",
+   "Get one bell head behind your shoulder",
+   "Dip the knees, then drive it overhead"
+  ],
+  "Clean": [
+   "Start with your shoulders just ahead of the bar",
+   "Keep your arms straight until your hips finish",
+   "Drop under and catch with your elbows up"
+  ],
+  "Clean_Deadlift": [
+   "Keep the same back angle off the floor",
+   "Push your knees out of the bar's path",
+   "Drive your hips in once the bar passes knees"
+  ],
+  "Clean_Pull": [
+   "Chest up, shoulders just ahead of the bar",
+   "Keep your arms straight while your hips finish",
+   "Stand tall sharply, then stop pulling"
+  ],
+  "Clean_Shrug": [
+   "Start with the bar at mid thigh, back straight",
+   "Shrug your shoulders straight up toward your ears",
+   "Keep it light enough to stay fast"
+  ],
+  "Clean_and_Jerk": [
+   "Keep your arms straight until your hips finish",
+   "Catch the bar with your elbows up",
+   "Dip straight down, then drive the bar overhead"
+  ],
+  "Clean_and_Press": [
+   "Keep your back flat and shoulders over the bar",
+   "Keep the bar close to your body throughout",
+   "Stand fully upright before you press overhead"
+  ],
+  "Clean_from_Blocks": [
+   "Set up with shoulders just ahead of the bar",
+   "Keep your arms straight until your hips finish",
+   "Pull under and catch with your elbows up"
+  ],
+  "Clock_Push-Up": [
+   "Keep your body straight from head to heels",
+   "Push up fast enough to leave the floor",
+   "Shift a little further round each time"
+  ],
+  "Close-Grip_Barbell_Bench_Press": [
+   "Grip the bar about shoulder width apart",
+   "Keep your elbows close to your body",
+   "Lower slowly to your middle chest"
+  ],
+  "Close-Grip_Dumbbell_Press": [
+   "Press both palms flat against the dumbbell",
+   "Hold it straight over your chest at arm's length",
+   "Lower to your chest, then straighten your arms"
+  ],
+  "Close-Grip_EZ-Bar_Curl_with_Band": [
+   "Stand on the middle of the band",
+   "Keep your upper arms still against your sides",
+   "Lower the bar slowly all the way down"
+  ],
+  "Close-Grip_EZ-Bar_Press": [
+   "Take a narrow grip with your elbows tucked in",
+   "Lower the bar to your lower chest",
+   "Keep the bar straight over your torso"
+  ],
+  "Close-Grip_EZ_Bar_Curl": [
+   "Hold the inner handles, elbows against your sides",
+   "Move only your forearms",
+   "Do not swing or lean back"
+  ],
+  "Close-Grip_Front_Lat_Pulldown": [
+   "Lean back slightly and keep your chest up",
+   "Pull the bar down to your upper chest",
+   "Let the bar rise until your arms straighten"
+  ],
+  "Close-Grip_Push-Up_off_of_a_Dumbbell": [
+   "Keep your elbows tucked close to your sides",
+   "Keep your body straight, hips neither rising nor sagging",
+   "Lower under control, then push all the way up"
+  ],
+  "Close-Grip_Standing_Barbell_Curl": [
+   "Hold the bar with hands a few inches apart",
+   "Keep your elbows still against your torso",
+   "Do not swing or bend your back"
+  ],
+  "Cocoons": [
+   "Bring your knees and hands toward each other",
+   "Lift your hips off the floor as you curl",
+   "Lower back down slowly under control"
+  ],
+  "Conans_Wheel": [
+   "Hold the bar in the crook of your elbows",
+   "Stay tall and take short, fast steps",
+   "Keep breathing while you walk"
+  ],
+  "Concentration_Curls": [
+   "Rest the back of your arm on your thigh",
+   "Move only your forearm",
+   "Lower the weight slowly, no swinging"
+  ],
+  "Cross-Body_Crunch": [
+   "Bring your shoulder toward the opposite knee, not just elbow",
+   "Keep your hands loose behind your head",
+   "Lower slowly, then switch sides"
+  ],
+  "Cross_Body_Hammer_Curl": [
+   "Keep your palms facing in the whole time",
+   "Curl the weight toward your opposite shoulder",
+   "Lower along the same path, slowly"
+  ],
+  "Cross_Over_-_With_Bands": [
+   "Step forward until the band is already tight",
+   "Keep a slight bend in your elbows",
+   "Bring your hands together in front of your chest"
+  ],
+  "Crossover_Reverse_Lunge": [
+   "Step back and bend your front knee",
+   "Turn your chest across the front leg",
+   "Turn only as far as stays comfortable"
+  ],
+  "Crucifix": [
+   "Raise your arms out level with the ground",
+   "Stand tall and keep your arms from dropping",
+   "Set the weights down before your arms give way"
+  ],
+  "Crunch_-_Hands_Overhead": [
+   "Keep your arms beside your head throughout",
+   "Lift your shoulder blades just off the floor",
+   "Lower slowly, do not throw your arms forward"
+  ],
+  "Crunch_-_Legs_On_Exercise_Ball": [
+   "Press your lower back down into the floor",
+   "Lift your shoulders only a few inches",
+   "Move slowly instead of swinging yourself up"
+  ],
+  "Crunches": [
+   "Keep your hands loose beside your head",
+   "Lift your shoulders only a few inches",
+   "Keep your lower back on the floor"
+  ],
+  "Cuban_Press": [
+   "Hold your upper arms level with the floor",
+   "Rotate until your forearms point straight up",
+   "Press overhead only after the rotation finishes"
+  ],
+  "Dancers_Stretch": [
+   "Cross the bent leg over the straight one",
+   "Turn your upper body toward the crossed knee",
+   "Turn only as far as stays comfortable"
+  ],
+  "Dead_Bug": [
+   "Press your lower back flat into the floor",
+   "Lower one leg at a time, slowly",
+   "Stop if your back starts to arch"
+  ],
+  "Deadlift_with_Bands": [
+   "Chest up, look forward, shins touching the bar",
+   "Push through your heels to start the bar moving",
+   "Drive your hips into the bar at the top"
+  ],
+  "Deadlift_with_Chains": [
+   "Set the bar over the middle of your feet",
+   "Keep your chest up and your back flat",
+   "Push through your heels and finish hips forward"
+  ],
+  "Decline_Barbell_Bench_Press": [
+   "Hook your legs in before you lie back",
+   "Have someone hand you the bar off the rack",
+   "Lower slowly to your lower chest"
+  ],
+  "Decline_Close-Grip_Bench_To_Skull_Crusher": [
+   "Keep your elbows tucked in the whole time",
+   "Press from your lower chest, then bend only elbows",
+   "Keep your upper arms still on the second part"
+  ],
+  "Decline_Crunch": [
+   "Keep your hands loose beside your head",
+   "Lift your shoulders only a few inches off",
+   "Move slowly, do not swing yourself up"
+  ],
+  "Decline_Dumbbell_Bench_Press": [
+   "Secure your legs before you lie back",
+   "Keep your forearms straight up and down throughout",
+   "Lower the dumbbells slowly to your sides"
+  ],
+  "Decline_Dumbbell_Flyes": [
+   "Keep a slight bend in your elbows",
+   "Open your arms wide until your chest stretches",
+   "Move only at the shoulders, same arc back"
+  ],
+  "Decline_Dumbbell_Triceps_Extension": [
+   "Keep your upper arms still and elbows in",
+   "Lower until your thumbs reach your ears",
+   "Move only at your elbows"
+  ],
+  "3_4_Sit-Up": [
+   "Lift your chest toward your knees",
+   "Stop three quarters of the way back down",
+   "Rest your hands by your head, never pull the neck"
+  ],
+  "90_90_Hamstring": [
+   "Keep the hip and knee bent at right angles",
+   "Straighten the raised leg only as far as comfortable",
+   "Ease back when the stretch turns sharp"
+  ],
+  "Ab_Crunch_Machine": [
+   "Move slowly, no swinging or jerking",
+   "Breathe out as you crunch down",
+   "Let the legs stay relaxed and let the middle work"
+  ],
+  "Ab_Roller": [
+   "Roll out only as far as you can stay straight",
+   "Keep your hips from sagging toward the floor",
+   "Breathe out as you pull back in"
+  ],
+  "Adductor": [
+   "Turn the leg so the roller sits on your inner thigh",
+   "Roll between hip and knee, pausing where it feels tender",
+   "Lighten the pressure if it is more than you can tolerate"
+  ],
+  "Adductor_Groin": [
+   "Let your legs go loose while your partner pushes",
+   "Only go as wide as is comfortable",
+   "Tell your partner the moment it is far enough"
+  ],
+  "Advanced_Kettlebell_Windmill": [
+   "Keep the overhead arm locked straight the whole time",
+   "Push your hips out toward the raised bell",
+   "Point your feet away from the raised arm"
+  ],
+  "Air_Bike": [
+   "Keep your lower back pressed to the floor",
+   "Bring your elbow across toward the opposite knee",
+   "Rest your hands by your head, never pull the neck"
+  ],
+  "All_Fours_Quad_Stretch": [
+   "Hold the foot and keep the knee fully bent",
+   "Push your hips down toward the floor",
+   "Ease off when the stretch turns sharp"
+  ],
+  "Alternate_Hammer_Curl": [
+   "Keep palms facing each other the whole way",
+   "Keep your elbows tucked close to your sides",
+   "Move only your forearms, no swinging"
+  ],
+  "Alternate_Heel_Touchers": [
+   "Lift only a few inches and reach for the heel",
+   "Keep your feet flat on the floor",
+   "Breathe out as you reach, in as you lower"
+  ],
+  "Alternate_Incline_Dumbbell_Curl": [
+   "Keep your elbows close to your body",
+   "Turn the palm up as you curl",
+   "Move only your forearms, keep your back on the bench"
+  ],
+  "Alternate_Leg_Diagonal_Bound": [
+   "Push off hard with the front leg",
+   "Drive the opposite knee forward and high",
+   "Cover as much ground sideways as you can"
+  ],
+  "Alternating_Cable_Shoulder_Press": [
+   "Start with hands at shoulder height, palms forward",
+   "Keep your head and chest up",
+   "Press straight overhead, pause, then swap sides"
+  ],
+  "Alternating_Deltoid_Raise": [
+   "Keep a slight bend in your elbows",
+   "Raise to shoulder height, no higher",
+   "Lift the weights, do not swing them up"
+  ],
+  "Alternating_Floor_Press": [
+   "Hold one arm locked out while the other lowers",
+   "Bring the bell down to touch your chest",
+   "Turn your wrist toward the locked out arm as you lower"
+  ],
+  "Alternating_Hang_Clean": [
+   "Push your butt back and look straight ahead",
+   "Drive through your legs and hips to pull it up",
+   "Turn your wrist as the bell reaches your shoulder"
+  ],
+  "Alternating_Kettlebell_Press": [
+   "Press straight overhead and turn the palm forward",
+   "Hold the other bell still at your shoulder",
+   "Lower it all the way down before pressing the other"
+  ],
+  "Alternating_Kettlebell_Row": [
+   "Bend your knees slightly and push your butt back",
+   "Pull the bell to your ribs, elbow close",
+   "Pull your shoulder blade back as you row"
+  ],
+  "Alternating_Renegade_Row": [
+   "Keep your body straight from head to heels",
+   "Push the other bell hard into the floor",
+   "Set your feet wide so your hips stay square"
+  ],
+  "Ankle_Circles": [
+   "Hold something sturdy so you stay steady",
+   "Keep the foot just off the floor",
+   "Draw big slow circles with your big toe"
+  ],
+  "Ankle_On_The_Knee": [
+   "Rest one ankle across the opposite knee",
+   "Pull the bottom thigh in toward your chest",
+   "Let your neck and shoulders stay soft"
+  ],
+  "Anterior_Tibialis-SMR": [
+   "Work the outside of the shin, below knee to ankle",
+   "Pause on the spots that feel tender",
+   "Ease the pressure if it is more than you can tolerate"
+  ],
+  "Anti-Gravity_Press": [
+   "Lie face down with your chest on the bench",
+   "Press the bar out in front of your head",
+   "Keep your arms level with the floor throughout"
+  ],
+  "Arm_Circles": [
+   "Hold your arms straight out at shoulder height",
+   "Make smooth circles about a foot wide",
+   "Change direction partway through"
+  ],
+  "Arnold_Dumbbell_Press": [
+   "Start with palms facing you at chest height",
+   "Turn the palms forward as you press up",
+   "Turn them back toward you as you lower"
+  ],
+  "Around_The_Worlds": [
+   "Keep a slight bend in your elbows throughout",
+   "Sweep wide, keeping your arms level with the floor",
+   "Move slowly, this is not a swing"
+  ],
+  "Atlas_Stone_Trainer": [
+   "Hug the weight tight to your chest",
+   "Bend at the hips, then drive it past your knees",
+   "Rest it on your thighs, then stand by driving your hips"
+  ],
+  "Atlas_Stones": [
+   "Get your arms right around the stone, fingers underneath",
+   "Keep the stone pulled into your chest the whole lift",
+   "Sit back to rest it on your thighs, then stand"
+  ],
+  "Axle_Deadlift": [
+   "Set the bar over the middle of your feet",
+   "Keep your chest up and your back flat",
+   "Push through your heels, then drive your hips into the bar"
+  ],
+  "Back_Flyes_-_With_Bands": [
+   "Keep your arms straight and level with your shoulders",
+   "Take your hands out and back to your sides",
+   "Return slowly, do not let the band snap you forward"
+  ],
+  "Backward_Drag": [
+   "Lean back against the pull of the sled",
+   "Take short fast steps",
+   "Push through your legs on every step"
+  ],
+  "Backward_Medicine_Ball_Throw": [
+   "Squat down, then reverse hard and stand tall",
+   "Release the ball over your head",
+   "Reach full height before you let go"
+  ],
+  "Balance_Board": [
+   "Look straight ahead, not down at your feet",
+   "Keep your knees slightly bent",
+   "Have something sturdy within reach until you are steady"
+  ],
+  "Ball_Leg_Curl": [
+   "Lift your hips and keep them up throughout",
+   "Pull the ball in with your heels",
+   "Straighten back out slowly under control"
+  ],
+  "Band_Assisted_Pull-Up": [
+   "Make sure the band is secure under your knee",
+   "Pull your elbows down to your sides",
+   "No swinging, get your chin over the bar"
+  ],
+  "Band_Good_Morning": [
+   "Keep your back flat, stop before it rounds",
+   "Keep your legs straight and push your hips back",
+   "Stand tall by driving your hips forward"
+  ],
+  "Band_Good_Morning_Pull_Through": [
+   "Push your butt back as far as it will go",
+   "Keep your back flat and your knees only slightly bent",
+   "Stand up by driving your hips forward"
+  ],
+  "Band_Hip_Adductions": [
+   "Keep the working knee straight",
+   "Take the leg out to the side without leaning",
+   "Stand tall and hold the post if you need to"
+  ],
+  "Band_Pull_Apart": [
+   "Keep your arms straight the whole time",
+   "Pull your hands wide until the band touches your chest",
+   "Keep your shoulders back throughout"
+  ],
+  "Band_Skull_Crusher": [
+   "Keep your upper arms still and pointing up",
+   "Straighten only at the elbow",
+   "Lower back over your head slowly"
+  ],
+  "Barbell_Ab_Rollout": [
+   "Keep your arms straight up and down throughout",
+   "Lift your hips as you roll the bar toward your feet",
+   "Roll back slowly and do not let your back sag"
+  ],
+  "Barbell_Ab_Rollout_-_On_Knees": [
+   "Roll out only as far as you can stay straight",
+   "Do not let your hips sag toward the floor",
+   "Breathe out as you pull yourself back"
+  ],
+  "Barbell_Bench_Press_-_Medium_Grip": [
+   "Lower the bar to the middle of your chest",
+   "Take it down slower than you push it up",
+   "Keep your feet planted, no bouncing off your chest"
+  ],
+  "Barbell_Curl": [
+   "Keep your elbows close to your sides",
+   "Move only your forearms, no swinging",
+   "Lower the bar all the way down slowly"
+  ],
+  "Barbell_Curls_Lying_Against_An_Incline": [
+   "Keep your upper arms still, do not swing",
+   "Curl as high as you can",
+   "Let your arms straighten fully at the bottom"
+  ],
+  "Barbell_Deadlift": [
+   "Keep your back straight and your chest out",
+   "Bend your knees and hips to set the bar down"
+  ],
+  "Barbell_Full_Squat": [
+   "Keep your head up and your back straight",
+   "Sit back with your hips as your knees bend",
+   "Push through your heels to stand up"
+  ],
+  "Barbell_Glute_Bridge": [
+   "Roll the bar so it sits right over your hips",
+   "Push through your heels to lift",
+   "Take the weight on your upper back and heels"
+  ],
+  "Barbell_Guillotine_Bench_Press": [
+   "Lower the bar slowly toward your neck",
+   "Stop about an inch above, never touch down",
+   "Take it down slower than you push it up"
+  ],
+  "Box_Skip": [
+   "Drive off the back leg and get your hips high.",
+   "Land on the box and leap straight off again.",
+   "Drive the other knee up and forward as you leap."
+  ],
+  "Box_Squat": [
+   "Keep your chest up and look straight ahead.",
+   "Sit back with your hips until you touch the box.",
+   "Pause on the box, never bounce off it."
+  ],
+  "Box_Squat_with_Bands": [
+   "Push your knees out and keep your weight on your heels.",
+   "Sit back with your hips until you touch the box.",
+   "Pause on the box, never bounce off it."
+  ],
+  "Box_Squat_with_Chains": [
+   "Keep your chest up and look straight ahead.",
+   "Sit back with your hips until you touch the box.",
+   "Pause on the box, never bounce off it."
+  ],
+  "Brachialis-SMR": [
+   "Press the outside of your upper arm into the roller.",
+   "Lift your hips for more pressure, lower them for less."
+  ],
+  "Bradford_Rocky_Presses": [
+   "Take a grip wider than your shoulders.",
+   "Lower slowly to the back of your head.",
+   "Breathe out as you lift, in as you lower."
+  ],
+  "Butt-Ups": [
+   "Rest on your forearms with elbows under your shoulders.",
+   "Squeeze your abs and lift your hips toward the ceiling.",
+   "Lower slowly and don't let your back sag."
+  ],
+  "Butt_Lift_Bridge": [
+   "Push through your heels, not your toes.",
+   "Keep your back straight as your hips come up.",
+   "Breathe out as you lift and hold a second."
+  ],
+  "Butterfly": [
+   "Set the seat so your upper arms stay level with the floor.",
+   "Keep your back flat on the pad.",
+   "Bring the handles together slowly, then let your chest stretch."
+  ],
+  "Cable_Chest_Press": [
+   "Keep your head and chest up.",
+   "Press the handles straight out until your arms are straight.",
+   "Come back slowly and keep the cables pulling."
+  ],
+  "Cable_Crossover": [
+   "Keep a slight bend in your elbows throughout.",
+   "Move only at your shoulders, keep your body still.",
+   "Open your arms wide until you feel your chest stretch."
+  ],
+  "Cable_Crunch": [
+   "Keep your hips still and bend at the waist.",
+   "Bring your elbows down toward the middle of your thighs.",
+   "Return slowly instead of letting the weight pull you up."
+  ],
+  "Cable_Deadlifts": [
+   "Squat down by bending your hips and knees to reach the handles.",
+   "Drive through your heels to stand up.",
+   "Keep your head and chest up throughout."
+  ],
+  "Cable_Hammer_Curls_-_Rope_Attachment": [
+   "Keep your palms facing each other.",
+   "Pin your elbows by your sides and keep them there.",
+   "Move only your forearms, then lower slowly."
+  ],
+  "Cable_Hip_Adduction": [
+   "Take a wide stance and hold the frame for balance.",
+   "Pull the strapped leg across in front of the other.",
+   "Return slowly instead of letting the cable drag you back."
+  ],
+  "Cable_Incline_Pushdown": [
+   "Keep your arms straight the whole time.",
+   "Pull the bar down to your thighs and hold a second.",
+   "Let the bar rise slowly overhead, don't let it snap back."
+  ],
+  "Cable_Incline_Triceps_Extension": [
+   "Keep your elbows tucked in and still.",
+   "Straighten your arms fully and hold a second.",
+   "Breathe out as you straighten, then lower slowly."
+  ],
+  "Cable_Internal_Rotation": [
+   "Keep your elbow pressed against your side.",
+   "Bend your elbow to a right angle and keep it there.",
+   "Sweep your forearm across your stomach, then return slowly."
+  ],
+  "Cable_Iron_Cross": [
+   "Stand between the pulleys with your head and chest up.",
+   "Keep your arms straight as you pull them to your sides.",
+   "Pause at the bottom before letting the handles return."
+  ],
+  "Cable_Judo_Flip": [
+   "Stand side on with a wide stance.",
+   "Twist away from the pulley and bring the rope over your shoulder.",
+   "Shift your weight between your feet as you turn."
+  ],
+  "Cable_Lying_Triceps_Extension": [
+   "Keep your upper arms still and your elbows in.",
+   "Lower the bar until it lightly touches your forehead.",
+   "Breathe out as you straighten your arms."
+  ],
+  "Cable_One_Arm_Tricep_Extension": [
+   "Lock your upper arm against your side.",
+   "Move only your forearm, nothing else.",
+   "Straighten the arm fully, then return the handle slowly."
+  ],
+  "Cable_Preacher_Curl": [
+   "Keep your elbows and upper arms flat on the pad.",
+   "Straighten your arms fully at the bottom.",
+   "Squeeze at the top, then lower slowly."
+  ],
+  "Cable_Rear_Delt_Fly": [
+   "Start with the handles crossed in front of you.",
+   "Keep your arms straight as you sweep them back and out.",
+   "Pause at the end before letting the handles return."
+  ],
+  "Cable_Reverse_Crunch": [
+   "Keep your knees bent at a right angle.",
+   "Pull your knees in and lift your hips off the floor.",
+   "Lower slowly and keep the cable pulling on you."
+  ],
+  "Cable_Rope_Overhead_Triceps_Extension": [
+   "Keep your elbows close to your head.",
+   "Lower the rope behind your head until your triceps stretch.",
+   "Move only your forearms, keep your upper arms still."
+  ],
+  "Cable_Rope_Rear-Delt_Rows": [
+   "Sit tall with your lower back upright.",
+   "Keep your elbows high and out to the sides.",
+   "Pull the rope to your upper chest, just below the neck."
+  ],
+  "Cable_Russian_Twists": [
+   "Keep your hips up and your body flat from head to knees.",
+   "Turn your torso away from the pulley with arms straight.",
+   "Come back slowly, don't let the cable pull you around."
+  ],
+  "Cable_Seated_Crunch": [
+   "Hold the rope over your shoulders and keep it there.",
+   "Keep your hips still and bend at the waist.",
+   "Bring your elbows down toward your hips, then return slowly."
+  ],
+  "Cable_Seated_Lateral_Raise": [
+   "Rest your chest on your thighs with your back flat.",
+   "Raise your arms out to the sides to shoulder height.",
+   "Keep a slight bend in your elbows throughout."
+  ],
+  "Cable_Shoulder_Press": [
+   "Start with the handles at shoulder height, palms forward.",
+   "Keep your head and chest up as you press overhead.",
+   "Pause at the top, then lower slowly."
+  ],
+  "Cable_Shrugs": [
+   "Keep your arms straight the whole time.",
+   "Lift your shoulders as high as you can.",
+   "Only your shoulders move, don't pull with your arms."
+  ],
+  "Cable_Wrist_Curl": [
+   "Rest your forearms on your thighs with wrists past your knees.",
+   "Move only your wrists, keep your forearms still.",
+   "Curl up, hold a second, then lower slowly."
+  ],
+  "Calf-Machine_Shoulder_Shrug": [
+   "Stand tall with your arms hanging by your sides.",
+   "Lift your shoulders straight up toward your ears.",
+   "Hold a second at the top, then lower slowly."
+  ],
+  "Calf_Press": [
+   "Keep the balls of your feet firmly on the platform.",
+   "Press down through the balls of your feet as far as possible.",
+   "Pause briefly, then let your toes come back up."
+  ],
+  "Calf_Press_On_The_Leg_Press_Machine": [
+   "Place your toes low on the platform with your heels off.",
+   "Keep your knees still, move only your ankles.",
+   "Lower your heels slowly until your calves stretch."
+  ],
+  "Calf_Raise_On_A_Dumbbell": [
+   "Hold something sturdy for balance.",
+   "Roll your foot forward at the bottom for a stretch.",
+   "Roll the handle back slightly as you rise up."
+  ],
+  "Calf_Raises_-_With_Bands": [
+   "Stand on the band with your toes, both sides even.",
+   "Keep your hands up by your shoulders throughout.",
+   "Rise onto your toes and squeeze at the top."
+  ],
+  "Calf_Stretch_Elbows_Against_Wall": [
+   "Rest your forearms on the wall and lean in.",
+   "Keep your heels on the ground.",
+   "Step closer to the wall if the pull feels too strong."
+  ],
+  "Calf_Stretch_Hands_Against_Wall": [
+   "Stagger your feet, one foot forward.",
+   "Keep your back heel on the ground as you lean in.",
+   "Move closer to the wall if the pull feels too strong."
+  ],
+  "Calves-SMR": [
+   "Roll from just below the knee to just above the ankle.",
+   "Pause where it feels tight.",
+   "Take weight onto your hands to ease the pressure."
+  ],
+  "Car_Deadlift": [
+   "Set your feet about hip width and take your grip.",
+   "Look forward with your chest up and your back arched.",
+   "Drive through your heels and push your hips forward."
+  ],
+  "Car_Drivers": [
+   "Hold the plate at three and nine o'clock.",
+   "Keep your arms straight out in front of you.",
+   "Turn the plate side to side like a steering wheel."
+  ],
+  "Carioca_Quick_Step": [
+   "Step behind with one foot and pull that knee straight up.",
+   "Keep your feet pointing forward, don't twist them.",
+   "Keep looking forward as you move sideways."
+  ],
+  "Cat_Stretch": [
+   "Get on your hands and knees.",
+   "Pull your belly in and round your back.",
+   "Let your head drop and hold."
+  ],
+  "Catch_and_Overhead_Throw": [
+   "Take the ball behind your head before you throw.",
+   "Throw hard and follow through with your arms.",
+   "Stay ready to catch the ball coming back."
+  ],
+  "Chain_Handle_Extension": [
+   "Point your elbows straight up and keep them there.",
+   "Keep your palms facing down.",
+   "Straighten your arms fully, then lower slowly."
+  ],
+  "Chain_Press": [
+   "Start with your arms straight up over your chest.",
+   "Lower until your elbows bend to a right angle.",
+   "Press back up until your arms are straight."
+  ],
+  "Chair_Leg_Extended_Stretch": [
+   "Sit upright and hold the sides of the seat.",
+   "Straighten your knee and pull your toes toward you.",
+   "Move the leg out only as far as it goes easily."
+  ],
+  "Chair_Lower_Back_Stretch": [
+   "Sit tall and reach one arm over your head.",
+   "Bend to the side, holding the chair with your free hand.",
+   "Stop bending when the pull turns sharp."
+  ],
+  "Barbell_Hack_Squat": [
+   "Keep your chest up and eyes forward",
+   "Squat until your thighs are level with the floor",
+   "Push back up through your heels"
+  ],
+  "Barbell_Hip_Thrust": [
+   "Rest your upper back against the top of the bench",
+   "Push down through your whole foot",
+   "Drive your hips all the way up"
+  ],
+  "Barbell_Incline_Bench_Press_-_Medium_Grip": [
+   "Lower the bar to your upper chest",
+   "Pause, then breathe out as you press up",
+   "Take longer coming down than going up"
+  ],
+  "Barbell_Incline_Shoulder_Raise": [
+   "Keep your arms straight the whole time",
+   "Lift only your shoulders off the bench",
+   "Breathe out as you lift"
+  ],
+  "Barbell_Lunge": [
+   "Keep your torso upright",
+   "Keep your front knee over your foot, not past your toes",
+   "Push back up through your front heel"
+  ],
+  "Barbell_Rear_Delt_Row": [
+   "Bend over until your body is level with the floor",
+   "Flare your elbows out to the sides",
+   "Pull the bar to your upper chest"
+  ],
+  "Barbell_Rollout_from_Bench": [
+   "Keep your arms straight the whole way",
+   "Roll out only as far as you can control",
+   "Stop before your back sags"
+  ],
+  "Barbell_Seated_Calf_Raise": [
+   "Keep the balls of your feet on the block",
+   "Rise as high onto your toes as you can",
+   "Lower slowly until you feel a stretch"
+  ],
+  "Barbell_Shoulder_Press": [
+   "Lower the bar slowly to shoulder height",
+   "Keep the bar just in front of your head",
+   "Breathe out as you press up"
+  ],
+  "Barbell_Shrug": [
+   "Lift your shoulders straight up as high as they go",
+   "Keep your arms straight, do not bend your elbows",
+   "Lower slowly"
+  ],
+  "Barbell_Shrug_Behind_The_Back": [
+   "Keep your arms straight the whole time",
+   "Shrug your shoulders straight up as far as they go",
+   "Lower slowly and breathe in"
+  ],
+  "Barbell_Side_Bend": [
+   "Bend straight out to the side, not forward",
+   "Keep the rest of your body still",
+   "Keep your back straight and head up"
+  ],
+  "Barbell_Side_Split_Squat": [
+   "Point your lead foot out to the side",
+   "Bend the lead leg and keep the other one straighter",
+   "Push back up through the lead leg"
+  ],
+  "Barbell_Squat": [
+   "Keep your chest up and your back straight",
+   "Sit back with your hips as you bend your knees",
+   "Push through your heels on the way up"
+  ],
+  "Barbell_Squat_To_A_Bench": [
+   "Sit your hips back until you lightly touch the bench",
+   "Keep your chest up and head forward",
+   "Push through your heels to stand"
+  ],
+  "Barbell_Step_Ups": [
+   "Place your whole foot on the platform",
+   "Push through that heel to lift yourself up",
+   "Step back down slowly"
+  ],
+  "Barbell_Walking_Lunge": [
+   "Stay upright as you step forward",
+   "Keep your front knee over your front foot",
+   "Drive up through your front heel"
+  ],
+  "Battling_Ropes": [
+   "Raise each arm to shoulder height",
+   "Alternate arms as fast as you can"
+  ],
+  "Bear_Crawl_Sled_Drags": [
+   "Keep your back flat",
+   "Drive with your legs, alternating left and right",
+   "Use your hands for balance"
+  ],
+  "Behind_Head_Chest_Stretch": [
+   "Push your elbows back only as far as is comfortable",
+   "Tell your partner as soon as the stretch is enough",
+   "Back off when it turns sharp"
+  ],
+  "Bench_Dips": [
+   "Keep your elbows close to your sides",
+   "Point your forearms straight down",
+   "Stop lowering at about a right angle at the elbow"
+  ],
+  "Bench_Jump": [
+   "Swing your arms back, then up as you jump",
+   "Jump tall through your hips, knees and ankles",
+   "Land with your knees bent and soft"
+  ],
+  "Bench_Press_-_Powerlifting": [
+   "Squeeze your shoulder blades together and stay tight",
+   "Keep the bar, wrist and elbow in a straight line",
+   "Pause on your chest, then drive up hard"
+  ],
+  "Bench_Press_-_With_Bands": [
+   "Lower until your elbows bend to a right angle",
+   "Stay in control of the handles the whole time",
+   "Breathe out as you push up"
+  ],
+  "Bench_Press_with_Chains": [
+   "Squeeze your shoulder blades together and stay tight",
+   "Keep the bar, wrist and elbow in a straight line",
+   "Pause on your chest, then drive up hard"
+  ],
+  "Bench_Sprint": [
+   "Keep your heel near the edge of the bench",
+   "Push off with the foot on top of the bench",
+   "Swap feet quickly and keep the rhythm"
+  ],
+  "Bent-Arm_Barbell_Pullover": [
+   "Keep a bend in your arms the whole time",
+   "Lower the bar in an arc behind your head",
+   "Stop when you feel a stretch across your chest"
+  ],
+  "Bent-Arm_Dumbbell_Pullover": [
+   "Rest only your shoulders on the bench",
+   "Keep your arms bent the whole time",
+   "Lower behind your head until your chest feels a stretch"
+  ],
+  "Bent-Knee_Hip_Raise": [
+   "Keep the same bend in your knees throughout",
+   "Roll your hips off the floor, do not swing",
+   "Lower slowly and stay in control"
+  ],
+  "Bent_Over_Barbell_Row": [
+   "Keep your back straight and your head up",
+   "Pull the bar in with your elbows close to your body",
+   "Keep your torso still, only your arms move"
+  ],
+  "Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench": [
+   "Rest your forehead on the bench and keep it there",
+   "Lift the weights out to the sides, not backwards",
+   "Keep a slight bend in your elbows"
+  ],
+  "Bent_Over_Low-Pulley_Side_Lateral": [
+   "Bend over until your body is nearly level with the floor",
+   "Raise your arm out to the side until it is level",
+   "Keep a slight bend in your elbow"
+  ],
+  "Bent_Over_One-Arm_Long_Bar_Row": [
+   "Keep your elbow close to your body as you pull",
+   "Pull until the plates reach your lower chest",
+   "Keep your torso still, no swinging"
+  ],
+  "Bent_Over_Two-Arm_Long_Bar_Row": [
+   "Keep your elbows close to your body as you pull",
+   "Pull until the plates reach your lower chest",
+   "Lower slowly without letting the plates touch the floor"
+  ],
+  "Bent_Over_Two-Dumbbell_Row": [
+   "Keep your back straight and your head up",
+   "Keep your elbows close to your body as you pull",
+   "Keep your torso still while you row"
+  ],
+  "Bent_Over_Two-Dumbbell_Row_With_Palms_In": [
+   "Keep your back straight and your head up",
+   "Squeeze your shoulder blades together at the top",
+   "Lower the weights slowly"
+  ],
+  "Bent_Press": [
+   "Keep your eyes on the kettlebell the whole time",
+   "Lean away to the opposite side as you press",
+   "Keep the pressing arm straight up and down"
+  ],
+  "Bicycling": [
+   "Set the seat to your height before you start"
+  ],
+  "Bicycling_Stationary": [
+   "Set the seat to your height before you start",
+   "Hold the handle sensors to check your heart rate"
+  ],
+  "Board_Press": [
+   "Squeeze your shoulder blades together and stay tight",
+   "Keep the bar, wrist and elbow in a straight line",
+   "Pause on the boards, then drive up hard"
+  ],
+  "Body-Up": [
+   "Keep your body straight from head to heels",
+   "Press your palms firmly into the ground",
+   "Lower slowly back onto your forearms"
+  ],
+  "Body_Tricep_Press": [
+   "Keep your body straight as you lower towards the bar",
+   "Bend only at your elbows",
+   "Pause, then push back to straight arms"
+  ],
+  "Bodyweight_Flyes": [
+   "Keep your body straight from head to heels",
+   "Roll the bars apart slowly and under control",
+   "Only go as wide as you can pull back from"
+  ],
+  "Bodyweight_Mid_Row": [
+   "Start with your arms straight",
+   "Pull until your legs touch the bar",
+   "Squeeze your shoulder blades together as you pull"
+  ],
+  "Bodyweight_Squat": [
+   "Keep your head and chest up",
+   "Push your knees out as you squat",
+   "Sit back with your hips"
+  ],
+  "Bodyweight_Walking_Lunge": [
+   "Stay upright as you step forward",
+   "Keep your front knee over your front foot",
+   "Drive up through your front heel"
+  ],
+  "Bosu_Ball_Cable_Crunch_With_Side_Bends": [
+   "Keep your arms straight and do not bend them",
+   "Curl your torso up instead of pulling with your arms",
+   "Lower slowly until your back wraps around the ball"
+  ],
+  "Bottoms-Up_Clean_From_The_Hang_Position": [
+   "Grip the handle as hard as you can",
+   "Swing it back, then drive it up to your shoulder"
+  ],
+  "Bottoms_Up": [
+   "Tuck your knees in, then point your legs straight up",
+   "Lift your hips off the floor",
+   "Lower slowly back to the start"
+  ],
+  "Box_Jump_Multiple_Response": [
+   "Swing your arms to help you jump",
+   "Land on the box with both feet at once",
+   "Come straight back down and jump again"
+  ],
+  "Dynamic_Back_Stretch": [
+   "Keep your arms straight as you swing them",
+   "Start with small swings and go higher each time",
+   "Stand with your feet about shoulder width apart"
+  ],
+  "Dynamic_Chest_Stretch": [
+   "Keep your arms straight the whole time",
+   "Swing your arms back as far as they comfortably go",
+   "Start slow and build up speed"
+  ],
+  "EZ-Bar_Curl": [
+   "Keep your elbows tucked close to your sides",
+   "Move only your forearms, not your upper arms",
+   "Lower the bar slowly instead of dropping it"
+  ],
+  "EZ-Bar_Skullcrusher": [
+   "Keep your upper arms pointing straight up",
+   "Bend only at the elbows",
+   "Lower the bar to just above your forehead"
+  ],
+  "Elbow_Circles": [
+   "Keep your hands resting on your shoulders",
+   "Point your elbows out at shoulder height",
+   "Make the circles slow and smooth"
+  ],
+  "Elbow_to_Knee": [
+   "Curl up and turn to bring elbow towards knee",
+   "Rest your hands behind your head without pulling your neck",
+   "Lower back down before repeating"
+  ],
+  "Elbows_Back": [
+   "Rest both hands on your lower back, fingers down",
+   "Draw your elbows gently towards each other",
+   "Back off when the stretch turns sharp"
+  ],
+  "Elevated_Back_Lunge": [
+   "Keep your chest up and your back tight",
+   "Step straight back, not across",
+   "Stand all the way up before switching legs"
+  ],
+  "Elevated_Cable_Rows": [
+   "Keep your chest up and your torso still",
+   "Pull the handles to your stomach with elbows close",
+   "Let your arms reach forward without rounding your back"
+  ],
+  "Exercise_Ball_Crunch": [
+   "Keep your lower back touching the ball",
+   "Curl your shoulders up while your hips stay still",
+   "Keep your arms crossed on your chest, not behind your head"
+  ],
+  "Exercise_Ball_Pull-In": [
+   "Keep your back straight and your hips from sagging",
+   "Pull your knees in towards your chest",
+   "Roll the ball back slowly to straighten your legs"
+  ],
+  "Extended_Range_One-Arm_Kettlebell_Floor_Press": [
+   "Press the kettlebell straight up above your body",
+   "Bend the knee on the pressing side across your body",
+   "Lower until your upper arm rests on the floor"
+  ],
+  "External_Rotation": [
+   "Keep your elbow bent at a right angle throughout",
+   "Keep your upper arm resting against your side",
+   "Turn the dumbbell up slowly, then lower it slowly"
+  ],
+  "External_Rotation_with_Band": [
+   "Keep your elbow pressed firmly to your side",
+   "Turn your forearm outwards, elbow staying put",
+   "Go as far as you can, then return slowly"
+  ],
+  "External_Rotation_with_Cable": [
+   "Set the cable at elbow height and stand side on",
+   "Keep your elbow pinned to your side",
+   "Turn your forearm out without moving your upper arm"
+  ],
+  "Face_Pull": [
+   "Pull the rope straight towards your face",
+   "Pull your hands apart as the rope comes in",
+   "Keep your upper arms level with the floor"
+  ],
+  "Farmers_Walk": [
+   "Stand up by driving through your heels",
+   "Keep your back straight and your head up",
+   "Take short quick steps and keep breathing"
+  ],
+  "Fast_Skipping": [
+   "Keep your hops low and close to the ground",
+   "Alternate the step-hop rhythm side to side",
+   "Move your feet as quickly as you can"
+  ],
+  "Finger_Curls": [
+   "Keep your palms facing up",
+   "Let the bar roll down to your fingertips",
+   "Curl it back by closing your hands fully"
+  ],
+  "Flat_Bench_Cable_Flyes": [
+   "Keep the same slight bend in your elbows throughout",
+   "Bring your hands together above your chest",
+   "Lower your arms out wide and slowly"
+  ],
+  "Flat_Bench_Leg_Pull-In": [
+   "Hold the bench or put your hands under your hips",
+   "Pull your knees in towards your chest",
+   "Lower your legs back out slowly"
+  ],
+  "Flat_Bench_Lying_Leg_Raise": [
+   "Keep your legs as straight as you can",
+   "Raise them until they point at the ceiling",
+   "Lower them slowly instead of dropping them"
+  ],
+  "Flexor_Incline_Dumbbell_Curls": [
+   "Let your arms hang with elbows tucked in",
+   "Keep your palms facing forward the whole way",
+   "Curl without swinging your arms"
+  ],
+  "Floor_Glute-Ham_Raise": [
+   "Wedge your feet under something stable or have them held",
+   "Keep your hips straight, don't bend at the waist",
+   "Push off the floor with your hands to come back up"
+  ],
+  "Floor_Press": [
+   "Tuck your elbows in as you lower the bar",
+   "Pause when your upper arms touch the floor",
+   "Press back up fast with wrists over elbows"
+  ],
+  "Floor_Press_with_Chains": [
+   "Drape the chains over the bar ends, clear of the plates",
+   "Tuck your elbows and pause when your arms touch the floor",
+   "Press back up fast with wrists over elbows"
+  ],
+  "Flutter_Kicks": [
+   "Squeeze your glutes and keep your legs straight",
+   "Lift one leg as the other lowers",
+   "Keep the kicks small and controlled"
+  ],
+  "Foot-SMR": [
+   "Take your shoe off and sit down first",
+   "Roll along the arch of your foot",
+   "Press firmly, easing off on the tender spots"
+  ],
+  "Forward_Drag_with_Press": [
+   "Lean forward and drive through your legs to move",
+   "Pause on each step to press your hands forward",
+   "Take one step at a time"
+  ],
+  "Frankenstein_Squat": [
+   "Push your shoulders forward to make a shelf for the bar",
+   "Keep your arms up and your torso upright",
+   "Stand up by driving through the front of your heel"
+  ],
+  "Freehand_Jump_Squat": [
+   "Keep your chest up and back straight",
+   "Squat until your thighs are at least parallel",
+   "Land softly and drop straight into the next squat"
+  ],
+  "Frog_Hops": [
+   "Keep your torso upright and head up",
+   "Jump forward rather than high",
+   "Bend your legs to soak up each landing"
+  ],
+  "Frog_Sit-Ups": [
+   "Press the soles of your feet together with knees out",
+   "Curl only a quarter of the way up",
+   "Lower back down slowly"
+  ],
+  "Front_Barbell_Squat": [
+   "Keep your elbows high and your chest up",
+   "Look ahead, not down at the floor",
+   "Push the floor away through the middle of your foot"
+  ],
+  "Front_Barbell_Squat_To_A_Bench": [
+   "Keep your elbows high and your chest up",
+   "Touch the bench lightly, don't drop onto it",
+   "Stand back up by pushing through your heels"
+  ],
+  "Front_Box_Jump": [
+   "Swing your arms back, then up as you jump",
+   "Land on the box with your knees bent",
+   "Step down one leg at a time"
+  ],
+  "Front_Cable_Raise": [
+   "Keep your body still, no swinging",
+   "Slight bend in the elbow, palm facing down",
+   "Stop just above shoulder height, then lower slowly"
+  ],
+  "Front_Cone_Hops_or_hurdle_hops": [
+   "Jump with both feet and swing your arms",
+   "Bend your knees to absorb each landing",
+   "Rebound straight into the next cone"
+  ],
+  "Front_Dumbbell_Raise": [
+   "Keep your torso still, no swinging",
+   "Slight bend in the elbow, palm facing down",
+   "Raise to just above shoulder height, then lower slowly"
+  ],
+  "Front_Incline_Dumbbell_Raise": [
+   "Keep your head resting on the bench",
+   "Raise the dumbbells to just above your shoulders",
+   "Lower them back down slowly"
+  ],
+  "Front_Leg_Raises": [
+   "Hold a chair or support with one hand",
+   "Keep the swinging leg straight",
+   "Swing only as far as your flexibility allows"
+  ],
+  "Front_Plate_Raise": [
+   "Hold the plate at three and nine o'clock",
+   "Keep your arms straight and your torso still",
+   "Raise it to just above shoulder level"
+  ],
+  "Front_Raise_And_Pullover": [
+   "Keep your arms straight the whole way",
+   "Take the bar in a wide arc over your head",
+   "Breathe in going over, out coming back"
+  ],
+  "Front_Squat_Clean_Grip": [
+   "Keep your elbows and chest up throughout",
+   "Push your knees out as you squat down",
+   "Stand up by driving through your heels"
+  ],
+  "Front_Squats_With_Two_Kettlebells": [
+   "Look straight ahead with your chest up",
+   "Push your knees out as you squat down",
+   "Drive up through your heels"
+  ],
+  "Front_Two-Dumbbell_Raise": [
+   "Keep your torso still, no swinging",
+   "Slight bend in the elbows, palms facing down",
+   "Stop just above shoulder height, then lower slowly"
+  ],
+  "Full_Range-Of-Motion_Lat_Pulldown": [
+   "Cross your arms so each hand takes the opposite cable",
+   "Keep your chest up as you pull down",
+   "Turn your palms to face each other at the bottom"
+  ],
+  "Gironda_Sternum_Chins": [
+   "Stick your chest out and lean back to start",
+   "Stay leaning back the whole way up",
+   "Pull until your lower chest touches the bar"
+  ],
+  "Glute_Ham_Raise": [
+   "Set your knees just behind the pad",
+   "Drive your toes into the footplate as you rise",
+   "Keep your body straight and lower yourself slowly"
+  ],
+  "Decline_EZ_Bar_Triceps_Extension": [
+   "Keep your upper arms still; only the forearms move.",
+   "Lower the bar slowly toward your forehead.",
+   "Keep your elbows pointing in, not flaring out."
+  ],
+  "Decline_Oblique_Crunch": [
+   "Twist so your elbow reaches across to the opposite knee.",
+   "Move slowly instead of yanking on your head.",
+   "Breathe out on the way up."
+  ],
+  "Decline_Push-Up": [
+   "Keep your body straight from head to heels.",
+   "Lower until your chest nearly touches the floor.",
+   "Breathe out as you press up."
+  ],
+  "Decline_Reverse_Crunch": [
+   "Hold the bench firmly so you don't slide down.",
+   "Roll your hips up rather than swinging your legs.",
+   "Lower your legs slowly instead of dropping them."
+  ],
+  "Decline_Smith_Press": [
+   "Lower the bar under control until it touches your chest.",
+   "Breathe out as you press back up.",
+   "Lock the bar into the rack when you finish."
+  ],
+  "Deficit_Deadlift": [
+   "Keep your chest up and look forward.",
+   "Push through your heels to start the lift.",
+   "Lower it by pushing your hips back first."
+  ],
+  "Depth_Jump_Leap": [
+   "Step off the box; don't jump off it.",
+   "Land and take off again immediately with both feet.",
+   "Let your knees bend to soften every landing."
+  ],
+  "Dip_Machine": [
+   "Keep your elbows tucked in at your sides.",
+   "Press down until your arms are almost straight.",
+   "Let the handles come back up slowly."
+  ],
+  "Dips_-_Chest_Version": [
+   "Lean your chest forward as you lower.",
+   "Let your elbows flare out slightly.",
+   "Stop when you feel a stretch across your chest."
+  ],
+  "Dips_-_Triceps_Version": [
+   "Keep your body upright and your elbows close.",
+   "Lower until your elbows bend to a right angle.",
+   "Push back up until your arms are nearly straight."
+  ],
+  "Donkey_Calf_Raises": [
+   "Keep your knees straight the whole time.",
+   "Push up as high onto your toes as possible.",
+   "Lower slowly until your calves stretch."
+  ],
+  "Double_Kettlebell_Alternating_Hang_Clean": [
+   "Push your hips back and look straight ahead.",
+   "Drive one bell up as the other comes down.",
+   "Keep the swap smooth, not jerky."
+  ],
+  "Double_Kettlebell_Jerk": [
+   "Dip straight down with your chest upright.",
+   "Drive through your heels to send the bells up.",
+   "Catch with one foot forward and one back."
+  ],
+  "Double_Kettlebell_Push_Press": [
+   "Dip a few inches, then drive up fast.",
+   "Let your legs start it, not your arms.",
+   "Bring the bells back to your shoulders under control."
+  ],
+  "Double_Kettlebell_Snatch": [
+   "Swing the bells back between your legs first.",
+   "Drive with your hips, not your arms.",
+   "Finish with both arms locked straight overhead."
+  ],
+  "Double_Kettlebell_Windmill": [
+   "Keep the top arm locked straight throughout.",
+   "Watch the overhead bell the whole time.",
+   "Push your hips out to the side as you lower."
+  ],
+  "Double_Leg_Butt_Kick": [
+   "Dip quickly, then jump as high as you can.",
+   "Pull your heels up toward your backside.",
+   "Land with your knees bent to soak up the impact."
+  ],
+  "Downward_Facing_Balance": [
+   "Walk your hands forward slowly, one at a time.",
+   "Lift your legs until your body is straight.",
+   "Keep your arms and knees straight."
+  ],
+  "Drag_Curl": [
+   "Keep the bar touching your body the whole way.",
+   "Pull your elbows back as you curl.",
+   "Don't let your shoulders lift."
+  ],
+  "Drop_Push": [
+   "Keep your body straight from head to heels.",
+   "Push off the boxes and bring hands to shoulder width.",
+   "Bend your arms to soften the landing."
+  ],
+  "Dumbbell_Alternate_Bicep_Curl": [
+   "Keep your elbows close to your sides.",
+   "Turn your palm up as you curl.",
+   "Only your forearms move; keep upper arms still."
+  ],
+  "Dumbbell_Bench_Press": [
+   "Lower the dumbbells to the sides of your chest.",
+   "Take longer coming down than going up.",
+   "Stay in control of both weights throughout."
+  ],
+  "Dumbbell_Bench_Press_with_Neutral_Grip": [
+   "Keep your palms facing each other throughout.",
+   "Keep your feet flat on the floor.",
+   "Lower until the dumbbells reach the sides of your chest."
+  ],
+  "Dumbbell_Bicep_Curl": [
+   "Keep your elbows close to your sides.",
+   "Only your forearms move.",
+   "Lower the weights slowly, all the way down."
+  ],
+  "Dumbbell_Clean": [
+   "Push your hips back to lower the weights.",
+   "Jump hard with your arms staying straight.",
+   "Bend your knees to catch the weights on your shoulders."
+  ],
+  "Dumbbell_Floor_Press": [
+   "Lower until your upper arms touch the floor.",
+   "Pause on the floor before pressing.",
+   "Bring the weights together at the top."
+  ],
+  "Dumbbell_Flyes": [
+   "Keep a slight bend in your elbows throughout.",
+   "Open your arms out in a wide arc.",
+   "Stop when you feel a stretch across your chest."
+  ],
+  "Dumbbell_Incline_Row": [
+   "Keep your chest resting on the bench.",
+   "Pull the dumbbells to your sides, elbows going back.",
+   "Pause at the top before lowering."
+  ],
+  "Dumbbell_Incline_Shoulder_Raise": [
+   "Keep your arms straight and locked.",
+   "Lift by raising your shoulders off the bench.",
+   "Lower back down under control."
+  ],
+  "Dumbbell_Lunges": [
+   "Keep your torso upright as you step forward.",
+   "Keep your front shin upright, knee over the ankle.",
+   "Push back up through your front heel."
+  ],
+  "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise": [
+   "Keep your chest down on the bench.",
+   "Raise your arm until your elbow reaches shoulder height.",
+   "Lower slowly instead of dropping the weight."
+  ],
+  "Dumbbell_Lying_Pronation": [
+   "Keep your elbow bent at a right angle throughout.",
+   "Keep your upper arm level and still.",
+   "Rotate slowly and under control."
+  ],
+  "Dumbbell_Lying_Rear_Lateral_Raise": [
+   "Keep your chest down on the bench.",
+   "Raise both arms until your elbows reach shoulder height.",
+   "Keep your elbows only slightly bent."
+  ],
+  "Dumbbell_Lying_Supination": [
+   "Keep your elbow bent at a right angle throughout.",
+   "Keep your upper arm resting against your side.",
+   "Turn the weight slowly and under control."
+  ],
+  "Dumbbell_One-Arm_Shoulder_Press": [
+   "Sit tall against the back support.",
+   "Press straight up until your arm is fully straight.",
+   "Lower slowly back to shoulder height."
+  ],
+  "Dumbbell_One-Arm_Triceps_Extension": [
+   "Keep your upper arm still, right beside your head.",
+   "Lower the dumbbell behind your head slowly.",
+   "Only your forearm moves."
+  ],
+  "Dumbbell_One-Arm_Upright_Row": [
+   "Lead with your elbow, keeping it above your forearm.",
+   "Keep the dumbbell close to your body.",
+   "Keep your torso still; no swinging."
+  ],
+  "Dumbbell_Prone_Incline_Curl": [
+   "Let your arms hang straight down to start.",
+   "Keep your upper arms still against the bench.",
+   "Lower until your arms are fully straight."
+  ],
+  "Dumbbell_Raise": [
+   "Lead with your elbows, keeping them above your forearms.",
+   "Keep the dumbbells close to your body.",
+   "Keep your torso still; no swinging."
+  ],
+  "Dumbbell_Rear_Lunge": [
+   "Step back and lower straight down.",
+   "Keep your torso upright.",
+   "Keep your front shin upright, knee over the ankle."
+  ],
+  "Dumbbell_Scaption": [
+   "Point your thumbs up throughout.",
+   "Raise your arms halfway between straight ahead and out sideways.",
+   "Stop when your arms reach shoulder height."
+  ],
+  "Dumbbell_Seated_Box_Jump": [
+   "Hold the dumbbell tight against your chest.",
+   "Plant your feet and lean forward before jumping.",
+   "Land on the box with both feet, knees bending."
+  ],
+  "Dumbbell_Seated_One-Leg_Calf_Raise": [
+   "Rest the dumbbell just above your knee.",
+   "Push up as high onto your toes as possible.",
+   "Lower slowly until your calf stretches."
+  ],
+  "Dumbbell_Shoulder_Press": [
+   "Sit tall against the back support.",
+   "Press up until the dumbbells nearly touch.",
+   "Lower slowly back to shoulder height."
+  ],
+  "Dumbbell_Shrug": [
+   "Lift your shoulders straight up as high as possible.",
+   "Keep your arms straight; don't bend your elbows.",
+   "Lower them slowly."
+  ],
+  "Dumbbell_Side_Bend": [
+   "Bend only at the waist, straight out to the side.",
+   "Keep your head up and everything else still.",
+   "Come back up under control."
+  ],
+  "Dumbbell_Squat": [
+   "Keep your head up and your back straight.",
+   "Sit down until your thighs are level with the floor.",
+   "Push through your heels to stand up."
+  ],
+  "Dumbbell_Squat_To_A_Bench": [
+   "Sit back until you lightly touch the bench.",
+   "Lower under control; don't flop onto the bench.",
+   "Push through your heels to stand up."
+  ],
+  "Dumbbell_Step_Ups": [
+   "Put your whole foot on the platform.",
+   "Push through the heel of your top leg.",
+   "Step back down slowly under control."
+  ],
+  "Dumbbell_Tricep_Extension_-Pronated_Grip": [
+   "Keep your elbows tucked in throughout.",
+   "Lower the dumbbells slowly toward your ears.",
+   "Keep your upper arms still."
+  ],
+  "Incline_Push-Up_Reverse_Grip": [
+   "Keep your body straight from head to heels.",
+   "Lower your chest to the bar, not your hips.",
+   "Press back up until your elbows are straight."
+  ],
+  "Incline_Push-Up_Wide": [
+   "Set your hands wider than your shoulders.",
+   "Keep your body straight from head to heels.",
+   "Lower your chest to the bar, then push away."
+  ],
+  "Intermediate_Groin_Stretch": [
+   "Keep the other leg flat and straight on the floor.",
+   "Pull gently until you feel a stretch, no further.",
+   "Back off when it turns sharp."
+  ],
+  "Intermediate_Hip_Flexor_and_Quad_Stretch": [
+   "Pull until your knee lifts off the floor.",
+   "Keep the pull gentle and steady.",
+   "Back off when it turns sharp."
+  ],
+  "Internal_Rotation_with_Band": [
+   "Keep your elbow pinned to your side.",
+   "Turn your forearm across your body, elbow staying put.",
+   "Return slowly rather than letting the band pull you back."
+  ],
+  "Inverted_Row": [
+   "Keep your body straight from heels to head.",
+   "Pull your chest to the bar.",
+   "Squeeze your shoulder blades together as you pull."
+  ],
+  "Inverted_Row_with_Straps": [
+   "Keep your body straight, heels on the floor.",
+   "Pull your chest up to your hands.",
+   "Squeeze your shoulder blades together as you pull."
+  ],
+  "Iron_Crosses_stretch": [
+   "Keep both palms pressed flat on the floor.",
+   "Reach the foot toward the opposite hand.",
+   "Swing smoothly and only as far as comfortable."
+  ],
+  "Isometric_Chest_Squeezes": [
+   "Press your palms together in front of your chest.",
+   "Build the pressure slowly, then let go slowly.",
+   "Keep breathing normally."
+  ],
+  "Isometric_Neck_Exercise_-_Front_And_Back": [
+   "Press with your hands while your head stays still.",
+   "Build the pressure slowly, then let go slowly.",
+   "Keep breathing normally."
+  ],
+  "Isometric_Neck_Exercise_-_Sides": [
+   "Press your hand into the side of your head.",
+   "Keep your head still and facing forward.",
+   "Build the pressure slowly and keep breathing normally."
+  ],
+  "Isometric_Wipers": [
+   "Keep your body straight from head to heels.",
+   "Shift your weight sideways over one bending arm.",
+   "Push back up before dropping to the other side."
+  ],
+  "JM_Press": [
+   "Keep your elbows in, not flared out.",
+   "Keep the bar lined up over your upper chest.",
+   "Lower under control, then press straight back up."
+  ],
+  "Jackknife_Sit-Up": [
+   "Lift arms and legs at the same time to meet.",
+   "Keep your legs straight as you lift.",
+   "Breathe out coming up, in going down."
+  ],
+  "Janda_Sit-Up": [
+   "Squeeze your glutes and hamstrings the whole way up.",
+   "Come up slowly and lower just as slowly.",
+   "Keep your feet flat on the floor."
+  ],
+  "Jefferson_Squats": [
+   "Stand with the bar centred between your feet.",
+   "Keep your chest up and your back straight.",
+   "Push through your feet; your arms only hold the bar."
+  ],
+  "Jerk_Balance": [
+   "Keep your torso upright as you dip.",
+   "Drive with your legs, not your arms.",
+   "Keep the back foot planted as you split forward."
+  ],
+  "Jerk_Dip_Squat": [
+   "Keep your torso upright as your knees travel forward.",
+   "Keep the dip shallow.",
+   "Drive back up hard through your feet."
+  ],
+  "Jogging_Treadmill": [
+   "Stand tall and look ahead as you jog.",
+   "Let go of the handles unless you need them."
+  ],
+  "Keg_Load": [
+   "Tip the keg onto its side before lifting.",
+   "Hold it high and tight against your chest.",
+   "Finish by driving up through hips, knees and ankles."
+  ],
+  "Kettlebell_Arnold_Press": [
+   "Look straight ahead as you press overhead.",
+   "Turn your palm to face forward at the top.",
+   "Lower back down with the palm turning inward."
+  ],
+  "Kettlebell_Dead_Clean": [
+   "Push your butt back and look straight ahead.",
+   "Stand up through legs and hips to lift it.",
+   "Keep your back straight as you lower it down."
+  ],
+  "Kettlebell_Figure_8": [
+   "Take a wide stance and push your butt back.",
+   "Keep your back flat as you pass the bell.",
+   "Reach the receiving hand from behind your legs."
+  ],
+  "Kettlebell_Hang_Clean": [
+   "Push your butt back and keep your head up.",
+   "Drive through legs and hips to lift the bell.",
+   "Keep your back straight as you lower it down."
+  ],
+  "Kettlebell_One-Legged_Deadlift": [
+   "Keep the standing knee slightly bent.",
+   "Reach your free leg back behind you for balance.",
+   "Stop when your body is level with the floor."
+  ],
+  "Kettlebell_Pass_Between_The_Legs": [
+   "Push your butt back and keep your back flat.",
+   "Pass the bell between your legs, not around them.",
+   "Keep your head up rather than looking down."
+  ],
+  "Kettlebell_Pirate_Ships": [
+   "Stand with your feet wide.",
+   "Keep your arms straight as you swing side to side.",
+   "Swing to head height, then pause briefly."
+  ],
+  "Kettlebell_Pistol_Squat": [
+   "Hold the bell in front of you by the horns.",
+   "Sit back with your hips as the knee bends.",
+   "Drive up through your heel, head and chest up."
+  ],
+  "Kettlebell_Seated_Press": [
+   "Sit tall with your legs spread comfortably.",
+   "Press the bell up until your arm is straight.",
+   "Lower it back to your shoulder under control."
+  ],
+  "Kettlebell_Seesaw_Press": [
+   "Press one bell while the other stays at your shoulder.",
+   "Lower one and press the other straight away.",
+   "Work both sides evenly."
+  ],
+  "Kettlebell_Sumo_High_Pull": [
+   "Take a wide stance and set your hips far back.",
+   "Keep your chest and head up.",
+   "Lead with your elbows as the bell rises."
+  ],
+  "Kettlebell_Thruster": [
+   "Keep your back upright as you squat down.",
+   "Drive through your heels out of the bottom.",
+   "Use the drive from your legs to press overhead."
+  ],
+  "Kettlebell_Turkish_Get-Up_Lunge_style": [
+   "Keep your arm straight overhead the whole time.",
+   "Keep your eyes on the kettlebell.",
+   "Stand up slowly, one step at a time."
+  ],
+  "Kettlebell_Turkish_Get-Up_Squat_style": [
+   "Keep your arm straight overhead the whole time.",
+   "Push up to sitting with your free hand.",
+   "Look up at the bell as you stand."
+  ],
+  "Kettlebell_Windmill": [
+   "Keep your eyes on the overhead bell throughout.",
+   "Push your butt out toward the raised arm.",
+   "Bend sideways, reaching your free hand toward the floor."
+  ],
+  "Kipping_Muscle_Up": [
+   "Grip with the base of your palms on the rings.",
+   "Pull the rings to your armpits at the top.",
+   "Roll your shoulders forward before pressing out."
+  ],
+  "Knee_Across_The_Body": [
+   "Keep the straight leg flat on the floor.",
+   "Turn your head away from the crossing knee.",
+   "The knee does not have to touch the floor."
+  ],
+  "Knee_Circles": [
+   "Stand with your legs together, hands at your waist.",
+   "Circle your knees smoothly and keep breathing normally."
+  ],
+  "Knee_Hip_Raise_On_Parallel_Bars": [
+   "Keep your lower back pressed against the pad.",
+   "Lift your legs with no swinging.",
+   "Breathe out as you raise your legs."
+  ],
+  "Knee_Tuck_Jump": [
+   "Dip only into a quarter squat before jumping.",
+   "Drive your knees up to your hands.",
+   "Land softly and let your knees bend."
+  ],
+  "Kneeling_Arm_Drill": [
+   "Press through your front heel to stay steady.",
+   "Swing your arms from the shoulder, elbows bent.",
+   "Speed the hands forward as they pass your hip."
+  ],
+  "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists": [
+   "Keep your hands fixed by your ears throughout.",
+   "Curl your body down instead of pulling with your arms.",
+   "Rise back up slowly under control."
+  ],
+  "Kneeling_Cable_Triceps_Extension": [
+   "Keep your upper arms still and close to your head.",
+   "Straighten your elbows until your arms point along the floor.",
+   "Breathe out as you press, in as you return."
+  ],
+  "Kneeling_Forearm_Stretch": [
+   "Point your fingers back toward your knees.",
+   "Keep your palms flat as you lean back.",
+   "Lean only until you feel a stretch, then stop."
+  ],
+  "Kneeling_High_Pulley_Row": [
+   "Start with both arms straight out in front.",
+   "Pull the rope to your upper chest, elbows out.",
+   "Squeeze your shoulder blades together as you pull."
+  ],
+  "Kneeling_Hip_Flexor": [
+   "Rest the top of your back foot on the floor.",
+   "Shift your weight forward until you feel the stretch.",
+   "Stop as soon as it turns sharp."
+  ],
+  "Kneeling_Jump_Squat": [
+   "Sit back until your butt touches your feet.",
+   "Keep your head and chest up.",
+   "Explode with your hips and land with flat feet."
+  ],
+  "Kneeling_Single-Arm_High_Pulley_Row": [
+   "Start with your arm straight and palm facing forward.",
+   "Pull to your torso, turning your palm toward you.",
+   "Pause, then return slowly to a straight arm."
+  ],
+  "Kneeling_Squat": [
+   "Keep the bar tight across your upper back.",
+   "Sit back until your butt touches your calves.",
+   "Look forward and come back up tall."
+  ],
+  "Glute_Kickback": [
+   "Keep the bend in your knee throughout",
+   "Lift until your thigh is level with your back",
+   "Keep looking forward, not down"
+  ],
+  "Goblet_Squat": [
+   "Hold the weight close to your chest",
+   "Keep your chest and head up",
+   "Push your knees out with your elbows at the bottom"
+  ],
+  "Good_Morning": [
+   "Rest the bar behind your shoulders, not on your neck",
+   "Push your hips back as you bend over",
+   "Keep your back flat and knees slightly bent"
+  ],
+  "Good_Morning_off_Pins": [
+   "Set the bar behind your shoulders, not on your neck",
+   "Stand up by driving your hips forward",
+   "Lower slowly back onto the pins"
+  ],
+  "Gorilla_Chin_Crunch": [
+   "Pull up and bring your knees up together",
+   "Stop when your nose reaches the bar",
+   "Lower slowly without swinging"
+  ],
+  "Groin_and_Back_Stretch": [
+   "Keep the soles of your feet together",
+   "Bring your elbows inside your thighs",
+   "Back off when it turns sharp"
+  ],
+  "Groiners": [
+   "Land with your feet next to your hands",
+   "Keep your hands planted the whole time",
+   "Keep your head up"
+  ],
+  "Hack_Squat": [
+   "Keep your back on the pad and head up",
+   "Keep your knees from travelling past your toes",
+   "Push through your heels on the way up"
+  ],
+  "Hammer_Curls": [
+   "Keep your palms facing each other throughout",
+   "Keep your elbows close to your sides",
+   "Move only your forearms"
+  ],
+  "Hammer_Grip_Incline_DB_Bench_Press": [
+   "Keep your palms facing each other",
+   "Lower the weights slowly to your sides",
+   "Take longer coming down than going up"
+  ],
+  "Hamstring-SMR": [
+   "Roll from below your hip to above your knee",
+   "Relax the leg you are rolling",
+   "Use your hands to control how much weight goes on"
+  ],
+  "Hamstring_Stretch": [
+   "Keep the other leg flat on the floor",
+   "Pull the strap until you feel a gentle stretch",
+   "Ease off when it turns sharp"
+  ],
+  "Handstand_Push-Ups": [
+   "Keep your whole body straight against the wall",
+   "Face the wall, do not look down",
+   "Lower slowly until your head nearly touches"
+  ],
+  "Hang_Clean": [
+   "Start with the bar at mid thigh, back flat",
+   "Drive your hips, knees and ankles up hard",
+   "Stand up with your chest tall and elbows high"
+  ],
+  "Hang_Clean_-_Below_the_Knees": [
+   "Start with the bar just below your knees",
+   "Drive hips and knees up, then shrug",
+   "Catch with elbows up and stand through your heels"
+  ],
+  "Hang_Snatch": [
+   "Take a wide grip, bar resting at your hips",
+   "Drive your legs and hips up, then shrug",
+   "Catch with your arms locked straight overhead"
+  ],
+  "Hang_Snatch_-_Below_Knees": [
+   "Start with the bar just below your knees",
+   "Drive your legs and hips up, then shrug",
+   "Catch with your arms locked straight overhead"
+  ],
+  "Hanging_Bar_Good_Morning": [
+   "Rest the bar behind your shoulders, not on your neck",
+   "Stand up by driving your hips forward",
+   "Lower slowly until the chains take the weight"
+  ],
+  "Hanging_Leg_Raise": [
+   "Hang with your arms straight and legs together",
+   "Raise your legs until they reach hip height",
+   "Lower slowly instead of dropping them"
+  ],
+  "Hanging_Pike": [
+   "Bring your legs up towards the bar",
+   "Straighten your legs as much as you can at the top",
+   "Lower slowly and do not swing"
+  ],
+  "Heaving_Snatch_Balance": [
+   "Set your feet as for a squat, toes turned out",
+   "Dip slightly, then drive under the bar fast",
+   "Catch with your arms straight overhead"
+  ],
+  "Heavy_Bag_Thrust": [
+   "Stand with your feet staggered and wide",
+   "Twist at the waist as you push",
+   "Push the bag away fast, then catch it back"
+  ],
+  "High_Cable_Curls": [
+   "Keep your upper arms level with the floor",
+   "Curl the handles in towards your ears",
+   "Move only your forearms"
+  ],
+  "Hip_Circles_prone": [
+   "Keep your knee bent the whole time",
+   "Draw a big slow circle with your knee",
+   "Keep the rest of your body still"
+  ],
+  "Hip_Extension_with_Bands": [
+   "Hold the post to keep yourself steady",
+   "Keep your head and chest up",
+   "Push the leg back with your knee straight"
+  ],
+  "Hip_Flexion_with_Band": [
+   "Face away from where the band is anchored",
+   "Keep your head and chest up",
+   "Raise your knee to hip height and pause"
+  ],
+  "Hip_Lift_with_Band": [
+   "Keep your shoulders on the ground",
+   "Drive through your heels to lift your hips",
+   "Pause at the top before lowering"
+  ],
+  "Hug_A_Ball": [
+   "Wrap your arms around the ball to hold yourself up",
+   "Keep your feet flat with knees over your ankles",
+   "Keep a firm grip so the ball cannot roll away"
+  ],
+  "Hug_Knees_To_Chest": [
+   "Hold under your knees, not over them",
+   "Pull your knees slowly towards your shoulders",
+   "Ease off when it turns sharp"
+  ],
+  "Hurdle_Hops": [
+   "Jump off both feet and swing your arms",
+   "Bend your knees to soften each landing",
+   "Rebound straight into the next hurdle"
+  ],
+  "Hyperextensions_Back_Extensions": [
+   "Keep your back flat as you bend forward",
+   "Stop before your back starts to round",
+   "Come up to straight, do not arch past it"
+  ],
+  "Hyperextensions_With_No_Hyperextension_Bench": [
+   "Have someone hold your legs down",
+   "Stop before your back starts to round",
+   "Rise back to straight without swinging"
+  ],
+  "IT_Band_and_Glute_Stretch": [
+   "Keep the leg straight as it crosses your body",
+   "Keep that foot off the floor",
+   "Ease off when it turns sharp"
+  ],
+  "Iliotibial_Tract-SMR": [
+   "Roll from your hip down to your knee",
+   "Relax the leg you are rolling",
+   "Only put on as much weight as you can tolerate"
+  ],
+  "Inchworm": [
+   "Keep your legs straight as you walk your hands out",
+   "Walk out until your body is flat like a pushup",
+   "Take small steps back to your hands"
+  ],
+  "Incline_Barbell_Triceps_Extension": [
+   "Keep your upper arms still and close to your head",
+   "Lower the bar behind your head",
+   "Move only your forearms"
+  ],
+  "Incline_Bench_Pull": [
+   "Let your arms hang straight down to start",
+   "Pull your elbows out wide, level with your back",
+   "Lower slowly under control"
+  ],
+  "Incline_Cable_Chest_Press": [
+   "Keep your head and chest up",
+   "Press the handles straight out in front of you",
+   "Come back slowly, keeping the cables tight"
+  ],
+  "Incline_Cable_Flye": [
+   "Keep a slight bend in your elbows throughout",
+   "Open your arms wide until you feel a stretch",
+   "Bring your hands together along the same arc"
+  ],
+  "Incline_Dumbbell_Bench_With_Palms_Facing_In": [
+   "Keep your palms facing each other",
+   "Lower the weights slowly to your sides",
+   "Take longer coming down than going up"
+  ],
+  "Incline_Dumbbell_Curl": [
+   "Keep your elbows close to your body",
+   "Move only your forearms",
+   "Lower the weights slowly"
+  ],
+  "Incline_Dumbbell_Flyes": [
+   "Keep a slight bend in your elbows throughout",
+   "Lower your arms wide until you feel a stretch",
+   "Bring them back up along the same arc"
+  ],
+  "Incline_Dumbbell_Flyes_-_With_A_Twist": [
+   "Start with palms facing you, little fingers together",
+   "Lower wide, turning your palms to face each other",
+   "Keep the same slight elbow bend throughout"
+  ],
+  "Incline_Dumbbell_Press": [
+   "Turn your palms to face away before pressing",
+   "Push the weights up with your chest",
+   "Lower slower than you press"
+  ],
+  "Incline_Hammer_Curls": [
+   "Keep your palms facing each other",
+   "Keep your back pressed against the bench",
+   "Keep your upper arms still"
+  ],
+  "Incline_Inner_Biceps_Curl": [
+   "Start with your palms facing outwards",
+   "Curl out and up, forearms wide to the sides",
+   "Lower along the same path"
+  ],
+  "Incline_Push-Up": [
+   "Set your hands slightly wider than your shoulders",
+   "Keep your body straight from head to heels",
+   "Lower your chest to the edge"
+  ],
+  "Incline_Push-Up_Close-Grip": [
+   "Place your hands next to each other on the bar",
+   "Keep your body straight from head to heels",
+   "Lower your chest to the bar"
+  ],
+  "Incline_Push-Up_Depth_Jump": [
+   "Bend your elbows, then push off the ground fast",
+   "Land with your hands on the steps",
+   "Bend your elbows to soak up each landing"
+  ],
+  "Incline_Push-Up_Medium": [
+   "Set your hands about shoulder width apart",
+   "Keep your body straight from head to heels",
+   "Lower your chest to the bar"
+  ],
+  "Landmine_180s": [
+   "Keep both arms straight the whole way",
+   "Turn your hips and chest together, not just arms",
+   "Control the bar at the bottom of each swing"
+  ],
+  "Landmine_Linear_Jammer": [
+   "Keep the handles at your shoulders as you dip",
+   "Sit your hips back, chest up",
+   "Drive up hard and finish with straight arms"
+  ],
+  "Lateral_Bound": [
+   "Shift your weight onto the outside leg first",
+   "Push off sideways and cover as much ground as possible",
+   "Land, then immediately push back the other way"
+  ],
+  "Lateral_Box_Jump": [
+   "Quick dip, then jump straight away",
+   "Bring your knees high to clear the box",
+   "Land in the middle and let your legs soften"
+  ],
+  "Lateral_Cone_Hops": [
+   "Dip with the knees and go immediately",
+   "Land soft and rebound into the next hop",
+   "Keep facing the same way the whole row"
+  ],
+  "Lateral_Raise_-_With_Bands": [
+   "Keep a slight bend in your elbows",
+   "Lift to just above shoulder height, then pause",
+   "Keep your body still, no swinging"
+  ],
+  "Latissimus_Dorsi-SMR": [
+   "Place the roll just behind your armpit",
+   "Keep that arm out of the way, behind you",
+   "Ease the pressure off where it feels sharp"
+  ],
+  "Leg-Over_Floor_Press": [
+   "Keep the bell stacked above your elbow",
+   "Touch your elbow lightly to the floor",
+   "Press straight up to a locked arm"
+  ],
+  "Leg-Up_Hamstring_Stretch": [
+   "Keep the bent foot flat on the floor",
+   "Straighten the raised leg only as far as it goes",
+   "Back off when it turns sharp"
+  ],
+  "Leg_Extensions": [
+   "Set the pad just above your feet",
+   "Keep your hips and back down on the seat",
+   "Stop lowering once your knees reach a right angle"
+  ],
+  "Leg_Lift": [
+   "Hold something sturdy for balance",
+   "Keep the standing leg straight",
+   "Lower the leg slowly instead of dropping it"
+  ],
+  "Leg_Press": [
+   "Push through your heels",
+   "Keep a slight bend in your knees at the top",
+   "Lower slowly until your knees reach a right angle"
+  ],
+  "Leg_Pull-In": [
+   "Pull your knees up towards your chest",
+   "Keep your lower legs parallel to the floor",
+   "Breathe out as you pull in"
+  ],
+  "Leverage_Chest_Press": [
+   "Set the seat so handles start at mid chest",
+   "Keep your chest and head up",
+   "Stop just short of resting the weight between reps"
+  ],
+  "Leverage_Deadlift": [
+   "Lower your hips and take a breath before pulling",
+   "Keep your chest up and look forward",
+   "Stand up all the way, then lower under control"
+  ],
+  "Leverage_Decline_Chest_Press": [
+   "Set the handles to start at your lower chest",
+   "Keep your chest and head up",
+   "Pause at the top, then return slowly"
+  ],
+  "Leverage_High_Row": [
+   "Pull the handles down towards your torso",
+   "Draw your shoulder blades back as you pull",
+   "Pause at the bottom, then return slowly"
+  ],
+  "Leverage_Incline_Chest_Press": [
+   "Set the handles to start at your upper chest",
+   "Keep your chest and head up",
+   "Press forward, pause, then return slowly"
+  ],
+  "Leverage_Iso_Row": [
+   "Set the seat so the handles sit at chest level",
+   "Pull your elbows back and shoulder blades together",
+   "Pause, then let the handles travel out slowly"
+  ],
+  "Leverage_Shoulder_Press": [
+   "Set the handles to start near your shoulders",
+   "Keep your chest and head up",
+   "Press straight up, pause, then lower slowly"
+  ],
+  "Leverage_Shrug": [
+   "Shrug straight up towards your ears",
+   "Keep your arms straight throughout",
+   "Pause at the top before lowering"
+  ],
+  "Linear_3-Part_Start_Technique": [
+   "Front toe beside your back ankle, weight on the front leg",
+   "Lean until your head is lower than your hips",
+   "Explode out only when you are set"
+  ],
+  "Linear_Acceleration_Wall_Drill": [
+   "Lean into the wall at about forty five degrees",
+   "Lift the knee high, then drive the foot straight down",
+   "Once set, alternate as fast as you can"
+  ],
+  "Linear_Depth_Jump": [
+   "Step off and drop down, do not jump off",
+   "Change direction as soon as you touch the ground",
+   "Land softly on the far box"
+  ],
+  "Log_Lift": [
+   "Pull the log tight into your chest as you clean it",
+   "Look up to make a shelf, then dip and drive",
+   "Push your head through once the log is up"
+  ],
+  "London_Bridges": [
+   "Keep your body straight from head to heels",
+   "Lower yourself hand over hand, slowly",
+   "Stand on a bar that cannot move"
+  ],
+  "Looking_At_Ceiling": [
+   "Kneel and hold your heels with both hands",
+   "Lift your hips up and forward as you look up",
+   "Ease off when it turns sharp"
+  ],
+  "Low_Cable_Crossover": [
+   "Step forward until the cables are already tight",
+   "Keep a slight bend in your arms throughout",
+   "Bring your hands together in front of your chest"
+  ],
+  "Low_Cable_Triceps_Extension": [
+   "Point your upper arms at the ceiling and keep them there",
+   "Keep your elbows tucked in",
+   "Only your forearms move"
+  ],
+  "Low_Pulley_Row_To_Neck": [
+   "Sit tall and keep your torso still",
+   "Lead with your elbows, out and up",
+   "Pull the rope until your hands reach your ears"
+  ],
+  "Lower_Back-SMR": [
+   "Roll to one side so the pressure stays off your spine",
+   "Keep your hips lifted and lean back onto the roll",
+   "Ease off where it feels sharp"
+  ],
+  "Lower_Back_Curl": [
+   "Lift your chest with your back, not your arms",
+   "Keep your head up as you rise",
+   "Lift only as far as it stays comfortable"
+  ],
+  "Lunge_Pass_Through": [
+   "Keep your torso upright the whole time",
+   "Lower the back knee until it nearly touches the floor",
+   "Pass the bell under the front leg at the bottom"
+  ],
+  "Lunge_Sprint": [
+   "Lower the back knee nearly to the floor",
+   "Drive through the front heel to jump",
+   "Swap your feet in the air and land soft"
+  ],
+  "Lying_Bent_Leg_Groin": [
+   "Press the soles of your feet together",
+   "Squeeze your knees in, then relax completely",
+   "Tell your partner when it is far enough"
+  ],
+  "Lying_Cable_Curl": [
+   "Keep your elbows close to your body",
+   "Keep your upper arms still, only forearms move",
+   "Lower slowly instead of letting the stack pull you"
+  ],
+  "Lying_Cambered_Barbell_Row": [
+   "Keep your chest flat on the bench",
+   "Keep your elbows close to your body as you pull",
+   "Lower the bar slowly to straight arms"
+  ],
+  "Lying_Close-Grip_Bar_Curl_On_High_Pulley": [
+   "Keep your upper arms pointing straight up",
+   "Only your forearms move",
+   "Curl down until the bar reaches your chin"
+  ],
+  "Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head": [
+   "Keep your elbows tucked in",
+   "Keep your upper arms still, only forearms move",
+   "Lower until your forearms point straight down"
+  ],
+  "Lying_Close-Grip_Barbell_Triceps_Press_To_Chin": [
+   "Keep your elbows in and upper arms still",
+   "Lower the bar until it lightly touches your chin",
+   "Only your forearms move"
+  ],
+  "Lying_Crossover": [
+   "Keep both shoulders flat on the floor",
+   "Press the knee up, then relax completely",
+   "Tell your partner when it is far enough"
+  ],
+  "Lying_Dumbbell_Tricep_Extension": [
+   "Keep your elbows tucked in and pointing up",
+   "Lower until the dumbbells are beside your ears",
+   "Only your forearms move"
+  ],
+  "Lying_Face_Down_Plate_Neck_Resistance": [
+   "Hold the plate steady on the back of your head",
+   "Move your head slowly, no jerking",
+   "Keep the rest of your body flat on the bench"
+  ],
+  "Lying_Face_Up_Plate_Neck_Resistance": [
+   "Hold the plate steady on your forehead",
+   "Lower and raise your head slowly",
+   "Keep the rest of your body flat on the bench"
+  ],
+  "Lying_Glute": [
+   "Turn the leg so your foot sits over the opposite hip",
+   "Push against your partner, then relax completely",
+   "Tell your partner when it is far enough"
+  ],
+  "Lying_Hamstring": [
+   "Keep the raised leg straight",
+   "Press down against your partner, then relax completely",
+   "Tell your partner when it is far enough"
+  ],
+  "Lying_High_Bench_Barbell_Curl": [
+   "Keep your upper arms still and elbows in",
+   "Only your forearms move",
+   "Lower slowly, no swinging"
+  ],
+  "Lying_Leg_Curls": [
+   "Set the pad just below your calves",
+   "Keep your hips and chest down on the bench",
+   "Lower your legs slowly to straight"
+  ],
+  "Lying_Machine_Squat": [
+   "Push through the balls of your feet",
+   "Keep your knees behind your toes",
+   "Stop lowering once your thighs reach parallel"
+  ],
+  "Lying_One-Arm_Lateral_Raise": [
+   "Keep your chest down on the bench",
+   "Raise the arm until the elbow reaches shoulder height",
+   "Keep the arm nearly straight, lower it slowly"
+  ],
+  "Power_Snatch": [
+   "Keep the bar brushing close to your body the whole pull",
+   "Stand tall through hips, knees and ankles, then shrug",
+   "Drop under fast and catch with arms locked overhead"
+  ],
+  "Power_Snatch_from_Blocks": [
+   "Start with chest up, shoulders just in front of the bar",
+   "Drive tall through hips, knees and ankles, then shrug",
+   "Pull yourself under and catch with arms locked overhead"
+  ],
+  "Power_Stairs": [
+   "Set your feet wide, head and chest up",
+   "Drive through your heels to lift the weight",
+   "Lean back and swing it onto the step"
+  ],
+  "Preacher_Curl": [
+   "Keep your chest and upper arms pressed into the pad",
+   "Lower until your arms are straight",
+   "Breathe out as you curl the bar up"
+  ],
+  "Preacher_Hammer_Dumbbell_Curl": [
+   "Keep your palms facing each other throughout",
+   "Keep your upper arms flat on the pad",
+   "Lower until your arms are straight"
+  ],
+  "Press_Sit-Up": [
+   "Curl your torso up and press the bar overhead together",
+   "Breathe out as you press",
+   "Bring the bar back to your chest as you lie down"
+  ],
+  "Prone_Manual_Hamstring": [
+   "Lie face down with your legs straight",
+   "Curl the heel up, pause, then lower slowly",
+   "Tell your partner if the pressure is too much"
+  ],
+  "Prowler_Sprint": [
+   "Lean into the sled with your arms straight",
+   "Take short, quick steps",
+   "Keep your posture tall as you drive"
+  ],
+  "Pull_Through": [
+   "Reach back between your legs, bending at the hips",
+   "Keep your arms straight and knees slightly bent",
+   "Stand up by pushing your hips forward, not pulling with shoulders"
+  ],
+  "Pullups": [
+   "Chest out, shoulders back before you pull",
+   "Pull your chest to the bar, elbows down and back",
+   "Lower until your arms are straight, without swinging"
+  ],
+  "Push-Up_Wide": [
+   "Set your hands wide, body straight from head to heels",
+   "Do not let your hips sag",
+   "Lower your chest to the floor, then press up"
+  ],
+  "Push-Ups_-_Close_Triceps_Position": [
+   "Set your hands closer than shoulder width",
+   "Keep your elbows tucked near your sides",
+   "Lower until your chest almost touches the floor"
+  ],
+  "Push-Ups_With_Feet_Elevated": [
+   "Keep your body straight from head to heels",
+   "Lower until your chest almost touches the floor",
+   "Breathe out as you press back up"
+  ],
+  "Push-Ups_With_Feet_On_An_Exercise_Ball": [
+   "Keep your feet still on the ball",
+   "Keep your body straight and hips level",
+   "Lower your chest almost to the floor, then press up"
+  ],
+  "Push_Press_-_Behind_the_Neck": [
+   "Dip straight down, knees bending, hips staying underneath",
+   "Reverse fast, driving through your heels",
+   "Push the bar straight up until your arms lock"
+  ],
+  "Push_Up_to_Side_Plank": [
+   "Keep your body straight as you lower",
+   "Turn as one piece and reach the top arm up",
+   "Place the hand back down before the next push-up"
+  ],
+  "Pushups": [
+   "Keep your body straight from head to heels",
+   "Lower until your chest almost touches the floor",
+   "Breathe out as you press back up"
+  ],
+  "Pushups_Close_and_Wide_Hand_Positions": [
+   "Pick your hand width and keep it for the whole set",
+   "Keep your body straight, toes on the floor",
+   "Lower until your chest almost touches the floor"
+  ],
+  "Pyramid": [
+   "Roll forward until your hips are the highest point",
+   "Rest your hands and feet on the floor",
+   "Come off the ball if anything turns sharp"
+  ],
+  "Quad_Stretch": [
+   "Lie on your side and draw the heel toward your backside",
+   "Pull gently on the belt to increase the stretch",
+   "Ease off when it turns sharp"
+  ],
+  "Quadriceps-SMR": [
+   "Roll from above the knee to below the hip",
+   "Keep the leg relaxed and the foot off the floor",
+   "Take weight off if the pressure feels too sharp"
+  ],
+  "Quick_Leap": [
+   "Land on both feet, flat, with knees bent",
+   "Jump off again the moment you land",
+   "Bend your legs to absorb every landing"
+  ],
+  "Rack_Delivery": [
+   "Spin your elbows around and forward under the bar",
+   "Loosen your grip as the elbows come through",
+   "Keep the bar close to your body throughout"
+  ],
+  "Rack_Pull_with_Bands": [
+   "Feet under your hips, chest up, back arched",
+   "Push your hips back before you pull",
+   "Stand tall and pull your shoulders back at the top"
+  ],
+  "Rack_Pulls": [
+   "Feet under your hips, chest up, back arched",
+   "Look forward and drive your hips and knees through",
+   "Pull your shoulders back at the top"
+  ],
+  "Rear_Leg_Raises": [
+   "Start on hands and knees with knees bent square",
+   "Lift the leg back, straightening the knee and hip",
+   "Keep your head looking forward"
+  ],
+  "Recumbent_Bike": [
+   "Set the seat to your height before starting",
+   "Change the resistance to keep the effort where you want it"
+  ],
+  "Return_Push_from_Stance": [
+   "Start low in an athletic stance",
+   "Move to meet the ball",
+   "Catch with both hands and throw straight back"
+  ],
+  "Reverse_Band_Bench_Press": [
+   "Squeeze your shoulder blades together and keep them there",
+   "Lower the bar to your lower chest with elbows tucked",
+   "Pause on the chest, then drive up hard"
+  ],
+  "Reverse_Band_Box_Squat": [
+   "Push your knees out as you sit back",
+   "Sit down onto the box, never bounce off it",
+   "Keep the weight on your heels and lead up with your head"
+  ],
+  "Reverse_Band_Deadlift": [
+   "Set the bar over the middle of your feet",
+   "Chest up, look forward, drive through your heels",
+   "Once past the knees, push your hips into the bar"
+  ],
+  "Reverse_Band_Power_Squat": [
+   "Push your knees and feet out as you go down",
+   "Sit your hips back, keeping your shins upright",
+   "Keep the weight on your heels and lead up with your head"
+  ],
+  "Reverse_Band_Sumo_Deadlift": [
+   "Set your feet very wide with hands inside your legs",
+   "Chest up, look forward, then spread the floor apart",
+   "Keep your weight on the back half of your feet"
+  ],
+  "Reverse_Barbell_Curl": [
+   "Keep your palms facing down throughout",
+   "Keep your elbows close to your sides",
+   "Only your forearms move"
+  ],
+  "Reverse_Barbell_Preacher_Curls": [
+   "Palms down, upper arms flat on the pad",
+   "Curl up to shoulder height and squeeze",
+   "Lower slowly until your arms are straight"
+  ],
+  "Reverse_Cable_Curl": [
+   "Palms down, elbows close to your sides",
+   "Only your forearms move",
+   "Lower the bar slowly back down"
+  ],
+  "Reverse_Crunch": [
+   "Keep your palms flat and your arms still",
+   "Roll your hips off the floor, knees toward your chest",
+   "Lower your legs back slowly"
+  ],
+  "Reverse_Flyes": [
+   "Keep your chest and stomach pressed into the bench",
+   "Keep a slight bend in your elbows throughout",
+   "Raise the weights out until your arms are level"
+  ],
+  "Reverse_Flyes_With_External_Rotation": [
+   "Keep your chest and stomach on the bench",
+   "Turn your palms from down to facing each other as you lift",
+   "Keep a slight bend in your elbows"
+  ],
+  "Reverse_Grip_Bent-Over_Rows": [
+   "Palms up, elbows close to your body",
+   "Bend forward with a straight back and head up",
+   "Keep your torso still as you row"
+  ],
+  "Reverse_Grip_Triceps_Pushdown": [
+   "Palms up, elbows pinned to your sides",
+   "Only your forearms move",
+   "Push down until your arms are straight"
+  ],
+  "Reverse_Hyperextension": [
+   "Hold the handles to keep your upper body still",
+   "Kick the legs back, stopping short of your full range",
+   "Bring the legs forward under control"
+  ],
+  "Reverse_Machine_Flyes": [
+   "Set the seat so the handles are at shoulder height",
+   "Keep a slight bend in your elbows throughout",
+   "Pause at the back, then return slowly"
+  ],
+  "Reverse_Plate_Curls": [
+   "Hold the plate palms down at eleven and one o'clock",
+   "Keep your elbows in and upper arms still",
+   "Lower slowly back to the start"
+  ],
+  "Reverse_Triceps_Bench_Press": [
+   "Palms facing you, hands about shoulder width",
+   "Keep your elbows close to your body all the way down",
+   "Lower slower than you press"
+  ],
+  "Rhomboids-SMR": [
+   "Cross your arms in front to open the upper back",
+   "Roll over your middle and upper back only",
+   "Take weight off where the pressure feels too sharp"
+  ],
+  "Rickshaw_Carry": [
+   "Chest and head up, back straight, before you lift",
+   "Drive through your heels to lift the frame",
+   "Walk with quick, short steps and keep breathing"
+  ],
+  "Rickshaw_Deadlift": [
+   "Stand centred between the handles, feet about hip width",
+   "Chest up, look forward, drive through your heels",
+   "Push your hips forward as the weight comes up"
+  ],
+  "Ring_Dips": [
+   "Start with your arms locked out",
+   "Lower until your arms bend past ninety degrees",
+   "Stay still, no swinging, then press back up"
+  ],
+  "One-Arm_Open_Palm_Kettlebell_Clean": [
+   "Raise the bell fast so it flips into your palm",
+   "Keep the bell close to your body as it rises",
+   "Catch the handle with a relaxed hand"
+  ],
+  "One-Arm_Overhead_Kettlebell_Squats": [
+   "Keep the arm straight and the bell locked overhead",
+   "Look straight ahead and keep your chest up",
+   "Push through your heels coming up"
+  ],
+  "One-Arm_Side_Deadlift": [
+   "Lift with your legs, not your arm",
+   "Keep your back straight and chest up",
+   "Bend your knees again as you lower the bar"
+  ],
+  "One-Arm_Side_Laterals": [
+   "Hold something steady and stop your body swinging",
+   "Lift to shoulder height, no higher",
+   "Keep a slight bend in the elbow"
+  ],
+  "One-Legged_Cable_Kickback": [
+   "Hold the frame and keep your body still",
+   "Kick the leg back as high as it comfortably goes",
+   "Bring the leg forward slowly against the cable"
+  ],
+  "One_Arm_Against_Wall": [
+   "Lean slowly toward the arm until you feel the stretch",
+   "Back off when it turns sharp"
+  ],
+  "One_Arm_Chin-Up": [
+   "Pull with your back, not just the arm",
+   "Keep your chest up and your body still",
+   "Lower slowly until the arm is straight"
+  ],
+  "One_Arm_Dumbbell_Bench_Press": [
+   "Keep the dumbbell balanced over your shoulder",
+   "Lower slower than you press up",
+   "Use the free hand only if you need it"
+  ],
+  "One_Arm_Dumbbell_Preacher_Curl": [
+   "Keep your upper arm flat on the pad",
+   "Lower until the arm is straight",
+   "Curl up without lifting your elbow off the pad"
+  ],
+  "One_Arm_Floor_Press": [
+   "Keep your knees bent and your back on the floor",
+   "Lower until your elbow touches the ground",
+   "Breathe out as you press up"
+  ],
+  "One_Arm_Lat_Pulldown": [
+   "Pull your elbow down to your side",
+   "Pause at the bottom, then return slowly",
+   "Keep your body still, no leaning back"
+  ],
+  "One_Arm_Pronated_Dumbbell_Triceps_Extension": [
+   "Keep your palm facing your feet",
+   "Hold your other hand on that arm for support",
+   "Move only the forearm, keep the upper arm still"
+  ],
+  "One_Arm_Supinated_Dumbbell_Triceps_Extension": [
+   "Keep your palm facing your face",
+   "Hold your other hand on that arm for support",
+   "Move only the forearm, keep the upper arm still"
+  ],
+  "One_Half_Locust": [
+   "Slide a hand under your hipbone to pad it",
+   "Lift the foot and your shoulders at the same time",
+   "Stop if your lower back complains"
+  ],
+  "One_Handed_Hang": [
+   "Keep your feet on the floor and take some weight",
+   "Let the arm and side hang long and relaxed"
+  ],
+  "One_Knee_To_Chest": [
+   "Hold under the knee, not over the kneecap",
+   "Keep the other leg straight on the floor",
+   "Tug the knee gently toward your nose"
+  ],
+  "One_Leg_Barbell_Squat": [
+   "Rest the back toe on the bench, front foot forward",
+   "Keep your head up and chest out",
+   "Lower until the front thigh is parallel to the floor"
+  ],
+  "Open_Palm_Kettlebell_Clean": [
+   "Drive with your legs and hips to raise the bell",
+   "Let the ball land in your open palms",
+   "Catch the handle with both hands on the way out"
+  ],
+  "Otis-Up": [
+   "Hold the weight at your chest to start",
+   "Press it overhead as you reach the top",
+   "Stop before your back touches the floor"
+  ],
+  "Overhead_Cable_Curl": [
+   "Set both pulleys above shoulder height",
+   "Start with arms straight and palms facing up",
+   "Move only your forearms, everything else stays still"
+  ],
+  "Overhead_Lat": [
+   "Sit tall and reach the hand down your back",
+   "Let your partner press gently, never hard",
+   "Say stop when it turns sharp"
+  ],
+  "Overhead_Slam": [
+   "Reach tall overhead before you slam",
+   "Throw the ball down hard just in front of your feet",
+   "Catch it on the bounce with both hands"
+  ],
+  "Overhead_Squat": [
+   "Keep your arms straight with the bar above your head",
+   "Keep your head up and back straight",
+   "Lower until your thighs are parallel to the floor"
+  ],
+  "Overhead_Stretch": [
+   "Lace your fingers and turn your palms to the ceiling",
+   "Keep your shoulders down as your arms reach up",
+   "Pull your tailbone down instead of arching your back"
+  ],
+  "Overhead_Triceps": [
+   "Sit tall and reach the hand down your back",
+   "Let your partner press the wrist gently",
+   "Say stop when it turns sharp"
+  ],
+  "Pallof_Press": [
+   "Stand side-on, about an arm's length from the pulley",
+   "Press straight out from the middle of your chest",
+   "Do not let the cable twist you toward the tower"
+  ],
+  "Pallof_Press_With_Rotation": [
+   "Press straight out from your chest with both hands",
+   "Keep your hips facing forward as you twist",
+   "Turn back slowly, arms stay straight"
+  ],
+  "Palms-Down_Dumbbell_Wrist_Curl_Over_A_Bench": [
+   "Rest your forearms on the bench, wrists over the edge",
+   "Keep your palms facing down",
+   "Move only your wrists and lower them slowly"
+  ],
+  "Palms-Down_Wrist_Curl_Over_A_Bench": [
+   "Rest your forearms on the bench, wrists over the edge",
+   "Keep your palms facing down",
+   "Move only your wrists and lower them slowly"
+  ],
+  "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench": [
+   "Rest your forearms on the bench, wrists over the edge",
+   "Keep your palms facing up",
+   "Move only your wrists and lower them slowly"
+  ],
+  "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench": [
+   "Rest your forearms on the bench, wrists over the edge",
+   "Keep your palms facing up",
+   "Move only your wrists and lower them slowly"
+  ],
+  "Parallel_Bar_Dip": [
+   "Start with your arms straight and body upright",
+   "Lower until your elbows pass ninety degrees",
+   "Stop the swinging, keep your body still"
+  ],
+  "Pelvic_Tilt_Into_Bridge": [
+   "Put your heels directly under your knees",
+   "Lift the tailbone first, then the rest of the spine",
+   "Leave your neck and head resting on the floor"
+  ],
+  "Peroneals-SMR": [
+   "Roll the outside of the lower leg between knee and ankle",
+   "Pause where it feels tender",
+   "Take weight onto your forearm if the pressure is too much"
+  ],
+  "Peroneals_Stretch": [
+   "Keep the leg straight and the heel off the floor",
+   "Pull the inside of the foot toward you",
+   "Ease off when it turns sharp"
+  ],
+  "Physioball_Hip_Bridge": [
+   "Rest your upper back on the ball, feet flat",
+   "Drive your hips up and pause at the top",
+   "Lower slowly, don't let the ball roll away"
+  ],
+  "Pin_Presses": [
+   "Set the pins at the height you want to press from",
+   "Keep bar, wrist and elbow stacked in one line",
+   "Rest the bar on the pins before each press"
+  ],
+  "Piriformis-SMR": [
+   "Cross one ankle over the opposite knee",
+   "Lean onto that side and roll over the upper glute",
+   "Ease off if the pressure is too much"
+  ],
+  "Plank": [
+   "Put your elbows directly under your shoulders",
+   "Keep your body in a straight line",
+   "Don't let your hips sag or lift"
+  ],
+  "Plate_Pinch": [
+   "Put the plates together with smooth sides facing out",
+   "Fingers on one side, thumb on the other",
+   "Squeeze hard and don't let them slip"
+  ],
+  "Plate_Twist": [
+   "Lean back slightly and keep your feet off the floor",
+   "Touch the plate to the floor on each side",
+   "Move slowly, no jerking"
+  ],
+  "Platform_Hamstring_Slides": [
+   "Slide the heel in by bending that knee",
+   "Keep the other leg straight",
+   "Control the slide back out"
+  ],
+  "Plie_Dumbbell_Squat": [
+   "Stand wide with your toes turned out",
+   "Hold the dumbbell still, arms straight down",
+   "Push through your heels coming up"
+  ],
+  "Plyo_Kettlebell_Pushups": [
+   "Keep your back straight all the way down",
+   "Push up hard and swap hands over the bell",
+   "Land soft and go straight into the next one"
+  ],
+  "Plyo_Push-up": [
+   "Keep your body straight from head to heels",
+   "Push hard enough for your hands to leave the floor",
+   "Land soft and lower straight away"
+  ],
+  "Posterior_Tibialis_Stretch": [
+   "Keep the leg straight and the heel off the floor",
+   "Pull the outside of the foot toward you",
+   "Ease off when it turns sharp"
+  ],
+  "Power_Clean": [
+   "Start with the bar close to your shins, chest up",
+   "Push the floor away, hips and shoulders rise together",
+   "Keep the bar close to your body the whole way"
+  ],
+  "Power_Clean_from_Blocks": [
+   "Set your shoulders just in front of the bar",
+   "Drive through your heels with arms straight",
+   "Turn your elbows through fast to catch on the shoulders"
+  ],
+  "Power_Jerk": [
+   "Dip straight down, hips stay under you",
+   "Drive up fast and move your head out of the way",
+   "Catch with your arms locked straight overhead"
+  ],
+  "Power_Partials": [
+   "Lift out to the sides up to shoulder height",
+   "Keep your body still, no swinging",
+   "Lower slowly, don't drop the weights"
+  ],
+  "Lying_Prone_Quadriceps": [
+   "Lie face down and keep both hips on the floor.",
+   "Push against your partner without letting the leg move.",
+   "Tell your partner to ease off if it turns sharp."
+  ],
+  "Lying_Rear_Delt_Raise": [
+   "Keep your chest down on the bench the whole time.",
+   "Raise your arms out to the side, not backward.",
+   "Stop when your elbows reach shoulder height."
+  ],
+  "Lying_Supine_Dumbbell_Curl": [
+   "Keep your upper arms still and your elbows tucked in.",
+   "Turn your palms up as you curl.",
+   "Let your arms hang all the way down first."
+  ],
+  "Lying_T-Bar_Row": [
+   "Keep your chest flat on the pad, don't lift off.",
+   "Pull with your elbows close to your body.",
+   "Lower until your arms are straight again."
+  ],
+  "Lying_Triceps_Press": [
+   "Keep your upper arms still and pointing at the ceiling.",
+   "Lower the bar until it lightly touches your forehead.",
+   "Keep your elbows tucked in, not flaring wide."
+  ],
+  "Machine_Bench_Press": [
+   "Keep your back against the pad.",
+   "Push the handles away until your arms are straight.",
+   "Breathe out as you push."
+  ],
+  "Machine_Bicep_Curl": [
+   "Keep your upper arms flat on the pad.",
+   "Only your forearms move.",
+   "Lower slowly instead of letting it drop."
+  ],
+  "Machine_Preacher_Curls": [
+   "Keep the back of your arms on the pad.",
+   "Keep your elbows in, not spreading outward.",
+   "Only your forearms move."
+  ],
+  "Machine_Shoulder_Military_Press": [
+   "Sit tall with your back against the pad.",
+   "Press until your arms are straight overhead.",
+   "Lower slowly back to shoulder height."
+  ],
+  "Machine_Triceps_Extension": [
+   "Keep your upper arms against the pads.",
+   "Straighten your elbows fully at the end.",
+   "Return slowly under control."
+  ],
+  "Medicine_Ball_Chest_Pass": [
+   "Start with the ball at your chest.",
+   "Push through until your arms are straight.",
+   "Catch with both hands at chest height."
+  ],
+  "Medicine_Ball_Full_Twist": [
+   "Turn your hips and shoulders at the same time.",
+   "Both people twist the same way.",
+   "Keep the ball in front of your body."
+  ],
+  "Medicine_Ball_Scoop_Throw": [
+   "Start in a half squat with the ball near your feet.",
+   "Drive your hips forward and jump as you swing.",
+   "Keep your arms straight and let go overhead."
+  ],
+  "Middle_Back_Shrug": [
+   "Lie chest down on the incline bench.",
+   "Squeeze your shoulder blades together.",
+   "Keep your arms straight and hanging down."
+  ],
+  "Middle_Back_Stretch": [
+   "Stand with feet apart and hands on your hips.",
+   "Twist only until you feel a stretch, then stop.",
+   "Back off if it turns sharp."
+  ],
+  "Mixed_Grip_Chin": [
+   "Grip with one palm facing you, one facing away.",
+   "Pull your chest up toward the bar.",
+   "Lower all the way down under control."
+  ],
+  "Monster_Walk": [
+   "Keep your feet apart so the bands stay tight.",
+   "Take short steps, forward then the same backward.",
+   "Don't let your knees drop inward."
+  ],
+  "Mountain_Climbers": [
+   "Keep your hands under your shoulders.",
+   "Drive one knee up under your hip at a time.",
+   "Keep your hips low, don't let them bounce up."
+  ],
+  "Moving_Claw_Series": [
+   "Kick your heel up toward your glutes as you run.",
+   "Bring the knee through and strike the ground.",
+   "Punch your arms in a quick one-two."
+  ],
+  "Muscle_Snatch": [
+   "Start at mid thigh with your chest up, eyes forward.",
+   "Push through your heels, then drive hips and knees.",
+   "Keep the bar close to your body all the way up."
+  ],
+  "Muscle_Up": [
+   "Grip with the base of your palms on the rings.",
+   "Pull your elbows down to your sides.",
+   "Roll your shoulders forward at the top, then press."
+  ],
+  "Narrow_Stance_Hack_Squats": [
+   "Keep your back and head against the pad.",
+   "Set your feet close with toes slightly turned out.",
+   "Push through your heels on the way up."
+  ],
+  "Narrow_Stance_Leg_Press": [
+   "Keep your back and head on the pad.",
+   "Lower until your knees bend to a right angle.",
+   "Push through your heels, don't lock your knees."
+  ],
+  "Narrow_Stance_Squats": [
+   "Keep your chest up and look straight ahead.",
+   "Sit down until your thighs pass parallel.",
+   "Push through your heels to stand back up."
+  ],
+  "Natural_Glute_Ham_Raise": [
+   "Keep your body straight from knees to head.",
+   "Lower slowly until your knees are almost straight.",
+   "Use a band or push off a box if needed."
+  ],
+  "Neck-SMR": [
+   "Keep the roller off the bones of your spine.",
+   "Roll the muscles either side of the spine.",
+   "Ease off the pressure where it turns sharp."
+  ],
+  "Neck_Press": [
+   "Start with the bar over your neck, arms straight.",
+   "Lower slowly until the bar lightly touches.",
+   "Keep the bar under control the whole way."
+  ],
+  "Oblique_Crunches": [
+   "Keep your lower back pressed into the floor.",
+   "Bring your elbow across toward the opposite knee.",
+   "Breathe out as you come up."
+  ],
+  "Oblique_Crunches_-_On_The_Floor": [
+   "Lie on your side with your knees slightly bent.",
+   "Crunch your top elbow up toward your hip.",
+   "Lower slowly back down."
+  ],
+  "Olympic_Squat": [
+   "Keep your chest up and your torso upright.",
+   "Let your knees travel forward over your feet.",
+   "Point your knees the same way as your feet."
+  ],
+  "On-Your-Back_Quad_Stretch": [
+   "Hang one leg off the side of the bench.",
+   "Hold your foot and press it back into your hand.",
+   "Don't let your lower back arch."
+  ],
+  "On_Your_Side_Quad_Stretch": [
+   "Lie on your side, bottom knee bent in front.",
+   "Hold your top foot and press that hip forward.",
+   "Ease off if it turns sharp."
+  ],
+  "One-Arm_Dumbbell_Row": [
+   "Keep your back flat and your torso still.",
+   "Pull the dumbbell to the side of your chest.",
+   "Keep your elbow close to your body."
+  ],
+  "One-Arm_Flat_Bench_Dumbbell_Flye": [
+   "Keep a slight bend in your elbow throughout.",
+   "Lower in a wide arc until your chest stretches.",
+   "Move only at the shoulder, keep the arm fixed."
+  ],
+  "One-Arm_High-Pulley_Cable_Side_Bends": [
+   "Keep your working arm fixed by your shoulder.",
+   "Bend straight out to the side at your waist.",
+   "Keep the stack off the rest, don't let it drop."
+  ],
+  "One-Arm_Incline_Lateral_Raise": [
+   "Press your shoulder into the incline bench.",
+   "Raise your arm straight up toward the ceiling.",
+   "Lower it slowly back across your body."
+  ],
+  "One-Arm_Kettlebell_Clean": [
+   "Push your butt back and look forward as you reach down.",
+   "Drive with your legs and hips, not your arm.",
+   "Turn your wrist so the bell lands on your forearm."
+  ],
+  "One-Arm_Kettlebell_Clean_and_Jerk": [
+   "Dip by bending your knees, chest stays upright.",
+   "Drive through your heels to send the bell up.",
+   "Catch it overhead with your arm straight."
+  ],
+  "One-Arm_Kettlebell_Floor_Press": [
+   "Rest your upper arm on the floor at the bottom.",
+   "Press straight up toward the ceiling.",
+   "Turn your wrist as you press."
+  ],
+  "One-Arm_Kettlebell_Jerk": [
+   "Dip with your knees, keep your chest upright.",
+   "Reverse fast and drive through your heels.",
+   "Catch the weight overhead with a straight arm."
+  ],
+  "One-Arm_Kettlebell_Military_Press_To_The_Side": [
+   "Start with the bell at your shoulder, palm facing in.",
+   "Watch the bell as you press it up and out.",
+   "Lower it back to your shoulder under control."
+  ],
+  "One-Arm_Kettlebell_Para_Press": [
+   "Keep your elbow pointing out to the side.",
+   "Press up and out until your arm is straight.",
+   "Lower it back to your shoulder under control."
+  ],
+  "One-Arm_Kettlebell_Push_Press": [
+   "Dip with your knees, keep your chest upright.",
+   "Drive through your heels, then press overhead.",
+   "Finish with your arm straight overhead."
+  ],
+  "One-Arm_Kettlebell_Row": [
+   "Push your butt back and keep your back flat.",
+   "Pull the bell to your stomach.",
+   "Draw your shoulder blade back as you pull."
+  ],
+  "One-Arm_Kettlebell_Snatch": [
+   "Push your hips back and swing it between your legs.",
+   "Drive with hips and knees to send it up.",
+   "Turn your hand and punch straight up at the top."
+  ],
+  "One-Arm_Kettlebell_Split_Jerk": [
+   "Dip straight down with your chest upright.",
+   "Split one foot forward and one back to catch it.",
+   "Stand up and bring your feet together."
+  ],
+  "One-Arm_Kettlebell_Split_Snatch": [
+   "Drive up through your hips, then knees, then ankles.",
+   "Drop into a lunge to catch it overhead.",
+   "Take it from floor to overhead in one motion."
+  ],
+  "One-Arm_Long_Bar_Row": [
+   "Sit your hips back and keep your chest up.",
+   "Pull the bar to your side, bending the elbow.",
+   "Don't jerk or heave the weight up."
+  ],
+  "One-Arm_Medicine_Ball_Slam": [
+   "Stand with one foot staggered back.",
+   "Reach the ball overhead and stretch tall.",
+   "Throw it hard into the ground just in front."
+  ],
+  "Weighted_Pull_Ups": [
+   "Lean back slightly and stick your chest out",
+   "Pull until your chin clears the bar",
+   "Lower until your arms are straight again"
+  ],
+  "Weighted_Sissy_Squat": [
+   "Hold the rack and let your knees travel forward",
+   "Keep your hips and shoulders in one line",
+   "Stop when your knees reach about a right angle"
+  ],
+  "Weighted_Sit-Ups_-_With_Bands": [
+   "Keep your hands still near your collarbone",
+   "Breathe out as you sit up",
+   "Lower slowly instead of dropping back"
+  ],
+  "Weighted_Squat": [
+   "Keep your chest up and look ahead",
+   "Keep your knees behind your toes",
+   "Push through your feet to stand back up"
+  ],
+  "Wide-Grip_Barbell_Bench_Press": [
+   "Keep your feet flat on the floor",
+   "Lower the bar slowly to your middle chest",
+   "Breathe out as you push it up"
+  ],
+  "Wide-Grip_Decline_Barbell_Bench_Press": [
+   "Lock your feet in before you unrack the bar",
+   "Lower the bar slowly to your lower chest",
+   "Breathe out as you push it up"
+  ],
+  "Wide-Grip_Decline_Barbell_Pullover": [
+   "Keep your arms straight the whole time",
+   "Move only at the shoulders",
+   "Stop when your arms are level with the floor"
+  ],
+  "Wide-Grip_Lat_Pulldown": [
+   "Lean back slightly and stick your chest out",
+   "Pull the bar to your upper chest, elbows down",
+   "Keep your body still and let only the arms move"
+  ],
+  "Wide-Grip_Pulldown_Behind_The_Neck": [
+   "Lean your head slightly forward before you pull",
+   "Pull the bar down behind your neck",
+   "Lead with your elbows, not your hands"
+  ],
+  "Wide-Grip_Rear_Pull-Up": [
+   "Lean your head slightly forward before you pull",
+   "Pull until the bar is near the back of your neck",
+   "Lower until your arms are straight again"
+  ],
+  "Wide-Grip_Standing_Barbell_Curl": [
+   "Keep your elbows close to your sides",
+   "Move only your forearms",
+   "Lower the bar slowly"
+  ],
+  "Wide_Stance_Barbell_Squat": [
+   "Take a wide stance with your toes turned out",
+   "Keep your chest up and look ahead",
+   "Push through your heels to stand back up"
+  ],
+  "Wide_Stance_Stiff_Legs": [
+   "Push your hips back and keep your legs nearly straight",
+   "Keep your back flat and your chest up",
+   "Let your arms hang straight and drive your hips forward"
+  ],
+  "Wind_Sprints": [
+   "Hang with your arms straight",
+   "Drive one knee up as high as you can",
+   "Do not swing your body"
+  ],
+  "Windmills": [
+   "Keep both arms flat on the floor",
+   "Reach your foot toward the opposite hand",
+   "Back off when it turns sharp"
+  ],
+  "Worlds_Greatest_Stretch": [
+   "Drop your back knee close to the ground",
+   "Keep your chest tall in the lunge",
+   "Ease off when the stretch turns sharp"
+  ],
+  "Wrist_Circles": [
+   "Hold your arms out level with your shoulders",
+   "Move only your wrists",
+   "Draw slow, full circles"
+  ],
+  "Wrist_Roller": [
+   "Hold your arms straight out in front of you",
+   "Roll with your wrists only, keep the arms still",
+   "Lower the weight slowly, do not let it drop"
+  ],
+  "Wrist_Rotations_with_Straight_Bar": [
+   "Keep your palms facing down",
+   "Move one wrist at a time",
+   "Keep your arms still"
+  ],
+  "Yoke_Walk": [
+   "Rest the bar across the back of your shoulders",
+   "Stand it up by driving through your heels",
+   "Take short, quick steps and look ahead"
+  ],
+  "Zercher_Squats": [
+   "Rest the bar in the crooks of your elbows",
+   "Keep your chest up and look ahead",
+   "Keep your knees behind your toes"
+  ],
+  "Zottman_Curl": [
+   "Turn your palms up as you curl",
+   "Turn your palms down before you lower",
+   "Keep your elbows against your sides"
+  ],
+  "Zottman_Preacher_Curl": [
+   "Keep your upper arms flat on the pad",
+   "Curl with palms up, lower with palms down",
+   "Lower slowly until your arms are straight"
+  ],
+  "Standing_Cable_Wood_Chop": [
+   "Keep your arms straight the whole way down",
+   "Turn your chest, don't just pull with your arms",
+   "Let your back foot pivot as you turn"
+  ],
+  "Standing_Calf_Raises": [
+   "Keep a slight bend in your knees throughout",
+   "Push up as high as your ankles will go",
+   "Lower slowly until your heels drop below the block"
+  ],
+  "Standing_Concentration_Curl": [
+   "Lean forward and let the arm hang straight down",
+   "Keep the upper arm still; only the forearm moves",
+   "Lower the weight all the way down"
+  ],
+  "Standing_Dumbbell_Calf_Raise": [
+   "Stand tall with the balls of your feet on the board",
+   "Lift your heels as high as they go",
+   "Lower slowly until your heels drop below the board"
+  ],
+  "Standing_Dumbbell_Press": [
+   "Press straight overhead until your arms are locked out",
+   "Don't lean back or push with your legs",
+   "Lower slowly to head height"
+  ],
+  "Standing_Dumbbell_Reverse_Curl": [
+   "Keep your palms facing down the whole way",
+   "Keep your upper arms still; only forearms move",
+   "Stand tall and don't swing the weights up"
+  ],
+  "Standing_Dumbbell_Straight-Arm_Front_Delt_Raise_Above_Head": [
+   "Keep your arms straight with only a small elbow bend",
+   "Raise the weights overhead in one smooth arc",
+   "Lower down the same path, slowly"
+  ],
+  "Standing_Dumbbell_Triceps_Extension": [
+   "Keep your elbows in, close to your head",
+   "Only your forearms move; upper arms stay still",
+   "Lower behind your head until forearms touch your biceps"
+  ],
+  "Standing_Dumbbell_Upright_Row": [
+   "Let your elbows lead, staying higher than your hands",
+   "Keep the weights close to your body",
+   "Keep your body still, no swinging"
+  ],
+  "Standing_Elevated_Quad_Stretch": [
+   "Rest the back foot on the step behind you",
+   "Keep the standing knee soft and behind your toes",
+   "Ease off if it turns sharp"
+  ],
+  "Standing_Front_Barbell_Raise_Over_Head": [
+   "Keep a small bend in your elbows throughout",
+   "Lift the bar overhead without leaning back",
+   "Lower it slowly back to your thighs"
+  ],
+  "Standing_Gastrocnemius_Calf_Stretch": [
+   "Keep the front knee straight and your back straight",
+   "Pull your toes toward your knee until you feel a stretch",
+   "Back off when it turns sharp"
+  ],
+  "Standing_Hamstring_and_Calf_Stretch": [
+   "Keep the front leg straight and bend the back knee",
+   "Lift the front toes and lean forward",
+   "Stop pulling when the stretch turns sharp"
+  ],
+  "Standing_Hip_Circles": [
+   "Hold something solid for balance",
+   "Lift the knee to hip height first",
+   "Circle the knee slowly and as wide as comfortable"
+  ],
+  "Standing_Hip_Flexors": [
+   "Stand tall with one foot slightly in front",
+   "Bend both knees and lift the back heel",
+   "Press the back hip forward; ease off if sharp"
+  ],
+  "Standing_Inner-Biceps_Curl": [
+   "Start with palms facing in, elbows close to your sides",
+   "Turn your palms up as you curl",
+   "Keep upper arms still; only forearms move"
+  ],
+  "Standing_Lateral_Stretch": [
+   "Keep your weight even on both feet",
+   "Lean straight sideways, not forward",
+   "Ease off when it turns sharp"
+  ],
+  "Standing_Leg_Curl": [
+   "Keep your thigh pressed against the pad",
+   "Curl your heel up as far as it goes",
+   "Lower slowly until the leg is straight again"
+  ],
+  "Standing_Long_Jump": [
+   "Swing your arms hard and dip before you jump",
+   "Reach your feet out in front to land",
+   "Land soft and bend your knees"
+  ],
+  "Standing_Low-Pulley_Deltoid_Raise": [
+   "Hold the machine with your free hand for balance",
+   "Raise your arm across and out to shoulder height",
+   "Stand tall and lower it slowly"
+  ],
+  "Standing_Low-Pulley_One-Arm_Triceps_Extension": [
+   "Keep the upper arm upright and close to your head",
+   "Hold that elbow steady with your other hand",
+   "Only the forearm moves"
+  ],
+  "Standing_Military_Press": [
+   "Lower the bar slowly to your collarbone",
+   "Press overhead until your arms are locked out",
+   "Stand tall and don't lean back"
+  ],
+  "Standing_Olympic_Plate_Hand_Squeeze": [
+   "Stand tall with a plate hanging in each hand",
+   "Let your fingers open, then squeeze them closed again",
+   "Never let the plate slip from your fingers"
+  ],
+  "Standing_One-Arm_Cable_Curl": [
+   "Keep your upper arm upright and the elbow in",
+   "Only the forearm moves",
+   "Hold your waist with the other hand for balance"
+  ],
+  "Standing_One-Arm_Dumbbell_Curl_Over_Incline_Bench": [
+   "Press your chest against the top of the bench",
+   "Keep the upper arm still; only the forearm moves",
+   "Lower the weight all the way down"
+  ],
+  "Standing_One-Arm_Dumbbell_Triceps_Extension": [
+   "Keep your elbow in, close to your head",
+   "Only your forearm moves",
+   "Lower behind your head until the forearm touches your bicep"
+  ],
+  "Standing_Overhead_Barbell_Triceps_Extension": [
+   "Grip closer than shoulder width with elbows in",
+   "Keep your upper arms still and upright",
+   "Lower behind your head, then press back up"
+  ],
+  "Standing_Palm-In_One-Arm_Dumbbell_Press": [
+   "Keep your palm facing in the whole way",
+   "Hold the bench with your free hand for balance",
+   "Press straight up until the arm is locked out"
+  ],
+  "Standing_Palms-In_Dumbbell_Press": [
+   "Keep your palms facing each other throughout",
+   "Press straight overhead until your arms are locked out",
+   "Lower until your elbows bend to a right angle"
+  ],
+  "Standing_Palms-Up_Barbell_Behind_The_Back_Wrist_Curl": [
+   "Hold the bar behind your hips with straight arms",
+   "Only your wrists move as you curl the bar",
+   "Stand tall and look straight ahead"
+  ],
+  "Standing_Pelvic_Tilt": [
+   "Keep your knees soft, not locked",
+   "Rock your hips forward and back slowly",
+   "Keep it gentle; ease off if it turns sharp"
+  ],
+  "Standing_Rope_Crunch": [
+   "Hold the rope against your upper chest",
+   "Curl your chest down toward your hips",
+   "Round your back down, don't just fold at the hips"
+  ],
+  "Standing_Soleus_And_Achilles_Stretch": [
+   "Keep your back heel flat on the floor",
+   "Bend both knees and stand tall",
+   "Ease off if it turns sharp"
+  ],
+  "Standing_Toe_Touches": [
+   "Keep your legs straight",
+   "Let your head, arms and hands hang loose",
+   "Stop where it pulls, not where it hurts"
+  ],
+  "Standing_Towel_Triceps_Extension": [
+   "Keep your elbows in and upper arms upright",
+   "Only the forearms move",
+   "Lower behind your head, then press back up"
+  ],
+  "Standing_Two-Arm_Overhead_Throw": [
+   "Reach the ball back behind your head first",
+   "Bend your knees and lean back as you load",
+   "Throw with your whole body, not just your arms"
+  ],
+  "Star_Jump": [
+   "Squat halfway, then jump as high as you can",
+   "Spread your arms and legs wide in the air",
+   "Bring your limbs back in and land soft"
+  ],
+  "Step-up_with_Knee_Raise": [
+   "Put your whole foot on the box",
+   "Stand up by pushing through the top leg",
+   "Drive the other knee up high, then step down slowly"
+  ],
+  "Step_Mill": [
+   "Keep a hand on the handles",
+   "Watch your step as you climb",
+   "Stand tall rather than hanging off the rails"
+  ],
+  "Stiff-Legged_Barbell_Deadlift": [
+   "Keep your back flat and your knees slightly bent",
+   "Push your hips back as the bar lowers",
+   "Stop lowering when your back starts to round"
+  ],
+  "Stiff-Legged_Dumbbell_Deadlift": [
+   "Keep your back flat and your knees slightly bent",
+   "Push your hips back as the weights lower",
+   "Stop lowering when your back starts to round"
+  ],
+  "Stiff_Leg_Barbell_Good_Morning": [
+   "Keep your head up and your back flat",
+   "Bend at the hips with your legs still",
+   "Stop lowering when your back starts to round"
+  ],
+  "Stomach_Vacuum": [
+   "Breathe all the air out first",
+   "Pull your belly in toward your backbone",
+   "Keep breathing normally while you hold it"
+  ],
+  "Straight-Arm_Dumbbell_Pullover": [
+   "Check the dumbbell plates are tight before you start",
+   "Keep your arms straight as the weight arcs back",
+   "Lower only until you feel a stretch across the chest"
+  ],
+  "Straight-Arm_Pulldown": [
+   "Lean your chest forward slightly and hold that position",
+   "Keep your arms straight the whole way",
+   "Pull the bar to your thighs, then return slowly"
+  ],
+  "Straight_Bar_Bench_Mid_Rows": [
+   "Chest up, hips back",
+   "Squeeze your shoulder blades together as you row",
+   "No jerking; lower the bar all the way down"
+  ],
+  "Straight_Raises_on_Incline_Bench": [
+   "Lie face down with your chest on the bench",
+   "Keep your arms straight the whole time",
+   "Raise the bar in front of your head, then lower slowly"
+  ],
+  "Stride_Jump_Crossover": [
+   "Push through the foot on top of the box",
+   "Swing your arms up and drive the other knee",
+   "Land soft on the far side of the box"
+  ],
+  "Sumo_Deadlift": [
+   "Set your feet wide with hands inside your knees",
+   "Chest up and look forward before you pull",
+   "Push your feet apart through the floor"
+  ],
+  "Sumo_Deadlift_with_Bands": [
+   "Stand on the bands under the back half of your feet",
+   "Chest up, hips down before you pull",
+   "Push your feet apart through the floor"
+  ],
+  "Seated_Palms-Down_Barbell_Wrist_Curl": [
+   "Rest your forearms on your thighs, wrists past your knees",
+   "Move only your wrists, keep your forearms still",
+   "Let the bar roll down fully before curling up"
+  ],
+  "Seated_Side_Lateral_Raise": [
+   "Keep your body still, no swinging",
+   "Stop when your arms reach shoulder height",
+   "Keep a slight bend in your elbows"
+  ],
+  "Seated_Triceps_Press": [
+   "Keep your elbows in close to your head",
+   "Move only your forearms",
+   "Lower until your forearms touch your biceps"
+  ],
+  "Seated_Two-Arm_Palms-Up_Low-Pulley_Wrist_Curl": [
+   "Rest your forearms on your thighs, wrists past your knees",
+   "Move only your wrists, keep your forearms still",
+   "Hold the bar tight as it rolls down"
+  ],
+  "See-Saw_Press_Alternating_Side_Press": [
+   "Reach one dumbbell overhead as you bend the other way",
+   "Turn your palm forward as you press up",
+   "Keep the resting dumbbell steady at your shoulder"
+  ],
+  "Shotgun_Row": [
+   "Stand in a wide split stance and stay steady",
+   "Turn your palm up as you pull",
+   "Let your arm stretch forward at the start"
+  ],
+  "Shoulder_Circles": [
+   "Let your arms hang loose at your sides",
+   "Roll slowly through the whole circle",
+   "Go both directions"
+  ],
+  "Shoulder_Press_-_With_Bands": [
+   "Start with your hands at shoulder height, palms forward",
+   "Breathe out as you press overhead",
+   "Stand tall, don't lean back"
+  ],
+  "Shoulder_Raise": [
+   "Lift your shoulders up toward your ears",
+   "Let them drop all the way back down",
+   "Keep your arms relaxed at your sides"
+  ],
+  "Shoulder_Stretch": [
+   "Reach your arm straight across your chest",
+   "Keep that shoulder down, not shrugged",
+   "Ease off when it turns sharp"
+  ],
+  "Side-Lying_Floor_Stretch": [
+   "Bend your bottom knee in front to stay steady",
+   "Reach your top arm overhead and pull gently",
+   "Back off when it turns sharp"
+  ],
+  "Side_Hop-Sprint": [
+   "Land soft and hop straight back",
+   "Spend as little time on the ground as possible",
+   "Sprint away off the last landing"
+  ],
+  "Side_Lateral_Raise": [
+   "Stand still, don't swing the weights up",
+   "Stop when your arms reach shoulder height",
+   "Keep a slight bend in your elbows"
+  ],
+  "Side_Laterals_to_Front_Raise": [
+   "Raise to shoulder height without swinging",
+   "Keep your elbows slightly bent the whole time",
+   "Lower slowly, don't drop the weights"
+  ],
+  "Side_Leg_Raises": [
+   "Hold the chair for balance",
+   "Keep the swinging leg straight",
+   "Start small and swing a little higher each time"
+  ],
+  "Side_Lying_Groin_Stretch": [
+   "Bend your bottom knee in front to stay steady",
+   "Pull your top knee toward your shoulder",
+   "Ease off when it turns sharp"
+  ],
+  "Side_Neck_Stretch": [
+   "Keep your shoulders down and relaxed",
+   "Tilt your head slowly toward one shoulder",
+   "Pull gently, stop when it turns sharp"
+  ],
+  "Side_Standing_Long_Jump": [
+   "Swing your arms to lead the jump",
+   "Land facing the same way, feet under your hips",
+   "Bend your knees to soak up the landing"
+  ],
+  "Side_To_Side_Chins": [
+   "Lean back a little and keep your chest up",
+   "Pull to one side until the bar nears your chest",
+   "Move only your arms, no swinging"
+  ],
+  "Side_Wrist_Pull": [
+   "Cross your arm over your body and hold the wrist",
+   "Straighten and lift it slowly to shoulder height",
+   "Pull gently, never hard on the shoulder"
+  ],
+  "Side_to_Side_Box_Shuffle": [
+   "Swing your arms to help you across",
+   "Land one foot on the box, one on the floor",
+   "Keep a quick rhythm side to side"
+  ],
+  "Single-Arm_Cable_Crossover": [
+   "Stagger your feet and lean forward, chest up",
+   "Keep a slight bend in the working elbow",
+   "Hold the other hand still in the middle"
+  ],
+  "Single-Arm_Linear_Jammer": [
+   "Take a wide stance",
+   "Drive up through your hips and knees as you press",
+   "Press hard, then lower under control"
+  ],
+  "Single-Arm_Push-Up": [
+   "Set your feet wide for a stable base",
+   "Put your working hand right under your shoulder",
+   "Lower slowly and keep your hips from twisting"
+  ],
+  "Single-Cone_Sprint_Drill": [
+   "Chop your feet as fast as you can",
+   "Keep your knees up",
+   "Drive your arms with your feet"
+  ],
+  "Single-Leg_High_Box_Squat": [
+   "Hold the band for balance only",
+   "Step up through the foot on the box",
+   "Keep the other leg free, don't push off the floor"
+  ],
+  "Single-Leg_Hop_Progression": [
+   "Land on the same leg you took off from",
+   "Dip quickly before each hop",
+   "Keep your other knee up"
+  ],
+  "Single-Leg_Lateral_Hop": [
+   "Land on the same leg and bounce straight back",
+   "Keep your knee slightly bent when you land",
+   "Stay light, minimal time on the ground"
+  ],
+  "Single-Leg_Leg_Extension": [
+   "Line your knee up with the machine's pivot",
+   "Set the pad on your lower shin, not your ankle",
+   "Pause at the top, lower without letting the weight drop"
+  ],
+  "Single-Leg_Stride_Jump": [
+   "Swing your arms up as you push off the box",
+   "Drive the free knee up high",
+   "Land back in the same spot and bend to absorb it"
+  ],
+  "Single_Dumbbell_Raise": [
+   "Hold the head of the dumbbell with both hands",
+   "Keep your arms straight the whole way",
+   "Keep your body still, don't lean back"
+  ],
+  "Single_Leg_Butt_Kick": [
+   "Dip quickly, then jump off one leg",
+   "Snap your heel up to your backside",
+   "Land on the same leg with a soft knee"
+  ],
+  "Single_Leg_Glute_Bridge": [
+   "Push through your heel, not your toes",
+   "Hold the free knee up toward your chest",
+   "Lift your hips as high as they go"
+  ],
+  "Single_Leg_Push-off": [
+   "Keep the top foot's heel near the edge",
+   "Push through the top leg for height",
+   "Land the same foot back on the box"
+  ],
+  "Sit-Up": [
+   "Anchor your feet and keep your knees bent",
+   "Breathe out as you come up",
+   "Don't yank on your head with your hands"
+  ],
+  "Sit_Squats": [
+   "Sit back with your hips as your knees bend",
+   "Stop above parallel and come straight back up",
+   "Keep your chest up"
+  ],
+  "Skating": [
+   "Learn to turn and stop before going faster",
+   "Wear your protective gear",
+   "Skate at a pace you can control"
+  ],
+  "Sled_Drag_-_Harness": [
+   "Lean in the direction you are travelling",
+   "Drive through your hips and knees each step"
+  ],
+  "Sled_Overhead_Backward_Walk": [
+   "Keep your arms straight overhead the whole walk",
+   "Start with the line already tight",
+   "Walk smoothly, no jerking"
+  ],
+  "Sled_Overhead_Triceps_Extension": [
+   "Keep your elbows pointing up and still",
+   "Straighten your arms fully",
+   "Step forward to take the slack out"
+  ],
+  "Sled_Push": [
+   "Lean into the sled with your arms straight",
+   "Drive through your hips and knees",
+   "Push as fast as you can"
+  ],
+  "Sled_Reverse_Flye": [
+   "Keep your arms straight, don't bend the elbows",
+   "Pull the handles up and apart",
+   "Chest and head up, knees slightly bent"
+  ],
+  "Sled_Row": [
+   "Keep your head and chest up, knees slightly bent",
+   "Start with your arms fully extended",
+   "Pull your shoulder blades back as you row"
+  ],
+  "Sledgehammer_Swings": [
+   "Stand staggered, about two feet from the tire",
+   "Let your top hand slide down as you swing",
+   "Control the bounce off the tire"
+  ],
+  "Smith_Incline_Shoulder_Raise": [
+   "Line your shoulders up under the bar",
+   "Keep a slight bend in your elbows to start",
+   "Breathe out as you push the bar up"
+  ],
+  "Smith_Machine_Behind_the_Back_Shrug": [
+   "Shrug straight up, don't bend your arms",
+   "Stand tall with your head and chest up",
+   "Lower under control before the next shrug"
+  ],
+  "Smith_Machine_Bench_Press": [
+   "Grip a little wider than your shoulders",
+   "Lower the bar to the middle of your chest",
+   "Take it down slower than you push it up"
+  ],
+  "Smith_Machine_Bent_Over_Row": [
+   "Bend forward until your back is nearly parallel to the floor",
+   "Keep your back flat and your head up",
+   "Pull with your elbows close to your body"
+  ],
+  "Smith_Machine_Calf_Raise": [
+   "Push up through the balls of your feet",
+   "Keep your knees straight the whole time",
+   "Lower your heels slowly"
+  ],
+  "Smith_Machine_Close-Grip_Bench_Press": [
+   "Keep your elbows close to your sides",
+   "Touch the bar to your middle chest",
+   "Lower slower than you push"
+  ],
+  "Smith_Machine_Decline_Press": [
+   "Start with your arms straight above your chest",
+   "Lower the bar to your chest, then pause",
+   "Push back up under control"
+  ],
+  "Smith_Machine_Hang_Power_Clean": [
+   "Start with your head and chest up",
+   "Keep your arms straight until the bar rises",
+   "Rebend your knees to catch the bar"
+  ],
+  "Smith_Machine_Hip_Raise": [
+   "Roll your hips up off the bench",
+   "Keep a small bend in your knees",
+   "Lower back down slowly"
+  ],
+  "Smith_Machine_Incline_Bench_Press": [
+   "Line your upper chest up with the bar",
+   "Lower slowly to your upper chest",
+   "Take twice as long going down as up"
+  ],
+  "Smith_Machine_Leg_Press": [
+   "Push through the middle of your feet",
+   "Stop short of locking your knees",
+   "Pause at the top before lowering"
+  ],
+  "Smith_Machine_One-Arm_Upright_Row": [
+   "Stand tall with your head and chest up",
+   "Lead with your elbow, pointed out to the side",
+   "Stop when your upper arm is level"
+  ],
+  "Smith_Machine_Overhead_Shoulder_Press": [
+   "Sit so the bar lines up with your nose",
+   "Lower the bar to chin height",
+   "Keep your feet still on the floor"
+  ],
+  "Smith_Machine_Pistol_Squat": [
+   "Look forward and keep your chest up",
+   "Hold the free leg out in front",
+   "Push through your heel to stand up"
+  ],
+  "Smith_Machine_Reverse_Calf_Raises": [
+   "Keep your heels on the platform",
+   "Pull your toes up as high as possible",
+   "Keep your knees still and slightly bent"
+  ],
+  "Smith_Machine_Squat": [
+   "Keep your head up and your back straight",
+   "Go down until your thighs pass parallel",
+   "Push through your heels to stand up"
+  ],
+  "Smith_Machine_Stiff-Legged_Deadlift": [
+   "Keep your knees slightly bent and still",
+   "Keep your back straight as you bend forward",
+   "Stand up once you feel the hamstrings stretch"
+  ],
+  "Smith_Machine_Upright_Row": [
+   "Keep the bar close to your body",
+   "Lead with your elbows, higher than your forearms",
+   "Keep your torso still"
+  ],
+  "Smith_Single-Leg_Split_Squat": [
+   "Rear foot on the bench, head up",
+   "Lower until the front thigh passes parallel",
+   "Push through your front heel to stand"
+  ],
+  "Snatch": [
+   "Keep your back flat and chest up",
+   "Keep the bar close to your legs",
+   "Drop under the bar with arms locked overhead"
+  ],
+  "Snatch_Balance": [
+   "Dip short, then drive under the bar fast",
+   "Catch with your arms locked overhead",
+   "Keep your torso upright as you sink"
+  ],
+  "Snatch_Deadlift": [
+   "Wide grip, chest up, head facing forward",
+   "Drive through your heels to raise the hips",
+   "Keep the same back angle past the knees"
+  ],
+  "Snatch_Pull": [
+   "Keep your weight on your heels, chest up",
+   "Keep your arms straight throughout",
+   "Finish tall and fast, then stop"
+  ],
+  "Snatch_Shrug": [
+   "Keep your back straight, leaning slightly forward",
+   "Shrug your shoulders straight towards your ears",
+   "Keep the bar moving fast"
+  ],
+  "Snatch_from_Blocks": [
+   "Chest up, head forward, shoulders over the bar",
+   "Keep the bar close as you drive up",
+   "Pull yourself under, arms locked overhead"
+  ],
+  "Speed_Band_Overhead_Triceps": [
+   "Keep your upper arms still and elbows up",
+   "Straighten your arms fully",
+   "Return slowly behind your head"
+  ],
+  "Speed_Box_Squat": [
+   "Sit back with your hips onto the box",
+   "Sit down under control, do not crash",
+   "Pause, then drive off the box fast"
+  ],
+  "Speed_Squats": [
+   "Keep your head up and your back straight",
+   "Go down until your thighs pass parallel",
+   "Come up fast without losing your form"
+  ],
+  "Spell_Caster": [
+   "Keep your arms straight the whole time",
+   "Turn your torso to swing the weights across",
+   "Keep the dumbbells level with the ground"
+  ],
+  "Spider_Crawl": [
+   "Keep your body straight from head to heels",
+   "Hold your elbows bent at ninety degrees",
+   "Bring your knee up towards your elbow"
+  ],
+  "Spider_Curl": [
+   "Keep your chest pressed against the pad",
+   "Move only your forearms",
+   "Lower slowly to straight arms"
+  ],
+  "Spinal_Stretch": [
+   "Sit tall with your feet flat on the floor",
+   "Turn only as far as you comfortably can",
+   "Back off if it turns sharp"
+  ],
+  "Split_Clean": [
+   "Back straight, chest up, arms straight off the floor",
+   "Drive your hips through, then pull under fast",
+   "Catch with elbows up, one foot forward one back"
+  ],
+  "Split_Jerk": [
+   "Dip straight down, knees only, hips stay under",
+   "Reverse fast and move your head back",
+   "Land split with your arms locked overhead"
+  ],
+  "Split_Jump": [
+   "Keep your front knee over the middle of your foot",
+   "Swing your arms as you jump",
+   "Land soft, straight back into the lunge"
+  ],
+  "Split_Snatch": [
+   "Chest up, head forward, shoulders over the bar",
+   "Keep the bar close as you drive up",
+   "Land split with your arms locked overhead"
+  ],
+  "Split_Squat_with_Dumbbells": [
+   "Rear foot raised, front foot forward, stand tall",
+   "Keep your front knee in line with your foot",
+   "Drive through your front heel to stand"
+  ],
+  "Split_Squats": [
+   "Land in a split with both knees bent",
+   "Reverse straight back up into the next jump",
+   "Swap your legs each jump"
+  ],
+  "Squat_Jerk": [
+   "Dip only slightly, then drive up hard",
+   "Move your head back as the bar leaves",
+   "Catch in a full squat, arms locked overhead"
+  ],
+  "Squat_with_Bands": [
+   "Push your knees out as you sit back",
+   "Keep your weight on your heels",
+   "Go down until your hips pass your knees"
+  ],
+  "Squat_with_Chains": [
+   "Push your knees out as you sit back",
+   "Keep your weight on your heels",
+   "Go down until your hips pass your knees"
+  ],
+  "Squat_with_Plate_Movers": [
+   "Wide stance, toes out, head up",
+   "Push through your heels to stand",
+   "Step across, then slide the plate over"
+  ],
+  "Squats_-_With_Bands": [
+   "Hold the handles up beside your face",
+   "Lower until your thighs are level with the floor",
+   "Push through your heels to stand up"
+  ],
+  "Stairmaster": [
+   "Keep hold of the handles",
+   "Drive the pedals down, but not to the floor",
+   "Keep a steady rhythm"
+  ],
+  "Standing_Alternating_Dumbbell_Press": [
+   "Press one arm up, hold the other still",
+   "Do not lean or jerk the weight up",
+   "Lower back to your shoulder slowly"
+  ],
+  "Standing_Barbell_Calf_Raise": [
+   "Keep your knees slightly bent and still",
+   "Push your heels as high as they go",
+   "Lower slowly until your calves stretch"
+  ],
+  "Standing_Barbell_Press_Behind_Neck": [
+   "Keep your back straight and head up",
+   "Press straight up to full arm length",
+   "Lower slowly back to your shoulders"
+  ],
+  "Standing_Bent-Over_One-Arm_Dumbbell_Triceps_Extension": [
+   "Keep your back straight and head up",
+   "Keep your upper arm still against your side",
+   "Move only your forearm"
+  ],
+  "Standing_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension": [
+   "Keep your back straight and head up",
+   "Keep your upper arms still against your sides",
+   "Move only your forearms"
+  ],
+  "Standing_Biceps_Cable_Curl": [
+   "Stand tall with elbows close to your sides",
+   "Move only your forearms",
+   "Lower slowly to straight arms"
+  ],
+  "Standing_Biceps_Stretch": [
+   "Clasp your hands behind your back, palms together",
+   "Raise your arms only until you feel the stretch",
+   "Back off if it turns sharp"
+  ],
+  "Standing_Bradford_Press": [
+   "Press just high enough to clear your head",
+   "Stop when your elbows make a right angle",
+   "Do not lock your elbows out"
+  ],
+  "Standing_Cable_Chest_Press": [
+   "Stagger your feet for better balance",
+   "Press forward and bring the handles together",
+   "Keep the rest of your body still"
+  ],
+  "Standing_Cable_Lift": [
+   "Keep your back straight and arms close",
+   "Pull up and across in one motion",
+   "Pivot your back foot as you straighten up"
+  ],
+  "Rocket_Jump": [
+   "Dip only halfway down before you jump.",
+   "Stretch your whole body out and reach overhead.",
+   "Land soft and let your legs bend to absorb it."
+  ],
+  "Rocking_Standing_Calf_Raise": [
+   "Keep your knees still with a slight bend.",
+   "Push your heels as high as they go.",
+   "Lower until your calves stretch, then lift your toes."
+  ],
+  "Rocky_Pull-Ups_Pulldowns": [
+   "Lead with your elbows down and back.",
+   "Bring your chest to the bar on the front rep.",
+   "Lower until your arms are straight every time."
+  ],
+  "Romanian_Deadlift": [
+   "Push your hips back, bending your knees only slightly.",
+   "Keep the bar sliding close against your legs.",
+   "Keep your chest up and stop before your back rounds."
+  ],
+  "Romanian_Deadlift_from_Deficit": [
+   "Send your hips back as far as they go.",
+   "Keep the bar touching your legs the whole way.",
+   "Go only as low as your back stays flat."
+  ],
+  "Rope_Climb": [
+   "Pinch the rope tightly between your feet.",
+   "Reach as high as you can before you pull.",
+   "Bring your knees to your chest as you pull."
+  ],
+  "Rope_Crunch": [
+   "Curl your ribs down toward your legs.",
+   "Keep your arms fixed; don't pull with them.",
+   "Return slowly to sitting tall."
+  ],
+  "Rope_Jumping": [
+   "Turn the rope with your wrists, not your arms.",
+   "Jump just high enough to clear the rope.",
+   "Settle into a pace you can keep."
+  ],
+  "Rope_Straight-Arm_Pulldown": [
+   "Keep your arms straight the whole way.",
+   "Lean forward from your hips with your back straight.",
+   "Pull the rope down to your thighs and pause."
+  ],
+  "Round_The_World_Shoulder_Stretch": [
+   "Stand tall with the stick behind your hips, palms down.",
+   "Lift your arms slowly, keeping the elbows straight.",
+   "Stop when it gets hard to lift further."
+  ],
+  "Rowing_Stationary": [
+   "Push with your legs first, then pull with your arms.",
+   "Sit tall and pull the handle to your upper belly.",
+   "Straighten your arms before your knees bend again."
+  ],
+  "Runners_Stretch": [
+   "Keep your front heel down on the floor.",
+   "If the heel lifts, slide your back leg further back.",
+   "Ease off when the stretch turns sharp."
+  ],
+  "Running_Treadmill": [
+   "Run tall and let your arms swing.",
+   "Let go of the handles unless you need them."
+  ],
+  "Russian_Twist": [
+   "Lean back so your body makes a V with your thighs.",
+   "Turn from your waist, not just your arms.",
+   "Move under control instead of swinging."
+  ],
+  "Sandbag_Load": [
+   "Reach as far around the bag as you can.",
+   "Stand up through your hips and knees to lift it high.",
+   "Set it on the platform, don't just throw it."
+  ],
+  "Scapular_Pull-Up": [
+   "Keep your arms straight the whole time.",
+   "Pull your shoulders down to rise a few inches.",
+   "Pause at the top, then lower back to a full hang."
+  ],
+  "Scissor_Kick": [
+   "Keep your lower back pressed into the floor.",
+   "Keep both heels off the ground the whole set.",
+   "Keep your arms flat and still at your sides."
+  ],
+  "Scissors_Jump": [
+   "Keep your front knee over the middle of your foot.",
+   "Swing your arms to help you jump high.",
+   "Land soft and sink straight back into the lunge."
+  ],
+  "Seated_Band_Hamstring_Curl": [
+   "Start with your legs straight out.",
+   "Bend your knees to pull your heels toward the bench.",
+   "Return slowly instead of letting the band snap back."
+  ],
+  "Seated_Barbell_Military_Press": [
+   "Lower the bar slowly to your collarbone.",
+   "Keep the bar just in front of your head.",
+   "Breathe out as you press up."
+  ],
+  "Seated_Barbell_Twist": [
+   "Keep your feet and head still; turn from the waist.",
+   "Turn slowly and only as far as your waist allows.",
+   "Breathe out as you turn to each side."
+  ],
+  "Seated_Bent-Over_One-Arm_Dumbbell_Triceps_Extension": [
+   "Keep your upper arm still against your side.",
+   "Straighten only your forearm.",
+   "Keep your back flat and your head up."
+  ],
+  "Seated_Bent-Over_Rear_Delt_Raise": [
+   "Stay bent forward; don't sit up as you lift.",
+   "Lift the weights out to the side, not backwards.",
+   "Keep a small bend in your elbows and don't swing."
+  ],
+  "Seated_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension": [
+   "Keep both upper arms still against your sides.",
+   "Move only your forearms.",
+   "Keep your back flat and your head up."
+  ],
+  "Seated_Biceps": [
+   "Keep your arms straight behind you, palms facing each other.",
+   "Push against your partner gently, then relax.",
+   "Tell your partner to stop when it turns sharp."
+  ],
+  "Seated_Cable_Rows": [
+   "Sit tall with your chest out and your torso still.",
+   "Pull the handle to your belly, elbows close in.",
+   "Let your arms straighten fully between pulls."
+  ],
+  "Seated_Cable_Shoulder_Press": [
+   "Keep your head and chest up.",
+   "Press the handles up until they meet overhead.",
+   "Lower under control; don't let the weight rest."
+  ],
+  "Seated_Calf_Raise": [
+   "Lower your heels until your calves stretch.",
+   "Push up as high as your ankles will go.",
+   "Pause a second at the top before lowering."
+  ],
+  "Seated_Calf_Stretch": [
+   "Sit tall with one leg straight and the other bent.",
+   "Pull your toes back toward you gently.",
+   "Ease off if the stretch turns sharp."
+  ],
+  "Seated_Close-Grip_Concentration_Barbell_Curl": [
+   "Keep the backs of your arms pressed to your thighs.",
+   "Move only your forearms.",
+   "Lower slowly with no swinging."
+  ],
+  "Seated_Dumbbell_Curl": [
+   "Keep your elbows close to your sides.",
+   "Turn your palms up as the weights pass your thighs.",
+   "Lower slowly and move only your forearms."
+  ],
+  "Seated_Dumbbell_Inner_Biceps_Curl": [
+   "Start with your palms facing each other.",
+   "Curl out and up, turning your palms outward.",
+   "Keep your upper arms still and lower slowly."
+  ],
+  "Seated_Dumbbell_Palms-Down_Wrist_Curl": [
+   "Rest your forearms on your thighs, wrists past your knees.",
+   "Move only your wrists.",
+   "Lower slowly instead of dropping the weight."
+  ],
+  "Seated_Dumbbell_Palms-Up_Wrist_Curl": [
+   "Rest your forearms on your thighs with palms up.",
+   "Curl only at the wrists.",
+   "Let the weight come all the way down each time."
+  ],
+  "Seated_Dumbbell_Press": [
+   "Keep your back against the pad.",
+   "Press up until the dumbbells touch overhead.",
+   "Lower slowly back to shoulder height."
+  ],
+  "Seated_Flat_Bench_Leg_Pull-In": [
+   "Lean back about halfway and hold the bench sides.",
+   "Pull your knees in as your chest comes to meet them.",
+   "Breathe out as you pull in, then lower slowly."
+  ],
+  "Seated_Floor_Hamstring_Stretch": [
+   "Keep the front leg straight, the other foot on your thigh.",
+   "Lean forward from your hips, not by rounding your back.",
+   "Reach toward your ankle and stop when it turns sharp."
+  ],
+  "Seated_Front_Deltoid": [
+   "Keep your elbows straight and arms out to the sides.",
+   "Push forward against your partner without moving.",
+   "Tell your partner to stop when it turns sharp."
+  ],
+  "Seated_Glute": [
+   "Cross one ankle over the opposite knee.",
+   "Lean forward from your hips, then relax.",
+   "Tell your partner to ease off when it turns sharp."
+  ],
+  "Seated_Good_Mornings": [
+   "Set the bar across your shoulders, not on your neck.",
+   "Keep your lower back arched and your head facing forward.",
+   "Bend forward from your hips and stop above the pins."
+  ],
+  "Seated_Hamstring": [
+   "Sit with legs straight and lean forward from your hips.",
+   "Push your torso back against your partner without moving.",
+   "Tell your partner to stop when it turns sharp."
+  ],
+  "Seated_Hamstring_and_Calf_Stretch": [
+   "Keep the working leg straight in front of you.",
+   "Pull the belt to draw your toes back toward you.",
+   "Lean forward slightly and ease off if it turns sharp."
+  ],
+  "Seated_Head_Harness_Neck_Resistance": [
+   "Rest both hands on your knees and sit steady.",
+   "Lower your chin slowly toward your chest.",
+   "Come back up slowly; never jerk your head."
+  ],
+  "Seated_Leg_Curl": [
+   "Keep your back on the pad and your torso still.",
+   "Curl your heels as far under as they go.",
+   "Return slowly until your legs are straight."
+  ],
+  "Seated_Leg_Tucks": [
+   "Lean back about halfway and grip the bench sides.",
+   "Pull your knees in as your chest comes toward them.",
+   "Lower slowly and keep your feet off the floor."
+  ],
+  "Seated_One-Arm_Dumbbell_Palms-Down_Wrist_Curl": [
+   "Rest your forearm on your thigh, palm down over the knee.",
+   "Move only your wrist.",
+   "Lower as far as it goes, keeping a tight grip."
+  ],
+  "Seated_One-Arm_Dumbbell_Palms-Up_Wrist_Curl": [
+   "Rest your forearm on your thigh, palm up over the knee.",
+   "Move only your wrist, not your arm.",
+   "Lower the weight fully, then curl it as high as possible."
+  ],
+  "Seated_One-arm_Cable_Pulley_Rows": [
+   "Sit tall with your chest out and your torso still.",
+   "Pull the handle to your belly with the elbow close.",
+   "Turn your palm inward as you pull, back as you return."
+  ],
+  "Seated_Overhead_Stretch": [
+   "Sit tall with the soles of your feet together.",
+   "Lift your elbow to the ceiling and lean to the side.",
+   "Lean only as far as it stays comfortable."
+  ],
+  "Seated_Palm-Up_Barbell_Wrist_Curl": [
+   "Rest your forearms on your thighs with palms up.",
+   "Let the bar lower fully, then curl it as high as possible.",
+   "Move only your wrists."
+  ],
+  "Sumo_Deadlift_with_Chains": [
+   "Set your feet very wide, hands gripping inside your knees.",
+   "Chest up, then push the floor apart with your feet.",
+   "Drive your hips into the bar as it passes your knees."
+  ],
+  "Superman": [
+   "Lift your arms, legs and chest at the same time.",
+   "Breathe out as you lift.",
+   "Lower slowly instead of dropping down."
+  ],
+  "Supine_Chest_Throw": [
+   "Start with the ball resting on your chest.",
+   "Throw straight up, not forward.",
+   "Catch it with both hands."
+  ],
+  "Supine_One-Arm_Overhead_Throw": [
+   "Start with your arm stretched fully behind your head.",
+   "Throw forward as you sit up.",
+   "Throw for distance, not height."
+  ],
+  "Supine_Two-Arm_Overhead_Throw": [
+   "Start with both arms stretched fully behind your head.",
+   "Throw forward as you sit up.",
+   "Throw for distance, not height."
+  ],
+  "Suspended_Fallout": [
+   "Keep your arms straight the whole way.",
+   "Keep your body straight from head to heels.",
+   "Let only your shoulders move."
+  ],
+  "Suspended_Push-Up": [
+   "Keep your body straight from head to heels.",
+   "Lower slowly until your elbows pass ninety degrees.",
+   "Pause at the bottom before pushing back up."
+  ],
+  "Suspended_Reverse_Crunch": [
+   "Do not let your hips sag.",
+   "Pull your knees in towards your chest.",
+   "Return slowly under control."
+  ],
+  "Suspended_Row": [
+   "Keep your head and chest up.",
+   "Keep your body straight from head to heels.",
+   "Let your arms straighten fully at the bottom."
+  ],
+  "Suspended_Split_Squat": [
+   "Chest up and eyes forward.",
+   "Keep your weight on your front heel.",
+   "Stay upright all the way down."
+  ],
+  "Svend_Press": [
+   "Squeeze the plates hard together the whole time.",
+   "Press straight out in front of your chest.",
+   "Bring them back in slowly."
+  ],
+  "T-Bar_Row_with_Handle": [
+   "Stand wide with your hips back and chest up.",
+   "Pull the handle to your upper stomach.",
+   "Do not jerk or swing the weight up."
+  ],
+  "Tate_Press": [
+   "Keep your upper arms still with elbows pointing out.",
+   "Lower the dumbbells in and down to your chest.",
+   "Take longer coming down than going up."
+  ],
+  "The_Straddle": [
+   "Sit tall with your legs spread wide in a V.",
+   "Lean forward from the hips with hands on the floor.",
+   "Ease off if the stretch turns sharp."
+  ],
+  "Thigh_Abductor": [
+   "Keep your upper body still against the seat.",
+   "Push your legs apart slowly.",
+   "Control your legs on the way back in."
+  ],
+  "Thigh_Adductor": [
+   "Keep your upper body still against the seat.",
+   "Bring your legs together slowly.",
+   "Let them open slowly, no jerking."
+  ],
+  "Tire_Flip": [
+   "Get your chest against the tire before you pull.",
+   "Drive up through your legs, not your back.",
+   "Step in and drive a knee under the tire."
+  ],
+  "Toe_Touchers": [
+   "Keep your lower back pressed into the floor.",
+   "Keep your legs up and your arms straight.",
+   "Lift your shoulders and reach towards your toes."
+  ],
+  "Torso_Rotation": [
+   "Hold the ball straight out in front of you.",
+   "Keep your eyes on the ball as you turn.",
+   "Turn smoothly side to side."
+  ],
+  "Trail_Running_Walking": [
+   "Wear shoes with real grip.",
+   "Take smaller steps going downhill.",
+   "Keep your knees bent and slow down on descents."
+  ],
+  "Trap_Bar_Deadlift": [
+   "Chest up and eyes forward before you pull.",
+   "Push the floor away through your heels.",
+   "Stop before your back rounds."
+  ],
+  "Tricep_Dumbbell_Kickback": [
+   "Keep your upper arms still against your sides.",
+   "Move only your forearms.",
+   "Straighten your arm fully at the top."
+  ],
+  "Tricep_Side_Stretch": [
+   "Bring your arm across your chest.",
+   "Hold at the elbow and pull gently.",
+   "Stop at a mild stretch, never a sharp one."
+  ],
+  "Triceps_Overhead_Extension_with_Rope": [
+   "Keep your elbows pointing up and staying put.",
+   "Stagger your feet for balance.",
+   "Straighten your arms fully overhead."
+  ],
+  "Triceps_Pushdown": [
+   "Keep your upper arms pinned to your sides.",
+   "Move only your forearms.",
+   "Straighten your arms fully at the bottom."
+  ],
+  "Triceps_Pushdown_-_Rope_Attachment": [
+   "Keep your upper arms pinned to your sides.",
+   "Split the rope out towards your thighs at the bottom.",
+   "Let the rope come back up slowly."
+  ],
+  "Triceps_Pushdown_-_V-Bar_Attachment": [
+   "Keep your upper arms pinned to your sides.",
+   "Push down until your arms are fully straight.",
+   "Keep your torso still, do not lean on the bar."
+  ],
+  "Triceps_Stretch": [
+   "Reach your hand down behind your head.",
+   "Hold the elbow and pull gently.",
+   "Stop when the stretch turns sharp."
+  ],
+  "Tuck_Crunch": [
+   "Keep your lower back pressed into the floor.",
+   "Keep your thighs pointing straight up.",
+   "Lift your shoulders slowly and breathe out."
+  ],
+  "Two-Arm_Dumbbell_Preacher_Curl": [
+   "Keep your upper arms flat on the pad.",
+   "Lower until your arms are straight.",
+   "Lower slowly, no bouncing at the bottom."
+  ],
+  "Two-Arm_Kettlebell_Clean": [
+   "Push your hips back and look straight ahead.",
+   "Drive up through your legs and hips.",
+   "Turn your wrists so the bells land softly."
+  ],
+  "Two-Arm_Kettlebell_Jerk": [
+   "Dip only a few inches before you drive.",
+   "Drive the bells overhead with your legs.",
+   "Stand tall with arms straight to finish."
+  ],
+  "Two-Arm_Kettlebell_Military_Press": [
+   "Rack the bells at your shoulders, palms facing forward.",
+   "Press up and slightly out.",
+   "Squeeze your legs and stomach tight for balance."
+  ],
+  "Two-Arm_Kettlebell_Row": [
+   "Push your hips back and keep your back flat.",
+   "Pull both bells to your stomach.",
+   "Squeeze your shoulder blades together as you pull."
+  ],
+  "Underhand_Cable_Pulldowns": [
+   "Set the knee pads snug before you start.",
+   "Chest out, lean back slightly.",
+   "Pull the bar to your upper chest, elbows close."
+  ],
+  "Upper_Back-Leg_Grab": [
+   "Keep your knees together and your legs straight.",
+   "Bring your chest down towards your knees.",
+   "Ease off if it turns sharp."
+  ],
+  "Upper_Back_Stretch": [
+   "Clasp your fingers with thumbs pointing down.",
+   "Round your shoulders and reach your hands forward.",
+   "Stop at a mild stretch."
+  ],
+  "Upright_Barbell_Row": [
+   "Keep the bar close to your body.",
+   "Let your elbows lead, higher than your hands.",
+   "Keep your body still, no swinging."
+  ],
+  "Upright_Cable_Row": [
+   "Keep the bar close to your body as it rises.",
+   "Let your elbows lead, higher than your hands.",
+   "Keep your torso still, no swinging."
+  ],
+  "Upright_Row_-_With_Bands": [
+   "Stand on the band so it is tight at the start.",
+   "Keep the handles close to your body.",
+   "Let your elbows lead, higher than your hands."
+  ],
+  "Upward_Stretch": [
+   "Press your palms together straight above your head.",
+   "Push your hands up and slightly back.",
+   "Keep your back straight."
+  ],
+  "V-Bar_Pulldown": [
+   "Chest out and lean back slightly.",
+   "Pull until your chest nearly touches the handles.",
+   "Keep your torso still throughout."
+  ],
+  "V-Bar_Pullup": [
+   "Chest out and lean back slightly.",
+   "Pull until your chest nearly touches the handles.",
+   "Lower yourself slowly instead of dropping."
+  ],
+  "Vertical_Swing": [
+   "Keep your back flat and your head up.",
+   "Drive with your hips, not your arms.",
+   "Bend your knees to soak up the landing."
+  ],
+  "Walking_Treadmill": [
+   "Stand tall and walk at a brisk pace.",
+   "Let go of the handles unless you need them."
+  ],
+  "Weighted_Ball_Hyperextension": [
+   "Press the balls of your feet into the floor.",
+   "Hold the plate under your chin or behind your neck.",
+   "Lift your chest slowly, then lower under control."
+  ],
+  "Weighted_Ball_Side_Bend": [
+   "Rest your side firmly on the ball.",
+   "Bend straight sideways, no twisting.",
+   "Lower back down slowly."
+  ],
+  "Weighted_Bench_Dip": [
+   "Keep your elbows tucked close to your body.",
+   "Lower until your elbows bend just past ninety degrees.",
+   "Stay upright and close to the bench."
+  ],
+  "Weighted_Crunches": [
+   "Keep your lower back on the floor.",
+   "Roll your shoulders up just a few inches.",
+   "Breathe out as you curl up."
+  ],
+  "Weighted_Jump_Squat": [
+   "Keep the weight light enough to jump fast.",
+   "Head and chest up, dip only partway.",
+   "Bend your knees to absorb the landing."
+  ]
+ }
+}

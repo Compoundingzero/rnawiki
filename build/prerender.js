@@ -140,6 +140,7 @@ const RXN = global.window.RNAWIKI_INTERACTIONS;
 const IXN_ENGINE = require(path.join(SITE, 'ixn-engine.js')).init(D, RXN);
 const readJSON = (p) => { try { return JSON.parse(fs.readFileSync(p, 'utf8')); } catch (e) { return null; } };
 const EX = readJSON(path.join(ROOT, 'data', 'clinical_exercises.json'));
+const EX_CUES = (readJSON(path.join(ROOT, 'data', 'exercise_cues.json')) || {}).cues || {};
 const FO = readJSON(path.join(ROOT, 'data', 'foods.json'));
 // The per-problem plan: context / working / reassess / timeline / troubleshooting. `reassess` names
 // a doctor, clinician, A&E or polyclinic on all 41 problems and is the best-written safety text on
@@ -2890,6 +2891,14 @@ EX_ALL.forEach((e) => {
     ${prim ? `<p><b>Mainly:</b> ${prim}</p>` : ''}
     ${sec ? `<p><b>Also:</b> ${sec}</p>` : ''}
     <p class="muted">Muscle names link to what that muscle does, how it contracts and how to find it on your own body.</p>
+    ${(() => {
+      // THE CUES COME BEFORE THE STEPS. A step list tells you the order; a cue is the two or three
+      // things that decide whether it is done well — what a coach says from across the room.
+      // Nothing renders when a movement has none: an empty "no cues yet" block is worse than the
+      // steps standing on their own.
+      const cu = EX_CUES[e.id];
+      return (cu && cu.length) ? `<h2>Do it well</h2><ul class="ex-cues">${cu.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+    })()}
     ${(e.instructions || []).length ? `<h2>How to do it</h2><ol class="ex-steps">${e.instructions.map((i) => `<li>${esc(i)}</li>`).join('')}</ol>` : ''}
     ${altHtml}
     ${usedHtml}
