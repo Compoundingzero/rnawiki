@@ -4274,40 +4274,92 @@ function blankComments(src) {
 //
 // This is a whole class — a handler that reads a name nothing in its scope defines — and it is
 // mechanically detectable, so it gets a gate rather than a note.
+// ---- AND IT WAS NOT ONLY `b` (2026-08-14) ----------------------------------------------------
+// The first version of this gate checked one name. Within a minute of PUBLIC_COMMUNITY going on in
+// production, GET /api/protocols/new and GET /api/protocols/variants both answered 500 with
+// `ReferenceError: qp is not defined` — the identical defect, one identifier along. `qp` is
+// declared in serveStatic(), a different function; api() has none. Both routes had been written the
+// day before, both 404 behind the flag, so no reader and no test could reach the body, and the
+// browser suite runs with no Postgres so the database guard answers 503 above them.
+// The lesson is the gate, not the fix: a handler that reads a name nothing in its scope defines is
+// a class, and the class needs enumerating rather than one member of it.
 (function assertHandlersDeclareTheirBody() {
   const src = blankComments(fs.readFileSync(path.join(ROOT, 'server.js'), 'utf8'));
   const lines = src.split('\n');
   const bad = [];
   let checked = 0;
+  // THE ENUMERATED CLASS. Each of these is a name that reads something about the request, that
+  // api() does NOT define for you, and that is declared somewhere else in the file — which is
+  // exactly what makes the mistake easy and invisible. Add to this list; do not add a special case.
+  //   `b`  — the parsed request body.        Bit us on POST /api/avatar.
+  //   `qp` — the parsed query string.        Bit us on GET /api/protocols/new and /variants.
+  // `u` is deliberately absent: `const u = await currentUser(req)` is the overwhelming shape, but
+  // `u` is also a SQL alias for the users table in a dozen queries here, and a name that appears in
+  // both roles cannot be checked this way without failing against correct code.
+  const REQUEST_LOCALS = [
+    { name: 'b', how: "const b = await readBody(req, <maxBytes>) || {};",
+      why: 'Every other branch in api() reads its own body.' },
+    { name: 'qp', how: "const qp = new URL('http://x/' + url).searchParams;",
+      why: 'The `qp` declared at the top of serveStatic() is in a different function; api() has none.' },
+  ];
+  // A NAME INSIDE A SQL STRING IS NOT A NAME THIS FILE DEFINES. `b` is the table alias in
+  //     SELECT b.pid, b.rcid ... FROM base b JOIN lastc l USING(...)
+  // in the research aggregate, and `b.pid` there is Postgres reading its own alias, not JavaScript
+  // reading a request body. Blank the literal TEXT of every template literal while keeping the
+  // `${...}` interpolations, which are real JavaScript and must still be checked.
+  const blankSqlText = (s) => {
+    let out = '', tpl = false, depth = 0;
+    for (let k = 0; k < s.length; k++) {
+      const ch = s[k];
+      if (!tpl) {
+        out += ch;
+        if (ch === '`') tpl = true;
+        continue;
+      }
+      if (depth === 0 && ch === '`') { out += ch; tpl = false; continue; }
+      if (depth === 0 && ch === '$' && s[k + 1] === '{') { out += '${'; depth = 1; k++; continue; }
+      if (depth > 0) {
+        if (ch === '{') depth++;
+        if (ch === '}') depth--;
+        out += ch;
+        continue;
+      }
+      out += (ch === '\n' ? '\n' : ' ');   // keep line numbering exact
+    }
+    return out;
+  };
   // Every handler in api() is a two-space-indented `if (...) {` whose body closes on a
   // two-space-indented `}`. Walk each one and read only the lines it owns.
   for (let i = 0; i < lines.length; i++) {
     if (!/^ {2}if \(/.test(lines[i])) continue;
     if (!/\{\s*$/.test(lines[i])) continue;
-    // ONLY BODY-BEARING METHODS. `b` is also a SQL table alias (`FROM base b` in the research
-    // aggregate) and a conventional sort argument, and the first two versions of this gate failed
-    // the build against correct code on both. A GET handler has no body to read, so the rule that
-    // catches the avatar defect does not apply to one — narrowing to the methods that DO take a
-    // body removes every false positive without weakening the thing being asserted.
-    if (!/method === '(?:POST|PUT|PATCH)'/.test(lines[i])) continue;
+    if (!/method === '(?:GET|POST|PUT|PATCH|DELETE)'/.test(lines[i])) continue;
     let end = i + 1;
     while (end < lines.length && !/^ {2}\}/.test(lines[end])) end++;
-    const own = lines.slice(i, end);
+    const own = blankSqlText(lines.slice(i, end).join('\n')).split('\n');
     const block = own.join('\n');
-    // `b` IS ALSO THE CONVENTIONAL SECOND SORT ARGUMENT, and the first version of this gate failed
+    const head = lines[i].trim().slice(0, 96);
+    let sawOne = false;
+    // `b` IS ALSO THE CONVENTIONAL SECOND SORT ARGUMENT, and an early version of this gate failed
     // against correct code because of it: `.sort((a, b) => new Date(b.at) - new Date(a.at))` in the
     // /api/pulse handler reads `b.at` off a callback parameter, not off a request body. So a line
-    // that BINDS `b` as a parameter is not a line that reads one. Checked line by line rather than
-    // per block, so a handler may legitimately contain both.
-    const uses = own
-      .map((ln, k) => ({ ln, no: i + k + 1 }))
-      .filter(({ ln }) => /\bb\.[A-Za-z_$]/.test(ln) || /\bb\s*&&/.test(ln))
-      .filter(({ ln }) => !/[(,]\s*b\s*[,)]/.test(ln));
-    if (!uses.length) continue;
+    // that BINDS the name as a parameter is not a line that reads one. Checked line by line rather
+    // than per block, so a handler may legitimately contain both.
+    REQUEST_LOCALS.forEach(({ name, how, why }) => {
+      const use = new RegExp(`\\b${name}\\.[A-Za-z_$]|\\b${name}\\s*&&`);
+      const bind = new RegExp(`[(,]\\s*${name}\\s*[,)]`);
+      const decl = new RegExp(`\\b(?:const|let|var)\\s+${name}\\b`);
+      const uses = own
+        .map((ln, k) => ({ ln, no: i + k + 1 }))
+        .filter(({ ln }) => use.test(ln))
+        .filter(({ ln }) => !bind.test(ln));
+      if (!uses.length) return;
+      sawOne = true;
+      if (decl.test(block)) return;
+      bad.push(`server.js:${uses[0].no} — this handler reads \`${name}\` and never declares it. ${why}\n      it needs: ${how}\n      handler:  ${head}\n      line:     ${uses[0].ln.trim().slice(0, 96)}`);
+    });
+    if (!sawOne) continue;
     checked++;
-    if (/\b(?:const|let|var)\s+b\b/.test(block)) continue;
-    const head = lines[i].trim().slice(0, 96);
-    bad.push(`server.js:${uses[0].no} — this handler reads \`b\` and never declares it. Every other branch in api() opens with \`const b = await readBody(req, …)\`.\n      handler: ${head}\n      line:    ${uses[0].ln.trim().slice(0, 96)}`);
   }
   if (checked < 5) {
     bad.push(`build/parse.js found only ${checked} body-reading POST handler(s) in server.js. There are dozens. If api()'s shape or indentation changed, retarget this gate — a gate that cannot find its subject passes vacuously.`);
@@ -4319,7 +4371,7 @@ function blankComments(src) {
     console.error('  caller, and node --check cannot see it. POST /api/avatar did exactly that.');
     process.exit(1);
   }
-  console.log('[parse] handler bodies OK — %d request handler(s) read a body, every one of them declares its own.', checked);
+  console.log("[parse] handler locals OK — %d request handler(s) read b or qp, every one of them declares what it reads.", checked);
 })();
 
 // ---- A PUBLIC PROTOCOL LIST IS AN ALLOWLIST, AND CARRIES NO SCORE ----------------------------

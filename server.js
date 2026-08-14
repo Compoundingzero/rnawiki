@@ -2180,6 +2180,14 @@ async function api(req, res, url) {
   // works best", which at this sample size is noise and in Singapore is a health claim.
   if (seg[0] === 'protocols' && seg[1] === 'variants' && !seg[2] && method === 'GET') {
     if (!db.enabled) return json(res, 200, { variants: [] });
+    // `qp` DID NOT EXIST IN THIS SCOPE (fixed 2026-08-14). It is declared in serveStatic(), a
+    // different function; api() has none, and every other handler here reads its query with
+    // `new URL('http://x/' + url).searchParams`. So this line threw a ReferenceError and the
+    // endpoint answered 500 to every caller — from the hour it was written. It was invisible for
+    // the same reason the avatar defect was: the route 404s behind PUBLIC_COMMUNITY, so no test and
+    // no reader could reach the body, and the browser suite runs with no Postgres, which returns
+    // 503 above this line. It surfaced within a minute of the flag going on in production.
+    const qp = new URL('http://x/' + url).searchParams;
     const pid = clean(qp.get('pid') || '', 64), rcid = clean(qp.get('rcid') || '', 64);
     if (!pid || !rcid) return json(res, 400, { error: 'pid and rcid are required' });
     try {
@@ -2231,6 +2239,7 @@ async function api(req, res, url) {
   // no note, no user id — the same allowlist discipline the profile projection uses.
   if (seg[0] === 'protocols' && seg[1] === 'new' && !seg[2] && method === 'GET') {
     if (!db.enabled) return json(res, 200, { protocols: [] });
+    const qp = new URL('http://x/' + url).searchParams;   // see the note in /variants above
     const lim = Math.min(12, Math.max(1, parseInt(qp.get('limit') || '6', 10) || 6));
     try {
       // p.title is NOT selected: the comment above says "the governed title" and this returned the
