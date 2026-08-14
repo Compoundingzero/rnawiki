@@ -9611,6 +9611,51 @@
       };
     }
   }
+  // ---- THE MUSCLE MAP, THE TWIN OF exFigure() IN build/prerender.js -------------------------
+  // 17 regions whose ids ARE the 17 muscle strings the corpus tags with, and not one finer: the
+  // `structures` registry keys on groupId, so no exercise tag can ever select a sub-structure and
+  // anything finer would be the renderer inventing a fact and drawing it identically on hundreds of
+  // pages. A muscle that wraps the body is drawn on BOTH figures — one face inverts it by the whole
+  // depth of the body. Primary is FILLED and secondary is OUTLINED, never hue alone. The SVG is
+  // aria-hidden with nothing focusable, because the authoritative answer is the muscle list beside
+  // it: a picture is an aid, and text survives no-images, no-colour, a screen reader and a crawler.
+  // The 14 suppressions and the 7 deep-shoulder pages are the same sets as the prerenderer's; if
+  // these two ever disagree, the crawler and the reader see different anatomy.
+  const EX_NO_FIGURE = new Set(['Smith_Machine_Reverse_Calf_Raises', 'Rocking_Standing_Calf_Raise',
+    'Anterior_Tibialis-SMR', 'Peroneals-SMR', 'Peroneals_Stretch', 'Posterior_Tibialis_Stretch',
+    'Foot-SMR', 'Dumbbell_Lying_Pronation', 'Dumbbell_Lying_Supination', 'Band_Hip_Adductions',
+    'Balance_Board', 'Ankle_Circles', 'Knee_Circles', 'Stomach_Vacuum']);
+  const EX_DEEP_SHOULDER = new Set(['External_Rotation', 'External_Rotation_with_Band',
+    'External_Rotation_with_Cable', 'Cable_Internal_Rotation', 'Internal_Rotation_with_Band',
+    'Reverse_Flyes_With_External_Rotation', 'Cuban_Press']);
+  function exFigureHtml(e, K, cls) {
+    const BZ = D.bodyZones, MZ = (BZ && BZ.muscleZones) || [];
+    if (!BZ || !MZ.length) return '';
+    if (EX_NO_FIGURE.has(e.id)) return '<p class="bm-none">RNAwiki does not draw a body map for this one: the muscle it is filed under is not the muscle doing the work, and a confident wrong picture is worse than none. The steps below are unaffected.</p>';
+    const prim = new Set(e.primaryMuscles || []);
+    const sec = new Set((e.secondaryMuscles || []).filter(m => !prim.has(m)));
+    const sil = ox => BZ.silhouette.map(s => s.t === 'ellipse'
+      ? `<ellipse class="bm-sil" cx="${s.cx + ox}" cy="${s.cy}" rx="${s.rx}" ry="${s.ry}"/>`
+      : `<rect class="bm-sil" x="${s.x + ox}" y="${s.y}" width="${s.w}" height="${s.h}" rx="${s.rx || 0}"/>`).join('');
+    let lit = 0;
+    const draw = (view, ox) => MZ.filter(z => z.view === view || z.view === 'both').map(z => {
+      const c = prim.has(z.id) ? 'bm-p' : sec.has(z.id) ? 'bm-s' : '';
+      if (!c) return '';
+      lit++;
+      return z.shapes.map(s => `<ellipse class="bm-r ${c}" cx="${s.cx + ox}" cy="${s.cy}" rx="${s.rx}" ry="${s.ry}"/>`).join('');
+    }).join('');
+    const front = draw('front', BZ.figures.front.ox), back = draw('back', BZ.figures.back.ox);
+    if (!lit) return '';
+    const lab = v => `<text class="bm-flabel" x="${BZ.figures[v].ox + 80}" y="428" text-anchor="middle">${esc(BZ.figures[v].label)}</text>`;
+    const deep = EX_DEEP_SHOULDER.has(e.id) ? '<p class="bm-deep">The muscles doing the work here sit deep under the shoulder blade. They are not visible on a body outline, so the shoulder is marked only to show you roughly where to look.</p>' : '';
+    return `<figure class="bm ${cls}${EX_DEEP_SHOULDER.has(e.id) ? ' bm-faint' : ''}">
+      <svg viewBox="${esc(BZ.viewBox)}" aria-hidden="true" focusable="false">
+        ${sil(BZ.figures.front.ox)}${sil(BZ.figures.back.ox)}${front}${back}${lab('front')}${lab('back')}
+      </svg>
+      <figcaption>Filled is the muscle this mainly ${esc(K.verb.toLowerCase().replace(/,.*$/, ''))}. Outlined is the rest of what it involves. The exact answer is written below.</figcaption>
+    </figure>${deep}`;
+  }
+
   // ---------- Per-exercise / per-stretch page (animated demo + muscles worked) ----------
   async function mountExercise(id) {
     try { await ensureProtocolData(); } catch (e) {}
@@ -9653,16 +9698,17 @@
     // shrug as 'mobility'. The partition is over category/force/equipment and it is exhaustive:
     // measured 14 + 80 + 27 + 2 = 123, no remainder. build/prerender.js exKind() is the twin.
     const _roll = /foam roll/i.test(e.equipment || '') || /SMR/i.test(e.id || '');
-    const K = e.category !== 'stretching' ? { label: 'Strengthening', verb: 'Works' }
-      : _roll ? { label: 'Foam rolling', verb: 'Where the roller goes' }
-        : e.force === 'static' ? { label: 'Stretch', verb: 'Lengthens' }
-          : { label: 'Mobility drill', verb: 'Works, through range' };
+    const K = e.category !== 'stretching' ? { label: 'Strengthening', verb: 'Works', cls: 'ex-work' }
+      : _roll ? { label: 'Foam rolling', verb: 'Where the roller goes', cls: 'ex-press' }
+        : e.force === 'static' ? { label: 'Stretch', verb: 'Lengthens', cls: 'ex-long' }
+          : { label: 'Mobility drill', verb: 'Works, through range', cls: 'ex-mob' };
     app.innerHTML = `<div class="article">${crumbs([{ label: 'Home', href: '#/' }, { label: 'Movements', href: '#/exercise' }, { label: e.name }])}
       <div class="anat-head"><span class="anat-region">${esc(K.label)}${e.level ? ' · ' + esc(e.level) : ''}</span>
         <div class="lyr-head"><h1>${esc(e.name)}</h1><button class="sec-edit" id="ex-edit" title="Suggest an edit">✎ Edit</button></div></div>
       ${demo}
       <div class="ex-rx-line">${rxLine(e)}${e.equipment ? ' · ' + esc(e.equipment) : ''}${e.mechanic ? ' · ' + esc(e.mechanic) : ''}${e.force ? ' · ' + esc(e.force) : ''}</div>
       <div class="section-title">${esc(K.verb)}</div>
+      ${exFigureHtml(e, K, K.cls)}
       <p class="muted" style="font-size:.9rem">Tap a muscle for its anatomy, how it contracts, and the energy systems that fuel it.</p>
       ${prim ? `<div class="ex-mgroup"><span class="ex-mk">Mainly</span><div class="tag-row">${prim}</div></div>` : ''}
       ${sec ? `<div class="ex-mgroup"><span class="ex-mk">Also</span><div class="tag-row">${sec}</div></div>` : ''}

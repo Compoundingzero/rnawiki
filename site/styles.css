@@ -5427,3 +5427,33 @@ html[data-state="removed"] .i-form{display:none}
 .exi-list li{break-inside:avoid;margin:.2rem 0}
 @media(max-width:520px){.exi-list{columns:1}}
 .mu-ex{font-size:.92rem}
+
+/* ---- the per-movement muscle map (2026-08-14) -----------------------------------------------
+   17 regions, the same 17 strings the corpus tags with. Primary is FILLED and secondary is
+   OUTLINED — never hue alone, so it survives greyscale, both themes and colour blindness. The
+   treatment also carries the fact the tag hides: a stretch lengthens the muscle rather than
+   working it, and a foam roller presses tissue that is doing neither. */
+.bm{margin:1rem 0;max-width:340px}
+.bm svg{width:100%;height:auto;display:block}
+.bm-sil{fill:var(--panel2);stroke:var(--line);stroke-width:1}
+.bm-r{fill:none;stroke:none}
+.bm-flabel{font-size:11px;fill:var(--muted)}
+.bm figcaption{font-size:.78rem;color:var(--muted);line-height:1.45;margin-top:.3rem}
+/* WORKS — the muscle is producing the force. Solid.
+   SECONDARY IS DELIBERATELY QUIET. A deadlift lights nine regions at once and the first version
+   gave every one of them a full-strength 1.2px stroke, so the one FILLED region — the answer —
+   read no louder than the eight around it. Honesty says show all nine; legibility says only one of
+   them is the answer. Fill carries the primary, and the outline is a whisper. */
+.ex-work .bm-p{fill:var(--accent);fill-opacity:.85}
+.ex-work .bm-s{fill:var(--accent);fill-opacity:.10;stroke:var(--accent);stroke-opacity:.45;stroke-width:.9}
+/* LENGTHENS — the muscle is being pulled long, not working. Outlined, never solid. */
+.ex-long .bm-p{fill:var(--accent2);fill-opacity:.18;stroke:var(--accent2);stroke-width:2.2}
+.ex-long .bm-s{fill:none;stroke:var(--accent2);stroke-width:1;stroke-dasharray:3 3}
+/* MOBILITY — contracting through range. Solid, but lighter than a loaded rep. */
+.ex-mob .bm-p{fill:var(--accent);fill-opacity:.5;stroke:var(--accent);stroke-width:1.4}
+.ex-mob .bm-s{fill:var(--accent);fill-opacity:.09;stroke:var(--accent);stroke-opacity:.4;stroke-width:.9}
+/* PRESSED — a roller on the tissue. Neither shortening nor lengthening, so neither treatment. */
+.ex-press .bm-p{fill:none;stroke:var(--orange,#a35a00);stroke-width:2.6;stroke-dasharray:6 4}
+.ex-press .bm-s{fill:none;stroke:var(--orange,#a35a00);stroke-width:1;stroke-dasharray:2 4}
+.bm-faint .bm-p{fill-opacity:.28}
+.bm-deep,.bm-none{font-size:.86rem;line-height:1.55;color:var(--muted);background:var(--panel2);border-radius:10px;padding:.6rem .75rem;margin:.6rem 0}

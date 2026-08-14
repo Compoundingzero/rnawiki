@@ -2759,6 +2759,83 @@ function exKind(e) {
   if (e.force === 'static') return { label: 'Stretch', verb: 'Lengthens', cls: 'ex-long' };
   return { label: 'Mobility drill', verb: 'Works, through range', cls: 'ex-mob' };
 }
+// ---- THE MUSCLE MAP: 17 REGIONS, NO FINER, AND NOT ON EVERY PAGE ---------------------------
+// It is baked HERE, at build time, and needs no JavaScript at all: the muscles a movement works
+// never change, so every one of the 873 pages has exactly one answer and it is known now. The
+// ~90% of traffic that never runs a script gets the identical picture as everybody else.
+//
+// THE SVG IS aria-hidden AND THE ANSWER IS IN WORDS BESIDE IT. A picture is an aid; on a health
+// page the authoritative answer should be text, and text is what survives every failure mode at
+// once — no images, no colour vision, a screen reader, a crawler, and the reader who simply cannot
+// read an outline. Nothing here is focusable, because nothing here is actionable.
+//
+// PRIMARY IS FILLED, SECONDARY IS OUTLINED — never hue alone, so it survives greyscale and both
+// themes. And the treatment carries the THIRD fact the tag hides: on a stretch the tagged muscle is
+// being lengthened, not working, and on a foam-rolling row it is being pressed and is doing
+// neither.
+//
+// FOURTEEN PAGES GET NO FIGURE. Each was verified from the movement's own instruction text: the
+// tag names a muscle on the other side of the limb, a deeper layer with no surface footprint, or
+// no single prime mover at all. Drawing a confident wrong picture on a health page is worse than
+// drawing nothing, and a picture is remembered as a fact in a way a sentence is not.
+const EX_NO_FIGURE = new Set([
+  'Smith_Machine_Reverse_Calf_Raises',  // its own text: "extending your toes as high as possible" = dorsiflexion, tagged calves
+  'Rocking_Standing_Calf_Raise',        // step 4 plantarflexes, step 6 "lift your toes" — two opposite directions, one tag
+  'Anterior_Tibialis-SMR',              // "the muscles on the outside of your shins" — front of the leg, tagged calves
+  'Peroneals-SMR',                      // "roller placed on the outside of your lower leg" — lateral compartment
+  'Peroneals_Stretch',                  // same lateral compartment, tagged calves
+  'Posterior_Tibialis_Stretch',         // right side, wrong layer — deepest posterior compartment, no surface footprint
+  'Foot-SMR',                           // "across the arch of your foot" — the sole has no zone and cannot get one
+  'Dumbbell_Lying_Pronation',           // shoulder external rotation, tagged forearms — wrong segment of the limb
+  'Dumbbell_Lying_Supination',          // identical geometry, same error
+  'Band_Hip_Adductions',                // "raise your leg out to the side" is ABduction, tagged adductors — antagonist
+  'Balance_Board',                      // "stand up on it and try to balance" — no prime mover to highlight
+  'Ankle_Circles',                      // circumduction recruits all four compartments in turn
+  'Knee_Circles',                       // neither calf action drives it
+  'Stomach_Vacuum',                     // transversus abdominis: deepest layer, no surface footprint
+]);
+// Seven rotator-cuff movements get the figure at reduced emphasis plus a sentence, never a fill.
+// Subscapularis sits on the rib-facing surface of the shoulder blade; infraspinatus and teres minor
+// sit in the posterior fossae under the deltoid. There is no honest pixel for any of them on a body
+// outline, and filling the shoulder cap while saying nothing would be a fabricated location.
+const EX_DEEP_SHOULDER = new Set([
+  'External_Rotation', 'External_Rotation_with_Band', 'External_Rotation_with_Cable',
+  'Cable_Internal_Rotation', 'Internal_Rotation_with_Band', 'Reverse_Flyes_With_External_Rotation',
+  'Cuban_Press',
+]);
+const BZ = D.bodyZones || null;
+const MUSCLE_ZONES = (BZ && BZ.muscleZones) || [];
+function exFigure(e, k) {
+  if (!BZ || !MUSCLE_ZONES.length) return '';
+  if (EX_NO_FIGURE.has(e.id)) {
+    return `<p class="bm-none">RNAwiki does not draw a body map for this one: the muscle it is filed under is not the muscle doing the work, and a confident wrong picture is worse than none. The steps below are unaffected.</p>`;
+  }
+  const prim = new Set(e.primaryMuscles || []);
+  const sec = new Set((e.secondaryMuscles || []).filter((m) => !prim.has(m)));   // primary wins a tie
+  const sil = (ox) => BZ.silhouette.map((s) => s.t === 'ellipse'
+    ? `<ellipse class="bm-sil" cx="${s.cx + ox}" cy="${s.cy}" rx="${s.rx}" ry="${s.ry}"/>`
+    : `<rect class="bm-sil" x="${s.x + ox}" y="${s.y}" width="${s.w}" height="${s.h}" rx="${s.rx || 0}"/>`).join('');
+  const region = (z, ox, cls) => z.shapes.map((s) => `<ellipse class="bm-r ${cls}" cx="${s.cx + ox}" cy="${s.cy}" rx="${s.rx}" ry="${s.ry}"/>`).join('');
+  let lit = 0;
+  const draw = (view, ox) => MUSCLE_ZONES.filter((z) => z.view === view || z.view === 'both').map((z) => {
+    const cls = prim.has(z.id) ? 'bm-p' : sec.has(z.id) ? 'bm-s' : '';
+    if (!cls) return '';
+    lit++;
+    return region(z, ox, cls);
+  }).join('');
+  const front = draw('front', BZ.figures.front.ox), back = draw('back', BZ.figures.back.ox);
+  if (!lit) return '';
+  const label = (v) => `<text class="bm-flabel" x="${BZ.figures[v].ox + 80}" y="428" text-anchor="middle">${BZ.figures[v].label}</text>`;
+  const deep = EX_DEEP_SHOULDER.has(e.id)
+    ? `<p class="bm-deep">The muscles doing the work here sit deep under the shoulder blade. They are not visible on a body outline, so the shoulder is marked only to show you roughly where to look.</p>` : '';
+  return `<figure class="bm ${k.cls}${EX_DEEP_SHOULDER.has(e.id) ? ' bm-faint' : ''}">
+      <svg viewBox="${BZ.viewBox}" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+        ${sil(BZ.figures.front.ox)}${sil(BZ.figures.back.ox)}${front}${back}${label('front')}${label('back')}
+      </svg>
+      <figcaption>Filled is the muscle this mainly ${k.verb.toLowerCase().replace(/,.*$/, '')}. Outlined is the rest of what it involves. The exact answer is written below.</figcaption>
+    </figure>${deep}`;
+}
+
 const EX_ALL = (EX && EX.exercises) || [];
 const EX_BY_ID = {};
 EX_ALL.forEach((e) => { EX_BY_ID[e.id] = e; });
@@ -2809,6 +2886,7 @@ EX_ALL.forEach((e) => {
     <p class="ex-kind"><b>${esc(k.label)}</b>${facts ? ' · ' + facts : ''}</p>
     ${demo}
     <h2>${esc(k.verb)}</h2>
+    ${exFigure(e, k)}
     ${prim ? `<p><b>Mainly:</b> ${prim}</p>` : ''}
     ${sec ? `<p><b>Also:</b> ${sec}</p>` : ''}
     <p class="muted">Muscle names link to what that muscle does, how it contracts and how to find it on your own body.</p>
@@ -5828,13 +5906,38 @@ console.log(`[prerender] sitemap lastmod: ${lmKept} unchanged (date kept), ${lmM
   const yt = exPages.filter((p) => /youtube\.com|youtu\.be/i.test(p.html));
   if (yt.length) bad.push(`${yt.length} movement page(s) link to YouTube — e.g. ${yt[0].route}. No camera and no video is a project constraint, and an unranked search result is not a citation.`);
 
+
+  // ---- THE MUSCLE MAP ------------------------------------------------------------------------
+  const figs = details.filter((p) => /<figure class="bm /.test(p.html));
+  const suppressed = details.filter((p) => /bm-none/.test(p.html));
+  if (figs.length + suppressed.length < details.length - 20) {
+    bad.push(`${details.length - figs.length - suppressed.length} movement page(s) have neither a muscle map nor the honest notice explaining why not.`);
+  }
+  if (suppressed.length !== 14) {
+    bad.push(`${suppressed.length} pages suppress the figure; the audited list is 14. Each one was verified from the movement's own instruction text — the tag names a muscle on the other side of the limb, a deeper layer with no surface footprint, or no single prime mover. Change the list deliberately, not by accident.`);
+  }
+  // Every region drawn must be one of the 17 the corpus can actually select. A finer shape is the
+  // renderer inventing a fact, drawn identically on hundreds of pages.
+  const zoneIds = new Set(((D.bodyZones || {}).muscleZones || []).map((z) => z.id));
+  if (zoneIds.size !== 17) bad.push(`data/body_zones.json defines ${zoneIds.size} muscleZones; the corpus tags from exactly 17 strings and no exercise can select anything finer.`);
+  const tags = new Set();
+  ((EX && EX.exercises) || []).forEach((e) => (e.primaryMuscles || []).concat(e.secondaryMuscles || []).forEach((m) => tags.add(m)));
+  const unmapped = [...tags].filter((t) => !zoneIds.has(t));
+  if (unmapped.length) bad.push(`${unmapped.length} muscle tag(s) have no region and would silently never light: ${unmapped.join(', ')}`);
+  // Nothing on the figure is actionable, so nothing on it may be focusable, and it must be hidden
+  // from the accessibility tree — the answer is the muscle list beside it.
+  const focusable = figs.filter((p) => /<figure class="bm [\s\S]{0,4000}?(tabindex|<a |<button)[\s\S]{0,200}?<\/figure>/.test(p.html));
+  if (focusable.length) bad.push(`${focusable.length} muscle map(s) contain a focusable element — e.g. ${focusable[0].route}. Nothing on the figure is actionable.`);
+  const notHidden = figs.filter((p) => !/<svg viewBox="[^"]*" aria-hidden="true"/.test(p.html));
+  if (notHidden.length) bad.push(`${notHidden.length} muscle map(s) are not aria-hidden — e.g. ${notHidden[0].route}. A screen reader gets the written list, not a shape soup.`);
   if (bad.length) {
     console.error('\n[prerender] MOVEMENT LIBRARY GATE FAILED — refusing to build.');
     bad.forEach((b) => console.error('  ✗ ' + b));
     process.exit(1);
   }
-  console.log('[prerender] movement library OK — %d movement documents + an index, every one linking to an authored muscle page; verbs: %d work, %d lengthen, %d roll, %d through-range; 0 video links.',
-    details.length, verbs.Works, verbs.Lengthens, verbs['Where the roller goes'], verbs['Works, through range']);
+  console.log('[prerender] movement library OK — %d documents + an index, all linking to an authored muscle page; verbs %d/%d/%d/%d; %d muscle maps over %d regions, %d suppressed on audit, 0 video links, 0 focusable shapes.',
+    details.length, verbs.Works, verbs.Lengthens, verbs['Where the roller goes'], verbs['Works, through range'],
+    figs.length, zoneIds.size, suppressed.length);
 })();
 
 (function assertGlobalDisclaimer() {
