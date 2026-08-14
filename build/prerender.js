@@ -581,6 +581,25 @@ const anchorAlias = (id) => `<span class="anchor-alias" id="${id}"></span>`;
 // pages in a flag-OFF build. That moved every one of their entries in build/lastmod.json, i.e. told
 // Google 52 documents had changed on a build where not one word of them had.
 const COMMUNITY_BUILD = process.env.PUBLIC_COMMUNITY === '1';
+// ---- ONE SWITCH FOR THE MOVEMENT LIBRARY'S INDEXABILITY (2026-08-14) ------------------------
+// robots, sitemap membership and the JSON-LD dateModified are three expressions of one decision,
+// and the build refuses to let them disagree: a page outside the sitemap that emits a dateModified
+// fails assertNoindexNeverCrossCanonicals, because its lastmod is never published and inventing one
+// would make the next build report the route universe as shrunk. So the decision lives here, once.
+// It was false while these pages carried only free-exercise-db's open prose. It is true now that
+// each carries authored technique cues, a muscle map, the muscles joined to RNAwiki's own 17
+// anatomy pages, an alternatives graph and the protocols that prescribe it.
+const EX_INDEXABLE = true;
+// PER PAGE, NOT PER ROUTE. Five movements carry NO instructions at all in the upstream dataset —
+// Iron_Cross, One-Arm_Kettlebell_Swings, Push_Press, Side_Bridge, Side_Jackknife — and the cue
+// agents correctly returned nothing for them, having nothing to read. What is left is a title, a
+// muscle map and a list of links. That is not a document worth putting in front of a searcher, and
+// asking Google to index five stubs alongside 868 real pages invites exactly the thin-content
+// judgement the rest of this work is trying to earn its way out of. They stay served, linked and
+// crawlable — a reader who lands on one still gets the muscles and the alternatives — and out of
+// both the index and the sitemap.
+const exIndexable = (e) => EX_INDEXABLE
+  && ((EX_CUES[e.id] || []).length > 0 || (e.instructions || []).length >= 3);
 function voteFootHtml(pid, rcid, layer) {
   if (!COMMUNITY_BUILD) return '';
   return `
@@ -2883,6 +2902,48 @@ EX_ALL.forEach((e) => {
   const used = (EX_IN_PROTOCOL[e.id] || []).slice(0, 6);
   const usedHtml = used.length ? `<h2>Where RNAwiki uses it</h2><ul>${used.map((u) => `<li><a href="/protocol/${u.p.id}/${u.rc.id}">${esc(u.p.name)} — ${esc(u.rc.name.replace(/\s*\([^)]*\)/, ''))}</a></li>`).join('')}</ul>` : '';
   const facts = [e.level, e.equipment, e.mechanic, e.force && e.force !== 'null' ? e.force : ''].filter(Boolean).map(esc).join(' · ');
+  // ---- STRUCTURED DATA FOR SEARCH AND FOR ANSWER ENGINES (2026-08-14) ---------------------
+  // A generic WebPage tells a search engine nothing about what this document is. An answer engine
+  // asked "how do I do a barbell bench press" wants the ordered steps; asked "what does it work"
+  // it wants the muscles. Both are on the page as prose; this makes them machine-readable without
+  // duplicating a single claim — every value below is read from the same fields the page renders,
+  // so the markup cannot drift from the visible text.
+  // ExerciseAction is the honest schema.org type for "a person performing a physical activity"
+  // and carries the muscle as `target`. HowTo carries the ordered steps. Both are emitted; Google
+  // treats neither as a rich result today, and that is fine — this is for the machines that read
+  // the graph rather than the ones that draw a card.
+  const ldSteps = (e.instructions || []).map((t, n) => ({ '@type': 'HowToStep', position: n + 1, text: t }));
+  const ldFaq = faqBlock([
+    { q: `What muscles does ${e.name} work?`, a: `${k.verb} ${(e.primaryMuscles || []).join(' and ')}${(e.secondaryMuscles || []).length ? `, and also involves ${e.secondaryMuscles.join(', ')}` : ''}.` },
+    (EX_CUES[e.id] || []).length ? { q: `How do you do ${e.name} properly?`, a: (EX_CUES[e.id] || []).join('. ') + '.' } : null,
+    alts.length ? { q: `What can I do instead of ${e.name}?`, a: `${alts.slice(0, 4).map((a) => a.name).join(', ')} train the same primary muscle with different equipment.` } : null,
+    { q: `Is ${e.name} a stretch or a strengthening exercise?`, a: `${k.label}. ${k.verb} ${(e.primaryMuscles || []).join(' and ')}.` },
+  ]);
+  const jsonld = [
+    {
+      '@context': 'https://schema.org', '@type': 'ExerciseAction',
+      name: e.name,
+      description: cleanDesc(`${k.label}. ${k.verb} ${(e.primaryMuscles || []).join(' and ')}.`, 300),
+      url: SITE_URL + route, inLanguage: 'en',
+      // `target` is the body part the action acts on — the one field that makes this type worth
+      // emitting over a bare WebPage.
+      target: (e.primaryMuscles || []).concat(e.secondaryMuscles || []).map((m) => ({
+        '@type': 'EntryPoint', name: (MUSCLE_BY_DB[m] || {}).name || m,
+      })),
+      ...(e.equipment ? { instrument: { '@type': 'Thing', name: e.equipment } } : {}),
+    },
+    ...(ldSteps.length ? [{
+      '@context': 'https://schema.org', '@type': 'HowTo',
+      name: `How to do ${e.name}`,
+      description: cleanDesc(`Step by step, the muscles it works, and other ways to train the same muscle.`, 300),
+      url: SITE_URL + route, inLanguage: 'en',
+      ...(e.image ? { image: e.image } : {}),
+      ...(e.equipment ? { tool: [{ '@type': 'HowToTool', name: e.equipment }] } : {}),
+      step: ldSteps,
+      publisher: PUB.publisher, isPartOf: PUB.isPartOf,
+      ...(exIndexable(e) ? { dateModified: PUB.dateModified } : {}),
+    }] : []),
+  ].concat(ldFaq.ld || []);
   const body = `<div class="article ex-page"><h1>${esc(e.name)}</h1>
     <p class="ex-kind"><b>${esc(k.label)}</b>${facts ? ' · ' + facts : ''}</p>
     ${demo}
@@ -2903,14 +2964,15 @@ EX_ALL.forEach((e) => {
     ${altHtml}
     ${usedHtml}
     <p class="ex-credit">Movement description and images from the open <a href="https://github.com/yuhonas/free-exercise-db" rel="noopener">free-exercise-db</a>. The muscles, the alternatives and the protocol links are RNAwiki's. Educational, not medical advice.</p>
+    ${ldFaq.html}
     </div>`;
   add(route, shell({
-    route, robots: 'noindex,follow',
+    route, jsonld, ...(exIndexable(e) ? {} : { robots: 'noindex,follow' }),
     title: seoTitle(`${e.name}: how to do it and the muscles it works`),
     desc: seoDesc(`${e.name} — ${k.label.toLowerCase()}. ${k.verb} ${(e.primaryMuscles || []).join(', ')}. Step-by-step, the muscles worked, and other ways to train the same muscle.`),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Movements', route: '/exercise' }, { name: e.name }],
     body,
-  }), { noSitemap: true });
+  }), { noSitemap: !exIndexable(e) });
 });
 
 // The index. Every one of the 873 detail pages needs an inbound link or assertLinkGraph calls it an
@@ -2930,7 +2992,7 @@ EX_ALL.forEach((e) => {
       <ul class="exi-list">${list.map((e) => `<li><a href="${exRoute(e)}">${esc(e.name)}</a> <span class="muted">${esc(exKind(e).label.toLowerCase())}</span></li>`).join('')}</ul></section>`;
   }).join('');
   add('/exercise', shell({
-    route: '/exercise', robots: 'noindex,follow',
+    route: '/exercise', ...(EX_INDEXABLE ? {} : { robots: 'noindex,follow' }),
     title: seoTitle('Every movement RNAwiki holds, by the muscle it trains'),
     desc: seoDesc(`${EX_ALL.length} movements — strengthening, stretches, mobility drills and foam rolling — grouped by the muscle each one trains, with the muscles worked and how to do it.`),
     breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Movements', route: '/exercise' }],
@@ -2938,7 +3000,7 @@ EX_ALL.forEach((e) => {
       <p>${EX_ALL.length} movements, grouped by the muscle each one mainly trains. Each page shows what it works, how to do it, and other ways to train the same muscle.</p>
       <p class="muted">Movement descriptions and images come from the open free-exercise-db. The muscles, the alternatives and the protocol links are RNAwiki's.</p>
       ${groups}</div>`,
-  }), { noSitemap: true });
+  }), { noSitemap: !EX_INDEXABLE });
 }
 
 ANAT.muscles.forEach((m) => {

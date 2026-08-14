@@ -3175,12 +3175,13 @@ function serveStatic(req, res, url) {
   // carries no X-Robots-Tag at all. Followable, so a crawler can still walk from it into the public
   // wiki, but not indexed: it is a frame whose contents are drawn from a database at read time.
   if (p === '/p' || p === '/p/') res.setHeader('X-Robots-Tag', 'noindex, follow');
-  // /exercise and its 873 children, for the same reason: they emit real documents now, so the
-  // static lookup answers before NOINDEX_SHELL_ROUTES is consulted and the header would be absent.
-  // Followable so a crawler can walk from a movement into the muscle and protocol pages it links —
-  // which is the entire point of prerendering them — but not indexed while the prose is still the
-  // open free-exercise-db dataset. Flip both this and the shell()'s `robots` together.
-  if (p === '/exercise' || p.startsWith('/exercise/')) res.setHeader('X-Robots-Tag', 'noindex, follow');
+  // /exercise AND ITS 873 CHILDREN ARE INDEXED as of 2026-08-14, so no X-Robots-Tag is set for
+  // them at all — the header used to say `noindex, follow` and a header BEATS the meta tag in the
+  // document, so leaving it would have silently kept every one of these pages out of the index
+  // while the bytes claimed otherwise. That is the "one document saying two things" defect this
+  // file keeps finding. The decision lives in EX_INDEXABLE in build/prerender.js, which drives
+  // robots, sitemap membership and the JSON-LD dateModified together; there is deliberately
+  // nothing to set here.
   // Retired progress links encoded a handle and food log directly in the URL. Never render,
   // preview or preserve those parameters: redirects keep the public protocol route while removing
   // health state from browser history, Referer headers, proxy logs and social crawlers.
