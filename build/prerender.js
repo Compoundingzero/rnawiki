@@ -534,6 +534,23 @@ const { glossify: _glossify, compile: _compileGloss } = require('./glossify.js')
 // corpus. This file gains this require, four placeholders in homeBody, and one gate.
 const LANDING = require('./landing.js');
 
+// An invisible, zero-height anchor that preserves an already-indexed fragment after a heading has
+// been renamed. It carries no text, so it changes no word count and no reading order; it exists so
+// that /c/<slug>#watch-out still lands on the block that holds c.watch.
+
+// The "how to take it" heading, decided by the AUTHORED regulatory class rather than by prose.
+// Mirrors TIER_UI in site/app.js so the crawler document and the hydrated one title the block with
+// the same words. A prescription medicine never gets a self-administration heading.
+function protoHeading(c) {
+  const access = (c.bio && c.bio.access) || '';
+  const cls = typeof regClass === 'function' ? regClass(c) : '';
+  if (access === 'prescription' || cls === 'prescription' || cls === 'pharmacy') return 'How it\u2019s prescribed and used';
+  if (access === 'unapproved' || cls === 'unapproved' || cls === 'controlled') return 'What people do \u2014 and the risks (not an endorsement)';
+  return 'How to take it';
+}
+const anchorAlias = (id) => `<span class="anchor-alias" id="${id}"></span>`;
+
+
 // ---- THE VOTE STRIP, IN THE DOCUMENT A CRAWLER AND A NO-JS READER GET (2026-08-14) ------------
 // THIS IS THE ONE PLACE A FEATURE FLAG IS ALLOWED TO CHANGE THE EMITTED BYTES, and the reasoning is
 // worth stating because the file says the opposite a few hundred lines below, about CAPS.
@@ -1134,8 +1151,11 @@ function bioFlatHtml(c) {
     b.cost ? card('\ud83d\udcb0', 'Cost per dose', mdSafe(b.cost.perDose || '') + (b.cost.note ? `<p class="biof-note">${mdSafe(b.cost.note)}</p>` : '') + `<p class="biof-note">Singapore retail, as an order-of-magnitude guide \u2014 about 0.75 of this in US dollars, and cheaper in bulk almost everywhere.</p>`) : '',
   ].filter(Boolean);
   if (!cards.length) return '';
-  return `<section class="biof"><h2>🧪 Practical use — form, dose, timing and what to watch</h2>
-    <div class="biof-cards">${cards.join('')}</div></section>`;
+  // NO HEADING OF ITS OWN (2026-08-14). This is the body of the page's "How to take it" section,
+  // not a second section about the same question — the two headings sat adjacent and said the same
+  // thing. The RESTRICTED branch above keeps its own heading, because that one is a different
+  // section with a different meaning, and the regulatory gate asserts on its output.
+  return `<section class="biof"><div class="biof-cards">${cards.join('')}</div></section>`;
 }
 
 // ★ REGULATORY GATE — runs before a single compound page is written. ★
@@ -1150,7 +1170,6 @@ function bioFlatHtml(c) {
     ['Timing', 'a self-administration schedule'],
     ['Cost per dose', 'prices it as a consumer purchase'],
     ['Pairs well with', 'recommends stacking it'],
-    ['Practical use — form, dose, timing', 'the entire open-access heading'],
   ];
   const bad = [];
   D.compounds.forEach((c) => {
@@ -1221,13 +1240,13 @@ D.compounds.forEach((c) => {
   const cpdFact = factByHref['/c/' + slug(c.name)];
   const goalLinks = (c.goalIds || []).map((g) => `<a href="/goal/${g}">${esc(goalById[g].label)}</a>`).join(' · ');
   const usedIn = compoundProtocols[c.id] || [];
-  const usedInHtml = usedIn.length ? `<h2>Used in these protocols</h2><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}${u.cause ? ' — ' + esc(pcCase(u.cause)) : ''}</a></li>`).join('')}</ul>` : '';
+  const usedInHtml = usedIn.length ? `<h3>Used in these protocols</h3><ul>${usedIn.slice(0, 8).map((u) => `<li><a href="${u.route}">${esc(u.name)}${u.cause ? ' — ' + esc(pcCase(u.cause)) : ''}</a></li>`).join('')}</ul>` : '';
   const cmpLinks = compoundCompareLinks[c.id] || [];
   // Cap raised 8 -> 12 (2026-07-30). At 8, a pair that ranked ninth on BOTH of its two compounds
   // had no inbound link anywhere on the site: /compare/magnesium-vs-vitamin-d3-k2 and
   // /compare/l-citrulline-citrulline-malate-vs-omega-3-epa-dha were published and unreachable by
   // browsing. The most-compared compound has 12 pairs, so 12 truncates nothing.
-  const compareHtml = cmpLinks.length ? `<h2>Compare ${esc(c.name)}</h2><ul>${cmpLinks.slice(0, 12).map((x) => `<li><a href="${x.route}">${esc(c.name)} vs ${esc(x.other)}</a></li>`).join('')}</ul>` : '';
+  const compareHtml = cmpLinks.length ? `<h3>Compare ${esc(c.name)}</h3><ul>${cmpLinks.slice(0, 12).map((x) => `<li><a href="${x.route}">${esc(c.name)} vs ${esc(x.other)}</a></li>`).join('')}</ul>` : '';
   // ---- INTERNAL LINKS TO /target/ (added 2026-07-28) ----------------------------------------
   // prerender.js emitted ZERO `/target/` hrefs anywhere, so 102 of the 103 target pages had no
   // inbound link from the site and were reachable only from sitemap.xml. Search Console confirms
@@ -1242,7 +1261,7 @@ D.compounds.forEach((c) => {
   // citation only a JavaScript user can see is half a citation, so they render here too.
   const cle = LEARN_BY_NAME[c.name] || LEARN_BY_NAME['__slug__' + slug(c.name)];
   const trialsArr = (cle && cle.evi && Array.isArray(cle.evi.trials)) ? cle.evi.trials.filter((t) => t && t.finding) : [];
-  const trialsHtml = trialsArr.length ? `<h2>The key trials behind this</h2><ul>${trialsArr.map((t) =>
+  const trialsHtml = trialsArr.length ? `<h3>The key trials behind this</h3><ul>${trialsArr.map((t) =>
       `<li>${mdSafe(t.finding)}${t.ref ? ` <span class="bt-ref">— ${esc(t.ref)}</span>` : ''}`
       + `${t.pmid ? ` <a class="bt-pmid" href="https://pubmed.ncbi.nlm.nih.gov/${esc(t.pmid)}/" rel="noopener">PMID ${esc(t.pmid)}</a>` : ''}</li>`).join('')}</ul>` : '';
   const tSet = new Set((D.targets || []).map((t) => tkey(t.sym)));
@@ -1250,7 +1269,7 @@ D.compounds.forEach((c) => {
     .filter((t) => tSet.has(tkey(t.sym)))
     .filter((t, i, a) => a.findIndex((x) => tkey(x.sym) === tkey(t.sym)) === i);
   const targetLinksHtml = tLinks.length
-    ? `<h2>Molecular targets ${esc(c.name)} acts on</h2><ul>${tLinks.map((t) => {
+    ? `<h3>Molecular targets ${esc(c.name)} acts on</h3><ul>${tLinks.map((t) => {
         const full = (D.targets || []).find((x) => tkey(x.sym) === tkey(t.sym));
         const n = full ? (full.compoundIds || []).length : 0;
         return `<li><a href="/target/${tkey(t.sym)}">${esc(t.sym)}</a>${full && full.name && full.name.toLowerCase() !== t.sym.toLowerCase() ? ` — ${esc(full.name)}` : ''}${n > 1 ? ` <span class="muted">(${n} compounds act here)</span>` : ''}</li>`;
@@ -1261,9 +1280,33 @@ D.compounds.forEach((c) => {
     <div class="detail"><h1>${esc(c.name)}</h1>
     <p><b>Evidence:</b> ${compoundEvidence(c)} ${isToxicNoSafeDose(c) ? '' : (c.stars ? `(${c.stars} of 5)` : '(not yet rated)')} · <b>Regulator status:</b> ${(c.badgeLabels || []).join(', ') || 'none recorded'} · <b>How you get it:</b> ${esc((c.supply || {}).tag || '')}</p>
     ${cpdFact ? `<div class="cpd-fact"><span class="cf-k">💡 Did you know?</span> <span class="cf-t">${cpdFact.t}</span></div>` : ''}
-    ${c.plain ? `<h2>In plain English</h2><p>${esc(mds(c.plain))}</p>` : ''}
-    ${c.mechanism ? `<h2>How it works</h2><p>${esc(mds(c.mechanism))}</p>` : ''}
-    ${c.target ? `<h2>Molecular target &amp; official sources</h2><p>${mdLinks(c.target)}</p>` : ''}
+    ${/* ---- THE SUPPLEMENT PAGE, REORDERED AROUND THE READER'S QUESTION (2026-08-14) ----------
+          MEASURED BEFORE: the median compound page ran 2,489 words under 21 <h2> headings with 14
+          collapsed blocks. Creatine's outline went In plain English · How it works · Molecular
+          target · The big idea · Questions this answers · An analogy that holds up · How it
+          actually works step by step · Common misconceptions · What you can explain after this ·
+          Check yourself · Practical use (12 sub-cards) · Molecular targets · Key trials · Protocol
+          · Watch out · Bottom line · The human evidence · Stacks with · Availability · Used in
+          these protocols · Compare · Common questions. That is a textbook chapter, and the reader
+          arrives with one question: should I take this, and how?
+          NOTHING IS DELETED. The corpus's own random-sample overstatement rate is 3% — the writing
+          is the asset. This is a SEQUENCING change: the same prose, ordered as
+             what is it -> does it work -> how do I take it -> what do I watch -> can I get it
+             here -> where it fits, with the whole ten-block learning layer intact behind one
+          disclosure. Same doctrine as the landing page: fewer blocks on the surface, full depth on
+          demand. `In plain English` loses its heading and becomes the lede, because a heading over
+          the first paragraph of a page whose <h1> is the compound's name says nothing.
+          SAFETY ORDER IS DELIBERATE: "Before you take it" sits ABOVE "Getting it", so nobody meets
+          a shop before they meet a contraindication. */ ''}
+    ${/* THE OLD FRAGMENTS STILL HAVE TO LAND. This page's headings have been indexed by Google as
+          #in-plain-english, #how-it-works, #protocol, #watch-out, #bottom-line,
+          #the-human-evidence, #stacks-with and #availability-where-to-buy. Renaming the headings
+          without these would leave every one of those inbound links scrolling nowhere — on the
+          prerendered document as well as in the SPA, which is worse than the mismatch
+          assertAnchorAliases() was written to catch. Each alias is attached to the block that now
+          holds that exact authored field, never to a neighbouring one. */ ''}
+    ${anchorAlias('in-plain-english')}
+    ${c.plain ? `<p class="cpd-lede">${esc(mds(c.plain))}</p>` : ''}
     ${/* THE COMPOUND PAGE WAS 614 WORDS PRERENDERED AND 4,705 HYDRATED (2026-07-28).
           157 of 170 compounds carry a full learn layer — hook, bigIdea, analogy, mechSteps with
           687 prediction prompts, myths, canExplain, selfTest — on the compound object itself, and
@@ -1272,15 +1315,27 @@ D.compounds.forEach((c) => {
           The shape of `c` already matches what learnFlatHtml expects, so this is a one-line join —
           which is the recurring shape of this project's defects: authored well, connected to
           nothing. */ ''}
-    ${learnFlatHtml(c)}
+    ${/* 1 — DOES IT WORK. The authored bottom line first, then the human-evidence paragraph, then
+          what it has been studied for. The trial list is real and long, so it collapses. */ ''}
+    ${(c.bottom || c.evidence || goalLinks || trialsHtml) ? `<section class="cpd-blk" id="cpd-works">
+      <h2>Does it work?</h2>${anchorAlias('bottom-line')}${anchorAlias('the-human-evidence')}
+      ${c.bottom ? `<p class="cpd-lead">${mdSafe(c.bottom)}</p>` : ''}
+      ${c.evidence ? `<p>${esc(String(c.evidence).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, ''))}</p>` : ''}
+      ${goalLinks ? `<p><b>Studied for:</b> ${goalLinks}</p>` : ''}
+      ${trialsHtml ? `<details class="cpd-more"><summary>The trials this rests on</summary>${trialsHtml}</details>` : ''}
+    </section>` : ''}
+    ${/* 2 — HOW TO TAKE IT. c.protocol is the authored one-paragraph answer; bioFlatHtml() is the
+          form/dose/timing card set, and on a prescription or unapproved compound it emits the
+          restricted variant instead — that branch is asserted on its OUTPUT by the regulatory gate
+          below, so this ordering cannot smuggle a self-dosing block onto a restricted page. */ ''}
+    ${/* THE HEADING IS DERIVED FROM THE AUTHORED REGULATORY CLASS, never hardcoded. 9 of the 83
+          restricted compounds carry c.protocol — semaglutide, tirzepatide, liraglutide, ephedrine,
+          finasteride, MK-677, GHK-Cu, modafinil — and an <h2> reading "How to take it" over a
+          prescription-only medicine is precisely what Medicines Act 1975 s.51 and the Medicines
+          (Medical Advertisements) Regulations prohibit, with no educational exemption. The wording
+          matches TIER_UI in site/app.js so the two documents title the same block identically. */ ''}
+    ${c.protocol ? `<section class="cpd-blk" id="cpd-take"><h2>${protoHeading(c)}</h2>${anchorAlias('protocol')}<p>${mdSafe(c.protocol)}</p></section>` : ''}
     ${bioFlatHtml(c)}
-    ${targetLinksHtml}
-    ${trialsHtml}
-    ${c.protocol ? `<h2>Protocol</h2><p>${mdSafe(c.protocol)}</p>` : ''}
-    ${c.watch ? `<h2>Watch out</h2><p>${mdSafe(c.watch)}</p>` : ''}
-    ${c.bottom ? `<h2>Bottom line</h2><p>${mdSafe(c.bottom)}</p>` : ''}
-    ${goalLinks ? `<p><b>Helps with:</b> ${goalLinks}</p>` : ''}
-    ${c.evidence ? `<h2>The human evidence</h2><p>${esc(String(c.evidence).replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[*_`]/g, ''))}</p>` : ''}
     ${(() => {
       // W3.5 (2026-08-02): "often paired with" was a pairing recommendation nobody wrote — a
       // machine inference from a shared pathway id, printed under the heading "Stacks with" in the
@@ -1299,12 +1354,40 @@ D.compounds.forEach((c) => {
         const link = `<a href="/c/${slug(o.name)}">${esc(o.name)}</a>`;
         return f ? `${link} — ${TIER_ICON[f.tier]} ${esc(f.title)}` : link;
       }).join(', ');
-      return `${c.stacksWith ? `<h2>Stacks with</h2><p>${esc(strip(c.stacksWith))}</p>` : ''}${d.length ? `<h2>Acts on the same pathway</h2><p>Computed from shared pathways, not a suggestion to combine them: ${dList}.</p>` : ''}
-        ${c.avoid ? `<h2>Avoid combining with</h2><p>${esc(strip(c.avoid))}</p>` : ''}
-        <h2>Availability &amp; where to buy</h2><p><b>${esc(sg.tag)}.</b> ${sg.body.replace(/<\/?b>/g, '')}${c.cost ? ' ' + esc(strip(c.cost)) : ''}</p>`;
+      // 3 — BEFORE YOU TAKE IT, then 4 — GETTING IT. In that order, always: a reader must meet the
+      // contraindication before they meet the shelf. "Watch out" and "Avoid combining with" are one
+      // question to a reader and were two headings 8 sections apart.
+      return `${(c.watch || c.avoid) ? `<section class="cpd-blk cpd-care" id="cpd-care"><h2>Before you take it</h2>${anchorAlias('watch-out')}
+        ${c.watch ? `<p>${mdSafe(c.watch)}</p>` : ''}
+        ${c.avoid ? `<p><b>Do not combine with:</b> ${esc(strip(c.avoid))}</p>` : ''}
+      </section>` : ''}
+        <section class="cpd-blk" id="cpd-get"><h2>Getting it in Singapore</h2>${anchorAlias('availability-where-to-buy')}
+        <p><b>${esc(sg.tag)}.</b> ${sg.body.replace(/<\/?b>/g, '')}${c.cost ? ' ' + esc(strip(c.cost)) : ''}</p></section>
+        ${(c.stacksWith || d.length) ? `<section class="cpd-blk" id="cpd-with"><h2>What it is taken with</h2>${anchorAlias('stacks-with')}
+        ${c.stacksWith ? `<p>${esc(strip(c.stacksWith))}</p>` : ''}
+        ${d.length ? `<p class="muted">Sharing a pathway is not a reason to combine them, and this list is computed rather than written: ${dList}.</p>` : ''}
+      </section>` : ''}`;
     })()}
-    ${pathLink}
-    ${usedInHtml}${compareHtml}</div>`;
+    ${/* 5 — WHERE IT FITS. Everything that points somewhere else, in one block instead of four
+          scattered ones. */ ''}
+    ${(pathLink || usedInHtml || compareHtml) ? `<section class="cpd-blk" id="cpd-fits"><h2>Where it fits</h2>
+      ${pathLink}${usedInHtml}${compareHtml}</section>` : ''}
+    ${/* 6 — THE DEPTH, BEHIND ONE DOOR. 157 of 171 compounds carry a full authored learn layer —
+          hook, big idea, analogy, mechanism steps with prediction prompts, myths, can-explain,
+          self-test. It is the best writing on the site and it is not what somebody deciding whether
+          to take magnesium tonight came for. It stays whole, one tap away, and it stays in the
+          PRERENDERED document: a <details> is closed, not absent, so a crawler and a reader with no
+          JavaScript both still get every word. */ ''}
+    ${(c.mechanism || c.target || targetLinksHtml || learnFlatHtml(c, { headingLevel: 3 })) ? `<details class="cpd-depth" id="cpd-depth">
+      <summary><span><b>How it works, in depth</b><small>The mechanism, the molecular targets, and the whole explainer</small></span><span aria-hidden="true">›</span></summary>
+      <div class="cpd-depth-body">
+        ${anchorAlias('how-it-works')}
+        ${c.mechanism ? `<p>${esc(mds(c.mechanism))}</p>` : ''}
+        ${c.target ? `<p><b>Molecular target:</b> ${mdLinks(c.target)}</p>` : ''}
+        ${targetLinksHtml}
+        ${learnFlatHtml(c, { headingLevel: 3 })}
+      </div></details>` : ''}
+    </div>`;
   const cqa = faqBlock([
     // The star is a whole-compound summary, not an answer to "does it work for MY use", and it was
     // leading the FAQPage answer on all 170 /c/ pages -- i.e. it was the sentence answer engines
@@ -2335,7 +2418,26 @@ function renumberParts(html) {
   });
 }
 
+// ---- THE HEADING LEVEL IS THE CALLER'S, NOT THIS FUNCTION'S (2026-08-14) --------------------
+// This block is reused by SIX page types. On /target, /pathway, /learn, /muscle and /energy its
+// headings ARE the page's section structure and must be <h2>. On /c/<slug> it is nested inside the
+// "How it works, in depth" disclosure, under that page's own <h2>, so there they must be <h3>.
+// A blanket demotion to h3 — which is what I did first — cost /target 103 h1->h3 skips, /pathway
+// 15 pages with no <h2> at all and /learn 4, measured against the previous build. Default 2, and
+// only the compound page passes 3.
+// ---- THE HEADING LEVEL IS THE CALLER'S, NOT THIS FUNCTION'S (2026-08-14) --------------------
+// This block is reused by SIX page types. On /target, /pathway, /learn, /muscle and /energy its
+// headings ARE the page's section structure and must stay <h2>/<h3>. On /c/<slug> it is nested
+// inside the "How it works, in depth" disclosure, under that page's own <h2>, so there it shifts
+// down one to <h3>/<h4>.
+// TWO MISTAKES WORTH RECORDING. A blanket demotion to h3 cost /target 103 h1->h3 skips, /pathway
+// 15 pages with no <h2> at all and /learn 4, measured against the previous build. Fixing that by
+// promoting every h3 back to h2 then FLATTENED the function's original two-level structure — the
+// pages passed every gate and every heading check while quietly losing a level. Both were caught by
+// diffing build/lastmod.json and asking why a page I had not meant to touch had changed.
 function learnFlatHtml(e, opts) {
+  const H = (opts && opts.headingLevel) || 2;
+  const H2 = H + 1;
   if (!e) return '';
   const P = (t) => mdBlocks(t, mdSafe);
   const out = [];
@@ -2349,19 +2451,19 @@ function learnFlatHtml(e, opts) {
   out.push(partDivider(1, 5));
   if (e.hook && e.hook.payoff) out.push(`<div class="lf-payoff">${mdBlocks(e.hook.payoff, mdSafe)}</div>`);
   if (opts && opts.diagram) out.push(opts.diagram);
-  if (e.bigIdea) out.push(`<h2>The big idea</h2>${P(e.bigIdea)}`);
+  if (e.bigIdea) out.push(`<h${H}>The big idea</h${H}>${P(e.bigIdea)}`);
   if (Array.isArray(e.hook && e.hook.questions) && e.hook.questions.length) {
-    out.push(`<h2>Questions this answers</h2><ul>${e.hook.questions.map((q) => `<li>${mdSafe(q)}</li>`).join('')}</ul>`);
+    out.push(`<h${H}>Questions this answers</h${H}><ul>${e.hook.questions.map((q) => `<li>${mdSafe(q)}</li>`).join('')}</ul>`);
   }
   // — 5 minutes —
-  if (e.analogy) out.push(`<h2>An analogy that holds up</h2>${P(e.analogy)}${(e.widgets || {}).analogy || ''}`);
-  if (e.fundamentals) out.push(`<h2>The fundamentals underneath it</h2>${P(e.fundamentals)}${(e.widgets || {}).fundamentals || ''}`);
+  if (e.analogy) out.push(`<h${H}>An analogy that holds up</h${H}>${P(e.analogy)}${(e.widgets || {}).analogy || ''}`);
+  if (e.fundamentals) out.push(`<h${H}>The fundamentals underneath it</h${H}>${P(e.fundamentals)}${(e.widgets || {}).fundamentals || ''}`);
   if (Array.isArray(e.mechSteps) && e.mechSteps.length) {
     // Lead with the animated cascade, THEN the steps. The picture is the map; the prose is the
     // detail you go to once you know where you are. This order was the whole point of the
     // progressive-disclosure work and the mechanism section was still doing it backwards.
     out.push(partDivider(2, 5));
-    out.push('<h2>How it actually works, step by step</h2>');
+    out.push(`<h${H}>How it actually works, step by step</h${H}>`);
     if (e.cascade) out.push(e.cascade);
     out.push(`<ol class="lf-steps">${e.mechSteps.map((m) => {
       const t = m.t ? `<b>${mdSafe(m.t)}</b>` : '';
@@ -2398,13 +2500,13 @@ function learnFlatHtml(e, opts) {
     // Same defect, 1,127 myths on 302 pages: the claim and its correction printed together, so the
     // reader never has to decide whether they believed it. Stating a belief before it is corrected
     // is most of what makes a myth stick.
-    out.push(`<h2>Common misconceptions</h2><div class="lf-myths">${e.myths.map((m) =>
+    out.push(`<h${H}>Common misconceptions</h${H}><div class="lf-myths">${e.myths.map((m) =>
       `<details class="pred myth"><summary>${mdSafe(m.myth || '')}</summary><div class="pred-a">${mdSafe(m.truth || '')}</div></details>`).join('')}</div>`);
   }
   if (Array.isArray(e.deepDive) && e.deepDive.length) {
     // ---- DEEP-DIVE REBUILD (2026-07-28) ------------------------------------------------------
     // This block is ~48% of a course page and was the only major field with no design applied to
-    // it: one generic <h2>Going deeper</h2> followed by 9-11 near-identical <h3> + prose runs.
+    // it: one generic <h${H}>Going deeper</h${H}> followed by 9-11 near-identical <h${H2}> + prose runs.
     // Measured on /pathway/6 and /muscle/biceps: 22-25 consecutive mobile screens with no visual,
     // no link and no interactive element. That is the wall.
     //
@@ -2436,7 +2538,7 @@ function learnFlatHtml(e, opts) {
       const { deck, rest } = ddSplit(d.body);
       return `<section class="dd">
         <p class="dd-eyebrow">Deep dive · ${i + 1} of ${n}</p>
-        <h2>${mdSafe(d.h || '')}</h2>
+        <h${H}>${mdSafe(d.h || '')}</h${H}>
         ${deck ? `<p class="dd-deck">${mdSafe(deck)}</p>` : ''}
         ${/* THE WIDGET GOES BEFORE THE PROSE, NOT AFTER (2026-07-30).
               Measured: 73% of pathway sort items and 59% of muscle ones had their label AND their
@@ -2455,14 +2557,14 @@ function learnFlatHtml(e, opts) {
       </section>`;
     }).join(''));
   }
-  if (e.expertLens) out.push(partDivider(4, 5) + `<h2>How an expert reasons with this</h2>${P(e.expertLens)}${(e.widgets || {}).expertLens || ''}`);
+  if (e.expertLens) out.push(partDivider(4, 5) + `<h${H}>How an expert reasons with this</h${H}>${P(e.expertLens)}${(e.widgets || {}).expertLens || ''}`);
   // RETRIEVAL DEVICES (added 2026-07-28). I originally left selfTest and canExplain out as
   // "checklists, not exposition". A design review pushed back and was right: retrieval practice IS
   // learning content, and their absence is a large part of why a 7,500-word page still reads as
   // thin. 15,565 words of it were crawler-invisible. What makes the page feel like a course is not
   // more prose — it is the question you cannot yet answer, and the claim you can now make.
   if (Array.isArray(e.canExplain) && e.canExplain.length) {
-    out.push(partDivider(5, 5) + `<h2>What you can explain after this</h2><ul class="lf-can">${e.canExplain.map((c) => `<li>${mdSafe(c)}</li>`).join('')}</ul>`);
+    out.push(partDivider(5, 5) + `<h${H}>What you can explain after this</h${H}><ul class="lf-can">${e.canExplain.map((c) => `<li>${mdSafe(c)}</li>`).join('')}</ul>`);
   }
   if (Array.isArray(e.selfTest) && e.selfTest.length) {
     // PARITY FIX. app.js:1588 already renders these answers behind a reveal; this renderer printed
@@ -2471,11 +2573,11 @@ function learnFlatHtml(e, opts) {
     // one ~90% of readers get, was the degraded twin. Same defect class as the pathway diagram
     // that rendered on 0 of 16 pages. A question with its answer printed beneath it is not a
     // question, it is prose.
-    out.push(`<h2>Check yourself</h2><div class="lf-test">${e.selfTest.map((t) =>
+    out.push(`<h${H}>Check yourself</h${H}><div class="lf-test">${e.selfTest.map((t) =>
       `<details class="pred qa"><summary>${mdSafe(t.q || '')}</summary><div class="pred-a">${mdSafe(t.a || '')}</div></details>`).join('')}</div>`);
   }
   if (Array.isArray(e.connections) && e.connections.length) {
-    out.push(`<h2>What this connects to</h2><dl class="lf-conn">${e.connections.map((c) =>
+    out.push(`<h${H}>What this connects to</h${H}><dl class="lf-conn">${e.connections.map((c) =>
       `<dt>${mdSafe(c.to || '')}</dt><dd>${mdSafe(c.why || '')}</dd>`).join('')}</dl>`);
   }
   return out.length ? `<section class="learn-flat">${renumberParts(out.join(''))}</section>` : '';

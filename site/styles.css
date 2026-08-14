@@ -5398,3 +5398,19 @@ html[data-state="removed"] .i-form{display:none}
 .pp-on{font-size:.95rem;margin:.2rem 0 .3rem}
 #pub-profile .cta-primary,#pub-profile .cta-ghost{min-height:44px;display:inline-flex;align-items:center}
 #pub-profile .cta-primary:disabled{opacity:.45;cursor:default}
+
+/* An anchor that preserves an already-indexed fragment after a heading rename. Zero-size and
+   invisible, but NOT display:none — a display:none target is not scrolled to by any browser, which
+   would defeat the entire point. scroll-margin-top matches the sticky header. */
+.anchor-alias{display:block;height:0;width:0;overflow:hidden;scroll-margin-top:4.5rem}
+/* ---- the supplement page, resequenced (2026-08-14) ---- */
+.cpd-lede{font-size:1.05rem;line-height:1.6;color:var(--ink);margin:.6rem 0 1rem}
+.cpd-blk{margin:1.6rem 0}
+.cpd-blk>h2{margin:0 0 .5rem}
+.cpd-lead{font-size:1rem;line-height:1.6;color:var(--head);font-weight:600;margin:.2rem 0 .6rem}
+.cpd-more{margin:.7rem 0 0;border-top:1px dashed var(--line);padding-top:.5rem}
+.cpd-more>summary{min-height:44px;display:flex;align-items:center;font-size:.9rem;font-weight:600;color:var(--accent);cursor:pointer}
+.cpd-depth{margin:1.8rem 0;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.cpd-depth>summary{min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.8rem 1rem;cursor:pointer;font-size:1rem}
+.cpd-depth>summary small{display:block;font-weight:400;font-size:.84rem;color:var(--muted);margin-top:.15rem}
+.cpd-depth-body{padding:0 1rem 1rem}

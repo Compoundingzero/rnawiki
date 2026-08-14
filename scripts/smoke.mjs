@@ -290,7 +290,20 @@ const ASSERTIONS = {
       if (!root.querySelector('.stars')) return 'ordinary compound lost its evidence rating';
       if (!root.querySelector('#stack-btn')) return 'ordinary self-directed compound lost its add-to-stack action';
       if (!root.querySelector('.spec-strip')) return 'ordinary compound lost its summary specification strip';
-      if (!root.querySelector('.ch-steps')) return 'ordinary compound lost its learning chapters';
+      // 2026-08-14: this asserted `.ch-steps`, the seven-tab course stepper. The chapters are gone
+      // — the page is now the same six blocks the prerendered document uses, in the reader's own
+      // question order, with the whole learning layer inside one disclosure. The POSITIVE CONTROL
+      // this assertion exists to be is unchanged: an ordinary compound must keep the full template.
+      // So it now checks the blocks and the disclosure by name.
+      const blocks = [...root.querySelectorAll('.cpd-blk > h2')].map((h) => h.textContent.trim());
+      if (blocks.length < 4) return `ordinary compound rendered only ${blocks.length} top-level blocks: ${blocks.join(' | ')}`;
+      if (!/does it work/i.test(blocks[0])) return `the first block is "${blocks[0]}" — an ordinary compound leads with whether it works`;
+      if (!root.querySelector('.cpd-depth')) return 'ordinary compound lost the "How it works, in depth" disclosure — the learning layer has nowhere to live';
+      if (!root.querySelector('.cpd-lede')) return 'ordinary compound lost its plain-English opening line';
+      // The learning layer must still be PRESENT, merely folded. Losing it is the regression this
+      // clause originally guarded against, and a <details> is closed, not absent.
+      const depth = root.querySelector('.cpd-depth');
+      if (depth && depth.textContent.trim().length < 400) return 'the depth disclosure is nearly empty — the learning layer did not move into it, it was dropped';
       return null;
     },
   }],
@@ -357,9 +370,15 @@ const ASSERTIONS = {
     evaluate: () => {
       const el = document.getElementById('bottom-line');
       if (!el) return 'the fragment #bottom-line, which build/prerender.js publishes on this page, does not exist after hydration';
+      // 2026-08-14: the compound page no longer has chapters, so the old ".chapter.active" count is
+      // gone. What replaced it is the SAME hazard in a different wrapper — the depth disclosure is
+      // a <details> that ships CLOSED, and a deep link whose target sits inside a closed <details>
+      // scrolls nowhere. revealAnchor() walks the ancestors and opens them; this proves it does.
       const ch = el.closest('.chapter');
       if (ch && !ch.classList.contains('active')) return 'the target exists but sits in a display:none chapter that was never opened — scrollIntoView on it does nothing and the reader stays at the top';
-      if (document.querySelectorAll('.chapter.active').length !== 1) return `${document.querySelectorAll('.chapter.active').length} chapters are active at once — opening the target's chapter must not leave two on screen`;
+      for (let p = el.parentElement; p; p = p.parentElement) {
+        if (p.tagName === 'DETAILS' && !p.open) return `the target sits inside a <details class="${p.className}"> that was never opened — scrollIntoView on a closed disclosure does nothing and the reader stays at the top`;
+      }
       if (window.scrollY < 200) return `the page did not move: window.scrollY = ${Math.round(window.scrollY)}`;
       const top = el.getBoundingClientRect().top;
       if (top < -20 || top > 220) return `landed ${Math.round(top)}px from the viewport top — the section is off-screen or under the sticky header`;

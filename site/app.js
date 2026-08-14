@@ -2552,7 +2552,11 @@
     if (b.nonResponders) cards.push(bioCard('🧬', 'Are you a non-responder?', mdInline(b.nonResponders.line), b.nonResponders.tier));
     if (Array.isArray(b.synergy) && b.synergy.length) cards.push(bioCard('🤝', 'Goes well with — and why', `<ul class="bio-syn">${b.synergy.map(x => { const cs = slug(x.with); const link = bySlug[cs] ? `<a href="#/c/${cs}">${esc(stripB(x.with))}</a>` : esc(stripB(x.with)); return `<li><b>${link}</b> — ${mdInline(x.why)} ${bioTierChip(x.tier)}</li>`; }).join('')}</ul>`));
     if (!cards.length) return '';
-    return `<section class="bio-section" id="sec-bio"><div class="bio-head"><h2>🎯 Dial it in — the biohacker layer</h2><p class="bio-sub">Form, dose, timing, biomarkers and quality — how to actually get the result, not just swallow the molecule. Each card is tagged by how strong the evidence is.</p></div><div class="bio-cards">${cards.join('')}</div></section>`;
+    // NO HEADING OF ITS OWN (2026-08-14), matching bioFlatHtml() in build/prerender.js. These cards
+    // are the body of the page's "How to take it" block, and this titled itself "🎯 Dial it in —
+    // the biohacker layer", which was both a second heading over the same question and a phrase
+    // that tells a reader nothing about what is under it.
+    return `<section class="bio-section" id="sec-bio"><p class="bio-sub">Form, dose, timing, biomarkers and quality. Each card is tagged by how strong the evidence behind it is.</p><div class="bio-cards">${cards.join('')}</div></section>`;
   }
 
   // Toxic/no-safe-dose compounds are not ordinary compound lessons with a darker badge. They are
@@ -2667,25 +2671,91 @@
       if (myStack.length) { const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]); const pan = interactionPanel(withThis); chk = pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}` : `<div class="stack-ok">❔ ${esc(c.name)} is the only thing in your stack, so there is nothing to cross-check it against yet. Add a second compound and this becomes an interaction check.</div>`; }
       return (cmpCards || chk) ? `<div class="cpd-explore">${cmpCards ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${cmpCards}</div>` : ''}${chk}</div>` : '';
     })();
-    const ch1 = hookBox(c) + stakesLine(c) + bigIdeaBanner(c) + analogyBox(c) + takeawaysBox(c) + callout('plain', 'In plain English — start here', c.plain) + moleculeViewer(c) + mythsBox(c, s) + didYouKnow + (!chainHtml && goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '') + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '');
-    const ch2 = moleculeJourney(c, s) + (c.mechSteps ? mechanismCascade(c, s) : callout('mechanism', 'How it works — the science', c.mechanism)) + contrastBlock(c) + (chainHtml ? `<div class="mech-chain-wrap">${chainHtml}</div>` : '') + goDeeper(c);
+    // ---- THE SAME SIX BLOCKS AS THE PRERENDERED DOCUMENT (2026-08-14) ------------------------
+    // MEASURED BEFORE, on /c/creatine-monohydrate at 390x844: the prerendered document served 7
+    // <h2> and 1,076 visible words in the reader's own question order; the hydrated one served ONE
+    // <h2> — "🎯 Dial it in — the biohacker layer" — and 500 words, because this renderer replaced
+    // the page with a SEVEN-TAB COURSE STEPPER that shows one chapter at a time under the line
+    // "A step-by-step lesson — tap through from beginner to expert."
+    //
+    // Two different products at one URL. The reader who opens a supplement page is deciding whether
+    // to take it tonight, not enrolling in anything, and a tab strip hides five of six answers
+    // behind a click. So the chapters are gone and the same six blocks the crawler document uses
+    // are rendered here, in the same order, with the SPA's richer widgets placed in the block that
+    // answers their question — the dose simulator under "How to take it", the reader's own stack
+    // check under "Before you take it".
+    //
+    // NOTHING IS LOST. Every chapter's content still renders; the learning layer (hook, big idea,
+    // analogy, myths, self-test, Feynman box, the chapter checks) moves whole into the one
+    // "How it works, in depth" disclosure, which is where the prerenderer already puts it.
+    // THE ANCHOR IDS SURVIVE: callout('plain'|'mechanism'|'protocol'|'watch'|'bottom') still emit
+    // sec-plain, sec-mechanism, sec-protocol, sec-watch and sec-bottom, which ANCHOR_ALIASES and
+    // assertAnchorAliases() both depend on.
     const _tui = tierUI(c);
-    const ch3 = callout('protocol', _tui.protoH, c.protocol) + pkTimeline(c) + doseSimulator(c) + whenToUseBox(c) + callout('watch', 'Watch out', c.watch, 'warn') + stacksBlock + usedIn;
-    const ch4 = evidenceBlock + positioningPlot(c) + exploreBlock + callout('bottom', 'Bottom line', c.bottom);
-    const ch5 = expertFramework(c) + (c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — the original technical write-up', c.mechanism) : '') + biotechDeepDive(c);
-    const ch6 = selfTestBox(c) + feynmanBox(c) + graduationBlock(c) + journeyBlock('compound', c.id);
-    const chBio = bioSection(c);
-    const _bioAccess = c.bio && (c.bio.access === 'prescription' || c.bio.access === 'unapproved');
-    const chapterDefs = [
-      { n: 1, icon: '🌱', label: 'Start here', html: ch1, check: 'start' }, { n: 2, icon: '⚙️', label: 'How it works', html: ch2, check: 'how' },
-      { n: 3, icon: _tui.icon, label: _tui.label, html: ch3, check: 'use' },
-      { n: 7, icon: _bioAccess ? (c.bio.access === 'unapproved' ? '⛔' : '🛡️') : '🎯', label: _bioAccess ? (c.bio.access === 'unapproved' ? 'Why not to use it' : 'Using it safely') : 'Dial it in', html: chBio },
-      { n: 4, icon: '📊', label: 'The evidence', html: ch4, check: 'evidence' },
-      { n: 5, icon: '🔬', label: 'Deep dive', html: ch5 }, { n: 6, icon: '🎓', label: 'Prove it', html: ch6 },
-    ].filter(ch => ch.html && ch.html.trim());
-    // Numbered mastery spine — a course stepper that checks off as you read
-    const tabs = `<div class="ch-steps" role="tablist">${chapterDefs.map((ch, i) => `<button class="ch-step${i === 0 ? ' active' : ''}" data-ch="${ch.n}"><span class="cs-num">${i + 1}</span><span class="cs-label">${ch.icon} ${esc(ch.label)}</span></button>`).join('')}</div>`;
-    const sections = `<div class="chapters" id="cpd-chapters">${chapterDefs.map((ch, i) => { const nx = chapterDefs[i + 1]; const nav = nx ? `<button class="ch-next-btn" data-chgo="${nx.n}">Next: ${nx.icon} ${esc(nx.label)} →</button>` : ''; return `<section class="chapter${i === 0 ? ' active' : ''}" data-chapter="${ch.n}">${ch.html}${ch.check ? chapterCheck(c, ch.check) : ''}${nav ? `<div class="ch-nav">${nav}</div>` : ''}</section>`; }).join('')}</div>`;
+    const blk = (id, title, html) => (html && html.trim())
+      ? `<section class="cpd-blk" id="${id}"><h2>${title}</h2>${html}</section>` : '';
+    // stacksBlock bundled four different questions into one lump — what it pairs with, what shares
+    // its pathway, what to avoid, and where to buy it. Split to the blocks that answer each.
+    const _sg = sgAvailability(c);
+    const _derived = derivedStacks(c);
+    const _derivedHtml = _derived.map(o => {
+      const f = pairFlag(c, o);
+      const link = `<a href="#/c/${slug(o.name)}">${esc(o.name)}</a>`;
+      return f ? `${link} <span class="ds-flag ${f.tier}">${TIER_ICON[f.tier]} ${esc(f.title)}</span>` : link;
+    }).join(' · ');
+    const _stackCheck = (() => {
+      const myStack = getStack().map(id => byId[id]).filter(Boolean);
+      if (!myStack.length) return '';
+      const withThis = myStack.some(x => x.id === c.id) ? myStack : myStack.concat([c]);
+      const pan = interactionPanel(withThis);
+      return pan ? `<div class="section-title">⚠️ With your current stack (${myStack.length})</div>${pan}`
+        : `<div class="stack-ok">❔ ${esc(c.name)} is the only thing in your stack, so there is nothing to cross-check it against yet. Add a second compound and this becomes an interaction check.</div>`;
+    })();
+    const _cmpCards = (() => {
+      const peers = D.compounds.filter(x => x.id !== c.id && !x.isNote && Array.isArray(x.goalIds) && x.goalIds.some(g => c.goalIds.includes(g)))
+        .map(x => ({ x, n: x.goalIds.filter(g => c.goalIds.includes(g)).length })).sort((a, b) => b.n - a.n || b.x.stars - a.x.stars).slice(0, 3).map(o => o.x);
+      return peers.length ? `<div class="section-title">⚖️ Compare with alternatives</div><div class="cmp-grid">${peers.map(o => `<a class="cmp-card" href="#/compare/${slug(c.name)}-vs-${slug(o.name)}"><span class="cmp-vs">vs</span><span class="cmp-name">${esc(o.name.split('(')[0].trim())}</span>${starHTML(o.stars, { compact: true, cls: 'cmp-stars' })}</a>`).join('')}</div>` : '';
+    })();
+
+    const lede = c.plain ? `<p class="cpd-lede" id="sec-plain">${mdInline(c.plain)}</p>` : '';
+    const bDoes = callout('bottom', 'Bottom line', c.bottom) + evidenceBlock + positioningPlot(c)
+      + (goalTags ? `<div class="toolbar" style="margin-top:1rem">${goalTags}</div>` : '');
+    const bTake = callout('protocol', _tui.protoH, c.protocol) + pkTimeline(c) + doseSimulator(c)
+      + whenToUseBox(c) + bioSection(c);
+    const bCare = callout('watch', 'Watch out', c.watch, 'warn')
+      + (c.avoid ? `<div class="section-title">⚠️ Do not combine with</div><div class="sg-buy warn">${mdInline(c.avoid)}</div>` : '')
+      + _stackCheck;
+    const bGet = `<div class="sg-buy ${_sg.cls}"><b>${esc(_sg.tag)}.</b> ${_sg.body}${_sg.sg ? `<div class="sg-local"><b>Singapore:</b> ${esc(_sg.sg)}</div>` : ''}${c.cost ? `<div class="sg-cost">💲 ${mdInline(c.cost)}</div>` : ''}</div>`;
+    const bWith = (c.stacksWith ? `<p class="field-val">${mdInline(c.stacksWith)}</p>` : '')
+      + (_derived.length ? `<p class="muted" style="font-size:.88rem">Sharing a pathway is not a reason to combine them, and this list is computed rather than written: ${_derivedHtml}.</p>` : '');
+    const bFits = usedIn + _cmpCards;
+    const bDepth = moleculeJourney(c, s)
+      + (c.mechSteps ? mechanismCascade(c, s) : callout('mechanism', 'How it works — the science', c.mechanism))
+      + contrastBlock(c) + (chainHtml ? `<div class="mech-chain-wrap">${chainHtml}</div>` : '') + goDeeper(c)
+      + moleculeViewer(c)
+      + hookBox(c) + stakesLine(c) + bigIdeaBanner(c) + analogyBox(c) + takeawaysBox(c) + mythsBox(c, s) + didYouKnow
+      + (c.brief && !c.mechanism ? `<div class="body">${c.bodyHtml}</div>` : '')
+      + expertFramework(c) + (c.mechSteps && c.mechanism ? callout('mechanism-full', 'The full mechanism — the original technical write-up', c.mechanism) : '') + biotechDeepDive(c)
+      + chapterCheck(c, 'start') + chapterCheck(c, 'how') + chapterCheck(c, 'use') + chapterCheck(c, 'evidence')
+      + selfTestBox(c) + feynmanBox(c) + graduationBlock(c) + journeyBlock('compound', c.id);
+    const sections = lede
+      + blk('cpd-works', 'Does it work?', bDoes)
+    // THE BLOCK HEADING IS TIER-AWARE, and hardcoding "How to take it" here was a real defect
+    // for the ~2 minutes it existed: 9 restricted compounds carry c.protocol — semaglutide,
+    // tirzepatide, liraglutide, ephedrine, finasteride, MK-677, GHK-Cu, modafinil — and every
+    // one of them would have been given an <h2> reading "How to take it" over a
+    // prescription-only medicine. TIER_UI already answers this ("How it's prescribed & used"
+    // for RX, "What people do — and the risks (not an endorsement)" for RESEARCH); the fix is
+    // to use the answer that was already there. build/prerender.js derives the same heading
+    // from the authored regulatory class. CLAUDE.md rule 7: do not advertise a
+    // prescription-only medicine to the public.
+
+      + blk('cpd-take', _tui.protoH, bTake)
+      + blk('cpd-care', 'Before you take it', bCare)
+      + blk('cpd-get', 'Getting it in Singapore', bGet)
+      + blk('cpd-with', 'What it is taken with', bWith)
+      + blk('cpd-fits', 'Where it fits', bFits)
+      + (bDepth && bDepth.trim() ? `<details class="cpd-depth" id="cpd-depth"><summary><span><b>How it works, in depth</b><small>The mechanism, the molecular targets, and the whole explainer</small></span><span aria-hidden="true">›</span></summary><div class="cpd-depth-body">${bDepth}</div></details>` : '');
     const faq = faqRender([
       // See the note in build/prerender.js: the star is a whole-compound summary, not an
       // indication-specific grade, so it does not belong inside a structured-data efficacy claim.
@@ -2706,8 +2776,9 @@
       </div>
       ${specStrip(c)}
       ${journeyRibbon('compound', c.id)}
-      <p class="ch-lead">A step-by-step lesson — tap through from beginner to expert. Each tab teaches the next layer.</p>
-      ${tabs}
+      ${/* "A step-by-step lesson — tap through from beginner to expert" and the seven-tab stepper
+            are gone with the chapters. Somebody deciding whether to take magnesium tonight is not
+            enrolling in a course, and that line framed six of the seven answers as homework. */ ''}
       <div id="edit-meta" class="edit-meta"></div>
       ${sections}
       <div class="cpd-faq-wrap" hidden>${faq}</div>
