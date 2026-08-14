@@ -103,18 +103,36 @@ const FEATURES = Object.freeze({
 // ONE-DIRECTIONAL, deliberately. Understating what the site can do is the safe failure — a reader
 // is never harmed by being told a feature is missing when it works. Overstating is the one this
 // project has been bitten by, so only that direction refuses to boot.
+// THE NEEDLE COMES FROM THE FILE THAT WRITES IT (2026-08-14). This used to hold a hand-copied
+// 32-character fragment — 'No comments, no votes, no points' — of a sentence authored in
+// build/landing.js. Two independent copies of one string at two different lengths, with nothing
+// asserting they agree: any reword that happened to preserve the first 32 characters would have
+// left the guard passing over a page it no longer describes. Now it imports the sentence.
+// Both contained rows are checked, not just the community one. Only the first had a guard, so a
+// deployment could have served "Nothing here lists what other people have built" while
+// /api/protocols/new was live.
 if (FEATURES.publicCommunity) {
   try {
     const homeDoc = fs.readFileSync(path.join(__dirname, 'site', 'home.html'), 'utf8');
-    if (homeDoc.indexOf('No comments, no votes, no points') >= 0) {
-      console.error('[server] PUBLIC_COMMUNITY=1 but site/home.html still tells every reader there are '
-        + 'no comments, no votes and no points. The landing page states the loop from the built '
-        + 'documents, not from this flag. Rebuild (npm run prestart) before serving.');
-      process.exit(1);
-    }
+    const LANDING_COPY = require('./build/landing.js');
+    [[LANDING_COPY.STATE_NEGATIVE_COMMUNITY, 'there are no comments, no votes and no points'],
+      [LANDING_COPY.STATE_NEGATIVE_DISCOVER, 'nothing here lists what other people have built']]
+      .forEach(([sentence, what]) => {
+        if (!sentence) {
+          console.error('[server] build/landing.js no longer exports the state-row sentences this guard '
+            + 'compares against. A guard that cannot find its subject passes vacuously — retarget it.');
+          process.exit(1);
+        }
+        if (homeDoc.indexOf(sentence) >= 0) {
+          console.error(`[server] PUBLIC_COMMUNITY=1 but site/home.html still tells every reader ${what}. `
+            + 'The landing page states the loop from the built documents, not from this flag. '
+            + 'Rebuild (npm run prestart) with the flag set before serving.');
+          process.exit(1);
+        }
+      });
   } catch (e) {
-    console.error('[server] PUBLIC_COMMUNITY=1 and site/home.html could not be read to check that the '
-      + 'landing page agrees with it —', e.code);
+    console.error('[server] PUBLIC_COMMUNITY=1 and the landing copy could not be read to check that the '
+      + 'landing page agrees with it —', e.code || e.message);
     process.exit(1);
   }
 }
@@ -599,6 +617,11 @@ const isSuper = u => !!(u && (
 ));
 // Outcome-data moat: consent-notice version + validation allow-lists (reject anything off-list)
 const CONSENT_VERSION = 'v2-2026-08-explicit';
+// The wording a reader agreed to when they made their profile public. Stored ON the consent row and
+// on the user, so a later change to the disclosure is visible as a version somebody has not seen
+// yet rather than being applied retroactively to a decision made about different words.
+// BUMP THIS whenever the disclosure copy in renderMe() changes materially.
+const PUBLIC_PROFILE_DISCLOSURE = 'v1-2026-08-published-only';
 const AGE_BANDS = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
 const SEXES = ['male', 'female', 'other', 'prefer_not'];
 const ETHNICITIES = ['chinese', 'malay', 'indian', 'other', 'prefer_not'];
@@ -1504,6 +1527,56 @@ async function api(req, res, url) {
       });
       return json(res, 200, { ok: true, research: on, collectionEnabled: FEATURES.researchCollection });
     }
+  }
+  // ===== THE PUBLIC PROFILE, AS A DECISION SOMEBODY MAKES (2026-08-14) =========================
+  // `users.public_profile_enabled` shipped `DEFAULT false` in db.js and appeared in executable code
+  // exactly twice: that DDL line, and the read in GET /api/u/:handle. NOTHING SET IT. No endpoint,
+  // no admin action, no migration. So PUBLIC_PROFILES=1 was a flag that could only ever be on and
+  // do nothing: every /u/<handle> would clear the feature check and then 404 at the query, for
+  // every account, forever. This is the missing half.
+  //
+  // WHY IT IS A CONSENT RECORD AND NOT A SETTING. docs/PRODUCTION_REVAMP_STATE.md: "Consent choices
+  // are append-only and include their source." A boolean column answers "is it on now"; it cannot
+  // answer "did this person ever agree, and when, and to what wording" — which is the question that
+  // matters if the disclosure changes, or if the flag is switched off and later back on. The two
+  // sibling columns this writes (public_profile_disclosure_version, public_profile_published_at)
+  // have existed unused in db.js since the schema was written, for exactly this.
+  //
+  // OFF IS ALWAYS ALLOWED. Turning it ON requires the capability to be enabled; turning it OFF does
+  // not, and must not — otherwise rolling the environment variable back would strand every account
+  // that had opted in, public in the database with no way for its owner to withdraw.
+  if (seg[0] === 'profile' && seg[1] === 'public' && !seg[2] && method === 'POST') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    const b = await readBody(req, 1024) || {};
+    if (typeof b.public !== 'boolean') return json(res, 400, { error: 'public must be true or false.' });
+    const on = b.public;
+    if (on && !FEATURES.publicProfiles) return json(res, 404, { error: 'Public profiles are not available yet.' });
+    await db.transaction(async q => {
+      await q(`INSERT INTO consent_records(user_id,purpose,version,decision,source)
+        VALUES($1,'public_profile',$2,$3,'user_action')`, [u.id, PUBLIC_PROFILE_DISCLOSURE, on]);
+      // published_at is set ONCE, on the first time it went public, and survives being switched
+      // off — it records when the page first existed, which is not the same question as whether it
+      // exists now.
+      await q(`UPDATE users SET public_profile_enabled=$1, public_profile_disclosure_version=$2,
+          public_profile_published_at = CASE WHEN $1 THEN COALESCE(public_profile_published_at, now()) ELSE public_profile_published_at END
+        WHERE id=$3`, [on, PUBLIC_PROFILE_DISCLOSURE, u.id]);
+    });
+    return json(res, 200, { ok: true, public: on, version: PUBLIC_PROFILE_DISCLOSURE });
+  }
+  if (seg[0] === 'profile' && seg[1] === 'public' && !seg[2] && method === 'GET') {
+    const u = await currentUser(req); if (!u) return json(res, 401, { error: 'Sign in' });
+    const r = await db.query(`SELECT public_profile_enabled AS "public", public_profile_disclosure_version AS version
+      FROM users WHERE id=$1`, [u.id]);
+    const row = r.rows[0] || {};
+    return json(res, 200, {
+      public: !!row.public,
+      version: row.version || null,
+      current: PUBLIC_PROFILE_DISCLOSURE,
+      available: FEATURES.publicProfiles,
+      handle: u.username,
+      // Printed by the client verbatim, so no surface can restate the scope in its own words.
+      shows: 'Your username, the month you joined, and the protocols you chose to publish. Nothing you read, plan, log or follow.',
+    });
   }
   // Opt-in daily reminder email (keystone + selected nudge tools) — service feature, no research consent needed
   if (seg[0] === 'email-reminders') {
@@ -3086,6 +3159,13 @@ function serveStatic(req, res, url) {
   // a crawler can discover its links to the public wiki, while the page itself stays out of the
   // index. The matching meta directive is authored in build/prerender.js and site/app.js.
   if (p === '/plan' || p === '/plan/') res.setHeader('X-Robots-Tag', 'noindex, follow');
+  // /p, the published-protocol index, needs the same treatment and for a sharper reason: 'p' is in
+  // NOINDEX_ROUTES, but that list is only consulted by the SPA-shell branch further down. Once
+  // build/prerender.js emits site/p.html the static lookup answers first and returns, so the route
+  // list never runs and the header would be absent — measured on /az, which is served that way and
+  // carries no X-Robots-Tag at all. Followable, so a crawler can still walk from it into the public
+  // wiki, but not indexed: it is a frame whose contents are drawn from a database at read time.
+  if (p === '/p' || p === '/p/') res.setHeader('X-Robots-Tag', 'noindex, follow');
   // Retired progress links encoded a handle and food log directly in the URL. Never render,
   // preview or preserve those parameters: redirects keep the public protocol route while removing
   // health state from browser history, Referer headers, proxy logs and social crawlers.

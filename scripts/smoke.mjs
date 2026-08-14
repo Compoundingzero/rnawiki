@@ -228,6 +228,15 @@ const ROUTES = [
 // Adding one is a deliberate act: write down WHY, and what the user sees instead.
 const ALLOWED_REQUEST_FAILURES = [
   { status: 503, path: /^\/api\/me$/, why: 'no DB: signed-out; header renders the Sign in button' },
+  // 2026-08-14, and only reachable when this suite is run with PUBLIC_COMMUNITY=1 — which is now
+  // worth doing, because the flag-on configuration is the one production will run and it had never
+  // been exercised. Both are the DB guard at server.js, which returns 503 for every /api/protocols
+  // route before the handler's own `if (!db.enabled)` fallback can be reached. Both callers already
+  // fail silent (`if (!r.ok) return;`), so the prerendered empty state survives untouched; what the
+  // suite is seeing is the browser logging the 503, not a broken surface. With a DATABASE_URL these
+  // answer 200 and neither entry fires.
+  { status: 503, path: /^\/api\/protocols\/new/, why: 'no DB: the "new from the community" strip and /p keep their prerendered empty state' },
+  { status: 503, path: /^\/api\/protocols\/variants/, why: 'no DB: the creator variants rail stays absent, which is its correct empty state' },
   { status: 503, path: /^\/api\/rootcause-overlay$/, why: 'no DB: community cause overlay unavailable; the protocol page STATES the absence (see the rcOverlayNotice assertion)' },
   { status: 503, path: /^\/api\/edits\/[^/]+$/, why: 'no DB: compound page shows the base text, no community edit layer' },
   { status: 503, path: /^\/api\/explain$/, why: 'no DB: community "explain it" thread unavailable' },

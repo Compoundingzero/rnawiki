@@ -31,6 +31,10 @@ site/stack.html
 site/pros.html
 site/compare/
 site/for-clinicians.html
+# Emitted only when the deployment sets PUBLIC_COMMUNITY=1 (build/prerender.js). Committing it
+# would put a page in the repo that a flag-off build does not produce, and site/ is regenerated at
+# boot on Railway anyway.
+site/p.html
 
 # Build-time precompression siblings (build/precompress.js). Regenerated on every build;
 # never source. Committing them would put an 11.66 MB asset in the repo twice.

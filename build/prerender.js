@@ -533,6 +533,44 @@ const { glossify: _glossify, compile: _compileGloss } = require('./glossify.js')
 // file because it is the one part of this site that is AUTHORED COPY rather than generated from the
 // corpus. This file gains this require, four placeholders in homeBody, and one gate.
 const LANDING = require('./landing.js');
+
+// ---- THE VOTE STRIP, IN THE DOCUMENT A CRAWLER AND A NO-JS READER GET (2026-08-14) ------------
+// THIS IS THE ONE PLACE A FEATURE FLAG IS ALLOWED TO CHANGE THE EMITTED BYTES, and the reasoning is
+// worth stating because the file says the opposite a few hundred lines below, about CAPS.
+//
+// CAPS must NOT read process.env: it answers "what does the built site contain?", and the landing
+// page's honesty depends on that being measured rather than declared. This function answers a
+// different question — "should this deployment build the surface at all?" — and if the two are
+// decided by different clocks the site necessarily lies for the window between them. It did:
+// prerendering the strip unconditionally would flip CAPS.vote true, force the front door to print
+// "Now" for votes, and leave the strip display:none for every reader until somebody remembered to
+// set an environment variable. Deciding both from the same value collapses that window to zero.
+// PUBLIC_COMMUNITY=1 -> prestart emits the strip -> CAPS.vote true -> the positive row prints ->
+// the boot guard passes -> the server serves votes. Every one of those is true at the same instant.
+//
+// The markup is byte-identical to voteFoot() in site/app.js, data-target included, because
+// app.js:11622 re-mounts by that exact selector when the config arrives. If the two drift, the
+// hydrated page grows a SECOND strip beside the prerendered one.
+//
+// It ships display:none (site/styles.css .vote-foot) and is revealed only by
+// html[data-community-on], which site/app.js sets after the server's own config says so. A reader
+// with no JavaScript therefore never sees a control they could not use: the buttons need fetch to
+// do anything, and offering a dead one on the site's most safety-sensitive page type is the defect
+// class that put an empty red-flag box on 52 pages.
+// IT RETURNS ITS OWN LEADING NEWLINE, and the call site interpolates at the END of the previous
+// line. The obvious form — `${voteFootHtml(...)}` alone on a line — leaves a blank line with six
+// spaces on it when the function returns '', which changes the emitted bytes of all 52 protocol
+// pages in a flag-OFF build. That moved every one of their entries in build/lastmod.json, i.e. told
+// Google 52 documents had changed on a build where not one word of them had.
+const COMMUNITY_BUILD = process.env.PUBLIC_COMMUNITY === '1';
+function voteFootHtml(pid, rcid, layer) {
+  if (!COMMUNITY_BUILD) return '';
+  return `
+      <div class="vote-foot" data-target="${pid}:${rcid}:${layer}"><span class="vote-q">Did this help you?</span>
+      <span class="vote-btns"><button class="vt up" data-v="1">👍 <span class="c">·</span></button>
+      <button class="vt down" data-v="-1">👎 <span class="c">·</span></button></span>
+      <span class="vote-badge" hidden>⚠ More readers said this did not help than said it did</span></div>`;
+}
 const GLOSSARY = readJSON(path.join(ROOT, 'data', 'glossary.json')) || {};
 const GLOSS_COMPILED = _compileGloss(GLOSSARY);
 let _glossLinks = 0;
@@ -1963,7 +2001,7 @@ GRAPH.problems.forEach((p) => {
       ${safety}
       <p><a href="/fuel/${p.id}/${rc.id}">Open the Fuel Tracker for this protocol — targets, foods and why each one →</a></p>
         </div>
-      </details>
+      </details>${voteFootHtml(p.id, rc.id, 'protocol')}
       <p class="review-state">Written with AI assistance and edited by a human. <b>Not yet reviewed by a clinician.</b> <a href="/methodology" data-native>How this page was made</a> · <a class="flag-this" href="mailto:hello@rnawiki.com?subject=Flag%20this%20page" data-flag>Flag this &rarr;</a></p>
       <p><em>Educational protocol, not medical advice.</em></p>`;
     const rcShort = rc.name.replace(/\s*\([^)]*\)/, '');
@@ -3418,6 +3456,44 @@ let written = 0;
       <p class="muted">Your plan is private to this browser. RNAwiki is information, not a diagnosis or prescription.</p>
       <p><a href="/where">Show me on the body</a> · <a href="/methodology" data-native>How RNAwiki works</a></p>
       </section>` }), { noSitemap: true });
+
+  // ---- /p — WHERE WORK SOMEBODY PUBLISHED GETS FOUND (2026-08-14) ----------------------------
+  // The last "Not yet" row on the front door reads "Nothing here lists what other people have
+  // built, so there would be nowhere for your work to be found." This is that place, and
+  // CAPS.discover is literally `pages.some(p => p.route === '/p' …)` — so emitting this page is
+  // what makes that sentence stop being true, which is why it may not be emitted unless the
+  // deployment is actually configured to serve the community surface. Same single clock as the
+  // vote strip; see the note over voteFootHtml().
+  //
+  // THE LIST IS NOT IN THIS DOCUMENT, AND THAT IS NOT AN OVERSIGHT. What it lists lives in Postgres
+  // and changes by the hour, while this file runs once at deploy time with no database. It also
+  // may not contain a single /p/<code> href: assertLinkGraph resolves every link against the routes
+  // this build emitted, and a code that exists only in a database row is a dead link to it. So the
+  // crawler and the no-JS reader get the frame and an honest account of what fills it, and
+  // site/app.js fills it from /api/protocols/new. That trade is stated here rather than discovered
+  // later, the way server.js states it for /studio.
+  if (COMMUNITY_BUILD) {
+    add('/p', shell({
+      route: '/p', title: 'Protocols people published on RNAwiki',
+      desc: seoDesc('Protocols written and published by readers, for the same problems RNAwiki covers. Free to read, no account needed.'),
+      robots: 'noindex,follow',
+      breadcrumbs: [{ name: 'Home', route: '/' }, { name: 'Published protocols', route: '/p' }],
+      body: `<section class="pidx">
+      <div class="kicker">Published protocols</div>
+      <h1>What other people have built</h1>
+      <p>Anyone can assemble a protocol in the Protocol Studio and publish it under a link. This
+      page lists the ones that have been published. Reading them needs no account, and neither does
+      building your own.</p>
+      <ul class="lp-comm-list" id="p-idx-list" hidden></ul>
+      <p class="lp-comm-empty" id="p-idx-empty">This list is drawn when the page loads, so it is
+      empty here. If you are reading this without JavaScript, that is why — every protocol RNAwiki
+      itself publishes is a plain document and needs no script.</p>
+      <p class="muted">These are not written by RNAwiki and no clinician has reviewed them. Each one
+      is re-checked against the same interaction rules this site holds its own pages to, and the
+      result is printed on it, whatever it says. Educational, not medical advice.</p>
+      <p><a href="/solve">Find a problem or a goal</a> · <a href="/methodology" data-native>How RNAwiki works</a></p>
+      </section>` }), { noSitemap: true });
+  }
 
   add('/az', shell({
     route: '/az', title: `All ${D.compounds.length} compounds A–Z · RNAwiki`,

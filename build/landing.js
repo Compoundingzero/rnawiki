@@ -200,21 +200,39 @@ function planCards(rootCauses) {
 // capability is off the sentence must be present, and the moment the built site contains that
 // surface the sentence must be gone and an affordance must exist. A page that silently keeps
 // telling readers there are no comments on the day comments start working fails the build.
+// ---- EACH ROW NEEDS TWO SENTENCES, NOT ONE (2026-08-14) --------------------------------------
+// Until now every row printed the SAME text in both states and only the chip changed. So the
+// moment a capability turned on, this page emitted
+//     <li data-on="1"><span>Now</span><span>No comments, no votes, no points…
+// — a row whose chip and whose sentence said opposite things — and assertLandingPage's PAIRS block
+// correctly refused to build it. That made the negative sentence look like a hard block on ever
+// turning the flag on, when what it actually was is a missing second string. The positive halves
+// are below. Each is written to what the built site ACTUALLY contains, not to what the flag says:
+// votes are a real control on a real page, comments are still four endpoints with no UI, and the
+// row says both.
+const STATE_NEGATIVE_COMMUNITY = 'No comments, no votes, no points, and no moderators. There is one kind of account here and I '
+  + 'have not built a second one.';
+const STATE_NEGATIVE_DISCOVER = 'Nothing here lists what other people have built, so there would be nowhere for your work to '
+  + 'be found. That has to exist before I ask anyone to make something.';
+
 function stateRows(caps) {
   const c = caps || {};
   const rows = [
     [true,
       'Read anything here, keep what you decide to do on Today, and tell me when a sentence is wrong. '
-      + 'No account for any of it, and nothing you do on Today reaches me.'],
+      + 'No account for any of it, and nothing you do on Today reaches me.',
+      null],
     [!!(c.discuss || c.vote),
-      'No comments, no votes, no points, and no moderators. There is one kind of account here and I '
-      + 'have not built a second one.'],
+      STATE_NEGATIVE_COMMUNITY,
+      'You can say whether a protocol helped you, on the page for that protocol. Still no comments '
+      + 'and no moderators — there is one kind of account here and I have not built a second one.'],
     [!!c.discover,
-      'Nothing here lists what other people have built, so there would be nowhere for your work to '
-      + 'be found. That has to exist before I ask anyone to make something.'],
+      STATE_NEGATIVE_DISCOVER,
+      'What other people publish is listed here and under the protocol it was written for, so work '
+      + 'you make has somewhere to be found.'],
   ];
-  return `<ul class="lp-state">` + rows.map(([on, text]) =>
-    `<li data-on="${on ? 1 : 0}"><span class="lp-st">${on ? 'Now' : 'Not yet'}</span><span>${text}</span></li>`
+  return `<ul class="lp-state">` + rows.map(([on, negative, positive]) =>
+    `<li data-on="${on ? 1 : 0}"><span class="lp-st">${on ? 'Now' : 'Not yet'}</span><span>${on && positive ? positive : negative}</span></li>`
   ).join('') + `</ul>`;
 }
 
@@ -236,12 +254,20 @@ function stateRows(caps) {
 // count, and the moment the site can list published work it must stop saying it cannot.
 function communityStrip(caps) {
   const on = !!(caps && caps.discover);
+  // The empty state had to stop saying "the page that lists them is the next thing being built"
+  // the moment that page existed — and it is CAPS.discover, the same value, that decides both, so
+  // the two can never disagree. The link is also /p's ONLY clean inbound link: assertLinkGraph
+  // fails the build on a page nothing links to, and on one whose every inbound link carries a
+  // query string.
   return `<section class="lp-comm" data-community-strip data-on="${on ? 1 : 0}">
   <p class="i-kick">New from the community</p>
   <ul class="lp-comm-list" id="lp-comm-list" hidden></ul>
-  <p class="lp-comm-empty" id="lp-comm-empty">Nobody has published one here yet. Until today this site
+  ${on
+    ? `<p class="lp-comm-empty" id="lp-comm-empty">This strip is drawn when the page loads, so it is
+  empty here. <a href="/p">Everything people have published</a> is on one page.</p>`
+    : `<p class="lp-comm-empty" id="lp-comm-empty">Nobody has published one here yet. Until today this site
   had no way to list what anyone had built, which is a reason and not an excuse &mdash; the page that
-  lists them is the next thing being built.</p>
+  lists them is the next thing being built.</p>`}
 </section>`;
 }
 
@@ -377,4 +403,10 @@ function landingParts(o) {
 module.exports = {
   landingParts, libraryFigure, doorsHtml,
   CAUSE_PROBLEM, CAUSE_WORDS, RED_FLAG, TAP_IDS, TAP_WORDS,
+  // Exported so the boot guard in server.js can compare the served home page against the SAME
+  // string this file emits, instead of against a hand-copied 32-character fragment of it. Those
+  // were two independent copies of one sentence at two different lengths, and any reword that
+  // happened to preserve the first 32 characters would have disarmed the guard while the build
+  // stayed green.
+  STATE_NEGATIVE_COMMUNITY, STATE_NEGATIVE_DISCOVER,
 };

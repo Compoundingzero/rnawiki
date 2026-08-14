@@ -5389,3 +5389,12 @@ html[data-state="removed"] .i-form{display:none}
 .cixn .ci-plain{margin:.25rem 0 0;font-size:.9rem;line-height:1.5;color:var(--ink)}
 .cixn .ci-src{margin:.3rem 0 0;font-size:.76rem;color:var(--muted)}
 .cixn .ci-more{margin:0;padding:.6rem .95rem;font-size:.82rem;color:var(--muted);border-top:1px solid var(--line-soft)}
+
+/* ---- the public-profile decision (2026-08-14) ------------------------------------------------
+   Same shape as the 18+ confirmation: an unchecked box, the consequence beside it, and a button
+   that does not enable until the box is ticked. */
+.pp-confirm{display:flex;gap:.6rem;align-items:flex-start;margin:.7rem 0;font-size:.9rem;line-height:1.5}
+.pp-confirm input{min-width:22px;min-height:22px;margin-top:.15rem}
+.pp-on{font-size:.95rem;margin:.2rem 0 .3rem}
+#pub-profile .cta-primary,#pub-profile .cta-ghost{min-height:44px;display:inline-flex;align-items:center}
+#pub-profile .cta-primary:disabled{opacity:.45;cursor:default}

@@ -113,6 +113,21 @@ forbidText(app, 'id="stack-wrapped"', 'Stack still exposes a personal share-imag
 // Problems (something is wrong) · Goals (something is a target) · A-Z.
 // Revised 2026-08-13. /corrections is deliberately NOT among them and no longer exists as a route:
 // reporting a wrong sentence is an inline control on the sentence, not a destination.
+// ---- THE PUBLIC PROFILE IS A DECISION, NOT A SETTING (2026-08-14) ----------------------------
+// build/parse.js's assertProfileDisclosesOnlyPublished() inspects server.js only between the
+// bounds of the GET /api/u/:handle handler, so it covers the READ payload and nothing else. The
+// write endpoint that turns a profile on sits outside that window and would have no build coverage
+// at all. These five are it.
+// The needle names the POST specifically. Its first version matched `seg[0] === 'profile' &&
+// seg[1] === 'public'` alone, which the sibling GET branch also satisfies — so deleting the write
+// endpoint left the gate passing. Caught in the mutation run, not after.
+requireText(server, "seg[0] === 'profile' && seg[1] === 'public' && !seg[2] && method === 'POST'", 'there is no endpoint that can turn a public profile on or off — public_profile_enabled was read-only for the whole of its first existence, and PUBLIC_PROFILES=1 was a flag that could do nothing');
+requireText(server, "VALUES($1,'public_profile',$2,$3,'user_action')", 'the public-profile decision is not recorded as an append-only consent row, so there is no record of who agreed, when, or to which wording');
+requireText(server, 'if (on && !FEATURES.publicProfiles)', 'turning a public profile ON is not gated on the capability being enabled');
+forbidText(server, 'if (!FEATURES.publicProfiles) return json(res, 404, { error: \'Public profiles are not available yet.\' });\n    const on = b.public;', 'turning a public profile OFF is gated on the flag — rolling the environment variable back would strand every account that opted in, public in the database with no way for its owner to withdraw');
+requireText(app, 'id="pp-agree"', 'the public-profile control no longer requires an explicit, unchecked confirmation before a page with somebody\'s handle on it comes into existence');
+requireText(app, "featureOn('publicProfiles') ? '<section class=\"me-sec\"><h2>Your public page</h2>", 'the public-profile control is rendered while the capability is contained — a contained capability is absent from the visible task flow, not present and erroring');
+
 requireText(read('site/index.html'), '>Problems</a>', 'application shell has no Problems entry');
 requireText(read('site/index.html'), '>Goals</a>', 'application shell has no Goals entry');
 requireText(read('site/index.html'), '>A&ndash;Z</a>', 'application shell has no A-Z entry');

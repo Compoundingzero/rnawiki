@@ -995,6 +995,33 @@
     if (HOME_HTML && !currentRoute().split('?')[0].split('/').filter(Boolean).length) HOME_HTML = app.innerHTML;
   }
 
+  // ---- /p — the same list, on its own page (2026-08-14) ---------------------------------------
+  // build/prerender.js emits the whole document; this only fills its <ul>. Same endpoint, same row
+  // markup and the same honest empty state as the landing strip: if the fetch is gated or fails,
+  // the prerendered paragraph explaining why the list is empty stays exactly as it was.
+  function publishedRow(p) {
+    const meta = [p.handle ? '@' + esc(p.handle) : 'anonymous',
+      (p.likes || 0) + ' found this useful'].join(' · ');
+    return '<li><a href="/p/' + encodeURIComponent(p.code) + '"><b>' + esc(p.title || 'Untitled protocol')
+      + '</b><span class="lp-comm-meta">' + meta + '</span></a></li>';
+  }
+  async function mountPublishedIndex() {
+    const ul = document.getElementById('p-idx-list');
+    if (!ul) return;
+    if (!featureOn('publicCommunity')) return;
+    let list = [];
+    try {
+      const r = await fetch('/api/protocols/new?limit=12', { headers: { accept: 'application/json' } });
+      if (!r.ok) return;
+      list = (await r.json()).protocols || [];
+    } catch (e) { return; }
+    if (!list.length) return;
+    ul.innerHTML = list.map(publishedRow).join('');
+    ul.hidden = false;
+    const empty = document.getElementById('p-idx-empty');
+    if (empty) empty.remove();
+  }
+
   // Mirrors overlapWarnings() in build/prerender.js. Both call IXN.stackInteractions/pairCoverage,
   // so a reader with JavaScript and a reader without are shown the same pharmacology in the same
   // order with the same citations. If these two ever diverge, the site tells two stories about
@@ -5221,6 +5248,20 @@
       <div class="solve-grid q-list">${hits.map(h => solveCard(h.p, true)).join('')}</div>
       <p class="q-all"><a href="#solve-directory">Not it? Browse all ${n} topics ↓</a></p></section>`;
   }
+  // ---- ONE DEFINITION OF THE REQUEST BLOCK, USED BY BOTH PAINTS (2026-08-14) -------------------
+  // solvePage() renders it once from the query the page was built with; applyQ() re-renders it on
+  // every keystroke from the query actually typed. Those were two different pieces of code and the
+  // second one did not exist, which is how "Request a protocol →" ended up sitting under "Get
+  // urgent help now". One function, two callers, and the safety condition lives in it.
+  // scripts/containment.mjs pins the `const requestBlock = featureOn('publicCommunity')` opening
+  // below; it is preserved verbatim.
+  function solveRequestBlock(guidance) {
+    const requestBlock = featureOn('publicCommunity') && guidance !== 'urgent' && guidance !== 'professional_review' ? `<div class="request-cta">
+        <div><b>Don’t see your problem or goal?</b> <span>Tell me, and it goes on the list of what to build next.</span></div>
+        <button class="cta-primary" id="req-proto">Request a protocol →</button>
+      </div><div id="requests-board"></div>` : '';
+    return requestBlock;
+  }
   function solvePage(q) {
     q = String(q || '').slice(0, 120);
     const cats = GRAPH.categories;
@@ -5230,10 +5271,7 @@
       const ps = GRAPH.problems.filter(p => p.category === cat);
       return `<div class="solve-section"><h2>${esc(cat)}</h2><div class="solve-grid">${ps.map(p => solveCard(p, false)).join('')}</div></div>`;
     }).join('');
-    const requestBlock = featureOn('publicCommunity') ? `<div class="request-cta">
-        <div><b>Don’t see your problem or goal?</b> <span>Tell me, and it goes on the list of what to build next.</span></div>
-        <button class="cta-primary" id="req-proto">Request a protocol →</button>
-      </div><div id="requests-board"></div>` : '';
+    const requestBlock = `<div id="req-slot">${solveRequestBlock(guidance)}</div>`;
     return `${crumbs([{ label: 'Home', href: '#/' }, { label: 'Find' }])}
       <section class="solve-hero">
         <div class="kicker">Find your next step</div>
@@ -5440,6 +5478,25 @@
       // deliberately returns no matches for urgent/review queries; omitting this third argument
       // turned that safe empty list into the ordinary “Nothing here matches” state.
       fresh.innerHTML = solveQPanel(q, rankProblems(q), solveGuidance(q));
+      // ---- AND THE REQUEST BLOCK IS PART OF THE SAFETY STATE (2026-08-14) ---------------------
+      // This function replaces ONE element, the .q-panel. The protocol-request CTA and the request
+      // board are rendered separately at the foot of the page by solvePage(), from the guidance of
+      // whatever query the page was BUILT with — an empty one. So a reader who opened /solve and
+      // then typed "chest pain" got the urgent panel with "Don't see your problem or goal? Request
+      // a protocol →" still sitting underneath it. Find's whole safety contract is that these
+      // states show no approximate protocol route, and a request button is one.
+      //
+      // REMOVED, NOT HIDDEN. `hidden` was the first fix and the browser suite refused it, correctly:
+      // it queries for #requests-board existing AT ALL. The project's own rule is the same one —
+      // "contained capabilities are absent from the visible task flow, not merely backed by
+      // endpoints that return an error" — so the slot is emptied and refilled rather than toggled.
+      const slot = document.getElementById('req-slot');
+      if (slot) {
+        slot.innerHTML = solveRequestBlock(solveGuidance(q));
+        const rq2 = document.getElementById('req-proto');
+        if (rq2) rq2.onclick = () => openRequestModal();
+        if (document.getElementById('requests-board') && featureOn('publicCommunity')) mountRequestsBoard();
+      }
       const node = fresh.firstElementChild;
       if (panel && node) panel.replaceWith(node);
       else if (panel && !node) panel.remove();
@@ -9924,6 +9981,55 @@
     draw();
   }
 
+  // ---- MAKING YOUR PAGE PUBLIC, AND UNMAKING IT ------------------------------------------------
+  // AN UNCHECKED BOX WITH THE CONSEQUENCES BESIDE IT, not a switch with a label. The reader is
+  // deciding whether a URL exists with their handle on it, so what appears there is itemised in
+  // full BEFORE the tap, in the same shape as the publish sheet and the 18+ confirmation.
+  // NOT id="adult-confirm": site/app.js resolves that id from the Google sign-in callback by
+  // getElementById, so a second element carrying it would be read as the age confirmation.
+  // The scope sentence is the SERVER'S (`d.shows`), printed verbatim, so this surface cannot
+  // restate what a profile discloses in its own more generous words.
+  async function mountPublicProfileToggle() {
+    const host = document.getElementById('pub-profile');
+    if (!host || !ME) return;
+    let d;
+    try {
+      const r = await fetch('/api/profile/public', { headers: { accept: 'application/json' } });
+      if (!r.ok) return;
+      d = await r.json();
+    } catch (e) { return; }
+    const handle = esc(d.handle || ME.username);
+    const draw = () => {
+      host.innerHTML = d.public
+        ? '<p class="pp-on">Your page is public at <a href="#/u/' + handle + '">/u/' + handle + '</a>.</p>'
+          + '<p class="muted me-why">' + esc(d.shows || '') + '</p>'
+          + '<button class="cta-ghost" id="pp-off">Make it private again</button>'
+          + '<p class="muted me-why">Turning it off takes the page down for everyone immediately. What you published stays published at its own link — this is about the page that lists you, not about the protocols.</p>'
+        : '<p>You can have a page at <b>/u/' + handle + '</b> that lists the protocols you published. It does not exist until you say so.</p>'
+          + '<p class="muted me-why">' + esc(d.shows || '') + '</p>'
+          + '<label class="adult-confirm pp-confirm"><input type="checkbox" id="pp-agree"> <span>I want a public page at /u/' + handle + ', showing what I published.</span></label>'
+          + '<button class="cta-primary" id="pp-on" disabled>Make my page public</button>'
+          + '<p class="muted me-why">You can switch it off here at any time. It is kept out of Google either way, and nothing you read, plan, log or follow ever appears on it.</p>';
+      const agree = document.getElementById('pp-agree'), on = document.getElementById('pp-on');
+      if (agree && on) agree.onchange = () => { on.disabled = !agree.checked; };
+      const send = async (want, btn) => {
+        btn.disabled = true; btn.textContent = want ? 'Publishing…' : 'Taking it down…';
+        try {
+          const r = await fetch('/api/profile/public', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ public: want }) });
+          const j = await r.json();
+          if (!r.ok) { toast(j.error || 'That did not change.'); btn.disabled = false; draw(); return; }
+          d.public = j.public; draw();
+          toast(want ? 'Your page is public' : 'Your page is private again');
+        } catch (e) { btn.disabled = false; draw(); }
+      };
+      const onBtn = document.getElementById('pp-on'); if (onBtn) onBtn.onclick = () => send(true, onBtn);
+      const offBtn = document.getElementById('pp-off'); if (offBtn) offBtn.onclick = () => send(false, offBtn);
+    };
+    draw();
+  }
+
   async function renderMe() {
     try { await ensureProtocolData(); } catch (e) {}
     const plan = getPlan();
@@ -10019,6 +10125,11 @@
       // cannot pay. assertGamificationConfinement() keeps every one of these tokens off the pages
       // where somebody is deciding what to take.
       + (ME ? '<section class="me-sec"><h2>Your mark</h2><div id="avatar-shop"></div></section>' : '')
+      // ---- THE ONE DELIBERATELY PUBLIC ACT AN ACCOUNT CAN PERFORM (2026-08-14) -----------------
+      // Rendered only when the server says public profiles exist, because
+      // docs/PRODUCTION_REVAMP_STATE.md is explicit that a contained capability is ABSENT from the
+      // visible task flow rather than present-and-erroring. mountPublicProfileToggle() fills it.
+      + (ME && featureOn('publicProfiles') ? '<section class="me-sec"><h2>Your public page</h2><div id="pub-profile"></div></section>' : '')
       + '<section class="me-sec me-acct"><h2>Your account</h2>'
       + (ME
         ? '<p>Signed in as <b>@' + esc(ME.username) + '</b>' + (joinMonth(mine.joined) ? ', here since ' + esc(joinMonth(mine.joined)) : '') + '. RNAwiki has never asked you for your real name and holds no photograph of you.</p>'
@@ -10026,6 +10137,7 @@
       + '<p class="muted me-why">There is no rank here and no leaderboard. This site has a handful of accounts; a ranking over that is a number I would be inventing, and “most used” is the only ordering anything here is allowed to carry. The points above are not a score either — they are a count of the times somebody else accepted something you sent, and the only thing they buy is a colour on this page. They appear nowhere near a page where you are deciding what to take.</p></section>';
 
     mountAvatarShop();
+    mountPublicProfileToggle();
 
     app.querySelectorAll('[data-withdraw]').forEach((b) => {
       b.onclick = async () => {
@@ -11320,6 +11432,16 @@
   // the page back exactly, with no second renderer anywhere.
   // W5c: true only until the first route() has finished. See the focus block inside route().
   let _firstRender = true;
+  // A RE-RENDER IS NOT A NAVIGATION (2026-08-14). route() moves focus to the new <h1> because that
+  // is right after an in-app navigation. But route() is also called when the server's config
+  // arrives — which happens on PAGE LOAD, a few hundred milliseconds in, with the reader's focus
+  // still where the browser put it. `_firstRender` is already false by then, so the focus moved and
+  // Chrome painted a focus ring around the title of a page nobody had interacted with, skipping
+  // past the skip link and the whole header. It only reproduced with PUBLIC_COMMUNITY=1, because
+  // that is the only case where the arriving config differs from the boot default and triggers the
+  // re-route — so the rendered browser suite found it the first time the flag was ever set in a
+  // test run, on all four /solve routes at both widths.
+  let _silentRoute = false;
   let KEEP_PATH = (location.pathname || '/').replace(/\.html$/, '');
   let KEEP_HTML = null;   // the prerendered #app for KEEP_PATH -- captured just before route(), below
   let KEEP_LIVE = true;   // is that document still the one in #app?
@@ -11397,6 +11519,13 @@
     // fills it — the /plan and /protocol pattern. /studio/<code> opens a remix of a published one.
     else if (parts[0] === 'studio') html = studioLoading();
     else if (parts[0] === 'p' && parts[1]) html = studioLoading();
+    // BARE /p — the published-protocol index. KEEP, not a renderer: build/prerender.js emits the
+    // whole page and mountPublishedIndex() below only fills its list, so writing #app here would
+    // throw the prerendered document away and replace it with nothing. It is NOT in
+    // KEEP_PRERENDERED, deliberately — that check runs earlier and matches on parts[0] alone, so
+    // adding 'p' to it would swallow /p/<code> and every published protocol would render as its
+    // own index. This branch is ordered AFTER the two-segment one for the same reason.
+    else if (parts[0] === 'p' && !parts[1]) html = KEEP;
     else if (parts[0] === 'fuel') html = fuelPage(parts[1], parts[2]);
     else if (parts[0] === 'plan') html = planLoading();
     else if (parts[0] === 'progress') html = planLoading();
@@ -11498,8 +11627,9 @@
       // handle — so this is the one case those rules cannot reach.
       // The tabindex is still set: the announcer above needs no focus, but a later route change
       // does, and so does anything that wants to send focus to the heading.
-      if (h1) { h1.setAttribute('tabindex', '-1'); if (!_firstRender) h1.focus({ preventScroll: true }); }
+      if (h1) { h1.setAttribute('tabindex', '-1'); if (!_firstRender && !_silentRoute) h1.focus({ preventScroll: true }); }
       _firstRender = false;
+      _silentRoute = false;
     } catch (e) { }
     closeGlossPop();
     try { glossarize(app); } catch (e) { }
@@ -11511,6 +11641,9 @@
     if (parts[0] === 'fuel') bindFuel(parts[1], parts[2]);
     if (parts[0] === 'plan') renderPlan(QS.get('mode'));
     if (parts[0] === 'studio') renderStudio(parts[1] || null, QS.get('for'), QS.get('cause'));
+    // Also fill on ARRIVAL, not only in the config handler: that one runs once at boot, so a reader
+    // who lands anywhere else and navigates to /p afterwards would otherwise get the empty frame.
+    if (parts[0] === 'p' && !parts[1]) mountPublishedIndex();
     if (parts[0] === 'me') renderMe();
     if (parts[0] === 'u' && parts[1]) renderPublicProfile(parts[1]);
     if (parts[0] === 'p' && parts[1]) renderPublished(parts[1]);
@@ -11636,11 +11769,14 @@
     // Request controls are not merely disabled: they are absent while the product is contained.
     // If an approved deployment turns the flag on, rerender Find once the server-owned config
     // arrives so the controls and board appear together instead of leaving a dead placeholder.
-    if (communityOn !== communityWasOn && currentRoute().split('?')[0] === '/solve') route();
+    // Silent: this is the config landing on a page the reader is already looking at, not a
+    // navigation they performed. See the note over _silentRoute.
+    if (communityOn !== communityWasOn && currentRoute().split('?')[0] === '/solve') { _silentRoute = true; route(); }
     if (communityOn) {
       // THE REAL CALL. See the long note over the boot-time call above: this is the first moment
-      // featureOn('publicCommunity') can be true, so it is the first moment the strip can fill.
+      // featureOn('publicCommunity') can be true, so it is the first moment either list can fill.
       mountCommunityStrip();
+      mountPublishedIndex();
       const targets = [...document.querySelectorAll('.vote-foot[data-target]')].map((el) => el.dataset.target).filter(Boolean);
       if (targets.length) mountVotes(targets);
       if (currentRoute().split('?')[0] === '/solve') mountRequestsBoard();
