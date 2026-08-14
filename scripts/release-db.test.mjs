@@ -37,6 +37,16 @@ function guardedDatabaseUrl(raw) {
   return { raw, name };
 }
 
+function guardedServerAddress(address) {
+  if (address == null || ['127.0.0.1', '::1'].includes(String(address))) return true;
+  // GitHub maps the loopback port above to its own disposable service-container network, so
+  // inet_server_addr() reports an RFC1918 Docker address even though the only accepted URL host
+  // remains loopback. This exception is unavailable outside GitHub Actions and never admits a
+  // public address; the URL/name guards above still run before the first connection.
+  if (process.env.GITHUB_ACTIONS !== 'true') return false;
+  return /^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.)/.test(String(address));
+}
+
 const guarded = guardedDatabaseUrl(TEST_URL);
 const pool = new Pool({ connectionString: guarded.raw, ssl: false, max: 3 });
 const fixture = `rdb_${crypto.randomBytes(5).toString('hex')}`;
@@ -193,8 +203,8 @@ let failure = null;
 try {
   const identity = (await pool.query('SELECT current_database() AS name, inet_server_addr() AS address')).rows[0];
   assert.equal(identity.name, guarded.name, 'connected database differs from the guarded URL');
-  assert.ok(identity.address == null || ['127.0.0.1', '::1'].includes(String(identity.address)),
-    `connected server address ${identity.address} is not loopback`);
+  assert.ok(guardedServerAddress(identity.address),
+    `connected server address ${identity.address} is neither loopback nor the GitHub Actions private service network`);
 
   const port = await freePort();
   const origin = `http://127.0.0.1:${port}`;
