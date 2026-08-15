@@ -240,11 +240,11 @@ a.counter:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));tr
      · .st-add 269x28 · .df-link 194x34 · .seed-all 98x34 · .cc-reveal 103x25 · .brand 97x29
    inline-flex + centring rather than bare min-height, because min-height on a padded pill leaves
    its label stuck to the top edge.
-   NOT COVERED, and deliberately: links that sit inside a sentence (279 of them at 33x16 in the
-   footer and in body prose, .oth-jump, .wex-back, .linkbtn). WCAG 2.5.8 exempts inline links
-   explicitly, and padding them out would break the line boxes they live in. The breadcrumb links
-   above are the one in-between case — block-level, but a navigation row rather than buttons — so
-   they are taken to the 24px AA floor rather than the 44px AAA one. */
+   NOT COVERED, and deliberately: ordinary links inside footer/body sentences and generic
+   `.linkbtn` instances. WCAG 2.5.8 exempts inline links explicitly, and padding every citation
+   would break prose line boxes. Dedicated protocol decisions and provenance controls are scoped
+   to 44px at their own selectors below. Breadcrumbs are the one in-between case — block-level,
+   but a navigation row rather than buttons — so they use the 24px AA floor on desktop. */
 .brand,.seed-chip,.seed-all,.chip,.cta-primary,.cta-ghost,.learned-btn,.stack-btn-lg,.mol-3d-btn,
 .share-short-btn,.df-link,.rc-assess,.st-add,.cc-reveal,.acct-btn{
   min-height:44px;display:inline-flex;align-items:center;justify-content:center}
@@ -692,7 +692,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .rc-diag{color:var(--muted);margin:.2rem 0 0;font-size:.92rem}
 .rc-switch{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin:0 0 1rem;font-size:.85rem}
 .rc-switch span{color:var(--muted);margin-right:.2rem}
-.rc-switch a{border:1px solid var(--line);padding:.3rem .7rem;border-radius:999px;color:var(--muted);background:#fff}
+.rc-switch a{display:inline-flex;align-items:center;min-height:44px;border:1px solid var(--line);padding:.3rem .7rem;border-radius:999px;color:var(--muted);background:#fff}
 .rc-switch a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
 .rc-switch a:hover{text-decoration:none}
 .proto-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;align-items:start}
@@ -705,6 +705,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 .rx{background:var(--panel2);border-radius:10px;padding:.6rem .8rem;font-size:.86rem;color:var(--ink);margin-bottom:.8rem}
 .proto-more{display:inline-block;margin-top:.5rem;font-size:.85rem}
 .proto-foot{margin-top:1.2rem;font-size:.82rem}
+.proto-foot #cite-proto{display:inline-flex;align-items:center;min-height:44px;vertical-align:middle;font-size:.82rem}
 
 /* exercise cards */
 .ex-card{display:flex;gap:.7rem;border:1px solid var(--line);border-radius:10px;padding:.5rem;margin-bottom:.6rem;background:#fff}
@@ -717,7 +718,7 @@ a.pd-goal:hover{text-decoration:none;filter:brightness(.97);transform:translateY
 
 /* stack cards */
 .st-card{border:1px solid var(--line);border-radius:10px;padding:.6rem .7rem;margin-bottom:.6rem;background:#fff}
-.st-main{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;color:var(--ink)}
+.st-main{display:flex;justify-content:space-between;align-items:center;min-height:44px;gap:.5rem;color:var(--ink)}
 .st-main:hover{text-decoration:none}
 .st-main .stars{color:var(--star);font-size:.85rem;white-space:nowrap}
 .st-meta{display:flex;flex-wrap:wrap;gap:.3rem;margin:.35rem 0}
@@ -3426,7 +3427,7 @@ a.dp-name:hover{color:var(--accent)}
 .one-thing-head{margin:1.2rem 0;padding:1.1rem 1.3rem;border-radius:16px;background:linear-gradient(135deg,color-mix(in srgb,#16a34a 12%,transparent),color-mix(in srgb,#0ea5e9 10%,transparent));border:1px solid color-mix(in srgb,#16a34a 30%,var(--line))}
 .oth-badge{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:#15803d}
 .one-thing-head p{margin:.4rem 0 .5rem;font-size:1.08rem;line-height:1.55;font-weight:500}
-.oth-jump{font-size:.86rem;font-weight:600;color:var(--accent);cursor:pointer;text-decoration:none}
+.oth-jump{display:inline-flex;align-items:center;min-height:44px;font-size:.86rem;font-weight:600;color:var(--accent);cursor:pointer;text-decoration:none}
 .oth-jump:hover{text-decoration:underline}
 .cause-howto{margin:.5rem 0 0;font-size:.9rem;line-height:1.55;color:var(--muted)}
 .fix-order-note{font-size:.76rem;font-weight:500;color:var(--muted);font-style:italic}
@@ -4184,44 +4185,36 @@ a.assess-go2:hover { text-decoration: none; }
 a.assess-switch { text-align: center; }
 
 /* ---- Inline plain-English glossary (no JavaScript required) --------------------------------
-   ~90% of traffic never runs JS, so the reveal is a checkbox + :has(), not a tooltip. Every
-   element in the unit is phrasing content, so it is legal inside <p>, <li>, <dd> and <td>. */
+   A definition is neither a setting nor an action, so a focusable role="term" is linked to a
+   role="definition" rather than pretending to be a checkbox or button. Focus reveals the text for
+   keyboard, touch and mouse users; aria-describedby gives a screen reader the same definition. */
 .pgl{position:relative;display:inline}
-/* The control. Focusable and hit-testable, but visually nothing: the LABEL is what you see. */
-.pgl-c{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
-.pgl-t{display:inline;font:inherit;color:inherit}
-/* The definition. sr-only by DEFAULT, which is the whole accessibility story: it is already in
-   the accessibility tree, so a screen reader hears "metabotropic — a receptor that…" as an
-   ordinary inline parenthetical and never has to operate anything. */
+.pgl-t{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:44px;min-height:44px;margin:0;padding:0 .12em;vertical-align:middle;
+  border:0;border-bottom:1px dotted var(--accent2,#0d9488);border-radius:3px;
+  background:transparent;font:inherit;color:inherit;cursor:help
+}
+.pgl-t:hover{background:rgba(13,148,136,.08)}
+.pgl-t:focus-visible{outline:2px solid var(--accent,#0d9488);outline-offset:2px}
+/* The definition is visually hidden by default but remains the term's accessible description. */
 .pgl-d{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
 
-/* Only advertise the affordance where the reveal actually works. Without :has() the dotted
-   underline would promise an interaction that does nothing. */
-@supports selector(:has(*)){
-  .pgl-t{border-bottom:1px dotted var(--accent2,#0d9488);cursor:help}
-  .pgl-t:hover{background:rgba(13,148,136,.08)}
-  .pgl-c:focus-visible ~ *,.pgl-t:has(.pgl-c:focus-visible){outline:2px solid var(--accent,#0d9488);outline-offset:2px;border-radius:3px}
-  .pgl:has(.pgl-c:checked) .pgl-t{background:rgba(13,148,136,.12);border-bottom-style:solid}
-  /* REVEALED = INLINE, not a floating bubble.
-     A positioned bubble anchored to the term overflows the viewport whenever the term sits near
-     the right edge — measured: /pathway/6 at 390px went from scrollWidth 390 to 535. There is no
-     way to clamp it back without JS, and JS is exactly what this layer cannot assume. Flowing the
-     definition into the paragraph has no positioning math, cannot clip, cannot overflow, reflows
-     correctly at every width, and prints. It is also the device the corpus already uses by hand
-     ("a phenomenon called ACTIVE INSUFFICIENCY (a two-joint muscle can't ...)") — so this is
-     automating a proven pattern, not inventing one. */
-  .pgl:has(.pgl-c:checked) .pgl-d{
-    position:static;display:inline;
-    width:auto;height:auto;margin:0 .12em;padding:.08em .45em;
-    clip:auto;clip-path:none;overflow:visible;white-space:normal;
-    font-size:.92em;font-weight:400;line-height:inherit;
-    color:var(--ink,#0f172a);background:rgba(13,148,136,.10);
-    border-left:2px solid var(--accent,#0d9488);border-radius:0 5px 5px 0;
-    box-decoration-break:clone;-webkit-box-decoration-break:clone
-  }
-  .pgl:has(.pgl-c:checked) .pgl-d b{color:var(--accent,#0d9488);font-weight:650}
+/* REVEALED = INLINE, not a floating bubble. A positioned bubble anchored near a phone's right
+   edge previously widened /pathway/6 from 390px to 535px. Flow needs no positioning math and
+   cannot clip; focus-within works in every browser that can focus the term. */
+.pgl:focus-within .pgl-t{background:rgba(13,148,136,.12);border-bottom-style:solid}
+.pgl:focus-within .pgl-d{
+  position:static;display:inline;
+  width:auto;height:auto;margin:0 .12em;padding:.08em .45em;
+  clip:auto;clip-path:none;overflow:visible;white-space:normal;
+  font-size:.92em;font-weight:400;line-height:inherit;
+  color:var(--ink,#0f172a);background:rgba(13,148,136,.10);
+  border-left:2px solid var(--accent,#0d9488);border-radius:0 5px 5px 0;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone
 }
-@media print{ .pgl-t{border-bottom:0} .pgl-d{position:static;width:auto;height:auto;clip:auto;clip-path:none;margin:0;white-space:normal;font-size:.9em;color:#333} .pgl-d::before{content:"(" } .pgl-d::after{content:")"} .pgl-c{display:none} }
+.pgl:focus-within .pgl-d b{color:var(--accent,#0d9488);font-weight:650}
+@media print{ .pgl-t{display:inline;min-width:0;min-height:0;border-bottom:0;padding:0} .pgl-d{position:static;width:auto;height:auto;clip:auto;clip-path:none;margin:0;white-space:normal;font-size:.9em;color:#333} .pgl-d::before{content:"(" } .pgl-d::after{content:")"} }
 
 /* The topbar is `position:sticky; top:0` and 60px tall, so any anchor landing -- the worked
    example's "#top" return link and the "#how-it-works" jump -- would otherwise have its first
@@ -4304,6 +4297,7 @@ a.assess-switch { text-align: center; }
 .prob-route-links .creator-route-index{flex:1 1 100%}
 .cf-next { margin-top: .9rem; padding-top: .7rem; border-top: 1px dashed var(--line); }
 .cf-next p { margin: .3rem 0; }
+.cf-next p a { display:inline-flex;align-items:center;min-height:44px;vertical-align:middle; }
 .cf-next-up { font-size: .9rem; }
 .cf-next-up a { display: inline-flex; align-items: center; min-height: 44px; }
 /* .topbar is position:sticky;top:0 and 58px tall, so a fragment landing at scroll-top would put the
@@ -4522,7 +4516,7 @@ a.assess-switch { text-align: center; }
 .lede{font-size:1.08rem;line-height:1.6;color:var(--ink);border-left:3px solid var(--accent);padding-left:.9rem;margin:.9rem 0 1.4rem}
 .review-state{font-size:.9rem;color:var(--muted);background:var(--panel);border:1px solid var(--line-soft);border-radius:var(--r-sm);padding:.7rem .9rem;margin:1.2rem 0}
 .review-state b{color:var(--ink)}
-.review-state a{white-space:nowrap}
+.review-state a{display:inline-flex;align-items:center;min-height:44px;vertical-align:middle;white-space:nowrap}
 
 /* Fuel Tracker's readable twin (2026-07-30). Matches .bio-tbl so the two data tables on the site
    read as one thing. The wrapper scrolls rather than the page: a targets table can carry six
@@ -4559,6 +4553,7 @@ a.assess-switch { text-align: center; }
 @keyframes bm-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .bm-spin { animation: none; border-top-color: var(--line); } }
 .cause-allpage { margin: .9rem 0 0; font-size: .92rem; }
+.cause-allpage a { display:inline-flex;align-items:center;min-height:44px; }
 /* One-line-per-cause summary that replaced the full 7,000-word cascade on root-cause pages. */
 .cause-brief { margin: 1.4rem 0; }
 .cause-brief-list { margin: .5rem 0 .8rem; padding-left: 1.1rem; line-height: 1.6; }
@@ -5192,28 +5187,6 @@ html:has(.lp-fold) .topbar .search-wrap{display:none}
 .variants .vr-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted);line-height:1.45}
 @media(min-width:640px){.variants .vr-list{grid-template-columns:1fr 1fr}}
 
-/* ===== THE AVATAR (2026-08-13) — PROFILE ONLY ================================================
-   assertGamificationConfinement() in build/prerender.js fails the build if any of this reaches a
-   protocol, problem, compound, goal, fuel, compare, target or pathway page. A reader deciding what
-   to put in their body does not get a second motive on the same screen. */
-#avatar-shop .av-head{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-#avatar-shop .av{width:68px;height:76px;flex:0 0 auto}
-#avatar-shop .av-bal{display:flex;flex-direction:column;gap:1px}
-#avatar-shop .av-bal b{font-size:1.5rem;font-weight:800;color:var(--head);line-height:1;font-variant-numeric:tabular-nums}
-#avatar-shop .av-bal span{font-size:.82rem;color:var(--muted)}
-#avatar-shop .av-bal small{font-size:.76rem;color:var(--faint);line-height:1.45;max-width:40ch;margin-top:.25rem}
-#avatar-shop .av-how{margin:.9rem 0 0;font-size:.87rem;line-height:1.55;color:var(--muted);max-width:56ch}
-#avatar-shop .av-list{list-style:none;margin:.9rem 0 0;padding:0;display:grid;gap:6px;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
-#avatar-shop .av-item{display:flex;flex-direction:column;gap:2px;align-items:flex-start;width:100%;
-  min-height:52px;justify-content:center;padding:8px 11px;border:1px solid var(--line);border-radius:10px;
-  background:var(--panel);color:var(--ink);cursor:pointer;text-align:left;font:inherit}
-#avatar-shop .av-item:hover:not(:disabled){border-color:var(--accent)}
-#avatar-shop .av-item:disabled{opacity:.5;cursor:not-allowed}
-#avatar-shop .av-item b{font-size:13.5px;font-weight:700;color:var(--head)}
-#avatar-shop .av-item span{font-family:var(--mono);font-size:11px;color:var(--muted)}
-/* Equipped is marked in form as well as colour. */
-#avatar-shop .av-on{border-color:var(--accent);border-left-width:3px}
 /* A cleared pair is the quietest row in the block, deliberately: it is the absence of a problem,
    and it must never compete for attention with the rows that are one. */
 .overlap .ov-clear::before{background:var(--accent);opacity:.35}

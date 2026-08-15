@@ -116,6 +116,9 @@ const ROUTES = [
   ['compound-safety-cards', '/c/cerebrolysin-ara-290-brief'],
   ['compound-biohacker-cards', '/c/iodine-selenium'],
   ['protocol', '/protocol/knee-pain/patellofemoral-pain'],
+  // Dedicated mobile control audit. A query keeps its UI-driving assertion isolated from the
+  // other protocol assertions while exercising the same official-protocol renderer.
+  ['protocol-accessibility', '/protocol/chronic-fatigue/iron-anemia?smoke=accessibility'],
   // W4: the OTHER branch of the $0 split. 8 of 52 root causes have no free first step and say so
   // instead of inventing one; on those, Phase 2 must render OPEN, because hiding the only thing
   // the page has behind a step the reader cannot take would be worse than the defect.
@@ -151,6 +154,10 @@ const ROUTES = [
   // would be invalidated by a tap on Start.
   ['protocol-consent', '/protocol/insomnia/circadian-misalign'],
   ['problem', '/problem/knee-pain'],                       // KEEP_PRERENDERED
+  // Same template, but this one carries a glossary term in the visible chooser and repeats two
+  // protocol choices inside four cause endings. It is the smallest route that exercises both
+  // mobile-accessibility regressions together.
+  ['problem-accessibility', '/problem/chronic-fatigue'],
   ['target', '/target/AR'],
   // W5c: the longest target name in the corpus, and one of exactly three routes of 568 that
   // pushed the document wider than a 390px viewport (403px). /target/AR cannot detect it — its
@@ -1256,6 +1263,78 @@ const ASSERTIONS = {
       const lis = [...app.querySelectorAll('.cf-fixes li')];
       const linked = lis.filter(li => li.querySelector('a[href^="/c/"]')).length;
       if (!linked) return `0 of ${lis.length} plan items link to the compound they name`;
+      return null;
+    },
+  }],
+  '/problem/chronic-fatigue': [{
+    name: 'problemChoicesAndDefinitionsAreReachableOnAPhone',
+    why: '2026-08-15 production check: repeated protocol choices and the trust links were 17–18px tall, while a definition was exposed as a 1×1 checkbox',
+    evaluate: () => {
+      const term = document.querySelector('#which-one .pgl-t');
+      if (!term) return 'the chronic-fatigue chooser no longer contains the glossary term that makes this route a positive control';
+      if (document.querySelector('.pgl-c,input[type="checkbox"][aria-label^="what "]')) return 'a glossary definition is still represented as a checkbox';
+      if (term.getAttribute('role') !== 'term' || term.getAttribute('tabindex') !== '0') return 'the glossary text is not exposed as a keyboard-reachable role="term"';
+      const defId = term.getAttribute('aria-describedby');
+      const def = defId && document.getElementById(defId);
+      if (!def || !def.classList.contains('pgl-d') || def.getAttribute('role') !== 'definition') return 'the glossary term is not programmatically linked to a role="definition" element';
+      const tr = term.getBoundingClientRect();
+      if (tr.width < 44 || tr.height < 44) return `the glossary term target is ${Math.round(tr.width)}×${Math.round(tr.height)}px, under 44×44`;
+      const before = def.getBoundingClientRect();
+      if (before.width > 1.5 || before.height > 1.5) return 'the glossary definition is expanded before the reader asks for it';
+      term.focus();
+      const after = def.getBoundingClientRect();
+      if (after.width <= 1.5 || after.height <= 1.5) return 'focusing the glossary term does not reveal its definition without JavaScript';
+      if (document.documentElement.scrollWidth > innerWidth) return `revealing the inline definition widens the ${innerWidth}px viewport to ${document.documentElement.scrollWidth}px`;
+
+      // Make the repeated end-of-cause routes measurable too; these are the four 18px copies the
+      // production audit found, not the already-correct 44px choices in the availability card.
+      document.querySelectorAll('details.cause-flat-item').forEach((d) => { d.open = true; });
+      const choices = [...document.querySelectorAll('.prob-route-links a, .cf-next a, .review-state a')]
+        .filter((a) => { const r = a.getBoundingClientRect(); return r.width > 0 && r.height > 0; });
+      if (!choices.length) return 'no protocol-choice or review links were measurable';
+      const short = choices.filter((a) => a.getBoundingClientRect().height < 43.5);
+      if (short.length) {
+        const a = short[0];
+        return `${short.length} protocol-choice/review links are under 44px; first is “${a.textContent.trim().replace(/\s+/g, ' ')}” at ${Math.round(a.getBoundingClientRect().height)}px`;
+      }
+      return null;
+    },
+  }],
+  '/protocol/chronic-fatigue/iron-anemia?smoke=accessibility': [{
+    name: 'protocolDecisionAndProvenanceControlsMeetThePhoneTarget',
+    why: '2026-08-15 production check: cause jump 16px, compound card 26px, route switches 33px, all-causes link 41px, review links 17px and citation button 14px at 390px',
+    evaluate: () => {
+      const full = document.getElementById('protocol-full');
+      if (!full) return 'the full-protocol disclosure is missing';
+      full.open = true;
+      const phase2 = document.getElementById('phase-2');
+      if (!phase2) return 'the targeted-stack disclosure is missing';
+      phase2.open = true;
+
+      const jump = document.querySelector('a.oth-jump');
+      if (!jump || jump.getAttribute('href') !== '#p-causes') return 'the cause jump is not a real link to #p-causes';
+      const cite = document.getElementById('cite-proto');
+      if (!cite || cite.tagName !== 'BUTTON' || cite.getAttribute('type') !== 'button') return 'Cite this protocol is not an explicit non-submit button';
+
+      const groups = [
+        ['cause jump', 'a.oth-jump', 1],
+        ['compound card', 'a.st-main', 1],
+        ['root-cause switch', '.rc-switch a', 2],
+        ['all-causes link', '.cause-allpage a', 1],
+        ['review/correction link', '.review-state a', 2],
+        ['citation button', '#cite-proto', 1],
+      ];
+      for (const [label, selector, minimum] of groups) {
+        const controls = [...document.querySelectorAll(selector)];
+        if (controls.length < minimum) return `${label}: expected at least ${minimum}, found ${controls.length}`;
+        const hidden = controls.filter((el) => { const r = el.getBoundingClientRect(); return r.width <= 0 || r.height <= 0; });
+        if (hidden.length) return `${label}: ${hidden.length} control(s) are not rendered after opening the protocol`;
+        const short = controls.filter((el) => el.getBoundingClientRect().height < 43.5);
+        if (short.length) {
+          const el = short[0];
+          return `${label} “${el.textContent.trim().replace(/\s+/g, ' ')}” is ${Math.round(el.getBoundingClientRect().height)}px tall, under 44px`;
+        }
+      }
       return null;
     },
   }],
@@ -2725,6 +2804,7 @@ try {
           lang: document.documentElement.lang,
           skipLink: !!document.querySelector('a[href="#main"], a[href="#app"]'),
           announcer: document.querySelectorAll('[role="status"][aria-live="polite"]').length,
+          announcement: (document.getElementById('route-status')?.textContent || '').trim(),
           inlineOnclick: document.querySelectorAll('[onclick]').length,
           appChildren: (document.getElementById('app')?.children.length) || 0,
           // W5c (2026-08-02): this whole gate already runs at 390x844, so it can see the one
@@ -2861,6 +2941,10 @@ try {
       if (dom.lang !== 'en') add(`documentElement.lang = "${dom.lang}" (expected "en")`);
       if (!dom.skipLink) add('skip link is gone');
       if (dom.announcer < 1) add('role="status" aria-live="polite" route announcer is gone');
+      const finalAnnouncement = dom.h1 + ' — page loaded';
+      if (dom.announcement !== finalAnnouncement) {
+        add(`route announcer says ${JSON.stringify(dom.announcement)} after render; expected final heading ${JSON.stringify(finalAnnouncement)} — async routes must not announce their Loading shell`);
+      }
       if (dom.inlineOnclick) add(`${dom.inlineOnclick} inline onclick handler(s) — the site is CSP-clean, keep it that way`);
       if (dom.appChildren === 0) add('#app is empty after hydration');
       // W5c: nothing may push the document wider than the viewport it is being read on. A page

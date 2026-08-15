@@ -46,25 +46,20 @@ function compile(glossary) {
   return { re, byForm };
 }
 
-const escAttr = (s) => String(s == null ? '' : s)
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 const escText = (s) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-// The emitted unit. No `id`, no `for`: the <input> sits INSIDE the <label>, so association is
-// implicit and 514 pages never have to mint a unique id. Every element here is phrasing content,
-// so it is legal inside <p>, <li>, <dd> and <td>.
-//   - mouse / touch, no JS : tapping the term toggles the checkbox -> :has() reveals .pgl-d
-//   - keyboard,       no JS : Tab reaches the checkbox, Space toggles, ring drawn on .pgl-t
-//   - screen reader        : .pgl-d is sr-only by default, so it is ALREADY in the accessibility
-//                            tree and read as an inline parenthetical. No interaction needed.
-function unit(surface, key, def) {
+// The emitted unit. A definition is neither a preference nor an action, so it must not be exposed
+// as a checkbox or button. The focusable ARIA term points to its adjacent role="definition". CSS
+// reveals the definition while the term has focus, which keeps mouse, touch and keyboard use
+// working without JavaScript. The per-page id is deterministic and only joins the two parts; it is
+// not a public fragment. Every element remains phrasing content, so the unit is legal inside <p>,
+// <li>, <dd> and <td>.
+function unit(surface, key, def, n) {
+  const defId = 'pgl-def-' + n;
   return '<span class="pgl">' +
-    '<label class="pgl-t">' + escText(surface) +
-    '<input type="checkbox" class="pgl-c" aria-label="' + escAttr('what ' + key + ' means') + '">' +
-    '</label>' +
-    '<span class="pgl-d" role="note"><b>' + escText(key) + '</b> — ' + escText(def) + '</span>' +
+    '<span class="pgl-t" role="term" tabindex="0" aria-describedby="' + defId + '">' + escText(surface) + '</span>' +
+    '<span class="pgl-d" id="' + defId + '" role="definition"><b>' + escText(key) + '</b> — ' + escText(def) + '</span>' +
     '</span>';
 }
 
@@ -103,6 +98,7 @@ function glossify(html, opts) {
   const seenPage = new Set();
   let seenSection = new Set();
   let nSection = 0, nPage = 0;
+  let unitIndex = 0;
   const used = [];
 
   let i = 0;
@@ -173,7 +169,7 @@ function glossify(html, opts) {
       const e = glossary[key];
       if (!e || !e.d) continue;
       if ((e.r || 2) > maxRank) continue;
-      res += text.slice(last, mm.index) + unit(surface, key, e.d);
+      res += text.slice(last, mm.index) + unit(surface, key, e.d, ++unitIndex);
       last = mm.index + surface.length;
       seenSection.add(key);
       if (!seenPage.has(key)) { seenPage.add(key); used.push(key); }
