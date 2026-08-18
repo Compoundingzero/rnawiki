@@ -2,6 +2,31 @@
 
 Canonical home for what RNAwiki is, what it refuses to do, and how it is allowed to talk.
 
+## Positioning: independence, not opposition
+
+The differentiator is that **nobody who profits from a treatment gets to define what "works" means
+for it** — applied identically to an approved medicine and to a peptide sold online.
+
+State this as independence, never as opposition to an industry. The distinction is not cosmetic:
+
+- The product only works because it has no prior. Take a side and every page reads as motivated,
+  including the pages that are right.
+- The corpus already contradicts an anti-industry stance. Casgevy is an approved manufacturer
+  product and its evidence is genuinely strong; BPC-157 is sold in that industry's absence and its
+  evidence is genuinely weak. A site with a side has to soften one of those.
+- §4's named readers — researchers, journalists, patient organizations, investors, answer engines —
+  do not cite advocacy.
+- On pages covering sickle cell disease and beta-thalassemia, anti-industry framing sits one step
+  from steering readers off treatment that demonstrably works.
+
+What earns the claim is symmetry that is visible on the pages, not a slogan: Casgevy's trials are
+recorded as single-arm, unblinded, industry-sponsored and unreplicated; the one human rapamycin
+longevity trial is recorded as sponsored by a company selling compounded rapamycin. Same ladder,
+both directions.
+
+Note that "democratize your health" is on the banned list below. The idea it gestures at is served
+by the evidence being free, readable and unowned — not by saying the word.
+
 ## The Proof Boundary
 
 Most health coverage, including most "evidence-based" coverage, collapses three things into one

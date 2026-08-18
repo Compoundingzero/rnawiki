@@ -181,7 +181,34 @@ if (!only) {
     return out
   }
 
+  /**
+   * The banned public-facing marketing vocabulary from the product spec (§6), which until now
+   * lived only in prose in docs/product-principles.md and was enforced by nobody. Positioning
+   * copy is exactly where this drifts back in.
+   *
+   * Two deliberate omissions. "breakthrough" is not banned on its own — Breakthrough Therapy
+   * Designation is a real FDA status this corpus legitimately cites; only "breakthrough platform"
+   * is. "cure" is not banned either: the spec allows it with precise regulatory and clinical
+   * context, which a regex cannot judge.
+   */
+  const BANNED_MARKETING = [
+    /\brevolutionary\b/i,
+    /\bgroundbreaking\b/i,
+    /\bbiohack/i,
+    /\boptimi[sz]e yourself\b/i,
+    /\bnext-generation wellness\b/i,
+    /\bdemocrati[sz]/i,
+    /\bcutting[- ]edge\b/i,
+    /\bbreakthrough platform\b/i,
+    /\byour health journey\b/i,
+    /\bscience made simple\b/i,
+    /\bultimate guide\b/i,
+    /\bmiracle\b/i,
+    /\bunlock your\b/i,
+  ]
+
   const voiceHits: string[] = []
+  const marketingHits: string[] = []
   for (const dir of PAGE_DIRS) {
     let files: string[]
     try {
@@ -197,6 +224,11 @@ if (!only) {
         if (code.startsWith('//') || code.startsWith('*') || code.startsWith('/*')) return
         const m = line.match(FIRST_PERSON)
         if (m) voiceHits.push(`${file}:${i + 1} — "${m[0]}" in "${code.slice(0, 72)}"`)
+
+        for (const pattern of BANNED_MARKETING) {
+          const hit = line.match(pattern)
+          if (hit) marketingHits.push(`${file}:${i + 1} — "${hit[0]}" in "${code.slice(0, 62)}"`)
+        }
       })
     }
   }
@@ -205,6 +237,13 @@ if (!only) {
     console.error(`\n[prose] REFUSING TO BUILD — ${voiceHits.length} first-person-plural construction(s) in reader-facing copy:\n`)
     for (const h of voiceHits) console.error(`  ✗ ${h}`)
     console.error('\n  The site speaks as RNAwiki, not as a "we" that does not exist. See docs/writing-style.md.\n')
+    process.exit(1)
+  }
+
+  if (marketingHits.length > 0) {
+    console.error(`\n[prose] REFUSING TO BUILD — ${marketingHits.length} banned marketing phrase(s) in reader-facing copy:\n`)
+    for (const h of marketingHits) console.error(`  ✗ ${h}`)
+    console.error('\n  Banned public-facing vocabulary, per the product spec. See docs/product-principles.md.\n')
     process.exit(1)
   }
 }

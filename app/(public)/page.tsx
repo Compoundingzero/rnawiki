@@ -57,6 +57,9 @@ export default async function HomePage() {
           What researchers measured, what people infer from it, and what is still unknown.
         </p>
         <SearchBox />
+        <p style={{ marginTop: 'var(--space-4)', fontSize: '0.9rem', color: 'var(--color-text-faint)' }}>
+          Nothing is sold here. An approved medicine and a peptide sold online are held to the same standard.
+        </p>
       </section>
 
       {featured.length > 0 && (

@@ -48,6 +48,27 @@ export default function MethodologyPage() {
         </p>
       </header>
 
+      <section style={{ marginBottom: 'var(--space-8)' }} id="independence">
+        <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>Independence</h2>
+        <p>
+          Whoever profits from a treatment usually gets to define what &ldquo;works&rdquo; means for it. RNAwiki
+          sells nothing — no products, no advertising, no sponsored placement — and applies one evidence ladder
+          to everything on the site.
+        </p>
+        <p>
+          That runs in both directions, and the pages show it. Casgevy, an approved therapy from a large
+          manufacturer with a $2.2 million list price, sits at regulatory evidence because a regulator reviewed
+          its trials. Its page still records that those trials were single-arm, unblinded, industry-sponsored,
+          and never independently replicated. BPC-157, sold online as a research chemical, sits at animal
+          evidence for tendon healing, because no controlled human trial has published a result.
+        </p>
+        <p>
+          Where a study&rsquo;s funder has a stake in its outcome, the claim says so rather than burying it. The
+          one completed human trial of rapamycin for healthy aging was sponsored by a company selling compounded
+          rapamycin, and that appears on the claim itself.
+        </p>
+      </section>
+
       <section style={{ marginBottom: 'var(--space-8)' }} id="measured-inferred-unknown">
         <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>Measured, Inferred, Unknown</h2>
         <p>
