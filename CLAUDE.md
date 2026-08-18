@@ -1,173 +1,139 @@
 # RNAwiki — project briefing
 
-**Owner:** Felix. **Live:** https://rnawiki.com. **Constraint: no camera / no video, ever.**
-Free, no paywall, Singapore-targeted (`en_SG`).
+**Owner:** Felix. **Live:** https://rnawiki.com.
 
-> This file was rewritten on 2026-07-28. The previous version described a Next.js 15 + TypeScript +
-> Tailwind v4 + MDX + Fuse.js stack, a `/supplement/[slug]` route and a "build order" — **none of
-> which was ever built.** If you are reading an older copy of this file anywhere, discard it.
+> This file was rewritten on 2026-08-18, when RNAwiki was rebuilt from a goal-first compound/
+> dosage wiki (vanilla JS, Markdown content, no framework) into the Proof Boundary product
+> described below (Next.js + Postgres, database-backed content, claim-centered). **If you are
+> reading an older copy of this file anywhere, discard it.** The old product's own briefing is
+> preserved unmodified on branch `archive/legacy-rnawiki` and tag
+> `legacy-rnawiki-before-proof-boundary` — it describes a different application and does not apply
+> to anything under `main` or `proof-boundary-rebuild` going forward. `docs/PRODUCTION_REVAMP_STATE.md`
+> is gone; it tracked the old product's build-out and has no successor doc — this file plus
+> `docs/product-principles.md` / `docs/editorial-methodology.md` / `docs/evidence-classification.md`
+> are now the authoritative state.
 
 ---
 
 ## What this actually is
 
-A "wants-first" health/performance wiki and protocol engine. A reader names a **problem** or a
-**goal** and gets the movement, the Singapore food, and the evidence-ranked compounds that address
-its root cause — with supplements broken down to compounds → pathways → molecular targets.
+A claim-centered evidence explainer, not a protocol engine. A reader looks up a peptide,
+supplement, investigational medicine, or gene/RNA therapy and gets, per claim: what was measured,
+what's inferred from it, where that sits on an 8-stage **Proof Boundary**
+(`biological_rationale_only` → `regulatory_evidence`), and what's still unknown. Full concept in
+[`docs/product-principles.md`](docs/product-principles.md).
 
-Explicit competitive target: match or beat Examine.com's coverage, but free and visual where
-Examine is paywalled and prose.
+**Non-negotiable, no exceptions:** no dosage calculators, protocol builders, stacking, or
+procurement/self-use guidance anywhere, in any form, ever. This is the one constraint that
+overrides every other instruction in this repo.
 
-**Scale:** ~800 indexed URLs — 170 compound pages, 103 molecular-target pages, 52 protocol pages
-(41 problems), 45 `/learn` courses, 16 pathway, 17 muscle, 16 goal, ~107–404 `/compare` (the count
-depends on the generator gates), plus indexes.
+## The stack — exact versions (package.json)
 
-## The stack — what it really is
+Next.js 15.4.0 (App Router) · React 19.1.0 · TypeScript 5.7.3 (strict) · Drizzle ORM 0.44.2 on
+`pg` 8.11.5 · Zod 3.24.1 · iron-session 8.0.4 (admin/editor/reviewer sessions) · bcryptjs 2.4.3 ·
+isomorphic-dompurify 2.16.0 · satori 0.12.0 + @resvg/resvg-js 2.6.2 (OG/share images). Test stack:
+Vitest 2.1.8 (unit + integration), Playwright 1.49.1 (e2e). Path alias `@/*` → repo root.
 
-**Vanilla JS. No framework, no bundler, no TypeScript, no Tailwind.** Two npm dependencies:
-`pg` and `@resvg/resvg-js`. That is the whole dependency tree, and it is a feature — keep it.
+## Where content actually lives
 
-```
-build/parse.js       reads content/*.md + data/*.json  -> writes site/data.js
-build/prerender.js   reads site/data.js               -> writes the static HTML for every route
-site/app.js          ~6,600 lines, the whole SPA in one IIFE
-site/styles.css      the whole stylesheet
-server.js            ~1,800 lines, plain node:http. No express.
-db.js                Postgres schema, applied on boot (idempotent DDL)
-data/*.json          the content sidecars (see below)
-content/*.md         upstream markdown source, read by parse.js at build time
-```
+**The database, not files.** This is a real, deliberate change from the old model, where every
+compound was a Markdown file under `content/` and `data/*.json` sidecars. Now: `entities`,
+`regulatoryStatuses`, `claims`, `mechanismSteps`, `evidenceSources`, `claimEvidence`, `reviews`,
+`revisions`, `correctionSubmissions`, `evidenceChanges`, `comprehensionQuestions`/
+`comprehensionResponses`, `subscriptions`, `legacyRedirects`, `users` — see
+[`db/schema.ts`](db/schema.ts) for the full shape. There is no build step that turns Markdown into
+site data anymore. Seed content is TypeScript, not JSON: `scripts/seed-data/*.ts`, typed against
+[`lib/seed-types.ts`](lib/seed-types.ts), loaded by `scripts/seed.ts`. Every cited source in a seed
+file must be a real, checkable DOI/PMID/NCT/regulatory URL verified at research time — never invent
+one, and if you can't verify a claim, leave it out and say so rather than guessing.
 
-**Deploy:** merge to `main` → Railway. The Railway service is named **`RNAwiki`**
-(capital R-N-A) — `railway variable list --service RNAwiki`.
-**`site/` is ephemeral** — a fresh container, no volume. Everything under `site/` is regenerated
-at boot by `prestart`.
-
-`railway.toml` makes `/` the deployment health check with a 120-second timeout. Keep that readiness
-gate: `prestart` regenerates and compresses the public site before `server.js` listens, so Railway
-must leave the previous deployment serving until the new homepage returns HTTP 200.
-
-**The build is a hard deploy gate.** `prestart` runs parse, prerender, anatomy-asset copy and
-precompression with `&&`; a failure stops the deploy. `.github/workflows/release-gates.yml` repeats
-the full build, containment, Studio safety, privacy, safety-query and rendered-browser checks before
-merge. Do not weaken either gate to make a deploy pass.
-
-**Database:** Railway Postgres. Use `DATABASE_PUBLIC_URL`, not the internal one, from your machine.
-Query it by writing a script in the repo root (where `pg` is installed) and running
-`railway run --service Postgres node ./x.js`. The GitHub public-signal snapshot workflow is
-**manual-only and not configured**: it excludes creator protocols and private data, and it has no
-verified destination. It is not a database backup. A read-only Railway check on 2026-08-15 found
-production Postgres PITR and scheduled volume backups both off. Accounts, ownership and all
-private/health records require an approved encrypted recovery policy, bounded retention and real
-restore drills. Follow `docs/BACKUP_RECOVERY.md`; never claim recovery exists from the Git job.
-
-## The two-document rule — internalise this before making any claim
-
-**`curl` returns the PRERENDERED document. A headless browser returns the HYDRATED one. They are
-different documents and both are broken in places.**
-
-- Any claim about *what a user sees* needs Chrome
-  (`puppeteer-core`, `executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'`).
-- Any claim about *what Google or an answer engine sees* needs `curl`.
-- **~90% of traffic never runs JavaScript**, and there are only ~20 JS-executing sessions/day.
-  So rank every defect by **which document it lives in**. A defect in the prerendered document
-  outranks a prettier one in the SPA, almost always.
-- Do not assume the prerendered document is the degraded twin. On compound resolution it was the
-  *more correct* one.
+Vocabulary (Proof Boundary stages, Measured/Inferred/Unknown, evidence relationships,
+comprehension clarity-gate constants) is centralized in [`lib/evidence.ts`](lib/evidence.ts).
+Import it; never redeclare the wording or the ordering elsewhere. Stage ordering is enforced in
+that file (`PROOF_BOUNDARY_STAGES` array order), not by relying on the Postgres enum's declaration
+order in `db/schema.ts` — the two are kept in sync by hand, not by code, so a stage added to one
+without the other is a real bug, not a lint failure.
 
 ## Rules that are not negotiable
 
-1. **No brand recommendations.** Never name a commercial product or supplement brand as something
-   to buy. Independent certification standards (NSF, USP, Informed Sport, IFOS) are fine, framed as
-   "look for third-party testing". Naming a drug to identify it — "semaglutide (Ozempic/Wegovy)" —
-   is identification, not a buy-rec, and is fine.
-2. **Human evidence gets the stars.** Animal-only data is capped at ⭐⭐ and must say "animal".
-   *Fixed and gated (2026-07-30).* `parse.js` splits the evidence runs by label, caps animal-only at
-   2, and sets `animalOnly`. `assertHumanEvidenceStars()` fails the build if any animal-only compound
-   exceeds 2 stars **or** carries a badge that does not say "animal" — verified by reintroducing the
-   original bug, which the gate catches (Acarbose and Fisetin at 3). Rapamycin now renders 3 stars
-   with `animalOnly=false`, because it does have human data; the 5 stars were the bug.
-   **Do not re-report this as live without running `node build/parse.js` first.**
-3. **Every molecular claim links to an official source** — NCBI Gene, PubChem, PMC, FDA.
-4. **Harm-reduction framing for non-approved compounds.** Document risks plainly, never encourage.
-5. **Not medical advice**, on every page — and a real escalation path, not just a disclaimer.
-6. **A badge is not a supply classification.** 🟢 means "approved by a regulator", NOT "buy it off
-   a shelf". Conflating those is what put "available over the counter — Guardian, Watsons" on
-   prescription-only medicines.
-7. **Singapore regulatory exposure is real.** The operative regime is the **Medicines Act 1975
-   s.51 + the Medicines (Medical Advertisements) Regulations** — wider than the HPA 2007 route,
-   5× the penalty, with a prior-permit requirement and **no educational exemption**. Do not
-   advertise a prescription-only medicine to the public.
-8. **Verify before asserting.** Across five rounds of audit, agent findings that did not reproduce
-   appeared in *every single round*. Re-run the check yourself before acting on it. Cite
-   `file:line` or a live URL, and label findings verified / inferred / could-not-check.
-9. **A toxic/no-safe-dose record is a different document, not an ordinary compound with a red
-   badge.** Its `RiskPolicy` must drive a dedicated education-and-emergency page. It may explain
-   toxicity and cite sources, but it must not render an evidence score, numeric dose, dose
-   comparison, sourcing, cost, stack/protocol action, social-generation control, or optimisation
-   link. Neutral directories keep it findable and replace stars and ordinary approval shorthand
-   with **Toxic · no safe dose**; goal, efficacy, comparison and optimisation lists exclude it.
-   The prerendered page must put its stop and emergency guidance before any navigation or
-   supporting content. Legacy local or imported stack state is quarantined before every ordinary
-   interaction/goal/pathway calculation and receives only remove/open-toxicity actions. Enforce
-   the rule in both the prerendered bytes and the hydrated DOM.
-10. **Today never silently becomes setup.** `/plan` is the execution surface. An unfinished draft
-    may appear there as one calm **Continue setup** choice, but the multi-step builder opens only
-    through the explicit `/plan?mode=edit` route. If an active protocol also exists, its one next
-    action wins and the draft remains secondary management state.
+1. **No dosage/protocol/stacking/procurement guidance, ever, in any form.** Not a calculator, not
+   a "how people typically use this," not a sourcing tip. If a claim's `accessRealityNote` starts
+   drifting toward "here's how to get it," that's a defect, not editorial color.
+2. **No fabricated reviewers, citations, or approvals.** `components/ProofCard.tsx`'s
+   `reviewStatusCopy()` is the one place that decides what a claim's review-status line says, and
+   it deliberately refuses to say "reviewed by" unless an actual `approved` row exists in
+   `reviews` for that claim — `publicationStatus === 'published'` alone is never sufficient, because
+   that describes editorial workflow, not scientific sign-off. Don't route around it with a
+   locally-written status string.
+3. **No star ratings, no numeric confidence scores or percentages** — only `Measured` / `Inferred`
+   / `Unknown` from `lib/evidence.ts`, unless a number is directly sourced from a named study (a
+   sample size, a p-value quoted from the paper). The one exception already built is the
+   comprehension aggregate string in `lib/comprehension.ts`
+   (`formatComprehensionAggregate`) — and even that is gated behind `CLARITY_MIN_RESPONSES` (20)
+   and `CLARITY_MIN_CORRECT_RATE` (0.8) and returns `null` below threshold; callers must treat
+   `null` as "show nothing," never fall back to a small-sample percentage.
+4. **DOI/PMID import is metadata-only.** `lib/metadata-import.ts` (Crossref + NCBI E-utilities)
+   returns title/authors/year/journal/doi/pmid for a human editor to review — it never
+   auto-fills or infers `sourceType`, `studyDesign`, `species`, `sampleSize`, or `endpoint`. Those
+   stay manual editorial judgment calls, always.
+5. **Comprehension testing is not scientific validation.** The public "X% of N readers correctly
+   identified where the evidence ends" line measures whether the *explanation* was clear, not
+   whether the *claim* is true. Don't let copy built on top of it imply otherwise. See
+   `docs/editorial-methodology.md`.
+6. **Public pages server-render their core content.** `app/r/[slug]/page.tsx`, `app/page.tsx`,
+   etc. are server components querying Drizzle directly — they must work with JavaScript disabled.
+   `'use client'` only for genuine interactivity (comprehension answering, copy-citation button,
+   admin forms).
 
-## The build gates — a fix without a gate is a fix that gets rediscovered
+## How deploys work
 
-`parse.js` and `prerender.js` refuse to build on: unbound evidence claims · dose calculators with no
-machine-readable cap · a protocol prescribing a movement its own page contraindicates · animal-only
-compounds above 2 stars or with a badge that does not say "animal" · compounds missing from the goal
-taxonomy · a page naming a prescription/controlled substance without stating its status · a
-restricted compound rendering self-dosing instructions · JSON-LD missing `@context` · **a link to a
-route no page serves, or a page published with nothing linking to it** (`assertLinkGraph`).
+`railway.toml` sets `healthcheckPath = "/healthz"`, `healthcheckTimeout = 120`. **As of this
+writing there is no `/healthz` route implemented yet** (`app/` has no matching file) — that's
+open work, not a documentation gap; don't assume a deploy will pass health checks until it exists.
+Railway service name is **`RNAwiki`** (capital R-N-A). Deploy flow: merge to `main` → Railway
+builds and deploys automatically. Full detail, including required env vars and migration
+sequencing, in [`docs/deployment.md`](docs/deployment.md).
 
-Every one exists because that exact defect shipped. **Prove a new gate by reintroducing the original
-bug** — `assertLinkGraph`'s first version passed that test wrongly, because it trusted "a file of
-that name exists" and `site/` is never wiped between builds. The user-facing list is `/methodology`.
+## Local dev database
 
-**Adding a prerendered page needs an SPA answer too.** Without one, a crawler gets the page and a
-reader with JavaScript gets `notFound()`. Use the `KEEP` sentinel in `app.js`'s `route()` plus
-`data-native` on the inbound links (see `/methodology`), or give the route a real renderer.
+```bash
+cp .env.example .env        # set DATABASE_URL to your local Postgres
+npm run db:migrate          # tsx db/migrate.ts — applies db/migrations/
+npm run db:seed             # tsx scripts/seed.ts — loads scripts/seed-data/*.ts
+```
 
-## Environment gotchas that will otherwise waste hours
+`db/index.ts` disables TLS only for `localhost` / `127.0.0.1` / `*.railway.internal` connection
+strings; anything else gets `ssl: { rejectUnauthorized: false }`. `SESSION_SECRET` must be ≥32
+characters or `lib/auth.ts` throws on the first request that touches a session.
 
-- **`grep` here is ugrep** and treats `site/app.js` and the large JSON as binary.
-  **Always `/usr/bin/grep -a`.**
-- After editing a sidecar in `data/`, run `node build/parse.js` to regenerate `site/data.js`.
-- `sso.agc.gov.sg` and `hsa.gov.sg` **work** with `curl -A '<Chrome UA>'`. It is *headless Chrome*
-  that gets a 403 there — the reverse of the usual pattern.
-- `examine.com`, `jospt.org` and `nice.org.uk` genuinely block. Europe PMC, PubMed eutils, openFDA,
-  PubChem and NCBI Gene all work with no key.
-- `node --check` will not catch a deleted function that still has callers. **Boot the server**
-  (`PORT=8099 node server.js`) and hit a few routes before you push.
+## Before you push
 
-## Where the content lives
+```bash
+npm run gate   # typecheck && lint && test:unit && test:integration && build
+```
+Run it. Don't weaken it to make a change pass — same convention as the old repo's build gates: a
+fix without a gate is a fix that gets rediscovered.
 
-| file | holds |
-|---|---|
-| `data/compound_learn.json` | 157 compound learn layers — hooks, mechSteps, myths, evidence, refs |
-| `data/bio_learn.json` | bioavailability / contraindications / access for all 170 entries (incl. 13 multi-compound bundles) |
-| `data/cause_learn.json` | **224 causes, 995 chain steps, 858 fixes** — the real claim corpus |
-| `data/clinical_graph.json` | **216 asserted (compound × root_cause) pairs**, the protocol graph |
-| `data/learn_expand.json` | the 45 `/learn` courses (~308k words) |
-| `data/target_learn.json` | the 103 `/target` pages |
-| `data/protocol_plan.json` | per-problem plan, including the `reassess` clinician-escalation text |
-| `data/keystones.json` | 53 keystone habits — the least-hedged object in the corpus, renders as "⭐ START HERE" |
-| `content/*.md` | 3,312 lines of upstream source read by `parse.js` — upstream of the stars, badges and categories |
+## Gotchas that will otherwise waste time
 
-## Current state of the work
-
-The authoritative repository-local state is
-[`docs/PRODUCTION_REVAMP_STATE.md`](docs/PRODUCTION_REVAMP_STATE.md). Read it before changing the
-navigation, Find, Today, protocols, consent, public profiles, community, sharing or Studio safety.
-External Downloads documents are historical context, not the source of truth for shipped code.
-
-The current product spine is **Find → possible reasons → first action → Today → optional full
-protocol**. On protocol pages, the order is: compact **Before you start** disclosure → first action
-and Start control → compact tracking/stopping disclosure → optional full protocol. The writing
-remains valuable; the active work is making its sequence obvious while keeping safety, evidence
-and privacy fail-closed.
+- `entities.searchVector` and `claims.searchVector` are Postgres generated columns using **bare,
+  unqualified column names** (`canonical_name`, not `${entities.canonicalName}`) inside the SQL
+  expression — this is deliberate, not a typo. Qualifying them reintroduces a TS7022 circular
+  self-reference under this project's strict TypeScript settings. See the comment above
+  `entities` in `db/schema.ts` before "fixing" it.
+- `lib/comprehension.ts`'s `getQuestionsForClaim` deliberately excludes `correctOptionIndex` from
+  the view sent to the client — the answer key is only ever read server-side, inside
+  `recordResponse`. Don't add it to a client-facing type without re-reading that file's comments.
+  A claim's central Proof Boundary question is `displayOrder: 0` by editorial convention (not
+  schema-enforced); the public comprehension aggregate is computed from that question alone.
+- `lib/rate-limit.ts` is an in-memory, single-process sliding window (60 req/min for the public
+  `/api/v1/*` routes). It resets on every deploy and is **not shared across replicas** — if Railway
+  ever scales this service beyond one instance, the effective site-wide limit becomes
+  `60 × replica count`, not 60/min. Fine for one instance; not "correct" beyond that.
+  `docs/api.md` documents the resulting behavior for API consumers.
+- `lib/session-hash.ts` hashes IP + a coarse user-agent bucket + a rotating daily salt for
+  anonymous rate-limiting/dedup (comprehension responses, correction submissions) — never log or
+  store the raw IP anywhere longer-term than that.
+- Legacy route handling (`resolveLegacyRedirect` in `lib/canonical.ts`) is a pure function over
+  rules loaded from the `legacyRedirects` table — see `docs/legacy-removal-map.md` for the actual
+  route mapping (owned separately; don't hand-edit redirect logic without reading it first).
