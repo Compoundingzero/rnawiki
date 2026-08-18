@@ -8,7 +8,9 @@ import { entityPath } from '@/lib/canonical'
 import { CORRECTION_CATEGORY_LABELS, type CorrectionCategory } from './categories'
 import { CorrectionForm } from './CorrectionForm'
 
-export const revalidate = 3600
+// Queries the database and has no dynamic segment: the Railway build container cannot reach
+// Postgres, so this must never be prerendered at build time.
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Corrections',
@@ -18,6 +20,14 @@ export const metadata: Metadata = {
 interface Props {
   searchParams: Promise<{ entity?: string; claim?: string }>
 }
+
+const WHAT_TO_REPORT = [
+  'A sentence that is confusing or hard to follow.',
+  'A source link that is broken, dead, or points to the wrong place.',
+  'A technical term used on the page without being defined.',
+  'A source that should be cited here and is not.',
+  'Anything else about the content that seems off.',
+]
 
 async function resolveContext(entitySlug?: string, claimSlug?: string) {
   if (!entitySlug) return null
@@ -68,81 +78,100 @@ export default async function CorrectionsPage({ searchParams }: Props) {
   ])
 
   return (
-    <div className="container prose-width" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
-      <header style={{ marginBottom: 'var(--space-8)' }}>
-        <h1 style={{ fontSize: '2rem', marginBottom: 'var(--space-3)' }}>Corrections</h1>
-        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
-          RNAwiki is written and reviewed by people, and people make mistakes. If something on the site is
-          confusing, a link is broken, a term is used without explanation, or a source is missing, report it.
-        </p>
-      </header>
-
-      <section style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={{ fontSize: '1.1rem', marginBottom: 'var(--space-2)' }}>What this form is for</h2>
-        <ul style={{ margin: 0, paddingLeft: '1.2em', display: 'grid', gap: 'var(--space-2)' }}>
-          <li>A sentence that&rsquo;s confusing or hard to follow.</li>
-          <li>A source link that&rsquo;s broken, dead, or points to the wrong place.</li>
-          <li>A technical term used on the page without being defined.</li>
-          <li>A source that should be cited here and is not.</li>
-          <li>Anything else about the content that seems off.</li>
-        </ul>
-        <p style={{ marginTop: 'var(--space-3)', color: 'var(--color-text-muted)' }}>
-          Every submission goes into a moderation queue — nothing you send changes the site directly. An editor
-          reads it, checks it against the source material, and decides what to do. This is not a place to ask
-          for medical advice about your own situation.
-        </p>
-      </section>
-
-      <section style={{ marginBottom: 'var(--space-12)' }}>
-        <h2 style={{ fontSize: '1.1rem', marginBottom: 'var(--space-4)' }}>Submit a correction</h2>
-        <noscript>
-          <p style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
-            This form needs JavaScript to submit. You can also email{' '}
-            <a href="mailto:hello@rnawiki.com">hello@rnawiki.com</a> with the same details.
+    <div className="wrap" style={{ paddingBlock: 'var(--s7)' }}>
+      <div style={{ maxWidth: '56rem' }}>
+        <header className="measure">
+          <p className="eyebrow">Reader reports</p>
+          <h1 className="display" style={{ marginBlock: 'var(--s3) var(--s4)' }}>
+            Corrections
+          </h1>
+          <p className="lead">
+            RNAwiki is written and edited by a person, and people make mistakes. If something on the site is
+            confusing, a link is broken, a term is used without explanation, or a source is missing, report it.
           </p>
-        </noscript>
-        <CorrectionForm context={context} />
-      </section>
+        </header>
 
-      <section>
-        <h2 style={{ fontSize: '1.1rem', marginBottom: 'var(--space-4)' }}>Past corrections</h2>
-        {publicCorrections.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>
-            No public corrections yet. Reader-reported corrections that change something are listed here.
-          </p>
-        ) : (
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--space-4)' }}>
-            {publicCorrections.map((c) => (
-              <li key={c.id} style={{ borderLeft: '3px solid var(--color-border-strong)', paddingLeft: 'var(--space-3)' }}>
-                <p
-                  style={{
-                    margin: '0 0 var(--space-1)',
-                    fontSize: '0.78rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.03em',
-                    color: 'var(--color-text-faint)',
-                  }}
-                >
-                  {CORRECTION_CATEGORY_LABELS[c.category as CorrectionCategory] ?? c.category}
-                  {c.entityName && c.entitySlug ? (
-                    <>
-                      {' · '}
-                      <Link href={entityPath(c.entitySlug)} style={{ color: 'var(--color-text-faint)' }}>
-                        {c.entityName}
-                      </Link>
-                    </>
-                  ) : null}
-                </p>
-                <p style={{ margin: 0 }}>{c.publicCorrectionEntry}</p>
-                <p style={{ margin: 'var(--space-1) 0 0', fontSize: '0.78rem', color: 'var(--color-text-faint)' }}>
-                  {c.createdAt.toISOString().slice(0, 10)}
-                </p>
+        <hr className="rule" />
+
+        <section id="scope">
+          <div className="section-head">
+            <h2 className="h2">What this form is for</h2>
+          </div>
+          <ul style={{ listStyle: 'none', borderTop: 'var(--hairline) solid var(--border)' }}>
+            {WHAT_TO_REPORT.map((item) => (
+              <li
+                key={item}
+                style={{
+                  borderBottom: 'var(--hairline) solid var(--border)',
+                  paddingBlock: 'var(--s3)',
+                  fontSize: 'var(--size-small)',
+                  color: 'var(--ink-soft)',
+                }}
+              >
+                {item}
               </li>
             ))}
           </ul>
-        )}
-      </section>
+          <p className="prose measure" style={{ marginTop: 'var(--s5)' }}>
+            Every submission goes into a moderation queue — nothing sent here changes the site directly. An
+            editor reads it, checks it against the source material, and decides what to do. This is not a place
+            to ask for medical advice about a personal situation.
+          </p>
+        </section>
+
+        <hr className="rule" />
+
+        <section id="submit">
+          <div className="section-head">
+            <h2 className="h2">Submit a correction</h2>
+          </div>
+          <noscript>
+            <p className="callout" style={{ marginBottom: 'var(--s5)', fontSize: 'var(--size-small)' }}>
+              This form needs JavaScript to submit. The same details can be emailed to{' '}
+              <a href="mailto:hello@rnawiki.com">hello@rnawiki.com</a>.
+            </p>
+          </noscript>
+          <CorrectionForm context={context} />
+        </section>
+
+        <hr className="rule" />
+
+        <section id="past">
+          <div className="section-head">
+            <h2 className="h2">Past corrections</h2>
+          </div>
+          {publicCorrections.length === 0 ? (
+            <p className="muted">
+              No public corrections yet. Reader-reported corrections that change something are listed here.
+            </p>
+          ) : (
+            <ul className="rows">
+              {publicCorrections.map((c) => (
+                <li key={c.id} className="row">
+                  <div className="row__link" style={{ display: 'block' }}>
+                    <p className="eyebrow">
+                      <span>{c.createdAt.toISOString().slice(0, 10)}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span>{CORRECTION_CATEGORY_LABELS[c.category as CorrectionCategory] ?? c.category}</span>
+                    </p>
+                    <p style={{ marginTop: 'var(--s2)', fontSize: 'var(--size-small)' }}>
+                      {c.publicCorrectionEntry}
+                    </p>
+                    {c.entityName && c.entitySlug && (
+                      <p className="metaline" style={{ marginTop: 'var(--s2)' }}>
+                        <Link href={entityPath(c.entitySlug)}>{c.entityName}</Link>
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          <p className="prose measure" style={{ marginTop: 'var(--s5)' }}>
+            <Link href="/updates">Evidence changes, logged separately →</Link>
+          </p>
+        </section>
+      </div>
     </div>
   )
 }

@@ -18,10 +18,21 @@ test.describe('mobile viewport (375px)', () => {
     const nav = page.getByRole('navigation', { name: 'Primary' })
     await expect(nav).toBeVisible()
 
-    const searchLink = nav.getByRole('link', { name: 'Search' })
-    await expect(searchLink).toBeVisible()
-    await searchLink.click()
-    await expect(page).toHaveURL(/\/search$/)
+    // The homepage's search is the hero form, not a nav link — the masthead's compact search is
+    // deliberately suppressed on "/" so two search inputs never compete. Mobile must still have
+    // one obvious way to search without opening a menu.
+    const heroSearch = page.locator('main').getByRole('searchbox')
+    await expect(heroSearch).toBeVisible()
+    await heroSearch.fill('BPC-157')
+    await page.locator('main').getByRole('button', { name: /^search$/i }).click()
+    await expect(page).toHaveURL(/\/search\?q=/)
+
+    // And the primary nav must still reach the compound index.
+    await page.goto('/')
+    const compounds = nav.getByRole('link', { name: 'Compounds' })
+    await expect(compounds).toBeVisible()
+    await compounds.click()
+    await expect(page).toHaveURL(/\/compounds$/)
   })
 
   test('an entity page has no horizontal overflow and the mechanism chain stays usable', async ({ page }) => {

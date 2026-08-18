@@ -19,7 +19,6 @@ import {
   detachEvidence,
 } from '../actions'
 import { ClaimForm } from '../ClaimForm'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'Edit claim', robots: { index: false, follow: false } }
 
@@ -60,33 +59,69 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
   const attachedSourceIds = new Set(links.map((l) => l.source.id))
 
   return (
-    <div style={ui.page}>
-      <p style={{ marginBottom: 'var(--space-2)' }}>
+    <div className="admin-page">
+      <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
         <Link href="/admin/claims">← Claims</Link>
       </p>
-      <div style={{ ...ui.flexRow, justifyContent: 'space-between' }}>
-        <h1 style={ui.h1}>{claim.consumerQuestion}</h1>
-        <span style={ui.statusBadgeStyle(claim.publicationStatus)}>{claim.publicationStatus.replace(/_/g, ' ')}</span>
-      </div>
-      <p style={{ color: 'var(--color-text-faint)', fontSize: '0.85rem', marginTop: 0 }}>
-        Version {claim.version} · reviewer:{' '}
-        {claim.reviewerId ? `user #${claim.reviewerId}` : 'none yet'} · last reviewed:{' '}
-        {claim.lastReviewedAt ? claim.lastReviewedAt.toISOString().slice(0, 10) : 'never'}
-      </p>
 
-      {error && <p style={ui.errorBanner}>{error}</p>}
-      {success && <p style={ui.successBanner}>{success}</p>}
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">Claim record · {claim.slug}</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            {claim.consumerQuestion}
+          </h1>
+        </div>
+        <span className="tag" data-state={claim.publicationStatus}>
+          {claim.publicationStatus.replace(/_/g, ' ')}
+        </span>
+      </div>
+
+      <dl className="speclabel" style={{ marginBottom: 'var(--s5)' }}>
+        <div className="speclabel__row">
+          <dt className="speclabel__key">Version</dt>
+          <dd className="speclabel__val" style={{ margin: 0 }}>
+            {claim.version}
+          </dd>
+        </div>
+        <div className="speclabel__row">
+          <dt className="speclabel__key">Reviewer</dt>
+          <dd className="speclabel__val" style={{ margin: 0 }}>
+            {claim.reviewerId ? `user #${claim.reviewerId}` : 'None recorded'}
+          </dd>
+        </div>
+        <div className="speclabel__row">
+          <dt className="speclabel__key">Last reviewed</dt>
+          <dd className="speclabel__val" style={{ margin: 0 }}>
+            {claim.lastReviewedAt ? claim.lastReviewedAt.toISOString().slice(0, 10) : 'Never'}
+          </dd>
+        </div>
+      </dl>
+
+      {error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Not saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
+        </div>
+      )}
+      {success && (
+        <div className="callout" role="status" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{success}</p>
+        </div>
+      )}
 
       {isAdmin && claim.publicationStatus === 'approved' && (
-        <form action={publishClaim.bind(null, claim.id)} style={{ marginBottom: 'var(--space-6)' }}>
-          <button type="submit" style={ui.buttonPrimary}>
+        <form action={publishClaim.bind(null, claim.id)} style={{ marginBottom: 'var(--s5)' }}>
+          <button type="submit" className="btn btn--primary">
             Publish this claim
           </button>
         </form>
       )}
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Details</h2>
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Details</h2>
+        </div>
         <ClaimForm
           action={updateClaim.bind(null, claim.id)}
           entityOptions={entityOptions}
@@ -112,123 +147,152 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
         />
       </section>
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Mechanism steps ({steps.length})</h2>
+      <hr className="rule" />
+
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Mechanism steps</h2>
+          <span className="eyebrow" style={{ flex: 'none' }}>
+            {steps.length} recorded
+          </span>
+        </div>
+
         {steps.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>No mechanism steps yet.</p>
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            No mechanism steps yet.
+          </p>
         ) : (
-          <div style={{ display: 'grid', gap: 'var(--space-3)', marginBottom: 'var(--space-6)' }}>
+          <ol className="admin-list">
             {steps.map((step, i) => (
-              <details key={step.id} style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-3)' }}>
-                <summary style={{ cursor: 'pointer', fontWeight: 600 }}>
-                  {step.displayOrder}. {step.technicalLabel} — {EVIDENCE_STATUS_LABELS[step.status]}
-                </summary>
-                <div style={{ ...ui.flexRow, margin: 'var(--space-2) 0' }}>
-                  <form action={moveMechanismStep.bind(null, step.id, 'up')}>
-                    <button type="submit" style={ui.buttonSmall} disabled={i === 0}>
-                      Move up
-                    </button>
-                  </form>
-                  <form action={moveMechanismStep.bind(null, step.id, 'down')}>
-                    <button type="submit" style={ui.buttonSmall} disabled={i === steps.length - 1}>
-                      Move down
-                    </button>
-                  </form>
-                </div>
-                <form action={updateMechanismStep.bind(null, step.id)}>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`step-order-${step.id}`}>
-                      Display order
-                    </label>
-                    <input id={`step-order-${step.id}`} name="displayOrder" type="number" defaultValue={step.displayOrder} required style={ui.input} />
+              <li key={step.id}>
+                <details className="admin-disclosure">
+                  <summary>
+                    <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--muted)' }}>
+                      {String(step.displayOrder).padStart(2, '0')}
+                    </span>
+                    <span>{step.technicalLabel}</span>
+                    <span className="tag" data-status={step.status}>
+                      {EVIDENCE_STATUS_LABELS[step.status]}
+                    </span>
+                  </summary>
+                  <div className="admin-disclosure__body">
+                    <div className="admin-actions">
+                      <form action={moveMechanismStep.bind(null, step.id, 'up')}>
+                        <button type="submit" className="btn" disabled={i === 0}>
+                          Move up
+                        </button>
+                      </form>
+                      <form action={moveMechanismStep.bind(null, step.id, 'down')}>
+                        <button type="submit" className="btn" disabled={i === steps.length - 1}>
+                          Move down
+                        </button>
+                      </form>
+                    </div>
+
+                    <form action={updateMechanismStep.bind(null, step.id)} className="admin-form">
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`step-order-${step.id}`}>
+                          Display order
+                        </label>
+                        <input id={`step-order-${step.id}`} name="displayOrder" type="number" defaultValue={step.displayOrder} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`step-label-${step.id}`}>
+                          Technical label
+                        </label>
+                        <input id={`step-label-${step.id}`} name="technicalLabel" defaultValue={step.technicalLabel} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`step-explanation-${step.id}`}>
+                          Plain-language explanation
+                        </label>
+                        <textarea id={`step-explanation-${step.id}`} name="plainLanguageExplanation" defaultValue={step.plainLanguageExplanation} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`step-context-${step.id}`}>
+                          Evidence context
+                        </label>
+                        <textarea id={`step-context-${step.id}`} name="evidenceContext" defaultValue={step.evidenceContext} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`step-status-${step.id}`}>
+                          Status
+                        </label>
+                        <select id={`step-status-${step.id}`} name="status" defaultValue={step.status} required className="field">
+                          {EVIDENCE_STATUSES.map((s) => (
+                            <option key={s} value={s}>
+                              {EVIDENCE_STATUS_LABELS[s]}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`step-links-${step.id}`}>
+                          Source links
+                        </label>
+                        <textarea
+                          id={`step-links-${step.id}`}
+                          name="sourceLinks"
+                          defaultValue={step.sourceLinks.join('\n')}
+                          aria-describedby={`step-links-help-${step.id}`}
+                          className="field"
+                        />
+                        <p id={`step-links-help-${step.id}`} className="admin-help">
+                          One URL per line.
+                        </p>
+                      </div>
+                      <div className="admin-actions">
+                        <button type="submit" className="btn">
+                          Save step
+                        </button>
+                      </div>
+                    </form>
+
+                    <form action={deleteMechanismStep.bind(null, step.id)}>
+                      <button type="submit" className="btn btn--danger">
+                        Remove step
+                      </button>
+                    </form>
                   </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`step-label-${step.id}`}>
-                      Technical label
-                    </label>
-                    <input id={`step-label-${step.id}`} name="technicalLabel" defaultValue={step.technicalLabel} required style={ui.input} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`step-explanation-${step.id}`}>
-                      Plain-language explanation
-                    </label>
-                    <textarea id={`step-explanation-${step.id}`} name="plainLanguageExplanation" defaultValue={step.plainLanguageExplanation} required style={ui.textareaSmall} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`step-context-${step.id}`}>
-                      Evidence context
-                    </label>
-                    <textarea id={`step-context-${step.id}`} name="evidenceContext" defaultValue={step.evidenceContext} required style={ui.textareaSmall} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`step-status-${step.id}`}>
-                      Status
-                    </label>
-                    <select id={`step-status-${step.id}`} name="status" defaultValue={step.status} required style={ui.select}>
-                      {EVIDENCE_STATUSES.map((s) => (
-                        <option key={s} value={s}>
-                          {EVIDENCE_STATUS_LABELS[s]}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`step-links-${step.id}`}>
-                      Source links
-                    </label>
-                    <textarea
-                      id={`step-links-${step.id}`}
-                      name="sourceLinks"
-                      defaultValue={step.sourceLinks.join('\n')}
-                      style={ui.textareaSmall}
-                    />
-                    <p style={ui.helpText}>One URL per line.</p>
-                  </div>
-                  <button type="submit" style={ui.buttonSecondary}>
-                    Save step
-                  </button>
-                </form>
-                <form action={deleteMechanismStep.bind(null, step.id)} style={{ marginTop: 'var(--space-2)' }}>
-                  <button type="submit" style={ui.buttonDanger}>
-                    Remove step
-                  </button>
-                </form>
-              </details>
+                </details>
+              </li>
             ))}
-          </div>
+          </ol>
         )}
 
-        <h3 style={{ fontSize: '0.95rem' }}>Add a step</h3>
-        <form action={addMechanismStep.bind(null, claim.id)}>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-step-order">
+        <h3 className="h4" style={{ margin: 'var(--s6) 0 var(--s4)' }}>
+          Add a step
+        </h3>
+        <form action={addMechanismStep.bind(null, claim.id)} className="admin-form">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-step-order">
               Display order
             </label>
-            <input id="new-step-order" name="displayOrder" type="number" defaultValue={steps.length + 1} required style={ui.input} />
+            <input id="new-step-order" name="displayOrder" type="number" defaultValue={steps.length + 1} required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-step-label">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-step-label">
               Technical label
             </label>
-            <input id="new-step-label" name="technicalLabel" required style={ui.input} />
+            <input id="new-step-label" name="technicalLabel" required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-step-explanation">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-step-explanation">
               Plain-language explanation
             </label>
-            <textarea id="new-step-explanation" name="plainLanguageExplanation" required style={ui.textareaSmall} />
+            <textarea id="new-step-explanation" name="plainLanguageExplanation" required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-step-context">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-step-context">
               Evidence context
             </label>
-            <textarea id="new-step-context" name="evidenceContext" required style={ui.textareaSmall} />
+            <textarea id="new-step-context" name="evidenceContext" required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-step-status">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-step-status">
               Status
             </label>
-            <select id="new-step-status" name="status" required style={ui.select} defaultValue="measured">
+            <select id="new-step-status" name="status" required className="field" defaultValue="measured">
               {EVIDENCE_STATUSES.map((s) => (
                 <option key={s} value={s}>
                   {EVIDENCE_STATUS_LABELS[s]}
@@ -236,135 +300,178 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
               ))}
             </select>
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-step-links">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-step-links">
               Source links
             </label>
-            <textarea id="new-step-links" name="sourceLinks" style={ui.textareaSmall} />
-            <p style={ui.helpText}>One URL per line.</p>
+            <textarea id="new-step-links" name="sourceLinks" aria-describedby="new-step-links-help" className="field" />
+            <p id="new-step-links-help" className="admin-help">
+              One URL per line.
+            </p>
           </div>
-          <button type="submit" style={ui.buttonSecondary}>
-            Add step
-          </button>
+          <div className="admin-actions">
+            <button type="submit" className="btn">
+              Add step
+            </button>
+          </div>
         </form>
       </section>
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Evidence ({links.length})</h2>
+      <hr className="rule" />
+
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Evidence</h2>
+          <span className="eyebrow" style={{ flex: 'none' }}>
+            {links.length} linked
+          </span>
+        </div>
+
         {links.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>No evidence linked yet.</p>
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            No evidence linked yet.
+          </p>
         ) : (
-          <div style={{ display: 'grid', gap: 'var(--space-3)', marginBottom: 'var(--space-6)' }}>
+          <ul className="admin-list">
             {links.map(({ link, source }) => (
-              <details key={link.id} style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-3)' }}>
-                <summary style={{ cursor: 'pointer', fontWeight: 600 }}>
-                  {EVIDENCE_RELATIONSHIP_LABELS[link.relationship]}: {source.title}
-                  {source.publicationYear ? ` (${source.publicationYear})` : ''}
-                </summary>
-                <p style={{ fontSize: '0.82rem', color: 'var(--color-text-faint)' }}>
-                  {[source.sourceType, source.species, source.studyDesign].filter(Boolean).join(' · ')}
-                  {source.doi ? ` · DOI ${source.doi}` : ''}
-                  {source.pmid ? ` · PMID ${source.pmid}` : ''} ·{' '}
-                  <Link href={`/admin/evidence/${source.id}`}>edit source</Link>
-                </p>
-                <form action={updateClaimEvidence.bind(null, link.id)}>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`link-relationship-${link.id}`}>
-                      Relationship
-                    </label>
-                    <select id={`link-relationship-${link.id}`} name="relationship" defaultValue={link.relationship} required style={ui.select}>
-                      {EVIDENCE_RELATIONSHIPS.map((r) => (
-                        <option key={r} value={r}>
-                          {EVIDENCE_RELATIONSHIP_LABELS[r]}
-                        </option>
-                      ))}
-                    </select>
+              <li key={link.id}>
+                <details className="admin-disclosure">
+                  <summary>
+                    <span className="eyebrow">{EVIDENCE_RELATIONSHIP_LABELS[link.relationship]}</span>
+                    <span>
+                      {source.title}
+                      {source.publicationYear ? ` (${source.publicationYear})` : ''}
+                    </span>
+                  </summary>
+                  <div className="admin-disclosure__body">
+                    <p className="metaline">
+                      <span>{[source.sourceType, source.species, source.studyDesign].filter(Boolean).join(' · ')}</span>
+                      {source.doi && <span>DOI {source.doi}</span>}
+                      {source.pmid && <span>PMID {source.pmid}</span>}
+                      <Link href={`/admin/evidence/${source.id}`}>Edit source →</Link>
+                    </p>
+
+                    <form action={updateClaimEvidence.bind(null, link.id)} className="admin-form">
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`link-relationship-${link.id}`}>
+                          Relationship
+                        </label>
+                        <select id={`link-relationship-${link.id}`} name="relationship" defaultValue={link.relationship} required className="field">
+                          {EVIDENCE_RELATIONSHIPS.map((r) => (
+                            <option key={r} value={r}>
+                              {EVIDENCE_RELATIONSHIP_LABELS[r]}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`link-part-${link.id}`}>
+                          Claim part addressed
+                        </label>
+                        <textarea id={`link-part-${link.id}`} name="claimPartAddressed" defaultValue={link.claimPartAddressed} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`link-result-${link.id}`}>
+                          Directly measured result
+                        </label>
+                        <textarea id={`link-result-${link.id}`} name="directlyMeasuredResult" defaultValue={link.directlyMeasuredResult} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`link-notes-${link.id}`}>
+                          Editorial notes
+                        </label>
+                        <textarea id={`link-notes-${link.id}`} name="editorialNotes" defaultValue={link.editorialNotes ?? ''} className="field" />
+                      </div>
+                      <label className="admin-check">
+                        <input type="checkbox" name="independentGroupStatus" defaultChecked={link.independentGroupStatus} />
+                        From an independent research group
+                      </label>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`link-priority-${link.id}`}>
+                          Display priority
+                        </label>
+                        <input id={`link-priority-${link.id}`} name="displayPriority" type="number" defaultValue={link.displayPriority} className="field" />
+                      </div>
+                      <div className="admin-actions">
+                        <button type="submit" className="btn">
+                          Save link
+                        </button>
+                      </div>
+                    </form>
+
+                    <form action={detachEvidence.bind(null, link.id)}>
+                      <button type="submit" className="btn btn--danger">
+                        Detach
+                      </button>
+                    </form>
                   </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`link-part-${link.id}`}>
-                      Claim part addressed
-                    </label>
-                    <textarea id={`link-part-${link.id}`} name="claimPartAddressed" defaultValue={link.claimPartAddressed} required style={ui.textareaSmall} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`link-result-${link.id}`}>
-                      Directly measured result
-                    </label>
-                    <textarea id={`link-result-${link.id}`} name="directlyMeasuredResult" defaultValue={link.directlyMeasuredResult} required style={ui.textareaSmall} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`link-notes-${link.id}`}>
-                      Editorial notes
-                    </label>
-                    <textarea id={`link-notes-${link.id}`} name="editorialNotes" defaultValue={link.editorialNotes ?? ''} style={ui.textareaSmall} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.checkboxRow}>
-                      <input type="checkbox" name="independentGroupStatus" defaultChecked={link.independentGroupStatus} />
-                      From an independent research group
-                    </label>
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`link-priority-${link.id}`}>
-                      Display priority
-                    </label>
-                    <input id={`link-priority-${link.id}`} name="displayPriority" type="number" defaultValue={link.displayPriority} style={ui.input} />
-                  </div>
-                  <button type="submit" style={ui.buttonSecondary}>
-                    Save
-                  </button>
-                </form>
-                <form action={detachEvidence.bind(null, link.id)} style={{ marginTop: 'var(--space-2)' }}>
-                  <button type="submit" style={ui.buttonDanger}>
-                    Detach
-                  </button>
-                </form>
-              </details>
+                </details>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
 
-        <h3 style={{ fontSize: '0.95rem' }}>Attach existing evidence</h3>
-        <form method="GET" style={{ ...ui.flexRow, marginBottom: 'var(--space-4)' }}>
-          <input
-            name="evidenceQuery"
-            defaultValue={evidenceQuery ?? ''}
-            placeholder="Search by title, DOI, or PMID"
-            style={{ ...ui.input, maxWidth: '24rem' }}
-          />
-          <button type="submit" style={ui.buttonSecondary}>
-            Search
-          </button>
+        <h3 className="h4" style={{ margin: 'var(--s6) 0 var(--s4)' }}>
+          Attach existing evidence
+        </h3>
+        <form method="GET" className="admin-form admin-form--inline" style={{ marginBottom: 'var(--s5)' }}>
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="evidenceQuery">
+              Search sources
+            </label>
+            <input
+              id="evidenceQuery"
+              name="evidenceQuery"
+              defaultValue={evidenceQuery ?? ''}
+              placeholder="Title, DOI, or PMID"
+              className="field"
+              style={{ minWidth: '18rem' }}
+            />
+          </div>
+          <div className="admin-actions">
+            <button type="submit" className="btn">
+              Search
+            </button>
+          </div>
         </form>
 
-        {evidenceQuery && (
-          <div style={{ marginBottom: 'var(--space-6)' }}>
-            {evidenceResults.length === 0 ? (
-              <p style={{ color: 'var(--color-text-faint)' }}>
-                No matching sources. <Link href="/admin/evidence/new">Create a new evidence source</Link> or try the DOI/PMID import.
-              </p>
-            ) : (
-              <div style={{ display: 'grid', gap: 'var(--space-3)' }}>
-                {evidenceResults.map((source) => (
-                  <div key={source.id} style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-3)' }}>
-                    <p style={{ margin: 0, fontWeight: 600 }}>
-                      {source.title} {source.publicationYear ? `(${source.publicationYear})` : ''}
-                    </p>
-                    <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-text-faint)' }}>
-                      {[source.sourceType, source.journalOrIssuer].filter(Boolean).join(' · ')}
-                      {source.doi ? ` · DOI ${source.doi}` : ''}
-                    </p>
-                    {attachedSourceIds.has(source.id) ? (
-                      <p style={{ fontSize: '0.82rem', color: 'var(--color-text-faint)' }}>Already linked to this claim.</p>
-                    ) : (
-                      <details style={{ marginTop: 'var(--space-2)' }}>
-                        <summary style={{ cursor: 'pointer', fontSize: '0.85rem', fontWeight: 600 }}>Attach to this claim</summary>
-                        <form action={attachEvidence.bind(null, claim.id, source.id)} style={{ marginTop: 'var(--space-2)' }}>
-                          <div style={ui.fieldWrap}>
-                            <label style={ui.label} htmlFor={`attach-relationship-${source.id}`}>
+        {evidenceQuery &&
+          (evidenceResults.length === 0 ? (
+            <p className="prose" style={{ fontSize: 'var(--size-small)' }}>
+              No matching sources. <Link href="/admin/evidence/new">Create an evidence source</Link>, or import one by
+              DOI or PMID.
+            </p>
+          ) : (
+            <ul className="admin-list">
+              {evidenceResults.map((source) => (
+                <li key={source.id}>
+                  {attachedSourceIds.has(source.id) ? (
+                    <div style={{ padding: 'var(--s3) 0', borderBottom: 'var(--hairline) solid var(--border)' }}>
+                      <p style={{ fontSize: 'var(--size-small)', fontWeight: 600 }}>
+                        {source.title} {source.publicationYear ? `(${source.publicationYear})` : ''}
+                      </p>
+                      <p className="metaline" style={{ marginTop: 'var(--s1)' }}>
+                        <span>Already linked to this claim</span>
+                      </p>
+                    </div>
+                  ) : (
+                    <details className="admin-disclosure">
+                      <summary>
+                        <span>
+                          {source.title} {source.publicationYear ? `(${source.publicationYear})` : ''}
+                        </span>
+                        <span className="eyebrow">
+                          {[source.sourceType, source.journalOrIssuer].filter(Boolean).join(' · ')}
+                          {source.doi ? ` · DOI ${source.doi}` : ''}
+                        </span>
+                      </summary>
+                      <div className="admin-disclosure__body">
+                        <form action={attachEvidence.bind(null, claim.id, source.id)} className="admin-form">
+                          <div className="admin-field">
+                            <label className="admin-label" htmlFor={`attach-relationship-${source.id}`}>
                               Relationship
                             </label>
-                            <select id={`attach-relationship-${source.id}`} name="relationship" required style={ui.select} defaultValue="supports">
+                            <select id={`attach-relationship-${source.id}`} name="relationship" required className="field" defaultValue="supports">
                               {EVIDENCE_RELATIONSHIPS.map((r) => (
                                 <option key={r} value={r}>
                                   {EVIDENCE_RELATIONSHIP_LABELS[r]}
@@ -372,36 +479,35 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
                               ))}
                             </select>
                           </div>
-                          <div style={ui.fieldWrap}>
-                            <label style={ui.label} htmlFor={`attach-part-${source.id}`}>
+                          <div className="admin-field">
+                            <label className="admin-label" htmlFor={`attach-part-${source.id}`}>
                               Claim part addressed
                             </label>
-                            <textarea id={`attach-part-${source.id}`} name="claimPartAddressed" required style={ui.textareaSmall} />
+                            <textarea id={`attach-part-${source.id}`} name="claimPartAddressed" required className="field" />
                           </div>
-                          <div style={ui.fieldWrap}>
-                            <label style={ui.label} htmlFor={`attach-result-${source.id}`}>
+                          <div className="admin-field">
+                            <label className="admin-label" htmlFor={`attach-result-${source.id}`}>
                               Directly measured result
                             </label>
-                            <textarea id={`attach-result-${source.id}`} name="directlyMeasuredResult" required style={ui.textareaSmall} />
+                            <textarea id={`attach-result-${source.id}`} name="directlyMeasuredResult" required className="field" />
                           </div>
-                          <div style={ui.fieldWrap}>
-                            <label style={ui.checkboxRow}>
-                              <input type="checkbox" name="independentGroupStatus" />
-                              From an independent research group
-                            </label>
+                          <label className="admin-check">
+                            <input type="checkbox" name="independentGroupStatus" />
+                            From an independent research group
+                          </label>
+                          <div className="admin-actions">
+                            <button type="submit" className="btn">
+                              Attach to this claim
+                            </button>
                           </div>
-                          <button type="submit" style={ui.buttonSecondary}>
-                            Attach
-                          </button>
                         </form>
-                      </details>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+                      </div>
+                    </details>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ))}
       </section>
     </div>
   )

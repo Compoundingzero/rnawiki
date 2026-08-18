@@ -10,22 +10,24 @@ interface CorrectionContext {
   claimQuestion: string | null
 }
 
+// Field labels are metadata, so they are set in mono like every other label on the site. The
+// live region below the form persists across submit states so a result is announced when it
+// replaces the form, rather than being inserted silently.
 const labelStyle: React.CSSProperties = {
   display: 'block',
-  fontWeight: 600,
-  fontSize: '0.9rem',
-  marginBottom: 'var(--space-2)',
+  fontFamily: 'var(--font-mono)',
+  fontSize: 'var(--size-meta)',
+  fontWeight: 500,
+  letterSpacing: 'var(--track-caps)',
+  textTransform: 'uppercase',
+  color: 'var(--ink-soft)',
+  marginBottom: 'var(--s2)',
 }
 
-const fieldStyle: React.CSSProperties = {
-  width: '100%',
-  padding: '0.65em 0.85em',
-  fontSize: '1rem',
-  fontFamily: 'inherit',
-  border: '1px solid var(--color-border-strong)',
-  borderRadius: 'var(--radius-md)',
-  background: 'var(--color-surface)',
-  color: 'var(--color-text)',
+const helpStyle: React.CSSProperties = {
+  marginTop: 'var(--s2)',
+  fontSize: 'var(--size-small)',
+  color: 'var(--muted)',
 }
 
 type SubmitState = { kind: 'idle' } | { kind: 'submitting' } | { kind: 'success' } | { kind: 'error'; message: string }
@@ -69,146 +71,122 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
     }
   }
 
-  if (state.kind === 'success') {
-    return (
-      <div
-        role="status"
-        style={{
-          border: '1px solid var(--color-measured)',
-          background: 'var(--color-measured-tint)',
-          borderRadius: 'var(--radius-md)',
-          padding: 'var(--space-6)',
-        }}
-      >
-        <p style={{ margin: 0, fontWeight: 600, color: 'var(--color-measured)' }}>Thank you — this is now in the editorial queue.</p>
-        <p style={{ margin: 'var(--space-2) 0 0' }}>
-          An editor reviews every submission by hand before anything changes. Individual replies are not sent, but
-          resolved corrections that changed something are listed below.
-        </p>
-        <button
-          type="button"
-          onClick={() => setState({ kind: 'idle' })}
-          style={{
-            marginTop: 'var(--space-4)',
-            padding: '0.5em 1em',
-            fontSize: '0.9rem',
-            border: '1px solid var(--color-border-strong)',
-            borderRadius: 'var(--radius-md)',
-            background: 'var(--color-surface)',
-            color: 'var(--color-text)',
-            cursor: 'pointer',
-          }}
-        >
-          Submit another correction
-        </button>
-      </div>
-    )
-  }
-
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 'var(--space-4)' }} aria-describedby={context ? `${formId}-context` : undefined}>
-      {context && (
-        <p
-          id={`${formId}-context`}
-          style={{
-            margin: 0,
-            padding: 'var(--space-3)',
-            fontSize: '0.88rem',
-            background: 'var(--color-surface-raised)',
-            borderRadius: 'var(--radius-md)',
-            color: 'var(--color-text-muted)',
-          }}
+    <>
+      <div role="status" aria-live="polite">
+        {state.kind === 'success' && (
+          <div className="callout">
+            <p className="callout__title">Received</p>
+            <p style={{ fontWeight: 600 }}>This report is now in the editorial queue.</p>
+            <p className="prose" style={{ marginTop: 'var(--s2)', fontSize: 'var(--size-small)' }}>
+              An editor reads every submission by hand before anything changes. Individual replies are not sent;
+              resolved corrections that changed something are listed below.
+            </p>
+            <button type="button" className="btn" style={{ marginTop: 'var(--s4)' }} onClick={() => setState({ kind: 'idle' })}>
+              Submit another correction
+            </button>
+          </div>
+        )}
+      </div>
+
+      {state.kind !== 'success' && (
+        <form
+          onSubmit={handleSubmit}
+          style={{ display: 'grid', gap: 'var(--s5)', maxWidth: '40rem' }}
+          aria-describedby={context ? `${formId}-context` : undefined}
         >
-          Reporting an issue with <strong>{context.entityName}</strong>
-          {context.claimQuestion ? <> — &ldquo;{context.claimQuestion}&rdquo;</> : null}.
-        </p>
+          {context && (
+            <p id={`${formId}-context`} className="callout" style={{ fontSize: 'var(--size-small)' }}>
+              Reporting an issue with <strong>{context.entityName}</strong>
+              {context.claimQuestion ? <> — &ldquo;{context.claimQuestion}&rdquo;</> : null}.
+            </p>
+          )}
+
+          <div>
+            <label htmlFor={`${formId}-category`} style={labelStyle}>
+              Kind of issue
+            </label>
+            <select
+              id={`${formId}-category`}
+              name="category"
+              className="field"
+              value={category}
+              onChange={(e) => setCategory(e.target.value as CorrectionCategory)}
+              aria-describedby={`${formId}-category-help`}
+            >
+              {CORRECTION_CATEGORIES.map((c) => (
+                <option key={c} value={c}>
+                  {CORRECTION_CATEGORY_LABELS[c]}
+                </option>
+              ))}
+            </select>
+            <p id={`${formId}-category-help`} style={helpStyle}>
+              {CORRECTION_CATEGORY_HELP[category]}
+            </p>
+          </div>
+
+          <div>
+            <label htmlFor={`${formId}-message`} style={labelStyle}>
+              What you noticed
+            </label>
+            <textarea
+              id={`${formId}-message`}
+              name="message"
+              className="field"
+              required
+              minLength={10}
+              maxLength={4000}
+              rows={6}
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              aria-describedby={`${formId}-message-help`}
+              style={{ resize: 'vertical', lineHeight: 'var(--leading-body)' }}
+            />
+            <p id={`${formId}-message-help`} style={helpStyle}>
+              A sentence or two is enough. Quoting the exact wording helps most.
+            </p>
+          </div>
+
+          <div>
+            <label htmlFor={`${formId}-source`} style={labelStyle}>
+              Link to a source (optional)
+            </label>
+            <input
+              id={`${formId}-source`}
+              name="proposedSource"
+              type="text"
+              className="field"
+              placeholder="A URL, DOI, or PMID"
+              value={proposedSource}
+              onChange={(e) => setProposedSource(e.target.value)}
+            />
+          </div>
+
+          {state.kind === 'error' && (
+            <div role="alert" className="callout" data-tone="danger">
+              <p className="callout__title">Not sent</p>
+              <p style={{ fontSize: 'var(--size-small)' }}>{state.message}</p>
+            </div>
+          )}
+
+          <div>
+            <button
+              type="submit"
+              className="btn btn--primary"
+              disabled={state.kind === 'submitting'}
+              aria-busy={state.kind === 'submitting'}
+              style={{ opacity: state.kind === 'submitting' ? 0.7 : 1 }}
+            >
+              {state.kind === 'submitting' ? 'Sending…' : 'Send correction'}
+            </button>
+          </div>
+
+          <p style={{ fontSize: 'var(--size-small)', color: 'var(--muted)' }}>
+            This form is for issues with the content on this site, not a way to ask about a personal health
+            situation. For medical guidance, contact a qualified clinician.
+          </p>
+        </form>
       )}
-
-      <div>
-        <label htmlFor={`${formId}-category`} style={labelStyle}>
-          What kind of issue is this?
-        </label>
-        <select
-          id={`${formId}-category`}
-          name="category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value as CorrectionCategory)}
-          style={fieldStyle}
-        >
-          {CORRECTION_CATEGORIES.map((c) => (
-            <option key={c} value={c}>
-              {CORRECTION_CATEGORY_LABELS[c]}
-            </option>
-          ))}
-        </select>
-        <p style={{ margin: 'var(--space-2) 0 0', fontSize: '0.82rem', color: 'var(--color-text-faint)' }}>
-          {CORRECTION_CATEGORY_HELP[category]}
-        </p>
-      </div>
-
-      <div>
-        <label htmlFor={`${formId}-message`} style={labelStyle}>
-          What did you notice?
-        </label>
-        <textarea
-          id={`${formId}-message`}
-          name="message"
-          required
-          minLength={10}
-          maxLength={4000}
-          rows={5}
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          style={{ ...fieldStyle, resize: 'vertical' }}
-        />
-      </div>
-
-      <div>
-        <label htmlFor={`${formId}-source`} style={labelStyle}>
-          Link to a source (optional)
-        </label>
-        <input
-          id={`${formId}-source`}
-          name="proposedSource"
-          type="text"
-          placeholder="A URL, DOI, or PMID"
-          value={proposedSource}
-          onChange={(e) => setProposedSource(e.target.value)}
-          style={fieldStyle}
-        />
-      </div>
-
-      {state.kind === 'error' && (
-        <p role="alert" style={{ margin: 0, color: 'var(--color-unknown)', fontSize: '0.9rem' }}>
-          {state.message}
-        </p>
-      )}
-
-      <div>
-        <button
-          type="submit"
-          disabled={state.kind === 'submitting'}
-          style={{
-            padding: '0.7em 1.4em',
-            fontSize: '1rem',
-            fontWeight: 600,
-            border: 'none',
-            borderRadius: 'var(--radius-md)',
-            background: 'var(--color-accent)',
-            color: '#fff',
-            cursor: state.kind === 'submitting' ? 'default' : 'pointer',
-            opacity: state.kind === 'submitting' ? 0.7 : 1,
-          }}
-        >
-          {state.kind === 'submitting' ? 'Sending…' : 'Send correction'}
-        </button>
-      </div>
-
-      <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--color-text-faint)' }}>
-        This form is for issues with the content on this site — not a way to ask for medical advice or get a
-        question about your own health answered. If you need medical guidance, please contact a qualified
-        clinician.
-      </p>
-    </form>
+    </>
   )
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'Admin login', robots: { index: false, follow: false } }
 
@@ -18,44 +17,50 @@ export default async function AdminLoginPage({ searchParams }: Props) {
   const message = error ? (ERROR_MESSAGES[error] ?? 'Something went wrong. Try again.') : null
 
   return (
-    <div style={{ ...ui.narrowPage, minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-      <div style={ui.sectionCard}>
-        <h1 style={ui.h1}>RNAwiki editorial admin</h1>
-        <p style={{ color: 'var(--color-text-muted)', marginTop: 0 }}>
-          Sign in with your administrator, editor, or scientific reviewer account.
-        </p>
+    <div className="admin-page admin-page--narrow" style={{ paddingBlock: 'var(--s9)' }}>
+      <p className="eyebrow">RNAwiki · Editorial</p>
+      <h1 className="h1" style={{ marginBlock: 'var(--s3) var(--s3)' }}>
+        Sign in
+      </h1>
+      <p className="prose" style={{ fontSize: 'var(--size-small)' }}>
+        Administrator, editor, and scientific reviewer accounts only.
+      </p>
 
-        {message && (
-          <p role="alert" style={ui.errorBanner}>
-            {message}
-          </p>
-        )}
+      <hr className="rule" style={{ marginBlock: 'var(--s5)' }} />
 
-        <form action="/api/admin/login" method="POST">
-          <div style={ui.fieldWrap}>
-            <label htmlFor="email" style={ui.label}>
-              Email
-            </label>
-            <input id="email" name="email" type="email" autoComplete="username" required style={ui.input} />
-          </div>
-          <div style={ui.fieldWrap}>
-            <label htmlFor="password" style={ui.label}>
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              style={ui.input}
-            />
-          </div>
-          <button type="submit" style={ui.buttonPrimary}>
+      {message && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Sign-in failed</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{message}</p>
+        </div>
+      )}
+
+      <form action="/api/admin/login" method="POST" className="admin-form">
+        <div className="admin-field">
+          <label htmlFor="email" className="admin-label">
+            Email
+          </label>
+          <input id="email" name="email" type="email" autoComplete="username" required className="field" />
+        </div>
+        <div className="admin-field">
+          <label htmlFor="password" className="admin-label">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            autoComplete="current-password"
+            required
+            className="field"
+          />
+        </div>
+        <div className="admin-actions">
+          <button type="submit" className="btn btn--primary">
             Log in
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   )
 }

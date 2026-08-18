@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { db } from '@/db'
 import { entities, claims, correctionSubmissions, revisions, users } from '@/db/schema'
 import { count, desc, eq, isNull, lt, or } from 'drizzle-orm'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'Admin dashboard', robots: { index: false, follow: false } }
 
@@ -61,6 +60,23 @@ async function getRecentRevisions() {
     .limit(20)
 }
 
+/** Counts by publication status, as a specimen label rather than a row of tiles. */
+function CountLabel({ rows, empty }: { rows: { status: string; total: number }[]; empty: string }) {
+  if (rows.length === 0) return <p className="muted" style={{ fontSize: 'var(--size-small)' }}>{empty}</p>
+  return (
+    <dl className="speclabel">
+      {rows.map((row) => (
+        <div key={row.status} className="speclabel__row">
+          <dt className="speclabel__key">{row.status.replace(/_/g, ' ')}</dt>
+          <dd className="speclabel__val" style={{ margin: 0 }}>
+            {row.total}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
 export default async function AdminDashboardPage() {
   const [{ entityCounts, claimCounts }, staleClaims, pendingCorrections, recentRevisions] = await Promise.all([
     getStatusCounts(),
@@ -70,121 +86,158 @@ export default async function AdminDashboardPage() {
   ])
 
   return (
-    <div style={ui.page}>
-      <h1 style={ui.h1}>Dashboard</h1>
-
-      <section style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={ui.h2}>Entities by status</h2>
-        <div style={ui.statGrid}>
-          {entityCounts.length === 0 && <p style={{ color: 'var(--color-text-faint)' }}>No entities yet.</p>}
-          {entityCounts.map((row) => (
-            <div key={row.status} style={ui.statTile}>
-              <p style={{ margin: 0, fontSize: '1.6rem', fontWeight: 700 }}>{row.total}</p>
-              <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-text-muted)' }}>
-                {row.status.replace(/_/g, ' ')}
-              </p>
-            </div>
-          ))}
+    <div className="admin-page">
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">Editorial workbench</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            Dashboard
+          </h1>
         </div>
-      </section>
+      </div>
 
-      <section style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={ui.h2}>Claims by status</h2>
-        <div style={ui.statGrid}>
-          {claimCounts.length === 0 && <p style={{ color: 'var(--color-text-faint)' }}>No claims yet.</p>}
-          {claimCounts.map((row) => (
-            <div key={row.status} style={ui.statTile}>
-              <p style={{ margin: 0, fontSize: '1.6rem', fontWeight: 700 }}>{row.total}</p>
-              <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-text-muted)' }}>
-                {row.status.replace(/_/g, ' ')}
-              </p>
+      <div
+        style={{
+          display: 'grid',
+          gap: 'var(--s6)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(15rem, 1fr))',
+        }}
+      >
+        <section>
+          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
+            Entities by status
+          </p>
+          <CountLabel rows={entityCounts} empty="No entities yet." />
+        </section>
+
+        <section>
+          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
+            Claims by status
+          </p>
+          <CountLabel rows={claimCounts} empty="No claims yet." />
+        </section>
+
+        <section>
+          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
+            Queue
+          </p>
+          <dl className="speclabel">
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Corrections pending</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                <Link href="/admin/corrections">{pendingCorrections}</Link>
+              </dd>
             </div>
-          ))}
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Stale claims</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                {staleClaims.length}
+                {staleClaims.length === 25 ? '+' : ''}
+              </dd>
+            </div>
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Revisions listed</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                {recentRevisions.length}
+              </dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+
+      <hr className="rule" />
+
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Not reviewed in {STALE_DAYS}+ days</h2>
+          <span className="eyebrow" style={{ flex: 'none' }}>
+            {staleClaims.length}
+            {staleClaims.length === 25 ? '+' : ''}
+          </span>
         </div>
-      </section>
-
-      <section style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={ui.h2}>
-          Pending corrections:{' '}
-          <Link href="/admin/corrections" style={{ color: 'var(--color-accent-strong)' }}>
-            {pendingCorrections}
-          </Link>
-        </h2>
-      </section>
-
-      <section style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={ui.h2}>
-          Claims not reviewed in {STALE_DAYS}+ days ({staleClaims.length}{staleClaims.length === 25 ? '+' : ''})
-        </h2>
         {staleClaims.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>Nothing stale right now.</p>
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            Nothing stale right now.
+          </p>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={ui.table}>
-              <thead>
-                <tr>
-                  <th style={ui.th}>Entity</th>
-                  <th style={ui.th}>Claim</th>
-                  <th style={ui.th}>Status</th>
-                  <th style={ui.th}>Last reviewed</th>
+          <table className="admin-table">
+            <caption className="eyebrow" style={{ textAlign: 'left', paddingBottom: 'var(--s3)' }}>
+              Claims whose last review predates the {STALE_DAYS}-day threshold
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Entity</th>
+                <th scope="col">Claim</th>
+                <th scope="col">Status</th>
+                <th scope="col">Last reviewed</th>
+              </tr>
+            </thead>
+            <tbody>
+              {staleClaims.map((c) => (
+                <tr key={c.id}>
+                  <td data-label="Entity">{c.entityName}</td>
+                  <td data-label="Claim">
+                    <Link href={`/admin/claims/${c.id}`}>{c.consumerQuestion}</Link>
+                  </td>
+                  <td data-label="Status">
+                    <span className="tag" data-state={c.publicationStatus}>
+                      {c.publicationStatus.replace(/_/g, ' ')}
+                    </span>
+                  </td>
+                  <td data-label="Last reviewed" style={{ fontFamily: 'var(--font-mono)' }}>
+                    {c.lastReviewedAt ? c.lastReviewedAt.toISOString().slice(0, 10) : 'Never'}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {staleClaims.map((c) => (
-                  <tr key={c.id}>
-                    <td style={ui.td}>{c.entityName}</td>
-                    <td style={ui.td}>
-                      <Link href={`/admin/claims/${c.id}`}>{c.consumerQuestion}</Link>
-                    </td>
-                    <td style={ui.td}>
-                      <span style={ui.statusBadgeStyle(c.publicationStatus)}>
-                        {c.publicationStatus.replace(/_/g, ' ')}
-                      </span>
-                    </td>
-                    <td style={ui.td}>
-                      {c.lastReviewedAt ? c.lastReviewedAt.toISOString().slice(0, 10) : 'never'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         )}
       </section>
 
+      <hr className="rule" />
+
       <section>
-        <h2 style={ui.h2}>Recent revisions</h2>
+        <div className="section-head">
+          <h2 className="h2">Recent revisions</h2>
+        </div>
         {recentRevisions.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>No revisions recorded yet.</p>
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            No revisions recorded yet.
+          </p>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={ui.table}>
-              <thead>
-                <tr>
-                  <th style={ui.th}>When</th>
-                  <th style={ui.th}>By</th>
-                  <th style={ui.th}>Type</th>
-                  <th style={ui.th}>Field</th>
-                  <th style={ui.th}>New value</th>
+          <table className="admin-table">
+            <caption className="eyebrow" style={{ textAlign: 'left', paddingBottom: 'var(--s3)' }}>
+              The 20 most recent field changes, from the revisions table
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">When</th>
+                <th scope="col">By</th>
+                <th scope="col">Record</th>
+                <th scope="col">Field</th>
+                <th scope="col">New value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {recentRevisions.map((r) => (
+                <tr key={r.id}>
+                  <td data-label="When" style={{ fontFamily: 'var(--font-mono)', whiteSpace: 'nowrap' }}>
+                    {r.createdAt.toISOString().slice(0, 16).replace('T', ' ')}
+                  </td>
+                  <td data-label="By">{r.changedByName}</td>
+                  <td data-label="Record" style={{ fontFamily: 'var(--font-mono)' }}>
+                    {r.reviewableType} #{r.reviewableId}
+                  </td>
+                  <td data-label="Field" style={{ fontFamily: 'var(--font-mono)' }}>
+                    {r.fieldChanged}
+                  </td>
+                  <td data-label="New value" style={{ maxWidth: '22rem' }}>
+                    {r.newValue ?? 'Not recorded'}
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {recentRevisions.map((r) => (
-                  <tr key={r.id}>
-                    <td style={ui.td}>{r.createdAt.toISOString().slice(0, 16).replace('T', ' ')}</td>
-                    <td style={ui.td}>{r.changedByName}</td>
-                    <td style={ui.td}>
-                      {r.reviewableType} #{r.reviewableId}
-                    </td>
-                    <td style={ui.td}>{r.fieldChanged}</td>
-                    <td style={{ ...ui.td, maxWidth: '24rem', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {r.newValue ?? '—'}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         )}
       </section>
     </div>

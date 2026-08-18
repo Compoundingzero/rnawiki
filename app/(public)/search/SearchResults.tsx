@@ -4,60 +4,73 @@ import { entityPath } from '@/lib/canonical'
 import type { SearchResult } from '@/lib/search'
 
 /**
- * Pure presentation: renders a non-empty list of search results. Callers (app/search/page.tsx)
- * own the "no query yet" / "no results" empty states — this component only ever sees results
- * that exist. Server component, no interactivity, so it renders identically with JavaScript
- * disabled.
+ * Record metadata that accompanies a result but does not come out of the search query itself.
+ * Optional per result: a claim with no review date contributes no date row rather than a
+ * placeholder.
  */
-export function SearchResults({ results }: { results: SearchResult[] }) {
+export interface SearchResultDetail {
+  claimType: string
+  lastReviewedAt: Date | null
+}
+
+/**
+ * Pure presentation: renders a non-empty list of search results as hairline-separated rows.
+ * Callers (app/(public)/search/page.tsx) own the "no query yet" / "no results" empty states —
+ * this component only ever sees results that exist. Server component, no interactivity, so it
+ * renders identically with JavaScript disabled.
+ *
+ * Each row carries enough of the record to judge it without navigating: which compound it belongs
+ * to, what kind of claim it is, the answer sentence, where the evidence stops, and when the claim
+ * was last reviewed.
+ */
+export function SearchResults({
+  results,
+  details,
+}: {
+  results: SearchResult[]
+  details?: Map<number, SearchResultDetail>
+}) {
   return (
-    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--space-4)' }}>
-      {results.map((result) => (
-        <li key={result.claimId}>
-          <Link
-            href={`${entityPath(result.entitySlug)}#claim-${result.claimSlug}`}
-            style={{
-              display: 'block',
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-md)',
-              padding: 'var(--space-4) var(--space-6)',
-              textDecoration: 'none',
-              color: 'inherit',
-              background: 'var(--color-surface)',
-            }}
-          >
-            <p
-              style={{
-                margin: '0 0 var(--space-1)',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                color: 'var(--color-text-faint)',
-              }}
+    <ul className="rows">
+      {results.map((result) => {
+        const detail = details?.get(result.claimId)
+        const lastReviewed = detail?.lastReviewedAt ? detail.lastReviewedAt.toISOString().slice(0, 10) : null
+        return (
+          <li key={result.claimId} className="row">
+            <Link
+              href={`${entityPath(result.entitySlug)}#claim-${result.claimSlug}`}
+              className="row__link"
             >
-              {result.entityName}
-            </p>
-            <h2 style={{ margin: '0 0 var(--space-2)', fontSize: '1.1rem' }}>{result.consumerQuestion}</h2>
-            <p style={{ margin: '0 0 var(--space-3)', fontSize: '0.98rem', color: 'var(--color-text-muted)' }}>
-              {result.directAnswer}
-            </p>
-            <p
-              style={{
-                margin: 0,
-                display: 'inline-block',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.03em',
-                color: 'var(--color-accent-strong)',
-                borderTop: '2px solid var(--color-accent)',
-                paddingTop: 'var(--space-2)',
-              }}
-            >
-              Proof Boundary — {PROOF_BOUNDARY_LABELS[result.proofBoundaryStage]}
-            </p>
-          </Link>
-        </li>
-      ))}
+              <div>
+                <span className="eyebrow">
+                  {result.entityName} · Claim
+                  {detail ? ` · ${detail.claimType.replace(/_/g, ' ')}` : ''}
+                </span>
+                <div className="row__name" style={{ marginTop: '0.15rem' }}>
+                  {result.consumerQuestion}
+                </div>
+                <p className="row__desc">{result.directAnswer}</p>
+                <div className="row__meta">
+                  {/* Long stage labels must wrap rather than push the row off a 375px screen. */}
+                  <span className="tag" style={{ whiteSpace: 'normal' }}>
+                    Proof Boundary — {PROOF_BOUNDARY_LABELS[result.proofBoundaryStage]}
+                  </span>
+                </div>
+                {lastReviewed && (
+                  <p className="metaline" style={{ marginTop: 'var(--s2)' }}>
+                    <span>
+                      Last reviewed <b>{lastReviewed}</b>
+                    </span>
+                  </p>
+                )}
+              </div>
+              <span className="row__chev" aria-hidden="true">
+                →
+              </span>
+            </Link>
+          </li>
+        )
+      })}
     </ul>
   )
 }

@@ -6,7 +6,6 @@ import { evidenceSources } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 import { updateEvidenceSource } from '../actions'
 import { EvidenceSourceForm } from '../EvidenceSourceForm'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'Edit evidence source', robots: { index: false, follow: false } }
 
@@ -24,38 +23,59 @@ export default async function EditEvidenceSourcePage({ params, searchParams }: P
   if (!source) notFound()
 
   return (
-    <div style={ui.page}>
-      <p style={{ marginBottom: 'var(--space-2)' }}>
+    <div className="admin-page">
+      <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
         <Link href="/admin/evidence">← Evidence sources</Link>
       </p>
-      <h1 style={ui.h1}>{source.title}</h1>
 
-      {error && <p style={ui.errorBanner}>{error}</p>}
-      {success && <p style={ui.successBanner}>{success}</p>}
-
-      <div style={ui.sectionCard}>
-        <EvidenceSourceForm
-          action={updateEvidenceSource.bind(null, source.id)}
-          submitLabel="Save changes"
-          values={{
-            title: source.title,
-            authors: source.authors ?? '',
-            publicationYear: source.publicationYear ? String(source.publicationYear) : '',
-            journalOrIssuer: source.journalOrIssuer ?? '',
-            doi: source.doi ?? '',
-            pmid: source.pmid ?? '',
-            clinicalTrialId: source.clinicalTrialId ?? '',
-            regulatoryUrl: source.regulatoryUrl ?? '',
-            sourceType: source.sourceType,
-            studyDesign: source.studyDesign ?? '',
-            experimentalModel: source.experimentalModel ?? '',
-            species: source.species ?? '',
-            sampleSize: source.sampleSize ? String(source.sampleSize) : '',
-            endpoint: source.endpoint ?? '',
-            retractionStatus: source.retractionStatus ?? '',
-          }}
-        />
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">Source record</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            {source.title}
+          </h1>
+        </div>
+        {source.retractionStatus && (
+          <span className="tag" data-flag="retraction">
+            {source.retractionStatus}
+          </span>
+        )}
       </div>
+
+      {error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Not saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
+        </div>
+      )}
+      {success && (
+        <div className="callout" role="status" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{success}</p>
+        </div>
+      )}
+
+      <EvidenceSourceForm
+        action={updateEvidenceSource.bind(null, source.id)}
+        submitLabel="Save changes"
+        values={{
+          title: source.title,
+          authors: source.authors ?? '',
+          publicationYear: source.publicationYear ? String(source.publicationYear) : '',
+          journalOrIssuer: source.journalOrIssuer ?? '',
+          doi: source.doi ?? '',
+          pmid: source.pmid ?? '',
+          clinicalTrialId: source.clinicalTrialId ?? '',
+          regulatoryUrl: source.regulatoryUrl ?? '',
+          sourceType: source.sourceType,
+          studyDesign: source.studyDesign ?? '',
+          experimentalModel: source.experimentalModel ?? '',
+          species: source.species ?? '',
+          sampleSize: source.sampleSize ? String(source.sampleSize) : '',
+          endpoint: source.endpoint ?? '',
+          retractionStatus: source.retractionStatus ?? '',
+        }}
+      />
     </div>
   )
 }

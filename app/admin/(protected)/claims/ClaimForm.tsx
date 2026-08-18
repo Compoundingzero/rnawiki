@@ -1,6 +1,5 @@
 import { claimTypeEnum, publicationStatusEnum } from '@/db/schema'
 import { PROOF_BOUNDARY_STAGES, PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
-import * as ui from '@/lib/admin/ui'
 
 function humanize(value: string): string {
   return value.charAt(0).toUpperCase() + value.slice(1).replace(/_/g, ' ')
@@ -45,12 +44,20 @@ export function ClaimForm({
   lockEntity?: boolean
 }) {
   return (
-    <form action={action}>
-      <div style={ui.fieldWrap}>
-        <label htmlFor="entityId" style={ui.label}>
+    <form action={action} className="admin-form">
+      <div className="admin-field">
+        <label htmlFor="entityId" className="admin-label">
           Entity
         </label>
-        <select id="entityId" name="entityId" defaultValue={values.entityId} required disabled={lockEntity} style={ui.select}>
+        <select
+          id="entityId"
+          name="entityId"
+          defaultValue={values.entityId}
+          required
+          disabled={lockEntity}
+          aria-describedby={lockEntity ? 'entityId-help' : undefined}
+          className="field"
+        >
           <option value="" disabled>
             Choose an entity…
           </option>
@@ -60,22 +67,36 @@ export function ClaimForm({
             </option>
           ))}
         </select>
-        {lockEntity && <p style={ui.helpText}>Entity cannot be changed after creation from this form.</p>}
+        {lockEntity && (
+          <p id="entityId-help" className="admin-help">
+            Entity cannot be changed after creation from this form.
+          </p>
+        )}
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="slug" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="slug" className="admin-label">
           Slug
         </label>
-        <input id="slug" name="slug" defaultValue={values.slug} required pattern="[a-z0-9]+(-[a-z0-9]+)*" style={ui.input} />
-        <p style={ui.helpText}>Unique per entity, e.g. &quot;tendon-healing&quot;.</p>
+        <input
+          id="slug"
+          name="slug"
+          defaultValue={values.slug}
+          required
+          pattern="[a-z0-9]+(-[a-z0-9]+)*"
+          aria-describedby="slug-help"
+          className="field"
+        />
+        <p id="slug-help" className="admin-help">
+          Unique per entity, e.g. &quot;tendon-healing&quot;.
+        </p>
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="claimType" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="claimType" className="admin-label">
           Claim type
         </label>
-        <select id="claimType" name="claimType" defaultValue={values.claimType} required style={ui.select}>
+        <select id="claimType" name="claimType" defaultValue={values.claimType} required className="field">
           {claimTypeEnum.enumValues.map((v) => (
             <option key={v} value={v}>
               {humanize(v)}
@@ -84,96 +105,134 @@ export function ClaimForm({
         </select>
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="consumerQuestion" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="consumerQuestion" className="admin-label">
           Consumer question
         </label>
-        <input id="consumerQuestion" name="consumerQuestion" defaultValue={values.consumerQuestion} required style={ui.input} placeholder="Does it improve tendon healing?" />
+        <input
+          id="consumerQuestion"
+          name="consumerQuestion"
+          defaultValue={values.consumerQuestion}
+          required
+          className="field"
+          placeholder="Does it improve tendon healing?"
+        />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="directAnswer" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="directAnswer" className="admin-label">
           Direct answer
         </label>
-        <textarea id="directAnswer" name="directAnswer" defaultValue={values.directAnswer} required style={ui.textareaSmall} />
-        <p style={ui.helpText}>1–2 sentences. The caveat must be in the same sentence as the claim.</p>
+        <textarea
+          id="directAnswer"
+          name="directAnswer"
+          defaultValue={values.directAnswer}
+          required
+          aria-describedby="directAnswer-help"
+          className="field"
+        />
+        <p id="directAnswer-help" className="admin-help">
+          1–2 sentences. The caveat must be in the same sentence as the claim.
+        </p>
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="measuredFinding" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="measuredFinding" className="admin-label">
           What was measured
         </label>
-        <textarea id="measuredFinding" name="measuredFinding" defaultValue={values.measuredFinding} required style={ui.textareaSmall} />
+        <textarea id="measuredFinding" name="measuredFinding" defaultValue={values.measuredFinding} required className="field" />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="inference" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="inference" className="admin-label">
           What is being inferred
         </label>
-        <textarea id="inference" name="inference" defaultValue={values.inference} required style={ui.textareaSmall} />
+        <textarea id="inference" name="inference" defaultValue={values.inference} required className="field" />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="proofBoundaryStage" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="proofBoundaryStage" className="admin-label">
           Proof Boundary stage
         </label>
-        <select id="proofBoundaryStage" name="proofBoundaryStage" defaultValue={values.proofBoundaryStage} required style={ui.select}>
-          {PROOF_BOUNDARY_STAGES.map((stage) => (
+        <select id="proofBoundaryStage" name="proofBoundaryStage" defaultValue={values.proofBoundaryStage} required className="field">
+          {PROOF_BOUNDARY_STAGES.map((stage, i) => (
             <option key={stage} value={stage}>
-              {PROOF_BOUNDARY_LABELS[stage]}
+              {i + 1}. {PROOF_BOUNDARY_LABELS[stage]}
             </option>
           ))}
         </select>
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="proofBoundaryExplanation" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="proofBoundaryExplanation" className="admin-label">
           Proof Boundary explanation
         </label>
-        <textarea id="proofBoundaryExplanation" name="proofBoundaryExplanation" defaultValue={values.proofBoundaryExplanation} required style={ui.textareaSmall} />
+        <textarea
+          id="proofBoundaryExplanation"
+          name="proofBoundaryExplanation"
+          defaultValue={values.proofBoundaryExplanation}
+          required
+          className="field"
+        />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="remainingUnknown" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="remainingUnknown" className="admin-label">
           What remains unknown
         </label>
-        <textarea id="remainingUnknown" name="remainingUnknown" defaultValue={values.remainingUnknown} required style={ui.textareaSmall} />
+        <textarea id="remainingUnknown" name="remainingUnknown" defaultValue={values.remainingUnknown} required className="field" />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="evidenceNeededNext" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="evidenceNeededNext" className="admin-label">
           What evidence would move the boundary
         </label>
-        <textarea id="evidenceNeededNext" name="evidenceNeededNext" defaultValue={values.evidenceNeededNext} required style={ui.textareaSmall} />
+        <textarea id="evidenceNeededNext" name="evidenceNeededNext" defaultValue={values.evidenceNeededNext} required className="field" />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="mechanismSummary" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="mechanismSummary" className="admin-label">
           Mechanism summary (optional)
         </label>
-        <textarea id="mechanismSummary" name="mechanismSummary" defaultValue={values.mechanismSummary} style={ui.textareaSmall} />
+        <textarea id="mechanismSummary" name="mechanismSummary" defaultValue={values.mechanismSummary} className="field" />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="outcomeSummary" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="outcomeSummary" className="admin-label">
           Outcome summary (optional)
         </label>
-        <textarea id="outcomeSummary" name="outcomeSummary" defaultValue={values.outcomeSummary} style={ui.textareaSmall} />
+        <textarea id="outcomeSummary" name="outcomeSummary" defaultValue={values.outcomeSummary} className="field" />
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="displayPriority" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="displayPriority" className="admin-label">
           Display priority
         </label>
-        <input id="displayPriority" name="displayPriority" type="number" defaultValue={values.displayPriority} style={ui.input} />
-        <p style={ui.helpText}>Higher shows first under &quot;Most searched claims&quot;.</p>
+        <input
+          id="displayPriority"
+          name="displayPriority"
+          type="number"
+          defaultValue={values.displayPriority}
+          aria-describedby="displayPriority-help"
+          className="field"
+        />
+        <p id="displayPriority-help" className="admin-help">
+          Higher sorts earlier where claims are listed together.
+        </p>
       </div>
 
-      <div style={ui.fieldWrap}>
-        <label htmlFor="publicationStatus" style={ui.label}>
+      <div className="admin-field">
+        <label htmlFor="publicationStatus" className="admin-label">
           Publication status
         </label>
-        <select id="publicationStatus" name="publicationStatus" defaultValue={values.publicationStatus} required style={ui.select}>
+        <select
+          id="publicationStatus"
+          name="publicationStatus"
+          defaultValue={values.publicationStatus}
+          required
+          aria-describedby={canPublish ? undefined : 'publicationStatus-help'}
+          className="field"
+        >
           {publicationStatusEnum.enumValues.map((v) => (
             <option key={v} value={v}>
               {humanize(v)}
@@ -181,15 +240,17 @@ export function ClaimForm({
           ))}
         </select>
         {!canPublish && (
-          <p style={ui.helpText}>
+          <p id="publicationStatus-help" className="admin-help">
             Only administrators can move status to &quot;published&quot; (enforced on save, not just in this menu).
           </p>
         )}
       </div>
 
-      <button type="submit" style={ui.buttonPrimary}>
-        {submitLabel}
-      </button>
+      <div className="admin-actions">
+        <button type="submit" className="btn btn--primary">
+          {submitLabel}
+        </button>
+      </div>
     </form>
   )
 }

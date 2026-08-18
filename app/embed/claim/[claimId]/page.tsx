@@ -4,17 +4,16 @@ import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { claims, entities } from '@/db/schema'
 import { claimAnchorUrl } from '@/lib/canonical'
-import { ProofBoundaryDivider } from '@/components/ProofBoundaryDivider'
+import { PROOF_BOUNDARY_LABELS, PROOF_BOUNDARY_STAGES, stageRank } from '@/lib/evidence'
 
 // Embeddable single-claim view. Third-party sites iframe this route directly (see
 // components/EmbedCodeBox.tsx for the snippet readers copy). next.config.mjs already sends
 // X-Robots-Tag: noindex for everything under /embed/:path*.
 //
-// NOTE for integration: this page is still wrapped by the root layout in app/layout.tsx
-// (SiteHeader/SiteFooter), because Next.js App Router only supports one root <html>/<body>
-// per app unless every route is moved into route groups with their own root layouts — out of
-// scope for this task and not something this task may change (app/layout.tsx is a shared
-// file). See filesToWireIn in this task's report for the follow-up this needs.
+// Self-contained by construction: it inherits no site chrome, depends on no page container
+// (.wrap, .shell), sizes everything relatively so it reads at any iframe width, and ships no
+// client JavaScript. It borrows only the primitives from app/globals.css that carry the
+// identity — the specimen label and the mono metadata voice.
 
 export const revalidate = 3600
 
@@ -74,67 +73,57 @@ export default async function EmbedClaimPage({ params }: Props) {
 
   const lastReviewed = claim.lastReviewedAt ? claim.lastReviewedAt.toISOString().slice(0, 10) : null
   const canonicalHref = claimAnchorUrl(claim.entitySlug, claim.slug)
+  const stage = stageRank(claim.proofBoundaryStage) + 1
 
   return (
     <div
       style={{
+        minHeight: '100vh',
         width: '100%',
         maxWidth: '100%',
         boxSizing: 'border-box',
+        background: 'var(--surface)',
+        color: 'var(--ink)',
+        padding: 'var(--s5)',
         display: 'flex',
         flexDirection: 'column',
-        gap: '0.9em',
-        padding: '1.15em 1.3em',
-        background: 'var(--color-surface)',
-        color: 'var(--color-text)',
-        fontFamily: 'var(--font-sans)',
-        fontSize: '15px',
-        lineHeight: 1.5,
+        gap: 'var(--s4)',
       }}
     >
-      <p
-        style={{
-          margin: 0,
-          fontSize: '0.72em',
-          fontWeight: 700,
-          letterSpacing: '0.04em',
-          textTransform: 'uppercase',
-          color: 'var(--color-text-faint)',
-        }}
+      <p className="eyebrow">RNAwiki · {claim.entityName}</p>
+
+      <h1
+        className="h3"
+        style={{ fontFamily: 'var(--font-serif)', fontSize: 'var(--size-h3)', letterSpacing: '-0.008em' }}
       >
-        RNAwiki · {claim.entityName}
+        {claim.consumerQuestion}
+      </h1>
+
+      <p style={{ fontSize: 'var(--size-small)', lineHeight: 'var(--leading-body)', color: 'var(--ink-soft)' }}>
+        {claim.directAnswer}
       </p>
 
-      <h1 style={{ margin: 0, fontSize: '1.15em', fontWeight: 650, lineHeight: 1.3 }}>{claim.consumerQuestion}</h1>
+      <dl className="speclabel">
+        <div className="speclabel__row">
+          <dt className="speclabel__key">Evidence stops at</dt>
+          <dd className="speclabel__val" style={{ margin: 0 }}>
+            {PROOF_BOUNDARY_LABELS[claim.proofBoundaryStage]} — stage {stage} of {PROOF_BOUNDARY_STAGES.length}
+          </dd>
+        </div>
+        <div className="speclabel__row">
+          <dt className="speclabel__key">Because</dt>
+          <dd className="speclabel__val" style={{ margin: 0 }}>
+            {claim.proofBoundaryExplanation}
+          </dd>
+        </div>
+      </dl>
 
-      <p style={{ margin: 0 }}>{claim.directAnswer}</p>
-
-      <div>
-        <ProofBoundaryDivider stage={claim.proofBoundaryStage} />
-        <p style={{ margin: 0, fontSize: '0.92em', color: 'var(--color-text-muted)' }}>
-          {claim.proofBoundaryExplanation}
-        </p>
-      </div>
-
-      <div
-        style={{
-          marginTop: 'auto',
-          paddingTop: '0.8em',
-          borderTop: '1px solid var(--color-border)',
-          display: 'flex',
-          flexWrap: 'wrap',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '0.75em',
-          fontSize: '0.78em',
-          color: 'var(--color-text-faint)',
-        }}
-      >
-        <span>{lastReviewed ? `Last reviewed: ${lastReviewed}` : 'Editorial review pending.'}</span>
+      <p className="metaline" style={{ marginTop: 'auto', paddingTop: 'var(--s3)' }}>
+        <span>{lastReviewed ? `Last reviewed ${lastReviewed}` : 'Editorial review pending'}</span>
         <a href={canonicalHref} target="_blank" rel="noopener noreferrer">
-          See full evidence on RNAwiki →
+          Full record on RNAwiki ↗
         </a>
-      </div>
+      </p>
     </div>
   )
 }

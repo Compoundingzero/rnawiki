@@ -20,9 +20,11 @@ test.describe('search', () => {
 
   test('the no-JavaScript search form (GET /search?q=) works via plain navigation', async ({ page }) => {
     await page.goto('/search')
-    const input = page.getByRole('searchbox')
+    // Two searchboxes exist on internal pages: the compact one in the masthead and the page's own
+    // form. Scope to the page form via <main>, or this is a strict-mode violation.
+    const input = page.locator('main').getByRole('searchbox')
     await input.fill(SEEDED_ENTITY_NAME)
-    await page.getByRole('button', { name: /^search$/i }).click()
+    await page.locator('main').getByRole('button', { name: /^search$/i }).click()
 
     await expect(page).toHaveURL(new RegExp(`q=${encodeURIComponent(SEEDED_ENTITY_NAME)}`, 'i'))
   })

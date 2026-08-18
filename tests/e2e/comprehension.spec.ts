@@ -17,13 +17,12 @@ test.describe('comprehension ("teach-back") test', () => {
     // wraps every ProofCard also contains this same heading as a descendant, so filtering by
     // containment alone matches both and .first() grabs the wrong (outer) one. Use the actual
     // aria-labelledby relationship instead, which is unambiguous by construction.
-    const heading = page.getByRole('heading', { name: 'Check your understanding' })
-    const hasComprehension = await heading.first().isVisible()
-    test.skip(!hasComprehension, 'No comprehension questions seeded on this entity yet.')
-
-    const headingId = await heading.first().getAttribute('id')
-    expect(headingId).toBeTruthy()
-    const section = page.locator(`section[aria-labelledby="${headingId}"]`)
+    // Each ComprehensionTest labels itself with its own claim's question (an entity page carries
+    // one per claim), so locate the component by its stable aria-labelledby prefix rather than by
+    // heading text — the page-level section heading is a separate, unlabelled <h2>.
+    const section = page.locator('section[aria-labelledby^="comprehension-heading-"]').first()
+    test.skip((await section.count()) === 0, 'No comprehension questions seeded on this entity yet.')
+    await expect(section).toBeVisible()
     // Each question renders as its own <fieldset>/<legend> (accessible role="group"), and every
     // question has its own "Check my answer" button — scope to the first question's group
     // specifically rather than the whole section, which can contain up to three.

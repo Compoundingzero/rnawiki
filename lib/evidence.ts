@@ -49,6 +49,24 @@ export function boundaryMovedForward(previous: ProofBoundaryStage, next: ProofBo
   return stageRank(next) > stageRank(previous)
 }
 
+/**
+ * How to summarise a record's human evidence in one phrase.
+ *
+ * Deliberately three states, not two. `isHumanTested` is true from
+ * `observational_human_evidence` upward, which includes uncontrolled studies — so a two-state
+ * "tested in people / not tested" label announced "tested in people" for BPC-157, whose whole
+ * record exists to say no controlled human trial has ever published a result. The split that
+ * matters to a reader is whether there was a control group, so that is where this splits.
+ *
+ * Shared by the compound index and the entity page so the two cannot drift apart.
+ */
+export function humanEvidenceSummary(stage: ProofBoundaryStage | null): string {
+  if (!stage) return 'No published claims recorded'
+  if (stageRank(stage) >= stageRank('controlled_human_evidence')) return 'Human evidence: controlled'
+  if (isHumanTested(stage)) return 'Human evidence: uncontrolled only'
+  return 'Human evidence: none recorded'
+}
+
 export const EVIDENCE_STATUSES = ['measured', 'inferred', 'unknown'] as const
 export type EvidenceStatus = (typeof EVIDENCE_STATUSES)[number]
 

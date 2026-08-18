@@ -21,10 +21,13 @@ export const CORRECTION_CATEGORY_LABELS: Record<CorrectionCategory, string> = {
   other: 'Something else',
 }
 
+// Single voice: this copy is reader-facing, so it says "RNAwiki", never "we" — the site is run
+// by one person. scripts/check-prose.ts only walks .tsx, so this file is held to the rule by
+// hand rather than by the gate. See docs/writing-style.md.
 export const CORRECTION_CATEGORY_HELP: Record<CorrectionCategory, string> = {
-  confusing_sentence: 'Quote or point to the exact sentence, and tell us what was unclear.',
-  broken_source: "Tell us which source link doesn't work, or which citation looks wrong.",
-  undefined_term: 'Tell us the term, and where on the page it appears.',
+  confusing_sentence: 'Quote or point to the exact sentence, and say what was unclear.',
+  broken_source: "Name the source link that doesn't work, or the citation that looks wrong.",
+  undefined_term: 'Name the term, and where on the page it appears.',
   new_source: 'Share the source (a link, DOI, or PMID) and which claim it relates to.',
-  other: 'Tell us what you noticed.',
+  other: 'Describe what you noticed.',
 }

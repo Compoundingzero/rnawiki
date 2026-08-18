@@ -1,57 +1,86 @@
 import type { MechanismStepView } from '@/lib/types'
-import { EvidenceLabel } from './EvidenceLabel'
+import { EVIDENCE_STATUS_LABELS } from '@/lib/evidence'
 
+/**
+ * The proposed causal chain, as a numbered vertical rail.
+ *
+ * Deliberate choices:
+ * - A real <ol>, so the sequence survives with styles off, in print, and in a
+ *   screen reader. No drawn illustration, nothing that needs an alt text to
+ *   carry the meaning.
+ * - Each step wears its own evidence status as a .tag, which already carries a
+ *   shape glyph — so measured / inferred / unknown read apart without colour.
+ * - The rail is a hairline, not a decorated spine: the numbers and the rule do
+ *   the work, and both print.
+ */
 export function MechanismChain({ steps }: { steps: MechanismStepView[] }) {
   if (steps.length === 0) return null
+
   return (
     <ol
-      style={{
-        listStyle: 'none',
-        margin: 0,
-        padding: 0,
-        display: 'grid',
-        gap: 0,
-      }}
       aria-label="Proposed mechanism, step by step"
+      style={{ listStyle: 'none', margin: 0, padding: 0, maxWidth: '44rem' }}
     >
       {steps.map((step, i) => (
-        <li key={step.id}>
+        <li
+          key={step.id}
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '2.25rem minmax(0, 1fr)',
+            alignItems: 'start',
+          }}
+        >
+          <span
+            aria-hidden="true"
+            style={{
+              fontFamily: 'var(--font-mono)',
+              fontSize: 'var(--size-meta)',
+              color: 'var(--muted)',
+              paddingTop: 'var(--s4)',
+            }}
+          >
+            {String(i + 1).padStart(2, '0')}
+          </span>
+
+          {/* The rule lives on the content column so it runs unbroken from the
+              first step to the last. */}
           <div
             style={{
-              display: 'flex',
-              gap: 'var(--space-3)',
-              padding: 'var(--space-3) 0',
-              borderBottom: i < steps.length - 1 ? '1px dashed var(--color-border)' : 'none',
+              borderLeft: 'var(--hairline) solid var(--border-strong)',
+              paddingLeft: 'var(--s4)',
+              paddingBlock: 'var(--s4)',
             }}
           >
             <div
-              aria-hidden
               style={{
-                width: '1.6rem',
-                height: '1.6rem',
-                borderRadius: '50%',
-                border: '2px solid var(--color-accent)',
                 display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '0.8rem',
-                fontWeight: 700,
-                color: 'var(--color-accent-strong)',
-                flexShrink: 0,
+                flexWrap: 'wrap',
+                alignItems: 'baseline',
+                gap: 'var(--s2) var(--s3)',
+                marginBottom: 'var(--s2)',
               }}
             >
-              {i + 1}
+              <strong style={{ fontSize: 'var(--size-body)' }}>{step.technicalLabel}</strong>
+              <span className="tag" data-status={step.status}>
+                {EVIDENCE_STATUS_LABELS[step.status]}
+              </span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-1)' }}>
-              <div style={{ display: 'flex', gap: 'var(--space-2)', alignItems: 'baseline', flexWrap: 'wrap' }}>
-                <strong>{step.technicalLabel}</strong>
-                <EvidenceLabel status={step.status} />
-              </div>
-              <p style={{ margin: 0 }}>{step.plainLanguageExplanation}</p>
-              <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
-                {step.evidenceContext}
-              </p>
-            </div>
+
+            <p className="prose" style={{ fontSize: 'var(--size-small)' }}>
+              {step.plainLanguageExplanation}
+            </p>
+
+            <p
+              style={{
+                marginTop: 'var(--s2)',
+                fontFamily: 'var(--font-mono)',
+                fontSize: 'var(--size-meta)',
+                color: 'var(--muted)',
+                lineHeight: 1.5,
+              }}
+            >
+              {step.evidenceContext}
+            </p>
           </div>
         </li>
       ))}

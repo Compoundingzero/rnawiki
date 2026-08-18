@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { db } from '@/db'
 import { entities } from '@/db/schema'
 import { desc } from 'drizzle-orm'
-import * as ui from '@/lib/admin/ui'
+import { ENTITY_TYPE_LABELS, REGULATORY_CATEGORY_LABELS } from '@/lib/labels'
 
 export const metadata: Metadata = { title: 'Entities', robots: { index: false, follow: false } }
 
@@ -26,46 +26,55 @@ export default async function AdminEntitiesPage() {
   const rows = await getEntities()
 
   return (
-    <div style={ui.page}>
-      <div style={{ ...ui.flexRow, justifyContent: 'space-between', marginBottom: 'var(--space-6)' }}>
-        <h1 style={{ ...ui.h1, margin: 0 }}>Entities ({rows.length})</h1>
-        <Link href="/admin/entities/new" style={ui.buttonPrimary}>
+    <div className="admin-page">
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">{rows.length} records</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            Entities
+          </h1>
+        </div>
+        <Link href="/admin/entities/new" className="btn btn--primary">
           New entity
         </Link>
       </div>
 
       {rows.length === 0 ? (
-        <p style={{ color: 'var(--color-text-faint)' }}>No entities yet.</p>
+        <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+          No entities yet.
+        </p>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
-          <table style={ui.table}>
-            <thead>
-              <tr>
-                <th style={ui.th}>Name</th>
-                <th style={ui.th}>Type</th>
-                <th style={ui.th}>Regulatory category</th>
-                <th style={ui.th}>Status</th>
-                <th style={ui.th}>Updated</th>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
+              <th scope="col">Regulatory category</th>
+              <th scope="col">Status</th>
+              <th scope="col">Updated</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((e) => (
+              <tr key={e.id}>
+                <td data-label="Name">
+                  <Link href={`/admin/entities/${e.id}`}>{e.canonicalName}</Link>
+                  <span className="admin-table__sub">/r/{e.slug}</span>
+                </td>
+                <td data-label="Type">{ENTITY_TYPE_LABELS[e.entityType]}</td>
+                <td data-label="Regulatory">{REGULATORY_CATEGORY_LABELS[e.regulatoryCategory]}</td>
+                <td data-label="Status">
+                  <span className="tag" data-state={e.publicationStatus}>
+                    {e.publicationStatus.replace(/_/g, ' ')}
+                  </span>
+                </td>
+                <td data-label="Updated" style={{ fontFamily: 'var(--font-mono)', whiteSpace: 'nowrap' }}>
+                  {e.updatedAt.toISOString().slice(0, 10)}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {rows.map((e) => (
-                <tr key={e.id}>
-                  <td style={ui.td}>
-                    <Link href={`/admin/entities/${e.id}`}>{e.canonicalName}</Link>
-                    <div style={{ fontSize: '0.78rem', color: 'var(--color-text-faint)' }}>/{e.slug}</div>
-                  </td>
-                  <td style={ui.td}>{e.entityType.replace(/_/g, ' ')}</td>
-                  <td style={ui.td}>{e.regulatoryCategory.replace(/_/g, ' ')}</td>
-                  <td style={ui.td}>
-                    <span style={ui.statusBadgeStyle(e.publicationStatus)}>{e.publicationStatus.replace(/_/g, ' ')}</span>
-                  </td>
-                  <td style={ui.td}>{e.updatedAt.toISOString().slice(0, 10)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   )

@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { createEvidenceSource } from '../actions'
 import { EvidenceSourceForm } from '../EvidenceSourceForm'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'New evidence source', robots: { index: false, follow: false } }
 
@@ -22,42 +21,51 @@ export default async function NewEvidenceSourcePage({ searchParams }: Props) {
   const sp = await searchParams
 
   return (
-    <div style={ui.page}>
-      <p style={{ marginBottom: 'var(--space-2)' }}>
+    <div className="admin-page">
+      <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
         <Link href="/admin/evidence">← Evidence sources</Link>
       </p>
-      <h1 style={ui.h1}>New evidence source</h1>
+      <h1 className="h1" style={{ marginBottom: 'var(--s5)' }}>
+        New evidence source
+      </h1>
 
-      {sp.error && <p style={ui.errorBanner}>{sp.error}</p>}
+      {sp.error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Not saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{sp.error}</p>
+        </div>
+      )}
       {sp.title && (
-        <p style={ui.successBanner}>
-          Bibliographic details imported. Fill in the source type and study details below before saving.
-        </p>
+        <div className="callout" role="status" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Bibliographic details imported</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>
+            Fill in the source type and study details below before saving. Nothing in the second group was
+            auto-filled.
+          </p>
+        </div>
       )}
 
-      <div style={ui.sectionCard}>
-        <EvidenceSourceForm
-          action={createEvidenceSource}
-          submitLabel="Create evidence source"
-          values={{
-            title: sp.title ?? '',
-            authors: sp.authors ?? '',
-            publicationYear: sp.publicationYear ?? '',
-            journalOrIssuer: sp.journalOrIssuer ?? '',
-            doi: sp.doi ?? '',
-            pmid: sp.pmid ?? '',
-            clinicalTrialId: '',
-            regulatoryUrl: '',
-            sourceType: '',
-            studyDesign: '',
-            experimentalModel: '',
-            species: '',
-            sampleSize: '',
-            endpoint: '',
-            retractionStatus: '',
-          }}
-        />
-      </div>
+      <EvidenceSourceForm
+        action={createEvidenceSource}
+        submitLabel="Create evidence source"
+        values={{
+          title: sp.title ?? '',
+          authors: sp.authors ?? '',
+          publicationYear: sp.publicationYear ?? '',
+          journalOrIssuer: sp.journalOrIssuer ?? '',
+          doi: sp.doi ?? '',
+          pmid: sp.pmid ?? '',
+          clinicalTrialId: '',
+          regulatoryUrl: '',
+          sourceType: '',
+          studyDesign: '',
+          experimentalModel: '',
+          species: '',
+          sampleSize: '',
+          endpoint: '',
+          retractionStatus: '',
+        }}
+      />
     </div>
   )
 }

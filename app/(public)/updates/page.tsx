@@ -15,6 +15,16 @@ export const metadata: Metadata = {
     'What changed on RNAwiki and why — new controlled trials, regulatory decisions, safety warnings, retractions, and every time a Proof Boundary moved.',
 }
 
+/** Visually hidden, still announced — the arrow between two stages is decoration, the word is not. */
+const SR_ONLY: React.CSSProperties = {
+  position: 'absolute',
+  width: 1,
+  height: 1,
+  overflow: 'hidden',
+  clip: 'rect(0 0 0 0)',
+  whiteSpace: 'nowrap',
+}
+
 function changeLink(change: EvidenceChangeItem): string | null {
   if (change.entitySlug && change.claimSlug) return `${entityPath(change.entitySlug)}#claim-${change.claimSlug}`
   if (change.entitySlug) return entityPath(change.entitySlug)
@@ -25,64 +35,79 @@ export default async function UpdatesPage() {
   const changes = await getRecentEvidenceChanges(100)
 
   return (
-    <div className="container prose-width" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
-      <header style={{ marginBottom: 'var(--space-8)' }}>
-        <h1 style={{ fontSize: '2rem', marginBottom: 'var(--space-3)' }}>Evidence updates</h1>
-        <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem', margin: 0 }}>
-          A record of what changed on RNAwiki and why: new controlled trials, regulatory decisions, safety
-          warnings, retractions or corrections, independent replications, and any time a Proof Boundary moved.
-        </p>
-        <p style={{ marginTop: 'var(--space-3)' }}>
-          <a href="/updates/feed.xml">Subscribe via RSS</a>
-        </p>
-      </header>
+    <div className="wrap" style={{ paddingBlock: 'var(--s7)' }}>
+      <div style={{ maxWidth: '56rem' }}>
+        <header className="measure">
+          <p className="eyebrow">Change log</p>
+          <h1 className="display" style={{ marginBlock: 'var(--s3) var(--s4)' }}>
+            Evidence updates
+          </h1>
+          <p className="lead">
+            What changed on RNAwiki and why: new controlled trials, regulatory decisions, safety warnings,
+            retractions or corrections, independent replications, and any time a Proof Boundary moved.
+          </p>
+          <p className="metaline" style={{ marginTop: 'var(--s4)' }}>
+            <a href="/updates/feed.xml">Subscribe via RSS</a>
+            <span>
+              <b>{changes.length}</b> {changes.length === 1 ? 'entry' : 'entries'} shown, newest first
+            </span>
+          </p>
+        </header>
 
-      {changes.length === 0 ? (
-        <p style={{ color: 'var(--color-text-faint)' }}>No evidence updates recorded yet.</p>
-      ) : (
-        <ol style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--space-6)' }}>
-          {changes.map((change) => {
-            const link = changeLink(change)
-            const linkLabel = change.claimQuestion ?? change.entityName ?? null
-            return (
-              <li
-                key={change.id}
-                style={{ borderLeft: '3px solid var(--color-border-strong)', paddingLeft: 'var(--space-4)' }}
-              >
-                <p
-                  style={{
-                    margin: '0 0 var(--space-1)',
-                    fontSize: '0.78rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.03em',
-                    color: 'var(--color-accent-strong)',
-                  }}
-                >
-                  {EVIDENCE_CHANGE_TYPE_LABELS[change.changeType]}
-                </p>
-                <p style={{ margin: '0 0 var(--space-2)', fontSize: '0.85rem', color: 'var(--color-text-faint)' }}>
-                  {change.publicationDate.toISOString().slice(0, 10)}
-                  {change.entityName ? ` · ${change.entityName}` : ''}
-                </p>
-                <p style={{ margin: '0 0 var(--space-2)' }}>{change.explanation}</p>
-                {change.previousBoundary && change.newBoundary && (
-                  <p style={{ margin: '0 0 var(--space-2)', fontSize: '0.9rem', color: 'var(--color-text-muted)' }}>
-                    Proof Boundary: {PROOF_BOUNDARY_LABELS[change.previousBoundary]} →{' '}
-                    {PROOF_BOUNDARY_LABELS[change.newBoundary]}
-                  </p>
-                )}
-                <p style={{ margin: 0, fontSize: '0.85rem', display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-                  <a href={change.source} target="_blank" rel="noopener noreferrer">
-                    Source
-                  </a>
-                  {link && linkLabel && <Link href={link}>{linkLabel}</Link>}
-                </p>
-              </li>
-            )
-          })}
-        </ol>
-      )}
+        <hr className="rule" />
+
+        {changes.length === 0 ? (
+          <p className="muted">No evidence updates recorded yet.</p>
+        ) : (
+          <ol className="rows">
+            {changes.map((change) => {
+              const link = changeLink(change)
+              const linkLabel = change.claimQuestion ?? change.entityName ?? null
+              return (
+                <li key={change.id} className="row">
+                  <div className="row__link" style={{ display: 'block' }}>
+                    <p className="eyebrow">
+                      <span>{change.publicationDate.toISOString().slice(0, 10)}</span>
+                      {change.entityName && (
+                        <>
+                          <span aria-hidden="true"> · </span>
+                          <span>{change.entityName}</span>
+                        </>
+                      )}
+                    </p>
+
+                    <p style={{ marginTop: 'var(--s2)' }}>
+                      <span className="tag">{EVIDENCE_CHANGE_TYPE_LABELS[change.changeType]}</span>
+                    </p>
+
+                    <p className="prose measure" style={{ marginTop: 'var(--s3)' }}>
+                      {change.explanation}
+                    </p>
+
+                    {change.previousBoundary && change.newBoundary && (
+                      <p className="metaline" style={{ marginTop: 'var(--s3)' }}>
+                        <span>
+                          Boundary <b>{PROOF_BOUNDARY_LABELS[change.previousBoundary]}</b>{' '}
+                          <span aria-hidden="true">→</span>
+                          <span style={SR_ONLY}>moved to</span>{' '}
+                          <b>{PROOF_BOUNDARY_LABELS[change.newBoundary]}</b>
+                        </span>
+                      </p>
+                    )}
+
+                    <p className="metaline" style={{ marginTop: 'var(--s3)' }}>
+                      <a href={change.source} target="_blank" rel="noopener noreferrer">
+                        Source ↗
+                      </a>
+                      {link && linkLabel && <Link href={link}>{linkLabel}</Link>}
+                    </p>
+                  </div>
+                </li>
+              )
+            })}
+          </ol>
+        )}
+      </div>
     </div>
   )
 }

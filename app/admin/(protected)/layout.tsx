@@ -9,8 +9,8 @@ const NAV = [
   { href: '/admin', label: 'Dashboard' },
   { href: '/admin/entities', label: 'Entities' },
   { href: '/admin/claims', label: 'Claims' },
-  { href: '/admin/evidence', label: 'Evidence Sources' },
-  { href: '/admin/review-queue', label: 'Review Queue' },
+  { href: '/admin/evidence', label: 'Evidence sources' },
+  { href: '/admin/review-queue', label: 'Review queue' },
   { href: '/admin/corrections', label: 'Corrections' },
 ]
 
@@ -36,65 +36,35 @@ export default async function AdminProtectedLayout({ children }: { children: Rea
   }
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
-      <header
-        style={{
-          borderBottom: '1px solid var(--color-border)',
-          background: 'var(--color-surface)',
-        }}
-      >
-        <div
-          style={{
-            maxWidth: '72rem',
-            margin: '0 auto',
-            padding: '0 var(--space-6)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            gap: 'var(--space-4)',
-            height: '3.5rem',
-            flexWrap: 'wrap',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-6)' }}>
-            <Link
-              href="/admin"
-              style={{ fontWeight: 700, color: 'var(--color-text)', textDecoration: 'none', fontSize: '1rem' }}
-            >
-              RNAwiki Admin
-            </Link>
-            <nav aria-label="Admin" style={{ display: 'flex', gap: 'var(--space-4)', fontSize: '0.88rem' }}>
-              {NAV.map((item) => (
-                <Link key={item.href} href={item.href} style={{ color: 'var(--color-text-muted)', textDecoration: 'none' }}>
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-3)', fontSize: '0.85rem' }}>
-            <span style={{ color: 'var(--color-text-muted)' }}>
+    <>
+      <a href="#admin-main" className="skip-link">
+        Skip to content
+      </a>
+      <header className="admin-bar">
+        <div className="admin-bar__inner">
+          <Link href="/admin" className="admin-bar__mark">
+            RNAwiki · Editorial
+          </Link>
+          <nav aria-label="Admin" className="admin-nav">
+            {NAV.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="admin-bar__who">
+            <span>
               {user.name} · {ROLE_LABELS[user.role] ?? user.role}
             </span>
             <form action="/api/admin/logout" method="POST">
-              <button
-                type="submit"
-                style={{
-                  border: '1px solid var(--color-border-strong)',
-                  background: 'var(--color-surface)',
-                  borderRadius: 'var(--radius-sm)',
-                  padding: '0.3em 0.7em',
-                  fontSize: '0.82rem',
-                  cursor: 'pointer',
-                  color: 'var(--color-text)',
-                }}
-              >
+              <button type="submit" className="btn">
                 Log out
               </button>
             </form>
           </div>
         </div>
       </header>
-      <main>{children}</main>
-    </div>
+      <main id="admin-main">{children}</main>
+    </>
   )
 }

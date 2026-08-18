@@ -4,6 +4,7 @@ import { db } from '@/db'
 import { legacyRedirects } from '@/db/schema'
 import { getPublishedEntityBySlug } from '@/lib/queries/entities'
 import { entityPath, resolveLegacyRedirect, type LegacyRedirectRule } from '@/lib/canonical'
+import { renderGoneDocument } from '@/lib/gone-notice'
 
 // Legacy route handling for the old (pre-Proof-Boundary) RNAwiki product. See
 // docs/legacy-removal-map.md for the full audit this file implements: what routes the old
@@ -15,13 +16,23 @@ import { entityPath, resolveLegacyRedirect, type LegacyRedirectRule } from '@/li
 // app/updates/feed.xml/route.ts opts in. Requires Next.js 15.5+ (installed: 15.5.23).
 export const runtime = 'nodejs'
 
-const GONE_BODY = 'Gone'
-
-function gone(): NextResponse {
-  return new NextResponse(GONE_BODY, {
+// The 410 body is a styled explanation rather than the word "Gone", because a reader following a
+// stale link is a person, not only a crawler: they need to know the page is closed on purpose,
+// that nothing replaces it, and where the reference actually lives now.
+//
+// It is served as a full document from middleware rather than as a rewrite to /gone. A rewrite
+// hands the request to the normal render, and Next.js takes the rendered route's status (200) —
+// `resolveRoutes` returns a statusCode only on the redirect and direct-response branches, not the
+// x-middleware-rewrite branch. Returning the body here keeps `middlewareRes.status`, so these
+// paths stay a real 410. Downgrading them to 200 would tell search engines the page still exists.
+//
+// Which paths are 410 and which are 301 is decided below and is unchanged; this only replaces
+// what a 410 says. The document itself lives in lib/gone-notice.ts, shared with app/gone/page.tsx.
+function gone(requestedPath: string): NextResponse {
+  return new NextResponse(renderGoneDocument(requestedPath), {
     status: 410,
     headers: {
-      'Content-Type': 'text/plain; charset=utf-8',
+      'Content-Type': 'text/html; charset=utf-8',
       // Belt-and-braces: a 410 already tells crawlers to drop the URL, this just makes the
       // instruction explicit in case any downstream cache only reads headers, not status.
       'X-Robots-Tag': 'noindex',
@@ -100,7 +111,9 @@ export async function middleware(request: NextRequest) {
     ]
     const resolved = resolveLegacyRedirect(pathname, rules)
     if (resolved) {
-      return resolved.statusCode === 301 && resolved.location ? redirectTo(request, resolved.location) : gone()
+      return resolved.statusCode === 301 && resolved.location
+        ? redirectTo(request, resolved.location)
+        : gone(pathname)
     }
   }
 
@@ -111,13 +124,13 @@ export async function middleware(request: NextRequest) {
     if (match) {
       const slug = match[1]
       const entity = slug ? await getPublishedEntityBySlug(slug) : null
-      return entity ? redirectTo(request, entityPath(entity.slug)) : gone()
+      return entity ? redirectTo(request, entityPath(entity.slug)) : gone(pathname)
     }
   }
 
   // 3. Every other removed legacy surface: 410, no successor, not redirected to the homepage.
   if (GONE_EXACT.has(pathname) || GONE_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
-    return gone()
+    return gone(pathname)
   }
 
   return NextResponse.next()

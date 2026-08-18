@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { fontVariables } from './fonts'
 import './globals.css'
 
 const SITE_URL = process.env.SITE_URL ?? 'https://rnawiki.com'
@@ -6,34 +7,21 @@ const SITE_URL = process.env.SITE_URL ?? 'https://rnawiki.com'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'RNAwiki — see where the evidence actually ends',
+    default: 'RNAwiki — evidence, mechanisms and uncertainty',
     template: '%s — RNAwiki',
   },
   description:
-    'Search a peptide, supplement, emerging medicine, or CRISPR treatment. See what researchers measured, what people infer from it, and what remains unknown.',
-  openGraph: {
-    siteName: 'RNAwiki',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-  },
-  alternates: {
-    types: {
-      'application/rss+xml': '/updates/feed.xml',
-    },
-  },
+    'An independent evidence reference for drugs, supplements and experimental compounds: what was measured, what is inferred from it, and what remains unknown.',
+  openGraph: { siteName: 'RNAwiki', type: 'website' },
+  twitter: { card: 'summary_large_image' },
+  alternates: { types: { 'application/rss+xml': '/updates/feed.xml' } },
 }
 
-// Deliberately bare — no site chrome here. The public marketing/reading chrome (SiteHeader/
-// SiteFooter) lives in app/(public)/layout.tsx and applies only to public reader routes.
-// /admin (its own layout) and /embed (intentionally chromeless, meant for third-party iframes)
-// both sit outside the (public) route group specifically so they never inherit it — Next.js
-// layouts nest and cannot be hidden by a child, so keeping this root shell empty is the only way
-// to give those two areas different chrome.
+// Deliberately bare. Reader chrome lives in app/(public)/layout.tsx; /admin and
+// /embed sit outside that group so they inherit no site furniture.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-SG">
+    <html lang="en-SG" className={fontVariables}>
       <body>{children}</body>
     </html>
   )

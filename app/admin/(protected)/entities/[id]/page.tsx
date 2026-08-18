@@ -13,10 +13,11 @@ import {
   deleteRegulatoryStatus,
 } from '../actions'
 import { EntityForm } from '../EntityForm'
-import * as ui from '@/lib/admin/ui'
+import { ENTITY_TYPE_LABELS, REGULATORY_CATEGORY_LABELS } from '@/lib/labels'
 
 export const metadata: Metadata = { title: 'Edit entity', robots: { index: false, follow: false } }
 
+/** Workflow-only vocabulary (publication/review status) — never shown to a reader. */
 function humanize(value: string): string {
   return value.charAt(0).toUpperCase() + value.slice(1).replace(/_/g, ' ')
 }
@@ -46,28 +47,52 @@ export default async function EditEntityPage({ params, searchParams }: Props) {
   const isAdmin = user?.role === 'administrator'
 
   return (
-    <div style={ui.page}>
-      <p style={{ marginBottom: 'var(--space-2)' }}>
+    <div className="admin-page">
+      <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
         <Link href="/admin/entities">← Entities</Link>
       </p>
-      <div style={{ ...ui.flexRow, justifyContent: 'space-between' }}>
-        <h1 style={ui.h1}>{entity.canonicalName}</h1>
-        <span style={ui.statusBadgeStyle(entity.publicationStatus)}>{entity.publicationStatus.replace(/_/g, ' ')}</span>
+
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">Entity record · {ENTITY_TYPE_LABELS[entity.entityType]}</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            {entity.canonicalName}
+          </h1>
+          <p className="metaline" style={{ marginTop: 'var(--s2)' }}>
+            <span>/r/{entity.slug}</span>
+            <span>Updated {entity.updatedAt.toISOString().slice(0, 10)}</span>
+          </p>
+        </div>
+        <span className="tag" data-state={entity.publicationStatus}>
+          {entity.publicationStatus.replace(/_/g, ' ')}
+        </span>
       </div>
 
-      {error && <p style={ui.errorBanner}>{error}</p>}
-      {success && <p style={ui.successBanner}>{success}</p>}
+      {error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Not saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
+        </div>
+      )}
+      {success && (
+        <div className="callout" role="status" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{success}</p>
+        </div>
+      )}
 
       {isAdmin && entity.publicationStatus === 'approved' && (
-        <form action={publishEntity.bind(null, entity.id)} style={{ marginBottom: 'var(--space-6)' }}>
-          <button type="submit" style={ui.buttonPrimary}>
+        <form action={publishEntity.bind(null, entity.id)} style={{ marginBottom: 'var(--s5)' }}>
+          <button type="submit" className="btn btn--primary">
             Publish this entity
           </button>
         </form>
       )}
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Details</h2>
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Details</h2>
+        </div>
         <EntityForm
           action={updateEntity.bind(null, entity.id)}
           canPublish={isAdmin}
@@ -86,144 +111,163 @@ export default async function EditEntityPage({ params, searchParams }: Props) {
         />
       </section>
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Regulatory statuses</h2>
+      <hr className="rule" />
+
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Regulatory statuses</h2>
+          <span className="eyebrow" style={{ flex: 'none' }}>
+            {regStatuses.length} recorded
+          </span>
+        </div>
+
         {regStatuses.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>No jurisdictions recorded yet.</p>
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            No jurisdictions recorded yet.
+          </p>
         ) : (
-          <div style={{ display: 'grid', gap: 'var(--space-4)', marginBottom: 'var(--space-6)' }}>
+          <ul className="admin-list">
             {regStatuses.map((rs) => (
-              <details key={rs.id} style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-sm)', padding: 'var(--space-3)' }}>
-                <summary style={{ cursor: 'pointer', fontWeight: 600 }}>
-                  {rs.jurisdiction} — {humanize(rs.legalCategory)} (checked {rs.checkedDate.toISOString().slice(0, 10)})
-                </summary>
-                <form action={updateRegulatoryStatus.bind(null, rs.id)} style={{ marginTop: 'var(--space-3)' }}>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`jurisdiction-${rs.id}`}>
-                      Jurisdiction
-                    </label>
-                    <input id={`jurisdiction-${rs.id}`} name="jurisdiction" defaultValue={rs.jurisdiction} required style={ui.input} />
+              <li key={rs.id}>
+                <details className="admin-disclosure">
+                  <summary>
+                    <span>{rs.jurisdiction}</span>
+                    <span className="eyebrow">
+                      {REGULATORY_CATEGORY_LABELS[rs.legalCategory]} · checked {rs.checkedDate.toISOString().slice(0, 10)}
+                    </span>
+                  </summary>
+                  <div className="admin-disclosure__body">
+                    <form action={updateRegulatoryStatus.bind(null, rs.id)} className="admin-form">
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`jurisdiction-${rs.id}`}>
+                          Jurisdiction
+                        </label>
+                        <input id={`jurisdiction-${rs.id}`} name="jurisdiction" defaultValue={rs.jurisdiction} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`legalCategory-${rs.id}`}>
+                          Legal category
+                        </label>
+                        <select id={`legalCategory-${rs.id}`} name="legalCategory" defaultValue={rs.legalCategory} required className="field">
+                          {regulatoryCategoryEnum.enumValues.map((v) => (
+                            <option key={v} value={v}>
+                              {REGULATORY_CATEGORY_LABELS[v]}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`approvedIndications-${rs.id}`}>
+                          Approved indications
+                        </label>
+                        <input id={`approvedIndications-${rs.id}`} name="approvedIndications" defaultValue={rs.approvedIndications ?? ''} className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`statusStatement-${rs.id}`}>
+                          Status statement
+                        </label>
+                        <textarea id={`statusStatement-${rs.id}`} name="statusStatement" defaultValue={rs.statusStatement} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`source-${rs.id}`}>
+                          Source URL
+                        </label>
+                        <input id={`source-${rs.id}`} name="source" type="url" defaultValue={rs.source} required className="field" />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`checkedDate-${rs.id}`}>
+                          Checked date
+                        </label>
+                        <input
+                          id={`checkedDate-${rs.id}`}
+                          name="checkedDate"
+                          type="date"
+                          defaultValue={rs.checkedDate.toISOString().slice(0, 10)}
+                          required
+                          className="field"
+                        />
+                      </div>
+                      <div className="admin-field">
+                        <label className="admin-label" htmlFor={`reviewStatus-${rs.id}`}>
+                          Review status
+                        </label>
+                        <select id={`reviewStatus-${rs.id}`} name="reviewStatus" defaultValue={rs.reviewStatus} required className="field">
+                          {publicationStatusEnum.enumValues.map((v) => (
+                            <option key={v} value={v}>
+                              {humanize(v)}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="admin-actions">
+                        <button type="submit" className="btn">
+                          Save jurisdiction
+                        </button>
+                      </div>
+                    </form>
+                    <form action={deleteRegulatoryStatus.bind(null, rs.id)}>
+                      <button type="submit" className="btn btn--danger">
+                        Remove this jurisdiction
+                      </button>
+                    </form>
                   </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`legalCategory-${rs.id}`}>
-                      Legal category
-                    </label>
-                    <select id={`legalCategory-${rs.id}`} name="legalCategory" defaultValue={rs.legalCategory} required style={ui.select}>
-                      {regulatoryCategoryEnum.enumValues.map((v) => (
-                        <option key={v} value={v}>
-                          {humanize(v)}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`approvedIndications-${rs.id}`}>
-                      Approved indications
-                    </label>
-                    <input id={`approvedIndications-${rs.id}`} name="approvedIndications" defaultValue={rs.approvedIndications ?? ''} style={ui.input} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`statusStatement-${rs.id}`}>
-                      Status statement
-                    </label>
-                    <textarea id={`statusStatement-${rs.id}`} name="statusStatement" defaultValue={rs.statusStatement} required style={ui.textareaSmall} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`source-${rs.id}`}>
-                      Source URL
-                    </label>
-                    <input id={`source-${rs.id}`} name="source" type="url" defaultValue={rs.source} required style={ui.input} />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`checkedDate-${rs.id}`}>
-                      Checked date
-                    </label>
-                    <input
-                      id={`checkedDate-${rs.id}`}
-                      name="checkedDate"
-                      type="date"
-                      defaultValue={rs.checkedDate.toISOString().slice(0, 10)}
-                      required
-                      style={ui.input}
-                    />
-                  </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`reviewStatus-${rs.id}`}>
-                      Review status
-                    </label>
-                    <select id={`reviewStatus-${rs.id}`} name="reviewStatus" defaultValue={rs.reviewStatus} required style={ui.select}>
-                      {publicationStatusEnum.enumValues.map((v) => (
-                        <option key={v} value={v}>
-                          {humanize(v)}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div style={ui.flexRow}>
-                    <button type="submit" style={ui.buttonSecondary}>
-                      Save
-                    </button>
-                  </div>
-                </form>
-                <form action={deleteRegulatoryStatus.bind(null, rs.id)} style={{ marginTop: 'var(--space-2)' }}>
-                  <button type="submit" style={ui.buttonDanger}>
-                    Remove this jurisdiction
-                  </button>
-                </form>
-              </details>
+                </details>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
 
-        <h3 style={{ fontSize: '0.95rem' }}>Add a jurisdiction</h3>
-        <form action={addRegulatoryStatus.bind(null, entity.id)}>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-jurisdiction">
+        <h3 className="h4" style={{ margin: 'var(--s6) 0 var(--s4)' }}>
+          Add a jurisdiction
+        </h3>
+        <form action={addRegulatoryStatus.bind(null, entity.id)} className="admin-form">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-jurisdiction">
               Jurisdiction
             </label>
-            <input id="new-jurisdiction" name="jurisdiction" required style={ui.input} placeholder="e.g. United States" />
+            <input id="new-jurisdiction" name="jurisdiction" required className="field" placeholder="e.g. United States" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-legalCategory">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-legalCategory">
               Legal category
             </label>
-            <select id="new-legalCategory" name="legalCategory" required style={ui.select} defaultValue={regulatoryCategoryEnum.enumValues[0]}>
+            <select id="new-legalCategory" name="legalCategory" required className="field" defaultValue={regulatoryCategoryEnum.enumValues[0]}>
               {regulatoryCategoryEnum.enumValues.map((v) => (
                 <option key={v} value={v}>
-                  {humanize(v)}
+                  {REGULATORY_CATEGORY_LABELS[v]}
                 </option>
               ))}
             </select>
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-approvedIndications">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-approvedIndications">
               Approved indications
             </label>
-            <input id="new-approvedIndications" name="approvedIndications" style={ui.input} />
+            <input id="new-approvedIndications" name="approvedIndications" className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-statusStatement">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-statusStatement">
               Status statement
             </label>
-            <textarea id="new-statusStatement" name="statusStatement" required style={ui.textareaSmall} />
+            <textarea id="new-statusStatement" name="statusStatement" required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-source">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-source">
               Source URL
             </label>
-            <input id="new-source" name="source" type="url" required style={ui.input} />
+            <input id="new-source" name="source" type="url" required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-checkedDate">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-checkedDate">
               Checked date
             </label>
-            <input id="new-checkedDate" name="checkedDate" type="date" required style={ui.input} />
+            <input id="new-checkedDate" name="checkedDate" type="date" required className="field" />
           </div>
-          <div style={ui.fieldWrap}>
-            <label style={ui.label} htmlFor="new-reviewStatus">
+          <div className="admin-field">
+            <label className="admin-label" htmlFor="new-reviewStatus">
               Review status
             </label>
-            <select id="new-reviewStatus" name="reviewStatus" required style={ui.select} defaultValue="draft">
+            <select id="new-reviewStatus" name="reviewStatus" required className="field" defaultValue="draft">
               {publicationStatusEnum.enumValues.map((v) => (
                 <option key={v} value={v}>
                   {humanize(v)}
@@ -231,27 +275,42 @@ export default async function EditEntityPage({ params, searchParams }: Props) {
               ))}
             </select>
           </div>
-          <button type="submit" style={ui.buttonSecondary}>
-            Add jurisdiction
-          </button>
+          <div className="admin-actions">
+            <button type="submit" className="btn">
+              Add jurisdiction
+            </button>
+          </div>
         </form>
       </section>
 
-      <section style={ui.sectionCard}>
-        <div style={{ ...ui.flexRow, justifyContent: 'space-between' }}>
-          <h2 style={{ ...ui.h2, margin: 0 }}>Claims for this entity ({entityClaims.length})</h2>
-          <Link href={`/admin/claims/new?entityId=${entity.id}`} style={ui.buttonSecondary}>
-            New claim
+      <hr className="rule" />
+
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Claims</h2>
+          <Link href={`/admin/claims/new?entityId=${entity.id}`} style={{ flex: 'none', fontSize: 'var(--size-small)' }}>
+            New claim →
           </Link>
         </div>
         {entityClaims.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)', marginTop: 'var(--space-3)' }}>No claims yet.</p>
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            No claims yet.
+          </p>
         ) : (
-          <ul style={{ listStyle: 'none', margin: 'var(--space-3) 0 0', padding: 0, display: 'grid', gap: 'var(--space-2)' }}>
+          <ul className="rows">
             {entityClaims.map((c) => (
-              <li key={c.id} style={ui.flexRow}>
-                <Link href={`/admin/claims/${c.id}`}>{c.consumerQuestion}</Link>
-                <span style={ui.statusBadgeStyle(c.publicationStatus)}>{c.publicationStatus.replace(/_/g, ' ')}</span>
+              <li key={c.id} className="row">
+                <Link href={`/admin/claims/${c.id}`} className="row__link">
+                  <div>
+                    <span className="eyebrow">{c.slug}</span>
+                    <div className="row__name" style={{ marginTop: '0.15rem', fontSize: 'var(--size-body)' }}>
+                      {c.consumerQuestion}
+                    </div>
+                  </div>
+                  <span className="tag" data-state={c.publicationStatus}>
+                    {c.publicationStatus.replace(/_/g, ' ')}
+                  </span>
+                </Link>
               </li>
             ))}
           </ul>

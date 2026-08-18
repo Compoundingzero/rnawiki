@@ -3,8 +3,7 @@ import Link from 'next/link'
 import { db } from '@/db'
 import { claims, entities, publicationStatusEnum } from '@/db/schema'
 import { and, eq, desc } from 'drizzle-orm'
-import { PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
-import * as ui from '@/lib/admin/ui'
+import { PROOF_BOUNDARY_LABELS, stageRank, PROOF_BOUNDARY_STAGES } from '@/lib/evidence'
 
 export const metadata: Metadata = { title: 'Claims', robots: { index: false, follow: false } }
 
@@ -49,20 +48,25 @@ export default async function AdminClaimsPage({ searchParams }: Props) {
   ])
 
   return (
-    <div style={ui.page}>
-      <div style={{ ...ui.flexRow, justifyContent: 'space-between', marginBottom: 'var(--space-4)' }}>
-        <h1 style={{ ...ui.h1, margin: 0 }}>Claims ({rows.length})</h1>
-        <Link href="/admin/claims/new" style={ui.buttonPrimary}>
+    <div className="admin-page">
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">{rows.length} records</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            Claims
+          </h1>
+        </div>
+        <Link href="/admin/claims/new" className="btn btn--primary">
           New claim
         </Link>
       </div>
 
-      <form method="GET" style={{ ...ui.flexRow, marginBottom: 'var(--space-6)' }}>
-        <div>
-          <label htmlFor="entityId" style={ui.label}>
+      <form method="GET" className="admin-form admin-form--inline" style={{ marginBottom: 'var(--s6)' }}>
+        <div className="admin-field">
+          <label htmlFor="entityId" className="admin-label">
             Entity
           </label>
-          <select id="entityId" name="entityId" defaultValue={entityId ?? ''} style={ui.select}>
+          <select id="entityId" name="entityId" defaultValue={entityId ?? ''} className="field">
             <option value="">All entities</option>
             {entityOptions.map((e) => (
               <option key={e.id} value={e.id}>
@@ -71,11 +75,11 @@ export default async function AdminClaimsPage({ searchParams }: Props) {
             ))}
           </select>
         </div>
-        <div>
-          <label htmlFor="status" style={ui.label}>
+        <div className="admin-field">
+          <label htmlFor="status" className="admin-label">
             Status
           </label>
-          <select id="status" name="status" defaultValue={status ?? ''} style={ui.select}>
+          <select id="status" name="status" defaultValue={status ?? ''} className="field">
             <option value="">All statuses</option>
             {publicationStatusEnum.enumValues.map((v) => (
               <option key={v} value={v}>
@@ -84,51 +88,58 @@ export default async function AdminClaimsPage({ searchParams }: Props) {
             ))}
           </select>
         </div>
-        <button type="submit" style={{ ...ui.buttonSecondary, alignSelf: 'end' }}>
-          Filter
-        </button>
-        {(entityId || status) && (
-          <Link href="/admin/claims" style={{ alignSelf: 'end', fontSize: '0.85rem' }}>
-            Clear filters
-          </Link>
-        )}
+        <div className="admin-actions">
+          <button type="submit" className="btn">
+            Filter
+          </button>
+          {(entityId || status) && <Link href="/admin/claims">Clear</Link>}
+        </div>
       </form>
 
       {rows.length === 0 ? (
-        <p style={{ color: 'var(--color-text-faint)' }}>No claims match these filters.</p>
+        <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+          No claims match these filters.
+        </p>
       ) : (
-        <div style={{ overflowX: 'auto' }}>
-          <table style={ui.table}>
-            <thead>
-              <tr>
-                <th style={ui.th}>Entity</th>
-                <th style={ui.th}>Question</th>
-                <th style={ui.th}>Type</th>
-                <th style={ui.th}>Proof Boundary</th>
-                <th style={ui.th}>Status</th>
-                <th style={ui.th}>Last reviewed</th>
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th scope="col">Entity</th>
+              <th scope="col">Question</th>
+              <th scope="col">Type</th>
+              <th scope="col">Proof Boundary</th>
+              <th scope="col">Status</th>
+              <th scope="col">Last reviewed</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((c) => (
+              <tr key={c.id}>
+                <td data-label="Entity">
+                  <Link href={`/admin/claims?entityId=${c.entityId}`}>{c.entityName}</Link>
+                </td>
+                <td data-label="Question">
+                  <Link href={`/admin/claims/${c.id}`}>{c.consumerQuestion}</Link>
+                </td>
+                <td data-label="Type">{c.claimType.replace(/_/g, ' ')}</td>
+                <td data-label="Boundary">
+                  {PROOF_BOUNDARY_LABELS[c.proofBoundaryStage]}
+                  <span className="admin-table__sub">
+                    stage {stageRank(c.proofBoundaryStage) + 1} of {PROOF_BOUNDARY_STAGES.length}
+                  </span>
+                </td>
+                <td data-label="Status">
+                  <span className="tag" data-state={c.publicationStatus}>
+                    {c.publicationStatus.replace(/_/g, ' ')}
+                  </span>
+                </td>
+                <td data-label="Reviewed" style={{ fontFamily: 'var(--font-mono)', whiteSpace: 'nowrap' }}>
+                  {c.lastReviewedAt ? c.lastReviewedAt.toISOString().slice(0, 10) : 'Never'}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {rows.map((c) => (
-                <tr key={c.id}>
-                  <td style={ui.td}>
-                    <Link href={`/admin/claims?entityId=${c.entityId}`}>{c.entityName}</Link>
-                  </td>
-                  <td style={ui.td}>
-                    <Link href={`/admin/claims/${c.id}`}>{c.consumerQuestion}</Link>
-                  </td>
-                  <td style={ui.td}>{c.claimType.replace(/_/g, ' ')}</td>
-                  <td style={ui.td}>{PROOF_BOUNDARY_LABELS[c.proofBoundaryStage]}</td>
-                  <td style={ui.td}>
-                    <span style={ui.statusBadgeStyle(c.publicationStatus)}>{c.publicationStatus.replace(/_/g, ' ')}</span>
-                  </td>
-                  <td style={ui.td}>{c.lastReviewedAt ? c.lastReviewedAt.toISOString().slice(0, 10) : 'never'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   )

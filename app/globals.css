@@ -1,71 +1,124 @@
-/* Design tokens — restrained, light-first, one controlled accent. See docs/product-principles.md
-   section "Visual design" for the rationale. Every color used anywhere in the app should trace
-   back to a token defined here, not a one-off hex value in a component. */
+/* ============================================================================
+   RNAwiki design system
+   ----------------------------------------------------------------------------
+   A field guide, not an app. Two devices carry the identity:
+
+   1. THE SPECIMEN LABEL — fixed-order metadata in mono caps, set off by hairline
+      rules. Every entity, claim and source wears one. It is what makes a page
+      read as a catalogued record rather than an article.
+
+   2. THE EVIDENCE LADDER — eight stages on a rule, filled to the point evidence
+      actually reaches, then a hard terminator bar. It communicates by position
+      and shape, never by colour alone, and survives print and plain text.
+
+   Everything else is restraint: one accent, reserved for interaction; hairlines
+   instead of cards; type doing the structural work.
+   ========================================================================== */
 
 :root {
-  --color-bg: #fbfaf7;
-  --color-surface: #ffffff;
-  --color-surface-raised: #f4f2ec;
-  --color-border: #dedad0;
-  --color-border-strong: #c7c2b4;
-  --color-text: #1c1b17;
-  --color-text-muted: #56534a;
-  --color-text-faint: #837e70;
+  /* --- colour ------------------------------------------------------------ */
+  --canvas: #f4f6f3;
+  --surface: #ffffff;
+  --surface-sunk: #eef1ed;
+  --ink: #111614;
+  --ink-soft: #343b38;
+  --muted: #66706b;
+  --border: #d5dcd7;
+  --border-strong: #abb5af;
 
-  --color-accent: #0f5c52; /* deep teal — the one controlled accent */
-  --color-accent-strong: #0a3f39;
-  --color-accent-tint: #e4efec;
+  --accent: #1748d1;
+  --accent-hover: #10369f;
+  --accent-soft: #e9eeff;
 
-  --color-measured: #0f5c52;
-  --color-inferred: #8a5a00;
-  --color-unknown: #7a2f2f;
+  --warning: #8a3b15;
+  --warning-soft: #fff1e7;
+  --danger: #a42525;
+  --danger-soft: #fdecec;
+  --success: #276447;
+  --success-soft: #eaf5ee;
 
-  --color-measured-tint: #e4efec;
-  --color-inferred-tint: #f6ecda;
-  --color-unknown-tint: #f5e6e6;
+  /* --- type -------------------------------------------------------------- */
+  --font-serif: 'Iowan Old Style', Georgia, serif;
+  --font-sans: system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif;
-  --font-serif: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --size-micro: 0.6875rem; /* 11px — specimen label keys */
+  --size-meta: 0.75rem; /* 12px — metadata values */
+  --size-small: 0.8125rem; /* 13px */
+  --size-body: 1.0625rem; /* 17px — reading size */
+  --size-lead: 1.1875rem; /* 19px */
+  --size-h4: 1.0625rem;
+  --size-h3: 1.25rem;
+  --size-h2: 1.5rem;
+  --size-h1: 2.25rem;
+  --size-display: 2.75rem;
 
-  --radius-sm: 3px;
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-body: 1.65;
+
+  --track-caps: 0.08em;
+
+  /* --- space (4px base) --------------------------------------------------- */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4rem;
+  --s9: 6rem;
+
+  /* --- shape -------------------------------------------------------------- */
+  --radius: 4px;
   --radius-md: 6px;
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-12: 3rem;
-  --max-content-width: 44rem;
-  --max-page-width: 72rem;
+  --radius-group: 8px;
+  --hairline: 1px;
+
+  --shadow-overlay: 0 1px 2px rgba(17, 22, 20, 0.06), 0 12px 32px rgba(17, 22, 20, 0.16);
+
+  /* --- measure ------------------------------------------------------------ */
+  --measure: 44rem; /* ~704px reading column */
+  --page-max: 82.5rem; /* 1320px */
+
+  /* --- motion ------------------------------------------------------------- */
+  --t-fast: 120ms;
+  --t-base: 160ms;
+  --ease: cubic-bezier(0.2, 0, 0.1, 1);
 }
 
 @media (prefers-color-scheme: dark) {
+  /* Supported, but not the identity: the same structure with neutrals inverted.
+     Light is the designed state. */
   :root {
-    --color-bg: #16150f;
-    --color-surface: #1d1c16;
-    --color-surface-raised: #24231b;
-    --color-border: #35331f;
-    --color-border-strong: #4a4830;
-    --color-text: #f2f0e6;
-    --color-text-muted: #c4c0af;
-    --color-text-faint: #948e78;
+    --canvas: #12150f;
+    --surface: #171b15;
+    --surface-sunk: #1f241d;
+    --ink: #eef1e8;
+    --ink-soft: #c9cfc3;
+    --muted: #8e978b;
+    --border: #2f362b;
+    --border-strong: #4a5344;
 
-    --color-accent: #4fb3a3;
-    --color-accent-strong: #7fd4c6;
-    --color-accent-tint: #17332e;
+    --accent: #8fabff;
+    --accent-hover: #b6c8ff;
+    --accent-soft: #17203a;
 
-    --color-measured: #4fb3a3;
-    --color-inferred: #d9a63f;
-    --color-unknown: #d97a7a;
-
-    --color-measured-tint: #17332e;
-    --color-inferred-tint: #332a12;
-    --color-unknown-tint: #331717;
+    --warning: #e0a077;
+    --warning-soft: #2c1d12;
+    --danger: #e79191;
+    --danger-soft: #2e1717;
+    --success: #7fc09c;
+    --success-soft: #14261c;
   }
 }
 
-* {
+/* ---------------------------------------------------------------- reset --- */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -75,91 +128,845 @@ html {
 
 body {
   margin: 0;
-  background: var(--color-bg);
-  color: var(--color-text);
+  background: var(--canvas);
+  color: var(--ink);
   font-family: var(--font-sans);
-  line-height: 1.55;
-  font-size: 17px;
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: var(--leading-tight);
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
 }
 
 a {
-  color: var(--color-accent-strong);
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
 }
 
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-[tabindex]:focus-visible {
-  outline: 3px solid var(--color-accent);
+a:hover {
+  color: var(--accent-hover);
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+/* One focus treatment, everywhere. Solid, 2px, offset so it never touches the
+   glyphs it surrounds. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
-h1, h2, h3, h4 {
-  line-height: 1.2;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: var(--s4);
+  top: var(--s4);
+  padding: var(--s2) var(--s4);
+  background: var(--surface);
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--radius);
 }
 
-.container {
-  max-width: var(--max-page-width);
-  margin: 0 auto;
-  padding: 0 var(--space-6);
+/* --------------------------------------------------------------- layout --- */
+
+.wrap {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--s5);
 }
 
-.prose-width {
-  max-width: var(--max-content-width);
+.measure {
+  max-width: var(--measure);
 }
 
-/* The Proof Boundary — the recognizable visual motif. Text + rule, never color alone. */
-.proof-boundary-divider {
+/* Article shell: contents rail | reading column | metadata rail.
+   Collapses to two columns, then one. */
+.shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s6);
+  align-items: start;
+}
+
+@media (min-width: 62rem) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr) 17rem;
+    gap: var(--s7);
+  }
+}
+
+@media (min-width: 78rem) {
+  .shell {
+    grid-template-columns: 13rem minmax(0, 1fr) 17rem;
+  }
+}
+
+.rail {
+  position: sticky;
+  top: var(--s5);
+  font-size: var(--size-small);
+}
+
+@media (max-width: 61.99rem) {
+  .rail {
+    position: static;
+  }
+}
+
+.stack > * + * {
+  margin-top: var(--s4);
+}
+.stack-lg > * + * {
+  margin-top: var(--s6);
+}
+
+/* Hairline section rule — the primary separator. Cards are the exception here,
+   not the rule. */
+.rule {
+  border: 0;
+  border-top: var(--hairline) solid var(--border);
+  margin: var(--s7) 0;
+}
+
+.rule-tight {
+  border: 0;
+  border-top: var(--hairline) solid var(--border);
+  margin: var(--s4) 0;
+}
+
+/* ----------------------------------------------------------------- type --- */
+
+.display {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 1.4rem + 2.4vw, var(--size-display));
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 1.3rem + 1.6vw, var(--size-h1));
+  letter-spacing: -0.012em;
+}
+
+.h2 {
+  font-family: var(--font-serif);
+  font-size: var(--size-h2);
+  letter-spacing: -0.008em;
+}
+
+.h3 {
+  font-family: var(--font-sans);
+  font-size: var(--size-h3);
+  font-weight: 600;
+}
+
+.h4 {
+  font-family: var(--font-sans);
+  font-size: var(--size-h4);
+  font-weight: 600;
+}
+
+.lead {
+  font-size: var(--size-lead);
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.prose p + p {
+  margin-top: var(--s4);
+}
+.prose {
+  color: var(--ink-soft);
+}
+.prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* Section heading: serif title with a hairline that runs to the column edge. */
+.section-head {
   display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  margin: var(--space-6) 0;
-  color: var(--color-text-faint);
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  align-items: baseline;
+  gap: var(--s4);
+  margin-bottom: var(--s4);
 }
-.proof-boundary-divider::before,
-.proof-boundary-divider::after {
+.section-head::after {
   content: '';
   flex: 1;
-  height: 1px;
-  background: var(--color-border-strong);
+  height: var(--hairline);
+  background: var(--border);
 }
 
-.evidence-label {
+/* --------------------------------------------------- 1. SPECIMEN LABEL ---- */
+/* Fixed-order metadata. Mono, small caps-ish, key over value, hairline-ruled.
+   This is the device that makes a page read as a catalogued record. */
+
+.speclabel {
+  display: grid;
+  gap: 0;
+  border-top: var(--hairline) solid var(--border-strong);
+  border-bottom: var(--hairline) solid var(--border-strong);
+}
+
+.speclabel__row {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: var(--s4);
+  padding: var(--s3) 0;
+  align-items: baseline;
+}
+.speclabel__row + .speclabel__row {
+  border-top: var(--hairline) solid var(--border);
+}
+
+.speclabel__key {
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.speclabel__val {
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+/* Prose variant. Mono is for identifiers, dates, counts and labels — running it
+   under a paragraph of evidence text is unreadable. Keys stay mono; values
+   become normal reading type. */
+.speclabel--prose .speclabel__val {
+  font-family: var(--font-sans);
+  font-size: var(--size-small);
+  line-height: var(--leading-body);
+  color: var(--ink-soft);
+}
+.speclabel--prose .speclabel__row {
+  grid-template-columns: 8rem minmax(0, 1fr);
+  padding-block: var(--s4);
+}
+
+@media (max-width: 30rem) {
+  .speclabel__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--s1);
+  }
+}
+
+/* Inline metadata run, e.g. under a page title. */
+.metaline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  color: var(--muted);
+}
+.metaline b {
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+/* Content-type eyebrow. */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ------------------------------------------------- 2. EVIDENCE LADDER ----- */
+/* Eight stages on a rule. Reached stages are filled; the boundary is a solid
+   terminator bar; unreached stages are hollow. Position and shape carry the
+   meaning — colour is redundant reinforcement only. */
+
+.ladder {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ladder__step {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  padding-top: 1.25rem;
+}
+
+/* the rule */
+.ladder__step::before {
+  content: '';
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--border);
+}
+.ladder__step[data-state='reached']::before {
+  background: var(--ink-soft);
+}
+
+/* the node */
+.ladder__step::after {
+  content: '';
+  position: absolute;
+  top: 0.125rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background: var(--surface);
+}
+.ladder__step[data-state='reached']::after {
+  background: var(--ink-soft);
+  border-color: var(--ink-soft);
+}
+
+/* the boundary: a hard vertical terminator, the visual "stop" */
+.ladder__step[data-state='boundary']::after {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 1px;
+  background: var(--accent);
+  border-color: var(--accent);
+  top: 0.05rem;
+}
+.ladder__step[data-state='boundary'] {
+  border-right: 2px solid var(--accent);
+}
+
+.ladder__label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  /* Clear of the boundary terminator on the preceding step, and of the next
+     step's rule — without this the labels butt straight into the accent line. */
+  padding-inline: 0.4rem var(--s2);
+}
+.ladder__step[data-state='boundary'] .ladder__label,
+.ladder__step[data-state='reached'] .ladder__label {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.ladder__caption {
+  margin-top: var(--s3);
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  color: var(--ink);
+}
+
+/* On narrow screens the eight-across rule becomes illegible; switch to a
+   vertical ladder rather than shrinking the labels into noise. */
+@media (max-width: 44rem) {
+  .ladder {
+    flex-direction: column;
+  }
+  .ladder__step {
+    padding-top: 0;
+    padding-left: 1.25rem;
+    padding-block: 0.3rem;
+  }
+  .ladder__step::before {
+    top: 0;
+    bottom: 0;
+    left: 0.25rem;
+    right: auto;
+    width: 2px;
+    height: auto;
+  }
+  .ladder__step::after {
+    top: 50%;
+    left: 0.25rem;
+    transform: translate(-50%, -50%);
+  }
+  .ladder__step[data-state='boundary'] {
+    border-right: 0;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: var(--s2);
+  }
+  .ladder__label {
+    font-size: var(--size-micro);
+  }
+}
+
+/* --------------------------------------------------- evidence + status ---- */
+/* Every status carries a text label and a shape/border difference. Never colour
+   alone. */
+
+.tag {
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
-  padding: 0.15em 0.55em;
-  border-radius: var(--radius-sm);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  border: 1px solid transparent;
-}
-.evidence-label[data-status='measured'] {
-  color: var(--color-measured);
-  background: var(--color-measured-tint);
-  border-color: var(--color-measured);
-}
-.evidence-label[data-status='inferred'] {
-  color: var(--color-inferred);
-  background: var(--color-inferred-tint);
-  border-color: var(--color-inferred);
-}
-.evidence-label[data-status='unknown'] {
-  color: var(--color-unknown);
-  background: var(--color-unknown-tint);
-  border-color: var(--color-unknown);
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.2em 0.5em;
+  border-radius: var(--radius);
+  border: var(--hairline) solid var(--border-strong);
+  color: var(--ink-soft);
+  background: var(--surface);
+  white-space: nowrap;
 }
 
+.tag[data-status='measured'] {
+  border-color: var(--success);
+  color: var(--success);
+  background: var(--success-soft);
+}
+.tag[data-status='inferred'] {
+  border-color: var(--warning);
+  color: var(--warning);
+  background: var(--warning-soft);
+}
+.tag[data-status='unknown'] {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+/* Status glyph, so the three read apart without colour. */
+.tag[data-status]::before {
+  font-weight: 600;
+}
+.tag[data-status='measured']::before {
+  content: '●';
+}
+.tag[data-status='inferred']::before {
+  content: '◐';
+}
+.tag[data-status='unknown']::before {
+  content: '○';
+}
+
+/* Callout: a left-ruled block, not a rounded card. */
+.callout {
+  border-left: 3px solid var(--border-strong);
+  padding: var(--s3) 0 var(--s3) var(--s4);
+  background: transparent;
+}
+.callout[data-tone='danger'] {
+  border-left-color: var(--danger);
+  background: var(--danger-soft);
+  padding-right: var(--s4);
+}
+.callout[data-tone='warning'] {
+  border-left-color: var(--warning);
+  background: var(--warning-soft);
+  padding-right: var(--s4);
+}
+.callout__title {
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  margin-bottom: var(--s1);
+}
+.callout[data-tone='danger'] .callout__title {
+  color: var(--danger);
+}
+.callout[data-tone='warning'] .callout__title {
+  color: var(--warning);
+}
+
+/* ------------------------------------------------------ source marker ----- */
+/* The Evidence Trace entry point. A bracketed mono sigil — reads as a catalogue
+   reference, is real text (so it is selectable, searchable and screen-readable),
+   and needs no icon font. */
+
+.srcmark {
+  font-family: var(--font-mono);
+  font-size: 0.75em;
+  font-weight: 500;
+  line-height: 1;
+  vertical-align: 0.35em;
+  padding: 0.15em 0.25em;
+  margin-left: 0.1em;
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: 3px;
+  background: var(--surface);
+  color: var(--accent);
+  cursor: pointer;
+}
+.srcmark:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.srcmark[aria-expanded='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* ------------------------------------------------------ evidence drawer --- */
+
+.drawer-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 22, 20, 0.28);
+  z-index: 60;
+}
+
+.drawer {
+  position: fixed;
+  z-index: 61;
+  background: var(--surface);
+  box-shadow: var(--shadow-overlay);
+  display: flex;
+  flex-direction: column;
+}
+
+/* desktop: right side panel */
+@media (min-width: 48rem) {
+  .drawer {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(30rem, 92vw);
+    border-left: var(--hairline) solid var(--border-strong);
+  }
+}
+
+/* mobile: bottom sheet */
+@media (max-width: 47.99rem) {
+  .drawer {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 86vh;
+    border-top: var(--hairline) solid var(--border-strong);
+    border-radius: var(--radius-group) var(--radius-group) 0 0;
+  }
+}
+
+.drawer__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding: var(--s4) var(--s5);
+  border-bottom: var(--hairline) solid var(--border);
+}
+
+.drawer__body {
+  overflow-y: auto;
+  padding: var(--s5);
+  -webkit-overflow-scrolling: touch;
+}
+
+.drawer__close {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--size-meta);
+  background: transparent;
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 0.3em 0.6em;
+  cursor: pointer;
+  color: var(--ink);
+}
+.drawer__close:hover {
+  background: var(--surface-sunk);
+}
+
+/* ------------------------------------------------------------ controls ---- */
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: var(--size-small);
+  font-weight: 500;
+  padding: 0.6em 1.1em;
+  border-radius: var(--radius);
+  border: var(--hairline) solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  min-height: 44px;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.btn:hover {
+  background: var(--surface-sunk);
+}
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.field {
+  font-family: var(--font-sans);
+  font-size: var(--size-body);
+  padding: 0.7em 0.9em;
+  border-radius: var(--radius);
+  border: var(--hairline) solid var(--border-strong);
+  background: var(--surface);
+  color: var(--ink);
+  width: 100%;
+  min-height: 44px;
+}
+.field::placeholder {
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------- rows ----- */
+/* Index and search results: hairline-separated rows, not a grid of cards. */
+
+.rows {
+  list-style: none;
+  border-top: var(--hairline) solid var(--border);
+}
+.row {
+  border-bottom: var(--hairline) solid var(--border);
+}
+.row__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--s4);
+  align-items: center;
+  padding: var(--s4) var(--s2);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--t-fast) var(--ease);
+}
+.row__link:hover {
+  background: var(--surface-sunk);
+}
+.row__name {
+  font-family: var(--font-serif);
+  font-size: var(--size-h4);
+  font-weight: 600;
+  color: var(--ink);
+}
+.row__desc {
+  font-size: var(--size-small);
+  color: var(--ink-soft);
+  margin-top: var(--s1);
+}
+.row__meta {
+  margin-top: var(--s2);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+}
+.row__chev {
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+
+@media (max-width: 36rem) {
+  .row__link {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .row__chev {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------- pipeline --- */
+/* Publishing sequence. Numbered rail on desktop, stacked list on mobile. */
+
+.pipeline {
+  list-style: none;
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  border-top: var(--hairline) solid var(--border-strong);
+}
+
+.pipeline__step {
+  padding: var(--s4) var(--s4) var(--s4) 0;
+  border-bottom: var(--hairline) solid var(--border);
+  position: relative;
+}
+
+@media (min-width: 48rem) {
+  .pipeline__step + .pipeline__step {
+    border-left: var(--hairline) solid var(--border);
+    padding-left: var(--s4);
+  }
+}
+
+.pipeline__num {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  color: var(--accent);
+  margin-bottom: var(--s2);
+}
+
+.pipeline__label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--size-h4);
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: var(--s1);
+}
+
+.pipeline__note {
+  display: block;
+  font-size: var(--size-small);
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------- header --- */
+
+.masthead {
+  background: var(--surface);
+  border-bottom: var(--hairline) solid var(--border-strong);
+}
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  min-height: 3.75rem;
+  flex-wrap: wrap;
+  padding-block: var(--s2);
+}
+.masthead__nav {
+  display: flex;
+  gap: var(--s5);
+  flex-wrap: wrap;
+  font-size: var(--size-small);
+}
+.masthead__nav a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding-block: var(--s1);
+}
+.masthead__nav a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.masthead__nav a[aria-current='page'] {
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+.masthead__search {
+  margin-left: auto;
+}
+
+/* --------------------------------------------------------------- footer --- */
+
+.colophon {
+  border-top: var(--hairline) solid var(--border-strong);
+  background: var(--surface);
+  margin-top: var(--s9);
+  padding-block: var(--s6) var(--s7);
+  font-size: var(--size-small);
+}
+.colophon__grid {
+  display: grid;
+  gap: var(--s5);
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+.colophon h2 {
+  font-family: var(--font-mono);
+  font-size: var(--size-micro);
+  font-weight: 600;
+  letter-spacing: var(--track-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--s3);
+}
+.colophon ul {
+  list-style: none;
+  display: grid;
+  gap: var(--s2);
+}
+.colophon a {
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.colophon a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* --------------------------------------------------------------- motion --- */
+
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------------------------------------------------------------- print --- */
+
+@media print {
+  .masthead,
+  .colophon,
+  .rail,
+  .srcmark {
+    display: none;
+  }
+  body {
+    background: #fff;
+    color: #000;
   }
 }

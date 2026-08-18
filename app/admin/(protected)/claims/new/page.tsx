@@ -5,7 +5,6 @@ import { entities } from '@/db/schema'
 import { getCurrentUser } from '@/lib/auth'
 import { createClaim } from '../actions'
 import { ClaimForm } from '../ClaimForm'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'New claim', robots: { index: false, follow: false } }
 
@@ -22,44 +21,49 @@ export default async function NewClaimPage({ searchParams }: Props) {
   const preselected = entityId ? Number.parseInt(entityId, 10) : ''
 
   return (
-    <div style={ui.page}>
-      <p style={{ marginBottom: 'var(--space-2)' }}>
+    <div className="admin-page">
+      <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
         <Link href="/admin/claims">← Claims</Link>
       </p>
-      <h1 style={ui.h1}>New claim</h1>
+      <h1 className="h1" style={{ marginBottom: 'var(--s5)' }}>
+        New claim
+      </h1>
 
-      {error && <p style={ui.errorBanner}>{error}</p>}
+      {error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Not saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
+        </div>
+      )}
 
       {entityOptions.length === 0 ? (
-        <p style={{ color: 'var(--color-text-faint)' }}>
+        <p className="prose" style={{ fontSize: 'var(--size-small)' }}>
           No entities exist yet. <Link href="/admin/entities/new">Create an entity</Link> first.
         </p>
       ) : (
-        <div style={ui.sectionCard}>
-          <ClaimForm
-            action={createClaim}
-            entityOptions={entityOptions}
-            canPublish={user?.role === 'administrator'}
-            submitLabel="Create claim"
-            values={{
-              entityId: Number.isFinite(preselected) ? (preselected as number) : '',
-              slug: '',
-              claimType: 'effectiveness',
-              consumerQuestion: '',
-              directAnswer: '',
-              measuredFinding: '',
-              inference: '',
-              proofBoundaryStage: 'biological_rationale_only',
-              proofBoundaryExplanation: '',
-              remainingUnknown: '',
-              evidenceNeededNext: '',
-              mechanismSummary: '',
-              outcomeSummary: '',
-              publicationStatus: 'draft',
-              displayPriority: 0,
-            }}
-          />
-        </div>
+        <ClaimForm
+          action={createClaim}
+          entityOptions={entityOptions}
+          canPublish={user?.role === 'administrator'}
+          submitLabel="Create claim"
+          values={{
+            entityId: Number.isFinite(preselected) ? (preselected as number) : '',
+            slug: '',
+            claimType: 'effectiveness',
+            consumerQuestion: '',
+            directAnswer: '',
+            measuredFinding: '',
+            inference: '',
+            proofBoundaryStage: 'biological_rationale_only',
+            proofBoundaryExplanation: '',
+            remainingUnknown: '',
+            evidenceNeededNext: '',
+            mechanismSummary: '',
+            outcomeSummary: '',
+            publicationStatus: 'draft',
+            displayPriority: 0,
+          }}
+        />
       )}
     </div>
   )

@@ -12,8 +12,10 @@ import { ProofCard } from '@/components/ProofCard'
 import { MechanismChain } from '@/components/MechanismChain'
 import { ComprehensionTest } from '@/components/ComprehensionTest'
 import { entityUrl } from '@/lib/canonical'
+import { humanEvidenceSummary, PROOF_BOUNDARY_LABELS, stageRank } from '@/lib/evidence'
+import { ENTITY_TYPE_LABELS, REGULATORY_CATEGORY_LABELS, regulatoryCategoryInSentence } from '@/lib/labels'
 
-export const revalidate = 3600 // targeted revalidation after editorial publication also calls revalidatePath()
+export const revalidate = 3600
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -24,20 +26,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const entity = await getPublishedEntityBySlug(slug)
   if (!entity) return {}
   return {
-    title: `${entity.canonicalName}: proposed mechanism, human evidence, safety and approval status`,
+    title: `${entity.canonicalName}: mechanism, human evidence, safety and approval status`,
     description: entity.bottomLine,
     alternates: { canonical: entityUrl(entity.slug) },
-    openGraph: {
-      title: entity.canonicalName,
-      description: entity.bottomLine,
-      url: entityUrl(entity.slug),
-      // No manual `images` here — Next.js auto-discovers the sibling opengraph-image.tsx file
-      // and wires up its real (internally hash-suffixed) URL itself. A hand-written guess at
-      // that path is wrong: Next serves the actual file at `/r/[slug]/opengraph-image-<hash>`,
-      // not the plain path, so overriding this ends up pointing crawlers at a 404.
-    },
+    openGraph: { title: entity.canonicalName, description: entity.bottomLine, url: entityUrl(entity.slug) },
   }
 }
+
+const SECTIONS = [
+  { id: 'answer', label: 'The short answer' },
+  { id: 'snapshot', label: 'Evidence snapshot' },
+  { id: 'claims', label: 'What studies show' },
+  { id: 'mechanism', label: 'How it may work' },
+  { id: 'regulatory', label: 'Safety and approval' },
+  { id: 'access', label: 'Availability status' },
+  { id: 'understanding', label: 'Check your understanding' },
+]
 
 export default async function EntityPage({ params }: Props) {
   const { slug } = await params
@@ -49,13 +53,21 @@ export default async function EntityPage({ params }: Props) {
     getRegulatoryStatusesForEntity(entity.id),
   ])
 
-  const claimsWithSteps = await Promise.all(
+  const enriched = await Promise.all(
     claims.map(async (claim) => ({
       claim,
       steps: await getMechanismStepsForClaim(claim.id),
       questions: await getQuestionsForClaim(claim.id),
     }))
   )
+
+  const sourceCount = claims.reduce((n, c) => n + c.evidence.length, 0)
+  const strongest = claims.reduce<(typeof claims)[number] | null>(
+    (best, c) => (!best || stageRank(c.proofBoundaryStage) > stageRank(best.proofBoundaryStage) ? c : best),
+    null
+  )
+  const unapproved = entity.regulatoryCategory !== 'approved_medicine'
+  const lastChecked = regStatuses[0]?.checkedDate ?? entity.updatedAt
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -67,101 +79,238 @@ export default async function EntityPage({ params }: Props) {
   }
 
   return (
-    <div className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
+    <div className="wrap" style={{ paddingBlock: 'var(--s6) var(--s7)' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <nav aria-label="Breadcrumb" style={{ fontSize: '0.85rem', color: 'var(--color-text-faint)', marginBottom: 'var(--space-4)' }}>
-        <Link href="/">RNAwiki</Link> / {entity.canonicalName}
+      <nav aria-label="Breadcrumb" className="metaline" style={{ marginBottom: 'var(--s5)' }}>
+        <Link href="/">RNAwiki</Link>
+        <span aria-hidden="true">/</span>
+        <Link href="/compounds">Compounds</Link>
+        <span aria-hidden="true">/</span>
+        <span>{entity.canonicalName}</span>
       </nav>
 
-      <header style={{ marginBottom: 'var(--space-6)' }}>
-        <h1 style={{ fontSize: '2rem', marginBottom: 'var(--space-2)' }}>{entity.canonicalName}</h1>
+      {/* ------------------------------------------------------- masthead -- */}
+      <header style={{ marginBottom: 'var(--s6)' }}>
+        <p className="eyebrow">{ENTITY_TYPE_LABELS[entity.entityType]}</p>
+        <h1 className="display" style={{ marginBlock: 'var(--s2) var(--s3)' }}>
+          {entity.canonicalName}
+        </h1>
         {entity.aliases.length > 0 && (
-          <p style={{ color: 'var(--color-text-muted)', margin: 0 }}>Also known as: {entity.aliases.join(', ')}</p>
+          <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
+            Also known as {entity.aliases.join(' · ')}
+          </p>
         )}
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 'var(--space-2)',
-            marginTop: 'var(--space-3)',
-            fontSize: '0.85rem',
-            color: 'var(--color-text-muted)',
-          }}
-        >
-          <span>{entity.entityType.replace(/_/g, ' ')}</span>
-          <span>·</span>
-          <span>{entity.regulatoryCategory.replace(/_/g, ' ')}</span>
-          <span>·</span>
-          <span>Updated {entity.updatedAt.toISOString().slice(0, 10)}</span>
-        </div>
+        <p id="bottom-line" className="lead measure">
+          {entity.bottomLine}
+        </p>
       </header>
 
-      <section id="bottom-line" className="prose-width" style={{ marginBottom: 'var(--space-8)' }}>
-        <p style={{ fontSize: '1.15rem', fontWeight: 500 }}>{entity.bottomLine}</p>
-      </section>
+      {/* Unapproved status must be visible without expanding anything. */}
+      {unapproved && (
+        <div className="callout" data-tone="warning" style={{ marginBottom: 'var(--s6)' }}>
+          <p className="callout__title">Not an approved medicine</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>
+            Classified as {regulatoryCategoryInSentence(entity.regulatoryCategory)}. RNAwiki records what has been
+            studied. It does not provide dosing, sourcing, or instructions for use.
+          </p>
+        </div>
+      )}
 
-      <section id="regulatory-status" style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={{ fontSize: '1.1rem' }}>Regulatory status</h2>
-        {regStatuses.length === 0 ? (
-          <p style={{ color: 'var(--color-text-faint)' }}>No regulatory status recorded yet.</p>
-        ) : (
-          <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: 'var(--space-3)' }}>
-            {regStatuses.map((rs) => (
-              <li key={rs.id} style={{ borderLeft: '3px solid var(--color-border-strong)', paddingLeft: 'var(--space-3)' }}>
-                <p style={{ margin: 0, fontWeight: 600 }}>{rs.jurisdiction}</p>
-                <p style={{ margin: 0 }}>{rs.statusStatement}</p>
-                <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--color-text-faint)' }}>
-                  Checked {rs.checkedDate.toISOString().slice(0, 10)} ·{' '}
-                  <a href={rs.source} target="_blank" rel="noopener noreferrer">
-                    source
-                  </a>
-                </p>
+      <div className="shell">
+        {/* -------------------------------------------------- contents rail */}
+        <nav className="rail" aria-label="On this page">
+          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
+            On this page
+          </p>
+          <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--s2)' }}>
+            {SECTIONS.map((s) => (
+              <li key={s.id}>
+                <a href={`#${s.id}`} style={{ color: 'var(--ink-soft)', textDecoration: 'none' }}>
+                  {s.label}
+                </a>
               </li>
             ))}
           </ul>
-        )}
-      </section>
+        </nav>
 
-      <section id="most-searched-claims" style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={{ fontSize: '1.1rem' }}>Most searched claims</h2>
-        <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
-          {claimsWithSteps.map(({ claim, questions }) => (
-            <div key={claim.id} style={{ display: 'grid', gap: 'var(--space-3)' }}>
-              <ProofCard claim={claim} entityName={entity.canonicalName} />
-              <ComprehensionTest claimId={claim.id} questions={questions} />
+        {/* ------------------------------------------------------- article */}
+        <article className="stack-lg" style={{ minWidth: 0 }}>
+          <section id="answer" className="measure">
+            <div className="section-head">
+              <h2 className="h2">The short answer</h2>
             </div>
-          ))}
-        </div>
-      </section>
+            <p className="prose">{entity.shortDescription}</p>
+          </section>
 
-      <section id="mechanism" style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={{ fontSize: '1.1rem' }}>Proposed mechanism</h2>
-        {claimsWithSteps
-          .filter(({ steps }) => steps.length > 0)
-          .map(({ claim, steps }) => (
-            <div key={claim.id} style={{ marginBottom: 'var(--space-6)' }}>
-              <h3 style={{ fontSize: '0.95rem', color: 'var(--color-text-muted)' }}>{claim.consumerQuestion}</h3>
-              <MechanismChain steps={steps} />
+          <section id="snapshot">
+            <div className="section-head">
+              <h2 className="h2">Evidence snapshot</h2>
             </div>
-          ))}
-      </section>
+            <dl className="speclabel">
+              <div className="speclabel__row">
+                <dt className="speclabel__key">Human evidence</dt>
+                <dd className="speclabel__val" style={{ margin: 0 }}>
+                  {humanEvidenceSummary(strongest?.proofBoundaryStage ?? null)}
+                  {strongest && ` — strongest claim reaches ${PROOF_BOUNDARY_LABELS[strongest.proofBoundaryStage]}`}
+                </dd>
+              </div>
+              <div className="speclabel__row">
+                <dt className="speclabel__key">Claims recorded</dt>
+                <dd className="speclabel__val" style={{ margin: 0 }}>
+                  {claims.length}
+                </dd>
+              </div>
+              <div className="speclabel__row">
+                <dt className="speclabel__key">Linked sources</dt>
+                <dd className="speclabel__val" style={{ margin: 0 }}>
+                  {sourceCount}
+                </dd>
+              </div>
+              <div className="speclabel__row">
+                <dt className="speclabel__key">Last checked</dt>
+                <dd className="speclabel__val" style={{ margin: 0 }}>
+                  {lastChecked.toISOString().slice(0, 10)}
+                </dd>
+              </div>
+            </dl>
+          </section>
 
-      <section id="unknowns" style={{ marginBottom: 'var(--space-8)' }}>
-        <h2 style={{ fontSize: '1.1rem' }}>What remains unknown</h2>
-        <ul>
-          {claims.map((c) => (
-            <li key={c.id}>{c.remainingUnknown}</li>
-          ))}
-        </ul>
-      </section>
+          <section id="claims">
+            <div className="section-head">
+              <h2 className="h2">What studies show</h2>
+            </div>
+            <div style={{ display: 'grid', gap: 'var(--s7)' }}>
+              {enriched.map(({ claim }) => (
+                <ProofCard key={claim.id} claim={claim} entityName={entity.canonicalName} />
+              ))}
+            </div>
+          </section>
 
-      {entity.accessRealityNote && (
-        <section style={{ marginBottom: 'var(--space-8)' }}>
-          <h2 style={{ fontSize: '1.1rem' }}>Access reality</h2>
-          <p className="prose-width">{entity.accessRealityNote}</p>
-        </section>
-      )}
+          {enriched.some(({ steps }) => steps.length > 0) && (
+            <section id="mechanism">
+              <div className="section-head">
+                <h2 className="h2">How it may work</h2>
+              </div>
+              <p className="prose measure" style={{ marginBottom: 'var(--s5)' }}>
+                Each step is labelled with the kind of evidence behind it. A described mechanism is not proof
+                that the outcome follows.
+              </p>
+              {enriched
+                .filter(({ steps }) => steps.length > 0)
+                .map(({ claim, steps }) => (
+                  <div key={claim.id} style={{ marginBottom: 'var(--s6)' }}>
+                    <h3 className="h4 muted" style={{ marginBottom: 'var(--s3)' }}>
+                      {claim.consumerQuestion}
+                    </h3>
+                    <MechanismChain steps={steps} />
+                  </div>
+                ))}
+            </section>
+          )}
+
+          <section id="regulatory">
+            <div className="section-head">
+              <h2 className="h2">Safety and approval status</h2>
+            </div>
+            {regStatuses.length === 0 ? (
+              <p className="muted">Not recorded.</p>
+            ) : (
+              <div className="stack-lg">
+                {regStatuses.map((rs) => (
+                  <div key={rs.id}>
+                    <h3 className="h4" style={{ marginBottom: 'var(--s2)' }}>
+                      {rs.jurisdiction}
+                    </h3>
+                    <p className="prose" style={{ marginBottom: 'var(--s2)' }}>
+                      {rs.statusStatement}
+                    </p>
+                    <p className="metaline">
+                      <span>
+                        Checked <b>{rs.checkedDate.toISOString().slice(0, 10)}</b>
+                      </span>
+                      <a href={rs.source} target="_blank" rel="noopener noreferrer">
+                        Primary source ↗
+                      </a>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </section>
+
+          {entity.accessRealityNote && (
+            <section id="access" className="measure">
+              <div className="section-head">
+                <h2 className="h2">Availability status</h2>
+              </div>
+              <p className="prose">{entity.accessRealityNote}</p>
+            </section>
+          )}
+
+          {enriched.some(({ questions }) => questions.length > 0) && (
+            <section id="understanding">
+              <div className="section-head">
+                <h2 className="h2">Check your understanding</h2>
+              </div>
+              <div className="stack-lg">
+                {enriched
+                  .filter(({ questions }) => questions.length > 0)
+                  .map(({ claim, questions }) => (
+                    <ComprehensionTest
+                      key={claim.id}
+                      claimId={claim.id}
+                      questions={questions}
+                      claimQuestion={claim.consumerQuestion}
+                    />
+                  ))}
+              </div>
+            </section>
+          )}
+        </article>
+
+        {/* -------------------------------------------------- metadata rail */}
+        <aside className="rail" aria-label="Record metadata">
+          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
+            Record
+          </p>
+          <dl className="speclabel">
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Type</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                {ENTITY_TYPE_LABELS[entity.entityType]}
+              </dd>
+            </div>
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Status</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                {REGULATORY_CATEGORY_LABELS[entity.regulatoryCategory]}
+              </dd>
+            </div>
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Sources</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                {sourceCount}
+              </dd>
+            </div>
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Checked</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                {lastChecked.toISOString().slice(0, 10)}
+              </dd>
+            </div>
+            <div className="speclabel__row">
+              <dt className="speclabel__key">Review</dt>
+              <dd className="speclabel__val" style={{ margin: 0 }}>
+                Editorial only
+              </dd>
+            </div>
+          </dl>
+          <p style={{ marginTop: 'var(--s4)', fontSize: 'var(--size-small)' }}>
+            <Link href={`/corrections?entity=${entity.slug}`}>Report an error →</Link>
+          </p>
+        </aside>
+      </div>
     </div>
   )
 }

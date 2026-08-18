@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { searchEvidenceSources } from '@/lib/admin/evidence-search'
 import { importFromDoi, importFromPmid } from './actions'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'Evidence sources', robots: { index: false, follow: false } }
 
@@ -15,91 +14,140 @@ export default async function AdminEvidencePage({ searchParams }: Props) {
   const results = await searchEvidenceSources(q ?? '', 50)
 
   return (
-    <div style={ui.page}>
-      <div style={{ ...ui.flexRow, justifyContent: 'space-between', marginBottom: 'var(--space-6)' }}>
-        <h1 style={{ ...ui.h1, margin: 0 }}>Evidence sources</h1>
-        <Link href="/admin/evidence/new" style={ui.buttonPrimary}>
-          New source (manual)
+    <div className="admin-page">
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">{results.length} listed</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            Evidence sources
+          </h1>
+        </div>
+        <Link href="/admin/evidence/new" className="btn btn--primary">
+          New source
         </Link>
       </div>
 
-      {error && <p style={ui.errorBanner}>{error}</p>}
-      {success && <p style={ui.successBanner}>{success}</p>}
+      {error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Import failed</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
+        </div>
+      )}
+      {success && (
+        <div className="callout" role="status" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Done</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{success}</p>
+        </div>
+      )}
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Import bibliographic metadata</h2>
-        <p style={{ color: 'var(--color-text-muted)', fontSize: '0.88rem', marginTop: 0 }}>
-          Pulls title/authors/year/journal/DOI/PMID only, from Crossref or NCBI E-utilities. You still fill in
-          source type, study design, species, sample size, and endpoint by hand on the next screen — those are
-          never auto-filled or guessed.
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Import bibliographic metadata</h2>
+        </div>
+        <p className="prose measure" style={{ fontSize: 'var(--size-small)', marginBottom: 'var(--s5)' }}>
+          Crossref and NCBI E-utilities return title, authors, year, journal, DOI and PMID — nothing else. Source
+          type, study design, species, sample size and endpoint stay hand-entered on the next screen, because they
+          are editorial judgments and must never be guessed.
         </p>
-        <div style={{ display: 'flex', gap: 'var(--space-8)', flexWrap: 'wrap' }}>
-          <form action={importFromDoi}>
-            <div style={ui.fieldWrap}>
-              <label htmlFor="doi" style={ui.label}>
+
+        <div style={{ display: 'grid', gap: 'var(--s6)', gridTemplateColumns: 'repeat(auto-fit, minmax(16rem, 1fr))' }}>
+          <form action={importFromDoi} className="admin-form">
+            <div className="admin-field">
+              <label htmlFor="doi" className="admin-label">
                 Import from DOI
               </label>
-              <input id="doi" name="doi" placeholder="10.1000/xyz123" style={ui.input} />
+              <input id="doi" name="doi" placeholder="10.1000/xyz123" className="field" />
             </div>
-            <button type="submit" style={ui.buttonSecondary}>
-              Fetch from Crossref
-            </button>
+            <div className="admin-actions">
+              <button type="submit" className="btn">
+                Fetch from Crossref
+              </button>
+            </div>
           </form>
-          <form action={importFromPmid}>
-            <div style={ui.fieldWrap}>
-              <label htmlFor="pmid" style={ui.label}>
+
+          <form action={importFromPmid} className="admin-form">
+            <div className="admin-field">
+              <label htmlFor="pmid" className="admin-label">
                 Import from PMID
               </label>
-              <input id="pmid" name="pmid" placeholder="12345678" style={ui.input} />
+              <input id="pmid" name="pmid" placeholder="12345678" className="field" />
             </div>
-            <button type="submit" style={ui.buttonSecondary}>
-              Fetch from PubMed
-            </button>
+            <div className="admin-actions">
+              <button type="submit" className="btn">
+                Fetch from PubMed
+              </button>
+            </div>
           </form>
         </div>
       </section>
 
-      <section style={ui.sectionCard}>
-        <h2 style={ui.h2}>Search existing sources</h2>
-        <form method="GET" style={ui.flexRow}>
-          <input name="q" defaultValue={q ?? ''} placeholder="Title, DOI, or PMID" style={{ ...ui.input, maxWidth: '24rem' }} />
-          <button type="submit" style={ui.buttonSecondary}>
-            Search
-          </button>
-        </form>
-      </section>
+      <hr className="rule" />
 
-      {results.length === 0 ? (
-        <p style={{ color: 'var(--color-text-faint)' }}>No evidence sources found.</p>
-      ) : (
-        <div style={{ overflowX: 'auto' }}>
-          <table style={ui.table}>
+      <section>
+        <div className="section-head">
+          <h2 className="h2">Catalogue</h2>
+        </div>
+
+        <form method="GET" className="admin-form admin-form--inline" style={{ marginBottom: 'var(--s5)' }}>
+          <div className="admin-field">
+            <label htmlFor="q" className="admin-label">
+              Search
+            </label>
+            <input
+              id="q"
+              name="q"
+              defaultValue={q ?? ''}
+              placeholder="Title, DOI, or PMID"
+              className="field"
+              style={{ minWidth: '18rem' }}
+            />
+          </div>
+          <div className="admin-actions">
+            <button type="submit" className="btn">
+              Search
+            </button>
+            {q && <Link href="/admin/evidence">Clear</Link>}
+          </div>
+        </form>
+
+        {results.length === 0 ? (
+          <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+            No evidence sources found.
+          </p>
+        ) : (
+          <table className="admin-table">
             <thead>
               <tr>
-                <th style={ui.th}>Title</th>
-                <th style={ui.th}>Type</th>
-                <th style={ui.th}>Year</th>
-                <th style={ui.th}>DOI / PMID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Year</th>
+                <th scope="col">DOI / PMID</th>
               </tr>
             </thead>
             <tbody>
               {results.map((s) => (
                 <tr key={s.id}>
-                  <td style={ui.td}>
+                  <td data-label="Title">
                     <Link href={`/admin/evidence/${s.id}`}>{s.title}</Link>
                     {s.retractionStatus && (
-                      <span style={{ color: 'var(--color-unknown)', fontWeight: 600 }}> ({s.retractionStatus})</span>
+                      <span className="tag" data-flag="retraction" style={{ marginLeft: 'var(--s2)' }}>
+                        {s.retractionStatus}
+                      </span>
                     )}
                   </td>
-                  <td style={ui.td}>{s.sourceType}</td>
-                  <td style={ui.td}>{s.publicationYear ?? '—'}</td>
-                  <td style={ui.td}>{[s.doi, s.pmid].filter(Boolean).join(' / ') || '—'}</td>
+                  <td data-label="Type">{s.sourceType}</td>
+                  <td data-label="Year" style={{ fontFamily: 'var(--font-mono)' }}>
+                    {s.publicationYear ?? 'Not recorded'}
+                  </td>
+                  <td data-label="Identifier" style={{ fontFamily: 'var(--font-mono)', wordBreak: 'break-word' }}>
+                    {[s.doi, s.pmid].filter(Boolean).join(' / ') || 'Not recorded'}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-      )}
+        )}
+      </section>
     </div>
   )
 }

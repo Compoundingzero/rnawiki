@@ -11,6 +11,11 @@ import { useEffect, useState } from 'react'
 const DEFAULT_ORIGIN = 'https://rnawiki.com'
 const PREVIEW_HEIGHT = 340
 
+// The iframe snippet carries literal values, not tokens: it runs on a third-party page that has
+// never seen app/globals.css. These match --border and --radius-md.
+const SNIPPET_BORDER = '#d5dcd7'
+const SNIPPET_RADIUS = '6px'
+
 export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; claimQuestion: string }) {
   const [origin, setOrigin] = useState(DEFAULT_ORIGIN)
   const [copied, setCopied] = useState(false)
@@ -21,7 +26,7 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
 
   const embedPath = `/embed/claim/${claimId}`
   const embedUrl = `${origin}${embedPath}`
-  const snippet = `<iframe src="${embedUrl}" title="RNAwiki: ${claimQuestion}" width="100%" height="${PREVIEW_HEIGHT}" style="border:1px solid #dedad0;border-radius:6px;max-width:100%" loading="lazy"></iframe>`
+  const snippet = `<iframe src="${embedUrl}" title="RNAwiki: ${claimQuestion}" width="100%" height="${PREVIEW_HEIGHT}" style="border:1px solid ${SNIPPET_BORDER};border-radius:${SNIPPET_RADIUS};max-width:100%" loading="lazy"></iframe>`
 
   async function handleCopy() {
     try {
@@ -34,43 +39,37 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
   }
 
   return (
-    <details>
+    // minWidth:0 keeps the expanded panel shrinkable when this sits in a flex row of
+    // controls, so opening it can never push the page into horizontal overflow.
+    <details style={{ minWidth: 0, maxWidth: '100%' }}>
       <summary
+        className="btn"
         style={{
-          display: 'inline-block',
+          display: 'inline-flex',
+          alignItems: 'center',
+          listStyle: 'none',
           cursor: 'pointer',
-          border: '1px solid var(--color-border-strong)',
-          borderRadius: 'var(--radius-sm)',
-          padding: '0.3em 0.7em',
-          fontSize: '0.82rem',
-          color: 'var(--color-text)',
         }}
       >
         Embed
       </summary>
 
-      <div
-        style={{
-          marginTop: 'var(--space-3)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 'var(--space-3)',
-          maxWidth: '32rem',
-        }}
-      >
-        <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
-          Paste this into any page to show this claim, its current Proof Boundary, and a link back to the full
-          evidence. The wording cannot be edited by the embedding site.
+      <div className="stack" style={{ marginTop: 'var(--s4)', maxWidth: '34rem' }}>
+        <p className="prose" style={{ fontSize: 'var(--size-small)' }}>
+          This renders the claim, the stage its evidence reaches, and a link back to the full record. The wording
+          cannot be edited by the embedding site.
         </p>
 
         <pre
           style={{
             margin: 0,
-            padding: 'var(--space-3)',
-            background: 'var(--color-surface-raised)',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-sm)',
-            fontSize: '0.78rem',
+            padding: 'var(--s3)',
+            background: 'var(--surface-sunk)',
+            border: 'var(--hairline) solid var(--border)',
+            borderRadius: 'var(--radius)',
+            fontFamily: 'var(--font-mono)',
+            fontSize: 'var(--size-meta)',
+            lineHeight: 1.5,
             overflowX: 'auto',
             whiteSpace: 'pre-wrap',
             wordBreak: 'break-all',
@@ -79,34 +78,14 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
           <code>{snippet}</code>
         </pre>
 
-        <button
-          type="button"
-          onClick={handleCopy}
-          style={{
-            alignSelf: 'flex-start',
-            border: '1px solid var(--color-border-strong)',
-            background: 'var(--color-surface)',
-            borderRadius: 'var(--radius-sm)',
-            padding: '0.3em 0.7em',
-            fontSize: '0.82rem',
-            cursor: 'pointer',
-            color: 'var(--color-text)',
-          }}
-        >
-          {copied ? 'Copied' : 'Copy embed code'}
-        </button>
+        <div>
+          <button type="button" onClick={handleCopy} className="btn">
+            {copied ? 'Embed code copied' : 'Copy embed code'}
+          </button>
+        </div>
 
         <div>
-          <p
-            style={{
-              margin: '0 0 var(--space-2)',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-              color: 'var(--color-text-faint)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.03em',
-            }}
-          >
+          <p className="eyebrow" style={{ marginBottom: 'var(--s2)' }}>
             Preview
           </p>
           <iframe
@@ -115,10 +94,10 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
             loading="lazy"
             style={{
               width: '100%',
-              height: `${PREVIEW_HEIGHT}px`,
-              border: '1px solid var(--color-border)',
-              borderRadius: 'var(--radius-sm)',
               maxWidth: '100%',
+              height: `${PREVIEW_HEIGHT}px`,
+              border: 'var(--hairline) solid var(--border)',
+              borderRadius: 'var(--radius)',
             }}
           />
         </div>

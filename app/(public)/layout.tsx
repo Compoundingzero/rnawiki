@@ -1,110 +1,108 @@
 import Link from 'next/link'
+import { Wordmark } from '@/components/brand/Wordmark'
+import { HeaderSearch } from '@/components/HeaderSearch'
 
-// The public reader chrome (search/methodology/updates/corrections nav + footer disclaimer).
-// Applies to every route nested under this (public) group — the group segment itself is
-// stripped from the URL, so app/(public)/page.tsx is still "/", app/(public)/r/[slug]/page.tsx
-// is still "/r/[slug]", etc. /admin and /embed intentionally live outside this group.
+// Reader chrome. Navigation is literal: each label names the kind of record it
+// leads to. Nothing here advertises a feature that does not exist — there is no
+// "Create", no "Today", and no Pathways or Topics entry, because the corpus
+// holds no pathway or topic records yet.
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <a
-        href="#main"
-        style={{
-          position: 'absolute',
-          left: -9999,
-          top: 0,
-        }}
-        className="skip-link"
-      >
+      <a href="#main" className="skip-link">
         Skip to content
       </a>
-      <SiteHeader />
+      <Masthead />
       <main id="main">{children}</main>
-      <SiteFooter />
+      <Colophon />
     </>
   )
 }
 
-function SiteHeader() {
+function Masthead() {
   return (
-    <header
-      style={{
-        borderBottom: '1px solid var(--color-border)',
-        background: 'var(--color-surface)',
-      }}
-    >
-      <div
-        className="container"
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          rowGap: 'var(--space-2)',
-          padding: 'var(--space-3) var(--space-6)',
-          gap: 'var(--space-4)',
-        }}
-      >
-        <Link
-          href="/"
-          style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--color-text)', textDecoration: 'none' }}
-        >
-          RNAwiki
+    <header className="masthead">
+      <div className="wrap masthead__inner">
+        <Link href="/" style={{ textDecoration: 'none' }} aria-label="RNAwiki, home">
+          <Wordmark />
         </Link>
-        <nav
-          style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-4)', fontSize: '0.95rem' }}
-          aria-label="Primary"
-        >
-          <Link href="/search" style={{ color: 'var(--color-text-muted)', textDecoration: 'none' }}>
-            Search
-          </Link>
-          <Link href="/methodology" style={{ color: 'var(--color-text-muted)', textDecoration: 'none' }}>
-            Methodology
-          </Link>
-          <Link href="/updates" style={{ color: 'var(--color-text-muted)', textDecoration: 'none' }}>
-            Evidence Updates
-          </Link>
-          <Link href="/corrections" style={{ color: 'var(--color-text-muted)', textDecoration: 'none' }}>
-            Corrections
-          </Link>
+        <nav className="masthead__nav" aria-label="Primary">
+          <Link href="/compounds">Compounds</Link>
+          <Link href="/evidence">Evidence</Link>
+          <Link href="/updates">Changes</Link>
+          <Link href="/corrections">Corrections</Link>
         </nav>
+        <div className="masthead__search">
+          <HeaderSearch />
+        </div>
       </div>
     </header>
   )
 }
 
-function SiteFooter() {
+function Colophon() {
   return (
-    <footer
-      style={{
-        borderTop: '1px solid var(--color-border)',
-        marginTop: 'var(--space-12)',
-        padding: 'var(--space-8) 0',
-        color: 'var(--color-text-faint)',
-        fontSize: '0.85rem',
-      }}
-    >
-      <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3)' }}>
-        <p style={{ margin: 0, maxWidth: '44rem' }}>
-          RNAwiki explains research evidence. It does not provide medical advice, diagnosis, dosing, or
-          instructions for obtaining or using unapproved substances.
-        </p>
-        <div style={{ display: 'flex', gap: 'var(--space-4)', flexWrap: 'wrap' }}>
-          <Link href="/methodology" style={{ color: 'var(--color-text-faint)' }}>
-            Methodology
-          </Link>
-          <Link href="/privacy" style={{ color: 'var(--color-text-faint)' }}>
-            Privacy
-          </Link>
-          <Link href="/updates" style={{ color: 'var(--color-text-faint)' }}>
-            Evidence updates
-          </Link>
-          <Link href="/corrections" style={{ color: 'var(--color-text-faint)' }}>
-            Corrections
-          </Link>
-          <a href="https://github.com/Compoundingzero/rnawiki" style={{ color: 'var(--color-text-faint)' }}>
-            Source on GitHub
-          </a>
+    <footer className="colophon">
+      <div className="wrap">
+        <div className="colophon__grid">
+          <div>
+            <h2>Evidence</h2>
+            <ul>
+              <li>
+                <Link href="/evidence">How RNAwiki is made</Link>
+              </li>
+              <li>
+                <Link href="/methodology">Evidence scale</Link>
+              </li>
+              <li>
+                <Link href="/methodology#independence">Independence</Link>
+              </li>
+              <li>
+                <Link href="/corrections">Corrections</Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2>Browse</h2>
+            <ul>
+              <li>
+                <Link href="/compounds">All compounds</Link>
+              </li>
+              <li>
+                <Link href="/search">Search</Link>
+              </li>
+              <li>
+                <Link href="/updates">Evidence changes</Link>
+              </li>
+              <li>
+                <a href="/sitemap.xml">Sitemap</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2>About</h2>
+            <ul>
+              <li>
+                <Link href="/evidence">Editorial policy</Link>
+              </li>
+              <li>
+                <Link href="/privacy">Privacy</Link>
+              </li>
+              <li>
+                <Link href="/corrections">Report an error</Link>
+              </li>
+              <li>
+                <a href="https://github.com/Compoundingzero/rnawiki">Source on GitHub</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h2>Limitations</h2>
+            <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+              RNAwiki explains research evidence. It does not provide medical advice, diagnosis, dosing, or
+              instructions for obtaining or using unapproved substances. Not reviewed by a clinician.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

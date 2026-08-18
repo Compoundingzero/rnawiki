@@ -3,7 +3,6 @@ import { db } from '@/db'
 import { correctionSubmissions, entities, claims, moderationStatusEnum } from '@/db/schema'
 import { eq, desc } from 'drizzle-orm'
 import { resolveCorrection } from './actions'
-import * as ui from '@/lib/admin/ui'
 
 export const metadata: Metadata = { title: 'Corrections', robots: { index: false, follow: false } }
 
@@ -52,83 +51,146 @@ export default async function AdminCorrectionsPage({ searchParams }: Props) {
   const rows = await getCorrections(status)
 
   return (
-    <div style={ui.page}>
-      <h1 style={ui.h1}>Corrections ({rows.length})</h1>
+    <div className="admin-page">
+      <div className="admin-head">
+        <div>
+          <p className="eyebrow">{rows.length} submissions</p>
+          <h1 className="h1" style={{ marginTop: 'var(--s2)' }}>
+            Corrections
+          </h1>
+        </div>
+      </div>
 
-      {error && <p style={ui.errorBanner}>{error}</p>}
-      {success && <p style={ui.successBanner}>{success}</p>}
+      {error && (
+        <div className="callout" data-tone="danger" role="alert" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Not saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
+        </div>
+      )}
+      {success && (
+        <div className="callout" role="status" style={{ marginBottom: 'var(--s5)' }}>
+          <p className="callout__title">Saved</p>
+          <p style={{ fontSize: 'var(--size-small)' }}>{success}</p>
+        </div>
+      )}
 
-      <form method="GET" style={{ ...ui.flexRow, marginBottom: 'var(--space-6)' }}>
-        <select name="status" defaultValue={status ?? ''} style={{ ...ui.select, width: 'auto' }}>
-          <option value="">All statuses</option>
-          {moderationStatusEnum.enumValues.map((v) => (
-            <option key={v} value={v}>
-              {v}
-            </option>
-          ))}
-        </select>
-        <button type="submit" style={ui.buttonSecondary}>
-          Filter
-        </button>
+      <form method="GET" className="admin-form admin-form--inline" style={{ marginBottom: 'var(--s6)' }}>
+        <div className="admin-field">
+          <label htmlFor="status" className="admin-label">
+            Moderation status
+          </label>
+          <select id="status" name="status" defaultValue={status ?? ''} className="field">
+            <option value="">All statuses</option>
+            {moderationStatusEnum.enumValues.map((v) => (
+              <option key={v} value={v}>
+                {v}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="admin-actions">
+          <button type="submit" className="btn">
+            Filter
+          </button>
+        </div>
       </form>
 
       {rows.length === 0 ? (
-        <p style={{ color: 'var(--color-text-faint)' }}>No corrections match this filter.</p>
+        <p className="muted" style={{ fontSize: 'var(--size-small)' }}>
+          No corrections match this filter.
+        </p>
       ) : (
-        <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
+        <ul className="admin-list">
           {rows.map((row) => (
-            <div key={row.id} style={ui.sectionCard}>
-              <div style={{ ...ui.flexRow, justifyContent: 'space-between' }}>
-                <p style={{ margin: 0, fontWeight: 600 }}>{row.target}</p>
-                <span style={ui.badge}>{row.moderationStatus}</span>
+            <li key={row.id} style={{ borderBottom: 'var(--hairline) solid var(--border)', padding: 'var(--s5) 0' }}>
+              <div className="admin-head" style={{ marginBottom: 'var(--s3)' }}>
+                <div>
+                  <p className="eyebrow">
+                    {row.category.replace(/_/g, ' ')} · {row.createdAt.toISOString().slice(0, 10)}
+                  </p>
+                  <p className="h4" style={{ marginTop: 'var(--s2)' }}>
+                    {row.target}
+                  </p>
+                </div>
+                <span className="tag" data-state={row.moderationStatus}>
+                  {row.moderationStatus}
+                </span>
               </div>
-              <p style={{ margin: 'var(--space-2) 0', fontSize: '0.8rem', color: 'var(--color-text-faint)', textTransform: 'uppercase', letterSpacing: '0.03em' }}>
-                {row.category.replace(/_/g, ' ')} · {row.createdAt.toISOString().slice(0, 10)}
+
+              <p className="prose measure" style={{ fontSize: 'var(--size-small)' }}>
+                {row.message}
               </p>
-              <p style={{ margin: 0 }}>{row.message}</p>
-              {row.proposedSource && (
-                <p style={{ margin: 'var(--space-2) 0 0', fontSize: '0.88rem' }}>
-                  <strong>Proposed source:</strong> {row.proposedSource}
-                </p>
-              )}
-              {row.resolution && (
-                <p style={{ margin: 'var(--space-2) 0 0', fontSize: '0.88rem', color: 'var(--color-text-muted)' }}>
-                  <strong>Resolution:</strong> {row.resolution}
-                </p>
+
+              {(row.proposedSource || row.resolution || row.publicCorrectionEntry) && (
+                <dl className="speclabel" style={{ marginTop: 'var(--s4)' }}>
+                  {row.proposedSource && (
+                    <div className="speclabel__row">
+                      <dt className="speclabel__key">Proposed source</dt>
+                      <dd className="speclabel__val" style={{ margin: 0, wordBreak: 'break-word' }}>
+                        {row.proposedSource}
+                      </dd>
+                    </div>
+                  )}
+                  {row.resolution && (
+                    <div className="speclabel__row">
+                      <dt className="speclabel__key">Resolution</dt>
+                      <dd className="speclabel__val" style={{ margin: 0 }}>
+                        {row.resolution}
+                      </dd>
+                    </div>
+                  )}
+                  {row.publicCorrectionEntry && (
+                    <div className="speclabel__row">
+                      <dt className="speclabel__key">Published as</dt>
+                      <dd className="speclabel__val" style={{ margin: 0 }}>
+                        {row.publicCorrectionEntry}
+                      </dd>
+                    </div>
+                  )}
+                </dl>
               )}
 
               {row.moderationStatus === 'pending' && (
-                <form action={resolveCorrection.bind(null, row.id)} style={{ marginTop: 'var(--space-3)', borderTop: '1px solid var(--color-border)', paddingTop: 'var(--space-3)' }}>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`status-${row.id}`}>
+                <form action={resolveCorrection.bind(null, row.id)} className="admin-form" style={{ marginTop: 'var(--s5)' }}>
+                  <div className="admin-field">
+                    <label className="admin-label" htmlFor={`status-${row.id}`}>
                       New status
                     </label>
-                    <select id={`status-${row.id}`} name="moderationStatus" required style={{ ...ui.select, width: 'auto' }} defaultValue="resolved">
+                    <select id={`status-${row.id}`} name="moderationStatus" required className="field" defaultValue="resolved">
                       <option value="resolved">Resolved</option>
                       <option value="dismissed">Dismissed</option>
                     </select>
                   </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`resolution-${row.id}`}>
+                  <div className="admin-field">
+                    <label className="admin-label" htmlFor={`resolution-${row.id}`}>
                       Resolution note
                     </label>
-                    <textarea id={`resolution-${row.id}`} name="resolution" required style={ui.textareaSmall} />
+                    <textarea id={`resolution-${row.id}`} name="resolution" required className="field" />
                   </div>
-                  <div style={ui.fieldWrap}>
-                    <label style={ui.label} htmlFor={`public-${row.id}`}>
+                  <div className="admin-field">
+                    <label className="admin-label" htmlFor={`public-${row.id}`}>
                       Public correction entry (optional)
                     </label>
-                    <textarea id={`public-${row.id}`} name="publicCorrectionEntry" style={ui.textareaSmall} />
-                    <p style={ui.helpText}>If filled in, this text is what surfaces publicly as a correction.</p>
+                    <textarea
+                      id={`public-${row.id}`}
+                      name="publicCorrectionEntry"
+                      aria-describedby={`public-help-${row.id}`}
+                      className="field"
+                    />
+                    <p id={`public-help-${row.id}`} className="admin-help">
+                      If filled in, this text is what surfaces publicly as a correction.
+                    </p>
                   </div>
-                  <button type="submit" style={ui.buttonPrimary}>
-                    Save resolution
-                  </button>
+                  <div className="admin-actions">
+                    <button type="submit" className="btn btn--primary">
+                      Save resolution
+                    </button>
+                  </div>
                 </form>
               )}
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   )
