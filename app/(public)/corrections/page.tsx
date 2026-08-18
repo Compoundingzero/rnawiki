@@ -73,8 +73,7 @@ export default async function CorrectionsPage({ searchParams }: Props) {
         <h1 style={{ fontSize: '2rem', marginBottom: 'var(--space-3)' }}>Corrections</h1>
         <p style={{ color: 'var(--color-text-muted)', fontSize: '1.05rem' }}>
           RNAwiki is written and reviewed by people, and people make mistakes. If something on the site is
-          confusing, a link is broken, a term is used without explanation, or you know a source we should be
-          citing, tell us.
+          confusing, a link is broken, a term is used without explanation, or a source is missing, report it.
         </p>
       </header>
 
@@ -84,7 +83,7 @@ export default async function CorrectionsPage({ searchParams }: Props) {
           <li>A sentence that&rsquo;s confusing or hard to follow.</li>
           <li>A source link that&rsquo;s broken, dead, or points to the wrong place.</li>
           <li>A technical term used on the page without being defined.</li>
-          <li>A source you think we should be citing that we&rsquo;re not.</li>
+          <li>A source that should be cited here and is not.</li>
           <li>Anything else about the content that seems off.</li>
         </ul>
         <p style={{ marginTop: 'var(--space-3)', color: 'var(--color-text-muted)' }}>
@@ -109,8 +108,7 @@ export default async function CorrectionsPage({ searchParams }: Props) {
         <h2 style={{ fontSize: '1.1rem', marginBottom: 'var(--space-4)' }}>Past corrections</h2>
         {publicCorrections.length === 0 ? (
           <p style={{ color: 'var(--color-text-faint)' }}>
-            No public corrections yet. When a reader-reported correction changes something on the site, we&rsquo;ll
-            list it here.
+            No public corrections yet. Reader-reported corrections that change something are listed here.
           </p>
         ) : (
           <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--space-4)' }}>

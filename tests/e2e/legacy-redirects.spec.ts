@@ -12,22 +12,25 @@ test.describe('legacy URL handling', () => {
   test('a legacy protocol URL (/c/bpc-157) redirects (301) to the new canonical route, never showing old content', async ({
     page,
   }) => {
-    const response = await page.goto('/c/bpc-157')
-    test.skip(!response, 'No response for /c/bpc-157.')
-    const status = response!.status()
+    // page.goto() FOLLOWS redirects, so its status is the status of the final page (200), never
+    // the 301 itself. Checking response.status() here silently skipped this test on every run.
+    // Ask for the raw status with redirects disabled instead.
+    const raw = await page.request.get('/c/bpc-157', { maxRedirects: 0 })
+    const status = raw.status()
 
-    test.skip(
-      ![301, 302, 308, 410, 404].includes(status),
-      `Legacy redirect middleware not resolving /c/bpc-157 yet (got ${status}).`
-    )
+    expect(
+      [301, 302, 308, 410, 404],
+      `/c/bpc-157 returned ${status}; a legacy compound URL must redirect or be Gone, never serve a page`
+    ).toContain(status)
 
     if ([301, 302, 308].includes(status)) {
-      expect(page.url()).toContain('/r/')
+      expect(raw.headers()['location']).toBe('/r/bpc-157')
+      // And following it must actually land on the new canonical page.
+      await page.goto('/c/bpc-157')
+      expect(page.url()).toContain('/r/bpc-157')
       expect(page.url()).not.toContain('/c/')
     } else {
-      // Acceptable fallback while the redirect table isn't fully populated: Gone, or a plain
-      // 404 — but never a 200 that renders the old page.
-      expect([410, 404]).toContain(status)
+      await page.goto('/c/bpc-157')
     }
 
     const bodyText = await page.locator('body').innerText()

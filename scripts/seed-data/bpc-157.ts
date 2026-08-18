@@ -33,13 +33,13 @@ const seed: SeedFile = {
       'BPC-157 has produced tissue-healing effects in rat and cell studies of tendon, ligament, and gut injury, but no controlled human trial has confirmed that it speeds healing or is safe for human use.',
     regulatoryCategory: 'unapproved_therapeutic_substance',
     accessRealityNote:
-      'BPC-157 is not an approved drug or a legal dietary supplement anywhere. It circulates almost entirely through online "research chemical" sellers whose product labels state the material is not for human or veterinary use — a labeling choice that lets sellers avoid pharmaceutical manufacturing, purity, and dosing-accuracy regulation, even though buyers commonly use the product on themselves. No regulator has verified the identity, purity, or sterility of these products, and FDA has separately identified unresolved immunogenicity and impurity-characterization concerns specific to BPC-157.',
+      'BPC-157 is not an approved drug or a legal dietary supplement anywhere. It circulates almost entirely through online "research chemical" sellers whose product labels state the material is not for human or veterinary use. That labeling lets sellers avoid pharmaceutical manufacturing, purity, and dosing-accuracy regulation, even though buyers commonly use the product on themselves. No regulator has verified the identity, purity, or sterility of these products. FDA has separately identified unresolved immunogenicity and impurity-characterization concerns specific to BPC-157.',
     regulatoryStatuses: [
       {
         jurisdiction: 'United States — FDA (503A bulk drug substances for compounding)',
         legalCategory: 'unapproved_therapeutic_substance',
         statusStatement:
-          'BPC-157 is not an FDA-approved drug for any indication. In its September 29, 2023 update to the 503A bulk drug substances list, FDA placed BPC-157 in Category 2 — substances that may present significant safety risks — citing potential immunogenicity for certain routes of administration and unresolved complexities in peptide-related impurity and active-ingredient characterization, which placed it outside FDA\'s enforcement-discretion policy for compounding.',
+          'BPC-157 is not an FDA-approved drug for any indication. On September 29, 2023, FDA placed it in Category 2 of the 503A bulk drug substances list — substances that may present significant safety risks and fall outside FDA\'s enforcement-discretion policy for compounding. FDA cited potential immunogenicity for certain routes of administration and unresolved peptide impurity and active-ingredient characterization issues.',
         source:
           'https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks',
         checkedDate: '2026-08-18',
@@ -62,18 +62,18 @@ const seed: SeedFile = {
         directAnswer:
           'BPC-157 has accelerated tendon and ligament healing in rat and cell studies, but no controlled human trial has tested whether it speeds tendon recovery in people.',
         measuredFinding:
-          'In rats, BPC-157 improved biomechanical strength and histological healing of injured ligaments and detached Achilles tendons compared to untreated controls. In cultured rat tendon fibroblasts and tendon explants, BPC-157 increased cell outgrowth, survival under oxidative stress, and migration through activation of the FAK-paxillin signaling pathway. Separately, in human vascular endothelial cells and in a rat hind-limb ischemia model, BPC-157 increased VEGFR2 receptor expression and activated the VEGFR2-Akt-eNOS pathway, increasing new blood vessel formation and blood-flow recovery.',
+          'In rats, BPC-157 improved biomechanical strength and histological healing of injured ligaments and detached Achilles tendons compared to untreated controls. In cultured rat tendon fibroblasts and tendon explants, it increased cell outgrowth, survival under oxidative stress, and migration through activation of the FAK-paxillin signaling pathway.',
         inference:
-          'These cell- and animal-level mechanisms are consistent with a plausible tendon-healing effect in humans, but that inference has not been tested in a controlled human trial and may not translate directly, given species differences in tendon biology, injury type, dosing, and route of administration.',
+          'These cell- and animal-level mechanisms are consistent with a plausible tendon-healing effect in humans, but no controlled human trial has tested that inference. The effect may not translate directly, given species differences in tendon biology, injury type, dosing, and route of administration.',
         proofBoundaryStage: 'animal_evidence',
         proofBoundaryExplanation:
-          'Every direct measurement of a tendon- or ligament-healing outcome comes from rat injury models. The receptor- and pathway-level mechanism has additional support from isolated human and rat cell experiments, but no human study of any kind — controlled or uncontrolled — has measured tendon or ligament healing outcomes with BPC-157.',
+          'Every direct measurement of a tendon- or ligament-healing outcome comes from rat injury models. The receptor- and pathway-level mechanism also has support from isolated human and rat cell experiments. No human study, controlled or uncontrolled, has measured tendon or ligament healing outcomes with BPC-157.',
         remainingUnknown:
           'Whether BPC-157 measurably speeds tendon or ligament healing in humans, at what dose, by what route, and with what safety profile, is unknown.',
         evidenceNeededNext:
           'A registered, controlled human trial in a defined tendon or ligament injury (e.g., surgically repaired Achilles tendon) with objective structural or functional endpoints, not self-reported symptom relief.',
         mechanismSummary:
-          'Proposed mechanism: BPC-157 upregulates VEGFR2 receptor signaling (Akt-eNOS pathway) and activates FAK-paxillin signaling in tendon fibroblasts — both measured directly in cell and animal experiments — which is proposed to drive new blood vessel formation and fibroblast migration at an injury site.',
+          'BPC-157 upregulates VEGFR2 receptor signaling (Akt-eNOS pathway) and activates FAK-paxillin signaling in tendon fibroblasts, both measured directly in cell and animal experiments. Those steps are proposed to drive new blood vessel formation and fibroblast migration at an injury site.',
         outcomeSummary:
           'Claimed outcome, not yet tested in a controlled human trial: faster, more complete recovery from tendon and ligament injuries in people.',
         displayPriority: 1,
@@ -96,7 +96,7 @@ const seed: SeedFile = {
             plainLanguageExplanation:
               'Once triggered, the receptor sets off a chain of internal cell signals (Akt-eNOS) linked to new blood-vessel growth. In tendon cells specifically, a separate internal signal (FAK-paxillin) helps the cells move and spread — both measured directly in cell experiments.',
             evidenceContext:
-              'Akt-eNOS activation was measured in vitro and blocked by an endocytosis inhibitor, confirming the pathway (Hsieh et al. 2017). FAK-paxillin phosphorylation was measured by Western blot in cultured rat tendon fibroblasts (Chang et al. 2011).',
+              'Akt-eNOS activation measured in vitro, blocked by an endocytosis inhibitor (Hsieh et al. 2017). FAK-paxillin phosphorylation measured by Western blot in rat tendon fibroblasts (Chang et al. 2011).',
             status: 'measured',
             sourceLinks: [
               'https://pubmed.ncbi.nlm.nih.gov/27847966/',
@@ -110,7 +110,7 @@ const seed: SeedFile = {
             plainLanguageExplanation:
               'These signals are linked to tendon-repair cells moving into an injury site, surviving stress better, and new blood vessels forming to supply the healing tissue — measured in living rat injury models, not just isolated cells.',
             evidenceContext:
-              'Measured in a rat hind-limb ischemia model (increased vessel density, faster blood-flow recovery — Hsieh et al. 2017) and in rat ligament and Achilles tendon injury models showing improved biomechanical and histological healing (Cerovecki et al. 2010).',
+              'Rat hind-limb ischemia: increased vessel density, faster blood-flow recovery (Hsieh et al. 2017). Rat ligament and Achilles tendon injury: improved histology and strength (Cerovecki et al. 2010).',
             status: 'measured',
             sourceLinks: [
               'https://pubmed.ncbi.nlm.nih.gov/27847966/',
@@ -123,7 +123,7 @@ const seed: SeedFile = {
             plainLanguageExplanation:
               'This is the outcome marketed to consumers: that these cell- and animal-level effects translate into people recovering from tendon and ligament injuries faster. That final step has not been directly measured in a controlled human trial.',
             evidenceContext:
-              'No controlled human trial has tested this outcome. It is inferred by extrapolating from rat and cell-culture findings; a 2025 systematic review of the orthopedic literature found only 1 clinical study (an uncontrolled case series) among 36 included studies, none testing tendon healing directly.',
+              'No controlled human trial has tested this outcome. A 2025 systematic review of 36 included studies found 1 clinical study — an uncontrolled case series, not tendon-specific.',
             status: 'inferred',
             sourceLinks: ['https://pubmed.ncbi.nlm.nih.gov/40756949/'],
           },
@@ -195,9 +195,9 @@ const seed: SeedFile = {
         directAnswer:
           'In rat models of intestinal injury and short-bowel syndrome, BPC-157 improved gut healing, but this has not been tested in any human clinical trial for a gut condition.',
         measuredFinding:
-          'In rats, BPC-157 improved bursting pressure and histological healing after surgical intestinal anastomosis (a segment of bowel rejoined after resection), and reduced gastrointestinal, liver, and brain injury severity in a 24-hour short-bowel rat model, including when injury was worsened by an NSAID (diclofenac).',
+          'In rats, BPC-157 improved bursting pressure and histological healing after surgical intestinal anastomosis (a segment of bowel rejoined after resection). In a 24-hour short-bowel rat model, it reduced gastrointestinal, liver, and brain injury severity, including when injury was worsened by an NSAID (diclofenac).',
         inference:
-          'These findings suggest a biologically plausible gut-protective and healing effect that researchers have proposed could extend to human inflammatory bowel conditions, but that has not been tested in people — an earlier company-run human trial program for inflammatory bowel disease was registered but never published results (see the human-testing claim).',
+          'These findings suggest a plausible gut-protective and healing effect that researchers have proposed could extend to human inflammatory bowel conditions. It has not been tested in people: a company-run human trial program in inflammatory bowel disease was registered but never published results.',
         proofBoundaryStage: 'animal_evidence',
         proofBoundaryExplanation:
           'All direct evidence of gut-healing effects comes from rat surgical and injury models. No human study — controlled or uncontrolled — has tested BPC-157 for gut healing, inflammatory bowel disease, ulcers, or "leaky gut."',
@@ -230,16 +230,16 @@ const seed: SeedFile = {
         claimType: 'safety',
         consumerQuestion: 'Is BPC-157 safe to use?',
         directAnswer:
-          'Animal studies and one 2-person uncontrolled human pilot found no measured harm at the doses tested, but that falls well short of the controlled safety testing normally required before a substance is considered established as safe for human use.',
+          'Animal studies and one 2-person uncontrolled human pilot found no measured harm at the doses tested, but that falls far short of the controlled safety testing normally required to establish a substance as safe for human use.',
         measuredFinding:
           'BPC-157 has been reported as non-toxic across the dose ranges used in the rat healing studies cited elsewhere in this entry. In the one identified human interventional safety study, intravenous infusion of up to 20 mg of BPC-157 in 2 healthy adults produced no measurable change in cardiac, hepatic, renal, thyroid, or glucose biomarkers over 3 days.',
         inference:
-          'Absence of measured harm in a 2-person, 3-day pilot and in animal studies is not equivalent to an established human safety profile. Detecting less common or delayed adverse effects — including the immunogenicity risk FDA has specifically flagged for injectable peptide products — would require larger, longer, and controlled human studies.',
+          'Absence of measured harm in a 2-person, 3-day pilot and in animal studies does not establish a human safety profile. Detecting less common or delayed adverse effects, including the immunogenicity risk FDA flagged for injectable peptide products, requires larger, longer, controlled human studies.',
         proofBoundaryStage: 'uncontrolled_human_intervention',
         proofBoundaryExplanation:
           'The only human interventional safety data identified is a single uncontrolled pilot study in 2 people. A 2025 systematic review of the wider literature found no other human clinical safety data. This is genuine human evidence, but it is uncontrolled and far too small to establish a safety profile.',
         remainingUnknown:
-          'Long-term safety; safety at the doses and routes people actually use (BPC-157 is most commonly reported as injected subcutaneously by users, a route the published IV pilot did not test); immunogenicity risk; and drug interactions are all unknown in humans.',
+          'Long-term safety, immunogenicity risk, and drug interactions are all unknown in humans. So is safety at the doses and routes people use: BPC-157 is most commonly reported as injected subcutaneously by users, a route the published IV pilot did not test.',
         evidenceNeededNext:
           'Controlled human safety studies at realistic doses and routes of use, including immunogenicity testing and longer follow-up — the kind of evidence FDA reviewers have themselves said does not yet exist.',
         displayPriority: 3,
@@ -281,9 +281,9 @@ const seed: SeedFile = {
         claimType: 'effectiveness',
         consumerQuestion: 'Has BPC-157 actually been tested in human clinical trials?',
         directAnswer:
-          'A Phase I human safety trial was registered in 2015 but never published results, and as of this writing no randomized, controlled human trial of BPC-157 has published results for any condition.',
+          'A Phase I human safety trial was registered in 2015 but never published results, and as of August 18, 2026 no randomized, controlled human trial of BPC-157 has published results for any condition.',
         measuredFinding:
-          'A registered Phase I trial (NCT02637284, 42 healthy volunteers, sponsored by PharmaCotherapia) was designed to assess BPC-157\'s safety and pharmacokinetics in humans; no results have ever been posted to the public ClinicalTrials.gov registry. A 2025 systematic review that screened 544 identified articles (1993-2024) found only 36 met inclusion criteria, of which 35 were preclinical and just 1 was clinical — a retrospective, uncontrolled case series of 12 patients with chronic knee pain, not a controlled trial.',
+          'A Phase I trial (NCT02637284, 42 healthy volunteers, sponsor PharmaCotherapia) was registered to assess safety and pharmacokinetics. No results have ever been posted to ClinicalTrials.gov. A 2025 systematic review screened 544 articles (1993-2024) and included 36: 35 preclinical, 1 clinical. That one study was a retrospective, uncontrolled case series of 12 patients with chronic knee pain.',
         inference:
           'The near-total absence of human trial data does not mean BPC-157 fails to work in people — it means that specific claim has not been tested, which is a different, weaker evidentiary position than either "proven" or "disproven."',
         proofBoundaryStage: 'uncontrolled_human_intervention',

@@ -11,26 +11,39 @@ import { EVIDENCE_STATUS_DEFINITIONS, EVIDENCE_STATUS_LABELS, PROOF_BOUNDARY_LAB
 // here fails the deploy outright. See app/sitemap.ts for the fuller explanation.
 export const dynamic = 'force-dynamic'
 
+/**
+ * One featured claim per entity, so the front door shows the range of the site rather than three
+ * claims about whichever compound happens to carry the highest displayPriority. (It did: every
+ * featured card was rapamycin, because that seed file numbers its claims 10/20/30/40 while the
+ * others leave displayPriority at 0.)
+ *
+ * Cards carry the question and the Proof Boundary stage only — never the full answer. A card
+ * cannot hold a caveat properly, and a half-shown caveat is worse than none. See
+ * docs/writing-style.md.
+ */
 async function getFeaturedClaims() {
-  return db
+  const rows = await db
     .select({
       claimSlug: claims.slug,
       entitySlug: entities.slug,
-      entityName: entities.canonicalName,
+      entityId: entities.id,
       question: claims.consumerQuestion,
-      answer: claims.directAnswer,
       stage: claims.proofBoundaryStage,
-      lastReviewedAt: claims.lastReviewedAt,
     })
     .from(claims)
     .innerJoin(entities, eq(claims.entityId, entities.id))
     .where(eq(claims.publicationStatus, 'published'))
-    .orderBy(desc(claims.displayPriority))
-    .limit(3)
+    .orderBy(claims.displayPriority, claims.id)
+
+  // First claim per entity, in the order the query already established. Done here rather than
+  // with a window function: the corpus is small, and a SQL subquery selecting both claims.slug
+  // and entities.slug collides on the bare name "slug" unless every column is aliased by hand.
+  const seen = new Set<number>()
+  return rows.filter((r) => !seen.has(r.entityId) && seen.add(r.entityId)).slice(0, 3)
 }
 
 async function getRecentChanges() {
-  return db.select().from(evidenceChanges).orderBy(desc(evidenceChanges.publicationDate)).limit(5)
+  return db.select().from(evidenceChanges).orderBy(desc(evidenceChanges.publicationDate)).limit(3)
 }
 
 export default async function HomePage() {
@@ -38,24 +51,17 @@ export default async function HomePage() {
 
   return (
     <div className="container" style={{ paddingTop: 'var(--space-12)', paddingBottom: 'var(--space-12)' }}>
-      <section style={{ maxWidth: '38rem', margin: '0 auto', textAlign: 'center', marginBottom: 'var(--space-12)' }}>
+      <section style={{ maxWidth: '34rem', margin: '0 auto', textAlign: 'center', marginBottom: 'var(--space-12)' }}>
         <h1 style={{ fontSize: '2.4rem', marginBottom: 'var(--space-3)' }}>See where the evidence actually ends</h1>
-        <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)' }}>
-          Search a peptide, supplement, emerging medicine, or CRISPR treatment. Understand what researchers
-          measured, what people infer from it, and what remains unknown.
+        <p style={{ fontSize: '1.05rem', color: 'var(--color-text-muted)', marginBottom: 'var(--space-6)' }}>
+          What researchers measured, what people infer from it, and what is still unknown.
         </p>
         <SearchBox />
-        <p style={{ marginTop: 'var(--space-3)', fontSize: '0.85rem', color: 'var(--color-text-faint)' }}>
-          Try: BPC-157 · Does this peptide heal tendons? · How does Casgevy work?
-        </p>
       </section>
 
       {featured.length > 0 && (
         <section style={{ marginBottom: 'var(--space-12)' }}>
-          <h2 style={{ fontSize: '1.2rem', textAlign: 'center', marginBottom: 'var(--space-6)' }}>
-            Featured Proof Boundaries
-          </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'var(--space-4)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: 'var(--space-4)' }}>
             {featured.map((f) => (
               <Link
                 key={`${f.entitySlug}-${f.claimSlug}`}
@@ -70,68 +76,50 @@ export default async function HomePage() {
                   background: 'var(--color-surface)',
                 }}
               >
-                <p style={{ fontWeight: 600, margin: '0 0 var(--space-2)' }}>{f.question}</p>
+                <p style={{ fontWeight: 600, margin: '0 0 var(--space-3)' }}>{f.question}</p>
                 <p
                   style={{
-                    fontSize: '0.78rem',
+                    fontSize: '0.75rem',
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.03em',
                     color: 'var(--color-accent-strong)',
-                    margin: '0 0 var(--space-2)',
+                    margin: 0,
                   }}
                 >
-                  Proof Boundary — {PROOF_BOUNDARY_LABELS[f.stage]}
+                  {PROOF_BOUNDARY_LABELS[f.stage]}
                 </p>
-                <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--color-text-muted)' }}>{f.answer}</p>
-                {f.lastReviewedAt && (
-                  <p style={{ margin: 'var(--space-2) 0 0', fontSize: '0.78rem', color: 'var(--color-text-faint)' }}>
-                    Reviewed {f.lastReviewedAt.toISOString().slice(0, 10)}
-                  </p>
-                )}
               </Link>
             ))}
           </div>
         </section>
       )}
 
-      <section style={{ maxWidth: '44rem', margin: '0 auto', marginBottom: 'var(--space-12)' }}>
-        <h2 style={{ fontSize: '1.2rem', textAlign: 'center', marginBottom: 'var(--space-6)' }}>
-          Measured. Inferred. Unknown.
-        </h2>
-        <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
+      <section style={{ maxWidth: '40rem', margin: '0 auto', marginBottom: 'var(--space-12)' }}>
+        <dl style={{ display: 'grid', gap: 'var(--space-3)', margin: 0 }}>
           {(['measured', 'inferred', 'unknown'] as const).map((status) => (
-            <div key={status}>
-              <p style={{ fontWeight: 700, margin: '0 0 var(--space-1)' }}>{EVIDENCE_STATUS_LABELS[status]}</p>
-              <p style={{ margin: 0, color: 'var(--color-text-muted)' }}>{EVIDENCE_STATUS_DEFINITIONS[status]}</p>
+            <div key={status} style={{ display: 'flex', gap: 'var(--space-3)', alignItems: 'baseline' }}>
+              <dt style={{ fontWeight: 700, minWidth: '5.5rem' }}>{EVIDENCE_STATUS_LABELS[status]}</dt>
+              <dd style={{ margin: 0, color: 'var(--color-text-muted)' }}>{EVIDENCE_STATUS_DEFINITIONS[status]}</dd>
             </div>
           ))}
-        </div>
-      </section>
-
-      <section style={{ textAlign: 'center', marginBottom: 'var(--space-12)' }}>
-        <p style={{ margin: 0, fontSize: '1.05rem' }}>PubMed helps you find the paper.</p>
-        <p style={{ margin: 0, fontSize: '1.05rem', fontWeight: 600 }}>
-          RNAwiki helps you understand how far its findings can be taken.
-        </p>
+        </dl>
       </section>
 
       {recentChanges.length > 0 && (
-        <section style={{ maxWidth: '44rem', margin: '0 auto' }}>
-          <h2 style={{ fontSize: '1.2rem', marginBottom: 'var(--space-4)' }}>Recent evidence changes</h2>
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--space-3)' }}>
+        <section style={{ maxWidth: '40rem', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--color-text-faint)' }}>
+            Evidence changes
+          </h2>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--space-2)' }}>
             {recentChanges.map((c) => (
-              <li key={c.id} style={{ borderLeft: '3px solid var(--color-border-strong)', paddingLeft: 'var(--space-3)' }}>
-                <p style={{ margin: 0 }}>{c.explanation}</p>
-                <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--color-text-faint)' }}>
-                  {c.publicationDate.toISOString().slice(0, 10)}
-                </p>
+              <li key={c.id} style={{ fontSize: '0.92rem' }}>
+                <Link href="/updates" style={{ color: 'inherit' }}>
+                  {c.explanation}
+                </Link>
               </li>
             ))}
           </ul>
-          <p style={{ marginTop: 'var(--space-3)' }}>
-            <Link href="/updates">All evidence updates →</Link>
-          </p>
         </section>
       )}
     </div>

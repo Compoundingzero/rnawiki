@@ -60,10 +60,10 @@ const seed: SeedFile = {
     shortDescription:
       'An FDA-, MHRA-, and EU-approved one-time CRISPR-Cas9 gene-edited cell therapy for sickle cell disease and transfusion-dependent beta-thalassemia.',
     bottomLine:
-      "Casgevy is a real, regulator-approved CRISPR-Cas9 gene therapy for sickle cell disease and transfusion-dependent beta-thalassemia — but 'approved' here means a single infusion of a patient's own lab-edited stem cells, given only after chemotherapy clears out their existing bone marrow and only after weeks in hospital, not a prescription filled at a pharmacy.",
+      "Casgevy is an approved CRISPR-Cas9 gene therapy for sickle cell disease and transfusion-dependent beta-thalassemia. Treatment is one infusion of the patient's own lab-edited stem cells, given only after chemotherapy clears their existing bone marrow, and followed by weeks in hospital.",
     regulatoryCategory: 'approved_medicine',
     accessRealityNote:
-      "Casgevy is delivered only at a small network of specially accredited hospital treatment centers — it is not prescribed by an ordinary clinic. The published pathway: doctors first collect a patient's own blood stem cells by apheresis (a process that can take several days and sometimes has to be repeated), the cells are shipped out for CRISPR editing and release testing over several months, and the patient is then admitted to hospital for myeloablative chemotherapy (busulfan) that clears their existing bone marrow before the edited cells are infused back, followed by roughly 4-6 weeks of inpatient monitoring while the new cells engraft. Manufacturer materials describe the full pathway, from first evaluation to infusion, as typically taking close to a year. Vertex set a U.S. list price of $2.2 million per patient at launch. Even with FDA approval in place since December 2023, real-world uptake has been slow: Vertex reported that only 64 patients worldwide had actually completed their edited-cell infusion by the end of 2025 (against roughly 301 who started the process that year), and the company has pointed to the conditioning chemotherapy itself — which carries a real risk of infertility — as one reason some eligible patients decline or delay treatment. None of this is a reason to doubt that Casgevy is genuinely approved; it is the practical reality of what that approval currently requires logistically, for this specific product.",
+      "Casgevy is given only at a few accredited hospital treatment centers, not by an ordinary clinic. Doctors collect the patient's own blood stem cells by apheresis, then ship them out for CRISPR editing and release testing over several months. The patient is then admitted for myeloablative busulfan chemotherapy that clears their bone marrow, the edited cells are infused, and 4-6 weeks of inpatient monitoring follows while they engraft. Vertex puts the full pathway at close to a year and set a U.S. list price of $2.2 million. By the end of 2025, 64 patients worldwide had completed infusion, of roughly 301 who started that year; Vertex cited conditioning-related infertility risk as a deterrent.",
     regulatoryStatuses: [
       {
         jurisdiction: 'United States — FDA',
@@ -104,16 +104,16 @@ const seed: SeedFile = {
         claimType: 'regulatory',
         consumerQuestion: 'Is Casgevy actually approved, or is it still experimental?',
         directAnswer:
-          "Casgevy is genuinely approved — by the FDA (first indication Dec 8, 2023), the UK MHRA (Nov 16, 2023, the world's first CRISPR therapy authorization), and the European Commission (Feb 2024) — for sickle cell disease with recurrent vaso-occlusive crises and for transfusion-dependent beta-thalassemia, though each approval reflects only the roughly 1.5-2 years of trial follow-up available at the time of review, not decades of real-world experience.",
+          'Casgevy is approved by the FDA, MHRA and the European Commission for sickle cell disease with recurrent vaso-occlusive crises and transfusion-dependent beta-thalassemia. Approval rests on about 1.5-2 years of trial follow-up, not decades.',
         measuredFinding:
-          "Regulatory approval is itself a directly verifiable fact, not an inference: FDA approval is confirmed by the DailyMed-hosted, FDA-approved prescribing information for BLA 125785; the MHRA and European Commission approvals are confirmed via the sponsor's regulatory announcements naming the specific authorization dates and the conditional status of the EU authorization. On July 1, 2026 the FDA additionally expanded both U.S. indications from ages 12+ down to ages 2+.",
+          "FDA approval is documented in the DailyMed-hosted, FDA-approved prescribing information for BLA 125785. The MHRA and European Commission approvals are documented in the sponsor's regulatory announcements, which name the authorization dates and the conditional status of the EU authorization. On July 1, 2026 the FDA expanded both U.S. indications from ages 12+ down to ages 2+.",
         inference:
-          "Approval means an independent regulator judged the measured benefit-risk balance favorable enough to authorize marketing for a defined population — it is not evidence that every possible long-term risk has been ruled out. The FDA's own mandatory 15-year follow-up study (NCT04208529) for new malignancies makes that distinction explicit.",
+          'Approval means a regulator judged the measured benefit-risk balance favorable enough to authorize marketing for a defined population. It is not evidence that every long-term risk has been ruled out: the FDA mandated a 15-year follow-up study (NCT04208529) tracking new malignancies.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          'This is the strongest evidence category the Proof Boundary tracks: an independent regulator (in this case three separate ones) reviewed the underlying trial data and authorized the product for a named use. That is a materially different, higher bar than a single published trial result on its own.',
+          'This is the strongest evidence category the Proof Boundary tracks: an independent regulator (in this case three separate ones) reviewed the underlying trial data and authorized the product for a named use. That is a higher bar than a single published trial result on its own.',
         remainingUnknown:
-          "The EU/UK indications additionally specify the therapy is intended only for patients for whom stem cell transplantation is appropriate and no HLA-matched related donor is available — approval scope and exact eligibility criteria differ by jurisdiction and are narrower than 'approved for sickle cell disease' suggests in isolation. The 2026 U.S. expansion down to age 2 also relied on a much smaller supporting pediatric cohort (reported in trade press as roughly 11 sickle cell and 15 beta-thalassemia patients aged 5 to under 12) than the original approvals, with correspondingly less accumulated follow-up in that younger age group.",
+          'Eligibility differs by jurisdiction and is narrower in the EU and UK. The 2026 U.S. expansion to age 2 rested on a smaller pediatric cohort — trade press reported roughly 11 sickle cell and 15 beta-thalassemia patients aged 5 to under 12 — with less follow-up.',
         evidenceNeededNext:
           'Continued post-marketing surveillance and any resulting label changes (new warnings, further age-range or eligibility changes) as real-world use and the 15-year follow-up study accumulate more data, particularly in the newly-approved youngest patients.',
         displayPriority: 1,
@@ -179,16 +179,16 @@ const seed: SeedFile = {
         claimType: 'mechanism',
         consumerQuestion: 'How does Casgevy actually work?',
         directAnswer:
-          "Casgevy removes a patient's own blood stem cells, uses CRISPR-Cas9 to disable a genetic switch (the BCL11A erythroid-specific enhancer) that normally shuts off fetal hemoglobin production after infancy, and returns the edited cells to the patient — reactivating fetal hemoglobin as an adult, which is the directly measured basis for the treatment's effect, though the edit's stability over a full lifetime, beyond the roughly two years patients have so far been followed, cannot yet have been directly observed.",
+          "Casgevy uses CRISPR-Cas9 to disable the BCL11A enhancer in a patient's own blood stem cells, switching fetal hemoglobin back on. The edited cells are infused back; durability past about two years is unmeasured.",
         measuredFinding:
-          "CRISPR-Cas9 editing of the BCL11A enhancer was measured directly in each patient's manufactured cell product before release, and fetal hemoglobin (HbF) rose to a substantial, sustained share of total hemoglobin after engraftment in essentially all treated patients across both pivotal trials, as documented in the FDA-approved prescribing information and the NEJM trial publications.",
+          "Editing of the BCL11A enhancer was measured directly in each patient's manufactured cell product before release. After engraftment, fetal hemoglobin (HbF) rose to a substantial, sustained share of total hemoglobin in essentially all treated patients across both pivotal trials, per the FDA-approved label and the NEJM publications.",
         inference:
-          "That the edit persists and keeps producing fetal hemoglobin for the remainder of a patient's life — not just the ~1.5-2 years of published trial follow-up — is the working assumption behind calling this a durable, one-time treatment. It has not been, and by definition cannot yet have been, directly measured over a full lifetime.",
+          "Calling this a durable, one-time treatment assumes the edit persists and keeps producing fetal hemoglobin for the rest of a patient's life. Published follow-up runs about 1.5-2 years, so lifetime durability has not been measured and by definition cannot yet have been.",
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          'This mechanism is not a laboratory hypothesis extrapolated from animal or cell models alone: it is the measured basis on which the FDA, MHRA, and European Commission approved the product, verified in trial patients by directly measuring edited-allele frequency in the cell product and fetal hemoglobin levels in blood after infusion.',
+          'This mechanism is the measured basis on which the FDA, MHRA, and European Commission approved the product, not a hypothesis extrapolated from animal or cell models. It was verified in trial patients by measuring edited-allele frequency in the cell product and fetal hemoglobin in blood after infusion.',
         remainingUnknown:
-          "The FDA-approved label itself states that off-target genome editing 'cannot be ruled out,' despite a structured screen (computational off-target prediction plus GUIDE-seq and targeted deep sequencing) finding no confirmed off-target edits at the loci tested — a stated limit of the measurement, not a finding of harm.",
+          "A screen with computational prediction, GUIDE-seq and targeted deep sequencing found no confirmed off-target edits at the loci tested. The FDA-approved label states that off-target editing 'cannot be ruled out' — a limit of measurement, not a finding of harm.",
         evidenceNeededNext:
           'Continued clonal-tracking and safety data from the mandatory 15-year long-term follow-up study (NCT04208529) to confirm the edit and its effect remain stable over time, and that no delayed off-target consequence emerges.',
         mechanismSummary:
@@ -209,9 +209,9 @@ const seed: SeedFile = {
             displayOrder: 2,
             technicalLabel: 'Disruption of the BCL11A erythroid-specific enhancer',
             plainLanguageExplanation:
-              "The edit targets a specific DNA switch (enhancer) that normally turns the BCL11A gene on only in developing red blood cells — disabling that switch, rather than the whole BCL11A gene everywhere in the body, is what keeps the edit's effect confined to red blood cell development.",
+              'The edit targets a DNA switch (enhancer) that normally turns the BCL11A gene on only in developing red blood cells. Disabling that switch, rather than the whole BCL11A gene everywhere in the body, keeps the effect confined to red blood cell development.',
             evidenceContext:
-              "Confirmed by sequencing of the edited cell product and, downstream, by reduced BCL11A expression measured in erythroid-differentiated cells from treated patients, as reported in the FDA label and the NEJM trial publications.",
+              'Confirmed by sequencing of the edited cell product and by reduced BCL11A expression measured in erythroid-differentiated cells from treated patients, per the FDA label and NEJM publications.',
             status: 'measured',
             sourceLinks: [
               'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7c3e12ad-e2fe-4d3f-a630-ea7364d9e846',
@@ -243,9 +243,9 @@ const seed: SeedFile = {
             technicalLabel:
               'Reduced sickling (in SCD) or corrected globin-chain imbalance (in TDT), and fewer clinical events',
             plainLanguageExplanation:
-              "In sickle cell disease, the added fetal hemoglobin dilutes and interferes with sickle hemoglobin's ability to clump together, which is what causes red cells to sickle and block blood vessels. In beta-thalassemia, it helps rebalance the ratio of globin chains that was driving red-cell destruction. In both diseases, this is measured clinically as fewer vaso-occlusive crises or freedom from transfusions.",
+              'In sickle cell disease, added fetal hemoglobin dilutes sickle hemoglobin and hinders its clumping, the cause of sickling and blocked vessels. In beta-thalassemia, it helps rebalance globin chains driving red-cell destruction. Clinically: fewer vaso-occlusive crises or freedom from transfusions.',
             evidenceContext:
-              'The clinical endpoints in both trials — freedom from vaso-occlusive crises (SCD) and transfusion independence (TDT) — were the directly measured, pre-specified primary outcomes that the FDA reviewed for approval.',
+              'Freedom from vaso-occlusive crises (SCD) and transfusion independence (TDT) were the directly measured, pre-specified primary outcomes the FDA reviewed for approval.',
             status: 'measured',
             sourceLinks: ['https://doi.org/10.1056/NEJMoa2309676', 'https://doi.org/10.1056/NEJMoa2309673'],
           },
@@ -290,16 +290,16 @@ const seed: SeedFile = {
         claimType: 'effectiveness',
         consumerQuestion: 'Does Casgevy reduce vaso-occlusive crises in sickle cell disease?',
         directAnswer:
-          'In the pivotal trial, 29 of the 30 patients with severe sickle cell disease who had enough follow-up time to be evaluated (96.7%) were completely free of vaso-occlusive crises for at least 12 consecutive months after treatment, though this comes from a small, single-arm trial with a median of about 19 months of follow-up and no control group.',
+          'In the pivotal trial, 29 of 30 evaluable patients with severe sickle cell disease (96.7%) went at least 12 consecutive months with no vaso-occlusive crisis, in a single-arm trial with no control group.',
         measuredFinding:
-          'Among 44 patients who received an exa-cel infusion in the CLIMB SCD-121 trial (NCT03745287), 30 had sufficient follow-up for the primary endpoint at the time of the published analysis; 29 of those 30 (96.7%) were free of vaso-occlusive crises for at least 12 consecutive months, with a median follow-up of about 19.3 months. The safety profile was consistent with myeloablative stem-cell transplantation generally, and no treatment-related malignancies were reported (Frangoul et al., NEJM 2024).',
+          'In CLIMB SCD-121 (NCT03745287), 44 patients received exa-cel; 30 had enough follow-up for the primary endpoint at that data cut. 29 of them (96.7%) were free of vaso-occlusive crises for at least 12 consecutive months, median follow-up ~19.3 months. Safety was consistent with myeloablative stem-cell transplantation, with no treatment-related malignancies reported (Frangoul et al., NEJM 2024).',
         inference:
-          "That this benefit lasts a full lifetime, or generalizes beyond the trial's fairly narrow eligibility window (ages 12-35, at least two severe crises per year, specific genotype and transplant-eligibility criteria), is inferred from a single uncontrolled trial and from the mechanism above — it has not been measured over decades or in a broader real-world population yet.",
+          'Trial eligibility was narrow: ages 12-35, at least two severe crises a year, plus genotype and transplant-eligibility criteria. That the benefit lasts a lifetime or generalizes beyond that window is inferred from one uncontrolled trial and the mechanism, not measured over decades or in wider use.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          'This is the exact endpoint (freedom from vaso-occlusive crises for 12+ consecutive months) that the FDA reviewed and accepted as the basis for approval, which elevates it beyond a single company-run trial result to an independently reviewed regulatory finding — but the underlying trial itself remains single-arm, unblinded, and industry-sponsored, with no independent replication cohort.',
+          'The FDA reviewed and accepted this exact endpoint — freedom from vaso-occlusive crises for 12+ consecutive months — as the basis for approval, which puts it above a single company-run trial result. The trial itself is still single-arm, unblinded, and industry-sponsored, with no independent replication cohort.',
         remainingUnknown:
-          "Whether the crisis-free effect persists indefinitely, whether it holds up in patients outside the trial's eligibility window, and the true long-term risk of blood cancers from the combination of busulfan conditioning and gene editing are not yet established — which is exactly why the FDA required a 15-year observational follow-up study tracking new malignancies.",
+          'Whether the crisis-free effect persists indefinitely, whether it holds outside trial eligibility, and long-term blood-cancer risk from busulfan conditioning plus gene editing are unknown. That is why the FDA required a 15-year study tracking new malignancies.',
         evidenceNeededNext:
           'Longer follow-up from the mandatory 15-year study (NCT04208529), and post-marketing real-world outcome data as more of the authorized U.S. treatment centers dose patients outside the original trial.',
         outcomeSummary: '96.7% (29 of 30 evaluable patients) free of vaso-occlusive crises for 12+ months in the pivotal trial.',
@@ -335,14 +335,14 @@ const seed: SeedFile = {
         claimType: 'effectiveness',
         consumerQuestion: 'Does Casgevy work for transfusion-dependent beta-thalassemia?',
         directAnswer:
-          'In the pivotal trial, 39 of 42 evaluable patients with transfusion-dependent beta-thalassemia (92.9%) went at least 12 consecutive months without needing a red blood cell transfusion after treatment, though — as with the sickle cell data — this comes from a single-arm trial with under two years of average follow-up and real, measured chemotherapy-related side effects.',
+          'In the pivotal trial, 39 of 42 evaluable patients (92.9%) went at least 12 consecutive months without a red blood cell transfusion, in a single-arm trial that also measured chemotherapy-related side effects.',
         measuredFinding:
-          'In the CLIMB THAL-111 trial (NCT03655678), 42 treated patients had sufficient follow-up for the primary endpoint; 39 of them (92.9%, 95% CI 80.5-98.5%) achieved transfusion independence for 12 or more consecutive months, with a mean follow-up around 19.2 months. Reported adverse events included febrile neutropenia (61.1%), mucositis/stomatitis (51.9%), and hepatic veno-occlusive disease in 5 patients (8.5%); no treatment-related deaths or malignancies were reported as of that data cut (Locatelli et al., NEJM 2024).',
+          'In CLIMB THAL-111 (NCT03655678), 39 of 42 evaluable patients (92.9%, 95% CI 80.5-98.5%) achieved transfusion independence for 12+ consecutive months, mean follow-up ~19.2 months. Adverse events: febrile neutropenia (61.1%), mucositis/stomatitis (51.9%), hepatic veno-occlusive disease in 5 patients (8.5%). No treatment-related deaths or malignancies at that data cut (Locatelli et al., NEJM 2024).',
         inference:
-          "That transfusion independence is permanent, or that the safety profile stays this favorable over decades, is inferred rather than measured — the reported adverse events reflect the conditioning chemotherapy and transplant process as much as the gene edit itself, and are only tracked out to 24 months in the primary publication.",
+          'That transfusion independence is permanent, or that the safety profile holds over decades, is inferred, not measured. The reported adverse events reflect the conditioning chemotherapy and transplant process as much as the edit itself, and are tracked only to 24 months in the primary publication.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          "FDA approval for this indication (granted January 16, 2024) was based directly on this trial's transfusion-independence endpoint, so it counts as regulatory evidence rather than an internal industry finding alone — but the underlying study is still a single, unblinded, sponsor-run trial in 59 enrolled patients.",
+          "FDA approval for this indication, granted January 16, 2024, rested directly on this trial's transfusion-independence endpoint, which makes it regulatory evidence rather than an industry finding alone. The study is still a single, unblinded, sponsor-run trial in 59 enrolled patients.",
         remainingUnknown:
           'Long-term durability of transfusion independence beyond the ~2 years of published follow-up, and the true incidence of rare, delayed complications (including malignancy) from myeloablative conditioning combined with gene editing, are not yet known.',
         evidenceNeededNext:
@@ -380,16 +380,16 @@ const seed: SeedFile = {
         claimType: 'access',
         consumerQuestion: 'What does actually getting treated with Casgevy involve?',
         directAnswer:
-          'Casgevy is not a drug a patient takes — it is a one-time hospital procedure: doctors first collect the patient\'s own stem cells, send them off for CRISPR editing over several months, then admit the patient to hospital for chemotherapy that clears their existing bone marrow before infusing the edited cells back, with roughly 4-6 weeks of inpatient recovery around that infusion.',
+          "Casgevy is a one-time hospital procedure: the patient's own stem cells are collected, CRISPR-edited over several months, then infused back after chemotherapy clears their bone marrow, followed by roughly 4-6 weeks in hospital.",
         measuredFinding:
-          'FDA-approved prescribing information and manufacturer treatment-journey materials describe: blood stem cell mobilization and apheresis collection (potentially repeated over several days), several months of ex vivo cell manufacturing and release testing, inpatient myeloablative conditioning with busulfan chemotherapy, then infusion followed by monitored hospitalization (commonly described as about 4-6 weeks) until neutrophil and platelet engraftment. Vertex has stated the overall pathway, from starting evaluation to infusion, typically takes close to 12 months, and set a U.S. list price of $2.2 million per patient at launch. Casgevy\'s own label does not carry the boxed warning for hematologic malignancy that a different, lentiviral-vector sickle cell gene therapy (Lyfgenia) approved the same day does — no malignancies were reported in Casgevy\'s own pivotal trials, though monitoring continues via the 15-year follow-up study.',
+          'The FDA-approved label and manufacturer materials describe stem cell mobilization and apheresis collection, which can run several days and may be repeated, then several months of ex vivo manufacturing and release testing. The patient is then admitted for myeloablative busulfan conditioning, infused with the edited cells, and hospitalized about 4-6 weeks until neutrophil and platelet engraftment.',
         inference:
-          "That every eligible patient can readily access this pathway is not what FDA approval itself establishes — access depends on proximity to one of a small number of accredited treatment centers, insurer/payer approval of a multi-million-dollar one-time therapy, and a patient's willingness to accept chemotherapy-conditioning risks, including infertility.",
+          'FDA approval does not establish that every eligible patient can reach this pathway. Access depends on proximity to a small number of accredited treatment centers, payer approval of a multi-million-dollar therapy, and willingness to accept conditioning-chemotherapy risks, including infertility.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          "The process described here is drawn directly from the FDA-approved label and the manufacturer's own patient/HCP materials for an approved product, not from speculation about how the treatment might be delivered.",
+          "The process here comes from the FDA-approved label and the manufacturer's patient and HCP materials for an approved product, not from speculation. Casgevy's label carries no boxed warning for hematologic malignancy; Lyfgenia, a different lentiviral-vector sickle cell gene therapy approved the same day, does.",
         remainingUnknown:
-          'Real-world uptake so far has been small relative to the eligible population: Vertex reported that only 64 patients worldwide had completed dosing by the end of 2025, against an estimated tens of thousands of patients potentially eligible across the U.S. and EU combined. How uptake, real-world engraftment outcomes, and complication rates will look as more treatment centers scale up is not yet established.',
+          'Vertex reported 64 patients dosed worldwide by the end of 2025, against tens of thousands estimated eligible across the U.S. and EU. How uptake, real-world engraftment outcomes, and complication rates look as more centers scale up is not yet established.',
         evidenceNeededNext:
           'Post-marketing real-world outcomes data (engraftment success rate, serious adverse event rate, time-to-infusion) as more centers and more patients are treated outside the original trials.',
         displayPriority: 5,

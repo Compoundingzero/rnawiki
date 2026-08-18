@@ -21,21 +21,21 @@ export const metadata: Metadata = {
 // are imported from lib/evidence.ts above and must never be redeclared or reworded here.
 const STAGE_EXPLANATIONS: Record<ProofBoundaryStage, string> = {
   biological_rationale_only:
-    'A plausible mechanism has been proposed — for example, how a molecule might interact with a known receptor or pathway — but it has not yet been tested in cells, animals, or people.',
+    'A mechanism has been proposed — how a molecule might act on a known receptor or pathway — but not tested in cells, animals, or people.',
   isolated_cell_evidence:
-    'An effect has been observed in cells in a dish (in vitro). This can show a mechanism is biologically active on isolated cells under laboratory conditions. It does not show the same thing happens inside a living body.',
+    'An effect was observed in cells in a dish. That shows the mechanism is active on isolated cells under laboratory conditions, not that the same happens inside a living body.',
   animal_evidence:
-    'An effect has been observed in a whole living animal. This is a step closer to a working biological system than a cell study, but animal physiology differs from human physiology in ways that regularly cause effects seen in animals not to reproduce in people.',
+    'An effect was observed in a living animal. Closer to a working biological system than a cell study, but animal physiology differs from human physiology in ways that regularly stop such effects reproducing in people.',
   observational_human_evidence:
-    'Researchers found a pattern or association in human data — for example, comparing people who already happened to use something with people who did not. No one assigned who received what, so the comparison can be confounded by other differences between the groups. Association is not the same as cause.',
+    'A pattern was found in human data, comparing people who already used something against people who did not. Nobody assigned who received what, so other differences between the groups can explain the result. Association is not cause.',
   uncontrolled_human_intervention:
-    'People were deliberately given the treatment as part of a study and outcomes were measured, but without a comparison group. Without knowing what would have happened anyway, it is hard to say how much of the outcome the treatment caused.',
+    'People were given the treatment and outcomes were measured, with no comparison group. Without knowing what would have happened anyway, how much the treatment caused is unclear.',
   controlled_human_evidence:
-    'A study compared people who received the treatment against a comparison group (such as a placebo or standard care), which allows the result to be attributed to the treatment with more confidence than an uncontrolled study or an observation.',
+    'A study compared people who received the treatment against a control group, such as placebo or standard care. That attributes the result to the treatment more confidently than an observation or an uncontrolled study.',
   independently_supported_controlled_human_evidence:
-    'More than one controlled human study, run by separate research groups with no shared authors or funding relationship, has found a similar result on the same question. Independent replication is one of the strongest available checks against a single study’s own errors, biases, or chance findings.',
+    'Two or more controlled human studies, run by separate groups with no shared authors or funding, found a similar result on the same question. Independent replication is the strongest available check against one study’s own errors, biases, or chance findings.',
   regulatory_evidence:
-    'A medicines regulator (such as the FDA, EMA, or Singapore’s HSA) has formally reviewed the evidence base and approved the substance for a specific use in a specific population. This is a distinct kind of evidence: an accountable regulatory decision, not simply another study.',
+    'A regulator such as the FDA, EMA, or Singapore’s HSA reviewed the evidence and approved the substance for a specific use in a specific population. That is an accountable decision, not simply another study.',
 }
 
 export default function MethodologyPage() {
@@ -43,18 +43,16 @@ export default function MethodologyPage() {
     <div className="container prose-width" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
       <header style={{ marginBottom: 'var(--space-8)' }}>
         <h1 style={{ fontSize: '2rem', marginBottom: 'var(--space-3)' }}>Methodology</h1>
-        <p style={{ fontSize: '1.1rem', color: 'var(--color-text-muted)' }}>
-          RNAwiki exists to show where research evidence actually ends, and where interpretation begins. This
-          page explains the system we use to do that, and what our editorial labels do and do not mean.
+        <p style={{ fontSize: '1.05rem', color: 'var(--color-text-muted)' }}>
+          How RNAwiki decides where evidence ends and interpretation begins.
         </p>
       </header>
 
       <section style={{ marginBottom: 'var(--space-8)' }} id="measured-inferred-unknown">
         <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>Measured, Inferred, Unknown</h2>
         <p>
-          Every mechanism step and every piece of cited evidence on RNAwiki is labeled with one of three
-          statuses. These are the only evidence-strength labels the site uses — there are no star ratings, no
-          numeric confidence scores, and no percentages invented to summarize how &ldquo;good&rdquo; the evidence is.
+          Every mechanism step and every cited source carries one of three labels. They are the only
+          evidence-strength labels on the site: no star ratings, no confidence scores, no invented percentages.
         </p>
         <dl style={{ display: 'grid', gap: 'var(--space-4)', marginTop: 'var(--space-4)' }}>
           {EVIDENCE_STATUSES.map((status) => (
@@ -73,14 +71,9 @@ export default function MethodologyPage() {
       <section style={{ marginBottom: 'var(--space-8)' }} id="proof-boundary">
         <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>The 8 Proof Boundary stages</h2>
         <p>
-          Every claim on RNAwiki is placed at one of eight stages, ordered here from the weakest kind of
-          evidence to the strongest. The Proof Boundary marks the point on this ladder that a claim has
-          actually reached &mdash; not the point people commonly assume it has reached, and not the point it
-          might reach in the future.
-        </p>
-        <p>
-          Stages 1&ndash;3 involve no human testing at all. Stages 4&ndash;8 all involve testing in people, in
-          increasingly rigorous forms.
+          Every claim sits at one of eight stages, weakest to strongest. The Proof Boundary marks the stage a
+          claim has actually reached — not the one people assume it has reached, and not the one it may reach
+          later. Stages 1&ndash;3 involve no human testing. Stages 4&ndash;8 all do.
         </p>
         <ol style={{ margin: 'var(--space-4) 0 0', padding: 0, listStyle: 'none', display: 'grid', gap: 'var(--space-4)' }}>
           {PROOF_BOUNDARY_STAGES.map((stage, i) => (
@@ -113,8 +106,8 @@ export default function MethodologyPage() {
       <section style={{ marginBottom: 'var(--space-8)' }} id="evidence-relationships">
         <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>How a source relates to a claim</h2>
         <p>
-          A claim is rarely backed by a single, uncomplicated source. Each source we cite is tagged with how it
-          actually relates to the specific claim it&rsquo;s attached to:
+          A claim is rarely backed by a single uncomplicated source. Each source is tagged with how it relates to
+          the specific claim it is attached to:
         </p>
         <dl style={{ display: 'grid', gap: 'var(--space-3)', marginTop: 'var(--space-4)' }}>
           {EVIDENCE_RELATIONSHIPS.map((rel) => (
@@ -125,32 +118,27 @@ export default function MethodologyPage() {
           ))}
         </dl>
         <p style={{ marginTop: 'var(--space-4)' }}>
-          We deliberately show sources that <strong>contradict</strong> or <strong>limit</strong> a claim
-          alongside sources that support it. A claim page that only ever cited supporting evidence would be
-          telling you less than it appears to.
+          Sources that <strong>contradict</strong> or <strong>limit</strong> a claim appear beside those that
+          support it. A page citing only supporting evidence tells you less than it appears to.
         </p>
       </section>
 
       <section style={{ marginBottom: 'var(--space-8)' }} id="editorial-workflow">
         <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>What &ldquo;published&rdquo; does and does not mean</h2>
         <p>
-          Behind every claim is an editorial workflow with several stages: a claim starts as a{' '}
-          <strong>draft</strong>, moves to <strong>editorially complete</strong> once the writing and sourcing
-          work is done, and can then be flagged as <strong>scientific review required</strong>. From there a
-          qualified reviewer examines it and records a formal decision. If it clears review the claim can be
-          marked <strong>approved</strong> and then <strong>published</strong> &mdash; made visible on the public
-          site. A live claim can later be flagged <strong>needs update</strong> if the underlying evidence may
-          have moved, which can trigger a fresh <strong>re-review</strong> pass.
+          A claim starts as a <strong>draft</strong>, becomes <strong>editorially complete</strong> once written
+          and sourced, and can then be flagged <strong>scientific review required</strong>. A qualified reviewer
+          examines it and records a decision. If it clears, the claim is marked <strong>approved</strong>, then{' '}
+          <strong>published</strong>. A live claim can later be flagged <strong>needs update</strong> if the
+          evidence may have moved, triggering <strong>re-review</strong>.
         </p>
         <p>
-          <strong>This is the part we want to be completely explicit about:</strong> &ldquo;published&rdquo;
-          describes whether a page is live on the public site. It is a separate fact from whether a qualified
-          scientific reviewer has actually signed off on the content. A claim can be published — meaning an
-          editor has finished writing and sourcing it — while still waiting on independent scientific review.
+          &ldquo;Published&rdquo; means the page is live. It does not mean a scientific reviewer signed off. A
+          claim can be published — written and sourced by an editor — while independent review is still pending.
         </p>
         <p>
-          So every claim on the site shows one of these lines, generated automatically from what is actually
-          recorded about it, not written freehand by an editor:
+          Every claim therefore shows one of these lines, generated from its actual review record rather than
+          written by hand:
         </p>
         <ul style={{ margin: 'var(--space-3) 0', paddingLeft: '1.2em', display: 'grid', gap: 'var(--space-2)' }}>
           <li>
@@ -173,48 +161,43 @@ export default function MethodologyPage() {
           </li>
         </ul>
         <p>
-          A reviewer&rsquo;s name is only ever shown when it comes from an actual review record tied to a real
-          account with stated credentials. We do not write &ldquo;reviewed by&rdquo; as a decorative label, and
-          we never invent a reviewer.
+          A reviewer&rsquo;s name appears only when it comes from a review record tied to a real account with
+          stated credentials. &ldquo;Reviewed by&rdquo; is never a decorative label, and no reviewer is invented.
         </p>
       </section>
 
       <section style={{ marginBottom: 'var(--space-8)' }} id="rules">
-        <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>Rules we don&rsquo;t break</h2>
+        <h2 style={{ fontSize: '1.3rem', marginBottom: 'var(--space-3)' }}>Fixed rules</h2>
         <ul style={{ margin: 0, paddingLeft: '1.2em', display: 'grid', gap: 'var(--space-3)' }}>
           <li>
-            <strong>No dosage calculators, protocol builders, stacking guidance, or procurement/self-use
-            instructions.</strong> Never, in any form, anywhere on the site.
+            <strong>No dosage calculators, protocol builders, stacking guidance, or procurement and self-use
+            instructions.</strong> In any form, anywhere on the site.
           </li>
           <li>
-            <strong>No star ratings, and no numeric confidence scores or percentages</strong> unless a number is
-            directly reported by a named study or regulator &mdash; in which case we cite it as their number,
-            not ours.
+            <strong>No star ratings, confidence scores, or percentages</strong> unless a named study or regulator
+            reported that number, in which case it is cited as theirs.
           </li>
           <li>
-            <strong>No brand recommendations.</strong> We identify substances by name where relevant to
-            understanding what they are; we do not tell you what to buy or where.
+            <strong>No brand recommendations.</strong> Substances are named where that identifies what they are.
+            What to buy, and where, is not covered.
           </li>
           <li>
-            <strong>Harm-reduction framing, not encouragement,</strong> for anything not approved for general
-            use. Documenting a risk plainly is not the same as endorsing the behavior that creates it.
+            <strong>Harm-reduction framing, not encouragement,</strong> for anything unapproved. Documenting a
+            risk plainly is not endorsing the behaviour that creates it.
           </li>
           <li>
-            <strong>&ldquo;Not medical advice,&rdquo; with a real escalation path.</strong> Every page carries
-            that statement, and it is paired with guidance to contact a qualified clinician &mdash; not left as
-            a disclaimer standing alone.
+            <strong>&ldquo;Not medical advice,&rdquo; with an escalation path.</strong> Every page carries the
+            statement paired with guidance to contact a clinician, rather than a disclaimer standing alone.
           </li>
         </ul>
       </section>
 
       <section id="scope-note">
-        <h2 style={{ fontSize: '1.1rem', marginBottom: 'var(--space-2)' }}>A note on what&rsquo;s enforced today</h2>
+        <h2 style={{ fontSize: '1.1rem', marginBottom: 'var(--space-2)' }}>What is enforced automatically</h2>
         <p style={{ color: 'var(--color-text-muted)' }}>
-          Everything above describes rules this team follows and a labeling system that is live in the product
-          right now — the review-status line described above is computed directly from the review records
-          stored for each claim, not set by hand. RNAwiki is still an active rebuild, and not every editorial
-          process is automated end-to-end yet. Where we haven&rsquo;t built an automated check for something, a
-          human is doing that check by hand instead; we won&rsquo;t claim a gate exists before it does.
+          The review-status line above is computed from each claim&rsquo;s stored review records, so it cannot be
+          set by hand. Not every editorial step has an automated check yet; those are done by a person. No gate
+          is described here as existing before it does.
         </p>
       </section>
     </div>

@@ -17,7 +17,8 @@
     "test:unit": "vitest run tests/unit",
     "test:integration": "vitest run tests/integration",
     "test:e2e": "playwright test",
-    "gate": "npm run typecheck && npm run lint && npm run test:unit && npm run test:integration && npm run build"
+    "check:prose": "tsx scripts/check-prose.ts",
+    "gate": "npm run typecheck && npm run lint && npm run check:prose && npm run test:unit && npm run test:integration && npm run build"
   },
   "dependencies": {
     "next": "^15.4.0",

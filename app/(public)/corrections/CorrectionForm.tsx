@@ -80,10 +80,10 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
           padding: 'var(--space-6)',
         }}
       >
-        <p style={{ margin: 0, fontWeight: 600, color: 'var(--color-measured)' }}>Thank you — this has been sent to our editorial queue.</p>
+        <p style={{ margin: 0, fontWeight: 600, color: 'var(--color-measured)' }}>Thank you — this is now in the editorial queue.</p>
         <p style={{ margin: 'var(--space-2) 0 0' }}>
-          An editor reviews every submission by hand before anything changes. We don&rsquo;t reply to every report
-          individually, but resolved corrections that changed something are listed below.
+          An editor reviews every submission by hand before anything changes. Individual replies are not sent, but
+          resolved corrections that changed something are listed below.
         </p>
         <button
           type="button"

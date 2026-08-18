@@ -38,10 +38,10 @@ const seed: SeedFile = {
     shortDescription:
       'An FDA-approved transplant-rejection drug and mTOR inhibitor with one of the most consistently replicated lifespan-extension findings in mice, now being used off-label — on much thinner human evidence — for longevity.',
     bottomLine:
-      'Rapamycin (sirolimus) is FDA-approved to prevent organ rejection after kidney transplant and to treat the lung disease LAM — not for longevity. It is one of the most consistently lifespan-extending drugs ever tested in mice, independently replicated across three NIA-funded labs. In people, only one completed, placebo-controlled trial of the low, intermittent doses used off-label for longevity exists: after one year it found no significant effect on its primary measure (visceral fat), with only preliminary, subgroup-specific improvements on secondary measures. Using it for longevity today means using an approved immunosuppressant off-label, on human evidence that has not yet shown it extends healthspan or lifespan.',
+      'Rapamycin is FDA-approved for kidney transplant rejection and the lung disease LAM; longevity use is off-label. It extended lifespan in mice, replicated across three NIA labs. The one completed placebo-controlled human trial found no significant effect on its primary endpoint, visceral fat.',
     regulatoryCategory: 'approved_medicine',
     accessRealityNote:
-      'In the United States, rapamycin is a prescription-only medicine. Getting it for longevity purposes requires a physician willing to prescribe it off-label — typically compounded into a low, intermittent dose that is not the FDA-approved transplant regimen — since no regulator has approved any dose or schedule for longevity or anti-aging use. Responsible off-label prescribing is generally paired with routine blood monitoring (lipid panel, complete blood count, kidney function), because the drug\'s documented effects at higher, continuous transplant doses include changes to lipids and blood counts and an increased risk of infection. Telehealth clinics that prescribe compounded rapamycin for longevity exist in the US; at least one (AgelessRx) also sponsored the largest completed human trial to date (PEARL), which is a relevant fact to weigh when reading that trial\'s results. This is a description of access reality, not guidance on dosing or self-use.',
+      'In the US, rapamycin is prescription-only. Longevity use requires a physician willing to prescribe it off-label, typically as a compounded low, intermittent dose, not the approved transplant regimen. No regulator has approved any dose or schedule for longevity or anti-aging. Off-label prescribing is usually paired with routine blood monitoring (lipid panel, complete blood count, kidney function), because continuous transplant-level dosing changes lipids and blood counts and raises infection risk. US telehealth clinics prescribe compounded rapamycin for longevity, and one of them, AgelessRx, sponsored PEARL, the largest completed human trial to date; worth weighing when reading its results.',
     regulatoryStatuses: [
       {
         jurisdiction: 'United States',
@@ -49,7 +49,7 @@ const seed: SeedFile = {
         approvedIndications:
           'Prophylaxis of organ rejection in patients aged 13 years or older receiving renal (kidney) transplants, used in combination with cyclosporine and corticosteroids; treatment of lymphangioleiomyomatosis (LAM), a rare progressive lung disease. Not approved, and not recommended, for liver or lung transplant patients. No approval exists for longevity, healthspan, or anti-aging use in any indication or population.',
         statusStatement:
-          'Sirolimus (brand name Rapamune) is an FDA-approved prescription immunosuppressant for the two indications above. It carries a boxed warning that increased susceptibility to infection and the possible development of lymphoma and other malignancies may result from immunosuppression. Its use for longevity or anti-aging is off-label: legal for a licensed physician to prescribe at their clinical discretion, but not an FDA-reviewed or FDA-approved use.',
+          'Sirolimus (brand name Rapamune) is an FDA-approved prescription immunosuppressant for the two indications above. Its boxed warning states that increased susceptibility to infection and the possible development of lymphoma and other malignancies may result from immunosuppression. Longevity use is off-label: legal for a licensed physician to prescribe at their clinical discretion, but not FDA-reviewed or FDA-approved.',
         source: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5908cd1a-fc5a-462f-99ed-1d8983e253c9',
         checkedDate: '2026-08-18',
       },
@@ -63,16 +63,16 @@ const seed: SeedFile = {
         claimType: 'effectiveness',
         consumerQuestion: 'Has rapamycin been shown to extend healthspan or lifespan in people?',
         directAnswer:
-          'No — the only completed, placebo-controlled human trial of rapamycin for healthy aging (the PEARL trial, published 2025) found no significant effect on its primary measure, visceral fat, after one year, and while a subgroup of women showed improved lean muscle mass and less pain, no human trial has yet measured whether rapamycin extends lifespan or overall healthspan.',
+          'No — the one completed placebo-controlled trial (PEARL) found no significant effect on its primary measure, visceral fat, at one year. Secondary measures improved in a subgroup of women. No trial has measured human lifespan or healthspan.',
         measuredFinding:
-          'PEARL (Moel et al., 2025, Aging 17(4):908-936; NCT04488601): a 48-week, double-blind, randomized, placebo-controlled, decentralized trial in 129 enrolled and 114 completing adults aged 50-85 (40 on 5 mg/week, 35 on 10 mg/week compounded rapamycin, 39 placebo). Primary endpoint — change in visceral adipose tissue by DXA scan — showed no significant difference between groups (p = 0.942). Secondary endpoints showed some significant, sex-specific effects: women on 10 mg/week gained on average 6.2 kg more lean tissue mass than placebo at 48 weeks (95% CI 0.88-11.51 kg, p = 0.018), and reported an 8.1-point greater improvement in self-reported pain (95% CI 3.04-13.10, p < 0.001). The 5 mg/week group showed a modest improvement in a general-health quality-of-life measure. No effects on mortality, disease incidence, frailty, or any other hard endpoint were measured, because the trial was not designed or powered to measure them.',
+          'PEARL (NCT04488601): 48 weeks, randomized, double-blind, placebo-controlled; 114 of 129 enrolled adults aged 50-85 completed: 5 mg/week (40), 10 mg/week (35), placebo (39). The primary endpoint, visceral adipose tissue by DXA, showed no significant difference (p = 0.942). Women at 10 mg/week gained 6.2 kg more lean mass (p = 0.018) and improved 8.1 points more on self-reported pain (p < 0.001).',
         inference:
-          'The lean-mass and pain improvements seen in women are preliminary, single-trial, secondary-outcome findings that have not been independently replicated, and by themselves they do not establish a healthspan or lifespan benefit. Whether any effect exists on outcomes that actually define "healthspan" or "longevity" — mortality, frailty, cognitive decline, disease incidence — remains unmeasured in humans.',
+          'The lean-mass and pain findings are secondary outcomes from one unreplicated trial, so they do not establish a healthspan or lifespan benefit. Effects on the outcomes that define healthspan — mortality, frailty, cognitive decline, disease incidence — remain unmeasured in humans.',
         proofBoundaryStage: 'controlled_human_evidence',
         proofBoundaryExplanation:
-          'A genuine double-blind, randomized, placebo-controlled human trial of low-dose rapamycin has been completed and published in a peer-reviewed journal — real controlled human evidence exists, which is why this claim sits here and not lower on the Proof Boundary. But "controlled human evidence exists" is not the same as "the trial proved the longevity claim." The trial\'s own pre-specified primary endpoint showed no significant difference between rapamycin and placebo. The positive results were secondary, sex-specific, and come from a single trial sponsored by AgelessRx, a telehealth company that itself prescribes compounded rapamycin — a conflict of interest worth weighing. This is deliberately the honest middle ground between "never tested in humans" and "proven to work in humans": tested, but not yet shown to work for what people are using it for.',
+          'A published, double-blind, placebo-controlled trial exists, placing this claim at controlled human evidence. Its pre-specified primary endpoint was null; it was not powered for mortality or disease endpoints. Its positive secondary results come from one trial sponsored by AgelessRx, which sells compounded rapamycin.',
         remainingUnknown:
-          'Whether the lean-mass and pain improvements seen in women replicate in an independent trial; whether rapamycin, at any dose or schedule, affects mortality, frailty, cognitive decline, or age-related disease incidence in humans; whether effects differ meaningfully in men; and what happens with use beyond one year, which no controlled human trial has yet studied.',
+          'Whether the improvements in women replicate independently. Whether any dose or schedule affects human mortality, frailty, cognitive decline, or age-related disease incidence. Whether men respond differently. Use past one year, untested in any controlled trial.',
         evidenceNeededNext:
           'Independent replication in a second randomized, placebo-controlled trial — ideally longer than one year, with a mortality-, frailty-, or disease-incidence-relevant endpoint, and funded independently of any company that sells compounded rapamycin.',
         mechanismSummary:
@@ -87,7 +87,7 @@ const seed: SeedFile = {
             claimPartAddressed:
               'Whether a completed, controlled human trial exists, and what it actually measured and found',
             directlyMeasuredResult:
-              'No significant difference between rapamycin and placebo on the primary endpoint (visceral adipose tissue, p = 0.942) after 48 weeks; significant secondary improvements in lean tissue mass and self-reported pain limited to women in the 10 mg/week group.',
+              'No significant difference between rapamycin and placebo on the primary endpoint (visceral adipose tissue, p = 0.942) after 48 weeks. Trial design: double-blind, randomized, placebo-controlled, decentralized, in adults aged 50-85 (Moel et al., 2025, Aging 17(4):908-936). Secondary improvements were limited to women in the 10 mg/week compounded-rapamycin group: 6.2 kg more lean tissue mass than placebo at 48 weeks (95% CI 0.88-11.51 kg, p = 0.018) and an 8.1-point greater improvement in self-reported pain (95% CI 3.04-13.10, p < 0.001). The 5 mg/week group showed a modest improvement in a general-health quality-of-life measure. No effect on mortality, disease incidence, frailty, or any other hard endpoint was measured, because the trial was not designed or powered to measure them.',
             independentGroupStatus: false,
           },
           {
@@ -124,14 +124,14 @@ const seed: SeedFile = {
         claimType: 'mechanism',
         consumerQuestion: 'How does rapamycin extend lifespan in mice, and does the same mechanism apply to people?',
         directAnswer:
-          'Rapamycin inhibits mTOR, a cellular growth-signaling protein, and this has been shown across three independent, NIA-funded mouse labs to extend both median and maximal lifespan — but that same causal chain has not been directly measured, end-to-end, in humans.',
+          'Rapamycin inhibits mTOR, a cellular growth-signaling protein, and that inhibition extended both median and maximal lifespan across three independent NIA-funded mouse labs. The same causal chain has not been measured end-to-end in humans.',
         measuredFinding:
-          'Harrison et al. 2009 (Nature): rapamycin fed to genetically heterogeneous mice beginning at 600 days of age increased the age at 90% mortality by 14% (females) and 9% (males), replicated at three independent ITP test sites. Miller et al. 2014 (Aging Cell): a dose-response study at the same three sites found median lifespan increased up to 23% (males) and 26% (females) at the highest tested dose (42 ppm in food), with effects present even at lower doses. Strong et al. 2020 (Aging Cell): intermittent (one month on/one month off) or a limited three-month exposure starting at 20 months of age was as effective as continuous lifelong exposure at increasing survival in males.',
+          'Harrison 2009: rapamycin from 600 days of age raised the age at 90% mortality 14% in female and 9% in male genetically heterogeneous mice, at three independent ITP sites. Miller 2014: same sites, median lifespan rose up to 23% in males and 26% in females at 42 ppm in food, less at lower doses. Strong 2020: intermittent or three-month dosing from 20 months matched lifelong dosing for male survival.',
         inference:
-          'Because mTOR is present and does the same basic job (regulating cell growth, protein synthesis, and autophagy) across mice and humans, researchers hypothesize the same inhibition could slow aging-related decline in people. That is a plausible, mechanism-based extrapolation — not a demonstrated human effect.',
+          'mTOR does the same basic job in mice and humans — regulating cell growth, protein synthesis, and autophagy — so researchers hypothesize the same inhibition could slow aging-related decline in people. That is a mechanism-based extrapolation, not a demonstrated human effect.',
         proofBoundaryStage: 'animal_evidence',
         proofBoundaryExplanation:
-          'This is unusually strong animal evidence: the NIA Interventions Testing Program was specifically designed to test replicability, running the same intervention at three independent labs simultaneously so a result can\'t be one lab\'s fluke. Rapamycin\'s lifespan effect passed that test repeatedly across three separate published studies over more than a decade. That makes it about as solid as animal evidence gets — and it is still animal evidence. Mouse lifespan extension, however well replicated, is not itself proof of a human effect.',
+          'The NIA Interventions Testing Program runs the same intervention at three independent labs at once, so a result cannot be one lab\'s fluke. Rapamycin passed that test in three published studies over more than a decade. It is still animal evidence: mouse lifespan extension is not proof of a human effect.',
         remainingUnknown:
           'Whether mTOR inhibition produces a comparable lifespan or healthspan effect in humans, who differ from laboratory mice in genetic diversity, baseline lifespan, environment, and cause-of-death patterns.',
         evidenceNeededNext:
@@ -146,7 +146,7 @@ const seed: SeedFile = {
             plainLanguageExplanation:
               'Rapamycin binds a protein called FKBP12; together they block mTOR, a central switch cells use to decide whether to grow, divide, and build new proteins, or to conserve resources and clean house.',
             evidenceContext:
-              'This binding-and-inhibition mechanism is well-established cell biology, built up over decades of biochemical and structural studies and summarized in the major review cited here (Saxton & Sabatini, 2017, Cell).',
+              'Well-established cell biology, built over decades of biochemical and structural studies and summarized in the review cited here (Saxton & Sabatini, 2017, Cell).',
             status: 'measured',
             sourceLinks: ['https://doi.org/10.1016/j.cell.2017.03.035'],
           },
@@ -166,7 +166,7 @@ const seed: SeedFile = {
             plainLanguageExplanation:
               'In mice, this cellular shift translates into measurably longer lives: both median lifespan and the age by which 90% of a group has died increase, replicated across three independent labs and a range of doses.',
             evidenceContext:
-              'Directly measured across three published NIA Interventions Testing Program studies: Harrison et al. 2009 (age at 90% mortality up 9-14%), Miller et al. 2014 (median lifespan up to 23-26% at the highest dose, dose-dependent), and Strong et al. 2020 (intermittent and late-life regimens equally effective).',
+              'From three NIA ITP studies: Harrison 2009 (age at 90% mortality up 9-14%), Miller 2014 (median lifespan up 23-26% at the top dose), Strong 2020 (intermittent and late-life dosing equally effective).',
             status: 'measured',
             sourceLinks: [
               'https://doi.org/10.1038/nature08221',
@@ -178,9 +178,9 @@ const seed: SeedFile = {
             displayOrder: 4,
             technicalLabel: 'Proposed human healthspan/lifespan effect',
             plainLanguageExplanation:
-              'Because the same mTOR pathway exists in humans, researchers hypothesize the same mechanism could slow aging or extend healthspan in people — but this final step has not been directly measured. The one completed randomized human trial (PEARL, 2025) tested low, intermittent, off-label doses and found no significant effect on its primary aging-related measure after one year.',
+              'Humans have the same mTOR pathway, so researchers hypothesize it could slow aging or extend healthspan in people. That step has not been measured. The one randomized human trial (PEARL, 2025) tested low, intermittent doses and found no significant effect on its primary measure after a year.',
             evidenceContext:
-              'This step is an extrapolation from a shared molecular pathway, tested once in humans by Moel et al. 2025 in a trial whose primary endpoint did not confirm the anti-aging hypothesis. It goes beyond what has been directly measured and is not established.',
+              'An extrapolation from a shared molecular pathway, tested once in humans by Moel et al. 2025, in a trial whose primary endpoint did not confirm the anti-aging hypothesis. Not established.',
             status: 'inferred',
             sourceLinks: ['https://doi.org/10.18632/aging.206235'],
           },
@@ -228,16 +228,16 @@ const seed: SeedFile = {
         claimType: 'safety',
         consumerQuestion: 'What are the safety and access realities of using rapamycin off-label for longevity?',
         directAnswer:
-          'Rapamycin carries an FDA boxed warning for increased infection and cancer risk from immunosuppression at the continuous, higher doses used after transplant, and while the low, intermittent doses typically prescribed off-label for longevity looked relatively safe over one year in the only controlled trial to test them, longer-term risk in healthy people has not been established, and off-label access requires a physician willing to prescribe it plus ongoing blood monitoring.',
+          'Rapamycin\'s FDA boxed warning for infection and cancer risk comes from continuous transplant dosing. The low, intermittent off-label doses showed no significant excess in adverse events over 48 weeks; longer-term risk is not established.',
         measuredFinding:
-          'FDA label (transplant dosing, continuous, higher-dose use): boxed warning states increased susceptibility to infection and possible development of lymphoma and other malignancies may result from immunosuppression; the most common (≥30%) adverse reactions in renal transplant studies included peripheral edema, hypertriglyceridemia, hypertension, hypercholesterolemia, elevated creatinine, GI symptoms, infections, thrombocytopenia, and anemia. PEARL trial (low-dose, intermittent, off-label-relevant dosing, 48 weeks): no significant difference in moderate-to-severe adverse events or safety blood biomarkers between rapamycin and placebo groups; GI symptoms were somewhat more common with rapamycin (8 cases at 10 mg/week, 7 at 5 mg/week, versus 4 on placebo); serious adverse events occurred in 1, 2, and 3 participants respectively (10 mg, 5 mg, placebo) — no signal of excess serious harm at this dose over this duration.',
+          'FDA label, at continuous transplant dosing: a boxed warning for infection and for lymphoma and other malignancies from immunosuppression. PEARL, at 48 weeks of low intermittent dosing: no significant difference from placebo in moderate-to-severe adverse events or safety blood biomarkers. GI symptom counts were 8, 7, and 4 (10 mg/week, 5 mg/week, placebo); serious adverse events 1, 2, and 3.',
         inference:
-          'The well-documented immunosuppression risks (infection, malignancy) come from continuous, higher transplant-level dosing reviewed by the FDA. The low, intermittent, off-label longevity dosing pattern has a much shorter and thinner safety record — one 48-week trial — and while it did not show excess harm over that period, one year is not long-term, and the trial was not designed or powered to detect rare or slow-developing risks like cancer.',
+          'The infection and malignancy risks come from continuous transplant-level dosing reviewed by the FDA. The low, intermittent off-label pattern rests on one 48-week trial. It showed no excess harm, but one year is not long-term, and it could not detect rare or slow-developing risks like cancer.',
         proofBoundaryStage: 'controlled_human_evidence',
         proofBoundaryExplanation:
-          'The immunosuppression risk itself is regulatory-grade evidence — it comes directly from the trials that supported FDA approval, at transplant doses. But that is a different dosing context from off-label longevity use. For the low, intermittent doses people actually take off-label, the best available evidence is the one 48-week randomized controlled trial (PEARL), which is genuine controlled human evidence but covers only a single year in a relatively healthy, closely monitored trial population — not the multi-year, real-world use this claim is actually about.',
+          'The immunosuppression risk is regulatory-grade evidence, from the trials behind FDA approval at transplant doses. That is a different dosing context. For the low, intermittent doses, the best evidence is one 48-week trial in healthy, closely monitored volunteers, not the multi-year real-world use this claim is about.',
         remainingUnknown:
-          'Long-term (multi-year) safety of low, intermittent off-label dosing in otherwise healthy adults; whether infection or cancer risk is meaningfully elevated at these lower doses over years of use; and safety in people with other health conditions who were excluded from the trial population studied so far.',
+          'Multi-year safety of low, intermittent off-label dosing in otherwise healthy adults. Whether infection or cancer risk rises at these lower doses over years of use. Safety in people with health conditions that excluded them from the trials so far.',
         evidenceNeededNext:
           'Multi-year controlled safety follow-up at the low, intermittent doses actually used off-label, with infection and cancer incidence tracked as pre-specified outcomes.',
         displayPriority: 30,
@@ -268,14 +268,14 @@ const seed: SeedFile = {
         claimType: 'regulatory',
         consumerQuestion: 'Is rapamycin FDA-approved for longevity or anti-aging?',
         directAnswer:
-          'No — rapamycin (sirolimus) is FDA-approved only to prevent organ rejection in kidney transplant recipients aged 13 and older and to treat the rare lung disease lymphangioleiomyomatosis (LAM); no regulator anywhere has approved it, or any drug, for longevity, healthspan, or anti-aging.',
+          'No — rapamycin (sirolimus) is FDA-approved only to prevent organ rejection in kidney transplant recipients aged 13 and older and to treat the rare lung disease LAM. No regulator has approved it, or any drug, for longevity or anti-aging.',
         measuredFinding:
-          'Per the current FDA label (via DailyMed, revised November 2024): sirolimus (Rapamune) is indicated for prophylaxis of organ rejection in patients aged 13 years or older receiving renal transplants, used with cyclosporine and corticosteroids, and for treatment of LAM. The label explicitly states safety and efficacy have not been established in liver or lung transplant patients, and use in those populations is not recommended due to documented risks including excess mortality and graft loss.',
+          'The FDA label (DailyMed, revised November 2024) indicates sirolimus for prophylaxis of organ rejection in patients aged 13 years or older receiving renal transplants, with cyclosporine and corticosteroids, and for treating LAM. The label states that safety and efficacy are not established in liver or lung transplant patients, where use is not recommended because of excess mortality and graft loss.',
         inference:
-          'A licensed physician can still legally prescribe sirolimus off-label for longevity at their own clinical discretion — off-label prescribing of an approved drug is legal in the US — but that reflects an individual clinical judgment call, not a regulatory finding that it is safe or effective for that purpose.',
+          'A licensed physician may legally prescribe sirolimus off-label for longevity, since off-label prescribing of an approved drug is legal in the US. That is an individual clinical judgment, not a regulatory finding that the drug is safe or effective for that purpose.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          'This is the strongest evidence category in the Proof Boundary system, and it genuinely applies here — but only to what the FDA actually reviewed and approved: transplant-rejection prophylaxis and LAM. It is not evidence for longevity. No regulator has ever evaluated rapamycin for an anti-aging or longevity indication, and "FDA-approved" should never be read as "FDA-approved for longevity."',
+          'Regulatory evidence is the strongest category, and it applies here only to what the FDA reviewed: transplant-rejection prophylaxis and LAM. No regulator has evaluated rapamycin for longevity or anti-aging. Read "FDA-approved" as approved for those two indications, not for longevity.',
         remainingUnknown:
           'Whether any sponsor will file for a longevity- or aging-related indication in the future; as of this review, none had, and the FDA has not established a formal approval pathway for an "aging" indication as a treatable condition.',
         evidenceNeededNext:
