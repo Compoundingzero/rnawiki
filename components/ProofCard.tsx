@@ -5,14 +5,22 @@ import { EvidenceSourceList } from './EvidenceSourceList'
 import { CopyCitationButton } from './CopyCitationButton'
 import { EmbedLink } from './EmbedLink'
 
-const REVIEW_STATUS_COPY: Record<string, string> = {
-  published: 'Editorial review completed.',
-  approved: 'Editorial review completed.',
-  scientific_review_required: 'Editorial review completed. Independent scientific review pending.',
-  editorially_complete: 'Editorial review completed. Independent scientific review pending.',
-  needs_update: 'This claim is flagged for update — evidence may have changed since the last review.',
-  re_review: 'This claim is undergoing re-review.',
-  draft: 'Draft — not yet published.',
+// Never derive this line from publicationStatus alone — "published" describes editorial
+// workflow, not scientific sign-off. Only an actual approved review from a qualified
+// scientific_reviewer may say "reviewed by"; everything else must say "pending", even once
+// the claim is live. Section 13: never invent a reviewer or imply clinical review that
+// did not happen.
+function reviewStatusCopy(claim: ProofCardView): string {
+  if (claim.reviewStatus === 'needs_update') {
+    return 'This claim is flagged for update — evidence may have changed since the last review.'
+  }
+  if (claim.reviewStatus === 're_review') {
+    return 'This claim is undergoing re-review.'
+  }
+  if (claim.review && claim.review.decision === 'approved') {
+    return 'Editorial review completed.'
+  }
+  return 'Editorial review completed. Independent scientific review pending.'
 }
 
 export function ProofCard({ claim, entityName }: { claim: ProofCardView; entityName: string }) {
@@ -109,7 +117,7 @@ export function ProofCard({ claim, entityName }: { claim: ProofCardView; entityN
         }}
       >
         <div>
-          <p style={{ margin: 0 }}>{REVIEW_STATUS_COPY[claim.reviewStatus] ?? REVIEW_STATUS_COPY.draft}</p>
+          <p style={{ margin: 0 }}>{reviewStatusCopy(claim)}</p>
           {claim.review?.reviewerName && (
             <p style={{ margin: 0 }}>
               Reviewed by {claim.review.reviewerName}
