@@ -77,7 +77,7 @@ export default async function HomePage() {
                     margin: '0 0 var(--space-2)',
                   }}
                 >
-                  {PROOF_BOUNDARY_LABELS[f.stage]}
+                  Proof Boundary — {PROOF_BOUNDARY_LABELS[f.stage]}
                 </p>
                 <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--color-text-muted)' }}>{f.answer}</p>
                 {f.lastReviewedAt && (

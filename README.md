@@ -1,76 +1,102 @@
-# RNAwiki — translate the code of human performance into real results
+# RNAwiki
 
-**DNA is the blueprint; RNA is the builder.** A goal-first wiki of the health, fitness & longevity compound universe — approved and non-approved. Pick the problem to fix or goal to reach, get a root-cause Move·Fuel·Stack protocol, see the compounds that actually help (ranked by human evidence), and get the real mechanism plus the honest catch, in plain English.
+**See where the evidence actually ends.**
 
-🌐 **Live site:** https://rnawiki.com
-📚 **~220 compounds · 102 molecular targets · 16 pathways · ~150 gene-target links**
+RNAwiki is a reference site for peptides, supplements, investigational medicines, and gene/RNA
+therapies. For a given compound or treatment, it separates three things that popular coverage
+routinely blurs together: what a study actually **measured**, what people **infer** from that
+measurement, and what remains **unknown**. Every claim on the site is pinned to a point on an
+8-stage **Proof Boundary** — from "biological rationale only" up to "regulatory evidence" — so a
+reader can see exactly how far the evidence goes before the inference starts.
 
-> Educational content only — **not medical advice**. Non-approved and controlled substances are documented for completeness and harm-reduction, not endorsement.
+RNAwiki does not tell you what to take, how much, or how to get it. It has no dosage calculator,
+no protocol builder, no stacking advice, and no procurement or self-use guidance, anywhere, in any
+form. That is not a missing feature — it is the boundary the whole product is built to hold. See
+[`docs/product-principles.md`](docs/product-principles.md).
 
----
+## What changed
 
-## This repository is the source of truth
+This repository used to hold a different product: a goal-first supplement/protocol wiki with a
+dosage engine, built on vanilla JS with no framework. That product has been fully retired. RNAwiki
+is now a claim-centered evidence explainer, rebuilt from scratch as a Next.js + Postgres
+application. Nothing from the old build carries forward except the domain and the name.
 
-The **cloud copy on GitHub is the canonical, most up-to-date version.** The live site deploys from this repo. Anyone can read it, fork it, and propose changes.
+The old application is preserved, unmodified, at:
+- branch [`archive/legacy-rnawiki`](../../tree/archive/legacy-rnawiki)
+- tag `legacy-rnawiki-before-proof-boundary`
 
-### How to edit the content (no coding needed)
+If you're looking for the compound/protocol/dosage wiki, that's where it lives. It is not merged
+into `main` and is not being developed further.
 
-All content lives in three Markdown files under [`content/`](content/):
+## How it works
 
-| File | What it is |
-|------|-----------|
-| [`content/COMPENDIUM.md`](content/COMPENDIUM.md) | Every compound (the ~220 entries, in 20 categories) |
-| [`content/FOUNDATIONS.md`](content/FOUNDATIONS.md) | The learn-it-properly curriculum (5 modules) |
-| [`content/PATHWAYS.md`](content/PATHWAYS.md) | The 16 master pathways |
+- **Next.js 15** (App Router) + **React 19** + **TypeScript** (strict), server-rendered.
+- **Postgres** via **Drizzle ORM** — content (entities, claims, mechanism steps, evidence sources,
+  reviews) lives in the database, not in Markdown or JSON files. See
+  [`db/schema.ts`](db/schema.ts).
+- **Zod** for input validation on every write path.
+- An **editorial workflow**, not an AI pipeline. Claims move through draft → editorially complete
+  → scientific review required → approved → published (and can be flagged `needs_update` or sent
+  to `re_review` when new evidence appears). Content is human-researched and human-reviewed. AI is
+  not the differentiator and is not the interface — see
+  [`docs/editorial-methodology.md`](docs/editorial-methodology.md).
+- Evidence status is always one of **Measured / Inferred / Unknown** — see
+  [`lib/evidence.ts`](lib/evidence.ts) and
+  [`docs/evidence-classification.md`](docs/evidence-classification.md). No star ratings, no
+  numeric confidence scores, unless a number is directly sourced from a named study.
 
-**To edit directly in your browser:** open a file above on GitHub, click the ✏️ pencil, make your change, and commit (or open a Pull Request). That's it — the site rebuilds from the Markdown.
+## Local setup
 
-**Compound entry format** (keep these three fields on every entry):
-```
-### Compound Name  🟡 ⭐⭐⭐⭐⭐
-**Goals:** Build muscle · Strength
-**Technical mechanism:** …name the receptor/enzyme/gene…
-**Molecular target:** [GENE (NCBI Gene)](https://www.ncbi.nlm.nih.gov/gene/XXXX) · [Compound (PubChem)](https://pubchem.ncbi.nlm.nih.gov/compound/XXXX)
-**In plain English:** …the same thing for a non-scientist…
-**Protocol:** … **Watch out:** … **Bottom line:** …
-```
-Badges: 🟢 FDA-approved · 🟡 OTC supplement · 🔵 prescription · 🟠 off-label · 🔴 not approved · ⚫ controlled.
-Evidence stars are **human** evidence; animal-only compounds are capped at ⭐⭐.
+Prerequisites: Node.js 20+, a local Postgres instance.
 
-### Editorial rules
-1. Describe mechanisms faithfully to the biology — no lifestyle/marketing spin.
-2. Human evidence earns the stars; label animal-only data.
-3. Every molecular claim links to an official source (NCBI Gene, PubChem, PMC, FDA).
-4. Harm-reduction framing for non-approved compounds; never encourage use.
-
----
-
-## How it works (architecture)
-
-Markdown is the source of truth. A build step parses it into the site's data; the frontend is dependency-free vanilla JS (no framework).
-
-```
-content/*.md                    ← you edit these
-   │  node build/parse.js       ← parses markdown → structured data
-   ▼
-site/data.js                    ← generated (window.PBSWIKI_DATA)
-site/index.html + app.js + styles.css   ← the site (hash-router SPA)
-server.js                       ← tiny zero-dependency static server (for hosting)
-```
-
-The parser also **auto-derives the molecular-target graph** (one target → many compounds, e.g. the Androgen Receptor links 11 compounds) and **tags each compound to the 16 pathways** — no manual wiring.
-
-### Run or rebuild locally
 ```bash
-node build/parse.js     # regenerate site/data.js from the markdown
-npm start               # serve at http://localhost:3000
-# or just open site/index.html directly in a browser
+git clone <this-repo>
+cd rnawiki
+npm install
+cp .env.example .env        # fill in DATABASE_URL, SESSION_SECRET, etc. — see below
+# start your local Postgres, then:
+npm run db:migrate          # applies db/migrations/ to your local database
+npm run db:seed             # loads scripts/seed-data/*.ts via scripts/seed.ts
+npm run dev                 # http://localhost:3000
 ```
 
-### Deploy
-Pushing to `main` deploys the live site automatically (via GitHub → Railway). No laptop required — you can edit the Markdown on GitHub and the site updates itself.
+`SESSION_SECRET` must be at least 32 characters (`openssl rand -base64 32`) — the admin session
+(`lib/auth.ts`) throws on boot without it. `ADMIN_BOOTSTRAP_EMAIL` /
+`ADMIN_BOOTSTRAP_PASSWORD` are only read by `scripts/seed.ts` to create the first administrator
+account; unset them after the first run. See [`.env.example`](.env.example) for the full list,
+and [`docs/deployment.md`](docs/deployment.md) for what each variable does in production.
 
----
+## Tests
 
-## Contributing
-Spotted a missing compound, an error, or new evidence? Edit the relevant `content/*.md` file and open a Pull Request, or [open an issue](../../issues). All improvements welcome.
+```bash
+npm run test:unit          # vitest, tests/unit/**
+npm run test:integration   # vitest, tests/integration/** (needs a database)
+npm run test:e2e           # Playwright
+npm run gate                # typecheck && lint && test:unit && test:integration && build — the pre-push gate
+```
+
+Run `npm run gate` before pushing. It is the same sequence a merge is expected to pass cleanly.
+
+## Deployment
+
+Merging to `main` triggers a Railway auto-deploy, configured by [`railway.toml`](railway.toml).
+See [`docs/deployment.md`](docs/deployment.md) for environment variables, the migration
+sequencing around a deploy, and rollback. The Railway service is named **`RNAwiki`**.
+
+## Documentation
+
+- [`docs/product-principles.md`](docs/product-principles.md) — the Proof Boundary concept, the
+  claim-centered model, who this is for, and the banned marketing-language list.
+- [`docs/editorial-methodology.md`](docs/editorial-methodology.md) — the editorial workflow,
+  the DOI/PMID import boundary, and comprehension testing.
+- [`docs/evidence-classification.md`](docs/evidence-classification.md) — Measured/Inferred/
+  Unknown, the 8 Proof Boundary stages, and the two-rail (mechanism vs. outcome) evidence model.
+- [`docs/deployment.md`](docs/deployment.md) — Railway deploy flow, environment variables,
+  migrations, rollback.
+- [`docs/api.md`](docs/api.md) — the public read-only JSON API.
+- [`CLAUDE.md`](CLAUDE.md) — working notes for anyone (human or agent) making changes here.
+
+## Not medical advice
+
+RNAwiki explains research evidence. It does not provide medical advice, diagnosis, dosing
+guidance, or instructions for obtaining or using any substance, approved or unapproved.

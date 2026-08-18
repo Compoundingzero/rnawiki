@@ -12,7 +12,7 @@ export interface SessionUser {
   role: 'administrator' | 'editor' | 'scientific_reviewer'
 }
 
-interface SessionData {
+export interface SessionData {
   user?: SessionUser
 }
 

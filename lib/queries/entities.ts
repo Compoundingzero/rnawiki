@@ -3,8 +3,6 @@ import { entities, claims, mechanismSteps, claimEvidence, evidenceSources, revie
 import { and, eq, desc } from 'drizzle-orm'
 import type { ProofCardView, MechanismStepView, ClaimEvidenceView } from '@/lib/types'
 
-const PUBLIC_STATUSES = ['published'] as const
-
 export async function getPublishedEntityBySlug(slug: string) {
   const [entity] = await db.select().from(entities).where(eq(entities.slug, slug)).limit(1)
   if (!entity || entity.publicationStatus !== 'published') return null

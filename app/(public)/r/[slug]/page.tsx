@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
   getPublishedEntityBySlug,
@@ -6,8 +7,10 @@ import {
   getMechanismStepsForClaim,
   getRegulatoryStatusesForEntity,
 } from '@/lib/queries/entities'
+import { getQuestionsForClaim } from '@/lib/comprehension'
 import { ProofCard } from '@/components/ProofCard'
 import { MechanismChain } from '@/components/MechanismChain'
+import { ComprehensionTest } from '@/components/ComprehensionTest'
 import { entityUrl } from '@/lib/canonical'
 
 export const revalidate = 3600 // targeted revalidation after editorial publication also calls revalidatePath()
@@ -28,7 +31,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: entity.canonicalName,
       description: entity.bottomLine,
       url: entityUrl(entity.slug),
-      images: [`/r/${entity.slug}/opengraph-image`],
+      // No manual `images` here — Next.js auto-discovers the sibling opengraph-image.tsx file
+      // and wires up its real (internally hash-suffixed) URL itself. A hand-written guess at
+      // that path is wrong: Next serves the actual file at `/r/[slug]/opengraph-image-<hash>`,
+      // not the plain path, so overriding this ends up pointing crawlers at a 404.
     },
   }
 }
@@ -44,7 +50,11 @@ export default async function EntityPage({ params }: Props) {
   ])
 
   const claimsWithSteps = await Promise.all(
-    claims.map(async (claim) => ({ claim, steps: await getMechanismStepsForClaim(claim.id) }))
+    claims.map(async (claim) => ({
+      claim,
+      steps: await getMechanismStepsForClaim(claim.id),
+      questions: await getQuestionsForClaim(claim.id),
+    }))
   )
 
   const jsonLd = {
@@ -58,11 +68,10 @@ export default async function EntityPage({ params }: Props) {
 
   return (
     <div className="container" style={{ paddingTop: 'var(--space-8)', paddingBottom: 'var(--space-12)' }}>
-      {/* eslint-disable-next-line react/no-danger */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <nav aria-label="Breadcrumb" style={{ fontSize: '0.85rem', color: 'var(--color-text-faint)', marginBottom: 'var(--space-4)' }}>
-        <a href="/">RNAwiki</a> / {entity.canonicalName}
+        <Link href="/">RNAwiki</Link> / {entity.canonicalName}
       </nav>
 
       <header style={{ marginBottom: 'var(--space-6)' }}>
@@ -117,8 +126,11 @@ export default async function EntityPage({ params }: Props) {
       <section id="most-searched-claims" style={{ marginBottom: 'var(--space-8)' }}>
         <h2 style={{ fontSize: '1.1rem' }}>Most searched claims</h2>
         <div style={{ display: 'grid', gap: 'var(--space-4)' }}>
-          {claimsWithSteps.map(({ claim }) => (
-            <ProofCard key={claim.id} claim={claim} entityName={entity.canonicalName} />
+          {claimsWithSteps.map(({ claim, questions }) => (
+            <div key={claim.id} style={{ display: 'grid', gap: 'var(--space-3)' }}>
+              <ProofCard claim={claim} entityName={entity.canonicalName} />
+              <ComprehensionTest claimId={claim.id} questions={questions} />
+            </div>
           ))}
         </div>
       </section>

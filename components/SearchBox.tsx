@@ -10,6 +10,8 @@ export function SearchBox() {
   return (
     <form
       role="search"
+      action="/search"
+      method="get"
       onSubmit={(e) => {
         e.preventDefault()
         if (value.trim()) router.push(`/search?q=${encodeURIComponent(value.trim())}`)

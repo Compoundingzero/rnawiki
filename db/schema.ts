@@ -10,8 +10,18 @@ import {
   jsonb,
   index,
   uniqueIndex,
+  customType,
 } from 'drizzle-orm/pg-core'
-import { relations } from 'drizzle-orm'
+import { relations, sql } from 'drizzle-orm'
+
+// A Postgres `tsvector` column. Drizzle has no built-in helper for it, so it is modelled as a
+// custom type. Used only for generated, indexed full-text search columns (see `searchVector`
+// below and lib/search.ts) — never written to directly from application code.
+const tsvector = customType<{ data: string }>({
+  dataType() {
+    return 'tsvector'
+  },
+})
 
 // ---------------------------------------------------------------------------
 // Enums
@@ -126,9 +136,27 @@ export const entities = pgTable('entities', {
   accessRealityNote: text('access_reality_note'), // delivery burden, no self-use instructions
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  // Full-text search index over name + aliases. STORED/GENERATED so Postgres keeps it in sync;
+  // application code never writes to it. `jsonb_text_agg` is an immutable helper function
+  // created by hand in the migration (see db/migrations — drizzle-kit cannot emit CREATE
+  // FUNCTION/CREATE EXTENSION statements on its own). See lib/search.ts for how this is queried.
+  //
+  // The expression below deliberately uses bare (unqualified) column names — `canonical_name`,
+  // `aliases` — rather than `${entities.canonicalName}`. Referencing the table's own JS binding
+  // from inside its own column definition is a documented Drizzle pattern, but it makes
+  // TypeScript unable to infer `entities`' type (TS7022, circular self-reference) under this
+  // project's strict settings. A generated-column expression is always evaluated in the scope of
+  // its own row, so the unqualified names resolve unambiguously and sidestep the issue.
+  searchVector: tsvector('search_vector').generatedAlwaysAs(
+    sql`to_tsvector('english', coalesce(canonical_name, '') || ' ' || jsonb_text_agg(aliases))`
+  ),
 }, (t) => ({
   slugIdx: uniqueIndex('entities_slug_idx').on(t.slug),
   typeIdx: index('entities_type_idx').on(t.entityType),
+  searchVectorIdx: index('entities_search_vector_idx').using('gin', t.searchVector),
+  // pg_trgm indexes for typo-tolerant / partial matching (extension created by hand in the migration).
+  canonicalNameTrgmIdx: index('entities_canonical_name_trgm_idx').using('gin', t.canonicalName.op('gin_trgm_ops')),
+  aliasesTrgmIdx: index('entities_aliases_trgm_idx').using('gin', sql`(jsonb_text_agg(${t.aliases})) gin_trgm_ops`),
 }))
 
 export const entitiesRelations = relations(entities, ({ many }) => ({
@@ -183,9 +211,18 @@ export const claims = pgTable('claims', {
   displayPriority: integer('display_priority').notNull().default(0), // for "most searched claims" ordering
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  // Full-text search index over the consumer-facing question + answer. See entities.searchVector
+  // above for the generated-column rationale (including why this uses bare column names) and
+  // lib/search.ts for how this is queried.
+  searchVector: tsvector('search_vector').generatedAlwaysAs(
+    sql`to_tsvector('english', coalesce(consumer_question, '') || ' ' || coalesce(direct_answer, ''))`
+  ),
 }, (t) => ({
   entitySlugIdx: uniqueIndex('claims_entity_slug_idx').on(t.entityId, t.slug),
   statusIdx: index('claims_status_idx').on(t.publicationStatus),
+  searchVectorIdx: index('claims_search_vector_idx').using('gin', t.searchVector),
+  // pg_trgm index on the consumer question for typo tolerance (extension created by hand in the migration).
+  consumerQuestionTrgmIdx: index('claims_consumer_question_trgm_idx').using('gin', t.consumerQuestion.op('gin_trgm_ops')),
 }))
 
 export const claimsRelations = relations(claims, ({ one, many }) => ({

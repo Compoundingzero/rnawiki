@@ -1,9 +1,10 @@
 import { PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
 import { formatCitation } from '@/lib/citation'
 import type { ProofCardView } from '@/lib/types'
+import Link from 'next/link'
 import { EvidenceSourceList } from './EvidenceSourceList'
 import { CopyCitationButton } from './CopyCitationButton'
-import { EmbedLink } from './EmbedLink'
+import { EmbedCodeBox } from './EmbedCodeBox'
 
 // Never derive this line from publicationStatus alone — "published" describes editorial
 // workflow, not scientific sign-off. Only an actual approved review from a qualified
@@ -31,6 +32,7 @@ export function ProofCard({ claim, entityName }: { claim: ProofCardView; entityN
   return (
     <article
       id={`claim-${claim.slug}`}
+      aria-label={`${entityName}: ${claim.consumerQuestion}`}
       style={{
         border: '1px solid var(--color-border)',
         borderRadius: 'var(--radius-md)',
@@ -125,6 +127,14 @@ export function ProofCard({ claim, entityName }: { claim: ProofCardView; entityN
             </p>
           )}
           {lastReviewed && <p style={{ margin: 0 }}>Last reviewed: {lastReviewed}</p>}
+          <p style={{ margin: 0 }}>
+            <Link
+              href={`/corrections?entity=${claim.entitySlug}&claim=${claim.slug}`}
+              style={{ color: 'var(--color-text-faint)' }}
+            >
+              Report an issue with this claim
+            </Link>
+          </p>
         </div>
         <div style={{ display: 'flex', gap: 'var(--space-3)' }}>
           <CopyCitationButton text={formatCitation({
@@ -133,7 +143,7 @@ export function ProofCard({ claim, entityName }: { claim: ProofCardView; entityN
             claimSlug: claim.slug,
             lastReviewedAt: claim.lastReviewedAt,
           })} />
-          <EmbedLink claimId={claim.id} />
+          <EmbedCodeBox claimId={claim.id} claimQuestion={claim.consumerQuestion} />
         </div>
       </footer>
     </article>
