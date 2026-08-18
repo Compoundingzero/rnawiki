@@ -5,8 +5,9 @@ Canonical home for RNAwiki's evidence vocabulary. Every term is declared once in
 
 ## Measured / Inferred / Unknown
 
-The status of one mechanism step or finding (`mechanismSteps.status`), not of the claim, which gets
-a Proof Boundary stage instead. Three values, no fourth "partially confirmed".
+The status of one mechanism step or finding (`evidenceStatusEnum`, `mechanismSteps.status`,
+wording in `EVIDENCE_STATUS_DEFINITIONS`), not of the claim, which gets a Proof Boundary stage
+instead. Three values, no fourth "partially confirmed".
 
 - **Measured** — the experiment directly observed this result under the stated conditions.
 - **Inferred** — the conclusion may be plausible, but it goes beyond what was directly measured.
@@ -19,8 +20,8 @@ and has never been observed in a human study.
 
 ## Evidence relationships
 
-How one source relates to one claim (`claimEvidence.relationship`), never a blanket endorsement of
-the entity.
+How one source relates to one claim (`claimEvidence.relationship`, `EVIDENCE_RELATIONSHIPS`), never
+a blanket endorsement of the entity.
 
 - **Supports** — the finding is consistent with this claim and lends it weight.
 - **Contradicts** — the finding conflicts with this claim.

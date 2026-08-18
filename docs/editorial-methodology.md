@@ -38,8 +38,9 @@ hand-made judgment, not an automated trigger.
 `scientific_review_required`. `reviewClaim`/`reviewEntity` write an immutable `reviews` row —
 reviewer id, decision, comments, exact version reviewed (`reviews.reviewedVersion`) — then set
 status: `approved` → `approved`; `rejected` or `needs_changes` → back to `draft`. Review rows are
-never edited or deleted; a changed mind is a new review. This row is the only thing
-`components/ProofCard.tsx`'s `reviewStatusCopy()` may say "Reviewed by [name]" from.
+never edited or deleted; a changed mind is a new review. `lib/queries/entities.ts` reads this row
+into `ProofCardView.review`, and it is the only thing `components/ProofCard.tsx`'s
+`reviewStatusCopy()` may say "Reviewed by [name]" from.
 
 **Publishing — administrator only.** `publishClaim` and its entity equivalent require the current
 row to be `approved`, else "Only claims with status 'approved' can be published". An administrator
