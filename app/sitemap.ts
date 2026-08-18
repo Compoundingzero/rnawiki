@@ -6,6 +6,15 @@ import { entityUrl } from '@/lib/canonical'
 // app/layout.tsx / app/updates/feed.xml/route.ts, which duplicate it the same way).
 const SITE_URL = process.env.SITE_URL ?? 'https://rnawiki.com'
 
+// Force dynamic (render per-request) rather than the default static generation. Railway's build
+// container has no network path to postgres.railway.internal — that hostname only resolves at
+// runtime, inside the deployed service's own network — so any attempt to prerender this route
+// at build time (the default for a route with no dynamic segments) fails the deploy outright.
+// This applies to every route below that queries the database and has no dynamic segments;
+// dynamic routes like /r/[slug] are unaffected since Next never tries to statically render them
+// without an explicit generateStaticParams.
+export const dynamic = 'force-dynamic'
+
 // Static, always-present routes. Deliberately excludes /admin/**, /api/**, /embed/** (see
 // app/robots.ts) and every route the old product served that this rebuild removed — those are
 // 410 or 301 in middleware.ts, never listed here. See docs/legacy-removal-map.md.

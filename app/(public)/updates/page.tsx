@@ -4,7 +4,10 @@ import { PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
 import { entityPath } from '@/lib/canonical'
 import { EVIDENCE_CHANGE_TYPE_LABELS, getRecentEvidenceChanges, type EvidenceChangeItem } from './evidence-changes'
 
-export const revalidate = 3600
+// Force dynamic rather than static+ISR — see app/sitemap.ts for why: this route has no dynamic
+// segment, so Next would otherwise try to prerender it at build time, which fails on Railway
+// (the DB is only reachable at runtime, not from the build container).
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Evidence updates',

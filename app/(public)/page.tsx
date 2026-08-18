@@ -5,7 +5,11 @@ import { eq, desc } from 'drizzle-orm'
 import { SearchBox } from '@/components/SearchBox'
 import { EVIDENCE_STATUS_DEFINITIONS, EVIDENCE_STATUS_LABELS, PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
 
-export const revalidate = 3600
+// Force dynamic rather than static+ISR: this page has no dynamic segment, so Next's default is
+// to statically prerender it at BUILD time — but Railway's build container has no network path
+// to postgres.railway.internal (that hostname only resolves at runtime), so a build-time query
+// here fails the deploy outright. See app/sitemap.ts for the fuller explanation.
+export const dynamic = 'force-dynamic'
 
 async function getFeaturedClaims() {
   return db
