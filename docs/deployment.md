@@ -77,14 +77,21 @@ Railway is configured to build from). This restores the old vanilla-JS build, no
 treat it as a full product rollback, not a partial one, since the two applications don't share a
 schema or a runtime.
 
-**Database.** *Open question — not answered here because the answer isn't verified.* Rolling back
-to the pre-rebuild application also implies rolling back to its data model, which is incompatible
-with the schema in `db/schema.ts` (see `CLAUDE.md` — this rebuild moved content from
+**Database.** Rolling back to the pre-rebuild application also implies rolling back to its data
+model, which is incompatible with the schema in `db/schema.ts` (this rebuild moved content from
 `content/*.md` + `data/*.json` into Postgres tables that did not exist before). A real rollback
-therefore needs a database dump taken *before* the rebuild's migrations ran. This document does not
-know whether such a dump exists or where it's stored — that should be recorded wherever the
-integration pass tracks backups (see [`docs/BACKUP_RECOVERY.md`](BACKUP_RECOVERY.md), which is the
-source of truth for backup/recovery status and is owned separately from this document). Until that
-path is confirmed and recorded, treat a database rollback to the pre-rebuild state as **unverified
-and untested** — do not assume it is possible under time pressure without checking
-`docs/BACKUP_RECOVERY.md` first.
+needs a database dump taken *before* the rebuild's migrations ran.
+
+That dump exists: taken 2026-08-18, immediately before the production schema was replaced —
+`pg_dump -F c` (full data) plus a schema-only companion, stored locally at
+`RNAwiki-db-backups/` (sibling to this repo checkout, deliberately outside the git tree — it
+contains real user PII/health data from the pre-rebuild `users`, `consent_records`,
+`blood_markers`, and `experiments` tables and must never be committed). Verified restorable with
+`pg_restore --list` at backup time (348 objects, 45 base tables, matches the pre-rebuild schema).
+**This is currently the only copy** — it is not encrypted, not off this machine, and not
+duplicated anywhere else. To actually roll back: restore it into a fresh Postgres instance with
+`pg_restore -d <target> <dump file>`, then point the archived application's `DATABASE_URL` at that
+instance. See `docs/BACKUP_RECOVERY.md` for the broader (separate, still-open) question of
+ongoing production backup/PITR, which this one-time pre-rebuild dump does not solve — Railway's
+own Postgres PITR and volume backups were confirmed **off** as of 2026-08-15 and remain off unless
+explicitly enabled with the owner's approval.

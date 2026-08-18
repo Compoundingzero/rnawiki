@@ -1,127 +1,68 @@
 # Backup and recovery boundary
 
+> Rewritten 2026-08-18 for the Proof Boundary rebuild. The previous version of this file
+> described the old product's community-voting Git export (`scripts/backup-community.js`, a
+> `public_git_vote_snapshot_v1` view, votes/protocols tables) — none of that exists in this
+> product. The new schema (`db/schema.ts`) has no community voting, no protocols, no votes. If
+> you are reading an older copy of this file anywhere, discard it.
+
 ## Current state
 
-The Git workflow is manual-only. It is not a production database backup and it is intentionally
-unscheduled until a dedicated read-only database view, a fresh verified-private destination and
-new least-privileged credentials exist. The former `Compoundingzero/rnawiki-backups` destination
-could not be verified through the connected GitHub account at implementation time; it must not be
-treated as a working or private recovery system.
+**There is no automated backup or PITR configured for production Postgres.** A read-only Railway
+check on 2026-08-15 (carried over from the pre-rebuild product, re-verified during this rebuild)
+found both Postgres point-in-time recovery and scheduled volume backups **off**. Enabling either
+is a paid option and requires the owner's (Felix's) explicit approval before turning on.
 
-No Postgres restore was performed by this change. A read-only Railway check on 2026-08-15 found
-both production Postgres PITR and scheduled volume backups **off**. Recovery is therefore not
-configured or tested. Enabling a paid recovery option requires the owner's approval.
+**One manual, one-time backup exists**, taken 2026-08-18 immediately before this rebuild replaced
+the production schema:
+- `pg_dump -F c` (full data, custom format) and a schema-only companion dump
+- stored locally at `RNAwiki-db-backups/`, a sibling directory to this repo checkout —
+  deliberately **outside** the git tree, and must stay that way
+- contains real user PII/health data from the pre-rebuild schema (`users`, `consent_records`,
+  `blood_markers`, `experiments`, and more) — the entire reason it must never be committed,
+  shared, or copied anywhere without deliberately re-assessing that decision
+- verified restorable with `pg_restore --list` at backup time (348 objects, 45 base tables)
 
-## What may enter Git
+**This is a snapshot of the pre-rebuild database, not an ongoing backup strategy.** It exists
+solely so the pre-rebuild product (`archive/legacy-rnawiki`) has something to restore into if it
+is ever rolled back to — see `docs/deployment.md`'s Rollback section. It says nothing about
+whether *this* (post-rebuild) database is being backed up going forward. It is not, until PITR or
+scheduled volume backups are turned on.
 
-`scripts/backup-community.js` reads exactly one server-side view:
-`public.public_git_vote_snapshot_v1`. The view exposes only official protocol-layer target ids
-(`problem:route:move|fuel|stack`) with at least ten votes in one displayed direction, with positive
-and negative totals rounded down to tens. Creator-stack, request and feature targets are excluded.
-The exporter repeats that schema check, rejects unexpected fields or malformed rows, and writes no
-timestamp to the snapshot.
+## What data this product actually holds
 
-Creator protocols are excluded regardless of `visibility`. Choosing “List it on this topic” is
-consent to discovery inside RNAwiki, not consent to permanent Git archival. Remix rows are also
-diffs whose private or unlisted parents may be needed to resolve them. Git therefore receives no
-protocol code, title, spec, safety object, creator relation or activity counter.
+The new schema is much smaller in scope than the old one. There is no user-generated protocol
+content, no voting, no social/community features. What it does hold, that a future backup policy
+should account for:
+- `users` — internal accounts only (administrator/editor/scientific_reviewer), with password
+  hashes. Not public accounts; there is no reader signup.
+- `correction_submissions` — public, anonymous submissions (message text, an optional proposed
+  source, a non-identifying session hash for rate-limiting). No email, no account, no raw IP
+  stored (see `lib/session-hash.ts`).
+- `comprehension_responses` — anonymous, non-identifying (session hash only, same as above).
+- `subscriptions` — email addresses of readers who opt to follow an entity for evidence-change
+  alerts. Currently unused (feature-flagged off; no email provider configured — see
+  `.env.example`'s `RESEND_API_KEY`). This is the one table that would hold real reader PII if the
+  feature is ever turned on.
+- Everything else (`entities`, `claims`, `evidence_sources`, `reviews`, `revisions`,
+  `evidence_changes`, `legacy_redirects`, `comprehension_questions`) is editorial content with no
+  personal data — safe to reconstruct from `scripts/seed-data/*.ts` plus the admin panel if ever
+  lost, though a real restore is obviously faster.
 
-Git also receives no users, usernames, emails, raw votes, voter keys, comments, edits, proposals,
-memberships, discussion posts, moderation events, plans, experiments, check-ins, profiles,
-biomarkers, wearable records, sessions, consent records, operational logs or other private/free-text
-data. Git cannot honour a later row-level erasure request, so these exclusions are permanent policy.
+## Required next steps (owner decision)
 
-The coarse public snapshot is useful only as a low-resolution public signal. It cannot reconstruct
-a runnable RNAwiki database and there is no restore importer.
-
-## Required database boundary
-
-Never give the job the application `DATABASE_URL`. Provision a distinct login named
-`rnawiki_public_snapshot_v1`, set it read-only, and grant it `SELECT` on exactly one view. Store that
-connection string as the GitHub secret `PUBLIC_SNAPSHOT_DATABASE_URL`. TLS certificate verification
-is mandatory; if the platform certificate needs an explicit CA chain, store it as
-`PUBLIC_SNAPSHOT_DB_CA`.
-
-The database owner can create the projection with a reviewed migration equivalent to:
-
-```sql
-CREATE OR REPLACE VIEW public.public_git_vote_snapshot_v1
-WITH (security_barrier=true) AS
-SELECT target_id,
-       ((COUNT(*) FILTER (WHERE value > 0)) / 10 * 10)::int AS up_bucket,
-       ((COUNT(*) FILTER (WHERE value < 0)) / 10 * 10)::int AS down_bucket
-FROM public.votes
-WHERE target_id ~ '^[a-z0-9][a-z0-9_-]{0,63}:[a-z0-9][a-z0-9_-]{0,79}:(move|fuel|stack)$'
-GROUP BY target_id
-HAVING COUNT(*) FILTER (WHERE value > 0) >= 10
-    OR COUNT(*) FILTER (WHERE value < 0) >= 10;
-
-REVOKE ALL ON public.public_git_vote_snapshot_v1 FROM PUBLIC;
-REVOKE ALL ON ALL TABLES IN SCHEMA public FROM rnawiki_public_snapshot_v1;
-REVOKE ALL ON ALL SEQUENCES IN SCHEMA public FROM rnawiki_public_snapshot_v1;
-REVOKE CREATE ON SCHEMA public FROM rnawiki_public_snapshot_v1;
-GRANT USAGE ON SCHEMA public TO rnawiki_public_snapshot_v1;
-GRANT SELECT ON public.public_git_vote_snapshot_v1 TO rnawiki_public_snapshot_v1;
-ALTER ROLE rnawiki_public_snapshot_v1 SET default_transaction_read_only = on;
-```
-
-Create the login and password through the provider's secret-management path, not in a migration or
-repository file. Do not grant it membership in another role; review inherited/default grants too.
-At runtime the exporter refuses memberships, superuser, role/database creator, replication or
-row-security-bypass capability, then enumerates effective public relation privileges and requires
-exactly one: `SELECT` on this view.
-
-Every allowlisted query runs inside one repeatable-read, read-only transaction. A role check, view
-read, schema validation, file write or checksum failure aborts the run. The previous local snapshot
-is moved aside and restored if the final directory swap fails.
-
-## Required GitHub boundary
-
-Use a fresh private repository, not the legacy destination. Configure:
-
-- repository variable `PUBLIC_SNAPSHOT_REPO` as `owner/repo`; and
-- secret `PUBLIC_SNAPSHOT_REPO_TOKEN` as a fine-grained token limited to that repository, with only
-  metadata-read and contents-write access.
-
-The manual workflow queries authenticated repository metadata and refuses a destination that is not
-private, is archived, is this public application repository, is the legacy `rnawiki-backups` name,
-has tags, has branches other than `main`, or lacks the policy marker once non-empty.
-
-Before enabling any future schedule, remove the former deploy key from the legacy repository and
-GitHub secrets, rotate any credential that may have accessed it, and either delete the legacy
-repository or complete and verify a history/ref purge under the applicable deletion policy. A
-normal commit deleting files does not remove old Git objects.
-
-## Railway recovery is the real backup path
-
-Railway's current documentation describes [native volume backups](https://docs.railway.com/volumes/backups)
-in the service **Backups** tab and [Postgres point-in-time recovery](https://docs.railway.com/volumes/point-in-time-recovery)
-based on base backups plus write-ahead logs, with a roughly four-week recovery window. Availability
-and cost can depend on the project/plan. For RNAwiki production, the read-only check on 2026-08-15
-found PITR and scheduled volume backups both off. Do not enable a paid backup/PITR option without
-the owner's approval.
-
-All private, erasable and relational state depends on that encrypted database recovery path:
-accounts, ownership, unlisted protocols, discussions, membership roles, moderation audit,
-Today/accountability data and the raw relations behind public counters. The production owner must
-verify and record:
-
-1. encryption in transit and at rest, including backup copies;
-2. the enabled backup/PITR window and a deliberately bounded retention period;
-3. recovery-point and recovery-time objectives;
-4. who can restore or download backups, with access logs and credential rotation;
-5. how account erasure propagates when immutable recovery copies expire; and
-6. scheduled restore drills into an isolated, non-production database.
-
-A safe drill restores a provider recovery point to an isolated database, applies no writes to
-production, checks schema/version and representative table counts, verifies foreign keys, exercises
-critical read paths with outbound messages disabled, and records the observed recovery point and
-elapsed time. Only then may the backup be described as restore-tested.
-
-## Verification status
-
-`npm run test:backup` is database-free. It tests the export allowlist, hostile rows, restricted-role
-boundary, deterministic manifest/checksums, required-query failure and previous-snapshot
-preservation with a fake database client. It does not prove that Railway recovery is enabled, that
-the read-only role/view has been provisioned, that a private snapshot repository exists, or that a
-Postgres restore succeeds. No restore test is claimed.
+1. Decide whether to enable Railway Postgres PITR and/or scheduled volume backups (paid) — this
+   is the real, ongoing backup path per Railway's own
+   [PITR](https://docs.railway.com/volumes/point-in-time-recovery) and
+   [volume backup](https://docs.railway.com/volumes/backups) docs. Nothing in this rebuild enables
+   either automatically.
+2. If `subscriptions` (reader emails) is ever turned on, revisit encryption-at-rest and retention
+   policy for that table specifically before launch — it's the one place this product holds
+   contactable reader PII.
+3. Move the one-time pre-rebuild dump (`RNAwiki-db-backups/`) somewhere more durable than a single
+   local machine — it is currently a single point of failure for rolling back to the pre-rebuild
+   product.
+4. Once PITR/backups are enabled, run an actual restore drill (Railway's own recommended
+   practice): restore a recovery point into an isolated database, verify schema/row counts, and
+   record the observed recovery point and elapsed time. Nothing here is "restore-tested" until
+   that happens.
