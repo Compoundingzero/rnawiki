@@ -3,7 +3,7 @@ import { and, eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { claims } from '@/db/schema'
 import { getPublishedEntityBySlug } from '@/lib/queries/entities'
-import { PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
+import { plainHumanEvidence, stagePositionApplies, readableDate } from '@/lib/evidence-view'
 import { entityUrl } from '@/lib/canonical'
 
 export const runtime = 'nodejs' // needs the pg pool via Drizzle, not edge-compatible
@@ -11,21 +11,20 @@ export const revalidate = 3600
 
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
-export const alt = 'RNAwiki — Proof Boundary summary'
+export const alt = 'RNAwiki — what the evidence shows for this treatment'
 
 // Hardcoded from app/globals.css's :root block. ImageResponse (satori) renders outside the
-// browser and cannot read CSS custom properties, so these hex values must be kept in sync with
-// globals.css by hand — there is no single source of truth across the two files. Light palette
-// only: an OG image is generated once and served to arbitrary crawlers/readers with no way to
-// know their color scheme, so it always uses the light tokens for guaranteed contrast.
-const COLOR_BG = '#fbfaf7'
-const COLOR_BORDER = '#dedad0'
-const COLOR_TEXT = '#1c1b17'
-const COLOR_TEXT_MUTED = '#56534a'
-const COLOR_TEXT_FAINT = '#837e70'
-const COLOR_ACCENT = '#0f5c52'
-const COLOR_ACCENT_STRONG = '#0a3f39'
-const COLOR_ACCENT_TINT = '#e4efec'
+// browser and cannot read CSS custom properties, so these must be kept in sync by hand. They were
+// left on the previous palette after the redesign, which is why a share card looked nothing like
+// the page it linked to.
+const COLOR_BG = '#ffffff'
+const COLOR_BORDER = '#d2d2d7'
+const COLOR_TEXT = '#1d1d1f'
+const COLOR_TEXT_MUTED = '#6e6e73'
+const COLOR_TEXT_FAINT = '#6e6e73'
+const COLOR_ACCENT = '#0066cc'
+const COLOR_ACCENT_STRONG = '#0052a6'
+const COLOR_ACCENT_TINT = '#eef4fd'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -36,6 +35,7 @@ async function getTopPublishedClaim(entityId: number) {
     .select({
       consumerQuestion: claims.consumerQuestion,
       directAnswer: claims.directAnswer,
+      claimType: claims.claimType,
       proofBoundaryStage: claims.proofBoundaryStage,
       lastReviewedAt: claims.lastReviewedAt,
     })
@@ -63,8 +63,20 @@ export default async function Image({ params }: Props) {
     : entity
       ? truncate(entity.bottomLine, 220)
       : 'See where the evidence actually ends.'
-  const boundaryLabel = topClaim ? PROOF_BOUNDARY_LABELS[topClaim.proofBoundaryStage] : null
-  const reviewDate = topClaim ? (topClaim.lastReviewedAt ? topClaim.lastReviewedAt.toISOString().slice(0, 10) : 'Pending review') : null
+  // Plain language, and only where a position means anything. A share card previously read
+  // "Proof Boundary — Animal evidence", pushing the internal vocabulary to the widest audience
+  // the site has.
+  const evidenceLabel =
+    topClaim && stagePositionApplies(topClaim.claimType)
+      ? plainHumanEvidence(topClaim.proofBoundaryStage)
+      : null
+  // One complete phrase, not a label glued to a value: the fallback branch previously produced
+  // "Reviewed Pending review".
+  const reviewLine = topClaim
+    ? topClaim.lastReviewedAt
+      ? `Last checked ${readableDate(topClaim.lastReviewedAt)}`
+      : 'Independent scientific review pending'
+    : null
   const shortLink = entity ? entityUrl(entity.slug).replace(/^https?:\/\//, '') : 'rnawiki.com'
 
   return new ImageResponse(
@@ -93,7 +105,7 @@ export default async function Image({ params }: Props) {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
-          {boundaryLabel && (
+          {evidenceLabel && (
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <div
                 style={{
@@ -110,9 +122,9 @@ export default async function Image({ params }: Props) {
                   textTransform: 'uppercase',
                 }}
               >
-                Proof Boundary — {boundaryLabel}
+                {evidenceLabel}
               </div>
-              {reviewDate && <div style={{ display: 'flex', fontSize: 20, color: COLOR_TEXT_FAINT }}>Reviewed {reviewDate}</div>}
+              {reviewLine && <div style={{ display: 'flex', fontSize: 20, color: COLOR_TEXT_FAINT }}>{reviewLine}</div>}
             </div>
           )}
           <div
