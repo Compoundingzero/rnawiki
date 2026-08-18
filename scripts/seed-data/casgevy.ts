@@ -111,7 +111,7 @@ const seed: SeedFile = {
           'Approval means a regulator judged the measured benefit-risk balance favorable enough to authorize marketing for a defined population. It is not evidence that every long-term risk has been ruled out: the FDA mandated a 15-year follow-up study (NCT04208529) tracking new malignancies.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          'This is the strongest evidence category the Proof Boundary tracks: an independent regulator (in this case three separate ones) reviewed the underlying trial data and authorized the product for a named use. That is a higher bar than a single published trial result on its own.',
+          'This is the strongest evidence category recorded here: an independent regulator (in this case three separate ones) reviewed the underlying trial data and authorized the product for a named use. That is a higher bar than a single published trial result on its own.',
         remainingUnknown:
           'Eligibility differs by jurisdiction and is narrower in the EU and UK. The 2026 U.S. expansion to age 2 rested on a smaller pediatric cohort — trade press reported roughly 11 sickle cell and 15 beta-thalassemia patients aged 5 to under 12 — with less follow-up.',
         evidenceNeededNext:

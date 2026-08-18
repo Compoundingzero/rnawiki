@@ -33,7 +33,7 @@ const seed: SeedFile = {
       'BPC-157 has produced tissue-healing effects in rat and cell studies of tendon, ligament, and gut injury, but no controlled human trial has confirmed that it speeds healing or is safe for human use.',
     regulatoryCategory: 'unapproved_therapeutic_substance',
     accessRealityNote:
-      'BPC-157 is not an approved drug or a legal dietary supplement anywhere. It circulates almost entirely through online "research chemical" sellers whose product labels state the material is not for human or veterinary use. That labeling lets sellers avoid pharmaceutical manufacturing, purity, and dosing-accuracy regulation, even though buyers commonly use the product on themselves. No regulator has verified the identity, purity, or sterility of these products. FDA has separately identified unresolved immunogenicity and impurity-characterization concerns specific to BPC-157.',
+      'BPC-157 is not an approved medicine or a legal dietary supplement anywhere. No regulator has verified the identity, purity or sterility of material sold under this name, so what a given vial actually contains is unknown. The FDA has separately identified unresolved immunogenicity and impurity-characterization concerns specific to BPC-157.',
     regulatoryStatuses: [
       {
         jurisdiction: 'United States — FDA (503A bulk drug substances for compounding)',
@@ -172,7 +172,7 @@ const seed: SeedFile = {
             ],
             correctOptionIndex: 1,
             explanation:
-              'Real preclinical evidence exists in animal and cell models — but that is a different, weaker evidentiary claim than "proven to work in people." No controlled human trial has tested it, which is exactly what the Proof Boundary is designed to make visible.',
+              'Real preclinical evidence exists in animal and cell models — but that is a different, weaker evidentiary claim than "proven to work in people." No controlled human trial has tested it, which is exactly the gap this page is meant to make visible.',
           },
           {
             question:
@@ -184,7 +184,7 @@ const seed: SeedFile = {
             ],
             correctOptionIndex: 0,
             explanation:
-              '"Promising in rats and cells" and "proven in people" are different claims. Marketing language often blurs that line — the Proof Boundary keeps the two separated.',
+              '"Promising in rats and cells" and "proven in people" are different claims. Marketing language often blurs that line. This page keeps the two separated.',
           },
         ],
       },

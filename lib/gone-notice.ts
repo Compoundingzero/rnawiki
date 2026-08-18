@@ -80,103 +80,84 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#39;')
 }
 
-/** Bounded copy of the rules from app/globals.css that this notice uses. */
+/**
+ * Bounded copy of the rules from app/globals.css that this notice uses — same tokens, same
+ * values, same class names. Keep it in step with that file by hand, and keep the subset small.
+ */
 const STYLES = `
 :root{
---canvas:#f4f6f3;--surface:#fff;--surface-sunk:#eef1ed;--ink:#111614;--ink-soft:#343b38;
---muted:#66706b;--border:#d5dcd7;--border-strong:#abb5af;--accent:#1748d1;--accent-hover:#10369f;
---font-serif:'Iowan Old Style',Palatino Linotype,Georgia,serif;
---font-sans:system-ui,-apple-system,Segoe UI,Helvetica Neue,sans-serif;
---font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+--bg:#fff;--bg-soft:#f5f5f7;--text:#1d1d1f;--text-soft:#6e6e73;--border:#d2d2d7;--border-soft:#e6e6ea;
+--action:#0066cc;--action-hover:#0052a6;
+--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s7:48px;--s8:64px;
+--radius:12px;--radius-sm:8px;--measure:42rem;--page:70rem;
+--font:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
 }
-@media (prefers-color-scheme:dark){:root{
---canvas:#12150f;--surface:#171b15;--surface-sunk:#1f241d;--ink:#eef1e8;--ink-soft:#c9cfc3;
---muted:#8e978b;--border:#2f362b;--border-strong:#4a5344;--accent:#8fabff;--accent-hover:#b6c8ff;
-}}
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--canvas);color:var(--ink);font-family:var(--font-sans);
-font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
-main{max-width:44rem;margin-inline:auto;padding:3rem 1.5rem 6rem}
-h1,h2{margin:0;font-weight:600;line-height:1.15;text-wrap:balance}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:17px;
+line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2{margin:0;line-height:1.2;font-weight:600;letter-spacing:-.015em;text-wrap:balance}
+h1{font-size:clamp(2.125rem,1.4rem + 3vw,3.25rem)}
+h2{font-size:clamp(1.5rem,1.2rem + 1.2vw,1.875rem)}
 p{margin:0}
-a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.15em}
-a:hover{color:var(--accent-hover)}
-:where(a,button,input,summary):focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+ul{margin:0;padding:0}
+a{color:var(--action);text-underline-offset:.15em}
+a:hover{color:var(--action-hover)}
+:where(a,button,input):focus-visible{outline:2px solid var(--action);outline-offset:2px;border-radius:4px}
 .vh{position:absolute;left:-9999px;top:0}
-.eyebrow{font-family:var(--font-mono);font-size:.6875rem;font-weight:500;letter-spacing:.08em;
-text-transform:uppercase;color:var(--muted)}
-.h1{font-family:var(--font-serif);font-size:clamp(1.75rem,1.3rem + 1.6vw,2.25rem);letter-spacing:-.012em;
-margin:.75rem 0 1rem}
-.h2{font-family:var(--font-serif);font-size:1.5rem;letter-spacing:-.008em}
-.lead{font-size:1.1875rem;line-height:1.5;color:var(--ink-soft)}
-.prose{color:var(--ink-soft)}
-.prose p+p{margin-top:1rem}
-.rule{border:0;border-top:1px solid var(--border);margin:3rem 0}
-.section-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1rem}
-.section-head::after{content:'';flex:1;height:1px;background:var(--border)}
-.speclabel{display:grid;gap:0;margin:1.5rem 0 0;border-top:1px solid var(--border-strong);
-border-bottom:1px solid var(--border-strong)}
-.speclabel__row{display:grid;grid-template-columns:9.5rem minmax(0,1fr);gap:1rem;padding:.75rem 0;
-align-items:baseline}
-.speclabel__row+.speclabel__row{border-top:1px solid var(--border)}
-.speclabel__key{font-family:var(--font-mono);font-size:.6875rem;font-weight:500;letter-spacing:.08em;
-text-transform:uppercase;color:var(--muted)}
-.speclabel__val{margin:0;font-family:var(--font-mono);font-size:.75rem;color:var(--ink);line-height:1.5;
-overflow-wrap:anywhere}
-@media (max-width:30rem){.speclabel__row{grid-template-columns:minmax(0,1fr);gap:.25rem}}
-.rows{list-style:none;margin:0;padding:0;border-top:1px solid var(--border)}
-.row{border-bottom:1px solid var(--border)}
-.row__link{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:center;
-padding:1rem .5rem;text-decoration:none;color:inherit;min-height:44px}
-.row__link:hover{background:var(--surface-sunk)}
-.row__name{font-family:var(--font-serif);font-size:1.0625rem;font-weight:600;color:var(--ink)}
-.row__desc{font-size:.8125rem;color:var(--ink-soft);margin-top:.25rem}
-.row__chev{font-family:var(--font-mono);color:var(--muted)}
-@media (max-width:36rem){.row__link{grid-template-columns:minmax(0,1fr)}.row__chev{display:none}}
-.searchform{display:flex;gap:.5rem;max-width:34rem;margin-top:1rem}
-.field{font-family:var(--font-sans);font-size:1.0625rem;padding:.7em .9em;border-radius:4px;
-border:1px solid var(--border-strong);background:var(--surface);color:var(--ink);width:100%;min-height:44px}
-.field::placeholder{color:var(--muted)}
-.btn{font-family:var(--font-sans);font-size:.8125rem;font-weight:500;padding:.6em 1.1em;border-radius:4px;
-border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;min-height:44px;flex:none}
-.btn:hover{background:var(--accent-hover);border-color:var(--accent-hover)}
-.wordmark{display:inline-flex;align-items:center;gap:.5rem;color:var(--ink);text-decoration:none;
-font-family:var(--font-serif);font-size:1.15rem;font-weight:600;letter-spacing:-.01em;line-height:1}
-.wordmark svg{display:block;flex:none}
+.page{max-width:var(--page);margin-inline:auto;padding-inline:var(--s5)}
+.doc{padding-block:var(--s8)}
+.reading{max-width:var(--measure)}
+.stack>*+*{margin-top:var(--s4)}
+.section{margin-top:var(--s8)}
+.section-sm{margin-top:var(--s7)}
+.muted{color:var(--text-soft)}
+.lead{font-size:1.25rem;line-height:1.5}
+.site-header{border-bottom:1px solid var(--border-soft)}
+.site-header__inner{display:flex;align-items:center;min-height:60px}
+.wordmark{font-size:1.1875rem;font-weight:600;letter-spacing:-.02em;color:var(--text);
+text-decoration:none}
+.facts{margin:0;max-width:var(--measure)}
+.facts>div{padding-block:var(--s4)}
+.facts>div+div{border-top:1px solid var(--border-soft)}
+.facts dt{font-weight:600}
+.facts dd{margin:0;color:var(--text-soft);overflow-wrap:anywhere}
+@media (min-width:40rem){.facts>div{display:grid;grid-template-columns:13rem minmax(0,1fr);
+gap:var(--s5);align-items:baseline}}
+.records{list-style:none}
+.records>li+li{border-top:1px solid var(--border-soft)}
+.record-link{display:block;padding:var(--s5) var(--s3);margin-inline:calc(var(--s3) * -1);
+border-radius:var(--radius-sm);text-decoration:none;color:inherit}
+.record-link:hover{background:var(--bg-soft)}
+.record-link__name{font-size:1.1875rem;font-weight:600;color:var(--text);margin-bottom:var(--s1)}
+.record-link__desc{color:var(--text-soft);font-size:.9375rem}
+.search{display:flex;gap:var(--s2);width:100%;max-width:42.5rem;margin-top:var(--s4)}
+.search__input{flex:1 1 auto;min-width:0;min-height:44px;padding:0 var(--s4);font-size:.9375rem;
+font-family:inherit;color:var(--text);background:var(--bg);border:1px solid var(--border);
+border-radius:var(--radius)}
+.search__input::placeholder{color:var(--text-soft)}
+.search__btn{flex:none;min-height:44px;padding:0 var(--s4);font-size:.9375rem;font-family:inherit;
+font-weight:500;color:#fff;background:var(--action);border:1px solid var(--action);
+border-radius:var(--radius);cursor:pointer}
+.search__btn:hover{background:var(--action-hover);border-color:var(--action-hover)}
+@media (max-width:33rem){.search{flex-direction:column}.search__input{flex:none}
+.search__btn{width:100%}}
 @media print{body{background:#fff;color:#000}}
 `.trim()
 
-/**
- * The mark from components/brand/Wordmark.tsx, inlined. Same 24-unit grid and
- * same paths — a middleware response cannot import the React component, and a
- * text-only wordmark here would make the 410 page look like a different site
- * from /gone.
- */
-const MARK_SVG =
-  '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">' +
-  '<path d="M4 3 V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-  '<path d="M4 5.5 H19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-  '<path d="M4 11 H15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-  '<path d="M4 16.5 H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>' +
-  '<path d="M4 21.5 H8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" ' +
-  'stroke-dasharray="0.5 3" opacity="0.6"/></svg>'
-
-function specRow(key: string, value: string): string {
-  return `<div class="speclabel__row"><dt class="speclabel__key">${escapeHtml(key)}</dt><dd class="speclabel__val">${escapeHtml(value)}</dd></div>`
+function factRow(key: string, value: string): string {
+  return `<div><dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd></div>`
 }
 
 function destinationRow(d: Destination): string {
-  return `<li class="row"><a class="row__link" href="${escapeHtml(d.href)}"><span><span class="row__name">${escapeHtml(
+  return `<li><a class="record-link" href="${escapeHtml(d.href)}"><span class="record-link__name" style="display:block">${escapeHtml(
     d.label
-  )}</span><span class="row__desc" style="display:block">${escapeHtml(
-    d.note
-  )}</span></span><span class="row__chev" aria-hidden="true">&rarr;</span></a></li>`
+  )}</span><span class="record-link__desc" style="display:block">${escapeHtml(d.note)}</span></a></li>`
 }
 
 /**
- * The full `410 Gone` body. `requestedPath` is echoed back so the reader can see
- * which address is closed; it is escaped because it comes from the request.
+ * The full `410 Gone` body. `requestedPath` is echoed back so the reader can see which address is
+ * closed; it is escaped because it comes from the request.
  */
 export function renderGoneDocument(requestedPath: string): string {
   return `<!doctype html>
@@ -189,36 +170,45 @@ export function renderGoneDocument(requestedPath: string): string {
 <style>${STYLES}</style>
 </head>
 <body>
-<main>
-<a class="wordmark" href="/" aria-label="RNAwiki, home">${MARK_SVG}<span>RNAwiki</span></a>
-<p class="eyebrow" style="margin-top:2rem">${escapeHtml(GONE_EYEBROW)}</p>
-<h1 class="h1">${escapeHtml(GONE_TITLE)}</h1>
-<p class="lead">${escapeHtml(GONE_LEAD)}</p>
-<dl class="speclabel">
-${specRow('Address', requestedPath)}
-${specRow('Status', '410 Gone. Permanent, not a temporary error.')}
-${specRow('Replacement', 'None recorded for this address.')}
+<header class="site-header"><div class="page site-header__inner">
+<a class="wordmark" href="/">RNAwiki</a>
+</div></header>
+<main class="page doc">
+<header class="reading stack">
+<h1>${escapeHtml(GONE_TITLE)}</h1>
+<p class="lead muted">${escapeHtml(GONE_LEAD)}</p>
+</header>
+<div class="section-sm"><dl class="facts">
+${factRow('Address', requestedPath)}
+${factRow('Status', 'Closed permanently, not a temporary error.')}
+${factRow('Replacement', 'None recorded for this address.')}
+</dl></div>
+<section class="section">
+<h2>${escapeHtml(GONE_REASON_HEADING)}</h2>
+<div class="reading stack muted" style="margin-top:var(--s4)">${GONE_REASON.map(
+    (p) => `<p>${escapeHtml(p)}</p>`
+  ).join('')}</div>
+</section>
+<section class="section">
+<h2>${escapeHtml(GONE_DISPOSITION_HEADING)}</h2>
+<dl class="facts" style="margin-top:var(--s4)">
+${GONE_DISPOSITIONS.map((d) => factRow(d.key, d.value)).join('\n')}
 </dl>
-<hr class="rule">
-<div class="section-head"><h2 class="h2">${escapeHtml(GONE_REASON_HEADING)}</h2></div>
-<div class="prose">${GONE_REASON.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}</div>
-<hr class="rule">
-<div class="section-head"><h2 class="h2">${escapeHtml(GONE_DISPOSITION_HEADING)}</h2></div>
-<dl class="speclabel" style="margin-top:0">
-${GONE_DISPOSITIONS.map((d) => specRow(d.key, d.value)).join('\n')}
-</dl>
-<hr class="rule">
-<div class="section-head"><h2 class="h2">${escapeHtml(GONE_SEARCH_HEADING)}</h2></div>
-<form class="searchform" role="search" action="/search" method="get">
+</section>
+<section class="section">
+<h2>${escapeHtml(GONE_SEARCH_HEADING)}</h2>
+<form class="search" role="search" action="/search" method="get">
 <label class="vh" for="gone-search">${escapeHtml(SEARCH_LABEL)}</label>
-<input class="field" id="gone-search" name="q" type="search" placeholder="${escapeHtml(SEARCH_LABEL)}">
-<button class="btn" type="submit">Search</button>
+<input class="search__input" id="gone-search" name="q" type="search" placeholder="${escapeHtml(SEARCH_LABEL)}">
+<button class="search__btn" type="submit">Search</button>
 </form>
-<hr class="rule">
-<div class="section-head"><h2 class="h2">${escapeHtml(GONE_DESTINATIONS_HEADING)}</h2></div>
-<ul class="rows">
+</section>
+<section class="section">
+<h2>${escapeHtml(GONE_DESTINATIONS_HEADING)}</h2>
+<ul class="records reading" style="margin-top:var(--s4)">
 ${GONE_DESTINATIONS.map(destinationRow).join('\n')}
 </ul>
+</section>
 </main>
 </body>
 </html>`

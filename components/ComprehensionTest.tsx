@@ -11,6 +11,9 @@ import type { ComprehensionQuestionView } from '@/lib/comprehension'
 //
 // This is a comprehension check on the writing, not a test of the reader and not evidence for the
 // claim — the copy below says so explicitly, and must keep saying so.
+//
+// It is also optional. It used to sit open after every claim, which turned a page someone opened
+// with one question into a four-part exam; the record page now keeps it behind a single control.
 
 interface ComprehensionTestProps {
   claimId: number
@@ -81,16 +84,12 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
   const headingId = `comprehension-heading-${claimId}`
 
   return (
-    <section aria-labelledby={headingId} className="measure">
-      <h3 id={headingId} className="h4">
+    <section aria-labelledby={headingId} className="reading">
+      <h3 id={headingId} className="claim__q">
         {claimQuestion ?? 'Check your understanding'}
       </h3>
-      <p className="muted" style={{ fontSize: 'var(--size-small)', marginTop: 'var(--s2)' }}>
-        A short, anonymous check on whether this explanation was clear. It measures the writing, not the reader —
-        and it is not evidence for or against the claim above.
-      </p>
 
-      <div className="stack-lg" style={{ marginTop: 'var(--s5)' }}>
+      <div style={{ marginTop: 'var(--s4)' }}>
         {questions.map((q, index) => {
           const result = results[q.id]
           const error = errors[q.id]
@@ -98,59 +97,19 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
           const hasSelection = selected[q.id] !== undefined
 
           return (
-            <fieldset
-              key={q.id}
-              disabled={Boolean(result)}
-              style={{
-                border: 0,
-                borderTop: 'var(--hairline) solid var(--border-strong)',
-                margin: 0,
-                padding: 'var(--s4) 0 0',
-                minWidth: 0,
-              }}
-            >
-              <legend style={{ padding: 0 }}>
-                <span className="eyebrow">Question {index + 1}</span>
-                <span
-                  style={{
-                    display: 'block',
-                    fontFamily: 'var(--font-serif)',
-                    fontSize: 'var(--size-h4)',
-                    fontWeight: 600,
-                    marginTop: 'var(--s1)',
-                  }}
-                >
-                  {q.question}
-                </span>
+            <fieldset key={q.id} disabled={Boolean(result)} className="quiz-q">
+              <legend className="quiz-q__legend">
+                {index + 1}. {q.question}
               </legend>
 
               <div style={{ marginTop: 'var(--s3)' }}>
                 {q.options.map((option, optionIndex) => (
-                  <label
-                    key={optionIndex}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'flex-start',
-                      gap: 'var(--s3)',
-                      minHeight: '44px',
-                      paddingBlock: 'var(--s2)',
-                      borderTop: optionIndex === 0 ? 'none' : 'var(--hairline) solid var(--border)',
-                      fontSize: 'var(--size-small)',
-                      cursor: result ? 'default' : 'pointer',
-                    }}
-                  >
+                  <label key={optionIndex} className="choice">
                     <input
                       type="radio"
                       name={`comprehension-question-${q.id}`}
                       checked={selected[q.id] === optionIndex}
                       onChange={() => setSelected((prev) => ({ ...prev, [q.id]: optionIndex }))}
-                      style={{
-                        width: '1.1rem',
-                        height: '1.1rem',
-                        marginTop: '0.2em',
-                        flex: 'none',
-                        accentColor: 'var(--accent)',
-                      }}
                     />
                     <span>{option}</span>
                   </label>
@@ -164,31 +123,20 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
                     onClick={() => submitAnswer(q.id)}
                     disabled={!hasSelection || isPending}
                     className="btn"
-                    style={{
-                      cursor: !hasSelection || isPending ? 'default' : 'pointer',
-                      opacity: hasSelection ? 1 : 0.55,
-                    }}
+                    style={{ opacity: hasSelection ? 1 : 0.55 }}
                   >
                     {isPending ? 'Checking…' : 'Check my answer'}
                   </button>
                   {error && (
-                    <div className="callout" data-tone="danger" role="alert" style={{ marginTop: 'var(--s3)' }}>
-                      <p style={{ fontSize: 'var(--size-small)' }}>{error}</p>
-                    </div>
+                    <p className="quiz__result" role="alert">
+                      {error}
+                    </p>
                   )}
                 </div>
               )}
 
               {result && (
-                <p
-                  role="status"
-                  className="callout"
-                  style={{
-                    marginTop: 'var(--s4)',
-                    fontSize: 'var(--size-small)',
-                    borderLeftColor: result.isCorrect ? 'var(--success)' : 'var(--border-strong)',
-                  }}
-                >
+                <p role="status" className="quiz__result">
                   <strong>{result.isCorrect ? 'That matches the explanation.' : 'Not quite.'}</strong>{' '}
                   {result.explanation}
                 </p>
@@ -199,19 +147,9 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
       </div>
 
       {aggregateMessage && (
-        <p
-          className="muted"
-          style={{
-            marginTop: 'var(--s5)',
-            paddingTop: 'var(--s4)',
-            borderTop: 'var(--hairline) solid var(--border)',
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'var(--size-meta)',
-            lineHeight: 1.5,
-          }}
-        >
-          {aggregateMessage}. This measures how clearly the explanation reads — it is not a scientific validation
-          of the claim.
+        <p className="small muted" style={{ marginTop: 'var(--s5)' }}>
+          {aggregateMessage}. This measures how clearly the explanation reads. It is not a scientific validation of
+          the claim.
         </p>
       )}
     </section>

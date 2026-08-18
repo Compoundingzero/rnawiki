@@ -1,65 +1,70 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * The front door's word budget.
+ * The homepage budget.
  *
- * History, so the number is not mistaken for arbitrary: the homepage reached 313 visible words
- * of marketing-shaped copy, and was cut to 100. The budget was then 170. The field-guide redesign
- * deliberately re-added *structural* content the brief requires — a live corpus/trust strip, a
- * browsable compound index with one-sentence descriptions, a featured-claims row, an evidence
- * change log and the six-step publishing pipeline. That is information, not filler, so the budget
- * was raised to fit it rather than deleting mandated sections.
+ * History: it reached 313 words of marketing copy, was cut to 100, then grew to 346 when a
+ * corpus table, a full compound index and a publishing pipeline were added. The plain-language
+ * rebuild removed all three — the front door is now hero, search, trust line, how-to-read, and a
+ * few recently checked questions.
  *
- * The rule is unchanged: if this fails, cut copy. Raise the number only when a section is added
- * on purpose, and say so here.
+ * If this fails, cut copy. Raise the number only when a section is added deliberately, and say so.
  */
-const VISIBLE_WORD_BUDGET = 420
+const VISIBLE_WORD_BUDGET = 260
 
 test.describe('homepage', () => {
-  test('loads and shows the search box', async ({ page }) => {
+  test('loads and shows the primary search', async ({ page }) => {
     const response = await page.goto('/')
     expect(response?.ok()).toBe(true)
-
-    await expect(page.getByRole('searchbox', { name: /search a compound, claim or source/i })).toBeVisible()
+    await expect(page.getByRole('searchbox', { name: /search a name or health claim/i })).toBeVisible()
+    await expect(page.getByRole('button', { name: /check the evidence/i })).toBeVisible()
   })
 
-  test('featured claims show a Proof Boundary stage, never a full claim answer', async ({ page }) => {
+  test('has exactly one h1 and stays within its word budget', async ({ page }) => {
     await page.goto('/')
+    expect(await page.locator('h1').count()).toBe(1)
 
-    // Featured claims link to a claim anchor; compound index rows link to the entity itself and
-    // legitimately carry a one-sentence description, so they are a different budget.
-    const claimLinks = page.locator('a[href*="#claim-"]')
-    const count = await claimLinks.count()
-    test.skip(count === 0, 'No published claims to feature yet.')
-
-    for (let i = 0; i < count; i++) {
-      const text = ((await claimLinks.nth(i).textContent()) ?? '').trim()
-      const words = text.split(/\s+/).filter(Boolean).length
-      expect(
-        words,
-        `featured claim ${i + 1} is carrying too much text for a summary row: "${text.slice(0, 80)}…"`
-      ).toBeLessThanOrEqual(40)
-    }
-  })
-
-  test('stays within its visible word budget', async ({ page }) => {
-    await page.goto('/')
-
-    const words = await page.locator('main').evaluate((el) => {
-      const text = (el as HTMLElement).innerText || ''
-      return text.split(/\s+/).filter(Boolean).length
-    })
-
+    const words = await page
+      .locator('main')
+      .evaluate((el) => ((el as HTMLElement).innerText || '').split(/\s+/).filter(Boolean).length)
     expect(
       words,
-      `homepage has ${words} visible words; the budget is ${VISIBLE_WORD_BUDGET}. Cut copy rather than raising the budget.`
+      `homepage has ${words} visible words; the budget is ${VISIBLE_WORD_BUDGET}. Cut copy rather than raising it.`
     ).toBeLessThanOrEqual(VISIBLE_WORD_BUDGET)
   })
 
-  test('renders the brand mark and literal navigation', async ({ page }) => {
+  test('does not render the whole corpus index', async ({ page }) => {
     await page.goto('/')
-    await expect(page.getByRole('link', { name: /rnawiki, home/i })).toBeVisible()
-    // Navigation must name real record types. Nothing here may advertise a section that has no data.
-    await expect(page.getByRole('navigation', { name: 'Primary' }).getByRole('link', { name: 'Compounds' })).toBeVisible()
+    // The front door lists a handful of recent questions and links to /compounds for the rest.
+    const recordLinks = page.locator('a[href^="/r/"]')
+    expect(await recordLinks.count()).toBeLessThanOrEqual(6)
+    await expect(page.getByRole('link', { name: /browse all/i })).toBeVisible()
+  })
+
+  test('every featured question carries its own answer, never a bare evidence label', async ({ page }) => {
+    await page.goto('/')
+    const links = page.locator('a[href*="#claim-"]')
+    const count = await links.count()
+    test.skip(count === 0, 'No published claims to feature yet.')
+
+    for (let i = 0; i < count; i++) {
+      const text = ((await links.nth(i).textContent()) ?? '').trim()
+      // An evidence label beside a yes/no question, with no answer, reads AS the answer and can
+      // invert it. Either the claim's own answer travels with it or it does not appear.
+      expect(text.split(/\s+/).length, `featured entry ${i + 1} is too short to contain an answer`).toBeGreaterThan(12)
+    }
+  })
+
+  test('primary navigation is literal and the mobile header stays on one row', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.getByRole('link', { name: 'RNAwiki' }).first()).toBeVisible()
+
+    await page.setViewportSize({ width: 390, height: 844 })
+    await page.goto('/')
+    const header = page.locator('header .site-header__inner')
+    const box = await header.boundingBox()
+    // One row: a wrapped header measured ~165px tall before the rebuild.
+    expect(box, 'header not found').not.toBeNull()
+    expect(box!.height, 'mobile header has wrapped onto multiple rows').toBeLessThanOrEqual(80)
   })
 })

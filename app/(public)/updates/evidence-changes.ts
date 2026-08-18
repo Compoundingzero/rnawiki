@@ -19,7 +19,8 @@ export const EVIDENCE_CHANGE_TYPE_LABELS: Record<EvidenceChangeType, string> = {
   safety_warning: 'Safety warning',
   retraction_or_correction: 'Retraction or correction',
   independent_study: 'Independent study',
-  boundary_moved: 'Proof Boundary moved',
+  // Reader-facing label. The internal name for this concept never appears in public copy.
+  boundary_moved: 'Evidence stage moved',
 }
 
 export interface EvidenceChangeItem {

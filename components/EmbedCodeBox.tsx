@@ -12,13 +12,17 @@ const DEFAULT_ORIGIN = 'https://rnawiki.com'
 const PREVIEW_HEIGHT = 340
 
 // The iframe snippet carries literal values, not tokens: it runs on a third-party page that has
-// never seen app/globals.css. These match --border and --radius-md.
-const SNIPPET_BORDER = '#d5dcd7'
-const SNIPPET_RADIUS = '6px'
+// never seen app/globals.css. These match --border and --radius-sm.
+const SNIPPET_BORDER = '#d2d2d7'
+const SNIPPET_RADIUS = '8px'
 
 export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; claimQuestion: string }) {
   const [origin, setOrigin] = useState(DEFAULT_ORIGIN)
   const [copied, setCopied] = useState(false)
+  // The preview is a real iframe hitting a real route. A record page carries one of these per
+  // claim, so mounting them all up front would load four extra documents nobody asked for —
+  // it mounts when the reader opens this panel, and not before.
+  const [opened, setOpened] = useState(false)
 
   useEffect(() => {
     setOrigin(window.location.origin)
@@ -39,42 +43,24 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
   }
 
   return (
-    // minWidth:0 keeps the expanded panel shrinkable when this sits in a flex row of
-    // controls, so opening it can never push the page into horizontal overflow.
-    <details style={{ minWidth: 0, maxWidth: '100%' }}>
-      <summary
-        className="btn"
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          listStyle: 'none',
-          cursor: 'pointer',
-        }}
-      >
-        Embed
-      </summary>
+    // minWidth:0 keeps the expanded panel shrinkable inside a narrow column, so opening it can
+    // never push the page into horizontal overflow.
+    <details
+      className="disclosure disclosure--inline"
+      style={{ minWidth: 0, maxWidth: '100%' }}
+      onToggle={(e) => {
+        if ((e.currentTarget as HTMLDetailsElement).open) setOpened(true)
+      }}
+    >
+      <summary>Embed this answer</summary>
 
-      <div className="stack" style={{ marginTop: 'var(--s4)', maxWidth: '34rem' }}>
-        <p className="prose" style={{ fontSize: 'var(--size-small)' }}>
-          This renders the claim, the stage its evidence reaches, and a link back to the full record. The wording
-          cannot be edited by the embedding site.
+      <div className="disclosure__body stack">
+        <p className="small">
+          The embed shows the claim, how far its evidence goes, and a link back to the full record. The wording
+          cannot be edited by the site that embeds it.
         </p>
 
-        <pre
-          style={{
-            margin: 0,
-            padding: 'var(--s3)',
-            background: 'var(--surface-sunk)',
-            border: 'var(--hairline) solid var(--border)',
-            borderRadius: 'var(--radius)',
-            fontFamily: 'var(--font-mono)',
-            fontSize: 'var(--size-meta)',
-            lineHeight: 1.5,
-            overflowX: 'auto',
-            whiteSpace: 'pre-wrap',
-            wordBreak: 'break-all',
-          }}
-        >
+        <pre className="code">
           <code>{snippet}</code>
         </pre>
 
@@ -84,23 +70,25 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
           </button>
         </div>
 
-        <div>
-          <p className="eyebrow" style={{ marginBottom: 'var(--s2)' }}>
-            Preview
-          </p>
-          <iframe
-            src={embedPath}
-            title={`Embed preview: ${claimQuestion}`}
-            loading="lazy"
-            style={{
-              width: '100%',
-              maxWidth: '100%',
-              height: `${PREVIEW_HEIGHT}px`,
-              border: 'var(--hairline) solid var(--border)',
-              borderRadius: 'var(--radius)',
-            }}
-          />
-        </div>
+        {opened && (
+          <div>
+            <p className="small muted" style={{ marginBottom: 'var(--s2)' }}>
+              Preview
+            </p>
+            <iframe
+              src={embedPath}
+              title={`Embed preview: ${claimQuestion}`}
+              loading="lazy"
+              style={{
+                width: '100%',
+                maxWidth: '100%',
+                height: `${PREVIEW_HEIGHT}px`,
+                border: '1px solid var(--border-soft)',
+                borderRadius: 'var(--radius-sm)',
+              }}
+            />
+          </div>
+        )}
       </div>
     </details>
   )

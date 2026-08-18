@@ -20,8 +20,13 @@ test.describe('comprehension ("teach-back") test', () => {
     // Each ComprehensionTest labels itself with its own claim's question (an entity page carries
     // one per claim), so locate the component by its stable aria-labelledby prefix rather than by
     // heading text — the page-level section heading is a separate, unlabelled <h2>.
+    // The clarity check is now optional and collapsed — it is feedback, not an exam after every
+    // claim. Open it first, then assert the interaction still works.
+    const summary = page.locator('summary').filter({ hasText: /was this explanation clear|clarity check/i }).first()
+    test.skip((await summary.count()) === 0, 'No comprehension questions seeded on this entity yet.')
+    await summary.click()
     const section = page.locator('section[aria-labelledby^="comprehension-heading-"]').first()
-    test.skip((await section.count()) === 0, 'No comprehension questions seeded on this entity yet.')
+    test.skip((await section.count()) === 0, 'No comprehension questions rendered.')
     await expect(section).toBeVisible()
     // Each question renders as its own <fieldset>/<legend> (accessible role="group"), and every
     // question has its own "Check my answer" button — scope to the first question's group

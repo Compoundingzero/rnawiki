@@ -1,31 +1,37 @@
 import { test, expect } from '@playwright/test'
 import { SEEDED_ENTITY_NAME } from './fixtures/seeded-entities'
 
+/**
+ * Search results are for a reader, not a database user. The previous assertions looked for the
+ * literal string "Proof Boundary —", which the plain-language rebuild deliberately removed from
+ * every reader-facing surface; those assertions now encode the wrong behaviour, so they are
+ * replaced with the rule that replaced them.
+ */
 test.describe('search', () => {
-  test('searching a known seeded entity name shows its Proof Boundary in the results, before clicking through', async ({
-    page,
-  }) => {
-    const response = await page.goto(`/search?q=${encodeURIComponent(SEEDED_ENTITY_NAME)}`)
-    expect(response?.ok()).toBe(true)
-
-    const noResults = page.getByText(/No results for/i)
-    const hasNoResults = await noResults.isVisible()
-    test.skip(hasNoResults, `"${SEEDED_ENTITY_NAME}" is not seeded/published yet — skipping until seed data lands.`)
-
-    // The result card (SearchResults.tsx) shows the entity name, the consumer question, the
-    // direct answer, and the Proof Boundary stage — all without navigating to /r/[slug].
+  test('a result shows the question, the answer, and a plain evidence line', async ({ page }) => {
+    await page.goto('/search?q=tendon')
     await expect(page.getByText(SEEDED_ENTITY_NAME).first()).toBeVisible()
-    await expect(page.getByText(/Proof Boundary —/).first()).toBeVisible()
+
+    const body = (await page.locator('main').innerText()).toLowerCase()
+    // The answer itself must be present, not just a label.
+    expect(body).toContain('no controlled human trial')
+    // Plain language, not the internal vocabulary.
+    expect(body).not.toContain('proof boundary')
+    expect(body).not.toContain('claim type')
+    expect(body).not.toMatch(/uncontrolled_human|animal_evidence|regulatory_evidence/)
   })
 
-  test('the no-JavaScript search form (GET /search?q=) works via plain navigation', async ({ page }) => {
+  test('the no-JavaScript search form works via plain navigation', async ({ page }) => {
     await page.goto('/search')
-    // Two searchboxes exist on internal pages: the compact one in the masthead and the page's own
-    // form. Scope to the page form via <main>, or this is a strict-mode violation.
     const input = page.locator('main').getByRole('searchbox')
     await input.fill(SEEDED_ENTITY_NAME)
-    await page.locator('main').getByRole('button', { name: /^search$/i }).click()
-
+    await page.locator('main').getByRole('button', { name: /search/i }).first().click()
     await expect(page).toHaveURL(new RegExp(`q=${encodeURIComponent(SEEDED_ENTITY_NAME)}`, 'i'))
+  })
+
+  test('a query with no matches explains what to do next', async ({ page }) => {
+    await page.goto('/search?q=zzzzqqqq')
+    const body = (await page.locator('main').innerText()).toLowerCase()
+    expect(body).toContain("couldn't find")
   })
 })

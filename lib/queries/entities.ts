@@ -75,6 +75,7 @@ export async function getPublishedClaimsForEntity(entityId: number): Promise<Pro
     results.push({
       id: claim.id,
       slug: claim.slug,
+      claimType: claim.claimType,
       entitySlug: entity?.slug ?? '',
       consumerQuestion: claim.consumerQuestion,
       directAnswer: claim.directAnswer,

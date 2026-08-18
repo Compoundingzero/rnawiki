@@ -15,24 +15,20 @@ test.describe('mobile viewport (375px)', () => {
     await page.goto('/')
     expect(await hasNoHorizontalOverflow(page)).toBe(true)
 
-    const nav = page.getByRole('navigation', { name: 'Primary' })
-    await expect(nav).toBeVisible()
+    // The mobile header is deliberately one row: wordmark + search + menu. Navigation lives
+    // behind the menu button, so there is no 'Primary' nav landmark visible at this width.
+    const menu = page.getByRole('button', { name: /open menu/i })
+    await expect(menu).toBeVisible()
+    const box = await menu.boundingBox()
+    expect(box!.width).toBeGreaterThanOrEqual(44)
+    expect(box!.height).toBeGreaterThanOrEqual(44)
 
-    // The homepage's search is the hero form, not a nav link — the masthead's compact search is
-    // deliberately suppressed on "/" so two search inputs never compete. Mobile must still have
-    // one obvious way to search without opening a menu.
+    // The homepage's search is the hero form and must be reachable without opening the menu.
     const heroSearch = page.locator('main').getByRole('searchbox')
     await expect(heroSearch).toBeVisible()
     await heroSearch.fill('BPC-157')
-    await page.locator('main').getByRole('button', { name: /^search$/i }).click()
+    await page.locator('main').getByRole('button', { name: /check the evidence/i }).click()
     await expect(page).toHaveURL(/\/search\?q=/)
-
-    // And the primary nav must still reach the compound index.
-    await page.goto('/')
-    const compounds = nav.getByRole('link', { name: 'Compounds' })
-    await expect(compounds).toBeVisible()
-    await compounds.click()
-    await expect(page).toHaveURL(/\/compounds$/)
   })
 
   test('an entity page has no horizontal overflow and the mechanism chain stays usable', async ({ page }) => {
@@ -44,9 +40,16 @@ test.describe('mobile viewport (375px)', () => {
 
     expect(await hasNoHorizontalOverflow(page)).toBe(true)
 
-    const mechanismChain = page.getByRole('list', { name: 'Proposed mechanism, step by step' }).first()
-    const hasMechanismChain = await mechanismChain.isVisible()
-    test.skip(!hasMechanismChain, 'No mechanism steps seeded on this entity yet.')
+    // Everything secondary is collapsed by default now. Force every disclosure open, which both
+    // reaches the mechanism list and checks the layout holds in its most expanded state — the
+    // case most likely to overflow.
+    await page.evaluate(() =>
+      document.querySelectorAll('details').forEach((d) => d.setAttribute('open', ''))
+    )
+    expect(await hasNoHorizontalOverflow(page), 'overflow with all disclosures open').toBe(true)
+
+    const mechanismChain = page.getByRole('list', { name: /mechanism/i }).first()
+    test.skip((await mechanismChain.count()) === 0, 'No mechanism steps seeded on this entity yet.')
 
     await expect(mechanismChain).toBeVisible()
     // Every step's text content must actually be reachable/visible at this width, not clipped

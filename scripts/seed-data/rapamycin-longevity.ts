@@ -41,7 +41,7 @@ const seed: SeedFile = {
       'Rapamycin is FDA-approved for kidney transplant rejection and the lung disease LAM; longevity use is off-label. It extended lifespan in mice, replicated across three NIA labs. The one completed placebo-controlled human trial found no significant effect on its primary endpoint, visceral fat.',
     regulatoryCategory: 'approved_medicine',
     accessRealityNote:
-      'In the US, rapamycin is prescription-only. Longevity use requires a physician willing to prescribe it off-label, typically as a compounded low, intermittent dose, not the approved transplant regimen. No regulator has approved any dose or schedule for longevity or anti-aging. Off-label prescribing is usually paired with routine blood monitoring (lipid panel, complete blood count, kidney function), because continuous transplant-level dosing changes lipids and blood counts and raises infection risk. US telehealth clinics prescribe compounded rapamycin for longevity, and one of them, AgelessRx, sponsored PEARL, the largest completed human trial to date; worth weighing when reading its results.',
+      'In the US, rapamycin is prescription-only, and no regulator anywhere has approved any dose or schedule for longevity or anti-aging. At the continuous doses used after transplant it changes lipids and blood counts and raises infection risk, which is why that use is monitored with regular blood tests.',
     regulatoryStatuses: [
       {
         jurisdiction: 'United States',

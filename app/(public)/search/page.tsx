@@ -1,10 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { inArray } from 'drizzle-orm'
-import { db } from '@/db'
-import { claims } from '@/db/schema'
 import { searchEntitiesAndClaims } from '@/lib/search'
-import { SearchResults, type SearchResultDetail } from './SearchResults'
+import { SearchResults } from './SearchResults'
 
 // Reads ?q= via Next's searchParams (a Promise as of Next 15) and queries the database directly
 // in this server component — no client-side fetch, so results render before any JavaScript runs
@@ -32,99 +29,64 @@ function firstValue(value: string | string[] | undefined): string {
   return value ?? ''
 }
 
-/**
- * Per-result record metadata the search query itself does not return: what kind of claim it is,
- * and when it was last reviewed. Read straight from the claims table for the ids already found —
- * lib/search.ts owns ranking and stays untouched. Claims with no review date are simply absent
- * from the map, and the row then prints no date rather than inventing one.
- */
-async function getResultDetails(claimIds: number[]): Promise<Map<number, SearchResultDetail>> {
-  if (claimIds.length === 0) return new Map()
-  const rows = await db
-    .select({ id: claims.id, claimType: claims.claimType, lastReviewedAt: claims.lastReviewedAt })
-    .from(claims)
-    .where(inArray(claims.id, claimIds))
-  return new Map(rows.map((r) => [r.id, { claimType: r.claimType, lastReviewedAt: r.lastReviewedAt }]))
-}
-
 export default async function SearchPage({ searchParams }: Props) {
   const params = await searchParams
   const query = firstValue(params.q).trim()
   const results = query ? await searchEntitiesAndClaims(query) : []
-  const details = await getResultDetails(results.map((r) => r.claimId))
 
   return (
-    <div className="wrap" style={{ paddingBlock: 'var(--s7) var(--s7)' }}>
-      <header className="measure" style={{ marginBottom: 'var(--s6)' }}>
-        <p className="eyebrow">Reference search</p>
-        <h1 className="h1" style={{ marginBlock: 'var(--s2) var(--s3)' }}>
-          Search
-        </h1>
-        <p className="prose" style={{ marginBottom: 'var(--s5)' }}>
-          Searches published compound records and every claim recorded under them. Names, aliases and claim
-          questions are all indexed.
+    <div className="page page-top">
+      <header className="reading">
+        <h1>Search RNAwiki</h1>
+        <p className="lead muted" style={{ marginTop: 'var(--s4)' }}>
+          Search a medicine, supplement, treatment or health claim.
         </p>
-
-        <form role="search" method="get" action="/search" style={{ maxWidth: '34rem' }}>
-          <label htmlFor="search-q" className="eyebrow" style={{ display: 'block', marginBottom: 'var(--s2)' }}>
-            Compound, alias or question
-          </label>
-          <div style={{ display: 'flex', gap: 'var(--s2)' }}>
-            <input
-              id="search-q"
-              name="q"
-              type="search"
-              defaultValue={query}
-              placeholder="Name, alias, or a question"
-              className="field"
-            />
-            <button type="submit" className="btn btn--primary" style={{ flex: 'none' }}>
-              Search
-            </button>
-          </div>
-        </form>
       </header>
 
-      <hr className="rule-tight" style={{ marginBottom: 'var(--s5)' }} />
+      <form role="search" method="get" action="/search" className="search" style={{ marginTop: 'var(--s5)' }}>
+        <label htmlFor="q" className="skip-link">
+          Search a medicine, supplement, treatment or health claim
+        </label>
+        <input
+          id="q"
+          name="q"
+          type="search"
+          className="search__input"
+          defaultValue={query}
+          placeholder="Name or health claim"
+          autoComplete="off"
+        />
+        <button type="submit" className="search__btn">
+          Search
+        </button>
+      </form>
 
       {query === '' && (
-        <div className="measure stack">
-          <p className="prose">
-            Enter a compound name, one of its aliases, or the question you actually want answered. Results show
-            where the evidence for that claim stops before you open the record.
-          </p>
-          <p>
-            <Link href="/compounds">Browse the compound index →</Link>
-          </p>
-        </div>
+        <p className="reading muted section-sm">
+          Type a name or a health claim above, or{' '}
+          <Link href="/compounds">browse everything RNAwiki covers</Link>.
+        </p>
       )}
 
       {query !== '' && results.length === 0 && (
-        <div className="measure stack">
-          <p className="metaline" role="status">
-            <span>
-              No results for <b>{query}</b>
-            </span>
+        <section className="reading stack section-sm">
+          <p className="lead" role="status">
+            RNAwiki couldn&apos;t find a matching answer.
           </p>
-          <p className="prose">
-            Nothing in the corpus matches that. Try the compound&apos;s common name, an alias, or a shorter phrase
-            from the question.
-          </p>
+          <p className="muted">Try a shorter name or a different part of the question.</p>
           <p>
-            <Link href="/compounds">Browse the compound index →</Link>
+            <Link href="/compounds">Browse everything RNAwiki covers</Link>
           </p>
-        </div>
+        </section>
       )}
 
       {results.length > 0 && (
-        <>
-          <p className="metaline" role="status" style={{ marginBottom: 'var(--s4)' }}>
-            <span>
-              {results.length} result{results.length === 1 ? '' : 's'} for <b>{query}</b>
-            </span>
+        <section className="section-sm">
+          <p className="muted reading" role="status">
+            {results.length} answer{results.length === 1 ? '' : 's'} for “{query}”
           </p>
-          <SearchResults results={results} details={details} />
-        </>
+          <SearchResults results={results} />
+        </section>
       )}
     </div>
   )

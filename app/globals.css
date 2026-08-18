@@ -1,120 +1,41 @@
-/* ============================================================================
-   RNAwiki design system
-   ----------------------------------------------------------------------------
-   A field guide, not an app. Two devices carry the identity:
-
-   1. THE SPECIMEN LABEL — fixed-order metadata in mono caps, set off by hairline
-      rules. Every entity, claim and source wears one. It is what makes a page
-      read as a catalogued record rather than an article.
-
-   2. THE EVIDENCE LADDER — eight stages on a rule, filled to the point evidence
-      actually reaches, then a hard terminator bar. It communicates by position
-      and shape, never by colour alone, and survives print and plain text.
-
-   Everything else is restraint: one accent, reserved for interaction; hairlines
-   instead of cards; type doing the structural work.
-   ========================================================================== */
+/* RNAwiki interface styles.
+   Light-only by design: every evidence state would need deliberate dark-mode
+   treatment and testing, and an accidentally inverted theme is worse than none.
+   Monospace is reserved for real identifiers (DOI, PMID, NCT). */
 
 :root {
-  /* --- colour ------------------------------------------------------------ */
-  --canvas: #f4f6f3;
-  --surface: #ffffff;
-  --surface-sunk: #eef1ed;
-  --ink: #111614;
-  --ink-soft: #343b38;
-  --muted: #66706b;
-  --border: #d5dcd7;
-  --border-strong: #abb5af;
+  --bg: #ffffff;
+  --bg-soft: #f5f5f7;
+  --text: #1d1d1f;
+  --text-soft: #6e6e73;
+  --border: #d2d2d7;
+  --border-soft: #e6e6ea;
+  --action: #0066cc;
+  --action-hover: #0052a6;
+  --warn-text: #7a4100;
+  --warn-bg: #fdf6ec;
+  --warn-border: #e8d5b5;
 
-  --accent: #1748d1;
-  --accent-hover: #10369f;
-  --accent-soft: #e9eeff;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-id: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --warning: #8a3b15;
-  --warning-soft: #fff1e7;
-  --danger: #a42525;
-  --danger-soft: #fdecec;
-  --success: #276447;
-  --success-soft: #eaf5ee;
+  /* 8px rhythm */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+  --s9: 96px;
 
-  /* --- type -------------------------------------------------------------- */
-  --font-serif: 'Iowan Old Style', Georgia, serif;
-  --font-sans: system-ui, sans-serif;
-  --font-mono: ui-monospace, Menlo, monospace;
+  --radius: 12px;
+  --radius-sm: 8px;
 
-  --size-micro: 0.6875rem; /* 11px — specimen label keys */
-  --size-meta: 0.75rem; /* 12px — metadata values */
-  --size-small: 0.8125rem; /* 13px */
-  --size-body: 1.0625rem; /* 17px — reading size */
-  --size-lead: 1.1875rem; /* 19px */
-  --size-h4: 1.0625rem;
-  --size-h3: 1.25rem;
-  --size-h2: 1.5rem;
-  --size-h1: 2.25rem;
-  --size-display: 2.75rem;
-
-  --leading-tight: 1.15;
-  --leading-snug: 1.35;
-  --leading-body: 1.65;
-
-  --track-caps: 0.08em;
-
-  /* --- space (4px base) --------------------------------------------------- */
-  --s1: 0.25rem;
-  --s2: 0.5rem;
-  --s3: 0.75rem;
-  --s4: 1rem;
-  --s5: 1.5rem;
-  --s6: 2rem;
-  --s7: 3rem;
-  --s8: 4rem;
-  --s9: 6rem;
-
-  /* --- shape -------------------------------------------------------------- */
-  --radius: 4px;
-  --radius-md: 6px;
-  --radius-group: 8px;
-  --hairline: 1px;
-
-  --shadow-overlay: 0 1px 2px rgba(17, 22, 20, 0.06), 0 12px 32px rgba(17, 22, 20, 0.16);
-
-  /* --- measure ------------------------------------------------------------ */
-  --measure: 44rem; /* ~704px reading column */
-  --page-max: 82.5rem; /* 1320px */
-
-  /* --- motion ------------------------------------------------------------- */
-  --t-fast: 120ms;
-  --t-base: 160ms;
-  --ease: cubic-bezier(0.2, 0, 0.1, 1);
+  --measure: 42rem; /* ~700px reading column */
+  --page: 70rem; /* ~1120px */
 }
-
-@media (prefers-color-scheme: dark) {
-  /* Supported, but not the identity: the same structure with neutrals inverted.
-     Light is the designed state. */
-  :root {
-    --canvas: #12150f;
-    --surface: #171b15;
-    --surface-sunk: #1f241d;
-    --ink: #eef1e8;
-    --ink-soft: #c9cfc3;
-    --muted: #8e978b;
-    --border: #2f362b;
-    --border-strong: #4a5344;
-
-    --accent: #8fabff;
-    --accent-hover: #b6c8ff;
-    --accent-soft: #17203a;
-
-    --warning: #e0a077;
-    --warning-soft: #2c1d12;
-    --danger: #e79191;
-    --danger-soft: #2e1717;
-    --success: #7fc09c;
-    --success-soft: #14261c;
-  }
-}
-
-/* ---------------------------------------------------------------- reset --- */
 
 *,
 *::before,
@@ -128,29 +49,37 @@ html {
 
 body {
   margin: 0;
-  background: var(--canvas);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: var(--size-body);
-  line-height: var(--leading-body);
-  font-synthesis-weight: none;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
   margin: 0;
+  line-height: 1.2;
   font-weight: 600;
-  line-height: var(--leading-tight);
+  letter-spacing: -0.015em;
   text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.125rem, 1.4rem + 3vw, 3.25rem);
+}
+h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem);
+}
+h3 {
+  font-size: 1.1875rem;
 }
 
 p {
   margin: 0;
 }
-
 ul,
 ol {
   margin: 0;
@@ -158,815 +87,1031 @@ ol {
 }
 
 a {
-  color: var(--accent);
-  text-decoration-thickness: 1px;
+  color: var(--action);
   text-underline-offset: 0.15em;
 }
-
 a:hover {
-  color: var(--accent-hover);
+  color: var(--action-hover);
 }
 
-img,
-svg {
-  max-width: 100%;
-}
-
-/* One focus treatment, everywhere. Solid, 2px, offset so it never touches the
-   glyphs it surrounds. */
 :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--action);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .skip-link {
   position: absolute;
   left: -9999px;
-  top: 0;
-  z-index: 100;
 }
 .skip-link:focus {
   left: var(--s4);
   top: var(--s4);
+  z-index: 100;
   padding: var(--s2) var(--s4);
-  background: var(--surface);
-  border: var(--hairline) solid var(--border-strong);
-  border-radius: var(--radius);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
-/* --------------------------------------------------------------- layout --- */
+/* --- layout -------------------------------------------------------------- */
 
-.wrap {
-  max-width: var(--page-max);
+.page {
+  max-width: var(--page);
   margin-inline: auto;
   padding-inline: var(--s5);
 }
 
-.measure {
+.reading {
   max-width: var(--measure);
-}
-
-/* Article shell: contents rail | reading column | metadata rail.
-   Collapses to two columns, then one. */
-.shell {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--s6);
-  align-items: start;
-}
-
-@media (min-width: 62rem) {
-  .shell {
-    grid-template-columns: minmax(0, 1fr) 17rem;
-    gap: var(--s7);
-  }
-}
-
-@media (min-width: 78rem) {
-  .shell {
-    grid-template-columns: 13rem minmax(0, 1fr) 17rem;
-  }
-}
-
-.rail {
-  position: sticky;
-  top: var(--s5);
-  font-size: var(--size-small);
-}
-
-@media (max-width: 61.99rem) {
-  .rail {
-    position: static;
-  }
 }
 
 .stack > * + * {
   margin-top: var(--s4);
 }
-.stack-lg > * + * {
+.stack-4 > * + * {
+  margin-top: var(--s5);
+}
+.stack-6 > * + * {
   margin-top: var(--s6);
 }
 
-/* Hairline section rule — the primary separator. Cards are the exception here,
-   not the rule. */
-.rule {
-  border: 0;
-  border-top: var(--hairline) solid var(--border);
-  margin: var(--s7) 0;
+/* Major sections are separated by space, not rules. */
+.section {
+  margin-top: var(--s8);
 }
-
-.rule-tight {
-  border: 0;
-  border-top: var(--hairline) solid var(--border);
-  margin: var(--s4) 0;
+@media (min-width: 48rem) {
+  .section {
+    margin-top: var(--s9);
+  }
 }
-
-/* ----------------------------------------------------------------- type --- */
-
-.display {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 1.4rem + 2.4vw, var(--size-display));
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
-
-.h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(1.75rem, 1.3rem + 1.6vw, var(--size-h1));
-  letter-spacing: -0.012em;
-}
-
-.h2 {
-  font-family: var(--font-serif);
-  font-size: var(--size-h2);
-  letter-spacing: -0.008em;
-}
-
-.h3 {
-  font-family: var(--font-sans);
-  font-size: var(--size-h3);
-  font-weight: 600;
-}
-
-.h4 {
-  font-family: var(--font-sans);
-  font-size: var(--size-h4);
-  font-weight: 600;
-}
-
-.lead {
-  font-size: var(--size-lead);
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-
-.prose p + p {
-  margin-top: var(--s4);
-}
-.prose {
-  color: var(--ink-soft);
-}
-.prose strong {
-  color: var(--ink);
-  font-weight: 600;
+.section-sm {
+  margin-top: var(--s7);
 }
 
 .muted {
-  color: var(--muted);
+  color: var(--text-soft);
 }
-
-/* Section heading: serif title with a hairline that runs to the column edge. */
-.section-head {
-  display: flex;
-  align-items: baseline;
-  gap: var(--s4);
-  margin-bottom: var(--s4);
+.small {
+  font-size: 0.9375rem;
 }
-.section-head::after {
-  content: '';
-  flex: 1;
-  height: var(--hairline);
-  background: var(--border);
-}
-
-/* --------------------------------------------------- 1. SPECIMEN LABEL ---- */
-/* Fixed-order metadata. Mono, small caps-ish, key over value, hairline-ruled.
-   This is the device that makes a page read as a catalogued record. */
-
-.speclabel {
-  display: grid;
-  gap: 0;
-  border-top: var(--hairline) solid var(--border-strong);
-  border-bottom: var(--hairline) solid var(--border-strong);
-}
-
-.speclabel__row {
-  display: grid;
-  grid-template-columns: 9.5rem minmax(0, 1fr);
-  gap: var(--s4);
-  padding: var(--s3) 0;
-  align-items: baseline;
-}
-.speclabel__row + .speclabel__row {
-  border-top: var(--hairline) solid var(--border);
-}
-
-.speclabel__key {
-  font-family: var(--font-mono);
-  font-size: var(--size-micro);
-  font-weight: 500;
-  letter-spacing: var(--track-caps);
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.speclabel__val {
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  color: var(--ink);
+.lead {
+  font-size: 1.25rem;
   line-height: 1.5;
 }
 
-/* Prose variant. Mono is for identifiers, dates, counts and labels — running it
-   under a paragraph of evidence text is unreadable. Keys stay mono; values
-   become normal reading type. */
-.speclabel--prose .speclabel__val {
-  font-family: var(--font-sans);
-  font-size: var(--size-small);
-  line-height: var(--leading-body);
-  color: var(--ink-soft);
-}
-.speclabel--prose .speclabel__row {
-  grid-template-columns: 8rem minmax(0, 1fr);
-  padding-block: var(--s4);
-}
+/* --- header -------------------------------------------------------------- */
 
-@media (max-width: 30rem) {
-  .speclabel__row {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--s1);
-  }
+.site-header {
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg);
 }
-
-/* Inline metadata run, e.g. under a page title. */
-.metaline {
+.site-header__inner {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2) var(--s4);
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  color: var(--muted);
-}
-.metaline b {
-  font-weight: 500;
-  color: var(--ink-soft);
-}
-
-/* Content-type eyebrow. */
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--size-micro);
-  font-weight: 500;
-  letter-spacing: var(--track-caps);
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-/* ------------------------------------------------- 2. EVIDENCE LADDER ----- */
-/* Eight stages on a rule. Reached stages are filled; the boundary is a solid
-   terminator bar; unreached stages are hollow. Position and shape carry the
-   meaning — colour is redundant reinforcement only. */
-
-.ladder {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ladder__step {
-  flex: 1;
-  min-width: 0;
-  position: relative;
-  padding-top: 1.25rem;
-}
-
-/* the rule */
-.ladder__step::before {
-  content: '';
-  position: absolute;
-  top: 0.5rem;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--border);
-}
-.ladder__step[data-state='reached']::before {
-  background: var(--ink-soft);
-}
-
-/* the node */
-.ladder__step::after {
-  content: '';
-  position: absolute;
-  top: 0.125rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  border: 2px solid var(--border-strong);
-  background: var(--surface);
-}
-.ladder__step[data-state='reached']::after {
-  background: var(--ink-soft);
-  border-color: var(--ink-soft);
-}
-
-/* the boundary: a hard vertical terminator, the visual "stop" */
-.ladder__step[data-state='boundary']::after {
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 1px;
-  background: var(--accent);
-  border-color: var(--accent);
-  top: 0.05rem;
-}
-.ladder__step[data-state='boundary'] {
-  border-right: 2px solid var(--accent);
-}
-
-.ladder__label {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.625rem;
-  line-height: 1.25;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--muted);
-  /* Clear of the boundary terminator on the preceding step, and of the next
-     step's rule — without this the labels butt straight into the accent line. */
-  padding-inline: 0.4rem var(--s2);
-}
-.ladder__step[data-state='boundary'] .ladder__label,
-.ladder__step[data-state='reached'] .ladder__label {
-  color: var(--ink-soft);
-  font-weight: 500;
-}
-
-.ladder__caption {
-  margin-top: var(--s3);
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  color: var(--ink);
-}
-
-/* On narrow screens the eight-across rule becomes illegible; switch to a
-   vertical ladder rather than shrinking the labels into noise. */
-@media (max-width: 44rem) {
-  .ladder {
-    flex-direction: column;
-  }
-  .ladder__step {
-    padding-top: 0;
-    padding-left: 1.25rem;
-    padding-block: 0.3rem;
-  }
-  .ladder__step::before {
-    top: 0;
-    bottom: 0;
-    left: 0.25rem;
-    right: auto;
-    width: 2px;
-    height: auto;
-  }
-  .ladder__step::after {
-    top: 50%;
-    left: 0.25rem;
-    transform: translate(-50%, -50%);
-  }
-  .ladder__step[data-state='boundary'] {
-    border-right: 0;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: var(--s2);
-  }
-  .ladder__label {
-    font-size: var(--size-micro);
-  }
-}
-
-/* --------------------------------------------------- evidence + status ---- */
-/* Every status carries a text label and a shape/border difference. Never colour
-   alone. */
-
-.tag {
-  display: inline-flex;
   align-items: center;
-  gap: 0.35em;
-  font-family: var(--font-mono);
-  font-size: var(--size-micro);
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.2em 0.5em;
-  border-radius: var(--radius);
-  border: var(--hairline) solid var(--border-strong);
-  color: var(--ink-soft);
-  background: var(--surface);
+  gap: var(--s5);
+  min-height: 60px;
+}
+.wordmark {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  text-decoration: none;
   white-space: nowrap;
 }
-
-.tag[data-status='measured'] {
-  border-color: var(--success);
-  color: var(--success);
-  background: var(--success-soft);
-}
-.tag[data-status='inferred'] {
-  border-color: var(--warning);
-  color: var(--warning);
-  background: var(--warning-soft);
-}
-.tag[data-status='unknown'] {
-  border-color: var(--danger);
-  color: var(--danger);
-  background: var(--danger-soft);
-}
-
-/* Status glyph, so the three read apart without colour. */
-.tag[data-status]::before {
-  font-weight: 600;
-}
-.tag[data-status='measured']::before {
-  content: '●';
-}
-.tag[data-status='inferred']::before {
-  content: '◐';
-}
-.tag[data-status='unknown']::before {
-  content: '○';
-}
-
-/* Callout: a left-ruled block, not a rounded card. */
-.callout {
-  border-left: 3px solid var(--border-strong);
-  padding: var(--s3) 0 var(--s3) var(--s4);
-  background: transparent;
-}
-.callout[data-tone='danger'] {
-  border-left-color: var(--danger);
-  background: var(--danger-soft);
-  padding-right: var(--s4);
-}
-.callout[data-tone='warning'] {
-  border-left-color: var(--warning);
-  background: var(--warning-soft);
-  padding-right: var(--s4);
-}
-.callout__title {
-  font-family: var(--font-mono);
-  font-size: var(--size-micro);
-  font-weight: 600;
-  letter-spacing: var(--track-caps);
-  text-transform: uppercase;
-  margin-bottom: var(--s1);
-}
-.callout[data-tone='danger'] .callout__title {
-  color: var(--danger);
-}
-.callout[data-tone='warning'] .callout__title {
-  color: var(--warning);
-}
-
-/* ------------------------------------------------------ source marker ----- */
-/* The Evidence Trace entry point. A bracketed mono sigil — reads as a catalogue
-   reference, is real text (so it is selectable, searchable and screen-readable),
-   and needs no icon font. */
-
-.srcmark {
-  font-family: var(--font-mono);
-  font-size: 0.75em;
-  font-weight: 500;
-  line-height: 1;
-  vertical-align: 0.35em;
-  padding: 0.15em 0.25em;
-  margin-left: 0.1em;
-  border: var(--hairline) solid var(--border-strong);
-  border-radius: 3px;
-  background: var(--surface);
-  color: var(--accent);
-  cursor: pointer;
-}
-.srcmark:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent);
-}
-.srcmark[aria-expanded='true'] {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
-/* ------------------------------------------------------ evidence drawer --- */
-
-.drawer-scrim {
-  position: fixed;
-  inset: 0;
-  background: rgba(17, 22, 20, 0.28);
-  z-index: 60;
-}
-
-.drawer {
-  position: fixed;
-  z-index: 61;
-  background: var(--surface);
-  box-shadow: var(--shadow-overlay);
+.site-nav {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: var(--s5);
+  margin-left: auto;
+}
+.site-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+.site-nav a:hover {
+  color: var(--action);
+}
+.site-nav a[aria-current='page'] {
+  font-weight: 600;
 }
 
-/* desktop: right side panel */
-@media (min-width: 48rem) {
-  .drawer {
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: min(30rem, 92vw);
-    border-left: var(--hairline) solid var(--border-strong);
-  }
+/* Mobile: wordmark + two 44px controls on ONE row. */
+.header-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  background: none;
+  border: 0;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+.header-btn:hover {
+  background: var(--bg-soft);
 }
 
-/* mobile: bottom sheet */
 @media (max-width: 47.99rem) {
-  .drawer {
-    left: 0;
-    right: 0;
-    bottom: 0;
-    max-height: 86vh;
-    border-top: var(--hairline) solid var(--border-strong);
-    border-radius: var(--radius-group) var(--radius-group) 0 0;
+  .site-nav {
+    display: none;
+  }
+  .header-btn {
+    display: inline-flex;
+  }
+  .header-controls {
+    display: flex;
+    gap: var(--s1);
+    margin-left: auto;
+  }
+}
+@media (min-width: 48rem) {
+  .header-controls {
+    display: contents;
   }
 }
 
-.drawer__head {
+.mobile-menu {
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg);
+}
+.mobile-menu ul {
+  list-style: none;
+  padding: var(--s2) 0 var(--s4);
+}
+.mobile-menu a {
+  display: block;
+  padding: var(--s3) 0;
+  min-height: 44px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.0625rem;
+}
+
+/* --- search -------------------------------------------------------------- */
+
+.search {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--s4);
-  padding: var(--s4) var(--s5);
-  border-bottom: var(--hairline) solid var(--border);
+  gap: var(--s2);
+  width: 100%;
+  max-width: 42.5rem; /* 680px */
 }
-
-.drawer__body {
-  overflow-y: auto;
-  padding: var(--s5);
-  -webkit-overflow-scrolling: touch;
-}
-
-.drawer__close {
-  flex: none;
-  font-family: var(--font-mono);
-  font-size: var(--size-meta);
-  background: transparent;
-  border: var(--hairline) solid var(--border-strong);
+.search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  /* min-height, not height: in the stacked mobile layout `flex` sets a zero basis on the block
+     axis and a fixed height collapses to 22px. */
+  min-height: 56px;
+  padding: 0 var(--s4);
+  font-size: 1.0625rem;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 0.3em 0.6em;
-  cursor: pointer;
-  color: var(--ink);
 }
-.drawer__close:hover {
-  background: var(--surface-sunk);
+.search__input::placeholder {
+  color: var(--text-soft);
+}
+.search__input:focus {
+  border-color: var(--action);
+}
+.search__btn {
+  flex: none;
+  min-height: 56px;
+  padding: 0 var(--s5);
+  font-size: 1.0625rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: #fff;
+  background: var(--action);
+  border: 1px solid var(--action);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+.search__btn:hover {
+  background: var(--action-hover);
+  border-color: var(--action-hover);
+}
+@media (max-width: 33rem) {
+  .search {
+    flex-direction: column;
+  }
+  .search__input {
+    flex: none;
+  }
+  .search__btn {
+    width: 100%;
+  }
 }
 
-/* ------------------------------------------------------------ controls ---- */
+/* Compact search for internal pages / header. */
+.search--compact .search__input,
+.search--compact .search__btn {
+  min-height: 44px;
+  font-size: 0.9375rem;
+}
+.search--compact .search__btn {
+  padding: 0 var(--s4);
+}
+
+/* --- buttons and controls ------------------------------------------------ */
 
 .btn {
-  font-family: var(--font-sans);
-  font-size: var(--size-small);
-  font-weight: 500;
-  padding: 0.6em 1.1em;
-  border-radius: var(--radius);
-  border: var(--hairline) solid var(--border-strong);
-  background: var(--surface);
-  color: var(--ink);
-  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 44px;
-  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+  padding: 0 var(--s4);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
 }
 .btn:hover {
-  background: var(--surface-sunk);
+  background: var(--bg-soft);
 }
-
 .btn--primary {
-  background: var(--accent);
-  border-color: var(--accent);
   color: #fff;
+  background: var(--action);
+  border-color: var(--action);
 }
 .btn--primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background: var(--action-hover);
+  border-color: var(--action-hover);
+}
+.btn--quiet {
+  border-color: transparent;
+  color: var(--action);
+  padding-inline: var(--s2);
+}
+.btn--quiet:hover {
+  background: var(--bg-soft);
 }
 
 .field {
-  font-family: var(--font-sans);
-  font-size: var(--size-body);
-  padding: 0.7em 0.9em;
-  border-radius: var(--radius);
-  border: var(--hairline) solid var(--border-strong);
-  background: var(--surface);
-  color: var(--ink);
   width: 100%;
   min-height: 44px;
-}
-.field::placeholder {
-  color: var(--muted);
-}
-
-/* --------------------------------------------------------------- rows ----- */
-/* Index and search results: hairline-separated rows, not a grid of cards. */
-
-.rows {
-  list-style: none;
-  border-top: var(--hairline) solid var(--border);
-}
-.row {
-  border-bottom: var(--hairline) solid var(--border);
-}
-.row__link {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: var(--s4);
-  align-items: center;
-  padding: var(--s4) var(--s2);
-  text-decoration: none;
-  color: inherit;
-  transition: background var(--t-fast) var(--ease);
-}
-.row__link:hover {
-  background: var(--surface-sunk);
-}
-.row__name {
-  font-family: var(--font-serif);
-  font-size: var(--size-h4);
-  font-weight: 600;
-  color: var(--ink);
-}
-.row__desc {
-  font-size: var(--size-small);
-  color: var(--ink-soft);
-  margin-top: var(--s1);
-}
-.row__meta {
-  margin-top: var(--s2);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s2);
-}
-.row__chev {
-  font-family: var(--font-mono);
-  color: var(--muted);
+  padding: var(--s3) var(--s4);
+  font-family: inherit;
+  font-size: 1.0625rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
-@media (max-width: 36rem) {
-  .row__link {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .row__chev {
-    display: none;
-  }
-}
-
-/* ------------------------------------------------------------- pipeline --- */
-/* Publishing sequence. Numbered rail on desktop, stacked list on mobile. */
-
-.pipeline {
-  list-style: none;
-  display: grid;
-  gap: 0;
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
-  border-top: var(--hairline) solid var(--border-strong);
-}
-
-.pipeline__step {
-  padding: var(--s4) var(--s4) var(--s4) 0;
-  border-bottom: var(--hairline) solid var(--border);
-  position: relative;
-}
-
-@media (min-width: 48rem) {
-  .pipeline__step + .pipeline__step {
-    border-left: var(--hairline) solid var(--border);
-    padding-left: var(--s4);
-  }
-}
-
-.pipeline__num {
+.label {
   display: block;
-  font-family: var(--font-mono);
-  font-size: var(--size-micro);
-  font-weight: 600;
-  letter-spacing: var(--track-caps);
-  color: var(--accent);
+  font-size: 0.9375rem;
+  font-weight: 500;
   margin-bottom: var(--s2);
 }
 
-.pipeline__label {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: var(--size-h4);
+/* --- grouped surfaces (used sparingly) ----------------------------------- */
+
+.panel {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: var(--s5);
+  background: var(--bg);
+}
+.panel--soft {
+  background: var(--bg-soft);
+  border-color: transparent;
+}
+
+.notice {
+  border: 1px solid var(--warn-border);
+  background: var(--warn-bg);
+  border-radius: var(--radius);
+  padding: var(--s4);
+}
+.notice__title {
   font-weight: 600;
-  color: var(--ink);
+  color: var(--warn-text);
   margin-bottom: var(--s1);
 }
 
-.pipeline__note {
-  display: block;
-  font-size: var(--size-small);
-  color: var(--muted);
-  line-height: 1.45;
-}
+/* --- at-a-glance --------------------------------------------------------- */
 
-/* --------------------------------------------------------------- header --- */
-
-.masthead {
-  background: var(--surface);
-  border-bottom: var(--hairline) solid var(--border-strong);
-}
-.masthead__inner {
-  display: flex;
-  align-items: center;
-  gap: var(--s5);
-  min-height: 3.75rem;
-  flex-wrap: wrap;
-  padding-block: var(--s2);
-}
-.masthead__nav {
-  display: flex;
-  gap: var(--s5);
-  flex-wrap: wrap;
-  font-size: var(--size-small);
-}
-.masthead__nav a {
-  color: var(--ink-soft);
-  text-decoration: none;
-  padding-block: var(--s1);
-}
-.masthead__nav a:hover {
-  color: var(--accent);
-  text-decoration: underline;
-}
-.masthead__nav a[aria-current='page'] {
-  color: var(--ink);
-  font-weight: 600;
-  box-shadow: inset 0 -2px 0 var(--accent);
-}
-.masthead__search {
-  margin-left: auto;
-}
-
-/* --------------------------------------------------------------- footer --- */
-
-.colophon {
-  border-top: var(--hairline) solid var(--border-strong);
-  background: var(--surface);
-  margin-top: var(--s9);
-  padding-block: var(--s6) var(--s7);
-  font-size: var(--size-small);
-}
-.colophon__grid {
+.glance {
   display: grid;
-  gap: var(--s5);
-  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--s4);
+  margin: 0;
 }
-.colophon h2 {
-  font-family: var(--font-mono);
-  font-size: var(--size-micro);
+@media (min-width: 40rem) {
+  .glance {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+    gap: var(--s5);
+  }
+}
+.glance dt {
+  font-size: 0.875rem;
+  color: var(--text-soft);
+  margin-bottom: var(--s1);
+}
+.glance dd {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 500;
+}
+
+/* --- evidence reach ------------------------------------------------------ */
+/* Marks the point testing has reached on a neutral axis. Deliberately NOT a
+   progress bar and deliberately not the action colour: filling every earlier
+   rung in CTA blue made a two-person pilot render identically to a 114-person
+   randomised trial, and made unreached stages read as "pending" rather than
+   "the evidence stops here". Only the reached point is marked. */
+
+.reach {
+  margin: 0;
+}
+.reach__steps {
+  display: flex;
+  list-style: none;
+  gap: var(--s1);
+}
+.reach__step {
+  flex: 1;
+  min-width: 0;
+  padding-top: var(--s5);
+  position: relative;
+  font-size: 0.8125rem;
+  color: var(--text-soft);
+  line-height: 1.25;
+}
+/* One continuous neutral axis. */
+.reach__step::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+}
+.reach__step::after {
+  content: '';
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+}
+/* The single marker. Filled ink, larger, with a ring — reads as "here", not
+   as "complete". */
+.reach__step[data-here='true'] {
+  color: var(--text);
   font-weight: 600;
-  letter-spacing: var(--track-caps);
-  text-transform: uppercase;
-  color: var(--muted);
+}
+.reach__step[data-here='true']::after {
+  width: 13px;
+  height: 13px;
+  top: 4px;
+  background: var(--text);
+  box-shadow: 0 0 0 3px var(--bg);
+}
+.reach__caption {
+  margin-top: var(--s4);
+  font-size: 1.0625rem;
+}
+
+@media (max-width: 30rem) {
+  .reach__steps {
+    flex-direction: column;
+    gap: 0;
+  }
+  .reach__step {
+    padding: var(--s2) 0 var(--s2) var(--s5);
+  }
+  .reach__step::before {
+    top: 0;
+    bottom: 0;
+    left: 6px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+  .reach__step::after {
+    top: 50%;
+    left: 6px;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* --- claims -------------------------------------------------------------- */
+
+.claim {
+  scroll-margin-top: var(--s5);
+}
+.claim + .claim {
+  margin-top: var(--s6);
+  padding-top: var(--s6);
+  border-top: 1px solid var(--border-soft);
+}
+
+/* The type scale is deliberately inverted against the obvious layout: the reader arrived with
+   the question already in mind, so the ANSWER is the largest thing in the block and the question
+   is the label above it. */
+.claim__q {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--text-soft);
+  margin-bottom: var(--s2);
+  /* Overrides the balanced wrapping the global heading rule applies, which broke short questions
+     into two very short lines. */
+  text-wrap: pretty;
+}
+.claim__a {
+  font-size: 1.375rem;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s3);
+  text-wrap: pretty;
+}
+.claim__ev {
+  color: var(--text-soft);
   margin-bottom: var(--s3);
 }
-.colophon ul {
-  list-style: none;
-  display: grid;
-  gap: var(--s2);
+
+/* Disclosure. Native details/summary so it works without JavaScript. */
+.disclosure {
+  border-top: 1px solid var(--border-soft);
+  padding-top: var(--s3);
 }
-.colophon a {
-  color: var(--ink-soft);
+.disclosure > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 44px;
+  cursor: pointer;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--action);
+  list-style: none;
+}
+.disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+.disclosure > summary::after {
+  content: '›';
+  transform: rotate(90deg);
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform 140ms ease;
+}
+.disclosure[open] > summary::after {
+  transform: rotate(-90deg);
+}
+.disclosure__body {
+  padding: var(--s3) 0 var(--s4);
+}
+
+.detail-block + .detail-block {
+  margin-top: var(--s5);
+}
+.detail-block__h {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-bottom: var(--s2);
+}
+
+/* --- lists of records ---------------------------------------------------- */
+
+.records {
+  list-style: none;
+}
+.records > li + li {
+  border-top: 1px solid var(--border-soft);
+}
+.record-link {
+  display: block;
+  padding: var(--s5) var(--s3);
+  margin-inline: calc(var(--s3) * -1);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  color: inherit;
+}
+.record-link:hover {
+  background: var(--bg-soft);
+}
+.record-link__name {
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: var(--s1);
+}
+.record-link__desc {
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+}
+.record-link__meta {
+  margin-top: var(--s2);
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
+/* --- footer -------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--s9);
+  border-top: 1px solid var(--border-soft);
+  padding-block: var(--s6) var(--s7);
+  font-size: 0.9375rem;
+}
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s5);
+  list-style: none;
+  margin-bottom: var(--s4);
+}
+.site-footer a {
+  color: var(--text);
   text-decoration: none;
 }
-.colophon a:hover {
-  color: var(--accent);
+.site-footer a:hover {
+  color: var(--action);
   text-decoration: underline;
 }
 
-/* --------------------------------------------------------------- motion --- */
+/* --- source drawer / sheet ----------------------------------------------- */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 60;
+}
+.sheet {
+  position: fixed;
+  z-index: 61;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
+}
+@media (min-width: 48rem) {
+  .sheet {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(29rem, 92vw);
+  }
+}
+@media (max-width: 47.99rem) {
+  .sheet {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 85vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+}
+.sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  padding: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--border-soft);
+}
+.sheet__body {
+  overflow-y: auto;
+  padding: var(--s5);
+}
+.source + .source {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--border-soft);
+}
+.source__title {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: var(--s2);
+}
+.source__meta {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+.source__meta dt {
+  display: inline;
+  font-weight: 500;
+}
+.source__meta dd {
+  display: inline;
+  margin: 0;
+}
+.source__meta div + div {
+  margin-top: var(--s1);
+}
+/* Real identifiers only. */
+.id {
+  font-family: var(--font-id);
+  font-size: 0.875em;
+}
+
+/* --- document pages ------------------------------------------------------ */
+/* How it works, methodology, changes, corrections, privacy, notices. These pages
+   are read top to bottom, so they get one vertical rhythm and no ornament. */
+
+.doc {
+  padding-block: var(--s8);
+}
+
+/* Key and value. Two columns once there is room, stacked below that. The key is a
+   plain bold phrase — not an uppercase label, not a badge. */
+.facts {
+  margin: 0;
+  /* Same reading measure as the prose around it: a value column the full width of the page is
+     wider than anyone reads comfortably. */
+  max-width: var(--measure);
+}
+.facts > div {
+  padding-block: var(--s4);
+}
+.facts > div + div {
+  border-top: 1px solid var(--border-soft);
+}
+.facts dt {
+  font-weight: 600;
+}
+.facts dd {
+  margin: 0;
+  color: var(--text-soft);
+}
+@media (min-width: 40rem) {
+  .facts > div {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: var(--s5);
+    align-items: baseline;
+  }
+}
+
+/* Numbered explanation. The counter is an ordered-list marker, nothing more —
+   it never encodes a score or a ranking. */
+.numbered {
+  list-style: none;
+  counter-reset: numbered;
+}
+.numbered > li {
+  display: grid;
+  grid-template-columns: 1.75rem minmax(0, 1fr);
+  gap: var(--s3);
+}
+.numbered > li + li {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--border-soft);
+}
+.numbered > li::before {
+  counter-increment: numbered;
+  content: counter(numbered);
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.numbered__h {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: var(--s2);
+}
+
+/* Chronological or itemised entries: changes, past corrections, caveats. */
+.entries {
+  list-style: none;
+}
+.entry + .entry,
+.entries > li + li {
+  margin-top: var(--s6);
+  padding-top: var(--s6);
+  border-top: 1px solid var(--border-soft);
+}
+.entry__meta {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+  margin-bottom: var(--s2);
+}
+.entry__h {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: var(--s2);
+}
+
+.bullets {
+  padding-left: var(--s5);
+}
+.bullets > li + li {
+  margin-top: var(--s2);
+}
+
+/* --- forms ---------------------------------------------------------------- */
+
+.form {
+  display: grid;
+  gap: var(--s5);
+  max-width: 34rem;
+}
+.help {
+  margin-top: var(--s2);
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+.label__note {
+  font-weight: 400;
+  color: var(--text-soft);
+}
+textarea.field {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+/* Visually hidden but still announced — used where a symbol carries meaning. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* --- embedded claim ------------------------------------------------------- */
+/* Renders inside a third-party iframe with no site chrome, so it sets its own
+   padding and must stay readable from ~280px upward. */
+
+.embed {
+  padding: var(--s5);
+  max-width: 44rem;
+}
+
+/* --- interior pages ------------------------------------------------------ */
+/* Search and browse open straight into their heading: no eyebrow, no breadcrumb,
+   nothing above the h1 to read past. */
+
+.page-top {
+  padding-top: var(--s7);
+  padding-bottom: var(--s8);
+}
+
+/* --- search results ------------------------------------------------------ */
+/* The answer is the largest text in a result and is never abbreviated. The
+   evidence line sits under it and is quieter, because a label read on its own
+   reads as the answer — and next to "Is rapamycin approved for longevity?" it
+   would say the opposite of what the answer says. */
+
+.result__q {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: var(--s2);
+}
+.result__a {
+  margin-bottom: var(--s2);
+}
+.result__reach {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
+/* --- plain facts under a browse row -------------------------------------- */
+/* One statement per line. Side by side they run together into a single sentence
+   that says neither thing, and the second wraps into the first at 390px. */
+
+.record-link__facts {
+  margin-top: var(--s3);
+  font-size: 0.9375rem;
+}
+.record-link__facts > * + * {
+  margin-top: var(--s1);
+}
+
+/* --- record page --------------------------------------------------------- */
+/* One column, no rails. The previous two-rail layout put a table of contents and
+   a metadata panel either side of the only thing the reader came for. */
+
+.record-top {
+  padding-top: var(--s5);
+}
+
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--s1) var(--s2);
+  list-style: none;
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+.crumbs a {
+  color: var(--text-soft);
+  text-decoration: none;
+}
+.crumbs a:hover {
+  color: var(--action);
+  text-decoration: underline;
+}
+.crumbs li + li::before {
+  content: '/';
+  margin-right: var(--s2);
+  color: var(--border);
+}
+
+/* One sentence, in words a reader already knows. Never a coloured pill. */
+.status-line {
+  margin-top: var(--s3);
+  font-size: 1.0625rem;
+  color: var(--text-soft);
+}
+
+/* The answer to the question the reader arrived with, set larger than anything
+   except the name itself. */
+.bottom-line {
+  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2rem);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+/* A disclosure carrying a small aside (aliases, a nested source list) rather than
+   a section of the page: no rule above it, lighter summary. */
+.disclosure--inline {
+  border-top: 0;
+  padding-top: 0;
+}
+.disclosure--inline > summary {
+  min-height: 36px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+}
+
+/* A reader who follows /r/x#claim-y must land on that claim with its evidence
+   already open. CSS cannot set the `open` attribute, so both the modern
+   ::details-content mechanism and the older display rule are overridden. */
+.claim:target > .disclosure > .disclosure__body {
+  display: block;
+}
+.claim:target > .disclosure::details-content {
+  content-visibility: visible;
+  block-size: auto;
+}
+/* Keep the control's own state honest: the content below it is showing, so the marker points the
+   same way it would if the reader had opened it. */
+.claim:target > .disclosure > summary::after {
+  transform: rotate(-90deg);
+}
+
+/* --- sources ------------------------------------------------------------- */
+/* Server-rendered, in the HTML, crawlable, and readable with JavaScript off. */
+
+.sources {
+  list-style: decimal;
+  padding-left: var(--s5);
+}
+.sources > li + li {
+  margin-top: var(--s5);
+}
+.sources > li::marker {
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+}
+.source__h {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: var(--s1);
+}
+.source__line {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+  /* Identifiers are long and unbreakable; without this a DOI pushes the page sideways at 320px. */
+  overflow-wrap: anywhere;
+}
+.source__line + .source__line {
+  margin-top: var(--s1);
+}
+.source__note {
+  margin-top: var(--s2);
+  font-size: 0.9375rem;
+}
+
+/* --- mechanism ----------------------------------------------------------- */
+/* Plain language first, technical name second, evidence status as a word. */
+
+.mech {
+  list-style: decimal;
+  padding-left: var(--s5);
+  max-width: var(--measure);
+}
+.mech > li + li {
+  margin-top: var(--s5);
+}
+.mech > li::marker {
+  color: var(--text-soft);
+  font-size: 0.9375rem;
+}
+.mech__tech {
+  margin-top: var(--s2);
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
+/* --- publisher tools ----------------------------------------------------- */
+/* Kept at the end of an expanded claim so they never compete with the evidence. */
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  align-items: center;
+}
+.code {
+  margin: 0;
+  padding: var(--s3);
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-id);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* --- clarity check ------------------------------------------------------- */
+
+.quiz-q {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+.quiz-q + .quiz-q {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--border-soft);
+}
+.quiz-q__legend {
+  padding: 0;
+  font-weight: 500;
+}
+.choice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s3);
+  min-height: 44px;
+  padding-block: var(--s2);
+  font-size: 0.9375rem;
+  cursor: pointer;
+}
+.choice input {
+  flex: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: 0.2em;
+  accent-color: var(--action);
+}
+.quiz__result {
+  margin-top: var(--s4);
+  padding: var(--s3) var(--s4);
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
 }
 
-/* ---------------------------------------------------------------- print --- */
-
 @media print {
-  .masthead,
-  .colophon,
-  .rail,
-  .srcmark {
+  .site-header,
+  .site-footer,
+  .disclosure > summary {
     display: none;
   }
-  body {
-    background: #fff;
-    color: #000;
+  .disclosure__body {
+    display: block !important;
   }
 }

@@ -44,7 +44,7 @@ function itemDescription(change: EvidenceChangeItem): string {
   const parts = [change.explanation]
   if (change.previousBoundary && change.newBoundary) {
     parts.push(
-      `Proof Boundary: ${PROOF_BOUNDARY_LABELS[change.previousBoundary]} -> ${PROOF_BOUNDARY_LABELS[change.newBoundary]}.`
+      `Evidence stage: ${PROOF_BOUNDARY_LABELS[change.previousBoundary]} -> ${PROOF_BOUNDARY_LABELS[change.newBoundary]}.`
     )
   }
   parts.push(`Source: ${change.source}`)
@@ -74,7 +74,7 @@ export async function GET() {
     <title>RNAwiki — Evidence updates</title>
     <link>${escapeXml(UPDATES_PAGE_URL)}</link>
     <atom:link href="${escapeXml(FEED_URL)}" rel="self" type="application/rss+xml" />
-    <description>What changed on RNAwiki and why — new controlled trials, regulatory decisions, safety warnings, retractions, and every time a Proof Boundary moved.</description>
+    <description>What changed on RNAwiki and why — new controlled trials, regulatory decisions, safety warnings, retractions, and every time the evidence behind a claim moved.</description>
     <language>en-sg</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
 ${items}

@@ -7,20 +7,21 @@ import {
   EVIDENCE_STATUS_LABELS,
   EVIDENCE_STATUSES,
   HUMAN_TESTED_STAGES,
-  PROOF_BOUNDARY_LABELS,
   PROOF_BOUNDARY_STAGES,
   type ProofBoundaryStage,
 } from '@/lib/evidence'
-import { EvidenceLadder } from '@/components/evidence/EvidenceLadder'
+import { REACH_POSITIONS, canonicalStageLabel, stageToReachIndex } from '@/lib/evidence-view'
+import { EvidenceReach } from '@/components/EvidenceReach'
 
 export const metadata: Metadata = {
   title: 'Methodology',
-  description: 'How RNAwiki classifies evidence, what "Measured, Inferred, Unknown" mean, and what "published" does and does not tell you.',
+  description:
+    'How RNAwiki classifies evidence, what measured, inferred and unknown mean, and what "published" does and does not tell you.',
 }
 
-// Plain-language description of what each Proof Boundary stage actually establishes. This is
-// explanatory prose, not the controlled vocabulary itself — the stage list, ordering and labels
-// are imported from lib/evidence.ts above and must never be redeclared or reworded here.
+// Plain-language description of what each stage actually establishes. This is explanatory prose,
+// not the controlled vocabulary itself — the stage list, ordering and labels are imported from
+// lib/evidence.ts above and must never be redeclared or reworded here.
 const STAGE_EXPLANATIONS: Record<ProofBoundaryStage, string> = {
   biological_rationale_only:
     'A mechanism has been proposed — how a molecule might act on a known receptor or pathway — but not tested in cells, animals, or people.',
@@ -39,6 +40,13 @@ const STAGE_EXPLANATIONS: Record<ProofBoundaryStage, string> = {
   regulatory_evidence:
     'A regulator such as the FDA, EMA, or Singapore’s HSA reviewed the evidence and approved the substance for a specific use in a specific population. That is an accountable decision, not simply another study.',
 }
+
+// Derived, never hand-written: which canonical stages sit at each of the five reader-facing
+// positions. Computed from stageToReachIndex so the two views cannot drift apart.
+const POSITION_STAGES = REACH_POSITIONS.map((label, index) => ({
+  label,
+  stages: PROOF_BOUNDARY_STAGES.filter((stage) => stageToReachIndex(stage) === index),
+}))
 
 const REVIEW_LINES: { key: string; line: string; when: string }[] = [
   {
@@ -88,253 +96,192 @@ const FIXED_RULES: { title: string; body: string }[] = [
 
 export default function MethodologyPage() {
   return (
-    <div className="wrap" style={{ paddingBlock: 'var(--s7)' }}>
-      <div style={{ maxWidth: '56rem' }}>
-        <header className="measure">
-          <p className="eyebrow">Editorial standard</p>
-          <h1 className="display" style={{ marginBlock: 'var(--s3) var(--s4)' }}>
-            Methodology
-          </h1>
-          <p className="lead">How RNAwiki decides where evidence ends and interpretation begins.</p>
-        </header>
+    <div className="page doc">
+      <header className="reading stack">
+        <h1>Methodology</h1>
+        <p className="lead muted">How RNAwiki decides where evidence ends and interpretation begins.</p>
+      </header>
 
-        <hr className="rule" />
-
-        {/* ----------------------------------------------------- independence */}
-        <section id="independence" className="measure">
-          <div className="section-head">
-            <h2 className="h2">Independence</h2>
-          </div>
-          <div className="prose">
-            <p>
-              Whoever profits from a treatment usually gets to define what &ldquo;works&rdquo; means for it.
-              RNAwiki sells nothing — no products, no advertising, no sponsored placement — and applies one
-              evidence ladder to everything on the site.
-            </p>
-            <p>
-              That runs in both directions, and the pages show it. Casgevy, an approved therapy from a large
-              manufacturer with a $2.2 million list price, sits at regulatory evidence because a regulator
-              reviewed its trials. Its page still records that those trials were single-arm, unblinded,
-              industry-sponsored, and never independently replicated. BPC-157, sold online as a research
-              chemical, sits at animal evidence for tendon healing, because no controlled human trial has
-              published a result.
-            </p>
-            <p>
-              Where a study&rsquo;s funder has a stake in its outcome, the claim says so rather than burying it.
-              The one completed human trial of rapamycin for healthy aging was sponsored by a company selling
-              compounded rapamycin, and that appears on the claim itself.
-            </p>
-          </div>
-        </section>
-
-        <hr className="rule" />
-
-        {/* ------------------------------------------ measured/inferred/unknown */}
-        <section id="measured-inferred-unknown">
-          <div className="section-head">
-            <h2 className="h2">Measured, Inferred, Unknown</h2>
-          </div>
-          <p className="prose measure" style={{ marginBottom: 'var(--s5)' }}>
-            Every mechanism step and every cited source carries one of three labels. They are the only
-            evidence-strength labels on the site: no star ratings, no confidence scores, no invented
-            percentages.
+      {/* The simpler public view first. The eight-stage detail follows it. */}
+      <section className="section-sm">
+        <h2>The five positions on a claim</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p className="muted">
+            Every claim page marks one of five points, from a proposed biological idea to a decision by a
+            medicines regulator. The sentence under the marker is the part that matters: several different kinds
+            of human study share the same point, and only the sentence separates them.
           </p>
-          <dl className="speclabel">
-            {EVIDENCE_STATUSES.map((status) => (
-              <div key={status} className="speclabel__row">
-                <dt className="speclabel__key">
-                  <span className="tag" data-status={status}>
-                    {EVIDENCE_STATUS_LABELS[status]}
-                  </span>
-                </dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  {EVIDENCE_STATUS_DEFINITIONS[status]}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
+        </div>
 
-        <hr className="rule" />
-
-        {/* --------------------------------------------------- proof boundary */}
-        <section id="proof-boundary">
-          <div className="section-head">
-            <h2 className="h2">The 8 Proof Boundary stages</h2>
-          </div>
-          <p className="prose measure">
-            Every claim sits at one of eight stages, weakest to strongest. The Proof Boundary marks the stage a
-            claim has actually reached — not the one people assume it has reached, and not the one it may reach
-            later. Stages 1&ndash;3 involve no human testing. Stages 4&ndash;8 all do.
-          </p>
-
-          <div style={{ marginTop: 'var(--s6)', display: 'grid', gap: 'var(--s6)' }}>
-            <EvidenceLadder
-              stage="animal_evidence"
-              caption="Illustration: a claim whose evidence stops at animal studies. The filled rule shows how far it reaches, the square marks where it stops, and everything to the right is untested."
-            />
-            <EvidenceLadder
-              stage="regulatory_evidence"
-              caption="Illustration: a claim carried all the way to a regulator’s decision on one indication."
-            />
-          </div>
-
-          <ol
-            style={{
-              listStyle: 'none',
-              marginTop: 'var(--s6)',
-              borderTop: 'var(--hairline) solid var(--border-strong)',
-            }}
-          >
-            {PROOF_BOUNDARY_STAGES.map((stage, i) => (
-              <li
-                key={stage}
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '2.5rem minmax(0, 1fr)',
-                  gap: 'var(--s4)',
-                  paddingBlock: 'var(--s4)',
-                  borderBottom: 'var(--hairline) solid var(--border)',
-                }}
-              >
-                <span className="eyebrow" style={{ paddingTop: '0.2rem' }}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3
-                    className="h4"
-                    style={{ fontFamily: 'var(--font-serif)', marginBottom: 'var(--s2)' }}
-                  >
-                    {PROOF_BOUNDARY_LABELS[stage]}
-                  </h3>
-                  <p style={{ marginBottom: 'var(--s2)' }}>
-                    <span className="tag">
-                      {HUMAN_TESTED_STAGES.has(stage) ? 'Tested in people' : 'No human testing'}
-                    </span>
-                  </p>
-                  <p className="prose measure" style={{ fontSize: 'var(--size-small)' }}>
-                    {STAGE_EXPLANATIONS[stage]}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-
-        <hr className="rule" />
-
-        {/* ------------------------------------------- evidence relationships */}
-        <section id="evidence-relationships">
-          <div className="section-head">
-            <h2 className="h2">How a source relates to a claim</h2>
-          </div>
-          <p className="prose measure" style={{ marginBottom: 'var(--s5)' }}>
-            A claim is rarely backed by a single uncomplicated source. Each source is tagged with how it relates
-            to the specific claim it is attached to:
-          </p>
-          <dl className="speclabel">
-            {EVIDENCE_RELATIONSHIPS.map((rel) => (
-              <div key={rel} className="speclabel__row">
-                <dt className="speclabel__key">{EVIDENCE_RELATIONSHIP_LABELS[rel]}</dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  {relationshipExplanation(rel)}
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="prose measure" style={{ marginTop: 'var(--s5)' }}>
-            Sources that <strong>contradict</strong> or <strong>limit</strong> a claim appear beside those that
-            support it. A page citing only supporting evidence tells you less than it appears to.
-          </p>
-        </section>
-
-        <hr className="rule" />
-
-        {/* -------------------------------------------- what published means -- */}
-        <section id="editorial-workflow">
-          <div className="section-head">
-            <h2 className="h2">What &ldquo;published&rdquo; does and does not mean</h2>
-          </div>
-          <div className="prose measure">
-            <p>
-              A claim starts as a <strong>draft</strong>, becomes <strong>editorially complete</strong> once
-              written and sourced, and can then be flagged <strong>scientific review required</strong>. A
-              qualified reviewer examines it and records a decision. If it clears, the claim is marked{' '}
-              <strong>approved</strong>, then <strong>published</strong>. A live claim can later be flagged{' '}
-              <strong>needs update</strong> if the evidence may have moved, triggering{' '}
-              <strong>re-review</strong>.
+        <div className="reading stack-6" style={{ marginTop: 'var(--s5)' }}>
+          <div>
+            <p className="small muted" style={{ marginBottom: 'var(--s3)' }}>
+              A claim whose evidence stops at animal studies:
             </p>
-            <p>
-              &ldquo;Published&rdquo; means the page is live. It does not mean a scientific reviewer signed off.
-              A claim can be published — written and sourced by an editor — while independent review is still
-              pending.
-            </p>
-            <p>
-              Every claim therefore shows one of these lines, generated from its actual review record rather
-              than written by hand:
-            </p>
+            <EvidenceReach stage="animal_evidence" />
           </div>
-          <dl className="speclabel" style={{ marginTop: 'var(--s5)' }}>
-            {REVIEW_LINES.map((r) => (
-              <div key={r.key} className="speclabel__row">
-                <dt className="speclabel__key">{r.key}</dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  <span style={{ color: 'var(--ink)' }}>&ldquo;{r.line}&rdquo;</span>
-                  <span style={{ display: 'block', color: 'var(--muted)', marginTop: '0.25rem' }}>
-                    {r.when}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-          <p className="prose measure" style={{ marginTop: 'var(--s5)' }}>
-            A reviewer&rsquo;s name appears only when it comes from a review record tied to a real account with
-            stated credentials. &ldquo;Reviewed by&rdquo; is never a decorative label, and no reviewer is
-            invented.
-          </p>
-        </section>
-
-        <hr className="rule" />
-
-        {/* -------------------------------------------------------- the rules */}
-        <section id="rules">
-          <div className="section-head">
-            <h2 className="h2">Fixed rules</h2>
+          <div>
+            <p className="small muted" style={{ marginBottom: 'var(--s3)' }}>
+              A claim carried all the way to a regulator’s decision on one use:
+            </p>
+            <EvidenceReach stage="regulatory_evidence" />
           </div>
-          <ul style={{ listStyle: 'none', borderTop: 'var(--hairline) solid var(--border)' }}>
-            {FIXED_RULES.map((r) => (
-              <li
-                key={r.title}
-                style={{
-                  borderBottom: 'var(--hairline) solid var(--border)',
-                  paddingBlock: 'var(--s4)',
-                }}
-              >
-                <p className="prose measure">
-                  <strong>{r.title}</strong> {r.body}
+        </div>
+
+        <h3 style={{ marginTop: 'var(--s7)' }}>Which stages sit where</h3>
+        <dl className="facts" style={{ marginTop: 'var(--s4)' }}>
+          {POSITION_STAGES.map((p) => (
+            <div key={p.label}>
+              <dt>{p.label}</dt>
+              <dd>{p.stages.map((stage) => canonicalStageLabel(stage)).join(' · ')}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="section">
+        <h2>Measured, inferred, unknown</h2>
+        <p className="reading muted" style={{ marginTop: 'var(--s4)' }}>
+          Every mechanism step and every cited source carries one of three labels. They are the only
+          evidence-strength labels on the site: no star ratings, no confidence scores, no invented percentages.
+        </p>
+        <dl className="facts" style={{ marginTop: 'var(--s5)' }}>
+          {EVIDENCE_STATUSES.map((status) => (
+            <div key={status}>
+              <dt>{EVIDENCE_STATUS_LABELS[status]}</dt>
+              <dd>{EVIDENCE_STATUS_DEFINITIONS[status]}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section className="section">
+        <h2>The eight stages behind them</h2>
+        <p className="reading muted" style={{ marginTop: 'var(--s4)' }}>
+          Underneath the five positions, a claim is stored at one of eight stages, weakest to strongest. The
+          stage records how far the evidence has actually been carried — not how far people assume it has been
+          carried, and not how far it may go later. The first three involve no human testing; the rest all do.
+        </p>
+        <ol className="numbered reading" style={{ marginTop: 'var(--s5)' }}>
+          {PROOF_BOUNDARY_STAGES.map((stage) => (
+            <li key={stage}>
+              <div>
+                <p className="numbered__h">{canonicalStageLabel(stage)}</p>
+                <p className="small muted" style={{ marginBottom: 'var(--s2)' }}>
+                  {HUMAN_TESTED_STAGES.has(stage) ? 'Tested in people' : 'No human testing'}
                 </p>
-              </li>
-            ))}
-          </ul>
-        </section>
+                <p className="muted">{STAGE_EXPLANATIONS[stage]}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
 
-        <hr className="rule" />
+      <section className="section">
+        <h2>How a source relates to a claim</h2>
+        <p className="reading muted" style={{ marginTop: 'var(--s4)' }}>
+          A claim is rarely backed by a single uncomplicated source. Each source is tagged with how it relates to
+          the specific claim it is attached to.
+        </p>
+        <dl className="facts" style={{ marginTop: 'var(--s5)' }}>
+          {EVIDENCE_RELATIONSHIPS.map((rel) => (
+            <div key={rel}>
+              <dt>{EVIDENCE_RELATIONSHIP_LABELS[rel]}</dt>
+              <dd>{relationshipExplanation(rel)}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="reading muted" style={{ marginTop: 'var(--s5)' }}>
+          Sources that contradict or limit a claim appear beside those that support it. A page citing only
+          supporting evidence tells a reader less than it appears to.
+        </p>
+      </section>
 
-        {/* ---------------------------------------------------- what is gated */}
-        <section id="scope-note" className="measure">
-          <div className="section-head">
-            <h2 className="h2">What is enforced automatically</h2>
-          </div>
-          <p className="prose">
-            The review-status line above is computed from each claim&rsquo;s stored review records, so it cannot
-            be set by hand. Not every editorial step has an automated check yet; those are done by a person. No
-            gate is described here as existing before it does.
+      <section className="section" id="editorial-workflow">
+        <h2>What “published” does and does not mean</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p>
+            A claim starts as a draft, becomes editorially complete once written and sourced, and can then be
+            flagged for scientific review. A qualified reviewer examines it and records a decision. If it clears,
+            the claim is marked approved, then published. A live claim can later be flagged as needing an update
+            if the evidence may have moved, which triggers a re-review.
           </p>
-          <p className="prose" style={{ marginTop: 'var(--s4)' }}>
-            <Link href="/evidence">How RNAwiki is made, including what it cannot establish →</Link>
+          <p>
+            “Published” means the page is live. It does not mean a scientific reviewer signed off. A claim can be
+            published — written and sourced by an editor — while independent review is still pending.
           </p>
-        </section>
-      </div>
+          <p>
+            Every claim therefore shows one of these lines, generated from its actual review record rather than
+            written by hand.
+          </p>
+        </div>
+        <dl className="facts" style={{ marginTop: 'var(--s5)' }}>
+          {REVIEW_LINES.map((r) => (
+            <div key={r.key}>
+              <dt>{r.key}</dt>
+              <dd>
+                <span style={{ color: 'var(--text)' }}>“{r.line}”</span>
+                <span style={{ display: 'block', marginTop: 'var(--s1)' }}>{r.when}</span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+        <p className="reading muted" style={{ marginTop: 'var(--s5)' }}>
+          A reviewer’s name appears only when it comes from a review record tied to a real account with stated
+          credentials. “Reviewed by” is never a decorative label, and no reviewer is invented.
+        </p>
+      </section>
+
+      <section className="section" id="independence">
+        <h2>Independence</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p>
+            Whoever profits from a treatment usually gets to define what “works” means for it. RNAwiki sells
+            nothing — no products, no advertising, no sponsored placement — and applies one evidence scale to
+            everything on the site.
+          </p>
+          <p>
+            That runs in both directions, and the pages show it. Casgevy, an approved therapy from a large
+            manufacturer with a $2.2 million list price, reaches a regulator’s review because a regulator
+            examined its trials. Its answer still says those trials were single-arm with no control group,
+            and opening the evidence adds that they were unblinded, industry-sponsored and had no independent
+            replication cohort. BPC-157, sold online as a research chemical, stops at animal evidence for
+            tendon healing, because no controlled human trial has published a result.
+          </p>
+          <p>
+            Where a study’s funder has a stake in its outcome, the claim says so rather than burying it. The one
+            completed human trial of rapamycin for healthy aging was sponsored by a company selling compounded
+            rapamycin, and that appears on the claim itself.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <h2>Fixed rules</h2>
+        <ul className="entries reading" style={{ marginTop: 'var(--s5)' }}>
+          {FIXED_RULES.map((r) => (
+            <li key={r.title}>
+              <p>
+                <strong>{r.title}</strong> <span className="muted">{r.body}</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="section">
+        <h2>What is checked automatically</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p className="muted">
+            The review line on each claim is computed from that claim’s stored review records, so it cannot be
+            set by hand. Not every editorial step has an automated check yet; those are done by a person. No
+            check is described here as existing before it does.
+          </p>
+          <p>
+            <Link href="/evidence">How it works, including what this site cannot tell you</Link>
+          </p>
+        </div>
+      </section>
     </div>
   )
 }
@@ -344,10 +291,10 @@ function relationshipExplanation(rel: (typeof EVIDENCE_RELATIONSHIPS)[number]): 
     case 'supports':
       return 'The finding is consistent with the claim and points in its direction.'
     case 'contradicts':
-      return "The finding conflicts with the claim, or with other evidence cited for it."
+      return 'The finding conflicts with the claim, or with other evidence cited for it.'
     case 'limits':
-      return 'The finding narrows the claim — for example, it worked in one population, dose, or condition, but not shown more broadly.'
+      return 'The finding narrows the claim — for example, it worked in one population, dose, or condition, but has not been shown more broadly.'
     case 'contextualizes':
-      return "The source doesn't directly support or oppose the claim, but helps explain the background needed to interpret it."
+      return 'The source does not directly support or oppose the claim, but helps explain the background needed to interpret it.'
   }
 }

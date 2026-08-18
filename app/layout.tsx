@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { fontVariables } from './fonts'
 import './globals.css'
 
 const SITE_URL = process.env.SITE_URL ?? 'https://rnawiki.com'
@@ -7,21 +6,21 @@ const SITE_URL = process.env.SITE_URL ?? 'https://rnawiki.com'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'RNAwiki — evidence, mechanisms and uncertainty',
+    default: 'RNAwiki — see what was actually tested',
     template: '%s — RNAwiki',
   },
   description:
-    'An independent evidence reference for drugs, supplements and experimental compounds: what was measured, what is inferred from it, and what remains unknown.',
+    'Search a medicine, supplement or treatment. RNAwiki shows what researchers measured, what people infer and what is still unknown.',
   openGraph: { siteName: 'RNAwiki', type: 'website' },
   twitter: { card: 'summary_large_image' },
   alternates: { types: { 'application/rss+xml': '/updates/feed.xml' } },
 }
 
-// Deliberately bare. Reader chrome lives in app/(public)/layout.tsx; /admin and
-// /embed sit outside that group so they inherit no site furniture.
+// Bare shell. Reader chrome is in app/(public)/layout.tsx; /admin and /embed sit outside that
+// group so they inherit none of it.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-SG" className={fontVariables}>
+    <html lang="en-SG">
       <body>{children}</body>
     </html>
   )

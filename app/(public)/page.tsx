@@ -1,236 +1,111 @@
 import Link from 'next/link'
 import { db } from '@/db'
-import { entities, claims, evidenceSources, evidenceChanges, correctionSubmissions } from '@/db/schema'
-import { eq, desc, sql, isNotNull } from 'drizzle-orm'
-import { SearchBox } from '@/components/SearchBox'
-import { PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
-import { ClaimPipeline } from '@/components/ClaimPipeline'
+import { entities, claims } from '@/db/schema'
+import { eq, desc } from 'drizzle-orm'
+import { HeroSearch } from '@/components/HeroSearch'
+import { plainHumanEvidence, stagePositionApplies } from '@/lib/evidence-view'
 
 export const dynamic = 'force-dynamic'
 
-async function getCorpusStats() {
-  const [[e], [c], [s], [x]] = await Promise.all([
-    db.select({ n: sql<number>`count(*)::int` }).from(entities).where(eq(entities.publicationStatus, 'published')),
-    db.select({ n: sql<number>`count(*)::int` }).from(claims).where(eq(claims.publicationStatus, 'published')),
-    db.select({ n: sql<number>`count(*)::int` }).from(evidenceSources),
-    db
-      .select({ n: sql<number>`count(*)::int` })
-      .from(correctionSubmissions)
-      .where(isNotNull(correctionSubmissions.publicCorrectionEntry)),
-  ])
-  const [latest] = await db
-    .select({ at: entities.updatedAt })
-    .from(entities)
-    .orderBy(desc(entities.updatedAt))
-    .limit(1)
+const FEATURED_LIMIT = 5
 
-  return {
-    compounds: e?.n ?? 0,
-    claims: c?.n ?? 0,
-    sources: s?.n ?? 0,
-    corrections: x?.n ?? 0,
-    lastBuilt: latest?.at ?? null,
-  }
-}
-
-async function getIndexedCompounds() {
-  return db
-    .select({
-      slug: entities.slug,
-      name: entities.canonicalName,
-      type: entities.entityType,
-      desc: entities.shortDescription,
-    })
-    .from(entities)
-    .where(eq(entities.publicationStatus, 'published'))
-    .orderBy(entities.canonicalName)
-}
-
-async function getFeatured() {
+/**
+ * Deliberately small: a handful of recently checked questions, not the corpus. The full index is
+ * /compounds. Selecting only the columns this section renders keeps the front page cheap as the
+ * corpus grows.
+ */
+async function getRecentQuestions() {
   const rows = await db
     .select({
       claimSlug: claims.slug,
       entitySlug: entities.slug,
-      entityId: entities.id,
       entityName: entities.canonicalName,
       question: claims.consumerQuestion,
+      answer: claims.directAnswer,
+      claimType: claims.claimType,
       stage: claims.proofBoundaryStage,
+      entityId: entities.id,
+      updatedAt: claims.updatedAt,
     })
     .from(claims)
     .innerJoin(entities, eq(claims.entityId, entities.id))
     .where(eq(claims.publicationStatus, 'published'))
-    .orderBy(claims.displayPriority, claims.id)
+    .orderBy(desc(claims.updatedAt), claims.displayPriority)
 
+  // One question per record, so a single compound cannot occupy four of five slots.
   const seen = new Set<number>()
-  return rows.filter((r) => !seen.has(r.entityId) && seen.add(r.entityId)).slice(0, 3)
-}
-
-async function getChanges() {
-  return db.select().from(evidenceChanges).orderBy(desc(evidenceChanges.publicationDate)).limit(4)
+  return rows.filter((r) => !seen.has(r.entityId) && seen.add(r.entityId)).slice(0, FEATURED_LIMIT)
 }
 
 export default async function HomePage() {
-  const [stats, compounds, featured, changes] = await Promise.all([
-    getCorpusStats(),
-    getIndexedCompounds(),
-    getFeatured(),
-    getChanges(),
-  ])
+  const recent = await getRecentQuestions()
 
   return (
-    <div className="wrap" style={{ paddingBlock: 'var(--s8) var(--s7)' }}>
-      {/* ---------------------------------------------------------- hero --- */}
-      <section style={{ maxWidth: '46rem' }}>
-        <p className="eyebrow">Independent evidence reference</p>
-        <h1 className="display" style={{ marginBlock: 'var(--s3) var(--s4)' }}>
-          See what the evidence actually says.
-        </h1>
-        <p className="lead measure" style={{ marginBottom: 'var(--s5)' }}>
-          Drugs, supplements and experimental compounds — from proposed mechanism to human evidence,
-          uncertainty, safety and regulatory status.
+    <div className="page" style={{ paddingBottom: 'var(--s8)' }}>
+      <section style={{ paddingTop: 'var(--s8)' }}>
+        <h1 className="reading">See what was actually tested.</h1>
+        <p className="lead muted reading" style={{ marginTop: 'var(--s4)' }}>
+          Search a medicine, supplement or treatment. RNAwiki shows what researchers measured, what people
+          infer and what is still unknown.
         </p>
-        <SearchBox />
-      </section>
-
-      {/* --------------------------------------------------- trust strip --- */}
-      <dl className="speclabel" style={{ marginTop: 'var(--s6)' }}>
-        <div className="speclabel__row">
-          <dt className="speclabel__key">Corpus</dt>
-          <dd className="speclabel__val" style={{ margin: 0 }}>
-            {stats.compounds} compounds · {stats.claims} source-linked claims · {stats.sources} sources ·{' '}
-            {stats.corrections} public corrections
-          </dd>
+        <div style={{ marginTop: 'var(--s5)' }}>
+          <HeroSearch />
         </div>
-        <div className="speclabel__row">
-          <dt className="speclabel__key">Last built</dt>
-          <dd className="speclabel__val" style={{ margin: 0 }}>
-            {stats.lastBuilt ? stats.lastBuilt.toISOString().slice(0, 10) : 'Not recorded'}
-          </dd>
-        </div>
-        <div className="speclabel__row">
-          <dt className="speclabel__key">Disclosure</dt>
-          <dd className="speclabel__val" style={{ margin: 0 }}>
-            No ads · No affiliate links · Not clinician reviewed
-          </dd>
-        </div>
-      </dl>
-
-      <hr className="rule" />
-
-      {/* ------------------------------------------------ browse: compounds */}
-      <section>
-        <div className="section-head">
-          <h2 className="h2">Compounds</h2>
-          <Link href="/compounds" style={{ fontSize: 'var(--size-small)', flex: 'none' }}>
-            View all {stats.compounds} →
-          </Link>
-        </div>
-        <p className="prose measure" style={{ marginBottom: 'var(--s5)' }}>
-          Each record separates what researchers measured from what is inferred from it, and marks the point
-          where the evidence stops.
+        <p className="small muted" style={{ marginTop: 'var(--s3)' }}>
+          Every answer links to its sources. No ads or affiliate links.
         </p>
-        <ul className="rows">
-          {compounds.map((c) => (
-            <li key={c.slug} className="row">
-              <Link href={`/r/${c.slug}`} className="row__link">
-                <div>
-                  <span className="eyebrow">{c.type.replace(/_/g, ' ')}</span>
-                  <div className="row__name" style={{ marginTop: '0.15rem' }}>
-                    {c.name}
-                  </div>
-                  <p className="row__desc">{c.desc}</p>
-                </div>
-                <span className="row__chev" aria-hidden="true">
-                  →
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
       </section>
 
-      <hr className="rule" />
-
-      {/* ------------------------------------------------ featured claims --- */}
-      <section>
-        <div className="section-head">
-          <h2 className="h2">Where the evidence stops</h2>
-        </div>
-        <ul className="rows">
-          {featured.map((f) => (
-            <li key={`${f.entitySlug}-${f.claimSlug}`} className="row">
-              <Link href={`/r/${f.entitySlug}#claim-${f.claimSlug}`} className="row__link">
-                <div>
-                  <span className="eyebrow">{f.entityName}</span>
-                  <div className="row__name" style={{ marginTop: '0.15rem', fontSize: 'var(--size-body)' }}>
-                    {f.question}
-                  </div>
-                  <div className="row__meta">
-                    <span className="tag">{PROOF_BOUNDARY_LABELS[f.stage]}</span>
-                  </div>
-                </div>
-                <span className="row__chev" aria-hidden="true">
-                  →
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      <section className="section">
+        <h2>How to read an answer</h2>
+        <dl className="glance" style={{ marginTop: 'var(--s5)', maxWidth: '52rem' }}>
+          <div>
+            <dt style={{ fontSize: '1.0625rem', fontWeight: 600, color: 'var(--text)' }}>Measured</dt>
+            <dd className="muted" style={{ fontWeight: 400 }}>
+              What a study directly observed.
+            </dd>
+          </div>
+          <div>
+            <dt style={{ fontSize: '1.0625rem', fontWeight: 600, color: 'var(--text)' }}>Inferred</dt>
+            <dd className="muted" style={{ fontWeight: 400 }}>
+              What people think may follow from it.
+            </dd>
+          </div>
+          <div>
+            <dt style={{ fontSize: '1.0625rem', fontWeight: 600, color: 'var(--text)' }}>Unknown</dt>
+            <dd className="muted" style={{ fontWeight: 400 }}>
+              What has not been established.
+            </dd>
+          </div>
+        </dl>
       </section>
 
-      <hr className="rule" />
-
-      {/* ---------------------------------------------- evidence changes --- */}
-      {changes.length > 0 && (
-        <>
-          <section>
-            <div className="section-head">
-              <h2 className="h2">Recent evidence changes</h2>
-              <Link href="/updates" style={{ fontSize: 'var(--size-small)', flex: 'none' }}>
-                All changes →
-              </Link>
-            </div>
-            <ul className="rows">
-              {changes.map((c) => (
-                <li key={c.id} className="row">
-                  <div className="row__link" style={{ display: 'block' }}>
-                    <span className="eyebrow">
-                      {c.publicationDate.toISOString().slice(0, 10)} · {c.changeType.replace(/_/g, ' ')}
-                    </span>
-                    <p style={{ marginTop: '0.25rem', fontSize: 'var(--size-small)' }}>{c.explanation}</p>
+      {recent.length > 0 && (
+        <section className="section">
+          <h2>Recently checked</h2>
+          <ul className="records" style={{ marginTop: 'var(--s4)' }}>
+            {recent.map((r) => (
+              <li key={`${r.entitySlug}-${r.claimSlug}`}>
+                <Link href={`/r/${r.entitySlug}#claim-${r.claimSlug}`} className="record-link">
+                  <div className="record-link__name">{r.question}</div>
+                  {/* The answer, verbatim and untruncated. An evidence label on its own reads as
+                      the answer and can invert it — "Is rapamycin approved for longevity?" beside
+                      "reviewed by a regulator" says yes when the answer is no. Either the caveat
+                      travels with the claim or the claim does not appear. */}
+                  <div className="record-link__desc">{r.answer}</div>
+                  <div className="record-link__meta">
+                    {r.entityName}
+                    {stagePositionApplies(r.claimType) && ` · ${plainHumanEvidence(r.stage)}`}
                   </div>
-                </li>
-              ))}
-            </ul>
-          </section>
-          <hr className="rule" />
-        </>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p style={{ marginTop: 'var(--s5)' }}>
+            <Link href="/compounds">Browse all</Link>
+          </p>
+        </section>
       )}
-
-      {/* ------------------------------------- how a claim reaches RNAwiki -- */}
-      <section>
-        <div className="section-head">
-          <h2 className="h2">How a claim reaches RNAwiki</h2>
-        </div>
-        <ClaimPipeline />
-      </section>
-
-      <hr className="rule" />
-
-      {/* ------------------------------------------------- limitations ----- */}
-      <section className="measure">
-        <div className="section-head">
-          <h2 className="h2">Limitations</h2>
-        </div>
-        <p className="prose">
-          RNAwiki records what studies measured and where the evidence stops. It does not diagnose, does not
-          recommend, and is not reviewed by a clinician. Every claim carries its sources; if one is wrong,{' '}
-          <Link href="/corrections">report it</Link>.
-        </p>
-        <p className="prose" style={{ marginTop: 'var(--s3)' }}>
-          <Link href="/evidence">How RNAwiki is made →</Link>
-        </p>
-      </section>
     </div>
   )
 }

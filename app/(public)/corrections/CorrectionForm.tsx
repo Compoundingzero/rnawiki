@@ -10,28 +10,15 @@ interface CorrectionContext {
   claimQuestion: string | null
 }
 
-// Field labels are metadata, so they are set in mono like every other label on the site. The
-// live region below the form persists across submit states so a result is announced when it
-// replaces the form, rather than being inserted silently.
-const labelStyle: React.CSSProperties = {
-  display: 'block',
-  fontFamily: 'var(--font-mono)',
-  fontSize: 'var(--size-meta)',
-  fontWeight: 500,
-  letterSpacing: 'var(--track-caps)',
-  textTransform: 'uppercase',
-  color: 'var(--ink-soft)',
-  marginBottom: 'var(--s2)',
-}
-
-const helpStyle: React.CSSProperties = {
-  marginTop: 'var(--s2)',
-  fontSize: 'var(--size-small)',
-  color: 'var(--muted)',
-}
-
 type SubmitState = { kind: 'idle' } | { kind: 'submitting' } | { kind: 'success' } | { kind: 'error'; message: string }
 
+/**
+ * The POST body and the client-side minimum length are unchanged — /api/corrections validates the
+ * same shape. Only the presentation moved onto the current design system.
+ *
+ * The live region below persists across submit states so the result is announced when it replaces
+ * the form, rather than being inserted silently.
+ */
 export function CorrectionForm({ context }: { context: CorrectionContext | null }) {
   const formId = useId()
   const [category, setCategory] = useState<CorrectionCategory>(CORRECTION_CATEGORIES[0])
@@ -75,36 +62,36 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
     <>
       <div role="status" aria-live="polite">
         {state.kind === 'success' && (
-          <div className="callout">
-            <p className="callout__title">Received</p>
-            <p style={{ fontWeight: 600 }}>This report is now in the editorial queue.</p>
-            <p className="prose" style={{ marginTop: 'var(--s2)', fontSize: 'var(--size-small)' }}>
-              An editor reads every submission by hand before anything changes. Individual replies are not sent;
-              resolved corrections that changed something are listed below.
+          <div className="panel panel--soft" style={{ maxWidth: '34rem' }}>
+            <p style={{ fontWeight: 600 }}>Report received.</p>
+            <p className="muted small" style={{ marginTop: 'var(--s2)' }}>
+              An editor reads every submission by hand before anything changes. Individual replies are not sent.
+              Corrections that changed something are listed on this page.
             </p>
-            <button type="button" className="btn" style={{ marginTop: 'var(--s4)' }} onClick={() => setState({ kind: 'idle' })}>
-              Submit another correction
+            <button
+              type="button"
+              className="btn"
+              style={{ marginTop: 'var(--s4)' }}
+              onClick={() => setState({ kind: 'idle' })}
+            >
+              Report something else
             </button>
           </div>
         )}
       </div>
 
       {state.kind !== 'success' && (
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: 'grid', gap: 'var(--s5)', maxWidth: '40rem' }}
-          aria-describedby={context ? `${formId}-context` : undefined}
-        >
+        <form onSubmit={handleSubmit} className="form" aria-describedby={context ? `${formId}-context` : undefined}>
           {context && (
-            <p id={`${formId}-context`} className="callout" style={{ fontSize: 'var(--size-small)' }}>
+            <p id={`${formId}-context`} className="panel panel--soft small">
               Reporting an issue with <strong>{context.entityName}</strong>
-              {context.claimQuestion ? <> — &ldquo;{context.claimQuestion}&rdquo;</> : null}.
+              {context.claimQuestion ? <> — “{context.claimQuestion}”</> : null}.
             </p>
           )}
 
           <div>
-            <label htmlFor={`${formId}-category`} style={labelStyle}>
-              Kind of issue
+            <label htmlFor={`${formId}-category`} className="label">
+              Kind of issue <span className="label__note">(required)</span>
             </label>
             <select
               id={`${formId}-category`}
@@ -120,14 +107,14 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
                 </option>
               ))}
             </select>
-            <p id={`${formId}-category-help`} style={helpStyle}>
+            <p id={`${formId}-category-help`} className="help">
               {CORRECTION_CATEGORY_HELP[category]}
             </p>
           </div>
 
           <div>
-            <label htmlFor={`${formId}-message`} style={labelStyle}>
-              What you noticed
+            <label htmlFor={`${formId}-message`} className="label">
+              What you noticed <span className="label__note">(required)</span>
             </label>
             <textarea
               id={`${formId}-message`}
@@ -140,32 +127,31 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               aria-describedby={`${formId}-message-help`}
-              style={{ resize: 'vertical', lineHeight: 'var(--leading-body)' }}
             />
-            <p id={`${formId}-message-help`} style={helpStyle}>
+            <p id={`${formId}-message-help`} className="help">
               A sentence or two is enough. Quoting the exact wording helps most.
             </p>
           </div>
 
           <div>
-            <label htmlFor={`${formId}-source`} style={labelStyle}>
-              Link to a source (optional)
+            <label htmlFor={`${formId}-source`} className="label">
+              Link to a source <span className="label__note">(optional)</span>
             </label>
             <input
               id={`${formId}-source`}
               name="proposedSource"
               type="text"
               className="field"
-              placeholder="A URL, DOI, or PMID"
+              placeholder="A URL, DOI or PMID"
               value={proposedSource}
               onChange={(e) => setProposedSource(e.target.value)}
             />
           </div>
 
           {state.kind === 'error' && (
-            <div role="alert" className="callout" data-tone="danger">
-              <p className="callout__title">Not sent</p>
-              <p style={{ fontSize: 'var(--size-small)' }}>{state.message}</p>
+            <div role="alert" className="notice">
+              <p className="notice__title">Not sent</p>
+              <p className="small">{state.message}</p>
             </div>
           )}
 
@@ -175,13 +161,12 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
               className="btn btn--primary"
               disabled={state.kind === 'submitting'}
               aria-busy={state.kind === 'submitting'}
-              style={{ opacity: state.kind === 'submitting' ? 0.7 : 1 }}
             >
-              {state.kind === 'submitting' ? 'Sending…' : 'Send correction'}
+              {state.kind === 'submitting' ? 'Sending…' : 'Send report'}
             </button>
           </div>
 
-          <p style={{ fontSize: 'var(--size-small)', color: 'var(--muted)' }}>
+          <p className="muted small">
             This form is for issues with the content on this site, not a way to ask about a personal health
             situation. For medical guidance, contact a qualified clinician.
           </p>

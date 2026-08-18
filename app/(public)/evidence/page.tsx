@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { eq, isNotNull, sql } from 'drizzle-orm'
 import { db } from '@/db'
 import { claims, correctionSubmissions, entities, evidenceSources } from '@/db/schema'
-import { ClaimPipeline } from '@/components/ClaimPipeline'
+import { EvidenceReach } from '@/components/EvidenceReach'
 
 // Queries the database and has no dynamic segment, so it must opt out of build-time
 // prerendering — the Railway build container cannot reach Postgres. Same reason as
@@ -11,9 +11,9 @@ import { ClaimPipeline } from '@/components/ClaimPipeline'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'How RNAwiki is made',
+  title: 'How it works',
   description:
-    'Who writes RNAwiki, what has been reviewed and what has not, how it is paid for, how corrections work, and what the site cannot establish.',
+    'How RNAwiki works: one claim at a time, what a study measured, what people inferred from it, and where the direct evidence stops.',
 }
 
 /** Every number on this page is counted at request time. Nothing here is written by hand. */
@@ -36,9 +36,50 @@ async function getCorpusCounts() {
   }
 }
 
+// The first screen. Three sentences that describe the whole product, before any vocabulary.
+const STEPS: { title: string; body: string }[] = [
+  {
+    title: 'Start with a specific claim.',
+    body: 'Each record is built around a question a person actually asks, such as whether a compound heals tendons faster. A general question about a compound hides the answer inside it.',
+  },
+  {
+    title: 'Separate what was measured from what was inferred.',
+    body: 'Measured is what a study observed. Inferred is what people conclude from that observation. Unknown is what nobody has established yet. Every sentence on a claim is marked as one of the three.',
+  },
+  {
+    title: 'Mark where the direct evidence stops.',
+    body: 'A claim is placed at the furthest point real evidence reached, and the page says so plainly instead of leaving a reader to guess.',
+  },
+]
+
+// Secondary detail, kept behind a disclosure rather than cut.
+const PIPELINE: { label: string; note: string }[] = [
+  { label: 'Source record', note: 'A study, label or regulatory document, entered with its identifiers.' },
+  { label: 'Structured claim', note: 'One reader-facing question, answered in one or two sentences.' },
+  { label: 'Evidence classification', note: 'Measured, inferred or unknown, and how far the evidence goes.' },
+  { label: 'Automated checks', note: 'Length caps, banned language and citation integrity gate the build.' },
+  { label: 'Published page', note: 'Server-rendered, with every source traceable from the sentence.' },
+  { label: 'Correction history', note: 'Reader reports, resolved by an editor and logged.' },
+]
+
+const REVIEWED: { key: string; value: string }[] = [
+  { key: 'Editorial', value: 'Written, sourced and checked by the editor before a page goes live.' },
+  { key: 'Clinician', value: 'None. No doctor, pharmacist or other clinician has reviewed any page on this site.' },
+  { key: 'Scientific', value: 'Pending, unless a claim names its reviewer and their credentials.' },
+  { key: 'Peer review', value: 'None. RNAwiki summarises published research; it is not published research.' },
+]
+
+const FUNDING: { key: string; value: string }[] = [
+  { key: 'Advertising', value: 'None.' },
+  { key: 'Affiliate links', value: 'None. No link on this site earns a commission.' },
+  { key: 'Sponsorship', value: 'None. No entry is paid for, and inclusion cannot be bought.' },
+  { key: 'Products sold', value: 'None.' },
+  { key: 'Cost to read', value: 'Free, with no account and no paywall.' },
+]
+
 const LIMITS: { title: string; body: string }[] = [
   {
-    title: 'Whether a compound is safe or right for one person',
+    title: 'Whether something is safe or right for one person',
     body: 'A page records what a study measured in the people or animals it studied. It cannot account for a reader’s condition, medication or history. That judgment belongs to a clinician who can examine the person in front of them.',
   },
   {
@@ -51,7 +92,7 @@ const LIMITS: { title: string; body: string }[] = [
   },
   {
     title: 'That a claim is true',
-    body: 'An evidence stage answers how far the evidence reaches, never whether the claim is correct. Early evidence is not wrong evidence, and a regulatory approval covers one indication in one population, not everything a compound is discussed for.',
+    body: 'How far the evidence goes is not the same question as whether the claim is correct. Early evidence is not wrong evidence, and a regulatory approval covers one use in one population, not everything a compound is discussed for.',
   },
   {
     title: 'That the record is complete',
@@ -59,7 +100,7 @@ const LIMITS: { title: string; body: string }[] = [
   },
   {
     title: 'That readers understood a page',
-    body: 'The optional comprehension questions on a claim test whether the explanation was clear enough to locate where the evidence stops. A clarity result is never evidence that the claim itself holds.',
+    body: 'The optional questions on a claim test whether the explanation was clear enough to locate where the evidence stops. A clarity result is never evidence that the claim itself holds.',
   },
 ]
 
@@ -67,262 +108,180 @@ export default async function EvidencePage() {
   const counts = await getCorpusCounts()
 
   return (
-    <div className="wrap" style={{ paddingBlock: 'var(--s7)' }}>
-      <div style={{ maxWidth: '56rem' }}>
-        <header className="measure">
-          <p className="eyebrow">Editorial disclosure</p>
-          <h1 className="display" style={{ marginBlock: 'var(--s3) var(--s4)' }}>
-            How RNAwiki is made
-          </h1>
-          <p className="lead">
-            Who writes it, what has been reviewed and what has not, what pays for it, and the questions it
-            cannot answer.
-          </p>
-        </header>
-
-        <dl className="speclabel" style={{ marginTop: 'var(--s6)' }}>
-          <div className="speclabel__row">
-            <dt className="speclabel__key">Compounds</dt>
-            <dd className="speclabel__val" style={{ margin: 0 }}>
-              {counts.entities} published
-            </dd>
-          </div>
-          <div className="speclabel__row">
-            <dt className="speclabel__key">Claims</dt>
-            <dd className="speclabel__val" style={{ margin: 0 }}>
-              {counts.claims} published
-            </dd>
-          </div>
-          <div className="speclabel__row">
-            <dt className="speclabel__key">Sources</dt>
-            <dd className="speclabel__val" style={{ margin: 0 }}>
-              {counts.sources} records
-            </dd>
-          </div>
-          <div className="speclabel__row">
-            <dt className="speclabel__key">Corrections</dt>
-            <dd className="speclabel__val" style={{ margin: 0 }}>
-              {counts.corrections} published publicly
-            </dd>
-          </div>
-        </dl>
-        <p className="muted" style={{ fontSize: 'var(--size-small)', marginTop: 'var(--s2)' }}>
-          Counted from the database when this page loaded.
+    <div className="page doc">
+      <header className="reading stack">
+        <h1>How it works</h1>
+        <p className="lead muted">
+          RNAwiki takes one health claim at a time and shows how far the evidence behind it actually goes.
         </p>
+      </header>
 
-        <div className="callout" data-tone="warning" style={{ marginTop: 'var(--s6)' }}>
-          <p className="callout__title">Not reviewed by a clinician</p>
-          <p style={{ fontSize: 'var(--size-small)' }}>
-            No doctor, pharmacist or other clinician has checked these pages. What a claim carries is editorial
-            review. Where a claim says independent scientific review is pending, it is pending, and nothing on
-            the page should be read as sign-off.
+      <section className="section-sm">
+        <ol className="numbered reading">
+          {STEPS.map((s) => (
+            <li key={s.title}>
+              <div>
+                <p className="numbered__h">{s.title}</p>
+                <p className="muted">{s.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      {/* High on the page on purpose: a reader deciding whether to trust this needs it before
+          the detail, not after it. */}
+      <div className="notice reading" style={{ marginTop: 'var(--s7)' }}>
+        <p className="notice__title">No clinician has reviewed this site</p>
+        <p className="small">
+          RNAwiki is written and edited by one person, with AI assistance in drafting. No doctor, pharmacist or
+          other clinician has checked these pages, and nothing here is medical advice.
+        </p>
+      </div>
+
+      <section className="section">
+        <h2>How far the evidence goes</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p className="muted">
+            Every claim is placed at one of five points, from a biological idea to a decision by a medicines
+            regulator. Reaching a later point means more has been studied. It does not mean the treatment is
+            safe, and it is not a score.
+          </p>
+        </div>
+        <div className="reading" style={{ marginTop: 'var(--s5)' }}>
+          <p className="small muted" style={{ marginBottom: 'var(--s3)' }}>
+            An example, from a claim tested in animals but not in people:
+          </p>
+          <EvidenceReach stage="animal_evidence" />
+        </div>
+        <p className="reading" style={{ marginTop: 'var(--s5)' }}>
+          <Link href="/methodology">
+            How claims are classified: the full eight stages, and what measured, inferred and unknown mean
+          </Link>
+        </p>
+      </section>
+
+      <section className="section">
+        <h2>Where the sources come from</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p className="muted">
+            Every cited source is a real record with a checkable identifier: a DOI, a PubMed ID, a trial
+            registration number, or the address of a regulatory document. A source that cannot be verified is
+            left out, and the gap is stated rather than filled.
+          </p>
+          <p className="muted">
+            Sources that contradict or limit a claim are listed beside the ones that support it. Each source is
+            tagged with what it measured and which part of the claim it addresses, so a sentence can be traced to
+            the study behind it rather than to a list at the bottom of the page.
           </p>
         </div>
 
-        <hr className="rule" />
-
-        {/* ------------------------------------------------------ authorship */}
-        <section id="who-writes-it" className="measure">
-          <div className="section-head">
-            <h2 className="h2">Who writes it</h2>
+        <details className="disclosure reading" style={{ marginTop: 'var(--s5)' }}>
+          <summary>How a claim reaches a page</summary>
+          <div className="disclosure__body">
+            <ol className="numbered">
+              {PIPELINE.map((s) => (
+                <li key={s.label}>
+                  <div>
+                    <p className="numbered__h">{s.label}</p>
+                    <p className="muted small">{s.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
-          <div className="prose">
-            <p>
-              RNAwiki is written and edited by one person. Drafting is done with AI assistance, and no draft
-              reaches a published page unread: every sentence is checked against the source it cites, and
-              rewritten by the editor where it drifts from what that source measured.
-            </p>
-            <p>
-              An error on this site is an editor’s error. There is no newsroom behind it, no panel of advisors,
-              and no reviewer whose name appears unless a real review record exists for that claim.
-            </p>
-          </div>
-        </section>
+        </details>
+      </section>
 
-        <hr className="rule" />
-
-        {/* ------------------------------------------------- review, plainly */}
-        <section id="review">
-          <div className="section-head">
-            <h2 className="h2">What has been reviewed</h2>
-          </div>
-          <dl className="speclabel">
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Editorial</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                Done before publication — written, sourced and checked by the editor
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Clinician</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                None. No clinician has reviewed any page on this site
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Scientific</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                Pending, unless a claim names its reviewer and their credentials
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Peer review</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                None. RNAwiki summarises published research; it is not published research
-              </dd>
-            </div>
-          </dl>
-          <p className="prose measure" style={{ marginTop: 'var(--s4)' }}>
-            The review line on a claim is generated from that claim’s stored review record, so it cannot be set
-            by hand. <Link href="/methodology#editorial-workflow">What “published” does and does not mean →</Link>
+      <section className="section">
+        <h2>Who writes it</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p>
+            RNAwiki is written and edited by one person. Drafting is done with AI assistance, and no draft
+            reaches a published page unread: every sentence is checked against the source it cites and rewritten
+            where it drifts from what that source measured.
           </p>
-        </section>
-
-        <hr className="rule" />
-
-        {/* ------------------------------------------------------ disclosure */}
-        <section id="money">
-          <div className="section-head">
-            <h2 className="h2">What pays for it</h2>
-          </div>
-          <dl className="speclabel">
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Advertising</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                None
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Affiliate links</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                None. No outbound link on this site earns a commission
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Sponsorship</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                None. No entry is paid for, and inclusion cannot be bought
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Products sold</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                None
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Reader cost</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                Free, no account, no paywall
-              </dd>
-            </div>
-          </dl>
-          <p className="prose measure" style={{ marginTop: 'var(--s4)' }}>
-            Whoever profits from a treatment usually gets to define what “works” means for it. The point of
-            selling nothing is that the same evidence scale can be applied to an approved medicine and to a
-            peptide sold online without either one paying for softer treatment.
+          <p>
+            An error on this site is the editor’s error. There is no newsroom behind it, no panel of advisors,
+            and no reviewer whose name appears unless a real review record exists for that claim.
           </p>
-        </section>
-
-        <hr className="rule" />
-
-        {/* -------------------------------------------------------- pipeline */}
-        <section id="pipeline">
-          <div className="section-head">
-            <h2 className="h2">How a claim reaches a page</h2>
-          </div>
-          <ClaimPipeline />
-        </section>
-
-        <hr className="rule" />
-
-        {/* ------------------------------------------------ sources + stages */}
-        <section id="sources" className="measure">
-          <div className="section-head">
-            <h2 className="h2">Sources and classification</h2>
-          </div>
-          <div className="prose">
-            <p>
-              Every cited source is a real record with a checkable identifier: a DOI, a PubMed ID, a trial
-              registration number, or the URL of a regulatory document. A source that cannot be verified is left
-              out, and the gap is stated rather than filled.
-            </p>
-            <p>
-              Sources that contradict or limit a claim are listed beside the ones that support it. Each source
-              is tagged with what it measured and which part of the claim it addresses, so a reader can trace a
-              sentence to the study behind it rather than to a bibliography at the bottom.
-            </p>
-            <p>
-              Each claim is then placed on one of eight evidence stages, and the stage it stops at is marked on
-              the page.
-            </p>
-          </div>
-          <p className="prose" style={{ marginTop: 'var(--s4)' }}>
-            <Link href="/methodology">The full standard: the eight stages, and what Measured, Inferred and
-            Unknown mean →</Link>
+          <p className="muted small">
+            {counts.entities} published compound {counts.entities === 1 ? 'record' : 'records'}, {counts.claims}{' '}
+            published {counts.claims === 1 ? 'claim' : 'claims'} and {counts.sources} source{' '}
+            {counts.sources === 1 ? 'record' : 'records'}, counted from the database when this page loaded.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <hr className="rule" />
+      <section className="section">
+        <h2>What has been reviewed</h2>
+        <dl className="facts" style={{ marginTop: 'var(--s4)' }}>
+          {REVIEWED.map((r) => (
+            <div key={r.key}>
+              <dt>{r.key}</dt>
+              <dd>{r.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="reading muted" style={{ marginTop: 'var(--s5)' }}>
+          Publishing a page is an editorial step, not a scientific one. A claim can be live while independent
+          review is still pending, and the line each claim carries is generated from its stored review record
+          rather than typed by hand.{' '}
+          <Link href="/methodology#editorial-workflow">What “published” does and does not mean</Link>
+        </p>
+      </section>
 
-        {/* ------------------------------------------------------ correction */}
-        <section id="corrections" className="measure">
-          <div className="section-head">
-            <h2 className="h2">How corrections work</h2>
-          </div>
-          <div className="prose">
-            <p>
-              Reader reports go into a moderation queue. Nothing submitted changes a page directly: an editor
-              reads the report, checks it against the source material, and decides what to do. Individual
-              replies are not sent.
-            </p>
-            <p>
-              A correction that changed something is published with what it changed. {counts.corrections} public{' '}
-              {counts.corrections === 1 ? 'correction is' : 'corrections are'} listed so far, and evidence
-              changes that move a claim are logged separately with the source that moved it.
-            </p>
-          </div>
-          <p className="prose" style={{ marginTop: 'var(--s4)' }}>
-            <Link href="/corrections">Report an error →</Link>
+      <section className="section">
+        <h2>How it is paid for</h2>
+        <dl className="facts" style={{ marginTop: 'var(--s4)' }}>
+          {FUNDING.map((f) => (
+            <div key={f.key}>
+              <dt>{f.key}</dt>
+              <dd>{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+        <p className="reading muted" style={{ marginTop: 'var(--s5)' }}>
+          Whoever profits from a treatment usually gets to define what “works” means for it. Selling nothing is
+          what allows the same evidence scale to be applied to an approved medicine and to a peptide sold
+          online, without either one paying for softer treatment.{' '}
+          <Link href="/methodology#independence">More on independence</Link>
+        </p>
+      </section>
+
+      <section className="section">
+        <h2>How corrections work</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          <p>
+            Reader reports go into a moderation queue. Nothing submitted changes a page directly: an editor
+            reads the report, checks it against the source material, and decides what to do. Individual replies
+            are not sent.
           </p>
-        </section>
+          <p>
+            {counts.corrections === 0
+              ? 'A correction that changes something is published with what it changed. None has been published yet.'
+              : `A correction that changes something is published with what it changed. ${counts.corrections} ${
+                  counts.corrections === 1 ? 'has' : 'have'
+                } been published so far.`}{' '}
+            Evidence that moves a claim is logged separately, with the source that moved it.
+          </p>
+          <p>
+            <Link href="/corrections">Report an error</Link> · <Link href="/updates">See what changed</Link>
+          </p>
+        </div>
+      </section>
 
-        <hr className="rule" />
-
-        {/* ----------------------------------------------------- the limits -- */}
-        <section id="limits">
-          <div className="section-head">
-            <h2 className="h2">What this site cannot establish</h2>
-          </div>
-          <ul style={{ listStyle: 'none', borderTop: 'var(--hairline) solid var(--border)' }}>
-            {LIMITS.map((l) => (
-              <li
-                key={l.title}
-                style={{
-                  borderBottom: 'var(--hairline) solid var(--border)',
-                  paddingBlock: 'var(--s4)',
-                }}
-              >
-                <h3 className="h4" style={{ fontFamily: 'var(--font-serif)', marginBottom: 'var(--s2)' }}>
-                  {l.title}
-                </h3>
-                <p className="prose measure" style={{ fontSize: 'var(--size-small)' }}>
-                  {l.body}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <hr className="rule" />
-
-        <nav className="metaline" aria-label="Related pages">
-          <Link href="/methodology">Methodology</Link>
-          <Link href="/corrections">Corrections</Link>
-          <Link href="/updates">Evidence changes</Link>
-          <Link href="/privacy">Privacy</Link>
-        </nav>
-      </div>
+      <section className="section">
+        <h2>What this site cannot tell you</h2>
+        <ul className="entries reading" style={{ marginTop: 'var(--s5)' }}>
+          {LIMITS.map((l) => (
+            <li key={l.title}>
+              <p className="entry__h">{l.title}</p>
+              <p className="muted small">{l.body}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   )
 }

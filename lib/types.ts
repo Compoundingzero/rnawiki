@@ -47,6 +47,9 @@ export interface ProofCardView {
   id: number
   slug: string
   entitySlug: string
+  /** Needed publicly: an evidence position is meaningless for a regulatory, access or
+      mechanism claim, and printing one there endorsed a logistics answer as regulator-reviewed. */
+  claimType: 'mechanism' | 'effectiveness' | 'safety' | 'regulatory' | 'access' | 'claimed_use'
   consumerQuestion: string
   directAnswer: string
   measuredFinding: string

@@ -2,10 +2,9 @@ import type { Metadata } from 'next'
 import { NotFoundNotice } from '@/components/notice/NotFoundNotice'
 
 /**
- * Not-found inside the reader chrome. This is what a reader sees when a page in
- * this group calls notFound() — most often `/r/<slug>` for a slug that is not
- * published — so the masthead, search and colophon from the group layout stay in
- * place and the reader never loses the site.
+ * Not-found inside the reader chrome. This is what a reader sees when a page in this group calls
+ * notFound() — most often `/r/<slug>` for a slug that is not published — so the header and footer
+ * from the group layout stay in place and the reader never loses the site.
  */
 export const metadata: Metadata = {
   title: 'Page not found',
@@ -14,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function PublicNotFound() {
   return (
-    <div className="wrap" style={{ paddingBlock: 'var(--s8) var(--s7)' }}>
+    <div className="page doc">
       <NotFoundNotice />
     </div>
   )

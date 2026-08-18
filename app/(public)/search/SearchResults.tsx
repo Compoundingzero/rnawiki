@@ -1,76 +1,79 @@
 import Link from 'next/link'
-import { PROOF_BOUNDARY_LABELS } from '@/lib/evidence'
 import { entityPath } from '@/lib/canonical'
+import { plainHumanEvidence } from '@/lib/evidence-view'
 import type { SearchResult } from '@/lib/search'
 
 /**
- * Record metadata that accompanies a result but does not come out of the search query itself.
- * Optional per result: a claim with no review date contributes no date row rather than a
- * placeholder.
+ * Pure presentation: a non-empty list of results, grouped under the record each answer belongs
+ * to. Callers (app/(public)/search/page.tsx) own the "nothing typed yet" and "no match" states,
+ * so this component only ever sees results that exist. Server component, no interactivity, so it
+ * renders identically with JavaScript disabled.
+ *
+ * Three things per result and nothing else: the question a reader would ask, the answer in full,
+ * and how far the evidence for that one answer goes. The answer is never dropped in favour of the
+ * evidence line — on its own that line reads as the answer, and beside a question like "Is
+ * rapamycin approved for longevity?" it would invert it.
  */
-export interface SearchResultDetail {
-  claimType: string
-  lastReviewedAt: Date | null
+
+interface ResultGroup {
+  entitySlug: string
+  entityName: string
+  results: SearchResult[]
 }
 
 /**
- * Pure presentation: renders a non-empty list of search results as hairline-separated rows.
- * Callers (app/(public)/search/page.tsx) own the "no query yet" / "no results" empty states —
- * this component only ever sees results that exist. Server component, no interactivity, so it
- * renders identically with JavaScript disabled.
- *
- * Each row carries enough of the record to judge it without navigating: which compound it belongs
- * to, what kind of claim it is, the answer sentence, where the evidence stops, and when the claim
- * was last reviewed.
+ * Groups by record while preserving the ranking lib/search.ts produced: a record first appears
+ * where its best-ranked answer appeared. Four BPC-157 answers under one heading is one thing to
+ * read; four rows each restating "BPC-157" is four.
  */
-export function SearchResults({
-  results,
-  details,
-}: {
-  results: SearchResult[]
-  details?: Map<number, SearchResultDetail>
-}) {
+function groupByEntity(results: SearchResult[]): ResultGroup[] {
+  const groups: ResultGroup[] = []
+  const bySlug = new Map<string, ResultGroup>()
+
+  for (const result of results) {
+    const existing = bySlug.get(result.entitySlug)
+    if (existing) {
+      existing.results.push(result)
+      continue
+    }
+    const group: ResultGroup = {
+      entitySlug: result.entitySlug,
+      entityName: result.entityName,
+      results: [result],
+    }
+    bySlug.set(result.entitySlug, group)
+    groups.push(group)
+  }
+
+  return groups
+}
+
+export function SearchResults({ results }: { results: SearchResult[] }) {
   return (
-    <ul className="rows">
-      {results.map((result) => {
-        const detail = details?.get(result.claimId)
-        const lastReviewed = detail?.lastReviewedAt ? detail.lastReviewedAt.toISOString().slice(0, 10) : null
-        return (
-          <li key={result.claimId} className="row">
-            <Link
-              href={`${entityPath(result.entitySlug)}#claim-${result.claimSlug}`}
-              className="row__link"
-            >
-              <div>
-                <span className="eyebrow">
-                  {result.entityName} · Claim
-                  {detail ? ` · ${detail.claimType.replace(/_/g, ' ')}` : ''}
-                </span>
-                <div className="row__name" style={{ marginTop: '0.15rem' }}>
-                  {result.consumerQuestion}
-                </div>
-                <p className="row__desc">{result.directAnswer}</p>
-                <div className="row__meta">
-                  {/* Long stage labels must wrap rather than push the row off a 375px screen. */}
-                  <span className="tag" style={{ whiteSpace: 'normal' }}>
-                    Proof Boundary — {PROOF_BOUNDARY_LABELS[result.proofBoundaryStage]}
-                  </span>
-                </div>
-                {lastReviewed && (
-                  <p className="metaline" style={{ marginTop: 'var(--s2)' }}>
-                    <span>
-                      Last reviewed <b>{lastReviewed}</b>
-                    </span>
+    <div className="stack-6" style={{ marginTop: 'var(--s5)' }}>
+      {groupByEntity(results).map((group) => (
+        <section key={group.entitySlug}>
+          <h2 className="reading">
+            <Link href={entityPath(group.entitySlug)}>{group.entityName}</Link>
+          </h2>
+          <ul className="records reading" style={{ marginTop: 'var(--s3)' }}>
+            {group.results.map((result) => (
+              <li key={result.claimId}>
+                <Link
+                  href={`${entityPath(group.entitySlug)}#claim-${result.claimSlug}`}
+                  className="record-link"
+                >
+                  <div className="result__q">{result.consumerQuestion}</div>
+                  <p className="result__a">{result.directAnswer}</p>
+                  <p className="result__reach">
+                    Evidence so far: {plainHumanEvidence(result.proofBoundaryStage)}
                   </p>
-                )}
-              </div>
-              <span className="row__chev" aria-hidden="true">
-                →
-              </span>
-            </Link>
-          </li>
-        )
-      })}
-    </ul>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
   )
 }

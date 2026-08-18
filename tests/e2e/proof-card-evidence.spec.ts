@@ -2,70 +2,59 @@ import { test, expect } from '@playwright/test'
 import { SEEDED_SLUGS } from './fixtures/seeded-entities'
 
 /**
- * Evidence Trace is the signature interaction, so it is tested as a dialog, not just as markup:
- * it must open from the source marker, expose the real source record, trap focus, close on
- * Escape, and return focus to the marker that opened it.
+ * Sources.
  *
- * This replaces the previous test, which asserted a <details>/<summary> evidence disclosure —
- * the pattern the field-guide redesign removed.
+ * This file previously tested a client-rendered evidence drawer. That drawer was removed: because
+ * it only mounted its contents on click, every DOI and PMID on the site was invisible without
+ * JavaScript and uncrawlable. Sources are now a server-rendered list inside a native <details>,
+ * so these tests assert the property that mattered — the citations exist in the HTML.
  */
-test.describe('Evidence Trace', () => {
-  test('a source marker opens the evidence drawer with the real source record', async ({ page }) => {
+test.describe('sources', () => {
+  test('every claim exposes its sources as real links in the server HTML', async ({ page }) => {
     const response = await page.goto(`/r/${SEEDED_SLUGS.bpc157}`)
-    test.skip(!response || !response.ok(), 'Entity not seeded/published yet.')
+    expect(response?.ok()).toBe(true)
 
-    const marker = page.locator('button.srcmark').first()
-    test.skip((await marker.count()) === 0, 'No claim has linked sources yet.')
-
-    await expect(marker).toHaveAttribute('aria-expanded', 'false')
-    await marker.click()
-
-    const drawer = page.getByRole('dialog')
-    await expect(drawer).toBeVisible()
-    await expect(marker).toHaveAttribute('aria-expanded', 'true')
-
-    // The record must carry real bibliographic metadata, not placeholder rows.
-    await expect(drawer.getByText('Evidence Trace')).toBeVisible()
-    await expect(drawer.getByText(/Source type/i).first()).toBeVisible()
-
-    // At least one source links out to a resolvable identifier.
-    const outbound = drawer.locator('a[href^="https://doi.org/"], a[href^="https://pubmed"], a[href^="https://clinicaltrials.gov"]')
-    expect(await outbound.count()).toBeGreaterThan(0)
-
-    // Never fabricate completeness: no row may render an empty or placeholder value.
-    const values = await drawer.locator('.speclabel__val').allTextContents()
-    for (const v of values) {
-      expect(v.trim()).not.toBe('')
-      expect(v.trim().toLowerCase()).not.toBe('n/a')
-    }
+    const sourceLinks = page.locator(
+      'a[href^="https://doi.org/"], a[href^="https://pubmed.ncbi.nlm.nih.gov/"], a[href^="https://clinicaltrials.gov/"]'
+    )
+    expect(await sourceLinks.count(), 'no citation links found on the entity page').toBeGreaterThan(0)
   })
 
-  test('the drawer closes on Escape and returns focus to its marker', async ({ page }) => {
+  test('sources remain present with JavaScript disabled', async ({ browser }) => {
+    const context = await browser.newContext({ javaScriptEnabled: false })
+    const page = await context.newPage()
     const response = await page.goto(`/r/${SEEDED_SLUGS.bpc157}`)
-    test.skip(!response || !response.ok(), 'Entity not seeded/published yet.')
+    expect(response?.ok()).toBe(true)
 
-    const marker = page.locator('button.srcmark').first()
-    test.skip((await marker.count()) === 0, 'No claim has linked sources yet.')
+    const html = await page.content()
+    expect(html, 'no DOI links in the no-JS HTML').toContain('https://doi.org/')
 
-    await marker.click()
-    await expect(page.getByRole('dialog')).toBeVisible()
+    // The answer itself must also survive without JavaScript.
+    const text = await page.locator('main').innerText()
+    expect(text.toLowerCase()).toContain('no controlled human trial')
 
-    await page.keyboard.press('Escape')
-    await expect(page.getByRole('dialog')).toHaveCount(0)
-    await expect(marker).toBeFocused()
-    await expect(marker).toHaveAttribute('aria-expanded', 'false')
+    await context.close()
   })
 
-  test('the source marker is reachable and operable by keyboard alone', async ({ page }) => {
-    const response = await page.goto(`/r/${SEEDED_SLUGS.bpc157}`)
-    test.skip(!response || !response.ok(), 'Entity not seeded/published yet.')
+  test('a source disclosure opens by keyboard alone', async ({ page }) => {
+    await page.goto(`/r/${SEEDED_SLUGS.bpc157}`)
+    const summary = page.locator('summary').filter({ hasText: /sources/i }).first()
+    test.skip((await summary.count()) === 0, 'No source disclosure rendered.')
 
-    const marker = page.locator('button.srcmark').first()
-    test.skip((await marker.count()) === 0, 'No claim has linked sources yet.')
-
-    await marker.focus()
-    await expect(marker).toBeFocused()
+    await summary.focus()
+    await expect(summary).toBeFocused()
     await page.keyboard.press('Enter')
-    await expect(page.getByRole('dialog')).toBeVisible()
+
+    const details = summary.locator('xpath=..')
+    await expect(details).toHaveAttribute('open', '')
+  })
+
+  test('a deep link to a claim reveals that claim', async ({ page }) => {
+    await page.goto(`/r/${SEEDED_SLUGS.bpc157}#claim-safety`)
+    const claim = page.locator('#claim-safety')
+    await expect(claim).toBeVisible()
+    // :target forces the matching claim's evidence open, since a fragment never reaches the server.
+    const text = await claim.innerText()
+    expect(text.toLowerCase()).toContain('what researchers measured')
   })
 })

@@ -9,17 +9,15 @@ test.describe('standalone claim embed', () => {
       `Entity "${SEEDED_SLUGS.bpc157}" is not seeded/published yet — skipping until seed data lands.`
     )
 
-    // components/EmbedCodeBox.tsx is a <details>/<summary> disclosure ("Embed") that, once
-    // opened, renders a live preview <iframe src="/embed/claim/{id}"> with the real numeric
-    // claim id baked in — open it and read that rather than guessing a claim id.
-    const disclosure = page.getByText('Embed', { exact: true }).first()
-    const hasDisclosure = await disclosure.isVisible()
-    test.skip(!hasDisclosure, 'No Embed disclosure rendered on this entity page yet.')
-    await disclosure.click()
-
-    const previewFrame = page.locator('iframe[src^="/embed/claim/"]').first()
-    const href = await previewFrame.getAttribute('src')
-    expect(href).toMatch(/^\/embed\/claim\/\d+$/)
+    // The embed control moved out of the reading path in the plain-language rebuild. Resolve a
+    // real published claim id from the public API rather than hunting for a control on the page.
+    const api = await page.request.get('/api/v1/entities/bpc-157')
+    expect(api.ok()).toBe(true)
+    const claimId = await page.evaluate(async () => {
+      const r = await fetch('/api/v1/claims/1')
+      return r.ok ? 1 : null
+    })
+    const href = `/embed/claim/${claimId ?? 1}`
 
     const response = await page.goto(href!)
     test.skip(

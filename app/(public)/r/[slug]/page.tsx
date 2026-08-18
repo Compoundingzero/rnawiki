@@ -8,13 +8,18 @@ import {
   getRegulatoryStatusesForEntity,
 } from '@/lib/queries/entities'
 import { getQuestionsForClaim } from '@/lib/comprehension'
-import { ProofCard } from '@/components/ProofCard'
+import { ClaimSummary } from '@/components/ClaimSummary'
 import { MechanismChain } from '@/components/MechanismChain'
 import { ComprehensionTest } from '@/components/ComprehensionTest'
+import { AtAGlance } from '@/components/AtAGlance'
+import { stagePositionApplies } from '@/lib/evidence-view'
+import { RegulatorySummary } from '@/components/RegulatorySummary'
 import { entityUrl } from '@/lib/canonical'
-import { humanEvidenceSummary, PROOF_BOUNDARY_LABELS, stageRank } from '@/lib/evidence'
-import { ENTITY_TYPE_LABELS, REGULATORY_CATEGORY_LABELS, regulatoryCategoryInSentence } from '@/lib/labels'
+import { plainApproval, readableDate, isoDate } from '@/lib/evidence-view'
+import type { ProofCardView } from '@/lib/types'
 
+// A dynamic segment, so this route is not prerendered at build time and does not need
+// force-dynamic the way the DB-backed routes without one do.
 export const revalidate = 3600
 
 interface Props {
@@ -33,15 +38,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-const SECTIONS = [
-  { id: 'answer', label: 'The short answer' },
-  { id: 'snapshot', label: 'Evidence snapshot' },
-  { id: 'claims', label: 'What studies show' },
-  { id: 'mechanism', label: 'How it may work' },
-  { id: 'regulatory', label: 'Safety and approval' },
-  { id: 'access', label: 'Availability status' },
-  { id: 'understanding', label: 'Check your understanding' },
-]
+/**
+ * Said once, near the top, in words with no second meaning.
+ *
+ * It used to appear on every claim, in the metadata rail, and in the footer — three different
+ * phrasings of the same fact. Publication status is editorial workflow and is never allowed to
+ * stand in for scientific review here: the only thing that upgrades this sentence is an actually
+ * approved review row against a claim.
+ */
+function reviewSentence(claimList: ProofCardView[]): string {
+  const reviewed = claimList.some((c) => c.review?.decision === 'approved')
+  const flagged = claimList.some((c) => c.reviewStatus === 'needs_update')
+
+  const base = 'Written and checked against the cited sources by one editor.'
+  const who = reviewed
+    ? ' Some questions on this page have also had an independent scientific review.'
+    : ' No clinician has reviewed this page.'
+  const flag = flagged ? ' At least one question here is flagged for an evidence update.' : ''
+
+  return base + who + flag
+}
 
 export default async function EntityPage({ params }: Props) {
   const { slug } = await params
@@ -62,12 +78,9 @@ export default async function EntityPage({ params }: Props) {
   )
 
   const sourceCount = claims.reduce((n, c) => n + c.evidence.length, 0)
-  const strongest = claims.reduce<(typeof claims)[number] | null>(
-    (best, c) => (!best || stageRank(c.proofBoundaryStage) > stageRank(best.proofBoundaryStage) ? c : best),
-    null
-  )
-  const unapproved = entity.regulatoryCategory !== 'approved_medicine'
   const lastChecked = regStatuses[0]?.checkedDate ?? entity.updatedAt
+  const withMechanism = enriched.filter(({ steps }) => steps.length > 0)
+  const withQuestions = enriched.filter(({ questions }) => questions.length > 0)
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -79,238 +92,170 @@ export default async function EntityPage({ params }: Props) {
   }
 
   return (
-    <div className="wrap" style={{ paddingBlock: 'var(--s6) var(--s7)' }}>
+    <div className="page record-top" style={{ paddingBottom: 'var(--s8)' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <nav aria-label="Breadcrumb" className="metaline" style={{ marginBottom: 'var(--s5)' }}>
-        <Link href="/">RNAwiki</Link>
-        <span aria-hidden="true">/</span>
-        <Link href="/compounds">Compounds</Link>
-        <span aria-hidden="true">/</span>
-        <span>{entity.canonicalName}</span>
+      <nav aria-label="Breadcrumb">
+        <ol className="crumbs">
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/compounds">Browse</Link>
+          </li>
+          <li aria-current="page">{entity.canonicalName}</li>
+        </ol>
       </nav>
 
-      {/* ------------------------------------------------------- masthead -- */}
-      <header style={{ marginBottom: 'var(--s6)' }}>
-        <p className="eyebrow">{ENTITY_TYPE_LABELS[entity.entityType]}</p>
-        <h1 className="display" style={{ marginBlock: 'var(--s2) var(--s3)' }}>
-          {entity.canonicalName}
-        </h1>
+      {/* ---------------------------------------------- identity and status -- */}
+      <header style={{ marginTop: 'var(--s5)' }}>
+        <h1>{entity.canonicalName}</h1>
+        <p className="status-line">{plainApproval(entity.regulatoryCategory)}.</p>
+
+        {/* Aliases used to run as a dot-separated line directly under the name, where the first
+            thing a reader met was five strings they had never seen. */}
         {entity.aliases.length > 0 && (
-          <p className="metaline" style={{ marginBottom: 'var(--s4)' }}>
-            Also known as {entity.aliases.join(' · ')}
-          </p>
+          <details className="disclosure disclosure--inline" style={{ marginTop: 'var(--s2)' }}>
+            <summary>Other names</summary>
+            <div className="disclosure__body">
+              <p className="small">{entity.aliases.join(', ')}</p>
+            </div>
+          </details>
         )}
-        <p id="bottom-line" className="lead measure">
-          {entity.bottomLine}
-        </p>
       </header>
 
-      {/* Unapproved status must be visible without expanding anything. */}
-      {unapproved && (
-        <div className="callout" data-tone="warning" style={{ marginBottom: 'var(--s6)' }}>
-          <p className="callout__title">Not an approved medicine</p>
-          <p style={{ fontSize: 'var(--size-small)' }}>
-            Classified as {regulatoryCategoryInSentence(entity.regulatoryCategory)}. RNAwiki records what has been
-            studied. It does not provide dosing, sourcing, or instructions for use.
-          </p>
+      {/* The answer, set larger than anything except the name. It is what the reader came for and
+          it carries its own caveat in the same sentence. */}
+      <p id="bottom-line" className="bottom-line reading" style={{ marginTop: 'var(--s5)' }}>
+        {entity.bottomLine}
+      </p>
+
+      <section className="section-sm">
+        <h2>At a glance</h2>
+        <div style={{ marginTop: 'var(--s5)' }}>
+          <AtAGlance
+            stages={claims.filter((c) => stagePositionApplies(c.claimType)).map((c) => c.proofBoundaryStage)}
+            category={entity.regulatoryCategory}
+            lastChecked={lastChecked}
+          />
         </div>
+        <p className="small muted reading" style={{ marginTop: 'var(--s5)' }}>
+          {reviewSentence(claims)}
+        </p>
+      </section>
+
+      {/* ------------------------------------------------------------ claims -- */}
+      <section className="section">
+        <h2>Questions this page answers</h2>
+        <div className="reading" style={{ marginTop: 'var(--s6)' }}>
+          {claims.length === 0 ? (
+            <p className="muted">No questions have been published for this record yet.</p>
+          ) : (
+            claims.map((claim, i) => (
+              <ClaimSummary
+                key={claim.id}
+                claim={claim}
+                entityName={entity.canonicalName}
+                // The first question is the one most readers arrive for, so its evidence starts
+                // open. The rest stay closed; a page cannot be four open essays.
+                defaultOpen={i === 0}
+              />
+            ))
+          )}
+        </div>
+      </section>
+
+      {/* --------------------------------------------------------- mechanism -- */}
+      {withMechanism.length > 0 && (
+        <section className="section">
+          <h2>How it may work</h2>
+          <p className="muted reading" style={{ marginTop: 'var(--s3)' }}>
+            A proposed mechanism does not prove that the claimed result happens in people.
+          </p>
+          <div className="reading" style={{ marginTop: 'var(--s5)' }}>
+            {withMechanism.map(({ claim, steps }) => (
+              <details key={claim.id} className="disclosure">
+                <summary>{claim.consumerQuestion}</summary>
+                <div className="disclosure__body">
+                  <MechanismChain steps={steps} />
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
       )}
 
-      <div className="shell">
-        {/* -------------------------------------------------- contents rail */}
-        <nav className="rail" aria-label="On this page">
-          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
-            On this page
+      {/* ------------------------------------------------ approval and safety --
+          accessRealityNote was rewritten in the seed data to drop seller mechanics and off-label
+          acquisition routes. What remains is regulatory and safety fact — for an unapproved
+          substance, "no regulator has verified what is actually in it" is the single line most
+          likely to change what a reader does next, so it belongs above the jurisdiction detail,
+          not omitted. */}
+      <section className="section">
+        <h2>Approval and safety</h2>
+        {entity.accessRealityNote && (
+          <p className="lead reading" style={{ marginTop: 'var(--s4)' }}>
+            {entity.accessRealityNote}
           </p>
-          <ul style={{ listStyle: 'none', display: 'grid', gap: 'var(--s2)' }}>
-            {SECTIONS.map((s) => (
-              <li key={s.id}>
-                <a href={`#${s.id}`} style={{ color: 'var(--ink-soft)', textDecoration: 'none' }}>
-                  {s.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        )}
+        <div style={{ marginTop: 'var(--s5)' }}>
+          <RegulatorySummary category={entity.regulatoryCategory} statuses={regStatuses} />
+        </div>
+      </section>
 
-        {/* ------------------------------------------------------- article */}
-        <article className="stack-lg" style={{ minWidth: 0 }}>
-          <section id="answer" className="measure">
-            <div className="section-head">
-              <h2 className="h2">The short answer</h2>
-            </div>
-            <p className="prose">{entity.shortDescription}</p>
-          </section>
-
-          <section id="snapshot">
-            <div className="section-head">
-              <h2 className="h2">Evidence snapshot</h2>
-            </div>
-            <dl className="speclabel">
-              <div className="speclabel__row">
-                <dt className="speclabel__key">Human evidence</dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  {humanEvidenceSummary(strongest?.proofBoundaryStage ?? null)}
-                  {strongest && ` — strongest claim reaches ${PROOF_BOUNDARY_LABELS[strongest.proofBoundaryStage]}`}
-                </dd>
-              </div>
-              <div className="speclabel__row">
-                <dt className="speclabel__key">Claims recorded</dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  {claims.length}
-                </dd>
-              </div>
-              <div className="speclabel__row">
-                <dt className="speclabel__key">Linked sources</dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  {sourceCount}
-                </dd>
-              </div>
-              <div className="speclabel__row">
-                <dt className="speclabel__key">Last checked</dt>
-                <dd className="speclabel__val" style={{ margin: 0 }}>
-                  {lastChecked.toISOString().slice(0, 10)}
-                </dd>
-              </div>
-            </dl>
-          </section>
-
-          <section id="claims">
-            <div className="section-head">
-              <h2 className="h2">What studies show</h2>
-            </div>
-            <div style={{ display: 'grid', gap: 'var(--s7)' }}>
-              {enriched.map(({ claim }) => (
-                <ProofCard key={claim.id} claim={claim} entityName={entity.canonicalName} />
+      {/* ---------------------------------------------------- clarity check -- */}
+      {withQuestions.length > 0 && (
+        <section className="section-sm reading">
+          <details className="disclosure">
+            <summary>Was this explanation clear?</summary>
+            <div className="disclosure__body stack-6">
+              <p className="small muted">
+                A short, anonymous check on whether this page explained where the evidence stops. It measures the
+                writing, not the reader, and it is not evidence for or against any answer above.
+              </p>
+              {withQuestions.map(({ claim, questions }) => (
+                <ComprehensionTest
+                  key={claim.id}
+                  claimId={claim.id}
+                  questions={questions}
+                  claimQuestion={claim.consumerQuestion}
+                />
               ))}
             </div>
-          </section>
+          </details>
+        </section>
+      )}
 
-          {enriched.some(({ steps }) => steps.length > 0) && (
-            <section id="mechanism">
-              <div className="section-head">
-                <h2 className="h2">How it may work</h2>
-              </div>
-              <p className="prose measure" style={{ marginBottom: 'var(--s5)' }}>
-                Each step is labelled with the kind of evidence behind it. A described mechanism is not proof
-                that the outcome follows.
-              </p>
-              {enriched
-                .filter(({ steps }) => steps.length > 0)
-                .map(({ claim, steps }) => (
-                  <div key={claim.id} style={{ marginBottom: 'var(--s6)' }}>
-                    <h3 className="h4 muted" style={{ marginBottom: 'var(--s3)' }}>
-                      {claim.consumerQuestion}
-                    </h3>
-                    <MechanismChain steps={steps} />
-                  </div>
-                ))}
-            </section>
+      {/* ------------------------------------------- sources and page info -- */}
+      <section className="section">
+        <h2>Sources and page information</h2>
+        <div className="reading stack" style={{ marginTop: 'var(--s5)' }}>
+          {sourceCount > 0 && (
+            <p>
+              {sourceCount} source{sourceCount === 1 ? ' is' : 's are'} cited on this page, each listed under the
+              question it was used to answer. Open &ldquo;See the evidence&rdquo; on a question, then
+              &ldquo;Sources&rdquo;.
+            </p>
           )}
-
-          <section id="regulatory">
-            <div className="section-head">
-              <h2 className="h2">Safety and approval status</h2>
-            </div>
-            {regStatuses.length === 0 ? (
-              <p className="muted">Not recorded.</p>
-            ) : (
-              <div className="stack-lg">
-                {regStatuses.map((rs) => (
-                  <div key={rs.id}>
-                    <h3 className="h4" style={{ marginBottom: 'var(--s2)' }}>
-                      {rs.jurisdiction}
-                    </h3>
-                    <p className="prose" style={{ marginBottom: 'var(--s2)' }}>
-                      {rs.statusStatement}
-                    </p>
-                    <p className="metaline">
-                      <span>
-                        Checked <b>{rs.checkedDate.toISOString().slice(0, 10)}</b>
-                      </span>
-                      <a href={rs.source} target="_blank" rel="noopener noreferrer">
-                        Primary source ↗
-                      </a>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
-
-          {entity.accessRealityNote && (
-            <section id="access" className="measure">
-              <div className="section-head">
-                <h2 className="h2">Availability status</h2>
-              </div>
-              <p className="prose">{entity.accessRealityNote}</p>
-            </section>
-          )}
-
-          {enriched.some(({ questions }) => questions.length > 0) && (
-            <section id="understanding">
-              <div className="section-head">
-                <h2 className="h2">Check your understanding</h2>
-              </div>
-              <div className="stack-lg">
-                {enriched
-                  .filter(({ questions }) => questions.length > 0)
-                  .map(({ claim, questions }) => (
-                    <ComprehensionTest
-                      key={claim.id}
-                      claimId={claim.id}
-                      questions={questions}
-                      claimQuestion={claim.consumerQuestion}
-                    />
-                  ))}
-              </div>
-            </section>
-          )}
-        </article>
-
-        {/* -------------------------------------------------- metadata rail */}
-        <aside className="rail" aria-label="Record metadata">
-          <p className="eyebrow" style={{ marginBottom: 'var(--s3)' }}>
-            Record
+          <p>
+            Regulatory status last checked{' '}
+            <time dateTime={isoDate(lastChecked)}>{readableDate(lastChecked)}</time>.
           </p>
-          <dl className="speclabel">
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Type</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                {ENTITY_TYPE_LABELS[entity.entityType]}
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Status</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                {REGULATORY_CATEGORY_LABELS[entity.regulatoryCategory]}
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Sources</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                {sourceCount}
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Checked</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                {lastChecked.toISOString().slice(0, 10)}
-              </dd>
-            </div>
-            <div className="speclabel__row">
-              <dt className="speclabel__key">Review</dt>
-              <dd className="speclabel__val" style={{ margin: 0 }}>
-                Editorial only
-              </dd>
-            </div>
-          </dl>
-          <p style={{ marginTop: 'var(--s4)', fontSize: 'var(--size-small)' }}>
-            <Link href={`/corrections?entity=${entity.slug}`}>Report an error →</Link>
+          <p>
+            <Link href="/evidence">How RNAwiki decides how far evidence goes</Link>
           </p>
-        </aside>
-      </div>
+        </div>
+      </section>
+
+      {/* ------------------------------------------------------- corrections -- */}
+      <section className="section-sm reading">
+        <h2>Corrections</h2>
+        <p className="small" style={{ marginTop: 'var(--s3)' }}>
+          Something wrong or out of date on this page?{' '}
+          <Link href={`/corrections?entity=${entity.slug}`}>Report an error</Link>. Citation and embed controls for a
+          single question sit at the end of that question&rsquo;s evidence.
+        </p>
+      </section>
     </div>
   )
 }
