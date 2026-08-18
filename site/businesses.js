@@ -1,1 +1,0 @@
-window.RNAWIKI_BUSINESSES = {"disclaimer":"Local partners are real Singapore businesses that have submitted their details and linked back to RNAwiki, then been approved. None are paid placements.","businesses":[]};
