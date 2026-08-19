@@ -705,6 +705,12 @@ function findRingBonds(
         } else {
           const current = low[frame.node] ?? 0
           if (seen < current) low[frame.node] = seen
+          // An undirected depth-first search has only tree edges and back edges, so any edge to an
+          // already-discovered atom closes a cycle and is a ring bond. It has to be marked right
+          // here: the bridge test below fires when a *tree* edge is popped, and the bond that
+          // closes the ring is never a tree edge. Without this line every ring in the molecule is
+          // reported one bond short, and cyclohexane comes back with a rotatable bond.
+          inRing[bondIndex] = true
         }
         continue
       }

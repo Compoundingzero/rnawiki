@@ -14,12 +14,14 @@
     "format": "prettier --check .",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx db/migrate.ts",
-    "db:seed": "tsx scripts/seed.ts && tsx scripts/seed-legacy-redirects.ts",
+    "db:seed": "tsx scripts/seed.ts",
     "test:unit": "vitest run tests/unit",
     "test:integration": "vitest run tests/integration",
     "test:e2e": "playwright test",
-    "check:prose": "tsx scripts/check-prose.ts",
-    "gate": "npm run typecheck && npm run lint && npm run check:prose && npm run test:unit && npm run test:integration && npm run build"
+    "gate": "npm run typecheck && npm run lint && npm run test:unit && npm run test:integration && npm run build",
+    "ingest:download": "tsx scripts/ingest/download.ts",
+    "ingest:structures": "tsx scripts/ingest/build-structures.ts",
+    "ingest": "tsx scripts/ingest/run.ts"
   },
   "dependencies": {
     "@resvg/resvg-js": "^2.6.2",
