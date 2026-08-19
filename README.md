@@ -1,101 +1,102 @@
 # RNAwiki
 
-**See where the evidence actually ends.**
+**The open drug evidence audit layer.** Live at [rnawiki.com](https://rnawiki.com).
 
-A reference site for peptides, supplements, investigational medicines, and gene/RNA therapies. For
-each claim it separates what a study **measured**, what people **infer** from it, and what stays
-**unknown**, then pins the claim to one of 8 Proof Boundary stages from "biological rationale only"
-to "regulatory evidence".
+Every medicine gets one page that answers four questions in plain English: what it is, how it
+actually works inside cells, what the research measured versus what people infer from it, and what
+the raw chemical synthesis costs against what the pharmacy charges.
 
-RNAwiki has no dosage calculator, no protocol builder, no stacking advice, and no procurement or
-self-use guidance, in any form. That is the boundary the product exists to hold, not a missing
-feature — see [`docs/product-principles.md`](docs/product-principles.md).
+Anyone can edit. Every edit is checked by a deterministic engine before a human ever sees it.
 
-## What changed
+---
 
-This repository previously held a goal-first supplement/protocol wiki with a dosage engine, vanilla
-JS, no framework. It is fully retired; nothing carries forward but the domain and the name. The old
-application is preserved unmodified at branch
-[`archive/legacy-rnawiki`](../../tree/archive/legacy-rnawiki) and tag
-`legacy-rnawiki-before-proof-boundary`, not merged into `main` and not developed further.
+## What makes it different
+
+**The evidence audit.** A dossier does not just describe a drug. It separates what a trial
+*measured* from what is *inferred* from it, records what *failed*, and notes where the field
+*changed its mind*. A page with only good news is not an audit.
+
+**Deterministic verification, not generative AI.** Every proposed edit runs through
+`lib/rna-intelligence/` — three layers of published, reproducible science:
+
+| Layer | Checks |
+|---|---|
+| 1 · Sequence | A/U/C/G alphabet enforcement, thymine transcription, triplet reading frame, start and stop codons, open reading frames, premature stops, exact molecular weight from composition, a real SMILES tokenizer with Hill-notation formulae |
+| 2 · Thermodynamics | Zuker-style O(n³) folding over the published Turner 2004 nearest-neighbour parameters — real minimum free energy in kcal/mol and dot-bracket notation — plus Lipinski and Crippen descriptors for small molecules |
+| 3 · Protocol | Laboratory workflows as a directed acyclic graph: duplicate ids, dangling dependencies, cycles via Kahn's algorithm, and phase progression along every edge |
+
+Same input, same report, same verification hash. No model is involved, and none may be introduced.
+
+**Instant rejection beats moderation.** An edit that fails the engine is blocked immediately with a
+diagnostic, before any trust check. A steward cannot publish a structurally broken structure.
+
+**The physician badge is earned.** Submitting credentials sets `pending`. A human steward approves.
+Nothing in the application can write `verified` on a user's own behalf.
+
+---
+
+## The corpus
+
+Two populations, and the difference is visible on every page.
+
+**Ingested stubs — 10,000+ substances.** Every FDA-registered active moiety and NIH-listed
+supplement ingredient, built from openFDA Drugs@FDA (29,270 applications), the NDC Directory
+(137,198 products), 261,885 SPL labels, PubChem, and the NIH Dietary Supplement Label Database.
+Real names, sponsors, approval years, brand names, indication text and chemical structures.
+
+Ingestion authors **no narrative**. Verdicts, mechanisms, pricing and alternatives are empty on
+every ingested row, and the loader refuses to overwrite a curated dossier. A field with no source
+stays null and the page says so.
+
+**Curated flagships.** Hand-researched dossiers in `scripts/seed-data/`, with mechanism carousels,
+cost transparency, evidence-backed alternatives and cited audits. Every citation is a real,
+checkable DOI, PMID, NCT number or regulatory URL, verified at research time.
+
+---
+
+## Contributing
+
+1. Sign in and edit any dossier.
+2. The engine sweeps your structure and protocol as you type. A failure is a diagnostic, not a
+   rejection letter — it names the rule and the observed value.
+3. A passing edit is routed by trust tier. New contributors land in the
+   [public review queue](https://rnawiki.com/review-queue); trusted editors publish directly.
+4. Accepted edits earn tier. Every revision is immutable, timestamped and attributed to your
+   profile and, if you supply one, your ORCID iD.
+
+| Tier | Accepted edits | Publishes |
+|---|---|---|
+| New | 0 | via review queue |
+| Contributor | 3 | via review queue |
+| Trusted | 15 | directly |
+| Steward | 60 | directly, and reviews others |
+
+---
+
+## Running it
+
+```bash
+cp .env.example .env        # DATABASE_URL, SESSION_SECRET (>= 32 chars)
+npm install
+npm run db:migrate
+npm run ingest:download     # ~1.9 GB of public source data, resumable
+npm run ingest              # build the corpus (--dry-run to preview)
+npm run ingest:structures   # resolve chemical structures from PubChem, resumable
+npm run db:seed             # the curated flagship dossiers
+npm run dev
+```
+
+`npm run gate` runs typecheck, lint, unit tests, integration tests and the production build. Run it
+before pushing, and don't weaken it to make a change pass.
 
 ## Stack
 
-Next.js 15 (App Router) + React 19 + TypeScript strict, server-rendered, Postgres via Drizzle ORM,
-Zod on every write path. Exact versions in [`CLAUDE.md`](CLAUDE.md). Content lives in the database,
-not Markdown or JSON files — see [`db/schema.ts`](db/schema.ts) — and is human-researched and
-human-reviewed through an editorial workflow. AI is neither the differentiator nor the interface.
-
-## Local setup
-
-Node.js 20+ and a local Postgres.
-
-```bash
-npm install
-cp .env.example .env        # DATABASE_URL, SESSION_SECRET, …
-npm run db:migrate          # applies db/migrations/
-npm run db:seed             # scripts/seed.ts + scripts/seed-legacy-redirects.ts
-npm run dev                 # http://localhost:3000
-```
-
-Every variable, including the constraints on `SESSION_SECRET` and the first-administrator bootstrap
-pair, is documented in [`docs/deployment.md`](docs/deployment.md).
-
-## Tests
-
-```bash
-npm run test:unit          # vitest, tests/unit/**
-npm run test:integration   # vitest, tests/integration/** (needs a database)
-npm run test:e2e           # Playwright
-npm run gate               # typecheck && lint && check:prose && test:unit && test:integration && build
-```
-
-Run `npm run gate` before pushing. Don't weaken it to make a change pass.
-
-## Deployment
-
-Merging to `main` triggers a Railway auto-deploy of the service named **`RNAwiki`**, configured by
-[`railway.toml`](railway.toml). See [`docs/deployment.md`](docs/deployment.md) for env vars,
-build-time constraints, migration sequencing, and rollback.
-
-## Documentation
-
-| Doc | Owns |
-|---|---|
-| [`docs/product-principles.md`](docs/product-principles.md) | The Proof Boundary concept, the claim-centered model, the reader, banned marketing language |
-| [`docs/evidence-classification.md`](docs/evidence-classification.md) | Measured/Inferred/Unknown, evidence relationships, the 8 stages, mechanism vs. outcome |
-| [`docs/editorial-methodology.md`](docs/editorial-methodology.md) | Roles, publication workflow, DOI/PMID import boundary, comprehension testing |
-| [`docs/writing-style.md`](docs/writing-style.md) | Sentence-level voice rules, enforced by `npm run check:prose` |
-| [`docs/deployment.md`](docs/deployment.md) | Railway deploy, env vars, migrations, rollback |
-| [`docs/BACKUP_RECOVERY.md`](docs/BACKUP_RECOVERY.md) | Backup state and the open owner decisions |
-| [`docs/legacy-removal-map.md`](docs/legacy-removal-map.md) | Old-route 301/410 audit record |
-| [`docs/api.md`](docs/api.md) | The public read-only JSON API |
-| [`docs/open-evidence-record.md`](docs/open-evidence-record.md) | What an Evidence Record asserts, its versioning, and its limits |
-| [`docs/licensing.md`](docs/licensing.md) | The two licences, what each covers, and how to attribute a record |
-| [`CLAUDE.md`](CLAUDE.md) | Working notes for anyone, human or agent, changing this repo |
+Next.js 15 (App Router) · React 19 · TypeScript 5.7 strict · Tailwind v4 · Drizzle ORM on Postgres ·
+iron-session · Vitest · Playwright. Deployed on Railway.
 
 ## Licence
 
-Two licences, because the software and the evidence records are different things:
+Code AGPL-3.0. Data CC BY-SA 4.0 — see `LICENSE` and `LICENSE-DATA`.
 
-- **Code** — [GNU Affero General Public License v3.0](LICENSE). Running a modified copy as a
-  public service obliges you to offer that service's users your modified source. RNAwiki is a
-  website, so a licence whose obligations fire only on distribution would never fire.
-- **Evidence records** — [Creative Commons Attribution 4.0 International](LICENSE-DATA). Reuse the
-  editorial writing and the structured claim database freely, including commercially and as
-  retrieval or training data, with credit.
-
-Attribute a record by its canonical URL and a retrieval date, because records are versioned and
-their conclusions change:
-
-> Evidence record from RNAwiki (https://rnawiki.com/r/bpc-157#claim-tendon-healing), CC BY 4.0.
-> Retrieved 19 August 2026. Unmodified.
-
-The CC BY grant covers RNAwiki's own work only. The cited papers, their abstracts and regulatory
-documents belong to their publishers and issuing authorities. Full scope, the attribution rules and
-the contribution terms: [`docs/licensing.md`](docs/licensing.md).
-
-## Not medical advice
-
-RNAwiki explains research evidence. It does not provide medical advice, diagnosis, dosing guidance,
-or instructions for obtaining or using any substance, approved or unapproved.
+**RNAwiki is a public evidence record, not medical advice.** Talk to a clinician before changing any
+treatment.
