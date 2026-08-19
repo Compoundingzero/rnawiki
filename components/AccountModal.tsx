@@ -189,7 +189,14 @@ export function AccountModal() {
   })()
 
   return (
-    <ModalShell isOpen={isOpen} onClose={handleClose} labelledBy={headingId} maxWidth="max-w-md">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      labelledBy={headingId}
+      maxWidth="max-w-md"
+      scrim="soft"
+      closeButton="inset"
+    >
       <div className="p-6 sm:p-7 space-y-5">
         {currentUser ? (
           <div className="space-y-5">

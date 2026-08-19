@@ -56,12 +56,13 @@ import {
   Plus,
   Sparkles,
   Trash2,
+  X,
   type LucideIcon,
 } from 'lucide-react'
 
 import { useApp } from '@/components/app-context'
 import { EngineDiagnostics } from '@/components/EngineDiagnostics'
-import { ModalShell, type ModalShellProps } from '@/components/ModalShell'
+import { ModalShell } from '@/components/ModalShell'
 import { api, ApiError } from '@/lib/api-client'
 import { cloneDefaultLaboratoryWorkflow, structureStringFor } from '@/lib/dossier'
 import type { RnaIntelligenceReport } from '@/lib/rna-intelligence/types'
@@ -104,7 +105,7 @@ interface RnaWikiEditorModalProps {
  * one. The assertion is the bridge: the class name is still a literal in this source file, so
  * Tailwind's scanner emits `max-w-2xl` exactly as if it had been written inline.
  */
-const EDITOR_PANEL_WIDTH = 'max-w-2xl' as unknown as ModalShellProps['maxWidth']
+const EDITOR_PANEL_WIDTH = 'max-w-2xl' as const
 
 /** Long enough that a typed sequence is not swept character by character, short enough to feel live. */
 const SWEEP_DEBOUNCE_MS = 400
@@ -729,18 +730,30 @@ export function RnaWikiEditorModal({
       onClose={handleShellClose}
       labelledBy={titleId}
       maxWidth={EDITOR_PANEL_WIDTH}
+      scrim="deep"
+      // The reference puts this dialog's close control inside the #FAFAFC top bar, beside the
+      // title, rather than floating a pill over the content. Suppressing the shell's button and
+      // rendering it in the bar keeps that.
+      closeButton="none"
     >
       <div className="flex flex-col max-h-[90vh] overflow-hidden">
         {/* 1. Modal Top Bar */}
-        <div className="p-4 sm:p-5 pr-12 border-b border-black/[0.06] flex items-center justify-between gap-3 bg-[#FAFAFC] shrink-0">
+        <div className="p-4 sm:p-5 border-b border-black/[0.06] flex items-center justify-between gap-3 bg-[#FAFAFC] shrink-0">
           <div className="flex items-center gap-2 min-w-0">
             <Sparkles className="w-4 h-4 text-[#0071E3] shrink-0" aria-hidden="true" />
             <h2 id={titleId} className="text-sm sm:text-base font-bold text-[#1D1D1F] truncate">
               Edit Dossier &bull; {drug.name}
             </h2>
           </div>
-          {/* The close control is the shell's, top-right, in the position the reference's X held.
-              One labelled close button beats two unlabelled ones. */}
+          {/* In the top bar, as the reference has it -- not a pill floating over the content. */}
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close editor"
+            className="p-1.5 rounded-full hover:bg-black/[0.06] text-[#86868B] hover:text-[#1D1D1F] transition cursor-pointer shrink-0"
+          >
+            <X className="w-5 h-5" aria-hidden="true" />
+          </button>
         </div>
 
         {!isSignedIn ? (

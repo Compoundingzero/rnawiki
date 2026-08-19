@@ -1855,4 +1855,416 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // 5. Pegfilgrastim
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'pegfilgrastim',
+    name: 'Pegfilgrastim',
+    tradeName: 'Neulasta',
+    sponsor: 'Amgen',
+    targetGene: 'CSF3R',
+    targetProtein: 'Granulocyte colony-stimulating factor receptor (G-CSFR, CD114)',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2002,
+    indication:
+      'Decreasing the incidence of infection, as manifested by febrile neutropenia, in patients with non-myeloid malignancies receiving myelosuppressive anti-cancer drugs associated with a clinically significant incidence of febrile neutropenia; and increasing survival after acute exposure to myelosuppressive doses of radiation',
+    patientFriendlyIndication: 'One injection per chemotherapy cycle instead of a daily white cell injection',
+    anatomicalSite: 'Neutrophil progenitors in the bone marrow',
+    conditionContext: {
+      conditionExplainer:
+        'Filgrastim works, but it is cleared from the blood in hours, so it has to be injected every day until the neutrophil count recovers — up to fourteen injections in a cycle, in someone already exhausted by chemotherapy.',
+      whyItMatters:
+        'Adherence to a daily injection schedule at home is the weak point of growth factor support. Missed doses in the middle of the nadir are exactly the doses that matter.',
+      whoTakesThis:
+        'Patients on chemotherapy regimens carrying a clinically significant risk of febrile neutropenia. It is also the only G-CSF product with an indication for acute radiation syndrome.',
+      clinicalGoals:
+        'Deliver the same neutrophil support as daily filgrastim from a single injection given the day after chemotherapy.',
+    },
+    oneSentenceVerdict:
+      'Filgrastim with a 20 kDa polyethylene glycol chain on its N-terminal methionine, which makes neutrophils themselves the main route of clearance; one 6 mg injection per cycle matched fourteen days of filgrastim, and against placebo it cut febrile neutropenia from 17% to 1%.',
+    laymanHowItWorks:
+      'Pegfilgrastim is the same protein as filgrastim with a long, inert polymer chain attached to one end. The chain makes the molecule too large for the kidney to filter out, so the only thing that removes it from the blood is the neutrophils it creates. While your white count is low, the drug stays. As the count recovers, the new neutrophils mop up the remaining drug. The dose regulates itself.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 88,
+    substitutes: {
+      summary:
+        'Daily filgrastim delivers the same neutrophil support if the injections are actually given, and biosimilars of both molecules now compete on price. Prophylactic antibiotics and regimen modification remain the non-growth-factor options. There is no dietary substitute for neutrophil support during chemotherapy.',
+      conventionalRx: [
+        {
+          name: 'Filgrastim (Neupogen) and its biosimilars',
+          class: 'Short-acting G-CSF',
+          howItCompares:
+            'Identical protein, no PEG. Non-inferior in the registration trial on duration of grade 4 neutropenia (1.8 versus 1.6 days in cycle 1). Requires up to fourteen daily injections instead of one.',
+          typicalCost: 'Approximately $300 - $500 per daily vial US list, and lower for biosimilars',
+          prosAndCons:
+            'Pros: the dose can be stopped as soon as the count recovers, which pegfilgrastim cannot. Cons: daily injections, and missed doses at the nadir are the ones that count.',
+        },
+        {
+          name: 'Pegfilgrastim biosimilars (Fulphila, Udenyca and others)',
+          class: 'Biosimilar PEGylated G-CSF',
+          howItCompares:
+            'Same molecule, approved on analytical and clinical similarity. Fulphila was approved in June 2018 and Udenyca in November 2018.',
+          typicalCost: 'Typically 30% - 60% below the reference product US list price',
+          prosAndCons:
+            'Pros: this is one of the few US biosimilar markets where multiple entrants genuinely moved price. Cons: none clinically distinguishable.',
+        },
+        {
+          name: 'Eflapegrastim and efbemalenograstim alfa',
+          class: 'Next-generation long-acting G-CSF conjugates',
+          howItCompares:
+            'Different half-life-extension chemistry reaching the same once-per-cycle goal; registered against pegfilgrastim on duration of severe neutropenia.',
+          typicalCost: 'Comparable to the reference product US list price',
+          prosAndCons:
+            'Pros: additional supply. Cons: registered on the same surrogate endpoint, so nothing new is known about hard outcomes.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Checking the on-body injector actually delivered',
+          action:
+            'If an on-body injector is used, inspect it at the end of the delivery window and report anything unexpected the same day.',
+          patientImpact:
+            'The label carries a specific warning that patients should notify their healthcare provider if they suspect the on-body injector may not have performed as intended, because an undelivered dose leaves the patient unprotected through the nadir.',
+          clinicalPrecaution:
+            'A suspected device failure is a same-day call, not a next-appointment conversation. A replacement dose may be needed.',
+        },
+        {
+          name: 'Simple analgesia for bone pain',
+          action: 'Paracetamol or an antihistamine for the deep ache in the sternum, pelvis and long bones.',
+          patientImpact:
+            'Bone pain incidence, severity and duration with once-per-cycle pegfilgrastim were not significantly different from daily filgrastim in a retrospective analysis of two phase III trials, and were greatest in cycle 1 for both.',
+          clinicalPrecaution:
+            'New left upper abdominal or shoulder tip pain is not ordinary growth factor pain: splenic rupture is a labelled risk and needs urgent assessment.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3:
+        'MTPLGPASSLPQSFLLKCLEQVRKIQGDGAALQEKLCATYKLCHPEELVLLGHSLGIPWAPLSSCPSQALQLAGCLSQLHSGLFLYQGLLQALEGISPELGPTLDTLQLDVADFATTIWQQMEELGMAPALQPTQGAMPAFASAFQRRAGGVLVASHLQSFLEVSYRVLRHLAQP (20 kDa monomethoxypolyethylene glycol covalently bound to the N-terminal methionyl residue)',
+      molecularWeight: 'Approximately 39 kDa (19 kDa protein plus a 20 kDa mPEG chain)',
+      targetReceptorAffinity: 'Binds G-CSFR (CD114); receptor-mediated internalisation by neutrophils is the principal clearance route',
+      structureSource: {
+        label: 'NEULASTA US prescribing information (Description) — 175-amino-acid filgrastim backbone with 20 kD mPEG at the N-terminal methionine',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fdfe5d72-6b80-435a-afa4-c5d74dd852ce',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'pf-1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Filgrastim drug substance release',
+          description:
+            'Release the unconjugated filgrastim intermediate on identity, purity, endotoxin and potency before any PEGylation is attempted. Conjugating an out-of-specification intermediate produces a conjugate that cannot be deconvoluted.',
+          reagentsAndBuffer:
+            'RP-HPLC purity, SEC aggregate assay, LAL endotoxin, NFS-60 proliferation potency assay',
+        },
+        {
+          id: 'pf-2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Filgrastim expression and refold',
+          description:
+            'Express methionyl G-CSF as inclusion bodies in E. coli, solubilise and oxidatively refold to the native four-helix bundle with both disulfide bonds correctly paired.',
+          reagentsAndBuffer:
+            'Defined fermentation medium, guanidine hydrochloride solubilisation, glutathione redox refold at pH 8.0',
+          dependsOnStepId: 'pf-1',
+        },
+        {
+          id: 'pf-3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Cation-exchange capture of the unconjugated protein',
+          description:
+            'Purify refolded filgrastim to homogeneity before conjugation, since separating mono-PEGylated product from di-PEGylated and unmodified species downstream is far harder than removing impurities now.',
+          reagentsAndBuffer:
+            'SP-Sepharose in sodium acetate pH 4.5 with sodium chloride gradient, hydrophobic interaction polish',
+          dependsOnStepId: 'pf-2',
+        },
+        {
+          id: 'pf-4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Site-selective N-terminal reductive alkylation with 20 kDa mPEG',
+          description:
+            'Attach a single 20 kDa monomethoxy-PEG aldehyde to the alpha-amino group of the N-terminal methionine at low pH, which exploits the lower pKa of the alpha-amine relative to lysine epsilon-amines to give site selectivity, then remove unreacted PEG and positional isomers.',
+          reagentsAndBuffer:
+            'mPEG-propionaldehyde 20 kDa, sodium cyanoborohydride, 100 mM sodium acetate at pH 5.0, followed by cation-exchange separation of mono-PEGylated species',
+          dependsOnStepId: 'pf-3',
+        },
+        {
+          id: 'pf-5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Conjugate potency and PEG positional isomer mapping',
+          description:
+            'Confirm retained receptor-mediated potency in the cell proliferation bioassay and verify the site of PEG attachment by peptide mapping with mass spectrometry, since a PEG on the wrong residue changes both potency and clearance.',
+          reagentsAndBuffer:
+            'NFS-60 proliferation assay against WHO G-CSF standard, Lys-C peptide map with LC-MS/MS, SEC-MALS for hydrodynamic size',
+          dependsOnStepId: 'pf-4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'pf-a1',
+        category: 'measured',
+        title: 'Against placebo: febrile neutropenia fell from 17% to 1%',
+        laymanSummary:
+          'In 928 breast cancer patients on docetaxel, one injection per cycle reduced fevers with low white counts from about one in six patients to about one in a hundred.',
+        technicalDetails:
+          'Multicentre, double-blind, placebo-controlled phase III trial. Patients received placebo (n = 465) or pegfilgrastim 6 mg subcutaneously on day 2 of each 21-day cycle of docetaxel 100 mg/m2. Febrile neutropenia occurred in 1% versus 17% (p < 0.001), febrile-neutropenia-related hospitalisation in 1% versus 14% (p < 0.001), and intravenous anti-infective use in 2% versus 10% (p < 0.001).',
+        evidenceSource: 'Vogel CL et al. J Clin Oncol 2005;23:1178-1184',
+        doi: '10.1200/JCO.2005.09.102',
+        measuredMetric: 'Febrile neutropenia 1% versus 17% (p < 0.001) in 928 patients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pf-a2',
+        category: 'measured',
+        title: 'One injection matched fourteen: the non-inferiority registration trial',
+        laymanSummary:
+          'A single fixed 6 mg dose performed the same as daily filgrastim injections on every efficacy measure across four chemotherapy cycles.',
+        technicalDetails:
+          'Randomised, double-blind, multicentre phase III study, 157 patients on doxorubicin 60 mg/m2 and docetaxel 75 mg/m2. Mean duration of grade 4 neutropenia in cycle 1 was 1.8 days with pegfilgrastim and 1.6 days with daily filgrastim. Results in cycles 2 to 4 were consistent. Febrile neutropenia trended lower with pegfilgrastim across all cycles, 13% versus 20%. Safety and tolerability were comparable.',
+        evidenceSource: 'Green MD et al. Ann Oncol 2003;14:29-35',
+        doi: '10.1093/annonc/mdg019',
+        measuredMetric: 'Grade 4 neutropenia duration 1.8 versus 1.6 days in cycle 1',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pf-a3',
+        category: 'inferred',
+        title: 'Approved on a surrogate, not on survival',
+        laymanSummary:
+          'The endpoint that got this drug licensed was how many days the white count stayed critically low, compared with a drug that was already on the market. No trial has shown it makes people live longer than daily filgrastim.',
+        technicalDetails:
+          'The pivotal comparison was non-inferiority in duration of grade 4 neutropenia against daily filgrastim, in 157 and 310 patients respectively. Duration of severe neutropenia is a laboratory surrogate; the placebo-controlled trial then measured febrile neutropenia, which is a clinical event, but neither design was powered for survival. The convenience advantage of one injection per cycle is real and measurable; a survival advantage over daily filgrastim has never been demonstrated because no trial has looked for one.',
+        evidenceSource: 'Green MD et al. Ann Oncol 2003;14:29-35; Vogel CL et al. J Clin Oncol 2005;23:1178-1184',
+        doi: '10.1200/JCO.2005.09.102',
+        inferredClaim:
+          'That once-per-cycle dosing produces better patient outcomes rather than better adherence to the same effect',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pf-a4',
+        category: 'failed',
+        title: 'The on-body injector has its own warning section',
+        laymanSummary:
+          'The device designed to remove the clinic visit can fail to deliver the dose, and the label tells patients to report it if they suspect it has.',
+        technicalDetails:
+          'Section 5.12 of the US prescribing information, Potential Device Failures, instructs that patients be told to notify their healthcare provider if they suspect the on-body injector may not have performed as intended, so that the need for a replacement dose can be assessed. Section 5.4 separately warns that the acrylic adhesive used by the injector can cause significant reactions in patients sensitive to acrylates. A delivery system introduced to improve adherence therefore introduced a failure mode that the daily syringe did not have.',
+        evidenceSource: 'NEULASTA US prescribing information, Warnings and Precautions sections 5.4 and 5.12',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'pf-a5',
+        category: 'conclusion_shift',
+        title: 'Biosimilar entry from 2018 was the price event, not a new trial',
+        laymanSummary:
+          'What changed the economics of this drug was not new evidence about whether it works. It was four biosimilars arriving after the patents ran out.',
+        technicalDetails:
+          'Fulphila (pegfilgrastim-jmdb, BLA 761075) was approved 4 June 2018 and Udenyca (pegfilgrastim-cbqv, BLA 761039) on 2 November 2018, followed by further entrants. Pegfilgrastim became one of the first US biologic markets with meaningful multi-source competition, and the clinical question the biosimilar programmes answered was analytical and pharmacodynamic comparability rather than a fresh outcome trial. Nothing about the underlying evidence for the molecule changed; the price did.',
+        evidenceSource: 'Drugs@FDA, BLA 761075 (Fulphila) and BLA 761039 (Udenyca)',
+        measuredMetric: 'First two US pegfilgrastim biosimilar approvals: 4 June 2018 and 2 November 2018',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'pf-a6',
+        category: 'measured',
+        title: 'A radiation indication granted without a human efficacy trial',
+        laymanSummary:
+          'The indication for radiation sickness could not ethically be tested in people, so it was granted on animal data under a specific regulatory rule.',
+        technicalDetails:
+          'Pegfilgrastim carries an indication to increase survival in patients acutely exposed to myelosuppressive doses of radiation. Efficacy studies in humans cannot be ethically or feasibly conducted, so this indication rests on the FDA Animal Rule pathway and on the mechanistic continuity with chemotherapy-induced neutropenia. It is a legitimate regulatory decision and it is also, by construction, an indication with no human efficacy evidence behind it.',
+        evidenceSource: 'NEULASTA US prescribing information, Indications and Usage',
+        inferredClaim:
+          'That the haematopoietic syndrome of acute radiation syndrome responds to G-CSF in humans the way it does in irradiated animals',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'One subcutaneous injection the day after chemotherapy',
+        laymanDesc:
+          'A single 6 mg injection given about 24 hours after the chemotherapy finishes, either by syringe or by an adhesive on-body device that delivers it later that day.',
+        molecularDetail:
+          'Fixed 6 mg dose, not weight-adjusted, because clearance is receptor-mediated and therefore self-scaling rather than proportional to body size.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The PEG chain blocks kidney clearance',
+        laymanDesc:
+          'The polymer chain makes the molecule behave as though it were far larger than it is, so the kidney can no longer filter it out of the blood.',
+        molecularDetail:
+          'The 20 kDa mPEG raises the hydrodynamic radius well above the glomerular filtration cutoff. Total molecular weight is approximately 39 kDa but the hydrated PEG behaves like a much larger protein.',
+        iconName: 'Filter',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Binds G-CSFR on marrow progenitors',
+        laymanDesc:
+          'From here the mechanism is identical to filgrastim: it docks on the receptors of immature neutrophils in the marrow.',
+        molecularDetail:
+          'N-terminal PEGylation is site-selected precisely because the N-terminus is not part of the receptor-binding interface, so 2:2 G-CSFR complex formation and JAK-STAT signalling are preserved.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Neutrophils clear the drug as they appear',
+        laymanDesc:
+          'The only way the body removes this drug is by the very cells it is making. While your count is low, it stays. As the count comes back, it disappears.',
+        molecularDetail:
+          'Neutrophil-mediated receptor internalisation and degradation is the dominant clearance pathway. Serum concentration therefore stays high through the nadir and falls sharply as the neutrophil count recovers, producing self-regulating exposure without therapeutic drug monitoring.',
+        iconName: 'Repeat',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Marrow reserve released, production accelerated',
+        laymanDesc:
+          'Immature cells are pushed to finish maturing and the marrow releases its stored neutrophils earlier than it otherwise would.',
+        molecularDetail:
+          'STAT3-driven granulocytic proliferation plus proteolytic cleavage of the marrow CXCL12-CXCR4 retention axis by neutrophil elastase, releasing the mature reserve into circulation.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'One injection, the same nadir, far fewer fevers',
+        laymanDesc:
+          'The end result is the same recovery as fourteen daily injections, and against no treatment at all, febrile neutropenia falls from about one in six patients to about one in a hundred.',
+        molecularDetail:
+          'Grade 4 neutropenia duration 1.8 days versus 1.6 days for daily filgrastim; febrile neutropenia 1% versus 17% against placebo, with hospitalisation falling from 14% to 1%.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Vogel 2005 placebo-controlled breast cancer trial',
+        phase: 'Phase 3',
+        sampleSize: 928,
+        primaryEndpoint: 'Percentage of patients developing febrile neutropenia',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 (1% versus 17%)',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Green 2003 non-inferiority registration trial',
+        phase: 'Phase 3',
+        sampleSize: 157,
+        primaryEndpoint: 'Duration of grade 4 neutropenia in cycle 1 versus daily filgrastim',
+        endpointMet: true,
+        statisticalPValue: 'Non-inferiority met (1.8 versus 1.6 days in cycle 1)',
+        unreportedAdverseSignals:
+          'The comparator was an active drug rather than placebo, so this trial establishes equivalence to filgrastim and says nothing about benefit over no treatment.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Febrile neutropenia 1% with pegfilgrastim versus 17% with placebo in 928 breast cancer patients',
+        'Febrile-neutropenia-related hospitalisation 1% versus 14%',
+        'Duration of grade 4 neutropenia 1.8 days versus 1.6 days for fourteen daily filgrastim injections',
+        'Bone pain incidence, severity and duration not significantly different from daily filgrastim',
+      ],
+      unsupportedInferences: [
+        'That once-per-cycle dosing improves survival relative to daily filgrastim — no trial has tested it',
+        'That the radiation indication rests on human evidence; it was granted under the Animal Rule',
+        'That an on-body injector is equivalent to a supervised injection; the label has a device-failure warning section',
+      ],
+      whatFailedInitially: [
+        'On-body injector failures generated a dedicated Warnings and Precautions section requiring patients to report suspected non-delivery',
+        'The acrylic adhesive on the injector causes significant reactions in acrylate-sensitive patients',
+      ],
+      realWorldOutcome: [
+        'Once-per-cycle dosing became the default for growth factor prophylaxis in most high-risk regimens',
+        'Multiple biosimilars from 2018 made this one of the few US biologic markets with real price competition',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection: prefilled syringe, single-dose vial, or prefilled syringe with an on-body injector',
+      description:
+        'Clear, colourless, preservative-free solution at pH 4.0. The 6 mg/0.6 mL prefilled syringe carries no graduation marks and delivers its entire contents. The on-body injector is applied on the day of chemotherapy and delivers the dose approximately 27 hours later, removing a return clinic visit.',
+      safetyProfile:
+        'Fatal splenic rupture, acute respiratory distress syndrome, serious allergic reactions including anaphylaxis, fatal sickle cell crises, glomerulonephritis, capillary leak syndrome, thrombocytopenia, leucocytosis, cutaneous vasculitis and aortitis are labelled risks. The label requires monitoring for myelodysplastic syndrome and acute myeloid leukaemia in breast and lung cancer patients receiving it with chemotherapy or radiotherapy.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does one injection work as well as fourteen?',
+        a: 'Because the polymer chain changes how the drug is removed, not how it works. Kidney filtration is blocked, so the only clearance route left is the neutrophils it creates. While your count is low there is nothing to remove it and it keeps working; as your count recovers, the new cells clear it. The dosing is regulated by the disease state itself.',
+      },
+      {
+        q: 'Is the on-body injector as reliable as an injection in clinic?',
+        a: 'The label does not claim it is. Section 5.12 exists specifically to tell patients to report a suspected device failure so a replacement dose can be considered. If a device fails silently at the wrong point in the cycle, the patient goes through the nadir unprotected.',
+        auditNote:
+          'A convenience feature that added a documented failure mode is worth stating plainly rather than as a footnote.',
+      },
+      {
+        q: 'Does pegfilgrastim work better than filgrastim?',
+        a: 'On the endpoints measured, no: 1.8 versus 1.6 days of grade 4 neutropenia. It works the same and is given once. The advantage is adherence and burden, which is genuinely valuable, and it is a different thing from being a more effective drug.',
+      },
+      {
+        q: 'How can a drug be approved for radiation exposure without human trials?',
+        a: 'Through the FDA Animal Rule, which permits approval on well-controlled animal efficacy studies when human trials would be unethical or infeasible. It is a deliberate, transparent regulatory mechanism. It is also, by design, an indication where the human efficacy evidence is zero.',
+      },
+      {
+        q: 'Nobody has measured what?',
+        a: 'Whether once-per-cycle dosing changes any hard outcome relative to daily filgrastim. The registration programme tested equivalence on a laboratory surrogate against an active comparator. Twenty years on, no trial has compared the two on survival.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Vogel CL et al. First and subsequent cycle use of pegfilgrastim prevents febrile neutropenia in patients with breast cancer: a multicenter, double-blind, placebo-controlled phase III study. J Clin Oncol 2005;23:1178-1184',
+        identifier: '10.1200/JCO.2005.09.102',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Green MD et al. A randomized double-blind multicenter phase III study of fixed-dose single-administration pegfilgrastim versus daily filgrastim in patients receiving myelosuppressive chemotherapy. Ann Oncol 2003;14:29-35',
+        identifier: '10.1093/annonc/mdg019',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Holmes FA et al. Bone pain associated with once-per-cycle pegfilgrastim is similar to daily filgrastim in patients with breast cancer. Clin Breast Cancer 2003;3:391-398',
+        identifier: '10.3816/CBC.2003.n.003',
+        kind: 'doi',
+      },
+      {
+        label: 'NEULASTA (pegfilgrastim) injection — US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fdfe5d72-6b80-435a-afa4-c5d74dd852ce',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: NEULASTA, BLA 125031, original approval 31 January 2002',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125031',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: FULPHILA (pegfilgrastim-jmdb), BLA 761075, approved 4 June 2018',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761075',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: UDENYCA (pegfilgrastim-cbqv), BLA 761039, approved 2 November 2018',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761039',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]

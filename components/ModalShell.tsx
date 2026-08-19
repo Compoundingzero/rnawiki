@@ -44,8 +44,35 @@ export interface ModalShellProps {
    * Typed as the three widths the ported modals use rather than as a free string, so a width that
    * Tailwind never generated cannot be passed in.
    */
-  maxWidth?: 'max-w-sm' | 'max-w-md' | 'max-w-lg'
+  maxWidth?: 'max-w-sm' | 'max-w-md' | 'max-w-lg' | 'max-w-2xl'
+  /**
+   * Which of the reference's three backdrops to paint.
+   *
+   * The wireframe did not use one scrim. AccountModal and QuickGuideModal sit on a lighter, more
+   * heavily blurred one; the editor sits on a darker one with a wider desktop inset; the two small
+   * dialogs sit between them. A single shared value would have quietly restyled three of the five
+   * dialogs, so the shell takes the variant instead of imposing a default.
+   */
+  scrim?: 'standard' | 'soft' | 'deep'
+  /**
+   * `inset` places the close button 4px further in, matching AccountModal and QuickGuideModal.
+   * `none` suppresses it entirely, for the editor, which carries its own close control inside its
+   * top bar rather than floating one over the content.
+   */
+  closeButton?: 'standard' | 'inset' | 'none'
   children: ReactNode
+}
+
+/** The reference's three backdrops, kept as literal class strings so Tailwind generates them. */
+const SCRIM_CLASSES: Record<'standard' | 'soft' | 'deep', string> = {
+  standard: 'p-3 sm:p-4 bg-black/40 backdrop-blur-sm',
+  soft: 'p-4 bg-black/30 backdrop-blur-md',
+  deep: 'p-3 sm:p-6 bg-black/50 backdrop-blur-sm',
+}
+
+const CLOSE_POSITION: Record<'standard' | 'inset', string> = {
+  standard: 'top-4 right-4 bg-black/[0.04] hover:bg-black/[0.08]',
+  inset: 'top-5 right-5 bg-black/[0.05] hover:bg-black/[0.09]',
 }
 
 export function ModalShell({
@@ -53,6 +80,8 @@ export function ModalShell({
   onClose,
   labelledBy,
   maxWidth = 'max-w-md',
+  scrim = 'standard',
+  closeButton = 'standard',
   children,
 }: ModalShellProps) {
   const panelRef = useRef<HTMLDivElement>(null)
@@ -129,7 +158,7 @@ export function ModalShell({
     // button are the controls that carry the behaviour for everyone else, so the backdrop needs no
     // role of its own.
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/40 backdrop-blur-sm animate-fade-in"
+      className={`fixed inset-0 z-50 flex items-center justify-center ${SCRIM_CLASSES[scrim]} animate-fade-in`}
       onKeyDown={handleKeyDown}
       onMouseDown={handleBackdropMouseDown}
       onClick={handleBackdropClick}
@@ -145,14 +174,18 @@ export function ModalShell({
         // makes the content reachable; the height cap is the viewport minus the backdrop padding.
         className={`bg-white rounded-3xl ${maxWidth} w-full shadow-2xl border border-black/[0.08] relative max-h-[calc(100dvh-1.5rem)] overflow-y-auto focus:outline-none`}
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute top-4 right-4 z-10 w-7 h-7 rounded-full bg-black/[0.04] hover:bg-black/[0.08] text-[#1D1D1F] flex items-center justify-center transition cursor-pointer shrink-0"
-        >
-          <X className="w-3.5 h-3.5" aria-hidden="true" />
-        </button>
+        {closeButton !== 'none' && (
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className={`absolute z-10 w-7 h-7 rounded-full ${CLOSE_POSITION[closeButton]} text-[#1D1D1F] flex items-center justify-center transition cursor-pointer shrink-0`}
+          >
+            {/* The reference sizes this glyph differently per dialog: w-4 in the verification
+                modal, w-3.5 in the others. `inset` is the pair that also sits 4px further in. */}
+            <X className={closeButton === 'inset' ? 'w-3.5 h-3.5' : 'w-4 h-4'} aria-hidden="true" />
+          </button>
+        )}
 
         {children}
       </div>

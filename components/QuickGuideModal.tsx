@@ -27,7 +27,14 @@ export function QuickGuideModal() {
   const handleClose = () => setOpenModal(null)
 
   return (
-    <ModalShell isOpen={isOpen} onClose={handleClose} labelledBy={headingId} maxWidth="max-w-lg">
+    <ModalShell
+      isOpen={isOpen}
+      onClose={handleClose}
+      labelledBy={headingId}
+      maxWidth="max-w-lg"
+      scrim="soft"
+      closeButton="inset"
+    >
       <div className="p-6 sm:p-7 space-y-5">
         <div>
           <span className="text-[10px] font-semibold uppercase tracking-wider text-[#0071E3] block mb-1">

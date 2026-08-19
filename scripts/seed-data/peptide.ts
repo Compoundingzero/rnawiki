@@ -964,4 +964,420 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // -------------------------------------------------------------------------------------------
+  // Liraglutide
+  // -------------------------------------------------------------------------------------------
+  {
+    slug: 'liraglutide',
+    name: 'Liraglutide',
+    tradeName: 'Victoza / Saxenda',
+    sponsor: 'Novo Nordisk',
+    targetGene: 'GLP1R',
+    targetProtein: 'Glucagon-Like Peptide-1 Receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2010,
+    indication:
+      'Type 2 diabetes and cardiovascular risk reduction in type 2 diabetes with established cardiovascular disease (Victoza, 2010); chronic weight management (Saxenda, 2014)',
+    patientFriendlyIndication: 'Type 2 diabetes and long-term weight management',
+    conditionContext: {
+      conditionExplainer:
+        'Liraglutide was the first GLP-1 analogue designed to last a full day rather than minutes, using a palmitic acid arm to hold it on albumin. It was also the first drug in the class to show that lowering cardiovascular events was possible.',
+      whyItMatters:
+        'LEADER, in 9,340 people, is the trial that turned GLP-1 agonists from glucose-lowering agents into cardiovascular drugs. Everything that followed in this class was designed against that result.',
+      whoTakesThis:
+        'Adults with type 2 diabetes, particularly with established cardiovascular disease; and, at the higher 3.0 mg dose, adults with obesity or overweight with a weight-related condition, including adolescents from age 12.',
+      clinicalGoals:
+        'Lower HbA1c by roughly one percentage point, reduce major adverse cardiovascular events, and at the higher dose achieve about 8% weight loss.',
+    },
+    oneSentenceVerdict:
+      'The first once-daily GLP-1 analogue, anchored to albumin by a palmitic acid arm, which cut major cardiovascular events by 13% in 9,340 people with type 2 diabetes and has since been overtaken on both convenience and effect size.',
+    laymanHowItWorks:
+      'Natural GLP-1 lasts about two minutes in the blood. Liraglutide is the same hormone with one amino acid swapped and a fatty acid chain bolted to a lysine, which makes it stick to albumin and last about half a day. That is enough for one injection a day. It tells the pancreas to release insulin when glucose is high, slows the stomach, and lowers appetite.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 92,
+    anatomicalSite: 'Pancreatic islet beta cell, hypothalamic arcuate nucleus, gastric antrum',
+    pricing: {
+      synthesisCostPerDose:
+        'Modelled cost-based price of $21.56 to $50.32 per month at 1.5 mg daily; a separate analysis put a 30-day course at an estimated minimum price of $50',
+      retailPricePerDoseOrYear:
+        'US pharmacy acquisition cost at 1.8 mg daily: about $790 per month for branded Victoza, about $433 per month for generic liraglutide; Saxenda at 3.0 mg daily is about $1,306 per month',
+      markupEstimate:
+        'Branded acquisition cost is roughly 16x to 37x the modelled cost-based price; generic entry has already cut that by about 45%',
+      openPatentNotes:
+        'Composition-of-matter protection has lapsed in the United States and generic liraglutide now appears in the national acquisition-cost file at $48 to $74 per millilitre against $88 for the brand. This is the first drug in the class to reach that point.',
+      synthesisComplexity: 'Moderate',
+      costSource: {
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        identifier: '10.1001/jamanetworkopen.2024.3474',
+        kind: 'doi',
+      },
+      priceSource: {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Generic liraglutide is now the cheapest injectable in this class and is the same molecule. Weekly semaglutide and tirzepatide produce more weight loss but cost two to three times as much. Metformin remains the cheapest way to move glucose.',
+      conventionalRx: [
+        {
+          name: 'Generic liraglutide',
+          class: 'GLP-1 receptor agonist, identical molecule',
+          howItCompares: 'Identical peptide, identical evidence base, roughly 45% lower acquisition cost.',
+          typicalCost: 'About $433 per month at 1.8 mg daily (US NADAC generic)',
+          prosAndCons:
+            'Pros: same drug, lower price. Cons: still a daily injection, and still less effective for weight than the weekly agents.',
+        },
+        {
+          name: 'Semaglutide (Ozempic)',
+          class: 'Weekly GLP-1 receptor agonist',
+          howItCompares:
+            'One injection a week instead of seven, larger HbA1c reduction and roughly twice the weight loss.',
+          typicalCost: 'About $996 per month (US NADAC)',
+          prosAndCons: 'Pros: weekly, more effective. Cons: substantially more expensive.',
+        },
+        {
+          name: 'Metformin',
+          class: 'Biguanide, small molecule',
+          howItCompares:
+            'Oral, lowers HbA1c by a comparable amount in many patients, no injection, no appetite effect.',
+          typicalCost: 'About $1.50 per month (US NADAC generic cost)',
+          prosAndCons: 'Pros: cost, oral route, long safety record. Cons: no cardiovascular outcome trial of its own at this standard.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Whole oats and barley (beta-glucan)',
+          activeCompound: 'Mixed-linkage beta-glucan',
+          biologicalMechanism:
+            'Increases digesta viscosity, slows gastric emptying and blunts the post-meal glucose and insulin rise; also lowers LDL cholesterol by binding bile acids.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '3 grams of beta-glucan daily, roughly 70 to 80 grams of oats',
+          monthlyCost: '$6 to $12 per month',
+        },
+        {
+          name: 'Legumes and pulses',
+          activeCompound: 'Slowly digestible starch and soluble fibre',
+          biologicalMechanism:
+            'Low glycaemic response with a prolonged nutrient delivery profile, which sustains endogenous GLP-1 release from distal L-cells for hours after a meal.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'One cup of cooked pulses most days',
+          monthlyCost: '$8 to $15 per month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Rotating injection sites',
+          action: 'Move between abdomen, thigh and upper arm rather than reusing one spot.',
+          patientImpact:
+            'Repeated injection into the same site causes lipohypertrophy, which alters absorption and makes the glucose response less predictable.',
+          clinicalPrecaution:
+            'Any lump or hardened area at an injection site should be shown to a clinician rather than injected through.',
+        },
+        {
+          name: 'Consistent daily timing',
+          action: 'Give the injection at about the same time each day, independent of meals.',
+          patientImpact:
+            'A roughly 13-hour half-life means the trough between doses matters; erratic timing widens the swing in exposure.',
+          clinicalPrecaution:
+            'A missed dose should not be doubled up; the label gives specific instructions and they are not interchangeable with those for weekly agents.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'HAEGTFTSDVSSYLEGQAAK(gamma-Glu-palmitoyl on Lys26)EFIAWLVRGRG',
+      chemicalFormula: 'C172H265N43O51',
+      molecularWeight: '3751.2 Da',
+      targetReceptorAffinity: 'Selective GLP-1 receptor agonist; 97% amino acid homology to native human GLP-1(7-37)',
+      structureSource: {
+        label: 'VICTOZA (liraglutide) injection, US prescribing information, section 11, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5a9ef4ea-c76a-4d34-a604-27c5b505f5a4',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lira-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Yeast expression system and precursor identity check',
+          description:
+            'Confirm the Saccharomyces cerevisiae production strain and the identity of the expressed Arg34 precursor peptide before acylation, since the whole molecule is defined by one substitution and one attachment.',
+          reagentsAndBuffer: 'Strain identity PCR, intact-mass LC-MS of the precursor, host cell protein ELISA',
+        },
+        {
+          id: 'lira-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Recombinant expression of the Lys34Arg GLP-1 precursor',
+          description:
+            'Ferment the engineered yeast strain, harvest and recover the 31-residue precursor in which the position 34 lysine has been replaced by arginine so that only Lys26 remains available for acylation.',
+          dependsOnStepId: 'lira-w1',
+          reagentsAndBuffer: 'Defined fermentation medium, cell separation by centrifugation, capture chromatography',
+        },
+        {
+          id: 'lira-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Reverse-phase and ion-exchange purification of the precursor',
+          description:
+            'Remove host cell protein, truncated species and process impurities before the acylation chemistry, which is far harder to purify away afterwards.',
+          dependsOnStepId: 'lira-w2',
+          reagentsAndBuffer: 'C18 reverse-phase with acetonitrile gradient, anion-exchange polishing, tangential flow filtration',
+        },
+        {
+          id: 'lira-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Lys26 acylation with gamma-glutamyl palmitate',
+          description:
+            'Attach a C16 palmitic acid chain through a glutamic acid spacer to the epsilon-amine of Lys26. This single arm is what turns a two-minute hormone into a once-daily drug.',
+          dependsOnStepId: 'lira-w3',
+          reagentsAndBuffer: 'Activated gamma-Glu(OSu)-palmitate, organic-aqueous buffer at controlled pH, then deprotection',
+        },
+        {
+          id: 'lira-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'GLP-1 receptor potency and albumin-binding characterisation',
+          description:
+            'Measure cAMP potency at human GLP-1R, and separately measure albumin binding, because the pharmacokinetics that define this molecule live in that second number.',
+          dependsOnStepId: 'lira-w4',
+          reagentsAndBuffer: 'hGLP-1R reporter cell line, HTRF cAMP kit, equilibrium dialysis against human serum albumin',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lira-1',
+        category: 'measured',
+        title: 'LEADER: 13% relative reduction in major cardiovascular events',
+        laymanSummary:
+          'In 9,340 people with type 2 diabetes at high cardiovascular risk, the composite of cardiovascular death, heart attack and stroke fell from 14.9% to 13.0% over a median 3.8 years. Cardiovascular death fell from 6.0% to 4.7%.',
+        technicalDetails:
+          'Primary composite hazard ratio 0.87 (95% CI 0.78 to 0.97), P<0.001 for noninferiority and P=0.01 for superiority. Cardiovascular death hazard ratio 0.78 (95% CI 0.66 to 0.93), P=0.007. All-cause death 8.2% versus 9.6%.',
+        evidenceSource: 'Marso SP et al. N Engl J Med 2016;375:311-322 (NCT01179048)',
+        doi: '10.1056/NEJMoa1603827',
+        measuredMetric: 'Time to first cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lira-2',
+        category: 'measured',
+        title: 'SCALE Obesity: 8.4 kg lost at 56 weeks on the 3.0 mg dose',
+        laymanSummary:
+          'In 3,731 adults without diabetes, the higher dose produced 8.4 kg of weight loss against 2.8 kg on placebo, a difference of 5.6 kg.',
+        technicalDetails:
+          '56-week double-blind trial, 2:1 randomisation to liraglutide 3.0 mg daily or placebo, both with lifestyle counselling. Mean weight change -8.4 kg versus -2.8 kg, difference -5.6 kg (95% CI -6.0 to -5.1, P<0.001).',
+        evidenceSource: 'Pi-Sunyer X et al. N Engl J Med 2015;373:11-22 (NCT01272219)',
+        doi: '10.1056/NEJMoa1411892',
+        measuredMetric: 'Change in body weight at week 56',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lira-3',
+        category: 'conclusion_shift',
+        title: 'From class-defining to second-line inside a decade',
+        laymanSummary:
+          'Liraglutide proved that this class could prevent heart attacks. Then weekly agents arrived with roughly twice the weight loss, and the drug that opened the field became the budget option.',
+        technicalDetails:
+          'Weight loss of about 8% at 56 weeks with daily liraglutide 3.0 mg compares with about 15% at 68 weeks with weekly semaglutide 2.4 mg and about 21% at 72 weeks with weekly tirzepatide 15 mg. The comparison is across trials with different designs and populations, not a head-to-head, but the gap is far larger than the between-trial noise.',
+        evidenceSource:
+          'Pi-Sunyer X et al. NEJM 2015; Wilding JPH et al. NEJM 2021; Jastreboff AM et al. NEJM 2022',
+        doi: '10.1056/NEJMoa1411892',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lira-4',
+        category: 'inferred',
+        title: 'That the cardiovascular benefit is a class effect that transfers to every GLP-1 agonist',
+        laymanSummary:
+          'It does not transfer automatically. Once-weekly exenatide ran the same kind of trial in 14,752 people and missed superiority. Each molecule has had to prove it separately.',
+        technicalDetails:
+          'LEADER met superiority (HR 0.87, P=0.01) and REWIND met it narrowly (HR 0.88, P=0.026), but EXSCEL with exenatide returned HR 0.91 with P=0.06 for superiority, and SURPASS-CVOT found tirzepatide noninferior but not superior to dulaglutide. Class-effect language is an extrapolation across molecules with different structures, half-lives and trial populations.',
+        evidenceSource: 'Holman RR et al. N Engl J Med 2017;377:1228-1239 (EXSCEL, NCT01144338)',
+        doi: '10.1056/NEJMoa1612917',
+        inferredClaim: 'That every GLP-1 receptor agonist reduces cardiovascular events',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lira-5',
+        category: 'measured',
+        title: 'Generic entry has moved the price, and only for this molecule so far',
+        laymanSummary:
+          'Generic liraglutide now appears in the US national acquisition-cost file at roughly half the branded price. No other injectable in this class has a generic.',
+        technicalDetails:
+          'NADAC 2026 file: generic liraglutide 18 mg/3 mL is $48.06 to $73.74 per millilitre depending on pack size, against $87.76 to $87.80 for Victoza. At 1.8 mg daily this is about $433 per month generic versus about $790 branded.',
+        evidenceSource: 'CMS National Average Drug Acquisition Cost, 2026 file',
+        measuredMetric: 'Published national acquisition cost per millilitre, generic versus brand',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Daily injection and reversible albumin binding',
+        laymanDesc:
+          'A once-daily injection under the skin. The palmitic acid tail sticks to albumin, which slows both absorption from the injection site and clearance by the kidneys.',
+        molecularDetail:
+          'The gamma-glutamyl palmitate arm on Lys26 drives self-association at the depot and reversible albumin binding in plasma, giving a terminal half-life of roughly 13 hours.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Resisting the enzyme that destroys the natural hormone',
+        laymanDesc:
+          'The bulky fatty tail shields the peptide from the enzyme that chops up natural GLP-1 within minutes.',
+        molecularDetail:
+          'Steric shielding by the albumin-bound acyl chain, rather than an Aib substitution, is what protects liraglutide from dipeptidyl peptidase-4 cleavage.',
+        iconName: 'Shield',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Activating GLP-1 receptors on the beta cell',
+        laymanDesc:
+          'It docks into the same receptor as the natural hormone and tells insulin-producing cells to respond only when glucose is already high.',
+        molecularDetail:
+          'Class B GPCR agonism raising cAMP through Gs, amplifying glucose-stimulated insulin secretion and suppressing inappropriate glucagon release.',
+        iconName: 'Zap',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Slowing the stomach and lowering appetite',
+        laymanDesc: 'Food leaves the stomach more slowly, and the drive to eat falls.',
+        molecularDetail:
+          'Delayed gastric emptying plus central GLP-1R signalling in the arcuate nucleus and area postrema reducing energy intake.',
+        iconName: 'Timer',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Lower HbA1c, modest weight loss, fewer cardiovascular events',
+        laymanDesc:
+          'About one percentage point off HbA1c, about 8% of body weight at the higher dose, and 13% fewer heart attacks, strokes and cardiovascular deaths in high-risk diabetes.',
+        molecularDetail:
+          'LEADER hazard ratio 0.87 for three-point MACE with a 0.78 hazard ratio for cardiovascular death, sustained over a median 3.8 years.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'LEADER (NCT01179048)',
+        phase: 'Phase 3',
+        sampleSize: 9340,
+        primaryEndpoint: 'Cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
+        endpointMet: true,
+        statisticalPValue: 'P = 0.01 for superiority, hazard ratio 0.87',
+        unreportedAdverseSignals: 'Higher rate of gallstone disease and of acute gallbladder events on treatment',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SCALE Obesity and Prediabetes (NCT01272219)',
+        phase: 'Phase 3',
+        sampleSize: 3731,
+        primaryEndpoint: 'Change in body weight at week 56',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001',
+        unreportedAdverseSignals:
+          'Higher rates of gallbladder events and of pancreatitis than placebo in the 3.0 mg arm',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '13% relative reduction in three-point MACE and 22% in cardiovascular death (LEADER, n=9,340)',
+        '8.4 kg weight loss at 56 weeks versus 2.8 kg on placebo at the 3.0 mg dose (SCALE, n=3,731)',
+        'Generic liraglutide is listed at roughly half the branded acquisition cost in the 2026 NADAC file',
+      ],
+      unsupportedInferences: [
+        'That the cardiovascular benefit is a property of the class rather than of this molecule in this population',
+        'That the weight-management dose carries the LEADER cardiovascular result; LEADER was run at diabetes doses in people with diabetes',
+      ],
+      whatFailedInitially: [
+        'Native GLP-1 itself: a two-minute half-life made continuous infusion the only workable delivery, which is what the acylation strategy was invented to solve',
+        'Daily dosing as a market position, once weekly agents with larger effects arrived',
+      ],
+      realWorldOutcome: [
+        'Still widely used, increasingly as the generic, and still the only molecule in the class with a generic on the US acquisition-cost file',
+        'Adherence is measurably worse than with weekly agents, which is the main practical reason it has been displaced',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous once-daily multi-dose pen',
+      description:
+        'Prefilled 3 mL pen containing 18 mg of liraglutide, delivering 0.6, 1.2 or 1.8 mg for diabetes, or escalating to 3.0 mg for weight management. Injection is independent of meals.',
+      safetyProfile:
+        'Nausea, vomiting and diarrhoea are common early and usually settle. Gallstone disease and acute pancreatitis are uncommon but established. Boxed warning for thyroid C-cell tumours from rodent studies; contraindicated with a personal or family history of medullary thyroid carcinoma or MEN2.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is the generic the same drug?',
+        a: 'Yes. It is the same peptide with the same acylation, approved on the demonstration of equivalence, and it appears in the US national acquisition-cost file at roughly half the branded price. The clinical evidence base is the branded evidence base.',
+        auditNote: 'The equivalence is a regulatory determination, not a separate outcome trial.',
+      },
+      {
+        q: 'Why take a daily injection when weekly ones exist?',
+        a: 'Cost is now the main reason. Generic liraglutide is roughly a third of the price of weekly semaglutide per month. The trade is real: fewer injections and larger weight loss on one side, a much lower price on the other.',
+      },
+      {
+        q: 'Does the weight-loss dose protect my heart the way LEADER showed?',
+        a: 'Nobody has tested that. LEADER used diabetes doses in people with type 2 diabetes and high cardiovascular risk. The 3.0 mg weight-management dose has never had a cardiovascular outcome trial of its own.',
+        auditNote: 'Unknown. Carrying the LEADER result across doses and populations is an inference.',
+      },
+      {
+        q: 'What about the thyroid cancer warning?',
+        a: 'It comes from rodent studies in which sustained GLP-1 receptor stimulation caused C-cell tumours. Whether this happens in humans has not been established either way, which is why the label carries a boxed warning and a contraindication rather than a quantified risk.',
+        auditNote: 'Measured in rodents. Unknown in humans.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label: 'Marso SP et al. Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes. NEJM 2016',
+        identifier: '10.1056/NEJMoa1603827',
+        kind: 'doi',
+      },
+      {
+        label: 'Pi-Sunyer X et al. A Randomized, Controlled Trial of 3.0 mg of Liraglutide in Weight Management. NEJM 2015',
+        identifier: '10.1056/NEJMoa1411892',
+        kind: 'doi',
+      },
+      {
+        label: 'Holman RR et al. Effects of Once-Weekly Exenatide on Cardiovascular Outcomes. NEJM 2017',
+        identifier: '10.1056/NEJMoa1612917',
+        kind: 'doi',
+      },
+      {
+        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        identifier: '10.1001/jamanetworkopen.2024.3474',
+        kind: 'doi',
+      },
+      { label: 'LEADER trial record', identifier: 'NCT01179048', kind: 'nct' },
+      { label: 'SCALE Obesity and Prediabetes trial record', identifier: 'NCT01272219', kind: 'nct' },
+      {
+        label: 'VICTOZA US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5a9ef4ea-c76a-4d34-a604-27c5b505f5a4',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA NDA 022341 (Victoza), original approval 25 January 2010',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=022341',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost, 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

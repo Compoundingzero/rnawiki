@@ -1648,4 +1648,377 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       { label: 'ESSENCE trial registration', identifier: 'NCT02500381', kind: 'nct' },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // Viltolarsen
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'viltolarsen',
+    name: 'Viltolarsen',
+    tradeName: 'Viltepso',
+    sponsor: 'NS Pharma / Nippon Shinyaku',
+    targetGene: 'DMD',
+    targetProtein: 'Dystrophin',
+    modality: 'ASO (Antisense Oligonucleotide)',
+    approvalStatus: 'Accelerated Approval',
+    approvalYear: 2020,
+    indication:
+      'Duchenne muscular dystrophy in patients with a confirmed DMD mutation amenable to exon 53 skipping',
+    patientFriendlyIndication: 'Duchenne Muscular Dystrophy (exon 53 skipping)',
+    anatomicalSite: 'Skeletal muscle fibre nucleus',
+    conditionContext: {
+      conditionExplainer:
+        'Viltolarsen targets the same exon as golodirsen, in the same roughly 8 percent of Duchenne patients whose deletion sits next to exon 53.',
+      whyItMatters:
+        'It reported the highest dystrophin percentage of any approved exon-skipping drug, which made it the strongest available test of whether dystrophin percentage predicts function. Its confirmatory trial then failed.',
+      whoTakesThis:
+        'Boys aged four and above with an exon-53-amenable DMD deletion, by weekly intravenous infusion, on a stable corticosteroid regimen.',
+      clinicalGoals:
+        'Produce truncated dystrophin and slow motor decline. The first was measured; the second was tested in RACER53 and not shown.',
+    },
+    oneSentenceVerdict:
+      'A 21-mer morpholino for exon 53 that produced the highest reported dystrophin of any approved exon-skipping drug, 5.9 percent of normal in 16 boys, and then failed its randomised confirmatory trial on time to stand from supine.',
+    laymanHowItWorks:
+      'Viltolarsen is a shorter version of the same idea as golodirsen: cover exon 53 so the cell leaves it out and the reading frame lines up again. The 16-boy study reported dystrophin at about six percent of normal, several times higher than the other exon 53 drug. When a proper randomised trial of 77 boys then measured how quickly they could stand up from the floor, the treated and placebo groups both improved and there was no difference between them.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 28,
+    substitutes: {
+      summary:
+        'Golodirsen targets the same exon in the same patients. Corticosteroids remain the intervention with the strongest randomised evidence in Duchenne, and the cheapest by orders of magnitude.',
+      conventionalRx: [
+        {
+          name: 'Golodirsen (Vyondys 53)',
+          class: 'Phosphorodiamidate morpholino oligomer, exon 53',
+          howItCompares:
+            'Same exon, a 25-mer instead of a 21-mer, weekly infusion. Reported dystrophin 1.02 percent versus 5.9 percent, but measured on a different assay with different normalisation.',
+          typicalCost: 'Branded specialty pricing; both are lifelong weekly infusions',
+          prosAndCons:
+            'Pros: an alternative agent for the same mutation group. Cons: its confirmatory trial, ESSENCE, also missed its primary endpoint.',
+        },
+        {
+          name: 'Prednisone or deflazacort',
+          class: 'Systemic corticosteroid',
+          howItCompares:
+            'The comparator that every exon-skipping trial was layered on top of, with randomised evidence for preserving strength and delaying loss of ambulation.',
+          typicalCost: 'Generic prednisone typically under $30 / month in the US',
+          prosAndCons:
+            'Pros: largest measured effect, negligible cost. Cons: fractures, growth suppression, cataract, weight gain.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Creatine monohydrate',
+          activeCompound: 'Creatine',
+          biologicalMechanism:
+            'Expands the phosphocreatine buffer available during contraction. Supports energetics; does not alter dystrophin.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: 'Muscular dystrophy trials used roughly 3 to 10 g daily by body weight',
+          monthlyCost: '$10 to $20 / month',
+        },
+        {
+          name: 'Vitamin D with dietary calcium',
+          activeCompound: 'Cholecalciferol and calcium',
+          biologicalMechanism:
+            'Counters corticosteroid-driven bone loss, which drives vertebral fracture risk in Duchenne.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Guideline-directed dosing with serum 25-OH vitamin D monitoring',
+          monthlyCost: '$5 to $15 / month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Heel-cord stretching and night splinting',
+          action: 'Daily passive ankle dorsiflexion stretching with overnight orthoses.',
+          patientImpact:
+            'Maintains the ankle range that standing and walking depend on, which is what the RACER53 primary endpoint was measuring.',
+          clinicalPrecaution:
+            'Physiotherapy-supervised. Avoid resisted eccentric loading, which damages dystrophin-deficient muscle.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'CCTCCGGTTCTGAAGGTGTTC',
+      chemicalFormula: 'C244H381N113O88P20',
+      molecularWeight: '6,924.82 Da',
+      targetReceptorAffinity: 'Binds a 21-nucleotide site in DMD exon 53; steric block, uncharged backbone',
+      structureSource: {
+        label:
+          'Ali et al., J Muscle Res Cell Motil 2025, Table 1 (FDA-approved DMD exon-skipping ASO sequences); mass and formula from the VILTEPSO label section 11',
+        identifier: '10.1007/s10974-024-09688-2',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 's1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Subunit qualification and identity confirmation',
+          description:
+            'Release-test morpholino subunits and confirm the 21-mer target sequence against the exon 53 annotation before synthesis.',
+          reagentsAndBuffer:
+            'Base-protected morpholino chlorophosphoramidates, anhydrous dichloromethane, reverse-phase HPLC at 260 nm',
+        },
+        {
+          id: 's2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase phosphorodiamidate coupling, 21 cycles',
+          description:
+            'Iterative coupling on aminomethylpolystyrene. The shorter oligomer gives a higher full-length yield than the 25-mer built for the same exon.',
+          reagentsAndBuffer:
+            'Morpholino chlorophosphoramidate monomers, N-ethylmorpholine, N-methylpyrrolidone, trifluoroacetic acid detritylation cocktail',
+          dependsOnStepId: 's1',
+        },
+        {
+          id: 's3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Cation-exchange purification and formulation into saline',
+          description:
+            'Purify on the terminal amine, desalt, then formulate directly into 0.9 percent sodium chloride as the finished product is supplied.',
+          reagentsAndBuffer:
+            'Ammonia cleavage at 45 C, Source 30S resin, potassium chloride gradient, 0.9 percent sodium chloride, pH 7.0 to 7.5',
+          dependsOnStepId: 's2',
+        },
+        {
+          id: 's4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Nucleofection into exon-53-amenable myotubes',
+          description:
+            'Electroporate into patient myoblasts and differentiate, then compare skipping efficiency against the 25-mer covering the same region.',
+          reagentsAndBuffer:
+            'Exon 52-deleted patient myoblasts, Amaxa nucleofection buffer, differentiation medium with 2 percent horse serum',
+          dependsOnStepId: 's3',
+        },
+        {
+          id: 's5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Dystrophin by western blot normalised to myosin heavy chain, and by mass spectrometry',
+          description:
+            'Two orthogonal quantifications with different normalisers. This pairing is what makes viltolarsen dystrophin numbers non-comparable to the Sarepta western blot values.',
+          reagentsAndBuffer:
+            'Anti-dystrophin antibody, myosin heavy chain normalisation, filamin C normalised parallel-reaction-monitoring mass spectrometry, healthy muscle standard',
+          dependsOnStepId: 's4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'vil-1',
+        category: 'measured',
+        title: 'Dystrophin reached 5.9 percent of normal at week 25',
+        laymanSummary:
+          'In eight boys on the approved dose, average dystrophin rose from 0.6 percent to 5.9 percent of normal after 24 weeks of treatment.',
+        technicalDetails:
+          'Study 1 (NCT02740972) treated 16 boys, 8 at each of two doses. In the 80 mg/kg weekly group, western blot normalised to myosin heavy chain gave a mean of 0.6 percent (SD 0.8) at baseline and 5.9 percent (SD 4.5) at week 25, mean change 5.3 percent (SD 4.5), p=0.01, median change 3.8 percent. All patients increased over baseline.',
+        evidenceSource: 'Clemens et al., JAMA Neurology 2020',
+        doi: '10.1001/jamaneurol.2020.1264',
+        measuredMetric: 'Mean dystrophin 0.6 percent to 5.9 percent of normal, p=0.01, n=8',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'vil-2',
+        category: 'measured',
+        title: 'The second assay gave a lower number: 4.2 percent by mass spectrometry',
+        laymanSummary:
+          'The same muscle samples, measured a different way, gave 4.2 percent instead of 5.9 percent, and the median was 1.9 percent rather than 3.8 percent.',
+        technicalDetails:
+          'Mass spectrometry normalised to filamin C gave a mean of 0.6 percent (SD 0.2) at baseline and 4.2 percent (SD 3.7) at week 25, change 3.7 percent (SD 3.8), nominal p=0.03 not adjusted for multiple comparisons, median change 1.9 percent. Reporting both is good practice, and the gap between them is the honest measure of how assay-dependent this endpoint is.',
+        evidenceSource: 'VILTEPSO US prescribing information, section 14',
+        measuredMetric:
+          'Mass spectrometry dystrophin 0.6 percent to 4.2 percent of normal, median change 1.9 percent',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'vil-3',
+        category: 'failed',
+        title: 'RACER53 missed its primary endpoint because placebo improved too',
+        laymanSummary:
+          'The randomised confirmatory trial of 77 boys measured how fast they could stand up from lying down. Treated boys got faster, and so did the placebo group, so there was no significant difference.',
+        technicalDetails:
+          'RACER53 (NCT04060199) randomised 77 ambulatory boys to viltolarsen 80 mg/kg weekly or placebo for 48 weeks, with time to stand from supine as the primary endpoint. Preliminary results announced in May 2024 reported a trend of increased rising velocity in the treated group, matched by improvement in the placebo comparators, and no statistically significant difference between arms. Adverse events were mild or moderate and no participant withdrew for side effects.',
+        evidenceSource: 'NS Pharma preliminary RACER53 results announcement, May 2024',
+        measuredMetric: 'Time to stand from supine at week 48: no statistically significant difference',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'vil-4',
+        category: 'inferred',
+        title: 'Timed-function gains were measured against 65 historical controls, not a randomised arm',
+        laymanSummary:
+          'The improvements in walking and standing reported in the approval study came from comparing treated boys with boys from old natural-history datasets, not with a placebo group.',
+        technicalDetails:
+          'The phase 2 study compared all 16 treated participants against 65 age-matched and treatment-matched natural-history controls, reporting improvements in time to stand from supine, 10-metre run/walk and 6-minute walk at week 25. External-control comparison in a disease with steep age-dependent trajectories is exactly the design that RACER53 was built to replace, and RACER53 found no separation.',
+        evidenceSource: 'Clemens et al., JAMA Neurology 2020, secondary outcomes',
+        doi: '10.1001/jamaneurol.2020.1264',
+        inferredClaim:
+          'That the timed-function differences against natural-history controls represent a treatment effect',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'vil-5',
+        category: 'conclusion_shift',
+        title: 'Two drugs, one exon, a sixfold gap in reported dystrophin, and neither changed function',
+        laymanSummary:
+          'Viltolarsen reports about six times more dystrophin than golodirsen for the same exon. Both then failed their confirmatory functional trials, which undercuts the idea that the percentage is what matters.',
+        technicalDetails:
+          'Golodirsen reported 1.02 percent of normal by Sarepta western blot; viltolarsen reported 5.9 percent by myosin-heavy-chain-normalised western blot. If dystrophin percentage were the operative variable, a sixfold difference should have produced separable functional outcomes. RACER53 and ESSENCE both missed their primary endpoints. That result is informative about the surrogate itself, not only about either drug.',
+        evidenceSource:
+          'VILTEPSO and VYONDYS 53 prescribing information, section 14; RACER53 and ESSENCE topline results',
+        inferredClaim:
+          'That percentage-of-normal dystrophin is a rank-ordered measure of exon-skipping drug potency',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly intravenous infusion in saline',
+        laymanDesc: 'Given into a vein once a week as a simple saline solution.',
+        molecularDetail:
+          'Uncharged 21-mer PMO supplied in 0.9 percent sodium chloride, infused over about an hour. Rapid renal elimination; low fractional muscle uptake.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into muscle fibre nuclei',
+        laymanDesc: 'Part of the dose enters muscle cells and reaches the nucleus.',
+        molecularDetail:
+          'Neutral backbone gives nuclease stability but no charge-driven cell-surface protein binding; uptake is thought to be aided by dystrophic membrane fragility.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Hybridising to a 21-nucleotide site in exon 53',
+        laymanDesc: 'It pairs with a stretch inside exon 53 and hides it from the splicing machinery.',
+        molecularDetail:
+          'The 21-mer covers the same region as the 25-mer golodirsen minus five bases at the 5-prime end, occluding exonic splicing enhancer elements required for exon definition.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Exon 53 is skipped and the reading frame is restored',
+        laymanDesc: 'The exons on either side are joined and the instructions line up again.',
+        molecularDetail:
+          'Exclusion of exon 53 produces an in-frame transcript in patients with deletions such as 52, 45-52 or 48-52, allowing translation through to the C-terminal domain.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Truncated dystrophin at the sarcolemma, 4 to 6 percent of normal',
+        laymanDesc:
+          'Shortened dystrophin appears at the muscle membrane at a few percent of normal, depending which assay you use.',
+        molecularDetail:
+          'Western blot normalised to myosin heavy chain gives 5.9 percent; mass spectrometry normalised to filamin C gives 4.2 percent. Neither corresponded to a randomised functional benefit in RACER53.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NS-065/NCNP-01 Study 1 (NCT02740972)',
+        phase: 'Phase 2',
+        sampleSize: 16,
+        primaryEndpoint:
+          'Safety, tolerability and de novo dystrophin production by western blot in biceps at week 25',
+        endpointMet: true,
+        statisticalPValue: 'p=0.01 for dystrophin change at 80 mg/kg weekly',
+        unreportedAdverseSignals:
+          'Timed-function comparisons in this study used 65 external natural-history controls rather than a randomised placebo arm',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'RACER53 (NCT04060199)',
+        phase: 'Phase 3',
+        sampleSize: 77,
+        primaryEndpoint: 'Time to stand from supine at week 48 versus placebo',
+        endpointMet: false,
+        statisticalPValue: 'No statistically significant difference between arms',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Dystrophin 0.6 percent to 5.9 percent of normal by myosin-heavy-chain-normalised western blot, p=0.01',
+        'Dystrophin 0.6 percent to 4.2 percent of normal by filamin-C-normalised mass spectrometry',
+        'All 16 treated participants increased dystrophin above their own baseline',
+      ],
+      unsupportedInferences: [
+        'That the timed-function gains against 65 natural-history controls were a treatment effect; the randomised trial did not reproduce them',
+        'That a higher reported dystrophin percentage than golodirsen means a more effective drug',
+      ],
+      whatFailedInitially: [
+        'RACER53 found no significant difference in time to stand from supine, because the placebo arm improved as well',
+        'The two assays used in the approval study disagreed by more than a third on the median change',
+      ],
+      realWorldOutcome: [
+        'Remains available in the United States and Japan under conditional pathways while the sponsor works with regulators on next steps',
+        'The paired failure of RACER53 and ESSENCE has reframed the dystrophin surrogate itself as the thing under question',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion of an uncharged phosphorodiamidate morpholino oligomer in saline',
+      description:
+        'Single-dose vials of 250 mg in 5 mL, diluted into saline and infused weekly over about 60 minutes. No lipid carrier, no ligand, no chemical modification for muscle targeting.',
+      safetyProfile:
+        'Most common adverse reactions at 15 percent or more were upper respiratory tract infection, injection site reaction, cough and pyrexia. Renal toxicity is a class warning based on nonclinical PMO findings and is monitored. No participant discontinued RACER53 for adverse events.',
+    },
+    commonQuestions: [
+      {
+        q: 'Viltolarsen reports 5.9 percent dystrophin and golodirsen 1.02 percent. Is it six times better?',
+        a: 'No. The two numbers come from different assays with different normalising proteins and different standard curves, and no study has ever measured both drugs on one assay. The randomised confirmatory trials of both drugs then missed their primary endpoints, which is the stronger evidence that the percentage is not tracking function.',
+        auditNote:
+          'Cross-drug percentage-of-normal dystrophin comparison is not supported by any head-to-head measurement.',
+      },
+      {
+        q: 'What happened in RACER53?',
+        a: 'Seventy-seven boys were randomised to viltolarsen or placebo for 48 weeks. Treated boys got faster at standing up from the floor, and so did the placebo group, so the difference between them was not statistically significant. That is a failed primary endpoint, and it is also a reminder that untreated boys on corticosteroids do not decline in a straight line.',
+      },
+      {
+        q: 'Does viltolarsen help boys who are no longer walking?',
+        a: 'Nobody has measured that. Both the approval study and RACER53 enrolled ambulatory boys only, so there is no controlled evidence in non-ambulatory patients, and none on cardiac or respiratory outcomes.',
+      },
+      {
+        q: 'Is it safe?',
+        a: 'The recorded adverse events across the programme were mild to moderate, with no discontinuations for side effects in RACER53. Renal toxicity is a labelled class concern from animal studies of morpholino oligomers and is monitored on treatment.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'VILTEPSO (viltolarsen) US prescribing information, DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1ffff9a8-6d6a-4dcb-8493-1b6cc3a5d123',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Clemens et al., Safety, Tolerability, and Efficacy of Viltolarsen in Boys With DMD Amenable to Exon 53 Skipping, JAMA Neurology 2020',
+        identifier: '10.1001/jamaneurol.2020.1264',
+        kind: 'doi',
+      },
+      {
+        label: 'NS Pharma, preliminary results of the RACER53 phase 3 study, 27 May 2024',
+        identifier:
+          'https://www.nspharma.com/ns-pharma-shares-preliminary-results-of-viltolarsen-ns-065-ncnp-01-phase-3-clinical-trial-racer53-study/',
+        kind: 'url',
+      },
+      {
+        label:
+          'Ali et al., Progress and prospects in ASO-mediated exon skipping for DMD, J Muscle Res Cell Motil 2025, Table 1',
+        identifier: '10.1007/s10974-024-09688-2',
+        kind: 'doi',
+      },
+      { label: 'Phase 2 study registration', identifier: 'NCT02740972', kind: 'nct' },
+      { label: 'RACER53 trial registration', identifier: 'NCT04060199', kind: 'nct' },
+    ],
+  },
 ]

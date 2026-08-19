@@ -2983,4 +2983,362 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 9. Secukinumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'secukinumab',
+    name: 'Secukinumab',
+    tradeName: 'Cosentyx',
+    sponsor: 'Novartis Pharmaceuticals',
+    targetGene: 'IL17A',
+    targetProtein: 'Interleukin-17A',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'Moderate-to-severe plaque psoriasis, psoriatic arthritis, ankylosing spondylitis, non-radiographic axial spondyloarthritis, enthesitis-related arthritis, hidradenitis suppurativa',
+    patientFriendlyIndication: 'Psoriasis, psoriatic arthritis and inflammatory spine disease',
+    anatomicalSite: 'Skin epidermis, entheses and axial synovium',
+    conditionContext: {
+      conditionExplainer:
+        'In psoriasis a T cell population is kept alive by IL-23 and produces interleukin-17A, which tells skin cells to divide roughly ten times faster than normal and to recruit neutrophils. The plaque is the visible result of that instruction.',
+      whyItMatters:
+        'Secukinumab was the first IL-17A antibody approved and it produced clearance rates that changed what dermatologists considered a successful outcome, moving the benchmark from PASI 75 to PASI 90 and PASI 100.',
+      whoTakesThis:
+        'Adults and children with moderate-to-severe plaque psoriasis, and adults with psoriatic arthritis or axial spondyloarthritis, typically after topical therapy, phototherapy or a conventional systemic agent has failed.',
+      clinicalGoals:
+        'Clear or nearly clear skin, control peripheral and axial joint inflammation, and reduce enthesitis and dactylitis.',
+    },
+    oneSentenceVerdict:
+      'A fully human antibody that neutralises interleukin-17A and cleared 75% of psoriasis in 81.6% of patients at 12 weeks against 4.5% on placebo, while making Crohn disease measurably worse in a proof-of-concept trial.',
+    laymanHowItWorks:
+      'Interleukin-17A is the final instruction that tells skin cells to divide too fast and calls in the white cells that make a psoriasis plaque scaly. Secukinumab is an antibody that mops that instruction out of the tissue. Because it acts at the last step rather than upstream, skin clears fast, often within four to eight weeks.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 90,
+    substitutes: {
+      summary:
+        'Ixekizumab and bimekizumab block the same or an extended part of the IL-17 family. IL-23 p19 antibodies act one step upstream with quarterly dosing. Methotrexate and phototherapy are far cheaper for moderate disease. No dietary intervention clears psoriasis, and IL-17 blockade is specifically inadvisable in anyone with inflammatory bowel disease.',
+      conventionalRx: [
+        {
+          name: 'Ixekizumab (Taltz)',
+          class: 'Anti-IL-17A monoclonal antibody',
+          howItCompares: 'Same cytokine, higher affinity, similar clearance rates in indirect comparison.',
+          typicalCost: 'Approximately $6,500 - $7,500 / month US list',
+          prosAndCons:
+            'Pros: rapid onset. Cons: shares the class contraindication in inflammatory bowel disease and the candidiasis signal.',
+        },
+        {
+          name: 'Bimekizumab (Bimzelx)',
+          class: 'Dual anti-IL-17A and IL-17F monoclonal antibody',
+          howItCompares:
+            'Neutralises IL-17F as well as IL-17A, which raises complete clearance rates further in psoriasis.',
+          typicalCost: 'Approximately $7,000 - $8,000 / month US list',
+          prosAndCons:
+            'Pros: highest PASI 100 rates in the class. Cons: markedly higher rate of oral candidiasis, consistent with the mechanism.',
+        },
+        {
+          name: 'Risankizumab or guselkumab',
+          class: 'Anti-IL-23 p19 monoclonal antibody',
+          howItCompares:
+            'Acts upstream on the cytokine that sustains IL-17-producing cells, with dosing every 8 or 12 weeks rather than monthly.',
+          typicalCost: 'Approximately $16,000 - $20,000 per dose US list',
+          prosAndCons:
+            'Pros: quarterly dosing, safe in inflammatory bowel disease. Cons: slower onset in skin than IL-17 blockade.',
+        },
+        {
+          name: 'Apremilast (Otezla)',
+          class: 'Oral phosphodiesterase-4 inhibitor',
+          howItCompares: 'Oral, modest efficacy, no laboratory monitoring requirement.',
+          typicalCost: 'Approximately $3,500 - $4,000 / month US list',
+          prosAndCons:
+            'Pros: oral, no screening or monitoring bloods. Cons: substantially lower clearance rates, diarrhoea, nausea, weight loss.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Oral hygiene and prompt candidiasis treatment',
+          action:
+            'Rinse the mouth after eating, review dentures and inhaler technique if used, and report white patches or oral soreness promptly.',
+          patientImpact:
+            'IL-17A is the principal cytokine defending mucosal surfaces against Candida, so mucocutaneous candidiasis is a direct and expected consequence of blocking it rather than an unrelated event.',
+          clinicalPrecaution:
+            'Most episodes respond to topical or short oral antifungal therapy without stopping the antibody. Recurrent or oesophageal candidiasis needs specialist review.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Fully human IgG1-kappa with oligosaccharide chains on both heavy chains',
+      molecularWeight: 'Approximately 151 kDa',
+      structureSource: {
+        label: 'COSENTYX US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125504',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sec-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO fed-batch expression',
+          description:
+            'Produce the fully human IgG1 in a CHO suspension culture with feed control tuned to hold the glycan profile within specification.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, controlled glucose and amino acid feed, temperature shift at day 5',
+        },
+        {
+          id: 'sec-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and low-pH viral inactivation',
+          description: 'Affinity capture and low-pH elution with a validated hold for enveloped virus.',
+          reagentsAndBuffer: 'Protein A resin, 50 mM glycine pH 3.4 elution, 60 minute hold, Tris neutralisation',
+          dependsOnStepId: 'sec-syn',
+        },
+        {
+          id: 'sec-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing, nanofiltration and high-concentration formulation',
+          description:
+            'Remove aggregate and residuals, filter for viral clearance, then concentrate into a formulation supporting a 150 mg dose in 1 mL for subcutaneous injection.',
+          reagentsAndBuffer: 'Anion and multimodal exchange, 20 nm virus filter, trehalose, L-histidine, methionine, polysorbate 80',
+          dependsOnStepId: 'sec-cap',
+        },
+        {
+          id: 'sec-assay',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'IL-17A neutralisation bioassay',
+          description:
+            'Quantify potency as inhibition of IL-17A-induced IL-6 release from human dermal fibroblasts or a reporter line, against the reference standard.',
+          reagentsAndBuffer: 'Recombinant human IL-17A, human dermal fibroblasts or NIH-3T3 reporter, IL-6 ELISA readout',
+          dependsOnStepId: 'sec-pol',
+        },
+        {
+          id: 'sec-spec',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Family cross-reactivity specificity check',
+          description:
+            'Confirm the lot neutralises IL-17A and the IL-17A/F heterodimer but not IL-17F homodimer, IL-17B, C, D or E, since selectivity within the family determines both efficacy and the candidiasis profile.',
+          reagentsAndBuffer: 'Recombinant IL-17 family panel, surface plasmon resonance, orthogonal ELISA cross-reactivity screen',
+          dependsOnStepId: 'sec-assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sec-1',
+        category: 'measured',
+        title: 'ERASURE and FIXTURE: PASI 75 in 77-82% at 12 weeks, and superiority over etanercept',
+        laymanSummary:
+          'Two trials in 738 and 1,306 people with moderate-to-severe psoriasis. At the higher dose, roughly four in five reached a 75% improvement, against fewer than one in twenty on placebo and fewer than half on the older anti-TNF comparator.',
+        technicalDetails:
+          'Two 52-week phase 3 trials with co-primary endpoints of PASI 75 and modified IGA 0 or 1 at week 12. ERASURE: PASI 75 in 81.6% at 300 mg, 71.6% at 150 mg, 4.5% placebo. FIXTURE: 77.1% at 300 mg, 67.0% at 150 mg, 44.0% for etanercept 50 mg twice weekly and 4.9% placebo. The active-comparator arm is what makes FIXTURE unusually informative: it is a direct measurement against the previous standard rather than against nothing.',
+        evidenceSource: 'Langley et al., New England Journal of Medicine 2014 (ERASURE NCT01365455, FIXTURE NCT01358578)',
+        doi: '10.1056/NEJMoa1314258',
+        measuredMetric: 'PASI 75 at week 12: 81.6% (ERASURE 300 mg) and 77.1% versus 44.0% etanercept (FIXTURE)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sec-2',
+        category: 'failed',
+        title: 'Crohn disease: blocking IL-17A made the disease worse',
+        laymanSummary:
+          'A proof-of-concept trial in 59 people with active Crohn disease found secukinumab was not merely ineffective but associated with more adverse events and more discontinuation for lack of effect than placebo.',
+        technicalDetails:
+          'Double-blind randomised placebo-controlled proof-of-concept study, 39 to secukinumab 2 x 10 mg/kg intravenously and 20 to placebo, mean baseline CDAI 307 and 301. Blockade of IL-17A was ineffective. Discontinuation for insufficient therapeutic effect occurred in 21% on secukinumab versus 10% on placebo, and 20 infections including four local fungal infections were seen on secukinumab against none on placebo. The paper is titled "unexpected results" and the finding is now the basis of a class contraindication.',
+        evidenceSource: 'Hueber et al., Gut 2012 (NCT01009281)',
+        doi: '10.1136/gutjnl-2011-301668',
+        measuredMetric: 'Primary endpoint not met; more adverse events and more withdrawals for lack of effect than placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sec-3',
+        category: 'conclusion_shift',
+        title: 'IL-17 turned out to be protective in the gut and pathogenic in the skin',
+        laymanSummary:
+          'The same cytokine drives disease in one organ and defends another. The Crohn result forced the field to abandon the idea that an inflammatory cytokine is simply bad wherever it appears.',
+        technicalDetails:
+          'IL-17A maintains intestinal epithelial tight junction integrity and antimicrobial peptide production, so neutralising it in a barrier already compromised by Crohn disease permits increased bacterial translocation. Every IL-17-directed agent now carries a warning about inflammatory bowel disease, and new-onset or exacerbated IBD has been reported on secukinumab. Upstream IL-23 blockade does not share this liability, which is a mechanistically informative dissociation.',
+        evidenceSource: 'Hueber et al., Gut 2012, and the resulting class warning in the COSENTYX label',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sec-4',
+        category: 'measured',
+        title: 'Candidiasis is a predictable consequence, not an idiosyncratic side effect',
+        laymanSummary:
+          'IL-17A is the main defence of mouth, throat and skin against Candida. Blocking it produces thrush at a measurably higher rate than placebo, which is exactly what the biology predicts.',
+        technicalDetails:
+          'Mucocutaneous candidiasis occurred more frequently on secukinumab than placebo across the trial programme. People with inherited defects in IL-17 signalling, such as autosomal dominant hyper-IgE syndrome or IL-17F mutations, develop chronic mucocutaneous candidiasis, which is the natural experiment that predicted this. Most cases are mild and treatable without stopping the antibody.',
+        evidenceSource: 'COSENTYX US Prescribing Information, Warnings and Precautions and Adverse Reactions',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sec-5',
+        category: 'inferred',
+        title: 'Clearance rate is read as the whole of the benefit',
+        laymanSummary:
+          'PASI 75 and PASI 90 measure how much plaque is left. They do not measure how long remission lasts after stopping, nor whether joint damage is prevented, and marketing comparisons across the class rarely make that distinction.',
+        technicalDetails:
+          'ERASURE and FIXTURE measured skin severity indices at week 12 with 52-week extension. Neither was designed to measure structural joint outcomes, drug-free remission or long-term cardiovascular risk in a population with known excess cardiovascular mortality. Cross-class comparisons of PASI 100 rates from separate trials are indirect and subject to differing baseline severity and washout requirements.',
+        evidenceSource: 'Endpoint structure of ERASURE and FIXTURE',
+        inferredClaim: 'That higher skin clearance rates across separate trials establish superiority of one biologic over another',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly loading then monthly subcutaneous injection',
+        laymanDesc:
+          'Five weekly injections load the system, then one injection a month keeps it going. Most people inject themselves at home.',
+        molecularDetail:
+          '300 mg subcutaneously at weeks 0, 1, 2, 3 and 4 then every 4 weeks in psoriasis, with a terminal half-life of roughly 27 days and bioavailability near 55-77%.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Accumulation in dermis and entheses',
+        laymanDesc:
+          'It reaches the skin and the points where tendons attach to bone, the two places where this cytokine does most of its damage.',
+        molecularDetail:
+          'Distributes into the interstitium of psoriatic dermis and into entheseal tissue where IL-17-producing gamma-delta T cells and innate lymphoid cells reside; volume of distribution is small at around 7-8 L.',
+        iconName: 'MapPin',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Neutralising IL-17A in the tissue',
+        laymanDesc:
+          'The antibody binds the messenger itself, in the fluid between cells, before it can reach the skin cells it was addressed to.',
+        molecularDetail:
+          'Binds IL-17A homodimer and the IL-17A/F heterodimer, preventing engagement of the IL-17RA and IL-17RC receptor complex. It does not neutralise IL-17F homodimer, which is the difference bimekizumab was built to close.',
+        iconName: 'Filter',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Keratinocyte signalling and neutrophil recruitment collapse',
+        laymanDesc:
+          'Skin cells stop being told to divide fast, and the chemical signals that draw white cells into the plaque are no longer produced.',
+        molecularDetail:
+          'Without IL-17RA and IL-17RC engagement, Act1-mediated NF-kB and C/EBP signalling in keratinocytes falls, cutting CXCL1, CXCL8, beta-defensin, S100A7 and lipocalin-2 output. Neutrophil influx and Munro microabscess formation resolve.',
+        iconName: 'PowerOff',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Rapid skin clearance and control of enthesitis',
+        laymanDesc:
+          'Plaques flatten and disappear over four to twelve weeks, faster than with drugs acting further upstream. Tendon attachment pain and joint swelling also improve.',
+        molecularDetail:
+          'Normalisation of epidermal turnover and resolution of parakeratosis, with reduced entheseal inflammation on MRI and reduced radiographic progression in psoriatic arthritis extension studies.',
+        iconName: 'Sparkles',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ERASURE (NCT01365455)',
+        phase: 'Phase 3',
+        sampleSize: 738,
+        primaryEndpoint: 'Co-primary PASI 75 and modified IGA 0 or 1 at week 12',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 for both secukinumab doses versus placebo',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'FIXTURE (NCT01358578)',
+        phase: 'Phase 3',
+        sampleSize: 1306,
+        primaryEndpoint:
+          'Co-primary PASI 75 and modified IGA 0 or 1 at week 12, with an active etanercept comparator arm',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 versus placebo and versus etanercept',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Hueber 2012 Crohn disease proof-of-concept (NCT01009281)',
+        phase: 'Phase 2 proof of concept',
+        sampleSize: 59,
+        primaryEndpoint: 'Bayesian probability that secukinumab reduces CDAI by at least 50 points more than placebo at week 6',
+        endpointMet: false,
+        statisticalPValue: 'Blockade of IL-17A was ineffective; higher adverse event rates than placebo',
+        unreportedAdverseSignals:
+          'Twenty infections including four local fungal infections on secukinumab against none on placebo, in a 59-patient study.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'PASI 75 at week 12 in 81.6% (ERASURE 300 mg) and 77.1% (FIXTURE 300 mg) versus 4.5% and 4.9% on placebo',
+        'Superiority over etanercept 50 mg twice weekly in a randomised active-comparator arm',
+        'Higher rates of mucocutaneous candidiasis than placebo, consistent with the known role of IL-17A in antifungal mucosal defence',
+        'Worsening rather than improvement in active Crohn disease',
+      ],
+      unsupportedInferences: [
+        'That an inflammatory cytokine is pathogenic wherever it appears; IL-17A is protective in the intestinal barrier',
+        'That cross-trial PASI 100 comparisons establish superiority of one IL-17 or IL-23 agent over another',
+      ],
+      whatFailedInitially: [
+        'The Crohn disease proof-of-concept trial not only missed its endpoint but was associated with more withdrawals for lack of effect and more infections than placebo',
+        'IL-17F homodimer is not neutralised by secukinumab, a gap that motivated the development of dual IL-17A/F blockade',
+      ],
+      realWorldOutcome: [
+        'New-onset or exacerbated inflammatory bowel disease is a recognised label warning for the whole IL-17 class',
+        'Onset of skin clearance is faster than with upstream IL-23 blockade, which drives real-world choice in patients wanting rapid results',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous prefilled syringe, autoinjector pen or 30-minute intravenous infusion for some indications',
+      description:
+        '300 mg subcutaneously weekly for five weeks then every four weeks in psoriasis, with lower doses in some rheumatological indications and an intravenous loading option approved in 2023.',
+      safetyProfile:
+        'No boxed warning. Mucocutaneous candidiasis, upper respiratory infection and neutropenia are the characteristic events. Exacerbation or new onset of inflammatory bowel disease is a specific warning, and the drug should not be used in patients with active Crohn disease or ulcerative colitis.',
+    },
+    commonQuestions: [
+      {
+        q: 'I have psoriasis and Crohn disease. Can I take this?',
+        a: 'Generally no. A proof-of-concept trial in Crohn disease found IL-17A blockade ineffective and associated with more adverse events than placebo, and new onset or worsening of inflammatory bowel disease is a specific label warning. An IL-23 p19 antibody, which acts upstream, is usually preferred because it treats both conditions.',
+        auditNote: 'One of the clearest instances in immunology of the same cytokine being harmful in one tissue and protective in another.',
+      },
+      {
+        q: 'Why do I keep getting oral thrush?',
+        a: 'Because IL-17A is the principal cytokine defending the mouth and throat against Candida. This is a predictable pharmacological consequence rather than a random side effect, and it is what people with inherited IL-17 signalling defects experience. Most episodes are mild and treatable without stopping the antibody.',
+      },
+      {
+        q: 'Is it better than the newer IL-23 drugs?',
+        a: 'It clears skin faster. Cross-trial comparisons suggest IL-23 p19 antibodies reach higher complete clearance rates and dose only every 8 or 12 weeks, and they are safe in inflammatory bowel disease where IL-17 blockade is not. Those comparisons are indirect, so the honest answer depends on which attribute matters to you.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Langley et al., Secukinumab in Plaque Psoriasis, Results of Two Phase 3 Trials, NEJM 2014',
+        identifier: '10.1056/NEJMoa1314258',
+        kind: 'doi',
+      },
+      {
+        label: 'Hueber et al., Secukinumab for moderate to severe Crohn disease, unexpected results, Gut 2012',
+        identifier: '10.1136/gutjnl-2011-301668',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, ERASURE',
+        identifier: 'NCT01365455',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, COSENTYX BLA 125504, original approval 21 January 2015',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125504',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]
