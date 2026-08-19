@@ -2122,4 +2122,795 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Nedosiran — a stem-loop conjugate, and the one approved siRNA whose own sequence sources disagree.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'nedosiran',
+    name: 'Nedosiran',
+    tradeName: 'Rivfloza',
+    sponsor: 'Novo Nordisk (originated at Dicerna Pharmaceuticals)',
+    targetGene: 'LDHA',
+    targetProtein: 'Lactate dehydrogenase A',
+    modality: 'siRNA (Small Interfering RNA)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2023,
+    indication:
+      'Primary hyperoxaluria type 1, to lower urinary oxalate levels in children aged 2 and older and adults with relatively preserved kidney function (eGFR 30 mL/min/1.73 m2 or above)',
+    patientFriendlyIndication: 'Primary hyperoxaluria type 1 — a genetic cause of kidney stones and kidney failure',
+    conditionContext: {
+      conditionExplainer:
+        'Primary hyperoxaluria is a family of liver enzyme defects that all end in the same place: too much glyoxylate reaching the enzyme that converts it into oxalate. Oxalate cannot be metabolised, so it leaves through the kidney, crystallises with calcium and destroys it.',
+      whyItMatters:
+        'Kidney failure in childhood or early adulthood is the usual course untreated. Dialysis cannot clear oxalate fast enough, and the deposits then spread through bone, heart and retina.',
+      whoTakesThis:
+        'Children aged 2 and over and adults with PH1 whose kidney function is still relatively preserved. The label draws that line at an eGFR of 30 mL/min/1.73 m2.',
+      clinicalGoals:
+        'Lower 24-hour urinary oxalate toward the normal range and keep it there, in the hope that stones and kidney decline follow.',
+    },
+    oneSentenceVerdict:
+      'Silences the last enzyme in the oxalate pathway rather than an earlier one, and in PHYOX2 half of treated patients reached a normal or near-normal urinary oxalate against none on placebo — but only in type 1, because the type 2 subgroup showed no consistent effect.',
+    laymanHowItWorks:
+      'Every form of primary hyperoxaluria funnels through one final enzyme that turns glyoxylate into oxalate. Nedosiran switches that last enzyme off in liver cells, so the conversion cannot happen no matter which upstream enzyme is broken. That was the theory. In practice the trial showed the effect clearly in type 1 disease and not in the small type 2 group, and the licence follows the data rather than the theory.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 65,
+    anatomicalSite: 'Hepatocyte cytoplasm (liver)',
+    substitutes: {
+      summary:
+        'Lumasiran blocks the same pathway one step earlier and is also approved for PH1 only; the two have never been compared head to head. Pyridoxine helps a minority of genotypes, and fluid and citrate change whether oxalate crystallises rather than how much is made.',
+      conventionalRx: [
+        {
+          name: 'Lumasiran (Oxlumo)',
+          class: 'siRNA against HAO1',
+          howItCompares:
+            'Blocks glycolate oxidase upstream, reducing the substrate that reaches lactate dehydrogenase. Both drugs are approved for PH1 and both were licensed on urinary oxalate, not on stone or kidney outcomes.',
+          typicalCost:
+            'About US$1,638,694 in the first year including the loading phase (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          prosAndCons:
+            'Pros: longer follow-up, and a 60-month final analysis published. Cons: same surrogate endpoint, same absence of a controlled clinical outcome.',
+        },
+        {
+          name: 'Pyridoxine (vitamin B6)',
+          class: 'Cofactor supplementation',
+          howItCompares:
+            'Chaperones the misfolded AGT enzyme in responsive AGXT genotypes. Where it works it reduces oxalate production directly and costs almost nothing.',
+          typicalCost: 'Under US$120 per year (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          prosAndCons:
+            'Pros: oral, negligible cost, long history. Cons: only a minority of genotypes respond.',
+        },
+        {
+          name: 'Potassium citrate solution',
+          class: 'Urinary alkalinising agent',
+          howItCompares:
+            'Changes the solubility of calcium oxalate rather than the amount produced. Complementary to, not competitive with, an siRNA.',
+          typicalCost:
+            'US$0.18 per 10 mEq extended-release tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025)',
+          prosAndCons:
+            'Pros: cheap and directly targets crystallisation. Cons: does nothing about overproduction.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Sustained high fluid intake',
+          action:
+            'Maintain the urine volume target set by the nephrology team, including overnight.',
+          patientImpact:
+            'Dilution keeps calcium oxalate below its solubility limit. It does not reduce oxalate production, so it is used alongside, not instead of, drug therapy.',
+          clinicalPrecaution:
+            'Volume targets must be individualised, especially once eGFR falls. Do not set them without the treating team.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'UCAGAGAAAAAGGACAACAUGG',
+      chemicalFormula: 'C662H808F19N231O413P57S6Na57',
+      molecularWeight: '22,238 Da (nedosiran sodium, per the FDA label)',
+      structureSource: {
+        label:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 (Table 1, antisense strand as printed in the FDA insert — see the sequence-discrepancy audit point); formula and mass from the RIVFLOZA label',
+        identifier: '10.1124/molpharm.124.000895',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ned-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc-nucleoside release testing',
+          description:
+            'Nedosiran is conjugated differently from the L96 drugs: four separate GalNAc-conjugated ribonucleosides sit in the loop of the sense strand, so the conjugated amidites themselves are release-tested as individual building blocks.',
+          reagentsAndBuffer:
+            "GalNAc-conjugated adenosine and guanosine phosphoramidites, 2'-F and 2'-OMe A/C/G/U amidites, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
+        },
+        {
+          id: 'ned-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase assembly of the hairpin sense strand and 22-mer antisense strand',
+          description:
+            'Assemble the long sense strand that folds back on itself into a stem-loop, incorporating the four GalNAc-bearing nucleosides in the tetraloop, and the 22-nucleotide antisense strand separately.',
+          dependsOnStepId: 'ned-w1',
+          reagentsAndBuffer:
+            '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide for the phosphorothioate positions; concentrated aqueous ammonia',
+        },
+        {
+          id: 'ned-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange HPLC of a folded strand',
+          description:
+            'Purify each strand. The hairpin sense strand is the harder problem: it must be resolved under conditions that do not denature the stem-loop the conjugate depends on.',
+          dependsOnStepId: 'ned-w2',
+          reagentsAndBuffer:
+            'Strong anion-exchange resin; 20 mM sodium phosphate pH 8.5 with 20% acetonitrile and a sodium bromide gradient at controlled temperature; 3 kDa tangential-flow ultrafiltration',
+        },
+        {
+          id: 'ned-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Duplex annealing and tetraloop confirmation',
+          description:
+            'Anneal the antisense strand to the stem of the folded sense strand and confirm both the intact mass and the folded state, because a sense strand that failed to form its loop presents its four GalNAc groups incorrectly.',
+          dependsOnStepId: 'ned-w3',
+          reagentsAndBuffer:
+            'Equimolar strands in phosphate-buffered saline from 90 degrees C with controlled cooling; ion-pair reversed-phase LC-MS; non-denaturing anion-exchange or UV melting for the folded state',
+        },
+        {
+          id: 'ned-w5',
+          stepNumber: 5,
+          phase: 'Cellular_Delivery',
+          name: 'Free uptake into primary human hepatocytes',
+          description:
+            'Dose without transfection reagent so uptake depends on the tetraloop GalNAc cluster engaging ASGPR.',
+          dependsOnStepId: 'ned-w4',
+          reagentsAndBuffer:
+            "Cryopreserved primary human hepatocytes, Williams' E medium with GlutaMAX, collagen-coated plates, asialofetuin competitor",
+        },
+        {
+          id: 'ned-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'LDHA knockdown and oxalate output',
+          description:
+            'Quantify LDHA mRNA by RT-qPCR and oxalate in the medium, with lactate measured alongside because lactate dehydrogenase A also carries out the pyruvate-to-lactate step.',
+          dependsOnStepId: 'ned-w5',
+          reagentsAndBuffer:
+            'TaqMan Fast Advanced Master Mix with an LDHA FAM probe and a GAPDH VIC control; LC-MS/MS or ion chromatography for oxalate; enzymatic lactate assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ned-a1',
+        category: 'measured',
+        title: 'PHYOX2: half of treated patients reached normal or near-normal urinary oxalate',
+        laymanSummary:
+          'Urinary oxalate fell substantially on nedosiran and rose on placebo, and 50% of treated patients reached a normal or near-normal level on two consecutive visits against none in the placebo group.',
+        technicalDetails:
+          'Double-blind, placebo-controlled, 35 participants randomised 2:1 with eGFR of 30 or above. Primary endpoint, the area under the curve of percent reduction from baseline in 24-hour urinary oxalate between day 90 and day 180: least-squares mean +3507 (SE 788) with nedosiran versus -1664 (SE 1190) with placebo, difference 5172 (95% CI 2929 to 7414; P<0.001). 50% versus 0% achieved normal or near-normal urinary oxalate on two or more consecutive visits (P=0.002). Injection-site reactions in 9%, all mild and self-limiting.',
+        evidenceSource: 'Baum MA et al., Kidney Int 2023;103:207-217',
+        doi: '10.1016/j.kint.2022.07.025',
+        measuredMetric:
+          'Area under the curve of percent reduction in 24-hour urinary oxalate, days 90 to 180',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ned-a2',
+        category: 'failed',
+        title: 'The type 2 subgroup showed no consistent effect, and the licence excludes it',
+        laymanSummary:
+          'Nedosiran targets the last enzyme in the pathway, which in theory should work for every type of primary hyperoxaluria. In the six type 2 patients it did not, and the drug is approved for type 1 only.',
+        technicalDetails:
+          'PHYOX2 enrolled 29 patients with PH1 and 6 with PH2. The PH1 subgroup showed a sustained urinary oxalate reduction — 64.7% versus 0% achieving normal or near-normal levels, P<0.001 — and a significant plasma oxalate reduction (P=0.017). The paper states that no consistent effect was seen in the PH2 subgroup. The FDA indication is restricted to PH1. Six patients cannot exclude a real effect, but they also cannot establish one, and the label followed the data.',
+        evidenceSource: 'Baum MA et al., Kidney Int 2023;103:207-217',
+        doi: '10.1016/j.kint.2022.07.025',
+        inferredClaim:
+          'That silencing the terminal enzyme of the pathway works across all primary hyperoxaluria subtypes',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ned-a3',
+        category: 'conclusion_shift',
+        title: 'Two published sources disagree about one base of the drug\'s own guide strand',
+        laymanSummary:
+          'The FDA label and a separate published database describe the sixth letter of nedosiran\'s active strand differently — a G in one, a C in the other. The sequence on this page is the one printed in the label.',
+        technicalDetails:
+          'A 2024 review that transcribed the approved siRNA sequences from the FDA inserts records, in the footnote to its own table, that "the guanosine at position 6 from the 5\' end of the nedosiran antisense strand is instead called a cytosine in an alternative source (Siramshetty et al., 2022) to the FDA label". The sequence stored here is the label version. One base changes the predicted base-pairing with the LDHA transcript, so this is not a typographical curiosity.',
+        evidenceSource:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024, Table 1 and Table 2 footnotes',
+        doi: '10.1124/molpharm.124.000895',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'ned-a4',
+        category: 'inferred',
+        title: 'Approved on a urine chemistry, like lumasiran, and for the same reason',
+        laymanSummary:
+          'The indication is worded "to lower urinary oxalate levels". Stones, nephrocalcinosis and kidney survival were not the endpoints.',
+        technicalDetails:
+          'The FDA indication reads "to lower urinary oxalate levels in children 2 years of age and older and adults with primary hyperoxaluria type 1 and relatively preserved kidney function". PHYOX2 ran six months with a biochemical primary endpoint in 35 patients. Long-term data come from PHYOX3, an open-label extension without a concurrent control.',
+        evidenceSource:
+          'RIVFLOZA US prescribing information, section 1; PHYOX3, Kidney Int Rep 2025;10:1993-2002',
+        doi: '10.1016/j.ekir.2025.03.031',
+        inferredClaim:
+          'That lowering urinary oxalate prevents stones or preserves kidney function — neither has been shown against a control',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ned-a5',
+        category: 'conclusion_shift',
+        title: 'The paediatric range was widened from 9 years to 2 years after approval',
+        laymanSummary:
+          'The drug was first approved for children aged 9 and over. An efficacy supplement in March 2025 extended it down to age 2.',
+        technicalDetails:
+          'NDA 215842 was approved as a new molecular entity on 29 September 2023 and an efficacy supplement was approved on 27 March 2025. The current label covers children aged 2 and older, with a separate weight-banded dose for the 2-to-under-12 band.',
+        evidenceSource: 'Drugs@FDA NDA 215842 submission history; RIVFLOZA prescribing information',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ned-a6',
+        category: 'measured',
+        title: 'A hairpin sense strand with four GalNAc groups in its loop',
+        laymanSummary:
+          'Every other approved siRNA here hangs a single three-branched sugar cluster off the end of one strand. Nedosiran folds its passenger strand into a loop and puts four separate sugars inside it.',
+        technicalDetails:
+          'The 2024 review notes that "the sense strand of newly approved nedosiran is designed to form a hairpin or stem-loop structure in which the loop is comprised of four GalNAc aminosugar conjugated ribonucleosides". The consequence for manufacture is that the conjugate is built from individual GalNAc-nucleoside amidites during synthesis rather than attached to a pre-loaded support, and that folding must be confirmed as part of release.',
+        evidenceSource:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024, Table 1 legend',
+        doi: '10.1124/molpharm.124.000895',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Monthly subcutaneous dose carried by a looped sugar cluster',
+        laymanDesc:
+          'An injection under the skin once a month. Instead of one branched sugar tag on the end, this drug folds part of itself into a loop and studs the loop with four sugars.',
+        molecularDetail:
+          'The sense strand folds into a stem-loop whose tetraloop is composed of four GalNAc-conjugated ribonucleosides, which together engage the hepatocyte asialoglycoprotein receptor. This is the GalXC conjugation architecture rather than the triantennary L96 cluster used by the Alnylam conjugates.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Receptor-mediated uptake into the liver cell',
+        laymanDesc:
+          'Liver cells recognise the sugar cluster and pull the whole molecule inside.',
+        molecularDetail:
+          'ASGPR-mediated clathrin endocytosis internalises the conjugate; the receptor releases its cargo at endosomal pH and recycles. A fraction of the duplex escapes to the cytoplasm.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Guide strand loaded into Argonaute 2',
+        laymanDesc:
+          'The 22-letter active strand is loaded into the cell\'s silencing machinery and the folded carrier strand is discarded.',
+        molecularDetail:
+          'The 22-nucleotide antisense strand loads into Argonaute 2 within RISC. Nedosiran is one of the two approved siRNAs described as binding its target with near-complete rather than complete complementarity.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'LDHA messenger RNA is cut and the last enzyme disappears',
+        laymanDesc:
+          'The complex destroys the instructions for lactate dehydrogenase A, the enzyme that performs the final conversion into oxalate.',
+        molecularDetail:
+          'Argonaute 2 cleaves LDHA mRNA in its 3\' untranslated region. Hepatic lactate dehydrogenase A catalyses the terminal glyoxylate-to-oxalate step common to all primary hyperoxaluria subtypes, which is the theoretical basis for subtype-agnostic activity that PHYOX2 did not confirm in type 2.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Urinary oxalate falls in type 1 disease',
+        laymanDesc:
+          'Less oxalate is produced, so less reaches the kidney. Half of treated patients got to a normal or near-normal urine level; none of the placebo patients did.',
+        molecularDetail:
+          'Reduced hepatic oxalate synthesis produced a between-group difference of 5172 in the area under the curve of percent urinary oxalate reduction across days 90 to 180 (P<0.001), with a significant plasma oxalate reduction in the PH1 subgroup (P=0.017) and no consistent effect in the six PH2 participants.',
+        iconName: 'Droplets',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'PHYOX2 (NCT03847909)',
+        phase: 'Phase 2 pivotal',
+        sampleSize: 35,
+        primaryEndpoint:
+          'Area under the curve of percent reduction from baseline in 24-hour urinary oxalate, days 90 to 180',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001',
+        unreportedAdverseSignals:
+          'The six PH2 participants showed no consistent effect; the trial was not powered to test that subgroup separately.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Between-group difference of 5172 in the AUC of percent urinary oxalate reduction across days 90 to 180 (P<0.001)',
+        '50% of treated patients versus 0% on placebo reaching normal or near-normal urinary oxalate on two consecutive visits',
+        'Significant plasma oxalate reduction in the PH1 subgroup (P=0.017)',
+        'Injection-site reactions in 9% of treated participants, all mild and self-limiting',
+      ],
+      unsupportedInferences: [
+        'That blocking the terminal enzyme works across all primary hyperoxaluria subtypes — the PH2 subgroup did not respond consistently',
+        'That lower urinary oxalate means fewer stones or preserved kidney function; neither was measured against a control',
+        'That nedosiran and lumasiran are interchangeable, or that either is superior — they have never been compared',
+      ],
+      whatFailedInitially: [
+        'The subtype-agnostic hypothesis, in the only randomised test it has had',
+      ],
+      realWorldOutcome: [
+        'The label restricts use to eGFR at or above 30 mL/min/1.73 m2, so the patients in greatest danger from oxalosis are outside the studied population',
+        'RNAi therapy has begun to make kidney-only transplantation an option in PH1 patients who would previously have needed a combined liver-kidney transplant',
+      ],
+    },
+    deliverySystem: {
+      type: 'GalNAc stem-loop conjugate (GalXC), subcutaneous injection',
+      description:
+        'Prefilled syringe delivering 160 mg in 1 mL or 128 mg in 0.8 mL, and an 80 mg vial, given subcutaneously once monthly with weight-banded and age-banded dosing.',
+      safetyProfile:
+        'No boxed warning. The only adverse reaction reported in at least 20% of patients is injection-site reaction; in the pivotal trial these occurred in 9% and were all mild and self-limiting.',
+    },
+    commonQuestions: [
+      {
+        q: 'It targets the final step, so why does it only work in type 1?',
+        a: 'That is exactly the question PHYOX2 raised and did not settle. Lactate dehydrogenase A performs the terminal glyoxylate-to-oxalate conversion in every subtype, so the theory predicts subtype-independent activity. The trial enrolled 29 PH1 and 6 PH2 patients; the PH1 group responded and the PH2 group showed no consistent effect. Six patients is too few to disprove the theory, and it was also too few to license the indication.',
+        auditNote:
+          'This is a case where the mechanism and the evidence point in different directions, and the label followed the evidence.',
+      },
+      {
+        q: 'Should I take nedosiran or lumasiran?',
+        a: 'There is no evidence to answer that. Both are approved for PH1 only, both were licensed on urinary oxalate rather than on stones or kidney survival, and no trial has compared them. They block different steps of the same pathway — lumasiran removes the enzyme that makes glyoxylate, nedosiran removes the enzyme that converts it to oxalate.',
+      },
+      {
+        q: 'Why does the label restrict it to reasonably preserved kidney function?',
+        a: 'Because that is who was studied. PHYOX2 required an eGFR of at least 30 mL/min/1.73 m2, and the indication follows the trial. Patients with advanced kidney failure — the ones facing systemic oxalosis — were outside the studied population, and their oxalate handling is different because the kidney is no longer clearing it.',
+      },
+      {
+        q: 'Why does this page flag a disagreement about the sequence?',
+        a: 'Because there is one, in print. A 2024 review that transcribed the approved sequences from the FDA inserts notes in its own table footnote that a separate published source lists the sixth base of the guide strand as a cytosine where the FDA label shows a guanosine. The sequence stored here is the label version, and the disagreement is recorded rather than quietly resolved.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Baum MA et al. PHYOX2: a pivotal randomized study of nedosiran in primary hyperoxaluria type 1 or 2. Kidney Int 2023;103:207-217',
+        identifier: '10.1016/j.kint.2022.07.025',
+        kind: 'doi',
+      },
+      {
+        label:
+          'PHYOX3: Nedosiran Long-Term Safety and Efficacy in Patients With Primary Hyperoxaluria Type 1. Kidney Int Rep 2025;10:1993-2002',
+        identifier: '10.1016/j.ekir.2025.03.031',
+        kind: 'doi',
+      },
+      { label: 'PHYOX2', identifier: 'NCT03847909', kind: 'nct' },
+      {
+        label: 'RIVFLOZA (nedosiran) injection, US prescribing information — DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ace9d4bc-4d20-4beb-9e9d-888690424833',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 — Table 1 sequences and the nedosiran sequence-discrepancy footnote',
+        identifier: '10.1124/molpharm.124.000895',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Sehgal I, Eells K, Hudson I. A Comparison of Currently Approved siRNA Medications to Alternative Treatments. Pharmacy 2024;12:58',
+        identifier: '10.3390/pharmacy12020058',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC), 2026 file, prices effective 17 December 2025',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Fitusiran — the only siRNA here whose boxed warning was written out of its own trial deaths.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'fitusiran',
+    name: 'Fitusiran',
+    tradeName: 'Qfitlia',
+    sponsor: 'Sanofi (Genzyme), developed with Alnylam Pharmaceuticals',
+    targetGene: 'SERPINC1',
+    targetProtein: 'Antithrombin',
+    modality: 'siRNA (Small Interfering RNA)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2025,
+    indication:
+      'Routine prophylaxis to prevent or reduce the frequency of bleeding episodes in patients aged 12 and older with haemophilia A or B, with or without factor VIII or IX inhibitors',
+    patientFriendlyIndication: 'Haemophilia A or B, including when factor replacement no longer works',
+    conditionContext: {
+      conditionExplainer:
+        'Clotting is a balance between proteins that make clots and proteins that dissolve or restrain them. Haemophilia removes one of the clot-forming factors. Fitusiran does not put it back — it removes antithrombin, one of the natural brakes, so that whatever clotting capacity remains goes further.',
+      whyItMatters:
+        'Some people with haemophilia develop inhibitors, antibodies that neutralise replacement factor and leave them with almost nothing. Rebalancing works regardless of which factor is missing and regardless of inhibitor status.',
+      whoTakesThis:
+        'People aged 12 and over with haemophilia A or B, with or without inhibitors, on routine prophylaxis. Antithrombin activity is measured before and during treatment and the dose is adjusted to keep it inside a defined band.',
+      clinicalGoals:
+        'Fewer treated bleeds per year, on an injection schedule measured in months rather than days, without pushing antithrombin so low that clots form where they should not.',
+    },
+    oneSentenceVerdict:
+      'Silences antithrombin to release the brake on clotting rather than replacing the missing factor, cutting the annualised bleeding rate by 90.8% against on-demand treatment in patients with inhibitors — and carrying a boxed warning for thrombosis written from its own trial data.',
+    laymanHowItWorks:
+      'Blood clotting is a tug of war between proteins that build clots and proteins that hold them back. Haemophilia takes away one of the builders. Instead of replacing it, fitusiran removes one of the holders — a liver protein called antithrombin — so the remaining builders can do more. It works whichever factor is missing, and it works even when the immune system has learned to destroy replacement factor. The danger is obvious from the mechanism: take the brake off too far and clots form where they should not, which is exactly what happened at the original dose.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    anatomicalSite: 'Hepatocyte cytoplasm (liver)',
+    substitutes: {
+      summary:
+        'Factor replacement and emicizumab work by restoring or mimicking the missing clotting activity rather than removing a brake. All of them were the comparators fitusiran was not tested against: both pivotal trials randomised fitusiran against on-demand treatment, not against prophylaxis.',
+      conventionalRx: [
+        {
+          name: 'Emicizumab (Hemlibra)',
+          class: 'Bispecific antibody bridging factor IXa and factor X',
+          howItCompares:
+            'Substitutes for the missing factor VIII function rather than removing a brake, and works with or without inhibitors — but only in haemophilia A. Subcutaneous, weekly to monthly.',
+          typicalCost: 'Not priced here — no published figure to cite',
+          prosAndCons:
+            'Pros: established prophylaxis standard in haemophilia A, no antithrombin monitoring. Cons: does not cover haemophilia B.',
+        },
+        {
+          name: 'Factor VIII or factor IX concentrate',
+          class: 'Recombinant or plasma-derived clotting factor replacement',
+          howItCompares:
+            'Replaces exactly what is missing. This was the on-demand comparator arm in both fitusiran phase 3 trials, where the annualised bleeding rate was 31.0 in haemophilia without inhibitors.',
+          typicalCost: 'Not priced here — no published figure to cite',
+          prosAndCons:
+            'Pros: direct correction, decades of experience, no rebalancing risk. Cons: frequent intravenous dosing, and useless once inhibitors develop.',
+        },
+        {
+          name: 'Bypassing agents (aPCC, recombinant factor VIIa)',
+          class: 'Haemostatic agents for inhibitor patients',
+          howItCompares:
+            'The on-demand comparator in ATLAS-INH, where the annualised bleeding rate was 18.1. Used to treat bleeds rather than to prevent them.',
+          typicalCost: 'Not priced here — no published figure to cite',
+          prosAndCons:
+            'Pros: work in the presence of inhibitors. Cons: on-demand rather than preventive, and combining them with antithrombin lowering is precisely the situation the QFITLIA label warns about.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Know your antithrombin number and the bleed-management plan that goes with it',
+          action:
+            'Keep a current record of the most recent antithrombin activity result and the haemophilia centre\'s written bleed-management plan, and carry both when travelling or attending any other hospital.',
+          patientImpact:
+            'The boxed warning names persistent antithrombin activity below 15%, an indwelling venous catheter, and the post-operative setting when bleed management guidelines were not followed as thrombosis risk factors. Every one of those is a situation where another clinician needs the information immediately.',
+          clinicalPrecaution:
+            'This is documentation, not self-management. Any change to dosing or to bleed management belongs to the treating haemophilia centre.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      chemicalFormula: 'C520H636F21N175Na43O309P43S6',
+      molecularWeight: '17,193 Da (fitusiran sodium, per the FDA label)',
+      structureSource: {
+        label:
+          'QFITLIA (fitusiran) US prescribing information, section 11 — molecular formula and mass. No nucleotide sequence has been published for fitusiran, so none is stored here.',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6dd2f8ac-6f90-4cbf-b197-97d74964135c',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fit-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc support release testing',
+          description:
+            'Release-test the phosphoramidites and the triantennary GalNAc support. The label formula names twenty-one fluorines and six sulfurs, and both counts are release criteria for the finished conjugate.',
+          reagentsAndBuffer:
+            "2'-F and 2'-OMe A/C/G/U phosphoramidites, triantennary GalNAc CPG support, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
+        },
+        {
+          id: 'fit-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase assembly of both strands',
+          description:
+            'Assemble the sense strand on the GalNAc support and the antisense strand separately, sulfurising the terminal linkages and oxidising the rest, then cleave and deprotect.',
+          dependsOnStepId: 'fit-w1',
+          reagentsAndBuffer:
+            '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide; concentrated aqueous ammonia',
+        },
+        {
+          id: 'fit-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange HPLC and desalting',
+          description:
+            'Resolve full-length product from truncation impurities and buffer-exchange into water for injection.',
+          dependsOnStepId: 'fit-w2',
+          reagentsAndBuffer:
+            'Strong anion-exchange resin; 20 mM sodium phosphate pH 8.5 with 20% acetonitrile and a sodium bromide gradient; 3 kDa tangential-flow ultrafiltration',
+        },
+        {
+          id: 'fit-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Duplex annealing and intact-mass confirmation',
+          description:
+            'Anneal the strands and confirm the conjugated duplex mass against the label formula by ion-pair LC-MS.',
+          dependsOnStepId: 'fit-w3',
+          reagentsAndBuffer:
+            'Equimolar strands in phosphate-buffered saline from 90 degrees C; ion-pair reversed-phase LC-MS with hexafluoroisopropanol / triethylamine',
+        },
+        {
+          id: 'fit-w5',
+          stepNumber: 5,
+          phase: 'Cellular_Delivery',
+          name: 'Free uptake into primary human hepatocytes',
+          description:
+            'Dose hepatocytes with no transfection reagent so entry depends on the asialoglycoprotein receptor.',
+          dependsOnStepId: 'fit-w4',
+          reagentsAndBuffer:
+            "Cryopreserved primary human hepatocytes, Williams' E medium with GlutaMAX, collagen-coated plates, asialofetuin competitor",
+        },
+        {
+          id: 'fit-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'SERPINC1 knockdown, antithrombin activity and thrombin generation',
+          description:
+            'Quantify SERPINC1 mRNA and secreted antithrombin, then measure thrombin generation in factor-deficient plasma. All three matter, because the label ties dosing to antithrombin activity rather than to drug concentration.',
+          dependsOnStepId: 'fit-w5',
+          reagentsAndBuffer:
+            'TaqMan Fast Advanced Master Mix with a SERPINC1 FAM probe and a GAPDH VIC control; chromogenic antithrombin activity assay; calibrated automated thrombogram in factor VIII- or IX-deficient plasma',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fit-a1',
+        category: 'measured',
+        title: 'ATLAS-INH: 90.8% lower annualised bleeding rate in patients with inhibitors',
+        laymanSummary:
+          'In people whose immune systems destroy replacement factor, monthly fitusiran cut the bleeding rate roughly tenfold, and two-thirds had no treated bleeds at all.',
+        technicalDetails:
+          'Open-label, randomised 2:1, 57 participants aged 12 and over with haemophilia A or B with inhibitors, previously on on-demand bypassing agents. Negative binomial model-based mean annualised bleeding rate 1.7 (95% CI 1.0 to 2.7) with fitusiran prophylaxis versus 18.1 (95% CI 10.6 to 30.8) with on-demand bypassing agents, a 90.8% reduction (95% CI 80.8 to 95.6; P<0.0001). 25 of 38 (66%) had zero treated bleeds versus 1 of 19 (5%).',
+        evidenceSource: 'Young G et al., Lancet 2023;401:1427-1437',
+        doi: '10.1016/S0140-6736(23)00284-2',
+        measuredMetric: 'Mean annualised bleeding rate over the 9-month efficacy period',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fit-a2',
+        category: 'measured',
+        title: 'ATLAS-A/B: bleeding rate ratio of 0.101 without inhibitors',
+        laymanSummary:
+          'In haemophilia without inhibitors, the bleeding rate on fitusiran was about a tenth of the on-demand rate, and half the treated group had no bleeds at all.',
+        technicalDetails:
+          'Open-label, randomised 2:1, 120 participants across 45 sites in 17 countries. Estimated mean annualised bleeding rate 3.1 (95% CI 2.3 to 4.3) with fitusiran versus 31.0 (95% CI 21.1 to 45.5) with on-demand clotting factor concentrates; rate ratio 0.101 (95% CI 0.064 to 0.159; P<0.0001). 40 of 79 treated participants (51%) had no treated bleeds versus 2 of 40 (5%). No treatment-related thrombosis or deaths were reported in this trial.',
+        evidenceSource: 'Srivastava A et al., Lancet Haematol 2023;10:e322-e332',
+        doi: '10.1016/S2352-3026(23)00037-6',
+        measuredMetric: 'Annualised bleeding rate, intention-to-treat',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fit-a3',
+        category: 'failed',
+        title: 'The original 80 mg monthly dose caused fatal thrombosis and is no longer approved',
+        laymanSummary:
+          'The dose used in both pivotal trials is not the dose on the label. It caused clots, including a fatal one in the brain, and the FDA label now says it must not be used.',
+        technicalDetails:
+          'The QFITLIA boxed warning states that thrombotic events were reported in 2.6% of patients receiving the 80 mg once-monthly dose, at 2.3 events per 100 person-years, including a fatal event of cerebral venous sinus thrombosis, and that "the 80 mg once monthly dose is not approved or recommended for use". Thrombotic events were reported in 1.4% of patients on the approved prophylaxis regimen. Named risk factors are persistent antithrombin activity below 15%, an indwelling venous catheter and the post-operative setting when bleed-management guidelines were not followed.',
+        evidenceSource: 'QFITLIA US prescribing information, boxed warning and section 5.1',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fit-a4',
+        category: 'conclusion_shift',
+        title: 'Dosing was rebuilt around a lab value after the programme was paused',
+        laymanSummary:
+          'After clots appeared, dosing stopped being a fixed monthly amount and became a target: keep antithrombin activity between 15% and 35%, and adjust the dose until it is.',
+        technicalDetails:
+          'The original dose regimen of 80 mg monthly was replaced by an antithrombin-based dose regimen targeting antithrombin activity of 15% to 35%, starting at 50 mg once every two months and adjusted individually. ATLAS-OLE evaluated this regimen; at interim data cut-off 213 participants were on it, 78% on a two-monthly schedule, with integrated safety analysed across 286 participants. The approved label requires antithrombin measurement before initiation, forbids starting if antithrombin activity is below 60%, and requires monitoring with an FDA-cleared test.',
+        evidenceSource: 'Kenet G et al., ATLAS-OLE, Blood 2025',
+        doi: '10.1182/blood.2024027008',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fit-a5',
+        category: 'inferred',
+        title: 'Both pivotal trials compared fitusiran against on-demand treatment, not prophylaxis',
+        laymanSummary:
+          'The tenfold bleeding reduction is against treating bleeds as they happen. It is not a comparison against the preventive treatments most patients would otherwise be on.',
+        technicalDetails:
+          'ATLAS-INH randomised against on-demand bypassing agents and ATLAS-A/B against on-demand clotting factor concentrates. Neither randomised against factor prophylaxis or against emicizumab. Both were open-label, and the annualised bleeding rate depends on participant reporting of bleeds, which is not blinded in either direction.',
+        evidenceSource:
+          'Young G et al., Lancet 2023;401:1427-1437; Srivastava A et al., Lancet Haematol 2023;10:e322-e332',
+        doi: '10.1016/S0140-6736(23)00284-2',
+        inferredClaim:
+          'That fitusiran prophylaxis is superior to established factor or emicizumab prophylaxis',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fit-a6',
+        category: 'measured',
+        title: 'Liver enzyme elevation was the most common adverse event in both trials',
+        laymanSummary:
+          'About a third of patients with inhibitors and about a quarter without had raised liver enzymes on treatment, and the label requires monthly liver testing for the first six months.',
+        technicalDetails:
+          'Increased alanine aminotransferase was the most frequent treatment-emergent adverse event in ATLAS-INH, in 13 of 41 safety-population participants (32%), with none in the comparator arm, and in 18 of 79 (23%) in ATLAS-A/B. The label requires liver tests at baseline, monthly for at least six months after initiation and after any dose increase, and periodically thereafter. Acute and recurrent gallbladder disease shares the boxed warning with thrombosis.',
+        evidenceSource:
+          'Young G et al., Lancet 2023;401:1427-1437; QFITLIA US prescribing information',
+        doi: '10.1016/S0140-6736(23)00284-2',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Subcutaneous injection, dosed to a laboratory target',
+        laymanDesc:
+          'An injection under the skin every two months for most people, but the amount is set by a blood test rather than fixed, because the whole treatment is a balancing act.',
+        molecularDetail:
+          'A triantennary GalNAc conjugate binds hepatocyte ASGPR. Uniquely among the drugs on this page, the label ties dosing to a pharmacodynamic measurement — antithrombin activity, maintained between 15% and 35% using an FDA-cleared assay — rather than to body weight or a fixed schedule.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into the liver cell',
+        laymanDesc:
+          'Liver cells recognise the sugar tag and internalise the drug, holding a reservoir that releases over weeks.',
+        molecularDetail:
+          'ASGPR-mediated endocytosis delivers the conjugate to the endosome; the receptor recycles and a fraction of the duplex escapes into the cytoplasm, with the endolysosomal depot supporting a two-monthly interval.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Guide strand loaded into the silencing complex',
+        laymanDesc:
+          'One strand is loaded into the cell\'s gene-silencing machinery; the other is discarded.',
+        molecularDetail:
+          'The antisense strand loads into Argonaute 2 within RISC. No nucleotide sequence has been published for fitusiran, so this page records the chemistry from the label formula — twenty-one fluorines and six phosphorothioate sulfurs — and does not assert a sequence.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'SERPINC1 messenger RNA is cut and antithrombin production falls',
+        laymanDesc:
+          'The complex destroys the instructions for antithrombin, the protein that restrains clotting. With less of it, the clotting that remains goes further.',
+        molecularDetail:
+          'Argonaute 2 cleaves SERPINC1 mRNA, reducing hepatic antithrombin synthesis. Antithrombin is the principal physiological inhibitor of thrombin and factor Xa, so lowering it increases thrombin generation independently of which coagulation factor is deficient — the reason the drug covers haemophilia A and B, with or without inhibitors.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Rebalanced haemostasis, and a narrow window',
+        laymanDesc:
+          'Bleeding falls sharply. Push antithrombin too low and the balance tips the other way into dangerous clots, which is why the dose is chased to a target rather than fixed.',
+        molecularDetail:
+          'Increased thrombin generation reduced the annualised bleeding rate by 90.8% against on-demand bypassing agents and gave a rate ratio of 0.101 against on-demand factor. The therapeutic window is defined by antithrombin activity: persistent activity below 15% is a named risk factor for thrombosis in the boxed warning, and the target band is 15% to 35%.',
+        iconName: 'Scale',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ATLAS-INH (NCT03417102)',
+        phase: 'Phase 3, open-label',
+        sampleSize: 57,
+        primaryEndpoint: 'Mean annualised bleeding rate over the 9-month efficacy period',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.0001',
+        unreportedAdverseSignals:
+          'Increased alanine aminotransferase in 32% of the fitusiran safety population and none in the comparator arm; suspected or confirmed thromboembolic events in 2 of 38 participants (5%). The 80 mg monthly regimen used here is no longer approved.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'ATLAS-A/B (NCT03417245)',
+        phase: 'Phase 3, open-label',
+        sampleSize: 120,
+        primaryEndpoint: 'Annualised bleeding rate, intention-to-treat',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.0001 (rate ratio 0.101, 95% CI 0.064 to 0.159)',
+        unreportedAdverseSignals:
+          'Increased alanine aminotransferase in 23% of the fitusiran safety population. No treatment-related thrombosis or deaths in this trial, though thrombosis appeared elsewhere in the programme.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '90.8% lower annualised bleeding rate against on-demand bypassing agents in haemophilia with inhibitors',
+        'Rate ratio 0.101 against on-demand factor concentrate in haemophilia without inhibitors',
+        '66% and 51% of treated participants with zero treated bleeds, against 5% in both comparator arms',
+        'Thrombotic events in 2.6% of patients on the withdrawn 80 mg monthly dose, including a fatal cerebral venous sinus thrombosis',
+      ],
+      unsupportedInferences: [
+        'That fitusiran is better than factor prophylaxis or emicizumab — neither was a randomised comparator',
+        'That the trial bleeding rates transfer to the approved regimen, which is a different dose on a different schedule',
+        'That an open-label, patient-reported bleeding count is free of expectation effects in either direction',
+      ],
+      whatFailedInitially: [
+        'The 80 mg once-monthly regimen used throughout the phase 3 programme, now explicitly not approved or recommended in the FDA label',
+        'Dosing to a fixed amount at all: the regimen was rebuilt around a target antithrombin activity band of 15% to 35%',
+      ],
+      realWorldOutcome: [
+        'The approved schedule is as few as six injections a year, against intravenous factor several times a week',
+        'Treatment now requires a laboratory service — antithrombin activity measured on an FDA-cleared assay — as a condition of safe use',
+      ],
+    },
+    deliverySystem: {
+      type: 'GalNAc-conjugated siRNA, subcutaneous prefilled pen or vial',
+      description:
+        'A 50 mg single-dose prefilled pen delivering 0.5 mL, and a 20 mg single-dose vial delivering 0.2 mL, for subcutaneous use under the supervision of a clinician experienced in bleeding disorders. Antithrombin activity is measured before initiation and monitored on an FDA-cleared test thereafter.',
+      safetyProfile:
+        'Boxed warning for thrombotic events and for acute and recurrent gallbladder disease. Additional warning for hepatotoxicity, with liver tests required at baseline, monthly for at least six months after initiation and after dose increases, and periodically thereafter. Common adverse reactions above 10% are viral infection, nasopharyngitis and bacterial infection.',
+    },
+    commonQuestions: [
+      {
+        q: 'How can a drug that removes a clotting brake be safe in a bleeding disorder?',
+        a: 'It is safe only inside a narrow band, and the label is built around policing that band. Antithrombin restrains thrombin; removing some of it lets whatever clotting capacity remains do more work. Remove too much and clots form. The boxed warning names persistent antithrombin activity below 15% as a thrombosis risk factor, dosing targets 15% to 35%, and treatment cannot be started if antithrombin activity is below 60%.',
+      },
+      {
+        q: 'Is the dose in the published trials the dose I would receive?',
+        a: 'No. Both ATLAS-INH and ATLAS-A/B used 80 mg once monthly. That regimen produced thrombotic events in 2.6% of patients including a fatal cerebral venous sinus thrombosis, and the FDA label now states it is not approved or recommended for use. The approved regimen starts at 50 mg once every two months and is adjusted to the antithrombin target.',
+        auditNote:
+          'This is the clearest case on the site of headline efficacy numbers being generated by a regimen that was subsequently withdrawn.',
+      },
+      {
+        q: 'Is it better than emicizumab?',
+        a: 'Unknown. Fitusiran was never randomised against emicizumab, or against factor prophylaxis. Both pivotal trials used on-demand treatment as the comparator, which is a much lower bar. What fitusiran offers that emicizumab does not is coverage of haemophilia B as well as A.',
+      },
+      {
+        q: 'Why does this page not show a sequence?',
+        a: 'Because no nucleotide sequence for fitusiran has been published in a source this file could verify. The FDA label gives the molecular formula and mass, which are recorded, and prints the structure only as an image. Inventing a plausible sequence to fill the gap would be worse than leaving it empty, so it is left empty and the structure carries no machine-verification badge.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Young G et al. Efficacy and safety of fitusiran prophylaxis in people with haemophilia A or B with inhibitors (ATLAS-INH). Lancet 2023;401:1427-1437',
+        identifier: '10.1016/S0140-6736(23)00284-2',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Srivastava A et al. Fitusiran prophylaxis in people with severe haemophilia A or B without inhibitors (ATLAS-A/B). Lancet Haematol 2023;10:e322-e332',
+        identifier: '10.1016/S2352-3026(23)00037-6',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Safety and efficacy of a fitusiran antithrombin-based dose regimen in people with hemophilia A or B: the ATLAS-OLE study. Blood 2025',
+        identifier: '10.1182/blood.2024027008',
+        kind: 'doi',
+      },
+      { label: 'ATLAS-INH', identifier: 'NCT03417102', kind: 'nct' },
+      { label: 'ATLAS-A/B', identifier: 'NCT03417245', kind: 'nct' },
+      {
+        label: 'QFITLIA (fitusiran) injection, US prescribing information — DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6dd2f8ac-6f90-4cbf-b197-97d74964135c',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'FDA Approves Novel Treatment for Hemophilia A or B, with or without Factor Inhibitors, 28 March 2025',
+        identifier:
+          'https://www.fda.gov/news-events/press-announcements/fda-approves-novel-treatment-hemophilia-or-b-or-without-factor-inhibitors',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]
