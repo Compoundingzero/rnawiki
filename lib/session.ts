@@ -83,7 +83,12 @@ export function toCommentUser(row: UserRow): CommentUser {
     name: row.name,
     email: row.email,
     isDoctor: row.verificationState === 'verified',
-    medicalLicenseOrNpi: row.medicalLicenseOrNpi ?? undefined,
+    // The licence/NPI number is DELIBERATELY ABSENT. This object is handed to <AppShell> as
+    // `initialUser`, which means React serialises every field of it into the RSC payload of every
+    // page a signed-in physician loads -- and that payload is plain text in the HTML. Nothing in
+    // the UI renders the number; the verification modal only needs to know one is on file. A
+    // credential that is never displayed has no business crossing to the client at all.
+    hasCredentialOnFile: Boolean(row.medicalLicenseOrNpi),
     medicalSpecialty: row.medicalSpecialty ?? undefined,
     institution: row.institution ?? undefined,
     verifiedAt: row.verifiedAt?.toISOString(),

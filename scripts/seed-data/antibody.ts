@@ -1127,4 +1127,1860 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 4. Trastuzumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'trastuzumab',
+    name: 'Trastuzumab',
+    tradeName: 'Herceptin',
+    sponsor: 'Genentech / Roche',
+    targetGene: 'ERBB2',
+    targetProtein: 'Human Epidermal Growth Factor Receptor 2 (HER2 / neu)',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1998,
+    indication: 'HER2-overexpressing breast cancer, adjuvant and metastatic, and HER2-overexpressing metastatic gastric or gastro-oesophageal junction adenocarcinoma',
+    patientFriendlyIndication: 'Breast and stomach cancers driven by an over-copied growth receptor',
+    anatomicalSite: 'HER2-overexpressing tumour cell membrane',
+    conditionContext: {
+      conditionExplainer:
+        'About one breast cancer in five carries extra copies of the HER2 gene, so the tumour cell surface is covered in a growth receptor that fires without waiting for a signal. Those cancers grow faster and recur sooner.',
+      whyItMatters:
+        'HER2-positive breast cancer had the worst prognosis of any subtype before 1998. Adding a single antibody to chemotherapy after surgery cut the risk of recurrence roughly in half in the first year of the HERA trial, which changed the natural history of the disease.',
+      whoTakesThis:
+        'People whose tumour tests HER2-positive by immunohistochemistry 3+ or by in-situ hybridisation amplification, in the adjuvant, neoadjuvant or metastatic setting.',
+      clinicalGoals:
+        'Prevent recurrence after surgery, extend survival in metastatic disease, and avoid the cardiac dysfunction that concurrent anthracycline exposure produces.',
+    },
+    oneSentenceVerdict:
+      'A humanised antibody against the HER2 receptor that lengthened median time to progression in metastatic disease from 4.6 to 7.4 months and, given for a year after surgery, produced a hazard ratio of 0.54 for recurrence or death at the first HERA analysis.',
+    laymanHowItWorks:
+      'One breast cancer in five has a growth receptor stuck in the on position, jammed there because the gene making it has been copied too many times. Trastuzumab is an antibody that grips that receptor from outside, stops it pairing with its partners, and flags the cell for destruction by immune cells. It only helps if the receptor is actually there, which is why the tumour has to be tested first.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 96,
+    substitutes: {
+      summary:
+        'Trastuzumab biosimilars deliver the same molecule at lower cost; pertuzumab and antibody-drug conjugates such as T-DM1 and trastuzumab deruxtecan build on the same target; lapatinib and tucatinib block the receptor from inside the cell. No dietary intervention affects HER2 amplification.',
+      conventionalRx: [
+        {
+          name: 'Trastuzumab biosimilars (Ogivri, Herzuma, Ontruzant, Trazimera, Kanjinti)',
+          class: 'Biosimilar anti-HER2 monoclonal antibody',
+          howItCompares:
+            'Same molecule, approved on analytical, pharmacokinetic and confirmatory clinical similarity. Five were approved in the United States between December 2017 and June 2019.',
+          typicalCost: 'Commonly 15-30% below originator list price, varying widely by country and tender',
+          prosAndCons:
+            'Pros: identical target and mechanism at lower cost, which matters most where trastuzumab was previously unaffordable. Cons: uptake depends on procurement rather than on evidence.',
+        },
+        {
+          name: 'Pertuzumab (Perjeta)',
+          class: 'Anti-HER2 dimerisation-domain antibody',
+          howItCompares:
+            'Binds a different epitope and blocks HER2-HER3 heterodimerisation. Used with trastuzumab, not instead of it.',
+          typicalCost: 'Approximately $8,000 - $9,000 per three-week cycle US list',
+          prosAndCons:
+            'Pros: additive with trastuzumab in the metastatic and neoadjuvant setting. Cons: adds diarrhoea and cost, and the adjuvant benefit is small in low-risk disease.',
+        },
+        {
+          name: 'Trastuzumab deruxtecan (Enhertu)',
+          class: 'HER2-directed antibody-drug conjugate',
+          howItCompares:
+            'Carries a topoisomerase I inhibitor payload into HER2-expressing cells, and works at HER2-low expression levels where trastuzumab alone does not.',
+          typicalCost: 'Approximately $13,000 - $15,000 per three-week cycle US list',
+          prosAndCons:
+            'Pros: activity in HER2-low disease previously considered HER2-negative. Cons: interstitial lung disease is a boxed warning and has been fatal.',
+        },
+        {
+          name: 'Tucatinib or lapatinib',
+          class: 'Small-molecule HER2 tyrosine kinase inhibitors',
+          howItCompares:
+            'Block the intracellular kinase domain rather than the extracellular receptor, and cross the blood-brain barrier better than an antibody.',
+          typicalCost: 'Lapatinib generic from roughly $500 / month; tucatinib approximately $18,000 / month US list',
+          prosAndCons:
+            'Pros: oral, active in brain metastases. Cons: diarrhoea, hand-foot syndrome, hepatotoxicity.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Cardiovascular risk optimisation during treatment',
+          action:
+            'Control blood pressure, treat dyslipidaemia and maintain aerobic activity through the treatment course, with baseline and serial echocardiography as the oncology team directs.',
+          patientImpact:
+            'Cardiac dysfunction is the dose-limiting toxicity of trastuzumab, and pre-existing cardiovascular disease is the strongest modifiable risk factor for developing it.',
+          clinicalPrecaution:
+            'This manages a known toxicity. It has no effect on the cancer and does not replace scheduled left ventricular ejection fraction monitoring.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG1-kappa produced in Chinese hamster ovary cells',
+      molecularWeight: 'Approximately 148 kDa',
+      structureSource: {
+        label: 'HERCEPTIN HYLECTA US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103792',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'tra-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO fed-batch expression of the humanised IgG1',
+          description:
+            'Produce the antibody in a CHO line selected for consistent afucosylation, since core fucose content governs FcgammaRIIIa binding and therefore antibody-dependent cellular cytotoxicity.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, manganese and galactose feed control for glycan consistency',
+        },
+        {
+          id: 'tra-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and low-pH viral inactivation',
+          description: 'Capture the Fc, wash, elute at low pH and hold the eluate to inactivate enveloped virus.',
+          reagentsAndBuffer: 'Protein A resin, 25 mM sodium citrate pH 3.4 elution, 60 minute hold',
+          dependsOnStepId: 'tra-syn',
+        },
+        {
+          id: 'tra-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Cation exchange polishing and lyophilisation',
+          description:
+            'Resolve charge variants and aggregate, exchange into trehalose and histidine buffer, and lyophilise into the multi-dose vial presentation.',
+          reagentsAndBuffer: 'SP Sepharose cation exchange, alpha,alpha-trehalose dihydrate, L-histidine HCl, polysorbate 20',
+          dependsOnStepId: 'tra-cap',
+        },
+        {
+          id: 'tra-assay',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'HER2 binding and antiproliferative potency assay',
+          description:
+            'Confirm binding to the HER2 extracellular domain subdomain IV and quantify growth inhibition of the HER2-amplified BT-474 breast carcinoma line against the reference standard.',
+          reagentsAndBuffer: 'Recombinant HER2 ECD, BT-474 cells, resazurin or CellTiter-Glo viability readout',
+          dependsOnStepId: 'tra-pol',
+        },
+        {
+          id: 'tra-adcc',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'FcgammaRIIIa-mediated ADCC reporter assay',
+          description:
+            'Verify the effector arm of the mechanism using an engineered FcgammaRIIIa V158 reporter effector cell line against HER2-positive targets.',
+          reagentsAndBuffer: 'Jurkat/FcgammaRIIIa-NFAT-luciferase effector line, SK-BR-3 target cells, luminescent substrate',
+          dependsOnStepId: 'tra-assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tra-1',
+        category: 'measured',
+        title: 'Slamon 2001: adding trastuzumab to first-line chemotherapy in metastatic disease',
+        laymanSummary:
+          'In 469 women with HER2-positive metastatic breast cancer, adding the antibody to chemotherapy lengthened the median time before the disease progressed from 4.6 to 7.4 months.',
+        technicalDetails:
+          'Randomised trial with 234 assigned to chemotherapy alone and 235 to chemotherapy plus trastuzumab. Median time to disease progression was 7.4 versus 4.6 months. Response rate, duration of response and overall survival all favoured the trastuzumab arm. The trial also produced the first clear cardiac safety signal.',
+        evidenceSource: 'Slamon et al., New England Journal of Medicine 2001',
+        doi: '10.1056/NEJM200103153441101',
+        measuredMetric: 'Median time to progression 7.4 versus 4.6 months',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tra-2',
+        category: 'measured',
+        title: 'HERA: one year of adjuvant trastuzumab halved early recurrence risk',
+        laymanSummary:
+          'In over 5,000 women treated after surgery and chemotherapy, one year of the antibody reduced recurrence, second cancers and death by roughly half at the first planned analysis.',
+        technicalDetails:
+          'International randomised trial, 1,694 assigned to one year of trastuzumab, 1,694 to two years and 1,693 to observation. At the first interim analysis with median follow-up of one year, 127 events occurred in the one-year trastuzumab group against 220 in the observation group; unadjusted hazard ratio 0.54 (95% CI 0.43-0.67). Longer follow-up showed the two-year arm gave no additional benefit over one year.',
+        evidenceSource: 'Piccart-Gebhart et al., New England Journal of Medicine 2005 (HERA, NCT00045032)',
+        doi: '10.1056/NEJMoa052306',
+        measuredMetric: 'Hazard ratio 0.54 (95% CI 0.43-0.67) for disease-free survival events at first analysis',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tra-3',
+        category: 'conclusion_shift',
+        title: 'PERSEPHONE: six months was non-inferior to twelve, and the twelve-month standard was never derived from a dose-finding study',
+        laymanSummary:
+          'The one-year duration was a pragmatic choice made when the first adjuvant trials were designed, not a measured optimum. A 4,088-patient trial later showed six months gave the same four-year disease-free survival with half the cardiac toxicity.',
+        technicalDetails:
+          'Open-label randomised non-inferiority trial in 152 UK centres, 2,045 assigned to 12 months and 2,044 to 6 months. Four-year disease-free survival was 89.4% for six months and 89.8% for twelve (hazard ratio 1.07, 90% CI 0.93-1.24, non-inferiority p = 0.011). Severe adverse events occurred in 19% versus 24%, and stopping early for cardiotoxicity in 3% versus 8%. Most guidelines still recommend twelve months, so this is a shift the evidence made that practice has only partly followed.',
+        evidenceSource: 'Earl et al., The Lancet 2019 (PERSEPHONE, NCT00712140)',
+        doi: '10.1016/S0140-6736(19)30650-6',
+        measuredMetric: '4-year disease-free survival 89.4% (6 months) versus 89.8% (12 months), HR 1.07',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tra-4',
+        category: 'measured',
+        title: 'Cardiac dysfunction is caused by the antibody, not only by the chemotherapy',
+        laymanSummary:
+          'Giving trastuzumab at the same time as an anthracycline caused heart muscle weakening in a substantial minority of patients in the first metastatic trial. That result reshaped every regimen that followed.',
+        technicalDetails:
+          'In Slamon 2001, cardiac dysfunction was most frequent in patients receiving an anthracycline, cyclophosphamide and trastuzumab concurrently. HER2 signalling is required for cardiomyocyte stress responses, so blockade impairs repair of anthracycline-mediated damage. Modern regimens sequence the anthracycline before trastuzumab or avoid it entirely, and serial left ventricular ejection fraction monitoring is mandated by the label.',
+        evidenceSource: 'Slamon et al., NEJM 2001 and HERCEPTIN US Prescribing Information boxed warning',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tra-5',
+        category: 'inferred',
+        title: 'HER2-positive is treated as a fixed binary property of a tumour',
+        laymanSummary:
+          'Whether a tumour counts as HER2-positive depends on which assay was run, on which sample, and on where the cut-off was drawn. Those cut-offs have moved, and the arrival of HER2-low as a treatable category shows the binary was always a convention.',
+        technicalDetails:
+          'ASCO/CAP HER2 testing guidelines were revised in 2007, 2013 and 2018, each time reclassifying a fraction of tumours. Immunohistochemistry scoring is observer-dependent, intratumoural heterogeneity is common, and HER2 status can differ between primary and metastatic lesions. The approval of trastuzumab deruxtecan for HER2-low disease means tumours previously classified as HER2-negative now have a HER2-directed option, which the original binary framing cannot express.',
+        evidenceSource: 'Successive ASCO/CAP HER2 testing guideline revisions and the HER2-low antibody-drug conjugate literature',
+        inferredClaim: 'That HER2 status is an intrinsic binary property rather than an assay result at a chosen threshold',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Loading infusion and slow distribution',
+        laymanDesc:
+          'A larger first dose is given over 90 minutes to fill the body, then smaller doses every one or three weeks keep the level steady.',
+        molecularDetail:
+          'An 8 mg/kg loading dose followed by 6 mg/kg every three weeks, with a mean half-life near 28 days at steady state. A subcutaneous 600 mg fixed-dose formulation with recombinant hyaluronidase is also approved.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Finding the receptor-covered cells',
+        laymanDesc:
+          'It circulates until it meets a cell whose surface is crowded with the HER2 receptor. Normal cells carry far fewer, so they are largely passed over.',
+        molecularDetail:
+          'HER2-amplified cells display on the order of a million receptors per cell against tens of thousands on normal epithelium, so binding is driven by receptor density rather than by any tumour-specific antigen.',
+        iconName: 'Search',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding subdomain IV of the extracellular region',
+        laymanDesc: 'The antibody grips the outer part of the receptor closest to the cell membrane.',
+        molecularDetail:
+          'Binds juxtamembrane subdomain IV of the HER2 ectodomain. This is a different epitope from pertuzumab, which binds subdomain II and blocks heterodimerisation, which is why the two are additive rather than redundant.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Signalling shutdown plus immune recruitment',
+        laymanDesc:
+          'Growth signalling inside the cell falls away, the shed fragment that would have kept signalling is prevented, and immune killer cells are called in to the coated cell.',
+        molecularDetail:
+          'Downregulates PI3K-AKT signalling, prevents proteolytic shedding of the ectodomain that would leave a constitutively active p95HER2 fragment, promotes receptor internalisation, and recruits natural killer cells through FcgammaRIIIa to drive antibody-dependent cellular cytotoxicity.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fewer recurrences years later',
+        laymanDesc:
+          'In the metastatic setting the tumour is held back for longer. Given for a year after surgery, it measurably reduces the chance the cancer comes back at all.',
+        molecularDetail:
+          'Cell-cycle arrest through p27Kip1 stabilisation, reduced angiogenesis, and immune clearance of micrometastatic deposits combine to lower the recurrence hazard, an effect that persists for a decade in long-term HERA follow-up.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Slamon 2001 pivotal metastatic trial (H0648g, conducted before ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 469,
+        primaryEndpoint: 'Time to disease progression with first-line chemotherapy, with or without trastuzumab',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001',
+        unreportedAdverseSignals:
+          'Cardiac dysfunction was most frequent with concurrent anthracycline, cyclophosphamide and trastuzumab, and now carries a boxed warning.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'HERA (NCT00045032)',
+        phase: 'Phase 3',
+        sampleSize: 5099,
+        primaryEndpoint: 'Disease-free survival after adjuvant chemotherapy, one or two years of trastuzumab versus observation',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.0001; HR 0.54 (95% CI 0.43-0.67) at first interim analysis',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'PERSEPHONE (NCT00712140)',
+        phase: 'Phase 3',
+        sampleSize: 4088,
+        primaryEndpoint: 'Four-year disease-free survival, 6 months versus 12 months of adjuvant trastuzumab, 3% non-inferiority margin',
+        endpointMet: true,
+        statisticalPValue: 'Non-inferiority p = 0.011; HR 1.07 (90% CI 0.93-1.24)',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Median time to progression 7.4 versus 4.6 months with first-line chemotherapy in metastatic disease',
+        'Hazard ratio 0.54 for disease-free survival events at the first HERA analysis',
+        'Six months non-inferior to twelve months on four-year disease-free survival in PERSEPHONE',
+        'Higher rate of cardiac dysfunction, greatest with concurrent anthracycline exposure',
+      ],
+      unsupportedInferences: [
+        'That twelve months is the optimal adjuvant duration; it was a design convention and PERSEPHONE found six months non-inferior',
+        'That HER2-positive is an intrinsic binary property of a tumour rather than an assay result at a chosen threshold',
+        'That two years would be better than one; HERA randomised that question and found no additional benefit',
+      ],
+      whatFailedInitially: [
+        'The murine parent antibody 4D5 was too immunogenic for repeated human use and had to be humanised onto a human IgG1 framework',
+        'Concurrent anthracycline and trastuzumab produced unacceptable cardiac dysfunction and that scheduling was abandoned',
+      ],
+      realWorldOutcome: [
+        'Biosimilars approved from 2017 onward have brought HER2-directed therapy within reach of health systems that could not previously fund it',
+        'Resistance eventually develops in most metastatic patients, which drove development of pertuzumab, T-DM1 and trastuzumab deruxtecan against the same receptor',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion, or subcutaneous injection co-formulated with recombinant hyaluronidase',
+      description:
+        'Lyophilised powder reconstituted for infusion, given as an 8 mg/kg load then 6 mg/kg every three weeks, or a fixed 600 mg subcutaneous dose over 2-5 minutes.',
+      safetyProfile:
+        'Boxed warnings for cardiomyopathy, infusion reactions, embryo-fetal toxicity and pulmonary toxicity. Left ventricular ejection fraction must be measured before treatment and at intervals during it.',
+    },
+    commonQuestions: [
+      {
+        q: 'Do I really need a full year of treatment?',
+        a: 'The twelve-month standard came from how the first adjuvant trials were designed rather than from a study that compared durations. PERSEPHONE randomised 4,088 women and found six months non-inferior on four-year disease-free survival, with half the cardiotoxicity. Guidelines have largely kept twelve months, so this is a live disagreement between the evidence and the standard of care.',
+        auditNote: 'One of the clearest examples on this site of a convention outliving the data that would revise it.',
+      },
+      {
+        q: 'Will it damage my heart?',
+        a: 'It can. Cardiac dysfunction is the dose-limiting toxicity and carries a boxed warning. Risk is highest with concurrent anthracycline exposure, which modern regimens avoid, and most declines in ejection fraction recover after stopping. Serial echocardiography during treatment is mandated for this reason.',
+      },
+      {
+        q: 'My tumour was called HER2-negative. Is there really nothing HER2-directed for me?',
+        a: 'That has changed. Trastuzumab deruxtecan is now approved for HER2-low disease, meaning tumours scoring 1+ or 2+ without amplification, which the older binary classified as negative. Trastuzumab itself still requires 3+ or amplified status.',
+      },
+      {
+        q: 'Is a biosimilar as good?',
+        a: 'It is the same molecule from a different manufacturer, approved on analytical, pharmacokinetic and confirmatory clinical similarity. Five were approved in the United States between 2017 and 2019. The practical difference is price, which in many health systems is the difference between having the drug and not.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Slamon et al., Chemotherapy plus a Monoclonal Antibody against HER2, NEJM 2001',
+        identifier: '10.1056/NEJM200103153441101',
+        kind: 'doi',
+      },
+      {
+        label: 'Piccart-Gebhart et al., Trastuzumab after Adjuvant Chemotherapy (HERA), NEJM 2005',
+        identifier: '10.1056/NEJMoa052306',
+        kind: 'doi',
+      },
+      {
+        label: 'Earl et al., 6 versus 12 months of adjuvant trastuzumab (PERSEPHONE), Lancet 2019',
+        identifier: '10.1016/S0140-6736(19)30650-6',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, HERA',
+        identifier: 'NCT00045032',
+        kind: 'nct',
+      },
+      {
+        label: 'ClinicalTrials.gov, PERSEPHONE',
+        identifier: 'NCT00712140',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, HERCEPTIN BLA 103792, original approval 25 September 1998',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103792',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 5. Rituximab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'rituximab',
+    name: 'Rituximab',
+    tradeName: 'Rituxan / MabThera',
+    sponsor: 'Genentech / Biogen / Roche (originally IDEC Pharmaceuticals)',
+    targetGene: 'MS4A1',
+    targetProtein: 'CD20 B-lymphocyte surface antigen',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1997,
+    indication:
+      'Non-Hodgkin lymphoma, chronic lymphocytic leukaemia, rheumatoid arthritis with methotrexate, granulomatosis with polyangiitis and microscopic polyangiitis, pemphigus vulgaris',
+    patientFriendlyIndication: 'Lymphomas and autoimmune diseases driven by B cells',
+    anatomicalSite: 'Circulating and lymph-node B lymphocytes',
+    conditionContext: {
+      conditionExplainer:
+        'B cells make antibodies. In lymphoma one B cell clone multiplies out of control; in several autoimmune diseases B cells make antibodies against the body itself or drive other immune cells to. Almost all of them carry a surface marker called CD20 that stem cells and mature plasma cells do not.',
+      whyItMatters:
+        'CD20 was the first target that let a drug delete one immune lineage while leaving the stem cells that regenerate it intact. That single design choice created the entire field of B-cell-directed therapy.',
+      whoTakesThis:
+        'People with CD20-positive B-cell lymphoma or leukaemia, and people with rheumatoid arthritis, ANCA-associated vasculitis or pemphigus not controlled by first-line therapy. It is also used off-label in multiple sclerosis, membranous nephropathy and other antibody-driven disease.',
+      clinicalGoals:
+        'Deplete circulating CD20-positive B cells for six to twelve months, achieve remission, and allow the lineage to regenerate from CD20-negative precursors afterwards.',
+    },
+    oneSentenceVerdict:
+      'The first therapeutic monoclonal antibody approved for cancer: adding it to CHOP chemotherapy raised complete response in elderly diffuse large B-cell lymphoma from 63% to 76% and lengthened overall survival.',
+    laymanHowItWorks:
+      'B cells wear a badge called CD20. Rituximab is an antibody that grabs the badge and marks that cell for destruction by three different mechanisms at once. Blood stem cells do not wear the badge, so the B cell population is wiped out and then rebuilt from scratch over the following six to twelve months, often without the disease coming back with it.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 94,
+    pricing: {
+      synthesisCostPerDose:
+        'Estimated cost-based price of $449 for a 500 mg vial, the highest figure in a published analysis of every injectable on the WHO Essential Medicines List',
+      retailPricePerDoseOrYear:
+        'Originator list price has typically run several thousand US dollars per 500 mg vial, with a standard lymphoma course using several vials per cycle',
+      markupEstimate:
+        'Originator prices in high-income markets have commonly sat several-fold above the published cost-based estimate; biosimilar entry from 2018 narrowed the gap',
+      openPatentNotes:
+        'US biosimilars Truxima (2018), Ruxience (2019) and Riabni (2020) followed patent expiry. Rituximab has been on the WHO Model List of Essential Medicines since 2015.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label: 'Gotham, Barber & Hill, Estimation of cost-based prices for injectable medicines in the WHO EML, BMJ Open 2019',
+        identifier: '10.1136/bmjopen-2018-027780',
+        kind: 'doi',
+      },
+      priceSource: {
+        label: 'Gotham, Barber & Hill, BMJ Open 2019, comparison of lowest current prices in England, South Africa and India',
+        identifier: '10.1136/bmjopen-2018-027780',
+        kind: 'doi',
+      },
+    },
+    substitutes: {
+      summary:
+        'Rituximab biosimilars are the same molecule at lower cost. Obinutuzumab and ofatumumab are later anti-CD20 antibodies with engineered effector function. In autoimmune disease, conventional immunosuppressants remain the comparator. No food or supplement depletes B cells.',
+      conventionalRx: [
+        {
+          name: 'Rituximab biosimilars (Truxima, Ruxience, Riabni)',
+          class: 'Biosimilar anti-CD20 monoclonal antibody',
+          howItCompares: 'Same molecule and mechanism, approved on similarity rather than on new outcome trials.',
+          typicalCost: 'Commonly 15-35% below originator list price, with wide variation by market',
+          prosAndCons:
+            'Pros: substantial system-level savings on a WHO essential medicine. Cons: none demonstrated on efficacy or safety grounds.',
+        },
+        {
+          name: 'Obinutuzumab (Gazyva)',
+          class: 'Glycoengineered type II anti-CD20 antibody',
+          howItCompares:
+            'Afucosylated Fc gives stronger antibody-dependent cellular cytotoxicity and greater direct cell death, with less complement activation. Superior to rituximab in chronic lymphocytic leukaemia in a head-to-head trial.',
+          typicalCost: 'Approximately $6,000 - $9,000 per 1,000 mg dose US list',
+          prosAndCons:
+            'Pros: deeper B-cell depletion. Cons: higher infusion-related reaction rate on first dose, and hepatitis B reactivation risk shared with the class.',
+        },
+        {
+          name: 'Cyclophosphamide',
+          class: 'Alkylating immunosuppressant',
+          howItCompares:
+            'The comparator in ANCA-associated vasculitis induction trials, where rituximab was shown non-inferior with less cumulative gonadal and bladder toxicity.',
+          typicalCost: '$50 - $300 per course, generic',
+          prosAndCons:
+            'Pros: cheap, decades of use. Cons: infertility, haemorrhagic cystitis and later malignancy with cumulative dose.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Chimeric murine/human IgG1-kappa with murine variable and human constant regions',
+      molecularWeight: 'Approximately 145 kDa',
+      structureSource: {
+        label: 'RITUXAN US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103705',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'rtx-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO expression of the chimeric IgG1',
+          description:
+            'Express the murine 2B8 variable domains grafted onto human IgG1 constant regions in a CHO suspension culture under fed-batch control.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, methotrexate-amplified DHFR selection, glucose-controlled feed',
+        },
+        {
+          id: 'rtx-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and viral inactivation',
+          description: 'Affinity capture on Protein A, low-pH elution and a validated low-pH hold for enveloped virus.',
+          reagentsAndBuffer: 'Protein A resin, sodium citrate pH 3.5 elution, 60 minute hold, Tris neutralisation',
+          dependsOnStepId: 'rtx-syn',
+        },
+        {
+          id: 'rtx-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Ion exchange polishing and nanofiltration',
+          description:
+            'Remove aggregate, host cell protein, leached Protein A and residual DNA, then filter through a virus-retentive membrane and formulate.',
+          reagentsAndBuffer: 'Cation and anion exchange, 20 nm virus filter, sodium citrate and polysorbate 80 formulation',
+          dependsOnStepId: 'rtx-cap',
+        },
+        {
+          id: 'rtx-cdc',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Complement-dependent cytotoxicity potency assay',
+          description:
+            'Quantify killing of a CD20-positive lymphoma line in the presence of normal human serum complement, against the reference standard.',
+          reagentsAndBuffer: 'WIL2-S or Daudi target cells, normal human serum as complement source, alamarBlue viability readout',
+          dependsOnStepId: 'rtx-pol',
+        },
+        {
+          id: 'rtx-adcc',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'ADCC and CD20 binding confirmation',
+          description:
+            'Confirm FcgammaRIIIa-mediated effector function and CD20 binding affinity, since both contribute to the clinical mechanism and both are sensitive to glycan variation.',
+          reagentsAndBuffer: 'FcgammaRIIIa reporter effector line, CD20-positive targets, surface plasmon resonance on immobilised CD20 peptide',
+          dependsOnStepId: 'rtx-cdc',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'rtx-1',
+        category: 'measured',
+        title: 'McLaughlin 1998: a 48% response rate as a single agent in relapsed indolent lymphoma',
+        laymanSummary:
+          'The trial that made rituximab the first antibody approved for cancer. Just under half of 166 patients with relapsed low-grade lymphoma responded to four weekly infusions, with mostly mild toxicity.',
+        technicalDetails:
+          'Multi-institutional trial across 31 centres, 166 patients on intent-to-treat, four weekly doses of 375 mg/m2. Response rate 48%, median time to progression for responders 13.0 months at 11.8 months median follow-up. Grade 3 toxicity in 12% and grade 4 in 3%, mostly first-infusion fever and chills. Only one patient developed a human anti-chimeric antibody.',
+        evidenceSource: 'McLaughlin et al., Journal of Clinical Oncology 1998',
+        doi: '10.1200/JCO.1998.16.8.2825',
+        measuredMetric: 'Objective response rate 48% on intent-to-treat',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rtx-2',
+        category: 'measured',
+        title: 'R-CHOP: adding rituximab to chemotherapy improved survival in aggressive lymphoma',
+        laymanSummary:
+          'In 399 patients aged 60 to 80 with diffuse large B-cell lymphoma, adding the antibody to standard chemotherapy raised complete response from 63% to 76% and lengthened both event-free and overall survival.',
+        technicalDetails:
+          'Randomised trial, 197 patients to eight cycles of CHOP and 202 to CHOP plus rituximab. Complete response 76% versus 63% (p = 0.005). At median follow-up of two years, event-free and overall survival were both significantly higher in the rituximab arm, without a clinically significant increase in toxicity. R-CHOP has been the global standard of care since.',
+        evidenceSource: 'Coiffier et al., New England Journal of Medicine 2002 (GELA LNH98-5)',
+        doi: '10.1056/NEJMoa011795',
+        measuredMetric: 'Complete response 76% versus 63%, p = 0.005',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rtx-3',
+        category: 'failed',
+        title: 'EXPLORER and LUNAR: rituximab failed its two randomised trials in lupus',
+        laymanSummary:
+          'B cells are central to lupus and rituximab depletes B cells, so it was expected to work. Two properly designed randomised trials, one in general lupus and one in lupus kidney disease, both failed to beat placebo.',
+        technicalDetails:
+          'EXPLORER randomised 257 patients with moderately-to-severely active extrarenal systemic lupus erythematosus 2:1 to rituximab or placebo on aggressive background immunosuppression, and found no difference on the primary or secondary BILAG endpoints. LUNAR tested rituximab added to mycophenolate and steroids in proliferative lupus nephritis and likewise missed its primary renal response endpoint. Rituximab is nonetheless widely used off-label in refractory lupus on the strength of uncontrolled series, which is precisely the gap this record exists to mark.',
+        evidenceSource:
+          'Merrill et al., Arthritis & Rheumatism 2010 (EXPLORER); Rovin et al., Arthritis & Rheumatism 2012 (LUNAR)',
+        doi: '10.1002/art.27233',
+        measuredMetric: 'No difference from placebo on primary or secondary endpoints in either trial',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rtx-4',
+        category: 'conclusion_shift',
+        title: 'From cancer drug to autoimmune platform, and then to a target obinutuzumab and ocrelizumab improved on',
+        laymanSummary:
+          'Rituximab was designed for lymphoma. Its success in rheumatoid arthritis and vasculitis reframed B-cell depletion as a general autoimmune strategy, and its off-label success in multiple sclerosis directly motivated ocrelizumab, a humanised successor that was then tested properly.',
+        technicalDetails:
+          'Approval sequence ran from non-Hodgkin lymphoma in 1997 to rheumatoid arthritis in 2006 and ANCA-associated vasculitis in 2011. Off-label multiple sclerosis use, supported by a positive phase 2 trial that was never taken to phase 3 by the sponsor, provided the rationale for ocrelizumab, which was developed to registration. The shift is instructive: a widely used off-label indication was eventually resolved by developing a different molecule rather than by testing the original one.',
+        evidenceSource: 'Sequence of FDA approvals for RITUXAN BLA 103705 and the ocrelizumab development programme',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'rtx-5',
+        category: 'measured',
+        title: 'Hepatitis B reactivation and progressive multifocal leukoencephalopathy carry boxed warnings',
+        laymanSummary:
+          'Wiping out B cells removes part of the defence against viruses the body was already holding in check. Hepatitis B can reactivate and cause fatal liver failure, and a rare brain infection has occurred.',
+        technicalDetails:
+          'The label carries boxed warnings for fatal infusion-related reactions, severe mucocutaneous reactions, hepatitis B virus reactivation with fulminant hepatitis and death, and progressive multifocal leukoencephalopathy caused by JC virus. Hepatitis B serology screening before treatment is mandatory, and hypogammaglobulinaemia after repeated courses is common and sometimes prolonged.',
+        evidenceSource: 'RITUXAN US Prescribing Information, boxed warning and Warnings and Precautions',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Slow first infusion to manage cytokine release',
+        laymanDesc:
+          'The first dose is given very slowly, because destroying a large number of B cells at once releases a wave of inflammatory signals that causes fever, chills and low blood pressure.',
+        molecularDetail:
+          'Standard dosing is 375 mg/m2 weekly in lymphoma or two 1,000 mg doses two weeks apart in autoimmune disease, with a stepped infusion rate and premedication with paracetamol, antihistamine and often a corticosteroid.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Reaching CD20 on B cells everywhere except the ends of the lineage',
+        laymanDesc:
+          'It finds B cells in blood, lymph nodes, spleen and bone marrow. Stem cells and fully mature antibody-producing plasma cells do not carry the badge, so they survive.',
+        molecularDetail:
+          'CD20 is expressed from the late pre-B stage through the memory B cell, but not on haematopoietic stem cells, pro-B cells or terminally differentiated plasma cells. That expression window is what makes depletion recoverable and why long-lived humoral immunity is partly preserved.',
+        iconName: 'Search',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding the large extracellular loop of CD20',
+        laymanDesc:
+          'The antibody grips a small exposed loop of the CD20 protein. CD20 is not shed and does not get internalised much, so the mark stays where it was placed.',
+        molecularDetail:
+          'Binds a discontinuous epitope on the large extracellular loop of the tetraspanning MS4A1 protein, driving CD20 into lipid rafts. Rituximab is a type I anti-CD20 antibody, which favours complement recruitment over the direct cell death that type II antibodies such as obinutuzumab preferentially cause.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Three separate killing mechanisms fire together',
+        laymanDesc:
+          'Complement proteins punch holes in the coated cell, natural killer cells latch onto the antibody tail and destroy it, and macrophages swallow it whole.',
+        molecularDetail:
+          'C1q binding to clustered Fc initiates the classical complement cascade and membrane attack complex formation; FcgammaRIIIa on natural killer cells drives antibody-dependent cellular cytotoxicity; FcgammaR-bearing macrophages in liver and spleen perform antibody-dependent cellular phagocytosis. Direct apoptotic signalling contributes less for a type I antibody.',
+        iconName: 'Crosshair',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The B cell compartment empties, then slowly rebuilds',
+        laymanDesc:
+          'Circulating B cells disappear within days and stay away for six to twelve months. When they return they are often naive cells that do not carry the disease with them.',
+        molecularDetail:
+          'Peripheral B-cell depletion is typically complete within three days and recovery begins at six to nine months, with repopulation dominated by transitional and naive subsets. In autoimmune disease the reconstituted repertoire is frequently less autoreactive, which is the leading explanation for durable remission after a finite course.',
+        iconName: 'RefreshCw',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'McLaughlin 1998 pivotal single-agent trial (conducted before ClinicalTrials.gov registration)',
+        phase: 'Phase 2 pivotal',
+        sampleSize: 166,
+        primaryEndpoint: 'Objective response rate in relapsed low-grade or follicular B-cell lymphoma',
+        endpointMet: true,
+        statisticalPValue: 'Single-arm; 48% response rate on intent-to-treat, no comparator p-value',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'GELA LNH98-5 (Coiffier 2002, conducted before ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 399,
+        primaryEndpoint: 'Complete response rate, CHOP versus R-CHOP in elderly diffuse large B-cell lymphoma',
+        endpointMet: true,
+        statisticalPValue: 'p = 0.005 for complete response; event-free and overall survival also significantly improved',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'EXPLORER (Merrill 2010)',
+        phase: 'Phase 2/3',
+        sampleSize: 257,
+        primaryEndpoint: 'BILAG-defined major clinical response in moderately-to-severely active extrarenal lupus',
+        endpointMet: false,
+        statisticalPValue: 'No significant difference from placebo on primary or secondary endpoints',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'LUNAR (Rovin 2012)',
+        phase: 'Phase 3',
+        sampleSize: 144,
+        primaryEndpoint: 'Renal response at week 52 in proliferative lupus nephritis on background mycophenolate',
+        endpointMet: false,
+        statisticalPValue: 'Primary renal response endpoint not met',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Objective response rate 48% as a single agent in relapsed indolent lymphoma',
+        'Complete response 76% versus 63% and improved overall survival when added to CHOP in elderly diffuse large B-cell lymphoma',
+        'Complete peripheral B-cell depletion within days, with recovery beginning at six to nine months',
+      ],
+      unsupportedInferences: [
+        'That B-cell depletion helps in any B-cell-mediated disease; lupus is the counterexample where two randomised trials failed',
+        'That widespread off-label use in multiple sclerosis and membranous nephropathy reflects randomised evidence for rituximab specifically rather than for the class',
+      ],
+      whatFailedInitially: [
+        'EXPLORER and LUNAR both missed their primary endpoints in systemic lupus erythematosus and lupus nephritis',
+        'The chimeric construct retains murine variable domains, and human anti-chimeric antibodies remain a cause of infusion reactions and loss of response that fully humanised successors were built to avoid',
+      ],
+      realWorldOutcome: [
+        'Rituximab is on the WHO Model List of Essential Medicines, and biosimilar entry from 2018 substantially reduced the cost of a standard lymphoma course',
+        'Repeated courses produce hypogammaglobulinaemia in a meaningful minority, sometimes requiring long-term immunoglobulin replacement, which the registration trials were too short to characterise',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion, or subcutaneous injection co-formulated with recombinant hyaluronidase',
+      description:
+        'Given as 375 mg/m2 weekly in lymphoma, 1,000 mg twice two weeks apart in rheumatoid arthritis, with a stepped infusion rate and mandatory premedication.',
+      safetyProfile:
+        'Boxed warnings for fatal infusion-related reactions, severe mucocutaneous reactions, hepatitis B reactivation and progressive multifocal leukoencephalopathy. Hepatitis B screening before the first dose is mandatory.',
+    },
+    commonQuestions: [
+      {
+        q: 'If it wipes out my B cells, am I left without an immune system?',
+        a: 'Only part of one. CD20 is absent from stem cells and from long-lived plasma cells, so existing antibody titres are largely preserved and the lineage regenerates over six to twelve months. What does happen is reduced response to new vaccines during depletion, and after repeated courses some people develop persistently low immunoglobulin levels.',
+      },
+      {
+        q: 'It is used for my lupus. Does that mean it works for lupus?',
+        a: 'Two randomised placebo-controlled trials, EXPLORER in general lupus and LUNAR in lupus nephritis, both failed their primary endpoints. Use in refractory lupus rests on uncontrolled series and clinical experience, not on a positive randomised trial. That is a legitimate clinical choice in a desperate situation, but it is not the same evidence as the lymphoma indication.',
+        auditNote: 'The single largest gap between how much rituximab is used and what has actually been measured.',
+      },
+      {
+        q: 'Why do I need hepatitis B testing before treatment?',
+        a: 'Because depleting B cells can let a hepatitis B infection the body was controlling reactivate, and reactivation has caused fulminant hepatitis and death. This carries a boxed warning and screening is not optional.',
+      },
+      {
+        q: 'Why is it so expensive when a published analysis put the cost-based price at $449 a vial?',
+        a: 'A 2019 analysis of every injectable on the WHO Essential Medicines List put the estimated cost-based price of a 500 mg rituximab vial at $449, the highest single figure in that study. Originator prices in high-income markets have generally been several times that. Biosimilars from 2018 onward closed part of the gap, and the size of the remainder differs enormously between health systems.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'McLaughlin et al., Rituximab chimeric anti-CD20 therapy for relapsed indolent lymphoma, JCO 1998',
+        identifier: '10.1200/JCO.1998.16.8.2825',
+        kind: 'doi',
+      },
+      {
+        label: 'Coiffier et al., CHOP plus Rituximab in elderly diffuse large-B-cell lymphoma, NEJM 2002',
+        identifier: '10.1056/NEJMoa011795',
+        kind: 'doi',
+      },
+      {
+        label: 'Merrill et al., EXPLORER trial of rituximab in systemic lupus erythematosus, Arthritis Rheum 2010',
+        identifier: '10.1002/art.27233',
+        kind: 'doi',
+      },
+      {
+        label: 'Rovin et al., LUNAR trial of rituximab in proliferative lupus nephritis, Arthritis Rheum 2012',
+        identifier: '10.1002/art.34359',
+        kind: 'doi',
+      },
+      {
+        label: 'Gotham, Barber & Hill, Cost-based prices for injectable medicines in the WHO EML, BMJ Open 2019',
+        identifier: '10.1136/bmjopen-2018-027780',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA, RITUXAN BLA 103705, original approval 26 November 1997',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103705',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 6. Bevacizumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'bevacizumab',
+    name: 'Bevacizumab',
+    tradeName: 'Avastin',
+    sponsor: 'Genentech / Roche',
+    targetGene: 'VEGFA',
+    targetProtein: 'Vascular Endothelial Growth Factor A (VEGF-A)',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2004,
+    indication:
+      'Metastatic colorectal cancer, non-squamous non-small-cell lung cancer, recurrent glioblastoma, metastatic renal cell carcinoma, cervical cancer, and epithelial ovarian, fallopian tube or primary peritoneal cancer',
+    patientFriendlyIndication: 'Several advanced cancers, by cutting off the blood supply a tumour builds for itself',
+    anatomicalSite: 'Tumour vasculature and the extracellular space around it',
+    conditionContext: {
+      conditionExplainer:
+        'A tumour bigger than a millimetre or two cannot survive on diffusion alone. It secretes a signal called VEGF that makes nearby blood vessels sprout towards it. The vessels it builds are leaky, chaotic and poorly perfused.',
+      whyItMatters:
+        'Anti-angiogenesis was one of the most heavily promoted ideas in oncology for two decades. Bevacizumab is the drug that tested it at scale, and the record is genuinely mixed: real survival gains in colorectal cancer, an accelerated approval revoked in breast cancer, and failure in the adjuvant setting.',
+      whoTakesThis:
+        'Adults with several advanced solid tumours, almost always combined with chemotherapy rather than alone. Ophthalmologists also use it off-label intravitreally for neovascular age-related macular degeneration at a fraction of the cost of the licensed alternative.',
+      clinicalGoals:
+        'Normalise and prune tumour vasculature to improve chemotherapy delivery and slow growth, accepting hypertension, proteinuria and bleeding risk.',
+    },
+    oneSentenceVerdict:
+      'An antibody that sequesters VEGF-A and lengthened median overall survival in metastatic colorectal cancer from 15.6 to 20.3 months, but had its breast cancer indication revoked by the FDA in 2011 when the survival benefit never materialised.',
+    laymanHowItWorks:
+      'Tumours grow their own blood supply by releasing a chemical signal that tells nearby vessels to sprout towards them. Bevacizumab is a sponge for that signal. With less of it circulating, the chaotic new vessels regress and the ones that remain work more like normal vessels, which paradoxically helps chemotherapy reach the tumour. It rarely does much on its own.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 78,
+    substitutes: {
+      summary:
+        'Bevacizumab biosimilars are the same molecule at lower cost. Ramucirumab and aflibercept block the same axis at different points. In eye disease, ranibizumab and aflibercept are the licensed alternatives, and the CATT trial found bevacizumab equivalent on visual acuity at a fraction of the price. No dietary intervention has been shown to affect tumour angiogenesis in humans.',
+      conventionalRx: [
+        {
+          name: 'Bevacizumab biosimilars (Mvasi, Zirabev, Alymsys, Jobevne)',
+          class: 'Biosimilar anti-VEGF-A monoclonal antibody',
+          howItCompares: 'Same molecule and mechanism, approved on analytical and clinical similarity from 2017 onward.',
+          typicalCost: 'Commonly 15-30% below originator list price',
+          prosAndCons: 'Pros: identical mechanism, lower cost. Cons: none demonstrated on clinical grounds.',
+        },
+        {
+          name: 'Ranibizumab (Lucentis)',
+          class: 'Anti-VEGF-A antibody fragment licensed for intravitreal use',
+          howItCompares:
+            'A Fab fragment of the same parent antibody, formulated and licensed for the eye. CATT found no difference in visual acuity against bevacizumab given on the same schedule.',
+          typicalCost: 'Approximately $1,200 - $2,000 per intravitreal injection, versus roughly $50 for a compounded bevacizumab dose',
+          prosAndCons:
+            'Pros: licensed for the indication, single-use presentation. Cons: cost per injection is one to two orders of magnitude higher for an outcome CATT found equivalent.',
+        },
+        {
+          name: 'Ramucirumab (Cyramza)',
+          class: 'Anti-VEGFR-2 monoclonal antibody',
+          howItCompares: 'Blocks the receptor rather than the ligand, in gastric, colorectal, lung and hepatocellular cancer.',
+          typicalCost: 'Approximately $6,000 - $9,000 per two-week cycle US list',
+          prosAndCons:
+            'Pros: an alternative point of attack on the same pathway. Cons: shares the hypertension, bleeding and perforation profile of the class.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Home blood pressure monitoring',
+          action: 'Record blood pressure at home on a validated cuff and report sustained readings above the target set by the oncology team.',
+          patientImpact:
+            'Hypertension is the commonest dose-limiting toxicity of VEGF blockade and is a direct pharmacological consequence of reduced nitric oxide availability in the vessel wall.',
+          clinicalPrecaution:
+            'This detects a known toxicity early. It has no antitumour effect and does not replace scheduled urinalysis for proteinuria.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG1-kappa produced in Chinese hamster ovary cells',
+      molecularWeight: 'Approximately 149 kDa',
+      structureSource: {
+        label: 'AVASTIN US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'bev-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO fed-batch expression',
+          description:
+            'Express the humanised IgG1 in a CHO line, harvest at 12-14 days and clarify by centrifugation followed by depth and sterile filtration.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, DHFR-based selection, glucose and amino acid feeds',
+        },
+        {
+          id: 'bev-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and low-pH hold',
+          description: 'Affinity capture on Protein A followed by a validated low-pH viral inactivation hold.',
+          reagentsAndBuffer: 'Protein A resin, sodium acetate pH 3.5 elution, Tris base neutralisation',
+          dependsOnStepId: 'bev-syn',
+        },
+        {
+          id: 'bev-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing chromatography and nanofiltration',
+          description:
+            'Ion exchange and hydrophobic interaction steps remove aggregate and process residuals; a 20 nm filter provides orthogonal viral clearance before formulation into trehalose and phosphate buffer.',
+          reagentsAndBuffer: 'Q and phenyl resins, 20 nm virus filter, alpha,alpha-trehalose dihydrate, polysorbate 20, pH 6.2',
+          dependsOnStepId: 'bev-cap',
+        },
+        {
+          id: 'bev-elisa',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'VEGF-A binding ELISA',
+          description:
+            'Confirm binding to recombinant human VEGF-A165 and derive relative binding potency against the reference standard.',
+          reagentsAndBuffer: 'Recombinant human VEGF-A165 coated plates, HRP-conjugated anti-human IgG, TMB substrate',
+          dependsOnStepId: 'bev-pol',
+        },
+        {
+          id: 'bev-huvec',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'HUVEC proliferation inhibition bioassay',
+          description:
+            'Quantify functional potency as inhibition of VEGF-driven proliferation of human umbilical vein endothelial cells.',
+          reagentsAndBuffer: 'HUVEC primary cells, endothelial growth medium without VEGF, recombinant VEGF-A165 challenge, BrdU incorporation readout',
+          dependsOnStepId: 'bev-elisa',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'bev-1',
+        category: 'measured',
+        title: 'AVF2107g: median overall survival 20.3 versus 15.6 months in metastatic colorectal cancer',
+        laymanSummary:
+          'In 813 people with untreated metastatic bowel cancer, adding bevacizumab to chemotherapy extended median survival by about 4.7 months. This is the result the whole approval rests on.',
+        technicalDetails:
+          'Randomised trial, 402 to IFL chemotherapy plus bevacizumab 5 mg/kg every two weeks and 411 to IFL plus placebo. Median overall survival 20.3 versus 15.6 months, hazard ratio for death 0.66, p < 0.001. Overall survival was the primary endpoint, which is the strongest form this evidence can take.',
+        evidenceSource: 'Hurwitz et al., New England Journal of Medicine 2004',
+        doi: '10.1056/NEJMoa032691',
+        measuredMetric: 'Median overall survival 20.3 versus 15.6 months, HR 0.66',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-2',
+        category: 'conclusion_shift',
+        title: 'The breast cancer indication was granted on progression-free survival and revoked in 2011',
+        laymanSummary:
+          'Accelerated approval in 2008 rested on delaying progression in the E2100 trial. Confirmatory trials showed a smaller delay and no survival benefit, and on 18 November 2011 the FDA Commissioner revoked the indication.',
+        technicalDetails:
+          'E2100 randomised paclitaxel with or without bevacizumab and showed a substantial progression-free survival gain without an overall survival gain. AVADO and RIBBON-1 reproduced a smaller progression-free effect and again no survival benefit, against a background of hypertension, proteinuria, haemorrhage and gastrointestinal perforation. The Oncologic Drugs Advisory Committee voted 6-0 to withdraw after a two-day hearing in June 2011; the Commissioner concluded the drug had not been shown safe and effective for that use, and the final decision was published in the Federal Register in February 2012.',
+        evidenceSource:
+          'Miller et al., NEJM 2007 (E2100); FDA Final Decision on Withdrawal of the Breast Cancer Indication for Avastin',
+        doi: '10.1056/NEJMoa072113',
+        measuredMetric:
+          'Progression-free survival improved; overall survival did not, in E2100 and in both confirmatory trials',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-3',
+        category: 'inferred',
+        title: 'Progression-free survival was read as a proxy for living longer',
+        laymanSummary:
+          'A tumour that grows more slowly on a scan is not the same as a patient who lives longer. Bevacizumab is the drug that made that distinction concrete for a whole generation of oncologists.',
+        technicalDetails:
+          'The 2008 accelerated approval in breast cancer was granted on progression-free survival as a surrogate reasonably likely to predict clinical benefit. Across E2100, AVADO and RIBBON-1 the surrogate moved and overall survival did not. The pattern recurs in other indications: bevacizumab improves progression-free survival in recurrent glioblastoma without a demonstrated overall survival benefit, and its glioblastoma approval likewise came through the accelerated pathway.',
+        evidenceSource: 'FDA accelerated approval and withdrawal record for the Avastin breast cancer indication',
+        inferredClaim: 'That a progression-free survival gain implies an overall survival gain',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'bev-4',
+        category: 'failed',
+        title: 'Adjuvant colon cancer: no benefit when the tumour has already been removed',
+        laymanSummary:
+          'Given after curative surgery to prevent recurrence, bevacizumab did not improve disease-free survival. The setting where it works and the setting where it does not are separated by whether visible tumour is present.',
+        technicalDetails:
+          'NSABP C-08 and AVANT both tested bevacizumab added to adjuvant chemotherapy in resected colon cancer and neither showed a durable disease-free survival benefit; AVANT showed a numerically worse overall survival trend. The mechanistic reading is that anti-angiogenic therapy acts on established tumour vasculature and has little to act on against micrometastatic disease. Bevacizumab is not approved in the adjuvant setting.',
+        evidenceSource: 'Absence of an adjuvant colon cancer indication in the AVASTIN US Prescribing Information',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-5',
+        category: 'measured',
+        title: 'CATT: in the eye, bevacizumab matched a drug costing 20 to 40 times more',
+        laymanSummary:
+          'A publicly funded trial in 1,208 patients found that off-label bevacizumab given into the eye preserved vision as well as the licensed alternative, at a small fraction of the cost.',
+        technicalDetails:
+          'Multicentre single-blind non-inferiority trial with a 5-letter margin. Monthly bevacizumab gained 8.0 letters against 8.5 for monthly ranibizumab; as-needed bevacizumab gained 5.9 against 6.8 for as-needed ranibizumab, both within the non-inferiority margin. Serious systemic adverse events, mostly hospitalisations, were more frequent with bevacizumab (24.1% versus 19.0%, risk ratio 1.29, 95% CI 1.01-1.66), distributed across categories not previously flagged. The manufacturer never sought an ophthalmic indication for bevacizumab.',
+        evidenceSource: 'CATT Research Group, New England Journal of Medicine 2011 (NCT00593450)',
+        doi: '10.1056/NEJMoa1102673',
+        measuredMetric: '8.0 versus 8.5 letters gained at one year on monthly dosing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'bev-6',
+        category: 'measured',
+        title: 'Class toxicity is mechanistic, not idiosyncratic',
+        laymanSummary:
+          'VEGF also maintains normal blood vessels, kidney filtration barriers and wound healing. Blocking it causes high blood pressure, protein in the urine, bleeding, clots, poor wound healing and, rarely, holes in the bowel.',
+        technicalDetails:
+          'The label carries warnings for gastrointestinal perforation and fistula, surgery and wound healing complications, haemorrhage, arterial and venous thromboembolism, hypertension, posterior reversible encephalopathy syndrome, renal injury and proteinuria, and ovarian failure. VEGF is required for glomerular endothelial fenestration and for endothelial nitric oxide synthase activity, which explains proteinuria and hypertension directly.',
+        evidenceSource: 'AVASTIN US Prescribing Information, Warnings and Precautions',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Intravenous infusion every two or three weeks',
+        laymanDesc:
+          'Given as a drip alongside chemotherapy. The first infusion is slow because of reaction risk; later ones can be shortened.',
+        molecularDetail:
+          'Weight-based dosing of 5, 10 or 15 mg/kg depending on indication, with a terminal half-life around 20 days and predominantly plasma distribution.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Diffusion into the tumour interstitium',
+        laymanDesc:
+          'Because tumour vessels leak, the antibody escapes into the tissue around the tumour, which is exactly where the growth signal is being released.',
+        molecularDetail:
+          'High interstitial fluid pressure and disordered vasculature both impede and enable delivery; bevacizumab acts on the extracellular ligand rather than requiring cell entry, so interstitial exposure is sufficient.',
+        iconName: 'Waves',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Sequestering VEGF-A before it reaches its receptor',
+        laymanDesc:
+          'The antibody catches the growth signal in the fluid around the cells. It never touches the tumour cell itself.',
+        molecularDetail:
+          'Binds all major VEGF-A isoforms at the receptor-binding face, preventing engagement of VEGFR-1 and VEGFR-2 on endothelium. It does not bind VEGF-B, VEGF-C or placental growth factor, which is one route by which tumours escape.',
+        iconName: 'Filter',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Immature vessels regress and the rest are normalised',
+        laymanDesc:
+          'The newest, leakiest vessels collapse. The remaining ones tighten up and, for a while, carry blood and chemotherapy more evenly than before.',
+        molecularDetail:
+          'Withdrawal of VEGF survival signalling causes apoptosis of pericyte-poor immature endothelium. Surviving vessels show restored pericyte coverage and basement membrane, lowering interstitial fluid pressure. This vascular normalisation window is the leading explanation for why the drug helps chemotherapy but does little alone.',
+        iconName: 'GitBranch',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Slower tumour growth, with a benefit that depends on setting',
+        laymanDesc:
+          'In bowel cancer added to chemotherapy, people lived measurably longer. In breast cancer the tumour grew more slowly but people did not live longer, and the approval was taken away.',
+        molecularDetail:
+          'Growth restraint depends on continuing VEGF dependence. Escape occurs through upregulation of alternative pro-angiogenic ligands including FGF2, placental growth factor and angiopoietin-2, which is why anti-VEGF monotherapy is rarely durable.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'AVF2107g (Hurwitz 2004, conducted before ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 813,
+        primaryEndpoint: 'Overall survival in previously untreated metastatic colorectal cancer',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001; HR for death 0.66',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'E2100 (Miller 2007)',
+        phase: 'Phase 3',
+        sampleSize: 722,
+        primaryEndpoint: 'Progression-free survival, paclitaxel with or without bevacizumab in metastatic breast cancer',
+        endpointMet: true,
+        statisticalPValue: 'Progression-free survival significantly improved; overall survival was not',
+        unreportedAdverseSignals:
+          'Hypertension, proteinuria, haemorrhage and gastrointestinal perforation contributed to the FDA conclusion that risk outweighed benefit in this indication.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'CATT (NCT00593450)',
+        phase: 'Phase 3 non-inferiority, publicly funded',
+        sampleSize: 1208,
+        primaryEndpoint: 'Mean change in visual acuity at one year, 5-letter non-inferiority margin, neovascular AMD',
+        endpointMet: true,
+        statisticalPValue: 'Non-inferiority met on the same dosing schedule',
+        unreportedAdverseSignals:
+          'Serious systemic adverse events were more frequent with bevacizumab (24.1% versus 19.0%, RR 1.29, 95% CI 1.01-1.66), across categories not previously identified as concerns.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Median overall survival 20.3 versus 15.6 months in first-line metastatic colorectal cancer',
+        'Improved progression-free survival without improved overall survival in metastatic breast cancer',
+        'Visual acuity equivalence against ranibizumab on matched dosing schedules in neovascular AMD',
+        'Hypertension, proteinuria, haemorrhage and gastrointestinal perforation as mechanism-linked toxicities',
+      ],
+      unsupportedInferences: [
+        'That a progression-free survival gain implies patients live longer; three breast cancer trials showed it does not follow',
+        'That starving a tumour of blood supply works wherever a tumour has one; the adjuvant colon cancer trials failed',
+        'That equivalence in the eye implies equivalence of systemic safety; CATT found more serious systemic events with bevacizumab',
+      ],
+      whatFailedInitially: [
+        'The metastatic breast cancer indication was granted on accelerated approval in 2008 and revoked by the FDA Commissioner on 18 November 2011',
+        'NSABP C-08 and AVANT found no durable disease-free survival benefit in resected colon cancer',
+      ],
+      realWorldOutcome: [
+        'Compounded intravitreal bevacizumab remains one of the most widely used off-label medicines in the world because CATT showed it works and it costs a fraction of the licensed alternative',
+        'Biosimilars from 2017 onward have reduced the cost of the oncology indications substantially',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion; also compounded for off-label intravitreal injection',
+      description:
+        'First infusion over 90 minutes, subsequent infusions shortened if tolerated, at 5-15 mg/kg every two or three weeks depending on indication. Intravitreal use is a compounded off-label preparation of a fraction of a milligram.',
+      safetyProfile:
+        'Gastrointestinal perforation, wound healing complications and severe haemorrhage are the most serious warnings. Hypertension and proteinuria are near-universal class effects requiring routine monitoring. Treatment must be interrupted around elective surgery.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why was Avastin taken off the market for breast cancer?',
+        a: 'It was not taken off the market. The specific metastatic breast cancer indication was revoked on 18 November 2011 after confirmatory trials failed to show that the delay in tumour growth translated into longer survival, while the toxicity burden remained. The drug stayed approved for colorectal, lung, kidney, cervical, ovarian and glioblastoma indications.',
+        auditNote:
+          'The clearest worked example on this site of a surrogate endpoint approval being reversed by outcome data.',
+      },
+      {
+        q: 'My eye doctor wants to inject Avastin. Is that legitimate?',
+        a: 'It is off-label but very well evidenced. The publicly funded CATT trial in 1,208 patients found bevacizumab preserved visual acuity as well as licensed ranibizumab on matched schedules, at roughly one to two orders of magnitude lower cost. CATT did report more serious systemic adverse events with bevacizumab, and that difference has never been fully explained.',
+      },
+      {
+        q: 'Does it shrink the tumour?',
+        a: 'Rarely on its own. Bevacizumab is almost always given with chemotherapy, and the leading explanation for why it helps is that pruning and normalising tumour vessels improves the delivery of the cytotoxic drug rather than that the antibody itself kills tumour cells.',
+      },
+      {
+        q: 'Why do I have to stop it before surgery?',
+        a: 'Because VEGF is required for normal wound healing and new vessel formation in healing tissue. The label warns about wound dehiscence and surgical complications, and treatment is typically interrupted for several weeks either side of an elective operation.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Hurwitz et al., Bevacizumab plus irinotecan, fluorouracil and leucovorin, NEJM 2004',
+        identifier: '10.1056/NEJMoa032691',
+        kind: 'doi',
+      },
+      {
+        label: 'Miller et al., Paclitaxel plus Bevacizumab in metastatic breast cancer (E2100), NEJM 2007',
+        identifier: '10.1056/NEJMoa072113',
+        kind: 'doi',
+      },
+      {
+        label: 'CATT Research Group, Ranibizumab and Bevacizumab for Neovascular AMD, NEJM 2011',
+        identifier: '10.1056/NEJMoa1102673',
+        kind: 'doi',
+      },
+      {
+        label:
+          'FDA, Final Decision on Withdrawal of Breast Cancer Indication for AVASTIN Following Public Hearing, Federal Register 27 February 2012',
+        identifier:
+          'https://www.federalregister.gov/documents/2012/02/27/2012-4424/final-decision-on-withdrawal-of-breast-cancer-indication-for-avastin-bevacizumab-following-public',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA, AVASTIN BLA 125085, original approval 26 February 2004',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125085',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 7. Dupilumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'dupilumab',
+    name: 'Dupilumab',
+    tradeName: 'Dupixent',
+    sponsor: 'Regeneron Pharmaceuticals / Sanofi',
+    targetGene: 'IL4R',
+    targetProtein: 'Interleukin-4 Receptor Alpha Subunit (IL-4Ralpha)',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2017,
+    indication:
+      'Atopic dermatitis, eosinophilic or oral-corticosteroid-dependent asthma, chronic rhinosinusitis with nasal polyps, eosinophilic oesophagitis, prurigo nodularis, chronic obstructive pulmonary disease with raised eosinophils, chronic spontaneous urticaria',
+    patientFriendlyIndication: 'Eczema, asthma and other diseases driven by the same allergic pathway',
+    anatomicalSite: 'Skin, airway and oesophageal epithelium and the immune cells within them',
+    conditionContext: {
+      conditionExplainer:
+        'A group of apparently unrelated diseases - eczema, asthma, nasal polyps, a swallowing disorder - turn out to share one signalling pathway. Two messengers, interleukin-4 and interleukin-13, drive it, and both signal through a single shared receptor component.',
+      whyItMatters:
+        'Blocking one receptor subunit turns off both messengers at once. That single design decision is why one antibody has accumulated approvals across dermatology, respiratory medicine, gastroenterology and ear-nose-throat surgery, which almost no other drug has done.',
+      whoTakesThis:
+        'Adults and children from six months of age with moderate-to-severe atopic dermatitis not controlled by topical therapy, and adults and adolescents with type 2 inflammatory disease of the airway, sinuses or oesophagus.',
+      clinicalGoals:
+        'Clear or nearly clear skin, reduce exacerbation rate, restore swallowing, and reduce or eliminate systemic corticosteroid exposure.',
+    },
+    oneSentenceVerdict:
+      'A human antibody against the shared IL-4 receptor alpha subunit that blocks both IL-4 and IL-13, taking 37-38% of adults with moderate-to-severe eczema to clear or almost clear skin at 16 weeks against 10% on placebo.',
+    laymanHowItWorks:
+      'Two allergic signalling molecules, IL-4 and IL-13, both have to plug into the same socket to do their work. Dupilumab caps that one socket. Both messengers are shut out at once, and the allergic programme they drive in skin, airway and gullet winds down. It does not suppress the immune system generally, which is why there is no boxed infection warning.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 91,
+    substitutes: {
+      summary:
+        'Topical corticosteroids and calcineurin inhibitors remain first line in eczema and cost far less. JAK inhibitors are oral and faster but carry a boxed warning. Tralokinumab and lebrikizumab block IL-13 alone. Emollient therapy and trigger avoidance are genuinely useful adjuncts and are not substitutes for systemic therapy in severe disease.',
+      conventionalRx: [
+        {
+          name: 'Topical corticosteroids',
+          class: 'Topical anti-inflammatory',
+          howItCompares:
+            'The background therapy that all dupilumab eczema trials required patients to have failed. Effective for localised disease, impractical for extensive severe disease.',
+          typicalCost: '$10 - $60 / month generic',
+          prosAndCons:
+            'Pros: cheap, immediate, decades of use. Cons: skin atrophy with prolonged potent use, and poor practicality when most of the body surface is involved.',
+        },
+        {
+          name: 'Upadacitinib or abrocitinib',
+          class: 'Oral JAK inhibitor',
+          howItCompares:
+            'Faster onset and higher rates of complete clearance in head-to-head eczema trials, but a broader immunological footprint.',
+          typicalCost: 'Approximately $5,000 - $6,500 / month US list',
+          prosAndCons:
+            'Pros: oral, rapid itch relief, higher EASI-90 rates. Cons: boxed warning for serious infection, mortality, malignancy, major cardiovascular events and thrombosis; requires laboratory monitoring.',
+        },
+        {
+          name: 'Tralokinumab or lebrikizumab',
+          class: 'Anti-IL-13 monoclonal antibody',
+          howItCompares:
+            'Blocks IL-13 only, leaving IL-4 signalling intact. Broadly similar efficacy in atopic dermatitis with a lower reported conjunctivitis rate in some analyses.',
+          typicalCost: 'Approximately $3,500 - $5,000 / month US list',
+          prosAndCons:
+            'Pros: narrower target. Cons: no approval across the wider set of type 2 indications dupilumab holds.',
+        },
+        {
+          name: 'Ciclosporin',
+          class: 'Systemic calcineurin inhibitor',
+          howItCompares: 'The older systemic option for severe eczema, effective quickly but limited by organ toxicity.',
+          typicalCost: '$50 - $200 / month generic',
+          prosAndCons:
+            'Pros: inexpensive, rapid. Cons: nephrotoxicity and hypertension restrict use to short courses, and blood monitoring is mandatory.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Daily emollient and the soak-and-seal routine',
+          action:
+            'Bathe in lukewarm water, pat dry, and apply a thick ointment emollient within three minutes, then reapply at least twice daily.',
+          patientImpact:
+            'Restores the lipid and filaggrin-dependent skin barrier whose failure allows allergen entry, reducing flare frequency and the amount of topical steroid needed.',
+          clinicalPrecaution:
+            'This supports the barrier and reduces steroid requirement. It does not control severe disease alone and is used alongside dupilumab, not instead of it.',
+        },
+        {
+          name: 'Lubricating eye drops from the first injection',
+          action: 'Use preservative-free artificial tears routinely, and report red or gritty eyes early.',
+          patientImpact:
+            'Conjunctivitis is the most characteristic dupilumab-specific adverse event and is far easier to manage when treated early than once it is established.',
+          clinicalPrecaution:
+            'Persistent or painful conjunctivitis needs ophthalmology review, not just more drops. Keratitis has been reported.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Fully human IgG4-kappa generated in VelocImmune transgenic mice',
+      molecularWeight: 'Approximately 147 kDa',
+      structureSource: {
+        label: 'DUPIXENT US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761055',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dup-qc',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Cell line and sequence verification',
+          description:
+            'Confirm heavy and light chain sequence and the IgG4 hinge stabilisation in the production cell bank before scale-up.',
+          reagentsAndBuffer: 'Next-generation sequencing of the integrated construct, intact mass and peptide mapping by LC-MS',
+        },
+        {
+          id: 'dup-syn',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'CHO fed-batch expression',
+          description: 'Fed-batch production run with controlled feed strategy to hold glycan and charge profile within specification.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, glucose and amino acid feeds, pH and dissolved oxygen control',
+          dependsOnStepId: 'dup-qc',
+        },
+        {
+          id: 'dup-cap',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Protein A capture and viral inactivation',
+          description: 'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
+          reagentsAndBuffer: 'Protein A resin, 50 mM acetate pH 3.6 elution, Tris neutralisation to pH 7.0',
+          dependsOnStepId: 'dup-syn',
+        },
+        {
+          id: 'dup-pol',
+          stepNumber: 4,
+          phase: 'Purification',
+          name: 'Polishing and high-concentration formulation',
+          description:
+            'Remove aggregate and residuals, then ultrafilter and diafilter into a high-concentration histidine and arginine formulation suitable for a small subcutaneous injection volume.',
+          reagentsAndBuffer: 'Multimodal and anion exchange steps, tangential flow filtration, L-histidine, L-arginine HCl, sucrose, polysorbate 80',
+          dependsOnStepId: 'dup-cap',
+        },
+        {
+          id: 'dup-assay',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Dual IL-4 and IL-13 blockade reporter bioassay',
+          description:
+            'Confirm that the lot inhibits STAT6 activation driven by both IL-4 and IL-13 in a reporter line expressing the type II receptor complex, since blocking only one would be a mechanism failure the binding assay would miss.',
+          reagentsAndBuffer: 'HEK-Blue or STAT6-luciferase reporter line, recombinant human IL-4 and IL-13, luminescent substrate',
+          dependsOnStepId: 'dup-pol',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dup-1',
+        category: 'measured',
+        title: 'SOLO 1 and SOLO 2: clear or almost clear skin in 36-38% against 8-10% on placebo',
+        laymanSummary:
+          'Two identically designed trials in 671 and 708 adults with moderate-to-severe eczema both hit their primary endpoint at 16 weeks, with itch, anxiety, depression and quality of life all improving alongside the skin.',
+        technicalDetails:
+          'Randomised, placebo-controlled, 16-week phase 3 trials of identical design. In SOLO 1 the primary endpoint of Investigator Global Assessment 0 or 1 with a 2-point or greater reduction was met by 38% on every-other-week dupilumab and 37% weekly, against 10% on placebo. SOLO 2 reproduced the result. Pruritus numeric rating scale, HADS anxiety and depression scores and DLQI all improved.',
+        evidenceSource: 'Simpson et al., New England Journal of Medicine 2016 (SOLO 1 NCT02277743, SOLO 2 NCT02277769)',
+        doi: '10.1056/NEJMoa1610020',
+        measuredMetric: 'IGA 0/1 with 2-point reduction at week 16: 38% and 37% versus 10% placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dup-2',
+        category: 'measured',
+        title: 'LIBERTY ASTHMA QUEST: fewer exacerbations and better lung function in uncontrolled asthma',
+        laymanSummary:
+          'The same antibody, in the same pathway, reduced severe asthma attacks and improved breathing tests, with the largest effects in people who had high blood eosinophil counts to begin with.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled 52-week trial in patients with uncontrolled moderate-to-severe asthma. Annualised severe exacerbation rate and pre-bronchodilator FEV1 both improved significantly, with effect size increasing across baseline eosinophil strata. Transient blood eosinophilia occurred in a minority, which is a direct consequence of blocking eosinophil tissue trafficking rather than production.',
+        evidenceSource: 'Castro et al., New England Journal of Medicine 2018 (LIBERTY ASTHMA QUEST)',
+        doi: '10.1056/NEJMoa1804092',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dup-3',
+        category: 'failed',
+        title: 'LIBERTY-CSU CUPID Study B: the primary endpoint was missed in omalizumab-refractory hives',
+        laymanSummary:
+          'In people whose chronic hives had already failed the anti-IgE antibody omalizumab, dupilumab did not meet its primary endpoint and the effects that were seen were small.',
+        technicalDetails:
+          'Study A, in 138 omalizumab-naive patients, met its endpoints with a UAS7 difference of -8.5 (95% CI -13.2 to -3.9). Study B, in 108 omalizumab-intolerant or incomplete responders and tested at alpha 0.043 after an interim analysis, missed its primary endpoint: UAS7 difference -5.8 (95% CI -11.4 to -0.3) with a non-significant numerical trend on itch. The authors state plainly that effects were small in this population. A replicate trial, CUPID-C, was required by the FDA before approval in the anti-IgE-naive population.',
+        evidenceSource: 'Maurer et al., Journal of Allergy and Clinical Immunology 2024 (LIBERTY-CSU CUPID Studies A and B)',
+        doi: '10.1016/j.jaci.2024.01.028',
+        measuredMetric: 'Study B UAS7 difference -5.8; primary endpoint not met',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dup-4',
+        category: 'measured',
+        title: 'Conjunctivitis is a real, drug-specific and mechanistically unexplained signal',
+        laymanSummary:
+          'Eye inflammation happens far more often on dupilumab than on placebo in eczema trials, and far less often in asthma trials of the same drug. Nobody has established why.',
+        technicalDetails:
+          'Conjunctivitis was reported substantially more frequently on dupilumab than placebo in the atopic dermatitis programme, but not at the same rate in the asthma or nasal polyp programmes, suggesting an interaction with atopic dermatitis itself rather than a pure drug effect. Proposed mechanisms include loss of IL-13-dependent goblet cell mucin production in the conjunctiva and shifts in ocular surface Demodex or microbial populations. None has been established.',
+        evidenceSource: 'DUPIXENT US Prescribing Information, Adverse Reactions, and the atopic dermatitis trial programme',
+        inferredClaim: 'That conjunctivitis is a direct pharmacological consequence of IL-4Ralpha blockade in all populations',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dup-5',
+        category: 'conclusion_shift',
+        title: 'Type 2 inflammation replaced organ-based disease definitions',
+        laymanSummary:
+          'Eczema, asthma, nasal polyps and a swallowing disorder used to be four specialties with four textbooks. One antibody working in all of them made a strong case that they are one mechanism presenting in four places.',
+        technicalDetails:
+          'Sequential approvals ran from atopic dermatitis (2017) through asthma (2018), chronic rhinosinusitis with nasal polyps (2019), eosinophilic oesophagitis (2022), prurigo nodularis (2022), COPD with raised eosinophils (2024) and chronic spontaneous urticaria (2025). The unifying claim is mechanistic: all are driven by IL-4 and IL-13 signalling through IL-4Ralpha. The counterexample matters too - the COPD approval is restricted to patients with elevated eosinophils, which shows the pathway framing is a biomarker-defined subset rather than a universal one.',
+        evidenceSource: 'Sequence of FDA approvals under DUPIXENT BLA 761055',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Subcutaneous self-injection every two weeks',
+        laymanDesc:
+          'A prefilled pen delivers the antibody under the skin of the thigh or abdomen, usually after a double loading dose.',
+        molecularDetail:
+          'Typically 600 mg loading then 300 mg every other week in adult atopic dermatitis, with weight-banded paediatric regimens. Absorption is lymphatic with bioavailability around 60% and time to peak of about one week.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distribution to skin, airway and gut epithelium',
+        laymanDesc:
+          'It travels in the blood to the tissues where the allergic programme is running: the skin, the lining of the airways, the sinuses and the gullet.',
+        molecularDetail:
+          'Non-linear, target-mediated disposition at low concentration reflects binding to IL-4Ralpha on tissue-resident cells; clearance becomes approximately linear once the receptor pool is saturated.',
+        iconName: 'MapPin',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Capping the shared receptor subunit',
+        laymanDesc:
+          'Both allergic messengers need the same socket. The antibody caps it, so neither can connect, from one binding event.',
+        molecularDetail:
+          'Binds IL-4Ralpha, blocking assembly of both the type I receptor (IL-4Ralpha with the common gamma chain, used by IL-4) and the type II receptor (IL-4Ralpha with IL-13Ralpha1, used by both IL-4 and IL-13).',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'STAT6 signalling stops and the type 2 programme unwinds',
+        laymanDesc:
+          'Inside the cell, the master switch for allergic inflammation is never thrown. Antibody class switching, mucus production and barrier disruption all fall away over the following weeks.',
+        molecularDetail:
+          'Without receptor assembly, JAK1, JAK3 and TYK2 do not phosphorylate STAT6, so the STAT6-dependent programme fails to run: reduced IgE class switching, lower periostin and TARC, restored filaggrin and loricrin expression, less goblet cell metaplasia and less eosinophil chemotaxis via eotaxin-3.',
+        iconName: 'PowerOff',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Barrier repair and symptom control across organs',
+        laymanDesc:
+          'Skin heals and stops itching, asthma attacks become less frequent, polyps shrink and swallowing improves, depending on which organ was affected.',
+        molecularDetail:
+          'Restored epidermal barrier protein expression and reduced Staphylococcus aureus colonisation in skin, reduced airway eosinophilia and fractional exhaled nitric oxide in asthma, and reduced oesophageal eosinophil counts in eosinophilic oesophagitis.',
+        iconName: 'Sparkles',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'SOLO 1 (NCT02277743)',
+        phase: 'Phase 3',
+        sampleSize: 671,
+        primaryEndpoint: 'IGA score 0 or 1 with at least a 2-point reduction at week 16',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 for both dupilumab regimens versus placebo',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SOLO 2 (NCT02277769)',
+        phase: 'Phase 3',
+        sampleSize: 708,
+        primaryEndpoint: 'IGA score 0 or 1 with at least a 2-point reduction at week 16',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 for both dupilumab regimens versus placebo',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'LIBERTY-CSU CUPID Study B',
+        phase: 'Phase 3',
+        sampleSize: 108,
+        primaryEndpoint:
+          'Change from baseline in UAS7 or ISS7 at week 24 in omalizumab-intolerant or incomplete responders',
+        endpointMet: false,
+        statisticalPValue: 'Tested at alpha 0.043 after interim analysis; primary endpoint not met',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'IGA 0 or 1 with 2-point reduction at 16 weeks in 37-38% versus 10% on placebo, replicated across two identical trials',
+        'Reduced annualised severe asthma exacerbation rate and improved FEV1, with effect increasing across baseline eosinophil strata',
+        'Higher conjunctivitis rate than placebo in the atopic dermatitis programme specifically',
+      ],
+      unsupportedInferences: [
+        'That every type 2 inflammatory condition will respond; the COPD approval is restricted to raised eosinophils and CUPID Study B failed in omalizumab-refractory urticaria',
+        'That the absence of a boxed infection warning means there is no immunological cost; the trials were not designed or long enough to settle long-term helminth or viral immunity questions',
+      ],
+      whatFailedInitially: [
+        'LIBERTY-CSU CUPID Study B missed its primary endpoint in omalizumab-refractory chronic spontaneous urticaria',
+        'The FDA required a replicate trial, CUPID-C, before approving the urticaria indication in the anti-IgE-naive population',
+      ],
+      realWorldOutcome: [
+        'Conjunctivitis is the most common reason for real-world discontinuation and is far more frequent in atopic dermatitis than in the respiratory indications of the same drug',
+        'Transient blood eosinophilia after starting treatment reflects blocked tissue trafficking rather than worsening disease, and is usually self-limiting',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous prefilled syringe or autoinjector pen',
+      description:
+        'Loading dose followed by 200 mg or 300 mg every two weeks, or every four weeks in some paediatric and COPD regimens, self-administered at home after training.',
+      safetyProfile:
+        'No boxed warning. Conjunctivitis, injection site reactions, oral herpes and transient eosinophilia are the characteristic events. Hypersensitivity including serum sickness-like reaction is rare. Live vaccines should be avoided during treatment.',
+    },
+    commonQuestions: [
+      {
+        q: 'My eyes have become red and gritty since starting. Is that the drug?',
+        a: 'Very likely. Conjunctivitis is the most characteristic dupilumab adverse event in eczema patients, occurring far more often than on placebo. It usually responds to lubricants or a short topical course, but persistent or painful symptoms need ophthalmology review because keratitis has been reported. Curiously, the same drug does not raise conjunctivitis rates in the asthma trials, and nobody has explained why.',
+        auditNote: 'A measured signal with no established mechanism.',
+      },
+      {
+        q: 'Does it suppress my immune system?',
+        a: 'Not in the broad sense. It blocks one receptor subunit used by two cytokines rather than depleting cells or dampening the whole system, and it carries no boxed infection warning. What has not been fully measured is long-term immunity to helminths, which IL-4 and IL-13 evolved to handle, so live vaccines are avoided as a precaution.',
+      },
+      {
+        q: 'Why did my eosinophil count go up after starting?',
+        a: 'Blocking IL-4Ralpha stops eosinophils leaving the blood and entering tissue, so they accumulate in circulation while doing less damage. It is usually transient and asymptomatic. Very high counts with new symptoms need investigation because rare eosinophilic conditions have been reported.',
+      },
+      {
+        q: 'Will it work for my chronic hives?',
+        a: 'It depends which group you are in, and the trials say so explicitly. In people who had never had omalizumab, dupilumab improved hives and itch significantly in two trials. In people whose hives had already failed omalizumab, the trial missed its primary endpoint and the authors described the effects as small.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Simpson et al., Two Phase 3 Trials of Dupilumab versus Placebo in Atopic Dermatitis, NEJM 2016',
+        identifier: '10.1056/NEJMoa1610020',
+        kind: 'doi',
+      },
+      {
+        label: 'Castro et al., Dupilumab Efficacy and Safety in Moderate-to-Severe Uncontrolled Asthma, NEJM 2018',
+        identifier: '10.1056/NEJMoa1804092',
+        kind: 'doi',
+      },
+      {
+        label: 'Maurer et al., Dupilumab in chronic spontaneous urticaria (LIBERTY-CSU CUPID), JACI 2024',
+        identifier: '10.1016/j.jaci.2024.01.028',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, SOLO 1',
+        identifier: 'NCT02277743',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, DUPIXENT BLA 761055, original approval 28 March 2017',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761055',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 8. Ustekinumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'ustekinumab',
+    name: 'Ustekinumab',
+    tradeName: 'Stelara',
+    sponsor: 'Janssen Biotech (Johnson & Johnson), originally Centocor',
+    targetGene: 'IL12B',
+    targetProtein: 'Interleukin-12 and Interleukin-23 shared p40 subunit',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2009,
+    indication: 'Moderate-to-severe plaque psoriasis, psoriatic arthritis, Crohn disease, ulcerative colitis',
+    patientFriendlyIndication: 'Psoriasis, psoriatic arthritis and inflammatory bowel disease',
+    anatomicalSite: 'Skin dermis, synovium and intestinal lamina propria',
+    conditionContext: {
+      conditionExplainer:
+        'Psoriasis is driven by a self-sustaining loop in which dendritic cells release interleukin-23, which keeps a population of T cells producing interleukin-17, which drives skin cells to divide far too fast. IL-12 and IL-23 share a protein subunit called p40.',
+      whyItMatters:
+        'Ustekinumab was the first drug to target that axis and it worked, which established the IL-23 to IL-17 pathway as the correct model of psoriasis and displaced the earlier T-helper-1 model.',
+      whoTakesThis:
+        'Adults and adolescents with moderate-to-severe plaque psoriasis, adults with active psoriatic arthritis, and adults with Crohn disease or ulcerative colitis, usually after failing conventional therapy or an anti-TNF agent.',
+      clinicalGoals:
+        'Reach PASI 75 or better in skin disease, achieve steroid-free clinical remission in bowel disease, and maintain response on quarterly dosing.',
+    },
+    oneSentenceVerdict:
+      'A human antibody against the p40 subunit shared by IL-12 and IL-23 that took 67% of psoriasis patients to PASI 75 at 12 weeks against 3% on placebo, and then proved that only the IL-23 half of its target mattered.',
+    laymanHowItWorks:
+      'Two inflammatory messengers, IL-12 and IL-23, are built from two protein blocks each and they share one block, called p40. Ustekinumab grabs that shared block, so both messengers are neutralised at once. Skin cells stop being told to divide, and the plaques thin out over weeks. One injection lasts three months.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 89,
+    substitutes: {
+      summary:
+        'IL-23 p19 antibodies such as risankizumab and guselkumab hit the half of the target that turned out to matter and beat ustekinumab head to head in psoriasis. IL-17 antibodies act one step further downstream. Methotrexate and phototherapy remain far cheaper options for moderate skin disease. No dietary intervention clears plaque psoriasis.',
+      conventionalRx: [
+        {
+          name: 'Risankizumab or guselkumab',
+          class: 'Anti-IL-23 p19 monoclonal antibody',
+          howItCompares:
+            'Blocks IL-23 alone, leaving IL-12 intact. Risankizumab was superior to ustekinumab on PASI 90 in the head-to-head UltIMMa-1 and UltIMMa-2 trials.',
+          typicalCost: 'Approximately $16,000 - $20,000 per dose US list, given every 8 or 12 weeks',
+          prosAndCons:
+            'Pros: higher complete clearance rates, quarterly dosing. Cons: cost, and no advantage demonstrated in every indication ustekinumab holds.',
+        },
+        {
+          name: 'Secukinumab or ixekizumab',
+          class: 'Anti-IL-17A monoclonal antibody',
+          howItCompares: 'Acts one step downstream on the effector cytokine, with faster onset in skin disease.',
+          typicalCost: 'Approximately $6,000 - $7,000 / month US list',
+          prosAndCons:
+            'Pros: rapid skin clearance, strong axial spondyloarthritis data. Cons: contraindicated in inflammatory bowel disease, where IL-17 blockade made disease worse.',
+        },
+        {
+          name: 'Methotrexate',
+          class: 'Conventional systemic antimetabolite',
+          howItCompares: 'The traditional systemic option for moderate-to-severe psoriasis, far less effective but orders of magnitude cheaper.',
+          typicalCost: '$15 - $40 / month generic',
+          prosAndCons:
+            'Pros: cost, oral, long experience. Cons: hepatotoxicity, marrow suppression, monitoring burden, contraindicated in pregnancy.',
+        },
+        {
+          name: 'Narrowband UVB phototherapy',
+          class: 'Physical therapy',
+          howItCompares: 'Induces local T-cell apoptosis in the skin without systemic immunomodulation.',
+          typicalCost: '$60 - $150 per session in a clinic; home units are a one-off capital cost',
+          prosAndCons:
+            'Pros: no systemic drug exposure, safe in pregnancy. Cons: two or three clinic visits a week, cumulative photodamage, no effect on joint or bowel disease.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Weight reduction in overweight psoriasis',
+          action:
+            'Sustained caloric reduction and physical activity aimed at meaningful weight loss, alongside prescribed therapy.',
+          patientImpact:
+            'Adipose tissue is an active source of inflammatory cytokines, and randomised dietary intervention studies in psoriasis have shown improved PASI response when weight falls, particularly in patients on weight-based dosing.',
+          clinicalPrecaution:
+            'This improves response and cardiometabolic risk. It does not replace systemic therapy in moderate-to-severe disease.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Fully human IgG1-kappa comprising 1,326 amino acids',
+      molecularWeight: 'Estimated 148,079 to 149,690 Da',
+      structureSource: {
+        label: 'STELARA US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125261',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ust-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'Murine myeloma expression of the fully human IgG1',
+          description:
+            'Express the transgenic-mouse-derived fully human antibody in a recombinant murine myeloma cell line under fed-batch control.',
+          reagentsAndBuffer: 'Serum-free myeloma medium, glutamine synthetase selection, controlled feed regime',
+        },
+        {
+          id: 'ust-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and viral inactivation',
+          description: 'Capture on Protein A, elute at low pH and hold to inactivate enveloped virus.',
+          reagentsAndBuffer: 'Protein A resin, sodium acetate pH 3.5 elution, 60 minute hold',
+          dependsOnStepId: 'ust-syn',
+        },
+        {
+          id: 'ust-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing chromatography and nanofiltration',
+          description:
+            'Remove aggregate, host cell protein and residual DNA, then filter for orthogonal viral clearance and formulate in histidine and sucrose.',
+          reagentsAndBuffer: 'Cation and anion exchange, 20 nm virus filter, L-histidine, sucrose, polysorbate 80, EDTA',
+          dependsOnStepId: 'ust-cap',
+        },
+        {
+          id: 'ust-assay',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'p40 binding and dual cytokine neutralisation assay',
+          description:
+            'Confirm binding to the shared p40 subunit and functional neutralisation of both IL-12-driven interferon-gamma release and IL-23-driven IL-17 release, since a lot that neutralised only one would be out of specification.',
+          reagentsAndBuffer:
+            'Recombinant human IL-12p70 and IL-23, NK-92 or PBMC responder cells, interferon-gamma and IL-17A ELISA readouts',
+          dependsOnStepId: 'ust-pol',
+        },
+        {
+          id: 'ust-rel',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Aggregate, charge variant and glycan release testing',
+          description: 'Confirm product quality attributes are within validated ranges before lot release.',
+          reagentsAndBuffer: 'SEC-HPLC, imaged capillary isoelectric focusing, HILIC-UPLC released glycan mapping',
+          dependsOnStepId: 'ust-assay',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ust-1',
+        category: 'measured',
+        title: 'PHOENIX 1 and PHOENIX 2: PASI 75 in about two-thirds against 3-4% on placebo',
+        laymanSummary:
+          'In 766 and 1,230 people with moderate-to-severe psoriasis, roughly two-thirds reached a 75% improvement in skin severity at 12 weeks compared with three or four in a hundred on placebo, and quarterly dosing held that response for a year.',
+        technicalDetails:
+          'PHOENIX 1 randomised 766 patients to ustekinumab 45 mg, 90 mg or placebo at weeks 0 and 4 then every 12 weeks. PASI 75 at week 12 was 67.1% and 66.4% against 3.1% on placebo, a 63.9 percentage point difference (95% CI 57.8-70.1). A randomised withdrawal design at week 40 showed maintenance dosing preserved response better than withdrawal. PHOENIX 2 reproduced the result in a larger cohort.',
+        evidenceSource:
+          'Leonardi et al., The Lancet 2008 (PHOENIX 1, NCT00267969); Papp et al., The Lancet 2008 (PHOENIX 2)',
+        doi: '10.1016/S0140-6736(08)60725-4',
+        measuredMetric: 'PASI 75 at week 12: 67.1% and 66.4% versus 3.1% placebo',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ust-2',
+        category: 'measured',
+        title: 'UNITI: induction and maintenance of remission in Crohn disease',
+        laymanSummary:
+          'The same antibody induced and maintained remission in Crohn disease, including in people whose disease had already failed anti-TNF therapy.',
+        technicalDetails:
+          'The UNITI programme comprised two eight-week induction trials, one in patients who had failed anti-TNF therapy and one in patients who had failed conventional therapy, and a 44-week randomised withdrawal maintenance trial. A single intravenous induction dose produced significantly higher clinical response than placebo, and subcutaneous maintenance every 8 or 12 weeks preserved remission.',
+        evidenceSource: 'Feagan et al., New England Journal of Medicine 2016 (UNITI-1, UNITI-2, IM-UNITI)',
+        doi: '10.1056/NEJMoa1602773',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ust-3',
+        category: 'failed',
+        title: 'Multiple sclerosis: no effect on new brain lesions in a 249-patient phase 2 trial',
+        laymanSummary:
+          'IL-12 was believed to drive multiple sclerosis. Blocking it made no measurable difference to new inflammatory brain lesions at any of four doses.',
+        technicalDetails:
+          'Phase 2, multicentre, randomised, double-blind, placebo-controlled trial in 249 patients with relapsing-remitting multiple sclerosis across five arms. The primary endpoint, cumulative number of new gadolinium-enhancing T1-weighted lesions through week 23, showed no significant reduction at any dose. The result was one of the earliest strong signals that the T-helper-1 and IL-12 model of autoimmune demyelination was wrong and that IL-23 and IL-17 were the relevant axis.',
+        evidenceSource: 'Segal et al., The Lancet Neurology 2008 (NCT00207727)',
+        doi: '10.1016/S1474-4422(08)70173-X',
+        measuredMetric: 'No significant reduction in new gadolinium-enhancing lesions at any of four doses',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ust-4',
+        category: 'conclusion_shift',
+        title: 'Only half the target mattered, and the successors that dropped IL-12 worked better',
+        laymanSummary:
+          'Ustekinumab blocks IL-12 and IL-23 together. When drugs were built that block IL-23 alone, they cleared skin better, not worse. Blocking IL-12 was contributing nothing useful and may have been removing a protective signal.',
+        technicalDetails:
+          'The p19-specific IL-23 antibodies risankizumab and guselkumab both demonstrated superiority over ustekinumab on PASI 90 in randomised head-to-head psoriasis trials. IL-12 drives the T-helper-1 and interferon-gamma axis, which appears to be redundant or even protective in psoriasis. The field moved from p40 to p19 within a decade, and ustekinumab was displaced as first-line biologic in skin disease by its own mechanistic successors.',
+        evidenceSource: 'Head-to-head superiority of p19-specific IL-23 antibodies over ustekinumab in psoriasis',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ust-5',
+        category: 'inferred',
+        title: 'Quarterly dosing is read as quarterly disease control for everyone',
+        laymanSummary:
+          'The 12-week interval was fixed in the trial protocol, not derived from measuring when each individual loses response. A substantial minority of patients flare before the next dose is due.',
+        technicalDetails:
+          'PHOENIX 1 and 2 dosed at weeks 0 and 4 then every 12 weeks by protocol. PHOENIX 1 permitted dose intensification to every 8 weeks in partial responders, and real-world practice frequently shortens the interval or raises the dose, which indicates the fixed interval was a design choice rather than a measured pharmacodynamic optimum for every patient. Weight-based dosing at 90 mg above 100 kg partly addresses this.',
+        evidenceSource: 'Dosing protocol and dose intensification provisions of PHOENIX 1',
+        inferredClaim: 'That a 12-week interval maintains disease control in all patients',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Intravenous induction then subcutaneous maintenance',
+        laymanDesc:
+          'In bowel disease the first dose goes into a vein to load quickly; in skin disease it is injected under the skin from the start. Maintenance is one injection every eight or twelve weeks.',
+        molecularDetail:
+          'Weight-based intravenous induction in inflammatory bowel disease, 45 mg or 90 mg subcutaneously in psoriasis at weeks 0 and 4 then every 12 weeks. Terminal half-life is approximately three weeks.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Distribution to skin, synovium and gut wall',
+        laymanDesc:
+          'It reaches the tissues where dendritic cells are broadcasting the inflammatory signal to the T cells around them.',
+        molecularDetail:
+          'Distributes into inflamed dermis, synovium and intestinal lamina propria where activated myeloid dendritic cells and macrophages secrete IL-12 and IL-23.',
+        iconName: 'MapPin',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding the shared p40 subunit',
+        laymanDesc:
+          'Both messengers are built from two blocks and share one. The antibody grabs the shared block, so neither can dock onto a T cell.',
+        molecularDetail:
+          'Binds the p40 subunit common to IL-12 (p35 with p40) and IL-23 (p19 with p40), preventing engagement of IL-12Rbeta1 on T cells and natural killer cells. The IgG1 Fc is intact but the target is a soluble cytokine, so effector function is not the point.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The IL-23 to IL-17 loop is broken',
+        laymanDesc:
+          'Without the IL-23 signal, the T cells that had been producing the skin-thickening messenger stop being maintained, and the loop that kept the plaque alive runs down.',
+        molecularDetail:
+          'Loss of IL-23R signalling removes STAT3-dependent maintenance of Th17 and gamma-delta T cell populations, cutting IL-17A, IL-17F and IL-22 output. Blocking IL-12 additionally cuts STAT4-dependent interferon-gamma production, which appears to contribute little to psoriasis benefit.',
+        iconName: 'Unlink',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plaques thin and mucosa heals over weeks to months',
+        laymanDesc:
+          'Skin turnover slows back towards normal and plaques flatten. In the bowel, ulcers heal. The effect builds over weeks rather than days.',
+        molecularDetail:
+          'Reduced IL-22-driven keratinocyte hyperproliferation restores normal epidermal turnover and reverses parakeratosis and acanthosis. In intestinal disease, reduced Th17 and innate lymphoid cell activity permits mucosal healing.',
+        iconName: 'Sparkles',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'PHOENIX 1 (NCT00267969)',
+        phase: 'Phase 3',
+        sampleSize: 766,
+        primaryEndpoint: 'PASI 75 at week 12',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.0001; 63.9 percentage point difference versus placebo (95% CI 57.8-70.1)',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Segal 2008 multiple sclerosis phase 2 (NCT00207727)',
+        phase: 'Phase 2',
+        sampleSize: 249,
+        primaryEndpoint: 'Cumulative new gadolinium-enhancing T1-weighted brain lesions through week 23',
+        endpointMet: false,
+        statisticalPValue: 'No significant reduction versus placebo at any of four dose groups',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'PASI 75 at week 12 in 67.1% and 66.4% versus 3.1% on placebo',
+        'Maintenance of response on 12-weekly dosing over 76 weeks in a randomised withdrawal design',
+        'Induction and maintenance of Crohn disease remission including after anti-TNF failure',
+        'No reduction in new brain lesions in relapsing-remitting multiple sclerosis',
+      ],
+      unsupportedInferences: [
+        'That blocking IL-12 contributes to the psoriasis benefit; IL-23-only successors clear skin better',
+        'That a 12-week dosing interval maintains control in every patient, when the trials permitted intensification and real-world practice uses it',
+      ],
+      whatFailedInitially: [
+        'The 249-patient phase 2 multiple sclerosis trial found no effect on new inflammatory brain lesions',
+        'The p40 target was superseded within a decade by p19-specific antibodies that proved superior head to head in psoriasis',
+      ],
+      realWorldOutcome: [
+        'Ustekinumab retains a strong position in Crohn disease and ulcerative colitis even where p19 antibodies have displaced it in skin disease',
+        'US biosimilars began entering from 2024 following patent expiry, with several approved during 2024 and 2025',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous prefilled syringe, with weight-based intravenous induction in inflammatory bowel disease',
+      description:
+        '45 mg or 90 mg subcutaneously at weeks 0 and 4 then every 12 weeks in psoriasis, dosed by body weight above and below 100 kg. Bowel disease starts with a single weight-based infusion.',
+      safetyProfile:
+        'No boxed warning. Serious infection and reactivation of latent tuberculosis are the principal risks, and screening before treatment is required. Reversible posterior leukoencephalopathy syndrome has been reported rarely.',
+    },
+    commonQuestions: [
+      {
+        q: 'Newer drugs block only IL-23. Is ustekinumab now obsolete?',
+        a: 'In skin disease it has largely been displaced: risankizumab and guselkumab, which block IL-23 alone, beat it head to head on complete clearance. In Crohn disease and ulcerative colitis it retains a strong position and a large body of real-world data. Obsolete is too strong; superseded in one indication is accurate.',
+        auditNote: 'A clean case of a drug proving its own target was only half right.',
+      },
+      {
+        q: 'My psoriasis comes back before the next injection is due. Is that expected?',
+        a: 'It happens in a substantial minority. The 12-week interval came from the trial protocol rather than from measuring individual pharmacodynamics, and PHOENIX 1 itself allowed intensification to every 8 weeks in partial responders. Weight above 100 kg is one predictor, which is why dosing is weight-banded.',
+      },
+      {
+        q: 'Why do I need a tuberculosis test first?',
+        a: 'IL-12 signalling drives the interferon-gamma response that keeps latent tuberculosis contained. People with genetic deficiency of the IL-12 receptor develop mycobacterial disease. Screening for latent tuberculosis before starting is required by the label for exactly that reason.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Leonardi et al., Efficacy and safety of ustekinumab in psoriasis (PHOENIX 1), Lancet 2008',
+        identifier: '10.1016/S0140-6736(08)60725-4',
+        kind: 'doi',
+      },
+      {
+        label: 'Papp et al., Efficacy and safety of ustekinumab in psoriasis (PHOENIX 2), Lancet 2008',
+        identifier: '10.1016/S0140-6736(08)60726-6',
+        kind: 'doi',
+      },
+      {
+        label: 'Feagan et al., Ustekinumab as Induction and Maintenance Therapy for Crohn Disease, NEJM 2016',
+        identifier: '10.1056/NEJMoa1602773',
+        kind: 'doi',
+      },
+      {
+        label: 'Segal et al., Ustekinumab in relapsing-remitting multiple sclerosis, Lancet Neurology 2008',
+        identifier: '10.1016/S1474-4422(08)70173-X',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA, STELARA BLA 125261, original approval 25 September 2009',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125261',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]

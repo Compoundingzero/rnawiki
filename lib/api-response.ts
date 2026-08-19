@@ -205,17 +205,18 @@ export function rateLimited(policy: RateLimitPolicy, key: string): NextResponse<
 /**
  * What any route may return about an account.
  *
- * `medicalLicenseOrNpi` is omitted and replaced by `hasCredentialOnFile`. A licence number or NPI
- * is a real-world identifier that a steward checks against a registry once; the interface only ever
- * needs to know whether one was filed, and a field that is never rendered but is always sent is a
- * field that ends up in someone's browser cache, error tracker and server log.
+ * The licence number or NPI never appears here, and no longer appears on `CommentUser` either:
+ * that object is serialised into the RSC payload of every page a signed-in physician loads. A
+ * real-world identifier that a steward checks against a registry once, and that nothing renders,
+ * has no business in someone's browser cache, error tracker and server log. `hasCredentialOnFile`
+ * is all the interface ever needed.
  *
  * `email` stays, because every route that returns a `PublicUser` returns it to the account's own
  * owner — register, login, me, doctor-verification. Nothing here backs a public profile page; that
  * is `getContributorProfile` in lib/queries/users.ts, which selects a different set of columns and
  * never selects the email at all.
  */
-export interface PublicUser extends Omit<CommentUser, 'medicalLicenseOrNpi'> {
+export interface PublicUser extends CommentUser {
   hasCredentialOnFile: boolean
 }
 
@@ -259,11 +260,10 @@ export function toPublicUser(user: AccountUser): PublicUser {
  */
 export function commentUserToPublic(user: CommentUser): PublicUser {
   const verified = user.verificationState === 'verified'
-  const { medicalLicenseOrNpi, ...rest } = user
   return {
-    ...rest,
+    ...user,
     isDoctor: verified,
-    hasCredentialOnFile: Boolean(medicalLicenseOrNpi),
+    hasCredentialOnFile: Boolean(user.hasCredentialOnFile),
     medicalSpecialty: verified ? user.medicalSpecialty : undefined,
     institution: verified ? user.institution : undefined,
   }

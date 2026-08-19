@@ -139,13 +139,6 @@ export function looksLikeCodename(name: string): boolean {
   return CODENAME_PATTERN.test(name.trim().toUpperCase())
 }
 
-/** Split an ingredient field that names several substances at once. */
-function splitIngredientNames(raw: string): string[] {
-  return raw
-    .split(/\s+AND\s+|,\s*|;\s*|\|\|/i)
-    .map((part) => baseMoiety(part))
-    .filter((part) => part.length >= 3)
-}
 
 export function aggregateOpenFda(): Map<string, AggregatedSubstance> {
   const index = new Map<string, AggregatedSubstance>()

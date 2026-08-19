@@ -16,7 +16,6 @@
 // can render a stored report without shipping JavaScript, and a contributor with JS disabled can
 // still open the sections.
 
-import type { ReactNode } from 'react'
 import { AlertTriangle, CheckCircle2, ChevronDown, ShieldCheck, XCircle } from 'lucide-react'
 import { summariseReport } from '@/lib/rna-intelligence'
 import type {

@@ -236,7 +236,11 @@ const dossierPayloadSchema = z.object({
   recentAuditDate: z.string().trim().max(64).optional(),
   hasDiscrepancy: z.boolean().optional(),
   dossierDepth: z.enum(['stub', 'curated', 'flagship']).optional(),
-  sourceProvenance: z.array(z.string().trim().max(300)).max(MAX_LIST_ITEMS).optional(),
+  // sourceProvenance is DELIBERATELY NOT ACCEPTED from the client. It records where a record's
+  // facts came from -- 'openFDA Drugs@FDA', 'PubChem PUG-REST', a cited DOI -- and it is the line a
+  // reader checks when they want to know whether to believe the page. A contributor who could
+  // write it could attribute their own edit to the FDA. It is set by the ingest and by the seed
+  // loader, both of which know what they actually read.
 
   conditionContext: conditionContextSchema.optional(),
   pricing: pricingSchema.optional(),

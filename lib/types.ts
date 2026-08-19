@@ -303,7 +303,12 @@ export interface CommentUser {
   name: string
   email: string
   isDoctor: boolean
-  medicalLicenseOrNpi?: string
+  /**
+   * Never the number itself. See the comment in lib/session.ts's toCommentUser: this object is
+   * serialised into the RSC payload of every page, and a licence number that nothing renders has
+   * no reason to be there.
+   */
+  hasCredentialOnFile?: boolean
   medicalSpecialty?: string
   institution?: string
   verifiedAt?: string

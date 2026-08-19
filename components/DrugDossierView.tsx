@@ -358,7 +358,7 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
     ? `Direct RNA silencing: Injected molecules match the exact genetic code of ${drug.targetGene} messenger RNA, dismantling disease instructions before proteins can ever be made.`
     : isPeptide
       ? `Cellular receptor cascade: This peptide binds ${drug.targetGene} receptors on cell membranes, signaling internal transcription factors to rebalance RNA expression.`
-      : `Enzymatic metabolic loop: This molecule modulates ${drug.targetGene} enzymes, altering intracellular nutrient sensing and protein turnover.`
+      : `Cellular signalling loop: This molecule acts on ${drug.targetGene}, changing the downstream signals that decide which proteins a cell makes and how fast it uses them.`
 
   const mechanismList = drug.mechanismSteps
   // The reference synthesised a plausible-sounding step when the array was empty. It is empty for
@@ -653,9 +653,15 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
               </div>
             </div>
 
+            {/* The reference printed one footnote for every drug: "Verified active ingredient
+                synthesis cost using automated solid-phase phosphoramidite chemistry." That is how
+                oligonucleotides are made and has nothing to do with a statin or an antibody, and
+                "Verified" claimed a check nobody ran. What a reader needs instead is where the
+                number came from, which the curated record actually records. */}
             <p className="text-xs text-[#86868B] leading-relaxed">
-              *Verified active ingredient synthesis cost using automated solid-phase phosphoramidite
-              chemistry.
+              {hasText(drug.pricing.openPatentNotes)
+                ? drug.pricing.openPatentNotes
+                : 'Cost of the active ingredient at scale, against the commercial list price before insurance. Both figures come from the cited sources on this record.'}
             </p>
           </div>
         ) : (
@@ -1127,7 +1133,12 @@ export function DrugDossierView({ drug: serverDrug }: DrugDossierViewProps) {
                         ? 'SMILES Chemical Structure'
                         : isPeptide
                           ? 'Amino Acid Peptide Sequence'
-                          : "RNA Nucleotide Sequence (5' → 3')"}
+                          : isRna
+                            ? "RNA Nucleotide Sequence (5' → 3')"
+                            : // Antibodies, recombinant proteins and gene therapies reach here.
+                              // The reference's final fallback was the RNA label, which called an
+                              // immunoglobulin descriptor a nucleotide sequence.
+                              'Molecular Structure Descriptor'}
                     </span>
                     <button
                       type="button"

@@ -177,8 +177,12 @@ export function toCommentUser(user: AccountUser): CommentUser {
     id: user.id,
     name: user.name,
     email: user.email,
-    isDoctor: user.isDoctor,
-    medicalLicenseOrNpi: user.medicalLicenseOrNpi ?? undefined,
+    // `verificationState === 'verified'`, NEVER `user.isDoctor`. The is_doctor column records
+    // only that somebody ticked a box and typed a licence number; if it drove the badge, the blue
+    // check would be self-service. lib/session.ts makes the same choice for the same reason, and
+    // this mapper had it wrong -- an unused export today is an accidental caller tomorrow.
+    isDoctor: user.verificationState === 'verified',
+    hasCredentialOnFile: Boolean(user.medicalLicenseOrNpi),
     medicalSpecialty: user.medicalSpecialty ?? undefined,
     institution: user.institution ?? undefined,
     verifiedAt: user.verifiedAt?.toISOString(),
