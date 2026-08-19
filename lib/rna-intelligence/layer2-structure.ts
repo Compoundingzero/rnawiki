@@ -39,6 +39,7 @@
 
 import type { Diagnostic, DiagnosticSeverity, Layer1Result, Layer2Result } from './types'
 import { computeDescriptors, computePeptideDescriptors } from './descriptors'
+import type { FoldResult } from './fold'
 import { foldRna } from './fold'
 
 /**
@@ -126,7 +127,7 @@ function validateNucleotide(layer1: Layer1Result): Layer2Result {
     }
   }
 
-  let fold
+  let fold: FoldResult
   try {
     fold = foldRna(sequence, { maxLength: MAX_FOLD_LENGTH })
   } catch {
