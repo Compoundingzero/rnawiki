@@ -46,15 +46,32 @@ function loadStructures(skip: boolean): Map<string, IngestStructure> {
   const structures = new Map<string, IngestStructure>()
   if (skip || !existsSync(CACHE_FILES.structureIndex)) return structures
 
+  // The cache is written by scripts/ingest/build-structures.ts as { moiety: { record, fetchedAt } },
+  // where a null record is a cached "PubChem does not have this" — a real answer worth keeping.
   const raw = JSON.parse(readFileSync(CACHE_FILES.structureIndex, 'utf8')) as Record<
     string,
-    { smiles?: string; formula?: string; molecularWeight?: number; iupacName?: string; xlogp?: number } | null
+    { record: { smiles?: string; formula?: string; molecularWeight?: number; iupacName?: string; xlogp?: number } | null } | null
   >
-  for (const [moiety, value] of Object.entries(raw)) {
-    if (!value?.smiles) continue
-    structures.set(moiety, { ...value, source: 'PubChem PUG-REST' })
+
+  let negatives = 0
+  for (const [moiety, entry] of Object.entries(raw)) {
+    const record = entry?.record
+    if (!record?.smiles) {
+      negatives += 1
+      continue
+    }
+    structures.set(moiety, {
+      smiles: record.smiles,
+      formula: record.formula,
+      molecularWeight: record.molecularWeight,
+      iupacName: record.iupacName,
+      xlogp: record.xlogp,
+      source: 'PubChem PUG-REST',
+    })
   }
-  console.log(`[run] loaded ${structures.size.toLocaleString()} cached structures`)
+  console.log(
+    `[run] loaded ${structures.size.toLocaleString()} cached structures (${negatives.toLocaleString()} substances PubChem has no entry for)`,
+  )
   return structures
 }
 
