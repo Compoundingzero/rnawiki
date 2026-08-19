@@ -1,7 +1,6 @@
 import {
   pgTable,
   pgEnum,
-  serial,
   text,
   varchar,
   integer,
@@ -10,13 +9,26 @@ import {
   jsonb,
   index,
   uniqueIndex,
+  primaryKey,
   customType,
 } from 'drizzle-orm/pg-core'
 import { relations, sql } from 'drizzle-orm'
+import type {
+  AuditPoint,
+  ClinicalTrialRecord,
+  CommonQuestion,
+  ConditionContext,
+  DeliverySystem,
+  DrugSubstitutes,
+  MeasuredVsInferredSummary,
+  MechanismStep,
+  MolecularSchema,
+  PricingTransparency,
+  RevisionFieldChange,
+} from '@/lib/types'
 
-// A Postgres `tsvector` column. Drizzle has no built-in helper for it, so it is modelled as a
-// custom type. Used only for generated, indexed full-text search columns (see `searchVector`
-// below and lib/search.ts) — never written to directly from application code.
+// A Postgres `tsvector` column. Drizzle has no built-in helper, so it is modelled as a custom
+// type. Used only for the generated, indexed full-text search column on `drugs`.
 const tsvector = customType<{ data: string }>({
   dataType() {
     return 'tsvector'
@@ -24,519 +36,396 @@ const tsvector = customType<{ data: string }>({
 })
 
 // ---------------------------------------------------------------------------
-// Enums
+// Enums — the vocabulary is fixed in lib/types.ts and mirrored here BY HAND.
+// A value added to one and not the other is a real bug no lint will catch.
 // ---------------------------------------------------------------------------
 
-export const entityTypeEnum = pgEnum('entity_type', [
-  'peptide',
-  'supplement_ingredient',
-  'investigational_medicine',
-  'approved_medicine',
-  'gene_editing_treatment',
-  'rna_treatment',
-  'other_emerging_therapy',
+export const drugModalityEnum = pgEnum('drug_modality', [
+  'Small Molecule',
+  'Peptide / GLP-1 Agonist',
+  'Monoclonal Antibody (mAb)',
+  'siRNA (Small Interfering RNA)',
+  'ASO (Antisense Oligonucleotide)',
+  'mRNA Vaccine / Therapeutic',
+  'CRISPR / Gene Therapy',
+  'Recombinant Protein / Biologic',
+  'Nutraceutical / Botanical',
 ])
 
-export const regulatoryCategoryEnum = pgEnum('regulatory_category', [
-  'approved_medicine',
-  'investigational_medicine',
-  'compounded_medicine',
-  'dietary_supplement',
-  'unapproved_therapeutic_substance',
-  'withdrawn_or_restricted',
+export const approvalStatusEnum = pgEnum('approval_status', [
+  'FDA Approved',
+  'EMA Approved',
+  'Phase 3 Clinical Trial',
+  'Phase 2 Investigational',
+  'Off-Label / Compounded',
+  'Non-FDA / Dietary Supplement',
+  'Accelerated Approval',
+  'Pre-clinical / Open Source',
 ])
 
-export const publicationStatusEnum = pgEnum('publication_status', [
-  'draft',
-  'editorially_complete',
-  'scientific_review_required',
-  'approved',
+export const auditConfidenceEnum = pgEnum('audit_confidence', [
+  'High Confidence',
+  'Moderate / Debated',
+  'Inference Overreach Found',
+  'Rigorous Replicated',
+])
+
+export const dossierDepthEnum = pgEnum('dossier_depth', ['stub', 'curated', 'flagship'])
+
+export const trustTierEnum = pgEnum('trust_tier', ['new', 'contributor', 'trusted', 'steward'])
+
+export const doctorVerificationStateEnum = pgEnum('doctor_verification_state', [
+  'none',
+  'pending',
+  'verified',
+  'rejected',
+])
+
+export const revisionStatusEnum = pgEnum('revision_status', [
   'published',
-  'needs_update',
-  're_review',
+  'pending_review',
+  'rejected',
+  'machine_rejected',
 ])
 
-export const claimTypeEnum = pgEnum('claim_type', [
-  'mechanism',
-  'effectiveness',
-  'safety',
-  'regulatory',
-  'access',
-  'claimed_use',
-])
+export const noteStatusEnum = pgEnum('note_status', ['published', 'hidden', 'flagged'])
 
-// Ordered weakest -> strongest. Stored as text, ordering enforced in application code
-// (PROOF_BOUNDARY_STAGES in lib/evidence.ts) rather than relying on enum declaration order.
-export const proofBoundaryStageEnum = pgEnum('proof_boundary_stage', [
-  'biological_rationale_only',
-  'isolated_cell_evidence',
-  'animal_evidence',
-  'observational_human_evidence',
-  'uncontrolled_human_intervention',
-  'controlled_human_evidence',
-  'independently_supported_controlled_human_evidence',
-  'regulatory_evidence',
-])
+export const feedbackTypeEnum = pgEnum('feedback_type', ['suggestion', 'correction', 'request'])
 
-export const evidenceStatusEnum = pgEnum('evidence_status', ['measured', 'inferred', 'unknown'])
+// ---------------------------------------------------------------------------
+// users
+// ---------------------------------------------------------------------------
 
-export const evidenceRelationshipEnum = pgEnum('evidence_relationship', [
-  'supports',
-  'contradicts',
-  'limits',
-  'contextualizes',
-])
+export const users = pgTable(
+  'users',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    email: varchar('email', { length: 320 }).notNull(),
+    passwordHash: text('password_hash').notNull(),
+    name: varchar('name', { length: 160 }).notNull(),
+    handle: varchar('handle', { length: 64 }).notNull(),
 
-export const reviewDecisionEnum = pgEnum('review_decision', ['approved', 'rejected', 'needs_changes'])
+    // ORCID is the researcher identity anchor: contributions are timestamped against it.
+    orcid: varchar('orcid', { length: 32 }),
 
-export const userRoleEnum = pgEnum('user_role', ['administrator', 'editor', 'scientific_reviewer'])
+    // Physician credentials. `verificationState` is the only thing that decides whether the
+    // blue check renders. Submitting a licence number sets it to 'pending', never 'verified' —
+    // a human steward approves. Nothing in the app may write 'verified' on a user's own behalf.
+    isDoctor: boolean('is_doctor').notNull().default(false),
+    medicalLicenseOrNpi: varchar('medical_license_or_npi', { length: 64 }),
+    medicalSpecialty: varchar('medical_specialty', { length: 120 }),
+    institution: varchar('institution', { length: 200 }),
+    verificationState: doctorVerificationStateEnum('verification_state').notNull().default('none'),
+    verifiedAt: timestamp('verified_at', { withTimezone: true }),
+    verificationNote: text('verification_note'),
 
-export const moderationStatusEnum = pgEnum('moderation_status', ['pending', 'resolved', 'dismissed'])
+    // Contribution reputation. `trustTier` is derived from `acceptedEditCount` on every
+    // accepted edit (lib/trust.ts) — it is stored so queries need no recomputation, but the
+    // count is the source of truth.
+    trustTier: trustTierEnum('trust_tier').notNull().default('new'),
+    acceptedEditCount: integer('accepted_edit_count').notNull().default(0),
+    rejectedEditCount: integer('rejected_edit_count').notNull().default(0),
+    noteCount: integer('note_count').notNull().default(0),
 
-export const evidenceChangeTypeEnum = pgEnum('evidence_change_type', [
-  'new_controlled_trial',
-  'regulatory_decision',
-  'safety_warning',
-  'retraction_or_correction',
-  'independent_study',
-  'boundary_moved',
-])
+    isAdmin: boolean('is_admin').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    uniqueIndex('users_email_unique').on(sql`lower(${table.email})`),
+    uniqueIndex('users_handle_unique').on(sql`lower(${table.handle})`),
+    index('users_verification_state_idx').on(table.verificationState),
+    index('users_trust_tier_idx').on(table.trustTier),
+  ],
+)
 
-export const reviewableTypeEnum = pgEnum('reviewable_type', ['claim', 'entity'])
-
-// What kind of recorded event this is. Appended to the file, never reordered: Postgres enum
-// values are matched by name, but the public sentence maps in lib/claim-events.ts are keyed off
-// these exact strings, so a rename here silently changes public copy.
+// ---------------------------------------------------------------------------
+// drugs — one row per dossier.
 //
-// `program_stopped_scientific` and `program_stopped_commercial` are deliberately two values, not
-// one `program_stopped`. A programme shelved for funding, portfolio or patent reasons is not
-// evidence that the science failed, and collapsing the two would let the failure section imply a
-// scientific result that no source records. lib/claim-events.ts `isScientificFailure` is the one
-// place that decides which is which.
-export const claimEventTypeEnum = pgEnum('claim_event_type', [
-  'contradictory_result',
-  'null_result',
-  'safety_limited',
-  'exposure_or_delivery_limit',
-  'target_engagement_not_shown',
-  'target_engagement_shown_no_clinical_benefit',
-  'trial_design_limit',
-  'program_stopped_scientific',
-  'program_stopped_commercial',
-  'regulatory_or_safety_change',
-  'retraction_or_correction',
-  'other',
-])
-
-// Where in the development chain the recorded event landed. Roughly ordered from "does this
-// biology exist in humans at all" through to commercial availability, but ordering is not relied
-// on anywhere — a gate is a location, not a score, and must never be rendered as a rank.
-export const developmentGateEnum = pgEnum('development_gate', [
-  'human_biology',
-  'intervention_direction',
-  'delivery_or_exposure',
-  'target_engagement',
-  'pathway_response',
-  'patient_selection',
-  'clinical_outcome',
-  'safety',
-  'trial_design',
-  'manufacturing',
-  'commercial',
-  'unknown',
-])
-
-// ---------------------------------------------------------------------------
-// Accounts (internal only — administrator / editor / scientific_reviewer)
+// Scalar columns are the ones searched, filtered or sorted. Everything the dossier page renders
+// as a nested structure is jsonb, typed through lib/types.ts, because edits replace whole
+// sections at a time and revisions diff them as units.
 // ---------------------------------------------------------------------------
 
-export const users = pgTable('users', {
-  id: serial('id').primaryKey(),
-  email: varchar('email', { length: 320 }).notNull().unique(),
-  name: varchar('name', { length: 200 }).notNull(),
-  passwordHash: text('password_hash').notNull(),
-  role: userRoleEnum('role').notNull(),
-  credentials: text('credentials'), // e.g. "MD, PhD — clinical pharmacology"
-  relevantField: varchar('relevant_field', { length: 200 }),
-  /**
-   * The revocation counter for this user's sessions. Stamped into the session at login and
-   * re-checked on every request in `getCurrentUser`; bumping it invalidates every cookie that
-   * user is still holding, anywhere.
-   *
-   * It exists because iron-session is stateless: `session.destroy()` on logout clears the
-   * BROWSER's copy and nothing else, so a cookie value captured beforehand kept working. With this
-   * column there is one server-side value that can say no.
-   */
-  sessionVersion: integer('session_version').notNull().default(1),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+export const drugs = pgTable(
+  'drugs',
+  {
+    id: varchar('id', { length: 96 }).primaryKey(),
+    slug: varchar('slug', { length: 128 }).notNull(),
+
+    name: varchar('name', { length: 300 }).notNull(),
+    tradeName: varchar('trade_name', { length: 400 }),
+    sponsor: varchar('sponsor', { length: 300 }).notNull().default(''),
+    targetGene: varchar('target_gene', { length: 200 }).notNull().default(''),
+    targetProtein: varchar('target_protein', { length: 300 }).notNull().default(''),
+
+    modality: drugModalityEnum('modality').notNull(),
+    approvalStatus: approvalStatusEnum('approval_status').notNull(),
+    approvalYear: integer('approval_year'),
+
+    indication: text('indication').notNull().default(''),
+    patientFriendlyIndication: text('patient_friendly_indication').notNull().default(''),
+
+    oneSentenceVerdict: text('one_sentence_verdict').notNull().default(''),
+    laymanHowItWorks: text('layman_how_it_works').notNull().default(''),
+
+    auditConfidence: auditConfidenceEnum('audit_confidence').notNull().default('Moderate / Debated'),
+    confidenceScore: integer('confidence_score').notNull().default(0),
+
+    anatomicalSite: varchar('anatomical_site', { length: 300 }),
+    recentAuditDate: varchar('recent_audit_date', { length: 64 }).notNull().default(''),
+    hasDiscrepancy: boolean('has_discrepancy').notNull().default(false),
+
+    dossierDepth: dossierDepthEnum('dossier_depth').notNull().default('stub'),
+
+    // Nested dossier sections. Null means "not documented yet" and renders as the contribute
+    // prompt — never as invented content.
+    conditionContext: jsonb('condition_context').$type<ConditionContext>(),
+    pricing: jsonb('pricing').$type<PricingTransparency>(),
+    substitutes: jsonb('substitutes').$type<DrugSubstitutes>(),
+    molecularSchema: jsonb('molecular_schema').$type<MolecularSchema>(),
+    keyAudits: jsonb('key_audits').$type<AuditPoint[]>().notNull().default(sql`'[]'::jsonb`),
+    mechanismSteps: jsonb('mechanism_steps')
+      .$type<MechanismStep[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+    trials: jsonb('trials').$type<ClinicalTrialRecord[]>().notNull().default(sql`'[]'::jsonb`),
+    measuredVsInferredSummary: jsonb('measured_vs_inferred_summary').$type<MeasuredVsInferredSummary>(),
+    deliverySystem: jsonb('delivery_system').$type<DeliverySystem>(),
+    commonQuestions: jsonb('common_questions')
+      .$type<CommonQuestion[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+
+    // Provenance for the ingested identity layer, e.g. ['openFDA Drugs@FDA', 'PubChem PUG-REST'].
+    sourceProvenance: jsonb('source_provenance').$type<string[]>().notNull().default(sql`'[]'::jsonb`),
+
+    // Set only by a passing deterministic sweep of the RNA Intelligence engine. Never by hand.
+    isMachineVerifiedStructure: boolean('is_machine_verified_structure').notNull().default(false),
+    verificationHash: varchar('verification_hash', { length: 32 }),
+    lastVerifiedAt: timestamp('last_verified_at', { withTimezone: true }),
+
+    revisionCount: integer('revision_count').notNull().default(0),
+    viewCount: integer('view_count').notNull().default(0),
+    lastEditedAt: timestamp('last_edited_at', { withTimezone: true }),
+    lastEditedBy: varchar('last_edited_by', { length: 160 }),
+
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+
+    // Generated full-text column. The SQL below uses BARE, UNQUALIFIED column names on purpose:
+    // interpolating `${drugs.name}` here reintroduces a TS7022 circular self-reference under
+    // strict TypeScript, because the table's type would depend on its own column list. Read this
+    // comment before "fixing" it.
+    searchVector: tsvector('search_vector').generatedAlwaysAs(
+      sql`
+        setweight(to_tsvector('english', coalesce(name, '')), 'A') ||
+        setweight(to_tsvector('english', coalesce(trade_name, '')), 'A') ||
+        setweight(to_tsvector('english', coalesce(target_gene, '')), 'B') ||
+        setweight(to_tsvector('english', coalesce(patient_friendly_indication, '')), 'B') ||
+        setweight(to_tsvector('english', coalesce(indication, '')), 'C') ||
+        setweight(to_tsvector('english', coalesce(sponsor, '')), 'D')
+      `,
+    ),
+  },
+  (table) => [
+    uniqueIndex('drugs_slug_unique').on(table.slug),
+    index('drugs_search_idx').using('gin', table.searchVector),
+    index('drugs_modality_idx').on(table.modality),
+    index('drugs_approval_status_idx').on(table.approvalStatus),
+    index('drugs_depth_idx').on(table.dossierDepth),
+    index('drugs_name_idx').on(table.name),
+    index('drugs_view_count_idx').on(table.viewCount),
+  ],
+)
+
+// ---------------------------------------------------------------------------
+// community_notes
+// ---------------------------------------------------------------------------
+
+export const communityNotes = pgTable(
+  'community_notes',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    authorUserId: varchar('author_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'set null',
+    }),
+
+    // Denormalised author snapshot so a note keeps the credentials it was signed with even if
+    // the account later changes specialty or loses verification.
+    authorName: varchar('author_name', { length: 160 }).notNull(),
+    role: varchar('role', { length: 160 }).notNull().default('Community Contributor'),
+    isVerifiedDoctor: boolean('is_verified_doctor').notNull().default(false),
+    medicalSpecialty: varchar('medical_specialty', { length: 120 }),
+    institution: varchar('institution', { length: 200 }),
+    orcid: varchar('orcid', { length: 32 }),
+
+    content: text('content').notNull(),
+    upvotes: integer('upvotes').notNull().default(0),
+    status: noteStatusEnum('status').notNull().default('published'),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [
+    index('community_notes_drug_idx').on(table.drugId, table.createdAt),
+    index('community_notes_author_idx').on(table.authorUserId),
+    index('community_notes_status_idx').on(table.status),
+  ],
+)
+
+/** One row per (note, user). The unique primary key is what makes an upvote idempotent. */
+export const noteUpvotes = pgTable(
+  'note_upvotes',
+  {
+    noteId: varchar('note_id', { length: 64 })
+      .notNull()
+      .references(() => communityNotes.id, { onDelete: 'cascade' }),
+    userId: varchar('user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [primaryKey({ columns: [table.noteId, table.userId] })],
+)
+
+// ---------------------------------------------------------------------------
+// revisions — immutable, timestamped, attributed. Never updated in place except to record a
+// human review decision on a pending row.
+// ---------------------------------------------------------------------------
+
+export const revisions = pgTable(
+  'revisions',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+
+    authorUserId: varchar('author_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'set null',
+    }),
+    authorName: varchar('author_name', { length: 160 }).notNull(),
+    authorOrcid: varchar('author_orcid', { length: 32 }),
+    authorTrustTier: trustTierEnum('author_trust_tier').notNull().default('new'),
+
+    status: revisionStatusEnum('status').notNull(),
+    summary: text('summary').notNull().default(''),
+
+    changedFields: jsonb('changed_fields')
+      .$type<RevisionFieldChange[]>()
+      .notNull()
+      .default(sql`'[]'::jsonb`),
+
+    /** The full dossier payload this revision proposes. Applied verbatim on approval. */
+    proposedPayload: jsonb('proposed_payload').notNull(),
+
+    /** The deterministic engine report captured at submission. Immutable evidence of the sweep. */
+    engineReport: jsonb('engine_report'),
+    machineVerified: boolean('machine_verified').notNull().default(false),
+    verificationHash: varchar('verification_hash', { length: 32 }),
+
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+    reviewedAt: timestamp('reviewed_at', { withTimezone: true }),
+    reviewedByUserId: varchar('reviewed_by_user_id', { length: 64 }).references(() => users.id, {
+      onDelete: 'set null',
+    }),
+    reviewedByName: varchar('reviewed_by_name', { length: 160 }),
+    reviewNote: text('review_note'),
+  },
+  (table) => [
+    index('revisions_drug_idx').on(table.drugId, table.createdAt),
+    index('revisions_status_idx').on(table.status, table.createdAt),
+    index('revisions_author_idx').on(table.authorUserId),
+  ],
+)
+
+// ---------------------------------------------------------------------------
+// saved_drugs — a reader's bookmarks.
+// ---------------------------------------------------------------------------
+
+export const savedDrugs = pgTable(
+  'saved_drugs',
+  {
+    userId: varchar('user_id', { length: 64 })
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [primaryKey({ columns: [table.userId, table.drugId] })],
+)
+
+// ---------------------------------------------------------------------------
+// feedback — the floating Feedback button writes here.
+// ---------------------------------------------------------------------------
+
+export const feedback = pgTable(
+  'feedback',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    type: feedbackTypeEnum('type').notNull(),
+    message: text('message').notNull(),
+    email: varchar('email', { length: 320 }),
+    drugSlug: varchar('drug_slug', { length: 128 }),
+    userId: varchar('user_id', { length: 64 }).references(() => users.id, { onDelete: 'set null' }),
+    /** Coarse anonymous fingerprint for rate limiting. Never the raw IP. */
+    sessionHash: varchar('session_hash', { length: 64 }),
+    resolved: boolean('resolved').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (table) => [index('feedback_created_idx').on(table.createdAt), index('feedback_type_idx').on(table.type)],
+)
+
+// ---------------------------------------------------------------------------
+// ingest_runs — provenance for the bulk identity layer.
+// ---------------------------------------------------------------------------
+
+export const ingestRuns = pgTable('ingest_runs', {
+  id: varchar('id', { length: 64 }).primaryKey(),
+  source: varchar('source', { length: 120 }).notNull(),
+  recordsSeen: integer('records_seen').notNull().default(0),
+  recordsWritten: integer('records_written').notNull().default(0),
+  recordsSkipped: integer('records_skipped').notNull().default(0),
+  notes: text('notes'),
+  startedAt: timestamp('started_at', { withTimezone: true }).notNull().defaultNow(),
+  finishedAt: timestamp('finished_at', { withTimezone: true }),
 })
 
 // ---------------------------------------------------------------------------
-// Entity
+// Relations
 // ---------------------------------------------------------------------------
 
-export const entities = pgTable('entities', {
-  id: serial('id').primaryKey(),
-  canonicalName: varchar('canonical_name', { length: 200 }).notNull(),
-  slug: varchar('slug', { length: 200 }).notNull().unique(),
-  aliases: jsonb('aliases').$type<string[]>().notNull().default([]),
-  entityType: entityTypeEnum('entity_type').notNull(),
-  shortDescription: text('short_description').notNull(),
-  bottomLine: text('bottom_line').notNull(), // 2-3 sentence answer, caveat in the same sentence
-  regulatoryCategory: regulatoryCategoryEnum('regulatory_category').notNull(),
-  publicationStatus: publicationStatusEnum('publication_status').notNull().default('draft'),
-  accessRealityNote: text('access_reality_note'), // delivery burden, no self-use instructions
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
-  // Full-text search index over name + aliases. STORED/GENERATED so Postgres keeps it in sync;
-  // application code never writes to it. `jsonb_text_agg` is an immutable helper function
-  // created by hand in the migration (see db/migrations — drizzle-kit cannot emit CREATE
-  // FUNCTION/CREATE EXTENSION statements on its own). See lib/search.ts for how this is queried.
-  //
-  // The expression below deliberately uses bare (unqualified) column names — `canonical_name`,
-  // `aliases` — rather than `${entities.canonicalName}`. Referencing the table's own JS binding
-  // from inside its own column definition is a documented Drizzle pattern, but it makes
-  // TypeScript unable to infer `entities`' type (TS7022, circular self-reference) under this
-  // project's strict settings. A generated-column expression is always evaluated in the scope of
-  // its own row, so the unqualified names resolve unambiguously and sidestep the issue.
-  searchVector: tsvector('search_vector').generatedAlwaysAs(
-    sql`to_tsvector('english', coalesce(canonical_name, '') || ' ' || jsonb_text_agg(aliases))`
-  ),
-}, (t) => ({
-  slugIdx: uniqueIndex('entities_slug_idx').on(t.slug),
-  typeIdx: index('entities_type_idx').on(t.entityType),
-  searchVectorIdx: index('entities_search_vector_idx').using('gin', t.searchVector),
-  // pg_trgm indexes for typo-tolerant / partial matching (extension created by hand in the migration).
-  canonicalNameTrgmIdx: index('entities_canonical_name_trgm_idx').using('gin', t.canonicalName.op('gin_trgm_ops')),
-  aliasesTrgmIdx: index('entities_aliases_trgm_idx').using('gin', sql`(jsonb_text_agg(${t.aliases})) gin_trgm_ops`),
-}))
-
-export const entitiesRelations = relations(entities, ({ many }) => ({
-  regulatoryStatuses: many(regulatoryStatuses),
-  claims: many(claims),
-  evidenceChanges: many(evidenceChanges),
-  subscriptions: many(subscriptions),
-}))
-
-// ---------------------------------------------------------------------------
-// Regulatory status (one entity, many jurisdictions)
-// ---------------------------------------------------------------------------
-
-export const regulatoryStatuses = pgTable('regulatory_statuses', {
-  id: serial('id').primaryKey(),
-  entityId: integer('entity_id').notNull().references(() => entities.id, { onDelete: 'cascade' }),
-  jurisdiction: varchar('jurisdiction', { length: 100 }).notNull(), // e.g. "United States", "Singapore"
-  legalCategory: regulatoryCategoryEnum('legal_category').notNull(),
-  approvedIndications: text('approved_indications'),
-  statusStatement: text('status_statement').notNull(),
-  source: text('source').notNull(), // URL to primary regulatory source
-  checkedDate: timestamp('checked_date', { withTimezone: true }).notNull(),
-  editorId: integer('editor_id').references(() => users.id),
-  reviewStatus: publicationStatusEnum('review_status').notNull().default('draft'),
-}, (t) => ({
-  entityIdx: index('regulatory_statuses_entity_idx').on(t.entityId),
-}))
-
-// ---------------------------------------------------------------------------
-// Claim
-// ---------------------------------------------------------------------------
-
-export const claims = pgTable('claims', {
-  id: serial('id').primaryKey(),
-  entityId: integer('entity_id').notNull().references(() => entities.id, { onDelete: 'cascade' }),
-  slug: varchar('slug', { length: 200 }).notNull(), // unique per entity, e.g. "tendon-healing"
-  claimType: claimTypeEnum('claim_type').notNull(),
-  consumerQuestion: text('consumer_question').notNull(), // "Does it improve tendon healing?"
-  directAnswer: text('direct_answer').notNull(), // 1-2 sentences, caveat included
-  measuredFinding: text('measured_finding').notNull(),
-  inference: text('inference').notNull(),
-  proofBoundaryStage: proofBoundaryStageEnum('proof_boundary_stage').notNull(),
-  proofBoundaryExplanation: text('proof_boundary_explanation').notNull(),
-  remainingUnknown: text('remaining_unknown').notNull(),
-  evidenceNeededNext: text('evidence_needed_next').notNull(),
-  mechanismSummary: text('mechanism_summary'),
-  outcomeSummary: text('outcome_summary'),
-  publicationStatus: publicationStatusEnum('publication_status').notNull().default('draft'),
-  reviewerId: integer('reviewer_id').references(() => users.id),
-  lastReviewedAt: timestamp('last_reviewed_at', { withTimezone: true }),
-  version: integer('version').notNull().default(1),
-  displayPriority: integer('display_priority').notNull().default(0), // for "most searched claims" ordering
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
-  // An EDITORIAL check date, recorded by a person, and deliberately not defaulted.
-  //
-  // The public record used to print `updatedAt` under the words "This answer last checked".
-  // `updatedAt` is a database write timestamp: every claim in the seeded corpus carried the single
-  // moment `db:seed` ran, re-running the seed silently advanced the date, and on the BPC-157
-  // record it read a day later than the as-of date written into the answer itself. A site whose
-  // proposition is "we checked this" cannot let a write clock speak for an editor.
-  //
-  // NULLABLE ON PURPOSE, with NO default: a claim nobody has checked has no check date, and the
-  // component prints the honest "last edited" sentence from `updatedAt` instead. Never give this
-  // column a `defaultNow()` — that reintroduces the exact bug, because an insert would mint a
-  // check date nobody performed. `updatedAt` keeps its own job: it is what "Record updated" means.
-  checkedAt: timestamp('checked_at', { withTimezone: true }),
-  // Full-text search index over the consumer-facing question + answer. See entities.searchVector
-  // above for the generated-column rationale (including why this uses bare column names) and
-  // lib/search.ts for how this is queried.
-  searchVector: tsvector('search_vector').generatedAlwaysAs(
-    sql`to_tsvector('english', coalesce(consumer_question, '') || ' ' || coalesce(direct_answer, ''))`
-  ),
-}, (t) => ({
-  entitySlugIdx: uniqueIndex('claims_entity_slug_idx').on(t.entityId, t.slug),
-  statusIdx: index('claims_status_idx').on(t.publicationStatus),
-  searchVectorIdx: index('claims_search_vector_idx').using('gin', t.searchVector),
-  // pg_trgm index on the consumer question for typo tolerance (extension created by hand in the migration).
-  consumerQuestionTrgmIdx: index('claims_consumer_question_trgm_idx').using('gin', t.consumerQuestion.op('gin_trgm_ops')),
-  // Exists so lib/search.ts's exact-answer tier is indexable. Every other branch of that query's
-  // candidate predicate resolves through a trigram or tsvector index; `lower(direct_answer) = ?`
-  // was the one that did not, and a single non-indexable branch in an OR forces Postgres to
-  // abandon the BitmapOr and scan the whole table, taking the other four indexes down with it.
-  // There is no trigram index on direct_answer: this is an equality lookup, not a fuzzy one.
-  directAnswerLowerIdx: index('claims_direct_answer_lower_idx').on(sql`lower(${t.directAnswer})`),
-}))
-
-export const claimsRelations = relations(claims, ({ one, many }) => ({
-  entity: one(entities, { fields: [claims.entityId], references: [entities.id] }),
-  mechanismSteps: many(mechanismSteps),
-  evidenceLinks: many(claimEvidence),
-  reviews: many(reviews),
+export const drugsRelations = relations(drugs, ({ many }) => ({
+  notes: many(communityNotes),
   revisions: many(revisions),
-  comprehensionQuestions: many(comprehensionQuestions),
-  claimEvents: many(claimEvents),
 }))
 
-// ---------------------------------------------------------------------------
-// Mechanism step (ordered causal chain for a claim)
-// ---------------------------------------------------------------------------
-
-export const mechanismSteps = pgTable('mechanism_steps', {
-  id: serial('id').primaryKey(),
-  claimId: integer('claim_id').notNull().references(() => claims.id, { onDelete: 'cascade' }),
-  displayOrder: integer('display_order').notNull(),
-  technicalLabel: varchar('technical_label', { length: 200 }).notNull(),
-  plainLanguageExplanation: text('plain_language_explanation').notNull(),
-  evidenceContext: text('evidence_context').notNull(),
-  status: evidenceStatusEnum('status').notNull(),
-  sourceLinks: jsonb('source_links').$type<string[]>().notNull().default([]),
-  illustrationMetadata: jsonb('illustration_metadata').$type<Record<string, unknown> | null>(),
-}, (t) => ({
-  claimOrderIdx: index('mechanism_steps_claim_order_idx').on(t.claimId, t.displayOrder),
+export const usersRelations = relations(users, ({ many }) => ({
+  notes: many(communityNotes),
+  revisions: many(revisions),
+  saved: many(savedDrugs),
 }))
 
-// ---------------------------------------------------------------------------
-// Evidence source
-// ---------------------------------------------------------------------------
-
-export const evidenceSources = pgTable('evidence_sources', {
-  id: serial('id').primaryKey(),
-  title: text('title').notNull(),
-  authors: text('authors'),
-  publicationYear: integer('publication_year'),
-  journalOrIssuer: varchar('journal_or_issuer', { length: 300 }),
-  doi: varchar('doi', { length: 200 }),
-  pmid: varchar('pmid', { length: 50 }),
-  clinicalTrialId: varchar('clinical_trial_id', { length: 50 }), // e.g. NCT number
-  regulatoryUrl: text('regulatory_url'),
-  sourceType: varchar('source_type', { length: 100 }).notNull(), // cell study, animal study, RCT, systematic review, regulatory doc, etc.
-  studyDesign: varchar('study_design', { length: 200 }),
-  experimentalModel: varchar('experimental_model', { length: 200 }), // e.g. "rat Achilles tendon"
-  species: varchar('species', { length: 100 }),
-  sampleSize: integer('sample_size'),
-  endpoint: text('endpoint'),
-  retractionStatus: varchar('retraction_status', { length: 100 }), // null, "corrected", "retracted"
-  bibliographicMetadata: jsonb('bibliographic_metadata').$type<Record<string, unknown> | null>(),
-  dateChecked: timestamp('date_checked', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  doiIdx: index('evidence_sources_doi_idx').on(t.doi),
-  pmidIdx: index('evidence_sources_pmid_idx').on(t.pmid),
+export const communityNotesRelations = relations(communityNotes, ({ one, many }) => ({
+  drug: one(drugs, { fields: [communityNotes.drugId], references: [drugs.id] }),
+  author: one(users, { fields: [communityNotes.authorUserId], references: [users.id] }),
+  upvoters: many(noteUpvotes),
 }))
 
-// ---------------------------------------------------------------------------
-// Claim <-> Evidence relationship
-// ---------------------------------------------------------------------------
-
-export const claimEvidence = pgTable('claim_evidence', {
-  id: serial('id').primaryKey(),
-  claimId: integer('claim_id').notNull().references(() => claims.id, { onDelete: 'cascade' }),
-  evidenceSourceId: integer('evidence_source_id').notNull().references(() => evidenceSources.id, { onDelete: 'cascade' }),
-  relationship: evidenceRelationshipEnum('relationship').notNull(),
-  claimPartAddressed: text('claim_part_addressed').notNull(),
-  directlyMeasuredResult: text('directly_measured_result').notNull(),
-  editorialNotes: text('editorial_notes'),
-  independentGroupStatus: boolean('independent_group_status').notNull().default(false),
-  displayPriority: integer('display_priority').notNull().default(0),
-}, (t) => ({
-  claimIdx: index('claim_evidence_claim_idx').on(t.claimId),
-  evidenceIdx: index('claim_evidence_evidence_idx').on(t.evidenceSourceId),
+export const revisionsRelations = relations(revisions, ({ one }) => ({
+  drug: one(drugs, { fields: [revisions.drugId], references: [drugs.id] }),
+  author: one(users, { fields: [revisions.authorUserId], references: [users.id] }),
 }))
 
-// ---------------------------------------------------------------------------
-// Claim event (a recorded result or development event that did not support the claim)
-// ---------------------------------------------------------------------------
-
-export const claimEvents = pgTable('claim_events', {
-  id: serial('id').primaryKey(),
-  claimId: integer('claim_id').notNull().references(() => claims.id, { onDelete: 'cascade' }),
-  // NOT NULL by design: an event cannot exist without a real source. This is the data-integrity
-  // rule that keeps the failure section from becoming editorialised opinion. `restrict` (not
-  // `cascade`, unlike claim_evidence) so deleting a source can never silently strip the citation
-  // off a published event and leave the prose standing on nothing.
-  evidenceSourceId: integer('evidence_source_id').notNull()
-    .references(() => evidenceSources.id, { onDelete: 'restrict' }),
-  eventType: claimEventTypeEnum('event_type').notNull(),
-  developmentGate: developmentGateEnum('development_gate').notNull(),
-  plainSummary: text('plain_summary').notNull(),
-  whatItSuggests: text('what_it_suggests').notNull(),
-  whatItDoesNotEstablish: text('what_it_does_not_establish').notNull(),
-  eventDate: timestamp('event_date', { withTimezone: true }),
-  displayPriority: integer('display_priority').notNull().default(0),
-  // Editorial workflow only, exactly as on `claims`. `published` here does not mean a scientific
-  // reviewer signed the event off; only an `approved` row in `reviews` may produce that sentence.
-  publicationStatus: publicationStatusEnum('publication_status').notNull().default('draft'),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  claimIdx: index('claim_events_claim_idx').on(t.claimId, t.displayPriority),
-  statusIdx: index('claim_events_status_idx').on(t.publicationStatus),
+export const noteUpvotesRelations = relations(noteUpvotes, ({ one }) => ({
+  note: one(communityNotes, { fields: [noteUpvotes.noteId], references: [communityNotes.id] }),
+  user: one(users, { fields: [noteUpvotes.userId], references: [users.id] }),
 }))
 
-export const claimEventsRelations = relations(claimEvents, ({ one }) => ({
-  claim: one(claims, { fields: [claimEvents.claimId], references: [claims.id] }),
-  source: one(evidenceSources, { fields: [claimEvents.evidenceSourceId], references: [evidenceSources.id] }),
+export const savedDrugsRelations = relations(savedDrugs, ({ one }) => ({
+  user: one(users, { fields: [savedDrugs.userId], references: [users.id] }),
+  drug: one(drugs, { fields: [savedDrugs.drugId], references: [drugs.id] }),
 }))
-
-// ---------------------------------------------------------------------------
-// Review (of a claim or entity version)
-// ---------------------------------------------------------------------------
-
-export const reviews = pgTable('reviews', {
-  id: serial('id').primaryKey(),
-  reviewableType: reviewableTypeEnum('reviewable_type').notNull(),
-  reviewableId: integer('reviewable_id').notNull(),
-  reviewerId: integer('reviewer_id').notNull().references(() => users.id),
-  decision: reviewDecisionEnum('decision').notNull(),
-  comments: text('comments'),
-  reviewedVersion: integer('reviewed_version').notNull(),
-  reviewDate: timestamp('review_date', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  reviewableIdx: index('reviews_reviewable_idx').on(t.reviewableType, t.reviewableId),
-}))
-
-// ---------------------------------------------------------------------------
-// Revision / audit history
-// ---------------------------------------------------------------------------
-
-export const revisions = pgTable('revisions', {
-  id: serial('id').primaryKey(),
-  reviewableType: reviewableTypeEnum('reviewable_type').notNull(),
-  reviewableId: integer('reviewable_id').notNull(),
-  changedByUserId: integer('changed_by_user_id').notNull().references(() => users.id),
-  fieldChanged: varchar('field_changed', { length: 200 }).notNull(),
-  previousValue: text('previous_value'),
-  newValue: text('new_value'),
-  reason: text('reason'),
-  reviewStatusAffected: boolean('review_status_affected').notNull().default(false),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  reviewableIdx: index('revisions_reviewable_idx').on(t.reviewableType, t.reviewableId),
-}))
-
-// ---------------------------------------------------------------------------
-// Public correction submissions (moderation queue — never auto-applied)
-// ---------------------------------------------------------------------------
-
-export const correctionSubmissions = pgTable('correction_submissions', {
-  id: serial('id').primaryKey(),
-  entityId: integer('entity_id').references(() => entities.id, { onDelete: 'set null' }),
-  claimId: integer('claim_id').references(() => claims.id, { onDelete: 'set null' }),
-  category: varchar('category', { length: 100 }).notNull(), // confusing_sentence, broken_source, undefined_term, new_source, other
-  message: text('message').notNull(),
-  proposedSource: text('proposed_source'),
-  moderationStatus: moderationStatusEnum('moderation_status').notNull().default('pending'),
-  resolution: text('resolution'),
-  publicCorrectionEntry: text('public_correction_entry'), // set when published to /updates as a correction
-  sessionHash: varchar('session_hash', { length: 128 }), // rate-limit / dedupe only, not identifying
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  statusIdx: index('correction_submissions_status_idx').on(t.moderationStatus),
-}))
-
-// ---------------------------------------------------------------------------
-// Evidence change (the public "what changed" feed)
-// ---------------------------------------------------------------------------
-
-export const evidenceChanges = pgTable('evidence_changes', {
-  id: serial('id').primaryKey(),
-  entityId: integer('entity_id').references(() => entities.id, { onDelete: 'cascade' }),
-  claimId: integer('claim_id').references(() => claims.id, { onDelete: 'cascade' }),
-  changeType: evidenceChangeTypeEnum('change_type').notNull(),
-  previousBoundary: proofBoundaryStageEnum('previous_boundary'),
-  newBoundary: proofBoundaryStageEnum('new_boundary'),
-  explanation: text('explanation').notNull(),
-  source: text('source').notNull(),
-  publicationDate: timestamp('publication_date', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  dateIdx: index('evidence_changes_date_idx').on(t.publicationDate),
-  // Added when the Evidence Record started reading change history per claim
-  // (lib/queries/entities.ts loads changes for every claim on a record page in one batched
-  // `inArray` query). `dateIdx` alone could not serve that filter.
-  claimIdx: index('evidence_changes_claim_idx').on(t.claimId),
-}))
-
-// ---------------------------------------------------------------------------
-// Comprehension testing (teach-back, anonymous)
-// ---------------------------------------------------------------------------
-
-export const comprehensionQuestions = pgTable('comprehension_questions', {
-  id: serial('id').primaryKey(),
-  claimId: integer('claim_id').notNull().references(() => claims.id, { onDelete: 'cascade' }),
-  question: text('question').notNull(),
-  options: jsonb('options').$type<string[]>().notNull(),
-  correctOptionIndex: integer('correct_option_index').notNull(),
-  explanation: text('explanation').notNull(),
-  activeVersion: integer('active_version').notNull().default(1),
-  displayOrder: integer('display_order').notNull().default(0),
-}, (t) => ({
-  claimIdx: index('comprehension_questions_claim_idx').on(t.claimId),
-}))
-
-export const comprehensionResponses = pgTable('comprehension_responses', {
-  id: serial('id').primaryKey(),
-  questionId: integer('question_id').notNull().references(() => comprehensionQuestions.id, { onDelete: 'cascade' }),
-  claimVersion: integer('claim_version').notNull(), // ties response to the exact content version tested
-  selectedOptionIndex: integer('selected_option_index').notNull(),
-  isCorrect: boolean('is_correct').notNull(),
-  sessionHash: varchar('session_hash', { length: 128 }).notNull(), // short-lived hash, dedupe only
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  questionIdx: index('comprehension_responses_question_idx').on(t.questionId),
-  dedupeIdx: index('comprehension_responses_dedupe_idx').on(t.questionId, t.sessionHash),
-}))
-
-// ---------------------------------------------------------------------------
-// Subscriptions (follow an entity for material evidence changes only)
-// ---------------------------------------------------------------------------
-
-export const subscriptions = pgTable('subscriptions', {
-  id: serial('id').primaryKey(),
-  entityId: integer('entity_id').notNull().references(() => entities.id, { onDelete: 'cascade' }),
-  email: varchar('email', { length: 320 }).notNull(),
-  confirmedAt: timestamp('confirmed_at', { withTimezone: true }),
-  unsubscribeToken: varchar('unsubscribe_token', { length: 128 }).notNull(),
-  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
-}, (t) => ({
-  entityEmailIdx: uniqueIndex('subscriptions_entity_email_idx').on(t.entityId, t.email),
-}))
-
-// ---------------------------------------------------------------------------
-// Legacy redirects (Section 21 — legacy route handling)
-// ---------------------------------------------------------------------------
-
-export const legacyRedirects = pgTable('legacy_redirects', {
-  id: serial('id').primaryKey(),
-  fromPath: varchar('from_path', { length: 300 }).notNull().unique(),
-  toPath: varchar('to_path', { length: 300 }), // null => 410 Gone, no legitimate replacement
-  statusCode: integer('status_code').notNull(), // 301 or 410
-  note: text('note'),
-})
