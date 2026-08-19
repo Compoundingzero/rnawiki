@@ -1380,4 +1380,413 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+
+  // -------------------------------------------------------------------------------------------
+  // Dulaglutide
+  // -------------------------------------------------------------------------------------------
+  {
+    slug: 'dulaglutide',
+    name: 'Dulaglutide',
+    tradeName: 'Trulicity',
+    sponsor: 'Eli Lilly and Company',
+    targetGene: 'GLP1R',
+    targetProtein: 'Glucagon-Like Peptide-1 Receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2014,
+    indication:
+      'Type 2 diabetes, and reduction of major adverse cardiovascular events in adults with type 2 diabetes with established cardiovascular disease or multiple risk factors',
+    patientFriendlyIndication: 'Type 2 diabetes, including in people who have not yet had a heart attack',
+    conditionContext: {
+      conditionExplainer:
+        'Dulaglutide solves the half-life problem a different way from the fatty-acid drugs: two GLP-1 analogue chains are genetically fused to an antibody tail, making a 63 kilodalton protein too large for the kidney to filter.',
+      whyItMatters:
+        'REWIND is the GLP-1 outcome trial that enrolled people with cardiovascular risk factors rather than only people who had already had an event, and followed them for a median 5.4 years. That makes it the closest thing this class has to primary-prevention evidence.',
+      whoTakesThis:
+        'Adults with type 2 diabetes needing better glucose control, particularly those with cardiovascular disease or multiple risk factors, and paediatric patients aged 10 years and older.',
+      clinicalGoals: 'Lower HbA1c by 1 to 1.6 percentage points and reduce major adverse cardiovascular events.',
+    },
+    oneSentenceVerdict:
+      'A GLP-1 analogue fused to an antibody tail so it lasts a week by size rather than by fat, which cut the composite of heart attack, stroke and cardiovascular death from 13.4% to 12.0% over 5.4 years in 9,901 people.',
+    laymanHowItWorks:
+      'Instead of bolting a fatty acid on to make the hormone last, Lilly fused two copies of a modified GLP-1 to the stem of an antibody. The result is a protein big enough that the kidney cannot filter it out, so it survives about five days. Once it circulates, it does what every drug in this class does: more insulin when glucose is high, less glucagon, a slower stomach and less appetite.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 89,
+    anatomicalSite: 'Pancreatic islet beta cell, hypothalamic arcuate nucleus',
+    pricing: {
+      synthesisCostPerDose:
+        'Modelled cost-based price of $7.05 to $17.40 per month at 1.12 mg once weekly',
+      retailPricePerDoseOrYear:
+        'US pharmacy acquisition cost about $239 per single-dose pen, roughly $956 per month or $12,400 per year',
+      markupEstimate: 'US acquisition cost is roughly 55x to 136x the modelled cost-based price',
+      openPatentNotes:
+        'This is a recombinant fusion protein made in Chinese hamster ovary cells, so any follow-on is a biosimilar requiring its own comparability programme rather than a generic. That raises the barrier to price competition well above the small-peptide agents in the same class.',
+      synthesisComplexity: 'High',
+      costSource: {
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        identifier: '10.1001/jamanetworkopen.2024.3474',
+        kind: 'doi',
+      },
+      priceSource: {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Semaglutide and tirzepatide beat dulaglutide on both HbA1c and weight, and cost more. Generic liraglutide is far cheaper but daily. Metformin and SGLT2 inhibitors remain the alternative mechanisms.',
+      conventionalRx: [
+        {
+          name: 'Semaglutide (Ozempic)',
+          class: 'Weekly GLP-1 receptor agonist',
+          howItCompares:
+            'Larger HbA1c and weight reduction in head-to-head diabetes trials, with its own cardiovascular outcome data.',
+          typicalCost: 'About $996 per month (US NADAC)',
+          prosAndCons: 'Pros: more effective on both endpoints. Cons: costs more, and the pen is a different device.',
+        },
+        {
+          name: 'Generic liraglutide',
+          class: 'Daily GLP-1 receptor agonist',
+          howItCompares:
+            'Same class, its own cardiovascular outcome trial, roughly half the monthly cost of dulaglutide.',
+          typicalCost: 'About $433 per month (US NADAC generic)',
+          prosAndCons: 'Pros: cost. Cons: seven injections a week instead of one.',
+        },
+        {
+          name: 'Empagliflozin (Jardiance)',
+          class: 'SGLT2 inhibitor',
+          howItCompares:
+            'Oral, different mechanism, strongest evidence base of any glucose-lowering agent for heart failure and kidney progression.',
+          typicalCost: 'About $336 per month (US NADAC)',
+          prosAndCons:
+            'Pros: oral, heart failure and renal outcome data. Cons: genital infections, and a smaller HbA1c effect.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Barley and rye whole grains',
+          activeCompound: 'Beta-glucan and arabinoxylan',
+          biologicalMechanism:
+            'Fermentable fibre reaching the distal gut sustains GLP-1 secretion from L-cells for many hours, which is the endogenous version of what this drug supplies exogenously.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: '60 to 100 grams of whole barley or rye kernels daily',
+          monthlyCost: '$8 to $14 per month',
+        },
+        {
+          name: 'Extra-virgin olive oil with meals',
+          activeCompound: 'Oleic acid and polyphenols',
+          biologicalMechanism:
+            'Monounsaturated fat slows gastric emptying and stimulates GLP-1 release; the polyphenol fraction has separate effects on postprandial oxidative stress.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: '2 to 4 tablespoons daily in place of other fats',
+          monthlyCost: '$15 to $30 per month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'A fixed weekly injection day',
+          action: 'Choose one day of the week and keep it, changing only when at least three days separate the doses.',
+          patientImpact:
+            'A five-day half-life means exposure is fairly flat, but drifting the day forward repeatedly stacks doses.',
+          clinicalPrecaution:
+            'The label sets out exactly how far a dose can be moved; that guidance is specific to this molecule.',
+        },
+        {
+          name: 'Room-temperature pen before injecting',
+          action: 'Take the pen out of the refrigerator and let it stand for around half an hour before use.',
+          patientImpact: 'Cold solution stings more; warming reduces injection-site discomfort.',
+          clinicalPrecaution: 'Do not warm with hot water or a microwave, which can denature the protein.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Recombinant glycoprotein; no single empirical formula is stated in the label',
+      molecularWeight: 'Approximately 63 kDa',
+      targetReceptorAffinity:
+        'GLP-1 analogue portion is 90% homologous to native human GLP-1(7-37), with substitutions blocking DPP-4 cleavage and removing a T-cell epitope',
+      structureSource: {
+        label: 'TRULICITY (dulaglutide) injection, US prescribing information, section 11, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=463050bd-2b1c-40f5-b3c3-0a04bb433309',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'dula-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Master cell bank identity and stability testing',
+          description:
+            'Confirm the Chinese hamster ovary master cell bank identity, copy number and freedom from adventitious agents. For a fusion protein the cell line is the process, so this is the first control point.',
+          reagentsAndBuffer: 'Isoenzyme and STR identity testing, in vitro and in vivo adventitious agent assays',
+        },
+        {
+          id: 'dula-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fed-batch mammalian cell culture expression',
+          description:
+            'Express the GLP-1 analogue-linker-IgG4 Fc fusion in CHO cells, where the Fc domain dimerises and the glycosylation is installed.',
+          dependsOnStepId: 'dula-w1',
+          reagentsAndBuffer: 'Chemically defined serum-free CHO medium, glucose and amino acid feeds, controlled pH and dissolved oxygen',
+        },
+        {
+          id: 'dula-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Protein A capture and polishing chromatography',
+          description:
+            'Capture on Protein A through the Fc domain, then remove aggregates, half-molecules and host cell protein by ion exchange and hydrophobic interaction steps.',
+          dependsOnStepId: 'dula-w2',
+          reagentsAndBuffer: 'Protein A resin, low-pH elution and viral inactivation hold, anion exchange, viral filtration',
+        },
+        {
+          id: 'dula-w4',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'GLP-1 receptor potency and glycan profiling',
+          description:
+            'Measure cAMP potency at human GLP-1R and characterise the N-glycan profile, since Fc glycosylation affects both stability and receptor-mediated clearance.',
+          dependsOnStepId: 'dula-w3',
+          reagentsAndBuffer: 'hGLP-1R reporter cell line, HTRF cAMP kit, released-glycan HILIC-fluorescence chromatography',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'dula-1',
+        category: 'measured',
+        title: 'REWIND: 12% relative reduction in major cardiovascular events over 5.4 years',
+        laymanSummary:
+          'In 9,901 people with type 2 diabetes, the composite of heart attack, stroke and cardiovascular death occurred in 12.0% on dulaglutide against 13.4% on placebo. Deaths from any cause did not differ.',
+        technicalDetails:
+          '371 sites, 24 countries, median follow-up 5.4 years, median baseline HbA1c 7.2%. Primary composite 594 (12.0%) versus 663 (13.4%), hazard ratio 0.88 (95% CI 0.79 to 0.99), P=0.026. All-cause mortality 536 (10.8%) versus 592 (12.0%), hazard ratio 0.90 (95% CI 0.80 to 1.01), P=0.067.',
+        evidenceSource: 'Gerstein HC et al. Lancet 2019;394:121-130 (NCT01394952)',
+        doi: '10.1016/S0140-6736(19)31149-3',
+        measuredMetric: 'Time to first nonfatal myocardial infarction, nonfatal stroke or cardiovascular death',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dula-2',
+        category: 'inferred',
+        title: 'That REWIND showed a mortality benefit',
+        laymanSummary:
+          'It did not. Deaths from any cause were 10.8% against 12.0%, and that difference was not statistically significant.',
+        technicalDetails:
+          'All-cause mortality hazard ratio 0.90 (95% CI 0.80 to 1.01), P=0.067. The confidence interval crosses 1. A composite endpoint driven largely by nonfatal stroke does not license a survival claim.',
+        evidenceSource: 'Gerstein HC et al. Lancet 2019;394:121-130',
+        doi: '10.1016/S0140-6736(19)31149-3',
+        inferredClaim: 'That dulaglutide reduces death',
+        measuredMetric: 'All-cause mortality, hazard ratio 0.90, P = 0.067',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'dula-3',
+        category: 'measured',
+        title: 'Chosen as the active comparator in a 13,299-person trial of its successor',
+        laymanSummary:
+          'When Lilly tested tirzepatide for cardiovascular outcomes it did not use placebo. It used dulaglutide, and tirzepatide did not beat it.',
+        technicalDetails:
+          'SURPASS-CVOT randomised 13,299 people with type 2 diabetes and atherosclerotic disease to tirzepatide or dulaglutide 1.5 mg. Primary composite 12.2% versus 13.1%, hazard ratio 0.92 (95.3% CI 0.83 to 1.01), P=0.09 for superiority. Using dulaglutide rather than placebo was itself a statement that placebo was no longer an acceptable comparator in this population.',
+        evidenceSource: 'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide. NEJM 2025 (NCT04255433)',
+        doi: '10.1056/NEJMoa2505928',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dula-4',
+        category: 'measured',
+        title: 'AWARD-11: higher doses gave more, and the increment was small',
+        laymanSummary:
+          'Tripling the dose from 1.5 mg to 4.5 mg improved HbA1c by roughly a further 0.3 percentage points and weight by about 1.5 kg. Real, but modest for a threefold dose increase.',
+        technicalDetails:
+          '52-week phase 3 trial comparing dulaglutide 3.0 mg and 4.5 mg with 1.5 mg in metformin-treated type 2 diabetes, with superiority demonstrated for both higher doses on HbA1c at week 36.',
+        evidenceSource: 'Frias JP et al. Diabetes Care 2021;44:765-773',
+        doi: '10.2337/dc20-1473',
+        measuredMetric: 'Change in HbA1c and body weight at week 36 and week 52',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'dula-5',
+        category: 'inferred',
+        title: 'That a fusion protein is interchangeable with a small peptide in this class',
+        laymanSummary:
+          'It is not, in one respect that matters for price. A 63 kilodalton protein made in mammalian cells cannot be copied as a generic; it needs a biosimilar programme. Liraglutide already has a generic. Dulaglutide does not.',
+        technicalDetails:
+          'The label describes a recombinant fusion of a GLP-1 analogue to a modified human IgG4 Fc, expressed in CHO cells, molecular weight approximately 63 kDa. Follow-on entry therefore requires analytical, non-clinical and clinical comparability rather than bioequivalence, and the 2026 NADAC file lists no generic dulaglutide.',
+        evidenceSource: 'TRULICITY US prescribing information, section 11; CMS NADAC 2026 file',
+        inferredClaim: 'That competition will erode the price of every drug in this class on the same timeline',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly injection of a large fusion protein',
+        laymanDesc:
+          'The injection contains a protein about fifteen times heavier than a plain peptide drug. Size alone is what keeps it in the body for days.',
+        molecularDetail:
+          'The approximately 63 kDa homodimer exceeds the glomerular filtration threshold, so renal clearance is minimal and the half-life is roughly five days.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Fc-mediated recycling extends the stay further',
+        laymanDesc:
+          'The antibody tail lets the body recycle the molecule instead of degrading it, the same trick that keeps natural antibodies circulating for weeks.',
+        molecularDetail:
+          'The IgG4 Fc domain engages the neonatal Fc receptor in a pH-dependent way, diverting internalised protein back to the cell surface rather than to the lysosome. The Fc has been engineered to reduce high-affinity Fc receptor binding and half-antibody formation.',
+        iconName: 'Repeat',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The GLP-1 arms engage the receptor',
+        laymanDesc: 'The two hormone arms on the front of the molecule dock into GLP-1 receptors.',
+        molecularDetail:
+          'Each arm is a GLP-1(7-37) analogue with substitutions that block DPP-4 cleavage and remove a T-cell epitope, retaining Gs-coupled cAMP signalling at GLP-1R.',
+        iconName: 'Link',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Glucose-dependent insulin release and slower gastric emptying',
+        laymanDesc:
+          'Insulin rises only when glucose is high, glucagon falls, and food leaves the stomach more slowly.',
+        molecularDetail:
+          'cAMP-mediated potentiation of glucose-stimulated insulin exocytosis, suppression of alpha-cell glucagon secretion, and vagally mediated delay of gastric emptying.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Lower HbA1c and fewer cardiovascular events, without a mortality signal',
+        laymanDesc:
+          'HbA1c falls by one to one and a half percentage points, and over five years there were fewer strokes and heart attacks. Deaths were not significantly different.',
+        molecularDetail:
+          'REWIND hazard ratio 0.88 for three-point MACE over a median 5.4 years, with all-cause mortality hazard ratio 0.90 and a confidence interval crossing unity.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'REWIND (NCT01394952)',
+        phase: 'Phase 3',
+        sampleSize: 9901,
+        primaryEndpoint: 'Nonfatal myocardial infarction, nonfatal stroke or cardiovascular death',
+        endpointMet: true,
+        statisticalPValue: 'P = 0.026, hazard ratio 0.88',
+        unreportedAdverseSignals:
+          'Gastrointestinal adverse events in 47.4% versus 34.1% over five years, a difference far larger than the event reduction',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'AWARD-11',
+        phase: 'Phase 3',
+        sampleSize: 1842,
+        primaryEndpoint: 'Change in HbA1c at week 36 with dulaglutide 3.0 mg and 4.5 mg versus 1.5 mg',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001 for both higher doses',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'SURPASS-CVOT (NCT04255433), as active comparator',
+        phase: 'Phase 3',
+        sampleSize: 13299,
+        primaryEndpoint: 'Cardiovascular death, myocardial infarction or stroke, tirzepatide versus dulaglutide',
+        endpointMet: true,
+        statisticalPValue: 'Noninferiority met; superiority of tirzepatide not met, P = 0.09',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '12% relative reduction in three-point MACE over a median 5.4 years (REWIND, n=9,901)',
+        'All-cause mortality 10.8% versus 12.0%, hazard ratio 0.90, P = 0.067',
+        'Gastrointestinal adverse events in 47.4% versus 34.1% over the same period',
+      ],
+      unsupportedInferences: [
+        'That REWIND demonstrated a survival benefit; the mortality confidence interval crosses 1',
+        'That biosimilar competition will bring this molecule down to generic small-peptide prices',
+      ],
+      whatFailedInitially: [
+        'Unmodified GLP-1-Fc fusions were immunogenic; the epitope removal in the analogue portion was added to address that',
+      ],
+      realWorldOutcome: [
+        'Widely used and well tolerated at the weekly dose, and now the reference comparator against which newer agents are measured',
+        'Displaced at the top of the market by semaglutide and tirzepatide on effect size rather than on safety',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous once-weekly single-dose pen',
+      description:
+        'Preservative-free single-dose pen at 0.75, 1.5, 3.0 or 4.5 mg in 0.5 mL, injected once weekly independent of meals, with a hidden needle that fires on activation.',
+      safetyProfile:
+        'Nausea, diarrhoea and vomiting are the dominant adverse events. Pancreatitis and gallbladder disease are uncommon. Boxed warning for thyroid C-cell tumours from rodent data; contraindicated with a personal or family history of medullary thyroid carcinoma or MEN2.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did REWIND show that it saves lives?',
+        a: 'No. It showed 12% fewer heart attacks, strokes and cardiovascular deaths taken together. All-cause mortality was 10.8% against 12.0%, hazard ratio 0.90, P = 0.067, which is not a significant difference.',
+        auditNote: 'The composite is measured. A mortality benefit is not.',
+      },
+      {
+        q: 'Why does this one cost more to make than the peptide drugs?',
+        a: 'It is a 63 kilodalton protein grown in mammalian cell culture, not a chemically synthesised peptide. The modelled cost-based price of $7 to $17 a month is still far below the roughly $956 US acquisition cost, but the manufacturing floor is genuinely higher than for semaglutide.',
+      },
+      {
+        q: 'Will there ever be a cheap version?',
+        a: 'Only through a biosimilar, which requires its own comparability programme rather than a generic filing. Liraglutide already has a generic on the US acquisition-cost file. Dulaglutide, as of the 2026 file, does not.',
+        auditNote: 'This is a regulatory-pathway fact, not a prediction about timing.',
+      },
+      {
+        q: 'Is it as good as semaglutide or tirzepatide?',
+        a: 'For HbA1c and weight, no; head-to-head diabetes trials favour both newer agents. For cardiovascular outcomes it holds its ground well enough that Lilly used it as the comparator arm rather than placebo when testing tirzepatide, and tirzepatide did not beat it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label: 'Gerstein HC et al. Dulaglutide and cardiovascular outcomes in type 2 diabetes (REWIND). Lancet 2019',
+        identifier: '10.1016/S0140-6736(19)31149-3',
+        kind: 'doi',
+      },
+      {
+        label: 'Frias JP et al. Efficacy and Safety of Dulaglutide 3.0 mg and 4.5 mg (AWARD-11). Diabetes Care 2021',
+        identifier: '10.2337/dc20-1473',
+        kind: 'doi',
+      },
+      {
+        label: 'Cardiovascular Outcomes with Tirzepatide versus Dulaglutide in Type 2 Diabetes. NEJM 2025',
+        identifier: '10.1056/NEJMoa2505928',
+        kind: 'doi',
+      },
+      {
+        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        identifier: '10.1001/jamanetworkopen.2024.3474',
+        kind: 'doi',
+      },
+      { label: 'REWIND trial record', identifier: 'NCT01394952', kind: 'nct' },
+      { label: 'SURPASS-CVOT trial record', identifier: 'NCT04255433', kind: 'nct' },
+      {
+        label: 'TRULICITY US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=463050bd-2b1c-40f5-b3c3-0a04bb433309',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA BLA 125469 (Trulicity), original approval 18 September 2014',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125469',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost, 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
 ]

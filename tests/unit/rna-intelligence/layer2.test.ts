@@ -118,11 +118,18 @@ describe('validateLayer2 — RNA secondary structure', () => {
     expect(second.mfeDeltaG).toBe(first.mfeDeltaG)
   })
 
-  it('refuses to fold a sequence past the request budget instead of truncating it', () => {
+  it('reports a sequence past the request budget as unfolded, not as invalid', () => {
     const result = validateLayer2(layer1Fixture('rna_sequence', 'A'.repeat(MAX_FOLD_LENGTH + 1)))
 
-    expect(result.passed).toBe(false)
+    // Passing is the point. A 4,000-nt mRNA transcript is a legal sequence whose alphabet, reading
+    // frame and codons Layer 1 already checked; what does not apply here is the folding model, not
+    // the molecule. Failing it meant the real mRNA vaccines could never carry a verified badge.
+    expect(result.passed).toBe(true)
+    expect(result.thermodynamicallyPlausible).toBe(false)
     expect(codes(result)).toContain('L2_SEQUENCE_TOO_LONG_TO_FOLD')
+    expect(result.diagnostics.find((d) => d.code === 'L2_SEQUENCE_TOO_LONG_TO_FOLD')?.severity).toBe(
+      'warning',
+    )
     expect(result.mfeDeltaG).toBeUndefined()
     expect(result.secondaryStructureNotation).toBeUndefined()
     // The complement is a per-base map and costs nothing, so it is still reported.

@@ -3341,4 +3341,387 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 10. Evolocumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'evolocumab',
+    name: 'Evolocumab',
+    tradeName: 'Repatha',
+    sponsor: 'Amgen',
+    targetGene: 'PCSK9',
+    targetProtein: 'Proprotein Convertase Subtilisin/Kexin Type 9',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'Reduction of cardiovascular events in established atherosclerotic disease, primary hyperlipidaemia including heterozygous familial hypercholesterolaemia, and homozygous familial hypercholesterolaemia',
+    patientFriendlyIndication: 'Very high cholesterol that statins alone cannot bring down far enough',
+    anatomicalSite: 'Blood plasma and the hepatocyte surface',
+    conditionContext: {
+      conditionExplainer:
+        'The liver clears LDL cholesterol from the blood using receptors on its surface. A circulating protein called PCSK9 grabs those receptors and drags them into the cell to be destroyed, so fewer are available to recycle. People with naturally low PCSK9 have low cholesterol and unusually low heart attack rates for life.',
+      whyItMatters:
+        'PCSK9 was identified through human genetics rather than through a screen, and the loss-of-function carriers gave the field a natural experiment showing that lifelong low LDL is both achievable and safe. Evolocumab is the attempt to reproduce that pharmacologically.',
+      whoTakesThis:
+        'Adults with established cardiovascular disease or familial hypercholesterolaemia whose LDL remains above target on the maximum tolerated statin dose, often with ezetimibe.',
+      clinicalGoals:
+        'Reduce LDL cholesterol by roughly 60% on top of statin therapy and lower the rate of myocardial infarction, stroke and revascularisation.',
+    },
+    oneSentenceVerdict:
+      'A fully human antibody that sequesters PCSK9 and cut LDL cholesterol by 59% on top of statin therapy in 27,564 patients, reducing the composite cardiovascular endpoint by 15% relative over 2.2 years with no reduction in cardiovascular or all-cause mortality.',
+    laymanHowItWorks:
+      'Your liver pulls bad cholesterol out of the blood using receptors that it reuses over and over. A protein called PCSK9 marks those receptors for destruction after a single use. Evolocumab catches PCSK9 in the bloodstream before it can do that, so each receptor gets recycled many more times and the liver clears far more cholesterol.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 87,
+    substitutes: {
+      summary:
+        'High-intensity statins remain first line and cost a few dollars a month for a comparable relative risk reduction. Ezetimibe adds a further 15-20% for pennies. Inclisiran silences the same target twice yearly. Plant sterols, soluble fibre and red yeast rice all lower LDL measurably, at a magnitude appropriate to primary prevention rather than to familial hypercholesterolaemia.',
+      conventionalRx: [
+        {
+          name: 'Atorvastatin or rosuvastatin',
+          class: 'HMG-CoA reductase inhibitor',
+          howItCompares:
+            'The background therapy in FOURIER, not an alternative to it. Lowers LDL 35-55% and has decades of mortality data behind it, which evolocumab does not.',
+          typicalCost: '$4 - $15 / month generic',
+          prosAndCons:
+            'Pros: proven mortality benefit, negligible cost, oral. Cons: myalgia in a minority, and insufficient LDL lowering in familial hypercholesterolaemia.',
+        },
+        {
+          name: 'Ezetimibe',
+          class: 'NPC1L1 cholesterol absorption inhibitor',
+          howItCompares:
+            'Adds roughly 15-20% further LDL reduction on top of a statin, with an outcome benefit demonstrated in IMPROVE-IT.',
+          typicalCost: '$8 - $20 / month generic',
+          prosAndCons:
+            'Pros: cheap, oral, well tolerated, outcome evidence exists. Cons: much smaller effect than PCSK9 blockade.',
+        },
+        {
+          name: 'Inclisiran (Leqvio)',
+          class: 'GalNAc-conjugated siRNA against PCSK9 mRNA',
+          howItCompares:
+            'Silences PCSK9 production in the liver rather than catching the protein in blood, achieving similar LDL reduction with two injections a year.',
+          typicalCost: 'Approximately $3,250 per injection, two injections per year after loading',
+          prosAndCons:
+            'Pros: twice-yearly administration in a clinic guarantees adherence. Cons: cardiovascular outcome data were still maturing when it was approved.',
+        },
+        {
+          name: 'Bempedoic acid',
+          class: 'ATP-citrate lyase inhibitor',
+          howItCompares:
+            'Oral, acts upstream of HMG-CoA reductase, and is a prodrug not activated in muscle, which is why it is used in statin intolerance.',
+          typicalCost: 'Approximately $350 - $400 / month US list',
+          prosAndCons:
+            'Pros: oral option for statin-intolerant patients with outcome data from CLEAR Outcomes. Cons: raises uric acid and is associated with tendon rupture.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Plant sterols and stanols',
+          activeCompound: 'Beta-sitosterol and campesterol',
+          biologicalMechanism:
+            'Compete with dietary and biliary cholesterol for incorporation into intestinal micelles, reducing absorption and increasing hepatic LDL receptor expression.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '2 grams daily from fortified spreads, yoghurt drinks or supplements, taken with meals',
+          monthlyCost: '$12 - $25 / month',
+        },
+        {
+          name: 'Soluble viscous fibre (psyllium husk, oat beta-glucan)',
+          activeCompound: 'Beta-glucan and arabinoxylan',
+          biologicalMechanism:
+            'Binds bile acids in the intestinal lumen, forcing the liver to convert more LDL-derived cholesterol into new bile acids and upregulating LDL receptor expression.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '7 to 10 grams of soluble fibre daily, taken with a full glass of water',
+          monthlyCost: '$8 - $18 / month',
+        },
+        {
+          name: 'Red yeast rice (standardised monacolin K)',
+          activeCompound: 'Monacolin K, structurally identical to lovastatin',
+          biologicalMechanism: 'Inhibits HMG-CoA reductase, the same enzyme statins block.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: '1,200 to 2,400 mg of standardised extract daily',
+          monthlyCost: '$15 - $30 / month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Saturated fat replacement with unsaturated fat',
+          action:
+            'Replace butter, fatty processed meat and coconut oil with olive oil, rapeseed oil, nuts and oily fish, keeping total energy constant.',
+          patientImpact:
+            'Reducing dietary saturated fat lowers LDL by suppressing hepatic PCSK9 expression and increasing LDL receptor activity, an effect of roughly 5-10% in controlled feeding studies.',
+          clinicalPrecaution:
+            'This is additive, not alternative. In heterozygous familial hypercholesterolaemia diet alone cannot reach target.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Fully human IgG2-kappa produced in Chinese hamster ovary cells',
+      molecularWeight: 'Approximately 144 kDa',
+      structureSource: {
+        label: 'REPATHA US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125522',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'evo-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO expression of the IgG2 with disulfide isoform control',
+          description:
+            'Produce the fully human IgG2 in CHO culture with redox conditions controlled to hold the ratio of IgG2-A, A/B and B hinge disulfide isoforms within specification, since these isoforms differ in potency.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, cysteine and cystine redox control, controlled feed',
+        },
+        {
+          id: 'evo-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and viral inactivation',
+          description: 'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
+          reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris neutralisation',
+          dependsOnStepId: 'evo-syn',
+        },
+        {
+          id: 'evo-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing and high-concentration autoinjector formulation',
+          description:
+            'Remove aggregate and process residuals, then concentrate to support 140 mg in 1 mL or 420 mg in 3.5 mL for an on-body infusor.',
+          reagentsAndBuffer: 'Ion exchange and multimodal polishing, 20 nm virus filter, proline, acetate, polysorbate 80, pH 5.0',
+          dependsOnStepId: 'evo-cap',
+        },
+        {
+          id: 'evo-spr',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'PCSK9 binding affinity by surface plasmon resonance',
+          description:
+            'Measure association and dissociation constants against immobilised recombinant human PCSK9 for each lot.',
+          reagentsAndBuffer: 'Recombinant human PCSK9, CM5 sensor chip, HBS-EP+ running buffer',
+          dependsOnStepId: 'evo-pol',
+        },
+        {
+          id: 'evo-ldlr',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Hepatocyte LDL uptake bioassay',
+          description:
+            'Confirm functional potency by restoring fluorescently labelled LDL uptake in HepG2 cells that have been suppressed by exogenous PCSK9.',
+          reagentsAndBuffer: 'HepG2 hepatoma cells, recombinant PCSK9 challenge, DiI-labelled human LDL, fluorescence plate reader',
+          dependsOnStepId: 'evo-spr',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'evo-1',
+        category: 'measured',
+        title: 'FOURIER: LDL fell 59%, and the composite endpoint fell 15% relative over 2.2 years',
+        laymanSummary:
+          'In 27,564 people with existing heart disease already taking statins, evolocumab cut LDL cholesterol to a median of 30 mg/dL and reduced a combined measure of heart attacks, strokes, unstable angina, revascularisation and cardiovascular death by 15% relative.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled trial with median follow-up 2.2 years. At 48 weeks LDL fell 59% from a median baseline of 92 mg/dL to 30 mg/dL. The primary composite endpoint was reduced, driven by myocardial infarction, stroke and revascularisation. There was no significant reduction in cardiovascular death or all-cause death, which the trial was neither long enough nor powered to detect.',
+        evidenceSource: 'Sabatine et al., New England Journal of Medicine 2017 (FOURIER, NCT01764633)',
+        doi: '10.1056/NEJMoa1615664',
+        measuredMetric: '59% LDL reduction at 48 weeks; 15% relative reduction in the primary composite endpoint',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'evo-2',
+        category: 'inferred',
+        title: 'A 59% LDL reduction is read as a 59% reduction in risk',
+        laymanSummary:
+          'The cholesterol number halves, but the event rate does not. Over 2.2 years the absolute difference in the primary endpoint was small, and no survival difference was demonstrated at all.',
+        technicalDetails:
+          'The relative reduction in the composite endpoint was 15%, against a 59% reduction in LDL. Absolute risk reduction over the trial period was in the low single percentage points, giving a number needed to treat in the several dozens over 2.2 years. Cardiovascular mortality and all-cause mortality were not significantly reduced. The mechanistic argument that longer exposure would yield larger benefit is plausible on genetic grounds but was not what this trial measured.',
+        evidenceSource: 'Sabatine et al., NEJM 2017, primary and secondary endpoint results',
+        inferredClaim: 'That the magnitude of LDL lowering translates proportionally into event or mortality reduction over a short trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'evo-3',
+        category: 'failed',
+        title: 'Bococizumab: the class member that failed because it was humanised rather than fully human',
+        laymanSummary:
+          'Pfizer developed a PCSK9 antibody in parallel. Patients made antibodies against the drug itself, and the cholesterol lowering faded away in a large fraction of them. The whole programme was cancelled.',
+        technicalDetails:
+          'Six parallel SPIRE lipid-lowering trials enrolled 4,300 patients. At 12 weeks bococizumab reduced LDL by 54.2%. Anti-drug antibodies developed in a large proportion of patients and significantly attenuated the LDL reduction, with wide variation even among patients who did not develop them. Bococizumab was humanised rather than fully human, and Pfizer discontinued the programme in 2016. This is a direct demonstration that immunogenicity, not target biology, can decide whether a class member survives.',
+        evidenceSource: 'Ridker et al., New England Journal of Medicine 2017 (SPIRE programme)',
+        doi: '10.1056/NEJMoa1614062',
+        measuredMetric: 'LDL reduction of 54.2% at 12 weeks, substantially attenuated by anti-drug antibodies over time',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'evo-4',
+        category: 'conclusion_shift',
+        title: 'The fear that very low LDL harms cognition was tested and not supported',
+        laymanSummary:
+          'Driving LDL to 30 mg/dL, well below anything seen in ordinary practice, raised a genuine concern about brain function because the brain needs cholesterol. A dedicated cognitive substudy of FOURIER found no difference from placebo.',
+        technicalDetails:
+          'The EBBINGHAUS substudy embedded within FOURIER used a validated computerised cognitive battery and found no significant difference between evolocumab and placebo, including in patients achieving LDL below 25 mg/dL. The brain synthesises its own cholesterol behind the blood-brain barrier and does not depend on plasma LDL, which is the mechanistic explanation. The concern was legitimate, it was tested prospectively, and it was not supported.',
+        evidenceSource: 'EBBINGHAUS cognitive function substudy of FOURIER',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'evo-5',
+        category: 'measured',
+        title: 'Price fell 60% in 2018 because of uptake, not because of new evidence',
+        laymanSummary:
+          'The launch price of roughly $14,000 a year met widespread payer rejection and low prescription rates. Amgen cut the list price to about $5,850 in 2018. Nothing about the clinical evidence changed.',
+        technicalDetails:
+          'Evolocumab launched in 2015 at a US list price near $14,000 per year, drew a cost-effectiveness assessment concluding the price was well above value-based benchmarks, and faced high payer rejection rates. The list price was reduced by roughly 60% in 2018. The episode is a measurable example of price responding to market access pressure rather than to trial results.',
+        evidenceSource: 'Publicly announced US list price reduction for Repatha in 2018',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Subcutaneous injection every two weeks or monthly',
+        laymanDesc:
+          'A pen delivers 140 mg under the skin every fortnight, or an on-body infusor delivers 420 mg once a month.',
+        molecularDetail:
+          '140 mg every 2 weeks or 420 mg monthly, with non-linear target-mediated disposition; the effective half-life is 11-17 days and clearance is dominated by binding to circulating PCSK9.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Circulating in plasma where PCSK9 is',
+        laymanDesc:
+          'It does not need to enter any cell. Its target is a protein floating in the bloodstream on its way to the liver surface.',
+        molecularDetail:
+          'PCSK9 is secreted by hepatocytes into plasma and acts on LDL receptors extracellularly, so an antibody confined to the vascular and interstitial space reaches its target completely.',
+        iconName: 'Waves',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding the catalytic domain of PCSK9',
+        laymanDesc: 'The antibody grips the exact face of PCSK9 that would otherwise clamp onto the cholesterol receptor.',
+        molecularDetail:
+          'Binds the catalytic domain of PCSK9 at the surface that contacts the EGF-A domain of the LDL receptor, sterically preventing the PCSK9-LDLR interaction. The IgG2 isotype was chosen for minimal effector function.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'LDL receptors are recycled instead of destroyed',
+        laymanDesc:
+          'Without PCSK9 attached, the receptor releases its cargo inside the cell and returns to the surface to collect more, over and over.',
+        molecularDetail:
+          'Unbound LDL receptors dissociate from LDL in the acidified endosome and recycle to the plasma membrane rather than being routed to the lysosome. Hepatocyte surface LDL receptor density rises and fractional catabolic rate of LDL apolipoprotein B increases.',
+        iconName: 'RefreshCw',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'LDL falls by about 60% within two weeks',
+        laymanDesc:
+          'Blood cholesterol drops fast and stays down for as long as the injections continue. In the outcome trial, heart attacks and strokes became measurably less frequent.',
+        molecularDetail:
+          'Median LDL fell from 92 mg/dL to 30 mg/dL by week 48 in FOURIER. Lipoprotein(a) also falls by roughly 25%, an effect not shared by statins and whose contribution to outcome remains under investigation.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'FOURIER (NCT01764633)',
+        phase: 'Phase 3',
+        sampleSize: 27564,
+        primaryEndpoint:
+          'Composite of cardiovascular death, myocardial infarction, stroke, hospitalisation for unstable angina or coronary revascularisation',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 for the primary composite; no significant reduction in cardiovascular or all-cause death',
+        unreportedAdverseSignals:
+          'Median follow-up was only 2.2 years, which is short relative to the lifetime exposure implied by the genetic rationale for the target.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'SPIRE bococizumab programme (Ridker 2017, six parallel trials)',
+        phase: 'Phase 3',
+        sampleSize: 4300,
+        primaryEndpoint: 'Change in LDL cholesterol over 12 months with a humanised PCSK9 antibody',
+        endpointMet: false,
+        statisticalPValue:
+          'LDL reduction of 54.2% at 12 weeks was significantly attenuated by anti-drug antibodies; programme discontinued',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '59% LDL reduction at 48 weeks on top of statin therapy, from a median 92 mg/dL to 30 mg/dL',
+        '15% relative reduction in the primary composite cardiovascular endpoint over a median 2.2 years',
+        'No significant reduction in cardiovascular death or all-cause death within the trial period',
+        'No cognitive difference from placebo in the embedded EBBINGHAUS substudy',
+      ],
+      unsupportedInferences: [
+        'That a 59% LDL reduction implies a proportional reduction in events over a two-year horizon',
+        'That the absence of a mortality signal at 2.2 years means there will never be one; the trial was neither long enough nor powered for it',
+        'That achieving very low LDL is equivalent to the lifelong low LDL of PCSK9 loss-of-function carriers',
+      ],
+      whatFailedInitially: [
+        'Bococizumab, a humanised rather than fully human PCSK9 antibody, was defeated by anti-drug antibodies and discontinued in 2016',
+        'The 2015 launch price of roughly $14,000 per year produced payer rejection rates high enough to force a 60% list price cut in 2018',
+      ],
+      realWorldOutcome: [
+        'Prior authorisation rejection was the dominant barrier to use in the United States for the first three years after approval',
+        'Lipoprotein(a) falls by roughly 25% on PCSK9 blockade, an effect statins do not produce and whose clinical significance is still being measured',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous autoinjector or single-use on-body infusor',
+      description:
+        '140 mg in 1 mL every two weeks by prefilled autoinjector, or 420 mg in 3.5 mL once monthly delivered over about nine minutes by an on-body infusor.',
+      safetyProfile:
+        'No boxed warning. Injection site reactions, nasopharyngitis and influenza-like symptoms are the commonest events. Rates of neurocognitive events, new-onset diabetes and myalgia did not differ meaningfully from placebo in FOURIER.',
+    },
+    commonQuestions: [
+      {
+        q: 'If it halves my cholesterol, does it halve my risk?',
+        a: 'No, and the trial says so directly. LDL fell 59% and the composite event rate fell 15% relative over 2.2 years, with no significant difference in deaths. The genetic evidence from people with lifelong low PCSK9 suggests that longer exposure produces larger benefit, but that is an extrapolation, not something FOURIER measured.',
+        auditNote: 'The single most common overstatement about this drug class.',
+      },
+      {
+        q: 'Is an LDL of 30 mg/dL dangerous?',
+        a: 'It was a reasonable worry and it was tested. The EBBINGHAUS substudy embedded in FOURIER found no cognitive difference from placebo, including in patients below 25 mg/dL. The brain makes its own cholesterol behind the blood-brain barrier and does not draw on plasma LDL.',
+      },
+      {
+        q: 'Can I stop my statin and just take this?',
+        a: 'FOURIER tested evolocumab added to statin therapy, not instead of it. Every participant was on a statin. There is no outcome trial of PCSK9 blockade as monotherapy in place of statins, so substituting means leaving the evidence base behind.',
+      },
+      {
+        q: 'Why did the price drop by 60%?',
+        a: 'Because payers rejected a large share of prescriptions at the launch price of roughly $14,000 a year and uptake was low. The 2018 cut to about $5,850 was a commercial response to that. No new clinical evidence prompted it.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Sabatine et al., Evolocumab and Clinical Outcomes in Patients with Cardiovascular Disease, NEJM 2017',
+        identifier: '10.1056/NEJMoa1615664',
+        kind: 'doi',
+      },
+      {
+        label: 'Ridker et al., Lipid-Reduction Variability and Antidrug-Antibody Formation with Bococizumab, NEJM 2017',
+        identifier: '10.1056/NEJMoa1614062',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, FOURIER',
+        identifier: 'NCT01764633',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, REPATHA BLA 125522, original approval 27 August 2015',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125522',
+        kind: 'regulatory',
+      },
+    ],
+  },
 ]

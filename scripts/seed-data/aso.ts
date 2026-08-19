@@ -2021,4 +2021,398 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       { label: 'RACER53 trial registration', identifier: 'NCT04060199', kind: 'nct' },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // Inotersen
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'inotersen',
+    name: 'Inotersen',
+    tradeName: 'Tegsedi',
+    sponsor: 'Ionis Pharmaceuticals / Akcea Therapeutics',
+    targetGene: 'TTR',
+    targetProtein: 'Transthyretin',
+    modality: 'ASO (Antisense Oligonucleotide)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2018,
+    indication:
+      'Polyneuropathy of hereditary transthyretin-mediated amyloidosis in adults; US marketing discontinued by the sponsor in September 2024',
+    patientFriendlyIndication: 'Hereditary ATTR Amyloidosis with Nerve Damage',
+    anatomicalSite: 'Liver hepatocyte nucleus and cytoplasm',
+    conditionContext: {
+      conditionExplainer:
+        'A mutated TTR gene makes a transport protein that misfolds. The misfolded protein deposits as amyloid in peripheral nerves and heart muscle, and the deposits accumulate for the rest of the person life.',
+      whyItMatters:
+        'Untreated hereditary ATTR polyneuropathy progresses to loss of walking within about five years of onset and to death within roughly a decade. The liver makes almost all circulating transthyretin, so silencing it there removes the substrate.',
+      whoTakesThis:
+        'Adults with a confirmed TTR variant and stage 1 or stage 2 polyneuropathy, by weekly subcutaneous injection with mandatory weekly blood monitoring.',
+      clinicalGoals:
+        'Slow or halt the progression of neuropathy scores and preserve quality of life, while keeping platelet counts and kidney function under surveillance.',
+    },
+    oneSentenceVerdict:
+      'The first RNase-H-recruiting antisense drug approved for hereditary ATTR amyloidosis; it improved neuropathy scores by 19.7 points against placebo over 66 weeks and carries a boxed warning for thrombocytopenia after a trial participant died of intracranial haemorrhage.',
+    laymanHowItWorks:
+      'Almost all of the misfolding protein in this disease is made by the liver. Inotersen is a short strand that pairs with the liver instructions for that protein and flags them for destruction by an enzyme the cell already has, so less protein is made in the first place. It works, and it also caused dangerous falls in platelet count and kidney inflammation in some people, which is why it requires weekly blood tests.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 62,
+    substitutes: {
+      summary:
+        'Three other classes act on the same disease: an siRNA that silences the same transcript, a stabiliser that stops the protein misfolding, and a cheap generic anti-inflammatory with randomised trial support. No diet or supplement removes amyloid.',
+      conventionalRx: [
+        {
+          name: 'Patisiran (Onpattro)',
+          class: 'Lipid nanoparticle siRNA against TTR',
+          howItCompares:
+            'Silences the same transcript through RISC rather than RNase H, given by intravenous infusion every three weeks with premedication. Its pivotal trial showed a larger mNIS+7 separation over 18 months.',
+          typicalCost: 'Branded specialty pricing in the hundreds of thousands of dollars per year',
+          prosAndCons:
+            'Pros: no thrombocytopenia signal, strong randomised data. Cons: infusion centre visits and steroid premedication.',
+        },
+        {
+          name: 'Vutrisiran (Amvuttra)',
+          class: 'GalNAc-conjugated siRNA against TTR',
+          howItCompares:
+            'Same target, subcutaneous, given quarterly rather than weekly. The convenience gap against weekly inotersen is large.',
+          typicalCost: 'About $477,000 / year at US wholesale acquisition cost',
+          prosAndCons:
+            'Pros: quarterly dosing, no boxed warning. Cons: price, and no head-to-head randomised comparison with inotersen.',
+        },
+        {
+          name: 'Tafamidis (Vyndaqel / Vyndamax)',
+          class: 'Oral transthyretin tetramer stabiliser',
+          howItCompares:
+            'Stops the tetramer from falling apart instead of reducing how much is made. Randomised mortality benefit in ATTR cardiomyopathy; EU authorisation covers stage 1 polyneuropathy.',
+          typicalCost: 'About $22,000 per 30 capsules at 2025 US list price',
+          prosAndCons:
+            'Pros: oral, well tolerated. Cons: does not reduce transthyretin production, and the US label is for cardiomyopathy.',
+        },
+        {
+          name: 'Diflunisal (off-label)',
+          class: 'Generic NSAID that also stabilises the transthyretin tetramer',
+          howItCompares:
+            'A randomised placebo-controlled trial in familial amyloid polyneuropathy showed reduced progression of neurological impairment over two years, at generic cost.',
+          typicalCost: 'Generic; typically under $60 / month in the US',
+          prosAndCons:
+            'Pros: the only cheap option with randomised evidence. Cons: NSAID renal, gastrointestinal and fluid-retention risks in a population that often has cardiac involvement.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Weekly platelet self-monitoring discipline',
+          action:
+            'Keeping to the weekly blood test schedule and reporting bruising, petechiae or bleeding gums immediately.',
+          patientImpact:
+            'Thrombocytopenia in this drug is sudden and unpredictable. Enhanced monitoring is the intervention that turned a fatal signal into a manageable one.',
+          clinicalPrecaution:
+            'This is a labelled requirement, not an optional precaution. Missing tests is the failure mode that produced the trial death.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'TCTTGGTTACATGAAATCCC',
+      chemicalFormula: 'C230H318N69O121P19S19',
+      molecularWeight: '7,183.08 Da (free base)',
+      targetReceptorAffinity:
+        '5-10-5 MOE gapmer; the central 10 deoxynucleotides form the RNase H1 substrate duplex with TTR mRNA',
+      structureSource: {
+        label:
+          'TEGSEDI US prescribing information section 11 chemical name, cross-checked against Yu et al. Mol Ther Nucleic Acids 2017 Table 1 (ISIS 420915)',
+        identifier: '10.1016/j.omtn.2017.08.012',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 's1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite qualification for a mixed-chemistry gapmer',
+          description:
+            'Two chemistries in one molecule: 2-prime-MOE amidites for the five-base wings and standard deoxy amidites for the ten-base gap. Both sets are release-tested, because a MOE base misplaced into the gap abolishes RNase H recruitment.',
+          reagentsAndBuffer:
+            'MOE-A/G/5-Me-C/5-Me-U and dA/dG/dC/5-Me-dC phosphoramidites, Karl Fischer titration, anhydrous acetonitrile',
+        },
+        {
+          id: 's2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase synthesis of the 5-10-5 gapmer with full sulfurisation',
+          description:
+            'Twenty coupling cycles switching amidite class at positions 6 and 16, sulfurising at every internucleotide linkage to give a uniform phosphorothioate backbone.',
+          reagentsAndBuffer:
+            '3 percent dichloroacetic acid in toluene, 5-(ethylthio)-1H-tetrazole, phenylacetyl disulfide, acetic anhydride/N-methylimidazole cap',
+          dependsOnStepId: 's1',
+        },
+        {
+          id: 's3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange purification and sodium-salt exchange',
+          description:
+            'Separate the full-length 20-mer from n-1 shortmers and from partially oxidised phosphodiester species, then exchange counterions and lyophilise.',
+          reagentsAndBuffer:
+            'Concentrated ammonia cleavage, Source 30Q resin, sodium bromide gradient in 20 mM sodium hydroxide, 3 kDa tangential flow filtration',
+          dependsOnStepId: 's2',
+        },
+        {
+          id: 's4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Gymnotic uptake into primary human hepatocytes',
+          description:
+            'Free uptake without transfection reagent, which is the route an unconjugated phosphorothioate actually takes in the liver after subcutaneous injection.',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes, Williams E medium with hepatocyte maintenance supplement, no lipofection reagent',
+          dependsOnStepId: 's3',
+        },
+        {
+          id: 's5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'TTR mRNA knockdown by RT-qPCR and serum transthyretin immunoassay',
+          description:
+            'Measure transcript reduction, then confirm it reaches secreted protein. Serum transthyretin is the pharmacodynamic marker followed in patients.',
+          reagentsAndBuffer:
+            'TaqMan TTR probe set with cyclophilin B reference, turbidimetric or nephelometric transthyretin immunoassay',
+          dependsOnStepId: 's4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ino-1',
+        category: 'measured',
+        title: 'NEURO-TTR: 19.7-point mNIS+7 separation and 11.7-point quality-of-life separation',
+        laymanSummary:
+          'Over 66 weeks, treated patients barely changed on the neuropathy scale while placebo patients got substantially worse, and the same pattern held on the patient-reported quality-of-life score.',
+        technicalDetails:
+          'NCT01737398 randomised 172 patients 2:1. Least-squares mean change from baseline to week 66 in mNIS+7 was 5.8 with inotersen against 25.5 with placebo, difference -19.7 (95 percent CI -26.4 to -13.0), p<0.001. Norfolk QoL-DN change was 1.0 against 12.7, difference -11.7 (95 percent CI -18.3 to -5.1), p<0.001. Effects were consistent across disease stage, mutation type and presence of cardiomyopathy.',
+        evidenceSource: 'Benson et al., New England Journal of Medicine 2018 (NEURO-TTR)',
+        doi: '10.1056/NEJMoa1716793',
+        measuredMetric: 'mNIS+7 treatment difference -19.7 points, p<0.001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ino-2',
+        category: 'failed',
+        title: 'A trial participant died of intracranial haemorrhage from thrombocytopenia',
+        laymanSummary:
+          'Platelet counts fell suddenly and unpredictably in some patients. One died of a brain bleed, after which the trial added enhanced platelet monitoring for everyone.',
+        technicalDetails:
+          'The boxed warning states that inotersen causes reductions in platelet count that may be sudden, unpredictable and life-threatening, and that one clinical trial patient died from intracranial haemorrhage. Grade 4 thrombocytopenia and glomerulonephritis each occurred in 3 percent of treated patients. The drug is contraindicated below a platelet count of 100 x 10^9/L and requires weekly counts on treatment and for eight weeks after stopping.',
+        evidenceSource: 'TEGSEDI US prescribing information, boxed warning',
+        doi: '10.1056/NEJMoa1716793',
+        measuredMetric: 'Grade 4 thrombocytopenia 3 percent; glomerulonephritis 3 percent; one treatment-associated death',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ino-3',
+        category: 'failed',
+        title: 'Five deaths in the inotersen arm and none on placebo',
+        laymanSummary:
+          'The trial recorded five deaths among treated patients and zero among those on placebo. The publication attributes most to the underlying disease, and the imbalance is in the record.',
+        technicalDetails:
+          'NEURO-TTR reported five deaths in the inotersen group and none in the placebo group across 172 randomised patients over 15 months, with one death associated with grade 4 thrombocytopenia. The trial was not powered for mortality and the randomisation was 2:1, so more treated patients were at risk, but an all-cause imbalance in this direction is the kind of number that should be stated plainly rather than only in a supplementary table.',
+        evidenceSource: 'Benson et al., NEJM 2018, results section',
+        doi: '10.1056/NEJMoa1716793',
+        measuredMetric: 'Deaths: 5 of 112 inotersen versus 0 of 60 placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ino-4',
+        category: 'inferred',
+        title: 'Neuropathy benefit is read as cardiac benefit, which was not measured',
+        laymanSummary:
+          'ATTR amyloidosis damages nerves and heart. The trial measured nerves. It did not show that hearts do better.',
+        technicalDetails:
+          'The co-primary endpoints were both neuropathy measures. Patients with cardiomyopathy were enrolled and the neuropathy effect was consistent in that subgroup, but no cardiac endpoint was powered and no cardiovascular outcome claim appears in the US label. Reduced transthyretin production is a plausible mechanism for cardiac benefit; plausibility is not measurement.',
+        evidenceSource: 'TEGSEDI US prescribing information, section 14; Benson et al., NEJM 2018',
+        doi: '10.1056/NEJMoa1716793',
+        inferredClaim: 'That inotersen improves cardiac outcomes in ATTR cardiomyopathy',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ino-5',
+        category: 'conclusion_shift',
+        title: 'Superseded by its own sequence with a sugar attached',
+        laymanSummary:
+          'Eplontersen carries the identical 20-letter sequence with a liver-targeting sugar cluster bolted on. It is dosed monthly instead of weekly, at far lower total exposure, and it has no boxed warning.',
+        technicalDetails:
+          'Eplontersen is inotersen conjugated to a triantennary N-acetylgalactosamine ligand. Comparing label regimens, inotersen delivers roughly 14.8 g of oligonucleotide per year and eplontersen roughly 0.6 g, an approximately 25-fold reduction in systemic oligonucleotide burden for the same target engagement. The platelet and renal signals that produced the inotersen boxed warning did not recur.',
+        evidenceSource: 'TEGSEDI and WAINUA US prescribing information; Viney et al., ESC Heart Failure 2021',
+        doi: '10.1002/ehf2.13154',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ino-6',
+        category: 'failed',
+        title: 'Withdrawn from the US market for commercial reasons in 2024',
+        laymanSummary:
+          'The sponsor stopped marketing inotersen in the United States in September 2024. The stated reason was low sales, not a new safety or efficacy finding.',
+        technicalDetails:
+          'Marketing in the United States ceased on 27 September 2024. Prescribers were told the decision reflected commercial performance rather than any change in the assessment of efficacy or safety. It illustrates something the evidence base cannot capture: a drug with a positive randomised trial can disappear because better-tolerated competitors took the market.',
+        evidenceSource: 'Akcea/Ionis prescriber notification, September 2024',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly subcutaneous injection',
+        laymanDesc: 'A small injection under the skin, once a week, self-administered.',
+        molecularDetail:
+          'Unconjugated phosphorothioate 20-mer in a prefilled syringe. Absorption from the subcutaneous depot is followed by broad tissue distribution with preferential accumulation in liver and kidney.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into hepatocytes without a carrier',
+        laymanDesc:
+          'Liver cells take the strand in by themselves, because its sulphur-modified backbone sticks to proteins on the cell surface.',
+        molecularDetail:
+          'Phosphorothioate-driven binding to cell-surface proteins including stabilin receptors, followed by adsorptive endocytosis and productive endosomal release. Uptake is not liver-selective, which is the origin of the renal and platelet effects.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Hybridising to TTR messenger RNA',
+        laymanDesc: 'It pairs with the liver instructions for transthyretin.',
+        molecularDetail:
+          'Watson-Crick duplex formation between the central 10 deoxynucleotide gap and the TTR transcript. The 2-prime-MOE wings raise binding affinity and resist nucleases but cannot themselves support cleavage.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'RNase H1 cuts the transcript',
+        laymanDesc:
+          'An enzyme the cell already has recognises the hybrid and destroys the messenger strand, leaving the drug intact to do it again.',
+        molecularDetail:
+          'RNase H1 recognises the DNA:RNA heteroduplex formed at the gap and cleaves the RNA strand. The oligonucleotide is released and recycles, which is why a catalytic mechanism gives durable knockdown at low intracellular concentration.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Serum transthyretin falls and amyloid deposition slows',
+        laymanDesc:
+          'Less transthyretin circulates, so less of it can misfold and deposit in nerves. Deposits already laid down are not removed.',
+        molecularDetail:
+          'Reduced hepatic secretion lowers circulating tetramer available for dissociation and amyloidogenic misfolding. Knockdown also lowers retinol-binding-protein-4 and vitamin A transport, which is why vitamin A supplementation is labelled.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NEURO-TTR (NCT01737398)',
+        phase: 'Phase 3',
+        sampleSize: 172,
+        primaryEndpoint:
+          'Co-primary: change from baseline to week 66 in mNIS+7 and in Norfolk QoL-DN total score',
+        endpointMet: true,
+        statisticalPValue: 'p<0.001 for both co-primary endpoints',
+        unreportedAdverseSignals:
+          'Five deaths in the inotersen arm versus none on placebo; grade 4 thrombocytopenia and glomerulonephritis each in 3 percent, with enhanced monitoring introduced mid-trial',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'mNIS+7 treatment difference -19.7 points at week 66, p<0.001',
+        'Norfolk QoL-DN treatment difference -11.7 points at week 66, p<0.001',
+        'Grade 4 thrombocytopenia in 3 percent and glomerulonephritis in 3 percent of treated patients',
+      ],
+      unsupportedInferences: [
+        'That the neuropathy benefit extends to cardiac outcomes; no cardiac endpoint was powered',
+        'That existing amyloid deposits are cleared; the drug reduces new substrate only',
+      ],
+      whatFailedInitially: [
+        'Sudden thrombocytopenia caused a fatal intracranial haemorrhage before enhanced monitoring was introduced',
+        'Glomerulonephritis in a subset required immunosuppression and, in one case, dialysis',
+        'Weekly dosing with weekly blood tests proved commercially untenable once quarterly and monthly competitors arrived',
+      ],
+      realWorldOutcome: [
+        'US marketing was discontinued in September 2024 for commercial reasons, not for a new safety finding',
+        'The same 20-mer survives as eplontersen, with a GalNAc ligand, monthly dosing and no boxed warning',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection of an unconjugated phosphorothioate 2-prime-MOE gapmer',
+      description:
+        'Prefilled syringe containing 284 mg of inotersen in 1.5 mL, self-administered weekly. No targeting ligand: liver exposure comes from the pharmacokinetics of the chemistry rather than from directed delivery.',
+      safetyProfile:
+        'Boxed warning for thrombocytopenia and glomerulonephritis, with a restricted programme and weekly platelet monitoring. Injection-site reactions, nausea, headache, pyrexia and chills are common. Vitamin A supplementation is required because transthyretin knockdown lowers retinol transport.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does inotersen reverse amyloidosis?',
+        a: 'No. It reduces how much transthyretin the liver makes, which lowers the supply of protein available to misfold. Amyloid already deposited in nerves is not cleared by this mechanism, which is why the measured result is slowed progression rather than recovery.',
+      },
+      {
+        q: 'Why does it need weekly blood tests?',
+        a: 'Because platelet counts can fall suddenly and without warning, and one trial participant died of an intracranial haemorrhage before enhanced monitoring existed. Weekly counts are a labelled requirement, not a precaution that can be relaxed.',
+        auditNote: 'The monitoring schedule is the mitigation that made the boxed-warning risk manageable.',
+      },
+      {
+        q: 'Can I still get inotersen?',
+        a: 'In the United States, no. The sponsor stopped marketing it in September 2024, citing commercial performance rather than any new safety or efficacy finding. Availability elsewhere varies by country.',
+      },
+      {
+        q: 'Is eplontersen just inotersen with a sugar on it?',
+        a: 'Chemically that is close to accurate: the base sequence is identical and eplontersen adds a triantennary GalNAc ligand that targets hepatocytes. The consequence is a roughly 25-fold lower annual oligonucleotide burden and no boxed warning, which shows how much of the toxicity was exposure outside the liver rather than an on-target effect.',
+      },
+      {
+        q: 'How does it compare with patisiran or vutrisiran?',
+        a: 'Nobody has run a head-to-head randomised trial. All three lower transthyretin and all three showed neuropathy benefit against placebo in separate trials with different populations and time points, so cross-trial ranking is not supported by the data.',
+        auditNote: 'No randomised comparison exists between any two TTR-lowering drugs.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'TEGSEDI (inotersen) US prescribing information, DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=8513207e-b55f-417b-9473-af785146a543',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Benson et al., Inotersen Treatment for Patients with Hereditary Transthyretin Amyloidosis, NEJM 2018',
+        identifier: '10.1056/NEJMoa1716793',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Viney et al., Ligand conjugated antisense oligonucleotide for the treatment of transthyretin amyloidosis, ESC Heart Failure 2021',
+        identifier: '10.1002/ehf2.13154',
+        kind: 'doi',
+      },
+      {
+        label: 'Yu et al., Mol Ther Nucleic Acids 2017, Table 1 (ISIS 420915 sequence and mass)',
+        identifier: '10.1016/j.omtn.2017.08.012',
+        kind: 'doi',
+      },
+      {
+        label: 'Berk et al., Repurposing Diflunisal for Familial Amyloid Polyneuropathy, JAMA 2013',
+        identifier: '10.1001/jama.2013.283815',
+        kind: 'doi',
+      },
+      {
+        label: 'Adams et al., Patisiran, an RNAi Therapeutic, for Hereditary Transthyretin Amyloidosis, NEJM 2018',
+        identifier: '10.1056/NEJMoa1716153',
+        kind: 'doi',
+      },
+      {
+        label: 'Tegsedi EPAR, European Medicines Agency',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/tegsedi',
+        kind: 'regulatory',
+      },
+      { label: 'NEURO-TTR trial registration', identifier: 'NCT01737398', kind: 'nct' },
+    ],
+  },
 ]

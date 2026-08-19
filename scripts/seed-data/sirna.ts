@@ -1374,4 +1374,752 @@ export const SIRNA_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Givosiran — the only approved siRNA that cuts inside the coding sequence rather than the 3' UTR.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'givosiran',
+    name: 'Givosiran',
+    tradeName: 'Givlaari',
+    sponsor: 'Alnylam Pharmaceuticals',
+    targetGene: 'ALAS1',
+    targetProtein: 'Delta-aminolevulinate synthase 1',
+    modality: 'siRNA (Small Interfering RNA)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2019,
+    indication: 'Acute hepatic porphyria in adults',
+    patientFriendlyIndication: 'Acute porphyria attacks — severe abdominal pain crises',
+    conditionContext: {
+      conditionExplainer:
+        'Making haem takes eight enzymes working in order. In acute hepatic porphyria one of the later enzymes is faulty, so when the liver ramps up the first enzyme, ALAS1, the pathway backs up behind the blockage and two intermediates — aminolevulinic acid and porphobilinogen — flood the body. They are neurotoxic, and the result is attacks of severe abdominal pain, vomiting, weakness and sometimes seizures or paralysis.',
+      whyItMatters:
+        'Attacks are excruciating, frequently misdiagnosed for years, and each one carries a risk of lasting nerve damage. Before givosiran the only preventive option was repeated intravenous haemin through a permanent central line.',
+      whoTakesThis:
+        'Adults with acute hepatic porphyria, most of whom have acute intermittent porphyria, the commonest subtype.',
+      clinicalGoals:
+        'Fewer attacks requiring hospital care, less haemin use, lower daily pain, and lower urinary aminolevulinic acid and porphobilinogen.',
+    },
+    oneSentenceVerdict:
+      'Silences the first enzyme of haem synthesis so the toxic intermediates stop accumulating, cutting the annualised porphyria attack rate from 12.5 to 3.2 in ENVISION — a 74% reduction bought at the cost of more liver and kidney adverse events.',
+    laymanHowItWorks:
+      'Your liver builds haem on an assembly line. In acute porphyria one station is broken, so when the line speeds up the half-finished parts pile up, and those parts are poisonous to nerves. Givosiran tells liver cells to stop making the machine that starts the line, so the pile-up never forms. Attacks became about four times less frequent in the trial, though liver enzymes and kidney measurements moved more often on treatment than on placebo.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    anatomicalSite: 'Hepatocyte cytoplasm (liver)',
+    substitutes: {
+      summary:
+        'Intravenous haemin suppresses the same enzyme by feeding back on it, and was the standard preventive treatment before givosiran; in the one peer-reviewed cost comparison, twice-weekly haemin prophylaxis is more expensive than the siRNA. Liver transplantation is curative and correspondingly drastic. No food or supplement prevents attacks.',
+      conventionalRx: [
+        {
+          name: 'Haemin (Panhematin)',
+          class: 'Intravenous haem preparation',
+          howItCompares:
+            'Supplies the end product of the pathway, which switches ALAS1 off by negative feedback. Given intravenously, usually through a central line when used for prevention.',
+          typicalCost:
+            'About US$889,075 per year for twice-weekly prophylaxis (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          prosAndCons:
+            'Pros: decades of use, works acutely during an attack. Cons: venous access is a chronic problem, and in the same peer-reviewed FAERS comparison phlebitis was its most common reported reaction.',
+        },
+        {
+          name: 'Liver transplantation',
+          class: 'Surgical replacement of the enzyme-deficient organ',
+          howItCompares:
+            'Curative for the biochemical defect, because the transplanted liver carries a working pathway. It does not reverse nerve damage already sustained.',
+          typicalCost:
+            'About US$878,000 over a lifetime (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          prosAndCons:
+            'Pros: definitive. Cons: major surgery, lifelong immunosuppression, and it does not undo established neuropathy.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Identify and remove attack precipitants',
+          action:
+            'Keep a written list of prescribed and over-the-counter medicines, alcohol intake, fasting episodes and hormonal cycle timing, and review it against a porphyria drug-safety database with the treating specialist.',
+          patientImpact:
+            'Attacks are commonly triggered by agents that induce hepatic cytochrome P450 and therefore drive ALAS1 upward, and by fasting. Removing a trigger removes attacks that no drug then has to prevent.',
+          clinicalPrecaution:
+            'This is a discussion to have with a porphyria specialist, not a self-directed medication change. Stopping a necessary drug without a substitute can be more dangerous than the porphyria.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'UAAGAUGAGACACUCUUUCUGGU',
+      chemicalFormula: 'C524H651F16N173Na43O316P43S6',
+      molecularWeight:
+        '17,245.56 Da (givosiran sodium); 16,300.34 Da for the free acid, per the FDA label',
+      structureSource: {
+        label:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 (Table 1, sequences from the FDA inserts); formula and mass from the GIVLAARI label',
+        identifier: '10.1124/molpharm.124.000895',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'giv-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc support release testing',
+          description:
+            'Release-test the phosphoramidites and the triantennary GalNAc support. Givosiran carries sixteen 2\'-F residues, the highest fluorine content of the approved GalNAc conjugates, so 2\'-F amidite quality dominates the impurity profile.',
+          reagentsAndBuffer:
+            "2'-F and 2'-OMe A/C/G/U phosphoramidites, L96-GalNAc CPG support, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
+        },
+        {
+          id: 'giv-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase assembly of the 21-mer sense and 23-mer antisense strands',
+          description:
+            'Assemble both strands, sulfurise the terminal linkages to give six phosphorothioates and oxidise the rest, then cleave from the support and deprotect.',
+          dependsOnStepId: 'giv-w1',
+          reagentsAndBuffer:
+            '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide; concentrated aqueous ammonia',
+        },
+        {
+          id: 'giv-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange HPLC and desalting',
+          description:
+            'Resolve full-length material from n-1 truncations and depurination products, then buffer-exchange into water for injection.',
+          dependsOnStepId: 'giv-w2',
+          reagentsAndBuffer:
+            'Strong anion-exchange resin; 20 mM sodium phosphate pH 8.5 with 20% acetonitrile and a sodium bromide gradient; 3 kDa tangential-flow ultrafiltration',
+        },
+        {
+          id: 'giv-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Duplex annealing and conjugate mass confirmation',
+          description:
+            'Anneal the strands and confirm the intact mass against the label formula, checking the sixteen fluorines and six sulfurs explicitly.',
+          dependsOnStepId: 'giv-w3',
+          reagentsAndBuffer:
+            'Equimolar strands in phosphate-buffered saline from 90 degrees C; ion-pair reversed-phase LC-MS with hexafluoroisopropanol / triethylamine',
+        },
+        {
+          id: 'giv-w5',
+          stepNumber: 5,
+          phase: 'Cellular_Delivery',
+          name: 'Free uptake into primary human hepatocytes',
+          description:
+            'Dose hepatocytes without transfection reagent so uptake is ASGPR-dependent, and induce ALAS1 beforehand so the assay measures suppression of an induced target rather than a resting one.',
+          dependsOnStepId: 'giv-w4',
+          reagentsAndBuffer:
+            "Cryopreserved primary human hepatocytes, Williams' E medium with GlutaMAX, collagen-coated plates; ALAS1 induction control; asialofetuin competitor",
+        },
+        {
+          id: 'giv-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'ALAS1 transcript knockdown and porphyrin precursor readout',
+          description:
+            'Quantify ALAS1 mRNA by RT-qPCR and measure aminolevulinic acid and porphobilinogen in the supernatant, so that message knockdown is tied to the metabolites that actually cause the disease.',
+          dependsOnStepId: 'giv-w5',
+          reagentsAndBuffer:
+            'TaqMan Fast Advanced Master Mix with an ALAS1 FAM probe and a GAPDH VIC control; LC-MS/MS quantification of aminolevulinic acid and porphobilinogen',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'giv-a1',
+        category: 'measured',
+        title: 'ENVISION: annualised attack rate 3.2 versus 12.5 on placebo',
+        laymanSummary:
+          'Patients on givosiran had roughly a quarter as many attacks needing hospital care, urgent visits or intravenous haemin.',
+        technicalDetails:
+          'Double-blind, placebo-controlled phase 3. 94 patients randomised, 48 to givosiran 2.5 mg/kg monthly and 46 to placebo, for 6 months. Among the 89 patients with acute intermittent porphyria the mean annualised composite attack rate was 3.2 with givosiran and 12.5 with placebo, a 74% lower rate (P<0.001). Urinary aminolevulinic acid and porphobilinogen fell, haemin use fell and daily worst-pain scores improved.',
+        evidenceSource: 'Balwani M et al., N Engl J Med 2020;382:2289-2301',
+        doi: '10.1056/NEJMoa1913147',
+        measuredMetric:
+          'Annualised rate of composite porphyria attacks (hospitalisation, urgent visit or home intravenous haemin)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'giv-a2',
+        category: 'measured',
+        title: 'The efficacy came with more hepatic and renal adverse events',
+        laymanSummary:
+          'Liver enzymes rose, kidney measurements moved, and injection sites reacted more often on the drug than on placebo. The paper says so in its own conclusion.',
+        technicalDetails:
+          'ENVISION reported that key adverse events observed more frequently with givosiran were elevations in serum aminotransferases, changes in serum creatinine and estimated glomerular filtration rate, and injection-site reactions, and the authors wrote that "the increased efficacy was accompanied by a higher frequency of hepatic and renal adverse events". The FDA label carries warnings for anaphylaxis, hepatic toxicity with scheduled liver testing, renal toxicity, injection-site reactions including recall reactions, increased blood homocysteine and pancreatitis. Nausea and injection-site reactions each occur in at least 20% of patients.',
+        evidenceSource:
+          'Balwani M et al., N Engl J Med 2020;382:2289-2301; GIVLAARI US prescribing information',
+        doi: '10.1056/NEJMoa1913147',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'giv-a3',
+        category: 'inferred',
+        title: 'Six months of attack data are not evidence about the long-term complications',
+        laymanSummary:
+          'The trial ran half a year and counted attacks. It did not measure whether kidney function, nerve damage or liver cancer risk change over the years people will actually take this drug.',
+        technicalDetails:
+          'ENVISION\'s randomised period was 6 months with a primary endpoint of annualised attack rate in 89 patients. Chronic kidney disease progression, established neuropathy, and the elevated hepatocellular carcinoma risk associated with acute hepatic porphyria were not endpoints. The homocysteine elevation named in the label has no established clinical consequence in this population and no trial has tested treating it.',
+        evidenceSource: 'Balwani M et al., N Engl J Med 2020;382:2289-2301; GIVLAARI label section 5.5',
+        doi: '10.1056/NEJMoa1913147',
+        inferredClaim:
+          'That fewer attacks over six months means fewer long-term hepatic, renal and neurological complications',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'giv-a4',
+        category: 'measured',
+        title: 'The attack endpoint is defined by healthcare use, not by a biomarker',
+        laymanSummary:
+          'An "attack" in this trial meant a hospital admission, an urgent care visit, or haemin given at home. That is a real-world definition, and it depends on how easy those things are to reach.',
+        technicalDetails:
+          'The composite primary endpoint counted events resulting in hospitalisation, an urgent healthcare visit, or intravenous haemin administration at home. This grounds the endpoint in consequences patients feel, but it also makes it partly a measure of healthcare access and physician threshold, which differ between sites and countries. The biochemical endpoints — urinary aminolevulinic acid and porphobilinogen — were secondary.',
+        evidenceSource: 'Balwani M et al., N Engl J Med 2020;382:2289-2301',
+        doi: '10.1056/NEJMoa1913147',
+        measuredMetric: 'Composite attack count as defined by healthcare utilisation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'giv-a5',
+        category: 'conclusion_shift',
+        title: 'Givosiran is the one approved siRNA that cuts inside the coding sequence',
+        laymanSummary:
+          'Every other approved siRNA aims at the untranslated tail of its target message. Givosiran aims at the protein-coding body of ALAS1 instead.',
+        technicalDetails:
+          'A 2024 review of the approved RNAi therapeutics notes that givosiran targets the coding sequence of ALAS1 mRNA with near-complete binding, while patisiran, lumasiran, inclisiran, vutrisiran and nedosiran all act on the 3\' untranslated regions of their targets. The design consequence is that the guide must tolerate the sequence constraints of a coding region, where synonymous variation is limited.',
+        evidenceSource: 'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024',
+        doi: '10.1124/molpharm.124.000895',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Monthly subcutaneous dose with a liver-specific tag',
+        laymanDesc:
+          'An injection under the skin once a month, dosed by body weight. Three sugar molecules on the drug make liver cells grab it and almost nothing else does.',
+        molecularDetail:
+          'Triantennary N-acetylgalactosamine (L96) on the sense strand binds the hepatocyte asialoglycoprotein receptor. The label dose is 2.5 mg/kg monthly, with reduction to 1.25 mg/kg after significant transaminase elevation.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Endocytosis into the hepatocyte',
+        laymanDesc:
+          'The liver cell swallows the drug into an internal compartment, and a fraction leaks out into the working part of the cell.',
+        molecularDetail:
+          'ASGPR-mediated clathrin endocytosis routes the duplex to the endosome, where the receptor releases its cargo at acidic pH and recycles. A small proportion escapes to the cytoplasm and is available for RISC loading.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Guide strand loaded into the silencing complex',
+        laymanDesc:
+          'The two strands split; one is loaded into the cell\'s gene-silencing machinery and the other is discarded.',
+        molecularDetail:
+          'The 23-nucleotide antisense strand loads into Argonaute 2 within RISC. The extensive 2\'-F and 2\'-OMe substitution and the six phosphorothioate linkages give it the nuclease resistance to survive long enough to be loaded.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'ALAS1 messenger RNA is cut inside its coding body',
+        laymanDesc:
+          'The complex finds the instructions for the enzyme that starts the haem assembly line, and cuts them.',
+        molecularDetail:
+          'Unusually for this class, the guide binds the coding sequence of ALAS1 mRNA with near-complete complementarity rather than a 3\' untranslated region, and Argonaute 2 catalyses cleavage. Reduced ALAS1 protein means reduced flux into the haem pathway upstream of the deficient enzyme.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The toxic intermediates stop accumulating and attacks become rarer',
+        laymanDesc:
+          'With the assembly line slowed at its start, the poisonous half-finished parts stop piling up. Attacks fell from about 12.5 a year to about 3.2.',
+        molecularDetail:
+          'Lower ALAS1 activity reduces production of aminolevulinic acid and porphobilinogen, the neurotoxic intermediates that accumulate behind the deficient downstream enzyme. Urinary levels of both fell in ENVISION alongside the attack-rate reduction, haemin use and daily worst-pain scores.',
+        iconName: 'ShieldCheck',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ENVISION (NCT03338816)',
+        phase: 'Phase 3',
+        sampleSize: 94,
+        primaryEndpoint:
+          'Annualised rate of composite porphyria attacks over 6 months in acute intermittent porphyria',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001',
+        unreportedAdverseSignals:
+          'Aminotransferase elevations, serum creatinine and eGFR changes, and injection-site reactions were all more frequent with givosiran; the trial authors state the efficacy came with more hepatic and renal adverse events.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '74% lower annualised composite attack rate over 6 months in 89 patients with acute intermittent porphyria',
+        'Lower urinary aminolevulinic acid and porphobilinogen, fewer days of haemin use, better daily worst-pain scores',
+        'More frequent aminotransferase elevation, creatinine and eGFR change, and injection-site reaction than placebo',
+      ],
+      unsupportedInferences: [
+        'That six months of attack reduction predicts fewer long-term neurological, renal or hepatic complications',
+        'That the labelled homocysteine elevation is clinically inert — nobody has measured what it does over years',
+        'That the attack-rate benefit generalises beyond acute intermittent porphyria, which supplied 89 of the 94 randomised patients',
+      ],
+      whatFailedInitially: [
+        'Chronic intravenous haemin prophylaxis, the prior standard, requires venous access that frequently fails and carries phlebitis as its most commonly reported adverse reaction',
+      ],
+      realWorldOutcome: [
+        'Monthly self-administration replaces a central line for many patients, which is the practical change the drug delivered',
+        'In the FAERS comparison covering 2019 to 2023, acute porphyria itself was the most common reported reaction category for givosiran at 32.7% of cases — that is a report of the underlying disease, not necessarily a drug effect, and it illustrates how hard passive surveillance is to read in a rare disease',
+      ],
+    },
+    deliverySystem: {
+      type: 'GalNAc-conjugated siRNA, subcutaneous injection',
+      description:
+        'A 1 mL single-dose vial containing 189 mg of givosiran, dosed at 2.5 mg/kg of actual body weight once monthly by subcutaneous injection, with dose reduction to 1.25 mg/kg after a significant transaminase elevation that then improves.',
+      safetyProfile:
+        'Labelled warnings for anaphylaxis, hepatic toxicity with baseline and periodic liver testing, renal toxicity, injection-site reactions including recall reactions, increased blood homocysteine and pancreatitis. Nausea and injection-site reactions each occur in at least 20% of patients.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does givosiran cure porphyria?',
+        a: 'No. It suppresses the first enzyme of the haem pathway so the toxic intermediates stop piling up, but the underlying enzyme deficiency is untouched and returns as soon as the drug is stopped. In the trial it reduced attacks by 74% over six months; it did not eliminate them, and the mean rate on treatment was still 3.2 a year.',
+      },
+      {
+        q: 'What are the liver and kidney warnings about?',
+        a: 'They come directly out of the pivotal trial. Aminotransferase elevations, serum creatinine changes and eGFR changes were all more common on givosiran than on placebo, and the authors wrote that the increased efficacy was accompanied by a higher frequency of hepatic and renal adverse events. The label therefore requires liver testing at baseline and periodically, and renal monitoring as clinically indicated.',
+        auditNote:
+          'This is the one drug in this file whose own pivotal publication names a safety trade-off in its conclusion.',
+      },
+      {
+        q: 'Why does my homocysteine go up?',
+        a: 'Because the haem pathway and the methionine pathway share the vitamin B6-dependent enzyme cystathionine beta-synthase, and reducing ALAS1 flux appears to affect it. What that elevation does over years has not been measured, and no trial has tested whether treating it changes anything. The label lists it as a warning; that is the extent of what is known.',
+      },
+      {
+        q: 'How long do I have to keep taking it?',
+        a: 'Indefinitely, on current evidence. ALAS1 silencing lasts weeks, not years, which is why the schedule is monthly, and no trial has tested stopping. There is no published withdrawal study and no evidence of durable remission after discontinuation.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Balwani M et al. Phase 3 Trial of RNAi Therapeutic Givosiran for Acute Intermittent Porphyria (ENVISION). N Engl J Med 2020;382:2289-2301',
+        identifier: '10.1056/NEJMoa1913147',
+        kind: 'doi',
+      },
+      { label: 'ENVISION', identifier: 'NCT03338816', kind: 'nct' },
+      {
+        label: 'GIVLAARI (givosiran) injection, US prescribing information — DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=167e663c-11e1-497b-a3fc-951d65d58eaa',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Sehgal I, Eells K, Hudson I. A Comparison of Currently Approved siRNA Medications to Alternative Treatments. Pharmacy 2024;12:58',
+        identifier: '10.3390/pharmacy12020058',
+        kind: 'doi',
+      },
+      {
+        label:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 — sequences and target-site analysis',
+        identifier: '10.1124/molpharm.124.000895',
+        kind: 'doi',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // Lumasiran — approved on a urine chemistry, in an indication written as a urine chemistry.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'lumasiran',
+    name: 'Lumasiran',
+    tradeName: 'Oxlumo',
+    sponsor: 'Alnylam Pharmaceuticals',
+    targetGene: 'HAO1',
+    targetProtein: 'Glycolate oxidase (hydroxyacid oxidase 1)',
+    modality: 'siRNA (Small Interfering RNA)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2020,
+    indication:
+      'Primary hyperoxaluria type 1, to lower urinary and plasma oxalate levels in paediatric and adult patients',
+    patientFriendlyIndication: 'Primary hyperoxaluria type 1 — a genetic cause of kidney stones and kidney failure',
+    conditionContext: {
+      conditionExplainer:
+        'In primary hyperoxaluria type 1 a faulty liver enzyme lets glyoxylate escape into a pathway that turns it into oxalate. Oxalate has no metabolic use and must leave through the kidney, where it crystallises with calcium into stones and deposits, scarring the kidney until it fails and then depositing throughout the body.',
+      whyItMatters:
+        'Untreated PH1 commonly reaches kidney failure in childhood or early adulthood, and dialysis cannot keep up with the oxalate load, so the standard cure has been a combined liver and kidney transplant.',
+      whoTakesThis:
+        'Children and adults with genetically confirmed PH1. Lumasiran is dosed by body weight, with a monthly loading phase followed by quarterly maintenance in most weight bands.',
+      clinicalGoals:
+        'Bring 24-hour urinary oxalate to normal or near-normal and keep it there, in the hope — not yet the demonstration — that stones and kidney decline follow.',
+    },
+    oneSentenceVerdict:
+      'Silences glycolate oxidase so the liver diverts glyoxylate away from oxalate, cutting 24-hour urinary oxalate by 53.5 percentage points against placebo in 39 patients — a biochemical endpoint, which is exactly what the FDA indication says it is licensed for.',
+    laymanHowItWorks:
+      'A broken liver enzyme lets a chemical called glyoxylate turn into oxalate, which the kidneys cannot handle and which forms stones and scarring. Lumasiran does not fix the broken enzyme. It switches off an earlier one, so far less glyoxylate is produced in the first place and there is less raw material to turn into oxalate. Urine oxalate dropped into the normal range for most patients within a few months.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 70,
+    anatomicalSite: 'Hepatocyte peroxisome and cytoplasm (liver)',
+    substitutes: {
+      summary:
+        'Pyridoxine restores partial enzyme function in a minority of genotypes, and high fluid intake with citrate keeps oxalate in solution rather than reducing it. Both are cheap. Neither addresses the overproduction, and combined liver-kidney transplantation remains the only curative option.',
+      conventionalRx: [
+        {
+          name: 'Pyridoxine (vitamin B6)',
+          class: 'Cofactor supplementation',
+          howItCompares:
+            'Acts as a chaperone for the misfolded AGT enzyme in a minority of genotypes, partially restoring its function. Where it works it lowers oxalate; where the genotype is unresponsive it does nothing.',
+          typicalCost:
+            'Under US$120 per year (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          prosAndCons:
+            'Pros: oral, trivially cheap, decades of use. Cons: genotype-dependent, and unresponsive patients gain nothing.',
+        },
+        {
+          name: 'Potassium citrate solution',
+          class: 'Urinary alkalinising agent',
+          howItCompares:
+            'Does not reduce oxalate production at all. It raises urinary citrate, which complexes calcium and keeps calcium oxalate in solution rather than crystallising.',
+          typicalCost:
+            'Under US$120 per year (Sehgal, Eells & Hudson, Pharmacy 2024); US$0.18 per 10 mEq extended-release tablet at pharmacy acquisition cost (CMS NADAC, effective 17 December 2025)',
+          prosAndCons:
+            'Pros: cheap, addresses the crystallisation step directly. Cons: purely a solubility measure, and adherence to high-volume fluid regimens is hard.',
+        },
+        {
+          name: 'Nedosiran (Rivfloza)',
+          class: 'siRNA against LDHA',
+          howItCompares:
+            'Silences the last enzyme in the pathway rather than an earlier one, and is also approved for PH1 only. The two have never been compared head to head.',
+          typicalCost: 'Not priced here — no published figure to cite',
+          prosAndCons:
+            'Pros: acts at the terminal step, which in theory applies to more PH subtypes. Cons: the PH2 subgroup in its own pivotal trial showed no consistent effect.',
+        },
+        {
+          name: 'Combined liver and kidney transplantation',
+          class: 'Surgical replacement of the enzyme-deficient organ and the damaged one',
+          howItCompares:
+            'The only curative option, because the transplanted liver carries a working AGT enzyme. The prior standard of care in advanced disease.',
+          typicalCost:
+            'About US$414,800 over a lifetime for the renal transplant component (Sehgal, Eells & Hudson, Pharmacy 2024)',
+          prosAndCons:
+            'Pros: definitive. Cons: two organs, major surgery, lifelong immunosuppression. RNAi therapy has begun to make kidney-only transplantation an option in selected patients.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'High fluid intake, maintained around the clock',
+          action:
+            'Keep urine dilute continuously, including overnight, at the volume target set by the treating nephrologist.',
+          patientImpact:
+            'Calcium oxalate crystallises when its concentration exceeds solubility. Dilution does not lower how much oxalate is made, but it changes whether that oxalate forms a stone.',
+          clinicalPrecaution:
+            'Volume targets are individual and must come from the nephrology team, particularly once kidney function is reduced. Do not set them from a website.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'UAUAUUUCCAGGAUGAAAGUCCA',
+      chemicalFormula: 'C530H669F10N173O320P43S6Na43',
+      molecularWeight: '17,286 Da (lumasiran sodium, per the FDA label)',
+      structureSource: {
+        label:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 (Table 1, sequences from the FDA inserts); formula and mass from the OXLUMO label',
+        identifier: '10.1124/molpharm.124.000895',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lum-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc support release testing',
+          description:
+            'Confirm amidite identity and purity and the loading of the triantennary GalNAc support before synthesis begins.',
+          reagentsAndBuffer:
+            "2'-F and 2'-OMe A/C/G/U phosphoramidites, L96-GalNAc CPG support, anhydrous acetonitrile, 31P NMR, HPLC purity, Karl Fischer titration",
+        },
+        {
+          id: 'lum-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Solid-phase assembly of the 21-mer sense and 23-mer antisense strands',
+          description:
+            'Assemble both strands with the label\'s modification pattern, sulfurising the terminal linkages and oxidising the rest, then cleave and deprotect.',
+          dependsOnStepId: 'lum-w1',
+          reagentsAndBuffer:
+            '5-(ethylthio)-1H-tetrazole in acetonitrile; 3% dichloroacetic acid in toluene; acetic anhydride / N-methylimidazole capping; 0.02 M iodine in THF/pyridine/water; phenylacetyl disulfide; concentrated aqueous ammonia',
+        },
+        {
+          id: 'lum-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange HPLC and ultrafiltration',
+          description:
+            'Separate full-length product from truncations and desalt into water for injection.',
+          dependsOnStepId: 'lum-w2',
+          reagentsAndBuffer:
+            'Strong anion-exchange resin; 20 mM sodium phosphate pH 8.5 with 20% acetonitrile and a sodium bromide gradient; 3 kDa tangential-flow ultrafiltration',
+        },
+        {
+          id: 'lum-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Duplex annealing and intact-mass confirmation',
+          description:
+            'Anneal the two strands and confirm the conjugated duplex mass against the label formula by ion-pair LC-MS.',
+          dependsOnStepId: 'lum-w3',
+          reagentsAndBuffer:
+            'Equimolar strands in phosphate-buffered saline from 90 degrees C; ion-pair reversed-phase LC-MS with hexafluoroisopropanol / triethylamine',
+        },
+        {
+          id: 'lum-w5',
+          stepNumber: 5,
+          phase: 'Cellular_Delivery',
+          name: 'Free uptake into primary human hepatocytes',
+          description:
+            'Dose hepatocytes with no transfection reagent so that entry is ASGPR-dependent, with an asialofetuin block as the specificity control.',
+          dependsOnStepId: 'lum-w4',
+          reagentsAndBuffer:
+            "Cryopreserved primary human hepatocytes, Williams' E medium with GlutaMAX, collagen-coated plates, asialofetuin competitor",
+        },
+        {
+          id: 'lum-w6',
+          stepNumber: 6,
+          phase: 'Assay_Quantification',
+          name: 'HAO1 knockdown, glycolate accumulation and oxalate output',
+          description:
+            'Quantify HAO1 mRNA by RT-qPCR and measure both glycolate and oxalate in the medium. Glycolate rising while oxalate falls is the signature that the block is where it is supposed to be.',
+          dependsOnStepId: 'lum-w5',
+          reagentsAndBuffer:
+            'TaqMan Fast Advanced Master Mix with a HAO1 FAM probe and a GAPDH VIC control; ion chromatography or LC-MS/MS for glycolate and oxalate',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lum-a1',
+        category: 'measured',
+        title: 'ILLUMINATE-A: 53.5 percentage-point reduction in 24-hour urinary oxalate',
+        laymanSummary:
+          'Urinary oxalate fell by about two-thirds on lumasiran and barely moved on placebo, and 84% of treated patients reached a normal or near-normal level by six months against none on placebo.',
+        technicalDetails:
+          'Double-blind phase 3, 39 patients aged 6 and over randomised 2:1. Least-squares mean difference in change in 24-hour urinary oxalate excretion, lumasiran minus placebo, was -53.5 percentage points (P<0.001), with a 65.4% reduction in the lumasiran group. Plasma oxalate difference -39.5 percentage points (P<0.001). 84% of lumasiran patients versus 0% of placebo patients had 24-hour urinary oxalate no higher than 1.5 times the upper limit of normal at month 6 (P<0.001). Mild transient injection-site reactions in 38%.',
+        evidenceSource: 'Garrelfs SF et al., N Engl J Med 2021;384:1216-1226',
+        doi: '10.1056/NEJMoa2021712',
+        measuredMetric: 'Percent change in 24-hour urinary oxalate excretion at month 6',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lum-a2',
+        category: 'inferred',
+        title: 'The indication is written as a chemistry, because the chemistry is what was measured',
+        laymanSummary:
+          'The FDA licensed lumasiran "to lower urinary and plasma oxalate levels". It did not license it to prevent kidney stones or kidney failure, because the trial did not measure those.',
+        technicalDetails:
+          'The approved indication reads: "for the treatment of primary hyperoxaluria type 1 (PH1) to lower urinary and plasma oxalate levels in pediatric and adult patients". Urinary oxalate is a surrogate: it is the mechanistic cause of stone formation and nephrocalcinosis, and it is strongly associated with progression, but the pivotal trial\'s 6-month randomised period was never powered for stone events or for eGFR decline. Longer-term data are open-label extensions without a concurrent control.',
+        evidenceSource: 'OXLUMO US prescribing information, section 1',
+        inferredClaim:
+          'That normalising urinary oxalate prevents stones, nephrocalcinosis and progression to kidney failure',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lum-a3',
+        category: 'measured',
+        title: 'Sixty-month follow-up sustained the biochemical effect without a control group',
+        laymanSummary:
+          'Patients followed for five years kept the low oxalate levels. Everyone in that extension was on the drug, so there is nothing to compare against.',
+        technicalDetails:
+          'ILLUMINATE-A ran a 6-month double-blind placebo-controlled period followed by an extension of up to 54 months in which all patients received lumasiran. The final report describes sustained reductions in urinary and plasma oxalate and "encouraging clinical outcomes", with mild injection-site reactions the most common adverse event. From month 6 onward there was no randomised comparator.',
+        evidenceSource: 'Final Results of the ILLUMINATE-A Phase 3 Clinical Trial, CJASN 2026',
+        doi: '10.2215/CJN.0000000916',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lum-a4',
+        category: 'measured',
+        title: 'The drug blocks a step and the substrate backs up behind it',
+        laymanSummary:
+          'Because lumasiran turns off an enzyme partway down the pathway, the chemical feeding that enzyme accumulates instead. Rising glycolate is the expected signature of the drug working.',
+        technicalDetails:
+          'Silencing HAO1 removes glycolate oxidase, which converts glycolate to glyoxylate. Glyoxylate flux to oxalate therefore falls and plasma and urinary glycolate rise. Isolated glycolate accumulation has no known pathological consequence, and elevated glycolate is used as a pharmacodynamic confirmation of target engagement rather than treated as an adverse finding.',
+        evidenceSource: 'Garrelfs SF et al., N Engl J Med 2021;384:1216-1226',
+        doi: '10.1056/NEJMoa2021712',
+        measuredMetric: 'Plasma and urinary glycolate as a target-engagement marker',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lum-a5',
+        category: 'inferred',
+        title: 'Thirty-nine patients is the entire randomised evidence base',
+        laymanSummary:
+          'The pivotal trial enrolled 39 people, 26 of them on the drug. In a disease this rare that is a reasonable trial, but it is a small number to carry a licence.',
+        technicalDetails:
+          'ILLUMINATE-A randomised 39 patients aged 6 and over, 26 to lumasiran and 13 to placebo. Subsequent studies — ILLUMINATE-B in infants and young children and ILLUMINATE-C in advanced kidney disease — were single-arm. No randomised trial of lumasiran has been powered for a clinical event.',
+        evidenceSource: 'Garrelfs SF et al., N Engl J Med 2021;384:1216-1226',
+        doi: '10.1056/NEJMoa2021712',
+        inferredClaim:
+          'That effect sizes from 26 treated patients transfer confidently to every PH1 genotype and age band',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weight-based subcutaneous dose with a liver tag',
+        laymanDesc:
+          'An injection under the skin, dosed by weight, monthly at first and then usually once every three months. The sugar tag means it goes to the liver and nowhere else that matters.',
+        molecularDetail:
+          'Triantennary N-acetylgalactosamine binds hepatocyte ASGPR. The label gives a three-dose monthly loading phase followed by quarterly maintenance for patients at 20 kg and above, with different bands below that.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Uptake into the hepatocyte',
+        laymanDesc:
+          'Liver cells pull the drug inside. A portion escapes into the cell body and forms a reservoir that lasts for months.',
+        molecularDetail:
+          'ASGPR-mediated endocytosis delivers the duplex to the endosome; a fraction escapes into the cytoplasm and the remainder forms the slow-release depot responsible for the quarterly dosing interval.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'RISC loading',
+        laymanDesc:
+          'One of the two strands is loaded into the cell\'s own silencing machinery; the other is discarded.',
+        molecularDetail:
+          'The 23-nucleotide antisense strand loads into Argonaute 2. Lumasiran is one of the three approved siRNAs whose guide binds its target with complete base-pair complementarity.',
+        iconName: 'Cpu',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'HAO1 messenger RNA is cut and glycolate oxidase disappears',
+        laymanDesc:
+          'The complex destroys the instructions for glycolate oxidase, the enzyme that makes the raw material for oxalate.',
+        molecularDetail:
+          'Argonaute 2 cleaves HAO1 mRNA in its 3\' untranslated region. Loss of hepatic glycolate oxidase reduces conversion of glycolate to glyoxylate, so less substrate reaches the lactate dehydrogenase step that produces oxalate. This is substrate reduction therapy: the deficient enzyme AGT is never touched.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Urinary oxalate falls into the normal range',
+        laymanDesc:
+          'Less oxalate is made, so less arrives at the kidney. In the trial 84% of treated patients reached a normal or near-normal urine level within six months.',
+        molecularDetail:
+          'Reduced hepatic oxalate synthesis lowers 24-hour urinary oxalate by a placebo-adjusted 53.5 percentage points and plasma oxalate by 39.5 percentage points, with glycolate rising as the substrate accumulates behind the block. Whether that translates into fewer stones and preserved eGFR has not been tested against a control.',
+        iconName: 'Droplets',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ILLUMINATE-A (NCT03681184)',
+        phase: 'Phase 3',
+        sampleSize: 39,
+        primaryEndpoint:
+          'Percent change in 24-hour urinary oxalate excretion from baseline to month 6',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.001',
+        unreportedAdverseSignals:
+          'Mild transient injection-site reactions in 38% of treated patients. The randomised comparison ends at month 6; everything after that is open-label.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '53.5 percentage-point placebo-adjusted reduction in 24-hour urinary oxalate at month 6',
+        '39.5 percentage-point placebo-adjusted reduction in plasma oxalate',
+        '84% of treated patients versus 0% on placebo reaching urinary oxalate at or below 1.5 times the upper limit of normal',
+        'Sustained biochemical effect through 60 months of open-label follow-up',
+      ],
+      unsupportedInferences: [
+        'That lowering urinary oxalate prevents kidney stones — no randomised trial has counted stone events',
+        'That lowering urinary oxalate preserves kidney function — eGFR was not a powered endpoint',
+        'That the 39-patient effect size transfers unchanged across all PH1 genotypes and ages',
+      ],
+      whatFailedInitially: [
+        'Pyridoxine, the prior pharmacological option, works only in a minority of AGXT genotypes and leaves the rest with fluid and citrate management alone',
+      ],
+      realWorldOutcome: [
+        'Combined liver-kidney transplantation was the standard cure; RNAi therapy has begun to make kidney-only transplantation viable in selected patients, alongside hyperhydration, urinary alkalinisation and vitamin B6 where applicable',
+        'In the FAERS comparison covering 2020 to 2023, lumasiran had 53 reported adverse event cases and no reported deaths, with "drug ineffective" the most common reported category at 13.2%',
+      ],
+    },
+    deliverySystem: {
+      type: 'GalNAc-conjugated siRNA, subcutaneous injection',
+      description:
+        'A preservative-free solution containing 94.5 mg of lumasiran in 0.5 mL. Weight-banded dosing: three monthly loading doses, then quarterly maintenance for patients weighing 20 kg or more, with different bands below that weight.',
+      safetyProfile:
+        'The label carries no boxed warning and no warnings-and-precautions section. The only adverse reaction reported in at least 20% of patients is injection-site reaction, and in the pivotal trial these were mild and transient.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will lumasiran stop me forming kidney stones?',
+        a: 'Nobody has measured that in a controlled trial. What was measured is urinary oxalate, which fell by a placebo-adjusted 53.5 percentage points, with 84% of treated patients reaching a normal or near-normal level. Oxalate is the material stones are made of, so the reasoning is strong — but the FDA indication is worded "to lower urinary and plasma oxalate levels", and that wording is deliberate.',
+        auditNote:
+          'The gap between "lowers the chemical that causes stones" and "prevents stones" is the whole reason this page exists.',
+      },
+      {
+        q: 'Why does my glycolate level go up on treatment?',
+        a: 'Because that is the drug working. Lumasiran removes glycolate oxidase, the enzyme that converts glycolate into glyoxylate. With the enzyme gone, glycolate accumulates instead of moving down the pathway toward oxalate. Isolated glycolate elevation has no known harm and is used as confirmation that the target was engaged.',
+      },
+      {
+        q: 'Does it work for primary hyperoxaluria types 2 and 3?',
+        a: 'It is not approved for them and has not been shown to work in them. Lumasiran targets HAO1, which sits upstream in the type 1 pathway. Types 2 and 3 have different enzyme defects, and the FDA indication is restricted to PH1.',
+      },
+      {
+        q: 'Can I stop the fluids and the citrate now?',
+        a: 'That is a question for the nephrology team, and the evidence does not settle it. Lumasiran reduces how much oxalate is made; fluid and citrate change whether the remaining oxalate crystallises. No trial has tested withdrawing supportive measures once urinary oxalate normalises, so there is no evidence base for doing so.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Garrelfs SF et al. Lumasiran, an RNAi Therapeutic for Primary Hyperoxaluria Type 1 (ILLUMINATE-A). N Engl J Med 2021;384:1216-1226',
+        identifier: '10.1056/NEJMoa2021712',
+        kind: 'doi',
+      },
+      {
+        label: 'Final Results of the ILLUMINATE-A Phase 3 Clinical Trial of Lumasiran. CJASN 2026',
+        identifier: '10.2215/CJN.0000000916',
+        kind: 'doi',
+      },
+      { label: 'ILLUMINATE-A', identifier: 'NCT03681184', kind: 'nct' },
+      {
+        label: 'OXLUMO (lumasiran) injection, US prescribing information — DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=16985a31-f5e4-4557-9266-fc78d4bc5055',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Sehgal I, Eells K, Hudson I. A Comparison of Currently Approved siRNA Medications to Alternative Treatments. Pharmacy 2024;12:58',
+        identifier: '10.3390/pharmacy12020058',
+        kind: 'doi',
+      },
+      {
+        label:
+          'CMS National Average Drug Acquisition Cost (NADAC), 2026 file, prices effective 17 December 2025',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+      {
+        label:
+          'The Growing Class of Novel RNAi Therapeutics, Mol Pharmacol 2024 — Table 1 sequences from the FDA inserts',
+        identifier: '10.1124/molpharm.124.000895',
+        kind: 'doi',
+      },
+    ],
+  },
 ]

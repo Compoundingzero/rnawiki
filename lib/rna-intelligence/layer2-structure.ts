@@ -131,19 +131,28 @@ function validateNucleotide(layer1: Layer1Result): Layer2Result {
   try {
     fold = foldRna(sequence, { maxLength: MAX_FOLD_LENGTH })
   } catch {
+    // A WARNING, not an error, and the distinction matters. A 4,175-nt mRNA vaccine transcript is
+    // a perfectly legal sequence: Layer 1 checked its alphabet, its reading frame and its codons,
+    // and Layer 3 checked its protocol. What fails here is not the molecule but the applicability
+    // of the model — the dynamic program is cubic in length and cannot finish inside a request.
+    //
+    // Treating that as an error meant Comirnaty and Spikevax could never carry a verified badge,
+    // for the same reason an antibody cannot: no model in this engine describes them. The antibody
+    // branch below already passes with an honest note, and this is the same situation.
     diagnostics.push(
       diagnostic(
-        'error',
+        'warning',
         'L2_SEQUENCE_TOO_LONG_TO_FOLD',
         `This sequence is ${sequence.length} nt. Layer 2 folds up to ${MAX_FOLD_LENGTH} nt ` +
           'inside a request; the dynamic program is cubic in length, so beyond that it cannot ' +
-          'finish. No minimum free energy is reported for this record.',
+          'finish. The sequence itself is valid — no minimum free energy is reported for it.',
       ),
     )
     return {
-      passed: false,
+      passed: true,
       complementaryStrand,
       reverseComplement,
+      // No fold ran, so plausibility is not something this engine can assert either way.
       thermodynamicallyPlausible: false,
       diagnostics,
     }
@@ -319,7 +328,7 @@ function validateWithoutModel(layer1: Layer1Result): Layer2Result {
  *   L2_LAYER1_PREREQUISITE_FAILED   Layer 1 rejected the input, so nothing downstream is defined
  *   L2_MFE_COMPUTED                 a fold ran and its energy is reported
  *   L2_NO_STABLE_FOLD               the fold ran and found nothing better than the open chain
- *   L2_SEQUENCE_TOO_LONG_TO_FOLD    the sequence exceeds MAX_FOLD_LENGTH
+ *   L2_SEQUENCE_TOO_LONG_TO_FOLD    valid sequence, but longer than MAX_FOLD_LENGTH (warning)
  *   L2_DESCRIPTORS_COMPUTED         small-molecule descriptors are reported
  *   L2_LIPINSKI_VIOLATION           one or more rule-of-five criteria are exceeded
  *   L2_PEPTIDE_DESCRIPTORS_COMPUTED peptide charge and hydropathy are reported
