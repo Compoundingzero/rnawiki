@@ -1,0 +1,348 @@
+'use client'
+
+// The hero search box from the reference wireframe (src/components/HomeView.tsx), plus the shared
+// search behaviour both search boxes on the site need.
+//
+// The wireframe filtered a six-item array held in localStorage, so "search" was a synchronous
+// `.filter()` and needed no state beyond the query string. The corpus here is ~8,000+ records in
+// Postgres, so every keystroke is a network round trip and the box grows the three things a
+// networked combobox cannot do without: debouncing, staleness protection, and keyboard navigation.
+// The markup, classes, copy and icons below are otherwise the reference's, unchanged.
+
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
+import type { KeyboardEvent as ReactKeyboardEvent, RefObject } from 'react'
+import { useRouter } from 'next/navigation'
+import { ArrowRight, Search, X } from 'lucide-react'
+import { api, type SearchHit } from '@/lib/api-client'
+
+/** Milliseconds of quiet typing before a query is sent. Short enough to feel instant. */
+const DEBOUNCE_MS = 180
+
+export interface DrugSearch {
+  query: string
+  setQuery: (next: string) => void
+  results: SearchHit[]
+  /** True while a request for the current query is in flight and nothing has come back yet. */
+  isSearching: boolean
+  isOpen: boolean
+  open: () => void
+  close: () => void
+  reset: () => void
+  activeIndex: number
+  setActiveIndex: (index: number) => void
+  onKeyDown: (event: ReactKeyboardEvent) => void
+  containerRef: RefObject<HTMLDivElement | null>
+  listboxId: string
+  optionId: (index: number) => string
+}
+
+/**
+ * Query state for a server-backed drug search box.
+ *
+ * Shared by `HomeSearch` and `SiteHeader` rather than written twice: the two boxes look different
+ * and sit in different places, but "debounce, discard stale answers, move with the arrow keys" is
+ * one behaviour, and two copies of it drift.
+ */
+export function useDrugSearch(onPick: (hit: SearchHit) => void, limit = 10): DrugSearch {
+  const [query, setQueryState] = useState('')
+  const [results, setResults] = useState<SearchHit[]>([])
+  const [isSearching, setIsSearching] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeIndex, setActiveIndex] = useState(-1)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const reactId = useId()
+  const listboxId = `drug-search-listbox-${reactId}`
+  const optionId = useCallback((index: number) => `${listboxId}-option-${index}`, [listboxId])
+
+  // Held in a ref so `onKeyDown` does not have to be rebuilt every time the caller passes a fresh
+  // inline arrow function.
+  const onPickRef = useRef(onPick)
+  useEffect(() => {
+    onPickRef.current = onPick
+  })
+
+  useEffect(() => {
+    const trimmed = query.trim()
+    if (trimmed.length === 0) {
+      setResults([])
+      setIsSearching(false)
+      return
+    }
+
+    setIsSearching(true)
+
+    // The AbortController is a staleness token, not a transport cancel: `api.search` is a fixed
+    // contract (lib/api-client.ts) and takes no RequestInit, so the in-flight fetch cannot be
+    // cancelled. Aborting on cleanup still buys the guarantee that matters — a slow response for
+    // an older keystroke resolves into an aborted signal and is discarded instead of overwriting
+    // fresher results.
+    const controller = new AbortController()
+    const timer = setTimeout(() => {
+      api
+        .search(trimmed, limit)
+        .then((data) => {
+          if (controller.signal.aborted) return
+          setResults(data.results)
+          setActiveIndex(-1)
+          setIsSearching(false)
+        })
+        .catch(() => {
+          if (controller.signal.aborted) return
+          // A failed search shows the same "no matches" state as an empty one. Inventing results,
+          // or leaving the previous query's results under a new query, would both be worse.
+          setResults([])
+          setIsSearching(false)
+        })
+    }, DEBOUNCE_MS)
+
+    return () => {
+      clearTimeout(timer)
+      controller.abort()
+    }
+  }, [query, limit])
+
+  // Clicking away closes the dropdown. The wireframe had no such handler because its dropdown was
+  // bound to the query string alone; an absolutely positioned panel that outlives the reader's
+  // attention is a real nuisance on a page with content beneath it.
+  useEffect(() => {
+    if (!isOpen) return
+    const handlePointerDown = (event: PointerEvent) => {
+      const container = containerRef.current
+      if (!container) return
+      if (event.target instanceof Node && container.contains(event.target)) return
+      setIsOpen(false)
+    }
+    document.addEventListener('pointerdown', handlePointerDown)
+    return () => document.removeEventListener('pointerdown', handlePointerDown)
+  }, [isOpen])
+
+  // Keep the keyboard-selected row inside the scrolling panel.
+  useEffect(() => {
+    if (activeIndex < 0) return
+    document.getElementById(optionId(activeIndex))?.scrollIntoView({ block: 'nearest' })
+  }, [activeIndex, optionId])
+
+  const setQuery = useCallback((next: string) => {
+    setQueryState(next)
+    setIsOpen(true)
+    setActiveIndex(-1)
+  }, [])
+
+  const open = useCallback(() => setIsOpen(true), [])
+
+  const close = useCallback(() => {
+    setIsOpen(false)
+    setActiveIndex(-1)
+  }, [])
+
+  const reset = useCallback(() => {
+    setQueryState('')
+    setResults([])
+    setIsSearching(false)
+    setIsOpen(false)
+    setActiveIndex(-1)
+  }, [])
+
+  const onKeyDown = useCallback(
+    (event: ReactKeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false)
+        setActiveIndex(-1)
+        return
+      }
+      if (event.key === 'ArrowDown') {
+        event.preventDefault()
+        setIsOpen(true)
+        setActiveIndex(Math.min(activeIndex + 1, results.length - 1))
+        return
+      }
+      if (event.key === 'ArrowUp') {
+        event.preventDefault()
+        setActiveIndex(Math.max(activeIndex - 1, -1))
+        return
+      }
+      if (event.key === 'Enter') {
+        // No row highlighted means "open the best match", which is what pressing Enter in a search
+        // box is understood to do.
+        const hit = activeIndex >= 0 ? results[activeIndex] : results[0]
+        if (!hit) return
+        event.preventDefault()
+        onPickRef.current(hit)
+      }
+    },
+    [activeIndex, results],
+  )
+
+  return {
+    query,
+    setQuery,
+    results,
+    isSearching,
+    isOpen,
+    open,
+    close,
+    reset,
+    activeIndex,
+    setActiveIndex,
+    onKeyDown,
+    containerRef,
+    listboxId,
+    optionId,
+  }
+}
+
+export interface HomeSearchProps {
+  /**
+   * The "Popular:" row, resolved on the server. The wireframe used `drugs.slice(0, 4)` of its
+   * local ledger; with a corpus this size there is no local ledger to slice, so the server picks.
+   */
+  popular: SearchHit[]
+}
+
+export function HomeSearch({ popular }: HomeSearchProps) {
+  const router = useRouter()
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  const search = useDrugSearch((hit) => {
+    search.reset()
+    router.push(`/d/${hit.slug}`)
+  })
+
+  const showDropdown = search.isOpen && search.query.trim().length > 0
+
+  return (
+    <div className="relative pt-2 space-y-3" ref={search.containerRef}>
+      <div className="flex items-center bg-white rounded-2xl border-2 border-[#0071E3] shadow-[0_12px_36px_rgba(0,113,227,0.12)] p-2 sm:p-2.5 pl-4 transition-all focus-within:ring-4 focus-within:ring-[#0071E3]/20">
+        <Search className="w-5 h-5 text-[#0071E3] shrink-0 mr-2.5" aria-hidden="true" />
+
+        <input
+          ref={inputRef}
+          type="text"
+          autoFocus
+          placeholder="Search any medicine, target, or disease..."
+          value={search.query}
+          onChange={(e) => search.setQuery(e.target.value)}
+          onFocus={search.open}
+          onKeyDown={search.onKeyDown}
+          className="flex-1 min-w-0 bg-transparent text-sm sm:text-base text-[#1D1D1F] py-1.5 focus:outline-none placeholder:text-[#86868B] font-medium"
+          aria-label="Search any medicine, target, or disease"
+          role="combobox"
+          aria-expanded={showDropdown}
+          aria-controls={search.listboxId}
+          aria-autocomplete="list"
+          aria-activedescendant={
+            search.activeIndex >= 0 ? search.optionId(search.activeIndex) : undefined
+          }
+        />
+
+        {search.query ? (
+          <button
+            type="button"
+            onClick={() => {
+              search.reset()
+              inputRef.current?.focus()
+            }}
+            className="text-xs font-semibold text-[#86868B] hover:text-[#1D1D1F] px-2.5 py-1.5 rounded-lg bg-black/[0.05] hover:bg-black/[0.08] transition cursor-pointer shrink-0 ml-1"
+            aria-label="Clear search"
+          >
+            <X className="w-4 h-4" aria-hidden="true" />
+          </button>
+        ) : (
+          <button
+            type="button"
+            // The reference reached for `document.querySelector('input')` here, which focuses
+            // whatever input happens to come first in the document. A ref focuses this one.
+            onClick={() => inputRef.current?.focus()}
+            className="flex items-center gap-1 bg-[#0071E3] hover:bg-[#0077ED] text-white text-xs sm:text-sm font-bold px-4 py-2 rounded-xl transition cursor-pointer shrink-0 shadow-xs ml-1 active:scale-95"
+          >
+            <span>Search</span>
+            <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+          </button>
+        )}
+      </div>
+
+      {/* Search Dropdown Results */}
+      {showDropdown && (
+        <div
+          id={search.listboxId}
+          role="listbox"
+          aria-label="Search results"
+          className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.14)] overflow-hidden divide-y divide-black/[0.04] max-h-80 overflow-y-auto z-50 text-left animate-fade-in animate-slide-down"
+        >
+          {search.results.length === 0 ? (
+            <div className="p-6 text-xs sm:text-sm text-[#86868B] text-center">
+              {search.isSearching ? (
+                // The wireframe filtered an in-memory array, so there was no interval between
+                // typing and knowing the answer. Over the network there is, and printing "no
+                // matching medicines" during it states something the site does not yet know.
+                <>Searching…</>
+              ) : (
+                <>No matching medicines found for &quot;{search.query}&quot;.</>
+              )}
+            </div>
+          ) : (
+            search.results.map((drug, index) => (
+              <button
+                key={drug.slug}
+                type="button"
+                id={search.optionId(index)}
+                role="option"
+                aria-selected={index === search.activeIndex}
+                onMouseEnter={() => search.setActiveIndex(index)}
+                onClick={() => {
+                  search.reset()
+                  router.push(`/d/${drug.slug}`)
+                }}
+                className={`w-full text-left p-4 hover:bg-[#F5F5F7] transition cursor-pointer flex items-center justify-between group gap-2 ${
+                  index === search.activeIndex ? 'bg-[#F5F5F7]' : ''
+                }`}
+              >
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-sm font-bold text-[#1D1D1F] group-hover:text-[#0071E3] transition">
+                      {drug.name}
+                    </span>
+                    {drug.tradeName && (
+                      <span className="text-xs text-[#86868B]">({drug.tradeName})</span>
+                    )}
+                    <span className="text-[10px] font-semibold bg-blue-50 text-[#0071E3] px-2 py-0.5 rounded-full shrink-0">
+                      {drug.modality}
+                    </span>
+                  </div>
+                  <div className="text-xs text-[#6E6E73] mt-0.5 truncate">
+                    {drug.patientFriendlyIndication}
+                  </div>
+                </div>
+                <ArrowRight
+                  className="w-4 h-4 text-[#86868B] group-hover:text-[#0071E3] group-hover:translate-x-0.5 transition shrink-0 ml-2"
+                  aria-hidden="true"
+                />
+              </button>
+            ))
+          )}
+        </div>
+      )}
+
+      {/* Space-Saving Clean Inline Triggers */}
+      {popular.length > 0 && (
+        <div className="flex items-center justify-center gap-2 text-xs text-[#86868B] pt-1 flex-wrap">
+          <span>Popular:</span>
+          {popular.slice(0, 4).map((drug, index, shown) => (
+            <span key={drug.slug} className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => router.push(`/d/${drug.slug}`)}
+                className="text-[#0071E3] hover:underline font-semibold cursor-pointer transition"
+              >
+                {drug.name}
+              </button>
+              {/* The reference hard-coded `index < 3`, which leaves a trailing bullet whenever the
+                  ledger holds fewer than four. Server data can be short, so it counts the row. */}
+              {index < shown.length - 1 && <span className="text-black/20">&bull;</span>}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}

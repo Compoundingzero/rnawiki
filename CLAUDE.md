@@ -2,130 +2,146 @@
 
 **Owner:** Felix. **Live:** https://rnawiki.com.
 
-> Rewritten 2026-08-18, when RNAwiki was rebuilt from a goal-first compound/dosage wiki (vanilla
-> JS, Markdown) into the Proof Boundary product (Next.js + Postgres, claim-centered). **Discard any
-> older copy of this file.** The old product's briefing is preserved on branch
-> `archive/legacy-rnawiki` and tag `legacy-rnawiki-before-proof-boundary`; it describes a different
-> application and applies to nothing under `main`. `docs/PRODUCTION_REVAMP_STATE.md` is gone with no
-> successor — this file plus `docs/product-principles.md`, `docs/editorial-methodology.md` and
-> `docs/evidence-classification.md` are the authoritative state.
+> Rewritten 2026-08-20, when RNAwiki was rebuilt from the Proof Boundary product into the **Open
+> Drug Evidence Audit Layer** defined by the master reference wireframe. **Discard any older copy of
+> this file.** The Proof Boundary product — 8-stage evidence ladder, comprehension tests,
+> correction submissions, `/r/[slug]` record pages — is preserved at tag
+> `archive/proof-boundary-2026-08-20` and applies to nothing under `main`. `docs/product-principles.md`,
+> `docs/editorial-methodology.md` and `docs/evidence-classification.md` are gone with no successor.
 
-## What this is
+## The master reference
 
-A claim-centered evidence explainer, not a protocol engine. Per claim: what was measured, what is
-inferred, where that sits on the 8-stage Proof Boundary (`biological_rationale_only` →
-`regulatory_evidence`), what is still unknown. Concept in
-[`docs/product-principles.md`](docs/product-principles.md); vocabulary in
-[`docs/evidence-classification.md`](docs/evidence-classification.md).
+`/Users/admin/Downloads/rnawiki---open-drug-evidence-audit-layer` is a Vite/React wireframe and it
+is **the specification** for how this product looks, feels and behaves. When the code and the
+reference disagree, the reference is right. Never modify anything inside that folder.
+
+Four divergences from it are deliberate and must not be reverted:
+
+1. **localStorage became the server.** The wireframe kept the user and the drug ledger in
+   `localStorage`; here every read is a server query and every write is an API call.
+2. **The verified-physician badge is earned, not granted.** `DoctorVerificationModal` awarded the
+   blue check after a 900 ms `setTimeout`. Here, submitting credentials sets
+   `verificationState = 'pending'` and a steward approves by hand. `isVerifiedPhysician()` in
+   `components/app-context.tsx` and the server's `verificationState === 'verified'` check are the
+   only things that render the badge. Nothing may route around them.
+3. **Hard-coded per-drug fallbacks are deleted.** The wireframe printed
+   `drug.id === 'inclisiran' ? 'AUGUCAUUGGAUCACUGCU' : …` for structures and anatomical sites.
+   Inventing a sequence for a drug that has none is fabricated science. Absent data renders the
+   contribute state.
+4. **Accessibility the wireframe lacked** — real `<button>`s, focus traps, Escape-to-close,
+   `aria-label` on icon-only controls — added without changing the visual design.
 
 ## Rules that are not negotiable
 
-1. **No dosage, protocol, stacking or procurement guidance, ever, in any form.** Not a calculator,
-   not a "how people typically use this," not a sourcing tip. If a claim's `accessRealityNote`
-   drifts toward "here's how to get it," that is a defect. This overrides every other instruction in
-   this repo.
-2. **No fabricated reviewers, citations or approvals.** `components/ProofCard.tsx`'s
-   `reviewStatusCopy()` is the only place that decides a review-status line, and it refuses to say
-   "reviewed by" unless an `approved` row exists in `reviews` for that claim.
-   `publicationStatus === 'published'` is never sufficient — that is editorial workflow, not
-   scientific sign-off. Don't route around it with a locally-written status string.
-3. **No star ratings, no confidence scores or percentages** — only `Measured`/`Inferred`/`Unknown`
-   from `lib/evidence.ts`, unless a number comes straight from a named study (a sample size, a
-   quoted p-value). The one built exception is `formatComprehensionAggregate`
-   (`lib/comprehension.ts`), gated behind `CLARITY_MIN_RESPONSES` (20) and `CLARITY_MIN_CORRECT_RATE`
-   (0.8); it returns `null` below threshold and callers must treat `null` as "show nothing," never
-   fall back to a small-sample percentage.
-4. **DOI/PMID import is metadata-only.** `lib/metadata-import.ts` (Crossref + NCBI E-utilities)
-   returns title/authors/year/journal/doi/pmid for a human editor. It never auto-fills or infers
-   `sourceType`, `studyDesign`, `species`, `sampleSize` or `endpoint`.
-5. **Comprehension testing is not scientific validation.** "X% of N readers correctly identified
-   where the evidence ends" measures whether the *explanation* was clear, not whether the *claim* is
-   true. Don't let copy built on it imply otherwise —
-   [`docs/editorial-methodology.md`](docs/editorial-methodology.md).
-6. **Public pages server-render their core content.** `app/r/[slug]/page.tsx`, `app/page.tsx` and
-   friends are server components querying Drizzle directly and must work with JavaScript disabled.
-   `'use client'` only for real interactivity: comprehension answering, copy-citation, admin forms.
-7. **Prose is gated.** `npm run check:prose` (`scripts/check-prose.ts`) enforces field length caps,
-   sentence length, em-dash count and banned preambles. If it fails, cut the sentence; don't raise
-   the cap. See [`docs/writing-style.md`](docs/writing-style.md).
+1. **Never fabricate a fact.** No invented sequence, SMILES, molecular weight, synthesis cost,
+   retail price, markup, trial result, DOI, sponsor or count. A field with no source stays null and
+   the page says so. This overrides every other instruction in this repo.
+2. **The engine is deterministic and stays that way.** Nothing under `lib/rna-intelligence/` may
+   call a generative model or use randomness. Same input, same report, same verification hash —
+   `runFullDeterministicSweep` hashes the *input*, never the timestamp.
+3. **An engine failure is an instant rejection.** `decideEditRouting` checks `enginePassed` before
+   it checks trust tier, so a steward cannot publish a structurally broken edit. The server always
+   re-runs the sweep; a client-computed report is a suggestion, not a verdict.
+4. **Ingestion never authors narrative.** `scripts/ingest/` fills identity and regulatory facts
+   only. Verdicts, mechanisms, pricing and alternatives are curated (`dossierDepth`
+   `curated`/`flagship`) or absent. A re-ingest must never overwrite a curated field.
+5. **Dosage and protocol content ships as the reference shows it.** The natural-substitute
+   "Recommended Usage" line and the laboratory workflow section are part of the specification.
+   Protocols stay at the reference's phase-level abstraction. The site-wide medical disclaimer in
+   `components/SiteFooter.tsx` is not optional.
+6. **Public pages server-render their core content.** Routes are server components querying Drizzle
+   directly. `'use client'` is for real interactivity: search, the mechanism carousel, the editor,
+   the modals. Client components are still server-rendered to HTML on first load, so a dossier is
+   readable with JavaScript disabled.
 
 ## Stack — exact versions (package.json)
 
-Next.js 15.4.0 (App Router) · React 19.1.0 · TypeScript 5.7.3 (strict) · Drizzle ORM 0.44.2 on `pg`
-8.11.5 · Zod 3.24.1 · iron-session 8.0.4 · bcryptjs 2.4.3 · satori 0.12.0 + @resvg/resvg-js 2.6.2
-(OG images). Tests: Vitest 2.1.8, Playwright 1.49.1. Path alias `@/*` → repo root.
+Next.js 15.4 (App Router) · React 19.1 · TypeScript 5.7 (strict, `noUncheckedIndexedAccess`) ·
+Tailwind v4 (no config file — tokens live in `app/globals.css` `@theme`) · lucide-react ·
+Drizzle ORM 0.44 on `pg` 8.11 · Zod 3.24 · iron-session 8 · bcryptjs 2.4.
+Tests: Vitest 2.1, Playwright 1.49. Path alias `@/*` → repo root.
 
-`isomorphic-dompurify` was removed: it was declared but imported nowhere, which advertised an HTML
-sanitisation step the codebase does not perform. The one place raw HTML is injected is the record
-page's JSON-LD block, and it is handled by escaping in `lib/json-ld.ts`, not by sanitising. If HTML
-sanitisation is ever genuinely needed, add the dependency back at the same commit as its first
-import.
+## The RNA Intelligence engine
+
+`lib/rna-intelligence/` is the deterministic validation pipeline every edit passes through.
+
+- **Layer 1** (`layer1-sequence.ts`) — the A/U/C/G alphabet with thymine auto-transcribed and
+  reported, the triplet reading frame, start/stop codons, open reading frame and premature stops,
+  exact molecular weight from composition, a real SMILES tokenizer (`smiles.ts`) producing Hill
+  formula and implicit-hydrogen counts, and peptide backbone validation that survives a
+  parenthesised side-chain conjugate.
+- **Layer 2** (`layer2-structure.ts`) — a Zuker-style O(n³) fold (`fold.ts`) over the published
+  Turner 2004 nearest-neighbour parameters (`turner-params.ts`), producing a real MFE in kcal/mol
+  and dot-bracket notation; Lipinski and Crippen descriptors (`descriptors.ts`) for small molecules.
+  Same algorithm class and same parameter set as ViennaRNA, in TypeScript, because there is no Rust
+  toolchain in the deploy container. The boundary is a single module — swapping in a WASM core is a
+  one-file change.
+- **Layer 3** (`layer3-protocol.ts`) — a real DAG: duplicate ids, dangling dependencies, cycles via
+  Kahn's algorithm, and phase progression along every edge against `CANONICAL_PHASE_ORDER`. An
+  empty workflow passes with a warning; most of the corpus has no documented protocol and that is
+  not an error.
+
+`docs/api-contract.md` is the agreed shape between the client and every route handler. Change it
+there first.
 
 ## Where content lives
 
-**The database, not files** — a deliberate break from the old Markdown-under-`content/` model with
-`data/*.json` sidecars. No build step turns Markdown into site data anymore. Tables: `entities`,
-`regulatoryStatuses`, `claims`, `mechanismSteps`, `evidenceSources`, `claimEvidence`, `reviews`,
-`revisions`, `correctionSubmissions`, `evidenceChanges`,
-`comprehensionQuestions`/`comprehensionResponses`, `subscriptions`, `legacyRedirects`, `users` —
-full shape in [`db/schema.ts`](db/schema.ts).
+**The database.** Tables: `drugs`, `community_notes`, `note_upvotes`, `revisions`, `saved_drugs`,
+`users`, `feedback`, `ingest_runs`, `drug_aliases` — full shape in `db/schema.ts`.
 
-Seed content is TypeScript, not JSON: `scripts/seed-data/*.ts`, typed against
-[`lib/seed-types.ts`](lib/seed-types.ts), loaded by `scripts/seed.ts`. Every cited source must be a
-real, checkable DOI/PMID/NCT/regulatory URL verified at research time. Never invent one; if you
-can't verify a claim, leave it out and say so.
+Two populations, and the difference matters:
 
-Vocabulary — stages, Measured/Inferred/Unknown, relationships, clarity-gate constants — is
-centralized in [`lib/evidence.ts`](lib/evidence.ts). Import it; never redeclare the wording or
-ordering.
+- **Ingested stubs** — every FDA-registered active moiety and NIH-listed supplement ingredient,
+  built by `scripts/ingest/` from openFDA Drugs@FDA, the NDC Directory, SPL labels, PubChem and the
+  NIH Dietary Supplement Label Database. Real identity and regulatory facts, no narrative.
+- **Curated dossiers** — `scripts/seed-data/*.ts`, the flagship records with verdicts, mechanism
+  steps, pricing, alternatives and cited audits. Every citation must be a real, checkable
+  DOI/PMID/NCT/regulatory URL verified at research time. Never invent one; if you cannot verify it,
+  leave it out and say so.
 
 ## Local dev
 
 ```bash
-cp .env.example .env        # set DATABASE_URL to your local Postgres
-npm run db:migrate          # tsx db/migrate.ts
-npm run db:seed             # scripts/seed.ts + scripts/seed-legacy-redirects.ts
-npm run gate                # typecheck && lint && check:prose && test:unit && test:integration && build
+cp .env.example .env        # DATABASE_URL -> your local Postgres; SESSION_SECRET >= 32 chars
+npm run db:migrate
+npm run ingest:download     # ~2 GB of public source data, resumable
+npm run ingest              # build the corpus (--dry-run to preview, --limit N to sample)
+npm run db:seed             # the curated flagship dossiers
+npm run gate                # typecheck && lint && test:unit && test:integration && build
 ```
 
-Run `gate` before pushing, and don't weaken it to make a change pass — a fix without a gate is a fix
-that gets rediscovered. `db/ssl.ts` parses the connection string's hostname and disables TLS only
+Run `gate` before pushing, and don't weaken it to make a change pass. `db/ssl.ts` disables TLS only
 for `localhost` / `127.0.0.1` / `::1` / `*.railway.internal`; every other host gets TLS with the
 certificate **verified**, so a remote database needs `PGSSLROOTCERT`. `DATABASE_SSL_NO_VERIFY=true`
-restores the old unverified behaviour and warns on every start — it is opt-in on purpose.
-`SESSION_SECRET` must be ≥32 characters or `lib/auth.ts` throws on the first request touching a
-session.
+restores the old unverified behaviour and warns on every start.
 
 ## Deploys
 
 Merge to `main` → Railway builds and deploys automatically. Service name is **`RNAwiki`** (capital
-R-N-A). `railway.toml` sets `healthcheckPath = "/healthz"` and `healthcheckTimeout = 120`;
-`app/healthz/route.ts` returns a bare `200 "ok"` and deliberately does not touch the database. Env
-vars, migration sequencing and rollback: [`docs/deployment.md`](docs/deployment.md).
+R-N-A). `railway.toml` sets `healthcheckPath = "/healthz"`; `app/healthz/route.ts` returns a bare
+`200 "ok"` and deliberately does not touch the database — a transient DB blip must not roll back a
+good deploy.
 
 ## Gotchas that will otherwise waste time
 
 - **Railway's build container cannot reach `postgres.railway.internal`** — that hostname resolves
   only at runtime. Every DB-backed route without a dynamic segment must set
-  `export const dynamic = 'force-dynamic'` (`app/(public)/page.tsx`, `app/(public)/updates/page.tsx`,
-  `app/sitemap.ts`) or the production build fails while passing locally.
-- `entities.searchVector` and `claims.searchVector` are generated columns using **bare, unqualified
-  column names** (`canonical_name`, not `${entities.canonicalName}`) inside the SQL expression.
-  Deliberate: qualifying them reintroduces a TS7022 circular self-reference under strict TypeScript.
-  Read the comment above `entities` in `db/schema.ts` before "fixing" it.
-- Stage ordering comes from the `PROOF_BOUNDARY_STAGES` array in `lib/evidence.ts`, not from the
-  Postgres enum's declaration order in `db/schema.ts`. The two are synced **by hand** — a stage added
-  to one and not the other is a real bug no lint will catch.
-- `lib/comprehension.ts`'s `getQuestionsForClaim` deliberately excludes `correctOptionIndex` from the
-  client view; the answer key is read server-side only, in `recordResponse`. Don't add it to a
-  client-facing type without re-reading that file's comments. A claim's central Proof Boundary
-  question is `displayOrder: 0` by editorial convention, not schema constraint, and the public
-  aggregate comes from that question alone.
-- `lib/rate-limit.ts` is an in-memory, single-process sliding window (60 req/min on public
-  `/api/v1/*`). It resets on every deploy and is **not shared across replicas** — beyond one instance
-  the effective site-wide limit becomes `60 × replica count`.
-- `lib/session-hash.ts` hashes IP + a coarse user-agent bucket + a rotating daily salt for anonymous
-  rate-limiting and dedup. Never log or store the raw IP anywhere longer-lived than that.
-- `resolveLegacyRedirect` in `lib/canonical.ts` is a pure function over rules loaded from the
-  `legacyRedirects` table. Read [`docs/legacy-removal-map.md`](docs/legacy-removal-map.md) before
-  hand-editing redirect logic.
+  `export const dynamic = 'force-dynamic'` (`app/page.tsx`, `app/browse/page.tsx`, `app/sitemap.ts`)
+  or the production build fails while passing locally.
+- **Next.js 15 route params are a Promise.** `{ params }: { params: Promise<{ slug: string }> }`,
+  and you must `await` it. This is the single most common porting bug in this codebase.
+- `drugs.searchVector` is a generated column using **bare, unqualified column names**
+  (`patient_friendly_indication`, not `${drugs.patientFriendlyIndication}`). Deliberate: qualifying
+  them reintroduces a TS7022 circular self-reference under strict TypeScript. Read the comment
+  above the column in `db/schema.ts` before "fixing" it.
+- The modality and approval-status vocabularies exist **twice** — as TypeScript unions in
+  `lib/types.ts` and as pgEnums in `db/schema.ts` — and are synced **by hand**. A value added to one
+  and not the other is a real bug no lint will catch.
+- `lib/rate-limit.ts` is an in-memory, single-process sliding window. It resets on every deploy and
+  is **not shared across replicas** — beyond one instance the effective site-wide limit becomes
+  `limit × replica count`.
+- `lib/session-hash.ts` hashes IP + a coarse user-agent bucket + a rotating daily salt. Never log or
+  store the raw IP anywhere longer-lived than that.
+- PubChem renamed `CanonicalSMILES` in 2025. `scripts/ingest/pubchem.ts` documents the property
+  names actually observed against the live API — verify before trusting a column that comes back
+  empty.
