@@ -109,29 +109,35 @@ export default async function BrowsePage() {
 
   return (
     <div className="page page-top">
-      <header className="reading">
-        <h1>Browse</h1>
-        <p className="lead muted" style={{ marginTop: 'var(--s4)' }}>
-          Browse every medicine, supplement and treatment currently covered by RNAwiki.
-        </p>
-      </header>
+      {/* Same panel, same reason, as /search: this page's header carries the site's primary
+          control, and a control on the bare page ground is the one surface a reader is asked
+          to operate that the design has not finished. Browse and search are two views of one
+          object and must not each invent their own treatment. */}
+      <div className="panel-surface">
+        <header className="reading">
+          <h1>Browse</h1>
+          <p className="lead muted" style={{ marginTop: 'var(--s4)' }}>
+            Browse every medicine, supplement and treatment currently covered by RNAwiki.
+          </p>
+        </header>
 
-      <form role="search" method="get" action="/search" className="search" style={{ marginTop: 'var(--s5)' }}>
-        <label htmlFor="browse-q" className="skip-link">
-          Search a medicine, supplement, treatment or health claim
-        </label>
-        <input
-          id="browse-q"
-          name="q"
-          type="search"
-          className="search__input"
-          placeholder="Name or health claim"
-          autoComplete="off"
-        />
-        <button type="submit" className="search__btn">
-          Search
-        </button>
-      </form>
+        <form role="search" method="get" action="/search" className="search" style={{ marginTop: 'var(--s5)' }}>
+          <label htmlFor="browse-q" className="skip-link">
+            Search a medicine, supplement, treatment or health claim
+          </label>
+          <input
+            id="browse-q"
+            name="q"
+            type="search"
+            className="search__input"
+            placeholder="Name or health claim"
+            autoComplete="off"
+          />
+          <button type="submit" className="search__btn">
+            Search
+          </button>
+        </form>
+      </div>
 
       <section className="section-sm">
         {/* Kept short, not cut: a reader who reads the evidence line as a verdict has misread the
@@ -146,10 +152,13 @@ export default async function BrowsePage() {
             No records published yet.
           </p>
         ) : (
-          <ul className="records reading" style={{ marginTop: 'var(--s4)' }}>
+          <ul className="records panels" style={{ marginTop: 'var(--s4)' }}>
             {records.map((record) => (
               <li key={record.slug}>
-                <Link href={entityPath(record.slug)} className="record-link">
+                {/* Same panel as a homepage row and a search result, for the same reason: browse,
+                    search and the homepage list are three views of one object and must not each
+                    invent their own row treatment. See SearchResults.tsx. */}
+                <Link href={entityPath(record.slug)} className="record-link panel-surface">
                   <div className="record-link__name">{record.name}</div>
                   <p className="record-link__desc">{record.description}</p>
                   <div className="record-link__facts">

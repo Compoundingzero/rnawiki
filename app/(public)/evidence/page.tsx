@@ -146,9 +146,12 @@ export default async function EvidencePage() {
 
       {/* High on the page on purpose: a reader deciding whether to trust this needs it before
           the detail, not after it. */}
-      <div className="notice reading" style={{ marginTop: 'var(--s7)' }}>
-        <p className="notice__title">No clinician has reviewed this site</p>
-        <p className="small">
+      {/* `panels`, not `reading`: this is a BOX on the page, and above 1280 a 656px box between
+          two 864px panels reads as a leftover rather than as a callout. It takes the container
+          like every other box; the two sentences inside keep the reading measure. */}
+      <div className="notice panels" style={{ marginTop: 'var(--s7)' }}>
+        <p className="notice__title reading">No clinician has reviewed this site</p>
+        <p className="small reading">
           RNAwiki is written and edited by one person, with AI assistance in drafting. No doctor, pharmacist or
           other clinician has checked these pages, and nothing here is medical advice.
         </p>

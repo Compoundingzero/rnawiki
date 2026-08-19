@@ -91,7 +91,7 @@ export default function GonePage() {
 
         <section className="section">
           <h2>{GONE_DESTINATIONS_HEADING}</h2>
-          <ul className="records reading" style={{ marginTop: 'var(--s4)' }}>
+          <ul className="records panels" style={{ marginTop: 'var(--s4)' }}>
             {GONE_DESTINATIONS.map((d) => (
               <li key={d.href}>
                 <Link href={d.href} className="record-link">

@@ -36,48 +36,62 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <div className="page page-top">
-      <header className="reading">
-        <h1>Search RNAwiki</h1>
-        <p className="lead muted" style={{ marginTop: 'var(--s4)' }}>
-          Search a medicine, supplement, treatment or health claim.
-        </p>
-      </header>
+      {/* TITLE, LEDE AND FIELD IN ONE PANEL. All three sat on the bare page ground above a
+          single white result panel, so the only surface on the page was the one thing the
+          reader had not asked for yet and the page's primary control was floating on grey.
+          The doc pages deliberately leave their <header> on the ground — see the note on
+          `.doc > section` in globals.css — and that is still right there, because those
+          headers carry no control. This one does: the search field is what the page is for,
+          and a control belongs on a surface. --radius-panel, not --radius-hero; this is not
+          a feature panel and the homepage hero must stay the only one on the site. */}
+      <div className="panel-surface">
+        <header className="reading">
+          <h1>Search RNAwiki</h1>
+          <p className="lead muted" style={{ marginTop: 'var(--s4)' }}>
+            Search a medicine, supplement, treatment or health claim.
+          </p>
+        </header>
 
-      <form role="search" method="get" action="/search" className="search" style={{ marginTop: 'var(--s5)' }}>
-        <label htmlFor="q" className="skip-link">
-          Search a medicine, supplement, treatment or health claim
-        </label>
-        <input
-          id="q"
-          name="q"
-          type="search"
-          className="search__input"
-          defaultValue={query}
-          placeholder="Name or health claim"
-          autoComplete="off"
-        />
-        <button type="submit" className="search__btn">
-          Search
-        </button>
-      </form>
+        <form role="search" method="get" action="/search" className="search" style={{ marginTop: 'var(--s5)' }}>
+          <label htmlFor="q" className="skip-link">
+            Search a medicine, supplement, treatment or health claim
+          </label>
+          <input
+            id="q"
+            name="q"
+            type="search"
+            className="search__input"
+            defaultValue={query}
+            placeholder="Name or health claim"
+            autoComplete="off"
+          />
+          <button type="submit" className="search__btn">
+            Search
+          </button>
+        </form>
+      </div>
 
       {query === '' && (
-        <p className="reading muted section-sm">
-          Type a name or a health claim above, or{' '}
-          <Link href="/compounds">browse everything RNAwiki covers</Link>.
-        </p>
+        <div className="panel-surface" style={{ marginTop: 'var(--gap-panel)' }}>
+          <p className="reading muted">
+            Type a name or a health claim above, or{' '}
+            <Link href="/compounds">browse everything RNAwiki covers</Link>.
+          </p>
+        </div>
       )}
 
       {query !== '' && results.length === 0 && (
-        <section className="reading stack section-sm">
-          <p className="lead" role="status">
-            RNAwiki couldn&apos;t find a matching answer.
-          </p>
-          <p className="muted">Try a shorter name or a different part of the question.</p>
-          <p>
-            <Link href="/compounds">Browse everything RNAwiki covers</Link>
-          </p>
-        </section>
+        <div className="panel-surface" style={{ marginTop: 'var(--gap-panel)' }}>
+          <section className="reading stack">
+            <p className="lead" role="status">
+              RNAwiki couldn&apos;t find a matching answer.
+            </p>
+            <p className="muted">Try a shorter name or a different part of the question.</p>
+            <p>
+              <Link href="/compounds">Browse everything RNAwiki covers</Link>
+            </p>
+          </section>
+        </div>
       )}
 
       {results.length > 0 && (

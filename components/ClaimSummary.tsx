@@ -18,10 +18,20 @@ import { EvidenceRecord } from './evidence/EvidenceRecord'
  *
  * There is no `defaultOpen` prop and no caller may add one back. Opening the first record by
  * default made the internal evidence schema, not the answer, the first thing on the page.
+ *
+ * `panel-surface` makes each question its own panel, and the panel is now what separates one claim
+ * from the next — it REPLACES the `.claim + .claim` hairline, which must not also be drawn or the
+ * page gets a rule floating in the gap between two boxes. The panel is the shell around the claim
+ * and stops at the claim; everything <EvidenceRecord> renders below stays the plain document it is
+ * today, on a recessed ground, with no panel per subsection. That boundary is the whole design.
  */
 export function ClaimSummary({ claim, entityName }: { claim: ProofCardView; entityName: string }) {
   return (
-    <article className="claim" id={`claim-${claim.slug}`} aria-label={`${entityName}: ${claim.consumerQuestion}`}>
+    <article
+      className="claim panel-surface"
+      id={`claim-${claim.slug}`}
+      aria-label={`${entityName}: ${claim.consumerQuestion}`}
+    >
       <h3 className="claim__q">{claim.consumerQuestion}</h3>
       <p className="claim__a">{claim.directAnswer}</p>
       {/* Only outcome claims get an evidence position. A regulatory, access or mechanism claim

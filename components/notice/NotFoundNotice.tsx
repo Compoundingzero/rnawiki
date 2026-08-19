@@ -10,10 +10,21 @@ import { NOT_FOUND_BODY, NOT_FOUND_SEARCH_LABEL, NOT_FOUND_TITLE } from '@/lib/n
  * No apology beyond the heading, no illustration, no status code: a reader who mistyped a slug
  * gains nothing from a stack trace. The search form is a plain GET form, so it works with
  * JavaScript disabled.
+ *
+ * A <section>, not a <div>, and that one letter is the whole of its v2 treatment. Both hosts
+ * render it as the only child of `<main class="page doc">`, so as a section it matches
+ * `.doc > section` and takes the same panel — surface, hairline, radius, shadow, padding — that
+ * every other section on every other document page takes. As a div it matched nothing, and the
+ * 404 was the one page on the site still rendering as bare text on the page ground: a reader who
+ * mistyped a URL was shown a page that looked like a different, older product.
+ * `.reading` comes off with the div. The panel is already sized by its container (`--page-doc`,
+ * which is --measure plus the gutters and the panel's own padding), so a second cap inside it
+ * would narrow the column by the padding twice and leave the panel with an empty right column —
+ * the exact defect the wide-shell block at the end of app/globals.css exists to prevent.
  */
 export function NotFoundNotice() {
   return (
-    <div className="reading stack-4">
+    <section className="stack-4">
       <h1>{NOT_FOUND_TITLE}</h1>
       <p className="lead muted">{NOT_FOUND_BODY}</p>
 
@@ -40,6 +51,6 @@ export function NotFoundNotice() {
       <p>
         <Link href="/">Go to the home page</Link>
       </p>
-    </div>
+    </section>
   )
 }

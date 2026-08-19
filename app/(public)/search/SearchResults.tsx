@@ -64,16 +64,22 @@ export function SearchResults({ results }: { results: SearchResult[] }) {
           <h2 className="reading result-group__h">
             <Link href={entityPath(group.entitySlug)}>{group.entityName}</Link>
           </h2>
-          {/* No margin: `.record-link` already opens with 24px of its own padding, so the 12px
-              set here read as 36px of ink and put the heading almost exactly midway between the
-              count line above it and the result below it. The heading binds downward on the
-              padding alone. */}
-          <ul className="records reading">
+          {/* No margin: `.record-link` already opens with its own padding, so the 12px set here
+              read as 36px of ink and put the heading almost exactly midway between the count line
+              above it and the result below it. The heading binds downward on the padding alone —
+              which is now the panel's padding, and is larger, so if this heading ever starts
+              floating between the two again the fix is a negative pull on the heading, never a
+              margin here. */}
+          <ul className="records panels">
             {group.results.map((result) => (
               <li key={result.claimId}>
+                {/* `record-link panel-surface`, the identical pair the homepage's "Recently
+                    checked" rows use. A search result and a homepage row are the same object —
+                    a question, its answer and how far the evidence goes — so they must be the
+                    same panel, or the reader meets two different products in two clicks. */}
                 <Link
                   href={`${entityPath(group.entitySlug)}#claim-${result.claimSlug}`}
-                  className="record-link"
+                  className="record-link panel-surface"
                 >
                   <div className="result__q">{result.consumerQuestion}</div>
                   <p className="result__a">{result.directAnswer}</p>

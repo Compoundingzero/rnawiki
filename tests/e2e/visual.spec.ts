@@ -35,6 +35,14 @@ function shot(name: string): string {
 }
 
 async function capture(page: Page, name: string): Promise<void> {
+  // Back to the top before the shutter. The site header is `position: sticky`, and a full-page
+  // capture taken while the page is scrolled stamps the header wherever it is currently pinned —
+  // in the middle of the image, on top of the content it is floating over. Several captures are
+  // taken after scrolling a disclosure into view, so without this every one of them showed a
+  // second header band across the middle of the record and read as a rendering fault rather than
+  // as the page. Scrolling home is not a change of state: nothing here is asserted from the
+  // scroll position, and the capture is full-page either way.
+  await page.evaluate(() => window.scrollTo(0, 0))
   // `animations: 'disabled'` finishes CSS transitions before the shutter rather than catching
   // them mid-flight. Two delivered captures showed the disclosure chevron frozen at about 45
   // degrees — a small right-angle hook rather than the settled open state — because the 150ms

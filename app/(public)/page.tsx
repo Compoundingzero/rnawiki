@@ -52,6 +52,14 @@ async function getRecentQuestions() {
  * Written as plain terms and definitions, never as four promotional cards. The moment these get
  * boxes, icons or colour they read as product features rather than as the vocabulary the rest of
  * the site uses, and "Conflicting or failed" starts looking like a verdict badge.
+ *
+ * v2 AMENDMENT — the four now sit in `.panel-surface` panels, which is the one part of the note
+ * above that no longer holds. What it was protecting still does: the panel is the SAME neutral
+ * surface every other panel on the site uses, so these read as four entries in a glossary, not as
+ * four features. The rest of the ban is unchanged and is what keeps "Conflicting or failed" from
+ * becoming a badge — no icon, no accent bar, no per-term colour, no tinted tile, and no ordering
+ * that implies one term outranks another. A reviewer who wants to add an icon per term should read
+ * this paragraph as the reason not to.
  */
 const SEPARATES = [
   { term: 'Observed', definition: 'What researchers directly measured.' },
@@ -70,8 +78,12 @@ export default async function HomePage() {
   const recent = await getRecentQuestions()
 
   return (
-    <div className="page" style={{ paddingBottom: 'var(--s8)' }}>
-      <section style={{ paddingTop: 'var(--s8)' }}>
+    <div className="page" style={{ paddingTop: 'var(--s7)', paddingBottom: 'var(--s8)' }}>
+      {/* The hero is one feature panel and the search field is the dominant element inside it.
+          The paddingTop that used to sit on this section moved to the page wrapper above: on a
+          panel, padding-top is INSIDE the surface, so leaving it here opened 64px of empty white
+          above the h1 and pushed the search field below the fold at 390px. */}
+      <section className="panel-surface hero-panel">
         <h1 className="reading">See what was actually tested.</h1>
         <p className="lead muted reading" style={{ marginTop: 'var(--s4)' }}>
           Search a medicine, supplement, treatment or health claim. RNAwiki separates what researchers
@@ -80,7 +92,7 @@ export default async function HomePage() {
         <div style={{ marginTop: 'var(--s5)' }}>
           <HeroSearch />
         </div>
-        <p className="small muted" style={{ marginTop: 'var(--s3)' }}>
+        <p className="small muted reading" style={{ marginTop: 'var(--s3)' }}>
           Every answer links to its evidence record and original sources.
         </p>
       </section>
@@ -89,7 +101,7 @@ export default async function HomePage() {
         <h2>What an answer separates</h2>
         <dl className="separates" style={{ marginTop: 'var(--s5)' }}>
           {SEPARATES.map((item) => (
-            <div key={item.term} className="separates__item">
+            <div key={item.term} className="separates__item panel-surface">
               <dt className="separates__t">{item.term}</dt>
               <dd className="separates__d">{item.definition}</dd>
             </div>
@@ -103,10 +115,18 @@ export default async function HomePage() {
           <p className="small muted reading" style={{ marginTop: 'var(--s3)' }}>
             Open any answer to inspect its full evidence record.
           </p>
-          <ul className="records reading" style={{ marginTop: 'var(--s4)' }}>
+          <ul className="records panels" style={{ marginTop: 'var(--s4)' }}>
             {recent.map((r) => (
               <li key={`${r.entitySlug}-${r.claimSlug}`}>
-                <Link href={`/r/${r.entitySlug}#claim-${r.claimSlug}`} className="record-link">
+                {/* The panel IS the click target — the whole surface, not the question line
+                    inside it. `.panel-surface` on the <a> rather than on the <li> is deliberate:
+                    a panel on the <li> with the link inside it gives a 656px-wide box whose
+                    operable area is one 17px line of text, which is the exact pattern that reads
+                    as a card and behaves as a link. Search and browse use the identical pair. */}
+                <Link
+                  href={`/r/${r.entitySlug}#claim-${r.claimSlug}`}
+                  className="record-link panel-surface"
+                >
                   <div className="record-link__name">{r.question}</div>
                   {/* The answer, verbatim and untruncated. An evidence label on its own reads as
                       the answer and can invert it — "Is rapamycin approved for longevity?" beside

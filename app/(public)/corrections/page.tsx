@@ -122,7 +122,7 @@ export default async function CorrectionsPage({ searchParams }: Props) {
       <section className="section">
         <h2>Published corrections</h2>
         {publicCorrections.length === 0 ? (
-          <p className="muted" style={{ marginTop: 'var(--s4)' }}>
+          <p className="muted reading" style={{ marginTop: 'var(--s4)' }}>
             None yet. Reader-reported corrections that change something are listed here.
           </p>
         ) : (

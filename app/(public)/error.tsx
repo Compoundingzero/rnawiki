@@ -29,7 +29,7 @@ import { ERROR_BODY, ERROR_RETRY, ERROR_TITLE } from '@/lib/error-copy'
 export default function PublicError({ reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
     <div className="page doc">
-      <div className="reading stack-4">
+      <section className="stack-4">
         <h1>{ERROR_TITLE}</h1>
         <p className="lead muted">{ERROR_BODY}</p>
         <p className="muted">{ERROR_RETRY}</p>
@@ -44,7 +44,7 @@ export default function PublicError({ reset }: { error: Error & { digest?: strin
         <p>
           <Link href="/">Go to the home page</Link>
         </p>
-      </div>
+      </section>
     </div>
   )
 }

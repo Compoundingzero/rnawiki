@@ -34,7 +34,7 @@ export default function GlobalError({ reset }: { error: Error & { digest?: strin
           </div>
         </header>
         <main id="main" className="page doc">
-          <div className="reading stack-4">
+          <section className="stack-4">
             <h1>{ERROR_TITLE}</h1>
             <p className="lead muted">{ERROR_BODY}</p>
             <p className="muted">{ERROR_RETRY}</p>
@@ -46,7 +46,7 @@ export default function GlobalError({ reset }: { error: Error & { digest?: strin
             <p>
               <Link href="/">Go to the home page</Link>
             </p>
-          </div>
+          </section>
         </main>
       </body>
     </html>
