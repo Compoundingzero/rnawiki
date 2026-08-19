@@ -8,6 +8,13 @@
       "when": 1787163661891,
       "tag": "0000_rnawiki_reference_overhaul",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1787169765342,
+      "tag": "0001_drug_aliases",
+      "breakpoints": true
     }
   ]
 }

@@ -239,6 +239,44 @@ export const drugs = pgTable(
 )
 
 // ---------------------------------------------------------------------------
+// drug_aliases — the names a reader actually types
+//
+// Search has to reach a substance by the name the reader knows, and that is frequently not the
+// name the FDA files it under: paracetamol/acetaminophen, adrenaline/epinephrine,
+// salbutamol/albuterol. Those are INN-versus-USAN pairs, not typos, and half the English-speaking
+// world uses the side the FDA does not. Aliases live in their own table rather than being appended
+// to a displayed field, because a search index is not a place to put text that also gets rendered.
+// ---------------------------------------------------------------------------
+
+export const aliasKindEnum = pgEnum('alias_kind', [
+  'inn',
+  'usan',
+  'ban',
+  'brand',
+  'salt_form',
+  'common_name',
+  'systematic',
+])
+
+export const drugAliases = pgTable(
+  'drug_aliases',
+  {
+    id: varchar('id', { length: 64 }).primaryKey(),
+    drugId: varchar('drug_id', { length: 96 })
+      .notNull()
+      .references(() => drugs.id, { onDelete: 'cascade' }),
+    alias: varchar('alias', { length: 300 }).notNull(),
+    kind: aliasKindEnum('kind').notNull().default('common_name'),
+    source: varchar('source', { length: 160 }).notNull().default(''),
+  },
+  (table) => [
+    uniqueIndex('drug_aliases_unique').on(table.drugId, sql`lower(${table.alias})`),
+    index('drug_aliases_alias_idx').on(sql`lower(${table.alias})`),
+    index('drug_aliases_drug_idx').on(table.drugId),
+  ],
+)
+
+// ---------------------------------------------------------------------------
 // community_notes
 // ---------------------------------------------------------------------------
 
@@ -401,6 +439,11 @@ export const ingestRuns = pgTable('ingest_runs', {
 export const drugsRelations = relations(drugs, ({ many }) => ({
   notes: many(communityNotes),
   revisions: many(revisions),
+  aliases: many(drugAliases),
+}))
+
+export const drugAliasesRelations = relations(drugAliases, ({ one }) => ({
+  drug: one(drugs, { fields: [drugAliases.drugId], references: [drugs.id] }),
 }))
 
 export const usersRelations = relations(users, ({ many }) => ({

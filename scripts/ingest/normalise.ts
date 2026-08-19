@@ -34,7 +34,16 @@ const SALT_SUFFIXES = [
 ] as const
 
 export function baseMoiety(name: string): string {
-  let n = name.replace(/\s+/g, ' ').trim().toUpperCase().replace(/^[\s,.;]+|[\s,.;]+$/g, '')
+  // Source data uses "||" to join the ingredients of a combination product, and DSLD group names
+  // carry a parenthesised synonym ("Vitamin D (Cholecalciferol)"). Left in, the first produces a
+  // page titled "Abacavir || Dolutegravir || Lamivudine" and the second produces a second Vitamin D.
+  let n = name
+    .split('||')[0]
+    ?.replace(/\s*\([^)]*\)\s*/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toUpperCase()
+    .replace(/^[\s,.;]+|[\s,.;]+$/g, '') ?? ''
   let changed = true
   while (changed) {
     changed = false

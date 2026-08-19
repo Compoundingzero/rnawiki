@@ -37,7 +37,7 @@ export interface CorpusStats {
 }
 
 export interface HomeViewProps {
-  /** Null on an empty database. The hero and search still render; the spotlight section does not. */
+  /** Null on an empty database: the hero and search render, the spotlight section does not. */
   featured: DrugDossier | null
   popular: SearchHit[]
   corpusStats: CorpusStats
@@ -83,8 +83,8 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
           </h1>
 
           <p className="text-sm sm:text-base text-[#6E6E73] max-w-md mx-auto leading-relaxed">
-            All drugs operate through RNA. We publish the chemical formulas, clinical proof, and real
-            manufacturing costs.
+            All drugs operate through RNA. We publish the chemical formulas, clinical proof, and
+            real manufacturing costs.
           </p>
         </div>
 
@@ -107,7 +107,7 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
                 </span>
               </div>
 
-              {/* `drug.id` IS the public slug — see the note in `rowToDossier` (lib/dossier.ts). */}
+              {/* `drug.id` IS the public slug — see `rowToDossier` (lib/dossier.ts). */}
               <Link
                 href={`/d/${featured.id}`}
                 className="group block bg-white hover:bg-[#FAFAFC] rounded-3xl p-6 sm:p-8 border border-black/[0.08] hover:border-[#0071E3]/40 shadow-[0_2px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,113,227,0.08)] transition-all cursor-pointer space-y-5"
@@ -186,13 +186,15 @@ export function HomeView({ featured, popular, corpusStats }: HomeViewProps) {
             </>
           )}
 
-          {/* Real counts from `count(*)`, never an estimate. The last clause is dropped when there
-              is nothing left awaiting a contributor, rather than printing a claim that is false. */}
+          {/* Real counts from `count(*)`, never an estimate. The last clause is dropped when
+              nothing is left awaiting a contributor, rather than printing a false claim. */}
           {showCorpusLine && (
             <p className="px-1 text-[11px] text-[#86868B] leading-relaxed">
               {corpusStats.total.toLocaleString()} medicines indexed &middot;{' '}
               {documented.toLocaleString()} with a full dossier
-              {documented < corpusStats.total && <> &middot; everything else awaiting a contributor</>}
+              {documented < corpusStats.total && (
+                <> &middot; everything else awaiting a contributor</>
+              )}
             </p>
           )}
         </section>

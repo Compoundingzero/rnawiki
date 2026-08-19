@@ -11,7 +11,7 @@
 import { and, asc, count, desc, eq, getTableColumns, ilike, inArray, or, sql } from 'drizzle-orm'
 import type { SQL } from 'drizzle-orm'
 import { db, type Db } from '@/db'
-import { drugs } from '@/db/schema'
+import { drugAliases, drugs } from '@/db/schema'
 import { rowToDossier, dossierToRow, type DrugRow } from '@/lib/dossier'
 import type { ApprovalStatus, DrugDossier, DrugModality } from '@/lib/types'
 import { listNotesForDrug } from './notes'
@@ -192,6 +192,16 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
 
   const tsQuery = sql`websearch_to_tsquery('english', ${trimmed})`
   const prefix = likePrefixPattern(trimmed)
+  const lowered = trimmed.toLowerCase()
+
+  // The alias join is what makes "paracetamol" find acetaminophen and "ozempic" find semaglutide.
+  // EXISTS rather than a LEFT JOIN: a drug with twelve aliases must not come back twelve times,
+  // and the planner can stop at the first matching alias instead of materialising all of them.
+  const aliasMatch = sql`exists (
+    select 1 from ${drugAliases}
+    where ${drugAliases.drugId} = ${drugs.id}
+      and (lower(${drugAliases.alias}) = ${lowered} or lower(${drugAliases.alias}) like ${prefix.toLowerCase()})
+  )`
 
   return db
     .select(searchHitColumns)
@@ -201,10 +211,25 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
         sql`${drugs.searchVector} @@ ${tsQuery}`,
         ilike(drugs.name, prefix),
         ilike(drugs.tradeName, prefix),
+        aliasMatch,
       ),
     )
     .orderBy(
-      sql`case when ${drugs.name} ilike ${prefix} then 0 when ${drugs.tradeName} ilike ${prefix} then 1 else 2 end`,
+      // Exact name first. Without this tier, typing "creatine" ranks Creatine Gluconate level with
+      // Creatine, because both satisfy the prefix test, and the substance the reader asked for is
+      // buried among its own derivatives.
+      sql`case
+        when lower(${drugs.name}) = ${lowered} then 0
+        when lower(${drugs.tradeName}) = ${lowered} then 1
+        when ${aliasMatch} then 2
+        when ${drugs.name} ilike ${prefix} then 3
+        when ${drugs.tradeName} ilike ${prefix} then 4
+        else 5
+      end`,
+      // Among equally-ranked prefix matches, the shorter name is the more general substance:
+      // "Vitamin D" before "Vitamin D (Ergocalciferol)".
+      sql`length(${drugs.name})`,
+      sql`case ${drugs.dossierDepth} when 'flagship' then 0 when 'curated' then 1 else 2 end`,
       sql`ts_rank_cd(${drugs.searchVector}, ${tsQuery}) desc`,
       desc(drugs.viewCount),
       asc(drugs.name),
@@ -212,6 +237,7 @@ export async function searchDrugs(query: string, limit: number): Promise<SearchH
     )
     .limit(capped)
 }
+
 
 // ---------------------------------------------------------------------------
 // Home page

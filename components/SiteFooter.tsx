@@ -2,8 +2,8 @@
 // rows the wireframe had no need for.
 //
 // The reference's two lines ("RNAwiki.com • Open Evidence Layer for All Medicines" /
-// "Zero advertising • Public knowledge") are untouched: same border, same padding, same #86868B on
-// white, same stacked-on-mobile / spread-on-desktop arrangement.
+// "Zero advertising • Public knowledge") are untouched: same border, same padding, same #86868B
+// on white, same stacked-on-mobile / spread-on-desktop arrangement.
 //
 // Added below them, deliberately quieter than the reference lines (smaller type, same muted ink):
 //

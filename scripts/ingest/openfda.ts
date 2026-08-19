@@ -142,7 +142,7 @@ export function looksLikeCodename(name: string): boolean {
 /** Split an ingredient field that names several substances at once. */
 function splitIngredientNames(raw: string): string[] {
   return raw
-    .split(/\s+AND\s+|,\s*|;\s*/i)
+    .split(/\s+AND\s+|,\s*|;\s*|\|\|/i)
     .map((part) => baseMoiety(part))
     .filter((part) => part.length >= 3)
 }

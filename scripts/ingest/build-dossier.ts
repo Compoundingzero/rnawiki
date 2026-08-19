@@ -60,8 +60,11 @@ export interface DrugInsert {
   dossierDepth: 'stub'
   molecularSchema: MolecularSchema | null
   sourceProvenance: string[]
-  /** Not persisted — carried so the loader can order and report. */
+  /** Not persisted — carried so the loader can order, build aliases and report. */
   productCount: number
+  moiety: string
+  saltForms: string[]
+  brandNames: string[]
   classificationRules: { modality: string; approval: string }
 }
 
@@ -204,6 +207,12 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
     molecularSchema,
     sourceProvenance: [...new Set(provenance)],
     productCount: substance.productCount + (supplement?.labelCount ?? 0),
+    moiety: substance.moiety,
+    saltForms: [...substance.rawNames.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 6)
+      .map(([name]) => titleCaseDrugName(name)),
+    brandNames: brands,
     classificationRules: { modality: modality.rule, approval: approval.rule },
   }
 }

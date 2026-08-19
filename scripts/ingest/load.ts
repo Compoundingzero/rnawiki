@@ -1,8 +1,9 @@
-import { sql } from 'drizzle-orm'
+import { eq, inArray, sql } from 'drizzle-orm'
 import { db } from '@/db'
-import { drugs, ingestRuns } from '@/db/schema'
+import { drugAliases, drugs, ingestRuns } from '@/db/schema'
 import { newId } from '@/lib/ids'
 import type { DrugInsert } from './build-dossier'
+import { aliasRowsFor } from './aliases'
 
 /**
  * Writes ingested rows to Postgres.
@@ -24,9 +25,70 @@ export interface LoadResult {
   runId: string
 }
 
+/**
+ * Aliases are rebuilt wholesale rather than diffed: they are derived entirely from the source data,
+ * there is nothing a contributor can lose, and a delete-then-insert is far simpler to reason about
+ * than reconciling a set. Scoped to the drugs in this run so a --limit ingest does not wipe the
+ * aliases of everything it did not touch.
+ */
+async function loadAliases(rows: readonly DrugInsert[]): Promise<void> {
+  const aliasRows = rows.flatMap((row) =>
+    aliasRowsFor({
+      drugId: row.id,
+      name: row.name,
+      moiety: row.moiety,
+      saltForms: row.saltForms,
+      brands: row.brandNames,
+    }),
+  )
+  if (aliasRows.length === 0) return
+
+  const drugIds = rows.map((row) => row.id)
+  for (let offset = 0; offset < drugIds.length; offset += BATCH_SIZE) {
+    await db.delete(drugAliases).where(inArray(drugAliases.drugId, drugIds.slice(offset, offset + BATCH_SIZE)))
+  }
+
+  for (let offset = 0; offset < aliasRows.length; offset += BATCH_SIZE) {
+    await db.insert(drugAliases).values(aliasRows.slice(offset, offset + BATCH_SIZE)).onConflictDoNothing()
+  }
+  console.log(`[load] ${aliasRows.length.toLocaleString()} search aliases written`)
+}
+
+/**
+ * Removes stub rows a previous ingest created that this one no longer produces.
+ *
+ * Without this, every normalisation fix leaves its mistakes behind for ever: the run that stopped
+ * splitting "Abacavir || Dolutegravir || Lamivudine" into three moieties still left the combined
+ * row on the site, indistinguishable from a real page.
+ *
+ * The guard is absolute: `dossierDepth = 'stub'` only. A curated or flagship dossier is never
+ * deleted by an ingest, whatever the sources say — someone wrote it, ingestion has nothing to
+ * restore it from, and a page disappearing because a regulator reorganised a field would be the
+ * worst kind of data loss.
+ *
+ * Skipped entirely for a partial run (--limit / --only), where "not produced by this run" carries
+ * no information about whether a row is stale.
+ */
+async function pruneStaleStubs(rows: readonly DrugInsert[]): Promise<void> {
+  const keep = new Set(rows.map((row) => row.slug))
+
+  const existing = await db
+    .select({ slug: drugs.slug })
+    .from(drugs)
+    .where(eq(drugs.dossierDepth, 'stub'))
+
+  const stale = existing.map((row) => row.slug).filter((slug) => !keep.has(slug))
+  if (stale.length === 0) return
+
+  for (let offset = 0; offset < stale.length; offset += BATCH_SIZE) {
+    await db.delete(drugs).where(inArray(drugs.slug, stale.slice(offset, offset + BATCH_SIZE)))
+  }
+  console.log(`[load] pruned ${stale.length.toLocaleString()} stale stub rows`)
+}
+
 export async function loadDrugs(
   rows: readonly DrugInsert[],
-  options: { dryRun?: boolean; note?: string } = {},
+  options: { dryRun?: boolean; note?: string; prune?: boolean } = {},
 ): Promise<LoadResult> {
   const runId = newId('ingest')
 
@@ -106,6 +168,9 @@ export async function loadDrugs(
       console.log(`[load] ${written.toLocaleString()}/${rows.length.toLocaleString()} rows`)
     }
   }
+
+  await loadAliases(rows)
+  if (options.prune !== false) await pruneStaleStubs(rows)
 
   const [{ total } = { total: 0 }] = await db
     .select({ total: sql<number>`count(*)::int` })

@@ -214,7 +214,13 @@ async function main(): Promise<void> {
     }
   }
 
-  await loadDrugs(rows, { dryRun: options.dryRun, note: `limit=${options.limit ?? 'none'}` })
+  await loadDrugs(rows, {
+    dryRun: options.dryRun,
+    note: `limit=${options.limit ?? 'none'}`,
+    // A --limit or --only run produces a deliberate subset, so "absent from this run" says nothing
+    // about whether a row is stale. Pruning is only meaningful after a full pass.
+    prune: !options.limit && !options.only,
+  })
   process.exit(0)
 }
 
