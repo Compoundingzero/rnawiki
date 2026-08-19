@@ -122,7 +122,11 @@ export function shouldIngest(input: BuildInput): SkipDecision {
 export function buildDossierRow(input: BuildInput): DrugInsert {
   const { substance, supplement, structure } = input
 
-  const displayName = titleCaseDrugName(supplement?.group ?? substance.moiety)
+  // DSLD group names carry a parenthesised qualifier -- "Vitamin D (Mixed)", "Vitamin D
+  // (Cholecalciferol)". baseMoiety already strips it for keying, so leaving it in the display name
+  // produced a page titled with the parenthetical while a second page held the plain name.
+  const supplementName = supplement?.group.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim()
+  const displayName = titleCaseDrugName(supplementName || substance.moiety)
   const labelText = [
     substance.label?.mechanism_of_action,
     substance.label?.description,
@@ -137,6 +141,7 @@ export function buildDossierRow(input: BuildInput): DrugInsert {
     marketingCategories: substance.marketingCategories,
     labelText: labelText || undefined,
     fromSupplementDatabase: Boolean(supplement),
+    supplementCategory: supplement?.category,
   })
 
   const approval = classifyApprovalStatus({

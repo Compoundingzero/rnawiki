@@ -115,7 +115,10 @@ function mergeSupplements(
     index.set(candidate, {
       moiety: candidate,
       rawNames: new Map([[group.toUpperCase(), supplement.labelCount]]),
-      brands: supplement.brands.map(([name, count]) => ({ name, singleIngredient: false, count })),
+      // Deliberately empty. DSLD's brandName is the retailer or house label ("Vitamin Discount
+      // Center", "Best Naturals"), not a drug brand, so it belongs in neither the trade-name line
+      // nor the alias table.
+      brands: [],
       sponsors: [],
       routes: new Map(),
       dosageForms: new Map(),

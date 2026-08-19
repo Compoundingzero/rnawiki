@@ -41,12 +41,7 @@ export default async function HomePage() {
       <HomeView
         featured={featured}
         popular={popular}
-        corpusStats={{
-          total,
-          stub: depth.stub,
-          curated: depth.curated,
-          flagship: depth.flagship,
-        }}
+        corpusStats={{ total, flagship: depth.flagship, curated: depth.curated }}
       />
     </AppShell>
   )

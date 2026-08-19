@@ -130,6 +130,8 @@ export interface ModalityInput {
   labelText?: string | undefined
   /** True when the substance came from the NIH supplement database. */
   fromSupplementDatabase?: boolean | undefined
+  /** The DSLD category, when it came from there: 'vitamin', 'botanical', 'non-nutrient/…'. */
+  supplementCategory?: string | undefined
 }
 
 export interface ModalityDecision {
@@ -184,6 +186,25 @@ const SUPPLEMENT_CATEGORIES = new Set([
   'DIETARY SUPPLEMENT',
 ])
 
+/**
+ * DSLD categories that name a nutrient rather than a drug that happens to appear on a supplement
+ * label. 'non-nutrient/non-botanical' is deliberately absent: it is DSLD's catch-all, and it is
+ * where caffeine, melatonin analogues and assorted pharmaceuticals land.
+ */
+const NUTRIENT_CATEGORIES = new Set([
+  'vitamin',
+  'mineral',
+  'botanical',
+  'amino acid',
+  'fatty acid',
+  'bacteria',
+  'animal part or source',
+  'fiber',
+  'protein',
+  'enzyme',
+  'hormone',
+])
+
 export function classifyModality(input: ModalityInput): ModalityDecision {
   const name = input.moiety.toUpperCase()
   const label = input.labelText ?? ''
@@ -219,13 +240,23 @@ export function classifyModality(input: ModalityInput): ModalityDecision {
     if (rule.test.test(name)) return { modality: rule.modality, rule: rule.rule }
   }
 
-  // Supplement sources and supplement-shaped marketing categories.
-  if (input.fromSupplementDatabase) {
+  // An approved drug application outranks a supplement or homeopathic listing. Acetaminophen
+  // appears as an ingredient in homeopathic products, and without this guard a molecule with
+  // hundreds of ANDAs behind it was filed as a botanical on the strength of one such listing.
+  const hasDrugApplication =
+    (input.applicationKinds.NDA ?? 0) + (input.applicationKinds.BLA ?? 0) + (input.applicationKinds.ANDA ?? 0) > 0
+
+  // Supplement sources and supplement-shaped marketing categories. A DSLD listing still wins for a
+  // genuine nutrient even when an approved application exists — vitamin C is sold as an injectable
+  // drug AND as a supplement, and a reader looking it up means the second one.
+  if (input.fromSupplementDatabase && (NUTRIENT_CATEGORIES.has(input.supplementCategory ?? '') || !hasDrugApplication)) {
     return { modality: 'Nutraceutical / Botanical', rule: 'listed in the NIH Dietary Supplement Label Database' }
   }
-  for (const category of Object.keys(input.marketingCategories)) {
-    if (SUPPLEMENT_CATEGORIES.has(category)) {
-      return { modality: 'Nutraceutical / Botanical', rule: `NDC marketing category "${category}"` }
+  if (!hasDrugApplication) {
+    for (const category of Object.keys(input.marketingCategories)) {
+      if (SUPPLEMENT_CATEGORIES.has(category)) {
+        return { modality: 'Nutraceutical / Botanical', rule: `NDC marketing category "${category}"` }
+      }
     }
   }
 
