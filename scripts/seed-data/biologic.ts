@@ -2241,7 +2241,7 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       },
       {
         label:
-          'Holmes FA et al. Bone pain associated with once-per-cycle pegfilgrastim is similar to daily filgrastim in patients with breast cancer. Clin Breast Cancer 2003;3:391-398',
+          'Kubista E et al. Bone pain associated with once-per-cycle pegfilgrastim is similar to daily filgrastim in patients with breast cancer. Clin Breast Cancer 2003;3:391-398',
         identifier: '10.3816/CBC.2003.n.003',
         kind: 'doi',
       },
@@ -2263,6 +2263,951 @@ export const BIOLOGIC_DOSSIERS: SeedDossier[] = [
       {
         label: 'Drugs@FDA: UDENYCA (pegfilgrastim-cbqv), BLA 761039, approved 2 November 2018',
         identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761039',
+        kind: 'regulatory',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 6. Somatropin
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'somatropin',
+    name: 'Somatropin',
+    tradeName: 'Humatrope',
+    sponsor: 'Eli Lilly and Company (Humatrope); many manufacturers market somatropin products',
+    targetGene: 'GHR',
+    targetProtein: 'Growth hormone receptor (GHR)',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1986,
+    indication:
+      'Growth failure due to inadequate endogenous growth hormone secretion, Turner syndrome, small for gestational age with no catch-up growth, idiopathic short stature, SHOX deficiency, and adult growth hormone deficiency',
+    patientFriendlyIndication: 'Children who are not growing normally, and adults with a damaged pituitary gland',
+    anatomicalSite: 'Growth plate chondrocytes and hepatocytes',
+    conditionContext: {
+      conditionExplainer:
+        'Growth hormone is released in pulses from the pituitary gland overnight. Most of what it does to bones it does indirectly, by telling the liver to release IGF-1, which then acts on the growth plates at the ends of the long bones. When the pituitary is damaged or absent, that whole cascade stops.',
+      whyItMatters:
+        'A child with true growth hormone deficiency will not reach anything close to their genetic height without replacement, and in adults untreated deficiency changes body composition, bone density and lipid profile. Where the deficiency is real, replacement is replacement.',
+      whoTakesThis:
+        'Children with proven growth hormone deficiency, Turner syndrome, Prader-Willi syndrome, chronic kidney disease, SHOX deficiency, small-for-gestational-age without catch-up, and — since 2003 in the US — idiopathic short stature, which is short stature with no identified cause and no hormone deficiency at all.',
+      clinicalGoals:
+        'In deficiency, restore normal growth velocity and adult height. In idiopathic short stature, the goal is height itself, which is why that indication is where the evidence questions concentrate.',
+    },
+    oneSentenceVerdict:
+      'A recombinant copy of the 191-amino-acid pituitary hormone that replaced cadaveric pituitary extract after that route killed 226 people with Creutzfeldt-Jakob disease; in children with idiopathic short stature and no hormone deficiency, the randomised adult height gain is about 4 cm.',
+    laymanHowItWorks:
+      'Growth hormone does not push on bone directly. It travels to the liver and tells it to release a second messenger called IGF-1, and that is what makes the cartilage at the ends of a child bones divide and lay down new bone. Somatropin is a manufactured copy of the human hormone, made in bacteria, with exactly the same 191 building blocks in the same order. It restarts a signal that is missing, or amplifies one that is already normal.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 70,
+    substitutes: {
+      summary:
+        'In genuine growth hormone deficiency there is no substitute: this is hormone replacement and nothing else does it. In idiopathic short stature the honest alternatives are watchful waiting, or an aromatase inhibitor or GnRH analogue to delay growth plate fusion, and both are used off-label with weaker evidence than somatropin has. Nothing dietary increases adult height in a well-nourished child; optimising nutrition matters only where it was inadequate.',
+      conventionalRx: [
+        {
+          name: 'Recombinant IGF-1 (mecasermin)',
+          class: 'Insulin-like growth factor 1 replacement',
+          howItCompares:
+            'Supplies the downstream mediator directly. Used where growth hormone cannot work because the receptor is defective, as in severe primary IGF-1 deficiency and Laron syndrome.',
+          typicalCost: 'Substantially above somatropin per year of treatment',
+          prosAndCons:
+            'Pros: bypasses a broken receptor, which somatropin cannot. Cons: causes hypoglycaemia because IGF-1 has intrinsic insulin-like activity, so it must be given with food.',
+        },
+        {
+          name: 'Long-acting somatropin (somapacitan, lonapegsomatropin, somatrogon)',
+          class: 'Half-life-extended growth hormone',
+          howItCompares:
+            'Weekly rather than daily injection, registered against daily somatropin on annualised height velocity.',
+          typicalCost: 'Comparable to or above daily somatropin',
+          prosAndCons:
+            'Pros: 52 injections a year rather than 365, which matters for a child. Cons: registered on the same one-year growth velocity surrogate, so nothing new is known about adult height.',
+        },
+        {
+          name: 'Aromatase inhibitors and GnRH analogues',
+          class: 'Growth plate fusion delay',
+          howItCompares:
+            'Slow the oestrogen-driven closure of the growth plates rather than accelerating growth, buying more years of growing time.',
+          typicalCost: 'Variable; both are used off-label for this purpose',
+          prosAndCons:
+            'Pros: a different lever on the same outcome. Cons: off-label, less evidence than somatropin, and bone density concerns with prolonged use.',
+        },
+        {
+          name: 'Watchful waiting',
+          class: 'No pharmacological intervention',
+          howItCompares:
+            'The comparator arm in the randomised idiopathic short stature trials. Adult height was 3 to 4 cm lower on average, with no measured difference in psychosocial outcomes.',
+          typicalCost: 'No drug cost',
+          prosAndCons:
+            'Pros: no daily injection for years of childhood, no cost, no adverse events. Cons: the height difference is real and measurable, even if modest.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Adequate dietary protein and total energy',
+          activeCompound: 'Essential amino acids and total caloric sufficiency',
+          biologicalMechanism:
+            'Undernutrition causes acquired growth hormone resistance: circulating growth hormone rises while hepatic IGF-1 falls. Correcting intake restores IGF-1 generation. This matters only where intake was actually inadequate.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Age-appropriate protein and energy intake as assessed by a paediatric dietitian',
+          monthlyCost: 'No additional cost',
+        },
+        {
+          name: 'Vitamin D and calcium sufficiency',
+          activeCompound: 'Cholecalciferol and dietary calcium',
+          biologicalMechanism:
+            'Deficiency causes rickets, which deforms the growth plate directly. Sufficiency does not accelerate growth beyond normal; it removes an obstacle rather than adding a push.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Age-appropriate intake per national paediatric guidance',
+          monthlyCost: '$3 - $10 / month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Protected sleep',
+          action: 'Age-appropriate sleep duration with a consistent bedtime.',
+          patientImpact:
+            'The majority of endogenous growth hormone is released in pulses during slow-wave sleep. Chronic sleep restriction blunts that pattern.',
+          clinicalPrecaution:
+            'This is normal physiology, not a treatment. It will not produce catch-up growth in a child with true deficiency, and delaying diagnosis to try it costs growing years that cannot be recovered.',
+        },
+        {
+          name: 'Serial height measurement on a growth chart',
+          action: 'Accurate stadiometer height plotted on a centile chart at consistent intervals.',
+          patientImpact:
+            'Growth velocity crossing centiles downwards is the single most informative early finding in paediatric endocrinology, and it is free. It distinguishes a short but normally growing child from one with a developing pathology.',
+          clinicalPrecaution:
+            'Measurement technique matters more than frequency. Casual measurements against a door frame produce enough noise to hide a real deceleration.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3:
+        'FPTIPLSRLFDNAMLRAHRLHQLAFDTYQEFEEAYIPKEQKYSFLQNPQTSLCFSESIPTPSNREETQQKSNLELLRISLLLIQSWLEPVQFLRSVFANSLVYGASDSNVYDLLKDLEEGIQTLMGRLEDGSPRTGQIFKQTYSKFDTNSHNDDALLKNYGLLYCFRKDMDKVETFLRIVQCRSVEGSCGF',
+      molecularWeight: 'Approximately 22,125 Da',
+      targetReceptorAffinity:
+        'One hormone molecule engages two growth hormone receptor chains through two structurally distinct binding sites',
+      structureSource: {
+        label:
+          'HUMATROPE US prescribing information (Description: 191 amino acid residues, molecular weight about 22,125 daltons, sequence identical to pituitary human GH) cross-checked against UniProt P01241',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a774e1ae-3997-49ee-8b0e-99a2b315d409',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'sm-1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Host strain and plasmid release',
+          description:
+            'Verify the E. coli working cell bank carrying the human GH1 coding sequence with a secretion leader. Sequence confirmation matters more here than in most products because a single residue difference from pituitary growth hormone would change the immunogenicity profile.',
+          reagentsAndBuffer: 'Plasmid sequencing, selective plating, sterility and bacteriophage panels',
+        },
+        {
+          id: 'sm-2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Periplasmic secretion fermentation',
+          description:
+            'Express growth hormone with a signal peptide that directs it to the periplasm, where the oxidising environment forms both disulfide bonds and the signal peptidase removes the leader, giving the authentic N-terminal phenylalanine without an extra methionine.',
+          reagentsAndBuffer:
+            'Defined glucose-mineral salts medium, IPTG induction, osmotic shock periplasmic release buffer with EDTA and sucrose',
+          dependsOnStepId: 'sm-1',
+        },
+        {
+          id: 'sm-3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion exchange, hydrophobic interaction and size exclusion',
+          description:
+            'Purify to remove deamidated and oxidised variants, N-terminally clipped species and dimers. Charge variants are the main product-related impurity of this molecule and are what the isoelectric focusing release assay tracks.',
+          reagentsAndBuffer:
+            'Q-Sepharose in 20 mM Tris pH 8.0 with sodium chloride gradient, phenyl-Sepharose with ammonium sulfate, Superdex 75 in ammonium bicarbonate',
+          dependsOnStepId: 'sm-2',
+        },
+        {
+          id: 'sm-4',
+          stepNumber: 4,
+          phase: 'Purification',
+          name: 'Lyophilisation into the cartridge presentation',
+          description:
+            'Freeze-dry with glycine and mannitol as bulking and stabilising agents into the multi-dose cartridge, and pair it with a metacresol-preserved diluent. The product is oxygen sensitive, which drives the packaging design.',
+          reagentsAndBuffer:
+            'Dibasic sodium phosphate, glycine, mannitol, diluent of water for injection with 0.3% metacresol and glycerin',
+          dependsOnStepId: 'sm-3',
+        },
+        {
+          id: 'sm-5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Receptor-mediated potency and charge-variant release testing',
+          description:
+            'Determine potency in a growth hormone receptor reporter cell assay against the WHO international standard, and characterise deamidation and oxidation variants by isoelectric focusing and reversed-phase HPLC.',
+          reagentsAndBuffer:
+            'GH receptor-STAT5 luciferase reporter cell line, WHO somatropin international standard, IEF gels, RP-HPLC with C4 column',
+          dependsOnStepId: 'sm-4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'sm-a1',
+        category: 'failed',
+        title: 'The predecessor killed 226 people, which is why this molecule exists',
+        laymanSummary:
+          'Before recombinant growth hormone, the drug was extracted from pituitary glands taken from cadavers. Some of those donors had Creutzfeldt-Jakob disease, and the extraction did not remove the prion.',
+        technicalDetails:
+          'The final assessment of iatrogenic Creutzfeldt-Jakob disease identifies contaminated cadaveric growth hormone as the source of 226 cases worldwide, alongside 228 from dura mater grafts. Incubation periods ran to decades. Cadaveric pituitary growth hormone programmes were halted in 1985 and recombinant somatropin replaced them. This is the clearest case in modern medicine of a manufacturing route, rather than a molecule, being the hazard.',
+        evidenceSource: 'Brown P et al. Iatrogenic Creutzfeldt-Jakob disease, final assessment. Emerg Infect Dis 2012;18:901-907',
+        doi: '10.3201/eid1806.120116',
+        measuredMetric: '226 cases of iatrogenic Creutzfeldt-Jakob disease attributed to cadaveric growth hormone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sm-a2',
+        category: 'measured',
+        title: 'Idiopathic short stature: 3.7 cm of adult height in the randomised trial',
+        laymanSummary:
+          'In the only placebo-controlled trial that followed children to adult height, treated children ended up about 3.7 cm taller. The trial started with 68 children and had adult heights for 33.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled trial in 68 children aged 9 to 16 with height or predicted height at or below -2.5 standard deviation score and no growth hormone deficiency. Growth hormone 0.074 mg/kg subcutaneously three times weekly until near adult height, mean treatment duration 4.4 years. Adult height data were available for 33 patients. Adult height was -1.81 SDS on treatment versus -2.32 SDS on placebo, a difference of 0.51 SDS or 3.7 cm (p < 0.02; 95% CI 0.10-0.92 SDS). Modified intent-to-treat analysis in 62 patients treated at least six months gave 0.52 SDS, 3.8 cm.',
+        evidenceSource: 'Leschek EW et al. J Clin Endocrinol Metab 2004;89:3140-3148',
+        doi: '10.1210/jc.2003-031457',
+        measuredMetric: 'Adult height difference 0.51 SDS, 3.7 cm (95% CI 0.10-0.92 SDS), n = 33 with adult height data',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sm-a3',
+        category: 'measured',
+        title: 'Systematic review: about 4 cm, and the authors call it less than in licensed conditions',
+        laymanSummary:
+          'Pooling the randomised evidence gives a height gain of roughly 4 cm, and the review authors note that this is smaller than what growth hormone achieves in the conditions it was originally licensed for.',
+        technicalDetails:
+          'Systematic review of randomised and non-randomised controlled trials from 1985 to April 2010 with adult height measurements. Three randomised trials with 115 children met inclusion criteria: adult height of treated children exceeded controls by 0.65 SDS, about 4 cm. Mean height gain was 1.2 SDS in treated versus 0.34 SDS in untreated children. Seven non-randomised trials gave 0.45 SDS, about 3 cm. The difference between two dose regimens was about 1.2 cm. The authors state the magnitude of effectiveness is on average less than that achieved in other licensed conditions and that individual response is highly variable.',
+        evidenceSource: 'Deodati A, Cianfarani S. BMJ 2011;342:c7157',
+        doi: '10.1136/bmj.c7157',
+        measuredMetric: 'Adult height gain 0.65 SDS (about 4 cm) across three randomised trials, 115 children',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sm-a4',
+        category: 'inferred',
+        title: 'The psychosocial justification for treating short stature was never demonstrated',
+        laymanSummary:
+          'The reason usually given for treating a healthy short child is that being short is distressing. The trials measured centimetres. They did not show that treated children end up happier.',
+        technicalDetails:
+          'The US idiopathic short stature indication was granted on 25 July 2003 as an efficacy supplement to BLA 019640, on the basis of height outcomes. The randomised evidence base summarised in the 2011 systematic review consists of adult height in standard deviation scores; quality-of-life and psychosocial outcomes are not among the pooled endpoints, and the review does not report them. Treating a healthy child with daily injections for several years on the assumption that height gain produces psychological benefit is an inference, and it is the central one in this indication.',
+        evidenceSource:
+          'Drugs@FDA BLA 019640, efficacy supplement 33 approved 25 July 2003; Deodati A, Cianfarani S. BMJ 2011;342:c7157',
+        doi: '10.1136/bmj.c7157',
+        inferredClaim:
+          'That gaining 3 to 4 cm of adult height improves psychosocial wellbeing in a child who has no hormone deficiency',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'sm-a5',
+        category: 'failed',
+        title: 'The anti-ageing use has been tested and does not work',
+        laymanSummary:
+          'Eighteen randomised study populations, 220 people who received growth hormone. Body fat fell about 2 kg and lean mass rose about 2 kg. Bone density did not change, and side effects rose.',
+        technicalDetails:
+          'Systematic review of randomised controlled trials of growth hormone in healthy elderly people, mean age 69, mean BMI 28. Fat mass changed by -2.1 kg (95% CI -2.8 to -1.35) and lean body mass by +2.1 kg (95% CI 1.3 to 2.9), both p < 0.001, with no significant change in weight (0.1 kg, p = 0.87). Total cholesterol fell 0.29 mmol/L but not significantly after adjustment for body composition. Bone density and other lipids did not change. Treated participants were significantly more likely to develop soft tissue oedema, arthralgias, carpal tunnel syndrome and gynaecomastia, and somewhat more likely to develop diabetes and impaired fasting glucose. The authors concluded growth hormone cannot be recommended as an anti-ageing therapy.',
+        evidenceSource: 'Liu H et al. Ann Intern Med 2007;146:104-115',
+        doi: '10.7326/0003-4819-146-2-200701160-00005',
+        inferredClaim:
+          'That the body composition changes reported by Rudman in 1990 in 12 men represent rejuvenation',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'sm-a6',
+        category: 'measured',
+        title: 'Long-term mortality tracks the underlying diagnosis, not the drug',
+        laymanSummary:
+          'A European cohort of 24,232 children treated with growth hormone, followed for over 400,000 person-years, found no increase in overall death rates in those treated for isolated deficiency or idiopathic short stature.',
+        technicalDetails:
+          'SAGhE cohort study across eight European countries. In low-risk patients with isolated growth hormone deficiency or idiopathic short stature, all-cause mortality standardised mortality ratio was 1.1 (95% CI 0.9-1.3). In children born small for gestational age it was 1.5 (95% CI 1.1-1.9), driven by the French subcohort. In moderate- and high-risk underlying diagnoses it was 3.8 and 17.1 respectively, reflecting the underlying disease. Mortality was not associated with mean daily or cumulative growth hormone dose in any risk group. Mortality from circulatory and haematological disease was increased across all risk groups, which the authors flag as needing continued surveillance.',
+        evidenceSource: 'Sävendahl L et al. Lancet Diabetes Endocrinol 2020;8:683-692',
+        doi: '10.1016/S2213-8587(20)30163-7',
+        measuredMetric: 'Standardised mortality ratio 1.1 (95% CI 0.9-1.3) in low-risk treated patients over 400,000 person-years',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Daily subcutaneous injection',
+        laymanDesc:
+          'Given as an injection under the skin, usually in the evening, every day for years. Weekly long-acting versions now exist.',
+        molecularDetail:
+          'Subcutaneous administration gives a peak at three to five hours and a serum half-life of two to three hours, but the biological effect long outlasts the pharmacokinetics because the mediator is IGF-1, which has a half-life of roughly half a day when bound to its acid-labile subunit complex.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'One hormone molecule grips two receptors',
+        laymanDesc:
+          'On the surface of liver and cartilage cells, a single hormone molecule clamps two receptor chains together using two different-shaped faces.',
+        molecularDetail:
+          'Growth hormone has two structurally distinct receptor-binding sites of very different affinity. Site 1 binds first, site 2 recruits a second GHR chain, and the resulting asymmetric 1:2 complex rotates the preformed receptor dimer rather than assembling it de novo. Excess hormone occupies site 1 on separate receptors and blocks dimerisation, which is why the dose-response curve is bell-shaped.',
+        iconName: 'Combine',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 3,
+        title: 'JAK2-STAT5B switches on IGF-1 transcription in the liver',
+        laymanDesc:
+          'The receptor sends a signal into the liver cell nucleus telling it to start producing the second messenger, IGF-1.',
+        molecularDetail:
+          'Receptor rotation activates the constitutively associated JAK2, phosphorylating GHR cytoplasmic tyrosines and recruiting STAT5B, which dimerises, enters the nucleus and drives IGF1 and IGFALS transcription. Loss-of-function STAT5B mutations produce growth hormone insensitivity with normal or high growth hormone and low IGF-1, which is the human experiment confirming this step.',
+        iconName: 'Dna',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 4,
+        title: 'IGF-1 circulates in a stabilising complex',
+        laymanDesc:
+          'The liver releases IGF-1 into the blood, wrapped in carrier proteins that stop it being cleared or acting where it should not.',
+        molecularDetail:
+          'IGF-1 is carried in a ternary complex with IGFBP-3 and the acid-labile subunit, which extends its half-life from minutes to roughly 12 to 15 hours and restricts capillary escape. This is why serum IGF-1 rather than growth hormone is the practical monitoring assay.',
+        iconName: 'Shield',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 5,
+        title: 'Growth plate chondrocytes divide and lay down bone',
+        laymanDesc:
+          'At the growing ends of the long bones, cartilage cells multiply, enlarge and are replaced by bone, and the bone gets longer.',
+        molecularDetail:
+          'IGF-1 acts on IGF1R in the proliferative and hypertrophic zones of the epiphyseal growth plate, driving chondrocyte proliferation and hypertrophy followed by endochondral ossification. Growth hormone also acts directly on resting-zone chondrocytes, so the endocrine and paracrine routes are additive.',
+        iconName: 'Bone',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'Height gained, until the plates fuse',
+        laymanDesc:
+          'The result is faster growth for as long as the growth plates remain open. Once oestrogen closes them at the end of puberty, no amount of the drug adds height.',
+        molecularDetail:
+          'Oestrogen-driven epiphyseal fusion is an absolute ceiling on this mechanism, which is why the therapeutic window is childhood and why treatment started late gains less. In idiopathic short stature the randomised adult height gain is 0.51 to 0.65 SDS, roughly 3.7 to 4 cm.',
+        iconName: 'TrendingUp',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Leschek 2004 idiopathic short stature trial (predates ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 68,
+        primaryEndpoint: 'Adult height standard deviation score versus placebo',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.02 (0.51 SDS, 3.7 cm; 95% CI 0.10-0.92 SDS)',
+        unreportedAdverseSignals:
+          'Adult height was available for only 33 of the 68 randomised children, which is a substantial attrition for the primary endpoint and is rarely quoted alongside the 3.7 cm figure.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'Deodati and Cianfarani 2011 systematic review (3 pooled randomised trials)',
+        phase: 'Systematic review of controlled trials',
+        sampleSize: 115,
+        primaryEndpoint: 'Adult height standard deviation score',
+        endpointMet: true,
+        statisticalPValue: 'Adult height 0.65 SDS above controls (about 4 cm)',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Liu 2007 healthy elderly systematic review (18 study populations)',
+        phase: 'Systematic review of randomised trials',
+        sampleSize: 220,
+        primaryEndpoint: 'Body composition, bone density and adverse events in healthy elderly adults',
+        endpointMet: false,
+        statisticalPValue: 'p < 0.001 for body composition change; no change in bone density; excess adverse events',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Idiopathic short stature: adult height 0.51 SDS (3.7 cm) above placebo in the randomised trial',
+        'Pooled randomised evidence: 0.65 SDS, about 4 cm, across 115 children',
+        'Healthy elderly adults: fat mass -2.1 kg, lean mass +2.1 kg, no change in bone density, more adverse events',
+        'SAGhE cohort: standardised mortality ratio 1.1 in low-risk treated patients across 400,000 person-years',
+      ],
+      unsupportedInferences: [
+        'That 3 to 4 cm of adult height improves psychosocial outcomes in a child with no hormone deficiency',
+        'That the body composition changes in Rudman 1990 represent reversal of ageing',
+        'That growth hormone response in idiopathic short stature is predictable in an individual child; the review calls individual response highly variable',
+      ],
+      whatFailedInitially: [
+        'Cadaveric pituitary growth hormone caused 226 cases of iatrogenic Creutzfeldt-Jakob disease and was abandoned in 1985',
+        'Anti-ageing use was tested in randomised trials and produced adverse events without benefit; the authors recommended against it',
+      ],
+      realWorldOutcome: [
+        'Recombinant somatropin removed prion transmission risk entirely and made supply effectively unlimited',
+        'The 2003 US idiopathic short stature approval extended treatment to children with no measurable hormone abnormality, and that indication remains the most contested part of this drug use',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection, lyophilised powder in multi-dose cartridges reconstituted with preserved diluent',
+      description:
+        'Sterile lyophilised powder reconstituted to approximately pH 7.5 and injected daily, typically in the evening to approximate the natural nocturnal pulse. The product is oxygen sensitive, which shapes the cartridge and diluent design.',
+      safetyProfile:
+        'Not for patients with acute critical illness, active malignancy, active proliferative diabetic retinopathy, or in Prader-Willi syndrome with severe obesity or severe respiratory impairment, where deaths have been reported. Intracranial hypertension, slipped capital femoral epiphysis, scoliosis progression, glucose intolerance, hypothyroidism and fluid retention are labelled risks.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will growth hormone make a short but healthy child tall?',
+        a: 'It will make them about 3 to 4 cm taller as an adult, on average, after several years of daily injections. It will not move a child from short to tall. Whether that gain is worth the treatment is a value judgement, and the trials do not answer it because they measured centimetres and not wellbeing.',
+        auditNote:
+          'Leschek 2004 (doi:10.1210/jc.2003-031457) and the 2011 BMJ systematic review (doi:10.1136/bmj.c7157) are the two randomised sources for this number.',
+      },
+      {
+        q: 'Is it the same as the anti-ageing growth hormone sold online?',
+        a: 'The molecule is the same. The evidence is not. In healthy elderly adults, randomised trials found about 2 kg of fat traded for 2 kg of lean mass, no change in bone density, and significantly more oedema, joint pain, carpal tunnel syndrome and gynaecomastia. The systematic review concluded it cannot be recommended as an anti-ageing therapy. Distribution for that purpose is illegal in the United States.',
+      },
+      {
+        q: 'Why was it made from cadavers before, and what happened?',
+        a: 'There was no other source. Human growth hormone is species-specific, so animal hormone does not work, and the only supply was pituitary glands collected at autopsy. Some donors had undiagnosed Creutzfeldt-Jakob disease and the purification did not remove the prion. 226 people worldwide died as a result, some decades later. Recombinant production ended that risk entirely.',
+      },
+      {
+        q: 'Does it cause cancer?',
+        a: 'The SAGhE cohort of 24,232 treated children found no increase in all-cause mortality in those treated for isolated deficiency or idiopathic short stature, and no relationship between dose and mortality. Circulatory and haematological cause-specific mortality was raised across risk groups, and the authors call for continued surveillance. The label contraindicates use in active malignancy.',
+      },
+      {
+        q: 'Nobody has measured what?',
+        a: 'Whether treating idiopathic short stature changes anything a person cares about as an adult besides height. No randomised trial has followed treated and untreated children into adulthood measuring employment, relationships, mental health or self-esteem. The indication rests on an assumption that has been in place since 2003 and has never been tested.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Leschek EW et al. Effect of growth hormone treatment on adult height in peripubertal children with idiopathic short stature: a randomized, double-blind, placebo-controlled trial. J Clin Endocrinol Metab 2004;89:3140-3148',
+        identifier: '10.1210/jc.2003-031457',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Deodati A, Cianfarani S. Impact of growth hormone therapy on adult height of children with idiopathic short stature: systematic review. BMJ 2011;342:c7157',
+        identifier: '10.1136/bmj.c7157',
+        kind: 'doi',
+      },
+      {
+        label: 'Liu H et al. Systematic review: the safety and efficacy of growth hormone in the healthy elderly. Ann Intern Med 2007;146:104-115',
+        identifier: '10.7326/0003-4819-146-2-200701160-00005',
+        kind: 'doi',
+      },
+      {
+        label: 'Rudman D et al. Effects of human growth hormone in men over 60 years old. N Engl J Med 1990;323:1-6',
+        identifier: '10.1056/NEJM199007053230101',
+        kind: 'doi',
+      },
+      {
+        label: 'Brown P et al. Iatrogenic Creutzfeldt-Jakob disease, final assessment. Emerg Infect Dis 2012;18:901-907',
+        identifier: '10.3201/eid1806.120116',
+        kind: 'doi',
+      },
+      {
+        label: 'Sävendahl L et al. Long-term mortality after childhood growth hormone treatment: the SAGhE cohort study. Lancet Diabetes Endocrinol 2020;8:683-692',
+        identifier: '10.1016/S2213-8587(20)30163-7',
+        kind: 'doi',
+      },
+      {
+        label: 'HUMATROPE (somatropin) for injection — US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a774e1ae-3997-49ee-8b0e-99a2b315d409',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Drugs@FDA: HUMATROPE, BLA 019640, original approval 16 October 1986; efficacy supplement 33 (idiopathic short stature) approved 25 July 2003',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=019640',
+        kind: 'regulatory',
+      },
+      {
+        label: 'UniProt P01241 — human somatotropin, mature 191-residue chain',
+        identifier: 'https://rest.uniprot.org/uniprotkb/P01241',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // 7. Etanercept
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'etanercept',
+    name: 'Etanercept',
+    tradeName: 'Enbrel',
+    sponsor: 'Immunex, now Amgen; Pfizer outside the United States and Canada',
+    targetGene: 'TNF',
+    targetProtein: 'Tumour necrosis factor alpha (TNF-alpha) and lymphotoxin alpha',
+    modality: 'Recombinant Protein / Biologic',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1998,
+    indication:
+      'Rheumatoid arthritis, polyarticular juvenile idiopathic arthritis, psoriatic arthritis, ankylosing spondylitis and plaque psoriasis',
+    patientFriendlyIndication: 'Rheumatoid arthritis, psoriasis and related long-term inflammatory diseases',
+    anatomicalSite: 'Extracellular fluid, inflamed synovium and skin',
+    conditionContext: {
+      conditionExplainer:
+        'TNF-alpha is a short-range alarm signal. Immune cells release it to call other cells to a site of infection. In rheumatoid arthritis and psoriasis that alarm keeps sounding in tissue where there is no infection, and the cells that answer it destroy cartilage, bone and skin.',
+      whyItMatters:
+        'Joint erosion in rheumatoid arthritis happens early and does not reverse. The measured value of a TNF blocker is not just less pain; it is joints that never deform, quantified on serial radiographs with the modified Sharp score.',
+      whoTakesThis:
+        'Adults and children with moderate to severe inflammatory arthritis or psoriasis that methotrexate or another conventional agent has not controlled.',
+      clinicalGoals:
+        'Reach low disease activity or remission and halt radiographic progression, while keeping the patient off long-term corticosteroids.',
+    },
+    oneSentenceVerdict:
+      'A dimeric decoy receptor built from the p75 TNF receptor fused to an antibody Fc tail, which soaks up TNF before cells see it; 59% of patients reached an ACR20 response at six months against 11% on placebo, and the same molecule increased mortality when it was tried in septic shock.',
+    laymanHowItWorks:
+      'Your cells listen for TNF using a receptor on their surface. Etanercept is that receptor, cut off the cell and glued to the tail end of an antibody so it stays in the blood instead of being cleared in minutes. It floats around as a decoy: TNF binds it and is taken out of circulation before it reaches a real cell. Nothing is being blocked or destroyed. The signal is simply being intercepted.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 89,
+    substitutes: {
+      summary:
+        'Methotrexate remains the anchor drug and costs a few dollars a month; the trial that made this class standard of care showed that methotrexate plus etanercept beat either alone. Anti-TNF monoclonal antibodies work where etanercept does not, which is a genuine mechanistic difference. No food or supplement has been shown to stop radiographic joint erosion.',
+      conventionalRx: [
+        {
+          name: 'Methotrexate',
+          class: 'Conventional synthetic DMARD (antifolate)',
+          howItCompares:
+            'The comparator in TEMPO. Etanercept alone beat methotrexate alone on ACR-N area under the curve and on joint damage, and the combination beat both.',
+          typicalCost: '$15 - $40 / month (generic oral tablets)',
+          prosAndCons:
+            'Pros: decades of outcome data, low cost, combines with every biologic. Cons: nausea, mouth ulcers, requires liver and blood monitoring, contraindicated in pregnancy.',
+        },
+        {
+          name: 'Adalimumab and infliximab',
+          class: 'Anti-TNF monoclonal antibodies',
+          howItCompares:
+            'Comparable in rheumatoid arthritis. Unlike etanercept they work in Crohn disease and ulcerative colitis, where etanercept failed a randomised trial outright.',
+          typicalCost: 'Approximately $40,000 - $90,000 / year US list, considerably lower for biosimilars',
+          prosAndCons:
+            'Pros: effective across inflammatory bowel disease as well as arthritis. Cons: higher rates of antibody formation against the drug, and infliximab requires infusion.',
+        },
+        {
+          name: 'Etanercept biosimilars (Erelzi, Eticovo)',
+          class: 'Biosimilar TNFR-Fc fusion protein',
+          howItCompares:
+            'Same molecule. Erelzi was approved on 30 August 2016 and Eticovo on 25 April 2019, and neither has launched in the United States because of patent litigation.',
+          typicalCost: 'Available in Europe at substantial discounts; not marketed in the US',
+          prosAndCons:
+            'Pros: approved and available elsewhere at lower cost. Cons: a US patient cannot buy them, which is a legal fact rather than a clinical one.',
+        },
+        {
+          name: 'JAK inhibitors and IL-17 or IL-23 blockers',
+          class: 'Oral kinase inhibitors and alternative cytokine blockade',
+          howItCompares:
+            'Different targets in the same inflammatory network. IL-17 and IL-23 blockade outperforms TNF blockade in plaque psoriasis; JAK inhibitors give an oral route.',
+          typicalCost: 'Broadly comparable to anti-TNF list prices',
+          prosAndCons:
+            'Pros: options after TNF failure, and better skin clearance for psoriasis. Cons: JAK inhibitors carry a boxed warning for mortality, malignancy, major cardiovascular events and thrombosis.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Marine omega-3 fatty acids (EPA and DHA)',
+          activeCompound: 'Eicosapentaenoic and docosahexaenoic acid',
+          biologicalMechanism:
+            'Displace arachidonic acid in membrane phospholipids, shifting eicosanoid production toward less inflammatory 3-series prostaglandins and generating resolvins. Measured effects are on joint tenderness and NSAID use, not on radiographic erosion.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: '2 - 3 g combined EPA and DHA daily from oily fish or supplements',
+          monthlyCost: '$15 - $35 / month',
+        },
+        {
+          name: 'Mediterranean dietary pattern',
+          activeCompound: 'Polyphenols, monounsaturated fat, dietary fibre',
+          biologicalMechanism:
+            'Associated with lower circulating CRP and IL-6 in observational and some interventional studies. Acts on the inflammatory background rather than on the TNF axis specifically.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Whole dietary pattern rather than a single component',
+          monthlyCost: 'No additional cost, and often lower',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Tuberculosis screening before starting, and vigilance during',
+          action: 'Have latent tuberculosis testing completed before the first dose and know the symptoms to report.',
+          patientImpact:
+            'TNF is required to hold tuberculosis granulomas together. Blocking it reactivates latent infection, often in disseminated or extrapulmonary form that is easy to miss.',
+          clinicalPrecaution:
+            'This is a boxed warning, not general advice. Testing before treatment and monitoring during it is required even if the initial test was negative.',
+        },
+        {
+          name: 'Cold chain discipline for the pen',
+          action: 'Keep prefilled syringes refrigerated and do not use a pen that has been frozen or left warm.',
+          patientImpact:
+            'Fusion proteins aggregate when temperature-abused. Aggregates are the leading suspect in immunogenicity, and an aggregated dose is both less effective and more likely to provoke antibodies.',
+          clinicalPrecaution:
+            'Room-temperature excursions have defined limits in the patient instructions. Follow the number in the leaflet rather than a guess.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      molecularWeight: 'Approximately 150 kDa; 934 amino acids across the dimer',
+      targetReceptorAffinity:
+        'Binds soluble TNF-alpha and lymphotoxin alpha as a dimeric decoy; the two receptor arms give avidity a monomeric receptor does not have',
+      structureSource: {
+        label:
+          'ENBREL US prescribing information (Description: dimeric fusion protein of the extracellular ligand-binding portion of the human p75 TNF receptor linked to the Fc portion of human IgG1, 934 amino acids, apparent molecular weight approximately 150 kilodaltons)',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a002b40c-097d-47a5-957f-7a7b1807af7f',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'et-1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'CHO cell bank and glycosylation baseline',
+          description:
+            'Release the Chinese hamster ovary working cell bank expressing the TNFR2-Fc fusion. Etanercept carries both N- and O-linked glycans across the receptor and hinge regions, and the glycan profile is fixed at the cell line and process level rather than corrected downstream.',
+          reagentsAndBuffer:
+            'Gene copy qPCR, viral safety panels, pilot-scale glycan map by HILIC-UPLC as the comparability baseline',
+        },
+        {
+          id: 'et-2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fed-batch mammalian bioreactor expression',
+          description:
+            'Express the secreted fusion protein in fed-batch culture. Dimerisation occurs intracellularly through the IgG1 hinge disulfides; the fraction of correctly assembled dimer versus misassembled and clipped species is a process attribute that must be controlled here rather than purified later.',
+          reagentsAndBuffer:
+            'Chemically defined serum-free medium, glucose and amino acid feeds, controlled dissolved oxygen and pH, harvest by depth filtration',
+          dependsOnStepId: 'et-1',
+        },
+        {
+          id: 'et-3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Protein A capture with viral clearance',
+          description:
+            'Capture on Protein A through the IgG1 Fc, then perform a low-pH viral inactivation hold and nanofiltration. The Fc is included in the molecule partly to make exactly this purification platform available.',
+          reagentsAndBuffer:
+            'Protein A resin, citrate elution at pH 3.5, low-pH hold, 20 nm virus filter',
+          dependsOnStepId: 'et-2',
+        },
+        {
+          id: 'et-4',
+          stepNumber: 4,
+          phase: 'Purification',
+          name: 'Polishing chromatography and arginine formulation',
+          description:
+            'Remove aggregate, clipped and misfolded species by ion exchange and hydrophobic interaction, then formulate at pH 6.3 with L-arginine and sucrose, which are present specifically to suppress aggregation of this notoriously aggregation-prone fusion.',
+          reagentsAndBuffer:
+            '25 mM L-arginine hydrochloride, 120 mM sodium chloride, 1% sucrose, final pH 6.3 plus or minus 0.2',
+          dependsOnStepId: 'et-3',
+        },
+        {
+          id: 'et-5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'TNF neutralisation bioassay and aggregate release testing',
+          description:
+            'Quantify potency by inhibition of TNF-induced cytotoxicity in a TNF-sensitive cell line, and release on aggregate content by size-exclusion chromatography with multi-angle light scattering.',
+          reagentsAndBuffer:
+            'L929 or WEHI-13VAR TNF-sensitive cell line with actinomycin D, recombinant human TNF-alpha, SEC-MALS in phosphate-buffered saline',
+          dependsOnStepId: 'et-4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'et-a1',
+        category: 'measured',
+        title: 'Registration trial: 59% ACR20 at six months against 11% on placebo',
+        laymanSummary:
+          'In 234 people whose rheumatoid arthritis had not responded to conventional drugs, roughly six in ten improved by at least 20% on the standard composite measure, against about one in ten on placebo.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled trial with blinded joint assessors across 13 North American centres. Twice-weekly subcutaneous etanercept 10 mg or 25 mg or placebo for six months. At three months 62% of the 25 mg group versus 23% of placebo achieved ACR20 (p < 0.001). At six months 59% versus 11% achieved ACR20 (p < 0.001) and 40% versus 5% achieved ACR50 (p < 0.01). Mean reduction in tender and swollen joint counts at six months was 56% and 47% on 25 mg versus 6% and -7% on placebo.',
+        evidenceSource: 'Moreland LW et al. Ann Intern Med 1999;130:478-486',
+        doi: '10.7326/0003-4819-130-6-199903160-00004',
+        measuredMetric: 'ACR20 at six months 59% versus 11% (p < 0.001); ACR50 40% versus 5%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'et-a2',
+        category: 'measured',
+        title: 'TEMPO: joint damage stopped and partially reversed on combination therapy',
+        laymanSummary:
+          'In 682 patients followed for a year with serial X-rays, the combination of etanercept and methotrexate did not merely slow joint destruction. The average damage score went slightly backwards.',
+        technicalDetails:
+          'Double-blind randomised trial of etanercept 25 mg twice weekly, oral methotrexate up to 20 mg weekly, or the combination. Primary efficacy endpoint ACR-N area under the curve over 24 weeks: 18.3%-years for combination versus 14.7% for etanercept alone (p < 0.0001) and 12.2% for methotrexate alone (p < 0.0001). Primary radiographic endpoint, change in modified Sharp score to week 52: -0.54 (95% CI -1.00 to -0.07) for combination, 0.52 for etanercept alone and 2.80 for methotrexate alone. Infection and adverse event rates were similar across groups.',
+        evidenceSource: 'Klareskog L et al. Lancet 2004;363:675-681',
+        doi: '10.1016/S0140-6736(04)15640-7',
+        measuredMetric: 'Modified Sharp score change at 52 weeks: -0.54 combination versus +2.80 methotrexate alone',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'et-a3',
+        category: 'failed',
+        title: 'In septic shock the same molecule killed people, dose-dependently',
+        laymanSummary:
+          'TNF blockade was tried first in sepsis, where TNF is the central mediator. Mortality rose with dose: 30% on placebo, 48% on the middle dose, 53% on the high dose.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled multicentre trial of a single intravenous infusion of TNFR:Fc at 0.15, 0.45 or 1.5 mg/kg in 141 patients with septic shock. Primary endpoint all-cause 28-day mortality. Deaths: 10 of 33 on placebo (30%), 9 of 30 on low dose (30%), 14 of 29 on middle dose (48%) and 26 of 49 on high dose (53%); p = 0.02 for the dose-response relation. Baseline severity differences did not account for the excess. The paper concluded that higher doses appear to be associated with increased mortality.',
+        evidenceSource: 'Fisher CJ Jr et al. N Engl J Med 1996;334:1697-1702',
+        doi: '10.1056/NEJM199606273342603',
+        inferredClaim:
+          'That because TNF drives the pathology of septic shock, neutralising TNF will improve survival in septic shock',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'et-a4',
+        category: 'failed',
+        title: 'Two heart failure trials were stopped early for futility',
+        laymanSummary:
+          'TNF is elevated in heart failure, so blocking it looked promising. Two trials totalling over 2,000 patients were stopped early because there was no benefit.',
+        technicalDetails:
+          'RECOVER randomised 1,123 patients with NYHA class II to IV heart failure and ejection fraction 0.30 or below to placebo or etanercept 25 mg weekly or twice weekly. RENAISSANCE randomised 925 patients to placebo or etanercept 25 mg twice or three times weekly. Both were terminated prematurely on prespecified stopping rules for lack of benefit. Etanercept had no effect on clinical status in RENAISSANCE (p = 0.17) or RECOVER (p = 0.34). The prespecified pooled analysis, RENEWAL, gave a relative risk of 1.1 (95% CI 0.91-1.33, p = 0.33) for death or heart failure hospitalisation.',
+        evidenceSource: 'Mann DL et al. Circulation 2004;109:1594-1602',
+        doi: '10.1161/01.CIR.0000124490.27666.B2',
+        inferredClaim:
+          'That elevated TNF in heart failure is causal and therefore a treatable target',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'et-a5',
+        category: 'failed',
+        title: 'It does not work in Crohn disease, and the antibodies do',
+        laymanSummary:
+          'A trial in 43 people with active Crohn disease found 39% responded to etanercept and 45% to placebo. Anti-TNF antibodies work well in the same disease. Blocking TNF is not one thing.',
+        technicalDetails:
+          'Eight-week randomised, double-blind, placebo-controlled trial of subcutaneous etanercept 25 mg twice weekly in 43 patients with moderate to severe Crohn disease. Clinical response at week 4, defined as a fall of at least 70 points in the Crohn Disease Activity Index or an index below 150, occurred in 39% of etanercept patients versus 45% of placebo patients (p = 0.763). Adverse event rates were similar. Infliximab and adalimumab, which are anti-TNF monoclonal antibodies, are effective in the same disease. The mechanistic candidates for the difference include binding to transmembrane TNF and induction of apoptosis in lamina propria T cells, neither of which etanercept does the way an antibody does.',
+        evidenceSource: 'Sandborn WJ et al. Gastroenterology 2001;121:1088-1094',
+        doi: '10.1053/gast.2001.28674',
+        inferredClaim:
+          'That drugs described as TNF blockers are interchangeable because they share a target',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'et-a6',
+        category: 'conclusion_shift',
+        title: 'Approved biosimilars that no US patient can buy',
+        laymanSummary:
+          'Two etanercept biosimilars have been approved by the FDA, one in 2016 and one in 2019. Neither has launched in the United States, because of patents on a drug first approved in 1998.',
+        technicalDetails:
+          'Erelzi (etanercept-szzs, BLA 761042) was approved 30 August 2016 and Eticovo (etanercept-ykro, BLA 761066) on 25 April 2019. Neither is marketed in the United States. Etanercept biosimilars have been available in Europe since 2016. The gap between regulatory approval and patient access here is a legal artefact and not a scientific one, and it is the clearest illustration in this modality group that biosimilar approval and biosimilar availability are different events.',
+        evidenceSource: 'Drugs@FDA, BLA 761042 (Erelzi) and BLA 761066 (Eticovo)',
+        measuredMetric: 'Two US biosimilar approvals, 2016 and 2019; zero US launches',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Injected under the skin, once or twice a week',
+        laymanDesc:
+          'A subcutaneous injection from a prefilled syringe, autoinjector or reusable device, typically 50 mg once a week.',
+        molecularDetail:
+          'Subcutaneous bioavailability is roughly 60% with a terminal half-life of about 70 to 100 hours, considerably shorter than an IgG monoclonal antibody because the fusion protein engages FcRn recycling less efficiently.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The Fc tail keeps it in circulation',
+        laymanDesc:
+          'The antibody tail is not there to attack anything. It is there so the molecule lasts days instead of minutes.',
+        molecularDetail:
+          'The IgG1 CH2 and CH3 domains plus hinge, without CH1, provide FcRn-mediated recycling from the endosome and force dimerisation. Omitting CH1 removes the light chain requirement and the assembly problem that would come with it.',
+        iconName: 'Shield',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Two receptor arms capture TNF trimers',
+        laymanDesc:
+          'Each molecule carries two copies of the natural TNF receptor, so it grips the signal much more tightly than a single loose receptor could.',
+        molecularDetail:
+          'TNF-alpha is a homotrimer with three receptor-binding grooves. The dimeric decoy engages more than one groove, giving an avidity gain of orders of magnitude over the monomeric soluble p75 receptor. Etanercept also binds lymphotoxin alpha, which the anti-TNF antibodies do not.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Bound TNF never reaches a cell',
+        laymanDesc:
+          'Captured TNF cannot dock onto a real receptor on a real cell, so the alarm signal is never received.',
+        molecularDetail:
+          'Competitive sequestration of soluble TNF prevents engagement of TNFR1 and TNFR2 on synoviocytes, endothelium and leucocytes. Etanercept binds transmembrane TNF less stably than an anti-TNF antibody and does not induce reverse signalling or apoptosis in mucosal T cells, which is the leading explanation for its failure in Crohn disease.',
+        iconName: 'ShieldOff',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The inflammatory cascade downstream shuts down',
+        laymanDesc:
+          'Without the TNF signal, the cells stop calling in reinforcements and stop producing the enzymes that dissolve cartilage.',
+        molecularDetail:
+          'NF-kB activation falls in synovial fibroblasts and macrophages, reducing IL-1, IL-6, GM-CSF, matrix metalloproteinase and adhesion molecule expression, and lowering RANKL-driven osteoclast activation at the bone-pannus interface.',
+        iconName: 'Lock',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 6,
+        title: 'Symptoms fall, and erosion stops on the X-ray',
+        laymanDesc:
+          'Joints hurt and swell less within weeks. On serial X-rays over a year, the structural damage stops advancing and on combination therapy it went slightly backwards.',
+        molecularDetail:
+          'ACR20 response 59% versus 11% at six months against placebo. Modified Sharp score change at 52 weeks was -0.54 for etanercept plus methotrexate against +2.80 for methotrexate alone, meaning the combination arm ended the year with slightly less measured damage than it started with.',
+        iconName: 'Bone',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Moreland 1999 registration trial (predates ClinicalTrials.gov registration)',
+        phase: 'Phase 3',
+        sampleSize: 234,
+        primaryEndpoint: 'ACR20 and ACR50 response at three and six months',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.001 (ACR20 59% versus 11% at six months)',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'TEMPO (Klareskog 2004)',
+        phase: 'Phase 3',
+        sampleSize: 686,
+        primaryEndpoint: 'ACR-N area under the curve over 24 weeks and modified Sharp score change at 52 weeks',
+        endpointMet: true,
+        statisticalPValue: 'p < 0.0001 for combination versus each monotherapy',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Soluble TNF Receptor Sepsis Study (Fisher 1996)',
+        phase: 'Phase 2',
+        sampleSize: 141,
+        primaryEndpoint: 'All-cause mortality at 28 days in septic shock',
+        endpointMet: false,
+        statisticalPValue: 'p = 0.02 for a dose-response relation in the direction of harm',
+        unreportedAdverseSignals:
+          'Mortality rose monotonically with dose: 30%, 30%, 48%, 53%. This trial is rarely cited in materials about the marketed product.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'RENEWAL, pooling RECOVER and RENAISSANCE (Mann 2004)',
+        phase: 'Phase 3',
+        sampleSize: 2048,
+        primaryEndpoint: 'Death or hospitalisation for chronic heart failure',
+        endpointMet: false,
+        statisticalPValue: 'p = 0.33 (relative risk 1.1, 95% CI 0.91-1.33); both trials stopped early for futility',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Sandborn 2001 Crohn disease trial',
+        phase: 'Phase 2',
+        sampleSize: 43,
+        primaryEndpoint: 'Clinical response at week 4 by Crohn Disease Activity Index',
+        endpointMet: false,
+        statisticalPValue: 'p = 0.763 (39% etanercept versus 45% placebo)',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'ACR20 at six months: 59% on etanercept 25 mg versus 11% on placebo',
+        'Modified Sharp score at 52 weeks: -0.54 on etanercept plus methotrexate versus +2.80 on methotrexate alone',
+        'Septic shock 28-day mortality rose with dose: 30%, 30%, 48%, 53% (p = 0.02 for dose-response)',
+        'Crohn disease clinical response: 39% on etanercept versus 45% on placebo',
+      ],
+      unsupportedInferences: [
+        'That neutralising a cytokine that is elevated in a disease will treat that disease — sepsis and heart failure both falsified this',
+        'That TNF blockers are interchangeable; etanercept fails in inflammatory bowel disease where the antibodies work',
+        'That an approved biosimilar means an available biosimilar; two have been approved in the US and neither is sold there',
+      ],
+      whatFailedInitially: [
+        'Septic shock, where higher doses were associated with higher mortality',
+        'Chronic heart failure, where RECOVER and RENAISSANCE were both stopped early for futility',
+        'Crohn disease, where a randomised trial found it no better than placebo',
+      ],
+      realWorldOutcome: [
+        'TNF blockade changed the natural history of rheumatoid arthritis: joint deformity that used to be routine became avoidable',
+        'Serious infection and tuberculosis reactivation became a permanent management burden of the class, carried in a boxed warning',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous injection: prefilled syringe, autoinjector, single-dose vial, or cartridge with a reusable autoinjector',
+      description:
+        'Clear, colourless, preservative-free solution formulated at pH 6.3 with L-arginine, sodium chloride and sucrose. A lyophilised multiple-dose vial presentation exists and is reconstituted with bacteriostatic water containing benzyl alcohol, which is why that presentation is not for neonates.',
+      safetyProfile:
+        'Boxed warning for serious infections, including tuberculosis, bacterial sepsis and invasive fungal infection, and for lymphoma and other malignancies in children and adolescents. Latent tuberculosis testing is required before starting. Demyelinating disease, new or worsening heart failure, cytopenias and lupus-like syndromes are labelled risks.',
+    },
+    commonQuestions: [
+      {
+        q: 'If etanercept and adalimumab both block TNF, why does only one work in Crohn disease?',
+        a: 'Because blocking TNF is not one action. An antibody binds the membrane-bound form of TNF stably enough to trigger apoptosis in gut T cells and to signal backwards into the cell carrying it. A decoy receptor mostly mops up the soluble form. In rheumatoid arthritis that difference does not matter; in the bowel it does. A randomised trial found etanercept no better than placebo in Crohn disease.',
+        auditNote:
+          'This is one of the cleanest demonstrations in pharmacology that shared target does not mean shared effect.',
+      },
+      {
+        q: 'Why did the same molecule kill people in sepsis?',
+        a: 'TNF is a defence signal as well as a damage signal. In septic shock the body needs it to contain the infection. Removing it in a controlled autoimmune setting is useful; removing it while bacteria are multiplying is not. Mortality rose with dose in the sepsis trial, and that finding is the reason the boxed warning about serious infection is on the label at all.',
+      },
+      {
+        q: 'Why can I not buy a cheaper biosimilar in the United States?',
+        a: 'Two have been approved by the FDA, in 2016 and 2019, and neither has been launched because of patent litigation over a product first approved in 1998. Etanercept biosimilars are available in Europe. This is a legal outcome and not a scientific one, and it is worth knowing that the barrier is not safety.',
+      },
+      {
+        q: 'Does it stop joint damage or just relieve pain?',
+        a: 'Both, and the joint damage part is measured directly. In TEMPO the change in the modified Sharp radiographic score over 52 weeks was -0.54 for etanercept plus methotrexate against +2.80 for methotrexate alone. Negative means the average measured damage was slightly lower after a year than before it.',
+      },
+      {
+        q: 'Nobody has measured what?',
+        a: 'Whether etanercept differs from the anti-TNF antibodies on long-term mortality or serious infection in a head-to-head randomised trial. Choices between agents in this class are made on registry data, indication coverage and price, not on randomised comparisons that were never run.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Moreland LW et al. Etanercept therapy in rheumatoid arthritis. A randomized, controlled trial. Ann Intern Med 1999;130:478-486',
+        identifier: '10.7326/0003-4819-130-6-199903160-00004',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Klareskog L et al. Therapeutic effect of the combination of etanercept and methotrexate compared with each treatment alone in patients with rheumatoid arthritis (TEMPO). Lancet 2004;363:675-681',
+        identifier: '10.1016/S0140-6736(04)15640-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Fisher CJ Jr et al. Treatment of septic shock with the tumor necrosis factor receptor:Fc fusion protein. N Engl J Med 1996;334:1697-1702',
+        identifier: '10.1056/NEJM199606273342603',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mann DL et al. Targeted anticytokine therapy in patients with chronic heart failure: results of the Randomized Etanercept Worldwide Evaluation (RENEWAL). Circulation 2004;109:1594-1602',
+        identifier: '10.1161/01.CIR.0000124490.27666.B2',
+        kind: 'doi',
+      },
+      {
+        label: 'Sandborn WJ et al. Etanercept for active Crohn disease: a randomized, double-blind, placebo-controlled trial. Gastroenterology 2001;121:1088-1094',
+        identifier: '10.1053/gast.2001.28674',
+        kind: 'doi',
+      },
+      {
+        label: 'ENBREL (etanercept) injection — US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a002b40c-097d-47a5-957f-7a7b1807af7f',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: ENBREL, BLA 103795, original approval 2 November 1998',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=103795',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: ERELZI (etanercept-szzs), BLA 761042, approved 30 August 2016',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761042',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA: ETICOVO (etanercept-ykro), BLA 761066, approved 25 April 2019',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761066',
         kind: 'regulatory',
       },
     ],

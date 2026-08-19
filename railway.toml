@@ -1,3 +1,12 @@
+[build]
+builder = "NIXPACKS"
+
 [deploy]
+# Migrations run before the new container takes traffic. Without this, a deploy that adds a column
+# serves 500s from the moment it starts until someone remembers to run the migration by hand.
+preDeployCommand = "npm run db:migrate"
+
 healthcheckPath = "/healthz"
 healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3

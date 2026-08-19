@@ -2415,4 +2415,765 @@ export const ASO_DOSSIERS: SeedDossier[] = [
       { label: 'NEURO-TTR trial registration', identifier: 'NCT01737398', kind: 'nct' },
     ],
   },
+
+  // ---------------------------------------------------------------------------------------------
+  // Eplontersen
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'eplontersen',
+    name: 'Eplontersen',
+    tradeName: 'Wainua',
+    sponsor: 'Ionis Pharmaceuticals / AstraZeneca',
+    targetGene: 'TTR',
+    targetProtein: 'Transthyretin',
+    modality: 'ASO (Antisense Oligonucleotide)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2023,
+    indication: 'Polyneuropathy of hereditary transthyretin-mediated amyloidosis in adults',
+    patientFriendlyIndication: 'Hereditary ATTR Amyloidosis with Nerve Damage',
+    anatomicalSite: 'Liver hepatocyte, entered through the asialoglycoprotein receptor',
+    conditionContext: {
+      conditionExplainer:
+        'The same disease inotersen treats: a mutated TTR gene produces a protein that misfolds and deposits as amyloid in nerves and heart.',
+      whyItMatters:
+        'Eplontersen is the same 20-letter sequence as inotersen with a liver-targeting sugar cluster attached. It is the cleanest available demonstration that most of an antisense drug toxicity can be a delivery problem rather than a target problem.',
+      whoTakesThis:
+        'Adults with a confirmed TTR variant and polyneuropathy, by monthly subcutaneous autoinjector, without the weekly blood monitoring inotersen requires.',
+      clinicalGoals:
+        'Reduce circulating transthyretin by roughly 80 percent and hold neuropathy scores steady.',
+    },
+    oneSentenceVerdict:
+      'Inotersen with a triantennary GalNAc ligand attached: it cut serum transthyretin by 81.7 percent and held mNIS+7 essentially flat over 66 weeks, in an open-label trial whose placebo group was borrowed from a study that had finished six years earlier.',
+    laymanHowItWorks:
+      'This is the same antisense strand as inotersen with a three-armed sugar cluster bolted onto one end. Liver cells carry a receptor that grabs that sugar, so the drug is pulled into exactly the cells that make the problem protein instead of spreading everywhere. Because the delivery is so much more efficient, a monthly injection at a fraction of the dose does the same job, and the platelet and kidney problems that plagued the earlier drug did not appear.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 68,
+    substitutes: {
+      summary:
+        'Vutrisiran is the closest comparator: same target, subcutaneous, quarterly, silencing by RISC instead of RNase H. Stabilisers act on the protein instead of the transcript, and generic diflunisal has randomised evidence at a tiny fraction of the price.',
+      conventionalRx: [
+        {
+          name: 'Vutrisiran (Amvuttra)',
+          class: 'GalNAc-conjugated siRNA against TTR',
+          howItCompares:
+            'Uses the same liver-targeting ligand chemistry to deliver an siRNA rather than an antisense gapmer, dosed quarterly rather than monthly.',
+          typicalCost: 'About $477,000 / year at US wholesale acquisition cost',
+          prosAndCons:
+            'Pros: quarterly injection, extensive randomised programme in both neuropathy and cardiomyopathy. Cons: no head-to-head trial against eplontersen exists.',
+        },
+        {
+          name: 'Patisiran (Onpattro)',
+          class: 'Lipid nanoparticle siRNA against TTR',
+          howItCompares:
+            'The first-generation delivery approach for the same target: intravenous every three weeks with steroid and antihistamine premedication.',
+          typicalCost: 'Branded specialty pricing in the hundreds of thousands of dollars per year',
+          prosAndCons:
+            'Pros: long randomised record. Cons: infusion visits and premedication that subcutaneous agents avoid.',
+        },
+        {
+          name: 'Diflunisal (off-label)',
+          class: 'Generic NSAID and transthyretin tetramer stabiliser',
+          howItCompares:
+            'A randomised placebo-controlled trial showed reduced progression of neurological impairment over two years, at generic cost.',
+          typicalCost: 'Generic; typically under $60 / month in the US',
+          prosAndCons:
+            'Pros: by far the cheapest option with randomised support. Cons: NSAID renal and cardiac risks in a population with frequent cardiac involvement.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Vitamin A repletion under supervision',
+          action:
+            'Taking the labelled vitamin A supplement and reporting night-vision changes or eye dryness.',
+          patientImpact:
+            'Transthyretin carries retinol-binding protein. Cutting transthyretin by 80 percent cuts vitamin A transport with it, and ocular symptoms are the first sign.',
+          clinicalPrecaution:
+            'Supplementation is specified in the label and needs ophthalmology review if symptoms appear. Not a self-directed high-dose regimen.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'TCTTGGTTACATGAAATCCC',
+      chemicalFormula: 'C296H417N77O156P20S13Na20 (sodium salt, including the GalNAc ligand)',
+      molecularWeight: '9,046.1 Da (sodium salt)',
+      targetReceptorAffinity:
+        'Triantennary GalNAc binds hepatocyte asialoglycoprotein receptor; 5-10-5 MOE gapmer core recruits RNase H1 to TTR mRNA',
+      structureSource: {
+        label:
+          'WAINUA US prescribing information section 11 chemical name; identical base sequence to ISIS 420915 in Yu et al. Mol Ther Nucleic Acids 2017 Table 1',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7dcb847-71dd-4fff-82d0-d43a465fc096',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 's1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite and GalNAc ligand qualification',
+          description:
+            'Release-test the MOE and deoxy amidites for the gapmer core and, separately, the triantennary GalNAc phosphoramidite whose three sugar arms must all be intact for receptor avidity.',
+          reagentsAndBuffer:
+            'MOE and deoxy phosphoramidites, trishexylamino-C6-GalNAc3 phosphoramidite, Karl Fischer titration, anhydrous acetonitrile',
+        },
+        {
+          id: 's2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Mixed phosphodiester/phosphorothioate 5-10-5 gapmer assembly',
+          description:
+            'Twenty cycles with selective oxidation rather than sulfurisation at defined wing linkages, giving the mixed backbone that reduces protein binding away from the liver.',
+          reagentsAndBuffer:
+            'Dichloroacetic acid detritylation, 5-(ethylthio)-1H-tetrazole activator, phenylacetyl disulfide for thioate positions, iodine/water/pyridine for diester positions',
+          dependsOnStepId: 's1',
+        },
+        {
+          id: 's3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange purification of the conjugate',
+          description:
+            'Resolve the full-length conjugate from unconjugated oligonucleotide and from partially deacetylated GalNAc species, then exchange to the sodium salt.',
+          reagentsAndBuffer:
+            'Ammonia cleavage and deprotection, Source 30Q resin, sodium bromide gradient, tangential flow diafiltration',
+          dependsOnStepId: 's2',
+        },
+        {
+          id: 's4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Ligand integrity and receptor-binding confirmation',
+          description:
+            'Confirm the 5-prime trishexylamino-C6-GalNAc3 cluster is intact and measure binding to recombinant asialoglycoprotein receptor. A conjugate that lost one arm loses most of its avidity.',
+          reagentsAndBuffer:
+            'Recombinant human ASGPR1 extracellular domain, surface plasmon resonance running buffer with calcium, intact-mass LC-MS',
+          dependsOnStepId: 's3',
+        },
+        {
+          id: 's5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Receptor-mediated uptake and TTR knockdown in primary hepatocytes',
+          description:
+            'Compare free uptake of the conjugate against the unconjugated parent, then quantify TTR transcript and secreted protein. The uptake gap between the two is the entire eplontersen story.',
+          reagentsAndBuffer:
+            'Primary human hepatocytes, Williams E medium, TaqMan TTR probe set, transthyretin immunoassay, competition with free N-acetylgalactosamine',
+          dependsOnStepId: 's4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'epl-1',
+        category: 'measured',
+        title: 'Serum transthyretin fell 81.7 percent',
+        laymanSummary:
+          'The protein that misfolds in this disease dropped by more than four fifths in treated patients.',
+        technicalDetails:
+          'In NEURO-TTRansform (NCT04136184) the adjusted mean percentage reduction in serum transthyretin at week 65 was -81.7 percent with eplontersen against -11.2 percent in the comparison group, difference -70.4 percent (95 percent CI -75.2 to -65.7), p<0.001.',
+        evidenceSource: 'Coelho et al., JAMA 2023 (NEURO-TTRansform)',
+        doi: '10.1001/jama.2023.18688',
+        measuredMetric: 'Serum transthyretin -81.7 percent versus -11.2 percent, p<0.001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epl-2',
+        category: 'measured',
+        title: 'Neuropathy scores held flat: mNIS+7 change 0.3 against 25.1',
+        laymanSummary:
+          'Treated patients were essentially unchanged on the neuropathy scale over 66 weeks. The comparison group deteriorated by 25 points.',
+        technicalDetails:
+          'Adjusted mean change from baseline to week 66 in mNIS+7 was 0.3 with eplontersen against 25.1 in the comparison group, difference -24.8 (95 percent CI -31.0 to -18.6), p<0.001. Norfolk QoL-DN changed by -5.5 against 14.2, difference -19.7 (95 percent CI -25.6 to -13.8), p<0.001.',
+        evidenceSource: 'WAINUA US prescribing information, section 14, Table 2',
+        doi: '10.1001/jama.2023.18688',
+        measuredMetric: 'mNIS+7 difference -24.8 points at week 66, p<0.001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epl-3',
+        category: 'inferred',
+        title: 'The placebo group came from a different trial that ended six years earlier',
+        laymanSummary:
+          'Nobody in this trial received a placebo. The comparison group was the placebo arm of the 2013 to 2017 inotersen trial, reweighted statistically.',
+        technicalDetails:
+          'NEURO-TTRansform was open-label and single-group for the eplontersen arm, with 144 treated patients and a small 24-patient inotersen reference arm. Efficacy was assessed against the 60-patient placebo group from NEURO-TTR (NCT01737398), which ran from March 2013 to November 2017, using propensity-score weighting and an ANCOVA model. Background care for ATTR amyloidosis changed materially between those periods, and no weighting scheme can adjust for a confounder nobody recorded.',
+        evidenceSource: 'Coelho et al., JAMA 2023, design section; WAINUA label section 14',
+        doi: '10.1001/jama.2023.18688',
+        inferredClaim:
+          'That the mNIS+7 and quality-of-life differences are equivalent to a contemporaneous randomised placebo comparison',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'epl-4',
+        category: 'measured',
+        title: 'The boxed warning that defined inotersen did not recur',
+        laymanSummary:
+          'The same sequence, delivered efficiently to the liver, produced no boxed warning for platelets or kidneys.',
+        technicalDetails:
+          'Eplontersen carries no boxed warning and no requirement for weekly platelet counts. Adverse events leading to discontinuation occurred in 4 percent of the eplontersen group against 3 percent of the comparison group. Two deaths occurred in the eplontersen group, both attributed to known disease sequelae. Comparing label regimens, annual oligonucleotide exposure is roughly 0.6 g against roughly 14.8 g for inotersen.',
+        evidenceSource: 'WAINUA and TEGSEDI US prescribing information',
+        measuredMetric: 'No boxed warning; discontinuation for adverse events 4 percent versus 3 percent',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epl-5',
+        category: 'conclusion_shift',
+        title: 'Toxicity that looked like a class effect turned out to be a delivery problem',
+        laymanSummary:
+          'Phosphorothioate antisense drugs had a reputation for platelet and kidney trouble. Attaching a liver-targeting sugar to the identical sequence removed it.',
+        technicalDetails:
+          'The inotersen thrombocytopenia and glomerulonephritis signals were widely read as intrinsic to phosphorothioate chemistry. GalNAc conjugation plus a mixed phosphodiester backbone cut the dose needed for the same target engagement by more than an order of magnitude, and the signals did not reappear. The field conclusion moved from "this chemistry is toxic" to "this chemistry was being dosed far above what a targeted version needs".',
+        evidenceSource:
+          'Crooke et al., Nucleic Acid Therapeutics 2019, integrated assessment of GalNAc3-conjugated 2-prime-MOE ASOs',
+        doi: '10.1089/nat.2018.0753',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'epl-6',
+        category: 'inferred',
+        title: 'The cardiomyopathy question is still open',
+        laymanSummary:
+          'The approval covers nerve disease. Whether the drug helps the heart in ATTR cardiomyopathy is being tested in a separate trial that has not reported.',
+        technicalDetails:
+          'CARDIO-TTRansform (NCT04136171) enrolled 1,438 participants with transthyretin amyloid cardiomyopathy and is active but not recruiting. Until it reports, cardiac benefit for eplontersen is an inference from transthyretin reduction, not a measured outcome, and the US label makes no cardiomyopathy claim.',
+        evidenceSource: 'CARDIO-TTRansform trial record, ClinicalTrials.gov',
+        inferredClaim: 'That eplontersen reduces cardiovascular events in ATTR cardiomyopathy',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Monthly subcutaneous autoinjector',
+        laymanDesc: 'One small injection under the skin every four weeks, self-administered.',
+        molecularDetail:
+          'Single-dose autoinjector or prefilled syringe delivering 45 mg of eplontersen in 0.8 mL. Absorption from the subcutaneous depot into the systemic circulation precedes rapid hepatic extraction.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'The GalNAc cluster docks onto liver cells',
+        laymanDesc:
+          'Three sugar arms on one end of the molecule latch onto a receptor that only liver cells display in quantity.',
+        molecularDetail:
+          'Triantennary N-acetylgalactosamine binds the asialoglycoprotein receptor on hepatocytes with high avidity from multivalency. The receptor cycles from surface to endosome and back several times an hour, giving a high-throughput import route.',
+        iconName: 'Target',
+        visualStage: 'delivery',
+      },
+      {
+        step: 3,
+        title: 'Receptor-mediated endocytosis and endosomal release',
+        laymanDesc:
+          'The receptor carries the drug inside the cell and releases it as the internal compartment turns acidic.',
+        molecularDetail:
+          'Clathrin-mediated endocytosis followed by endosomal acidification, which lowers GalNAc affinity and frees the oligonucleotide. A small fraction escapes the endosome into the cytoplasm and nucleus, which is sufficient because the mechanism downstream is catalytic.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 4,
+        title: 'RNase H1 cleaves TTR messenger RNA',
+        laymanDesc:
+          'The strand pairs with the transthyretin instructions and an enzyme the cell already has cuts them up.',
+        molecularDetail:
+          'The central 10-deoxynucleotide gap forms a DNA:RNA heteroduplex recognised by RNase H1, which cleaves the RNA strand. The oligonucleotide is released intact and repeats the cycle.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Circulating transthyretin drops by about 80 percent',
+        laymanDesc:
+          'Far less of the misfolding protein reaches the blood, so less is available to deposit in nerves.',
+        molecularDetail:
+          'Hepatic secretion falls, reducing tetramer available for dissociation into amyloidogenic monomers. Retinol-binding-protein-4 transport falls with it, which is why vitamin A supplementation is labelled.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NEURO-TTRansform (NCT04136184)',
+        phase: 'Phase 3 (open label, external placebo control)',
+        sampleSize: 168,
+        primaryEndpoint:
+          'Change from baseline at week 65/66 in serum transthyretin, mNIS+7 and Norfolk QoL-DN, versus the placebo arm of NEURO-TTR',
+        endpointMet: true,
+        statisticalPValue: 'p<0.001 for all three endpoints',
+        unreportedAdverseSignals:
+          'No participant in this trial received placebo; the comparison group was drawn from a separate trial conducted between 2013 and 2017 and weighted by propensity score',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Serum transthyretin reduced by 81.7 percent at week 65',
+        'mNIS+7 change 0.3 with eplontersen against 25.1 in the external comparison group',
+        'Norfolk QoL-DN change -5.5 against 14.2',
+        'No boxed warning and no weekly platelet monitoring requirement',
+      ],
+      unsupportedInferences: [
+        'That the trial provides randomised placebo-controlled evidence; the placebo group came from a study that closed in 2017',
+        'That the drug reduces cardiovascular events; CARDIO-TTRansform has not reported',
+        'That eplontersen is superior to vutrisiran or patisiran; no head-to-head trial exists',
+      ],
+      whatFailedInitially: [
+        'The unconjugated parent molecule, inotersen, needed weekly dosing and weekly blood tests and carried a boxed warning',
+      ],
+      realWorldOutcome: [
+        'Monthly self-administration without routine platelet monitoring changed who can practically be treated',
+        'The GalNAc conjugation result reshaped the whole antisense field, not just this indication',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous GalNAc-conjugated antisense oligonucleotide, autoinjector',
+      description:
+        'Single-dose autoinjector or prefilled syringe with 45 mg of eplontersen in 0.8 mL, given every four weeks. The triantennary GalNAc ligand does the targeting; there is no lipid nanoparticle.',
+      safetyProfile:
+        'No boxed warning. Vitamin A deficiency is expected from transthyretin knockdown and supplementation is labelled, with ophthalmological referral for ocular symptoms. Injection-site reactions are the most common local event.',
+    },
+    commonQuestions: [
+      {
+        q: 'Was eplontersen compared against a placebo?',
+        a: 'Not a contemporaneous one. Every participant in NEURO-TTRansform received active drug. The comparison group was the placebo arm of the inotersen trial, which ran from 2013 to 2017, reweighted by propensity score. That is a legitimate and pre-specified design in a rare disease, and it is weaker than randomisation.',
+        auditNote:
+          'The trial is described in its own publication as open-label and single-group with a historical placebo group.',
+      },
+      {
+        q: 'Why is it so much safer than inotersen if the sequence is identical?',
+        a: 'Because the sugar cluster puts the drug where it is meant to act. Delivering the same sequence efficiently to hepatocytes means roughly 25 times less oligonucleotide per year reaching everything else, and the platelet and kidney signals that produced the inotersen boxed warning did not recur.',
+      },
+      {
+        q: 'Does it help the heart?',
+        a: 'Nobody has measured that yet. The approval is for polyneuropathy. CARDIO-TTRansform, with 1,438 participants in ATTR cardiomyopathy, is active but has not reported, so cardiac benefit remains an inference from transthyretin reduction.',
+      },
+      {
+        q: 'Why do I need vitamin A?',
+        a: 'Transthyretin is the carrier that moves retinol-binding protein around the body. Cutting transthyretin by 80 percent cuts vitamin A transport with it, so supplementation is written into the label and eye symptoms need review.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: false,
+    sources: [
+      {
+        label: 'WAINUA (eplontersen) US prescribing information, DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7dcb847-71dd-4fff-82d0-d43a465fc096',
+        kind: 'regulatory',
+      },
+      {
+        label:
+          'Coelho et al., Eplontersen for Hereditary Transthyretin Amyloidosis With Polyneuropathy, JAMA 2023',
+        identifier: '10.1001/jama.2023.18688',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Crooke et al., Integrated Assessment of the Clinical Performance of GalNAc3-Conjugated 2-prime-MOE ASOs, Nucleic Acid Therapeutics 2019',
+        identifier: '10.1089/nat.2018.0753',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Viney et al., Ligand conjugated antisense oligonucleotide for transthyretin amyloidosis: preclinical and phase 1 data, ESC Heart Failure 2021',
+        identifier: '10.1002/ehf2.13154',
+        kind: 'doi',
+      },
+      {
+        label: 'Wainzua EPAR, European Medicines Agency',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/wainzua',
+        kind: 'regulatory',
+      },
+      { label: 'NEURO-TTRansform trial registration', identifier: 'NCT04136184', kind: 'nct' },
+      { label: 'CARDIO-TTRansform trial registration', identifier: 'NCT04136171', kind: 'nct' },
+      { label: 'NEURO-TTR, source of the external placebo group', identifier: 'NCT01737398', kind: 'nct' },
+    ],
+  },
+
+  // ---------------------------------------------------------------------------------------------
+  // Tofersen
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'tofersen',
+    name: 'Tofersen',
+    tradeName: 'Qalsody',
+    sponsor: 'Biogen / Ionis Pharmaceuticals',
+    targetGene: 'SOD1',
+    targetProtein: 'Superoxide dismutase 1',
+    modality: 'ASO (Antisense Oligonucleotide)',
+    approvalStatus: 'Accelerated Approval',
+    approvalYear: 2023,
+    indication: 'Amyotrophic lateral sclerosis in adults with a mutation in the SOD1 gene',
+    patientFriendlyIndication: 'SOD1 Amyotrophic Lateral Sclerosis (ALS)',
+    anatomicalSite: 'Spinal cord and motor cortex neurons, reached through cerebrospinal fluid',
+    conditionContext: {
+      conditionExplainer:
+        'About 2 percent of people with ALS carry a mutation in SOD1. The mutant protein gains a toxic property rather than losing a useful one, so the motor neurons die from what the protein does, not from what it fails to do.',
+      whyItMatters:
+        'ALS kills within two to five years of symptom onset for most people. SOD1-ALS is the first form with a drug aimed at the specific genetic cause.',
+      whoTakesThis:
+        'Adults with genetically confirmed SOD1-ALS, by intrathecal injection, after loading doses and then monthly.',
+      clinicalGoals:
+        'Lower mutant SOD1 protein in the central nervous system. Whether that slows the disease is the question the confirmatory programme still has to answer.',
+    },
+    oneSentenceVerdict:
+      'The first drug approved for a genetic cause of ALS, cleared on a 55 percent fall in plasma neurofilament light chain after its clinical primary endpoint missed by a wide margin (difference 1.2 points on ALSFRS-R, p=0.97).',
+    laymanHowItWorks:
+      'In this form of ALS a faulty version of one protein poisons motor neurons. Tofersen is a short strand injected into the spinal fluid that pairs with the instructions for that protein so an enzyme destroys them, and the cell makes less of the poison. In the pivotal trial the amount of a marker of nerve damage in the blood fell sharply. The measure of how patients actually functioned did not separate from placebo.',
+    auditConfidence: 'Inference Overreach Found',
+    confidenceScore: 42,
+    substitutes: {
+      summary:
+        'Nothing else targets SOD1. The rest of ALS care is two modestly effective drugs and one intervention, non-invasive ventilation, with the largest randomised survival effect anyone has demonstrated in this disease.',
+      conventionalRx: [
+        {
+          name: 'Riluzole',
+          class: 'Glutamate release inhibitor',
+          howItCompares:
+            'The oldest ALS drug, with a survival effect measured in months rather than years. Applies to all ALS, not only SOD1.',
+          typicalCost: 'Generic; typically under $60 / month in the US',
+          prosAndCons:
+            'Pros: cheap, oral, decades of use. Cons: small effect size and liver enzyme monitoring.',
+        },
+        {
+          name: 'Edaravone (Radicava)',
+          class: 'Free radical scavenger',
+          howItCompares:
+            'Slowed ALSFRS-R decline in a narrowly selected early-disease population in a randomised trial; effect outside that population is unclear.',
+          typicalCost: 'Branded specialty pricing; oral and intravenous forms',
+          prosAndCons:
+            'Pros: randomised evidence on the same functional scale tofersen missed. Cons: the trial population was highly selected and the effect has been debated since.',
+        },
+        {
+          name: 'Non-invasive ventilation',
+          class: 'Respiratory support, not a drug',
+          howItCompares:
+            'A randomised controlled trial found a median survival benefit of about seven months, and a much larger quality-of-life effect, in patients with normal or moderately impaired bulbar function.',
+          typicalCost: 'Device and service cost; funded through respiratory services in most systems',
+          prosAndCons:
+            'Pros: the largest randomised survival effect established in ALS. Cons: tolerance is poor with severe bulbar involvement.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Maintaining body weight and calorie intake',
+          action:
+            'Dietitian-guided high-calorie intake, with early consideration of gastrostomy when swallowing declines.',
+          patientImpact:
+            'Weight loss is an independent predictor of shorter survival in ALS, and hypermetabolism means intake requirements are higher than they look.',
+          clinicalPrecaution:
+            'Managed with a specialist ALS dietitian and speech therapist. Aspiration risk rises as bulbar function falls.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'rna_sequence',
+      sequence5to3: 'CAGGATACATTTCTACAGCT',
+      chemicalFormula: 'C230H317N72O123P19S15',
+      molecularWeight: '7,127.86 Da',
+      targetReceptorAffinity:
+        '5-10-5 MOE gapmer with a mixed phosphorothioate/phosphodiester backbone; recruits RNase H1 to SOD1 mRNA',
+      structureSource: {
+        label:
+          'Cheng et al., BioDrugs 2024, which names tofersen and gives its 20-mer sequence; molecular formula and mass from the QALSODY label section 11',
+        identifier: '10.1007/s40259-024-00644-7',
+        kind: 'doi',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 's1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Amidite qualification and target-site specificity screen',
+          description:
+            'Release-test MOE and deoxy amidites, and confirm in silico and in vitro that the 20-mer does not have a near-complementary site in another CNS transcript, because off-target RNase H cleavage in neurons is not recoverable.',
+          reagentsAndBuffer:
+            'MOE and deoxy phosphoramidites, Karl Fischer titration, human transcriptome mismatch screen, anhydrous acetonitrile',
+        },
+        {
+          id: 's2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Mixed-backbone 5-10-5 gapmer assembly',
+          description:
+            'Twenty coupling cycles with sulfurisation at fifteen linkages and oxidation at four, giving the mixed phosphorothioate/phosphodiester backbone the label describes.',
+          reagentsAndBuffer:
+            'Dichloroacetic acid detritylation, 5-(ethylthio)-1H-tetrazole, phenylacetyl disulfide for thioate linkages, iodine/water/pyridine for diester linkages',
+          dependsOnStepId: 's1',
+        },
+        {
+          id: 's3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Anion-exchange purification to intrathecal-grade purity',
+          description:
+            'Resolve the full-length 20-mer from shortmers, then reduce endotoxin and particulates to the standard an intrathecal product requires, which is stricter than for a subcutaneous one.',
+          reagentsAndBuffer:
+            'Ammonia cleavage, Source 30Q resin, sodium bromide gradient, tangential flow diafiltration, endotoxin testing by LAL',
+          dependsOnStepId: 's2',
+        },
+        {
+          id: 's4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Gymnotic uptake into SOD1-mutant patient iPSC motor neurons',
+          description:
+            'Free uptake without transfection reagent into induced motor neurons carrying a patient SOD1 variant, which is the closest in vitro analogue of intrathecal exposure.',
+          reagentsAndBuffer:
+            'SOD1 A4V or D90A patient iPSC-derived motor neurons, neurobasal medium with B27 and neurotrophic factors, no lipofection reagent',
+          dependsOnStepId: 's3',
+        },
+        {
+          id: 's5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'SOD1 protein knockdown and neurofilament light release',
+          description:
+            'Quantify SOD1 transcript and protein, and measure neurofilament light chain released into the medium, which is the same biomarker the accelerated approval rests on in patients.',
+          reagentsAndBuffer:
+            'TaqMan SOD1 probe set, anti-SOD1 immunoassay, Simoa NF-light single-molecule array',
+          dependsOnStepId: 's4',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'tof-1',
+        category: 'failed',
+        title: 'The clinical primary endpoint missed, with a p-value of 0.97',
+        laymanSummary:
+          'In the pivotal trial, treated patients declined on the ALS functional scale essentially as fast as patients on placebo.',
+        technicalDetails:
+          'VALOR (NCT02623699) Part C randomised 108 adults 2:1. In the faster-progression subgroup that formed the primary analysis, change in ALSFRS-R from baseline to week 28 was -6.98 with tofersen and -8.14 with placebo, a difference of 1.2 points (95 percent CI -3.2 to 5.5), p=0.97. Secondary clinical endpoints including slow vital capacity and handheld dynamometry also did not differ significantly.',
+        evidenceSource: 'Miller et al., New England Journal of Medicine 2022 (VALOR)',
+        doi: '10.1056/NEJMoa2204705',
+        measuredMetric: 'ALSFRS-R difference at week 28: 1.2 points, 95 percent CI -3.2 to 5.5, p=0.97',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tof-2',
+        category: 'measured',
+        title: 'Plasma neurofilament light chain fell 55 percent',
+        laymanSummary:
+          'A blood marker released when nerve fibres break down dropped by more than half in treated patients and rose in the placebo group.',
+        technicalDetails:
+          'At week 28 plasma neurofilament light chain showed a 55 percent reduction with tofersen against a 12 percent increase with placebo, p<0.0001. This, not any clinical measure, is the basis on which accelerated approval was granted. SOD1 protein in cerebrospinal fluid also fell, confirming target engagement.',
+        evidenceSource: 'QALSODY US prescribing information, sections 1 and 14',
+        doi: '10.1056/NEJMoa2204705',
+        measuredMetric: 'Plasma NfL: -55 percent with tofersen versus +12 percent with placebo, p<0.0001',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tof-3',
+        category: 'inferred',
+        title: 'Neurofilament is a marker of damage, not a measure of how a patient is',
+        laymanSummary:
+          'Falling neurofilament means fewer nerve fibres are breaking down right now. It does not tell you whether someone will keep walking, swallowing or breathing.',
+        technicalDetails:
+          'The label states in plain terms that the indication is approved under accelerated approval based on reduction in plasma neurofilament light chain, and that continued approval may be contingent on verification of clinical benefit in confirmatory trials. In the same trial in which neurofilament fell 55 percent, the functional scale did not separate at all. The surrogate and the outcome pointed in different directions in the same 108 patients.',
+        evidenceSource: 'QALSODY US prescribing information, section 1',
+        doi: '10.1056/NEJMoa2204705',
+        inferredClaim: 'That a 55 percent reduction in plasma neurofilament light chain slows ALS',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'tof-4',
+        category: 'conclusion_shift',
+        title: 'The failure was reinterpreted as "treated too late"',
+        laymanSummary:
+          'When the trial missed, the field concluded the drug was given too late rather than that it does not work, and a new trial now starts treatment before symptoms appear.',
+        technicalDetails:
+          'In the combined analysis of the randomised phase and its open-label extension at 52 weeks, ALSFRS-R change was -6.0 in the early-start cohort against -9.5 in the delayed-start cohort, a difference of 3.5 points (95 percent CI 0.4 to 6.7). These comparisons were not adjusted for multiplicity and the cohorts were not randomised to their start times. That result, plus the neurofilament data, motivated ATLAS (NCT04856982), the first interventional trial in presymptomatic ALS, which has not yet reported.',
+        evidenceSource: 'Miller et al., NEJM 2022, open-label extension analysis',
+        doi: '10.1056/NEJMoa2204705',
+        inferredClaim:
+          'That earlier initiation would have produced a positive primary endpoint; the delayed-start comparison is not randomised evidence for that',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'tof-5',
+        category: 'measured',
+        title: 'Serious neurologic adverse events in 7 percent of recipients',
+        laymanSummary:
+          'Some patients developed inflammation of the spinal cord or nerve roots, raised pressure in the head, or meningitis without infection.',
+        technicalDetails:
+          'The label carries warnings for myelitis and radiculitis, papilledema and elevated intracranial pressure, and aseptic meningitis. Neurologic serious adverse events occurred in 7 percent of tofersen recipients in the randomised phase. Common adverse reactions at 10 percent or more include pain, fatigue, arthralgia, increased cerebrospinal fluid white cell count and myalgia. Lumbar-puncture-related events were common in both arms.',
+        evidenceSource: 'QALSODY US prescribing information, sections 5 and 6',
+        doi: '10.1056/NEJMoa2204705',
+        measuredMetric: 'Neurologic serious adverse events in 7 percent of tofersen recipients',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'tof-6',
+        category: 'inferred',
+        title: 'It applies to about 2 percent of people with ALS',
+        laymanSummary:
+          'This is a drug for one genetic subtype. It says nothing about whether antisense will work for the other 98 percent of ALS.',
+        technicalDetails:
+          'SOD1 variants account for roughly 2 percent of all ALS. Tofersen lowers SOD1 specifically and has no mechanism of action in C9orf72, TDP-43 or sporadic disease. Trials of antisense drugs against other ALS genes are separate programmes with separate evidence, and the tofersen result does not transfer to them.',
+        evidenceSource: 'QALSODY US prescribing information, section 1',
+        inferredClaim: 'That tofersen demonstrates antisense therapy works in ALS generally',
+        auditFlag: 'caution',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Intrathecal injection by lumbar puncture',
+        laymanDesc:
+          'The drug is injected into the fluid around the spinal cord, because nothing given into a vein reaches motor neurons.',
+        molecularDetail:
+          'Bolus intrathecal administration after three loading doses, then monthly. Distribution follows cerebrospinal fluid bulk flow to spinal cord and brain, with a long tissue residence time.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Free uptake into motor neurons and glia',
+        laymanDesc: 'Nerve cells take the strand in directly, with no packaging around it.',
+        molecularDetail:
+          'Gymnotic uptake driven by phosphorothioate protein binding, followed by endosomal escape into nucleus and cytoplasm. Uptake is not neuron-selective; glia take up drug as well.',
+        iconName: 'ArrowDown',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Hybridising to SOD1 messenger RNA',
+        laymanDesc: 'It pairs with the instructions for the faulty protein.',
+        molecularDetail:
+          'The 10-base deoxynucleotide gap forms a heteroduplex with SOD1 mRNA; the flanking MOE wings raise affinity and block nuclease degradation. The drug does not discriminate mutant from wild-type transcript.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'RNase H1 destroys the transcript',
+        laymanDesc:
+          'An enzyme already present in the cell recognises the pairing and cuts the messenger strand.',
+        molecularDetail:
+          'RNase H1 cleaves the RNA strand of the DNA:RNA heteroduplex. The catalytic mechanism means one oligonucleotide molecule degrades many transcripts, sustaining knockdown between monthly doses.',
+        iconName: 'Scissors',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'SOD1 protein falls and neurofilament release falls with it',
+        laymanDesc:
+          'Less of the toxic protein is made, and the blood marker of nerve breakdown drops sharply. Whether that changes what the patient can do is unproven.',
+        molecularDetail:
+          'Cerebrospinal fluid SOD1 decreases and plasma neurofilament light chain falls by 55 percent at week 28. The functional scale in the same trial showed no separation from placebo, which is the central unresolved fact about this drug.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'VALOR Part C (NCT02623699)',
+        phase: 'Phase 3',
+        sampleSize: 108,
+        primaryEndpoint:
+          'Change from baseline to week 28 in ALSFRS-R total score in participants predicted to progress faster',
+        endpointMet: false,
+        statisticalPValue: 'p=0.97 (difference 1.2 points, 95 percent CI -3.2 to 5.5)',
+        unreportedAdverseSignals:
+          'Neurologic serious adverse events in 7 percent of tofersen recipients, including myelitis and radiculitis; lumbar-puncture-related events common in both arms',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Plasma neurofilament light chain reduced 55 percent against a 12 percent increase on placebo, p<0.0001',
+        'Cerebrospinal fluid SOD1 protein reduced, confirming target engagement',
+        'ALSFRS-R difference at week 28 of 1.2 points, p=0.97: no functional separation',
+      ],
+      unsupportedInferences: [
+        'That falling neurofilament light chain predicts preserved function or survival in SOD1-ALS',
+        'That the open-label delayed-start difference of 3.5 points is a randomised treatment effect',
+        'That the result generalises to non-SOD1 ALS, which is about 98 percent of cases',
+      ],
+      whatFailedInitially: [
+        'The pivotal clinical endpoint missed outright, and every secondary clinical endpoint with it',
+        'An earlier SOD1 antisense candidate, ISIS 333611, was superseded before efficacy testing',
+      ],
+      realWorldOutcome: [
+        'Approved in the United States in 2023 and in the European Union, on a biomarker rather than a clinical result',
+        'ATLAS is testing initiation in presymptomatic SOD1 carriers with raised neurofilament, and has not reported',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intrathecal injection of a mixed-backbone 2-prime-MOE gapmer',
+      description:
+        'Preservative-free solution given by lumbar puncture, three loading doses at 14-day intervals and then monthly. No carrier and no ligand; the phosphorothioate content alone drives cellular uptake.',
+      safetyProfile:
+        'Warnings for myelitis and radiculitis, papilledema with elevated intracranial pressure, and aseptic meningitis. Neurologic serious adverse events in 7 percent of recipients. Common reactions include pain, fatigue, arthralgia, raised cerebrospinal fluid white cell count and myalgia.',
+    },
+    commonQuestions: [
+      {
+        q: 'Did tofersen slow ALS in its pivotal trial?',
+        a: 'No. The primary endpoint, change on the ALS functional rating scale at 28 weeks, gave a difference of 1.2 points with a p-value of 0.97. What did change was a blood marker of nerve fibre breakdown, which fell by 55 percent, and that is what the approval was based on.',
+        auditNote: 'The label states the approval rests on the neurofilament reduction, not on function.',
+      },
+      {
+        q: 'Is neurofilament light chain a reliable stand-in for how the disease progresses?',
+        a: 'It is a well-validated marker of axonal damage and it tracks disease activity across many neurological conditions. Whether lowering it changes what happens to a patient is a separate question, and in this trial the marker and the functional scale disagreed.',
+      },
+      {
+        q: 'Does tofersen help people with ordinary sporadic ALS?',
+        a: 'No, and it is not expected to. It lowers SOD1 specifically, and SOD1 mutations account for around 2 percent of ALS. For everyone else the drug has no mechanism to act through.',
+      },
+      {
+        q: 'Why do people say it was given too late rather than that it failed?',
+        a: 'Because in the open-label extension, patients who started earlier declined less than those who switched over at 28 weeks, a 3.5-point difference at 52 weeks. That comparison was not randomised to start time and was not adjusted for multiplicity, so it generates a hypothesis. ATLAS, in presymptomatic carriers, is the trial designed to test it.',
+        auditNote: 'A delayed-start comparison within an open-label extension is not a randomised result.',
+      },
+      {
+        q: 'What are the risks?',
+        a: 'Serious neurologic events including spinal cord and nerve root inflammation occurred in 7 percent of recipients, and the label carries warnings for raised intracranial pressure and aseptic meningitis. On top of that, every dose is a lumbar puncture.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'QALSODY (tofersen) US prescribing information, DailyMed',
+        identifier:
+          'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=81356b45-1cb7-4eef-88ea-e44cc18b47c5',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Miller et al., Trial of Antisense Oligonucleotide Tofersen for SOD1 ALS, NEJM 2022',
+        identifier: '10.1056/NEJMoa2204705',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Cheng et al., Splice-Modulating Antisense Oligonucleotides as Therapeutics for Inherited Metabolic Diseases, BioDrugs 2024 (tofersen sequence)',
+        identifier: '10.1007/s40259-024-00644-7',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Bourke et al., Effects of non-invasive ventilation on survival and quality of life in ALS, Lancet Neurology 2006',
+        identifier: '10.1016/S1474-4422(05)70326-4',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Writing Group, Safety and efficacy of edaravone in well defined patients with ALS, Lancet Neurology 2017',
+        identifier: '10.1016/S1474-4422(17)30115-1',
+        kind: 'doi',
+      },
+      {
+        label: 'Qalsody EPAR, European Medicines Agency',
+        identifier: 'https://www.ema.europa.eu/en/medicines/human/EPAR/qalsody',
+        kind: 'regulatory',
+      },
+      { label: 'VALOR trial registration', identifier: 'NCT02623699', kind: 'nct' },
+      { label: 'ATLAS presymptomatic trial registration', identifier: 'NCT04856982', kind: 'nct' },
+    ],
+  },
 ]

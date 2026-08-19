@@ -1597,14 +1597,14 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
       {
         id: 'dula-4',
         category: 'measured',
-        title: 'AWARD-11: higher doses gave more, and the increment was small',
+        title: 'AWARD-11: which estimand you pick decides whether the 3.0 mg dose worked',
         laymanSummary:
-          'Tripling the dose from 1.5 mg to 4.5 mg improved HbA1c by roughly a further 0.3 percentage points and weight by about 1.5 kg. Real, but modest for a threefold dose increase.',
+          'Tripling the dose gave about a quarter of a percentage point more HbA1c reduction. For the middle dose, the answer flipped depending on how discontinuations were handled: significant one way, not significant the other.',
         technicalDetails:
-          '52-week phase 3 trial comparing dulaglutide 3.0 mg and 4.5 mg with 1.5 mg in metformin-treated type 2 diabetes, with superiority demonstrated for both higher doses on HbA1c at week 36.',
+          '52-week phase 3 trial, n=1,842, metformin-treated type 2 diabetes. At week 36 dulaglutide 4.5 mg was superior to 1.5 mg on both prespecified estimands (treatment-regimen difference -0.24%, P<0.001). Dulaglutide 3.0 mg was superior on the efficacy estimand (-0.17%, P=0.003) but not on the treatment-regimen estimand (-0.10%, P=0.096).',
         evidenceSource: 'Frias JP et al. Diabetes Care 2021;44:765-773',
         doi: '10.2337/dc20-1473',
-        measuredMetric: 'Change in HbA1c and body weight at week 36 and week 52',
+        measuredMetric: 'Change in HbA1c at week 36 under two prespecified estimands',
         auditFlag: 'verified',
       },
       {
@@ -1689,7 +1689,9 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         sampleSize: 1842,
         primaryEndpoint: 'Change in HbA1c at week 36 with dulaglutide 3.0 mg and 4.5 mg versus 1.5 mg',
         endpointMet: true,
-        statisticalPValue: 'P < 0.001 for both higher doses',
+        statisticalPValue: 'P < 0.001 for 4.5 mg; P = 0.096 for 3.0 mg on the treatment-regimen estimand',
+        unreportedAdverseSignals:
+          'The 3.0 mg conclusion depends on the estimand chosen, which is a design decision rather than a finding',
         independentReplicationStatus: 'Unreplicated',
       },
       {
@@ -1787,6 +1789,763 @@ export const PEPTIDE_DOSSIERS: SeedDossier[] = [
         identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
         kind: 'url',
       },
+    ],
+  },
+
+  // -------------------------------------------------------------------------------------------
+  // Exenatide
+  // -------------------------------------------------------------------------------------------
+  {
+    slug: 'exenatide',
+    name: 'Exenatide',
+    tradeName: 'Byetta / Bydureon / Bydureon BCise',
+    sponsor: 'AstraZeneca (originally Amylin Pharmaceuticals and Eli Lilly)',
+    targetGene: 'GLP1R',
+    targetProtein: 'Glucagon-Like Peptide-1 Receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2005,
+    indication: 'Type 2 diabetes, as an adjunct to diet and exercise to improve glycaemic control',
+    patientFriendlyIndication: 'Type 2 diabetes',
+    conditionContext: {
+      conditionExplainer:
+        'Exenatide is a synthetic copy of exendin-4, a peptide found in the venom of the Gila monster. It happens to be about half identical to human GLP-1 and is not a substrate for the enzyme that destroys the human hormone, so it lasts hours rather than minutes without any chemical modification at all.',
+      whyItMatters:
+        'This was the first GLP-1 receptor agonist ever approved, in 2005. Every drug in this class descends from it. All three of its US products are now listed as discontinued in the FDA drug database.',
+      whoTakesThis:
+        'Historically, adults with type 2 diabetes inadequately controlled on oral agents. In the United States it is no longer marketed.',
+      clinicalGoals: 'Lower HbA1c by roughly 0.8 to 1.0 percentage points with modest weight reduction.',
+    },
+    oneSentenceVerdict:
+      'The first GLP-1 receptor agonist, isolated from Gila monster venom in 1992 and approved in 2005, which in 14,752 people was noninferior but not superior to placebo for cardiovascular events and is now discontinued in the United States.',
+    laymanHowItWorks:
+      'A biochemist studying lizard venom in 1992 found a peptide that looked like the human gut hormone GLP-1 but survived far longer. It turned out to activate the same receptor. Synthesised as a drug, it tells the pancreas to release insulin when glucose is high, slows the stomach and reduces appetite. The extended-release version wraps the same peptide in dissolving polymer microspheres so one injection lasts a week.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 82,
+    anatomicalSite: 'Pancreatic islet beta cell, gastric antrum, hypothalamic arcuate nucleus',
+    pricing: {
+      synthesisCostPerDose:
+        'Modelled cost-based price of $0.75 to $4.46 per month at 7.5 micrograms twice daily, the lowest of any GLP-1 agonist in the analysis',
+      retailPricePerDoseOrYear:
+        'Last published US pharmacy acquisition cost, February 2025 before discontinuation: about $816 per month for the twice-daily pen; about $796 per month for the weekly Bydureon BCise autoinjector',
+      markupEstimate:
+        'Final US acquisition cost was roughly 180x to 1,090x the modelled cost-based price',
+      openPatentNotes:
+        'Patent protection has lapsed and the peptide is a straightforward 39-residue solid-phase synthesis, yet no generic entered the US market. The products were withdrawn commercially before generic competition arrived, which is a different failure mode from a patent thicket.',
+      synthesisComplexity: 'Low',
+      costSource: {
+        label:
+          'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        identifier: '10.1001/jamanetworkopen.2024.3474',
+        kind: 'doi',
+      },
+      priceSource: {
+        label: 'CMS National Average Drug Acquisition Cost (NADAC) 2026 file, final Byetta and Bydureon BCise entries',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Because exenatide is no longer marketed in the United States, the substitutes are not optional here. Semaglutide, dulaglutide and generic liraglutide are the direct replacements, and all three have stronger evidence.',
+      conventionalRx: [
+        {
+          name: 'Generic liraglutide',
+          class: 'Daily GLP-1 receptor agonist',
+          howItCompares:
+            'Same receptor, larger HbA1c effect, and a positive cardiovascular outcome trial that exenatide did not achieve.',
+          typicalCost: 'About $433 per month (US NADAC generic)',
+          prosAndCons: 'Pros: cheapest available agent in the class with outcome data. Cons: daily injection.',
+        },
+        {
+          name: 'Dulaglutide (Trulicity)',
+          class: 'Weekly GLP-1 receptor agonist',
+          howItCompares:
+            'Weekly like Bydureon, better tolerated device, and a positive cardiovascular outcome trial.',
+          typicalCost: 'About $956 per month (US NADAC)',
+          prosAndCons: 'Pros: weekly, positive REWIND result. Cons: substantially more expensive.',
+        },
+        {
+          name: 'Metformin',
+          class: 'Biguanide, small molecule',
+          howItCompares: 'Oral, comparable HbA1c effect in many patients, no injection.',
+          typicalCost: 'About $1.50 per month (US NADAC generic cost)',
+          prosAndCons: 'Pros: cost and route. Cons: no appetite effect, and gastrointestinal upset is common early.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Vinegar taken with a starch-containing meal',
+          activeCompound: 'Acetic acid',
+          biologicalMechanism:
+            'Acetic acid inhibits disaccharidase activity and slows gastric emptying, reducing the post-meal glucose rise. The gastric-emptying arm of the mechanism is shared with this drug class.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage: '1 to 2 tablespoons diluted in water before a starchy meal',
+          monthlyCost: '$3 to $6 per month',
+        },
+        {
+          name: 'Psyllium husk',
+          activeCompound: 'Arabinoxylan gel-forming fibre',
+          biologicalMechanism:
+            'Forms a viscous gel that slows carbohydrate absorption and lowers both post-meal glucose and LDL cholesterol.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '10 to 15 grams daily with a full glass of water',
+          monthlyCost: '$8 to $15 per month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Injecting the twice-daily form within an hour before a meal',
+          action: 'Give the injection in the hour before the morning and evening meals, never after eating.',
+          patientImpact:
+            'The short-acting form works by blunting the meal glucose excursion; taken after a meal it has largely missed the event it was meant to modify.',
+          clinicalPrecaution:
+            'This timing rule belongs to the twice-daily formulation and does not apply to weekly agents.',
+        },
+        {
+          name: 'Maintaining fluid intake during gastrointestinal upset',
+          action: 'Keep up oral fluids during any period of nausea, vomiting or diarrhoea on treatment.',
+          patientImpact:
+            'Volume depletion is the main route to the acute kidney injury reported with this class, particularly alongside ACE inhibitors, ARBs or diuretics.',
+          clinicalPrecaution: 'Persistent vomiting or reduced urine output needs medical assessment, not more fluids at home.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'peptide_sequence',
+      sequence5to3: 'HGEGTFTSDLSKQMEEEAVRLFIEWLKNGGPSSGAPPPS(C-terminal amide)',
+      chemicalFormula: 'C184H282N50O60S',
+      molecularWeight: '4186.6 Da',
+      targetReceptorAffinity:
+        'GLP-1 receptor agonist; roughly 53% amino acid identity with human GLP-1(7-37), with a glycine at position 2 that makes it resistant to DPP-4 cleavage',
+      structureSource: {
+        label: 'BYETTA (exenatide) injection, US prescribing information, section 11, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53d03c03-ebf7-418d-88a8-533eabd2ee4f',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'exen-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Resin and building-block qualification for a Rink amide assembly',
+          description:
+            'Confirm resin loading and residue identity. The C-terminal amide is part of the molecule, so the choice of resin is a structural decision rather than a convenience.',
+          reagentsAndBuffer: 'Rink amide MBHA resin, Fmoc release assay at 301 nm, chiral HPLC of building blocks',
+        },
+        {
+          id: 'exen-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Fmoc solid-phase assembly of the 39-residue exendin-4 sequence',
+          description:
+            'Sequential coupling of all thirty-nine residues, with pseudoproline dipeptides through the C-terminal proline-rich stretch to suppress aggregation on resin.',
+          dependsOnStepId: 'exen-w1',
+          reagentsAndBuffer: 'Fmoc-amino acids, pseudoproline dipeptides, DIC/Oxyma, DMF, 20% piperidine',
+        },
+        {
+          id: 'exen-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Cleavage and preparative reverse-phase HPLC',
+          description:
+            'Cleave with a scavenger cocktail that protects the single methionine from oxidation, then purify on C18 to remove deletion sequences and the methionine sulfoxide impurity.',
+          dependsOnStepId: 'exen-w2',
+          reagentsAndBuffer: 'TFA with TIS, water and thioanisole; acetonitrile-water gradients with 0.1% TFA',
+        },
+        {
+          id: 'exen-w4',
+          stepNumber: 4,
+          phase: 'Conjugation',
+          name: 'Encapsulation in poly(lactide-co-glycolide) microspheres for the weekly form',
+          description:
+            'For the extended-release product, entrap the purified peptide in biodegradable PLGA microspheres that release it over weeks as the polymer hydrolyses. This step is what separates the weekly product from the twice-daily one.',
+          dependsOnStepId: 'exen-w3',
+          reagentsAndBuffer: 'Poly(D,L-lactide-co-glycolide) 50:50, sucrose, dichloromethane emulsion process, lyophilisation',
+        },
+        {
+          id: 'exen-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'GLP-1 receptor potency and in vitro release profiling',
+          description:
+            'Measure cAMP potency at human GLP-1R and, for the microsphere product, the cumulative in vitro release curve, since the burst fraction determines the tolerability of the first weeks.',
+          dependsOnStepId: 'exen-w4',
+          reagentsAndBuffer: 'hGLP-1R reporter line, HTRF cAMP kit, phosphate release medium at 37 degrees C with HPLC quantification',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'exen-1',
+        category: 'measured',
+        title: 'Discovered in Gila monster venom in 1992, thirteen years before approval',
+        laymanSummary:
+          'Exendin-4 was isolated from the venom of Heloderma suspectum and characterised in a 1992 paper. The drug built on it reached patients in 2005.',
+        technicalDetails:
+          'Eng and colleagues isolated exendin-4 as an exendin-3 analogue from Heloderma suspectum venom and characterised its activity on dispersed guinea pig pancreatic acini. The peptide has a glycine at position 2 in place of the alanine that makes human GLP-1 a DPP-4 substrate, which is the whole reason it survives in circulation.',
+        evidenceSource: 'Eng J et al. J Biol Chem 1992;267:7402-7405',
+        measuredMetric: 'Isolation and receptor characterisation of a natural GLP-1 receptor agonist',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'exen-2',
+        category: 'failed',
+        title: 'EXSCEL: noninferior on safety, not superior on efficacy',
+        laymanSummary:
+          'In 14,752 people followed a median 3.2 years, cardiovascular events occurred in 11.4% on exenatide and 12.2% on placebo. The difference did not reach significance.',
+        technicalDetails:
+          'Primary composite hazard ratio 0.91 (95% CI 0.83 to 1.00), P<0.001 for noninferiority but P=0.06 for superiority. Rates of cardiovascular death, myocardial infarction, stroke, heart failure hospitalisation, pancreatitis, pancreatic cancer and medullary thyroid carcinoma did not differ between groups.',
+        evidenceSource: 'Holman RR et al. N Engl J Med 2017;377:1228-1239 (NCT01144338)',
+        doi: '10.1056/NEJMoa1612917',
+        inferredClaim: 'That every GLP-1 receptor agonist reduces cardiovascular events',
+        measuredMetric: 'Three-point MACE, hazard ratio 0.91, P = 0.06 for superiority',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'exen-3',
+        category: 'conclusion_shift',
+        title: 'The first drug in the class is now discontinued in the United States',
+        laymanSummary:
+          'Byetta, Bydureon and Bydureon BCise are all listed as discontinued in the FDA drug database. The molecule that started the field is no longer sold where it started.',
+        technicalDetails:
+          'Drugs@FDA marketing status for NDA 021773 (Byetta), NDA 022200 (Bydureon and Bydureon Pen) and NDA 209210 (Bydureon BCise) is Discontinued for every listed product. The last national acquisition-cost entries are February 2025 for Byetta and April 2025 for Bydureon BCise. Withdrawal followed commercial displacement by weekly agents with larger effects, not a safety action.',
+        evidenceSource: 'Drugs@FDA marketing status, NDA 021773, NDA 022200 and NDA 209210',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'exen-4',
+        category: 'inferred',
+        title: 'That the cheapest molecule in a class becomes the affordable one',
+        laymanSummary:
+          'Exenatide has the lowest modelled manufacturing cost of any GLP-1 agonist, under five dollars a month. Its final US acquisition cost was over eight hundred. No generic ever launched, and then the brand left the market.',
+        technicalDetails:
+          'Modelled cost-based price $0.75 to $4.46 per month against a final NADAC of about $816 per month for the twice-daily pen. Patent protection had lapsed, and the synthesis is an unmodified 39-residue solid-phase assembly, yet the product line was discontinued before generic entry rather than after it.',
+        evidenceSource: 'Barber MJ et al. JAMA Netw Open 2024; CMS NADAC; Drugs@FDA marketing status',
+        doi: '10.1001/jamanetworkopen.2024.3474',
+        inferredClaim: 'That patent expiry alone produces price competition',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'exen-5',
+        category: 'measured',
+        title: 'The weekly formulation traded convenience for injection-site nodules',
+        laymanSummary:
+          'Wrapping the peptide in dissolving polymer beads made one injection last a week, and left palpable lumps at the injection site in a substantial minority of users.',
+        technicalDetails:
+          'The extended-release product suspends exenatide in poly(lactide-co-glycolide) microspheres. Injection-site nodules, which reflect the polymer depot rather than the peptide, are a labelled adverse reaction and a common reason for discontinuation.',
+        evidenceSource: 'BYDUREON BCISE US prescribing information, adverse reactions',
+        measuredMetric: 'Injection-site nodule incidence in the extended-release formulation',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'A venom peptide that survives where the human hormone does not',
+        laymanDesc:
+          'Human GLP-1 is chopped in half within about two minutes by an enzyme in the blood. The lizard version has a different amino acid at exactly the position that enzyme attacks.',
+        molecularDetail:
+          'Glycine at position 2 in place of alanine removes the dipeptidyl peptidase-4 recognition site, giving a plasma half-life of roughly 2.4 hours without any chemical modification.',
+        iconName: 'Shield',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Or a polymer depot that meters it out over a week',
+        laymanDesc:
+          'The weekly version is the identical peptide packed inside biodegradable beads that slowly dissolve under the skin.',
+        molecularDetail:
+          'Poly(lactide-co-glycolide) microspheres hydrolyse over weeks, releasing entrapped peptide with an initial burst followed by a sustained diffusion and erosion phase.',
+        iconName: 'CircleDot',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding the human GLP-1 receptor',
+        laymanDesc: 'Despite coming from a lizard, it fits the human receptor and switches it on fully.',
+        molecularDetail:
+          'Full agonism at the class B GPCR GLP-1R with Gs coupling and cAMP accumulation, despite only about 53% sequence identity with human GLP-1(7-37).',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Glucose-dependent insulin, less glucagon, slower stomach',
+        laymanDesc:
+          'Insulin release rises only when glucose is high, the hormone that raises glucose falls, and food leaves the stomach more slowly.',
+        molecularDetail:
+          'cAMP-mediated potentiation of glucose-stimulated insulin secretion, suppression of alpha-cell glucagon output, and vagally mediated delay of gastric emptying that is more pronounced with the short-acting formulation.',
+        iconName: 'Zap',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'About one point off HbA1c, and no proven cardiovascular benefit',
+        laymanDesc:
+          'Blood glucose control improves and weight falls a little. The large outcome trial did not show fewer heart attacks or strokes.',
+        molecularDetail:
+          'HbA1c reduction of roughly 0.8 to 1.0 percentage points with weight loss of two to three kilograms; EXSCEL hazard ratio 0.91 for three-point MACE with P=0.06 for superiority.',
+        iconName: 'Gauge',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'EXSCEL (NCT01144338)',
+        phase: 'Phase 3',
+        sampleSize: 14752,
+        primaryEndpoint: 'Cardiovascular death, nonfatal myocardial infarction or nonfatal stroke',
+        endpointMet: false,
+        statisticalPValue: 'P < 0.001 for noninferiority; P = 0.06 for superiority',
+        unreportedAdverseSignals:
+          'High discontinuation, with a substantial fraction of participants off study drug well before the end of follow-up, which biases an intention-to-treat superiority test toward the null',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Isolation and characterisation of exendin-4 from Heloderma suspectum venom in 1992',
+        'HbA1c reduction of roughly 0.8 to 1.0 percentage points across the phase 3 programme',
+        'Three-point MACE hazard ratio 0.91, P = 0.06 for superiority, in 14,752 people (EXSCEL)',
+      ],
+      unsupportedInferences: [
+        'That the cardiovascular benefit seen with liraglutide and semaglutide extends to this molecule',
+        'That the lowest manufacturing cost in a class translates into the lowest price to patients',
+      ],
+      whatFailedInitially: [
+        'The superiority hypothesis in EXSCEL, which was prespecified and missed at P = 0.06',
+        'The commercial position of all three US products, every one of which is now listed as discontinued',
+      ],
+      realWorldOutcome: [
+        'Historically important as the molecule that opened the class, and still marketed in some countries',
+        'Withdrawn from the US market for commercial reasons rather than safety, before any generic entered',
+      ],
+    },
+    deliverySystem: {
+      type: 'Twice-daily subcutaneous pen, or once-weekly extended-release microsphere autoinjector',
+      description:
+        'Byetta delivered 5 or 10 micrograms twice daily within an hour before the morning and evening meals. Bydureon and Bydureon BCise suspended 2 mg of the same peptide in poly(lactide-co-glycolide) microspheres for weekly injection. All three are discontinued in the United States.',
+      safetyProfile:
+        'Nausea is the dominant adverse event and is more prominent with the twice-daily form. Acute pancreatitis and acute kidney injury from volume depletion are uncommon but labelled. The extended-release form carries a boxed warning for thyroid C-cell tumours and causes injection-site nodules from the polymer depot.',
+    },
+    commonQuestions: [
+      {
+        q: 'Can I still get it?',
+        a: 'Not in the United States. Drugs@FDA lists Byetta, Bydureon and Bydureon BCise as discontinued for every product code, and the last national acquisition-cost entries date from early 2025. It remains available in some other markets.',
+        auditNote: 'This is a marketing-status fact from the FDA database, not a safety withdrawal.',
+      },
+      {
+        q: 'Was it withdrawn because it was unsafe?',
+        a: 'No. Nothing in the record points to a safety action. EXSCEL found no difference from placebo in pancreatitis, pancreatic cancer or medullary thyroid carcinoma. It was displaced commercially by weekly agents with larger effects on glucose and weight.',
+      },
+      {
+        q: 'Does a GLP-1 agonist automatically protect the heart?',
+        a: 'No, and exenatide is the counterexample. In the largest trial of the drug, 14,752 people over a median 3.2 years, the reduction in cardiovascular events was 9% relative and did not reach significance. Liraglutide, semaglutide and dulaglutide each had to show it separately.',
+        auditNote: 'Measured, and negative for superiority. This is why class-effect language is an inference.',
+      },
+      {
+        q: 'It came from venom, so is it dangerous?',
+        a: 'The origin says nothing about the risk. Exendin-4 is not the toxic component of the venom; it is a peptide that happens to resemble a human gut hormone. Its safety profile comes from the trials, not from the animal it was found in.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Eng J et al. Isolation and characterization of exendin-4 from Heloderma suspectum venom. J Biol Chem 1992',
+        identifier: '1313797',
+        kind: 'pmid',
+      },
+      {
+        label: 'Holman RR et al. Effects of Once-Weekly Exenatide on Cardiovascular Outcomes (EXSCEL). NEJM 2017',
+        identifier: '10.1056/NEJMoa1612917',
+        kind: 'doi',
+      },
+      {
+        label: 'Barber MJ et al. Estimated Sustainable Cost-Based Prices for Diabetes Medicines. JAMA Netw Open 2024',
+        identifier: '10.1001/jamanetworkopen.2024.3474',
+        kind: 'doi',
+      },
+      { label: 'EXSCEL trial record', identifier: 'NCT01144338', kind: 'nct' },
+      {
+        label: 'BYETTA US prescribing information, DailyMed',
+        identifier: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=53d03c03-ebf7-418d-88a8-533eabd2ee4f',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA NDA 021773 (Byetta), approved 28 April 2005, all products discontinued',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=021773',
+        kind: 'regulatory',
+      },
+      {
+        label: 'Drugs@FDA NDA 209210 (Bydureon BCise), approved 20 October 2017, discontinued',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=209210',
+        kind: 'regulatory',
+      },
+      {
+        label: 'CMS National Average Drug Acquisition Cost, 2026 file',
+        identifier: 'https://data.medicaid.gov/dataset/fbb83258-11c7-47f5-8b18-5f8e79f7e704',
+        kind: 'url',
+      },
+    ],
+  },
+
+  // -------------------------------------------------------------------------------------------
+  // Retatrutide
+  // -------------------------------------------------------------------------------------------
+  {
+    slug: 'retatrutide',
+    name: 'Retatrutide',
+    tradeName: 'LY3437943 (no trade name; not approved)',
+    sponsor: 'Eli Lilly and Company',
+    targetGene: 'GIPR / GLP1R / GCGR',
+    targetProtein:
+      'Glucose-Dependent Insulinotropic Polypeptide Receptor, Glucagon-Like Peptide-1 Receptor and Glucagon Receptor',
+    modality: 'Peptide / GLP-1 Agonist',
+    approvalStatus: 'Phase 3 Clinical Trial',
+    indication:
+      'Under investigation for obesity, type 2 diabetes, knee osteoarthritis with obesity, obstructive sleep apnoea and chronic kidney disease. Not approved for any indication in any jurisdiction.',
+    patientFriendlyIndication: 'Obesity and type 2 diabetes, still in trials',
+    conditionContext: {
+      conditionExplainer:
+        'Retatrutide activates three receptors instead of one or two. The third, the glucagon receptor, raises energy expenditure rather than only suppressing intake, which is a different lever from anything already approved.',
+      whyItMatters:
+        'Its phase 2 obesity trial produced the largest weight reduction ever reported for a drug, and its phase 3 obesity trial completed in April 2026 without results in the public record. Meanwhile it is sold widely and illegally.',
+      whoTakesThis:
+        'Trial participants. Outside trials, nobody is meant to be taking it, and a large unregulated market says otherwise.',
+      clinicalGoals:
+        'In the completed phase 3 diabetes trial, HbA1c reduction. In the obesity programme, percentage weight reduction.',
+    },
+    oneSentenceVerdict:
+      'A triple GIP, GLP-1 and glucagon receptor agonist that produced 24.2% weight loss at 48 weeks in a 338-person phase 2 trial and lowered HbA1c by up to 1.94 percentage points in a 537-person phase 3 trial, with no approval anywhere and no published phase 3 obesity result.',
+    laymanHowItWorks:
+      'Two of the three receptors it hits are the appetite hormones already used by approved drugs. The third is glucagon, which the body normally uses to release stored energy. Switching it on alongside the appetite signals means the drug may reduce what goes in and raise what gets burned at the same time. Whether that combination is safe over years is exactly what the phase 3 programme was built to find out, and most of it has not reported.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 48,
+    anatomicalSite: 'Hypothalamus, pancreatic islet, hepatocyte, brown and white adipose tissue',
+    substitutes: {
+      summary:
+        'Everything on this list is approved and retatrutide is not, so these are not alternatives to a treatment, they are the treatments. Tirzepatide is the closest approved comparator by mechanism and by effect size.',
+      conventionalRx: [
+        {
+          name: 'Tirzepatide (Zepbound)',
+          class: 'Dual GIP and GLP-1 receptor agonist, approved',
+          howItCompares:
+            'Approved, with a published 72-week phase 3 weight result of 20.9% and a completed cardiovascular outcome trial. Retatrutide adds glucagon receptor agonism and has neither.',
+          typicalCost: 'About $1,052 per month (US NADAC)',
+          prosAndCons:
+            'Pros: licensed, supplied by a regulated chain, evidence in the public record. Cons: costly and not universally covered.',
+        },
+        {
+          name: 'Semaglutide (Wegovy)',
+          class: 'Selective GLP-1 receptor agonist, approved',
+          howItCompares:
+            'Smaller weight effect than either multi-agonist, but it is the only one with a completed cardiovascular outcome trial in obesity without diabetes.',
+          typicalCost: 'About $1,307 per month (US NADAC)',
+          prosAndCons: 'Pros: SELECT outcome data. Cons: less weight loss than tirzepatide head-to-head.',
+        },
+        {
+          name: 'Enrolment in a retatrutide trial',
+          class: 'Investigational access route',
+          howItCompares:
+            'The only route to the actual molecule with known identity, known dose, monitoring and adverse-event reporting.',
+          typicalCost: 'No cost to the participant in an industry-sponsored trial',
+          prosAndCons:
+            'Pros: real product, real oversight. Cons: randomisation means you may receive placebo, and eligibility criteria are narrow.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dietary protein at 1.2 to 1.6 g per kg body weight',
+          activeCompound: 'Essential amino acids, particularly leucine',
+          biologicalMechanism:
+            'Protein has the highest thermic effect of the macronutrients and the strongest effect on satiety hormones including GLP-1 and peptide YY. It is also what preserves lean mass during any energy deficit.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: 'Spread across three or four meals rather than concentrated in one',
+          monthlyCost: '$40 to $90 per month depending on source',
+        },
+        {
+          name: 'Viscous soluble fibre',
+          activeCompound: 'Beta-glucan, psyllium arabinoxylan',
+          biologicalMechanism:
+            'Slows gastric emptying and increases fermentation-driven GLP-1 release from distal L-cells, which is the endogenous arm of the same axis.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '10 to 15 grams daily with adequate water',
+          monthlyCost: '$8 to $15 per month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Checking whether an unapproved peptide is what it claims to be',
+          action:
+            'Recognise that a vial bought online has no verified identity, purity, concentration or sterility, and that published analyses of products sold under this name have examined exactly that question.',
+          patientImpact:
+            'A 2026 analysis of products sold as retatrutide in Australia measured composition and labelling accuracy directly, rather than assuming it.',
+          clinicalPrecaution:
+            'There is no home test for peptide identity. If a product is not from a regulated supply chain, its contents are unknown.',
+        },
+        {
+          name: 'Telling a clinician what you are taking',
+          action:
+            'Disclose any unapproved peptide use to whoever is treating you, including before surgery or anaesthesia.',
+          patientImpact:
+            'Delayed gastric emptying from any drug in this class raises the risk of aspiration under anaesthesia, and a clinician who does not know cannot manage it.',
+          clinicalPrecaution:
+            'This is not an endorsement of unapproved use; it is harm reduction for someone who has already started.',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'reta-1',
+        category: 'measured',
+        title: 'Phase 2: 24.2% mean weight loss at 48 weeks on the 12 mg dose',
+        laymanSummary:
+          'In 338 adults, the highest dose produced nearly a quarter of body weight lost in under a year, against 2.1% on placebo. Eighty-three percent of that group lost at least 15%.',
+        technicalDetails:
+          'Phase 2, double-blind, placebo-controlled, 48 weeks. Least-squares mean weight change at 48 weeks -8.7% (1 mg), -17.1% (combined 4 mg), -22.8% (combined 8 mg), -24.2% (12 mg) versus -2.1% placebo. At 12 mg, 100% lost at least 5%, 93% at least 10% and 83% at least 15%. Adverse events were dose-related and predominantly gastrointestinal.',
+        evidenceSource: 'Jastreboff AM et al. N Engl J Med 2023;389:514-526 (NCT04881760)',
+        doi: '10.1056/NEJMoa2301972',
+        measuredMetric: 'Percentage change in body weight at week 48',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'reta-2',
+        category: 'measured',
+        title: 'TRANSCEND-T2D-1: the first published phase 3 result, in diabetes not obesity',
+        laymanSummary:
+          'In 537 people with type 2 diabetes on diet and exercise alone, 40 weeks of retatrutide lowered HbA1c by up to 1.94 percentage points and weight by up to 15.3%.',
+        technicalDetails:
+          'Phase 3, randomised, double-blind, placebo-controlled, 48 sites in the USA, Mexico and India. Treatment-regimen estimand HbA1c change -1.69%, -1.86% and -1.94% for 4, 9 and 12 mg versus -0.81% placebo, all P<0.0001. Weight change -11.5%, -13.9% and -15.3% versus -2.6%. Discontinuation for adverse events 2 to 5%. Two deaths, both in the 4 mg arm and judged unrelated.',
+        evidenceSource: 'Lancet 2026, TRANSCEND-T2D-1 (NCT06354660)',
+        doi: '10.1016/S0140-6736(26)00967-0',
+        measuredMetric: 'Change in HbA1c from baseline to week 40',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'reta-3',
+        category: 'inferred',
+        title: 'The 24% figure everybody quotes is a phase 2 number that phase 3 has not confirmed',
+        laymanSummary:
+          'The pivotal obesity trial, TRIUMPH-1, enrolled 2,335 people and completed on 30 April 2026. No results are posted on the trial registry and none are published.',
+        technicalDetails:
+          'NCT05929066 is a master protocol with percentage weight change as its primary outcome, status COMPLETED with a completion date of 2026-04-30, and no results posted as of this audit. The only published phase 3 data are from a 537-person diabetes trial in which weight fell 15.3% at the top dose over 40 weeks, which is not the same population, dose exposure or duration as the phase 2 obesity result.',
+        evidenceSource: 'ClinicalTrials.gov record NCT05929066 (TRIUMPH-1), completed 30 April 2026, no results posted',
+        inferredClaim: 'That retatrutide produces about 24% weight loss',
+        measuredMetric: 'Publication status of the completed pivotal obesity trial',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'reta-4',
+        category: 'failed',
+        title: 'A grey market is selling an unapproved molecule, and the products have been analysed',
+        laymanSummary:
+          'Retatrutide is not approved anywhere, and is sold widely online. A 2026 study measured what is actually in products sold under that name in Australia. A BMJ news investigation examined a reported death.',
+        technicalDetails:
+          'Drug and Alcohol Review 2026 published a compositional and labelling-accuracy analysis of products sold as retatrutide in Australia. BMJ published a fact-check on a reported death associated with the unapproved product in July 2026, and separately reported the opening of a compassionate-use route in the United States in August 2026. None of this constitutes efficacy or safety evidence for the molecule; it is evidence about the market around it.',
+        evidenceSource: 'Drug Alcohol Rev 2026; BMJ 2026;doi:10.1136/bmj-2026-100245 and doi:10.1136/bmj-2026-100530',
+        doi: '10.1111/dar.70231',
+        inferredClaim: 'That a product sold as retatrutide contains retatrutide at the stated concentration',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'reta-5',
+        category: 'inferred',
+        title: 'That the glucagon receptor arm is what produces the extra weight loss',
+        laymanSummary:
+          'Plausible, and untested in humans. No trial has compared retatrutide against a matched dual agonist at equal exposure, which is the only design that could attribute the difference.',
+        technicalDetails:
+          'The mechanistic case rests on rodent work and on the energy-expenditure biology of glucagon receptor agonism. No head-to-head human trial against tirzepatide exists, and the phase 2 and phase 3 comparators were placebo. Attribution of the effect size to the third receptor is therefore inference from mechanism, not measurement.',
+        evidenceSource: 'Jastreboff AM et al. NEJM 2023; TRANSCEND-T2D-1, Lancet 2026',
+        doi: '10.1056/NEJMoa2301972',
+        inferredClaim: 'That glucagon receptor agonism is responsible for the additional weight reduction',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'reta-6',
+        category: 'measured',
+        title: 'A urinary tract infection signal is under discussion in the literature',
+        laymanSummary:
+          'Trial data raised a question about urinary tract infections with retatrutide, and the timing of those events is being argued over in print.',
+        technicalDetails:
+          'A 2026 European Journal of Internal Medicine correspondence examines the urinary tract infection signal reported in the retatrutide programme and whether event timing explains it. This is a live question in the literature, not a settled adverse-effect profile.',
+        evidenceSource: 'Eur J Intern Med 2026: Retatrutide and the urinary tract infection signal',
+        doi: '10.1016/j.ejim.2026.107099',
+        auditFlag: 'contested',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Weekly injection with a fatty acid arm',
+        laymanDesc:
+          'Like the approved drugs in this family, it carries a fatty tail that binds albumin and keeps it circulating for about a week.',
+        molecularDetail:
+          'An acylated peptide backbone with non-natural residues conferring protease resistance; the full sequence has not been published in a label or peer-reviewed paper, so no structure is stated on this page.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Three receptors instead of two',
+        laymanDesc:
+          'It engages the two appetite receptors that approved drugs use, plus the glucagon receptor, which normally releases stored energy.',
+        molecularDetail:
+          'Agonism at GIPR, GLP-1R and GCGR, all Gs-coupled class B GPCRs. The therapeutic hypothesis is that the potency ratio between the three matters more than the potency at any one.',
+        iconName: 'Layers',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Appetite suppression through the incretin arms',
+        laymanDesc: 'The GIP and GLP-1 arms do what tirzepatide does: less hunger, slower stomach, more insulin when glucose is high.',
+        molecularDetail:
+          'Central GLP-1R and GIPR signalling in the hypothalamus and hindbrain reducing energy intake, with glucose-dependent potentiation of insulin secretion at the beta cell.',
+        iconName: 'Brain',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Energy expenditure through the glucagon arm',
+        laymanDesc:
+          'The glucagon receptor arm is supposed to raise the rate at which the body burns energy and mobilise fat from the liver, rather than only reducing what goes in.',
+        molecularDetail:
+          'Hepatic GCGR agonism increases fatty acid oxidation and energy expenditure. It also raises glucose output, which is why the incretin arms have to be potent enough to offset it, and why the dose ratio is the central design problem of this molecule.',
+        iconName: 'Flame',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'The largest reported weight reduction, in phase 2',
+        laymanDesc:
+          'Twenty-four percent of body weight over 48 weeks in a 338-person trial, and up to 15.3% over 40 weeks in a 537-person diabetes trial. The pivotal obesity trial has finished and has not reported.',
+        molecularDetail:
+          'Phase 2 least-squares mean -24.2% at week 48 on 12 mg versus -2.1% on placebo; phase 3 diabetes monotherapy -15.3% at week 40 versus -2.6% placebo, alongside a 1.94 percentage point HbA1c reduction.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Phase 2 obesity trial (NCT04881760)',
+        phase: 'Phase 2',
+        sampleSize: 338,
+        primaryEndpoint: 'Percentage change in body weight from baseline to week 24',
+        endpointMet: true,
+        statisticalPValue: 'Dose-dependent separation from placebo at every dose level',
+        unreportedAdverseSignals: 'Dose-related gastrointestinal events; the trial was not powered for rare harms',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'TRANSCEND-T2D-1 (NCT06354660)',
+        phase: 'Phase 3',
+        sampleSize: 537,
+        primaryEndpoint: 'Change in HbA1c from baseline to week 40',
+        endpointMet: true,
+        statisticalPValue: 'P < 0.0001 at all three doses',
+        unreportedAdverseSignals:
+          'Two deaths in the 4 mg group, judged unrelated to study drug; a urinary tract infection signal is under discussion in the literature',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'TRIUMPH-1 (NCT05929066)',
+        phase: 'Phase 3',
+        sampleSize: 2335,
+        primaryEndpoint: 'Percentage change in body weight',
+        endpointMet: false,
+        statisticalPValue: 'Completed 30 April 2026; no results posted and no publication as of this audit',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        '24.2% mean weight loss at 48 weeks on 12 mg versus 2.1% on placebo, in 338 people (phase 2)',
+        'HbA1c reduction of up to 1.94 percentage points and weight reduction of up to 15.3% over 40 weeks, in 537 people with type 2 diabetes (phase 3)',
+      ],
+      unsupportedInferences: [
+        'That the phase 2 obesity figure will hold in the 2,335-person pivotal trial, which completed in April 2026 and has not reported',
+        'That glucagon receptor agonism is the reason for the larger effect, which no human comparison has isolated',
+        'That a product sold online under this name contains this molecule',
+      ],
+      whatFailedInitially: [
+        'Earlier glucagon-containing co-agonists were limited by the glucose-raising effect of glucagon receptor agonism, which is the problem the dose ratio in this molecule is designed to solve',
+      ],
+      realWorldOutcome: [
+        'Not approved in any jurisdiction; a compassionate-use route in the United States was reported in August 2026',
+        'A substantial unregulated market exists, and published compositional analysis of products sold under this name has been undertaken because of it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous once-weekly injection, investigational',
+      description:
+        'Weekly subcutaneous administration with stepwise dose escalation, at doses from 1 mg to 12 mg across the published trials. No licensed presentation exists, so any device a patient encounters outside a trial is not a regulated product.',
+      safetyProfile:
+        'Predominantly gastrointestinal and dose-related in the published trials, with discontinuation for adverse events of 2 to 5% in the phase 3 diabetes trial. Long-term safety is not established: the largest completed obesity trial has not reported, and no cardiovascular outcome trial has read out.',
+    },
+    commonQuestions: [
+      {
+        q: 'Is it 24% weight loss?',
+        a: 'That number comes from a 338-person phase 2 trial at the highest dose over 48 weeks. The pivotal 2,335-person obesity trial completed on 30 April 2026 and has posted no results. Until it does, 24% is a phase 2 finding, not a confirmed effect size.',
+        auditNote: 'Measured in phase 2. Unconfirmed in phase 3.',
+      },
+      {
+        q: 'Can I buy it?',
+        a: 'Not legally as a medicine, because it is not approved anywhere. Products sold under the name exist and have been analysed for what they actually contain. Whatever is in an unregulated vial, the evidence on this page does not describe it.',
+        auditNote: 'The trials measured a defined molecule at a defined dose. Neither is guaranteed outside them.',
+      },
+      {
+        q: 'Is it better than tirzepatide?',
+        a: 'Nobody has run that trial. The comparison people make is between a 48-week phase 2 result for one drug and a 72-week phase 3 result for another, in different populations under different protocols. That is not a comparison, it is two separate numbers placed next to each other.',
+        auditNote: 'Cross-trial comparison, explicitly flagged as such.',
+      },
+      {
+        q: 'Why does adding glucagon help, when glucagon raises blood sugar?',
+        a: 'That is the design tension. Glucagon receptor agonism increases energy expenditure and hepatic fat oxidation, and it also raises glucose output. The incretin arms have to be potent enough to more than offset the second effect. In the phase 3 diabetes trial HbA1c fell substantially, which suggests the balance works at those doses.',
+      },
+      {
+        q: 'What are the long-term risks?',
+        a: 'Unknown. There is no cardiovascular outcome trial, no long-term safety extension in the public record, and the largest efficacy trial has not reported. That is not a claim of safety and it is not a claim of harm.',
+        auditNote: 'Unknown, stated as unknown.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Jastreboff AM et al. Triple-Hormone-Receptor Agonist Retatrutide for Obesity, A Phase 2 Trial. NEJM 2023',
+        identifier: '10.1056/NEJMoa2301972',
+        kind: 'doi',
+      },
+      {
+        label: 'Efficacy and safety of retatrutide in type 2 diabetes (TRANSCEND-T2D-1). Lancet 2026',
+        identifier: '10.1016/S0140-6736(26)00967-0',
+        kind: 'doi',
+      },
+      {
+        label: 'Composition and Labelling Accuracy of Products Sold as Retatrutide in Australia. Drug Alcohol Rev 2026',
+        identifier: '10.1111/dar.70231',
+        kind: 'doi',
+      },
+      {
+        label: 'Retatrutide fact check: has a man died after taking the unapproved weight loss jab? BMJ 2026',
+        identifier: '10.1136/bmj-2026-100245',
+        kind: 'doi',
+      },
+      {
+        label: 'Retatrutide: obesity drug opens to compassionate use in the US. BMJ 2026',
+        identifier: '10.1136/bmj-2026-100530',
+        kind: 'doi',
+      },
+      {
+        label: 'Retatrutide and the urinary tract infection signal. Eur J Intern Med 2026',
+        identifier: '10.1016/j.ejim.2026.107099',
+        kind: 'doi',
+      },
+      { label: 'Phase 2 obesity trial record', identifier: 'NCT04881760', kind: 'nct' },
+      { label: 'TRANSCEND-T2D-1 trial record', identifier: 'NCT06354660', kind: 'nct' },
+      { label: 'TRIUMPH-1 trial record, completed 30 April 2026, no results posted', identifier: 'NCT05929066', kind: 'nct' },
     ],
   },
 ]

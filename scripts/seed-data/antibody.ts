@@ -3724,4 +3724,718 @@ export const ANTIBODY_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 11. Alirocumab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'alirocumab',
+    name: 'Alirocumab',
+    tradeName: 'Praluent',
+    sponsor: 'Regeneron Pharmaceuticals / Sanofi',
+    targetGene: 'PCSK9',
+    targetProtein: 'Proprotein Convertase Subtilisin/Kexin Type 9',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2015,
+    indication:
+      'Reduction of cardiovascular events in established atherosclerotic disease, primary hyperlipidaemia including heterozygous familial hypercholesterolaemia, and homozygous familial hypercholesterolaemia',
+    patientFriendlyIndication: 'High cholesterol after a heart attack, when statins are not enough',
+    anatomicalSite: 'Blood plasma and the hepatocyte surface',
+    conditionContext: {
+      conditionExplainer:
+        'After an acute coronary syndrome the risk of a second event is at its highest, and it stays elevated for years. LDL cholesterol is the modifiable driver, and PCSK9 is the protein that limits how much of it the liver can clear.',
+      whyItMatters:
+        'ODYSSEY OUTCOMES enrolled people specifically in the window after an acute coronary syndrome, so it tested PCSK9 blockade in the population at highest absolute risk. That design choice is why its absolute benefit was larger than the relative numbers alone suggest.',
+      whoTakesThis:
+        'Adults with established atherosclerotic cardiovascular disease or familial hypercholesterolaemia whose LDL remains above target on maximum tolerated statin therapy.',
+      clinicalGoals:
+        'Titrate LDL into a 25-50 mg/dL band and reduce recurrent coronary events after an acute coronary syndrome.',
+    },
+    oneSentenceVerdict:
+      'A fully human antibody against PCSK9 that reduced major adverse cardiovascular events from 11.1% to 9.5% over a median 2.8 years in 18,924 patients recruited after an acute coronary syndrome.',
+    laymanHowItWorks:
+      'The liver clears cholesterol using surface receptors that PCSK9 destroys after a single use. Alirocumab catches PCSK9 in the blood so those receptors survive to be reused. It is the same idea as evolocumab from a different company, and its outcome trial deliberately recruited people in the fragile months after a heart attack.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 86,
+    substitutes: {
+      summary:
+        'High-intensity statins are the first-line background therapy and cost a few dollars a month. Ezetimibe adds a further 15-20% with outcome evidence from IMPROVE-IT. Evolocumab targets the same protein. Inclisiran silences it upstream. Dietary sterols and soluble fibre lower LDL by a magnitude appropriate to primary prevention.',
+      conventionalRx: [
+        {
+          name: 'Atorvastatin or rosuvastatin at high intensity',
+          class: 'HMG-CoA reductase inhibitor',
+          howItCompares:
+            'Every ODYSSEY OUTCOMES participant was already on high-intensity or maximum tolerated statin therapy. This is the foundation, not the alternative.',
+          typicalCost: '$4 - $15 / month generic',
+          prosAndCons:
+            'Pros: mortality evidence, negligible cost. Cons: insufficient alone in familial hypercholesterolaemia or in very high-risk secondary prevention.',
+        },
+        {
+          name: 'Evolocumab (Repatha)',
+          class: 'Anti-PCSK9 monoclonal antibody',
+          howItCompares:
+            'Same target, comparable LDL reduction. FOURIER enrolled stable atherosclerotic disease; ODYSSEY OUTCOMES enrolled post-acute coronary syndrome, so the populations differ.',
+          typicalCost: 'Approximately $5,850 / year US list after the 2018 price reduction',
+          prosAndCons:
+            'Pros: monthly on-body infusor option. Cons: no head-to-head trial establishes any difference between the two antibodies.',
+        },
+        {
+          name: 'Ezetimibe',
+          class: 'NPC1L1 cholesterol absorption inhibitor',
+          howItCompares: 'Adds 15-20% LDL reduction with demonstrated outcome benefit after acute coronary syndrome in IMPROVE-IT.',
+          typicalCost: '$8 - $20 / month generic',
+          prosAndCons:
+            'Pros: cheap, oral, and the guideline-recommended step before a PCSK9 antibody. Cons: much smaller effect.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Plant sterols and stanols',
+          activeCompound: 'Beta-sitosterol and campesterol',
+          biologicalMechanism:
+            'Displace cholesterol from intestinal micelles, reducing absorption and increasing hepatic LDL receptor expression.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '2 grams daily with meals, from fortified foods or supplements',
+          monthlyCost: '$12 - $25 / month',
+        },
+        {
+          name: 'Oat beta-glucan and psyllium',
+          activeCompound: 'Viscous soluble fibre',
+          biologicalMechanism:
+            'Sequesters bile acids so the liver must convert more cholesterol into replacements, upregulating LDL receptors.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage: '7 to 10 grams of soluble fibre daily with adequate water',
+          monthlyCost: '$8 - $18 / month',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Cardiac rehabilitation exercise programme',
+          action:
+            'Complete a supervised post-acute-coronary-syndrome exercise and education programme, then continue structured aerobic activity.',
+          patientImpact:
+            'Cardiac rehabilitation participation after acute coronary syndrome is associated with lower recurrent event rates and mortality in cohort and randomised data, and improves HDL and triglycerides more than it lowers LDL.',
+          clinicalPrecaution:
+            'Complementary to lipid lowering, not a substitute. Exercise moves LDL far less than any of the drugs above.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Fully human IgG1-kappa produced in Chinese hamster ovary cells',
+      molecularWeight: 'Approximately 146 kDa',
+      structureSource: {
+        label: 'PRALUENT US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125559',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'ali-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO fed-batch expression',
+          description:
+            'Express the fully human IgG1 derived from VelocImmune transgenic mice in a CHO production line under fed-batch control.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, glutamine synthetase selection, controlled glucose feed',
+        },
+        {
+          id: 'ali-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and low-pH viral inactivation',
+          description: 'Affinity capture followed by low-pH elution and a validated viral inactivation hold.',
+          reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris base neutralisation',
+          dependsOnStepId: 'ali-syn',
+        },
+        {
+          id: 'ali-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing and pen formulation',
+          description:
+            'Remove aggregate and residuals, filter for viral clearance, and formulate at 75 mg/mL or 150 mg/mL for a 1 mL autoinjector.',
+          reagentsAndBuffer: 'Ion exchange polishing, 20 nm virus filter, histidine, sucrose, polysorbate 20, pH 6.0',
+          dependsOnStepId: 'ali-cap',
+        },
+        {
+          id: 'ali-spr',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'PCSK9 binding kinetics',
+          description: 'Determine binding kinetics against immobilised recombinant human PCSK9 for lot release.',
+          reagentsAndBuffer: 'Recombinant human PCSK9, surface plasmon resonance sensor chip, HBS-EP+ buffer',
+          dependsOnStepId: 'ali-pol',
+        },
+        {
+          id: 'ali-cell',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'LDL receptor rescue cell assay and immunogenicity screen',
+          description:
+            'Confirm restoration of LDL uptake in PCSK9-suppressed hepatocytes, and run the validated anti-drug antibody bridging assay on clinical samples, since anti-drug antibodies are what destroyed a competing PCSK9 antibody programme.',
+          reagentsAndBuffer: 'HepG2 cells, recombinant PCSK9, DiI-LDL, bridging electrochemiluminescence immunoassay',
+          dependsOnStepId: 'ali-spr',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'ali-1',
+        category: 'measured',
+        title: 'ODYSSEY OUTCOMES: major adverse cardiovascular events fell from 11.1% to 9.5%',
+        laymanSummary:
+          'In 18,924 people who had had an acute coronary syndrome one to twelve months earlier and were on high-intensity statins, alirocumab reduced the combined rate of coronary death, heart attack, ischaemic stroke and unstable angina hospitalisation from 11.1 in 100 to 9.5 in 100 over a median of 2.8 years.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled trial with 9,462 patients per arm, dosed at 75 mg every two weeks and blindly titrated to a target LDL of 25 to 50 mg/dL. The primary composite occurred in 903 (9.5%) versus 1,052 (11.1%), hazard ratio 0.85 (95% CI 0.78-0.93). Absolute risk reduction of 1.6 percentage points over 2.8 years corresponds to a number needed to treat of roughly 63.',
+        evidenceSource: 'Schwartz et al., New England Journal of Medicine 2018 (ODYSSEY OUTCOMES, NCT01663402)',
+        doi: '10.1056/NEJMoa1801174',
+        measuredMetric: 'Primary composite 9.5% versus 11.1%, HR 0.85 (95% CI 0.78-0.93)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ali-2',
+        category: 'inferred',
+        title: 'The all-cause mortality difference was nominal, not a formally established finding',
+        laymanSummary:
+          'Fewer people died in the alirocumab arm, and that result is frequently quoted as proof that the drug saves lives. It sat below the pre-specified hierarchical testing sequence, which means it was descriptive rather than confirmatory.',
+        technicalDetails:
+          'Death from any cause was lower in the alirocumab group, but the trial used a hierarchical testing procedure and the mortality comparison did not have protected alpha at the point it was reached. The authors and subsequent commentary describe the finding as nominal. It is a genuine and encouraging observation, and it is not the same as a demonstrated mortality benefit.',
+        evidenceSource: 'Schwartz et al., NEJM 2018, pre-specified hierarchical testing plan',
+        inferredClaim: 'That alirocumab has been shown to reduce all-cause mortality',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'ali-3',
+        category: 'measured',
+        title: 'Blinded titration to a target band, not a fixed dose',
+        laymanSummary:
+          'Rather than giving everyone the same dose, the trial adjusted the dose blindly to keep LDL between 25 and 50 mg/dL and stepped patients down or onto placebo if LDL fell too low. Very few trials of this size do that.',
+        technicalDetails:
+          'Patients started at 75 mg every two weeks and were blindly up-titrated to 150 mg if LDL remained above 50 mg/dL, and blindly down-titrated or switched to placebo if two consecutive LDL measurements fell below 15 mg/dL. This treat-to-target design makes the trial a better test of an LDL strategy than of a fixed drug exposure, and it complicates direct comparison with the fixed-dose FOURIER trial.',
+        evidenceSource: 'Schwartz et al., NEJM 2018, trial design and dose adjustment protocol',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ali-4',
+        category: 'conclusion_shift',
+        title: 'Value-based pricing was applied to this drug before it was applied to almost any other',
+        laymanSummary:
+          'An independent cost-effectiveness body judged the launch price too high for the benefit measured. The manufacturer then cut the US list price by around 60% and tied access to it. This is one of the first cases where a published value assessment visibly moved a price.',
+        technicalDetails:
+          'Both PCSK9 antibodies launched around $14,000 per year in 2015, drew cost-effectiveness assessments concluding the price exceeded value-based benchmarks, and encountered payer rejection rates high enough to suppress uptake. Sanofi and Regeneron reduced the alirocumab US list price to roughly $5,850 per year in 2018 in exchange for reduced utilisation management. The clinical evidence did not change; the commercial environment did.',
+        evidenceSource: 'Publicly announced 2018 US list price reduction for Praluent',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'ali-5',
+        category: 'failed',
+        title: 'The class lesson: a humanised PCSK9 antibody was destroyed by anti-drug antibodies',
+        laymanSummary:
+          'Pfizer took a humanised rather than fully human PCSK9 antibody into six large trials. Patients formed antibodies against the drug, the cholesterol lowering faded, and the programme was abandoned. Alirocumab and evolocumab are both fully human, which is why they survived.',
+        technicalDetails:
+          'The SPIRE programme in 4,300 patients found bococizumab produced a 54.2% LDL reduction at 12 weeks that was substantially attenuated in patients who developed anti-drug antibodies, with wide variability even in those who did not. Pfizer discontinued development in 2016. Alirocumab is fully human and its immunogenicity rate is low, but anti-drug antibody monitoring remains part of the release and pharmacovigilance programme for the class.',
+        evidenceSource: 'Ridker et al., New England Journal of Medicine 2017 (SPIRE programme)',
+        doi: '10.1056/NEJMoa1614062',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Subcutaneous injection every two or four weeks',
+        laymanDesc:
+          'A pen delivers 75 mg or 150 mg under the skin every fortnight, or 300 mg monthly. The dose is adjusted to hit a cholesterol target rather than fixed.',
+        molecularDetail:
+          'Non-linear pharmacokinetics driven by target-mediated clearance; effective half-life of 17-20 days at steady state with titration between 75 mg and 150 mg every two weeks.',
+        iconName: 'Syringe',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Circulating alongside its target',
+        laymanDesc:
+          'PCSK9 travels in the bloodstream, so the antibody never has to enter a cell to reach it.',
+        molecularDetail:
+          'Both antibody and target are confined to plasma and interstitium; free PCSK9 concentration falls to near zero within hours of the first dose.',
+        iconName: 'Waves',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Blocking the PCSK9 to LDL receptor interface',
+        laymanDesc: 'The antibody covers the exact patch on PCSK9 that grips the cholesterol receptor.',
+        molecularDetail:
+          'Binds the catalytic domain of PCSK9 at the EGF-A binding interface, preventing formation of the PCSK9-LDLR complex that would otherwise route the receptor to lysosomal degradation.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Receptor recycling is restored',
+        laymanDesc:
+          'Each liver receptor now makes many trips instead of one, pulling far more cholesterol out of the blood.',
+        molecularDetail:
+          'LDL receptors dissociate from LDL in the endosome and return to the hepatocyte surface. Surface receptor density and the fractional catabolic rate of LDL apolipoprotein B both rise.',
+        iconName: 'RefreshCw',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Fewer recurrent coronary events after a heart attack',
+        laymanDesc:
+          'LDL falls into the 25-50 mg/dL band and stays there. In the outcome trial, roughly one and a half fewer people in every hundred had a major cardiac event over the next three years.',
+        molecularDetail:
+          'Sustained low LDL reduces plaque lipid content and inflammation, with the absolute benefit concentrated in patients whose baseline LDL was highest, where the risk reduction was correspondingly larger.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'ODYSSEY OUTCOMES (NCT01663402)',
+        phase: 'Phase 3',
+        sampleSize: 18924,
+        primaryEndpoint:
+          'Composite of coronary heart disease death, non-fatal myocardial infarction, fatal or non-fatal ischaemic stroke, or unstable angina requiring hospitalisation',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.85 (95% CI 0.78-0.93), p = 0.0003',
+        unreportedAdverseSignals:
+          'The all-cause mortality difference sat outside protected alpha in the hierarchical testing plan and is nominal rather than confirmatory.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Primary composite event rate 9.5% versus 11.1% over a median 2.8 years, HR 0.85',
+        'Absolute risk reduction of 1.6 percentage points, number needed to treat approximately 63 over the trial period',
+        'LDL maintained in a 25-50 mg/dL target band by blinded dose titration',
+      ],
+      unsupportedInferences: [
+        'That alirocumab has been shown to reduce all-cause mortality; the difference was nominal and outside the protected testing hierarchy',
+        'That the ODYSSEY and FOURIER results can be directly compared; one used blinded titration to a target and the other fixed dosing, in different populations',
+      ],
+      whatFailedInitially: [
+        'The 2015 launch price of roughly $14,000 per year drew a cost-effectiveness assessment concluding it exceeded value benchmarks, and was cut by around 60% in 2018',
+        'Bococizumab, the humanised member of the class, was defeated by anti-drug antibodies and discontinued',
+      ],
+      realWorldOutcome: [
+        'Absolute benefit was concentrated in patients with the highest baseline LDL, which is the basis for restricting use to those still above target on maximal statin therapy',
+        'Prior authorisation was the dominant real-world barrier for the first three years after launch, independent of clinical eligibility',
+      ],
+    },
+    deliverySystem: {
+      type: 'Subcutaneous prefilled pen or syringe',
+      description:
+        '75 mg or 150 mg in 1 mL every two weeks, or 300 mg monthly given as two 150 mg injections, self-administered after training.',
+      safetyProfile:
+        'No boxed warning. Injection site reactions, nasopharyngitis and influenza-like symptoms predominate. Hypersensitivity vasculitis and nummular eczema have been reported rarely. Anti-drug antibodies are uncommon and generally not neutralising.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does it save lives?',
+        a: 'Fewer people died in the alirocumab arm of ODYSSEY OUTCOMES, but that comparison fell outside the pre-specified statistical testing sequence, so it is a nominal finding rather than a demonstrated mortality benefit. What was formally established is a reduction in the composite of coronary death, heart attack, ischaemic stroke and unstable angina hospitalisation from 11.1% to 9.5%.',
+        auditNote: 'The distinction between a nominal and a confirmatory result is where most reporting on this trial goes wrong.',
+      },
+      {
+        q: 'Should I take this or evolocumab?',
+        a: 'Nobody has measured that. There is no head-to-head trial. The two antibodies target the same protein with comparable LDL reduction, and their outcome trials enrolled different populations under different dosing rules. Choice in practice is driven by formulary coverage and injection device preference.',
+      },
+      {
+        q: 'How much benefit will I actually get?',
+        a: 'In the trial population, about 1.6 fewer people in every hundred had a major cardiac event over 2.8 years, which is one event prevented for roughly every 63 people treated for that period. Benefit was larger in those whose LDL was highest at the start, which is why eligibility is defined by LDL remaining above target on maximum statin therapy.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'Schwartz et al., Alirocumab and Cardiovascular Outcomes after Acute Coronary Syndrome, NEJM 2018',
+        identifier: '10.1056/NEJMoa1801174',
+        kind: 'doi',
+      },
+      {
+        label: 'Ridker et al., Antidrug-Antibody Formation with Bococizumab, NEJM 2017',
+        identifier: '10.1056/NEJMoa1614062',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, ODYSSEY OUTCOMES',
+        identifier: 'NCT01663402',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, PRALUENT BLA 125559, original approval 24 July 2015',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=125559',
+        kind: 'regulatory',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 12. Lecanemab
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'lecanemab',
+    name: 'Lecanemab',
+    tradeName: 'Leqembi',
+    sponsor: 'Eisai / Biogen (originating from BioArctic)',
+    targetGene: 'APP',
+    targetProtein: 'Aggregated amyloid beta, with high affinity for soluble protofibrils',
+    modality: 'Monoclonal Antibody (mAb)',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 2023,
+    indication:
+      'Alzheimer disease in patients with mild cognitive impairment or mild dementia stage, with confirmed amyloid pathology',
+    patientFriendlyIndication: 'Early Alzheimer disease, confirmed by an amyloid scan or spinal fluid test',
+    anatomicalSite: 'Brain parenchyma and cerebral vasculature',
+    conditionContext: {
+      conditionExplainer:
+        'Amyloid beta accumulates in the brain years before symptoms appear. Whether it causes Alzheimer disease or is a marker of it has been argued for thirty years. Lecanemab is designed to remove it, and specifically to bind the soluble protofibril form that some researchers believe is the toxic species.',
+      whyItMatters:
+        'Clarity AD is the first adequately powered trial to show a statistically robust slowing of clinical decline alongside amyloid removal. Whether a 0.45-point difference on an 18-point scale is a difference a patient or family would notice is a separate question, and it is genuinely unresolved.',
+      whoTakesThis:
+        'People with mild cognitive impairment or mild dementia due to Alzheimer disease, with amyloid confirmed by PET or cerebrospinal fluid, who can attend for infusions and repeated MRI monitoring.',
+      clinicalGoals:
+        'Clear amyloid plaque, slow the rate of decline on the CDR-SB, and manage the resulting risk of brain swelling and microbleeding.',
+    },
+    oneSentenceVerdict:
+      'An antibody targeting amyloid beta protofibrils that slowed decline on the 18-point CDR-SB by 0.45 points over 18 months in 1,795 patients, while causing brain swelling in 13% and brain microbleeding in 17%.',
+    laymanHowItWorks:
+      'Alzheimer disease brains accumulate sticky clumps of a protein called amyloid. Lecanemab is an antibody built to grip the clumps, especially the small soluble ones, and flag them for immune cells in the brain to clear away. The plaque does measurably disappear on scans. The clinical effect is a slowing of decline, not a reversal, and the size of that slowing is what the argument is about.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 61,
+    pricing: {
+      synthesisCostPerDose:
+        'Published best-practice cost of goods for antibody drug substance is $10-$100 per gram; a 10 mg/kg dose in a 70 kg patient is 0.7 g, given every two weeks',
+      retailPricePerDoseOrYear: 'US list price of approximately $26,500 per year',
+      markupEstimate:
+        'The annual cost of goods for the drug substance at published best-practice rates is a small fraction of the annual price; infusion, PET, MRI and ApoE genotyping add substantial system cost on top',
+      openPatentNotes:
+        'Originated at BioArctic from work on the Arctic APP mutation and licensed to Eisai. Under patent with no biosimilar pathway open.',
+      synthesisComplexity: 'High',
+      costSource: MAB_COGS_SOURCE,
+      priceSource: {
+        label: 'Eisai US launch price announcement for Leqembi, January 2023, widely reported at $26,500 per year',
+        identifier: 'https://www.nbcnews.com/health/health-news/new-alzheimers-drug-will-cost-26500-year-will-able-get-rcna64883',
+        kind: 'url',
+      },
+    },
+    substitutes: {
+      summary:
+        'Donanemab is the other approved amyloid-clearing antibody and clears plaque faster with a higher ARIA rate. Cholinesterase inhibitors and memantine treat symptoms without touching pathology and cost a few dollars a month. Blood pressure control, hearing correction, physical activity and treating depression are the interventions with the strongest population-level evidence for reducing dementia incidence, and none of them is a substitute for an approved therapy in someone already diagnosed.',
+      conventionalRx: [
+        {
+          name: 'Donanemab (Kisunla)',
+          class: 'Anti-amyloid monoclonal antibody targeting the pyroglutamate N3 plaque epitope',
+          howItCompares:
+            'Clears plaque faster and stops when clearance criteria are met, with a larger CDR-SB difference of 0.70 points and a higher ARIA-E rate of 24% against 13%.',
+          typicalCost: 'Approximately $32,000 for a 12-month course US list',
+          prosAndCons:
+            'Pros: finite treatment duration, monthly rather than fortnightly infusion. Cons: higher rate of brain swelling and microbleeding.',
+        },
+        {
+          name: 'Donepezil, rivastigmine or galantamine',
+          class: 'Cholinesterase inhibitor',
+          howItCompares:
+            'Raises acetylcholine at the synapse to produce a modest symptomatic improvement. Does nothing to pathology and does not alter the course of the disease.',
+          typicalCost: '$5 - $25 / month generic',
+          prosAndCons:
+            'Pros: oral, cheap, decades of use, no MRI monitoring. Cons: symptomatic only, with nausea, bradycardia and vivid dreams.',
+        },
+        {
+          name: 'Memantine',
+          class: 'NMDA receptor antagonist',
+          howItCompares: 'Used at moderate-to-severe stages, often with a cholinesterase inhibitor. Symptomatic.',
+          typicalCost: '$8 - $30 / month generic',
+          prosAndCons:
+            'Pros: well tolerated, cheap. Cons: modest effect, and licensed for a later disease stage than lecanemab.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Midlife cardiovascular and hearing risk reduction',
+          action:
+            'Treat hypertension to target, correct hearing loss with aids, maintain regular aerobic exercise, avoid smoking and excess alcohol, and treat depression.',
+          patientImpact:
+            'These are the modifiable factors the Lancet Commission on dementia prevention identifies as carrying the largest attributable population risk. The evidence is for reducing incidence across populations rather than for altering the course of established disease.',
+          clinicalPrecaution:
+            'This is prevention-directed and is not a substitute for treatment in someone already diagnosed. Framing it as an alternative to an approved therapy misreads what the evidence shows.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'antibody_structure',
+      chemicalFormula: 'Humanised IgG1-kappa produced in Chinese hamster ovary cells',
+      molecularWeight: 'Approximately 150 kDa',
+      structureSource: {
+        label: 'LEQEMBI US Prescribing Information, Description section',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761269',
+        kind: 'regulatory',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'lec-syn',
+          stepNumber: 1,
+          phase: 'Synthesis',
+          name: 'CHO expression of the humanised IgG1',
+          description:
+            'Express the humanised version of the murine mAb158 antibody, raised against the Arctic mutation amyloid beta protofibril, in a CHO fed-batch process.',
+          reagentsAndBuffer: 'Chemically defined CHO medium, controlled feed, temperature shift for productivity and glycan control',
+        },
+        {
+          id: 'lec-cap',
+          stepNumber: 2,
+          phase: 'Purification',
+          name: 'Protein A capture and viral inactivation',
+          description: 'Affinity capture, low-pH elution and validated hold for enveloped virus inactivation.',
+          reagentsAndBuffer: 'Protein A resin, acetate pH 3.5 elution, Tris base neutralisation',
+          dependsOnStepId: 'lec-syn',
+        },
+        {
+          id: 'lec-pol',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Polishing and formulation for infusion and subcutaneous presentations',
+          description:
+            'Remove aggregate and residuals, then formulate at 100 mg/mL for infusion or at high concentration for the weekly subcutaneous autoinjector approved in 2025.',
+          reagentsAndBuffer: 'Ion exchange and multimodal polishing, 20 nm virus filter, histidine, arginine, polysorbate 80',
+          dependsOnStepId: 'lec-cap',
+        },
+        {
+          id: 'lec-sel',
+          stepNumber: 4,
+          phase: 'Assay_Quantification',
+          name: 'Protofibril selectivity assay',
+          description:
+            'Confirm the lot preferentially binds soluble amyloid beta protofibrils over monomer, which is the specific property distinguishing this antibody from earlier plaque-directed antibodies and which a total-amyloid binding assay would not detect.',
+          reagentsAndBuffer:
+            'Synthetic Arctic-mutant amyloid beta protofibril preparations, monomeric Abeta40 and Abeta42 controls, inhibition ELISA and surface plasmon resonance',
+          dependsOnStepId: 'lec-pol',
+        },
+        {
+          id: 'lec-phago',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Microglial phagocytosis potency assay',
+          description:
+            'Quantify FcgammaR-dependent uptake of opsonised amyloid aggregates by a microglial cell line, since the clearance mechanism depends on effector function rather than on binding alone.',
+          reagentsAndBuffer: 'BV-2 or human iPSC-derived microglia, fluorescently labelled Abeta aggregates, flow cytometry readout',
+          dependsOnStepId: 'lec-sel',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'lec-1',
+        category: 'measured',
+        title: 'Clarity AD: CDR-SB decline of 1.21 against 1.66, a difference of 0.45 points on an 18-point scale',
+        laymanSummary:
+          'Over 18 months, people on lecanemab got worse by 1.21 points on an 18-point disability scale and people on placebo got worse by 1.66. The difference of 0.45 points, or 27% less decline, is the entire clinical result.',
+        technicalDetails:
+          'Randomised, double-blind, placebo-controlled 18-month phase 3 trial. 1,795 participants randomised, 898 to lecanemab 10 mg/kg every two weeks and 897 to placebo. Mean baseline CDR-SB was approximately 3.2 in both groups. Adjusted least-squares mean change at 18 months was 1.21 with lecanemab and 1.66 with placebo; difference -0.45 (95% CI -0.67 to -0.23), P < 0.001. ADAS-Cog14 difference -1.44 and ADCS MCI-ADL difference 2.0 both favoured lecanemab.',
+        evidenceSource: 'van Dyck et al., New England Journal of Medicine 2023 (Clarity AD, NCT03887455)',
+        doi: '10.1056/NEJMoa2212948',
+        measuredMetric: 'CDR-SB difference -0.45 (95% CI -0.67 to -0.23), P < 0.001, 27% slowing',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lec-2',
+        category: 'measured',
+        title: 'Amyloid was removed, and that part is not in dispute',
+        laymanSummary:
+          'Brain scans showed the amyloid plaque burden falling to below the threshold used to define a positive scan in most treated patients. The drug does what it was designed to do at the level of the target.',
+        technicalDetails:
+          'In the phase 2 amyloid PET substudy, adjusted mean change from baseline at week 79 was -72.5 centiloids on lecanemab against 1.0 on placebo, from mean baselines of 78.0 and 84.8 centiloids, a difference of -73.5 (P < 0.001). Clarity AD reproduced substantial amyloid reduction. Target engagement and plaque removal are the best-established facts about this drug.',
+        evidenceSource: 'LEQEMBI US Prescribing Information, Clinical Studies, amyloid PET substudy',
+        measuredMetric: 'Amyloid PET change -72.5 centiloids versus 1.0 on placebo at week 79',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lec-3',
+        category: 'inferred',
+        title: 'A 0.45-point difference is presented as a clinically meaningful slowing of Alzheimer disease',
+        laymanSummary:
+          'Whether 0.45 points on an 18-point scale is something a family would notice has never been established. Published estimates of the smallest CDR-SB change that matters to patients are generally larger than the effect measured.',
+        technicalDetails:
+          'The CDR-SB runs from 0 to 18. Published estimates of the minimal clinically important difference in mild cognitive impairment and mild dementia populations generally sit in the range of one to two points, above the 0.45 measured here. The trial was 18 months long, which cannot distinguish a genuine slowing of the disease process from a fixed offset that would not widen with time. Presenting the result as a percentage, 27% less decline, makes it sound larger than the absolute number does, and both descriptions are of the same measurement.',
+        evidenceSource: 'CDR-SB scale properties and the 18-month duration of Clarity AD',
+        inferredClaim: 'That a 0.45-point CDR-SB difference over 18 months is a change patients and families would perceive',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'lec-4',
+        category: 'measured',
+        title: 'ARIA: brain swelling in 13% and microbleeding in 17%, with fatal intracerebral haemorrhage reported',
+        laymanSummary:
+          'One patient in eight developed brain swelling and one in six developed small brain bleeds. Most were symptomless and found only on the required MRI scans, but serious and fatal events have occurred and the drug carries a boxed warning.',
+        technicalDetails:
+          'From the label, in Study 2: ARIA of any type in 21% (191/898) on lecanemab versus 9% (84/897) on placebo; ARIA-E in 13% (113/898) versus 2% (15/897); ARIA-H in 17% (152/898) versus 9% (80/897). Symptomatic ARIA in 3% (29/898), serious symptoms in 0.7% (6/898). Intracerebral haemorrhage larger than 1 cm in 0.7% (6/898) versus 0.1% (1/897), with fatal events observed. Monitoring MRIs are required before the fifth, seventh and fourteenth infusions.',
+        evidenceSource: 'LEQEMBI US Prescribing Information, boxed warning and Warnings and Precautions 5.1',
+        measuredMetric: 'ARIA-E 13% versus 2%; ARIA-H 17% versus 9%; intracerebral haemorrhage >1 cm 0.7% versus 0.1%',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'lec-5',
+        category: 'failed',
+        title: 'In ApoE e4 homozygotes no effect on the primary endpoint was observed, and their ARIA risk is the highest',
+        laymanSummary:
+          'The 15% of patients carrying two copies of the highest-risk Alzheimer gene had the worst safety profile and, in an exploratory analysis, showed no benefit on the main outcome measure at all.',
+        technicalDetails:
+          'The label states that in an exploratory subgroup analysis of ApoE e4 homozygotes, representing 15% of the trial population, a treatment effect was not observed on the primary CDR-SB endpoint, although secondary clinical endpoints and biomarkers favoured lecanemab. In the same subgroup, ARIA occurred in 45% on lecanemab versus 22% on placebo, and symptomatic ARIA-E in 9% against 2% of heterozygotes and 1% of noncarriers. ApoE genotyping before treatment is recommended in the boxed warning for exactly this reason. This is the group with the strongest genetic case for treating and the weakest measured benefit-to-risk ratio.',
+        evidenceSource: 'LEQEMBI US Prescribing Information, Clinical Studies and Warnings and Precautions 5.1',
+        measuredMetric: 'No CDR-SB treatment effect observed in ApoE e4 homozygotes; ARIA in 45% versus 22% on placebo',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'lec-6',
+        category: 'conclusion_shift',
+        title: 'From accelerated approval on a surrogate to traditional approval on an outcome, in six months',
+        laymanSummary:
+          'Lecanemab was first approved in January 2023 on amyloid removal alone, the same basis as aducanumab. When the outcome trial read out, it converted to full approval in July 2023. That is the pathway working as designed, and it is why this drug is not aducanumab.',
+        technicalDetails:
+          'Accelerated approval under BLA 761269 was granted on 6 January 2023 on the amyloid surrogate. Traditional approval followed on 6 July 2023 on the strength of Clarity AD. The contrast with aducanumab, whose confirmatory trial was never completed and which was withdrawn from the market, is the clearest available illustration of what accelerated approval is supposed to do and what happens when the confirmation does not arrive.',
+        evidenceSource: 'Drugs@FDA record for LEQEMBI BLA 761269',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Intravenous infusion every two weeks',
+        laymanDesc:
+          'An hour-long drip every fortnight, at a dose set by body weight. A weekly under-the-skin injection was approved later for maintenance.',
+        molecularDetail:
+          '10 mg/kg every two weeks by one-hour infusion, with a subcutaneous 360 mg weekly maintenance option approved in 2025 on the basis of matched pharmacokinetic exposure and amyloid reduction rather than a separate outcome trial.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Crossing into the brain, inefficiently',
+        laymanDesc:
+          'Only a very small proportion of any antibody gets past the blood-brain barrier. That is why the dose is so large and the infusions so frequent.',
+        molecularDetail:
+          'Central nervous system penetration of an intact IgG is on the order of 0.1-0.3% of plasma concentration, achieved largely by transcytosis and bulk flow. This constraint, not target biology, sets the dosing regimen for every anti-amyloid antibody.',
+        iconName: 'Fence',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'Binding soluble protofibrils preferentially',
+        laymanDesc:
+          'It grips the small soluble clumps of amyloid rather than only the large hardened plaques, which is the design choice that distinguishes it from earlier antibodies.',
+        molecularDetail:
+          'Derived from mAb158, raised against the Arctic APP mutation protofibril. Affinity is roughly an order of magnitude higher for soluble protofibrils than for insoluble fibrils and far higher than for monomer, a selectivity profile that motivated the protofibril toxicity hypothesis this drug was built to test.',
+        iconName: 'Target',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Microglia clear the opsonised aggregates',
+        laymanDesc:
+          'The antibody tags the clumps and the brain resident immune cells eat them. The same process, acting on amyloid in vessel walls, is what causes the swelling and bleeding.',
+        molecularDetail:
+          'FcgammaR-mediated microglial phagocytosis removes opsonised aggregates. Where amyloid is deposited in the vessel wall as cerebral amyloid angiopathy, the same clearance transiently weakens vascular integrity, producing the fluid leakage of ARIA-E and the microbleeds of ARIA-H. ARIA is therefore a direct consequence of the mechanism working, not an off-target effect.',
+        iconName: 'Recycle',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Plaque falls below the positivity threshold; decline slows by a small amount',
+        laymanDesc:
+          'Amyloid scans become negative in most treated patients. Cognitive and functional decline continues, at a measurably but modestly slower rate.',
+        molecularDetail:
+          'Amyloid PET change of -72.5 centiloids in the phase 2 substudy takes most patients below the 24-30 centiloid positivity threshold. CDR-SB decline is slowed by 0.45 points over 18 months. The gap between near-complete target removal and a 27% clinical effect is the central unresolved observation about the amyloid hypothesis.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Clarity AD (NCT03887455)',
+        phase: 'Phase 3',
+        sampleSize: 1795,
+        primaryEndpoint: 'Change from baseline in CDR-SB at 18 months',
+        endpointMet: true,
+        statisticalPValue: 'Difference -0.45 (95% CI -0.67 to -0.23), P < 0.001',
+        unreportedAdverseSignals:
+          'Deaths from intracerebral haemorrhage occurred in the open-label extension, several in patients receiving anticoagulation or thrombolysis, which is now addressed in the boxed warning.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'CDR-SB decline of 1.21 versus 1.66 over 18 months, a difference of 0.45 points on an 18-point scale',
+        'Amyloid PET reduction of -72.5 centiloids versus 1.0 on placebo in the phase 2 substudy',
+        'ARIA-E in 13% and ARIA-H in 17%, against 2% and 9% on placebo',
+        'Intracerebral haemorrhage larger than 1 cm in 0.7% versus 0.1%, with fatal events observed',
+        'No treatment effect on the primary endpoint in ApoE e4 homozygotes in exploratory analysis',
+      ],
+      unsupportedInferences: [
+        'That a 0.45-point CDR-SB difference is a change patients or families would perceive; published estimates of the minimal important difference are larger',
+        'That an 18-month slowing implies continued divergence over years; the trial cannot distinguish disease modification from a fixed offset',
+        'That removing amyloid is now proven to be the mechanism of benefit; the effect size is far smaller than near-complete target removal would predict',
+      ],
+      whatFailedInitially: [
+        'Every earlier anti-amyloid antibody that targeted plaque or monomer rather than protofibrils failed to show clinical benefit, including bapineuzumab and solanezumab',
+        'The ApoE e4 homozygous subgroup, at highest genetic risk, showed no primary-endpoint effect and the highest ARIA rates',
+      ],
+      realWorldOutcome: [
+        'Delivery requires amyloid confirmation by PET or lumbar puncture, ApoE genotyping, fortnightly infusion and at least three monitoring MRIs, which restricts access to specialist centres',
+        'Anticoagulation and thrombolysis in patients on lecanemab have been associated with fatal haemorrhage, which changes acute stroke management for anyone taking it',
+      ],
+    },
+    deliverySystem: {
+      type: 'Intravenous infusion over one hour every two weeks, with a weekly subcutaneous maintenance autoinjector',
+      description:
+        '10 mg/kg every two weeks intravenously. A 360 mg weekly subcutaneous autoinjector was approved in 2025 for maintenance, based on matched pharmacokinetics and amyloid reduction rather than a separate clinical outcome trial.',
+      safetyProfile:
+        'Boxed warning for amyloid related imaging abnormalities, which can be fatal, and for higher incidence in ApoE e4 homozygotes. MRI is required at baseline and before the fifth, seventh and fourteenth infusions. Infusion-related reactions occur in about a quarter of patients on first exposure.',
+    },
+    commonQuestions: [
+      {
+        q: 'Will I notice the difference?',
+        a: 'Nobody has measured that directly. The trial measured a 0.45-point difference on an 18-point scale over 18 months. Published estimates of the smallest CDR-SB change that patients and carers can perceive are generally larger than that. What the trial establishes is that the difference is real and statistically robust, not that it is perceptible.',
+        auditNote:
+          'The gap between statistical significance and clinical meaningfulness is the entire live argument about this drug.',
+      },
+      {
+        q: 'Does clearing amyloid mean the disease is being reversed?',
+        a: 'No. Amyloid falls to below the threshold used to call a scan positive, and decline continues, only 27% more slowly. That mismatch between near-complete target removal and a modest clinical effect is the most important unresolved observation in the field.',
+      },
+      {
+        q: 'Should I get my ApoE genotype tested first?',
+        a: 'The boxed warning says testing should be performed before starting. Homozygotes, about 15% of Alzheimer patients, had ARIA in 45% against 22% on placebo, symptomatic brain swelling in 9%, and in exploratory analysis no effect on the primary endpoint at all. You can still be treated without testing, but you and your doctor then cannot know which risk group you are in.',
+      },
+      {
+        q: 'What happens if I have a stroke while taking it?',
+        a: 'This matters urgently. Deaths from intracerebral haemorrhage have occurred in patients on lecanemab who received thrombolysis, and ARIA-E can mimic an ischaemic stroke on presentation. Anyone taking this drug should carry documentation of it, because it changes what emergency clinicians can safely give.',
+      },
+      {
+        q: 'How is this different from Aduhelm?',
+        a: 'Both were first approved on amyloid removal alone. Lecanemab then completed a large outcome trial that met its primary endpoint, and converted to traditional approval six months later. Aducanumab had two contradictory trials, was approved over its advisory committee, never completed its confirmatory study, and was discontinued in 2024.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label: 'van Dyck et al., Lecanemab in Early Alzheimer Disease, NEJM 2023',
+        identifier: '10.1056/NEJMoa2212948',
+        kind: 'doi',
+      },
+      {
+        label: 'ClinicalTrials.gov, Clarity AD',
+        identifier: 'NCT03887455',
+        kind: 'nct',
+      },
+      {
+        label: 'Drugs@FDA, LEQEMBI BLA 761269, accelerated approval 6 January 2023 and traditional approval 6 July 2023',
+        identifier: 'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=761269',
+        kind: 'regulatory',
+      },
+      MAB_COGS_SOURCE,
+    ],
+  },
 ]
