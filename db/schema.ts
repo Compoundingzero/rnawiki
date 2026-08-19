@@ -104,6 +104,48 @@ export const evidenceChangeTypeEnum = pgEnum('evidence_change_type', [
 
 export const reviewableTypeEnum = pgEnum('reviewable_type', ['claim', 'entity'])
 
+// What kind of recorded event this is. Appended to the file, never reordered: Postgres enum
+// values are matched by name, but the public sentence maps in lib/claim-events.ts are keyed off
+// these exact strings, so a rename here silently changes public copy.
+//
+// `program_stopped_scientific` and `program_stopped_commercial` are deliberately two values, not
+// one `program_stopped`. A programme shelved for funding, portfolio or patent reasons is not
+// evidence that the science failed, and collapsing the two would let the failure section imply a
+// scientific result that no source records. lib/claim-events.ts `isScientificFailure` is the one
+// place that decides which is which.
+export const claimEventTypeEnum = pgEnum('claim_event_type', [
+  'contradictory_result',
+  'null_result',
+  'safety_limited',
+  'exposure_or_delivery_limit',
+  'target_engagement_not_shown',
+  'target_engagement_shown_no_clinical_benefit',
+  'trial_design_limit',
+  'program_stopped_scientific',
+  'program_stopped_commercial',
+  'regulatory_or_safety_change',
+  'retraction_or_correction',
+  'other',
+])
+
+// Where in the development chain the recorded event landed. Roughly ordered from "does this
+// biology exist in humans at all" through to commercial availability, but ordering is not relied
+// on anywhere — a gate is a location, not a score, and must never be rendered as a rank.
+export const developmentGateEnum = pgEnum('development_gate', [
+  'human_biology',
+  'intervention_direction',
+  'delivery_or_exposure',
+  'target_engagement',
+  'pathway_response',
+  'patient_selection',
+  'clinical_outcome',
+  'safety',
+  'trial_design',
+  'manufacturing',
+  'commercial',
+  'unknown',
+])
+
 // ---------------------------------------------------------------------------
 // Accounts (internal only — administrator / editor / scientific_reviewer)
 // ---------------------------------------------------------------------------
@@ -116,6 +158,16 @@ export const users = pgTable('users', {
   role: userRoleEnum('role').notNull(),
   credentials: text('credentials'), // e.g. "MD, PhD — clinical pharmacology"
   relevantField: varchar('relevant_field', { length: 200 }),
+  /**
+   * The revocation counter for this user's sessions. Stamped into the session at login and
+   * re-checked on every request in `getCurrentUser`; bumping it invalidates every cookie that
+   * user is still holding, anywhere.
+   *
+   * It exists because iron-session is stateless: `session.destroy()` on logout clears the
+   * BROWSER's copy and nothing else, so a cookie value captured beforehand kept working. With this
+   * column there is one server-side value that can say no.
+   */
+  sessionVersion: integer('session_version').notNull().default(1),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 })
 
@@ -211,6 +263,19 @@ export const claims = pgTable('claims', {
   displayPriority: integer('display_priority').notNull().default(0), // for "most searched claims" ordering
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
   updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+  // An EDITORIAL check date, recorded by a person, and deliberately not defaulted.
+  //
+  // The public record used to print `updatedAt` under the words "This answer last checked".
+  // `updatedAt` is a database write timestamp: every claim in the seeded corpus carried the single
+  // moment `db:seed` ran, re-running the seed silently advanced the date, and on the BPC-157
+  // record it read a day later than the as-of date written into the answer itself. A site whose
+  // proposition is "we checked this" cannot let a write clock speak for an editor.
+  //
+  // NULLABLE ON PURPOSE, with NO default: a claim nobody has checked has no check date, and the
+  // component prints the honest "last edited" sentence from `updatedAt` instead. Never give this
+  // column a `defaultNow()` — that reintroduces the exact bug, because an insert would mint a
+  // check date nobody performed. `updatedAt` keeps its own job: it is what "Record updated" means.
+  checkedAt: timestamp('checked_at', { withTimezone: true }),
   // Full-text search index over the consumer-facing question + answer. See entities.searchVector
   // above for the generated-column rationale (including why this uses bare column names) and
   // lib/search.ts for how this is queried.
@@ -223,6 +288,12 @@ export const claims = pgTable('claims', {
   searchVectorIdx: index('claims_search_vector_idx').using('gin', t.searchVector),
   // pg_trgm index on the consumer question for typo tolerance (extension created by hand in the migration).
   consumerQuestionTrgmIdx: index('claims_consumer_question_trgm_idx').using('gin', t.consumerQuestion.op('gin_trgm_ops')),
+  // Exists so lib/search.ts's exact-answer tier is indexable. Every other branch of that query's
+  // candidate predicate resolves through a trigram or tsvector index; `lower(direct_answer) = ?`
+  // was the one that did not, and a single non-indexable branch in an OR forces Postgres to
+  // abandon the BitmapOr and scan the whole table, taking the other four indexes down with it.
+  // There is no trigram index on direct_answer: this is an equality lookup, not a fuzzy one.
+  directAnswerLowerIdx: index('claims_direct_answer_lower_idx').on(sql`lower(${t.directAnswer})`),
 }))
 
 export const claimsRelations = relations(claims, ({ one, many }) => ({
@@ -232,6 +303,7 @@ export const claimsRelations = relations(claims, ({ one, many }) => ({
   reviews: many(reviews),
   revisions: many(revisions),
   comprehensionQuestions: many(comprehensionQuestions),
+  claimEvents: many(claimEvents),
 }))
 
 // ---------------------------------------------------------------------------
@@ -297,6 +369,41 @@ export const claimEvidence = pgTable('claim_evidence', {
 }, (t) => ({
   claimIdx: index('claim_evidence_claim_idx').on(t.claimId),
   evidenceIdx: index('claim_evidence_evidence_idx').on(t.evidenceSourceId),
+}))
+
+// ---------------------------------------------------------------------------
+// Claim event (a recorded result or development event that did not support the claim)
+// ---------------------------------------------------------------------------
+
+export const claimEvents = pgTable('claim_events', {
+  id: serial('id').primaryKey(),
+  claimId: integer('claim_id').notNull().references(() => claims.id, { onDelete: 'cascade' }),
+  // NOT NULL by design: an event cannot exist without a real source. This is the data-integrity
+  // rule that keeps the failure section from becoming editorialised opinion. `restrict` (not
+  // `cascade`, unlike claim_evidence) so deleting a source can never silently strip the citation
+  // off a published event and leave the prose standing on nothing.
+  evidenceSourceId: integer('evidence_source_id').notNull()
+    .references(() => evidenceSources.id, { onDelete: 'restrict' }),
+  eventType: claimEventTypeEnum('event_type').notNull(),
+  developmentGate: developmentGateEnum('development_gate').notNull(),
+  plainSummary: text('plain_summary').notNull(),
+  whatItSuggests: text('what_it_suggests').notNull(),
+  whatItDoesNotEstablish: text('what_it_does_not_establish').notNull(),
+  eventDate: timestamp('event_date', { withTimezone: true }),
+  displayPriority: integer('display_priority').notNull().default(0),
+  // Editorial workflow only, exactly as on `claims`. `published` here does not mean a scientific
+  // reviewer signed the event off; only an `approved` row in `reviews` may produce that sentence.
+  publicationStatus: publicationStatusEnum('publication_status').notNull().default('draft'),
+  createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).notNull().defaultNow(),
+}, (t) => ({
+  claimIdx: index('claim_events_claim_idx').on(t.claimId, t.displayPriority),
+  statusIdx: index('claim_events_status_idx').on(t.publicationStatus),
+}))
+
+export const claimEventsRelations = relations(claimEvents, ({ one }) => ({
+  claim: one(claims, { fields: [claimEvents.claimId], references: [claims.id] }),
+  source: one(evidenceSources, { fields: [claimEvents.evidenceSourceId], references: [evidenceSources.id] }),
 }))
 
 // ---------------------------------------------------------------------------
@@ -371,6 +478,10 @@ export const evidenceChanges = pgTable('evidence_changes', {
   publicationDate: timestamp('publication_date', { withTimezone: true }).notNull().defaultNow(),
 }, (t) => ({
   dateIdx: index('evidence_changes_date_idx').on(t.publicationDate),
+  // Added when the Evidence Record started reading change history per claim
+  // (lib/queries/entities.ts loads changes for every claim on a record page in one batched
+  // `inArray` query). `dateIdx` alone could not serve that filter.
+  claimIdx: index('evidence_changes_claim_idx').on(t.claimId),
 }))
 
 // ---------------------------------------------------------------------------

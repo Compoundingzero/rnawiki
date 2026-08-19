@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { db } from '@/db'
 import { entities, claims } from '@/db/schema'
-import { eq, desc } from 'drizzle-orm'
+import { and, eq, desc, isNotNull } from 'drizzle-orm'
 import { HeroSearch } from '@/components/HeroSearch'
 import { plainHumanEvidence, stagePositionApplies } from '@/lib/evidence-view'
 
@@ -13,6 +13,15 @@ const FEATURED_LIMIT = 5
  * Deliberately small: a handful of recently checked questions, not the corpus. The full index is
  * /compounds. Selecting only the columns this section renders keeps the front page cheap as the
  * corpus grows.
+ *
+ * CHECKED means checked. This ordered by `claims.updatedAt`, a database write timestamp, under a
+ * heading that says "Recently checked" — the same substitution the record page's own SAFETY RULE
+ * in lib/evidence-view.ts (`answerCheckPoint`) exists to forbid, where a re-run of `db:seed`
+ * advances the date a record claims it was read. `claims.checkedAt` is the recorded editorial
+ * check and is nullable on purpose, so a claim nobody has recorded a check for is not listed here
+ * at all rather than listed last: the heading is a claim about every row under it. If nothing has
+ * a recorded check the section does not render, which is correct and is not an empty state to
+ * fill. `updatedAt` stays only as the tie-break, where it decides order and asserts nothing.
  */
 async function getRecentQuestions() {
   const rows = await db
@@ -25,17 +34,37 @@ async function getRecentQuestions() {
       claimType: claims.claimType,
       stage: claims.proofBoundaryStage,
       entityId: entities.id,
-      updatedAt: claims.updatedAt,
+      checkedAt: claims.checkedAt,
     })
     .from(claims)
     .innerJoin(entities, eq(claims.entityId, entities.id))
-    .where(eq(claims.publicationStatus, 'published'))
-    .orderBy(desc(claims.updatedAt), claims.displayPriority)
+    .where(and(eq(claims.publicationStatus, 'published'), isNotNull(claims.checkedAt)))
+    .orderBy(desc(claims.checkedAt), desc(claims.updatedAt), claims.displayPriority)
 
   // One question per record, so a single compound cannot occupy four of five slots.
   const seen = new Set<number>()
   return rows.filter((r) => !seen.has(r.entityId) && seen.add(r.entityId)).slice(0, FEATURED_LIMIT)
 }
+
+/**
+ * The four things an answer separates.
+ *
+ * Written as plain terms and definitions, never as four promotional cards. The moment these get
+ * boxes, icons or colour they read as product features rather than as the vocabulary the rest of
+ * the site uses, and "Conflicting or failed" starts looking like a verdict badge.
+ */
+const SEPARATES = [
+  { term: 'Observed', definition: 'What researchers directly measured.' },
+  {
+    term: 'Not proven',
+    definition: 'What the result is often taken to mean but did not establish.',
+  },
+  {
+    term: 'Conflicting or failed',
+    definition: 'Results or development events that did not support the expected outcome.',
+  },
+  { term: 'Still unknown', definition: 'Questions the available evidence cannot answer.' },
+] as const
 
 export default async function HomePage() {
   const recent = await getRecentQuestions()
@@ -45,45 +74,36 @@ export default async function HomePage() {
       <section style={{ paddingTop: 'var(--s8)' }}>
         <h1 className="reading">See what was actually tested.</h1>
         <p className="lead muted reading" style={{ marginTop: 'var(--s4)' }}>
-          Search a medicine, supplement or treatment. RNAwiki shows what researchers measured, what people
-          infer and what is still unknown.
+          Search a medicine, supplement, treatment or health claim. RNAwiki separates what researchers
+          observed from what is assumed, what did not work and what remains unknown.
         </p>
         <div style={{ marginTop: 'var(--s5)' }}>
           <HeroSearch />
         </div>
         <p className="small muted" style={{ marginTop: 'var(--s3)' }}>
-          Every answer links to its sources. No ads or affiliate links.
+          Every answer links to its evidence record and original sources.
         </p>
       </section>
 
       <section className="section">
-        <h2>How to read an answer</h2>
-        <dl className="glance" style={{ marginTop: 'var(--s5)', maxWidth: '52rem' }}>
-          <div>
-            <dt style={{ fontSize: '1.0625rem', fontWeight: 600, color: 'var(--text)' }}>Measured</dt>
-            <dd className="muted" style={{ fontWeight: 400 }}>
-              What a study directly observed.
-            </dd>
-          </div>
-          <div>
-            <dt style={{ fontSize: '1.0625rem', fontWeight: 600, color: 'var(--text)' }}>Inferred</dt>
-            <dd className="muted" style={{ fontWeight: 400 }}>
-              What people think may follow from it.
-            </dd>
-          </div>
-          <div>
-            <dt style={{ fontSize: '1.0625rem', fontWeight: 600, color: 'var(--text)' }}>Unknown</dt>
-            <dd className="muted" style={{ fontWeight: 400 }}>
-              What has not been established.
-            </dd>
-          </div>
+        <h2>What an answer separates</h2>
+        <dl className="separates" style={{ marginTop: 'var(--s5)' }}>
+          {SEPARATES.map((item) => (
+            <div key={item.term} className="separates__item">
+              <dt className="separates__t">{item.term}</dt>
+              <dd className="separates__d">{item.definition}</dd>
+            </div>
+          ))}
         </dl>
       </section>
 
       {recent.length > 0 && (
         <section className="section">
-          <h2>Recently checked</h2>
-          <ul className="records" style={{ marginTop: 'var(--s4)' }}>
+          <h2 className="reading">Recently checked</h2>
+          <p className="small muted reading" style={{ marginTop: 'var(--s3)' }}>
+            Open any answer to inspect its full evidence record.
+          </p>
+          <ul className="records reading" style={{ marginTop: 'var(--s4)' }}>
             {recent.map((r) => (
               <li key={`${r.entitySlug}-${r.claimSlug}`}>
                 <Link href={`/r/${r.entitySlug}#claim-${r.claimSlug}`} className="record-link">
@@ -102,7 +122,9 @@ export default async function HomePage() {
             ))}
           </ul>
           <p style={{ marginTop: 'var(--s5)' }}>
-            <Link href="/compounds">Browse all</Link>
+            <Link href="/compounds" className="inline-action">
+              Browse all
+            </Link>
           </p>
         </section>
       )}

@@ -29,10 +29,79 @@ const FIELD_CAPS = {
   plainLanguageExplanation: 300,
   evidenceContext: 200,
   statusStatement: 420,
+  // Claim-event prose. These match the Zod caps on the admin claim-event editor, so a sentence
+  // that passes the form cannot fail the build later. They are deliberately tighter than
+  // measuredFinding: an event row is read as a list item, and a paragraph in that slot buries the
+  // one thing it exists to say.
+  plainSummary: 400,
+  whatItSuggests: 300,
+  whatItDoesNotEstablish: 300,
+  // Claim-evidence prose. These two were stored fields nothing printed as prose until the Evidence
+  // Record started building its "What did not work or conflicts with this answer" paragraph from
+  // them, at which point they became public sentences that the gate had never seen — one of them
+  // 305 characters long and ending in an undefined evidence-level scale. Anything a component can
+  // print is subject to the same rules as the event fields beside it.
+  claimPartAddressed: 120,
+  directlyMeasuredResult: 400,
 } as const
 
 /** No single sentence in reader-facing prose may run longer than this. */
 const MAX_SENTENCE_WORDS = 40
+
+/**
+ * `claimPartAddressed` is not a sentence and not a heading — it is the tail of one. The Evidence
+ * Record prints it as "Supports this answer on {claimPartAddressed}", so a capitalised first word
+ * produced "Supports this answer on Whether mTOR inhibition by rapamycin extends lifespan in
+ * mammals", which reads as a sentence that broke in the middle. Every rapamycin source row read
+ * that way while BPC-157's and Casgevy's did not, because those files happened to be written
+ * lower-case.
+ *
+ * A regex cannot recognise a proper noun, so the exception is an explicit list rather than a
+ * guess. Add to it when a genuine proper noun or initialism has to lead a value; do not relax the
+ * rule to let an ordinary word through.
+ */
+const PROPER_NOUN_STARTS = new Set(['U.S.', 'UK', 'EU', 'FDA', 'EMA', 'MHRA', 'HbF', 'CRISPR-Cas9'])
+
+function checkClaimPartAddressed(entity: string, where: string, value: string) {
+  const first = value.trim().split(/\s+/)[0] ?? ''
+  if (!/^[A-Z]/.test(first) || PROPER_NOUN_STARTS.has(first)) return
+  problems.push({
+    entity,
+    where,
+    field: 'claimPartAddressed',
+    detail: `starts with a capitalised word "${first}" — it is printed as the tail of "Supports this answer on …", so it reads as a broken sentence. Lower-case it, or add a real proper noun to PROPER_NOUN_STARTS.`,
+  })
+}
+
+/**
+ * One typographic system, not two.
+ *
+ * The Evidence Record builds a paragraph at render time — `fallbackConflictSummary` in
+ * lib/evidence-view.ts — that quotes a source title inside typographic quotes, and it printed a
+ * few hundred pixels from seeded prose that quoted the FDA inside straight ones. Two quote
+ * systems on one page, from two authors that can never see each other. The generated half is
+ * fixed in code and cannot be checked by a human reading a seed file, so the seed half is the one
+ * held to it here.
+ *
+ * The apostrophe is included for the same reason: the components already write &rsquo; and the
+ * generated paragraph already carries curly marks, so a straight one in seeded prose is a visible
+ * mismatch inside a single sentence.
+ *
+ * This is a formatting rule, deliberately mechanical. It does not judge what the quote says.
+ */
+const STRAIGHT_QUOTES = /["']/g
+
+function checkQuotes(entity: string, where: string, field: string, value: string | undefined | null) {
+  if (!value) return
+  const hits = value.match(STRAIGHT_QUOTES)
+  if (!hits) return
+  problems.push({
+    entity,
+    where,
+    field,
+    detail: `${hits.length} straight quote character(s) — seeded prose uses “ ” for quotations and ’ for apostrophes, the same marks the generated evidence paragraph uses. Two quote systems on one page is a visible defect.`,
+  })
+}
 
 /** A field may carry at most this many em-dash asides before it is a clause chain, not a sentence. */
 const MAX_EM_DASHES = 2
@@ -44,7 +113,9 @@ const MAX_EM_DASHES = 2
  */
 const BANNED: { pattern: RegExp; why: string }[] = [
   { pattern: /\bas of this writing\b/i, why: 'dateless hedge — give the checked date instead' },
-  { pattern: /\bit(?:'s| is)? (?:important|worth) (?:to )?not(?:e|ing)\b/i, why: 'filler preamble — just state it' },
+  // Both apostrophes. Seeded prose uses the typographic one (see checkQuotes), so a pattern
+  // written with the straight one alone would stop matching the copy it exists to catch.
+  { pattern: /\bit(?:['\u2019]s| is)? (?:important|worth) (?:to )?not(?:e|ing)\b/i, why: 'filler preamble — just state it' },
   { pattern: /\bit should be noted\b/i, why: 'filler preamble — just state it' },
   { pattern: /\bworth noting that\b/i, why: 'filler preamble — just state it' },
   { pattern: /\bthis is a description of\b/i, why: 'page explaining its own posture to the reader' },
@@ -54,6 +125,26 @@ const BANNED: { pattern: RegExp; why: string }[] = [
   { pattern: /\bplays? a (?:key|crucial|vital|significant) role\b/i, why: 'says nothing measurable' },
   { pattern: /\bwhen it comes to\b/i, why: 'filler transition' },
   { pattern: /\ba (?:testament|nod) to\b/i, why: 'editorialising' },
+  // Marketing vocabulary from the build contract (§3), banned in addition to the
+  // docs/product-principles.md list. None of it overlaps an entry above. These are the register
+  // this product exists to refuse: they promise a reader certainty or access, which is the exact
+  // confidence collapse the Proof Boundary is meant to undo.
+  //
+  // Scope note, and it is a real one: this list runs over seed FIELDS only, and checkFile
+  // deliberately does not walk comprehensionQuestions. BPC-157's tendon question quotes the phrase
+  // "proven by science" as an example of marketing copy a reader should learn to distrust — that
+  // is the product working, not drift. If question text is ever brought under this gate, that
+  // quotation has to be exempted, not rewritten.
+  { pattern: /\bdeep[- ]dives?\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bexplore the science\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bunlock\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bdiscover the truth\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bcomplete scientific breakdown\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bexpert insights?\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bAI[- ]powered\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\brevolutionary\b/i, why: 'contract §3 banned marketing vocabulary' },
+  { pattern: /\bconfidence scores?\b/i, why: 'no scores — Measured/Inferred/Unknown only' },
+  { pattern: /\bproven by science\b/i, why: 'contract §3 banned marketing vocabulary' },
 ]
 
 interface Problem {
@@ -76,6 +167,8 @@ function sentences(text: string): string[] {
 
 function check(entity: string, where: string, field: string, value: string | undefined | null) {
   if (!value) return
+
+  checkQuotes(entity, where, field, value)
 
   const cap = FIELD_CAPS[field as keyof typeof FIELD_CAPS]
   if (cap && value.length > cap) {
@@ -118,6 +211,10 @@ function checkFile(file: SeedFile) {
 
   check(slug, 'entity', 'bottomLine', e.bottomLine)
   check(slug, 'entity', 'accessRealityNote', e.accessRealityNote)
+  // Quote rule only. `shortDescription` is reader-facing on /compounds, in search and in the API,
+  // but it has never been under the caps or the sentence-length rule and bringing it under them
+  // now would be a separate editorial decision.
+  checkQuotes(slug, 'entity', 'shortDescription', e.shortDescription)
 
   for (const rs of e.regulatoryStatuses) {
     check(slug, `regulatory:${rs.jurisdiction.slice(0, 28)}`, 'statusStatement', rs.statusStatement)
@@ -131,6 +228,31 @@ function checkFile(file: SeedFile) {
     check(slug, at, 'proofBoundaryExplanation', c.proofBoundaryExplanation)
     check(slug, at, 'remainingUnknown', c.remainingUnknown)
     check(slug, at, 'evidenceNeededNext', c.evidenceNeededNext)
+
+    for (const link of c.evidence ?? []) {
+      const where = `${at}/evidence:${link.sourceKey.slice(0, 28)}`
+      check(slug, where, 'claimPartAddressed', link.claimPartAddressed)
+      checkClaimPartAddressed(slug, where, link.claimPartAddressed)
+      check(slug, where, 'directlyMeasuredResult', link.directlyMeasuredResult)
+    }
+
+    for (const ce of c.claimEvents ?? []) {
+      const where = `${at}/event:${ce.sourceKey.slice(0, 28)}`
+      check(slug, where, 'plainSummary', ce.plainSummary)
+      check(slug, where, 'whatItSuggests', ce.whatItSuggests)
+      check(slug, where, 'whatItDoesNotEstablish', ce.whatItDoesNotEstablish)
+    }
+
+    // Quote rule only, for the reason recorded on BANNED above: the clarity-check questions quote
+    // marketing copy on purpose ("proven by science" is the example a reader is meant to learn to
+    // distrust), so they stay outside the banned-phrase walk. Which marks that quotation is set
+    // in is exactly the kind of thing this rule should govern.
+    for (const q of c.comprehensionQuestions ?? []) {
+      const where = `${at}/comprehension`
+      checkQuotes(slug, where, 'question', q.question)
+      for (const option of q.options) checkQuotes(slug, where, 'option', option)
+      checkQuotes(slug, where, 'explanation', q.explanation)
+    }
 
     for (const step of c.mechanismSteps ?? []) {
       check(slug, `${at}/step${step.displayOrder}`, 'plainLanguageExplanation', step.plainLanguageExplanation)
@@ -190,6 +312,16 @@ if (!only) {
    * Designation is a real FDA status this corpus legitimately cites; only "breakthrough platform"
    * is. "cure" is not banned either: the spec allows it with precise regulatory and clinical
    * context, which a regex cannot judge.
+   *
+   * The second block is the Evidence Record vocabulary. It was already banned in seeded prose and
+   * was enforced nowhere in components and pages, which is the half where positioning copy is
+   * actually written — "Open evidence record" is one edit away from "Deep dive into the science".
+   * "Evidence Record" is the only branded phrase this product is allowed; the internal project
+   * names for the same feature are banned outright so they cannot surface as public labels.
+   *
+   * "confidence score" and "proven by science" are here for a stronger reason than tone: both name
+   * things the product refuses to produce, and a component printing either would be asserting a
+   * verdict the evidence model has no way to support.
    */
   const BANNED_MARKETING = [
     /\brevolutionary\b/i,
@@ -205,6 +337,20 @@ if (!only) {
     /\bultimate guide\b/i,
     /\bmiracle\b/i,
     /\bunlock your\b/i,
+
+    // Evidence Record vocabulary (build contract §3).
+    /\bdeep dive\b/i,
+    /\bexplore the science\b/i,
+    /\bdiscover the truth\b/i,
+    /\bcomplete scientific breakdown\b/i,
+    /\bexpert insights\b/i,
+    /\bAI-powered\b/i,
+    /\brevolutionary transparency\b/i,
+    /\bconfidence score\b/i,
+    /\bproven by science\b/i,
+    /\b4 Truths\b/i,
+    /\bProofBench\b/i,
+    /\bFailure Atlas\b/i,
   ]
 
   const voiceHits: string[] = []

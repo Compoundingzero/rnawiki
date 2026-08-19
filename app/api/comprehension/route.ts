@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { currentDaySalt, makeSessionHash } from '@/lib/session-hash'
+import { checkRateLimit, getRequestIp } from '@/lib/rate-limit'
+import { MAX_POSTGRES_INT } from '@/lib/public-ids'
 import {
   formatComprehensionAggregate,
   getAggregateForClaim,
@@ -16,19 +18,38 @@ import {
 export const runtime = 'nodejs' // needs node:crypto (via lib/session-hash) and the pg pool
 
 const responseSchema = z.object({
-  questionId: z.number().int().positive(),
+  // Bounded to the int4 range the column actually is: without the upper bound, a questionId like
+  // 99999999999 passed validation and came back as a 500 from the driver rather than a 404.
+  questionId: z.number().int().positive().max(MAX_POSTGRES_INT),
   selectedOptionIndex: z.number().int().min(0),
 })
 
-function getRequestIp(request: Request): string {
-  // Behind Railway's proxy, the client IP arrives as the first hop in X-Forwarded-For.
-  const forwardedFor = request.headers.get('x-forwarded-for')
-  const first = forwardedFor?.split(',')[0]?.trim()
-  if (first) return first
-  return request.headers.get('x-real-ip')?.trim() ?? 'unknown'
-}
+// ABUSE CONTROL, and it is not decoration on a self-test endpoint.
+//
+// This route had none. The only thing bounding it was recordResponse's (questionId, sessionHash)
+// dedupe, whose comment correctly calls itself a UX guard for a double-click rather than an abuse
+// control, and the sessionHash it keyed on mixed in the caller's own User-Agent. So four POSTs with
+// four User-Agents read the answer key straight out of the isCorrect field, and sixteen more
+// pushed question 82 to 20 responses at an 86% correct rate — which flips `isClarityTested` and
+// makes the site print "86% of 21 readers correctly identified where the evidence ends", the one
+// numeric claim CLAUDE.md rule 3 permits, entirely from one scripted loop. It works downward too:
+// stuffing wrong answers holds the rate under CLARITY_MIN_CORRECT_RATE and suppresses the
+// statistic forever.
+//
+// Keyed on IP alone, deliberately. Keying on the session hash would have been keying the control
+// on a value the caller chooses, which is the defect. The limit is per-minute volume; the one
+// answer per reader per question is still the dedupe's job.
+const MAX_RESPONSES_PER_MINUTE = 20
 
 export async function POST(request: Request) {
+  const ip = getRequestIp(request)
+  if (!checkRateLimit(`POST /api/comprehension:${ip}`, { max: MAX_RESPONSES_PER_MINUTE }).allowed) {
+    return NextResponse.json(
+      { ok: false, error: 'Too many answers too quickly. Please slow down.' },
+      { status: 429 }
+    )
+  }
+
   let payload: unknown
   try {
     payload = await request.json()
@@ -64,9 +85,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ ok: false, error: 'That answer option does not exist.' }, { status: 400 })
     }
 
-    const ip = getRequestIp(request)
-    const userAgent = request.headers.get('user-agent') ?? ''
-    const sessionHash = makeSessionHash(ip, userAgent, currentDaySalt(secret))
+    const sessionHash = makeSessionHash(ip, currentDaySalt(secret))
 
     const claimVersion = (await getCurrentClaimVersion(question.claimId)) ?? 1
 

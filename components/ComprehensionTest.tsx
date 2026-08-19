@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { ComprehensionQuestionView } from '@/lib/comprehension'
 
 // Anonymous, no-account "teach-back" check: up to three single-choice questions per claim,
@@ -45,6 +45,11 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
   const [errors, setErrors] = useState<Record<number, string>>({})
   const [pendingQuestionId, setPendingQuestionId] = useState<number | null>(null)
   const [aggregateMessage, setAggregateMessage] = useState<string | null>(null)
+  // One live region per question, kept so focus can be moved onto the feedback the moment it
+  // arrives. Submitting disables the fieldset the button sits in, and a browser blurs an element
+  // it disables — without this, focus lands on <body> and a keyboard user is returned to the top
+  // of the document from wherever they were reading.
+  const resultRefs = useRef<Record<number, HTMLParagraphElement | null>>({})
 
   if (questions.length === 0) return null
 
@@ -71,6 +76,9 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
       if (data.aggregate?.message) {
         setAggregateMessage(data.aggregate.message)
       }
+      // After the state change that disables the control the user activated. The paragraph is
+      // programmatically focusable only (tabIndex -1), so it never joins the tab order.
+      requestAnimationFrame(() => resultRefs.current[questionId]?.focus())
     } catch (err) {
       setErrors((prev) => ({
         ...prev,
@@ -85,8 +93,12 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
 
   return (
     <section aria-labelledby={headingId} className="reading">
+      {/* "Clarity check:" is not decoration. Reusing the claim question verbatim produced two
+          byte-identical h3s on the same page — the question itself, and this — so a screen-reader
+          user moving by heading met the same string twice with nothing to tell them apart, and the
+          second one appeared to belong to the section it happened to follow. */}
       <h3 id={headingId} className="claim__q">
-        {claimQuestion ?? 'Check your understanding'}
+        Clarity check: {claimQuestion ?? 'did this page explain where the evidence stops?'}
       </h3>
 
       <div style={{ marginTop: 'var(--s4)' }}>
@@ -116,31 +128,49 @@ export function ComprehensionTest({ claimId, questions, claimQuestion }: Compreh
                 ))}
               </div>
 
-              {!result && (
-                <div style={{ marginTop: 'var(--s4)' }}>
-                  <button
-                    type="button"
-                    onClick={() => submitAnswer(q.id)}
-                    disabled={!hasSelection || isPending}
-                    className="btn"
-                    style={{ opacity: hasSelection ? 1 : 0.55 }}
-                  >
-                    {isPending ? 'Checking…' : 'Check my answer'}
-                  </button>
-                  {error && (
-                    <p className="quiz__result" role="alert">
-                      {error}
-                    </p>
-                  )}
-                </div>
-              )}
+              {/* The button is NEVER unmounted. It used to be removed from the DOM on success
+                  while the surrounding fieldset was disabled, so the element the user had just
+                  activated ceased to exist and focus fell to <body> — roughly 45 tab stops back
+                  from where they were on a record page, with no announcement. Disabling it in
+                  place keeps focus exactly where the user put it and makes the state the only
+                  thing that changes. */}
+              <div style={{ marginTop: 'var(--s4)' }}>
+                <button
+                  type="button"
+                  onClick={() => submitAnswer(q.id)}
+                  disabled={Boolean(result) || !hasSelection || isPending}
+                  className="btn"
+                  style={{ opacity: hasSelection ? 1 : 0.55 }}
+                >
+                  {isPending ? 'Checking…' : 'Check my answer'}
+                </button>
+              </div>
 
-              {result && (
-                <p role="status" className="quiz__result">
-                  <strong>{result.isCorrect ? 'That matches the explanation.' : 'Not quite.'}</strong>{' '}
-                  {result.explanation}
-                </p>
-              )}
+              {/* Both live regions are mounted empty and stay mounted. Assistive technology only
+                  announces a region that was already in the accessibility tree when its content
+                  changed; a region created together with its own text is reliably missed by NVDA
+                  and JAWS, which meant the one piece of feedback this feature exists to deliver
+                  was silent. The visual treatment is applied only when there is something to
+                  show, so nothing is drawn while they are empty. */}
+              <p role="alert" className={error ? 'quiz__result' : undefined}>
+                {error ?? null}
+              </p>
+              <p
+                ref={(el) => {
+                  resultRefs.current[q.id] = el
+                }}
+                tabIndex={-1}
+                role="status"
+                aria-live="polite"
+                className={result ? 'quiz__result' : undefined}
+              >
+                {result ? (
+                  <>
+                    <strong>{result.isCorrect ? 'That matches the explanation.' : 'Not quite.'}</strong>{' '}
+                    {result.explanation}
+                  </>
+                ) : null}
+              </p>
             </fieldset>
           )
         })}

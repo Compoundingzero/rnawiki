@@ -16,7 +16,9 @@ import { sql } from 'drizzle-orm'
 import { db } from '@/db'
 import { entityUrl, claimAnchorUrl } from '@/lib/canonical'
 import { PROOF_BOUNDARY_LABELS, type ProofBoundaryStage } from '@/lib/evidence'
+import { stagePositionApplies } from '@/lib/evidence-view'
 import { checkRateLimit, getRequestIp } from '@/lib/rate-limit'
+import { sanitisePublicText } from '@/lib/public-ids'
 
 // Uses the pg connection pool via Drizzle — needs the Node runtime, not edge.
 export const runtime = 'nodejs'
@@ -62,6 +64,9 @@ type ClaimRow = {
   consumer_question: string
   direct_answer: string
   proof_boundary_stage: ProofBoundaryStage
+  // Selected for one reason: so this endpoint can ship `evidencePositionApplies` beside the
+  // position. See the comment on the result mapping below.
+  claim_type: string
 }
 
 export async function GET(request: Request) {
@@ -72,7 +77,10 @@ export async function GET(request: Request) {
   }
 
   const url = new URL(request.url)
-  const rawQuery = url.searchParams.get('q')?.trim() ?? ''
+  // Control characters are stripped before the trim, for the same reason as lib/search.ts: a NUL
+  // in `q` is not bindable by Postgres and used to surface as a 500 rather than an empty result
+  // set. A query that is nothing but control characters is an empty query. See lib/public-ids.ts.
+  const rawQuery = sanitisePublicText(url.searchParams.get('q') ?? '').trim()
   if (!rawQuery) {
     return jsonResponse({ error: 'Query parameter "q" is required.' }, 400)
   }
@@ -94,7 +102,7 @@ export async function GET(request: Request) {
       `),
       db.execute<ClaimRow>(sql`
         SELECT c.id, e.slug AS entity_slug, e.canonical_name AS entity_name, c.slug AS claim_slug,
-               c.consumer_question, c.direct_answer, c.proof_boundary_stage
+               c.consumer_question, c.direct_answer, c.proof_boundary_stage, c.claim_type
         FROM claims c
         INNER JOIN entities e ON e.id = c.entity_id
         WHERE c.publication_status = 'published'
@@ -113,13 +121,30 @@ export async function GET(request: Request) {
       canonicalUrl: entityUrl(row.slug),
     }))
 
+    // `claimType` and `evidencePositionApplies` travel with the position, always, and removing
+    // either is a safety regression rather than a payload trim.
+    //
+    // Every claim carries a `proofBoundaryStage` in the database, but the position only MEANS
+    // something for an outcome claim. Casgevy's "What does actually getting treated with Casgevy
+    // involve?" is an `access` claim stored at `regulatory_evidence`: /r/casgevy, /embed/claim/1024
+    // and /api/v1/claims/1024 all suppress the position for it, the last by shipping
+    // `evidencePositionApplies: false`. This endpoint shipped the stage and its display label with
+    // no qualifier at all, so the most natural consumer use — a result list of question, answer and
+    // position line — republished "a medicines regulator reviewed the evidence and approved the
+    // product for a specific use" under a description of a hospital stay, and no served field let
+    // the consumer detect it.
+    //
+    // stagePositionApplies is the one function that decides this, for the API and for every page
+    // that prints a position, so the two cannot disagree (docs/api.md).
     const claimResults = claimResult.rows.map((row) => ({
       type: 'claim' as const,
       id: Number(row.id),
       consumerQuestion: row.consumer_question,
       directAnswer: row.direct_answer,
+      claimType: row.claim_type,
       proofBoundaryStage: row.proof_boundary_stage,
       proofBoundaryStageLabel: PROOF_BOUNDARY_LABELS[row.proof_boundary_stage],
+      evidencePositionApplies: stagePositionApplies(row.claim_type),
       entityName: row.entity_name,
       entitySlug: row.entity_slug,
       canonicalUrl: claimAnchorUrl(row.entity_slug, row.claim_slug),

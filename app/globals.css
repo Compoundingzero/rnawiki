@@ -10,11 +10,32 @@
   --text-soft: #6e6e73;
   --border: #d2d2d7;
   --border-soft: #e6e6ea;
+  /* --border and --border-soft draw separators and hairlines, which are decorative and
+     exempt from WCAG 1.4.11. A form control's border is not decorative: on this site it is
+     the only thing that says "you can type here" or "you can press this", and at 1.51:1 it
+     failed the 3:1 non-text-contrast requirement. Same Apple grey family, measured 3.26:1
+     on #ffffff. Used ONLY on .search__input, .btn and .field — darkening the hairlines
+     would coarsen every rule on the page. */
+  --border-control: #8e8e93;
   --action: #0066cc;
   --action-hover: #0052a6;
   --warn-text: #7a4100;
   --warn-bg: #fdf6ec;
   --warn-border: #e8d5b5;
+
+  /* The ground the element being painted is actually sitting on. Almost always --bg, which is
+     why it is declared as one here — but a knockout ring drawn in a hard-coded --bg turns into
+     a white halo the moment its container has a background of its own. That is what the reach
+     axis's "here" dot did on an anchored claim, whose card is --bg-soft. Any element that
+     redefines the ground under it redefines --surface with it. */
+  --surface: var(--bg);
+
+  /* One chevron drawing for the whole site, so a glyph and an SVG cannot drift apart again.
+     The path, viewBox, stroke width and caps are identical to the inline `.er__chev` SVG in
+     components/evidence/EvidenceRecord.tsx; this copy exists because a CSS pseudo-element
+     cannot host markup. Used as a mask and painted in currentColor, so it inherits its
+     colour the way the glyph it replaced did. Change one, change both. */
+  --chev: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M6 3.5L10.5 8L6 12.5' fill='none' stroke='%23000' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
   --font-id: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -33,8 +54,14 @@
   --radius: 12px;
   --radius-sm: 8px;
 
-  --measure: 42rem; /* ~700px reading column */
-  --page: 70rem; /* ~1120px */
+  /* ONE column, one left edge, one right edge.
+     --page used to be 70rem while --measure was 42rem, so a 672px reading column sat
+     pinned to the left of a 1120px container: the header, the hero, the hairline blocks
+     and the record rows each ended at a different x and 40% of a 1440 canvas was void.
+     The page is now the measure plus its own gutters, so `.page` and `.reading` are
+     coincident at desktop and every element on every surface shares one right edge. */
+  --measure: 41rem; /* 656px reading column, ~76 characters at 17px */
+  --page: 44rem; /* 704px = --measure + 2 x --s5 */
 }
 
 *,
@@ -67,14 +94,47 @@ h3 {
   text-wrap: balance;
 }
 
+/* h3s carry prose, not titles: a jurisdiction name, a claim question, a chain label. `balance`
+   evens the line lengths of a heading it treats as a unit, and on "United States — FDA Pharmacy
+   Compounding Advisory Committee (2026 update)" it broke the line 262px before the column edge to
+   do it, leaving a short first line above a long one inside a full-width section. `pretty` keeps
+   the rag where the measure puts it and only prevents an orphan. Same override, and the same
+   reason, as .claim__q already carries. h1 and h2 keep `balance`: they are short and set large,
+   which is the case it is for. */
+h3 {
+  text-wrap: pretty;
+}
+
+/* The desktop scale is 48 / 32 / 26 / 22 / 17 / 15 / 14 — name, answer, section
+   heading, claim answer, body, small, meta. It used to run 52 / 32 / 30, which put the
+   section heading within 6% of the bottom line it is subordinate to and gave the heavier
+   weight to the smaller of the two. The answer went to 38 to fix that and overshot: see
+   the note on .bottom-line, where the cap came back to 32 because 38px could not set a
+   long sentence in this measure. The answer is 1.23x its section heading and still the
+   second-largest thing on the page.
+   Mobile is unchanged: at 390 these still resolve to 34 / 26.6 / 22. */
 h1 {
-  font-size: clamp(2.125rem, 1.4rem + 3vw, 3.25rem);
+  font-size: clamp(2.125rem, 1.5rem + 2.6vw, 3rem);
 }
 h2 {
-  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem);
+  font-size: clamp(1.375rem, 1.2rem + 0.7vw, 1.625rem);
 }
 h3 {
   font-size: 1.1875rem;
+}
+
+/* The evidence record nests down to h6 (record title → section → source group), and the browser
+   default for those three is a bold heading carrying 1.33–2.33em of its own vertical margin. Left
+   alone it broke the 8px rhythm inside the record and made an h6 group heading smaller than the
+   body text under it. Every one of them is a small label here, so size and colour are set on the
+   class and the element only resets what the UA would otherwise impose. */
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
 }
 
 p {
@@ -271,7 +331,7 @@ a:hover {
   font-family: inherit;
   color: var(--text);
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius);
 }
 .search__input::placeholder {
@@ -332,7 +392,7 @@ a:hover {
   font-weight: 500;
   color: var(--text);
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-sm);
   cursor: pointer;
   text-decoration: none;
@@ -358,6 +418,28 @@ a:hover {
   background: var(--bg-soft);
 }
 
+/* A control the visitor cannot operate must not be painted in the action colour, which the design
+   law reserves for things that work. Without this, the corrections form's submit button — which is
+   rendered disabled until the component has hydrated, so that a reader without JavaScript cannot
+   fire the browser's GET fallback and lose their report — sat there in full action blue looking
+   entirely operable. The hover rules are neutralised too, so it does not respond to a pointer
+   either. Muted rather than faded to near-invisible: the reader still needs to read the label and
+   the sentence underneath it that explains why it is unavailable. */
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  color: var(--text-soft);
+  background: var(--bg-soft);
+  border-color: var(--border);
+  cursor: default;
+}
+.btn:disabled:hover,
+.btn--primary:disabled:hover,
+.btn--quiet:disabled:hover {
+  color: var(--text-soft);
+  background: var(--bg-soft);
+  border-color: var(--border);
+}
+
 .field {
   width: 100%;
   min-height: 44px;
@@ -366,7 +448,7 @@ a:hover {
   font-size: 1.0625rem;
   color: var(--text);
   background: var(--bg);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-control);
   border-radius: var(--radius-sm);
 }
 
@@ -436,16 +518,32 @@ a:hover {
 .reach {
   margin: 0;
 }
+/* NO `gap` HERE, and that is load-bearing. The axis is drawn by each step's own
+   `::before`, so a flex gap does not space labels — it cuts the rail. A 4px gap
+   rendered the "continuous neutral axis" below as five separate bars with four
+   breaks, each break landing at the MIDPOINT between two ticks rather than at a
+   tick, which reads as four missing segments of evidence rather than one line.
+   Labels get their breathing room from padding instead: padding is inside the
+   step box, so the rail spans it unbroken. */
 .reach__steps {
   display: flex;
   list-style: none;
-  gap: var(--s1);
 }
+/* The label is centred under its own tick, and that is not a stylistic choice.
+   With `flex: 1` cells the dot is positioned at 50% of the CELL, so a left-aligned
+   label put the marker up to 38px away from the word it marks — on the widest cell
+   the black "here" dot floated over the gap between two labels and the reader had to
+   guess which position was marked. Centring the text makes the label's own centre and
+   the tick's centre the same x at every width, which is the only arrangement that
+   survives being measured rather than eyeballed. Left alignment returns at 390px,
+   where the axis is vertical and the dot sits on the rail beside each label. */
 .reach__step {
   flex: 1;
   min-width: 0;
   padding-top: var(--s5);
+  padding-inline: 2px;
   position: relative;
+  text-align: center;
   font-size: 0.8125rem;
   color: var(--text-soft);
   line-height: 1.25;
@@ -459,6 +557,20 @@ a:hover {
   right: 0;
   height: 1px;
   background: var(--border);
+}
+/* The axis ENDS at its end ticks. Each step draws the rail across its whole cell,
+   so the first and last cells each ran half a cell width — 57px at 1440 — past the
+   outermost dot and left a dangling stub at both ends, which reads as an axis that
+   continues somewhere off the page. The dot sits at 50% of its cell, so trimming the
+   first cell's rail to start at 50% and the last cell's to end at 50% terminates the
+   line exactly on the first and last ticks. Measured, not eyeballed: scan one pixel
+   row through the rail and it must return a single run whose ends match the outer
+   dot centres. */
+.reach__step:first-child::before {
+  left: 50%;
+}
+.reach__step:last-child::before {
+  right: 50%;
 }
 .reach__step::after {
   content: '';
@@ -477,12 +589,17 @@ a:hover {
   color: var(--text);
   font-weight: 600;
 }
+/* The ring is a knockout: it hides the rail where it passes behind the marker, so it must be
+   painted in whatever is actually behind the dot. Hard-coded to --bg it drew a white halo on
+   the anchored claim's --bg-soft card — the anchored state being the primary mobile entry
+   path, arrived at from search. --surface is --bg everywhere except on grounds that redefine
+   it, so the ring follows its card instead of assuming white. */
 .reach__step[data-here='true']::after {
   width: 13px;
   height: 13px;
   top: 4px;
   background: var(--text);
-  box-shadow: 0 0 0 3px var(--bg);
+  box-shadow: 0 0 0 3px var(--surface);
 }
 .reach__caption {
   margin-top: var(--s4);
@@ -492,10 +609,10 @@ a:hover {
 @media (max-width: 30rem) {
   .reach__steps {
     flex-direction: column;
-    gap: 0;
   }
   .reach__step {
     padding: var(--s2) 0 var(--s2) var(--s5);
+    text-align: left;
   }
   .reach__step::before {
     top: 0;
@@ -505,10 +622,35 @@ a:hover {
     width: 1px;
     height: auto;
   }
+  /* Same termination rule as the desktop axis, turned through 90 degrees, and the
+     selectors are repeated here because the desktop pair (`:first-child::before`,
+     0,2,1) outranks the vertical rule directly above (0,1,1) — left unbeaten, the
+     first step's rail would jump to the horizontal centre of the phone column. On a
+     vertical axis the dot sits at 50% of its own step, so the rail starts at the first
+     dot and stops at the last one. */
+  .reach__step:first-child::before {
+    top: 50%;
+    left: 6px;
+  }
+  .reach__step:last-child::before {
+    bottom: 50%;
+    left: 6px;
+    right: auto;
+  }
   .reach__step::after {
     top: 50%;
     left: 6px;
     transform: translate(-50%, -50%);
+  }
+  /* Repeated for the marked step. The rule above is `.reach__step::after` (0,1,1) and the
+     one it has to beat is `.reach__step[data-here='true']::after` (0,2,1), which sets
+     `top: 4px` for the horizontal desktop axis. Specificity won outside the media query,
+     so on a phone the one dot that matters kept its desktop offset and floated about 12px
+     above the centre of its own label, between two rungs. Selector repeated here rather
+     than made !important: same specificity, later in the file, so it wins by source order
+     and the desktop rule is still readable on its own. */
+  .reach__step[data-here='true']::after {
+    top: 50%;
   }
 }
 
@@ -544,7 +686,11 @@ a:hover {
   margin-bottom: var(--s3);
   text-wrap: pretty;
 }
+/* One step below both the question label (17px) and the answer (22px), so exactly one
+   grey 17px element remains in a claim — the question. The sentence itself is never
+   shortened and never dropped; only its size steps down. */
 .claim__ev {
+  font-size: 0.9375rem;
   color: var(--text-soft);
   margin-bottom: var(--s3);
 }
@@ -554,11 +700,21 @@ a:hover {
   border-top: 1px solid var(--border-soft);
   padding-top: var(--s3);
 }
+/* The chevron trails the LAST WORD, which needs the summary to be normal inline flow.
+   This was a flex row with `width: fit-content` and the marker as a flex item, on the
+   theory that fit-content keeps the box tight around its own words. It does not once the
+   words exceed one line: fit-content resolves to min(max-content, available), so a summary
+   that wraps — every mechanism question at 390px — fills the column, the anonymous text
+   item shrinks, and the marker is left stranded at the far right page edge ~40px after the
+   sentence it belongs to. As a block with an inline-block ::after the marker is simply the
+   next thing after the last word, at any width and any number of lines.
+   `padding-block: 10px` rather than `align-items: center`: 24px of line box plus 20px is
+   the 44px hit area a phone needs, and a one-line summary is optically centred in it. */
 .disclosure > summary {
-  display: flex;
-  align-items: center;
-  gap: var(--s2);
+  display: block;
+  width: fit-content;
   min-height: 44px;
+  padding-block: 10px;
   cursor: pointer;
   font-size: 0.9375rem;
   font-weight: 500;
@@ -568,15 +724,37 @@ a:hover {
 .disclosure > summary::-webkit-details-marker {
   display: none;
 }
+/* ONE closed-state convention on the whole site: closed points right, open points down,
+   the same 0deg / 90deg the Evidence Record's SVG chevron uses. Two controls 40px apart
+   used to disagree — `›` on the record, `˅` on the aside beneath it.
+   And now ONE chevron, not two drawings of one idea. This was the `›` glyph while the
+   Evidence Record 40px above it drew an SVG: two different shapes, two different weights,
+   and the glyph sat off the optical centre of its own line because a font's `›` is
+   positioned for punctuation, not for a control. The mask below is the exact path from
+   `.er__chev` in components/evidence/EvidenceRecord.tsx — same viewBox, same 1.5 stroke,
+   same round caps — painted in `currentColor` through `background`, so it still inherits
+   the link colour the way a glyph did. Keep the two in sync: if one path changes, both do.
+   `content: ''` also keeps the glyph out of the accessibility tree, which the old
+   `content: '›' / ''` alt-text syntax was there to do — five disclosure controls used to
+   compute their accessible name as "Other names ›". */
 .disclosure > summary::after {
-  content: '›';
-  transform: rotate(90deg);
-  font-size: 1.1rem;
-  line-height: 1;
+  content: '';
+  /* inline-block for two reasons: `transform` does not apply to a non-replaced inline
+     box, and as part of the text flow it follows the last word instead of being parked
+     at the end of the line box. The left margin replaces the old flex `gap`. */
+  display: inline-block;
+  margin-left: var(--s2);
+  width: 12px;
+  height: 12px;
+  vertical-align: -1px;
+  background: currentColor;
+  -webkit-mask: var(--chev) center / contain no-repeat;
+  mask: var(--chev) center / contain no-repeat;
+  transform-origin: 50% 50%;
   transition: transform 140ms ease;
 }
 .disclosure[open] > summary::after {
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
 }
 .disclosure__body {
   padding: var(--s3) 0 var(--s4);
@@ -610,20 +788,50 @@ a:hover {
 .record-link:hover {
   background: var(--bg-soft);
 }
-.record-link__name {
-  font-size: 1.1875rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: var(--s1);
+/* The record page's relationship, adopted verbatim on every surface that prints a
+   question and its answer: the question is the quiet label, the answer is the ink, the
+   metadata sits a step below both. The homepage used to invert it — 19px semibold black
+   question over a 15px grey answer set identically to the entity line under it, so the
+   answer read as a subtitle and the metadata read as its equal.
+   The question carries the action colour here and only here: on the homepage and in
+   search the question line IS the link, and the whole row was otherwise plain black text
+   with a :hover background, which does not exist on a touch device. On the record page
+   the same question is not operable and stays grey. Colour marks the control, never the
+   evidence. */
+.record-link__name,
+.result__q {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--action);
+  margin-bottom: var(--s2);
 }
-.record-link__desc {
-  color: var(--text-soft);
-  font-size: 0.9375rem;
+.record-link__desc,
+.result__a {
+  font-size: 1.1875rem;
+  line-height: 1.45;
+  color: var(--text);
+  margin-bottom: var(--s2);
+}
+.record-link:hover .record-link__name,
+.record-link:hover .result__q {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 .record-link__meta {
   margin-top: var(--s2);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   color: var(--text-soft);
+}
+
+/* A link that stands alone as the next step out of a section — "Browse all" under the
+   homepage list. It is prose, not a button, so it takes no border and no fill; it only
+   needs a real hit area on a phone, which the @media block at the end of this file gives
+   it. The negative start margin keeps its text on the same optical left edge as the
+   paragraph above it once the padding is added. */
+.inline-action {
+  margin-inline-start: calc(var(--s2) * -1);
+  padding-inline: var(--s2);
 }
 
 /* --- footer -------------------------------------------------------------- */
@@ -720,10 +928,14 @@ a:hover {
 .source__meta div + div {
   margin-top: var(--s1);
 }
-/* Real identifiers only. */
+/* Real identifiers only. A DOI, an NCT id or a regulatory URL is one long unbreakable token; it is
+   also the part of a record a reader retypes elsewhere, so it may wrap anywhere but is never
+   truncated with an ellipsis. Without the wrap a single DOI pushes the whole page sideways at
+   390px. */
 .id {
   font-family: var(--font-id);
   font-size: 0.875em;
+  overflow-wrap: anywhere;
 }
 
 /* --- document pages ------------------------------------------------------ */
@@ -876,18 +1088,29 @@ textarea.field {
    reads as the answer — and next to "Is rapamycin approved for longevity?" it
    would say the opposite of what the answer says. */
 
-.result__q {
-  font-size: 1.0625rem;
-  font-weight: 600;
-  line-height: 1.35;
-  margin-bottom: var(--s2);
-}
-.result__a {
-  margin-bottom: var(--s2);
-}
 .result__reach {
   font-size: 0.9375rem;
   color: var(--text-soft);
+}
+
+/* The record a group of answers belongs to. It is an <h2> wrapping a link, and left to the
+   global `a` rule it rendered as 26px of underlined action blue directly above a second blue
+   link — louder than the answer it was filing, and two competing controls in 40px. It is a
+   label for the group, so it is set at body size in ink and takes the .record-link idiom:
+   colour and weight carry it, the underline arrives on hover. letter-spacing is reset because
+   the h1/h2/h3 tightening is for display sizes, not for a 16px label. */
+.result-group__h {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.result-group__h a {
+  color: var(--text);
+  text-decoration: none;
+}
+.result-group__h a:hover {
+  color: var(--text);
+  text-decoration: underline;
 }
 
 /* --- plain facts under a browse row -------------------------------------- */
@@ -941,9 +1164,15 @@ textarea.field {
 }
 
 /* The answer to the question the reader arrived with, set larger than anything
-   except the name itself. */
+   except the name itself.
+   The cap is 32px, not the 38px it was. 38px inside the 656px measure gives about 30
+   characters a line, and the Casgevy bottom line — the longest on the site — broke into
+   eight ragged lines ending on the orphan "by weeks in hospital". Widening --measure was
+   not an option: every element on every surface now shares that one right edge. At 32px
+   the same sentence sets in five to six lines and still leads the page by a clear step —
+   1.23x the 26px section heading and 1.45x the 22px claim answer below it. */
 .bottom-line {
-  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2rem);
+  font-size: clamp(1.5rem, 1.25rem + 1.7vw, 2rem);
   line-height: 1.35;
   letter-spacing: -0.01em;
   text-wrap: pretty;
@@ -957,24 +1186,84 @@ textarea.field {
 }
 .disclosure--inline > summary {
   min-height: 36px;
+  /* 24px line box + 12px keeps the 36px this control is meant to be on a pointer
+     device; the small-screen block below takes it back to the 44px touch target. */
+  padding-block: 6px;
   font-size: 0.9375rem;
   font-weight: 400;
 }
 
-/* A reader who follows /r/x#claim-y must land on that claim with its evidence
-   already open. CSS cannot set the `open` attribute, so both the modern
-   ::details-content mechanism and the older display rule are overridden. */
-.claim:target > .disclosure > .disclosure__body {
+/* --- the anchored claim --------------------------------------------------- */
+/* A reader who follows /r/x#claim-y must land on that claim, see which one it is,
+   and find its evidence already readable. A fragment never reaches the server, so
+   this is the only place that can do it.
+   The mark is a neutral tint, never the action colour and never the warning
+   colour: "you are here" is not a state of the evidence. The negative inline
+   margin keeps the text on the same optical left edge as every other claim, so the
+   tint reads as a highlight rather than as an indent. The separator above is
+   dropped because a hairline drawn on the tint's own top edge reads as a broken
+   box. */
+.claim:target,
+.claim--target {
+  background: var(--bg-soft);
+  /* This card is now the ground for everything inside it, so anything that knocks out of its
+     background — the reach axis's "here" dot is the one that does — follows it instead of
+     painting a white ring on grey. See --surface in :root. */
+  --surface: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: var(--s4);
+  margin-inline: calc(var(--s4) * -1);
+  border-top-color: transparent;
+}
+
+/* CSS cannot set the `open` attribute, so both hiding mechanisms are overridden:
+   older engines hide the non-summary children (beaten by `display: block`) and
+   current Chromium hides ::details-content with content-visibility (beaten only by
+   overriding that). Getting one and not the other is why this pair exists.
+   Until 2026-08 the record was a `.disclosure` sitting directly inside `.claim`;
+   the Evidence Record replaced it with `.er`. Both are kept here: `.disclosure` is
+   still the markup for asides, and a direct-child aside inside an anchored claim
+   should still open.
+   ACCEPTED LIMIT, documented so it is not rediscovered as a bug: while the hash
+   still points at this claim the reader cannot collapse this one record. Clicking
+   sets [open], clicking again removes it, and this rule reveals the body a second
+   time. Clearing :target needs a navigation and no stylesheet can trigger one.
+   The alternative — landing on a closed record — breaks the promise a claim link
+   makes, so the limit is preferred to it. Every other record on the page is
+   unaffected and closes normally. `.claim--target` is the scriptable equivalent
+   and is handled identically: a script that adds it can remove it on toggle,
+   which is the only way that limit can be lifted. */
+.claim:target > .disclosure > .disclosure__body,
+.claim--target > .disclosure > .disclosure__body,
+.claim:target .er:not([open]) .er__body,
+.claim--target .er:not([open]) .er__body {
   display: block;
 }
-.claim:target > .disclosure::details-content {
+.claim:target > .disclosure::details-content,
+.claim--target > .disclosure::details-content,
+.claim:target .er:not([open])::details-content,
+.claim--target .er:not([open])::details-content {
   content-visibility: visible;
   block-size: auto;
 }
 /* Keep the control's own state honest: the content below it is showing, so the marker points the
-   same way it would if the reader had opened it. */
-.claim:target > .disclosure > summary::after {
-  transform: rotate(-90deg);
+   same way it would if the reader had opened it, and the label reads as the control that closes
+   it rather than one that opens what is already open. */
+.claim:target > .disclosure > summary::after,
+.claim--target > .disclosure > summary::after {
+  transform: rotate(90deg);
+}
+.claim:target .er:not([open]) .er__chev,
+.claim--target .er:not([open]) .er__chev {
+  transform: rotate(90deg);
+}
+.claim:target .er:not([open]) .er__label--open,
+.claim--target .er:not([open]) .er__label--open {
+  display: none;
+}
+.claim:target .er:not([open]) .er__label--close,
+.claim--target .er:not([open]) .er__label--close {
+  display: inline;
 }
 
 /* --- sources ------------------------------------------------------------- */
@@ -996,6 +1285,17 @@ textarea.field {
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: var(--s1);
+}
+/* A source title is operable — it goes to the DOI — so it keeps the action colour. What it
+   drops is the browser's default underline: a list of ten 16px semibold titles, each two or
+   three lines long and each fully underlined, was the loudest thing inside the record and
+   competed with the evidence it was citing. Same idiom as .record-link__name: colour marks
+   the link, the underline arrives on hover, and the hit area is unchanged. */
+.source__h a {
+  text-decoration: none;
+}
+.source__h a:hover {
+  text-decoration: underline;
 }
 .source__line {
   font-size: 0.9375rem;
@@ -1041,6 +1341,19 @@ textarea.field {
   gap: var(--s2);
   align-items: center;
 }
+/* Optical alignment, not a nudge. A `.btn--quiet` is a text link wearing a button's
+   box: it carries 8px of `padding-inline` plus a 1px transparent border so its hover
+   background has room, and that 9px pushes its FIRST GLYPH 9px right of everything
+   stacked above and below it. Measured inside the open utilities panel, five elements
+   should share one left edge and only three did — the summary, the heading and the
+   body copy sat at x=427 while both button rows started at x=436, which reads as a
+   ragged spine rather than a deliberate indent. Pulling the row back by exactly the
+   button's own optical padding puts the glyphs on the spine while the hover target
+   keeps its full padding. Scoped to the record's utilities so a future `.tools` row
+   somewhere with a different first child is unaffected. */
+.er__utilities .tools {
+  margin-inline-start: calc(-1 * (var(--s2) + 1px));
+}
 .code {
   margin: 0;
   padding: var(--s3);
@@ -1084,7 +1397,11 @@ textarea.field {
   flex: none;
   width: 1.125rem;
   height: 1.125rem;
-  margin-top: 0.2em;
+  /* Chrome's UA sheet gives input[type=radio] `margin: 3px 3px 0 5px`, and that 5px pushed every
+     option control 5px right of the page's left rag while the label text beside it stayed on the
+     rag — an indented column of controls inside an otherwise flush-left page. The margin is reset
+     on all four sides so the gap token, and nothing else, sets the distance to the label. */
+  margin: 0.2em 0 0;
   accent-color: var(--action);
 }
 .quiz__result {
@@ -1095,6 +1412,453 @@ textarea.field {
   font-size: 0.9375rem;
 }
 
+/* --- what an answer separates -------------------------------------------- */
+/* Four terms and their definitions on the homepage, not four cards. Each sits
+   under its own hairline, which is what makes the four read as one aligned set;
+   a box around each turns the vocabulary of the site into a feature grid, and
+   "Conflicting or failed" in a box starts to look like a verdict badge. Two
+   columns at most, so the definitions keep a readable measure. */
+
+.separates {
+  display: grid;
+  gap: var(--s5);
+  margin: 0;
+}
+@media (min-width: 40rem) {
+  .separates {
+    /* Two equal columns filling the content width, and NO column gap: the two borders in
+       a row then abut into one unbroken rule the full width of the page, so the block
+       reads as a two-row table rather than as four floating stubs that stop short of
+       every other rule on the page. The 32px padding-right is what keeps the two text
+       columns apart. Four across is not viable — 656px / 4 gives 146px columns and
+       four-line definitions. */
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0;
+    row-gap: var(--s6);
+  }
+  .separates__item {
+    padding-right: var(--s6);
+  }
+  .separates__item:nth-child(2n) {
+    padding-right: 0;
+  }
+}
+.separates__item {
+  min-width: 0;
+  border-top: 1px solid var(--border-soft);
+  padding-top: var(--s3);
+}
+.separates__t {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: var(--s1);
+}
+.separates__d {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+/* --- record metadata strip ----------------------------------------------- */
+/* The three values that used to sit under an "At a glance" heading. Same hairline
+   idiom as .separates and .facts: the rule is what aligns the labels, so no panel
+   or tile is needed. Label above value, and the label is the quiet half — the
+   reader's eye should land on "Approved in the US and EU", not on "Approval
+   status". Kept a step below .bottom-line and .claim__a in size, because it is
+   supporting metadata and not the answer. */
+
+/* The rule belongs to the strip, not to each value. Drawn per item with a gap between
+   them it broke into three 208px stubs at three different depths, which read as three
+   floating fragments rather than as one considered row. */
+.record-meta {
+  display: grid;
+  gap: var(--s4);
+  margin: 0;
+  max-width: var(--measure);
+  border-top: 1px solid var(--border-soft);
+  padding-top: var(--s3);
+}
+@media (min-width: 40rem) {
+  .record-meta {
+    /* Content-driven columns, not equal thirds.
+       `repeat(auto-fit, minmax(11rem, 1fr))` gave all three values the same 194px whatever
+       they said: "Approved for a defined medical use" needs 261px and wrapped to two lines
+       while "18 August 2026" sat in a 218px cell with 102px of dead air beside it. The
+       reader saw one value broken across lines next to one value floating in an empty
+       column, which reads as a layout failure rather than as three facts.
+       The gap is now a real `column-gap` rather than `padding-right` on the item. Padding
+       inside the cell is indistinguishable from the value's own measure, so a wrap looked
+       like a ragged edge instead of a column boundary.
+       `grid-auto-flow: column` keeps the one property auto-fit was here for: a record with
+       no evidence row renders two items and gets two columns, never three with a hole.
+       `auto` tracks rather than `max-content`: on a record whose evidence value is a whole
+       clause ("No controlled human trial on any question here") the three max-contents
+       exceed the 656px measure, and `auto` lets the longest one wrap instead of pushing the
+       page sideways — which is a horizontal-overflow bug, not a style choice. */
+    grid-auto-flow: column;
+    grid-auto-columns: auto;
+    justify-content: start;
+    column-gap: var(--s6);
+    row-gap: var(--s4);
+  }
+}
+.record-meta__item {
+  min-width: 0;
+}
+.record-meta__t {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-soft);
+  margin-bottom: var(--s1);
+}
+.record-meta__v {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  text-wrap: pretty;
+}
+
+/* --- evidence record ------------------------------------------------------ */
+/* One control, one layer deeper. This is disclosure level 1; study details and the
+   utilities are level 2 and nothing goes below that.
+   No rule above the control: the claim block is already separated from its
+   neighbours by a hairline, and a second hairline 16px under the answer reads as a
+   rule between the answer and its own evidence. Whitespace does that job here. */
+
+.er {
+  margin-top: var(--s4);
+  max-width: var(--measure);
+}
+
+/* The control. A native summary, so it works with JavaScript disabled. 44px of hit
+   area, and no wider than its own words — a full-width bar would read as a button,
+   which this is not.
+   Inline flow, not a flex row, for the same reason as .disclosure > summary: a flexed
+   summary parks its marker at the far edge of the line the moment the label wraps.
+   "Open evidence record" does not wrap at 390px today, so this is the latent half of
+   that defect rather than the visible one — but the two controls sit within 40px of each
+   other and must not be able to drift apart. The labels are inline so the chevron follows
+   whichever of the two is displayed. */
+.er__summary {
+  display: block;
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 10px;
+  padding-right: var(--s2);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--action);
+  cursor: pointer;
+  list-style: none;
+}
+details.er > summary::-webkit-details-marker {
+  display: none;
+}
+/* Hover is an underline, not a filled or tinted block. The control also appears
+   inside the anchored claim, whose tint is --bg-soft: a --bg-soft hover would
+   vanish exactly there. Focus deliberately has no local rule — the global
+   :focus-visible ring covers `summary` and must stay the one focus treatment on
+   the site. */
+.er__summary:hover .er__label {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Both labels are in the HTML and exactly one is displayed, so a screen reader
+   reads one wording, the accessible name matches what is drawn, and the state is
+   honest without JavaScript. The base display is declared so the swap has one
+   value to return to, in both directions. */
+.er__label {
+  display: inline;
+}
+.er[open] .er__label--open {
+  display: none;
+}
+.er:not([open]) .er__label--close {
+  display: none;
+}
+
+/* Sizing and rotation only. Fill and stroke stay on the markup so a stroked or a
+   filled chevron both render in the current text colour; setting either here would
+   override the SVG's own presentation attributes and blank one of the two. */
+.er__chev {
+  /* Part of the text flow now that the summary is not a flex row, so it trails the last
+     word of whichever label is showing. `vertical-align: -1px` sits it on the optical
+     centre of 15px type; `margin-left` replaces the flex gap. */
+  display: inline-block;
+  vertical-align: -1px;
+  margin-left: var(--s2);
+  width: 12px;
+  height: 12px;
+  transform-origin: 50% 50%;
+  transition: transform 150ms ease;
+}
+.er[open] .er__chev {
+  transform: rotate(90deg);
+}
+
+/* ONE depth cue for the body: an inset rule down the left edge. Not a soft-filled
+   panel and not a shadow. The record is long, and a tinted slab that tall reads as
+   a different page rather than as a deeper layer of this one — the indent alone
+   says "inside the control above". */
+/* Inset on both sides, not only the left. Flush left against the claim's own text edge
+   with the same right edge as the claim above it, the block read as an unexplained 26px
+   indent rather than as a layer, and its 640px of 16px type was the longest measure on
+   the site sitting on its densest content. --border, not --border-soft: at 1.2:1 the one
+   depth cue disappeared at full-page zoom. Still ONE cue — no background behind it. */
+/* The two insets are now EQUAL, and the arithmetic is the point: margin-left --s5
+   puts the rule 24px inside the claim's text spine, and max-width = --measure minus
+   two --s5 ends the block 24px inside the column's right edge. The previous pair
+   (8px left, 24px right) was neither — 8px is too small to read as a deliberate
+   indent and too large to read as flush, so the whole block looked shoved left
+   inside its own column. Changing only the left margin would have inverted the
+   problem, so the width moves with it. Content measure drops to ~582px of 16px
+   type, which is still shorter than the body column above it — the direction this
+   block should always move. */
+.er__body {
+  margin-top: var(--s4);
+  margin-left: var(--s5);
+  padding-left: var(--s5);
+  max-width: calc(var(--measure) - var(--s5) * 2);
+  border-left: 2px solid var(--border);
+  font-size: 1rem;
+  overflow-wrap: break-word;
+}
+.er__title {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.er__meta {
+  margin-top: var(--s2);
+  font-size: 0.875rem;
+  color: var(--text-soft);
+}
+.er__meta + .er__meta {
+  margin-top: var(--s1);
+}
+
+/* Section headings inside the record are labels, not titles: the evidence under
+   them is the ink and they are the scaffolding. Muted at 15px keeps them findable
+   when scanning without competing with the answer above the control. */
+/* A section heading inside the record is a heading, not a field label. Set at 15px in
+   muted grey it was smaller and lighter than its own paragraph — hierarchy inverted — and
+   identical in treatment to the source field labels two levels below it, so the record's
+   six-part reading spine and the metadata rows inside a citation read as one flat list.
+   It now sits at body size in full ink, with clearly more space above than below, so each
+   heading binds to the paragraph it introduces and the section break is twice a line of
+   type. The field labels (.event__t, .source__t, .source-group__h) stay at 14px muted and
+   are no longer peers of this. */
+.er__section {
+  margin-top: var(--s6);
+}
+.er__section > * + * {
+  margin-top: var(--s3);
+}
+.er__h {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0;
+  margin-bottom: var(--s1);
+}
+.er__section > .er__h + * {
+  margin-top: var(--s1);
+}
+/* Nothing inside the record may be larger than the record's own body text, and the
+   reach axis needs more air around it than two paragraphs need from each other. */
+.er__body .reach {
+  margin-top: var(--s4);
+}
+.er__body .reach__caption {
+  font-size: 1rem;
+}
+
+/* --- claim events --------------------------------------------------------- */
+/* What did not work, one event at a time. Each row is a quiet label above the
+   sentence it introduces: the labels are read once, the sentences every time. A
+   two-column key/value grid would set them side by side at equal weight, and
+   "What it does not establish" is not a caption on par with its own content. */
+
+.event + .event {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--border-soft);
+}
+.event__row + .event__row {
+  margin-top: var(--s3);
+}
+.event__t {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+.event__v {
+  /* A <dd>, which the UA indents by 40px. */
+  margin: 0;
+  text-wrap: pretty;
+}
+/* The category sentence above the editor's summary: a definition of a kind of event, not the
+   event. It stays in the reading order and it stays FIRST — it is the only thing standing
+   between a programme stopped for commercial reasons and a reader concluding the science
+   failed, and two of the twelve strings say their summary is recorded below them.
+   It used to be set in --text-soft, which was the same grey as the .event__t label directly
+   above it. Byte-identical colour, 14px against 15px: the label and the category sentence
+   read as one grey unit, so "What happened" appeared to caption a definition, and the black
+   sentence that actually said what happened read as an orphan with no label at all. Every
+   other label on this page heads a value in full ink, and this one now does too — the label
+   is the only muted thing in the row, which is what makes it legible as a label.
+   The quiet the grey was buying is bought instead by length: the category sentences are
+   short category statements and the summary is the paragraph, so the eye still lands on the
+   fact. --s2 under it separates the two without opening a paragraph break inside one <dd>. */
+/* No size step. It was set at 15px between a 14px label and a 16px summary, so three consecutive
+   lines of a row sat within 2px of each other and the step did no work at all — a size scale needs
+   room to be read as one. The distinction it was trying to carry is carried by weight and by the
+   --s2 gap instead: the label is muted, the category sentence is a slightly heavier line of the
+   same size as the summary it introduces, and the summary is the paragraph. */
+.event__kind {
+  display: block;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: var(--s2);
+}
+
+/* --- how this answer changed ---------------------------------------------- */
+/* Dated entries. No rail, no dots, no connecting line: a drawn timeline implies
+   direction and progress, and what changed here is how far the evidence reaches,
+   which moves in both directions. The date labels the entry it sits above. */
+
+.timeline {
+  list-style: none;
+}
+.timeline__item + .timeline__item {
+  margin-top: var(--s5);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--border-soft);
+}
+.timeline__item > * + * {
+  margin-top: var(--s2);
+}
+.timeline__date {
+  font-size: 0.875rem;
+  color: var(--text-soft);
+  font-variant-numeric: tabular-nums;
+}
+.timeline__h {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.timeline__date + .timeline__h {
+  margin-top: var(--s1);
+}
+.timeline__move {
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+  text-wrap: pretty;
+}
+
+/* --- grouped sources ------------------------------------------------------ */
+/* Four groups, told apart by their heading and nothing else. Colour never marks a
+   group: a red "conflicting" heading would read as a verdict on the claim, and it
+   would carry no meaning at all in print or to a reader who cannot see it. */
+
+.source-group + .source-group {
+  margin-top: var(--s6);
+}
+.source-group > * + * {
+  margin-top: var(--s4);
+}
+/* A group heading, not a field label. At 14px muted it was the exact treatment of the
+   `.source__t` field labels two levels below it and quieter than the 16px semibold citation
+   titles it groups, so the one element organising a list of ten sources was the faintest thing
+   in it. It is lifted out of the label tier for the same reason `.er__h` was.
+   15px ink rather than 16px ink, deliberately: 16px ink is `.er__h`, the record's own section
+   spine, and giving a heading two levels down the identical treatment would rebuild the flat
+   list this fixes one rung higher. The ladder inside the record is now 16px ink (section) →
+   16px semibold action (citation title, which is a link) → 15px ink (group) → 14px muted
+   (field label).
+   The heading binds to its own list: 12px under it against 32px between groups. Set through
+   `.source-group__h + *` rather than as a margin-bottom, because `.source-group > * + *`
+   already puts 16px there and the two would add up to a heading floating midway between two
+   groups — the failure this spacing exists to avoid. */
+.source-group__h {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0;
+}
+.source-group > .source-group__h + * {
+  margin-top: var(--s3);
+}
+/* The citation line and the first field label are both 14-15px muted, so with zero gap
+   between them the top of every source ran together into one grey block. Every later
+   label boundary already has this separation; the first one now does too. */
+.sources dl {
+  margin-top: var(--s3);
+}
+.source__row + .source__row {
+  margin-top: var(--s2);
+}
+.source__t {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-soft);
+}
+.source__v {
+  /* A <dd>, which the UA indents by 40px. `anywhere` because a value may be a bare
+     regulatory URL. */
+  margin: 0;
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+}
+
+/* --- small screens -------------------------------------------------------- */
+/* 390px is the reference width: one column everywhere, nothing wider than the
+   viewport, every control still 44px tall. */
+
+@media (max-width: 30rem) {
+  /* The indent stack — page gutter + record border + record padding + list padding —
+     compounded to 66px and left the deepest, densest content on the site with a 300px
+     measure, about 40 characters, breaking whole words across lines. Two of the four
+     steps give back 20px here, and the source value comes up to body size: nothing this
+     deep should also be the smallest type on the page. */
+  .er__body {
+    margin-left: 0;
+    padding-left: var(--s3);
+  }
+  .sources {
+    padding-left: var(--s4);
+  }
+  .source__v {
+    font-size: 1rem;
+  }
+  /* A nested disclosure carries an aside rather than a section, which is why its
+     summary is 36px on a pointer device. On a phone it is still a tap target. */
+  .disclosure--inline > summary {
+    min-height: 44px;
+    padding-block: 10px;
+  }
+  /* 44px of hit area on every operable link, not only the ones already built as
+     controls. These were ~24px boxes, and two footer rows sat 8px apart. */
+  .site-footer a,
+  .crumbs a,
+  .inline-action {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .site-footer__links {
+    row-gap: var(--s3);
+  }
+  .claim:target,
+  .claim--target {
+    padding: var(--s3);
+    margin-inline: calc(var(--s3) * -1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1103,15 +1867,99 @@ textarea.field {
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  /* The record's chevron is the only motion the evidence record adds. It is covered
+     by the blanket rule above and named here so a future transition on .er is
+     added with its counterpart in mind: the record body itself is deliberately not
+     animated. Height on a <details> needs ::details-content transitions that are
+     not universally supported, and an animated open would fight the :target
+     reveal, which has no open state to animate from. */
+  .er__chev {
+    transition: none;
+  }
 }
 
 @media print {
+  /* Paper has no disclosure. Everything the reader could have opened is printed
+     open, and everything they could have operated is dropped.
+
+     `.er__utilities` goes whole rather than control-by-control: copy, embed,
+     download and "report an issue" are instructions for a machine the reader is
+     not holding, and its explanatory prose printed as orphaned paragraphs when
+     only its buttons were hidden. The evidence above it still prints in full. */
   .site-header,
   .site-footer,
-  .disclosure > summary {
+  .mobile-menu,
+  .skip-link,
+  .search,
+  .disclosure > summary,
+  .er__summary,
+  .er__chev,
+  .er__utilities,
+  .tools,
+  .code,
+  .btn {
     display: none;
   }
+
+  /* Two mechanisms, because engines differ and getting one without the other
+     prints an empty record: older engines hide the non-summary children of a
+     <details> (beaten by `display: block`), current Chromium hides
+     ::details-content with content-visibility (beaten only by overriding that).
+     Same pair as the :target rules on the anchored claim. */
+  details > .er__body,
+  details > .disclosure__body,
+  .er__body,
   .disclosure__body {
     display: block !important;
+  }
+  details::details-content {
+    content-visibility: visible !important;
+    block-size: auto !important;
+  }
+
+  /* On screen the inset rule says "one layer deeper". On paper there is no layer
+     to be deeper than, and the indent only narrows the measure. All THREE parts of
+     the screen inset are undone, including the margin — it was left in when the
+     margin was 8px and easy to miss; at the symmetric 24px it is a visible,
+     unexplained indent on a page that no longer has a rule to justify it. */
+  .er__body {
+    border-left: 0;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .claim:target,
+  .claim--target {
+    background: none;
+    padding: 0;
+    margin-inline: 0;
+  }
+
+  /* Ink, not action blue, which prints as pale grey. */
+  a {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  /* A printed link is dead, so the source's own address is printed after it. Not
+     applied to `.id`, whose text already is the identifier — that would print the
+     URL twice. */
+  .source__h a[href^='http']::after,
+  .source__v a[href^='http']:not(.id)::after,
+  .event__v a[href^='http']:not(.id)::after {
+    content: ' (' attr(href) ')';
+    font-family: var(--font-id);
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+  .id {
+    /* Monospace at 0.875em is ~13px on paper; identifiers are the rows a reader
+       retypes, so they hold their size and wrap rather than shrink. */
+    font-size: 1em;
+  }
+
+  .event,
+  .timeline__item,
+  .sources > li {
+    break-inside: avoid;
   }
 }

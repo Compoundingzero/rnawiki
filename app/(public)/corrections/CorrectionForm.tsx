@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState } from 'react'
+import { useEffect, useId, useState } from 'react'
 import { CORRECTION_CATEGORIES, CORRECTION_CATEGORY_HELP, CORRECTION_CATEGORY_LABELS, type CorrectionCategory } from './categories'
 
 interface CorrectionContext {
@@ -18,6 +18,21 @@ type SubmitState = { kind: 'idle' } | { kind: 'submitting' } | { kind: 'success'
  *
  * The live region below persists across submit states so the result is announced when it replaces
  * the form, rather than being inserted silently.
+ *
+ * SUBMIT IS DISABLED UNTIL THIS COMPONENT HAS HYDRATED, and that is a data-loss fix, not a
+ * nicety. The <form> has no `action` and no `method` because `handleSubmit` sends the report with
+ * fetch. When the handler has not run — JavaScript disabled, or a click landing before hydration
+ * finishes — the browser falls back to its default, which is a GET to the current URL. The reader
+ * then watched the page reload, the textarea empty itself, no acknowledgement appear and no error
+ * appear, while everything they had written was appended to the address bar as
+ * `?category=...&message=...` and recorded in their history and in every server access log it
+ * passed through. The report itself was never sent.
+ *
+ * The page already renders a <noscript> notice pointing at the email address
+ * (app/(public)/corrections/page.tsx); what it did not do was stop the button from looking like it
+ * worked. Rendering the button disabled on the server and enabling it in an effect means the
+ * fallback path cannot be reached at all: with no JavaScript the effect never runs and the control
+ * stays visibly unavailable next to the explanation of why.
  */
 export function CorrectionForm({ context }: { context: CorrectionContext | null }) {
   const formId = useId()
@@ -25,6 +40,11 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
   const [message, setMessage] = useState('')
   const [proposedSource, setProposedSource] = useState('')
   const [state, setState] = useState<SubmitState>({ kind: 'idle' })
+  const [canSubmit, setCanSubmit] = useState(false)
+
+  useEffect(() => {
+    setCanSubmit(true)
+  }, [])
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -159,11 +179,18 @@ export function CorrectionForm({ context }: { context: CorrectionContext | null 
             <button
               type="submit"
               className="btn btn--primary"
-              disabled={state.kind === 'submitting'}
+              disabled={!canSubmit || state.kind === 'submitting'}
               aria-busy={state.kind === 'submitting'}
+              aria-describedby={canSubmit ? undefined : `${formId}-nojs`}
             >
               {state.kind === 'submitting' ? 'Sending…' : 'Send report'}
             </button>
+            {!canSubmit && (
+              <p id={`${formId}-nojs`} className="help">
+                Sending this form needs JavaScript. Without it, email the same details to
+                hello@rnawiki.com instead.
+              </p>
+            )}
           </div>
 
           <p className="muted small">

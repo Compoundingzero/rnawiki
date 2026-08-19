@@ -16,13 +16,24 @@ const PREVIEW_HEIGHT = 340
 const SNIPPET_BORDER = '#d2d2d7'
 const SNIPPET_RADIUS = '8px'
 
+/**
+ * NOT a <details>, deliberately. This block renders inside `RecordUtilities`, which is itself the
+ * one permitted level-2 disclosure inside the level-1 Evidence Record. Wrapping this in its own
+ * <details> made a third disclosure level, which the information hierarchy caps at two: a reader
+ * three controls deep has lost track of what they opened, and every level added is another thing
+ * standing between the question and the evidence. So the snippet is simply present once the
+ * utilities panel is open.
+ *
+ * The live preview stays behind an explicit control for a different reason, and it is not a
+ * hierarchy one: the preview is a real iframe hitting a real route, a record page carries one of
+ * these per claim, and rendering them all would load four extra documents nobody asked for. A
+ * button mounts one on request. Without JavaScript the snippet and the copy target are still fully
+ * readable; only the optional preview is unavailable, which is the correct thing to lose.
+ */
 export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; claimQuestion: string }) {
   const [origin, setOrigin] = useState(DEFAULT_ORIGIN)
   const [copied, setCopied] = useState(false)
-  // The preview is a real iframe hitting a real route. A record page carries one of these per
-  // claim, so mounting them all up front would load four extra documents nobody asked for —
-  // it mounts when the reader opens this panel, and not before.
-  const [opened, setOpened] = useState(false)
+  const [showPreview, setShowPreview] = useState(false)
 
   useEffect(() => {
     setOrigin(window.location.origin)
@@ -43,53 +54,48 @@ export function EmbedCodeBox({ claimId, claimQuestion }: { claimId: number; clai
   }
 
   return (
-    // minWidth:0 keeps the expanded panel shrinkable inside a narrow column, so opening it can
-    // never push the page into horizontal overflow.
-    <details
-      className="disclosure disclosure--inline"
-      style={{ minWidth: 0, maxWidth: '100%' }}
-      onToggle={(e) => {
-        if ((e.currentTarget as HTMLDetailsElement).open) setOpened(true)
-      }}
-    >
-      <summary>Embed this answer</summary>
+    // minWidth:0 keeps the block shrinkable inside a narrow column, so nothing here can push the
+    // page into horizontal overflow.
+    <div className="stack" style={{ minWidth: 0, maxWidth: '100%' }}>
+      <h6>Embed this answer</h6>
 
-      <div className="disclosure__body stack">
-        <p className="small">
-          The embed shows the claim, how far its evidence goes, and a link back to the full record. The wording
-          cannot be edited by the site that embeds it.
-        </p>
+      <p className="small">
+        The embed shows the claim, how far its evidence goes, and a link back to the full record. The wording
+        cannot be edited by the site that embeds it.
+      </p>
 
-        <pre className="code">
-          <code>{snippet}</code>
-        </pre>
+      <pre className="code">
+        <code>{snippet}</code>
+      </pre>
 
-        <div>
-          <button type="button" onClick={handleCopy} className="btn">
-            {copied ? 'Embed code copied' : 'Copy embed code'}
-          </button>
-        </div>
-
-        {opened && (
-          <div>
-            <p className="small muted" style={{ marginBottom: 'var(--s2)' }}>
-              Preview
-            </p>
-            <iframe
-              src={embedPath}
-              title={`Embed preview: ${claimQuestion}`}
-              loading="lazy"
-              style={{
-                width: '100%',
-                maxWidth: '100%',
-                height: `${PREVIEW_HEIGHT}px`,
-                border: '1px solid var(--border-soft)',
-                borderRadius: 'var(--radius-sm)',
-              }}
-            />
-          </div>
-        )}
+      <div className="tools">
+        <button type="button" onClick={handleCopy} className="btn btn--quiet">
+          {copied ? 'Embed code copied' : 'Copy embed code'}
+        </button>
+        <button type="button" onClick={() => setShowPreview((v) => !v)} className="btn btn--quiet">
+          {showPreview ? 'Hide preview' : 'Show preview'}
+        </button>
       </div>
-    </details>
+
+      {showPreview && (
+        <div>
+          <p className="small muted" style={{ marginBottom: 'var(--s2)' }}>
+            Preview
+          </p>
+          <iframe
+            src={embedPath}
+            title={`Embed preview: ${claimQuestion}`}
+            loading="lazy"
+            style={{
+              width: '100%',
+              maxWidth: '100%',
+              height: `${PREVIEW_HEIGHT}px`,
+              border: '1px solid var(--border-soft)',
+              borderRadius: 'var(--radius-sm)',
+            }}
+          />
+        </div>
+      )}
+    </div>
   )
 }

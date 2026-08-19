@@ -86,7 +86,17 @@ export function SiteHeader() {
 
 function HeaderSearchForm() {
   return (
-    <form role="search" action="/search" method="get" className="search search--compact" style={{ maxWidth: '15rem' }}>
+    // Named, because /search and /compounds each render a search form of their own: two
+    // unlabelled search landmarks give a screen-reader user two identical destinations with
+    // no way to tell which is which.
+    <form
+      role="search"
+      aria-label="Site search"
+      action="/search"
+      method="get"
+      className="search search--compact"
+      style={{ maxWidth: '15rem' }}
+    >
       <label htmlFor="header-q" className="skip-link">
         Search RNAwiki
       </label>

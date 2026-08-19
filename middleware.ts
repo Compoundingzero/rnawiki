@@ -100,11 +100,23 @@ export async function middleware(request: NextRequest) {
 
   // 1. Exact historical overrides recorded in the DB (scripts/seed-legacy-redirects.ts) take
   // priority — this is where an old slug that does NOT match its new slug gets its 301.
-  const [row] = await db
-    .select({ fromPath: legacyRedirects.fromPath, toPath: legacyRedirects.toPath, statusCode: legacyRedirects.statusCode })
-    .from(legacyRedirects)
-    .where(eq(legacyRedirects.fromPath, pathname))
-    .limit(1)
+  //
+  // Wrapped, because this query runs BEFORE every branch below it. With the database unreachable
+  // it threw here, and a legacy path that would have resolved to a static 410 instead produced
+  // Next's unstyled Pages-Router "500: Internal Server Error" document — with the internal
+  // hostname in its __NEXT_DATA__. A stale link is followed by a person, and the 410 notice does
+  // not need the database to be honest. On a lookup failure this falls through to the pattern
+  // rules below, which still 301 or 410 correctly for everything except a hand-recorded override.
+  let row: { fromPath: string; toPath: string | null; statusCode: number } | undefined
+  try {
+    ;[row] = await db
+      .select({ fromPath: legacyRedirects.fromPath, toPath: legacyRedirects.toPath, statusCode: legacyRedirects.statusCode })
+      .from(legacyRedirects)
+      .where(eq(legacyRedirects.fromPath, pathname))
+      .limit(1)
+  } catch (err) {
+    console.error('middleware: legacy redirect lookup failed, falling through to pattern rules', err)
+  }
   if (row) {
     const rules: LegacyRedirectRule[] = [
       { fromPath: row.fromPath, toPath: row.toPath, statusCode: row.statusCode as 301 | 410 },
@@ -123,7 +135,15 @@ export async function middleware(request: NextRequest) {
     const match = pathname.match(pattern)
     if (match) {
       const slug = match[1]
-      const entity = slug ? await getPublishedEntityBySlug(slug) : null
+      // Same reason as the lookup above: with the database down, "is there a record at this slug?"
+      // is unanswerable, and the honest answer for a removed legacy path is the 410 notice rather
+      // than a framework error document.
+      let entity: Awaited<ReturnType<typeof getPublishedEntityBySlug>> = null
+      try {
+        entity = slug ? await getPublishedEntityBySlug(slug) : null
+      } catch (err) {
+        console.error('middleware: entity lookup failed for legacy compound path', err)
+      }
       return entity ? redirectTo(request, entityPath(entity.slug)) : gone(pathname)
     }
   }

@@ -1,19 +1,25 @@
 /**
  * The homepage's primary control. A plain GET form so it works without JavaScript; there is no
  * client-side behaviour worth the bundle here, so this stays a server component.
+ *
+ * Label and placeholder are the same string on purpose. The label is visually hidden, so the
+ * placeholder is the only naming a sighted reader gets, and a screen-reader user must hear the
+ * same words rather than a second, differently worded prompt.
  */
+const SEARCH_LABEL = 'Medicine, treatment or health claim'
+
 export function HeroSearch() {
   return (
     <form role="search" action="/search" method="get" className="search">
       <label htmlFor="q" className="skip-link">
-        Search a name or health claim
+        {SEARCH_LABEL}
       </label>
       <input
         id="q"
         name="q"
         type="search"
         className="search__input"
-        placeholder="Search a name or health claim"
+        placeholder={SEARCH_LABEL}
         autoComplete="off"
       />
       <button type="submit" className="search__btn">

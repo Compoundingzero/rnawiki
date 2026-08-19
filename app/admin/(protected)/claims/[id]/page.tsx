@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { db } from '@/db'
-import { claims, entities, mechanismSteps, claimEvidence, evidenceSources } from '@/db/schema'
-import { eq, asc, desc } from 'drizzle-orm'
+import { claims, entities, mechanismSteps, claimEvidence, claimEvents, evidenceSources } from '@/db/schema'
+import { eq, asc, desc, sql } from 'drizzle-orm'
 import { getCurrentUser } from '@/lib/auth'
 import { EVIDENCE_STATUSES, EVIDENCE_STATUS_LABELS, EVIDENCE_RELATIONSHIPS, EVIDENCE_RELATIONSHIP_LABELS } from '@/lib/evidence'
 import { searchEvidenceSources } from '@/lib/admin/evidence-search'
@@ -19,12 +19,24 @@ import {
   detachEvidence,
 } from '../actions'
 import { ClaimForm } from '../ClaimForm'
+import { ClaimEventsForm, type ClaimEventSourceOption } from '../ClaimEventsForm'
 
 export const metadata: Metadata = { title: 'Edit claim', robots: { index: false, follow: false } }
 
 interface Props {
   params: Promise<{ id: string }>
-  searchParams: Promise<{ error?: string; success?: string; evidenceQuery?: string }>
+  searchParams: Promise<{ error?: string; success?: string; evidenceQuery?: string; eventSourceQuery?: string }>
+}
+
+/** Narrow a full evidenceSources row to the fields the event editor needs to label an option. */
+function toSourceOption(source: {
+  id: number
+  title: string
+  publicationYear: number | null
+  doi: string | null
+  pmid: string | null
+}): ClaimEventSourceOption {
+  return { id: source.id, title: source.title, publicationYear: source.publicationYear, doi: source.doi, pmid: source.pmid }
 }
 
 async function getEntityOptions() {
@@ -32,7 +44,7 @@ async function getEntityOptions() {
 }
 
 export default async function EditClaimPage({ params, searchParams }: Props) {
-  const [{ id }, { error, success, evidenceQuery }, user, entityOptions] = await Promise.all([
+  const [{ id }, { error, success, evidenceQuery, eventSourceQuery }, user, entityOptions] = await Promise.all([
     params,
     searchParams,
     getCurrentUser(),
@@ -44,7 +56,7 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
   const [claim] = await db.select().from(claims).where(eq(claims.id, claimId)).limit(1)
   if (!claim) notFound()
 
-  const [steps, links, evidenceResults] = await Promise.all([
+  const [steps, links, evidenceResults, events, eventSourceResults] = await Promise.all([
     db.select().from(mechanismSteps).where(eq(mechanismSteps.claimId, claimId)).orderBy(asc(mechanismSteps.displayOrder)),
     db
       .select({ link: claimEvidence, source: evidenceSources })
@@ -53,6 +65,17 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
       .where(eq(claimEvidence.claimId, claimId))
       .orderBy(desc(claimEvidence.displayPriority)),
     evidenceQuery ? searchEvidenceSources(evidenceQuery) : Promise.resolve([]),
+    // Every status, not just published — this is the editorial view of the failure section.
+    // The inner join is what the NOT NULL evidenceSourceId buys: an event always has its source.
+    db
+      .select({ event: claimEvents, source: evidenceSources })
+      .from(claimEvents)
+      .innerJoin(evidenceSources, eq(claimEvents.evidenceSourceId, evidenceSources.id))
+      .where(eq(claimEvents.claimId, claimId))
+      .orderBy(desc(claimEvents.displayPriority), sql`${claimEvents.eventDate} desc nulls last`),
+    // Run unconditionally: with no query this returns the most recently checked sources, so the
+    // "Add an event" form always has real options to cite rather than an empty required select.
+    searchEvidenceSources(eventSourceQuery ?? ''),
   ])
 
   const isAdmin = user?.role === 'administrator'
@@ -143,6 +166,10 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
             outcomeSummary: claim.outcomeSummary ?? '',
             publicationStatus: claim.publicationStatus,
             displayPriority: claim.displayPriority,
+            // Rendered from the stored instant in UTC, the timezone every date on this site
+            // resolves in — see lib/evidence-view.ts. Formatting it in server-local time would
+            // show the editor a different day than the record prints.
+            checkedDate: claim.checkedAt ? claim.checkedAt.toISOString().slice(0, 10) : '',
           }}
         />
       </section>
@@ -509,6 +536,29 @@ export default async function EditClaimPage({ params, searchParams }: Props) {
             </ul>
           ))}
       </section>
+
+      <hr className="rule" />
+
+      <ClaimEventsForm
+        claimId={claim.id}
+        canPublish={isAdmin}
+        sourceQuery={eventSourceQuery ?? ''}
+        preservedEvidenceQuery={evidenceQuery}
+        sourceOptions={eventSourceResults.map(toSourceOption)}
+        events={events.map(({ event, source }) => ({
+          id: event.id,
+          evidenceSourceId: event.evidenceSourceId,
+          eventType: event.eventType,
+          developmentGate: event.developmentGate,
+          plainSummary: event.plainSummary,
+          whatItSuggests: event.whatItSuggests,
+          whatItDoesNotEstablish: event.whatItDoesNotEstablish,
+          eventDate: event.eventDate,
+          displayPriority: event.displayPriority,
+          publicationStatus: event.publicationStatus,
+          source: toSourceOption(source),
+        }))}
+      />
     </div>
   )
 }

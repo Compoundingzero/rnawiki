@@ -48,26 +48,28 @@ const POSITION_STAGES = REACH_POSITIONS.map((label, index) => ({
   stages: PROOF_BOUNDARY_STAGES.filter((stage) => stageToReachIndex(stage) === index),
 }))
 
+// The two sentences EvidenceRecordMeta can actually emit, quoted verbatim from it.
+//
+// This list used to quote five lines, four of which no page on the site has ever printed —
+// "Editorial review completed", "Independent scientific review pending", "Flagged for update",
+// "Undergoing re-review" — under a paragraph promising that every claim shows one of them. Two of
+// the five were also unreachable in principle: getPublishedClaimsForEntity filters to
+// publication_status = 'published', so a needs-update or re-review claim is not public at all. The
+// 'Approved' entry additionally promised "a named reviewer and their credentials", which
+// EvidenceRecordMeta refuses to print by design — a named reviewer is the single easiest thing on
+// this site to fabricate.
+//
+// If a string here stops matching EvidenceRecordMeta, this page is the thing that is wrong.
 const REVIEW_LINES: { key: string; line: string; when: string }[] = [
   {
-    key: 'Default',
-    line: 'Editorial review completed. Independent scientific review pending.',
-    when: 'The default for a published claim. Editorial work is done; no qualified scientific reviewer has approved it yet.',
+    key: 'Not independently reviewed',
+    line: 'Written and checked against the cited sources by one editor. No independent scientific reviewer has approved this answer.',
+    when: 'The default for a published claim. An editor wrote it and checked it against the sources; no independent scientific reviewer has approved it. A review that was rejected or sent back for changes also reads this way, because it did happen and it did not approve anything.',
   },
   {
     key: 'Approved',
-    line: 'Editorial review completed.',
-    when: 'Shown with a named reviewer and their credentials, only when the most recent formal review on record for that claim carries an approved decision from an identified scientific reviewer.',
-  },
-  {
-    key: 'Needs update',
-    line: 'Flagged for update — evidence may have changed since the last review.',
-    when: 'The claim is marked needs update.',
-  },
-  {
-    key: 'Re-review',
-    line: 'Undergoing re-review.',
-    when: 'The claim is marked re-review.',
+    line: 'Written and checked against the cited sources by one editor. An independent scientific reviewer approved this answer on <date>.',
+    when: 'Shown only when the most recent review on record for that claim carries an approved decision, and only while that approval still covers the version of the answer on screen. Once the answer is edited, the line says which version was approved and that it has been edited since.',
   },
 ]
 
@@ -77,7 +79,11 @@ const FIXED_RULES: { title: string; body: string }[] = [
     body: 'In any form, anywhere on the site.',
   },
   {
-    title: 'No star ratings, confidence scores, or percentages',
+    // "numerical certainty" rather than the industry phrase for it: the build contract bans that
+    // phrase from public copy outright, and a refusal that reproduces the banned words is still the
+    // site putting them in front of a reader. The meaning is unchanged — no number stands for how
+    // sure RNAwiki is.
+    title: 'No star ratings, no numerical certainty, no percentages',
     body: 'unless a named study or regulator reported that number, in which case it is cited as theirs.',
   },
   {
@@ -106,10 +112,16 @@ export default function MethodologyPage() {
       <section className="section-sm">
         <h2>The five positions on a claim</h2>
         <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          {/* "Every claim page" was false, in the same way and for the same reason as the
+              matching sentence on /evidence: stagePositionApplies (lib/evidence-view.ts) suppresses
+              the marker for mechanism, regulatory and access claims, which is deliberate and
+              documented in that function. Keep the two pages worded the same way. */}
           <p className="muted">
-            Every claim page marks one of five points, from a proposed biological idea to a decision by a
-            medicines regulator. The sentence under the marker is the part that matters: several different kinds
-            of human study share the same point, and only the sentence separates them.
+            Every claim that answers an outcome question — does it work, is it safe — marks one of five points,
+            from a proposed biological idea to a decision by a medicines regulator. A claim about how something
+            works, what a regulator decided, or what treatment involves marks none. The sentence under the
+            marker is the part that matters: several different kinds of human study share the same point, and
+            only the sentence separates them.
           </p>
         </div>
 
@@ -143,7 +155,7 @@ export default function MethodologyPage() {
         <h2>Measured, inferred, unknown</h2>
         <p className="reading muted" style={{ marginTop: 'var(--s4)' }}>
           Every mechanism step and every cited source carries one of three labels. They are the only
-          evidence-strength labels on the site: no star ratings, no confidence scores, no invented percentages.
+          evidence-strength labels on the site: no star ratings, no numerical certainty, no invented percentages.
         </p>
         <dl className="facts" style={{ marginTop: 'var(--s5)' }}>
           {EVIDENCE_STATUSES.map((status) => (
@@ -211,8 +223,8 @@ export default function MethodologyPage() {
             published — written and sourced by an editor — while independent review is still pending.
           </p>
           <p>
-            Every claim therefore shows one of these lines, generated from its actual review record rather than
-            written by hand.
+            Every claim therefore shows one of these lines inside its evidence record, generated from its actual
+            review record rather than written by hand.
           </p>
         </div>
         <dl className="facts" style={{ marginTop: 'var(--s5)' }}>
@@ -227,8 +239,9 @@ export default function MethodologyPage() {
           ))}
         </dl>
         <p className="reading muted" style={{ marginTop: 'var(--s5)' }}>
-          A reviewer’s name appears only when it comes from a review record tied to a real account with stated
-          credentials. “Reviewed by” is never a decorative label, and no reviewer is invented.
+          No reviewer name or credential is printed on a public page at all. A named reviewer is the easiest thing
+          on a site like this to fabricate, so the public record carries only the decision and its date, both taken
+          straight from the review row. “Reviewed by” is never a decorative label, and no reviewer is invented.
         </p>
       </section>
 

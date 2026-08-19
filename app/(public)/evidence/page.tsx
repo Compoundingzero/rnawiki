@@ -62,10 +62,22 @@ const PIPELINE: { label: string; note: string }[] = [
   { label: 'Correction history', note: 'Reader reports, resolved by an editor and logged.' },
 ]
 
+// "Scientific" used to read "Pending, unless a claim names its reviewer and their credentials",
+// which promised two things the product does not do. No code path can print a reviewer name or
+// credential — components/evidence/EvidenceRecordMeta.tsx has three branches and none emits
+// identity, and the v1 API routes refuse the fields outright — and /methodology says so in as
+// many words ("No reviewer name or credential is printed on a public page at all"). The identical
+// phrase was already removed from /methodology as a defect; this page was the copy the cleanup
+// missed. "Pending" went with it: the reviews table is empty and no reviewer account exists, so
+// nothing is in progress, and the two rows either side of this one already say "None."
 const REVIEWED: { key: string; value: string }[] = [
   { key: 'Editorial', value: 'Written, sourced and checked by the editor before a page goes live.' },
   { key: 'Clinician', value: 'None. No doctor, pharmacist or other clinician has reviewed any page on this site.' },
-  { key: 'Scientific', value: 'Pending, unless a claim names its reviewer and their credentials.' },
+  {
+    key: 'Scientific',
+    value:
+      'None. No independent scientific reviewer has approved any answer on this site. A claim that clears review shows the decision and its date, never a reviewer name.',
+  },
   { key: 'Peer review', value: 'None. RNAwiki summarises published research; it is not published research.' },
 ]
 
@@ -83,7 +95,10 @@ const LIMITS: { title: string; body: string }[] = [
     body: 'A page records what a study measured in the people or animals it studied. It cannot account for a reader’s condition, medication or history. That judgment belongs to a clinician who can examine the person in front of them.',
   },
   {
-    title: 'What to take, how much, or where to get it',
+    // Phrased as "how to obtain it" rather than naming the procurement question in the words a
+    // search engine matches. The section heading already says this is something the site cannot
+    // tell you; the refusal does not need to reproduce the phrase it refuses.
+    title: 'What to take, how much, or how to obtain it',
     body: 'Dosing, sourcing, vendors, stacking and combination guidance appear nowhere on this site, in any form. That is the boundary the site exists to hold, not a missing feature.',
   },
   {
@@ -142,10 +157,16 @@ export default async function EvidencePage() {
       <section className="section">
         <h2>How far the evidence goes</h2>
         <div className="reading stack" style={{ marginTop: 'var(--s4)' }}>
+          {/* "Every claim" was false: stagePositionApplies (lib/evidence-view.ts) prints a
+              position only for outcome claims, so a mechanism, regulatory or access claim
+              deliberately carries none. Keep this sentence and the matching one on /methodology
+              worded the same way, so the two pages cannot drift apart again. */}
           <p className="muted">
-            Every claim is placed at one of five points, from a biological idea to a decision by a medicines
-            regulator. Reaching a later point means more has been studied. It does not mean the treatment is
-            safe, and it is not a score.
+            Every claim that answers an outcome question — does it work, is it safe — is placed at one of five
+            points, from a biological idea to a decision by a medicines regulator. A claim about how something
+            works, what a regulator decided, or what treatment involves is not placed at a point. Reaching a
+            later point means more has been studied. It does not mean the treatment is safe, and it is not a
+            score.
           </p>
         </div>
         <div className="reading" style={{ marginTop: 'var(--s5)' }}>

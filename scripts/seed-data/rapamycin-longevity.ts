@@ -21,8 +21,18 @@ import type { SeedFile } from '@/lib/seed-types'
  *   "Has Results: No" — the results live in the peer-reviewed journal article, not the CT.gov
  *   structured-results field. Sponsor: AgelessRx, a telehealth company that prescribes
  *   compounded rapamycin — a relevant conflict of interest, noted in the claim text below.)
- * - Saxton RA, Sabatini DM. 2017. Cell 169(2):361-371. PMID 28388417. DOI 10.1016/j.cell.2017.03.035.
- * - Sirolimus (Rapamune) FDA label, via DailyMed, revised November 2024:
+ * - Saxton RA, Sabatini DM. 2017. Cell 168(6):960-976. PMID 28283069. DOI 10.1016/j.cell.2017.02.004.
+ *   NOTE (re-checked 2026-08-19): this file previously cited PMID 28388417 / DOI
+ *   10.1016/j.cell.2017.03.035, which PubMed types "Published Erratum" and carries no abstract —
+ *   it is the correction notice (Cell 169(2):361-371), not the review. Crossref confirms the same
+ *   relation (update-to: erratum). The article of record is the pair above; the erratum is
+ *   recorded in `retractionStatus` so the correction stays visible rather than silently swapped.
+ * - Sirolimus FDA-approved label, via DailyMed, revised November 2024. NOTE: this setid is the
+ *   Mylan AUTHORIZED-GENERIC tablet label under NDA 021110 (DailyMed title "SIROLIMUS tablet,
+ *   sugar coated"), which carries the NDA 021110 labeling but is not the Rapamune-branded SPL and
+ *   covers tablets only, no oral solution. DailyMed publishes no Rapamune-branded SPL today
+ *   (drug_name=rapamune returns 0 records), so there is no brand setid to point at instead and the
+ *   title records what the linked document actually is.
  *   https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5908cd1a-fc5a-462f-99ed-1d8983e253c9
  *
  * Explicitly checked and NOT conflated: TAME (Targeting Aging with Metformin) is a metformin
@@ -30,6 +40,9 @@ import type { SeedFile } from '@/lib/seed-types'
  */
 
 const seed: SeedFile = {
+  // The date the sources below were read and these answers written against them. Printed as
+  // "This answer last checked" on every claim in this file. See SeedFile.researchDate.
+  researchDate: '2026-08-18',
   entity: {
     canonicalName: 'Rapamycin (Sirolimus)',
     slug: 'rapamycin',
@@ -65,9 +78,9 @@ const seed: SeedFile = {
         directAnswer:
           'No — the one completed placebo-controlled trial (PEARL) found no significant effect on its primary measure, visceral fat, at one year. Secondary measures improved in a subgroup of women. No trial has measured human lifespan or healthspan.',
         measuredFinding:
-          'PEARL (NCT04488601): 48 weeks, randomized, double-blind, placebo-controlled; 114 of 129 enrolled adults aged 50-85 completed: 5 mg/week (40), 10 mg/week (35), placebo (39). The primary endpoint, visceral adipose tissue by DXA, showed no significant difference (p = 0.942). Women at 10 mg/week gained 6.2 kg more lean mass (p = 0.018) and improved 8.1 points more on self-reported pain (p < 0.001).',
+          'PEARL (NCT04488601): 48 weeks, randomized, double-blind, placebo-controlled; 114 of 129 enrolled adults aged 50-85 completed: 5 mg/week (40), 10 mg/week (35), placebo (39). The primary endpoint, visceral adipose tissue by DXA, showed no significant difference (p = 0.942). Women at 10 mg/week gained 6.2 kg more lean mass than placebo (p = 0.018), and their self-reported pain improved (p = 0.015).',
         inference:
-          'The lean-mass and pain findings are secondary outcomes from one unreplicated trial, so they do not establish a healthspan or lifespan benefit. Effects on the outcomes that define healthspan — mortality, frailty, cognitive decline, disease incidence — remain unmeasured in humans.',
+          'The lean-mass, pain and general-health findings are secondary outcomes from one unreplicated trial, so they do not establish a healthspan or lifespan benefit. Effects on the outcomes that define healthspan — mortality, frailty, cognitive decline, disease incidence — remain unmeasured in humans.',
         proofBoundaryStage: 'controlled_human_evidence',
         proofBoundaryExplanation:
           'A published, double-blind, placebo-controlled trial exists, placing this claim at controlled human evidence. Its pre-specified primary endpoint was null; it was not powered for mortality or disease endpoints. Its positive secondary results come from one trial sponsored by AgelessRx, which sells compounded rapamycin.',
@@ -85,19 +98,50 @@ const seed: SeedFile = {
             sourceKey: 'pearl2025',
             relationship: 'supports',
             claimPartAddressed:
-              'Whether a completed, controlled human trial exists, and what it actually measured and found',
+              'whether a completed, controlled human trial exists, and what it actually measured and found',
+            // The pain figure is a WITHIN-GROUP change, and saying so is the whole point of this
+            // field. The paper's 8.071 / p<0.001 is the baseline-to-48-week contrast for women on
+            // 10 mg (Table 3, whose contrast columns are Baseline / 24 weeks / 48 weeks and which
+            // has no placebo column at all); the group-level statistic is p = 0.015. This row used
+            // to print it as "an 8.1-point greater improvement" beside a clause reading "than
+            // placebo", which published a within-arm change as a placebo-controlled difference.
+            // Only the 6.2 kg lean-mass figure is a dose-vs-placebo contrast. "Limited to" also
+            // went, because the abstract records general-health improvement in the 5 mg group.
             directlyMeasuredResult:
-              'No significant difference between rapamycin and placebo on the primary endpoint (visceral adipose tissue, p = 0.942) after 48 weeks. Trial design: double-blind, randomized, placebo-controlled, decentralized, in adults aged 50-85 (Moel et al., 2025, Aging 17(4):908-936). Secondary improvements were limited to women in the 10 mg/week compounded-rapamycin group: 6.2 kg more lean tissue mass than placebo at 48 weeks (95% CI 0.88-11.51 kg, p = 0.018) and an 8.1-point greater improvement in self-reported pain (95% CI 3.04-13.10, p < 0.001). The 5 mg/week group showed a modest improvement in a general-health quality-of-life measure. No effect on mortality, disease incidence, frailty, or any other hard endpoint was measured, because the trial was not designed or powered to measure them.',
+              'No significant difference between rapamycin and placebo on the primary endpoint, visceral adipose tissue, after 48 weeks (p = 0.942). Women on 10 mg/week gained 6.2 kg more lean tissue mass than placebo (p = 0.018) and improved on self-reported pain (p = 0.015, an 8.1-point within-group change to 48 weeks, not a placebo difference). General health improved in the 5 mg/week group (p = 0.004).',
             independentGroupStatus: false,
           },
           {
             sourceKey: 'harrison2009',
             relationship: 'contextualizes',
             claimPartAddressed:
-              'What has actually been established in mice, for contrast with the much thinner human record',
+              'what has actually been established in mice, for contrast with the much thinner human record',
             directlyMeasuredResult:
               'Rapamycin fed to mice beginning at 600 days of age increased the age at which 90% of the population had died by 14% in females and 9% in males, replicated at three independent test sites.',
             independentGroupStatus: true,
+          },
+        ],
+        // One recorded event, and only one. It restates the PEARL row directly above: the trial's
+        // own pre-specified primary endpoint came back null. Recording it as an event is the point
+        // of the failure section — a reader who only sees the positive secondary findings has been
+        // shown a filtered trial. No programme discontinuation is recorded here, because none
+        // happened: rapamycin remains an approved medicine, and PEARL missing one endpoint is not
+        // a finding that rapamycin does nothing. See docs/evidence-classification.md on the
+        // difference between a null result and an absence of evidence.
+        claimEvents: [
+          {
+            sourceKey: 'pearl2025',
+            eventType: 'null_result',
+            developmentGate: 'clinical_outcome',
+            plainSummary:
+              "PEARL’s pre-specified primary endpoint, visceral fat measured by DXA — a whole-body X-ray scan that estimates fat and lean tissue — at 48 weeks, showed no significant difference between rapamycin and placebo (p = 0.942). Of 129 enrolled adults aged 50-85, 114 completed the trial.",
+            whatItSuggests:
+              'Over 48 weeks at the weekly doses tested, rapamycin did not change visceral fat in these adults. That pre-registered measure cannot be used to support a healthspan benefit.',
+            whatItDoesNotEstablish:
+              'A null result on one endpoint is not a finding that rapamycin does nothing. Mortality, frailty, cognitive decline and disease incidence were never measured in this trial, and no longer duration or different schedule has been tested in people.',
+            // No eventDate: the source records a publication year, not a dated event. A year is not
+            // a date, and inventing one to fill a timeline is the failure mode this field invites.
+            displayPriority: 0,
           },
         ],
         comprehensionQuestions: [
@@ -126,12 +170,12 @@ const seed: SeedFile = {
         directAnswer:
           'Rapamycin inhibits mTOR, a cellular growth-signaling protein, and that inhibition extended both median and maximal lifespan across three independent NIA-funded mouse labs. The same causal chain has not been measured end-to-end in humans.',
         measuredFinding:
-          'Harrison 2009: rapamycin from 600 days of age raised the age at 90% mortality 14% in female and 9% in male genetically heterogeneous mice, at three independent ITP sites. Miller 2014: same sites, median lifespan rose up to 23% in males and 26% in females at 42 ppm in food, less at lower doses. Strong 2020: intermittent or three-month dosing from 20 months matched lifelong dosing for male survival.',
+          'Harrison 2009: rapamycin from 600 days of age raised the age at 90% mortality 14% in female and 9% in male genetically heterogeneous mice, at three independent ITP sites. Miller 2014: same sites, median lifespan rose up to 23% in males and 26% in females at 42 ppm in food, less at lower doses. Strong 2020: from 20 months, intermittent or three-month dosing matched continuous dosing, in males.',
         inference:
           'mTOR does the same basic job in mice and humans — regulating cell growth, protein synthesis, and autophagy — so researchers hypothesize the same inhibition could slow aging-related decline in people. That is a mechanism-based extrapolation, not a demonstrated human effect.',
         proofBoundaryStage: 'animal_evidence',
         proofBoundaryExplanation:
-          'The NIA Interventions Testing Program runs the same intervention at three independent labs at once, so a result cannot be one lab\'s fluke. Rapamycin passed that test in three published studies over more than a decade. It is still animal evidence: mouse lifespan extension is not proof of a human effect.',
+          'The NIA Interventions Testing Program runs the same intervention at three independent labs at once, so a result cannot be one lab’s fluke. Rapamycin passed that test in three published studies over more than a decade. It is still animal evidence: mouse lifespan extension is not proof of a human effect.',
         remainingUnknown:
           'Whether mTOR inhibition produces a comparable lifespan or healthspan effect in humans, who differ from laboratory mice in genetic diversity, baseline lifespan, environment, and cause-of-death patterns.',
         evidenceNeededNext:
@@ -148,7 +192,7 @@ const seed: SeedFile = {
             evidenceContext:
               'Well-established cell biology, built over decades of biochemical and structural studies and summarized in the review cited here (Saxton & Sabatini, 2017, Cell).',
             status: 'measured',
-            sourceLinks: ['https://doi.org/10.1016/j.cell.2017.03.035'],
+            sourceLinks: ['https://doi.org/10.1016/j.cell.2017.02.004'],
           },
           {
             displayOrder: 2,
@@ -158,7 +202,7 @@ const seed: SeedFile = {
             evidenceContext:
               'These downstream effects are directly measured in cell and tissue studies and form the accepted mechanistic bridge between mTOR inhibition and aging biology (Saxton & Sabatini, 2017).',
             status: 'measured',
-            sourceLinks: ['https://doi.org/10.1016/j.cell.2017.03.035'],
+            sourceLinks: ['https://doi.org/10.1016/j.cell.2017.02.004'],
           },
           {
             displayOrder: 3,
@@ -166,7 +210,7 @@ const seed: SeedFile = {
             plainLanguageExplanation:
               'In mice, this cellular shift translates into measurably longer lives: both median lifespan and the age by which 90% of a group has died increase, replicated across three independent labs and a range of doses.',
             evidenceContext:
-              'From three NIA ITP studies: Harrison 2009 (age at 90% mortality up 9-14%), Miller 2014 (median lifespan up 23-26% at the top dose), Strong 2020 (intermittent and late-life dosing equally effective).',
+              'From three NIA ITP studies: Harrison 2009 (age at 90% mortality up 9-14%), Miller 2014 (median lifespan up 23-26% at the top dose), Strong 2020 (from 20 months, intermittent matched continuous).',
             status: 'measured',
             sourceLinks: [
               'https://doi.org/10.1038/nature08221',
@@ -189,7 +233,7 @@ const seed: SeedFile = {
           {
             sourceKey: 'harrison2009',
             relationship: 'supports',
-            claimPartAddressed: 'Whether mTOR inhibition by rapamycin extends lifespan in mammals',
+            claimPartAddressed: 'whether mTOR inhibition by rapamycin extends lifespan in mammals',
             directlyMeasuredResult:
               'Age at 90% mortality increased 14% in female mice and 9% in male mice when rapamycin feeding began at 600 days of age; replicated at three independent test sites with no difference in disease patterns versus controls.',
             independentGroupStatus: true,
@@ -197,7 +241,7 @@ const seed: SeedFile = {
           {
             sourceKey: 'miller2014',
             relationship: 'supports',
-            claimPartAddressed: 'Whether the lifespan effect is dose-dependent and consistent across sexes',
+            claimPartAddressed: 'whether the lifespan effect is dose-dependent and consistent across sexes',
             directlyMeasuredResult:
               'At the highest tested dose (42 ppm), median lifespan increased 23% in males and 26% in females; lower doses produced smaller, still-significant increases, with females responding more strongly at low doses.',
             independentGroupStatus: true,
@@ -205,15 +249,20 @@ const seed: SeedFile = {
           {
             sourceKey: 'strong2020',
             relationship: 'supports',
-            claimPartAddressed: 'Whether shorter or intermittent dosing regimens, closer to how it is used off-label in humans, still extend lifespan in mice',
+            claimPartAddressed: 'lifespan effect of intermittent and late-start dosing in mice',
+            // "continuous", never "lifelong". Every arm in this study starts at 20 months; there
+            // is no lifelong-dosing arm, and the paper's only use of "lifelong" is about 17-DMAG,
+            // an unrelated compound. Saying brief late-life exposure matched lifelong dosing told
+            // the reader something far stronger than the study ran. The studyDesign and endpoint
+            // fields on this source already said "continuous".
             directlyMeasuredResult:
-              'Intermittent (one month on/one month off) dosing or a limited three-month exposure beginning at 20 months of age increased survival in male mice about as much as continuous lifelong dosing.',
+              'Intermittent (one month on/one month off) dosing or a limited three-month exposure, both beginning at 20 months of age, increased survival in male mice about as much as continuous exposure started at the same age.',
             independentGroupStatus: true,
           },
           {
             sourceKey: 'saxton2017',
             relationship: 'contextualizes',
-            claimPartAddressed: 'The cell-biology mechanism connecting rapamycin to mTOR inhibition, autophagy, and reduced protein synthesis',
+            claimPartAddressed: 'the cell-biology mechanism connecting rapamycin to mTOR inhibition, autophagy, and reduced protein synthesis',
             directlyMeasuredResult:
               'Review-level synthesis (not a single new experiment) establishing that mTORC1 integrates nutrient and growth signals to drive protein/lipid synthesis and suppress autophagy, and that rapamycin/FKBP12 inhibits this complex.',
             independentGroupStatus: false,
@@ -228,7 +277,7 @@ const seed: SeedFile = {
         claimType: 'safety',
         consumerQuestion: 'What are the safety and access realities of using rapamycin off-label for longevity?',
         directAnswer:
-          'Rapamycin\'s FDA boxed warning for infection and cancer risk comes from continuous transplant dosing. The low, intermittent off-label doses showed no significant excess in adverse events over 48 weeks; longer-term risk is not established.',
+          'Rapamycin’s FDA boxed warning for infection and cancer risk comes from continuous transplant dosing. The low, intermittent off-label doses showed no significant excess in adverse events over 48 weeks; longer-term risk is not established.',
         measuredFinding:
           'FDA label, at continuous transplant dosing: a boxed warning for infection and for lymphoma and other malignancies from immunosuppression. PEARL, at 48 weeks of low intermittent dosing: no significant difference from placebo in moderate-to-severe adverse events or safety blood biomarkers. GI symptom counts were 8, 7, and 4 (10 mg/week, 5 mg/week, placebo); serious adverse events 1, 2, and 3.',
         inference:
@@ -245,9 +294,9 @@ const seed: SeedFile = {
           {
             sourceKey: 'fdaLabel',
             relationship: 'contextualizes',
-            claimPartAddressed: 'Documented immunosuppression risk at FDA-approved, continuous transplant-level dosing',
+            claimPartAddressed: 'documented immunosuppression risk at FDA-approved, continuous transplant-level dosing',
             directlyMeasuredResult:
-              'Boxed warning: "Increased susceptibility to infection and the possible development of lymphoma and other malignancies may result from immunosuppression." Most common (≥30%) adverse reactions in renal transplant recipients include peripheral edema, hypertriglyceridemia, hypertension, hypercholesterolemia, elevated creatinine, GI symptoms, infection, thrombocytopenia, and anemia.',
+              'Boxed warning: “Increased susceptibility to infection and the possible development of lymphoma and other malignancies may result from immunosuppression”. Most common (≥30%) adverse reactions in renal transplant recipients include peripheral edema, hypertriglyceridemia, hypertension, hypercholesterolemia, elevated creatinine, GI symptoms, infection, thrombocytopenia, and anemia.',
             independentGroupStatus: false,
           },
           {
@@ -275,9 +324,9 @@ const seed: SeedFile = {
           'A licensed physician may legally prescribe sirolimus off-label for longevity, since off-label prescribing of an approved drug is legal in the US. That is an individual clinical judgment, not a regulatory finding that the drug is safe or effective for that purpose.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          'Regulatory evidence is the strongest category, and it applies here only to what the FDA reviewed: transplant-rejection prophylaxis and LAM. No regulator has evaluated rapamycin for longevity or anti-aging. Read "FDA-approved" as approved for those two indications, not for longevity.',
+          'Regulatory evidence is the strongest category, and it applies here only to what the FDA reviewed: transplant-rejection prophylaxis and LAM. No regulator has evaluated rapamycin for longevity or anti-aging. Read “FDA-approved” as approved for those two indications, not for longevity.',
         remainingUnknown:
-          'Whether any sponsor will file for a longevity- or aging-related indication in the future; as of this review, none had, and the FDA has not established a formal approval pathway for an "aging" indication as a treatable condition.',
+          'Whether any sponsor will file for a longevity- or aging-related indication in the future; as of this review, none had, and the FDA has not established a formal approval pathway for an “aging” indication as a treatable condition.',
         evidenceNeededNext:
           'A sponsor completing a large, hard-endpoint (or FDA-accepted aging-biomarker) controlled trial specifically for an anti-aging or longevity indication and filing for regulatory review — no such trial or filing exists today.',
         displayPriority: 40,
@@ -285,7 +334,7 @@ const seed: SeedFile = {
           {
             sourceKey: 'fdaLabel',
             relationship: 'supports',
-            claimPartAddressed: 'The exact scope of FDA-approved indications, and the explicit absence of any longevity/anti-aging indication',
+            claimPartAddressed: 'the exact scope of FDA-approved indications, and the explicit absence of any longevity/anti-aging indication',
             directlyMeasuredResult:
               'Labeled indications: prophylaxis of renal transplant rejection (age 13+, with cyclosporine and corticosteroids) and treatment of LAM. No other indication, including longevity or anti-aging, appears anywhere in the approved labeling.',
             independentGroupStatus: false,
@@ -358,7 +407,8 @@ const seed: SeedFile = {
     },
     {
       key: 'fdaLabel',
-      title: 'RAPAMUNE (sirolimus) tablets and oral solution — FDA-approved prescribing information',
+      title:
+        'Sirolimus tablets — FDA-approved prescribing information (authorized generic of Rapamune, NDA 021110)',
       journalOrIssuer: 'U.S. Food and Drug Administration, via DailyMed (label revised November 2024)',
       regulatoryUrl: 'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5908cd1a-fc5a-462f-99ed-1d8983e253c9',
       sourceType: 'FDA-approved drug label',
@@ -371,9 +421,12 @@ const seed: SeedFile = {
       authors: 'Saxton RA, Sabatini DM',
       publicationYear: 2017,
       journalOrIssuer: 'Cell',
-      doi: '10.1016/j.cell.2017.03.035',
-      pmid: '28388417',
+      doi: '10.1016/j.cell.2017.02.004',
+      pmid: '28283069',
       sourceType: 'review article',
+      // The 2017 erratum republished the corrected review. Recorded, not hidden: the reader is
+      // told the paper was corrected and can find the notice.
+      retractionStatus: 'Corrected. An erratum was published in Cell 169(2):361-371, DOI 10.1016/j.cell.2017.03.035.',
     },
   ],
 }

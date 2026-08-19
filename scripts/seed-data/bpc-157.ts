@@ -9,11 +9,27 @@ import type { SeedFile } from '@/lib/seed-types'
 //   of 36 included studies was clinical (a retrospective, uncontrolled case series), the other
 //   35 preclinical — and states explicitly "No clinical safety data were found." This is cited
 //   directly rather than assumed.
-// - FDA status verified via FDA's own "Certain Bulk Drug Substances for Use in Compounding that
-//   May Present Significant Safety Risks" page (Category 2, added Sept 29, 2023) and corroborated
-//   by FDA's Pharmacy Compounding Advisory Committee (PCAC) calendar entry for the July 23-24,
-//   2026 meeting plus independent press confirmation (STAT News) of the resulting non-binding
-//   8-6 vote. BPC-157 remains an unapproved drug substance either way.
+// - FDA status re-verified 2026-08-19 against FDA's own "Certain Bulk Drug Substances for Use in
+//   Compounding that May Present Significant Safety Risks" page (content current as of 22 April
+//   2026), read table-by-table under its own headings. BPC-157 is NOT in the table headed "Bulk
+//   drug substances under category 2 of the interim policies"; it is in the table headed "Bulk
+//   drug substances nominated but withdrawn", introduced as substances "previously in category 2
+//   of the interim policies [that] were withdrawn by the nominators". Wayback snapshots show the
+//   move happening between January and May 2026, so the earlier "Category 2" reading was true when
+//   written and is not true now. The statement below therefore records both the 29 September 2023
+//   addition and the present placement, because a sentence stamped "Checked <date>" has to be
+//   supported by the cited page ON that date. FDA's immunogenicity and impurity-characterisation
+//   wording for BPC-157 is still on the same page, verbatim, in the withdrawn table's own row.
+//   Corroborated by FDA's Pharmacy Compounding Advisory Committee (PCAC) calendar entry for the
+//   July 23-24, 2026 meeting. The FDA calendar entry records the substances and the uses evaluated — for
+//   BPC-157, ulcerative colitis — but carries no vote tally, so the tally is cited to Regulatory
+//   Focus (RAPS), 23 July 2026, refetched and read in full on 2026-08-19. That report establishes
+//   two things the earlier draft of this file got wrong: the 8-6-with-one-abstention vote was a
+//   SINGLE vote covering BPC-157 and KPV together, and FDA staff's briefing package recorded a
+//   "lack of evidence to support the effectiveness of BPC-157 (free base) and BPC-157 acetate as
+//   a treatment for ulcerative colitis". The earlier "(STAT News)" attribution was never verified
+//   against a fetched page and has been replaced by the source actually read.
+//   BPC-157 remains an unapproved drug substance either way.
 // - WADA status: secondary sources disagreed on whether BPC-157 is explicitly named on the
 //   Prohibited List versus only arguably covered by the S0/S2.3 catch-all language, and a direct
 //   fetch of wada-ama.org did not return verifiable page content. Per the "verify, don't assume"
@@ -22,15 +38,18 @@ import type { SeedFile } from '@/lib/seed-types'
 //   Singapore regulatory-status entry is included either.
 
 const seed: SeedFile = {
+  // The date the sources below were read and these answers written against them. Printed as
+  // "This answer last checked" on every claim in this file. See SeedFile.researchDate.
+  researchDate: '2026-08-18',
   entity: {
     canonicalName: 'BPC-157',
     slug: 'bpc-157',
     aliases: ['Body Protection Compound 157', 'Pentadecapeptide BPC 157', 'PL 14736', 'PL-10', 'PLD-116'],
     entityType: 'peptide',
     shortDescription:
-      'A synthetic 15-amino-acid peptide modeled on a fragment of a protective protein found in human gastric juice, sold online as a "research chemical" and marketed for tendon, joint, and gut healing.',
+      'A synthetic 15-amino-acid peptide modeled on a fragment of a protective protein found in human gastric juice, sold online as a “research chemical” and marketed for tendon, joint, and gut healing.',
     bottomLine:
-      'BPC-157 has produced tissue-healing effects in rat and cell studies of tendon, ligament, and gut injury, but no controlled human trial has confirmed that it speeds healing or is safe for human use.',
+      'BPC-157 is a synthetic peptide sold online as an unapproved injectable. It has produced tissue-healing effects in rat and cell studies of tendon, ligament, and gut injury, but no controlled human trial has confirmed that it speeds healing or is safe for human use.',
     regulatoryCategory: 'unapproved_therapeutic_substance',
     accessRealityNote:
       'BPC-157 is not an approved medicine or a legal dietary supplement anywhere. No regulator has verified the identity, purity or sterility of material sold under this name, so what a given vial actually contains is unknown. The FDA has separately identified unresolved immunogenicity and impurity-characterization concerns specific to BPC-157.',
@@ -39,16 +58,34 @@ const seed: SeedFile = {
         jurisdiction: 'United States — FDA (503A bulk drug substances for compounding)',
         legalCategory: 'unapproved_therapeutic_substance',
         statusStatement:
-          'BPC-157 is not an FDA-approved drug for any indication. On September 29, 2023, FDA placed it in Category 2 of the 503A bulk drug substances list — substances that may present significant safety risks and fall outside FDA\'s enforcement-discretion policy for compounding. FDA cited potential immunogenicity for certain routes of administration and unresolved peptide impurity and active-ingredient characterization issues.',
+          'BPC-157 is not an FDA-approved drug for any indication. FDA added it to Category 2 of the 503A bulk drug substances list on September 29, 2023, and the same page now lists it under substances nominated but withdrawn, meaning the nominator pulled the nomination. FDA still records potential immunogenicity for certain routes of administration and unresolved peptide impurity and active-ingredient characterization issues.',
         source:
           'https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks',
-        checkedDate: '2026-08-18',
+        checkedDate: '2026-08-19',
       },
       {
         jurisdiction: 'United States — FDA Pharmacy Compounding Advisory Committee (2026 update)',
         legalCategory: 'unapproved_therapeutic_substance',
+        // The vote sentence names the USE and the fact that it was ONE vote covering two
+        // substances, because without both the reader cannot tell what was recommended. FDA's
+        // meeting record lists the substance under evaluation for "Ulcerative colitis (UC)"; the
+        // tally and the combined BPC-157/KPV wording are reported by Regulatory Focus (RAPS,
+        // 23 July 2026), which also quotes FDA's briefing package. The `source` below stays the
+        // FDA meeting record because that link is labelled "Read the regulator's own record" and
+        // must resolve to the regulator, not to press. The FDA briefing finding it references is
+        // carried, with its own citation, as a claim event on the gut-healing claim — which is
+        // the claim about ulcerative colitis and the rest of the gut, and the reason that section
+        // exists.
+        //
+        // WHICH IS WHY THE TALLY NAMES ITS REPORTER IN THE SENTENCE. A `regulatoryStatus` row has
+        // exactly one `source` field and it renders under one link labelled "Read the regulator's
+        // own record". Stated flatly, the 8-6 tally therefore read as something a reader could
+        // verify at that link, and it cannot be: FDA's page carries no vote. There is no second
+        // link to give it, so the attribution travels in the prose instead, and the reader can
+        // tell which half of this paragraph the regulator's own record backs. The same tally is
+        // cited to Regulatory Focus on the safety claim, where a source row can carry the link.
         statusStatement:
-          'On July 23, 2026, FDA\'s Pharmacy Compounding Advisory Committee voted 8-6, with one abstention, to recommend that BPC-157 be added to the 503A bulks list eligible for compounding. This recommendation is non-binding: FDA has not issued a final decision, the vote does not constitute drug approval, and BPC-157 remains an unapproved substance whose safety and effectiveness have not been established through FDA review.',
+          'FDA’s Pharmacy Compounding Advisory Committee evaluated BPC-157 for ulcerative colitis on July 23-24, 2026. The meeting record carries no vote; Regulatory Focus reported an 8-6 vote, one abstention, covering BPC-157 and KPV, recommending both for the 503A bulks list, against FDA reviewers’ finding of a lack of evidence. FDA has issued no final decision, the vote is not an approval, and BPC-157 remains unapproved.',
         source:
           'https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026',
         checkedDate: '2026-08-18',
@@ -158,7 +195,7 @@ const seed: SeedFile = {
             relationship: 'limits',
             claimPartAddressed: 'overall strength and quantity of human evidence for musculoskeletal claims',
             directlyMeasuredResult:
-              'A systematic review of 544 identified articles (1993-2024) found 36 met inclusion criteria: 35 were preclinical and only 1 was clinical (a retrospective, uncontrolled case series, not tendon-specific). The review concluded no clinical safety data exist and classified the evidence base as level IV/V studies.',
+              'A systematic review of 544 identified articles (1993-2024) found 36 met inclusion criteria: 35 were preclinical and only 1 was clinical (a retrospective, uncontrolled case series, not tendon-specific). The review states that no clinical safety data were found beyond that one study.',
             independentGroupStatus: true,
           },
         ],
@@ -172,19 +209,19 @@ const seed: SeedFile = {
             ],
             correctOptionIndex: 1,
             explanation:
-              'Real preclinical evidence exists in animal and cell models — but that is a different, weaker evidentiary claim than "proven to work in people." No controlled human trial has tested it, which is exactly the gap this page is meant to make visible.',
+              'Real preclinical evidence exists in animal and cell models — but that is a different, weaker evidentiary claim than “proven to work in people.” No controlled human trial has tested it, which is exactly the gap this page is meant to make visible.',
           },
           {
             question:
-              'If a website claims "BPC-157 heals tendons — proven by science," what is the most accurate description of the evidence behind that claim?',
+              'If a website claims “BPC-157 heals tendons — proven by science,” what is the most accurate description of the evidence behind that claim?',
             options: [
-              "It's based on promising lab and animal research, but there is no controlled human trial confirming the effect in people.",
-              "It's proven — there are large controlled human trials confirming this.",
-              "It's fabricated — there is no legitimate research on BPC-157 at all.",
+              "It’s based on promising lab and animal research, but there is no controlled human trial confirming the effect in people.",
+              "It’s proven — there are large controlled human trials confirming this.",
+              "It’s fabricated — there is no legitimate research on BPC-157 at all.",
             ],
             correctOptionIndex: 0,
             explanation:
-              '"Promising in rats and cells" and "proven in people" are different claims. Marketing language often blurs that line. This page keeps the two separated.',
+              '“Promising in rats and cells” and “proven in people” are different claims. Marketing language often blurs that line. This page keeps the two separated.',
           },
         ],
       },
@@ -193,14 +230,28 @@ const seed: SeedFile = {
         claimType: 'effectiveness',
         consumerQuestion: 'Does BPC-157 heal the gut lining or help conditions like leaky gut, IBD, or ulcers?',
         directAnswer:
-          'In rat models of intestinal injury and short-bowel syndrome, BPC-157 improved gut healing, but this has not been tested in any human clinical trial for a gut condition.',
+          'In rat models of intestinal injury and short-bowel syndrome, BPC-157 improved gut healing, but no human trial has published a result for a gut condition.',
         measuredFinding:
           'In rats, BPC-157 improved bursting pressure and histological healing after surgical intestinal anastomosis (a segment of bowel rejoined after resection). In a 24-hour short-bowel rat model, it reduced gastrointestinal, liver, and brain injury severity, including when injury was worsened by an NSAID (diclofenac).',
+        // The old wording here asserted that a company-run IBD trial programme "was registered but
+        // never published results", and the proofBoundaryExplanation below then asserted that no
+        // human study has ever tested BPC-157 for IBD. One sentence named studies the next denied.
+        // Worse, no source row on this claim records a registration with a checkable identifier:
+        // the only registered trial in the corpus, NCT02637284, is a healthy-volunteer Phase I on
+        // a different claim. What IS on the record is the cited Vuksic 2007 title, which names the
+        // Pliva IBD programme and its code names (PL-10, PLD-116, PL14736 — also entity aliases).
+        // So the sentence now says only what that source carries: a programme existed and named
+        // itself after the indication; no human result for a gut condition has been published.
         inference:
-          'These findings suggest a plausible gut-protective and healing effect that researchers have proposed could extend to human inflammatory bowel conditions. It has not been tested in people: a company-run human trial program in inflammatory bowel disease was registered but never published results.',
+          'These findings suggest a plausible gut-protective and healing effect that researchers proposed could extend to human inflammatory bowel conditions. The cited rat work came out of an industry programme aimed at that disease, and no human result for a gut condition has ever been published.',
         proofBoundaryStage: 'animal_evidence',
+        // Register matters here, and lib/claim-events.ts states the rule this used to break:
+        // assert absence of published RESULTS, never absence of a study. "No human study has
+        // tested" is a claim about what was never run, which this record cannot know and which its
+        // own inference field contradicts. See docs/evidence-classification.md, "Silence read as
+        // disproof". The sibling tendon claim already uses the corrected wording.
         proofBoundaryExplanation:
-          'All direct evidence of gut-healing effects comes from rat surgical and injury models. No human study — controlled or uncontrolled — has tested BPC-157 for gut healing, inflammatory bowel disease, ulcers, or "leaky gut."',
+          'All direct evidence of gut-healing effects comes from rat surgical and injury models. No human study has published a gut-healing, inflammatory bowel disease, ulcer or “leaky gut” outcome for BPC-157.',
         remainingUnknown:
           'Whether BPC-157 has any measurable effect on human intestinal healing, at what dose, by what route, or with what safety profile in the gut specifically, is unknown.',
         evidenceNeededNext:
@@ -222,6 +273,44 @@ const seed: SeedFile = {
             directlyMeasuredResult:
               'BPC-157 ameliorated gastrointestinal, liver, and brain lesions and countered intestinal-adaptation deterioration in a 24-hour short-bowel rat model, including under diclofenac-induced aggravation.',
             independentGroupStatus: false,
+          },
+          {
+            sourceKey: 'raps-2026-pcac-peptide-vote',
+            relationship: 'limits',
+            claimPartAddressed: 'regulatory review of effectiveness evidence for a named gut condition',
+            directlyMeasuredResult:
+              'FDA staff’s briefing package for the July 2026 advisory committee meeting recorded a “lack of evidence to support the effectiveness of BPC-157 (free base) and BPC-157 acetate as a treatment for ulcerative colitis”. FDA staff recommended against adding the peptide to the 503A bulks list.',
+          },
+        ],
+        // The one gut-specific event on this record, and it belongs here rather than in the
+        // regulatory section: this is the claim that asks whether BPC-157 helps IBD and ulcers,
+        // and ulcerative colitis is the exact condition FDA's reviewers assessed. Filed as
+        // `trial_design_limit` / `trial_design` for the same reason as the safety event above —
+        // the recorded fact is that the evidence to support effectiveness was not there, which
+        // is an absence, not a trial that ran and failed. `null_result` or `contradictory_result`
+        // would turn "the studies to answer this were never done" into "a study looked and found
+        // no effect", which is the absence-of-evidence error docs/evidence-classification.md
+        // names, and it would also misreport a regulator's document as an experiment.
+        // The event date is the date FDA's finding was tabled and reported, which is a real
+        // event date, unlike the systematic review's publication year.
+        // The vote in `whatItSuggests` is attributed to Regulatory Focus, the same way the rest of
+        // this record attributes it. FDA's own meeting record carries no tally, so stated as flat
+        // fact the vote read as something a reader could check against the regulator's page — and
+        // the regulatory status two sections up already says, in as many words, that the meeting
+        // record carries no vote. One page cannot attribute the same fact two ways.
+        claimEvents: [
+          {
+            sourceKey: 'raps-2026-pcac-peptide-vote',
+            eventType: 'trial_design_limit',
+            developmentGate: 'trial_design',
+            plainSummary:
+              'FDA staff reviewed BPC-157 for one gut condition, ulcerative colitis, ahead of the July 2026 Pharmacy Compounding Advisory Committee meeting. Their briefing package records a “lack of evidence to support the effectiveness of BPC-157 (free base) and BPC-157 acetate as a treatment for ulcerative colitis”.',
+            whatItSuggests:
+              'A regulator went through the published evidence for a specific gut condition and did not find enough of it to support an effectiveness claim. Regulatory Focus reported that the committee then voted to recommend the substance anyway, against its own staff’s advice.',
+            whatItDoesNotEstablish:
+              'This is a finding about the evidence, not about the peptide. It does not show BPC-157 fails to help ulcerative colitis, leaky gut or any other gut condition, and no trial is reported here as having tested and missed.',
+            eventDate: '2026-07-23',
+            displayPriority: 0,
           },
         ],
       },
@@ -257,7 +346,7 @@ const seed: SeedFile = {
             relationship: 'limits',
             claimPartAddressed: 'existence of human safety data in the published literature',
             directlyMeasuredResult:
-              'States explicitly that "no clinical safety data were found" for BPC-157 beyond the single retrospective clinical study identified, despite preclinical safety studies showing no adverse effects across several organ systems in animal models.',
+              'States explicitly that “no clinical safety data were found” for BPC-157 beyond the single retrospective clinical study identified, despite preclinical safety studies showing no adverse effects across several organ systems in animal models.',
             independentGroupStatus: true,
           },
           {
@@ -265,14 +354,51 @@ const seed: SeedFile = {
             relationship: 'limits',
             claimPartAddressed: 'regulatory assessment of manufacturing and immunogenicity risk',
             directlyMeasuredResult:
-              'FDA placed BPC-157 on its list of bulk drug substances presenting significant safety risks for compounding (added September 29, 2023), citing potential immunogenicity for certain routes of administration and complexities in peptide-related impurity and active-ingredient characterization.',
+              'FDA added BPC-157 to its list of bulk drug substances presenting significant safety risks for compounding on September 29, 2023, and now lists it there under substances nominated but withdrawn. FDA records potential immunogenicity for certain routes of administration and complexities in peptide-related impurity and active-ingredient characterization.',
           },
+          // Two rows for one meeting, because two different documents record two different
+          // things and a source may only be cited for what it actually carries. The FDA row
+          // below said the committee "voted 8-6 (one abstention)" directly under a
+          // `sourceType` that ends "no vote tally" — the card stated a tally under a line
+          // saying that source has no tally. FDA's page announces the meeting: the agenda and
+          // the use under evaluation. The tally is reported by Regulatory Focus, so it is now
+          // cited to Regulatory Focus, the same way it already is on the gut-healing claim.
           {
             sourceKey: 'fda-pcac-july-2026',
             relationship: 'contextualizes',
-            claimPartAddressed: 'current regulatory trajectory of the FDA safety restriction',
+            claimPartAddressed: 'the FDA meeting at which the safety restriction was reviewed',
             directlyMeasuredResult:
-              'On July 23, 2026, an FDA advisory committee voted 8-6 (one abstention) to non-bindingly recommend BPC-157 for the 503A compounding bulks list; FDA has not issued a final decision, and BPC-157 remains an unapproved substance regardless of the outcome.',
+              'FDA’s meeting record lists BPC-157 among the substances evaluated at the Pharmacy Compounding Advisory Committee meeting of July 23-24, 2026, for use in ulcerative colitis. The record carries no vote and no briefing text.',
+          },
+          {
+            sourceKey: 'raps-2026-pcac-peptide-vote',
+            relationship: 'contextualizes',
+            claimPartAddressed: 'the advisory committee vote on the FDA safety restriction',
+            directlyMeasuredResult:
+              'Regulatory Focus reported that on July 23, 2026 the committee voted 8-6, with one abstention, in a single vote covering BPC-157 and KPV, to non-bindingly recommend both for the 503A compounding bulks list. FDA has issued no final decision, and BPC-157 remains an unapproved substance regardless of the outcome.',
+          },
+        ],
+        // One recorded event, restating the Vasireddi 2025 row directly above. `trial_design_limit`
+        // rather than `safety_limited` is deliberate: the review reports that no clinical safety
+        // data were FOUND, which is a gap in what was ever studied, not an observed safety problem.
+        // Filing it as a safety event would turn "nobody ran the study" into "the study found harm",
+        // which is exactly the absence-of-evidence error docs/evidence-classification.md names.
+        // The gate is `trial_design` for the same reason: the chain stops before any controlled
+        // human safety readout exists.
+        claimEvents: [
+          {
+            sourceKey: 'vasireddi-2025-systematic-review',
+            eventType: 'trial_design_limit',
+            developmentGate: 'trial_design',
+            plainSummary:
+              'A 2025 systematic review screened 544 articles published from 1993 to 2024 and included 36. It states that no clinical safety data were found for BPC-157 beyond one retrospective clinical study, and 35 of the included studies were preclinical.',
+            whatItSuggests:
+              'No controlled human study has measured whether BPC-157 is safe in people. Of the 36 studies the review included, 35 were preclinical and the one clinical study was an uncontrolled case series.',
+            whatItDoesNotEstablish:
+              'Finding no clinical safety data is not a finding of harm. A systematic review measures nothing directly, so this does not show BPC-157 is unsafe, and it does not show it is safe.',
+            // No eventDate: the review records a publication year and a search cut-off, neither of
+            // which dates an event. Left null rather than approximated.
+            displayPriority: 0,
           },
         ],
       },
@@ -280,17 +406,33 @@ const seed: SeedFile = {
         slug: 'human-testing',
         claimType: 'effectiveness',
         consumerQuestion: 'Has BPC-157 actually been tested in human clinical trials?',
+        // The second sentence is not padding, and it is the fix for a real defect. The answer used
+        // to stop at "no controlled human trial has published results", and the evidence-position
+        // sentence printed directly beneath it by ClaimSummary — "People were given it and the
+        // results were recorded, but there was no comparison group" — then read as a correction of
+        // the answer rather than a restatement of it. Both are true: the stage is
+        // `uncontrolled_human_intervention` because a 12-patient retrospective case series and a
+        // 2-person pilot exist. But the reader met the human data for the first time in grey type
+        // under an answer that appeared to deny it, and the resolution sat ~1,100px lower inside a
+        // closed record. The answer now names the human data itself, so the grey line agrees with
+        // it with zero interaction. The date is en-GB like every other date the site prints.
         directAnswer:
-          'A Phase I human safety trial was registered in 2015 but never published results, and as of August 18, 2026 no randomized, controlled human trial of BPC-157 has published results for any condition.',
+          'A Phase I trial registered in 2015 never posted results, and as of 18 August 2026 no controlled human trial has published results. The only human data are a 12-patient case series and a 2-person pilot, neither with a comparison group.',
+        // "42" is the registry's ESTIMATED enrolment, not people dosed: the record has posted no
+        // results and its status is "unknown", last updated December 2015. Saying "a trial in 42
+        // healthy volunteers" asserted a human-exposure count no source records, on the one claim
+        // whose whole subject is the absence of human data. components/evidence/
+        // EvidenceSourceList.tsx already suppresses "42 people" in the structured Number studied
+        // row for exactly this reason; these two prose fields were the half left behind.
         measuredFinding:
-          'A Phase I trial (NCT02637284, 42 healthy volunteers, sponsor PharmaCotherapia) was registered to assess safety and pharmacokinetics. No results have ever been posted to ClinicalTrials.gov. A 2025 systematic review screened 544 articles (1993-2024) and included 36: 35 preclinical, 1 clinical. That one study was a retrospective, uncontrolled case series of 12 patients with chronic knee pain.',
+          'A Phase I trial (NCT02637284, sponsor PharmaCotherapia) was registered in 2015 for a planned 42 healthy volunteers, to assess safety and pharmacokinetics. No results were ever posted and the record has not been updated since December 2015. A 2025 systematic review screened 544 articles (1993-2024) and included 36: 35 preclinical, 1 clinical, a case series of 12 patients with knee pain.',
         inference:
-          'The near-total absence of human trial data does not mean BPC-157 fails to work in people — it means that specific claim has not been tested, which is a different, weaker evidentiary position than either "proven" or "disproven."',
+          'The near-total absence of human trial data does not mean BPC-157 fails to work in people — it means that specific claim has not been tested, which is a different, weaker evidentiary position than either “proven” or “disproven.”',
         proofBoundaryStage: 'uncontrolled_human_intervention',
         proofBoundaryExplanation:
           'The most advanced human evidence identified is a small retrospective, uncontrolled case series and a separate 2-person uncontrolled safety pilot. No controlled human trial with published results exists at any phase, for any indication.',
         remainingUnknown:
-          'Whether a controlled trial would confirm any of the effects seen in animals, and why the one registered Phase I trial\'s results were never published, are both unknown from public information.',
+          'Whether a controlled trial would confirm any of the effects seen in animals, and why the one registered Phase I trial’s results were never published, are both unknown from public information.',
         evidenceNeededNext:
           'Publication of results from a completed, adequately powered, controlled human trial — the category of evidence this entity currently lacks entirely.',
         displayPriority: 4,
@@ -300,7 +442,7 @@ const seed: SeedFile = {
             relationship: 'limits',
             claimPartAddressed: 'existence of a completed, results-reported human clinical trial',
             directlyMeasuredResult:
-              'A Phase I safety/pharmacokinetics trial in 42 healthy volunteers (NCT02637284) was registered but no results have ever been posted to the public registry.',
+              'A Phase I safety/pharmacokinetics trial (NCT02637284) was registered for a planned enrolment of 42 healthy volunteers. No results have ever been posted, and the registry entry has not been updated since December 2015; its status is listed as unknown.',
           },
           {
             sourceKey: 'vasireddi-2025-systematic-review',
@@ -439,8 +581,10 @@ const seed: SeedFile = {
     },
     {
       key: 'fda-503a-safety-risk-list',
+      // Title states where BPC-157 sits on this page TODAY, not only where it was put in 2023.
+      // The old title asserted current Category 2 membership, which the page contradicts.
       title:
-        'Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks (503A Category 2 list; BPC-157 added September 29, 2023)',
+        'Certain Bulk Drug Substances for Use in Compounding that May Present Significant Safety Risks (BPC-157 added to 503A category 2 on September 29, 2023; now listed under nominated but withdrawn)',
       journalOrIssuer: 'U.S. Food and Drug Administration',
       regulatoryUrl:
         'https://www.fda.gov/drugs/human-drug-compounding/certain-bulk-drug-substances-use-compounding-may-present-significant-safety-risks',
@@ -452,7 +596,26 @@ const seed: SeedFile = {
       journalOrIssuer: 'U.S. Food and Drug Administration — Pharmacy Compounding Advisory Committee',
       regulatoryUrl:
         'https://www.fda.gov/advisory-committees/advisory-committee-calendar/july-23-24-2026-meeting-pharmacy-compounding-advisory-committee-07232026',
-      sourceType: 'FDA advisory committee meeting record (non-binding recommendation vote)',
+      sourceType: 'FDA advisory committee meeting record (substances and uses evaluated; no vote tally)',
+    },
+    // The meeting record above is FDA's own page and is what the regulatory-status block links,
+    // but it announces the meeting: it lists the substances and the uses under evaluation and
+    // carries no tally and no briefing text. Everything this file says about the OUTCOME — the
+    // single 8-6-with-one-abstention vote covering BPC-157 and KPV, and FDA staff's recorded
+    // finding on effectiveness for ulcerative colitis — comes from this report, which was fetched
+    // and read in full rather than summarised from search results. It is trade press, and it is
+    // labelled as trade press; `regulatoryUrl` is used only because it is the sole URL field on
+    // an evidence source, and a source a reader cannot open is worse than one filed under an
+    // imperfect field name. If a generic `sourceUrl` column is ever added, move this.
+    {
+      key: 'raps-2026-pcac-peptide-vote',
+      title: 'FDA advisory committee backs two controversial peptides',
+      authors: 'Eglovitch JS',
+      publicationYear: 2026,
+      journalOrIssuer: 'Regulatory Focus (Regulatory Affairs Professionals Society)',
+      regulatoryUrl: 'https://www.raps.org/resource/fda-advisory-committee-backs-two-controversial-peptides.html',
+      // Kept under 100 characters: evidence_sources.source_type is varchar(100).
+      sourceType: 'trade-press report of an FDA advisory committee meeting, quoting FDA briefing materials',
     },
   ],
 }

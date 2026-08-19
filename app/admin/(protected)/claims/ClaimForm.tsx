@@ -21,6 +21,8 @@ export interface ClaimFormValues {
   outcomeSummary: string
   publicationStatus: string
   displayPriority: number
+  /** ISO date (YYYY-MM-DD) or '' — the date an editor last checked this answer against its sources. */
+  checkedDate: string
 }
 
 export interface EntityOption {
@@ -218,6 +220,31 @@ export function ClaimForm({
         />
         <p id="displayPriority-help" className="admin-help">
           Higher sorts earlier where claims are listed together.
+        </p>
+      </div>
+
+      {/* An EDITORIAL act, typed by the person who performed it. It is deliberately not filled in
+          automatically on save: `claims.updatedAt` already records the write, and letting the write
+          stand in for a check is exactly the defect this field exists to fix — the record printed
+          "This answer last checked" over a database timestamp that moved every time the seed script
+          ran. Leave it empty when no check happened; the record then says "last edited" instead,
+          which is all the write date can support. */}
+      <div className="admin-field">
+        <label htmlFor="checkedDate" className="admin-label">
+          Answer last checked (optional)
+        </label>
+        <input
+          id="checkedDate"
+          name="checkedDate"
+          type="date"
+          defaultValue={values.checkedDate}
+          aria-describedby="checkedDate-help"
+          className="field"
+        />
+        <p id="checkedDate-help" className="admin-help">
+          The date you read the cited sources and checked this answer against them. Leave empty if no
+          check has been made — the record then says &quot;last edited&quot; instead of &quot;last checked&quot;.
+          This is not a scientific review; only an approved review row produces a reviewed sentence.
         </p>
       </div>
 

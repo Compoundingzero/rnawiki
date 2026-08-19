@@ -12,12 +12,23 @@ import {
   publicationStatusEnum,
   mechanismSteps,
   claimEvidence,
+  claimEvents,
+  evidenceSources,
 } from '@/db/schema'
 import { requireUser, AuthError } from '@/lib/auth'
 import { isValidSlug, entityPath } from '@/lib/canonical'
 import { PROOF_BOUNDARY_STAGES, EVIDENCE_STATUSES, EVIDENCE_RELATIONSHIPS } from '@/lib/evidence'
+import { CLAIM_EVENT_TYPES, DEVELOPMENT_GATES } from '@/lib/claim-events'
 import { recordCreation, recordRevisions, recordAction, diffFields } from '@/lib/admin/audit'
-import { formToObject, redirectWithError, redirectWithSuccess, nullIfEmpty, linesToArray } from '@/lib/admin/forms'
+import {
+  formToObject,
+  redirectWithError,
+  redirectWithSuccess,
+  nullIfEmpty,
+  linesToArray,
+  toDateOrNull,
+  CLAIM_EVENT_FIELD_CAPS,
+} from '@/lib/admin/forms'
 
 async function requireEditorOrAdmin() {
   try {
@@ -53,7 +64,26 @@ const claimInputSchema = z.object({
   outcomeSummary: z.string().optional().default(''),
   publicationStatus: z.enum(publicationStatusEnum.enumValues),
   displayPriority: z.coerce.number().int().default(0),
+  // The editorial check date, typed by an editor. Empty is a real and expected answer, and it is
+  // stored as NULL rather than filled in from the clock: `claims.updatedAt` already records the
+  // write, and the public record refuses to print a write under the word "checked".
+  // See db/schema.ts `claims.checkedAt` and lib/evidence-view.ts `answerCheckPoint`.
+  checkedDate: z
+    .string()
+    .trim()
+    .optional()
+    .default('')
+    .refine((v) => v === '' || /^\d{4}-\d{2}-\d{2}$/.test(v), 'Answer last checked must be a date (YYYY-MM-DD).')
+    .refine(
+      (v) => v === '' || !Number.isNaN(new Date(`${v}T00:00:00Z`).getTime()),
+      'Answer last checked is not a real date.'
+    ),
 })
+
+/** '' -> null; 'YYYY-MM-DD' -> that day at UTC midnight, matching how every date on the site prints. */
+function checkedAtFromInput(value: string): Date | null {
+  return value === '' ? null : new Date(`${value}T00:00:00Z`)
+}
 
 export async function createClaim(formData: FormData): Promise<void> {
   const user = await requireEditorOrAdmin()
@@ -93,6 +123,7 @@ export async function createClaim(formData: FormData): Promise<void> {
         outcomeSummary: nullIfEmpty(data.outcomeSummary),
         publicationStatus: data.publicationStatus,
         displayPriority: data.displayPriority,
+        checkedAt: checkedAtFromInput(data.checkedDate),
       })
       .returning()
   } catch (err) {
@@ -151,6 +182,7 @@ export async function updateClaim(claimId: number, formData: FormData): Promise<
     outcomeSummary: nullIfEmpty(data.outcomeSummary),
     publicationStatus: data.publicationStatus,
     displayPriority: data.displayPriority,
+    checkedAt: checkedAtFromInput(data.checkedDate),
     version: existing.claim.version + 1,
     updatedAt: new Date(),
   }
@@ -181,6 +213,7 @@ export async function updateClaim(claimId: number, formData: FormData): Promise<
     'outcomeSummary',
     'publicationStatus',
     'displayPriority',
+    'checkedAt',
   ])
   await recordRevisions({
     reviewableType: 'claim',
@@ -484,4 +517,307 @@ export async function detachEvidence(claimEvidenceId: number, _formData: FormDat
   })
 
   redirectWithSuccess(`/admin/claims/${existing.claimId}`, 'Evidence unlinked.')
+}
+
+// ---------------------------------------------------------------------------
+// Claim events (a recorded result or development event that did not support the claim)
+// ---------------------------------------------------------------------------
+//
+// EDITORIAL BOUNDARY — read this before changing anything below it.
+//
+// 1. A source is REQUIRED, checked three times over. `claimEvents.evidenceSourceId` is NOT NULL
+//    with ON DELETE RESTRICT (db/schema.ts), `claimEventSchema` rejects a missing or non-positive
+//    id, and each action then confirms the row still exists before writing. The redundancy is
+//    deliberate: this is the one section of the public record where an unsourced sentence would
+//    read as a finding rather than as an opinion, so "what did not work" may never be editorial
+//    voice. If you are tempted to relax any of the three, you are building the thing the section
+//    exists to prevent.
+//
+// 2. NOTHING HERE WRITES PROSE. `plainSummary`, `whatItSuggests` and `whatItDoesNotEstablish` are
+//    typed by a person who read the source. No model, no template and no metadata import may fill
+//    them, and nothing may infer `eventType` or `developmentGate` — or study design, sample size,
+//    species, endpoint, failure cause or target engagement — from a DOI/PMID lookup. That is the
+//    boundary in docs/editorial-methodology.md, "The DOI/PMID import boundary": a lookup can say
+//    what a paper is, never what it found or why it failed. lib/metadata-import.ts is not imported
+//    by this file and must not become so.
+//
+// 3. `published` stays administrator-only, via the two paths claims already use and no third one:
+//    the general edit form rejects a non-administrator server-side with the same message
+//    updateClaim uses, and publishClaimEvent requires the row to already be `approved`. An event
+//    published under a draft claim still renders nothing publicly, because the claim gates it —
+//    but the status is recorded honestly either way rather than being silently coerced.
+//
+// 4. `publicationStatus === 'published'` on an event is editorial workflow, never scientific
+//    review, exactly as on `claims`. Only an `approved` row in `reviews` may produce a "reviewed"
+//    sentence anywhere.
+
+const claimEventSchema = z.object({
+  evidenceSourceId: z.coerce
+    .number({ invalid_type_error: 'An event needs a source. Choose one before saving.' })
+    .int()
+    .positive('An event needs a source. Choose one before saving.'),
+  eventType: z.enum(CLAIM_EVENT_TYPES),
+  developmentGate: z.enum(DEVELOPMENT_GATES),
+  plainSummary: z
+    .string()
+    .trim()
+    .min(1, 'What happened is required.')
+    .max(CLAIM_EVENT_FIELD_CAPS.plainSummary, `What happened must be ${CLAIM_EVENT_FIELD_CAPS.plainSummary} characters or fewer.`),
+  whatItSuggests: z
+    .string()
+    .trim()
+    .min(1, 'What it suggests is required.')
+    .max(CLAIM_EVENT_FIELD_CAPS.whatItSuggests, `What it suggests must be ${CLAIM_EVENT_FIELD_CAPS.whatItSuggests} characters or fewer.`),
+  whatItDoesNotEstablish: z
+    .string()
+    .trim()
+    .min(1, 'What it does not establish is required.')
+    .max(
+      CLAIM_EVENT_FIELD_CAPS.whatItDoesNotEstablish,
+      `What it does not establish must be ${CLAIM_EVENT_FIELD_CAPS.whatItDoesNotEstablish} characters or fewer.`
+    ),
+  eventDate: z.string().optional().default(''),
+  displayPriority: z.coerce.number().int().default(0),
+  publicationStatus: z.enum(publicationStatusEnum.enumValues),
+})
+
+/** The claim an event hangs off, plus the entity slug its published page is cached under. */
+async function claimEventContext(claimId: number) {
+  const [row] = await db
+    .select({ claimId: claims.id, entitySlug: entities.slug })
+    .from(claims)
+    .innerJoin(entities, eq(claims.entityId, entities.id))
+    .where(eq(claims.id, claimId))
+    .limit(1)
+  return row
+}
+
+/**
+ * Confirm the chosen evidence source still exists. Zod only proves a positive integer arrived;
+ * this proves it points at a real row, which is the part that matters — a dangling id would write
+ * an event whose citation resolves to nothing.
+ */
+async function requireEvidenceSource(evidenceSourceId: number, errorPath: string): Promise<void> {
+  const [source] = await db
+    .select({ id: evidenceSources.id })
+    .from(evidenceSources)
+    .where(eq(evidenceSources.id, evidenceSourceId))
+    .limit(1)
+  if (!source) {
+    redirectWithError(errorPath, 'That evidence source no longer exists. Choose a source that is still on file.')
+  }
+}
+
+export async function createClaimEvent(claimId: number, formData: FormData): Promise<void> {
+  const user = await requireEditorOrAdmin()
+
+  const context = await claimEventContext(claimId)
+  if (!context) redirectWithError('/admin/claims', 'Claim not found.')
+  const errorPath = `/admin/claims/${claimId}`
+
+  const parsed = claimEventSchema.safeParse(formToObject(formData))
+  if (!parsed.success) {
+    redirectWithError(errorPath, parsed.error.issues[0]?.message ?? 'Invalid input.')
+  }
+  const data = parsed.data
+
+  if (data.publicationStatus === 'published' && user.role !== 'administrator') {
+    redirectWithError(errorPath, 'Only administrators can publish. Save as a non-published status instead.')
+  }
+
+  const eventDate = toDateOrNull(data.eventDate)
+  if (eventDate === undefined) {
+    redirectWithError(errorPath, 'Event date is not a real date. Leave it blank if the source does not record one.')
+  }
+
+  await requireEvidenceSource(data.evidenceSourceId, errorPath)
+
+  const [created] = await db
+    .insert(claimEvents)
+    .values({
+      claimId,
+      evidenceSourceId: data.evidenceSourceId,
+      eventType: data.eventType,
+      developmentGate: data.developmentGate,
+      plainSummary: data.plainSummary,
+      whatItSuggests: data.whatItSuggests,
+      whatItDoesNotEstablish: data.whatItDoesNotEstablish,
+      eventDate,
+      displayPriority: data.displayPriority,
+      publicationStatus: data.publicationStatus,
+    })
+    .returning()
+  if (!created) throw new Error('Claim event insert returned no row.')
+
+  await recordAction({
+    reviewableType: 'claim',
+    reviewableId: claimId,
+    changedByUserId: user.id,
+    fieldChanged: 'claim_event_created',
+    previousValue: null,
+    newValue: `Event #${created.id}: ${data.eventType} at ${data.developmentGate}, evidence source #${data.evidenceSourceId}, status ${data.publicationStatus}.`,
+    reviewStatusAffected: data.publicationStatus === 'published',
+  })
+
+  if (data.publicationStatus === 'published') revalidatePath(entityPath(context.entitySlug))
+
+  redirectWithSuccess(errorPath, 'Claim event added.')
+}
+
+export async function updateClaimEvent(eventId: number, formData: FormData): Promise<void> {
+  const user = await requireEditorOrAdmin()
+
+  const [existing] = await db.select().from(claimEvents).where(eq(claimEvents.id, eventId)).limit(1)
+  if (!existing) redirectWithError('/admin/claims', 'Claim event not found.')
+
+  const context = await claimEventContext(existing.claimId)
+  if (!context) redirectWithError('/admin/claims', 'Claim not found.')
+  const errorPath = `/admin/claims/${existing.claimId}`
+
+  const parsed = claimEventSchema.safeParse(formToObject(formData))
+  if (!parsed.success) {
+    redirectWithError(errorPath, parsed.error.issues[0]?.message ?? 'Invalid input.')
+  }
+  const data = parsed.data
+
+  // Same rule and same wording as updateClaim: moving INTO published is the administrator-only
+  // step, and an editor saving an already-published row is left alone rather than blocked.
+  if (data.publicationStatus === 'published' && existing.publicationStatus !== 'published' && user.role !== 'administrator') {
+    redirectWithError(errorPath, 'Only administrators can publish. Use "editorially complete" or "scientific review required" instead.')
+  }
+
+  const eventDate = toDateOrNull(data.eventDate)
+  if (eventDate === undefined) {
+    redirectWithError(errorPath, 'Event date is not a real date. Leave it blank if the source does not record one.')
+  }
+
+  await requireEvidenceSource(data.evidenceSourceId, errorPath)
+
+  const nextValues = {
+    evidenceSourceId: data.evidenceSourceId,
+    eventType: data.eventType,
+    developmentGate: data.developmentGate,
+    plainSummary: data.plainSummary,
+    whatItSuggests: data.whatItSuggests,
+    whatItDoesNotEstablish: data.whatItDoesNotEstablish,
+    eventDate,
+    displayPriority: data.displayPriority,
+    publicationStatus: data.publicationStatus,
+  }
+
+  await db
+    .update(claimEvents)
+    .set({ ...nextValues, updatedAt: new Date() })
+    .where(eq(claimEvents.id, eventId))
+
+  // The status transition is written separately from the content edit so `reviewStatusAffected`
+  // is true on exactly the row that moved the status, and false on the prose edits beside it.
+  const contentChanges = diffFields(existing, nextValues, [
+    'evidenceSourceId',
+    'eventType',
+    'developmentGate',
+    'plainSummary',
+    'whatItSuggests',
+    'whatItDoesNotEstablish',
+    'eventDate',
+    'displayPriority',
+  ])
+  await recordRevisions({
+    reviewableType: 'claim',
+    reviewableId: existing.claimId,
+    changedByUserId: user.id,
+    changes: contentChanges,
+    reason: `Claim event #${eventId} edited.`,
+  })
+
+  if (existing.publicationStatus !== data.publicationStatus) {
+    await recordAction({
+      reviewableType: 'claim',
+      reviewableId: existing.claimId,
+      changedByUserId: user.id,
+      fieldChanged: 'claim_event_publication_status',
+      previousValue: existing.publicationStatus,
+      newValue: data.publicationStatus,
+      reason: `Claim event #${eventId} status change.`,
+      reviewStatusAffected: true,
+    })
+  }
+
+  if (existing.publicationStatus === 'published' || data.publicationStatus === 'published') {
+    revalidatePath(entityPath(context.entitySlug))
+  }
+
+  redirectWithSuccess(errorPath, 'Claim event updated.')
+}
+
+/**
+ * The non-shortcut publish path, mirroring publishClaim: administrator only, and only from
+ * `approved`, so a published event always has a review row behind it in the audit trail.
+ */
+export async function publishClaimEvent(eventId: number, _formData: FormData): Promise<void> {
+  let user
+  try {
+    user = await requireUser(['administrator'])
+  } catch (err) {
+    if (err instanceof AuthError) redirect('/admin/login')
+    throw err
+  }
+
+  const [existing] = await db.select().from(claimEvents).where(eq(claimEvents.id, eventId)).limit(1)
+  if (!existing) redirectWithError('/admin/claims', 'Claim event not found.')
+
+  const context = await claimEventContext(existing.claimId)
+  if (!context) redirectWithError('/admin/claims', 'Claim not found.')
+  const errorPath = `/admin/claims/${existing.claimId}`
+
+  if (existing.publicationStatus !== 'approved') {
+    redirectWithError(errorPath, `Only claim events with status "approved" can be published (current: ${existing.publicationStatus}).`)
+  }
+
+  await db
+    .update(claimEvents)
+    .set({ publicationStatus: 'published', updatedAt: new Date() })
+    .where(eq(claimEvents.id, eventId))
+
+  await recordAction({
+    reviewableType: 'claim',
+    reviewableId: existing.claimId,
+    changedByUserId: user.id,
+    fieldChanged: 'claim_event_publication_status',
+    previousValue: existing.publicationStatus,
+    newValue: 'published',
+    reason: `Claim event #${eventId} published.`,
+    reviewStatusAffected: true,
+  })
+
+  revalidatePath(entityPath(context.entitySlug))
+  redirectWithSuccess(errorPath, 'Claim event published.')
+}
+
+export async function deleteClaimEvent(eventId: number, _formData: FormData): Promise<void> {
+  const user = await requireEditorOrAdmin()
+
+  const [existing] = await db.select().from(claimEvents).where(eq(claimEvents.id, eventId)).limit(1)
+  if (!existing) redirectWithError('/admin/claims', 'Claim event not found.')
+
+  const context = await claimEventContext(existing.claimId)
+  if (!context) redirectWithError('/admin/claims', 'Claim not found.')
+
+  await db.delete(claimEvents).where(eq(claimEvents.id, eventId))
+
+  // Removing a published event changes what the public record says did not work, so the revision
+  // row carries the whole event, not just its id — the audit trail is the only remaining copy.
+  await recordAction({
+    reviewableType: 'claim',
+    reviewableId: existing.claimId,
+    changedByUserId: user.id,
+    fieldChanged: 'claim_event_removed',
+    previousValue: `Event #${existing.id}: ${existing.eventType} at ${existing.developmentGate}, evidence source #${existing.evidenceSourceId}, status ${existing.publicationStatus} — ${existing.plainSummary}`,
+    newValue: null,
+    reviewStatusAffected: existing.publicationStatus === 'published',
+  })
+
+  if (existing.publicationStatus === 'published') revalidatePath(entityPath(context.entitySlug))
+
+  redirectWithSuccess(`/admin/claims/${existing.claimId}`, 'Claim event removed.')
 }

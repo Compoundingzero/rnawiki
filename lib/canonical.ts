@@ -8,6 +8,15 @@ export function entityPath(slug: string): string {
   return `/r/${slug}`
 }
 
+/**
+ * The machine-readable form of the record at `entityUrl(slug)`, advertised from the page as
+ * `<link rel="alternate" type="application/json">`. It is built from the same SITE_URL as the
+ * canonical it belongs to so the two can never drift.
+ */
+export function entityApiUrl(slug: string): string {
+  return `${SITE_URL}/api/v1/entities/${slug}`
+}
+
 export function claimAnchorUrl(entitySlug: string, claimSlug: string): string {
   return `${entityUrl(entitySlug)}#claim-${claimSlug}`
 }

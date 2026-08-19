@@ -65,7 +65,11 @@ export async function getQuestionsForClaim(claimId: number): Promise<Comprehensi
     })
     .from(comprehensionQuestions)
     .where(eq(comprehensionQuestions.claimId, claimId))
-    .orderBy(asc(comprehensionQuestions.displayOrder))
+    // asc(id) is the tiebreak, and it is not cosmetic: displayOrder is an editorial convention
+    // rather than a unique constraint, so two questions can share a value. Without a second key
+    // Postgres returns heap order, which changes on any row rewrite, VACUUM or restore — silently
+    // reordering the test a reader sees. See getAggregateForClaim below for the worse half.
+    .orderBy(asc(comprehensionQuestions.displayOrder), asc(comprehensionQuestions.id))
     .limit(MAX_QUESTIONS_PER_CLAIM)
 }
 
@@ -144,7 +148,12 @@ export async function getAggregateForClaim(claimId: number): Promise<Comprehensi
     .select({ id: comprehensionQuestions.id })
     .from(comprehensionQuestions)
     .where(eq(comprehensionQuestions.claimId, claimId))
-    .orderBy(asc(comprehensionQuestions.displayOrder))
+    // Same tiebreak as getQuestionsForClaim, and here it decides which response set backs the one
+    // number this product is allowed to publish. With two questions tied at displayOrder 0 — which
+    // is what the seeder used to produce for every claim — "the central question" was whichever
+    // row Postgres happened to return first, and a single row rewrite flipped it, reassigning the
+    // published percentage to a different question's responses with nothing to show for it.
+    .orderBy(asc(comprehensionQuestions.displayOrder), asc(comprehensionQuestions.id))
     .limit(1)
 
   if (!central) {

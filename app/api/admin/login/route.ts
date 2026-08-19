@@ -16,7 +16,20 @@ function loginRedirect(origin: string, path: string, error?: string) {
 
 export async function POST(req: NextRequest) {
   const origin = new URL(req.url).origin
-  const formData = await req.formData()
+
+  // `req.formData()` throws outright on any Content-Type that is not multipart or urlencoded, so
+  // an unguarded call turned a JSON body — or no body at all — into an unhandled TypeError and a
+  // 500 with a stack trace in the production log, on an unauthenticated endpoint any scanner will
+  // POST to. A malformed body is a malformed submission: it takes the same path a failed schema
+  // validation already takes, which also means it passes through the rate limiter below instead of
+  // throwing before it.
+  let formData: FormData
+  try {
+    formData = await req.formData()
+  } catch {
+    return loginRedirect(origin, '/admin/login', 'input')
+  }
+
   const parsed = credentialsSchema.safeParse({
     email: formData.get('email'),
     password: formData.get('password'),

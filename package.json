@@ -2,7 +2,8 @@
   "name": "rnawiki",
   "version": "2.0.0",
   "private": true,
-  "description": "RNAwiki — see where the evidence actually ends. The Proof Boundary between what research measured and what people claim from it.",
+  "license": "AGPL-3.0-only",
+  "description": "RNAwiki \u2014 see where the evidence actually ends. The Proof Boundary between what research measured and what people claim from it.",
   "type": "module",
   "scripts": {
     "dev": "next dev",
@@ -30,8 +31,7 @@
     "@resvg/resvg-js": "^2.6.2",
     "satori": "^0.12.0",
     "iron-session": "^8.0.4",
-    "bcryptjs": "^2.4.3",
-    "isomorphic-dompurify": "^2.16.0"
+    "bcryptjs": "^2.4.3"
   },
   "devDependencies": {
     "typescript": "^5.7.3",
@@ -46,6 +46,7 @@
     "eslint-config-next": "^15.4.0",
     "prettier": "^3.4.2",
     "vitest": "^2.1.8",
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.49.1",
     "dotenv": "^16.4.7"
   },

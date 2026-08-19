@@ -3,7 +3,7 @@ import { and, eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { claims } from '@/db/schema'
 import { getPublishedEntityBySlug } from '@/lib/queries/entities'
-import { plainHumanEvidence, stagePositionApplies, readableDate } from '@/lib/evidence-view'
+import { plainHumanEvidence, stagePositionApplies, readableDate, answerCheckPoint } from '@/lib/evidence-view'
 import { entityUrl } from '@/lib/canonical'
 
 export const runtime = 'nodejs' // needs the pg pool via Drizzle, not edge-compatible
@@ -37,7 +37,12 @@ async function getTopPublishedClaim(entityId: number) {
       directAnswer: claims.directAnswer,
       claimType: claims.claimType,
       proofBoundaryStage: claims.proofBoundaryStage,
-      lastReviewedAt: claims.lastReviewedAt,
+      // `claims.updatedAt`, not `lastReviewedAt`. The review queue stamps `lastReviewedAt` on
+      // every decision including a rejection, so the share card printed "Last checked <the date a
+      // reviewer rejected this>" — and with no review at all it fell back to a sentence about a
+      // pending review, which is a promise the site does not make. See lib/citation.ts.
+      lastCheckedAt: claims.updatedAt,
+      checkedAt: claims.checkedAt,
     })
     .from(claims)
     .where(and(eq(claims.entityId, entityId), eq(claims.publicationStatus, 'published')))
@@ -71,12 +76,13 @@ export default async function Image({ params }: Props) {
       ? plainHumanEvidence(topClaim.proofBoundaryStage)
       : null
   // One complete phrase, not a label glued to a value: the fallback branch previously produced
-  // "Reviewed Pending review".
-  const reviewLine = topClaim
-    ? topClaim.lastReviewedAt
-      ? `Last checked ${readableDate(topClaim.lastReviewedAt)}`
-      : 'Independent scientific review pending'
-    : null
+  // "Reviewed Pending review". The date is always present, so there is no fallback branch left —
+  // and the phrase names WHICH thing was checked, because the record page carries three different
+  // dates and a share card that says only "Last checked" inherits that ambiguity.
+  // The verb is chosen, not assumed: `updatedAt` is a write timestamp and may only be printed
+  // under "edited". See lib/evidence-view.ts `answerCheckPoint`.
+  const check = topClaim ? answerCheckPoint(topClaim.checkedAt, topClaim.lastCheckedAt) : null
+  const reviewLine = check ? `This answer last ${check.verb} ${readableDate(check.date)}` : null
   const shortLink = entity ? entityUrl(entity.slug).replace(/^https?:\/\//, '') : 'rnawiki.com'
 
   return new ImageResponse(

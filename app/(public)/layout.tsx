@@ -34,12 +34,21 @@ function SiteFooter() {
             <Link href="/privacy">Privacy</Link>
           </li>
           <li>
+            <Link href="/licensing">Licence and reuse</Link>
+          </li>
+          <li>
             <a href="https://github.com/Compoundingzero/rnawiki">Source on GitHub</a>
           </li>
         </ul>
         <p className="muted">
           RNAwiki explains research evidence. It is not reviewed by a clinician and does not provide medical
           advice, diagnosis, dosing or sourcing guidance.
+        </p>
+        {/* Stated here because CC BY only works if a reuser can find the terms. The canonical
+            text is LICENSE / LICENSE-DATA; /licensing carries the attribution format. */}
+        <p className="muted small">
+          Code under AGPL-3.0. Evidence records under CC BY 4.0 &mdash;{' '}
+          <Link href="/licensing">reuse them with credit</Link>.
         </p>
       </div>
     </footer>

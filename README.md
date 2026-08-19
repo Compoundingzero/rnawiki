@@ -70,7 +70,30 @@ build-time constraints, migration sequencing, and rollback.
 | [`docs/BACKUP_RECOVERY.md`](docs/BACKUP_RECOVERY.md) | Backup state and the open owner decisions |
 | [`docs/legacy-removal-map.md`](docs/legacy-removal-map.md) | Old-route 301/410 audit record |
 | [`docs/api.md`](docs/api.md) | The public read-only JSON API |
+| [`docs/open-evidence-record.md`](docs/open-evidence-record.md) | What an Evidence Record asserts, its versioning, and its limits |
+| [`docs/licensing.md`](docs/licensing.md) | The two licences, what each covers, and how to attribute a record |
 | [`CLAUDE.md`](CLAUDE.md) | Working notes for anyone, human or agent, changing this repo |
+
+## Licence
+
+Two licences, because the software and the evidence records are different things:
+
+- **Code** — [GNU Affero General Public License v3.0](LICENSE). Running a modified copy as a
+  public service obliges you to offer that service's users your modified source. RNAwiki is a
+  website, so a licence whose obligations fire only on distribution would never fire.
+- **Evidence records** — [Creative Commons Attribution 4.0 International](LICENSE-DATA). Reuse the
+  editorial writing and the structured claim database freely, including commercially and as
+  retrieval or training data, with credit.
+
+Attribute a record by its canonical URL and a retrieval date, because records are versioned and
+their conclusions change:
+
+> Evidence record from RNAwiki (https://rnawiki.com/r/bpc-157#claim-tendon-healing), CC BY 4.0.
+> Retrieved 19 August 2026. Unmodified.
+
+The CC BY grant covers RNAwiki's own work only. The cited papers, their abstracts and regulatory
+documents belong to their publishers and issuing authorities. Full scope, the attribution rules and
+the contribution terms: [`docs/licensing.md`](docs/licensing.md).
 
 ## Not medical advice
 

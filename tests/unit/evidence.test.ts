@@ -9,6 +9,8 @@ import {
   comprehensionRate,
   CLARITY_MIN_RESPONSES,
   CLARITY_MIN_CORRECT_RATE,
+  EVIDENCE_CHANGE_TYPES,
+  EVIDENCE_CHANGE_TYPE_PUBLIC,
   type ProofBoundaryStage,
 } from '@/lib/evidence'
 
@@ -121,5 +123,46 @@ describe('isClarityTested / comprehensionRate — the 20-response / 80%-correct 
 
   it('comprehensionRate reflects an exact fraction', () => {
     expect(comprehensionRate({ totalResponses: 25, correctResponses: 20 })).toBeCloseTo(0.8)
+  })
+})
+
+/**
+ * The public "how this answer changed" history.
+ *
+ * Same hazard as PROOF_BOUNDARY_STAGES above: EVIDENCE_CHANGE_TYPES mirrors
+ * `evidenceChangeTypeEnum` in db/schema.ts and the two are synced by hand. A value added to the
+ * database enum and not to this array is accepted by Postgres and then looked up here as
+ * `undefined`, which renders as nothing at all — a change entry with no sentence, on the one
+ * surface whose whole job is to say what changed.
+ *
+ * The stored value is never printed. `new_controlled_trial` is a database token, not English.
+ */
+describe('EVIDENCE_CHANGE_TYPE_PUBLIC covers every change type and never returns a raw enum', () => {
+  it('has a public sentence for every member of EVIDENCE_CHANGE_TYPES and no extra keys', () => {
+    expect(Object.keys(EVIDENCE_CHANGE_TYPE_PUBLIC).sort()).toEqual([...EVIDENCE_CHANGE_TYPES].sort())
+  })
+
+  for (const changeType of EVIDENCE_CHANGE_TYPES) {
+    it(`${changeType} maps to a plain sentence, not its stored value`, () => {
+      const sentence = EVIDENCE_CHANGE_TYPE_PUBLIC[changeType]
+      expect(sentence, `no public sentence for "${changeType}"`).toBeTruthy()
+      expect(sentence).not.toBe(changeType)
+      // An underscore-joined lowercase token is the shape of a leaked enum value; public copy in
+      // this repo contains no underscores at all.
+      expect(sentence, `"${changeType}" leaks an enum token`).not.toMatch(/\b[a-z]+(?:_[a-z]+)+\b/)
+      expect(sentence.trim().endsWith('.'), `"${changeType}" is not written as a sentence`).toBe(true)
+    })
+  }
+
+  it('never says whether the answer got stronger — direction is carried by the recorded stages', () => {
+    // A change entry records that the evidence moved. Which way it moved is carried by
+    // previousBoundary/newBoundary on the row, not by this wording, so a change type cannot
+    // become a verdict badge.
+    const directional = /\b(stronger|weaker|improved|better|worse|now proven|confirms the claim)\b/i
+    for (const changeType of EVIDENCE_CHANGE_TYPES) {
+      expect(EVIDENCE_CHANGE_TYPE_PUBLIC[changeType], `"${changeType}" states a direction`).not.toMatch(
+        directional
+      )
+    }
   })
 })

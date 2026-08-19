@@ -97,8 +97,9 @@ export default function PrivacyPage() {
         <h2>Editorial accounts</h2>
         <p className="reading muted" style={{ marginTop: 'var(--s4)' }}>
           Administrator, editor and reviewer accounts hold an email address, a name, a hashed password, and — for
-          reviewers — the credentials shown publicly beside any review they approve. These accounts exist for
-          writing and approving content. They have nothing to do with reading the site.
+          reviewers — stated credentials. None of those three is published: a public record shows that a review
+          happened and when, never who did it. These accounts exist for writing and approving content. They have
+          nothing to do with reading the site.
         </p>
       </section>
 

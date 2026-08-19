@@ -62,6 +62,9 @@ export default async function NewClaimPage({ searchParams }: Props) {
             outcomeSummary: '',
             publicationStatus: 'draft',
             displayPriority: 0,
+            // Empty by default. A brand-new claim has not been checked by anyone, and defaulting
+            // this to today would mint an editorial check nobody performed.
+            checkedDate: '',
           }}
         />
       )}

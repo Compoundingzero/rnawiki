@@ -36,7 +36,9 @@ From [`.env.example`](../.env.example):
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `DATABASE_URL` | Yes | Postgres connection string. Use Railway's internal string in production; use `DATABASE_PUBLIC_URL` only for scripts run from outside Railway's network. `db/index.ts` skips TLS only for `localhost` / `127.0.0.1` / `*.railway.internal` — everything else gets `ssl: { rejectUnauthorized: false }`. |
+| `DATABASE_URL` | Yes | Postgres connection string. Use Railway's internal string in production; use `DATABASE_PUBLIC_URL` only for scripts run from outside Railway's network. `db/ssl.ts` parses the hostname and skips TLS only for `localhost`, `127.0.0.1`, `::1` and `*.railway.internal` — everything else gets TLS with the certificate **verified**. |
+| `PGSSLROOTCERT` | Only for a remote database | Path to the database server's certificate (or its CA). Required for any connection over `DATABASE_PUBLIC_URL`, because Railway's Postgres serves a self-signed certificate and publishes no CA, so verification cannot succeed without it. |
+| `DATABASE_SSL_NO_VERIFY` | No | Set to `true` to fall back to an encrypted-but-unauthenticated connection. Last resort: anything able to intercept the path can then present its own certificate and read the credentials in `DATABASE_URL`. Prints a warning on every start. |
 | `SESSION_SECRET` | Yes | Encrypts the admin/editor/reviewer session cookie (iron-session). At least 32 characters (`openssl rand -base64 32`); `lib/auth.ts` throws on the first session-touching request otherwise. Rotating it invalidates all admin sessions. |
 | `SITE_URL` | Yes | Canonical origin for canonical links, OG images, sitemap, embeds and API responses (`lib/canonical.ts`). `https://rnawiki.com` in production. |
 | `SITE_NAME` | Yes | Display name in metadata. |

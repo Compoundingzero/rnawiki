@@ -1,0 +1,1 @@
+CREATE INDEX "claims_direct_answer_lower_idx" ON "claims" USING btree (lower("direct_answer"));

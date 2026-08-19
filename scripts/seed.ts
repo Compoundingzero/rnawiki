@@ -1,5 +1,5 @@
 import 'dotenv/config'
-import { eq, inArray, notInArray } from 'drizzle-orm'
+import { and, eq, inArray, notInArray } from 'drizzle-orm'
 import { db } from '@/db'
 import {
   entities,
@@ -8,6 +8,7 @@ import {
   mechanismSteps,
   evidenceSources,
   claimEvidence,
+  claimEvents,
   comprehensionQuestions,
   users,
 } from '@/db/schema'
@@ -56,16 +57,36 @@ async function clearExisting(slugs: string[]) {
   // evidenceSources are not entity-scoped by FK, so a cascaded entity delete can orphan them —
   // sweep anything no longer referenced by any claim so re-running this script doesn't
   // accumulate duplicate sources across runs.
+  //
+  // claim_events.evidence_source_id is ON DELETE RESTRICT, not CASCADE, so this sweep would throw
+  // rather than silently strip an event of its source. The entity delete above cascades claims,
+  // which cascades their claim_events, so by the time this runs the referencing rows are already
+  // gone for the entities being reseeded. The second condition covers events belonging to entities
+  // that were NOT reseeded in this run: without it, a partial reseed could hit that RESTRICT.
   await db.delete(evidenceSources).where(
-    notInArray(
-      evidenceSources.id,
-      db.selectDistinct({ id: claimEvidence.evidenceSourceId }).from(claimEvidence)
+    and(
+      notInArray(
+        evidenceSources.id,
+        db.selectDistinct({ id: claimEvidence.evidenceSourceId }).from(claimEvidence)
+      ),
+      notInArray(
+        evidenceSources.id,
+        db.selectDistinct({ id: claimEvents.evidenceSourceId }).from(claimEvents)
+      )
     )
   )
 }
 
 async function seedEntity(file: SeedFile, adminUserId: number) {
   const { entity, evidenceSources: sources } = file
+
+  // Parsed as UTC midnight, matching how `regulatoryStatuses.checkedDate` is parsed below and how
+  // lib/evidence-view.ts renders every date on the site. A bare `new Date('2026-08-18')` is already
+  // UTC for a date-only string; the explicit suffix says so to the next reader.
+  const researchCheckedAt = new Date(`${file.researchDate}T00:00:00Z`)
+  if (Number.isNaN(researchCheckedAt.getTime())) {
+    throw new Error(`Seed file for ${entity.slug} has an unparseable researchDate: "${file.researchDate}"`)
+  }
 
   const [entityRow] = await db
     .insert(entities)
@@ -135,6 +156,7 @@ async function seedEntity(file: SeedFile, adminUserId: number) {
   let claimCount = 0
   let mechanismStepCount = 0
   let evidenceLinkCount = 0
+  let claimEventCount = 0
   let questionCount = 0
 
   for (const c of entity.claims) {
@@ -156,6 +178,11 @@ async function seedEntity(file: SeedFile, adminUserId: number) {
         outcomeSummary: c.outcomeSummary ?? null,
         publicationStatus: 'published',
         displayPriority: c.displayPriority ?? 0,
+        // The EDITORIAL check date, from the seed file's own research date — never `new Date()`.
+        // Re-running this script must not advance what the record claims was checked, and
+        // `claims.updatedAt` (a write timestamp) must never be what "This answer last checked"
+        // prints. See db/schema.ts `claims.checkedAt` and lib/seed-types.ts `SeedFile.researchDate`.
+        checkedAt: researchCheckedAt,
       })
       .returning({ id: claims.id })
     if (!claimRow) throw new Error(`Failed to insert claim "${c.slug}" for ${entity.slug}`)
@@ -190,13 +217,47 @@ async function seedEntity(file: SeedFile, adminUserId: number) {
       evidenceLinkCount++
     }
 
-    for (const q of c.comprehensionQuestions ?? []) {
+    // Claim events. Most claims have none, and that is the correct outcome — an entity with an
+    // empty "what did not work" section is honest, an invented programme discontinuation is not.
+    // Each seeded event is written from the recorded result of a source already cited above, so
+    // publishing it does not assert anything the source does not.
+    for (const ce of c.claimEvents ?? []) {
+      const evidenceSourceId = sourceIdByKey.get(ce.sourceKey)
+      if (!evidenceSourceId) {
+        throw new Error(
+          `Claim event on "${c.slug}" references unknown evidence source key "${ce.sourceKey}" in ${entity.slug}`
+        )
+      }
+      await db.insert(claimEvents).values({
+        claimId: claimRow.id,
+        evidenceSourceId,
+        eventType: ce.eventType,
+        developmentGate: ce.developmentGate,
+        plainSummary: ce.plainSummary,
+        whatItSuggests: ce.whatItSuggests,
+        whatItDoesNotEstablish: ce.whatItDoesNotEstablish,
+        eventDate: ce.eventDate ? new Date(ce.eventDate) : null,
+        displayPriority: ce.displayPriority ?? 0,
+        // Same rule as the entity and claim rows above: 'published' is editorial workflow only. It
+        // creates no `reviews` row and asserts no scientific sign-off.
+        publicationStatus: 'published',
+      })
+      claimEventCount++
+    }
+
+    // displayOrder is written, never left to the column default. The default is 0 for every row,
+    // so omitting it put both of BPC-157's questions at 0 and made "the central Proof Boundary
+    // question" — the single question the public clarity percentage is computed from — a tie
+    // broken by heap order. `index` is the file's own ordering, which is what the editorial
+    // convention in CLAUDE.md already means by "the first question".
+    for (const [index, q] of (c.comprehensionQuestions ?? []).entries()) {
       await db.insert(comprehensionQuestions).values({
         claimId: claimRow.id,
         question: q.question,
         options: q.options,
         correctOptionIndex: q.correctOptionIndex,
         explanation: q.explanation,
+        displayOrder: q.displayOrder ?? index,
       })
       questionCount++
     }
@@ -205,7 +266,7 @@ async function seedEntity(file: SeedFile, adminUserId: number) {
   console.log(
     `[seed] ${entity.slug}: 1 entity, ${entity.regulatoryStatuses.length} regulatory statuses, ` +
       `${sources.length} evidence sources, ${claimCount} claims, ${mechanismStepCount} mechanism steps, ` +
-      `${evidenceLinkCount} evidence links, ${questionCount} comprehension questions.`
+      `${evidenceLinkCount} evidence links, ${claimEventCount} claim events, ${questionCount} comprehension questions.`
   )
 }
 

@@ -1,6 +1,6 @@
 import { reachSentence, stagePositionApplies } from '@/lib/evidence-view'
 import type { ProofCardView } from '@/lib/types'
-import { ClaimEvidenceDetails } from './ClaimEvidenceDetails'
+import { EvidenceRecord } from './evidence/EvidenceRecord'
 
 /**
  * One question, answered.
@@ -15,16 +15,11 @@ import { ClaimEvidenceDetails } from './ClaimEvidenceDetails'
  *
  * The id stays on this wrapper so /r/x#claim-y keeps working; globals.css uses :target to force
  * the matching claim's evidence open, because a fragment never reaches the server.
+ *
+ * There is no `defaultOpen` prop and no caller may add one back. Opening the first record by
+ * default made the internal evidence schema, not the answer, the first thing on the page.
  */
-export function ClaimSummary({
-  claim,
-  entityName,
-  defaultOpen,
-}: {
-  claim: ProofCardView
-  entityName: string
-  defaultOpen: boolean
-}) {
+export function ClaimSummary({ claim, entityName }: { claim: ProofCardView; entityName: string }) {
   return (
     <article className="claim" id={`claim-${claim.slug}`} aria-label={`${entityName}: ${claim.consumerQuestion}`}>
       <h3 className="claim__q">{claim.consumerQuestion}</h3>
@@ -35,7 +30,7 @@ export function ClaimSummary({
       {stagePositionApplies(claim.claimType) && (
         <p className="claim__ev">{reachSentence(claim.proofBoundaryStage)}</p>
       )}
-      <ClaimEvidenceDetails claim={claim} defaultOpen={defaultOpen} />
+      <EvidenceRecord claim={claim} />
     </article>
   )
 }

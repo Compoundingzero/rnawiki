@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { entityPath } from '@/lib/canonical'
-import { plainHumanEvidence } from '@/lib/evidence-view'
+import { reachSentence, stagePositionApplies } from '@/lib/evidence-view'
 import type { SearchResult } from '@/lib/search'
 
 /**
@@ -50,13 +50,25 @@ function groupByEntity(results: SearchResult[]): ResultGroup[] {
 
 export function SearchResults({ results }: { results: SearchResult[] }) {
   return (
-    <div className="stack-6" style={{ marginTop: 'var(--s5)' }}>
+    // 48px above the first group heading against 12px below it. At 24px above and 12px below,
+    // the record name floated almost midway between the "N answers for …" count line and the
+    // result it labels, so it read as a second line of the count rather than as the heading of
+    // the list under it. A label belongs to what it names — roughly 4:1 closer to it.
+    <div className="stack-6" style={{ marginTop: 'var(--s7)' }}>
       {groupByEntity(results).map((group) => (
         <section key={group.entitySlug}>
-          <h2 className="reading">
+          {/* A label for the group, not a second headline. Left as a bare <h2><Link> it
+              inherited the global link rule and rendered as 26px of underlined action blue
+              immediately above the blue question link under it, so the record name was the
+              loudest thing on the results page and two controls competed inside 40px. */}
+          <h2 className="reading result-group__h">
             <Link href={entityPath(group.entitySlug)}>{group.entityName}</Link>
           </h2>
-          <ul className="records reading" style={{ marginTop: 'var(--s3)' }}>
+          {/* No margin: `.record-link` already opens with 24px of its own padding, so the 12px
+              set here read as 36px of ink and put the heading almost exactly midway between the
+              count line above it and the result below it. The heading binds downward on the
+              padding alone. */}
+          <ul className="records reading">
             {group.results.map((result) => (
               <li key={result.claimId}>
                 <Link
@@ -65,9 +77,20 @@ export function SearchResults({ results }: { results: SearchResult[] }) {
                 >
                   <div className="result__q">{result.consumerQuestion}</div>
                   <p className="result__a">{result.directAnswer}</p>
-                  <p className="result__reach">
-                    Evidence so far: {plainHumanEvidence(result.proofBoundaryStage)}
-                  </p>
+                  {/* Only an outcome answer has an evidence ladder. Printing the line for every
+                      result put "Reviewed by a regulator" under "Is rapamycin FDA-approved for
+                      longevity?" — which reads as a regulator having reviewed longevity evidence,
+                      the exact overstatement stagePositionApplies exists to prevent. A regulatory,
+                      access or mechanism answer drops the line rather than printing a weaker one. */}
+                  {/* The same sentence the record page prints for the same claim, not the
+                      shortened at-a-glance label. Four canonical stages share one public
+                      position and the phrase cannot carry the difference between them; the
+                      module exists so search cannot describe a stage differently from the
+                      record it links to. "Evidence so far:" is also dropped — it implies more
+                      evidence is on the way, which is the reading this site must not offer. */}
+                  {stagePositionApplies(result.claimType) && (
+                    <p className="result__reach">{reachSentence(result.proofBoundaryStage)}</p>
+                  )}
                 </Link>
               </li>
             ))}

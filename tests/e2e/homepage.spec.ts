@@ -16,7 +16,11 @@ test.describe('homepage', () => {
   test('loads and shows the primary search', async ({ page }) => {
     const response = await page.goto('/')
     expect(response?.ok()).toBe(true)
-    await expect(page.getByRole('searchbox', { name: /search a name or health claim/i })).toBeVisible()
+    // The accessible name was renamed by the Evidence Record refinement: the contract fixes the
+    // hero label AND placeholder at "Medicine, treatment or health claim" (they are the same
+    // string on purpose, so a screen-reader user hears what a sighted reader reads). The
+    // assertion is unchanged in what it guards — the primary search must be present and named.
+    await expect(page.getByRole('searchbox', { name: /medicine, treatment or health claim/i })).toBeVisible()
     await expect(page.getByRole('button', { name: /check the evidence/i })).toBeVisible()
   })
 
@@ -53,6 +57,28 @@ test.describe('homepage', () => {
       // invert it. Either the claim's own answer travels with it or it does not appear.
       expect(text.split(/\s+/).length, `featured entry ${i + 1} is too short to contain an answer`).toBeGreaterThan(12)
     }
+  })
+
+
+  test('the hero search works with JavaScript disabled', async ({ browser }) => {
+    // A plain GET form, server-rendered, with no client bundle behind it. CLAUDE.md rule 6: the
+    // front door must work without JavaScript, and the search box is the only thing on it a
+    // reader can operate.
+    const context = await browser.newContext({ javaScriptEnabled: false })
+    const page = await context.newPage()
+    await page.goto('/')
+
+    const form = page.locator('main form[role="search"]')
+    await expect(form).toHaveAttribute('action', '/search')
+    await expect(form).toHaveAttribute('method', /get/i)
+
+    await page.locator('main').getByRole('searchbox').fill('BPC-157')
+    await page.locator('main').getByRole('button', { name: /check the evidence/i }).click()
+    await expect(page).toHaveURL(/\/search\?q=BPC-157/i)
+
+    // And the results arrive server-rendered, with no script to build them.
+    await expect(page.locator('main')).toContainText(/BPC-157/i)
+    await context.close()
   })
 
   test('primary navigation is literal and the mobile header stays on one row', async ({ page }) => {

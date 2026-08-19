@@ -15,6 +15,34 @@
       "when": 1787035742567,
       "tag": "0001_add_search_vectors",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1787065151393,
+      "tag": "0002_gorgeous_sleepwalker",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1787074625565,
+      "tag": "0003_reflective_madame_web",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1787095759866,
+      "tag": "0004_harsh_clea",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1787096388527,
+      "tag": "0005_third_mole_man",
+      "breakpoints": true
     }
   ]
 }

@@ -14,6 +14,13 @@ import type { SeedFile } from '@/lib/seed-types'
 //   pages, cross-checked against independent trade press (CGTlive, GJE, Genomics Education
 //   Programme). No Singapore HSA-specific approval was searched for or is claimed here — out of
 //   scope for what was verified.
+//   THOSE TWO `source` VALUES ARE THE SPONSOR'S, NOT THE REGULATOR'S, and that is why
+//   components/RegulatorySummary.tsx no longer labels every such link "Read the regulator's own
+//   record": it asks lib/regulator-sources.ts whether the host is a regulator's and prints
+//   "Read the source for this status" when it is not. Replacing these two with the MHRA public
+//   assessment report and the EU Union Register entry would be the better fix and is still open;
+//   it was not done here because neither URL could be fetched and verified on this pass, and an
+//   unverified regulatory URL is worse than a correctly-labelled sponsor one.
 // - Pivotal trial identities and design confirmed directly against the ClinicalTrials.gov v2 API
 //   (not just search-engine summaries): NCT03745287 = CLIMB SCD-121 (sickle cell, Phase 2/3, 63
 //   enrolled, ages 12-35, completed); NCT03655678 = CLIMB THAL-111 (beta-thalassemia, Phase 2/3, 59
@@ -21,12 +28,19 @@ import type { SeedFile } from '@/lib/seed-types'
 //   ("CLIMB-131" in press materials), primary outcome "new malignancies," estimated completion 2039
 //   (~15+ years post-infusion for the earliest patients). "CTX001" is confirmed via the same API
 //   record as the trial-era name for exagamglogene autotemcel.
-// - Published trial results (sample sizes, VF12/TI12 percentages, follow-up durations, adverse
-//   event rates) verified against the peer-reviewed NEJM publications (Frangoul et al. 2024, DOI
-//   10.1056/NEJMoa2309676, PMID 38661449; Locatelli et al. 2024, DOI 10.1056/NEJMoa2309673), cross-
-//   checked against a CHOP institutional summary (for the SCD numbers) and an independent Canadian
-//   HTA/CADTH review reproduced on NCBI Bookshelf (for the beta-thalassemia numbers, incl. adverse
-//   event rates) — both of which describe the same published trial, not new data.
+// - Published trial results (sample sizes, VF12/TI12 percentages, follow-up durations) verified
+//   against the peer-reviewed NEJM publications (Frangoul et al. 2024, DOI 10.1056/NEJMoa2309676,
+//   PMID 38661449: 44 treated, 30 evaluable, 29 of 30 (97%) VF12, median follow-up 19.3 months;
+//   Locatelli et al. 2024, DOI 10.1056/NEJMoa2309673, PMID 38657265: 52 treated, 35 evaluable,
+//   32 of 35 (91%, 95% CI 77-98) TI12, median follow-up 20.4 months, no deaths or cancers).
+//   RE-VERIFIED 2026-08-19 against the abstracts themselves, because the beta-thalassemia numbers
+//   this file previously carried — 39 of 42, 92.9%, 95% CI 80.5-98.5%, ~19.2 months, febrile
+//   neutropenia 61.1%, mucositis 51.9%, VOD 8.5% — appear in neither publication nor in the FDA
+//   label, and were attributed in-text to Locatelli et al., which contains none of them. Do not
+//   reintroduce a figure from a secondary summary without checking it against the publication or
+//   the label. Adverse-event RATES are not in either NEJM abstract; they come from the current
+//   FDA-approved label (Trial 2, N=52: febrile neutropenia 28 (54%), mucositis 37 (71%),
+//   veno-occlusive liver disease 5 (10%)) and are cited to the label, not to the paper.
 // - Mechanism (BCL11A erythroid-specific enhancer editing -> reduced BCL11A -> reactivated fetal
 //   hemoglobin) verified against the official FDA-approved prescribing information hosted on
 //   DailyMed, which is also the source for the explicit label statement that off-target editing
@@ -50,8 +64,20 @@ import type { SeedFile } from '@/lib/seed-types'
 //   the two products' labels; no malignancies were reported in Casgevy's own pivotal trials as of
 //   the published data cuts, but FDA still mandated the 15-year NCT04208529 follow-up study to keep
 //   watching for exactly this risk.
+// - No claim events are recorded for Casgevy, deliberately. Every candidate was checked against the
+//   sources above and none survives: the off-target correspondence (NEJMc2313119) reports no
+//   confirmed off-target edits, which is already carried as a `limits` evidence row and is not an
+//   adverse event; the label's "cannot be ruled out" wording is a limit of measurement, not a
+//   finding; the 15-year follow-up study (NCT04208529) is ongoing and has produced no result to
+//   record; and slow real-world uptake (64 dosed by end-2025) is an access fact, not a scientific
+//   or commercial failure of the programme. An entity whose "what did not work" section is empty is
+//   the honest outcome, and this record is the fixture that proves the section stays absent rather
+//   than rendering a placeholder.
 
 const seed: SeedFile = {
+  // The date the sources below were read and these answers written against them. Printed as
+  // "This answer last checked" on every claim in this file. See SeedFile.researchDate.
+  researchDate: '2026-08-18',
   entity: {
     canonicalName: 'Casgevy (exagamglogene autotemcel)',
     slug: 'casgevy',
@@ -60,10 +86,10 @@ const seed: SeedFile = {
     shortDescription:
       'An FDA-, MHRA-, and EU-approved one-time CRISPR-Cas9 gene-edited cell therapy for sickle cell disease and transfusion-dependent beta-thalassemia.',
     bottomLine:
-      "Casgevy is an approved CRISPR-Cas9 gene therapy for sickle cell disease and transfusion-dependent beta-thalassemia. Treatment is one infusion of the patient's own lab-edited stem cells, given only after chemotherapy clears their existing bone marrow, and followed by weeks in hospital.",
+      "Casgevy is an approved CRISPR-Cas9 gene therapy for sickle cell disease and transfusion-dependent beta-thalassemia. Treatment is one infusion of the patient’s own lab-edited stem cells, given only after chemotherapy clears their existing bone marrow, and followed by weeks in hospital.",
     regulatoryCategory: 'approved_medicine',
     accessRealityNote:
-      "Casgevy is given only at a few accredited hospital treatment centers, not by an ordinary clinic. Doctors collect the patient's own blood stem cells by apheresis, then ship them out for CRISPR editing and release testing over several months. The patient is then admitted for myeloablative busulfan chemotherapy that clears their bone marrow, the edited cells are infused, and 4-6 weeks of inpatient monitoring follows while they engraft. Vertex puts the full pathway at close to a year and set a U.S. list price of $2.2 million. By the end of 2025, 64 patients worldwide had completed infusion, of roughly 301 who started that year; Vertex cited conditioning-related infertility risk as a deterrent.",
+      "Casgevy is given only at a few accredited hospital treatment centers, not by an ordinary clinic. Doctors collect the patient’s own blood stem cells by apheresis, then ship them out for CRISPR editing and release testing over several months. The patient is then admitted for myeloablative busulfan chemotherapy that clears their bone marrow, the edited cells are infused, and 4-6 weeks of inpatient monitoring follows while they engraft. Vertex puts the full pathway at close to a year and set a U.S. list price of $2.2 million. By the end of 2025, 64 patients worldwide had completed infusion, of roughly 301 who started that year; Vertex cited conditioning-related infertility risk as a deterrent.",
     regulatoryStatuses: [
       {
         jurisdiction: 'United States — FDA',
@@ -81,7 +107,7 @@ const seed: SeedFile = {
         approvedIndications:
           'Patients 12 years and older with sickle cell disease with recurrent vaso-occlusive crises, or with transfusion-dependent beta-thalassemia, for whom hematopoietic stem cell transplantation is appropriate and no HLA-matched related stem cell donor is available.',
         statusStatement:
-          "MHRA-authorized on November 16, 2023 — the world's first regulatory authorization of a CRISPR/Cas9 gene-editing therapy, ahead of both the FDA and the EMA.",
+          "MHRA-authorized on November 16, 2023 — the world’s first regulatory authorization of a CRISPR/Cas9 gene-editing therapy, ahead of both the FDA and the EMA.",
         source:
           'https://news.vrtx.com/news-releases/news-release-details/vertex-and-crispr-therapeutics-announce-authorization-first',
         checkedDate: '2026-08-18',
@@ -106,14 +132,14 @@ const seed: SeedFile = {
         directAnswer:
           'Casgevy is approved by the FDA, MHRA and the European Commission for sickle cell disease with recurrent vaso-occlusive crises and transfusion-dependent beta-thalassemia. Approval rests on about 1.5-2 years of trial follow-up, not decades.',
         measuredFinding:
-          "FDA approval is documented in the DailyMed-hosted, FDA-approved prescribing information for BLA 125785. The MHRA and European Commission approvals are documented in the sponsor's regulatory announcements, which name the authorization dates and the conditional status of the EU authorization. On July 1, 2026 the FDA expanded both U.S. indications from ages 12+ down to ages 2+.",
+          "FDA approval is documented in the DailyMed-hosted, FDA-approved prescribing information for BLA 125785. The MHRA and European Commission approvals are documented in the sponsor’s regulatory announcements, which name the authorization dates and the conditional status of the EU authorization. On July 1, 2026 the FDA expanded both U.S. indications from ages 12+ down to ages 2+.",
         inference:
           'Approval means a regulator judged the measured benefit-risk balance favorable enough to authorize marketing for a defined population. It is not evidence that every long-term risk has been ruled out: the FDA mandated a 15-year follow-up study (NCT04208529) tracking new malignancies.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
           'This is the strongest evidence category recorded here: an independent regulator (in this case three separate ones) reviewed the underlying trial data and authorized the product for a named use. That is a higher bar than a single published trial result on its own.',
         remainingUnknown:
-          'Eligibility differs by jurisdiction and is narrower in the EU and UK. The 2026 U.S. expansion to age 2 rested on a smaller pediatric cohort — trade press reported roughly 11 sickle cell and 15 beta-thalassemia patients aged 5 to under 12 — with less follow-up.',
+          'Eligibility differs by jurisdiction and is narrower in the EU and UK. The 2026 U.S. expansion to age 2 rested on a smaller pediatric cohort: the FDA label records 11 sickle cell and 15 beta-thalassemia patients aged 5 to under 12, with less follow-up.',
         evidenceNeededNext:
           'Continued post-marketing surveillance and any resulting label changes (new warnings, further age-range or eligibility changes) as real-world use and the 15-year follow-up study accumulate more data, particularly in the newly-approved youngest patients.',
         displayPriority: 1,
@@ -131,7 +157,7 @@ const seed: SeedFile = {
             relationship: 'supports',
             claimPartAddressed: 'U.S. approval for transfusion-dependent beta-thalassemia',
             directlyMeasuredResult:
-              "FDA's Summary Basis for Regulatory Action documents approval of the TDT indication on January 16, 2024.",
+              "FDA’s Summary Basis for Regulatory Action documents approval of the TDT indication on January 16, 2024.",
             independentGroupStatus: true,
           },
           {
@@ -142,12 +168,25 @@ const seed: SeedFile = {
               'FDA expanded both U.S. indications to patients 2 years and older on July 1, 2026, making Casgevy the first gene therapy approved for sickle cell disease in children younger than 12.',
             independentGroupStatus: true,
           },
+          // Cited because the sentence in `remainingUnknown` above names the pediatric cohort
+          // sizes, and a number must be printed under a source that carries it. The label's
+          // CLINICAL STUDIES section names them: Trial 4 (NCT05329649), 11 SCD patients aged 5 to
+          // under 12; Trial 5 (NCT05356195), 15 TDT patients in the same age band. This replaced
+          // an in-prose "trade press reported" attribution that resolved to no source row at all.
+          {
+            sourceKey: 'fda-label-dailymed',
+            relationship: 'limits',
+            claimPartAddressed: 'size of the pediatric cohorts behind the age-range expansion',
+            directlyMeasuredResult:
+              'The FDA-approved label records the supporting pediatric trials as Trial 4 (NCT05329649), 11 sickle cell patients aged 5 to under 12, and Trial 5 (NCT05356195), 15 beta-thalassemia patients in the same age band.',
+            independentGroupStatus: true,
+          },
           {
             sourceKey: 'mhra-approval-2023',
             relationship: 'supports',
             claimPartAddressed: 'UK approval',
             directlyMeasuredResult:
-              "MHRA authorized Casgevy on November 16, 2023 — the world's first regulatory authorization of a CRISPR/Cas9 gene-editing therapy.",
+              "MHRA authorized Casgevy on November 16, 2023 — the world’s first regulatory authorization of a CRISPR/Cas9 gene-editing therapy.",
             independentGroupStatus: true,
           },
           {
@@ -161,7 +200,7 @@ const seed: SeedFile = {
         ],
         comprehensionQuestions: [
           {
-            question: "Casgevy's FDA approval means:",
+            question: "Casgevy’s FDA approval means:",
             options: [
               'It has been shown to work in a large, randomized, placebo-controlled trial with decades of follow-up.',
               'It eliminated vaso-occlusive crises in the large majority of a small, single-arm trial with under two years of average follow-up, and the FDA judged that evidence sufficient to approve it — while requiring a 15-year study to keep watching for long-term risks like malignancy.',
@@ -170,7 +209,7 @@ const seed: SeedFile = {
             ],
             correctOptionIndex: 1,
             explanation:
-              'Genuine FDA approval is real, strong evidence — but it is not the same claim as "every long-term question is answered." The pivotal trial (44 patients treated, 30 evaluable, 96.7% crisis-free at 12+ months, ~19 months of median follow-up) is exactly what the FDA reviewed, and the agency itself required a separate 15-year follow-up study (NCT04208529) specifically because longer-term risks, especially malignancy, are not yet fully characterized.',
+              'Genuine FDA approval is real, strong evidence — but it is not the same claim as “every long-term question is answered.” The pivotal trial (44 patients treated, 30 evaluable, 96.7% crisis-free at 12+ months, ~19 months of median follow-up) is exactly what the FDA reviewed, and the agency itself required a separate 15-year follow-up study (NCT04208529) specifically because longer-term risks, especially malignancy, are not yet fully characterized.',
           },
         ],
       },
@@ -179,27 +218,27 @@ const seed: SeedFile = {
         claimType: 'mechanism',
         consumerQuestion: 'How does Casgevy actually work?',
         directAnswer:
-          "Casgevy uses CRISPR-Cas9 to disable the BCL11A enhancer in a patient's own blood stem cells, switching fetal hemoglobin back on. The edited cells are infused back; durability past about two years is unmeasured.",
+          "Casgevy uses CRISPR-Cas9 to disable the BCL11A enhancer in a patient’s own blood stem cells, switching fetal hemoglobin back on. The edited cells are infused back; durability past about two years is unmeasured.",
         measuredFinding:
-          "Editing of the BCL11A enhancer was measured directly in each patient's manufactured cell product before release. After engraftment, fetal hemoglobin (HbF) rose to a substantial, sustained share of total hemoglobin in essentially all treated patients across both pivotal trials, per the FDA-approved label and the NEJM publications.",
+          "Editing of the BCL11A enhancer was measured directly in each patient’s manufactured cell product before release. After engraftment, fetal hemoglobin (HbF) rose to a substantial, sustained share of total hemoglobin in essentially all treated patients across both pivotal trials, per the FDA-approved label and the NEJM publications.",
         inference:
-          "Calling this a durable, one-time treatment assumes the edit persists and keeps producing fetal hemoglobin for the rest of a patient's life. Published follow-up runs about 1.5-2 years, so lifetime durability has not been measured and by definition cannot yet have been.",
+          "Calling this a durable, one-time treatment assumes the edit persists and keeps producing fetal hemoglobin for the rest of a patient’s life. Published follow-up runs about 1.5-2 years, so lifetime durability has not been measured and by definition cannot yet have been.",
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
           'This mechanism is the measured basis on which the FDA, MHRA, and European Commission approved the product, not a hypothesis extrapolated from animal or cell models. It was verified in trial patients by measuring edited-allele frequency in the cell product and fetal hemoglobin in blood after infusion.',
         remainingUnknown:
-          "A screen with computational prediction, GUIDE-seq and targeted deep sequencing found no confirmed off-target edits at the loci tested. The FDA-approved label states that off-target editing 'cannot be ruled out' — a limit of measurement, not a finding of harm.",
+          "The FDA-approved label states that off-target editing “cannot be ruled out” — a limit of what can be measured, not a finding of harm. Whether the edit keeps producing fetal hemoglobin for a lifetime is unmeasured: published follow-up runs about 1.5-2 years.",
         evidenceNeededNext:
           'Continued clonal-tracking and safety data from the mandatory 15-year long-term follow-up study (NCT04208529) to confirm the edit and its effect remain stable over time, and that no delayed off-target consequence emerges.',
         mechanismSummary:
-          "Ex vivo CRISPR-Cas9 editing of a patient's own stem cells reactivates fetal hemoglobin by disabling the genetic switch that normally silences it after birth.",
+          "Ex vivo CRISPR-Cas9 editing of a patient’s own stem cells reactivates fetal hemoglobin by disabling the genetic switch that normally silences it after birth.",
         displayPriority: 2,
         mechanismSteps: [
           {
             displayOrder: 1,
             technicalLabel: 'Ex vivo CRISPR-Cas9 editing of autologous CD34+ hematopoietic stem and progenitor cells',
             plainLanguageExplanation:
-              "A patient's own blood-forming stem cells are removed from the body and edited outside it, using the CRISPR-Cas9 'molecular scissors' system to cut DNA at one specific, targeted site.",
+              "A patient’s own blood-forming stem cells are removed from the body and edited outside it, using the CRISPR-Cas9 “molecular scissors” system to cut DNA at one specific, targeted site.",
             evidenceContext:
               'The editing efficiency of each cell product is measured directly as part of manufacturing release testing before infusion, as described in the FDA-approved prescribing information.',
             status: 'measured',
@@ -210,8 +249,13 @@ const seed: SeedFile = {
             technicalLabel: 'Disruption of the BCL11A erythroid-specific enhancer',
             plainLanguageExplanation:
               'The edit targets a DNA switch (enhancer) that normally turns the BCL11A gene on only in developing red blood cells. Disabling that switch, rather than the whole BCL11A gene everywhere in the body, keeps the effect confined to red blood cell development.',
+            // Was "reduced BCL11A expression measured in erythroid-differentiated cells from
+            // treated patients". Neither NEJM abstract nor the FDA label reports a BCL11A
+            // expression assay in treated patients, and asserting one here also contradicted
+            // step 3, which describes the same reduction as an extrapolation. What IS measured is
+            // the edit itself, in the manufactured product, before release.
             evidenceContext:
-              'Confirmed by sequencing of the edited cell product and by reduced BCL11A expression measured in erythroid-differentiated cells from treated patients, per the FDA label and NEJM publications.',
+              'Confirmed by sequencing of the edited cell product before infusion; the FDA-approved label describes the edited cells engrafting and differentiating into erythroid cells with less BCL11A.',
             status: 'measured',
             sourceLinks: [
               'https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7c3e12ad-e2fe-4d3f-a630-ea7364d9e846',
@@ -223,9 +267,15 @@ const seed: SeedFile = {
             technicalLabel: 'Reduced BCL11A protein specifically in the red blood cell lineage',
             plainLanguageExplanation:
               'With its enhancer switch disabled, the BCL11A protein — which normally represses fetal hemoglobin production after infancy — is made at much lower levels inside developing red blood cells specifically.',
+            // `inferred`, not `measured`, and the note below is the reason: no BCL11A protein
+            // assay in treated patients appears in the FDA label or in either NEJM publication.
+            // What the label reports is the edit (measured, step 2) and fetal hemoglobin
+            // (measured, step 4); the protein step between them is the accepted reading of those
+            // two, which is what Inferred means in lib/evidence.ts. A status and its own evidence
+            // note may not disagree.
             evidenceContext:
-              "Downstream of the directly-measured enhancer edit, and consistent with BCL11A's characterized role as the fetal-to-adult hemoglobin switch, as described in the FDA-reviewed data package.",
-            status: 'measured',
+              "Downstream of the directly-measured enhancer edit, and consistent with BCL11A’s characterized role as the fetal-to-adult hemoglobin switch, as described in the FDA-reviewed data package.",
+            status: 'inferred',
             sourceLinks: ['https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7c3e12ad-e2fe-4d3f-a630-ea7364d9e846'],
           },
           {
@@ -256,7 +306,7 @@ const seed: SeedFile = {
             relationship: 'supports',
             claimPartAddressed: 'overall mechanism of action (BCL11A enhancer editing -> HbF reactivation)',
             directlyMeasuredResult:
-              "FDA-approved label describes edited CD34+ cells engrafting and producing elevated fetal hemoglobin, and explicitly states that off-target editing 'cannot be ruled out.'",
+              "FDA-approved label describes edited CD34+ cells engrafting and producing elevated fetal hemoglobin, and explicitly states that off-target editing “cannot be ruled out.”",
             independentGroupStatus: true,
           },
           {
@@ -335,19 +385,19 @@ const seed: SeedFile = {
         claimType: 'effectiveness',
         consumerQuestion: 'Does Casgevy work for transfusion-dependent beta-thalassemia?',
         directAnswer:
-          'In the pivotal trial, 39 of 42 evaluable patients (92.9%) went at least 12 consecutive months without a red blood cell transfusion, in a single-arm trial that also measured chemotherapy-related side effects.',
+          'In the pivotal trial, 32 of 35 evaluable patients (91%) went at least 12 consecutive months without a red blood cell transfusion, in a single-arm trial that also measured chemotherapy-related side effects.',
         measuredFinding:
-          'In CLIMB THAL-111 (NCT03655678), 39 of 42 evaluable patients (92.9%, 95% CI 80.5-98.5%) achieved transfusion independence for 12+ consecutive months, mean follow-up ~19.2 months. Adverse events: febrile neutropenia (61.1%), mucositis/stomatitis (51.9%), hepatic veno-occlusive disease in 5 patients (8.5%). No treatment-related deaths or malignancies at that data cut (Locatelli et al., NEJM 2024).',
+          'In CLIMB THAL-111 (NCT03655678), 52 patients received exa-cel. Of the 35 with enough follow-up for the primary endpoint, 32 (91%, 95% CI 77-98) reached transfusion independence for 12+ consecutive months, median follow-up 20.4 months, with no deaths or cancers (Locatelli et al., NEJM 2024). The FDA label reports febrile neutropenia in 28 (54%) and veno-occlusive liver disease in 5 (10%).',
         inference:
-          'That transfusion independence is permanent, or that the safety profile holds over decades, is inferred, not measured. The reported adverse events reflect the conditioning chemotherapy and transplant process as much as the edit itself, and are tracked only to 24 months in the primary publication.',
+          'That transfusion independence is permanent, or that the safety profile holds over decades, is inferred, not measured. The reported adverse events reflect the conditioning chemotherapy and transplant process as much as the edit itself, and patients were followed for 24 months after infusion.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          "FDA approval for this indication, granted January 16, 2024, rested directly on this trial's transfusion-independence endpoint, which makes it regulatory evidence rather than an industry finding alone. The study is still a single, unblinded, sponsor-run trial in 59 enrolled patients.",
+          "FDA approval for this indication, granted January 16, 2024, rested directly on this trial’s transfusion-independence endpoint, which makes it regulatory evidence rather than an industry finding alone. The study is still a single, unblinded, sponsor-run trial: 59 patients enrolled, 52 infused.",
         remainingUnknown:
           'Long-term durability of transfusion independence beyond the ~2 years of published follow-up, and the true incidence of rare, delayed complications (including malignancy) from myeloablative conditioning combined with gene editing, are not yet known.',
         evidenceNeededNext:
           'Extended, beta-thalassemia-specific follow-up data from the 15-year study (NCT04208529), and larger real-world post-approval safety cohorts.',
-        outcomeSummary: '92.9% (39 of 42 evaluable patients) achieved transfusion independence for 12+ months in the pivotal trial.',
+        outcomeSummary: '91% (32 of 35 evaluable patients) achieved transfusion independence for 12+ months in the pivotal trial.',
         displayPriority: 4,
         evidence: [
           {
@@ -355,7 +405,7 @@ const seed: SeedFile = {
             relationship: 'supports',
             claimPartAddressed: 'transfusion independence',
             directlyMeasuredResult:
-              '39 of 42 evaluable patients (92.9%) achieved transfusion independence for 12+ months; adverse events included febrile neutropenia (61.1%) and hepatic veno-occlusive disease (8.5%); no treatment-related deaths or malignancies at that data cut.',
+              '32 of 35 evaluable patients (91%, 95% CI 77-98) achieved transfusion independence for 12+ consecutive months, among 52 patients treated, at a median follow-up of 20.4 months. No deaths and no cancers occurred.',
             independentGroupStatus: false,
           },
           {
@@ -363,6 +413,18 @@ const seed: SeedFile = {
             relationship: 'supports',
             claimPartAddressed: 'regulatory acceptance of the transfusion-independence endpoint',
             directlyMeasuredResult: 'FDA approved this indication on January 16, 2024 based on the trial result.',
+            independentGroupStatus: true,
+          },
+          // The adverse-event rates quoted in `measuredFinding` are the label's, not the NEJM
+          // paper's: the published abstract reports the efficacy result and "no deaths or cancers"
+          // but no event-rate table. A number may only be printed under a source that carries it,
+          // so the label is cited here rather than left implied.
+          {
+            sourceKey: 'fda-label-dailymed',
+            relationship: 'limits',
+            claimPartAddressed: 'adverse events from the conditioning chemotherapy and transplant process',
+            directlyMeasuredResult:
+              'In the 52 patients treated in Trial 2, the FDA-approved label records febrile neutropenia in 28 (54%), mucositis in 37 (71%), veno-occlusive liver disease in 5 (10%), and Grade 3 or 4 neutropenia and thrombocytopenia in every patient.',
             independentGroupStatus: true,
           },
           {
@@ -380,16 +442,16 @@ const seed: SeedFile = {
         claimType: 'access',
         consumerQuestion: 'What does actually getting treated with Casgevy involve?',
         directAnswer:
-          "Casgevy is a one-time hospital procedure: the patient's own stem cells are collected, CRISPR-edited over several months, then infused back after chemotherapy clears their bone marrow, followed by roughly 4-6 weeks in hospital.",
+          "Casgevy is a one-time hospital procedure: the patient’s own stem cells are collected, CRISPR-edited over several months, then infused back after chemotherapy clears their bone marrow, followed by roughly 4-6 weeks in hospital.",
         measuredFinding:
           'The FDA-approved label and manufacturer materials describe stem cell mobilization and apheresis collection, which can run several days and may be repeated, then several months of ex vivo manufacturing and release testing. The patient is then admitted for myeloablative busulfan conditioning, infused with the edited cells, and hospitalized about 4-6 weeks until neutrophil and platelet engraftment.',
         inference:
           'FDA approval does not establish that every eligible patient can reach this pathway. Access depends on proximity to a small number of accredited treatment centers, payer approval of a multi-million-dollar therapy, and willingness to accept conditioning-chemotherapy risks, including infertility.',
         proofBoundaryStage: 'regulatory_evidence',
         proofBoundaryExplanation:
-          "The process here comes from the FDA-approved label and the manufacturer's patient and HCP materials for an approved product, not from speculation. Casgevy's label carries no boxed warning for hematologic malignancy; Lyfgenia, a different lentiviral-vector sickle cell gene therapy approved the same day, does.",
+          "The process here comes from the FDA-approved label and the manufacturer’s patient and HCP materials for an approved product, not from speculation. Casgevy’s label carries no boxed warning for hematologic malignancy; Lyfgenia, a different lentiviral-vector sickle cell gene therapy approved the same day, does.",
         remainingUnknown:
-          'Vertex reported 64 patients dosed worldwide by the end of 2025, against tens of thousands estimated eligible across the U.S. and EU. How uptake, real-world engraftment outcomes, and complication rates look as more centers scale up is not yet established.',
+          'Vertex reported 64 patients dosed worldwide by the end of 2025, of roughly 301 who began the process that year. How uptake, real-world engraftment outcomes, and complication rates look as more centers scale up is not yet established.',
         evidenceNeededNext:
           'Post-marketing real-world outcomes data (engraftment success rate, serious adverse event rate, time-to-infusion) as more centers and more patients are treated outside the original trials.',
         displayPriority: 5,
@@ -432,12 +494,12 @@ const seed: SeedFile = {
             options: [
               'A single outpatient injection, similar to a vaccine.',
               'Taking a daily pill for several months.',
-              "Collecting the patient's own stem cells, editing them in a lab over several months, clearing out their existing bone marrow with chemotherapy, then re-infusing the edited cells and staying in hospital for several weeks to recover.",
+              "Collecting the patient’s own stem cells, editing them in a lab over several months, clearing out their existing bone marrow with chemotherapy, then re-infusing the edited cells and staying in hospital for several weeks to recover.",
               'A course of outpatient physical therapy sessions.',
             ],
             correctOptionIndex: 2,
             explanation:
-              "Casgevy is an approved, one-time cell therapy, but 'approved' does not mean simple to deliver — the real pathway involves stem cell collection, months of manufacturing, myeloablative chemotherapy, and roughly 4-6 weeks of hospitalization, which is why Vertex reports the whole process typically takes close to a year and why real-world uptake (64 patients dosed worldwide by the end of 2025) has been far smaller than the eligible patient population.",
+              "Casgevy is an approved, one-time cell therapy, but “approved” does not mean simple to deliver — the real pathway involves stem cell collection, months of manufacturing, myeloablative chemotherapy, and roughly 4-6 weeks of hospitalization, which is why Vertex reports the whole process typically takes close to a year and why only 64 patients worldwide had completed dosing by the end of 2025, of roughly 301 who began that year.",
           },
         ],
       },
@@ -527,9 +589,12 @@ const seed: SeedFile = {
       sourceType: 'single-arm, open-label phase 1/2/3 clinical trial',
       studyDesign: 'single-group, open-label, multicenter (CLIMB THAL-111)',
       species: 'human',
-      sampleSize: 42,
+      // 52 = patients who received exa-cel, the same convention as the sickle cell record above
+      // (44 treated / 30 evaluable). 59 is the registry's actual enrolment; 35 is the number with
+      // enough follow-up for the primary endpoint at this interim analysis.
+      sampleSize: 52,
       endpoint:
-        'Proportion of patients achieving transfusion independence for at least 12 consecutive months (TI12), among 59 patients enrolled and 42 evaluable at the time of analysis.',
+        'Proportion of patients achieving transfusion independence for at least 12 consecutive months (TI12), among 59 patients enrolled, 52 treated and 35 evaluable at the time of analysis.',
     },
     {
       key: 'nejm-specificity-2024',
@@ -556,11 +621,11 @@ const seed: SeedFile = {
     },
     {
       key: 'vertex-earnings-access-2026',
-      title: "Vertex's CRISPR therapy rebounds in latest earnings",
+      title: "Vertex’s CRISPR therapy rebounds in latest earnings",
       journalOrIssuer: 'BioPharma Dive',
       publicationYear: 2026,
       regulatoryUrl: 'https://www.biopharmadive.com/news/vertex-earnings-casgevy-q4-2025/812243/',
-      sourceType: "trade press reporting on the manufacturer's own earnings disclosure",
+      sourceType: "trade press reporting on the manufacturer’s own earnings disclosure",
     },
     {
       key: 'casgevy-treatment-journey',

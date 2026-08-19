@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto'
 import { eq } from 'drizzle-orm'
 import { db } from '@/db'
 import { entities, claims, comprehensionQuestions, comprehensionResponses } from '@/db/schema'
-import { recordResponse, getAggregateForClaim } from '@/lib/comprehension'
+import { recordResponse, getAggregateForClaim, getQuestionsForClaim } from '@/lib/comprehension'
 
 // Exercises lib/comprehension.ts's recordResponse() directly against the real database (rather
 // than going through the HTTP layer in app/api/comprehension/route.ts, which is owned by a
@@ -106,5 +106,124 @@ describe('anonymous comprehension responses dedupe by (questionId, sessionHash)'
     const aggregate = await getAggregateForClaim(claim!.id)
     expect(aggregate.totalResponses).toBe(2)
     expect(aggregate.correctResponses).toBe(1)
+  })
+})
+
+
+/**
+ * WHICH QUESTION THE PUBLISHED PERCENTAGE DESCRIBES HAS TO BE DECIDABLE.
+ *
+ * `getAggregateForClaim` picks the claim's central Proof Boundary question by ordering on
+ * `displayOrder` and taking the first, and that one question's responses are the sole input to
+ * `formatComprehensionAggregate` — the single number CLAUDE.md rule 3 lets this product print.
+ * The seeder never set `displayOrder`, so every seeded question took the column default of 0. With
+ * two questions tied at 0 the "first" one was whichever row Postgres happened to return, which
+ * changes on any row rewrite, VACUUM or dump-restore: the published percentage would silently
+ * start describing a different question's response pool, with nothing in the output to show it.
+ *
+ * Two fixes, both pinned here: the seeder writes displayOrder from the array index, and both
+ * queries carry `asc(id)` as a tiebreak so even a tie is deterministic.
+ */
+describe('the central Proof Boundary question is chosen deterministically', () => {
+  it('breaks a displayOrder tie by id rather than by heap order', async () => {
+    const [entity] = await db
+      .insert(entities)
+      .values({
+        canonicalName: 'Comprehension Ordering Fixture',
+        slug: `comprehension-order-${randomUUID().slice(0, 8)}`,
+        entityType: 'peptide',
+        shortDescription: 'Fixture entity for the ordering test.',
+        bottomLine: 'Fixture bottom line.',
+        regulatoryCategory: 'unapproved_therapeutic_substance',
+        publicationStatus: 'published',
+      })
+      .returning()
+    entityId = entity!.id
+
+    const [claim] = await db
+      .insert(claims)
+      .values({
+        entityId: entity!.id,
+        slug: 'comprehension-order-claim',
+        claimType: 'effectiveness',
+        consumerQuestion: 'Does the fixture compound do the fixture thing?',
+        directAnswer: 'Fixture answer.',
+        measuredFinding: 'Fixture measured finding.',
+        inference: 'Fixture inference.',
+        proofBoundaryStage: 'animal_evidence',
+        proofBoundaryExplanation: 'Fixture explanation.',
+        remainingUnknown: 'Fixture unknown.',
+        evidenceNeededNext: 'Fixture evidence needed.',
+        publicationStatus: 'published',
+        version: 1,
+      })
+      .returning()
+
+    // Two questions deliberately tied at displayOrder 0 — exactly the state the seeder used to
+    // produce for every claim.
+    const [first] = await db
+      .insert(comprehensionQuestions)
+      .values({
+        claimId: claim!.id,
+        question: 'The central Proof Boundary question.',
+        options: ['Animal studies only', 'Controlled human trials'],
+        correctOptionIndex: 0,
+        explanation: 'Central.',
+        displayOrder: 0,
+      })
+      .returning()
+    await db.insert(comprehensionQuestions).values({
+      claimId: claim!.id,
+      question: 'A supporting-detail question.',
+      options: ['Yes', 'No'],
+      correctOptionIndex: 1,
+      explanation: 'Supporting.',
+      displayOrder: 0,
+    })
+
+    // One response, on the lower-id question only. The aggregate must be computed from that one.
+    await recordResponse({
+      questionId: first!.id,
+      claimVersion: 1,
+      selectedOptionIndex: 0,
+      sessionHash: `hash-${randomUUID()}`,
+    })
+
+    const questions = await getQuestionsForClaim(claim!.id)
+    expect(questions[0]!.id).toBe(first!.id)
+
+    // Rewriting the row moves the tuple, which is what used to flip the unordered pick.
+    await db
+      .update(comprehensionQuestions)
+      .set({ question: 'The central Proof Boundary question.' })
+      .where(eq(comprehensionQuestions.id, first!.id))
+
+    expect((await getQuestionsForClaim(claim!.id))[0]!.id).toBe(first!.id)
+
+    const aggregate = await getAggregateForClaim(claim!.id)
+    expect(aggregate.totalResponses).toBe(1)
+    expect(aggregate.correctResponses).toBe(1)
+    // Below CLARITY_MIN_RESPONSES, so no percentage may be published from it either way.
+    expect(aggregate.isClarityTested).toBe(false)
+  })
+})
+
+/**
+ * The seeder must WRITE displayOrder rather than leaning on the column default, or the tiebreak
+ * above is the only thing standing between the corpus and an unordered set. Every question in the
+ * live corpus therefore has a distinct order within its claim.
+ */
+describe('the seeded corpus has a well-ordered question set per claim', () => {
+  it('never leaves two questions on one claim sharing a displayOrder', async () => {
+    const rows = await db
+      .select({ claimId: comprehensionQuestions.claimId, displayOrder: comprehensionQuestions.displayOrder })
+      .from(comprehensionQuestions)
+
+    const seen = new Set<string>()
+    for (const row of rows) {
+      const key = `${row.claimId}:${row.displayOrder}`
+      expect(seen.has(key), `two questions share displayOrder ${row.displayOrder} on claim ${row.claimId}`).toBe(false)
+      seen.add(key)
+    }
   })
 })

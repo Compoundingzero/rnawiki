@@ -12,6 +12,11 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: [['html', { open: 'never' }]],
+  // The runner wipes its own output directory at the start of every run. tests/e2e/visual.spec.ts
+  // writes full-page captures for human review into test-results/visual/, which must survive that
+  // wipe — so the runner's traces and failure artefacts are pointed one level down instead of at
+  // test-results/ itself. Do not move this back without moving the visual captures too.
+  outputDir: './test-results/playwright',
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',

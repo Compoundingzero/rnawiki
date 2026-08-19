@@ -38,6 +38,11 @@ test.describe('sources', () => {
 
   test('a source disclosure opens by keyboard alone', async ({ page }) => {
     await page.goto(`/r/${SEEDED_SLUGS.bpc157}`)
+    // The Evidence Record refinement moved sources one level deeper: they now sit inside the
+    // claim's evidence record ("Study details and sources") rather than beside the claim. The
+    // record has to be opened first before the nested summary is focusable. The assertion below
+    // is unchanged — a source disclosure must still open by keyboard alone.
+    await page.locator('.er__summary').first().click()
     const summary = page.locator('summary').filter({ hasText: /sources/i }).first()
     test.skip((await summary.count()) === 0, 'No source disclosure rendered.')
 
@@ -55,6 +60,10 @@ test.describe('sources', () => {
     await expect(claim).toBeVisible()
     // :target forces the matching claim's evidence open, since a fragment never reaches the server.
     const text = await claim.innerText()
-    expect(text.toLowerCase()).toContain('what researchers measured')
+    // Heading renamed by the Evidence Record refinement: "what researchers measured" became
+    // "What was directly observed" (it is now the record's first section, and the old wording
+    // survives as a per-source field label inside "Study details and sources"). The assertion is
+    // the same one — a deep link must reveal the claim's measured finding, not just its heading.
+    expect(text.toLowerCase()).toContain('what was directly observed')
   })
 })

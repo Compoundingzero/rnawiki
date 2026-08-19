@@ -1,0 +1,502 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://rnawiki.com/schemas/evidence-record.schema.json",
+  "title": "RNAwiki Evidence Record",
+  "description": "The machine-readable form of an RNAwiki Evidence Record, as returned by GET /api/v1/entities/{slug} and GET /api/v1/claims/{claimId}. A record states how far testing on a claim has gone and where direct measurement stops. It never states whether a treatment is advisable, safe for a given person, or worth taking, and it carries no dosage, protocol or sourcing information of any kind. Read docs/open-evidence-record.md for the guarantees behind these fields.",
+  "$comment": "Schema version 1.3.0. Within a major version this format only gains properties, so a validator should tolerate properties it does not know. A property is never renamed, retyped or given a new meaning without a major version bump.",
+  "oneOf": [
+    { "$ref": "#/$defs/entityResponse" },
+    { "$ref": "#/$defs/claimResponse" }
+  ],
+  "$defs": {
+    "schemaVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "The version of this response format. It asserts the shape of the JSON and nothing about the strength, recency or correctness of the evidence described inside it."
+    },
+
+    "entityResponse": {
+      "type": "object",
+      "title": "Entity record",
+      "description": "One published treatment, substance or intervention, with every published claim about it nested. An entity is a collection of claims, not a collection of papers: the same paper can appear under several claims, scoped each time to what it measured.",
+      "required": [
+        "schemaVersion",
+        "canonicalName",
+        "slug",
+        "canonicalUrl",
+        "claims"
+      ],
+      "properties": {
+        "schemaVersion": { "$ref": "#/$defs/schemaVersion" },
+        "canonicalName": {
+          "type": "string",
+          "description": "The name RNAwiki files this entity under. It asserts the editorial choice of a primary name, not that this is the only correct name, the legal name, or a trademark holder's preferred name."
+        },
+        "slug": {
+          "type": "string",
+          "description": "Stable identifier used in the public URL /r/{slug} and in this API. It is permanent for a given entity and safe to store; it is not a scientific identifier and maps to no external registry."
+        },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Other names the same substance is sold, prescribed or discussed under, recorded so a reader arriving with any of them finds the record. Listing an alias asserts the names refer to the same substance; it does not assert that products sold under those names are identical in composition, purity or dose."
+        },
+        "entityType": {
+          "type": "string",
+          "description": "What kind of thing this is, such as an approved medicine or a supplement ingredient. It describes the category the entity occupies, and asserts nothing about whether it works."
+        },
+        "shortDescription": {
+          "type": "string",
+          "description": "One sentence saying what the substance is. It is a description, not a summary of the evidence and not a recommendation."
+        },
+        "bottomLine": {
+          "type": "string",
+          "description": "A plain-language summary of where the evidence stands across this entity's published claims, with its caveat included. It summarises the evidence position only, and never tells a reader whether to take the treatment or how."
+        },
+        "regulatoryCategory": {
+          "type": "string",
+          "description": "The legal category the entity is handled under. It asserts how the substance is regulated, not whether it is effective, and not that it is legal in every jurisdiction."
+        },
+        "canonicalUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The permanent public page for this entity, and the correct target when citing the record. It is not a permalink to any particular version of the content."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the entity record was last modified. It does not assert that every cited source was re-verified on that date, and it is not the publication date of the newest evidence."
+        },
+        "regulatoryStatuses": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/regulatoryStatus" },
+          "description": "Published regulatory statuses, one per jurisdiction that has been checked. An empty array asserts that RNAwiki has published no checked status, never that the substance is unregulated."
+        },
+        "claims": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/claim" },
+          "description": "Every published claim about this entity. Each claim carries its own evidence position and moves independently of the others: new evidence on one claim changes nothing about another."
+        }
+      }
+    },
+
+    "claimResponse": {
+      "type": "object",
+      "title": "Claim record",
+      "description": "One published claim, returned bare by GET /api/v1/claims/{claimId} with no wrapping entity. Identical in shape to a claim nested under an entity record, plus the top-level schemaVersion. Dereference canonicalUrl for the page context.",
+      "required": [
+        "schemaVersion",
+        "directAnswer",
+        "proofBoundaryStage",
+        "canonicalUrl"
+      ],
+      "allOf": [
+        { "$ref": "#/$defs/claim" },
+        {
+          "type": "object",
+          "properties": {
+            "schemaVersion": { "$ref": "#/$defs/schemaVersion" }
+          }
+        }
+      ]
+    },
+
+    "claim": {
+      "type": "object",
+      "title": "Claim",
+      "description": "One specific, answerable question about one entity, with the evidence for it separated into what was measured, what is inferred from that, and how far testing has gone. A claim is the unit of the record: it is versioned, changed and reviewed on its own.",
+      "required": [
+        "directAnswer",
+        "measuredFinding",
+        "inference",
+        "proofBoundaryStage",
+        "proofBoundaryStageLabel",
+        "evidenceContext",
+        "sourceLinks",
+        "lastReviewedAt",
+        "canonicalUrl"
+      ],
+      "properties": {
+        "directAnswer": {
+          "type": "string",
+          "description": "The answer to the reader's question, with the caveat carried in the same sentence rather than appended after it. It answers how solid the claim is. It never advises whether to take the treatment, and it contains no dose, protocol or sourcing information."
+        },
+        "measuredFinding": {
+          "type": "string",
+          "description": "What a study directly observed, under the conditions it ran in. It asserts the measurement and nothing past it: not that the same result holds in a different species, population, dose, duration or endpoint."
+        },
+        "inference": {
+          "type": "string",
+          "description": "What the measured finding is commonly taken to mean. It is recorded separately precisely because it is not itself a measurement. Nothing in this field is asserted as observed, and its presence does not assert the inference is wrong either."
+        },
+        "proofBoundaryStage": {
+          "type": "string",
+          "enum": [
+            "biological_rationale_only",
+            "isolated_cell_evidence",
+            "animal_evidence",
+            "observational_human_evidence",
+            "uncontrolled_human_intervention",
+            "controlled_human_evidence",
+            "independently_supported_controlled_human_evidence",
+            "regulatory_evidence"
+          ],
+          "description": "How far testing on this claim has gone, given as the stage reached by its strongest directly relevant evidence, never an average across sources. It asserts the reach of the evidence and never whether the claim is true, false or advisable. A later stage is not a stronger recommendation: a claim at biological_rationale_only is early rather than wrong, and regulatory_evidence asserts only that a regulator authorised a defined use under defined conditions, not that the treatment is safe for everyone or for any other use. The stage is also direction-neutral — a controlled trial whose primary endpoint came back null still sits at controlled_human_evidence, because the trial exists. IT IS MEANINGFUL ONLY WHERE evidencePositionApplies IS TRUE: on a mechanism, regulatory or access claim this value records where the answer came from rather than how far an outcome has been tested, and presenting it as an evidence position states something false — Casgevy's access claim about what treatment involves is stored at regulatory_evidence, and read as a position it credits a description of apheresis, chemotherapy and a hospital stay to a regulator's review of effectiveness. Check the boolean before you print this."
+        },
+        "proofBoundaryStageLabel": {
+          "type": "string",
+          "description": "The human-readable label for proofBoundaryStage, supplied so a consumer never has to print a raw key or invent its own wording. Same meaning and same limits as the key, including the evidencePositionApplies condition on when it means anything at all."
+        },
+        "claimType": {
+          "type": "string",
+          "enum": ["mechanism", "effectiveness", "safety", "regulatory", "access", "claimed_use"],
+          "description": "What kind of question this claim answers. It asserts the editorial classification of the question, not anything about the answer's strength: an access claim is not weaker evidence than an effectiveness claim, it is a different kind of question with no evidence ladder to sit on. It exists so a consumer can see the rule behind evidencePositionApplies rather than take the boolean on trust. Added in schema 1.3.0."
+        },
+        "evidencePositionApplies": {
+          "type": "boolean",
+          "description": "Whether proofBoundaryStage and proofBoundaryStageLabel describe the strength of evidence for this claim. True for effectiveness, safety and claimed_use claims, which are about an outcome and therefore have an evidence ladder. False for mechanism, regulatory and access claims, where the stored stage records where the answer came from rather than how far an outcome has been tested: printing it as a position on Casgevy's access claim, which is stored at regulatory_evidence, fills the ladder to its top rung for a description of a hospital stay and credits it to a regulator's review of effectiveness. RNAwiki's own record page renders no ladder and no position sentence when this is false, and a consumer must not render one either. The two proofBoundary* fields are still served, still valid and still exactly what the database holds; this field says only that they are not a statement about evidence strength for this claim. Derived from one function, stagePositionApplies in lib/evidence-view.ts, shared by the API and every page that prints a position, so the JSON and the page cannot disagree. Added in schema 1.3.0."
+        },
+        "evidenceContext": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceContextEntry" },
+          "description": "How each linked source relates to this claim. Every entry is scoped to this claim alone and is never a blanket endorsement or rejection of the entity."
+        },
+        "sourceLinks": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceLink" },
+          "description": "De-duplicated identifiers for the sources behind this claim, filtered to those carrying at least one public link. The list lets a reader reach the originals; it does not assert that RNAwiki agrees with any source's own conclusions, and it is not a complete bibliography of the field."
+        },
+        "lastReviewedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "When a scientific reviewer last recorded a decision on this claim. Null asserts that no review is recorded, not that the content is wrong or unchecked. What kind of review, if any, is in reviewState."
+        },
+        "canonicalUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "The permanent citable URL for this claim, an anchor on its entity page. Cite this rather than the API URL. It resolves to the current version of the claim, not to the version you fetched."
+        },
+        "claimVersion": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The editorial version of this claim's text. Two responses carrying the same claimVersion carry the same wording. A bump asserts that an editor changed this record; it does not assert that new evidence appeared, which is recorded in evidenceChanges instead. Added in schema 1.1.0."
+        },
+        "lastCheckedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When RNAwiki last modified this claim record. It does not assert that every cited source was re-verified on that date, it is not the publication date of the newest evidence, and it is not a review date. Added in schema 1.1.0."
+        },
+        "checkedAt": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "When an RNAwiki editor last read this claim's cited sources and checked the answer against them. This is a recorded human act, not a database write: lastCheckedAt above is the timestamp of the last modification to the row and can advance without anyone reading anything, which is why the two are separate fields. Null asserts that no editorial check has been recorded for this claim, and a consumer must not substitute lastCheckedAt for it. It is still not a scientific review — only reviewState may assert that. Added in schema 1.2.0."
+        },
+        "remainingUnknown": {
+          "type": "string",
+          "description": "What the available evidence cannot answer. This is absence of evidence, not evidence of absence: the field asserts that a question was not answered, and never that the treatment fails. Added in schema 1.1.0."
+        },
+        "evidenceNeededNext": {
+          "type": "string",
+          "description": "The study or result that would move this claim's evidence position. It describes what would have to be measured. It is not a prediction that such a study would succeed, not a claim that one is under way, and not a call for anyone to run it. Added in schema 1.1.0."
+        },
+        "reviewState": {
+          "type": "string",
+          "enum": ["independently_reviewed", "editorial_only"],
+          "description": "Whether an independent scientific reviewer recorded an approval for this claim. 'independently_reviewed' asserts that an approved review exists AND that the approval covers the claimVersion in this response; an approval recorded against an earlier version reports 'editorial_only' rather than travelling as a live approval of text the reviewer never saw. Nothing about the reviewer's identity, credentials or comments is published, and the value remains one reviewer's recorded decision rather than the judgement of a field. 'editorial_only' asserts that RNAwiki's editors published the claim and no approved review is recorded; it does not assert the claim is unreliable. This value is never derived from editorial publication status, because passing editorial workflow is not scientific sign-off. Added in schema 1.1.0."
+        },
+        "claimEvents": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/claimEvent" },
+          "description": "Published events where testing or development did not go the way the claim assumes. An empty array asserts that RNAwiki has published no such event, never that none exists in the world. Unpublished events are not served. Added in schema 1.1.0."
+        },
+        "evidenceChanges": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/evidenceChange" },
+          "description": "The public history of how this claim's record changed, newest first. An empty array asserts that the record has not changed publicly since it was first published. Added in schema 1.1.0."
+        }
+      }
+    },
+
+    "evidenceContextEntry": {
+      "type": "object",
+      "title": "Source-to-claim relationship",
+      "description": "How one source bears on this one claim.",
+      "required": [
+        "relationship",
+        "relationshipLabel",
+        "claimPartAddressed",
+        "directlyMeasuredResult",
+        "independentGroupStatus"
+      ],
+      "properties": {
+        "relationship": {
+          "type": "string",
+          "enum": ["supports", "contradicts", "limits", "contextualizes"],
+          "description": "The source's bearing on this claim. 'supports' asserts the finding is consistent with the claim and lends it weight, not that it proves it. 'contradicts' asserts a conflict with this claim, not that the treatment is useless. 'limits' asserts the source caps what can be concluded, through a small sample, short follow-up, a non-generalising population or an unreplicated result. 'contextualizes' asserts the source does not bear on the claim's truth at all and is recorded only so a reader can calibrate."
+        },
+        "relationshipLabel": {
+          "type": "string",
+          "description": "The human-readable label for relationship. Same meaning and same limits as the key."
+        },
+        "claimPartAddressed": {
+          "type": "string",
+          "description": "Which part of the claim this source speaks to. It asserts scope, and never that the source is sufficient to settle that part."
+        },
+        "directlyMeasuredResult": {
+          "type": "string",
+          "description": "What this source measured, in its own terms. It is a record of the source's result, not RNAwiki's interpretation of what the result means."
+        },
+        "independentGroupStatus": {
+          "type": "boolean",
+          "description": "Whether a group unconnected to the original researchers produced this result. True asserts independence of the group; it does not assert the finding is correct, that the replication was large, or that it used the same method."
+        }
+      }
+    },
+
+    "sourceLink": {
+      "type": "object",
+      "title": "Source identifiers",
+      "description": "Public identifiers for one cited source. RNAwiki does not host or reproduce the source, and every field may be null when that identifier does not exist for the source. Internal source ids are never exposed.",
+      "properties": {
+        "doi": {
+          "type": ["string", "null"],
+          "description": "Digital Object Identifier for the publication. It locates the source and asserts nothing about its quality or whether it has since been corrected."
+        },
+        "pmid": {
+          "type": ["string", "null"],
+          "description": "PubMed identifier. Indexing in PubMed asserts the article was published in an indexed venue, not that its findings are accepted."
+        },
+        "regulatoryUrl": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "The source's own URL, used when it has no DOI, PMID or trial registration number. Often a regulator's own record, such as an approval letter or label, but not always: the column is the only URL field on an evidence source, so it also carries news reporting, trade press and manufacturer material. It points at what that publisher published, never at RNAwiki's reading of it, and it asserts nothing about who the publisher is. The `sourceType` recorded on the same source, and shown on the record page under 'Type of evidence', is what names the publisher."
+        }
+      }
+    },
+
+    "regulatoryStatus": {
+      "type": "object",
+      "title": "Regulatory status",
+      "description": "One jurisdiction's legal handling of the entity, as published by that regulator. A status in one jurisdiction asserts nothing about any other.",
+      "required": [
+        "jurisdiction",
+        "legalCategory",
+        "statusStatement",
+        "source",
+        "checkedDate"
+      ],
+      "properties": {
+        "jurisdiction": {
+          "type": "string",
+          "description": "The regulator's territory. It scopes everything else in this object and nothing outside it."
+        },
+        "legalCategory": {
+          "type": "string",
+          "description": "The category the substance is regulated under in that territory. It asserts a legal classification, not an evidence position."
+        },
+        "approvedIndications": {
+          "type": ["string", "null"],
+          "description": "The uses a regulator authorised. It asserts what was authorised under the conditions stated in the authorisation, and never that unapproved or off-label use is safe or effective. Null asserts that no indication is authorised in this jurisdiction."
+        },
+        "statusStatement": {
+          "type": "string",
+          "description": "A plain-language statement of the legal position. It describes legality and authorisation only, and is not a safety assessment."
+        },
+        "source": {
+          "type": "string",
+          "description": "URL or citation for the regulator's own record, so the status can be checked at the regulator rather than at RNAwiki."
+        },
+        "checkedDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When an editor last checked this status against the regulator's record. It does not assert the status has remained unchanged since that date."
+        }
+      }
+    },
+
+    "claimEvent": {
+      "type": "object",
+      "title": "Claim event",
+      "description": "A recorded point where testing or development did not go the way the claim assumes: a null result, a contradictory result, a limit on exposure or safety, a stopped programme, a retraction. Every event is tied to a real source, so this section records what happened rather than an editorial opinion about it. An event is a bounded fact about one study or decision, never a verdict on the treatment.",
+      "required": [
+        "eventType",
+        "eventTypePublic",
+        "developmentGate",
+        "developmentGatePublic",
+        "plainSummary",
+        "whatItSuggests",
+        "whatItDoesNotEstablish",
+        "eventDate",
+        "source"
+      ],
+      "properties": {
+        "eventType": {
+          "type": "string",
+          "enum": [
+            "contradictory_result",
+            "null_result",
+            "safety_limited",
+            "exposure_or_delivery_limit",
+            "target_engagement_not_shown",
+            "target_engagement_shown_no_clinical_benefit",
+            "trial_design_limit",
+            "program_stopped_scientific",
+            "program_stopped_commercial",
+            "regulatory_or_safety_change",
+            "retraction_or_correction",
+            "other"
+          ],
+          "description": "What kind of event this was. It classifies the event and asserts nothing about how serious it is or how much weight a reader should give it. Two values need care: 'program_stopped_commercial' asserts development stopped for commercial reasons with no scientific result recorded as the cause, which is not a scientific failure; 'target_engagement_not_shown' asserts a measurement was never made, not that the treatment failed to reach its target."
+        },
+        "eventTypePublic": {
+          "type": "string",
+          "description": "The plain-language sentence RNAwiki publishes for this event type, written to define its own terms in the same sentence. It asserts only what the category means, and is supplied so a consumer never prints a raw key or writes its own gloss."
+        },
+        "developmentGate": {
+          "type": "string",
+          "enum": [
+            "human_biology",
+            "intervention_direction",
+            "delivery_or_exposure",
+            "target_engagement",
+            "pathway_response",
+            "patient_selection",
+            "clinical_outcome",
+            "safety",
+            "trial_design",
+            "manufacturing",
+            "commercial",
+            "unknown"
+          ],
+          "description": "Where in the development chain this event occurred, from human biology through delivery, target engagement and clinical outcome to trial design, manufacturing and commercial decisions. It asserts where the chain broke, and never that the underlying biological idea was invalid: a trial that missed its endpoint may have failed at dose, population or design. 'unknown' asserts that public information does not show where the chain broke, not that no reason exists."
+        },
+        "developmentGatePublic": {
+          "type": "string",
+          "description": "The plain-language sentence RNAwiki publishes for this development gate, defining its jargon in the same sentence. Same meaning and same limits as the key."
+        },
+        "plainSummary": {
+          "type": "string",
+          "description": "What happened, in plain language, taken from the cited source's own recorded result. It is a record of the source, not RNAwiki's interpretation, and it carries no dosing or self-use information."
+        },
+        "whatItSuggests": {
+          "type": "string",
+          "description": "The narrow reading this event supports, bounded to the population, dose, duration and endpoint the source actually measured. It asserts what follows from this one event, never what follows about the treatment overall."
+        },
+        "whatItDoesNotEstablish": {
+          "type": "string",
+          "description": "A boundary statement, not a conclusion. It records what this event leaves open — typically that a missed endpoint does not establish the treatment does nothing, that an untested question is not a disproved one, and that a commercial discontinuation is not a scientific result. Read as a limit on the event above it, never as a finding of its own."
+        },
+        "eventDate": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "When the event occurred or was published. Null asserts that RNAwiki could not verify a date, not that the event is undated in reality."
+        },
+        "source": {
+          "$ref": "#/$defs/eventSource",
+          "description": "The source the event is taken from. An event without a source is not recorded at all."
+        }
+      }
+    },
+
+    "eventSource": {
+      "type": "object",
+      "title": "Event source",
+      "description": "The single source an event is drawn from. Identifiers are given so a reader can check the event against the original; the presence of a source does not assert RNAwiki endorses its conclusions.",
+      "required": ["title"],
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "The source's title as published. Recorded verbatim so it can be searched for; not a summary of what it found."
+        },
+        "doi": {
+          "type": ["string", "null"],
+          "description": "Digital Object Identifier, when the source has one."
+        },
+        "pmid": {
+          "type": ["string", "null"],
+          "description": "PubMed identifier, when the source is indexed there."
+        },
+        "clinicalTrialId": {
+          "type": ["string", "null"],
+          "description": "Trial registry identifier such as an NCT number. It identifies the registered trial and asserts nothing about whether the trial completed or what it found."
+        },
+        "regulatoryUrl": {
+          "type": ["string", "null"],
+          "format": "uri",
+          "description": "The source's own URL for this event, used when it has no DOI, PMID or trial registration number. It is a regulator's own record when the event is a regulatory action, and the publisher's own page otherwise, including trade press. It asserts nothing about who the publisher is."
+        }
+      }
+    },
+
+    "evidenceChange": {
+      "type": "object",
+      "title": "Evidence change",
+      "description": "One entry in the public history of a claim's record. It states what changed about the record and why. It is a change log for the record, not a new scientific finding by RNAwiki.",
+      "required": [
+        "changeType",
+        "previousBoundary",
+        "newBoundary",
+        "explanation",
+        "source",
+        "publicationDate"
+      ],
+      "properties": {
+        "changeType": {
+          "type": "string",
+          "enum": [
+            "new_controlled_trial",
+            "regulatory_decision",
+            "safety_warning",
+            "retraction_or_correction",
+            "independent_study",
+            "boundary_moved"
+          ],
+          "description": "What kind of change this was. It classifies the change to the record; it does not rank changes by importance, and 'safety_warning' records that a warning was issued rather than asserting a risk level for any individual."
+        },
+        "previousBoundary": {
+          "type": ["string", "null"],
+          "enum": [
+            "biological_rationale_only",
+            "isolated_cell_evidence",
+            "animal_evidence",
+            "observational_human_evidence",
+            "uncontrolled_human_intervention",
+            "controlled_human_evidence",
+            "independently_supported_controlled_human_evidence",
+            "regulatory_evidence",
+            null
+          ],
+          "description": "The evidence position before this change. Null asserts that the change did not move the position, not that the claim had no position beforehand."
+        },
+        "newBoundary": {
+          "type": ["string", "null"],
+          "enum": [
+            "biological_rationale_only",
+            "isolated_cell_evidence",
+            "animal_evidence",
+            "observational_human_evidence",
+            "uncontrolled_human_intervention",
+            "controlled_human_evidence",
+            "independently_supported_controlled_human_evidence",
+            "regulatory_evidence",
+            null
+          ],
+          "description": "The evidence position after this change. A move to a later stage asserts that more testing was done, never that the treatment became more advisable; a move to an earlier stage asserts that evidence was withdrawn or downgraded, such as after a retraction."
+        },
+        "explanation": {
+          "type": "string",
+          "description": "Why the record changed, in plain language. It describes the change to the record and the evidence behind it; it is not a recommendation and does not tell a reader to act differently."
+        },
+        "source": {
+          "type": "string",
+          "description": "URL or citation for the evidence that caused the change, so the change can be checked against the original."
+        },
+        "publicationDate": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When RNAwiki published this change. It is not the date the underlying study, decision or retraction happened."
+        }
+      }
+    }
+  }
+}

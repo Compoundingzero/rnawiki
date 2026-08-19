@@ -113,3 +113,40 @@ export function comprehensionRate({ totalResponses, correctResponses }: Comprehe
   if (totalResponses === 0) return 0
   return correctResponses / totalResponses
 }
+
+/**
+ * Evidence change types — the public "how this answer changed" history (`evidence_changes`).
+ *
+ * Same hand-sync rule as `PROOF_BOUNDARY_STAGES`: these values mirror `evidenceChangeTypeEnum` in
+ * db/schema.ts and nothing enforces that they stay in step.
+ */
+export const EVIDENCE_CHANGE_TYPES = [
+  'new_controlled_trial',
+  'regulatory_decision',
+  'safety_warning',
+  'retraction_or_correction',
+  'independent_study',
+  'boundary_moved',
+] as const
+
+export type EvidenceChangeType = (typeof EVIDENCE_CHANGE_TYPES)[number]
+
+/**
+ * Public sentence for one change entry. The stored enum value is never printed.
+ *
+ * Each sentence says what happened and nothing about whether the claim got stronger. A change
+ * entry records that the evidence moved; the direction it moved is carried by the recorded
+ * previous and new evidence positions, not by this wording.
+ */
+export const EVIDENCE_CHANGE_TYPE_PUBLIC: Record<EvidenceChangeType, string> = {
+  new_controlled_trial:
+    'A controlled trial, meaning one with a comparison group, published a result bearing on this answer.',
+  regulatory_decision: 'A regulator made a decision about this treatment for a defined use.',
+  safety_warning: 'A safety warning about this treatment was issued or updated.',
+  retraction_or_correction:
+    'A source behind this answer was retracted or corrected by the journal that published it.',
+  independent_study:
+    'A group unconnected to the original researchers published a result on the same question.',
+  boundary_moved:
+    'The recorded evidence position changed, because the strongest directly relevant evidence changed.',
+}

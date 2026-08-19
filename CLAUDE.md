@@ -52,9 +52,14 @@ inferred, where that sits on the 8-stage Proof Boundary (`biological_rationale_o
 ## Stack — exact versions (package.json)
 
 Next.js 15.4.0 (App Router) · React 19.1.0 · TypeScript 5.7.3 (strict) · Drizzle ORM 0.44.2 on `pg`
-8.11.5 · Zod 3.24.1 · iron-session 8.0.4 · bcryptjs 2.4.3 · isomorphic-dompurify 2.16.0 · satori
-0.12.0 + @resvg/resvg-js 2.6.2 (OG images). Tests: Vitest 2.1.8, Playwright 1.49.1. Path alias
-`@/*` → repo root.
+8.11.5 · Zod 3.24.1 · iron-session 8.0.4 · bcryptjs 2.4.3 · satori 0.12.0 + @resvg/resvg-js 2.6.2
+(OG images). Tests: Vitest 2.1.8, Playwright 1.49.1. Path alias `@/*` → repo root.
+
+`isomorphic-dompurify` was removed: it was declared but imported nowhere, which advertised an HTML
+sanitisation step the codebase does not perform. The one place raw HTML is injected is the record
+page's JSON-LD block, and it is handled by escaping in `lib/json-ld.ts`, not by sanitising. If HTML
+sanitisation is ever genuinely needed, add the dependency back at the same commit as its first
+import.
 
 ## Where content lives
 
@@ -84,9 +89,12 @@ npm run gate                # typecheck && lint && check:prose && test:unit && t
 ```
 
 Run `gate` before pushing, and don't weaken it to make a change pass — a fix without a gate is a fix
-that gets rediscovered. `db/index.ts` disables TLS only for `localhost` / `127.0.0.1` /
-`*.railway.internal`; anything else gets `ssl: { rejectUnauthorized: false }`. `SESSION_SECRET` must
-be ≥32 characters or `lib/auth.ts` throws on the first request touching a session.
+that gets rediscovered. `db/ssl.ts` parses the connection string's hostname and disables TLS only
+for `localhost` / `127.0.0.1` / `::1` / `*.railway.internal`; every other host gets TLS with the
+certificate **verified**, so a remote database needs `PGSSLROOTCERT`. `DATABASE_SSL_NO_VERIFY=true`
+restores the old unverified behaviour and warns on every start — it is opt-in on purpose.
+`SESSION_SECRET` must be ≥32 characters or `lib/auth.ts` throws on the first request touching a
+session.
 
 ## Deploys
 
