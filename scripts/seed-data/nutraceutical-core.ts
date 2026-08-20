@@ -11019,5 +11019,4 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
-  // MARKER_APPEND_POINT
 ]
