@@ -473,7 +473,7 @@ export function RnaWikiEditorModal({
           setSweepError(
             error instanceof Error
               ? error.message
-              : 'The structure check could not be run. Try again in a moment.',
+              : 'The automatic check could not be run. Try again in a moment.',
           )
           setIsSweeping(false)
         })

@@ -212,10 +212,24 @@ export const TIER_DESCRIPTION: Record<TrustTier, string> = {
     'Edits still wait for a reviewer.',
   trusted:
     `${TRUST_TIER_THRESHOLDS.trusted} of your edits have been accepted. ` +
-    'Edits that pass the structure check now appear straight away.',
+    'Edits that pass the automatic check now appear straight away.',
   steward:
     `${TRUST_TIER_THRESHOLDS.steward} of your edits have been accepted. ` +
     'Edits appear straight away and are listed in the public history for anyone to check.',
+}
+
+/**
+ * The same four levels described to someone who does not have any of them yet.
+ *
+ * TIER_DESCRIPTION is written to the person who holds the tier, which is right in the account panel
+ * and wrong in a table explaining all four to a reader with no edits at all — there it says
+ * "3 of your edits have been accepted" to someone who has made none.
+ */
+export const TIER_SUMMARY: Record<TrustTier, string> = {
+  new: 'Everyone starts here. A person reads your edit before it goes on the site.',
+  contributor: 'You have had a few edits accepted. A person still reads each one.',
+  trusted: 'Your edits go up as soon as the automatic check passes. No waiting.',
+  steward: "Same as above, and you can approve other people's edits.",
 }
 
 /** The tier above `tier`, or null at the top. */

@@ -83,7 +83,7 @@ const STATUS_LABEL: Record<RevisionStatus, string> = {
   published: 'Published',
   pending_review: 'Waiting for review',
   rejected: 'Declined by a reviewer',
-  machine_rejected: 'Rejected by the structure check',
+  machine_rejected: 'Rejected by the automatic check',
 }
 
 const STATUS_STYLE: Record<RevisionStatus, string> = {
@@ -230,7 +230,7 @@ export async function generateMetadata({ params }: HistoryPageProps): Promise<Me
 
   return {
     title: `Revision history — ${drug.name}`,
-    description: `Every edit ever proposed to the ${drug.name} dossier on RNAwiki: who wrote it, which fields moved, and what the deterministic structure check said.`,
+    description: `Every edit ever proposed to the ${drug.name} dossier on RNAwiki: who wrote it, which fields moved, and what the automatic check said.`,
     alternates: { canonical: `/d/${drug.slug}/history` },
   }
 }

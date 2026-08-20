@@ -19,14 +19,14 @@ import type { ReactNode } from 'react'
 import { CheckCircle2, Eye, PenLine, Ruler, ShieldCheck, Shuffle, Users } from 'lucide-react'
 import { AppShell } from '@/components/AppShell'
 import { getCurrentUser } from '@/lib/session'
-import { CANONICAL_PHASE_ORDER, ENGINE_VERSION } from '@/lib/rna-intelligence'
+import { CANONICAL_PHASE_ORDER } from '@/lib/rna-intelligence'
 import {
   CODING_FRAME_MIN_LENGTH,
   MIN_NUCLEOTIDE_LENGTH,
   MIN_PEPTIDE_LENGTH,
 } from '@/lib/rna-intelligence/layer1-sequence'
 import { MAX_FOLD_LENGTH } from '@/lib/rna-intelligence/layer2-structure'
-import { TIER_DESCRIPTION, TIER_LABEL } from '@/lib/trust'
+import { TIER_LABEL, TIER_SUMMARY } from '@/lib/trust'
 import { AUTO_PUBLISH_TIERS, TRUST_TIERS, TRUST_TIER_THRESHOLDS } from '@/lib/types'
 
 // Reads the signed-in user, so it touches the database and has no dynamic segment in its path.
@@ -160,23 +160,66 @@ export default async function HowItWorksPage() {
             How this works
           </span>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-[#1D1D1F] tracking-tight leading-tight">
-            Anyone can edit this. <br />
-            Here is <span className="text-[#0071E3]">what stops it being nonsense</span>.
+            Who writes this, <br />
+            and <span className="text-[#0071E3]">why should you believe it</span>?
           </h1>
           <p className="text-sm text-[#6E6E73] leading-relaxed">
-            Every page here can be changed by anyone with an account, including you. Nothing goes
-            live just because someone wrote it. Two things check an edit first — a program, then a
-            person — and this page explains both without assuming you have a science degree.
+            Anyone with an account can change a page here, including you. Nothing goes up just
+            because somebody typed it. Every change is checked twice before you see it: first by a
+            program, then by a person. This page explains both, and assumes you know no science at
+            all.
           </p>
         </header>
+
+        <Section eyebrow="First" title="Seven words, so the rest makes sense">
+          <Card>
+            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
+              The rest of this page uses these and nothing else. Read them once and you are set.
+            </p>
+            <dl className="space-y-3 text-xs sm:text-sm">
+              {[
+                ['Atom', 'The smallest piece matter comes in. Far too small to see.'],
+                [
+                  'Molecule',
+                  'Atoms joined together. Water is a molecule. So is sugar. So is every drug on this site.',
+                ],
+                [
+                  'Cell',
+                  'Your body is built from tiny closed-off units called cells. You have trillions of them.',
+                ],
+                [
+                  'DNA',
+                  'Inside every cell is a full set of instructions for building you. Think of a reference book that never leaves the library.',
+                ],
+                [
+                  'RNA',
+                  'A working copy of one page of that book, carried out of the library to be used. The site is named after it.',
+                ],
+                [
+                  'Protein',
+                  'What gets built from those copies. Proteins do the actual jobs in your body — digesting food, carrying oxygen, fighting infection.',
+                ],
+                [
+                  'Study',
+                  'When a drug is given to real people under careful conditions to find out what it does. Sometimes called a trial. Nothing to do with courts.',
+                ],
+              ].map(([term, meaning]) => (
+                <div key={term} className="flex flex-col sm:flex-row sm:gap-3">
+                  <dt className="font-bold text-[#1D1D1F] sm:w-24 shrink-0">{term}</dt>
+                  <dd className="text-[#424245] leading-relaxed">{meaning}</dd>
+                </div>
+              ))}
+            </dl>
+          </Card>
+        </Section>
 
         <Section eyebrow="The short version" title="Four things happen to an edit">
           <Card>
             <ol className="space-y-3 text-xs sm:text-sm text-[#424245] leading-relaxed">
               <li>
-                <strong className="text-[#1D1D1F]">A program checks the chemistry.</strong> Straight
-                away, while you are still typing. If you have described a molecule that could not
-                exist, you are told which character is wrong and the save button stays off.
+                <strong className="text-[#1D1D1F]">A program checks the drug itself.</strong>{' '}
+                Straight away, while you are still typing. If you have described a molecule that
+                could not be real, it tells you which letter is wrong and the save button stays off.
               </li>
               <li>
                 <strong className="text-[#1D1D1F]">A person checks the meaning.</strong> No program
@@ -188,7 +231,7 @@ export default async function HowItWorksPage() {
               </li>
               <li>
                 <strong className="text-[#1D1D1F]">You earn the right to skip the queue.</strong>{' '}
-                After {autoPublishAt} accepted edits your changes publish immediately.
+                After {autoPublishAt} accepted edits, your changes go up straight away.
               </li>
             </ol>
           </Card>
@@ -198,12 +241,19 @@ export default async function HowItWorksPage() {
           <div className="space-y-4">
             <Step number={1} icon={<PenLine className="w-4 h-4" />} title="You write it">
               <p>
-                Open any medicine and press <em>Edit Wiki Dossier &amp; Scientific Records</em>. A
-                dossier is just this site&rsquo;s word for one medicine&rsquo;s page. You get a form
-                with that page split into five parts: the plain-English summary, the alternatives,
-                the chemical structure, the pricing, and the laboratory steps. Change whatever you
-                know something about and leave the rest alone.
+                Open any medicine and press the edit button. (It is labelled{' '}
+                <em>Edit Wiki Dossier &amp; Scientific Records</em>. A dossier is just this
+                site&rsquo;s word for a medicine&rsquo;s page.)
               </p>
+              <p>The form splits that page into five parts:</p>
+              <ul className="space-y-1 pl-4 list-disc marker:text-[#86868B]">
+                <li>the plain-English summary of what the drug does</li>
+                <li>other medicines and foods that do a similar job</li>
+                <li>how the drug is built — which atoms it is made of, and how they are joined</li>
+                <li>what it costs to make, and what it sells for</li>
+                <li>the laboratory steps for making or testing it</li>
+              </ul>
+              <p>Change whatever you know something about and leave the rest alone.</p>
               <p>
                 You have to write one line saying what you changed. It is the first thing a reviewer
                 reads, and an edit that does not explain itself is an edit nobody can check.
@@ -216,9 +266,15 @@ export default async function HowItWorksPage() {
               title="The program checks it, as you type"
             >
               <p>
-                It looks for things that are impossible rather than things it disagrees with. The
-                next section explains exactly what it reads. It runs while you are still typing, so
-                you see a problem before you submit rather than after.
+                It looks for things that are impossible, not things it disagrees with. It runs while
+                you are still typing, so you see a problem before you send the edit rather than
+                after. The next section explains exactly what it reads.
+              </p>
+              <p>
+                Some of what it finds stops the edit dead — a letter that cannot exist, a recipe
+                that loops back on itself. The rest is a warning: something worth a second look that
+                does not make the edit wrong. Warnings do not block anything. They are printed
+                beside the edit so the person reviewing it can see them too.
               </p>
               <p className="text-[#1D1D1F] font-medium">
                 Nothing that fails this check reaches a person. It cannot be approved by anyone, at
@@ -228,9 +284,11 @@ export default async function HowItWorksPage() {
 
             <Step number={3} icon={<Eye className="w-4 h-4" />} title="A person reads it">
               <p>
-                Passing the program means your edit is <em>possible</em>, not that it is true. A
-                perfectly valid molecule can sit underneath a sentence that gets a trial result
-                backwards. So an edit from someone new waits in the{' '}
+                Passing the program means your edit is <em>possible</em>, not that it is true. The
+                program can agree that a drug is written down correctly while the sentence beside it
+                still gets the science wrong — saying a drug helped people when the study it came
+                from found the opposite. Only a person catches that. So an edit from someone new
+                waits in the{' '}
                 <Link href="/review-queue" className="text-[#0071E3] hover:underline">
                   review queue
                 </Link>{' '}
@@ -267,26 +325,27 @@ export default async function HowItWorksPage() {
           </div>
         </Section>
 
-        <Section eyebrow="The program" title="First, what RNA actually is">
+        <Section eyebrow="The program" title="Why a drug site is named after RNA">
           <Card>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              Your body keeps its building instructions in DNA — a master copy locked inside every
-              cell, like a reference book that never leaves the library. RNA is the working copy. It
-              is the page that gets photocopied out of that book and carried to the part of the cell
-              that actually builds things.
+              Your DNA is the reference book. RNA is the photocopy someone takes out to the workshop
+              and works from. The copy is what actually gets used to build a protein.
             </p>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              That matters here because it is where almost every medicine ends up having its effect.
-              A few newer drugs are made of RNA and work on those copies directly. Most drugs do
-              something else entirely — they block a protein, or occupy a docking point on a cell —
-              but the thing they are blocking was built from one of those copies, and the effect
-              usually changes which copies the cell makes next. Whatever the route, it runs through
-              the same instruction system.
+              That is where medicines end up. A few newer drugs are themselves made of RNA and work
+              on those copies directly. Most drugs do something else: they get in the way of a
+              protein, or plug into a socket on the outside of a cell, like a key in a lock. But the
+              protein they are blocking was built from one of those copies in the first place. And
+              blocking it usually changes which copies the cell makes next.
             </p>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              A strand of RNA is written down as a string of four letters: A, U, C and G. That is
-              the entire alphabet. When a page here shows you a long line of those letters, that is
-              what it is — the drug, written out.
+              So RNA is either the target or one step away from it. That is the thread this site
+              follows.
+            </p>
+            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
+              RNA is written down using only four letters: A, U, C and G. That is the whole
+              alphabet. One length of it is called a strand. When a page here shows you a long line
+              of those four letters, that is the drug, written out.
             </p>
           </Card>
         </Section>
@@ -294,18 +353,15 @@ export default async function HowItWorksPage() {
         <Section eyebrow="The program" title="Three checks, in this order">
           <Card>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              The program is called <strong className="text-[#1D1D1F]">RNA Intelligence</strong>. It
-              is not artificial intelligence and there is no language model anywhere in it. It is
-              arithmetic and published chemistry, and that is deliberate: it means the same edit
-              always gets the same answer — today, in ten years, on anyone&rsquo;s computer. You can
-              re-run it yourself and get our result back. A finding you cannot recheck is not a
-              finding, it is an opinion with a badge on it.
+              The program is called <strong className="text-[#1D1D1F]">RNA Intelligence</strong>.
+              The name is misleading in one way worth clearing up: there is no AI in it. It does not
+              write anything and it does not have opinions. It does sums, using measurements that
+              scientists have published from laboratory experiments.
             </p>
-            <p className="text-[11px] text-[#86868B] leading-relaxed">
-              The measurements it uses are named in every report it produces:{' '}
-              <span className="font-mono">{ENGINE_VERSION}</span>. That name is part of what gets
-              checked, so a result produced under one set of measurements can never be mistaken for
-              one produced under another.
+            <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
+              That matters because it means the same edit always gets the same answer. Not usually.
+              Always — today, in ten years, on anybody&rsquo;s computer. Nobody can get a different
+              result by asking again or by asking nicely.
             </p>
           </Card>
 
@@ -314,41 +370,49 @@ export default async function HowItWorksPage() {
               index={1}
               icon={<Ruler className="w-4 h-4" />}
               title="Is this written down correctly?"
-              plain="It reads the drug as text and asks whether the text describes a real molecule at all — before asking anything about what the drug does."
+              plain="Before asking anything about what a drug does, the program asks whether what you typed describes a real molecule at all."
             >
               <p>
                 <strong className="text-[#1D1D1F]">The alphabet.</strong> For RNA, only A, U, C and
-                G exist. A stray letter is a typing error, and the program says which character and
-                where. There is one near-miss it handles rather than rejects: T belongs to DNA, not
-                RNA, and where someone has clearly typed the DNA version it converts it and tells
-                you it did, instead of silently accepting either.
+                G exist. Any other letter is a typing mistake, and you are told which one and where
+                it is.
+              </p>
+              <p>
+                There is one exception. The letter T belongs to DNA, where it does the same job U
+                does in RNA. People type it out of habit. Rather than reject the edit, the program
+                swaps every T it finds for a U and tells you how many it changed, so you can check
+                that is what you meant.
               </p>
               <p>
                 <strong className="text-[#1D1D1F]">Reading three at a time.</strong> Cells read
-                those letters in groups of three, and each group names one building block of a
-                protein. So for a strand meant to be read that way, the number of letters has to
-                divide by three. Start one letter off and everything after it is wrong — the way{' '}
-                <span className="font-mono">THE CAT ATE</span> becomes{' '}
-                <span className="font-mono">HEC ATA TE</span> if you start in the wrong place.
+                those letters in groups of three. Each group of three names one piece of the protein
+                being built. So the number of letters has to divide by three, or the last group is
+                incomplete.
               </p>
               <p>
-                <strong className="text-[#1D1D1F]">Start and stop.</strong> Particular triplets mean
-                &ldquo;begin building here&rdquo; and &ldquo;stop here&rdquo;. The program looks for
-                them, works out where the instruction actually runs from and to, and flags a stop
-                sign sitting in the middle of it — which would mean the protein is cut short.
+                Start one letter off and everything after it is wrong.{' '}
+                <span className="font-mono">THE CAT ATE</span> read from the second letter becomes{' '}
+                <span className="font-mono">HEC ATA TE</span>. Same letters, no meaning.
               </p>
               <p>
-                <strong className="text-[#1D1D1F]">Ordinary pill-shaped drugs</strong> are not
-                written as letters. Chemists write them as a single line of text describing which
-                atoms are joined to which — the same information a diagram carries, typed out. The
-                program reads that line, counts the atoms and works out the molecule&rsquo;s weight
-                and formula from them, rather than taking anyone&rsquo;s word for either.
+                <strong className="text-[#1D1D1F]">Start and stop.</strong> Some groups of three
+                mean &ldquo;begin building here&rdquo; and some mean &ldquo;stop here&rdquo;. The
+                program finds them and works out where the instruction actually runs from and to. It
+                also warns you about a stop sign sitting in the middle, which would mean the cell
+                builds half a protein and abandons it.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">Ordinary pills</strong> are not written in
+                letters. A chemist can write a whole drug as one line of text saying which atoms are
+                joined to which — the same thing a diagram of the drug would show, typed out instead
+                of drawn. The program reads that line and counts the atoms itself. It works out what
+                the drug is made of rather than taking anyone&rsquo;s word for it.
               </p>
               <p className="text-[11px] text-[#86868B]">
-                Length floors, so a fragment is not mistaken for a molecule: at least{' '}
-                {MIN_NUCLEOTIDE_LENGTH} letters for RNA, at least {MIN_PEPTIDE_LENGTH} building
-                blocks for a protein-type drug, and at least {CODING_FRAME_MIN_LENGTH} letters
-                before it bothers checking the divide-by-three rule.
+                It also refuses anything too short to be a real drug: under {MIN_NUCLEOTIDE_LENGTH}{' '}
+                letters of RNA, or under {MIN_PEPTIDE_LENGTH} protein pieces. It only bothers with
+                the divide-by-three rule past {CODING_FRAME_MIN_LENGTH} letters, because below that
+                a strand is usually not an instruction for building anything.
               </p>
             </Check>
 
@@ -356,39 +420,54 @@ export default async function HowItWorksPage() {
               index={2}
               icon={<Shuffle className="w-4 h-4" />}
               title="Would it hold that shape?"
-              plain="A molecule is not a flat line. It folds, and the shape it settles into decides what it can do. This check works out that shape."
+              plain="A drug is not a flat line. It folds up, and the shape it settles into decides what it can do."
             >
               <p>
-                A long strand of RNA does not lie straight. Parts of it stick to other parts and it
-                folds back on itself, like a long strip of Velcro dropped on a table. Which parts
-                stick is not random: A sticks to U, and C sticks to G. So from the letters alone you
-                can work out the folds that are possible.
+                A long strand of RNA does not lie straight. Parts of it stick to other parts, and it
+                folds back on itself — like a long strip of Velcro dropped on a table.
               </p>
               <p>
-                Many folds are possible; the strand settles into whichever one is most stable. The
-                program works out which one that is, using a published table of laboratory
-                measurements of how strongly each pairing holds. The answer comes back as a number —
-                the more negative, the more tightly it holds together — and as a little diagram of
-                which parts ended up stuck to which.
+                Which parts stick is not random. A sticks to U, and C sticks to G. There is also a
+                weaker third pairing, G with U, which the calculation allows for. So from the
+                letters alone you can work out every fold that is possible.
               </p>
               <p>
-                This is the same method and the same measurements used by the standard scientific
-                software for the job. It is not an approximation of that software&rsquo;s answer; it
-                is that calculation, run here.
+                Usually many are possible, and the strand settles into whichever holds together most
+                firmly. The program works out which one that is. It uses a table of laboratory
+                measurements, published by scientists, of how strongly each pairing holds.
               </p>
               <p>
-                <strong className="text-[#1D1D1F]">For pill-shaped drugs</strong> the question is
-                different, so the check is too. It works out a handful of physical properties —
-                weight, greasiness, how many places the molecule can grip water — and compares them
-                against a rule of thumb chemists use for whether something can survive being
-                swallowed and still reach the bloodstream. Failing it is not a verdict on the drug.
-                Plenty of real medicines fail it and are injected instead.
+                You get back a number and a small picture. The picture shows which parts ended up
+                stuck to which. The number is always below zero, and the further below, the more
+                firmly the strand holds its shape. A short strand might come back around &minus;10.
+                A tightly folded one, &minus;40 or lower.
+              </p>
+              <p>
+                This is the same method, using the same published measurements, that scientists use
+                in their own software for this job. It is not a guess at what that software would
+                say.
+              </p>
+              <p>
+                It will not always agree with it to the last decimal place. This uses a smaller part
+                of the published measurements than the full research software does, so on some
+                shapes the two differ slightly. On the commonest shape of all, they agree exactly.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">For ordinary pills</strong> the question is
+                different, so the check is too. It works out a few simple things about the drug: how
+                heavy it is, how greasy or watery it is, and how readily it dissolves. The weight is
+                counted exactly from the atoms. The greasiness is an estimate — a well-known way of
+                approximating it, not a measurement, and the page marks it as one. Chemists have a
+                rough rule about which combinations survive the stomach and still reach the blood.
+                The program checks the drug against that rule. Failing it is not a mark against the
+                drug — plenty of real medicines fail it, which is why they are injected instead of
+                swallowed.
               </p>
               <p className="text-[11px] text-[#86868B]">
-                The folding calculation gets slower very fast as a strand gets longer, so it stops
-                at {MAX_FOLD_LENGTH.toLocaleString()} letters. Past that the record simply carries
-                no folding result, and says so. That is not a failure — the vaccines built from long
-                RNA strands land here, and their sequences are perfectly valid.
+                Working out the folding gets slower very fast as a strand gets longer, so it stops
+                at {MAX_FOLD_LENGTH.toLocaleString()} letters. Past that, the page simply carries no
+                folding result and says so. That is not a failure. The COVID vaccines are built from
+                strands far longer than this, and their letters are perfectly correct.
               </p>
             </Check>
 
@@ -396,28 +475,44 @@ export default async function HowItWorksPage() {
               index={3}
               icon={<CheckCircle2 className="w-4 h-4" />}
               title="Could you actually follow the recipe?"
-              plain="Records can carry the laboratory steps for making or testing a substance. This checks the steps are in an order a person could physically work through."
+              plain="A page can carry the laboratory steps for making or testing a substance. This checks the steps are in an order a person could really work through."
             >
               <p>
-                Each step can say which earlier step it depends on. Two things go wrong with that,
-                and both are easy to write by accident and hard to spot by eye.
+                Each step can say which earlier step it needs finished first. If no step says so,
+                the program assumes they simply run in the order they are listed, which is what a
+                recipe usually means.
+              </p>
+              <p>Four things go wrong here, and all four are easy to type and hard to see:</p>
+              <p>
+                <strong className="text-[#1D1D1F]">A circle.</strong> Step four says it needs step
+                six finished first. Step six says it needs step four. Nobody could ever start. The
+                program works through the list and reports every step it could not reach — which
+                includes the steps in the circle, and any step waiting behind them.
               </p>
               <p>
-                <strong className="text-[#1D1D1F]">A circle.</strong> Step four waits for step six,
-                and step six waits for step four. Nobody could ever start. The program traces every
-                dependency through the whole list and reports exactly which steps form the loop.
+                <strong className="text-[#1D1D1F]">Two steps with the same name.</strong> If a step
+                points at &ldquo;step three&rdquo; and there are two of them, nobody can tell which
+                is meant. The program stops there.
+              </p>
+              <p>
+                <strong className="text-[#1D1D1F]">Pointing at a step that is not there.</strong> A
+                step waiting for one that was deleted, or never written.
               </p>
               <p>
                 <strong className="text-[#1D1D1F]">Going backwards.</strong> Laboratory work has a
-                natural order — {phaseCount} stages, from checking what you started with, through
-                making it, cleaning it up, attaching anything that needs attaching, getting it into
-                cells, and finally measuring what happened. A step that cleans something up before
-                it has been made is out of order, and so is a cell experiment that waits on the
-                measurement of its own result. Both are flagged with the two steps named.
+                natural order, {phaseCount} stages long. You check what you started with. You make
+                the thing. You clean it up. You attach anything that has to be attached to it. You
+                get it into cells. You measure what happened.
               </p>
               <p>
-                A record with no laboratory steps at all passes. Most medicines here have none
-                written yet, and that is missing information rather than an error.
+                A step that cleans something up before it has been made is out of order. So is a
+                step that says &ldquo;grow the cells&rdquo; but claims it has to wait for the
+                measurement taken at the end. The program flags both and names the two steps
+                involved.
+              </p>
+              <p>
+                A page with no laboratory steps passes. Most medicines here have none written yet.
+                That is information nobody has added, not a mistake.
               </p>
             </Check>
           </div>
@@ -426,9 +521,9 @@ export default async function HowItWorksPage() {
         <Section eyebrow="Earning trust" title="Why some people skip the queue">
           <Card>
             <p className="text-xs sm:text-sm text-[#424245] leading-relaxed">
-              Reviewing takes someone&rsquo;s time, and making an editor with a hundred good edits
-              wait behind a stranger wastes it. So the queue is not permanent. Accepted edits count,
-              and past a threshold your changes publish the moment they pass the program.
+              Reviewing takes someone&rsquo;s time. Making an editor with a hundred good edits queue
+              behind a stranger wastes it. So the queue is not permanent. Once {autoPublishAt} of
+              your edits have been accepted, your changes go up the moment they pass the program.
             </p>
 
             <div className="space-y-2 pt-1">
@@ -442,7 +537,7 @@ export default async function HowItWorksPage() {
                     <div className="min-w-0 space-y-0.5">
                       <span className="font-bold text-[#1D1D1F] block">{TIER_LABEL[tier]}</span>
                       <span className="text-[#6E6E73] leading-relaxed block">
-                        {TIER_DESCRIPTION[tier]}
+                        {TIER_SUMMARY[tier]}
                       </span>
                     </div>
                     <span className="shrink-0 text-right space-y-0.5">
@@ -465,8 +560,8 @@ export default async function HowItWorksPage() {
             </div>
 
             <p className="text-[11px] text-[#86868B] leading-relaxed">
-              The program checks every edit at every level. Nobody can publish a broken structure,
-              however many good edits they have made.
+              The program checks every edit at every level. Nobody can put up a drug that is written
+              down wrongly, however many good edits they have made.
             </p>
           </Card>
         </Section>
@@ -480,11 +575,25 @@ export default async function HowItWorksPage() {
                   Machine-Verified Structure
                 </span>
                 <p>
-                  The chemical structure on this page went through all three checks and came back
-                  consistent. The short code beside it is worked out from exactly what was checked —
-                  run the check again and the same code should come back, and if it does not,
-                  something changed. It says nothing about whether the medicine works, whether the
-                  price is right, or whether the writing is accurate.
+                  This means the drug on the page passed all three checks above. It is written down
+                  correctly, it would hold together, and its recipe is in a workable order.
+                </p>
+                <p>
+                  Next to the badge is a short code. It is worked out from the drug as written and
+                  the steps of its recipe — not from the rest of the page. Run the check again on
+                  the same drug and the same code comes back. If someone quietly changes the drug
+                  afterwards, the code no longer matches, and anyone can see that.
+                </p>
+                <p className="text-[#1D1D1F] font-medium">
+                  It says nothing about whether the medicine works, whether the price is fair, or
+                  whether the writing on the page is right.
+                </p>
+                <p>
+                  It also means much less on some pages than on others, and this is worth knowing.
+                  Antibodies and other large biological drugs are far too big to write down the way
+                  a pill or a strand of RNA can be. There is no line of letters to check. On those
+                  pages the badge confirms only that a description is present. On a small molecule
+                  or an RNA drug, it means the full three checks ran.
                 </p>
               </div>
 
@@ -494,10 +603,13 @@ export default async function HowItWorksPage() {
                   MD &check;
                 </span>
                 <p>
-                  This sits beside a note when the person who wrote it submitted medical credentials
-                  and a human checked them. Filling in the form does not produce the badge. And if
-                  that approval is ever withdrawn, the badge disappears from every note that person
-                  ever wrote — not just the ones written afterwards.
+                  MD means medical doctor. You will see this next to a comment when the person who
+                  wrote it gave us proof they are a doctor and somebody here checked that proof.
+                  Filling in the form does not get you the badge on its own.
+                </p>
+                <p>
+                  If that approval is ever taken away, the badge disappears from every comment that
+                  person ever wrote — not only the ones written afterwards.
                 </p>
               </div>
 
@@ -536,9 +648,12 @@ export default async function HowItWorksPage() {
                 argued with instead of buried.
               </li>
               <li>
-                <strong className="text-[#1D1D1F]">A verified doctor can still be mistaken.</strong>{' '}
-                The badge says someone checked the credential, not the claim. Specialists disagree,
-                and a note with a badge on it is one clinician&rsquo;s view.
+                <strong className="text-[#1D1D1F]">
+                  A doctor with a badge can still be wrong.
+                </strong>{' '}
+                The badge says we checked that they are a doctor. It does not say we checked what
+                they wrote. Doctors disagree with each other all the time, and a comment with a
+                badge on it is still one person&rsquo;s view.
               </li>
               <li>
                 <strong className="text-[#1D1D1F]">Sources beat everything.</strong> The strongest
