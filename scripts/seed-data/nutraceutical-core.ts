@@ -1095,4 +1095,539 @@ export const NUTRACEUTICAL_CORE_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // Omega-3 EPA and DHA — REDUCE-IT against STRENGTH, and the possibility that a large part of the
+  // difference was what the placebo capsule contained.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'omega-3-epa-dha',
+    name: 'Omega-3 EPA and DHA',
+    tradeName:
+      'Sold as fish oil, cod liver oil, krill oil and algal oil. The prescription esters are separate approved drugs: Vascepa (icosapent ethyl) and Lovaza (omega-3-acid ethyl esters).',
+    sponsor:
+      'No single sponsor for the supplement. The two decisive outcome trials were funded by Amarin Pharma (REDUCE-IT) and AstraZeneca (STRENGTH).',
+    targetGene: 'PPARA',
+    targetProtein:
+      'Peroxisome proliferator-activated receptor alpha, through which EPA and DHA raise hepatic fatty acid oxidation and lower VLDL output. A second, separate action is substrate competition with arachidonic acid at cyclooxygenase and 5-lipoxygenase, shifting eicosanoid output toward the series-3 and series-5 products.',
+    modality: 'Nutraceutical / Botanical',
+    approvalStatus: 'Non-FDA / Dietary Supplement',
+    indication:
+      'Sold as a dietary supplement for heart, brain and joint health. The supplement has no approved indication. Icosapent ethyl and omega-3-acid ethyl esters are separately FDA-approved prescription drugs for severe hypertriglyceridaemia, and icosapent ethyl additionally for cardiovascular risk reduction — those approvals belong to the drugs, not to the fish oil aisle.',
+    patientFriendlyIndication: 'Taken for the heart; one prescription version has outcome data, the tub does not',
+    conditionContext: {
+      conditionExplainer:
+        'Triglycerides are the fat the liver packages into VLDL particles and sends into the blood. High triglycerides travel with small dense LDL, low HDL and inflammation, and that whole cluster tracks cardiovascular risk. EPA and DHA are long-chain omega-3 fatty acids that reduce hepatic triglyceride output and get built into cell membranes, changing the raw material available for making inflammatory signalling molecules.',
+      whyItMatters:
+        'This is one of the sharpest natural experiments in modern cardiology. Two trials of roughly 4 g/day of purified omega-3 in statin-treated patients with high triglycerides ran at almost the same time. One reported a 25% relative risk reduction. The other was stopped for futility with a hazard ratio of 0.99. The trials differed in the omega-3 preparation and in the placebo, and the argument about which difference mattered is still live.',
+      whoTakesThis:
+        'Enormous numbers of people buying it over the counter for general heart and brain health, plus patients prescribed icosapent ethyl specifically for residual risk on a statin with triglycerides above 135 mg/dL.',
+      clinicalGoals:
+        'The trials measured a composite of cardiovascular death, myocardial infarction, stroke, revascularisation and unstable angina; and separately serum triglycerides, LDL cholesterol, C-reactive protein and the erythrocyte omega-3 content.',
+    },
+    oneSentenceVerdict:
+      'The over-the-counter product has been tested for cardiovascular prevention at 1 g/day in more than 40,000 randomised participants and failed; the one strongly positive trial used a 4 g/day prescription EPA ester against a mineral oil comparator whose own inflammatory markers rose 20 to 49%, and its sister trial against corn oil found nothing.',
+    laymanHowItWorks:
+      'EPA and DHA are fats that get built into the membrane of every cell, partly displacing the omega-6 fat that the body normally uses as raw material for inflammatory signals. In the liver they reduce how much triglyceride is packaged and exported. Both effects are real and measurable in blood. Whether either translates into fewer heart attacks is the question the two big trials answered differently.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 48,
+    anatomicalSite:
+      'Hepatocyte endoplasmic reticulum (VLDL assembly), and the phospholipid bilayer of every cell membrane',
+    substitutes: {
+      summary:
+        'For cardiovascular prevention the comparison is unflattering: statins, ezetimibe and PCSK9 inhibitors all have unambiguous outcome data and over-the-counter fish oil does not. For raising the blood omega-3 content, oily fish does the same thing the capsule does, and it is what the observational literature that started all of this was actually measuring.',
+      conventionalRx: [
+        {
+          name: 'Icosapent ethyl (Vascepa)',
+          class: 'Purified EPA ethyl ester, prescription',
+          howItCompares:
+            'The same fatty acid at four times the supplement amount, in a form containing no DHA. It is the only omega-3 preparation with a positive cardiovascular outcome trial, and that trial\'s comparator was pharmaceutical grade mineral oil rather than an inert placebo. It is a different product from a fish oil capsule and its result should not be read onto one.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: a randomised 25% relative risk reduction in a prespecified composite. Cons: significantly more hospitalisation for atrial fibrillation or flutter (3.1% versus 2.1%, P = 0.004) and a comparator that is still argued about.',
+        },
+        {
+          name: 'Statins, ezetimibe, PCSK9 inhibitors',
+          class: 'LDL-lowering therapy',
+          howItCompares:
+            'Every patient in REDUCE-IT and STRENGTH was already on a statin, so omega-3 was being tested as an addition, not an alternative. LDL-lowering therapy has repeated, independent, placebo-controlled outcome trials; omega-3 has one positive trial with a contested comparator and several clearly null ones.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: the largest and most consistently replicated cardiovascular evidence base in medicine. Cons: muscle symptoms in a minority; no effect on triglycerides comparable to 4 g of EPA.',
+        },
+        {
+          name: 'Fibrates',
+          class: 'PPAR-alpha agonists',
+          howItCompares:
+            'Reach the same nuclear receptor as EPA and DHA and lower triglycerides more, which makes them the natural test of whether triglyceride lowering per se prevents events. Their outcome record on top of a statin has been largely negative, which is itself evidence against a purely triglyceride-mediated explanation for REDUCE-IT.',
+          typicalCost:
+            'Not priced here — no published cost-of-production figure is cited on this page',
+          prosAndCons:
+            'Pros: large triglyceride reductions. Cons: myopathy risk with statins, raised creatinine, and no convincing add-on outcome benefit.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Oily fish — salmon, mackerel, sardines, herring, anchovies',
+          activeCompound: 'EPA (20:5 n-3) and DHA (22:6 n-3) as triacylglycerols and phospholipids',
+          biologicalMechanism:
+            'The same two fatty acids in the matrix the epidemiology was built on. Fish also displaces other foods from the plate, which is a confound no capsule trial can reproduce and a plausible reason the observational signal is larger than the randomised one.',
+          evidenceStrength: 'Moderate Evidence',
+          dailyUsage:
+            'Not stated here as advice. For scale, the GISSI-Prevenzione trial used 1 g/day of n-3 ethyl esters, and VITAL and ASCEND both used 1 g/day capsules.',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Algal oil',
+          activeCompound: 'DHA, with some EPA, from Schizochytrium or Crypthecodinium cultures',
+          biologicalMechanism:
+            'The original source of the marine omega-3s — fish accumulate them from algae rather than synthesising them. Algal oil raises the erythrocyte omega-3 content by the same route without the marine food chain, and therefore without the oxidation and contaminant profile of a fish-derived oil.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+        {
+          name: 'Alpha-linolenic acid from flaxseed, chia and walnuts',
+          activeCompound: 'ALA (18:3 n-3)',
+          biologicalMechanism:
+            'The plant omega-3 is not a substitute for the marine ones in any practical sense. Conversion of ALA to EPA is limited and conversion onward to DHA is very low in adults, so ALA intake barely moves the erythrocyte EPA and DHA content that all of the cardiovascular literature is indexed to.',
+          evidenceStrength: 'Supportive',
+          dailyUsage: 'Not stated here — this page gives no intake guidance',
+          monthlyCost: 'Not priced here — no published cost figure to cite',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Ask what the control capsule contained',
+          action:
+            'For any omega-3 outcome trial, look up the comparator before reading the hazard ratio. REDUCE-IT used mineral oil, STRENGTH used corn oil, ASCEND used olive oil.',
+          patientImpact:
+            'In the REDUCE-IT biomarker substudy the mineral oil arm\'s interleukin-1 beta rose 28.9%, C-reactive protein 21.9% and LDL cholesterol 10.9% from baseline over 12 months, while the EPA arm barely moved. A treatment effect measured against a comparator that is itself drifting is partly a comparator effect.',
+          clinicalPrecaution:
+            'Omega-3 supplementation raises the risk of atrial fibrillation in pooled randomised data, hazard ratio 1.25 overall and 1.49 in trials above 1 g/day. Anyone with a history of atrial fibrillation should treat this as a real signal rather than a footnote.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'CC/C=C\\C/C=C\\C/C=C\\C/C=C\\C/C=C\\CCCC(=O)O',
+      chemicalFormula: 'C20H30O2',
+      molecularWeight:
+        '302.5 g/mol. This is EPA, one of the two marker fatty acids — the product is a mixture, and DHA (C22H32O2, 328.5 g/mol, PubChem CID 445580) is the other. No single structure describes fish oil.',
+      structureSource: {
+        label:
+          'PubChem CID 446284 — Eicosapentaenoic acid, canonical SMILES and computed properties (DHA is CID 445580)',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/446284',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'om3-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Oxidation state and contaminant screen on the incoming oil',
+          description:
+            'Polyunsaturated oils oxidise, and an oxidised omega-3 capsule delivers aldehydes rather than intact fatty acids. Measure peroxide value and para-anisidine value and compute the TOTOX index before anything else, alongside the marine contaminants the oil concentrates from the food chain.',
+          reagentsAndBuffer:
+            'Potassium iodide and sodium thiosulfate for peroxide value; para-anisidine in glacial acetic acid; ICP-MS for mercury, cadmium, lead and arsenic; GC-MS/MS for polychlorinated biphenyls and dioxins',
+        },
+        {
+          id: 'om3-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Transesterification to fatty acid methyl esters',
+          description:
+            'Fatty acids in an oil or a membrane are bound in glycerolipids and are not volatile. Convert the whole lipid pool to methyl esters under conditions mild enough not to isomerise the cis double bonds, since a trans artefact created in the vial is indistinguishable from one that was in the sample.',
+          dependsOnStepId: 'om3-w1',
+          reagentsAndBuffer:
+            'Boron trifluoride in methanol, or 14% methanolic HCl at 100 degrees C under nitrogen; butylated hydroxytoluene as antioxidant; heptadecanoic acid (C17:0) internal standard',
+        },
+        {
+          id: 'om3-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Silver-ion solid phase extraction to resolve the polyunsaturates',
+          description:
+            'Separate methyl esters by degree of unsaturation before chromatography. Silver ions form reversible complexes with cis double bonds, so a silver-ion cartridge cleanly resolves the five-double-bond EPA ester from the six-double-bond DHA ester and from the monounsaturated bulk of the sample.',
+          dependsOnStepId: 'om3-w2',
+          reagentsAndBuffer:
+            'Silver-ion SPE cartridges; hexane, hexane/acetone and acetonitrile elution series; EPA and DHA methyl ester reference standards',
+        },
+        {
+          id: 'om3-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Erythrocyte membrane incorporation over the red cell lifespan',
+          description:
+            'Measure incorporation where it is stable rather than where it is transient. Plasma fatty acids reflect the last meal; the erythrocyte membrane integrates intake over the roughly 120-day red cell lifespan and is what the Omega-3 Index is defined on, so sample at baseline and at three to four months.',
+          dependsOnStepId: 'om3-w3',
+          reagentsAndBuffer:
+            'EDTA whole blood; washed packed erythrocytes; direct transesterification of the washed cell pellet; matched plasma phospholipid fraction as a short-term comparator',
+        },
+        {
+          id: 'om3-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'GC-FID fatty acid profile and Omega-3 Index calculation',
+          description:
+            'Quantify the complete erythrocyte fatty acid profile by gas chromatography with flame ionisation detection and express EPA plus DHA as a percentage of total identified fatty acids. That percentage is the Omega-3 Index, and it is the only variable that makes a supplement trial and a fish-intake cohort directly comparable.',
+          dependsOnStepId: 'om3-w4',
+          reagentsAndBuffer:
+            'Capillary GC column with a highly polar cyanopropyl stationary phase; flame ionisation detector; GLC reference standard mixture for retention time assignment; arachidonic acid quantified alongside to give the AA to EPA ratio',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'om3-a1',
+        category: 'measured',
+        title: 'REDUCE-IT: a 25% relative risk reduction, in 8,179 statin-treated patients',
+        laymanSummary:
+          'Four grams a day of a purified prescription form of EPA cut a combined measure of heart attacks, strokes and related events by about a quarter over five years.',
+        technicalDetails:
+          'A multicentre randomised double-blind placebo-controlled trial in 8,179 statin-treated patients with established cardiovascular disease or diabetes plus risk factors, fasting triglycerides of 135 to 499 mg/dL and LDL-C of 41 to 100 mg/dL, randomised to 2 g of icosapent ethyl twice daily or placebo and followed a median 4.9 years. The primary composite of cardiovascular death, nonfatal myocardial infarction, nonfatal stroke, coronary revascularisation or unstable angina occurred in 17.2% against 22.0%: hazard ratio 0.75 (95% CI 0.68 to 0.83), P < 0.001. The key secondary composite was 11.2% against 14.8%, hazard ratio 0.74 (0.65 to 0.83). Cardiovascular death was 4.3% against 5.2%, hazard ratio 0.80 (0.66 to 0.98), P = 0.03. Hospitalisation for atrial fibrillation or flutter was higher on icosapent ethyl, 3.1% against 2.1%, P = 0.004, and serious bleeding 2.7% against 2.1%, P = 0.06. The trial was funded by Amarin Pharma.',
+        evidenceSource: 'Bhatt DL et al. N Engl J Med 2019;380:11-22',
+        doi: '10.1056/NEJMoa1812792',
+        measuredMetric:
+          'Five-point composite of cardiovascular death, MI, stroke, revascularisation and unstable angina over a median 4.9 years',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'om3-a2',
+        category: 'failed',
+        title: 'STRENGTH: the same amount of omega-3, against corn oil, stopped for futility',
+        laymanSummary:
+          'A trial of the same size and design, testing 4 g a day of an EPA and DHA preparation against corn oil in 13,078 patients, was halted early because it was going nowhere.',
+        technicalDetails:
+          'A double-blind randomised trial at 675 sites in 22 countries comparing 4 g/day of a carboxylic acid formulation of EPA and DHA with corn oil in 13,078 statin-treated patients with high cardiovascular risk, hypertriglyceridaemia and low HDL-C. It was halted at 1,384 primary events of a planned 1,600 on an interim analysis indicating a low probability of benefit. The primary composite occurred in 785 patients (12.0%) on omega-3 against 795 (12.2%) on corn oil: hazard ratio 0.99 (95% CI 0.90 to 1.09), P = .84. Gastrointestinal adverse events were markedly more common on omega-3, 24.7% against 14.7%. The population, the background therapy, the amount of omega-3 and the endpoint were all close matches to REDUCE-IT. The preparation and the comparator were not.',
+        evidenceSource: 'Nicholls SJ et al. JAMA 2020;324:2268-2280',
+        doi: '10.1001/jama.2020.22258',
+        measuredMetric:
+          'Composite of cardiovascular death, nonfatal MI, nonfatal stroke, coronary revascularisation or hospitalised unstable angina',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'om3-a3',
+        category: 'conclusion_shift',
+        title: 'The comparator became the story: mineral oil raised inflammatory markers 20 to 49%',
+        laymanSummary:
+          'The REDUCE-IT placebo was mineral oil. Blood markers of inflammation rose substantially in the placebo group and barely moved in the treated group, so part of the measured difference is the placebo getting worse rather than the drug making people better.',
+        technicalDetails:
+          'A REDUCE-IT biomarker substudy measured interleukin-1 beta, interleukin-6, hsCRP, oxidised LDL, homocysteine, lipoprotein(a) and Lp-PLA2 at baseline, 12 and 24 months. Baseline medians were similar between arms. At 12 months the mineral oil arm rose by 1.5% for homocysteine, 2.2% for lipoprotein(a), 10.9% for oxidised LDL, 16.2% for interleukin-6, 18.5% for Lp-PLA2, 21.9% for hsCRP and 28.9% for interleukin-1 beta, all P < 0.001, with similar changes at 24 months. The icosapent ethyl arm showed minimal change. End-of-study between-group differences were therefore largely increases in the comparator: 38.5% for hsCRP and 48.7% for interleukin-1 beta. LDL cholesterol at 12 months changed by -1.2% on icosapent ethyl and +10.9% on mineral oil. Separately, a Copenhagen General Population Study analysis mimicking both trial designs estimated that the comparator difference (mineral versus corn oil) rather than the active oil difference (EPA versus EPA plus DHA) explains a substantial part of the divergence, leaving roughly 13% of REDUCE-IT\'s risk reduction unexplained by lipids and CRP. The authors of the biomarker substudy state the effect on interpretation is uncertain, and this page states it the same way.',
+        evidenceSource:
+          'Ridker PM et al. Circulation 2022;146:372-379; Doi T, Langsted A, Nordestgaard BG. Eur Heart J 2021;42:4807-4817',
+        doi: '10.1161/CIRCULATIONAHA.122.059410',
+        inferredClaim:
+          'That the whole of REDUCE-IT\'s 25% relative risk reduction is an effect of EPA, when a measurable part of the between-group difference is deterioration in the mineral oil comparator arm',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'om3-a4',
+        category: 'failed',
+        title: 'At 1 g/day — the amount in a supplement — VITAL and ASCEND both found nothing',
+        laymanSummary:
+          'The amount actually sold over the counter has been tested in more than 41,000 people across two large trials. Neither reduced cardiovascular events.',
+        technicalDetails:
+          'VITAL randomised 25,871 US adults to 1 g/day marine n-3 or placebo with a median 5.3 years of follow-up: major cardiovascular events in 386 against 419, hazard ratio 0.92 (95% CI 0.80 to 1.06), P = 0.24; invasive cancer 820 against 797, hazard ratio 1.03 (0.93 to 1.13), P = 0.56; death from any cause hazard ratio 1.02 (0.90 to 1.15). A prespecified secondary endpoint, total myocardial infarction, was lower at 0.72 (0.59 to 0.90) — one positive result among many tested, in a trial whose primary endpoints were null. ASCEND randomised 15,480 people with diabetes and no cardiovascular disease to 1 g/day n-3 or olive oil placebo over a mean 7.4 years: serious vascular events in 8.9% against 9.2%, rate ratio 0.97 (95% CI 0.87 to 1.08), P = 0.55, and death from any cause 0.95 (0.86 to 1.05). A Cochrane review of the whole literature reaches the same place.',
+        evidenceSource:
+          'Manson JE et al. N Engl J Med 2019;380:23-32; ASCEND Study Collaborative Group. N Engl J Med 2018;379:1540-1550',
+        doi: '10.1056/NEJMoa1811403',
+        measuredMetric:
+          'Major cardiovascular events and invasive cancer (VITAL); first serious vascular event (ASCEND)',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'om3-a5',
+        category: 'measured',
+        title: 'Atrial fibrillation rises, and the risk scales with the amount',
+        laymanSummary:
+          'Pooling seven large trials in 81,210 people, omega-3 supplements raised the risk of an irregular heartbeat by about a quarter, and more so at higher amounts.',
+        technicalDetails:
+          'A systematic review and meta-analysis of randomised cardiovascular outcome trials of marine omega-3 with at least 500 patients and a median follow-up of at least one year identified seven trials totalling 81,210 patients, mean age 65, weighted average follow-up 4.9 years. Marine omega-3 was associated with an increased risk of atrial fibrillation: hazard ratio 1.25 (95% CI 1.07 to 1.46), P = 0.013. Stratified by amount, trials above 1 g/day gave 1.49 (95% CI 1.04 to 2.15) and trials at or below 1 g/day gave 1.12 (1.03 to 1.22), with P for interaction below 0.001. Meta-regression gave a hazard ratio of 1.11 (1.06 to 1.15) per additional gram per day. This is one of the few adverse effects in the whole supplement category with a dose-response demonstrated across randomised trials.',
+        evidenceSource: 'Gencer B et al. Circulation 2021;144:1981-1990',
+        doi: '10.1161/CIRCULATIONAHA.121.055654',
+        measuredMetric:
+          'Incident atrial fibrillation reported as an outcome, adverse event or cause of hospitalisation across seven randomised trials',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'om3-a6',
+        category: 'conclusion_shift',
+        title: 'GISSI-Prevenzione was positive in 1999, and the field could not repeat it',
+        laymanSummary:
+          'The trial that launched fish oil as cardiac therapy was run before statins were standard care. Nothing since has reproduced it in patients on modern treatment.',
+        technicalDetails:
+          'GISSI-Prevenzione randomised 11,324 survivors of recent myocardial infarction to 1 g/day n-3 PUFA, vitamin E, both or neither, open-label, and reported a significant reduction in the combined endpoint of death, nonfatal myocardial infarction and stroke with n-3. It was open-label, ran in the late 1990s when statin use in the cohort was low, and used a no-treatment control rather than a placebo. Every large trial since, conducted on a background of statins, revascularisation and modern secondary prevention, has been null at 1 g/day. The most economical reading is not that omega-3 stopped working but that the marginal benefit available on top of untreated 1990s care is not available on top of 2020s care — which is a statement about the counterfactual rather than about the fatty acid.',
+        evidenceSource: 'GISSI-Prevenzione Investigators. Lancet 1999;354:447-455',
+        doi: '10.1016/S0140-6736(99)07072-5',
+        inferredClaim:
+          'That a benefit demonstrated against 1990s post-infarction care transfers to a patient already on a statin, an antiplatelet and an ACE inhibitor',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'om3-a7',
+        category: 'inferred',
+        title: 'The Cochrane verdict on the supplement is "little or no difference"',
+        laymanSummary:
+          'The systematic reviewers who pool everything concluded that long-chain omega-3 supplements make little or no difference to death or cardiovascular events, with high-certainty evidence for mortality.',
+        technicalDetails:
+          'The Cochrane review of omega-3 fatty acids for primary and secondary prevention of cardiovascular disease pooled the randomised literature and concluded that increasing long-chain omega-3 intake probably makes little or no difference to all-cause mortality, cardiovascular mortality or cardiovascular events, with the evidence for all-cause mortality rated high certainty. It found a small reduction in coronary heart disease mortality and events of uncertain clinical importance, and noted that the evidence for alpha-linolenic acid was weaker still. That conclusion sits against a marketing category whose central promise is heart protection.',
+        evidenceSource: 'Abdelhamid AS et al. Cochrane Database Syst Rev 2020;3:CD003177',
+        doi: '10.1002/14651858.CD003177.pub5',
+        inferredClaim:
+          'That an over-the-counter fish oil capsule protects the heart, generalising from the one positive trial of a 4 g prescription EPA ester with a contested comparator',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed with dietary fat, and the chemical form matters',
+        laymanDesc:
+          'Omega-3 needs fat and bile to be absorbed. The chemical form the capsule uses changes how much actually gets in.',
+        molecularDetail:
+          'Pancreatic lipase releases the fatty acid from the glycerol backbone before absorption. Natural fish oil is triacylglycerol; most concentrated products are re-esterified ethyl esters, which lipase hydrolyses more slowly and which therefore depend more heavily on a fat-containing meal. Absorbed fatty acids are re-esterified in the enterocyte and enter the lymph in chylomicrons.',
+        iconName: 'Droplet',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'Built into cell membranes over weeks, not hours',
+        laymanDesc:
+          'EPA and DHA slowly replace some of the omega-6 fat in the membrane of every cell. It takes months for the blood measure to stabilise.',
+        molecularDetail:
+          'EPA and DHA are incorporated into membrane phospholipids at the sn-2 position, partly displacing arachidonic acid. Because the erythrocyte does not remodel its membrane after leaving the marrow, erythrocyte EPA plus DHA — the Omega-3 Index — integrates intake over the roughly 120-day red cell lifespan and is the stable exposure marker the field uses.',
+        iconName: 'Layers',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'The liver exports less triglyceride',
+        laymanDesc:
+          'In the liver, omega-3 switches on fat-burning genes and reduces how much triglyceride gets packaged and shipped out into the blood.',
+        molecularDetail:
+          'EPA and DHA are ligands for PPAR-alpha, raising transcription of the mitochondrial and peroxisomal beta-oxidation machinery, while suppressing SREBP-1c-driven lipogenesis and reducing diacylglycerol acyltransferase substrate supply. The net effect is reduced hepatic VLDL-triglyceride assembly and secretion. This is the best-characterised and least disputed action, and it is the basis of the approved hypertriglyceridaemia indication.',
+        iconName: 'TrendingDown',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The raw material for inflammatory signals changes',
+        laymanDesc:
+          'Enzymes that normally turn omega-6 fat into strong inflammatory signals start finding omega-3 in their way, and produce weaker ones instead.',
+        molecularDetail:
+          'EPA competes with arachidonic acid at cyclooxygenase-1 and -2 and at 5-lipoxygenase, shifting output from series-2 prostaglandins and series-4 leukotrienes toward the less inflammatory series-3 and series-5 products. EPA and DHA are also substrates for the specialised pro-resolving mediators — resolvins, protectins and maresins — which act on resolution rather than suppression of inflammation.',
+        iconName: 'Combine',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Triglycerides fall reliably; events fall only in one trial',
+        laymanDesc:
+          'The blood fat measurement comes down every time. Whether that prevents heart attacks is where the two big trials disagree.',
+        molecularDetail:
+          'Triglyceride lowering at 4 g/day is consistent across preparations, and STRENGTH achieved it while producing a hazard ratio of 0.99 for events. That dissociation is the strongest available argument that whatever REDUCE-IT measured was not simply triglyceride reduction — and it is equally consistent with the alternative explanation that the difference lay in the comparator.',
+        iconName: 'HeartPulse',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'NCT01492361 — REDUCE-IT, icosapent ethyl 4 g/day versus mineral oil',
+        phase: 'Phase 3',
+        sampleSize: 8179,
+        primaryEndpoint:
+          'Composite of cardiovascular death, nonfatal MI, nonfatal stroke, coronary revascularisation or unstable angina',
+        endpointMet: true,
+        statisticalPValue: 'HR 0.75 (95% CI 0.68-0.83), P < 0.001',
+        unreportedAdverseSignals:
+          'Hospitalisation for atrial fibrillation or flutter 3.1% versus 2.1% (P = 0.004); serious bleeding 2.7% versus 2.1% (P = 0.06). The comparator was pharmaceutical grade mineral oil, in which inflammatory biomarkers and LDL-C rose substantially over follow-up. Funded by Amarin Pharma.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'NCT02104817 — STRENGTH, omega-3 carboxylic acids 4 g/day versus corn oil',
+        phase: 'Phase 3',
+        sampleSize: 13078,
+        primaryEndpoint:
+          'Composite of cardiovascular death, nonfatal MI, nonfatal stroke, coronary revascularisation or hospitalised unstable angina',
+        endpointMet: false,
+        statisticalPValue: 'HR 0.99 (95% CI 0.90-1.09), P = .84',
+        unreportedAdverseSignals:
+          'Halted early for futility at 1,384 of a planned 1,600 events. Gastrointestinal adverse events 24.7% versus 14.7%. Funded by AstraZeneca.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'NCT01169259 — VITAL n-3 arm, 1 g/day marine omega-3',
+        phase: 'Phase 3',
+        sampleSize: 25871,
+        primaryEndpoint: 'Major cardiovascular events, and invasive cancer of any type',
+        endpointMet: false,
+        statisticalPValue: 'CVD HR 0.92 (0.80-1.06), P = 0.24; cancer HR 1.03 (0.93-1.13), P = 0.56',
+        unreportedAdverseSignals:
+          'A secondary endpoint, total myocardial infarction, was lower at HR 0.72 (0.59-0.90). It is one positive result among many secondary endpoints in a trial whose primary endpoints were null, and it has not been independently confirmed.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'NCT00135226 — ASCEND, 1 g/day n-3 versus olive oil in diabetes',
+        phase: 'Phase 4',
+        sampleSize: 15480,
+        primaryEndpoint:
+          'First serious vascular event: nonfatal MI or stroke, transient ischaemic attack, or vascular death',
+        endpointMet: false,
+        statisticalPValue: 'Rate ratio 0.97 (95% CI 0.87-1.08), P = 0.55',
+        unreportedAdverseSignals:
+          'Mean follow-up 7.4 years with 76% adherence. No significant between-group difference in nonfatal serious adverse events. The placebo was olive oil, which is not inert either, though no biomarker drift comparable to mineral oil has been reported for it.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'GISSI-Prevenzione — 1 g/day n-3 PUFA after myocardial infarction',
+        phase: 'Open-label randomised',
+        sampleSize: 11324,
+        primaryEndpoint: 'Combined death, nonfatal myocardial infarction and nonfatal stroke',
+        endpointMet: true,
+        statisticalPValue: 'Significant reduction in the combined endpoint with n-3 PUFA',
+        unreportedAdverseSignals:
+          'Open-label with a no-treatment control rather than a placebo, conducted before statins were standard secondary prevention. The vitamin E arm in the same trial showed no benefit.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'Serum triglycerides fall reliably at 4 g/day across preparations, which is the basis of the approved prescription indication',
+        'Erythrocyte EPA and DHA content rises measurably and stably over about three months of intake',
+        'REDUCE-IT: a composite event rate of 17.2% against 22.0%, hazard ratio 0.75, in 8,179 statin-treated patients over 4.9 years',
+        'Inflammatory biomarkers rose 16 to 29% over 12 months in the REDUCE-IT mineral oil comparator arm while barely moving on icosapent ethyl',
+        'Atrial fibrillation risk rose across seven trials in 81,210 patients, hazard ratio 1.25, with a demonstrated dose-response',
+      ],
+      unsupportedInferences: [
+        'That an over-the-counter fish oil capsule reduces cardiovascular events — 1 g/day was null in VITAL (n = 25,871) and ASCEND (n = 15,480)',
+        'That REDUCE-IT\'s result is wholly attributable to EPA, when part of the between-group difference is deterioration in the comparator arm',
+        'That triglyceride lowering is the mechanism, when STRENGTH lowered triglycerides and produced a hazard ratio of 0.99',
+        'That the observational fish-intake literature transfers to a capsule, when eating fish also displaces other food',
+      ],
+      whatFailedInitially: [
+        'STRENGTH, halted for futility at 13,078 patients despite matching REDUCE-IT on population, background therapy and amount',
+        'The assumption that mineral oil was an inert comparator, which the REDUCE-IT biomarker substudy directly contradicted',
+        'Reproduction of GISSI-Prevenzione, which has not succeeded in any trial conducted on a background of modern secondary prevention',
+      ],
+      realWorldOutcome: [
+        'One prescription preparation carries a positive outcome trial; the supplement carries two large null ones at the amount actually sold',
+        'The atrial fibrillation signal is real, dose-dependent and materially under-communicated at the point of sale',
+        'Cochrane rates the evidence that omega-3 supplements do not change all-cause mortality as high certainty',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral softgel or liquid — triacylglycerol fish oil, re-esterified ethyl esters, krill phospholipids or algal oil',
+      description:
+        'Sold in the United States as a dietary supplement under DSHEA with no premarket efficacy review, in forms that differ substantially in EPA and DHA content, chemical form and absorption. The prescription products are a different regulatory category entirely, and the outcome trial that supports one of them used 4 g/day of a DHA-free EPA ester, which no over-the-counter fish oil capsule matches.',
+      safetyProfile:
+        'Common: fishy eructation, gastrointestinal upset — 24.7% against 14.7% on corn oil in STRENGTH. Established: increased atrial fibrillation, hazard ratio 1.25 across randomised trials and 1.49 above 1 g/day. Possible: a non-significant excess of serious bleeding in REDUCE-IT (2.7% against 2.1%, P = 0.06). Polyunsaturated oils oxidise, and marketed products vary in peroxide value; oxidised oil is a plausible explanation for some tolerability complaints. Fish-derived oils concentrate methylmercury and persistent organic pollutants from the food chain, which is why the contaminant screen is the first step of the workflow above.',
+    },
+    commonQuestions: [
+      {
+        q: 'Does fish oil protect your heart or not?',
+        a: 'The honest answer depends entirely on which product and which amount. At the 1 g/day found in an ordinary capsule, two trials totalling over 41,000 people found no reduction in cardiovascular events, and Cochrane rates the mortality evidence as high-certainty no effect. At 4 g/day of a purified prescription EPA ester, REDUCE-IT found a 25% relative reduction — and its sister trial STRENGTH, using 4 g/day of an EPA and DHA preparation against corn oil, found nothing at all. Buying a supplement on the strength of REDUCE-IT means generalising from a different molecule at four times the amount against a comparator that is still argued about.',
+        auditNote:
+          'The gap between "there is a positive omega-3 outcome trial" and "the tub on the shelf works" is the whole audit on this page.',
+      },
+      {
+        q: 'What is the problem with mineral oil?',
+        a: 'A placebo is supposed to do nothing. In the REDUCE-IT biomarker substudy the mineral oil group\'s interleukin-1 beta rose 28.9%, hsCRP 21.9%, oxidised LDL 10.9% and LDL cholesterol 10.9% over twelve months, while the treated group barely moved. That means part of the measured difference between the groups is the comparator getting worse rather than the treatment making people better. Nobody has established how much. The substudy authors say the effect on interpretation is uncertain, and a Copenhagen cohort analysis mimicking both trials attributed a substantial share of the REDUCE-IT versus STRENGTH divergence to the comparator rather than the active oil, leaving about 13% unexplained.',
+      },
+      {
+        q: 'Is there anything to worry about?',
+        a: 'One thing, and it is well established rather than speculative. Across seven randomised cardiovascular outcome trials in 81,210 patients, omega-3 supplementation raised the risk of atrial fibrillation, hazard ratio 1.25, rising to 1.49 in trials using more than 1 g/day, with a per-gram dose-response. REDUCE-IT itself found more hospitalisation for atrial fibrillation or flutter on treatment. For most people this is a small absolute risk; for someone with a history of atrial fibrillation it is the most relevant fact on the page.',
+        auditNote:
+          'A demonstrated randomised dose-response for harm is rare in this category and deserves the same weight as a demonstrated benefit.',
+      },
+      {
+        q: 'Why does eating fish look better than taking capsules?',
+        a: 'Partly because of what fish displaces. A cohort that eats more fish eats less of something else, exercises differently and differs in a hundred unmeasured ways, and no capsule trial reproduces any of that. Partly because plant omega-3 does not substitute: conversion of alpha-linolenic acid to EPA is limited and to DHA is very low in adults, so flaxseed barely moves the blood measure that the cardiovascular literature is indexed to. The capsule delivers the molecule; the diet delivered the association.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'GISSI-Prevenzione Investigators. Dietary supplementation with n-3 polyunsaturated fatty acids and vitamin E after myocardial infarction. Lancet 1999;354:447-455',
+        identifier: '10.1016/S0140-6736(99)07072-5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ASCEND Study Collaborative Group. Effects of n-3 fatty acid supplements in diabetes mellitus. N Engl J Med 2018;379:1540-1550',
+        identifier: '10.1056/NEJMoa1804989',
+        kind: 'doi',
+      },
+      {
+        label: 'ASCEND trial registration',
+        identifier: 'NCT00135226',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Bhatt DL et al. Cardiovascular risk reduction with icosapent ethyl for hypertriglyceridemia (REDUCE-IT). N Engl J Med 2019;380:11-22',
+        identifier: '10.1056/NEJMoa1812792',
+        kind: 'doi',
+      },
+      {
+        label: 'REDUCE-IT trial registration',
+        identifier: 'NCT01492361',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Manson JE et al. Marine n-3 fatty acids and prevention of cardiovascular disease and cancer (VITAL). N Engl J Med 2019;380:23-32',
+        identifier: '10.1056/NEJMoa1811403',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Abdelhamid AS et al. Omega-3 fatty acids for the primary and secondary prevention of cardiovascular disease. Cochrane Database Syst Rev 2020;3:CD003177',
+        identifier: '10.1002/14651858.CD003177.pub5',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Nicholls SJ et al. Effect of high-dose omega-3 fatty acids vs corn oil on major adverse cardiovascular events in patients at high cardiovascular risk: the STRENGTH randomized clinical trial. JAMA 2020;324:2268-2280',
+        identifier: '10.1001/jama.2020.22258',
+        kind: 'doi',
+      },
+      {
+        label: 'STRENGTH trial registration',
+        identifier: 'NCT02104817',
+        kind: 'nct',
+      },
+      {
+        label:
+          'Gencer B et al. Effect of long-term marine omega-3 fatty acids supplementation on the risk of atrial fibrillation in randomized controlled trials of cardiovascular outcomes: a systematic review and meta-analysis. Circulation 2021;144:1981-1990',
+        identifier: '10.1161/CIRCULATIONAHA.121.055654',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Doi T, Langsted A, Nordestgaard BG. A possible explanation for the contrasting results of REDUCE-IT vs. STRENGTH: cohort study mimicking trial designs. Eur Heart J 2021;42:4807-4817',
+        identifier: '10.1093/eurheartj/ehab555',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Ridker PM et al. Effects of randomized treatment with icosapent ethyl and a mineral oil comparator on interleukin-1beta, interleukin-6, C-reactive protein, oxidized LDL cholesterol, homocysteine, lipoprotein(a) and Lp-PLA2: a REDUCE-IT biomarker substudy. Circulation 2022;146:372-379',
+        identifier: '10.1161/CIRCULATIONAHA.122.059410',
+        kind: 'doi',
+      },
+      {
+        label: 'PubChem CID 446284 — Eicosapentaenoic acid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/446284',
+        kind: 'url',
+      },
+      {
+        label: 'PubChem CID 445580 — Docosahexaenoic acid',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/445580',
+        kind: 'url',
+      },
+    ],
+  },
 ]

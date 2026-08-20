@@ -91,6 +91,25 @@ function toMolecularSchema(seed: SeedDossier): {
   }
 }
 
+/**
+ * Caps a value to its column width.
+ *
+ * A seed file is written by a person (or an agent) working from sources, and a field like
+ * targetProtein occasionally arrives as a sentence rather than a name — omega-3's ran to 314
+ * characters against a 300-character column. Postgres answers that with a 22001 and aborts, and
+ * because the loader runs the whole set in one pass, ONE over-long field took down all 86
+ * dossiers. Capping here means a long field costs its own tail and nothing else.
+ */
+function cap(value: string, max: number): string {
+  if (value.length <= max) return value
+  return `${value.slice(0, max - 1).replace(/[\s,;:]+$/, '')}…`
+}
+
+function capOrNull(value: string | null | undefined, max: number): string | null {
+  if (!value) return null
+  return cap(value, max)
+}
+
 async function main(): Promise<void> {
   const only = process.argv.includes('--only')
     ? process.argv[process.argv.indexOf('--only') + 1]
@@ -104,7 +123,10 @@ async function main(): Promise<void> {
 
   const outcomes: SeedOutcome[] = []
 
+  const failures: Array<{ slug: string; error: string }> = []
+
   for (const seed of seeds) {
+    try {
     const { schema, outcome } = toMolecularSchema(seed)
     outcomes.push(outcome)
 
@@ -113,13 +135,13 @@ async function main(): Promise<void> {
     await db
       .insert(drugs)
       .values({
-        id: seed.slug,
-        slug: seed.slug,
-        name: seed.name,
-        tradeName: seed.tradeName ?? null,
-        sponsor: seed.sponsor,
-        targetGene: seed.targetGene,
-        targetProtein: seed.targetProtein,
+        id: cap(seed.slug, 96),
+        slug: cap(seed.slug, 128),
+        name: cap(seed.name, 300),
+        tradeName: capOrNull(seed.tradeName, 400),
+        sponsor: cap(seed.sponsor, 300),
+        targetGene: cap(seed.targetGene, 200),
+        targetProtein: cap(seed.targetProtein, 300),
         modality: seed.modality,
         approvalStatus: seed.approvalStatus,
         approvalYear: seed.approvalYear ?? null,
@@ -129,8 +151,8 @@ async function main(): Promise<void> {
         laymanHowItWorks: seed.laymanHowItWorks,
         auditConfidence: seed.auditConfidence,
         confidenceScore: seed.confidenceScore,
-        anatomicalSite: seed.anatomicalSite ?? null,
-        recentAuditDate: seed.recentAuditDate,
+        anatomicalSite: capOrNull(seed.anatomicalSite, 300),
+        recentAuditDate: cap(seed.recentAuditDate, 64),
         hasDiscrepancy: seed.hasDiscrepancy,
         dossierDepth: 'flagship',
         conditionContext: seed.conditionContext ?? null,
@@ -143,7 +165,7 @@ async function main(): Promise<void> {
         measuredVsInferredSummary: seed.measuredVsInferredSummary,
         deliverySystem: seed.deliverySystem,
         commonQuestions: seed.commonQuestions,
-        sourceProvenance: seed.sources.map((source) => `${source.label} (${source.identifier})`),
+        sourceProvenance: seed.sources.map((source) => cap(`${source.label} (${source.identifier})`, 300)),
         isMachineVerifiedStructure: outcome.passed,
         verificationHash: outcome.hash,
         lastVerifiedAt: outcome.passed ? new Date() : null,
@@ -191,6 +213,17 @@ async function main(): Promise<void> {
     console.log(
       `[seed] ${seed.slug.padEnd(32)} ${String(counts.measured + counts.inferred + counts.failed + counts.conclusionShift).padStart(3)} audits · ${seed.mechanismSteps.length} steps · ${badge}`,
     )
+    } catch (error: unknown) {
+      // One malformed dossier is one missing page; aborting the run is 86 missing pages.
+      const message = error instanceof Error ? error.message : String(error)
+      failures.push({ slug: seed.slug, error: message.split('\n')[0] ?? message })
+      console.log(`[seed] ${seed.slug.padEnd(32)} FAILED — ${message.split('\n')[0]}`)
+    }
+  }
+
+  if (failures.length > 0) {
+    console.log(`\n[seed] ${failures.length} dossiers could not be written:`)
+    for (const failure of failures) console.log(`   ${failure.slug}: ${failure.error}`)
   }
 
   const failed = outcomes.filter((outcome) => outcome.swept && !outcome.passed)
