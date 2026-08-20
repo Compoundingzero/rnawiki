@@ -13777,4 +13777,1340 @@ export const SMALL_MOLECULE_CARDIOMETABOLIC_DOSSIERS: SeedDossier[] = [
       },
     ],
   },
+  // ---------------------------------------------------------------------------------------------
+  // 17. Spironolactone — a 30% mortality reduction that caused a documented epidemic of
+  //     hyperkalaemia, and a preserved-ejection-fraction trial whose result depends on geography.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'spironolactone',
+    name: 'Spironolactone',
+    tradeName: 'Aldactone',
+    sponsor: 'G.D. Searle, now Pfizer (originator); long off-patent',
+    targetGene: 'NR3C2',
+    targetProtein: 'Mineralocorticoid receptor',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1960,
+    indication:
+      'Heart failure with reduced ejection fraction to increase survival and reduce hospitalisation; oedema associated with cirrhosis and nephrotic syndrome; primary hyperaldosteronism; and hypertension, including resistant hypertension',
+    patientFriendlyIndication:
+      'Heart failure, fluid retention from liver disease, and high blood pressure that has not responded to other drugs',
+    anatomicalSite: 'Distal convoluted tubule and cortical collecting duct of the nephron',
+    conditionContext: {
+      conditionExplainer:
+        'Aldosterone tells the kidney to retain sodium and excrete potassium, and it also drives fibrosis in the heart and blood vessels. In heart failure the hormone stays elevated even when an ACE inhibitor is already being given, because aldosterone escapes that blockade over time. Spironolactone blocks the receptor the hormone acts on.',
+      whyItMatters:
+        'RALES produced one of the largest mortality reductions in heart failure pharmacology, and its publication was followed by a measurable population-level increase in hospitalisations and deaths from high potassium. That sequence — a trial result, a prescribing surge, and a documented harm that the trial monitoring had prevented — is one of the clearest illustrations on this site of the gap between a trial population and a real one.',
+      whoTakesThis:
+        'People with heart failure and reduced ejection fraction, people with resistant hypertension, people with cirrhotic ascites, and people with primary hyperaldosteronism. It is on the WHO Model List of Essential Medicines and is also used off-label for acne and hirsutism because of its anti-androgen activity.',
+      clinicalGoals:
+        'In reduced ejection fraction, reduce death and hospitalisation — which RALES measured directly. In resistant hypertension, lower blood pressure, where PATHWAY-2 showed it beats every alternative add-on tested.',
+    },
+    oneSentenceVerdict:
+      'A 1950s aldosterone antagonist that cut all-cause death from 46% to 35% in 1,663 patients with severe heart failure, missed its primary endpoint in 3,445 patients with preserved ejection fraction where a post-hoc analysis found a fourfold regional difference in event rates, and failed again in 7,062 patients after myocardial infarction in 2025.',
+    laymanHowItWorks:
+      'A hormone called aldosterone tells your kidneys to hold on to salt and water and to throw away potassium, and it also promotes scarring in heart muscle. Spironolactone occupies the receptor that hormone uses, so the kidney lets salt and water go and keeps potassium. Keeping potassium is both the benefit and the danger: it is why the drug does not deplete you like other diuretics, and why it can raise potassium to a level that stops the heart.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 79,
+    substitutes: {
+      summary:
+        'Generic spironolactone costs a few cents a tablet. Eplerenone is the selective alternative without the breast effects, and finerenone is the non-steroidal one with its own kidney and heart failure trials. In resistant hypertension PATHWAY-2 tested spironolactone head to head against a beta blocker and an alpha blocker and it beat both.',
+      conventionalRx: [
+        {
+          name: 'Eplerenone',
+          class: 'Selective steroidal mineralocorticoid receptor antagonist',
+          howItCompares:
+            'Selective for the mineralocorticoid receptor, so it does not produce the gynaecomastia that affected 10% of men on spironolactone in RALES against 1% on placebo. It has its own post-infarction and mild heart failure trials. There is no head-to-head mortality comparison against spironolactone.',
+          typicalCost: 'A generic, more expensive per tablet than spironolactone',
+          prosAndCons:
+            'Pros: no breast tenderness or gynaecomastia, no menstrual irregularity. Cons: same hyperkalaemia risk, and the RALES mortality result belongs to spironolactone.',
+        },
+        {
+          name: 'Finerenone (Kerendia)',
+          class: 'Non-steroidal mineralocorticoid receptor antagonist',
+          howItCompares:
+            'A different chemical class with a different tissue distribution and receptor-binding mode. It has its own randomised evidence in diabetic kidney disease and in heart failure with mildly reduced or preserved ejection fraction, which is precisely where spironolactone missed in TOPCAT.',
+          typicalCost: 'Brand-only, orders of magnitude above generic spironolactone per tablet',
+          prosAndCons:
+            'Pros: outcome trials in the population TOPCAT could not convincingly serve. Cons: hyperkalaemia remains the class effect, and the cost difference is very large.',
+        },
+        {
+          name: 'Adding a thiazide or a beta blocker instead, in resistant hypertension',
+          class: 'Alternative fourth-line antihypertensives',
+          howItCompares:
+            'PATHWAY-2 randomised 335 patients with resistant hypertension through cycles of spironolactone, bisoprolol, doxazosin and placebo. Spironolactone reduced home systolic pressure by 8.70 mm Hg more than placebo, by 4.03 more than doxazosin and by 4.48 more than bisoprolol, all p<0.0001.',
+          typicalCost: 'All are low-cost generics',
+          prosAndCons:
+            'Pros for spironolactone: clearly the best add-on tested, and its superiority was greatest in patients with low plasma renin. Cons: potassium monitoring, and the endocrine effects.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Avoid potassium-based salt substitutes on this drug',
+          action:
+            'Salt substitutes marketed as low-sodium alternatives are usually potassium chloride.',
+          patientImpact:
+            'Spironolactone works by making the kidney retain potassium. Adding a potassium load on top, especially alongside an ACE inhibitor or an angiotensin receptor blocker, is the classic route to dangerous hyperkalaemia. In TOPCAT the rate of hyperkalaemia doubled, from 9.1% to 18.7%.',
+          clinicalPrecaution:
+            'Hyperkalaemia produces no symptoms until it disturbs the heart rhythm, which is why it is monitored by blood test rather than waited for.',
+        },
+        {
+          name: 'Breast tenderness in men is a drug effect, not a coincidence',
+          action: 'Report breast swelling or tenderness rather than assuming it is unrelated.',
+          patientImpact:
+            'Spironolactone is a steroid that also blocks androgen receptors and inhibits testosterone synthesis. In RALES, gynaecomastia or breast pain occurred in 10% of men on spironolactone against 1% on placebo, p<0.001. Eplerenone is the selective alternative without this effect.',
+          clinicalPrecaution:
+            'The same anti-androgen activity is why the drug is used off-label for acne and hirsutism, and why it is contraindicated in pregnancy.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString:
+        'CC(=O)S[C@@H]1CC2=CC(=O)CC[C@@]2([C@@H]3[C@@H]1[C@@H]4CC[C@]5([C@]4(CC3)C)CCC(=O)O5)C',
+      chemicalFormula: 'C24H32O4S',
+      molecularWeight: '416.6 g/mol',
+      targetReceptorAffinity:
+        'A competitive antagonist at the mineralocorticoid receptor. Because it is a steroid, its selectivity is imperfect: it also antagonises the androgen receptor and inhibits testosterone biosynthesis, which is the direct cause of the gynaecomastia and menstrual irregularity, and it has weak progestogenic activity. Much of the clinical effect comes from active metabolites, principally canrenone and 7-alpha-thiomethylspironolactone, whose half-lives are far longer than the parent, so the pharmacological duration is not the plasma half-life of the administered molecule.',
+      structureSource: {
+        label:
+          'PubChem CID 5833 (spironolactone) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5833',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'spi-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Steroid nucleus identity and related-steroid control',
+          description:
+            'Assay the incoming androstane-derived steroid intermediate for configuration at every ring-junction centre and for related steroids carried through from the fermentation or semisynthetic route. A steroid nucleus has seven or more stereocentres set upstream, and none of them can be corrected later; the specification is therefore written around related substances rather than around a single named impurity.',
+          reagentsAndBuffer:
+            'Androstenolone-derived intermediate reference standard, canrenone reference standard, reversed-phase HPLC with UV detection at 238 nm, optical rotation, Karl Fischer titration',
+        },
+        {
+          id: 'spi-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Spirolactone closure and 7-alpha thioacetate addition',
+          description:
+            'Form the spiro-fused gamma-lactone at C17 and add thioacetic acid across the 6,7-double bond to install the 7-alpha-acetylthio group. The 7-alpha stereochemistry is what distinguishes spironolactone from canrenone and determines both potency and how quickly the thioester is cleaved in vivo; addition from the wrong face gives an epimer with different pharmacokinetics.',
+          dependsOnStepId: 'spi-w1',
+          reagentsAndBuffer:
+            'Thioacetic acid with a radical initiator or under acid catalysis in toluene, nitrogen atmosphere, controlled temperature; thin-layer chromatography against the 7-beta epimer and the canrenone elimination product',
+        },
+        {
+          id: 'spi-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with canrenone limit and particle size control',
+          description:
+            'Recrystallise and control both canrenone content and particle size. Canrenone is not an inert impurity: it is one of the drug\'s own active metabolites, so an excess in the drug substance shifts the exposure profile rather than simply diluting the dose. Particle size matters because spironolactone is poorly water-soluble and its absorption is dissolution-limited.',
+          dependsOnStepId: 'spi-w2',
+          reagentsAndBuffer:
+            'Methanol or acetone/water recrystallisation, reversed-phase HPLC against canrenone and the 7-beta epimer, laser diffraction particle size analysis, X-ray powder diffraction',
+        },
+        {
+          id: 'spi-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'Conversion to active metabolites and nuclear receptor access',
+          description:
+            'Incubate with primary human hepatocytes and quantify canrenone and 7-alpha-thiomethylspironolactone, then confirm nuclear translocation of the mineralocorticoid receptor in a tubular cell line. The metabolite step is not optional to model: the parent is extensively converted on first pass and the metabolites carry much of the activity and far longer half-lives, so a pharmacokinetic model built on the parent alone predicts the wrong duration.',
+          dependsOnStepId: 'spi-w3',
+          reagentsAndBuffer:
+            'Cryopreserved primary human hepatocytes, NADPH regenerating system, LC-MS/MS quantification of spironolactone, canrenone and 7-alpha-thiomethylspironolactone, M-1 cortical collecting duct cells with GFP-tagged NR3C2 for translocation imaging',
+        },
+        {
+          id: 'spi-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'Mineralocorticoid receptor antagonism with an androgen receptor counter-screen',
+          description:
+            'Measure inhibition of aldosterone-driven transcription through a hormone response element reporter, and in parallel measure androgen receptor antagonism. Running the counter-screen is the point for this molecule specifically: its most common clinical adverse effect is an off-target endocrine one, gynaecomastia in 10% of men in RALES, and the selectivity ratio against the androgen receptor is what separates it from eplerenone.',
+          dependsOnStepId: 'spi-w4',
+          reagentsAndBuffer:
+            'HEK293 or CV-1 cells transfected with human NR3C2 or AR plus an MMTV-luciferase reporter, aldosterone and dihydrotestosterone as agonists, charcoal-stripped fetal bovine serum, dual-luciferase detection reagents, eplerenone as the selective comparator',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'spi-a1',
+        category: 'measured',
+        title: 'RALES: all-cause death from 46% to 35%, and the trial was stopped early',
+        laymanSummary:
+          'In more than sixteen hundred patients with severe heart failure already on standard treatment, adding a low dose of spironolactone reduced deaths by 30%. The trial was halted early because the benefit was so clear.',
+        technicalDetails:
+          'RALES enrolled 1,663 patients with severe heart failure and left ventricular ejection fraction of 35% or less, already treated with an ACE inhibitor, a loop diuretic and in most cases digoxin, randomising 822 to spironolactone 25 mg daily and 841 to placebo. The trial was discontinued early after a mean 24 months on an interim efficacy analysis. There were 386 deaths in the placebo group (46%) against 284 in the spironolactone group (35%): relative risk of death 0.70 (95% CI 0.60 to 0.82), p<0.001, attributed to fewer deaths from both progressive heart failure and sudden cardiac causes. Hospitalisation for worsening heart failure fell 35% (relative risk 0.65, 0.54 to 0.77, p<0.001) and NYHA functional class improved significantly (p<0.001). Gynaecomastia or breast pain occurred in 10% of men on spironolactone against 1% on placebo (p<0.001). Serious hyperkalaemia was described as minimal in both groups.',
+        evidenceSource: 'Pitt B et al., RALES, N Engl J Med 1999;341:709-717',
+        doi: '10.1056/NEJM199909023411001',
+        measuredMetric: 'Death from all causes over a mean 24 months in severe heart failure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'spi-a2',
+        category: 'conclusion_shift',
+        title: 'Publishing RALES caused a measurable increase in deaths from high potassium',
+        laymanSummary:
+          'After the trial was published, prescribing rose more than fourfold and hospital admissions for dangerously high potassium rose from 2.4 to 11.0 per thousand patients, with associated deaths rising sevenfold.',
+        technicalDetails:
+          'Juurlink and colleagues linked prescription claims and hospital admission records for more than 1.3 million adults aged 66 or older in Ontario from 1994 to 2001. Among patients on ACE inhibitors recently hospitalised for heart failure, spironolactone prescribing rose from 34 per 1,000 patients in 1994 to 149 per 1,000 by late 2001 (p<0.001), rising immediately after RALES was published. Hospitalisation for hyperkalaemia rose from 2.4 to 11.0 per 1,000 patients (p<0.001) and associated mortality from 0.3 to 2.0 per 1,000 (p<0.001). Against expected numbers, 2001 saw 560 additional hyperkalaemia hospitalisations (95% CI 285 to 754) and 73 additional hospital deaths (27 to 120) in that population. Publication was not associated with significant decreases in readmission for heart failure or in all-cause death. RALES had excluded patients with a creatinine above 2.5 mg/dL and monitored potassium closely; routine practice did neither.',
+        evidenceSource: 'Juurlink DN et al., N Engl J Med 2004;351:543-551',
+        doi: '10.1056/NEJMoa040135',
+        measuredMetric:
+          'Population rates of spironolactone prescribing, hyperkalaemia hospitalisation and associated mortality before and after RALES',
+        inferredClaim:
+          'That a randomised mortality benefit transfers intact to routine prescribing — the population that received the drug afterwards was not the population the trial enrolled or monitored',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'spi-a3',
+        category: 'failed',
+        title: 'TOPCAT: missed its primary endpoint in preserved ejection fraction',
+        laymanSummary:
+          'In nearly three and a half thousand patients with heart failure and a normal pumping fraction, the combined endpoint did not fall significantly. Only heart failure hospitalisation did, and hyperkalaemia doubled.',
+        technicalDetails:
+          'TOPCAT randomised 3,445 patients with symptomatic heart failure and ejection fraction of 45% or more to spironolactone 15 to 45 mg daily or placebo, mean follow-up 3.3 years. The primary composite of cardiovascular death, aborted cardiac arrest or hospitalisation for heart failure occurred in 320 of 1,722 (18.6%) against 351 of 1,723 (20.4%): hazard ratio 0.89 (95% CI 0.77 to 1.04), p=0.14. Of the components, only heart failure hospitalisation was significantly lower: 206 (12.0%) against 245 (14.2%), hazard ratio 0.83 (0.69 to 0.99), p=0.04. Neither total deaths nor all-cause hospitalisations were significantly reduced. Spironolactone raised serum creatinine and doubled the rate of hyperkalaemia, 18.7% against 9.1%, while reducing hypokalaemia. With frequent monitoring there were no significant differences in serious adverse events, creatinine of 3.0 mg/dL or above, or dialysis.',
+        evidenceSource: 'Pitt B et al., TOPCAT, N Engl J Med 2014;370:1383-1392 (NCT00094302)',
+        doi: '10.1056/NEJMoa1313731',
+        measuredMetric:
+          'Composite of cardiovascular death, aborted cardiac arrest or heart failure hospitalisation over a mean 3.3 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'spi-a4',
+        category: 'inferred',
+        title: 'The TOPCAT regional analysis is post hoc, and it changes the reading of the trial',
+        laymanSummary:
+          'Patients enrolled in Russia and Georgia had roughly a quarter the event rate of those in the Americas and showed no drug effect on anything, including potassium. Restricting to the Americas, the drug looks like it worked. That comparison was made after the fact.',
+        technicalDetails:
+          'A post-hoc analysis identified an approximately fourfold difference in the primary composite event rate between the 1,678 patients randomised in Russia and Georgia and the 1,767 enrolled in the United States, Canada, Brazil and Argentina. The Russia and Georgia patients were younger, had less atrial fibrillation and diabetes, more prior infarction or heart failure hospitalisation, lower ejection fraction and creatinine and higher diastolic pressure, all p<0.001. In the Americas, spironolactone significantly reduced the primary outcome, cardiovascular death and heart failure hospitalisation, and produced the expected rises in potassium and creatinine. In Russia and Georgia there was no detectable effect on any outcome — and, critically, no detectable effect on potassium or creatinine either, which is a pharmacological signal rather than a clinical one and is difficult to explain if the drug was being taken. The analysis is post hoc and hypothesis-generating; it is also the reason many clinicians treat TOPCAT as a positive trial in the Americas, which is an interpretation and not a result.',
+        evidenceSource:
+          'Pfeffer MA et al., Circulation 2015;131:34-42 (TOPCAT post-hoc regional analysis, NCT00094302)',
+        doi: '10.1161/CIRCULATIONAHA.114.013255',
+        inferredClaim:
+          'That spironolactone benefits heart failure with preserved ejection fraction in the Americas — a post-hoc geographic subgroup of a trial that missed its primary endpoint',
+        auditFlag: 'contested',
+      },
+      {
+        id: 'spi-a5',
+        category: 'failed',
+        title: 'CLEAR SYNERGY: no benefit after myocardial infarction in 7,062 patients',
+        laymanSummary:
+          'A large modern trial gave spironolactone routinely after a heart attack and followed patients for three years. Neither of its two primary endpoints moved.',
+        technicalDetails:
+          'CLEAR SYNERGY (OASIS 9) randomised 7,062 patients with myocardial infarction who had undergone percutaneous coronary intervention, at 104 centres in 14 countries, in a 2-by-2 factorial design of spironolactone or placebo and colchicine or placebo; 3,537 received spironolactone and 3,525 placebo. Over a median 3 years, the first primary outcome, total events of cardiovascular death or new or worsening heart failure, was 183 events (1.7 per 100 patient-years) against 220 (2.1 per 100 patient-years): hazard ratio adjusted for the competing risk of non-cardiovascular death 0.91 (95% CI 0.69 to 1.21), p=0.51. The second primary outcome, first occurrence of infarction, stroke, new or worsening heart failure or cardiovascular death, occurred in 280 of 3,537 (7.9%) against 294 of 3,525 (8.3%): adjusted hazard ratio 0.96 (0.81 to 1.13), p=0.60. Serious adverse events were 7.2% against 6.8%. Vital status was unknown for 45 patients (0.6%).',
+        evidenceSource:
+          'Jolly SS et al., CLEAR SYNERGY spironolactone comparison, N Engl J Med 2025;392:643-652 (NCT03048825)',
+        doi: '10.1056/NEJMoa2405923',
+        measuredMetric:
+          'Total cardiovascular death or new or worsening heart failure events, and a first-event composite, over a median 3 years',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'spi-a6',
+        category: 'measured',
+        title: 'PATHWAY-2: the best fourth-line drug for resistant hypertension, by a clear margin',
+        laymanSummary:
+          'In a rotating comparison against a beta blocker, an alpha blocker and placebo, spironolactone lowered home blood pressure more than any of them, and by most in patients whose renin was low.',
+        technicalDetails:
+          'PATHWAY-2 screened 436 patients with resistant hypertension and randomised 335 through rotating cycles; 285 received spironolactone, 282 doxazosin, 285 bisoprolol and 274 placebo, with 230 completing all cycles. Average reduction in home systolic pressure with spironolactone was superior to placebo by 8.70 mm Hg (95% CI -9.72 to -7.69, p<0.0001), superior to the mean of the two other active treatments by 4.26 mm Hg (-5.13 to -3.38, p<0.0001), superior to doxazosin by 4.03 (-5.04 to -3.02, p<0.0001) and superior to bisoprolol by 4.48 (-5.50 to -3.46, p<0.0001). Spironolactone was the most effective across the whole distribution of baseline plasma renin, with its margin of superiority many-fold greater at the lower end — consistent with sodium retention being the dominant mechanism in resistant hypertension. All treatments were well tolerated; in 6 of 285 patients on spironolactone, serum potassium exceeded 6.0 mmol/L on one occasion.',
+        evidenceSource:
+          'Williams B et al., PATHWAY-2, Lancet 2015;386:2059-2068 (NCT02369081, EudraCT 2008-007149-30)',
+        doi: '10.1016/S0140-6736(15)00257-3',
+        measuredMetric:
+          'Average reduction in home systolic blood pressure against placebo and against two active comparators',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed with food, and converted into longer-lasting active metabolites',
+        laymanDesc:
+          'The tablet is better absorbed with food. The liver then converts most of it into other molecules that are themselves active and last far longer than the original.',
+        molecularDetail:
+          'Absorption is enhanced by food. Spironolactone undergoes extensive and rapid first-pass metabolism to canrenone, 7-alpha-thiomethylspironolactone and 6-beta-hydroxy-7-alpha-thiomethylspironolactone, all pharmacologically active with half-lives considerably longer than the parent. Consequently the duration of effect is set by metabolite kinetics, and steady-state effect takes several days to establish.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It enters the kidney tubule cell and reaches a receptor in the cytoplasm',
+        laymanDesc:
+          'Unlike most kidney drugs, this one has to get inside the cell, because its target is not on the surface — it is a receptor that travels to the nucleus and switches genes on.',
+        molecularDetail:
+          'The mineralocorticoid receptor is a cytoplasmic nuclear-receptor-family transcription factor, expressed in principal cells of the distal convoluted tubule and cortical collecting duct, and also in cardiac myocytes, fibroblasts and vascular smooth muscle. Being a lipophilic steroid, spironolactone crosses the membrane passively, which is why it acts from the blood side rather than requiring luminal delivery like the loop and thiazide diuretics.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It occupies the aldosterone pocket and blocks the receptor from activating genes',
+        laymanDesc:
+          'The drug binds where the hormone would and prevents the receptor moving into the nucleus in an activating shape. It also blocks the male hormone receptor, which is where the breast effects come from.',
+        molecularDetail:
+          'Competitive antagonism at the mineralocorticoid receptor ligand-binding domain prevents the conformational change required for coactivator recruitment. Because spironolactone is a steroid, it also antagonises the androgen receptor and inhibits testosterone biosynthesis, producing gynaecomastia in 10% of men in RALES, and has weak progestogenic activity — the off-target profile eplerenone was designed to remove.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Sodium channels and pumps are not made, so sodium leaves and potassium stays',
+        laymanDesc:
+          'Without the hormone signal, the cell stops making the sodium doorways and pumps it would otherwise build. Sodium and water are excreted, and potassium is retained instead of being thrown away.',
+        molecularDetail:
+          'Reduced transcription of the epithelial sodium channel subunits SCNN1A, SCNN1B and SCNN1G, of serum and glucocorticoid-regulated kinase 1 and of the basolateral sodium-potassium ATPase lowers apical sodium entry. The reduced electrochemical driving force cuts potassium secretion through ROMK — the mechanism of the natriuresis, of the potassium sparing, and of the hyperkalaemia. Separately, mineralocorticoid receptor blockade in cardiac fibroblasts reduces collagen deposition, the proposed basis of the RALES mortality benefit beyond diuresis.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Deaths fall in reduced ejection fraction; potassium rises in everyone',
+        laymanDesc:
+          'In severe heart failure it reduced deaths by 30%. In preserved ejection fraction it did not reach significance. Everywhere it is used, it doubles the rate of high potassium.',
+        molecularDetail:
+          'RALES: death 35% against 46%, relative risk 0.70, p<0.001. TOPCAT: primary composite hazard ratio 0.89, p=0.14, with hyperkalaemia 18.7% against 9.1%. CLEAR SYNERGY: adjusted hazard ratios 0.91 and 0.96 for the two primary outcomes. PATHWAY-2: home systolic pressure 8.70 mm Hg below placebo.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'RALES',
+        phase: 'Randomised double-blind placebo-controlled trial, stopped early, mean 24 months',
+        sampleSize: 1663,
+        primaryEndpoint: 'Death from all causes in severe heart failure with ejection fraction ≤35%',
+        endpointMet: true,
+        statisticalPValue: 'Relative risk 0.70 (95% CI 0.60-0.82), P < 0.001',
+        unreportedAdverseSignals:
+          'Serious hyperkalaemia was described as minimal — in a trial that excluded creatinine above 2.5 mg/dL and monitored potassium closely. The population-level experience afterwards was very different.',
+        independentReplicationStatus: 'Partially Replicated',
+      },
+      {
+        trialId: 'TOPCAT (NCT00094302)',
+        phase: 'Randomised double-blind placebo-controlled trial, mean 3.3 years',
+        sampleSize: 3445,
+        primaryEndpoint:
+          'Composite of cardiovascular death, aborted cardiac arrest or hospitalisation for heart failure, ejection fraction ≥45%',
+        endpointMet: false,
+        statisticalPValue: 'HR 0.89 (95% CI 0.77-1.04), P = 0.14',
+        unreportedAdverseSignals:
+          'Hyperkalaemia doubled, 18.7% against 9.1%. A post-hoc analysis found a fourfold regional difference in event rates, with no detectable drug effect on potassium or creatinine in the Russia and Georgia cohort.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'CLEAR SYNERGY / OASIS 9 spironolactone comparison (NCT03048825)',
+        phase: 'Randomised double-blind placebo-controlled 2-by-2 factorial trial, median 3 years',
+        sampleSize: 7062,
+        primaryEndpoint:
+          'Co-primary: total events of cardiovascular death or new or worsening heart failure; and first occurrence of infarction, stroke, new or worsening heart failure or cardiovascular death',
+        endpointMet: false,
+        statisticalPValue: 'Adjusted HR 0.91 (95% CI 0.69-1.21), P = 0.51; and 0.96 (0.81-1.13), P = 0.60',
+        unreportedAdverseSignals:
+          'Vital status was unknown for 45 patients (0.6%). Serious adverse events were 7.2% against 6.8%.',
+        independentReplicationStatus: 'Failed to Replicate',
+      },
+      {
+        trialId: 'PATHWAY-2 (NCT02369081)',
+        phase: 'Randomised double-blind crossover trial with rotating treatment cycles',
+        sampleSize: 335,
+        primaryEndpoint:
+          'Difference in home systolic blood pressure between spironolactone and placebo in resistant hypertension',
+        endpointMet: true,
+        statisticalPValue: '-8.70 mm Hg (95% CI -9.72 to -7.69), P < 0.0001',
+        unreportedAdverseSignals:
+          'Serum potassium exceeded 6.0 mmol/L on one occasion in 6 of 285 patients receiving spironolactone. The endpoint is blood pressure, not events.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'All-cause death 35% against 46% in 1,663 patients with severe heart failure over a mean 24 months',
+        'A rise in hyperkalaemia hospitalisation from 2.4 to 11.0 per 1,000 and associated mortality from 0.3 to 2.0 per 1,000 in an Ontario population after RALES was published',
+        'A primary composite hazard ratio of 0.89 with p=0.14 in 3,445 patients with preserved ejection fraction, and hyperkalaemia doubling to 18.7%',
+        'A home systolic blood pressure reduction 8.70 mm Hg greater than placebo and about 4 mm Hg greater than either active comparator in resistant hypertension',
+      ],
+      unsupportedInferences: [
+        'That the RALES benefit transfers to routine prescribing without the trial\'s exclusions and monitoring — the Ontario data measured what happened when it did not',
+        'That spironolactone benefits heart failure with preserved ejection fraction in the Americas — a post-hoc geographic subgroup of a trial that missed',
+        'That the RALES mortality result extends to the post-infarction setting — CLEAR SYNERGY tested that in 7,062 patients and both primary outcomes were null',
+        'That "serious hyperkalaemia was minimal" in RALES describes the risk in practice — the trial excluded creatinine above 2.5 mg/dL and monitored potassium closely',
+      ],
+      whatFailedInitially: [
+        'TOPCAT missed its primary endpoint at p=0.14, with only heart failure hospitalisation reaching significance among the components',
+        'CLEAR SYNERGY found adjusted hazard ratios of 0.91 and 0.96 on its two primary outcomes in 7,062 patients after myocardial infarction',
+        'The population rollout of RALES produced an estimated 560 extra hyperkalaemia hospitalisations and 73 extra hospital deaths in one Canadian province in 2001 alone',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines and a foundational therapy in heart failure with reduced ejection fraction since RALES',
+        'Widely used off-label for acne and hirsutism because the same steroid scaffold that causes gynaecomastia also blocks androgen receptors',
+        'The Juurlink analysis is one of the most-cited demonstrations in pharmacoepidemiology that trial monitoring is part of the intervention',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet in several strengths, and an oral suspension',
+      description:
+        'Once daily, taken with food because absorption is improved by it. Effect builds over days because most of the activity resides in metabolites with long half-lives, and for the same reason it does not disappear immediately on stopping.',
+      safetyProfile:
+        'Hyperkalaemia is the defining risk: 18.7% against 9.1% on placebo in TOPCAT, and the Ontario time-series measured the population consequence of prescribing without the trial\'s monitoring. Risk rises with renal impairment, with ACE inhibitors or angiotensin receptor blockers, with potassium supplements and with potassium-based salt substitutes. Gynaecomastia or breast pain occurred in 10% of men in RALES against 1% on placebo. Menstrual irregularity occurs in women. Serum creatinine rises. It is contraindicated in pregnancy because of anti-androgen activity.',
+    },
+    commonQuestions: [
+      {
+        q: 'Why does my potassium have to be checked so often?',
+        a: 'Because the entire mechanism of the drug is that the kidney stops excreting potassium, and because the population consequence of not checking has been measured. RALES excluded patients with a creatinine above 2.5 mg/dL and monitored potassium closely, and reported serious hyperkalaemia as minimal. When the result was published, prescribing in Ontario rose from 34 to 149 per thousand eligible patients, and hospitalisations for hyperkalaemia rose from 2.4 to 11.0 per thousand with associated deaths rising from 0.3 to 2.0 per thousand — an estimated 560 extra admissions and 73 extra hospital deaths in that province in 2001 alone. High potassium causes no symptoms until it disturbs the heart rhythm, so the blood test is the only warning available.',
+        auditNote:
+          'This is the clearest case on the site of a benefit that is real in a trial and conditional on the trial\'s own safeguards being carried across with it.',
+      },
+      {
+        q: 'Does it work if my heart failure has a normal ejection fraction?',
+        a: 'TOPCAT was built to answer that and did not. In 3,445 patients with an ejection fraction of 45% or more, the primary composite occurred in 18.6% against 20.4%, hazard ratio 0.89, p=0.14. Only heart failure hospitalisation reached significance among the components, at 12.0% against 14.2%. What complicates the reading is a post-hoc finding: patients enrolled in Russia and Georgia had roughly a quarter the event rate of those in the Americas, and showed no drug effect on any outcome — including no effect on potassium or creatinine, which are pharmacological rather than clinical measurements and are hard to explain if the drug was being taken. Restricted to the Americas the drug looks effective. That restriction was chosen after seeing the data, which is exactly the kind of analysis this site labels as inference.',
+      },
+      {
+        q: 'Why do I have breast tenderness on a heart drug?',
+        a: 'Because spironolactone is a steroid and its selectivity is imperfect. As well as blocking the aldosterone receptor it blocks androgen receptors and inhibits testosterone synthesis. In RALES, gynaecomastia or breast pain occurred in 10% of men on the drug against 1% on placebo. Eplerenone was developed specifically to remove that off-target activity and does not cause it, though it carries the same hyperkalaemia risk. The same anti-androgen effect is the reason spironolactone is used off-label for acne and hirsutism, and the reason it must not be taken in pregnancy.',
+      },
+      {
+        q: 'I had a heart attack. Should I be on this?',
+        a: 'The most recent and largest trial says no, on routine grounds. CLEAR SYNERGY randomised 7,062 patients after myocardial infarction who had had a coronary intervention, to spironolactone or placebo, and followed them a median of three years. Neither primary outcome moved: cardiovascular death or new or worsening heart failure gave an adjusted hazard ratio of 0.91 (p=0.51), and the broader first-event composite gave 0.96 (p=0.60). That trial does not speak to established heart failure with a reduced ejection fraction, where RALES applies and remains one of the strongest mortality results in cardiology.',
+      },
+      {
+        q: 'My blood pressure will not come down on three drugs. Is this the next one?',
+        a: 'PATHWAY-2 tested exactly that question against the plausible alternatives and spironolactone won clearly. It rotated 335 patients with resistant hypertension through spironolactone, doxazosin, bisoprolol and placebo, measuring home systolic pressure. Spironolactone was 8.70 mm Hg below placebo, 4.03 below doxazosin and 4.48 below bisoprolol, all with p below 0.0001, and its advantage was largest in patients with low plasma renin — which is what you would expect if the underlying problem in resistant hypertension is sodium retention. Two caveats: the endpoint was blood pressure rather than events, and six of 285 patients had a potassium above 6.0 mmol/L at least once.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose production cost for spironolactone could be cited. It is a steroid, so the route runs from a plant- or fermentation-derived sterol through a spirolactone closure and a stereoselective thioacetate addition, with the specification written around canrenone content — an impurity that is also one of the drug\'s own active metabolites. The tablets are inexpensive generics. That is a description of the chemistry and of the market, not a cost figure, and this page does not manufacture one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Pitt B et al. The effect of spironolactone on morbidity and mortality in patients with severe heart failure (RALES). N Engl J Med 1999;341:709-717',
+        identifier: '10.1056/NEJM199909023411001',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Juurlink DN et al. Rates of hyperkalemia after publication of the Randomized Aldactone Evaluation Study. N Engl J Med 2004;351:543-551',
+        identifier: '10.1056/NEJMoa040135',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pitt B et al. Spironolactone for heart failure with preserved ejection fraction (TOPCAT). N Engl J Med 2014;370:1383-1392',
+        identifier: '10.1056/NEJMoa1313731',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pfeffer MA et al. Regional variation in patients and outcomes in the Treatment of Preserved Cardiac Function Heart Failure with an Aldosterone Antagonist (TOPCAT) trial. Circulation 2015;131:34-42',
+        identifier: '10.1161/CIRCULATIONAHA.114.013255',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Jolly SS et al. Routine spironolactone in acute myocardial infarction (CLEAR SYNERGY / OASIS 9). N Engl J Med 2025;392:643-652',
+        identifier: '10.1056/NEJMoa2405923',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Williams B et al. Spironolactone versus placebo, bisoprolol, and doxazosin to determine the optimal treatment for drug-resistant hypertension (PATHWAY-2). Lancet 2015;386:2059-2068',
+        identifier: '10.1016/S0140-6736(15)00257-3',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: ALDACTONE (spironolactone), NDA 012151, original approval 21 January 1960',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=012151',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 5833 — spironolactone structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/5833',
+        kind: 'url',
+      },
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 18. Hydrochlorothiazide — the drug 13,523 veterans were randomised to keep taking, and the one
+  //     that lost to chlorthalidone in every guideline until the trial comparing them was run.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'hydrochlorothiazide',
+    name: 'Hydrochlorothiazide',
+    tradeName: 'Microzide, and dozens of fixed combinations',
+    sponsor:
+      'Merck and Ciba (originators, 1950s); long off-patent and present in more fixed-dose combinations than any other antihypertensive',
+    targetGene: 'SLC12A3',
+    targetProtein: 'Sodium-chloride cotransporter (NCC) of the distal convoluted tubule',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1959,
+    indication:
+      'Hypertension, alone or in combination; and oedema associated with heart failure, hepatic cirrhosis, renal dysfunction and corticosteroid or oestrogen therapy',
+    patientFriendlyIndication: 'High blood pressure, and fluid retention',
+    anatomicalSite: 'Luminal membrane of the distal convoluted tubule',
+    conditionContext: {
+      conditionExplainer:
+        'The distal convoluted tubule reclaims about 5% of filtered sodium using a single cotransporter that moves sodium and chloride together. Blocking it produces a modest, sustained natriuresis. The blood pressure effect that follows is larger and longer-lasting than the sodium loss alone explains, and after the first weeks it appears to come from reduced vascular resistance rather than from continuing volume depletion.',
+      whyItMatters:
+        'For two decades guidelines and expert opinion held that chlorthalidone was the better thiazide-type diuretic, on the strength of indirect comparisons across separate trials. In 2022 the two were finally randomised against each other in 13,523 patients, and the answer was that they are the same. This page is largely about what that took.',
+      whoTakesThis:
+        'One of the most-dispensed drugs in the world for hypertension, alone and inside a very large number of fixed-dose combination products. On the WHO Model List of Essential Medicines.',
+      clinicalGoals:
+        'Lower blood pressure and reduce cardiovascular events. In ALLHAT the thiazide-type comparator arm outperformed both an ACE inhibitor and a calcium channel blocker on specific endpoints; in the Diuretic Comparison Project, hydrochlorothiazide matched chlorthalidone exactly.',
+    },
+    oneSentenceVerdict:
+      'The most-prescribed thiazide-type diuretic on earth, long argued to be inferior to chlorthalidone on indirect evidence, and shown in a 13,523-patient randomised comparison to produce an identical event rate (10.0% against 10.4%, hazard ratio 1.04) with less hypokalaemia — alongside a Danish registry dose-response association with squamous cell skin cancer that reaches an odds ratio of 7.38 at the highest cumulative exposure.',
+    laymanHowItWorks:
+      'Deep in the kidney tubule there is a single doorway that pulls sodium and chloride back out of the fluid destined to become urine. Hydrochlorothiazide plugs that doorway, so more salt and water leave the body. Blood pressure falls over days from fluid loss, and over weeks the arteries themselves relax, which is where most of the long-term effect comes from.',
+    auditConfidence: 'Rigorous Replicated',
+    confidenceScore: 84,
+    substitutes: {
+      summary:
+        'Both hydrochlorothiazide and chlorthalidone cost cents a tablet, and the trial that finally compared them found no difference in outcomes. Indapamide is the third option. All three carry the metabolic effects of the class, and the non-melanoma skin cancer association has been demonstrated most clearly for hydrochlorothiazide because it is the one people take for decades.',
+      conventionalRx: [
+        {
+          name: 'Chlorthalidone',
+          class: 'Thiazide-type diuretic with a longer half-life',
+          howItCompares:
+            'In the Diuretic Comparison Project, 13,523 veterans aged 65 or older already on hydrochlorothiazide were randomised to continue it or switch to chlorthalidone. Over a median 2.4 years the primary composite occurred in 702 (10.4%) on chlorthalidone against 675 (10.0%) on hydrochlorothiazide: hazard ratio 1.04 (95% CI 0.94 to 1.16), p=0.45, with no difference in any component. Hypokalaemia was more frequent on chlorthalidone: 6.0% against 4.4%, p<0.001.',
+          typicalCost: 'Both are among the lowest-cost tablets in the CMS NADAC file',
+          prosAndCons:
+            'Pros claimed for chlorthalidone: longer duration, and the outcome trials guidelines were built on. Cons: more hypokalaemia, and the head-to-head trial found no outcome advantage.',
+        },
+        {
+          name: 'Amlodipine',
+          class: 'Dihydropyridine calcium channel blocker',
+          howItCompares:
+            'In ALLHAT, amlodipine matched chlorthalidone on the primary coronary endpoint and on all-cause mortality but had a 38% higher six-year rate of heart failure (10.2% against 7.7%). It has no metabolic penalty and no potassium effect, and causes ankle oedema instead.',
+          typicalCost: 'Among the lowest-cost tablets in the CMS NADAC file',
+          prosAndCons:
+            'Pros: no hypokalaemia, no gout, no new-onset diabetes, no photosensitivity. Cons: dose-dependent oedema and the heart failure excess in ALLHAT.',
+        },
+        {
+          name: 'Lisinopril or losartan',
+          class: 'Renin-angiotensin system blockers',
+          howItCompares:
+            'In ALLHAT, lisinopril had higher six-year rates of stroke, heart failure and combined cardiovascular disease than chlorthalidone. These are routinely combined with a thiazide rather than substituted, and the combination is what most fixed-dose products contain.',
+          typicalCost:
+            'US$0.018 per 10 mg lisinopril tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: no metabolic effects, additive with a thiazide because each raises what the other suppresses. Cons: cough for the ACE inhibitors, hyperkalaemia for both, fetal toxicity for both.',
+        },
+      ],
+      naturalFoods: [
+        {
+          name: 'Dietary sodium reduction',
+          activeCompound: 'The absence of sodium chloride',
+          biologicalMechanism:
+            'Reduces the sodium load the tubule has to handle in the first place, rather than blocking its reclamation. The two are partly additive, and a thiazide is far less effective in someone with a very high sodium intake because reabsorption at other tubular sites compensates.',
+          evidenceStrength: 'High Clinical Proof',
+          dailyUsage:
+            'Not stated here. The mechanistic point is that intake determines how much work the blocked transporter had to do, which is why sodium restriction and a thiazide reinforce each other.',
+          monthlyCost: 'No cost — it is a subtraction',
+        },
+      ],
+      homeRemedies: [
+        {
+          name: 'Sun protection is a specific issue with this drug',
+          action:
+            'Use sun protection and report new or changing skin lesions, particularly after years of use.',
+          patientImpact:
+            'Hydrochlorothiazide is photosensitising. In a Danish registry case-control study, cumulative use of 50,000 mg or more carried odds ratios of 1.29 for basal cell carcinoma and 3.98 for squamous cell carcinoma, rising to 1.54 and 7.38 at the highest cumulative dose category. Other diuretics and antihypertensives showed no such association.',
+          clinicalPrecaution:
+            'That is a case-control study without sun exposure data, so it establishes an association with a clear dose-response and not a causal magnitude. The FDA and EMA have both added skin cancer information to the labelling.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1NC2=CC(=C(C=C2S(=O)(=O)N1)S(=O)(=O)N)Cl',
+      chemicalFormula: 'C7H8ClN3O4S2',
+      molecularWeight: '297.7 g/mol',
+      targetReceptorAffinity:
+        'Binds the sodium-chloride cotransporter NCC from the luminal side of the distal convoluted tubule. It is a benzothiadiazine sulfonamide and retains weak carbonic anhydrase inhibition inherited from the sulfonamide diuretics it was derived from — a vestigial activity that contributes little to the diuresis but is part of why the class raises uric acid and disturbs electrolytes in ways a pure NCC blocker would not.',
+      structureSource: {
+        label:
+          'PubChem CID 3639 (hydrochlorothiazide) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3639',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'hct-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the chlorinated disulfonamide aniline',
+          description:
+            'Assay 4-amino-6-chlorobenzene-1,3-disulfonamide for regiochemistry, residual chloride and free sulfamic acid. Both sulfonamide groups are load-bearing: one becomes part of the fused ring and the other is the free sulfonamide that binds the transporter, and a mono-sulfonamide impurity carries through the ring closure to give a compound with no diuretic activity.',
+          reagentsAndBuffer:
+            '4-amino-6-chlorobenzene-1,3-disulfonamide reference standard, formaldehyde solution, HPLC with UV detection at 271 nm, ion chromatography for chloride and sulfate, Karl Fischer titration',
+        },
+        {
+          id: 'hct-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Ring closure with formaldehyde to the benzothiadiazine',
+          description:
+            'Condense the disulfonamide aniline with formaldehyde to close the six-membered thiadiazine ring, giving the 3,4-dihydro compound. The dihydro state is the whole difference between hydrochlorothiazide and chlorothiazide, which differ by two hydrogen atoms and by roughly tenfold in potency; incomplete reduction or over-oxidation gives the wrong drug rather than an impurity.',
+          dependsOnStepId: 'hct-w1',
+          reagentsAndBuffer:
+            'Aqueous formaldehyde with dilute acid catalysis in diglyme or ethanol, controlled temperature, nitrogen atmosphere; thin-layer chromatography against chlorothiazide reference standard',
+        },
+        {
+          id: 'hct-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with hydrolysis-product control',
+          description:
+            'Recrystallise from aqueous alcohol and assay for the ring-opened hydrolysis product. Hydrochlorothiazide hydrolyses slowly back to the disulfonamide in moist conditions, so the same compound is both starting material and degradant, and the stability specification is written around it — which is why tablet moisture control matters more for this drug than its simple structure suggests.',
+          dependsOnStepId: 'hct-w2',
+          reagentsAndBuffer:
+            'Aqueous ethanol or acetone recrystallisation, activated charcoal treatment, reversed-phase HPLC against the disulfonamide hydrolysis product and chlorothiazide, accelerated stability chambers at 40 degrees Celsius and 75% relative humidity',
+        },
+        {
+          id: 'hct-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'OAT-mediated tubular secretion into the lumen',
+          description:
+            'Measure basolateral uptake in cells expressing organic anion transporters 1 and 3 and confirm luminal appearance. Hydrochlorothiazide is an anion that is filtered only in part and reaches its target chiefly by active secretion from blood into tubular fluid; this is why non-steroidal anti-inflammatories, which compete for the same transporters, blunt thiazide diuresis, and why efficacy falls as glomerular filtration declines.',
+          dependsOnStepId: 'hct-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells stably expressing human SLC22A6 (OAT1) and SLC22A8 (OAT3), probenecid as a competing inhibitor, Hanks balanced salt solution at pH 7.4, LC-MS/MS quantification',
+        },
+        {
+          id: 'hct-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'NCC inhibition and downstream electrolyte readout',
+          description:
+            'Measure thiazide-sensitive sodium uptake in NCC-expressing cells or oocytes, and separately measure urinary sodium, potassium and calcium excretion in vivo. Both are needed because the clinically important effects diverge: the same transporter block that causes natriuresis also increases distal potassium secretion, which is the hypokalaemia, and increases calcium reabsorption, which is why thiazides lower urinary calcium and are used in stone prevention.',
+          dependsOnStepId: 'hct-w4',
+          reagentsAndBuffer:
+            'Xenopus oocytes or HEK293 cells expressing human SLC12A3, radiolabelled sodium-22 uptake in a chloride-containing buffer, metolazone as reference inhibitor, flame photometry or ion-selective electrodes for urinary sodium, potassium and calcium',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'hct-a1',
+        category: 'conclusion_shift',
+        title: 'The Diuretic Comparison Project: chlorthalidone was not better after all',
+        laymanSummary:
+          'For twenty years the standard teaching was that chlorthalidone is the superior thiazide. Thirteen thousand veterans were randomised to keep taking hydrochlorothiazide or switch, and the event rates came out the same.',
+        technicalDetails:
+          'The Diuretic Comparison Project randomised 13,523 Department of Veterans Affairs patients aged 65 or older already receiving hydrochlorothiazide at 25 or 50 mg daily, to continue it or switch to chlorthalidone 12.5 or 25 mg daily. Mean age was 72; 12,781 (94.5%) had been on 25 mg hydrochlorothiazide; mean baseline systolic pressure was 139 mm Hg in each group. At a median 2.4 years the primary composite of non-fatal myocardial infarction, stroke, heart failure requiring hospitalisation, urgent coronary revascularisation for unstable angina and non-cancer death occurred in 702 (10.4%) on chlorthalidone against 675 (10.0%) on hydrochlorothiazide: hazard ratio 1.04 (95% CI 0.94 to 1.16), p=0.45. There were no between-group differences in any component. Hypokalaemia was more frequent on chlorthalidone, 6.0% against 4.4%, p<0.001.',
+        evidenceSource:
+          'Ishani A et al., Diuretic Comparison Project, N Engl J Med 2022;387:2401-2410 (NCT02185417)',
+        doi: '10.1056/NEJMoa2212270',
+        measuredMetric:
+          'Composite of non-fatal infarction, stroke, heart failure hospitalisation, urgent revascularisation and non-cancer death over a median 2.4 years',
+        inferredClaim:
+          'That chlorthalidone prevents more cardiovascular events than hydrochlorothiazide — an inference from indirect comparison across separate trials that a direct randomised comparison did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hct-a2',
+        category: 'inferred',
+        title: 'The chlorthalidone superiority claim was always an indirect comparison',
+        laymanSummary:
+          'The argument rested on chlorthalidone having been the drug in the big successful trials and on it lasting longer in the body. Neither of those is a comparison, and when a comparison was finally run the difference disappeared.',
+        technicalDetails:
+          'The case for chlorthalidone rested on three things: its longer plasma half-life and duration of action; greater ambulatory blood pressure reduction at nominally equivalent doses in small crossover studies; and the fact that ALLHAT, SHEP and MRFIT used chlorthalidone while several trials with weaker results used hydrochlorothiazide. The last of these is a comparison between trials, not within one, and confounds the drug with the population, the era, the dose and the co-therapy. The Diuretic Comparison Project removed all of those by randomising within a single population at doses actually used in practice, and found a hazard ratio of 1.04 with no component differing. What survived was the metabolic difference in the expected direction: more hypokalaemia on chlorthalidone.',
+        evidenceSource:
+          'Ishani A et al., N Engl J Med 2022;387:2401-2410; ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997',
+        doi: '10.1001/jama.288.23.2981',
+        inferredClaim:
+          'That the choice of thiazide-type diuretic in the landmark trials explains their results — a between-trial comparison that a within-trial randomisation contradicted',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hct-a3',
+        category: 'measured',
+        title: 'ALLHAT: the thiazide arm was the one that won',
+        laymanSummary:
+          'In the largest hypertension trial ever run, the thiazide-type diuretic matched a calcium channel blocker and an ACE inhibitor on heart attacks and death, and beat both on other endpoints, at a fraction of the cost.',
+        technicalDetails:
+          'ALLHAT randomised 33,357 hypertensive participants aged 55 or older with at least one other coronary risk factor to chlorthalidone 12.5-25 mg (n=15,255), amlodipine 2.5-10 mg (n=9,048) or lisinopril 10-40 mg (n=9,054), mean follow-up 4.9 years. The primary endpoint of fatal coronary disease plus non-fatal infarction did not differ, with six-year rates of 11.5%, 11.3% and 11.4% respectively, and all-cause mortality did not differ either. Against chlorthalidone, amlodipine had a higher six-year heart failure rate (10.2% against 7.7%; RR 1.38, 95% CI 1.25 to 1.52) and lisinopril had higher rates of combined cardiovascular disease (33.3% against 30.9%; RR 1.10), stroke (6.3% against 5.6%; RR 1.15) and heart failure (8.7% against 7.7%; RR 1.19). The stated conclusion was that thiazide-type diuretics should be preferred for first-step therapy. Read alongside the Diuretic Comparison Project, the class conclusion holds and does not single out one member of it.',
+        evidenceSource:
+          'ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997 (NCT00000542)',
+        doi: '10.1001/jama.288.23.2981',
+        measuredMetric:
+          'Six-year rates of coronary events, heart failure, stroke and combined cardiovascular disease across three first-line strategies',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hct-a4',
+        category: 'measured',
+        title: 'A dose-response association with squamous cell skin cancer, from registry data',
+        laymanSummary:
+          'Danish national registry data found that people with high cumulative hydrochlorothiazide exposure had roughly four times the odds of squamous cell skin cancer, rising to more than seven times at the highest exposure. Other diuretics showed nothing.',
+        technicalDetails:
+          'Pedersen and colleagues identified non-melanoma skin cancer cases in the Danish Cancer Registry from 2004 to 2012 and matched 20 controls per case by age and sex, assessing cumulative hydrochlorothiazide use from the Danish Prescription Registry over 1995 to 2012. High cumulative use of 50,000 mg or more carried odds ratios of 1.29 (95% CI 1.23 to 1.35) for basal cell carcinoma and 3.98 (3.68 to 4.31) for squamous cell carcinoma. Clear dose-response relationships were present for both, and at the highest cumulative category of 200,000 mg or more the odds ratios were 1.54 (1.38 to 1.71) and 7.38 (6.32 to 8.60). Use of other diuretics and antihypertensives was not associated with non-melanoma skin cancer. The authors note the absence of sun exposure data as a limitation.',
+        evidenceSource: 'Pedersen SA et al., J Am Acad Dermatol 2018;78:673-681',
+        doi: '10.1016/j.jaad.2017.11.042',
+        measuredMetric:
+          'Odds ratios for basal cell and squamous cell carcinoma by cumulative hydrochlorothiazide exposure',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'hct-a5',
+        category: 'inferred',
+        title: 'The skin cancer finding is a strong association, and it is not a randomised result',
+        laymanSummary:
+          'The dose-response pattern and the absence of any similar signal with other blood pressure drugs make chance and simple confounding unlikely. There is still no trial, and sun exposure was not measured.',
+        technicalDetails:
+          'Three features strengthen the case that this is causal: a monotonic dose-response across cumulative exposure categories, biological plausibility from the drug\'s known photosensitising property and its earlier association with lip cancer, and specificity — no association was seen for other diuretics or antihypertensives, which argues against confounding by indication or by the general characteristics of treated hypertensive patients. Three features limit it: the design is case-control on registry data, sun exposure was not recorded and is the dominant risk factor for both cancers, and no randomised trial has been or realistically could be run at the required duration. Both regulators added labelling. The honest statement is a well-characterised association with a dose-response and no randomised confirmation, and the absolute risk depends on a person\'s baseline skin cancer risk, which the study cannot supply.',
+        evidenceSource: 'Pedersen SA et al., J Am Acad Dermatol 2018;78:673-681',
+        doi: '10.1016/j.jaad.2017.11.042',
+        inferredClaim:
+          'That hydrochlorothiazide causes squamous cell carcinoma at a quantified rate — the association is strong and dose-dependent, and no trial has measured it or the absolute risk',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'hct-a6',
+        category: 'measured',
+        title: 'The metabolic effects are the class trade, and one of them cuts the other way',
+        laymanSummary:
+          'Thiazides lower potassium, raise uric acid and raise blood sugar. They also reduce calcium in the urine, which is why they are used to prevent kidney stones and are associated with better bone density.',
+        technicalDetails:
+          'Blocking NCC increases sodium delivery to the collecting duct, raising the electrochemical driving force for potassium secretion: in the Diuretic Comparison Project hypokalaemia occurred in 4.4% on hydrochlorothiazide against 6.0% on chlorthalidone, p<0.001. Volume contraction increases proximal urate reabsorption, raising serum uric acid and precipitating gout. Impaired insulin secretion, partly potassium-dependent, underlies the new-onset diabetes signal seen across thiazide trials. The same transporter block that causes all of these also increases distal calcium reabsorption and reduces urinary calcium excretion, which is the basis for using thiazides in recurrent calcium stone disease and for the observed association with higher bone mineral density. One mechanism, four consequences, three unwanted and one useful.',
+        evidenceSource:
+          'Ishani A et al., N Engl J Med 2022;387:2401-2410; ALLHAT Officers and Coordinators, JAMA 2002;288:2981-2997',
+        doi: '10.1056/NEJMoa2212270',
+        measuredMetric:
+          'Randomised rates of hypokalaemia, and the mechanistic basis of the class metabolic profile',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed moderately and cleared unchanged by the kidney',
+        laymanDesc:
+          'Around two thirds of a dose is absorbed and the body does not chemically alter it. It leaves in the urine as the same molecule that went in.',
+        molecularDetail:
+          'Oral bioavailability is roughly 65 to 75%, with onset of diuresis within two hours and duration of 6 to 12 hours. There is essentially no metabolism; elimination is renal as unchanged drug. This is the pharmacokinetic difference from chlorthalidone, whose much longer half-life was the main mechanistic argument for its supposed superiority.',
+        iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is actively pumped from blood into the tubule to reach its target',
+        laymanDesc:
+          'Its target faces the urine, so the drug has to be secreted into the tubule to get at it. That pump is shared with other drugs, which is why some painkillers blunt the effect.',
+        molecularDetail:
+          'Hydrochlorothiazide is an organic anion secreted into the proximal tubular lumen by OAT1 and OAT3 and then carried downstream to the distal convoluted tubule. Non-steroidal anti-inflammatories compete for the same transporters and blunt the diuresis; declining glomerular filtration reduces delivery, which is why thiazides lose effectiveness in advanced chronic kidney disease.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It plugs the sodium-chloride doorway of the distal tubule',
+        laymanDesc:
+          'A single transporter pulls sodium and chloride back together at this point in the tubule. The drug blocks it, and about one twentieth of the filtered sodium is left behind.',
+        molecularDetail:
+          'Binding to NCC, encoded by SLC12A3, from the luminal face inhibits electroneutral sodium-chloride cotransport in the distal convoluted tubule, which normally reabsorbs about 5% of filtered sodium. Loss-of-function mutations in the same gene cause Gitelman syndrome, whose electrolyte picture — hypokalaemia, metabolic alkalosis, hypomagnesaemia and hypocalciuria — is a near-exact phenocopy of chronic thiazide use.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'Salt leaves, potassium follows, calcium stays',
+        laymanDesc:
+          'The extra sodium arriving downstream is exchanged for potassium, which is why potassium falls. At the same time the block makes the cell pull more calcium in, so less calcium ends up in the urine.',
+        molecularDetail:
+          'Increased sodium delivery to the cortical collecting duct raises the electrochemical gradient for potassium secretion through ROMK, producing hypokalaemia and metabolic alkalosis. Intracellular sodium depletion in the distal convoluted tubule cell enhances basolateral sodium-calcium exchange and apical TRPV5-mediated calcium entry, lowering urinary calcium — the basis for stone prevention. Volume contraction raises proximal urate reabsorption and serum uric acid.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Pressure falls, and the long-term effect is vascular rather than volume',
+        laymanDesc:
+          'In the first weeks blood pressure falls because there is less fluid. After that, plasma volume returns almost to normal and the pressure stays down because the arteries themselves have relaxed.',
+        molecularDetail:
+          'Initial blood pressure reduction reflects reduced plasma volume and cardiac output. Over weeks, plasma volume partially normalises while peripheral vascular resistance falls, and the sustained effect is attributed to that vascular change rather than to continuing natriuresis. In the Diuretic Comparison Project, mean baseline systolic pressure was 139 mm Hg in both arms and the primary event rates were 10.0% and 10.4%.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'Diuretic Comparison Project (NCT02185417)',
+        phase: 'Pragmatic randomised open-label trial, median 2.4 years',
+        sampleSize: 13523,
+        primaryEndpoint:
+          'Composite of non-fatal myocardial infarction, stroke, heart failure hospitalisation, urgent revascularisation for unstable angina and non-cancer death',
+        endpointMet: false,
+        statisticalPValue: 'HR 1.04 (95% CI 0.94-1.16), P = 0.45 — no difference in either direction',
+        unreportedAdverseSignals:
+          'Hypokalaemia was more frequent on chlorthalidone (6.0% against 4.4%, p<0.001). Participants were already established on hydrochlorothiazide, which is a survivor population for that drug.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'ALLHAT thiazide arm (NCT00000542)',
+        phase: 'Randomised double-blind active-controlled trial, mean 4.9 years',
+        sampleSize: 33357,
+        primaryEndpoint:
+          'Combined fatal coronary heart disease or non-fatal myocardial infarction across three first-line strategies',
+        endpointMet: true,
+        statisticalPValue:
+          'No difference on the primary endpoint; the diuretic arm was superior on heart failure against amlodipine (RR 1.38) and on stroke, heart failure and combined cardiovascular disease against lisinopril',
+        unreportedAdverseSignals:
+          'The trial used chlorthalidone, not hydrochlorothiazide. Applying its result to hydrochlorothiazide was an assumption until the Diuretic Comparison Project tested it.',
+        independentReplicationStatus: 'Replicated',
+      },
+      {
+        trialId: 'Danish nationwide case-control study of non-melanoma skin cancer',
+        phase: 'Population-based case-control study using national registries, 2004-2012',
+        sampleSize: 0,
+        primaryEndpoint:
+          'Odds of basal cell and squamous cell carcinoma by cumulative hydrochlorothiazide exposure',
+        endpointMet: true,
+        statisticalPValue:
+          'OR 3.98 (95% CI 3.68-4.31) for squamous cell carcinoma at ≥50,000 mg cumulative use, rising to 7.38 (6.32-8.60) at ≥200,000 mg',
+        unreportedAdverseSignals:
+          'Sample size is entered as 0 because this is a registry case-control study with matched controls rather than a randomised trial with an enrolled cohort. Sun exposure, the dominant risk factor, was not recorded.',
+        independentReplicationStatus: 'Replicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'A primary composite of 10.0% on hydrochlorothiazide against 10.4% on chlorthalidone in 13,523 randomised patients, hazard ratio 1.04',
+        'Hypokalaemia in 4.4% on hydrochlorothiazide against 6.0% on chlorthalidone, p<0.001',
+        'A thiazide-type diuretic arm outperforming both an ACE inhibitor and a calcium channel blocker on specific endpoints in 33,357 patients',
+        'Odds ratios of 3.98 for squamous cell carcinoma at high cumulative exposure and 7.38 at the highest, with a monotonic dose-response, in Danish registry data',
+      ],
+      unsupportedInferences: [
+        'That chlorthalidone prevents more cardiovascular events than hydrochlorothiazide — the direct randomised comparison found a hazard ratio of 1.04',
+        'That the ALLHAT result applies unchanged to hydrochlorothiazide because both are thiazide-type — an assumption that happened to survive testing, which is not the same as having been established',
+        'That the skin cancer odds ratios translate into a quantified absolute risk for any individual — the study has no sun exposure data and no randomisation',
+        'That a longer plasma half-life implies better outcomes — the mechanistic argument for chlorthalidone that the trial did not bear out',
+      ],
+      whatFailedInitially: [
+        'Two decades of guideline preference for chlorthalidone rested on indirect comparison and did not survive a direct one',
+        'The Diuretic Comparison Project could not show a difference in any component of its primary endpoint',
+        'The lip cancer association reported earlier, and later extended to non-melanoma skin cancer, was not detected in the randomised trials because none ran long enough',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines and present in more fixed-dose antihypertensive combinations than any other agent',
+        'Among the cheapest tablets dispensed anywhere, at a few cents per tablet at United States pharmacy acquisition cost',
+        'Both the FDA and the EMA added non-melanoma skin cancer information to hydrochlorothiazide labelling following the Danish registry findings',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet and capsule, and a very large number of fixed-dose combination products',
+      description:
+        'Once daily in the morning, because diuresis lasting into the evening disturbs sleep. Duration of action is 6 to 12 hours, considerably shorter than chlorthalidone, which was the basis of the argument that it must be less effective — an argument the head-to-head trial did not support.',
+      safetyProfile:
+        'Hypokalaemia, hyponatraemia, hypomagnesaemia and metabolic alkalosis follow directly from the mechanism; the electrolyte picture is a phenocopy of Gitelman syndrome. Hyperuricaemia and gout, and impaired glucose tolerance with new-onset diabetes, are class effects. The drug is photosensitising and carries labelled information on non-melanoma skin cancer following Danish registry findings. Efficacy falls as glomerular filtration declines, and non-steroidal anti-inflammatories blunt it by competing for tubular secretion.',
+    },
+    commonQuestions: [
+      {
+        q: 'I was told chlorthalidone is better. Is it?',
+        a: 'That was the standard teaching for about twenty years and a randomised trial has now tested it. The Diuretic Comparison Project took 13,523 veterans aged 65 or over who were already on hydrochlorothiazide and randomised them either to stay on it or to switch to chlorthalidone, then followed them a median of 2.4 years. The primary composite occurred in 10.0% of those who stayed on hydrochlorothiazide and 10.4% of those who switched: hazard ratio 1.04, p=0.45, with no difference in any individual component. The one difference was that chlorthalidone caused more low potassium, 6.0% against 4.4%. The original argument was never a comparison — it was that chlorthalidone lasts longer and was the drug used in the big successful trials, which compares trials rather than drugs.',
+        auditNote:
+          'One of the clearest examples on this site of a confident expert consensus built on indirect comparison and overturned by a direct one.',
+      },
+      {
+        q: 'Does this cause skin cancer?',
+        a: 'There is a strong association, particularly for squamous cell carcinoma, and no randomised trial. Danish national registry data compared skin cancer cases from 2004 to 2012 with twenty matched controls each, using prescription records back to 1995. High cumulative use of 50,000 mg or more carried odds ratios of 1.29 for basal cell carcinoma and 3.98 for squamous cell carcinoma, and at the highest exposure category those rose to 1.54 and 7.38. There was a clear dose-response, and no similar association for any other diuretic or antihypertensive — which argues against the finding being an artefact of being a treated hypertensive patient. What the study could not do is measure sun exposure, which is the dominant cause of both cancers. Regulators on both sides of the Atlantic added labelling. Sun protection is a reasonable response; panic is not.',
+      },
+      {
+        q: 'Why does my potassium drop on this?',
+        a: 'It is a direct consequence of the mechanism rather than a separate side effect. The drug blocks sodium reabsorption in the distal tubule, so more sodium arrives at the collecting duct further downstream. Sodium entering there is electrically exchanged for potassium leaving, so more potassium is excreted. That is also why the same drug causes a mild alkalosis and lowers magnesium. Inherited loss of the same transporter produces Gitelman syndrome, whose blood picture looks almost exactly like long-term thiazide use — which is about as direct a confirmation of the mechanism as medicine offers.',
+      },
+      {
+        q: 'Why did my gout flare after starting this?',
+        a: 'Because the volume contraction the drug produces makes the proximal tubule reabsorb more urate. Serum uric acid rises, and in someone with existing crystal deposits that is enough to precipitate an attack. It is a class effect of the thiazides and one of the reasons a calcium channel blocker or a renin-angiotensin blocker is often chosen instead in people with gout. Losartan is the one antihypertensive that does the opposite, because it inhibits the renal urate transporter and lowers uric acid.',
+      },
+      {
+        q: 'Is there anything good about the metabolic effects?',
+        a: 'One of them, yes. The same transporter block that lowers potassium and raises urate also makes the tubule cell take up more calcium, so less calcium ends up in the urine. That is why thiazides are used to prevent recurrent calcium kidney stones, and it is the basis of the observed association between long-term thiazide use and higher bone mineral density. It is the same single mechanism producing four consequences — three unwanted and one that is a therapeutic indication in its own right.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for hydrochlorothiazide could be cited. It is one of the cheapest tablets dispensed anywhere and the synthesis is a single formaldehyde ring closure onto a commercially available disulfonamide, which is consistent with that. The one interesting manufacturing detail is that the ring closure is reversible: the compound hydrolyses slowly back to its own starting material in moist conditions, so the starting material is also the specified degradant and tablet moisture control matters more than the structure suggests. That is process chemistry, not a cost figure.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Ishani A et al. Chlorthalidone vs. hydrochlorothiazide for hypertension-cardiovascular events (Diuretic Comparison Project). N Engl J Med 2022;387:2401-2410',
+        identifier: '10.1056/NEJMoa2212270',
+        kind: 'doi',
+      },
+      {
+        label:
+          'ALLHAT Officers and Coordinators. Major outcomes in high-risk hypertensive patients randomized to angiotensin-converting enzyme inhibitor or calcium channel blocker vs diuretic (ALLHAT). JAMA 2002;288:2981-2997',
+        identifier: '10.1001/jama.288.23.2981',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Pedersen SA et al. Hydrochlorothiazide use and risk of nonmelanoma skin cancer: a nationwide case-control study from Denmark. J Am Acad Dermatol 2018;78:673-681',
+        identifier: '10.1016/j.jaad.2017.11.042',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Drugs@FDA: MICROZIDE (hydrochlorothiazide), NDA 020504, original approval 27 December 1996',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=020504',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3639 — hydrochlorothiazide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3639',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
+  // ---------------------------------------------------------------------------------------------
+  // 19. Furosemide — the most-used drug in acute heart failure, whose entire placebo-controlled
+  //     mortality evidence rests on 202 participants across three small trials.
+  // ---------------------------------------------------------------------------------------------
+  {
+    slug: 'furosemide',
+    name: 'Furosemide',
+    tradeName: 'Lasix',
+    sponsor: 'Hoechst (originator, 1962); long off-patent and made by many manufacturers',
+    targetGene: 'SLC12A1',
+    targetProtein:
+      'Sodium-potassium-two-chloride cotransporter (NKCC2) of the thick ascending limb of the loop of Henle',
+    modality: 'Small Molecule',
+    approvalStatus: 'FDA Approved',
+    approvalYear: 1966,
+    indication:
+      'Oedema associated with congestive heart failure, hepatic cirrhosis and renal disease including the nephrotic syndrome; and hypertension, alone or with other antihypertensives',
+    patientFriendlyIndication: 'Fluid overload from heart, liver or kidney disease',
+    anatomicalSite: 'Luminal membrane of the thick ascending limb of the loop of Henle',
+    conditionContext: {
+      conditionExplainer:
+        'The thick ascending limb of the loop of Henle reclaims about a quarter of all filtered sodium, and it does so through one cotransporter that moves sodium, potassium and two chlorides together. Blocking it produces by far the largest diuresis available from any drug class — and it also abolishes the concentration gradient the kidney uses to make concentrated urine, because that gradient is built by the same transporter.',
+      whyItMatters:
+        'Furosemide is given to almost everyone admitted with acute heart failure and relieves breathlessness within hours, which is why the absence of an outcome trial is so striking. There is no large randomised comparison against placebo with a mortality endpoint. The pooled placebo-controlled mortality evidence in chronic heart failure comes from three small trials totalling 202 participants.',
+      whoTakesThis:
+        'Almost universal in acute decompensated heart failure, in chronic heart failure with congestion, in cirrhotic ascites and in nephrotic oedema. On the WHO Model List of Essential Medicines.',
+      clinicalGoals:
+        'Relieve congestion and breathlessness. The randomised trials that exist compared one furosemide strategy with another, or furosemide with torsemide — not furosemide with nothing.',
+    },
+    oneSentenceVerdict:
+      'The most powerful diuretic in routine use and one of the least tested against placebo: the DOSE trial randomised 308 patients between four furosemide strategies and found no significant difference on either co-primary endpoint, TRANSFORM-HF found torsemide and furosemide identical for death in 2,859 patients, and the Cochrane placebo-controlled mortality evidence rests on 202 participants.',
+    laymanHowItWorks:
+      'A quarter of the salt your kidneys filter is pulled back in one short stretch of tubing, by a single transporter. Furosemide blocks that transporter from the urine side, so that quarter stays in the urine and drags a large volume of water with it. That is why the effect is so much larger than a thiazide, why it works within an hour, and why it also stops the kidney being able to concentrate urine at all.',
+    auditConfidence: 'Moderate / Debated',
+    confidenceScore: 72,
+    substitutes: {
+      summary:
+        'Furosemide costs a few cents a tablet. Torsemide was expected to be better because it is more reliably absorbed and lasts longer, and a 2,859-patient trial found the death rate identical. Bumetanide is the third loop diuretic. SGLT2 inhibitors are increasingly used alongside rather than instead, and they have the outcome trials furosemide does not.',
+      conventionalRx: [
+        {
+          name: 'Torsemide',
+          class: 'Loop diuretic',
+          howItCompares:
+            'More predictable oral bioavailability and a longer duration, which generated a long-standing expectation of better outcomes. TRANSFORM-HF randomised 2,859 patients discharged after heart failure hospitalisation and found death in 26.1% on torsemide against 26.2% on furosemide over a median 17.4 months: hazard ratio 1.02 (95% CI 0.89 to 1.18).',
+          typicalCost: 'A low-cost generic, in the same range as furosemide',
+          prosAndCons:
+            'Pros: less variable absorption, longer action. Cons: the trial designed to show a 20% mortality advantage found none, though its own authors flag loss to follow-up and crossover as limitations.',
+        },
+        {
+          name: 'Dapagliflozin or empagliflozin',
+          class: 'SGLT2 inhibitor',
+          howItCompares:
+            'Produces a much smaller diuresis but has randomised outcome trials showing reduced cardiovascular death and heart failure hospitalisation across the ejection fraction range — evidence loop diuretics have never generated. In practice the two are used together, not as alternatives.',
+          typicalCost:
+            'US$11.19 per 10 mg JARDIANCE tablet and US$12.08 per 10 mg FARXIGA tablet at pharmacy acquisition cost (CMS NADAC, effective 19 August 2026)',
+          prosAndCons:
+            'Pros: outcome evidence, kidney protection. Cons: cannot relieve acute pulmonary congestion, and cost hundreds of times more per tablet.',
+        },
+        {
+          name: 'A thiazide added to the loop diuretic',
+          class: 'Sequential nephron blockade',
+          howItCompares:
+            'Blocking the distal convoluted tubule as well as the loop counters the compensatory hypertrophy and increased sodium reabsorption downstream that develops on chronic loop diuretic therapy — the mechanism of diuretic resistance. The combination is markedly more potent and markedly more likely to deplete potassium and sodium.',
+          typicalCost: 'Both are low-cost generics',
+          prosAndCons:
+            'Pros: overcomes resistance when a loop diuretic alone stops working. Cons: profound electrolyte disturbance is common and monitoring has to be close.',
+        },
+      ],
+      naturalFoods: [],
+      homeRemedies: [
+        {
+          name: 'Daily weights detect fluid changes before symptoms do',
+          action:
+            'Weighing at the same time each morning tracks fluid balance more sensitively than how you feel.',
+          patientImpact:
+            'A litre of retained fluid weighs a kilogram and produces almost no symptoms; by the time breathlessness appears, several litres have usually accumulated. Weight is the cheapest available measurement of the thing the drug is treating.',
+          clinicalPrecaution:
+            'This page does not give dose-adjustment rules. Weight change is information for a clinician, not an instruction to change a dose.',
+        },
+        {
+          name: 'Ask about hearing if a large intravenous dose is given quickly',
+          action: 'Report tinnitus or hearing change during or after high-dose intravenous treatment.',
+          patientImpact:
+            'Furosemide is ototoxic at high plasma concentrations because the same NKCC family transporter maintains the potassium-rich endolymph of the inner ear. The effect is usually reversible and is related to peak concentration, which is why rapid intravenous administration of large doses carries more risk than the same dose infused.',
+          clinicalPrecaution:
+            'Risk rises with renal impairment and with concurrent aminoglycoside antibiotics, which are ototoxic by a different and permanent mechanism.',
+        },
+      ],
+    },
+    molecularSchema: {
+      structureType: 'small_molecule_smiles',
+      smilesString: 'C1=COC(=C1)CNC2=CC(=C(C=C2C(=O)O)S(=O)(=O)N)Cl',
+      chemicalFormula: 'C12H11ClN2O5S',
+      molecularWeight: '330.74 g/mol',
+      targetReceptorAffinity:
+        'Binds the chloride site of NKCC2 from the luminal face of the thick ascending limb. It is an anthranilic acid derivative with a free sulfonamide and a furfurylamine arm, and it is heavily protein-bound in plasma — so almost none is filtered at the glomerulus and it reaches its target essentially entirely by active tubular secretion. That is why hypoalbuminaemia and competing organic anions change its effect, and why a dose that works in one person can do nothing in another.',
+      structureSource: {
+        label:
+          'PubChem CID 3440 (furosemide) — canonical SMILES, molecular formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3440',
+        kind: 'url',
+      },
+      laboratoryWorkflow: [
+        {
+          id: 'fur-w1',
+          stepNumber: 1,
+          phase: 'QC',
+          name: 'Incoming control of the dichlorosulfamoylbenzoic acid and furfurylamine',
+          description:
+            'Assay 2,4-dichloro-5-sulfamoylbenzoic acid for isomeric purity and furfurylamine for polymerisation products. Furfurylamine darkens and polymerises on storage in air, and the resulting oligomers carry into the product as coloured impurities — which is why furosemide tablets are specified on appearance as well as on assay.',
+          reagentsAndBuffer:
+            '2,4-dichloro-5-sulfamoylbenzoic acid reference standard, freshly distilled furfurylamine, HPLC with UV detection at 272 nm, colour comparison against reference solutions, Karl Fischer titration',
+        },
+        {
+          id: 'fur-w2',
+          stepNumber: 2,
+          phase: 'Synthesis',
+          name: 'Selective amination at the 4-position',
+          description:
+            'Displace the 4-chloro substituent with furfurylamine while leaving the 2-chloro in place. Selectivity between the two chlorines is the entire difficulty of the route: they differ only in their position relative to the electron-withdrawing carboxyl and sulfamoyl groups, and the 2-substituted regioisomer is a specified impurity with the same molecular formula.',
+          dependsOnStepId: 'fur-w1',
+          reagentsAndBuffer:
+            'Furfurylamine in excess with a tertiary amine base in water or diglyme, controlled temperature around 90 to 100 degrees Celsius, nitrogen atmosphere; HPLC in-process monitoring against the regioisomer standard',
+        },
+        {
+          id: 'fur-w3',
+          stepNumber: 3,
+          phase: 'Purification',
+          name: 'Recrystallisation with light and hydrolysis control',
+          description:
+            'Recrystallise from aqueous alcohol under exclusion of light. Furosemide is photolabile: exposure produces the ring-opened saluamine degradant and a characteristic yellowing, and the degradant is both a specified impurity and the reason parenteral solutions are supplied in light-protective packaging and stored above room temperature to avoid precipitation.',
+          dependsOnStepId: 'fur-w2',
+          reagentsAndBuffer:
+            'Aqueous ethanol or acetone recrystallisation with activated charcoal, amber glassware and nitrogen headspace throughout, reversed-phase HPLC against 4-chloro-5-sulfamoylanthranilic acid (saluamine) and the regioisomer, photostability testing under ICH Q1B conditions',
+        },
+        {
+          id: 'fur-w4',
+          stepNumber: 4,
+          phase: 'Cellular_Delivery',
+          name: 'OAT-mediated secretion into tubular fluid, with albumin binding',
+          description:
+            'Measure basolateral uptake in OAT1- and OAT3-expressing cells in the presence and absence of physiological albumin. This step carries more clinical weight for furosemide than for almost any other drug on this site: it is over 90% protein-bound, so it is barely filtered and depends on secretion, and both hypoalbuminaemia and competing anions such as uraemic toxins or non-steroidal anti-inflammatories reduce how much reaches the transporter — which is what diuretic resistance often actually is.',
+          dependsOnStepId: 'fur-w3',
+          reagentsAndBuffer:
+            'HEK293 or CHO cells expressing human SLC22A6 (OAT1) and SLC22A8 (OAT3), physiological and reduced human serum albumin concentrations, probenecid as competing inhibitor, Hanks balanced salt solution at pH 7.4, LC-MS/MS quantification',
+        },
+        {
+          id: 'fur-w5',
+          stepNumber: 5,
+          phase: 'Assay_Quantification',
+          name: 'NKCC2 inhibition and fractional sodium excretion readout',
+          description:
+            'Measure bumetanide-sensitive rubidium or sodium uptake in NKCC2-expressing cells, and separately measure fractional excretion of sodium in vivo against urinary drug concentration. Pairing them is what distinguishes a pharmacodynamic failure from a delivery failure: if urinary drug concentration is adequate and sodium excretion is not, the transporter is the problem, and if urinary drug concentration is low the secretion step is.',
+          dependsOnStepId: 'fur-w4',
+          reagentsAndBuffer:
+            'HEK293 cells or Xenopus oocytes expressing human SLC12A1, rubidium-86 or sodium-22 uptake buffer with potassium and chloride, bumetanide as reference inhibitor, flame photometry or ion-selective electrodes for urinary and plasma sodium and creatinine',
+        },
+      ],
+    },
+    keyAudits: [
+      {
+        id: 'fur-a1',
+        category: 'inferred',
+        title: 'The placebo-controlled mortality evidence is 202 participants across three trials',
+        laymanSummary:
+          'Furosemide is given to almost every patient admitted with heart failure. The pooled randomised evidence that a diuretic reduces death compared with no diuretic comes from three small trials with 202 people between them.',
+        technicalDetails:
+          'The Cochrane review of diuretics for heart failure includes 14 trials with 525 participants in total, of which 7 were placebo-controlled and 7 compared diuretics with other agents such as ACE inhibitors or digoxin. Mortality data were available in only 3 of the placebo-controlled trials, comprising 202 participants: the odds ratio for death was 0.24 (95% CI 0.07 to 0.83), p=0.02. Admission for worsening heart failure was reduced in 2 trials with 169 participants, odds ratio 0.07 (0.01 to 0.52), p=0.01. Four trials comparing diuretics with active control in 91 participants found improved exercise capacity, weighted mean difference 0.72 (0.40 to 1.04), p<0.0001. The 2012 update identified no new studies for inclusion. An odds ratio of 0.24 on 202 participants with an interval running to 0.83 is a real signal on a very small base, and no large trial has ever been run because withholding a loop diuretic from a congested patient is not something investigators will randomise.',
+        evidenceSource: 'Faris RF et al., Cochrane Database Syst Rev 2012;(2):CD003838',
+        doi: '10.1002/14651858.CD003838.pub3',
+        measuredMetric:
+          'Pooled odds ratio for death from diuretics versus placebo in chronic heart failure, across 3 trials and 202 participants',
+        inferredClaim:
+          'That the clinical certainty attached to loop diuretics reflects a large evidence base — the placebo-controlled mortality evidence is three small trials and 202 people',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fur-a2',
+        category: 'failed',
+        title: 'DOSE: neither co-primary endpoint separated between four strategies',
+        laymanSummary:
+          'Three hundred patients hospitalised with heart failure were randomised to furosemide given by injection or infusion, and at a low or high dose. Neither comparison changed symptoms or kidney function significantly.',
+        technicalDetails:
+          'The DOSE trial randomised 308 patients with acute decompensated heart failure in a 2-by-2 design to intravenous furosemide by bolus every 12 hours or by continuous infusion, and at a low dose equal to the previous oral dose or a high dose 2.5 times it, with protocol-permitted adjustment after 48 hours. The co-primary endpoints were the patient global symptom assessment as area under a visual analogue scale curve over 72 hours, and change in serum creatinine at 72 hours. Bolus against continuous infusion: symptom area under the curve 4,236 against 4,373, p=0.47; creatinine change 0.05 against 0.07 mg/dL, p=0.45. High against low dose: symptom area under the curve 4,430 against 4,171, p=0.06 — a non-significant trend; creatinine change 0.08 against 0.04 mg/dL, p=0.21. The high-dose strategy produced greater diuresis and more favourable results on some secondary measures alongside transient worsening of renal function.',
+        evidenceSource: 'Felker GM et al., DOSE, N Engl J Med 2011;364:797-805 (NCT00577135)',
+        doi: '10.1056/NEJMoa1005419',
+        measuredMetric:
+          'Global symptom assessment area under the curve over 72 hours and change in serum creatinine',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fur-a3',
+        category: 'conclusion_shift',
+        title: 'TRANSFORM-HF: torsemide was expected to beat furosemide and did not',
+        laymanSummary:
+          'Torsemide is better absorbed and lasts longer, and the trial was designed on the expectation that it would cut deaths by a fifth. Deaths were 26.1% against 26.2%.',
+        technicalDetails:
+          'TRANSFORM-HF randomised 2,859 participants discharged after hospitalisation for heart failure, median age 65, 36.9% women and 33.9% Black, to a loop diuretic strategy of torsemide (n=1,431) or furosemide (n=1,428) at investigator-selected dose, with follow-up to 30 months for death and 12 months for hospitalisations. The prespecified primary hypothesis was that torsemide would reduce all-cause mortality by 20%. Over a median 17.4 months, death occurred in 373 of 1,431 (26.1%) on torsemide and 374 of 1,428 (26.2%) on furosemide: hazard ratio 1.02 (95% CI 0.89 to 1.18). Over 12 months, all-cause mortality or all-cause hospitalisation occurred in 47.3% against 49.3% (hazard ratio 0.92, 0.83 to 1.02), and total hospitalisations were 940 in 536 participants against 987 in 577 (rate ratio 0.94, 0.84 to 1.07). Results were similar across ejection fraction strata. The authors state that interpretation is limited by loss to follow-up, crossover and non-adherence; 113 patients withdrew consent before completion.',
+        evidenceSource: 'Mentz RJ et al., TRANSFORM-HF, JAMA 2023;329:214-223 (NCT03296813)',
+        doi: '10.1001/jama.2022.23924',
+        measuredMetric: 'All-cause mortality over a median 17.4 months, torsemide versus furosemide',
+        inferredClaim:
+          'That better oral bioavailability and a longer duration translate into better outcomes — a mechanistic expectation the trial did not support',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fur-a4',
+        category: 'inferred',
+        title: 'Symptom relief within hours is not evidence about outcomes over years',
+        laymanSummary:
+          'Nobody doubts that furosemide relieves breathlessness, and that certainty is often carried across into claims about survival and hospitalisation that the trials do not support.',
+        technicalDetails:
+          'The acute effect is unambiguous, mechanistically direct and visible within an hour, which makes it one of the most convincing bedside demonstrations in medicine. What follows from it about long-term outcome does not follow at all. DOSE, the largest randomised trial of furosemide strategy in acute heart failure, used a symptom score and a creatinine change as its co-primary endpoints and separated on neither. TRANSFORM-HF compared two loop diuretics for death and found 26.1% against 26.2%. The Cochrane placebo-controlled mortality evidence is 202 participants. Meanwhile observational analyses consistently associate higher loop diuretic doses with worse survival, which is almost certainly confounding by severity and is also not a finding anyone can dismiss on the available randomised data. The accurate summary is that furosemide is indispensable for congestion and that its effect on survival has never been properly measured.',
+        evidenceSource:
+          'Felker GM et al., N Engl J Med 2011;364:797-805; Mentz RJ et al., JAMA 2023;329:214-223; Faris RF et al., Cochrane Database Syst Rev 2012;(2):CD003838',
+        doi: '10.1056/NEJMoa1005419',
+        inferredClaim:
+          'That the visible acute benefit of furosemide implies a survival benefit — no adequately sized randomised trial has tested it and none is likely to be run',
+        auditFlag: 'caution',
+      },
+      {
+        id: 'fur-a5',
+        category: 'measured',
+        title: 'Diuretic resistance is a delivery problem more often than a dose problem',
+        laymanSummary:
+          'When furosemide stops working, the usual reason is not that the transporter has become insensitive but that not enough drug is reaching it.',
+        technicalDetails:
+          'Furosemide is more than 90% bound to plasma albumin, so it is barely filtered at the glomerulus and reaches its luminal target almost entirely by OAT-mediated secretion in the proximal tubule. Three things reduce that delivery: hypoalbuminaemia, which is common in the nephrotic syndrome and cirrhosis; competing organic anions, including uraemic retention solutes and non-steroidal anti-inflammatories; and reduced renal blood flow. A fourth mechanism operates downstream — chronic loop diuretic exposure causes compensatory hypertrophy and increased sodium reabsorption in the distal convoluted tubule, the braking phenomenon, which is why adding a thiazide to a loop diuretic restores diuresis when raising the loop dose does not. DOSE tested the dose lever specifically: the high-dose strategy produced greater diuresis and more favourable secondary measures with transient worsening of renal function, and did not reach significance on either co-primary endpoint.',
+        evidenceSource: 'Felker GM et al., DOSE, N Engl J Med 2011;364:797-805 (NCT00577135)',
+        doi: '10.1056/NEJMoa1005419',
+        measuredMetric:
+          'Diuresis, symptom score and creatinine change with a high-dose versus low-dose furosemide strategy',
+        auditFlag: 'verified',
+      },
+      {
+        id: 'fur-a6',
+        category: 'measured',
+        title: 'Ototoxicity comes from the same transporter family in the inner ear',
+        laymanSummary:
+          'High doses given quickly into a vein can cause temporary hearing loss and ringing, because the ear uses a close relative of the transporter the drug blocks.',
+        technicalDetails:
+          'The stria vascularis of the cochlea maintains the potassium-rich endolymph on which hearing depends, using NKCC1, a close relative of the NKCC2 target in the kidney. At high plasma concentrations furosemide inhibits it, reducing the endocochlear potential and producing tinnitus and reversible hearing loss. The effect is peak-concentration dependent rather than dose-cumulative, which is why rapid intravenous administration of a large dose carries more risk than the same dose given as an infusion, and why risk rises in renal impairment where clearance is reduced. Concurrent aminoglycoside antibiotics compound it through a separate and typically permanent mechanism. The kidney-versus-ear selectivity of the drug is therefore a matter of concentration rather than of molecular discrimination.',
+        evidenceSource:
+          'Felker GM et al., DOSE, N Engl J Med 2011;364:797-805; Drugs@FDA LASIX label, NDA 016273',
+        doi: '10.1056/NEJMoa1005419',
+        measuredMetric:
+          'Peak-concentration-dependent inhibition of the cochlear NKCC1 transporter, as reflected in labelled ototoxicity warnings',
+        auditFlag: 'verified',
+      },
+    ],
+    mechanismSteps: [
+      {
+        step: 1,
+        title: 'Absorbed erratically by mouth, reliably by vein',
+        laymanDesc:
+          'How much of a tablet gets absorbed varies enormously between people and from day to day, especially when the gut wall is swollen with fluid. Intravenous dosing removes that uncertainty.',
+        molecularDetail:
+          'Oral bioavailability averages roughly 50% and ranges from about 10% to 100% between individuals, and falls further with gut wall oedema in decompensated heart failure. Onset is within 30 to 60 minutes orally and about 5 minutes intravenously, with a short duration of 6 to 8 hours. This variability is the practical reason torsemide, with more reliable absorption, was expected to be better — an expectation TRANSFORM-HF did not confirm.',
+          iconName: 'Pill',
+        visualStage: 'delivery',
+      },
+      {
+        step: 2,
+        title: 'It is secreted into the tubule because it cannot be filtered',
+        laymanDesc:
+          'The drug travels stuck to blood protein, so it is too large to be filtered into the urine. The kidney has to actively pump it across, and anything competing for that pump reduces the effect.',
+        molecularDetail:
+          'More than 90% is albumin-bound, so glomerular filtration delivers almost none. Proximal tubular secretion by OAT1 and OAT3 is the route to the lumen. Hypoalbuminaemia, competing organic anions and reduced renal perfusion all cut luminal drug concentration, which is the commonest mechanism of apparent diuretic resistance.',
+        iconName: 'ArrowDownToLine',
+        visualStage: 'cellular_entry',
+      },
+      {
+        step: 3,
+        title: 'It blocks the chloride site of the loop transporter',
+        laymanDesc:
+          'One transporter in the loop of Henle moves sodium, potassium and two chlorides at once and reclaims a quarter of all filtered salt. The drug occupies one of the chloride positions and shuts it down.',
+        molecularDetail:
+          'Furosemide binds the chloride-binding site of NKCC2, encoded by SLC12A1, on the luminal membrane of the thick ascending limb, which normally reabsorbs 20 to 25% of filtered sodium. Loss-of-function mutations in the same gene cause Bartter syndrome type 1, whose salt wasting, hypokalaemic alkalosis and hypercalciuria are a phenocopy of chronic loop diuretic use.',
+        iconName: 'Lock',
+        visualStage: 'target_binding',
+      },
+      {
+        step: 4,
+        title: 'The kidney loses both its salt reclamation and its concentrating gradient',
+        laymanDesc:
+          'The same transporter that reclaims salt is what builds the salty gradient in the kidney that lets it make concentrated urine. Blocking it means large volumes of dilute urine, plus loss of potassium, magnesium and calcium.',
+        molecularDetail:
+          'Inhibiting NKCC2 abolishes the medullary countercurrent gradient, so the kidney can neither concentrate nor maximally dilute urine. Loss of the transepithelial potential normally generated by potassium recycling through ROMK removes the driving force for paracellular calcium and magnesium reabsorption, producing hypercalciuria and hypomagnesaemia. Increased distal sodium delivery drives potassium secretion and metabolic alkalosis. Furosemide also acutely increases venous capacitance through a prostaglandin-mediated effect, which is why breathlessness eases before diuresis begins.',
+        iconName: 'Waves',
+        visualStage: 'catalytic_action',
+      },
+      {
+        step: 5,
+        title: 'Congestion clears within hours; survival has never been measured properly',
+        laymanDesc:
+          'Breathlessness improves within an hour and fluid comes off within a day. Whether the drug changes how long people live is a question no adequate trial has answered.',
+        molecularDetail:
+          'Fractional sodium excretion rises to 20 to 25%, producing a diuresis far beyond what any thiazide achieves. Against that, DOSE separated on neither of its co-primary endpoints across four strategies in 308 patients, TRANSFORM-HF found all-cause death at 26.1% against 26.2% for torsemide versus furosemide in 2,859 patients, and the pooled placebo-controlled mortality evidence comprises 202 participants.',
+        iconName: 'TrendingDown',
+        visualStage: 'therapeutic_result',
+      },
+    ],
+    trials: [
+      {
+        trialId: 'DOSE (NCT00577135)',
+        phase: 'Prospective double-blind randomised 2-by-2 factorial trial, 72 hours',
+        sampleSize: 308,
+        primaryEndpoint:
+          'Co-primary: patient global assessment of symptoms as area under the curve over 72 hours, and change in serum creatinine at 72 hours',
+        endpointMet: false,
+        statisticalPValue:
+          'Bolus versus infusion P = 0.47 and P = 0.45; high versus low dose P = 0.06 and P = 0.21',
+        unreportedAdverseSignals:
+          'The high-dose strategy produced greater diuresis and more favourable results on some secondary measures alongside transient worsening of renal function.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'TRANSFORM-HF (NCT03296813)',
+        phase: 'Pragmatic randomised open-label trial, median 17.4 months',
+        sampleSize: 2859,
+        primaryEndpoint: 'All-cause mortality, torsemide versus furosemide after heart failure hospitalisation',
+        endpointMet: false,
+        statisticalPValue:
+          '26.1% against 26.2%; HR 1.02 (95% CI 0.89-1.18), against a prespecified hypothesis of a 20% reduction',
+        unreportedAdverseSignals:
+          'The authors state interpretation is limited by loss to follow-up, crossover and non-adherence; 113 participants withdrew consent before completion.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+      {
+        trialId: 'Cochrane review: diuretics for heart failure',
+        phase: 'Systematic review and meta-analysis of 14 randomised trials',
+        sampleSize: 525,
+        primaryEndpoint: 'Mortality and worsening heart failure, diuretics versus placebo or active control',
+        endpointMet: true,
+        statisticalPValue:
+          'Odds ratio for death 0.24 (95% CI 0.07-0.83), P = 0.02 — from 3 placebo-controlled trials with 202 participants',
+        unreportedAdverseSignals:
+          'Only 202 of the 525 participants contributed mortality data. The 2012 update identified no new studies, so the evidence base has not grown.',
+        independentReplicationStatus: 'Unreplicated',
+      },
+    ],
+    measuredVsInferredSummary: {
+      strictlyMeasured: [
+        'No significant difference between bolus and continuous infusion, or between high and low dose, on either co-primary endpoint in 308 patients',
+        'All-cause death of 26.1% on torsemide against 26.2% on furosemide in 2,859 patients over a median 17.4 months',
+        'A pooled odds ratio for death against placebo of 0.24 (0.07 to 0.83) from 3 trials totalling 202 participants',
+        'Fractional sodium excretion of 20 to 25%, far beyond any thiazide, with onset within an hour',
+      ],
+      unsupportedInferences: [
+        'That the immediate relief of congestion implies a survival benefit — the placebo-controlled mortality evidence is 202 participants and no large trial exists',
+        'That better oral bioavailability makes a loop diuretic better — TRANSFORM-HF tested that with torsemide and found 26.1% against 26.2%',
+        'That observational associations between higher loop diuretic doses and worse survival indicate harm — that is far more likely to be confounding by severity, and no randomised data resolve it',
+        'That failing to respond means the dose is too low — it more often means insufficient drug is reaching the transporter',
+      ],
+      whatFailedInitially: [
+        'DOSE separated on neither co-primary endpoint across four furosemide strategies',
+        'TRANSFORM-HF was designed to detect a 20% mortality reduction from torsemide and found a hazard ratio of 1.02',
+        'The Cochrane 2012 update identified no new randomised trials to add to a base of 525 participants',
+      ],
+      realWorldOutcome: [
+        'On the WHO Model List of Essential Medicines and among the most-administered drugs in hospital medicine worldwide',
+        'A few cents per tablet at United States pharmacy acquisition cost, and available as an inexpensive generic injection',
+        'The SGLT2 inhibitors have accumulated the heart failure outcome evidence that loop diuretics never generated, and are now used alongside rather than instead of them',
+      ],
+    },
+    deliverySystem: {
+      type: 'Oral tablet and oral solution, and an intravenous or intramuscular injection',
+      description:
+        'Given once or twice daily by mouth, or intravenously in acute decompensation where gut wall oedema makes oral absorption unreliable. Duration is short, 6 to 8 hours, so a single daily dose leaves most of the day for compensatory sodium retention — the reason twice-daily dosing or a longer-acting agent is often preferred.',
+      safetyProfile:
+        'The US label carries a warning that furosemide is a potent diuretic which, if given in excessive amounts, can lead to profound diuresis with water and electrolyte depletion. Hypokalaemia, hyponatraemia, hypomagnesaemia, hypocalcaemia and metabolic alkalosis all follow directly from the mechanism. Ototoxicity, usually reversible, relates to peak concentration and is more likely with rapid high-dose intravenous administration, renal impairment and concurrent aminoglycosides. It is a sulfonamide derivative. Non-steroidal anti-inflammatories blunt the effect by competing for tubular secretion.',
+    },
+    commonQuestions: [
+      {
+        q: 'If this drug is given to nearly everyone, why is there no big trial?',
+        a: 'Because randomising a congested, breathless patient to no diuretic is something investigators have not been willing to do, and the acute benefit is so visible that nobody has felt the need. The consequence is a genuinely thin evidence base for a drug in universal use: the Cochrane review of diuretics for heart failure includes 14 trials with 525 participants, and only three of those, with 202 participants between them, contributed mortality data. Those three gave an odds ratio for death of 0.24 with a confidence interval running to 0.83 — a real signal on a very small number. The 2012 update found no new trials to add. What exists instead are trials comparing one diuretic strategy with another, and those have consistently found no difference.',
+        auditNote:
+          'This is the largest gap on this page, and it is unusual in kind: not a claim that outran its evidence, but an intervention so obviously effective in the short term that its long-term effect was never measured.',
+      },
+      {
+        q: 'Is torsemide better than furosemide?',
+        a: 'It was widely expected to be, and TRANSFORM-HF tested it. Torsemide has more predictable oral absorption and a longer duration, which are real pharmacological advantages, and the trial was designed on the prespecified hypothesis that it would reduce all-cause mortality by 20%. In 2,859 patients discharged after a heart failure hospitalisation, death occurred in 26.1% on torsemide and 26.2% on furosemide, hazard ratio 1.02. The combined outcome of death or hospitalisation at 12 months was 47.3% against 49.3%, which also did not reach significance. The authors are explicit that loss to follow-up, crossover and non-adherence limit interpretation, so this is a null result with caveats rather than a definitive one.',
+      },
+      {
+        q: 'My furosemide has stopped working. Does that mean I need a higher dose?',
+        a: 'Often not, and understanding why changes what should be done about it. Furosemide is over 90% bound to albumin, so almost none of it is filtered into the urine — the kidney has to actively pump it from blood into the tubule to reach its target. If albumin is low, or if something else is competing for that pump, or if renal blood flow has fallen, the transporter never sees enough drug and raising the dose has limited effect. Separately, weeks of loop diuretic treatment cause the next segment of the tubule to grow and reabsorb more sodium, which is why adding a thiazide often restores diuresis when increasing the loop dose does not. DOSE tested the dose lever directly and found greater diuresis with the high-dose strategy alongside transient worsening of kidney function, and no significant difference on either co-primary endpoint.',
+      },
+      {
+        q: 'Does it damage my kidneys?',
+        a: 'The creatinine often rises and that is usually a haemodynamic consequence rather than injury. In DOSE the mean creatinine change over 72 hours was 0.05 to 0.08 mg/dL across all four strategies, with no significant difference between them, and the high-dose group had transient worsening of renal function alongside greater diuresis. Removing fluid reduces the pressure driving filtration, so the number moves; that is not the same as damaged tubules. What is a real risk is overshoot: the US label warns that excessive dosing can produce profound diuresis with water and electrolyte depletion, and that is a genuine cause of acute kidney injury.',
+      },
+      {
+        q: 'Why did my hearing go strange after a big intravenous dose?',
+        a: 'Because the inner ear runs on a close relative of the same transporter. The cochlea maintains a potassium-rich fluid using NKCC1, and at high plasma concentrations furosemide inhibits it, reducing the electrical potential that hearing depends on. The result is tinnitus or temporary hearing loss, and it is usually reversible. It depends on peak concentration rather than total dose, which is why a large dose pushed in quickly is riskier than the same dose infused, and why the risk rises in kidney impairment where the drug is cleared more slowly. Aminoglycoside antibiotics given at the same time compound it by a different mechanism that is often not reversible.',
+      },
+      {
+        q: 'Why does this page show no manufacturing cost?',
+        a: 'Because no verified per-dose synthesis cost for furosemide could be cited. It is one of the cheapest drugs in hospital use and the route is a single selective amination of a commercially available chlorinated benzoic acid. The interesting manufacturing constraint is not cost but light: furosemide is photolabile and degrades to a coloured ring-opened product, which is why the injection is supplied light-protected and why appearance is part of the tablet specification. That is process chemistry, not a cost figure, and this page does not invent one.',
+      },
+    ],
+    recentAuditDate: 'August 2026',
+    hasDiscrepancy: true,
+    sources: [
+      {
+        label:
+          'Felker GM et al. Diuretic strategies in patients with acute decompensated heart failure (DOSE). N Engl J Med 2011;364:797-805',
+        identifier: '10.1056/NEJMoa1005419',
+        kind: 'doi',
+      },
+      {
+        label:
+          'Mentz RJ et al. Effect of torsemide vs furosemide after discharge on all-cause mortality in patients hospitalized with heart failure (TRANSFORM-HF). JAMA 2023;329:214-223',
+        identifier: '10.1001/jama.2022.23924',
+        kind: 'doi',
+      },
+      {
+        label: 'Faris RF et al. Diuretics for heart failure. Cochrane Database Syst Rev 2012;(2):CD003838',
+        identifier: '10.1002/14651858.CD003838.pub3',
+        kind: 'doi',
+      },
+      {
+        label: 'Drugs@FDA: LASIX (furosemide), NDA 016273, original approval 1 July 1966',
+        identifier:
+          'https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm?event=overview.process&ApplNo=016273',
+        kind: 'regulatory',
+      },
+      {
+        label: 'PubChem CID 3440 — furosemide structure, formula and molecular weight',
+        identifier: 'https://pubchem.ncbi.nlm.nih.gov/compound/3440',
+        kind: 'url',
+      },
+      NADAC_SOURCE,
+    ],
+  },
 ]
